@@ -226,10 +226,16 @@ test('PR selection targets affected current contracts, diagnostic helper changes
   assert.equal(result.status, 'not-applicable');
   assert.equal(result.total, 0);
 });
-test('delivery contract guides select their observer regressions and preserve separate routes', () => {
-  for (const guide of ['guides/SITE-STAGING.md', 'guides/SITE-CHECK-PROFILES.md']) {
+test('delivery contract guides select their applicable admission and observer regressions', () => {
+  for (const [guide, modules] of [
+    [
+      'guides/SITE-STAGING.md',
+      ['tests/delivery-admission.test.cjs', 'tests/delivery-observation.test.cjs'],
+    ],
+    ['guides/SITE-CHECK-PROFILES.md', ['tests/delivery-observation.test.cjs']],
+  ]) {
     const plan = runner.select(root, 'pr', { changedPaths: [guide] });
-    assert.deepEqual(plan.modules, ['tests/delivery-observation.test.cjs']);
+    assert.deepEqual(plan.modules, modules);
     assert.deepEqual(plan.conservativeFallback, []);
     assert.equal(plan.baselineCommand, 'node tools/quality/local.cjs');
     assert.equal(plan.pythonRoute, 'python3 tools/run_repository_tests.py');

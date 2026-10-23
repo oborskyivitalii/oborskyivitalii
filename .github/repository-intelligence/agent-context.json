@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "c9048b7263e20204bbf9f01ab581434ad850c1dead6ec7dd58244b39e5491f5e",
+    "digest": "ebfefe7c402471a61ff93a502aa29d33f273972e7ca059bdb8ec50bdb8dbdada",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -42,7 +42,7 @@
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
         "identity_mode": "content",
-        "sha256": "d5e0d1402980115fb4fdae1544ac4bf5237d7ea9b9e3c411fe4b99d7284d608b"
+        "sha256": "bf9bc542c2114ff6c430ee604848cd9fb53dfc27b4718f974cfcb71fd632a872"
       },
       {
         "path": ".github/acceptance/issue-102.json",
@@ -72,7 +72,7 @@
       {
         "path": ".github/acceptance/issue-122.json",
         "identity_mode": "content",
-        "sha256": "2e2940c4b10b095017fa4696958a1b2576c70bfe24133217ed85234387f8e772"
+        "sha256": "029abf8a0fa8f8b5709f622c8da1f3cc3747e97e6dfb42a8426b08330d96ba73"
       },
       {
         "path": ".github/acceptance/issue-126.json",
@@ -196,12 +196,17 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "ccbf3c438e07becb439e9866a9db9b41ab146ba885cbcb946378b9721530386c"
+        "sha256": "fa3f53fd210e6ea8fc397aa194d3d9fa0de1b20e40665d45a335654d9445d439"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "bb1bd6961c71c6375b28aff23e9b14b629f12dba906511904e8119e865a2cbe3"
+        "sha256": "c80b72bc75d873d3d6586b0b74580e5a51da51062da1d253bdc7a6afb2688e8b"
+      },
+      {
+        "path": ".github/workflows/change-admission.yml",
+        "identity_mode": "content",
+        "sha256": "1b6895e8034ef10061049b800a3049a59f783af1b7447996ab57fec283850ef1"
       },
       {
         "path": ".github/workflows/delivery-observation.yml",
@@ -246,7 +251,7 @@
       {
         "path": ".github/workflows/site-color-review.yml",
         "identity_mode": "content",
-        "sha256": "2f8a3b09e87436d738347e1f6a63948dc66d85f1663164abe6ea9a6dd7df2a77"
+        "sha256": "50d65ad73e215ae4441e2cb44e2a02e773d7bb5fdab41f7023492d3d01baa75f"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -336,7 +341,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "92f04127e306ed81c5f92927100caf80f2b6be193f2fb3cd61f4a5f392cde793"
+        "sha256": "04480e3c8b43010054dd7bfde3f4ebf222235d9954f9a67eaed8931d9df99e2d"
       },
       {
         "path": "NOTICE.md",
@@ -705,7 +710,7 @@
       {
         "path": "guides/SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "874a3b46355dbf7eaffcada6bbc7b8dd5498c80f9534c5b461d860455025dcb5"
+        "sha256": "e506f6ceb9c7d26447f222ae1e54385934f45f045b6bd443ce34b047ef80c057"
       },
       {
         "path": "guides/github-pages-domains.json",
@@ -886,6 +891,11 @@
         "path": "review/issue-122/2026-10-23-t04-setup-review.md",
         "identity_mode": "content",
         "sha256": "195e9aa64ec738a68d66fa842046adc5d6db559918f96819e37e9e5b0d8e5a8e"
+      },
+      {
+        "path": "review/issue-122/2026-10-23-t05-review.md",
+        "identity_mode": "content",
+        "sha256": "f758867fa44c36d97f8a3e33926dd828ffc24801fde25af1352393518c440fa3"
       },
       {
         "path": "review/issue-126/2026-10-23-announcement-review.md",
@@ -5908,6 +5918,11 @@
         "sha256": "f35b616f02738039b973bdf260619d43b344e0920e2641974e26db4b0084ed21"
       },
       {
+        "path": "tests/delivery-admission.test.cjs",
+        "identity_mode": "content",
+        "sha256": "461ebd57987fe41f8588fd10122d92b8ee47a9360e575e6d448ee72b21cfbd95"
+      },
+      {
         "path": "tests/delivery-observation.test.cjs",
         "identity_mode": "content",
         "sha256": "183b0d70cce960d34740cb57356b060e3f40a1e093c105a5c882e9546f3af16e"
@@ -6155,7 +6170,7 @@
       {
         "path": "tests/test-profile-selection.test.cjs",
         "identity_mode": "content",
-        "sha256": "f33b76d72bd44cd675d925a35e4bc4183936f2d443530e6d86dea5ad8a11bb2b"
+        "sha256": "7ae78b81d4c2b70d34f350394cf6291f704642067a3e9e7b5c1934ed177a230e"
       },
       {
         "path": "tests/test_code_style.py",
@@ -6280,7 +6295,7 @@
       {
         "path": "tests/test_ri_ci.py",
         "identity_mode": "content",
-        "sha256": "6ebbc6ee4512c1128eaa419d4778dd19a16fa8e672f074fac0042a2a3eded7d5"
+        "sha256": "7b74c5dfd2f661e1724fc14cbf6f4d32acef605deed8d8f89ef62e2f4c539e9d"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -6526,6 +6541,16 @@
         "path": "tools/quality/common.cjs",
         "identity_mode": "content",
         "sha256": "e9cadaf7288c6c12a0b3554c130e3a1dff36e2f3f91d4bd2f0f7cbde16f95e50"
+      },
+      {
+        "path": "tools/quality/delivery-admission-issuer.cjs",
+        "identity_mode": "content",
+        "sha256": "9cb396b38948f8ed9ea6dd99c130c148a184b5bc46a47c604048e839c7275f3c"
+      },
+      {
+        "path": "tools/quality/delivery-admission.cjs",
+        "identity_mode": "content",
+        "sha256": "902fc953df8617711c0c2afdda808572256082ae348e97a4d794d2be30327564"
       },
       {
         "path": "tools/quality/delivery-git.cjs",
@@ -6795,7 +6820,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "ce9a8088172ea2bce9528f7ba652d060a06cc553b888abf54f359b504ec1eaee"
+        "sha256": "5f35d6db16221870729be544b2a87be6f699da9057b8b3ecb48a8e8e9d8d5e3f"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -7863,6 +7888,17 @@
         "AGENTS.md"
       ],
       "title": "ri-ci-map.json"
+    },
+    {
+      "path": ".github/workflows/change-admission.yml",
+      "kind": "file",
+      "purpose": "Disabled-by-default dedicated App admission preparation; main-only execution and explicit unconfigured observation.",
+      "role": "workflow",
+      "owner": "guides/SITE-STAGING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "change-admission.yml"
     },
     {
       "path": ".github/workflows/delivery-observation.yml",
@@ -9370,6 +9406,17 @@
         "AGENTS.md"
       ],
       "title": "Issue122 — 23 October 2026 T04-P setup prerequisite"
+    },
+    {
+      "path": "review/issue-122/2026-10-23-t05-review.md",
+      "kind": "file",
+      "purpose": "Source-bound T05 design, independent review dispositions and explicit pending native issuer/protection proof.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue122 — T05 admission preparation, 23 October 2026"
     },
     {
       "path": "review/issue-126/2026-10-23-announcement-review.md",
@@ -20416,6 +20463,17 @@
       "title": "content.test.cjs"
     },
     {
+      "path": "tests/delivery-admission.test.cjs",
+      "kind": "file",
+      "purpose": "Negative API, real-Git execution-control, receipt and App issuer preparation regressions.",
+      "role": "test",
+      "owner": "tools/quality/delivery-admission.cjs",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "delivery-admission.test.cjs"
+    },
+    {
       "path": "tests/delivery-observation.test.cjs",
       "kind": "file",
       "purpose": "Real-Git owner/control/rename/type/invalid input, policy identity and false-authority regression oracles.",
@@ -21778,6 +21836,28 @@
         "AGENTS.md"
       ],
       "title": "common.cjs"
+    },
+    {
+      "path": "tools/quality/delivery-admission-issuer.cjs",
+      "kind": "file",
+      "purpose": "Isolated short-lived repository-scoped GitHub App authentication and serialized snapshot publication adapter.",
+      "role": "validator",
+      "owner": "guides/SITE-STAGING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "delivery-admission-issuer.cjs"
+    },
+    {
+      "path": "tools/quality/delivery-admission.cjs",
+      "kind": "file",
+      "purpose": "Trusted-main full-route snapshot, execution-definition inventory and independent stage receipt verification.",
+      "role": "validator",
+      "owner": "guides/SITE-STAGING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "delivery-admission.cjs"
     },
     {
       "path": "tools/quality/delivery-git.cjs",

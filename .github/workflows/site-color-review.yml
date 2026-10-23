@@ -679,3 +679,57 @@ jobs:
               else status='Bounded staging regression passed, but promotion failed.'+(n.promote.outputs.rollback==='success'?' Previous staging restored and verified.':' Check recovery evidence.');
             }
             await require('./tools/staging/review-flow.cjs').updateComment(github,context,{source:process.env.REVIEW_SOURCE,url:n.publish.outputs.url||'',alias:preview?(n.publish.outputs.alias||''):(n.promote.result==='success'?n.promote.outputs.stable:''),status,run:`https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`});
+  change-admission-receipt:
+    needs:
+      [
+        target,
+        build,
+        publish,
+        smoke,
+        stage-evidence,
+        full,
+        promote,
+        merge-admission,
+        status-comment,
+      ]
+    if: >-
+      always() && needs.target.outputs.mode == 'staging' &&
+      needs.full.result == 'success' && needs.promote.result == 'success' &&
+      needs.merge-admission.result == 'success'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - id: receipt
+        name: Produce staging identity without executing candidate code
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        env:
+          REVIEW_PR: ${{ needs.target.outputs.number }}
+          REVIEW_SOURCE: ${{ needs.target.outputs.source }}
+        with:
+          script: |
+            const fs = require('node:fs');
+            const path = require('node:path');
+            const receipt = await require('./tools/quality/delivery-admission.cjs').stageIdentity(
+              github, context, process.env.REVIEW_PR, process.env.REVIEW_SOURCE
+            );
+            const file = path.join(process.env.RUNNER_TEMP, 'independent-stage-identity.json');
+            fs.writeFileSync(file, JSON.stringify(receipt, null, 2) + '\n', { flag: 'wx' });
+            core.setOutput('name', receipt.artifactName);
+      - name: Retain independently produced staging identity
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: ${{ steps.receipt.outputs.name }}
+          path: ${{ runner.temp }}/independent-stage-identity.json
+          if-no-files-found: error
+          overwrite: false
+          retention-days: 90

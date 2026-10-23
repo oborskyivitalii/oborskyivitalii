@@ -1,0 +1,114 @@
+name: Change admission preparation
+on:
+  workflow_run:
+    workflows:
+      [
+        Site basic checks,
+        Local navigation checks,
+        Issue acceptance evidence,
+        Site PR preview and staging,
+      ]
+    types: [in_progress, completed]
+  push:
+    branches: [main]
+  issue_comment:
+    types: [created]
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: Open same-repository PR whose current full-route snapshot is refreshed
+        required: true
+        type: string
+permissions:
+  contents: read
+  actions: read
+  checks: read
+  pull-requests: read
+concurrency:
+  group: >-
+    ${{ (github.event_name != 'issue_comment' ||
+         (github.event.issue.pull_request && github.event.comment.body == '/admit' &&
+          github.event.comment.user.login == github.repository_owner && github.actor == github.repository_owner)) &&
+        'change-admission-issuer' || format('ignored-admission-comment-{0}', github.run_id) }}
+  cancel-in-progress: false
+jobs:
+  configuration:
+    name: Change admission configuration observation
+    if: >-
+      github.repository == 'oborskyivitalii/oborskyivitalii' &&
+      (github.event_name != 'issue_comment' ||
+       (github.event.issue.pull_request && github.event.comment.body == '/admit' &&
+        github.event.comment.user.login == github.repository_owner && github.actor == github.repository_owner))
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    steps:
+      - name: Report configuration without substituting an authoritative check
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        env:
+          CHANGE_ADMISSION_ENABLED: ${{ vars.CHANGE_ADMISSION_ENABLED }}
+        with:
+          script: |
+            const enabled = process.env.CHANGE_ADMISSION_ENABLED === 'true';
+            await core.summary.addHeading('Change admission preparation')
+              .addRaw(enabled ? 'Dedicated issuer requested; inspect its actual result.' :
+                'Not configured. No authoritative check was issued; existing three requirements remain mandatory.')
+              .write();
+  issuer:
+    name: Dedicated admission issuer preparation
+    needs: configuration
+    if: vars.CHANGE_ADMISSION_ENABLED == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    environment: change-admission
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - name: Evaluate immutable identities and issue with the isolated App
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        env:
+          CHANGE_ADMISSION_ENABLED: ${{ vars.CHANGE_ADMISSION_ENABLED }}
+          CHANGE_ADMISSION_APP_ID: ${{ vars.CHANGE_ADMISSION_APP_ID }}
+          CHANGE_ADMISSION_INSTALLATION_ID: ${{ vars.CHANGE_ADMISSION_INSTALLATION_ID }}
+          CHANGE_ADMISSION_APP_PRIVATE_KEY: ${{ secrets.CHANGE_ADMISSION_APP_PRIVATE_KEY }}
+        with:
+          script: |
+            const fs = require('node:fs');
+            const path = require('node:path');
+            const admission = require('./tools/quality/delivery-admission.cjs');
+            const issuing = require('./tools/quality/delivery-admission-issuer.cjs');
+            const config = issuing.configuration(process.env);
+            if (!config) throw new Error('Dedicated issuer is not configured');
+            const repo = (await github.rest.repos.get(context.repo)).data;
+            const issuer = await issuing.authenticate(config, repo.id);
+            const directory = path.join(process.env.RUNNER_TEMP, 'change-admission');
+            fs.mkdirSync(directory, { recursive: true });
+            try {
+              for (const number of await admission.targets(github, context)) {
+                const pr = (await github.rest.pulls.get({ ...context.repo, pull_number: number })).data;
+                const retain = async (report) => fs.writeFileSync(
+                  path.join(directory, String(number) + '.json'), JSON.stringify(report, null, 2) + '\n'
+                );
+                try {
+                  await issuing.publish(issuer, context, number, pr.head.sha,
+                    () => admission.collect(github, context, number), retain);
+                } catch (error) {
+                  core.setFailed('PR ' + number + ': ' + error.message);
+                }
+              }
+            } finally {
+              await issuer.revoke();
+            }
+      - name: Retain exact admission snapshot and blocking diagnostics
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: change-admission-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/change-admission/
+          if-no-files-found: error
+          retention-days: 90

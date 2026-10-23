@@ -3,7 +3,7 @@
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/122",
     "date": "2026-10-23",
-    "summary": "Approved T04-P routes signed-source and fail-visible Ubuntu setup fixtures through existing navigation and enduring Python suites, preserving original hosted source/profile budgets and controller authority."
+    "summary": "T05 preparation adds a disabled dedicated issuer, trusted execution and native-stage receipt guards under existing Basic/profile/owning routes; actual App and protection proof remain pending."
   },
   "layers": [
     {
@@ -409,6 +409,18 @@
         "test-profile-regressions",
         "acceptance-policy"
       ]
+    },
+    {
+      "id": "delivery-admission-preparation",
+      "purpose": "Disabled dedicated issuer and full-route snapshots; existing main3checks retain authority, actual App/protection proof stays external.",
+      "paths": [
+        ".github/workflows/change-admission.yml",
+        "tools/quality/delivery-admission.cjs",
+        "tools/quality/delivery-admission-issuer.cjs",
+        "tests/delivery-admission.test.cjs",
+        ".github/workflows/site-color-review.yml"
+      ],
+      "checks": ["site-basic", "test-profile-regressions", "acceptance-policy"]
     }
   ],
   "checks": [
@@ -628,7 +640,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "c24b287bd7cf29df354366881b2e7dd1287dd53cad28163d60daf5a3be0ae568",
+    "digest": "f336a5a8d78ac942d4e0ff426520d39ee45d967aa97691fd3cf9dada1a82095f",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -644,7 +656,7 @@
       },
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
-        "sha256": "d5e0d1402980115fb4fdae1544ac4bf5237d7ea9b9e3c411fe4b99d7284d608b"
+        "sha256": "bf9bc542c2114ff6c430ee604848cd9fb53dfc27b4718f974cfcb71fd632a872"
       },
       {
         "path": ".github/acceptance/issue-102.json",
@@ -668,7 +680,7 @@
       },
       {
         "path": ".github/acceptance/issue-122.json",
-        "sha256": "2e2940c4b10b095017fa4696958a1b2576c70bfe24133217ed85234387f8e772"
+        "sha256": "029abf8a0fa8f8b5709f622c8da1f3cc3747e97e6dfb42a8426b08330d96ba73"
       },
       {
         "path": ".github/acceptance/issue-126.json",
@@ -764,7 +776,11 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "ccbf3c438e07becb439e9866a9db9b41ab146ba885cbcb946378b9721530386c"
+        "sha256": "fa3f53fd210e6ea8fc397aa194d3d9fa0de1b20e40665d45a335654d9445d439"
+      },
+      {
+        "path": ".github/workflows/change-admission.yml",
+        "sha256": "1b6895e8034ef10061049b800a3049a59f783af1b7447996ab57fec283850ef1"
       },
       {
         "path": ".github/workflows/delivery-observation.yml",
@@ -800,7 +816,7 @@
       },
       {
         "path": ".github/workflows/site-color-review.yml",
-        "sha256": "2f8a3b09e87436d738347e1f6a63948dc66d85f1663164abe6ea9a6dd7df2a77"
+        "sha256": "50d65ad73e215ae4441e2cb44e2a02e773d7bb5fdab41f7023492d3d01baa75f"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -888,7 +904,7 @@
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
-        "sha256": "f33b76d72bd44cd675d925a35e4bc4183936f2d443530e6d86dea5ad8a11bb2b"
+        "sha256": "7ae78b81d4c2b70d34f350394cf6291f704642067a3e9e7b5c1934ed177a230e"
       },
       {
         "path": "tests/test_code_style.py",
@@ -980,7 +996,7 @@
       },
       {
         "path": "tests/test_ri_ci.py",
-        "sha256": "6ebbc6ee4512c1128eaa419d4778dd19a16fa8e672f074fac0042a2a3eded7d5"
+        "sha256": "7b74c5dfd2f661e1724fc14cbf6f4d32acef605deed8d8f89ef62e2f4c539e9d"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -1020,7 +1036,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "ce9a8088172ea2bce9528f7ba652d060a06cc553b888abf54f359b504ec1eaee"
+        "sha256": "5f35d6db16221870729be544b2a87be6f699da9057b8b3ecb48a8e8e9d8d5e3f"
       },
       {
         "path": "tools/repository_intelligence.py",

@@ -258,6 +258,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
+| [.github/workflows/change-admission.yml](.github/workflows/change-admission.yml) | Disabled-by-default dedicated App admission preparation; main-only execution and explicit unconfigured observation. | workflow | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [.github/workflows/delivery-observation.yml](.github/workflows/delivery-observation.yml) | Read-only candidate-policy routing observations alongside existing required CI; grants no admission authority. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [.github/workflows/issue-acceptance.yml](.github/workflows/issue-acceptance.yml) | Run the owning issue acceptance policy on the exact PR source and retain the per-criterion CI report. | workflow | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/workflows/navigation.yml](.github/workflows/navigation.yml) | GitHub Actions: Local navigation checks; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
@@ -779,6 +780,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-122/2026-10-23-t03r-public-checksum-proof.json.gz](review/issue-122/2026-10-23-t03r-public-checksum-proof.json.gz) | Inert compressed source-bound proof of180 exact public generated checksum findings, canonical producer checks and full hashed-only detector replay input for issue122 T03-R integration. | history | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [review/issue-122/2026-10-23-t04-review.md](review/issue-122/2026-10-23-t04-review.md) | Issue122 T04 source-bound independent reviews, real-Git observation evidence and delivery reconciliation. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-122/2026-10-23-t04-setup-review.md](review/issue-122/2026-10-23-t04-setup-review.md) | Approved T04-P Ubuntu setup prerequisite, separate quality-role findings and exact-source validation/delivery evidence. | history | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [review/issue-122/2026-10-23-t05-review.md](review/issue-122/2026-10-23-t05-review.md) | Source-bound T05 design, independent review dispositions and explicit pending native issuer/protection proof. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/issue-126/
 
@@ -2108,6 +2110,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/content-migration.test.cjs](tests/content-migration.test.cjs) | Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/content-rendering.test.cjs](tests/content-rendering.test.cjs) | Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/content.test.cjs](tests/content.test.cjs) | Behavioral/adversarial tests and fixtures for content. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/delivery-admission.test.cjs](tests/delivery-admission.test.cjs) | Negative API, real-Git execution-control, receipt and App issuer preparation regressions. | test | [tools/quality/delivery-admission.cjs](tools/quality/delivery-admission.cjs) |
 | [tests/delivery-observation.test.cjs](tests/delivery-observation.test.cjs) | Real-Git owner/control/rename/type/invalid input, policy identity and false-authority regression oracles. | test | [tools/quality/delivery-observation.cjs](tools/quality/delivery-observation.cjs) |
 | [tests/edition-retention.test.cjs](tests/edition-retention.test.cjs) | Production and Color immutable-edition preservation, staging isolation and collision/closure rejection. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/effects.test.cjs](tests/effects.test.cjs) | Permanent explicit effect composition, malformed descriptor, isolation and serialization regression cases. | test | [site/README.md](site/README.md) |
@@ -2254,6 +2257,8 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tools/quality/color-browser.cjs](tools/quality/color-browser.cjs) | Maintained quality/check helper for color browser; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/color-motion-contract.cjs](tools/quality/color-motion-contract.cjs) | Closed reviewed Color runtime identity and motion contract selection before hosted validation. | validator | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tools/quality/common.cjs](tools/quality/common.cjs) | Maintained quality/check helper for common; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/delivery-admission-issuer.cjs](tools/quality/delivery-admission-issuer.cjs) | Isolated short-lived repository-scoped GitHub App authentication and serialized snapshot publication adapter. | validator | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
+| [tools/quality/delivery-admission.cjs](tools/quality/delivery-admission.cjs) | Trusted-main full-route snapshot, execution-definition inventory and independent stage receipt verification. | validator | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tools/quality/delivery-git.cjs](tools/quality/delivery-git.cjs) | Bounded complete no-renames raw Git collection, exact tree identities and no-follow source data. | validator | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tools/quality/delivery-json.cjs](tools/quality/delivery-json.cjs) | Strict JSON, Unicode, exact-path and JCS identity helpers for the observation-only delivery report. | validator | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tools/quality/delivery-observation.cjs](tools/quality/delivery-observation.cjs) | Local and Actions observation CLI with explicit source/policy/producer binding and planned obligations. | validator | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
