@@ -34,6 +34,8 @@ jobs:
         run: python3 -m unittest discover -s tests -p 'test_code_style.py'
       - name: Verify reviewed RI and CI coverage
         run: python3 tools/check_ri_ci.py verify
+      - name: Check Ubuntu setup preservation and installer wiring
+        run: python3 -m unittest discover -s tests -p 'test_ubuntu_downloads.py'
       - name: Check RI and CI coupling regression cases
         run: python3 -m unittest discover -s tests -p 'test_ri_ci.py'
       - name: Check profile selection and fail-closed staging controls

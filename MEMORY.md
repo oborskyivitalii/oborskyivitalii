@@ -4,33 +4,29 @@ Dated continuity, not live authority. Last verified: **2026-10-23**.
 
 ## Snapshot
 
-- Issue122/PR128 originalR04 ownerstage39962246236/1 whole SUCCESS13:51:43Z. Measured cleanb467e151b6a2f9ee2d0fd7176d832c461cd5aa6f/tree8ca5855f0f0ac0d52d1dbc6696908202ed4191ff; protectedmain/controllercc67a209 unchanged.
-- Research single mobile1907.2965msLCP/40msTBT/0CLS; Writing1668.312ms/118.5ms/0 PASS original2500/200/.1. Raw2mobile JSON/traces authenticated. armReading0/0, readingViewport1/1 in both; old failed+6diagnostic armReading82/82 historical. No general performance guarantee.
-- Native26/26prepub,47modules647/647147517ms,Python121incl9,91pins/147deps/4overrides/security/advisories PASS. All7report hashes authenticated;6journeys/2navigation/10failure/7analytics/8windows/4flights/2mobile/2Color complete.
-- Stable exactb467/publicd8914729/package1480562b verified1readiness attempt; promote120450639520/controlleradmission120451235386 SUCCESS. Whole17m55s includesqueue/setup, not15min.
-- BootstrapPR130 delivered protectedmaincc67,tested8c3fa30b/treed559,stage39952774218,eligible39955383275,postmerge39955744615. PR129retained30/rights/checksum/registry closure preserved.
+- Protected main e6ee49696c0cdeaf70bbe72c803281682c7de83d/tree d5f5da1adc83df31a720e2e042ccfaa00c4856e5 delivered T03/PR128. Its successful stage39972503855, eligible39975171739 and postmerge39975383796 remain historical.
+- T04/PR131 paused Draft at31bb06bbf0d0b5f7fafa5468d0147b5ab7e6d8b9/tree19739c88fc9cd01d91aa3950794ea52614f9fb7f. T04.1-.4 verified; T04.5 blocked, no merge. Current report issuecomment6369941993; four original roles in versioned T04 review.
+- T04 source680/680, Python121,26prepublication guards pass; native observer24policy/18changes/72planned requirements with false authority. Preview39983945852/1,/2 and owner39984723250/1 exhausted deadlines on Azure Ubuntu downloads. Preview2 and owner browser actions never started; gate/admission failed, promotion skipped.
 
 ## Decisions
 
-- Approval6364038870 permits prerequisite delivery then PR128 integration/currentchecks and its originalR04/report; no PR128 merge/production. Sole originalR04 is spent; no green-seeking retry.
-- Actual824scan5062 left180generatedpublicchecksums across29paths, source-proved into publication1681 preserving1501orderedrows/all3otherledgers. Clean finalb467 native5063candidates allreviewed; no scanner/input/limit/profile/case/budget waiver.
-- Four actual integration/correction roles plus publishedb467 metadata-delta assessments accepted. AC04 scope4344 exceeded unchanged4000 bound; approved equivalent3977 validates. Failed history retained.
-- AGENTS15 requires this postrun report/MEMORY/RI handoff. Its later report head is different from stagedb467; unchanged code cannot transfer strict admission to that new head.
+- User approved T04-P setup prerequisite with “Так”, recorded issuecomment6370000839. Pause PR131, one narrow prerequisite PR on main, four roles/current source/native candidate evidence and protected delivery when available, then return to PR131. Production/W3/new credentials/services excluded.
+- Extract known production Linux primary Ubuntu archive/download treatment into tools/quality/ubuntu_downloads.py; call from same preview smoke, bounded staging and production Linux jobs. Preserve signatures/suites/package requests, pins/jobs/cases/deadlines. Actual OS versions may differ across synchronising mirrors.
+- Any bootstrap action outside the existing protected merge route needs its concrete separate decision before execution. Candidate-label staging cannot replace owner admission. No further identical green-seeking retry.
 
 ## Open work
 
-- Four actual independent R04 report reviews ACCEPT on2cdd/tree89aa; verbatim receipts retained. Current2cdd mapped4checks/style/format/RI/map PASS. Final report-only source/nativeCI and issue reconciliation are in livePR128/issue122; do not assume their state from this dated checkpoint. Report head remains unstaged.
-- R01–R04 scoped implementation/validation/report supported by measuredb467 and four actual report reviews; final checkbox/CI state must be read live. T03.3 current-head delivery controls,T03.5 merge/postmerge and wholeAC01–AC08 stayopen. AC05 enforcement unresolved beforeW3.
-- Canonical owner:review/issue-122/2026-10-23-t03-review.md. Authenticated originalR04 artifacts12504778622/12505461914/12506775371/12506057631/12505444643 recorded there.
-- Old Writing213.5/200ms failure and ordinary123/245/123/100/97.5 plus separate330.5 remain historical, not a pooled baseline.
+- Active prerequisite branch work/issue-122-t04-ubuntu-setup, basee6; local /tmp/t04p-setup. Publication identity and PR must be read live. Canonical review/issue-122/2026-10-23-t04-setup-review.md owns evidence.
+- Requirements preflight /root/t04_setup_requirements ACCEPT P01-P05. Initial helper7/7 fixtures passed; completed four candidate roles/current checks/native preview/staging/delivery remain pending. Whole AC01-AC08 remain open.
+- Original T04 source remains unchanged in /tmp/t03r-runtime; its observer must not be silently included in the prerequisite. Content issue5/PR79 remains separate.
 
 ## Next session
 
-1. Revalidate live main/PR/source/tree/checks/stage/reviews; this dated handoff is not authority.
-2. Verify final authorized report/check/reconciliation in liveissue/PR, distinguishing measured/report identities.
-3. Propose boundedT03.5 separately: later report head needs current stage/admission before protected merge/postmerge. No new stage,merge or production authorized here.
+1. Revalidate live refs/issues/PR/checks before relying on this dated handoff.
+2. Finish approved T04-P current checks, four roles and actual preview/candidate staging; preserve prior failed source/run attribution. Establish protected delivery or report precise bootstrap blocker.
+3. After prerequisite admission, integrate current main into PR131; refresh affected reviews and all exact-source CI/staging/admission/merge/postmerge. No production.
 
 ## Maintenance
 
-- Preserve5sections/120lines and canonical RI/map freshness. Report-only iteration changes no runtime/public/test/ledger.
-- Automated maintenance removed original workspace; recoveredGit/tmp/t03r-recovered-repo,active/tmp/t03r-runtime. Pinned Node24.19/Python3.12.14/91packages in ignored paths; rawnativeZIPs/tmp/r04-*.
+- Keep five sections/120lines and derived RI/CI freshness. Update final receipts before source freeze; poststage factual issue/PR records preserve tested tree.
+- Shared Git /tmp/t03r-recovered-repo; pinned Node24.19/Python3.12.14 and ignored toolchain available from /tmp/t03r-runtime. Git-backed work needs no duplicate storage.
