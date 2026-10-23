@@ -257,8 +257,11 @@ function visit(options = {}) {
       stored = value;
     },
   };
-  script.runInNewContext({ document, window, localStorage });
+  const realm = vm.createContext(vm.constants.DONT_CONTEXTIFY);
+  Object.assign(realm, { document, window, localStorage });
+  script.runInContext(realm);
   const api = {
+    realm,
     window,
     document,
     button,
@@ -382,6 +385,22 @@ test('compiled runtime creates independent visit contexts and state', () => {
   assert.equal(second.window.scrollY, 0);
   assert.equal(second.draws(), secondDraws);
   assert.deepEqual([...second.pending.keys()], secondPending);
+});
+test('visit globals and builtin prototypes cannot leak between realms or to the test process', () => {
+  const first = visit(),
+    second = visit();
+  const firstArray = vm.runInContext('Array', first.realm),
+    secondArray = vm.runInContext('Array', second.realm);
+  assert.notEqual(firstArray, secondArray);
+  assert.notEqual(firstArray, Array);
+  vm.runInContext(
+    'globalThis.issue126RealmMarker = true; Array.prototype.issue126RealmMarker = true;',
+    first.realm
+  );
+  assert.equal(vm.runInContext('globalThis.issue126RealmMarker', second.realm), undefined);
+  assert.equal(vm.runInContext('Array.prototype.issue126RealmMarker', second.realm), undefined);
+  assert.equal(globalThis.issue126RealmMarker, undefined);
+  assert.equal(Array.prototype.issue126RealmMarker, undefined);
 });
 test('all routes keep a stationary reading camera through forward and reverse native scroll', () => {
   for (const page of model.routeOrder) {
