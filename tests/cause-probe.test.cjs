@@ -18,6 +18,171 @@ const {
 } = require('../tools/quality/cause-probe.cjs');
 const candidate = 'a'.repeat(40),
   variant = { id: 'color', contract: 1, fingerprint: 'c'.repeat(64) };
+// Interpret only this workflow's JS-compatible Actions subset, never execute its text.
+function diagnosticCondition(expression) {
+  const { toolRequire } = require('../tools/quality/common.cjs');
+  const program = toolRequire('espree').parse(expression, {
+    ecmaVersion: 2022,
+    comment: true,
+    tokens: true,
+  });
+  assert.equal(program.comments.length, 0, 'no JavaScript comments in Actions conditions');
+  assert.ok(!program.tokens.some((token) => token.type === 'Punctuator' && token.value === ';'));
+  assert.equal(program.body.length, 1, 'one diagnostic condition expression');
+  assert.equal(program.body[0].type, 'ExpressionStatement');
+  const properties = new Set([
+    'github.event_name',
+    'github.event.label.name',
+    'github.event.pull_request.head.repo.full_name',
+    'github.repository',
+    'github.event.pull_request.number',
+    'github.event.sender.login',
+    'github.repository_owner',
+    'github.actor',
+  ]);
+  function property(node) {
+    const parts = [];
+    while (node.type === 'MemberExpression') {
+      assert.equal(node.computed, false, 'only literal context properties');
+      assert.equal(node.property.type, 'Identifier');
+      parts.unshift(node.property.name);
+      node = node.object;
+    }
+    assert.equal(node.type, 'Identifier');
+    parts.unshift(node.name);
+    const name = parts.join('.');
+    assert.ok(properties.has(name), 'unsupported context property ' + name);
+    return parts;
+  }
+  function validate(node) {
+    if (node.type === 'Literal') {
+      assert.ok(
+        (typeof node.value === 'string' && /^'[^'\\]*'$/.test(node.raw)) ||
+          (typeof node.value === 'number' && /^\d+$/.test(node.raw)),
+        'only supported Actions literals'
+      );
+    } else if (node.type === 'MemberExpression') property(node);
+    else {
+      assert.ok(
+        (node.type === 'LogicalExpression' && ['&&', '||'].includes(node.operator)) ||
+          (node.type === 'BinaryExpression' && node.operator === '=='),
+        'unsupported condition node/operator ' + node.type
+      );
+      validate(node.left);
+      validate(node.right);
+    }
+  }
+  // Validate both sides before evaluation; an unreachable branch cannot hide executable syntax.
+  validate(program.body[0].expression);
+  const number = (value) => {
+    if (typeof value !== 'string') return Number(value);
+    const text = value.trim();
+    return text === ''
+      ? 0
+      : /^-?(0|[1-9]\d*)(\.\d+)?([eE][+-]?\d+)?$/.test(text)
+        ? Number(text)
+        : NaN;
+  };
+  function equal(left, right) {
+    if (typeof left !== typeof right) return number(left) === number(right);
+    return typeof left === 'string' ? left.toLowerCase() === right.toLowerCase() : left === right;
+  }
+  function value(node, context) {
+    if (node.type === 'Literal') return node.value;
+    if (node.type === 'MemberExpression') {
+      const result = property(node).reduce((entry, key) => entry?.[key], context) ?? '';
+      assert.ok(['string', 'number', 'boolean'].includes(typeof result));
+      return result;
+    }
+    const left = value(node.left, context);
+    if (node.operator === '&&') return left && value(node.right, context);
+    if (node.operator === '||') return left || value(node.right, context);
+    return equal(left, value(node.right, context));
+  }
+  return (context) => Boolean(value(program.body[0].expression, context));
+}
+test('actual Writing workflow routes owner PR128 labels and preserves the historical PR40 route', () => {
+  const { toolRequire } = require('../tools/quality/common.cjs');
+  const workflow = toolRequire('yaml').parse(
+    fs.readFileSync(path.join(__dirname, '../.github/workflows/site-cause-probe.yml'), 'utf8')
+  );
+  assert.deepEqual(workflow.on.pull_request.types, ['labeled']);
+  const eligible = diagnosticCondition(workflow.jobs['writing-current'].if);
+  function event(patch = {}) {
+    const github = {
+      event_name: 'pull_request',
+      repository: 'owner/site',
+      repository_owner: 'owner',
+      actor: 'owner',
+      event: {
+        action: 'labeled',
+        label: { name: 'site-writing-current-evidence' },
+        sender: { login: 'owner' },
+        pull_request: { number: 128, head: { repo: { full_name: 'owner/site' } } },
+      },
+    };
+    for (const [name, changed] of Object.entries(patch)) {
+      const keys = name.split('.');
+      const target = keys.slice(0, -1).reduce((entry, key) => entry[key], github);
+      if (changed === undefined) delete target[keys.at(-1)];
+      else target[keys.at(-1)] = changed;
+    }
+    return { github };
+  }
+  function selected(context) {
+    const g = context.github;
+    const trigger = workflow.on[g.event_name];
+    return Boolean(
+      trigger && (!trigger.types || trigger.types.includes(g.event?.action)) && eligible(context)
+    );
+  }
+  for (const [patch, expected] of [
+    [{}, true],
+    [{ 'event.pull_request.number': 40 }, true],
+    [{ 'event.pull_request.number': 40, actor: 'other', 'event.sender.login': 'other' }, true],
+    [{ 'event.pull_request.number': 127 }, false],
+    [{ 'event.label.name': 'unrelated' }, false],
+    [{ actor: 'other' }, false],
+    [{ 'event.sender.login': 'other' }, false],
+    [{ actor: undefined }, false],
+    [{ 'event.sender': undefined }, false],
+    [{ 'event.pull_request.head.repo.full_name': 'foreign/site' }, false],
+    [{ 'event.pull_request.head.repo': undefined }, false],
+    [{ 'event.label': undefined }, false],
+    [{ event_name: 'workflow_dispatch' }, false],
+    [{ event_name: 'push' }, false],
+    [{ 'event.action': 'synchronize' }, false],
+    [{ 'event.action': 'opened' }, false],
+    [{ actor: 'OWNER', 'event.sender.login': 'OWNER' }, true],
+    [{ 'event.pull_request.number': '128' }, true],
+  ])
+    assert.equal(selected(event(patch)), expected, JSON.stringify(patch));
+});
+test('bounded diagnostic interpreter rejects unsupported syntax even in inactive branches', () => {
+  for (const text of [
+    '0 && process.exit()',
+    "1 || github.actor.includes('owner')",
+    "github.actor === 'owner'",
+    "github.unknown == 'owner'",
+    "github['actor'] == 'owner'",
+    "github.actor == 'owner'; 1",
+    "github.actor == 'owner';",
+    "github.actor == 'owner' /* unsupported comment */",
+    "github.actor = 'owner'",
+    'github.actor == "owner"',
+  ])
+    assert.throws(() => diagnosticCondition(text), text);
+  assert.equal(
+    diagnosticCondition("github.actor == 'owner'")({ github: { actor: 'OWNER' } }),
+    true
+  );
+  assert.equal(
+    diagnosticCondition('github.event.pull_request.number == 128')({
+      github: { event: { pull_request: { number: '128' } } },
+    }),
+    true
+  );
+});
 const normal = {
   sourceCommit: candidate,
   candidateCommit: candidate,

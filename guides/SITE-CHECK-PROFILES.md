@@ -142,9 +142,12 @@ reports keep `fullGate: false` and `performanceAcceptance: false`. This does not
 change ordinary staging trials, settings, cases or admission budgets. Historical
 Research/WebKit cause-probe replay stays manual and retains its original count.
 
-Issue #39 uses the separate PR #40-only `site-writing-current-evidence` label
-job in that same workflow: five ordinary fresh-process mobile/simulated Writing
-trials on one exact unchanged Color artifact, followed by one separately sampled
+Issue #39 retains PR #40's `site-writing-current-evidence` label job. The
+maintainer-approved issue #122 T03-D amendment also permits that exact opt-in
+label on same-repository PR #128 when event sender and actor are the repository
+owner. Ordinary updates and other PRs do not activate it. The job runs five
+ordinary fresh-process mobile/simulated Writing trials on one exact unchanged
+Color artifact, followed by one separately sampled
 CPU attribution. Every result, trace and network log survives; no retry or
 best-run selection. The original200ms individual budget remains; collection
 success is not performance acceptance or full/staging admission. Cleanup failure

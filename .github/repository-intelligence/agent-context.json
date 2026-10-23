@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "17f2738e7373636373d5a460c44feba9a423e2cfc80a6550f9032a93b19b5a4f",
+    "digest": "b1ad64ed9fb72605d837bf23f2857b14f4c908f317ca87232294461224ce5a05",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -72,7 +72,7 @@
       {
         "path": ".github/acceptance/issue-122.json",
         "identity_mode": "content",
-        "sha256": "5cd81f71d1cc1c8cfa5fe48680292b617495e885113d5097658d2c384fd9ae1a"
+        "sha256": "a8498324a7b80e3e016a10db703b6a7a7c76aa3305ef715e44e2fd7fdd90ddd0"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -191,12 +191,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "0af756d19221cd0c2b40e8616e1539fcda7ddc9e49c2d16a0136a5da870f0631"
+        "sha256": "835771363c762b9c570c051c127efa13a5a6af1fd4b78053076de89c8d8f8a76"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "d5f64aed57ec2557b196abf7058f6c0b4651a5083137d81dd708d37b73b2d417"
+        "sha256": "d61445982ea26b461a9f0e0666f1919b1798d24bc636461d18759b10e3800d97"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -226,7 +226,7 @@
       {
         "path": ".github/workflows/site-cause-probe.yml",
         "identity_mode": "content",
-        "sha256": "94b18d692d06b54ac5f7fba58198aab416f7373de5e0af02729c969f5679d492"
+        "sha256": "5799859ce71847927ebf009ff2bdafd5188bd8015d5c01edbc941b6eee30f201"
       },
       {
         "path": ".github/workflows/site-checks.yml",
@@ -326,7 +326,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "2c483996e2c9c72accddedab53a8b04c3cdc569d93769eca7fd30a15d00b51e7"
+        "sha256": "589c916c2b8809969476578b3668853b7e2a22e78c3269d58ea6739497dd2a2c"
       },
       {
         "path": "NOTICE.md",
@@ -630,7 +630,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "96f8c673126f466c3f0b95a480ac5ba860e206e8cb008f70948d8decc7697952"
+        "sha256": "e2149840bf1b0eccc938b8401f5487990f63379a2726d225060ba3f211e6215e"
       },
       {
         "path": "guides/SITE-CONTENT-REVIEW.md",
@@ -830,7 +830,7 @@
       {
         "path": "review/issue-122/2026-10-23-t03-review.md",
         "identity_mode": "content",
-        "sha256": "2fb68a046a6efecd22da86990188d7ce7d04dbbe32556ae208211f0579e0e6f7"
+        "sha256": "ab1037130dc9fb4f73d3b193a6b2fa8a29a8157ad8db34bc860843d038d4f780"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -5780,7 +5780,7 @@
       {
         "path": "tests/cause-probe.test.cjs",
         "identity_mode": "content",
-        "sha256": "bcb59a3c2faa2ea734893ed0f13762d0622f7f64c46be4f788131f76b2236c8b"
+        "sha256": "755bac2bfe63bc05479b0388bfdf26b9971610081f6aefdde2f16b3043c7a3d3"
       },
       {
         "path": "tests/color-build.test.cjs",
@@ -7771,7 +7771,7 @@
     {
       "path": ".github/workflows/site-cause-probe.yml",
       "kind": "file",
-      "purpose": "Explicit historical cause replay plus issue45 same-repository PR47 Writing label attribution; four source-bound private inputs, never stage or release admission. Issue39 PR40 current-runtime evidence: five ordinary trials plus one separate CPU sample; no admission.",
+      "purpose": "Explicit historical cause replay plus issue45 same-repository PR47 Writing label attribution; four source-bound private inputs, never stage or release admission. Issue39 PR40 current-runtime evidence: five ordinary trials plus one separate CPU sample; no admission. Issue122 T03-D adds owner-controlled exact PR128 opt-in routing with actual-expression event-boundary tests; protocol and admission remain unchanged.",
       "role": "workflow",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -19992,7 +19992,7 @@
     {
       "path": "tests/cause-probe.test.cjs",
       "kind": "file",
-      "purpose": "Adversarial cause-input, CPU evidence and four-input Writing count/identity/failure retention contracts. Issue39 PR40 current-runtime evidence: five ordinary trials plus one separate CPU sample; no admission.",
+      "purpose": "Adversarial cause-input, CPU evidence and four-input Writing count/identity/failure retention contracts. Issue39 PR40 current-runtime evidence: five ordinary trials plus one separate CPU sample; no admission. Issue122 T03-D adds owner-controlled exact PR128 opt-in routing with actual-expression event-boundary tests; protocol and admission remain unchanged.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
