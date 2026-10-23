@@ -228,3 +228,23 @@ original ZIPsha2565750d3641c1c402d156155c8ed9acc5db8164530c5d41cdcb183b5b624d1b9
 verified; recovery JSONsha2564dc0fcf1453c65d72adff75b2e06d0bf8ea16a881125993e4a709b2e29fab324
 matches the retained original. This prepares preservation evidence; it is not a
 new-source preflight, admin readback, merge, new staging acceptance or deployment.
+
+## First T04-M native run: documentation inventory correction
+
+Published1a5d15b6/tree f67fc93e equals final reviewed local80053189. Final Code
+cleanup recheck ACCEPT, receipt SHA2560bdfced8e1ad88c4cc2b025c4b392e0895d01d8388e0567124caef78ef0b7366.
+Root final local clean-owning7/7, local source and full source-bound lint passed.
+
+First actual Ready Navigation40005217482/job120591285192 failed the existing
+test_root_layout.py `test_current_active_relative_links_resolve`: the new guide
+was catalogued in repository-paths but omitted from repository-layout's separate
+active_markdown inventory. Add that exact guide to the existing inventory; keep
+the completeness/links oracle and all its omission/broken-reference negatives.
+First owning40005217630/job120591285426 failed before execution because the PR
+description put text after `Refs #122`; correct it to its required standalone line.
+This metadata correction does not change repository code. Both failures remain
+historical; no current source/native success is inferred from earlier trees.
+
+The inventory-only correction requires the complete local navigation commands,
+actual affected independent rechecks and a new current-source native run. No
+maintenance verifier/ruleset/workflow/test-oracle/runtime/budget change is made.

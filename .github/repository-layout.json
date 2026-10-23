@@ -109,6 +109,7 @@
     }
   },
   "active_markdown": [
+    "guides/CI-MAINTENANCE.md",
     ".github/ACCEPTANCE.md",
     ".github/ISSUE_TEMPLATE/research-input.md",
     ".github/ISSUE_TEMPLATE/work-item.md",

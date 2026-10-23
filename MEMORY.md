@@ -20,7 +20,7 @@ Dated continuity, not live authority. Last verified: **2026-10-23**.
 
 ## Open work
 
-- Same active Draft PR132 /tmp/t04p-setup branch work/issue-122-t04-ubuntu-setup. Four completed actual roles accepted corrected d88f0919/treecca7b9da after own-filename/RI/event/checkout/leases/hidden-API defects; source-bound receipts in versioned review. Node29/Python3/RI20+29/owning7 passed. Final unused-import lint cleanup/Code recheck/native/admin/delivery pending.
+- Same active PR132 /tmp/t04p-setup branch work/issue-122-t04-ubuntu-setup. Four roles accepted d88f0919; final Code80053189/import cleanup and full lint/owning7 passed. Published1a5d15b6/tree f67fc93e native Navigation40005217482 failed omitted active-guide inventory; owning40005217630 failed malformed standalone PR Refs line. Back Draft, metadata corrected and exact guide registration underway; new current-source native/admin/delivery pending.
 - Canonical review/issue-122/2026-10-23-t04-setup-review.md owns implementation/history. guides/CI-MAINTENANCE.md owns enduring procedure; .github/rulesets contains reviewed targets/original rollback, not actual configured state.
 - Available GitHub connector reads rulesets but exposes no administration write. Actual admin capability/readback and exact-user platform support must be observed; owner role alone does not establish connector access. No browser session probed.
 - Original T04 source in /tmp/t03r-runtime remains unchanged. Content issue5/PR79 is separate. All whole AC01-AC08 remain open.

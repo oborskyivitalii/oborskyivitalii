@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "2721d8bb6d0c7c80cc2b257cfcb9539db3a1c93b09e49b7dbcf98a27a0809ff4",
+    "digest": "e22c0dd5697f5ca1920d4505ec337969e16b7116c81ddb0ad1c4ce7b74df039d",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -191,7 +191,7 @@
       {
         "path": ".github/repository-layout.json",
         "identity_mode": "content",
-        "sha256": "98408ac46b10ac077ede1d010a21b0ef95ef46cc848beec87474f7ce7fb8e164"
+        "sha256": "3063725caf00ee73b2b4d622606ac73cc8b942fccea23ca72c971e974941ac58"
       },
       {
         "path": ".github/repository-paths.json",
@@ -201,7 +201,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "cc96915dbead30e5fab0f96af815a1570da988ce4440fa693573702916ae9c6a"
+        "sha256": "9b5c48ca5e42087ab1e83ce2392d2a296021a3d5617f93acbd98bf4e5f098070"
       },
       {
         "path": ".github/rulesets/protect-main-before.json",
@@ -351,7 +351,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "4b14b07ddf8fb6e1521ebf746f6131d33584db4dbb6ed009e47c9f6cf709732f"
+        "sha256": "67908bad1293618179c7efe6bee9395225cc317759de40359fd2adf11442b21b"
       },
       {
         "path": "NOTICE.md",
@@ -900,7 +900,7 @@
       {
         "path": "review/issue-122/2026-10-23-t04-setup-review.md",
         "identity_mode": "content",
-        "sha256": "ad6c6501d74fba00a453d8dc7f414e86f837d7b0940d88d9f62cb55679e9f239"
+        "sha256": "21c411b37b2e52da493c837237dc1a5a05f00c1af3aab0f4c850f7f258e8075c"
       },
       {
         "path": "review/issue-126/2026-10-23-announcement-review.md",
