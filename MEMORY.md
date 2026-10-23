@@ -4,40 +4,34 @@ Dated continuity, not live authority. Last verified: **2026-10-23**.
 
 ## Snapshot
 
-- Current task: issue122 approved T03-R runtime correction in same Draft PR128.
-- PR128 measuredbasef02 (PR127). Latest protectedmain676e3ab6c51f2290df4c44c7d5eac49a508d02fc addsPR129 retained production closure; integrate after bootstrapdecision, preserve it.
-- Main carries DevCon Talks announcement and its existing review/acceptance owners; preserve it while continuing issue122.
-- Current local correction snapshots post-cleanup per-batch viewport/scroll/focus for reconcile/upward enter; forward observer/queue order preserved.
-- Measured3d914c6/tree350b: nativeBasic39945405418 PASS50modules/673cases139187ms; Nav39945405353/own39945405230 and preview build/publish/smoke PASS. Wholepreviewadmissionfails unstaged. No R stage yet.
-- Versioned owner:review/issue-122/2026-10-23-t03-review.md; exact clean candidate identities follow in its role receipts and live PR.
-- Original owner stage39923213843/1 remains FAILED Writing213.5/200ms at0a76d07/e690.
+- Active issue122 / Draft PR128: integrate accepted protectedmaincc67a2092c16179218044fc47a30985df1891405 into prior runtime0d4fb5a before original R04.
+- Bootstrap PR130 delivered: tested8c3fa30b/tree d559b570, ordinary ownerstage39952774218, eligible admission39955383275, protected mergecc67, postmerge39955744615; main Navigation39955743938 PASS.
+- Bootstrap rawBasic48modules649/649140368ms; nativeprepub26/26,47modules641/641116339ms,Python121incl9,complete91pins/147deps/4overrides/security/advisories PASS. All7 reports, stablealias and identical mergedtree authenticated.
+- Bootstrap oldruntime0144 mobile singles Research1846.059msLCP/6msTBT/0CLS andWriting2106.1555/29/.049918 passed original2500/200/.1. This is not changed-reading performance.
+- Preserve all PR129 retained30file/rights/checksum/registry closure and bootstrap1501publicationrows/threeotherledgers. New combined-source checks/reviews/security remain pending.
 
 ## Decisions
 
-- User explicitly approved T03-R with “Роби”; scope/R01-R04 recorded in issuecomment6362847929 after completed T03-D findings6362696317.
-- Approved treatment: fresh native geometry/focus after layout-affecting cleanup, before per-unit arming writes; both callers, meaningful existing-owner regression and four independent roles.
-- One actual changed-source owner-stage validation/report follows successful source/review readiness, with original staging edition/cases/200ms TBT/2500ms LCP/CLS and other budgets.
-- No unchanged-source green-seeking retry, broader runtime change, merge or production is authorized by this increment.
-- Preserve Canvas, content/design, timing, source/profile/admission limits, inherited91-pin graph/advisory/scanner obligations and all history.
+- User approval6364038870 covers finite bootstrap delivery, then fresh PR128 main integration/currentchecks and original R04 ownerstage/report; no PR128 merge or production.
+- Nativebootstrapsecurity39950013688 failed five publicpins after separate Draft-event admission failure39949313525. Scoped five-row correction6364509014 passed four actual roles/currentsecurity; original failures remain failed.
+- R03 necessary generated-checksum companion has separate requirements preflight: individually prove actual final unresolved generated values, append only existing publication ledger, preserve inherited rows/threeotherledgers and all scanner/input/limit/workflow/profile/budget behavior. Old0d180finding feasibility is not final evidence.
+- Original bounded geometry/focus batch and meaningful ordering/freshness/forward-queue regressions remain; no new runtime behavior is proposed by main integration.
 
 ## Open work
 
-- R01/R02 complete; R03 freshbase reconciliation and R04 ownerstage remain open. T03.3/.5/allwholeAC01-AC08 open; AC05 producer enforcement unresolved beforeW3.
-- Current tests observe post-cleanup values, no geometry reads after per-unit writes, fresh second events, exact fold/bottom/focus/hidden outcomes and preserved forward six-slot queue.
-- Confirmed blocker: protectedmainf02 controller rejects actualnative3d/b557 package; candidate accepts it. Proposal005f018e/tree8d6868 adds finiteinventory/licensedIDs/guardloops only; mainunchanged. Needs explicitbootstrapmerge decision before freshbase/CI and sole R04stage.
-- T03-D is complete historical diagnosis: run39936698976/1 atclean a7cb083/f904, artifact12493464462 SHA840715314523c2a3506d8de546051c187aee65018aae60b424683570c4d82f17.
-- Ordinary diagnostic TBT123/245/123/100/97.5ms; separate sampled330.5ms. FullGate/performanceAcceptance false; no gate cleared.
-- All6 and failed hosted traces showed82 style+82 layout passes at canonical armReading viewport read. Correction sufficiency is not established until actual changed-source validation.
-- Diagnostic normalColor6d9f and staged0144 shared selected JS/parent but differed HTML/CSS/origin/analytics journey; never relabel old diagnostics as new staging evidence.
-- PR79/issue5 retains content ownership. T01/PR123,T02-P/PR125,T02/PR124 remain delivered history.
+- Complete canonical main integration/actual final public-checksum proof/RI/policy, four actual distinct integration roles and clean current checks/full security/prepublication/nativeCI.
+- Then sole original R04 current-runtime ownerstage/report under unchanged cases/limits. R01/R02 implemented; R03/R04 and T03.3/.5/allwholeAC01–AC08 stay open. AC05 trusted producer proof remains unresolved.
+- Runtime review owner:review/issue-122/2026-10-23-t03-review.md; finite bootstrap evidence owner:review/issue-122/2026-10-23-t03-controller-bootstrap-review.md plus actual issue/PR delivery records.
+- Original runtime stage39923213843 failed Writing213.5/200ms; T03D five ordinary123/245/123/100/97.5 and sampled330.5 remain historical nongating results.
 
 ## Next session
 
-1. Fetch live issue122/PR128, exact main/head/tree, working tree, four role receipts and current CI/stage runs; this memory is not live evidence.
-2. Review concretebootstrap branch work/issue-122-t03r-controller-bootstrap and maintainerdecision; no mainmerge authorized yet. Distinguish measured3d914c/nativepass from later report-only heads.
-3. After separately authorizedbootstrap delivery, integratefreshmain/recheckcurrentCI, then soleR04ownerstage. R01/R02 complete; R03 measured3d evidence complete but fresh676-base reconciliation OPEN; R04blocked. ParentACs open; no production/PR128merge.
+1. Revalidate live main/PR128/source/tree/checks; this dated memory supplies no authority.
+2. Finish accepted main integration and current native source/security checks, four roles, then original R04.
+3. Record all actual outcomes/failed history and distinguish tested/report/merged identities; stop before runtime merge/production.
 
 ## Maintenance
 
-- Keep five sections and120-line cap; regenerate site outputs from authored owners and rebuild/verify RI after indexed changes.
-- Git-backed website code is not duplicated into file storage.
+- Five sections/120-line cap; canonical generation only, refresh RI/map after indexed changes.
+- Original workspace disappeared externally after published8c; exact clean GitHub checkout recovered at /tmp/t03r-recovered-repo, runtimeworktree /tmp/t03r-runtime. Raw native ZIPs/receipts retained outside source.
+- Full pinned Node and91-package Python toolchains were restored in ignored runtimeworktree paths; installed graph147deps/four overrides verified. Git-backed work is not duplicated to file storage.
