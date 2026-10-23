@@ -4,37 +4,33 @@ Dated continuity, not live authority. Last verified: **2026-10-23**.
 
 ## Snapshot
 
-- Active task issue126 / PR127: announce DevCon Romania in Talks; LinkedIn text only in chat.
-- Base main1e87b124c8a7ca4fde4e8ede75dcdd1515b491ea; production44aef6e4d0f0cbc063a5269fa01a039c4979422e.
-- First reviewed source1d62789/treee9160419 published asafe87cff with identical tree.
-- Draft preview39920235428 passed build/package/HTTP; immutable50a919e8 preview. Source/browser admission deferred by Draft.
-- Local correction8a7d24/treec9d55cb4 adds exact56 public-checksum dispositions and proof; all6 owning checks passed clean source.
-- All four independent roles completed source/delta reviews; exact receipts in review/issue-126/2026-10-23-announcement-review.md.
+- Active issue122: authorized finite controller bootstrap, separate PR pending; runtime PR128 remains Draft0d4fb5a.
+- Latest measured protectedbase676e3ab6c51f2290df4c44c7d5eac49a508d02fc includes PR127 announcement and PR129 previous-production retention/rights/registry/checksum closure. Preserve them.
+- Proposal005f018e/tree8d6868, parentf02, has4technical ACCEPT receipts. Fresh676 integration and current candidate checks/reviews now required.
+- Runtime measured3d914c6/tree350b passed nativeBasic39945405418:50modules673/673139187ms; Navigation/own and previewbuild/publish/smoke passed. Wholepreviewadmission failed unstaged.
+- Nativepackage12498540152 passes candidate but main rejects unknown family; this is a confirmed pre-upload controller dependency, not a new staging result.
 
 ## Decisions
 
-- User23October authorizes announcement PR → staging → merge → production through existing process.
-- PR79 remains Draft0717bd4; do not merge article/reader or other unrelated PRs for announcement.
-- Main-production baseline has harness-only changes; recheck final public diff before activation.
-- Confirmed official agenda4November12:30–13:00 Bucharest/DevOps, exact session title. Specific venue omitted.
-- Existing runtime/CSS/cards retained; exact prior5 events preserved. No social post is sent.
+- User explicitly approved separate bootstrap PR, required CI/staging/protectedmain merge, then PR128 freshbase/currentchecks/originalR04stage. Approval6364038870.
+- Only finite family/3tuples/3licensedIDs, inherited guards and necessary review/policy/RI/memory companions. No runtime/content/workflow/threshold/permissions change.
+- Bootstrap owner-stage is separate from original R04 changed-runtime stage. Preserve original gates and failed evidence; no blind unchanged retry.
+- No PR128 runtime merge or production activation authorized. Issue5/PR79 remains separate.
 
 ## Open work
 
-- Publish correction/receipts with deterministic RI and exact tree binding.
-- Ready checks, hosted1440/390 smoke, owner staging, merge admission and postmerge remain required.
-- Freeze production candidate, bind actual rights inventory, run authorized publisher and live smoke/archive verification.
-- Narrow/no-JS browser visuals not independently observed; actual desktop Day/Night/cloud anchor/link/Back and native HTTP observed.
-- Update issue126 whole ACs only on complete evidence; final LinkedIn draft still must be shown in chat.
+- Complete fresh676 candidate four actual roles, local/source/format/style/RI/policy/nativeCI, bootstrapownerstage/admission/merge/postmerge.
+- Review owner:review/issue-122/2026-10-23-t03-controller-bootstrap-review.md; runtime history remains in PR128's existing T03 review.
+- R01/R02 complete; R03/R04 and T03.3/.5/allwholeAC01–AC08 remain open. AC05 producer enforcement unresolved beforeW3.
+- Original runtime stage39923213843 failed Writing213.5/200ms; nongating T03Dordinary123/245/123/100/97.5 and sampled330.5 remain historical. No new runtime performance pass claimed.
 
 ## Next session
 
-1. Read live issue126/PR127, refs/checks/deployment and versioned review; source handoff is not live evidence.
-2. Complete already authorized announcement delivery without merging PR79; report actual remaining gate if blocked.
-3. Return LinkedIn post with direct official agenda URL and hashtags; reconcile issue after final production observation.
-4. Issue122/PR124 harness work remains separate; prior MEMORY for it is historical Git evidence.
+1. Revalidate live issue/PR/refs/checks, no reliance on this dated memory.
+2. Finish explicitly approved bootstrap delivery without another permission request for already authorized steps.
+3. Integrate resulting freshmain in PR128, actualfour-role/currentchecks, then sole originalR04stage/report. Stop before PR128merge/production.
 
 ## Maintenance
 
-- Keep five sections and120-line cap; rebuild RI after indexed changes.
-- Git-backed website code is not duplicated into file storage.
+- Keep five sections and120-line cap; canonical generation only and rebuild/verify RI after indexed changes.
+- Git-backed code is not duplicated into file storage.
