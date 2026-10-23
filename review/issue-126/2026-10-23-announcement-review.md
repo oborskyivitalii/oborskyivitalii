@@ -66,3 +66,16 @@ Delta candidate8a7d24f201dcf158b309d05c976628967449a19f/treec9d55cb442e45e408de5
 - /root/exploratory: independently verifiedafe87→8a7d24 diff has no docs/site changes; actual observed hosted behavior reuses the identical public fingerprint above. No new browser/device claim.
 
 Final local six-check policy on exact clean8a7d24: EVENTS, BASIC, STYLE, CURRENT-RI, RI-CI and PUBLIC-CHECKSUMS all passed, automation_pass=true, no errors. Manual gates remain pending. An intervening policy observation overlapped a source correction and is not used as clean final evidence. Review receipts and deterministic RI refresh below do not alter reviewed public/source meaning.
+
+## Ready-CI prerequisite correction
+
+Actual Ready runs39921037671 and39921037334 failed on map formatting and missing HTML-helper prerequisites respectively; navigation39921037285 passed. These failures remain historical evidence, not successful gates. The workflow's existing explicit pinned-tool list did not include the new owning policy; local tools were present. Added only issue126 to that list, retaining install versions, minimal permissions, source checkout, clean-source validation and report upload. The existing map refresher emits expanded arrays; canonical formatting is applied after refresh and before RI generation.
+
+Four-role correction source3f8f1f37fb402d5b07128b52fc22d33697932ea8, treeb65d9e2354ae0c195923d24506335c31bb13c765:
+
+- /root/requirements: PASS; independently parsed actual workflow/map and verified no public delta or acceptance/gate weakening. Hosted success stays pending.
+- /root/code_review: PASS; exact three-file delta, unchanged workflow authority/checks; RI-CI verification,20/20 regression, touched canonical format, RI freshness and diff whitespace passed on clean source.
+- /root/whitebox: PASS; parsed condition10/10 cases (58/39/41/108/126 selected;31/122/999/malformed/empty excluded); other full workflow semantics identical. RI-CI20/20, verify and freshness passed. No docs/site delta.
+- /root/exploratory: independently inspected actual delta; no docs/site change and same Talks fingerprint, so previous actual browser observations remain applicable. Corrected hosted execution remains not observed until new CI runs.
+
+Full maintained formatter passed with changed:[]; no budget, source test, scanner, review or staging gate was weakened. Final corrected CI/staging/production evidence belongs to the PR/issue conversation after this immutable source, rather than self-referential source updates during deployment.
