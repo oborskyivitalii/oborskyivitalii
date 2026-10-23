@@ -623,8 +623,16 @@ test('forward mixed observer entries preserve queue order while an active shell 
   h.intersect([1, 2, 3, 4, 5, 6]);
   h.elements[1].top = 0;
   h.observers.at(-1).callback([
-    { target: h.elements[7], isIntersecting: true },
-    { target: h.elements[1], isIntersecting: false },
+    {
+      target: h.elements[7],
+      isIntersecting: true,
+      boundingClientRect: h.elements[7].getBoundingClientRect(),
+    },
+    {
+      target: h.elements[1],
+      isIntersecting: false,
+      boundingClientRect: h.elements[1].getBoundingClientRect(),
+    },
   ]);
   assert.equal(h.state(7), 'waiting', 'the first crossing saw all six occupied slots');
   assert.equal(h.state(1), undefined);
