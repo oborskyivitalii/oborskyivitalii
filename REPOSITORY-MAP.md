@@ -773,6 +773,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-122/2026-10-22-t01-review.md](review/issue-122/2026-10-22-t01-review.md) | T01 exact review-template selection correction, independent test oracles, role receipts and normal main-delivery evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-122/2026-10-22-t02-review.md](review/issue-122/2026-10-22-t02-review.md) | T02 routing/observation contract, live capability disposition, independent role receipts and source-bound delivery evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-122/2026-10-22-t02p-review.md](review/issue-122/2026-10-22-t02p-review.md) | Issue122 approved T02-P dependency repair, exact compatibility evidence, independent quality-role reviews and delivery boundaries. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-122/2026-10-23-t03-controller-bootstrap-review.md](review/issue-122/2026-10-23-t03-controller-bootstrap-review.md) | Issue122 T03 controller bootstrap authorization, exact finite compatibility review and source-bound staging/merge evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/issue-126/
 

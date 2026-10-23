@@ -74,6 +74,13 @@ const families = {
     space: 'd5d1593e9c0c76910e68d5c965714f68af73bf2b26480f8835f784b02f953c41',
     navigation: 'f01ebd2fecef1164f68f40b032e0857ba232ba89b9af4bb85c208a3e10e3203e',
   },
+  issue122ReadingBatch: {
+    behavior: 'fixed-blocks',
+    baseEngine: 'c9d33c990c64a1559211a0dcdf4ce9d1262a4e561489e4aedb74d897623220b7',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: 'd5d1593e9c0c76910e68d5c965714f68af73bf2b26480f8835f784b02f953c41',
+    navigation: '5e78b3adb00439c7e4e0d3e95801803a0f110a1dd2ac599901278177768c3b7e',
+  },
 };
 const runtimes = [
   {
@@ -249,6 +256,27 @@ const runtimes = [
     family: 'issue39CssClock',
     edition: 'production',
     fingerprint: '1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17',
+    styles: 'ecb7d4f77389e55b23c4fe63ed91258428fb8b28a895068c210cfba99ca1ba8c',
+  },
+  {
+    id: 'issue122-reading-batch-plain',
+    family: 'issue122ReadingBatch',
+    edition: 'plain',
+    fingerprint: 'f0e456610c92933f2eee9977e5d6c9a70c5a8303f42be406c672318077c51190',
+    styles: 'ecb7d4f77389e55b23c4fe63ed91258428fb8b28a895068c210cfba99ca1ba8c',
+  },
+  {
+    id: 'issue122-reading-batch-staging',
+    family: 'issue122ReadingBatch',
+    edition: 'staging',
+    fingerprint: 'b5574a8dfb5c2c08eca0ed253aeda05e8d0fd3b2cbd69360fcf880436a0c6803',
+    styles: 'b1806c4d615b073dab84b07c2e216da08a017c3c3fc645b155cf16756bc00a91',
+  },
+  {
+    id: 'issue122-reading-batch-production',
+    family: 'issue122ReadingBatch',
+    edition: 'production',
+    fingerprint: '3434d837588d950585ae419c407f95043a6a6920eaf9ebec9b08873ad8c6228a',
     styles: 'ecb7d4f77389e55b23c4fe63ed91258428fb8b28a895068c210cfba99ca1ba8c',
   },
 ];

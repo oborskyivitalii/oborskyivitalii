@@ -9432,6 +9432,12 @@
       "purpose": "Issue126 previous production retention provenance, immutable reference and independent correction review.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-122/2026-10-23-t03-controller-bootstrap-review.md": {
+      "kind": "file",
+      "purpose": "Issue122 T03 controller bootstrap authorization, exact finite compatibility review and source-bound staging/merge evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

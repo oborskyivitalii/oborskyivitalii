@@ -213,6 +213,9 @@ function publicationRequired(source, revision) {
     'issue39-css-clock-plain',
     'issue39-css-clock-staging',
     'issue39-css-clock-production',
+    'issue122-reading-batch-plain',
+    'issue122-reading-batch-staging',
+    'issue122-reading-batch-production',
   ].map(motion.reviewedRuntime);
   const knownBytes = licensed.some(
     (runtime) =>
