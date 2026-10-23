@@ -9492,6 +9492,24 @@
       "purpose": "Executable D01-D10 dependency routing and base-policy obligation union without delivery authority.",
       "role": "validator",
       "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tools/quality/ubuntu_downloads.py": {
+      "kind": "file",
+      "purpose": "Prepare bounded primary-archive Ubuntu downloads for existing CI browser jobs without changing signed-source metadata.",
+      "role": "source",
+      "owner": "guides/SITE-RELEASE-GATES.md"
+    },
+    "tests/test_ubuntu_downloads.py": {
+      "kind": "file",
+      "purpose": "Exercise Ubuntu mirror safety, signed-source preservation and actual preview/staging/Linux installer order.",
+      "role": "test",
+      "owner": "guides/SITE-RELEASE-GATES.md"
+    },
+    "review/issue-122/2026-10-23-t04-setup-review.md": {
+      "kind": "file",
+      "purpose": "Approved T04-P Ubuntu setup prerequisite, separate quality-role findings and exact-source validation/delivery evidence.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     }
   }
 }

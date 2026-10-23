@@ -4,31 +4,31 @@ Dated continuity, not live authority. Last verified: **2026-10-23**.
 
 ## Snapshot
 
-- Issue122 T03 delivered by PR128: tested6d2bd63/tree d5f5da1, actual protected main e6ee49696c0cdeaf70bbe72c803281682c7de83d/tree d5f5da1adc83df31a720e2e042ccfaa00c4856e5. All T03.1-.5 and R01-R04 complete; whole AC01-08 remain open.
-- Current-head stage39972503855/1, eligible PR admission39975171739/1, owning39975171660/1, postmerge identity39975383796/1 and actual-main Navigation39975382849/1 SUCCESS. Complete-tree/public-package preservation authenticated; full report issuecomment6368061067, PRcomment6368076700.
-- Stage native26/26,47modules647/647144471ms,Python121incl9/security/advisories pass. Research mobile1578.8115LCP/15TBT/0CLS; Writing2110.1985/28/0 under original2500/200/.1. Original setup cancellation39968640807 retained separately; no budget/pin/scanner/test waiver.
-- T04 user approved “Роби” after concrete observation-only one-PR proposal/status. Approval/scope issuecomment6368310693; base e6/tree d5. Branch work/issue-122-t04-observer; new PR/source/native check identities must be read live.
+- Main bab166e392d82be12704b02f82e15d827fb9d410/tree a35fa89dd949d081bb1db70b4b2db260421a5ca1 delivered minimal Ubuntu prerequisite PR132. Parents e6ee496 and678fd18, identical reviewed helper tree. Basic40010660565, RI40010660928 and owning40010793360 passed before merge; actual-main RI40012120606 and clean owning passed afterward.
+- Protect-main24568553 complete original configuration restored and read back at19:32:27 UTC: strict checks/RI/Staging app15368, no bypass, original PR/deletion/non-fast-forward rules. The approved temporary Staging-only exception is over.
+- Ordinary postmerge staging identity40012121369 FAILED, retained under the approved infrastructure exception. Manual source-owned recovery/HTTPS identity observation at19:34:55 UTC passed separately; accepted website remains6d2bd63ee947f19fe319137229007fd3a5a96419/tree d5f5da1adc83df31a720e2e042ccfaa00c4856e5/public digestba90ab6538d25557ffd8de5049cb8d1231d0d5db70a3c2c805c432c0cc356b29. This is not successful repair staging or production.
+- Existing T04/PR131 resumes Draft from31bb06bbf0d0b5f7fafa5468d0147b5ab7e6d8b9/tree19739c88fc9cd01d91aa3950794ea52614f9fb7f. Current integration includes actual mainbab166e; final candidate identity/reviews/checks must be read live. T04.1-.4 historical evidence remains; T04.5 and whole AC01-AC08 remain open.
 
 ## Decisions
 
-- T04 implements the canonical D01-D10/version1 planned observer, real-Git CLI and separate read-only native workflow alongside existing CI. Existing B/R/O/H, required contexts and protected delivery stay mandatory. No W3/protection transition, new publisher, reuse or production.
-- Explicit policy SHA independently supplied; all consulted policy/implementation bytes pinned, actual producer verified against committed implementation. First release may use candidate policy/local-input, never protected-base enforcement.
-- Preserve base/policy/candidate registry obligations and both endpoint rights dependencies. Well-formed unsupported types conservative; unsafe/malformed/unavailable/incomplete inputs invalid. All authority flags false, all obligations planned/null evidence, acceptedSite/history null.
-- Separate requirements preflight /root/t04_requirements completed on e6; five identity/pre-change/type/CI/subset findings resolved as design dispositions before implementation. Completed-candidate four distinct reviews and any material correction rechecks remain required.
+- Latest owner steering prioritizes the minimal package-download repair and return to PR131. Requirements simplification preflight accepted exact678 delivery through the narrow temporary exception, immediate restoration and separate honest postmerge observations; PR132 receipt6373173114 records actual outcome.
+- Larger M framework is deferred on work/issue-122-ci-maintenance-deferred-20261023 at3b624119d6fb7cfe0d1fd074db2473044521a615/tree9964e036d4bbcac529afeb7d98314954478c4bd9. It is excluded from main and PR131 integration; do not revive it for this task.
+- Requirements integration preflight /root/t04_setup_requirements ACCEPT: merge actual bab166e into existing Draft131, preserve observer and Ubuntu obligations, regenerate RI/coupling and refresh all four roles/current checks/native report. Original preview/owner-stage/admission/merge/postmerge route and budgets remain required for T04; no new scope decision or permission round.
+- Preserve genuine candidate Writing3566.9/3200ms failure39991821832 and cancelled protected owner39994526873 (Azure install840.282s, incomplete browser55.603s). No fabricated green result, budget increase, credentials/services, W3 or production.
 
 ## Open work
 
-- T04 DraftPR131 published112b78a/treeba27e62 equals localreviewedd08. Canonical review/issue-122/2026-10-23-t04-review.md retains all initial findings/correction receipts and four actual distinct role acceptances. Observer32/32, profile selection30/30 and owning4/4 pass locally after bounded guide-owner oracle correction. Initial whole679 run678pass/1fail stays failed.
-- Native112 observation39982373429/1 artifact12513113924 ZIP85f92320154cc83273f12df5678c9d2c013f1e6bd5431405cac76fc537673486 independently authenticated by Exploratory,24policyfiles/17records/72planned obligations/no authority. Later integration5b4fe68/tree3354b89 accepted by all four actual delta executions. Only factual receipt/RI freeze precedes final published-head current CI; do not transfer strict staging to another head.
-- Full actual T04 source/CI/preview/owner-stage/eligible-admission/protected merge/postmerge/reconciliation remain pending. Whole AC01-08, actual cheaper lanes/trusted AC05 enforcement and content issue5/PR79 remain open. PR79 Draft0717bd4 unchanged.
+- Active PR131 branch work/issue-122-t04-observer, local /tmp/t03r-runtime. Integration8d45fe5 preserved both authored unions and passed selected source680/Python128/Basic/lint/owning, but all four independent roles found the new Navigation Ubuntu command missing from the planned report. Bounded correction adds its R-TEST row and derives regression expectations from actual Navigation; the original omission fails that oracle. Corrected5b1d494/tree8969c365 adds that sole row; all four roles actually rechecked and accepted it. Corrected observer32/32, Basic, lint257/no warnings, maintained format and clean owning5/5 pass. Final factual freeze/publication/current native evidence remain pending.
+- Refresh four distinct role reviews and current Basic/selected source, Ubuntu7, Navigation/RI, style/lint/owning and native observer bindings against bab166e. Record exact source/run and keep all authority flags false.
+- Finish P05 return/integration reconciliation, then original T04.5 delivery. Parent issue122 remains open. Content issue5/PR79 stays separate.
 
 ## Next session
 
-1. Revalidate live main/issue/PR/source/checks; do not infer current state from this dated handoff.
-2. Continue the already approved T04 through required reviews/checks/delivery without asking again for its scope. Do not start W3/production.
-3. Record actual evidence and all failures in the T04 review/issue/PR; reconcile T04.1-.5 only when whole conditions pass, then report/propose the next bounded step.
+1. Revalidate current main, PR131 source/Draft state, restored rules and current checks before using this dated handoff.
+2. Continue the single existing PR131; complete affected integration reviews/current-source/native evidence and original staging/admission/protected merge/postmerge. No automatic retries that relabel real failures.
+3. Reconcile literal P05/T04.5 and whole AC conditions honestly; report the completed atomic result before proposing a further bounded step.
 
 ## Maintenance
 
-- Keep five sections/120 lines; rebuild RI and verify coupling after source/catalog/policy/guide edits. Refresh before final stage freeze; use factual issue/PR receipts for poststage facts to preserve tested complete tree.
-- Active Git /tmp/t03r-runtime; common Git /tmp/t03r-recovered-repo. Pinned Node24.19/Python3.12.14 and full ignored toolchain survive. Previous native evidence /tmp/t035b-* and /tmp/t035-postmerge. Git-backed work needs no duplicate artifact storage.
+- Keep five sections/120lines and derived RI/CI freshness. Final factual receipts do not change reviewed implementation meaning; preserve tested complete tree after staging.
+- Git common /tmp/t03r-recovered-repo, active /tmp/t03r-runtime, clean prerequisite merge /tmp/t04p-main-merged. Pinned Node24.19/Python3.12.14 and installed ignored toolchain available. Browser administration is unavailable; GitHub connector and ordinary git fetch work. Git-backed work needs no duplicate storage.

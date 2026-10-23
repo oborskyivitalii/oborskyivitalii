@@ -266,6 +266,7 @@ function common(base, candidate) {
     ['R-COUPLING', ['python3', 'tools/check_ri_ci.py', 'verify']],
     ...[
       'test_code_style.py',
+      'test_ubuntu_downloads.py',
       'test_ri_ci.py',
       'test_root_layout.py',
       'test_repository_test_selection.py',

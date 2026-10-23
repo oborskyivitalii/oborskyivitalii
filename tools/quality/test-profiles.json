@@ -2112,6 +2112,23 @@
       ],
       "disposition": "Independent real-Git observer invariants complement the names-only source selector; no delivery authority or evidence reuse.",
       "surviving_route": "Basic changed-source and permanent staging/production source profiles; observation-only workflow has its own native report."
+    },
+    {
+      "path": "tests/test_ubuntu_downloads.py",
+      "language": "python",
+      "purpose": "Primary Ubuntu archive setup preserves signed-source metadata and rejects invalid indirection; actual helper wiring/order/budgets and useful workflow faults.",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain stdlib fixtures in explicit navigation and enduring Python source routes; network/browser acceptance remains native evidence",
+      "surviving_route": "python3 tools/run_repository_tests.py",
+      "inputs": [
+        "tests/test_ubuntu_downloads.py",
+        "tools/quality/ubuntu_downloads.py",
+        ".github/workflows/navigation.yml",
+        ".github/workflows/site-color-review.yml",
+        ".github/workflows/site-release-checks.yml"
+      ]
     }
   ]
 }

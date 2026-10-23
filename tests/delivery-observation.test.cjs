@@ -466,14 +466,36 @@ test('existing policy gates and all actual navigation commands remain planned', 
   for (const row of report.obligations)
     if (row.execution.kind === 'external-gate')
       assert.ok(Object.hasOwn(policy.gates, row.execution.gate), row.execution.gate);
-  for (const file of [
-    'test_code_style.py',
-    'test_ri_ci.py',
-    'test_root_layout.py',
-    'test_repository_test_selection.py',
-    'test_repository_intelligence.py',
-  ])
-    assert.ok(report.obligations.some((row) => row.execution.command?.argv.includes(file)));
+  const navigation = fs.readFileSync(path.join(root, '.github/workflows/navigation.yml'), 'utf8'),
+    expected = [
+      ...navigation.matchAll(/^\s+run: python3 -m unittest discover -s tests -p '([^']+)'\s*$/gm),
+    ]
+      .map((match) => match[1])
+      .sort(),
+    actual = report.obligations
+      .filter((row) => row.id.startsWith('R-TEST:'))
+      .map((row) => {
+        const file = row.id.slice('R-TEST:'.length);
+        assert.deepEqual(row.execution.command.argv, [
+          'python3',
+          '-m',
+          'unittest',
+          'discover',
+          '-s',
+          'tests',
+          '-p',
+          file,
+        ]);
+        return file;
+      })
+      .sort();
+  assert.ok(expected.length > 0, 'actual Navigation unittest inventory must be present');
+  assert.equal(new Set(expected).size, expected.length, 'Navigation commands must be unique');
+  assert.deepEqual(
+    actual,
+    expected,
+    'every actual Navigation unittest command must remain planned'
+  );
   assert.ok(
     report.obligations.some((row) => row.execution.command?.argv.includes('tools/check_ri_ci.py'))
   );

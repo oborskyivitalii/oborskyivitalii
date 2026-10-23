@@ -281,6 +281,15 @@ fails; TLS/origin, security-header, MIME and other status errors do not poll.
 Exhausted convergence remains a failed promotion or recovery. This polling never
 dispatches another staging workflow or reruns browser/performance cases.
 
+Ubuntu preview smoke and bounded staging prepare the official primary archive
+through `tools/quality/ubuntu_downloads.py`, shared with the production Linux job.
+It preserves signed repository metadata and package/engine requests while applying
+the existing bounded APT transport settings. Fixture/wiring checks run in navigation
+and the enduring Python suite. Native installation and actual browser reports are
+still required; changing a mirror does not prove identical OS package versions.
+The owner controller executes its protected-main workflow; a candidate workflow
+repair needs the existing candidate evidence route and protected admission.
+
 For the staging controller, retry with **Re-run all jobs**, or create a
 new owner `/stage` request. **Re-run failed jobs** is not supported: reused jobs
 and admission outputs can belong to an earlier attempt, so they cannot prove one

@@ -378,6 +378,9 @@ jobs:
           path: staging-package
       - name: Verify current hosted routes, revision and runtime
         run: node tools/staging/review-flow.cjs http staging-package "$SITE_TEST_BASE_URL" staging-reports/http.json
+      - name: Prepare bounded Ubuntu downloads
+        if: needs.target.outputs.prototype != 'true'
+        run: sudo python3 tools/quality/ubuntu_downloads.py
       - name: Install locked Chromium smoke tools
         if: needs.target.outputs.prototype != 'true'
         run: |
