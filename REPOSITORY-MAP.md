@@ -49,8 +49,8 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/snapshots](docs/snapshots) | Generated exact-route HTML snapshots. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/00e9983902da0753636080176e9160e00c10db2fe9701d24d3f43b0658809d4c](docs/snapshots/00e9983902da0753636080176e9160e00c10db2fe9701d24d3f43b0658809d4c) | Generated public output identity directory; owned by the site producer. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2](docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2) | Generated public rendition; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/13609512e7913f036f6181d4109cd767349c90f05721e99182a67be58ec1d8cb](docs/snapshots/13609512e7913f036f6181d4109cd767349c90f05721e99182a67be58ec1d8cb) | Generated current Talks source snapshot; regenerated from canonical content and template owners. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/20770049df1b80e9ae9d71fa06268905068742dfd58f8b2dc81460013f504e60](docs/snapshots/20770049df1b80e9ae9d71fa06268905068742dfd58f8b2dc81460013f504e60) | Generated public output identity directory; owned by the site producer. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/4d2f2f71a0778fab22ccf2e40c2d512126969d3d1853399a7e34c5b4120f402f](docs/snapshots/4d2f2f71a0778fab22ccf2e40c2d512126969d3d1853399a7e34c5b4120f402f) | Generated DevCon Talks source snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347](docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/5dd746e6ccc007fa2464072118285d240a10465eaff83b54161f49cf06a039c6](docs/snapshots/5dd746e6ccc007fa2464072118285d240a10465eaff83b54161f49cf06a039c6) | Generated immutable public route snapshot directory. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed](docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed) | Generated public rendition; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
@@ -77,6 +77,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-118](review/issue-118) | Issue118 first-name editorial hotfix review and source-bound evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-120](review/issue-120) | Issue120 independent quality-agent integration, role receipts and source-bound acceptance evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-122](review/issue-122) | Issue122 atomic delivery-lane increments, independent quality-agent reviews and source-bound acceptance evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-126](review/issue-126) | DevCon announcement source and review evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-31](review/issue-31) | Dated issue 31 implementation analysis and review evidence linked from its owning issue and PR. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-33](review/issue-33) | Versioned analysis and independent review evidence for short bootstrap and root organization. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-35](review/issue-35) | Dated exact-base test/runtime/CI audits, original #13 reconciliation, analysis and independent review for test optimization. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -217,6 +218,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.github/acceptance/issue-118.json](.github/acceptance/issue-118.json) | Issue118 bounded editorial hotfix acceptance and explicit delivery gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-120.json](.github/acceptance/issue-120.json) | Issue120 requirements, code-review and QA protocol acceptance: real routing checks with separate independent-role and delivery gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-122.json](.github/acceptance/issue-122.json) | Issue122 delivery-lane AC mapping: retained selection checks, T02 semantic contract review and pending lane, trust, independent-review and delivery gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/acceptance/issue-126.json](.github/acceptance/issue-126.json) | Issue126 observable announcement acceptance with separate independent, hosted and release gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-31.json](.github/acceptance/issue-31.json) | Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-33.json](.github/acceptance/issue-33.json) | Bootstrap/root optimization AC01–AC06 mapped to source-bound assertions and separate review, merge and linkage gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-35.json](.github/acceptance/issue-35.json) | Test optimization AC01–AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
@@ -349,17 +351,17 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2/talks.html](docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2/talks.html) | Generated public rendition; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/13609512e7913f036f6181d4109cd767349c90f05721e99182a67be58ec1d8cb/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/13609512e7913f036f6181d4109cd767349c90f05721e99182a67be58ec1d8cb/talks.html](docs/snapshots/13609512e7913f036f6181d4109cd767349c90f05721e99182a67be58ec1d8cb/talks.html) | Generated current Talks source snapshot; regenerated from canonical content and template owners. | generated | [site/README.md](site/README.md) |
-
 ## docs/snapshots/20770049df1b80e9ae9d71fa06268905068742dfd58f8b2dc81460013f504e60/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [docs/snapshots/20770049df1b80e9ae9d71fa06268905068742dfd58f8b2dc81460013f504e60/credits.html](docs/snapshots/20770049df1b80e9ae9d71fa06268905068742dfd58f8b2dc81460013f504e60/credits.html) | Generated public route/runtime output; edit canonical site owners and regenerate. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/4d2f2f71a0778fab22ccf2e40c2d512126969d3d1853399a7e34c5b4120f402f/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/4d2f2f71a0778fab22ccf2e40c2d512126969d3d1853399a7e34c5b4120f402f/talks.html](docs/snapshots/4d2f2f71a0778fab22ccf2e40c2d512126969d3d1853399a7e34c5b4120f402f/talks.html) | Generated DevCon Talks snapshot; regenerate from canonical content/template owners. | generated | [site/README.md](site/README.md) |
 
 ## docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/
 
@@ -731,6 +733,13 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-122/2026-10-22-t01-review.md](review/issue-122/2026-10-22-t01-review.md) | T01 exact review-template selection correction, independent test oracles, role receipts and normal main-delivery evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-122/2026-10-22-t02-review.md](review/issue-122/2026-10-22-t02-review.md) | T02 routing/observation contract, live capability disposition, independent role receipts and source-bound delivery evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-122/2026-10-22-t02p-review.md](review/issue-122/2026-10-22-t02p-review.md) | Issue122 approved T02-P dependency repair, exact compatibility evidence, independent quality-role reviews and delivery boundaries. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+
+## review/issue-126/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-126/2026-10-23-announcement-review.md](review/issue-126/2026-10-23-announcement-review.md) | DevCon announcement source-bound independent review, findings, QA cases and delivery status. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-126/content-amendment.json](review/issue-126/content-amendment.json) | Issue126 source-bound DevCon announcement review, factual provenance and exact reversible content delta. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/issue-31/
 
@@ -2068,6 +2077,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/test_code_style.py](tests/test_code_style.py) | Negative style-guard fixtures and actual code-path/bilingual agent/RI routing checks. | test | [guides/CODE-STYLE.md](guides/CODE-STYLE.md) |
 | [tests/test_issue102_acceptance.py](tests/test_issue102_acceptance.py) | Issue102 policy adapter for maintained analytics suite and failure accounting. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue108_acceptance.py](tests/test_issue108_acceptance.py) | Issue108 task-only adapter selecting maintained content and adversarial SEO cases. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [tests/test_issue126_acceptance.py](tests/test_issue126_acceptance.py) | Owning issue126 adapter for DevCon public facts, prior-event preservation and bounded source checks. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue31_acceptance.py](tests/test_issue31_acceptance.py) | Issue 31 observable acceptance checks for RI provenance, inventory, memory, workflow, unchanged site and bootstrap. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue33_acceptance.py](tests/test_issue33_acceptance.py) | Issue #33 source snapshot assertions for unchanged public bytes, historic reviews, locator exceptions, policy and handoff. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue35_acceptance.py](tests/test_issue35_acceptance.py) | Owning issue35 targeted snapshot, real Node accounting, full-guard, registry/RI and honest source/closure assertions; selected policy only. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
