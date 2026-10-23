@@ -9444,6 +9444,12 @@
       "purpose": "Source-bound T03 rename-selection requirements, four-role review, regression and delivery evidence under issue122.",
       "role": "history",
       "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-122/2026-10-23-t03r-public-checksum-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Inert compressed source-bound proof of180 exact public generated checksum findings, canonical producer checks and full hashed-only detector replay input for issue122 T03-R integration.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     }
   }
 }

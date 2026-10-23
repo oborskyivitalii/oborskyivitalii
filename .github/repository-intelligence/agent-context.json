@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "ccb1a70a9b8557836089d3de0e946f0a21177a7d7cbff98e37dbb71033e38a30",
+    "digest": "4e6cb50c616dd65908d02c407886223629f4a7aea720b9bb449ee2c35a20fb26",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -72,7 +72,7 @@
       {
         "path": ".github/acceptance/issue-122.json",
         "identity_mode": "content",
-        "sha256": "a7b7da542d097b2fe7a013c297ec3f9411dd3144359c6d053c3824e1e3c6c06e"
+        "sha256": "0ccc71dde9745aa3a5325bcf380be79f280dde6cee6799fbf07c82b14d7c5ec5"
       },
       {
         "path": ".github/acceptance/issue-126.json",
@@ -196,12 +196,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "e72a3f9187319d0cae3cd6500284499a47a4f66739f120fe266585511141a6f0"
+        "sha256": "c54b1490043414db30d5768adb771165a34ffbf80b0ac02b7d038a3fbd12a9a5"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "4920b05d6c006d418c809f24460cc0f26c1ca9d9e6dd08fe4f900aaadaccf0e7"
+        "sha256": "274063c3515000ddb1330efb652bce9afca9a7c525113b7b26c4bf247420762b"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -331,7 +331,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "65de189e408642dbcf816af8efe94f09673785bb119f008e7c1e57c53c34c773"
+        "sha256": "b611616cc8777b537fa6bfa2782358913e1c5479ae608f6e06003104ea1f77fd"
       },
       {
         "path": "NOTICE.md",
@@ -865,7 +865,12 @@
       {
         "path": "review/issue-122/2026-10-23-t03-review.md",
         "identity_mode": "content",
-        "sha256": "6ce4558adf8a698f8e089521d11898a3f6e303698d01c35d5f1f1f91fde93c8e"
+        "sha256": "07a7233f49f713698f9d30db672f44b74d16800d5e3690c95f8d3c1ffbca481e"
+      },
+      {
+        "path": "review/issue-122/2026-10-23-t03r-public-checksum-proof.json.gz",
+        "identity_mode": "content",
+        "sha256": "607c1c85e61c168ed46d290dea9bf0064bd53b9086442d6c250968ae12251087"
       },
       {
         "path": "review/issue-126/2026-10-23-announcement-review.md",
@@ -6685,7 +6690,7 @@
       {
         "path": "tools/quality/secrets-publication.json",
         "identity_mode": "content",
-        "sha256": "f22b15d8f45d4411604e8cb5ac430ea532c3c36261c19bed801210a2090660c7"
+        "sha256": "bbffb7d22b6030c440f7cc87ab65d95f6da6b2d05b5d43a175c519ee83bb093f"
       },
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
@@ -9271,6 +9276,17 @@
         "AGENTS.md"
       ],
       "title": "Issue122 — T03 rename selection correction, 23 October 2026"
+    },
+    {
+      "path": "review/issue-122/2026-10-23-t03r-public-checksum-proof.json.gz",
+      "kind": "file",
+      "purpose": "Inert compressed source-bound proof of180 exact public generated checksum findings, canonical producer checks and full hashed-only detector replay input for issue122 T03-R integration.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-23-t03r-public-checksum-proof.json.gz"
     },
     {
       "path": "review/issue-126/2026-10-23-announcement-review.md",

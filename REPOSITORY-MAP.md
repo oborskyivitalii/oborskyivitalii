@@ -775,6 +775,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-122/2026-10-22-t02p-review.md](review/issue-122/2026-10-22-t02p-review.md) | Issue122 approved T02-P dependency repair, exact compatibility evidence, independent quality-role reviews and delivery boundaries. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-122/2026-10-23-t03-controller-bootstrap-review.md](review/issue-122/2026-10-23-t03-controller-bootstrap-review.md) | Issue122 T03 controller bootstrap authorization, exact finite compatibility review and source-bound staging/merge evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-122/2026-10-23-t03-review.md](review/issue-122/2026-10-23-t03-review.md) | Source-bound T03 rename-selection requirements, four-role review, regression and delivery evidence under issue122. | history | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [review/issue-122/2026-10-23-t03r-public-checksum-proof.json.gz](review/issue-122/2026-10-23-t03r-public-checksum-proof.json.gz) | Inert compressed source-bound proof of180 exact public generated checksum findings, canonical producer checks and full hashed-only detector replay input for issue122 T03-R integration. | history | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 
 ## review/issue-126/
 

@@ -8,7 +8,7 @@ Dated continuity, not live authority. Last verified: **2026-10-23**.
 - Bootstrap PR130 delivered: tested8c3fa30b/tree d559b570, ordinary ownerstage39952774218, eligible admission39955383275, protected mergecc67, postmerge39955744615; main Navigation39955743938 PASS.
 - Bootstrap rawBasic48modules649/649140368ms; nativeprepub26/26,47modules641/641116339ms,Python121incl9,complete91pins/147deps/4overrides/security/advisories PASS. All7 reports, stablealias and identical mergedtree authenticated.
 - Bootstrap oldruntime0144 mobile singles Research1846.059msLCP/6msTBT/0CLS andWriting2106.1555/29/.049918 passed original2500/200/.1. This is not changed-reading performance.
-- Preserve all PR129 retained30file/rights/checksum/registry closure and bootstrap1501publicationrows/threeotherledgers. New combined-source checks/reviews/security remain pending.
+- Main integrated at actual published824b4948/tree71cf6389, with all PR129 retained30file/rights/checksum/registry closure. Clean824 detector5062findings left180exact generated checksums, all source-proved; publicationledger1681 preserves1501priorrows/threeotherledgers. Proof SHA607c1c85 in the T03 review. Four independent corrected3ce integration roles ACCEPT; clean3ce owning4/style/format/RI/map/coupling20 PASS. Full clean final-source prepublication/security/nativeCI and R04 remain pending.
 
 ## Decisions
 
@@ -19,7 +19,7 @@ Dated continuity, not live authority. Last verified: **2026-10-23**.
 
 ## Open work
 
-- Complete canonical main integration/actual final public-checksum proof/RI/policy, four actual distinct integration roles and clean current checks/full security/prepublication/nativeCI.
+- Four actual distinct integration reviews completed on corrected3ce/tree428d. Publish verbatim receipts with deterministic RI refresh, then clean full final-source prepublication/security and fresh published-source nativeCI before sole original R04. AC04 scope4344 exceeded unchanged4000 bound; scope-neutral3977 compression validates, old failure retained; actual180findings cover29paths.
 - Then sole original R04 current-runtime ownerstage/report under unchanged cases/limits. R01/R02 implemented; R03/R04 and T03.3/.5/allwholeAC01–AC08 stay open. AC05 trusted producer proof remains unresolved.
 - Runtime review owner:review/issue-122/2026-10-23-t03-review.md; finite bootstrap evidence owner:review/issue-122/2026-10-23-t03-controller-bootstrap-review.md plus actual issue/PR delivery records.
 - Original runtime stage39923213843 failed Writing213.5/200ms; T03D five ordinary123/245/123/100/97.5 and sampled330.5 remain historical nongating results.
@@ -33,5 +33,5 @@ Dated continuity, not live authority. Last verified: **2026-10-23**.
 ## Maintenance
 
 - Five sections/120-line cap; canonical generation only, refresh RI/map after indexed changes.
-- Original workspace disappeared externally after published8c; exact clean GitHub checkout recovered at /tmp/t03r-recovered-repo, runtimeworktree /tmp/t03r-runtime. Raw native ZIPs/receipts retained outside source.
+- Automated workspace maintenance removed the original workspace after published8c; exact clean GitHub checkout recovered at /tmp/t03r-recovered-repo, runtimeworktree /tmp/t03r-runtime. Raw native ZIPs/receipts retained outside source.
 - Full pinned Node and91-package Python toolchains were restored in ignored runtimeworktree paths; installed graph147deps/four overrides verified. Git-backed work is not duplicated to file storage.
