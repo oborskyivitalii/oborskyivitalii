@@ -22,6 +22,62 @@ function manifest(id) {
       value.files[file] = { raw: 5000, gzip: 1000, sha256 };
   return value;
 }
+test('reading batch records bind actual generated plain/staging bytes and reject tampering', () => {
+  const fs = require('node:fs'),
+    os = require('node:os'),
+    path = require('node:path'),
+    crypto = require('node:crypto'),
+    artifact = require('../tools/quality/artifact.cjs'),
+    authoredColor = require('../tools/staging/color.cjs'),
+    edition = require('../tools/staging/edition.cjs');
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'reading-contract-'));
+  try {
+    artifact.build(path.join(directory, 'plain'));
+    authoredColor.build(path.join(directory, 'plain'));
+    fs.cpSync(path.join(directory, 'plain'), path.join(directory, 'staging'), { recursive: true });
+    edition.build(path.join(directory, 'staging'));
+    for (const name of ['plain', 'staging']) {
+      const root = path.join(directory, name),
+        publicDir = path.join(root, 'public'),
+        actual = JSON.parse(fs.readFileSync(path.join(root, 'artifact.json'))),
+        reviewed = motion.reviewedRuntime('issue122-reading-batch-' + name);
+      assert.equal(artifact.verify(publicDir, actual), true);
+      assert.deepEqual(actual.variant, reviewed.variant);
+      for (const [file, expected] of Object.entries(reviewed.files)) {
+        for (const alias of [file, 'runtime/' + actual.variant.fingerprint + '/' + file]) {
+          const bytes = fs.readFileSync(path.join(publicDir, alias));
+          assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'), expected);
+          const mixed = structuredClone(actual);
+          mixed.files[alias].sha256 = '0'.repeat(64);
+          assert.throws(() => motion.select(mixed), /Color bytes/);
+        }
+      }
+      assert.equal(motion.select(actual).id, reviewed.id);
+      assert.equal(motion.flightCheck(actual), 'blockFlight');
+      for (const alias of [
+        'navigation.js',
+        'runtime/' + actual.variant.fingerprint + '/navigation.js',
+      ]) {
+        const file = path.join(publicDir, alias),
+          original = fs.readFileSync(file);
+        fs.appendFileSync(file, '\n// unreviewed bytes\n');
+        assert.throws(() => artifact.verify(publicDir, actual), /Artifact bytes/);
+        fs.writeFileSync(file, original);
+      }
+      assert.equal(artifact.verify(publicDir, actual), true);
+      const production = structuredClone(actual);
+      production.edition = {
+        id: 'production',
+        indexable: true,
+        origin: 'https://vitaliioborskyi.ai',
+      };
+      assert.throws(() => motion.select(production), /edition differs/);
+    }
+    assert.throws(() => motion.reviewedRuntime('issue122-reading-batch-production'));
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
 function blockSamples(width = 1440, direction = 'forward', count = 2) {
   const plan = motion.rowPlan(width, count),
     sign = direction === 'forward' ? 1 : -1;
@@ -190,6 +246,7 @@ test('only reviewed historical and current launch plain/staging tuples select a 
     'issue39-licensed-compact',
     'issue39-writing-tbt',
     'issue39-css-clock',
+    'issue122-reading-batch',
   ])
     for (const edition of ['plain', 'staging']) {
       const id = family + '-' + edition,
@@ -209,6 +266,7 @@ test('only reviewed historical and current launch plain/staging tuples select a 
     'issue39-licensed-compact-plain',
     'issue39-writing-tbt-plain',
     'issue39-css-clock-plain',
+    'issue122-reading-batch-plain',
   ]) {
     const copy = motion.reviewedRuntime(id);
     copy.files['space.js'] = '0'.repeat(64);
@@ -270,11 +328,13 @@ test('unknown, conflicting, mixed or merely marked runtime identities fail befor
     'issue39-licensed-compact-plain',
     'issue39-writing-tbt-plain',
     'issue39-css-clock-plain',
+    'issue122-reading-batch-plain',
     'issue39-staging',
     'issue39-licensed-staging',
     'issue39-licensed-compact-staging',
     'issue39-writing-tbt-staging',
     'issue39-css-clock-staging',
+    'issue122-reading-batch-staging',
     'issue39-production',
     'issue39-licensed-production',
     'issue39-licensed-compact-production',
@@ -314,6 +374,7 @@ test('unknown, conflicting, mixed or merely marked runtime identities fail befor
     'issue39-licensed-compact-staging',
     'issue39-writing-tbt-staging',
     'issue39-css-clock-staging',
+    'issue122-reading-batch-staging',
   ]) {
     const staged = manifest(id);
     delete staged.edition;
@@ -330,11 +391,13 @@ test('reviewed fixed-block tuples reject mixed bytes and editions in canonical a
     'issue39-licensed-compact-plain',
     'issue39-writing-tbt-plain',
     'issue39-css-clock-plain',
+    'issue122-reading-batch-plain',
     'issue39-staging',
     'issue39-licensed-staging',
     'issue39-licensed-compact-staging',
     'issue39-writing-tbt-staging',
     'issue39-css-clock-staging',
+    'issue122-reading-batch-staging',
     'issue39-production',
     'issue39-licensed-production',
     'issue39-licensed-compact-production',
@@ -374,10 +437,12 @@ test('licensed contracts reject every missing or substituted canonical and immut
     'issue39-licensed-compact-plain',
     'issue39-writing-tbt-plain',
     'issue39-css-clock-plain',
+    'issue122-reading-batch-plain',
     'issue39-licensed-staging',
     'issue39-licensed-compact-staging',
     'issue39-writing-tbt-staging',
     'issue39-css-clock-staging',
+    'issue122-reading-batch-staging',
     'issue39-licensed-production',
     'issue39-licensed-compact-production',
     'issue39-writing-tbt-production',
@@ -405,6 +470,7 @@ test('full Color aggregation preserves all twelve engine, viewport and theme cel
     'issue39-licensed-compact-plain',
     'issue39-writing-tbt-plain',
     'issue39-css-clock-plain',
+    'issue122-reading-batch-plain',
     'issue39-production',
     'issue39-licensed-production',
     'issue39-licensed-compact-production',
@@ -469,11 +535,13 @@ test('reviewed report guard branches reject wrong planes, moving reading cameras
     'issue39-licensed-compact-plain',
     'issue39-writing-tbt-plain',
     'issue39-css-clock-plain',
+    'issue122-reading-batch-plain',
     'issue39-staging',
     'issue39-licensed-staging',
     'issue39-licensed-compact-staging',
     'issue39-writing-tbt-staging',
     'issue39-css-clock-staging',
+    'issue122-reading-batch-staging',
     'issue39-production',
     'issue39-licensed-production',
     'issue39-licensed-compact-production',

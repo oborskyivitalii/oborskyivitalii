@@ -807,22 +807,25 @@ window.SiteScrollEntry=(function () {
       startReading(element, index, own);
     }
   }
+  function releaseUpwardEntries(entries, height) {
+    const rearming = new Map();
+    for (const entry of entries) {
+      const element = entry.target;
+      const record = records.get(element);
+      if (!record || entry.isIntersecting) continue;
+      if (entry.boundingClientRect.top >= height) {
+        clearState(element);
+        rearming.set(element, { element, record });
+      } else if (active.has(element) || pendingReading.has(element)) finish(element);
+    }
+    return rearming;
+  }
   function enter(entries, own) {
     if (own !== generation || suspended || !allowed()) return;
-    const rearming = new Map();
     const height = window.innerHeight;
     // Release exited states together: separator removal can change native
     // layout/scroll anchoring before this batch measures and rearms its units.
-    if (direction < 0)
-      for (const entry of entries) {
-        const element = entry.target;
-        const record = records.get(element);
-        if (!record || entry.isIntersecting) continue;
-        if (entry.boundingClientRect.top >= height) {
-          clearState(element);
-          rearming.set(element, { element, record });
-        } else if (active.has(element) || pendingReading.has(element)) finish(element);
-      }
+    const rearming = direction < 0 ? releaseUpwardEntries(entries, height) : new Map();
     const viewport = readingViewport();
     const pageBottom = document.documentElement.scrollHeight;
     for (const unit of rearming.values()) {

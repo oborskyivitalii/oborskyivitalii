@@ -7,7 +7,7 @@ Dated continuity, not live authority. Last verified: **2026-10-23**.
 - Current task: issue122 approved T03-R runtime correction in same Draft PR128.
 - Amendment baseline:e6969bf579a6a550286d7c2bd2105c2fe4dfbbff, tree29e51e62da6d693b5cda1340e9c33b7e47118f43; protected main1e87b124c8a7ca4fde4e8ede75dcdd1515b491ea unchanged.
 - Current local correction snapshots post-cleanup per-batch viewport/scroll/focus for reconcile/upward enter; forward observer/queue order preserved.
-- Focused scroll-entry/scroll-sync/navigation62/62 PASS; actual candidate reviews/current CI/changed-source owner stage remain pending.
+- Initial R reviews accepted; native8ec533f CI failed new complexity28/25 and missing reviewed Color bytes. Correcting necessary companions; no R stage yet.
 - Versioned owner:review/issue-122/2026-10-23-t03-review.md; exact clean candidate identities follow in its role receipts and live PR.
 - Original owner stage39923213843/1 remains FAILED Writing213.5/200ms at0a76d07/e690.
 
@@ -23,7 +23,7 @@ Dated continuity, not live authority. Last verified: **2026-10-23**.
 
 - R01-R04 actual checkboxes pending whole evidence; T03.3/.5 and all wholeAC01-AC08 remain open. AC05 producer enforcement remains unresolved beforeW3.
 - Current tests observe post-cleanup values, no geometry reads after per-unit writes, fresh second events, exact fold/bottom/focus/hidden outcomes and preserved forward six-slot queue.
-- Complete candidate four roles, independent original-order fault detection, source/format/style/RI/policy and native CI/preview before one owner stage; retain every actual outcome.
+- Final helper extraction preserves cleanup/order and removes new complexity debt without waiver. Exact generated Color plain/staging records and real artifact/tamper tests require four new delta reviews and fresh CI before one owner stage.
 - T03-D is complete historical diagnosis: run39936698976/1 atclean a7cb083/f904, artifact12493464462 SHA840715314523c2a3506d8de546051c187aee65018aae60b424683570c4d82f17.
 - Ordinary diagnostic TBT123/245/123/100/97.5ms; separate sampled330.5ms. FullGate/performanceAcceptance false; no gate cleared.
 - All6 and failed hosted traces showed82 style+82 layout passes at canonical armReading viewport read. Correction sufficiency is not established until actual changed-source validation.
