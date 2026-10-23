@@ -600,7 +600,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "4fcca88af9d3531c1503f14aceba3377af892d82280817a7937a41ea2a23ba07",
+    "digest": "a4c4494645c08b91ab6b95e5ee0dff1d92f4439e64284637543048129460b624",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -860,7 +860,7 @@
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
-        "sha256": "1ea1ecc7457fa8ea367deb4517bc353b2251b4652ab00eb90c7ef6aed033cfd1"
+        "sha256": "f33b76d72bd44cd675d925a35e4bc4183936f2d443530e6d86dea5ad8a11bb2b"
       },
       {
         "path": "tests/test_code_style.py",

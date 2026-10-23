@@ -18,8 +18,8 @@ Dated continuity, not live authority. Last verified: **2026-10-23**.
 
 ## Open work
 
-- Canonical T04 owner review/issue-122/2026-10-23-t04-review.md; source implementation/test/guide/registry/RI/acceptance companions are in progress. No candidate tests/reviews/native observations/delivery pass is implied by this checkpoint.
-- Finish deterministic companions; commit and run real-Git regressions on exact committed producer (uncommitted producer must fail). Publish one Draft PR with Refs #122; four actual roles inspect completed source; resolve findings before Ready/current delivery.
+- T04 DraftPR131 published112b78a/treeba27e62 equals localreviewedd08. Canonical review/issue-122/2026-10-23-t04-review.md retains all initial findings/correction receipts and four actual distinct role acceptances. Observer32/32, profile selection30/30 and owning4/4 pass locally after bounded guide-owner oracle correction. Initial whole679 run678pass/1fail stays failed.
+- Native112 observation39982373429/1 artifact12513113924 ZIP85f92320154cc83273f12df5678c9d2c013f1e6bd5431405cac76fc537673486 independently authenticated by Exploratory,24policyfiles/17records/72planned obligations/no authority. Later integration5b4fe68/tree3354b89 accepted by all four actual delta executions. Only factual receipt/RI freeze precedes final published-head current CI; do not transfer strict staging to another head.
 - Full actual T04 source/CI/preview/owner-stage/eligible-admission/protected merge/postmerge/reconciliation remain pending. Whole AC01-08, actual cheaper lanes/trusted AC05 enforcement and content issue5/PR79 remain open. PR79 Draft0717bd4 unchanged.
 
 ## Next session

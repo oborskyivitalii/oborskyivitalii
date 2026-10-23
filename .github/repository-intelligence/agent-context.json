@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "a34b332f1eb8b741a301722ff6f46a5735d729036aedcf7a066d748edaf483d2",
+    "digest": "af90d5b813270ba9d832f0de9cb25be286ec6e352dc72d8c8fb5f99c7f51179b",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -201,7 +201,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "edf41e05381ca09e99c2e4b496c49aba3f0372d3c8c96822cf066f6b92252009"
+        "sha256": "fb0eac14e2ada59b6e0ce396aa45bb4a2b650a4586311675e52069b3541670c9"
       },
       {
         "path": ".github/workflows/delivery-observation.yml",
@@ -336,7 +336,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "9daf8e19919e49ec95c1ea62cdd84d95b2c2abef5e3dcfc53838bf02a426b6b7"
+        "sha256": "0e13812f6a62b7daec10ad30a2e1412bf8cf62071251f616cbdae3e4f92d409b"
       },
       {
         "path": "NOTICE.md",
@@ -880,7 +880,7 @@
       {
         "path": "review/issue-122/2026-10-23-t04-review.md",
         "identity_mode": "content",
-        "sha256": "a0937927be30bb505e5d1b9b210c41f3f1eed84ab6e7d6588532901ed223c014"
+        "sha256": "f6cae015414628632276a111139ea4b6293863f0f5a27f59ac25ca37b3aeed70"
       },
       {
         "path": "review/issue-126/2026-10-23-announcement-review.md",
@@ -6150,7 +6150,7 @@
       {
         "path": "tests/test-profile-selection.test.cjs",
         "identity_mode": "content",
-        "sha256": "1ea1ecc7457fa8ea367deb4517bc353b2251b4652ab00eb90c7ef6aed033cfd1"
+        "sha256": "f33b76d72bd44cd675d925a35e4bc4183936f2d443530e6d86dea5ad8a11bb2b"
       },
       {
         "path": "tests/test_code_style.py",
