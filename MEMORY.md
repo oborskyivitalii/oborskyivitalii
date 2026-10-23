@@ -1,48 +1,40 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-22**.
+Dated continuity, not live authority. Last verified: **2026-10-23**.
 
 ## Snapshot
 
-- Current task: issue122 T02, resumed canonical routing and observation contract in PR124.
-- Published parked head: e8a8c54000fd4cca5cd17ab52eb63e6daf97df30; local integration preserves that history.
-- Actual repaired main/base: 4c9c27aab641fc57a4c975a78db9fdf3899b9b25, tree9e4a97fa81de80b99691a9b201b629a9673c3f93.
-- PR125 delivered T02-P; tested d046fc92e043f42c67805b265ecbc5fe50bd5151 has that same complete tree.
-- Repair stage39847129847/1, eligible admission39850197342/1, merge identity39850630873/1 and main RI39850631475/1 passed.
-- Exact repair evidence and issue reconciliation: PR125 comment6350842359 and live issue122.
-- T02 review owner: review/issue-122/2026-10-22-t02-review.md; repair history retains its separate T02-P review.
-- This is an integration checkpoint; later candidate reviews and CI/staging/merge require live verification.
-- PR79 remains Draft0717bd4ad2d27786a068c2046b775691cc452acd; issue5 retains content delivery.
+- Current task: issue122 T03, preserve both rename endpoints in current source selection.
+- Maintainer approved “Роби далі” after the T02 status report; one PR through existing delivery, then report.
+- Actual base/main: 1e87b124c8a7ca4fde4e8ede75dcdd1515b491ea; tree448996c942e66142d864b88f667bcfd12d2001b5.
+- T01/PR123, T02-P/PR125 and T02/PR124 are delivered; live issue122 retains final evidence.
+- T02 completed stage39854187302/1, admission39857157186/1, postmerge39857758626/1 and main RI39857758647/1.
+- T03 owner review: review/issue-122/2026-10-23-t03-review.md; current local candidate is not delivery evidence.
+- PR79 remains Draft0717bd4ad2d27786a068c2046b775691cc452acd; issue5 owns content delivery.
 
 ## Decisions
 
-- Maintainer approved repair delivery/postmerge/report, then return to already approved T02; no new approval is needed for resumption.
-- One independently mergeable implementation PR at a time; repair is delivered before resumed PR124 delivery.
-- All four distinct nonauthor roles review the actual integrated candidate and affected corrections.
-- SITE-CHECK-PROFILES owns one proposed matrix/interface; SITE-STAGING owns operational and producer boundaries.
-- T02 remains contract-only relative to repaired main; preserve the complete repair implementation and both review histories.
-- Keep four stdlib-safe owning calls and all nine verifier methods through the existing locked-venv Python route/COVERAGE gate.
-- Actual AC05 producer/protection proof remains mandatory before W3; design approval cannot waive it.
-- T03, new publishers/services/credentials and production activation require separate decisions.
+- T03 adds explicit no-rename detection to the existing names-only Git reader and tests its actual behavior.
+- Preserve both endpoint obligations, current interface, registry semantics, workflows, budgets and protection.
+- One independently mergeable implementation PR at a time; current CI/preview/owner staging/admission remain required.
+- Four distinct nonauthor roles inspect the completed candidate and affected corrections.
+- T03 does not implement the future observer or activate a cheaper lane.
+- AC05 actual protection-bound producer proof remains mandatory before W3; production is outside T03.
 
 ## Open work
 
-- Requirements and code integration preflights identified six shared owners; their original receipts remain in the T02 review.
-- Reconcile policy/catalog/RI/memory, regenerate derived views and freeze the actual integration candidate.
-- Original T02 candidate/correction receipts remain source-bound history, not approval of the new integration.
-- Historical T02 stage39819597415/1 failed before upload on vulnerable API1.37.0; the repair's new91-pin audit passed.
-- Current integrated-source Basic/source, style, RI/CI, owning, preview, owner staging, admission and postmerge remain required.
-- Main/protection/PR79 revalidation retains the unresolved AC05 disposition; unavailable protection inputs are not inferred.
-- T01.1-T01.5 and T02-P.1-T02-P.4 are reconciled complete in issue122.
-- Compound T02-P.5, T02.1-T02.5 and every whole AC01-AC08 remain open pending their complete evidence.
-- Prior source-run timing is retained evidence; this contract-only integration does not authorize budget tuning.
+- Requirements preflight ACCEPT; full candidate reviews and exact-source delivery remain pending.
+- Real-Git tests cover explicit true/false/copies, control and targeted-owner moves, ordinary changes/copy/empty and clean CLI.
+- Original-reader regression detects missing old paths; retain author test-oracle correction and actual later results.
+- Preserve repaired91-pin graph, exact four compatibility records, nine verifier methods and full scanner/advisory obligations.
+- Historical source execution178207/180000ms passed with thin headroom; no budget tuning is authorized.
+- All whole AC01-AC08 stay open; tick T03.1-T03.5 only after their complete evidence.
 
 ## Next session
 
-1. Read current issue122/PR124, actual main/head/tree, working state and role/delivery evidence.
-2. Complete integration reviews and current authorized delivery; never infer completion from this checkpoint.
-3. Reconcile verified task subconditions and report actual tested versus merged identities.
-4. Reassess remaining ACs and propose the next bounded step for separate approval; PR79 retains its owner.
+1. Fetch live issue122, the T03 PR if published, actual main/head/tree, source state, checks and review receipts.
+2. Complete current authorized T03 review/CI/staging/admission/merge/postmerge; do not infer completion from this checkpoint.
+3. Reconcile actual tested versus merged identities and T03 conditions; report before proposing another step.
 
 ## Maintenance
 

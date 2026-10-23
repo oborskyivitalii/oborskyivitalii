@@ -9270,6 +9270,12 @@
       "purpose": "Issue122 approved T02-P dependency repair, exact compatibility evidence, independent quality-role reviews and delivery boundaries.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-122/2026-10-23-t03-review.md": {
+      "kind": "file",
+      "purpose": "Source-bound T03 rename-selection requirements, four-role review, regression and delivery evidence under issue122.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     }
   }
 }

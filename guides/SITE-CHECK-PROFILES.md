@@ -308,8 +308,10 @@ proposed lane. An invalid input is not a conservative successful classification.
 ### Observation report fields
 
 This defines a future JSON interface, not an emitted artifact or installed JSON
-schema. The existing source selector only collects `git diff --name-only -z`;
-its plan is not this status/mode-aware report. The advisory
+schema. The existing source selector collects `git diff --no-renames --name-only -z`:
+a move retains both deleted and added paths, independent of `diff.renames` settings,
+while a copy with its source unchanged adds only the destination. It unions their
+registry-owned obligations; its plan is not this status/mode-aware report. The advisory
 `tools/site/evidence-policy.cjs` also grants no scheduling or evidence-reuse power.
 
 All fields below are required unless explicitly conditional. JSON `null` means

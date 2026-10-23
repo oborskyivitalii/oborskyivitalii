@@ -224,6 +224,7 @@ function readChangedPaths(root, base, head) {
     'diff',
     '--no-ext-diff',
     '--no-textconv',
+    '--no-renames',
     '--name-only',
     '-z',
     base,

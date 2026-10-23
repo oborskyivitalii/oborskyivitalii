@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "ae0eea6e79a990afa641c85fe7972b6705dd861184716243e9ff5fd172a59ee6",
+    "digest": "31dfeb0aec0993b5c07cef689ae544e3944a3c6f6aeca6fd26c9ab088610cb34",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -72,7 +72,7 @@
       {
         "path": ".github/acceptance/issue-122.json",
         "identity_mode": "content",
-        "sha256": "2c9c4d532ff1cab58c84b7e69fbe4fa380db2e463132f65150c84edc4c9b45c9"
+        "sha256": "5cd81f71d1cc1c8cfa5fe48680292b617495e885113d5097658d2c384fd9ae1a"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -191,12 +191,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "174baba15a72ea21c41c76d7dec89af9a934c2f7d3a91d520314715442c4e7f5"
+        "sha256": "0af756d19221cd0c2b40e8616e1539fcda7ddc9e49c2d16a0136a5da870f0631"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "73e1e73bb87cf7b4ad30a02b614a481d5db5368781768e76966a435f9c06662a"
+        "sha256": "d5f64aed57ec2557b196abf7058f6c0b4651a5083137d81dd708d37b73b2d417"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -326,7 +326,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "4867bb0603288299fcca779a005029e1412337b71623a1afa051008747a4c9b8"
+        "sha256": "2c483996e2c9c72accddedab53a8b04c3cdc569d93769eca7fd30a15d00b51e7"
       },
       {
         "path": "NOTICE.md",
@@ -630,7 +630,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "52a1d0445cf02b59a68a8ed2e61c932ee2053bc940ac9a2b97525b65d928f6ed"
+        "sha256": "96f8c673126f466c3f0b95a480ac5ba860e206e8cb008f70948d8decc7697952"
       },
       {
         "path": "guides/SITE-CONTENT-REVIEW.md",
@@ -826,6 +826,11 @@
         "path": "review/issue-122/2026-10-22-t02p-review.md",
         "identity_mode": "content",
         "sha256": "ca69001e14f6b3b563e17f7b57f424bd9a75f05104352a16144041bb2ef490de"
+      },
+      {
+        "path": "review/issue-122/2026-10-23-t03-review.md",
+        "identity_mode": "content",
+        "sha256": "2e57b841fe66fa412791c92c9429ff78349afcbb25454ea8731163aaeff41d7a"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -6045,7 +6050,7 @@
       {
         "path": "tests/test-profile-selection.test.cjs",
         "identity_mode": "content",
-        "sha256": "7bae4412f520b97371afd1b4dba6811ee047e10c5c1e09c3eed41f286ad21320"
+        "sha256": "c416cd307582d9bfc23e2accc35159f05777da83d15d8950ee56683ae778ed67"
       },
       {
         "path": "tests/test_code_style.py",
@@ -6630,7 +6635,7 @@
       {
         "path": "tools/quality/source-tests.cjs",
         "identity_mode": "content",
-        "sha256": "85392a9956f127b743e436d0856089a0842340dec3ff6f0851d217706457aa0a"
+        "sha256": "28180623b3378e86918ba10f6307cdf670d0eae2a74cc395b7d3deba4f0f6d33"
       },
       {
         "path": "tools/quality/staging-gate.cjs",
@@ -9093,6 +9098,17 @@
         "AGENTS.md"
       ],
       "title": "Issue122 — 2026-10-22 T02-P dependency repair"
+    },
+    {
+      "path": "review/issue-122/2026-10-23-t03-review.md",
+      "kind": "file",
+      "purpose": "Source-bound T03 rename-selection requirements, four-role review, regression and delivery evidence under issue122.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue122 — T03 rename selection correction, 23 October 2026"
     },
     {
       "path": "review/issue-31/2026-10-07-analysis.md",
