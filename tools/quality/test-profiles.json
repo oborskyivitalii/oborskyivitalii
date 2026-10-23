@@ -2097,6 +2097,23 @@
       ]
     },
     {
+      "path": "tests/delivery-observation.test.cjs",
+      "language": "javascript",
+      "lifecycle": "permanent",
+      "purpose": "Complete real-Git observation identities, dependency unions, conservative/invalid inputs and no-authority report regressions.",
+      "owner": "tools/quality/delivery-observation.cjs",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "inputs": [
+        "tests/delivery-observation.test.cjs",
+        "tools/quality/delivery-*.cjs",
+        ".github/workflows/delivery-observation.yml",
+        "guides/SITE-CHECK-PROFILES.md",
+        "guides/SITE-STAGING.md"
+      ],
+      "disposition": "Independent real-Git observer invariants complement the names-only source selector; no delivery authority or evidence reuse.",
+      "surviving_route": "Basic changed-source and permanent staging/production source profiles; observation-only workflow has its own native report."
+    },
+    {
       "path": "tests/test_ubuntu_downloads.py",
       "language": "python",
       "purpose": "Primary Ubuntu archive setup preserves signed-source metadata and rejects invalid indirection; actual helper wiring/order/budgets and useful workflow faults.",

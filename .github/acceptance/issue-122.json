@@ -7,7 +7,7 @@
     {
       "id": "AC01",
       "intent": "Correct and explainable repository, content, website and control routing",
-      "automated_scope": "T01 exact review-template and existing mixed/unknown/control regressions remain. T03 exercises the actual Git reader and selector across explicit rename settings, both endpoint owners, ordinary changes, unchanged-source copies and empty diffs; expected paths come from fixture operations and expected modules from registry ownership/lifecycle. The real clean CLI retains its names-only planned/pass-null interface. T02 semantic contract remains; the future full classifier is not executed by these checks.",
+      "automated_scope": "T01 exact template selection and T03 both rename endpoint obligations are delivered. T02 owns D01-D10/version1 semantics. T04 adds complete real-Git status/mode collection, dependency/control union, explicit policy/producer identity and observation-only planned reports; source-profile selected Node regressions and native observation are separate from the four stdlib mechanical owning checks. No cheaper lane or trusted admission is established.",
       "checks": ["SELECTION"],
       "gates": ["ROUTING", "REQUIREMENTS", "REVIEW", "WHITEBOX", "EXPLORATORY"]
     },
@@ -28,7 +28,7 @@
     {
       "id": "AC04",
       "intent": "Preserve applicable website and control coverage, budgets, profiles and source architecture",
-      "automated_scope": "T04-P approval6370000839 permits one narrow Ubuntu dependency-setup prerequisite while PR131 remains paused. The same preview/staging/production-Linux jobs use one extracted primary-archive helper before the unchanged Playwright engine requests. Named wiring checks plus separate permanent fixture/Python/navigation execution cover the mechanical subset; native installation/browser evidence and four actual independent roles remain required. Preserve inherited source/scanner/toolchain/rights obligations and original jobs/check identities, pins and budgets. Whole website/control coverage and all other lane requirements remain pending.",
+      "automated_scope": "Preserve delivered T01/T02/T02-P/T03 source/profile/toolchain/scanner/runtime/rights obligations and their exact historical evidence; bounded T03 delivery completed as main e6ee496 after stage39972503855, eligible39975171739 and postmerge39975383796. T04 adds observation-only tools/quality code, independent real-Git regressions through the existing permanent registry and a read-only report workflow. Existing required Basic/RI/owning/preview/owner-stage/admission/merge route, tool pins, test cases, scanner inputs/limits/dispositions, source deadlines, hosted budgets and production eligibility remain. Candidate registry edits cannot erase base-side report obligations. Four stdlib owning checks establish only their mapped mechanical subset, not Node/hosted execution. Actual full selected source/prepublication/security coverage and independent CS01/CS04/CS05/CS07/CS08/CS09/CS10 review remain required. No result ingestion, accepted-site history/reuse, publisher, authoritative W3 evaluator, ruleset or production action is implemented by T04. T04-P delivered the shared primary Ubuntu archive helper in PR132/mainbab166e, retaining signed-source metadata, unchanged package/engine commands and the seven UBUNTU preservation/wiring tests in permanent Python/navigation routes. Preserve those inherited helper obligations during observer integration.",
       "checks": ["SELECTION", "STYLE", "UBUNTU"],
       "gates": ["COVERAGE", "REVIEW", "REQUIREMENTS", "WHITEBOX", "EXPLORATORY"]
     },
@@ -56,7 +56,7 @@
     {
       "id": "AC08",
       "intent": "Source-bound delivery, complete lane outcomes, documentation and measured result",
-      "automated_scope": "Current catalog/RI/CI coupling and mechanical fixture routes prove only their named subsets. Approved T04-P current-source CI/preview/candidate staging, protected prerequisite merge/postmerge and subsequent PR131 integration/delivery remain external evidence. Original failed Azure setup attempts stay attributed to31bb/e6; no test/budget/protection waiver or production action.",
+      "automated_scope": "Current catalog/RI freshness and coupling checks establish their mechanical subsets. T03 delivery is recorded at main e6ee496 with actual tested/merged complete-tree proof. T04 current-source observation/CI/staging/eligible admission/protected merge/postmerge and four independent roles remain external evidence. Whole real cheaper-lane outcomes and queue/setup/execution savings remain pending. T04-P PR132 merged asbab166e with exact reviewed treea35 under the explicitly approved one-off Staging-only exception; complete original strict protection was immediately restored. Separate manual infrastructure identity matched prior accepted staging, while ordinary postmerge staging identity remained failed. PR131 now integrates that main and requires fresh original T04 delivery evidence.",
       "checks": ["CURRENT-RI", "RI-CI"],
       "gates": ["DELIVERY", "MERGED"]
     }
@@ -86,7 +86,7 @@
   "gates": {
     "ROUTING": {
       "kind": "human",
-      "description": "Complete AC01 maintained lane/control table, actual complete status/mode-aware routing, mixed/unknown/incomplete-ref behavior and exact source/base/policy reports. T01 exact template correction and T02 semantic contract are retained. T03 contributes only the current names-only reader rename correction with independent path and registry oracles, explicit true/false/copies settings, targeted-owner union, ordinary/copy/empty boundaries and real clean CLI. Whole classifier and lane evidence remain pending."
+      "description": "Complete AC01 requires the canonical D01-D10 table, full status/mode-aware routing, mixed/unknown/incomplete behavior and exact source/base/policy reports. T04 planned observer must independently exercise real-Git owner/control/type/rename/invalid inputs, base-side registry/provenance preservation, JCS identity and false-authority/report references. Local/candidate policy is not protected-base trust. Whole actual lane authority remains future work."
     },
     "REPOSITORY-LANE": {
       "kind": "human",
@@ -122,15 +122,15 @@
     },
     "EXPLORATORY": {
       "kind": "human",
-      "description": "Actual separate nonauthoring exploratory QA exercises the T04-P helper CLI and temporary APT roots, preservation/symlink/reference failure boundaries and actual current-source preview/candidate staging installation/browser observations. Retain original31bb Azure failures. Local fixtures cannot establish native network repair; no missing device/network execution is inapplicable."
+      "description": "Actual independent nonauthoring exploratory QA executes a bounded charter on T04 Git collector/routing/CLI reports: real repository/content/site/control/mixed, moved/deleted owners, conservative and invalid inputs, operator next actions and exact source/policy bindings. Inspect native observation source/workflow/run/attempt alongside current required delivery. Retain earlier T03 observations as historical, not current observer evidence. Missing execution remains pending; optional device diagnostics are unchanged. Preserve inherited Ubuntu helper CLI/preservation/symlink/reference fixtures and source-bound native evidence; original Azure failures, cancelled owner staging and Writing failure remain attributed to their exact runs. Fixtures do not establish network performance."
     },
     "DELIVERY": {
       "kind": "human",
-      "description": "T04-P approval6370000839 permits pausing PR13131bb and preparing one narrow setup prerequisite on protected maine6, with actual four roles, current-source checks/preview/candidate staging and existing protected delivery when available. Any bootstrap action outside that protected merge route requires its concrete separate decision before execution. Do not bypass or weaken required checks, add credentials/services, activate W3 or production. After prerequisite delivery, integrate actual current main into PR131 and complete its original T04.5 with fresh source/review/CI/staging/admission/merge/postmerge. All whole AC01-AC08 remain open."
+      "description": "T01/T02-P/T02/T03 deliveries remain historical source-bound accepted increments. Current T04 authorization6368310693 permits one observer PR through four actual distinct reviewers/rechecks, exact-source Basic/selection/RI/owning/preview and native observation report, full owner staging, eligible PR admission, protected merge, actual postmerge and live reconciliation. Preserve original failures, toolchain/scanner/profile/budget/rights obligations. Tick T04.1-T04.5 only on whole current evidence; all whole AC01-AC08 remain open without broader outcomes. Report then propose next bounded step separately; no production/W3/protection transition. T04-P prerequisite PR132 delivered asbab166e after an explicit temporary removal of only Staging admission; original complete24568553 was immediately restored. That infrastructure exception and manual prior-site identity do not establish successful website staging. Resume PR131 against actual main with both observer and Ubuntu obligations, affected four-role review and fresh original delivery checks."
     },
     "MERGED": {
       "kind": "merge",
-      "description": "Deliver only the approved T04-P setup prerequisite through the existing protected route and actual postmerge; then resume already approved PR131 integration/current delivery. A remaining bootstrap capability/decision is explicit and cannot be replaced by candidate-label staging or fixtures. Production/W3/protection weakening remain outside scope."
+      "description": "Complete the explicitly approved T04 observation-only scope through unchanged owner staging/eligible admission/protected-main merge and actual-merge identity/postmerge checks, preserving tested source/package and separate merged commit identity. Then report and propose the next step. Whole AC01-AC08 remain open; no production/W3/protection transition. Prerequisite PR132/mainbab166e and its restored protection are historical infrastructure delivery, not T04 completion; preserve its ordinary postmerge failure separately. Current observer delivery still requires its own original full route."
     }
   }
 }

@@ -217,11 +217,7 @@ test('PR selection targets affected current contracts, diagnostic helper changes
   });
   assert.ok(helper.modules.includes('tests/writing-geometry.test.cjs'));
   const python = runner.select(root, 'pr', {
-    changedPaths: [
-      'tests/test_root_layout.py',
-      'tests/test_issue35_acceptance.py',
-      'guides/SITE-STAGING.md',
-    ],
+    changedPaths: ['tests/test_root_layout.py', 'tests/test_issue35_acceptance.py'],
   });
   assert.deepEqual(python.modules, []);
   assert.deepEqual(python.conservativeFallback, []);
@@ -229,6 +225,16 @@ test('PR selection targets affected current contracts, diagnostic helper changes
   assert.equal(result.pass, null);
   assert.equal(result.status, 'not-applicable');
   assert.equal(result.total, 0);
+});
+test('delivery contract guides select their observer regressions and preserve separate routes', () => {
+  for (const guide of ['guides/SITE-STAGING.md', 'guides/SITE-CHECK-PROFILES.md']) {
+    const plan = runner.select(root, 'pr', { changedPaths: [guide] });
+    assert.deepEqual(plan.modules, ['tests/delivery-observation.test.cjs']);
+    assert.deepEqual(plan.conservativeFallback, []);
+    assert.equal(plan.baselineCommand, 'node tools/quality/local.cjs');
+    assert.equal(plan.pythonRoute, 'python3 tools/run_repository_tests.py');
+    assert.equal(plan.taskSnapshots, 'selected owning issue policy only');
+  }
 });
 test('review template ownership preserves baseline and separate non-Node routes', () => {
   const registry = runner.loadRegistry(root),

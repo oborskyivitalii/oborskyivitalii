@@ -30,9 +30,11 @@ mechanics; a historical accepted run does not admit a later candidate.
 
 The canonical [issue122 decision matrix and observation interface](SITE-CHECK-PROFILES.md#delivery-routing-and-observation-contract)
 define proposed repository/content/website routing. This section owns its
-operational interpretation. The interface is design only: current CI/controller
-behavior, profile budgets, required contexts and publication authority are
-unchanged. No new executable observer or content publisher is installed.
+operational interpretation. T04's executable observer emits planned obligations
+and a read-only workflow retains its report alongside current CI. It cannot
+execute those obligations, accept result evidence or evaluate site reuse. Current
+controller behavior, profile budgets, required contexts and publication authority
+are unchanged. No new content publisher is installed.
 
 Under the current route, a repository proposal still follows Ready source/RI/
 owning checks, preview, owner staging, stable verification and admission before

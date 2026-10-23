@@ -9451,6 +9451,48 @@
       "role": "history",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    ".github/workflows/delivery-observation.yml": {
+      "kind": "file",
+      "purpose": "Read-only candidate-policy routing observations alongside existing required CI; grants no admission authority.",
+      "role": "workflow",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-122/2026-10-23-t04-review.md": {
+      "kind": "file",
+      "purpose": "Issue122 T04 source-bound independent reviews, real-Git observation evidence and delivery reconciliation.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "tests/delivery-observation.test.cjs": {
+      "kind": "file",
+      "purpose": "Real-Git owner/control/rename/type/invalid input, policy identity and false-authority regression oracles.",
+      "role": "test",
+      "owner": "tools/quality/delivery-observation.cjs"
+    },
+    "tools/quality/delivery-git.cjs": {
+      "kind": "file",
+      "purpose": "Bounded complete no-renames raw Git collection, exact tree identities and no-follow source data.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tools/quality/delivery-json.cjs": {
+      "kind": "file",
+      "purpose": "Strict JSON, Unicode, exact-path and JCS identity helpers for the observation-only delivery report.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tools/quality/delivery-observation.cjs": {
+      "kind": "file",
+      "purpose": "Local and Actions observation CLI with explicit source/policy/producer binding and planned obligations.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tools/quality/delivery-routing.cjs": {
+      "kind": "file",
+      "purpose": "Executable D01-D10 dependency routing and base-policy obligation union without delivery authority.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
     "tools/quality/ubuntu_downloads.py": {
       "kind": "file",
       "purpose": "Prepare bounded primary-archive Ubuntu downloads for existing CI browser jobs without changing signed-source metadata.",
