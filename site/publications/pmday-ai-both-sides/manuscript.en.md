@@ -2,7 +2,7 @@
 
 *AI Changes Both Sides of Software Engineering*
 
-Vitalii Oborskyi · Editorial draft R26 · 23 October 2026
+Vitalii Oborskyi · Editorial draft R27 · 23 October 2026
 
 ![A solitary person stands before a narrow opening of light between monumental dark walls.](asset:cover)
 
@@ -452,16 +452,16 @@ Numbered citations refer to the sources below. Source notes retain the evidence 
 
 ## How to cite this draft
 
-Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R26, 23 October 2026.
+Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R27, 23 October 2026.
 
 Unpublished author-review edition. Cite the revision; no DOI or final publication URL has been assigned.
 
 ```bibtex
-@misc{oborskyi2026sumR26,
+@misc{oborskyi2026sumR27,
   author = {Oborskyi, Vitalii},
   year = {2026},
   title = {The Sum of Our Technology: AI Changes Both Sides of Software Engineering},
-  note = {Editorial draft R26, 23 October 2026; unpublished}
+  note = {Editorial draft R27, 23 October 2026; unpublished}
 }
 ```
 
@@ -473,12 +473,15 @@ Text © 2026 Vitalii Oborskyi. Presentation and third-party credits remain appli
 
 **Pasquale Langella** contributed a critical reading and an AI-assisted alternative draft. Selected suggestions on reader orientation, navigation and practical responses were incorporated in **R25**.
 
+**Olivier Leturcq** contributed feedback on the balance between innovation and sustainable operating costs, and suggested examining how architecture affects the context needed for human review and maintenance. These comments are recorded for editorial consideration.
+
 Vitalii Oborskyi retains editorial responsibility.
 
 ## Revision history
 
 23 October 2026:
 
+- **R27:** Olivier's feedback recorded; substantive editorial proposals remain under review.
 - **R26:** Clickable citations; concise provenance and history.
 - **R25:** Selected Pasquale editorial suggestions incorporated.
 - **R24 addendum:** Pasquale's review and alternative draft recorded.

@@ -2,7 +2,34 @@
 
 Article owner #2; publisher/execution #5 / PR79.
 
-## Current R26 repository integration — 23 October 2026
+## Current R27 provenance and feedback analysis — 23 October 2026
+
+The author requests the READER correction, a new provenance record and an analysis
+of what should change or remain. R27 adds a concise Olivier Leturcq contribution
+record, revision/citation metadata and a matching separately authored launch
+acknowledgment. The article's substantive argument and qualifications remain exact
+R26 text; the contribution is recorded for consideration, not represented as an
+accepted rewrite, validation, coauthorship or endorsement.
+
+The final feedback highlights the balance between innovation and sustainable
+operation, and asks how architecture affects the context needed for safe human
+review and maintenance. The [R27 analysis](../../../review/issue-2/2026-10-23-r27-feedback-and-reader.md)
+proposes two bounded editorial clarifications and explains what to retain or
+defer. Those candidate paragraphs await the author's choice. The supplied export
+does not establish the exact edition reviewed or an absolute feedback timestamp;
+23 October is the recording date. Private correspondence remains outside the
+repository. Only the authorized contribution summary and public-safe analysis
+are retained.
+
+Create a new immutable review edition and equivalent native kit. Preserve R26 and
+all earlier editions/artifacts, the 12 prompts, 36 references and notes, two
+tables, four article figures and every citation destination. Carry all three
+contribution records into equivalent renditions and future shortened adaptations.
+The separate authored launch remains pending final review before any posting.
+Keep review status, pending rights and canonical null; no publication follows
+from the technical READER correction or this provenance update.
+
+## Historical R26 repository integration — 23 October 2026
 
 The author requested that the approved R24–R26 work continue in existing PR79.
 The recovered R26 manuscript is the exact canonical source; preserve its argument,

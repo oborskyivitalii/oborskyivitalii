@@ -264,8 +264,12 @@ function visit(options = {}) {
       stored = value;
     },
   };
-  script.runInNewContext({ document, window, localStorage });
+  // Keep each page in a fresh realm without Node's contextified-global lookup overhead.
+  const browserContext = vm.createContext(vm.constants.DONT_CONTEXTIFY);
+  Object.assign(browserContext, { document, window, localStorage });
+  script.runInContext(browserContext);
   const api = {
+    browserContext,
     window,
     document,
     button,
@@ -347,6 +351,40 @@ function visit(options = {}) {
   };
   return api;
 }
+test('simulated pages retain isolated globals, intrinsics and injected browser fixtures', () => {
+  const first = visit({ saved: 'off' }),
+    second = visit({ saved: 'off' });
+  assert.notEqual(first.browserContext, second.browserContext);
+  assert.notEqual(first.browserContext.localStorage, second.browserContext.localStorage);
+  for (const page of [first, second]) {
+    assert.equal(page.browserContext.window, page.window);
+    assert.equal(page.browserContext.document, page.document);
+    assert.equal(page.browserContext.localStorage.getItem('space-motion'), 'off');
+    for (const name of ['process', 'require', 'module', 'Buffer']) {
+      assert.equal(name in page.browserContext, false, 'host global is absent: ' + name);
+    }
+  }
+  for (const name of ['Math', 'Array', 'Object']) {
+    assert.notEqual(first.browserContext[name], second.browserContext[name]);
+    assert.notEqual(first.browserContext[name], globalThis[name]);
+    assert.notEqual(second.browserContext[name], globalThis[name]);
+  }
+  vm.runInContext(
+    'globalThis.spaceFixtureProbe = 1; Math.spaceFixtureProbe = 1; Array.prototype.spaceFixtureProbe = 1;',
+    first.browserContext
+  );
+  for (const context of [second.browserContext, globalThis]) {
+    assert.equal(context.spaceFixtureProbe, undefined);
+    assert.equal(context.Math.spaceFixtureProbe, undefined);
+    assert.equal(context.Array.prototype.spaceFixtureProbe, undefined);
+  }
+  assert.equal(first.browserContext.spaceFixtureProbe, 1);
+  first.browserContext.localStorage.setItem('space-motion', 'on');
+  assert.equal(first.stored(), 'on');
+  assert.equal(second.stored(), 'off');
+  assert.equal(second.browserContext.localStorage.getItem('space-motion'), 'off');
+});
+
 test('Canvas numeric guards retain every finite argument and reject invalid values before paint side effects', () => {
   const p = visit({ saved: 'off' });
   const context = p.canvas.getContext();

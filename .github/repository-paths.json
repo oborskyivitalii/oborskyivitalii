@@ -11124,6 +11124,60 @@
       "purpose": "Original failed clean R26 policy report, compressed without changing its bytes or source identity.",
       "role": "history",
       "owner": "review/issue-2/2026-10-23-r26-integration.md"
+    },
+    "review/issue-2/2026-10-23-r27-feedback-and-reader.md": {
+      "kind": "file",
+      "purpose": "R27 Olivier feedback intake and editorial decisions, READER fixture correction, four independent reviews and exact-source acceptance route.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "review/issue-2/r27-20261023": {
+      "kind": "directory",
+      "purpose": "Public-safe R27 provenance-only native manuscript, PDF, complete review kit and source/producer evidence.",
+      "role": "history",
+      "owner": "review/issue-2/2026-10-23-r27-feedback-and-reader.md"
+    },
+    "review/issue-2/r27-20261023/README.md": {
+      "kind": "file",
+      "purpose": "R27 native package instructions, attribution-only scope, complete figure inventory and explicit review limits.",
+      "role": "history",
+      "owner": "review/issue-2/2026-10-23-r27-feedback-and-reader.md"
+    },
+    "review/issue-2/r27-20261023/The_Sum_of_Our_Technology_R27_2026-10-23.md": {
+      "kind": "file",
+      "purpose": "Exact R27 canonical review manuscript with the new recorded Olivier contribution and unchanged R26 argument.",
+      "role": "history",
+      "owner": "review/issue-2/2026-10-23-r27-feedback-and-reader.md"
+    },
+    "review/issue-2/r27-20261023/The_Sum_of_Our_Technology_R27_2026-10-23.pdf": {
+      "kind": "file",
+      "purpose": "R27 native review PDF from the unchanged canonical publication and print pipeline.",
+      "role": "history",
+      "owner": "review/issue-2/2026-10-23-r27-feedback-and-reader.md"
+    },
+    "review/issue-2/r27-20261023/The_Sum_of_Our_Technology_R27_2026-10-23_Native_Review_Kit.zip": {
+      "kind": "file",
+      "purpose": "Complete 34-file R27 native review kit; equivalent platform renditions and separately authored launch; excludes private correspondence.",
+      "role": "history",
+      "owner": "review/issue-2/2026-10-23-r27-feedback-and-reader.md"
+    },
+    "review/issue-2/r27-20261023/artifact-evidence.json": {
+      "kind": "file",
+      "purpose": "R27 source, semantic, PDF, ZIP, complete member and producer identities with historical R26 preservation.",
+      "role": "history",
+      "owner": "review/issue-2/2026-10-23-r27-feedback-and-reader.md"
+    },
+    "review/issue-5/2026-10-23-r27-reader-evidence.zip": {
+      "kind": "file",
+      "purpose": "Original R27 READER profiles and native TAP, retained failed diagnostics, independent fault-injection and publication interaction evidence with exact member hashes.",
+      "role": "history",
+      "owner": "review/issue-2/2026-10-23-r27-feedback-and-reader.md"
+    },
+    "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261023-r27.json": {
+      "kind": "file",
+      "purpose": "R27 immutable review edition binding the recorded-feedback source and semantic identity; accepted-source and publication rights remain pending.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
     }
   }
 }
