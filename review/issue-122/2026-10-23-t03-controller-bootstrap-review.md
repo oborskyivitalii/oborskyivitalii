@@ -286,3 +286,289 @@ Risk/B01→finite Color aliases/editions/rights negative loops plus package and 
 - `/tmp/t03b-fresh-retention-links.json`, SHA256 `51b6ff8415bc7e0aa8bcadfb0ef9d95a2563a6dc8b530b75d77b2358462f9b77`.
 
 Observation JSON retains actual CLI statuses/error text, nine expected rejection messages, all three edition source/tree/artifact identities, retained counts and rights results. Temporary generated/package trees were cleaned. No shared source/test/generated file, ref, native artifact, external service, main or production state changed by this role. No browser/device/performance measurement or new hosted acceptance is claimed.
+
+
+## 2026-10-23 native delivery failures and exact scanner correction
+
+The reviewed source99ac56acaa219ac7a723e6619188315cbdcf6ad6/tree f42ffae7a691c0f6e20db86770626b5d2cac5d65 passed native Basic39948928056 (17modules220/220,37877ms), Navigation39948927968 and owning39948928017. Preview39948928199 build/publish and actual Chromium153 smoke at1440/390 with normal/no-canvas modes passed. Its pre-stage admission failure is not a whole preview pass.
+
+Owner attempt39949313525/1 stopped at pre-build admission because latest owning run39948928198 was a skipped Draft-edited event indexed after the successful Ready run. A genuine Ready body refresh39949570573 passed and changed the verified readiness condition. Owner attempt39950013688/1 then passed admission and ran prepublication on clean99ac. It failed SECURITY only, before upload/host/browser/performance/promotion; merge admission failed correspondingly. No new runtime performance pass or unchanged green-seeking retry is claimed.
+
+Native artifact12500007024 ZIP SHA256 ea302b16b744ddb33ca02a92d3951f1c144d6e7a0b90fcf4479f1846879fbeb7 authenticates source/tree/attempt and retained reports. Source47modules641/641 passed in90137ms against180000ms. Locked-venv Python121/121 passed, including all nine test_python_toolchain methods; installed91packages/147dependencies/four exact Semgrep compatibility records passed. Semgrep/Bandit, current npm/Python advisories, lint, format, architecture, RI/CI, canonical generation, edition/rights, artifact/package and other guards passed. Actual secrets detector found five untriaged public runtime SHA256 pins; the workflow correctly failed closed.
+
+Necessary bounded correction is authorized by existing approval6364038870 and scoped issue comment6364509014, after separate Requirements preflight. B01's earlier blanket unchanged-secret-ledger description is superseded only for five exact new dispositions in existing secrets-publication.json (which already owns prior controller pins). Preserve all1496prior rows in order/data and all three other ledgers byte-for-byte, especially PR129's exact checksum closure. No scanner logic, matching dimensions, closed input set, limits, tool versions, profile, threshold, runtime/public output or workflow changes. CS01/04/05/08/09/10 remain applicable.
+
+Implementer independently cold-built clean runtime0d4fb5abc29f7dd6d302066f64abcaefff2c9bb9/tree6211c61d7a96c618b80fb544f02533c9181f5e61 using existing artifact/Color/staging/production producers, verified all three artifacts and finite selectors and all30 canonical/immutable runtime file hashes. This is local source proof, not hosted or independent security acceptance. The resulting public pins and raw detector SHA1 IDs are:
+
+| Public value | Exact SHA256 | Raw finding SHA1 |
+| --- | --- | --- |
+| base engine | `c9d33c990c64a1559211a0dcdf4ce9d1262a4e561489e4aedb74d897623220b7` | `7e32a7f6b753219c06321ff340c342c10641ecfb` |
+| navigation bytes | `5e78b3adb00439c7e4e0d3e95801803a0f110a1dd2ac599901278177768c3b7e` | `efc856d84eef7f488552e43d3a80269f163cd8a4` |
+| plain fingerprint | `f0e456610c92933f2eee9977e5d6c9a70c5a8303f42be406c672318077c51190` | `76952239762861d479d537fc9f8ee376bb8acca0` |
+| staging fingerprint | `b5574a8dfb5c2c08eca0ed253aeda05e8d0fd3b2cbd69360fcf880436a0c6803` | `1c7ea487f86ba27ebf16e091b5631ef78c338ca1` |
+| production fingerprint | `3434d837588d950585ae419c407f95043a6a6920eaf9ebec9b08873ad8c6228a` | `ec0e52d9e3c33a8c7db661974bb75f78472bf4d5` |
+
+Every row is limited to tools/quality/color-motion-contract.cjs and Hex High Entropy String. Wrong path/type/value remains unadmitted; all inherited scanner-negative tests remain required. Four independent correction receipts, frozen local source checks and actual new raw-head CI/stage/admission/merge/postmerge remain pending until observed. Original PR128 R04 remains unspent; no runtime PR merge or production.
+
+### Separate scanner correction requirements preflight
+
+Verbatim independent receipt before dependent ledger implementation; SHA256 afd268833e777bde4ce7923aafb8df7d32c51125f6d5137f2a06fc6deb9d2ac6.
+
+# T03 bootstrap native secret-finding companion — requirements preflight
+
+2026-10-23. Independent nonauthoring Requirements & Acceptance reviewer `/root/t03_requirements`.
+
+**Verdict: ACCEPT the bounded necessary triage companion in existing `tools/quality/secrets-publication.json`. No renewed user permission is needed.** Current bootstrap delivery approval6364038870 requires unchanged security gates and permits necessary reviewed companions; individually proving/classifying these exact public runtime checksum findings through the existing ledger fulfills that requirement. It does not waive a scanner or change admission logic. Current stage remains failed and B02/B03 remain open until corrected-source checks and actual delivery pass.
+
+## Source-bound observed failure
+
+Clean inspected bootstrap source `99ac56acaa219ac7a723e6619188315cbdcf6ad6`, tree `f42ffae7a691c0f6e20db86770626b5d2cac5d65`. Native stage39950013688/attempt1 prepublication report names this exact clean source. Actual26 guard observations contain exactly one failed guard: security. Its structured report names passing Semgrep and Bandit engines and a failed secrets engine, with error “5 untriaged secret candidates”; detection itself exits0. This is an actual classification failure, not a green result or infrastructure exception.
+
+Retained native extraction `/tmp/t03b-prepublication-39950013688` derives from reported artifact12500007024/ZIP SHAea302b16b744ddb33ca02a92d3951f1c144d6e7a0b90fcf4479f1846879fbeb7. I read the actual reports and five raw finding rows; this receipt does not independently redownload that artifact. Prepublication JSON SHA2521db63e95f8bcea665dd3e687ab1413c3a432197bb24e692d7ac6f9a069586; security JSON SHAbddfec6b0000019c817fecb6be79b2bc207d2628dd0acf4ab51ba54e79504986; five-row extraction SHA3cc3d84fe978f9b16f6b63cd1ae09c1af8bb535c9e1b8262f31065299a7923b5.
+
+All five findings have exact path `tools/quality/color-motion-contract.cjs` and rule `Hex High Entropy String`. Independently extracted each64-hex quoted source literal and recomputed SHA1 over that literal; all raw hashed_secret IDs match:
+
+| Current source line / public identity | Exact detect-secrets hashed-value ID |
+| --- | --- |
+|79 / baseEnginec9d33c990c64a1559211a0dcdf4ce9d1262a4e561489e4aedb74d897623220b7 |7e32a7f6b753219c06321ff340c342c10641ecfb |
+|82 / navigation5e78b3adb00439c7e4e0d3e95801803a0f110a1dd2ac599901278177768c3b7e |efc856d84eef7f488552e43d3a80269f163cd8a4 |
+|265 / plainf0e456610c92933f2eee9977e5d6c9a70c5a8303f42be406c672318077c51190 |76952239762861d479d537fc9f8ee376bb8acca0 |
+|272 / stagingb5574a8dfb5c2c08eca0ed253aeda05e8d0fd3b2cbd69360fcf880436a0c6803 |1c7ea487f86ba27ebf16e091b5631ef78c338ca1 |
+|279 / production3434d837588d950585ae419c407f95043a6a6920eaf9ebec9b08873ad8c6228a |ec0e52d9e3c33a8c7db661974bb75f78472bf4d5 |
+
+These are reviewed public generated identity/hash literals, not credentials. I independently reopened prior actual plain/staging/offline-production artifacts from source2c9d4935/tree0ad254f9, physically artifact-verified and selected all three against the unchanged current finite contract, and rehashed canonical+immutable navigation bytes. They authenticate the same five values. Detailed independent recheck `/tmp/t03b-secret-preflight-proof.json` SHA2611003b771cd07b1674565f5f2277ff427cbdf404ff818fcdde563e06a8ad4a. This is retained generated-byte proof, not a claim bootstrap's old runtime generates the new family or a new hosted performance result. Root separately reports a fresh three-edition cold build of exact runtime0d; retain its actual proof with source identity as complementary evidence.
+
+## Correct owner and scope clarification
+
+Prefer existing secrets-publication.json over historical secrets-reviewed.json. It is already one of the scanner's closed four authorized inputs, currently1496 rows/960494bytes, with34 exact motion-contract findings and an explicit issue5 controller-prerequisite runtime-pin precedent. Appending these five exact new controller-pin dispositions there follows its existing purpose while preserving all three historical baseline/review/checksum ledgers. In particular, PR129's exact574 checksum additions and issue126 snapshot/provenance oracle must remain byte-identical; do not append unrelated controller findings to that checksum ledger or weaken its exact-count check.
+
+Append a dated source-bound issue122 scope clarification before edits: B01's finite-data-only preservation includes the necessary five independently proved public runtime checksum dispositions in the existing publication ledger; all prior ledger rows, the frozen baseline/PR129 closure, scanner logic/closed inputs/schema/limits and runtime/workflow/threshold/permissions remain unchanged. B02 requires the actual correction's independent review and current-source security checks; B03 still requires actual ordinary whole owner stage/admission/merge/postmerge. This is no change to the intended runtime accepted set or security behavior, and no new user decision is necessary for classifying exact proven false positives under the already approved unchanged scanner gate.
+
+## Required correction bounds and useful oracles
+
+- Preserve all1496 prior publication findings in order and data, including historical reason/provenance variants. Append exactly five unique IDs of the form exactpath:exactrule:exactSHA1, dispositionfalsepositive, each with specific public producer/byte/source proof and issue122 review provenance. Preserve top-level owner/schema/historical issue information; append narrowly dated scope explanation rather than replacing prior meaning. Do not claim independent correction acceptance before the four actual roles finish.
+- Keep baseline.json, secrets-reviewed.json and secrets-reviewed-checksums.json byte-identical. Keep scanners.cjs, its closed four-ledger list,2000000byte bound, strict metadata/entry schema and exact `path:type:hashed_secret` matching unchanged. No extra input file, wildcard, regex/suffix rule, hash-wide acceptance, entropy threshold/exclusion, scanner suppression, advisory exception or workflow/budget change.
+- Validate source literal→SHA1 against all five native rows and actual generated public identities. Replay every retained raw detect-secrets finding through the unchanged current matching/proof path; intended observation is exactly those five unresolved findings becoming reviewed and no other finding altered/removed. Original native raw reports remain unmodified and their failed status retained.
+- Reuse existing quality-sources closed-ledger/schema/bounds/duplicate tests; execute them on the correction. For the new exact IDs independently demonstrate changed path, rule or hashed value remains unreviewed and omitting a row restores its one unresolved finding. This provides a useful failure oracle without adding a new helper or broad test infrastructure.
+- Run unchanged actual source/security/advisory/toolchain/RI/policy routes on the final clean corrected candidate; a replay of old raw findings is not a fresh native scan of new review/proof/metadata text. New proof artifacts must have existing owner/catalog/RI treatment and can themselves introduce legitimate new exact findings that must be reviewed, never bulk-accepted. No source-mutation or prepared-source scan can be called clean-final native evidence.
+- Obtain all four actual nonauthor corrected-candidate delta reviews before Ready and fresh exact-source CI before the next ordinary whole bootstrap owner-stage request. Source changes now provide a concrete corrected gate input; do not rerun unchanged failing source, partially reuse a failed attempt or select favorable samples. Preserve admission-race failure39949313525, genuine security failure39950013688, and all previous source/performance failures separately.
+
+Bootstrap stage concerns the old main runtime; its security classification says nothing about changed-runtime speed. PR128's original R04 remains unspent. No runtimePR128 merge, production activation, algorithm/scanner waiver or broader source change follows from this acceptance. Actual bootstrap protected merge remains authorized only after its required conditions pass.
+
+## Limits
+
+Preimplementation necessity/scope/oracle acceptance only. No ledger/source/test/ref/GitHub edit, detector invocation, new native acquisition, owner-stage or merge by this reviewer. Scratch receipt and physical artifact/hash rechecks only. Completed corrected-candidate review and actual clean native scan/delivery evidence are still required.
+
+## Four completed scanner correction reviews and frozen local checks
+
+All four separate nonauthoring roles ACCEPT candidate f58e802b91ff2cc887555788d7d2b70bc6101ad8/tree082d380c687d5283377b3e2650bd8a8274559b28, no blocker. Root frozen local Basic, pinned format/style, RI/map and owning four-check policy pass; policy automation_pass=true/evidence_valid=true/ready_for_issue_closure=false. RI29/29 and RI-CI20/20 pass. Existing registry conservatively selects48 PR modules due the security-ledger input; this is a plan (pass=null), not execution and no profile expansion. Whole new raw-head source CI and actual security/prepublication/hosted staging/admission/merge/postmerge remain required. No old failed result is relabelled.
+
+### Completed correction receipt — requirements
+
+Verbatim independent receipt; SHA256 edaf48d582aefb347c2705423b71f2dcc3f855e2ee47e7995532a9ab4f745c0a.
+
+# T03 bootstrap five-finding correction — completed-candidate Requirements review
+
+2026-10-23. Reviewer `/root/t03_requirements`, independent nonauthoring Requirements & Acceptance role.
+
+**Verdict: ACCEPT the completed exact correction.** All five dispositions match source-proved public generated identities and the actual native findings. No blocking scope, AC, provenance, preservation or negative-oracle defect remains in this delta. Fresh actual corrected-source security/native CI and B03 delivery remain pending; this is not a new scan or a stage pass.
+
+## Exact source, scope and preservation
+
+Clean inspected candidate `f58e802b91ff2cc887555788d7d2b70bc6101ad8`, tree `082d380c687d5283377b3e2650bd8a8274559b28`, parent `99ac56acaa219ac7a723e6619188315cbdcf6ad6`. Reviewed complete six-file delta: five publication dispositions/date/narrow appended scope, issue122 AC04/COVERAGE clarification, source-bound review/MEMORY and deterministic RI/map refresh. Actual source/test/runtime/site/docs/workflow/registry/scanner/threshold/permission owners are unchanged.
+
+Independently fetched actual scope comment6364509014 and read native source99ac prepublication/security/raw findings, source proof and final ledger. It preserves bootstrap approval6364038870 and narrowly classifies five public hash findings through the existing controller-pin owner; no additional permission or waiver is inferred. B01 unchanged-ledger wording is explicitly superseded only for these five exact additions; B02 requires actual independent correction/current source checks, B03 remains ordinary owner-stage/admission/protected merge/postmerge. RuntimePR128 merge/production remain excluded and its original R04 remains unspent.
+
+Independent structural checks prove original1496 publication rows remain an exact ordered data prefix, with exactly five unique appended IDs. Owner/schema/historical issue metadata remains; reviewedAt is dated23October and original scope text is preserved with a narrow appended explanation. All three other ledgers are byte-identical, including PR129's exact checksum closure. Scanner source/closed four inputs/strict schema/2000000byte bound/exact path:type:SHA1 matching and old algorithm/guard owners are unchanged. New file size remains within the existing bound. Four named owning checks, AC01–AC08 criterion/check/gate sets and existing acceptance intent are unchanged; only scope descriptions add the correction dependency.
+
+## Actual requirement/AC oracles
+
+- **B01 public identity and exact matching:** independently extracted each64-hex literal at current contract lines79/82/265/272/279 and SHA1-hashed it. All match the five native hashed_secret IDs and final appended IDs. They are exact basec9d33c/navigation5e78b3/plainf0e456/stagingb5574/production3434d8 identities, not credentials. Reasons link actual canonical producer proof and the existing issue122 bootstrap review. No path-wide/hash-wide/scanner-rule allowance was introduced.
+- **B01 physical source proof:** independently reopened root's fresh clean runtime0d4fb5abc29f7dd6d302066f64abcaefff2c9bb9/tree6211c61d7a96c618b80fb544f02533c9181f5e61 plain/staging/offline-production artifacts. Each physically artifact-verifies, selects the correct existing finite row, and all30 canonical/immutable required file hashes match. This authenticates all five literals independently of synthetic manifest expectations. These are future runtime byte proofs, not bootstrap's active old runtime or hosted performance observations.
+- **B02 useful negative controls:** replayed all5061 actual retained native detector findings using the unchanged exported matcher and source99ac verified RI/coupling checksum identities. With the five rows omitted, exactly those five native findings remain unresolved; corrected map yieldszero. Deleting each appended row individually restores exactly its one unresolved finding. Changing each path, rule or hash yields unreviewed:15 independent dimension negatives. No scanner result was removed, relabelled or mutated.
+- **B02 actual maintained route:** independently executed four existing quality-sources cases for verified RI field boundaries, closed exact ledgers, malformed/nonexact schema and duplicate IDs: **4/4 PASS**, zero fail/cancel/skip/TODO,209.452889ms. Current clean PR plan against main676 selects48 modules including quality-sources, statusplanned/passnull. That broad selection is the existing registry consequence of changing a security-ledger input, not a modified profile/test inventory or completed execution.
+- **B02 policy/source companions:** RI verifyfresh; RI/CI couplingPASS15 checks/13 layers/current digest021d5cfdf744300c53c1fee1b8994e89e2b7a73aa119bb5dbb2e4eaee2cf180c. Tool does not authenticate live GitHub. Policy validate retainsAC01–AC08/SHA3a9ee849b61d348aada01e5c821f143349cdf6b4f5719c249645a6c5ec90dff3; git diff --check PASS. Source unchanged/clean before and after independent execution.
+
+## Retained evidence
+
+| Independent evidence | SHA256 |
+| --- | --- |
+| `/tmp/t03b-secret-requirements-replay.json` — source identity,1496 preservation,5061 findings,5→0,5 omission/15 dimension controls |becb66bc038b60fb223dc4a7b10c7286ebc647e20e41f9d70f7fab2d9fcb4fa8 |
+| `/tmp/t03b-secret-requirements-physical.json` — actual source0d three-edition/30-alias verification |817a6ae7986af3b1a5ef82677ee641ec9012328e9145dc255e54d022e5bc6ab7 |
+| `/tmp/t03b-secret-requirements-tests.tap` — own4-case maintained guard execution |7e2f5a01df3b9967bb2100d8df5418b1cbc1baeb90655a33d6cc9a11c072c201 |
+| `/tmp/t03b-secret-requirements-plan.json` — actual clean current48-module plan |a7ef0bcd43cc63cc0e8598c0f525f0f4667a7733902ec2918a07e6268e6c4a51 |
+| `/tmp/t03b-triage-proof.json` — author cold-build/value/SHA1 proof, independently checked against physical files/native rows |a6301fceebbaafefc57b8cdc772af44801d15a9bbeb0d2712d58c030b0391ce2 |
+
+Initial scratch preservation probe hit Node's default child stdout buffer while reading the large unchanged baseline. Reexecuted with a bounded adequate scratch read buffer/direct git comparison; no source/scanner/test runner limit changed. This was a reviewer probe limitation, not a product/security result.
+
+## Remaining gates and limits
+
+Actual39950013688/1 security failure remains failed at99ac, independently confirmed:26 prepublication checks with only securityfailed; Semgrep/Bandit/advisories and other original observations retain their own source/result. Earlier39949313525 readiness failure remains separate. Replay of old raw data cannot establish that new review/policy/metadata source introduces no new finding; fresh actual native scan/CI is required. Complete all four corrected-candidate roles and exact current checks before the next whole changed-source bootstrap owner stage; retain every actual result and unchanged cases/budgets. No partial retry or favorable sample selection.
+
+B02/B03 and whole parentAC01–AC08/T03.3/.5/R03/R04 remain open until their entire conditions pass. This correction supplies neither native full source/scanner completion, hosted performance, bootstrap merge/postmerge nor runtimePR128 R04. Original runtime213.5/200ms failure is unaffected.
+
+No repository/test/ledger/source/ref/GitHub mutation, detector invocation, duplicate stage, merge or production operation was authored/performed by this reviewer. Only scratch records, read-only comparison/replay and existing guard execution were used.
+
+### Completed correction receipt — code
+
+Verbatim independent receipt; SHA256 5f2e9dcf5e54d1d5c33f1342ecc949e695e94ee50a2af4a79c6b80ce638c3ca7.
+
+# Issue122 bootstrap exact-public-fingerprint correction: independent Code Review
+
+2026-10-23. Role: independent nonauthor Code Reviewer. No repository edits, detector/toolchain changes, refs, GitHub mutations, stage, upload or production actions by this reviewer.
+
+**Verdict: ACCEPT the bounded completed ledger correction; no blocking code/security-boundary defect found.** The retained native security failure is explained and the exact five dispositions are independently supported. This is not a fresh security scan or owner-stage pass; B02/B03 delivery evidence remains pending.
+
+Exact clean source `/tmp/t03r-main-controller`: commit `f58e802b91ff2cc887555788d7d2b70bc6101ad8`, tree `082d380c687d5283377b3e2650bd8a8274559b28`, parent/base `99ac56acaa219ac7a723e6619188315cbdcf6ad6`. Protected base676 remains the accepted-main preservation reference. Read the complete six-path diff, actual scanner/load/match code, maintained quality-sources ledger controls, preflight `/tmp/t03b-secret-preflight.md`, appended review proof and scope6364509014, root's source-generated proof and retained native raw reports.
+
+## Source and proof findings
+
+Actual prior native prepublication binds clean99ac/treef42ffae7 and has26 checks, exactly one failed: security. Its security report is false and identifies the secrets engine. The existing failed observation remains failed; the correction does not rewrite its raw output. I inspected the retained extraction of artifact12500007024, not an independent new download; ZIP digest provenance remains as documented by the owner/preflight.
+
+Publication ledger appends exactly five unique exact path/rule/SHA1 false-positive records, plus the dated scope update. Independently parsed all1496 old records and confirmed the new first1496 are identical in data and order. Three other full ledgers, scanner source and maintained tests are byte-identical to99ac. The current publication ledger is964386bytes, below the unchanged2000000byte limit. No neighboring input, wildcard, entropy exclusion, threshold change, hash-global match, advisory exception or credential permission is introduced.
+
+Each native hashed_secret resolves uniquely to one quoted64-hex source literal: new base enginec9d33c, navigation5e78b3, plainf0e456, stagingb5574 and production3434. Independently recomputed SHA1 over each literal and matched the exact appended ID and native finding. They are public generated/runtime identities, not authentication material. Reopened root's actual plain/staging/production artifacts bound to runtime source0d4fb5abc29f7dd6d302066f64abcaefff2c9bb9, physically verified each artifact with the existing verifier, selected each exact new reviewed runtime, and independently rehashed canonical and immutable navigation bytes. All three affirm the same public base/fingerprint/navigation values. This is physical generated-byte verification, not scalar manifest proof or a claim bootstrap's unchanged old runtime generates the future family.
+
+The scanner still accepts only its closed four inputs, validates strict metadata and exact entry schemas, rejects invalid/symlink/oversized/duplicate records, and matches exactly file:type:hashed_secret. Policy recursive diff changes only AC04 automated_scope and COVERAGE description, explicitly preserving prior ledgers/PR129/scanner execution. Four owning checks and all other AC/gate structure remain unchanged. The versioned review's old contents are an exact prefix; MEMORY retains both actual failed attempts and pending current-source requirements. Entire docs/site/workflow subtrees have no delta; no runtime, product, test, workflow, budget or production-authorizer change.
+
+## Independent bounded execution
+
+- **6/6 maintained quality-sources controls PASS**, zero failure/cancel/skip/TODO,457.878312ms. Selected checksum admission, closed secret ledgers, malformed metadata, duplicate IDs, bounded regular inputs/JSON and historical disposition preservation. Used the instructed pinned SITE_AUDIT_TOOLS path. No new tests were added.
+- Replayed **all5061 raw detect-secrets findings** through the unchanged exact matcher against the previous and current closed maps. Exactly the intended five IDs change false→true; every other raw finding's reviewed classification stays identical. This does not conflate unrelated verified-RI checksum admission with ledger matching.
+- Independently tested the five actual entries: **5 intended positives**, **15 wrong-path/type/hash negatives**, and **5 individual omission negatives** PASS. Removing each row restores its own unresolved exact finding; the other dimensions cannot borrow its disposition.
+- Artifact physical verification and canonical/immutable navigation proof for all3 runtime editions PASS, as above.
+- RI/CI verify PASS15 checks/13 layers, digest `021d5cfdf744300c53c1fee1b8994e89e2b7a73aa119bb5dbb2e4eaee2cf180c`; RI context fresh; full diff whitespace PASS. Final source identity/clean tree verified.
+
+Independent probe initially exceeded Node's default Git-output buffer when comparing the large historical baseline. Only the scratch probe's read buffer was increased; the corrected complete run passed. Scanner limits/code were untouched.
+
+| Independent evidence | SHA256 |
+| --- | --- |
+| `/tmp/t03b-secret-code-tests.tap` | `46badcb3bead8511bbb644014acae4a2a3bee91f1cd467870b893b957c730be7` |
+| `/tmp/t03b-secret-code-probe.cjs` | `547b85de02e6bb7feec7a5b55c6ea7c142a77e2ad8e89248a89b455f901b9419` |
+| `/tmp/t03b-secret-code-probe.json` | `60401e2898fe21d8906d9d74d6231188f721a59d13c30cf58bd414cdd842f316` |
+| Retained native `detect-secrets.json` | `f304b57a484b68a1a635d647ceab28687761fae2c3d1159580883b58ca5d14ac` |
+
+## Limits and next gates
+
+No fresh scanner, hosted security/native CI or new owner-stage outcome is asserted. Source/metadata/proof text changed, so replaying historical raw findings is insufficient to prove a clean new scan; the corrected source must pass ordinary current-source security and all existing required gates. Original admission-race39949313525 and genuine security39950013688 remain failed observations. This reviewed concrete source correction supplies a different gate input; it is not approval for unchanged retries, partial failed-run reuse or oracle weakening. Bootstrap protected-main delivery remains conditional on existing authorized stages/admission/checks. Changed-runtime PR128 R04 remains separate and unspent; no PR128 runtime merge, production activation or performance conclusion follows.
+
+### Completed correction receipt — whitebox
+
+Verbatim independent receipt; SHA256 e6b812b59230a1900dd09e92bf56aeb15978e0c7942430caee4679cb78e5cd00.
+
+# T03 bootstrap five public checksum dispositions — independent White-box QA
+
+2026-10-23. Reviewer `/root/t03_whitebox`, nonauthoring White-box QA. **Verdict: ACCEPT this bounded ledger correction; no blocking finding.** This is not a fresh security scan or a successful owner-stage result. The failed original stage remains failed and corrected-source native security/delivery gates remain required.
+
+## Exact source, scope and raw evidence
+
+Clean candidate `f58e802b91ff2cc887555788d7d2b70bc6101ad8`, tree `082d380c687d5283377b3e2650bd8a8274559b28`, compared against failed-source `99ac56acaa219ac7a723e6619188315cbdcf6ad6`. Verified actual diff/HEAD/tree and clean status before/after own execution. Read actual requirements preflight `/tmp/t03b-secret-preflight.md`, dated issue6364509014 clarification as recorded in the review, raw findings, current scanner/matcher/schema, publication ledger and source/edition proof. Existing bootstrap authorization permits this necessary exact reviewed-classification companion; it does not waive or weaken a scanner.
+
+Actual6 changed paths contain only existing publication-ledger append/date/scope and necessary review/policy/RI/MEMORY companions. Exact no-diff check passed for scanner code, other3 ledgers, workflows, site/docs/runtime/public, tests, release owners and source registry. Existing scanner closed4-input list,2000000-byte bound, regular-file/no-symlink requirement, strict schema/duplicates, exact matcher, thresholds/permissions/other security engines remain unchanged.
+
+Independently checked supplied native prepublication ZIP `/tmp/t03b-prepublication-39950013688.zip`: SHA256 `ea302b16b744ddb33ca02a92d3951f1c144d6e7a0b90fcf4479f1846879fbeb7`, all67 members CRC-valid/safe and extracted files byte-identical. Reported artifact12500007024 belongs to stage39950013688/1; I did not independently redownload/query artifact metadata. Actual report binds clean99ac/treef42ffae7a691c0f6e20db86770626b5d2cac5d65,26 guards:25 passed and security failed. Semgrep/Bandit pass; secrets fails5 untriaged candidates. pass/fullGate/deploymentAuthorized are false. No original raw file was changed.
+
+## Independently derived risk/oracle matrix
+
+| Risk | Required observable oracle | Actual result |
+| --- | --- | --- |
+| Public identity misclassified without source proof | Each raw exact line's64-hex literal must independently SHA1 to the detector ID and agree with actual generated public runtime/edition identity | All5 literal→SHA1 mappings match raw rows and cold-build proof; retained3 physical artifacts verify and authenticate same base/fingerprints/navigation hashes. |
+| Ledger append alters historical disposition meaning/order | First1496 entries remain ordered/data-equal; only5 unique exact IDs append; old top-level owner/schema/issue retained |1496/1496 prefix deep equality; final1501 entries. Other3 complete ledger bytes equal predecessor; original scope retained as prefix plus bounded addition. |
+| Classification accepts a wider path, rule or value | Exact unchanged matcher must reject changed path/rule/hash and missing row |20 altered-finding negatives reject; each of5 omitted rows through actual loader restores exactly its one unresolved raw finding. |
+| Replay silently drops findings or uses broad RI hash acceptance | Process all5061 raw findings, same native-source verified RI/coupling fields and unchanged closed matcher; only5 intended admissions change | Old unresolved set exactly equals5 appended IDs; corrected unresolved set empty; no raw findings dropped/edited. Contract path never qualifies for RI/coupling dynamic proof. |
+| Parser/schema/bounds/duplicate behavior weakens | Existing source-owner guard tests and unchanged loader code retain closed authority | Own6 existing relevant guard cases PASS, including exact matcher, strict metadata/schema, duplicate/regular/bounded inputs, historical records and verified-RI checksum boundary. |
+| Replaying old scan misreported as clean current native scan | Keep old source/raw/proof binding explicit; new review/RI text can introduce new scan findings | Old raw replay only; current RI/CI verify PASS, but fresh corrected-source full security/native stage remains pending. |
+
+## Actual raw replay and useful negative cases
+
+The native `detect-secrets.json` contains **5061** findings. Loaded predecessor four ledgers from exact99ac Git objects and corrected four ledgers through unchanged `loadSecretReviews`. Constructed dynamic RI/coupling proof only from exact99ac generated source fields, whose source-bound native RI/coupling guards both passed in the same retained report. This preserves the original proof source rather than replacing old raw findings with current metadata hashes. Applied unchanged `verifiedChecksumFinding` / `reviewedSecretFinding` to every raw row.
+
+**Predecessor:5 unresolved; corrected:0 unresolved.** The old unresolved IDs equal the5 appended entries and supplied raw extraction exactly. New publication ledger is964386 bytes, below unchanged2000000-byte maximum. All1496 original finding objects remain in original order and data, with unchanged top-level schema/owner/historical issue; only reviewedAt/scope and5 append rows change. All new IDs remain exact path/type/SHA1, disposition false positive, with bounded public-producer/review provenance; no credential value or generic entropy/hash allowance is added.
+
+All5 rows have path `tools/quality/color-motion-contract.cjs`, rule `Hex High Entropy String`:
+
+| Current source line / public identity | Independently recomputed SHA1 |
+| --- | --- |
+|79 / base enginec9d33c… | `7e32a7f6b753219c06321ff340c342c10641ecfb` |
+|82 / navigation5e78b3… | `efc856d84eef7f488552e43d3a80269f163cd8a4` |
+|265 / plainf0e456… | `76952239762861d479d537fc9f8ee376bb8acca0` |
+|272 / stagingb5574… | `1c7ea487f86ba27ebf16e091b5631ef78c338ca1` |
+|279 / production3434… | `ec0e52d9e3c33a8c7db661974bb75f78472bf4d5` |
+
+For each row, prefix/suffix path changes, different rule and changed hash reject under both static review and dynamic proof:20 negatives. Then wrote a disposable four-ledger directory with each new row omitted individually, reloaded through the actual unchanged loader and replayed all5061 findings: exactly that omitted ID becomes the sole unresolved row each time. These5 additional negatives demonstrate useful fault detection, not merely a table-to-table assertion. Moving only line_number leaves an otherwise exact public finding reviewed, as intended: source line is evidence location, not admission authority. No repo ledger/test/source was edited by QA.
+
+Public producer proof `/tmp/t03b-triage-proof.json`, SHA256 `a6301fceebbaafefc57b8cdc772af44801d15a9bbeb0d2712d58c030b0391ce2`, binds0d4fb5abc29f7dd6d302066f64abcaefff2c9bb9/tree6211c61d7a96c618b80fb544f02533c9181f5e61; independently checked that tree through Git and exact5 proof values against current source literals. I did not repeat that cold build. Separately reopened actual retained source2c9d4935 three-edition artifacts, ran current artifact.verify and motion.select, checked baseEngine/each fingerprint and canonical+immutable navigation SHA256. All authenticate the identical5 public values. This qualified retained-byte proof supports public classification; it is not a new hosted/runtime-performance observation.
+
+## Own executed checks / evidence
+
+Node v24.19.0:
+
+`node --test --test-reporter=tap --test-name-pattern='secret ledgers|closed secret|all historical secret|only actually verified RI' tests/quality-sources.test.cjs`
+
+**6/6 PASS**, no failures/skips/cancellations, duration368.420072ms. Own current `repository_intelligence.py ... verify` and `check_ri_ci.py verify` also exit0. These checks do not invoke a new full security scan.
+
+- Guard TAP `/tmp/t03b-secret-wb/guards.tap`, SHA256 `30ea0cc104be19a64577a0feceb2f3c3e59681cce24448cfb6f7f6710b7f7fed`.
+- Independent replay `/tmp/t03b-secret-wb/replay.cjs`, SHA256 `c85df41a399f896bddfad4020dc1607ad024ce24ef6728abba8149387329e516`.
+- Complete literal/replay/25-negative results `/tmp/t03b-secret-wb/results.json`, SHA256 `07368af135f1dafcc3066f86b149fb57633b6c1ec69c3b5e87d1c7aca08925f8`; output replay.log `e8b7fa0a73797cb0743aa404e76597fa00db1b61ef7c34ac62e9b164ab3c703e`.
+- Native ZIP/report observations `/tmp/t03b-secret-wb/native.json`, SHA256 `4b3da971e49cfa9463ac9cf6aecfaa51fd432165717686b1466f72d55a96f0fb`.
+- Current RI log SHA256 `9db167fb4686f396d5b72bf6e0c08077a4fe188a311ed246dda72f77fc45fa2a`; coupling log `bfed72b918b0023fd82bc1dac8bf1da59ff270ad2721ec390cedc88de1753e3f`.
+- Corrected ledger SHA256 `f22b15d8f45d4411604e8cb5ac430ea532c3c36261c19bed801210a2090660c7`; raw5 extraction `3cc3d84fe978f9b16f6b63cd1ae09c1af8bb535c9e1b8262f31065299a7923b5`.
+
+Initial scratch Git read hit Node's default1MiB subprocess output buffer on the unchanged baseline ledger. Increased only this temporary probe's Git-read buffer to8MiB, leaving scanner's2MB input limit and all repository files unchanged; final complete replay above succeeds. That probe setup error is not a product or scanner failure.
+
+## Limits / readiness handoff
+
+No shared source/test/policy/ref/GitHub/browser/stage/deployment action by this reviewer; temporary ledger copies/probe/receipt only, no novel accepted tests. Replay validates the bounded classifier correction against old raw observations, not all new corrected text or a live detector run. Current fresh security/source/advisory/toolchain/native CI and ordinary whole bootstrap owner-stage remain required. Do not partially reuse failed stage39950013688, erase its security failure, or call old replay current clean security acceptance. Admission-race failure39949313525 and prior source/performance failures likewise remain source-bound history.
+
+After current four-role reconciliation and successful required corrected-source CI, continue only the explicitly approved bootstrap delivery under original cases/budgets and exact identities. This bootstrap concerns old main's runtime; PR128's separate original R04 remains unspent. No PR128 runtime merge, production activation, scanner waiver, algorithm change or green-seeking unchanged-source retry follows from this receipt.
+
+### Completed correction receipt — exploratory
+
+Verbatim independent receipt; SHA256 2d0656fc62c04f729d6717a3b934042d5ade81260d873e102045f9e7acca1388.
+
+# T03 bootstrap exact public-hash dispositions — independent Exploratory / Operator QA
+
+**Verdict: ACCEPT the bounded corrected source.** Old failed stage remains failed; replay acceptance is not a new detector scan or whole security/staging pass. Current-source security CI and ordinary whole bootstrap delivery remain pending. PR128 original R04 remains separate and unspent.
+
+Independent nonauthoring reviewer `/root/t03_exploratory`, 2026-10-23. Actual clean candidate `/tmp/t03r-main-controller` commit `f58e802b91ff2cc887555788d7d2b70bc6101ad8`, tree `082d380c687d5283377b3e2650bd8a8274559b28`; failed-stage predecessor `99ac56acaa219ac7a723e6619188315cbdcf6ad6`. Node v24.19.0; actual scanner load/matching APIs, native raw report replay and real physical generated-byte verification. No browser, detector rescan, network action or new stage.
+
+## Actual inspected scope and failure
+
+Read actual six-file correction, ledger, native security/raw detector/prepublication reports and existing unchanged scanner owner. The actual ledger is `tools/quality/secrets-publication.json` (not secrets-reviewed-checksums). It appends five exact dispositions plus review date/scope; remaining changed files are bounded review/policy/MEMORY/RI companions. Requirements necessity/preflight is separately supplied by `/tmp/t03b-secret-preflight.md` and issue6364509014; existing bootstrap delivery approval owns unchanged security compliance. No additional authorization is inferred.
+
+Direct Git verification confirms scanner algorithms, four-ledger closed input list, original three baseline/review/checksum ledgers, all tests, runtime/public site, workflow and registry bytes unchanged against99ac. All1496 predecessor publication rows remain deeply equal in original order; total1501, exactly five unique appended IDs. Owner/schema/historical issue remain; scope appends to the complete prior scope. PR129 exact checksum/retained closure is not modified.
+
+Independently rehashed native artifact ZIP12500007024: `ea302b16b744ddb33ca02a92d3951f1c144d6e7a0b90fcf4479f1846879fbeb7`; extraction supplied by root, not independently redownloaded. Its real prepublication report binds clean99ac/treef42ffae7a691c0f6e20db86770626b5d2cac5d65, run39950013688/attempt1, pass=false. Exactly26 checks, only security failed. Semgrep/Bandit passed in security report, detector exited0, exact secrets classification error is five untriaged candidates. This is a real classification failure; other successful guards do not make the whole run pass.
+
+## Independent operator/recovery charter — executed
+
+Loaded actual four ledger inputs through current exported `loadSecretReviews`. Built the old four-input directory from immutable99ac Git blobs and loaded it through the same unchanged API. Reconstructed the existing two RI checksum proofs from99ac's actual RI/navigation/coupling blobs, rather than using current metadata or treating dynamic checksums as waivers. Replayed **all5061 raw native findings across245 paths** through actual `verifiedChecksumFinding` and `reviewedSecretFinding`, matching the source scanner's admission path.
+
+| Actual recovery oracle | Expected | Observed |
+| --- | --- | --- |
+| Old99ac ledger set | Exact five source literals unresolved | 5 unresolved, exact path/rule/SHA1 identities. |
+| Corrected f58 ledger set, same immutable raw findings | Exactly those five now reviewed | 0 unresolved; set difference equals only the five appended rows. |
+| Prior publication ledger and other three inputs | No historical deletion/reclassification | All1496 prior rows equal; three other files byte-identical. |
+| Each new ID mutated by path, rule or hashed value | Remain unreviewed | 15/15 negatives pass. |
+| Each one disposition individually omitted | Its own native finding becomes unresolved | 5/5 negatives pass, one unresolved each. |
+
+Twenty meaningful negative cases therefore preserve exact matching, not path-wide/rule-wide/hash-wide acceptance. No wildcard/new input/threshold/regex bypass or scanner suppression is introduced.
+
+Independently extracted the quoted64-hex literal at each actual native finding line79/82/265/272/279 in current source, recomputed SHA1 over that literal and matched native hashed_secret. Values represent base enginec9d33c…, navigation5e78b3…, and plainf0e456…/stagingb5574a…/production3434d8…. To authenticate public meaning rather than trust names or the supplied triage summary, reopened actual canonical0d4fb5abc29f7dd6d302066f64abcaefff2c9bb9/tree6211c61d7a96c618b80fb544f02533c9181f5e61 generated plain/staging/offline-production artifacts. Each source is clean, physically artifact-verifies and selects against the unchanged finite contract. Canonical and immutable navigation hashes match; all five source literal values are members of these actual generated identity/hash tuples. These are public checksums, not authentication material. Full identity and literal proof retained in observations.
+
+The artifacts are retained old-source byte proof, not generated by the bootstrap's old active runtime, a current detector rescan, or a new browser/performance observation. Root's fresh cold-build summary is complementary; this charter did not depend on its claimed conclusion. No old artifact source is relabeled as f58.
+
+An initial scratch Git blob read hit Node's default1MiB child-output limit on the inherited baseline ledger. Raised only the scratch probe read buffer to8MiB and reran the complete charter. Production's unchanged2MB-per-ledger loader bound is untouched. This is reviewer tooling capacity, not a product failure or security limit waiver.
+
+## CI/test handoff and disposition
+
+Risk→case→existing owner: exact public-hash classification and malformed/path/rule/hash/duplicate/closed-ledger boundaries→existing quality-sources suite; dynamic RI proofs/source metadata→existing RI/coupling checks; all other detector/scanner/advisory/toolchain behavior→ordinary current-source security/prepublication route. Own twenty negative/recovery checks supplement, not replace, maintained suites and actual clean-final native scanning.
+
+Fresh source/review text can introduce detector findings beyond the old raw report. Require current f58 source-bound CI and all four actual correction reviews before Ready and the next ordinary whole bootstrap owner-stage request. Preserve prior admission race39949313525 and failed security stage39950013688 as distinct failures; source correction supplies new gate input, not permission for unchanged-source retries or partial stage reuse. Successful bootstrap completion still grants no PR128 runtime merge or production activation and cannot establish changed-reading speed.
+
+## Retained independent execution evidence
+
+- `/tmp/t03b-secret-exploratory-probe.cjs`, SHA256 `c89edf1ed1afd6830ca0e98bb80325f91a59f84c1d00d6cec5c3643e1037b1ad`.
+- `/tmp/t03b-secret-exploratory-observations.json`, SHA256 `c0bbdd4620e2c5d6148cd776ce46ed4f3a264812cb65cac8377c60ef0ff15318`.
+
+Actual replay accounting, five exact source/public proofs, artifact digests and all twenty negative outcomes are retained. Old raw reports and original physical artifacts were read only. Temporary ledger fixture cleaned. No shared source/test/ref/public file or external state mutated by this reviewer; scratch probe/observations/receipt only.
