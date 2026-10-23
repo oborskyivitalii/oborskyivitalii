@@ -565,7 +565,7 @@ test('source scheduling starts expensive files early with isolated processes and
     'run-source.cjs',
     'require(' +
       JSON.stringify(path.join(root, 'tools/quality/source-test-worker.cjs')) +
-      ').runFiles(JSON.parse(process.argv[2]),{parallelism:2});\n'
+      ').runFiles(JSON.parse(process.argv[2]),{parallelism:1});\n'
   );
   const child = cp.spawnSync(
     process.execPath,
@@ -930,4 +930,63 @@ test('optional successful source reports keep the default API and CLI result sha
   assert.equal(child.status, 0, child.stderr);
   assert.equal(JSON.parse(child.stdout).status, 'passed');
   assert.equal(Object.hasOwn(JSON.parse(child.stdout), 'files'), false);
+});
+
+test('source scheduling uses configured worker capacity without exceeding its ceiling', (t) => {
+  const f = fixture(t);
+  const files = Array.from({ length: 6 }, (_, index) => 'tests/slot-' + index + '.test.cjs');
+  const active = path.join(f.directory, 'active');
+  const release = path.join(f.directory, 'released');
+  const log = path.join(f.directory, 'capacity.jsonl');
+  fs.mkdirSync(active);
+  for (const [index, file] of files.entries()) {
+    f.write(
+      file,
+      `
+      const test = require('node:test'), assert = require('node:assert/strict');
+      const fs = require('node:fs'), path = require('node:path');
+      test('isolated capacity slot ${index}', async () => {
+        const marker = path.join(${JSON.stringify(active)}, '${index}.active');
+        fs.writeFileSync(marker, 'active');
+        const count = fs.readdirSync(${JSON.stringify(active)}).length;
+        fs.appendFileSync(${JSON.stringify(log)}, JSON.stringify({ count }) + '\\n');
+        assert.ok(count <= 4, 'configured concurrency ceiling');
+        if (count === 4) fs.writeFileSync(${JSON.stringify(release)}, 'released');
+        const deadline = Date.now() + 3000;
+        while (!fs.existsSync(${JSON.stringify(release)})) {
+          assert.ok(Date.now() < deadline, 'all four configured slots must overlap');
+          await new Promise(resolve => setTimeout(resolve, 20));
+        }
+        await new Promise(resolve => setTimeout(resolve, 80));
+        fs.unlinkSync(marker);
+      });
+    `
+    );
+  }
+  f.write(
+    'run-capacity.cjs',
+    'require(' +
+      JSON.stringify(path.join(root, 'tools/quality/source-test-worker.cjs')) +
+      ').runFiles(' +
+      JSON.stringify(files) +
+      ', {parallelism:4});\n'
+  );
+  const env = { ...process.env };
+  delete env.NODE_TEST_CONTEXT;
+  const child = cp.spawnSync(process.execPath, [path.join(f.directory, 'run-capacity.cjs')], {
+    cwd: f.directory,
+    env,
+    encoding: 'utf8',
+    timeout: 10000,
+  });
+  assert.equal(child.status, 0, child.stderr || child.stdout);
+  const observations = fs.readFileSync(log, 'utf8').trim().split('\n').map(JSON.parse);
+  assert.equal(observations.length, files.length);
+  assert.equal(Math.max(...observations.map((row) => row.count)), 4);
+  assert.ok(observations.every((row) => row.count <= 4));
+  assert.equal(
+    runner.accounting(child.stdout, { modules: files, root: f.directory }).passed,
+    files.length
+  );
+  assert.deepEqual(fs.readdirSync(active), []);
 });
