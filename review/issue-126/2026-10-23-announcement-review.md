@@ -105,3 +105,17 @@ Completed independent receipts:
 - Exploratory PASS: independently executed7/7 operator cases with no skips,4.32s; actual CLI plan retains47 modules and180s/16MiB plus existing report grace. No site/docs delta, prior browser observations/fingerprint remain applicable. Plan is not execution evidence.
 
 Actual complete local lint passed on this correction:250 files, ESLint/Stylelint/Ruff successful. Current earlier preview39921899885 hosted smoke passed at1440/390 with unchanged public bytes. The new worker source still needs its own exact-head CI and staging execution. It must not be merged or described as a demonstrated performance fix until complete current-source accounting fits the original elapsed bound.
+
+## Fixture efficiency and retained negative-oracle correction
+
+Exact hosted f445818b7f4a62c890affd99ee04301fa97103fb Basic39923149278 passed complete47 modules/638 cases with strict accounting, elapsed179192ms under180000ms. Artifact12488870613 ZIP SHA25684b046167f7fdd654953e76f7c148dbf1598145f6b214ae40c7daebda0ff07e4 was independently downloaded and parsed by white-box. This leaves808ms, not robust performance headroom. Owning39923149120 and navigation39923149216 passed; preview39923149205 passed package/HTTP/two-width smoke, while unstaged admission was correctly rejected.
+
+Requirements preflight accepted fixture-only repeated-work removal: compile identical source once but create a new VM context on every visit; reject each nonfinite Canvas argument immediately without invoking the successful assertion path. Every existing test body, route, frame, paint and other fixture path remains unchanged. No selected coverage, budget, error handling or product byte changes.
+
+Initial new isolation oracle only observed fresh fixture objects; white-box's actual shared-VM-context mutant still passed. Strengthened it to require both initialized and distinct SiteScene runtimes, independently navigated research/credits traces, plus cross-visit draw/queue isolation. The shared-context mutant now fails on the missing second SiteScene. An independent removed-finite-guard mutant fails with Missing expected exception. Both negatives remain observations outside source, not production alterations.
+
+Local implementation96765c8: corrected focused2/2 PASS; the complete space module run before the oracle-only correction passed58/58, no failures/skips/cancellations/TODO,177828.8ms. These local timings are not a hosted speedup claim. Final exact-source CI remains required. Canonical formatting, RI/CI verification and RI freshness passed.
+
+Parallel PR128 stage39923213843 failed Writing TBT213.5ms against unchanged200ms limit. It remains unmerged; main remains1e87b124c8a7ca4fde4e8ede75dcdd1515b491ea. Our queued stage39923878479 was canceled before jobs started to avoid a potentially moving base; no test result came from it. Proceed with our separate source and preserve main-movement guards. Draft PR79 remains excluded.
+
+Four actual final independent reviews of96765c86af801485464555f288fc5efbfd9f3a95/treeea68fcc7f2290c1caa200fcb2aef95015335b9f3: requirements PASS (focused2/2, same intent/predicate/limits); code PASS (focused2/2, unchanged existing test bodies and canonical formatting); white-box PASS (corrected2/2 and both actual fault injections); exploratory PASS (corrected2/2 and independent shared-context mutant rejected). No blocking findings. Final source-bound hosted success remains separate.
