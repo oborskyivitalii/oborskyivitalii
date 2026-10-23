@@ -11,6 +11,12 @@ const pages = Object.fromEntries(
     normalizeHTML(fs.readFileSync(path.join(root, name + '.html'), 'utf8')),
   ])
 );
+const beforeDevCon = (html) =>
+  require('../tools/check_site_seo.cjs').restoreContentAmendment(
+    html,
+    'talks',
+    require('../review/issue-126/content-amendment.json')
+  );
 const schema = (html) =>
   JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
 const articleRows = (html) => [
@@ -447,7 +453,7 @@ test('portrait is a real sized local asset and unverified talk languages are omi
   );
   const talks = talkRows(
     require('../tools/check_site_seo.cjs').restoreContentAmendment(
-      pages.talks,
+      beforeDevCon(pages.talks),
       'talks',
       require('../review/issue-108/content-amendment.json')
     )
@@ -486,7 +492,7 @@ test('Talks curates distinct events with source-supported dates, language and re
     ).html
   );
   const currentSection = restoreContentAmendment(
-    actualSection,
+    beforeDevCon(actualSection),
     'talks',
     require('../review/issue-108/content-amendment.json')
   );
@@ -626,7 +632,7 @@ test('Talks curates distinct events with source-supported dates, language and re
   const description = require('../site/content/pages/talks/metadata.json').description;
   assert.equal(
     description,
-    'Upcoming UA Online PMDay 2027 Winter and the UA Online PMDay 2026 Autumn recording, plus talks and workshops on AI architecture and software delivery.'
+    'Upcoming DevCon Romania 2026 and UA Online PMDay 2027 Winter, plus recordings and workshops on AI architecture and software delivery.'
   );
   for (const tag of [
     '<meta name="description"',
@@ -856,7 +862,7 @@ test('Home provides the agreed reader path, precise public actions and a real co
 test('PMDay upcoming and Autumn naming preserve confirmed facts and existing presentation', () => {
   const { restore, restoreContentAmendment } = require('../tools/check_site_seo.cjs');
   const record = require('../review/issue-108/content-amendment.json');
-  const html = pages.talks;
+  const html = beforeDevCon(pages.talks);
   const cards = talkRows(html);
   assert.equal(cards.length, 5);
   const upcoming = cards[0][0];
@@ -889,6 +895,52 @@ test('PMDay upcoming and Autumn naming preserve confirmed facts and existing pre
     [upcoming, upcoming.replace('<article ', '<article data-language="en" ')],
     [upcoming, ''],
   ]) {
+    assert.ok(html.includes(from));
+    assert.notEqual(restore(html.replace(from, to), 'talks'), preserved);
+  }
+});
+
+test('DevCon announcement preserves previous events and rejects changed public facts', () => {
+  const { restore } = require('../tools/check_site_seo.cjs');
+  const cp = require('node:child_process');
+  const record = require('../review/issue-126/content-amendment.json');
+  const baseline = normalizeHTML(
+    cp.execFileSync('git', ['show', record.baseline + ':docs/talks.html'], {
+      cwd: path.join(root, '..'),
+      encoding: 'utf8',
+    })
+  );
+  const html = pages.talks;
+  const cards = talkRows(html);
+  assert.equal(cards.length, 6);
+  const card = cards[0][0];
+  assert.match(card, /id="devcon-romania-2026"/);
+  assert.match(card, /DevCon Romania 2026 · DevOps Con/);
+  assert.match(card, /datetime="2026-11-04T12:30:00\+02:00">4 November 2026/);
+  assert.match(card, /12:30–13:00 · Bucharest time/);
+  assert.match(card, /AI Changes the Delivery System and the Product Itself/);
+  assert.match(card, /href="https:\/\/www.dev-con.ro\/agenda\/12-devops-con"/);
+  assert.doesNotMatch(card, /slides|recording|Hotel Caro/i);
+  assert.deepEqual(
+    cards.slice(1),
+    talkRows(baseline),
+    'every previous event remains exact and ordered'
+  );
+  const section = (value) => value.match(/<section id="talks"[\s\S]*?<\/section>/)[0];
+  assert.equal(section(beforeDevCon(html)), section(baseline));
+  assert.equal(
+    talkRows(html.replace(card, '')).length,
+    5,
+    'missing card fails the six-event inventory oracle'
+  );
+  const preserved = restore(html, 'talks');
+  for (const [from, to] of [
+    ['2026-11-04T12:30:00+02:00', '2026-11-05T12:30:00+02:00'],
+    ['12:30–13:00 · Bucharest time', '12:30–13:00 · Warsaw time'],
+    ['https://www.dev-con.ro/agenda/12-devops-con', 'https://example.com/agenda'],
+    [card, card.replace('</article>', '<a href="draft.pdf">Slides</a></article>')],
+  ]) {
+    assert.notEqual(from, to);
     assert.ok(html.includes(from));
     assert.notEqual(restore(html.replace(from, to), 'talks'), preserved);
   }

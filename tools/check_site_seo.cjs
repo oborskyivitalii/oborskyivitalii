@@ -113,6 +113,9 @@ const issue61 = JSON.parse(
 const issue118 = JSON.parse(
   fs.readFileSync(path.join(root, 'review/issue-118/content-amendment.json'), 'utf8')
 );
+const issue126 = JSON.parse(
+  fs.readFileSync(path.join(root, 'review/issue-126/content-amendment.json'), 'utf8')
+);
 const issue108 = JSON.parse(
   fs.readFileSync(path.join(root, 'review/issue-108/content-amendment.json'), 'utf8')
 );
@@ -414,6 +417,7 @@ function restoreResearchNavigation(html, page) {
   return html.replace(researchNavigation.separated, () => researchNavigation.original);
 }
 function restoreApprovedContent(html, page) {
+  html = restoreContentAmendment(html, page, issue126);
   html = restoreContentAmendment(html, page, issue118);
   html = restoreContentAmendment(html, page, issue108);
   html = restoreResearchNavigation(normalizeHTML(html), page);

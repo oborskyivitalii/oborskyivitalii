@@ -1,48 +1,38 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-22**.
+Dated continuity, not live authority. Last verified: **2026-10-23**.
 
 ## Snapshot
 
-- Current task: issue122 T02, resumed canonical routing and observation contract in PR124.
-- Published parked head: e8a8c54000fd4cca5cd17ab52eb63e6daf97df30; local integration preserves that history.
-- Actual repaired main/base: 4c9c27aab641fc57a4c975a78db9fdf3899b9b25, tree9e4a97fa81de80b99691a9b201b629a9673c3f93.
-- PR125 delivered T02-P; tested d046fc92e043f42c67805b265ecbc5fe50bd5151 has that same complete tree.
-- Repair stage39847129847/1, eligible admission39850197342/1, merge identity39850630873/1 and main RI39850631475/1 passed.
-- Exact repair evidence and issue reconciliation: PR125 comment6350842359 and live issue122.
-- T02 review owner: review/issue-122/2026-10-22-t02-review.md; repair history retains its separate T02-P review.
-- This is an integration checkpoint; later candidate reviews and CI/staging/merge require live verification.
-- PR79 remains Draft0717bd4ad2d27786a068c2046b775691cc452acd; issue5 retains content delivery.
+- Active task issue126 / PR127: announce DevCon Romania in Talks; LinkedIn text only in chat.
+- Base main1e87b124c8a7ca4fde4e8ede75dcdd1515b491ea; production44aef6e4d0f0cbc063a5269fa01a039c4979422e.
+- First reviewed source1d62789/treee9160419 published asafe87cff with identical tree.
+- Draft preview39920235428 passed build/package/HTTP; immutable50a919e8 preview. Source/browser admission deferred by Draft.
+- Local correction8a7d24/treec9d55cb4 adds exact56 public-checksum dispositions and proof; all6 owning checks passed clean source.
+- All four independent roles completed source/delta reviews; exact receipts in review/issue-126/2026-10-23-announcement-review.md.
 
 ## Decisions
 
-- Maintainer approved repair delivery/postmerge/report, then return to already approved T02; no new approval is needed for resumption.
-- One independently mergeable implementation PR at a time; repair is delivered before resumed PR124 delivery.
-- All four distinct nonauthor roles review the actual integrated candidate and affected corrections.
-- SITE-CHECK-PROFILES owns one proposed matrix/interface; SITE-STAGING owns operational and producer boundaries.
-- T02 remains contract-only relative to repaired main; preserve the complete repair implementation and both review histories.
-- Keep four stdlib-safe owning calls and all nine verifier methods through the existing locked-venv Python route/COVERAGE gate.
-- Actual AC05 producer/protection proof remains mandatory before W3; design approval cannot waive it.
-- T03, new publishers/services/credentials and production activation require separate decisions.
+- User23October authorizes announcement PR → staging → merge → production through existing process.
+- PR79 remains Draft0717bd4; do not merge article/reader or other unrelated PRs for announcement.
+- Main-production baseline has harness-only changes; recheck final public diff before activation.
+- Confirmed official agenda4November12:30–13:00 Bucharest/DevOps, exact session title. Specific venue omitted.
+- Existing runtime/CSS/cards retained; exact prior5 events preserved. No social post is sent.
 
 ## Open work
 
-- Requirements and code integration preflights identified six shared owners; their original receipts remain in the T02 review.
-- Reconcile policy/catalog/RI/memory, regenerate derived views and freeze the actual integration candidate.
-- Original T02 candidate/correction receipts remain source-bound history, not approval of the new integration.
-- Historical T02 stage39819597415/1 failed before upload on vulnerable API1.37.0; the repair's new91-pin audit passed.
-- Current integrated-source Basic/source, style, RI/CI, owning, preview, owner staging, admission and postmerge remain required.
-- Main/protection/PR79 revalidation retains the unresolved AC05 disposition; unavailable protection inputs are not inferred.
-- T01.1-T01.5 and T02-P.1-T02-P.4 are reconciled complete in issue122.
-- Compound T02-P.5, T02.1-T02.5 and every whole AC01-AC08 remain open pending their complete evidence.
-- Prior source-run timing is retained evidence; this contract-only integration does not authorize budget tuning.
+- Publish correction/receipts with deterministic RI and exact tree binding.
+- Ready checks, hosted1440/390 smoke, owner staging, merge admission and postmerge remain required.
+- Freeze production candidate, bind actual rights inventory, run authorized publisher and live smoke/archive verification.
+- Narrow/no-JS browser visuals not independently observed; actual desktop Day/Night/cloud anchor/link/Back and native HTTP observed.
+- Update issue126 whole ACs only on complete evidence; final LinkedIn draft still must be shown in chat.
 
 ## Next session
 
-1. Read current issue122/PR124, actual main/head/tree, working state and role/delivery evidence.
-2. Complete integration reviews and current authorized delivery; never infer completion from this checkpoint.
-3. Reconcile verified task subconditions and report actual tested versus merged identities.
-4. Reassess remaining ACs and propose the next bounded step for separate approval; PR79 retains its owner.
+1. Read live issue126/PR127, refs/checks/deployment and versioned review; source handoff is not live evidence.
+2. Complete already authorized announcement delivery without merging PR79; report actual remaining gate if blocked.
+3. Return LinkedIn post with direct official agenda URL and hashtags; reconcile issue after final production observation.
+4. Issue122/PR124 harness work remains separate; prior MEMORY for it is historical Git evidence.
 
 ## Maintenance
 

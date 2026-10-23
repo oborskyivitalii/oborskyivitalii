@@ -6,6 +6,7 @@ const test = require('node:test'),
   vm = require('node:vm');
 const sourceFile = process.env.SITE_SPACE_SOURCE || path.join(__dirname, '../docs/space.js');
 const source = fs.readFileSync(sourceFile, 'utf8'),
+  script = new vm.Script(source),
   model = require(sourceFile);
 function visit(options = {}) {
   const events = {},
@@ -51,7 +52,9 @@ function visit(options = {}) {
     ].map((name) => [
       name,
       (...args) => {
-        for (const arg of args) assert.ok(Number.isFinite(arg));
+        for (const arg of args) {
+          if (!Number.isFinite(arg)) assert.fail('Canvas argument must be finite');
+        }
         if (name === 'clearRect') {
           if (failDraw) throw Error('injected');
           draws++;
@@ -254,8 +257,11 @@ function visit(options = {}) {
       stored = value;
     },
   };
-  vm.runInNewContext(source, { document, window, localStorage });
+  const realm = vm.createContext(vm.constants.DONT_CONTEXTIFY);
+  Object.assign(realm, { document, window, localStorage });
+  script.runInContext(realm);
   const api = {
+    realm,
     window,
     document,
     button,
@@ -337,6 +343,65 @@ function visit(options = {}) {
   };
   return api;
 }
+test('Canvas fixture rejects every nonfinite argument directly', () => {
+  const context = visit().canvas.getContext();
+  for (const method of [
+    'setTransform',
+    'clearRect',
+    'beginPath',
+    'moveTo',
+    'lineTo',
+    'stroke',
+    'arc',
+    'fill',
+    'closePath',
+  ]) {
+    for (const value of [NaN, Infinity, -Infinity, '1', null, undefined, {}]) {
+      assert.throws(() => context[method](0, value), { code: 'ERR_ASSERTION' });
+    }
+    assert.doesNotThrow(() => context[method](0, 1, -1));
+  }
+});
+test('compiled runtime creates independent visit contexts and state', () => {
+  const first = visit(),
+    second = visit();
+  assert.notEqual(first.window, second.window);
+  assert.notEqual(first.document, second.document);
+  assert.notEqual(first.pending, second.pending);
+  assert.ok(first.window.SiteScene);
+  assert.ok(second.window.SiteScene);
+  assert.notEqual(first.window.SiteScene, second.window.SiteScene);
+  first.window.SiteScene.navigate('research');
+  second.window.SiteScene.navigate('credits');
+  first.settle();
+  second.settle();
+  assert.notEqual(first.trace(), second.trace());
+  first.window.fixtureMarker = true;
+  assert.equal(second.window.fixtureMarker, undefined);
+  const secondDraws = second.draws(),
+    secondPending = [...second.pending.keys()];
+  first.frame();
+  first.scroll(800);
+  assert.equal(second.window.scrollY, 0);
+  assert.equal(second.draws(), secondDraws);
+  assert.deepEqual([...second.pending.keys()], secondPending);
+});
+test('visit globals and builtin prototypes cannot leak between realms or to the test process', () => {
+  const first = visit(),
+    second = visit();
+  const firstArray = vm.runInContext('Array', first.realm),
+    secondArray = vm.runInContext('Array', second.realm);
+  assert.notEqual(firstArray, secondArray);
+  assert.notEqual(firstArray, Array);
+  vm.runInContext(
+    'globalThis.issue126RealmMarker = true; Array.prototype.issue126RealmMarker = true;',
+    first.realm
+  );
+  assert.equal(vm.runInContext('globalThis.issue126RealmMarker', second.realm), undefined);
+  assert.equal(vm.runInContext('Array.prototype.issue126RealmMarker', second.realm), undefined);
+  assert.equal(globalThis.issue126RealmMarker, undefined);
+  assert.equal(Array.prototype.issue126RealmMarker, undefined);
+});
 test('all routes keep a stationary reading camera through forward and reverse native scroll', () => {
   for (const page of model.routeOrder) {
     const p = visit({ page });

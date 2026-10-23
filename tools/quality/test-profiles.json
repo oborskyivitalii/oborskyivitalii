@@ -443,7 +443,8 @@
         "site/analytics.json",
         "tools/site/analytics.cjs",
         "site/routes.json",
-        "tools/quality/artifact.cjs"
+        "tools/quality/artifact.cjs",
+        "review/issue-126/content-amendment.json"
       ]
     },
     {
@@ -504,7 +505,8 @@
         "LICENSE-CONTENT.md",
         "NOTICE.md",
         "tools/site/legal.cjs",
-        "docs/styles.css"
+        "docs/styles.css",
+        "review/issue-126/content-amendment.json"
       ]
     },
     {
@@ -2070,6 +2072,25 @@
         "tools/quality/serve.cjs",
         "tools/release/rights-record.cjs",
         "docs/**"
+      ]
+    },
+    {
+      "path": "tests/test_issue126_acceptance.py",
+      "language": "python",
+      "purpose": "DevCon public facts, preservation and exact reversible SEO deltas.",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": ["issue-policy"],
+      "disposition": "Owning issue126 only; permanent content/SEO coverage remains in its source profiles.",
+      "surviving_route": ".github/acceptance/issue-126.json",
+      "inputs": [
+        "tests/test_issue126_acceptance.py",
+        ".github/acceptance/issue-126.json",
+        "tests/content.test.cjs",
+        "tests/executive.test.cjs",
+        "tools/check_site_seo.cjs",
+        "review/issue-126/content-amendment.json",
+        "tools/quality/secrets-reviewed-checksums.json"
       ]
     }
   ]

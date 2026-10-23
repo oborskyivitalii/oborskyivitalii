@@ -2,7 +2,7 @@
   "schema": 1,
   "lang": "en",
   "title": "Talks & Workshops | Vitalii Oborskyi",
-  "description": "Upcoming UA Online PMDay 2027 Winter and the UA Online PMDay 2026 Autumn recording, plus talks and workshops on AI architecture and software delivery.",
+  "description": "Upcoming DevCon Romania 2026 and UA Online PMDay 2027 Winter, plus recordings and workshops on AI architecture and software delivery.",
   "structuredData": {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
