@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 126,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/126",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Accurate announcement",
+      "automated_scope": "Bounded source tests verify DevCon public facts, exact prior inventory, generated identity and named source guards only. They do not establish editorial, visual, independent, hosted, publication or chat delivery gates.",
+      "checks": ["EVENTS"],
+      "gates": ["EDITORIAL"]
+    },
+    {
+      "id": "AC02",
+      "intent": "Existing presentation and source ownership",
+      "automated_scope": "Bounded source tests verify DevCon public facts, exact prior inventory, generated identity and named source guards only. They do not establish editorial, visual, independent, hosted, publication or chat delivery gates.",
+      "checks": ["EVENTS", "BASIC", "STYLE", "CURRENT-RI", "RI-CI", "PUBLIC-CHECKSUMS"],
+      "gates": ["VISUAL"]
+    },
+    {
+      "id": "AC03",
+      "intent": "Independent reviewed PR and staging",
+      "automated_scope": "Bounded source tests verify DevCon public facts, exact prior inventory, generated identity and named source guards only. They do not establish editorial, visual, independent, hosted, publication or chat delivery gates.",
+      "checks": ["EVENTS"],
+      "gates": ["INDEPENDENT", "DELIVERY"]
+    },
+    {
+      "id": "AC04",
+      "intent": "Isolated production delivery",
+      "automated_scope": "Bounded source tests verify DevCon public facts, exact prior inventory, generated identity and named source guards only. They do not establish editorial, visual, independent, hosted, publication or chat delivery gates.",
+      "checks": ["EVENTS"],
+      "gates": ["DELIVERY"]
+    },
+    {
+      "id": "AC05",
+      "intent": "LinkedIn text",
+      "automated_scope": "Bounded source tests verify DevCon public facts, exact prior inventory, generated identity and named source guards only. They do not establish editorial, visual, independent, hosted, publication or chat delivery gates.",
+      "checks": [],
+      "gates": ["CHAT"]
+    }
+  ],
+  "checks": {
+    "EVENTS": {
+      "kind": "unittest",
+      "test": "test_issue126_acceptance.Issue126AcceptanceTests.test_announcement_facts_and_preservation"
+    },
+    "BASIC": {
+      "kind": "node-basic"
+    },
+    "STYLE": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "CURRENT-RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    },
+    "PUBLIC-CHECKSUMS": {
+      "kind": "unittest",
+      "test": "test_issue126_acceptance.Issue126AcceptanceTests.test_exact_public_checksums_and_predecessor"
+    }
+  },
+  "gates": {
+    "EDITORIAL": {
+      "kind": "human",
+      "description": "Compare exact candidate wording and schedule to official DevOps agenda; maintainer authorized preparing and publishing this bounded announcement."
+    },
+    "VISUAL": {
+      "kind": "human",
+      "description": "Actual desktop/narrow and no-JS review; record observer, source and limits."
+    },
+    "INDEPENDENT": {
+      "kind": "human",
+      "description": "Four distinct completed requirements, code, white-box and exploratory reviews of actual candidate, with correction dispositions."
+    },
+    "DELIVERY": {
+      "kind": "human",
+      "description": "Existing exact-head preview/staging/admission and identical-tree merge, source-bound production candidate/rights/archive and canonical live smoke; verify PR79 remains excluded at final activation."
+    },
+    "CHAT": {
+      "kind": "human",
+      "description": "Final English LinkedIn text shown in chat with direct URLs and hashtags; no actual post."
+    }
+  }
+}

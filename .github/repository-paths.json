@@ -91,6 +91,12 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
+    ".github/acceptance/issue-126.json": {
+      "kind": "file",
+      "purpose": "Issue126 observable announcement acceptance with separate independent, hosted and release gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     ".github/acceptance/issue-31.json": {
       "kind": "file",
       "purpose": "Cleanup AC01\u2013AC11 mapped to source-bound deterministic tests and separate readiness gates.",
@@ -679,6 +685,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/026421f9554e7318c8c1135a149ccdada2d8aadb0b17edf5aaf6e40711e80617": {
+      "kind": "directory",
+      "purpose": "Generated current Talks source snapshot; regenerated from canonical content and template owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/026421f9554e7318c8c1135a149ccdada2d8aadb0b17edf5aaf6e40711e80617/talks.html": {
+      "kind": "file",
+      "purpose": "Generated current Talks source snapshot; regenerated from canonical content and template owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2": {
       "kind": "directory",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
@@ -688,18 +706,6 @@
     "docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2/talks.html": {
       "kind": "file",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/11af1283547a9a057226c01f0d64e7ee888cbd19068ba5f11b3f1b27148d6c69": {
-      "kind": "directory",
-      "purpose": "Generated current Talks source snapshot; regenerated from canonical content and template owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/11af1283547a9a057226c01f0d64e7ee888cbd19068ba5f11b3f1b27148d6c69/talks.html": {
-      "kind": "file",
-      "purpose": "Generated current Talks source snapshot; regenerated from canonical content and template owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1254,6 +1260,24 @@
       "purpose": "Source-bound T03 rename-selection requirements, four-role review, regression and delivery evidence under issue122.",
       "role": "history",
       "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-126": {
+      "kind": "directory",
+      "purpose": "DevCon announcement source and review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-126/2026-10-23-announcement-review.md": {
+      "kind": "file",
+      "purpose": "DevCon announcement source-bound independent review, findings, QA cases and delivery status.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-126/content-amendment.json": {
+      "kind": "file",
+      "purpose": "Issue126 source-bound DevCon announcement review, factual provenance and exact reversible content delta.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     },
     "review/issue-31": {
       "kind": "directory",
@@ -8146,6 +8170,12 @@
     "tests/test_issue108_acceptance.py": {
       "kind": "file",
       "purpose": "Issue108 task-only adapter selecting maintained content and adversarial SEO cases.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "tests/test_issue126_acceptance.py": {
+      "kind": "file",
+      "purpose": "Owning issue126 adapter for DevCon public facts, prior-event preservation and bounded source checks.",
       "role": "test",
       "owner": ".github/ACCEPTANCE.md"
     },

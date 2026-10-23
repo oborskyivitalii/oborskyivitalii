@@ -52,7 +52,15 @@
     "T048": "I’ll be speaking at UA Online PMDay 2027 Winter, an online conference for the project management community. Explore the programme and registration details on the organiser’s website.",
     "T049": "Programme & registration ",
     "T050": "↗",
-    "T051": "Upcoming"
+    "T051": "Upcoming",
+    "T052": "DevCon Romania 2026 · DevOps Con",
+    "T053": "4 November 2026",
+    "T054": "12:30–13:00 · Bucharest time",
+    "T055": "AI Changes the Delivery System and the Product Itself",
+    "T056": "I’ll be speaking in Bucharest about two connected engineering shifts: AI can generate code faster than teams can understand, review and integrate it; and AI inside a product makes runtime judgment, human authority, fallback and recovery part of the design. The talk asks how we preserve engineering rigor across both.",
+    "T057": "Session & programme ",
+    "T058": "Upcoming",
+    "T059": "↗"
   },
   "attributes": {
     "A001": "Talk sections"
@@ -70,6 +78,7 @@
     "U010": "https://ua.linkedin.com/posts/pmday_we-are-glad-to-introduce-new-speaker-of-activity-7493632835547889664-67od",
     "U011": "index.html#contact",
     "U012": "#upcoming-talks",
-    "U013": "https://pmday.org/online"
+    "U013": "https://pmday.org/online",
+    "U014": "https://www.dev-con.ro/agenda/12-devops-con"
   }
 }

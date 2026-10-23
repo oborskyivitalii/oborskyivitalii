@@ -39,7 +39,8 @@ jobs:
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-58.json' ||
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-39.json' ||
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-41.json' ||
-          env.ACCEPTANCE_POLICY == '.github/acceptance/issue-108.json'
+          env.ACCEPTANCE_POLICY == '.github/acceptance/issue-108.json' ||
+          env.ACCEPTANCE_POLICY == '.github/acceptance/issue-126.json'
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
           python3 -m venv tools/quality/toolchain/venv

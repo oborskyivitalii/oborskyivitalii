@@ -356,7 +356,11 @@ test('Talks reconciliation rejects missing events, substituted sources and inven
     [['talks', 'pmday-recording']]
   );
   const html = restoreContentAmendment(
-    readHTML(path.join(__dirname, '../docs/talks.html')),
+    restoreContentAmendment(
+      readHTML(path.join(__dirname, '../docs/talks.html')),
+      'talks',
+      require('../review/issue-126/content-amendment.json')
+    ),
     'talks',
     require('../review/issue-108/content-amendment.json')
   );

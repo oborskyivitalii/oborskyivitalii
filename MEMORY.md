@@ -5,9 +5,10 @@ Dated continuity, not live authority. Last verified: **2026-10-23**.
 ## Snapshot
 
 - Current task: issue122 approved T03-R runtime correction in same Draft PR128.
-- Amendment baseline:e6969bf579a6a550286d7c2bd2105c2fe4dfbbff, tree29e51e62da6d693b5cda1340e9c33b7e47118f43; protected main1e87b124c8a7ca4fde4e8ede75dcdd1515b491ea unchanged.
+- Integrated protected mainf02da82add16e8ee1ad1771a4cce6367cab4540a (PR127/issue126 announcement and accepted fixture/worker/registry changes); earlier base1e87 is historical.
+- Main carries DevCon Talks announcement and its existing review/acceptance owners; preserve it while continuing issue122.
 - Current local correction snapshots post-cleanup per-batch viewport/scroll/focus for reconcile/upward enter; forward observer/queue order preserved.
-- Initial R reviews accepted; native8ec533f CI failed new complexity28/25 and missing reviewed Color bytes. Correcting necessary companions; no R stage yet.
+- Companion680ea/787630cb has four actual ACCEPT receipts,158 focused PASS and clean full lint PASS; its full50-module local route timed out180s. Integrating main before fresh CI; no R stage yet.
 - Versioned owner:review/issue-122/2026-10-23-t03-review.md; exact clean candidate identities follow in its role receipts and live PR.
 - Original owner stage39923213843/1 remains FAILED Writing213.5/200ms at0a76d07/e690.
 

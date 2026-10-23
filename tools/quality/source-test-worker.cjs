@@ -1,5 +1,5 @@
 'use strict';
-// Start the measured long source files early without changing their coverage.
+// Start measured long files early and use the reported capacity without changing coverage.
 const assert = require('node:assert/strict'),
   os = require('node:os'),
   { run } = require('node:test'),
@@ -49,7 +49,7 @@ function runFiles(files, { parallelism = os.availableParallelism() } = {}) {
   process.once('SIGINT', cancel);
   const stream = run({
     files: ordered,
-    concurrency: Math.max(parallelism - 1, 1),
+    concurrency: parallelism,
     isolation: 'process',
     cwd: process.cwd(),
     signal: controller.signal,
