@@ -4,38 +4,39 @@ Dated continuity, not live authority. Last verified: **2026-10-23**.
 
 ## Snapshot
 
-- Task: issue122 approved T03-D diagnostic amendment, same parked PR128.
-- Actual measured/reviewed source:a7cb083130e0dfd7c513974bcdb283c91d44fcf0, treef90469b63d520b8c843b09ee36d65c23f229ca75. Revalidate the later report-only PR head separately.
-- Main/base remains1e87b124c8a7ca4fde4e8ede75dcdd1515b491ea; no merge/production.
-- Native source647/647,48 modules,173739/180000ms; Navigation/Owning and preview smoke passed. Whole preview workflow admission failed separately.
-- Sole owner label event34039812946 selected diagnostic39936698976/1, writing-current job120357872391SUCCESS.
-- Artifact12493464462 SHA256840715314523c2a3506d8de546051c187aee65018aae60b424683570c4d82f17; all6 outcomes/18 raw files retained and verified.
-- Original owner stage39923213843/1 still FAILED Writing213.5/200ms at0a76d07/e690; no stage retry.
-- Versioned findings/independent receipts:review/issue-122/2026-10-23-t03-review.md; live issue122/PR128 retain exact links.
+- Current task: issue122 approved T03-R runtime correction in same Draft PR128.
+- Amendment baseline:e6969bf579a6a550286d7c2bd2105c2fe4dfbbff, tree29e51e62da6d693b5cda1340e9c33b7e47118f43; protected main1e87b124c8a7ca4fde4e8ede75dcdd1515b491ea unchanged.
+- Current local correction snapshots post-cleanup per-batch viewport/scroll/focus for reconcile/upward enter; forward observer/queue order preserved.
+- Focused scroll-entry/scroll-sync/navigation62/62 PASS; actual candidate reviews/current CI/changed-source owner stage remain pending.
+- Versioned owner:review/issue-122/2026-10-23-t03-review.md; exact clean candidate identities follow in its role receipts and live PR.
+- Original owner stage39923213843/1 remains FAILED Writing213.5/200ms at0a76d07/e690.
 
 ## Decisions
 
-- User approved T03-D with “Роби”; proposal6361063501, approval6362141962.
-- Existing opt-in route admits exactPR128 with owner actor AND sender; PR40 preserved. Four actual amended-candidate reviewers accepted before fresh CI/acquisition.
-- Fixed five ordinary plus one separate CPU-sampled protocol completed; fullGate/performanceAcceptance remain false. No favorable-run acceptance.
-- Diagnostic normalColor6d9f runtime differs from staged0144 namespace/HTML/CSS/origin; same normal parentbbf19f and byte-identical space/navigation/theme/archive JS were verified.
-- T03-D stops at diagnosis/report. Proposed T03-R viewport/focus snapshot correction is NOT implemented or approved; no runtime repair, stage retry, merge or production is authorized here.
+- User explicitly approved T03-R with “Роби”; scope/R01-R04 recorded in issuecomment6362847929 after completed T03-D findings6362696317.
+- Approved treatment: fresh native geometry/focus after layout-affecting cleanup, before per-unit arming writes; both callers, meaningful existing-owner regression and four independent roles.
+- One actual changed-source owner-stage validation/report follows successful source/review readiness, with original staging edition/cases/200ms TBT/2500ms LCP/CLS and other budgets.
+- No unchanged-source green-seeking retry, broader runtime change, merge or production is authorized by this increment.
+- Preserve Canvas, content/design, timing, source/profile/admission limits, inherited91-pin graph/advisory/scanner obligations and all history.
 
 ## Open work
 
-- Ordinary TBT123/245/123/100/97.5ms; second exceeds200. Separate sampled330.5ms is attribution, never pooled.
-- All6 traces AND failed hosted Writing trace contain82 style+82 layout passes at armReading viewport-height read, canonical site/engine/scroll-entry.cjs751. Canvas work remains; no sufficient gate fix proved.
-- Proposed bounded T03-R: snapshot geometry/focus after layout-affecting cleanup alongside native rectangles/pageBottom, before per-unit writes; audit reconcile/enter. Preserve focus, bottom, reverse/re-entry/cancellation and original performance/visual contracts.
-- T03.3/T03.5 and all wholeAC01-AC08 remain open. T03-D findings do not clear original stage/admission. AC05 actual producer enforcement remains unresolved beforeW3.
-- PR79/issue5 retain content ownership; T01/PR123,T02-P/PR125,T02/PR124 remain delivered history.
+- R01-R04 actual checkboxes pending whole evidence; T03.3/.5 and all wholeAC01-AC08 remain open. AC05 producer enforcement remains unresolved beforeW3.
+- Current tests observe post-cleanup values, no geometry reads after per-unit writes, fresh second events, exact fold/bottom/focus/hidden outcomes and preserved forward six-slot queue.
+- Complete candidate four roles, independent original-order fault detection, source/format/style/RI/policy and native CI/preview before one owner stage; retain every actual outcome.
+- T03-D is complete historical diagnosis: run39936698976/1 atclean a7cb083/f904, artifact12493464462 SHA840715314523c2a3506d8de546051c187aee65018aae60b424683570c4d82f17.
+- Ordinary diagnostic TBT123/245/123/100/97.5ms; separate sampled330.5ms. FullGate/performanceAcceptance false; no gate cleared.
+- All6 and failed hosted traces showed82 style+82 layout passes at canonical armReading viewport read. Correction sufficiency is not established until actual changed-source validation.
+- Diagnostic normalColor6d9f and staged0144 shared selected JS/parent but differed HTML/CSS/origin/analytics journey; never relabel old diagnostics as new staging evidence.
+- PR79/issue5 retains content ownership. T01/PR123,T02-P/PR125,T02/PR124 remain delivered history.
 
 ## Next session
 
-1. Fetch live issue122/PR128, actual main/head/tree and exact CI/diagnostic/review receipts; distinguish report-only head from measureda7cb source.
-2. Read T03-D findings/limits and proposed T03-R in the existing review owner; obtain a concrete maintainer decision before any new runtime implementation or owner-stage attempt.
-3. For an approved correction, requirements preflight, existing-owner behavioral/failure regression, four nonauthor roles and actual exact-source staging-edition validation retain unchanged budgets/cases and every outcome.
+1. Fetch live issue122/PR128, exact main/head/tree, working tree, four role receipts and current CI/stage runs; this memory is not live evidence.
+2. Continue approved T03-R through review/checks and one actual changed-source stage; distinguish measured candidate from later receipt/report-only heads.
+3. Reconcile R01-R04 against actual results and report before any new runtime scope, owner-stage retry, merge or production decision.
 
 ## Maintenance
 
-- Keep five sections and120-line cap; rebuild RI after indexed changes.
+- Keep five sections and120-line cap; regenerate site outputs from authored owners and rebuild/verify RI after indexed changes.
 - Git-backed website code is not duplicated into file storage.

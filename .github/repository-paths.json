@@ -67,6 +67,30 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
+    ".github/acceptance/issue-114.json": {
+      "kind": "file",
+      "purpose": "Issue114 bounded check mapping and separate per-iteration independent review, live linkage and merge gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    ".github/acceptance/issue-118.json": {
+      "kind": "file",
+      "purpose": "Issue118 bounded editorial hotfix acceptance and explicit delivery gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    ".github/acceptance/issue-120.json": {
+      "kind": "file",
+      "purpose": "Issue120 requirements, code-review and QA protocol acceptance: real routing checks with separate independent-role and delivery gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    ".github/acceptance/issue-122.json": {
+      "kind": "file",
+      "purpose": "Issue122 delivery-lane AC mapping: retained selection checks, T02 semantic contract review and pending lane, trust, independent-review and delivery gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     ".github/acceptance/issue-31.json": {
       "kind": "file",
       "purpose": "Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates.",
@@ -523,6 +547,78 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17": {
+      "kind": "directory",
+      "purpose": "Generated public rendition; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/archive.js": {
+      "kind": "file",
+      "purpose": "Generated public rendition; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/navigation.js": {
+      "kind": "file",
+      "purpose": "Generated public rendition; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/space.js": {
+      "kind": "file",
+      "purpose": "Generated public rendition; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/styles.css": {
+      "kind": "file",
+      "purpose": "Generated public rendition; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/theme.js": {
+      "kind": "file",
+      "purpose": "Generated public rendition; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/7604acb000e98d9e8820c87053c9744356f8aa68b732ebe4c19a4345e817ccea": {
+      "kind": "directory",
+      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/7604acb000e98d9e8820c87053c9744356f8aa68b732ebe4c19a4345e817ccea/archive.js": {
+      "kind": "file",
+      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/7604acb000e98d9e8820c87053c9744356f8aa68b732ebe4c19a4345e817ccea/navigation.js": {
+      "kind": "file",
+      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/7604acb000e98d9e8820c87053c9744356f8aa68b732ebe4c19a4345e817ccea/space.js": {
+      "kind": "file",
+      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/7604acb000e98d9e8820c87053c9744356f8aa68b732ebe4c19a4345e817ccea/styles.css": {
+      "kind": "file",
+      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/7604acb000e98d9e8820c87053c9744356f8aa68b732ebe4c19a4345e817ccea/theme.js": {
+      "kind": "file",
+      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff": {
       "kind": "directory",
       "purpose": "Generated public output identity directory; owned by the site producer.",
@@ -571,42 +667,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb": {
-      "kind": "directory",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/archive.js": {
-      "kind": "file",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/navigation.js": {
-      "kind": "file",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/space.js": {
-      "kind": "file",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/styles.css": {
-      "kind": "file",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/theme.js": {
-      "kind": "file",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/site-revision.json": {
       "kind": "file",
       "purpose": "Generated public rendition: site-revision.json; regenerate from site sources with tools/site/build.cjs.",
@@ -619,37 +679,37 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/00e9983902da0753636080176e9160e00c10db2fe9701d24d3f43b0658809d4c": {
+    "docs/snapshots/00ab394feb8d290486b7efd137272b43477700a24404c6974e2c1443dc498d28": {
       "kind": "directory",
       "purpose": "Generated public output identity directory; owned by the site producer.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/00e9983902da0753636080176e9160e00c10db2fe9701d24d3f43b0658809d4c/writing.html": {
+    "docs/snapshots/00ab394feb8d290486b7efd137272b43477700a24404c6974e2c1443dc498d28/writing.html": {
       "kind": "file",
       "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/13609512e7913f036f6181d4109cd767349c90f05721e99182a67be58ec1d8cb": {
+    "docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2": {
       "kind": "directory",
-      "purpose": "Generated current Talks source snapshot; regenerated from canonical content and template owners.",
+      "purpose": "Generated public rendition; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/13609512e7913f036f6181d4109cd767349c90f05721e99182a67be58ec1d8cb/talks.html": {
+    "docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2/talks.html": {
       "kind": "file",
-      "purpose": "Generated current Talks source snapshot; regenerated from canonical content and template owners.",
+      "purpose": "Generated public rendition; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/20770049df1b80e9ae9d71fa06268905068742dfd58f8b2dc81460013f504e60": {
+    "docs/snapshots/2f3b8294252cead12f538cf6d4237bd3b46d35a3bcc2ed13f1f3a6266e8e0fcc": {
       "kind": "directory",
       "purpose": "Generated public output identity directory; owned by the site producer.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/20770049df1b80e9ae9d71fa06268905068742dfd58f8b2dc81460013f504e60/credits.html": {
+    "docs/snapshots/2f3b8294252cead12f538cf6d4237bd3b46d35a3bcc2ed13f1f3a6266e8e0fcc/credits.html": {
       "kind": "file",
       "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
       "role": "generated",
@@ -664,6 +724,30 @@
     "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/65adc410173d1b2f58d8e949a4a20bc5366a259b1e29cf516c7ef2785a0bab4a": {
+      "kind": "directory",
+      "purpose": "Generated immutable public route snapshot directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/65adc410173d1b2f58d8e949a4a20bc5366a259b1e29cf516c7ef2785a0bab4a/index.html": {
+      "kind": "file",
+      "purpose": "Generated exact-route HTML snapshot; regenerate from canonical content.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed": {
+      "kind": "directory",
+      "purpose": "Generated public rendition; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed/research.html": {
+      "kind": "file",
+      "purpose": "Generated public rendition; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -703,6 +787,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700": {
+      "kind": "directory",
+      "purpose": "Generated public rendition; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700/credits.html": {
+      "kind": "file",
+      "purpose": "Generated public rendition; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -712,6 +808,54 @@
     "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/b57f1dcb99f70ff2df6f748de084f2793f992f438a03c798a30b891c8f9e6461": {
+      "kind": "directory",
+      "purpose": "Generated public rendition; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/b57f1dcb99f70ff2df6f748de084f2793f992f438a03c798a30b891c8f9e6461/writing.html": {
+      "kind": "file",
+      "purpose": "Generated public rendition; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/b9209aff96591bcf3f00580dda6a08c7fd282a873f27208dd4329d79b0e65407": {
+      "kind": "directory",
+      "purpose": "Generated immutable public route snapshot directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/b9209aff96591bcf3f00580dda6a08c7fd282a873f27208dd4329d79b0e65407/research.html": {
+      "kind": "file",
+      "purpose": "Generated exact-route HTML snapshot; regenerate from canonical content.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920": {
+      "kind": "directory",
+      "purpose": "Generated public rendition; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920/index.html": {
+      "kind": "file",
+      "purpose": "Generated public rendition; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/c623fd82b5d683751c302f98de03869991764f71382129897b4173234aa2a245": {
+      "kind": "directory",
+      "purpose": "Generated current Talks source snapshot; regenerated from canonical content and template owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/c623fd82b5d683751c302f98de03869991764f71382129897b4173234aa2a245/talks.html": {
+      "kind": "file",
+      "purpose": "Generated current Talks source snapshot; regenerated from canonical content and template owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1032,6 +1176,84 @@
       "purpose": "Issue108 exact PMDay event content amendment and source/delivery self-review.",
       "role": "history",
       "owner": "site/README.md"
+    },
+    "review/issue-114": {
+      "kind": "directory",
+      "purpose": "Issue114 independent iteration-review rule implementation and source-bound review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-114/2026-10-20-review.md": {
+      "kind": "file",
+      "purpose": "Dated issue114 intent, exact reviewed candidate, independent reviewer findings and integration evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-118": {
+      "kind": "directory",
+      "purpose": "Issue118 first-name editorial hotfix review and source-bound evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-118/2026-10-21-public-checksum-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Exact path/type/value public checksum and verified predecessor-byte proof for bounded secret dispositions.",
+      "role": "history",
+      "owner": "guides/SITE-RELEASE-GATES.md"
+    },
+    "review/issue-118/2026-10-21-review.md": {
+      "kind": "file",
+      "purpose": "Issue118 exact editorial scope, independent iteration review and delivery evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-118/content-amendment.json": {
+      "kind": "file",
+      "purpose": "Exact hash-bound three-fragment first-name amendment for frozen SEO reconciliation.",
+      "role": "history",
+      "owner": "guides/SITE-SEO.md"
+    },
+    "review/issue-120": {
+      "kind": "directory",
+      "purpose": "Issue120 independent quality-agent integration, role receipts and source-bound acceptance evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-120/2026-10-22-review.md": {
+      "kind": "file",
+      "purpose": "Dated issue120 requirements preflight, independent code/QA role evidence, test-design mapping and delivery status.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-122": {
+      "kind": "directory",
+      "purpose": "Issue122 atomic delivery-lane increments, independent quality-agent reviews and source-bound acceptance evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-122/2026-10-22-t01-review.md": {
+      "kind": "file",
+      "purpose": "T01 exact review-template selection correction, independent test oracles, role receipts and normal main-delivery evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-122/2026-10-22-t02-review.md": {
+      "kind": "file",
+      "purpose": "T02 routing/observation contract, live capability disposition, independent role receipts and source-bound delivery evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-122/2026-10-22-t02p-review.md": {
+      "kind": "file",
+      "purpose": "Issue122 approved T02-P dependency repair, exact compatibility evidence, independent quality-role reviews and delivery boundaries.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-122/2026-10-23-t03-review.md": {
+      "kind": "file",
+      "purpose": "Source-bound T03 rename-selection requirements, four-role review, regression and delivery evidence under issue122.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "review/issue-31": {
       "kind": "directory",
@@ -6909,7 +7131,7 @@
     },
     "site/engine/scroll-entry.cjs": {
       "kind": "file",
-      "purpose": "Bounded native reading and route-block controller with one global effect control, stable shells, CSS layers, cancellation and visible fallback.",
+      "purpose": "Bounded native reading and route-block controller with one global effect control, stable shells, CSS layers, cancellation and visible fallback. Issue122 T03-R uses post-cleanup per-batch geometry/focus and behavioral read/write-order, fresh-event and forward-queue regressions.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -7003,6 +7225,54 @@
       "role": "history",
       "owner": "site/README.md"
     },
+    "site/retained/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17": {
+      "kind": "directory",
+      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/archive.js": {
+      "kind": "file",
+      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/navigation.js": {
+      "kind": "file",
+      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/space.js": {
+      "kind": "file",
+      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/styles.css": {
+      "kind": "file",
+      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/theme.js": {
+      "kind": "file",
+      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff": {
+      "kind": "directory",
+      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff/analytics.js": {
+      "kind": "file",
+      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
     "site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62": {
       "kind": "directory",
       "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
@@ -7045,6 +7315,18 @@
       "role": "history",
       "owner": "site/README.md"
     },
+    "site/retained/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2": {
+      "kind": "directory",
+      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2/talks.html": {
+      "kind": "file",
+      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
     "site/retained/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347": {
       "kind": "directory",
       "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
@@ -7054,6 +7336,18 @@
     "site/retained/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html": {
       "kind": "file",
       "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed": {
+      "kind": "directory",
+      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed/research.html": {
+      "kind": "file",
+      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
       "role": "history",
       "owner": "site/README.md"
     },
@@ -7093,6 +7387,18 @@
       "role": "history",
       "owner": "site/README.md"
     },
+    "site/retained/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700": {
+      "kind": "directory",
+      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700/credits.html": {
+      "kind": "file",
+      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
     "site/retained/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7": {
       "kind": "directory",
       "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
@@ -7102,6 +7408,30 @@
     "site/retained/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html": {
       "kind": "file",
       "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/b57f1dcb99f70ff2df6f748de084f2793f992f438a03c798a30b891c8f9e6461": {
+      "kind": "directory",
+      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/b57f1dcb99f70ff2df6f748de084f2793f992f438a03c798a30b891c8f9e6461/writing.html": {
+      "kind": "file",
+      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920": {
+      "kind": "directory",
+      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920/index.html": {
+      "kind": "file",
+      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
       "role": "history",
       "owner": "site/README.md"
     },
@@ -7737,7 +8067,7 @@
     },
     "tests/scroll-entry.test.cjs": {
       "kind": "file",
-      "purpose": "Serialized native reading-entry lifecycle, one-shot/jump/tall/cap/stagger and readable fallback behavioral contracts.",
+      "purpose": "Serialized native reading-entry lifecycle, one-shot/jump/tall/cap/stagger and readable fallback behavioral contracts. Issue122 T03-R uses post-cleanup per-batch geometry/focus and behavioral read/write-order, fresh-event and forward-queue regressions.",
       "role": "test",
       "owner": "site/README.md"
     },
@@ -8946,336 +9276,6 @@
       "purpose": "Protected source/artifact/controller/PR lease validation before hosted action.",
       "role": "source",
       "owner": "guides/SITE-STAGING.md"
-    },
-    ".github/acceptance/issue-114.json": {
-      "kind": "file",
-      "purpose": "Issue114 bounded check mapping and separate per-iteration independent review, live linkage and merge gates.",
-      "role": "configuration",
-      "owner": ".github/ACCEPTANCE.md"
-    },
-    "review/issue-114": {
-      "kind": "directory",
-      "purpose": "Issue114 independent iteration-review rule implementation and source-bound review evidence.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/issue-114/2026-10-20-review.md": {
-      "kind": "file",
-      "purpose": "Dated issue114 intent, exact reviewed candidate, independent reviewer findings and integration evidence.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    ".github/acceptance/issue-118.json": {
-      "kind": "file",
-      "purpose": "Issue118 bounded editorial hotfix acceptance and explicit delivery gates.",
-      "role": "configuration",
-      "owner": ".github/ACCEPTANCE.md"
-    },
-    "docs/snapshots/5dd746e6ccc007fa2464072118285d240a10465eaff83b54161f49cf06a039c6": {
-      "kind": "directory",
-      "purpose": "Generated immutable public route snapshot directory.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/5dd746e6ccc007fa2464072118285d240a10465eaff83b54161f49cf06a039c6/index.html": {
-      "kind": "file",
-      "purpose": "Generated exact-route HTML snapshot; regenerate from canonical content.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/759a672c82ef8c659b92d66843e8a8f5dfff286b535e0733e3441c02d219ffa1": {
-      "kind": "directory",
-      "purpose": "Generated immutable public route snapshot directory.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/759a672c82ef8c659b92d66843e8a8f5dfff286b535e0733e3441c02d219ffa1/research.html": {
-      "kind": "file",
-      "purpose": "Generated exact-route HTML snapshot; regenerate from canonical content.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "review/issue-118": {
-      "kind": "directory",
-      "purpose": "Issue118 first-name editorial hotfix review and source-bound evidence.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/issue-118/2026-10-21-review.md": {
-      "kind": "file",
-      "purpose": "Issue118 exact editorial scope, independent iteration review and delivery evidence.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "docs/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17": {
-      "kind": "directory",
-      "purpose": "Generated public rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/archive.js": {
-      "kind": "file",
-      "purpose": "Generated public rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/navigation.js": {
-      "kind": "file",
-      "purpose": "Generated public rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/space.js": {
-      "kind": "file",
-      "purpose": "Generated public rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/styles.css": {
-      "kind": "file",
-      "purpose": "Generated public rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/theme.js": {
-      "kind": "file",
-      "purpose": "Generated public rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2": {
-      "kind": "directory",
-      "purpose": "Generated public rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2/talks.html": {
-      "kind": "file",
-      "purpose": "Generated public rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed": {
-      "kind": "directory",
-      "purpose": "Generated public rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed/research.html": {
-      "kind": "file",
-      "purpose": "Generated public rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700": {
-      "kind": "directory",
-      "purpose": "Generated public rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700/credits.html": {
-      "kind": "file",
-      "purpose": "Generated public rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/b57f1dcb99f70ff2df6f748de084f2793f992f438a03c798a30b891c8f9e6461": {
-      "kind": "directory",
-      "purpose": "Generated public rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/b57f1dcb99f70ff2df6f748de084f2793f992f438a03c798a30b891c8f9e6461/writing.html": {
-      "kind": "file",
-      "purpose": "Generated public rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920": {
-      "kind": "directory",
-      "purpose": "Generated public rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920/index.html": {
-      "kind": "file",
-      "purpose": "Generated public rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "site/retained/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17": {
-      "kind": "directory",
-      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
-      "role": "history",
-      "owner": "site/README.md"
-    },
-    "site/retained/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/archive.js": {
-      "kind": "file",
-      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
-      "role": "history",
-      "owner": "site/README.md"
-    },
-    "site/retained/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/navigation.js": {
-      "kind": "file",
-      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
-      "role": "history",
-      "owner": "site/README.md"
-    },
-    "site/retained/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/space.js": {
-      "kind": "file",
-      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
-      "role": "history",
-      "owner": "site/README.md"
-    },
-    "site/retained/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/styles.css": {
-      "kind": "file",
-      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
-      "role": "history",
-      "owner": "site/README.md"
-    },
-    "site/retained/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/theme.js": {
-      "kind": "file",
-      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
-      "role": "history",
-      "owner": "site/README.md"
-    },
-    "site/retained/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff": {
-      "kind": "directory",
-      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
-      "role": "history",
-      "owner": "site/README.md"
-    },
-    "site/retained/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff/analytics.js": {
-      "kind": "file",
-      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
-      "role": "history",
-      "owner": "site/README.md"
-    },
-    "site/retained/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2": {
-      "kind": "directory",
-      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
-      "role": "history",
-      "owner": "site/README.md"
-    },
-    "site/retained/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2/talks.html": {
-      "kind": "file",
-      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
-      "role": "history",
-      "owner": "site/README.md"
-    },
-    "site/retained/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed": {
-      "kind": "directory",
-      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
-      "role": "history",
-      "owner": "site/README.md"
-    },
-    "site/retained/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed/research.html": {
-      "kind": "file",
-      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
-      "role": "history",
-      "owner": "site/README.md"
-    },
-    "site/retained/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700": {
-      "kind": "directory",
-      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
-      "role": "history",
-      "owner": "site/README.md"
-    },
-    "site/retained/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700/credits.html": {
-      "kind": "file",
-      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
-      "role": "history",
-      "owner": "site/README.md"
-    },
-    "site/retained/snapshots/b57f1dcb99f70ff2df6f748de084f2793f992f438a03c798a30b891c8f9e6461": {
-      "kind": "directory",
-      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
-      "role": "history",
-      "owner": "site/README.md"
-    },
-    "site/retained/snapshots/b57f1dcb99f70ff2df6f748de084f2793f992f438a03c798a30b891c8f9e6461/writing.html": {
-      "kind": "file",
-      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
-      "role": "history",
-      "owner": "site/README.md"
-    },
-    "site/retained/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920": {
-      "kind": "directory",
-      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
-      "role": "history",
-      "owner": "site/README.md"
-    },
-    "site/retained/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920/index.html": {
-      "kind": "file",
-      "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
-      "role": "history",
-      "owner": "site/README.md"
-    },
-    "review/issue-118/content-amendment.json": {
-      "kind": "file",
-      "purpose": "Exact hash-bound three-fragment first-name amendment for frozen SEO reconciliation.",
-      "role": "history",
-      "owner": "guides/SITE-SEO.md"
-    },
-    "review/issue-118/2026-10-21-public-checksum-proof.json.gz": {
-      "kind": "file",
-      "purpose": "Exact path/type/value public checksum and verified predecessor-byte proof for bounded secret dispositions.",
-      "role": "history",
-      "owner": "guides/SITE-RELEASE-GATES.md"
-    },
-    ".github/acceptance/issue-120.json": {
-      "kind": "file",
-      "purpose": "Issue120 requirements, code-review and QA protocol acceptance: real routing checks with separate independent-role and delivery gates.",
-      "role": "configuration",
-      "owner": ".github/ACCEPTANCE.md"
-    },
-    "review/issue-120": {
-      "kind": "directory",
-      "purpose": "Issue120 independent quality-agent integration, role receipts and source-bound acceptance evidence.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/issue-120/2026-10-22-review.md": {
-      "kind": "file",
-      "purpose": "Dated issue120 requirements preflight, independent code/QA role evidence, test-design mapping and delivery status.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    ".github/acceptance/issue-122.json": {
-      "kind": "file",
-      "purpose": "Issue122 delivery-lane AC mapping: retained selection checks, T02 semantic contract review and pending lane, trust, independent-review and delivery gates.",
-      "role": "configuration",
-      "owner": ".github/ACCEPTANCE.md"
-    },
-    "review/issue-122": {
-      "kind": "directory",
-      "purpose": "Issue122 atomic delivery-lane increments, independent quality-agent reviews and source-bound acceptance evidence.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/issue-122/2026-10-22-t02-review.md": {
-      "kind": "file",
-      "purpose": "T02 routing/observation contract, live capability disposition, independent role receipts and source-bound delivery evidence.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/issue-122/2026-10-22-t01-review.md": {
-      "kind": "file",
-      "purpose": "T01 exact review-template selection correction, independent test oracles, role receipts and normal main-delivery evidence.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/issue-122/2026-10-22-t02p-review.md": {
-      "kind": "file",
-      "purpose": "Issue122 approved T02-P dependency repair, exact compatibility evidence, independent quality-role reviews and delivery boundaries.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/issue-122/2026-10-23-t03-review.md": {
-      "kind": "file",
-      "purpose": "Source-bound T03 rename-selection requirements, four-role review, regression and delivery evidence under issue122.",
-      "role": "history",
-      "owner": "guides/SITE-CHECK-PROFILES.md"
     }
   }
 }

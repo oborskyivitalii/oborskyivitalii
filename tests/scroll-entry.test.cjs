@@ -337,6 +337,177 @@ test('reconciliation snapshots native page extent once for all reading candidate
   assert.equal(h.state(20), 'waiting');
 });
 
+function readingBatchProbe(h) {
+  const events = [];
+  let writing = false;
+  function read(name) {
+    events.push({ kind: 'read', name, writing });
+  }
+  for (const [owner, name] of [
+    [h.window, 'innerHeight'],
+    [h.window, 'scrollY'],
+    [h.document, 'activeElement'],
+    [h.document.documentElement, 'scrollHeight'],
+  ]) {
+    let value = owner[name];
+    Object.defineProperty(owner, name, {
+      configurable: true,
+      get() {
+        read(name);
+        return value;
+      },
+      set(next) {
+        value = next;
+      },
+    });
+  }
+  for (const element of h.elements) {
+    for (const name of ['getBoundingClientRect', 'getClientRects']) {
+      const original = element[name];
+      element[name] = (...args) => {
+        read(name);
+        return original(...args);
+      };
+    }
+    const setAttribute = element.setAttribute;
+    element.setAttribute = (name, value) => {
+      if (name === 'data-scroll-entry' && value === 'waiting') {
+        writing = true;
+        events.push({ kind: 'arm', element });
+      }
+      return setAttribute(name, value);
+    };
+  }
+  return {
+    events,
+    reset() {
+      writing = false;
+      events.length = 0;
+    },
+    verify() {
+      assert.ok(events.filter((entry) => entry.kind === 'arm').length >= 2);
+      assert.deepEqual(
+        events.filter((entry) => entry.kind === 'read' && entry.writing),
+        [],
+        'native geometry/focus reads must precede the per-unit arming writes'
+      );
+      const cleanup = events.findIndex((entry) => entry.kind === 'cleanup-complete');
+      for (const name of ['innerHeight', 'activeElement', 'scrollHeight'])
+        assert.equal(
+          events.slice(cleanup + 1).filter((entry) => entry.kind === 'read' && entry.name === name)
+            .length,
+          1,
+          name + ' is one fresh snapshot for the batch'
+        );
+    },
+  };
+}
+
+test('reconciliation uses fresh post-cleanup geometry and focus before all arming writes', () => {
+  const h = harness();
+  const probe = readingBatchProbe(h);
+  const focus = [{}, {}];
+  h.elements[2].contains = (node) => node === focus[0];
+  h.elements[4].contains = (node) => node === focus[1];
+  [100, 800, 900, 1000, 1100, 1400, 1450, 1200].forEach((top, index) => {
+    h.elements[index].top = top;
+  });
+  h.elements[3].hidden = true;
+  const cleanup = h.elements[7].removeAttribute;
+  let next;
+  h.elements[7].removeAttribute = (name) => {
+    cleanup(name);
+    if (name !== 'data-scroll-delay' || !next) return;
+    const values = next;
+    next = null;
+    h.window.innerHeight = values.height;
+    h.window.scrollY = values.scrollY;
+    h.document.activeElement = values.focus;
+    h.document.documentElement.scrollHeight = values.bottom;
+    probe.events.push({ kind: 'cleanup-complete' });
+  };
+  for (const [values, expected] of [
+    [
+      { height: 700, scrollY: 100, focus: focus[0], bottom: 1820 },
+      [undefined, 'waiting', undefined, undefined, 'waiting', undefined, undefined, 'waiting'],
+    ],
+    [
+      { height: 650, scrollY: 200, focus: focus[1], bottom: 2420 },
+      [undefined, undefined, 'waiting', undefined, undefined, 'waiting', 'waiting', 'waiting'],
+    ],
+  ]) {
+    probe.reset();
+    next = values;
+    h.window.emit('resize');
+    h.task(0);
+    assert.equal(next, null, 'cleanup changed the native geometry before this measurement');
+    assert.deepEqual(
+      h.elements.map((_, index) => h.state(index)),
+      expected
+    );
+    probe.verify();
+    const boundary = probe.events.findIndex((entry) => entry.kind === 'cleanup-complete');
+    for (const name of ['innerHeight', 'scrollY', 'activeElement', 'scrollHeight']) {
+      const first = probe.events.findIndex((entry) => entry.kind === 'read' && entry.name === name);
+      assert.ok(first > boundary, name + ' must use the post-cleanup value');
+    }
+  }
+  h.controller.destroy();
+});
+
+test('upward rearming batches cleanup and fresh native reads before multiple unit writes', () => {
+  const h = harness();
+  const probe = readingBatchProbe(h);
+  const focused = {};
+  h.elements[3].contains = (node) => node === focused;
+  const cleanup = h.elements[4].removeAttribute;
+  let next;
+  h.elements[4].removeAttribute = (name) => {
+    cleanup(name);
+    if (name !== 'data-scroll-delay' || !next) return;
+    const values = next;
+    next = null;
+    h.window.innerHeight = values.height;
+    h.window.scrollY = values.scrollY;
+    h.document.activeElement = values.focus;
+    probe.events.push({ kind: 'cleanup-complete' });
+  };
+  for (const [values, expected] of [
+    [{ height: 700, scrollY: 100, focus: focused }, ['waiting', 'waiting', undefined, 'waiting']],
+    [{ height: 650, scrollY: 200, focus: null }, [undefined, 'waiting', 'waiting', 'waiting']],
+  ]) {
+    h.scroll(400);
+    h.scroll(0);
+    [800, 900, 1000, 1100].forEach((top, index) => {
+      h.elements[index + 1].top = top;
+    });
+    // Observer rectangles are captured before callback cleanup/scroll anchoring.
+    const entries = [1, 2, 3, 4].map((index) => ({
+      target: h.elements[index],
+      isIntersecting: false,
+      boundingClientRect: { top: 2000, bottom: 2300 },
+    }));
+    probe.reset();
+    next = values;
+    h.observers.at(-1).callback(entries);
+    assert.equal(next, null);
+    assert.deepEqual([1, 2, 3, 4].map(h.state), expected);
+    probe.verify();
+    const boundary = probe.events.findIndex((entry) => entry.kind === 'cleanup-complete');
+    for (const name of [
+      'scrollY',
+      'activeElement',
+      'scrollHeight',
+      'getBoundingClientRect',
+      'getClientRects',
+    ]) {
+      const first = probe.events.findIndex((entry) => entry.kind === 'read' && entry.name === name);
+      assert.ok(first > boundary, name + ' must follow every exited-state cleanup');
+    }
+  }
+  h.controller.destroy();
+});
+
 test('entry repeats on every full downward re-entry and never animates upward', () => {
   const h = harness();
   for (let pass = 0; pass < 4; pass++) {
@@ -438,6 +609,31 @@ test('dense ordinary entries queue instead of consuming the excess and keep six 
   h.task(2000);
   assert.equal(h.controller.diagnostics().active, 0);
   assert.equal(h.tasks.size, 0);
+});
+
+test('forward mixed observer entries preserve queue order while an active shell exits', () => {
+  const h = harness({ count: 10 });
+  h.elements.forEach((element, index) => {
+    element.top = 1000 + index * 8;
+    element.height = 24;
+  });
+  h.window.emit('resize');
+  h.task(0);
+  h.scroll(200);
+  h.intersect([1, 2, 3, 4, 5, 6]);
+  h.elements[1].top = 0;
+  h.observers.at(-1).callback([
+    { target: h.elements[7], isIntersecting: true },
+    { target: h.elements[1], isIntersecting: false },
+  ]);
+  assert.equal(h.state(7), 'waiting', 'the first crossing saw all six occupied slots');
+  assert.equal(h.state(1), undefined);
+  assert.equal(h.controller.diagnostics().active, 5);
+  h.tick(900);
+  h.root.emit('animationend', { animationName: 'scroll-entry-rise', target: h.elements[2] });
+  assert.equal(h.state(7), 'entering', 'normal completion drains the preserved queued crossing');
+  assert.equal(h.controller.diagnostics().active, 5);
+  h.controller.destroy();
 });
 
 test('queued entries settle on watchdog failure, upward interruption and native jumps', () => {
