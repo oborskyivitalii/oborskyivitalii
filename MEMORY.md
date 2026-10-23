@@ -4,33 +4,31 @@ Dated continuity, not live authority. Last verified: **2026-10-23**.
 
 ## Snapshot
 
-- Issue122/PR128 originalR04 ownerstage39962246236/1 whole SUCCESS13:51:43Z. Measured cleanb467e151b6a2f9ee2d0fd7176d832c461cd5aa6f/tree8ca5855f0f0ac0d52d1dbc6696908202ed4191ff; protectedmain/controllercc67a209 unchanged.
-- Research single mobile1907.2965msLCP/40msTBT/0CLS; Writing1668.312ms/118.5ms/0 PASS original2500/200/.1. Raw2mobile JSON/traces authenticated. armReading0/0, readingViewport1/1 in both; old failed+6diagnostic armReading82/82 historical. No general performance guarantee.
-- Native26/26prepub,47modules647/647147517ms,Python121incl9,91pins/147deps/4overrides/security/advisories PASS. All7report hashes authenticated;6journeys/2navigation/10failure/7analytics/8windows/4flights/2mobile/2Color complete.
-- Stable exactb467/publicd8914729/package1480562b verified1readiness attempt; promote120450639520/controlleradmission120451235386 SUCCESS. Whole17m55s includesqueue/setup, not15min.
-- BootstrapPR130 delivered protectedmaincc67,tested8c3fa30b/treed559,stage39952774218,eligible39955383275,postmerge39955744615. PR129retained30/rights/checksum/registry closure preserved.
+- Issue122 T03 delivered by PR128: tested6d2bd63/tree d5f5da1, actual protected main e6ee49696c0cdeaf70bbe72c803281682c7de83d/tree d5f5da1adc83df31a720e2e042ccfaa00c4856e5. All T03.1-.5 and R01-R04 complete; whole AC01-08 remain open.
+- Current-head stage39972503855/1, eligible PR admission39975171739/1, owning39975171660/1, postmerge identity39975383796/1 and actual-main Navigation39975382849/1 SUCCESS. Complete-tree/public-package preservation authenticated; full report issuecomment6368061067, PRcomment6368076700.
+- Stage native26/26,47modules647/647144471ms,Python121incl9/security/advisories pass. Research mobile1578.8115LCP/15TBT/0CLS; Writing2110.1985/28/0 under original2500/200/.1. Original setup cancellation39968640807 retained separately; no budget/pin/scanner/test waiver.
+- T04 user approved “Роби” after concrete observation-only one-PR proposal/status. Approval/scope issuecomment6368310693; base e6/tree d5. Branch work/issue-122-t04-observer; new PR/source/native check identities must be read live.
 
 ## Decisions
 
-- Approval6364038870 permits prerequisite delivery then PR128 integration/currentchecks and its originalR04/report; no PR128 merge/production. Sole originalR04 is spent; no green-seeking retry.
-- Actual824scan5062 left180generatedpublicchecksums across29paths, source-proved into publication1681 preserving1501orderedrows/all3otherledgers. Clean finalb467 native5063candidates allreviewed; no scanner/input/limit/profile/case/budget waiver.
-- Four actual integration/correction roles plus publishedb467 metadata-delta assessments accepted. AC04 scope4344 exceeded unchanged4000 bound; approved equivalent3977 validates. Failed history retained.
-- AGENTS15 requires this postrun report/MEMORY/RI handoff. Its later report head is different from stagedb467; unchanged code cannot transfer strict admission to that new head.
+- T04 implements the canonical D01-D10/version1 planned observer, real-Git CLI and separate read-only native workflow alongside existing CI. Existing B/R/O/H, required contexts and protected delivery stay mandatory. No W3/protection transition, new publisher, reuse or production.
+- Explicit policy SHA independently supplied; all consulted policy/implementation bytes pinned, actual producer verified against committed implementation. First release may use candidate policy/local-input, never protected-base enforcement.
+- Preserve base/policy/candidate registry obligations and both endpoint rights dependencies. Well-formed unsupported types conservative; unsafe/malformed/unavailable/incomplete inputs invalid. All authority flags false, all obligations planned/null evidence, acceptedSite/history null.
+- Separate requirements preflight /root/t04_requirements completed on e6; five identity/pre-change/type/CI/subset findings resolved as design dispositions before implementation. Completed-candidate four distinct reviews and any material correction rechecks remain required.
 
 ## Open work
 
-- Four actual independent R04 report reviews ACCEPT on2cdd/tree89aa; verbatim receipts retained. Current2cdd mapped4checks/style/format/RI/map PASS. Final report-only source/nativeCI and issue reconciliation are in livePR128/issue122; do not assume their state from this dated checkpoint. Report head remains unstaged.
-- R01–R04 scoped implementation/validation/report supported by measuredb467 and four actual report reviews; final checkbox/CI state must be read live. T03.3 current-head delivery controls,T03.5 merge/postmerge and wholeAC01–AC08 stayopen. AC05 enforcement unresolved beforeW3.
-- Canonical owner:review/issue-122/2026-10-23-t03-review.md. Authenticated originalR04 artifacts12504778622/12505461914/12506775371/12506057631/12505444643 recorded there.
-- Old Writing213.5/200ms failure and ordinary123/245/123/100/97.5 plus separate330.5 remain historical, not a pooled baseline.
+- Canonical T04 owner review/issue-122/2026-10-23-t04-review.md; source implementation/test/guide/registry/RI/acceptance companions are in progress. No candidate tests/reviews/native observations/delivery pass is implied by this checkpoint.
+- Finish deterministic companions; commit and run real-Git regressions on exact committed producer (uncommitted producer must fail). Publish one Draft PR with Refs #122; four actual roles inspect completed source; resolve findings before Ready/current delivery.
+- Full actual T04 source/CI/preview/owner-stage/eligible-admission/protected merge/postmerge/reconciliation remain pending. Whole AC01-08, actual cheaper lanes/trusted AC05 enforcement and content issue5/PR79 remain open. PR79 Draft0717bd4 unchanged.
 
 ## Next session
 
-1. Revalidate live main/PR/source/tree/checks/stage/reviews; this dated handoff is not authority.
-2. Verify final authorized report/check/reconciliation in liveissue/PR, distinguishing measured/report identities.
-3. Propose boundedT03.5 separately: later report head needs current stage/admission before protected merge/postmerge. No new stage,merge or production authorized here.
+1. Revalidate live main/issue/PR/source/checks; do not infer current state from this dated handoff.
+2. Continue the already approved T04 through required reviews/checks/delivery without asking again for its scope. Do not start W3/production.
+3. Record actual evidence and all failures in the T04 review/issue/PR; reconcile T04.1-.5 only when whole conditions pass, then report/propose the next bounded step.
 
 ## Maintenance
 
-- Preserve5sections/120lines and canonical RI/map freshness. Report-only iteration changes no runtime/public/test/ledger.
-- Automated maintenance removed original workspace; recoveredGit/tmp/t03r-recovered-repo,active/tmp/t03r-runtime. Pinned Node24.19/Python3.12.14/91packages in ignored paths; rawnativeZIPs/tmp/r04-*.
+- Keep five sections/120 lines; rebuild RI and verify coupling after source/catalog/policy/guide edits. Refresh before final stage freeze; use factual issue/PR receipts for poststage facts to preserve tested complete tree.
+- Active Git /tmp/t03r-runtime; common Git /tmp/t03r-recovered-repo. Pinned Node24.19/Python3.12.14 and full ignored toolchain survive. Previous native evidence /tmp/t035b-* and /tmp/t035-postmerge. Git-backed work needs no duplicate artifact storage.

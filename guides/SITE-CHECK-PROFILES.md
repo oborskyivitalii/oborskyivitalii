@@ -244,11 +244,54 @@ verification; other public metadata hashes use exact reviewed baseline entries.
 
 ## Delivery routing and observation contract
 
-Contract version: **1, observation design only**. This is the canonical decision
+Contract version: **1, observation only**. This is the canonical decision
 matrix and report interface for issue122. [SITE-STAGING](SITE-STAGING.md#observation-does-not-admit-delivery)
 owns operational interpretation and the producer activation prerequisite. No
-classifier, new report producer, cheaper merge route or content publisher is
-activated by this contract. Issue5/PR79 retains the unfinished content route.
+cheaper merge route or content publisher is activated. The T04 executable below
+implements planned observations; issue5/PR79 retains the unfinished content route.
+
+### Executable planned observer
+
+`tools/quality/delivery-observation.cjs` emits the version1 planned-obligation
+subset. Supply full immutable IDs explicitly and save outside both checkouts:
+
+```sh
+node tools/quality/delivery-observation.cjs --base BASE_SHA --head HEAD_SHA --policy POLICY_SHA --out /tmp/delivery-observation
+```
+
+Replace each SHA with its resolved 40-character commit ID. The target defaults
+to the executing checkout; `--repo /absolute/checkout` selects another clean
+checkout whose HEAD must equal the candidate. The producer revision is the actual
+executing implementation, independently verified against committed bytes.
+`--policy` is mandatory and independently supplied: its implementation bytes
+must equal that producer. The first-release CI deliberately supplies candidate
+policy; it is an observation, not trusted-base admission. Policy files bind all
+consulted decision/configuration owners at that revision. Base/candidate registry
+and rights snapshots are endpoint data read from their exact Git objects; the
+pre-change union survives candidate removal of a mapping or provenance dependency.
+
+Collection uses bounded `git diff --raw -z --no-abbrev --no-renames` with external
+diff/text conversion disabled, retaining complete A/D sides instead of guessing
+rename/copy similarity. Copy-with-source-retained is an addition. Symlinks/gitlinks
+are not followed. Each Git invocation has a 30-second/32-MiB ceiling; exhaustion
+or incomplete output is invalid, never a complete empty plan. Original stdout
+and stderr are retained as base64 in `collector.json` and bound by its byte hash.
+`observation.json` retains identities, records, reasons and required obligations.
+
+The observer executes no reported command and ingests no result/decision evidence.
+All obligations remain planned with null evidence, including hosted work; prior
+site reuse is not evaluated (`acceptedSite` and `history` are null). Invalid input
+exits1 with diagnostics; conservative and no-change are valid analyses, never
+delivery passes. Prospective merge conflicts/unavailable configured external
+merge drivers remain explicit and cannot establish compatibility.
+
+`.github/workflows/delivery-observation.yml` retains candidate-policy observations
+on PR lifecycle events, including Drafts, alongside existing CI. Its check has no
+admission authority. Existing B/R/O/H, required contexts, original budgets and
+staging/promotion remain unchanged. Actions metadata identifies this actual
+observer workflow/run/attempt; local input never claims GitHub-protected authority.
+The broader lifecycle/evidence/reuse interface below remains a future producer
+contract; this CLI cannot accept supplied passed/stale/cancelled evidence.
 
 Four dimensions remain separate:
 
@@ -310,8 +353,8 @@ proposed lane. An invalid input is not a conservative successful classification.
 
 ### Observation report fields
 
-This defines a future JSON interface, not an emitted artifact or installed JSON
-schema. The existing source selector collects `git diff --no-renames --name-only -z`:
+This defines the version1 interface; T04 emits its planned subset above, without
+an installed competing schema. The existing source selector collects `git diff --no-renames --name-only -z`:
 a move retains both deleted and added paths, independent of `diff.renames` settings,
 while a copy with its source unchanged adds only the destination. It unions their
 registry-owned obligations; its plan is not this status/mode-aware report. The advisory
@@ -451,8 +494,8 @@ actions remain owned by
 
 ### Worked decisions and future test oracles
 
-These are semantic walkthroughs for independent review and the next approved
-implementation, not executed classifier tests. Route keys and owners refer to
+These are semantic walkthroughs and independent implementation oracles. Actual
+T04 executions and limits belong to its source-bound review record. Route keys and owners refer to
 the matrix above; every applicable current B/R/O/H obligation stays visible.
 
 | Case | Required report/decision | Existing coverage and remaining proof |
@@ -469,8 +512,9 @@ the matrix above; every applicable current B/R/O/H obligation stays visible.
 | New failed/cancelled attempt or moved head/base after green | Preserve earlier evidence historically; current obligation is failed/cancelled/stale and the next action follows the current retry/revalidation rule. | Existing `prototype-admission`/staging-trust lease and attempt negatives; no reuse across identities or attempts. |
 | Accepted site S, repository merge M, then content C | Keep S's source/tree/public/package identity; inspect the complete S-to-C history, including all merge-parent sides and intermediate control/rights/site changes. Missing history or incompatible inputs require fresh website validation. | Current merge observer proves identical complete trees only. Compatible-history reuse/content release is not implemented by this contract. |
 
-Semantic review of these cases is T02 evidence. Mechanical RI/style checks prove
+Semantic review of these cases is T02 evidence; it is distinct from T04 execution.
+Mechanical RI/style checks prove
 only their stated subsets; keyword tests do not establish contract completeness.
 QA findings feed the existing test-allocation route above. Implementing the
-observer, proving protected admission and measuring real lane savings require
-separately approved increments; all whole issue122 ACs remain open.
+protected admission and measuring real lane savings require separately approved
+increments; all whole issue122 ACs remain open.

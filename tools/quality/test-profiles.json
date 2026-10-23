@@ -1276,7 +1276,7 @@
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
       "profiles": ["issue-policy"],
-      "disposition": "owning issue41 policy only; AC01\u2013AC06 and manual gates preserved, AC07\u2013AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17\u2013AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure",
+      "disposition": "owning issue41 policy only; AC01–AC06 and manual gates preserved, AC07–AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17–AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure",
       "surviving_route": ".github/acceptance/issue-41.json",
       "inputs": [
         "tests/test_issue41_acceptance.py",
@@ -2095,6 +2095,23 @@
         "site/retained/**",
         "site/rights.json"
       ]
+    },
+    {
+      "path": "tests/delivery-observation.test.cjs",
+      "language": "javascript",
+      "lifecycle": "permanent",
+      "purpose": "Complete real-Git observation identities, dependency unions, conservative/invalid inputs and no-authority report regressions.",
+      "owner": "tools/quality/delivery-observation.cjs",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "inputs": [
+        "tests/delivery-observation.test.cjs",
+        "tools/quality/delivery-*.cjs",
+        ".github/workflows/delivery-observation.yml",
+        "guides/SITE-CHECK-PROFILES.md",
+        "guides/SITE-STAGING.md"
+      ],
+      "disposition": "Independent real-Git observer invariants complement the names-only source selector; no delivery authority or evidence reuse.",
+      "surviving_route": "Basic changed-source and permanent staging/production source profiles; observation-only workflow has its own native report."
     }
   ]
 }

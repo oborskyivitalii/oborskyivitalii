@@ -388,6 +388,24 @@
         "ri-freshness",
         "ri-ci-regressions"
       ]
+    },
+    {
+      "id": "delivery-observation",
+      "purpose": "Observation-only complete Git routing reports with explicit policy/producer identity and retained planned obligations; existing admission remains required.",
+      "paths": [
+        ".github/workflows/delivery-observation.yml",
+        "tools/quality/delivery-json.cjs",
+        "tools/quality/delivery-git.cjs",
+        "tools/quality/delivery-routing.cjs",
+        "tools/quality/delivery-observation.cjs",
+        "tests/delivery-observation.test.cjs"
+      ],
+      "checks": [
+        "delivery-observation",
+        "site-basic",
+        "test-profile-regressions",
+        "acceptance-policy"
+      ]
     }
   ],
   "checks": [
@@ -560,11 +578,29 @@
       "job": "checks",
       "argv": ["node", "tools/quality/architecture.cjs"],
       "event_scope": "ready-pr"
+    },
+    {
+      "id": "delivery-observation",
+      "workflow": ".github/workflows/delivery-observation.yml",
+      "job": "observe",
+      "argv": [
+        "node",
+        "tools/quality/delivery-observation.cjs",
+        "--base",
+        "$OBSERVATION_BASE",
+        "--head",
+        "$OBSERVATION_HEAD",
+        "--policy",
+        "$OBSERVATION_HEAD",
+        "--out",
+        "$RUNNER_TEMP/delivery-observation"
+      ],
+      "event_scope": "all-pr"
     }
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "a8ce132d2585307ae2f4c4aa9b493fffb69df3bf8e79ce7f5c48e14e0006fe77",
+    "digest": "4fcca88af9d3531c1503f14aceba3377af892d82280817a7937a41ea2a23ba07",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -604,7 +640,7 @@
       },
       {
         "path": ".github/acceptance/issue-122.json",
-        "sha256": "0ccc71dde9745aa3a5325bcf380be79f280dde6cee6799fbf07c82b14d7c5ec5"
+        "sha256": "de6a3c8d108a14f71dbf4923013059fb845396da79789ff88477c87233828dd8"
       },
       {
         "path": ".github/acceptance/issue-126.json",
@@ -700,7 +736,11 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "c54b1490043414db30d5768adb771165a34ffbf80b0ac02b7d038a3fbd12a9a5"
+        "sha256": "335974669a0cef44cb7195189996202137578fc7b9fcc8577f2df0feab8aebc0"
+      },
+      {
+        "path": ".github/workflows/delivery-observation.yml",
+        "sha256": "7dec4ce43784fabdde0e245f067030ad9d52d45b0b8b5e65b7446c04c0593481"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -796,7 +836,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "e2149840bf1b0eccc938b8401f5487990f63379a2726d225060ba3f211e6215e"
+        "sha256": "2b75499d882c4161fd8d01517d82182f0ae436d8effd899fc369387a6c95b23d"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -912,7 +952,7 @@
       },
       {
         "path": "tests/test_ri_ci.py",
-        "sha256": "b2e9b67e7a4f0f97809e7a32b6e754c440fe10b8d7d411566a1208eff12c446d"
+        "sha256": "6ebbc6ee4512c1128eaa419d4778dd19a16fa8e672f074fac0042a2a3eded7d5"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -952,7 +992,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "ed564a56556aab9e39d9e14bf5c42487b8c44b97ebc3bc5c2b913a8f9eb88115"
+        "sha256": "9ead4bf69ade77ee9c28f74fffc330dbba7717f57af0bd3221f20c687cbcc7f7"
       },
       {
         "path": "tools/repository_intelligence.py",
