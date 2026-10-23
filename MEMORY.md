@@ -24,6 +24,10 @@ Dated continuity, not live authority. Last verified: **2026-10-23**.
 - Four distinct roles inspected source/artifacts and corrections. See the current
   review for their original conclusions, bounded tests and exact selected source.
   Older R23 preview/CI receipts do not establish current R26 hosted acceptance.
+- Intermediate 4ad4cbd clean policy failed 5/12 checks; original JSON is retained.
+  Print identity requires canonical docs/preview/bundle regeneration and exact
+  Color tuples with unchanged browser bytes and mandatory rights. Final receipt
+  must report the corrected commit, all checks and independent delta review.
 
 ## Decisions
 

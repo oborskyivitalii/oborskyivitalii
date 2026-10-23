@@ -13,6 +13,10 @@ of this increment. The final committed-source policy and remote delivery receipt
 belong to the linked PR/issue checkpoint. Prepared checks below are not relabelled
 as a clean commit or hosted admission.
 
+The first committed-source policy on `4ad4cbd030c2fd8a96e09fabaebb176d144acd7e`
+failed five checks. The follow-up integration correction and original complete
+report are recorded below; this intermediate commit is not a passing final source.
+
 ## Intent and acceptance
 
 The author requested continuation in the existing repository PR: preserve the
@@ -197,7 +201,7 @@ style/evidence mapping; issue2 retains editorial/publication authority.
 - RI/CI coupling regressions: **20/20 pass**.
 - RI build/verify: **1,669 files and 184 directories**, fresh generated views.
 - RI/CI coupling: **15 checks / 13 layers**, current maintained-source digest.
-- Existing Basic preparation check: **pass**, including 16 theme/archive and 10 flight cases. The final clean owning policy reruns Basic on its exact commit.
+- Initial Basic preparation check: **pass**, including 16 theme/archive and 10 flight cases. It predates the final shared-print identity synchronization and does not establish final-source Basic success; the first clean policy failure is recorded below.
 - `git diff --check`: pass. Pinned formatting passes for touched authored CSS, publication/profile/edition JSON, existing test and path catalog. The producer-refreshed RI/CI map preserves its existing formatting; a broader formatter check also warned on the unchanged baseline map, so it is not reported as a whole-file formatter pass.
 - The final clean issue5 policy's **12 named checks** and remote ref/readback remain a subsequent commit-bound PR receipt, not a fabricated prepared-state observation.
 
@@ -229,3 +233,146 @@ independent artifact exploration. The selected 21-page PDF retains two cosmetic
 Chromium outline-label duplicates with correct targets. Whole release gates stay
 with their original owners; the final committed-source check/readback will be recorded
 in the subsequent PR and issue checkpoint.
+
+## First clean-policy failure and bounded integration correction
+
+The original complete [first clean-policy JSON](2026-10-23-r26-first-policy.json.gz)
+is preserved with lossless gzip compression. Decompressed SHA256:
+`0ed73ac7303c8a0d8df578c6e97470418fce5decda32341b48d9d0a0f6b893e1`.
+It binds clean intermediate commit `4ad4cbd030c2fd8a96e09fabaebb176d144acd7e`,
+tree `a147dee754f68a310a9c493770950acdd2c3608d`, unchanged issue5 policy
+`27ad8e1dd6f328c5cfeebd48b572abc365e9fdd9c3296be06ea6bd0f4c451429`
+and runner `c4d98db96844f19d73e4f66d389d3c54b5f0eead60029395d77d970c18950a97`.
+Evidence is valid; automation is **7/12 PASS**, not successful acceptance.
+
+| Failed check | Actual first result | Bounded correction or final obligation |
+| --- | --- | --- |
+| BASIC | Tracked default pages and immutable runtime/snapshots still referenced the preceding engine identity. | Run the canonical site build, preview generator and offline-bundle manifest generator; reconcile their generated path inventory. |
+| READER | The unchanged ten-file selection exceeded its unchanged 180-second timeout. | Preserve the failed attempt; run the complete unchanged policy with recorded four-CPU affinity and no concurrent benchmark. This scheduling choice is not a success claim. |
+| DELIVERY | The actual publication-package CLI rejected the new exact Color engine fingerprint. | Add only the three exact review-print tuples and unchanged byte-family flags, plus the mandatory licensed-rights entries. Preserve every prior tuple and all guard algorithms. |
+| WRITING-CATALOG | Canonical locked Python helper was missing. | Install the exact owning-workflow prerequisites in the expected toolchain paths. |
+| CONTENT-LANES | Missing espree/yaml/Python helpers and staged/current engine mismatch. | Install locked npm/Python prerequisites and synchronize canonical generated inputs. |
+
+The installed prerequisites follow the existing issue-acceptance workflow:
+`npm ci --prefix tools/quality/toolchain --ignore-scripts`, then the local Python
+venv with ruff 0.16.10, PyYAML 6.0.3, packaging 26.3 and Pillow 13.0.0. Tests,
+timeouts, assertions, policy checks and resource budgets are not relaxed.
+
+Requirements and Code/Artifact reviewers independently traced the dependency
+before implementation. The engine fingerprint covers every `site/engine` input;
+only the already reviewed `article-print.css` differs from the preceding engine.
+Browser assembly excludes that print stylesheet. All five emitted browser files
+remain byte-identical to the preceding `issue5ReaderCpu` family in each edition.
+The exact additive family is `issue5ReviewPrint`:
+
+| Identity | SHA256 |
+| --- | --- |
+| Base engine | `7373993efca8ba40ab7e30805ee156e975f842a3b1e122c17e6ebcdc1b73bcff` |
+| Plain Color | `3bf38f00aa57eda569e085da8e6a2d59187dfd12cfa68b370ab27cf29a372688` |
+| Staging Color | `3398b3711463015cd67800d7b477ac5603b056941c111a2a5c151cd6074039e2` |
+| Production Color | `9c559ba9789cdaf5f083c6ec461d2660f4cb98e754b4b8b678fd629b4b3ab602` |
+
+The existing table-driven cases are extended to the new family: actual native
+plain/staging/production closure, exact edition/base identity, unknown fingerprint,
+all five canonical/immutable/both byte substitutions, reader evidence and missing
+mandatory rights. Current-source fixture ids are synchronized; historical CPU and
+earlier family cases remain. No live production or historical acceptance is granted
+by these additional declarations. The manuscript, launch, native kit, PDF and public
+ZIP remain unchanged. Final delta reviews, regenerated RI and the subsequent clean
+commit policy/readback remain explicit obligations until their actual receipts.
+
+## Independent follow-up correction receipts
+
+The following are the original separate roles’ conclusions for the dependent integration correction. Their prepared-source scope and final-policy limitations are retained.
+
+### Code / Artifact delta
+
+**PASS for the bounded R26 integration correction after `4ad4cbd030c2fd8a96e09fabaebb176d144acd7e`.** I independently inspected the frozen seven-file source patch, canonical generated outputs, catalog/RI metadata, preserved first-failure report and R26 artifact boundary. The frozen source/generated/catalog inventory is `8c00e35b961192ec4ef6bff7540baf0877294f3681afd1fad78c84008a7c19ea`.
+
+The new `issue5ReviewPrint` family and its three exact edition identities match independent derivation from the native producer. All five browser files match the prior CPU family byte-for-byte in each edition. Every earlier tuple and guard algorithm is retained. The three licensed-runtime entries keep mandatory rights admission; direct selection and missing-rights-before-file-access checks passed for the new actual byte maps. Current-source fixture expectations are synchronized, while historical cases remain and existing identity, edition, byte-tamper, rights and reader-evidence cases expand to the new family.
+
+I executed the native site, preview and offline-bundle `--check` commands successfully and checked whitespace. The five public aliases, five active snapshots and all fifteen page previews change only their exact derived identity fields; the preview gallery is unchanged. Embedded offline-page hashes verify against their page bytes. Catalog changes replace sixteen obsolete generated records with sixteen current records under the same roles/owners and add one history-owned failed-policy archive; existing surviving entries are unchanged. All 96 coupling inputs and all 1,668 RI content-input hashes matched current files. I also read the actual corrected Basic result and the 29/29 RI and 20/20 coupling regression receipts; these are prepared-source observations.
+
+All eight original R26 source-owner hashes and all five public package files remain unchanged. Reopening the native ZIP verified its exact 34-member inventory, all 33 declared outputs, all 11 current source inputs and all 16 producer inputs. Both native PDF copies equal the public 21-page PDF. The added gzip decompresses byte-for-byte to the original failed clean policy, preserving its 7/12 result and exact source identity. No private recovery material or correspondence was introduced in this delta.
+
+No blocking Code/Artifact finding remains. The two previously disclosed native bookmark-label duplicates remain low cosmetic limitations with correct targets. Final exact clean-policy/remote readback and the existing editorial, native-editor, device, rights and release gates remain separate; this review does not declare them passed. Forthcoming verbatim receipts and deterministic RI refresh need only a metadata-freshness readback if the reviewed source/artifact bytes remain unchanged.
+
+### White-box delta
+
+**PASS for the prepared bounded correction.** This is separate from the first failed full owning-policy run and does not override it. Review took place over clean parent commit `4ad4cbd030c2fd8a96e09fabaebb176d144acd7e` with the correction still in the working tree; diagnostic artifacts explicitly record `sourceDirty: true`. This role made no repository edits, ran no full policy or broader release-controller/rights suite, and performed no upload/deployment.
+
+Executed the existing full `color-motion-contract.test.cjs`, `staging-regression.test.cjs` and `article-browser-evidence.test.cjs` suites together: **56 tests passed, 0 failed, 0 skipped**, in 5.644 seconds. This includes the refreshed native current-closure case and the existing data-driven byte-lineage/negative/mandatory-rights cases extended to the new exact family. Log: `/tmp/r26-whitebox-color-delta-tests.log`.
+
+An independent native `build.build({all:true})` into a temporary directory exactly reproduced **all tracked default `docs` output bytes and `site/output-lock.json`**. The five canonical browser runtime files (`theme.js`, `space.js`, `archive.js`, `navigation.js`, `styles.css`) remain byte-identical to baseline `0717bd4ad2d27786a068c2046b775691cc452acd`. The print stylesheet legitimately changes the all-engine identity to `7373993efca8ba40ab7e30805ee156e975f842a3b1e122c17e6ebcdc1b73bcff` without changing those browser bytes.
+
+Independently built and read back three local diagnostic Color closures through the existing native builders:
+
+| Edition | Selected exact runtime | Actual fingerprint |
+|---|---|---|
+| Plain | `issue5-review-print-plain` | `3bf38f00aa57eda569e085da8e6a2d59187dfd12cfa68b370ab27cf29a372688` |
+| Staging | `issue5-review-print-staging` | `3398b3711463015cd67800d7b477ac5603b056941c111a2a5c151cd6074039e2` |
+| Production-format diagnostic | `issue5-review-print-production` | `9c559ba9789cdaf5f083c6ec461d2660f4cb98e754b4b8b678fd629b4b3ab602` |
+
+For each closure, native artifact verification passed. All five browser files were checked at both canonical and immutable paths (**30 actual byte/hash checks across three editions**). Each edition's five-file hash map exactly matches its `issue5-reader-cpu` predecessor; only the explicitly reviewed identity changes. All **124 historical runtime contracts** were independently compared with the baseline module and remain unchanged.
+
+Direct mutations of these actual generated manifests exercised **57 rejection cases**: all five browser files tampered at canonical, immutable and both locations; missing mandatory publication rights before file access; unknown fingerprint; conflicting base engine; and wrong edition, repeated across all three editions. Every mutation was rejected by the existing precise guard. This demonstrates admission remains exact rather than relying only on copied expected literals. The direct mutation checks are additional observations, not inflated Node test-case counts.
+
+The selected R26 PDF and review ZIP remain unchanged: PDF SHA-256 `cac17363fd3b0d4005f6a849e293397a8271b0dd980261f4db5fc35558fa50fd`; ZIP SHA-256 `47303dc4e2084827681f08df16d010194b318e9a88a59b6d81389955d0c00709`. Diagnostic closures remain under `/tmp/r26-whitebox-native-color-SJ1VVy`; summary `/tmp/r26-whitebox-color-delta-observations.json`.
+
+No open defect found in this bounded correction. The cumulative independent selected suites now have **117 TAP-counted passing cases / 102 top-level tests** across successful runs. The original full-policy timeout and other failures remain recorded in `/tmp/r26-clean-acceptance-first.json`. A final clean-source owning-policy/Basic/RI/CI run is still required; none is inferred from this prepared-state delta. The documented four-core affinity option preserves the tests and original 180-second deadline and remains a disclosed environment choice, not a guarantee of acceptance.
+
+### Requirements delta
+
+**PASS for the bounded prepared integration correction. R26.1–R26.7 remain satisfied within their previously recorded scope and limitations; R26.8 remains pending the final clean-policy result and remote PR/issue readback.**
+
+I inspected the additive `issue5ReviewPrint` family, its three exact edition records, mandatory-rights additions, current-fixture updates and generated-document changes. The existing selection, edition, canonical-byte and immutable-byte guards remain intact. I independently confirmed that all five canonical browser runtime files are byte-identical to the preceding source; the manuscript, print CSS, delivered Markdown, selected PDF and public ZIP are unchanged; and all 30 prior candidate/edition files remain exact. The selected native kit’s 11 source and 16 producer hashes still match current owners.
+
+I reconciled the separate White-box evidence: 56 passing existing test cases, three actual native Color closures, 30 canonical/immutable file comparisons, 124 unchanged historical contracts and 57 rejected adversarial mutations. Those remain that role’s executions. The policy, runner and test wrapper—including the original timeout—are unchanged.
+
+The archived first-policy gzip decompresses exactly to SHA256 `0ed73ac7303c8a0d8df578c6e97470418fce5decda32341b48d9d0a0f6b893e1`. The review correctly preserves its five failures and labels `4ad4cbd` as an intermediate source. No further correction is requested by this role. Prepared results do not establish final policy success, hosted/controller admission, rights clearance, publication or merge.
+
+The inspected eight-owner correction snapshot is `faa17a82faec55df292e2f7d77b3a8d5db3551209e635e5db29e95efbd609607`.
+
+### Exploratory integration delta
+
+Reviewer: `/root/r26_exploratory_qa`, separate nonimplementing exploratory/interaction role. Date: 23 October 2026. Scope: bounded follow-up after native regeneration of default documents/previews and the exact engine-family registration. No repository sources or tests were edited by this reviewer.
+
+## Candidate and outcome
+
+**PASS for the inspected local integration delta. No new blocking finding.** This is prepared working-tree evidence above `4ad4cbd030c2fd8a96e09fabaebb176d144acd7e`; it is not hosted, release or performance acceptance.
+
+The default generated engine identity changes from `f25ab5a57a12f3c428957ca79e7e82e99bd480799646a218b9fda34934ffcc10` to `7373993efca8ba40ab7e30805ee156e975f842a3b1e122c17e6ebcdc1b73bcff`. I independently compared the real generated documents and browser assets, then observed the native local surface. The registry and mandatory-rights additions are covered by the separate code and white-box roles, not claimed as my execution.
+
+## Actual observations
+
+| Surface / risk | Executed action and independent oracle | Result |
+| --- | --- | --- |
+| Default route content | Compare generated Home, Research, Writing, Talks and Credits to the clean baseline | All five `<main>` bodies are byte-identical. Whole default HTML is identical after substituting only the observed engine/route identities. R26 remains absent from all five default bodies. |
+| Browser asset substitution | Compare all five files in the old/new fingerprinted runtime directories | `archive.js`, `navigation.js`, `space.js`, `styles.css` and `theme.js` are byte-identical. The new resource directory does not contain different browser behavior. |
+| Preview body drift | Compare all 15 Day/Night/interactive route copies plus their existing index page | Main bodies are byte-identical to baseline. All non-digest bytes are identical. Changed digest contexts are engine/content/route identity and embedded route-output checksums; no changed prose, markup or runtime code was found. |
+| Native fallback and paint | Serve baseline and regenerated local documents separately; load all five routes with JavaScript disabled at 1440×900 and capture the first viewport | All five before/after screenshot pairs are pixel-identical. I visually inspected their combined overview: native content, navigation, portrait and reading surfaces remain visible and readable. This is first-viewport visual evidence, not a whole-page visual audit. |
+| Actual navigation and new linked resources | In a fresh local Chromium browser, follow Home → Research → Writing → Talks → Credits → Home using the real links; wait for the expected new route identity and visible main | All five transitions pass. Each route shows its expected heading, visible main and complete requested images; R26 remains absent. No page errors or local server resource 404s occurred. This was a reduced-motion local observation, not a new animation/performance campaign. |
+| Native R26 artifacts | Independently hash the retained PDF and public kit ZIP | PDF SHA256 remains `cac17363fd3b0d4005f6a849e293397a8271b0dd980261f4db5fc35558fa50fd` (1,409,937 bytes); ZIP remains `47303dc4e2084827681f08df16d010194b318e9a88a59b6d81389955d0c00709` (6,513,698 bytes). The already-reviewed kit `e6d32f0ab08d2d1c84f3f08a808ea1e31e1d2488965c18d9f74cbdd54ae00060` and its artifact findings are unchanged. |
+
+The first combined browser harness completed the five native before/after captures and opened the fixed Day previews, but the review Chromium closed when the harness tried to create a new context after closing its first context. That run did not establish the JavaScript navigation result. I retried only that phase in a fresh browser; the bounded five-transition observation completed successfully. I did not change product code or count the failed browser lifecycle as an application pass. Both browsers and the local servers were closed before handing back for final policy execution.
+
+## Original artifact findings retained
+
+The original independent R26 artifact report remains applicable to the byte-identical PDF/ZIP: readable corrected tables, all four figures and concise provenance/history, 49 numeric citation targets, 23 Contents targets, valid bookmark destinations and successful local copy-ready transfers. Its two repeated native outline labels remain the same explicit low-severity limitation. The rejected inline-block heading experiment and its resolved pagination regressions are not reintroduced by this integration delta.
+
+## Evidence and limits
+
+- `/tmp/r26-exploratory-integration-static.json`: actual default-body, runtime and retained-artifact comparisons.
+- `/tmp/r26-exploratory-integration-preview-identity.json`: all preview comparisons and exact changed digest contexts.
+- `/tmp/r26-exploratory-integration/raster-delta.json`, ten native screenshots and `native-after-overview.png`: pixel comparison and visual observation.
+- `/tmp/r26-exploratory-integration/navigation.json`: successful local route observations, image completion and empty page/server error lists.
+
+Environment: installed Playwright 1.63.0 with the explicitly identified review Chromium 153.0.8010.0 on local Linux. No hosted URL was tested or published. No physical-device, native LinkedIn/Medium editor, screen-reader, full browser matrix, performance, production or whole author/rights acceptance is claimed. External destinations were not opened. The byte comparisons support the inference that this regeneration changes identities rather than the five default route surfaces; the actual local observations cover the bounded scenarios above, not every possible interaction.
+
+## Corrected prepared-source repository checkpoint
+
+The corrected Basic run passes its existing 16 theme/archive and 10 flight cases, generated-source, geometry, script, snapshot and size checks. The required RI regressions pass **29/29** (13.958 seconds); RI/CI regressions pass **20/20** (1.249 seconds). The source formatter reports all seven changed code/test files and the catalog unchanged under pinned Prettier 3.6.2. Worktree and index whitespace checks pass.
+
+After staging the canonical generated-path replacements, RI covers **1,670 files and 184 directories**; its generated views are fresh. RI/CI retains **15 checks and 13 layers**. These observations and all four independent correction receipts precede the final commit. The last deterministic metadata refresh binds the completed receipts; it does not change the reviewed source, native package or browser bytes.
+
+The next exact-clean full policy is run under recorded `taskset -c 0-3` CPU affinity with every selected test and the original 180-second child deadline retained, after independent browser work has stopped. Its actual commit, tree, complete JSON result and remote PR/issue readback belong in the linked final PR receipt. This section does not predict or claim that result; original whole-issue gates remain unchanged.

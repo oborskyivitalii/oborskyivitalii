@@ -625,37 +625,37 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/f25ab5a57a12f3c428957ca79e7e82e99bd480799646a218b9fda34934ffcc10": {
+    "docs/runtime/7373993efca8ba40ab7e30805ee156e975f842a3b1e122c17e6ebcdc1b73bcff": {
       "kind": "directory",
       "purpose": "Generated immutable site runtime or route snapshot.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/f25ab5a57a12f3c428957ca79e7e82e99bd480799646a218b9fda34934ffcc10/archive.js": {
+    "docs/runtime/7373993efca8ba40ab7e30805ee156e975f842a3b1e122c17e6ebcdc1b73bcff/archive.js": {
       "kind": "file",
       "purpose": "Generated immutable site runtime or route snapshot.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/f25ab5a57a12f3c428957ca79e7e82e99bd480799646a218b9fda34934ffcc10/navigation.js": {
+    "docs/runtime/7373993efca8ba40ab7e30805ee156e975f842a3b1e122c17e6ebcdc1b73bcff/navigation.js": {
       "kind": "file",
       "purpose": "Generated immutable site runtime or route snapshot.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/f25ab5a57a12f3c428957ca79e7e82e99bd480799646a218b9fda34934ffcc10/space.js": {
+    "docs/runtime/7373993efca8ba40ab7e30805ee156e975f842a3b1e122c17e6ebcdc1b73bcff/space.js": {
       "kind": "file",
       "purpose": "Generated immutable site runtime or route snapshot.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/f25ab5a57a12f3c428957ca79e7e82e99bd480799646a218b9fda34934ffcc10/styles.css": {
+    "docs/runtime/7373993efca8ba40ab7e30805ee156e975f842a3b1e122c17e6ebcdc1b73bcff/styles.css": {
       "kind": "file",
       "purpose": "Generated immutable site runtime or route snapshot.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/f25ab5a57a12f3c428957ca79e7e82e99bd480799646a218b9fda34934ffcc10/theme.js": {
+    "docs/runtime/7373993efca8ba40ab7e30805ee156e975f842a3b1e122c17e6ebcdc1b73bcff/theme.js": {
       "kind": "file",
       "purpose": "Generated immutable site runtime or route snapshot.",
       "role": "generated",
@@ -685,13 +685,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/32f275d7f900efad4ee1b58a69335e0c1ac262194efd6ec87a1e35364d718e88": {
+    "docs/snapshots/7a343d3dcf417f16e18c8b1d433cb9deedef73aae292d15b4150b7b03f4bedc6": {
       "kind": "directory",
       "purpose": "Generated immutable site runtime or route snapshot.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/32f275d7f900efad4ee1b58a69335e0c1ac262194efd6ec87a1e35364d718e88/writing.html": {
+    "docs/snapshots/7a343d3dcf417f16e18c8b1d433cb9deedef73aae292d15b4150b7b03f4bedc6/writing.html": {
       "kind": "file",
       "purpose": "Generated immutable site runtime or route snapshot.",
       "role": "generated",
@@ -721,13 +721,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/776e1ecd046c80b5a21e4e4788d05e527e8cd1c89f7b558b0c6660bdc8fd743b": {
+    "docs/snapshots/8de35580157160821624cb9719396c0f5007bb5a4c2c147c50ccc6187b8fd2d4": {
       "kind": "directory",
       "purpose": "Generated immutable public route snapshot directory.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/776e1ecd046c80b5a21e4e4788d05e527e8cd1c89f7b558b0c6660bdc8fd743b/research.html": {
+    "docs/snapshots/8de35580157160821624cb9719396c0f5007bb5a4c2c147c50ccc6187b8fd2d4/research.html": {
       "kind": "file",
       "purpose": "Generated immutable public route snapshot; exact document bytes from site build.",
       "role": "generated",
@@ -757,13 +757,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/8b2ad620094708e0f1bbbfcb9089a18f2667de188e9be79e8a1ec100fca7cde4": {
+    "docs/snapshots/df364ecf904484638e883d467b65b51377875080e645818206d36fb7509b91c2": {
       "kind": "directory",
       "purpose": "Generated immutable site runtime or route snapshot.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/8b2ad620094708e0f1bbbfcb9089a18f2667de188e9be79e8a1ec100fca7cde4/credits.html": {
+    "docs/snapshots/df364ecf904484638e883d467b65b51377875080e645818206d36fb7509b91c2/credits.html": {
       "kind": "file",
       "purpose": "Generated immutable site runtime or route snapshot.",
       "role": "generated",
@@ -781,13 +781,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/969af98f7aed2bb07307e60d0318ec2eca841eb1b1c39ec111d62864736b2a00": {
+    "docs/snapshots/a17e86615fe05de42f791560215bf717016cc08fa7cf42cd33a4556159029df3": {
       "kind": "directory",
       "purpose": "Generated immutable public route snapshot directory.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/969af98f7aed2bb07307e60d0318ec2eca841eb1b1c39ec111d62864736b2a00/index.html": {
+    "docs/snapshots/a17e86615fe05de42f791560215bf717016cc08fa7cf42cd33a4556159029df3/index.html": {
       "kind": "file",
       "purpose": "Generated immutable public route snapshot; exact document bytes from site build.",
       "role": "generated",
@@ -841,13 +841,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/ce539676b32897560dea6d657eb558bb2e27be5d5e289a6ce2113ad66765295b": {
+    "docs/snapshots/ed7d293bde720c1fc872ace274139fe9bedd18386de64058df339409d185bbff": {
       "kind": "directory",
       "purpose": "Generated immutable site runtime or route snapshot.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/ce539676b32897560dea6d657eb558bb2e27be5d5e289a6ce2113ad66765295b/talks.html": {
+    "docs/snapshots/ed7d293bde720c1fc872ace274139fe9bedd18386de64058df339409d185bbff/talks.html": {
       "kind": "file",
       "purpose": "Generated immutable site runtime or route snapshot.",
       "role": "generated",
@@ -11118,6 +11118,12 @@
       "purpose": "R26 review edition binding exact approved manuscript and semantic identity, with accepted-source pins and publication rights still pending.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "review/issue-2/2026-10-23-r26-first-policy.json.gz": {
+      "kind": "file",
+      "purpose": "Original failed clean R26 policy report, compressed without changing its bytes or source identity.",
+      "role": "history",
+      "owner": "review/issue-2/2026-10-23-r26-integration.md"
     }
   }
 }

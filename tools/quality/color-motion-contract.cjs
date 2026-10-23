@@ -5,6 +5,20 @@
 const assert = require('node:assert/strict');
 const common = require('./common.cjs');
 const families = {
+  // Review PDF wrapping changes engine identity; browser bytes match the CPU family.
+  issue5ReviewPrint: {
+    behavior: 'fixed-blocks',
+    articleReading: 'stationary',
+    readerInteractions: true,
+    readerWholeBlocks: true,
+    readerPaper: true,
+    readerDeferredMedia: true,
+    baseEngine: '7373993efca8ba40ab7e30805ee156e975f842a3b1e122c17e6ebcdc1b73bcff',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '16edd5e5d9ad2eb7b3a61deef2aa1feb1cfc287ce85eeaf42e2a174f30aec361',
+    navigation: 'ae5de1cdfe8c7d0c609ddddf28250acad7aa65b0be9b9a85c0a14e2d10add79d',
+    archive: '24691f49c8c0b458958de6422396af4a6ea73f2d6bffa610e4f0ca788b04f383',
+  },
   // Native Canvas field dispatch and reader measurements after initial DOM assembly.
   issue5ReaderCpu: {
     behavior: 'fixed-blocks',
@@ -421,6 +435,27 @@ const families = {
   },
 };
 const runtimes = [
+  {
+    id: 'issue5-review-print-production',
+    family: 'issue5ReviewPrint',
+    edition: 'production',
+    fingerprint: '9c559ba9789cdaf5f083c6ec461d2660f4cb98e754b4b8b678fd629b4b3ab602',
+    styles: 'feec1cfd6dc5c920f2a2cbfd8a0f7b4b97b273315aa8b57d6591e65aff4aea20',
+  },
+  {
+    id: 'issue5-review-print-plain',
+    family: 'issue5ReviewPrint',
+    edition: 'plain',
+    fingerprint: '3bf38f00aa57eda569e085da8e6a2d59187dfd12cfa68b370ab27cf29a372688',
+    styles: 'feec1cfd6dc5c920f2a2cbfd8a0f7b4b97b273315aa8b57d6591e65aff4aea20',
+  },
+  {
+    id: 'issue5-review-print-staging',
+    family: 'issue5ReviewPrint',
+    edition: 'staging',
+    fingerprint: '3398b3711463015cd67800d7b477ac5603b056941c111a2a5c151cd6074039e2',
+    styles: 'f742ff9a2e9e0bf2d1f3a8662f3c3080b77fed8c35cf746a8be90ccc8f2b9379',
+  },
   {
     id: 'issue5-reader-cpu-production',
     family: 'issue5ReaderCpu',
