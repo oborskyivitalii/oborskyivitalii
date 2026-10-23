@@ -70,7 +70,8 @@ Enduring rules and task routing. Issues own intent; PRs own execution;
     dispositions, duplicates, obsolete/diagnostic cases, owners and RI/CI routes.
     Keep umbrella issues open while dependencies remain. Draft, implemented, merged,
     reviewed, staged and published are separate observations.
-14. Use the existing CI/controller for authorized previews/staging. Preserve
+14. Use the existing CI/controller for authorized previews/staging; explicit CI
+    repairs may use [owner maintenance](guides/CI-MAINTENANCE.md). Preserve
     source/tree/artifact binding, profile cases and original budgets. Merge,
     production activation, domain/DNS and public release need the applicable
     maintainer decision; passing checks do not supply it. Report active-source conflicts.

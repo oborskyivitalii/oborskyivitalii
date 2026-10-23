@@ -1,4 +1,4 @@
-name: Accepted staging merge identity
+name: Merged repository and staging identity
 on:
   pull_request:
     types: [closed]
@@ -7,6 +7,7 @@ permissions:
   actions: read
   checks: read
   pull-requests: read
+  issues: read
 jobs:
   identity:
     if: >-
@@ -19,8 +20,52 @@ jobs:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
           ref: ${{ github.sha }}
+          fetch-depth: 0
           persist-credentials: false
+      - id: path
+        name: Select normal staging or an explicit owner maintenance decision
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        with:
+          script: |
+            const fs=require('node:fs'),maintenance=require('./tools/staging/maintenance.cjs');
+            fs.mkdirSync('merge-reports',{recursive:true});
+            try{
+              const pr=(await github.rest.pulls.get({...context.repo,pull_number:context.payload.pull_request.number})).data;
+              const approval=await maintenance.ownerDecision(github,context,pr);
+              if(!approval){core.setOutput('maintenance','false');return;}
+              const record=await maintenance.verify(github,context,pr,approval);
+              fs.writeFileSync('merge-reports/maintenance-preflight.json',JSON.stringify(record,null,2)+'\n');
+              core.setOutput('maintenance','true');
+              core.setOutput('stateId',record.preservedSite.previous.stateId);
+              core.setOutput('stateRun',record.preservedSite.previous.runId);
+            }catch(error){
+              fs.writeFileSync('merge-reports/identity.json',JSON.stringify({pass:false,error:error.message},null,2)+'\n');
+              throw error;
+            }
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        if: steps.path.outputs.maintenance == 'true'
+        with:
+          artifact-ids: ${{ steps.path.outputs.stateId }}
+          run-id: ${{ steps.path.outputs.stateRun }}
+          github-token: ${{ github.token }}
+          path: merge-reports/previous
+      - name: Preserve the previous accepted site identity after a CI maintenance merge
+        if: steps.path.outputs.maintenance == 'true'
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        with:
+          script: |
+            const fs=require('node:fs'),maintenance=require('./tools/staging/maintenance.cjs');
+            try{
+              const preliminary=JSON.parse(fs.readFileSync('merge-reports/maintenance-preflight.json'));
+              const record=await maintenance.preserveSite(github,context,preliminary,fs.readFileSync('merge-reports/previous/recovery.json'));
+              fs.writeFileSync('merge-reports/identity.json',JSON.stringify(record,null,2)+'\n');
+              await core.summary.addHeading('Controller maintenance merge').addRaw('Repository source '+record.mergedSource+' verified. Previous accepted site remains '+record.preservedSite.state.sourceCommit+'. Staging acceptance and production eligibility are false.').write();
+            }catch(error){
+              fs.writeFileSync('merge-reports/identity.json',JSON.stringify({kind:'controller-maintenance-merge',pass:false,error:error.message},null,2)+'\n');
+              throw error;
+            }
       - name: Bind the actual merge tree to the accepted PR and Cloudflare staging
+        if: steps.path.outputs.maintenance == 'false'
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         with:
           script: |

@@ -3,7 +3,7 @@
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/122",
     "date": "2026-10-23",
-    "summary": "Approved T04-P routes signed-source and fail-visible Ubuntu setup fixtures through existing navigation and enduring Python suites, preserving original hosted source/profile budgets and controller authority."
+    "summary": "Approved T04-P Ubuntu setup and T04-M owner-operated CI maintenance preserve source/RI/owning floor and honest website identity; actual administrative activation remains external."
   },
   "layers": [
     {
@@ -391,6 +391,29 @@
         "ri-freshness",
         "ri-ci-regressions"
       ]
+    },
+    {
+      "id": "owner-ci-maintenance",
+      "purpose": "Explicit owner-operated CI repair with complete history/source/proof, non-bypass baseline, staging-only owner privilege and separate non-deploying merge identity. GitHub does not path-scope the bypass.",
+      "paths": [
+        "guides/CI-MAINTENANCE.md",
+        "tools/staging/maintenance.cjs",
+        "tools/staging/maintenance-inputs.cjs",
+        "tests/controller-maintenance.test.cjs",
+        "tests/test_ci_maintenance.py",
+        ".github/rulesets/protect-main-before.json",
+        ".github/rulesets/source-admission.json",
+        ".github/rulesets/staging-admission.json",
+        ".github/workflows/site-staging-merge.yml",
+        ".github/workflows/ci-maintenance.yml"
+      ],
+      "checks": [
+        "ci-maintenance-contract",
+        "acceptance-policy",
+        "ri-freshness",
+        "ri-ci-regressions",
+        "site-basic"
+      ]
     }
   ],
   "checks": [
@@ -588,11 +611,32 @@
         "test_ubuntu_downloads.UbuntuDownloadsTests.test_workflow_installer_order_and_preserved_commands",
         "test_ubuntu_downloads.UbuntuDownloadsTests.test_workflow_oracle_detects_missing_skipped_and_late_helper"
       ]
+    },
+    {
+      "id": "ci-maintenance-contract",
+      "workflow": ".github/workflows/navigation.yml",
+      "job": "navigation",
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_ci_maintenance.py"
+      ],
+      "event_scope": "ready-pr",
+      "test_selectors": [
+        "test_ci_maintenance.CIMaintenanceTests.test_current_layered_ruleset_contract",
+        "test_ci_maintenance.CIMaintenanceTests.test_baseline_faults_cannot_exempt_the_owner_or_omit_source_obligations",
+        "test_ci_maintenance.CIMaintenanceTests.test_postmerge_uses_explicit_read_only_maintenance_and_normal_paths"
+      ]
     }
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "f050258e435fb4e7610eefa5332f4b101fd526e7466e561d11fba7b893f38f0f",
+    "digest": "d0f9ab15782a346fc42fa09966895875f3a1646c72866e1da004a1d145533e66",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -632,7 +676,7 @@
       },
       {
         "path": ".github/acceptance/issue-122.json",
-        "sha256": "0acf30f7fb34d5b3e6a27dd9add71da0fb407bf7a931c7b74875b9f240755a83"
+        "sha256": "21c1bcc7403f9145892cf2f8544941497f78f3ce48d98de4f38d603a475da5e7"
       },
       {
         "path": ".github/acceptance/issue-126.json",
@@ -728,7 +772,11 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "bd10a43b24438ed7f33aa92934b536849d6328aecd3ea4e03cb0ec2d1b4ebc7f"
+        "sha256": "3d94d24e78559aaa7cd1fed4089dfa2250bc9b54455f6835fb52082f42304b1b"
+      },
+      {
+        "path": ".github/workflows/ci-maintenance.yml",
+        "sha256": "2d7cbe93c9cfb67901855972f45bf448b63977349f44d3cf2aa04ed1bec1d6fd"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -736,7 +784,7 @@
       },
       {
         "path": ".github/workflows/navigation.yml",
-        "sha256": "e238caaf512fb363d9412f298c2c86b6ecb4d06919d70dbd4758fc1f8aa1212e"
+        "sha256": "5b228ba7ff434757836e0e600229d2db6e4d776ceec30dcb934551146ed8aa1f"
       },
       {
         "path": ".github/workflows/site-browser-gate-probe.yml",
@@ -796,7 +844,7 @@
       },
       {
         "path": ".github/workflows/site-staging-merge.yml",
-        "sha256": "b5d5c3009106740102eb12abbe43d09efdac3ff5bec241b03bd5a94c4898ee21"
+        "sha256": "3b4fae8215dcb24fea16097e2dcc574939d0a9961bc9343f64355e904802d074"
       },
       {
         "path": ".github/workflows/site-staging.yml",
@@ -808,11 +856,11 @@
       },
       {
         "path": "AGENTS.md",
-        "sha256": "30bed0a6d332da8b737ff532b2a000848558e4288194ae1d92fa40d1e57a978f"
+        "sha256": "5f7e0d1ac524e9440af4ceb6223f06c5ccfc0673f7c1dae3eba4b12501bc0e42"
       },
       {
         "path": "CONTRIBUTING.md",
-        "sha256": "9c928c0aa362a6707b5d33fba456bf95fa4cfe37fa2bc6324f4d14136f30a2a2"
+        "sha256": "1dc808da998cd99b94f094969d82291242943e13af53b71a985bfc53c71f2804"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -824,7 +872,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "e2149840bf1b0eccc938b8401f5487990f63379a2726d225060ba3f211e6215e"
+        "sha256": "c4ba4df5575d2028c485cfd25e794369648fc5711b6ba7ac74ee3c8ff3d8b797"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -940,7 +988,7 @@
       },
       {
         "path": "tests/test_ri_ci.py",
-        "sha256": "b2e9b67e7a4f0f97809e7a32b6e754c440fe10b8d7d411566a1208eff12c446d"
+        "sha256": "51458ed4b0dc318c2c4c55f03f03bdfb73a351287ccc6c29390327de8d73d08a"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -980,7 +1028,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "6d036dc15b0f0906e95e09ffbc2143820c8339652d15ac9cb0b4d79f6f25e90c"
+        "sha256": "2e8aee1e709ef62476fcedb8025442d0650590572f649b3c0e50bb0638edeec8"
       },
       {
         "path": "tools/repository_intelligence.py",

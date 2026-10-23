@@ -34,11 +34,15 @@ operational interpretation. The interface is design only: current CI/controller
 behavior, profile budgets, required contexts and publication authority are
 unchanged. No new executable observer or content publisher is installed.
 
-Under the current route, a repository proposal still follows Ready source/RI/
+Under the normal route, a repository proposal follows Ready source/RI/
 owning checks, preview, owner staging, stable verification and admission before
 protected merge. A Draft remains deferred. An observer may explain a proposed
 cheaper route, but cannot skip those actions, approve rights, publish, merge or
 reuse an earlier site's evidence. PR79/issue5 owns the unfinished content route.
+The separately owner-authorized [CI maintenance procedure](CI-MAINTENANCE.md)
+permits a reviewed CI/controller repair to use a staging-only owner PR bypass,
+while non-bypassable source/RI/owning protection remains. It is not automatic
+repository admission or accepted website staging; failed observations stay failed.
 
 ### Honest obligation states and next actions
 
@@ -135,7 +139,10 @@ T02 may finish with this evidenced unresolved disposition. It does not complete
 AC05 or authorize a new service, credential, organization move, settings change
 or alternate release mechanism. A revised design needs separate maintainer
 approval **and still needs the actual AC05 proof**; approval does not waive it.
-The existing delivery process remains in force while that requirement is open.
+Normal delivery remains in force while that requirement is open. Issue122's
+23October owner directive separately permits the explicit CI maintenance
+procedure above. Its actor/ref privilege and reviewed owner decision do not
+establish the stronger automatic producer proof or activate W3.
 
 ## Deployment flow
 

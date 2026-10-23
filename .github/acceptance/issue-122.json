@@ -14,8 +14,8 @@
     {
       "id": "AC02",
       "intent": "A genuine protected repository-only merge without website deployment work",
-      "automated_scope": "Neither T01 nor contract-only T02 establishes the future repository-only admission outcome. T02 retains the current required staging route and relevant repository checks.",
-      "checks": [],
+      "automated_scope": "T04-M approval6371350643 permits an explicitly owner-operated CI repair route with non-bypass source/RI/owning floor and separate staging-only owner PR privilege. This is not automatic repository routing or completed W3; its real activation/merge/postmerge remain external.",
+      "checks": ["MAINTENANCE", "MAINTENANCE-WIRING"],
       "gates": ["REPOSITORY-LANE"]
     },
     {
@@ -28,22 +28,22 @@
     {
       "id": "AC04",
       "intent": "Preserve applicable website and control coverage, budgets, profiles and source architecture",
-      "automated_scope": "T04-P approval6370000839 permits one narrow Ubuntu dependency-setup prerequisite while PR131 remains paused. The same preview/staging/production-Linux jobs use one extracted primary-archive helper before the unchanged Playwright engine requests. Named wiring checks plus separate permanent fixture/Python/navigation execution cover the mechanical subset; native installation/browser evidence and four actual independent roles remain required. Preserve inherited source/scanner/toolchain/rights obligations and original jobs/check identities, pins and budgets. Whole website/control coverage and all other lane requirements remain pending.",
-      "checks": ["SELECTION", "STYLE", "UBUNTU"],
+      "automated_scope": "T04-P shared bounded Ubuntu setup retains the same three callers, engines, signed sources, pins and budgets. T04-M adds owner-operated CI maintenance: explicit bounded complete Git history and source-bound owner/focus evidence, non-bypass baseline and separate read-only maintenance postmerge. The permanent Node suite exercises faults and production rejection; named checks cover only mechanical rules/wiring. Four roles/native repair/admin observations remain external.",
+      "checks": ["SELECTION", "STYLE", "UBUNTU", "MAINTENANCE", "MAINTENANCE-WIRING"],
       "gates": ["COVERAGE", "REVIEW", "REQUIREMENTS", "WHITEBOX", "EXPLORATORY"]
     },
     {
       "id": "AC05",
       "intent": "Admission cannot exempt itself or accept an impersonated or invalid result",
-      "automated_scope": "T02 records the live ruleset and official platform capability disposition, without changing an admission producer, workflow or protection. No automated check here proves same-name wrong-producer rejection at the protected merge boundary; AC05 remains unresolved.",
-      "checks": [],
+      "automated_scope": "T04-M tests exact actor/ruleset configuration and owner-decision/source/focus negatives. Actor/ref bypass is not path/SHA scoped. Actual administration/readback is required; this manual procedure does not prove automatic same-name wrong-producer rejection or complete AC05/W3.",
+      "checks": ["MAINTENANCE", "MAINTENANCE-WIRING"],
       "gates": ["TRUST"]
     },
     {
       "id": "AC06",
       "intent": "Preserve accepted-site provenance and concurrency after repository-only merges",
-      "automated_scope": "T02 defines distinct repository/accepted-site identities and future complete intervening-history obligations. It implements no new publication baseline, compatibility, lease or recovery behavior.",
-      "checks": [],
+      "automated_scope": "T04-M distinguishes repository maintenance from accepted staging, preserves original recovery/site identity and rejects maintenance as production evidence. It does not implement future publication compatibility or relabel previous tests at a new complete Git tree.",
+      "checks": ["MAINTENANCE", "MAINTENANCE-WIRING"],
       "gates": ["PROVENANCE"]
     },
     {
@@ -56,8 +56,8 @@
     {
       "id": "AC08",
       "intent": "Source-bound delivery, complete lane outcomes, documentation and measured result",
-      "automated_scope": "Current catalog/RI/CI coupling and mechanical fixture routes prove only their named subsets. Approved T04-P current-source CI/preview/candidate staging, protected prerequisite merge/postmerge and subsequent PR131 integration/delivery remain external evidence. Original failed Azure setup attempts stay attributed to31bb/e6; no test/budget/protection waiver or production action.",
-      "checks": ["CURRENT-RI", "RI-CI"],
+      "automated_scope": "Current exact-source checks and T04-M independent reviews, focused repair proof, actual layered administration, exact-head merge/postmerge and subsequent PR131 return remain required. Original Azure cancellations and genuine cold-Writing failure are retained, not passed.",
+      "checks": ["CURRENT-RI", "RI-CI", "MAINTENANCE", "MAINTENANCE-WIRING"],
       "gates": ["DELIVERY", "MERGED"]
     }
   ],
@@ -81,6 +81,14 @@
     "UBUNTU": {
       "kind": "unittest",
       "test": "test_ubuntu_downloads.UbuntuDownloadsTests.test_workflow_installer_order_and_preserved_commands"
+    },
+    "MAINTENANCE": {
+      "kind": "unittest",
+      "test": "test_ci_maintenance.CIMaintenanceTests.test_current_layered_ruleset_contract"
+    },
+    "MAINTENANCE-WIRING": {
+      "kind": "unittest",
+      "test": "test_ci_maintenance.CIMaintenanceTests.test_postmerge_uses_explicit_read_only_maintenance_and_normal_paths"
     }
   },
   "gates": {
@@ -90,7 +98,7 @@
     },
     "REPOSITORY-LANE": {
       "kind": "human",
-      "description": "Observe a real protected repository-only merge after applicable source/RI/acceptance and independent-role checks, without hosted preview, website staging, alias or publisher actions. Demonstrate a changed RI executable failure blocks admission. Not delivered by T01 or T02."
+      "description": "T04-M approval6371350643 and guides/CI-MAINTENANCE.md require actual independently reviewed exact-source owner maintenance, separate non-bypass Basic/RI/owning floor, exact-owner PR-only staging privilege with actual admin readback, and distinct repository merge/postmerge while preserving previous accepted site identity. Candidate Writing3566.9/3200 remains failed; no stage/production pass is inferred. Ordinary changes retain normal staging, automatic W3/AC05 producer proof and remaining whole-issue obligations stay open. Observe a real protected repository-only merge after applicable source/RI/acceptance and independent-role checks, without hosted preview, website staging, alias or publisher actions. Demonstrate a changed RI executable failure blocks admission. Not delivered by T01 or T02."
     },
     "CONTENT-LANE": {
       "kind": "human",
@@ -102,11 +110,11 @@
     },
     "TRUST": {
       "kind": "human",
-      "description": "Revalidate and source the actual ruleset/producer capability. T02 may document unresolved enforcement, but W3 activation requires actual trusted evaluator and producer identity at the protection boundary: candidate policy/wrapper changes cannot exempt or impersonate admission; reject same-name foreign producers, wrong source/run/attempt and missing/failed/skipped/cancelled/stale required evidence, with explicit inapplicability and no Pending deadlock. Revised-design approval cannot waive AC05 proof."
+      "description": "T04-M approval6371350643 and guides/CI-MAINTENANCE.md require actual independently reviewed exact-source owner maintenance, separate non-bypass Basic/RI/owning floor, exact-owner PR-only staging privilege with actual admin readback, and distinct repository merge/postmerge while preserving previous accepted site identity. Candidate Writing3566.9/3200 remains failed; no stage/production pass is inferred. Ordinary changes retain normal staging, automatic W3/AC05 producer proof and remaining whole-issue obligations stay open. Revalidate and source the actual ruleset/producer capability. T02 may document unresolved enforcement, but W3 activation requires actual trusted evaluator and producer identity at the protection boundary: candidate policy/wrapper changes cannot exempt or impersonate admission; reject same-name foreign producers, wrong source/run/attempt and missing/failed/skipped/cancelled/stale required evidence, with explicit inapplicability and no Pending deadlock. Revised-design approval cannot waive AC05 proof."
     },
     "PROVENANCE": {
       "kind": "human",
-      "description": "Verify repository/controller and accepted site/platform/content/artifact identities independently after repository-only merge. Prove complete intervening compatibility or use fresh staging, without relabeling old artifacts. Exercise fresh-base decisions, source/predecessor leases and timing/recovery cases preserving newer accepted content. T02 specifies these requirements without executing the future scenario."
+      "description": "T04-M approval6371350643 and guides/CI-MAINTENANCE.md require actual independently reviewed exact-source owner maintenance, separate non-bypass Basic/RI/owning floor, exact-owner PR-only staging privilege with actual admin readback, and distinct repository merge/postmerge while preserving previous accepted site identity. Candidate Writing3566.9/3200 remains failed; no stage/production pass is inferred. Ordinary changes retain normal staging, automatic W3/AC05 producer proof and remaining whole-issue obligations stay open. Verify repository/controller and accepted site/platform/content/artifact identities independently after repository-only merge. Prove complete intervening compatibility or use fresh staging, without relabeling old artifacts. Exercise fresh-base decisions, source/predecessor leases and timing/recovery cases preserving newer accepted content. T02 specifies these requirements without executing the future scenario."
     },
     "REQUIREMENTS": {
       "kind": "human",
@@ -126,11 +134,11 @@
     },
     "DELIVERY": {
       "kind": "human",
-      "description": "T04-P approval6370000839 permits pausing PR13131bb and preparing one narrow setup prerequisite on protected maine6, with actual four roles, current-source checks/preview/candidate staging and existing protected delivery when available. Any bootstrap action outside that protected merge route requires its concrete separate decision before execution. Do not bypass or weaken required checks, add credentials/services, activate W3 or production. After prerequisite delivery, integrate actual current main into PR131 and complete its original T04.5 with fresh source/review/CI/staging/admission/merge/postmerge. All whole AC01-AC08 remain open."
+      "description": "T04-M approval6371350643 and guides/CI-MAINTENANCE.md require actual independently reviewed exact-source owner maintenance, separate non-bypass Basic/RI/owning floor, exact-owner PR-only staging privilege with actual admin readback, and distinct repository merge/postmerge while preserving previous accepted site identity. Candidate Writing3566.9/3200 remains failed; no stage/production pass is inferred. Ordinary changes retain normal staging, automatic W3/AC05 producer proof and remaining whole-issue obligations stay open. T04-P approval6370000839 permits pausing PR13131bb and preparing one narrow setup prerequisite on protected maine6, with actual four roles, current-source checks/preview/candidate staging and existing protected delivery when available. Any bootstrap action outside that protected merge route requires its concrete separate decision before execution. Do not bypass or weaken required checks, add credentials/services, activate W3 or production. After prerequisite delivery, integrate actual current main into PR131 and complete its original T04.5 with fresh source/review/CI/staging/admission/merge/postmerge. All whole AC01-AC08 remain open."
     },
     "MERGED": {
       "kind": "merge",
-      "description": "Deliver only the approved T04-P setup prerequisite through the existing protected route and actual postmerge; then resume already approved PR131 integration/current delivery. A remaining bootstrap capability/decision is explicit and cannot be replaced by candidate-label staging or fixtures. Production/W3/protection weakening remain outside scope."
+      "description": "T04-M approval6371350643 and guides/CI-MAINTENANCE.md require actual independently reviewed exact-source owner maintenance, separate non-bypass Basic/RI/owning floor, exact-owner PR-only staging privilege with actual admin readback, and distinct repository merge/postmerge while preserving previous accepted site identity. Candidate Writing3566.9/3200 remains failed; no stage/production pass is inferred. Ordinary changes retain normal staging, automatic W3/AC05 producer proof and remaining whole-issue obligations stay open. Deliver only the approved T04-P setup prerequisite through the existing protected route and actual postmerge; then resume already approved PR131 integration/current delivery. A remaining bootstrap capability/decision is explicit and cannot be replaced by candidate-label staging or fixtures. Production/W3/protection weakening remain outside scope."
     }
   }
 }

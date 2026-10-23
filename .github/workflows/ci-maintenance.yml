@@ -1,0 +1,51 @@
+name: CI maintenance preflight
+on:
+  pull_request:
+    types: [labeled]
+permissions:
+  contents: read
+  actions: read
+  checks: read
+  pull-requests: read
+  issues: read
+jobs:
+  maintenance:
+    if: >-
+      github.repository == 'oborskyivitalii/oborskyivitalii' &&
+      github.event.pull_request.draft == false &&
+      github.event.label.name == 'ci-maintenance' &&
+      github.event.sender.id == 248754648 && github.actor == 'oborskyivitalii'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - name: Observe the actual owner decision, current source and live layered protection
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        with:
+          script: |
+            const fs=require('node:fs'),maintenance=require('./tools/staging/maintenance.cjs');
+            fs.mkdirSync('maintenance-reports',{recursive:true});
+            try{
+              const pr=(await github.rest.pulls.get({...context.repo,pull_number:context.payload.pull_request.number})).data;
+              const approval=await maintenance.ownerDecision(github,context,pr);
+              const record=await maintenance.verify(github,context,pr,approval);
+              fs.writeFileSync('maintenance-reports/preflight.json',JSON.stringify(record,null,2)+'\n');
+              await core.summary.addHeading('Owner-operated CI maintenance preflight').addRaw('Read-only evidence for '+record.testedSource+'. This result is not staging or deployment authorization.').write();
+            }catch(error){
+              fs.writeFileSync('maintenance-reports/preflight.json',JSON.stringify({kind:'controller-maintenance-preflight',pass:false,error:error.message},null,2)+'\n');
+              throw error;
+            }
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: ci-maintenance-preflight-${{ github.run_id }}-${{ github.run_attempt }}
+          path: maintenance-reports/
+          if-no-files-found: error
+          retention-days: 90

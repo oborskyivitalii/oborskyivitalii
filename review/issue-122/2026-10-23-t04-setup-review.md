@@ -123,3 +123,108 @@ universal cross-revision diagnostic compatibility or an OS package-byte lock.
 Only factual receipts, deterministic formatting/RI/MEMORY refresh follow accepted
 implementation; provenance/AST identity and unchanged meaning must be verified.
 Any material correction returns to the actual affected role executions.
+
+## T04-M superseding CI maintenance directive
+
+The owner explicitly requested rewriting the rule that lets broken CI block its
+own repair. [Scope6371350643](https://github.com/oborskyivitalii/oborskyivitalii/issues/122#issuecomment-6371350643)
+records M01–M06 before edits. Separate Requirements preflight ACCEPT and Code
+architecture assessment support a durable two-ruleset design: no-bypass source
+floor (PR/ref restrictions, strict Basic/RI/owning), separate staging-only exact
+owner User248754648 pull-request bypass. This supersedes the earlier no-rule-change
+boundary only for the explicit maintenance procedure. No automatic W3 or production.
+
+GitHub's actor/ref privilege is not path/SHA/TTL scoped. The narrower repair
+classification and decision are owner procedure, not protection-enforced automatic
+admission. Actual administrative support/readback remains pending; the connector
+offers no ruleset write. Exact JSON and original rollback are prepared, not applied.
+
+`maintenance-inputs.cjs` inspects every Git parent edge plus the net delta, modes,
+blobs and both rename endpoints, with explicit bounded CI paths. `maintenance.cjs`
+authenticates an actual unedited owner PR comment, latest decision/expiry/current
+source and focus jobs, failed history and live protection. The read-only postmerge
+branch keeps normal staging verification separate, verifies approved/merged parents
+and tree, and preserves original recovery/site identity without publication or
+relabelled website acceptance. Normal stage/production consumers are unchanged.
+
+CS01/04: separate Git/protection input owner and API/decision observer, existing
+admission source checks reused. CS05/06/07: pinned formatting, finite read-only API
+and bounded Git operations; no settings/deployment side effects in the observer.
+CS08/09/10: real temporary Git histories, independent semantic ruleset/fault oracles,
+source/proof/owner negatives and actual production rejection; four new completed
+role assessments remain required. Metadata review pointers do not prove agents ran.
+
+Initial new Node run10/13: two fixture rename targets lacked their destination
+directory; the newer-focus fixture failed through an unintended mock route. Corrected
+fixture setup/routing, retained fault assertions; current implementer13/13 PASS.
+Stdlib mechanical ruleset/wiring3/3 PASS. These are local dirty implementation
+checks, not clean-source/native/admin acceptance. New coherent-candidate four-role
+review and final checks follow.
+
+Prior frozen678/treea35 native receipts remain historical and unaltered: preview
+smoke passed; label staging installed53.7MB in5s but genuine cold-Writing3566.9/3200
+failed. First owner39994526873/1 cancelled after Azure53.7MB/13m20s and840.282s total
+install; browser action ran55.603s, no completed reports. Gate/admission failed,
+promotion skipped. Candidate receipt SHA2562ee445a44a77c214b14f65b99977094236b4cc8e2b4119d1534be819d46b9775;
+owner receipt2ffa5d97697773c12dba3b8e67ea7cc03beeaf669b8cc903e7425fbd75aad478.
+No previous failed observation is a current pass; M delivery and PR131 return remain open.
+
+## T04-M completed first-candidate review and correction
+
+All four actual separate agents inspected clean1c2d6b65/treef1732897 and requested
+changes. Their independent receipts are retained; the original14/14 Node and3/3
+mechanical cases passed but missed the operational defects below.
+
+| Role / actual agent | Source-bound receipt SHA256 and own blocking findings |
+| --- | --- |
+| Requirements `/root/t04_setup_requirements` | 47c6e45035b425333db00dfc3aaae9c0ea05527901544d77010be65a86f542f5; real collector rejects its own `.test.cjs`; enduring RI test omits the new layer (19/20). |
+| Code `/root/t04p_code` | b148fbb0c502a8403044102bffc3598639a4c8a6a93002e6288579f4a66ee289; hidden bypass actors unavailable to read-only CI, stale event/checkout can claim a newer head, actual collector rejects its own test. |
+| White-box `/root/t04p_whitebox` | 19769c872503443b3d076ea6fbeb3de93812eced81e10278e32c5d571dd27b77; collector plus final PR/base/Ready/state/source/focus/protection lease gaps, including focus after preflight. Independent Git history mutant caught. |
+| Exploratory `/root/t04_delivery_review` | 27087a60010c316a3aa4efb55e239d8998c80c20bdc2dda4680edbfca603f58c; real collector failure and ignored surplus CLI argument;46 separate observations otherwise completed. |
+
+Correction permits only explicit flat `.test.cjs`/`.cjs`/`.py` test names, refuses
+surplus CLI arguments, and updates the enduring RI layer set. It binds native PR
+event/head/base/merge state and actual checkout, refreshes the final current
+PR/base/Ready/state, source and focused jobs, protection and main, and refreshes
+focus during accepted-site preservation. Added real temp-Git event/checkout and
+late-mutation negatives; actual18/18 implementer Node cases and3/3 Python pass.
+The first enduring RI recheck correctly reported stale derived mapping before
+refresh; no pass is inferred from it.
+
+GitHub explicitly hides bypass actors without ruleset write access. The corrected
+read-only observer compares every visible field and requires an actual owner's
+fresh admin-readback receipt bound to exact layer IDs/full semantic payload digests.
+If actors are visible they must match exactly; if hidden the record explicitly
+states `owner-attested`. No invented empty list, privileged CI token or claim of
+automatic hidden-drift detection. This procedural limitation and current native/
+admin/delivery pending status remain explicit in the guide; AC05 is still open.
+
+Corrected coherent-source four-role rechecks and clean-source checks follow.
+
+## Four completed T04-M correction rechecks
+
+Each actual same distinct role inspected clean d88f091948d1097a010e9cc2df8d4799e126dc8e /
+treecca7b9dadb975bf2e1c62209dc1c9877bfc92da2 and returned bounded source ACCEPT.
+The actual documented e6-to-d88 collector passed all28paths/3parent edges, digest
+26b8f10413b90771290617eb68cfce7a2cec0393292f2d0def59fee2dc863b8a.
+
+| Role / actual agent | Own completed correction evidence and receipt SHA256 |
+| --- | --- |
+| Requirements `/root/t04_setup_requirements` | Original2blockers closed;29Node/3Python/20RI, coupling17/freshness/selection/style112 PASS. bccd780333c383594774182a2ab6620d77a2d6736617f304954cbfd3499c5ecd. |
+| Code `/root/t04p_code` | CR-M01–03 closed;29Node/3Python/20RI plus8independent capability/source probes PASS. Owner-attested limitation accepted explicitly; unused builtin import removal and final lint pending. 2fe8ad19e9f95d8c9d3e21106c67abcb8174f53e1dd36e64942cc638e50d1274. |
+| White-box `/root/t04p_whitebox` | Original collector/7lateleases/postfocus faults reject, controls pass;29Node/3Python/20RI,9event/checkout negatives,4visibility controls/8attestation-drift faults PASS. 14e99090774568999c97d7bbfd13670e5defb864ec6c8ac712adf71cb8beedc9. |
+| Exploratory `/root/t04_delivery_review` | Both original findings closed;65independent real CLI/temp-Git/API observations,18Node/3Python PASS. 64c6844c6befa869774e7b11a7bb7d61625cf01773b5aec4805eb513175c1ec7. |
+
+Root clean-d88 owning7/7 passed with automation/evidence true, errors empty and
+closurefalse. Source local checks passed. Full source-bound lint found exactly
+one unused builtin `fs` import in maintenance.cjs; remove that unused declaration,
+which Code independently confirmed has no references. No repair oracle, workflow,
+policy, permission, rule payload or runtime behavior changes in this final cleanup.
+Final source-bound lint and affected Code recheck follow; factual receipts and
+deterministic RI refresh do not substitute for actual native/admin/delivery gates.
+
+Actual previous accepted recovery artifact12511545326 was re-downloaded and its
+original ZIPsha2565750d3641c1c402d156155c8ed9acc5db8164530c5d41cdcb183b5b624d1b901
+verified; recovery JSONsha2564dc0fcf1453c65d72adff75b2e06d0bf8ea16a881125993e4a709b2e29fab324
+matches the retained original. This prepares preservation evidence; it is not a
+new-source preflight, admin readback, merge, new staging acceptance or deployment.

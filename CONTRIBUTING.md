@@ -94,6 +94,11 @@ Draft, implemented, merged, reviewed, staged, published and deployed remain sepa
 Green CI/issue closure cannot change scientific/source-verification state. Merge,
 production activation, domain/DNS and public release retain their maintainer decisions.
 
+Owner-authorized CI/controller repairs may follow [CI-MAINTENANCE](guides/CI-MAINTENANCE.md)
+when the old controller blocks its repair. Baseline source/RI/owning checks and all
+four roles remain required. Its exact-owner staging-only PR privilege is an explicit
+administrative maintenance decision, not successful staging or production acceptance.
+
 ## Acceptance criteria and session evidence
 
 [ACCEPTANCE.md](.github/ACCEPTANCE.md) owns schema, runner, exact-source evidence and checkbox

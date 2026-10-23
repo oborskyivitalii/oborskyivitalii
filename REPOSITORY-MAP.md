@@ -36,6 +36,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.github/ISSUE_TEMPLATE](.github/ISSUE_TEMPLATE) | Issue intake forms preserving intent, scope and acceptance. | configuration | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [.github/acceptance](.github/acceptance) | Owning-issue acceptance policies with stable criterion IDs and executable check mappings. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/repository-intelligence](.github/repository-intelligence) | Generated machine navigation view with exact source identity. | generated | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
+| [.github/rulesets](.github/rulesets) | Reviewed layered main-protection payloads and complete original rollback; actual administrative configuration is separate. | configuration | [guides/CI-MAINTENANCE.md](guides/CI-MAINTENANCE.md) |
 | [.github/workflows](.github/workflows) | Pinned CI workflows for navigation, site checks, hosted staging and manual diagnostics. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [docs](docs) | Generated complete public tree and immutable rendition aliases; edit site sources instead. | generated | [site/README.md](site/README.md) |
 | [docs/assets](docs/assets) | Generated legacy-compatible aliases for authored portrait/icon assets. | generated | [site/README.md](site/README.md) |
@@ -254,10 +255,19 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [.github/repository-intelligence/agent-context.json](.github/repository-intelligence/agent-context.json) | Generated complete machine inventory, instructions, owners, validation routes and byte identity. | generated | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 
+## .github/rulesets/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [.github/rulesets/protect-main-before.json](.github/rulesets/protect-main-before.json) | Reviewed protect-main-before main-protection payload; actual administration/readback remains a separate gate. | configuration | [guides/CI-MAINTENANCE.md](guides/CI-MAINTENANCE.md) |
+| [.github/rulesets/source-admission.json](.github/rulesets/source-admission.json) | Reviewed source-admission main-protection payload; actual administration/readback remains a separate gate. | configuration | [guides/CI-MAINTENANCE.md](guides/CI-MAINTENANCE.md) |
+| [.github/rulesets/staging-admission.json](.github/rulesets/staging-admission.json) | Reviewed staging-admission main-protection payload; actual administration/readback remains a separate gate. | configuration | [guides/CI-MAINTENANCE.md](guides/CI-MAINTENANCE.md) |
+
 ## .github/workflows/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
+| [.github/workflows/ci-maintenance.yml](.github/workflows/ci-maintenance.yml) | Owner-label opt-in read-only native verification of current CI repair decision, source checks and actual layered rules before merge; no staging/deployment authority. | configuration | [guides/CI-MAINTENANCE.md](guides/CI-MAINTENANCE.md) |
 | [.github/workflows/issue-acceptance.yml](.github/workflows/issue-acceptance.yml) | Run the owning issue acceptance policy on the exact PR source and retain the per-criterion CI report. | workflow | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/workflows/navigation.yml](.github/workflows/navigation.yml) | GitHub Actions: Local navigation checks; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [.github/workflows/site-browser-gate-probe.yml](.github/workflows/site-browser-gate-probe.yml) | GitHub Actions: Browser gate causal diagnostic; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
@@ -479,6 +489,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
+| [guides/CI-MAINTENANCE.md](guides/CI-MAINTENANCE.md) | Durable explicit owner-operated CI repair, actor/ref scope limits, exact-source decisions, layered migration/rollback and distinct postmerge identity. | guide | [guides/CI-MAINTENANCE.md](guides/CI-MAINTENANCE.md) |
 | [guides/CODE-STYLE.md](guides/CODE-STYLE.md) | Mandatory agent coding, content/template/CSS boundaries, performance and verification standards. | guide | [guides/CODE-STYLE.md](guides/CODE-STYLE.md) |
 | [guides/README.md](guides/README.md) | Topic guide index with one current owner for each concern; live issue status is retrieved separately. | guide | [guides/README.md](guides/README.md) |
 | [guides/REPOSITORIES.md](guides/REPOSITORIES.md) | Canonical boundaries and coordinated work routes across site, UA and Subprime. | guide | [guides/REPOSITORIES.md](guides/REPOSITORIES.md) |
@@ -2106,6 +2117,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/content-migration.test.cjs](tests/content-migration.test.cjs) | Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/content-rendering.test.cjs](tests/content-rendering.test.cjs) | Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/content.test.cjs](tests/content.test.cjs) | Behavioral/adversarial tests and fixtures for content. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/controller-maintenance.test.cjs](tests/controller-maintenance.test.cjs) | Independent scenario constructions for complete history, owner/source/focus/protection faults, maintenance identity and production rejection. | test | [guides/CI-MAINTENANCE.md](guides/CI-MAINTENANCE.md) |
 | [tests/edition-retention.test.cjs](tests/edition-retention.test.cjs) | Production and Color immutable-edition preservation, staging isolation and collision/closure rejection. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/effects.test.cjs](tests/effects.test.cjs) | Permanent explicit effect composition, malformed descriptor, isolation and serialization regression cases. | test | [site/README.md](site/README.md) |
 | [tests/endpoint-fixtures.test.cjs](tests/endpoint-fixtures.test.cjs) | Behavioral/adversarial tests and fixtures for endpoint fixtures. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
@@ -2150,6 +2162,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/staging-trust.test.cjs](tests/staging-trust.test.cjs) | Behavioral/adversarial tests and fixtures for staging trust. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/staging.test.cjs](tests/staging.test.cjs) | Behavioral/adversarial tests and fixtures for staging. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/test-profile-selection.test.cjs](tests/test-profile-selection.test.cjs) | Exhaustive registry/futuremodule/unknownsource/exactref/source accounting and empty/skip/TODO failure regressions. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/test_ci_maintenance.py](tests/test_ci_maintenance.py) | Stdlib current ruleset and explicit read-only postmerge wiring contract with source-floor fault fixtures. | test | [guides/CI-MAINTENANCE.md](guides/CI-MAINTENANCE.md) |
 | [tests/test_code_style.py](tests/test_code_style.py) | Negative style-guard fixtures and actual code-path/bilingual agent/RI routing checks. | test | [guides/CODE-STYLE.md](guides/CODE-STYLE.md) |
 | [tests/test_issue102_acceptance.py](tests/test_issue102_acceptance.py) | Issue102 policy adapter for maintained analytics suite and failure accounting. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue108_acceptance.py](tests/test_issue108_acceptance.py) | Issue108 task-only adapter selecting maintained content and adversarial SEO cases. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
@@ -2375,6 +2388,8 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tools/staging/color.cjs](tools/staging/color.cjs) | Authored Color variant lineage, package construction and source preflight. | source | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tools/staging/edition.cjs](tools/staging/edition.cjs) | Pre-test staging badge/indexing/analytics edition and snapshot identities. | source | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tools/staging/hosted.cjs](tools/staging/hosted.cjs) | Exact hosted bytes/root/runtime/media/redirects/404 and alias convergence checks. | validator | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
+| [tools/staging/maintenance-inputs.cjs](tools/staging/maintenance-inputs.cjs) | Complete bounded Git-parent repair inventory, explicit CI eligibility and semantic layered-protection plans. | source | [guides/CI-MAINTENANCE.md](guides/CI-MAINTENANCE.md) |
+| [tools/staging/maintenance.cjs](tools/staging/maintenance.cjs) | Read-only actual-owner/source/check/protection verification and distinct maintenance merge/accepted-site identity observation. | source | [guides/CI-MAINTENANCE.md](guides/CI-MAINTENANCE.md) |
 | [tools/staging/package.cjs](tools/staging/package.cjs) | Verified public artifact packaging and staging-only headers/noindex additions. | source | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tools/staging/reader-index.cjs](tools/staging/reader-index.cjs) | Finite data-only publication index validator for the controller prerequisite; no DOM runtime or publication generation. | source | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tools/staging/reader-snapshot.cjs](tools/staging/reader-snapshot.cjs) | Finite trusted-main article artifact validator used until PR79 installs its canonical producer contract; never changes public output. | source | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |

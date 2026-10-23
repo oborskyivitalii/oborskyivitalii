@@ -155,6 +155,13 @@ stops further launches. Historical protocols above remain unchanged.
 
 ## Optional complete production regression
 
+An explicit [owner-operated CI repair](CI-MAINTENANCE.md) uses separate maintenance
+admission, retaining Basic/RI/owning, four roles and focused repair proof. This
+does not alter any hosted profile's cases, budgets or pass criteria. A failed
+hosted result remains failed; a maintenance merge does not accept a new website
+edition or qualify as staging/production evidence. Normal changes retain their
+existing applicable staging obligations.
+
 The maintainer-approved 17 October policy in issue #39 makes this an optional
 manual action, `site-candidate-evidence.yml`. It is not a dependency of the
 production publisher; failed or skipped diagnostics stay visible without
