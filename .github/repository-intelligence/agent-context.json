@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "b5edc4d4bd76968b28411f11aa9e42cbe2ff86ee11fc54023214b21af08b3afb",
+    "digest": "ad72c8f36a34cc28846a40d4b1960d2d18541f3b913310432e22cb22ca71a63b",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -196,12 +196,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "fa3f53fd210e6ea8fc397aa194d3d9fa0de1b20e40665d45a335654d9445d439"
+        "sha256": "71511b3656dd0178f40949d10fd3735977420d92dc6645b6e34f74d1b960db3b"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "c80b72bc75d873d3d6586b0b74580e5a51da51062da1d253bdc7a6afb2688e8b"
+        "sha256": "094acf83f6f98b6ecbc43c6b31abe3f45b2597cab066832c2095e750778127ed"
       },
       {
         "path": ".github/workflows/change-admission.yml",
@@ -212,6 +212,11 @@
         "path": ".github/workflows/delivery-observation.yml",
         "identity_mode": "content",
         "sha256": "7dec4ce43784fabdde0e245f067030ad9d52d45b0b8b5e65b7446c04c0593481"
+      },
+      {
+        "path": ".github/workflows/issue-122-admission-negative.yml",
+        "identity_mode": "content",
+        "sha256": "8ef538409c98942632fbd40b3cf4ba1cc99ecd1b939e5728598d71ddb1b3868c"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -896,6 +901,11 @@
         "path": "review/issue-122/2026-10-23-t05-review.md",
         "identity_mode": "content",
         "sha256": "0fe90b44f16477d842a260140acddf357447b0e6cc9ff2e8c513ff197fe381c9"
+      },
+      {
+        "path": "review/issue-122/2026-10-24-admission-proof.md",
+        "identity_mode": "content",
+        "sha256": "4ba7196a2ac10771bd39e0373fe9d614a63cbc64a6d7e0665b4a815c654ffff6"
       },
       {
         "path": "review/issue-126/2026-10-23-announcement-review.md",
@@ -7912,6 +7922,17 @@
       "title": "delivery-observation.yml"
     },
     {
+      "path": ".github/workflows/issue-122-admission-negative.yml",
+      "kind": "file",
+      "purpose": "Temporary unmerged F-branch negative control: fixed-head foreign Actions check and main-only environment denial; never a main controller or release route.",
+      "role": "workflow",
+      "owner": "guides/SITE-STAGING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-122-admission-negative.yml"
+    },
+    {
       "path": ".github/workflows/issue-acceptance.yml",
       "kind": "file",
       "purpose": "Run the owning issue acceptance policy on the exact PR source and retain the per-criterion CI report.",
@@ -9417,6 +9438,17 @@
         "AGENTS.md"
       ],
       "title": "Issue122 — T05 admission preparation, 23 October 2026"
+    },
+    {
+      "path": "review/issue-122/2026-10-24-admission-proof.md",
+      "kind": "file",
+      "purpose": "Temporary F-branch proof design, independent-role handoff and explicit source/native acceptance limits for the dedicated admission App.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 122 — 24 October 2026 isolated admission proof"
     },
     {
       "path": "review/issue-126/2026-10-23-announcement-review.md",

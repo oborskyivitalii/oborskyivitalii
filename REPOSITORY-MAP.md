@@ -260,6 +260,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [.github/workflows/change-admission.yml](.github/workflows/change-admission.yml) | Disabled-by-default dedicated App admission preparation; main-only execution and explicit unconfigured observation. | workflow | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [.github/workflows/delivery-observation.yml](.github/workflows/delivery-observation.yml) | Read-only candidate-policy routing observations alongside existing required CI; grants no admission authority. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [.github/workflows/issue-122-admission-negative.yml](.github/workflows/issue-122-admission-negative.yml) | Temporary unmerged F-branch negative control: fixed-head foreign Actions check and main-only environment denial; never a main controller or release route. | workflow | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [.github/workflows/issue-acceptance.yml](.github/workflows/issue-acceptance.yml) | Run the owning issue acceptance policy on the exact PR source and retain the per-criterion CI report. | workflow | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/workflows/navigation.yml](.github/workflows/navigation.yml) | GitHub Actions: Local navigation checks; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [.github/workflows/site-browser-gate-probe.yml](.github/workflows/site-browser-gate-probe.yml) | GitHub Actions: Browser gate causal diagnostic; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
@@ -781,6 +782,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-122/2026-10-23-t04-review.md](review/issue-122/2026-10-23-t04-review.md) | Issue122 T04 source-bound independent reviews, real-Git observation evidence and delivery reconciliation. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-122/2026-10-23-t04-setup-review.md](review/issue-122/2026-10-23-t04-setup-review.md) | Approved T04-P Ubuntu setup prerequisite, separate quality-role findings and exact-source validation/delivery evidence. | history | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [review/issue-122/2026-10-23-t05-review.md](review/issue-122/2026-10-23-t05-review.md) | Source-bound T05 design, independent review dispositions and explicit pending native issuer/protection proof. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-122/2026-10-24-admission-proof.md](review/issue-122/2026-10-24-admission-proof.md) | Temporary F-branch proof design, independent-role handoff and explicit source/native acceptance limits for the dedicated admission App. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/issue-126/
 

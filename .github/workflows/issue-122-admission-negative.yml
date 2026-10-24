@@ -1,0 +1,82 @@
+name: Issue 122 isolated admission negative controls
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+permissions: {}
+jobs:
+  foreign-producer:
+    if: >-
+      github.repository == 'oborskyivitalii/oborskyivitalii' &&
+      github.actor == 'oborskyivitalii' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'work/issue-122-admission-foreign-20261024' &&
+      github.event.pull_request.base.ref == 'probe/issue-122-change-admission'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    permissions:
+      checks: write
+      pull-requests: read
+    steps:
+      - name: Issue an intentionally foreign success for the fixed proof head
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        with:
+          script: |
+            const assert = require('node:assert/strict');
+            const fs = require('node:fs');
+            const head = '66e07ec6e114d68aa7a125e0057f2a6d619c49da';
+            const base = 'a7d3d9456b85e444456c9d167e9ab813fe62787f';
+            const pr = (await github.rest.pulls.get({...context.repo, pull_number: 134})).data;
+            assert.equal(pr.state, 'open');
+            assert.equal(pr.head.sha, head);
+            assert.equal(pr.head.repo.full_name, 'oborskyivitalii/oborskyivitalii');
+            assert.equal(pr.base.repo.full_name, 'oborskyivitalii/oborskyivitalii');
+            assert.equal(pr.base.ref, 'probe/issue-122-change-admission');
+            assert.equal(pr.base.sha, base);
+            const check = (await github.rest.checks.create({
+              ...context.repo,
+              name: 'Change admission',
+              head_sha: head,
+              status: 'completed',
+              conclusion: 'success',
+              external_id: 'issue-122-foreign/' + context.runId,
+              output: {
+                title: 'Intentional wrong-issuer negative control',
+                summary: 'Test fixture from Actions15368. It must not satisfy the isolated rule requiring App5453173.'
+              }
+            })).data;
+            assert.equal(check.app.id, 15368);
+            assert.equal(check.head_sha, head);
+            const record = {
+              kind: 'issue-122-foreign-producer-control',
+              pr: 134,
+              head,
+              base,
+              expectedApp: 5453173,
+              actualApp: check.app.id,
+              checkId: check.id,
+              checkConclusion: check.conclusion,
+              producerHead: context.payload.pull_request.head.sha,
+              producerMerge: context.sha,
+              run: context.runId,
+              attempt: process.env.GITHUB_RUN_ATTEMPT,
+              mergeAuthority: false
+            };
+            fs.mkdirSync('negative-control', {recursive: true});
+            fs.writeFileSync('negative-control/foreign.json', JSON.stringify(record, null, 2) + '\n');
+            core.info(JSON.stringify(record));
+      - name: Retain the original foreign-producer evidence
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: issue-122-foreign-${{ github.run_id }}-${{ github.run_attempt }}
+          path: negative-control/
+          if-no-files-found: error
+          retention-days: 90
+  non-main-environment:
+    needs: foreign-producer
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    permissions: {}
+    environment: change-admission
+    steps:
+      - name: This step must never execute outside main
+        run: exit 1

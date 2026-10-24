@@ -415,6 +415,7 @@
       "purpose": "Disabled dedicated issuer and full-route snapshots; existing main3checks retain authority, actual App/protection proof stays external.",
       "paths": [
         ".github/workflows/change-admission.yml",
+        ".github/workflows/issue-122-admission-negative.yml",
         "tools/quality/delivery-admission.cjs",
         "tools/quality/delivery-admission-issuer.cjs",
         "tests/delivery-admission.test.cjs",
@@ -640,7 +641,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "f336a5a8d78ac942d4e0ff426520d39ee45d967aa97691fd3cf9dada1a82095f",
+    "digest": "c25ef3cd30bbafc8acb25c0826148609e6c1c26f0ecc832d0340f1115183f170",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -776,7 +777,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "fa3f53fd210e6ea8fc397aa194d3d9fa0de1b20e40665d45a335654d9445d439"
+        "sha256": "71511b3656dd0178f40949d10fd3735977420d92dc6645b6e34f74d1b960db3b"
       },
       {
         "path": ".github/workflows/change-admission.yml",
@@ -785,6 +786,10 @@
       {
         "path": ".github/workflows/delivery-observation.yml",
         "sha256": "7dec4ce43784fabdde0e245f067030ad9d52d45b0b8b5e65b7446c04c0593481"
+      },
+      {
+        "path": ".github/workflows/issue-122-admission-negative.yml",
+        "sha256": "8ef538409c98942632fbd40b3cf4ba1cc99ecd1b939e5728598d71ddb1b3868c"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",

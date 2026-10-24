@@ -229,6 +229,12 @@
       "role": "workflow",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    ".github/workflows/issue-122-admission-negative.yml": {
+      "kind": "file",
+      "purpose": "Temporary unmerged F-branch negative control: fixed-head foreign Actions check and main-only environment denial; never a main controller or release route.",
+      "role": "workflow",
+      "owner": "guides/SITE-STAGING.md"
+    },
     ".github/workflows/issue-acceptance.yml": {
       "kind": "file",
       "purpose": "Run the owning issue acceptance policy on the exact PR source and retain the per-criterion CI report.",
@@ -9538,6 +9544,12 @@
     "review/issue-122/2026-10-23-t05-review.md": {
       "kind": "file",
       "purpose": "Source-bound T05 design, independent review dispositions and explicit pending native issuer/protection proof.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-122/2026-10-24-admission-proof.md": {
+      "kind": "file",
+      "purpose": "Temporary F-branch proof design, independent-role handoff and explicit source/native acceptance limits for the dedicated admission App.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     }
