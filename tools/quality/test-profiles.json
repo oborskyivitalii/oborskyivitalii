@@ -2162,6 +2162,25 @@
       ],
       "disposition": "Retain credential-free structural checks; fetched package authenticity, audit, compatibility and native admission remain unverified.",
       "surviving_route": "Existing Basic changed-source selection and permanent staging/production source profiles."
+    },
+    {
+      "path": "tests/control-runner.test.cjs",
+      "language": "javascript",
+      "lifecycle": "permanent",
+      "purpose": "Immutable single-module execution inputs, mandatory Docker configuration and independent host-oracle/fail-closed negatives. Actual containment is a separate native experiment.",
+      "owner": "tools/quality/control-runner.cjs",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "inputs": [
+        "tools/quality/control-runner.cjs",
+        "tools/quality/control-runner-docker.cjs",
+        "tools/quality/control-runner-driver.cjs",
+        "tools/quality/control-runner-proof.cjs",
+        "tests/control-runner.test.cjs",
+        ".github/workflows/control-runner-probe.yml",
+        "guides/SITE-CONTROL-CHANGES.md"
+      ],
+      "disposition": "Retain permanent source guards; real native containment and full delivery remain separate external evidence, with no App authority.",
+      "surviving_route": "Existing Basic changed-source selection and permanent staging/production source profiles; native control-runner-probe separately exercises actual Docker containment."
     }
   ]
 }

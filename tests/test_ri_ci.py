@@ -115,6 +115,7 @@ class RICICouplingTests(unittest.TestCase):
                 "delivery-observation",
                 "delivery-admission-preparation",
                 "control-lock-prototype",
+                "control-runner-prototype",
             },
         )
         quality = next(

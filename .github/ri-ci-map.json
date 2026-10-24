@@ -431,6 +431,19 @@
         "guides/SITE-CONTROL-CHANGES.md"
       ],
       "checks": ["site-basic", "test-profile-regressions", "acceptance-policy"]
+    },
+    {
+      "id": "control-runner-prototype",
+      "purpose": "Bounded nonauthoritative isolated single-module experiment; permanent source negatives and external native containment proof preserve original admission.",
+      "paths": [
+        "tools/quality/control-runner.cjs",
+        "tools/quality/control-runner-docker.cjs",
+        "tools/quality/control-runner-driver.cjs",
+        "tools/quality/control-runner-proof.cjs",
+        "tests/control-runner.test.cjs",
+        ".github/workflows/control-runner-probe.yml"
+      ],
+      "checks": ["site-basic", "test-profile-regressions", "acceptance-policy"]
     }
   ],
   "checks": [
@@ -650,7 +663,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "4fd5e2739f3fdd2abd49d69d57518058579a9cb58309a9c49a3af25aab729eb7",
+    "digest": "0b29773c4b86695925b18e853ece929560be157fafeac5a7930b5c8e99c67b2c",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -690,7 +703,7 @@
       },
       {
         "path": ".github/acceptance/issue-122.json",
-        "sha256": "f9414ac90ac995694243976e1c3d1a09a292a05141693d6c1f65753421a47825"
+        "sha256": "aa94cbdf39ea50383b30197db7905f6e002c29726e08d196748d11d302457fc8"
       },
       {
         "path": ".github/acceptance/issue-126.json",
@@ -786,11 +799,15 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "23475c7d1a334ca2168f488503b5286fd2dd58f5354bb6a36cb7df9e6c250ed0"
+        "sha256": "5c91e79b5862fb030d9bad17d690eee54fb788e25f02d0c5d6e38b812a9f9582"
       },
       {
         "path": ".github/workflows/change-admission.yml",
         "sha256": "1b6895e8034ef10061049b800a3049a59f783af1b7447996ab57fec283850ef1"
+      },
+      {
+        "path": ".github/workflows/control-runner-probe.yml",
+        "sha256": "4d4ffea3149a5780806d90a8c77b6c6d055cd9132af13a6de438947229e8e1a8"
       },
       {
         "path": ".github/workflows/delivery-observation.yml",
@@ -1006,7 +1023,7 @@
       },
       {
         "path": "tests/test_ri_ci.py",
-        "sha256": "05c675bc3a55ba4a7b063481634399bfb20a5659e4cd1e5f66e7b49804bd6e39"
+        "sha256": "f01ebab43fb210bdb021f2c26e0114b2ed490e78eda5b453ee0fe2ce9cf671a3"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -1046,7 +1063,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "b8c5dc0a014505bca574ec67a450feda59952d7e36c4119f8b3b22657a8df8f4"
+        "sha256": "59174cbbf1021de357c1c68f184dbebb91c4b7e81c26553ed14ff03c0db0391d"
       },
       {
         "path": "tools/repository_intelligence.py",

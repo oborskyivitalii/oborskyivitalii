@@ -9576,6 +9576,48 @@
       "purpose": "Two-task structural lock prototype contract, four actual independent candidate/correction reviews, graft counterexample resolution and bounded verification/delivery status.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "tools/quality/control-runner.cjs": {
+      "kind": "file",
+      "purpose": "Fixed nonauthoritative external oracle for immutable base/candidate delivery JSON module observations in Linux containment.",
+      "role": "source",
+      "owner": "guides/SITE-CONTROL-CHANGES.md"
+    },
+    "tools/quality/control-runner-docker.cjs": {
+      "kind": "file",
+      "purpose": "Minimal local-image Docker execution with explicit resource/configuration boundaries, hostile output capture and verified owned-resource cleanup.",
+      "role": "source",
+      "owner": "guides/SITE-CONTROL-CHANGES.md"
+    },
+    "tools/quality/control-runner-driver.cjs": {
+      "kind": "file",
+      "purpose": "Contained fixed-input driver; candidate shares its process and its output is untrusted until compared by the external oracle.",
+      "role": "source",
+      "owner": "guides/SITE-CONTROL-CHANGES.md"
+    },
+    "tools/quality/control-runner-proof.cjs": {
+      "kind": "file",
+      "purpose": "Native diagnostic of actual module observations and synthetic filesystem/network/resource/protocol/cleanup failures; no admission authority.",
+      "role": "source",
+      "owner": "guides/SITE-CONTROL-CHANGES.md"
+    },
+    "tests/control-runner.test.cjs": {
+      "kind": "file",
+      "purpose": "Permanent immutable extraction, containment configuration rejection, independent oracle and unavailable-platform regression checks.",
+      "role": "test",
+      "owner": "tools/quality/control-runner.cjs"
+    },
+    ".github/workflows/control-runner-probe.yml": {
+      "kind": "file",
+      "purpose": "Read-only nonrequired native containment experiment for relevant ready PR changes; no secrets or admission consumption.",
+      "role": "source",
+      "owner": "guides/SITE-CONTROL-CHANGES.md"
+    },
+    "review/issue-122/2026-10-24-control-runner-review.md": {
+      "kind": "file",
+      "purpose": "Two-task containment contract, actual four-role reviews, native failure/positive evidence and whole-issue progress reconciliation.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }
