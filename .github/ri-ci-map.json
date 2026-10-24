@@ -2,8 +2,8 @@
   "schema_version": 1,
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/122",
-    "date": "2026-10-23",
-    "summary": "T05 preparation adds a disabled dedicated issuer, trusted execution and native-stage receipt guards under existing Basic/profile/owning routes; actual App and protection proof remain pending."
+    "date": "2026-10-24",
+    "summary": "R2 preserves unconditional delivery Basic dispatch, formatting/lint/RI/owning invocations; the trusted conditional repository route reports site work inapplicable. Native protected outcomes remain external."
   },
   "layers": [
     {
@@ -544,7 +544,7 @@
       "id": "site-basic",
       "workflow": ".github/workflows/site-checks.yml",
       "job": "checks",
-      "argv": ["node", "tools/quality/local.cjs", "--package", "quality-artifact"],
+      "argv": ["node", "tools/quality/local.cjs", "--delivery", "quality-artifact"],
       "event_scope": "ready-pr"
     },
     {
@@ -663,7 +663,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "029d11f133ff250d08a9c8d7b8ccbb8f64497d7f40347728046f4616d198135a",
+    "digest": "03ad430a1707cc7d0d7b66e14c6ceeda0ee628350ac12501905c0310143e56b9",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -679,7 +679,7 @@
       },
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
-        "sha256": "5db1ad8935879327b7887b2070c42a623f88274279ddb937858c235265e6f9bf"
+        "sha256": "9f4c9d85c0b1145bd443d411a402bad81d20b0f26338c8e0261789d8b387d91f"
       },
       {
         "path": ".github/acceptance/issue-102.json",
@@ -703,7 +703,7 @@
       },
       {
         "path": ".github/acceptance/issue-122.json",
-        "sha256": "f2377fc5a9565d01dc87c2e290fe863263ca96d6ab563153ac1c151c56edc35a"
+        "sha256": "6556496fd8d9e9e739f2adb05882ff443e19b8b9faf25e35e3f45d8af6742d67"
       },
       {
         "path": ".github/acceptance/issue-126.json",
@@ -799,11 +799,11 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "fcffb0d760e05351dcd57267e1ff5448a5e99d96d13bb166515e2fe7b0bb3dac"
+        "sha256": "8d41eb8d5b89b70e45ceaa6b2cc1194b28290a7497a4d2367aa96e3d5b8b0bff"
       },
       {
         "path": ".github/workflows/change-admission.yml",
-        "sha256": "83ae9c409273daf5e4540855a76df95e3fe5f98e8469baf716ac2b09de3ab5e7"
+        "sha256": "c958ac22a755c55a2b173aa211384692b9d10fae927ed908eeb75f3fffe510b6"
       },
       {
         "path": ".github/workflows/control-runner-probe.yml",
@@ -839,11 +839,11 @@
       },
       {
         "path": ".github/workflows/site-checks.yml",
-        "sha256": "7b30376e9e02472e85e198ee71f01c6628d156297104baad8a38cc2f3be109bd"
+        "sha256": "106776dd7bdf0542ea367ef1b841deb70d74679fb7e5168c8e3d988dd630fabe"
       },
       {
         "path": ".github/workflows/site-color-review.yml",
-        "sha256": "50d65ad73e215ae4441e2cb44e2a02e773d7bb5fdab41f7023492d3d01baa75f"
+        "sha256": "79f1c3b623dee9c1dc901279239ba5aebe776a773652bc24a514a39f00974971"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -879,7 +879,7 @@
       },
       {
         "path": ".github/workflows/site-staging-merge.yml",
-        "sha256": "b5d5c3009106740102eb12abbe43d09efdac3ff5bec241b03bd5a94c4898ee21"
+        "sha256": "89dbe30d6b7b3b12e358ba446ac5e3d2d6257bed3c23cb3b22a37906ada61813"
       },
       {
         "path": ".github/workflows/site-staging.yml",
@@ -891,7 +891,7 @@
       },
       {
         "path": "AGENTS.md",
-        "sha256": "30bed0a6d332da8b737ff532b2a000848558e4288194ae1d92fa40d1e57a978f"
+        "sha256": "bd64f4ad0fa0c1c7fcf9a9ff95e10be4c33a0ddebdc24ba0f9e6082ea18ac633"
       },
       {
         "path": "CONTRIBUTING.md",
@@ -903,11 +903,11 @@
       },
       {
         "path": "guides/CODE-STYLE.md",
-        "sha256": "41e3a04a7150cc982db9a4f5f0dd80096ffeda552638023be67d37927d986d6f"
+        "sha256": "ee3cf88ed2efbb3ab75d019cf7dfc0076518e23e8eda7e56b2935b9b51427d65"
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "2b75499d882c4161fd8d01517d82182f0ae436d8effd899fc369387a6c95b23d"
+        "sha256": "b6b323d8438f17c225ef1e35615aa14ef709be22ad908752e1482268177ad02c"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -931,7 +931,7 @@
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
-        "sha256": "7ae78b81d4c2b70d34f350394cf6291f704642067a3e9e7b5c1934ed177a230e"
+        "sha256": "dfa0e290597f4c71e9f44bb604b7ca79c511f0b88fe34c01a2a0f54c0bf4414d"
       },
       {
         "path": "tests/test_code_style.py",
@@ -1047,11 +1047,11 @@
       },
       {
         "path": "tools/quality/local.cjs",
-        "sha256": "8398bbf4f9d81adc7f1c1cf6e9afc0b6f2c4942b5724be4dc47b0e7dcfb6d074"
+        "sha256": "dc226ed41be29acab39af1d108eb9ed3b33cd546d6475a89fc360ac61408fc12"
       },
       {
         "path": "tools/quality/source-tests.cjs",
-        "sha256": "28180623b3378e86918ba10f6307cdf670d0eae2a74cc395b7d3deba4f0f6d33"
+        "sha256": "09c97200646d30ba21e7e7e3e3c2a6bb3a579358b6e986f15efe9b624db6c975"
       },
       {
         "path": "tools/quality/staging-gate.cjs",

@@ -116,7 +116,7 @@ function invariants(report) {
 const cases = [
   ['AGENTS.md', 'repository', false, 'D01'],
   ['review/REVIEW-TEMPLATE.md', 'repository', false, 'D01'],
-  ['tools/repository_intelligence.py', 'repository', false, 'D03'],
+  ['tools/repository_intelligence.py', 'website', true, 'D03'],
   ['.github/repository-intelligence-config.json', 'repository', false, 'D02'],
   ['site/content/pages/writing/main.json', 'content', false, 'D04'],
   ['site/templates/pages/writing/main.html', 'website', false, 'D05'],
@@ -368,8 +368,14 @@ test('nearby unknown content, RI, quality and keyword rights files remain unreso
   const report = f.run();
   assert.equal(report.analysis.status, 'conservative');
   assert.equal(report.analysis.proposedLane, 'website');
-  assert.equal(report.analysis.control, null);
-  for (const file of paths) assert.ok(report.analysis.unresolved.some((row) => row.path === file));
+  assert.equal(report.analysis.control, true);
+  for (const file of paths.filter((file) => !file.startsWith('tools/')))
+    assert.ok(report.analysis.unresolved.some((row) => row.path === file));
+  assert.ok(
+    report.analysis.reasons.some(
+      (row) => row.path === 'tools/quality/unknown-note.md' && row.ruleId === 'D09'
+    )
+  );
 });
 test('changed gitlink cannot be suppressed by submodule or relative Git configuration', (t) => {
   const f = fixture(

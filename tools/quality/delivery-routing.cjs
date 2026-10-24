@@ -78,7 +78,7 @@ function classify(file, rights, contentPaths = new Set()) {
       false,
       'CONTRIBUTING.md',
       ['AGENTS.md'],
-      'Instruction/review source retains repository and all current delivery obligations.'
+      'Instruction/review source requires repository checks and independent review.'
     );
   if (
     [
@@ -143,6 +143,28 @@ function classify(file, rights, contentPaths = new Set()) {
 }
 function control(file) {
   return (
+    /^(tools|tests|\.github\/(workflows|actions|acceptance))\//.test(file) ||
+    /^requirements[^/]*\.txt$/.test(file) ||
+    /^[^/]+\.config\.[^/]+$/.test(file) ||
+    [
+      '.gitattributes',
+      '.gitmodules',
+      '.npmrc',
+      '.node-version',
+      '.nvmrc',
+      '.python-version',
+      '.prettierrc',
+      '.prettierignore',
+      'pyproject.toml',
+      'ruff.toml',
+      '.ruff.toml',
+      'package.json',
+      'package-lock.json',
+      'pnpm-lock.yaml',
+      'yarn.lock',
+      'Makefile',
+      '.github/code-style.json',
+    ].includes(file) ||
     /^\.github\/workflows\/[^/]+\.ya?ml$/.test(file) ||
     /^\.github\/acceptance\/issue-\d+\.json$/.test(file) ||
     /^tools\/quality\/delivery-(?:git|json|routing|observation)\.cjs$/.test(file) ||
@@ -487,7 +509,33 @@ function appendSide(context, record, side, sources) {
     );
   for (const item of rules) appendRule(context, item, record, file, side, sources);
 }
-function analyze(records, sources, base, candidate) {
+function repositoryObligations(obligations, reasons, base, candidate) {
+  const inapplicable = new Set(['H-PREVIEW', 'H', 'H-PREFLIGHT', 'H-SOURCE', 'R-PYTHON']);
+  for (const row of obligations) {
+    if (inapplicable.has(row.id)) {
+      row.required = false;
+      row.inapplicable = 'Repository-only delta: no website build, hosting or publication.';
+    }
+    if (row.id === 'B')
+      row.execution.command.argv = [
+        'node',
+        'tools/quality/source-tests.cjs',
+        '--profile',
+        'pr',
+        '--base',
+        base,
+        '--head',
+        candidate,
+        '--repository-only',
+        '--require-clean',
+      ];
+    if (row.id === 'ADMISSION')
+      row.workflow = { path: '.github/workflows/change-admission.yml', job: 'issuer' };
+  }
+  reasons[0].detail =
+    'Repository source/style/RI/owning checks, trusted App and four roles; website work is inapplicable.';
+}
+function analyze(records, sources, base, candidate, activateRepository = false) {
   const context = contextFor(base, candidate);
   for (const record of records)
     for (const side of ['base', 'candidate']) appendSide(context, record, side, sources);
@@ -501,6 +549,14 @@ function analyze(records, sources, base, candidate) {
       : impacts.has('content')
         ? 'content'
         : 'repository';
+  if (
+    activateRepository &&
+    proposedLane === 'repository' &&
+    controlFlag === false &&
+    status === 'complete'
+  )
+    repositoryObligations(obligations, reasons, base, candidate);
+
   return {
     analysis: {
       status,
@@ -520,6 +576,7 @@ module.exports = {
   matches,
   provenance,
   classify,
+  control,
   selected,
   validateRegistry,
   analyze,

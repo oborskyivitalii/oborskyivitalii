@@ -19,6 +19,7 @@ jobs:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
           ref: ${{ github.sha }}
+          fetch-depth: 0
           persist-credentials: false
       - name: Bind the actual merge tree to the accepted PR and Cloudflare staging
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
@@ -28,9 +29,15 @@ jobs:
             fs.mkdirSync('merge-reports',{recursive:true});
             try{
               const pr=(await github.rest.pulls.get({...context.repo,pull_number:context.payload.pull_request.number})).data;
-              const record=await require('./tools/staging/admission.cjs').verifyMerge(github,context,pr);
+              const assert=require('node:assert/strict');
+              const git=require('./tools/quality/delivery-git.cjs');
+              assert.equal(pr.merge_commit_sha,context.sha,'Actual merge source differs');
+              const parents=git.text(git.git(process.cwd(),['rev-list','--parents','-n','1',context.sha])).trim().split(' ');
+              const normal=parents.length===3 && parents[2]===pr.head.sha;
+              const plan=normal?require('./tools/quality/delivery-observation.cjs').selection(process.cwd(),parents[1],pr.head.sha):{repositoryOnly:false};
+              const record=await require('./tools/staging/admission.cjs').verifyMerge(github,context,pr,plan.repositoryOnly?parents[1]:null);
               fs.writeFileSync('merge-reports/identity.json',JSON.stringify(record,null,2)+'\n');
-              await core.summary.addHeading('Accepted staging merge').addRaw('Tested source: '+record.testedSource+'; merged source: '+record.mergedSource+'; identical source tree: '+record.sourceTree+'. The tested package remains unchanged.').write();
+              await core.summary.addHeading(record.website==='not-applicable'?'Accepted repository merge':'Accepted staging merge').addRaw('Tested source: '+record.testedSource+'; merged source: '+record.mergedSource+'; identical source tree: '+record.sourceTree+'. '+(record.acceptedSite||'The tested package remains unchanged.')).write();
             }catch(error){
               fs.writeFileSync('merge-reports/identity.json',JSON.stringify({pass:false,error:error.message},null,2)+'\n');
               throw error;

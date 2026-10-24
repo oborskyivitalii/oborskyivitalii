@@ -11,11 +11,32 @@ const admission = require('../tools/quality/delivery-admission.cjs');
 const issuing = require('../tools/quality/delivery-admission-issuer.cjs');
 const base = 'a'.repeat(40),
   source = 'b'.repeat(40);
+const stagePR = { number: 122, head: { sha: source } };
+function targetArtifacts(id, main = base, head = source) {
+  return [
+    {
+      id: id + 9000,
+      name: ['change-stage-target', 122, head, main, id, 2].join('-'),
+      digest: 'sha256:' + 'f'.repeat(64),
+      workflow_run: { id, head_sha: main },
+    },
+  ];
+}
+function targetLog(id, main = base, head = source) {
+  return {
+    data:
+      '2026-10-24T18:00:00Z change-stage-target-v1 ' +
+      JSON.stringify({ pr: 122, source: head, base: main, run: id, attempt: 2 }) +
+      '\n',
+  };
+}
+
 function run(id = 20) {
   return {
     id,
     workflow_id: 9,
     path: '.github/workflows/site-color-review.yml',
+    display_title: 'Site staging PR #122',
     run_attempt: 2,
     head_sha: base,
     head_branch: 'main',
@@ -54,6 +75,7 @@ function proof() {
 function snapshot() {
   return {
     state: 'eligible-snapshot',
+    lane: 'repository',
     candidate: { commit: source },
     controller: { commit: base },
     policy: { digest: 'd'.repeat(64) },
@@ -253,10 +275,19 @@ test('selected source evidence uses workflow identity and exact attempt endpoint
 test('latest genuine failed/running staging supersedes an older green; ordinary comments are ignored', async () => {
   const recent = run(21),
     old = run(20);
-  let recentTarget = 'skipped';
+  let recentTarget = 'skipped',
+    recentSource = source;
   const github = {
     rest: {
       actions: {
+        listWorkflowRunArtifacts: async ({ run_id }) => ({
+          data: {
+            total_count: 1,
+            artifacts: targetArtifacts(run_id, base, 'f'.repeat(40)),
+          },
+        }),
+        downloadJobLogsForWorkflowRun: async ({ job_id }) =>
+          targetLog(job_id - 10, base, job_id === 31 ? recentSource : source),
         getWorkflow: async () => ({ data: { id: 9, path: old.path } }),
         listWorkflowRuns: async () => ({
           data: { workflow_runs: [old, recent], total_count: 2 },
@@ -275,16 +306,21 @@ test('latest genuine failed/running staging supersedes an older green; ordinary 
       },
     },
   };
-  assert.equal((await admission.latestStage(github, {}, base)).run.id, 20);
+  assert.equal((await admission.latestStage(github, {}, base, stagePR)).run.id, 20);
   recentTarget = 'success';
   recent.conclusion = 'failure';
-  let selected = await admission.latestStage(github, {}, base);
+  let selected = await admission.latestStage(github, {}, base, stagePR);
   assert.equal(selected.run.id, 21);
   assert.throws(() => admission.completeJobs(selected.run, selected.jobs, ['target']), /failed/);
   recent.status = 'in_progress';
-  selected = await admission.latestStage(github, {}, base);
+  selected = await admission.latestStage(github, {}, base, stagePR);
   assert.equal(selected.run.id, 21);
   assert.throws(() => admission.completeJobs(selected.run, selected.jobs, ['target']), /running/);
+  recent.display_title = 'Site staging PR #777';
+  assert.equal((await admission.latestStage(github, {}, base, stagePR)).run.id, 20);
+  recent.display_title = 'Site staging PR #122';
+  recentSource = 'e'.repeat(40);
+  assert.equal((await admission.latestStage(github, {}, base, stagePR)).run.id, 20);
 });
 test('observed head, policy and attempt changes invalidate publication', () => {
   const before = snapshot();
@@ -315,6 +351,10 @@ test('cancelled skipped targets and dispatch skips cannot reuse older green stag
   const github = {
     rest: {
       actions: {
+        listWorkflowRunArtifacts: async ({ run_id }) => ({
+          data: { total_count: 1, artifacts: targetArtifacts(run_id) },
+        }),
+        downloadJobLogsForWorkflowRun: async ({ job_id }) => targetLog(job_id - 10),
         getWorkflow: async () => ({ data: { id: 9, path: old.path } }),
         listWorkflowRuns: async () => ({
           data: { workflow_runs: [old, recent], total_count: 2 },
@@ -331,18 +371,18 @@ test('cancelled skipped targets and dispatch skips cannot reuse older green stag
   for (const event of ['issue_comment', 'workflow_dispatch']) {
     for (const conclusion of ['cancelled', 'failure']) {
       Object.assign(recent, { event, conclusion });
-      const selected = await admission.latestStage(github, {}, base);
+      const selected = await admission.latestStage(github, {}, base, stagePR);
       assert.equal(selected.run.id, 21, event + '/' + conclusion);
       assert.throws(() => admission.completeJobs(selected.run, selected.jobs, ['target']));
     }
   }
   Object.assign(recent, { event: 'workflow_dispatch', conclusion: 'success' });
-  assert.equal((await admission.latestStage(github, {}, base)).run.id, 21);
+  assert.equal((await admission.latestStage(github, {}, base, stagePR)).run.id, 21);
   Object.assign(recent, { event: 'issue_comment', conclusion: 'success' });
   jobs.push(job('ambiguous executed branch', 32, 21));
-  assert.equal((await admission.latestStage(github, {}, base)).run.id, 21);
+  assert.equal((await admission.latestStage(github, {}, base, stagePR)).run.id, 21);
   jobs.pop();
-  assert.equal((await admission.latestStage(github, {}, base)).run.id, 20);
+  assert.equal((await admission.latestStage(github, {}, base, stagePR)).run.id, 20);
 });
 test('authentication revokes minted tokens after readback request or scope validation fails', async () => {
   const { privateKey } = crypto.generateKeyPairSync('rsa', {
@@ -709,6 +749,19 @@ test('real Git collection keeps candidate bytes as data and rejects an otherwise
     git('config', 'user.name', 'Admission fixture');
     git('config', 'user.email', 'fixture@example.invalid');
     fs.mkdirSync(path.join(root, 'tools'));
+    const ownerRoot = path.resolve(__dirname, '..');
+    const inputFiles = [
+      'tools/quality/test-profiles.json',
+      'site/rights.json',
+      'site/routes.json',
+      ...['index', 'research', 'writing', 'talks', 'credits'].map(
+        (id) => 'site/content/pages/' + id + '/metadata.json'
+      ),
+    ];
+    for (const file of inputFiles) {
+      fs.mkdirSync(path.dirname(path.join(root, file)), { recursive: true });
+      fs.copyFileSync(path.join(ownerRoot, file), path.join(root, file));
+    }
     fs.writeFileSync(
       path.join(root, 'tools/wrapper.cjs'),
       'throw new Error("candidate code must never execute");\n'
@@ -735,6 +788,7 @@ test('real Git collection keeps candidate bytes as data and rejects an otherwise
     };
     const files = admission.routes.map(([file]) => file);
     const stage = { ...run(200), head_sha: main };
+    let failedSource = false;
     const github = {
       rest: {
         repos: {
@@ -744,6 +798,7 @@ test('real Git collection keeps candidate bytes as data and rejects an otherwise
         },
         pulls: { get: async () => ({ data: pr }) },
         actions: {
+          downloadJobLogsForWorkflowRun: async () => targetLog(200, main, pr.head.sha),
           getWorkflow: async ({ workflow_id }) => ({
             data: {
               id: files.indexOf(workflow_id) + 1,
@@ -760,6 +815,7 @@ test('real Git collection keeps candidate bytes as data and rejects an otherwise
                   head_sha: pr.head.sha,
                 }
               : { ...stage, workflow_id };
+            if (event && failedSource) item.conclusion = 'failure';
             return { data: { workflow_runs: [item], total_count: 1 } };
           },
           listJobsForWorkflowRunAttempt: async ({ run_id, attempt_number }) => {
@@ -784,8 +840,9 @@ test('real Git collection keeps candidate bytes as data and rejects an otherwise
           },
           listWorkflowRunArtifacts: async () => ({
             data: {
-              total_count: 1,
+              total_count: 2,
               artifacts: [
+                ...targetArtifacts(200, main, pr.head.sha),
                 {
                   id: 800,
                   name: admission.receiptName(122, pr.head.sha, main, 200, 2),
@@ -809,7 +866,16 @@ test('real Git collection keeps candidate bytes as data and rejects an otherwise
     assert.equal(first.state, 'eligible-snapshot');
     assert.equal(first.authority.merge, false);
     assert.equal(first.candidate.commit, head);
-    assert.equal(first.evidence.length, 5);
+    assert.equal(first.evidence.length, 3);
+    assert.equal(first.lane, 'repository');
+    assert.ok(
+      first.selection.obligations
+        .filter((row) => row.category === 'hosted')
+        .every((row) => row.required === false)
+    );
+    failedSource = true;
+    await assert.rejects(admission.collect(github, context, 122, root), /required workflow failed/);
+    failedSource = false;
     pr.base.sha = 'a'.repeat(40);
     await assert.rejects(
       admission.collect(github, context, 122, root),
@@ -824,13 +890,99 @@ test('real Git collection keeps candidate bytes as data and rejects an otherwise
     git('checkout', '-q', main);
     const blocked = await admission.collect(github, context, 122, root);
     assert.equal(blocked.state, 'blocked');
-    assert.deepEqual(blocked.blockers, ['unsupported-execution-control-change']);
+    assert.deepEqual(blocked.blockers, ['review-exact-control-head']);
     assert.deepEqual(blocked.policy.changed, ['tools/wrapper.cjs']);
+    context.eventName = 'workflow_dispatch';
+    context.actor = 'oborskyivitalii';
+    context.payload = { inputs: { reviewed_sha: head } };
+    assert.equal((await admission.collect(github, context, 122, root)).state, 'blocked');
+    context.payload.inputs.reviewed_sha = pr.head.sha;
+    const reviewed = await admission.collect(github, context, 122, root);
+    assert.equal(reviewed.state, 'eligible-snapshot');
+    assert.equal(reviewed.lane, 'current-full-route');
+    assert.equal(reviewed.evidence.length, 5);
+    failedSource = true;
+    await assert.rejects(admission.collect(github, context, 122, root), /required workflow failed/);
+    failedSource = false;
     pr.draft = true;
     assert.ok(
       (await admission.collect(github, context, 122, root)).blockers.includes('Draft-deferred')
     );
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('repository consumers require the dedicated App and exact protected controller attempt', async () => {
+  const check = {
+    id: 12,
+    name: 'Change admission',
+    app: { id: 5453173 },
+    head_sha: source,
+    status: 'completed',
+    conclusion: 'success',
+    external_id: '20/2/122',
+  };
+  const controller = { ...run(), path: admission.workflow, event: 'workflow_dispatch' };
+  const github = {
+    rest: {
+      checks: {
+        listForRef: async () => ({
+          data: { total_count: 2, check_runs: [check, { ...check, id: 99, app: { id: 1 } }] },
+        }),
+      },
+      actions: { getWorkflowRun: async () => ({ data: controller }) },
+    },
+  };
+  assert.equal((await admission.issuedCheck(github, {}, stagePR, base)).check, 12);
+  check.conclusion = 'failure';
+  await assert.rejects(admission.issuedCheck(github, {}, stagePR, base), /failed/);
+  check.conclusion = 'success';
+  controller.head_sha = source;
+  await assert.rejects(admission.issuedCheck(github, {}, stagePR, base), /base differs/);
+  controller.head_sha = base;
+  controller.run_attempt = 3;
+  await assert.rejects(admission.issuedCheck(github, {}, stagePR, base), /attempt moved/);
+});
+
+test('eligible App checks stay pending until durable upload and a fresh bound finalization', async () => {
+  const previous = process.env.GITHUB_RUN_ATTEMPT;
+  process.env.GITHUB_RUN_ATTEMPT = '2';
+  try {
+    for (const uploaded of [false, true]) {
+      const issuer = fakeIssuer(),
+        reports = [];
+      const pending = await issuing.publish(
+        issuer,
+        { runId: 90, sha: base },
+        122,
+        source,
+        async () => snapshot(),
+        async (report) => reports.push(report),
+        { deferSuccess: true }
+      );
+      assert.equal(pending.pending, true);
+      assert.ok(!issuer.writes.some((write) => write.conclusion === 'success'));
+      assert.match(pending.output.summary, /Lane: repository/);
+      const finish = issuing.finalize(
+        issuer,
+        { runId: 90, sha: base },
+        122,
+        source,
+        pending.id,
+        reports[0],
+        async () => snapshot(),
+        uploaded
+      );
+      if (uploaded) assert.equal((await finish).conclusion, 'success');
+      else {
+        await assert.rejects(finish, /upload failed/);
+        assert.equal(issuer.writes.at(-1).conclusion, 'failure');
+        assert.ok(!issuer.writes.some((write) => write.conclusion === 'success'));
+      }
+    }
+  } finally {
+    if (previous === undefined) delete process.env.GITHUB_RUN_ATTEMPT;
+    else process.env.GITHUB_RUN_ATTEMPT = previous;
   }
 });

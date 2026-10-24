@@ -4,29 +4,31 @@ Dated continuity, not live authority. Last verified: **2026-10-24**.
 
 ## Snapshot
 
-- Owner is issue122. Protected main e255fa3a7d6f86c5b282779f3add12ba1dc759c5 contains delivered PR141; its staging40110481719/postmerge40112223401 evidence remains bound to its actual tested source. No production or relabel.
-- Active work is R1 on work/issue-122-r1-manual-admission-20261024. The live issue now has a bounded R1/R2/R3 completion plan. Old App, structural-lock and containment experiments are delivered history, not tasks to restart.
-- The unfinished helper-specific SHA-256 admission experiment in another worktree is suspended and excluded. Do not merge it into this branch.
+- Owner remains issue122; protected main2db599917d40730cd74a768c9cd0611431c38521 contains delivered R1/PR142. Stage40118227919/postmerge40119822311/manual40119944435 are completed evidence in the live issue. No production or artifact relabel.
+- Active authorized batch is R2 on work/issue-122-r2-repository-lane-20261024. One enabling PR through old full protection, then one meaningful rules/RI no-website acceptance PR. R3/#5/PR79 stays separate.
+- Old App/lock/containment proofs are history; suspended helper-SHA experiment and archive worktrees remain excluded.
 
 ## Decisions
 
-- Maintainer said “Роби” for R1 only: stop automatic admission fan-out and retain one owner/main manual dispatch for one PR/current head. Complete this atomic PR through the existing route, then report before R2.
-- Ordinary Draft/stale/not-ready/failed-required-evidence refusals keep a failed App check and actionable bound report. API/auth/identity/dirty-source/storage/protocol errors still fail the workflow. Never convert a blocked result into successful admission.
-- App stays nonrequired, globally serialized and isolated. Existing three main requirements and full delivery/scanner/profile/budget obligations remain. No new service/sandbox, repeated isolated proof, settings or production action.
+- Maintainer requested the next batch and a status every time: completed work, next action and full remaining plan in live #122. No scope growth, new service/sandbox/publisher or experiment PR chain.
+- Reuse protected-base classifier, App5453173, existing source-test registry and staging. Repository deltas omit website work; executable/control/mixed/unknown/rights inputs remain conservative.
+- Controls require owner/main manual reviewed_sha equal to the explicitly reviewed full current head, plus retained full evidence. This is human trust, not automatic CI semantic certification; it cannot waive failures or load candidate code into the issuer.
+- Actual ruleset24568553 currently requires Actions15368 checks/nav/Staging admission, strict up-to-date, no bypass. Add App and existing owning context, retaining all three original checks; Staging admission now conditionally authenticates repository evidence without site work. Recovery restores old checks alongside App before removing unavailable App; explicit /stage and full-proof fallback remain executable.
 
 ## Open work
 
-- Canonical operator owner is guides/SITE-STAGING.md; execution/review record is review/issue-122/2026-10-24-r1-manual-admission.md. Four current-source role reviews and affected corrections are accepted; native CI/staging/merge/postmerge and one actual manual-main dispatch remain pending.
-- Final targeted admission suite passed19/19. Both snapshot reads validate candidate/controller identity before movement classification; malformed identities hard-fail. Local Basic/style/RI/coupling and pinned formatting passed; native delivery remains pending. Initial Basic40117751672 stopped at no-regex-spaces before source tests; the equivalent test-only `{2}` correction passed direct ESLint/19targeted and four scoped correction reviews.
-- All whole AC01–AC08 remain open. R2 still needs useful repository-only admission, per-PR evidence selection, legitimate control/recovery route, enforceable freshness/protected migration and a real no-website merge. R3 integrates accepted-site history and actual content release/recovery through issue5/PR79, without absorbing its editorial/build backlog.
+- R2 source is prepared, not delivered. Canonical runbook guides/SITE-STAGING.md; review/issue-122/2026-10-24-r2-repository-lane.md owns four distinct role results, checks and native receipts. Live R2.1–R2.6 remain unchecked until evidenced.
+- Main-owned stage run title and completed trusted target job log bind PR/head/base/run/attempt before latest applicable selection. Unresolved same-PR attempts block older green; another PR/resolved old head is irrelevant.
+- Final current-source checks/reviews, enabling old-route CI/stage/merge/postmerge, actual App/protection transition and one real no-site merge remain pending at this freeze. Preserve observed failures/source identities.
+- All whole AC01–AC08 remain open. R3 authenticates accepted platform/complete history and actual content release/recovery through #5/PR79. Do not absorb its editorial/build backlog.
 
 ## Next session
 
-1. Revalidate main/issue122/active R1 PR and reviewed source; continue the bounded manual-admission change, not the old experiments.
-2. Finish four role results/corrections and current-source checks, then normal owner staging/protected merge/postmerge. Preserve failures; no rerun loop or relaxed protection.
-3. Observe one owner/main manual dispatch: exactly one bound PR, failed App refusal with a successful evaluation workflow when expected, retained report and no automatic fan-out. Report R1 and remaining R2/R3; do not start R2 automatically.
+1. Revalidate main/issue122/R2 branch and reviewed source; continue this bounded implementation, never restart experiments.
+2. Complete affected reviews/checks and enabling full delivery; verify concrete settings/control/recovery conditions before activation.
+3. Finish ordered transition and one meaningful rules/RI no-site merge, actual postmerge/unchanged accepted site and timings. Report R1/R2 status and R3 next; do not start R3 automatically.
 
 ## Maintenance
 
-- Keep five sections/120lines. Detailed source/run receipts belong to the owning review/issue/PR. Verbatim receipts and deterministic RI refreshes do not recurse into new implementation review.
-- Do not read/copy credentials. Generated RI/catalog must match owned source changes. Missing/failed/unobserved remains open, and old evidence never becomes current by relabeling.
+- Keep five sections/120lines. Receipts belong to review/issue/PR; the live delivery receipt supersedes frozen pending statements. Receipt-only updates and deterministic RI refreshes do not recurse into implementation review.
+- Do not read/copy credentials. Rebuild RI/catalog/coupling for owned changes. Missing/failed/unobserved remains open; history never becomes current by relabeling.

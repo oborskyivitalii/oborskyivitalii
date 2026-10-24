@@ -467,6 +467,21 @@ function prepublication(level, directory, options = {}) {
   return result;
 }
 
+function delivery(directory, repositoryOnly) {
+  if (repositoryOnly) {
+    const result = {
+      profile: 'repository',
+      website: 'not-applicable',
+      reason:
+        'Protected-base repository selection; formatting/lint/affected source/RI/owning checks run in their existing steps.',
+    };
+    console.log(JSON.stringify(result));
+    return result;
+  }
+  check();
+  return artifact.build(directory);
+}
+
 if (require.main === module) {
   try {
     if (process.argv[2] === '--prepublication') {
@@ -478,6 +493,9 @@ if (require.main === module) {
       const result = prepublication(level, directory, { report });
       console.log(JSON.stringify(result));
       if (!result.pass) process.exitCode = 1;
+    } else if (process.argv[2] === '--delivery') {
+      assert.equal(process.argv.length, 4, 'Usage: local.cjs --delivery OUT');
+      delivery(path.resolve(process.argv[3]), process.env.SITE_REPOSITORY_ONLY === 'true');
     } else if (process.argv[2] === '--gate' || process.argv[2] === '--package-gate')
       gate(path.resolve(process.argv[3]), {
         profile: process.argv[2] === '--package-gate' ? 'package' : 'local',
@@ -493,4 +511,4 @@ if (require.main === module) {
     process.exitCode = 1;
   }
 }
-module.exports = { check, gate, finiteGeometry, tests, prepublication };
+module.exports = { check, gate, finiteGeometry, tests, prepublication, delivery };

@@ -29,12 +29,39 @@ jobs:
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
-          ref: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
+          ref: ${{ github.event.pull_request.base.sha || inputs.candidate_sha }}
           fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: 24.19.0
+      - name: Select work with the protected-base classifier
+        id: selection
+        env:
+          SOURCE_EVENT: ${{ github.event_name }}
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const cp = require('node:child_process');
+          const path = require('node:path');
+          const head = process.env.SITE_CANDIDATE_SHA;
+          if (!/^[a-f0-9]{40}$/.test(head)) throw Error('Exact candidate SHA required');
+          cp.execFileSync('git', ['fetch', '--no-tags', 'origin', head]);
+          const select = require('./tools/quality/delivery-observation.cjs').selection;
+          const plan = process.env.SOURCE_EVENT === 'pull_request' && select
+            ? select(process.cwd(), process.env.SITE_BASE_SHA, head)
+            : { repositoryOnly: false, reason: 'Existing full route / enabling bootstrap' };
+          fs.writeFileSync(path.join(process.env.RUNNER_TEMP, 'delivery-selection.json'), JSON.stringify(plan, null, 2) + '\n');
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, 'repository_only=' + plan.repositoryOnly + '\n');
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, plan.repositoryOnly
+            ? 'Repository-only: formatting, lint, affected source, RI and owning checks. Website build/package/preview/staging/publication are inapplicable.\n'
+            : 'Conservative full source and website route.\n');
+          NODE
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
+          fetch-depth: 0
+          persist-credentials: false
       - name: Install the locked source-quality toolchain
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
@@ -45,17 +72,25 @@ jobs:
       - name: Check authored dependency and ownership boundaries
         run: node tools/quality/architecture.cjs
       - name: Minimal source, route, script and size checks
-        run: node tools/quality/local.cjs --package quality-artifact
+        env:
+          SITE_REPOSITORY_ONLY: ${{ steps.selection.outputs.repository_only }}
+        run: node tools/quality/local.cjs --delivery quality-artifact
       - name: Check complete maintained and generated lint coverage
         env:
           SITE_ARTIFACT_MANIFEST: quality-artifact/artifact.json
+          SITE_REPOSITORY_ONLY: ${{ steps.selection.outputs.repository_only }}
+          SITE_REPORT_DIR: quality-reports
         run: node tools/quality/scanners.cjs lint
       - name: Run only additional source tests owned by the current PR changes
         env:
           SITE_SOURCE_EVENT: ${{ github.event_name }}
         run: |
           if [ "$SITE_SOURCE_EVENT" = pull_request ]; then
-            node tools/quality/source-tests.cjs --profile pr --base "$SITE_BASE_SHA" --head "$SITE_CANDIDATE_SHA" --require-clean --report quality-reports/source-tests.json
+            if [ "${{ steps.selection.outputs.repository_only }}" = true ]; then
+              node tools/quality/source-tests.cjs --profile pr --base "$SITE_BASE_SHA" --head "$SITE_CANDIDATE_SHA" --repository-only --require-clean --report quality-reports/source-tests.json
+            else
+              node tools/quality/source-tests.cjs --profile pr --base "$SITE_BASE_SHA" --head "$SITE_CANDIDATE_SHA" --require-clean --report quality-reports/source-tests.json
+            fi
           else
             node tools/quality/source-tests.cjs --profile staging --require-clean --report quality-reports/source-tests.json
           fi
@@ -67,9 +102,19 @@ jobs:
           path: quality-reports/
           if-no-files-found: error
           retention-days: 30
+      - name: Retain the protected-base selection
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: delivery-selection-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/delivery-selection.json
+          if-no-files-found: error
+          retention-days: 30
       - id: identity
+        if: steps.selection.outputs.repository_only != 'true'
         run: node -e "require('node:fs').appendFileSync(process.env.GITHUB_OUTPUT,'digest='+require('./quality-artifact/artifact.json').artifactDigest+'\n')"
       - id: public
+        if: steps.selection.outputs.repository_only != 'true'
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         with:
           name: site-public-basic-${{ github.run_id }}-${{ github.run_attempt }}
@@ -78,11 +123,13 @@ jobs:
           if-no-files-found: error
           retention-days: 30
       - name: Bind successful basic checks to the uploaded artifact
+        if: steps.selection.outputs.repository_only != 'true'
         run: node tools/quality/local.cjs --gate quality-artifact
         env:
           SITE_ARTIFACT_ID: ${{ steps.public.outputs.artifact-id }}
           SITE_UPLOAD_DIGEST: ${{ steps.public.outputs.artifact-digest }}
       - id: gate
+        if: steps.selection.outputs.repository_only != 'true'
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         with:
           name: site-gate-basic-${{ github.run_id }}-${{ github.run_attempt }}

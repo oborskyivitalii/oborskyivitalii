@@ -492,6 +492,24 @@ green evidence can supply passed. Lifecycle interpretation and permitted next
 actions remain owned by
 [SITE-STAGING](SITE-STAGING.md#observation-does-not-admit-delivery).
 
+### R2 execution selection
+
+The existing observer remains advisory with full planned obligations. Protected
+admission uses the same complete diff/classifier with conditional repository
+obligations: Basic formatting/lint/architecture and affected source tests, current
+navigation/RI, owning acceptance, dedicated App and independent roles. Website
+build/package/preview/staging/publication are explicitly inapplicable. This report
+must not label skipped website work as passed. The source selector's
+`--repository-only` records no delegated website smoke; it still executes any
+actually affected Node modules and propagates their failures.
+
+All executable `tools/`/`tests/`, workflows/actions/acceptance and declared controls
+retain the conservative full route. In particular D03's repository purpose is
+not a cheap exemption for its executable. Mixed/unknown/rights/public inputs
+retain full obligations. See [activation, exact-SHA control review and protected
+recovery](SITE-STAGING.md#trusted-change-admission-and-repository-delivery).
+R3/#5/PR79 alone owns accepted-platform/history reuse and content publication.
+
 ### Worked decisions and future test oracles
 
 These are semantic walkthroughs and independent implementation oracles. Actual
@@ -500,8 +518,8 @@ the matrix above; every applicable current B/R/O/H obligation stays visible.
 
 | Case | Required report/decision | Existing coverage and remaining proof |
 | --- | --- | --- |
-| Exact template or AGENTS edit | repository proposal, control false; baseline/R/O/H preserved. | Existing exact-template/mixed selector tests and RI instruction routes; no current repository-only delivery. |
-| RI Python executable edit | repository proposal plus actual executable RI checks, regardless of zero additional JS. | RI behavioral/negative suites in navigation; later real failed-RI admission experiment remains AC02. |
+| Exact template or AGENTS edit | repository proposal; trusted R2 selection uses Basic/R/O/App and explicit website inapplicability. | Existing exact-template/mixed selector tests and RI instruction routes; actual protected lane delivery remains a live #122 gate. |
+| RI Python executable edit | repository purpose plus conservative control/full route and actual RI checks, regardless of zero additional JS. | RI behavioral/negative suites in navigation; later failed-RI admission evidence remains AC02. |
 | Rendered legal or publication input | website dependency and new matching rights/output obligations. | `site-engine`, `release-rights`, `publication-records`; `.md` or `review/` cannot erase the dependency. |
 | Guide named by rights provenance | website/publication dependency; stale provenance evidence cannot be reused. | Two existing rights/publication suites and R; guide location is insufficient. |
 | Writing content plus its template | impacts include content and website, proposed website lane; union keeps both reasons. | Existing content/render/engine/rights suites; overlapping selections do not collapse ownership. |

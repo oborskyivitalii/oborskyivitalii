@@ -114,8 +114,8 @@ function parseRaw(bytes, before, after) {
 function compare(a, b) {
   return a < b ? -1 : a > b ? 1 : 0;
 }
-function collect(root, base, candidate, output) {
-  const args = [
+function diffArgs(base, candidate) {
+  return [
     '-c',
     'diff.renames=false',
     'diff',
@@ -127,10 +127,13 @@ function collect(root, base, candidate, output) {
     '--ignore-submodules=none',
     '--no-ext-diff',
     '--no-textconv',
-    base.commit,
-    candidate.commit,
+    base,
+    candidate,
     '--',
   ];
+}
+function collect(root, base, candidate, output) {
+  const args = diffArgs(base.commit, candidate.commit);
   const collector = {
     command: { argv: ['git', '--no-replace-objects', ...args], cwd: '.' },
     gitVersion: text(git(root, ['--version'])).trim(),
@@ -235,6 +238,7 @@ module.exports = {
   tree,
   read,
   parseRaw,
+  diffArgs,
   collect,
   prospective,
   outside,

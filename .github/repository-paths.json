@@ -9624,6 +9624,12 @@
       "purpose": "R1 bounded manual-admission requirements, four independent roles, current-source checks and native delivery evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-122/2026-10-24-r2-repository-lane.md": {
+      "kind": "file",
+      "purpose": "R2 bounded repository-lane requirements, independent reviews, source checks and protected delivery evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

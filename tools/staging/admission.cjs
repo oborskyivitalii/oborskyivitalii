@@ -204,7 +204,7 @@ async function stagingEvidence(github, context, pr) {
   return { check, run, runId, attempt };
 }
 
-async function verifyMerge(github, context, pr) {
+async function verifyMerge(github, context, pr, repositoryBase = null) {
   const flow = require('./review-flow.cjs');
   assert.equal(pr.merged, true);
   assert.equal(pr.base.ref, 'main');
@@ -219,6 +219,32 @@ async function verifyMerge(github, context, pr) {
     commits[1].commit.tree.sha,
     'merged source tree differs from the tested PR; stage the changed source'
   );
+  let appFailure;
+  if (repositoryBase) {
+    try {
+      const proof = await require('../quality/delivery-admission.cjs').issuedCheck(
+        github,
+        context.repo,
+        pr,
+        repositoryBase
+      );
+      return {
+        kind: 'accepted-repository-merge',
+        pass: true,
+        pr: pr.number,
+        testedSource: pr.head.sha,
+        mergedSource: pr.merge_commit_sha,
+        sourceTree: commits[0].commit.tree.sha,
+        protectedMain: repositoryBase,
+        admission: proof,
+        website: 'not-applicable',
+        acceptedSite:
+          'Unchanged; retain its original source/artifact without relabeling at this merge.',
+      };
+    } catch (error) {
+      appFailure = error.message;
+    }
+  }
   const { runId, attempt } = await stagingEvidence(github, context, pr);
   return {
     schema: 1,
@@ -231,6 +257,7 @@ async function verifyMerge(github, context, pr) {
     stagingRun: runId,
     attempt,
     publicBytesUnchanged: true,
+    ...(appFailure ? { admissionMode: 'full-route-recovery', dedicatedApp: appFailure } : {}),
     method: 'Identical complete source trees; preserve the tested package without rebuilding',
   };
 }
@@ -306,6 +333,110 @@ async function verifyPR(github, context, pr, main) {
   };
 }
 
+async function verifyRepositoryPR(github, context, pr, main) {
+  const flow = require('./review-flow.cjs');
+  assert.equal(context.eventName, 'pull_request');
+  assert.equal(context.actor, context.repo.owner);
+  assert.equal(context.payload.sender.login, context.repo.owner);
+  assert.equal(context.payload.pull_request.number, pr.number);
+  flow.lease(pr, context.payload.pull_request.head.sha);
+  assert.equal(pr.draft, false);
+  assert.equal(pr.base.sha, main.commit.sha);
+  assert.equal(main.protected, true);
+  try {
+    const sourceAdmission = await waitForAdmission(github, context, pr);
+    const proof = await require('../quality/delivery-admission.cjs').issuedCheck(
+      github,
+      context.repo,
+      pr,
+      main.commit.sha
+    );
+    return { kind: 'accepted-repository-pr', website: 'not-applicable', sourceAdmission, ...proof };
+  } catch (error) {
+    // Recovery remains protected by the complete original route. A failed App
+    // never becomes cheap success; the required App still blocks until the
+    // maintainer restores the old requirement set in the documented order.
+    const proof = await verifyPR(github, context, pr, main);
+    return { ...proof, admissionMode: 'full-route-recovery', dedicatedApp: error.message };
+  }
+}
+
+function changeIdentity(context, number, source) {
+  const flow = require('./review-flow.cjs');
+  assert.equal(context.repo.owner + '/' + context.repo.repo, flow.repository);
+  assert.equal(context.ref, 'refs/heads/main');
+  assert.equal(context.eventName, 'workflow_dispatch');
+  assert.equal(context.actor, context.repo.owner);
+  assert.match(source, /^[a-f0-9]{40}$/);
+  assert.match(context.sha, /^[a-f0-9]{40}$/);
+  return [
+    'change-admission',
+    executionIdentity(context, process.env.GITHUB_RUN_ATTEMPT),
+    flow.positive(number),
+    context.sha,
+  ].join('/');
+}
+async function beginChangeAdmission(github, context, pr) {
+  const identity = changeIdentity(context, pr.number, pr.head.sha);
+  assert.equal(pr.head.repo.full_name, require('./review-flow.cjs').repository);
+  const { data } = await github.rest.checks.create({
+    ...context.repo,
+    name: 'Staging admission',
+    head_sha: pr.head.sha,
+    status: 'in_progress',
+    external_id: identity,
+    details_url:
+      'https://github.com/' +
+      require('./review-flow.cjs').repository +
+      '/actions/runs/' +
+      context.runId,
+    output: {
+      title: 'Change admission evaluation in progress',
+      summary: 'This bound request must finish evaluation, durable reporting and issuer cleanup.',
+    },
+  });
+  assert.equal(data.app?.id, 15368);
+  return data.id;
+}
+async function finishChangeAdmission(github, context, number, source, id, passed) {
+  const identity = changeIdentity(context, number, source);
+  const { data: check } = await github.rest.checks.get({
+    ...context.repo,
+    check_run_id: Number(id),
+  });
+  assert.equal(check.id, Number(id));
+  assert.equal(check.name, 'Staging admission');
+  assert.equal(check.app?.id, 15368);
+  assert.equal(check.head_sha, source);
+  assert.equal(check.external_id, identity);
+  let failure = 'Evaluation, snapshot upload, App finalization or credential cleanup did not pass.';
+  if (passed) {
+    const pr = (await github.rest.pulls.get({ ...context.repo, pull_number: number })).data;
+    const main = (await github.rest.repos.getBranch({ ...context.repo, branch: 'main' })).data;
+    passed =
+      pr.state === 'open' &&
+      pr.draft === false &&
+      pr.head.sha === source &&
+      pr.base.sha === context.sha &&
+      main.protected === true &&
+      main.commit.sha === context.sha;
+    failure = 'PR head/readiness or protected main moved; dispatch this PR again.';
+  }
+  // Last explicit operation: no report, upload or credential cleanup follows green.
+  return github.rest.checks.update({
+    ...context.repo,
+    check_run_id: check.id,
+    status: 'completed',
+    conclusion: passed ? 'success' : 'failure',
+    output: {
+      title: passed ? 'Bound change admission completed' : 'Change admission blocked',
+      summary: passed
+        ? 'Exact-source evaluation, durable reporting and issuer cleanup passed. Current protected requirements remain mandatory.'
+        : failure,
+    },
+  });
+}
+
 module.exports = {
   routes,
   validateRun,
@@ -317,4 +448,7 @@ module.exports = {
   stagingEvidence,
   waitForAdmission,
   verifyPR,
+  verifyRepositoryPR,
+  beginChangeAdmission,
+  finishChangeAdmission,
 };

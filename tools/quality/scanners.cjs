@@ -884,7 +884,38 @@ function advisories() {
     runtimeDependencies: 'none',
   };
 }
+function repositoryLint() {
+  const git = require('./delivery-git.cjs'),
+    common = require('./common.cjs');
+  const commit = git.text(git.git(root, ['rev-parse', 'HEAD'])).trim();
+  const source = git.resolve(root, commit);
+  git.clean(root, commit);
+  if (process.env.SITE_CANDIDATE_SHA) assert.equal(commit, process.env.SITE_CANDIDATE_SHA);
+  const report = {
+    schema: 1,
+    kind: 'repository-source-lint',
+    pass: false,
+    sourceCommit: commit,
+    sourceTree: source.tree,
+    candidateCommit: commit,
+    website: 'not-applicable',
+    environment: common.environment(),
+  };
+  try {
+    report.detail = lint();
+    git.clean(root, commit);
+    report.pass = true;
+    common.save('repository-lint', report);
+    return report;
+  } catch (error) {
+    report.error = error.message;
+    if (error.detail) report.detail = error.detail;
+    common.save('repository-lint', report);
+    throw error;
+  }
+}
 function main(kind = process.argv[2]) {
+  if (kind === 'lint' && process.env.SITE_REPOSITORY_ONLY === 'true') return repositoryLint();
   try {
     const identity = require('./common.cjs').identity();
     for (const key of ['sourceCommit', 'sourceTree', 'candidateCommit'])

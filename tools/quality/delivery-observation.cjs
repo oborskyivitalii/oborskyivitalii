@@ -165,6 +165,35 @@ function contentInputs(root, revision, entries) {
   }
   return paths;
 }
+// Run from the protected base checkout. Candidate inputs are inert Git blobs;
+// neither its classifier nor its executable registry is loaded as code.
+function selection(root, base, head) {
+  const before = git.resolve(root, base),
+    candidate = git.resolve(root, head);
+  const records = git.parseRaw(
+    git.git(root, git.diffArgs(base, head)),
+    git.tree(root, base),
+    git.tree(root, head)
+  );
+  const baseline = inputs(root, base);
+  const result = routing.analyze(
+    records,
+    { base: baseline, candidate: inputs(root, head), policy: baseline },
+    base,
+    head,
+    true
+  );
+  return {
+    base: before,
+    candidate,
+    policy: base,
+    ...result,
+    repositoryOnly:
+      result.analysis.status === 'complete' &&
+      result.analysis.control === false &&
+      result.analysis.proposedLane === 'repository',
+  };
+}
 function initialReport() {
   return {
     kind: 'delivery-observation',
@@ -385,4 +414,4 @@ if (require.main === module) {
     process.exitCode = 1;
   }
 }
-module.exports = { implementation, policyFiles, policy, observe, argumentsFor, main };
+module.exports = { implementation, policyFiles, policy, selection, observe, argumentsFor, main };

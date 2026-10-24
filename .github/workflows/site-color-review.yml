@@ -1,4 +1,5 @@
 name: Site PR preview and staging
+run-name: "Site ${{ github.event_name == 'pull_request' && 'preview' || 'staging' }} PR #${{ github.event.pull_request.number || github.event.issue.number || inputs.pr_number }}"
 on:
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review, labeled, edited]
@@ -42,7 +43,8 @@ jobs:
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ github.event.pull_request.base.sha }}
+          fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
@@ -56,7 +58,13 @@ jobs:
             try{
               const pr=(await github.rest.pulls.get({...context.repo,pull_number:context.payload.pull_request.number})).data;
               const main=(await github.rest.repos.getBranch({...context.repo,branch:'main'})).data;
-              const proof=await require('./tools/staging/admission.cjs').verifyPR(github,context,pr,main);
+              const select=require('./tools/quality/delivery-observation.cjs').selection;
+              require('node:child_process').execFileSync('git',['fetch','--no-tags','origin',pr.head.sha]);
+              const repositoryOnly=select && select(process.cwd(),main.commit.sha,pr.head.sha).repositoryOnly;
+              const proof=repositoryOnly
+                ? await require('./tools/staging/admission.cjs').verifyRepositoryPR(github,context,pr,main)
+                : await require('./tools/staging/admission.cjs').verifyPR(github,context,pr,main);
+              if(repositoryOnly)await core.summary.addRaw(proof.website==='not-applicable'?'Website staging is inapplicable; exact protected-base dedicated App admission authenticated.':'Protected full-route recovery authenticated; website staging actually ran.').write();
               fs.writeFileSync(file,JSON.stringify(proof,null,2)+'\n');
               core.info(JSON.stringify(proof));
             }catch(error){
@@ -92,10 +100,13 @@ jobs:
       branch: ${{ steps.target.outputs.branch }}
       enabled: ${{ steps.target.outputs.enabled }}
       evidence: ${{ steps.target.outputs.evidence }}
+      binding: ${{ steps.target.outputs.binding }}
+      repository_only: ${{ steps.target.outputs.repository_only }}
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
-          ref: ${{ github.sha }}
+          ref: ${{ github.event.pull_request.base.sha || github.sha }}
+          fetch-depth: 0
           persist-credentials: false
       - id: target
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
@@ -105,6 +116,7 @@ jobs:
           REVIEW_STAGING_ENABLED: ${{ vars.SITE_PR_STAGING_ENABLED }}
         with:
           script: |
+            const fs=require('node:fs'),path=require('node:path');
             const flow=require('./tools/staging/review-flow.cjs');
             const number=flow.positive(process.env.REVIEW_PR);
             const {data:pr}=await github.rest.pulls.get({...context.repo,pull_number:number});
@@ -112,7 +124,32 @@ jobs:
             const target=flow.resolve(context,pr,main);
             target.evidence=String(flow.previewEvidence(context));
             target.enabled=String(process.env[target.mode==='preview'?'REVIEW_PREVIEW_ENABLED':'REVIEW_STAGING_ENABLED']==='true');
+            target.repository_only='false';
+            const select=require('./tools/quality/delivery-observation.cjs').selection;
+            if(select && target.mode==='preview'){
+              require('node:child_process').execFileSync('git',['fetch','--no-tags','origin',pr.head.sha]);
+              const plan=select(process.cwd(),pr.base.sha,pr.head.sha);
+              if(plan.repositoryOnly){
+                target.enabled='false';
+                target.repository_only='true';
+                await core.summary.addRaw('Repository-only delta: website preview/build/publication are inapplicable. Explicit owner staging remains available for protected recovery.').write();
+              }
+            }
+            if(target.mode==='staging'){
+              target.binding=['change-stage-target',number,pr.head.sha,context.sha,context.runId,process.env.GITHUB_RUN_ATTEMPT].join('-');
+              const identity={pr:number,source:pr.head.sha,base:context.sha,run:context.runId,attempt:Number(process.env.GITHUB_RUN_ATTEMPT)};
+              core.info('change-stage-target-v1 '+JSON.stringify(identity));
+              fs.writeFileSync(path.join(process.env.RUNNER_TEMP,'stage-target.json'),JSON.stringify(identity,null,2)+'\n');
+            }
             for(const [key,value]of Object.entries(target))core.setOutput(key,value);
+      - name: Retain the staging target before candidate work
+        if: steps.target.outputs.mode == 'staging'
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: ${{ steps.target.outputs.binding }}
+          path: ${{ runner.temp }}/stage-target.json
+          if-no-files-found: error
+          retention-days: 90
   begin-admission:
     needs: target
     if: needs.target.outputs.mode == 'staging'
@@ -155,6 +192,7 @@ jobs:
     needs: [target, begin-admission]
     if: >-
       always() && needs.target.result == 'success' && !cancelled() &&
+      needs.target.outputs.repository_only != 'true' &&
       (needs.target.outputs.mode == 'preview' || needs.begin-admission.result == 'success')
     runs-on: ubuntu-24.04
     timeout-minutes: 10
@@ -669,6 +707,7 @@ jobs:
           script: |
             const n=JSON.parse(process.env.REVIEW_RESULTS),preview=process.env.REVIEW_MODE==='preview',evidence=process.env.REVIEW_EVIDENCE==='true';
             let status='Deployment is disabled; complete the owner setup in guides/SITE-STAGING.md.';
+            if(n.target.outputs.repository_only==='true')status='Repository-only: website build, preview and deployment are inapplicable. Complete source/RI/owning checks, then dispatch Change admission for this PR.';
             if(n.target.outputs.enabled==='true'){
               if(n.build.result!=='success'||n.publish.result!=='success')status='Build/deployment failed; no accepted update.';
               else if(evidence)status=n['stage-evidence'].result==='success'?'Bounded staging regression passed for these preview bytes; stable staging was not promoted.':'Bounded staging evidence failed or is incomplete; stable staging was not changed.';

@@ -522,3 +522,72 @@ test('source-admission refresh waits boundedly for running jobs but never retrie
   );
   assert.equal(clock, 240000);
 });
+
+test('repository App outage uses only the complete protected full-route proof', async () => {
+  const f = stagedPRFixture();
+  // App API is unavailable, while the existing main-owned stage proof remains genuine.
+  f.api.rest.checks.listForRef = async () => {
+    throw Error('App unavailable');
+  };
+  const original = f.api.paginate;
+  f.api.paginate = async (method, args) =>
+    method === f.api.rest.checks.listForRef ? f.checks : original(method, args);
+  const record = await admission.verifyRepositoryPR(f.api, f.c, f.p, f.main);
+  assert.equal(record.admissionMode, 'full-route-recovery');
+  assert.equal(record.stagingRun, 900);
+  f.p.merged = true;
+  assert.equal(
+    (await admission.verifyMerge(f.api, f.c, f.p, mainSHA)).admissionMode,
+    'full-route-recovery'
+  );
+  f.p.merged = false;
+  f.checkpoint.conclusion = 'failure';
+  await assert.rejects(admission.verifyRepositoryPR(f.api, f.c, f.p, f.main));
+});
+
+test('manual evaluation revokes and completes only its own source-bound aggregate', async () => {
+  const previous = process.env.GITHUB_RUN_ATTEMPT;
+  process.env.GITHUB_RUN_ATTEMPT = '2';
+  try {
+    const p = pr();
+    p.base.sha = mainSHA;
+    let check;
+    const writes = [];
+    const api = {
+      rest: {
+        checks: {
+          create: async (body) => ({ data: (check = { ...body, id: 901, app: { id: 15368 } }) }),
+          get: async () => ({ data: check }),
+          update: async (body) => {
+            writes.push(body);
+            return body;
+          },
+        },
+        pulls: { get: async () => ({ data: p }) },
+        repos: { getBranch: async () => ({ data: { protected: true, commit: { sha: mainSHA } } }) },
+      },
+    };
+    const id = await admission.beginChangeAdmission(api, context, p);
+    assert.equal(check.status, 'in_progress');
+    assert.equal(
+      (await admission.finishChangeAdmission(api, context, p.number, source, id, false)).conclusion,
+      'failure'
+    );
+    assert.equal(
+      (await admission.finishChangeAdmission(api, context, p.number, source, id, true)).conclusion,
+      'success'
+    );
+    p.head.sha = mainSHA;
+    assert.equal(
+      (await admission.finishChangeAdmission(api, context, p.number, source, id, true)).conclusion,
+      'failure'
+    );
+    check.external_id = 'another-request';
+    const count = writes.length;
+    await assert.rejects(admission.finishChangeAdmission(api, context, p.number, source, id, true));
+    assert.equal(writes.length, count);
+  } finally {
+    if (previous === undefined) delete process.env.GITHUB_RUN_ATTEMPT;
+    else process.env.GITHUB_RUN_ATTEMPT = previous;
+  }
+});

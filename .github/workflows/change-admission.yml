@@ -3,8 +3,12 @@ on:
   workflow_dispatch:
     inputs:
       pr_number:
-        description: Open same-repository PR whose current full-route snapshot is refreshed
+        description: Open same-repository PR to evaluate at its current head
         required: true
+        type: string
+      reviewed_sha:
+        description: Controls only — full head SHA explicitly reviewed by the owner; never skips full checks
+        required: false
         type: string
 permissions:
   contents: read
@@ -42,6 +46,11 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     environment: change-admission
+    permissions:
+      contents: read
+      actions: read
+      checks: write
+      pull-requests: read
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
@@ -51,13 +60,26 @@ jobs:
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: 24.19.0
+      - name: Revoke the bound aggregate before issuer authentication
+        id: begin
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        with:
+          script: |
+            const admission = require('./tools/quality/delivery-admission.cjs');
+            const [number] = await admission.targets(github, context);
+            const pr = (await github.rest.pulls.get({ ...context.repo, pull_number: number })).data;
+            const id = await require('./tools/staging/admission.cjs').beginChangeAdmission(github, context, pr);
+            core.setOutput('check_id', id);
+            core.setOutput('source', pr.head.sha);
       - name: Evaluate immutable identities and issue with the isolated App
+        id: evaluate
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         env:
           CHANGE_ADMISSION_ENABLED: ${{ vars.CHANGE_ADMISSION_ENABLED }}
           CHANGE_ADMISSION_APP_ID: ${{ vars.CHANGE_ADMISSION_APP_ID }}
           CHANGE_ADMISSION_INSTALLATION_ID: ${{ vars.CHANGE_ADMISSION_INSTALLATION_ID }}
           CHANGE_ADMISSION_APP_PRIVATE_KEY: ${{ secrets.CHANGE_ADMISSION_APP_PRIVATE_KEY }}
+          ADMISSION_SOURCE: ${{ steps.begin.outputs.source }}
         with:
           script: |
             const fs = require('node:fs');
@@ -72,18 +94,21 @@ jobs:
             fs.mkdirSync(directory, { recursive: true });
             try {
               const [number] = await admission.targets(github, context);
-              const pr = (await github.rest.pulls.get({ ...context.repo, pull_number: number })).data;
               const retain = async (report) => fs.writeFileSync(
                 path.join(directory, String(number) + '.json'), JSON.stringify(report, null, 2) + '\n'
               );
-              const result = await issuing.publish(issuer, context, number, pr.head.sha,
-                () => admission.collect(github, context, number), retain);
+              const result = await issuing.publish(issuer, context, number, process.env.ADMISSION_SOURCE,
+                () => admission.collect(github, context, number), retain, { deferSuccess: true });
+              core.setOutput('pending', String(result.pending === true));
+              core.setOutput('check_id', result.id);
+              core.setOutput('source', process.env.ADMISSION_SOURCE);
               await core.summary.addHeading('PR ' + number + ': ' + result.output.title)
-                .addRaw(result.output.summary).write();
+                .addRaw(result.output.summary + (result.pending ? '\n\nPending native upload and final bound evaluation.' : '')).write();
             } finally {
               await issuer.revoke();
             }
       - name: Retain exact admission snapshot and blocking diagnostics
+        id: snapshot
         if: always()
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         with:
@@ -91,3 +116,49 @@ jobs:
           path: ${{ runner.temp }}/change-admission/
           if-no-files-found: error
           retention-days: 90
+      - name: Finalize the dedicated check after durable reporting
+        id: finalize
+        if: always() && steps.evaluate.outputs.pending == 'true'
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        env:
+          CHANGE_ADMISSION_ENABLED: ${{ vars.CHANGE_ADMISSION_ENABLED }}
+          CHANGE_ADMISSION_APP_ID: ${{ vars.CHANGE_ADMISSION_APP_ID }}
+          CHANGE_ADMISSION_INSTALLATION_ID: ${{ vars.CHANGE_ADMISSION_INSTALLATION_ID }}
+          CHANGE_ADMISSION_APP_PRIVATE_KEY: ${{ secrets.CHANGE_ADMISSION_APP_PRIVATE_KEY }}
+          ADMISSION_CHECK: ${{ steps.evaluate.outputs.check_id }}
+          ADMISSION_SOURCE: ${{ steps.evaluate.outputs.source }}
+          ADMISSION_UPLOADED: ${{ steps.snapshot.outcome }}
+        with:
+          script: |
+            const fs = require('node:fs'), path = require('node:path');
+            const admission = require('./tools/quality/delivery-admission.cjs');
+            const issuing = require('./tools/quality/delivery-admission-issuer.cjs');
+            const config = issuing.configuration(process.env);
+            const repo = (await github.rest.repos.get(context.repo)).data;
+            const issuer = await issuing.authenticate(config, repo.id);
+            let result;
+            try {
+              const [number] = await admission.targets(github, context);
+              const report = JSON.parse(fs.readFileSync(path.join(process.env.RUNNER_TEMP, 'change-admission', number + '.json')));
+              result = await issuing.finalize(issuer, context, number, process.env.ADMISSION_SOURCE,
+                Number(process.env.ADMISSION_CHECK), report,
+                () => admission.collect(github, context, number), process.env.ADMISSION_UPLOADED === 'success');
+            } finally {
+              await issuer.revoke();
+            }
+            await core.summary.addHeading('Final App admission: ' + result.output.title).addRaw(result.output.summary).write();
+            core.setOutput('eligible', String(result.conclusion === 'success'));
+      - name: Complete only this request's required aggregate
+        if: always() && steps.begin.outputs.check_id != ''
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        env:
+          ADMISSION_AGGREGATE: ${{ steps.begin.outputs.check_id }}
+          ADMISSION_SOURCE: ${{ steps.begin.outputs.source }}
+          ADMISSION_PASSED: ${{ steps.evaluate.outcome == 'success' && steps.snapshot.outcome == 'success' && steps.finalize.outcome == 'success' && steps.finalize.outputs.eligible == 'true' }}
+        with:
+          script: |
+            const admission = require('./tools/quality/delivery-admission.cjs');
+            const [number] = await admission.targets(github, context);
+            await require('./tools/staging/admission.cjs').finishChangeAdmission(github, context,
+              number, process.env.ADMISSION_SOURCE, Number(process.env.ADMISSION_AGGREGATE),
+              process.env.ADMISSION_PASSED === 'true');

@@ -139,78 +139,123 @@ or alternate release mechanism. A revised design needs separate maintainer
 approval **and still needs the actual AC05 proof**; approval does not waive it.
 The existing delivery process remains in force while that requirement is open.
 
-### T05 preparation: isolated issuer and full-route snapshots
+### Trusted change admission and repository delivery
 
-Issue122 T05 prepares `delivery-admission.cjs`, its separate App issuer adapter
-and `change-admission.yml`. They do not replace any current required check or
-activate repository/content lanes. The report always retains false merge/deploy/
-reuse authority. A configured dedicated App may issue a **snapshot** result;
-the Actions jobs have different names and cannot substitute for that App.
-
-The trusted-main collector keeps controller, protected policy and candidate
-commit/tree identities separate. It reads candidate Git objects as data, without
-checking out or executing them. A closed execution inventory covers tools,
-tests, workflow/local-action/acceptance definitions and declared root execution
-configuration. Any addition/deletion/mode/content change in that inventory
-blocks this initial implementation. In particular, a correct-named successful
-no-op CI wrapper cannot authorize itself. Unsupported control changes still use
-the existing full delivery process; this prepared check is not yet required.
-It must not become required before a trusted control-repair route is proved.
-
-For unchanged execution definitions, all four current PR admission jobs and the
-complete applicable owner staging jobs remain required. The existing full source
-profile is a conservative superset of the proposed routing obligations; changed
-registry/wrapper inputs cannot erase it because they block the new snapshot.
-Source evidence uses the exact workflow ID/path, repository, PR/head, event,
-latest run and attempt-specific complete job inventory. Duplicate, missing,
-failed, neutral, skipped, cancelled, running or mixed required evidence blocks.
-This does not automate independent agent, editorial or owner decisions.
-
-The latest genuine globally serialized owner-stage execution must match the
-requested source; a newer real failed/running stage blocks an older pass.
-Only successful/skipped ordinary-comment executions whose entire trusted job
-inventory was skipped are inapplicable. A cancelled/failed or ambiguous execution,
-including a dispatch with skipped target, blocks older green. A stage
-for another PR cannot supply this PR's receipt. Optional exhaustive native/
-performance/capture branches and nonblocking status comments retain their
-existing dispositions; no extra hosted matrix or budget is introduced.
-
-The final `change-admission-receipt` job waits for candidate-executing work to
-finish, checks out only protected-main code and uploads one immutable native
-receipt. Its artifact name binds PR, source, controller, run and attempt. The
-collector requires the exact receipt job/upload step to pass, unique nonexpired
-artifact metadata and its native digest/run/controller. Artifact metadata alone
-does not identify an uploading job: the unchanged trusted workflow, successful
-mandatory upload, no overwrite and completion ordering establish that link.
-A candidate-created colliding artifact makes the real upload fail; it cannot
-supply acceptance. The bootstrap PR cannot supply this new receipt until the
-controller is on main; actual native acceptance remains a separate open proof.
+Issue122 R2 reuses the existing classifier, App5453173 and owner staging. It
+adds no publisher or general control certifier. The enabling PR uses the original
+full route. Live activation and real lane outcomes belong to the owning issue;
+source preparation alone does not establish protected-main delivery.
 
 #### R1: one explicit admission request
 
-In Actions, select **Change admission preparation**, choose **Run workflow** on
-branch **main**, and enter the one PR number. Only the repository owner may run
-this action. The trusted controller resolves and binds its current head; it does
-not enumerate other PRs. Pushes, comments and upstream workflow events do not
-start admission. The old comment command is retired.
+In Actions, select **Change admission preparation**, **Run workflow**, branch
+**main**, and enter one PR number. Only the repository owner can request it.
+Push/comment/upstream events never dispatch admission or enumerate other PRs.
+The App job checks out protected main and reads candidate Git objects as data.
+It never loads candidate modules or installs candidate dependencies.
 
-The run summary states PR, lane, blockers and next action. The retained artifact
-binds the requested source/controller. A Draft, stale base/head or incomplete/
-failed required check is an ordinary refusal: the target App check stays failed,
-while the workflow finishes successfully because evaluation completed. Unknown
-states, malformed/foreign identities, API/authentication, dirty controller,
-storage/upload and protocol failures still fail the workflow. A green workflow
-is therefore not a green App check or authority to merge.
+The summary and retained JSON bind controller/base, candidate commit/tree,
+classification, selected run/attempt/jobs, blockers and next action. Expected
+Draft/stale/incomplete/failed evidence is an admission refusal: the App check
+stays failed while completed evaluation succeeds. API/authentication, malformed
+or foreign identities, dirty controller and storage/protocol faults fail hard.
+A green evaluation workflow is not a green admission check.
 
-After selected checks finish, or head/base changes, request a fresh evaluation
-using the same single dispatch action. The issuer remains globally serialized
-and never cancels an active evaluation. Existing latest-owner-stage selection
-still has its global scope; per-PR stage isolation is R2, not a result of R1.
-The collector rejects stale bindings and never follows a moved head with success.
-**Manual snapshots do not prove synchronous revocation:** an earlier green can
-remain until the next request, or when App authentication is unavailable. This
-remains an AC05/06 activation gap. The original three main requirements remain
-mandatory; the App is not required by R1.
+#### R2: selected repository route and reviewed controls
+
+| Delta against current protected main | Work and operator action |
+| --- | --- |
+| Complete explicitly owned rules/review/RI metadata only | Basic formatting/lint/architecture and affected source tests; existing navigation/RI and owning acceptance. No website build/package/preview/staging/alias/publisher work. After these checks, dispatch the PR number once. |
+| Content, website, mixed, unknown or unsupported impact | Conservative existing full route until R3 integrates content. Finish Basic/RI/owning checks, owner `/stage`, then refresh PR admission and dispatch. |
+| Executable tools/tests, workflows/actions/acceptance or declared controls | Same full route, plus explicit review of the complete diff and **reviewed_sha** equal to the full current head. A missing/wrong/old SHA refuses. It cannot waive any failed/missing full obligation or grant the repository exemption. |
+
+The protected-base classifier, not a candidate wrapper/catalog label, chooses
+eligibility. Both raw Git endpoints and all modes are inspected; moves retain
+both sides. Exact rights/public inputs still select website work. An RI executable
+is a control even when its purpose is repository-only; its actual failing checks
+block. The broader observation report remains advisory and preserves its full
+planned baseline; the trusted selection report records actual conditional work.
+
+Control attestation is the maintainer's explicit trust decision on the exact
+candidate, not automatic semantic certification. Review must preserve applicable
+pre-change obligations and failure propagation, including modified test/policy
+wrappers. Candidate code remains in existing scoped jobs. The issuer still
+requires the trusted-main workflow's mandatory jobs and independently uploaded
+receipt; correct-named candidate results or modified policy cannot select that
+receipt. Review a new head again rather than copying an old attestation.
+
+Owner staging is globally serialized, but evidence selection is per PR/head/base.
+The main-owned run title identifies the requested PR before candidate work; a
+single binding in the completed trusted target job log proves head/base/run/attempt.
+The early native artifact remains diagnostic; candidate jobs cannot use its mutable
+metadata to establish an older-head exemption. Only then does newest
+applicable attempt precedence apply. Another PR and a resolved older head are
+irrelevant. A running/cancelled same-PR attempt whose target is unresolved blocks
+older green conservatively; failed attempts are not hidden by a success-only
+receipt filter. Genuine ordinary comments whose entire job inventory was skipped
+remain inapplicable. Required skips/failures/cancellation/missing or mixed attempts
+never become passed; optional exhaustive diagnostics keep their original status.
+
+The final main-owned `change-admission-receipt` still requires its exact successful
+upload step, unique nonexpired native artifact/digest and run/controller binding.
+The App consumes exact workflow identities and attempt-specific job inventories.
+No candidate code enters its credential job. Repository postmerge verifies the
+actual normal merge parents/tree and App producer bound to the previous protected
+base. It records website work as inapplicable and never relabels the accepted site's
+original source/public/package digest at a repository merge. The initial cheap postmerge
+route uses a normal two-parent merge; existing website squash/rebase observation
+retains its previous full-proof behavior.
+
+#### Ordered protection activation and recovery
+
+The actual `protect-main` ruleset24568553 starts with Actions15368 contexts
+`checks`, `Local navigation and RI freshness`, `Staging admission`, strict
+up-to-date enabled and no bypass actors. Preserve PR/deletion/force-push rules.
+
+1. Deliver the enabling control PR through that unchanged full route and verify
+   postmerge. The implemented conditional route does not itself change settings.
+2. Prepare the one meaningful repository-only acceptance PR and its exact source,
+   independent roles, Basic/RI/owning results and genuine App check. Its old
+   `Staging admission` consumer authenticates that App check rather than creating
+   a site exemption without trusted admission. After dispatch completes, edit the PR description once to trigger the existing
+   `edited` admission/owning refresh (for example, add the exact run link).
+3. Add **Change admission from App5453173** and the already executed Actions15368
+   **Owning issue deterministic acceptance mapping** context. Retain the original
+   three required contexts, including the now conditional `Staging admission`.
+   Its repository branch checks evidence without website staging; keeping the guard
+   preserves same-head attempt revocation. Verify numeric producers, strict
+   up-to-date and no bypass. Merge with an expected-head lease; no protection gap.
+4. Observe actual repository postmerge and unchanged accepted site source/artifact.
+   Save exact native runs/settings and queue/setup/execution observations in #122.
+
+Each manual evaluation first creates its own source/base-bound Actions aggregate
+checkpoint before App authentication. Eligible App results remain in progress until
+native report upload and a fresh bound evaluation. The last aggregate operation runs
+after App finalization and credential revocation, updates only its recorded check ID,
+and fails if any preceding step or final head/base lease failed. Cancellation leaves
+non-success; another request's or stage's checkpoint is never completed by this run.
+The eligible PR consumer authenticates the completed issuer workflow and current
+source/owning evidence. These existing contexts add no website work for repository PRs.
+
+Manual refresh alone cannot synchronously revoke an old green. The actual strict
+up-to-date protected rule rejects a head lacking current main; the issuer checks
+current head/base before and after collection and again before success. A moved
+head/base requires fresh checks and dispatch. Expected-head merge prevents
+following a changed candidate. These controls do not authorize public release.
+
+**App outage / control repair:** first restore the original three Actions15368
+requirements **alongside** the App; verify strict/current-base and no bypass.
+Then remove the unavailable App requirement. Do not remove old protection first.
+For a repository repair PR, explicit owner `/stage` still forces the full existing
+build/staging route even though automatic preview is inapplicable. After explicit owner staging completes, edit the PR description once to refresh
+`Staging admission` and owning acceptance. The old
+`Staging admission` consumer accepts only a genuine App decision or the complete
+original full staging proof; postmerge follows the same protected full fallback.
+Complete all original checks and merge normally. Restore the App alongside the full requirements after repair,
+verify its exact producer/result, retaining the conditional aggregate and owning requirement. No admin
+merge bypass, disabled ruleset, persistent exemption or candidate issuer is used.
+Settings access/recovery availability and control route verification are activation
+conditions; keep old requirements if a concrete condition is unavailable.
 
 #### Exact proposed App setup and bounded proof
 

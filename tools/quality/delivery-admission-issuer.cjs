@@ -123,7 +123,23 @@ function validateSnapshot(report, controller) {
   assert.match(report.controller.commit, /^[a-f0-9]{40}$/, 'invalid snapshot controller identity');
   assert.equal(report.controller.commit, controller, 'wrong snapshot controller');
 }
-async function publish(issuer, context, pr, source, snapshot, retain) {
+function outputFor(result) {
+  return {
+    title: result.state,
+    summary:
+      'Source-bound admission. Digest: ' +
+      json.digest(json.canonical(result)) +
+      '. Blocking obligations: ' +
+      (result.blockers?.join(', ') || 'none in this snapshot') +
+      '. Lane: ' +
+      (result.lane || 'unclassified') +
+      '. Next: ' +
+      (result.nextAction || 'Continue the current protected merge process.') +
+      '. Current protected requirements remain mandatory; no deployment is authorized. ' +
+      (result.freshness || ''),
+  };
+}
+async function publish(issuer, context, pr, source, snapshot, retain, options = {}) {
   const external = binding(context, pr);
   const created = await issuer.create({
     name,
@@ -132,9 +148,8 @@ async function publish(issuer, context, pr, source, snapshot, retain) {
     external_id: external,
     details_url: 'https://github.com/' + admission.repository + '/actions/runs/' + context.runId,
     output: {
-      title: 'Fresh full-route snapshot required',
-      summary:
-        'Preparation only. Current main requirements remain mandatory; lane activation is excluded.',
+      title: 'Fresh source-bound admission required',
+      summary: 'Evaluation is in progress; current protected requirements remain mandatory.',
     },
   });
   admission.positive(created.id);
@@ -163,21 +178,12 @@ async function publish(issuer, context, pr, source, snapshot, retain) {
     assert.equal(check.external_id, external);
     assert.equal(result.candidate.commit, source);
     assert.equal(result.controller.commit, context.sha);
+    if (result.state === 'eligible-snapshot' && options.deferSuccess)
+      return { ...check, id: created.id, pending: true, output: outputFor(result) };
     return await issuer.update(created.id, {
       status: 'completed',
       conclusion: result.state === 'eligible-snapshot' ? 'success' : 'failure',
-      output: {
-        title: result.state,
-        summary:
-          'Nonactivated full-route snapshot. Digest: ' +
-          json.digest(json.canonical(result)) +
-          '. Blocking obligations: ' +
-          (result.blockers?.join(', ') || 'none in this observed snapshot') +
-          '. Lane: current-full-route. Next: ' +
-          (result.nextAction || 'Continue the existing protected delivery process.') +
-          '. Current three required checks remain in force. ' +
-          result.freshness,
-      },
+      output: outputFor(result),
     });
   } catch (error) {
     const refused = error instanceof admission.AdmissionBlocked;
@@ -185,7 +191,7 @@ async function publish(issuer, context, pr, source, snapshot, retain) {
     try {
       await retain({
         state: 'blocked',
-        lane: 'current-full-route',
+        lane: result?.lane || 'unclassified',
         pr,
         candidate: { commit: source },
         controller: { commit: context.sha },
@@ -204,7 +210,9 @@ async function publish(issuer, context, pr, source, snapshot, retain) {
         title: refused ? 'Admission snapshot blocked' : 'Admission controller failed',
         summary:
           error.message.slice(0, 2000) +
-          '. Lane: current-full-route. Next: ' +
+          '. Lane: ' +
+          (result?.lane || 'unclassified') +
+          '. Next: ' +
           (refused ? error.nextAction : 'Repair the controller failure before retrying.'),
       },
     });
@@ -214,4 +222,47 @@ async function publish(issuer, context, pr, source, snapshot, retain) {
   }
 }
 
-module.exports = { name, configuration, jwt, authenticate, publish };
+// The native workflow calls this as its last required step, after snapshot upload.
+// Any earlier failure/cancellation leaves the newly created check non-successful.
+async function finalize(issuer, context, pr, source, id, initial, snapshot, uploaded) {
+  const check = await issuer.get(admission.positive(id));
+  assert.equal(check.app?.id, issuer.app);
+  assert.equal(check.name, name);
+  assert.equal(check.head_sha, source);
+  assert.equal(check.external_id, binding(context, pr));
+  assert.equal(check.status, 'in_progress');
+  try {
+    assert.equal(uploaded, true, 'Required native admission snapshot upload failed');
+    validateSnapshot(initial, context.sha);
+    assert.equal(initial.candidate.commit, source);
+    const current = await snapshot();
+    validateSnapshot(current, context.sha);
+    admission.sameSnapshot(initial, current);
+    return await issuer.update(check.id, {
+      status: 'completed',
+      conclusion: 'success',
+      output: outputFor(current),
+    });
+  } catch (error) {
+    const refused = error instanceof admission.AdmissionBlocked;
+    const result = await issuer.update(check.id, {
+      status: 'completed',
+      conclusion: 'failure',
+      output: {
+        title: refused ? 'Admission snapshot blocked' : 'Admission controller failed',
+        summary:
+          error.message.slice(0, 2000) +
+          '. Lane: ' +
+          (initial?.lane || 'unclassified') +
+          '. Next: ' +
+          (refused
+            ? error.nextAction
+            : 'Repair the controller or upload failure, then dispatch again.'),
+      },
+    });
+    if (refused) return result;
+    throw error;
+  }
+}
+
+module.exports = { name, configuration, jwt, authenticate, publish, finalize };
