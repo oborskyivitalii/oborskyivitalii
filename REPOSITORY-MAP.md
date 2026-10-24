@@ -781,6 +781,8 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-122/2026-10-23-t04-review.md](review/issue-122/2026-10-23-t04-review.md) | Issue122 T04 source-bound independent reviews, real-Git observation evidence and delivery reconciliation. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-122/2026-10-23-t04-setup-review.md](review/issue-122/2026-10-23-t04-setup-review.md) | Approved T04-P Ubuntu setup prerequisite, separate quality-role findings and exact-source validation/delivery evidence. | history | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [review/issue-122/2026-10-23-t05-review.md](review/issue-122/2026-10-23-t05-review.md) | Source-bound T05 design, independent review dispositions and explicit pending native issuer/protection proof. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-122/2026-10-24-fast-uri-local-evidence.tar.gz](review/issue-122/2026-10-24-fast-uri-local-evidence.tar.gz) | Byte-authenticated local preparation reports for the one-leaf fast-uri repair, preserving complete passing audits and the failed bounded source timeout; no native acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-122/2026-10-24-fast-uri-repair.md](review/issue-122/2026-10-24-fast-uri-repair.md) | Exact App setup/native negative evidence, blocked positive route and separately reviewable minimal fast-uri lock repair preparation; no main delivery authority. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/issue-126/
 

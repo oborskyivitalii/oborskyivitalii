@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "b5edc4d4bd76968b28411f11aa9e42cbe2ff86ee11fc54023214b21af08b3afb",
+    "digest": "4cb7299931a66b204a24be458fd6c84be2d100b26762ea71380a1a88d57f604c",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -196,12 +196,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "fa3f53fd210e6ea8fc397aa194d3d9fa0de1b20e40665d45a335654d9445d439"
+        "sha256": "3873616cbfe1b1f3db02f0932b8b2cb714aa909ca40d1d1a0d01c6e68562b4d4"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "c80b72bc75d873d3d6586b0b74580e5a51da51062da1d253bdc7a6afb2688e8b"
+        "sha256": "ef69a52e4c367ff0d49d32fc30a7ddc062b9281f4df7d38c181ec9bdb5391847"
       },
       {
         "path": ".github/workflows/change-admission.yml",
@@ -341,7 +341,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "8c882c9d6a369667119d476aa41e16d290173607d027b054661a5297b9242ea5"
+        "sha256": "09b38efb700a94dbe90f3036bae4b15f4e79e63a3e54b6328174f5814067fd25"
       },
       {
         "path": "NOTICE.md",
@@ -896,6 +896,16 @@
         "path": "review/issue-122/2026-10-23-t05-review.md",
         "identity_mode": "content",
         "sha256": "0fe90b44f16477d842a260140acddf357447b0e6cc9ff2e8c513ff197fe381c9"
+      },
+      {
+        "path": "review/issue-122/2026-10-24-fast-uri-local-evidence.tar.gz",
+        "identity_mode": "content",
+        "sha256": "e387b09454e3242a8e9d35860012f70092889177d03311e9cf11c8805a0dcc16"
+      },
+      {
+        "path": "review/issue-122/2026-10-24-fast-uri-repair.md",
+        "identity_mode": "content",
+        "sha256": "bc760a0c6944ee9fde8b3dd013e55a02818f7719843bad59679db84e3306887b"
       },
       {
         "path": "review/issue-126/2026-10-23-announcement-review.md",
@@ -6825,7 +6835,7 @@
       {
         "path": "tools/quality/toolchain/package-lock.json",
         "identity_mode": "content",
-        "sha256": "600e1f8a3f7d5cce5f490f86e4124e6f325105b35936315ee4daa262779242f8"
+        "sha256": "fd67a0a8a07da35c68d04f783845295430389582b275a18b3f511547e0b30efc"
       },
       {
         "path": "tools/quality/toolchain/package.json",
@@ -9417,6 +9427,28 @@
         "AGENTS.md"
       ],
       "title": "Issue122 — T05 admission preparation, 23 October 2026"
+    },
+    {
+      "path": "review/issue-122/2026-10-24-fast-uri-local-evidence.tar.gz",
+      "kind": "file",
+      "purpose": "Byte-authenticated local preparation reports for the one-leaf fast-uri repair, preserving complete passing audits and the failed bounded source timeout; no native acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-24-fast-uri-local-evidence.tar.gz"
+    },
+    {
+      "path": "review/issue-122/2026-10-24-fast-uri-repair.md",
+      "kind": "file",
+      "purpose": "Exact App setup/native negative evidence, blocked positive route and separately reviewable minimal fast-uri lock repair preparation; no main delivery authority.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 122 — 24 October 2026 App proof and fast-uri repair preparation"
     },
     {
       "path": "review/issue-126/2026-10-23-announcement-review.md",
