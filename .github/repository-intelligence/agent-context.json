@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "0f5fb101eb57fdad8a6232669fc819d7a5215e4bb903a7e97e19c4bfe25bc0af",
+    "digest": "784fe025cc9c718fa3cc6cd492d833d4e03e673bb7da100d353b0a11b7f8c60c",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -191,17 +191,17 @@
       {
         "path": ".github/repository-layout.json",
         "identity_mode": "content",
-        "sha256": "98408ac46b10ac077ede1d010a21b0ef95ef46cc848beec87474f7ce7fb8e164"
+        "sha256": "80ef80d2c1a81162b9ae29a59296c401196c9b48dc9eb4b690ae79f60d2c012a"
       },
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "903e64a045f798de147941a7f1aa4475f7267e998b314d9365d821151615a8d7"
+        "sha256": "23475c7d1a334ca2168f488503b5286fd2dd58f5354bb6a36cb7df9e6c250ed0"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "a0029281e65488fa6342d13fd60303c8a7bc585761c0220dbd15a3ef5a30ac08"
+        "sha256": "037dde2eed482bcc5366fe600658d151c04d0f93b83efb254ae9b4c96e82f71b"
       },
       {
         "path": ".github/workflows/change-admission.yml",
@@ -341,7 +341,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "592b3ba3cb2da7f938cf16eb5665e22a3d41d8416c291dd5d31d8c06c8833fba"
+        "sha256": "64705a96106ed132d42cc71dcf95af48303ab568963b07f620097c8e774751fb"
       },
       {
         "path": "NOTICE.md",
@@ -655,7 +655,7 @@
       {
         "path": "guides/README.md",
         "identity_mode": "content",
-        "sha256": "05dc46d5147c8dfac709700ff1c5a86b954c47896477c5026662a0279642631f"
+        "sha256": "075f9e83402da3c7c586c13c285630421c90daf790bf1dd4917c038e43ae05af"
       },
       {
         "path": "guides/REPOSITORIES.md",
@@ -905,7 +905,7 @@
       {
         "path": "review/issue-122/2026-10-24-control-lock-review.md",
         "identity_mode": "content",
-        "sha256": "7ab97d8852bfa3ebf5d568edd6758a4e86920c5be58a4146559ba96aad7a9209"
+        "sha256": "3a069396220414b733043039cd4488975fda994b2c01b13939f1ac122fd33750"
       },
       {
         "path": "review/issue-122/2026-10-24-fast-uri-local-evidence.tar.gz",
@@ -8969,7 +8969,7 @@
       "kind": "file",
       "purpose": "Bounded nonauthoritative control-lock prototype contract, exact supported shapes, operator interface, acceptance and unverified package/native outcomes.",
       "role": "guide",
-      "owner": "guides/SITE-STAGING.md",
+      "owner": "guides/SITE-CONTROL-CHANGES.md",
       "instructions": [
         "AGENTS.md"
       ],

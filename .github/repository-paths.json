@@ -9569,7 +9569,7 @@
       "kind": "file",
       "purpose": "Bounded nonauthoritative control-lock prototype contract, exact supported shapes, operator interface, acceptance and unverified package/native outcomes.",
       "role": "guide",
-      "owner": "guides/SITE-STAGING.md"
+      "owner": "guides/SITE-CONTROL-CHANGES.md"
     },
     "review/issue-122/2026-10-24-control-lock-review.md": {
       "kind": "file",

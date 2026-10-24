@@ -96,9 +96,26 @@ nonautomated architecture/claim boundary, not merely the bounded style guard.
 
 ## Delivery and remaining work
 
-The prototype is ready for the original source/RI/owning/preview/full owner-stage,
-eligible admission, protected merge and actual postmerge route, after exact
-committed-source verification. Main protection and the App are unchanged.
+The first Ready source68619834 passed native Basic run40102543874, including
+708/708 selected Node tests in147612ms under the original180000ms limit.
+Native navigation40102543880 failed two existing RootLayout oracles: the new
+guide was omitted from `active_markdown` and its catalog owner was not itself.
+That failed attempt remains failed. PR140 returned Draft for the correction.
+
+Corrected prepared tree `ea1bc7a29640c8db4bd794d0ee898523c56ef1c7` adds the
+active-guide declaration, canonical self-owner and guides-index row, then
+refreshes derived RI/CI. No prototype, test, validator or workflow bytes change.
+Requirements and Code independently inspected all six changed files and the
+actual validator rules; Requirements reran RootLayout15/15. White-box inspected
+the delta/branches and ran four existing current/negative route tests, all pass.
+Exploratory followed the guide/index/CLI/staging boundaries and checked local
+targets and canonical generated ownership. All four actual correction executions
+ACCEPT; unaffected executable/graft review is reused explicitly. Root's complete
+RootLayout15, coupling20, RI29 and freshness verification passed on this delta.
+
+The corrected commit still needs native source/RI/owning/preview/full owner-stage,
+eligible admission, protected merge and actual postmerge verification. Main
+protection and the App are unchanged.
 No source green fixture substitutes for those actual native observations.
 
 After completing these two tasks, report the result and next steps before any
