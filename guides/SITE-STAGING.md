@@ -199,6 +199,10 @@ of a zero stale merge window. The original three requirements remain mandatory.
 
 #### Exact proposed App setup and bounded proof
 
+The later [control-change structural prototype](SITE-CONTROL-CHANGES.md) is a
+separate, credential-free preparation step. It supplies no admission authority
+and does not relax the current rejection of execution-control changes.
+
 Do not apply this credential/configuration proposal without its explicit owner
 decision. T05 approval already permits reversible code/test preparation.
 

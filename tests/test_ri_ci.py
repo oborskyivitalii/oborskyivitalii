@@ -114,6 +114,7 @@ class RICICouplingTests(unittest.TestCase):
                 "refactoring-contracts",
                 "delivery-observation",
                 "delivery-admission-preparation",
+                "control-lock-prototype",
             },
         )
         quality = next(

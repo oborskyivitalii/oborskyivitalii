@@ -421,6 +421,16 @@
         ".github/workflows/site-color-review.yml"
       ],
       "checks": ["site-basic", "test-profile-regressions", "acceptance-policy"]
+    },
+    {
+      "id": "control-lock-prototype",
+      "purpose": "Non-authoritative structural-only lock-leaf prototype; immutable inputs and meaningful negatives use existing selected source tests, no App or protected admission change.",
+      "paths": [
+        "tools/quality/control-lock.cjs",
+        "tests/control-lock.test.cjs",
+        "guides/SITE-CONTROL-CHANGES.md"
+      ],
+      "checks": ["site-basic", "test-profile-regressions", "acceptance-policy"]
     }
   ],
   "checks": [
@@ -640,7 +650,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "4d7d064a1a55a556fd8a4d434fc7802cdaf2d69dc912c1f4c68d194c9a44af08",
+    "digest": "4fd5e2739f3fdd2abd49d69d57518058579a9cb58309a9c49a3af25aab729eb7",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -680,7 +690,7 @@
       },
       {
         "path": ".github/acceptance/issue-122.json",
-        "sha256": "029abf8a0fa8f8b5709f622c8da1f3cc3747e97e6dfb42a8426b08330d96ba73"
+        "sha256": "f9414ac90ac995694243976e1c3d1a09a292a05141693d6c1f65753421a47825"
       },
       {
         "path": ".github/acceptance/issue-126.json",
@@ -772,11 +782,11 @@
       },
       {
         "path": ".github/repository-layout.json",
-        "sha256": "98408ac46b10ac077ede1d010a21b0ef95ef46cc848beec87474f7ce7fb8e164"
+        "sha256": "80ef80d2c1a81162b9ae29a59296c401196c9b48dc9eb4b690ae79f60d2c012a"
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "3873616cbfe1b1f3db02f0932b8b2cb714aa909ca40d1d1a0d01c6e68562b4d4"
+        "sha256": "23475c7d1a334ca2168f488503b5286fd2dd58f5354bb6a36cb7df9e6c250ed0"
       },
       {
         "path": ".github/workflows/change-admission.yml",
@@ -996,7 +1006,7 @@
       },
       {
         "path": "tests/test_ri_ci.py",
-        "sha256": "7b74c5dfd2f661e1724fc14cbf6f4d32acef605deed8d8f89ef62e2f4c539e9d"
+        "sha256": "05c675bc3a55ba4a7b063481634399bfb20a5659e4cd1e5f66e7b49804bd6e39"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -1036,7 +1046,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "5f35d6db16221870729be544b2a87be6f699da9057b8b3ecb48a8e8e9d8d5e3f"
+        "sha256": "b8c5dc0a014505bca574ec67a450feda59952d7e36c4119f8b3b22657a8df8f4"
       },
       {
         "path": "tools/repository_intelligence.py",
