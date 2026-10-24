@@ -1,3 +1,11 @@
+## R36 editorial source and January provenance — 24 October 2026
+
+The author-approved R36 clarifies the potential structural SDLC imbalance and explicitly separates the January 2026 argument from the later Subprime mechanism and Uncertainty Architecture's distinct runtime-control line. The [LinkedIn English article](https://www.linkedin.com/pulse/ai-cost-cutting-fallacy-why-doing-more-less-breaking-teams-oborskyi-cxuif/) displays 2 January 2026; [DOU](https://dou.ua/forums/topic/57244/) displays 5 January. Their dated existence supports **authorial provenance, not a first-ever priority claim**. LinkedIn edit history is not independently versioned.
+
+Canonical manuscript R36 SHA-256 `bf6136f2b1333b40dbe11a437360c5bd3d028630358770c3c855284d86611b12`, 52,956 characters (53,309 UTF-8 bytes); immutable selected edition `pmday-ai-both-sides-en-review-20261024-r36` semantic SHA-256 `02a6a643f0d9b42a3efe181006b0fce9f64456deb283e3af65d80d77c38da34c`. `publication.json`, `profile.json`, named source-46 and launch source are updated; R35 edition stays in history. The source and selected metadata are still **not a complete native R36 illustrated PDF/platform kit**. Exact current-source CI/RI, independent roles, rights/merge/staging/publication remain separately pending. No historical checks are relabeled.
+
+---
+
 # The Sum of Our Technology — editorial blueprint
 
 Article owner #2; publisher/execution #5 / PR79.
