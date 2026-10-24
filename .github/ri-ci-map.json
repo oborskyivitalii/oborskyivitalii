@@ -663,7 +663,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "5d9b277fd617aa195e07d0272ace4e6c30138e3969d839df4fba2a8966012258",
+    "digest": "5361fe4c6a39acedb33483de25897e5393d0cbe30b0748f8987023e4ab360f8f",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -799,7 +799,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "8d41eb8d5b89b70e45ceaa6b2cc1194b28290a7497a4d2367aa96e3d5b8b0bff"
+        "sha256": "4f77c7539afe5106bd5fefa4927a77ff50246d25d26b5cef5354c02fd1c83086"
       },
       {
         "path": ".github/workflows/change-admission.yml",

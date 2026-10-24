@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "a38cc3a81836950d23102cb8bc262fe151cfe7f3bd0c4e24dc524a36f89bda8c",
+    "digest": "0aecca3e084677bc73fc008d99b27970821474c495b08003e66aa4617ee36bf1",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -196,12 +196,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "8d41eb8d5b89b70e45ceaa6b2cc1194b28290a7497a4d2367aa96e3d5b8b0bff"
+        "sha256": "4f77c7539afe5106bd5fefa4927a77ff50246d25d26b5cef5354c02fd1c83086"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "8e32bbbc97ea628410314e8461d0d7b2cdfbe563f15a3ed15de810178a4b3c08"
+        "sha256": "3436c1708ebef56b1e0f54c71c0427de735f073806a844dc20a4119302265bf8"
       },
       {
         "path": ".github/workflows/change-admission.yml",
@@ -346,7 +346,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "b09920124f1935203e5d7cc7ddce39ef96239e3f27c1dc90a35e748defb570c3"
+        "sha256": "36015cbeb3a245999d2f9aacfbb460aac3e1362a48811e6ceb634520b1ea9e1d"
       },
       {
         "path": "NOTICE.md",
@@ -936,6 +936,11 @@
         "path": "review/issue-122/2026-10-24-r2-repository-lane.md",
         "identity_mode": "content",
         "sha256": "5da06356893ed4ac8a7177572cca5ffdd146bc4885e4b067dc4933a8f456359d"
+      },
+      {
+        "path": "review/issue-122/2026-10-24-r3-runtime-compatibility.md",
+        "identity_mode": "content",
+        "sha256": "9dd066706ea7df31b4be3b9384080b8b7fb69c628dc44540442a49731f94352d"
       },
       {
         "path": "review/issue-126/2026-10-23-announcement-review.md",
@@ -5940,7 +5945,7 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "b0b7a7117625b66d0214e7ffa06c9a2e2648e45e588639a142eabcd559c5ac95"
+        "sha256": "a69727bcbc591905b8fe18f751ca32d969cf19fc78b04306b12f36b8c04f3ad8"
       },
       {
         "path": "tests/content-migration.test.cjs",
@@ -6585,7 +6590,7 @@
       {
         "path": "tools/quality/color-motion-contract.cjs",
         "identity_mode": "content",
-        "sha256": "a221a9d6d46cc8f0bb22cad81fcac86e6a866f06e23bacfc07ccefd5a9f12a4c"
+        "sha256": "bc3f68b27e11c8bf1f031999b15d73a9cf51421f18e1150e564cd989bbc9323e"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -6835,7 +6840,7 @@
       {
         "path": "tools/quality/secrets-publication.json",
         "identity_mode": "content",
-        "sha256": "bbffb7d22b6030c440f7cc87ab65d95f6da6b2d05b5d43a175c519ee83bb093f"
+        "sha256": "4182b0784db93bb3df89fb14e703db2121c30b2d2681a9733da8fa557c7db6fb"
       },
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
@@ -7180,7 +7185,7 @@
       {
         "path": "tools/staging/package.cjs",
         "identity_mode": "content",
-        "sha256": "cea212e08462eeb06f996d0d5a4106e4c3aac76dbeed6343be63ad9bc8675c6e"
+        "sha256": "f7d5c22e31f3064df8fe9b7262b7799ded6b467a90c28a499b994c540f2279ce"
       },
       {
         "path": "tools/staging/reader-index.cjs",
@@ -9580,6 +9585,17 @@
         "AGENTS.md"
       ],
       "title": "Issue122 — 2026-10-24 R2 repository delivery"
+    },
+    {
+      "path": "review/issue-122/2026-10-24-r3-runtime-compatibility.md",
+      "kind": "file",
+      "purpose": "R3 exact-runtime bootstrap dependency, prospective byte/source freeze, independent reviews and compatibility delivery evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue122 — 24 October 2026 exact-runtime compatibility"
     },
     {
       "path": "review/issue-126/2026-10-23-announcement-review.md",
