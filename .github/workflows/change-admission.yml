@@ -1,18 +1,5 @@
 name: Change admission preparation
 on:
-  workflow_run:
-    workflows:
-      [
-        Site basic checks,
-        Local navigation checks,
-        Issue acceptance evidence,
-        Site PR preview and staging,
-      ]
-    types: [in_progress, completed]
-  push:
-    branches: [main]
-  issue_comment:
-    types: [created]
   workflow_dispatch:
     inputs:
       pr_number:
@@ -25,20 +12,15 @@ permissions:
   checks: read
   pull-requests: read
 concurrency:
-  group: >-
-    ${{ (github.event_name != 'issue_comment' ||
-         (github.event.issue.pull_request && github.event.comment.body == '/admit' &&
-          github.event.comment.user.login == github.repository_owner && github.actor == github.repository_owner)) &&
-        'change-admission-issuer' || format('ignored-admission-comment-{0}', github.run_id) }}
+  group: change-admission-issuer
   cancel-in-progress: false
 jobs:
   configuration:
     name: Change admission configuration observation
     if: >-
       github.repository == 'oborskyivitalii/oborskyivitalii' &&
-      (github.event_name != 'issue_comment' ||
-       (github.event.issue.pull_request && github.event.comment.body == '/admit' &&
-        github.event.comment.user.login == github.repository_owner && github.actor == github.repository_owner))
+      github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' &&
+      github.actor == github.repository_owner
     runs-on: ubuntu-24.04
     timeout-minutes: 2
     steps:
@@ -89,18 +71,15 @@ jobs:
             const directory = path.join(process.env.RUNNER_TEMP, 'change-admission');
             fs.mkdirSync(directory, { recursive: true });
             try {
-              for (const number of await admission.targets(github, context)) {
-                const pr = (await github.rest.pulls.get({ ...context.repo, pull_number: number })).data;
-                const retain = async (report) => fs.writeFileSync(
-                  path.join(directory, String(number) + '.json'), JSON.stringify(report, null, 2) + '\n'
-                );
-                try {
-                  await issuing.publish(issuer, context, number, pr.head.sha,
-                    () => admission.collect(github, context, number), retain);
-                } catch (error) {
-                  core.setFailed('PR ' + number + ': ' + error.message);
-                }
-              }
+              const [number] = await admission.targets(github, context);
+              const pr = (await github.rest.pulls.get({ ...context.repo, pull_number: number })).data;
+              const retain = async (report) => fs.writeFileSync(
+                path.join(directory, String(number) + '.json'), JSON.stringify(report, null, 2) + '\n'
+              );
+              const result = await issuing.publish(issuer, context, number, pr.head.sha,
+                () => admission.collect(github, context, number), retain);
+              await core.summary.addHeading('PR ' + number + ': ' + result.output.title)
+                .addRaw(result.output.summary).write();
             } finally {
               await issuer.revoke();
             }

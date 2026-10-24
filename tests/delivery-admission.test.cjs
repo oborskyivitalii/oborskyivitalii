@@ -316,7 +316,9 @@ test('cancelled skipped targets and dispatch skips cannot reuse older green stag
     rest: {
       actions: {
         getWorkflow: async () => ({ data: { id: 9, path: old.path } }),
-        listWorkflowRuns: async () => ({ data: { workflow_runs: [old, recent], total_count: 2 } }),
+        listWorkflowRuns: async () => ({
+          data: { workflow_runs: [old, recent], total_count: 2 },
+        }),
         listJobsForWorkflowRunAttempt: async ({ run_id }) => ({
           data: {
             jobs: run_id === 21 ? jobs : [job('target')],
@@ -343,7 +345,9 @@ test('cancelled skipped targets and dispatch skips cannot reuse older green stag
   assert.equal((await admission.latestStage(github, {}, base)).run.id, 20);
 });
 test('authentication revokes minted tokens after readback request or scope validation fails', async () => {
-  const { privateKey } = crypto.generateKeyPairSync('rsa', { modulusLength: 2048 });
+  const { privateKey } = crypto.generateKeyPairSync('rsa', {
+    modulusLength: 2048,
+  });
   for (const failure of ['http', 'scope', 'revocation-unreachable']) {
     const calls = [];
     const request = async (url, input) => {
@@ -359,7 +363,11 @@ test('authentication revokes minted tokens after readback request or scope valid
               app_id: 50,
               account: { login: 'oborskyivitalii' },
               repository_selection: 'selected',
-              permissions: { checks: 'write', statuses: 'write', metadata: 'read' },
+              permissions: {
+                checks: 'write',
+                statuses: 'write',
+                metadata: 'read',
+              },
             }
           : url.endsWith('/access_tokens')
             ? { token: 'synthetic-token' }
@@ -489,6 +497,166 @@ function fakeIssuer() {
     },
   };
 }
+test('manual admission selects one owner PR and has no automatic workflow triggers', async () => {
+  const context = {
+    repo: { owner: 'oborskyivitalii', repo: 'oborskyivitalii' },
+    ref: 'refs/heads/main',
+    sha: base,
+    eventName: 'workflow_dispatch',
+    actor: 'oborskyivitalii',
+    payload: { inputs: { pr_number: '79' } },
+  };
+  const github = {
+    rest: { pulls: { list: () => assert.fail('must not list other PRs') } },
+  };
+  assert.deepEqual(await admission.targets(github, context), [79]);
+  for (const eventName of ['push', 'workflow_run', 'issue_comment']) {
+    await assert.rejects(admission.targets(github, { ...context, eventName }), /manual dispatch/);
+  }
+  await assert.rejects(
+    admission.targets(github, { ...context, actor: 'other-owner' }),
+    /only owner/
+  );
+  await assert.rejects(
+    admission.targets(github, { ...context, ref: 'refs/heads/candidate' }),
+    /main/
+  );
+  await assert.rejects(
+    admission.targets(github, {
+      ...context,
+      payload: { inputs: { pr_number: '79,117' } },
+    })
+  );
+  const workflow = fs.readFileSync(
+    path.join(__dirname, '../.github/workflows/change-admission.yml'),
+    'utf8'
+  );
+  const triggers = workflow.match(/^on:\n([\s\S]*?)^permissions:/m)[1];
+  assert.deepEqual(
+    [...triggers.matchAll(/^ {2}([a-z_]+):$/gm)].map((match) => match[1]),
+    ['workflow_dispatch']
+  );
+});
+test('ordinary evidence refusals keep a failed App check while controller and storage faults reject', async () => {
+  const previous = process.env.GITHUB_RUN_ATTEMPT;
+  process.env.GITHUB_RUN_ATTEMPT = '2';
+  try {
+    const refusals = [
+      () =>
+        admission.completeJobs(
+          { ...run(), status: 'in_progress', conclusion: null },
+          [],
+          ['checks']
+        ),
+      () => admission.completeJobs(run(), [], ['checks']),
+      () =>
+        admission.completeJobs(run(), [{ ...job('checks'), conclusion: 'failure' }], ['checks']),
+      () => ({ ...snapshot(), state: 'blocked', blockers: ['Draft-deferred'] }),
+    ];
+    for (const evaluate of refusals) {
+      const issuer = fakeIssuer(),
+        reports = [];
+      const result = await issuing.publish(
+        issuer,
+        { runId: 90, sha: base },
+        122,
+        source,
+        async () => evaluate(),
+        async (report) => reports.push(report)
+      );
+      assert.equal(result.conclusion, 'failure');
+      assert.match(result.output.summary, /Next:/);
+      assert.equal(reports[0].candidate.commit, source);
+      assert.ok(!issuer.writes.some((item) => item.conclusion === 'success'));
+    }
+    for (const evaluate of [
+      () => {
+        throw Error('API unavailable');
+      },
+      () => admission.completeJobs(run(), [{ ...job('checks'), run_id: 99 }], ['checks']),
+      () => admission.completeJobs({ ...run(), status: 'unexpected' }, [], ['checks']),
+      () => ({ ...snapshot(), candidate: { commit: 'not-a-sha' } }),
+    ]) {
+      const issuer = fakeIssuer();
+      await assert.rejects(
+        issuing.publish(
+          issuer,
+          { runId: 90, sha: base },
+          122,
+          source,
+          async () => evaluate(),
+          async () => {}
+        )
+      );
+      assert.equal(issuer.writes.at(-1).conclusion, 'failure');
+      assert.equal(issuer.writes.at(-1).output.title, 'Admission controller failed');
+    }
+    for (const field of ['candidate', 'controller']) {
+      const issuer = fakeIssuer();
+      let reads = 0;
+      await assert.rejects(
+        issuing.publish(
+          issuer,
+          { runId: 90, sha: base },
+          122,
+          source,
+          async () => {
+            const report = snapshot();
+            if (++reads === 2) report[field].commit = 'not-a-sha';
+            return report;
+          },
+          async () => {}
+        )
+      );
+      assert.equal(issuer.writes.at(-1).output.title, 'Admission controller failed');
+      assert.ok(!issuer.writes.some((item) => item.conclusion === 'success'));
+    }
+    const issuer = fakeIssuer();
+    await assert.rejects(
+      issuing.publish(
+        issuer,
+        { runId: 90, sha: base },
+        122,
+        source,
+        async () => admission.completeJobs(run(), [], ['checks']),
+        async () => {
+          throw Error('report disk unavailable');
+        }
+      ),
+      /report disk unavailable/
+    );
+    assert.equal(issuer.writes.at(-1).conclusion, 'failure');
+  } finally {
+    if (previous === undefined) delete process.env.GITHUB_RUN_ATTEMPT;
+    else process.env.GITHUB_RUN_ATTEMPT = previous;
+  }
+});
+test('a head moved after selection refuses the originally bound check instead of following it', async () => {
+  const previous = process.env.GITHUB_RUN_ATTEMPT;
+  process.env.GITHUB_RUN_ATTEMPT = '2';
+  try {
+    const issuer = fakeIssuer(),
+      reports = [];
+    const moved = snapshot();
+    moved.candidate.commit = 'c'.repeat(40);
+    const result = await issuing.publish(
+      issuer,
+      { runId: 90, sha: base },
+      122,
+      source,
+      async () => moved,
+      async (report) => reports.push(report)
+    );
+    assert.equal(result.conclusion, 'failure');
+    assert.equal(issuer.writes[0].head_sha, source);
+    assert.equal(reports[0].candidate.commit, source);
+    assert.match(reports[0].error, /head moved/);
+    assert.ok(!issuer.writes.some((item) => item.conclusion === 'success'));
+  } finally {
+    if (previous === undefined) delete process.env.GITHUB_RUN_ATTEMPT;
+    else process.env.GITHUB_RUN_ATTEMPT = previous;
+  }
+});
 test('dedicated publisher first revokes the head and only emits success for unchanged observed snapshots', async () => {
   const previous = process.env.GITHUB_RUN_ATTEMPT;
   process.env.GITHUB_RUN_ATTEMPT = '2';
@@ -642,6 +810,12 @@ test('real Git collection keeps candidate bytes as data and rejects an otherwise
     assert.equal(first.authority.merge, false);
     assert.equal(first.candidate.commit, head);
     assert.equal(first.evidence.length, 5);
+    pr.base.sha = 'a'.repeat(40);
+    await assert.rejects(
+      admission.collect(github, context, 122, root),
+      (error) => error instanceof admission.AdmissionBlocked && /PR base moved/.test(error.message)
+    );
+    pr.base.sha = main;
     git('checkout', '-q', head);
     fs.writeFileSync(path.join(root, 'tools/wrapper.cjs'), 'process.exit(0);\n');
     git('add', '.');

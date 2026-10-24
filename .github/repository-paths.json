@@ -9513,7 +9513,7 @@
     },
     ".github/workflows/change-admission.yml": {
       "kind": "file",
-      "purpose": "Disabled-by-default dedicated App admission preparation; main-only execution and explicit unconfigured observation.",
+      "purpose": "Manual owner/main-only dedicated App snapshot for one PR; no automatic upstream, push or comment fan-out.",
       "role": "workflow",
       "owner": "guides/SITE-STAGING.md"
     },
@@ -9525,13 +9525,13 @@
     },
     "tools/quality/delivery-admission-issuer.cjs": {
       "kind": "file",
-      "purpose": "Isolated short-lived repository-scoped GitHub App authentication and serialized snapshot publication adapter.",
+      "purpose": "Isolated short-lived App publisher; expected admission refusals retain failed bound checks while controller faults propagate.",
       "role": "validator",
       "owner": "guides/SITE-STAGING.md"
     },
     "tests/delivery-admission.test.cjs": {
       "kind": "file",
-      "purpose": "Negative API, real-Git execution-control, receipt and App issuer preparation regressions.",
+      "purpose": "Manual one-target scheduling, refusal/error/head-binding, API, real-Git execution-control, receipt and App issuer regressions.",
       "role": "test",
       "owner": "tools/quality/delivery-admission.cjs"
     },
@@ -9616,6 +9616,12 @@
     "review/issue-122/2026-10-24-control-runner-review.md": {
       "kind": "file",
       "purpose": "Two-task containment contract, actual four-role reviews, native failure/positive evidence and whole-issue progress reconciliation.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-122/2026-10-24-r1-manual-admission.md": {
+      "kind": "file",
+      "purpose": "R1 bounded manual-admission requirements, four independent roles, current-source checks and native delivery evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     }

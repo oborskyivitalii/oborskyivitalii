@@ -186,16 +186,31 @@ A candidate-created colliding artifact makes the real upload fail; it cannot
 supply acceptance. The bootstrap PR cannot supply this new receipt until the
 controller is on main; actual native acceptance remains a separate open proof.
 
-Freshness means the observed head/base/policy/evidence vector agrees across
-collection and the final snapshot. Publication is globally serialized and never
-cancels a running issuer. `workflow_run.in_progress` and `completed` refresh
-source/owner outcomes; `requested` alone would miss reruns. Main pushes refresh
-open PRs; the owner can post exactly `/admit` or dispatch a PR number from main.
-An older evaluation cannot overwrite a newer observed result in that serialized
-route. **Asynchronous delivery does not prove synchronous revocation:** a prior
-green can remain before an event is handled, or when App authentication is
-unavailable. This is an unresolved AC05/06 activation condition, not a guarantee
-of a zero stale merge window. The original three requirements remain mandatory.
+#### R1: one explicit admission request
+
+In Actions, select **Change admission preparation**, choose **Run workflow** on
+branch **main**, and enter the one PR number. Only the repository owner may run
+this action. The trusted controller resolves and binds its current head; it does
+not enumerate other PRs. Pushes, comments and upstream workflow events do not
+start admission. The old comment command is retired.
+
+The run summary states PR, lane, blockers and next action. The retained artifact
+binds the requested source/controller. A Draft, stale base/head or incomplete/
+failed required check is an ordinary refusal: the target App check stays failed,
+while the workflow finishes successfully because evaluation completed. Unknown
+states, malformed/foreign identities, API/authentication, dirty controller,
+storage/upload and protocol failures still fail the workflow. A green workflow
+is therefore not a green App check or authority to merge.
+
+After selected checks finish, or head/base changes, request a fresh evaluation
+using the same single dispatch action. The issuer remains globally serialized
+and never cancels an active evaluation. Existing latest-owner-stage selection
+still has its global scope; per-PR stage isolation is R2, not a result of R1.
+The collector rejects stale bindings and never follows a moved head with success.
+**Manual snapshots do not prove synchronous revocation:** an earlier green can
+remain until the next request, or when App authentication is unavailable. This
+remains an AC05/06 activation gap. The original three main requirements remain
+mandatory; the App is not required by R1.
 
 #### Exact proposed App setup and bounded proof
 
@@ -252,9 +267,9 @@ recovery route must be resolved before the later authoritative lane transition.
 App registration, setup and native proof are not established by unit fixtures.
 
 If source work is running, wait for it. Correct failed work and use the existing
-full staging retry route, then owner `/admit`; never mix attempts. If issuance is
+full staging retry route, then the owner dispatch described above; never mix attempts. If issuance is
 interrupted, restore the environment-only key/installation or event route and
-repeat `/admit` from current main. Inspect the named controller run and retained
+repeat the single-PR dispatch from current main. Inspect the named controller run and retained
 blocking diagnostics. The adapter uses a repository-scoped short-lived token,
 revokes it after use and never falls back to the Actions identity. Missing or
 failed setup is not an authoritative pass. This preparation does not authorize

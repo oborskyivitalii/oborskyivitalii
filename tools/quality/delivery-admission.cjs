@@ -52,6 +52,47 @@ const rootControls = new Set([
   '.github/repository-intelligence-config.json',
   '.github/ri-ci-map.json',
 ]);
+class AdmissionBlocked extends Error {
+  constructor(message, nextAction) {
+    super(message);
+    this.name = 'AdmissionBlocked';
+    this.nextAction = nextAction;
+  }
+}
+function requireEvidence(condition, message, nextAction) {
+  if (!condition) throw new AdmissionBlocked(message, nextAction);
+}
+function completed(item, description) {
+  assert.ok(
+    ['queued', 'in_progress', 'waiting', 'pending', 'requested', 'completed'].includes(item.status),
+    'unknown ' + description + ' status'
+  );
+  assert.ok(
+    [
+      null,
+      'success',
+      'failure',
+      'neutral',
+      'cancelled',
+      'skipped',
+      'timed_out',
+      'action_required',
+      'stale',
+      'startup_failure',
+    ].includes(item.conclusion),
+    'unknown ' + description + ' conclusion'
+  );
+  requireEvidence(
+    item.status === 'completed',
+    description + ' is running',
+    'Wait for the selected checks, then dispatch this PR again.'
+  );
+  requireEvidence(
+    item.conclusion === 'success',
+    description + ' failed',
+    'Repair or complete the selected checks, then dispatch this PR again.'
+  );
+}
 function positive(value) {
   assert.match(String(value), /^[1-9][0-9]*$/, 'positive decimal identity required');
   assert.ok(Number.isSafeInteger(Number(value)), 'identity exceeds safe integer range');
@@ -89,9 +130,8 @@ function definitions(before, after) {
 function completeJobs(run, jobs, names) {
   positive(run.id);
   positive(run.run_attempt);
-  assert.equal(run.status, 'completed', 'required workflow is running');
-  assert.equal(run.conclusion, 'success', 'required workflow failed');
-  assert.ok(Array.isArray(jobs) && jobs.length, 'missing required job inventory');
+  completed(run, 'required workflow');
+  assert.ok(Array.isArray(jobs), 'invalid required job inventory');
   const ids = new Set();
   for (const job of jobs) {
     positive(job.id);
@@ -103,10 +143,14 @@ function completeJobs(run, jobs, names) {
   }
   return names.map((name) => {
     const matches = jobs.filter((job) => job.name === name);
-    assert.equal(matches.length, 1, 'missing or ambiguous required job: ' + name);
+    assert.ok(matches.length <= 1, 'ambiguous required job: ' + name);
+    requireEvidence(
+      matches.length === 1,
+      'missing required job: ' + name,
+      'Run the required workflow completely, then dispatch this PR again.'
+    );
     const job = matches[0];
-    assert.equal(job.status, 'completed', 'required job is incomplete: ' + name);
-    assert.equal(job.conclusion, 'success', 'required job did not pass: ' + name);
+    completed(job, 'required job ' + name);
     return {
       name,
       id: job.id,
@@ -129,10 +173,20 @@ function receiptName(pr, source, base, run, attempt) {
 function stageReceipt(artifacts, run, jobs, pr, base) {
   const expected = receiptName(pr.number, pr.head.sha, base, run.id, run.run_attempt);
   const matches = artifacts.filter((item) => item.name === expected);
-  assert.equal(matches.length, 1, 'missing or ambiguous independent staging receipt');
+  assert.ok(matches.length <= 1, 'ambiguous independent staging receipt');
+  requireEvidence(
+    matches.length === 1,
+    'missing independent staging receipt',
+    'Complete owner staging for this exact PR, then dispatch it again.'
+  );
   const artifact = matches[0];
   positive(artifact.id);
-  assert.equal(artifact.expired, false, 'staging receipt expired');
+  assert.equal(typeof artifact.expired, 'boolean', 'invalid receipt expiry');
+  requireEvidence(
+    !artifact.expired,
+    'staging receipt expired',
+    'Run fresh owner staging, then dispatch this PR again.'
+  );
   assert.match(artifact.digest || '', /^sha256:[a-f0-9]{64}$/, 'missing native receipt digest');
   assert.equal(artifact.workflow_run?.id, run.id, 'receipt belongs to another run');
   assert.equal(artifact.workflow_run?.head_sha, base, 'receipt controller differs');
@@ -193,7 +247,11 @@ async function selectedRun(github, repo, pr, file, names) {
   const run = runs
     .filter((item) => item.pull_requests?.some((p) => p.number === pr.number))
     .sort((a, b) => b.id - a.id)[0];
-  assert.ok(run, 'missing required workflow: ' + file);
+  requireEvidence(
+    run,
+    'missing required workflow: ' + file,
+    'Run the required checks for this head, then dispatch this PR again.'
+  );
   assert.equal(run.workflow_id, definition.id, 'wrong workflow identity');
   assert.equal(run.path, definition.path, 'wrong workflow path');
   assert.equal(run.head_sha, pr.head.sha, 'stale workflow source');
@@ -267,7 +325,10 @@ async function latestStage(github, repo, base) {
       continue;
     return { run, jobs };
   }
-  assert.fail('missing genuine owner staging execution');
+  throw new AdmissionBlocked(
+    'missing genuine owner staging execution',
+    'Complete owner staging for this exact PR, then dispatch it again.'
+  );
 }
 function runtime(context) {
   assert.equal(context.repo.owner + '/' + context.repo.repo, repository);
@@ -282,15 +343,27 @@ async function collect(github, context, number, root = path.resolve(__dirname, '
   const repo = context.repo;
   const main = (await github.rest.repos.getBranch({ ...repo, branch: 'main' })).data;
   assert.equal(main.protected, true, 'main is unprotected');
-  assert.equal(main.commit.sha, context.sha, 'controller main moved');
+  sha(main.commit.sha);
+  requireEvidence(
+    main.commit.sha === context.sha,
+    'controller main moved',
+    'Dispatch this PR again from the current main.'
+  );
   git.clean(root, context.sha);
   const pr = (await github.rest.pulls.get({ ...repo, pull_number: positive(number) })).data;
-  assert.equal(pr.state, 'open', 'PR is closed');
+  assert.ok(['open', 'closed'].includes(pr.state), 'unknown PR state');
+  assert.equal(typeof pr.draft, 'boolean', 'invalid PR draft state');
+  requireEvidence(pr.state === 'open', 'PR is closed', 'Select an open PR.');
   assert.equal(pr.base.ref, 'main');
   for (const side of [pr.head, pr.base])
     assert.equal(side.repo?.full_name, repository, 'foreign PR repository');
   sha(pr.head.sha);
-  assert.equal(pr.base.sha, main.commit.sha, 'PR base moved');
+  sha(pr.base.sha);
+  requireEvidence(
+    pr.base.sha === main.commit.sha,
+    'PR base moved',
+    'Update this PR from current main, finish its checks, then dispatch it again.'
+  );
   if (git.invoke(root, ['cat-file', '-e', pr.head.sha + '^{commit}']).status !== 0) {
     const remote = git.text(git.git(root, ['remote', 'get-url', 'origin'])).trim();
     assert.ok(
@@ -310,6 +383,8 @@ async function collect(github, context, number, root = path.resolve(__dirname, '
     policy,
     pr: pr.number,
     state: 'blocked',
+    lane: 'current-full-route',
+    nextAction: 'Resolve the listed blockers, then dispatch this PR again from current main.',
     evidence: [],
     blockers: [],
     freshness:
@@ -353,52 +428,49 @@ async function collect(github, context, number, root = path.resolve(__dirname, '
   const currentMain = (await github.rest.repos.getBranch({ ...repo, branch: 'main' })).data;
   const currentPR = (await github.rest.pulls.get({ ...repo, pull_number: pr.number })).data;
   assert.equal(currentMain.protected, true);
-  assert.equal(currentMain.commit.sha, context.sha, 'main moved during collection');
-  assert.equal(currentPR.state, 'open');
-  assert.equal(currentPR.draft, false);
-  assert.equal(currentPR.head.sha, pr.head.sha, 'PR head moved during collection');
-  assert.equal(currentPR.base.sha, context.sha, 'PR base moved during collection');
+  sha(currentMain.commit.sha);
+  sha(currentPR.head.sha);
+  sha(currentPR.base.sha);
+  assert.ok(['open', 'closed'].includes(currentPR.state), 'unknown PR state');
+  assert.equal(typeof currentPR.draft, 'boolean', 'invalid PR draft state');
+  requireEvidence(
+    currentMain.commit.sha === context.sha && currentPR.base.sha === context.sha,
+    'main or PR base moved during collection',
+    'Dispatch this PR again from current main.'
+  );
+  requireEvidence(
+    currentPR.state === 'open' && currentPR.draft === false,
+    'PR is no longer ready',
+    'Finish the open PR, mark it ready, then dispatch it again.'
+  );
+  requireEvidence(
+    currentPR.head.sha === pr.head.sha,
+    'PR head moved during collection',
+    'Finish checks on the new head, then dispatch this PR again.'
+  );
   result.state = 'eligible-snapshot';
+  result.nextAction =
+    'Continue the existing protected delivery process; this snapshot grants no authority.';
   return result;
 }
 function sameSnapshot(first, last) {
-  assert.equal(last.state, 'eligible-snapshot', 'latest evidence no longer passes');
-  assert.equal(first.state, last.state);
-  assert.equal(
-    json.canonical(first),
-    json.canonical(last),
-    'source, policy or selected evidence moved'
+  assert.ok(['eligible-snapshot', 'blocked'].includes(last.state), 'unknown snapshot state');
+  requireEvidence(
+    last.state === 'eligible-snapshot',
+    'latest evidence no longer passes',
+    last.nextAction || 'Resolve the blockers, then dispatch this PR again.'
+  );
+  requireEvidence(
+    json.canonical(first) === json.canonical(last),
+    'source, policy or selected evidence moved',
+    'Dispatch this PR again from current main.'
   );
 }
 async function targets(github, context) {
   runtime(context);
-  if (context.eventName === 'workflow_dispatch') {
-    assert.equal(context.actor, owner, 'only owner dispatch can request refresh');
-    return [positive(context.payload.inputs?.pr_number)];
-  }
-  if (context.eventName === 'issue_comment') {
-    assert.equal(context.payload.action, 'created');
-    assert.equal(context.actor, owner);
-    assert.equal(context.payload.comment?.user?.login, owner);
-    assert.equal(context.payload.comment?.body, '/admit');
-    assert.ok(context.payload.issue?.pull_request);
-    return [positive(context.payload.issue.number)];
-  }
-  const prs = (
-    await github.rest.pulls.list({
-      ...context.repo,
-      state: 'open',
-      base: 'main',
-      per_page: 21,
-    })
-  ).data;
-  assert.ok(
-    prs.length <= 20,
-    'refresh target inventory exceeds 20 PR bound; use explicit owner refresh'
-  );
-  return prs
-    .filter((pr) => pr.head.repo?.full_name === repository)
-    .map((pr) => positive(pr.number));
+  assert.equal(context.eventName, 'workflow_dispatch', 'manual dispatch required');
+  assert.equal(context.actor, owner, 'only owner dispatch can request refresh');
+  return [positive(context.payload.inputs?.pr_number)];
 }
 async function stageIdentity(github, context, number, expectedSource) {
   runtime(context);
@@ -440,6 +512,7 @@ async function stageIdentity(github, context, number, expectedSource) {
 }
 
 module.exports = {
+  AdmissionBlocked,
   repository,
   workflow,
   routes,
