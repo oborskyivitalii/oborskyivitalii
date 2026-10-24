@@ -533,7 +533,7 @@ test('manual admission selects one owner PR and has no automatic workflow trigge
   );
   const triggers = workflow.match(/^on:\n([\s\S]*?)^permissions:/m)[1];
   assert.deepEqual(
-    [...triggers.matchAll(/^  ([a-z_]+):$/gm)].map((match) => match[1]),
+    [...triggers.matchAll(/^ {2}([a-z_]+):$/gm)].map((match) => match[1]),
     ['workflow_dispatch']
   );
 });

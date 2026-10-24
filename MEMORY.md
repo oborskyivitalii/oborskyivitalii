@@ -17,7 +17,7 @@ Dated continuity, not live authority. Last verified: **2026-10-24**.
 ## Open work
 
 - Canonical operator owner is guides/SITE-STAGING.md; execution/review record is review/issue-122/2026-10-24-r1-manual-admission.md. Four current-source role reviews and affected corrections are accepted; native CI/staging/merge/postmerge and one actual manual-main dispatch remain pending.
-- Final targeted admission suite passed19/19. Both snapshot reads validate candidate/controller identity before movement classification; malformed identities hard-fail. Local Basic/style/RI/coupling and pinned formatting passed; native delivery remains pending.
+- Final targeted admission suite passed19/19. Both snapshot reads validate candidate/controller identity before movement classification; malformed identities hard-fail. Local Basic/style/RI/coupling and pinned formatting passed; native delivery remains pending. Initial Basic40117751672 stopped at no-regex-spaces before source tests; the equivalent test-only `{2}` correction passed direct ESLint/19targeted and four scoped correction reviews.
 - All whole AC01–AC08 remain open. R2 still needs useful repository-only admission, per-PR evidence selection, legitimate control/recovery route, enforceable freshness/protected migration and a real no-website merge. R3 integrates accepted-site history and actual content release/recovery through issue5/PR79, without absorbing its editorial/build backlog.
 
 ## Next session

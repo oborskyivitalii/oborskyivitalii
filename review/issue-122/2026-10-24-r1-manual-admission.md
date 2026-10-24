@@ -115,3 +115,15 @@ No such preparation failure is a hosted delivery pass or a reason for a new matr
 The owning policy also passed all five mapped deterministic checks on the explicitly
 dirty prepared tree: automation_pass=true, no errors, whole closure=false.
 This is not clean-head CI; native checks must bind the final commit.
+
+## First native attempt and narrow lint correction
+
+Basic40117751672 on published340e1a1 failed before the source worker: ESLint
+no-regex-spaces rejected two literal spaces in the new trigger assertion.
+Formatting/architecture/Basic passed; no full source-suite pass is claimed.
+The equivalent `{2}` spelling fixes that one test line. Direct ESLint and
+targeted19/19 pass. All four actual roles checked the affected correction;
+White-box independently confirmed identical trigger results and19/19.
+Runtime/workflow/runbook hashes above are unchanged. Corrected test SHA256:
+`9eb1a6008d9680bbafc1f61d10507cb46eda3f54bd45db34de8d70cf2b0b71b3`.
+Fresh native current-source CI is required; the old failure stays failed.
