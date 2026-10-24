@@ -2,7 +2,7 @@
 
 *AI Changes Both Sides of Software Engineering*
 
-Vitalii Oborskyi · Editorial draft R34 · 24 October 2026
+Vitalii Oborskyi · Editorial draft R35 · 24 October 2026
 
 ![A solitary person stands before a narrow opening of light between monumental dark walls.](asset:cover)
 
@@ -15,6 +15,8 @@ The dashboard calls this progress. The person handling the next incident has a d
 What if faster generation does not improve delivery—or leaves us unable to recover what we built? What if the person entrusted with the final decision cannot meaningfully make it?
 
 Engineering starts with the problem, not the tool. My UA Online PMDay 2026 Autumn talk connects two higher-order tasks: rebalancing the SDLC without losing its essential functions, and engineering dependable control around consequential model judgment. **Both change what leaders must require, verify, staff and fund before implementation.**
+
+My earlier work followed two lines. In January 2026, I described how AI code generation can outrun human reading and verification [\[37\]](https://dou.ua/forums/topic/57244/). *The Subprime Code Crisis* [\[9\]](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis) develops the structural SDLC problem: preserve verification, integration, understanding, maintenance and recovery rather than simply clear the next bottleneck. In parallel, *Uncertainty Architecture* [\[20\]](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture) examines engineering control around consequential model judgment in operating software. **This essay connects both problems**, showing why project framing, architecture, staffing and funding must reflect them before implementation.
 
 Throughout this essay, **“What if not?”** is a deliberate refrain, not a forecast that every failure will occur. Each turn challenges an attractive assumption; together, they reveal the breadth and depth of the problem space before we rush to solutions. The point is practical: decide what to verify, constrain, fund or simplify.
 
@@ -338,7 +340,7 @@ Numbered citations refer to the sources below. Source notes retain the evidence 
 
 9. [Vitalii Oborskyi. The Subprime Code Crisis — independent research synthesis.](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis)
 
-    Author-led synthesis, not independent experimental validation.
+    Develops the SDLC argument introduced in [\[37\]](https://dou.ua/forums/topic/57244/); not independent experimental validation.
 
 10. [Anthropic. “Bringing Code Review to Claude Code” (9 March 2026).](https://claude.com/resources/articles/code-review)
 
@@ -446,18 +448,22 @@ Numbered citations refer to the sources below. Source notes retain the evidence 
 
     Working paper using proprietary Jellyfish data from 718 consenting client firms, January 2021–March 2026. Staggered difference-in-differences design, not randomised assignment. The agent estimate in §4.1 is 3.45 additional days (standard error 1.60) from PR submission to merge against a 7.03-day baseline, approximately 49%. This elapsed interval includes waiting and other work; it does not measure active reviewer effort. Jellyfish supplied aggregated/anonymised metadata, not code content, and reviewed confidentiality rather than scientific content. Sample and adoption-selection limits constrain generalisation.
 
+37. [Vitalii Oborskyi. “Ілюзія економії: чому заміна розробників на AI — це шлях до технічного дефолту” (DOU, 5 January 2026; Ukrainian).](https://dou.ua/forums/topic/57244/)
+
+    Contemporary articulation of machine-output versus human-review capacity. Authorial provenance, not independent validation or proof of historical priority.
+
 ## How to cite this draft
 
-Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R34, 24 October 2026.
+Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R35, 24 October 2026.
 
 Unpublished author-review edition. Cite the revision; no DOI or final publication URL has been assigned.
 
 ```bibtex
-@misc{oborskyi2026sumR34,
+@misc{oborskyi2026sumR35,
   author = {Oborskyi, Vitalii},
   year = {2026},
   title = {The Sum of Our Technology: AI Changes Both Sides of Software Engineering},
-  note = {Editorial draft R34, 24 October 2026; unpublished}
+  note = {Editorial draft R35, 24 October 2026; unpublished}
 }
 ```
 
@@ -477,6 +483,7 @@ Vitalii Oborskyi retains editorial responsibility.
 
 24 October 2026:
 
+- **R35:** Stated the two research lines and this essay's synthesis, documenting the January 2026 precursor without claiming historical priority.
 - **R34:** Moved METR productivity findings to the SDLC evidence discussion and restored the cross-boundary comprehension argument for users.
 - **R33:** Sharpened the two system-level problems for engineering leaders, qualified evidence and bounded delegation, and connected problem framing to project decisions without expanding scope.
 - **R32:** Sharpened the two higher-order engineering problems: SDLC rebalancing under machine–human speed asymmetry, and bounded control around probabilistic model judgment. Linked both to early project framing and planning.
