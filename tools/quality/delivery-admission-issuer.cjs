@@ -117,6 +117,12 @@ function binding(context, pr) {
     admission.positive(pr),
   ].join('/');
 }
+function validateSnapshot(report, controller) {
+  assert.ok(['eligible-snapshot', 'blocked'].includes(report.state), 'unknown snapshot state');
+  assert.match(report.candidate.commit, /^[a-f0-9]{40}$/, 'invalid snapshot candidate identity');
+  assert.match(report.controller.commit, /^[a-f0-9]{40}$/, 'invalid snapshot controller identity');
+  assert.equal(report.controller.commit, controller, 'wrong snapshot controller');
+}
 async function publish(issuer, context, pr, source, snapshot, retain) {
   const external = binding(context, pr);
   const created = await issuer.create({
@@ -137,8 +143,15 @@ async function publish(issuer, context, pr, source, snapshot, retain) {
   try {
     const first = await snapshot();
     result = first;
+    validateSnapshot(first, context.sha);
+    if (first.candidate.commit !== source)
+      throw new admission.AdmissionBlocked(
+        'PR head moved after selection',
+        'Finish checks on the new head, then dispatch this PR again.'
+      );
     if (first.state === 'eligible-snapshot') {
       const last = await snapshot();
+      validateSnapshot(last, context.sha);
       admission.sameSnapshot(first, last);
       result = last;
     }
@@ -160,28 +173,43 @@ async function publish(issuer, context, pr, source, snapshot, retain) {
           json.digest(json.canonical(result)) +
           '. Blocking obligations: ' +
           (result.blockers?.join(', ') || 'none in this observed snapshot') +
+          '. Lane: current-full-route. Next: ' +
+          (result.nextAction || 'Continue the existing protected delivery process.') +
           '. Current three required checks remain in force. ' +
           result.freshness,
       },
     });
   } catch (error) {
+    const refused = error instanceof admission.AdmissionBlocked;
+    let retentionError;
     try {
       await retain({
         state: 'blocked',
+        lane: 'current-full-route',
+        pr,
+        candidate: { commit: source },
+        controller: { commit: context.sha },
         error: error.message,
+        nextAction: refused ? error.nextAction : 'Repair the controller failure before retrying.',
         authority: { merge: false },
       });
-    } catch {
+    } catch (failure) {
+      retentionError = failure;
       // Diagnostic storage failure must not prevent terminal failure publication.
     }
-    await issuer.update(created.id, {
+    const failed = await issuer.update(created.id, {
       status: 'completed',
       conclusion: 'failure',
       output: {
-        title: 'Admission snapshot blocked',
-        summary: error.message.slice(0, 2000),
+        title: refused ? 'Admission snapshot blocked' : 'Admission controller failed',
+        summary:
+          error.message.slice(0, 2000) +
+          '. Lane: current-full-route. Next: ' +
+          (refused ? error.nextAction : 'Repair the controller failure before retrying.'),
       },
     });
+    if (refused && !retentionError) return failed;
+    if (refused && retentionError) throw retentionError;
     throw error;
   }
 }
