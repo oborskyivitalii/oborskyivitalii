@@ -56,7 +56,9 @@ Enduring rules and task routing. Issues own intent; PRs own execution;
     `review/issue-N/YYYY-MM-DD-kind.md`, using [REVIEW-TEMPLATE](review/REVIEW-TEMPLATE.md).
     Give the issue a dated anchor, short outcome and exact file/section link;
     continue model changes on that same route. History never authorizes new work.
-11. Run `node tools/quality/local.cjs` and applicable mapped checks. After indexed
+11. Run the trusted lane's Basic and applicable mapped checks. Repository-only
+    delivery omits website Basic/package work; other changes retain
+    `node tools/quality/local.cjs`. After indexed
     path/source or memory changes run RI `build` and `verify`; RI/flow changes also
     require `test_repository_intelligence.py`. Update and verify the [RI/CI map](.github/ri-ci-map.json)
     when RI changes. Runtime/content edits use applicable hosted profiles and registry;

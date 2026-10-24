@@ -1474,3 +1474,33 @@ test('loopback serves canonical image/robots/sitemap types and root or extension
     assert.equal(await response.text(), 'controlled immutable ' + (file || 'index.html'));
   }
 });
+
+test('repository lint reaches source scanners without a website manifest and retains scanner failure', (t) => {
+  const os = require('node:os');
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'repository-lint-'));
+  t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
+  const result = cp.spawnSync(process.execPath, ['tools/quality/scanners.cjs', 'lint'], {
+    cwd: root,
+    encoding: 'utf8',
+    timeout: 30000,
+    env: {
+      ...process.env,
+      SITE_REPOSITORY_ONLY: 'true',
+      SITE_ARTIFACT_MANIFEST: path.join(directory, 'absent-website.json'),
+      SITE_REPORT_DIR: directory,
+      SITE_AUDIT_TOOLS: path.join(directory, 'missing-tools'),
+    },
+  });
+  assert.notEqual(result.status, 0);
+  const report = JSON.parse(fs.readFileSync(path.join(directory, 'repository-lint.json')));
+  assert.equal(report.kind, 'repository-source-lint');
+  assert.equal(report.website, 'not-applicable');
+  assert.equal(report.pass, false);
+  assert.match(report.error, /Scanner engines failed/);
+  assert.equal(
+    report.sourceCommit,
+    cp.execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim()
+  );
+  assert.equal(Object.hasOwn(report, 'artifactDigest'), false);
+  assert.equal(fs.existsSync(path.join(directory, 'absent-website.json')), false);
+});

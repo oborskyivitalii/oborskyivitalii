@@ -1,10 +1,12 @@
 'use strict';
 
-// Preparation only: this does not replace any current protected-main requirement.
+// Trusted-main admission; candidate code is inspected as immutable Git data.
 const assert = require('node:assert/strict');
 const path = require('node:path');
 const git = require('./delivery-git.cjs');
 const json = require('./delivery-json.cjs');
+const routing = require('./delivery-routing.cjs');
+const observation = require('./delivery-observation.cjs');
 const repository = 'oborskyivitalii/oborskyivitalii';
 const owner = 'oborskyivitalii';
 const workflow = '.github/workflows/change-admission.yml';
@@ -30,28 +32,6 @@ const stageJobs = [
   'change-admission-receipt',
 ];
 const receiptStep = 'Retain independently produced staging identity';
-const rootControls = new Set([
-  '.gitattributes',
-  '.gitmodules',
-  '.npmrc',
-  '.node-version',
-  '.nvmrc',
-  '.python-version',
-  '.prettierrc',
-  '.prettierignore',
-  'pyproject.toml',
-  'ruff.toml',
-  '.ruff.toml',
-  'package.json',
-  'package-lock.json',
-  'pnpm-lock.yaml',
-  'yarn.lock',
-  'Makefile',
-  '.github/code-style.json',
-  '.github/repository-layout.json',
-  '.github/repository-intelligence-config.json',
-  '.github/ri-ci-map.json',
-]);
 class AdmissionBlocked extends Error {
   constructor(message, nextAction) {
     super(message);
@@ -103,12 +83,7 @@ function sha(value) {
   return value;
 }
 function executionPath(file) {
-  return (
-    /^(tools|tests|\.github\/(workflows|actions|acceptance))\//.test(file) ||
-    rootControls.has(file) ||
-    /^requirements[^/]*\.txt$/.test(file) ||
-    /^[^/]+\.config\.[^/]+$/.test(file)
-  );
+  return routing.control(file);
 }
 function definitions(before, after) {
   const names = [...new Set([...before.keys(), ...after.keys()])].sort();
@@ -273,7 +248,7 @@ async function selectedRun(github, repo, pr, file, names) {
     jobs: completeJobs(run, jobs, names),
   };
 }
-async function latestStage(github, repo, base) {
+async function latestStage(github, repo, base, pr) {
   const definition = (
     await github.rest.actions.getWorkflow({
       ...repo,
@@ -295,7 +270,8 @@ async function latestStage(github, repo, base) {
     if (
       !['issue_comment', 'workflow_dispatch'].includes(run.event) ||
       run.head_branch !== 'main' ||
-      run.actor?.login !== owner
+      run.actor?.login !== owner ||
+      run.display_title !== 'Site staging PR #' + positive(pr.number)
     )
       continue;
     assert.equal(run.path, stageWorkflow);
@@ -313,7 +289,7 @@ async function latestStage(github, repo, base) {
       'jobs'
     );
     const targets = jobs.filter((job) => job.name === 'target');
-    assert.equal(targets.length, 1, 'latest owner workflow has no unique target job');
+    assert.ok(targets.length <= 1, 'latest owner workflow has ambiguous target jobs');
     // Only a completed harmless comment with no executed work is inapplicable.
     // A cancelled /stage or dispatch may skip target; it must still block older green.
     if (
@@ -323,7 +299,43 @@ async function latestStage(github, repo, base) {
       jobs.every((job) => job.status === 'completed' && job.conclusion === 'skipped')
     )
       continue;
-    return { run, jobs };
+    const artifacts = await pages(
+      github.rest.actions.listWorkflowRunArtifacts,
+      { ...repo, run_id: run.id },
+      'artifacts'
+    );
+    const target = targets[0];
+    if (target?.status === 'completed' && target.conclusion === 'success') {
+      assert.equal(target.run_id, run.id);
+      if (target.run_attempt !== undefined) assert.equal(target.run_attempt, run.run_attempt);
+      const response = await github.rest.actions.downloadJobLogsForWorkflowRun({
+        ...repo,
+        job_id: positive(target.id),
+      });
+      const logs =
+        typeof response.data === 'string' ? response.data : git.text(Buffer.from(response.data));
+      assert.ok(Buffer.byteLength(logs) <= 2 * 1024 * 1024, 'oversized trusted target log');
+      const lines = logs
+        .split(/\r?\n/)
+        .map((line) => line.match(/(?:^| )change-stage-target-v1 (\{.*\})$/))
+        .filter(Boolean);
+      requireEvidence(
+        lines.length === 1,
+        'unavailable unique trusted staging target',
+        'Run fresh owner staging; target logs cannot prove this attempt inapplicable.'
+      );
+      const binding = json.parse(Buffer.from(lines[0][1]));
+      assert.equal(binding.pr, pr.number);
+      assert.equal(binding.base, base);
+      assert.equal(binding.run, run.id);
+      assert.equal(binding.attempt, run.run_attempt);
+      sha(binding.source);
+      // Only the completed protected-main job log can establish an older head.
+      // Early artifacts remain diagnostics: candidate jobs can replace them.
+      if (binding.source !== pr.head.sha) continue;
+    }
+    // An unresolved same-PR attempt blocks old green conservatively.
+    return { run, jobs, artifacts };
   }
   throw new AdmissionBlocked(
     'missing genuine owner staging execution',
@@ -374,6 +386,7 @@ async function collect(github, context, number, root = path.resolve(__dirname, '
   const candidate = git.resolve(root, pr.head.sha),
     controller = git.resolve(root, context.sha);
   const policy = definitions(git.tree(root, context.sha), git.tree(root, pr.head.sha));
+  const selection = observation.selection(root, context.sha, pr.head.sha);
   const result = {
     kind: 'change-admission-snapshot',
     version: 1,
@@ -381,9 +394,13 @@ async function collect(github, context, number, root = path.resolve(__dirname, '
     controller,
     candidate,
     policy,
+    controlReview: policy.changed.length
+      ? { reviewedSHA: context.payload?.inputs?.reviewed_sha || null, reviewer: context.actor }
+      : null,
     pr: pr.number,
     state: 'blocked',
-    lane: 'current-full-route',
+    lane: selection.repositoryOnly ? 'repository' : 'current-full-route',
+    selection,
     nextAction: 'Resolve the listed blockers, then dispatch this PR again from current main.',
     evidence: [],
     blockers: [],
@@ -391,40 +408,41 @@ async function collect(github, context, number, root = path.resolve(__dirname, '
       'Snapshot and final lease only; asynchronous invalidation is not a synchronous merge guarantee.',
   };
   if (pr.draft) result.blockers.push('Draft-deferred');
-  if (policy.changed.length) result.blockers.push('unsupported-execution-control-change');
+  if (policy.changed.length && !reviewedControl(context, pr.head.sha)) {
+    result.blockers.push('review-exact-control-head');
+    result.nextAction =
+      'Review the control diff, then dispatch this PR with reviewed_sha=' +
+      pr.head.sha +
+      '. Full checks and staging are still required.';
+  }
   if (git.invoke(root, ['merge-base', '--is-ancestor', context.sha, pr.head.sha]).status !== 0) {
     result.blockers.push('update-from-current-main');
   }
   if (result.blockers.length) return result;
-  for (const [file, name] of routes)
+  const selectedRoutes = selection.repositoryOnly ? routes.slice(0, 3) : routes;
+  for (const [file, name] of selectedRoutes)
     result.evidence.push(await selectedRun(github, repo, pr, file, [name]));
-  // A candidate-created Actions check cannot choose the authoritative staging run.
-  const { run, jobs } = await latestStage(github, repo, context.sha);
-  const required = completeJobs(run, jobs, stageJobs);
-  const artifacts = await pages(
-    github.rest.actions.listWorkflowRunArtifacts,
-    {
-      ...repo,
-      run_id: run.id,
-    },
-    'artifacts'
-  );
-  const receipt = stageReceipt(artifacts, run, jobs, pr, context.sha);
-  result.evidence.push({
-    workflow: stageWorkflow,
-    run: run.id,
-    attempt: run.run_attempt,
-    jobs: required,
-    receipt,
-    unselected: jobs
-      .filter((job) => !stageJobs.includes(job.name))
-      .map((job) => ({
-        name: job.name,
-        conclusion: job.conclusion,
-        reason:
-          'Not a selected admission obligation in the unchanged trusted workflow; actual conclusion retained.',
-      })),
-  });
+  if (!selection.repositoryOnly) {
+    // A candidate-created Actions check cannot choose the authoritative staging run.
+    const { run, jobs, artifacts } = await latestStage(github, repo, context.sha, pr);
+    const required = completeJobs(run, jobs, stageJobs);
+    const receipt = stageReceipt(artifacts, run, jobs, pr, context.sha);
+    result.evidence.push({
+      workflow: stageWorkflow,
+      run: run.id,
+      attempt: run.run_attempt,
+      jobs: required,
+      receipt,
+      unselected: jobs
+        .filter((job) => !stageJobs.includes(job.name))
+        .map((job) => ({
+          name: job.name,
+          conclusion: job.conclusion,
+          reason:
+            'Not a selected admission obligation in the unchanged trusted workflow; actual conclusion retained.',
+        })),
+    });
+  }
   const currentMain = (await github.rest.repos.getBranch({ ...repo, branch: 'main' })).data;
   const currentPR = (await github.rest.pulls.get({ ...repo, pull_number: pr.number })).data;
   assert.equal(currentMain.protected, true);
@@ -450,7 +468,7 @@ async function collect(github, context, number, root = path.resolve(__dirname, '
   );
   result.state = 'eligible-snapshot';
   result.nextAction =
-    'Continue the existing protected delivery process; this snapshot grants no authority.';
+    'Continue protected merge with this exact head and current base; no deployment is authorized.';
   return result;
 }
 function sameSnapshot(first, last) {
@@ -465,6 +483,46 @@ function sameSnapshot(first, last) {
     'source, policy or selected evidence moved',
     'Dispatch this PR again from current main.'
   );
+}
+function reviewedControl(context, head) {
+  const value = context.payload?.inputs?.reviewed_sha;
+  if (!value) return false;
+  assert.equal(context.eventName, 'workflow_dispatch', 'control review requires manual dispatch');
+  assert.equal(context.actor, owner, 'only the owner can attest a reviewed control head');
+  sha(value);
+  return value === head;
+}
+async function issuedCheck(github, repo, pr, base) {
+  const checks = await pages(
+    github.rest.checks.listForRef,
+    { ...repo, ref: sha(pr.head.sha), check_name: 'Change admission', filter: 'all' },
+    'check_runs'
+  );
+  const check = checks
+    .filter((item) => item.name === 'Change admission' && item.app?.id === 5453173)
+    .sort((a, b) => b.id - a.id)[0];
+  requireEvidence(
+    check,
+    'missing dedicated App admission',
+    'Dispatch Change admission for this PR, then refresh its PR checks.'
+  );
+  assert.equal(check.head_sha, pr.head.sha);
+  completed(check, 'dedicated App admission');
+  const identity = (check.external_id || '').match(/^([1-9][0-9]*)\/([1-9][0-9]*)\/([1-9][0-9]*)$/);
+  assert.ok(identity, 'malformed dedicated check identity');
+  assert.equal(Number(identity[3]), pr.number);
+  const run = (await github.rest.actions.getWorkflowRun({ ...repo, run_id: positive(identity[1]) }))
+    .data;
+  assert.equal(run.path, workflow);
+  assert.equal(run.head_sha, sha(base), 'admission controller base differs');
+  assert.equal(run.head_branch, 'main');
+  assert.equal(run.head_repository?.full_name, repository);
+  assert.equal(run.event, 'workflow_dispatch');
+  assert.equal(run.actor?.login, owner);
+  assert.equal(run.triggering_actor?.login, owner);
+  assert.equal(run.run_attempt, positive(identity[2]), 'admission attempt moved');
+  completed(run, 'dedicated issuer workflow');
+  return { check: check.id, run: run.id, attempt: run.run_attempt, protectedMain: base };
 }
 async function targets(github, context) {
   runtime(context);
@@ -520,6 +578,8 @@ module.exports = {
   receiptStep,
   positive,
   executionPath,
+  reviewedControl,
+  issuedCheck,
   definitions,
   completeJobs,
   receiptName,

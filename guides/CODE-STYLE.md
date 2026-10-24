@@ -139,7 +139,9 @@ a faster page. Do not raise budgets or repeat full matrices to chase one number.
 ## CS08 — Verification proportional to the change
 
 Run Basic (`node tools/quality/local.cjs`) and the applicable source suites/profile
-from the maintained registry. Add tests for behavioral contracts and meaningful
+from the maintained registry. Protected repository-only delivery instead runs its
+selected formatting/lint/source/RI/owning Basic without website build/package work.
+Add tests for behavioral contracts and meaningful
 failure cases; do not add assertions that only mirror implementation text.
 Architecture/guard changes need negative cases proving the guard can reject a
 violation. Pure prose/routing work does not justify a new browser matrix.

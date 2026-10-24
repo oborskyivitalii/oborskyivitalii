@@ -585,6 +585,7 @@ test('real Git renames retain both endpoint owners regardless of ambient rename 
       'reasons',
       'pythonRoute',
       'taskSnapshots',
+      'websiteSmoke',
       'status',
       'pass',
     ].sort()
@@ -1158,4 +1159,24 @@ test('source scheduling uses configured worker capacity without exceeding its ce
     files.length
   );
   assert.deepEqual(fs.readdirSync(active), []);
+});
+
+test('repository-only selection omits website smoke and retains affected test failures', () => {
+  const plan = runner.select(root, 'pr', { changedPaths: ['AGENTS.md'], repositoryOnly: true });
+  assert.deepEqual(plan.modules, []);
+  assert.deepEqual(plan.baselineFiles, []);
+  assert.equal(plan.baselineCommand, null);
+  assert.equal(runner.run(root, plan).status, 'not-applicable');
+  const affected = runner.select(root, 'pr', {
+    changedPaths: ['tests/delivery-admission.test.cjs'],
+    repositoryOnly: true,
+  });
+  assert.ok(affected.modules.includes('tests/delivery-admission.test.cjs'));
+  assert.throws(
+    () =>
+      runner.run(root, affected, {
+        execute: () => ({ status: 1, stderr: 'selected test failed' }),
+      }),
+    /selected test failed/
+  );
 });

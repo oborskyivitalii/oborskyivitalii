@@ -277,9 +277,11 @@ function select(root, profile, options = {}) {
   const registry = validateRegistry(root, options.registry || loadRegistry(root));
   const js = registry.tests.filter((row) => row.language === 'javascript'),
     permanent = js.filter((row) => row.lifecycle === 'permanent');
-  const baselineFiles = ['pr', 'staging'].includes(profile)
-    ? registry.source_profiles[profile].baseline_files
-    : [];
+  assert.ok(!options.repositoryOnly || profile === 'pr', 'repository selection requires PR diff');
+  const baselineFiles =
+    !options.repositoryOnly && ['pr', 'staging'].includes(profile)
+      ? registry.source_profiles[profile].baseline_files
+      : [];
   const baseline = new Set(baselineFiles),
     selected = new Set(),
     reasons = {};
@@ -308,6 +310,7 @@ function select(root, profile, options = {}) {
     baselineCommand: baselineFiles.length
       ? registry.source_profiles[profile].baseline_command
       : null,
+    websiteSmoke: options.repositoryOnly ? 'not-applicable: repository-only delta' : 'baseline',
     ...changed,
     reasons,
     pythonRoute: 'python3 tools/run_repository_tests.py',
@@ -414,8 +417,9 @@ function executePlan(root, plan, options = {}) {
       pass: null,
       total: 0,
       passed: 0,
-      reason:
-        'No additional Node target; local source smoke and applicable Python/owning-issue checks retain their own evidence.',
+      reason: plan.websiteSmoke?.startsWith('not-applicable')
+        ? 'No affected Node target. Website smoke is inapplicable; RI/owning checks retain their own evidence.'
+        : 'No additional Node target; local source smoke and applicable Python/owning-issue checks retain their own evidence.',
     };
   }
   const execute = options.execute || ((argv) => executeSource(root, argv));
@@ -552,12 +556,20 @@ function argumentsFor(argv) {
   for (let i = 0; i < argv.length; i++) {
     const flag = argv[i];
     assert.ok(
-      ['--profile', '--base', '--head', '--require-clean', '--plan', '--report'].includes(flag),
+      [
+        '--profile',
+        '--base',
+        '--head',
+        '--require-clean',
+        '--plan',
+        '--report',
+        '--repository-only',
+      ].includes(flag),
       'unknown source-test argument ' + flag
     );
     const key = flag.slice(2).replace(/-([a-z])/g, (_, x) => x.toUpperCase());
     assert.ok(!Object.hasOwn(options, key), 'duplicate source-test argument ' + flag);
-    if (['--require-clean', '--plan'].includes(flag)) options[key] = true;
+    if (['--require-clean', '--plan', '--repository-only'].includes(flag)) options[key] = true;
     else {
       assert.ok(argv[i + 1] && !argv[i + 1].startsWith('--'), 'missing argument ' + flag);
       options[key] = argv[++i];
