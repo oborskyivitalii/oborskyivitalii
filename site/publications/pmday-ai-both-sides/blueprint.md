@@ -2,6 +2,18 @@
 
 Article owner #2; publisher/execution #5 / PR79.
 
+## Latest repository checkpoint — R35 source selection — 24 October 2026
+
+**Current authored source is R35, not R32.** [Editorial commit `45c6d34`](https://github.com/oborskyivitalii/oborskyivitalii/commit/45c6d34c926470516e5b1d00593e98a1187aed28) introduces the bounded conceptual-contribution paragraph and reference [37] to the author's January 2026 DOU article. All earlier parts, prompts, tables and source qualifications remain.
+
+[Publication-pin commit `7e3f96b`](https://github.com/oborskyivitalii/oborskyivitalii/commit/7e3f96b1b54bd88e6f662d3f28487abc853f552e) creates a new immutable `pmday-ai-both-sides-en-review-20261024-r35` edition instead of rewriting R30. `publication.json`, `profile.json`, the added source-45 link, byline digest and authored `launch-post.en.md` now identify R35. Canonical manuscript SHA-256: `aa2d8db00076f21c613b657acccd911f217e2a2e8762cbfcb017ec7a03d0c869`; R35 semantic digest: `d57b0fee9a985ea0cb3ce47f581dd537bb844fcd17a7790b31216c01ce081629`.
+
+**This is not a complete R35 native package.** The committed R34 PDF remains historical and does not match R35; no new binary R35 PDF has been committed. A separate locally produced **17-page text-only R35 review PDF** was inspected for text/links, but its four original illustrations could not be embedded via the available binary-access route. It must not be presented as the native illustrated review edition or accepted PDF. This scoped handoff is in [R35 integration status](../../../review/issue-2/2026-10-24-r35-source-and-print-status.md); editorial reasoning remains in [the contribution review](../../../review/issue-2/2026-10-24-r35-author-contribution.md).
+
+Current-source publishing/RI/CI, original figure parity, four independent role executions, source-bound acceptance, main conflict, rights and release decisions remain **pending**. No staging, merge or production publication is claimed. R32 and R30 passages below retain their historical dates but no longer describe the current source.
+
+---
+
 ## Current repository checkpoint — R32 Markdown and PDF — 24 October 2026
 
 The complete R32 manuscript is committed in `manuscript.en.md` at `d43040a`;
