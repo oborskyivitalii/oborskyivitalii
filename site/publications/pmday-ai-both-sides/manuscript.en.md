@@ -2,7 +2,7 @@
 
 *AI Changes Both Sides of Software Engineering*
 
-Vitalii Oborskyi · Editorial draft R33 · 24 October 2026
+Vitalii Oborskyi · Editorial draft R34 · 24 October 2026
 
 ![A solitary person stands before a narrow opening of light between monumental dark walls.](asset:cover)
 
@@ -53,6 +53,8 @@ The September revision of *Writing Code vs. Shipping Code* [\[7\]](https://www.n
 The roughly 30% release gain matters. Would it justify additional review, maintenance and recovery costs? These multipliers cannot answer for your team. Dependencies, duplication and deferred cleanup may bring costs later. DORA [\[8\]](https://dora.dev/insights/balancing-ai-tensions/) associates adoption with higher throughput—and greater instability.
 
 The NBER weak-link model describes complementary upstream and downstream work, not a universal bottleneck. If automation expands downstream capacity **while preserving verification, shared understanding and recovery**, the imbalance can disappear. Changes filtered out before review need not accumulate in its queue. [\[7\]](https://www.nber.org/papers/w35275)
+
+Local developer productivity is a different measure. METR’s early-2025 randomised trial [\[34\]](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/) found experienced developers took 19% longer with AI but believed it made them 20% faster. Its February 2026 update [\[35\]](https://metr.org/blog/2026-02-24-uplift-update/) suggests selective participation may understate acceleration; its magnitude remains uncertain. METR’s survey [\[18\]](https://metr.org/blog/2026-05-11-ai-usage-survey/) reports median *perceived* speed gains of 3× and work-value gains of 1.4–2×, not direct observations. None establishes end-to-end delivery gains for a particular team.
 
 Cognition introduced Devin [\[5\]](https://cognition.com/blog/introducing-devin) in 2024 as the “first AI software engineer”. In March 2025, Dario Amodei forecast AI writing 90% of code within three to six months [\[6\]](https://www.cfr.org/event/ceo-speaker-series-dario-amodei-anthropic), potentially essentially all within a year. Those dates passed; the industry-wide share remains unverified. The Claude Code team reports about 90% [\[12\]](https://claude.dev/blog/solving-code-review-at-anthropic/): a vendor-team report, not independent corroboration or a measure of all engineering.
 
@@ -124,9 +126,7 @@ Features multiply; the customer’s problem remains. Faster implementation does 
 
 Cheap experiments should help reject weak ideas. Kohavi and colleagues [\[17\]](https://www.microsoft.com/en-us/research/publication/online-experimentation-at-microsoft/) report that only about one-third of well-designed Microsoft experiments improved their intended metric. Deciding not to ship can be a successful outcome.
 
-NBER [\[7\]](https://www.nber.org/papers/w35275) finds more new apps without commensurate growth in use. Its platform-specific proxies cannot distinguish constraints on quality and market fit from constraints on discovery and attention, or establish AI causation. METR’s survey [\[18\]](https://metr.org/blog/2026-05-11-ai-usage-survey/) reports median perceived speed gains of 3× and work-value gains of 1.4–2×; neither is a direct measurement.
-
-METR’s early-2025 randomised trial [\[34\]](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/) found experienced developers took 19% longer with AI but believed it made them 20% faster. Its February 2026 update [\[35\]](https://metr.org/blog/2026-02-24-uplift-update/) suggests selection increasingly understates speedup; acceleration may have grown, but its magnitude remains poorly established. Neither enthusiasm nor an older negative result settles the value of today’s workflow.
+NBER [\[7\]](https://www.nber.org/papers/w35275) finds more new apps without commensurate growth in use. Its platform-specific proxies cannot distinguish constraints on quality and market fit from constraints on discovery and attention, or establish AI causation.
 
 ### The user’s capacity is part of the product
 
@@ -135,6 +135,8 @@ Suppose every feature is useful. We expect customers to benefit.
 **What if not?**
 
 A customer uses the reporting tool monthly; its workflow changes weekly. Each improvement makes sense. Each visit still requires relearning the job. Delivery has accelerated. Attention and learning time have not.
+
+**The comprehension problem has crossed the product boundary—from builders to users.** Teams need enough understanding to maintain what they ship; customers need enough time and context to absorb changes that ask them to work differently.
 
 Feature-fatigue research [\[19\]](https://journals.sagepub.com/doi/abs/10.1509/jmkr.2005.42.4.431) examines how capabilities attractive before use can undermine usability afterwards. Better defaults and repaired defects, by contrast, can remove work.
 
@@ -446,16 +448,16 @@ Numbered citations refer to the sources below. Source notes retain the evidence 
 
 ## How to cite this draft
 
-Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R33, 24 October 2026.
+Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R34, 24 October 2026.
 
 Unpublished author-review edition. Cite the revision; no DOI or final publication URL has been assigned.
 
 ```bibtex
-@misc{oborskyi2026sumR33,
+@misc{oborskyi2026sumR34,
   author = {Oborskyi, Vitalii},
   year = {2026},
   title = {The Sum of Our Technology: AI Changes Both Sides of Software Engineering},
-  note = {Editorial draft R33, 24 October 2026; unpublished}
+  note = {Editorial draft R34, 24 October 2026; unpublished}
 }
 ```
 
@@ -475,6 +477,7 @@ Vitalii Oborskyi retains editorial responsibility.
 
 24 October 2026:
 
+- **R34:** Moved METR productivity findings to the SDLC evidence discussion and restored the cross-boundary comprehension argument for users.
 - **R33:** Sharpened the two system-level problems for engineering leaders, qualified evidence and bounded delegation, and connected problem framing to project decisions without expanding scope.
 - **R32:** Sharpened the two higher-order engineering problems: SDLC rebalancing under machine–human speed asymmetry, and bounded control around probabilistic model judgment. Linked both to early project framing and planning.
 - **R31:** Restored the “What if not?” refrain as a deliberate rhetorical device to reveal the problem space and turn challenged assumptions into engineering decisions.
