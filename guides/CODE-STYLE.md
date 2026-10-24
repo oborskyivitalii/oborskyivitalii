@@ -16,12 +16,14 @@ history are not duplicate editing authorities.
 | Concern | Canonical editing owner | Contract |
 | --- | --- | --- |
 | Publications, routes, metadata, prose | `site/content/` | Data/content, not engine or presentation policy |
+| Full authored articles and editorial sources | `site/publications/` | Blueprint, manuscript, declared profile/adaptation and observed edition records; archive selection stays in the catalog |
 | Semantic HTML and repeated views | `site/templates/` | Render validated content; no business or animation logic |
 | Runtime, navigation and lifecycle | `site/engine/` | Consume scene/content contracts; never import generated output or build tools |
 | Scene models and visual geometry | `site/scenes/` | Explicit parameters and pure computations where possible |
 | Optional effect descriptors and helpers | `site/effects/` | Pure effect exports; hosted/offline adapters remain in `tools/site/` |
 | Media | `site/assets/` | Referenced through existing asset/edition identity contracts |
 | Build/export orchestration | `tools/site/` | Validate, render, hash and emit; do not become a second content registry |
+| Article AST and publication adapters | `tools/publishing/` | Isolated build-time parser, provenance, print and platform exports; never imported by runtime |
 | Hosting and checks | `tools/staging/`, `tools/quality/`, `tests/` | Consume declared sources/artifacts and preserve evidence identity |
 | Public renditions | `docs/`, declared offline outputs | Generated; change their authored owners and regenerate |
 | Decisions, diagnostics and history | `review/`, `drafts/` | Not a home for new active runtime/build code |

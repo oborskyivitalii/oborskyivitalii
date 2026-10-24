@@ -7,162 +7,162 @@
     {
       "id": "AC01",
       "intent": "Inventory pinned migration components, provenance, licenses and reviewed upgrade procedure.",
-      "automated_scope": "Controller prerequisite only: feature implementation and all original checks remain owned by PR79 at 1d2d195f354d67ba4a7a72f5f31a468ac2d11123. This bootstrap does not claim automated or human acceptance of this criterion; restore the feature policy when integrating main into PR79.",
-      "checks": [],
+      "automated_scope": "Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. Complete current catalog and regenerated navigation views. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": ["PUBLISHER", "CURRENT-RI"],
       "gates": ["INVENTORY"]
     },
     {
       "id": "AC02",
       "intent": "Build the real PMDay article into full site HTML and visually reviewed article PDF with source/artifact manifests.",
-      "automated_scope": "Controller prerequisite only: feature implementation and all original checks remain owned by PR79 at 1d2d195f354d67ba4a7a72f5f31a468ac2d11123. This bootstrap does not claim automated or human acceptance of this criterion; restore the feature policy when integrating main into PR79.",
-      "checks": [],
+      "automated_scope": "Owner decision 15 October: real PMDay authoring and visuals resume as pmday-ai-both-sides; pmday-two-shifts remains a frozen technical fixture. Prepared real editions do not establish editorial acceptance. Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. Real static documents, explicit draft selection, catalog dates, UTF8 boundaries, language/translation descriptors, rename/delete/cold equality, retained immutable closure and router history tests. Article byte/transfer completeness, staging/Color/Pages/production package identities, MIME and old-resource retention negatives; hosted/browser observations remain a separate required gate. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": ["PUBLISHER", "READER", "DELIVERY"],
       "gates": ["ARTICLE"]
     },
     {
       "id": "AC03",
       "intent": "Exclude drafts and review bundles from default public output; reject unsupported features and unsafe resources.",
-      "automated_scope": "Controller prerequisite only: feature implementation and all original checks remain owned by PR79 at 1d2d195f354d67ba4a7a72f5f31a468ac2d11123. This bootstrap does not claim automated or human acceptance of this criterion; restore the feature policy when integrating main into PR79.",
-      "checks": [],
+      "automated_scope": "Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. Real static documents, explicit draft selection, catalog dates, UTF8 boundaries, language/translation descriptors, rename/delete/cold equality, retained immutable closure and router history tests. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": ["PUBLISHER", "READER"],
       "gates": ["ISOLATION"]
     },
     {
       "id": "AC04",
       "intent": "Use a minimal pinned dependency closure, bounded selected CI and two distinct profile/upgrade cases.",
-      "automated_scope": "Controller prerequisite only: feature implementation and all original checks remain owned by PR79 at 1d2d195f354d67ba4a7a72f5f31a468ac2d11123. This bootstrap does not claim automated or human acceptance of this criterion; restore the feature policy when integrating main into PR79.",
-      "checks": [],
+      "automated_scope": "Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. Article byte/transfer completeness, staging/Color/Pages/production package identities, MIME and old-resource retention negatives; hosted/browser observations remain a separate required gate. Current source-qualified RI/CI coupling and declared selectors. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": ["PUBLISHER", "DELIVERY", "RI-CI"],
       "gates": ["DEPENDENCIES"]
     },
     {
       "id": "AC05",
       "intent": "Reconcile site/UA/Subprime ownership, compatibility gaps and separate upstream/deck decisions.",
-      "automated_scope": "Controller prerequisite only: feature implementation and all original checks remain owned by PR79 at 1d2d195f354d67ba4a7a72f5f31a468ac2d11123. This bootstrap does not claim automated or human acceptance of this criterion; restore the feature policy when integrating main into PR79.",
-      "checks": [],
+      "automated_scope": "Complete current catalog and regenerated navigation views. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": ["CURRENT-RI"],
       "gates": ["CROSS-REPO"]
     },
     {
       "id": "AC06",
       "intent": "Demonstrate blueprint, whole-text review, manuscript/adaptation and feedback workflow on PMDay.",
-      "automated_scope": "Controller prerequisite only: feature implementation and all original checks remain owned by PR79 at 1d2d195f354d67ba4a7a72f5f31a468ac2d11123. This bootstrap does not claim automated or human acceptance of this criterion; restore the feature policy when integrating main into PR79.",
-      "checks": [],
+      "automated_scope": "Owner decision 15 October: real PMDay authoring and visuals resume as pmday-ai-both-sides; pmday-two-shifts remains a frozen technical fixture. Prepared real editions do not establish editorial acceptance. Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": ["PUBLISHER"],
       "gates": ["EDITORIAL"]
     },
     {
       "id": "AC07",
       "intent": "Preserve legacy catalog records and distinct article/content-edition/render-artifact/event/adaptation identities.",
-      "automated_scope": "Controller prerequisite only: feature implementation and all original checks remain owned by PR79 at 1d2d195f354d67ba4a7a72f5f31a468ac2d11123. This bootstrap does not claim automated or human acceptance of this criterion; restore the feature policy when integrating main into PR79.",
-      "checks": [],
+      "automated_scope": "Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. Real static documents, explicit draft selection, catalog dates, UTF8 boundaries, language/translation descriptors, rename/delete/cold equality, retained immutable closure and router history tests. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": ["PUBLISHER", "READER"],
       "gates": ["IDENTITIES"]
     },
     {
       "id": "AC08",
       "intent": "Deliver complete article documents inside the five-scene coherent artifact with persistent reader, native fallback and retained immutable closure.",
-      "automated_scope": "Controller prerequisite only: feature implementation and all original checks remain owned by PR79 at 1d2d195f354d67ba4a7a72f5f31a468ac2d11123. This bootstrap does not claim automated or human acceptance of this criterion; restore the feature policy when integrating main into PR79.",
-      "checks": [],
+      "automated_scope": "Existing economical five-room, generated artifact, syntax and size checks. Real static documents, explicit draft selection, catalog dates, UTF8 boundaries, language/translation descriptors, rename/delete/cold equality, retained immutable closure and router history tests. Article byte/transfer completeness, staging/Color/Pages/production package identities, MIME and old-resource retention negatives; hosted/browser observations remain a separate required gate. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required. Reader document travel uses one router/history owner and the existing fixed camera clock: source checks cover centered full horizontal orbits of the same Writing scene, all principal destinations, repeat/retarget, native fallbacks and related-block ownership. Browser admission requires successful raw paints with matching navigation/document identities, actual circular winding/radius/target and unchanged scene, corridor depth/direction for principal routes, three stages and complete final pose; Off also observes reduced motion against saved On. Hosted observations remain a distinct gate.",
+      "checks": ["BASIC", "READER", "DELIVERY"],
       "gates": ["READER"]
     },
     {
       "id": "AC09",
       "intent": "Verify profile-driven LinkedIn/Medium HTML/MD/TXT/copy-ready/upload kits on two profiles and inspect actual candidates.",
-      "automated_scope": "Controller prerequisite only: feature implementation and all original checks remain owned by PR79 at 1d2d195f354d67ba4a7a72f5f31a468ac2d11123. This bootstrap does not claim automated or human acceptance of this criterion; restore the feature policy when integrating main into PR79.",
-      "checks": [],
+      "automated_scope": "Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": ["PUBLISHER"],
       "gates": ["PLATFORMS"]
     },
     {
       "id": "AC10",
       "intent": "Preserve observed publication history and enable site-first canonical only for an exact production-served accepted edition.",
-      "automated_scope": "Controller prerequisite only: feature implementation and all original checks remain owned by PR79 at 1d2d195f354d67ba4a7a72f5f31a468ac2d11123. This bootstrap does not claim automated or human acceptance of this criterion; restore the feature policy when integrating main into PR79.",
-      "checks": [],
+      "automated_scope": "Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. Real static documents, explicit draft selection, catalog dates, UTF8 boundaries, language/translation descriptors, rename/delete/cold equality, retained immutable closure and router history tests. Article byte/transfer completeness, staging/Color/Pages/production package identities, MIME and old-resource retention negatives; hosted/browser observations remain a separate required gate. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": ["PUBLISHER", "READER", "DELIVERY"],
       "gates": ["PUBLICATION"]
     },
     {
       "id": "AC11",
       "intent": "Map CS01–CS10, maintain RI/CI/test inventories and obtain independent implementation/export review.",
-      "automated_scope": "Controller prerequisite only: feature implementation and all original checks remain owned by PR79 at 1d2d195f354d67ba4a7a72f5f31a468ac2d11123. This bootstrap does not claim automated or human acceptance of this criterion; restore the feature policy when integrating main into PR79.",
-      "checks": [],
+      "automated_scope": "The documented bounded CS01/CS03 source and agent routing subset. Complete current catalog and regenerated navigation views. Current source-qualified RI/CI coupling and declared selectors. Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. Real static documents, explicit draft selection, catalog dates, UTF8 boundaries, language/translation descriptors, rename/delete/cold equality, retained immutable closure and router history tests. Article byte/transfer completeness, staging/Color/Pages/production package identities, MIME and old-resource retention negatives; hosted/browser observations remain a separate required gate. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": ["STYLE-GUARD", "CURRENT-RI", "RI-CI", "PUBLISHER", "READER", "DELIVERY"],
       "gates": ["INDEPENDENT"]
     },
     {
       "id": "AC12",
       "intent": "Keep one #5 execution PR, exact-source evidence and accepted changed-surface staging; reconcile original intent and remaining decisions.",
-      "automated_scope": "Controller prerequisite only: feature implementation and all original checks remain owned by PR79 at 1d2d195f354d67ba4a7a72f5f31a468ac2d11123. This bootstrap does not claim automated or human acceptance of this criterion; restore the feature policy when integrating main into PR79.",
-      "checks": [],
+      "automated_scope": "Existing economical five-room, generated artifact, syntax and size checks. Complete current catalog and regenerated navigation views. Current source-qualified RI/CI coupling and declared selectors. Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. Real static documents, explicit draft selection, catalog dates, UTF8 boundaries, language/translation descriptors, rename/delete/cold equality, retained immutable closure and router history tests. Article byte/transfer completeness, staging/Color/Pages/production package identities, MIME and old-resource retention negatives; hosted/browser observations remain a separate required gate. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required. Reader document travel uses one router/history owner and the existing fixed camera clock: source checks cover centered full horizontal orbits of the same Writing scene, all principal destinations, repeat/retarget, native fallbacks and related-block ownership. Browser admission requires successful raw paints with matching navigation/document identities, actual circular winding/radius/target and unchanged scene, corridor depth/direction for principal routes, three stages and complete final pose; Off also observes reduced motion against saved On. Hosted observations remain a distinct gate.",
+      "checks": ["BASIC", "CURRENT-RI", "RI-CI", "PUBLISHER", "READER", "DELIVERY"],
       "gates": ["DELIVERY"]
     },
     {
       "id": "AC13",
       "intent": "One displayed Writing collection drives automatic cards, groups, filters, JSON-LD and simple article count; alternate platform links count once and drafts stay separate.",
-      "automated_scope": "Controller prerequisite only: feature implementation and all original checks remain owned by PR79 at 1d2d195f354d67ba4a7a72f5f31a468ac2d11123. This bootstrap does not claim automated or human acceptance of this criterion; restore the feature policy when integrating main into PR79.",
-      "checks": [],
-      "gates": ["FEATURE"]
+      "automated_scope": "Catalog add/remove, new-year, local undated and alternate-platform cases compare rendered cards, controls, count and ItemList. Archive filters/history/print and exact producer-bound SEO amendment reject mismatches. Hosted reader acceptance remains separately mapped in AC08/AC12.",
+      "checks": ["WRITING-CATALOG", "READER"],
+      "gates": []
     },
     {
       "id": "AC14",
       "intent": "Release article/catalog content independently using a verified unchanged platform and a coherent complete package.",
-      "automated_scope": "Controller prerequisite only: feature implementation and all original checks remain owned by PR79 at 1d2d195f354d67ba4a7a72f5f31a468ac2d11123. This bootstrap does not claim automated or human acceptance of this criterion; restore the feature policy when integrating main into PR79.",
-      "checks": [],
-      "gates": ["FEATURE"]
+      "automated_scope": "Trusted baseline lock/inventory/platform, source-qualified live generation, independent article route identities, old decorated immutable closure and tampered/missing/incompatible baseline rejection. Raw content changes affect only dependent documents; existing edition source binding may rewrite final aliases without recompiling platform. Hosted staging acceptance remains separately mapped in AC08/AC12.",
+      "checks": ["CONTENT-RELEASE", "READER", "DELIVERY"],
+      "gates": []
     },
     {
       "id": "AC15",
       "intent": "Formally classify content versus platform changes and preserve required source/hosted/release gates and original budgets.",
-      "automated_scope": "Controller prerequisite only: feature implementation and all original checks remain owned by PR79 at 1d2d195f354d67ba4a7a72f5f31a468ac2d11123. This bootstrap does not claim automated or human acceptance of this criterion; restore the feature policy when integrating main into PR79.",
-      "checks": [],
-      "gates": ["FEATURE"]
+      "automated_scope": "Exact ancestor/source/run/tree/archive admission, Draft-only negative, content versus unknown/runtime/template/policy cases, permanent mandatory content suites and ordinary workflow routes. Current runtime PR retains applicable platform regression. No successful packaging is relabeled source, staging, publication or production acceptance.",
+      "checks": ["CONTENT-CI", "RI-CI", "CURRENT-RI"],
+      "gates": []
     },
     {
       "id": "AC16",
       "intent": "Explicit canonical component boundaries and compatibility preserve native URLs/output.",
-      "automated_scope": "Controller prerequisite only: feature implementation and all original checks remain owned by PR79 at 1d2d195f354d67ba4a7a72f5f31a468ac2d11123. This bootstrap does not claim automated or human acceptance of this criterion; restore the feature policy when integrating main into PR79.",
-      "checks": [],
+      "automated_scope": "Event collection/schema, trusted generation/byte equality, stable route/article IDs and native fallback.",
+      "checks": ["CONTENT-LANES", "CONTENT-RELEASE", "READER"],
       "gates": ["INDEPENDENT"]
     },
     {
       "id": "AC17",
       "intent": "Content-only protected admission on an accepted platform; incompatible or unknown source selects platform.",
-      "automated_scope": "Controller prerequisite only: feature implementation and all original checks remain owned by PR79 at 1d2d195f354d67ba4a7a72f5f31a468ac2d11123. This bootstrap does not claim automated or human acceptance of this criterion; restore the feature policy when integrating main into PR79.",
-      "checks": [],
+      "automated_scope": "Distinct accepted-baseline policy, affected-document desktop/mobile/no-JS/reader proof and explicit full fallback. Real accepted article and live protected publication remain separate.",
+      "checks": ["CONTENT-LANES", "CONTENT-CI", "CONTENT-RELEASE"],
       "gates": ["ARTICLE", "INDEPENDENT", "DELIVERY", "PUBLICATION"]
     },
     {
       "id": "AC18",
       "intent": "Immutable local media has checked identity, dimensions, decoding, budgets, rights and honest semantic impact.",
-      "automated_scope": "Controller prerequisite only: feature implementation and all original checks remain owned by PR79 at 1d2d195f354d67ba4a7a72f5f31a468ac2d11123. This bootstrap does not claim automated or human acceptance of this criterion; restore the feature policy when integrating main into PR79.",
-      "checks": [],
+      "automated_scope": "Canonical article-media hashes and edition semantics; changed compiler/global media selects platform; actual served image decoding is mandatory in content gate.",
+      "checks": ["CONTENT-LANES", "PUBLISHER", "DELIVERY"],
       "gates": ["ARTICLE", "INDEPENDENT", "PUBLICATION"]
     },
     {
       "id": "AC19",
       "intent": "Independent lanes reuse one protected exact-source composition and publication mechanism.",
-      "automated_scope": "Controller prerequisite only: feature implementation and all original checks remain owned by PR79 at 1d2d195f354d67ba4a7a72f5f31a468ac2d11123. This bootstrap does not claim automated or human acceptance of this criterion; restore the feature policy when integrating main into PR79.",
-      "checks": [],
+      "automated_scope": "Immutable generation/rendition identity, inherited staging proof, rights and source binding through existing candidate/archive/Pages controller.",
+      "checks": ["CONTENT-LANES", "DELIVERY", "CONTENT-RELEASE"],
       "gates": ["INDEPENDENT", "DELIVERY", "PUBLICATION"]
     },
     {
       "id": "AC20",
       "intent": "Concurrent updates, corrupt inputs and rollback preserve a coherent accepted composition.",
-      "automated_scope": "Controller prerequisite only: feature implementation and all original checks remain owned by PR79 at 1d2d195f354d67ba4a7a72f5f31a468ac2d11123. This bootstrap does not claim automated or human acceptance of this criterion; restore the feature policy when integrating main into PR79.",
-      "checks": [],
+      "automated_scope": "Exact-main and predecessor leases, missing/tampered baseline negatives, current-source component rollback preserves unrelated editions; existing whole-release recovery stays explicit.",
+      "checks": ["CONTENT-LANES", "CONTENT-RELEASE", "DELIVERY"],
       "gates": ["INDEPENDENT", "DELIVERY"]
     },
     {
       "id": "AC21",
       "intent": "One validated canonical tag store covers all published archive and local articles; optional runtime tag display/filter preserves native/offline reading.",
-      "automated_scope": "Controller prerequisite only: feature implementation and all original checks remain owned by PR79 at 1d2d195f354d67ba4a7a72f5f31a468ac2d11123. This bootstrap does not claim automated or human acceptance of this criterion; restore the feature policy when integrating main into PR79.",
-      "checks": [],
+      "automated_scope": "Shared vocabulary/index coverage, missing/unknown/duplicate tags and unsafe/duplicate links, archive URL/history/reset/print, bounded decoding/abort/file negatives; semantic archive-tag review and current browser/source admission remain separate.",
+      "checks": ["READER", "WRITING-CATALOG", "CONTENT-CI", "STYLE-GUARD"],
       "gates": ["READER", "EDITORIAL"]
     },
     {
       "id": "AC22",
       "intent": "One reusable runtime component selects relevant published works from a separately updated index, preserving old HTML and engine on tag-only releases.",
-      "automated_scope": "Controller prerequisite only: feature implementation and all original checks remain owned by PR79 at 1d2d195f354d67ba4a7a72f5f31a468ac2d11123. This bootstrap does not claim automated or human acceptance of this criterion; restore the feature policy when integrating main into PR79.",
-      "checks": [],
+      "automated_scope": "Deterministic overlap/ranking/self/duplicate/no-match bounds, old reader/room/runtime byte equality on tag-only content generation, source/index/rights/resource validation and current classifier. Actual browser fallback/filter observations and production lane acceptance remain separate.",
+      "checks": ["READER", "DELIVERY", "CONTENT-RELEASE", "CONTENT-CI", "RI-CI"],
       "gates": ["READER", "DELIVERY"]
     },
     {
       "id": "AC23",
       "intent": "Trusted controller admits the article contract without weakening authority.",
-      "automated_scope": "Actual retained reader runtime/rights and staging receipt plus synthetic complete package and independent corrupt identity, closure, size, PDF-loading, unsafe index, source/job/article coverage, exact stable body/MIME/cache negatives. Existing historical main runtimes and legacy generation remain. Frozen receipts describe their original source only. Basic, style, current RI and CI map are source-qualified. Live bootstrap staging, protected merge and fresh PR79 staging remain required.",
-      "checks": ["BASIC", "STYLE-GUARD", "CURRENT-RI", "RI-CI", "CONTROLLER", "LEGACY-BYTES"],
+      "automated_scope": "Canonical article contract owners replace the finite bootstrap adapters; all original feature checks are restored. Complete package, size, rights, source/job/coverage and stable HTTP positive/adversarial tests include the frozen real reader contracts. Frozen receipts remain fixtures, not current admission. Actual accepted bootstrap/main linkage, current-source CI and fresh actual owner staging plus exact stable/native inspection remain separate required gates.",
+      "checks": ["BASIC", "STYLE-GUARD", "CURRENT-RI", "RI-CI", "CONTROLLER", "DELIVERY"],
       "gates": ["CONTROLLER-DELIVERY"]
     }
   ],
@@ -182,13 +182,37 @@
       "kind": "unittest",
       "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
     },
+    "PUBLISHER": {
+      "kind": "unittest",
+      "test": "test_issue5_acceptance.Issue5AcceptanceTests.test_publisher_contracts"
+    },
+    "READER": {
+      "kind": "unittest",
+      "test": "test_issue5_acceptance.Issue5AcceptanceTests.test_article_reader_and_generation"
+    },
+    "DELIVERY": {
+      "kind": "unittest",
+      "test": "test_issue5_acceptance.Issue5AcceptanceTests.test_article_delivery"
+    },
+    "WRITING-CATALOG": {
+      "kind": "unittest",
+      "test": "test_issue5_acceptance.Issue5AcceptanceTests.test_writing_catalog_contracts"
+    },
+    "CONTENT-RELEASE": {
+      "kind": "unittest",
+      "test": "test_issue5_acceptance.Issue5AcceptanceTests.test_content_release_contracts"
+    },
+    "CONTENT-CI": {
+      "kind": "unittest",
+      "test": "test_issue5_acceptance.Issue5AcceptanceTests.test_content_check_selection"
+    },
+    "CONTENT-LANES": {
+      "kind": "unittest",
+      "test": "test_issue5_acceptance.Issue5AcceptanceTests.test_independent_delivery_lanes"
+    },
     "CONTROLLER": {
       "kind": "unittest",
-      "test": "test_issue5_acceptance.Issue5ControllerAcceptanceTests.test_article_controller_contracts"
-    },
-    "LEGACY-BYTES": {
-      "kind": "unittest",
-      "test": "test_issue5_acceptance.Issue5ControllerAcceptanceTests.test_bootstrap_preserves_site_producers_and_public_bytes"
+      "test": "test_issue5_acceptance.Issue5AcceptanceTests.test_article_controller_contracts"
     }
   },
   "gates": {
@@ -234,15 +258,11 @@
     },
     "INDEPENDENT": {
       "kind": "human",
-      "description": "Independent architecture/export review of exact implementation and applicable CS01–CS10 plus RI/CI/source-profile dispositions. Bounded guard success alone is insufficient."
+      "description": "Independent architecture/export review of exact implementation and applicable CS01–CS10 plus RI/CI/source-profile dispositions. Require completed, source-bound receipts from four distinct independently executed roles: Requirements & Acceptance Reviewer, Code Reviewer, White-box QA, and Exploratory / Interaction QA, following CONTRIBUTING.md#independent-quality-agents. Requirements review precedes dependent implementation and inspects the completed candidate; each applicable role rechecks substantive corrections. Record inspected scope, results, findings, dispositions and limits in the existing versioned issue review artifact; only a role's evidenced assessment may mark its genuinely absent surface not applicable. Bounded guard success alone is insufficient."
     },
     "DELIVERY": {
       "kind": "merge",
       "description": "Inspect exact PR/head/tree/CI/hosted staging and AC reconciliation before delivery. Merge and public activation require their applicable owner decision; green checks do not authorize them."
-    },
-    "FEATURE": {
-      "kind": "human",
-      "description": "Feature policy and evidence remain on PR79. Restore its complete automated mapping after this prerequisite is merged; controller bootstrap cannot satisfy original feature criteria."
     },
     "CONTROLLER-DELIVERY": {
       "kind": "merge",

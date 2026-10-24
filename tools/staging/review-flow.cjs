@@ -148,7 +148,7 @@ function rendition(dir, root = path.resolve(__dirname, '../..')) {
   return identity;
 }
 function fullGate(gate, record, url) {
-  if (gate.kind === 'staging-gate') {
+  if (['staging-gate', 'content-staging-gate'].includes(gate.kind)) {
     require('../quality/staging-gate.cjs').validateGate(record.source, gate, url);
     assert.equal(
       String(gate.githubArtifact.id),
@@ -265,7 +265,7 @@ async function quickHttp(base, record, fetcher = fetch, observation) {
         assert.equal(result.redirects, 0, 'immutable snapshot proxy redirected ' + file);
       hosted.responseHeaders(
         result.response.headers,
-        require('./reader-snapshot.cjs').immutable(file)
+        require('../site/snapshot.cjs').immutable(file)
       );
       assertContentType(file, result.response.headers.get('content-type'));
       sameBytes(digest(result.bytes), record.files[file].sha256, file);

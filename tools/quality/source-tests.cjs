@@ -4,6 +4,7 @@ const fs = require('node:fs'),
   path = require('node:path'),
   cp = require('node:child_process'),
   assert = require('node:assert/strict');
+const { isDeepStrictEqual } = require('node:util');
 const REGISTRY = 'tools/quality/test-profiles.json';
 const executionLimits = Object.freeze({
   timeoutMs: 180000,
@@ -179,6 +180,7 @@ function validateRegistry(root, registry) {
       'production',
       'diagnostic',
       'issue-policy',
+      'content',
     ]);
   for (const row of registry.tests) {
     safePath(row.path);
@@ -192,6 +194,33 @@ function validateRegistry(root, registry) {
     'test inventory must cover every actual module exactly; declare new modules or retire missing ones'
   );
   validateBaseline(root, registry);
+  const content = registry.source_profiles.content;
+  assert.ok(content && Array.isArray(content.authored_inputs), 'missing content impact policy');
+  for (const key of ['authored_inputs', 'derived_inputs']) {
+    assert.ok(
+      Array.isArray(content[key]) && content[key].length,
+      'missing content category ' + key
+    );
+    for (const input of content[key]) safePath(input, { pattern: true });
+  }
+  assert.deepEqual(
+    [...content.mandatory_files].sort(),
+    registry.tests
+      .filter((row) => row.profiles.includes('content'))
+      .map((row) => row.path)
+      .sort(),
+    'mandatory content inventory must equal declared content modules'
+  );
+  assert.ok(
+    content.mandatory_files.length > 0 &&
+      content.mandatory_files.every((file) =>
+        registry.tests.some(
+          (row) =>
+            row.path === file && row.language === 'javascript' && row.lifecycle === 'permanent'
+        )
+      ),
+    'content modules must retain permanent staging and production routes'
+  );
   return registry;
 }
 function git(root, args) {
@@ -269,9 +298,163 @@ function selectPRTargets(root, registry, options, permanent, include) {
   }
   return { changedPaths, conservativeFallback };
 }
+function publicationInventoryCompatible(registry, before, after) {
+  const derivedEntry = (file) => file === 'docs' || file.startsWith('docs/');
+  const withoutPublications = (value) => ({
+    ...value,
+    entries: Object.fromEntries(
+      Object.entries(value.entries || {}).filter(
+        ([file]) =>
+          !file.startsWith('site/publications/') &&
+          !file.startsWith('site/assets/publications/') &&
+          !derivedEntry(file)
+      )
+    ),
+  });
+  if (!isDeepStrictEqual(withoutPublications(before), withoutPublications(after))) return false;
+  // Existing non-content publication inputs can remain pinned, never change or disappear.
+  for (const [file, entry] of Object.entries(before.entries || {})) {
+    if (
+      (file.startsWith('site/publications/') || file.startsWith('site/assets/publications/')) &&
+      entry.kind === 'file' &&
+      !registry.source_profiles.content.authored_inputs.some((input) => matches(file, input)) &&
+      !isDeepStrictEqual(entry, after.entries?.[file])
+    )
+      return false;
+  }
+  for (const [file, entry] of Object.entries(after.entries || {})) {
+    if (derivedEntry(file)) {
+      safePath(file);
+      if (
+        !isDeepStrictEqual(Object.keys(entry).sort(), ['kind', 'owner', 'purpose', 'role']) ||
+        entry.owner !== 'site/README.md' ||
+        entry.role !== 'generated' ||
+        !['file', 'directory'].includes(entry.kind) ||
+        typeof entry.purpose !== 'string' ||
+        !entry.purpose.trim()
+      )
+        return false;
+      continue;
+    }
+    if (!file.startsWith('site/publications/') && !file.startsWith('site/assets/publications/'))
+      continue;
+    safePath(file);
+    if (
+      !isDeepStrictEqual(Object.keys(entry).sort(), ['kind', 'owner', 'purpose', 'role']) ||
+      entry.owner !== 'guides/ARTICLE-WORKFLOW.md' ||
+      !['source', 'generated', 'draft', 'configuration'].includes(entry.role) ||
+      typeof entry.purpose !== 'string' ||
+      !entry.purpose.trim() ||
+      !['file', 'directory'].includes(entry.kind)
+    )
+      return false;
+    if (
+      entry.kind === 'file' &&
+      !registry.source_profiles.content.authored_inputs.some((input) => matches(file, input)) &&
+      !isDeepStrictEqual(entry, before.entries?.[file])
+    )
+      return false;
+  }
+  return true;
+}
+function riIdentityCompatible(before, after) {
+  const { reviewed_source_identity: previousIdentity, ...previousPolicy } = before;
+  const { reviewed_source_identity: currentIdentity, ...currentPolicy } = after;
+  if (!isDeepStrictEqual(previousPolicy, currentPolicy)) return false;
+  const validIdentity = (identity) =>
+    identity?.algorithm === 'sha256-path-content-map-v1' &&
+    isDeepStrictEqual(Object.keys(identity).sort(), ['algorithm', 'digest', 'inputs']) &&
+    /^[a-f0-9]{64}$/.test(identity.digest || '') &&
+    Array.isArray(identity.inputs) &&
+    identity.inputs.every(
+      (row) =>
+        isDeepStrictEqual(Object.keys(row).sort(), ['path', 'sha256']) &&
+        typeof row.path === 'string' &&
+        /^[a-f0-9]{64}$/.test(row.sha256 || '')
+    );
+  if (!validIdentity(previousIdentity) || !validIdentity(currentIdentity)) return false;
+  const previousPaths = previousIdentity.inputs.map((row) => safePath(row.path));
+  const currentPaths = currentIdentity.inputs.map((row) => safePath(row.path));
+  return (
+    new Set(currentPaths).size === currentPaths.length &&
+    isDeepStrictEqual(previousPaths, currentPaths)
+  );
+}
+function exactDerivedPolicy(root, registry, base, head, file) {
+  if (!root || !/^[0-9a-f]{40}$/.test(base || '') || !/^[0-9a-f]{40}$/.test(head || ''))
+    return false;
+  try {
+    const before = JSON.parse(git(root, ['show', base + ':' + file]));
+    const after = JSON.parse(git(root, ['show', head + ':' + file]));
+    if (file === '.github/repository-paths.json')
+      return publicationInventoryCompatible(registry, before, after);
+    if (file === '.github/ri-ci-map.json') return riIdentityCompatible(before, after);
+    return false;
+  } catch {
+    return false;
+  }
+}
+function classifyContent(registry, changedPaths, options = {}) {
+  const policy = registry.source_profiles.content;
+  let trusted;
+  const repositoryPath = (file) => {
+    if (!options.root || !options.base || !options.head) return false;
+    if (trusted === undefined) {
+      try {
+        trusted = require('./delivery-observation.cjs').selection(options.root, options.base, options.head);
+      } catch {
+        trusted = null;
+      }
+    }
+    return trusted?.contentOnly && trusted.content.repository.includes(file);
+  };
+  const authored = [],
+    derived = [],
+    platform = [];
+  for (const file of changedPaths) {
+    safePath(file);
+    if (
+      (require('./delivery-routing.cjs').control(file) &&
+        file !== 'site/output-lock.json' &&
+        !(
+          file === '.github/ri-ci-map.json' &&
+          exactDerivedPolicy(options.root, registry, options.base, options.head, file)
+        )) ||
+      /^site\/(?:engine|templates|scenes|effects|retained)\//.test(file) ||
+      file === 'site/rights.json'
+    )
+      platform.push(file);
+    else if (policy.authored_inputs.some((input) => matches(file, input))) authored.push(file);
+    else if (policy.derived_inputs.some((input) => matches(file, input))) derived.push(file);
+    else if (
+      ['.github/repository-paths.json', '.github/ri-ci-map.json'].includes(file) &&
+      exactDerivedPolicy(options.root, registry, options.base, options.head, file)
+    )
+      derived.push(file);
+    else if (repositoryPath(file)) derived.push(file);
+    else platform.push(file);
+  }
+  return {
+    mode: authored.length > 0 && platform.length === 0 ? 'content' : 'platform',
+    lane:
+      authored.length > 0 && platform.length === 0
+        ? authored.every((file) => /\.(?:png|jpe?g|webp|avif|svg|pdf)$/.test(file))
+          ? 'media'
+          : 'content'
+        : 'platform',
+    authored,
+    derived,
+    platform,
+    reason: platform.length
+      ? 'Changed platform, policy or unclassified source requires ordinary checks'
+      : authored.length
+        ? 'Only declared authored content and derived public bytes changed'
+        : 'No declared authored content change; generated-only edits cannot select reuse',
+  };
+}
 function select(root, profile, options = {}) {
   assert.ok(
-    ['pr', 'staging', 'production', 'diagnostic'].includes(profile),
+    ['pr', 'content', 'staging', 'production', 'diagnostic'].includes(profile),
     'unknown source profile ' + profile
   );
   const registry = validateRegistry(root, options.registry || loadRegistry(root));
@@ -292,8 +475,22 @@ function select(root, profile, options = {}) {
     }
   };
   let changed = { changedPaths: [], conservativeFallback: [] };
-  if (profile === 'pr') changed = selectPRTargets(root, registry, options, permanent, include);
-  else {
+  let classification;
+  if (['pr', 'content'].includes(profile)) {
+    const changedPaths = normalizedChanges(root, options);
+    classification = classifyContent(registry, changedPaths, { root, ...options });
+    if (profile === 'content')
+      assert.equal(
+        classification.mode,
+        'content',
+        'content profile rejects platform or empty changes'
+      );
+    if (classification.mode === 'content') {
+      changed = { changedPaths, conservativeFallback: [] };
+      for (const row of js.filter((row) => row.profiles.includes('content')))
+        include(row, 'mandatory authored content safety contract');
+    } else changed = selectPRTargets(root, registry, options, permanent, include);
+  } else {
     const rows =
       profile === 'diagnostic' ? js.filter((row) => row.lifecycle === 'diagnostic') : permanent;
     const reason =
@@ -312,6 +509,7 @@ function select(root, profile, options = {}) {
       : null,
     websiteSmoke: options.repositoryOnly ? 'not-applicable: repository-only delta' : 'baseline',
     ...changed,
+    ...(classification ? { classification } : {}),
     reasons,
     pythonRoute: 'python3 tools/run_repository_tests.py',
     taskSnapshots: 'selected owning issue policy only',
@@ -396,6 +594,59 @@ function executeSource(root, argv) {
     timeout: executionLimits.timeoutMs,
   });
 }
+function executeBatch(root, modules, execute) {
+  const argv = [path.join(__dirname, 'source-test-worker.cjs'), ...modules],
+    started = Date.now(),
+    result = execute(argv);
+  const output = result.stdout || '',
+    failures = output
+      .split(/(?=^# Subtest:)/m)
+      .filter((block) => /^not ok /m.test(block))
+      .join('\n')
+      .slice(0, 8000);
+  assert.equal(
+    result.status,
+    0,
+    'selected source test process failed: ' +
+      [result.error?.message, result.stderr, failures || output.slice(-4000), result.status]
+        .filter((value) => value !== undefined && value !== null && value !== '')
+        .join('\n')
+  );
+  return {
+    modules,
+    ...accounting(output, { modules, root }),
+    elapsedMs: Date.now() - started,
+    argv,
+  };
+}
+function selectedBatches(modules) {
+  const scene = 'tests/space.test.cjs';
+  return modules.includes(scene) && modules.length > 1
+    ? [[scene], modules.filter((file) => file !== scene)]
+    : [modules];
+}
+function wrapperTimeout(root, profile) {
+  const modules =
+    profile === 'content'
+      ? loadRegistry(root).source_profiles.content.mandatory_files
+      : select(root, profile).modules;
+  return (
+    selectedBatches(modules).length * executionLimits.timeoutMs + executionLimits.reportGraceMs
+  );
+}
+function executeBatches(root, modules, execute) {
+  const batches = selectedBatches(modules);
+  const outcomes = batches.map((selected) => {
+    try {
+      return { result: executeBatch(root, selected, execute) };
+    } catch (error) {
+      return { error };
+    }
+  });
+  const failed = outcomes.find((outcome) => outcome.error);
+  if (failed) throw failed.error;
+  return outcomes.map((outcome) => outcome.result);
+}
 function executePlan(root, plan, options = {}) {
   assert.ok(Array.isArray(plan.modules), 'missing selected modules');
   assert.equal(new Set(plan.modules).size, plan.modules.length, 'duplicate selected source module');
@@ -423,22 +674,14 @@ function executePlan(root, plan, options = {}) {
     };
   }
   const execute = options.execute || ((argv) => executeSource(root, argv));
-  const argv = [path.join(__dirname, 'source-test-worker.cjs'), ...plan.modules],
-    started = Date.now(),
-    result = execute(argv);
-  const output = result.stdout || '',
-    failures = output
-      .split(/(?=^# Subtest:)/m)
-      .filter((block) => /^not ok /m.test(block))
-      .join('\n')
-      .slice(0, 8000);
-  assert.equal(
-    result.status,
-    0,
-    'selected source test process failed: ' +
-      (result.error?.message || result.stderr || failures || output.slice(-4000) || result.status)
-  );
-  const counts = accounting(result.stdout || '', { modules: plan.modules, root });
+  const started = Date.now(),
+    batches = executeBatches(root, plan.modules, execute),
+    counts = Object.fromEntries(
+      ['total', 'passed', 'failed', 'cancelled', 'skipped', 'todo'].map((key) => [
+        key,
+        batches.reduce((sum, batch) => sum + batch[key], 0),
+      ])
+    );
   if (options.requireClean) requireClean(root);
   return {
     ...plan,
@@ -446,7 +689,7 @@ function executePlan(root, plan, options = {}) {
     pass: true,
     ...counts,
     elapsedMs: Date.now() - started,
-    argv,
+    ...(batches.length === 1 ? { argv: batches[0].argv } : { batches }),
   };
 }
 function sourceIdentity(root) {
@@ -485,10 +728,11 @@ function run(root, plan, options = {}) {
       files,
     };
   let result, failure;
-  const writeRaw = (child = {}) => {
+  const children = [];
+  const writeRaw = () => {
     fs.mkdirSync(path.dirname(files.json), { recursive: true });
-    fs.writeFileSync(files.tap, child.stdout || '');
-    fs.writeFileSync(files.stderr, child.stderr || '');
+    fs.writeFileSync(files.tap, children.map((entry) => entry.child.stdout || '').join(''));
+    fs.writeFileSync(files.stderr, children.map((entry) => entry.child.stderr || '').join(''));
   };
   try {
     report.source = sourceIdentity(root);
@@ -516,8 +760,13 @@ function run(root, plan, options = {}) {
             ),
           ])
         );
+        children.push({
+          child,
+          execution: report.execution,
+          accounting: report.observedAccounting,
+        });
         // Persist complete bounded child streams before status/accounting can throw.
-        writeRaw(child);
+        writeRaw();
         return child;
       },
     });
@@ -528,11 +777,18 @@ function run(root, plan, options = {}) {
     report.sourceAfter = sourceIdentity(root);
     if (!failure)
       assert.deepEqual(report.sourceAfter, report.source, 'source changed during tests');
-    if (!report.execution) writeRaw();
+    if (!children.length) writeRaw();
   } catch (error) {
     failure ||= error;
   }
   if (result) report.result = result;
+  if (children.length > 1) {
+    report.rawFormat = 'concatenated-native-tap-batches';
+    report.executions = children.map((entry) => entry.execution);
+    report.observedAccountingByBatch = children.map((entry) => entry.accounting);
+    delete report.execution;
+    delete report.observedAccounting;
+  }
   if (!failure) {
     report.status = result.status;
     report.pass = result.pass;
@@ -562,6 +818,7 @@ function argumentsFor(argv) {
         '--head',
         '--require-clean',
         '--plan',
+        '--ci-profile',
         '--report',
         '--repository-only',
       ].includes(flag),
@@ -569,20 +826,112 @@ function argumentsFor(argv) {
     );
     const key = flag.slice(2).replace(/-([a-z])/g, (_, x) => x.toUpperCase());
     assert.ok(!Object.hasOwn(options, key), 'duplicate source-test argument ' + flag);
-    if (['--require-clean', '--plan', '--repository-only'].includes(flag)) options[key] = true;
+    if (['--require-clean', '--plan', '--ci-profile', '--repository-only'].includes(flag))
+      options[key] = true;
     else {
       assert.ok(argv[i + 1] && !argv[i + 1].startsWith('--'), 'missing argument ' + flag);
       options[key] = argv[++i];
     }
   }
-  assert.ok(options.profile, '--profile is required');
+  assert.ok(options.profile || options.ciProfile, '--profile is required');
+  if (options.ciProfile)
+    assert.ok(
+      !options.profile && !options.base && !options.head && !options.plan,
+      'CI profile uses only the bound workflow environment'
+    );
   assert.ok(!(options.plan && options.report), '--report requires execution, not --plan');
   return options;
 }
+function verifyContentExecution(plan, record) {
+  const executed = record.contentChecks?.sourceTests;
+  assert.equal(record.contentChecks?.pass, true, 'content Basic checks were not successful');
+  assert.equal(executed?.profile, 'content', 'missing actual content source execution');
+  assert.equal(executed.status, 'passed', 'content source execution incomplete');
+  assert.equal(executed.pass, true, 'content source execution failed');
+  assert.ok(
+    Number.isInteger(executed.total) && executed.total > 0,
+    'empty content source execution'
+  );
+  assert.equal(executed.passed, executed.total, 'partial content source execution');
+  for (const key of ['failed', 'cancelled', 'skipped', 'todo'])
+    assert.equal(executed[key], 0, 'content source execution ' + key);
+  assert.deepEqual(executed.modules, plan.modules, 'content source execution inventory differs');
+  assert.deepEqual(
+    executed.changedPaths,
+    plan.changedPaths,
+    'content source execution diff differs'
+  );
+  return { ...executed, executionReusedWithinJob: true };
+}
+function ciProfile(root, options, environment = process.env) {
+  const mode = environment.CONTENT_MODE || 'platform';
+  assert.ok(['content', 'platform'].includes(mode), 'unknown CI content mode');
+  if (mode === 'content') {
+    if (options.requireClean) requireClean(root);
+    const plan = select(root, 'content', {
+      base: environment.CONTENT_BASE_SHA,
+      head: environment.SITE_CANDIDATE_SHA,
+    });
+    assert.ok(environment.SITE_SOURCE_MANIFEST, 'content source manifest is required');
+    const record = JSON.parse(fs.readFileSync(environment.SITE_SOURCE_MANIFEST));
+    assert.equal(record.sourceDirty, false);
+    assert.equal(record.sourceCommit, environment.SITE_CANDIDATE_SHA);
+    assert.equal(record.sourceTree, git(root, ['rev-parse', 'HEAD^{tree}']).trim());
+    assert.equal(
+      record.contentRelease?.trustedBaseline?.sourceCommit,
+      environment.CONTENT_BASE_SHA,
+      'content execution baseline differs'
+    );
+    const result = verifyContentExecution(plan, record);
+    if (options.report) {
+      const files = reportPaths(root, options.report);
+      const report = JSON.parse(fs.readFileSync(files.json));
+      assert.equal(report.kind, 'source-tests', 'content source report kind differs');
+      assert.equal(report.pass, true, 'content source report did not pass');
+      assert.equal(
+        report.cleanSourceRequired,
+        true,
+        'content source report did not bind clean source'
+      );
+      assert.deepEqual(
+        report.source,
+        sourceIdentity(root),
+        'content source report identity differs'
+      );
+      assert.deepEqual(report.sourceAfter, report.source, 'content source report changed source');
+      assert.deepEqual(report.files, files, 'content source report destinations differ');
+      assert.deepEqual(
+        report.result,
+        record.contentChecks.sourceTests,
+        'content source report execution differs'
+      );
+      assert.equal(report.execution?.status, 0, 'content source process did not pass');
+      const tap = fs.readFileSync(files.tap, 'utf8');
+      const stderr = fs.readFileSync(files.stderr, 'utf8');
+      assert.equal(report.execution.stdoutBytes, Buffer.byteLength(tap));
+      assert.equal(report.execution.stderrBytes, Buffer.byteLength(stderr));
+      const counts = accounting(tap, { modules: plan.modules, root });
+      for (const [key, value] of Object.entries(counts))
+        assert.equal(report.result[key], value, 'content source raw accounting differs');
+    }
+    return result;
+  }
+  const profile = environment.SITE_SOURCE_EVENT === 'pull_request' ? 'pr' : 'staging';
+  const plan = select(root, profile, {
+    base: environment.SITE_BASE_SHA,
+    head: environment.SITE_CANDIDATE_SHA,
+  });
+  return run(root, plan, options);
+}
 function main(argv = process.argv.slice(2)) {
   const root = path.resolve(__dirname, '../..'),
-    options = argumentsFor(argv),
-    plan = select(root, options.profile, options);
+    options = argumentsFor(argv);
+  if (options.ciProfile) {
+    const result = ciProfile(root, options);
+    console.log(JSON.stringify(result));
+    return result;
+  }
+  const plan = select(root, options.profile, options);
   if (options.requireClean && options.plan) requireClean(root);
   const result = options.plan
     ? { ...plan, status: 'planned', pass: null }
@@ -602,8 +951,12 @@ if (require.main === module) {
 module.exports = {
   REGISTRY,
   executionLimits,
+  wrapperTimeout,
   safePath,
   matches,
+  classifyContent,
+  publicationInventoryCompatible,
+  riIdentityCompatible,
   actualModules,
   loadRegistry,
   validateRegistry,
@@ -616,4 +969,6 @@ module.exports = {
   sourceIdentity,
   reportPaths,
   main,
+  ciProfile,
+  verifyContentExecution,
 };

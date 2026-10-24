@@ -18,12 +18,15 @@ test('selected journeys compare actual base runtime and Color identities without
     components: { ...components, variant, engine: variant.fingerprint },
   };
   const reviewed = require('../tools/quality/color-motion-contract.cjs').reviewedRuntime(
-    'issue122-reading-batch-plain'
+    'issue122-r3-platform-plain'
   );
   assert.deepEqual(variant, reviewed.variant, 'fixture uses the reviewed authored runtime');
   for (const [name, sha256] of Object.entries(reviewed.files))
     for (const file of [name, 'runtime/' + variant.fingerprint + '/' + name])
-      colored.files[file] = { ...(colored.files[file] || { raw: 5000, gzip: 1000 }), sha256 };
+      colored.files[file] = {
+        ...(colored.files[file] || { raw: 5000, gzip: 1000 }),
+        sha256,
+      };
   assert.notEqual(components.variant.fingerprint, components.engine, 'base descriptor is separate');
   for (const manifest of [base, colored]) {
     const journey = fixture.journeyRow(
@@ -382,7 +385,11 @@ test('conditional Color smoke keeps two travel cases with ordinary paint and abs
   const report = evidence.reports.at(-1);
   assert.equal(stage.validateColor(report, evidence.manifest), 2);
   const zeroDataset = structuredClone(report);
-  zeroDataset.rows[0].ribbons.dataset = { ribbons: '0', ribbonFaces: '0', ribbonSignals: '0' };
+  zeroDataset.rows[0].ribbons.dataset = {
+    ribbons: '0',
+    ribbonFaces: '0',
+    ribbonSignals: '0',
+  };
   assert.equal(stage.validateColor(zeroDataset, evidence.manifest), 2);
   const mutations = [
     (value) => (value.variant.effects = ['ribbons', 'travel']),
@@ -596,8 +603,11 @@ test('performance driver runs two route samples and two audits serially with a c
     'audit writing',
   ]);
   assert.equal(
-    stage.validatePerformance({ ...fixture.identity(), kind: 'stage-performance', ...report })
-      .soakSeconds,
+    stage.validatePerformance({
+      ...fixture.identity(),
+      kind: 'stage-performance',
+      ...report,
+    }).soakSeconds,
     0
   );
 });
@@ -842,7 +852,10 @@ test('selected flight driver uses a fresh context for each destination and measu
     },
     measure: async (pair, selected, setup) => {
       calls.push('measure ' + pair.id + ' ' + selected.to + ' ' + selected.phase);
-      return { ...fixture.flight(selected.to, selected.from, selected.phase), setup };
+      return {
+        ...fixture.flight(selected.to, selected.from, selected.phase),
+        setup,
+      };
     },
     restore: async (pair) => calls.push('restore index ' + pair.id),
   });
@@ -863,7 +876,11 @@ test('selected flight driver uses a fresh context for each destination and measu
     'close 2',
   ]);
   assert.deepEqual(
-    rows.map(({ from, to, transitionPhase }) => ({ from, to, phase: transitionPhase })),
+    rows.map(({ from, to, transitionPhase }) => ({
+      from,
+      to,
+      phase: transitionPhase,
+    })),
     stage.flightCases()
   );
 });
@@ -883,7 +900,9 @@ test('flight setup observes live paints and quiet preparation while preserving a
     __stageFlightSetup: probe,
     __qualityMotion: { paints: 4, events: [{ kind: 'model', time: 100 }] },
     SiteScene: {
-      diagnostics: () => ({ rooms: [{ route: 'research', models: [{ compact: true }] }] }),
+      diagnostics: () => ({
+        rooms: [{ route: 'research', models: [{ compact: true }] }],
+      }),
     },
   };
   const document = {
@@ -926,7 +945,10 @@ test('failed flight collection retains previous and failing raw records instead 
         measure: async (pair, selected) =>
           selected.phase === 'cold'
             ? cold
-            : { ...fixture.flight('research', 'index', 'warm'), transitionPhase: 'cold' },
+            : {
+                ...fixture.flight('research', 'index', 'warm'),
+                transitionPhase: 'cold',
+              },
       }),
     (error) => {
       assert.equal(error.flightEvidence.length, 2);

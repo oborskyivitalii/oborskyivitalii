@@ -187,6 +187,7 @@ function control(file) {
       'tools/site/snapshot.cjs',
       'tools/site/evidence-policy.cjs',
       'site/output-lock.json',
+      'site/publications/policy.json',
     ].includes(file)
   );
 }
@@ -394,9 +395,15 @@ function validateRegistry(registry) {
     );
     for (const profile of row.profiles)
       assert.ok(
-        ['pr-smoke', 'pr-targeted', 'staging', 'production', 'diagnostic', 'issue-policy'].includes(
-          profile
-        ),
+        [
+          'pr-smoke',
+          'pr-targeted',
+          'content',
+          'staging',
+          'production',
+          'diagnostic',
+          'issue-policy',
+        ].includes(profile),
         'unknown test profile'
       );
   }
@@ -535,6 +542,54 @@ function repositoryObligations(obligations, reasons, base, candidate) {
   reasons[0].detail =
     'Repository source/style/RI/owning checks, trusted App and four roles; website work is inapplicable.';
 }
+function contentSelection(records, sources) {
+  const policy = sources.policy.registry.source_profiles.content;
+  const result = { eligible: false, authored: [], derived: [], repository: [], rejected: [] };
+  if (!policy || !Array.isArray(policy.authored_inputs) || !Array.isArray(policy.derived_inputs))
+    return result;
+  for (const record of records) {
+    for (const side of ['base', 'candidate']) {
+      const file = side === 'base' ? record.oldPath : record.newPath;
+      const mode = side === 'base' ? record.oldMode : record.newMode;
+      if (!file) continue;
+      const derivedIdentity =
+        file === '.github/ri-ci-map.json' &&
+        sources.base.ciIdentity &&
+        sources.candidate.ciIdentity &&
+        require('./source-tests.cjs').riIdentityCompatible(
+          sources.base.ciIdentity,
+          sources.candidate.ciIdentity
+        );
+      const reject =
+        !['100644', '100755'].includes(mode) ||
+        sources.base.rights.has(file) ||
+        sources.candidate.rights.has(file) ||
+        (control(file) && file !== 'site/output-lock.json' && !derivedIdentity) ||
+        /^site\/(?:engine|templates|scenes|effects|retained)\//.test(file) ||
+        file === 'site/rights.json';
+      const rules = classify(file, sources[side].rights, sources[side].contentPaths);
+      const category = reject
+        ? 'rejected'
+        : derivedIdentity
+          ? 'derived'
+          : policy.authored_inputs.some((pattern) => matches(file, pattern))
+            ? 'authored'
+            : policy.derived_inputs.some((pattern) => matches(file, pattern))
+              ? 'derived'
+              : rules.every((rule) => rule.impact === 'repository' && rule.control === false)
+                ? 'repository'
+                : 'rejected';
+      if (!result[category].includes(file)) result[category].push(file);
+    }
+  }
+  result.eligible = result.authored.length > 0 && result.rejected.length === 0;
+  result.lane =
+    result.eligible &&
+    result.authored.every((file) => /\.(?:png|jpe?g|webp|avif|svg|pdf)$/.test(file))
+      ? 'media'
+      : 'content';
+  return result;
+}
 function analyze(records, sources, base, candidate, activateRepository = false) {
   const context = contextFor(base, candidate);
   for (const record of records)
@@ -580,4 +635,5 @@ module.exports = {
   selected,
   validateRegistry,
   analyze,
+  contentSelection,
 };

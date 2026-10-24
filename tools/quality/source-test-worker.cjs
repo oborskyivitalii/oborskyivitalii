@@ -8,6 +8,7 @@ const assert = require('node:assert/strict'),
 const priority = [
   'tests/space.test.cjs',
   'tests/executive.test.cjs',
+  'tests/article-media.test.cjs',
   'tests/release-rights.test.cjs',
   'tests/release-controller.test.cjs',
   'tests/pages-migration.test.cjs',

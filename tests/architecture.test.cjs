@@ -101,3 +101,23 @@ test('pure rendering and validation cannot load files or import their build orch
     /Invalid ownership/
   );
 });
+
+test('pure validators may use strict assertions while filesystem dependencies reject', () => {
+  assert.equal(check({ 'tools/site/events.cjs': "require('node:assert/strict')" }).pass, true);
+  assert.throws(() => check({ 'tools/site/events.cjs': "require('node:fs')" }), /I\/O dependency/);
+});
+
+test('pure fallback admits only direct SHA256 hashing and rejects crypto aliases and randomness', () => {
+  const source = "require('node:crypto').createHash('sha256').update(bytes).digest('hex')";
+  assert.equal(check({ 'tools/site/fallback.cjs': source }).pass, true);
+  for (const source of [
+    "require('node:crypto').randomBytes(16)",
+    "const crypto = require('node:crypto')",
+    "require('node:crypto')['createHash']('sha256')",
+    "require('node:crypto').createHash(algorithm)",
+    "import {createHash} from 'node:crypto'",
+    "import('node:crypto').createHash('sha256')",
+  ])
+    assert.throws(() => check({ 'tools/site/fallback.cjs': source }), /crypto dependency/);
+  assert.throws(() => check({ 'tools/site/events.cjs': source }), /crypto dependency/);
+});

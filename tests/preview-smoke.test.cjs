@@ -5,11 +5,189 @@ const test = require('node:test'),
 const {
   artifactFile,
   verifyResponse,
+  verifyRequest,
   identity,
   verifyRuntimeIdentity,
   analyticsRequest,
+  documentNavigation,
+  navigationAction,
 } = require('../tools/quality/local-browser.cjs');
 const { validate } = require('../tools/quality/flight-detail.cjs');
+test('native document navigation waits for owned byte reads and preserves their failures', async () => {
+  let finish,
+    finishLate,
+    navigated = false;
+  const response = new Promise((resolve) => {
+    finish = resolve;
+  });
+  const page = {
+    goto: async () => {
+      navigated = true;
+    },
+  };
+  const checks = [response],
+    pending = documentNavigation(page, 'https://example.test/research.html', checks);
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.equal(
+    navigated,
+    false,
+    'departing response remains readable until verification completes'
+  );
+  checks.push(
+    new Promise((resolve) => {
+      finishLate = resolve;
+    })
+  );
+  finish();
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.equal(navigated, false, 'responses added while draining remain owned by the old document');
+  finishLate();
+  await pending;
+  assert.equal(navigated, true);
+  navigated = false;
+  await assert.rejects(
+    documentNavigation(page, 'https://example.test/research.html', [
+      Promise.reject(Error('served bytes differ')),
+    ]),
+    /served bytes differ/
+  );
+  assert.equal(navigated, false, 'failed verification cannot be discarded by navigation');
+});
+test('the byte collector owns requests before headers and retains body-read and failed-request errors', async () => {
+  const base = 'https://example.test',
+    bytes = Buffer.from('exact candidate document'),
+    checked = new Set(),
+    manifest = {
+      files: { 'index.html': { sha256: crypto.createHash('sha256').update(bytes).digest('hex') } },
+    };
+  let headers,
+    body,
+    navigated = false;
+  const request = {
+    url: () => base + '/index.html',
+    response: () =>
+      new Promise((resolve) => {
+        headers = resolve;
+      }),
+  };
+  const page = {
+    goto: async () => {
+      navigated = true;
+    },
+  };
+  const verification = verifyRequest(request, base, manifest, checked),
+    navigation = documentNavigation(page, base, [verification]);
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.equal(navigated, false, 'a request without response headers blocks document replacement');
+  headers({
+    url: request.url,
+    status: () => 200,
+    body: () =>
+      new Promise((resolve) => {
+        body = resolve;
+      }),
+  });
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.equal(
+    navigated,
+    false,
+    'headers alone do not make the browser-owned bytes safe to discard'
+  );
+  body(bytes);
+  await navigation;
+  assert.equal(navigated, true);
+  assert.deepEqual([...checked], ['index.html']);
+  await assert.rejects(
+    verifyRequest({ ...request, response: async () => null }, base, manifest, checked),
+    /request failed before response/
+  );
+  await assert.rejects(
+    verifyRequest(
+      {
+        ...request,
+        response: async () => ({
+          url: request.url,
+          status: () => 200,
+          body: async () => {
+            throw Error('unavailable response body');
+          },
+        }),
+      },
+      base,
+      manifest,
+      checked
+    ),
+    /unavailable response body/
+  );
+});
+test('instant in-shell navigation verifies the outgoing publication index before unmount can abort it', async () => {
+  const base = 'https://example.test',
+    bytes = Buffer.from('{"articles":[]}'),
+    file = 'publication-index.json',
+    manifest = {
+      files: { [file]: { sha256: crypto.createHash('sha256').update(bytes).digest('hex') } },
+    },
+    controller = new AbortController(),
+    checked = new Set(),
+    errors = [];
+  let headers, body;
+  const request = {
+    url: () => base + '/' + file,
+    response: () =>
+      new Promise((resolve) => {
+        headers = resolve;
+        controller.signal.addEventListener('abort', () => resolve(null), { once: true });
+      }),
+  };
+  const verification = verifyRequest(request, base, manifest, checked).catch((error) => {
+      errors.push(error.message);
+    }),
+    navigation = navigationAction([verification], () => controller.abort());
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.equal(controller.signal.aborted, false, 'instant route mount waits for response headers');
+  headers({
+    url: request.url,
+    status: () => 200,
+    body: () =>
+      new Promise((resolve) => {
+        body = resolve;
+      }),
+  });
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.equal(
+    controller.signal.aborted,
+    false,
+    'the departing fetch remains owned through hashing'
+  );
+  body(bytes);
+  await navigation;
+  assert.equal(controller.signal.aborted, true, 'ordinary route cleanup still runs');
+  assert.deepEqual([...checked], [file]);
+  assert.deepEqual(errors, []);
+});
+test('content smoke requires every rebuilt article descriptor and retains explicit no-article catalog cases', () => {
+  const { contentDocuments } = require('../tools/quality/local-browser.cjs');
+  assert.equal(contentDocuments({}), null);
+  const manifest = {
+    contentRelease: { kind: 'content-release', builtArticles: [] },
+    components: { articles: {} },
+  };
+  assert.deepEqual(contentDocuments(manifest), []);
+  manifest.components.articles['example:en'] = { alias: 'articles/example.html' };
+  manifest.contentRelease.builtArticles = ['example:en'];
+  assert.deepEqual(contentDocuments(manifest), ['example:en']);
+  for (const builtArticles of [
+    null,
+    ['missing:en'],
+    ['example:en', 'example:en'],
+    Array(51).fill('example:en'),
+  ])
+    assert.throws(() =>
+      contentDocuments({ ...manifest, contentRelease: { kind: 'content-release', builtArticles } })
+    );
+  assert.throws(() => contentDocuments({ ...manifest, contentRelease: { kind: 'preview' } }));
+});
+
 test('smoke permits only exact configured production analytics and retains other external rejection', () => {
   const base = 'https://vitaliioborskyi.ai';
   const manifest = { edition: { id: 'production', indexable: true, origin: base } };

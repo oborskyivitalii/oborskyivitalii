@@ -482,6 +482,10 @@ function secretReviewEntry(entry, file) {
   const rules = checksumOnly
     ? ['Hex High Entropy String']
     : ['Hex High Entropy String', 'Secret Keyword', 'Basic Auth Credentials'];
+  // npm's published integrity strings have a distinct scanner type. This one
+  // exact inventory path additionally requires a current lock proof at admission.
+  if (file === secretReviewInputs[3] && entry?.path === 'tools/publishing/toolchain/licenses.json')
+    rules.push('Base64 High Entropy String');
   if (
     !entry ||
     typeof entry !== 'object' ||
@@ -519,8 +523,65 @@ function loadSecretReviews(projectRoot = root) {
   }
   return reviewed;
 }
-function reviewedSecretFinding(file, finding, reviewed) {
-  return reviewed.has([file, finding.type, finding.hashed_secret].join(':'));
+function publicationIntegrityProof(projectRoot = root) {
+  const inventoryPath = 'tools/publishing/toolchain/licenses.json';
+  const lockPath = 'tools/publishing/toolchain/package-lock.json';
+  const readBounded = (relative) => {
+    const absolute = path.join(projectRoot, relative);
+    const stat = fs.lstatSync(absolute);
+    if (
+      !stat.isFile() ||
+      stat.isSymbolicLink() ||
+      stat.size > 2000000 ||
+      fs.realpathSync(absolute) !== path.join(fs.realpathSync(projectRoot), relative)
+    )
+      throw Error('Invalid publication integrity proof input: ' + relative);
+    return fs.readFileSync(absolute);
+  };
+  const lockBytes = readBounded(lockPath);
+  const lock = JSON.parse(lockBytes);
+  const inventory = JSON.parse(readBounded(inventoryPath));
+  const locations = Object.keys(lock.packages || {}).filter((name) =>
+    name.startsWith('node_modules/')
+  );
+  if (
+    inventory.schema !== 1 ||
+    inventory.dependencyLockSha256 !== require('./artifact.cjs').digest(lockBytes) ||
+    !Array.isArray(inventory.packages) ||
+    inventory.packages.length === 0 ||
+    inventory.packages.length > 500 ||
+    inventory.packages.length !== locations.length
+  )
+    throw Error('Publication integrity inventory differs from its exact dependency lock');
+  const seen = new Set();
+  const proved = new Set();
+  for (const entry of inventory.packages) {
+    const pinned = lock.packages[entry.location];
+    if (
+      !locations.includes(entry.location) ||
+      seen.has(entry.location) ||
+      entry.name !== entry.location.split('node_modules/').at(-1) ||
+      entry.version !== pinned?.version ||
+      entry.integrity !== pinned?.integrity ||
+      typeof entry.integrity !== 'string' ||
+      !/^sha512-[A-Za-z0-9+/]{86}==$/.test(entry.integrity) ||
+      Buffer.from(entry.integrity.slice(7), 'base64').toString('base64') !==
+        entry.integrity.slice(7)
+    )
+      throw Error('Unproved publication package integrity: ' + entry.location);
+    seen.add(entry.location);
+    proved.add(require('node:crypto').createHash('sha1').update(entry.integrity).digest('hex'));
+  }
+  return proved;
+}
+function reviewedSecretFinding(file, finding, reviewed, publicationIntegrities = new Set()) {
+  const reviewedValue = reviewed.has([file, finding.type, finding.hashed_secret].join(':'));
+  if (finding.type !== 'Base64 High Entropy String') return reviewedValue;
+  return (
+    reviewedValue &&
+    file === 'tools/publishing/toolchain/licenses.json' &&
+    publicationIntegrities.has(finding.hashed_secret)
+  );
 }
 function lint() {
   const inventory = require('./format.cjs').sourceInventory(root);
@@ -645,7 +706,7 @@ function security() {
         .trim()
         .split('\n')
         .filter(
-          (file) => /\.(?:js|cjs|html|py)$/.test(file) || file.startsWith('.github/workflows/')
+          (file) => /\.(?:js|cjs|mjs|html|py)$/.test(file) || file.startsWith('.github/workflows/')
         ),
       ...offlineRuntime,
     ]),
@@ -780,6 +841,7 @@ function security() {
         const secrets = JSON.parse(run(py('detect-secrets'), ['scan', '--no-verify', ...text]));
         fs.writeFileSync(path.join(out, 'detect-secrets.json'), JSON.stringify(secrets, null, 2));
         const reviewed = loadSecretReviews(),
+          publicationIntegrities = publicationIntegrityProof(),
           newFindings = [];
         const navigationFile = '.github/repository-intelligence/agent-context.json';
         run(py('python'), [
@@ -806,10 +868,20 @@ function security() {
             verifiedChecksumIds([coupling.digest, ...coupling.inputs.map((x) => x.sha256)]),
           ],
         ]);
+        const generatedChecksums = require('./generated-checksums.cjs');
+        const generatedProof = generatedChecksums.proveGeneratedChecksums(root);
+        const generatedAdmitted = generatedChecksums.admitGeneratedChecksumFindings(
+          secrets.results,
+          generatedProof
+        );
         for (const [file, findings] of Object.entries(secrets.results))
           for (const finding of findings) {
             const provedChecksum = verifiedChecksumFinding(file, finding, proved);
-            if (!provedChecksum && !reviewedSecretFinding(file, finding, reviewed))
+            if (
+              !provedChecksum &&
+              !generatedAdmitted.has(generatedChecksums.findingKey(file, finding)) &&
+              !reviewedSecretFinding(file, finding, reviewed, publicationIntegrities)
+            )
               newFindings.push({
                 file,
                 type: finding.type,
@@ -823,6 +895,8 @@ function security() {
         return {
           trackedTextFiles: text.length,
           reviewedCandidates: Object.values(secrets.results).flat().length,
+          generatedCandidates: generatedAdmitted.size,
+          generatedChecksumProof: generatedProof.detail,
         };
       },
     },
@@ -836,6 +910,7 @@ function security() {
   };
 }
 function advisories() {
+  const publicationToolchain = path.join(root, 'tools/publishing/toolchain');
   const result = collectEngines([
     {
       name: 'npm',
@@ -850,6 +925,34 @@ function advisories() {
         );
         fs.writeFileSync(path.join(out, 'npm-audit.json'), JSON.stringify(npm, null, 2));
         return admitNpmAdvisories(npm);
+      },
+    },
+    {
+      name: 'publicationNpm',
+      reports: ['publication-npm-audit.json'],
+      run: (run) => {
+        const npm = JSON.parse(
+          run(
+            process.platform === 'win32' ? 'npm.cmd' : 'npm',
+            ['audit', '--prefix', publicationToolchain, '--json'],
+            [0, 1]
+          )
+        );
+        fs.writeFileSync(
+          path.join(out, 'publication-npm-audit.json'),
+          JSON.stringify(npm, null, 2)
+        );
+        const admitted = admitNpmAdvisories(npm, {
+          toolchain: publicationToolchain,
+          exceptions: [],
+        });
+        assert.equal(admitted.findings, 0, 'Publication dependency advisory finding');
+        return {
+          dependencies: admitted.dependencies,
+          lockSha256: require('./artifact.cjs').digest(
+            fs.readFileSync(path.join(publicationToolchain, 'package-lock.json'))
+          ),
+        };
       },
     },
     {
@@ -882,6 +985,8 @@ function advisories() {
     reviewedNpmAdvisories: result.values.npm.reviewed,
     pythonDependencies: result.values.pip.dependencies,
     runtimeDependencies: 'none',
+    publicationDependencies: result.values.publicationNpm.dependencies,
+    publicationLockSha256: result.values.publicationNpm.lockSha256,
   };
 }
 function repositoryLint() {
@@ -959,4 +1064,5 @@ module.exports = {
   verifiedChecksumFinding,
   loadSecretReviews,
   reviewedSecretFinding,
+  publicationIntegrityProof,
 };

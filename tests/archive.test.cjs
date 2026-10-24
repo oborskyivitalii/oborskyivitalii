@@ -9,6 +9,7 @@ const source = fs.readFileSync(path.join(root, 'site/engine/archive.js'), 'utf8'
 const content = require('../tools/site/content.cjs');
 const build = require('../tools/site/build.cjs');
 const catalog = content.catalog(root);
+const { nextRecordId, nextYear } = require('./fixtures/catalog.cjs');
 const html = build.stableTagEndings(
   content.routeInput(
     root,
@@ -18,9 +19,16 @@ const html = build.stableTagEndings(
 );
 const total = Object.keys(catalog.records).length,
   year2025 = Object.values(catalog.records).filter((r) =>
-    (r.edition.datePublished || r.edition.dateModified).startsWith('2025')
+    (r.edition.datePublished || r.edition.dateModified || '').startsWith('2025')
   ).length;
-function visit(query = '', historyBlocked = false) {
+function visit(query = '', historyBlocked = false, candidate = catalog) {
+  const html = build.stableTagEndings(
+    content.routeInput(
+      root,
+      build.configuration(root).config.routes.find((route) => route.id === 'writing'),
+      candidate
+    ).main
+  );
   const landings = [],
     emitted = [];
   const element = (data = {}) => ({
@@ -57,7 +65,8 @@ function visit(query = '', historyBlocked = false) {
       topic: key.split(':')[1],
     })
   );
-  const years = ['2026', '2025'].map((year) =>
+  const yearValues = [...new Set(rows.map((row) => row.dataset.year))];
+  const years = yearValues.map((year) =>
     element({
       querySelectorAll: () => groups.filter((g) => g.year === year),
       querySelector: (selector) => {
@@ -78,25 +87,30 @@ function visit(query = '', historyBlocked = false) {
   for (const key of ['filters', 'count', 'empty', 'heading']) ids['archive-' + key] = element();
   ids['archive-filters'].hidden = true;
   ids['archive-count'].dataset = {
-    count: catalog.labels['archive.count'],
-    print: catalog.labels['archive.print'],
+    count: candidate.labels['archive.count'],
+    print: candidate.labels['archive.print'],
   };
-  for (const key of ['delivery', 'systems', 'leadership', 'strategy'])
-    ids['topic-' + key] = element();
-  for (const year of ['2026', '2025']) ids['year-' + year] = element();
+  for (const key of candidate.archive.topics) ids['topic-' + key] = element();
+  for (const year of yearValues) ids['year-' + year] = element();
   for (const group of groups)
     ids[`topic-${group.topic}-${group.year}`] = element({
       getClientRects: () => (group.hidden ? [] : [{ height: 44 }]),
     });
   const navs = [element(), element()],
     events = {};
-  const document = {
-    getElementById: (id) => ids[id],
+  ids['archive-results'] = element({
     querySelectorAll: (selector) =>
       ({
         'li.publication': rows,
         '.archive-group': groups,
         '.archive-year': years,
+      })[selector],
+  });
+  const document = {
+    getElementById: (id) => ids[id],
+    querySelectorAll: (selector) =>
+      ({
+        'li.publication': [...rows, element({ dataset: { language: 'en' } })],
         '[data-archive-navigation]': navs,
       })[selector],
   };
@@ -164,11 +178,13 @@ function visit(query = '', historyBlocked = false) {
 test('intersected filters and empty state are useful; Reset restores the fixed complete catalog', () => {
   const page = visit();
   assert.equal(page.shown().length, total);
+  assert.equal(page.ids['archive-count'].textContent, total + ' articles');
   assert.ok(page.navs.every((n) => n.hidden));
   page.change('topic', 'systems');
   page.change('year', '2025');
   page.change('language', 'uk');
   assert.equal(page.shown().length, 2);
+  assert.equal(page.ids['archive-count'].textContent, '2 of ' + total + ' articles');
   assert.ok(
     page
       .shown()
@@ -179,11 +195,13 @@ test('intersected filters and empty state are useful; Reset restores the fixed c
   );
   page.change('year', '2026');
   assert.equal(page.shown().length, 0);
+  assert.equal(page.ids['archive-count'].textContent, '0 of ' + total + ' articles');
   assert.equal(page.ids['archive-empty'].hidden, false);
   assert.equal(page.ids['topic-systems'].hidden, false);
   assert.match(page.ids['archive-heading'].textContent, /AI architecture/);
   page.reset();
   assert.equal(page.shown().length, total);
+  assert.equal(page.ids['archive-count'].textContent, total + ' articles');
   assert.equal(page.window.location.search, '');
   assert.equal(page.window.location.hash, '');
 });
@@ -237,7 +255,7 @@ test('only Topic/Reset starts a focus transition; printing shows all and restore
   const filtered = page.shown().length;
   page.events.beforeprint();
   assert.equal(page.shown().length, total);
-  assert.match(page.ids['archive-count'].textContent, /all records/);
+  assert.equal(page.ids['archive-count'].textContent, total + ' articles');
   page.events.afterprint();
   assert.equal(page.shown().length, filtered);
   assert.deepEqual(page.focuses(), ['leadership']);
@@ -264,4 +282,55 @@ test('without scripts every topic/year fragment belongs to visible semantic HTML
       new RegExp(`<h2 id="year-${year}" class="year-landing">${year} archive</h2>`)
     );
   assert.equal([...html.matchAll(/<li class="publication"[^>]*\bhidden/g)].length, 0);
+});
+
+test('a newly catalogued year filters, restores its fragment and prints without template edits', () => {
+  const changed = structuredClone(catalog);
+  const id = nextRecordId(changed);
+  const year = nextYear(changed);
+  const record = structuredClone(changed.records['publication-01']);
+  record.edition.url = 'https://example.test/new-year-article';
+  record.edition.datePublished = year + '-01-01';
+  changed.records[id] = record;
+  changed.structuredOrder.push({ record: id });
+  const page = visit('#year-' + year, false, changed);
+  assert.equal(page.shown().length, 1);
+  assert.equal(page.ids['archive-count'].textContent, '1 of ' + (total + 1) + ' articles');
+  assert.equal(page.landings.at(-1), page.ids['year-' + year]);
+  page.events.beforeprint();
+  assert.equal(page.shown().length, total + 1);
+  assert.equal(page.ids['archive-count'].textContent, total + 1 + ' articles');
+  page.events.afterprint();
+  assert.equal(page.shown().length, 1);
+  page.reset();
+  assert.equal(page.shown().length, total + 1);
+});
+
+test('asynchronously loaded tag filtering composes with topic, URL, history, reset and print', () => {
+  const page = visit('?tag=verification');
+  page.ids['archive-tag'] = {
+    value: 'all',
+    options: [
+      { value: 'all', textContent: 'All tags' },
+      { value: 'verification', textContent: 'Verification' },
+    ],
+  };
+  for (const row of page.rows)
+    row.dataset.tags = row.dataset.topic === 'delivery' ? 'verification' : 'architecture';
+  page.events['site:tags-ready']();
+  assert.equal(page.ids['archive-tag'].value, 'verification');
+  assert.ok(page.shown().length > 0 && page.shown().length < total);
+  assert.ok(page.shown().every((row) => row.dataset.tags === 'verification'));
+  page.change('topic', 'systems');
+  assert.equal(page.shown().length, 0);
+  page.events.beforeprint();
+  assert.equal(page.shown().length, total);
+  page.events.afterprint();
+  assert.equal(page.shown().length, 0);
+  page.reset();
+  assert.equal(page.shown().length, total);
+  assert.equal(new URL(page.window.location).searchParams.has('tag'), false);
+  page.back();
+  assert.equal(page.shown().length, 0);
+  assert.equal(page.ids['archive-tag'].value, 'verification');
 });

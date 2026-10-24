@@ -4,11 +4,14 @@ const assert = require('node:assert/strict'),
   fs = require('node:fs'),
   path = require('node:path'),
   os = require('node:os'),
+  cp = require('node:child_process'),
   { pathToFileURL } = require('node:url');
 const { root } = require('./common.cjs'),
   { routes } = require('../site/snapshot.cjs');
 const model = 'enabled source fixture; vendor stubbed';
-const primaryCount = Object.keys(require('../../site/content/catalog.json').records).length;
+const primaryCount = require('../site/validate-catalog.cjs').writingEntries(
+  require('../site/content.cjs').catalog(root)
+).length;
 const settings = {
   schema: 1,
   provider: 'cloudflare',
@@ -189,9 +192,12 @@ async function scenario(browser, dir, producer, s) {
       );
       if (id === 'writing') {
         await page.locator('#archive-topic').selectOption('systems');
-        assert.ok((await page.locator('li.publication:visible').count()) > 0);
+        assert.ok((await page.locator('#archive-results li.publication:visible').count()) > 0);
         await page.locator('.filter-reset').evaluate((el) => el.click());
-        assert.equal(await page.locator('li.publication:visible').count(), primaryCount);
+        assert.equal(
+          await page.locator('#archive-results li.publication:visible').count(),
+          primaryCount
+        );
       }
       await vendorState(page, s.mode);
     }
@@ -305,7 +311,18 @@ function fixtureInputs(sourceRoot = root) {
 }
 
 function buildFixture(dir, sourceRoot = root) {
-  for (const name of fixtureInputs(sourceRoot)) {
+  const inputs = fixtureInputs(sourceRoot);
+  // Accepted articles keep their frozen commit objects while all fixture writes
+  // remain isolated. Validate declared legal owners before creating any output.
+  if (fs.existsSync(path.join(sourceRoot, '.git'))) {
+    cp.execFileSync('git', ['clone', '--shared', '--no-checkout', '--quiet', sourceRoot, dir], {
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+  }
+  if (fs.existsSync(path.join(sourceRoot, 'tools/publishing'))) {
+    inputs.push('tools/publishing', 'tools/quality/artifact.cjs', 'tools/quality/budgets.json');
+  }
+  for (const name of inputs) {
     fs.mkdirSync(path.dirname(path.join(dir, name)), { recursive: true });
     fs.cpSync(path.join(sourceRoot, name), path.join(dir, name), { recursive: true });
   }

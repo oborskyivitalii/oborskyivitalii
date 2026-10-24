@@ -2,6 +2,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const { renderSlots, safeURL } = require('../tools/site/render-content.cjs');
+const { nextRecordId, nextYear } = require('./fixtures/catalog.cjs');
 const { renderPage } = require('../tools/site/render-page.cjs');
 
 test('compact page metadata preserves structured values and cannot close its script container', () => {
@@ -281,4 +282,200 @@ test('page documents reject unknown schema, executable fields, missing templates
     fs.writeFileSync(card, value);
     assert.throws(() => api.routeInput(dir, route, c), /Missing|Duplicate/);
   }
+});
+
+test('catalog additions and removals update rows, year controls, counts and JSON-LD together', () => {
+  const path = require('node:path');
+  const root = path.resolve(__dirname, '..');
+  const content = require('../tools/site/content.cjs');
+  const { validateCatalog } = require('../tools/site/validate-catalog.cjs');
+  const route = require('../site/routes.json').routes.find((entry) => entry.id === 'writing');
+  const original = content.catalog(root);
+  const render = (catalog) => {
+    validateCatalog(catalog);
+    const result = content.routeInput(root, route, catalog);
+    const html = require('../tools/site/html.cjs').stableTagEndings(result.main);
+    const cards = [...html.matchAll(/<li class="publication"[^>]*>[\s\S]*?<\/li>/g)];
+    const count = Number(html.match(/id="archive-count"[^>]*>(\d+) articles<\/p>/)[1]);
+    const urls = cards.map(([card]) => card.match(/class="publication-title" href="([^"]+)"/)[1]);
+    assert.equal(count, cards.length);
+    assert.equal(result.schema.mainEntity.numberOfItems, cards.length);
+    assert.deepEqual(
+      result.schema.mainEntity.itemListElement.map((entry) =>
+        require('../tools/site/html.cjs').escapeAttribute(entry.item.url)
+      ),
+      urls
+    );
+    return { result, html, cards, count, urls };
+  };
+  const before = render(original);
+  const added = structuredClone(original);
+  const id = nextRecordId(added);
+  const year = nextYear(added);
+  const record = structuredClone(added.records['publication-01']);
+  record.edition.name = 'New year <article> & title';
+  record.edition.url = 'https://example.test/new-article?a=1&b=2';
+  record.edition.datePublished = year + '-02-01';
+  added.records[id] = record;
+  added.structuredOrder.push({ record: id });
+  const after = render(added);
+  assert.equal(after.count, before.count + 1);
+  assert.equal(
+    after.urls[0],
+    require('../tools/site/html.cjs').escapeAttribute(record.edition.url)
+  );
+  assert.ok(after.html.includes(`<option value="${year}">${year}</option>`));
+  assert.ok(after.html.includes(`<h2 id="year-${year}" class="year-landing">${year} archive</h2>`));
+  assert.ok(after.html.includes(`href="#topic-delivery-${year}"`));
+  assert.match(after.html, /New year &lt;article&gt; &amp; title/);
+  assert.deepEqual(
+    after.cards.slice(1).map(([card]) => card),
+    before.cards.map(([card]) => card)
+  );
+
+  const removed = structuredClone(added);
+  delete removed.records[id];
+  removed.structuredOrder = removed.structuredOrder.filter((entry) => entry.record !== id);
+  const restored = render(removed);
+  assert.equal(restored.count, before.count);
+  assert.equal(restored.html, before.html);
+  assert.ok(!restored.html.includes('year-' + year));
+  assert.ok(!restored.html.includes(`value="${year}"`));
+});
+
+test('Writing SEO reconciliation accepts generated catalog changes and rejects output drift', () => {
+  const path = require('node:path');
+  const root = path.resolve(__dirname, '..');
+  const content = require('../tools/site/content.cjs');
+  const seo = require('../tools/check_site_seo.cjs');
+  const route = require('../site/routes.json').routes.find((entry) => entry.id === 'writing');
+  const original = content.catalog(root);
+  const render = (catalog) => content.routeInput(root, route, catalog);
+  const before = render(original);
+  const restored = seo.restoreWritingCatalog(before.main, { catalog: original });
+  const changed = structuredClone(original);
+  const id = nextRecordId(changed);
+  const year = nextYear(changed);
+  const total = Object.keys(changed.records).length + 1;
+  const record = structuredClone(changed.records['publication-01']);
+  record.edition.url = 'https://example.test/seo-new-year-article';
+  record.edition.name = 'A new catalog article';
+  record.edition.datePublished = year + '-01-01';
+  changed.records[id] = record;
+  changed.structuredOrder.push({ record: id });
+  const after = render(changed);
+  assert.equal(seo.restoreWritingCatalog(after.main, { catalog: changed }), restored);
+  assert.notEqual(
+    seo.restoreWritingCatalog(after.main.replace('Find your next read.', 'Undeclared heading'), {
+      catalog: changed,
+    }),
+    restored,
+    'authored copy stays visible to the immutable amendment proof'
+  );
+  const normalized = require('../tools/site/html.cjs').stableTagEndings(after.main);
+  for (const tamper of [
+    (html) => html.replace(total + ' articles</p>', total - 1 + ' articles</p>'),
+    (html) => html.replace(record.edition.url, 'https://example.test/altered-url'),
+    (html) => html.replace('A new catalog article', 'Changed output title'),
+    (html) => html.replace(`data-year="${year}"`, `data-year="${Number(year) - 1}"`),
+    (html) => html.replace(`<option value="${year}">${year}</option>`, ''),
+    (html) =>
+      html.replace(
+        `<option value="${year}">${year}</option>`,
+        `<option value="${year}">${year}</option><option value="${year}">${year}</option>`
+      ),
+    (html) => html.replace('id="archive-count"', 'id="wrong-count"'),
+    (html) => html + '<div id="archive-results"></div>',
+    (html) => html + `<p id="archive-count">${total} articles</p>`,
+  ]) {
+    const invalid = tamper(normalized);
+    assert.notEqual(invalid, normalized, 'tamper target exists');
+    assert.throws(() => seo.restoreWritingCatalog(invalid, { catalog: changed }));
+  }
+
+  const metadata = (schema) =>
+    '<script type="application/ld+json">' +
+    require('../tools/site/html.cjs').scriptJSON(schema, 0) +
+    '</script>';
+  assert.equal(
+    seo.restoreWritingMetadata(metadata(after.schema), { catalog: changed }),
+    seo.restoreWritingMetadata(metadata(before.schema), { catalog: original })
+  );
+  for (const indentation of [0, 2]) {
+    for (const [prefix, suffix] of [
+      ['', ''],
+      ['\n', '\n  '],
+    ]) {
+      const live =
+        '<script type="application/ld+json">' +
+        prefix +
+        require('../tools/site/html.cjs').scriptJSON(after.schema, indentation) +
+        suffix +
+        '</script>';
+      const reconciled = seo.restoreWritingMetadata(live, { catalog: changed });
+      const raw = reconciled.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1];
+      const restoredSchema = structuredClone(after.schema);
+      restoredSchema.mainEntity =
+        require('../review/issue-5/writing-catalog-amendment.json').structuredData.mainEntity;
+      assert.equal(
+        raw,
+        prefix + require('../tools/site/html.cjs').scriptJSON(restoredSchema, indentation) + suffix,
+        'the finite builder encoding preserves its exact whitespace wrapper'
+      );
+      assert.throws(
+        () => seo.restoreWritingMetadata(reconciled, { catalog: changed }),
+        /Writing metadata matches/,
+        'historical ItemList output is not admissible as current changed-catalog source'
+      );
+    }
+  }
+  for (const changedMetadata of [
+    metadata(after.schema).replace('>', '> '),
+    metadata(after.schema).replace('</script>', ' </script>'),
+    metadata(after.schema).replace('{', '{broken,'),
+    metadata(after.schema).replace('{', '{"@type":"Injected",'),
+    metadata(after.schema) + metadata(after.schema),
+    '',
+  ]) {
+    assert.throws(() => seo.restoreWritingMetadata(changedMetadata, { catalog: changed }));
+  }
+  const drifted = structuredClone(after.schema);
+  drifted.mainEntity.numberOfItems--;
+  assert.throws(() => seo.restoreWritingMetadata(metadata(drifted), { catalog: changed }));
+  drifted.mainEntity.numberOfItems++;
+  drifted.mainEntity.itemListElement[0].item.url += '-wrong';
+  assert.throws(() => seo.restoreWritingMetadata(metadata(drifted), { catalog: changed }));
+});
+
+test('Writing generated-view normalization cannot approve changed renderer or component sources', (t) => {
+  const fs = require('node:fs');
+  const os = require('node:os');
+  const path = require('node:path');
+  const root = path.resolve(__dirname, '..');
+  const seo = require('../tools/check_site_seo.cjs');
+  const amendment = require('../review/issue-5/writing-catalog-amendment.json');
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'writing-producer-proof-'));
+  t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+  for (const file of Object.keys(amendment.producerInputs)) {
+    fs.mkdirSync(path.dirname(path.join(dir, file)), { recursive: true });
+    fs.copyFileSync(path.join(root, file), path.join(dir, file));
+  }
+  assert.doesNotThrow(() => seo.verifyWritingProducers(dir));
+  for (const file of [
+    'tools/site/render-records.cjs',
+    'site/templates/components/publication.html',
+  ]) {
+    const original = fs.readFileSync(path.join(dir, file));
+    fs.appendFileSync(path.join(dir, file), '\nChanged producer bytes\n');
+    assert.throws(() => seo.verifyWritingProducers(dir), /producer changed/);
+    fs.writeFileSync(path.join(dir, file), original);
+  }
+  const omitted = structuredClone(amendment.producerInputs);
+  delete omitted['site/templates/components/publication.html'];
+  assert.throws(() => seo.verifyWritingProducers(dir, omitted), /Exact bounded/);
+  const extra = {
+    ...amendment.producerInputs,
+    'site/templates/components/unreviewed.html': 'a'.repeat(64),
+  };
+  assert.throws(() => seo.verifyWritingProducers(dir, extra), /Exact bounded/);
 });

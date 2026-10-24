@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "id": "pmday-ai-both-sides-review-20261024-r37",
+  "platforms": {
+    "linkedin": {
+      "formats": [
+        "html",
+        "md",
+        "txt",
+        "copy-ready"
+      ],
+      "relationship": "equivalent-rendition"
+    },
+    "medium": {
+      "formats": [
+        "html",
+        "md",
+        "txt",
+        "copy-ready"
+      ],
+      "relationship": "equivalent-rendition"
+    }
+  },
+  "launch": {
+    "source": "launch-post.en.md",
+    "sha256": "4836d77b384e9968ae1f005fabfc51aabc2a84da7b52511de442e620bac04753"
+  },
+  "seo": {
+    "title": "The Sum of Our Technology — AI Changes Both Sides of Software Engineering",
+    "summary": "What if AI acceleration fails outside a code generator? Two shifts in software engineering demand evidence, sustainable delivery and viable socio-technical control."
+  },
+  "assets": {
+    "cover": {
+      "id": "cover"
+    },
+    "hero": {
+      "id": "cover"
+    }
+  },
+  "limits": {
+    "linkedinCharacters": 53000,
+    "mediumCharacters": 53000
+  },
+  "reader": {
+    "references": "inline",
+    "presentation": "download",
+    "images": "webp-lossless",
+    "equivalentImages": {
+      "cover": {
+        "path": "site/assets/publications/pmday-ai-both-sides/cover02/assets/article-cover-detail-1280x398.jpg",
+        "sha256": "a5e462dbd51cdf6bd99febb27b4701753e18cfea8304e8dd97dda67bee9160b5"
+      }
+    },
+    "sections": {
+      "references": "sources-references",
+      "appendices": [
+        "sources-references",
+        "how-to-cite-this-draft",
+        "review-provenance",
+        "revision-history"
+      ]
+    },
+    "elements": [
+      {
+        "role": "prompt",
+        "sha256": "c6b1626abc38043da5c956bf51c3b05aaaa2157b55dbc15a6bb8cb1f6e4e4c48"
+      },
+      {
+        "role": "quotation",
+        "sha256": "264b4acdfaf886788b2a002e6b8143c109f1db17052dfcfa2a22129bf92ee8a1",
+        "attribution": "63fc6c3ee36255a9b385d04155fac3bc00280a155a4115a647ff39b1671482d8"
+      },
+      {
+        "role": "quotation",
+        "sha256": "b81f3755f09ff2ec9eebd88c95a100085c4bea800f7657934ba8a2a92444760c",
+        "attribution": "0d3fdc2e4b999aa4bed721d9a0e2013b1de18807d9e09abd7a17da03fa205e2a"
+      },
+      {
+        "role": "endnote",
+        "sha256": "a7883b0c575a4571744b82c26bcc96dc27e9aa29e4f8ccda55f872dda69fe360"
+      },
+      {
+        "role": "process",
+        "sha256": "691d50bb2f9eceef0d83569b36fdad67546408b64c62a981b3891c1b42dbc6af",
+        "label": "The software delivery lifecycle",
+        "separator": " → ",
+        "emphasizeStep": 3
+      }
+    ]
+  },
+  "print": {
+    "titleBlock": {
+      "subtitle": "4fea5e7e52ba6cf9effd6928a16b37635c7ee06e306513e66b153ed89e118f8e",
+      "byline": "9724b1f191cfacda2c2ede94f0b66071e4f347492c5008966a6883914ccfa82f"
+    },
+    "keepTogether": [
+      "0a000288b07ae9d184cfcfff5430af1e020d6afddf07bca1dbf4045a28d5d333",
+      "6ba05c1f2f05ab6fe73fcb9c439d83dbf90871f80c5184268d997dcc395b86f5"
+    ],
+    "keepWithNext": [
+      "3371b4ed0b043b934aad9fc9129d40ff5a567248b0ec90687966e2721c14e96a",
+      "612115907b62f680d79649fc458d8143fa7034b9ad8144720086e90334999870"
+    ]
+  }
+}

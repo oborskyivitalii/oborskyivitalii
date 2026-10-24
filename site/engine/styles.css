@@ -1533,9 +1533,68 @@ body[data-page='writing'] #archive-results {
   }
 }
 
+/* Shared article component layout is authored in reader.css. */
+.article-list {
+  padding: clamp(1rem, 4vw, 2.5rem);
+  margin-block: 2rem;
+}
+.article-list li + li {
+  margin-top: 1.5rem;
+}
+.article-presentation {
+  border: 1px solid currentColor;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  margin-block: 2rem;
+}
+.article-presentation figure {
+  margin-block: 1rem;
+}
+.presentation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+}
+.presentation-viewer iframe {
+  display: block;
+  width: 100%;
+  height: clamp(360px, 65vh, 760px);
+  border: 0;
+  background: #fff;
+}
+.presentation-help {
+  font-size: 0.85rem;
+}
+@media print {
+  .presentation-toggle,
+  .presentation-viewer {
+    display: none;
+  }
+}
 /* Full legal copies remain readable when expanded on narrow screens. */
 .legal-notices pre {
   max-inline-size: 100%;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
+}
+
+/* Optional tags and related reading share the native publication surface. */
+.publication-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin: 12px 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.875rem;
+}
+.publication-tags a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.article-related {
+  margin-block: 40px;
+}
+.article-related li {
+  margin-block: 12px;
 }

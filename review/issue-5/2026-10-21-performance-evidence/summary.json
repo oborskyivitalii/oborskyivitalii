@@ -1,0 +1,393 @@
+{
+  "schema": 1,
+  "overallPass": false,
+  "originalFullPerformancePass": true,
+  "readerSupplementPass": false,
+  "sourceCommit": "283b32f65f0589e85c0aa914d0990704dcf8ac38",
+  "sourceTree": "643304fa64c945c01f3b21e6d1d4f0d85696f8f5",
+  "artifactDigest": "edb8d18387d65ef2c6d67e109f93b95ed6f2fa859dd5afc0c4d87b2e5e14f406",
+  "collector": {
+    "commit": "f65f8629f2dac810d2e50739515f9da1c3d5477e",
+    "tree": "b6f06780c73c9ea68b3982ff88b42e9b06256af3",
+    "sourceDirty": false,
+    "scriptSha256": "1a1d9d238270b159681d269b5e71f2f2f669d40c6d89b8d5b0249f7d1ddeae10"
+  },
+  "counts": {
+    "lighthouseTrials": 36,
+    "primaryLighthouseTrials": 30,
+    "readerLighthouseTrials": 6,
+    "shortMotionWindows": 72,
+    "primaryFlights": 24,
+    "primaryRetentionCycles": 120,
+    "soakChunks": 10
+  },
+  "medians": [
+    {
+      "route": "index",
+      "profile": "mobile",
+      "trialCount": 3,
+      "metrics": {
+        "largest-contentful-paint": 1956.082,
+        "total-blocking-time": 62.5,
+        "cumulative-layout-shift": 0
+      },
+      "performance": 0.99,
+      "pass": true
+    },
+    {
+      "route": "index",
+      "profile": "desktop",
+      "trialCount": 3,
+      "metrics": {
+        "largest-contentful-paint": 462.46799999999996,
+        "total-blocking-time": 0.5,
+        "cumulative-layout-shift": 0
+      },
+      "performance": 1,
+      "pass": true
+    },
+    {
+      "route": "research",
+      "profile": "mobile",
+      "trialCount": 3,
+      "metrics": {
+        "largest-contentful-paint": 1625.299,
+        "total-blocking-time": 59.5,
+        "cumulative-layout-shift": 0
+      },
+      "performance": 1,
+      "pass": true
+    },
+    {
+      "route": "research",
+      "profile": "desktop",
+      "trialCount": 3,
+      "metrics": {
+        "largest-contentful-paint": 411.856,
+        "total-blocking-time": 0,
+        "cumulative-layout-shift": 0
+      },
+      "performance": 1,
+      "pass": true
+    },
+    {
+      "route": "writing",
+      "profile": "mobile",
+      "trialCount": 3,
+      "metrics": {
+        "largest-contentful-paint": 1662.9699999999998,
+        "total-blocking-time": 105.5,
+        "cumulative-layout-shift": 0
+      },
+      "performance": 0.99,
+      "pass": true
+    },
+    {
+      "route": "writing",
+      "profile": "desktop",
+      "trialCount": 3,
+      "metrics": {
+        "largest-contentful-paint": 421.46500000000003,
+        "total-blocking-time": 30,
+        "cumulative-layout-shift": 0.0006962609193683607
+      },
+      "performance": 1,
+      "pass": true
+    },
+    {
+      "route": "talks",
+      "profile": "mobile",
+      "trialCount": 3,
+      "metrics": {
+        "largest-contentful-paint": 1589.795,
+        "total-blocking-time": 30,
+        "cumulative-layout-shift": 0
+      },
+      "performance": 1,
+      "pass": true
+    },
+    {
+      "route": "talks",
+      "profile": "desktop",
+      "trialCount": 3,
+      "metrics": {
+        "largest-contentful-paint": 402.604,
+        "total-blocking-time": 24,
+        "cumulative-layout-shift": 0
+      },
+      "performance": 1,
+      "pass": true
+    },
+    {
+      "route": "credits",
+      "profile": "mobile",
+      "trialCount": 3,
+      "metrics": {
+        "largest-contentful-paint": 1598.726,
+        "total-blocking-time": 28,
+        "cumulative-layout-shift": 0
+      },
+      "performance": 1,
+      "pass": true
+    },
+    {
+      "route": "credits",
+      "profile": "desktop",
+      "trialCount": 3,
+      "metrics": {
+        "largest-contentful-paint": 398.187,
+        "total-blocking-time": 6.5,
+        "cumulative-layout-shift": 0
+      },
+      "performance": 1,
+      "pass": true
+    },
+    {
+      "route": "reader-1",
+      "profile": "mobile",
+      "trialCount": 3,
+      "metrics": {
+        "largest-contentful-paint": 4202.636,
+        "total-blocking-time": 87,
+        "cumulative-layout-shift": 0
+      },
+      "performance": 0.86,
+      "pass": false
+    },
+    {
+      "route": "reader-1",
+      "profile": "desktop",
+      "trialCount": 3,
+      "metrics": {
+        "largest-contentful-paint": 821.6625000000001,
+        "total-blocking-time": 0,
+        "cumulative-layout-shift": 0
+      },
+      "performance": 1,
+      "pass": true
+    }
+  ],
+  "individualTrialOutliers": [
+    {
+      "route": "index",
+      "profile": "mobile",
+      "run": 1,
+      "overIndividualBudget": [
+        {
+          "metric": "total-blocking-time",
+          "actual": 511,
+          "limit": 200
+        }
+      ],
+      "note": "Original acceptance uses three-run metric medians; individual observations remain retained."
+    },
+    {
+      "route": "writing",
+      "profile": "mobile",
+      "run": 3,
+      "overIndividualBudget": [
+        {
+          "metric": "total-blocking-time",
+          "actual": 256.5,
+          "limit": 200
+        }
+      ],
+      "note": "Original acceptance uses three-run metric medians; individual observations remain retained."
+    },
+    {
+      "route": "reader-1",
+      "profile": "mobile",
+      "run": 1,
+      "overIndividualBudget": [
+        {
+          "metric": "largest-contentful-paint",
+          "actual": 4225.08,
+          "limit": 2500
+        }
+      ],
+      "note": "Original acceptance uses three-run metric medians; individual observations remain retained."
+    },
+    {
+      "route": "reader-1",
+      "profile": "mobile",
+      "run": 2,
+      "overIndividualBudget": [
+        {
+          "metric": "largest-contentful-paint",
+          "actual": 4202.308,
+          "limit": 2500
+        }
+      ],
+      "note": "Original acceptance uses three-run metric medians; individual observations remain retained."
+    },
+    {
+      "route": "reader-1",
+      "profile": "mobile",
+      "run": 3,
+      "overIndividualBudget": [
+        {
+          "metric": "largest-contentful-paint",
+          "actual": 4202.636,
+          "limit": 2500
+        },
+        {
+          "metric": "total-blocking-time",
+          "actual": 264.00000000000045,
+          "limit": 200
+        }
+      ],
+      "note": "Original acceptance uses three-run metric medians; individual observations remain retained."
+    }
+  ],
+  "mobileCPU4": [
+    {
+      "route": "index",
+      "idlePaintP95Ms": 24.799999997019768,
+      "scrollPaintP95Ms": 22.100000001490116,
+      "idleBusyPercent": 12.883496841083867
+    },
+    {
+      "route": "research",
+      "idlePaintP95Ms": 29.899999998509884,
+      "scrollPaintP95Ms": 26.30000000447035,
+      "idleBusyPercent": 12.917383606203261
+    },
+    {
+      "route": "writing",
+      "idlePaintP95Ms": 22.899999998509884,
+      "scrollPaintP95Ms": 24.899999998509884,
+      "idleBusyPercent": 13.129321318536103
+    },
+    {
+      "route": "talks",
+      "idlePaintP95Ms": 23.5,
+      "scrollPaintP95Ms": 18.5,
+      "idleBusyPercent": 12.044852904366934
+    },
+    {
+      "route": "credits",
+      "idlePaintP95Ms": 17.80000000447035,
+      "scrollPaintP95Ms": 13,
+      "idleBusyPercent": 9.801767613762326
+    },
+    {
+      "route": "pmday-ai-both-sides:en",
+      "idlePaintP95Ms": 23.399999998509884,
+      "scrollPaintP95Ms": 23.399999998509884,
+      "idleBusyPercent": 12.252184767252796
+    }
+  ],
+  "offReduced": {
+    "windows": 36,
+    "callbacks": 0,
+    "paints": 0
+  },
+  "flightsAndRetention": [
+    {
+      "width": 1440,
+      "rate": 1,
+      "rows": 8,
+      "cycles": 40,
+      "before": {
+        "documents": 5,
+        "nodes": 5770,
+        "jsEventListeners": 98
+      },
+      "after": {
+        "documents": 5,
+        "nodes": 5770,
+        "jsEventListeners": 98
+      },
+      "maxEquivalentReadyMs": 3004.10000000149,
+      "rawReadyMsOfThatFlight": 3854.10000000149,
+      "slowestFrom": "index",
+      "slowestTo": "talks",
+      "overallMaxRawReadyMs": 3930.89999999851
+    },
+    {
+      "width": 390,
+      "rate": 1,
+      "rows": 8,
+      "cycles": 40,
+      "before": {
+        "documents": 5,
+        "nodes": 5774,
+        "jsEventListeners": 98
+      },
+      "after": {
+        "documents": 5,
+        "nodes": 5774,
+        "jsEventListeners": 98
+      },
+      "maxEquivalentReadyMs": 2764.60000000149,
+      "rawReadyMsOfThatFlight": 3814.60000000149,
+      "slowestFrom": "index",
+      "slowestTo": "talks",
+      "overallMaxRawReadyMs": 3831.7000000029802
+    },
+    {
+      "width": 390,
+      "rate": 4,
+      "rows": 8,
+      "cycles": 40,
+      "before": {
+        "documents": 5,
+        "nodes": 5774,
+        "jsEventListeners": 98
+      },
+      "after": {
+        "documents": 5,
+        "nodes": 5774,
+        "jsEventListeners": 98
+      },
+      "maxEquivalentReadyMs": 2956.2000000029802,
+      "rawReadyMsOfThatFlight": 4006.2000000029802,
+      "slowestFrom": "talks",
+      "slowestTo": "index",
+      "overallMaxRawReadyMs": 4256.39999999851
+    }
+  ],
+  "soak": {
+    "route": "research",
+    "declaredSeconds": 300,
+    "observedMs": 300076.39999999106,
+    "startHeapBytes": 3889004,
+    "endHeapBytes": 4758988,
+    "deltaBytes": 869984,
+    "heapGrowthPercent": 22.370354980349724,
+    "maxPaintP95Ms": 4.200000002980232,
+    "maxBusyPercent": 8.87769180045562,
+    "longTaskCount": 0,
+    "offCallbacks": 0,
+    "offPaints": 0
+  },
+  "readerDiagnostics": {
+    "representativeTrial": "reader-1/mobile/2",
+    "simulatedLCPMs": 4202.308,
+    "unthrottledObservedLCPMs": 193,
+    "lcpSelector": "div.reader-content > div.article-body > div.reader-introduction > p",
+    "imageRequests": 8,
+    "imageTransferBytes": 596703,
+    "totalTransferBytes": 746085,
+    "estimatedImageSavingsBytes": 120964,
+    "estimatedRenderBlockingSavingsMs": 220,
+    "causality": "Eager image payload and blocking resources are observed optimization candidates, not proved explanations of the complete simulated LCP gap."
+  },
+  "rawReportSha256": {
+    "lighthouse": "c09c7370bb1b6d8ec830c81751a739d2fc024572f2cb5c3adfcbc354f5316948",
+    "motion": "166d99579a10a02d1151ef292cf4cc48add8c5526fdc8744bcad3705556a2ddb",
+    "reader": "f77619135c15bc2d16296118ed0449e5c348f19d14c4406ecb34d86a1b310aed",
+    "originalExecution": "b75612b9576e335844b1c147665880403bd70cc29f68f9e828cf32368f5dab93",
+    "collectorExecution": "377f81d5132be1eac3d465e2c1cb5cff04571e3f009e2a7be74de2808dcb1646"
+  },
+  "limits": {
+    "labOnly": true,
+    "chromeOverride": "153.0.8010.0",
+    "managedExpectedVersion": "153.0.8010.12",
+    "physicalDevicesObserved": false,
+    "fieldINPObserved": false,
+    "readerNavigationRetentionObserved": false,
+    "noAutomaticRetries": true,
+    "productionEligible": false
+  }
+}

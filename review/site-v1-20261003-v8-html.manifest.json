@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "sourceCommit": "3651c5df126b0b1bc96588d22ff46b5f36b4a666",
+  "archive": "review/site-v1-20261003-v8-html.tar.xz",
+  "archiveSha256": "e0007067a3a3b2a01b648f209f0aae7524173892a72bfd2056ff772c33a8dcd7",
+  "members": [
+    {
+      "path": "review/site-v1-20261003-v8-credits-day.html",
+      "bytes": 1312643,
+      "sha256": "6ce6cc17a8b97e660639ad538cfdafdaed3e8e56005f1a87abb9944015b2a0ae"
+    },
+    {
+      "path": "review/site-v1-20261003-v8-credits-interactive.html",
+      "bytes": 1351859,
+      "sha256": "11ac2e905efd53e906158c9280b6520d8d03c69493e9f21ba72cf9e88b32fc03"
+    },
+    {
+      "path": "review/site-v1-20261003-v8-credits-night.html",
+      "bytes": 1312662,
+      "sha256": "e955c946100ba974cdd28aa92961a33ce35cd98948376ce51a5e9930187fbd66"
+    },
+    {
+      "path": "review/site-v1-20261003-v8-day.html",
+      "bytes": 1879144,
+      "sha256": "991f08db042a5a9ae8bb5b3cac88430ca57d7d30668ae71a609ecd2528cdb143"
+    },
+    {
+      "path": "review/site-v1-20261003-v8-index.html",
+      "bytes": 1369098,
+      "sha256": "1b0b71d1b8bd0df2fd337c54d155cd5b7bb7b5554baa7badd2e6fe96cbf06d23"
+    },
+    {
+      "path": "review/site-v1-20261003-v8-interactive.html",
+      "bytes": 1918392,
+      "sha256": "fc91bd11849a340024c6815159f57cc36fe67633b8d84cfc069b98fa31f88ab1"
+    },
+    {
+      "path": "review/site-v1-20261003-v8-night.html",
+      "bytes": 1879171,
+      "sha256": "0f08c34a5d34b38ca2778285635dc209e7d39f417779c5a2d425459e4ac3fb21"
+    },
+    {
+      "path": "review/site-v1-20261003-v8-research-day.html",
+      "bytes": 2037455,
+      "sha256": "04bc3ba5a670ee077a12adfca5e880d427fe67a97663df079d5a9e3d754464a7"
+    },
+    {
+      "path": "review/site-v1-20261003-v8-research-interactive.html",
+      "bytes": 2076679,
+      "sha256": "48d6097ad80cd2cfbc2ea69d1c3bab8c83c36549dc3d399b2225708bc5af6f4f"
+    },
+    {
+      "path": "review/site-v1-20261003-v8-research-night.html",
+      "bytes": 2037476,
+      "sha256": "6fa8ab9d4786c0777dd537693a03f3976066a5258a251d75c76395a8a2d0aa54"
+    },
+    {
+      "path": "review/site-v1-20261003-v8-talks-day.html",
+      "bytes": 1687990,
+      "sha256": "b8b0bbc11faa519a119ad316530d0035049f1057c96a115126401a01e01cecb3"
+    },
+    {
+      "path": "review/site-v1-20261003-v8-talks-interactive.html",
+      "bytes": 1727214,
+      "sha256": "1e4392d01adf17e1a7e6bdff4b6429a404acb0737ed388d471935d88f8352f3c"
+    },
+    {
+      "path": "review/site-v1-20261003-v8-talks-night.html",
+      "bytes": 1688011,
+      "sha256": "05eda0eb6d7627eed268386fc170bb1d8abd6ebc6a8b0a923a39024ce7dd1048"
+    },
+    {
+      "path": "review/site-v1-20261003-v8-writing-day.html",
+      "bytes": 1375695,
+      "sha256": "3eb5fc972d6077f9a8d1806e01165afd068cf976f88591b03a01f80d571611d5"
+    },
+    {
+      "path": "review/site-v1-20261003-v8-writing-interactive.html",
+      "bytes": 1421017,
+      "sha256": "53f90b45132c6d48eae85631e5a5e78d5864c9a5d7ebc3fffe96088d7b9852cd"
+    },
+    {
+      "path": "review/site-v1-20261003-v8-writing-night.html",
+      "bytes": 1375714,
+      "sha256": "39df247d19c7ead428465f3cd93ab14e91edc1c3c9448978e71b2b0919c48e1e"
+    }
+  ]
+}

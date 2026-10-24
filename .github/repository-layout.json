@@ -142,6 +142,9 @@
     "tools/quality/README.md",
     "review/root-history-20261007/README.md",
     "guides/CODE-STYLE.md",
-    "guides/SITE-PRODUCTION.md"
+    "guides/SITE-PRODUCTION.md",
+    "guides/ARTICLE-WORKFLOW.md",
+    "guides/ARTICLE-MATERIALS.md",
+    "guides/SITE-CONTENT-RELEASE.md"
   ]
 }
