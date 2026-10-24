@@ -91,6 +91,26 @@ test('reading batch records bind actual generated edition bytes and reject tampe
     fs.rmSync(directory, { recursive: true, force: true });
   }
 });
+test('R3 compatibility keeps exact aliases and mandatory rights in all three editions', () => {
+  const delivery = require('../tools/staging/package.cjs');
+  for (const edition of ['plain', 'staging', 'production']) {
+    const value = manifest('issue122-r3-platform-' + edition);
+    assert.equal(delivery.publicationRequired(value, value.components), true);
+    assert.throws(
+      () => delivery.publicationRights(null, value, undefined, value.components),
+      /licensed publication rights record required/
+    );
+    for (const name of Object.keys(
+      motion.reviewedRuntime('issue122-r3-platform-' + edition).files
+    )) {
+      for (const alias of [name, 'runtime/' + value.variant.fingerprint + '/' + name]) {
+        const mixed = structuredClone(value);
+        mixed.files[alias].sha256 = '0'.repeat(64);
+        assert.throws(() => motion.select(mixed), /Color bytes/);
+      }
+    }
+  }
+});
 function blockSamples(width = 1440, direction = 'forward', count = 2) {
   const plan = motion.rowPlan(width, count),
     sign = direction === 'forward' ? 1 : -1;
@@ -260,6 +280,7 @@ test('only reviewed historical and current launch plain/staging tuples select a 
     'issue39-writing-tbt',
     'issue39-css-clock',
     'issue122-reading-batch',
+    'issue122-r3-platform',
   ])
     for (const edition of ['plain', 'staging']) {
       const id = family + '-' + edition,
@@ -295,6 +316,7 @@ test('production Color has a separate exact edition identity with unchanged appr
     'issue39-writing-tbt',
     'issue39-css-clock',
     'issue122-reading-batch',
+    'issue122-r3-platform',
   ]) {
     const plain = motion.reviewedRuntime(family + '-plain'),
       production = motion.reviewedRuntime(family + '-production');

@@ -9630,6 +9630,12 @@
       "purpose": "R2 bounded repository-lane requirements, independent reviews, source checks and protected delivery evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-122/2026-10-24-r3-runtime-compatibility.md": {
+      "kind": "file",
+      "purpose": "R3 exact-runtime bootstrap dependency, prospective byte/source freeze, independent reviews and compatibility delivery evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

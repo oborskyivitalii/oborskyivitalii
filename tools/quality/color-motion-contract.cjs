@@ -5,6 +5,20 @@
 const assert = require('node:assert/strict');
 const common = require('./common.cjs');
 const families = {
+  // Exact integrated platform bytes; acceptance still uses the existing full route.
+  issue122R3Platform: {
+    behavior: 'fixed-blocks',
+    articleReading: 'stationary',
+    readerInteractions: true,
+    readerWholeBlocks: true,
+    readerPaper: true,
+    readerDeferredMedia: true,
+    baseEngine: '43054e4d9861831ec39cbf2e4217ca33b13959bb329959fd7a86413b2ddea3d2',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '16edd5e5d9ad2eb7b3a61deef2aa1feb1cfc287ce85eeaf42e2a174f30aec361',
+    archive: '24691f49c8c0b458958de6422396af4a6ea73f2d6bffa610e4f0ca788b04f383',
+    navigation: '82d59217e998a5ec5f158ec7712947f07e1ad9329691c64bb09e58f54e625f44',
+  },
   issue5ReaderFastMedia: {
     behavior: 'fixed-blocks',
     articleReading: 'stationary',
@@ -83,6 +97,27 @@ const families = {
   },
 };
 const runtimes = [
+  {
+    id: 'issue122-r3-platform-plain',
+    family: 'issue122R3Platform',
+    edition: 'plain',
+    fingerprint: 'ba98907322811d153fb4d67a1941bf847c6b505b15164943902774a95556d965',
+    styles: 'feec1cfd6dc5c920f2a2cbfd8a0f7b4b97b273315aa8b57d6591e65aff4aea20',
+  },
+  {
+    id: 'issue122-r3-platform-staging',
+    family: 'issue122R3Platform',
+    edition: 'staging',
+    fingerprint: '4040aee07b41e837fa0f8a95c7ecd0d263922097e62e9dbcbc07668729ab3de6',
+    styles: 'f742ff9a2e9e0bf2d1f3a8662f3c3080b77fed8c35cf746a8be90ccc8f2b9379',
+  },
+  {
+    id: 'issue122-r3-platform-production',
+    family: 'issue122R3Platform',
+    edition: 'production',
+    fingerprint: '10ea7815a570596cecc18432660293f87bf0e6a9a836d91495fd48dbc6a6ce14',
+    styles: 'feec1cfd6dc5c920f2a2cbfd8a0f7b4b97b273315aa8b57d6591e65aff4aea20',
+  },
   {
     id: 'issue5-reader-fast-media-production',
     family: 'issue5ReaderFastMedia',

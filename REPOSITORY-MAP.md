@@ -789,6 +789,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-122/2026-10-24-fast-uri-repair.md](review/issue-122/2026-10-24-fast-uri-repair.md) | Exact App setup/native negative evidence, blocked positive route and separately reviewable minimal fast-uri lock repair preparation; no main delivery authority. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-122/2026-10-24-r1-manual-admission.md](review/issue-122/2026-10-24-r1-manual-admission.md) | R1 bounded manual-admission requirements, four independent roles, current-source checks and native delivery evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-122/2026-10-24-r2-repository-lane.md](review/issue-122/2026-10-24-r2-repository-lane.md) | R2 bounded repository-lane requirements, independent reviews, source checks and protected delivery evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-122/2026-10-24-r3-runtime-compatibility.md](review/issue-122/2026-10-24-r3-runtime-compatibility.md) | R3 exact-runtime bootstrap dependency, prospective byte/source freeze, independent reviews and compatibility delivery evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/issue-126/
 

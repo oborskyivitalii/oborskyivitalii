@@ -4,32 +4,30 @@ Dated continuity, not live authority. Last verified: **2026-10-24**.
 
 ## Snapshot
 
-- Owner remains issue122. R1/PR142 is delivered; automatic admission fan-out is removed. Its native receipts remain in the live issue and are not tasks to repeat.
-- R2 enabling PR143 is delivered normally as main7ee63aee00e2047714d47e05aae143828e10fda0. Tested source de47a7d7805f71f511850d3d54daecf4a9dcf7c7 and actual merge share tree6349d3b7fc62e65329c96ba3d7df106c84375274.
-- Basic40125233820, RI40125233812, owning40125233856, final admission40127080952/owning40127080970, owner stage40125512752, postmerge40127155447 and actual-main navigation40127155521 passed.
-- Accepted staging stays bound to tested source de47a7d, public af01ce28eca0b89b1e669ff7cd82a7cce9fad3848f221ce3f26b17426499bd9e and package dcc91a3c8bf5bf860861fb8d93a190f52aabfc9976b9503b8f601d98eb39f607; it is not relabeled at a repository merge.
+- Owner remains issue122. R1/PR142 and R2/PR143 plus real repository-only acceptance PR144 are delivered. Protected main3651c5df126b0b1bc96588d22ff46b5f36b4a666; do not restart their proof campaigns.
+- PR144 merged without website work. App5453173, original Basic/RI/conditional Staging and owning15368 checks are required with strict freshness/no bypass. Actual postmerge40131619768 and main navigation40131619315 passed; parent AC02 alone is complete.
+- R3 is authorized. Existing PR79 head86a270461a686d2e69d6cefc19ea5c041501c554 is frozen into isolated preparation; its nine latest article/review paths remain verbatim. PR79 stays Draft/unmodified. Live #122 owns current plan/status.
 
 ## Decisions
 
-- Maintainer requires status after each delivered step: completed outcome, next single step and full remaining plan in live #122. Keep R2 to one enabling PR plus this meaningful handoff/RI acceptance PR; R3 stays separate.
-- Protected-base classification, existing App5453173 and selected-test registry own routing. Repository deltas omit website work; controls/mixed/unknown/rights inputs retain the conservative full route. The complete actual delta decides eligibility.
-- Controls require an owner/main reviewed full SHA and retained full obligations. Candidate code never enters the issuer. Source reviews and real old-full enabling delivery establish this bounded human-reviewed route without another experiment.
-- Keep the conditional Staging admission guard; it authenticates repository evidence without website staging. Add the App and already executed owning context alongside original Basic/RI/Staging, strict up-to-date and no bypass. Verify actual live settings before acceptance merge.
-- Protected outage recovery verifies/restores the original full requirements before removing an unavailable App. Explicit /stage and full-proof fallback remain executable; no bypass or second publisher.
+- User requires status after each delivered atomic step: completed result, exact PR/run, next single step and full remaining plan. Avoid new frameworks, publishers, broad negative matrices or unrelated editorial work.
+- Main-owned privileged package verification has a closed Color runtime inventory. One compatibility-only delivery must precede the stable platform integration; live #122 records four implementation deliveries instead of three, plus completed repository acceptance and later ordinary content delivery.
+- Compatibility adds only exact future three-edition tuples and mandatory rights IDs through the existing reviewed-SHA/conservative full route. All prior families, guards, budgets and rights remain. No authored runtime/site/article change; normal staging metadata/deployment may advance.
+- Stable platform companion substitutes for platform delivery inside concurrent PR79. Keep unaccepted R37 review/rights-pending article outside ordinary public packages; editorial/native-PDF/rights decisions stay with #5/#2.
 
 ## Open work
 
-- This source freeze records delivered enabling work and prepares the single real MEMORY/existing-review/RI acceptance merge. Actual App/aggregate dispatch, protection addition, no-website merge/postmerge and unchanged accepted-site observation remain pending here; the live issue receipt supersedes these pending statements after delivery.
-- Canonical runbook: guides/SITE-STAGING.md. Versioned source reviews/native receipts: review/issue-122/2026-10-24-r2-repository-lane.md. Preserve failed first Basic40124788222 (727/728 filename collision); corrected source passed728/728 without relaxing its guard or budget.
-- All parent AC01–AC08 remain open at this freeze. R3 owns authenticated accepted platform, complete intervening history, existing content checks and actual independent release/recovery through #5/PR79. Editorial/article/build backlog stays with that owner.
+- This freeze prepares the compatibility-only candidate. Source12/12 tests and four scoped independent roles passed; native Basic/RI/owning/full staging/App/protected merge/postmerge remain pending here. Later live issue delivery receipts supersede these pending statements.
+- Exact prospective runtime/producer freeze and role/check evidence: review/issue-122/2026-10-24-r3-runtime-compatibility.md. Prospective generated packages are diagnostic dirty-source evidence, never accepted native artifacts.
+- After compatibility: stable full platform acceptance S; authenticate complete intervening history and genuine repository-only M; meaningful independent content C through existing publisher with required recovery; final contracts/ACs/timings. No manufactured article/event change for CI.
 
 ## Next session
 
-1. Revalidate live #122/main/PR state. Do not repeat completed PR143 delivery because older frozen records say pending; the latest actual receipt controls.
-2. Finish or verify this exact repository acceptance and required-producer/protection proof; report R1/R2 outcomes and the complete remaining plan. No website action is needed solely for this handoff.
-3. After R2, take R3 only when requested: platform/history compatibility, one existing content release and recovery, then reconcile remaining ACs/runbooks/timings before closing #122.
+1. Revalidate live #122/main/active PR refs and actual latest receipt. Do not repeat a delivered step because this frozen memory says pending.
+2. Deliver or verify the exact compatibility candidate through normal protection, then report status before taking the stable platform companion.
+3. Keep parent issue open until actual content/recovery and remaining original acceptance criteria are reconciled; no production/DNS action follows automatically.
 
 ## Maintenance
 
-- Keep five sections/120lines. Already catalogued MEMORY/review and generated RI are the only acceptance sources; no new path/catalog/control-map exception. Coupling verification must remain fresh.
-- Live delivery receipts supersede frozen pending states. Receipt-only updates and deterministic RI regeneration do not recurse into implementation reviews. Revalidate exact refs, never relabel old artifacts or restart delivered experiments.
+- Keep five sections/120lines. Necessary catalog, coupling identity and RI outputs remain in their owning delivery; no higher bound, broad scanner exemption or receipt-only follow-up PR.
+- Preserve exact accepted-site source/artifact evidence after repository merges. Revalidate source/predecessor leases; never relabel an old artifact at a new tree.
