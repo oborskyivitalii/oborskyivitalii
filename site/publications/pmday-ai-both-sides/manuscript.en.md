@@ -2,7 +2,7 @@
 
 *AI Changes Both Sides of Software Engineering*
 
-Vitalii Oborskyi · Editorial draft R32 · 24 October 2026
+Vitalii Oborskyi · Editorial draft R33 · 24 October 2026
 
 ![A solitary person stands before a narrow opening of light between monumental dark walls.](asset:cover)
 
@@ -14,9 +14,7 @@ The dashboard calls this progress. The person handling the next incident has a d
 
 What if faster generation does not improve delivery—or leaves us unable to recover what we built? What if the person entrusted with the final decision cannot meaningfully make it?
 
-Engineering is a cycle: define the problem, propose a solution, implement, test, and revise against evidence. A mistaken problem statement can make an efficient solution irrelevant.
-
-My UA Online PMDay 2026 Autumn talk examines two problems: rebalancing AI-assisted delivery and governing model judgment inside products.
+Engineering starts with the problem, not the tool. My UA Online PMDay 2026 Autumn talk connects two higher-order tasks: rebalancing the SDLC without losing its essential functions, and engineering dependable control around consequential model judgment. **Both change what leaders must require, verify, staff and fund before implementation.**
 
 Throughout this essay, **“What if not?”** is a deliberate refrain, not a forecast that every failure will occur. Each turn challenges an attractive assumption; together, they reveal the breadth and depth of the problem space before we rush to solutions. The point is practical: decide what to verify, constrain, fund or simplify.
 
@@ -24,17 +22,15 @@ Throughout this essay, **“What if not?”** is a deliberate refrain, not a for
 
 ## When ideas outlive their authors
 
-Writing let ideas survive their authors; printing carried them across borders and centuries. Research on printing and the Reformation [\[3\]](https://digitalcommons.chapman.edu/economics_articles/99/) connects that circulation with consequences beyond book production. Technology changes collective capability, not just task speed.
+Writing let ideas outlive their authors; printing extended their reach. Research on printing and the Reformation [\[3\]](https://digitalcommons.chapman.edu/economics_articles/99/) traces consequences beyond books: technology changes collective capability, not only task speed.
 
-The title echoes Lem’s *Summa Technologiae* [\[31\]](https://english.lem.pl/works/essays/summa-technologiae): the subject is what living with our technology requires. LLMs extend delegation to interpretation, design, implementation and explanation. “Delegating thinking” describes that practical change, not consciousness.
+The title echoes Lem’s *Summa Technologiae* [\[31\]](https://english.lem.pl/works/essays/summa-technologiae). LLMs extend delegation to interpretation, design and explanation. “Delegating thinking” describes practical work, not consciousness; living with its consequences is the engineering question.
 
-Who builds software and what it does remain separate questions. An agent can build a conventional application; a human team can build a product that delegates decisions to a model.
+An agent can build conventional software; a human team can build a product whose runtime decisions depend on a model. The two problems are distinct.
 
 > “The more technology takes care of us, the more carefully we must take care of it.”
 
 — Stanisław Lem; translated from Polish for this article. Publisher-supplied excerpt: [\[4\]](https://instytutsprawobywatelskich.pl/stanislaw-lem-wiktor-jazniewicz-w-strachu-przed-antymateria-1381-cytatow/).
-
-A demonstration shows that a capability can work. Engineering asks what its use requires, including when it fails.
 
 ## I. How We Build: Rebalancing the SDLC
 
@@ -56,7 +52,7 @@ The September revision of *Writing Code vs. Shipping Code* [\[7\]](https://www.n
 
 The roughly 30% release gain matters. Would it justify additional review, maintenance and recovery costs? These multipliers cannot answer for your team. Dependencies, duplication and deferred cleanup may bring costs later. DORA [\[8\]](https://dora.dev/insights/balancing-ai-tensions/) associates adoption with higher throughput—and greater instability.
 
-The NBER authors’ weak-link model treats upstream output and downstream human effort as strong complements. It does not identify every team’s constraint. Agents reaching later stages may narrow the gap; experiments filtered out downstream need not accumulate as unfinished work. [\[7\]](https://www.nber.org/papers/w35275)
+The NBER weak-link model describes complementary upstream and downstream work, not a universal bottleneck. If automation expands downstream capacity **while preserving verification, shared understanding and recovery**, the imbalance can disappear. Changes filtered out before review need not accumulate in its queue. [\[7\]](https://www.nber.org/papers/w35275)
 
 Cognition introduced Devin [\[5\]](https://cognition.com/blog/introducing-devin) in 2024 as the “first AI software engineer”. In March 2025, Dario Amodei forecast AI writing 90% of code within three to six months [\[6\]](https://www.cfr.org/event/ceo-speaker-series-dario-amodei-anthropic), potentially essentially all within a year. Those dates passed; the industry-wide share remains unverified. The Claude Code team reports about 90% [\[12\]](https://claude.dev/blog/solving-code-review-at-anthropic/): a vendor-team report, not independent corroboration or a measure of all engineering.
 
@@ -64,7 +60,7 @@ Cognition introduced Devin [\[5\]](https://cognition.com/blog/introducing-devin)
 
 ### Preserve What Review Does
 
-Review deserves examination: Chen and Stratton [\[36\]](https://fion.ac/jellyfish.pdf), using data from 718 firms, estimate a 49% agent-associated increase in PR submission-to-merge time. That elapsed interval is not active reviewer effort; the evidence is observational.
+Chen and Stratton [\[36\]](https://fion.ac/jellyfish.pdf), studying 718 firms, estimate **49% longer PR submission-to-merge time associated with AI agents**; they find no statistically significant effect of AI assistants on the examined review measures. These observational intervals include waiting and rework, not just active reviewer effort.
 
 Anthropic’s Code Review announcement [\[10\]](https://claude.com/resources/articles/code-review) addresses review pressure while leaving approval to people. Microsoft’s Jay Parikh [\[11\]](https://commandline.microsoft.com/new-rules-for-builders-agentic-ai-development-jay-parikh-build-2026/) urges builders not to let review become a bottleneck. First-pass review moves to agents; people retain architectural oversight. He also warns that shorter shipping cycles leave less time to uncover bugs.
 
@@ -74,11 +70,11 @@ Suppose defect detection improves, but incident investigation becomes harder. Th
 
 Anthropic reports [\[12\]](https://claude.dev/blog/solving-code-review-at-anthropic/) that merged Claude Code PRs more than doubled while the reverted share fell over 40% between June and September 2026. Approvals bind to a specific commit; agents cannot fill required human approval slots. These internal results do not establish causality or portability, and a lower reverted share need not mean fewer reversions. The team acknowledges gaps in formal shared-understanding processes.
 
-Maintainers need context to change dependencies; teams need shared context to decide; operators need situational awareness to intervene; users need familiarity to benefit.
+Maintainers need design context, teams shared knowledge, operators incident awareness and users usable workflows—not identical levels of detail.
 
 In a matched-control study, Agarwal, He and Vasilescu [\[13\]](https://arxiv.org/html/2601.13597v2) estimate increases in SonarQube’s Cognitive Complexity of 34.85% for agent-first repositories and 42.87% for those with prior AI-IDE exposure, controlling for lines of code. GitClear [\[14\]](https://www.gitclear.com/the_ai_code_quality_maintainability_gap) reports an 81% increase in its normalised duplicated-block measure from 2023. These are warning signals, not measurements of human comprehension or proof of AI causation.
 
-Empirical work links Cognitive Complexity with comprehension time and perceived difficulty [\[32\]](https://arxiv.org/html/2007.12520v1), while another, smaller study finds limited predictive accuracy [\[33\]](https://link.springer.com/article/10.1007/s10664-023-10396-7). Interacting conditions can make a small change disproportionately hard to reason about. No score supplies a universal conversion to human effort.
+Studies disagree on how reliably Cognitive Complexity predicts human comprehension [\[32\]](https://arxiv.org/html/2007.12520v1) [\[33\]](https://link.springer.com/article/10.1007/s10664-023-10396-7). Interacting changes can still compound cognitive load; structural metrics remain proxies, not measures of team understanding.
 
 Tools, abstractions and learning can raise comprehension capacity. The operating limit is reached when the team cannot explain critical behaviour or diagnose and contain failures in time.
 
@@ -154,9 +150,9 @@ Measure task completion, adoption, time to benefit and support burden. Sequence 
 
 The account-recovery assistant now interprets requests, retrieves guidance and proposes actions. Even without permission to change access, its guidance can influence someone who has it. Read-only does not mean consequence-free.
 
-In my *Uncertainty Architecture* [\[20\]](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture), this is a *Thinking System* [\[21\]](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/00-doctrine/uncertainty-in-the-controlled-object.md): at least one consequential runtime responsibility depends partly on probabilistic model judgment. The definition describes implementation, not consciousness or safety.
+Traditional control, security and human-factors principles still apply. Consequential model judgment changes how they must be justified: open-ended inputs admit semantic errors, and changed models, retrieval or providers can invalidate previous evidence without an application release. In my *Uncertainty Architecture* [\[20\]](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture), a *Thinking System* [\[21\]](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/00-doctrine/uncertainty-in-the-controlled-object.md) has consequential runtime responsibilities partly dependent on such judgment. This is a scope definition, not a claim of consciousness or a proven universal architecture.
 
-The following six assumptions need testing—and continued justification after release.
+Six assumptions need continued testing.
 
 ### Enforce the boundary before delegation
 
@@ -248,7 +244,7 @@ Uncertainty Architecture’s control-loop anatomy [\[27\]](https://github.com/Un
 
 The application denies account-access changes until a qualified person approves the specific action. Without a reviewer, it also suppresses model-generated recovery advice, displaying only a fixed, preapproved route to the verified recovery channel. The model cannot add steps or expose account-specific information. Case-specific recovery waits for the staffed process; waiting never becomes approval.
 
-This bounded release provides routing, not account-specific recovery. Test the fixed output, isolation from account data and receiving capacity. A static page or simple rule could deliver the same approved route.
+This bounded release shows where delegation must stop, **not that AI adds value**. Test data isolation, fixed output and receiving capacity. A static page could offer the same route; useful AI delegation needs separate evidence.
 
 ### Reassess authority when conditions change
 
@@ -268,15 +264,15 @@ Read the loop as conditions for action: a proposal must pass the relevant checks
 
 ## III. What If Not? From Assumptions to Project Decisions
 
-**Getting the problem statement right is the first engineering decision.** Frame AI-assisted delivery merely as faster code generation, and we may accelerate one SDLC node while losing the functions that make the chain understandable and recoverable. Frame an agentic product merely as model integration, and we may deploy a capable component without the dependable control system needed to operate it.
+**The first investment decision already depends on the problem statement.** Approving coding agents without assessing review capacity, shared understanding, maintenance and recovery leaves the delivery problem incomplete. Approving an agentic product without specifying authority, validation, intervention, fallback and full operating cost leaves the control problem incomplete. Both omissions shape the project before implementation starts.
 
-The prominent public marketing narrative often centres on speed, autonomy and model capability. Those advances matter, but do not define the complete engineering problem. **Before implementation**, identify actual constraints, functions to preserve, enforceable boundaries, independent evidence, human coverage and recovery. That framing changes requirements, acceptance criteria, the risk map, staffing and the full operating budget.
+Product narratives understandably highlight speed, autonomy and model capability. Those component gains matter, but do not establish system performance. **Before implementation**, identify actual constraints and critical functions, set boundaries and evidence thresholds, and budget human capacity and recovery. The diagnosis changes requirements, acceptance criteria, risk and staffing.
 
 Compare the AI path with both the current process and the simplest credible safe alternative under the same safety requirements. Use comparable cases, data and staffing, with the same task, identity requirements and definition of successful recovery.
 
 Does the model improve completed recoveries, completion time or unnecessary transfers enough to justify its full cost? Include maintenance, support and oversight. Clicking a link is not recovery; gains from the shared downstream process do not establish the model’s contribution.
 
-Set the required gain before the comparison. If it adds no useful benefit, choose the simpler path; if evidence is insufficient, retain the bounds. Better routing still does not authorise broader advice or action.
+A routing gain is not proof of useful recovery or permission for broader action.
 
 For the recovery team, these **illustrative pilot limits** turn that framing into decisions. Set criteria before collecting results; these are not measured findings or universal thresholds.
 
@@ -450,16 +446,16 @@ Numbered citations refer to the sources below. Source notes retain the evidence 
 
 ## How to cite this draft
 
-Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R32, 24 October 2026.
+Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R33, 24 October 2026.
 
 Unpublished author-review edition. Cite the revision; no DOI or final publication URL has been assigned.
 
 ```bibtex
-@misc{oborskyi2026sumR32,
+@misc{oborskyi2026sumR33,
   author = {Oborskyi, Vitalii},
   year = {2026},
   title = {The Sum of Our Technology: AI Changes Both Sides of Software Engineering},
-  note = {Editorial draft R32, 24 October 2026; unpublished}
+  note = {Editorial draft R33, 24 October 2026; unpublished}
 }
 ```
 
@@ -479,6 +475,7 @@ Vitalii Oborskyi retains editorial responsibility.
 
 24 October 2026:
 
+- **R33:** Sharpened the two system-level problems for engineering leaders, qualified evidence and bounded delegation, and connected problem framing to project decisions without expanding scope.
 - **R32:** Sharpened the two higher-order engineering problems: SDLC rebalancing under machine–human speed asymmetry, and bounded control around probabilistic model judgment. Linked both to early project framing and planning.
 - **R31:** Restored the “What if not?” refrain as a deliberate rhetorical device to reveal the problem space and turn challenged assumptions into engineering decisions.
 - **R30:** Combined problem-led headings, consolidated repeated arguments and clarified project decisions; native print hierarchy and grouping improved.
