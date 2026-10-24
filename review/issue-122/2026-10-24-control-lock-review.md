@@ -140,12 +140,66 @@ the precise dispositions. Six existing secret-ledger/checksum regression cases
 passed without skips. This is narrow public-identifier classification, not a
 credential or blanket entropy exception, and does not authorize delivery.
 
-The new corrected commit still needs native source/RI/owning/full owner-stage,
-eligible admission, protected merge and actual postmerge verification. Main
-protection and the App are unchanged.
-No source green fixture substitutes for those actual native observations.
+## Completed native delivery
 
-After completing these two tasks, report the result and next steps before any
+Final tested H: `1f270e0def193b65362a73382ac28f77cd6c2aca`.
+Actual protected-main merge M: `dbb11f0919c0c436d0de9df75edc569c0fc69b8d`,
+parents3bcba809/1f270e0d. Both complete Git trees are exactly
+`aa9ac6a101b29f61b99890c6a185a5bccf6cfde3`; root verified the actual Git objects.
+This receipt-only branch does not modify that tested or merged source.
+
+- Native Basic40104634971/1:708/708 in147586ms under180000ms. White-box
+  authenticated original ZIP12563847569 SHA256
+  `94651baa222ac24cbd82f9eb650674a21b0615f0cb851e82c224796bc98f4a0e`,
+  clean exact source before/after, all12 focused and existing ledger cases
+  actually executed, no skips/errors/stderr. Navigation40104634951 and owning
+  acceptance40104634954 passed; preview smoke40104634969 passed.
+- Complete owner stage40104889575/1 SUCCESS:26/26 prepublication guards,
+  708 Node/128 Python, security engines and dependency audits, static/host/browser,
+  stage gate, stable promotion, merge admission and new native receipt. Code
+  physically authenticated prepublication ZIP12564760992 SHA256
+  `343a7a39f7f788d1b604625387fe545d71d035419e4031ae04a107570b3e8055`
+  and package ZIP12563929715 SHA256
+  `9ee3003310f50fe45cbfab5cbe7e063bb5e964abd5b660e9425326c6d19f67c0`;
+  every raw-report hash and34/34 package file hashes matched.
+- Exploratory authenticated host ZIP12564004761 SHA256
+  `d4521d307d886a48cf34b98b203b1facdab6096dc2dbed4307349131d0531a1f`
+  and browser ZIP12564666576 SHA256
+  `d918f9301a111da8e67c1f5ce283a864251aba4e053431044534bbf54414c051`.
+  Actual coverage:29 served-file hashes,6 journeys/30 route observations,
+  2 navigation/10 failure/7 analytics cases,2 CPU samples/4 flights/2 mobile
+  Lighthouse trials. Research/Writing LCP2158.184/2196.7965ms, TBT36/115ms,
+  CLS0; original2500ms/200ms/0.1 limits preserved. Original trace/log hashes
+  matched. Production-only optional matrices retain valid inapplicability.
+- Requirements authenticated original gate12563839199 SHA256
+  `18e933978050039eba62e3d25a71e12909c4f23ce687513e27d102f2d5256f74`
+  and new receipt12564577376 SHA256
+  `9796a2ef8329c226db00358b4875ecf17f80877391140a1f287ef23c20e7f543`.
+  Exact PR140/H/controller3bcba809/run40104889575/attempt1 and native producer
+  job120908493959/upload agree. Bounded staging pass retains fullGate:false,
+  productionEligible:false and deploymentAuthorized:false in its reports.
+- Eligible PR admission40106375850/1 job120908804683 SUCCESS, refreshed owning
+  mapping40106375787 SUCCESS; native proof binds H/tree/current protected main,
+  stage/attempt and all three actual source-admission jobs. PR140 then merged
+  normally with expected H; no protection or App change/bypass.
+- Actual postmerge40106466559/1 job120909076542 SUCCESS. Original identity
+  ZIP12565090568 SHA256
+  `fcc97021924e7db27f75c5f536c4af3bc10939c5c18650e9e6bc8a5e51764697`
+  binds tested H, actual M, identical tree, stage40104889575/1 and unchanged
+  public bytes. Main navigation/RI40106465782 job120909074252 SUCCESS.
+  Requirements independently authenticated the original ZIP, actual Git objects,
+  merged PR and both native jobs; both bounded tasks may complete.
+
+Accepted public digest:
+`51e46cfd2ece3af9cd6beb89e143863d254a1f2f872ed059ed1c810f2f35864e`.
+Tested package digest:
+`131b36ccd5f00781ae60db6c8f4bef3f6086427eaee71e9cb1919534326e39b2`.
+The tested package remains bound to H; it was neither rebuilt nor relabeled M.
+Earlier failed/skipped attempts retain their original dispositions. Current
+App control rejection remains nonrequired on main, original three requirements
+remain authoritative, and production is unchanged.
+
+These two tasks are delivered. Report their result and next steps before any
 third implementation. Independent candidate-toolchain execution, trusted audit
 integration, package-content verification, general control evolution, per-PR
 isolation and synchronous freshness remain separate work. This prototype does

@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "ea2beb6f47b8abefc9a155a987eda8e2ac53feb8b99aad442c1949810657ae6f",
+    "digest": "4dde8451aa27d82b9dae15c7c6aef907086d44d8fa476de743d970616f0711fa",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -341,7 +341,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "f5a90a05f3207875e3a173921dc3308c99d07ee6203226c48e09351c58b2db8b"
+        "sha256": "ec939df46c5b5e84e32ef15bae1d15fd4a655b8654274d10ded8cdf4c484214e"
       },
       {
         "path": "NOTICE.md",
@@ -905,7 +905,7 @@
       {
         "path": "review/issue-122/2026-10-24-control-lock-review.md",
         "identity_mode": "content",
-        "sha256": "36b00a7e02f38fd79f8dbc9320710906c9510355df5130843cddf139183aff3a"
+        "sha256": "e9b99a3d87fac57c0f8f30c765a31a2ad9cc5dfa6eef8e301b3c8a733d5c01e3"
       },
       {
         "path": "review/issue-122/2026-10-24-fast-uri-local-evidence.tar.gz",

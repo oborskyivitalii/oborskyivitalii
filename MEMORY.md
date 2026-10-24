@@ -4,32 +4,30 @@ Dated continuity, not live authority. Last verified: **2026-10-24**.
 
 ## Snapshot
 
-- Baseline protected main before this prototype is `3bcba8099e8ac80a94f8431afa8b41650cc8c690`, tree `74fb5ee212a3e8bcb6ab5059a54b4c27ce046076`; live issue122/active PR must revalidate later delivery. Original three strict main checks and separate production protection remain authoritative.
-- App5453173/install174757834 is configured; completed paired App/SHA proof and cleanup are retained in evidence-only commit7f5708e2/branchwork/issue-122-proof-evidence-20261024 and issue receipt6385004122. Main139 closed unmerged, isolated138 merged only into disposable probe; temporary rule/ref removed. Never repeat that proof merely after a chat interruption.
-- Actual accepted staging at this baseline is H d33725f4/stage40097427616/1, publicebcd7e479e529e0793b37f6c946d283a1a64582fbe8281a941f43744fc04c43d/packagee419e35f0f21697b7c6dbb1fa37561e17f1f1110906b2c0ad32276aaf6f1a25f. Preserve tested source; no main relabel.
+- PR140 delivered both bounded tasks through unchanged normal protection as main `dbb11f0919c0c436d0de9df75edc569c0fc69b8d`, parents3bcba809/1f270e0d. Actual main and tested H `1f270e0def193b65362a73382ac28f77cd6c2aca` share exact complete tree `aa9ac6a101b29f61b99890c6a185a5bccf6cfde3`. PR140 is merged; do not restart its implementation or delivery after interruption.
+- Current accepted staging is40104889575/1, tested H1f270e0d, public `51e46cfd2ece3af9cd6beb89e143863d254a1f2f872ed059ed1c810f2f35864e`, package `131b36ccd5f00781ae60db6c8f4bef3f6086427eaee71e9cb1919534326e39b2`. Preserve the tested package; no main relabel/rebuild or production activation.
+- App5453173/install174757834 remains configured and nonrequired on main. Completed earlier paired App/SHA proof and cleanup remain in evidence7f5708e2/issue receipt6385004122: disposable138 merged only probe,139 closed unmerged, temporary rule/ref removed. Never repeat the completed proof merely after an interruption.
 
 ## Decisions
 
-- Maintainer requested batches of1–2tasks followed by status/next steps. This batch is exactly the bounded control-lock structural contract and credential-free prototype/negative tests, one atomic PR through existing delivery. No third implementation or App/protection activation follows automatically.
-- The prototype reads immutable Git objects as data, records producerP separatelyB/H and always has false merge/deploy/App/reuse authority. Supported class is one existing top-level unscoped transitive leaf's version/resolved/integrity in the one quality lock file. It does not execute/install candidate code or authenticate package contents/audit/compatibility.
-- Current App control rejection, workflow definitions, required checks, dependency/scanner pins, profiles/cases/budgets and production are unchanged. Whole T05/AC01–AC08 remain open.
+- Maintainer requested batches of1–2tasks, then status/next steps. This batch is complete: structural lock-patch contract and credential-free prototype/meaningful negatives, one atomic PR through full existing delivery. No third implementation or App/protection activation follows automatically.
+- The prototype reads immutable Git objects as data, records separate producerP/baseB/candidateH and always reports false merge/deploy/App/reuse authority. Supported class is one existing unscoped transitive lock leaf's version/resolved/integrity. It never executes/installs candidate code or proves package authenticity, audit, compatibility or native admission.
+- Original main requirements, App control rejection, workflow definitions, dependency/scanner pins, cases/profiles/budgets and production remain unchanged. Whole T05/AC01–AC08 remain open despite this completed bounded delivery.
 
 ## Open work
 
-- Active source branch: work/issue-122-lock-prototype-20261024. Owning issue122 anchor6385166442 and `review/issue-122/2026-10-24-control-lock-review.md` contain CR01–CR06, four-role results, source trees and verification limits; live PR owns current source/CI/stage/merge observations.
-- Requirements found actual graft ancestry bypass in initial source. Centralized GIT_GRAFT_FILE null fix and meaningful regression resolved it; all four roles rechecked corrected tree6c239b0dfacf826346fe59c1475ad24469c71dd1 and accepted. No majority-vote override of the reproduced defect.
-- Prepared-source focused12/12, existing admission/profile46/46, RI29/29, coupling20/20, Basic24, format/lint/style/freshness passed. Dirty local evidence is not clean native delivery; final exact-source CI, original full owner stage, eligible admission/protected merge/postmerge remain to reconcile live.
-- PR140's first Ready source68619834 passed native708/708 source tests in147612ms, but navigation40102543880 failed omitted guide registration/canonical ownership. Corrected those records and added guide-index route; all four roles accepted prepared treeea1bc7a, RootLayout15/coupling20/RI29/freshness pass. Native corrected-source delivery remains pending; preserve the failed attempt.
-- Corrected source06384ca3 passed native708/708 in150498ms, navigation40103213313/owning40103213354/preview smoke. Full stage40103516608 failed only2 untriaged public Git-ID findings in the replay test;25other guards passed incl708Node/128Python/advisories. All four roles accepted exact2checksum dispositions at tree9ffb5d37; all753prior records/baseline/scanners preserved. Full tracked1118-file secret scan has0untriaged and six existing ledger tests pass. New committed-source native/full delivery remains required.
-- The actual PR137 repair was mixed history; the positive is explicitly a synthetic exact lock-only replay of its immutable fast-uri patch. No current package or eligibility guarantee follows from correct URL/SRI/range shape.
+- Owning issue122 and `review/issue-122/2026-10-24-control-lock-review.md` retain CR01–CR06, four actual roles, corrected source and native original-archive identities. This evidence-only handoff branch does not change tested/main source or create another implementation PR.
+- Requirements found actual graft ancestry bypass; all four rechecked central null-graft fix and meaningful regression. Native guide registration/ownership failure and stage40103516608 two public-Git-ID secret candidates were precisely corrected. Frozen baseline/all753 prior dispositions/scanner scope preserved; all four roles verified exact2tuple additions and mismatch rejection. Preserve every failed attempt, not a retroactive pass.
+- Final native Basic40104634971:708/708 in147586ms, RI40104634951/owning40104634954/preview smoke pass. Full stage40104889575/1 passed26guards,708Node/128Python/security/audits/static/host/browser/gate/promotion/receipt. Four roles separately authenticated source, prepublication/package, hosted/browser and gate/receipt evidence. Eligible admission40106375850 plus owning40106375787 passed; actual postmerge40106466559 and mainRI40106465782 passed.
+- Whole-issue gaps: independent candidate-toolchain execution/containment and trusted audit/package-content evidence, general control evolution, per-PR policy isolation/synchronous freshness, actual repository-only lane and existing issue5/PR79 content/publisher integration. A structural positive supplies none of those authorities.
 
 ## Next session
 
-1. Revalidate main/active PR/current source/review/CI. Finish this same two-task batch through original normal process; preserve all failed attempts and exact tested/merged/package identities. No new App/settings action needed.
-2. Update live CR criteria only from whole observed results; retain all whole parent ACs open. Report these1–2tasks and propose subsequent work rather than starting a third implementation.
-3. Future work: independent candidate execution and trusted audit/package-content evidence, general control evolution, per-PR isolation/synchronous revocation, repository/content lanes and issue5/PR79 integration. No automatic main admission migration.
+1. Revalidate live issue122/main/PR140 merged/evidence if needed, then report this completed two-task batch. Do not rerun its successful full stage merely because chat context changed.
+2. Propose the next1–2tasks: trusted-runner/containment contract separating immutable baseline obligations from candidate execution, then one narrow independently verified implementation. These are next-step proposals, not automatic work or protection migration.
+3. Preserve accepted-source/package identity, whole parent ACs open and original maintainer/editorial/rights/production decisions. Continue no third implementation without the next bounded scope.
 
 ## Maintenance
 
-- Five sections/120lines. Record detailed actual role/native evidence in owning issue/PR/review; deterministic factual receipts and RI refreshes do not recursively demand implementation review.
-- Existing connector handles source and PR records. Browser needed only for unsupported settings; never read/copy private key values or other credential material.
+- Five sections/120lines. Detailed role/native evidence stays in owning issue/PR/review. Factual receipt-only updates and deterministic RI refresh do not recursively require implementation review; substantive changes do.
+- Existing connector handles source/PR records. Browser only for unsupported settings. Never read/copy private keys or other credentials; none is needed for the next read-only status.
