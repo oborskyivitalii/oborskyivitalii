@@ -133,3 +133,58 @@ and the original guard remains intact. Failed artifact12572780653 retains origin
 streams, SHA256 c3385d654c954357608956321add4fb37466f75f38650492ebfbd73ddae40907.
 Fresh source verification and affected correction readbacks follow; no unchanged
 native rerun, website staging or relaxed guard is claimed.
+
+## Delivered enabling PR143 and repository acceptance charter
+
+This dated native receipt supersedes pre-delivery pending statements above. PR143
+merged normally as7ee63aee00e2047714d47e05aae143828e10fda0; its tree6349d3b7 equals
+tested de47a7d7805f71f511850d3d54daecf4a9dcf7c7. No test result is relabeled to
+another tree.
+
+- Basic40125233820, RI40125233812, owning40125233856 and final admission40127080952/
+  owning40127080970 passed. Source51 modules/728 cases passed, zero skipped,94.591s;
+  original native source ZIP12573750074 hash/source/counts physically verified.
+- Sole owner staging40125512752/1 passed18m10s:26 preflight guards,728 Node,128 Python,
+  applicable static/host/browser/performance gate, promotion and independent receipt.
+  Source worker154.032s/180s; original mandatory budgets and optional diagnostic
+  dispositions retained. Preflight ZIP12573026893 was physically verified.
+- Receipt12573582663 binds PR/head/base/run/attempt, SHA256
+  9d1c00ce749cfa2dd3cfc30aab02c56059b482a97b6c8b3dc67507aca1b83161.
+- Postmerge40127155447 and actual-main navigation40127155521 passed. Tested staging
+  source remains de47a7d/tree6349d3b7, public af01ce28eca0b89b1e669ff7cd82a7cce9fad3848f221ce3f26b17426499bd9e,
+  package dcc91a3c8bf5bf860861fb8d93a190f52aabfc9976b9503b8f601d98eb39f607.
+  Original package ZIP12572667340 was physically verified; no production action.
+
+The remaining bounded acceptance PR reconciles already catalogued MEMORY and this
+existing review with that actual delivery and next work, then regenerates RI.
+Requirements preflight confirmed both documents are outside coupling identity, so
+no new path/catalog/RI-CI-map delta or checksum exemption is necessary. AGENTS edits
+that also refresh control-map checksums remain a conservative mixed/control delta;
+this receipt does not claim a blanket exemption for every instruction change.
+
+Expected complete delta: repository instructions/history plus derived RI only.
+Observable acceptance: four separate bounded non-code reviews, current selected
+Basic/RI/owning, genuine manual App/aggregate, actual expected-App/Actions requirements,
+strict/no-bypass protection, normal merge/postmerge with zero website package/preview/
+staging/publication for this candidate and unchanged accepted-site identity. No new
+test suite or content work. Native acceptance/protection/timing remains pending at
+this source freeze; source planning never establishes those outcomes.
+
+| Acceptance role | Separate reviewer | Actual source/result |
+| --- | --- | --- |
+| Requirements & Acceptance | /root/plan_requirements | Accepted candidate1c434707/tree46e58b09: meaningful handoff/RI scope, delivered and pending states truthful; native gates remain. |
+| Code Review | /root/plan_architecture | Accepted candidate1c434707/tree46e58b09: complete three-file non-code delta; native enabling IDs and distinct site source verified. |
+| White-box QA | /root/plan_whitebox | Executed candidate1c434707: repositoryOnly true, policy.changed empty,321 baseline controls retained, fresh RI and17 coupling checks. |
+| Exploratory / Interaction | /root/plan_operator | Accepted candidate1c434707/tree46e58b09: delivered/pending/next actions clear; no website testing required for this text delta. |
+
+Full remaining issue plan: R1 delivered; R2 implementation delivered, real protected
+repository acceptance pending; R3 authenticates accepted platform and complete history,
+uses #5/PR79 for actual content release/recovery, then reconciles all parent criteria.
+
+All four acceptance roles executed separately on1c4347074e49bdbaa943d31c46a82d06ca8daf72 /
+tree46e58b09918b3c2a3cb610955b6432dbc9c61461 and accepted their bounded scopes.
+White-box retained actual selection evidence with policy.changed empty,321 pre-change
+controls and digest f21dd3aaf77050e8dc505f69abe7469ac6adb4425d7a9fda96676bd3a5bdf761.
+RI and17/17 coupling checks passed; no website artifact directories were created.
+This receipt-only update and deterministic RI rebuild preserve the same three paths;
+actual native required-producer/no-website merge evidence remains pending.
