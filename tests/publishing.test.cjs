@@ -295,6 +295,38 @@ test('two independent profiles resolve figure and adaptation identities without 
   });
 });
 
+test('hosted image URLs preserve canonical upload text and enforce the same authored limit', async () => {
+  await withFixture(async (root) => {
+    const { directory, metadata } = fixture(root);
+    const original = loadArticle(root, metadata.id);
+    const profilePath = `${directory}/profile.json`;
+    const profile = JSON.parse(fs.readFileSync(path.join(root, profilePath), 'utf8'));
+    const limit = Array.from(original.text).length;
+    profile.limits = { linkedinCharacters: limit, mediumCharacters: limit };
+    json(root, profilePath, profile);
+    const hostedUrl = `article-media/${'a'.repeat(64)}/example.png`;
+    const hostedOptions = { assetUrl: () => hostedUrl };
+    const canonical = loadArticle(root, metadata.id);
+    const hosted = loadArticle(root, metadata.id, hostedOptions);
+    assert.equal(canonical.text, original.text);
+    assert.equal(hosted.text, canonical.text);
+    assert.equal(hosted.markdown, canonical.markdown);
+    assert.ok(hosted.html.includes(`src="${hostedUrl}"`));
+    assert.equal(hosted.assets[0].url, hostedUrl);
+    assert.equal(hosted.assets[0].uploadPath, canonical.assets[0].url);
+    for (const platform of ['linkedin', 'medium']) {
+      profile.limits = { [platform + 'Characters']: limit - 1 };
+      json(root, profilePath, profile);
+      for (const options of [{}, hostedOptions]) {
+        assert.throws(
+          () => loadArticle(root, metadata.id, options),
+          new RegExp('Profile ' + platform + ' text exceeds its authored character limit')
+        );
+      }
+    }
+  });
+});
+
 test('strict source selection rejects unknown fields, dishonest accepted edition and altered assets', async () => {
   await withFixture(async (root) => {
     const { directory, metadata } = fixture(root);

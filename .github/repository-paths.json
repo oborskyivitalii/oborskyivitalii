@@ -625,37 +625,37 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/7373993efca8ba40ab7e30805ee156e975f842a3b1e122c17e6ebcdc1b73bcff": {
+    "docs/runtime/36e9a52051ed974d077e86ea028f5c57838370418637c71391fdf0c9e1eca297": {
       "kind": "directory",
       "purpose": "Generated immutable site runtime or route snapshot.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/7373993efca8ba40ab7e30805ee156e975f842a3b1e122c17e6ebcdc1b73bcff/archive.js": {
+    "docs/runtime/36e9a52051ed974d077e86ea028f5c57838370418637c71391fdf0c9e1eca297/archive.js": {
       "kind": "file",
       "purpose": "Generated immutable site runtime or route snapshot.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/7373993efca8ba40ab7e30805ee156e975f842a3b1e122c17e6ebcdc1b73bcff/navigation.js": {
+    "docs/runtime/36e9a52051ed974d077e86ea028f5c57838370418637c71391fdf0c9e1eca297/navigation.js": {
       "kind": "file",
       "purpose": "Generated immutable site runtime or route snapshot.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/7373993efca8ba40ab7e30805ee156e975f842a3b1e122c17e6ebcdc1b73bcff/space.js": {
+    "docs/runtime/36e9a52051ed974d077e86ea028f5c57838370418637c71391fdf0c9e1eca297/space.js": {
       "kind": "file",
       "purpose": "Generated immutable site runtime or route snapshot.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/7373993efca8ba40ab7e30805ee156e975f842a3b1e122c17e6ebcdc1b73bcff/styles.css": {
+    "docs/runtime/36e9a52051ed974d077e86ea028f5c57838370418637c71391fdf0c9e1eca297/styles.css": {
       "kind": "file",
       "purpose": "Generated immutable site runtime or route snapshot.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/7373993efca8ba40ab7e30805ee156e975f842a3b1e122c17e6ebcdc1b73bcff/theme.js": {
+    "docs/runtime/36e9a52051ed974d077e86ea028f5c57838370418637c71391fdf0c9e1eca297/theme.js": {
       "kind": "file",
       "purpose": "Generated immutable site runtime or route snapshot.",
       "role": "generated",
@@ -685,13 +685,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/7a343d3dcf417f16e18c8b1d433cb9deedef73aae292d15b4150b7b03f4bedc6": {
+    "docs/snapshots/037b0e3ea33bf7a4b45634406c579d4990f1b7b8295860099bae51be96d06f39": {
       "kind": "directory",
       "purpose": "Generated immutable site runtime or route snapshot.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/7a343d3dcf417f16e18c8b1d433cb9deedef73aae292d15b4150b7b03f4bedc6/writing.html": {
+    "docs/snapshots/037b0e3ea33bf7a4b45634406c579d4990f1b7b8295860099bae51be96d06f39/writing.html": {
       "kind": "file",
       "purpose": "Generated immutable site runtime or route snapshot.",
       "role": "generated",
@@ -721,13 +721,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/8de35580157160821624cb9719396c0f5007bb5a4c2c147c50ccc6187b8fd2d4": {
+    "docs/snapshots/98cc4c99377a96ab8722931390a00aec3e7a600fc7319dd38b6a0ccc72f68416": {
       "kind": "directory",
       "purpose": "Generated immutable public route snapshot directory.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/8de35580157160821624cb9719396c0f5007bb5a4c2c147c50ccc6187b8fd2d4/research.html": {
+    "docs/snapshots/98cc4c99377a96ab8722931390a00aec3e7a600fc7319dd38b6a0ccc72f68416/research.html": {
       "kind": "file",
       "purpose": "Generated immutable public route snapshot; exact document bytes from site build.",
       "role": "generated",
@@ -757,13 +757,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/df364ecf904484638e883d467b65b51377875080e645818206d36fb7509b91c2": {
+    "docs/snapshots/ff05e0d0acbdb6d14b766c7a301f09477f0522d2383c2c67f337465253de239b": {
       "kind": "directory",
       "purpose": "Generated immutable site runtime or route snapshot.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/df364ecf904484638e883d467b65b51377875080e645818206d36fb7509b91c2/credits.html": {
+    "docs/snapshots/ff05e0d0acbdb6d14b766c7a301f09477f0522d2383c2c67f337465253de239b/credits.html": {
       "kind": "file",
       "purpose": "Generated immutable site runtime or route snapshot.",
       "role": "generated",
@@ -781,13 +781,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/a17e86615fe05de42f791560215bf717016cc08fa7cf42cd33a4556159029df3": {
+    "docs/snapshots/01889d61d87b12552776f9f11562a73d1de7ed96a00b9816e70c3bd93e9423ba": {
       "kind": "directory",
       "purpose": "Generated immutable public route snapshot directory.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/a17e86615fe05de42f791560215bf717016cc08fa7cf42cd33a4556159029df3/index.html": {
+    "docs/snapshots/01889d61d87b12552776f9f11562a73d1de7ed96a00b9816e70c3bd93e9423ba/index.html": {
       "kind": "file",
       "purpose": "Generated immutable public route snapshot; exact document bytes from site build.",
       "role": "generated",
@@ -841,13 +841,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/ed7d293bde720c1fc872ace274139fe9bedd18386de64058df339409d185bbff": {
+    "docs/snapshots/6ad0d14686932dd68065c78cb770c43780b9bef70c67a9a1810cf09a38253f87": {
       "kind": "directory",
       "purpose": "Generated immutable site runtime or route snapshot.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/ed7d293bde720c1fc872ace274139fe9bedd18386de64058df339409d185bbff/talks.html": {
+    "docs/snapshots/6ad0d14686932dd68065c78cb770c43780b9bef70c67a9a1810cf09a38253f87/talks.html": {
       "kind": "file",
       "purpose": "Generated immutable site runtime or route snapshot.",
       "role": "generated",
@@ -11226,6 +11226,60 @@
       "purpose": "Immutable R28 problem-framing review edition with current source/semantic digests and pending accepted-source/rights status.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "review/issue-2/r28-20261024/acceptance-e877-failed.json": {
+      "kind": "file",
+      "purpose": "Original valid failed R28 exact-source acceptance receipt, retained before the bounded integration correction.",
+      "role": "history",
+      "owner": "review/issue-2/2026-10-24-r28-problem-framing.md"
+    },
+    "review/issue-2/2026-10-24-r29-problem-framing.md": {
+      "kind": "file",
+      "purpose": "R29 author-origin emphasis correction: central delivery/control problems, explicit planning consequences, independent reviews and exact-source acceptance route.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "review/issue-2/r29-20261024": {
+      "kind": "directory",
+      "purpose": "R29 native manuscript, PDF, full equivalent-rendition kit and exact source/producer/member evidence.",
+      "role": "history",
+      "owner": "review/issue-2/2026-10-24-r29-problem-framing.md"
+    },
+    "review/issue-2/r29-20261024/README.md": {
+      "kind": "file",
+      "purpose": "R29 native package instructions, page locations of the two problems and planning consequences, artifact inventory and review boundaries.",
+      "role": "history",
+      "owner": "review/issue-2/2026-10-24-r29-problem-framing.md"
+    },
+    "review/issue-2/r29-20261024/The_Sum_of_Our_Technology_R29_2026-10-24.md": {
+      "kind": "file",
+      "purpose": "Byte-exact R29 canonical review manuscript foregrounding the delivery/control problems and their project-planning consequences.",
+      "role": "history",
+      "owner": "review/issue-2/2026-10-24-r29-problem-framing.md"
+    },
+    "review/issue-2/r29-20261024/The_Sum_of_Our_Technology_R29_2026-10-24.pdf": {
+      "kind": "file",
+      "purpose": "R29 native review PDF generated by the unchanged canonical publisher and explicit review print producer.",
+      "role": "history",
+      "owner": "review/issue-2/2026-10-24-r29-problem-framing.md"
+    },
+    "review/issue-2/r29-20261024/artifact-evidence.json": {
+      "kind": "file",
+      "purpose": "R29 source, semantic, PDF, archive, complete-member and producer identities with honest review-only status.",
+      "role": "history",
+      "owner": "review/issue-2/2026-10-24-r29-problem-framing.md"
+    },
+    "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261024-r29.json": {
+      "kind": "file",
+      "purpose": "Immutable R29 problem-emphasis review edition with current source/semantic digests and pending accepted-source/rights status.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "review/issue-2/r29-20261024/The_Sum_of_Our_Technology_R29_2026-10-24_Native_Review_Kit.tar.xz": {
+      "kind": "file",
+      "purpose": "Complete 34-member R29 native kit in lossless TAR.XZ transport, preserving equivalent renditions, authored launch and original manifests within the unchanged RI byte budget.",
+      "role": "history",
+      "owner": "review/issue-2/2026-10-24-r29-problem-framing.md"
     }
   }
 }

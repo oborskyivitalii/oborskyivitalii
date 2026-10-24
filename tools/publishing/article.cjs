@@ -251,7 +251,9 @@ function validateAsset(root, asset, articleId, assetUrl) {
     throw new Error(`Asset bytes/dimensions do not match declaration: ${asset.id}`);
   }
   const result = { ...asset, digest: asset.sha256, mime: 'image/png', ...input };
-  result.url = assetUrl ? assetUrl(result) : `/${asset.path.slice(5)}`;
+  // Upload text keeps its source path when HTML uses a deployment-specific URL.
+  result.uploadPath = `/${asset.path.slice(5)}`;
+  result.url = assetUrl ? assetUrl(result) : result.uploadPath;
   if (
     typeof result.url !== 'string' ||
     /[\0\r\n<>"']/.test(result.url) ||

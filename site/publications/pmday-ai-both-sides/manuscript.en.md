@@ -2,7 +2,7 @@
 
 *AI Changes Both Sides of Software Engineering*
 
-Vitalii Oborskyi · Editorial draft R28 · 24 October 2026
+Vitalii Oborskyi · Editorial draft R29 · 24 October 2026
 
 ![A solitary person stands before a narrow opening of light between monumental dark walls.](asset:cover)
 
@@ -14,11 +14,9 @@ The dashboard calls this progress. The person handling the next incident has a d
 
 What if faster generation does not improve delivery—or leaves us unable to recover what we built? What if the person entrusted with the final decision cannot meaningfully make it?
 
-Engineering starts by defining a problem, proposing a solution and testing whether it works. Evidence may require revising the implementation, the hypothesis or the problem itself. Solving the wrong problem faster still misses the goal.
+Engineering is a cycle: define the problem, propose a solution, implement, test, and revise against evidence. A mistaken problem statement can make an efficient solution irrelevant.
 
-My talk at UA Online PMDay 2026 Autumn connects two engineering problems: turning faster generation into reliable delivery, and keeping consequential model judgment within justified operating bounds. Both require the capacity to understand, constrain and correct what we delegate.
-
-Each “What if not?” turns that requirement into a practical decision: what to test, what to constrain, and when a simpler approach is the better choice.
+My UA Online PMDay 2026 Autumn talk examines two problems: rebalancing AI-assisted delivery and governing model judgment inside products. Each “What if not?” asks what to test, constrain or simplify.
 
 [Slides (PDF) \[1\]](https://github.com/oborskyivitalii/oborskyivitalii/blob/4d5bcdb7c0b30bd7ba5926007fc24e3752242905/site/assets/publications/pmday-two-shifts/pmday-v35-deck-review.pdf) · [Recording (Ukrainian) \[2\]](https://youtu.be/xSgWjuGqC9I)
 
@@ -38,9 +36,11 @@ A demonstration shows that a capability can work. Engineering asks what its use 
 
 ## I. How We Build
 
+**The engineering problem is to rebalance the SDLC so that local AI acceleration becomes reliable end-to-end delivery.** Code generators and agent workflows can accelerate individual stages. Their gains do not automatically accelerate the whole chain: its constraints, quality controls and capacity to understand and operate the result still govern delivery.
+
 ### We accelerated a step. What did the system gain?
 
-Cognition introduced Devin [\[5\]](https://cognition.com/blog/introducing-devin) in 2024 as the “first AI software engineer”. In March 2025, Dario Amodei forecast AI writing 90% of code within three to six months [\[6\]](https://www.cfr.org/event/ceo-speaker-series-dario-amodei-anthropic), potentially essentially all within a year. Those dates have passed; the industry-wide share remains unverified. The Claude Code team reports about 90% for itself [\[12\]](https://claude.dev/blog/solving-code-review-at-anthropic/)—one vendor team, not independent corroboration. Generated code does not measure the whole engineering activity.
+Cognition introduced Devin [\[5\]](https://cognition.com/blog/introducing-devin) as the “first AI software engineer” in 2024. In March 2025, Dario Amodei forecast AI writing 90% of code within three to six months [\[6\]](https://www.cfr.org/event/ceo-speaker-series-dario-amodei-anthropic), potentially essentially all within a year. Those dates passed; the industry-wide share remains unverified. The Claude Code team reports about 90% for itself [\[12\]](https://claude.dev/blog/solving-code-review-at-anthropic/): a vendor-team report, not independent corroboration or a measure of all engineering.
 
 Delivery requires a chain:
 
@@ -55,8 +55,6 @@ The NBER authors’ weak-link model treats upstream output and downstream human 
 ![Fixed-capacity delivery illustration: generation rises from eight to one hundred changes per week while review and integration remain at eight.](asset:pmday-slide-03)
 
 Suppose a team generates, reviews and integrates eight comparable changes a week. Raise generation capacity to one hundred; keep the others fixed. Admit every change: delivery stays at eight; unfinished work grows by ninety-two a week. **We become dramatically better at producing unfinished work.** Control intake and the queue need not grow, but delivery remains capped. Spare downstream capacity would change the result.
-
-The task is to rebalance delivery around its actual constraint while preserving the functions responsible operation requires.
 
 *The Subprime Code Crisis* [\[9\]](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis) is my synthesis of costs shifted into review, QA, architecture, maintenance and production. The danger is booking local gains before accounting for displaced work and risk.
 
@@ -150,15 +148,15 @@ Measure task completion, adoption, time to benefit and support burden. Sequence 
 
 ## II. What We Build
 
-### When the product itself makes judgments
+**The engineering problem is to make a system built around stochastic model judgment controllable in a noisy, changing environment.** An agent workflow needs enforceable limits, meaningful signals and timely correction. Where human intervention is required, human capacity and authority are architectural dependencies. Reliability and economic value must be established for this whole arrangement.
 
-Model judgment now operates inside the product. An unsafe answer can become an operational event without a pull request.
+### When the product itself makes judgments
 
 The account-recovery assistant now interprets requests, retrieves guidance and proposes actions. Even without permission to change access, its guidance can influence someone who has it. Read-only does not mean consequence-free.
 
 In my *Uncertainty Architecture* [\[20\]](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture), this is a *Thinking System* [\[21\]](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/00-doctrine/uncertainty-in-the-controlled-object.md): at least one consequential runtime responsibility depends partly on probabilistic model judgment. The definition describes implementation, not consciousness or safety.
 
-The engineering task is to keep useful behaviour within justified bounds despite uncertain outputs and changing conditions. That requires enforceable limits, meaningful signals and correction that can act in time. Six assumptions need testing—and continued justification after release.
+The following six assumptions need testing—and continued justification after release.
 
 ### Enforce the boundary before delegation
 
@@ -286,7 +284,9 @@ Vendors owe adopters usable evidence, clear limits and visibility into consequen
 
 — Stanisław Lem, quoted and translated by Bogna Konior; source and edition details: [\[31\]](https://existentialtech.antikythera.org/).
 
-I want this to work. The intended outcome, delegated authority and required controls should shape the project's risk map, staffing and full operating budget. For the recovery team, these **illustrative pilot limits** turn those requirements into decisions. Set criteria before collecting results; these are not measured findings or universal thresholds.
+**Correct problem framing changes the project plan before implementation.** For AI-assisted delivery, plan around the actual constraint and measure whole-system gains. For agentic products, fund evaluation, controls, incident response and human coverage. These dependencies shape risk maps, staffing and operating budgets. Pricing only a generator or workflow hides the system’s full cost.
+
+For the recovery team, these **illustrative pilot limits** turn that framing into decisions. Set criteria before collecting results; these are not measured findings or universal thresholds.
 
 | Decision | Evidence and limit | Action if the limit fails |
 | --- | --- | --- |
@@ -296,9 +296,7 @@ I want this to work. The intended outcome, delegated authority and required cont
 | Recover control | Rehearse stopping, diagnostics and data-integrity checks. Observed prohibited disclosure or access change stops the broader path immediately. | Contain the incident; rollback cannot undo disclosure. |
 | Expand the pilot | After four weeks, compare useful recovery completions, time, support load and full cost with the real process and simplest safe alternative under the same safety requirements. Require the predeclared useful gain and passing control tests. Reassess after model, retrieval, permission or staffing changes. | No useful gain: choose the simpler path. Insufficient evidence: retain bounds and extend observation. An uneventful month cannot establish rare-event safety; routing gains do not authorise broader advice/action. |
 
-Faster implementation does not authorise broader runtime judgment. Fund and rehearse the controls on which each permission depends.
-
-Evidence should change the adoption decision—including mine. Expand what works. Restrict or redesign what does not.
+Faster implementation does not authorise broader runtime judgment.
 
 **You do not owe a vendor your organisation as an experiment. You owe your customers a system you can operate.**
 
@@ -454,16 +452,16 @@ Numbered citations refer to the sources below. Source notes retain the evidence 
 
 ## How to cite this draft
 
-Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R28, 24 October 2026.
+Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R29, 24 October 2026.
 
 Unpublished author-review edition. Cite the revision; no DOI or final publication URL has been assigned.
 
 ```bibtex
-@misc{oborskyi2026sumR28,
+@misc{oborskyi2026sumR29,
   author = {Oborskyi, Vitalii},
   year = {2026},
   title = {The Sum of Our Technology: AI Changes Both Sides of Software Engineering},
-  note = {Editorial draft R28, 24 October 2026; unpublished}
+  note = {Editorial draft R29, 24 October 2026; unpublished}
 }
 ```
 
@@ -483,6 +481,7 @@ Vitalii Oborskyi retains editorial responsibility.
 
 24 October 2026:
 
+- **R29:** Foregrounded both problems and their planning implications.
 - **R28:** Engineering problem framing clarified across delivery, runtime control and project planning.
 
 23 October 2026:

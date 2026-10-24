@@ -2,7 +2,34 @@
 
 Article owner #2; publisher/execution #5 / PR79.
 
-## Current R28 engineering problem framing — 24 October 2026
+## Current R29 — two central engineering problems and planning — 24 October 2026
+
+The author found R28's small insertions insufficiently prominent. The two distinct
+engineering problems must lead Parts I and II, before examples and evidence.
+Delivery: rebalance the SDLC around its actual constraint so local AI acceleration
+can improve reliable end-to-end delivery. Runtime: establish controllable operation
+around stochastic judgment in a noisy, changing environment, with signals, limits,
+timely correction and necessary human capacity/authority as architecture.
+
+Part III must explain the causal consequence before the pilot: correct problem
+framing changes planning before implementation, shaping risk maps, staffing and
+operating budgets. Preserve the warning that faster implementation does not
+authorise broader runtime judgment. Qualify local acceleration with “can”; avoid
+universal bottleneck prescriptions or guaranteed stability/ROI.
+
+Use a new immutable R29 edition and current native kit; preserve R28's source,
+edition and separately identified completed review package. Replace redundant
+orientation/closing prose without losing any prompt, source, empirical qualification,
+figure, table or contributor disposition. Limits remain 51,000; earlier Olivier
+proposals remain pending. The two problem statements are author-origin clarifications.
+
+Execution remains issue5 / editorial issue2 / Draft PR79. The [R29 review](../../../review/issue-2/2026-10-24-r29-problem-framing.md)
+retains original independent reports, source/kit identities and links to final clean
+policy and remote delivery. [Dated scope](https://github.com/oborskyivitalii/oborskyivitalii/issues/5#issuecomment-6383375681).
+Rights, accepted-source pins, canonical, authorial final approval and publication
+remain pending. No merge/rebase/staging/platform posting follows from this revision.
+
+## Historical R28 engineering problem framing — 24 October 2026
 
 The author approved the four formulations from the problem-framing analysis.
 Clarify the engineering loop in the introduction; frame delivery around its actual

@@ -1,5 +1,5 @@
 {
-  "artifactId": "74acb6057f8c595b4f63e42888c371081ec4238ebbd582e2de032c3f10a3c817",
+  "artifactId": "4bf1bcf7c8346d312a7f59299c4fe5c472bd91f79231be806d801f0c8e871996",
   "source": {
     "path": "site/publications/pmday-ai-both-sides/manuscript.en.md",
     "sha256": "4bc0136b86e46c4792c61791612243e2c0d0b513c2012cbe9baa1bab97223650",
@@ -36,8 +36,8 @@
     "mediumCharacters": 51000
   },
   "pdf": {
-    "sha256": "de7ee1b74d7f3c6bf99c2c87126057b5001ac2c79a06f8c51498a7de4c3dee69",
     "bytes": 1415489,
+    "sha256": "c715bbe933095708934d45f23e21d1d0830f53dce845bf7b08a80dac1c19b718",
     "pages": 22
   },
   "browser": {
@@ -58,15 +58,15 @@
     "playwrightVersion": "1.63.0",
     "lockSha256": "8b4895a11735ff8f614accd5882470af24ecb1e1c2bcb691bc31c4fb708c811d"
   },
-  "pipeline": "Unchanged native compiler/publisher/print logic; ordered-list print indentation corrected from6mmto8mm, unordered lists remain6mm.",
+  "pipeline": "Native compiler/publisher/print pipeline with source-stable upload paths separated from HTML delivery URLs; ordered-list print indentation corrected from 6mm to 8mm, unordered lists remain 6mm.",
   "baselineCommit": "56daee1bde31c64fd2f56db72b8e7676f62fb631",
   "baselineTree": "4726632f08f985e30ace55ea39ae97140818703c",
   "sourceIdentity": "Prepared working-tree review; null accepted-source pins do not establish accepted or published provenance.",
   "scope": "Four author-approved problem-framing changes, R28/date/history metadata and separately authored launch currentness. Earlier Olivier P1/P2 proposals remain pending. Correct inherited clipping of two-digit bibliography markers through minimal native print-list indentation.",
   "archive": {
     "path": "The_Sum_of_Our_Technology_R28_2026-10-24_Native_Review_Kit.zip",
-    "bytes": 6521714,
-    "sha256": "5dff6d2f9fcef3660e6e331ffc1c412003fbd82255e1a09e5f69744f0b556c0d",
+    "bytes": 6521711,
+    "sha256": "7280ee7b976a9d1ae267ae05dc875683ac18323db57544e8aa09bda9da8df698",
     "members": 34,
     "nativeInventoryExact": true
   },
@@ -79,12 +79,12 @@
     {
       "path": "The_Sum_of_Our_Technology_R28_2026-10-24.pdf",
       "bytes": 1415489,
-      "sha256": "de7ee1b74d7f3c6bf99c2c87126057b5001ac2c79a06f8c51498a7de4c3dee69"
+      "sha256": "c715bbe933095708934d45f23e21d1d0830f53dce845bf7b08a80dac1c19b718"
     },
     {
       "path": "The_Sum_of_Our_Technology_R28_2026-10-24_Native_Review_Kit.zip",
-      "bytes": 6521714,
-      "sha256": "5dff6d2f9fcef3660e6e331ffc1c412003fbd82255e1a09e5f69744f0b556c0d"
+      "bytes": 6521711,
+      "sha256": "7280ee7b976a9d1ae267ae05dc875683ac18323db57544e8aa09bda9da8df698"
     }
   ],
   "nativeMembers": [
@@ -106,7 +106,7 @@
     {
       "path": "article.manifest.json",
       "bytes": 3338,
-      "sha256": "7f1d9e7fdd4e59fd1cb9988eff5a84e969744da2f1225673c84c18697c305bf5"
+      "sha256": "9f64c1c329a671a681f3d781e0ee17d99d94a3684debca47e726a76e2b25ea3e"
     },
     {
       "path": "article.md",
@@ -116,17 +116,17 @@
     {
       "path": "article.pdf",
       "bytes": 1415489,
-      "sha256": "de7ee1b74d7f3c6bf99c2c87126057b5001ac2c79a06f8c51498a7de4c3dee69"
+      "sha256": "c715bbe933095708934d45f23e21d1d0830f53dce845bf7b08a80dac1c19b718"
     },
     {
-      "path": "article.pdf.artifacts/050aa35f2efe52b97dcb98cbed5c55257bbc3b7ffdb82852bf5c897f89322745/artifact.pdf",
+      "path": "article.pdf.artifacts/861fa802422b552cf1c42489400f7308e9da0dabfc876463b8701c557c51ffca/artifact.pdf",
       "bytes": 1415489,
-      "sha256": "de7ee1b74d7f3c6bf99c2c87126057b5001ac2c79a06f8c51498a7de4c3dee69"
+      "sha256": "c715bbe933095708934d45f23e21d1d0830f53dce845bf7b08a80dac1c19b718"
     },
     {
-      "path": "article.pdf.artifacts/050aa35f2efe52b97dcb98cbed5c55257bbc3b7ffdb82852bf5c897f89322745/manifest.json",
+      "path": "article.pdf.artifacts/861fa802422b552cf1c42489400f7308e9da0dabfc876463b8701c557c51ffca/manifest.json",
       "bytes": 3338,
-      "sha256": "7f1d9e7fdd4e59fd1cb9988eff5a84e969744da2f1225673c84c18697c305bf5"
+      "sha256": "9f64c1c329a671a681f3d781e0ee17d99d94a3684debca47e726a76e2b25ea3e"
     },
     {
       "path": "article.txt",
@@ -201,7 +201,7 @@
     {
       "path": "manifest.json",
       "bytes": 18020,
-      "sha256": "4b4616f66fb677ef955e494704e794270bad599141078b3b8ee43ac91d0a52fd"
+      "sha256": "e2c3b9185bbffa306412916398171ae3e2a6332082dd864c4006f5796b3493a0"
     },
     {
       "path": "medium-copy-ready.html",
@@ -309,7 +309,7 @@
     "inputs": [
       {
         "path": "tools/publishing/article.cjs",
-        "sha256": "2387d26c1ec608586c7b124f4a7971b4b9195b83f79dfbe06731700eee04b5c1"
+        "sha256": "54459f1f49b3405bc5fdf9f5a3e627d026ad3bbe7822026dc1ca4602a69eb7cb"
       },
       {
         "path": "tools/publishing/ast.mjs",
@@ -372,7 +372,7 @@
         "sha256": "c5ba9afc55b8a818cbcef003e845a47c4ea20275f8b8f52bd11b2be0d39483bf"
       }
     ],
-    "node": "v24.22.1",
+    "node": "v24.19.0",
     "dependencyLockSha256": "8b4895a11735ff8f614accd5882470af24ecb1e1c2bcb691bc31c4fb708c811d"
   },
   "reviewProducer": {
@@ -421,5 +421,45 @@
     ],
     "priorDuplicateOutlineLabelsReproduced": false,
     "limits": "Local native artifacts and review Chromium/clipboard only; no actual native platform-editor, hosted/device, rights, owner final acceptance or release admission."
+  },
+  "policyCorrection": {
+    "scope": "Preserve canonical upload text when HTML uses content-addressed image URLs; regenerate dependent site identities and retain mandatory rights checks. Manuscript, limits and rendered native HTML/text stay exact.",
+    "scopeAnchor": "https://github.com/oborskyivitalii/oborskyivitalii/issues/5#issuecomment-6383247053",
+    "priorCandidate": {
+      "artifactId": "74acb6057f8c595b4f63e42888c371081ec4238ebbd582e2de032c3f10a3c817",
+      "pdf": {
+        "sha256": "de7ee1b74d7f3c6bf99c2c87126057b5001ac2c79a06f8c51498a7de4c3dee69",
+        "bytes": 1415489,
+        "pages": 22
+      },
+      "archive": {
+        "path": "The_Sum_of_Our_Technology_R28_2026-10-24_Native_Review_Kit.zip",
+        "bytes": 6521714,
+        "sha256": "5dff6d2f9fcef3660e6e331ffc1c412003fbd82255e1a09e5f69744f0b556c0d",
+        "members": 34,
+        "nativeInventoryExact": true
+      }
+    },
+    "originalFailedPolicy": "acceptance-e877-failed.json",
+    "originalFailedPolicySha256": "066c5dd5fac7b74847a9e0627d746d8b87627a46f249fb6e710547448d9242c9",
+    "firstPolicyGroups": {
+      "passed": 8,
+      "failed": [
+        "BASIC",
+        "READER",
+        "DELIVERY",
+        "CONTENT-LANES"
+      ]
+    },
+    "oldHostedTextCharacters": 51040,
+    "correctedHostedAndDefaultTextCharacters": 50903,
+    "unchangedLimit": 51000,
+    "nativeHtmlMarkdownTextByteIdentical": true,
+    "pdfEquivalence": {
+      "pages": 22,
+      "allRasterPixelsTextLinksAndTocIdentical": true,
+      "receiptSha256": "ecd24ef17eda05b1826656d62db771dba98179677989409c2ebfa1c867cc09cc"
+    },
+    "finalPolicy": "Pending final clean-source run at delivery checkpoint; original failure remains historical."
   }
 }

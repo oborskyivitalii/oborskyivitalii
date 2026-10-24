@@ -1,19 +1,29 @@
 {
   "schema": 1,
-  "id": "pmday-ai-both-sides-review-20261024-r28",
+  "id": "pmday-ai-both-sides-review-20261024-r29",
   "platforms": {
     "linkedin": {
-      "formats": ["html", "md", "txt", "copy-ready"],
+      "formats": [
+        "html",
+        "md",
+        "txt",
+        "copy-ready"
+      ],
       "relationship": "equivalent-rendition"
     },
     "medium": {
-      "formats": ["html", "md", "txt", "copy-ready"],
+      "formats": [
+        "html",
+        "md",
+        "txt",
+        "copy-ready"
+      ],
       "relationship": "equivalent-rendition"
     }
   },
   "launch": {
     "source": "launch-post.en.md",
-    "sha256": "de679bda2b16b66faf6f083d1f5e4c86df0ac1f833936f19017835e5bdb10a00"
+    "sha256": "33cc5a02419866a26b55ffa59a1a3b65717c8d9636e8b389cefe796696e2480d"
   },
   "seo": {
     "title": "The Sum of Our Technology — AI Changes Both Sides of Software Engineering",

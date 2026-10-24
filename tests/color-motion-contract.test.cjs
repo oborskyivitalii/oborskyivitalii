@@ -247,6 +247,7 @@ test('only reviewed historical and current launch plain/staging tuples select a 
     'issue5-reader-loading',
     'issue5-reader-deferred-media',
     'issue5-reader-cpu',
+    'issue5-review-paths',
     'issue5-review-print',
     'issue5-review-markdown',
   ])
@@ -301,6 +302,7 @@ test('production Color has a separate exact edition identity with unchanged appr
     'issue5-reader-loading',
     'issue5-reader-deferred-media',
     'issue5-reader-cpu',
+    'issue5-review-paths',
     'issue5-review-print',
     'issue5-review-markdown',
   ]) {
@@ -344,6 +346,9 @@ test('unknown, conflicting, mixed or merely marked runtime identities fail befor
     'fixed-plain',
     'issue76-plain',
     'issue76-staging',
+    'issue5-review-paths-plain',
+    'issue5-review-paths-staging',
+    'issue5-review-paths-production',
     'issue5-review-print-plain',
     'issue5-review-print-staging',
     'issue5-review-print-production',
@@ -795,15 +800,15 @@ test('reader-link runtime tuples reproduce the complete current plain, staging a
     };
     fs.writeFileSync(path.join(plainDirectory, 'artifact.json'), JSON.stringify(source));
     const plain = colorBuild.build(plainDirectory);
-    assert.equal(motion.select(plain).id, 'issue5-review-print-plain');
+    assert.equal(motion.select(plain).id, 'issue5-review-paths-plain');
     const stagingDirectory = path.join(directory, 'staging');
     fs.cpSync(plainDirectory, stagingDirectory, { recursive: true });
     const staged = stagingBuild.build(stagingDirectory);
-    assert.equal(motion.select(staged).id, 'issue5-review-print-staging');
+    assert.equal(motion.select(staged).id, 'issue5-review-paths-staging');
     const productionDirectory = path.join(directory, 'production');
     fs.cpSync(plainDirectory, productionDirectory, { recursive: true });
     const production = require('../tools/release/edition.cjs').build(productionDirectory, 'color');
-    assert.equal(motion.select(production).id, 'issue5-review-print-production');
+    assert.equal(motion.select(production).id, 'issue5-review-paths-production');
     assert.equal(
       new Set([plain, staged, production].map((record) => record.variant.fingerprint)).size,
       3
@@ -812,7 +817,7 @@ test('reader-link runtime tuples reproduce the complete current plain, staging a
       assert.deepEqual(record.components.navigation, { contract: 1, articleRenderer: 1 });
       assert.equal(
         record.variant.baseEngine,
-        motion.reviewedRuntime('issue5-review-print-plain').variant.baseEngine
+        motion.reviewedRuntime('issue5-review-paths-plain').variant.baseEngine
       );
     }
   } finally {
@@ -948,6 +953,7 @@ test('issue106 correction lineage retains exact bytes and mandatory rights admis
 });
 
 for (const [family, previousFamily] of [
+  ['issue5-review-paths', 'issue5-review-print'],
   ['issue5-review-print', 'issue5-reader-cpu'],
   ['issue5-reader-loading', 'issue5-reader-fast-media'],
   ['issue5-review-markdown', 'issue5-reader-deferred-media'],

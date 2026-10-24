@@ -7,6 +7,10 @@ Final source/policy/delivery route: [R28 checkpoint](https://github.com/oborskyi
 
 Root prepared the authorized edition; four distinct agents independently inspect its requirements, code/artifact boundaries, source/artifact invariants and actual reading/interaction surfaces. Their original reports follow below. The starting source is `56daee1bde31c64fd2f56db72b8e7676f62fb631`, tree `4726632f08f985e30ace55ea39ae97140818703c`. Content review is of the explicitly prepared working tree; the checkpoint binds the final clean committed source and remote delivery without circular self-pinning in this file.
 
+## Subsequent author review
+
+After reading R28, the author found that the two engineering problems and their consequences for project planning were not central enough. R29 strengthens those statements at the opening of Parts I and II and makes the planning consequences explicit. R28 source and edition remain frozen; its completed technical correction is retained as a separately identified intermediate candidate. This R28 record does not claim acceptance of the forthcoming R29 wording.
+
 ## Intent and acceptance
 
 The author first requested analysis of integrating engineering problem formulation into the essay, then instructed that a new version be made. The latest approved treatment contains exactly four body changes. This follows the existing issue2 editorial work through issue5/PR79; no new issue or competing acceptance policy is introduced.
@@ -41,11 +45,11 @@ Maximiliano Armesto's selected R24 contributions and Pasquale Langella's selecte
 
 ### Source and publication boundaries
 
-The manuscript, new immutable edition, selected publication/profile identity, blueprint and separately authored launch are current. The media test changed only its current-edition name and two expected identity values; assertions, limits and fixture behavior are unchanged. Compiler, templates, print logic, public reader runtime, policies, prior edition records and frozen rendition packages are unchanged. The canonical print stylesheet has one separately reviewed ordered-list indentation correction; its shared native HTML/platform/copy-ready layout is also affected. Review status, pending rights, canonical null and null accepted-source commit/blob pins remain honest.
+The manuscript, new immutable edition, selected publication/profile identity, blueprint and separately authored launch are current. The media test changed only its current-edition name and two expected identity values; assertions, limits and fixture behavior are unchanged. AST/compiler rendering, templates, print logic, public reader runtime bytes, policies, prior edition records and frozen rendition packages are unchanged. The later policy correction separates stable upload paths from HTML delivery URLs in article loading; dependent generated identities and exact Color compatibility/rights registrations are refreshed. The canonical print stylesheet has one separately reviewed ordered-list indentation correction; its shared native HTML/platform/copy-ready layout is also affected. Review status, pending rights, canonical null and null accepted-source commit/blob pins remain honest.
 
 ## Native artifacts and environment
 
-The [native package](r28-20261024/README.md) contains the exact manuscript, a 22-page PDF and all 34 members of the full review kit. [Artifact evidence](r28-20261024/artifact-evidence.json) records complete identities and member hashes. The native `loadArticle`/AST → `renderKit` → `printArticle` → `verifyKit`/`verifyPrintPair` implementation is unmodified; the shared print stylesheet now corrects the ordered-list indent. No PDF postprocessing or alternate renderer was introduced.
+The [native package](r28-20261024/README.md) contains the exact manuscript, a 22-page PDF and all 34 members of the full review kit. [Artifact evidence](r28-20261024/artifact-evidence.json) records complete identities and member hashes. The native `loadArticle`/AST → `renderKit` → `printArticle` → `verifyKit`/`verifyPrintPair` pipeline generates the package. Article loading now preserves source-stable upload paths independently of HTML URLs, and the shared print stylesheet corrects the ordered-list indent; AST, kit and print algorithms remain unchanged. No PDF postprocessing or alternate renderer was introduced.
 
 The previously used temporary browser was absent. Restoring the exact `@sparticuz/chromium` 153.0.0 archive and verifying its package, archive and executable hashes reproduced the prior review producer, Chromium 153.0.8010.0 with Playwright1.63.0. Its declared extraction dependency tar-fs 3.1.2 was installed only in the temporary review environment with package scripts disabled. A sandboxed extraction failed on `chown`; the task's partial temporary files were replaced during an approved native extraction. The verified build used approved native child-process/browser execution. No failed extraction or blocked sandbox compile is presented as successful validation. The historical managed-browser download was not repeated, and the manifests continue to declare `managedBrowser:false`, `reviewOnly:true`.
 
@@ -55,7 +59,7 @@ The first prepared PDF (`57fcee6529f22a2dced3eca2ad9da27d99aef4f62e3087e1230daec
 
 The canonical `site/engine/article-print.css` now keeps unordered-list padding at 6mm and gives ordered lists 8mm. The existing more-specific Contents rule retains zero padding and no markers. No template or print logic changed. This stylesheet is also shared by native HTML/platform/copy-ready forms, so their current layouts and manifest identities are rechecked. CSS has SHA256 `45b6773ce87ae21198bc2b5ca2ec2711e1a0c242e61a9fc88b94aef528752a27`.
 
-The corrected kit is `74acb6057f8c595b4f63e42888c371081ec4238ebbd582e2de032c3f10a3c817`; PDF `de7ee1b74d7f3c6bf99c2c87126057b5001ac2c79a06f8c51498a7de4c3dee69`, 22 pages. Source, semantic edition, launch, Markdown/TXT content and counts are identical. The first prepared artifact is superseded; all original first-candidate reports and their separate correction assessments are retained below. Independent corrected-page review now resolves EQ01: all 22 actual pages were viewed and all bibliography markers 1–36 are fully visible, with no new clipping, overlap or missing figure/table. All 49 citation pairs, 23 Contents and 24 outline destinations pass. The six HTML forms and both actual local copy/paste flows retain their content. Original source-phase passes do not stand in for those observations.
+The layout-corrected intermediate kit was `74acb6057f8c595b4f63e42888c371081ec4238ebbd582e2de032c3f10a3c817`; PDF `de7ee1b74d7f3c6bf99c2c87126057b5001ac2c79a06f8c51498a7de4c3dee69`, 22 pages. Source, semantic edition, launch, Markdown/TXT content and counts are identical. The first prepared artifact is superseded; all original first-candidate reports and their separate correction assessments are retained below. Independent corrected-page review now resolves EQ01: all 22 actual pages were viewed and all bibliography markers 1–36 are fully visible, with no new clipping, overlap or missing figure/table. All 49 citation pairs, 23 Contents and 24 outline destinations pass. The six HTML forms and both actual local copy/paste flows retain their content. Original source-phase passes do not stand in for those observations.
 
 Applicable CSS/style review includes CS03/04/05/08/09/10; the minimal shared print-owner change keeps its actual source/CI classification. Current PUBLISHER/READER/DELIVERY coverage remains in the unchanged full issue5 policy. No CSS-literal test or separate broad campaign is added: native exact-member/producer verification plus real page/marker/navigation/HTML observations address the changed risk.
 
@@ -64,7 +68,7 @@ Applicable CSS/style review includes CS03/04/05/08/09/10; the minimal shared pri
 | Role | Separate execution | Inspected scope | Original conclusion |
 | --- | --- | --- | --- |
 | Requirements & Acceptance Reviewer | `/root/r28_requirements` | Preflight before implementation; completed candidate and delivery follow-up | Original preflight and completed-candidate receipt below; final policy/delivery readback at checkpoint. |
-| Code / Artifact Reviewer | `/root/r28_code_review` | Exact prose/source diff, CS/workflow boundaries, manifests and records | Original source-bound receipt below. |
+| Code / Artifact Reviewer | `/root/r28_code_review`; corrective `/root/r28_code_correction` | Exact prose/source diff, CS/workflow boundaries, manifests and records; later integration delta | Original source-bound receipts below. |
 | White-box QA | `/root/r28_whitebox` | Exact source reversal, frozen/protected bytes, pins, counts, full native/ZIP closure | Original source-bound receipt below. |
 | Exploratory / Interaction QA | `/root/r28_exploratory` | Actual new PDF pages, navigation/citations, equivalent HTML/copy-ready surfaces | Original artifact-bound receipt below. |
 
@@ -78,7 +82,7 @@ Applicable CSS/style review includes CS03/04/05/08/09/10; the minimal shared pri
 | Accidental runtime or frozen-history edit / R28.2,5 | Compare protected paths/prior artifacts against baseline | Protected-byte inspection; final unchanged issue5 policy separately binds exact clean source. |
 | Overstated delivery / R28.6 | Live remote head/tree, Draft/open state, ownership line and actual checkbox texts | Checkpoint readback after branch update; pending whole gates remain pending. |
 
-Existing behavioral guards are reused. No new tests mirror the four prose edits or CSS literal; the bounded print correction is checked through actual native rendering and existing print contracts. No additional broad runtime/performance/device campaign is needed. The final unchanged 12-group owning policy remains required. Original R27 READER fixture fixes and its 180-second bound are preserved; prior successful R27 execution is not relabelled current R28 evidence.
+Existing behavioral guards are reused. No tests mirror the four prose edits or CSS literal. The print correction is checked through actual native rendering and existing print contracts; the subsequent integration fix adds a meaningful default/custom-path limit boundary test and extends existing exact-identity, tamper and rights checks. No additional broad runtime/performance/device campaign is needed. The final unchanged 12-group owning policy remains required. Original R27 READER fixture fixes and its 180-second bound are preserved; prior successful R27 execution is not relabelled current R28 evidence.
 
 ## Findings and dispositions
 
@@ -93,6 +97,20 @@ Source-phase reviewers found no blocking semantic, scope, identity or preservati
 | T03 | Native print-list correction, kit, delivered Markdown/PDF/ZIP and evidence | R28.3 | Native/member verification and actual new-page QA. |
 | T04 | Four independent reports, catalog/MEMORY and deterministic RI/CI refresh | R28.5 | Original receipts; freshness checks and final unchanged policy. |
 | T05 | Final clean source and Draft PR79/issue evidence | R28.6 | Exact-source checkpoint owns policy result, actual remote delivery and AC reconciliation. |
+
+## Final-policy findings and dependent correction
+
+The first exact-clean run on `e877de50dfa4aa3ce7cf9fed937bc8ea63de4d46`, tree `f7136a92f0457c1e46584a745f1992c2d3a74c4f`, was valid failed evidence: 8/12 groups passed; BASIC, READER, DELIVERY and CONTENT-LANES failed. Its [complete original receipt](r28-20261024/acceptance-e877-failed.json), SHA256 `066c5dd5fac7b74847a9e0627d746d8b87627a46f249fb6e710547448d9242c9`, is preserved. Independent diagnosis and the [dated correction scope](https://github.com/oborskyivitalii/oborskyivitalii/issues/5#issuecomment-6383247053) distinguish two causes.
+
+First, the builder hashes every canonical engine input. The authorized print-CSS repair changes engine identities, requiring canonical regeneration of `docs/` and `site/output-lock.json`. The final base identity is `36e9a52051ed974d077e86ea028f5c57838370418637c71391fdf0c9e1eca297`. All five browser JS/CSS files are byte-identical to the reviewed predecessor; all five route aliases and snapshots differ only by their declared engine/route identities. Sixteen catalog paths follow the generated directory renames. The new explicit `issue5ReviewPaths` family binds actual plain/staging/production fingerprints, preserves every historical tuple and keeps mandatory rights evaluation. Current-generation fixture expectations advance to the new exact IDs; historical evidence remains unchanged.
+
+Second, the hosted image paths added 137 code points to upload instructions, making the same manuscript count 51,040 against the unchanged 51,000 bound. `validateAsset` now keeps the original canonical upload path separately from the HTML URL. Default and hosted text both count 50,903 and are byte-identical; HTML retains its requested hashed destinations. Native emitted TXT remains 50,740. A new illustrated-fixture regression passes both routes at the exact bound and rejects both routes at one character below it for LinkedIn and Medium. Existing adaptation/Unicode and both real R28 reader cases also pass. No prose, source or limit was changed.
+
+The first targeted identity run passed three cases and exposed an incomplete licensed-family registration in the fourth. Adding the three exact new tuples to the existing mandatory-rights list resolved that finding. The completed rights/equivalence and actual package-boundary rerun passes both cases, preserving rejection before file access. Original failed and corrective TAP observations are retained in the independent reports; a transient incomplete correction is not presented as acceptance.
+
+The final native kit is `4bf1bcf7c8346d312a7f59299c4fe5c472bd91f79231be806d801f0c8e871996`. Its PDF SHA256 is `c715bbe933095708934d45f23e21d1d0830f53dce845bf7b08a80dac1c19b718` (22 pages, 1,415,489 bytes); the exact 34-member ZIP SHA256 is `7280ee7b976a9d1ae267ae05dc875683ac18323db57544e8aa09bda9da8df698` (6,521,711 bytes). Every native HTML/Markdown/TXT output remains byte-identical to the independently reviewed layout-corrected kit. Every pixel, extracted text, link and outline destination of all 22 PDF pages is equal; timestamp and current producer manifests distinguish the rebuild. This reuses demonstrated unchanged visual evidence without claiming the two PDF byte streams are identical.
+
+The corrected native build and dependent-identity checks use repository-pinned Node24.19.0, restored from the official archive and checksum `14b342e71204f811bde6153be8e04b62aef63c236fef92b55f9c83154b409647`. The first policy and first bounded reader diagnostic used Node24.22.1; both root and independent diagnostics prove the URL-only cause on the same binary. Node mismatch is not asserted as the cause of the four failed groups. Original policy, 180-second READER deadline, case selection and resource limits remain unchanged. Final clean-source policy and remote delivery are recorded at the checkpoint after all affected role reviews complete.
 
 ## Acceptance evidence and handoff
 
@@ -842,3 +860,490 @@ My own read-only structural receipts are `/tmp/r28-requirements-checks.json`, SH
 
 This reviewer changed no repository or remote file and ran no heavy suite. The final exact-clean-source policy, deterministic freshness, receipt preservation, actual remote head/tree and checkbox reconciliation must be assessed from their forthcoming concrete evidence. No merge, rebase, staging, public posting, owner editorial acceptance or rights clearance is implied by this prepared-candidate PASS.
 
+
+### Requirements — dependent verification correction — original receipt
+
+Original file: `r28-requirements-acceptance-correction.md`; 8298 bytes; SHA256 `865aa4e9ea2c25956e1c78b5246c66b87b22d531245561c596ab3f9534800465`.
+
+# R28 requirements correction after exact-source acceptance failure
+
+Date: 24 October 2026. Reviewer: `/root/r28_requirements`, independent Requirements & Acceptance Reviewer. Read-only diagnosis and pre-implementation scope assessment; no tests, source edits or remote mutations were performed by this role.
+
+## Observed evidence and effect on acceptance
+
+The first exact-clean-source policy report applies to commit `e877de50dfa4aa3ce7cf9fed937bc8ea63de4d46`, tree `f7136a92f0457c1e46584a745f1992c2d3a74c4f`. Report `/tmp/r28-clean-acceptance.json`, SHA256 `066c5dd5fac7b74847a9e0627d746d8b87627a46f249fb6e710547448d9242c9`, records `evidence_valid:true`, `source_dirty:false`, `errors:[]`, `automation_pass:false`, and closure false. **Eight named groups pass; BASIC, READER, DELIVERY and CONTENT-LANES fail.** This is valid failed evidence, not a clean-policy pass or an invalid run that can be discarded.
+
+R28.5 remains unmet and R28.6 delivery remains pending. The earlier prepared-candidate native-artifact/content findings remain bound to their exact inspected scope; they did not establish integration into every site-reader and generated-delivery path.
+
+## Distinct failure mechanisms
+
+| Failure | Independently inspected evidence | Interpretation |
+| --- | --- | --- |
+| BASIC | Native `build.cjs --check` reports stale generated documents, snapshot paths, runtime identity and site revision | `build.cjs:fingerprints` hashes every `site/engine` file. The necessary print-CSS repair changes engine identity even though it need not change the five browser runtime files. Generated dependency closure must be refreshed. |
+| CONTENT-LANES | `content-delivery.test.cjs` copies checked-in `docs`, then `stagedGeneration` rejects a mismatch with current builder fingerprints | This is the expected exact-generation guard detecting the stale dependency closure. Its check must remain enforced. |
+| DELIVERY | `release-rights.test.cjs` actual package CLI is rejected by `color-motion-contract.cjs` as an unreviewed Color motion runtime | The current allowlist contains an explicit historical `issue5ReviewPrint` family for the previous print-only identity. A legitimate new identity requires an explicit reviewed registration after actual runtime-byte equivalence is proved. No blanket admission or removal of that guard is justified. |
+| READER | Both `article-media.test.cjs`'s real R28 preview and `reader-mode.test.cjs`'s real/reference composition call `loadArticle(..., {assetUrl: articles.assetName})` and fail the 51,000-character profile bound | This is a separate representation-dependent counting defect exposed by the narrow R28 margin, not evidence that the approved article/native TXT is actually over its measured bound. |
+
+The READER data path is visible in the unchanged source: `validateAsset` selects `asset.url` from the optional reader resolver; `ast.mjs:textRendition` includes `asset.uploadPath || asset.url` in image-upload instructions; `profile.cjs:characterLimits` counts that compiled text. The four canonical asset URLs become longer content-addressed site paths. Direct arithmetic from the actual metadata yields increases of 23, 38, 38 and 38 code points, **137 total**: the measured canonical 50,903 becomes a projected site-path 51,040, 40 above the same 51,000 bound. This read-only arithmetic explains the exact failing pathway; independent targeted execution remains the implementation/QA oracle.
+
+Node 24.22.1 differs from the workflow pin 24.19.0, but that observation alone does not explain these failures. The source dependency and URL-representation mechanisms above provide concrete explanations. Do not relabel all failures as environment noise, change runtime pins merely to obtain a pass, or replace reviewed public/runtime bytes without checking the real cause.
+
+## Authorized bounded correction and observable obligations
+
+**The proposed corrections are necessary dependent work within the existing R28 deliverable and issue5/PR79 route. No additional author clarification is required.** The exact four prose changes, source/semantic edition, pending contributor dispositions, rights/canonical state and all existing numerical/resource/time limits stay intact.
+
+1. **Canonical generated closure.** Regenerate `docs` and its output-lock/snapshot metadata through the actual canonical builder after the print-owner change. Do not hand-edit generated identities. Verify the resulting source and output dependency closure; preserve the five existing browser runtime byte sequences and historical retained records unless a separately justified actual runtime change is found.
+2. **Exact runtime compatibility.** Add only the exact new Color family/production/plain/staging identity records required by the print-layout identity change, after proving all five browser runtime files equal the already reviewed family. Retain previous entries, edition distinctions, required flags, byte checks, negative cases, limits and authority boundaries. This is compatibility registration for proved equivalent bytes, not exemption from runtime review.
+3. **Representation-independent authored budget.** Use the existing separation between canonical/upload text paths and HTML delivery URLs so a custom site image resolver cannot inflate or shrink the authored platform-text count. Preserve the current canonical text and explicit kit upload-path semantics. Actual site HTML must retain its correct content-addressed image destinations. Keep the 51,000 bound and Unicode-code-point unit; do not remove genuine text or disable checking on the site path.
+4. **Meaningful bounded regression.** Demonstrate equal canonical/profile text with default and custom asset delivery URLs, while the actual HTML destinations differ as requested. Demonstrate that genuinely oversized authored text is rejected through both paths. Reuse the two failing real-reader cases and existing print/identity/delivery checks. Preserve their original assertions and the READER deadline. A test that merely asserts a new field or permits every count would not establish the contract.
+5. **Current producer/artifact evidence.** If publisher source changes, regenerate current kit/producer manifests through the native workflow and record the new render-artifact identity. Reuse unchanged PDF/content visual evidence only after actual byte equality or a bounded affected-output review establishes applicability. Keep the same R28 content edition if source and semantic identity are exact. Preserve the initial candidate and failed-policy identities as historical evidence rather than silently replacing their conclusions.
+6. **Independent delta and final acceptance.** Obtain actual affected Code, White-box, Exploratory and Requirements delta assessments; reuse demonstrably unchanged content/provenance/visual scope. Refresh RI/CI and mapping routes without weakening policy. Then run the unchanged issue5 policy on the final exact clean corrected source. Retain the first failed report and distinguish the new successful or failed result. Actual issue-checkbox reconciliation and remote delivery remain separate final steps.
+
+Applicable style/ownership rules include CS01/02/04 for canonical source and representation boundaries, CS05 for focused implementation, CS08 for meaningful bounded regression, CS09 for the existing guard and CS10 for source-bound evidence. The changed publisher/compatibility owners retain their actual check classification. No broad browser/performance campaign, speculative rewrite, author-budget increase or new acceptance policy is required by these observed mechanisms.
+
+## Required disposition
+
+Do not claim R28.5 or final delivery complete on `e877de50`. Do not retain current-source AC13/14 ticks at session end if their required checks remain failed; AC15 has separate currently passing CONTENT-CI/RI-CI/CURRENT-RI evidence. Historical AC23 and issue2 AC07/08 retain their original scopes. The final actual checkbox disposition must follow the corrected exact-source report, not this prospective treatment.
+
+The correction is feasible and traceable without changing the authorized argument. This report approves the bounded requirements treatment only; no corrective implementation, test pass, renewed artifact identity or remote delivery is claimed here.
+
+### Code review — correction preflight — original receipt
+
+Original file: `r28-code-correction-preflight.md`; 4843 bytes; SHA256 `9b82bd45163acd026231fad8987e337788fdf9cae042efbea1d741403cdc07cf`.
+
+# R28 final-policy correction — independent Code Review preflight
+
+Date: 24 October 2026. Reviewer role: Code Reviewer, independently executed by `r28_code_correction`. Execution owner: issue5 / Draft PR79; editorial owner: issue2. Inspected candidate: `e877de50dfa4aa3ce7cf9fed937bc8ea63de4d46`, tree `f7136a92f0457c1e46584a745f1992c2d3a74c4f`; clean working tree at initial inspection. Prior R27 baseline: `56daee1bde31c64fd2f56db72b8e7676f62fb631`.
+
+## Actual inspected scope
+
+Read AGENTS, CONTRIBUTING independent-quality protocol, CODE-STYLE, relevant README/MEMORY/source/acceptance/publication contracts and R28 scope/review. Directly inspected `tools/site/build.cjs` fingerprints/runtime identity; `tools/quality/color-motion-contract.cjs` family registry, selectors and byte guards; current-generation and negative coverage in `tests/color-motion-contract.test.cjs`; `tools/publishing/article.cjs`, `profile.cjs`, `ast.mjs`, `kit.cjs` and `tools/site/articles.cjs`; adaptation/Unicode-limit tests. No repository source edit, test execution, deployment or remote mutation in this preflight.
+
+## Findings and proposed treatment
+
+1. **Generated closure omitted after the approved print-CSS repair.** The site engine fingerprint intentionally hashes every file under `site/engine`, including `article-print.css`; runtimeVersion incorporates that digest. Changing ordered-list indentation therefore invalidates the current generated runtime names, route snapshots and output lock even though the five browser runtime file contents need not change. Canonical regeneration is required by AGENTS step7. Do not hand-edit generated bytes or exclude this CSS from the fingerprint solely to evade freshness checks.
+2. **Color compatibility needs exact successor identities.** Existing `issue5ReviewPrint` explicitly supports a previous print-only engine identity change with unchanged browser bytes. A new named family and three exact plain/staging/production fingerprints are appropriate, conditional on actual byte equality of all five browser runtime files per edition. Preserve historical records and all `select` assertions. Do not introduce wildcards, dynamic acceptance of unknown fingerprints or claims of new hosted/runtime approval.
+3. **The current-generation contract test owns its current identity assertion.** `tests/color-motion-contract.test.cjs` exercises actual generation and currently expects `issue5-review-print-*`. Update only its current family expectations after proving final identity. Extend the existing family/predecessor loop to the new family: it already rejects each file substitution at canonical and immutable paths, foreign base, wrong edition and missing publication rights. Retain original tests/assertions and old families.
+4. **Route-dependent character counting is a distinct bug.** `loadArticle` supplies routed asset URLs to the compiler; `textRendition` includes uploadPath-or-URL in textual upload instructions; profile validation counts that text. A long hashed web URL can therefore violate a platform review bound while equivalent native platform text fits. Keep prose and authored limits unchanged; use a consistent platform upload representation, preserving authored alt/caption/credit text, link destinations, adaptation selection, Unicode counting and fail-closed boundaries. Avoid duplicate upload naming policy or a special PMDay bypass.
+5. **Resolve producer changes before freezing downstream identities.** Any publishing implementation correction affects site producer fingerprints and native kit producer inputs. Derive the final Color identities after the correction, and regenerate native kit evidence when producer bytes change. Existing artifact evidence cannot be relabeled as the changed producer's output merely because visible content remains equal.
+
+## Assessment
+
+The proposed bounded correction is technically justified as completing the already authorized new-version and readable-export work. It does not require shortening the approved article, increasing limits, weakening acceptance or changing release policy. Applicable rules: CS01/02/04 canonical owners and single parameters; CS03 unchanged canonical print styling; CS05 focused readable changes; CS07 preserved bounds; CS08 existing meaningful positive/negative tests; CS09 bounded guard remains separately required; CS10 source-bound evidence and same issue/PR route. No new runtime lifecycle change is proposed (CS06).
+
+This is a design/scope review, **not approval of an uninspected corrected candidate**. Actual diff, byte identities, bounded regression results, refreshed artifact closure and final clean owning policy remain pending. The original failed policy is retained; eight passed and four failed groups are not a current complete pass. Merge, staging, publication and whole human gates remain separate.
+
+### White-box — hosted-path diagnosis — original receipt
+
+Original file: `r28-policy-reader-diagnosis.md`; 9864 bytes; SHA256 `e786ca47b4a9e9c1221369552e032e508e61e9bc4914ad5759cd2e9faa3c66d1`.
+
+# R28 policy READER failure diagnosis — 24 October 2026
+
+Independent diagnostic reviewer: `/root/r28_whitebox`. Read-only targeted follow-up after the exact-clean-source policy failure; no repository, artifact or remote changes and no broad test run.
+
+## Conclusion
+
+**The failure is a real route-dependent character-count defect, not contradictory manuscript evidence or a demonstrated Node-version effect.** The same R28 source compiles to 50,903 generic code points with default image URLs, but to **51,040** with the site's content-addressed image URLs. That is 40 above the unchanged 51,000 authored profile limit. The counted text includes image-upload paths; the preview's longer deployment URLs add exactly **137** characters without changing article wording.
+
+Both failed READER cases have this cause: `real R28 preview retains full edition and PDF closure inside unchanged reading budget` and `real and reference publications use the same reader template and admitted image destinations`. The captured READER run reports 265 cases, 263 pass and two fail. It completed in 116.076 seconds; this observed failure is the profile exception, not the original 180-second deadline.
+
+Recommended smallest correction: **give each validated publication asset a stable authored/upload path separately from its deployment-specific HTML URL**, using the existing `uploadPath` contract. Keep the profile limit, its validation and all prose intact. The root's proposed two-line `validateAsset` split is appropriate; the in-memory compatibility experiment below supports it, while actual implemented-code and negative-boundary review remain required.
+
+## Evidence and failure path
+
+Inspected clean source `e877de50dfa4aa3ce7cf9fed937bc8ea63de4d46`, tree `f7136a92f0457c1e46584a745f1992c2d3a74c4f`. The acceptance report has `evidence_valid:true`, `source_dirty:false`, `automation_pass:false` and no report-level errors. Failed-report SHA-256: `066c5dd5fac7b74847a9e0627d746d8b87627a46f249fb6e710547448d9242c9`. This diagnosis does not relabel that source as passing.
+
+Canonical manuscript remains `4bc0136b86e46c4792c61791612243e2c0d0b513c2012cbe9baa1bab97223650`.
+
+1. `tools/site/articles.cjs` invokes `publisher.loadArticle(root, id, { assetUrl: assetName })`. `assetName` constructs `article-media/<64-character digest>/<filename>`.
+2. `tools/publishing/article.cjs` currently gives an asset either that caller-mapped `url` or the default `/assets/...` URL. It supplies the selected asset URLs to the common AST compiler.
+3. `tools/publishing/ast.mjs`, `textRendition`, renders image instructions using `asset.uploadPath || asset.url`. At this load stage no stable `uploadPath` exists, so caller-specific deployment URLs enter the text used for the profile budget. The Markdown rendition uses the same existing preference.
+4. `tools/publishing/profile.cjs` counts `Array.from(selected.text).length` and rejects values above the authored limit. This guard correctly rejects the text it receives; the defect is mixing deployment URL representation into the platform/profile text at the asset boundary.
+5. The native kit supplies its own `images/NN-id.png` URL and upload path. Therefore its emitted TXT count is 50,740. That existing count is also correct for that concrete rendition; it cannot describe the longer site-preview preflight text.
+
+### Exact measured URL contribution
+
+The comparison used one unchanged source and one Node binary, with identical compile options except the existing asset-URL mapping. Replacing only the four image URLs in the default text reproduces the entire preview text **exactly**.
+
+| Image | Default URL length | Preview URL length | Counted occurrences | Added code points |
+| --- | ---: | ---: | ---: | ---: |
+| Cover | 89 | 112 | 1 | 23 |
+| Slide 03 | 59 | 97 | 1 | 38 |
+| Slide 09 | 59 | 97 | 1 | 38 |
+| Slide 12 | 59 | 97 | 1 | 38 |
+| Presentation poster | 63 | 101 | 0 | 0 |
+| Total | | | 4 | **137** |
+
+Thus 50,903 + 137 = 51,040. R27's prior generic count plus the same URL overhead would be 50,486 + 137 = 50,623; that arithmetic explains why the existing route did not reach the bound before the R28 increment. I did not rerun an R27 build for this diagnostic.
+
+## Proposed correction and compatibility
+
+The proposed canonical owner change is:
+
+```js
+result.uploadPath = `/${asset.path.slice(5)}`;
+result.url = assetUrl ? assetUrl(result) : result.uploadPath;
+```
+
+The existing subsequent generated-URL safety check must stay in place. This derived path is internal output from an already validated declared asset path; no new user-supplied metadata field or schema exception is needed. The semantic identity already depends on declared source bytes, dimensions, alt/caption/credit, not this rendition locator.
+
+I simulated that resulting asset data **in memory**, without modifying `article.cjs`. Using the existing native compiler:
+
+- Proposed mapped-route text count is **50,903**.
+- Proposed complete text and Markdown equal the original default-route text and Markdown byte-for-byte.
+- Proposed `html`, `bodyHtml` and `platformBodyHtml` equal the original content-addressed-route HTML byte-for-byte. Actual preview images keep their hashed deployment destinations.
+- Default-route behavior is unchanged because the derived upload path is exactly its former URL.
+- `kit.cjs` already explicitly replaces both `url` and `uploadPath` with its local `images/NN-id.png` destinations, so the existing native rendition contract is preserved.
+- `article-media.cjs` retains source asset properties when creating WebP/JPEG copies, then changes only their hosted URL; this carries the stable upload/source locator through that preparation without changing actual displayed image destinations.
+
+This is preferable to an additional canonical recompile used only for limits: it uses the already existing distinction between upload and displayed URLs, avoids duplicate compile work/state, and corrects both text and Markdown representation at their owning asset boundary. It is also preferable to raising the cap, skipping validation for custom URLs or trimming approved prose to hide deployment bookkeeping.
+
+The public API's custom-URL text/Markdown behavior deliberately becomes stable rather than embedding the caller's deployment path. That compatibility change should be named in the review/workflow record. Existing HTML consumers retain their mapping. A new native producer hash and render-manifest identity are appropriate even when the manuscript and visible rendition bytes are unchanged; prior delivered artifacts and failed receipts must remain historical.
+
+## Minimum meaningful verification
+
+| Risk | Bounded oracle / existing route |
+| --- | --- |
+| The fix accidentally bypasses character limits | In an existing illustrated publishing fixture, set the authored bound to the default compiled count: default and long mapped URL routes both pass. Set the same bound one code point lower: both routes reject. Keep Unicode/selected-adaptation cases in `publishing-profile.test.cjs`. |
+| HTML mapping is accidentally frozen to the upload path | Assert that the custom route still emits the requested hashed HTML image/link URLs while text and Markdown agree with the canonical route. Existing real reader/media cases must pass unchanged. |
+| Native kit loses its local upload-path behavior | Existing native-kit export tests plus actual artifact identity comparison; verify `images/` paths, captions/credits and the complete source remain unchanged. |
+| Invalid URL acceptance broadens | Preserve the current unsafe generated-URL rejection and existing malformed-source/resource tests. Do not use a truthy `uploadPath` to skip URL validation. |
+| Hosted media preparation loses the distinction | Existing media/reader cases exercise actual re-encoding and admitted destinations; no extra broad browser/performance campaign is indicated by this diagnostic. |
+
+The two already-failing real R28 cases are useful integration regressions and must not be removed or weakened. A small general illustrated-fixture boundary case makes the underlying invariant observable for future content. A CSS literal, profile-cap increase or test-only special case would not address the mechanism.
+
+## Node version and diagnostic limits
+
+Both the failing preview reproduction and successful default compile above ran on **the same `v24.22.1` executable**. The exact 137-character difference is fully explained by four URL substitutions. Consequently the previously mentioned `24.19.0` workflow pin is not needed to explain these READER failures and changing Node alone is not a correction for them.
+
+The GitHub workflows, including issue acceptance, pin **24.19.0**; `tools/publishing/toolchain/package.json` permits Node >=24.0.0. I inspected those declarations but did not acquire or run 24.19.0. Any separate generated-output/version-currentness failures remain independently relevant and should be handled under their own evidence. The final exact-clean-source policy must still run in its admitted environment after actual implementation and independent review.
+
+The earlier independent native count and artifact reports remain valid for their named default/native routes, but they did not cover the caller-selected hosted URL length dimension. The required final policy detected that gap. This diagnostic expands the affected route oracle and does not convert the failed clean head into a pass.
+
+Original machine receipts: `/tmp/r28-reader-metric-diagnosis.json`, SHA-256 `a3c17f0a574e84f2d8a7c8456bec1e7f230d9996ab7bba8f7dbc18d04cbe5989`; `/tmp/r28-reader-proposed-metric-check.json`, SHA-256 `03f9eb03c4d534dae13d21fbc2693d418fd2412e24e3741bc0b81b13842d1fb0`. These are read-only diagnostics and an in-memory proposed-data experiment, **not a claim that the correction has been implemented or its new regression tests have passed**.
+
+### Code review — completed technical correction — original receipt
+
+Original file: `r28-code-policyfix-final.md`; 10904 bytes; SHA256 `40ef3df14ad0364a37d309d257abad3d1fba5925ab2dbd50593ded3bf39a283e`.
+
+# R28 final-policy correction — independent Code Review
+
+Date: 24 October 2026. Reviewer: `r28_code_correction`, Code Reviewer, distinct from implementer, Requirements, White-box and Exploratory roles. Execution owner issue5 / Draft PR79; editorial owner issue2.
+
+**Decision: PASS for the implemented correction in the inspected prepared source. No unresolved blocking code-review finding remains.** The final exact-clean-source owning policy and remote delivery are still pending; this review does not claim those gates passed.
+
+## Identity and scope
+
+Compared the actual working tree to `e877de50dfa4aa3ce7cf9fed937bc8ea63de4d46`, tree `f7136a92f0457c1e46584a745f1992c2d3a74c4f`. This is a prepared dirty candidate, not final clean-commit evidence. The earlier independent preflight is `/tmp/r28-code-correction-preflight.md`, SHA256 `9b82bd45163acd026231fad8987e337788fdf9cae042efbea1d741403cdc07cf`. The original failed owning policy remains retained, not replaced by a pass claim.
+
+Directly read the source diff and the relevant publisher, AST, profile, site builder, Color selector, rights packaging and dependent fixture implementations. Searched the active `tools`, `tests`, `site` and `.github` owners for all prior family names and exact engine/Color fingerprints. Existing historical family definitions and historical fixtures remain; current-generation expectations advance only where they derive current source. Read applicable AGENTS, CONTRIBUTING, source/publication/acceptance contracts and CODE-STYLE.
+
+### Inspected source hashes
+
+| File | SHA-256 |
+| --- | --- |
+| `tools/publishing/article.cjs` | `54459f1f49b3405bc5fdf9f5a3e627d026ad3bbe7822026dc1ca4602a69eb7cb` |
+| `tools/quality/color-motion-contract.cjs` | `b67e1a28b572347f565d576a4bf6609a5d7ad5bccef113bffb89a5f9075189f1` |
+| `tools/staging/package.cjs` | `91e7430e9b737d05cab9d6a25d1533dd4f561dc4109522979bdd2afa7b8df243` |
+| `tests/publishing.test.cjs` | `3bf4ac3a7c0f06db750a9052455febd65682d0cd74ed50945c25b54ed3be8dab` |
+| `tests/color-motion-contract.test.cjs` | `ccdd2bff5f899113943ebc5d4b878c5eb52d246569f36bef1e18a7f2a2a287c7` |
+| `tests/article-browser-evidence.test.cjs` | `e315cebd3d4647d6095f6c81bb9a85b2e2ecd3c967b8c9af09840ca7827e47ba` |
+| `tests/fixtures/publication-records.cjs` | `3df4afe43548dedb52d9e8533753b9ce2eb525f2aadbcf7e63535b4353f6eaef` |
+| `tests/release-controller.test.cjs` | `5045592b49dc799c16ffa4ef9a4e55d16c11ac88784e4269cfa97fe996050f53` |
+| `tests/staging-regression.test.cjs` | `af1b5f2f5284b0075b72462c6de5fa4498f48bf64ee284794585b6f89831676a` |
+
+## Implementation assessment
+
+### Stable upload text, routed HTML
+
+`validateAsset` now assigns the existing source-derived default asset URL once to `uploadPath`, then uses the optional deployment callback only for `url`. The existing AST already distinguishes upload paths from HTML URLs. This is a focused correction at the asset boundary, with no new profile bypass, article-specific special case or copied kit naming convention. Default generic text and Markdown remain identical. Hosted HTML still receives the requested hashed image URL. Kit rendering continues to override upload paths with its existing `images/NN-id.png` filenames.
+
+No profile guard or limit changed. Unicode code-point counting, the selected adaptation, complete authored alt/caption/credit text and source links remain in the bounded text. The new regression tests an actual fixture at the exact character boundary and at one fewer character for both platforms and both canonical/hosted routes; it also proves text/Markdown equality and routed HTML. Existing adaptation/Unicode checks remain unchanged. This tests the previously failing contract rather than copying a source literal assertion.
+
+### Generated closure and exact runtime admission
+
+The existing builder deliberately includes every `site/engine` source in its engine digest, including print CSS; it also includes publisher code in its producer digest. Regenerating `docs/` and its output lock is therefore required. I independently compared the actual current output with Git bytes from e877:
+
+- All five base browser runtime files are byte-identical, including their new immutable-path copies.
+- All five route aliases and their snapshot documents reverse exactly to e877 through declared engine/route-identity substitutions alone.
+- Current base runtime identity is `36e9a52051ed974d077e86ea028f5c57838370418637c71391fdf0c9e1eca297`.
+- The actual plain, staging and production Color outputs and immutable copies match all five recorded runtime hashes. They retain the predecessor's browser byte sets and edition-specific stylesheet identity.
+
+The new `issue5ReviewPaths` family preserves predecessor behavior and all reader flags. Its three exact fingerprints are added without removing or editing historical records. `select` retains its variant, edition, contract, canonical-byte and immutable-byte assertions. The new family is also present in `publicationRequired`'s explicit licensed list, so it cannot omit the required rights record.
+
+Dependent tests correctly advance the actual current-generation Color closure, staging journey, explicit production rendition and modern publication fixture expectations. The old fixture branch and historical tuples remain. The existing all-current-reader-evidence loop includes the successor. The existing family/predecessor negative loop extends to this family and retains each file substitution at canonical/immutable/both paths, foreign-base and wrong-edition checks and required rights before file access.
+
+## Findings and dispositions
+
+| Finding | Disposition |
+| --- | --- |
+| Print CSS and publisher changes invalidated generated source identities. | Resolved through canonical regeneration; direct output comparison above confirms identity-only public changes. |
+| New Color identity lacked reviewed compatibility tuples. | Resolved with three explicit tuples and actual five-file equivalence; no wildcard admission. |
+| First bounded dependency run found mandatory rights were not assigned to the new family. | Resolved by adding exactly three successor IDs to the existing licensed list; negative regression and actual package CLI subsequently pass. The original failure is retained. |
+| Three dependent fixtures derived current source but expected the predecessor ID. | Resolved by narrow current-identity replacements; historical branches retained. |
+| Web image addresses inflated platform text counts. | Resolved at upload-path/HTML-URL separation, preserving original prose and limits. |
+
+## Verification inspected and independently performed
+
+I independently performed the structural byte comparisons above, verified every current kit input/producer/output hash, compared unchanged native renditions and ran `git diff --check` successfully. I did not repeat the implementer's test suite or claim their execution as my own.
+
+| Evidence | Actual result and scope |
+| --- | --- |
+| Reader targeted receipt | Four selected tests passed, zero failed/skipped: new route/boundary test, original adaptation/Unicode test, real R28 preview and real/reference reader template. Receipt is explicitly a transcription of native tool output, with exact command, counters and source hashes; I verified those source hashes against the current files. Node24.22.1. |
+| First dependency TAP | Three of four passed; the new family rights-before-access case failed. Actual current three-edition closure, staged generation and package CLI passed. This is retained failed diagnostic evidence. |
+| Corrected rights TAP | Two of two passed, zero failed/skipped: all new-family byte/edition/base/rights negatives and actual publication edition/package CLI. Node24.19.0. |
+| Final owning policy | Pending on the final clean source; no reuse of earlier R27 results or false 12/12 claim. |
+
+## Native artifact currentness
+
+Current kit: `4bf1bcf7c8346d312a7f59299c4fe5c472bd91f79231be806d801f0c8e871996`. It records Node24.19.0 and the actual changed publisher producer hash. I directly verified all 11 source inputs, 16 producer inputs and 33 outputs against bytes. All six HTML forms, canonical/review/platform Markdown and TXT plus print CSS are byte-identical to the previously visually reviewed corrected kit. Generic text remains 50,903; each emitted TXT remains 50,740; authored bounds remain 51,000.
+
+The supplied 22-page PDF equivalence receipt records exact raster, extracted text, links and outline equality; I inspected that receipt, not a new visual/device session. Exploratory owns actual visual/interaction review. New PDF SHA256 `c715bbe933095708934d45f23e21d1d0830f53dce845bf7b08a80dac1c19b718`; new ZIP SHA256 `7280ee7b976a9d1ae267ae05dc875683ac18323db57544e8aa09bda9da8df698`. Producer currentness is not inferred solely from unchanged visible text.
+
+The manuscript, launch, selected profile, print CSS, profile-validation implementation, issue5 acceptance policy and its test-selection runner are byte-identical to e877. All four approved formulations and existing contributor dispositions stay intact. Source counters, limits and deadlines are not weakened.
+
+## Style and limits
+
+CS01/02/04: canonical asset boundary and generated-output ownership, no second prose or upload-name registry. CS03: existing canonical print CSS remains unchanged during this correction. CS05: focused readable changes, no unrelated reformatting. CS06: no runtime lifecycle changes. CS07: all bounds retained and actual browser bytes unchanged. CS08: meaningful boundary/negative coverage and exact output comparison. CS09: root separately reports the bounded guard; it does not substitute for this semantic review. CS10: preserved failed evidence, source-qualified correction and same issue/PR route.
+
+Catalog renames, refreshed review/MEMORY and deterministic RI output still require their ordinary freshness closure. This report does not authorize merge, rebase, hosted staging, publication or rights acceptance. A prepared-source code-review pass does not establish a complete issue or clean-source policy pass.
+
+### Retained supporting receipts
+
+| Receipt | SHA-256 |
+| --- | --- |
+| `/tmp/r28-code-policyfix-structural.json` | `6cb597ee40e46b8b6e324602ee39f0ad0baf9a150c14580f056e6b18bef99dd6` |
+| `/tmp/r28-reader-targeted-receipt.json` | `f28f33bab2c90c7febaef88290861126b8818eec5efc4e57234f6a9aeb4e5898` |
+| `/tmp/r28-dependency-targeted.tap` | `9a75aad1e3c60a9b0a56d20ba03c25ba069cd210e7d58504f4eab13a6dce8274` |
+| `/tmp/r28-dependency-rights-corrected.tap` | `41b4cfc127c7b7a0b8035851909374ecc2444870bbcf61351b4c34bf8019d35f` |
+| `/tmp/r28-generated-equivalence.json` | `3cb463718502c20d592d1b692eb412e01617865772cc515ac613be64266da8a7` |
+| `/tmp/r28-color-closure.json` | `e08255c7b52a1f17bfcd2d6183330cb8b441fcd0265e55eb2b1826fd814e803d` |
+| `/tmp/r28-pdf-policyfix-equivalence.json` | `ecd24ef17eda05b1826656d62db771dba98179677989409c2ebfa1c867cc09cc` |
+
+### White-box — completed technical correction — original receipt
+
+Original file: `r28-whitebox-policyfix-final.md`; 10096 bytes; SHA256 `1be612980871f288dbc048b1b924367ab3f6f922059553069e773209c123a0f8`.
+
+# R28 White-box QA — policy corrective delta
+
+**Role:** independent White-box QA (`/root/r28_whitebox`). **Disposition: PASS for the bounded implemented correction and current native/delivery closure.** This is not a clean-head owning-policy pass. Root must run that gate on the final corrected commit.
+
+**Scope update before handoff:** root has reported a new user request to strengthen the two problem statements and planning causal chain. This receipt freezes the technical correction against source `4bc0136b` and kit `4bf1bcf7`; that snapshot is now historical, not the final deliverable. It remains evidence for the unchanged mechanism only. Any revised prose and rebuilt kit require a new bounded source/artifact review.
+
+## Candidate and authority
+
+Reviewed the dirty corrective worktree based on `e877de50dfa4aa3ce7cf9fed937bc8ea63de4d46` in `/workspace/scratch/c91ea22e72f1/author-site`, with final native aliases refreshed. The original e877 clean acceptance run failed 4 of 12 groups; its failure is retained as evidence, not converted into a pass. Scope follows `/tmp/r28-requirements-acceptance-correction.md`: repair the actual reader-count discrepancy, regenerate required identities, preserve licensed-runtime checks and source meaning, refresh native provenance, and rerun the owning policy. No repository or remote mutation was performed by this reviewer; only original `/tmp` diagnostics/reports were written.
+
+This report supplements, and does not replace, `/tmp/r28-whitebox.md`, `/tmp/r28-whitebox-delta.md`, and `/tmp/r28-policy-reader-diagnosis.md`. The initial protected-inventory statement of 113 unchanged files applied to the first candidate. The print correction deliberately changed its CSS member; the present correction also changes the publishing producer and generated identity closure. Neither the original 113/113 statement nor the later 112/113 statement is asserted for this final worktree. The narrower 52-file frozen-edition/review preservation check was independently repeated and passes.
+
+## Risks, oracles, and independent results
+
+| Risk | Oracle actually applied | Result |
+| --- | --- | --- |
+| Hosted image locators inflate authored text beyond 51,000 | Execute current `loadArticle` with default and actual hosted mapping under pinned Node 24.19.0; compare text, Markdown, HTML, asset paths and limits | PASS: both counts 50,903; text/Markdown exact; only requested HTML image URL mapping differs; stable upload paths; both limits remain 51,000 |
+| URL split weakens rendering, source checks, or semantic identity | Inspect `validateAsset`, AST locator selection, media/kit adapters and exact code delta | PASS: source upload path is assigned before optional deployment URL; existing URL validation remains; HTML still uses deployment URL; kit still explicitly supplies local image paths; semantic digest excludes locators |
+| New tests merely bless overflow or bypass a limit | Inspect new boundary regression and unchanged existing limit test | PASS: one fixture establishes N; default/custom routes pass at N; LinkedIn and Medium are independently rejected at N−1 on both routes; custom HTML URL and canonical text/Markdown are asserted |
+| Regeneration changes the reader runtime | Compare all five canonical browser files against e877 and reconstruct each generated route alias and immutable snapshot with only engine/route identity substitutions | PASS: five runtime files byte-exact; all five route pairs differ only by the required identities |
+| New Color identities broaden admission or bypass rights | Independently select all three actual generated manifests; verify every canonical and immutable runtime file; compare predecessor file maps; execute missing-rights rejection before file access | PASS for plain, staging and production; each exact tuple admitted; all five runtime files preserved per edition; rights required and missing rights rejected |
+| Fixture updates weaken historical or negative coverage | Inspect final four-file fixture/test diff | PASS: three current fixture assertions advance to `issue5-review-paths`; one evidence inventory adds that family; historical entries and assertions remain |
+| Native producer/source/output or delivery bytes are stale | Independently run `verifyKit` and `verifyPrintPair`; hash complete native inputs, resources, outputs, aliases and ZIP members | PASS: 11 source inputs, 16 producer inputs, 7 print resources, 34 native members and every delivered ZIP member close to current files |
+| Earlier source or frozen editions drift | Compare current source/semantic/launch pins and 52 frozen files with baseline | PASS: source, semantic and launch unchanged; all 52 frozen files byte-exact |
+
+The original route discrepancy was 50,903 versus 51,040: exactly 137 extra code points from four deployment image paths, making the hosted route 40 over its unchanged cap. It was reproduced on the same Node binary, so a Node-version difference was not the causal explanation. The implementation fixes the locator contract rather than raising caps or shortening prose. The actual native emitted text remains 50,740 code points for article, LinkedIn and Medium.
+
+The current publisher file is SHA256 `54459f1f49b3405bc5fdf9f5a3e627d026ad3bbe7822026dc1ca4602a69eb7cb`; the publishing regression file is `3bf4ac3a7c0f06db750a9052455febd65682d0cd74ed50945c25b54ed3be8dab`. Existing historical runtime tuples are retained. The three exact new edition IDs are also included in the existing explicit licensed list in `tools/staging/package.cjs`; no rights guard was removed.
+
+## Current source and native closure
+
+| Identity | Verified value |
+| --- | --- |
+| Manuscript SHA256 | `4bc0136b86e46c4792c61791612243e2c0d0b513c2012cbe9baa1bab97223650` |
+| Semantic SHA256 | `9db89f306bb10cd6769c85ec882b8d98cbbc3e7f3a1bf88df3a922411ccd1c76` |
+| Launch SHA256 | `de679bda2b16b66faf6f083d1f5e4c86df0ac1f833936f19017835e5bdb10a00` |
+| Current native kit | `4bf1bcf7c8346d312a7f59299c4fe5c472bd91f79231be806d801f0c8e871996` |
+| PDF SHA256 | `c715bbe933095708934d45f23e21d1d0830f53dce845bf7b08a80dac1c19b718` |
+| PDF size/pages | 1,415,489 bytes / 22 pages |
+| Delivered ZIP SHA256 | `7280ee7b976a9d1ae267ae05dc875683ac18323db57544e8aa09bda9da8df698` |
+| Delivered ZIP size/members | 6,521,711 bytes / 34 unique members |
+| Retained failed-policy SHA256 | `066c5dd5fac7b74847a9e0627d746d8b87627a46f249fb6e710547448d9242c9` |
+
+Compared with the preserved CSS-corrected kit `74acb6057f8c595b4f63e42888c371081ec4238ebbd582e2de032c3f10a3c817`, the only changed common members are `article.manifest.json`, `article.pdf`, and `manifest.json`; the print artifact subdirectory identity also advances. Every native HTML, Markdown, text, CSS, asset, launch/profile output and print sidecar remains byte-exact. Among the 16 declared producer inputs, only `tools/publishing/article.cjs` changed. Browser, toolchain and all source inputs remain unchanged. Native provenance still truthfully identifies a working-tree review with null source commit/blob, pending rights and null canonical URL.
+
+The refreshed delivered Markdown/PDF aliases equal native outputs. The ZIP has exactly the native 34-member inventory, with every member byte-exact. All current member/delivery/source/producer entries in `artifact-evidence.json` match actual hashes and sizes. The repository copy `review/issue-2/r28-20261024/acceptance-e877-failed.json` is byte-exact to the preserved original failed policy report.
+
+## Other-role evidence and limits
+
+I inspected root's `/tmp/r28-reader-targeted-receipt.json`: four selected tests passed, including both actual reader routes, existing Unicode/adaptation limits and the new N/N−1 regression. It explicitly records tool-output transcription from Node 24.22.1, not a complete captured suite transcript. I did not execute those four tests myself; the independent checks above used pinned Node 24.19.0.
+
+The original targeted dependency run retained a meaningful rights failure: the new IDs were initially missing from the package licensed list. After correction, `/tmp/r28-dependency-rights-corrected.tap` records 2/2 passing tests (runtime/rights lineage and actual edition/package CLIs). My separate current-manifest rights-negative checks also pass. I did not rerun broad suites or add CSS-literal tests.
+
+Root's `/tmp/r28-pdf-policyfix-equivalence.json` reports all 22 pages raster/text/link-equivalent, exact TOC, and only creation/modification timestamps changed between PDFs. I inspected that receipt; I did not independently perform its raster comparison or a new manual PDF review. My exact HTML/CSS/output comparison supports reusing the separate Exploratory visual review. Native platform posting, hosted acceptance, manual device review, publication rights, merge and deployment are not established by this report. The final clean owning-policy run remains required and belongs to root.
+
+## Independent executable receipts
+
+These original receipts record my checks, distinct from root's targeted-test and pixel-equivalence evidence:
+
+| Receipt under `/tmp` | SHA256 |
+| --- | --- |
+| `r28-whitebox-policyfix-native.json` | `86e9014b6b15028e7859b2d82f18c5b77f6a40b8578404d1ccd51bf46c736b08` |
+| `r28-whitebox-policyfix-closure.json` | `1cd3572dc496f84ce268396af80b77001c112fb33c6e95cb3bb33cd12a7a98e9` |
+| `r28-whitebox-policyfix-delivery.json` | `7b2deb7aa3745b47be2a294e9bc9f9328ff76c91116cf68abf8dc4f3427b1605` |
+| `r28-whitebox-policyfix-generated.json` | `0692f34de17ff2d8a0a33d53924dc7d8a92120bb0c67860139f6e71158c3f7cc` |
+| `r28-whitebox-policyfix-color.json` | `17a0c3026e1987369a0574dfd68f42e4d571f8d4dc60ffa7a4d7c8b51bfaf1f9` |
+
+**Conclusion:** no blocking White-box finding in the reviewed corrective delta. The current implementation restores canonical count stability without changing authored limits or article meaning, preserves exact reader-runtime bytes and mandatory rights checks, and closes the final native and delivered artifacts to their actual inputs. This bounded pass does not supersede the retained e877 failure or predict the next full policy result.
+
+### Bounded reader run — transcribed native tool receipt
+
+SHA256 `f28f33bab2c90c7febaef88290861126b8818eec5efc4e57234f6a9aeb4e5898`.
+
+```json
+{
+  "sourceHead": "e877de50dfa4aa3ce7cf9fed937bc8ea63de4d46",
+  "sourceDirty": true,
+  "runtime": "Node24.22.1",
+  "command": "node --test --test-reporter=tap --test-name-pattern='hosted image URLs|authored character limits|real R28 preview|real and reference publications' tests/publishing.test.cjs tests/publishing-profile.test.cjs tests/article-media.test.cjs tests/reader-mode.test.cjs",
+  "capture": "Observed native exec session70612, exit0; exact counters and case results transcribed from returned tool output. Complete file suite was not requested in this bounded diagnostic.",
+  "cases": [
+    {
+      "name": "real R28 preview retains full edition and PDF closure inside unchanged reading budget",
+      "passed": true,
+      "duration_ms": 12173.151115
+    },
+    {
+      "name": "authored character limits inspect the selected adaptation and count Unicode code points",
+      "passed": true,
+      "duration_ms": 27.389912
+    },
+    {
+      "name": "hosted image URLs preserve canonical upload text and enforce the same authored limit",
+      "passed": true,
+      "duration_ms": 2478.196712
+    },
+    {
+      "name": "real and reference publications use the same reader template and admitted image destinations",
+      "passed": true,
+      "duration_ms": 2081.154117
+    }
+  ],
+  "counters": {
+    "tests": 4,
+    "pass": 4,
+    "fail": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "todo": 0,
+    "suites": 0,
+    "duration_ms": 13340.129335
+  },
+  "selectedSourceSha256": {
+    "tools/publishing/article.cjs": "54459f1f49b3405bc5fdf9f5a3e627d026ad3bbe7822026dc1ca4602a69eb7cb",
+    "tests/publishing.test.cjs": "3bf4ac3a7c0f06db750a9052455febd65682d0cd74ed50945c25b54ed3be8dab",
+    "tests/publishing-profile.test.cjs": "abc3d68087e7f6f16aed94737f9a8c1d1e20c0e21bf64294a53c31b94747d401",
+    "tests/article-media.test.cjs": "4b5e56f288bd2bb4795d6b11eae97f845d641fd2d973bc1bddb7433521d6aa1a",
+    "tests/reader-mode.test.cjs": "d329ab8ba44b81c704527b72644cec4573f009e5d3b9dc79fe234d50200da1f7"
+  }
+}
+```
+
+### First dependency run — original failed TAP
+
+SHA256 `9a75aad1e3c60a9b0a56d20ba03c25ba069cd210e7d58504f4eab13a6dce8274`.
+
+```json
+{
+  "encoding": "JSON-escaped UTF-8; decode rawTap to recover original bytes",
+  "rawTap": "TAP version 13\n# Subtest: reader-link runtime tuples reproduce the complete current plain, staging and production byte closure\nok 1 - reader-link runtime tuples reproduce the complete current plain, staging and production byte closure\n  ---\n  duration_ms: 2692.762905\n  type: 'test'\n  ...\n# Subtest: issue5-review-paths preserves every runtime byte and mandatory rights before file access\nnot ok 2 - issue5-review-paths preserves every runtime byte and mandatory rights before file access\n  ---\n  duration_ms: 6.449069\n  type: 'test'\n  location: '/workspace/scratch/c91ea22e72f1/author-site/tests/color-motion-contract.test.cjs:961:3'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly equal:\n    \n    false !== true\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: true\n  actual: false\n  operator: 'strictEqual'\n  stack: |-\n    TestContext.<anonymous> (/workspace/scratch/c91ea22e72f1/author-site/tests/color-motion-contract.test.cjs:970:14)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1382:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:960:18)\n    Test.postRun (node:internal/test_runner/test:1522:19)\n    node:internal/test_runner/test:1285:31\n    node:internal/process/task_queues:151:7\n    AsyncResource.runInAsyncScope (node:async_hooks:227:14)\n    AsyncResource.runMicrotask (node:internal/process/task_queues:148:8)\n  ...\n# Subtest: production generation copies identical staged raw bytes and rejects dirty, moved, corrupt and overlapping inputs\nok 3 - production generation copies identical staged raw bytes and rejects dirty, moved, corrupt and overlapping inputs\n  ---\n  duration_ms: 3333.720646\n  type: 'test'\n  ...\n# Subtest: publication actual edition and package CLIs freeze exact sidecars before any upload\nok 4 - publication actual edition and package CLIs freeze exact sidecars before any upload\n  ---\n  duration_ms: 29089.891292\n  type: 'test'\n  ...\n1..4\n# tests 4\n# suites 0\n# pass 3\n# fail 1\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 29318.993725\n"
+}
+```
+
+### Corrected rights run — original passing TAP
+
+SHA256 `41b4cfc127c7b7a0b8035851909374ecc2444870bbcf61351b4c34bf8019d35f`.
+
+```json
+{
+  "encoding": "JSON-escaped UTF-8; decode rawTap to recover original bytes",
+  "rawTap": "TAP version 13\n# Subtest: issue5-review-paths preserves every runtime byte and mandatory rights before file access\nok 1 - issue5-review-paths preserves every runtime byte and mandatory rights before file access\n  ---\n  duration_ms: 60.92938\n  type: 'test'\n  ...\n# Subtest: publication actual edition and package CLIs freeze exact sidecars before any upload\nok 2 - publication actual edition and package CLIs freeze exact sidecars before any upload\n  ---\n  duration_ms: 24359.254518\n  type: 'test'\n  ...\n1..2\n# tests 2\n# suites 0\n# pass 2\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 24811.533081\n"
+}
+```
+
+### Exploratory — completed historical technical correction
+
+Original file: `r28-exploratory-policyfix-final.md`; 10539 bytes; SHA256 `233adfabb41e9b11976509d41c20fa5e90c835dd76ceb670510195acf7132607`.
+
+# R28 independent exploratory delta after policy integration repairs
+
+Reviewer: `/root/r28_exploratory`. Date: 24 October 2026.
+Repository: `/workspace/scratch/c91ea22e72f1/author-site`.
+Prepared candidate based on `e877de50dfa4aa3ce7cf9fed937bc8ea63de4d46`.
+No repository source, generated delivery, commit or remote state was changed by this reviewer. Temporary local build and QA evidence only.
+
+## Disposition and supersession
+
+**PASS for the executed technical delta; not final editorial or whole-policy acceptance.** The producer refresh preserves the already visually reviewed native artifact and local copy-ready behavior. The canonical temporary hosted candidate renders the four existing R28 passages, loads all four hashed article images, and supports the tested Contents and appendix interactions. No blocking defect was found within that scope.
+
+During this review the author requested stronger central framing of both engineering problems and the planning consequences. Root has explicitly superseded this `4bf1…` article candidate for final delivery. This report preserves historical technical evidence; it does not approve the forthcoming revised prose or its new pagination. New actual affected-page review remains necessary when that artifact exists.
+
+The original review remains untouched at `/tmp/r28-exploratory.md`, SHA256 `467a73b460adfdea205a58c0e2b4c9b146239462498702c1bbfdd4fda2833926`. It preserves the initial clipped bibliography finding EQ01 and the actual corrected all-page visual review. The earlier failed owning-policy run remains separately recorded at `/tmp/r28-clean-acceptance-e877-failed.json`; this delta neither erases that result nor substitutes for a later owning-policy run.
+
+## Exact artifact binding
+
+| Item | Identity |
+| --- | --- |
+| Previously visually reviewed native kit | `74acb6057f8c595b4f63e42888c371081ec4238ebbd582e2de032c3f10a3c817` |
+| Previously visually reviewed PDF | `de7ee1b74d7f3c6bf99c2c87126057b5001ac2c79a06f8c51498a7de4c3dee69` |
+| Technical-delta native kit | `4bf1bcf7c8346d312a7f59299c4fe5c472bd91f79231be806d801f0c8e871996` |
+| Technical-delta PDF | `c715bbe933095708934d45f23e21d1d0830f53dce845bf7b08a80dac1c19b718` |
+| PDF extent | 22 pages; 1,415,489 bytes |
+| Source | `4bc0136b86e46c4792c61791612243e2c0d0b513c2012cbe9baa1bab97223650` |
+| Semantic content | `9db89f306bb10cd6769c85ec882b8d98cbbc3e7f3a1bf88df3a922411ccd1c76` |
+| Export stylesheet | `45b6773ce87ae21198bc2b5ca2ec2711e1a0c242e61a9fc88b94aef528752a27` |
+| Temporary hosted article HTML | `4e84ed28c40342f569d1c567a7c84349fd6a8efc029119b5a15cd227184c3f29` |
+| Temporary hosted snapshot version | `f4ab2bac9391410c41c1e19b303d9c354e25d834640a907d3911eb5fee51f933` |
+
+At equivalence execution, the delivered PDF alias matched the `4bf1…` native PDF byte for byte. This is an observation at that time, not a promise about an alias that root will subsequently replace with the new editorial candidate.
+
+## Risks, executed cases and oracles
+
+| Risk | Executed check / oracle | Result |
+| --- | --- | --- |
+| Producer refresh silently alters PDF layout, links or outline | Independently open both actual PDFs with PyMuPDF; compare every page's raster samples at 108 dpi, exact extracted text and exact link objects; compare full outline including destinations | All 22 pages and full outline exact |
+| Reuse of previous native HTML or clipboard evidence is invalid | Normalize immutable PDF subdirectory identity, compare actual native member bytes across both kits | Exactly five PDF/manifest members differ; all 29 other members exact |
+| Routed URLs break article images or content | Build the actual candidate through canonical site builder into a separate temporary directory; open its real article route on loopback; decode each article image and inspect actual text | Four images decoded; all four passage markers and title present |
+| Reader navigation and appendix disclosures stop working after build integration | Click real Contents controls and all four top-level destinations; open the four appendix disclosures; inspect destination hashes, visible target coordinates and appendix text | Four navigation targets correct and visible; provenance, edition and history present after disclosure |
+| Refreshed runtime directory implies unreviewed browser behavior | Compare all five actual runtime file bytes to base commit's prior directory | All five exact; no additional runtime matrix warranted by this delta |
+| Local execution hides missing files or runtime errors | Record loopback requests and browser page errors while exercising route | No failed local requests and no page errors |
+
+## Independent equivalence and justified evidence reuse
+
+I independently recomputed the comparison rather than relying on root's `/tmp/r28-pdf-policyfix-equivalence.json`. For all 22 actual PDF pages, width, height, channel count and raster samples at `fitz.Matrix(1.5,1.5)` match; extracted text and `get_links()` match exactly. The complete `get_toc(False)` also matches. Thus the actual all-22-page visual observations for `de7ee1…` apply to `c715bb…` without another redundant all-page viewing run. This retains the actual visual confirmation that bibliography markers 1–36 are fully visible after EQ01's ordered-list indent repair, and that figures, tables, page contents, citations and provenance/history remain readable. It also retains the original report's bounded pagination cosmetics rather than relabeling the typography as flawless.
+
+After normalizing the content-addressed PDF child-directory name, the only changed native members are `article.manifest.json`, `article.pdf`, the child `artifact.pdf`, its `manifest.json`, and root `manifest.json`. All 29 remaining members are byte-identical, including all six HTML forms, Markdown/TXT, CSS, images and launch material. The original six-form browser inspection and the actual keyboard copy/paste evidence for both platform copy-ready forms therefore remain applicable. I did not claim a new proprietary LinkedIn or Medium editor test, or repeat unchanged local clipboard checks.
+
+I separately compared the actual browser files `archive.js`, `navigation.js`, `space.js`, `styles.css` and `theme.js` from base directory `docs/runtime/7373993efca8ba40ab7e30805ee156e975f842a3b1e122c17e6ebcdc1b73bcff` with the prepared `docs/runtime/36e9a52051ed974d077e86ea028f5c57838370418637c71391fdf0c9e1eca297`. Their bytes are exact. Color identity-contract semantics and the full owning-policy result belong to the corresponding implementation/policy roles, not this reader delta.
+
+## Actual temporary hosted-reader observations
+
+I inspected the `article.cjs` change separating stable upload text path from deployment-specific HTML URL. I then invoked the repository's canonical `tools/site/build.cjs` with explicit `candidateArticles: ['pmday-ai-both-sides']`, output `/tmp/r28-hosted-policyfix/public`, and its cache/lock under that same temporary directory. The build completed and produced the actual candidate route `articles/ai-changes-both-sides-of-software-engineering.html`. No hosted deployment occurred.
+
+In Chromium 153.0.8010.0 / Playwright 1.63.0, Node v24.19.0, viewport 1280×900, I opened that route on an ephemeral loopback server with nonlocal browser requests blocked. The cover image decoded at 1280×398 and each of the three slides at 1921×1080. All four use the expected relative `../article-media/<64-character digest>/…` route. Actual rendered article DOM contains two native tables and 49 numeric citation links, plus all four existing R28 passage markers.
+
+The four appendix disclosures initially have `open: false`. Clicking their real summary controls makes Sources & references, How to cite this draft, Review provenance and Revision history available. The R28 edition/history and Olivier's pending editorial disposition are present. I clicked introduction and Parts I–III in the actual hosted Contents: hashes matched each intended heading and observed heading tops were approximately 270 px in the 900 px viewport. There were no browser page errors or failed local requests.
+
+The final preserved receipt uses `prefers-reduced-motion: reduce`. The earlier default-motion attempt also reached its reader assertions, but no completed screenshot receipt was produced. Hosted screenshot capture timed out after fonts loaded both with ordinary capture (30 seconds) and one bounded reduced-motion/disabled-animation attempt (10 seconds). The receipt explicitly records the latter timeout and a null screenshot. **No hosted screenshot was viewed and no hosted visual-quality approval is claimed.** Existing native PDF/HTML actual visual evidence is separate and remains valid by the byte/pixel comparison. Further capture retries or device campaigns were not justified for this superseded candidate.
+
+Two QA-harness assumptions were corrected during the attempt: checking `innerText` before opening collapsed appendices, and expecting a provenance link in hosted Contents. Actual hosted Contents intentionally lists the introduction and Parts I–III; provenance uses its own disclosure. These were harness assumptions, not product defects. The final receipt records the actual controls exercised.
+
+## Evidence and limits
+
+| Evidence | SHA256 |
+| --- | --- |
+| `/tmp/r28-exploratory-policyfix-equivalence.json` | `fb63489e82f792e005482ba67145fc35d65448fd1807bf6fc84bc2778e944a08` |
+| `/tmp/r28-exploratory-runtime-equivalence.json` | `4a36381244f0783318bdc6109ec6909aca73e186683e87e697780eb7335eab7f` |
+| `/tmp/r28-hosted-policyfix/build-result.json` | `0ac15890328c4d64baa064b455dd23f4e2023f0f072cc995a33eb75d5a35f01b` |
+| `/tmp/r28-exploratory-hosted-policyfix.json` | `a9f1dfcdbd86a5f7b41da77569caf45e301a8f08e25cf0ad1ff37d9b439da3c6` |
+
+Temporary build and browser drivers are `/tmp/r28-hosted-policyfix/build.cjs` and `/tmp/r28-hosted-policyfix/browser.cjs`. The latter records the checked served-file hashes and real interactions in the receipt above. No screenshot artifact is offered for this hosted check.
+
+This review does not assert a final whole-policy pass, native platform upload acceptance, external citation availability, public hosted admission, rights clearance, performance/accessibility acceptance or a device/runtime matrix. It independently establishes the limited native-artifact equivalence and the affected local route behavior for this exact historical technical candidate. The author's next prose revision requires a new source-bound artifact delta before final editorial delivery.
