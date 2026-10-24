@@ -2,7 +2,7 @@
 
 *AI Changes Both Sides of Software Engineering*
 
-Vitalii Oborskyi · Editorial draft R36 · 24 October 2026
+Vitalii Oborskyi · Editorial draft R37 · 24 October 2026
 
 ![A solitary person stands before a narrow opening of light between monumental dark walls.](asset:cover)
 
@@ -16,9 +16,9 @@ What if faster generation does not improve delivery—or leaves us unable to rec
 
 Engineering starts with the problem, not the tool. My UA Online PMDay 2026 Autumn talk connects two higher-order tasks: rebalancing the SDLC without losing its essential functions, and engineering dependable control around consequential model judgment. **Both change what leaders must require, verify, staff and fund before implementation.**
 
-My January 2026 writing described a possible **structural SDLC imbalance** [\[37\]](https://dou.ua/forums/topic/57244/): AI code generation can outpace human verification and understanding, shifting work and risk downstream. *The Subprime Code Crisis* [\[9\]](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis) develops how review pressure, lost understanding and deferred costs can affect integration, maintenance and recovery. *Uncertainty Architecture* [\[20\]](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture) examines the distinct problem of control over consequential model judgment in operating software. **This essay connects the two problems** to project framing, architecture, staffing and budgets before implementation.
+My January 2026 writing outlined a **possible SDLC imbalance** [\[37\]](https://dou.ua/forums/topic/57244/): when code generation outruns verification, review queues can grow, rushed approval can erode shared understanding, and costs shift downstream. *The Subprime Code Crisis* [\[9\]](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis) develops these interactions across integration, maintenance and recovery. *Uncertainty Architecture* [\[20\]](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture) separately examines control over consequential model judgment in operating software. **This essay connects both problems** to project architecture, staffing and funding decisions.
 
-Throughout this essay, **“What if not?”** is a deliberate refrain, not a forecast that every failure will occur. Each turn challenges an attractive assumption; together, they reveal the breadth and depth of the problem space before we rush to solutions. The point is practical: decide what to verify, constrain, fund or simplify.
+**“What if not?”** is a refrain, not a prediction that every failure will occur. Each turn challenges an attractive assumption, revealing the problem space and what to verify, constrain, fund or simplify before rushing to solutions.
 
 [Slides (PDF) \[1\]](https://github.com/oborskyivitalii/oborskyivitalii/blob/4d5bcdb7c0b30bd7ba5926007fc24e3752242905/site/assets/publications/pmday-two-shifts/pmday-v35-deck-review.pdf) · [Recording (Ukrainian) \[2\]](https://youtu.be/xSgWjuGqC9I)
 
@@ -36,7 +36,7 @@ An agent can build conventional software; a human team can build a product whose
 
 ## I. How We Build: Rebalancing the SDLC
 
-**Rebalancing the SDLC is a higher-order systems-engineering problem.** The task is to rebalance a chain of dependent activities without losing the functions each contributes. Code review, for example, detects defects **and** preserves shared understanding of how the system works. Removing its delay while discarding that understanding is no improvement.
+**Rebalancing the SDLC becomes a systems-engineering problem when output outpaces downstream capacity.** The task is to adjust dependent activities without losing their functions. Review, for example, detects defects **and** transfers system knowledge. Clearing its queue while losing that understanding is no improvement.
 
 **The hard asymmetry is between machine output and human capacity.** Agents can produce changes faster than people can assess their implications. We want to delegate cognitive work, yet teams remain accountable for the machine-made decisions embodied in what they ship. That need not mean reading every generated line: it means retaining—or replacing with demonstrably adequate mechanisms—the evidence, understanding, authority and recovery capability responsible operation requires.
 
@@ -56,7 +56,7 @@ The roughly 30% release gain matters. Would it justify additional review, mainte
 
 The NBER weak-link model describes complementary upstream and downstream work, not a universal bottleneck. If automation expands downstream capacity **while preserving verification, shared understanding and recovery**, the imbalance can disappear. Changes filtered out before review need not accumulate in its queue. [\[7\]](https://www.nber.org/papers/w35275)
 
-Local developer productivity is a different measure. METR’s early-2025 randomised trial [\[34\]](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/) found experienced developers took 19% longer with AI but believed it made them 20% faster. Its February 2026 update [\[35\]](https://metr.org/blog/2026-02-24-uplift-update/) suggests selective participation may understate acceleration; its magnitude remains uncertain. METR’s survey [\[18\]](https://metr.org/blog/2026-05-11-ai-usage-survey/) reports median *perceived* speed gains of 3× and work-value gains of 1.4–2×, not direct observations. None establishes end-to-end delivery gains for a particular team.
+Measures differ: NBER tracks code activity and releases; DORA surveys delivery; METR tests tasks and surveys perceptions. METR’s early-2025 randomised trial [\[34\]](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/) found experienced developers took 19% longer with AI but believed it made them 20% faster. Its February 2026 update [\[35\]](https://metr.org/blog/2026-02-24-uplift-update/) suggests selective participation may understate acceleration; its magnitude remains uncertain. METR’s survey [\[18\]](https://metr.org/blog/2026-05-11-ai-usage-survey/) reports median *perceived* speed gains of 3× and work-value gains of 1.4–2×, not direct observations. None establishes end-to-end delivery gains for a particular team.
 
 Cognition introduced Devin [\[5\]](https://cognition.com/blog/introducing-devin) in 2024 as the “first AI software engineer”. In March 2025, Dario Amodei forecast AI writing 90% of code within three to six months [\[6\]](https://www.cfr.org/event/ceo-speaker-series-dario-amodei-anthropic), potentially essentially all within a year. Those dates passed; the industry-wide share remains unverified. The Claude Code team reports about 90% [\[12\]](https://claude.dev/blog/solving-code-review-at-anthropic/): a vendor-team report, not independent corroboration or a measure of all engineering.
 
@@ -148,7 +148,7 @@ Measure task completion, adoption, time to benefit and support burden. Sequence 
 
 ## II. What We Build: Engineering Control Around Model Judgment
 
-**What We Build is also a higher-order engineering problem, not a routine model-integration project.** Within business, risk and operating constraints, we must construct a sufficiently dependable control system around probabilistic, partly opaque model judgment whose failure modes may be incompletely characterised.
+**How We Build concerns responsibility for shipped changes; What We Build concerns control over model judgments after release.** This is not routine model integration: within business and risk limits, we need dependable controls for probabilistic, partly opaque decisions with incompletely characterised failure modes.
 
 **The engineered object is the entire arrangement:** model, policy, tool permissions, independent checks, observation, fallback and people with the capacity and authority to intervene. Model capability alone cannot justify operational bounds or full cost. Those require evidence that errors can be detected, contained and corrected in time—and reassessment when conditions change.
 
@@ -454,16 +454,16 @@ Numbered citations refer to the sources below. Source notes retain the evidence 
 
 ## How to cite this draft
 
-Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R36, 24 October 2026.
+Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R37, 24 October 2026.
 
 Unpublished author-review edition. Cite the revision; no DOI or final publication URL has been assigned.
 
 ```bibtex
-@misc{oborskyi2026sumR36,
+@misc{oborskyi2026sumR37,
   author = {Oborskyi, Vitalii},
   year = {2026},
   title = {The Sum of Our Technology: AI Changes Both Sides of Software Engineering},
-  note = {Editorial draft R36, 24 October 2026; unpublished}
+  note = {Editorial draft R37, 24 October 2026; unpublished}
 }
 ```
 
@@ -483,6 +483,7 @@ Vitalii Oborskyi retains editorial responsibility.
 
 24 October 2026:
 
+- **R37:** Clarified conditional imbalance, evidence measures and the bridge to runtime control.
 - **R36:** Clarified the author-developed SDLC mechanism and cited the 2 January English article.
 - **R35:** Stated the two research lines and this essay's synthesis, documenting the January 2026 precursor without claiming historical priority.
 - **R34:** Moved METR productivity findings to the SDLC evidence discussion and restored the cross-boundary comprehension argument for users.
