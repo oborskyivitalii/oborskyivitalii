@@ -17,7 +17,7 @@
   },
   "status": "review",
   "source": "manuscript.en.md",
-  "edition": "pmday-ai-both-sides-en-review-20261024-r30",
+  "edition": "pmday-ai-both-sides-en-review-20261024-r35",
   "rights": {
     "status": "review-pending",
     "notice": "Article by Vitalii Oborskyi; author-selected AI-generated Cover 02 and three original full-page UA Online PMDay 2026 Autumn v35 slide screenshots. Original source-deck and third-party credits remain applicable. Per-item publication clearance remains pending.",
@@ -194,6 +194,10 @@
     {
       "id": "source-44",
       "url": "https://fion.ac/jellyfish.pdf"
+    },
+    {
+      "id": "source-45",
+      "url": "https://dou.ua/forums/topic/57244/"
     }
   ],
   "assets": [

@@ -4,7 +4,7 @@ What if the AI SDLC succeeds at generating code but fails at delivery, recovery 
 
 My PMDay essay examines two shifts and the socio-technical system we must actually be able to operate. Draft review preview; no publication/canonical URL. Ukrainian recording: https://youtu.be/xSgWjuGqC9I
 
-R30 gives each engineering problem its own clear thread: rebalance the SDLC around actual constraints; test whether the arrangement around model judgment can deliver useful results within justified bounds. The required controls and human capacity shape risk maps, staffing and budgets before implementation. It retains R24's account of policy mistakes travelling into production and the comparison with simpler alternatives under the same safety requirements.
+R35 makes the two author-led research lines and their synthesis explicit: rebalancing the entire SDLC without losing verification, shared understanding and recovery, and engineering dependable control around consequential model judgment. Together, they change project framing, architecture, staffing and budgets before implementation. The essay also traces the SDLC argument to my January 2026 publication without claiming exclusive historical priority. The policy-error scenario and comparison with simpler safe alternatives remain.
 
 Thank you to Maximiliano Armesto for thoughtful pre-publication feedback on shared policy assumptions and on the value of AI compared with simpler alternatives. Editorial decisions and the final text remain my responsibility.
 
