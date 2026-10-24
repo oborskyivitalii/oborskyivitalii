@@ -2,6 +2,48 @@
 
 Article owner #2; publisher/execution #5 / PR79.
 
+## R31 preview — restore the rhetorical purpose of “What if not?” — 24 October 2026
+
+**Author decision:** Restore the introduction's deliberate refrain as a way to
+make the breadth and depth of the problem space visible before jumping to a
+solution. The questions challenge premises rather than predict that every
+failure will occur, and lead to verification, constraints, funded capability
+or a simpler safe option. Issue #2 owns the editorial decision:
+https://github.com/oborskyivitalii/oborskyivitalii/issues/2#issuecomment-6385171631
+
+Proposed source text, immediately after the two-problems paragraph:
+
+> Throughout this essay, **“What if not?”** is a deliberate refrain, not a
+> forecast that every failure will occur. Each turn challenges an attractive
+> assumption; together, they reveal the breadth and depth of the problem space
+> before we rush to solutions. The point is practical: decide what to verify,
+> constrain, fund or simplify.
+
+A complete **R31 review draft** and PDF preview were created from the exact
+R30 Markdown (SHA256 2c8729927685f7abec734865013dded9e98cce925bbd727faae74f074006bc29).
+The only manuscript changes are this opening restoration, R31 byline/citation,
+and one R31 revision-history line. The 12 standalone prompts, 90 source URL
+occurrences, 4 illustrations, 2 tables and substantive qualifications remain.
+
+- [R31 full Markdown, owner Library](https://chatgpt.com/library?file_id=libfile_5ea10aa915a48191b8e49acfa9f9c5b5&account_id=personal),
+  SHA256 3c8552605d18a7cc128c11731a1c79b3820135a5e8080f08677845d1f93c8137.
+- [R31 PDF **review preview**, owner Library](https://chatgpt.com/library?file_id=libfile_0aef33e5df408191bcb52fea0588afc9&account_id=personal),
+  SHA256 3c333e0491dde53e13adf6ec259575f9ce2e7e7031bed1219dacdf3055bf8827,
+  19 A4 pages, 133 extracted link annotations.
+- The PDF uses the unchanged R30 native print HTML/CSS and images with the
+  R31 text/metadata substitutions. WeasyPrint 68.0 rendered it because the
+  GitHub checkout is unreachable from this runtime and local Chromium cannot
+  start. This is NOT a verified output of tools/publishing/cli.cjs or of the
+  pinned Chromium153 native toolchain.
+
+**Integration/acceptance remain pending.** R30 stays the canonical selected
+review edition with unchanged source, manifests and accepted evidence.
+On a source-capable checkout, apply the manuscript text, create a new immutable
+R31 edition and refresh source/semantic/profile digests and print bindings.
+Regenerate native PDF, LinkedIn/Medium exports, dependent output locks and
+source-bound acceptance. Require the original four independent QA roles.
+No merge, staging, production or platform publication is implied.
+
 ## Current R30 — clear structure and precise compression — 24 October 2026
 
 The author approved the editorial review and implementation plan. Use combined
