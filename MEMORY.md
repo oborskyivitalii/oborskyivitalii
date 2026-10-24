@@ -4,31 +4,31 @@ Dated continuity, not live authority. Last verified: **2026-10-24**.
 
 ## Snapshot
 
-- Main remains a7d3d9456b85e444456c9d167e9ab813fe62787f/tree f7ef995b262d314e5d84148cd0cf5b362eead2cd after normally delivered PR133. Original protect-main24568553 keeps three strict Actions15368 requirements/no bypass; production25276926 remains separate.
-- Last recorded accepted staging is tested24090669/stage40038634536/1. Maina7 shares the identical reviewed tree; no relabel/rollback. PR133 final receipt6376936153 and issue122 own delivery history.
-- Private admission App5453173/install174757834 is configured only for repo1400059184 with Checks/Statuses write+Metadata read. Main-only environment25205111419 has IDs and owner-entered environment-only key, no tags/admin bypass. Enable was saved last; credential material was never read.
+- Protected main remains `3bcba8099e8ac80a94f8431afa8b41650cc8c690`, tree `74fb5ee212a3e8bcb6ab5059a54b4c27ce046076`, after normally delivered PR137. Original strict three Actions checks and separate production rule remain unchanged.
+- Admission App `5453173` / installation `174757834` remains configured only for this repository, Checks/Statuses write + Metadata read; main-only environment `25205111419` holds the owner-entered key. Credential material was never read.
+- Fresh full owner stage `40097427616/1` passed for empty H `d33725f4fa78d3b136022567a8403f8aad6b7578`, parent main, identical complete tree. Accepted staging names H, public `ebcd7e479e529e0793b37f6c946d283a1a64582fbe8281a941f43744fc04c43d`, package `e419e35f0f21697b7c6dbb1fa37561e17f1f1110906b2c0ad32276aaf6f1a25f`; no main relabel.
 
 ## Decisions
 
-- Owner authorized the concrete App/environment and isolated proof, explicitly excluding a main merge. No general T05 approval loop is needed.
-- Four distinct roles accepted F71c89213 and native missing/wrong-App/environment negatives. Native405 rejected missing result and same-name Actions15368 success120843020537 onH66e07; environment denied refs/pull/135/merge before runner/steps.
-- Whole T05/AC01–AC08 remain open. Genuine positive/new receipt/isolated merge did not happen. Synchronous freshness, per-PR policy, control repair and later lane migration remain unresolved; original three requirements retain authority.
-- Requirements accepted reversible minimal fast-uri repair preparation/Draft only. New owner staging/full delivery/main merge needs its specific owner decision because the proof excluded main merge. M stays deferred; no production.
+- Owner authorized App setup, bounded isolated proof and PR137's prerequisite normal delivery. The proof explicitly forbids a main-target merge; no new general permission loop is needed.
+- Native proof completed: rule `25782583` required exact App/strict comparison/no bypass on probe only; missing result denied HTTP405, genuine App result allowed normal isolated merge PR138 as `e07aeb4ac1e66e8c7cc6934c25941bc54feab457`. PR139 closed unmerged. Temporary rule/probe ref removed; H retained.
+- App remains nonrequired on main. This proves tested App/SHA binding only; whole T05 and AC01–AC08 remain open. No production or lane/protection migration.
 
 ## Open work
 
-- Genuine App authentication40081786727/1 correctly rejected closed133/check120836774463. Foreign40083965378/1 and originalZIP12555929650 SHA0bf09acf01fa1a123b444a2f013638d74d06cfdca7919c3802e7fba4013dff75 authenticate the bounded negative proof.
-- Positive owner40084246516/1 FAILED advisories only25/26; source696/696122585ms/180000 andPython128 passed. OriginalZIP12556776632 SHAf612c4237a99693e1b374f40af1de1cd03530f01671312e04a5efbc2a14241b3 retained; no promotion/new receipt. App545 check120845849856 correctly failed.
-- Current npm feed flags fast-uri3.1.8 via three Ajv8.20 consumers permitting^3.0.1. Prepare only leaf3.1.9 version/resolved/integrity plus necessary history/RI. Direct pins/scanners/ledgers/workflows/cases/budgets unchanged.
-- PR134/135/136 closed unmerged; temporary rule25777001 and F/H/probe refs removed. Actual settings/native results and repair checks: review/issue-122/2026-10-24-fast-uri-repair.md and issue122. Revalidate the repair Draft/source/reviews live; no delivery claimed here.
+- Versioned proof/reviewer/cleanup record: `review/issue-122/2026-10-24-app-positive-proof.md`; issue122 and PR138/139 own live completion links. This evidence-only branch is not a main delivery candidate.
+- Genuine premerge check `120887123138`, App5453173, external `40098926878/1/139`, eligible digest `24904f20b44b8f4c794cbf94a7f6d93e456ce705fc3e69e82dfd9ae38fc7a79d`. Original issuer ZIP12561683688 is retained byte-for-byte in the review directory.
+- Aggregate multi-target emitter run failed only for unrelated stale-base PRs; PR139's check/snapshot passed. Preserve this distinction and prior failed local timeout/Lighthouse/advisory attempts.
+- Trusted admission for legitimate CI/workflow/test/lock/control changes, per-PR policy isolation and synchronous stale-green revocation remain unresolved. No repository-only/content lane or main activation was demonstrated.
 
 ## Next session
 
-1. Revalidate issue122, main, active repair Draft/source, original protection and checks.
-2. Four actual roles accepted repair96fa/tree227 for Draft preparation only: Basic24/format391/lint260/audits/RI pass; full source FAILED ETIMEDOUT180000ms/no final accounting. Retain the byte-authenticated evidence bundle and give the owner the concrete new full-delivery/main-merge decision. Do not manufacture App green or waive advisory admission.
-3. After separately approved normal repair delivery, resume positive proof with fresh main/head/full-route/new receipt. Keep old failures and staging identities distinct.
+1. Revalidate current main, live issue122, proof PR dispositions, original main/production rules and accepted staging identity. Do not rerun the completed proof merely because a chat ended.
+2. Report the bounded App/SHA proof complete. Propose the smallest next control-admission design/proof before implementation, preserving original main checks; no automatic authoritative migration.
+3. Keep content work with issue5/PR79 and broad deferred maintenance separate. Whole issue closure requires outstanding lane/provenance/freshness/control outcomes.
 
 ## Maintenance
 
-- Keep five sections/120lines; factual receipts and RI/CI refresh change no executable meaning.
-- Current scratch worktrees: issue-122-proof (a7), issue-122-forge (F index), issue-122-security (repair). Toolchains are ignored. Native Node24.19/Python3.12.14; local Node24.22.1. Connector handles source/PR records; browser handles unsupported settings. Never read key values.
+- Five sections / 120-line cap. Native evidence and deterministic RI receipts do not recursively require new implementation review; substantive changes do.
+- Source work branch at H is retained. Evidence branch `work/issue-122-proof-evidence-20261024` preserves this updated handoff/review; main's older memory is stale relative to live issue122.
+- Never read or copy environment key values. Existing connector handles source/PR records; browser is needed only for unsupported repository settings.

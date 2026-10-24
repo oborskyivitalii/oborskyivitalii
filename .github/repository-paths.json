@@ -9552,6 +9552,30 @@
       "purpose": "Byte-authenticated local preparation reports for the one-leaf fast-uri repair, preserving complete passing audits and the failed bounded source timeout; no native acceptance.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-122/2026-10-24-app-positive-proof.md": {
+      "kind": "file",
+      "purpose": "Source-bound native paired admission App proof, independent role observations and exact isolated scope/cleanup limits; historical evidence, not main activation.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-122/2026-10-24-app-probe-rule.jpg": {
+      "kind": "file",
+      "purpose": "Authenticated browser observation of the temporary isolated admission ruleset with its exact target and empty bypass list.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-122/2026-10-24-app-issuer-snapshot.zip": {
+      "kind": "file",
+      "purpose": "Original byte-authenticated native issuer artifact for the completed paired proof; exact PR139 snapshot and separately blocked unrelated PR diagnostics.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-122/2026-10-24-app-probe-cleanup.jpg": {
+      "kind": "file",
+      "purpose": "Authenticated GitHub browser observation showing the disposable probe branch deleted after successful isolated App proof.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

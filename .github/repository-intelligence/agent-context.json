@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "4cb7299931a66b204a24be458fd6c84be2d100b26762ea71380a1a88d57f604c",
+    "digest": "ecfb287e0f4b73f8df4c877fd7a4508a19a7ad0f77e925123014438cd14208e9",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -196,12 +196,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "3873616cbfe1b1f3db02f0932b8b2cb714aa909ca40d1d1a0d01c6e68562b4d4"
+        "sha256": "a75a7cb2cff820aef00a742e5902dca6fc7f2ac7fbf4a9b88ddca9fa5482bd82"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "ef69a52e4c367ff0d49d32fc30a7ddc062b9281f4df7d38c181ec9bdb5391847"
+        "sha256": "308aa858976883a52518aa50ef6135e7b10697ec9adab0b3c4156183986c0079"
       },
       {
         "path": ".github/workflows/change-admission.yml",
@@ -341,7 +341,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "09b38efb700a94dbe90f3036bae4b15f4e79e63a3e54b6328174f5814067fd25"
+        "sha256": "6e1180a15c86401558b5befce31f47031dfdfe5b458696bb9f004a82b182e15a"
       },
       {
         "path": "NOTICE.md",
@@ -896,6 +896,26 @@
         "path": "review/issue-122/2026-10-23-t05-review.md",
         "identity_mode": "content",
         "sha256": "0fe90b44f16477d842a260140acddf357447b0e6cc9ff2e8c513ff197fe381c9"
+      },
+      {
+        "path": "review/issue-122/2026-10-24-app-issuer-snapshot.zip",
+        "identity_mode": "content",
+        "sha256": "2723e4ce52ad1c054a2a461e71ac75a037b77ee71d1b412a937f3e516d976762"
+      },
+      {
+        "path": "review/issue-122/2026-10-24-app-positive-proof.md",
+        "identity_mode": "content",
+        "sha256": "d0f76d534de8a7da1f8e96bd4648243b5a8117384d488b7a7d25862ca25e84ae"
+      },
+      {
+        "path": "review/issue-122/2026-10-24-app-probe-cleanup.jpg",
+        "identity_mode": "content",
+        "sha256": "731e81683223888c31a941db8b4d8bc12c163596d0be97822591480508f23c1a"
+      },
+      {
+        "path": "review/issue-122/2026-10-24-app-probe-rule.jpg",
+        "identity_mode": "content",
+        "sha256": "b27ec4a3c315c65823f4b405fee4a8f9c2ac2805828feabd4b0032aaf1877c10"
       },
       {
         "path": "review/issue-122/2026-10-24-fast-uri-local-evidence.tar.gz",
@@ -9427,6 +9447,50 @@
         "AGENTS.md"
       ],
       "title": "Issue122 — T05 admission preparation, 23 October 2026"
+    },
+    {
+      "path": "review/issue-122/2026-10-24-app-issuer-snapshot.zip",
+      "kind": "file",
+      "purpose": "Original byte-authenticated native issuer artifact for the completed paired proof; exact PR139 snapshot and separately blocked unrelated PR diagnostics.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-24-app-issuer-snapshot.zip"
+    },
+    {
+      "path": "review/issue-122/2026-10-24-app-positive-proof.md",
+      "kind": "file",
+      "purpose": "Source-bound native paired admission App proof, independent role observations and exact isolated scope/cleanup limits; historical evidence, not main activation.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 122 — isolated admission App proof, 24 October 2026"
+    },
+    {
+      "path": "review/issue-122/2026-10-24-app-probe-cleanup.jpg",
+      "kind": "file",
+      "purpose": "Authenticated GitHub browser observation showing the disposable probe branch deleted after successful isolated App proof.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-24-app-probe-cleanup.jpg"
+    },
+    {
+      "path": "review/issue-122/2026-10-24-app-probe-rule.jpg",
+      "kind": "file",
+      "purpose": "Authenticated browser observation of the temporary isolated admission ruleset with its exact target and empty bypass list.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-24-app-probe-rule.jpg"
     },
     {
       "path": "review/issue-122/2026-10-24-fast-uri-local-evidence.tar.gz",
