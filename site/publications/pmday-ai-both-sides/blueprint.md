@@ -2,6 +2,68 @@
 
 Article owner #2; publisher/execution #5 / PR79.
 
+## R32 author-review candidate — two higher-order engineering problems — 24 October 2026
+
+Author request: elevate the core problem formulation at the beginning of the three
+parts rather than repeating it later. The R31 rhetorical introduction remains.
+The article is a systems-engineering argument, not a claim that models cannot
+work or that every manual review activity must remain unchanged.
+
+- **Part I / How We Build:** SDLC rebalancing is a higher-order systems problem:
+  rebalance dependent activities while preserving their functions. Code review
+  is both defect detection and shared system comprehension. AI creates a
+  machine-output/human-assessment speed asymmetry; cognitive work can be
+  delegated while people retain accountability, evidence, decision capacity
+  and recoverability. It does not require reading every line.
+- **Part II / What We Build:** not just model integration; within business/risk
+  limits, build a sufficiently dependable control system around probabilistic,
+  partly opaque model judgment. The controlled object includes the model,
+  policy, permissions, independent checks, observation, fallback and qualified
+  human intervention. Dependability is conditional and requires reassessment.
+- **Part III / What If Not?:** correct problem definition guides solution
+  selection *before implementation*, shaping requirements, acceptance evidence,
+  risk, capacity, staffing, budgets and comparison with the safe simpler path.
+  The public-marketing framing is the author's qualified assessment of common
+  emphasis on speed/autonomy/model capability, not a quantified industry
+  prevalence claim or blanket dismissal of broader work.
+
+**Prepared owner-accessible review artifacts** (separate from native publication):
+
+- [R32 complete Markdown](https://chatgpt.com/library?file_id=libfile_f8eb2ff62ff881919f1d460ede329004&account_id=personal)
+  SHA256 `39631585cbf821895ef5060b46481a04fbdd7da04bffc04410de324c859c3f4d`;
+  51,320 UTF-8 bytes. Baseline is the complete R31 owner-review Markdown.
+- [R32 PDF **review preview**](https://chatgpt.com/library?file_id=libfile_425dada610a88191b1a3e5a0f7a4c9b7&account_id=personal)
+  SHA256 `63badf1b31fd89ca4612f9ed641f7714ea8382a8953ed03628bd45216bd55ffe`;
+  19 A4 pages, 133 PDF link annotations and navigable section outline.
+
+Compared with R31: precisely three part-opening problem statements were
+replaced; R32 metadata/citation and one revision-history entry were updated.
+All 12 standalone 'What if not?' prompts, 36 source entries/notes, four figures,
+two tables, source-linked destinations, prior review provenance and material
+statistical/control qualifications remain. All source notes and existing Markdown
+HTTP links are byte-identical; owner-authenticated library readback hashes match.
+All 19 PDF pages were rendered and visually checked as a review preview.
+
+**Native-build limitation and release boundary:** This preview reuses the
+repo-generated R30 print HTML/CSS/media and the unchanged R31 review edits,
+with the R32 textual replacements. It is rendered by WeasyPrint 68.0 because
+the GitHub checkout is unavailable to the current container (DNS failure)
+and Chromium cannot finish. It is NOT the pinned Chromium153
+`tools/publishing` native producer and does not establish native/editor/platform
+or exact-current-source QA. The existing selected repo manuscript/edition is
+still R30; do not overwrite its immutable review record or reuse its 12/12
+result. A preliminary length projection suggests the R32 full-platform
+rendition may exceed the current 51,000-character profile bound: verify the
+actual native output; reduce channel-specific repetition only with semantic
+equivalence, never silently raise the bound.
+
+Next: integrate source into a fresh immutable R32 review edition through
+`guides/ARTICLE-WORKFLOW.md`; regenerate source/semantic/profile and print
+digests, native PDF, LinkedIn/Medium kits and dependent locks, then rerun the
+owning issue5 policy and four distinct independent review roles. Retain
+issue2 editorial/rights decisions and no automatic merge/staging/prod.
+
+
 ## R31 preview — restore the rhetorical purpose of “What if not?” — 24 October 2026
 
 **Author decision:** Restore the introduction's deliberate refrain as a way to
