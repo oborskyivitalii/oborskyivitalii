@@ -2,7 +2,7 @@
 
 *AI Changes Both Sides of Software Engineering*
 
-Vitalii Oborskyi · Editorial draft R30 · 24 October 2026
+Vitalii Oborskyi · Editorial draft R32 · 24 October 2026
 
 ![A solitary person stands before a narrow opening of light between monumental dark walls.](asset:cover)
 
@@ -16,7 +16,9 @@ What if faster generation does not improve delivery—or leaves us unable to rec
 
 Engineering is a cycle: define the problem, propose a solution, implement, test, and revise against evidence. A mistaken problem statement can make an efficient solution irrelevant.
 
-My UA Online PMDay 2026 Autumn talk examines two problems: rebalancing AI-assisted delivery and governing model judgment inside products. Each “What if not?” asks what to test, constrain or simplify.
+My UA Online PMDay 2026 Autumn talk examines two problems: rebalancing AI-assisted delivery and governing model judgment inside products.
+
+Throughout this essay, **“What if not?”** is a deliberate refrain, not a forecast that every failure will occur. Each turn challenges an attractive assumption; together, they reveal the breadth and depth of the problem space before we rush to solutions. The point is practical: decide what to verify, constrain, fund or simplify.
 
 [Slides (PDF) \[1\]](https://github.com/oborskyivitalii/oborskyivitalii/blob/4d5bcdb7c0b30bd7ba5926007fc24e3752242905/site/assets/publications/pmday-two-shifts/pmday-v35-deck-review.pdf) · [Recording (Ukrainian) \[2\]](https://youtu.be/xSgWjuGqC9I)
 
@@ -36,7 +38,9 @@ A demonstration shows that a capability can work. Engineering asks what its use 
 
 ## I. How We Build: Rebalancing the SDLC
 
-**Rebalance the SDLC around its actual constraints.** Faster code generation and agent workflows do not automatically improve delivery. End-to-end gains still depend on verification, integration and the team’s capacity to understand and operate the result.
+**Rebalancing the SDLC is a higher-order systems-engineering problem.** The task is to rebalance a chain of dependent activities without losing the functions each contributes. Code review, for example, detects defects **and** preserves shared understanding of how the system works. Removing its delay while discarding that understanding is no improvement.
+
+**The hard asymmetry is between machine output and human capacity.** Agents can produce changes faster than people can assess their implications. We want to delegate cognitive work, yet teams remain accountable for the machine-made decisions embodied in what they ship. That need not mean reading every generated line: it means retaining—or replacing with demonstrably adequate mechanisms—the evidence, understanding, authority and recovery capability responsible operation requires.
 
 ### We accelerated a step. What did the system gain?
 
@@ -144,7 +148,9 @@ Measure task completion, adoption, time to benefit and support burden. Sequence 
 
 ## II. What We Build: Engineering Control Around Model Judgment
 
-**Test whether a configuration of model, tools, controls and people can deliver useful results within justified bounds despite uncertain outputs and changing conditions.** It needs enforceable limits, meaningful signals and timely correction, with human capacity and authority where required. Its reliability and full operating cost need evidence and reassessment.
+**What We Build is also a higher-order engineering problem, not a routine model-integration project.** Within business, risk and operating constraints, we must construct a sufficiently dependable control system around probabilistic, partly opaque model judgment whose failure modes may be incompletely characterised.
+
+**The engineered object is the entire arrangement:** model, policy, tool permissions, independent checks, observation, fallback and people with the capacity and authority to intervene. Model capability alone cannot justify operational bounds or full cost. Those require evidence that errors can be detected, contained and corrected in time—and reassessment when conditions change.
 
 The account-recovery assistant now interprets requests, retrieves guidance and proposes actions. Even without permission to change access, its guidance can influence someone who has it. Read-only does not mean consequence-free.
 
@@ -262,7 +268,9 @@ Read the loop as conditions for action: a proposal must pass the relevant checks
 
 ## III. What If Not? From Assumptions to Project Decisions
 
-**Correct problem framing makes the required work visible before implementation.** For AI-assisted delivery, plan around the actual constraint and measure whole-system gains. For agentic products, identify the evaluation, controls, incident response and human coverage the proposed delegation requires. Those dependencies shape the risk map, staffing and operating budget.
+**Getting the problem statement right is the first engineering decision.** Frame AI-assisted delivery merely as faster code generation, and we may accelerate one SDLC node while losing the functions that make the chain understandable and recoverable. Frame an agentic product merely as model integration, and we may deploy a capable component without the dependable control system needed to operate it.
+
+The prominent public marketing narrative often centres on speed, autonomy and model capability. Those advances matter, but do not define the complete engineering problem. **Before implementation**, identify actual constraints, functions to preserve, enforceable boundaries, independent evidence, human coverage and recovery. That framing changes requirements, acceptance criteria, the risk map, staffing and the full operating budget.
 
 Compare the AI path with both the current process and the simplest credible safe alternative under the same safety requirements. Use comparable cases, data and staffing, with the same task, identity requirements and definition of successful recovery.
 
@@ -442,16 +450,16 @@ Numbered citations refer to the sources below. Source notes retain the evidence 
 
 ## How to cite this draft
 
-Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R30, 24 October 2026.
+Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R32, 24 October 2026.
 
 Unpublished author-review edition. Cite the revision; no DOI or final publication URL has been assigned.
 
 ```bibtex
-@misc{oborskyi2026sumR30,
+@misc{oborskyi2026sumR32,
   author = {Oborskyi, Vitalii},
   year = {2026},
   title = {The Sum of Our Technology: AI Changes Both Sides of Software Engineering},
-  note = {Editorial draft R30, 24 October 2026; unpublished}
+  note = {Editorial draft R32, 24 October 2026; unpublished}
 }
 ```
 
@@ -471,6 +479,8 @@ Vitalii Oborskyi retains editorial responsibility.
 
 24 October 2026:
 
+- **R32:** Sharpened the two higher-order engineering problems: SDLC rebalancing under machine–human speed asymmetry, and bounded control around probabilistic model judgment. Linked both to early project framing and planning.
+- **R31:** Restored the “What if not?” refrain as a deliberate rhetorical device to reveal the problem space and turn challenged assumptions into engineering decisions.
 - **R30:** Combined problem-led headings, consolidated repeated arguments and clarified project decisions; native print hierarchy and grouping improved.
 - **R29:** Foregrounded both problems and their planning implications.
 - **R28:** Engineering problem framing clarified across delivery, runtime control and project planning.
