@@ -1,0 +1,425 @@
+{
+  "artifactId": "74acb6057f8c595b4f63e42888c371081ec4238ebbd582e2de032c3f10a3c817",
+  "source": {
+    "path": "site/publications/pmday-ai-both-sides/manuscript.en.md",
+    "sha256": "4bc0136b86e46c4792c61791612243e2c0d0b513c2012cbe9baa1bab97223650",
+    "commit": null,
+    "blob": null,
+    "state": "working-tree-review"
+  },
+  "edition": {
+    "schema": 1,
+    "id": "pmday-ai-both-sides-en-review-20261024-r28",
+    "articleId": "pmday-ai-both-sides",
+    "language": "en",
+    "kind": "full-article",
+    "source": {
+      "path": "manuscript.en.md",
+      "sha256": "4bc0136b86e46c4792c61791612243e2c0d0b513c2012cbe9baa1bab97223650",
+      "commit": null,
+      "blob": null
+    },
+    "owner": "site",
+    "derivation": null,
+    "rights": "review-pending",
+    "semanticSha256": "9db89f306bb10cd6769c85ec882b8d98cbbc3e7f3a1bf88df3a922411ccd1c76"
+  },
+  "genericTextCharacters": 50903,
+  "genericTextCharactersDescription": "Upstream generic compile metric; separate from emitted TXT codepoint counts.",
+  "emittedTextCharacters": {
+    "article": 50740,
+    "linkedin": 50740,
+    "medium": 50740
+  },
+  "profileLimits": {
+    "linkedinCharacters": 51000,
+    "mediumCharacters": 51000
+  },
+  "pdf": {
+    "sha256": "de7ee1b74d7f3c6bf99c2c87126057b5001ac2c79a06f8c51498a7de4c3dee69",
+    "bytes": 1415489,
+    "pages": 22
+  },
+  "browser": {
+    "name": "chromium",
+    "version": "153.0.8010.0",
+    "revision": null,
+    "executableSha256": "53a15d6c3a3d27dfb54c4ba60278b1683136f70cf1e67e989da7dfbd3d451ef0",
+    "managedBrowser": false,
+    "reviewOnly": true,
+    "package": {
+      "name": "@sparticuz/chromium",
+      "version": "153.0.0",
+      "packageSha256": "ae40b07607139f1e0c6b7d8bd19a1b336019c88033a55a8fa4af4a70e4075bfd",
+      "archiveSha256": "20e5656fcdcf4118ede85edfb9d6bb9cc1bbb7ffb8b75622fffbcf36a835c3c0"
+    }
+  },
+  "toolchain": {
+    "playwrightVersion": "1.63.0",
+    "lockSha256": "8b4895a11735ff8f614accd5882470af24ecb1e1c2bcb691bc31c4fb708c811d"
+  },
+  "pipeline": "Unchanged native compiler/publisher/print logic; ordered-list print indentation corrected from6mmto8mm, unordered lists remain6mm.",
+  "baselineCommit": "56daee1bde31c64fd2f56db72b8e7676f62fb631",
+  "baselineTree": "4726632f08f985e30ace55ea39ae97140818703c",
+  "sourceIdentity": "Prepared working-tree review; null accepted-source pins do not establish accepted or published provenance.",
+  "scope": "Four author-approved problem-framing changes, R28/date/history metadata and separately authored launch currentness. Earlier Olivier P1/P2 proposals remain pending. Correct inherited clipping of two-digit bibliography markers through minimal native print-list indentation.",
+  "archive": {
+    "path": "The_Sum_of_Our_Technology_R28_2026-10-24_Native_Review_Kit.zip",
+    "bytes": 6521714,
+    "sha256": "5dff6d2f9fcef3660e6e331ffc1c412003fbd82255e1a09e5f69744f0b556c0d",
+    "members": 34,
+    "nativeInventoryExact": true
+  },
+  "deliveryFiles": [
+    {
+      "path": "The_Sum_of_Our_Technology_R28_2026-10-24.md",
+      "bytes": 50466,
+      "sha256": "4bc0136b86e46c4792c61791612243e2c0d0b513c2012cbe9baa1bab97223650"
+    },
+    {
+      "path": "The_Sum_of_Our_Technology_R28_2026-10-24.pdf",
+      "bytes": 1415489,
+      "sha256": "de7ee1b74d7f3c6bf99c2c87126057b5001ac2c79a06f8c51498a7de4c3dee69"
+    },
+    {
+      "path": "The_Sum_of_Our_Technology_R28_2026-10-24_Native_Review_Kit.zip",
+      "bytes": 6521714,
+      "sha256": "5dff6d2f9fcef3660e6e331ffc1c412003fbd82255e1a09e5f69744f0b556c0d"
+    }
+  ],
+  "nativeMembers": [
+    {
+      "path": "INSTRUCTIONS.md",
+      "bytes": 3409,
+      "sha256": "552428f10faa6e5cc790c0e4188690187e986d1cde075e5287191c1646771da2"
+    },
+    {
+      "path": "article-print.css",
+      "bytes": 2731,
+      "sha256": "45b6773ce87ae21198bc2b5ca2ec2711e1a0c242e61a9fc88b94aef528752a27"
+    },
+    {
+      "path": "article.html",
+      "bytes": 59688,
+      "sha256": "f872c63f3ed8bce1717b1ecf739ac79c64f504d06f7c746264f23d227bbbd63c"
+    },
+    {
+      "path": "article.manifest.json",
+      "bytes": 3338,
+      "sha256": "7f1d9e7fdd4e59fd1cb9988eff5a84e969744da2f1225673c84c18697c305bf5"
+    },
+    {
+      "path": "article.md",
+      "bytes": 50466,
+      "sha256": "4bc0136b86e46c4792c61791612243e2c0d0b513c2012cbe9baa1bab97223650"
+    },
+    {
+      "path": "article.pdf",
+      "bytes": 1415489,
+      "sha256": "de7ee1b74d7f3c6bf99c2c87126057b5001ac2c79a06f8c51498a7de4c3dee69"
+    },
+    {
+      "path": "article.pdf.artifacts/050aa35f2efe52b97dcb98cbed5c55257bbc3b7ffdb82852bf5c897f89322745/artifact.pdf",
+      "bytes": 1415489,
+      "sha256": "de7ee1b74d7f3c6bf99c2c87126057b5001ac2c79a06f8c51498a7de4c3dee69"
+    },
+    {
+      "path": "article.pdf.artifacts/050aa35f2efe52b97dcb98cbed5c55257bbc3b7ffdb82852bf5c897f89322745/manifest.json",
+      "bytes": 3338,
+      "sha256": "7f1d9e7fdd4e59fd1cb9988eff5a84e969744da2f1225673c84c18697c305bf5"
+    },
+    {
+      "path": "article.txt",
+      "bytes": 51080,
+      "sha256": "f57de239ba5ba78f5d8db1488ede8d267457548ef47e153360aab64ed7502ec6"
+    },
+    {
+      "path": "cover.png",
+      "bytes": 373126,
+      "sha256": "843c22a1e6e16d16e824e8be74d593dea3c2f2e6e30b36504e1fff9617f82096"
+    },
+    {
+      "path": "hero.png",
+      "bytes": 373126,
+      "sha256": "843c22a1e6e16d16e824e8be74d593dea3c2f2e6e30b36504e1fff9617f82096"
+    },
+    {
+      "path": "images/01-cover.png",
+      "bytes": 373126,
+      "sha256": "843c22a1e6e16d16e824e8be74d593dea3c2f2e6e30b36504e1fff9617f82096"
+    },
+    {
+      "path": "images/02-presentation-cover.png",
+      "bytes": 22667,
+      "sha256": "199d6d64849905eb047c23f7ce43eaab3ef98d949c5009878c8f15a5df7d1180"
+    },
+    {
+      "path": "images/03-pmday-slide-03.png",
+      "bytes": 115546,
+      "sha256": "1ae890f9c23827a42e7e068327c6a6ff8738c0194cab97584fd535a6b473ef42"
+    },
+    {
+      "path": "images/04-pmday-slide-09.png",
+      "bytes": 188436,
+      "sha256": "ad1479a5366464b0f5f71f863700bb1071867d6ef5f90111d0f64a46e3b807ab"
+    },
+    {
+      "path": "images/05-pmday-slide-12.png",
+      "bytes": 170621,
+      "sha256": "2f13e3eabd00a27460a83169d296cfc2a8cf4b33e068d1ee22079479028c0d18"
+    },
+    {
+      "path": "launch-post.md",
+      "bytes": 1476,
+      "sha256": "de679bda2b16b66faf6f083d1f5e4c86df0ac1f833936f19017835e5bdb10a00"
+    },
+    {
+      "path": "launch-post.txt",
+      "bytes": 1507,
+      "sha256": "bc48d9d06b7ab987348dbde22cd895ca1ed38d2aa2a6487dcd65ec1638c5a57a"
+    },
+    {
+      "path": "linkedin-copy-ready.html",
+      "bytes": 1193090,
+      "sha256": "70f5d32783ee02bbfdf78b8d23989e2cd69f394591d0ba3629e370c8230691e4"
+    },
+    {
+      "path": "linkedin.html",
+      "bytes": 60097,
+      "sha256": "d38ea363676818bc642681d9e5a38ac32ce0ce89bf4a4ecb9a4e0d1eda2603d6"
+    },
+    {
+      "path": "linkedin.md",
+      "bytes": 51805,
+      "sha256": "bb80f209ce71a379515917f407e9fbcc7424936bd58328e0a10e1eaa8dc714f7"
+    },
+    {
+      "path": "linkedin.txt",
+      "bytes": 51080,
+      "sha256": "f57de239ba5ba78f5d8db1488ede8d267457548ef47e153360aab64ed7502ec6"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 18020,
+      "sha256": "4b4616f66fb677ef955e494704e794270bad599141078b3b8ee43ac91d0a52fd"
+    },
+    {
+      "path": "medium-copy-ready.html",
+      "bytes": 1193090,
+      "sha256": "70f5d32783ee02bbfdf78b8d23989e2cd69f394591d0ba3629e370c8230691e4"
+    },
+    {
+      "path": "medium-upload-kit.json",
+      "bytes": 2878,
+      "sha256": "150d6a84dbc6e3337e7444a81b4e1bef6623f139ad2ce0524988377008f3788d"
+    },
+    {
+      "path": "medium.html",
+      "bytes": 60097,
+      "sha256": "d38ea363676818bc642681d9e5a38ac32ce0ce89bf4a4ecb9a4e0d1eda2603d6"
+    },
+    {
+      "path": "medium.md",
+      "bytes": 51805,
+      "sha256": "bb80f209ce71a379515917f407e9fbcc7424936bd58328e0a10e1eaa8dc714f7"
+    },
+    {
+      "path": "medium.txt",
+      "bytes": 51080,
+      "sha256": "f57de239ba5ba78f5d8db1488ede8d267457548ef47e153360aab64ed7502ec6"
+    },
+    {
+      "path": "presentation.pdf",
+      "bytes": 663363,
+      "sha256": "b3fa9fb0220a6620db0b28ac3d560b987791be0dfb6cdd02c53c04975d881782"
+    },
+    {
+      "path": "print.html",
+      "bytes": 59688,
+      "sha256": "f872c63f3ed8bce1717b1ecf739ac79c64f504d06f7c746264f23d227bbbd63c"
+    },
+    {
+      "path": "print.html.source.json",
+      "bytes": 1314,
+      "sha256": "4da8380ae84dc04acf2f0836b89fb4a2141e5789a1a236afc8747a2552900917"
+    },
+    {
+      "path": "profile.json",
+      "bytes": 2570,
+      "sha256": "ce5bf144ec9176c54dc7d262937c14637887da4056b62f7dfe37fc3e6b82b661"
+    },
+    {
+      "path": "review.md",
+      "bytes": 53987,
+      "sha256": "4789ecb916a06be1f87763a66ac26b2188c8a9690104553d68b8e2e6699ca3a6"
+    },
+    {
+      "path": "seo.json",
+      "bytes": 274,
+      "sha256": "7d4335050c4638653730b63fc10d525389b28c8c3baf733b3cc8aebc501ebcd2"
+    }
+  ],
+  "inputHashes": [
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/assets/article-cover-detail-1280x398.png",
+      "sha256": "843c22a1e6e16d16e824e8be74d593dea3c2f2e6e30b36504e1fff9617f82096"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-03.png",
+      "sha256": "1ae890f9c23827a42e7e068327c6a6ff8738c0194cab97584fd535a6b473ef42"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-09.png",
+      "sha256": "ad1479a5366464b0f5f71f863700bb1071867d6ef5f90111d0f64a46e3b807ab"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-12.png",
+      "sha256": "2f13e3eabd00a27460a83169d296cfc2a8cf4b33e068d1ee22079479028c0d18"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/presentation-cover.png",
+      "sha256": "199d6d64849905eb047c23f7ce43eaab3ef98d949c5009878c8f15a5df7d1180"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/presentation-v35.pdf",
+      "sha256": "b3fa9fb0220a6620db0b28ac3d560b987791be0dfb6cdd02c53c04975d881782"
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261024-r28.json",
+      "sha256": "e2bd07dc3bb39423895e91ab0500fcdadcef4269dae3879130f195e5be03121f"
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/launch-post.en.md",
+      "sha256": "de679bda2b16b66faf6f083d1f5e4c86df0ac1f833936f19017835e5bdb10a00"
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/manuscript.en.md",
+      "sha256": "4bc0136b86e46c4792c61791612243e2c0d0b513c2012cbe9baa1bab97223650"
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/profile.json",
+      "sha256": "255c20972d21a6bce677154577d6f27f9ce70a44347bd54fe61240ae998ce152"
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/publication.json",
+      "sha256": "df6c22c6adfd7b9d930971d72b4675ee2827efbf96c07e2be2c02ca8c0999cf7"
+    }
+  ],
+  "producer": {
+    "inputs": [
+      {
+        "path": "tools/publishing/article.cjs",
+        "sha256": "2387d26c1ec608586c7b124f4a7971b4b9195b83f79dfbe06731700eee04b5c1"
+      },
+      {
+        "path": "tools/publishing/ast.mjs",
+        "sha256": "b7ca7eadfb43bbe8eac8fd0b1684452dea58755afd55616674d6b49db3bd8155"
+      },
+      {
+        "path": "tools/publishing/kit.cjs",
+        "sha256": "e0d9c6576987eefaa0b3523f66bd63ab67fa308d652909aee2f95a1c6a85509d"
+      },
+      {
+        "path": "tools/publishing/safety.cjs",
+        "sha256": "b2946d6fa8b1b8e2aca4105a6929788c5479c5dbb78d0e49f8efd139051de4cb"
+      },
+      {
+        "path": "tools/publishing/provenance.cjs",
+        "sha256": "d228ca0aaad7c508f79367f95d613d1f5dd22ef0b2dde31a55be4416b0a59c80"
+      },
+      {
+        "path": "tools/publishing/history.cjs",
+        "sha256": "a9d6cfc68cd9c441489f0a795a76572aa64442467d36f898f82810cf46fa39bb"
+      },
+      {
+        "path": "tools/publishing/events.cjs",
+        "sha256": "145a9391dae7ae6fc5a88469de2029663ff046eebe1a11458040d867cbdb939c"
+      },
+      {
+        "path": "tools/publishing/site-event.cjs",
+        "sha256": "da9981654fe438be47f1ca2bd29cd911bdb0e68d9a8da4161ce94ee2ae9bc2ff"
+      },
+      {
+        "path": "tools/publishing/semantic.cjs",
+        "sha256": "64fdf4907eec576a143ecf459d26954d5d5981d010ce8bd45c071f4aecdafbfe"
+      },
+      {
+        "path": "tools/publishing/profile.cjs",
+        "sha256": "04df709ffb412c96b1b6652d9d59796818d2b35b5f20d480d20eae9b37ab7e92"
+      },
+      {
+        "path": "tools/publishing/text.cjs",
+        "sha256": "9d36b09fa64068d5a292a23b6b9acec2819e461bda9b20b23116157e9264c860"
+      },
+      {
+        "path": "tools/publishing/presentation.cjs",
+        "sha256": "eee79078d2f9cff4c9132ee64e0bdf338aee319dce06014369b5e0e14b2d978c"
+      },
+      {
+        "path": "site/templates/articles/print.html",
+        "sha256": "cd16823cecfdf3db4fba3223e5283c6d1dd8d7b3396eafeff73c1a4ece09ef3b"
+      },
+      {
+        "path": "site/engine/article-print.css",
+        "sha256": "45b6773ce87ae21198bc2b5ca2ec2711e1a0c242e61a9fc88b94aef528752a27"
+      },
+      {
+        "path": "tools/publishing/print.mjs",
+        "sha256": "d027e724d1d944fb643e5bf64e106cc673f63972f87059afa30fbdafd9d2fddc"
+      },
+      {
+        "path": "tools/publishing/print-resource.cjs",
+        "sha256": "c5ba9afc55b8a818cbcef003e845a47c4ea20275f8b8f52bd11b2be0d39483bf"
+      }
+    ],
+    "node": "v24.22.1",
+    "dependencyLockSha256": "8b4895a11735ff8f614accd5882470af24ecb1e1c2bcb691bc31c4fb708c811d"
+  },
+  "reviewProducer": {
+    "selection": "Same explicit review producer and exact package/archive/executable hashes as R27.",
+    "restoration": "Temporary dependencies were absent; restored @sparticuz/chromium153.0.0 archive and verified prior hashes. tar-fs3.1.2 used for extraction.",
+    "execution": "Native child processes and package extraction required approved sandbox escalation. Failed partial sandbox extraction was replaced before verified build.",
+    "managedDownload": "Historical R26 managed download was not repeated.",
+    "limits": "managedBrowser:false and reviewOnly:true; local review is separate from native-editor, hosted, device, rights or publication acceptance."
+  },
+  "reviewRoute": "../2026-10-24-r28-problem-framing.md",
+  "deliveryCheckpoint": "https://github.com/oborskyivitalii/oborskyivitalii/pull/79#issuecomment-6382894842",
+  "printCorrection": {
+    "path": "site/engine/article-print.css",
+    "before": "ul,ol padding-left6mm",
+    "after": "ul padding-left6mm; ol padding-left8mm; specificTOCol padding0 unchanged",
+    "sha256": "45b6773ce87ae21198bc2b5ca2ec2711e1a0c242e61a9fc88b94aef528752a27",
+    "firstCandidateArtifactId": "80cf489a815f5c3e2169ca2b436c89a90c9c92433811d7aa0bd70faee13df762",
+    "firstCandidatePdfSha256": "57fcee6529f22a2dced3eca2ad9da27d99aef4f62e3087e1230daec86c5e86a3",
+    "disposition": "Superseded prepared artifact because two-digit bibliography markers were clipped. Exact manuscript and semantic edition unchanged; prior frozen R27 and earlier PDFs unchanged.",
+    "scopeAnchor": "https://github.com/oborskyivitalii/oborskyivitalii/issues/5#issuecomment-6382949788"
+  },
+  "layoutReview": {
+    "status": "PASS for corrected native-artifact visual/navigation/local-interaction scope",
+    "agent": "/root/r28_exploratory",
+    "receiptSha256": "467a73b460adfdea205a58c0e2b4c9b146239462498702c1bbfdd4fda2833926",
+    "pdfPagesViewed": 22,
+    "bibliographyMarkersFullyVisible": "1–36",
+    "numericCitationsPerSurface": 49,
+    "htmlForms": 6,
+    "htmlContentsLinksClicked": 23,
+    "pdfContentsDestinations": 23,
+    "pdfOutlineDestinations": 24,
+    "actualLocalCopyPasteForms": 2,
+    "localCopyPasteRetained": {
+      "embeddedImages": 4,
+      "numericUrls": 49,
+      "declaredTableRowFallbacks": 8,
+      "approvedChanges": 4,
+      "contributorStatusAndHistory": true
+    },
+    "EQ01": "Inherited clipping resolved by ordered-list indentation; original failed candidate and corrective receipts retained.",
+    "nonblockingPagination": [
+      "Single-word continuation at top of page3.",
+      "Standalone prompts near bottoms of pages4–5.",
+      "Short historical-revision page22."
+    ],
+    "priorDuplicateOutlineLabelsReproduced": false,
+    "limits": "Local native artifacts and review Chromium/clipboard only; no actual native platform-editor, hosted/device, rights, owner final acceptance or release admission."
+  }
+}

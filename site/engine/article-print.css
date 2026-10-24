@@ -133,9 +133,12 @@ li {
   list-style: none;
 }
 
-ul,
-ol {
+ul {
   padding-left: 6mm;
+}
+
+ol {
+  padding-left: 8mm;
 }
 
 li + li {

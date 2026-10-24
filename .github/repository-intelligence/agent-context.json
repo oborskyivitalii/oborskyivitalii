@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "fbd2f0b25dd36c0593d457a9424c01acd956c4c6c4a6572d06cc6b0413b8e9be",
+    "digest": "7e849e0728f89f69fd36ed75464edac8a1b386ff876e36ec9e1c3cb6c2ce7e00",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -186,12 +186,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "7748661ede66849f521981ed83b36b8f9aa5701a133acef067672daf69d8763b"
+        "sha256": "4ea625211288b2c9296a767d0a2a0df7c8d7c5b0786efecdf12c926c8a8e34ce"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "d5fdda37fb8cadcb5455e1b423e3d885d135de6214ba296415142e568eaacdee"
+        "sha256": "95e84bda9c7ff9accb442e09afd95daa8eccbfc3a9cd20996fbf447bb35c6425"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -321,7 +321,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "91dfe1d763d65dac4619b28651a98700f274c8be2cabd5d64fba51f676622125"
+        "sha256": "e77fc5cceaacebb14023bdee58b1a32444fce317be13c714ebca119bddc73b95"
       },
       {
         "path": "NOTICE.md",
@@ -888,6 +888,11 @@
         "sha256": "17d94ebd02280f7e2194183e535c147c8c0389728c96073c9c84b1dca0d1696b"
       },
       {
+        "path": "review/issue-2/2026-10-24-r28-problem-framing.md",
+        "identity_mode": "content",
+        "sha256": "b9afe872cf5f356f22276a73b72ed73e99a29b87f6fcb208d304e7b0c6a92e33"
+      },
+      {
         "path": "review/issue-2/pmday-candidate-20261015/README.md",
         "identity_mode": "content",
         "sha256": "fc544645d140064355d6690c468452ad733a03a466a90cf436960f6e71c2ef6d"
@@ -1031,6 +1036,31 @@
         "path": "review/issue-2/r27-20261023/artifact-evidence.json",
         "identity_mode": "content",
         "sha256": "8cf3698a15a7d5c530b27a64d5a061571faee93078b509939accf891d51b226b"
+      },
+      {
+        "path": "review/issue-2/r28-20261024/README.md",
+        "identity_mode": "content",
+        "sha256": "a961f5be112fe72f6fc0e389f27c00cb119ebf6cc0cacbcfb87eae3b09063e5e"
+      },
+      {
+        "path": "review/issue-2/r28-20261024/The_Sum_of_Our_Technology_R28_2026-10-24.md",
+        "identity_mode": "content",
+        "sha256": "4bc0136b86e46c4792c61791612243e2c0d0b513c2012cbe9baa1bab97223650"
+      },
+      {
+        "path": "review/issue-2/r28-20261024/The_Sum_of_Our_Technology_R28_2026-10-24.pdf",
+        "identity_mode": "content",
+        "sha256": "de7ee1b74d7f3c6bf99c2c87126057b5001ac2c79a06f8c51498a7de4c3dee69"
+      },
+      {
+        "path": "review/issue-2/r28-20261024/The_Sum_of_Our_Technology_R28_2026-10-24_Native_Review_Kit.zip",
+        "identity_mode": "content",
+        "sha256": "5dff6d2f9fcef3660e6e331ffc1c412003fbd82255e1a09e5f69744f0b556c0d"
+      },
+      {
+        "path": "review/issue-2/r28-20261024/artifact-evidence.json",
+        "identity_mode": "content",
+        "sha256": "ac08f929f4063bb4f4fb1c48b208224e73f433e64fe34a5443c84e88c05fc4d8"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -6130,7 +6160,7 @@
       {
         "path": "site/engine/article-print.css",
         "identity_mode": "content",
-        "sha256": "15cca6741599550bf9328808bf66f3c360509cc9af824334a0b9ac48646917d7"
+        "sha256": "45b6773ce87ae21198bc2b5ca2ec2711e1a0c242e61a9fc88b94aef528752a27"
       },
       {
         "path": "site/engine/article-tags.cjs",
@@ -6215,7 +6245,7 @@
       {
         "path": "site/publications/pmday-ai-both-sides/blueprint.md",
         "identity_mode": "content",
-        "sha256": "20a3100c3dc7c65a2898b4fe0ddb4c5c94479edb7d4a525666497d15862a30db"
+        "sha256": "934ab9b0c5cb15cf395f5b8f34c49bcfb9d0b710dc787be91514e4be38307b70"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261015-r2.json",
@@ -6298,24 +6328,29 @@
         "sha256": "cbc9cecdc775c8847a5559f0d4d6ecfc10165d37f9bcea73b9a44b718b63fb51"
       },
       {
+        "path": "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261024-r28.json",
+        "identity_mode": "content",
+        "sha256": "e2bd07dc3bb39423895e91ab0500fcdadcef4269dae3879130f195e5be03121f"
+      },
+      {
         "path": "site/publications/pmday-ai-both-sides/launch-post.en.md",
         "identity_mode": "content",
-        "sha256": "4004f504dc9ade52d4d364bafce10645510f48c9cfe435688eba6c894d5a5003"
+        "sha256": "de679bda2b16b66faf6f083d1f5e4c86df0ac1f833936f19017835e5bdb10a00"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/manuscript.en.md",
         "identity_mode": "content",
-        "sha256": "d52ae574eacc669a3d7a6658b3ba084de0f528c11321304d8057250185083835"
+        "sha256": "4bc0136b86e46c4792c61791612243e2c0d0b513c2012cbe9baa1bab97223650"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/profile.json",
         "identity_mode": "content",
-        "sha256": "fa07e7e386e2f27aafd9492589ae6805507ee521847610fb11e275223afc5394"
+        "sha256": "255c20972d21a6bce677154577d6f27f9ce70a44347bd54fe61240ae998ce152"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/publication.json",
         "identity_mode": "content",
-        "sha256": "3eb2566d6c0c04f9d1d8ba39d7f2013f69a526bd3f0a1b4c49be42d3284ac5f7"
+        "sha256": "df6c22c6adfd7b9d930971d72b4675ee2827efbf96c07e2be2c02ca8c0999cf7"
       },
       {
         "path": "site/publications/pmday-two-shifts/adaptations/linkedin.en.md",
@@ -6860,7 +6895,7 @@
       {
         "path": "tests/article-media.test.cjs",
         "identity_mode": "content",
-        "sha256": "afc17f6a0c3908dc2f85a7013bcab68f69f890a216120f8abb3f6c2745903511"
+        "sha256": "4b5e56f288bd2bb4795d6b11eae97f845d641fd2d973bc1bddb7433521d6aa1a"
       },
       {
         "path": "tests/article-offline.test.cjs",
@@ -10663,6 +10698,17 @@
       "title": "R27 — Olivier feedback, provenance and READER correction"
     },
     {
+      "path": "review/issue-2/2026-10-24-r28-problem-framing.md",
+      "kind": "file",
+      "purpose": "R28 author-approved engineering problem-framing integration, original four-role review receipts and exact-source acceptance route.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 2 / issue 5 — R28 problem-framing integration — 24 October 2026"
+    },
+    {
       "path": "review/issue-2/pmday-candidate-20261015/README.md",
       "kind": "file",
       "purpose": "PR79 PMDay review candidate, independent findings and source-qualified export evidence.",
@@ -10976,6 +11022,61 @@
       "purpose": "R27 source, semantic, PDF, ZIP, complete member and producer identities with historical R26 preservation.",
       "role": "history",
       "owner": "review/issue-2/2026-10-23-r27-feedback-and-reader.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "artifact-evidence.json"
+    },
+    {
+      "path": "review/issue-2/r28-20261024/README.md",
+      "kind": "file",
+      "purpose": "R28 native package instructions, four-change scope, artifact inventory and explicit review/publication boundaries.",
+      "role": "history",
+      "owner": "review/issue-2/2026-10-24-r28-problem-framing.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "R28 native review package — 24 October 2026"
+    },
+    {
+      "path": "review/issue-2/r28-20261024/The_Sum_of_Our_Technology_R28_2026-10-24.md",
+      "kind": "file",
+      "purpose": "Byte-exact R28 canonical review manuscript with four author-approved engineering problem-framing clarifications.",
+      "role": "history",
+      "owner": "review/issue-2/2026-10-24-r28-problem-framing.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "The Sum of Our Technology"
+    },
+    {
+      "path": "review/issue-2/r28-20261024/The_Sum_of_Our_Technology_R28_2026-10-24.pdf",
+      "kind": "file",
+      "purpose": "R28 native review PDF generated by the unchanged canonical publisher and explicit review print producer.",
+      "role": "history",
+      "owner": "review/issue-2/2026-10-24-r28-problem-framing.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "The_Sum_of_Our_Technology_R28_2026-10-24.pdf"
+    },
+    {
+      "path": "review/issue-2/r28-20261024/The_Sum_of_Our_Technology_R28_2026-10-24_Native_Review_Kit.zip",
+      "kind": "file",
+      "purpose": "Complete 34-member R28 native kit with equivalent LinkedIn/Medium renditions, separate authored launch and original manifests.",
+      "role": "history",
+      "owner": "review/issue-2/2026-10-24-r28-problem-framing.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "The_Sum_of_Our_Technology_R28_2026-10-24_Native_Review_Kit.zip"
+    },
+    {
+      "path": "review/issue-2/r28-20261024/artifact-evidence.json",
+      "kind": "file",
+      "purpose": "R28 source, semantic, PDF, archive, complete-member and producer identities with honest review-only status.",
+      "role": "history",
+      "owner": "review/issue-2/2026-10-24-r28-problem-framing.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -22565,6 +22666,17 @@
       "title": "pmday-ai-both-sides-en-review-20261023-r27.json"
     },
     {
+      "path": "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261024-r28.json",
+      "kind": "file",
+      "purpose": "Immutable R28 problem-framing review edition with current source/semantic digests and pending accepted-source/rights status.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "pmday-ai-both-sides-en-review-20261024-r28.json"
+    },
+    {
       "path": "site/publications/pmday-ai-both-sides/launch-post.en.md",
       "kind": "file",
       "purpose": "PMDay article source, presentation viewer or original publication media: launch-post.en.md.",
@@ -27704,6 +27816,16 @@
       "purpose": "Public-safe R27 provenance-only native manuscript, PDF, complete review kit and source/producer evidence.",
       "role": "history",
       "owner": "review/issue-2/2026-10-23-r27-feedback-and-reader.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-2/r28-20261024",
+      "kind": "directory",
+      "purpose": "R28 native manuscript, PDF, full equivalent-rendition kit and exact source/producer/member evidence.",
+      "role": "history",
+      "owner": "review/issue-2/2026-10-24-r28-problem-framing.md",
       "instructions": [
         "AGENTS.md"
       ]

@@ -2,7 +2,7 @@
 
 *AI Changes Both Sides of Software Engineering*
 
-Vitalii Oborskyi · Editorial draft R27 · 23 October 2026
+Vitalii Oborskyi · Editorial draft R28 · 24 October 2026
 
 ![A solitary person stands before a narrow opening of light between monumental dark walls.](asset:cover)
 
@@ -14,11 +14,11 @@ The dashboard calls this progress. The person handling the next incident has a d
 
 What if faster generation does not improve delivery—or leaves us unable to recover what we built? What if the person entrusted with the final decision cannot meaningfully make it?
 
-My talk at UA Online PMDay 2026 Autumn connects two shifts: AI changes how we build software, and model judgment changes what software does at runtime. In both, delegation can outrun our ability to understand consequential behaviour and act when it fails. That capability belongs in the design, not in an oversight footnote.
+Engineering starts by defining a problem, proposing a solution and testing whether it works. Evidence may require revising the implementation, the hypothesis or the problem itself. Solving the wrong problem faster still misses the goal.
 
-Each “What if not?” turns a promise into a practical decision: what to test, what to constrain, and when a simpler approach is the better choice.
+My talk at UA Online PMDay 2026 Autumn connects two engineering problems: turning faster generation into reliable delivery, and keeping consequential model judgment within justified operating bounds. Both require the capacity to understand, constrain and correct what we delegate.
 
-Identifying a bottleneck does not prove that its function can be removed. A better method must preserve the outcomes responsible operation requires.
+Each “What if not?” turns that requirement into a practical decision: what to test, what to constrain, and when a simpler approach is the better choice.
 
 [Slides (PDF) \[1\]](https://github.com/oborskyivitalii/oborskyivitalii/blob/4d5bcdb7c0b30bd7ba5926007fc24e3752242905/site/assets/publications/pmday-two-shifts/pmday-v35-deck-review.pdf) · [Recording (Ukrainian) \[2\]](https://youtu.be/xSgWjuGqC9I)
 
@@ -55,6 +55,8 @@ The NBER authors’ weak-link model treats upstream output and downstream human 
 ![Fixed-capacity delivery illustration: generation rises from eight to one hundred changes per week while review and integration remain at eight.](asset:pmday-slide-03)
 
 Suppose a team generates, reviews and integrates eight comparable changes a week. Raise generation capacity to one hundred; keep the others fixed. Admit every change: delivery stays at eight; unfinished work grows by ninety-two a week. **We become dramatically better at producing unfinished work.** Control intake and the queue need not grow, but delivery remains capped. Spare downstream capacity would change the result.
+
+The task is to rebalance delivery around its actual constraint while preserving the functions responsible operation requires.
 
 *The Subprime Code Crisis* [\[9\]](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis) is my synthesis of costs shifted into review, QA, architecture, maintenance and production. The danger is booking local gains before accounting for displaced work and risk.
 
@@ -156,7 +158,7 @@ The account-recovery assistant now interprets requests, retrieves guidance and p
 
 In my *Uncertainty Architecture* [\[20\]](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture), this is a *Thinking System* [\[21\]](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/00-doctrine/uncertainty-in-the-controlled-object.md): at least one consequential runtime responsibility depends partly on probabilistic model judgment. The definition describes implementation, not consciousness or safety.
 
-The same question returns: can the surrounding system understand enough to judge, constrain and, where necessary, intervene? Six assumptions need testing—and continued justification after release.
+The engineering task is to keep useful behaviour within justified bounds despite uncertain outputs and changing conditions. That requires enforceable limits, meaningful signals and correction that can act in time. Six assumptions need testing—and continued justification after release.
 
 ### Enforce the boundary before delegation
 
@@ -284,7 +286,7 @@ Vendors owe adopters usable evidence, clear limits and visibility into consequen
 
 — Stanisław Lem, quoted and translated by Bogna Konior; source and edition details: [\[31\]](https://existentialtech.antikythera.org/).
 
-I want this to work. The obligation is to demonstrate that delegated capability and the capacity to operate it can grow together. For the recovery team, these **illustrative pilot limits** turn that obligation into decisions. Set criteria before collecting results; these are not measured findings or universal thresholds.
+I want this to work. The intended outcome, delegated authority and required controls should shape the project's risk map, staffing and full operating budget. For the recovery team, these **illustrative pilot limits** turn those requirements into decisions. Set criteria before collecting results; these are not measured findings or universal thresholds.
 
 | Decision | Evidence and limit | Action if the limit fails |
 | --- | --- | --- |
@@ -452,16 +454,16 @@ Numbered citations refer to the sources below. Source notes retain the evidence 
 
 ## How to cite this draft
 
-Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R27, 23 October 2026.
+Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R28, 24 October 2026.
 
 Unpublished author-review edition. Cite the revision; no DOI or final publication URL has been assigned.
 
 ```bibtex
-@misc{oborskyi2026sumR27,
+@misc{oborskyi2026sumR28,
   author = {Oborskyi, Vitalii},
   year = {2026},
   title = {The Sum of Our Technology: AI Changes Both Sides of Software Engineering},
-  note = {Editorial draft R27, 23 October 2026; unpublished}
+  note = {Editorial draft R28, 24 October 2026; unpublished}
 }
 ```
 
@@ -478,6 +480,10 @@ Text © 2026 Vitalii Oborskyi. Presentation and third-party credits remain appli
 Vitalii Oborskyi retains editorial responsibility.
 
 ## Revision history
+
+24 October 2026:
+
+- **R28:** Engineering problem framing clarified across delivery, runtime control and project planning.
 
 23 October 2026:
 

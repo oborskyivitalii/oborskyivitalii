@@ -4,7 +4,7 @@ What if the AI SDLC succeeds at generating code but fails at delivery, recovery 
 
 My PMDay essay examines two shifts and the socio-technical system we must actually be able to operate. Draft review preview; no publication/canonical URL. Ukrainian recording: https://youtu.be/xSgWjuGqC9I
 
-R27 retains the clearer route from a risk to a practical decision. It retains R24's account of a policy mistake travelling from development into production and asks what the AI path must demonstrate over a simpler alternative under the same safety requirements.
+R28 makes the engineering problem explicit: improve delivery around its actual constraint, keep runtime behaviour within justified bounds, and let the required controls shape risk, staffing and operating budgets. It retains R24's account of a policy mistake travelling from development into production and asks what the AI path must demonstrate over a simpler alternative under the same safety requirements.
 
 Thank you to Maximiliano Armesto for thoughtful pre-publication feedback on shared policy assumptions and on the value of AI compared with simpler alternatives. Editorial decisions and the final text remain my responsibility.
 

@@ -2,7 +2,29 @@
 
 Article owner #2; publisher/execution #5 / PR79.
 
-## Current R27 provenance and feedback analysis — 23 October 2026
+## Current R28 engineering problem framing — 24 October 2026
+
+The author approved the four formulations from the problem-framing analysis.
+Clarify the engineering loop in the introduction; frame delivery around its actual
+constraint while preserving responsible operation; state the runtime task through
+justified bounds, limits, signals and timely correction; connect those requirements
+to the project's risk map, staffing and full operating budget before the pilot table.
+These are author-origin clarifications, not adoption of the two pending Olivier
+feedback proposals. Preserve existing contributor-specific accepted/pending records.
+
+Create a new immutable R28 review edition, dated 24 October 2026, with a concise
+history entry and matching separately authored launch currentness. Generate the
+complete native Markdown/PDF/LinkedIn/Medium kit through the unchanged pipeline.
+Keep the 51,000-character limits, all 12 prompts, 36 sources, two tables, four article
+figures, citation destinations and empirical qualifications. Previous editions and
+frozen artifacts stay exact. Record the original four independent role reports and
+actual source-bound checks in the [R28 review](../../../review/issue-2/2026-10-24-r28-problem-framing.md).
+
+Keep review status, rights pending and canonical null. Delivery remains in Draft
+PR79; merge/rebase, staging, platform posting and whole publication acceptance
+are outside this increment.
+
+## Historical R27 provenance and feedback analysis — 23 October 2026
 
 The author requests the READER correction, a new provenance record and an analysis
 of what should change or remain. R27 adds a concise Olivier Leturcq contribution
