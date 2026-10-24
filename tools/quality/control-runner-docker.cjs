@@ -164,10 +164,13 @@ function verifyConfiguration(value, name, image) {
   });
   assert.equal(h.LogConfig.Type, 'none');
   assert.equal(h.RestartPolicy.Name, 'no');
-  assert.deepEqual(h.Ulimits, [
-    { Name: 'nofile', Hard: 64, Soft: 64 },
-    { Name: 'core', Hard: 0, Soft: 0 },
-  ]);
+  assert.deepEqual(
+    [...h.Ulimits].sort((a, b) => a.Name.localeCompare(b.Name)),
+    [
+      { Name: 'core', Hard: 0, Soft: 0 },
+      { Name: 'nofile', Hard: 64, Soft: 64 },
+    ]
+  );
   for (const field of ['Binds', 'Devices', 'DeviceRequests', 'VolumesFrom', 'Links'])
     assert.ok(!h[field]?.length, 'unexpected host attachment: ' + field);
   assert.ok(!Object.keys(h.PortBindings || {}).length);
@@ -302,9 +305,9 @@ function execute(moduleBytes, probes) {
     owned.uncertain = false;
     record.container = container;
     const config = JSON.parse(successful(call(['inspect', container]), 'container inspect'))[0];
+    record.configuration = config;
     verifyConfiguration(config, name, image);
     assert.equal(config.Id, container, 'created container identity mismatch');
-    record.configuration = config;
     const started = Date.now();
     record.executed = true;
     const result = call(['start', '--attach', container], { timeout: limits.wallMs });

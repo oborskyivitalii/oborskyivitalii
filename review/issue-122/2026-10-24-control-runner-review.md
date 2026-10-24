@@ -130,3 +130,32 @@ Corrected local style, RI freshness and coupling verify pass. Owning mapping
 passes5/5 mechanical checks with no errors and explicitly dirty-source identity;
 all external gates and issue closure readiness remain pending/false. This factual
 receipt and deterministic RI refresh do not alter the reviewed implementation.
+
+## Native attempt1 — configuration ordering failure
+
+Published H311fa2c8/treea23b3534 ran native40109509683/1, job120918100922.
+Original artifact12565428500 ZIP SHA256
+`843bc6a19d9fad70558ca6a16e9d6bc6b847303cc4785972032c663a13f8e39f`
+was physically downloaded and authenticated. It remains FAILED: Docker28.0.4,
+cgroupv2 and actual local runtime image/container creation succeeded, but the
+stopped configuration returned Ulimits in core/nofile order instead of the
+fixture's nofile/core order. Exact values matched. Execution never started;
+cleanup was actually acknowledged and verified. No candidate/synthetic native
+pass is claimed. Node24.19.0, Ubuntu24.04.5 image20261012.334.1 and kernel
+6.17.0-1022-azure are recorded in the original reports/logs.
+
+The bounded correction compares the exact limit objects sorted by their names;
+all names, values and multiplicities remain mandatory. One regression accepts
+both orders while rejecting missing, duplicate, unknown and modified-soft/hard
+limits. The raw stopped configuration is now retained before validation, including
+failure cases. No resource limit, profile or admission obligation changes.
+Four actual delta reviews and a fresh native proof remain required.
+
+All four actual roles independently authenticated that original ZIP and accepted
+correction tree `3006afac93844b98de1b0f0eb0a7d6e35da933dd`. Code, White-box
+and Exploratory each executed the new strict permutation/negative case; Requirements
+ran11/11 focused cases. Each retained pre-execution failure and pending native
+proof, and found no limit/acceptance weakening. Exploratory also authenticated
+the referenced raw report digest. Initial H311fa2c8 Basic40109509767, navigation
+40109509699 and owning40109509688 completed successfully; these remain historical
+source observations, not proof for the corrected future head.

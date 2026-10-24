@@ -195,6 +195,28 @@ test('configuration rejects injected command, environment, input mount and wrong
     assert.throws(() => sandbox.verifyConfiguration(config, 'owned', 'sha256:local'));
   }
 });
+
+test('daemon limit ordering is irrelevant while exact names, values and multiplicity remain required', () => {
+  const config = configuration();
+  config.HostConfig.Ulimits.reverse();
+  assert.equal(sandbox.verifyConfiguration(config, 'owned', 'sha256:local'), true);
+  for (const limits of [
+    [{ Name: 'core', Hard: 0, Soft: 0 }],
+    [
+      { Name: 'core', Hard: 0, Soft: 0 },
+      { Name: 'nofile', Hard: 64, Soft: 65 },
+    ],
+    [
+      { Name: 'core', Hard: 0, Soft: 0 },
+      { Name: 'nofile', Hard: 65, Soft: 64 },
+    ],
+    [...config.HostConfig.Ulimits, { Name: 'nofile', Hard: 64, Soft: 64 }],
+    [...config.HostConfig.Ulimits, { Name: 'other', Hard: 64, Soft: 64 }],
+  ]) {
+    config.HostConfig.Ulimits = limits;
+    assert.throws(() => sandbox.verifyConfiguration(config, 'owned', 'sha256:local'));
+  }
+});
 test('Docker arguments forbid image pulling and ambient environment does not cross boundary', () => {
   const args = sandbox.createArguments('owned', 'sha256:local');
   assert.ok(args.includes('--pull=never'));

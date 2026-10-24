@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "eb6241a84eb56f3ba4afbeefc43f054435131908bc27a8a09b9be387d63c744a",
+    "digest": "44a2b46e3253f1171b8ccd915167a18ab133d93d0cecb6f6c57d714759ffee2c",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -915,7 +915,7 @@
       {
         "path": "review/issue-122/2026-10-24-control-runner-review.md",
         "identity_mode": "content",
-        "sha256": "0b5e87bdcd9c1f831d70ea572458096ed347345ce2d335f71356db8787ec5c54"
+        "sha256": "aebbdafa634a4958e609fd802b87bd0fbb3fb1140ae02df8d824a6e6a25a28eb"
       },
       {
         "path": "review/issue-122/2026-10-24-fast-uri-local-evidence.tar.gz",
@@ -5955,7 +5955,7 @@
       {
         "path": "tests/control-runner.test.cjs",
         "identity_mode": "content",
-        "sha256": "7c0a68934c13ebdf0942f2e5c696f43295118169ad5b8f948e68cd82b14ef232"
+        "sha256": "6eab44e99616a1fff982d2a510c8be25185547e2d573e103368dc061c78ea4d4"
       },
       {
         "path": "tests/delivery-admission.test.cjs",
@@ -6590,7 +6590,7 @@
       {
         "path": "tools/quality/control-runner-docker.cjs",
         "identity_mode": "content",
-        "sha256": "0b76bb232907bcb0bc53d618bb011674f8bf442e56bfb50681a504d297ecbadb"
+        "sha256": "c40d590cc269f4630d6280aeec1f660c2a21ef9ea25a4c520c197b54e359de9c"
       },
       {
         "path": "tools/quality/control-runner-driver.cjs",
