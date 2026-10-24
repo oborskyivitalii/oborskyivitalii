@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "c21f450bb4b324b08797e15dcc8e04e7e5bad968c87f501cd4f016275276edab",
+    "digest": "416a81a5965aea1a4dc53db500446600bdd67f3074b1f8d537f54730a3266d0d",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -186,12 +186,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "da39159f605b90f860d1e1b55dd27de8bbbd729453e13604179ed2cd1f4a72ea"
+        "sha256": "aa5da5417103aaee0db19d047d78ad868e3a059a7d06d566a58b742a4bc4455a"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "b589a06d432c9b4df43db8aafb7f7dd702175f339f926a9bb55b318a3f788ca1"
+        "sha256": "e8836e58dfb21fe023b68a0a0c0a0be61b3b3dbbeddf61c6c12db576ddd56fe0"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -321,7 +321,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "128885a1a4fa2d96600d8b42aef6604240e05963ce5eab6719034efe0c54f9e0"
+        "sha256": "17a22197a9b744c1830704266a1e13b80f091565ffa178b99f9165382c5a1532"
       },
       {
         "path": "NOTICE.md",
@@ -900,7 +900,7 @@
       {
         "path": "review/issue-2/2026-10-24-r30-editorial-clarity.md",
         "identity_mode": "content",
-        "sha256": "421b2532b510eaf60c17c33d2c254477bd518c0c269c14bc3bf3237adf8463dc"
+        "sha256": "e3cc6256b3d336bb16443b7eb3b119a32f89edd0042daf526718eb99f6f441ad"
       },
       {
         "path": "review/issue-2/pmday-candidate-20261015/README.md",
@@ -1110,7 +1110,7 @@
       {
         "path": "review/issue-2/r30-20261024/artifact-evidence.json",
         "identity_mode": "content",
-        "sha256": "461fc452b28840eee0b728bfe7e65718f8f6ef68d90edefcebf5c47af2dac136"
+        "sha256": "4a57cc8a6b9cfb29f7aa4d73a28fde5fe0ce52f46ce4e603f4e270d5ee92cb21"
       },
       {
         "path": "review/issue-2/r30-20261024/native-manifest.json",
@@ -1125,7 +1125,7 @@
       {
         "path": "review/issue-2/r30-20261024/qa-original-evidence.zip",
         "identity_mode": "content",
-        "sha256": "9a936b82c21ccb466ee51867986a87c0580cab59b59dad6825c78f12d520f3aa"
+        "sha256": "a66edab97ed2c91553269c2b692ca452715da93e5cbae1cc44b6b70f0092e8d5"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -6970,7 +6970,7 @@
       {
         "path": "tests/article-media.test.cjs",
         "identity_mode": "content",
-        "sha256": "6d690597b54a364dc288ab647ced59cf775f66ec906eb4c82276db9cbfb32c1a"
+        "sha256": "25b2433385ac92d557bea105ad2caa3d5cfdaf84eb80dfd9b78cf953c2e97c70"
       },
       {
         "path": "tests/article-offline.test.cjs",
@@ -7290,7 +7290,7 @@
       {
         "path": "tests/release-controller.test.cjs",
         "identity_mode": "content",
-        "sha256": "5045592b49dc799c16ffa4ef9a4e55d16c11ac88784e4269cfa97fe996050f53"
+        "sha256": "46b02ea1f2e5bbf75c53b22e5fa43530d80aba59e4513c00e1697c9456416c46"
       },
       {
         "path": "tests/release-rights.test.cjs",
@@ -9809,7 +9809,7 @@
       "kind": "file",
       "purpose": "Generated current R30-dependent immutable browser asset; bytes unchanged from R29.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -9820,7 +9820,7 @@
       "kind": "file",
       "purpose": "Generated current R30-dependent immutable browser asset; bytes unchanged from R29.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -9831,7 +9831,7 @@
       "kind": "file",
       "purpose": "Generated current R30-dependent immutable browser asset; bytes unchanged from R29.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -9842,7 +9842,7 @@
       "kind": "file",
       "purpose": "Generated current R30-dependent immutable browser asset; bytes unchanged from R29.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -9853,7 +9853,7 @@
       "kind": "file",
       "purpose": "Generated current R30-dependent immutable browser asset; bytes unchanged from R29.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -9941,7 +9941,7 @@
       "kind": "file",
       "purpose": "Generated current route snapshot for the R30-dependent producer identity.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -9963,7 +9963,7 @@
       "kind": "file",
       "purpose": "Generated current route snapshot for the R30-dependent producer identity.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -9985,7 +9985,7 @@
       "kind": "file",
       "purpose": "Generated current route snapshot for the R30-dependent producer identity.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -10007,7 +10007,7 @@
       "kind": "file",
       "purpose": "Generated current route snapshot for the R30-dependent producer identity.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -10029,7 +10029,7 @@
       "kind": "file",
       "purpose": "Generated current route snapshot for the R30-dependent producer identity.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -27695,7 +27695,7 @@
       "kind": "directory",
       "purpose": "Generated current runtime identity from the canonical producer.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ]
@@ -27735,7 +27735,7 @@
       "kind": "directory",
       "purpose": "Generated current immutable route snapshot.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ]
@@ -27755,7 +27755,7 @@
       "kind": "directory",
       "purpose": "Generated current immutable route snapshot.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ]
@@ -27775,7 +27775,7 @@
       "kind": "directory",
       "purpose": "Generated current immutable route snapshot.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ]
@@ -27795,7 +27795,7 @@
       "kind": "directory",
       "purpose": "Generated current immutable route snapshot.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ]
@@ -27815,7 +27815,7 @@
       "kind": "directory",
       "purpose": "Generated current immutable route snapshot.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ]

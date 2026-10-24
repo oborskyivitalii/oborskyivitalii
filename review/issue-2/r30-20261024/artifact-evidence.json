@@ -452,8 +452,8 @@
   },
   "qaArchive": {
     "path": "qa-original-evidence.zip",
-    "bytes": 204742,
-    "sha256": "9a936b82c21ccb466ee51867986a87c0580cab59b59dad6825c78f12d520f3aa",
+    "bytes": 281185,
+    "sha256": "a66edab97ed2c91553269c2b692ca452715da93e5cbae1cc44b6b70f0092e8d5",
     "members": [
       {
         "path": "r30-requirements-preflight.md",
@@ -504,6 +504,36 @@
         "path": "r30-requirements-final.md",
         "bytes": 17666,
         "sha256": "cb99e0c93388307d30d89d1b4bf0ed47288988fbe8afbe6e76089dfff27220d7"
+      },
+      {
+        "path": "r30-requirements-inventory-preflight.md",
+        "bytes": 4560,
+        "sha256": "531516390facd1643c3d166b1790e5e361076b790b5d9213795454fc1d7c5704"
+      },
+      {
+        "path": "r30-final-fixture-correction.md",
+        "bytes": 7288,
+        "sha256": "9a5fd93e94fb7cde87ba069e611a5e049c603f818476e32497c4b932faeaa114"
+      },
+      {
+        "path": "r30-final-whitebox-correction.md",
+        "bytes": 8787,
+        "sha256": "47fb186e3b18f816751ba12462f881ea636b74f4d292f9a77ce122e48d7d43b9"
+      },
+      {
+        "path": "r30-final-code-correction.md",
+        "bytes": 7790,
+        "sha256": "d537b43f9a3e19a1e2d6c7adfaa3e8192263de6bc0d61b0bfb5a0fd86219fdc6"
+      },
+      {
+        "path": "r30-final-exploratory-correction.md",
+        "bytes": 3686,
+        "sha256": "18312000ce88e5a7bb149e53f6becc3b2737358e9945c7823a54a012a63f9f96"
+      },
+      {
+        "path": "r30-requirements-correction-final.md",
+        "bytes": 5873,
+        "sha256": "30d4b9859a05ddb458d04a6b3f8a676581bd5e8609c0a9f7802f00db8e488b85"
       },
       {
         "path": "r30-editorial-invariants.json",
@@ -699,6 +729,96 @@
         "path": "r30-selected-python-install.log",
         "bytes": 649,
         "sha256": "8275825a5c484c1259fc721eb515abe156ba52a54dc9b735223b541681c1f6a1"
+      },
+      {
+        "path": "r30-final-code-correction-probe.cjs",
+        "bytes": 4671,
+        "sha256": "d008205e2da322db82d3977c4e13df18d8f20824b13208febc403d58dfa27f73"
+      },
+      {
+        "path": "r30-final-code-correction-probe.json",
+        "bytes": 5239,
+        "sha256": "47718d1f1c5c004dd76601ccfbae6a0df3ac19f1a907b715e3fffec17f25bb91"
+      },
+      {
+        "path": "r30-final-code-correction-evidence.json",
+        "bytes": 12175,
+        "sha256": "dbdd09d99d2e6bad1eb06ce6de0f3ddec481b057ac1f61f33ff8f5ed59a451b7"
+      },
+      {
+        "path": "r30-requirements-correction-checks.json",
+        "bytes": 632,
+        "sha256": "a93fb4c0815b50ec7d42ebf31e2890168b251c889a3cc0ff10bb327a4b44fe24"
+      },
+      {
+        "path": "r30-final-exploratory-correction.json",
+        "bytes": 19894,
+        "sha256": "69fa346f33f6b323fb1549a150c28f123d5176ff52c1d275d2e37812a59c6e25"
+      },
+      {
+        "path": "r30-final-fixture-after.json",
+        "bytes": 1871,
+        "sha256": "e1f188432e364f0197b69079a06f1dfdff4f8e9a94776aadaf9b7e20d551e365"
+      },
+      {
+        "path": "r30-final-whitebox-catalog-probe.cjs",
+        "bytes": 5559,
+        "sha256": "7359e4680c1a7cb0aab52603a0de4c03048399c0138bbf8c7aa6aca6d9b00c26"
+      },
+      {
+        "path": "r30-final-whitebox-catalog-probe.json",
+        "bytes": 2737,
+        "sha256": "30f0fa0227bb2119a6f363ae6fc8cad1a2e3ac63a0f9e163053f610ba252e738"
+      },
+      {
+        "path": "r30-final-whitebox-catalog-probe.raw",
+        "bytes": 2737,
+        "sha256": "30f0fa0227bb2119a6f363ae6fc8cad1a2e3ac63a0f9e163053f610ba252e738"
+      },
+      {
+        "path": "r30-final-whitebox-fixture-tests.raw",
+        "bytes": 626,
+        "sha256": "96f9408b9ebf729a7bb98c79eda06657c93dd2261ffb90508b2ca83f4e936311"
+      },
+      {
+        "path": "r30-final-whitebox-inventory-tests.raw",
+        "bytes": 650,
+        "sha256": "e55fd91222784c57f48bceae678140a62da40e4f6d583bc73203fb4f1396a4f2"
+      },
+      {
+        "path": "r30-acceptance-cdb68f8.json",
+        "bytes": 168253,
+        "sha256": "b287373bcaeb8c300ccfee8fc250022e53b74bcb48d891c8fe3326a6569f174f"
+      },
+      {
+        "path": "r30-acceptance-cdb68f8.log",
+        "bytes": 1211,
+        "sha256": "6563eff4b1349d51dd69ad71310b3a9712a3218ce94dd21bc560aecf7d664c54"
+      },
+      {
+        "path": "r30-acceptance-failures-summary.json",
+        "bytes": 5324,
+        "sha256": "de3e4baa0bb6c378c713a660df5d979d3ba8b7c5cba0bb3929770fc15166b42d"
+      },
+      {
+        "path": "r30-requirements-inventory-probe.json",
+        "bytes": 1768,
+        "sha256": "09caaeacac9e08837549e936f40e571a2b8e2819f21133b29a8c2eef5fdcc051"
+      },
+      {
+        "path": "r30-catalog-owner-correction.json",
+        "bytes": 3389,
+        "sha256": "21f48e280baf97686b9def7c93fb6d694ebeb50139835590b472c9b356e1fff9"
+      },
+      {
+        "path": "r30-final-fixture-before.json",
+        "bytes": 2211,
+        "sha256": "811af342ca222e4533d06d42a9640d800a9d88428a8e33e5e0b363618b63c719"
+      },
+      {
+        "path": "r30-final-fixture-tests.log",
+        "bytes": 4342,
+        "sha256": "477d9d06240ff5a2620eac44f2607a2c8c4866a94d6e4c3f8d8ad2fba7c2bb61"
       },
       {
         "path": "r30-code-integration-evidence.initial.json",
@@ -923,5 +1043,35 @@
     "url": "https://chatgpt.com/library?file_id=libfile_e285b4cfb86c8191a1698289c5377531&account_id=personal",
     "readbackByteIdentical": true,
     "version": 0
+  },
+  "initialCleanAcceptance": {
+    "archiveMember": "r30-acceptance-cdb68f8.json",
+    "bytes": 168253,
+    "sha256": "b287373bcaeb8c300ccfee8fc250022e53b74bcb48d891c8fe3326a6569f174f",
+    "source": {
+      "commit_sha": "cdb68f8a9fa4fd26525c577051cffa6314288109",
+      "ri_source_digest": "c21f450bb4b324b08797e15dcc8e04e7e5bad968c87f501cd4f016275276edab",
+      "ri_surface_sha256": "e1d356e85b85140d6ae1724670f3e17c90268df82c4b05096e1a72e21254e38d",
+      "source_dirty": false,
+      "tree_sha": "144ef063e4dd0d7adfec0f7be85c41897d2a95ee",
+      "working_tree_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "automationPass": false,
+    "evidenceValid": true,
+    "checks": {
+      "BASIC": "passed",
+      "CONTENT-CI": "failed",
+      "CONTENT-LANES": "failed",
+      "CONTENT-RELEASE": "passed",
+      "CONTROLLER": "passed",
+      "CURRENT-RI": "passed",
+      "DELIVERY": "failed",
+      "PUBLISHER": "passed",
+      "READER": "failed",
+      "RI-CI": "passed",
+      "STYLE-GUARD": "passed",
+      "WRITING-CATALOG": "passed"
+    },
+    "disposition": "Original8/12failure retained. Correct stale current-fixture identities and16generated catalog owner fields; unchanged policy must be rerun on corrected exact clean source. Native article/print inputs unchanged."
   }
 }

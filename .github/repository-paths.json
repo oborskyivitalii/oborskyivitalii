@@ -11189,97 +11189,97 @@
       "kind": "directory",
       "purpose": "Generated current runtime identity from the canonical producer.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "docs/runtime/c4aa9fa8604178e3ca297f5158cf62563f5eb3448a82b3b12f97a8a48f461f11/archive.js": {
       "kind": "file",
       "purpose": "Generated current R30-dependent immutable browser asset; bytes unchanged from R29.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "docs/runtime/c4aa9fa8604178e3ca297f5158cf62563f5eb3448a82b3b12f97a8a48f461f11/navigation.js": {
       "kind": "file",
       "purpose": "Generated current R30-dependent immutable browser asset; bytes unchanged from R29.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "docs/runtime/c4aa9fa8604178e3ca297f5158cf62563f5eb3448a82b3b12f97a8a48f461f11/space.js": {
       "kind": "file",
       "purpose": "Generated current R30-dependent immutable browser asset; bytes unchanged from R29.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "docs/runtime/c4aa9fa8604178e3ca297f5158cf62563f5eb3448a82b3b12f97a8a48f461f11/styles.css": {
       "kind": "file",
       "purpose": "Generated current R30-dependent immutable browser asset; bytes unchanged from R29.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "docs/runtime/c4aa9fa8604178e3ca297f5158cf62563f5eb3448a82b3b12f97a8a48f461f11/theme.js": {
       "kind": "file",
       "purpose": "Generated current R30-dependent immutable browser asset; bytes unchanged from R29.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "docs/snapshots/2155ab2296dc00eda1806ede69d3a95d3fbe4e13eb3545252d8975785a5152b0": {
       "kind": "directory",
       "purpose": "Generated current immutable route snapshot.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "docs/snapshots/2155ab2296dc00eda1806ede69d3a95d3fbe4e13eb3545252d8975785a5152b0/index.html": {
       "kind": "file",
       "purpose": "Generated current route snapshot for the R30-dependent producer identity.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "docs/snapshots/6757003e1d8092268b20e0b42bc62e80ad762dae198800dbdcf6e5fa403bf0f3": {
       "kind": "directory",
       "purpose": "Generated current immutable route snapshot.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "docs/snapshots/6757003e1d8092268b20e0b42bc62e80ad762dae198800dbdcf6e5fa403bf0f3/research.html": {
       "kind": "file",
       "purpose": "Generated current route snapshot for the R30-dependent producer identity.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "docs/snapshots/7ba6800e45b6f4f5e0d20b6d717d8328654d82c3698ea95cedd746708839abff": {
       "kind": "directory",
       "purpose": "Generated current immutable route snapshot.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "docs/snapshots/7ba6800e45b6f4f5e0d20b6d717d8328654d82c3698ea95cedd746708839abff/writing.html": {
       "kind": "file",
       "purpose": "Generated current route snapshot for the R30-dependent producer identity.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "docs/snapshots/85f0f88ef8dc0d0f66e51166349ede6b7c8035a41402cf60ff23a88b6a47a738": {
       "kind": "directory",
       "purpose": "Generated current immutable route snapshot.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "docs/snapshots/85f0f88ef8dc0d0f66e51166349ede6b7c8035a41402cf60ff23a88b6a47a738/credits.html": {
       "kind": "file",
       "purpose": "Generated current route snapshot for the R30-dependent producer identity.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "docs/snapshots/90b9bd73a2727af6b0233ac55808c7fd70e7d04d7b2d70a567f32fec52b9404c": {
       "kind": "directory",
       "purpose": "Generated current immutable route snapshot.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "docs/snapshots/90b9bd73a2727af6b0233ac55808c7fd70e7d04d7b2d70a567f32fec52b9404c/talks.html": {
       "kind": "file",
       "purpose": "Generated current route snapshot for the R30-dependent producer identity.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "review/issue-2/2026-10-24-r30-editorial-clarity.md": {
       "kind": "file",

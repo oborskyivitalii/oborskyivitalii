@@ -124,6 +124,23 @@ and with raw logs/probes in [the evidence ZIP](r30-20261024/qa-original-evidence
 
 ## Code-style, acceptance and boundaries
 
+The first exact clean policy ran on commit
+`cdb68f8a9fa4fd26525c577051cffa6314288109`, tree
+`144ef063e4dd0d7adfec0f7be85c41897d2a95ee`, and returned **8/12**, with valid
+clean-source evidence and no report errors. Preserve the complete original report
+in the QA archive; its exact hash and checks are in `artifact-evidence.json`.
+READER expected the old R29 source/edition; DELIVERY and CONTENT-LANES shared a
+stale current production-runtime expectation; CONTENT-CI rejected sixteen new
+generated catalog records whose owner named the generator script instead of the
+existing required contract, `site/README.md`. The early hypothesis about QA archive
+shape was incorrect: evidence/history entries and their allowlists need no change.
+Only the two current fixture cases and sixteen new owner values are corrected.
+All original bounds, unsupported-entry guards, negative cases and policy deadlines
+remain; the whole increment continues to classify as a platform change because
+of its actual print/template/tool changes. Original independent correction receipts
+follow below. The unchanged owning policy must pass on the corrected clean source;
+the failed attempt is not presented as current acceptance.
+
 CS01/02/04: canonical profile, AST adapter and template own layout; prose remains
 in the manuscript. CS03: canonical print CSS and no hand-edited output. CS05:
 focused functions and pinned formatter. CS06/07: runtime bytes and resource bounds
@@ -1678,3 +1695,558 @@ fresh deterministic projection and clean-source binding. Earlier R29 clean check
 and historical hosted previews cannot substitute for the final-source observations.
 No merge, main-conflict integration, staging promotion, production activation or
 external platform post is authorized or accepted by this assessment.
+
+---
+
+# R30 Requirements preflight — failed clean-policy inventory correction
+
+Reviewer: `/root/r30_requirements`, independent of implementation.
+Date: 24 October 2026. Owner: issue5 / Draft PR79; editorial owner: issue2.
+Inspected clean-policy source: `cdb68f8a9fa4fd26525c577051cffa6314288109`.
+This is a bounded pre-implementation supplement under R30.8, not a revision of
+the accepted editorial requirements or a pass for the failed policy.
+
+## Decision
+
+**Proceed with exactly16catalog-owner corrections from `tools/site/build.cjs`
+to `site/README.md` for the newly generated R30 runtime/snapshot entries.**
+Keep every other field and all classification/validation code unchanged.
+No new author permission is needed: this restores the already-required canonical
+inventory contract within the authorized R30 integration.
+
+## Actual cause and inspected evidence
+
+The first exact-clean policy has8/12passing groups and valid clean-source evidence.
+Its failures must remain original failed evidence. I inspected the concise failure
+output, current `publicationInventoryCompatible` in
+`tools/quality/source-tests.cjs`, its complete existing test in
+`tests/test-profile-selection.test.cjs`, the real ancestor-reuse scenario in
+`tests/content-baseline.test.cjs`, content profile configuration and the actual
+current/baseline path catalogs.
+
+`publicationInventoryCompatible` already requires every derived `docs` entry to
+have exactly kind/owner/purpose/role, owner `site/README.md`, role `generated`,
+file/directory kind and a nonempty purpose. All baseline R29 `docs` entries use
+that owner. Exactly16new R30 entries instead name `tools/site/build.cjs`:
+the new runtime directory and five files, plus five snapshot directories and
+their five route documents. Their other shape fields satisfy the contract.
+
+The R30 edition entry has the correct article-workflow owner. Unchanged review
+history/evidence entries cannot cause the current-versus-current equality failure:
+they are outside the publication/derived projection and are identical on both
+sides. **No new review-history allowance or broader classifier is needed.** The
+initial suggestion that the new QA/evidence shape was responsible is disproved
+by this inspection and should not survive as the final diagnosis.
+
+My read-only in-memory probe uses the actual current runner and registry:
+
+- original current/current compatibility: **false**;
+- identical catalog with only these16owner values corrected: **true**;
+- change one corrected owner back to `tools/site/build.cjs`: **rejected**.
+
+Original result: `/tmp/r30-requirements-inventory-probe.json`.
+No repository file or implementation was changed by this reviewer.
+
+## Bounded correction acceptance
+
+1. The semantic catalog delta from `cdb68f8` changes exactly those16owner values.
+   Paths, purpose, role, kind, previous immutable history and R30 edition/evidence
+   entries remain unchanged, apart from separately declared review receipts.
+2. `publicationInventoryCompatible`, classifier allowlists, content/derived input
+   patterns, unsupported-entry pinning and all resource/identity/rejection bounds
+   remain byte-unchanged. Do not skip validation or accept a second owner merely
+   to accommodate erroneous metadata.
+3. Current/current compatibility passes with actual corrected metadata. Existing
+   malformed owner/role, new unsupported code/provenance, changed/deleted existing
+   unsupported entry, schema-change and unbound-diff negatives retain their expected
+   rejections. The existing test covers these risks; no broad new suite is needed.
+4. The real content-baseline ancestor/reuse scenario again classifies its controlled
+   content-only fixture correctly. Draft-only/missing admission remains platform;
+   the complete R30 change itself still requires platform classification because
+   it changes print/template/tool owners.
+5. Regenerate the derived RI/evidence projection, review the actual correction with
+   the independent roles, freeze and rerun the unchanged owning policy on the new
+   exact clean source. Keep the first8/12run and its cause as historical evidence.
+
+The separate stale R29 preview hash and current Color-family test expectations
+are appropriate to update to their exact R30 identities while retaining the existing
+full-closure, byte-budget and different-variant rejection assertions. This preflight
+does not authorize loosening those tests or relabelling their earlier failures.
+Article/native producer identities must remain unchanged; their prior acceptance
+can be reused only with that identity check.
+
+---
+
+# R30 final fixture identity correction — implementation receipt
+
+- Date: 2026-10-24 UTC.
+- Implementer: `/root/r30_print_implementation`; independent Whitebox reviewer: `/root/r29_precision_qa`.
+- Owner: issue 5 / existing Draft PR79; parent-authorized bounded correction.
+- Starting HEAD: `cdb68f8a9fa4fd26525c577051cffa6314288109`; working tree was clean at first inspection.
+- No commit, push, production code, native producer, manuscript, generated output or historical fixture was changed by this correction.
+
+## Original failures and causal distinction
+
+The original exact-clean acceptance report is retained at `/tmp/r30-acceptance-cdb68f8.json`; its failure summary is `/tmp/r30-acceptance-failures-summary.json`. The parent reported 8/12 policy checks passing. This implementation did not rerun the whole policy.
+
+1. READER / `real R29 preview retains full edition and PDF closure inside unchanged reading budget`: the test builds the current explicitly selected real article from `site/`, but expected R29 source hash `9c75ec7b9372e159cc33c332e25e68010fcedd81293c838ba53ce1bf7f679d1e`. The actual R30 manuscript and R30 edition both bind `2c8729927685f7abec734865013dded9e98cce925bbd727faae74f074006bc29`. The subsequent edition assertion also still selected R29 and would fail after correcting only the first hash.
+2. CONTENT-LANES and DELIVERY / `explicit production Color preserves approved runtime and rejects a different selected variant`: this case derives Color production from the actual current `docs/` fixture, but expected `issue5-review-paths-production`. Its actual reviewed current selection is `issue5-r30-print-production`. The same stale assertion appears under two policy checks; it is one source defect.
+
+The R30 manuscript, explicit R30 edition, current `docs/site-revision.json` engine and declared Color family were inspected directly. The changes retain pinned literal expectations rather than deriving each expected value from the producer being tested.
+
+## Exact bounded changes
+
+| File | Changes |
+| --- | --- |
+| `tests/article-media.test.cjs` | Three replacements: current test name R29 → R30; explicit manuscript SHA-256 → current R30 digest; content edition → `pmday-ai-both-sides-en-review-20261024-r30`. |
+| `tests/release-controller.test.cjs` | One replacement: current production identity → `issue5-r30-print-production`. |
+
+Both complete affected cases and both files were checked for related source/edition/heading literals. No further heading expectations occur in these files. There are four replaced lines total, with no assertions added or removed. Historical fixture data and R29 edition remain unchanged.
+
+Preserved media checks include total/download transfer thresholds, four WebP plus one JPEG assets, mandatory download inclusion, PDF native-anchor behavior, iframe/preload substitution rejection, wrong/missing download declarations, corrupt PDF identity, forged download-size evidence and the conservative no-download budget rejection. Preserved production checks include exact runtime/analytics bytes, distinct rendition fingerprint, wrong/missing production selection rejection, staged/base rendition rejection, original artifact budget and rights-backed workflow evidence.
+
+## Completed verification
+
+```sh
+node --test tests/article-media.test.cjs tests/release-controller.test.cjs
+```
+
+**PASS: 37/37 tests** — 8 article-media and 29 release-controller; fail 0, cancelled 0, skipped 0, todo 0; exit code 0; duration 62856.91859 ms. Raw output: `/tmp/r30-final-fixture-tests.log`. Executed with normal authorized local subprocess access required by the existing Python and fixture-building checks. Both files remained stable throughout execution.
+
+```sh
+node tools/quality/toolchain/node_modules/prettier/bin/prettier.cjs --config tools/quality/prettier.config.json --check tests/article-media.test.cjs tests/release-controller.test.cjs
+git diff --check
+```
+
+Both checks passed. No formatter write or unrelated reformatting was performed.
+
+## Changed file hashes
+
+| File | Before SHA-256 | Final SHA-256 |
+| --- | --- | --- |
+| `tests/article-media.test.cjs` | `6d690597b54a364dc288ab647ced59cf775f66ec906eb4c82276db9cbfb32c1a` | `25b2433385ac92d557bea105ad2caa3d5cfdaf84eb80dfd9b78cf953c2e97c70` |
+| `tests/release-controller.test.cjs` | `5045592b49dc799c16ffa4ef9a4e55d16c11ac88784e4269cfa97fe996050f53` | `46b02ea1f2e5bbf75c53b22e5fa43530d80aba59e4513c00e1697c9456416c46` |
+
+## Protected inputs unchanged
+
+Before/after SHA-256 comparison confirmed all 12 captured protected owners unchanged:
+
+| File | Unchanged SHA-256 |
+| --- | --- |
+| `tools/publishing/kit.cjs` | `370344064b930fb0c6c801005a4152bd9f135f86ecfff1e5406490a7a80f97ec` |
+| `tools/publishing/profile.cjs` | `589be280c3d8ee1d9676414bae2ef846ffa2cbffef9ee0bc04a4e068c104db55` |
+| `tools/publishing/render.cjs` | `400ba0bf93150389591f05e2b05a12619b35d584222777149f08e8a7bafb2f10` |
+| `site/templates/articles/print.html` | `f06eebb1c638fe4de44545a460a6618328d6cfe0b4f42d5feaa363b085ee7dd0` |
+| `site/engine/article-print.css` | `085b5d48cf79bdb8e6321f017353b8e882ffeb705883149871b09e940c0ea0fd` |
+| `site/publications/pmday-ai-both-sides/manuscript.en.md` | `2c8729927685f7abec734865013dded9e98cce925bbd727faae74f074006bc29` |
+| `site/publications/pmday-ai-both-sides/profile.json` | `8fea9becceb2b4b9e128d36515fbf7dc68145e195067dd643d66bdb8d326ec4c` |
+| `site/publications/pmday-ai-both-sides/publication.json` | `e7f992912dbae34a285042f6f43ef2521f63b1ba881abdade2bf6debe3278045` |
+| `site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261024-r29.json` | `201e232b540a950d59b43edf2f2dc73105d73eca71ed2b5bfa9bd734f0ca07d9` |
+| `site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261024-r30.json` | `987a347df2f25890b933decfeccda7fc0e89a0750ff2909626457c72660836ca` |
+| `tools/quality/color-motion-contract.cjs` | `27d61846d818129016c98a783f150e67c4dc7732c4d26639e2a1fff8e6f7551a` |
+| `docs/site-revision.json` | `9327bd89c13f1e918a1358d4471f5d19961e9c9feaa123b556a90b90514d9cfb` |
+
+The parent independently edits `.github/repository-paths.json` for the separate classification failures. That file is outside this agent’s two-file correction and is not claimed as authored here.
+
+## Preserved evidence
+
+| Evidence | SHA-256 |
+| --- | --- |
+| `/tmp/r30-acceptance-cdb68f8.json` | `b287373bcaeb8c300ccfee8fc250022e53b74bcb48d891c8fe3326a6569f174f` |
+| `/tmp/r30-acceptance-failures-summary.json` | `de3e4baa0bb6c378c713a660df5d979d3ba8b7c5cba0bb3929770fc15166b42d` |
+| `/tmp/r30-final-fixture-before.json` | `811af342ca222e4533d06d42a9640d800a9d88428a8e33e5e0b363618b63c719` |
+| `/tmp/r30-final-fixture-after.json` | `e1f188432e364f0197b69079a06f1dfdff4f8e9a94776aadaf9b7e20d551e365` |
+| `/tmp/r30-final-fixture-tests.log` | `477d9d06240ff5a2620eac44f2607a2c8c4866a94d6e4c3f8d8ad2fba7c2bb61` |
+
+## Review and limits
+
+Source-stable notification and exact corrected file hashes were delivered to `/root/r29_precision_qa` for independent execution of the two affected cases. This is an implementation receipt, not independent quality acceptance. Parent owns the subsequent exact-clean policy run, current RI/catalog, review disposition and PR handoff. No production or publication action was taken.
+
+---
+
+# R30 independent White-box QA — final policy correction
+
+Reviewer: `/root/r29_precision_qa`; independent of catalog and fixture implementers.
+Date: 24 October 2026. Owner: issue 5 / Draft PR79; editorial owner: issue 2.
+Correction base: `cdb68f8a9fa4fd26525c577051cffa6314288109`.
+Base tree: `144ef063e4dd0d7adfec0f7be85c41897d2a95ee`.
+Scope: three changed files only. No repository source was edited by this reviewer.
+
+## Verdict
+
+**The bounded correction passes independent QA.** Four selected existing test
+cases passed, and six independent catalog/identity probe cases passed. There is
+no blocking finding in this inspected correction. The earlier exact-clean policy
+remains an **8/12 failure**, and the corrected final clean policy must still run.
+This receipt does not promote local focused checks into a whole-policy pass.
+
+## Original failure and actual cause
+
+Inspected the original `/tmp/r30-acceptance-cdb68f8.json`: valid clean-source
+evidence at the commit/tree above, `automation_pass: false`, eight passed and four
+failed groups. It is 168,253 bytes; SHA256:
+`b287373bcaeb8c300ccfee8fc250022e53b74bcb48d891c8fe3326a6569f174f`.
+The failure summary is `/tmp/r30-acceptance-failures-summary.json`, SHA256
+`de3e4baa0bb6c378c713a660df5d979d3ba8b7c5cba0bb3929770fc15166b42d`.
+These original failed receipts remain preserved.
+
+- **CONTENT-CI:** the current inventory failed its unchanged derived-entry owner
+  contract. Sixteen new generated runtime/snapshot entries named
+  `tools/site/build.cjs`; the contract requires `site/README.md`. Consequently the
+  current/current inventory check failed, and the controlled real ancestor-reuse
+  scenario classified as platform instead of content. The QA archive was not the
+  cause; no review-history allowance was needed.
+- **CONTENT-LANES / DELIVERY:** one current production Color fixture still
+  expected `issue5-review-paths-production` although the actual producer selects
+  `issue5-r30-print-production`.
+- **READER:** the live preview fixture still pinned the R29 source hash and edition
+  while loading the actual R30 manuscript. This was a current-fixture identity
+  mismatch, not evidence of a changed transfer budget.
+
+Read `/tmp/r30-requirements-inventory-preflight.md`, the actual three-file diff,
+unchanged `publicationInventoryCompatible`, the complete existing inventory
+negative case, the real ancestor-reuse scenario and both affected fixture cases.
+
+## Exact corrected files
+
+| File | SHA256 at independent execution |
+| --- | --- |
+| `.github/repository-paths.json` | `aa5da5417103aaee0db19d047d78ad868e3a059a7d06d566a58b742a4bc4455a` |
+| `tests/article-media.test.cjs` | `25b2433385ac92d557bea105ad2caa3d5cfdaf84eb80dfd9b78cf953c2e97c70` |
+| `tests/release-controller.test.cjs` | `46b02ea1f2e5bbf75c53b22e5fa43530d80aba59e4513c00e1697c9456416c46` |
+
+The catalog's semantic delta is exactly the sixteen approved owner substitutions.
+Entry paths, kind, purpose, role, all other entries and top-level fields remain
+unchanged. The current preview test changes exactly its name, explicit source hash
+and explicit content edition. The release-controller test changes one current
+production tuple literal. Historical fixtures and rejection assertions remain.
+
+## Risk-to-test matrix and actual results
+
+| Risk / AC | Independent oracle and selected check | Result |
+| --- | --- | --- |
+| R30.8: catalog correction broadens classification instead of repairing metadata | Compare parsed old/current catalogs; require exactly sixteen owner-only changes. Exercise actual old and corrected catalogs through the unchanged function | Pass. Old/current-self compatibility is false; corrected self and old-to-corrected compatibility are true |
+| R30.8: malformed metadata is now silently admitted | Run existing full inventory positive/negative case; independently restore one actual corrected entry to its wrong owner | Pass. Wrong owner still rejected; all ten existing malformed/unsupported/schema negative mutations reject; unbound inventory diff stays platform |
+| R30.8: current inventory looks valid but real admitted ancestor reuse still fails | Run the existing real-source ancestor-generation case, including its actual fixture Git history, generated inventory and archive | Pass. Admitted ancestor selects content; skipped owning admission stays platform; changed shared catalog label stays platform |
+| R30.8: the complete implementation change is accidentally reclassified as content | Classify the actual complete R30 changed-path set from the immutable R29 base | Pass. All 47 changed paths still produce platform classification; print/tool changes remain present |
+| R30.3/7/8: replacing a stale fixture pin hides an unintended edition or content change | Hash the actual manuscript, read actual selected metadata and run the exact real R30 preview test | Pass. Source `2c872992…`, R30 edition, full media/PDF and rights inventory closure match |
+| R30.7/8: current production fixture update weakens variant or byte admission | Select the actual current production artifact, inspect unchanged negative assertions and run the exact production Color test | Pass. R30 tuple selects, bytes remain exact, wrong/missing rendition and already-applied edition cases reject |
+
+The preview test still requires total reading transfer below **800,000 gzip bytes**,
+separate PDF download transfer above 500,000, four WebP assets, one JPEG, one PDF
+download, complete rights inventory and pending approval. Its ordinary-link/PDF
+identity/forged-size/unsupported-offline-resource rejection cases remain intact.
+The production fixture retains different-variant rejection, exact runtime and
+analytics-byte comparisons, size validation and release/rights assertions.
+
+## Unchanged guard and policy proof
+
+Byte-compared these owners with the clean correction base; all are unchanged:
+
+| Owner | SHA256 |
+| --- | --- |
+| `tools/quality/source-tests.cjs` | `757bc8ca6c746124baaadca5998b56b8547fe3e1748055adc73f71bc22bb89be` |
+| `tools/quality/test-profiles.json` | `dc52efed0c73b8abe0beba7bffa017cc6935545730a08c2773f68b018545421f` |
+| `tests/test-profile-selection.test.cjs` | `32d9e4e8c09859a7f665e84848dff54a3b8dd7ec79e3a5ec300729c9c028cef1` |
+| `tests/content-baseline.test.cjs` | `a2ee4be170b7051fb377db90074c78f5bd324650d0ea6ef5e118097668b0a805` |
+| `.github/acceptance/issue-5.json` | `27ad8e1dd6f328c5cfeebd48b572abc365e9fdd9c3296be06ea6bd0f4c451429` |
+
+The classifier, input allowlists, unsupported-entry pinning, test allocation and
+owning policy therefore did not change to accommodate the bad metadata. The
+original native/article source and publisher owners are outside this three-file
+delta. Their earlier verified observations remain scoped to those unchanged bytes.
+
+## Independently executed commands
+
+1. `node --test --test-reporter=tap --test-name-pattern='publication inventory
+   admits content bookkeeping|a new branch can reuse an admitted earlier merged
+   ancestor generation' tests/test-profile-selection.test.cjs
+   tests/content-baseline.test.cjs`
+   — exit 0, **2/2 selected cases**, no failures/skips, 6.611 seconds.
+2. `node --test --test-reporter=tap --test-name-pattern='real R30 preview retains
+   full edition|explicit production Color preserves approved runtime'
+   tests/article-media.test.cjs tests/release-controller.test.cjs`
+   — exit 0, **2/2 selected cases**, no failures/skips, 11.718 seconds.
+3. `node /tmp/r30-final-whitebox-catalog-probe.cjs`
+   — exit 0, **6/6 independent probe cases**.
+4. `git diff --check` — exit 0.
+
+The Node subprocess escalation was used for these bounded existing fixture checks.
+The test-name selections intentionally execute the required cases, not every case
+in the four modules. No native render, publisher suite or full policy was rerun.
+
+## Retained execution evidence
+
+| Evidence | SHA256 |
+| --- | --- |
+| `/tmp/r30-final-whitebox-inventory-tests.raw` | `e55fd91222784c57f48bceae678140a62da40e4f6d583bc73203fb4f1396a4f2` |
+| `/tmp/r30-final-whitebox-fixture-tests.raw` | `96f9408b9ebf729a7bb98c79eda06657c93dd2261ffb90508b2ca83f4e936311` |
+| `/tmp/r30-final-whitebox-catalog-probe.json` | `30f0fa0227bb2119a6f363ae6fc8cad1a2e3ac63a0f9e163053f610ba252e738` |
+
+The independent probe's executable and raw output remain at
+`/tmp/r30-final-whitebox-catalog-probe.cjs` and
+`/tmp/r30-final-whitebox-catalog-probe.raw`.
+
+## Remaining closure
+
+The root must complete derived RI/evidence refreshes, preserve the first failed
+clean receipt and this correction record, freeze the corrected candidate and run
+the unchanged full issue-5 policy on its exact clean commit/tree. A four-case local
+correction pass does not establish that complete final result. Author/editorial,
+rights, hosted/device, merge and publication decisions remain separately owned.
+
+---
+
+# R30 Code / Artifact review — final clean-policy correction
+
+Reviewer: `/root/r29_line_edit_review`, the same independent Code / Artifact role.
+Date: 24 October 2026. Execution owner: issue 5 / Draft PR79; editorial owner: issue 2.
+Correction base: `cdb68f8a9fa4fd26525c577051cffa6314288109`, tree
+`144ef063e4dd0d7adfec0f7be85c41897d2a95ee`.
+No repository source or test was edited by this reviewer.
+
+## Verdict and scope
+
+**PASS for the bounded three-file correction. No blocking Code finding remains in
+that correction.** This assessment covers the actual catalog and test diff,
+surrounding implementation and assertions, current identities, original failed
+policy evidence, and completed focused verification. Final QA/RI refresh and the
+second exact-clean owning policy remain separate, pending closure observations.
+The first clean policy remains a validly recorded **8/12 failure**.
+
+| Corrected owner | Exact inspected SHA-256 |
+| --- | --- |
+| `.github/repository-paths.json` | `aa5da5417103aaee0db19d047d78ad868e3a059a7d06d566a58b742a4bc4455a` |
+| `tests/article-media.test.cjs` | `25b2433385ac92d557bea105ad2caa3d5cfdaf84eb80dfd9b78cf953c2e97c70` |
+| `tests/release-controller.test.cjs` | `46b02ea1f2e5bbf75c53b22e5fa43530d80aba59e4513c00e1697c9456416c46` |
+
+## Assessment of the actual correction
+
+The catalog changes exactly sixteen `owner` values from `tools/site/build.cjs` to
+`site/README.md`: the current runtime directory and its five files, plus five
+snapshot directories and their five route documents. Entry paths, purpose, kind,
+role, other records and catalog shape are preserved. I read the unchanged
+`publicationInventoryCompatible` contract and the complete inventory regression.
+The correction satisfies its existing derived-entry ownership requirement; it
+does not admit an alternative owner or broaden content classification.
+
+The preview fixture copies current `site/` sources and builds the explicitly
+selected real article. The production fixture reads actual current `docs/` bytes.
+Both therefore require the current R30 identities. The test changes retain literal
+expected values: they do not derive their expected identity from the same producer
+being tested. The preview changes its test name, source digest and edition; the
+production test changes its one selected Color tuple. My exact byte comparison
+confirmed that applying only these four declared substitutions to the base files
+reproduces the complete corrected files. No other assertion, historical case,
+threshold, setup or teardown changed.
+
+The real preview still requires reading transfer below 800,000 gzip bytes,
+separate download transfer above 500,000, four WebP assets, one JPEG and one PDF
+download, complete rights inventory and pending approval. Ordinary PDF-link,
+iframe/preload substitution, wrong/missing download declaration, corrupt PDF,
+forged size evidence, unsupported offline resource and conservative budget
+rejections remain. The production case retains explicit rendition selection,
+different fingerprint, exact runtime/analytics bytes, size checks, wrong base and
+already-applied staging rejection, and rights-backed workflow evidence.
+
+I independently byte-compared fourteen classifier, registry, policy, fixture,
+runtime-rights, artifact, snapshot and release owners with the correction base;
+all are unchanged. This includes the complete existing inventory and ancestor
+reuse tests and `.github/acceptance/issue-5.json`, whose SHA-256 remains
+`27ad8e1dd6f328c5cfeebd48b572abc365e9fdd9c3296be06ea6bd0f4c451429`.
+There is no guard, classifier allowance, policy, deadline or resource-budget change.
+
+## Verification and evidence
+
+My read-only probe independently confirmed the exact semantic catalog delta,
+the complete-file substitution proof, old current/current compatibility **false**,
+corrected current/current and old-to-corrected compatibility **true**, and rejection
+when one corrected owner is restored to the wrong value. The full 47-path R30
+change still classifies as **platform**. Probe source and result:
+`/tmp/r30-final-code-correction-probe.cjs` and
+`/tmp/r30-final-code-correction-probe.json`.
+The initial sandboxed Git subprocess read was blocked with `EPERM`; the completed
+probe passed using authorized normal local subprocess access. `git diff --check`
+passed. This is not a repeated native-render or whole-policy execution.
+
+I read the actual complete affected test cases, implementation receipt, raw logs,
+White-box receipt and its executable catalog probe. The implementer ran both
+complete changed modules: **37/37 passed**, zero failed/cancelled/skipped/todo.
+Independent White-box QA ran the two complete affected fixture cases and the
+existing inventory and real ancestor-reuse cases: **4/4 selected cases passed**,
+plus **6/6 catalog/identity probes**. These are those agents' executions, not mine.
+The inventory case retains its ten malformed/unsupported/schema negative
+mutations and unbound-diff rejection; the real reuse case retains Draft-only and
+changed shared-label rejection.
+
+| Inspected original evidence | SHA-256 |
+| --- | --- |
+| `r30-acceptance-cdb68f8.json` | `b287373bcaeb8c300ccfee8fc250022e53b74bcb48d891c8fe3326a6569f174f` |
+| `r30-final-fixture-tests.log` — complete 4,342-byte, 37/37 log | `477d9d06240ff5a2620eac44f2607a2c8c4866a94d6e4c3f8d8ad2fba7c2bb61` |
+| `r30-final-whitebox-inventory-tests.raw` | `e55fd91222784c57f48bceae678140a62da40e4f6d583bc73203fb4f1396a4f2` |
+| `r30-final-whitebox-fixture-tests.raw` | `96f9408b9ebf729a7bb98c79eda06657c93dd2261ffb90508b2ca83f4e936311` |
+| `r30-final-whitebox-catalog-probe.json` | `30f0fa0227bb2119a6f363ae6fc8cad1a2e3ac63a0f9e163053f610ba252e738` |
+| `r30-final-code-correction-probe.json` | `47718d1f1c5c004dd76601ccfbae6a0df3ac19f1a907b715e3fffec17f25bb91` |
+
+The original 168,253-byte clean-policy report has `evidence_valid: true`,
+`automation_pass: false`, four failed groups and no report errors. Its exact bytes
+are retained in the QA archive. The failed groups have three source causes: the
+sixteen invalid catalog owners, stale preview identity, and one stale production
+identity shared by DELIVERY and CONTENT-LANES. The earlier QA-shape hypothesis is
+not supported and is explicitly corrected in the current review record.
+
+## Preserved native scope and final closure
+
+The manuscript remains
+`2c8729927685f7abec734865013dded9e98cce925bbd727faae74f074006bc29`;
+the original native `article.pdf` remains 1,422,262 bytes with SHA-256
+`e96c4f21ce1f5a130527d3a37fce8f3f46e4b02c57b8fc701331ad1c72374cc1`.
+The actual correction has no `site/`, publisher, print, generated-output or runtime
+source delta. All 45 tracked retained/edition files in the inspected base were
+independently byte-compared and remain unchanged, including R29 and R30 editions.
+Prior native/editorial observations remain bound to those accepted bytes; I did
+not repeat visual exploration. Additional inspected evidence hashes and identity
+checks are recorded in `/tmp/r30-final-code-correction-evidence.json`.
+
+The root's planned final evidence refresh must include completed originals. In
+particular, an earlier in-progress QA snapshot contained only a 920-byte partial
+fixture log; the completed 4,342-byte log and exact digest above must replace that
+partial snapshot before final inventory freeze. The original failed policy is
+retained alongside the correction, not relabelled successful. Appending these
+verbatim receipts and regenerating deterministic archive/RI identity metadata is
+expected and does not reopen the unchanged native implementation review.
+
+A fresh exact-clean owning-policy result, final source/tree binding and live
+PR/issue delivery checks remain to be observed. This receipt grants no merge,
+staging, publication, rights, external-platform or author acceptance.
+
+---
+
+# R30 final correction: independent exploratory disposition
+
+**Disposition: the prior bounded exploratory PASS remains valid. No browser interaction rerun or PDF rerender is needed for this correction.** This is evidence reuse based on identical reading inputs and output bytes, not a claim that the earlier visual, navigation, or clipboard checks were newly run.
+
+Role: independent Exploratory/Interaction QA. Read-only review completed at 2026-10-24 13:23 UTC against working changes from `cdb68f8a9fa4fd26525c577051cffa6314288109` (also HEAD when inspected). I did not edit source, implementation, or tests.
+
+## Actual correction inspected
+
+- `.github/repository-paths.json`: an independent recursive JSON comparison finds exactly 16 changed leaves. Each changes only an `owner` value from `tools/site/build.cjs` to `site/README.md` for the new generated docs entries. No reader bytes are changed by these catalog values.
+- `tests/article-media.test.cjs`: three literal updates only—the current test name, manuscript SHA, and edition advance from R29 to R30. Existing behavioral assertions remain present.
+- `tests/release-controller.test.cjs`: one expected current production Color ID advances from `issue5-review-paths-production` to `issue5-r30-print-production`. The adjacent runtime-preservation and variant-rejection assertions are unchanged.
+- The other changed paths are review evidence, continuity notes, and regenerated repository-intelligence metadata. The delta contains **no `site/`, `tools/`, or `docs/` reading/runtime file changes**.
+
+I read `/tmp/r30-acceptance-failures-summary.json`. Its earlier failed expectations are consistent with these bounded corrections. The initial clean-policy result of 8/12 remains historical evidence; this role disposition does not replace it or certify a final clean-policy rerun. The reported 37/37 and separate selected/probe results belong to their respective reviewers, not to a new run by me.
+
+## Independent identity verification
+
+Rehashed the accepted kit and its declared current source dependencies:
+
+| Binding | Result |
+| --- | --- |
+| Manifest content/input hashes | 11/11 match |
+| Manifest producer inputs, including template and print CSS | 17/17 match |
+| Native kit output hashes, including PDF, four reading HTML forms, two copy-ready forms, and assets | 33/33 match |
+| Changed reader/runtime paths relative to `cdb68f8` | 0 |
+
+- Artifact ID: `14743fdc40b0f06232203da46ec01fd941c17c5b3cd353930f452ba7c03f685b`.
+- Manuscript SHA-256: `2c8729927685f7abec734865013dded9e98cce925bbd727faae74f074006bc29`.
+- PDF SHA-256: `e96c4f21ce1f5a130527d3a37fce8f3f46e4b02c57b8fc701331ad1c72374cc1`.
+- Raw hash/delta evidence: `/tmp/r30-final-exploratory-correction.json`.
+
+## What carries forward
+
+The original `/tmp/r30-exploratory.md` and its raw evidence remain the actual observations: all 22 pages inspected, 12 prompt/first-answer groups together, 22 correct PDF destinations, 49 exact numeric citation targets, 88 successful HTML Contents clicks, and both actual clipboard transfers preserving prose/header, four loaded images, 49 numeric links, and eight table-row fallbacks. These observations still apply because their inputs and the tested outputs are byte-identical.
+
+The original cosmetic observations and limits also remain: two repeated PDF bookmark labels and the short page-22 history tail are nonblocking; native platform editors, physical devices, hosted deployment, and the managed release environment remain unobserved. There is no new interaction risk in this correction that warrants expanding the test matrix. Final policy, repository freeze, merge, and publication decisions remain outside this role.
+
+---
+
+# R30 Requirements assessment — final policy correction
+
+Reviewer: `/root/r30_requirements`, independent of implementers.
+Date: 24 October 2026. Owner: issue5 / Draft PR79; editorial owner: issue2.
+Correction base: `cdb68f8a9fa4fd26525c577051cffa6314288109`, tree
+`144ef063e4dd0d7adfec0f7be85c41897d2a95ee`.
+Candidate: prepared three-file correction, not a new clean-policy result.
+
+## Decision
+
+**PASS for the bounded correction under R30.8.** It restores the existing inventory
+contract and updates current-fixture expectations to the already reviewed R30
+identities. No requirement, classifier, allowlist, resource budget or rejection
+condition is weakened. There is no further implementation correction requested.
+
+R30.1–R30.7 remain supported by their unchanged article/native identities.
+**Whole R30.8/R30.9 completion still requires the new exact-clean policy and live
+same-Draft-PR/issue reconciliation.** The original clean8/12failure remains failed
+evidence; the focused successes below do not retroactively change it.
+
+## Actual inspected delta and identities
+
+I inspected the complete three-file diff against the correction base, surrounding
+test assertions and unchanged inventory guard. A direct reconstruction confirms:
+
+| File | Exact change | Inspected SHA256 |
+| --- | --- | --- |
+| `.github/repository-paths.json` | Exactly16new generated runtime/snapshot owner fields change from `tools/site/build.cjs` to `site/README.md`; all paths, other entry fields and top-level data remain unchanged. | `aa5da5417103aaee0db19d047d78ad868e3a059a7d06d566a58b742a4bc4455a` |
+| `tests/article-media.test.cjs` | Exactly three substitutions: test name R29→R30, explicit manuscript hash and explicit edition ID. | `25b2433385ac92d557bea105ad2caa3d5cfdaf84eb80dfd9b78cf953c2e97c70` |
+| `tests/release-controller.test.cjs` | Exactly one substitution: current production tuple becomes `issue5-r30-print-production`. | `46b02ea1f2e5bbf75c53b22e5fa43530d80aba59e4513c00e1697c9456416c46` |
+
+The classifier, test-profile registry, complete inventory-negative test, real
+content-baseline test and issue5policy are byte-identical to the correction base.
+The catalog error—not the R30 QA archive or history shape—caused CONTENT-CI's
+current/current and controlled ancestor-reuse failures. No history allowance was
+added. The two fixture changes retain literal independent expectations rather than
+computing expected values from the implementation under test.
+
+My six direct source/identity conditions pass. Original observation:
+`/tmp/r30-requirements-correction-checks.json`. All28native source/producer bindings
+also remain exact, including manuscript
+`2c8729927685f7abec734865013dded9e98cce925bbd727faae74f074006bc29`
+and kit `14743fdc40b0f06232203da46ec01fd941c17c5b3cd353930f452ba7c03f685b`.
+No native rerender or repeated browser interaction is necessary for these unchanged
+bytes; the independent correction-role dispositions remain part of the handoff.
+
+## Requirements-to-evidence reconciliation
+
+I read the implementation receipt, independent White-box correction receipt and
+their original raw results. They establish the following bounded outcomes:
+
+- Corrected actual inventory passes current/current and old-to-corrected comparison.
+  Restoring an incorrect owner still rejects. The ten existing malformed-owner/role,
+  unsupported-entry, deletion/change and schema negatives survive; an unbound
+  inventory diff still cannot select content.
+- The existing real ancestor-generation scenario again admits its controlled
+  content-only fixture. Skipped admission and changed shared labels still select
+  platform. The complete47-path R30 increment remains a platform change.
+- The actual real R30 preview passes with its explicit source/edition pins. Its
+ 800,000-byte gzip reading threshold, declared full PDF/media/rights closure and
+  corrupt/missing/forged/unsupported-resource rejection assertions remain unchanged.
+- The actual production Color fixture selects the exact R30 tuple while retaining
+  distinct-rendition, runtime/analytics-byte, rights and incorrect-selection checks.
+
+Execution evidence:
+
+| Executor and scope | Actual result |
+| --- | --- |
+| Implementer, both full affected test modules |37/37passed; zero failures/skips/cancellations; `/tmp/r30-final-fixture-tests.log`. |
+| Independent White-box, existing inventory and real ancestor-reuse cases |2/2selected cases passed; `/tmp/r30-final-whitebox-inventory-tests.raw`. |
+| Independent White-box, current preview and production Color cases |2/2selected cases passed; `/tmp/r30-final-whitebox-fixture-tests.raw`. |
+| Independent White-box, additional actual-catalog/identity probes |6/6passed; `/tmp/r30-final-whitebox-catalog-probe.json`. |
+| Requirements, actual source-delta reconstruction and identity checks |Six conditions pass; no tests, implementation or native files edited by this role. |
+
+The4selected independent cases are not represented as the entire four-module
+inventory or the owning policy. I did not rerun native rendering or full tests.
+The separate Code correction review and Exploratory unchanged-surface disposition
+must be preserved alongside this requirements result before the corrected candidate
+advances; this report does not impersonate those roles.
+
+## Remaining exact-source closure
+
+Preserve the original failed policy and all correction receipts; refresh the
+evidence/member inventories and derived RI views; freeze the corrected source;
+then execute the unchanged issue5policy on that exact clean commit/tree. Keep the
+source-bound result distinct from these focused observations, and verify actual
+PR79 delivery, Draft state, Refs#5 and criterion-by-criterion checkbox treatment.
+Author, rights, native-editor, device, hosted, merge and publication gates remain
+separately owned. No new author decision is required for this metadata/fixture repair.

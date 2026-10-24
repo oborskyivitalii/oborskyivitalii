@@ -47,6 +47,11 @@ Dated continuity, not live authority. Last verified: **2026-10-24**.
 
 ## Open work
 
+- Initial clean cdb68f8 policy returned8/12 with valid evidence. Two current fixture
+  cases still named R29/runtime predecessor;16new generated catalog owners named
+  the generator instead of site/README.md. Correct those literals/owner values only;
+  retain original failed report and rerun unchanged policy. Native inputs are unchanged.
+
 - Revalidate final R30 checkpoint and live issue5/2 before acting. Current AC13/14/15
   require exact current-source policy. Historical issue5AC23 and issue2AC07/08 retain
   original scopes; whole pending criteria remain open.
