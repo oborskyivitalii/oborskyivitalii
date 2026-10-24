@@ -4,74 +4,69 @@ Dated continuity, not live authority. Last verified: **2026-10-24**.
 
 ## Snapshot
 
-- Execution owner issue 5 / Draft PR79; editorial/publication owner issue 2.
-  Current route: review/issue-2/2026-10-24-r29-problem-framing.md.
-  [Current delivery and exact-source acceptance checkpoint](https://github.com/oborskyivitalii/oborskyivitalii/pull/79#issuecomment-6382894842).
-- R29 follows local e877de50dfa4aa3ce7cf9fed937bc8ea63de4d46 and remote baseline
-  56daee1bde31c64fd2f56db72b8e7676f62fb631. The checkpoint owns final clean
-  head/tree/policy/readback; this dated memory does not replace live evidence.
-- R29 manuscript SHA256 9c75ec7b9372e159cc33c332e25e68010fcedd81293c838ba53ce1bf7f679d1e,
-  50,569 bytes. Edition pmday-ai-both-sides-en-review-20261024-r29; semantic SHA256
-  5b88219df109fc0510deef572baed2c88c7fc2602e3a560cfffae7f4271759d4.
-- Native kit 8b1686cb3f856fab534418d9e191db7aeb30c127a2404604a428b59b2913d592.
-  PDF 22 pages / 1,417,566 bytes, SHA256
-  7939f15ebfe1ac2588c0cedc79f53f4400d1a0271b174df732e4b0c2447ed7d1.
-  Full 34-file package uses lossless TAR.XZ transport within unchanged RI limits.
-  Package and complete identities: review/issue-2/r29-20261024/README.md.
-- Bold delivery problem is on PDF page 3; runtime-control problem page 8;
-  explicit consequences for pre-implementation planning pages 13–14.
-- Same explicit Chromium153.0.8010.0 / Playwright1.63.0 review producer, with
-  managedBrowser false and reviewOnly true, on Node24.19.0. No public runtime-byte
-  change or PDF postprocessing. Print-list repair keeps two-digit references visible.
-- Generic/default and hosted text 50,992; emitted TXT 50,829 code points fit
-  unchanged 51,000 limits. Stable upload paths are separate from HTML URLs.
-- First clean e877 policy failed 4/12 groups; original receipt is preserved at
-  review/issue-2/r28-20261024/acceptance-e877-failed.json. Technical correction,
-  canonical outputs and Color/rights registrations retain their independent reviews.
-  All five browser files are unchanged. Final policy status belongs to the checkpoint.
+- Execution owner issue5 / Draft PR79; editorial/publication owner issue2.
+  Current route: review/issue-2/2026-10-24-r30-editorial-clarity.md.
+  [Author-approved R30 scope](https://github.com/oborskyivitalii/oborskyivitalii/issues/5#issuecomment-6384293092).
+  The final R30 checkpoint on PR79 owns exact clean commit/tree, policy and readback.
+- R30 follows d488c64b825d60c4c6531f9cad2091eefc4a04ba, tree
+  cf513c5b4dbcede0f1db8fdb30bd9b0f009a3369. Existing main conflict is outside this task.
+- Manuscript SHA256 2c8729927685f7abec734865013dded9e98cce925bbd727faae74f074006bc29,
+  49,262bytes. Edition pmday-ai-both-sides-en-review-20261024-r30; semantic SHA256
+  35324c43d2eb499e1bb17d2a4a07ec80649d9714a6715206705fadd9f5e1ee06.
+- Native kit 14743fdc40b0f06232203da46ec01fd941c17c5b3cd353930f452ba7c03f685b.
+  Native PDF22pages /1,422,262bytes; SHA256
+  e96c4f21ce1f5a130527d3a37fce8f3f46e4b02c57b8fc701331ad1c72374cc1.
+  Full34-file ZIP and canonical MD have byte-identical durable readback. Standalone
+  PDF appends provenance; all pages/text/links/outline match. Original PDF stays in ZIP.
+  Complete delivery: review/issue-2/r30-20261024/README.md.
+- Node24.22.1 / Playwright1.63.0 / explicit Chromium153.0.8010.0 review producer;
+  managedBrowser=false, reviewOnly=true. Managed download returned empty archives.
+  No PDF postprocessing or public-runtime-byte change.
+- Independent editorial/artifact, whitebox and all-page/clipboard charters pass;
+  original receipts and corrected failures remain in the current review record.
+  Final clean-source/live acceptance belongs to the dated PR checkpoint.
 
 ## Decisions
 
-- The author rejected R28's underemphasis. R29 puts each engineering problem
-  immediately under its Part I/II heading and explicitly connects diagnosis with
-  risk maps, staffing and operating budgets before implementation in Part III.
-- Eight declared prose regions plus three metadata/history regions define R29.
-  The engineering loop, actual-constraint qualification and distinction between
-  implementation speed and runtime authority remain. Repeated prose is removed.
-- All 12 prompts, 36 sources/qualifications, two tables, four figures and 49 numeric
-  citation targets remain. The two contextual source31 destinations stay distinct.
-- New history/blueprint/review record identifies author-origin emphasis correction.
-  Maximiliano/Pasquale selected contributions and author responsibility remain.
-  Olivier's feedback and older P1/P2 proposals remain under consideration.
-  No raw private correspondence is retained or reproduced.
-- Authored launch identifies R29; source SHA256
-  33cc5a02419866a26b55ffa59a1a3b65717c8d9636e8b389cefe796696e2480d.
-  Actual posting retains its own final review.
-- R28 source/edition/completed native technical package remain historical and exact.
-  R29 reviews inspect actual current artifacts; older receipts are not relabelled.
+- Combined headings: How We Build: Rebalancing the SDLC; What We Build: Engineering
+  Control Around Model Judgment; What If Not? From Assumptions to Project Decisions.
+- Mechanism/example precede studies; review functions consolidate; explanation and
+  recovery stay distinct; PartIII starts with planning/full-cost alternatives.
+  One ending remains. Visible-body words3704→3479 (-225,6.07%); no forced10–15% cut.
+- All12prompts,36source notes,2tables,4figures,49numeric citation pairs and90text links
+  survive. Source notes/tables/figures/provenance are exact. Control, statistical and
+  economic qualifications remain. Olivier's proposals remain under consideration.
+- Native title hierarchy, nested Contents and semantic grouping retain small table
+  onp10, planning onp13 and ending onp14; sources startp15. Two outline-label repetitions
+  and short history tail onp22 are recorded nonblocking cosmetics.
+- Complete owner-authenticated deliverables are linked outside Git to retain RI250MB
+  bound and all frozen history. Unrelated GitHub-reviewer retrieval is unobserved.
+- R30 Color IDs require the existing rights guard. Independent QA found the missing
+  licensed-list entries; corrected owner and meaningful cases pass45/45 plus actual
+  three-mode guard negatives. Runtime bytes/budgets/policies/deadlines are unchanged.
 
 ## Open work
 
-- Revalidate checkpoint and live PR/issues before acting. Final unchanged issue5
-  policy must bind the exact clean delivered source; prior R27 12/12 is historical.
-- Reconcile current AC13/14/15 from their actual current-source check groups.
-  Historical issue5 AC23 and issue2 AC07/08 retain their original scopes.
-- Editorial/rights/native-editor/device/hosted/release gates remain distinct.
-  PR79's pre-existing main conflict is a separate integration task. No merge/rebase,
-  stable-stage promotion, production activation or platform post is implied.
-- R27 READER isolation and original 180-second policy deadline stay unchanged.
-  Historical R20 mobile TBT204/200ms remains failed; current broad performance/device
-  acceptance is not established by this prose increment. R23 hosted preview is historical.
+- Revalidate final R30 checkpoint and live issue5/2 before acting. Current AC13/14/15
+  require exact current-source policy. Historical issue5AC23 and issue2AC07/08 retain
+  original scopes; whole pending criteria remain open.
+- Final author/rights/native-editor/device/hosted/release gates remain distinct.
+  No merge/rebase, stable staging, production activation or platform post is implied.
+- R27 reader isolation and original180-second group deadline remain. Historical
+  R20 mobile TBT204/200ms failed; broad device/performance acceptance is not established
+  by this editorial increment. R23 hosted preview remains historical.
+- Full Python lock install has existing Semgrep/MCP conflict; no lock changed.
+  Exact selected-check dependencies installed; full scanner install not claimed.
 
 ## Next session
 
-1. Fetch live PR79, issues 5/2 and the linked current delivery checkpoint.
-2. Read R29 review/package evidence; verify current source/artifact/report identities.
-3. Continue the next authorized editorial or acceptance step under existing owners.
-4. Keep author choice, technical checks, hosted admission and publication separate.
+1. Fetch live PR79, issues5/2 and latest R30 delivery/acceptance checkpoint.
+2. Read current review and delivery evidence; verify source/artifact/report identities.
+3. Continue the next author-authorized editorial or acceptance step under current owners.
+4. Keep technical verification, author choice, hosted admission and publication separate.
 
 ## Maintenance
 
-- Retain these five sections and 120-line cap; rebuild RI after indexed changes.
-- Git-backed source/evidence stay in this repository, not parallel saved copies.
-- The current PR checkpoint owns final source, checks and delivery receipts.
+- Retain these five sections and120-line cap; rebuild RI after indexed changes.
+- Git-backed source/evidence stay in the repository, without a parallel repository copy.
+- Exact final clean source and current acceptance belong to the PR checkpoint.

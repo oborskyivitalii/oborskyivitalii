@@ -4,6 +4,8 @@ const crypto = require('node:crypto');
 const { loadArticle, compile } = require('./article.cjs');
 const { readSource, assertOutput, installDirectory } = require('./safety.cjs');
 const { decodeUtf8 } = require('./text.cjs');
+const { blockDigest } = require('./semantic.cjs');
+const { render } = require('./render.cjs');
 
 function digest(bytes) {
   return crypto.createHash('sha256').update(bytes).digest('hex');
@@ -39,24 +41,111 @@ function template(templateBytes, slots) {
 }
 
 function toc(sections) {
-  return `<ol>${sections
-    .filter((section) => section.depth < 4)
+  const groups = [];
+  for (const section of sections.filter((entry) => entry.depth < 4)) {
+    const parent = groups.at(-1);
+    if (section.depth === 3 && parent?.section.depth === 2) {
+      parent.children.push(section);
+    } else {
+      groups.push({ section, children: [] });
+    }
+  }
+  const link = (section) => `<a href="#${escapeHtml(section.id)}">${escapeHtml(section.text)}</a>`;
+  return `<ol>${groups
     .map(
-      (section) => `<li><a href="#${escapeHtml(section.id)}">${escapeHtml(section.text)}</a></li>`
+      ({ section, children }) =>
+        `<li>${link(section)}${
+          children.length
+            ? '<ol>' + children.map((child) => `<li>${link(child)}</li>`).join('') + '</ol>'
+            : ''
+        }</li>`
     )
     .join('')}</ol>`;
 }
 
-function documentHtml(article, body, cssPath = 'article-print.css', printTemplate) {
+function printLayout(article, rendition, assets, platform = false) {
+  const fallback = {
+    body: platform ? rendition.platformBodyHtml : rendition.bodyHtml,
+    subtitle: '',
+    byline: escapeHtml(article.metadata.authors.map((author) => author.name).join(', ')),
+  };
+  const selection = article.profile.print;
+  if (!selection) {
+    return fallback;
+  }
+  const original = rendition.model.tree.children;
+  const titleBlock = selection.titleBlock;
+  const titleDigests = new Set(Object.values(titleBlock || {}));
+  const nodes = original.filter(
+    (node) => node.id !== rendition.titleId && !titleDigests.has(blockDigest(node))
+  );
+  const renderNodes = (children) => render({ tree: { type: 'root', children } }, assets, platform);
+  const headerParagraph = (sha256) => {
+    const node = original.find((entry) => blockDigest(entry) === sha256);
+    return renderNodes(node.children);
+  };
+  const together = new Set(selection.keepTogether || []);
+  const withNext = new Set([
+    ...(selection.keepWithNext || []),
+    ...(article.profile.reader?.elements || [])
+      .filter((entry) => entry.role === 'prompt')
+      .map((entry) => entry.sha256),
+  ]);
+  const body = [];
+  // Retain links that the compiler normally relocates from the title into the body.
+  const titleLinks = (node) =>
+    node.type === 'link' ? [node] : (node.children || []).flatMap(titleLinks);
+  const links = rendition.titleId ? titleLinks(original[0]) : [];
+  if (links.length) {
+    body.push(`<p>Title sources: ${renderNodes(links)}</p>\n`);
+  }
+  for (let index = 0; index < nodes.length; index += 1) {
+    const group = [nodes[index]];
+    while (withNext.has(blockDigest(nodes[index])) && index + 1 < nodes.length) {
+      index += 1;
+      group.push(nodes[index]);
+    }
+    const html = renderNodes(group);
+    body.push(
+      group.length > 1 || together.has(blockDigest(group[0]))
+        ? `<div class="article-print-keep">${html}</div>\n`
+        : html
+    );
+  }
+  return {
+    body: body.join(''),
+    subtitle: titleBlock
+      ? `<p class="article-print-subtitle">${headerParagraph(titleBlock.subtitle)}</p>`
+      : '',
+    byline: titleBlock ? headerParagraph(titleBlock.byline) : fallback.byline,
+  };
+}
+
+function documentHtml(
+  article,
+  layout,
+  cssPath = 'article-print.css',
+  printTemplate,
+  copyReady = false
+) {
+  const appendices = new Set(article.profile.reader?.sections?.appendices || []);
+  const appendixStart = article.sections.findIndex((section) => appendices.has(section.id));
+  const mainSections =
+    appendixStart < 0 ? article.sections : article.sections.slice(0, appendixStart);
+  const supportingSections = appendixStart < 0 ? [] : article.sections.slice(appendixStart);
   return template(printTemplate, {
     language: escapeHtml(article.metadata.language),
+    documentClass: copyReady ? 'article-copy-ready' : '',
     title: escapeHtml(article.metadata.title),
     summary: escapeHtml(article.metadata.summary),
-    authors: escapeHtml(article.metadata.authors.map((author) => author.name).join(', ')),
+    authors: layout.byline,
+    subtitle: layout.subtitle,
     edition: escapeHtml(article.edition.id),
     titleId: escapeHtml(article.titleId || 'article-title'),
-    toc: toc(article.sections),
-    body,
+    toc: toc(mainSections),
+    appendicesToc: supportingSections.length ? toc(supportingSections) : '',
+    appendicesAttributes: supportingSections.length ? '' : 'hidden',
+    body: layout.body,
     cssPath: escapeHtml(cssPath),
   });
 }
@@ -128,16 +217,23 @@ async function writePlatform(root, staging, article, platform, assets, printTemp
   const selectedEdition = adaptation ? adaptation.edition : article.edition;
   const selectedArticle = {
     ...article,
-    metadata: { ...article.metadata, title: rendition.titleText || article.metadata.title },
+    metadata: {
+      ...article.metadata,
+      title: rendition.titleText || article.metadata.title,
+    },
     titleId: rendition.titleId,
     edition: selectedEdition,
     sections: rendition.model.sections.filter((section) => section.id !== rendition.titleId),
+    profile: adaptation
+      ? { ...article.profile, print: undefined, reader: undefined }
+      : article.profile,
   };
+  const layout = printLayout(selectedArticle, rendition, assets, true);
   const formats = article.profile.platforms[platform].formats;
   if (formats.includes('html')) {
     await fs.writeFile(
       path.join(staging, `${platform}.html`),
-      documentHtml(selectedArticle, rendition.platformBodyHtml, 'article-print.css', printTemplate)
+      documentHtml(selectedArticle, layout, 'article-print.css', printTemplate)
     );
   }
   if (formats.includes('md')) {
@@ -146,7 +242,7 @@ async function writePlatform(root, staging, article, platform, assets, printTemp
   if (formats.includes('txt')) {
     await fs.writeFile(path.join(staging, `${platform}.txt`), rendition.text);
   }
-  let embeddedBody = rendition.platformBodyHtml;
+  let embeddedBody = layout.body;
   for (const asset of assets) {
     embeddedBody = embeddedBody.replaceAll(
       `src="${escapeHtml(asset.url)}"`,
@@ -155,9 +251,10 @@ async function writePlatform(root, staging, article, platform, assets, printTemp
   }
   const copyHtml = documentHtml(
     selectedArticle,
-    embeddedBody,
+    { ...layout, body: embeddedBody },
     'article-print.css',
-    printTemplate
+    printTemplate,
+    true
   ).replace(
     /<link rel="stylesheet" href="article-print.css"\s*\/?>/,
     `<style>${decodeUtf8(css.bytes, 'Print stylesheet')}</style>`
@@ -237,7 +334,9 @@ async function renderKit(
       uploadPath: `images/${String(index + 1).padStart(2, '0')}-${asset.id}.png`,
     }));
     for (const asset of assets) {
-      await fs.writeFile(path.join(staging, asset.url), asset.bytes, { flag: 'wx' });
+      await fs.writeFile(path.join(staging, asset.url), asset.bytes, {
+        flag: 'wx',
+      });
     }
     const fullSource = readSource(root, article.source.path);
     if (article.presentation) {
@@ -247,16 +346,17 @@ async function renderKit(
       title: article.metadata.title,
       preserveTables: true,
     });
+    const fullLayout = printLayout(article, full, assets);
     await fs.writeFile(
       path.join(staging, 'article.html'),
-      documentHtml(article, full.bodyHtml, 'article-print.css', printTemplate)
+      documentHtml(article, fullLayout, 'article-print.css', printTemplate)
     );
     await fs.writeFile(path.join(staging, 'article.md'), fullSource.bytes);
     await fs.writeFile(path.join(staging, 'review.md'), full.markdown);
     await fs.writeFile(path.join(staging, 'article.txt'), full.text);
     await fs.writeFile(
       path.join(staging, 'print.html'),
-      documentHtml(article, full.bodyHtml, 'article-print.css', printTemplate)
+      documentHtml(article, fullLayout, 'article-print.css', printTemplate)
     );
     const resources = [
       { path: 'article-print.css', sha256: css.sha256 },
@@ -314,7 +414,10 @@ async function renderKit(
         const asset = assets.find((item) => item.id === selected.id);
         await fs.writeFile(path.join(staging, `${role}.png`), asset.bytes);
       } else {
-        omissions.push({ role, reason: article.profile.assets[role].omitReason });
+        omissions.push({
+          role,
+          reason: article.profile.assets[role].omitReason,
+        });
       }
     }
     await fs.writeFile(
@@ -352,7 +455,8 @@ async function renderKit(
       'article.md is the byte-exact authoring source; platform files retain their declared fallbacks.',
       '',
       'Review wording, heading sources, table row labels, captions and credits against the manuscript.',
-      'Open <platform>-copy-ready.html, select the article body, and paste into the native editor.',
+      'Open <platform>-copy-ready.html, select all document content (Ctrl/Cmd+A), copy and paste into the native editor.',
+      'The copy view includes the title, subtitle and byline; navigation and the generated summary are hidden.',
       'Copy-ready images preserve reviewer bytes; native-editor image transfer must be checked.',
       '',
       'Medium: upload each ordered image below manually at its matching figure position.',
@@ -411,6 +515,7 @@ async function renderKit(
       'tools/publishing/article.cjs',
       'tools/publishing/ast.mjs',
       'tools/publishing/kit.cjs',
+      'tools/publishing/render.cjs',
       'tools/publishing/safety.cjs',
       'tools/publishing/provenance.cjs',
       'tools/publishing/history.cjs',
@@ -423,7 +528,10 @@ async function renderKit(
       'site/templates/articles/print.html',
       'site/engine/article-print.css',
       ...(pdf ? ['tools/publishing/print.mjs', 'tools/publishing/print-resource.cjs'] : []),
-    ].map((relative) => ({ path: relative, sha256: readSource(root, relative).sha256 }));
+    ].map((relative) => ({
+      path: relative,
+      sha256: readSource(root, relative).sha256,
+    }));
     const manifest = {
       schema: 1,
       kind: 'article-render-artifact',
@@ -440,7 +548,11 @@ async function renderKit(
         dependencyLockSha256: packageLock.sha256,
       },
       inputHashes,
-      assets: assets.map((asset) => ({ id: asset.id, path: asset.url, sha256: asset.sha256 })),
+      assets: assets.map((asset) => ({
+        id: asset.id,
+        path: asset.url,
+        sha256: asset.sha256,
+      })),
       transformations,
       review: {
         path: 'review.md',
@@ -452,7 +564,10 @@ async function renderKit(
       profile: {
         id: article.profile.id,
         selection: article.profile,
-        launchSource: { path: article.launch.path, sha256: article.launch.sha256 },
+        launchSource: {
+          path: article.launch.path,
+          sha256: article.launch.sha256,
+        },
         furniture: article.furniture,
       },
       omissions,
@@ -482,7 +597,10 @@ async function renderKit(
       if (error.code !== 'ENOENT') {
         throw error;
       }
-      await installDirectory(staging, destination, { renameImpl, verifyImpl: verifyKit });
+      await installDirectory(staging, destination, {
+        renameImpl,
+        verifyImpl: verifyKit,
+      });
     }
     return { directory: destination, manifest };
   } catch (error) {

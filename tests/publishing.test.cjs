@@ -6,7 +6,11 @@ const os = require('node:os');
 const path = require('node:path');
 const crypto = require('node:crypto');
 const { compile, loadArticle, enumerateArticles } = require('../tools/publishing/article.cjs');
-const { semanticDigest, adaptationDigest } = require('../tools/publishing/semantic.cjs');
+const {
+  semanticDigest,
+  adaptationDigest,
+  blockDigest,
+} = require('../tools/publishing/semantic.cjs');
 const { renderKit, verifyKit } = require('../tools/publishing/kit.cjs');
 const { appendPublicationEvent, validateEvent } = require('../tools/publishing/events.cjs');
 const { execFileSync } = require('node:child_process');
@@ -165,6 +169,7 @@ async function withFixture(callback) {
       'tools/publishing/article.cjs',
       'tools/publishing/ast.mjs',
       'tools/publishing/kit.cjs',
+      'tools/publishing/render.cjs',
       'tools/publishing/safety.cjs',
       'tools/publishing/provenance.cjs',
       'tools/publishing/history.cjs',
@@ -292,6 +297,115 @@ test('two independent profiles resolve figure and adaptation identities without 
     assert.throws(() => loadArticle(root, 'second-profile'), /declared SHA256 pin/);
     assert.equal(loadArticle(root, 'first-profile').edition.id, 'first-edition');
     assert.equal(firstDigest, second.edition.source.sha256);
+  });
+});
+
+test('native and equivalent layouts move title furniture once, nest Contents and preserve grouped prose', async () => {
+  await withFixture(async (root) => {
+    const { directory, metadata, edition } = fixture(root, 'layout-profile', {
+      adaptation: true,
+    });
+    const manuscript =
+      '# Test [article](https://example.com/title)\n\n*Subtitle with [its source](https://example.com/subtitle)*\n\n' +
+      'Test author · Draft 3\n\n## First part\n\n### First detail\n\n' +
+      '**What if not?**\n\nThe first answer.\n\n' +
+      'A short table.\n\n| Case | Result |\n| --- | --- |\n| One | Pass |\n\n' +
+      '### Second detail\n\n**What if not?**\n\nThe second answer.\n\n' +
+      'A closing thought.\n\nA closing line.\n\n' +
+      '## Sources\n\nSource notes remain.\n\n## Record\n\nDraft history remains.\n';
+    write(root, `${directory}/manuscript.en.md`, manuscript);
+    edition.source.sha256 = hash(manuscript);
+    edition.semanticSha256 = semanticDigest(metadata, edition.source);
+    json(root, `${directory}/editions/first-edition.json`, edition);
+    const adaptedPath = `${directory}/editions/linkedin-first.json`;
+    const adapted = JSON.parse(fs.readFileSync(path.join(root, adaptedPath), 'utf8'));
+    adapted.derivation.baseSourceSha256 = edition.source.sha256;
+    adapted.derivation.baseSemanticSha256 = edition.semanticSha256;
+    adapted.semanticSha256 = adaptationDigest(metadata, adapted.source, edition, 'linkedin');
+    json(root, adaptedPath, adapted);
+    const result = compile(manuscript, []);
+    const nodes = result.model.tree.children;
+    const pin = (index) => blockDigest(nodes[index]);
+    const profilePath = `${directory}/profile.json`;
+    const profile = JSON.parse(fs.readFileSync(path.join(root, profilePath), 'utf8'));
+    profile.reader = {
+      elements: [{ role: 'prompt', sha256: pin(5) }],
+      sections: { appendices: ['sources', 'record'] },
+    };
+    profile.print = {
+      titleBlock: { subtitle: pin(1), byline: pin(2) },
+      keepTogether: [pin(8)],
+      keepWithNext: [pin(7), pin(12)],
+    };
+    json(root, profilePath, profile);
+    const kit = await renderKit(root, 'layout-profile');
+    await verifyKit(kit.directory);
+    for (const filename of [
+      'print.html',
+      'article.html',
+      'medium.html',
+      'medium-copy-ready.html',
+    ]) {
+      const html = fs.readFileSync(path.join(kit.directory, filename), 'utf8');
+      const header = html.match(/<header[\s\S]*?<\/header>/)[0];
+      const body = html.match(/<article[\s\S]*?<\/article>/)[0];
+      assert.equal((html.match(/Test author · Draft 3/g) || []).length, 1, filename);
+      assert.match(
+        header,
+        /Subtitle with <a href="https:\/\/example.com\/subtitle">its source<\/a>/
+      );
+      assert.match(header, /Test author · Draft 3/);
+      assert.doesNotMatch(body, /Subtitle with|Test author · Draft 3/);
+      assert.match(body, /Title sources: <a href="https:\/\/example.com\/title">article<\/a>/);
+      assert.match(html, /<meta name="article-edition" content="first-edition"/);
+      assert.match(
+        html,
+        /<li><a href="#first-part">First part<\/a><ol><li><a href="#first-detail">/
+      );
+      assert.match(html, /article-print-toc-appendices"\s*>[\s\S]*href="#sources"/);
+      assert.match(
+        body,
+        /article-print-keep"><p><strong>What if not\?<\/strong><\/p>\n<p>The first answer\.<\/p>\n<\/div>/
+      );
+      assert.match(
+        body,
+        /article-print-keep"><p><strong>What if not\?<\/strong><\/p>\n<p>The second answer\.<\/p>\n<\/div>/
+      );
+      assert.match(
+        body,
+        /article-print-keep"><p>A closing thought\.<\/p>\n<p>A closing line\.<\/p>\n<\/div>/
+      );
+      assert.match(body, /Source notes remain\./);
+      assert.match(body, /Draft history remains\./);
+      if (filename === 'print.html' || filename === 'article.html') {
+        assert.match(
+          body,
+          /article-print-keep"><p>A short table\.<\/p>\n<table>[\s\S]*?<\/table>\n<\/div>/
+        );
+      } else {
+        assert.match(body, /Table row 1/);
+      }
+      if (filename.endsWith('-copy-ready.html')) {
+        assert.match(html, /<body class="article-copy-ready">/);
+        assert.match(html, /\.article-copy-ready \.article-print-toc,/);
+      }
+    }
+    const adaptation = fs.readFileSync(path.join(kit.directory, 'linkedin.html'), 'utf8');
+    assert.match(adaptation, /A distinct argument/);
+    assert.doesNotMatch(adaptation, /Test author · Draft 3|Subtitle with|article-print-keep/);
+    assert.match(adaptation, /article-print-toc-appendices" hidden/);
+    assert.ok(
+      kit.manifest.producer.inputs.some((entry) => entry.path === 'tools/publishing/render.cjs')
+    );
+    assert.equal(fs.readFileSync(path.join(kit.directory, 'article.md'), 'utf8'), manuscript);
+    assert.match(
+      fs.readFileSync(path.join(kit.directory, 'medium.txt'), 'utf8'),
+      /Test author · Draft 3/
+    );
+    assert.match(
+      fs.readFileSync(path.join(kit.directory, 'INSTRUCTIONS.md'), 'utf8'),
+      /select all document content \(Ctrl\/Cmd\+A\)/
+    );
   });
 });
 

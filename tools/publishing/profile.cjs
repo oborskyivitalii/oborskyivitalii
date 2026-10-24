@@ -324,6 +324,82 @@ function assetSelection(root, article, selection, role) {
   });
 }
 
+function printSelection(profile, article) {
+  if (profile.print === undefined) {
+    return;
+  }
+  const print = object(profile.print, ['titleBlock', 'keepTogether', 'keepWithNext'], 'print');
+  if (!Object.keys(print).length) {
+    throw new Error('Print selection requires an explicit layout binding');
+  }
+  const nodes = article.model.tree.children;
+  const selected = new Set();
+  const paragraph = (node) =>
+    node?.type === 'paragraph' && !node.children.some((child) => child.type === 'image');
+  function bind(sha256, types) {
+    const matches = nodes.filter((node) => blockDigest(node) === sha256);
+    if (
+      !digestPattern.test(sha256) ||
+      selected.has(sha256) ||
+      matches.length !== 1 ||
+      !types.includes(matches[0].type) ||
+      (matches[0].type === 'paragraph' && !paragraph(matches[0]))
+    ) {
+      throw new Error(
+        'Print layout must bind a distinct admitted source block of the declared type'
+      );
+    }
+    selected.add(sha256);
+    return matches[0];
+  }
+  if (print.titleBlock !== undefined) {
+    object(print.titleBlock, ['subtitle', 'byline'], 'print title block');
+    const subtitle = bind(print.titleBlock.subtitle, ['paragraph']);
+    const byline = bind(print.titleBlock.byline, ['paragraph']);
+    if (
+      nodes[0]?.type !== 'heading' ||
+      nodes[0].depth !== 1 ||
+      nodes[0].id !== article.titleId ||
+      nodes[1] !== subtitle ||
+      nodes[2] !== byline
+    ) {
+      throw new Error(
+        'Print title block must bind the subtitle and byline directly after the title'
+      );
+    }
+  }
+  for (const role of ['keepTogether', 'keepWithNext']) {
+    if (print[role] === undefined) {
+      continue;
+    }
+    if (!Array.isArray(print[role]) || !print[role].length || print[role].length > 50) {
+      throw new Error('Print grouping requires 1–50 source-bound blocks per role');
+    }
+    for (const sha256 of print[role]) {
+      const node = bind(sha256, role === 'keepTogether' ? ['paragraph', 'table'] : ['paragraph']);
+      if (role === 'keepWithNext') {
+        const next = nodes[nodes.indexOf(node) + 1];
+        if (!paragraph(next) && next?.type !== 'table') {
+          throw new Error('Print keep-with-next requires a following paragraph or table');
+        }
+      }
+    }
+  }
+  for (const entry of profile.reader?.elements || []) {
+    if (entry.role !== 'prompt') {
+      continue;
+    }
+    if (selected.has(entry.sha256)) {
+      throw new Error('Print grouping cannot duplicate an existing prompt binding');
+    }
+    for (let index = 0; index < nodes.length; index += 1) {
+      if (blockDigest(nodes[index]) === entry.sha256 && !paragraph(nodes[index + 1])) {
+        throw new Error('Print prompt requires its first answer paragraph immediately after it');
+      }
+    }
+  }
+}
+
 function loadProfile(root, article) {
   if (
     !article?.metadata ||
@@ -337,7 +413,7 @@ function loadProfile(root, article) {
   const input = readSource(root, profilePath, { maxBytes: 100_000 });
   const profile = object(
     JSON.parse(utf8(input.bytes, 'source')),
-    ['schema', 'id', 'platforms', 'launch', 'seo', 'assets', 'limits', 'reader'],
+    ['schema', 'id', 'platforms', 'launch', 'seo', 'assets', 'limits', 'reader', 'print'],
     'record'
   );
   if (profile.schema !== 1 || !idPattern.test(text(profile.id, 80, 'id'))) {
@@ -365,6 +441,7 @@ function loadProfile(root, article) {
   text(utf8(launch.bytes, 'launch post'), 50_000, 'launch post');
   characterLimits(profile, article);
   readerSelection(profile, article);
+  printSelection(profile, article);
   object(profile.assets, assetRoles, 'assets');
   const furniture = { seo: { ...profile.seo } };
   const inputs = [profilePath, launchPath];

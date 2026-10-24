@@ -5,6 +5,20 @@
 const assert = require('node:assert/strict');
 const common = require('./common.cjs');
 const families = {
+  // R30 native print hierarchy changes producer identity; browser bytes match R29.
+  issue5R30Print: {
+    behavior: 'fixed-blocks',
+    articleReading: 'stationary',
+    readerInteractions: true,
+    readerWholeBlocks: true,
+    readerPaper: true,
+    readerDeferredMedia: true,
+    baseEngine: 'c4aa9fa8604178e3ca297f5158cf62563f5eb3448a82b3b12f97a8a48f461f11',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '16edd5e5d9ad2eb7b3a61deef2aa1feb1cfc287ce85eeaf42e2a174f30aec361',
+    navigation: 'ae5de1cdfe8c7d0c609ddddf28250acad7aa65b0be9b9a85c0a14e2d10add79d',
+    archive: '24691f49c8c0b458958de6422396af4a6ea73f2d6bffa610e4f0ca788b04f383',
+  },
   // Print indentation and canonical upload paths change identity, not browser bytes.
   issue5ReviewPaths: {
     behavior: 'fixed-blocks',
@@ -449,6 +463,27 @@ const families = {
   },
 };
 const runtimes = [
+  {
+    id: 'issue5-r30-print-production',
+    family: 'issue5R30Print',
+    edition: 'production',
+    fingerprint: 'b6fac470206f55a3e9d130d4f5296f06fff9ae9840f63a5fd1ce803998dbe43e',
+    styles: 'feec1cfd6dc5c920f2a2cbfd8a0f7b4b97b273315aa8b57d6591e65aff4aea20',
+  },
+  {
+    id: 'issue5-r30-print-staging',
+    family: 'issue5R30Print',
+    edition: 'staging',
+    fingerprint: '15891192cb1cfc9b5701234f77e7a54a2ffc6c31ec2cc95db699d1a9d94b656e',
+    styles: 'f742ff9a2e9e0bf2d1f3a8662f3c3080b77fed8c35cf746a8be90ccc8f2b9379',
+  },
+  {
+    id: 'issue5-r30-print-plain',
+    family: 'issue5R30Print',
+    edition: 'plain',
+    fingerprint: 'fba2e4029b56b03c2f701fb5ea883a36a512fc8319af6bf42c272fcfe1f010c9',
+    styles: 'feec1cfd6dc5c920f2a2cbfd8a0f7b4b97b273315aa8b57d6591e65aff4aea20',
+  },
   {
     id: 'issue5-review-paths-production',
     family: 'issue5ReviewPaths',

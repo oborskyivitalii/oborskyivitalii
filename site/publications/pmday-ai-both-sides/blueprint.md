@@ -2,7 +2,40 @@
 
 Article owner #2; publisher/execution #5 / PR79.
 
-## Current R29 — two central engineering problems and planning — 24 October 2026
+## Current R30 — clear structure and precise compression — 24 October 2026
+
+The author approved the editorial review and implementation plan. Use combined
+main headings: How We Build: Rebalancing the SDLC; What We Build: Engineering
+Control Around Model Judgment; What If Not? From Assumptions to Project Decisions.
+Lead the delivery argument with its mechanism and conditional capacity example.
+Consolidate review's functions, separate explanation verification from recovery
+rehearsal, and retain the strong counterargument for verified substitution.
+Part III begins with the work needed before implementation and connects it to
+risk maps, staffing and budgets, then compares the actual process and simplest
+credible safe alternative under equivalent safety requirements and full cost.
+
+Shorten repeated argumentative work, preserving the conditions that make each
+claim true. A 10–15% body reduction is an aspiration, not a required quota.
+Preserve all 12 prompts, 36 source entries and qualification notes, four figures,
+two tables, citation associations and reviewer dispositions. Link order may
+change with structure; the destination multiset and contextual attribution must
+remain. Olivier's substantive proposals remain under consideration.
+
+The normal publisher owns title/subtitle/byline placement, hierarchical Contents,
+prompt/answer grouping and intact small-table pagination. Explicit digest bindings
+select layout roles; no text-specific heuristic, edited PDF or smaller body type.
+The larger pilot table may paginate. New output is a new immutable review edition;
+all prior editions and artifact bytes remain unchanged.
+
+Execution stays issue5 / editorial issue2 / Draft PR79. [Author-approved scope](https://github.com/oborskyivitalii/oborskyivitalii/issues/5#issuecomment-6384293092)
+and [R30 review](../../../review/issue-2/2026-10-24-r30-editorial-clarity.md)
+own criteria, four independent roles, final source checks and exact delivery.
+Complete new native files may use durable owner-accessible storage with committed
+byte/member/producer manifests; authenticated access is not public publication.
+Preserve repository and text bounds, rights pending and canonical null. No merge,
+unrelated main integration, staging promotion or platform posting is authorized.
+
+## Historical R29 — two central engineering problems and planning — 24 October 2026
 
 The author found R28's small insertions insufficiently prominent. The two distinct
 engineering problems must lead Parts I and II, before examples and evidence.

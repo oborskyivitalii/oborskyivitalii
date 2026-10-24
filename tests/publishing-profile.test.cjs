@@ -9,6 +9,7 @@ const path = require('node:path');
 const test = require('node:test');
 const { loadProfile } = require('../tools/publishing/profile.cjs');
 const { compile } = require('../tools/publishing/article.cjs');
+const { blockDigest } = require('../tools/publishing/semantic.cjs');
 
 const hash = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 const png = Buffer.from(
@@ -113,6 +114,54 @@ test('distinct illustrated adaptation and plain full-text profiles preserve auth
   assert.throws(() => {
     first.profile.seo.title = 'Invented replacement';
   }, TypeError);
+});
+
+test('print layout binds exact title furniture and bounded groups without inferring prose roles', async (t) => {
+  const { root, article, profile } = await fixture(t, {
+    illustrated: false,
+    adaptation: false,
+  });
+  const compiled = compile(
+    '# Title\n\n*A subtitle*\n\nAuthor · Draft 3\n\n**A question?**\n\nAn answer.\n\n' +
+      'A table introduction.\n\n| Case | Result |\n| --- | --- |\n| One | Pass |\n\n' +
+      'A final thought.\n\nA final line.\n',
+    []
+  );
+  Object.assign(article, compiled);
+  const nodes = compiled.model.tree.children;
+  const pin = (index) => blockDigest(nodes[index]);
+  profile.reader = { elements: [{ role: 'prompt', sha256: pin(3) }] };
+  profile.print = {
+    titleBlock: { subtitle: pin(1), byline: pin(2) },
+    keepTogether: [pin(6)],
+    keepWithNext: [pin(5), pin(7)],
+  };
+  profile.limits = {};
+  saveProfile(root, article.metadata.id, profile);
+  assert.deepEqual(loadProfile(root, article).profile.print, profile.print);
+  const original = structuredClone(profile);
+  const cases = [
+    [(value) => (value.print.titleBlock.subtitle = '0'.repeat(64)), /distinct admitted/],
+    [(value) => (value.print.titleBlock.byline = pin(1)), /distinct admitted/],
+    [(value) => (value.print.titleBlock.byline = pin(4)), /directly after/],
+    [(value) => (value.print.titleBlock.subtitle = pin(6)), /declared type/],
+    [(value) => value.print.keepTogether.push(pin(6)), /distinct admitted/],
+    [(value) => (value.print.keepWithNext = [pin(8)]), /following paragraph or table/],
+    [(value) => (value.print.keepTogether = [pin(3)]), /duplicate an existing prompt/],
+    [(value) => (value.print.keepTogether = []), /1–50/],
+    [(value) => (value.print.keepTogether = Array(51).fill(pin(6))), /1–50/],
+    [(value) => (value.print.unrecognised = true), /Unknown profile print/],
+  ];
+  for (const [edit, expected] of cases) {
+    const candidate = structuredClone(original);
+    edit(candidate);
+    saveProfile(root, article.metadata.id, candidate);
+    assert.throws(() => loadProfile(root, article), expected);
+  }
+  saveProfile(root, article.metadata.id, original);
+  nodes[4].type = 'heading';
+  nodes[4].depth = 2;
+  assert.throws(() => loadProfile(root, article), /first answer paragraph/);
 });
 
 test('profile relationships, format sets and asset references reject forged selections', async (t) => {

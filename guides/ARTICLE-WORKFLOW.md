@@ -65,6 +65,20 @@ No author-supplied HTML or general iframe channel is enabled. Small declared PDF
 resources can travel in bounded offline exports; a complete article plus deck
 that exceeds the existing800KB gzip limit is rejected with a hosted-edition route.
 
+The optional profile `print` selection binds native layout to admitted AST blocks
+using the same `blockDigest`. `titleBlock` names `subtitle` and `byline` paragraph
+digests immediately after the leading title; HTML/print moves those exact paragraphs
+into one header. `keepTogether` names up to50 individual paragraphs or tables;
+`keepWithNext` names up to50 paragraphs followed by another paragraph or table.
+Bindings must be unique, current and type-correct. Existing declared `prompt`
+roles keep their first answer paragraph when this print selection is present.
+Adjacent keep-with-next bindings form one group. No grouping is inferred from
+words, emphasis or table length. Native Contents nests H3 under H2 and uses the
+declared trailing appendices as a separate supporting group. Different authored
+adaptations do not inherit full-source print bindings. Markdown/TXT retain their
+complete source order. Copy-ready HTML hides navigation and the generated summary,
+so selecting all visible document content includes title, subtitle and byline.
+
 ## Contract and verification design
 
 One `site/publications/<id>/manuscript.<language>.md` owns the full article.
