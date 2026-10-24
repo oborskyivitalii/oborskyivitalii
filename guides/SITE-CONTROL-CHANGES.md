@@ -1,4 +1,4 @@
-# Control changes: lock-file structural prototype
+# Control changes: structural assessment and contained execution
 
 [Issue122](https://github.com/oborskyivitalii/oborskyivitalii/issues/122#issuecomment-6385166442)
 owns this two-task preparation: the bounded contract and a credential-free
@@ -74,7 +74,102 @@ package bytes. Mixed/no-op wrapper, deleted/renamed input, mode/symlink, direct 
 non-leaf package, range/version/URL/SRI, malformed/duplicate/oversized and invalid
 identity cases must block. Existing App control rejection is tested unchanged.
 
-General workflow/test/validator evolution, independent candidate execution,
-trusted audit integration, per-PR policy isolation and synchronous stale-green
-revocation remain later work. This batch completes only contract/prototype
-preparation and must be reported before starting another implementation task.
+General workflow/test/validator admission, trusted audit integration, per-PR
+policy isolation and synchronous stale-green revocation remain later work.
+
+## Single-module execution experiment
+
+The [next two-task decision](https://github.com/oborskyivitalii/oborskyivitalii/issues/122#issuecomment-6386125270)
+adds this containment contract and one narrow executable path. It does not
+approve lock changes or replace the original source, audit, staging or admission
+obligations. Only `tools/quality/delivery-json.cjs` is exercised; npm installation,
+package authenticity, dependency compatibility and general control evolution
+remain outside its coverage.
+
+`control-runner.cjs` reads exact immutable B/H Git module objects as data. It
+requires B ancestry, regular mode100644 and at most64KiB per module; refs,
+missing objects, alternate modes and oversized input block before execution.
+Git replacements, grafts, inherited Git environment, system/global configuration
+and lazy fetching are disabled; repository-local configuration is still read.
+Other candidate paths are not executed or assessed for admission. Exact complete
+trees identify the sources without claiming their whole delta was approved.
+
+Actual producer P owns ten fixed parse/canonical/path probes, literal expected
+outputs and all resource/command choices. It records its commit/tree, dirty state,
+actual implementation hashes and Node version. B is the comparison source;
+recording B does not make unmerged/dirty P a protected-main policy. The host runs
+both B and H against the same inventory. The module executes only inside the
+container. Its tests, registries, package metadata and claimed reports cannot
+alter the parent-owned probe count or oracle.
+
+### Containment and limits
+
+Supported infrastructure is Linux x64, a local rootful Docker daemon with
+cgroupv2 memory/swap/PID/CPU controls and default seccomp. The kernel, daemon,
+Docker CLI, host Node executable and its dynamic libraries are trusted platform
+inputs, individually identified in the report. The implementation uses only
+`unix:///var/run/docker.sock`; ambient contexts, proxies and Docker configuration
+are not forwarded. No capability means blocked before candidate execution.
+There is no host-execution fallback or daemon setup/permission change.
+
+The host constructs an ephemeral scratch image from a fixed regular-file
+inventory: identified Node/ELF libraries, P's driver/probe data and one immutable
+candidate module. No registry download, Dockerfile command or package install
+runs. Execution uses the imported immutable image ID with pulling disabled.
+Image/tar/input hashes are recorded. No host directory, socket, repository,
+credential, Git data or cache is mounted into the container.
+
+| Boundary | Required setting and evidence |
+| --- | --- |
+| Identity/privilege | Numeric65534:65534, all capabilities dropped, no-new-privileges, default seccomp, private PID/IPC/cgroup/UTS context |
+| Network | Docker `none`, no published ports, host networking or supplied sockets; native host-listener denial and namespace observation |
+| Files/environment | Read-only image; exactly PATH/HOME/HOSTNAME/LANG constants, no inherited descriptors other than captured standard streams; source writes and synthetic host-canary access denied |
+| Aggregate resources | Memory256MiB with no swap,32PIDs/threads, oneCPU quota; actual cgroup files and memory/PID failure probes |
+| Writable storage | `/tmp`8MiB with noexec/nosuid/nodev; `/dev/shm`1MiB. Docker also supplies private `/proc`, `/dev` and generated hostname/hosts/resolver files; these are platform mounts, not user binds |
+| Host supervision |5second attached-execution timeout,64KiB output cap,30second bounded daemon/setup/cleanup commands; logging driver `none` avoids an unbounded daemon log |
+| Cleanup | Unique owned resource names, forced whole-container removal, image removal and confirmed absence. Failure/uncertainty blocks success and retains resource identifiers |
+
+Inspect and validate the actual stopped container configuration before start.
+Terminal state, exitcode, OOM status, captured streams and cleanup all participate
+in the result. The5second attachment watchdog is not a claim that every daemon
+cleanup completes in5seconds. Host/daemon crashes or a forced parent kill require
+disposable-runner teardown; recorded resource names support recovery. No claim
+against kernel/daemon vulnerabilities or universal sandbox certification is made.
+
+The inner Node driver shares a process with hostile H. H can alter globals or
+forge output, so inner assertions, TAP and candidate-produced counts are not
+trusted evidence. The parent accepts only exact finite expected bytes after
+successful terminal execution and verified cleanup. A malicious module can
+mimic those finite outputs: `observed` means bounded input/output agreement,
+not benign intent, full correctness or trusted admission. All four authority
+flags remain false.
+
+### Operator and actual proof
+
+```sh
+node tools/quality/control-runner.cjs /path/to/repository BASE_40_CHAR_SHA HEAD_40_CHAR_SHA
+node tools/quality/control-runner-proof.cjs BASE_40_CHAR_SHA HEAD_40_CHAR_SHA /outside/report-directory
+```
+
+The first command emits JSON and exits0 only for `observed`; blocked results
+exit1 with explicit reason. Original hostile streams are Base64 report data,
+never printed as workflow commands. The second command is a native diagnostic
+with real B/H execution plus synthetic filesystem/environment/network/scratch,
+PID/memory/timeout/output/crash, forged-report and wrong-output observations.
+It retains original per-case reports and hashes; designed cases are not passes.
+
+Permanent `tests/control-runner.test.cjs` covers immutable extraction, actual
+configuration rejection and parent-oracle/fail-closed behavior through existing
+selected PR/staging/production source profiles. The separate, nonrequired
+`control-runner-probe.yml` runs the native experiment for relevant ready-PR
+changes with read-only repository permission, no secrets or deployment environment.
+It is ordinary candidate CI, not an authenticated protected-main issuer. A
+successful native result is required for completion of this bounded task, but
+does not waive any existing full delivery check or make the App accept controls.
+
+TR01–TR08 at the decision anchor own identities, fixed selection, filesystem,
+process/network, finite execution, external oracle, capability failures and actual
+proof/allocation. CS01/04/05/07/08/09/10 and four separate review roles apply.
+Local namespace/Docker unavailability is recorded as blocked, never a synthetic
+isolation pass. Report this two-task batch and whole-issue remaining work before
+starting another implementation batch.
