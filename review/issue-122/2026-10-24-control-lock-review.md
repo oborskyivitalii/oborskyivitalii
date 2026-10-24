@@ -113,7 +113,34 @@ targets and canonical generated ownership. All four actual correction executions
 ACCEPT; unaffected executable/graft review is reused explicitly. Root's complete
 RootLayout15, coupling20, RI29 and freshness verification passed on this delta.
 
-The corrected commit still needs native source/RI/owning/preview/full owner-stage,
+Native corrected source06384ca3 passed Basic40103213432/1:708/708 in150498ms,
+clean source before/after, all12 focused cases actually executed, zero skips or
+failure streams. White-box physically authenticated source ZIP12563264691,
+SHA256 `d0a18b1180f622806d2f31c6884829ae7ec7fad9ceaa9d38c4c4c0b393a036fb`.
+Navigation40103213313, owning40103213354 and preview smoke also passed.
+
+Full owner stage40103516608/1 then FAILED before upload:25/26 prepublication
+guards passed, including708 Node/128 Python, lint, Semgrep, Bandit and advisory
+feeds. The secrets engine rejected exactly two untriaged hex findings at
+`tests/control-lock.test.cjs:91–92`. Original native ZIP12563717111 SHA256 is
+`d10551d1988916f43dfef770fa63d74a72b2eb49e987edee713462b98e39bd6b`.
+It remains a failed attempt; publish/full hosted/promotion/receipt were skipped.
+
+The literals are the public immutable replay commits a7d3d945 and ec5d4a2.
+Each of Requirements, Code, White-box and Exploratory independently inspected
+the native findings and recomputed both Git commit objects and detector SHA1
+fingerprints. Their correction ACCEPTs bind prepared tree
+`9ffb5d3780eb859963ae573fda4e1cefcc59611a`: exactly two path/rule/hashed-value
+dispositions in the existing checksum ledger plus its derived RI hash. All753
+prior dispositions and metadata, the frozen baseline, scanner rules/coverage,
+fixtures and executable bytes remain unchanged. White-box used the actual scanner
+functions to accept both exact tuples and reject six wrong path/rule/hash cases.
+Root scanned all1118 current tracked text files: zero untriaged candidates after
+the precise dispositions. Six existing secret-ledger/checksum regression cases
+passed without skips. This is narrow public-identifier classification, not a
+credential or blanket entropy exception, and does not authorize delivery.
+
+The new corrected commit still needs native source/RI/owning/full owner-stage,
 eligible admission, protected merge and actual postmerge verification. Main
 protection and the App are unchanged.
 No source green fixture substitutes for those actual native observations.
