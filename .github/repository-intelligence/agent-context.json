@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "44a2b46e3253f1171b8ccd915167a18ab133d93d0cecb6f6c57d714759ffee2c",
+    "digest": "44cd767d4c26891224bba6277d3e3774681d77475255df302bc4fddab2c25dd6",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -196,12 +196,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "5c91e79b5862fb030d9bad17d690eee54fb788e25f02d0c5d6e38b812a9f9582"
+        "sha256": "c71e2797fc379cea7b48e763d4b07c512375c64d6322258d598e361cbb8e6b24"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "a669edb0f070b7b7b7881942aa0dacf317934f656b61643e1743c0a7158fe4b7"
+        "sha256": "f270d9438fc3824940112ccc03464347b63607886a347e72703d178d257d448c"
       },
       {
         "path": ".github/workflows/change-admission.yml",
@@ -346,7 +346,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "658de27cdd0f1ee78edfc8a3d81e049e27aafb05e21cd4f0e45e065e97e96dbf"
+        "sha256": "bbc8e00375495046762b1efccc10ba8f59247e777e53088ccef3676130134a2e"
       },
       {
         "path": "NOTICE.md",
@@ -913,9 +913,14 @@
         "sha256": "36b00a7e02f38fd79f8dbc9320710906c9510355df5130843cddf139183aff3a"
       },
       {
+        "path": "review/issue-122/2026-10-24-control-runner-evidence.tar.gz",
+        "identity_mode": "content",
+        "sha256": "e5d5b7b71f75c675f1b93d29d58e721a9e7737df7671fca66e48134c8899a2a1"
+      },
+      {
         "path": "review/issue-122/2026-10-24-control-runner-review.md",
         "identity_mode": "content",
-        "sha256": "aebbdafa634a4958e609fd802b87bd0fbb3fb1140ae02df8d824a6e6a25a28eb"
+        "sha256": "37cd8b919c5545a917deab1eba6bdc81cff7a9438e7e5f2ae800cd230ab63007"
       },
       {
         "path": "review/issue-122/2026-10-24-fast-uri-local-evidence.tar.gz",
@@ -9515,6 +9520,17 @@
         "AGENTS.md"
       ],
       "title": "Issue 122 — control-lock contract and prototype, 24 October 2026"
+    },
+    {
+      "path": "review/issue-122/2026-10-24-control-runner-evidence.tar.gz",
+      "kind": "file",
+      "purpose": "Original PR141 native failed/successful containment, source, staging, admission and postmerge ZIP evidence with exact authenticated artifact identities.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-24-control-runner-evidence.tar.gz"
     },
     {
       "path": "review/issue-122/2026-10-24-control-runner-review.md",

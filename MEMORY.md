@@ -4,30 +4,29 @@ Dated continuity, not live authority. Last verified: **2026-10-24**.
 
 ## Snapshot
 
-- Owning issue122 continues. PR140 is delivered as main `dbb11f0919c0c436d0de9df75edc569c0fc69b8d`; tested H1f270e0d shares treeaa9ac6a1. Both prior structural-lock tasks and the separate App/SHA proof are completed; do not restart them.
-- Accepted staging40104889575/1 remains honestly bound to H1f270e0d, public `51e46cfd2ece3af9cd6beb89e143863d254a1f2f872ed059ed1c810f2f35864e`, package `131b36ccd5f00781ae60db6c8f4bef3f6086427eaee71e9cb1919534326e39b2`. No production or relabel.
-- New authorized batch is prepared on work/issue-122-control-runner-20261024 from main dbb11f09. Live scope anchor6386125270; implementation/native/delivery are not yet complete.
+- Issue122 continues. PR141 is MERGED normally as `e255fa3a7d6f86c5b282779f3add12ba1dc759c5`; tested Hc2b11d832d218297a6e817fe138e1e326962c5dd shares complete tree9d836339e3bf39ed9c3d1d26c4f977d89046894c. Both containment tasks are delivered; do not restart PR140, App/SHA proof or PR141.
+- Native40109998585/1 passed11scenarios/12executions. Basic40109998668 passed719/719, full stage40110481719/1 passed26guards/719Node/128Python and all required hosted/security checks. Eligible40112034780 and actual postmerge40112223401 passed; actual-main RI40112223122 SUCCESS.
+- Accepted staging still names tested Hc2b11d8, public487702b94acaf550433bfddb99db66cf94ed1d7925772e0554108cb13ded188f, package75ad3c7b196788f0e873a6ea09608b5b21e81332097e6a47741f9e73dab8ac24. No rebuild/main relabel or production action.
 
 ## Decisions
 
-- Maintainer said “Роби” for the proposed next two tasks and additionally requires overall issue position and remaining work in the final report. Keep1–2tasks per batch, complete normal delivery, report before another implementation.
-- Task1 is the containment contract; task2 is fixed P-owned external probes of only immutable B/H delivery-json module bytes in Docker. P source/hash/dirty and comparisonB remain distinct. All merge/deploy/App/reuse authority false; finite outputs cannot prove benign intent/general correctness.
-- Native Linux local Docker is trusted host infrastructure; build local scratch image from identified Node/libs/P driver/H bytes only. No image fetch, install, host bind/socket/credentials or candidate command/policy selection. Actual stopped-container settings, cgroup limits and cleanup must be verified.
-- Local bwrap/unshare namespace probes fail EPERM; Docker unavailable. This is blocked/not-observed, never a contained pass. Actual native positive/adversarial evidence is required, no fallback to host execution.
+- Keep1–2tasks per batch, full normal delivery, then report batch status, whole-issue position, complete remaining work and next1–2tasks before another implementation. Current two-task authorization is complete.
+- Contract: guides/SITE-CONTROL-CHANGES.md. Fixed P-owned external probes execute only immutable B/H delivery-json bytes inside Linux Docker; all merge/deploy/App/reuse authority remains false. Real B/H bytes are identical; hostile synthetic modules prove named bounded negatives, not general changed-helper compatibility.
+- Kernel/daemon/runtime remain trusted. No image fetch/install, host bind/socket/credentials or host-execution fallback. Actual local Docker unavailability remains blocked; native containment was authenticated from original runner evidence.
 
 ## Open work
 
-- Canonical contract: guides/SITE-CONTROL-CHANGES.md. Execution/review route: review/issue-122/2026-10-24-control-runner-review.md. Requirements and Code completed actual preimplementation reviews; all four completed-candidate/correction/native reviews remain pending.
-- Initial8 permanent source regressions passed; final source/style/RI/native/full delivery remain pending. Original full Basic/RI/owning/scanner/audit/staging/admission/merge/postmerge obligations remain.
-- Whole T05/AC01–AC08 remain open. W1/W2 foundations delivered; W3 still needs trusted control evolution, per-PR policy isolation/synchronous freshness, protected migration/proportional checks and a genuine repository-only merge without hosted website work. W4 needs accepted-site history/reuse and issue5/PR79 content release integration; W5 real lane/concurrency/recovery and measured queue/setup/execution outcomes.
+- Whole T05/AC01–AC08 remain open. W1/W2 foundations delivered; W3 needs trusted control-change integration, per-PR policy isolation/synchronous freshness, protected migration/proportional checks and a genuine repository-only merge without website work.
+- W4 needs accepted-site history/reuse plus issue5/PR79 independent content integration/release. W5 needs actual lane/concurrency/recovery/publication scenarios, measured queue/setup/execution and final documentation/acceptance reconciliation.
+- App remains nonrequired on main. PR141 App check correctly blocks unsupported-execution-control-change. Nonrequired postmerge issuer40112223163/40112281675 fails PR117/110/107/79 with PR base moved; preserve this per-PR freshness gap. Original required delivery checks above passed.
 
 ## Next session
 
-1. Revalidate issue122/main/current candidate, read versioned runner review and actual source. Continue this authorized batch rather than restarting PR140 or App proof.
-2. Finish four actual independent candidate reviews, corrections and final current-source tests. Native containment proof must actually execute on a supported runner; retain all failed attempts.
-3. Complete unchanged full delivery only after applicable gates, reconcile exact source/merge/artifact identities and task boxes. End with batch status, whole-issue position, complete remaining work and next1–2tasks; no third task automatically.
+1. Revalidate issue122/main/evidence ref. Read final section of review/issue-122/2026-10-24-control-runner-review.md and its original-artifact archive; do not rerun completed proof/delivery without new reason.
+2. Next proposed1–2tasks: contract for the smallest protected control-change admission slice using the runner; then one implementation/native positive-and-negative proof. Scope must reconcile trust, per-PR isolation/freshness and existing requirements before activation.
+3. No third implementation or protection/App/production activation was started by the final receipt. Continue only within the maintainer's actual next scope; all whole criteria remain open.
 
 ## Maintenance
 
-- Preserve five sections/120lines. Actual role/native details stay in owning issue/PR/review; factual receipts/derived refreshes do not recurse into implementation review.
-- Do not read/copy credentials. Main App remains nonrequired and original three protection requirements unchanged. No production action.
+- Preserve five sections/120lines. Detailed current receipts and four actual resumed reviewer results live in the existing versioned review; factual preservation/derived RI refresh does not recurse into implementation review.
+- Preserve first failed native40109509683 and all original ZIP/run/attempt/source identities. No credential reads/copies. Evidence-only work does not modify main implementation or production.

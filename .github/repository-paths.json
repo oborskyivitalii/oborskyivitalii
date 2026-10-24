@@ -9618,6 +9618,12 @@
       "purpose": "Two-task containment contract, actual four-role reviews, native failure/positive evidence and whole-issue progress reconciliation.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-122/2026-10-24-control-runner-evidence.tar.gz": {
+      "kind": "file",
+      "purpose": "Original PR141 native failed/successful containment, source, staging, admission and postmerge ZIP evidence with exact authenticated artifact identities.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }
