@@ -120,3 +120,16 @@ postmerge, actual expected-producer aggregate revocation/ruleset and one meaning
 repository-only merge/unchanged accepted artifact/timings remain external R2 gates.
 The new log API's actual future control use is not relabeled as native evidence;
 bounded bootstrap uses old-full delivery plus source-bound control/recovery tests.
+
+## First native Basic and narrow filename correction
+
+PR143/source66faca292d8ac19c9f2ec1bd54583d1da0813f04/treeb6a70622 passed native
+formatting/lint/Basic, RI/navigation40124788149 and owning40124788135. Basic40124788222
+selected51 permanent source modules and observed728 cases:727 passed, one failed,
+zero skips; worker100.28s/180s. The sole failure was review-flow's existing textual
+ban on `target.json`, accidentally matched by the diagnostic name `stage-target.json`.
+The diagnostic is renamed `stage-binding.json`; behavior/trust/profiles are unchanged
+and the original guard remains intact. Failed artifact12572780653 retains original
+streams, SHA256 c3385d654c954357608956321add4fb37466f75f38650492ebfbd73ddae40907.
+Fresh source verification and affected correction readbacks follow; no unchanged
+native rerun, website staging or relaxed guard is claimed.

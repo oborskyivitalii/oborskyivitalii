@@ -139,7 +139,7 @@ jobs:
               target.binding=['change-stage-target',number,pr.head.sha,context.sha,context.runId,process.env.GITHUB_RUN_ATTEMPT].join('-');
               const identity={pr:number,source:pr.head.sha,base:context.sha,run:context.runId,attempt:Number(process.env.GITHUB_RUN_ATTEMPT)};
               core.info('change-stage-target-v1 '+JSON.stringify(identity));
-              fs.writeFileSync(path.join(process.env.RUNNER_TEMP,'stage-target.json'),JSON.stringify(identity,null,2)+'\n');
+              fs.writeFileSync(path.join(process.env.RUNNER_TEMP,'stage-binding.json'),JSON.stringify(identity,null,2)+'\n');
             }
             for(const [key,value]of Object.entries(target))core.setOutput(key,value);
       - name: Retain the staging target before candidate work
@@ -147,7 +147,7 @@ jobs:
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         with:
           name: ${{ steps.target.outputs.binding }}
-          path: ${{ runner.temp }}/stage-target.json
+          path: ${{ runner.temp }}/stage-binding.json
           if-no-files-found: error
           retention-days: 90
   begin-admission:

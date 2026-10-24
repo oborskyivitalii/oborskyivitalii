@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "3ae38c751ac1389891175c0b7ff533495d39cc155a779a7d525c84a1d9f1e227",
+    "digest": "fc9990d20334f8cedb8bb384f309ce13fc14af1f60ef23ecb6d72a78a9a72c49",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -201,7 +201,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "806c135af5f518389b16455a3d950846b70464d9385c9257182818557ead37bd"
+        "sha256": "8e32bbbc97ea628410314e8461d0d7b2cdfbe563f15a3ed15de810178a4b3c08"
       },
       {
         "path": ".github/workflows/change-admission.yml",
@@ -256,7 +256,7 @@
       {
         "path": ".github/workflows/site-color-review.yml",
         "identity_mode": "content",
-        "sha256": "79f1c3b623dee9c1dc901279239ba5aebe776a773652bc24a514a39f00974971"
+        "sha256": "aef3fdd62477e834fb1fb10ab03258e6a52e1afcbbb9c9834d54a62656d49e96"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -935,7 +935,7 @@
       {
         "path": "review/issue-122/2026-10-24-r2-repository-lane.md",
         "identity_mode": "content",
-        "sha256": "1a948856747a6d8167d77df616f1887fd9e06a128c8a3da9320354fd1372f799"
+        "sha256": "d77a0f54c2384b39a8737323cbd22ff63e2b7049e09bebd0b50aaa985e9fc58d"
       },
       {
         "path": "review/issue-126/2026-10-23-announcement-review.md",

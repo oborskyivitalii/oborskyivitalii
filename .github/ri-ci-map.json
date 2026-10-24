@@ -663,7 +663,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "03ad430a1707cc7d0d7b66e14c6ceeda0ee628350ac12501905c0310143e56b9",
+    "digest": "5d9b277fd617aa195e07d0272ace4e6c30138e3969d839df4fba2a8966012258",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -843,7 +843,7 @@
       },
       {
         "path": ".github/workflows/site-color-review.yml",
-        "sha256": "79f1c3b623dee9c1dc901279239ba5aebe776a773652bc24a514a39f00974971"
+        "sha256": "aef3fdd62477e834fb1fb10ab03258e6a52e1afcbbb9c9834d54a62656d49e96"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
