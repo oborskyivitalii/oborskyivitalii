@@ -38,8 +38,8 @@
     }
   },
   "limits": {
-    "linkedinCharacters": 51000,
-    "mediumCharacters": 51000
+    "linkedinCharacters": 53000,
+    "mediumCharacters": 53000
   },
   "reader": {
     "references": "inline",
