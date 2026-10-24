@@ -9552,6 +9552,30 @@
       "purpose": "Byte-authenticated local preparation reports for the one-leaf fast-uri repair, preserving complete passing audits and the failed bounded source timeout; no native acceptance.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "tools/quality/control-lock.cjs": {
+      "kind": "file",
+      "purpose": "Credential-free immutable-Git lock-leaf structural prototype; separate producer/base/candidate identities, no admission or package-execution authority.",
+      "role": "source",
+      "owner": "guides/SITE-CONTROL-CHANGES.md"
+    },
+    "tests/control-lock.test.cjs": {
+      "kind": "file",
+      "purpose": "Real-Git structural lock prototype positives, observed-patch replay and meaningful complete-delta/data/identity/CLI rejection cases.",
+      "role": "test",
+      "owner": "tools/quality/control-lock.cjs"
+    },
+    "guides/SITE-CONTROL-CHANGES.md": {
+      "kind": "file",
+      "purpose": "Bounded nonauthoritative control-lock prototype contract, exact supported shapes, operator interface, acceptance and unverified package/native outcomes.",
+      "role": "guide",
+      "owner": "guides/SITE-STAGING.md"
+    },
+    "review/issue-122/2026-10-24-control-lock-review.md": {
+      "kind": "file",
+      "purpose": "Two-task structural lock prototype contract, four actual independent candidate/correction reviews, graft counterexample resolution and bounded verification/delivery status.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }
