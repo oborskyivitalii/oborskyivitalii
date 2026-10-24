@@ -2,6 +2,29 @@
 
 Article owner #2; publisher/execution #5 / PR79.
 
+## Current repository checkpoint — R32 Markdown and PDF — 24 October 2026
+
+The complete R32 manuscript is committed in `manuscript.en.md` at `d43040a`;
+its bytes match the latest author-review Markdown exactly. The matching supplied
+19-page PDF is now retained unchanged in the
+[review directory](../../../review/issue-2/pmday-candidate-20261015/The_Sum_of_Our_Technology_R32_2026-10-24.pdf).
+Its producer remains WeasyPrint 68.0; it is a review preview, not the native
+Chromium publisher's output. The [R32 PR audit](../../../review/issue-2/2026-10-24-r32-pr-audit.md)
+records exact identities, independent review and remaining work.
+
+**Source and native selection differ:** the authored manuscript is R32, while
+`publication.json`, the frozen selected edition and `profile.json` still select
+R30. Publisher validation rejects that source-pin mismatch. Existing R30 native
+kits, platform copies, generated pages and 12/12 acceptance remain historical R30
+evidence. They do not validate R32.
+
+This increment preserves the author's Markdown/PDF-only scope. Native integration
+must create a new immutable edition, refresh profile/print bindings, update the
+R30-labelled launch together with its profile hash, regenerate dependent outputs
+and RI, then run current-source acceptance. No old edition is overwritten. Earlier
+sections below describe their dated candidate preparation and are superseded by
+this checkpoint where they refer to the current manuscript or uncommitted source.
+
 ## R32 author-review candidate — two higher-order engineering problems — 24 October 2026
 
 Author request: elevate the core problem formulation at the beginning of the three
@@ -29,10 +52,10 @@ work or that every manual review activity must remain unchanged.
 
 **Prepared owner-accessible review artifacts** (separate from native publication):
 
-- [R32 complete Markdown](https://chatgpt.com/library?file_id=libfile_f8eb2ff62ff881919f1d460ede329004&account_id=personal)
+- [R32 complete Markdown](https://chatgpt.com/library?file_id=libfile_9c5690390164819191a61451614c63d4&account_id=personal)
   SHA256 `39631585cbf821895ef5060b46481a04fbdd7da04bffc04410de324c859c3f4d`;
   51,320 UTF-8 bytes. Baseline is the complete R31 owner-review Markdown.
-- [R32 PDF **review preview**](https://chatgpt.com/library?file_id=libfile_425dada610a88191b1a3e5a0f7a4c9b7&account_id=personal)
+- [R32 PDF **review preview**](https://chatgpt.com/library?file_id=libfile_bb81113c55748191922c002f73469eb1&account_id=personal)
   SHA256 `63badf1b31fd89ca4612f9ed641f7714ea8382a8953ed03628bd45216bd55ffe`;
   19 A4 pages, 133 PDF link annotations and navigable section outline.
 
@@ -50,21 +73,22 @@ with the R32 textual replacements. It is rendered by WeasyPrint 68.0 because
 the GitHub checkout is unavailable to the current container (DNS failure)
 and Chromium cannot finish. It is NOT the pinned Chromium153
 `tools/publishing` native producer and does not establish native/editor/platform
-or exact-current-source QA. The existing selected repo manuscript/edition is
-still R30; do not overwrite its immutable review record or reuse its 12/12
-result. A preliminary length projection suggests the R32 full-platform
+or exact-current-source QA. The manuscript is now R32; the selected frozen
+edition/profile remain R30. Do not overwrite R30's immutable review record or
+reuse its 12/12 result. A preliminary length projection suggests the R32 full-platform
 rendition may exceed the current 51,000-character profile bound: verify the
 actual native output; reduce channel-specific repetition only with semantic
 equivalence, never silently raise the bound.
 
-Next: integrate source into a fresh immutable R32 review edition through
+Next native step, outside this Markdown/PDF-only increment: bind the committed
+source to a fresh immutable R32 review edition through
 `guides/ARTICLE-WORKFLOW.md`; regenerate source/semantic/profile and print
 digests, native PDF, LinkedIn/Medium kits and dependent locks, then rerun the
 owning issue5 policy and four distinct independent review roles. Retain
 issue2 editorial/rights decisions and no automatic merge/staging/prod.
 
 
-## R31 preview — restore the rhetorical purpose of “What if not?” — 24 October 2026
+## Historical R31 preview — restore the rhetorical purpose of “What if not?” — 24 October 2026
 
 **Author decision:** Restore the introduction's deliberate refrain as a way to
 make the breadth and depth of the problem space visible before jumping to a
@@ -98,15 +122,14 @@ occurrences, 4 illustrations, 2 tables and substantive qualifications remain.
   start. This is NOT a verified output of tools/publishing/cli.cjs or of the
   pinned Chromium153 native toolchain.
 
-**Integration/acceptance remain pending.** R30 stays the canonical selected
-review edition with unchanged source, manifests and accepted evidence.
-On a source-capable checkout, apply the manuscript text, create a new immutable
-R31 edition and refresh source/semantic/profile digests and print bindings.
-Regenerate native PDF, LinkedIn/Medium exports, dependent output locks and
-source-bound acceptance. Require the original four independent QA roles.
-No merge, staging, production or platform publication is implied.
+**Historical integration boundary:** at this R31 preview checkpoint, the
+repository manuscript and selected edition were R30. R32 has since superseded
+the authored manuscript. The current checkpoint above owns the remaining native
+integration; do not create an obsolete R31 edition as the next step. R30's frozen
+edition and accepted evidence remain intact. No merge, staging, production or
+platform publication is implied.
 
-## Current R30 — clear structure and precise compression — 24 October 2026
+## Historical R30 native checkpoint — clear structure and precise compression — 24 October 2026
 
 The author approved the editorial review and implementation plan. Use combined
 main headings: How We Build: Rebalancing the SDLC; What We Build: Engineering

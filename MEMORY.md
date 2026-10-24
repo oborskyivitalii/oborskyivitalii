@@ -5,73 +5,60 @@ Dated continuity, not live authority. Last verified: **2026-10-24**.
 ## Snapshot
 
 - Execution owner issue5 / Draft PR79; editorial/publication owner issue2.
-  Current route: review/issue-2/2026-10-24-r30-editorial-clarity.md.
-  [Author-approved R30 scope](https://github.com/oborskyivitalii/oborskyivitalii/issues/5#issuecomment-6384293092).
-  The final R30 checkpoint on PR79 owns exact clean commit/tree, policy and readback.
-- R30 follows d488c64b825d60c4c6531f9cad2091eefc4a04ba, tree
-  cf513c5b4dbcede0f1db8fdb30bd9b0f009a3369. Existing main conflict is outside this task.
-- Manuscript SHA256 2c8729927685f7abec734865013dded9e98cce925bbd727faae74f074006bc29,
-  49,262bytes. Edition pmday-ai-both-sides-en-review-20261024-r30; semantic SHA256
-  35324c43d2eb499e1bb17d2a4a07ec80649d9714a6715206705fadd9f5e1ee06.
-- Native kit 14743fdc40b0f06232203da46ec01fd941c17c5b3cd353930f452ba7c03f685b.
-  Native PDF22pages /1,422,262bytes; SHA256
-  e96c4f21ce1f5a130527d3a37fce8f3f46e4b02c57b8fc701331ad1c72374cc1.
-  Full34-file ZIP and canonical MD have byte-identical durable readback. Standalone
-  PDF appends provenance; all pages/text/links/outline match. Original PDF stays in ZIP.
-  Complete delivery: review/issue-2/r30-20261024/README.md.
-- Node24.22.1 / Playwright1.63.0 / explicit Chromium153.0.8010.0 review producer;
-  managedBrowser=false, reviewOnly=true. Managed download returned empty archives.
-  No PDF postprocessing or public-runtime-byte change.
-- Independent editorial/artifact, whitebox and all-page/clipboard charters pass;
-  original receipts and corrected failures remain in the current review record.
-  Final clean-source/live acceptance belongs to the dated PR checkpoint.
+  Current bounded route: review/issue-2/2026-10-24-r32-pr-audit.md.
+- Starting PR head d43040a32cc960fbdeb55ef76ff5bfbc93444598 already contains
+  exact R32 manuscript. Current final commit/checks belong to the PR audit receipt.
+- Manuscript: 51,320 UTF-8 bytes; SHA256
+  39631585cbf821895ef5060b46481a04fbdd7da04bffc04410de324c859c3f4d.
+- Exact supplied PDF retained under review/issue-2/pmday-candidate-20261015/:
+  The_Sum_of_Our_Technology_R32_2026-10-24.pdf. 19 A4 pages, 1,103,360 bytes;
+  SHA256 63badf1b31fd89ca4612f9ed641f7714ea8382a8953ed03628bd45216bd55ffe.
+  WeasyPrint68 review preview; not a native Chromium producer result.
+- Authored source is R32; publication/profile selection and frozen source pin
+  remain R30. Actual publisher validation rejects the source SHA256 mismatch.
+  Historical R30 12/12 cannot establish current R32 acceptance.
 
 ## Decisions
 
-- Combined headings: How We Build: Rebalancing the SDLC; What We Build: Engineering
-  Control Around Model Judgment; What If Not? From Assumptions to Project Decisions.
-- Mechanism/example precede studies; review functions consolidate; explanation and
-  recovery stay distinct; PartIII starts with planning/full-cost alternatives.
-  One ending remains. Visible-body words3704→3479 (-225,6.07%); no forced10–15% cut.
-- All12prompts,36source notes,2tables,4figures,49numeric citation pairs and90text links
-  survive. Source notes/tables/figures/provenance are exact. Control, statistical and
-  economic qualifications remain. Olivier's proposals remain under consideration.
-- Native title hierarchy, nested Contents and semantic grouping retain small table
-  onp10, planning onp13 and ending onp14; sources startp15. Two outline-label repetitions
-  and short history tail onp22 are recorded nonblocking cosmetics.
-- Complete owner-authenticated deliverables are linked outside Git to retain RI250MB
-  bound and all frozen history. Unrelated GitHub-reviewer retrieval is unobserved.
-- R30 Color IDs require the existing rights guard. Independent QA found the missing
-  licensed-list entries; corrected owner and meaningful cases pass45/45 plus actual
-  three-mode guard negatives. Runtime bytes/budgets/policies/deadlines are unchanged.
+- User explicitly limited this editorial increment to Markdown/PDF commits,
+  including editorial/changelog metadata. Current request adds PR consistency
+  audit; it does not authorize native manifest/engine/generated output changes.
+- Preserve exact supplied R32 bytes and all frozen editions/artifacts. Correct
+  current status prose; document native/platform/RI/conflict work as remaining.
+- R32 keeps higher-order SDLC rebalancing, review's defect/understanding roles,
+  human/machine speed asymmetry and retained accountability; control around
+  probabilistic judgment; correct problem framing before planning. The R31
+  deliberate refrain, source qualifications and contribution dispositions remain.
+- Launch still says R30 and matches its profile hash. Update source and profile
+  together in native integration; do not invalidate that binding in isolation.
+- No merge, main integration, staging, production or platform posting in this step.
 
 ## Open work
 
-- Initial clean cdb68f8 policy returned8/12 with valid evidence. Two current fixture
-  cases still named R29/runtime predecessor;16new generated catalog owners named
-  the generator instead of site/README.md. Correct those literals/owner values only;
-  retain original failed report and rerun unchanged policy. Native inputs are unchanged.
-
-- Revalidate final R30 checkpoint and live issue5/2 before acting. Current AC13/14/15
-  require exact current-source policy. Historical issue5AC23 and issue2AC07/08 retain
-  original scopes; whole pending criteria remain open.
-- Final author/rights/native-editor/device/hosted/release gates remain distinct.
-  No merge/rebase, stable staging, production activation or platform post is implied.
-- R27 reader isolation and original180-second group deadline remain. Historical
-  R20 mobile TBT204/200ms failed; broad device/performance acceptance is not established
-  by this editorial increment. R23 hosted preview remains historical.
-- Full Python lock install has existing Semgrep/MCP conflict; no lock changed.
-  Exact selected-check dependencies installed; full scanner install not claimed.
+- New immutable R32 edition/source-semantic identity and selected publication,
+  profile/byline print bindings, launch/hash, native PDF/platform kits and locks.
+- Existing 51,000-character channel bound requires actual native validation;
+  no larger limit or semantically different adaptation is approved here.
+- Added review PDF also trips the existing RI250,000,000-byte content-hash bound.
+  Recover headroom without changing the bound or losing frozen bytes; register
+  review paths and rebuild/verify RI. No passing full-build claim is made.
+- Actual current-source policy, four native-integration reviews, final author,
+  rights, native-editor/device/hosted and publication gates remain separate.
+- Main conflict already exists. Read-only merge analysis against main e255fa3
+  found 76 unmerged paths across runtime, generated output, CI, content and tests.
+  It does not authorize conflict resolution or rollback of later main work.
+- Historical issue5 AC23 controller/staging and issue2 AC07/08 recording evidence
+  retain original source/scope; other current-source acceptance must be revalidated.
 
 ## Next session
 
-1. Fetch live PR79, issues5/2 and latest R30 delivery/acceptance checkpoint.
-2. Read current review and delivery evidence; verify source/artifact/report identities.
-3. Continue the next author-authorized editorial or acceptance step under current owners.
-4. Keep technical verification, author choice, hosted admission and publication separate.
+1. Fetch live PR79/issue5/issue2 and current main; read the R32 audit and final receipt.
+2. Keep exact R32 MD/PDF delivery separate from native-source acceptance.
+3. Continue the next author-authorized native integration or conflict step on the
+   existing owners, retaining frozen history and budgets.
 
 ## Maintenance
 
-- Retain these five sections and120-line cap; rebuild RI after indexed changes.
-- Git-backed source/evidence stay in the repository, without a parallel repository copy.
-- Exact final clean source and current acceptance belong to the PR checkpoint.
+- Retain these five sections and 120-line cap; detailed evidence stays in the PR.
+- Git-backed work stays in the repository without a parallel repository copy.
+- RI remains a declared pending gate under the current file-type restriction.

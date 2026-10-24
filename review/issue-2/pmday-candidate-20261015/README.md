@@ -1,4 +1,25 @@
-# Current R23 — original PDF recovered and canonical source synchronized
+# Current author-review files — R32 — 24 October 2026
+
+- [Complete R32 manuscript](../../../site/publications/pmday-ai-both-sides/manuscript.en.md):
+  51,320 UTF-8 bytes; SHA256
+  `39631585cbf821895ef5060b46481a04fbdd7da04bffc04410de324c859c3f4d`.
+  Already committed at `d43040a`; exact match to the supplied latest Markdown.
+- [Supplied R32 PDF review preview](The_Sum_of_Our_Technology_R32_2026-10-24.pdf):
+  19 A4 pages, 1,103,360 bytes; SHA256
+  `63badf1b31fd89ca4612f9ed641f7714ea8382a8953ed03628bd45216bd55ffe`.
+  Imported unchanged, including citation, contributor provenance and revision
+  history. WeasyPrint 68.0 preview, not a native Chromium publisher artifact.
+
+[R32 PR audit and remaining integration work](../2026-10-24-r32-pr-audit.md)
+distinguish these files from the still-selected frozen R30 native edition/profile
+and its older platform/site outputs. Do not reuse the historical R30 tests as
+R32 acceptance. PR79 remains Draft; publication decisions are separate.
+
+Earlier checkpoints and original files below remain historical evidence.
+
+---
+
+# Historical R23 — original PDF recovered and canonical source synchronized
 
 22 October 2026. The author-requested R23 intake continues in
 [Draft PR79](https://github.com/oborskyivitalii/oborskyivitalii/pull/79), execution
