@@ -4,7 +4,7 @@ What if the AI SDLC succeeds at generating code but fails at delivery, recovery 
 
 My PMDay essay examines two shifts and the socio-technical system we must actually be able to operate. Draft review preview; no publication/canonical URL. Ukrainian recording: https://youtu.be/xSgWjuGqC9I
 
-R36 documents the January 2026 English and Ukrainian antecedents to my SDLC argument: AI code generation can outpace human verification and understanding, shifting work and risk downstream. The Subprime Code Crisis develops the mechanism; Uncertainty Architecture examines the distinct challenge of control over consequential model judgment. This essay connects both to decisions about architecture, staffing and operating budgets before implementation. The dates establish authorial provenance, not exclusive historical priority. The policy-error scenario and comparison with simpler safe alternatives remain.
+R37 sharpens the conditional SDLC imbalance: when generated changes outrun verification, review queues and cognitive costs can shift downstream. The Subprime Code Crisis explores the resulting obligations; Uncertainty Architecture examines the separate runtime control problem. The essay connects both to project decisions before implementation, without claiming global priority or universally broken delivery. The policy-error scenario and simpler safe alternatives remain.
 
 Thank you to Maximiliano Armesto for thoughtful pre-publication feedback on shared policy assumptions and on the value of AI compared with simpler alternatives. Editorial decisions and the final text remain my responsibility.
 
