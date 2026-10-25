@@ -332,7 +332,7 @@ scanner/lint limits and execution budgets remain.
 | --- | --- | --- |
 | F1 | Separate fresh producer provenance from a verified client descriptor; prove all three actual editions against unchanged main. | Complete: clean-source local proof at20bf4b60; native/full delivery staysF5/F6. |
 | F2 | One cohesive print-group helper; unchanged validator/error behavior and25lint rule. | Complete: bounded source/validator parity; native/full delivery staysF5/F6. |
-| F3 | Consolidate repeated compatibility data while preserving139historical IDs/flags/editions/bytes. | Pending. |
+| F3 | Consolidate repeated compatibility data while preserving139historical IDs/flags/editions/bytes. | Complete: bounded data/API parity; whole source/native delivery remainsF5/F6. |
 | F4 | Canonical mandatory-rights classification, same111unique IDs/anti-relabel guards; clear early real lint. | Pending. |
 | F5 | Generated/catalog/RI/contracts, selected source and four scoped roles; native Basic/RI/owning/preview. | Pending. |
 | F6 | Existing full owner stage, genuine App, protected merge and actual postmerge. | Pending. |
@@ -591,6 +591,96 @@ and unautomated source/dependency review remain distinct from live GitHub eviden
 F2 supplies bounded AC04/07/08 evidence, not whole parent acceptance. The original
 5edce5d native failure remains historical; selected source tests were skipped there.
 No native/full-source/scanner/browser/PDF/staging/App/merge/production acceptance is
-claimed by this step. F3 is next, followed by F4,F5,F6,R3c,R3d; only wholeAC02 is complete.
-F3registry, F4rights/earlylint, F5native integration, F6full platform delivery,
-R3ccontent/recovery and R3dfinal whole acceptance remain. PR146 stays Draft.
+claimed by this step. F3 follows below; only wholeAC02 is complete.
+
+## F3 completion — shared compatibility declarations, 25 October 2026
+
+Owner remains [issue122](https://github.com/oborskyivitalii/oborskyivitalii/issues/122)
+and Draft [PR146](https://github.com/oborskyivitalii/oborskyivitalii/pull/146).
+The approved small step consolidates repeated trusted declarations while retaining
+all historical identities and guard behavior. Prepared base is74913dc0053abadfcbb8e71bd666d647b1378a38,
+tree7fc2e5699ca78d263e67d0b02525738e0aa5396f. The sole production-source delta is
+tools/quality/color-motion-contract.cjs, SHA256
+9600fb22ad91c3d3af79fe4d7430ce9767eeed3053bbc34ef88e986c6adf3100.
+The live issue/PR records the exact uploaded commit; prepared checks are not native CI.
+
+### Change, invariants and test allocation
+
+The existing module now declares seven behavior/reader profiles,31shared JS-byte/
+behavior profiles and15plain/staging CSS pairs. Fifty historical family declarations
+retain explicit ID prefixes, base engines and only their admitted edition fingerprints.
+A fixed plain/staging/production expansion constructs the same139internal rows;
+absent editions stay absent. Admitted production CSS reuses its identical plain bytes,
+while production identity and edition verification remain separate.
+
+The module shrinks from1612lines/69,717bytes to957lines/43,281bytes. This reduces
+repeated maintenance; it is not a browser-speed claim. Every consumer function from
+`reviewedRuntime` onward is byte-identical, including selection, reader defaults,
+canonical/immutable byte checks, pacing and report guards. Returned nested objects
+remain fresh. There are no new exports, dependencies, external registries or validation
+frameworks. Rights classification/package code, tests, test membership, scanners,
+thresholds, execution budgets and authored/browser sources remain unchanged.
+
+CS01/04/05/08/10 apply to the existing trusted registry owner. Formatting affects
+the changed declarations only; the unchanged consumer tail proves no unrelated reflow.
+Actual pinned ESLint with `--max-warnings 0` and pinned formatting pass.
+
+| Risk / AC | Actual independent oracle or existing check | Observed result and limit |
+| --- | --- | --- |
+| Historical identity/data loss / AC04 | Isolated actual74913dc module versus current public API; independent Code/White-box declaration comparisons |139public records/selections and all50original family fields match, including absence semantics. Historical IDs/fingerprints remain unique;11unadmitted production IDs reject. |
+| Reader flags/defaults / AC04 | Both runtime fingerprints and base engines plus unknown identity |Root190engines×5methods=950equal queries; White-box75representative queries across seven policies independently agree. |
+| Shared mutable aliases / AC04 | Mutate returned files/variant/effects, query the same or sibling alias |Root139isolation probes and separate White-box/operator sibling probes pass; trusted shared declarations cannot be changed through returned records. |
+| Byte, identity, edition and rights refusal / AC04 | Existing18fixture cases; White-box42guard perturbations; operator28consumer scenarios |18/18,zero skips,4.639s; separate controlled negative/API scenarios pass. Missing licensed rights and licensed-byte relabelling still reject. No hosted/native claim. |
+| Source/output/style boundary / AC04/08 | build --check, previews --check, Basic, bounded style and AST guards |Generated public/preview/output-lock bytes remain current and unchanged. Basic5routes/16theme+archive/10flight passes; style143files and AST118files399edges pass. Existing deferred components remain the reviewed boundary. |
+
+The actual baseline/public snapshot SHA256 is
+c7fb50b2115c81985b1196f745ebe70400bbb1967a4cefc5f29af3d7e766de8c;
+temporary parity evidence is /tmp/issue122-f3-parity.json. The existing permanent
+tests/color-motion-contract.test.cjs route remains selected by registry changes in
+the existing PR-targeted/staging/production profiles. No permanent test merely
+restating the new data representation was added. These are bounded preservation
+oracles; they do not prove exhaustive branch or native coverage.
+
+### Retained failure — current-generation assertion still names R30
+
+The first local name selector used a negative lookahead that also matched the
+file container, so it ran all26module cases:25pass,1fail,zero skips in8.420s.
+The failure is the existing test at981, `reader-link runtime tuples reproduce the
+complete current plain, staging and production byte closure`: its literal
+`issue5-r30-print-plain` assertion at1006 conflicts with actual `issue122-r3-platform-plain`.
+An explicit positive selector then ran the intended18data/guard fixture cases above.
+That pass does not turn the full module green.
+
+The single failing case was separately rerun on the actual detached74913dc
+baseline worktree and failed identically in1.081s; tracked source was exact, with
+only two untracked dependency links used for execution. This is a preexisting
+integration mismatch, not a F3behavior regression. Its test body and memberships
+remain unchanged. Disposition F3-01: resolve current-generation oracle identity
+while preserving the three-edition byte/edition/navigation checks during already
+planned F5integration; no waiver, deletion, budget change or unchanged-source rerun
+campaign. Full selected-source acceptance remains explicitly open.
+
+### Four independent F3 executions and maintenance
+
+| Role | Separate execution | Actual completed source/final-delta result |
+| --- | --- | --- |
+| Requirements & Acceptance | /root/f3_requirements, preimplementation/representation/final |Accepts bounded F3; independently runs139record/selection/isolation checks and950reader queries,11absent-edition refusals, unchanged API/tail/lint. Confirms the baseline failure stays open for F5/F6 and cannot advance whole parent acceptance. |
+| Code Review | /root/f3_code, source/final delta |Own50family/139row/public comparisons,950queries,11absent editions and real lint/formatting pass. Shared declarations are proportional; no source blocker. Final metadata review identifies the stale remainder sentence described below. |
+| White-box QA | /root/f3_whitebox, source/final delta |Own field/absence/139row parity,75reader queries,42guard negatives,11absent editions and sibling isolation pass. Reads both failure logs and unchanged test/package/profile boundaries; no source blocker. |
+| Exploratory / Interaction QA | /root/f3_operator, charter/final delta |28controlled consumer scenarios pass; independently inspects rights/alias/edition refusals, baseline/current failure logs and final report limits. Browser/native/publication acceptance remains outside the charter. |
+
+The three final-delta reviewers identified one stale report remainder sentence
+that still listed F3 as pending. It was removed without changing source/tests;
+F4 is consistently next. The implementer reconciles these separate results without
+substituting self-review for their independent evidence.
+
+Deterministic maintenance: RI1755files/200directories is fresh; RI29/29 in8.366s,
+coupling20/20 in0.630s and17checks/17layers pass. Only existing review/MEMORY and
+derived agent context accompany the registry source. No generated rendition, output
+lock, catalog/schema or RI/CI policy change is required by this declaration refactor.
+
+F3 provides bounded AC04/07/08 step evidence; only whole parentAC02 is complete.
+F4 canonical mandatory-rights classification/clear early lint is next, then F5,F6,
+R3c,R3d. No native/full-source/scanner/browser/staging/App/merge/production acceptance
+is supplied by this data refactor. F1/F2 evidence remains bound to its original sources.
+PR146 stays Draft.
