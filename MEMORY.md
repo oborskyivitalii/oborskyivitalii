@@ -6,7 +6,7 @@ Dated continuity, not live authority. Last verified: **2026-10-25**.
 
 - Owner remains #122. R1/PR142, R2/PR143-144 and exact-runtime compatibility/PR145 are delivered; native receipts and timing evidence are in the live issue.
 - Protected main is bea2628; PR145 tested5f60821 and merge share the identical reviewed tree. Its Basic, sole full owner stage, genuine App, protected merge and actual postmerge passed.
-- PR146 at5edce5d/tree2d577482 preserves the approved54,000 correction. Native RI/owning pass; Basic40172407144 fails validator complexity34/25 before selected source tests. Preview40172407077 fails; Draft, no accepted platform.
+- PR146 source20bf4b60/tree93951cee completes F1local compatibility proof against unchangedmainbea2628:3artifacts/gates and2rights/packages pass; plain publication/missingrights reject. Fresh producer/client separation; Draft, no accepted platform. Earlier5ed native lint34/25 remains F2blocker.
 
 ## Decisions
 
@@ -18,7 +18,7 @@ Dated continuity, not live authority. Last verified: **2026-10-25**.
 
 ## Open work
 
-- Current review owner: review/issue-122/2026-10-25-r3-platform-integration.md. Four correction roles and actual R37 loader pass53,610/54,000. The maintainer approved the audited refactor in PR146, smallerF1–F6steps and status after each. F1client/provenance bridge is prepared; clean-current main-consumer proof and corrected-source roles remain. No rule waiver or extra prerequisite PR.
+- Current review owner: review/issue-122/2026-10-25-r3-platform-integration.md. Four correction roles and actual R37 loader pass53,610/54,000. The maintainer approved the audited refactor in PR146, smallerF1–F6steps and status after each. F1is complete at20bf4b60 with four actual final role/proof readbacks; receipt metadata does not relabel tested source. F2validator is next. No rule waiver or extra prerequisite PR.
 - Parent AC02 remains complete. Other parent ACs retain their whole original requirements. Actual independent content/recovery and final documentation/timing reconciliation follow accepted platformS.
 - Historic PR144 predates newS and cannot alone establish chronological newS→M→C. Do not invent a proof-only merge or manufacture content changes to exercise CI.
 

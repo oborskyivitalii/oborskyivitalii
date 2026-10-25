@@ -330,7 +330,7 @@ scanner/lint limits and execution budgets remain.
 
 | Step | Outcome | Current state |
 | --- | --- | --- |
-| F1 | Separate fresh producer provenance from a verified client descriptor; prove all three actual editions against unchanged main. | Prepared source; clean-source main-consumer proof pending. |
+| F1 | Separate fresh producer provenance from a verified client descriptor; prove all three actual editions against unchanged main. | Complete: clean-source local proof at20bf4b60; native/full delivery staysF5/F6. |
 | F2 | One cohesive print-group helper; unchanged validator/error behavior and25lint rule. | Pending. |
 | F3 | Consolidate repeated compatibility data while preserving139historical IDs/flags/editions/bytes. | Pending. |
 | F4 | Canonical mandatory-rights classification, same111unique IDs/anti-relabel guards; clear early real lint. | Pending. |
@@ -411,3 +411,120 @@ correction probes accepted independently. The first RI attempt before staging
 removed generated paths failed; its29tests had2errors, not acceptance. The catalog,
 index and generated views are reconciled before clean-source proof. Whole native
 source/scanners/hosted outcomes are reserved forF5/F6.
+
+### F1 completion receipt — exact unchanged-main consumer proof
+
+F1 is complete as a **local compatibility proof**, not native platform acceptance.
+Actual remote PR146 source20bf4b60ea1bfc8c45a2ccfc6d9f08f59e3146f6,
+tree93951cee3d0aba9975290d26fcf38709385e29bc, was checked out clean.
+The separately detached, clean trusted consumer is exact protectedmain
+bea2628263fd348779ee0f0a6d622401b0909fca/tree107fecde5f8a39537bd2c2d5f1a4959a94a821ae.
+The receipt-only metadata commit does not relabel these artifacts or checks.
+
+One fresh ordinary artifact was built at that remote source, converted by the
+unchanged Color builder and derived into staging/production. Candidate code
+created narrow package gates, source-bound rights records and two packages;
+unchanged-main code consumed them with artifact.verify, motion.select,
+package.sourceGate, publicationRights and package.verify. Plain additionally
+retains its expected publication refusal. All three missing-rights cases reject.
+No browser/full-source/native gate was fabricated: fullGate, productionEligible
+and deploymentAuthorized remain false in every package gate.
+
+The first local5dcf90 harness run failed because local.gate writes its report
+and returns undefined. Its harness also had a mismatched plain-refusal regex.
+Both harness assumptions were corrected; the final proof freshly rebuilt from
+remote20bf4b60 rather than relabeling local5dcf90 data. This was no production-code
+or guard relaxation. The proof JSON SHA256 is
+8081d0dd12444ed58f01ae0dd62e4dcb25174d3a1dd432bc6dc9039e14275f70.
+
+```json
+{
+  "schema": 1,
+  "kind": "local-unchanged-main-compatibility-proof",
+  "pass": true,
+  "sourceCommit": "20bf4b60ea1bfc8c45a2ccfc6d9f08f59e3146f6",
+  "sourceTree": "93951cee3d0aba9975290d26fcf38709385e29bc",
+  "trustedCommit": "bea2628263fd348779ee0f0a6d622401b0909fca",
+  "trustedTree": "107fecde5f8a39537bd2c2d5f1a4959a94a821ae",
+  "priorProducer": "0e3aee60ba2a7917f817c2959c10fc092f413caf9e6e6845a6761951303b5c56",
+  "producer": "09d109e03212ff0d5c4c43d5b7663f098f44ae686a0e8201b54f3f698021a73c",
+  "client": "2fe6a007782832aee3818c1a0b80e95a1fb548b11dca1551a3423f690e6dc014",
+  "rows": [
+    {
+      "edition": "plain",
+      "runtime": "issue122-r3-platform-plain",
+      "fingerprint": "ba98907322811d153fb4d67a1941bf847c6b505b15164943902774a95556d965",
+      "artifactDigest": "ad69686bbabffddc6ffc97d06edaab3c575ad5f0be93bd01b1e48eb2a5ca87ba",
+      "rightsDigest": null,
+      "packageDigest": null,
+      "artifactVerified": true,
+      "sourceGateVerified": true,
+      "missingRightsRejected": true,
+      "publicationPackageVerified": false,
+      "plainPublicationRejected": true,
+      "fullGate": false,
+      "productionEligible": false,
+      "deploymentAuthorized": false
+    },
+    {
+      "edition": "staging",
+      "runtime": "issue122-r3-platform-staging",
+      "fingerprint": "4040aee07b41e837fa0f8a95c7ecd0d263922097e62e9dbcbc07668729ab3de6",
+      "artifactDigest": "85fc4e7c54e7f82cbd998d5d6bbc9ec5e90a627e09d4334082b6ce3f3d86f997",
+      "rightsDigest": "731c698c21c495a7b20bdbec27e13e8193a81a2eac7591b32aeb5fc2bb4d703b",
+      "packageDigest": "b1d68cbc5886eac256536c0b5fcce59899f90f7322b9249f89ec391a1be44c2f",
+      "artifactVerified": true,
+      "sourceGateVerified": true,
+      "missingRightsRejected": true,
+      "publicationPackageVerified": true,
+      "plainPublicationRejected": false,
+      "fullGate": false,
+      "productionEligible": false,
+      "deploymentAuthorized": false
+    },
+    {
+      "edition": "production",
+      "runtime": "issue122-r3-platform-production",
+      "fingerprint": "10ea7815a570596cecc18432660293f87bf0e6a9a836d91495fd48dbc6a6ce14",
+      "artifactDigest": "6036266e67fce82c9928fefeb706fcec079f3d91fc5b4b4d92cfcf1cc08475e5",
+      "rightsDigest": "fe631560a449e55733df5bda98a2847d744c8bd31173d0219ddc87e3c4d96f64",
+      "packageDigest": "cbef6b303daf20e5b4d2c4744cb4dbbb47c0ed2e6d983a79f5f5ed5e7939de3b",
+      "artifactVerified": true,
+      "sourceGateVerified": true,
+      "missingRightsRejected": true,
+      "publicationPackageVerified": true,
+      "plainPublicationRejected": false,
+      "fullGate": false,
+      "productionEligible": false,
+      "deploymentAuthorized": false
+    }
+  ],
+  "fullNativeAcceptance": false,
+  "deployed": false
+}
+```
+
+All four distinct roles completed final actual-source/proof review:
+
+| Role | Final independent result on20bf4b60/tree93951cee |
+| --- | --- |
+| /root/ceiling_requirements | ACCEPTED. Read actual proof/artifacts/rights/packages and independently re-executed unchanged-main consumers for3editions/2packages. Source/gate/scope limits preserved; originalACs unchanged. |
+| /root/ceiling_code | ACCEPTED. Authenticated clean candidate/main trees and actual consumer implementations; source/test hashes match corrected review; all13unaffected producer objects remain exact; no unresolved code/evidence blocker. |
+| /root/ceiling_whitebox | ACCEPTED. Original fault corrections retained; actual source/gate/rights/physical package consumption re-executed independently; no false full/native authority. |
+| /root/ceiling_operator | ACCEPTED. Independently consumed all3fresh remote-head artifacts and2publication packages; clean source/tree/generation-lock identities, fresh rights and exact runtime tuples verified. |
+
+Final bounded results: actual producer/client plus three-edition cases2/2;
+shared-HTML cohesion8/8; broader content-release/baseline/cohesion32/32prepared
+checks with affected correction readback; Basic five routes/16theme+archive/10flight;
+pinned touched-JS ESLint0errors/0warnings; bounded style143files; AST118files/398edges;
+fresh RI1755files/200directories, RI29/29 and coupling20/20/17checks/17layers.
+The initial RI29 run with2errors and stale-output preparation failures remain
+failed history; corrected index/catalog/owner generation passed. These checks
+do not claim full selected-source/scanner or native platform acceptance.
+
+Only tools/site changes among the14historically frozen producer objects. R37
+source SHA2568c788866896cf28ecc4dc6da8bbdcdc3c8fc76a561b485596fd0f467e2a04d71
+is unchanged; all ordinary article selections remain empty. F2 is next: one
+cohesive print-group helper, unchanged checks and25complexity threshold.
+F3registry, F4rights/earlylint, F5native integration, F6full platform delivery,
+R3ccontent/recovery and R3dfinal whole acceptance remain. PR146 stays Draft.
