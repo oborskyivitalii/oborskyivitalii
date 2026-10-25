@@ -123,6 +123,10 @@ then the remaining selected files in lexical order. Selection, assertions, nativ
 TAP/accounting and the existing `Math.min(4, availableParallelism())` worker
 ceiling remain. Explicit abort handling
 reaps owned test children after SIGTERM/SIGINT before the report wrapper exits.
+Bounded stderr timing diagnostics record capacity and at most one dispatch and
+completion per selected file. Wrapper timings include process overhead; they
+are observations, not CPU time or test coverage. Canonical TAP and complete
+zero-skip accounting remain the sole source-test acceptance evidence.
 Prepublication allows that reporting wrapper 30 additional seconds for startup,
 owned child cleanup and report persistence. Other guard commands retain their
 180-second limit. An inner timeout remains a failed check; the extra wrapper

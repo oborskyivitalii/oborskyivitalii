@@ -2451,7 +2451,15 @@ test('all direct route flights paint only their journey rooms through the last t
               });
             },
           });
-        p.settle();
+        p.frame(60);
+        assert.equal(p.draws(), 1, 'the initial route has actually painted');
+        assert.equal(p.scene.dataset.ready, 'true');
+        assert.equal(p.scene.dataset.travel, 'settled');
+        assert.deepEqual(
+          JSON.parse(p.trace()),
+          model.routePose(from, model.poses[model.initialPoses[from]])
+        );
+        assert.equal(p.pending.size, 1, 'the existing ambient clock is ready for the flight');
         paints.length = 0;
         p.window.SiteScene.navigate(to);
         for (let frame = 0; frame < 40 && p.scene.dataset.travel !== 'settled'; frame++) {

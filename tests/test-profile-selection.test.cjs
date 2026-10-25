@@ -1530,6 +1530,86 @@ test('source scheduling starts measured long files early without losing selected
   );
 });
 
+test('source timing diagnoses only selected file wrappers without counting nested test names', (t) => {
+  const f = fixture(t);
+  const files = ['tests/ordinary-a.test.cjs', 'tests/publishing.test.cjs'];
+  const wrappers = path.join(f.directory, 'wrappers.jsonl');
+  for (const [index, file] of files.entries())
+    f.write(
+      file,
+      "const test = require('node:test'), assert = require('node:assert/strict');\n" +
+        "test('selected container " +
+        index +
+        "', async t => { await t.test(" +
+        JSON.stringify(file) +
+        ', () => assert.equal(1 + 1, 2)); });\n'
+    );
+  f.write(
+    'run-timing.cjs',
+    "const fs = require('node:fs');\nrequire(" +
+      JSON.stringify(path.join(root, 'tools/quality/source-test-worker.cjs')) +
+      ').runFiles(' +
+      JSON.stringify(files) +
+      ', {parallelism:1}).on("test:complete", result => {\n' +
+      'if (result.nesting === 0 && ' +
+      JSON.stringify(files) +
+      '.includes(result.name)) fs.appendFileSync(' +
+      JSON.stringify(wrappers) +
+      ', JSON.stringify({file:result.name, wrapperDurationMs:result.details.duration_ms, wrapperPassed:result.details.passed}) + "\\n");\n' +
+      '});\n'
+  );
+  const env = { ...process.env };
+  delete env.NODE_TEST_CONTEXT;
+  const child = cp.spawnSync(process.execPath, [path.join(f.directory, 'run-timing.cjs')], {
+    cwd: f.directory,
+    env,
+    encoding: 'utf8',
+    timeout: 10000,
+  });
+  assert.equal(child.status, 0, child.stderr || child.stdout);
+  const [capacity, ...events] = child.stderr.trim().split('\n').map(JSON.parse);
+  assert.deepEqual(capacity, {
+    kind: 'source-test-timing',
+    event: 'capacity',
+    node: process.version,
+    availableParallelism: os.availableParallelism(),
+    configuredParallelism: 1,
+    concurrency: 1,
+    files: files.length,
+  });
+  assert.deepEqual(
+    events.map(({ event, file }) => [event, file]),
+    [
+      ['dequeue', files[1]],
+      ['complete', files[1]],
+      ['dequeue', files[0]],
+      ['complete', files[0]],
+    ]
+  );
+  for (const event of events) {
+    assert.equal(event.kind, 'source-test-timing');
+    assert.ok(Number.isFinite(event.elapsedMs) && event.elapsedMs >= 0);
+    if (event.event === 'complete') {
+      assert.ok(Number.isFinite(event.wrapperDurationMs) && event.wrapperDurationMs >= 0);
+      assert.equal(event.wrapperPassed, true);
+    }
+  }
+  assert.deepEqual(
+    events
+      .filter(({ event }) => event === 'complete')
+      .map(({ file, wrapperDurationMs, wrapperPassed }) => ({
+        file,
+        wrapperDurationMs,
+        wrapperPassed,
+      })),
+    fs.readFileSync(wrappers, 'utf8').trim().split('\n').map(JSON.parse)
+  );
+  assert.equal(
+    runner.accounting(child.stdout, { modules: files, root: f.directory }).passed,
+    files.length * 2
+  );
+});
+
 test('source scheduling uses configured worker capacity without exceeding its ceiling', (t) => {
   const f = fixture(t);
   const files = Array.from({ length: 6 }, (_, index) => 'tests/slot-' + index + '.test.cjs');

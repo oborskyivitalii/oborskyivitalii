@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "c51a1939ca741f2823142b42770e81fcde1a621c39d21ae5f1de4c0552ad0881",
+    "digest": "b154c9468957b273ad06ddae6325fd99dff09940909440d8d7a5699394c15669",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -201,7 +201,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "e3bdf3cbb92adb661acd69e79efcdd9d9305ecfbc54ce323668b6d79e46e784e"
+        "sha256": "7f78217852588dc006d5103f44f357ef13f1e74e0a65191565e6d5edbfdc2a45"
       },
       {
         "path": ".github/workflows/change-admission.yml",
@@ -346,7 +346,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "fc442fec68e6f909956f38b96c409abd70cd6a2b985582ce3569c00ca5035f5b"
+        "sha256": "314b1f803c16b2e66241c30bd7bd2a96608bbe739eea4b6fb2b58b8ab4df3fad"
       },
       {
         "path": "NOTICE.md",
@@ -1000,7 +1000,7 @@
       {
         "path": "review/issue-122/2026-10-25-r3-platform-integration.md",
         "identity_mode": "content",
-        "sha256": "4435c3bb8b4c42847cbe9c10ae80939fcc31fefc608624405454b619310208d0"
+        "sha256": "38a69db346c82ecc513a4ecd9097f48f0a2d0956bbbfceaf6e0f6e91a599f16d"
       },
       {
         "path": "review/issue-126/2026-10-23-announcement-review.md",
@@ -7300,7 +7300,7 @@
       {
         "path": "tests/executive.test.cjs",
         "identity_mode": "content",
-        "sha256": "44937d76d107ad1d07765910325054384f865268455023d96d6e59e85cc79b42"
+        "sha256": "ea2a415afdd2678da7699652d25c931ccb742a936ad66165a2e95a76b0289e21"
       },
       {
         "path": "tests/fixtures/article-flight.cjs",
@@ -7550,7 +7550,7 @@
       {
         "path": "tests/space.test.cjs",
         "identity_mode": "content",
-        "sha256": "1c02447353ccf5e5c988f6a97bb593abf62b41fa356b13a88453387f89890a58"
+        "sha256": "fd46578e05c58a1c63b75a8b3d1d893057ec676cce116f0c95a0c58d4858a66f"
       },
       {
         "path": "tests/staging-gate.test.cjs",
@@ -7580,7 +7580,7 @@
       {
         "path": "tests/test-profile-selection.test.cjs",
         "identity_mode": "content",
-        "sha256": "b92d62a00c8fde16eeb33869200e755390af551a2fc4cb4aaca6bafc2505bdf9"
+        "sha256": "786056b312c8aa03e27d53ec8d661ff01e64b3cc27c0fe605aeaf0234018f9ab"
       },
       {
         "path": "tests/test_code_style.py",
@@ -7975,7 +7975,7 @@
       {
         "path": "tools/quality/README.md",
         "identity_mode": "content",
-        "sha256": "c71f4f6f742199108419e3c2a2b7863b4a604336b4bbe710620ea891521f411b"
+        "sha256": "76f8994b7c5b1d15db864f48823b21ce8fcd85a5886b6fc757ed796f772355c8"
       },
       {
         "path": "tools/quality/advisory-exceptions.json",
@@ -8395,7 +8395,7 @@
       {
         "path": "tools/quality/source-test-worker.cjs",
         "identity_mode": "content",
-        "sha256": "53f27267e414bcdb511e20dda730b01e1632369cfa896074519df39fe92ade95"
+        "sha256": "4023e7c4c64353662d5c65fd985ef1852c171afbe485043c7db41935ae571e01"
       },
       {
         "path": "tools/quality/source-tests.cjs",

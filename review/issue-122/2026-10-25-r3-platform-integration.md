@@ -801,7 +801,7 @@ its parsed content was identical and the original canonical bytes were restored.
 
 The cleanbb1f76ca929b36d541c17709f32d32c6a6d8e61b source checkpoint passes
 Basic5routes/16theme+archive/10flight in4.417s; permanent Python128/128 in31.662s;
-format626files; bounded style143files; AST118files398edges; generated/previews/
+format526files; bounded style143files; AST118files398edges; generated/previews/
 bundle freshness; five owning mechanical checks and RI/coupling freshness.
 These are bounded local receipts, not final-head/native acceptance. Advisory
 feeds pass with zero findings and all91 pinned Python dependencies verified.
@@ -985,3 +985,99 @@ order, four overlapping slots and isolated failure accounting. No role claims
 a native speedup, complete full-source pass or completed F5. The final source
 and deterministic metadata may now be uploaded while Draft to request fresh
 native verification through the existing Ready event.
+
+### F5 second native result — performance remains open
+
+Uploaded9a1ec67f/tree7ca262bf exactly matches reviewed local42efde9 tree.
+The second native Basic run40207687553 again failed the original180000ms source
+limit:502 emitted top-level passes, no emitted not-ok and no final accounting.
+Its original report binds clean source before/after to that uploaded head;
+stdout127568bytes and stderr0 remain far below16MiB. Artifact12604037447 retains
+the original JSON/TAP/stderr. Fewer visible cases after reordering cannot prove
+less coverage or slower execution, because Node buffers output by selected file.
+The three-priority hypothesis did not achieve the required complete result.
+There is no unchanged retry or full-source pass claim; PR146 returned to Draft.
+
+At the same source native navigation40207687510, owning40207687525 and routing
+observation40207687526 pass. Preview40207687582 build, publish and hosted runtime/
+revision/two-width smoke all pass, including the formerly failing historical
+baseline step. Its separate Staging admission job correctly remains failed until
+the future F6 owner stage; it is not replaced by preview smoke or marked passed.
+
+The actual maintained formatter receipt counts526files (280JS,9CSS,53HTML,
+42Python,118JSON,24YAML). The earlier626 was a transcription error corrected
+above; no formatter scope, result or source allocation changed.
+
+A narrow source-bound diagnostic executes the original metadata-reconciliation
+test callback through module-local dependency interception, without changing
+process-global exports or repository sources. At9a1ec67f it observes529 primary
+Python helper calls/35.090s inside that helper in36.194s total;307calls/20.872s
+come from parsing evolving intermediate documents between amendments. These
+are local diagnostic counts/timings, not native critical-path evidence or a new
+acceptance pass. Preserve the primary parser, exact content/metadata refusal
+and finite runtime/isolation contracts while reviewing one useful simplification;
+no additional code change or reduced test obligation is authorized by this
+diagnostic alone. F5 and the full remaining F6/R3c/R3d plan remain open.
+
+### F5 bounded test factorization and file observations
+
+Requirements independently confirmed that exact five-page content preservation
+and metadata refusal do not require35 duplicate full amendment-chain replays.
+The same existing metadata test retains all seven mutated inputs on all five
+pages at restoreStructuredMetadata, including proof each mutation changes bytes.
+Every Writing mutation still executes its original early full-path refusal.
+All five positive full paths and the other compact/numeric/owner/duplicate/raw
+HTML tests remain. Four non-Writing full paths retain distinct integrations:
+
+| Mutation partition | Direct boundary | Additional complete-chain integration |
+| --- | --- | --- |
+| Foreign schema, changed language | All five pages | Both Writing refusals |
+| Unknown field | All five pages | Home and Writing |
+| Malformed JSON | All five pages | Research and Writing |
+| Duplicate type | All five pages | Talks and Writing |
+| Property order | All five pages | Credits and Writing |
+| Metadata spelling | All five pages | Writing and unchanged compact-spelling tests |
+
+The primary parser and every evolving-document validation remain byte-exact.
+The same narrowly observed callback now makes193 interpreter/helper calls,
+compared with529 before factorization. Its diagnostic explicitly identifies
+the prepared test bytes against base8f05dc6, not a clean-base acceptance run.
+The counts establish336 fewer interpreter starts; elapsed values from different
+contention/profile conditions do not establish a native speedup.
+
+Only the expensive direct-flight test replaces its twelve-frame warmup with one
+real painted frame, then asserts actual draw count, ready/settled state, exact
+source camera pose and the single existing ambient RAF. This deliberately begins
+at the first ready ambient phase rather than after660ms of warm animation. All
+40 fresh width/from/to visits, every80ms full-flight frame and cache/late-transit/
+intermediate-room/destination assertions remain. Shared settle and all other
+quality/cadence/phase/isolation/finite-argument tests are byte-exact. The changed
+case passes1/1 without skips; a separate solo process records13.811s, distinct
+from the earlier contended27.893s and prepatch profiled17.977s observations.
+
+The existing worker adds a private, optional stderr observation: capacity once,
+then at most one dequeue/completion per validated selected file. The2N+1 bound
+excludes forwarded inner cases, including names identical to selected files.
+OS capacity, configured parallelism and effective ceiling are separate fields;
+monotonic elapsed and native file-wrapper duration include process overhead and
+are not CPU time or body-start timestamps. Only canonical TAP/complete zero-skip
+accounting establishes pass. Synchronous diagnostic write failures are isolated;
+all existing run/summary/error/abort/exit handling and16MiB/180s bounds remain.
+
+Root metadata6/6 and scheduler/observation8/8 pass without skips. A QA fault probe
+found the first nested-name regression could accept a wrong inner duration even
+with correct record count/order; the production filter was already correct.
+The corrected test independently records outer nesting-zero wrapper events and
+compares exact file/duration/status, passing1/1. Removing only the entryFile guard
+now fails that exact oracle. Separate actual tiny passing/failing workers retain
+their original exit/accounting even when every diagnostic write throws or writes
+nothing. Four actual completed Requirements/Code/White-box/Operator follow-ups
+accept the final five-owner correction, including this corrected oracle. These
+bounded results support one substantively changed native request; both prior
+native failures remain failed, and F5 still requires complete native79 accounting.
+
+The first local RI preflight reported three stale-view errors because its view
+was built before the changed coupling map was refreshed/formatted. This guard
+correctly rejects the prior map hash. Rebuild the derived view after the final
+canonical map, then rerun the same29 RI cases; preserve the original failed log.
+No source classifier, RI rule or test expectation changes for this correction.
