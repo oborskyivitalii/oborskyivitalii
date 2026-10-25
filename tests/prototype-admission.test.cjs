@@ -347,9 +347,11 @@ test('Draft jobs cannot impersonate admission; issue5 real-article preview alone
     smoke,
     /Minimal two-width hosted rendition smoke\n\s+if: needs.target.outputs.prototype != 'true' \|\| needs.target.outputs.number == '79'\n/
   );
-  assert.match(
-    yaml,
-    /SITE_ARTICLE_PREVIEW:.*prototype == 'true'.*number == '79'.*'true'.*prototype != 'true'.*'true'.*'false'/
+  const articlePreview = [...yaml.matchAll(/^ {6}SITE_ARTICLE_PREVIEW: (.+)$/gm)];
+  assert.equal(articlePreview.length, 1);
+  assert.equal(
+    articlePreview[0][1],
+    "${{ needs.target.outputs.prototype == 'true' && needs.target.outputs.number == '79' && 'true' || 'false' }}"
   );
   assert.doesNotMatch(
     yaml,

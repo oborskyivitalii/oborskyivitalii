@@ -1478,6 +1478,58 @@ test('optional successful source reports keep the default API and CLI result sha
   assert.equal(Object.hasOwn(JSON.parse(child.stdout), 'files'), false);
 });
 
+test('source scheduling starts measured long files early without losing selected assertions', (t) => {
+  const f = fixture(t);
+  const files = [
+    'tests/ordinary-z.test.cjs',
+    'tests/site-articles.test.cjs',
+    'tests/quality-sources.test.cjs',
+    'tests/publishing.test.cjs',
+    'tests/ordinary-a.test.cjs',
+  ];
+  for (const [index, file] of files.entries())
+    f.write(
+      file,
+      "require('node:test')('selected assertion " +
+        index +
+        "', () => require('node:assert/strict').equal(1 + 1, 2));\n"
+    );
+  const log = path.join(f.directory, 'ordered-files.jsonl');
+  f.write(
+    'run-order.cjs',
+    "const fs = require('node:fs'), path = require('node:path');\n" +
+      'require(' +
+      JSON.stringify(path.join(root, 'tools/quality/source-test-worker.cjs')) +
+      ').runFiles(' +
+      JSON.stringify(files) +
+      ', {parallelism:1}).on("test:summary", result => {\n' +
+      'if (result.file) fs.appendFileSync(' +
+      JSON.stringify(log) +
+      ', JSON.stringify(path.relative(process.cwd(), result.file).split(path.sep).join("/")) + "\\n");\n' +
+      '});\n'
+  );
+  const env = { ...process.env };
+  delete env.NODE_TEST_CONTEXT;
+  const child = cp.spawnSync(process.execPath, [path.join(f.directory, 'run-order.cjs')], {
+    cwd: f.directory,
+    env,
+    encoding: 'utf8',
+    timeout: 10000,
+  });
+  assert.equal(child.status, 0, child.stderr || child.stdout);
+  assert.deepEqual(fs.readFileSync(log, 'utf8').trim().split('\n').map(JSON.parse), [
+    'tests/publishing.test.cjs',
+    'tests/quality-sources.test.cjs',
+    'tests/site-articles.test.cjs',
+    'tests/ordinary-a.test.cjs',
+    'tests/ordinary-z.test.cjs',
+  ]);
+  assert.equal(
+    runner.accounting(child.stdout, { modules: files, root: f.directory }).passed,
+    files.length
+  );
+});
+
 test('source scheduling uses configured worker capacity without exceeding its ceiling', (t) => {
   const f = fixture(t);
   const files = Array.from({ length: 6 }, (_, index) => 'tests/slot-' + index + '.test.cjs');

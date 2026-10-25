@@ -916,3 +916,72 @@ The source, rule, profile, threshold, time/output/worker and authority limits ab
 remain. These local receipts support the existing upload/Ready/native route;
 F5 still requires complete current-head native accounting, and F6/R3c/R3d and
 the remaining whole parent ACs remain open.
+
+### F5 first native failure and bounded correction
+
+The first Ready request used uploaded source5b3618bd/treec5d7a70b; full immutable
+identities remain in the original native source report. Basic run40203674695
+failed its original180000ms source limit after803 emitted top-level passes and
+one emitted failure, without final accounting. These partial outcomes do not
+establish complete79-module coverage. The sole emitted failure was an obsolete
+workflow-expression oracle. Navigation/RI run40203674708 and owning acceptance
+run40203674671 passed. Preview build run40203674815 failed because optional
+historical baseline selection read an ancestor without site/rights.json.
+PR146 returned to Draft; no staging/merge admission was requested.
+
+The bounded selector correction first validates current HEAD, protected main and
+base freshness, then classifies protected-base-to-candidate outside any catch.
+A platform/control/mixed delta returns ordinary platform before historical APIs.
+Only optional per-PR historical selection moves inside its existing catch;
+missing old inputs produce an observation and ordinary fallback. Current invalid
+inputs stay fatal. Complete S-to-C history, genuine App, artifact/generation
+authentication, cleanup and source leases remain. The prototype test now asserts
+the exact existing Draft79-only article-preview expression; Ready smoke and
+admission negatives remain. Workflow policy itself is unchanged.
+
+Actual real-Git regressions cover zero historical APIs for platform changes;
+wrong HEAD, unprotected/moved main and missing current rights; and eligible
+current content with an incompatible historical ancestor, without reuse or
+download. Root content4/4 and prototype1/1 pass with zero skips. All four distinct
+roles independently accepted this completed correction. Code review injected
+the original selector locally and both new regressions failed for their intended
+faults. Basic, bounded style, touched pinned ESLint and Prettier pass. The source
+correction is committed atee4ca54; actual source/test bytes are retained there.
+
+A narrow diagnostic of the22 modules behind the native buffered frontier,
+using the existing isolated worker/cap4 and local Node24.22.1, completed in62.637s:
+344 tests,343pass/1fail, zero skips. It remains a failed diagnostic. The one failure
+was the existing repository-lint test running with uncommitted changes: the
+canonical clean guard correctly rejects before creating its scanner report.
+After committing the source, that same case passed1/1 in0.502s. No guard/test fix
+or waiver was needed. The previously unreported publishing adaptation case also
+passes alone1/1 in3.243s; ordered native TAP alone did not establish a hang.
+
+Actual local per-file summary events measured publishing43.289s/17pass,
+quality-sources33.656s/34pass plus the dirty-precondition failure, and
+site-articles31.630s/18pass. They were native selected positions58,59 and70;
+these positions are not measured native start times. Requirements approved
+adding only these three measured long files after release-controller and before
+pages-migration in the existing priority list. All ten prior priorities retain
+relative order, with the same lexical remainder. This is a scheduling hypothesis,
+not a measured native speedup or completed acceptance result.
+
+One behavioral regression records actual serial-worker per-file summaries,
+verifies all five selected fixtures in order and requires complete zero-skip
+accounting. Existing four-worker overlap/ceiling, failure and SIGTERM/SIGINT
+coverage remain. Root scheduling7/7 passes in4.870s, including both signal cases;
+touched pinned ESLint and Prettier pass. README now describes the actual existing
+Math.min(4, availableParallelism()) ceiling rather than its stale allocation.
+One180s/16MiB source process and210s reporting wrapper, selected membership,
+isolation and all failure propagation remain unchanged. Fresh exact-head native
+Basic/source/RI/owning/preview is still required; F5 and remaining whole ACs stay
+open until that evidence is reconciled.
+
+All four actual scheduling follow-ups completed on these same three changed
+owners: Requirements passes the bounded hypothesis/unchanged obligations;
+Code independently passes the real worker case1/1; White-box passes3/3 and
+temporary old-order/dropped-module fault probes; Operator passes3/3 covering
+order, four overlapping slots and isolated failure accounting. No role claims
+a native speedup, complete full-source pass or completed F5. The final source
+and deterministic metadata may now be uploaded while Draft to request fresh
+native verification through the existing Ready event.

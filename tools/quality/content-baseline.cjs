@@ -495,6 +495,14 @@ async function selectAccepted({
   assert.equal(main.protected, true);
   base ||= main.commit.sha;
   assert.equal(base, main.commit.sha, 'content baseline protected main moved');
+  const current = require('./delivery-observation.cjs').selection(root, base, candidate);
+  if (!current.contentOnly)
+    return {
+      mode: 'platform',
+      lane: 'platform',
+      reason: 'Current protected-base selection requires ordinary platform checks',
+      observations: [],
+    };
   const expectedCandidates = require('./artifact.cjs').previewSelection(undefined, root);
   const context = { repo };
   const { data: prs } = await github.rest.pulls.list({
@@ -516,20 +524,20 @@ async function selectAccepted({
       }).status !== 0
     )
       continue;
-    const selection = require('./delivery-observation.cjs').selection(
-      root,
-      pr.merge_commit_sha,
-      candidate
-    );
-    if (!selection.contentOnly) {
-      observations.push({
-        pr: pr.number,
-        reason: 'Trusted-base content selection requires ordinary platform checks',
-      });
-      continue;
-    }
     let directory;
     try {
+      const selection = require('./delivery-observation.cjs').selection(
+        root,
+        pr.merge_commit_sha,
+        candidate
+      );
+      if (!selection.contentOnly) {
+        observations.push({
+          pr: pr.number,
+          reason: 'Trusted-base content selection requires ordinary platform checks',
+        });
+        continue;
+      }
       const history = await authenticateHistory(
         github,
         repo,

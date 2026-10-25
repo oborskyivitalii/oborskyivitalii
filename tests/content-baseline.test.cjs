@@ -630,7 +630,7 @@ definition = {'schema_version': 1, 'review': {'issue': 'controlled fixture'},
   assert.ok(plan.classification.derived.some((file) => file.startsWith('docs/snapshots/')));
 });
 
-function historyFixture(t) {
+function historyFixture(t, { legacyAncestor = false } = {}) {
   const directory = temporary(t);
   const git = (...args) =>
     cp
@@ -654,6 +654,14 @@ function historyFixture(t) {
   git('config', 'user.email', 'fixture@example.invalid');
   for (const file of require('../tools/quality/delivery-observation.cjs').policyFiles)
     write(file, fs.readFileSync(path.join(root, file)));
+  for (const file of ['site/article-preview.json', 'site/article-template-preview.json'])
+    write(file, '{"schema":1,"candidates":[]}\n');
+  let legacy;
+  if (legacyAncestor) {
+    fs.rmSync(path.join(directory, 'site/rights.json'));
+    legacy = commit();
+    write('site/rights.json', fs.readFileSync(path.join(root, 'site/rights.json')));
+  }
   write('site/content/events.json', '{"schema":1,"groups":[]}\n');
   const accepted = commit();
   git('checkout', '-qb', 'repository');
@@ -717,6 +725,7 @@ function historyFixture(t) {
     git,
     write,
     commit,
+    legacy,
     accepted,
     tested,
     main,
@@ -727,6 +736,86 @@ function historyFixture(t) {
     github,
   };
 }
+
+test('accepted baseline uses the full platform route before history and keeps current failures fatal', async (t) => {
+  const f = historyFixture(t);
+  f.write('site/engine/styles.css', '/* controlled platform change */\n');
+  const candidate = f.commit();
+  const main = { protected: true, commit: { sha: f.main } };
+  let queries = 0;
+  const historical = async () => {
+    queries++;
+    throw Error('Unexpected optional history query');
+  };
+  const github = {
+    rest: {
+      repos: { getBranch: async () => ({ data: main }) },
+      pulls: { list: historical, get: historical },
+      actions: { downloadArtifact: historical, getWorkflowRun: historical },
+      checks: { listForRef: historical },
+    },
+  };
+  const input = { github, repo: f.repo, root: f.directory, base: f.main, candidate };
+  assert.deepEqual(await baseline.selectAccepted(input), {
+    mode: 'platform',
+    lane: 'platform',
+    reason: 'Current protected-base selection requires ordinary platform checks',
+    observations: [],
+  });
+  await assert.rejects(baseline.selectAccepted({ ...input, candidate: f.main }));
+  main.protected = false;
+  await assert.rejects(baseline.selectAccepted(input));
+  main.protected = true;
+  main.commit.sha = f.accepted;
+  await assert.rejects(baseline.selectAccepted(input), /protected main moved/);
+  main.commit.sha = f.main;
+  fs.rmSync(path.join(f.directory, 'site/rights.json'));
+  await assert.rejects(
+    baseline.selectAccepted({ ...input, candidate: f.commit() }),
+    /regular input required: site\/rights\.json/
+  );
+  assert.equal(queries, 0);
+});
+
+test('eligible current content observes an incompatible ancestral baseline and falls back without reuse', async (t) => {
+  const f = historyFixture(t, { legacyAncestor: true });
+  const pr = { ...f.pr, number: 120, merge_commit_sha: f.legacy };
+  const queries = [];
+  const github = {
+    rest: {
+      repos: {
+        getBranch: async () => ({ data: { protected: true, commit: { sha: f.main } } }),
+      },
+      pulls: {
+        list: async () => {
+          queries.push('list');
+          return { data: [pr] };
+        },
+        get: async ({ pull_number }) => {
+          queries.push(pull_number);
+          return { data: pr };
+        },
+      },
+      actions: {
+        downloadArtifact: async () => assert.fail('Incompatible history cannot download artifacts'),
+      },
+    },
+  };
+  const result = await baseline.selectAccepted({
+    github,
+    repo: f.repo,
+    root: f.directory,
+    base: f.main,
+    candidate: f.candidate,
+  });
+  assert.deepEqual(queries, ['list', pr.number]);
+  assert.deepEqual(result, {
+    mode: 'platform',
+    lane: 'platform',
+    reason: 'No compatible accepted staging generation; ordinary platform build required',
+    observations: [{ pr: pr.number, reason: 'regular input required: site/rights.json' }],
+  });
+});
 
 test('accepted content retains S and authenticates the complete repository M before C', async (t) => {
   const f = historyFixture(t);
