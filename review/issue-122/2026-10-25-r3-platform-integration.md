@@ -1119,3 +1119,44 @@ completed correction roles accept, and Code/White-box/Operator independently run
 both partitions and fault probes. Pinned touched ESLint/Prettier pass. This
 supports fresh corrected-source native verification; no budget,79module set,
 parser, flight matrix, auth rule or prior failed result is changed.
+
+### F5 completed source phase — verified269ef3a
+
+F5 is complete for actual clean source269ef3a/tree07875713. Native Basic
+run40212736835 passes the same79 selected modules:1156/1156 tests, zero failures,
+skips, cancellations or todos, in148649.484593ms under180000ms. Process status0,
+signal/error null; original16MiB bounds remain. Source before and after resolve
+to that same immutable commit/tree, with sourceDirty=false. Artifact12606630749
+retains byte-verified original JSON/TAP/stderr; no later receipt head substitutes
+for its source. Both portable observation partitions, metadata and40-flight
+cases pass natively. The159 advisory rows cover79 unique file pairs at actual
+OS/configured/effective capacity4/4/4; TAP/accounting remains the pass authority.
+
+| Actual native evidence at269ef3a | Result |
+| --- | --- |
+| Basic/source40212736835 | PASS; full lint/format/architecture, five-route Basic and79-module source accounting. |
+| Navigation/RI40212736750 | PASS. |
+| Owning acceptance40212736805 | PASS in its mechanical scope; whole-issue closure remains false. |
+| Routing observation40212736749 | PASS. |
+| Preview40212736808 build121227433274, publish121227648690, smoke121227804265 | Each job PASS, including exact hosted revision/runtime and two widths. |
+| Same preview's Staging admission121227354233 | FAILURE: no completed F6 owner-stage proof. The workflow aggregate remains failed; it is not all-PR-checks-green or delivery acceptance. |
+
+Four actual distinct final readbacks independently verify the physical native
+archive/member bytes, clean source binding, full raw accounting and their reviewed
+source hashes. Requirements accepts the bounded code/native phase only; Code
+checks all13 reviewed source/test/control hashes; White-box confirms both native
+portable cases and exact selected-module set; Operator verifies all79 observed
+file pairs without treating them as coverage. No reviewer reran a full campaign.
+The two local partial runs, two native timeouts and complete-but-failed2db run
+remain retained with their original dispositions. Full scanner receipts remain
+bound to their original fedba source; fresh full owner-stage scanners belong toF6.
+
+The following receipt-only owner/MEMORY/RI commit is a different source. It inherits
+no269 test result, artifact or admission. Requirements independently confirmed
+the finite handoff: return PR146 to Draft, record these fixed source-bound facts,
+validate current receipt metadata/policy, then use actual fresh current-head
+checks, source/artifact leases, one owner stage and genuine App forF6. Recording
+the receipt does not require a recursive79-module/preview campaign and cannot
+waive any future delivery gate. No whole parent AC is newly checked; onlyAC02
+remains complete. Remaining plan isF6 platform delivery, R3c meaningful independent
+content/recovery, thenR3d whole-acceptance/contracts/timing reconciliation.
