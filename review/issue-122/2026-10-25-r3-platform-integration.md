@@ -1638,3 +1638,74 @@ guide input hashes and aggregate digest refreshed. Final clean-source owning
 policy and uploaded identity are recorded in the issue outcome. No new suite,
 workflow, profile, membership, budget, source test or production code is changed.
 AC04/07/08 gain bounded evidence; only whole parentAC02 remains complete.
+
+### F6 source deadline amendment — 25 October 2026
+
+The maintainer approved reconsidering the global source deadline to finish#122.
+[Dated decision6403603405](https://github.com/oborskyivitalii/oborskyivitalii/issues/122#issuecomment-6403603405)
+supersedes the earlier180s freeze only for complete source execution: one fixed
+300s child deadline plus the existing30s reporting grace, hence330s outer source
+wrapper. The existing single owner executionLimits supplies actual spawn options,
+reports and the derived wrapper. No timer is renewed per module and no CPU model
+is filtered. All original180s receipts above remain failed at their exact sources.
+
+Sizing uses retained complete passes142.025s/148.649s and observed broad slower
+wrappers up to approximately1.83times:148.649×1.83≈272s, with about10%additional
+headroom to300s. This heuristic is not a full-suite bound, speedup claim, promised
+completion time or soleCPUcausality. It amends an operational CI deadline; browser
+and product performance contracts remain. The Basic and prepublication build jobs
+retain their existing10-minute ceilings, which still require actual verification.
+
+Scope is the canonical source constant, active deadline oracles in the three
+existing profile/publication/prepublication suites, current two contract guides,
+owningAC04/COVERAGE/DELIVERY prose and required MEMORY/RI metadata. Selection79PR
+and74staging,cap4,16MiB,isolation,zero-skip accounting,abort/reap and every scenario
+and refusal remain. Scanner/default guards stay180s and all workflow/hosted/rights
+budgets/gates stay. Further parser/cache/fixture refactoring is deferred.
+
+Pre-edit Requirements independently accepts this exact amendment. Reuse the
+three complete affected modules to verify changed deadline wiring, real source
+reports, timeout/partial/skip/mutation/empty-module rejection, source330s versus
+other180s dispatch and real SIGTERM/SIGINT cleanup. Independently observe actual
+source spawn options without waiting300s. After applicable Basic/lint/style/RI,
+four actual final roles and exact-source policy, request one fresh native
+verification for this changed candidate. No unchanged failed campaign or new PR.
+Current amendment verification/native acceptance remains pending at this entry.
+
+Prepared verification now passes all73cases in the three complete affected
+modules, zero failures/cancellations/skips/todos, in23.101s locally. This is
+targeted correctness evidence, not a complete source performance measurement.
+The existing negatives retain failed process/timeout/partial streams, source
+mutation and zero-skip/empty-module refusal; real worker SIGTERM/SIGINT cleanup
+and parallel-preflight abort cases pass. Test names and all other assertions remain.
+
+White-box independently observes actual child_process.spawnSync options through
+read-only V8 instrumentation:300000ms/16777216bytes, unchanged worker arguments,
+one tiny selected module,1/1canonicalTAP/zero skips, no instrumentation errors.
+Operator separately verifies unsupported CLI timeout overrides reject before
+execution; both staging/production dispatch one330000ms source wrapper and all
+other guards180000ms/16MiB. Injected source failure stays blocking and retains
+original streams. Neither probe is native/full-source acceptance or a speed claim.
+
+Basic passes5routes/16theme+archive/10flight cases; actual pinned touched-JS lint
+has zero warnings and the style guard passes143files. Initial formatter/RI
+preparation fails because the maintained RI/CI map's serialized bytes differ
+from the hash captured by the generated index; the diagnostic comparison finds
+only that map hash and aggregate RI digest differ. Original format-failure and
+diagnostic records are retained. Canonical formatting followed by dependent RI
+regeneration resolves the discrepancy before verification: formatting526files
+has zero changes, RI29/29 and coupling20/20 pass, views cover1756files/200dirs
+and the existing coupling retains17checks/17layers. No code/test correction
+follows from that metadata failure. Actual selection remains79PR/74staging.
+
+The four existing distinct role identities executed fresh requirement/code/
+white-box/operator work, actual-source reviews and their own observations.
+Exact clean-source policy, final uploaded-source readbacks and native completion
+are separate remaining gates; this amendment inherits none of e36/808's results.
+
+The first clean local policy run is rejected before checks: appending the full
+exception to the already3971-character COVERAGE gate exceeds its4000-character
+schema bound. The original failed JSON/log is retained. The correction keeps
+that bound and the entire historical description, adding a short cross-reference
+to DELIVERY; AC04 and DELIVERY retain the full dated exception. Policy validation
+then succeeds. No criterion, check, gate or acceptance requirement is removed.

@@ -7,7 +7,7 @@ const fs = require('node:fs'),
 const { isDeepStrictEqual } = require('node:util');
 const REGISTRY = 'tools/quality/test-profiles.json';
 const executionLimits = Object.freeze({
-  timeoutMs: 180000,
+  timeoutMs: 300000,
   reportGraceMs: 30000,
   maxBufferBytes: 16 * 1024 * 1024,
 });

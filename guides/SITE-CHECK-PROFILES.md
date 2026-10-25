@@ -49,7 +49,7 @@ tests within a file retain their serial default. The stable sorted selection is
 reported separately from execution order: selected Space and executive suites
 start first, then the remaining selected files. This overlaps measured expensive
 work rather than leaving Space at the end of CLI discovery. Every selected case,
-the 180-second process limit, 16MiB output bound, clean-source checks and complete
+the 300-second process limit, 16MiB output bound, clean-source checks and complete
 zero-skip accounting remain. Reports retain the worker limit, execution order and
 observed host parallelism; timing is evidence for that run, not a speed guarantee.
 After visual approval mark the PR ready; deferred source/RI jobs use distinct
@@ -353,14 +353,16 @@ followed by measured `release-controller`, `pages-migration`, `site-engine`,
 the remaining selected files lexically, retaining the same selected set, Node
 process isolation, a maximum of four workers, native TAP and strict accounting.
 All selected modules, including Space, enter one worker invocation. The complete
-source execution retains one180-second deadline and one16MiB output bound;
+source execution retains one300-second deadline and one16MiB output bound;
 process isolation and priority ordering do not create additional source budgets.
 Every selected module requires complete zero-skip accounting. Retain the original
 single-process stdout/stderr, actual argv/status and source identities even when
 execution, accounting or source stability fails. Content-only plans use that same
-single-process evidence contract. The prepublication wrapper is210seconds:
-one180-second source execution plus30seconds for reporting, independent of the
+single-process evidence contract. The prepublication wrapper is330seconds:
+one300-second source execution plus30seconds for reporting, independent of the
 selected module count. Scanner180-second bounds and the existing job budget remain.
+The[25October #122 amendment](https://github.com/oborskyivitalii/oborskyivitalii/issues/122#issuecomment-6403603405) changes only this source deadline from180to300seconds
+after retained hardware-associated timeouts; it adds no CPU filter or retry policy.
 SIGTERM/SIGINT
 abort the owned runner and reap its children before timeout evidence is retained.
 

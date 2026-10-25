@@ -474,7 +474,7 @@ test('prepublication preserves distinct child runner stderr and command-level fa
 test('prepublication preserves inner source timeout evidence before its distinct outer deadline', (t) => {
   const directory = delivery.temporary(t),
     runner = require('../tools/quality/source-tests.cjs');
-  assert.equal(runner.executionLimits.timeoutMs, 180000);
+  assert.equal(runner.executionLimits.timeoutMs, 300000);
   for (const level of ['staging', 'production']) {
     let runnerReport;
     let sourceDeadline;
@@ -523,18 +523,18 @@ test('prepublication preserves inner source timeout evidence before its distinct
       ['source-tests']
     );
     // One bounded native batch retains a separate 30-second reporting grace.
-    assert.equal(sourceDeadline, 210000);
+    assert.equal(sourceDeadline, 330000);
     assert.ok(otherDeadlines.length > 0);
     assert.ok(otherDeadlines.every((timeout) => timeout === 180000));
     const raw = JSON.parse(fs.readFileSync(runnerReport, 'utf8')),
       wrapper = result.checks.find((row) => row.id === 'source-tests');
     assert.equal(raw.pass, false);
-    assert.equal(raw.execution.timeoutMs, 180000);
+    assert.equal(raw.execution.timeoutMs, 300000);
     assert.equal(raw.execution.error.code, 'ETIMEDOUT');
     assert.equal(fs.readFileSync(raw.files.tap, 'utf8'), 'original partial child TAP\n');
     assert.equal(fs.readFileSync(raw.files.stderr, 'utf8'), 'original inner timeout stderr\n');
     assert.deepEqual(JSON.parse(fs.readFileSync(wrapper.stdout, 'utf8')), raw);
-    assert.equal(wrapper.timeoutMs, 210000);
+    assert.equal(wrapper.timeoutMs, 330000);
     assert.equal(result.checks.find((row) => row.id === 'security').pass, true);
     assert.equal(result.checks.find((row) => row.id === 'unchanged-source').pass, true);
   }

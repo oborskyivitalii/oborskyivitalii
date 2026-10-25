@@ -210,8 +210,8 @@ test('actual preflight producer and consumer agree on complete source guards and
     assert.equal(result.pass, true);
     assert.equal(
       result.checks.find((row) => row.id === 'source-tests').timeoutMs,
-      210000,
-      'the wrapper preserves one180-second source execution plus30-second reporting grace'
+      330000,
+      'the wrapper preserves one300-second source execution plus30-second reporting grace'
     );
     assert.equal(
       result.checks.find((row) => row.id === 'security').timeoutMs,
