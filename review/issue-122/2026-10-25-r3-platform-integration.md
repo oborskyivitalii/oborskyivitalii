@@ -1160,3 +1160,73 @@ the receipt does not require a recursive79-module/preview campaign and cannot
 waive any future delivery gate. No whole parent AC is newly checked; onlyAC02
 remains complete. Remaining plan isF6 platform delivery, R3c meaningful independent
 content/recovery, thenR3d whole-acceptance/contracts/timing reconciliation.
+
+### F6 native preflight and explicit ordinary-edition fixture
+
+F6 started on clean808dae28/tree67040e44 against protected mainbea2628. Four
+distinct resumed roles accepted the receipt-only successor for fresh verification;
+the complete PR still selects the conservative website/control route. The live
+ruleset retains all five required contexts, strict up-to-date and no bypass.
+
+Basic40215263460/1 failed at180000ms:582 emitted passes, zero emitted failures,
+no final accounting. Its original source ZIP12607311711 is retained. All40
+completed modules whose earlier duration exceeded1s were slower1.26–1.73times
+than tested269, median1.42. This supports observed timing variation, not a proven
+infrastructure cause. Requirements and White-box independently verified raw
+bytes and the issue's single reasoned retry rule. The sole complete Basic retry,
+40215263460/2, passes79modules/1156tests, zero fail/skip/cancel/todo, in142025.489ms.
+Original180s/16MiB/cap4 remain. ZIP12607671843 and its original JSON/TAP/stderr
+were independently verified by Code and White-box. Both attempts stay bound
+to clean808; the first failure is not overwritten or combined with the second.
+
+Current RI40215263200, owning40215263302 and routing40215263293 pass. Preview
+40215263318 build121235009682, publish121235237641 and two-width smoke121235377150
+pass; its separate pre-stage admission remains failed. The sole owner command
+6400759799 started main-owned stage40216194800/1. Its trusted target log binds
+PR146/source808/basebea/run/attempt; begin-admission passes.
+
+Stage build121237869950 fails before deployable upload. Original prepublication
+ZIP12607682957 retains all26 guards:25pass, including128 Python tests, complete
+lint/security/advisories, current RI/style and artifact/rights/package checks.
+The74-module source process times out at180s, with566 emitted passes, one actual
+failure and no final accounting. Its module set excludes five existing diagnostics
+from PR's79; no membership was changed. Publish, hosted gates and promotion are
+skipped; merge-admission fails and no genuine App or merge is requested.
+
+The actual failure is the ordinary three-edition fixture in
+tests/color-motion-contract.test.cjs. Protected main's controller defaults
+SITE_ARTICLE_PREVIEW totrue, whereas the candidate Ready workflow selectsfalse
+for PR146. artifact.build inherits that environment unless its existing explicit
+articlePreviewMode option is supplied. The fixture accidentally builds a
+candidate article preview and then asks the production-edition owner to convert
+it. The unchanged production guard correctly refuses. The retained stage artifact
+is a review preview, not an approved or published article.
+
+Requirements accepted one narrow test correction: explicitly selectfalse for
+this ordinary fixture. No global environment reset, workflow, production guard,
+runtime, article, rights, budget or selected test is changed. Original808 under
+preview=true reproduces the exact refusal. The corrected existing case passes
+undertrue andfalse; all26 Color cases pass undertrue, zero skips,12.079s locally.
+All three editions, canonical/immutable byte checks, tampering and missing-rights
+refusals remain. Touched pinned lint/format, Basic and bounded style pass. This
+fixes the deterministic fixture failure; it does not establish a timeout cause
+or native performance acceptance. Fresh corrected-source gates remain required.
+
+Four actual resumed correction roles completed: Requirements accepts the exact
+fixture/receipt scope; Code verifies the unchanged production owners and all
+remaining assertions; White-box independently verifies selector/refusal boundaries
+under both environments and finds no second ordinary-to-production default in
+the selected74-module inventory; Operator executes both ordinary environment
+cases and the existing genuine preview-to-production/sitemap refusal,3/3pass.
+Their identities remain /root/f3_requirements, /root/f3_code, /root/f3_whitebox and
+/root/f3_operator. Reviewed test SHA begins16228378; roles retain the full digest
+and raw scoped receipts. RI29/29 and coupling20/20 pass. This supports corrected
+source verification only, not a completed native stage or inherited808 acceptance.
+
+F6 is incomplete. PR146 returned Draft for this correction. Next is exact-head
+Basic/RI/owning/preview, then the existing complete owner stage, genuine App,
+protected merge and actual postmerge. R3c meaningful content/recovery and R3d
+whole-AC/contracts/timings remain; only wholeAC02 is complete. CS01/04/05/07/08/10
+map to explicit fixture input ownership, unchanged failure guards, bounded
+before/after checks and source-bound evidence. No unchanged stage retry follows
+from this correction.

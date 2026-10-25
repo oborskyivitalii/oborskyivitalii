@@ -147,7 +147,8 @@ test('reading batch records bind actual generated edition bytes and reject tampe
     pkg = require('../tools/staging/package.cjs');
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'reading-contract-'));
   try {
-    artifact.build(path.join(directory, 'plain'));
+    // Ordinary edition fixtures must not inherit the enclosing preview job's mode.
+    artifact.build(path.join(directory, 'plain'), { articlePreviewMode: 'false' });
     authoredColor.build(path.join(directory, 'plain'));
     fs.cpSync(path.join(directory, 'plain'), path.join(directory, 'staging'), { recursive: true });
     edition.build(path.join(directory, 'staging'));
