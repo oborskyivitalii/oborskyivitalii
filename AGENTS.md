@@ -63,6 +63,11 @@ Enduring rules and task routing. Issues own intent; PRs own execution;
     require `test_repository_intelligence.py`. Update and verify the [RI/CI map](.github/ri-ci-map.json)
     when RI changes. Runtime/content edits use applicable hosted profiles and registry;
     dated diagnostics remain targeted, not routine suites.
+    If a test/check fails, preserve exact-source logs and accounting, then follow
+    [failure diagnosis](CONTRIBUTING.md#diagnose-failures-before-changing-or-rerunning).
+    Do not rerun an unchanged failed campaign or patch by guess. Inspect what failed
+    and why, separate facts from hypotheses, and record the next bounded diagnostic
+    action or evidenced fix hypothesis before proceeding. Retain the failed result.
 12. At session end follow acceptance policy: map every AC, run current-source checks,
     report AC → check → result → exact source/run, and update actual issue checkboxes.
     Tick only whole criteria with all checks/gates verified; clear invalidated ticks.

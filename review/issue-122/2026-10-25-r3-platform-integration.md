@@ -1350,3 +1350,291 @@ The same79/cap4/180s/16MiB and zero-skip accounting remain mandatory. Failure
 stays blocked with no unchanged repeat. F6 ownerstage/App/protected merge/
 postmerge, then R3c meaningful content/recovery and R3d whole-AC/contracts/timing
 remain. The current correction grants no staging, merge or production acceptance.
+
+### F6 test-cost native verification — blocked
+
+Actual uploaded sourcee36f7292208480a8a993c2eec72b57ef01c263dc has reviewed
+tree8c247724a03a5b1ba150f31e70526ff5c62d3233. Local authore2a6fc7 has the
+same tree and empty diff; all four roles independently read back the actual
+uploaded identity. Fresh clean expected-e36 owning policy passes all five checks.
+No locale2 native evidence is relabeled. This final section is a local-only
+receipt, not another remote eligibility reset or new native verification request.
+
+FreshBasic40223631087/1, job121260316080, fails ETIMEDOUT180000ms/process1.
+The actual report binds clean sourcee36/tree8c before and after, exactly79modules,
+Node24.19.0 and configured/available/effective capacity4/4/4. Original16MiB
+output and180s deadline remain. RawTAP emits582ok/0not-ok with no final Node
+accounting; all observedAccounting arrays are empty. Partial output is failure.
+
+Raw timing records show66unique module starts,62completed/passing wrappers,
+4running and13unstarted. Space passes100.205881s; Executive passes78.324698s.
+The62 completed wrappers sum686.479worker-wall seconds, or171.620 at cap4;
+this is not CPU time or a complete-run prediction. Aggregate unfinished work
+remains beyond the Space setup correction; no unique cause or timeout fix is proved.
+
+Original artifact12610498119 is42067bytes,
+SHA256efb6636d94853eb1f5af4a77da3324108b40d5511c2f63ef30a12637dba38566.
+The ZIP digest/CRCs and all three extracted raw files were physically verified.
+Requirements and White-box separately rehash/read the actual archive and agree
+on the exact source, failed deadline, partial accounting and blocked disposition.
+The actual selected lint report passes at e36/tree8c; this is not full security.
+
+RI40223631113, owning40223631037 and routing40223631071 pass. Preview40223631094
+build121260507550, publish121260686937 and hosted smoke121260832013 pass.
+Separate Staging admission121260431114 fails without current owner proof;
+the aggregate is not green. No ownerstage/App/merge/production action follows.
+PR146 is Draft again at the unchangede36 remote head, mainbea2628.
+
+No unchanged retry is requested or performed. Next bounded work is actual
+invocation/input-cost attribution across recurring fixture builds, HTML parsing
+and subprocesses. Any correction must first demonstrate its concrete saved work
+and preserve scenarios/refusals/bounds with affected four-role review, before
+another fresh candidate verification. Do not restart an unchanged full campaign.
+F6delivery, R3cmeaningful content/recovery and R3dwhole acceptance remain;
+only parentAC02 is complete. Live issue/PR contain the actual final outcome.
+
+### F6 diagnosis — execution costs and runner hardware
+
+The maintainer requested diagnosis first: identify what became expensive before
+making another correction. This inspection changes no implementation, test,
+selection, budget, readiness or delivery state. Remote source remains e36f729,
+mainbea2628 and PR146Draft. Local a892f58 contains only prior receipts over the
+same implementation bytes. All measurements below are observations, not admission.
+
+**The selected suite did not expand; production/parser code remained unchanged.**
+All five retained source archives select the identical ordered79modules under
+Node24.19, cap4,180s/16MiB. Between808 ande36 only the Color/Space tests and
+review/MEMORY/derived RI changed; Executive, Python/JS parsers, production
+engine, source selector, worker and registry remain byte-identical.
+
+| Actual source / native observation | CPU model recorded in lint environment | Source result |
+| --- | --- | --- |
+| 808dae2, Basic40215263460 attempt1 | AMD EPYC7763 | 180s timeout |
+| Same808dae2/tree67040e44, attempt2 | AMD EPYC9V45 | All79modules/1156tests pass142.025s |
+| 7d8706d, Basic40217820258 attempts1and2 | AMD EPYC7763 | Both180s timeouts |
+| e36f729, Basic40223631087 attempt1 | AMD EPYC7763 | 180s timeout |
+
+All records show four allocated CPUs, identical Node/OS/image-version fields
+and16,766,414,848memory bytes. The64-/96-core strings describe the host model,
+not allocated capacity. Hardware-model variation is directly recorded. Its
+association with broad slower execution is strong, including the unchanged808
+pair; CPU frequency/load/host contention were not measured, so sole CPU-model
+causality is not proved. Lint's environment imageVersion is20261023.334.3;
+the raw job's separate Runner Image group reports20261012.334.1, also unchanged.
+
+| Module wrapper seconds | Complete808 pass | Latest e36 timeout |
+| --- | ---: | ---: |
+| Space | 76.489 | 100.206 |
+| Executive / frozen HTML reconciliation | 55.080 | 78.325 |
+| Release rights | 36.543 | 54.668 |
+| Release controller | 27.409 | 40.623 |
+| Publishing | 20.355 | 30.923 |
+
+Wrappers run in parallel; these columns are not whole-job wall totals. The62
+common completed wrappers rise479.644→686.479worker-wall seconds (+43.1%).
+All41 that previously exceeded1s are slower, with median ratio1.478. Latest
+completed wrappers plus running ages occupy719.943 of720available worker-slot
+seconds. This establishes occupied slots, not measured CPU utilization. Repeated
+582emittedTAP passes reflect ordered output buffering, not all executed assertions.
+
+**Executive: repeated full-document restoration and synchronous Python starts.**
+One actual named contact/title test was profiled locally with V8 sampling and
+coverage. It passes1/1 in14.161s on Node24.22 with test-isolation=none. Coverage
+records22full restore calls,301parseHTML/helperContracts calls,597normalizeHTML,
+252normalizeMany,12Writing view rebuilds and6event collection restorations.
+Each helperContracts call starts one Python process;306total synchronous child
+spawns comprise301Python helpers and5Git calls. The sampler attributes
+13.028320of14.028598sampled seconds (92.87%) to synchronous child spawning,
+including parent blocking/waiting; this is not Python or parent CPU accounting.
+The existing128-entry/4MiB exact-byte cache and ordered validation remain intact.
+
+A bounded synthetic transport probe uses the same actual helper and30tinyHTML
+requests:30separate processes take1166.096ms, one30-request batch37.046ms,
+with exactly identical ordered contracts. This demonstrates small-request
+process/boundary overhead locally; it is not a full-restore or CI speed prediction.
+
+**Space: real geometry in a simulated browser.** The unchanged40-flight/two-width
+case passes1/1 under the same local diagnostic method in17.430s. Coverage records
+40fresh visits,960actual scene frames,7,473,224point projections and147,305
+cameraVertices calls. The sampler assigns14.110of17.115sampled seconds
+to the scene bundle, with projection/clipping/shape composition/drawing dominant;
+the Canvas stub callbacks, including numeric-argument checks, receive1.604sampled
+seconds. There are no sleeps implied
+by p.frame(80): that argument advances the logical animation clock. This case
+alone costs16.534s in latest native Space, versus10.368s in the complete808pass.
+
+**Rights: repeated artifact inventories/compression and fixture copies.** One
+actual inventory case passes1/1 locally in1.670s; coverage records one fresh
+fixture/build, seven public-artifact manifest calls and401zlib buffer calls.
+The sampler records0.578of1.582sampled seconds in synchronous compression,
+mostly the public manifest's per-file gzip, and0.121s in recursive directory copy.
+Its fixture mistakenly supplies the node_modules filter to mkdirSync while
+cpSync has only recursive=true. Thus tools/publishing/toolchain/node_modules
+is included. Local inventory is1,142dependency files/~21MB; thirteen call sites
+could copy~274MB logical dependency bytes plus cleanup if each executes once.
+This is a local/static estimate, not native I/O or timing attribution. The misplaced
+filter predates F6 (75d6da51,18October); it is existing cost, not the new regression.
+
+**Separate job overhead:** raw command-group boundaries show source-tool install
+8.827→14.223s, earlier-generation selection30.208→47.443s and lint7.346→10.015s.
+Those run before the source child and do not consume its180s budget. The source
+wrapper itself is145.126→184.791s. History selection refuses23earlier candidates
+before artifact download; it does not rebuild23old article editions. No archived
+article browser/PDF campaign was reintroduced. No browser/Ubuntu installation is
+inside this source job. Whole-suite network-syscall absence was not measured.
+
+Raw native archives and current local profile/coverage summaries are retained in
+the existing diagnostic directory. A strace attempt failed immediately with
+PTRACE_TRACEME Operation not permitted; it executed no test and supplied no
+syscall trace. The three bounded named-case profiles and transport probe are
+diagnosis only, not repeated79-module campaigns or canonical native acceptance.
+
+Independent roles separately inspected the original artifacts/source: Requirements
+reconciled identical-source hardware and workload comparisons; Code checked the
+restoration/process boundary and misplaced copy filter; White-box verified timing,
+occupied-slot arithmetic and Space coverage; Operator verified actual job boundaries,
+CPU/environment records, history refusal order and archive-test allocation.
+The distinct reused identities /root/f6_cost_requirements, /root/f6_cost_code,
+/root/f6_cost_whitebox and /root/f6_cost_operator each executed fresh diagnostic
+follow-ups and actual report/raw-evidence readbacks. Requirements/White-box
+precision findings narrowed the suite-equality and Canvas/camera-call wording;
+their corrections do not change source, measurements or blocked disposition.
+Final report/profile readbacks are recorded in the session's issue/PR outcome.
+
+The diagnosis points first to repeated Python process boundaries and repeated
+fixture/inventory work for a future bounded correction. Changing geometry coverage,
+CPU selection or deadlines is not implemented or authorized by this diagnosis.
+F6 remains blocked, then R3ccontent/recovery and R3dwhole acceptance remain;
+only parentAC02 stays complete.
+
+### Diagnosis-first workflow — 25 October 2026
+
+The maintainer requested an enduring failure workflow in AGENTS: do not rerun
+failed tests unchanged or guess fixes; inspect what failed and why, then plan
+bounded diagnostic actions or evidence-supported fix hypotheses. AGENTS routes
+to the canonical six-step CONTRIBUTING flow. Existing retry controls describe
+mechanics and supply no automatic retry permission. The current failure remains
+Basic40223631087/1 on e36; no new source acceptance or delivery follows.
+
+**Next diagnostic question, recorded before execution:** in the already-profiled
+Executive contact/title case, which exact helper inputs repeat, at what call
+sites, and does cache eviction account for repeated parsing? Existing V8 branch
+coverage distinguishes276single-input misses from25batch parser calls; those
+counts alone cannot identify full documents, fragments or eviction causes.
+Use one execution of that named case with read-only V8 debugger observations of
+normalizer lookups/parser entries. Capture ordered SHA256/UTF-8 sizes, cache
+occupancy and call-site provenance without changing source/parser/cache/guards.
+Bound execution to120seconds and at most4000observations; stop after that one
+case, retaining failure if instrumentation fails. This new information, rather
+than another broad timing profile, can distinguish duplicate work from necessary
+ordered document validation. Debugger timing is not performance evidence or
+native acceptance. No unchanged79-module campaign, fix or readiness transition.
+
+**Executed diagnostic:** the one named contact/title case passes1/1, with zero
+failures/cancellations/skips/todos. Local Node24.22.1 records1646observations:
+1067cache lookups,301parser entries and278evictions, with no instrumentation
+errors. The22.176s instrumented command is not a speed measurement. Git head is
+6061e96 with only AGENTS/CONTRIBUTING/review dirty; actual SEO normalizer, JS/Python
+helper and Executive test hashes are identical before/after and to e36. Inspector
+breakpoints read local arguments/cache state and resume execution; no function,
+parser, source, cache or global monkeypatch is installed.
+
+| Actual parser boundary | Python starts | Input rows | Full-document rows |
+| --- | ---: | ---: | ---: |
+| Single-input normalization | 276 | 276 | 256 |
+| Existing batch normalization | 25 | 80 | 4 |
+| Total | 301 | 356 | 260 |
+
+All356parsed input SHA256 values are distinct: **zero identical inputs are parsed
+again in this case**. Their total UTF-8 input is5,231,293bytes;260full-document
+rows account for4,880,088bytes. Full-document classification means a leading
+HTML doctype, independently recorded from call-site provenance. The1067lookups
+include711hits:321single and390batch;356misses become exactly356parsed rows.
+
+The existing cache reaches128entries and4,193,779bytes within its4MiB bound.
+Of278evictions,149hit only the entry bound,125only the byte bound and4both.
+Those evictions do not cause duplicate parser inputs in this observation. Thus
+the hypothesis that enlarging the cache would remove repeated helper work is
+contradicted for this named case; other Executive cases remain unobserved.
+
+Caller attribution identifies169single-input starts on evolving full documents
+inside the ordered amendment loop (2,674,947input bytes). Existing hash-verified
+amendment snapshots use21batch starts/74fragment rows; structured metadata uses
+4batch starts/6rows. The remaining single starts cover restoration boundaries,
+approved-content/presentation/event steps, initial documents, frozen Research
+navigation and20independent fragments. Unique intermediate documents cannot
+be treated as repeated immutable inputs or blindly batched across dependencies.
+
+Retained raw observations are2,164,817bytes, SHA256
+a930e040ac54068b0b28acaf80aa341c9f7501d44fd255cc5845ff9328536a57;
+observer SHA256ee1b547ea7f08a886dd6124098f29b67a5822339afb51d75bb40a8b7aa2964f6.
+The command/source hashes, canonical1/1TAP, exact ordered input hashes/sizes,
+lookup/eviction records and derived summaries remain in the diagnostic inputs
+directory. The observations independently reproduce prior V8 branch counts.
+
+**Native tail inspection:** at180s the four running modules are delivery
+observation, quality, release archive and renderer;13modules have not started.
+Their work is not merely unflushed reporting. Five of the13unstarted modules
+(Writing variants, profile selection, review flow, staging reporting and Writing
+quality) account for36.257of38.565worker-wall seconds in the faster808pass.
+These historical durations are not lower bounds or current completion estimates.
+Actual720available worker-slot seconds are almost entirely occupied; this is
+not measured CPU utilization, and no unconditional required saving is established.
+
+**Runner identity follow-up requested by the maintainer:** the slow attempts
+share a CPU model, not one registered runner. Actual job metadata gives distinct
+runner IDs and raw job logs give distinct Worker IDs; slow attempts span eastus,
+northcentralus and eastus2. These fields do not establish physical-host identity.
+
+| Retained native observation | Runner ID | CPU model | Source result |
+| --- | ---: | --- | --- |
+| 269ef3a, Basic40212736835/1 | 1000007726 | Intel Xeon6973P-C | 1156/1156,148.649s |
+| 808dae2, Basic40215263460/1 | 1000007747 | AMD EPYC7763 | Timeout180s |
+| Same808, Basic40215263460/2 | 1000007753 | AMD EPYC9V45 | 1156/1156,142.025s |
+| 7d8706d, Basic40217820258/1 | 1000007765 | AMD EPYC7763 | Timeout180s |
+| Same7d, Basic40217820258/2 | 1000007774 | AMD EPYC7763 | Timeout180s |
+| e36f729, Basic40223631087/1 | 1000007783 | AMD EPYC7763 | Timeout180s |
+
+The earlier known F5 success was checked as a possible counterexample: it uses
+Xeon6973P-C, not7763. Git comparison269→808 changes only review/MEMORY/derivedRI;
+implementation and tests are identical. All six expose four allocated CPUs.
+The F5 record has16,765,378,560memory bytes, slightly different from the other
+five's16,766,414,848; the earlier identical-memory statement remains scoped to
+those five. F5 archive SHA256 is
+c6f5377f953acdc4f345174fc3f02711f53935a91dc763276ba3e826a054bfa5.
+Exact six-row metadata, Worker IDs/regions and archive bindings are retained in
+operator-runner-comparison-six.json. Within these six observations, four7763
+runs fail and two runs on other CPU models pass. Hardware class remains the
+strongest observed grouping; no successful7763 appears in this bounded sample.
+That is not proof every7763 run fails or that CPU model alone causes failure:
+frequency, contention/load and actual process CPU/wait accounting remain unknown.
+No new native execution was needed to check this hypothesis. A code correction
+is still premature while its relation to the failed deadline is unproved.
+
+**Further bounded plan, not executed here:** distinguish Python startup/JSON
+transport from actual parsing using the existing helper on a fixed, hashed sample
+of actual current full HTML and approved fragments. Compare separate invocations
+with one ordered batch and warm in-process contracts, keeping identical outputs
+and reporting each boundary's timing separately. This can test whether reusing a
+parser process while retaining every ordered validation deserves a fix proposal;
+the earlier93%parent spawn/wait attribution does not isolate startup cost.
+Stop after the fixed sample; no whole-suite or native retry is implied. Rejection
+ordering, malformed/partial output, process failure, cleanup and bounds must be
+addressed before any implementation proposal. F6 remains blocked; original79,
+cap4,180s/16MiB and all acceptance/delivery gates remain.
+
+All four distinct roles executed fresh work and final actual-source/raw-evidence
+readbacks for this iteration: /root/f6_cost_requirements, /root/f6_cost_code,
+/root/f6_cost_whitebox and /root/f6_cost_operator. Each accepted the actual
+AGENTS/CONTRIBUTING flow, diagnostic counts/limits and six-row hardware correction;
+all report no blocking finding. The roles independently recomputed raw counts,
+checked source equality and archive/runner identities rather than accepting an
+orchestrator summary. Their scoped acceptance supplies no native delivery result.
+
+Prepared protocol/navigation checks pass: RI29/29, coupling20/20, root-layout15/15,
+style guard143files and pinned formatting526files/zerochanges. RI views cover
+1756files/200directories; coupling retains17checks/17layers, with only the two
+guide input hashes and aggregate digest refreshed. Final clean-source owning
+policy and uploaded identity are recorded in the issue outcome. No new suite,
+workflow, profile, membership, budget, source test or production code is changed.
+AC04/07/08 gain bounded evidence; only whole parentAC02 remains complete.
