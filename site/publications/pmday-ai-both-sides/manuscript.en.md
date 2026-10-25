@@ -477,7 +477,7 @@ Text © 2026 Vitalii Oborskyi. Presentation and third-party credits remain appli
 
 **Olivier Leturcq** raised sustainable costs and human review/maintenance context; suggestions remain under consideration.
 
-**Dimitrios (Dimitris) Vorisis** reviewed **R23**. He praised the design, flagged density and a buried decision table, suggested a series, and stressed responsibility to customers over vendor experiments. These observations are not endorsement of this later edition.
+**Dimitrios (Dimitris) Vorisis** reviewed **R23**: praised the design, flagged density, table visibility and customer responsibility, and suggested a series. The author accepts the call for brevity but leans toward concise posts linking to the full essay rather than cutting it. He did not review R38.
 
 Vitalii Oborskyi retains editorial responsibility.
 
@@ -486,7 +486,7 @@ Vitalii Oborskyi retains editorial responsibility.
 25 October 2026:
 
 - **R38:** Context-dependent AI operating models, selective adoption and CTO investment decisions.
-- **R38 provenance addendum:** Recorded Dimitris Vorisis’s R23 review; core argument unchanged.
+- **R38 provenance addenda:** Dimitris’s R23 review and author preference for shorter linked posts.
 
 24 October 2026:
 

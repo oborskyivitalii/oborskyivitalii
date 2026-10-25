@@ -1,3 +1,11 @@
+## R38 distribution-intent provenance — 25 October 2026
+
+The author accepts Dimitris Vorisis's concern that a shorter entry point would benefit readers, but prefers to **explore a series of shorter posts linking to the complete essay** rather than shorten the complete essay itself. The preference is provisional and does not promise a series or imply that the reviewer approved the current R38 edition. See [the R23 review and dated author-decision addendum](../../../review/issue-2/2026-10-25-dimitrios-r23-review.md#authors-editorial-decision--25-october-2026-after-r23-feedback).
+
+This is a provenance-only change: article arguments, references, tables, figures, rights and twelve prompts remain the same. New **immutable source selection** `pmday-ai-both-sides-en-review-20261025-r38-distribution-intent`, manuscript SHA-256 `85ad467b0da1774a0c1c29a8adec55c2abecaffde8c778d22f9e2913d8f5296e` (52993/53,000 characters), semantic SHA-256 `ff5e3df531d37f501d8f35610dd1584db7d557a210229db539d1130a90c56f90`, draft launch SHA-256 `05ce7f4b149a7408785f6b6922c94304b2d867970a9d4dac09af8504285b26bc`. Earlier R38 and provenance editions remain immutable. Native PDF, downstream editions, site build, RI/CI, four independent agent reviews, author/rights acceptance and release gates are **not verified** here.
+
+---
+
 ## R38 review-provenance addendum — Dimitrios Vorisis, 25 October 2026
 
 [Source analysis and original-input limits](../../../review/issue-2/2026-10-25-dimitrios-r23-review.md) · editorial [#2](https://github.com/oborskyivitalii/oborskyivitalii/issues/2) · publishing [#5](https://github.com/oborskyivitalii/oborskyivitalii/issues/5) · Draft PR79.

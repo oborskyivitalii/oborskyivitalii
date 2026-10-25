@@ -48,3 +48,11 @@ Dimitris's paraphrase is a reasonable response to R23, **not an accurate substit
 ## Acceptance, risks and outstanding gates
 
 This editorial intake inspected the supplied R23 feedback/Grammarly summary and the R38 authored manuscript. No independent repository Requirements/Code/White-box/Exploratory agent was launched; those mandatory quality roles remain **pending**, not simulated. No native R38-or-successor PDF, LinkedIn or Medium kit, current-source CI, repository intelligence, visual QA, rights sign-off, branch merge, staging, production or external publication is proven by this note. **Issue #2/#5 AC checkboxes remain unchanged** until all applicable gates pass. Issue #122 platform admission and its separate head/source must not be conflated with PR #79 content.
+
+## Author's editorial decision — 25 October 2026 (after R23 feedback)
+
+The author **accepts the value of shortening the entry points** raised by Dimitris, while **leaning toward a series of shorter, self-contained posts linking back to the full essay** instead of significantly condensing the canonical technical essay. This is an author-originated distribution preference and an intended future editorial treatment, **not a claim that the reviewer proposed this exact implementation**, not a commitment to a fixed number or publication schedule, and not a published series. The full essay retains its dual engineering thesis, counterarguments, practical table and evidence qualifications.
+
+The prior disposition above (“defer derivative series”) is now **superseded to the extent that the author has expressed a directional preference**: the series is preferred for later exploration once the complete essay is editorially accepted; substantive shortening of the full manuscript is not authorized by this decision. The concrete short-post structure, wording, sequence and distribution remain open, and any later posts need normal source/edition, review and release handling.
+
+This addendum updates the author decision and publication provenance only. It does not establish R38 native PDF/LinkedIn/Medium/site regeneration, CI/RI acceptance or completion of independently executed repository QA roles.
