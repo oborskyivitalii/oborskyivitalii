@@ -11671,61 +11671,61 @@
       "role": "source",
       "owner": "site/README.md"
     },
-    "docs/snapshots/77f62d293309923c0bb88ffb807a76efe0ec7b2ae80c27ee1f020ebe899b76c3": {
+    "docs/snapshots/117abbf7ad1b757ae24b7e8d3b75a37141d5e7fb744f40355486a75ca47225e9": {
       "kind": "directory",
       "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/0fafb757704130d3c562b715e917d156ad46c9b88904300ecb15a48bc2747c6d": {
-      "kind": "directory",
-      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/655292a067b1b65cf01ac094728c5a57671fe9c50ee140789054cb03ba745346": {
-      "kind": "directory",
-      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/2e8f359060c530f529caa2d12bb08a89babfc3e57a3d1378b10092fd665d5147": {
-      "kind": "directory",
-      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/aabce035b0cc77e2e978f709035ac20bf9b8ad4b7152704da2016663ad76e7ea": {
-      "kind": "directory",
-      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/77f62d293309923c0bb88ffb807a76efe0ec7b2ae80c27ee1f020ebe899b76c3/research.html": {
+    "docs/snapshots/117abbf7ad1b757ae24b7e8d3b75a37141d5e7fb744f40355486a75ca47225e9/writing.html": {
       "kind": "file",
       "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/0fafb757704130d3c562b715e917d156ad46c9b88904300ecb15a48bc2747c6d/writing.html": {
+    "docs/snapshots/6ee24244b7fed1a3f1a5e0a49bf4e778c8a3512d88a1e02f5a41ecb96274dc7a": {
+      "kind": "directory",
+      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/6ee24244b7fed1a3f1a5e0a49bf4e778c8a3512d88a1e02f5a41ecb96274dc7a/credits.html": {
       "kind": "file",
       "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/655292a067b1b65cf01ac094728c5a57671fe9c50ee140789054cb03ba745346/talks.html": {
+    "docs/snapshots/8fd6b9c478a2103903537162d71cbfc458ad4c3f49a5bbee014fd6eeb6dd36c6": {
+      "kind": "directory",
+      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/8fd6b9c478a2103903537162d71cbfc458ad4c3f49a5bbee014fd6eeb6dd36c6/index.html": {
       "kind": "file",
       "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/2e8f359060c530f529caa2d12bb08a89babfc3e57a3d1378b10092fd665d5147/credits.html": {
+    "docs/snapshots/93080e34de39cbc4032ee352a7fbc1a073251ba1cce2a895c6c1a3f2d26ddc03": {
+      "kind": "directory",
+      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/93080e34de39cbc4032ee352a7fbc1a073251ba1cce2a895c6c1a3f2d26ddc03/research.html": {
       "kind": "file",
       "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/aabce035b0cc77e2e978f709035ac20bf9b8ad4b7152704da2016663ad76e7ea/index.html": {
+    "docs/snapshots/fbbb88a321ccd3b581dfe232c83a024fdaf444ccf9d7bcb5d436184bcd8bbb29": {
+      "kind": "directory",
+      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/fbbb88a321ccd3b581dfe232c83a024fdaf444ccf9d7bcb5d436184bcd8bbb29/talks.html": {
       "kind": "file",
       "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
       "role": "generated",

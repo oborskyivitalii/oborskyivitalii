@@ -6,7 +6,7 @@ Dated continuity, not live authority. Last verified: **2026-10-25**.
 
 - Owner remains #122. R1/PR142, R2/PR143-144 and exact-runtime compatibility/PR145 are delivered; native receipts and timing evidence are in the live issue.
 - Protected main is bea2628; PR145 tested5f60821 and merge share the identical reviewed tree. Its Basic, sole full owner stage, genuine App, protected merge and actual postmerge passed.
-- PR146 source20bf4b60/tree93951cee completes F1local compatibility proof against unchangedmainbea2628:3artifacts/gates and2rights/packages pass; plain publication/missingrights reject. Fresh producer/client separation; Draft, no accepted platform. Earlier5ed native lint34/25 remains F2blocker.
+- PR146 source20bf4b60/tree93951cee completes F1local compatibility proof against unchangedmainbea2628:3artifacts/gates and2rights/packages pass; plain publication/missingrights reject. F2then extracts one print-group helper: actual lint passes16/18against25, profile12/12 and baseline/currentAPI22/22 agree. Draft, no accepted platform; earlier5ed native failure stays historical.
 
 ## Decisions
 
@@ -18,14 +18,14 @@ Dated continuity, not live authority. Last verified: **2026-10-25**.
 
 ## Open work
 
-- Current review owner: review/issue-122/2026-10-25-r3-platform-integration.md. Four correction roles and actual R37 loader pass53,610/54,000. The maintainer approved the audited refactor in PR146, smallerF1–F6steps and status after each. F1is complete at20bf4b60 with four actual final role/proof readbacks; receipt metadata does not relabel tested source. F2validator is next. No rule waiver or extra prerequisite PR.
+- Current review owner: review/issue-122/2026-10-25-r3-platform-integration.md. Actual R37 loader passes53,610/54,000; manuscript/profile/rights remain unchanged. The maintainer approved smallerF1–F6steps and status after each. F1proof stays bound to20bf4b60. F2sourceSHA bf25017a… preserves errors/order/limits; fresh producerda63a1… retains verified client2fe6a0… and ten identical runtime copies. F3registry deduplication is next; no rule waiver or extra prerequisite PR.
 - Parent AC02 remains complete. Other parent ACs retain their whole original requirements. Actual independent content/recovery and final documentation/timing reconciliation follow accepted platformS.
 - Historic PR144 predates newS and cannot alone establish chronological newS→M→C. Do not invent a proof-only merge or manufacture content changes to exercise CI.
 
 ## Next session
 
 1. Revalidate live #122, candidate/main/PR79 and exact native outcomes; live receipts supersede frozen pending text.
-2. Follow approvedF1–F6in live#122: actual-main compatibility proof, print-validator refactor, registry deduplication, canonical rights/early lint, current-source integration, existing native/full-stage/App/merge/postmerge. Keep PR146Draft during iteration and report each completed small step plus the whole remaining plan.
+2. Continue after completedF1/F2with F3registry deduplication, F4canonical rights/early lint, F5current-source integration and F6existing native/full-stage/App/merge/postmerge. Keep PR146Draft during iteration and report each completed small step plus the whole remaining plan.
 3. Continue actual authorized content/recovery, then reconcile remaining original ACs/contracts/evidence/timings before closing #122.
 
 ## Maintenance

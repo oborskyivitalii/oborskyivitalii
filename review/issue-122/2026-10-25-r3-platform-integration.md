@@ -331,7 +331,7 @@ scanner/lint limits and execution budgets remain.
 | Step | Outcome | Current state |
 | --- | --- | --- |
 | F1 | Separate fresh producer provenance from a verified client descriptor; prove all three actual editions against unchanged main. | Complete: clean-source local proof at20bf4b60; native/full delivery staysF5/F6. |
-| F2 | One cohesive print-group helper; unchanged validator/error behavior and25lint rule. | Pending. |
+| F2 | One cohesive print-group helper; unchanged validator/error behavior and25lint rule. | Complete: bounded source/validator parity; native/full delivery staysF5/F6. |
 | F3 | Consolidate repeated compatibility data while preserving139historical IDs/flags/editions/bytes. | Pending. |
 | F4 | Canonical mandatory-rights classification, same111unique IDs/anti-relabel guards; clear early real lint. | Pending. |
 | F5 | Generated/catalog/RI/contracts, selected source and four scoped roles; native Basic/RI/owning/preview. | Pending. |
@@ -524,7 +524,73 @@ do not claim full selected-source/scanner or native platform acceptance.
 
 Only tools/site changes among the14historically frozen producer objects. R37
 source SHA2568c788866896cf28ecc4dc6da8bbdcdc3c8fc76a561b485596fd0f467e2a04d71
-is unchanged; all ordinary article selections remain empty. F2 is next: one
-cohesive print-group helper, unchanged checks and25complexity threshold.
+is unchanged; all ordinary article selections remain empty. F2 follows below.
+
+## F2 completion — print-group validator, 25 October 2026
+
+Owner remains [issue122](https://github.com/oborskyivitalii/oborskyivitalii/issues/122)
+and Draft [PR146](https://github.com/oborskyivitalii/oborskyivitalii/pull/146).
+The maintainer authorized this small step under the approved plan. Prepared base
+is74c3f058ccda15991d8876737f3bb3c58cdaf0ef/treefa0d9f64fa06ec160cfd91413e5e62ec4415502e;
+the sole production-source delta is tools/publishing/profile.cjs, SHA256
+bf25017a99e51a263355aeb15634647757ea12ebd76587e467c5979a3df3ee27.
+Source-bound remote commit links are recorded in the live issue/PR after upload;
+the prepared checks below are not relabeled as native or clean-head CI.
+
+### Change and preserved contract
+
+One same-module `printGroups(print, nodes, paragraph, bind)` owns the existing
+keepTogether/keepWithNext loop. The loop is unchanged; the call occupies its
+original position between title and prompt checks. The original `selected` set,
+`bind` closure and paragraph predicate retain shared identity, type, uniqueness,
+adjacency,1–50 bounds, error text and first-error order. There are no new exports,
+dependencies, generic validation layer, lint exceptions or threshold changes.
+This applies CS01/04/05/08/10 to the existing publisher owner.
+
+Actual pinned lint reproduced the prior34/25 warning before editing. The final
+pinned ESLint with `--max-warnings 0` passes with zero errors/warnings. A separate
+measurement-only threshold0 invocation reports printSelection16 and printGroups18;
+the repository rule remains25. Pinned formatting passes without unrelated reflow.
+
+| Risk / AC | Executed oracle | Observed outcome / limit |
+| --- | --- | --- |
+| Bounds, types, duplicates and adjacency / AC04 | Existing tests/publishing-profile.test.cjs |12/12,zero skips; implementer9.086s, separate White-box9.667s. No new mirrored helper test. |
+| Shared binding and error precedence / AC04 | White-box actual baseline/current loadProfile differential |22/22 identical public outcomes:6accepted,16exact-error rejections, including0/50/51,invalid arrays/types/stale pins/cross-role duplicates and competing faults. Temporary harness only. |
+| Real article/operator surface / AC04 | Actual publisher CLI and full R37 loader; copied-input stale-pin probe |53,610/54,000 Unicode code points,22sections,4figures; current8193c7… accepts, stale6ba05c… rejects unchanged distinct-source error, restoring current accepts. |
+| Rights and article integrity / AC04 | Actual loader/selection and Git comparison |R37 rights review-pending; ordinary article selection[]; manuscriptSHA8c788866… and profileSHA854a76a2… unchanged. Native PDF/editorial/rights decisions remain separate. |
+| Source freshness versus runtime parity / AC04/08 | Owner build --all, previews and actual previous/current runtime byte comparison |Fresh producerda63a1c858c00114b3afa8d3c9c95655cee98a1d8e321ae17c0c9cc238500c27; same verified client2fe6a0…/alias43054e…; all5canonical+5immutable runtime files byte-identical; all5route versions refreshed. |
+| Generated/site cohesion / AC04 | build --check, preview --check and Basic |Five routes,16theme/archive cases,10flight cases; syntax/geometry/snapshot/size checks pass; deploymentAuthorized=false. |
+| Style/dependency boundaries / AC04 | Bounded style guard and AST guard |143style files pass; no import/initialization change. Existing deferred build/check components remain the already reviewed boundary, not a new cycle exemption. |
+
+The owner regenerated current route snapshots, output lock and offlinev11 previews.
+The catalog removes only the five replaced current snapshot directories/files
+and admits their generated replacements under the same site owner. Historical
+runtime records, scanner inputs/budgets, rights classifications and test membership
+remain unchanged. F1's20bf artifact proof remains attached to that source; runtime
+parity here does not reuse its artifact/source acceptance at the new producer.
+
+### Four independent F2 executions and maintenance
+
+| Role | Separate execution | Completed result and actual scope |
+| --- | --- | --- |
+| Requirements & Acceptance | /root/f2_requirements, preimplementation and final |GO before editing; final accepts exact extraction, actual pinned lint/R37 loader/ten-byte-copy comparisons and bounded AC04/07/08 traceability. No new requirement defect or whole-AC advancement. |
+| Code Review | /root/f2_code, source and final delta |Accepts literal baseline reconstruction, actual lint/formatting, final report/MEMORY/catalog and direct runtime comparisons. No blocking findings; no new dependency or waiver. |
+| White-box QA | /root/f2_whitebox, source and final delta |Actual12/12 and22/22 API comparison; independently rechecks final source hash, ten runtime copies, article hashes and catalog boundaries. No blockers; does not claim exhaustive branch/native coverage. |
+| Exploratory / Interaction QA | /root/f2_operator, operator charter and final delta |Actual CLI/full loader/current→stale→restored pin, rights/ordinary selection; final direct byte/catalog/report checks agree. No operator blocker; native PDF/full CI remain unobserved. |
+
+The implementer reconciled the four independent results; no production correction
+was needed after extraction. Temporary reporting probes initially used a wrong
+article filename or assumed nested/optional object shapes; corrected inventory/schema
+reads pass. These were harness/reporting mistakes, not validator failures or new tests.
+
+Final deterministic maintenance: fresh RI1755files/200directories; RI29/29 in19.539s;
+coupling20/20 in1.067s and17checks/17layers. AST118files/399edges passes; the source
+extraction changes no imports. Actual indexed catalog replacements, output ownership
+and unautomated source/dependency review remain distinct from live GitHub evidence.
+
+F2 supplies bounded AC04/07/08 evidence, not whole parent acceptance. The original
+5edce5d native failure remains historical; selected source tests were skipped there.
+No native/full-source/scanner/browser/PDF/staging/App/merge/production acceptance is
+claimed by this step. F3 is next, followed by F4,F5,F6,R3c,R3d; only wholeAC02 is complete.
 F3registry, F4rights/earlylint, F5native integration, F6full platform delivery,
 R3ccontent/recovery and R3dfinal whole acceptance remain. PR146 stays Draft.

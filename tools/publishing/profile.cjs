@@ -324,6 +324,26 @@ function assetSelection(root, article, selection, role) {
   });
 }
 
+function printGroups(print, nodes, paragraph, bind) {
+  for (const role of ['keepTogether', 'keepWithNext']) {
+    if (print[role] === undefined) {
+      continue;
+    }
+    if (!Array.isArray(print[role]) || !print[role].length || print[role].length > 50) {
+      throw new Error('Print grouping requires 1–50 source-bound blocks per role');
+    }
+    for (const sha256 of print[role]) {
+      const node = bind(sha256, role === 'keepTogether' ? ['paragraph', 'table'] : ['paragraph']);
+      if (role === 'keepWithNext') {
+        const next = nodes[nodes.indexOf(node) + 1];
+        if (!paragraph(next) && next?.type !== 'table') {
+          throw new Error('Print keep-with-next requires a following paragraph or table');
+        }
+      }
+    }
+  }
+}
+
 function printSelection(profile, article) {
   if (profile.print === undefined) {
     return;
@@ -368,23 +388,7 @@ function printSelection(profile, article) {
       );
     }
   }
-  for (const role of ['keepTogether', 'keepWithNext']) {
-    if (print[role] === undefined) {
-      continue;
-    }
-    if (!Array.isArray(print[role]) || !print[role].length || print[role].length > 50) {
-      throw new Error('Print grouping requires 1–50 source-bound blocks per role');
-    }
-    for (const sha256 of print[role]) {
-      const node = bind(sha256, role === 'keepTogether' ? ['paragraph', 'table'] : ['paragraph']);
-      if (role === 'keepWithNext') {
-        const next = nodes[nodes.indexOf(node) + 1];
-        if (!paragraph(next) && next?.type !== 'table') {
-          throw new Error('Print keep-with-next requires a following paragraph or table');
-        }
-      }
-    }
-  }
+  printGroups(print, nodes, paragraph, bind);
   for (const entry of profile.reader?.elements || []) {
     if (entry.role !== 'prompt') {
       continue;
