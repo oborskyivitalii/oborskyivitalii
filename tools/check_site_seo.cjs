@@ -10,7 +10,6 @@ const fs = require('node:fs'),
 const root = path.resolve(__dirname, '..'),
   baseline = '0333c4d2b2318850fd56312d83fb63ca468f01a4';
 const { helperContracts } = require('./quality/format-parity.cjs');
-const normalizedHTML = new Map();
 function restoreCompactMetadata(html) {
   const pattern = /(<script type="application\/ld\+json">)(\s*)([\s\S]*?)(\s*)(<\/script>)/g;
   const matches = [...html.matchAll(pattern)];
@@ -41,41 +40,118 @@ const voidTags = new Set([
 const escapeHTML = (value) =>
   value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-function normalizeHTML(html) {
-  if (normalizedHTML.has(html)) return normalizedHTML.get(html);
-  const [events] = helperContracts([{ language: 'html', source: html }]);
-  const stack = [];
-  const result = events
-    .map(([kind, value, attrs]) => {
-      if (kind === 'start') {
-        if (!voidTags.has(value)) stack.push(value);
-        const attributes = attrs.map(([name, attribute]) =>
-          attribute === null ? name : `${name}="${escapeHTML(attribute).replace(/"/g, '&quot;')}"`
-        );
-        return `<${value}${attributes.length ? ' ' + attributes.join(' ') : ''}>`;
-      }
-      if (kind === 'end') {
-        if (stack.at(-1) === value) stack.pop();
-        return `</${value}>`;
-      }
-      if (kind === 'text') return escapeHTML(value);
-      if (kind === 'raw') {
-        return ['script', 'style'].includes(stack.at(-1)) ? value : escapeHTML(value);
-      }
-      if (kind === 'comment') return `<!--${value}-->`;
-      if (kind === 'declaration') return `<!${value}>`;
-      if (kind === 'processing-instruction') return `<?${value}>`;
-      throw Error('Unsupported SEO HTML contract event: ' + kind);
-    })
-    .join('');
-  for (const input of [html, result]) {
-    if (!normalizedHTML.has(input) && normalizedHTML.size >= 128) {
-      normalizedHTML.delete(normalizedHTML.keys().next().value);
-    }
-    normalizedHTML.set(input, result);
+function createHTMLNormalizer(parser = helperContracts) {
+  const normalizedHTML = new Map();
+  const normalizedHTMLLimit = { entries: 128, bytes: 4 * 1024 * 1024 };
+  let normalizedHTMLBytes = 0;
+  function cachedResult(html) {
+    if (!normalizedHTML.has(html)) return;
+    const cached = normalizedHTML.get(html);
+    normalizedHTML.delete(html);
+    normalizedHTML.set(html, cached);
+    return cached.result;
   }
-  return result;
+  function renderHTML(events) {
+    assert.ok(Array.isArray(events), 'SEO HTML contract events must be an array');
+    const stack = [];
+    return events
+      .map(([kind, value, attrs]) => {
+        if (kind === 'start') {
+          if (!voidTags.has(value)) stack.push(value);
+          const attributes = attrs.map(([name, attribute]) =>
+            attribute === null ? name : `${name}="${escapeHTML(attribute).replace(/"/g, '&quot;')}"`
+          );
+          return `<${value}${attributes.length ? ' ' + attributes.join(' ') : ''}>`;
+        }
+        if (kind === 'end') {
+          if (stack.at(-1) === value) stack.pop();
+          return `</${value}>`;
+        }
+        if (kind === 'text') return escapeHTML(value);
+        if (kind === 'raw') {
+          return ['script', 'style'].includes(stack.at(-1)) ? value : escapeHTML(value);
+        }
+        if (kind === 'comment') return `<!--${value}-->`;
+        if (kind === 'declaration') return `<!${value}>`;
+        if (kind === 'processing-instruction') return `<?${value}>`;
+        throw Error('Unsupported SEO HTML contract event: ' + kind);
+      })
+      .join('');
+  }
+  function parseHTML(inputs) {
+    const contracts = parser(inputs.map((source) => ({ language: 'html', source })));
+    assert.ok(Array.isArray(contracts), 'SEO HTML contracts must be an array');
+    assert.equal(contracts.length, inputs.length, 'Complete SEO HTML contract coverage');
+    // Render every row before adding any new cache entry. A malformed later
+    // contract cannot leave a partially validated batch in the cache.
+    return Array.from(contracts, renderHTML);
+  }
+  function rememberResult(input, result) {
+    for (const value of new Set([input, result])) cacheNormalizedHTML(value, result);
+  }
+  function normalizeHTML(html) {
+    assert.equal(typeof html, 'string', 'SEO HTML input must be a string');
+    const cached = cachedResult(html);
+    if (cached !== undefined) return cached;
+    const [result] = parseHTML([html]);
+    rememberResult(html, result);
+    return result;
+  }
+  function normalizeMany(inputs) {
+    assert.ok(Array.isArray(inputs), 'SEO HTML batch must be an array');
+    assert.ok(inputs.length <= normalizedHTMLLimit.entries, 'SEO HTML batch entry bound');
+    let bytes = 0;
+    for (const input of inputs) {
+      assert.equal(typeof input, 'string', 'SEO HTML batch inputs must be strings');
+      bytes += Buffer.byteLength(input, 'utf8');
+    }
+    assert.ok(bytes <= normalizedHTMLLimit.bytes, 'SEO HTML batch UTF-8 byte bound');
+    const results = new Map();
+    const missing = [];
+    for (const input of inputs) {
+      if (results.has(input)) continue;
+      const cached = cachedResult(input);
+      if (cached !== undefined) results.set(input, cached);
+      else {
+        results.set(input, undefined);
+        missing.push(input);
+      }
+    }
+    if (missing.length) {
+      const rendered = parseHTML(missing);
+      for (let index = 0; index < missing.length; index++) {
+        results.set(missing[index], rendered[index]);
+        rememberResult(missing[index], rendered[index]);
+      }
+    }
+    return inputs.map((input) => results.get(input));
+  }
+  function cacheNormalizedHTML(input, result) {
+    const bytes = Buffer.byteLength(input, 'utf8') + Buffer.byteLength(result, 'utf8');
+    if (bytes > normalizedHTMLLimit.bytes) return;
+    const previous = normalizedHTML.get(input);
+    if (previous) {
+      normalizedHTMLBytes -= previous.bytes;
+      normalizedHTML.delete(input);
+    }
+    while (
+      normalizedHTML.size >= normalizedHTMLLimit.entries ||
+      normalizedHTMLBytes + bytes > normalizedHTMLLimit.bytes
+    ) {
+      const oldest = normalizedHTML.keys().next().value;
+      normalizedHTMLBytes -= normalizedHTML.get(oldest).bytes;
+      normalizedHTML.delete(oldest);
+    }
+    normalizedHTML.set(input, { result, bytes });
+    normalizedHTMLBytes += bytes;
+  }
+  return Object.freeze({
+    normalizeHTML,
+    normalizeMany,
+    cacheStats: () => Object.freeze({ entries: normalizedHTML.size, bytes: normalizedHTMLBytes }),
+  });
 }
+const { normalizeHTML, normalizeMany } = createHTMLNormalizer();
 // Exact maintainer-approved contact replacement; unrelated copy stays frozen.
 const contactPrevious =
   '<div class="booking-placeholder"><h3>Book a conversation</h3><p>Direct booking will be available here. In the meantime, message me on LinkedIn to arrange a conversation.</p><a class="button" href="https://www.linkedin.com/in/vitaliioborskyi/">Arrange a conversation on LinkedIn <span aria-hidden="true">↗</span></a></div>';
@@ -254,28 +330,333 @@ function restoreApprovedLicensing(html, page, sourceRoot = root, required = fals
   return html;
 }
 function verifyApprovedLicensingCSS(sourceRoot = root) {
+  // The author accepted this complete reader rendition before requesting staging.
+  // Pin both full stylesheets; later unrelated changes still fail byte-for-byte.
+  const approvedReader = '1eb9ecdeede918771bf632846c48e550f8310f42';
   for (const file of ['site/engine/styles.css', 'docs/styles.css']) {
     const current = fs.readFileSync(path.join(sourceRoot, file), 'utf8');
     assert.equal(current.split(licensingCSS).length, 2, 'one exact legal wrapping rule: ' + file);
+    const expected = cp.execFileSync('git', ['show', approvedReader + ':' + file], {
+      cwd: root,
+      encoding: 'utf8',
+      maxBuffer: 1024 * 1024,
+    });
     assert.equal(
-      current.replace(licensingCSS, ''),
-      historicalSource(file),
-      'unrelated stylesheet change outside approved licensing: ' + file
+      current,
+      expected,
+      'unrelated stylesheet change outside approved reader/licensing: ' + file
     );
   }
 }
+const writingCatalog = JSON.parse(
+  fs.readFileSync(path.join(root, 'review/issue-5/writing-catalog-amendment.json'), 'utf8')
+);
+const structuredMetadata = new Map();
+const eventMigration = JSON.parse(
+  fs.readFileSync(path.join(root, 'review/issue-122/2026-10-24-r3-events-migration.json'))
+);
+const eventProducerInputs = [
+  'tools/site/content.cjs',
+  'tools/site/events.cjs',
+  'tools/site/render-records.cjs',
+  'tools/site/render-content.cjs',
+  'tools/site/html.cjs',
+  'tools/site/validate-catalog.cjs',
+  'site/templates/pages/talks/talks.html',
+  ...[
+    'event',
+    'event-group',
+    'event-meta',
+    'event-language',
+    'event-date',
+    'event-primary-link',
+    'event-link',
+    'event-arrow',
+  ].map((name) => 'site/templates/components/' + name + '.html'),
+].sort();
+
+function restoreEventsCatalog(html, projectRoot = root) {
+  assert.deepEqual(Object.keys(eventMigration.producerInputs).sort(), eventProducerInputs);
+  for (const file of eventProducerInputs) {
+    const stat = fs.lstatSync(path.join(projectRoot, file));
+    assert.ok(stat.isFile() && !stat.isSymbolicLink());
+    assert.equal(
+      crypto
+        .createHash('sha256')
+        .update(fs.readFileSync(path.join(projectRoot, file)))
+        .digest('hex'),
+      eventMigration.producerInputs[file],
+      'unreviewed event producer ' + file
+    );
+  }
+  assert.equal(
+    crypto.createHash('sha256').update(eventMigration.original).digest('hex'),
+    eventMigration.originalSha256,
+    'frozen event migration snapshot differs'
+  );
+  const content = require('./site/content.cjs');
+  const expected = normalizeHTML(
+    content.fragment(
+      projectRoot,
+      'site/content/pages/talks/talks.json',
+      content.catalog(projectRoot)
+    ).html
+  );
+  const normalized = normalizeHTML(html);
+  const blocks = normalized.match(/<section id="talks"[^>]*>[\s\S]*?<\/section>/g);
+  assert.equal(blocks?.length, 1, 'one complete current event collection');
+  assert.equal(blocks[0], expected, 'event output differs from validated canonical data');
+  return normalized.replace(blocks[0], () => normalizeHTML(eventMigration.original));
+}
+const writingProducerInputs = [
+  'tools/site/content.cjs',
+  'tools/site/validate-catalog.cjs',
+  'tools/site/render-records.cjs',
+  'tools/site/render-content.cjs',
+  'tools/site/html.cjs',
+  'site/templates/components/archive-option.html',
+  'site/templates/components/archive-navigation-link.html',
+  'site/templates/components/archive-topic-landing.html',
+  'site/templates/components/archive-group.html',
+  'site/templates/components/archive-year.html',
+  'site/templates/components/publication.html',
+  'site/templates/components/publication-title.html',
+  'site/templates/components/language-badge.html',
+  'site/templates/components/edition-link.html',
+  'site/templates/components/discussion-link.html',
+].sort();
+
+function verifyWritingProducers(projectRoot = root, bindings = writingCatalog.producerInputs) {
+  assert.ok(bindings && typeof bindings === 'object', 'Reviewed Writing producer identity');
+  assert.deepEqual(
+    Object.keys(bindings).sort(),
+    writingProducerInputs,
+    'Exact bounded Writing producer inventory'
+  );
+  for (const file of writingProducerInputs) {
+    const absolute = path.join(projectRoot, file);
+    const stat = fs.lstatSync(absolute);
+    assert.ok(stat.isFile() && !stat.isSymbolicLink(), 'Authored Writing producer file: ' + file);
+    assert.match(bindings[file], /^[a-f0-9]{64}$/, 'Writing producer SHA256');
+    assert.equal(
+      crypto.createHash('sha256').update(fs.readFileSync(absolute)).digest('hex'),
+      bindings[file],
+      'Writing producer changed outside its reviewed catalog frame: ' + file
+    );
+  }
+}
+
+function writingCatalogViews(projectRoot = root, catalog) {
+  verifyWritingProducers(projectRoot);
+  const content = require('./site/content.cjs');
+  const validated = require('./site/validate-catalog.cjs');
+  const selected = validated.validateCatalog(catalog || content.catalog(projectRoot));
+  const entries = validated.writingEntries(selected);
+  const route = require(path.join(projectRoot, 'site/routes.json')).routes.find(
+    (route) => route.id === 'writing'
+  );
+  return {
+    entries,
+    schema: content.routeInput(projectRoot, route, selected).schema,
+    views: require('./site/render-records.cjs').archiveViews(
+      content.loadComponents(projectRoot),
+      selected,
+      entries
+    ),
+  };
+}
+
+function writingRegion(html, tag, owner, replace) {
+  const openings = [...html.matchAll(new RegExp('<' + tag + '\\b[^>]*>', 'g'))].filter(
+    ([opening]) => owner.test(opening)
+  );
+  assert.equal(openings.length, 1, 'One generated Writing region owner: ' + owner);
+  const opening = openings[0];
+  const start = opening.index + opening[0].length;
+  const tags = new RegExp('</?' + tag + '\\b[^>]*>', 'g');
+  tags.lastIndex = start;
+  let depth = 1;
+  let closing;
+  for (const match of html.matchAll(tags)) {
+    depth += match[0].startsWith('</') ? -1 : 1;
+    if (depth === 0) {
+      closing = match;
+      break;
+    }
+  }
+  assert.ok(closing, 'Complete generated Writing region: ' + owner);
+  return (
+    html.slice(0, start) + replace(html.slice(start, closing.index)) + html.slice(closing.index)
+  );
+}
+
+function restoreWritingCatalog(html, options = {}) {
+  html = normalizeHTML(html);
+  const current = writingCatalogViews(options.projectRoot, options.catalog);
+  for (const [key, tag, owner, hasAllOption] of [
+    ['ARCHIVE_TOPIC_NAV', 'nav', /\bclass="topic-nav wrap"/],
+    ['ARCHIVE_YEAR_NAV', 'nav', /\bclass="section-nav"/],
+    ['ARCHIVE_TOPIC_OPTIONS', 'select', /\bid="archive-topic"/, true],
+    ['ARCHIVE_YEAR_OPTIONS', 'select', /\bid="archive-year"/, true],
+    ['ARCHIVE_LANGUAGE_OPTIONS', 'select', /\bid="archive-language"/, true],
+    ['ARCHIVE_TOPIC_LANDINGS', 'div', /\bclass="archive-landings"/],
+    ['ARCHIVE_RESULTS', 'div', /\bid="archive-results"/],
+  ]) {
+    html = writingRegion(html, tag, owner, (body) => {
+      const all = hasAllOption ? body.match(/^<option value="all">[^<]*<\/option>/)?.[0] : '';
+      if (hasAllOption) assert.ok(all, 'Writing filter retains its authored All option');
+      const prefix = all || '';
+      assert.equal(
+        normalizeHTML(body.slice(prefix.length)).trim(),
+        normalizeHTML(current.views[key]).trim(),
+        'Writing generated view differs from its validated catalog: ' + key
+      );
+      return prefix + normalizeHTML(writingCatalog.generatedViews[key]);
+    });
+  }
+  html = writingRegion(html, 'p', /\bid="archive-count"/, (body) => {
+    const count = body.match(/^(\d+)([^<]*)$/);
+    assert.ok(count, 'Writing count remains a plain generated number');
+    assert.equal(
+      Number(count[1]),
+      current.entries.length,
+      'Writing count matches displayed entries'
+    );
+    return writingCatalog.count + count[2];
+  });
+  return html;
+}
+
+function restoreWritingMetadata(html, options = {}) {
+  const current = writingCatalogViews(options.projectRoot, options.catalog);
+  const blocks = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
+  assert.equal(blocks.length, 1, 'One Writing collection metadata block');
+  const block = blocks[0];
+  const { scriptJSON } = require('./site/html.cjs');
+  const encodings = [
+    { indentation: 0, prefix: '', suffix: '' },
+    { indentation: 2, prefix: '', suffix: '' },
+    { indentation: 0, prefix: '\n', suffix: '\n  ' },
+    { indentation: 2, prefix: '\n', suffix: '\n  ' },
+  ];
+  const encoding = encodings.find(
+    ({ indentation, prefix, suffix }) =>
+      block[1] === prefix + scriptJSON(current.schema, indentation) + suffix
+  );
+  assert.ok(encoding, 'Writing metadata matches its exact validated catalog encoding');
+  const restored = structuredClone(current.schema);
+  restored.mainEntity = writingCatalog.structuredData.mainEntity;
+  return html.replace(block[0], () =>
+    block[0].replace(
+      block[1],
+      () => encoding.prefix + scriptJSON(restored, encoding.indentation) + encoding.suffix
+    )
+  );
+}
+
+function approvedStructuredMetadata(page) {
+  if (structuredMetadata.has(page)) return structuredMetadata.get(page);
+  const frozen = cp.execFileSync('git', ['show', baseline + ':docs/' + page + '.html'], {
+    cwd: root,
+    encoding: 'utf8',
+    maxBuffer: 1024 * 1024,
+  });
+  const sources = [frozen];
+  for (const record of [
+    amendment,
+    issue48,
+    issue61,
+    positioning,
+    sitecase,
+    arkadiy,
+    arkadiyTopic,
+    authorFirst,
+  ]) {
+    for (const change of record.changes.filter((change) => change.page === page)) {
+      for (const version of ['before', 'after']) {
+        if (!change[version].includes('<script type="application/ld+json">')) continue;
+        assert.equal(
+          crypto.createHash('sha256').update(change[version]).digest('hex'),
+          change[version + 'SHA256'],
+          'structured metadata amendment snapshot integrity'
+        );
+        sources.push(change[version]);
+      }
+    }
+  }
+  const encodings = new Map();
+  for (const source of normalizeMany(sources)) {
+    const blocks = source.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g);
+    for (const [block, data] of blocks) {
+      // Parse only immutable approved input. Current metadata must match this
+      // exact compact encoding, including property order and surrounding bytes.
+      const compact = block.replace(
+        data,
+        () =>
+          data.match(/^\s*/)[0] +
+          require('./site/html.cjs').scriptJSON(JSON.parse(data), 0) +
+          data.match(/\s*$/)[0]
+      );
+      assert.ok(
+        !encodings.has(compact) || encodings.get(compact) === block,
+        'Ambiguous approved structured metadata encoding'
+      );
+      encodings.set(block, block);
+      encodings.set(compact, block);
+    }
+  }
+  structuredMetadata.set(page, encodings);
+  return encodings;
+}
+
+function restoreStructuredMetadata(html, page) {
+  if (page === 'writing') html = restoreWritingMetadata(html);
+  const heads = [...html.matchAll(/<head>[\s\S]*?<\/head>/g)];
+  assert.equal(heads.length, 1, 'One structured metadata document head');
+  assert.doesNotMatch(
+    html,
+    /<script\b[^>]*\bid="site-documents"/,
+    'Undeclared article document index in frozen public routes'
+  );
+  assert.doesNotMatch(
+    html,
+    /<meta\b[^>]*\bname="site-(?:article|base)"/,
+    'Undeclared article metadata in frozen public routes'
+  );
+  const blocks = [
+    ...html.matchAll(/<script\b[^>]*\btype="application\/ld\+json"[^>]*>[\s\S]*?<\/script>/g),
+  ];
+  assert.equal(blocks.length, 1, 'One declared structured metadata block');
+  assert.ok(
+    heads[0][0].includes(blocks[0][0]),
+    'Structured metadata belongs inside the document head'
+  );
+  const approved = approvedStructuredMetadata(page).get(blocks[0][0]);
+  // Unknown current bytes stay visible to the outer frozen comparison. They
+  // cannot disappear through parsing or a semantic equality shortcut.
+  return approved ? html.replace(blocks[0][0], () => approved) : html;
+}
+
 function restoreContentAmendment(html, page, record = amendment) {
-  for (const change of record.changes.filter((c) => c.page === page)) {
+  const changes = record.changes.filter((change) => change.page === page);
+  for (const change of changes) {
     for (const version of ['before', 'after'])
       assert.equal(
         crypto.createHash('sha256').update(change[version]).digest('hex'),
         change[version + 'SHA256'],
         'amendment snapshot integrity'
       );
-    html = normalizeHTML(html).replace(normalizeHTML(change.after), normalizeHTML(change.before));
+  }
+  // Only independent, hash-verified snapshots share one parser invocation.
+  // The evolving current document still receives its full original comparison
+  // after every replacement; it cannot become an approved snapshot.
+  const snapshots = normalizeMany(changes.flatMap((change) => [change.after, change.before]));
+  for (let index = 0; index < changes.length; index++) {
+    html = normalizeHTML(html).replace(snapshots[index * 2], snapshots[index * 2 + 1]);
   }
   return html;
 }
+
 const strip = (html) =>
   html.replace(/<svg class="space-fallback"[\s\S]*?<\/svg>/, '[same-world decorative fallback]');
 function restoreFormatterBlockSeams(html, page) {
@@ -417,11 +798,16 @@ function restoreResearchNavigation(html, page) {
   return html.replace(researchNavigation.separated, () => researchNavigation.original);
 }
 function restoreApprovedContent(html, page) {
+  if (page === 'talks') html = restoreEventsCatalog(html);
   html = restoreContentAmendment(html, page, issue126);
   html = restoreContentAmendment(html, page, issue118);
-  html = restoreContentAmendment(html, page, issue108);
   html = restoreResearchNavigation(normalizeHTML(html), page);
   html = normalizeHTML(html);
+  html = restoreContentAmendment(html, page, issue108);
+  if (page === 'writing') {
+    html = restoreWritingCatalog(html);
+    html = restoreContentAmendment(html, page, writingCatalog);
+  }
   html = restoreApprovedLicensing(html, page);
   // Reverse PR68 editorial successors while keeping PR40 licensing intact.
   html = restoreContentAmendment(html, page, authorFirst);
@@ -475,14 +861,15 @@ function restoreApprovedContent(html, page) {
     : html;
 }
 function restore(html, page) {
-  html = restoreCompactMetadata(html);
   html = normalizeHTML(strip(require('./build_site_previews.cjs').sourceForPreview(html)));
+  html = restoreStructuredMetadata(html, page);
   html = restoreCriticalMedia(html, page);
   // Authored-effects identity is build metadata. Only these exact production
   // values are reversible; a different variant/contract still fails comparison.
   html = html.replace(/<head>[\s\S]*?<\/head>/, (head) =>
     head
       .replace(/<meta name="site-(?:engine|route|contract)" content="[^"]+"> ?/g, '')
+      .replace('<meta name="site-article-renderer" content="1"> ', '')
       .replace(/<meta name="site-effects-contract" content="1"> ?/g, '')
       .replace(/<meta name="site-variant" content="base"> ?/g, '')
   );
@@ -584,6 +971,7 @@ function verify() {
               'matching section/local-nav order',
               'wordmark dot',
               'exact same-owner generated critical media fallback in Home head',
+              'exact compact encoding of immutable approved structured metadata',
             ]
           : [
               ...(page === 'research'
@@ -591,7 +979,13 @@ function verify() {
                 : []),
               ...(titleCopy[page] ? ['exact decorative title-line wrapper'] : []),
               ...(page === 'writing' ? ['exact accessible canonical formula description'] : []),
+              ...(page === 'writing'
+                ? [
+                    'catalog-derived article rows, controls, groups, count and ItemList with exact generated-view proof',
+                  ]
+                : []),
               'wordmark dot',
+              'exact compact encoding of immutable approved structured metadata',
             ]),
       ],
     });
@@ -601,11 +995,12 @@ function verify() {
     pass: true,
     rows,
     policy:
-      'Ordered HTML contracts after reversing exact hash-bound Issue39/7 licensing fragments and full texts, then Issue41 AI-assisted site case and positioning, Issue61 PMDay recording, Issue48 and original Issue41 content amendments and declared Home hierarchy/wordmark changes, approved contact/title wrappers, reviewed response blocks/Research nav, accessible Writing formula description, exact canonical Home critical media head block and authored-base build identity. The three legal wrapping declarations are the only allowed stylesheet delta from cc115c4. ASCII whitespace runs and void-tag spellings are canonicalized; only named Research/Writing/Talks block-fragment EOF seams are reversible. Current JSON-LD must be exact escaped compact serialization and reverses only to its original two-space spelling before comparison; values, key order, inline separators and attributes remain exact. Decorative fallback SVG is excluded. Includes semantic metadata, publication records, links, languages, dates, portrait and source attribution.',
+      'Ordered HTML contracts after proving the seven catalog-generated Writing regions, simple count and ItemList against current validated data and reversing the exact hashed Issue5 frame amendment; then reversing the exact hashed Issue41 AI-assisted site case and positioning, Issue61 PMDay recording, Issue48 then original Issue41 content amendments and declared Home hierarchy/wordmark changes, approved contact/title wrappers, reviewed response blocks/Research nav, accessible Writing formula description, exact canonical Home critical media head block and authored-base build identity. ASCII whitespace runs and void-tag spellings are canonicalized; only named Research/Writing/Talks block-fragment EOF seams and exact compact encodings of immutable approved JSON-LD blocks are reversible. Inline separators, attributes/order and all other raw metadata remain exact; decorative fallback SVG is excluded. Includes semantic metadata, publication records, links, languages, dates, portrait and source attribution.',
   };
 }
 if (require.main === module) process.stdout.write(JSON.stringify(verify(), null, 2) + '\n');
 module.exports = {
+  createHTMLNormalizer,
   verify,
   restore,
   restoreApprovedContent,
@@ -613,8 +1008,14 @@ module.exports = {
   restoreContentAmendment,
   restoreRefactorPresentation,
   restoreCriticalMedia,
+  restoreStructuredMetadata,
+  restoreWritingCatalog,
+  restoreEventsCatalog,
+  restoreWritingMetadata,
+  verifyWritingProducers,
   restoreCompactMetadata,
   restoreApprovedLicensing,
   verifyApprovedLicensingCSS,
   normalizeHTML,
+  normalizeMany,
 };

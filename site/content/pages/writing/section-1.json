@@ -5,7 +5,7 @@
     "T001": "Writing / Original published editions",
     "T002": "Follow the questions.",
     "T003": "Find your next read.",
-    "T004": "{{CATALOG_PRIMARY_COUNT}} primary archive records: {{CATALOG_EN_COUNT}} English and\n    {{CATALOG_UK_COUNT}} Ukrainian; {{CATALOG_LINKED_COUNT}} linked platform editions, including alternates.\n    AI architecture, delivery, operating models and strategy, with original titles, dates and\n    languages retained."
+    "T004": "AI architecture, delivery, operating models and strategy, with original titles, dates and\n    languages retained."
   },
   "attributes": {},
   "urls": {}

@@ -462,6 +462,13 @@ const definitions={
     ]
   },
   "roomSpacing": 128,
+  "documentOrbit": {
+    "center": [
+      0,
+      0,
+      -32
+    ]
+  },
   "pageStops": {
     "index": {
       "hero": "overview",
@@ -2106,7 +2113,7 @@ const projection=(function (math, definitions) {
     clipPolygon,
     cameraView,
   } = math;
-  const { poses, routeOrder, roomSpacing } = definitions;
+  const { poses, routeOrder, roomSpacing, documentOrbit } = definitions;
   // Authored spline waypoints pass through the open centres of successive structures.
   function journeyPose(ids, progress) {
     const path = ids.map((id) => poses[id]);
@@ -2509,6 +2516,44 @@ const projection=(function (math, definitions) {
     ...(pose.framing !== undefined ? { framing: pose.framing } : {}),
   });
   const routePose = (page, pose) => translatePose(pose, roomOffset(page));
+  // Native article documents share Writing's one model. Keep the eye outside
+  // that composition and look at its center throughout a horizontal orbit.
+  function documentCenterPose(pose, retainPosition = false) {
+    return {
+      position: retainPosition ? pose.position : centerPose(pose).position,
+      target: add(documentOrbit.center, [0, 0, roomOffset('writing')]),
+      framing: 1,
+    };
+  }
+  function orbitPose(from, to, progress, endAngle) {
+    const p = clamp(progress);
+    if (p === 0) return from;
+    if (p === 1) return to;
+    const center = to.target,
+      x = from.position[0] - center[0],
+      z = from.position[2] - center[2],
+      start = Math.atan2(x, z),
+      angle = start + (endAngle - start) * smooth(p),
+      radius =
+        Math.hypot(x, z) +
+        (Math.hypot(to.position[0] - center[0], to.position[2] - center[2]) - Math.hypot(x, z)) *
+          smooth(p);
+    return {
+      position: [
+        center[0] + Math.sin(angle) * radius,
+        from.position[1] + (to.position[1] - from.position[1]) * smooth(p),
+        center[2] + Math.cos(angle) * radius,
+      ],
+      target: lerp(from.target, center, smooth(p)),
+      framing: (from.framing || 0) + (1 - (from.framing || 0)) * smooth(p),
+    };
+  }
+  function documentTravelPose(from, to, progress, direction) {
+    return orbitPose(from, to, progress, Math.sign(direction) * Math.PI * 2);
+  }
+  function documentReturnPose(from, to, progress) {
+    return orbitPose(from, to, progress, 0);
+  }
   return {
     loopTransform,
     cameraVertices,
@@ -2520,6 +2565,9 @@ const projection=(function (math, definitions) {
     journeyPose,
     blendColor,
     routePose,
+    documentCenterPose,
+    documentTravelPose,
+    documentReturnPose,
     centerPose,
     roomOffset,
     translatePose,
@@ -2738,10 +2786,25 @@ const renderer=(function (artwork = null, createSurface = null) {
     ctx.moveTo(points[0][0], points[0][1]);
     for (let i = 1; i < points.length; i++) ctx.lineTo(points[i][0], points[i][1]);
   }
-  function setPaintState(ctx, state, property, value) {
-    if (state[property] === value) return;
-    ctx[property] = value;
-    state[property] = value;
+  function setLineWidth(ctx, state, value) {
+    if (state.lineWidth === value) return;
+    ctx.lineWidth = value;
+    state.lineWidth = value;
+  }
+  function setStrokeStyle(ctx, state, value) {
+    if (state.strokeStyle === value) return;
+    ctx.strokeStyle = value;
+    state.strokeStyle = value;
+  }
+  function setFillStyle(ctx, state, value) {
+    if (state.fillStyle === value) return;
+    ctx.fillStyle = value;
+    state.fillStyle = value;
+  }
+  function setAlpha(ctx, state, value) {
+    if (state.globalAlpha === value) return;
+    ctx.globalAlpha = value;
+    state.globalAlpha = value;
   }
   function invalidatePaintState(state) {
     state.fillStyle = state.strokeStyle = state.lineWidth = state.globalAlpha = undefined;
@@ -2750,9 +2813,9 @@ const renderer=(function (artwork = null, createSurface = null) {
     const first = shapes[index],
       alpha = first.alpha;
     ctx.beginPath();
-    setPaintState(ctx, state, 'lineWidth', first.lineWidth);
-    setPaintState(ctx, state, 'strokeStyle', colors[first.color]);
-    setPaintState(ctx, state, 'globalAlpha', alpha);
+    setLineWidth(ctx, state, first.lineWidth);
+    setStrokeStyle(ctx, state, colors[first.color]);
+    setAlpha(ctx, state, alpha);
     let end = index;
     while (end < shapes.length) {
       const shape = shapes[end];
@@ -2803,26 +2866,26 @@ const renderer=(function (artwork = null, createSurface = null) {
       if (shape.kind === 'face') {
         const fill = shape.room.faceColors[shape.material];
         ctx.closePath();
-        setPaintState(ctx, state, 'fillStyle', fill);
-        setPaintState(ctx, state, 'globalAlpha', shape.alpha);
+        setFillStyle(ctx, state, fill);
+        setAlpha(ctx, state, shape.alpha);
         ctx.fill();
         if (shape.edgeAlpha === 0) {
-          setPaintState(ctx, state, 'strokeStyle', fill);
-          setPaintState(ctx, state, 'lineWidth', 0.65);
+          setStrokeStyle(ctx, state, fill);
+          setLineWidth(ctx, state, 0.65);
           ctx.stroke();
         }
         // Explicit silhouettes survive; faint internal mesh edges are omitted
         // on desktop as on mobile. Thousands of invisible strokes cost time.
         else if (shape.room.world.faces[shape.material].edgeAlpha > 0.12) {
-          setPaintState(ctx, state, 'lineWidth', shape.lineWidth);
-          setPaintState(ctx, state, 'strokeStyle', colors[shape.color]);
-          setPaintState(ctx, state, 'globalAlpha', shape.edgeAlpha);
+          setLineWidth(ctx, state, shape.lineWidth);
+          setStrokeStyle(ctx, state, colors[shape.color]);
+          setAlpha(ctx, state, shape.edgeAlpha);
           ctx.stroke();
         }
       } else {
-        setPaintState(ctx, state, 'lineWidth', shape.lineWidth);
-        setPaintState(ctx, state, 'strokeStyle', colors[shape.color]);
-        setPaintState(ctx, state, 'globalAlpha', shape.alpha);
+        setLineWidth(ctx, state, shape.lineWidth);
+        setStrokeStyle(ctx, state, colors[shape.color]);
+        setAlpha(ctx, state, shape.alpha);
         ctx.stroke();
       }
       if (shape.arrow) {
@@ -2840,7 +2903,7 @@ const renderer=(function (artwork = null, createSurface = null) {
         ctx.stroke();
       }
     }
-    setPaintState(ctx, state, 'globalAlpha', 1);
+    setAlpha(ctx, state, 1);
   }
   return {
     paintShapes,
@@ -3427,6 +3490,9 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     projectedWorld,
     paintShapes,
     routePose,
+    documentCenterPose,
+    documentTravelPose,
+    documentReturnPose,
     centerPose,
     roomOffset,
     translatePose,
@@ -3563,8 +3629,15 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       navigationId: planned.navigationId,
       from: planned.fromPage,
       to: planned.toPage,
+      fromDocument: planned.fromDocument,
+      toDocument: planned.toDocument,
+      direction: planned.direction,
+      localDocument: planned.localDocument,
+      ...(planned.localDocument ? { orbitCenter: planned.centeredTo.target } : {}),
       fromZ: planned.from.position[2],
       toZ: planned.to.position[2],
+      fromPose: planned.from,
+      toPose: planned.to,
       plannedDurationMs: planned.duration,
       centerDurationMs: planned.centerDuration,
       transitDurationMs: planned.transitDuration,
@@ -3664,6 +3737,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     // Its logical source page may still be several rooms away from that paint.
     if (elapsed < travel.centerDuration && travel.fromRooms.length > 1) return travel.fromRooms;
     const targetIndex = routeOrder.indexOf(travel.toPage);
+    if (travel.localDocument) return [targetIndex];
     const first = Math.min(...travel.fromRooms, targetIndex),
       last = Math.max(...travel.fromRooms, targetIndex);
     let near = first;
@@ -3687,8 +3761,15 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     const next = readingPose(routeOrder[index + 1]).position[2];
     return smooth(clamp((cameraDepth - next) / (depth - next)));
   }
+  function travelVisibility(travel, name, pose, elapsed = travel?.elapsed) {
+    if (!travel || travel.localDocument) return 1;
+    const opacity = roomVisibility(name, pose);
+    if (elapsed >= travel.centerDuration) return opacity;
+    const start = travel.fromOpacity[name] || 0;
+    return start + (opacity - start) * smooth(elapsed / travel.centerDuration);
+  }
   function visibleRooms() {
-    if (!journey || journeyStage() === 'restore') {
+    if (!journey || journey.localDocument || journeyStage() === 'restore') {
       const room = roomFor(page);
       const shapes = projectedWorld(
         room.world,
@@ -3708,7 +3789,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     const names = travelRoomIndices(journey, current).map((index) => routeOrder[index]);
     const active = [...new Set(names)];
     const shapes = active.flatMap((name) => {
-      const opacity = roomVisibility(name, current);
+      const opacity = travelVisibility(journey, name, current);
       if (opacity === 0) return [];
       // Entire room envelope behind the camera cannot contribute geometry.
       const local = translatePose(current, -roomOffset(name));
@@ -3797,7 +3878,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
         roomVisibility: (!journey || journeyStage() === 'restore'
           ? [page]
           : travelRoomIndices(journey, current).map((index) => routeOrder[index])
-        ).map((name) => ({ route: name, opacity: roomVisibility(name, current) })),
+        ).map((name) => ({ route: name, opacity: travelVisibility(journey, name, current) })),
         ordinaryShapes: geometry.length,
         customShapes: custom.length,
       });
@@ -3910,13 +3991,15 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     if (elapsed === 0) {
       current = journey.from;
     } else if (elapsed < centerEnd) {
-      current = mix(journey.from, journey.centeredFrom, smooth(elapsed / centerEnd));
+      current =
+        journey.fromOrbit && !journey.localDocument
+          ? documentReturnPose(journey.from, journey.centeredFrom, elapsed / centerEnd)
+          : mix(journey.from, journey.centeredFrom, smooth(elapsed / centerEnd));
     } else if (elapsed < transitEnd) {
-      current = mix(
-        journey.centeredFrom,
-        journey.centeredTo,
-        smooth((elapsed - centerEnd) / (transitEnd - centerEnd))
-      );
+      const progress = (elapsed - centerEnd) / (transitEnd - centerEnd);
+      current = journey.localDocument
+        ? documentTravelPose(journey.centeredFrom, journey.centeredTo, progress, journey.direction)
+        : mix(journey.centeredFrom, journey.centeredTo, smooth(progress));
     } else if (elapsed < journey.duration) {
       current = mix(
         journey.centeredTo,
@@ -3931,6 +4014,11 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
   function frame(time) {
     pending = null;
     if (document.hidden || printing || !initialized || failed) return;
+    // The query can change before its queued notification reaches the listener.
+    if (enabled && reduced.matches) {
+      preferenceChanged();
+      return;
+    }
     try {
       flushLayout();
     } catch {
@@ -3971,6 +4059,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       if (living) quality(renderCost, time);
     }
     if (living && !hold) schedule();
+    else lastFrame = nextDraw = null;
   }
   function updateControl() {
     if (failed) return;
@@ -4013,7 +4102,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       if (was) cancel();
     }
     updateControl();
-    schedule();
+    if (enabled || was) schedule();
     if (window.dispatchEvent) window.dispatchEvent(new CustomEvent('site:motion-preference'));
   }
   control.addEventListener('click', () => {
@@ -4101,6 +4190,84 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
   }
   observeLayout();
   document.fonts?.addEventListener?.('loadingdone', resize);
+
+  function cameraDeparture() {
+    const from = displayedCamera,
+      sourcePage = page,
+      fromRooms =
+        journey && displayedElapsed < journey.centerDuration + journey.transitDuration
+          ? travelRoomIndices(journey, from, displayedElapsed)
+          : [routeOrder.indexOf(sourcePage)],
+      fromOpacity = Object.fromEntries(
+        fromRooms.map((index) => {
+          const name = routeOrder[index];
+          return [name, travelVisibility(journey, name, from, displayedElapsed)];
+        })
+      ),
+      fromOrbit =
+        journey?.localDocument === true ||
+        (journey?.fromOrbit === true && displayedElapsed < journey.centerDuration),
+      orbitAnchor = journey?.orbitAnchor || readingPose(sourcePage);
+    return {
+      from,
+      sourcePage,
+      fromRooms,
+      fromOpacity,
+      fromOrbit,
+      orbitAnchor,
+      centeredDocument: documentCenterPose(from, fromOrbit),
+      centeredPrincipal: fromOrbit ? documentCenterPose(orbitAnchor) : centerPose(from),
+    };
+  }
+  function cameraPath(next, departure, metadata) {
+    const { sourcePage, from } = departure,
+      documentChange = metadata?.documentChange === true,
+      localDocument =
+        next === sourcePage &&
+        documentChange &&
+        metadata.sameSceneDocument === true &&
+        (!journey || journey.localDocument),
+      target = readingPose(next),
+      forward = localDocument
+        ? metadata.direction !== -1
+        : target.position[2] === from.position[2]
+          ? routeOrder.indexOf(next) > routeOrder.indexOf(sourcePage)
+          : target.position[2] < from.position[2];
+    return { documentChange, localDocument, target, forward };
+  }
+  function cameraJourney(next, departure, path, metadata) {
+    const { from, sourcePage, fromRooms, fromOpacity, fromOrbit, orbitAnchor } = departure,
+      { localDocument, target, forward } = path,
+      navigationId = metadata?.navigationId,
+      centerDuration = 400,
+      transitDuration = 1000,
+      restoreDuration = 350;
+    return {
+      navigationId: Number.isSafeInteger(navigationId) && navigationId > 0 ? navigationId : null,
+      fromPage: sourcePage,
+      toPage: next,
+      localDocument,
+      fromOrbit,
+      orbitAnchor: localDocument ? target : orbitAnchor,
+      direction: forward ? 1 : -1,
+      fromDocument: metadata?.fromDocument,
+      toDocument: metadata?.toDocument,
+      fromRooms,
+      fromOpacity,
+      from,
+      to: target,
+      elapsed: 0,
+      centeredFrom: localDocument ? departure.centeredDocument : departure.centeredPrincipal,
+      centeredTo: localDocument ? documentCenterPose(target) : centerPose(target),
+      // Center, orbit/corridor and reading restoration share a fixed camera
+      // budget. Direct route choices change distance, never waiting time.
+      centerDuration,
+      transitDuration,
+      restoreDuration,
+      duration: centerDuration + transitDuration + restoreDuration,
+      started: false,
+    };
+  }
   window.SiteScene = {
     motionState,
     managesLayout: true,
@@ -4120,48 +4287,20 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
         cancel();
         updateControl();
       }
-      const from = displayedCamera,
-        sourcePage = page,
-        fromRooms =
-          journey && displayedElapsed < journey.centerDuration + journey.transitDuration
-            ? travelRoomIndices(journey, from, displayedElapsed)
-            : [routeOrder.indexOf(sourcePage)];
+      const departure = cameraDeparture(),
+        { from, sourcePage, fromRooms } = departure;
       page = next;
-      const travelling = animate && next !== sourcePage && this.canTravel(),
-        target = readingPose();
+      const metadata = options[1],
+        path = cameraPath(next, departure, metadata),
+        { documentChange, target, forward } = path,
+        travelling = animate && (next !== sourcePage || documentChange) && this.canTravel();
       cameraDiagnostic('camera-travel-cancelled', journey, travelling ? 'retargeted' : 'instant');
       current = from;
-      const forward =
-        target.position[2] === from.position[2]
-          ? routeOrder.indexOf(page) > routeOrder.indexOf(sourcePage)
-          : target.position[2] < from.position[2];
       scene.dataset.direction = forward ? 'forward' : 'backward';
       if (travelling) {
         // The fourth router argument remains its native landing contract;
         // the optional fifth argument carries navigation measurement identity.
-        const navigationId = options[1]?.navigationId,
-          centerDuration = 400,
-          transitDuration = 1000,
-          restoreDuration = 350;
-        journey = {
-          navigationId:
-            Number.isSafeInteger(navigationId) && navigationId > 0 ? navigationId : null,
-          fromPage: sourcePage,
-          toPage: page,
-          fromRooms,
-          from,
-          to: target,
-          elapsed: 0,
-          centeredFrom: centerPose(from),
-          centeredTo: centerPose(target),
-          // Center, depth travel and reading restoration share a fixed camera
-          // budget. Direct route choices change distance, never waiting time.
-          centerDuration,
-          transitDuration,
-          restoreDuration,
-          duration: centerDuration + transitDuration + restoreDuration,
-          started: false,
-        };
+        journey = cameraJourney(next, departure, path, metadata);
       } else {
         journey = null;
         current = target;

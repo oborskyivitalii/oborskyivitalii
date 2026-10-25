@@ -510,7 +510,7 @@ test('explicit production Color preserves approved runtime and rejects a differe
   assert.equal(edition.verify(source.directory, source.record), true);
   assert.equal(
     require('../tools/quality/color-motion-contract.cjs').select(source.record).id,
-    'issue122-reading-batch-production'
+    'issue122-r3-platform-production'
   );
   assert.notEqual(source.record.variant.fingerprint, color.variant.fingerprint);
   for (const name of require('../tools/site/snapshot.cjs').runtimeFiles)
@@ -1328,7 +1328,7 @@ function stagingAuthenticationFixture() {
   return { state, api };
 }
 
-async function stagedProductionFixture(t) {
+async function stagedProductionFixture(t, { content = false } = {}) {
   const policy = require('../tools/release/staging-policy.cjs');
   const f = stagingAuthenticationFixture();
   const authentication = await policy.authenticate(f.api, context, 88, 'c'.repeat(40));
@@ -1372,6 +1372,12 @@ async function stagedProductionFixture(t) {
     controlled.performanceReport(manifest),
     controlled.colorReport(manifest),
   ];
+  if (content) {
+    controlled.contentFixture(input);
+    source.record.contentRelease = structuredClone(manifest.contentRelease);
+    fs.writeFileSync(path.join(source.directory, 'artifact.json'), JSON.stringify(source.record));
+    fs.writeFileSync(path.join(tested.directory, 'artifact.json'), JSON.stringify(manifest));
+  }
   const gate = require('../tools/quality/staging-gate.cjs').aggregate(input);
   gate.githubArtifact = {
     id: authentication.public.id,
@@ -1381,7 +1387,9 @@ async function stagedProductionFixture(t) {
     gateFile = path.join(temp, 'stage-gate.json');
   fs.writeFileSync(authFile, JSON.stringify(authentication));
   fs.writeFileSync(gateFile, JSON.stringify(gate));
-  policy.bind(source.directory, authFile, tested.directory, gateFile);
+  const predecessorFile = content ? path.join(temp, 'publication-base.json') : undefined;
+  if (content) fs.writeFileSync(predecessorFile, 'null\n');
+  policy.bind(source.directory, authFile, tested.directory, gateFile, predecessorFile);
   const expected = { artifactId: 900, uploadDigest: 'sha256:' + 'e'.repeat(64) };
   const admission = policy.gate(
     source.directory,
@@ -1421,6 +1429,26 @@ test('production reuses the successful staged source tree without requiring opti
       f.rights.report
     )
   );
+});
+
+test('content production retains tested history across an identical-tree merge and rejects relabeling', async (t) => {
+  const f = await stagedProductionFixture(t, { content: true });
+  const policy = require('../tools/release/staging-policy.cjs');
+  const tested = f.admission.staging.manifest;
+  assert.notEqual(f.source.record.sourceCommit, tested.sourceCommit);
+  assert.equal(f.source.record.sourceTree, tested.sourceTree);
+  assert.equal(f.source.record.contentRelease.admission.history.candidate, tested.sourceCommit);
+  assert.deepEqual(f.source.record.contentRelease, tested.contentRelease);
+  assert.equal(policy.validate(f.source.record, f.admission, f.expected), true);
+  for (const mutate of [
+    (manifest) => (manifest.contentRelease.admission.history.candidate = manifest.sourceCommit),
+    (manifest) => manifest.contentRelease.builtRoutes.push('writing'),
+    (manifest) => (manifest.sourceCommit = manifest.candidateCommit = 'd'.repeat(40)),
+  ]) {
+    const invalid = structuredClone(f.source.record);
+    mutate(invalid);
+    assert.throws(() => policy.validate(invalid, f.admission, f.expected));
+  }
 });
 
 test('production staging admission rejects changed sources, incomplete stages, mixed runtimes and artifact substitution', async (t) => {

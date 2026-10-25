@@ -468,12 +468,28 @@ function fetchFixture(f, mutation) {
     return new Response(bytes, { status: missing ? 404 : 200, headers });
   };
 }
+function principalHttpFiles(record) {
+  const runtime = 'runtime/' + record.source.components.engine + '/';
+  return [
+    'index.html',
+    'research.html',
+    'writing.html',
+    'talks.html',
+    'credits.html',
+    'site-revision.json',
+    '_staging/revision.json',
+    runtime + 'space.js',
+    runtime + 'navigation.js',
+    runtime + 'styles.css',
+    ...(record.source.files['publication-index.json'] ? ['publication-index.json'] : []),
+  ].sort();
+}
 test('fast hosted smoke binds all five routes, both revisions and actual base runtime hashes', async () => {
   const f = packageFixture();
   try {
     const base = 'https://abcdefgh.' + flow.project + '.pages.dev',
       result = await flow.quickHttp(base, f.record, fetchFixture(f));
-    assert.equal(result.rows.length, 10);
+    assert.deepEqual(result.rows.map((row) => row.file).sort(), principalHttpFiles(f.record));
     assert.equal(result.sourceCommit, source);
     assert.equal(result.actual404, true);
     assert.equal(result.variant.id, 'base');
@@ -488,6 +504,7 @@ test('fast hosted smoke binds all five routes, both revisions and actual base ru
     for (const match of [
       (url) => url.pathname === '/research',
       (url) => url.pathname.endsWith('/space.js'),
+      (url) => url.pathname === '/publication-index.json',
       (url) => url.pathname === '/',
       (url) => url.pathname.includes('__pr_preview_missing_'),
     ])
@@ -592,8 +609,8 @@ test('post-deploy alias convergence retains the stale revision before one fresh 
       retain: (x) => saved.push(x),
     });
     assert.equal(result.pass, true);
-    assert.equal(result.rows.length, 10);
-    assert.equal(new Set(result.rows.map((x) => x.file)).size, 10);
+    assert.deepEqual(result.rows.map((row) => row.file).sort(), principalHttpFiles(f.record));
+    assert.equal(new Set(result.rows.map((x) => x.file)).size, result.rows.length);
     assert.equal(result.root, true);
     assert.equal(result.actual404, true);
     assert.equal(result.noindex, true);
@@ -606,7 +623,7 @@ test('post-deploy alias convergence retains the stale revision before one fresh 
     assert.equal(first.rows.length, 0);
     assert.equal(first.revision.sha256, artifact.digest(Buffer.from('previous edition')));
     assert.equal(first.revision.expectedSha256, f.record.files['_staging/revision.json'].sha256);
-    assert.equal(result.readiness.attempts[1].rows.length, 12);
+    assert.equal(result.readiness.attempts[1].rows.length, principalHttpFiles(f.record).length + 2);
     assert.equal(result.readiness.attempts[1].pass, true);
     assert.equal(saved[0].pass, false);
     assert.equal(saved[1].pass, false);
@@ -707,9 +724,9 @@ test('never-correct and mixed alias bytes fail at the finite deadline without st
             x.rows.filter((r) => r.sha256 === r.expectedSha256).map((r) => r.file)
           )
         );
-        assert.equal(
-          individual.size,
-          10,
+        assert.deepEqual(
+          [...individual].sort(),
+          principalHttpFiles(f.record),
           'every individual file can match while no complete observation passes'
         );
       }
@@ -874,7 +891,7 @@ test('the alias deadline bounds stalled body reads and prevents redirects or lat
     assert.equal(late.pass, false);
     assert.equal(late.readiness.deadlineExceeded, true);
     assert.equal(late.readiness.elapsedMs, 61);
-    assert.equal(late.readiness.attempts[0].rows.length, 12);
+    assert.equal(late.readiness.attempts[0].rows.length, principalHttpFiles(f.record).length + 2);
   } finally {
     fs.rmSync(f.dir, { recursive: true, force: true });
   }

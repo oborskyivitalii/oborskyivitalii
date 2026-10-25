@@ -1,0 +1,113 @@
+{
+  "concept": 2,
+  "selected": "monumental dark interior with a narrow illuminated opening and a small human figure",
+  "editorial_revision": "R11",
+  "cover_revision": "C2",
+  "scope": "Author-selected Cover 02 original images and image-only channel derivatives. Article source: R12; artwork was generated/prepared during R11. No platform prose is generated here.",
+  "created": "2026-10-18",
+  "status": "Imported review source. Author selected Cover02; publication, exact-edition rights and hosted-delivery acceptance remain separate.",
+  "sources": [
+    {
+      "file": "originals/cover-02-landscape.png",
+      "width": 1731,
+      "height": 909,
+      "bytes": 1972146,
+      "sha256": "2a16a6a58262939975691c6b111b1a15d99275e53d43ba7a6e59ba967342567c"
+    },
+    {
+      "file": "originals/cover-02-portrait.png",
+      "width": 1055,
+      "height": 1491,
+      "bytes": 1962727,
+      "sha256": "aafcad065f1700c4f5c61d2d34497e4c7b909c50f244e16279e93cf0d9796a58"
+    },
+    {
+      "file": "originals/cover-02-square.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2167813,
+      "sha256": "3f85468fadc09bdae5fa41b34ff348251c13f7a61fb73494508447d304cd4aae"
+    },
+    {
+      "file": "originals/cover-02-widescreen.png",
+      "width": 1672,
+      "height": 941,
+      "bytes": 1925165,
+      "sha256": "8020813c4c6db01d4cf4d2c265b1be195473d9149c034bdc73e8aa6e6826540f"
+    }
+  ],
+  "assets": [
+    {
+      "file": "assets/article-cover-detail-1280x398.jpg",
+      "width": 1280,
+      "height": 398,
+      "bytes": 95454,
+      "sha256": "a5e462dbd51cdf6bd99febb27b4701753e18cfea8304e8dd97dda67bee9160b5"
+    },
+    {
+      "file": "assets/linkedin-cover-1200x630.jpg",
+      "width": 1200,
+      "height": 630,
+      "bytes": 188676,
+      "sha256": "8fcee82455949af959a6e9885cfa00a3c911aadbf0d81347c0210a107bc97122"
+    },
+    {
+      "file": "assets/medium-cover-1400x788.jpg",
+      "width": 1400,
+      "height": 788,
+      "bytes": 257111,
+      "sha256": "f821e5631237ad63fe5b94d3b570c5ba84e5238deed8f8a6334649cf8cd7cb1d"
+    },
+    {
+      "file": "assets/pdf-cover-portrait.jpg",
+      "width": 1055,
+      "height": 1491,
+      "bytes": 333215,
+      "sha256": "b80047b35a470c50491f911cb8fb20c03f7efe535e49a3a011b4350ff2bb682f"
+    },
+    {
+      "file": "assets/site-cover-1600x840.jpg",
+      "width": 1600,
+      "height": 840,
+      "bytes": 309251,
+      "sha256": "424eab9a653c08f3f3a8d4388287dad4aeb30b9322bc899706ed580a42b0ac42"
+    },
+    {
+      "file": "assets/social-square-1080.jpg",
+      "width": 1080,
+      "height": 1080,
+      "bytes": 325070,
+      "sha256": "7c00a7d37e6dc282b8fa83a72cb5166712fd2e04b482b7f7df8c75f17cb1336b"
+    },
+    {
+      "file": "assets/article-cover-detail-1280x398.png",
+      "width": 1280,
+      "height": 398,
+      "bytes": 373126,
+      "sha256": "843c22a1e6e16d16e824e8be74d593dea3c2f2e6e30b36504e1fff9617f82096"
+    }
+  ],
+  "banner_derivation": {
+    "source": "originals/cover-02-portrait.png",
+    "crop": [0, 852, 1055, 1180],
+    "resize": [1280, 398]
+  },
+  "article_revision": "R12",
+  "active_article_asset": "assets/article-cover-detail-1280x398.png",
+  "print_cover_asset": "assets/pdf-cover-portrait.jpg",
+  "imported": "2026-10-19",
+  "renderer_derivation": {
+    "source": "assets/article-cover-detail-1280x398.jpg",
+    "output": "assets/article-cover-detail-1280x398.png",
+    "operation": "Lossless PNG encoding of the already-approved JPEG decoded RGB pixels; no crop or redrawing. Existing publisher requires PNG.",
+    "rgb_sha256": "c1faac9720369269346ffbbf34c54b9a259f79eacfdd3737274b8a0efcf75a6e"
+  },
+  "roles": {
+    "article_hero": "assets/article-cover-detail-1280x398.png",
+    "site_social_preview": "assets/site-cover-1600x840.jpg",
+    "linkedin_image": "assets/linkedin-cover-1200x630.jpg",
+    "medium_image": "assets/medium-cover-1400x788.jpg",
+    "square_image": "assets/social-square-1080.jpg",
+    "pdf_cover": "assets/pdf-cover-portrait.jpg"
+  }
+}

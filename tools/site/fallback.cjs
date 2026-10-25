@@ -162,4 +162,78 @@ function fromModel(api, page) {
       .join('')}</svg>`
   );
 }
-module.exports = { fromModel, formulaRendition, compact };
+// Articles share the exact Writing geometry rather than repeating its path data
+// in every HTML document. Paint still inherits the reader's current theme.
+function articleResource(svg) {
+  if (!svg.startsWith('<svg class="space-fallback"') || !svg.includes('data-motif="writing"'))
+    throw Error('Expected canonical Writing fallback');
+  const content = svg.slice(svg.indexOf('>') + 1, -6);
+  const bytes = Buffer.from(
+    '<svg xmlns="http://www.w3.org/2000/svg"><g id="writing-fallback">' + content + '</g></svg>'
+  );
+  const digest = require('node:crypto').createHash('sha256').update(bytes).digest('hex');
+  const name = `article-media/${digest}/writing-fallback.svg`;
+  const html = svg.replace(
+    />[\s\S]*<\/svg>$/,
+    `><use href="${name}#writing-fallback"></use></svg>`
+  );
+  return { name, bytes, html };
+}
+
+function resourceContent(name, bytes) {
+  const digest = require('node:crypto').createHash('sha256').update(bytes).digest('hex');
+  if (name !== `article-media/${digest}/writing-fallback.svg` || bytes.length > 2000000)
+    throw Error('Writing fallback resource identity differs');
+  const text = bytes.toString('utf8');
+  if (!Buffer.from(text).equals(bytes)) throw Error('Writing fallback must be UTF-8');
+  const prefix = '<svg xmlns="http://www.w3.org/2000/svg"><g id="writing-fallback">';
+  if (!text.startsWith(prefix) || !text.endsWith('</g></svg>'))
+    throw Error('Writing fallback resource wrapper differs');
+  const content = text.slice(prefix.length, -10);
+  const tags = new Set(['g', 'path', 'defs', 'linearGradient', 'stop']);
+  const attributes = new Set([
+    'xmlns',
+    'id',
+    'class',
+    'fill',
+    'stroke',
+    'data-motif',
+    'viewBox',
+    'preserveAspectRatio',
+    'd',
+    'stroke-width',
+    'stroke-opacity',
+    'fill-opacity',
+    'data-formula',
+    'aria-hidden',
+    'stroke-linecap',
+    'stroke-linejoin',
+    'gradientUnits',
+    'x1',
+    'y1',
+    'x2',
+    'y2',
+    'offset',
+    'stop-color',
+    'data-formula-layer',
+    'data-glyph',
+  ]);
+  // Only the finite passive vocabulary emitted above is accepted. In particular
+  // no scripts, links, style containers, event attributes or imported SVG pass.
+  const remainder = content.replace(/<\/?([A-Za-z]+)\b([^<>]*)>/g, (_, tag, raw) => {
+    if (!tags.has(tag)) throw Error('Unsupported Writing fallback element');
+    const rest = raw.replace(/ ([\w-]+)="([^"]*)"/g, (_, key, value) => {
+      if (!attributes.has(key) || /[<>&]/.test(value))
+        throw Error('Unsupported Writing fallback attribute');
+      if (/url\(/i.test(value) && value !== 'url(#writing-paradigm-ribbon)')
+        throw Error('External Writing fallback paint');
+      return '';
+    });
+    if (rest !== '' && rest !== '/') throw Error('Malformed Writing fallback tag');
+    return '';
+  });
+  if (remainder !== '') throw Error('Unexpected Writing fallback content');
+  return content;
+}
+
+module.exports = { fromModel, formulaRendition, compact, articleResource, resourceContent };

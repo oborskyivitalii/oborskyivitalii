@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "id": "pmday-two-shifts-en-review-20261012",
+  "articleId": "pmday-two-shifts",
+  "language": "en",
+  "kind": "full-article",
+  "source": {
+    "path": "manuscript.en.md",
+    "sha256": "ddbf94e087037feda8996f03b5564eaa7cedd897bdffb03ad54298b799cbae7a",
+    "commit": null,
+    "blob": null
+  },
+  "owner": "site",
+  "derivation": null,
+  "rights": "review-pending",
+  "semanticSha256": "426717c86a880fd104d1284ee6312cc8d49bb61afefa4e980acbbcf926e9be9a"
+}

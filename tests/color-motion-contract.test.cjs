@@ -12,7 +12,11 @@ function manifest(id) {
   const value = fixture.manifest(),
     runtime = motion.reviewedRuntime(id);
   value.variant = runtime.variant;
-  value.components = { contract: 1, engine: runtime.variant.fingerprint, variant: runtime.variant };
+  value.components = {
+    contract: 1,
+    engine: runtime.variant.fingerprint,
+    variant: runtime.variant,
+  };
   if (runtime.edition === 'staging')
     value.edition = { id: 'staging', indexable: false, analytics: false };
   if (runtime.edition === 'production')
@@ -46,7 +50,7 @@ test('reading batch records bind actual generated edition bytes and reject tampe
       const root = path.join(directory, name),
         publicDir = path.join(root, 'public'),
         actual = JSON.parse(fs.readFileSync(path.join(root, 'artifact.json'))),
-        reviewed = motion.reviewedRuntime('issue122-reading-batch-' + name);
+        reviewed = motion.reviewedRuntime('issue122-r3-platform-' + name);
       assert.equal(artifact.verify(publicDir, actual), true);
       assert.deepEqual(actual.variant, reviewed.variant);
       for (const [file, expected] of Object.entries(reviewed.files)) {
@@ -89,26 +93,6 @@ test('reading batch records bind actual generated edition bytes and reject tampe
     assert.throws(() => motion.reviewedRuntime('issue122-reading-batch-unknown'));
   } finally {
     fs.rmSync(directory, { recursive: true, force: true });
-  }
-});
-test('R3 compatibility keeps exact aliases and mandatory rights in all three editions', () => {
-  const delivery = require('../tools/staging/package.cjs');
-  for (const edition of ['plain', 'staging', 'production']) {
-    const value = manifest('issue122-r3-platform-' + edition);
-    assert.equal(delivery.publicationRequired(value, value.components), true);
-    assert.throws(
-      () => delivery.publicationRights(null, value, undefined, value.components),
-      /licensed publication rights record required/
-    );
-    for (const name of Object.keys(
-      motion.reviewedRuntime('issue122-r3-platform-' + edition).files
-    )) {
-      for (const alias of [name, 'runtime/' + value.variant.fingerprint + '/' + name]) {
-        const mixed = structuredClone(value);
-        mixed.files[alias].sha256 = '0'.repeat(64);
-        assert.throws(() => motion.select(mixed), /Color bytes/);
-      }
-    }
   }
 });
 function blockSamples(width = 1440, direction = 'forward', count = 2) {
@@ -163,7 +147,12 @@ function blockSamples(width = 1440, direction = 'forward', count = 2) {
                 separator: 'bottom',
                 separatorSource: 'unit',
                 borderOwner: '2',
-                separatorPaint: { width: 1, length: 300, style: 'solid', color: 'rgb(20, 30, 40)' },
+                separatorPaint: {
+                  width: 1,
+                  length: 300,
+                  style: 'solid',
+                  color: 'rgb(20, 30, 40)',
+                },
               },
             ]
           : []),
@@ -189,10 +178,26 @@ function blockSamples(width = 1440, direction = 'forward', count = 2) {
     },
     { stage: 'holding', cameraStage: 'center', framing: 0.4, units: [] },
     { stage: 'holding', cameraStage: 'transit', framing: 1, units: [] },
-    { kind: 'mount', stage: 'holding', cameraStage: 'transit', framing: 1, units: [] },
+    {
+      kind: 'mount',
+      stage: 'holding',
+      cameraStage: 'transit',
+      framing: 1,
+      units: [],
+    },
     { stage: 'holding', cameraStage: 'restore', framing: 0.4, units: [] },
-    { stage: 'arriving', cameraStage: 'settled', framing: 0, units: units('arriving', 200 * sign) },
-    { stage: 'arriving', cameraStage: 'settled', framing: 0, units: units('arriving', 20 * sign) },
+    {
+      stage: 'arriving',
+      cameraStage: 'settled',
+      framing: 0,
+      units: units('arriving', 200 * sign),
+    },
+    {
+      stage: 'arriving',
+      cameraStage: 'settled',
+      framing: 0,
+      units: units('arriving', 20 * sign),
+    },
   ].map((sample, index) => ({
     kind: 'progress',
     progress: index / 8,
@@ -202,7 +207,11 @@ function blockSamples(width = 1440, direction = 'forward', count = 2) {
     travel: sample.cameraStage === 'transit' ? 'flying' : 'settled',
     borderSources:
       sample.stage === 'departing' || sample.stage === 'arriving'
-        ? [{ sides: [{ owner: '2', side: 'bottom', color: 'rgba(0, 0, 0, 0)' }] }]
+        ? [
+            {
+              sides: [{ owner: '2', side: 'bottom', color: 'rgba(0, 0, 0, 0)' }],
+            },
+          ]
         : [],
     ...sample,
   }));
@@ -274,13 +283,45 @@ test('only reviewed historical and current launch plain/staging tuples select a 
     'legacy',
     'fixed',
     'issue76',
-    'issue39',
+    'issue5',
+    'issue5-continuation',
+    'issue5-history',
+    'issue5-departure',
+    'issue5-smooth',
+    'issue5-viewport',
+    'issue5-content',
+    'issue5-presentation',
+    'issue5-reader-links',
     'issue39-licensed',
+    'issue39',
     'issue39-licensed-compact',
     'issue39-writing-tbt',
     'issue39-css-clock',
-    'issue122-reading-batch',
     'issue122-r3-platform',
+    'issue122-reading-batch',
+    'issue5-reconciled',
+    'issue5-reader-resources',
+    'issue5-generic-reader',
+    'issue5-publication-tags',
+    'issue5-tag-history',
+    'issue5-reader-mode',
+    'issue5-editorial-reader',
+    'issue5-calm-reader',
+    'issue5-reader-blocks',
+    'issue5-reader-block-elements',
+    'issue5-reader-visible-blocks',
+    'issue5-reader-interactions',
+    'issue5-reader-motion',
+    'issue5-reader-paper',
+    'issue5-reader-staging',
+    'issue5-reader-fast-media',
+    'issue5-reader-loading',
+    'issue5-reader-deferred-media',
+    'issue5-reader-cpu',
+    'issue5-r30-print',
+    'issue5-review-paths',
+    'issue5-review-print',
+    'issue5-review-markdown',
   ])
     for (const edition of ['plain', 'staging']) {
       const id = family + '-' + edition,
@@ -315,8 +356,31 @@ test('production Color has a separate exact edition identity with unchanged appr
     'issue39-licensed-compact',
     'issue39-writing-tbt',
     'issue39-css-clock',
-    'issue122-reading-batch',
     'issue122-r3-platform',
+    'issue122-reading-batch',
+    'issue5-reconciled',
+    'issue5-reader-resources',
+    'issue5-generic-reader',
+    'issue5-publication-tags',
+    'issue5-tag-history',
+    'issue5-reader-mode',
+    'issue5-editorial-reader',
+    'issue5-calm-reader',
+    'issue5-reader-blocks',
+    'issue5-reader-block-elements',
+    'issue5-reader-visible-blocks',
+    'issue5-reader-interactions',
+    'issue5-reader-motion',
+    'issue5-reader-paper',
+    'issue5-reader-staging',
+    'issue5-reader-fast-media',
+    'issue5-reader-loading',
+    'issue5-reader-deferred-media',
+    'issue5-reader-cpu',
+    'issue5-r30-print',
+    'issue5-review-paths',
+    'issue5-review-print',
+    'issue5-review-markdown',
   ]) {
     const plain = motion.reviewedRuntime(family + '-plain'),
       production = motion.reviewedRuntime(family + '-production');
@@ -358,6 +422,29 @@ test('unknown, conflicting, mixed or merely marked runtime identities fail befor
     'fixed-plain',
     'issue76-plain',
     'issue76-staging',
+    'issue5-r30-print-plain',
+    'issue5-r30-print-staging',
+    'issue5-r30-print-production',
+    'issue5-review-paths-plain',
+    'issue5-review-paths-staging',
+    'issue5-review-paths-production',
+    'issue5-review-print-plain',
+    'issue5-review-print-staging',
+    'issue5-review-print-production',
+    'issue5-plain',
+    'issue5-staging',
+    'issue5-departure-plain',
+    'issue5-departure-staging',
+    'issue5-smooth-plain',
+    'issue5-smooth-staging',
+    'issue5-viewport-plain',
+    'issue5-viewport-staging',
+    'issue5-content-plain',
+    'issue5-content-staging',
+    'issue5-presentation-plain',
+    'issue5-presentation-staging',
+    'issue5-reader-links-plain',
+    'issue5-reader-links-staging',
     'issue76-production',
     'issue39-plain',
     'issue39-licensed-plain',
@@ -406,8 +493,9 @@ test('unknown, conflicting, mixed or merely marked runtime identities fail befor
   for (const id of [
     'fixed-staging',
     'issue76-staging',
-    'issue39-staging',
+    'issue5-staging',
     'issue39-licensed-staging',
+    'issue39-staging',
     'issue39-licensed-compact-staging',
     'issue39-writing-tbt-staging',
     'issue39-css-clock-staging',
@@ -469,6 +557,39 @@ test('reviewed fixed-block tuples reject mixed bytes and editions in canonical a
     assert.throws(() => motion.select(wrongEdition), /edition differs/);
   }
 });
+test('issue5 rejects prior navigation or reading CSS and mismatched plain/staging editions', () => {
+  for (const edition of ['plain', 'staging']) {
+    const id = 'issue5-' + edition;
+    const previous = motion.reviewedRuntime('issue76-' + edition);
+    for (const name of ['navigation.js', 'styles.css']) {
+      for (const paths of ['canonical', 'immutable', 'both']) {
+        const mixed = manifest(id);
+        if (paths !== 'immutable') mixed.files[name].sha256 = previous.files[name];
+        if (paths !== 'canonical') {
+          mixed.files['runtime/' + mixed.variant.fingerprint + '/' + name].sha256 =
+            previous.files[name];
+        }
+        assert.throws(() => motion.select(mixed), /Color bytes/);
+      }
+    }
+    const otherEdition = edition === 'plain' ? 'staging' : 'plain';
+    const other = motion.reviewedRuntime('issue5-' + otherEdition);
+    const mixedStyle = manifest(id);
+    mixedStyle.files['styles.css'].sha256 = other.files['styles.css'];
+    assert.throws(() => motion.select(mixedStyle), /Color bytes/);
+    const wrongEdition = manifest(id);
+    if (edition === 'plain') {
+      wrongEdition.edition = {
+        id: 'staging',
+        indexable: false,
+        analytics: false,
+      };
+    } else {
+      delete wrongEdition.edition;
+    }
+    assert.throws(() => motion.select(wrongEdition), /edition differs/);
+  }
+});
 test('licensed contracts reject every missing or substituted canonical and immutable runtime file', () => {
   for (const id of [
     'issue39-licensed-plain',
@@ -503,9 +624,10 @@ test('full Color aggregation preserves all twelve engine, viewport and theme cel
     'legacy-plain',
     'fixed-plain',
     'issue76-plain',
+    'issue5-plain',
+    'issue39-licensed-plain',
     'issue76-production',
     'issue39-plain',
-    'issue39-licensed-plain',
     'issue39-licensed-compact-plain',
     'issue39-writing-tbt-plain',
     'issue39-css-clock-plain',
@@ -570,6 +692,8 @@ test('reviewed report guard branches reject wrong planes, moving reading cameras
     'fixed-plain',
     'issue76-plain',
     'issue76-staging',
+    'issue5-plain',
+    'issue5-staging',
     'issue39-plain',
     'issue39-licensed-plain',
     'issue39-licensed-compact-plain',
@@ -743,4 +867,281 @@ test('legacy Color keeps its deadline and requires matching route, finished cont
   unknown.files['styles.css'].sha256 = '0'.repeat(64);
   await assert.rejects(() => color.settled(page, 'research', unknown), /Color bytes/);
   assert.equal(waits, 1, 'unreviewed identity cannot start readiness polling');
+});
+
+test('reader-link runtime tuples reproduce the complete current plain, staging and production byte closure', () => {
+  const fs = require('node:fs');
+  const path = require('node:path');
+  const os = require('node:os');
+  const build = require('../tools/site/build.cjs');
+  const artifact = require('../tools/quality/artifact.cjs');
+  const colorBuild = require('../tools/staging/color.cjs');
+  const stagingBuild = require('../tools/staging/edition.cjs');
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'content-color-contract-'));
+  try {
+    const plainDirectory = path.join(directory, 'plain');
+    const publicDirectory = path.join(plainDirectory, 'public');
+    build.build({
+      output: publicDirectory,
+      all: true,
+      cacheFile: path.join(directory, 'cache.json'),
+      lockFile: path.join(directory, 'lock.json'),
+    });
+    const source = {
+      schema: 1,
+      sourceCommit: '1'.repeat(40),
+      ...artifact.manifest(publicDirectory),
+    };
+    fs.writeFileSync(path.join(plainDirectory, 'artifact.json'), JSON.stringify(source));
+    const plain = colorBuild.build(plainDirectory);
+    assert.equal(motion.select(plain).id, 'issue5-r30-print-plain');
+    const stagingDirectory = path.join(directory, 'staging');
+    fs.cpSync(plainDirectory, stagingDirectory, { recursive: true });
+    const staged = stagingBuild.build(stagingDirectory);
+    assert.equal(motion.select(staged).id, 'issue5-r30-print-staging');
+    const productionDirectory = path.join(directory, 'production');
+    fs.cpSync(plainDirectory, productionDirectory, { recursive: true });
+    const production = require('../tools/release/edition.cjs').build(productionDirectory, 'color');
+    assert.equal(motion.select(production).id, 'issue5-r30-print-production');
+    assert.equal(
+      new Set([plain, staged, production].map((record) => record.variant.fingerprint)).size,
+      3
+    );
+    for (const record of [plain, staged, production]) {
+      assert.deepEqual(record.components.navigation, { contract: 1, articleRenderer: 1 });
+      assert.equal(
+        record.variant.baseEngine,
+        motion.reviewedRuntime('issue5-r30-print-plain').variant.baseEngine
+      );
+    }
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+test('content registry admission rejects older article navigation, archive counting and substituted bytes', () => {
+  for (const edition of ['plain', 'staging']) {
+    const id = 'issue5-content-' + edition;
+    const previous = motion.reviewedRuntime('issue5-viewport-' + edition);
+    for (const name of ['navigation.js', 'archive.js']) {
+      for (const location of ['canonical', 'immutable', 'both']) {
+        const mixed = manifest(id);
+        if (location !== 'immutable') mixed.files[name].sha256 = previous.files[name];
+        if (location !== 'canonical')
+          mixed.files['runtime/' + mixed.variant.fingerprint + '/' + name].sha256 =
+            previous.files[name];
+        assert.throws(() => motion.select(mixed), /Color bytes/);
+      }
+    }
+    const foreign = manifest(id);
+    foreign.variant.baseEngine = previous.variant.baseEngine;
+    assert.throws(() => motion.select(foreign), /Color motion identity/);
+    const corrupt = manifest(id);
+    corrupt.files['navigation.js'].sha256 = '0'.repeat(64);
+    assert.throws(() => motion.select(corrupt), /Color bytes/);
+  }
+});
+
+test('presentation admission rejects prior viewer-free runtime bytes and mismatched editions', () => {
+  for (const edition of ['plain', 'staging']) {
+    const id = 'issue5-presentation-' + edition;
+    const previous = motion.reviewedRuntime('issue5-content-' + edition);
+    for (const name of ['navigation.js', 'styles.css']) {
+      for (const location of ['canonical', 'immutable', 'both']) {
+        const mixed = manifest(id);
+        if (location !== 'immutable') mixed.files[name].sha256 = previous.files[name];
+        if (location !== 'canonical')
+          mixed.files['runtime/' + mixed.variant.fingerprint + '/' + name].sha256 =
+            previous.files[name];
+        assert.throws(() => motion.select(mixed), /Color bytes/);
+      }
+    }
+    const foreign = manifest(id);
+    foreign.variant.baseEngine = previous.variant.baseEngine;
+    assert.throws(() => motion.select(foreign), /Color motion identity/);
+    const wrongEdition = manifest(id);
+    if (edition === 'plain') {
+      wrongEdition.edition = { id: 'staging', indexable: false, analytics: false };
+    } else {
+      delete wrongEdition.edition;
+    }
+    assert.throws(() => motion.select(wrongEdition), /edition differs/);
+  }
+});
+
+test('reader-link producer identities retain exact runtime bytes and reject mixed admission tuples', () => {
+  for (const edition of ['plain', 'staging']) {
+    const id = 'issue5-reader-links-' + edition;
+    const current = motion.reviewedRuntime(id);
+    const previous = motion.reviewedRuntime('issue5-presentation-' + edition);
+    assert.deepEqual(
+      current.files,
+      previous.files,
+      'producer revision preserves every runtime file'
+    );
+    assert.notEqual(current.variant.baseEngine, previous.variant.baseEngine);
+    assert.notEqual(current.variant.fingerprint, previous.variant.fingerprint);
+    for (const name of Object.keys(current.files)) {
+      for (const location of ['canonical', 'immutable', 'both']) {
+        const mixed = manifest(id);
+        if (location !== 'immutable') mixed.files[name].sha256 = '0'.repeat(64);
+        if (location !== 'canonical')
+          mixed.files['runtime/' + mixed.variant.fingerprint + '/' + name].sha256 = '0'.repeat(64);
+        assert.throws(() => motion.select(mixed), /Color bytes/);
+      }
+    }
+    const foreign = manifest(id);
+    foreign.variant.baseEngine = previous.variant.baseEngine;
+    assert.throws(() => motion.select(foreign), /Color motion identity/);
+    const stale = manifest(id);
+    stale.variant.fingerprint = previous.variant.fingerprint;
+    stale.components.engine = previous.variant.fingerprint;
+    assert.throws(() => motion.select(stale), /Color motion identity/);
+    const wrongEdition = manifest(id);
+    if (edition === 'plain') {
+      wrongEdition.edition = { id: 'staging', indexable: false, analytics: false };
+    } else {
+      delete wrongEdition.edition;
+    }
+    assert.throws(() => motion.select(wrongEdition), /edition differs/);
+  }
+});
+
+test('issue106 selected material lineage keeps exact Color byte checks', () => {
+  for (const edition of ['plain', 'staging', 'production']) {
+    const id = 'issue106-reader-materials-' + edition;
+    assert.equal(motion.select(manifest(id)).id, id);
+    const licensed = manifest(id);
+    assert.equal(
+      require('../tools/staging/package.cjs').publicationRequired(licensed, licensed.components),
+      true
+    );
+    const changed = manifest(id);
+    changed.files['navigation.js'].sha256 = '0'.repeat(64);
+    assert.throws(() => motion.select(changed), /unreviewed Color bytes/);
+    const foreign = manifest(id);
+    foreign.components.variant.baseEngine = '0'.repeat(64);
+    assert.throws(() => motion.select(foreign), /Color motion identity/);
+  }
+});
+
+test('issue106 correction lineage retains exact bytes and mandatory rights admission', () => {
+  for (const edition of ['plain', 'staging', 'production']) {
+    const id = 'issue106-reader-corrections-' + edition;
+    const current = motion.reviewedRuntime(id);
+    const previous = motion.reviewedRuntime('issue5-reader-flight-' + edition);
+    assert.deepEqual(current.files, previous.files, 'corrections do not change runtime behavior');
+    assert.equal(motion.select(manifest(id)).id, id);
+    const selected = manifest(id);
+    assert.equal(
+      require('../tools/staging/package.cjs').publicationRequired(selected, selected.components),
+      true
+    );
+    const tampered = manifest(id);
+    tampered.files['navigation.js'].sha256 = '0'.repeat(64);
+    assert.throws(() => motion.select(tampered), /unreviewed Color bytes/);
+    const foreign = manifest(id);
+    foreign.components.variant.baseEngine = '0'.repeat(64);
+    assert.throws(() => motion.select(foreign), /Color motion identity/);
+  }
+});
+
+for (const [family, previousFamily] of [
+  ['issue5-r30-print', 'issue5-review-paths'],
+  ['issue5-review-paths', 'issue5-review-print'],
+  ['issue5-review-print', 'issue5-reader-cpu'],
+  ['issue5-reader-loading', 'issue5-reader-fast-media'],
+  ['issue5-review-markdown', 'issue5-reader-deferred-media'],
+])
+  test(family + ' preserves every runtime byte and mandatory rights before file access', () => {
+    const delivery = require('../tools/staging/package.cjs');
+    for (const edition of ['plain', 'staging', 'production']) {
+      const id = family + '-' + edition;
+      const current = motion.reviewedRuntime(id);
+      const previous = motion.reviewedRuntime(previousFamily + '-' + edition);
+      assert.deepEqual(current.files, previous.files);
+      assert.notEqual(current.variant.fingerprint, previous.variant.fingerprint);
+      const selected = manifest(id);
+      assert.equal(delivery.publicationRequired(selected, selected.components), true);
+      assert.throws(
+        () =>
+          delivery.publicationRights('/no-file-access', selected, undefined, selected.components),
+        /licensed publication rights record required/
+      );
+      for (const file of Object.keys(current.files)) {
+        for (const location of ['canonical', 'immutable', 'both']) {
+          const changed = manifest(id);
+          if (location !== 'immutable') changed.files[file].sha256 = '0'.repeat(64);
+          if (location !== 'canonical')
+            changed.files['runtime/' + current.variant.fingerprint + '/' + file].sha256 =
+              '0'.repeat(64);
+          assert.throws(
+            () => motion.select(changed),
+            location === 'immutable'
+              ? /conflicting immutable Color bytes/
+              : /unreviewed Color bytes/
+          );
+        }
+      }
+      const foreign = manifest(id);
+      foreign.components.variant.baseEngine = previous.variant.baseEngine;
+      assert.throws(() => motion.select(foreign), /Color motion identity/);
+      const wrongEdition = manifest(id);
+      wrongEdition.edition =
+        edition === 'staging' ? undefined : { id: 'staging', indexable: false, analytics: false };
+      assert.throws(() => motion.select(wrongEdition), /edition differs/);
+    }
+  });
+
+test('deferred-media and CPU runtimes retain byte, edition and mandatory rights admission', () => {
+  const delivery = require('../tools/staging/package.cjs');
+  for (const [family, predecessor] of [
+    ['issue5-reader-deferred-media', 'issue5-reader-loading'],
+    ['issue5-reader-cpu', 'issue5-reader-deferred-media'],
+  ])
+    for (const edition of ['plain', 'staging', 'production']) {
+      const id = family + '-' + edition;
+      const current = motion.reviewedRuntime(id);
+      const previous = motion.reviewedRuntime(predecessor + '-' + edition);
+      assert.equal(motion.readerDeferredMediaRequired(current.variant.fingerprint), true);
+      for (const file of ['styles.css', 'theme.js', 'archive.js'])
+        assert.equal(current.files[file], previous.files[file]);
+      for (const file of ['space.js', 'navigation.js'])
+        assert.notEqual(current.files[file], previous.files[file]);
+      const selected = manifest(id);
+      assert.equal(delivery.publicationRequired(selected, selected.components), true);
+      assert.throws(
+        () =>
+          delivery.publicationRights('/no-file-access', selected, undefined, selected.components),
+        /licensed publication rights record required/
+      );
+      for (const file of Object.keys(current.files)) {
+        const changed = manifest(id);
+        changed.files['runtime/' + current.variant.fingerprint + '/' + file].sha256 = '0'.repeat(
+          64
+        );
+        assert.throws(() => motion.select(changed), /conflicting immutable Color bytes/);
+      }
+    }
+});
+
+test('R3 compatibility keeps exact aliases and mandatory rights in all three editions', () => {
+  const delivery = require('../tools/staging/package.cjs');
+  for (const edition of ['plain', 'staging', 'production']) {
+    const value = manifest('issue122-r3-platform-' + edition);
+    assert.equal(delivery.publicationRequired(value, value.components), true);
+    assert.throws(
+      () => delivery.publicationRights(null, value, undefined, value.components),
+      /licensed publication rights record required/
+    );
+    for (const name of Object.keys(
+      motion.reviewedRuntime('issue122-r3-platform-' + edition).files
+    )) {
+      for (const alias of [name, 'runtime/' + value.variant.fingerprint + '/' + name]) {
+        const mixed = structuredClone(value);
+        mixed.files[alias].sha256 = '0'.repeat(64);
+        assert.throws(() => motion.select(mixed), /Color bytes/);
+      }
+    }
+  }
 });

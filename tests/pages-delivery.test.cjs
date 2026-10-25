@@ -12,6 +12,22 @@ const badge = require('../tools/staging/edition.cjs');
 
 test('base and Color staging editions preserve JSON content, snapshots and original size budgets', (t) => {
   const temp = fixture.temporary(t);
+  const first = fixture.source(temp, 'first-source', 'd'.repeat(40));
+  const inputFiles = structuredClone(first.record.files);
+  first.record.components.routes.index.sha256 = '0'.repeat(64);
+  first.record.files['index.html'].sha256 = '0'.repeat(64);
+  fs.appendFileSync(path.join(first.directory, 'public/index.html'), '<!-- first mutation -->');
+  const second = fixture.source(temp, 'second-source', 'e'.repeat(40));
+  assert.equal(second.directory, path.join(temp, 'second-source'));
+  assert.equal(second.record.sourceCommit, 'e'.repeat(40));
+  assert.equal(second.record.candidateCommit, 'e'.repeat(40));
+  assert.equal(first.record.sourceCommit, 'd'.repeat(40));
+  assert.deepEqual(second.record.files, inputFiles);
+  assert.deepEqual(
+    second.record.files,
+    artifact.manifest(path.resolve(__dirname, '../docs')).files
+  );
+  assert.notStrictEqual(second.record.components, first.record.components);
   for (const color of [false, true]) {
     const stage = fixture.staging(path.join(temp, String(color)), color);
     pkg.checkStaging(stage.directory, stage.record);
@@ -24,6 +40,29 @@ test('base and Color staging editions preserve JSON content, snapshots and origi
       .match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1];
     assert.deepEqual(JSON.parse(after), JSON.parse(before));
     assert.throws(() => badge.build(stage.directory), /already applied/);
+    const original = structuredClone(stage.record);
+    const sizes = fs.readFileSync(path.join(stage.directory, 'sizes.json'));
+    stage.record.components.routes.index.sha256 = '0'.repeat(64);
+    stage.record.files['index.html'].sha256 = '0'.repeat(64);
+    const changed = path.join(stage.directory, 'public/index.html');
+    fs.appendFileSync(changed, '<!-- changed stage fixture -->');
+    fs.rmSync(path.join(stage.directory, 'public/credits.html'));
+    fs.writeFileSync(path.join(stage.directory, 'public/unmanaged.txt'), 'unmanaged');
+    fs.writeFileSync(path.join(stage.directory, 'artifact.json'), JSON.stringify(stage.record));
+    fs.appendFileSync(path.join(stage.directory, 'sizes.json'), '\nchanged sidecar bytes');
+    const next = fixture.staging(path.join(temp, 'independent-' + color), color);
+    assert.equal(next.directory, path.join(temp, 'independent-' + color, 'staging'));
+    assert.equal(next.record.sourceCommit, 'a'.repeat(40));
+    assert.equal(next.record.candidateCommit, 'a'.repeat(40));
+    assert.deepEqual(next.record, original);
+    assert.deepEqual(artifact.manifest(path.join(next.directory, 'public')).files, original.files);
+    assert.deepEqual(
+      JSON.parse(fs.readFileSync(path.join(next.directory, 'artifact.json'))),
+      original
+    );
+    assert.deepEqual(fs.readFileSync(path.join(next.directory, 'sizes.json')), sizes);
+    assert.notStrictEqual(next.record.components, stage.record.components);
+    assert.ok(fs.readFileSync(changed, 'utf8').endsWith('<!-- changed stage fixture -->'));
   }
 });
 

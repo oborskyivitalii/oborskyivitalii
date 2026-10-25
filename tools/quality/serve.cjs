@@ -46,15 +46,17 @@ function assertContentType(file, value) {
   return observed;
 }
 const cache = new Map();
-function start(publicDirectory) {
-  if (!publicDirectory && process.env.SITE_TEST_BASE_URL) {
+function start(options = {}) {
+  const { publicDir = root, localOnly = false } =
+    typeof options === 'string' ? { publicDir: options, localOnly: true } : options;
+  if (process.env.SITE_TEST_BASE_URL && !localOnly) {
     const url = require('./hosted-origin.cjs').target(
       process.env.SITE_TEST_BASE_URL,
       process.env.SITE_TEST_PROFILE
     );
     return Promise.resolve({ server: { close() {} }, url });
   }
-  const directory = path.resolve(publicDirectory || root);
+  const directory = path.resolve(publicDir);
   const server = http.createServer((req, res) => {
     let pathname;
     try {

@@ -10,6 +10,7 @@ const root = path.resolve(__dirname, '..'),
   b = require('../tools/site/build.cjs'),
   artifact = require('../tools/quality/artifact.cjs'),
   snapshot = require('../tools/site/snapshot.cjs');
+const { legacyCatalog } = require('./fixtures/catalog.cjs');
 function fixture(t) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'site-engine-'));
   for (const name of [
@@ -21,6 +22,13 @@ function fixture(t) {
     fs.mkdirSync(path.dirname(path.join(dir, name)), { recursive: true });
     fs.cpSync(path.join(root, name), path.join(dir, name), { recursive: true });
   }
+  // These legacy route/cache cases do not carry the repository's accepted Git sources.
+  fs.writeFileSync(
+    path.join(dir, 'site/content/catalog.json'),
+    JSON.stringify(legacyCatalog(root), null, 2) + '\n'
+  );
+  fs.rmSync(path.join(dir, 'site/publications'), { recursive: true, force: true });
+  fs.rmSync(path.join(dir, 'site/assets/publications'), { recursive: true, force: true });
   t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
   return dir;
 }
@@ -551,13 +559,20 @@ test('critical media has one canonical stylesheet slot and exact dependency-boun
     source = fs.readFileSync(path.join(dir, 'site/engine/critical-media.css'), 'utf8'),
     authoredStyles = fs.readFileSync(path.join(dir, 'site/engine/styles.css'), 'utf8'),
     readingStyles = fs.readFileSync(path.join(dir, 'site/engine/reading-surfaces.css'), 'utf8'),
+    readerStyles = fs.readFileSync(path.join(dir, 'site/engine/reader.css'), 'utf8'),
     entryStyles = fs.readFileSync(path.join(dir, 'site/engine/scroll-entry.css'), 'utf8'),
     stylesheet = fs.readFileSync(path.join(dir, 'docs/styles.css'), 'utf8');
   const marker = '/* {{CRITICAL_MEDIA}} */\n';
   assert.equal(authoredStyles.split(marker).length - 1, 1, 'one declared stylesheet position');
   assert.equal(
     stylesheet,
-    authoredStyles.replace(marker, source) + '\n' + readingStyles + '\n' + entryStyles,
+    authoredStyles.replace(marker, source) +
+      '\n' +
+      readingStyles +
+      '\n' +
+      readerStyles +
+      '\n' +
+      entryStyles,
     'current canonical sources retain their declared order and exact bytes'
   );
   assert.equal(stylesheet.split(source).length - 1, 1);
@@ -579,6 +594,7 @@ test('reading entry shares immutable hosted and Color runtime without adding rou
   const navigation = fs.readFileSync(path.join(dir, 'docs/navigation.js'), 'utf8');
   const context = {
     window: {},
+    history: { state: null },
     document: {
       readyState: 'interactive',
       addEventListener() {},
@@ -750,6 +766,7 @@ test('content-only classification is advisory, unknown scope is full, and all ma
     null,
     {},
     { ...components, engine: '0'.repeat(64) },
+    { ...components, pageTemplates: '0'.repeat(64) },
     { ...components, producer: undefined },
   ])
     assert.equal(policy.propose(components, next).scope, 'full');
@@ -868,4 +885,30 @@ test('discussion metrics can be omitted while links, work counts and JSON-LD ret
     counts.linked.total,
     counts.primary.total + Object.values(c.records).reduce((n, r) => n + r.editions.length, 0)
   );
+});
+
+test('document orbit configuration rejects off-axis, degenerate and unsupported enclosing circles', (t) => {
+  const dir = fixture(t),
+    file = path.join(dir, 'site/scenes/paths.json'),
+    original = JSON.parse(fs.readFileSync(file, 'utf8'));
+  assert.deepEqual(b.configuration(dir).definitions.documentOrbit.center, [0, 0, -32]);
+  for (const center of [
+    undefined,
+    [],
+    [0, 0],
+    [null, 0, -32],
+    [1, 0, -32],
+    [0, 1, -32],
+    [0, 0, 24],
+    [0, 0, -41],
+  ]) {
+    const changed = structuredClone(original);
+    changed.documentOrbit = { center };
+    fs.writeFileSync(file, JSON.stringify(changed));
+    assert.throws(() => b.configuration(dir), /Invalid document orbit center/);
+  }
+  const changed = structuredClone(original);
+  changed.poses.library.position[2] = -32;
+  fs.writeFileSync(file, JSON.stringify(changed));
+  assert.throws(() => b.configuration(dir), /Invalid document orbit radius/);
 });

@@ -26,9 +26,10 @@
 
 
 
-  <meta name="site-engine" content="c9d33c990c64a1559211a0dcdf4ce9d1262a4e561489e4aedb74d897623220b7">
-  <meta name="site-route" content="5b4dc2bdf512d08ca0ed3a0e6542e1f89bd76e6893ff7afc6ece0a8e8852b26d">
+  <meta name="site-engine" content="43054e4d9861831ec39cbf2e4217ca33b13959bb329959fd7a86413b2ddea3d2">
+  <meta name="site-route" content="0043c2649e06cf21f99cf9ad0ca3124fce3d3b3eb40492d246a981a3c5a24b5e">
   <meta name="site-contract" content="1">
+  <meta name="site-article-renderer" content="1">
   <meta name="site-variant" content="base">
 <meta name="robots" content="noindex, nofollow">
 <style>
@@ -1570,11 +1571,70 @@ body[data-page='writing'] #archive-results {
   }
 }
 
+/* Shared article component layout is authored in reader.css. */
+.article-list {
+  padding: clamp(1rem, 4vw, 2.5rem);
+  margin-block: 2rem;
+}
+.article-list li + li {
+  margin-top: 1.5rem;
+}
+.article-presentation {
+  border: 1px solid currentColor;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  margin-block: 2rem;
+}
+.article-presentation figure {
+  margin-block: 1rem;
+}
+.presentation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+}
+.presentation-viewer iframe {
+  display: block;
+  width: 100%;
+  height: clamp(360px, 65vh, 760px);
+  border: 0;
+  background: #fff;
+}
+.presentation-help {
+  font-size: 0.85rem;
+}
+@media print {
+  .presentation-toggle,
+  .presentation-viewer {
+    display: none;
+  }
+}
 /* Full legal copies remain readable when expanded on narrow screens. */
 .legal-notices pre {
   max-inline-size: 100%;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
+}
+
+/* Optional tags and related reading share the native publication surface. */
+.publication-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin: 12px 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.875rem;
+}
+.publication-tags a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.article-related {
+  margin-block: 40px;
+}
+.article-related li {
+  margin-block: 12px;
 }
 
 /* Canonical reading backdrop paint for every route and base/Color rendition.
@@ -1634,7 +1694,8 @@ body[data-page='writing'] #archive-results {
   .section-nav > a,
   .topic-nav > a,
   .site-footer > p,
-  .site-footer > a
+  .site-footer > a,
+  .article-list
 ) {
   position: relative;
   isolation: isolate;
@@ -1675,7 +1736,8 @@ body[data-page='writing'] #archive-results {
   .section-nav > a,
   .topic-nav > a,
   .site-footer > p,
-  .site-footer > a
+  .site-footer > a,
+  .article-list
 )::before {
   content: '';
   position: absolute;
@@ -1721,7 +1783,8 @@ body[data-page='writing'] #archive-results {
   .section-nav > a,
   .topic-nav > a,
   .site-footer > p,
-  .site-footer > a
+  .site-footer > a,
+  .article-list
 )::before,
 .hero :is(h1, .hero-lead, .hero-description, .audience, .eyebrow)::before,
 .reading-title,
@@ -1804,6 +1867,695 @@ body[data-page='writing'] #archive-results {
   .reading-title {
     background: transparent;
     box-shadow: none;
+  }
+}
+
+/* Reader mode owns one opaque paper surface; child components never paint negative-inset patches. */
+.reader-mode,
+.reader-mode .article-toc,
+.reader-mode .reader-contents[data-reader-enhanced] > ol,
+.reader-dialog {
+  background: var(--paper);
+  border-radius: var(--reading-surface-radius);
+}
+.reader-mode[data-route-paper] {
+  background: transparent;
+}
+[data-route-paper]::before {
+  background: var(--paper);
+  border-radius: var(--route-paper-top-radius) var(--route-paper-top-radius)
+    var(--route-paper-bottom-radius) var(--route-paper-bottom-radius);
+}
+@media print {
+  .reader-mode {
+    background: transparent;
+  }
+}
+
+/* Reader mode: shared long-form layout and components. Paint/palette retain their owners. */
+.article-reader.wrap {
+  width: min(820px, calc(100% - 48px));
+  max-width: none;
+  padding-block: 2.5rem 4rem;
+}
+.reader-mode {
+  isolation: isolate;
+  padding: clamp(24px, 4vw, 48px);
+  font-size: 1.1875rem;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.article-intro {
+  margin-bottom: 1.5rem;
+}
+.reader-back {
+  display: inline-block;
+  font-size: 0.875rem;
+  margin-bottom: 1.75rem;
+}
+.article-intro h1 {
+  margin: 0;
+  font-size: clamp(2rem, 3.6vw, 2.85rem);
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+.article-subtitle {
+  font-size: 1.3rem;
+  line-height: 1.45;
+  margin-block: 1rem 0;
+  color: var(--muted);
+}
+.article-subtitle em {
+  font-style: normal;
+}
+.article-authors {
+  font-size: 0.875rem;
+  margin-block: 1.25rem 0;
+}
+.reader-metadata {
+  margin-block: 0.25rem 0;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+.reader-status {
+  color: var(--muted);
+}
+.reader-content {
+  min-width: 0;
+}
+.article-toc {
+  border-block: 1px solid var(--line);
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.article-toc:has(.reader-contents[data-reader-enhanced]) {
+  position: sticky;
+  top: var(--header-clearance, 110px);
+  z-index: 3;
+  overflow-anchor: none;
+}
+.article-toc .reader-contents[data-reader-enhanced] > ol {
+  position: absolute;
+  inset-inline: 0;
+  top: 100%;
+  border: 1px solid var(--line);
+}
+.reader-mode summary {
+  cursor: pointer;
+}
+.reader-mode summary:focus-visible,
+.reader-table:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+.article-toc summary {
+  font-weight: 500;
+  padding-block: 0.875rem;
+}
+.reader-contents > summary {
+  min-height: 52px;
+  padding-inline: 0.75rem;
+}
+[data-reader-current] {
+  float: right;
+  max-width: 65%;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 0.875rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.article-toc .reader-contents > ol {
+  max-height: calc(100dvh - var(--header-clearance, 110px) - 100px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-inline: 0.75rem;
+}
+.article-toc .reader-subcontents {
+  margin: 0 0 0.5rem 1rem;
+}
+.article-toc .reader-subcontents summary {
+  min-height: 44px;
+  padding-block: 0.625rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+.article-toc .reader-subcontents ol {
+  border-left: 1px solid var(--line);
+  padding: 0 0 0 1rem;
+}
+.article-toc .reader-subcontents a {
+  min-height: 44px;
+}
+.article-toc ol {
+  padding: 0 0 0.5rem;
+  margin: 0;
+  list-style: none;
+}
+.article-toc a {
+  display: block;
+  padding-block: 0.5rem;
+  color: var(--muted);
+  text-decoration: none;
+}
+.article-toc a:hover,
+.article-toc a[aria-current='location'] {
+  color: var(--ink);
+  text-decoration: underline;
+}
+.article-body strong {
+  font-weight: 600;
+}
+.article-body a:not(.reader-citation) {
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--muted);
+  text-underline-offset: 0.15em;
+}
+.article-body a:hover,
+.article-body a:focus-visible {
+  text-decoration-color: currentColor;
+}
+.reader-mode .reader-process {
+  margin-block: 2rem;
+  padding-block: 1.25rem;
+  border-block: 1px solid var(--line);
+}
+.reader-mode .reader-process figcaption {
+  margin: 0 0 0.875rem;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+.article-body .reader-process ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.65rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.reader-process li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.65rem;
+}
+.article-body .reader-process li + li {
+  margin-top: 0;
+}
+.reader-process li:not(:last-child)::after {
+  content: '→';
+  color: var(--muted);
+}
+.article-body p {
+  margin-block: 0 1.25em;
+}
+.reader-chapter + .reader-chapter,
+.reader-endnote + .reader-chapter {
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+.article-body :is(h2, h3, h4),
+.reader-endnote h3,
+.reader-appendices [id],
+.reader-citation {
+  scroll-margin-top: calc(var(--header-clearance, 110px) + 76px);
+}
+.article-body h2 {
+  font-size: 1.9375rem;
+  line-height: 1.3;
+  letter-spacing: -0.025em;
+  margin-block: 0 1.25rem;
+  text-wrap: balance;
+  break-after: avoid;
+}
+.article-body h3 {
+  font-size: 1.4375rem;
+  line-height: 1.35;
+  margin-block: 2.25rem 0.875rem;
+  text-wrap: pretty;
+  break-after: avoid;
+}
+.article-body h4 {
+  font-size: 1.3125rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-block: 2.5rem 0.625rem;
+  text-wrap: pretty;
+  break-after: avoid;
+}
+.article-body :is(ul, ol) {
+  padding-left: 1.5em;
+  margin-block: 0 1.5em;
+}
+.article-body li + li {
+  margin-top: 0.5em;
+}
+.article-body .reader-quotation {
+  margin-block: 2rem;
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--accent);
+  break-inside: avoid;
+}
+.reader-quotation blockquote {
+  margin: 0;
+  font-size: 1.3125rem;
+  line-height: 1.6;
+}
+.article-body .reader-quotation blockquote > :last-child {
+  margin-bottom: 0;
+}
+.reader-mode .reader-quotation figcaption {
+  margin-top: 0.625rem;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.reader-quotation figcaption em {
+  font-style: normal;
+}
+.article-body .reader-prompt {
+  margin-block: 1.75rem 0.5rem;
+  font-size: 0.875em;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.reader-prompt strong {
+  font-weight: 600;
+}
+.reader-endnote {
+  border-top: 1px solid var(--line);
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+.reader-endnote h3 {
+  margin-top: 0;
+  font-size: 1.1875rem;
+}
+.reader-mode figure {
+  margin: 2rem 0;
+}
+.reader-mode img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.reader-mode figcaption {
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+.reader-mode figcaption p {
+  margin-bottom: 0.5rem;
+}
+.reader-figure-credit {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.reader-figure-credit p {
+  margin-top: 0.5rem;
+}
+.article-figure-original {
+  display: inline-block;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+.reader-image-open {
+  display: block;
+  cursor: zoom-in;
+}
+.reader-image-open:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+/* Modal controls share the article's theme and keep the reading position intact. */
+body:has(.reader-dialog[open]) {
+  overflow: hidden;
+}
+.reader-dialog {
+  box-sizing: border-box;
+  width: min(1100px, calc(100% - 32px));
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  padding: 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--ink);
+  font: 1rem/1.6 var(--sans);
+  overflow-wrap: anywhere;
+}
+.reader-dialog[open] {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.reader-dialog::backdrop {
+  background: color-mix(in srgb, var(--paper) 82%, transparent);
+}
+.reader-dialog-header,
+.reader-dialog-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  flex: none;
+}
+.reader-dialog-header h2 {
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.4;
+}
+.reader-dialog button,
+.reader-dialog-actions a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.5rem 0.875rem;
+  border: 1px solid var(--control-line);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ink);
+  font-size: 0.9375rem;
+}
+.reader-dialog button:hover,
+.reader-dialog-actions a:hover {
+  background: var(--tint);
+}
+.reader-dialog :is(button, a):focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+.reader-image-stage {
+  display: flex;
+  justify-content: center;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.reader-image-stage img {
+  display: block;
+  flex: none;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 65dvh;
+  object-fit: contain;
+}
+.reader-zoomed .reader-image-stage {
+  display: block;
+}
+.reader-zoomed .reader-image-stage img {
+  max-width: none;
+  max-height: none;
+}
+.reader-image-caption {
+  max-height: 5em;
+  overflow: auto;
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+.reader-note-dialog {
+  width: min(640px, calc(100% - 32px));
+}
+.reader-note-body {
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.reader-note-body > :first-child {
+  margin-top: 0;
+}
+.reader-note-body > :last-child {
+  margin-bottom: 0;
+}
+.reader-table {
+  max-width: 100%;
+  overflow-x: auto;
+  margin-block: 1.75rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.reader-table table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow-wrap: normal;
+  font-size: 0.925em;
+  line-height: 1.55;
+}
+.reader-table :is(th, td) {
+  padding: 0.8rem 1rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+}
+.reader-table th {
+  background: var(--tint);
+  font-weight: 650;
+}
+.reader-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+.reader-table .reader-number {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.reader-code {
+  margin-block: 1.75rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--tint);
+}
+.reader-code pre {
+  margin: 0;
+  padding: 1rem;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+.reader-citation {
+  font-size: 0.8em;
+  white-space: nowrap;
+}
+.reader-citation:target {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.reader-note-returns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  margin-bottom: 0.5rem;
+}
+.reader-note-returns a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-block: 0.5rem;
+}
+.reader-closing {
+  border-top: 1px solid var(--line);
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+}
+body[data-article] .site-footer a[href='#main'] {
+  display: none;
+}
+.reader-closing .reader-endnote {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+.reader-tags-slot .publication-tags {
+  margin: 0 0 2rem;
+  font-size: 0.8125rem;
+  gap: 0.5rem 1rem;
+}
+.reader-end {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1.5rem;
+  margin-top: 3rem;
+  font-size: 0.9rem;
+}
+.reader-mode .article-related {
+  margin-block: 1.5rem 2rem;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+.reader-mode .article-related li + li {
+  margin-top: 0.875rem;
+}
+.reader-mode .article-related h2 {
+  font-size: 1.2rem;
+}
+.reader-mode .article-related ul {
+  list-style: none;
+  padding: 0;
+}
+.reader-language {
+  display: inline-block;
+  margin-left: 0.5rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+.reader-appendices {
+  border-top: 1px solid var(--line);
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+.reader-appendices :is(.reader-appendix, .article-sources, .article-materials) {
+  margin-block: 1rem;
+}
+.reader-appendix summary h2 {
+  display: inline;
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+.reader-appendix > :not(summary) {
+  margin-top: 1.25rem;
+}
+.reader-appendix ol {
+  padding-left: 1.5rem;
+}
+.reader-appendix li {
+  padding-left: 0.25rem;
+}
+.reader-mode :target {
+  outline-offset: 4px;
+}
+@media (max-width: 640px) {
+  .article-reader.wrap {
+    width: calc(100% - 20px);
+    padding-block: 1rem 2rem;
+  }
+  .reader-mode {
+    padding: 24px 18px;
+    font-size: 1.125rem;
+  }
+  .reader-back {
+    margin-bottom: 0.875rem;
+  }
+  .article-intro {
+    margin-bottom: 1.25rem;
+  }
+  .article-authors {
+    margin-top: 0.875rem;
+  }
+  .article-toc {
+    margin-bottom: 1.5rem;
+  }
+  .article-body .reader-process ol {
+    display: block;
+  }
+  .reader-process li {
+    position: relative;
+    padding-left: 1.5rem;
+  }
+  .article-body .reader-process li + li {
+    margin-top: 0.5rem;
+  }
+  .reader-process li:not(:last-child)::after {
+    content: '↓';
+    position: absolute;
+    left: 0;
+    top: 0.8em;
+  }
+  .article-intro h1 {
+    font-size: 2rem;
+  }
+  .article-subtitle {
+    font-size: 1.15rem;
+  }
+  .article-body h2 {
+    font-size: 1.625rem;
+  }
+  .article-body h3 {
+    font-size: 1.3125rem;
+  }
+  .article-body h4 {
+    font-size: 1.1875rem;
+    margin-top: 2rem;
+  }
+  .reader-dialog {
+    width: calc(100% - 16px);
+    max-height: calc(100dvh - 16px);
+    padding: 1rem;
+  }
+  .reader-note-dialog {
+    margin: auto 8px 8px;
+  }
+  .reader-quotation blockquote {
+    font-size: 1.1875rem;
+  }
+  .article-body .reader-quotation {
+    padding-left: 1rem;
+  }
+  .reader-endnote h3 {
+    font-size: 1.1875rem;
+  }
+  .reader-chapter + .reader-chapter,
+  .reader-endnote + .reader-chapter {
+    margin-top: 2.75rem;
+    padding-top: 1.5rem;
+  }
+  .reader-table :is(th, td) {
+    padding: 0.6rem;
+  }
+}
+@media print {
+  .article-reader.wrap {
+    width: 100%;
+    padding: 0;
+  }
+  .reader-mode,
+  .reader-layout {
+    display: block;
+    max-width: none;
+    padding: 0;
+    font-size: 11pt;
+  }
+  .reader-back,
+  .article-toc,
+  .reader-end,
+  .reader-note-returns,
+  .article-figure-original {
+    display: none;
+  }
+  .reader-dialog,
+  .reader-dialog[open] {
+    display: none;
+  }
+  .reader-mode details::details-content {
+    display: block;
+    content-visibility: visible;
+  }
+  .reader-mode details > :not(summary) {
+    display: block !important;
+  }
+  .reader-table,
+  .reader-code pre {
+    overflow: visible;
+  }
+  .reader-code pre {
+    white-space: pre-wrap;
+  }
+  .article-body figure,
+  .reader-table tr {
+    break-inside: avoid;
+  }
+  .article-body :is(h2, h3) {
+    break-after: avoid;
   }
 }
 
@@ -1916,13 +2668,39 @@ body[data-page] [data-entry-border-source] {
   --route-block-delay: 0ms;
   --route-block-duration: var(--block-motion-duration);
 }
-[data-route-block='departing'] > *,
-[data-route-block='departing']::before {
+/* Only the paper currently inside the viewport travels. The complete article
+   keeps its native multi-page geometry and its ordinary paper at rest. */
+.reader-mode[data-route-paper]::before {
+  content: '';
+  position: fixed;
+  left: var(--route-paper-left);
+  top: var(--route-paper-top);
+  width: var(--route-paper-width);
+  height: var(--route-paper-height);
+  z-index: -1;
+  pointer-events: none;
+  visibility: hidden;
+  --route-block-distance: var(--route-paper-distance);
+}
+[data-route-blocks='departing'] .reader-mode[data-route-paper]::before {
+  visibility: visible;
+  animation: route-block-depart var(--route-paper-duration) var(--block-motion-easing)
+    var(--route-paper-delay) both;
+}
+[data-route-blocks='arriving'] .reader-mode[data-route-paper]::before {
+  visibility: visible;
+  animation: route-block-arrive var(--route-paper-duration) var(--block-motion-easing)
+    var(--route-paper-delay) both;
+}
+[data-route-block='departing'][data-route-layer='self'],
+[data-route-block='departing']:not([data-route-layer='self']) > *,
+[data-route-block='departing']:not([data-route-layer='self'])::before {
   animation: route-block-depart var(--route-block-duration) var(--block-motion-easing)
     var(--route-block-delay) both;
 }
-[data-route-block='arriving'] > *,
-[data-route-block='arriving']::before {
+[data-route-block='arriving'][data-route-layer='self'],
+[data-route-block='arriving']:not([data-route-layer='self']) > *,
+[data-route-block='arriving']:not([data-route-layer='self'])::before {
   animation: route-block-arrive var(--route-block-duration) var(--block-motion-easing)
     var(--route-block-delay) both;
 }
@@ -1954,6 +2732,8 @@ body[data-page] [data-entry-border-source] {
   }
   [data-scroll-entry] > *,
   [data-scroll-entry]::before,
+  [data-route-layer='self'],
+  .reader-mode[data-route-paper]::before,
   [data-route-block] > *,
   [data-route-block]::before {
     animation: none;
@@ -1961,6 +2741,9 @@ body[data-page] [data-entry-border-source] {
   }
 }
 @media print {
+  .reader-mode[data-route-paper]::before {
+    display: none;
+  }
   #site-content-frame {
     overflow: visible;
   }
@@ -1973,29 +2756,35 @@ body[data-page] [data-entry-border-source] {
     <header class="site-header wrap"><a class="wordmark" href="site-v1-20261004-v11-day.html" aria-label="Vitalii Oborskyi, home"><span class="monogram" aria-hidden="true">vo<span class="monogram-dot">.</span></span><span>Vitalii Oborskyi</span></a><nav aria-label="Main navigation"><a href="site-v1-20261004-v11-day.html">Home</a><a href="site-v1-20261004-v11-research-day.html">Research</a><a href="site-v1-20261004-v11-writing-day.html" aria-current="page">Writing</a><a href="site-v1-20261004-v11-talks-day.html">Talks</a></nav><details class="appearance"><summary>Appearance</summary><noscript><p>Display follows your browser’s color preference. Animated motion needs JavaScript.</p></noscript
     ><div class="display-controls"><nav class="theme-control" aria-label="Review theme"><span>Preview theme</span><a href="site-v1-20261004-v11-writing-day.html" aria-current="page" style="text-decoration:underline">Day</a><a href="site-v1-20261004-v11-writing-night.html">Night</a></nav></div></details></header>
 <aside class="wrap" aria-label="Review copy" style="padding-block:14px;font-size:13px;color:var(--muted)"><a href="site-v1-20261004-v11-index.html">All five pages</a> · fixed Day review · static background. Motion, filters and Auto run in the interactive copy. Review candidate.</aside>
-<main id="main" tabindex="-1"><section class="archive-intro wrap" data-space-stop><p class="eyebrow">Writing / Original published editions</p><h1><span class="reading-title"><span class="reading-title-ink">Follow the questions.<br/>Find your next read.</span></span></h1><p class="hero-description">29 primary archive records: 22 English and
-    7 Ukrainian; 46 linked platform editions, including alternates.
-    AI architecture, delivery, operating models and strategy, with original titles, dates and
+<main id="main" tabindex="-1"><section class="archive-intro wrap" data-space-stop><p class="eyebrow">Writing / Original published editions</p><h1><span class="reading-title"><span class="reading-title-ink">Follow the questions.<br/>Find your next read.</span></span></h1><p class="hero-description">AI architecture, delivery, operating models and strategy, with original titles, dates and
     languages retained.</p></section>
 <p class="sr-only" data-writing-formula-description>y = f(x) → y ∼ P(y|x): a shift from deterministic mapping to conditional probabilistic
-    modeling.</p><nav class="topic-nav wrap" data-archive-navigation aria-label="Browse article topics"><a href="#topic-delivery" data-filter-topic="delivery">AI-assisted delivery</a><a href="#topic-systems" data-filter-topic="systems">AI architecture &amp; control</a><a href="#topic-leadership" data-filter-topic="leadership">Operating models &amp; leadership</a><a href="#topic-strategy" data-filter-topic="strategy">AI strategy &amp; society</a></nav><div class="wrap"><nav class="section-nav" aria-label="Browse publication year" data-archive-navigation><a href="#year-2026">2026</a><a href="#year-2025">2025</a></nav><div class="archive-landings" role="navigation" aria-label="Archive topics"><h2 id="topic-delivery" class="topic-landing">AI-assisted delivery<a href="#topic-delivery-2026">Browse articles ↓</a></h2><h2 id="topic-systems" class="topic-landing">AI architecture &amp; control<a href="#topic-systems-2026">Browse articles ↓</a></h2><h2 id="topic-leadership" class="topic-landing">Operating models &amp; leadership<a href="#topic-leadership-2025">Browse articles ↓</a></h2><h2 id="topic-strategy" class="topic-landing">AI strategy &amp; society<a href="#topic-strategy-2026">Browse articles ↓</a></h2></div><h2 id="archive-heading" class="archive-heading" hidden>All topics · All years · EN + UA</h2><p id="archive-count" data-count="{count} of {total} primary archive records · newest first within each topic." data-print="{total} primary archive records · all records and their linked platform editions shown for printing." class="section-note" role="status" aria-live="polite">29 primary archive records · 22 EN /
-      7 UA.</p><p class="section-note">The catalog links 46 platform editions (39 EN
-      / 7 UA). Alternate platforms and community discussions share a
-      work’s row. Dates belong to the linked platform edition. “Edited” marks a last-updated date.
-      Related articles are not assumed to be translations.</p><p id="archive-empty" class="empty-state" hidden>No editions match these filters. Change a filter or reset to see everything.</p></div><h2 id="year-2026" class="year-landing">2026 archive</h2><div id="archive-results" class="archive-results"><section id="results-year-2026" class="section wrap archive-year" data-year="2026" aria-labelledby="year-2026-title" data-space-stop><div class="year-heading"><h2 id="year-2026-title">2026</h2><span>9 records</span></div><section class="archive-group" data-topic="delivery" aria-labelledby="topic-delivery-2026"><h3 id="topic-delivery-2026" class="writing-topic">AI-assisted delivery</h3><ol class="publication-list"><li class="publication" data-language="uk" data-topic="delivery" data-year="2026"><div class="publication-meta"><time datetime="2026-06-17">17 Jun 2026</time><span><span class="language-badge" lang="uk">UA · Українська</span> · Article · DOU</span></div><div><a class="publication-title" href="https://dou.ua/forums/topic/60177/"><span lang="uk">Субпрайм-криза коду — чому AI-асистенти роблять нас повільнішими (Частина 2)</span><span class="publication-arrow" aria-hidden="true">↗</span></a></div></li> <li class="publication" data-language="en" data-topic="delivery" data-year="2026"><div class="publication-meta"><time datetime="2026-06-12">12 Jun 2026</time><span><span class="language-badge">EN · English</span> · Article · Agile Insider</span></div><div><a class="publication-title" href="https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0">AI, the Externalization of Reasoning, and the Verification Crisis<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/ai-externalization-reasoning-verification-crisis-vitalii-oborskyi-ihzwe/" title="AI, the Externalization of Reasoning, and the Verification Crisis">LinkedIn edition · 10 Jun 2026</a></p></div></li>
-      <li class="publication" data-language="uk" data-topic="delivery" data-year="2026"><div class="publication-meta"><time datetime="2026-02-10">10 Feb 2026</time><span><span class="language-badge" lang="uk">UA · Українська</span> · Article · DOU</span></div><div><a class="publication-title" href="https://dou.ua/forums/topic/57846/"><span lang="uk">Субпрайм-криза коду: чому AI-асистенти роблять нас повільнішими — і дані це доводять</span><span class="publication-arrow" aria-hidden="true">↗</span></a></div></li> <li class="publication" data-language="uk" data-topic="delivery" data-year="2026"><div class="publication-meta"><time datetime="2026-01-05">5 Jan 2026</time><span><span class="language-badge" lang="uk">UA · Українська</span> · Article · DOU</span></div><div><a class="publication-title" href="https://dou.ua/forums/topic/57244/"><span lang="uk">Ілюзія економії: чому заміна розробників на AI — це шлях до технічного дефолту</span><span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
-      <li class="publication" data-language="en" data-topic="delivery" data-year="2026"><div class="publication-meta"><time datetime="2026-01-02">2 Jan 2026</time><span><span class="language-badge">EN · English</span> · Article · LinkedIn</span></div><div><a class="publication-title" href="https://www.linkedin.com/pulse/ai-cost-cutting-fallacy-why-doing-more-less-breaking-teams-oborskyi-cxuif/">The AI Cost-Cutting Fallacy: Why "Doing More with Less" is Breaking Engineering Teams<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li></ol></section><section class="archive-group" data-topic="systems" aria-labelledby="topic-systems-2026"><h3 id="topic-systems-2026" class="writing-topic">AI architecture &amp; control</h3><ol class="publication-list"><li class="publication" data-language="en" data-topic="systems" data-year="2026"><div class="publication-meta"><time datetime="2026-08-30">30 Aug 2026</time><span><span class="language-badge">EN · English</span> · Article · Generative AI</span></div><div><a class="publication-title" href="https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db">Uncertainty Architecture: Thinking Systems, When the Controlled Object Changes<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/thinking-systems-when-controlled-object-changes-vitalii-oborskyi-6k4we" title="Uncertainty Architecture: Thinking Systems - When the Controlled Object Changes">LinkedIn edition · 27 Aug 2026</a></p></div></li> <li class="publication" data-language="en" data-topic="systems" data-year="2026"><div class="publication-meta"><time datetime="2026-06-10">10 Jun 2026</time><span><span class="language-badge">EN · English</span> · Article · Generative AI</span></div><div><a class="publication-title" href="https://generativeai.pub/uncertainty-architecture-beyond-embeddings-neuro-symbolic-verification-of-semantic-drift-in-llms-69822872825b">Uncertainty Architecture: Beyond Embeddings — Neuro-Symbolic Verification of Semantic Drift in LLMs<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/uncertainty-architecture-beyond-embeddings-semantic-oborskyi-1seuf/" title="Uncertainty Architecture: Beyond Embeddings - Neuro-Symbolic Verification of Semantic Drift in LLMs">LinkedIn edition · 22 May 2026</a></p></div></li>
-      <li class="publication" data-language="en" data-topic="systems" data-year="2026"><div class="publication-meta"><time datetime="2026-06-10">10 Jun 2026</time><span><span class="language-badge">EN · English</span> · Article · LinkedIn</span></div><div><a class="publication-title" href="https://www.linkedin.com/pulse/reinventing-control-theory-one-feature-time-fallacy-agentic-oborskyi-vkwve/">Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.reddit.com/r/softwarearchitecture/comments/1u5tjy8/reinventing_control_theory_one_feature_at_a_time/">Reddit discussion ↗</a></p></div></li></ol></section><section class="archive-group" data-topic="strategy" aria-labelledby="topic-strategy-2026"><h3 id="topic-strategy-2026" class="writing-topic">AI strategy &amp; society</h3><ol class="publication-list"><li class="publication" data-language="en" data-topic="strategy" data-year="2026"><div class="publication-meta"><time datetime="2026-07-01">1 Jul 2026</time><span><span class="language-badge">EN · English</span> · Article · AI Advances</span></div><div><a class="publication-title" href="https://aiadvances.org/ai-native-workflows-have-a-moat-problem-49992bcc3088">AI-Native Workflows Have a Moat Problem<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/ai-native-delivery-has-moat-problem-vitalii-oborskyi-nlnzf/" title="AI-Native Workflows Have a Moat Problem">LinkedIn edition · 1 Jul 2026</a></p></div></li></ol></section></section>
-<h2 id="year-2025" class="year-landing">2025 archive</h2><section id="results-year-2025" class="section wrap archive-year" data-year="2025" aria-labelledby="year-2025-title" data-space-stop><div class="year-heading"><h2 id="year-2025-title">2025</h2><span>20 records</span></div><section class="archive-group" data-topic="systems" aria-labelledby="topic-systems-2025"><h3 id="topic-systems-2025" class="writing-topic">AI architecture &amp; control</h3><ol class="publication-list"><li class="publication" data-language="en" data-topic="systems" data-year="2025"><div class="publication-meta"><time datetime="2025-12-13">13 Dec 2025</time><span><span class="language-badge">EN · English</span> · Article · Towards AI</span></div><div><a class="publication-title" href="https://pub.towardsai.net/uncertainty-architecture-why-ai-governance-is-actually-control-theory-511f3e73ed6e">Uncertainty Architecture: Why AI Governance is Actually Control Theory<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/uncertainty-architecture-why-ai-governance-actually-control-oborskyi-oqhpf/" title="Uncertainty Architecture: Why AI Governance is actually Control Theory">LinkedIn edition · 11 Dec 2025</a></p><p class="edition-link"><a href="https://www.reddit.com/r/learndatascience/comments/1pjxsb4/why_ai_engineering_is_actually_control_theory_and/">Reddit discussion ↗</a></p></div></li> <li class="publication" data-language="en" data-topic="systems" data-year="2025"><div class="publication-meta"><time datetime="2025-11-22">22 Nov 2025</time><span><span class="language-badge">EN · English</span> · Article · Towards AI</span></div><div><a class="publication-title" href="https://pub.towardsai.net/uncertainty-architecture-a-modern-approach-to-designing-llm-applications-2fe196188fac">Uncertainty Architecture: A Modern Approach to Designing LLM Applications<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/uncertainty-architecture-modern-approach-designing-llm-oborskyi-keqbf/" title="Uncertainty Architecture: A Modern Approach to Designing LLM Applications">LinkedIn edition · 19 Nov 2025</a></p></div></li>
-      <li class="publication" data-language="uk" data-topic="systems" data-year="2025"><div class="publication-meta"><time datetime="2025-11-18">18 Nov 2025</time><span><span class="language-badge" lang="uk">UA · Українська</span> · Article · DOU</span></div><div><a class="publication-title" href="https://dou.ua/forums/topic/56606/"><span lang="uk">Архітектура невизначеності: сучасний підхід до проєктування LLM-застосунків</span><span class="publication-arrow" aria-hidden="true">↗</span></a></div></li> <li class="publication" data-language="en" data-topic="systems" data-year="2025"><div class="publication-meta"><time datetime="2025-09-06">6 Sep 2025</time><span><span class="language-badge">EN · English</span> · Article · Data Science Collective</span></div><div><a class="publication-title" href="https://medium.com/data-science-collective/on-device-llm-or-cloud-api-a-practical-checklist-for-product-owners-and-architects-30386f00f148">On-Device LLM or Cloud API? A Practical Checklist for Product Owners and Architects<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/on-device-llm-cloud-api-practical-checklist-product-owners-oborskyi-hvqac/" title="On-Device LLM or Cloud API? A Practical Checklist for Product Owners and Architects">LinkedIn edition · 4 Sep 2025</a></p></div></li>
-      <li class="publication" data-language="uk" data-topic="systems" data-year="2025"><div class="publication-meta"><time datetime="2025-09-03">3 Sept 2025</time><span><span class="language-badge" lang="uk">UA · Українська</span> · Article · DOU</span></div><div><a class="publication-title" href="https://dou.ua/forums/topic/55461/"><span lang="uk">On-device LLM чи API з хмари? Чекліст для продактів і архітекторів</span><span class="publication-arrow" aria-hidden="true">↗</span></a></div></li> <li class="publication" data-language="en" data-topic="systems" data-year="2025"><div class="publication-meta"><time datetime="2025-07-29">29 Jul 2025</time><span><span class="language-badge">EN · English</span> · Article · Data Science Collective</span></div><div><a class="publication-title" href="https://medium.com/data-science-collective/architecting-uncertainty-a-modern-guide-to-llm-based-software-504695a82567">Architecting Uncertainty: A Modern Guide to LLM-Based Software<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/architecting-uncertainty-modern-guide-llm-based-vitalii-oborskyi-0qecf/" title="Architecting Uncertainty: A Modern Guide to LLM-Based Software">LinkedIn edition · 29 Jul 2025</a></p></div></li></ol></section><section class="archive-group" data-topic="leadership" aria-labelledby="topic-leadership-2025"><h3 id="topic-leadership-2025" class="writing-topic">Operating models &amp; leadership</h3><ol class="publication-list"><li class="publication" data-language="en" data-topic="leadership" data-year="2025"><div class="publication-meta"><time datetime="2025-07-03">3 Jul 2025</time><span><span class="language-badge">EN · English</span> · Article · Data Science Collective</span></div><div><a class="publication-title" href="https://medium.com/data-science-collective/beyond-the-buzzwords-an-ai-prompt-to-audit-any-professional-profile-including-your-own-211b112696ef">🧠 Beyond the Buzzwords: An AI Prompt to Audit Any Professional Profile — Including Your Own<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/ai-prompt-how-audit-myor-any-other-professional-profile-oborskyi-5pd9f/" title="🧠 Beyond the Buzzwords: An AI Prompt to Audit Any Professional Profile — Including Your Own">LinkedIn edition · 27 Jun 2025</a></p></div></li> <li class="publication" data-language="uk" data-topic="leadership" data-year="2025"><div class="publication-meta"><time datetime="2025-06-18">18 Jun 2025</time><span><span class="language-badge" lang="uk">UA · Українська</span> · Article · DOU</span></div><div><a class="publication-title" href="https://dou.ua/forums/topic/54329/"><span lang="uk">ШІ-бейджики, а не трансформація: чому delivery без наскрізних зв’язків — це ілюзія прогресу</span><span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
-      <li class="publication" data-language="en" data-topic="leadership" data-year="2025"><div class="publication-meta"><time datetime="2025-06-16">16 Jun 2025</time><span><span class="language-badge">EN · English</span> · Article · Medium</span></div><div><a class="publication-title" href="https://ai.gopubby.com/ai-integration-and-the-traceability-gap-atlassian-vs-competitors-61beb155ddda">AI Integration and the Traceability Gap: Atlassian vs. Competitors<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/ai-integration-traceability-gap-atlassian-vitalii-oborskyi-lvw8f/" title="AI Integration and the Traceability Gap: Atlassian vs. Competitors">LinkedIn edition · 16 Jun 2025</a></p></div></li> <li class="publication" data-language="en" data-topic="leadership" data-year="2025"><div class="publication-meta"><time datetime="2025-06-03">3 Jun 2025 · edited</time><span><span class="language-badge">EN · English</span> · Article · Atlassian Community</span></div><div><a class="publication-title" href="https://community.atlassian.com/forums/discussion/3036514/traceability-for-atlassian-the-missing-ai-enabler-open-letter-1pager">Traceability for Atlassian: The Missing AI Enabler - Open Letter (1pager)<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
-      <li class="publication" data-language="en" data-topic="leadership" data-year="2025"><div class="publication-meta"><time datetime="2025-05-31">31 May 2025</time><span><span class="language-badge">EN · English</span> · Article · Agile Insider</span></div><div><a class="publication-title" href="https://medium.com/agileinsider/pmo-value-creator-or-bureaucratic-overhead-dc4abcc38dfc">PMO: Value Creator or Bureaucratic Overhead?<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/pmo-value-creator-bureaucratic-overhead-vitalii-oborskyi-ogpkf/" title="PMO: Value Creator or Bureaucratic Overhead?">LinkedIn edition · 29 May 2025</a></p></div></li> <li class="publication" data-language="en" data-topic="leadership" data-year="2025"><div class="publication-meta"><time datetime="2025-05-05">5 May 2025</time><span><span class="language-badge">EN · English</span> · Article · Generative AI</span></div><div><a class="publication-title" href="https://generativeai.pub/ai-driven-enhancements-to-project-risk-management-in-the-pmo-c074ca0b8ec2">AI-Driven Enhancements to Project Risk Management in the PMO<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/ai-driven-enhancements-project-risk-management-pmo-vitalii-oborskyi-q5iof/" title="AI-Driven Enhancements to Project Risk Management in the PMO">LinkedIn edition · 5 May 2025</a></p></div></li>
-      <li class="publication" data-language="en" data-topic="leadership" data-year="2025"><div class="publication-meta"><time datetime="2025-04-30">30 Apr 2025</time><span><span class="language-badge">EN · English</span> · Article · Agile Insider</span></div><div><a class="publication-title" href="https://medium.com/agileinsider/story-points-vs-time-based-estimation-what-does-research-say-84613cc91c7f">Story Points vs. Time-Based Estimation: What Does Research Say?<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/story-points-vs-time-based-estimation-what-does-say-vitalii-oborskyi-vh5df/" title="Story Points vs. Time-Based Estimation: What Does Research Say?">LinkedIn edition · 30 Apr 2025</a></p></div></li> <li class="publication" data-language="en" data-topic="leadership" data-year="2025"><div class="publication-meta"><time datetime="2025-04-23">23 Apr 2025</time><span><span class="language-badge">EN · English</span> · Article · Data Science Collective</span></div><div><a class="publication-title" href="https://medium.com/data-science-collective/how-ai-reveals-your-delivery-critical-path-in-5-steps-b3e8264189e2">How AI Reveals Your Delivery Critical Path in 5 Steps<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/from-complexity-focus-finding-delivery-critical-path-together-vitaly-fjphf/" title="How AI Reveals Your Delivery Critical Path in 5 Steps">LinkedIn edition · 25 Mar 2025</a></p></div></li>
-      <li class="publication" data-language="en" data-topic="leadership" data-year="2025"><div class="publication-meta"><time datetime="2025-04-03">3 Apr 2025</time><span><span class="language-badge">EN · English</span> · Article · Medium</span></div><div><a class="publication-title" href="https://medium.com/@undersmoker/terraforming-your-organization-a-data-driven-journey-from-chaos-to-stability-of-human-and-ai-84790092d2df">Terraforming Your Organization: A Data-Driven Journey from Chaos to Stability of Human and AI<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/terraforming-your-organization-data-driven-journey-from-oborsky-j4r0f/" title="Terraforming Your Organization: A Data-Driven Journey from Chaos to Stability of Human and AI">LinkedIn edition · 19 Mar 2025</a></p></div></li></ol></section><section class="archive-group" data-topic="strategy" aria-labelledby="topic-strategy-2025"><h3 id="topic-strategy-2025" class="writing-topic">AI strategy &amp; society</h3><ol class="publication-list"><li class="publication" data-language="en" data-topic="strategy" data-year="2025"><div class="publication-meta"><time datetime="2025-12-07">7 Dec 2025</time><span><span class="language-badge">EN · English</span> · Essay · LinkedIn</span></div><div><a class="publication-title" href="https://www.linkedin.com/pulse/future-mirror-book-vitalii-oborskyi-7bt2f/">…The Future, the Mirror and the Book<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li> <li class="publication" data-language="uk" data-topic="strategy" data-year="2025"><div class="publication-meta"><time datetime="2025-05-07">7 May 2025</time><span><span class="language-badge" lang="uk">UA · Українська</span> · Article · DOU</span></div><div><a class="publication-title" href="https://dou.ua/forums/topic/53714/"><span lang="uk">Ласкаво просимо в епоху кіберпанку: коли корпорації диктують етику штучного інтелекту</span><span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
-      <li class="publication" data-language="en" data-topic="strategy" data-year="2025"><div class="publication-meta"><time datetime="2025-04-24">24 Apr 2025</time><span><span class="language-badge">EN · English</span> · Article · Data Science Collective</span></div><div><a class="publication-title" href="https://medium.com/data-science-collective/welcome-to-the-cyberpunk-era-when-corporations-dictate-ai-ethics-29c139c8776b">Welcome to the Cyberpunk Era: When Corporations Dictate AI Ethics<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/welcome-cyberpunk-era-when-corporations-dictate-ai-ethics-oborsky-8c76f/" title="Welcome to the Cyberpunk Era: When Corporations Dictate AI Ethics">LinkedIn edition · 31 Mar 2025</a></p></div></li> <li class="publication" data-language="en" data-topic="strategy" data-year="2025"><div class="publication-meta"><time datetime="2025-04-23">23 Apr 2025</time><span><span class="language-badge">EN · English</span> · Article · Medium</span></div><div><a class="publication-title" href="https://medium.com/@undersmoker/ai-dilemmas-25-key-challenges-in-ethics-technology-and-society-3f732eeb6b21">AI Dilemmas: 25 Key Challenges in Ethics, Technology, and Society<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/ai-dilemmas-25-key-challenges-ethics-technology-society-oborsky-zjncf/" title="AI Dilemmas: 25 Key Challenges in Ethics, Technology, and Society">LinkedIn edition · 21 Mar 2025</a></p></div></li>
-      <li class="publication" data-language="en" data-topic="strategy" data-year="2025"><div class="publication-meta"><time datetime="2025-04-23">23 Apr 2025</time><span><span class="language-badge">EN · English</span> · Article · Medium</span></div><div><a class="publication-title" href="https://medium.com/@undersmoker/europes-silent-revolution-how-industry-4-0-is-powering-ai-driven-hyper-flexible-manufacturing-d0fa214966bd">Europe’s Silent Revolution: How Industry 4.0 Is Powering AI-Driven, Hyper-Flexible Manufacturing<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li></ol></section></section>
-</div></main>
+    modeling.</p><nav class="topic-nav wrap" data-archive-navigation aria-label="Browse article topics"><a href="#topic-delivery"  data-filter-topic="delivery">AI-assisted delivery</a><a href="#topic-systems"  data-filter-topic="systems">AI architecture &amp; control</a><a href="#topic-leadership"  data-filter-topic="leadership">Operating models &amp; leadership</a><a href="#topic-strategy"  data-filter-topic="strategy">AI strategy &amp; society</a></nav><div class="wrap"><nav class="section-nav" aria-label="Browse publication year" data-archive-navigation><a href="#year-2026">2026</a><a href="#year-2025">2025</a></nav><div class="archive-landings" role="navigation" aria-label="Archive topics"><h2 id="topic-delivery" class="topic-landing">AI-assisted delivery<a href="#topic-delivery-2026">Browse articles ↓</a></h2><h2 id="topic-systems" class="topic-landing">AI architecture &amp; control<a href="#topic-systems-2026">Browse articles ↓</a></h2><h2 id="topic-leadership" class="topic-landing">Operating models &amp; leadership<a href="#topic-leadership-2025">Browse articles ↓</a></h2><h2 id="topic-strategy" class="topic-landing">AI strategy &amp; society<a href="#topic-strategy-2026">Browse articles ↓</a></h2></div><h2 id="archive-heading" class="archive-heading" hidden>All topics · All years · EN + UA</h2><p id="archive-count" data-count="{count} of {total} articles" data-print="{total} articles" class="section-note" role="status" aria-live="polite">29 articles</p><p class="section-note">Alternate platforms and community discussions share an article’s row. Dates belong to the linked platform edition. “Edited” marks a last-updated date. Related articles are not assumed to be translations.</p><p id="archive-empty" class="empty-state" hidden>No articles match these filters. Change a filter or reset to see everything.</p></div><div id="archive-results" class="archive-results"><h2 id="year-2026" class="year-landing">2026 archive</h2>
+<section id="results-year-2026" class="section wrap archive-year" data-year="2026" aria-labelledby="year-2026-title" data-space-stop><div class="year-heading"><h2 id="year-2026-title">2026</h2><span>9 articles</span></div><section class="archive-group" data-topic="delivery" aria-labelledby="topic-delivery-2026"><h3 id="topic-delivery-2026" class="writing-topic">AI-assisted delivery</h3><ol class="publication-list"><li class="publication" data-language="uk" data-topic="delivery" data-year="2026"><div class="publication-meta"><time datetime="2026-06-17">17 Jun 2026</time><span><span class="language-badge" lang="uk">UA · Українська</span> · Article · DOU</span></div><div><a class="publication-title" href="https://dou.ua/forums/topic/60177/"><span lang="uk">Субпрайм-криза коду — чому AI-асистенти роблять нас повільнішими (Частина 2)</span><span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+<li class="publication" data-language="en" data-topic="delivery" data-year="2026"><div class="publication-meta"><time datetime="2026-06-12">12 Jun 2026</time><span><span class="language-badge">EN · English</span> · Article · Agile Insider</span></div><div><a class="publication-title" href="https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0">AI, the Externalization of Reasoning, and the Verification Crisis<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/ai-externalization-reasoning-verification-crisis-vitalii-oborskyi-ihzwe/" title="AI, the Externalization of Reasoning, and the Verification Crisis">LinkedIn edition · 10 Jun 2026</a></p></div></li>
+<li class="publication" data-language="uk" data-topic="delivery" data-year="2026"><div class="publication-meta"><time datetime="2026-02-10">10 Feb 2026</time><span><span class="language-badge" lang="uk">UA · Українська</span> · Article · DOU</span></div><div><a class="publication-title" href="https://dou.ua/forums/topic/57846/"><span lang="uk">Субпрайм-криза коду: чому AI-асистенти роблять нас повільнішими — і дані це доводять</span><span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+<li class="publication" data-language="uk" data-topic="delivery" data-year="2026"><div class="publication-meta"><time datetime="2026-01-05">5 Jan 2026</time><span><span class="language-badge" lang="uk">UA · Українська</span> · Article · DOU</span></div><div><a class="publication-title" href="https://dou.ua/forums/topic/57244/"><span lang="uk">Ілюзія економії: чому заміна розробників на AI — це шлях до технічного дефолту</span><span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+<li class="publication" data-language="en" data-topic="delivery" data-year="2026"><div class="publication-meta"><time datetime="2026-01-02">2 Jan 2026</time><span><span class="language-badge">EN · English</span> · Article · LinkedIn</span></div><div><a class="publication-title" href="https://www.linkedin.com/pulse/ai-cost-cutting-fallacy-why-doing-more-less-breaking-teams-oborskyi-cxuif/">The AI Cost-Cutting Fallacy: Why "Doing More with Less" is Breaking Engineering Teams<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li></ol></section><section class="archive-group" data-topic="systems" aria-labelledby="topic-systems-2026"><h3 id="topic-systems-2026" class="writing-topic">AI architecture &amp; control</h3><ol class="publication-list"><li class="publication" data-language="en" data-topic="systems" data-year="2026"><div class="publication-meta"><time datetime="2026-08-30">30 Aug 2026</time><span><span class="language-badge">EN · English</span> · Article · Generative AI</span></div><div><a class="publication-title" href="https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db">Uncertainty Architecture: Thinking Systems, When the Controlled Object Changes<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/thinking-systems-when-controlled-object-changes-vitalii-oborskyi-6k4we" title="Uncertainty Architecture: Thinking Systems - When the Controlled Object Changes">LinkedIn edition · 27 Aug 2026</a></p></div></li>
+<li class="publication" data-language="en" data-topic="systems" data-year="2026"><div class="publication-meta"><time datetime="2026-06-10">10 Jun 2026</time><span><span class="language-badge">EN · English</span> · Article · Generative AI</span></div><div><a class="publication-title" href="https://generativeai.pub/uncertainty-architecture-beyond-embeddings-neuro-symbolic-verification-of-semantic-drift-in-llms-69822872825b">Uncertainty Architecture: Beyond Embeddings — Neuro-Symbolic Verification of Semantic Drift in LLMs<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/uncertainty-architecture-beyond-embeddings-semantic-oborskyi-1seuf/" title="Uncertainty Architecture: Beyond Embeddings - Neuro-Symbolic Verification of Semantic Drift in LLMs">LinkedIn edition · 22 May 2026</a></p></div></li>
+<li class="publication" data-language="en" data-topic="systems" data-year="2026"><div class="publication-meta"><time datetime="2026-06-10">10 Jun 2026</time><span><span class="language-badge">EN · English</span> · Article · LinkedIn</span></div><div><a class="publication-title" href="https://www.linkedin.com/pulse/reinventing-control-theory-one-feature-time-fallacy-agentic-oborskyi-vkwve/">Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.reddit.com/r/softwarearchitecture/comments/1u5tjy8/reinventing_control_theory_one_feature_at_a_time/">Reddit discussion ↗</a></p></div></li></ol></section><section class="archive-group" data-topic="strategy" aria-labelledby="topic-strategy-2026"><h3 id="topic-strategy-2026" class="writing-topic">AI strategy &amp; society</h3><ol class="publication-list"><li class="publication" data-language="en" data-topic="strategy" data-year="2026"><div class="publication-meta"><time datetime="2026-07-01">1 Jul 2026</time><span><span class="language-badge">EN · English</span> · Article · AI Advances</span></div><div><a class="publication-title" href="https://aiadvances.org/ai-native-workflows-have-a-moat-problem-49992bcc3088">AI-Native Workflows Have a Moat Problem<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/ai-native-delivery-has-moat-problem-vitalii-oborskyi-nlnzf/" title="AI-Native Workflows Have a Moat Problem">LinkedIn edition · 1 Jul 2026</a></p></div></li></ol></section></section><h2 id="year-2025" class="year-landing">2025 archive</h2>
+<section id="results-year-2025" class="section wrap archive-year" data-year="2025" aria-labelledby="year-2025-title" data-space-stop><div class="year-heading"><h2 id="year-2025-title">2025</h2><span>20 articles</span></div><section class="archive-group" data-topic="systems" aria-labelledby="topic-systems-2025"><h3 id="topic-systems-2025" class="writing-topic">AI architecture &amp; control</h3><ol class="publication-list"><li class="publication" data-language="en" data-topic="systems" data-year="2025"><div class="publication-meta"><time datetime="2025-12-13">13 Dec 2025</time><span><span class="language-badge">EN · English</span> · Article · Towards AI</span></div><div><a class="publication-title" href="https://pub.towardsai.net/uncertainty-architecture-why-ai-governance-is-actually-control-theory-511f3e73ed6e">Uncertainty Architecture: Why AI Governance is Actually Control Theory<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/uncertainty-architecture-why-ai-governance-actually-control-oborskyi-oqhpf/" title="Uncertainty Architecture: Why AI Governance is actually Control Theory">LinkedIn edition · 11 Dec 2025</a></p><p class="edition-link"><a href="https://www.reddit.com/r/learndatascience/comments/1pjxsb4/why_ai_engineering_is_actually_control_theory_and/">Reddit discussion ↗</a></p></div></li>
+<li class="publication" data-language="en" data-topic="systems" data-year="2025"><div class="publication-meta"><time datetime="2025-11-22">22 Nov 2025</time><span><span class="language-badge">EN · English</span> · Article · Towards AI</span></div><div><a class="publication-title" href="https://pub.towardsai.net/uncertainty-architecture-a-modern-approach-to-designing-llm-applications-2fe196188fac">Uncertainty Architecture: A Modern Approach to Designing LLM Applications<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/uncertainty-architecture-modern-approach-designing-llm-oborskyi-keqbf/" title="Uncertainty Architecture: A Modern Approach to Designing LLM Applications">LinkedIn edition · 19 Nov 2025</a></p></div></li>
+<li class="publication" data-language="uk" data-topic="systems" data-year="2025"><div class="publication-meta"><time datetime="2025-11-18">18 Nov 2025</time><span><span class="language-badge" lang="uk">UA · Українська</span> · Article · DOU</span></div><div><a class="publication-title" href="https://dou.ua/forums/topic/56606/"><span lang="uk">Архітектура невизначеності: сучасний підхід до проєктування LLM-застосунків</span><span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+<li class="publication" data-language="en" data-topic="systems" data-year="2025"><div class="publication-meta"><time datetime="2025-09-06">6 Sep 2025</time><span><span class="language-badge">EN · English</span> · Article · Data Science Collective</span></div><div><a class="publication-title" href="https://medium.com/data-science-collective/on-device-llm-or-cloud-api-a-practical-checklist-for-product-owners-and-architects-30386f00f148">On-Device LLM or Cloud API? A Practical Checklist for Product Owners and Architects<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/on-device-llm-cloud-api-practical-checklist-product-owners-oborskyi-hvqac/" title="On-Device LLM or Cloud API? A Practical Checklist for Product Owners and Architects">LinkedIn edition · 4 Sep 2025</a></p></div></li>
+<li class="publication" data-language="uk" data-topic="systems" data-year="2025"><div class="publication-meta"><time datetime="2025-09-03">3 Sept 2025</time><span><span class="language-badge" lang="uk">UA · Українська</span> · Article · DOU</span></div><div><a class="publication-title" href="https://dou.ua/forums/topic/55461/"><span lang="uk">On-device LLM чи API з хмари? Чекліст для продактів і архітекторів</span><span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+<li class="publication" data-language="en" data-topic="systems" data-year="2025"><div class="publication-meta"><time datetime="2025-07-29">29 Jul 2025</time><span><span class="language-badge">EN · English</span> · Article · Data Science Collective</span></div><div><a class="publication-title" href="https://medium.com/data-science-collective/architecting-uncertainty-a-modern-guide-to-llm-based-software-504695a82567">Architecting Uncertainty: A Modern Guide to LLM-Based Software<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/architecting-uncertainty-modern-guide-llm-based-vitalii-oborskyi-0qecf/" title="Architecting Uncertainty: A Modern Guide to LLM-Based Software">LinkedIn edition · 29 Jul 2025</a></p></div></li></ol></section><section class="archive-group" data-topic="leadership" aria-labelledby="topic-leadership-2025"><h3 id="topic-leadership-2025" class="writing-topic">Operating models &amp; leadership</h3><ol class="publication-list"><li class="publication" data-language="en" data-topic="leadership" data-year="2025"><div class="publication-meta"><time datetime="2025-07-03">3 Jul 2025</time><span><span class="language-badge">EN · English</span> · Article · Data Science Collective</span></div><div><a class="publication-title" href="https://medium.com/data-science-collective/beyond-the-buzzwords-an-ai-prompt-to-audit-any-professional-profile-including-your-own-211b112696ef">🧠 Beyond the Buzzwords: An AI Prompt to Audit Any Professional Profile — Including Your Own<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/ai-prompt-how-audit-myor-any-other-professional-profile-oborskyi-5pd9f/" title="🧠 Beyond the Buzzwords: An AI Prompt to Audit Any Professional Profile — Including Your Own">LinkedIn edition · 27 Jun 2025</a></p></div></li>
+<li class="publication" data-language="uk" data-topic="leadership" data-year="2025"><div class="publication-meta"><time datetime="2025-06-18">18 Jun 2025</time><span><span class="language-badge" lang="uk">UA · Українська</span> · Article · DOU</span></div><div><a class="publication-title" href="https://dou.ua/forums/topic/54329/"><span lang="uk">ШІ-бейджики, а не трансформація: чому delivery без наскрізних зв’язків — це ілюзія прогресу</span><span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+<li class="publication" data-language="en" data-topic="leadership" data-year="2025"><div class="publication-meta"><time datetime="2025-06-16">16 Jun 2025</time><span><span class="language-badge">EN · English</span> · Article · Medium</span></div><div><a class="publication-title" href="https://ai.gopubby.com/ai-integration-and-the-traceability-gap-atlassian-vs-competitors-61beb155ddda">AI Integration and the Traceability Gap: Atlassian vs. Competitors<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/ai-integration-traceability-gap-atlassian-vitalii-oborskyi-lvw8f/" title="AI Integration and the Traceability Gap: Atlassian vs. Competitors">LinkedIn edition · 16 Jun 2025</a></p></div></li>
+<li class="publication" data-language="en" data-topic="leadership" data-year="2025"><div class="publication-meta"><time datetime="2025-06-03">3 Jun 2025 · edited</time><span><span class="language-badge">EN · English</span> · Article · Atlassian Community</span></div><div><a class="publication-title" href="https://community.atlassian.com/forums/discussion/3036514/traceability-for-atlassian-the-missing-ai-enabler-open-letter-1pager">Traceability for Atlassian: The Missing AI Enabler - Open Letter (1pager)<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+<li class="publication" data-language="en" data-topic="leadership" data-year="2025"><div class="publication-meta"><time datetime="2025-05-31">31 May 2025</time><span><span class="language-badge">EN · English</span> · Article · Agile Insider</span></div><div><a class="publication-title" href="https://medium.com/agileinsider/pmo-value-creator-or-bureaucratic-overhead-dc4abcc38dfc">PMO: Value Creator or Bureaucratic Overhead?<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/pmo-value-creator-bureaucratic-overhead-vitalii-oborskyi-ogpkf/" title="PMO: Value Creator or Bureaucratic Overhead?">LinkedIn edition · 29 May 2025</a></p></div></li>
+<li class="publication" data-language="en" data-topic="leadership" data-year="2025"><div class="publication-meta"><time datetime="2025-05-05">5 May 2025</time><span><span class="language-badge">EN · English</span> · Article · Generative AI</span></div><div><a class="publication-title" href="https://generativeai.pub/ai-driven-enhancements-to-project-risk-management-in-the-pmo-c074ca0b8ec2">AI-Driven Enhancements to Project Risk Management in the PMO<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/ai-driven-enhancements-project-risk-management-pmo-vitalii-oborskyi-q5iof/" title="AI-Driven Enhancements to Project Risk Management in the PMO">LinkedIn edition · 5 May 2025</a></p></div></li>
+<li class="publication" data-language="en" data-topic="leadership" data-year="2025"><div class="publication-meta"><time datetime="2025-04-30">30 Apr 2025</time><span><span class="language-badge">EN · English</span> · Article · Agile Insider</span></div><div><a class="publication-title" href="https://medium.com/agileinsider/story-points-vs-time-based-estimation-what-does-research-say-84613cc91c7f">Story Points vs. Time-Based Estimation: What Does Research Say?<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/story-points-vs-time-based-estimation-what-does-say-vitalii-oborskyi-vh5df/" title="Story Points vs. Time-Based Estimation: What Does Research Say?">LinkedIn edition · 30 Apr 2025</a></p></div></li>
+<li class="publication" data-language="en" data-topic="leadership" data-year="2025"><div class="publication-meta"><time datetime="2025-04-23">23 Apr 2025</time><span><span class="language-badge">EN · English</span> · Article · Data Science Collective</span></div><div><a class="publication-title" href="https://medium.com/data-science-collective/how-ai-reveals-your-delivery-critical-path-in-5-steps-b3e8264189e2">How AI Reveals Your Delivery Critical Path in 5 Steps<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/from-complexity-focus-finding-delivery-critical-path-together-vitaly-fjphf/" title="How AI Reveals Your Delivery Critical Path in 5 Steps">LinkedIn edition · 25 Mar 2025</a></p></div></li>
+<li class="publication" data-language="en" data-topic="leadership" data-year="2025"><div class="publication-meta"><time datetime="2025-04-03">3 Apr 2025</time><span><span class="language-badge">EN · English</span> · Article · Medium</span></div><div><a class="publication-title" href="https://medium.com/@undersmoker/terraforming-your-organization-a-data-driven-journey-from-chaos-to-stability-of-human-and-ai-84790092d2df">Terraforming Your Organization: A Data-Driven Journey from Chaos to Stability of Human and AI<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/terraforming-your-organization-data-driven-journey-from-oborsky-j4r0f/" title="Terraforming Your Organization: A Data-Driven Journey from Chaos to Stability of Human and AI">LinkedIn edition · 19 Mar 2025</a></p></div></li></ol></section><section class="archive-group" data-topic="strategy" aria-labelledby="topic-strategy-2025"><h3 id="topic-strategy-2025" class="writing-topic">AI strategy &amp; society</h3><ol class="publication-list"><li class="publication" data-language="en" data-topic="strategy" data-year="2025"><div class="publication-meta"><time datetime="2025-12-07">7 Dec 2025</time><span><span class="language-badge">EN · English</span> · Essay · LinkedIn</span></div><div><a class="publication-title" href="https://www.linkedin.com/pulse/future-mirror-book-vitalii-oborskyi-7bt2f/">…The Future, the Mirror and the Book<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+<li class="publication" data-language="uk" data-topic="strategy" data-year="2025"><div class="publication-meta"><time datetime="2025-05-07">7 May 2025</time><span><span class="language-badge" lang="uk">UA · Українська</span> · Article · DOU</span></div><div><a class="publication-title" href="https://dou.ua/forums/topic/53714/"><span lang="uk">Ласкаво просимо в епоху кіберпанку: коли корпорації диктують етику штучного інтелекту</span><span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+<li class="publication" data-language="en" data-topic="strategy" data-year="2025"><div class="publication-meta"><time datetime="2025-04-24">24 Apr 2025</time><span><span class="language-badge">EN · English</span> · Article · Data Science Collective</span></div><div><a class="publication-title" href="https://medium.com/data-science-collective/welcome-to-the-cyberpunk-era-when-corporations-dictate-ai-ethics-29c139c8776b">Welcome to the Cyberpunk Era: When Corporations Dictate AI Ethics<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/welcome-cyberpunk-era-when-corporations-dictate-ai-ethics-oborsky-8c76f/" title="Welcome to the Cyberpunk Era: When Corporations Dictate AI Ethics">LinkedIn edition · 31 Mar 2025</a></p></div></li>
+<li class="publication" data-language="en" data-topic="strategy" data-year="2025"><div class="publication-meta"><time datetime="2025-04-23">23 Apr 2025</time><span><span class="language-badge">EN · English</span> · Article · Medium</span></div><div><a class="publication-title" href="https://medium.com/@undersmoker/ai-dilemmas-25-key-challenges-in-ethics-technology-and-society-3f732eeb6b21">AI Dilemmas: 25 Key Challenges in Ethics, Technology, and Society<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/ai-dilemmas-25-key-challenges-ethics-technology-society-oborsky-zjncf/" title="AI Dilemmas: 25 Key Challenges in Ethics, Technology, and Society">LinkedIn edition · 21 Mar 2025</a></p></div></li>
+<li class="publication" data-language="en" data-topic="strategy" data-year="2025"><div class="publication-meta"><time datetime="2025-04-23">23 Apr 2025</time><span><span class="language-badge">EN · English</span> · Article · Medium</span></div><div><a class="publication-title" href="https://medium.com/@undersmoker/europes-silent-revolution-how-industry-4-0-is-powering-ai-driven-hyper-flexible-manufacturing-d0fa214966bd">Europe’s Silent Revolution: How Industry 4.0 Is Powering AI-Driven, Hyper-Flexible Manufacturing<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li></ol></section></section></div></main>
 <footer class="site-footer wrap"><p>© 2026 Vitalii Oborskyi</p><a href="site-v1-20261004-v11-day.html#about">About</a><a href="site-v1-20261004-v11-day.html#contact">Contact</a><a href="site-v1-20261004-v11-credits-day.html">Reuse &amp; credits</a><a href="#main">Back to top ↑</a></footer>
 </body>
 </html>

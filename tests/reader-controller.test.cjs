@@ -7,8 +7,8 @@ const os = require('node:os');
 const path = require('node:path');
 const zlib = require('node:zlib');
 const artifact = require('../tools/quality/artifact.cjs');
-const snapshot = require('../tools/staging/reader-snapshot.cjs');
-const index = require('../tools/staging/reader-index.cjs');
+const snapshot = require('../tools/site/snapshot.cjs');
+const index = require('../site/engine/article-tags.cjs')();
 const pkg = require('../tools/staging/package.cjs');
 const flow = require('../tools/staging/review-flow.cjs');
 const gate = require('../tools/quality/staging-gate.cjs');
@@ -66,6 +66,13 @@ function fixture(t) {
     '</main>',
     '<img src="../' + image + '" alt="Fixture"><a href="../' + download + '">PDF</a></main>'
   );
+  if (revision.navigation) {
+    const boot = JSON.stringify({ 'probe:en': { url: article.alias, snapshot: article.url } });
+    html = html.replace(
+      '</body>',
+      '<script type="application/json" id="site-documents">' + boot + '</script></body>'
+    );
+  }
   const immutableHtml = html.replace(/(href|src)="\.\.\//g, '$1="../../');
   article.sha256 = artifact.digest(immutableHtml);
   put(article.alias, html);

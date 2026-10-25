@@ -118,3 +118,174 @@ verified generated-owner proof and receive no new exception.
   was added for them. Repeat the complete scanner on frozen committed source.
 - These local results describe prepared bytes. CI source identity, actual owner
   staging, merge admission and later PR79 delivery remain pending.
+
+## Continuation: accepted bootstrap and canonical feature integration
+
+The prerequisite PR113 at6aae30abf301d71c7bd7eb4813ccd26f6f03cfda,
+tree8025e6afdfc1b4e7fa590ef7345dd6a5f48a4626, completed actual owner staging
+39475965776/1 and merged into protected main as
+c4ed3dad7197bef2f9638c9500d66c12606f6eff. The later observations in this
+section supersede the earlier pending delivery checkpoint, without rewriting
+its preparation history. Source661/661, RI and owning checks passed; source
+admission refreshed successfully after the final PR description update.
+
+All26 prepublication guards and required build/static/host/staging/gate jobs
+passed. Promotion verified the exact stable alias and retained predecessor and
+current recovery. The accepted controller public digest is
+18ee3adad131b9b6c750764e74ef29627cc4727373bd09cab1be7909258a2d38.
+This proves the controller/principal-site staging; it does not substitute for
+the reader's subsequent fresh actual staging.
+
+Downloaded ZIP identities were independently checked against GitHub metadata:
+
+| Evidence | Artifact | ZIP SHA256 |
+| --- | --- | --- |
+| Clean Ready source661/661 | 12288922479 | 4e73a961848a4ea3646cea5202b6e8c9ca09293e82cc65da684c55923f8b215f |
+| All26 preflight guards and66 retained hashes | 12289956419 | a1fa73c668c8b0846f43513eb651989ac4b26bf24e5b7881437ad3a69ac787d6 |
+| Staging gate | 12291350227 | 4e565cced4c77fb13c2dca20e63852d49f99e886a322c1b5ae114bd8a14e8db6 |
+| Stable promotion/recovery | 12290286290 | 6f5010b9dbc9665844e06694e91cc98092444ef4a6b95ec17a1043e47a5bee01 |
+
+Gate report SHA2562a62ddcf0e9d253f05cc5a431bf9e31a2e9b2dd6d0039b8a7d3ce9630ba3725f;
+stable HTTP report SHA256b750639adedf28813eabd71b32f41cb36d1d0363640d33da5348734d4e0dbaf2.
+The gate covers complete declared Chromium/Firefox journeys, navigation,
+failures, analytics, two Lighthouse trials and original CPU/flight samples.
+Its fullGate/productionEligible/deploymentAuthorized remain false; actual
+stable promotion is established separately by the successful controller job
+and stable HTTP receipt. No production operation occurred.
+
+### Feature integration and preserved boundaries
+
+PR79 integrates this accepted main into its existing1d2d195 reader source.
+The two finite staging adapters are removed; the maintained controller tests
+use canonical snapshot, fallback and article-index owners. The exact old-main
+dependency-install bridge and its now-obsolete task-only test retire. The
+shared workflow retains declared locked setup, PR79's explicit article preview
+selection, complete content-generation logic and protected-main publication.
+Original AC01–AC22 regain their complete feature policy; AC23 adds the
+maintained controller contracts and retains actual delivery as a distinct gate.
+
+All manuscript, R18 semantic/media/PDF, site/, docs/, tools/site/ and
+tools/publishing/ bytes remain identical to1d2d195. Historical runtime families
+remain in the canonical feature contract. Old/new scanner reason variants are
+preserved losslessly in the adjacent controller-ledger-merge.json.gz; prior
+dispositions, scanner rules, budgets and input bounds remain intact.
+
+The prepared integration exposed20 obsolete base-only catalog paths for
+generated output and replaced year-group templates. Every removed entry was
+confirmed present only in the older base catalog and absent from both the
+feature catalog and actual feature filesystem. No active source was removed.
+Four old HTTP fixture counts omitted the newly verified publication index.
+They now require the exact principal-file inventory, including that index,
+while retaining complete-attempt, deadline and no-stitching rejection. Missing
+or incorrect index MIME is also rejected. No production assertion was relaxed.
+
+Prepared verification: controller contracts7/7; initial combined focused run
+67/71 identified those four obsolete count assertions, then the corrected
+HTTP module passed21/21. The other50 cases passed before this test-only
+correction. Basic16 plus Color10 and full formatting passed. The forthcoming
+raw-head CI and actual owner staging must bind the final integrated source;
+prepared results cannot supply that admission.
+
+CS01/04: canonical contract imports replace duplicate adapters. CS02/03/06/07:
+no content, CSS, reader animation, clock, runtime or budget changes. CS05/08/09:
+focused fixture corrections retain semantic inventories and adversarial cases;
+catalog/RI/CI and existing profile routes remain current. CS10: restored
+feature policy, dated provenance and actual source-bound delivery remain
+separate. This increment is implementer self-review; it does not claim a new
+independent whole-PR, editorial, rights or physical-device approval.
+
+The current PR79 description and issue5 delivery receipt record its final
+source/tree, CI, actual staging and remaining gates. Keep that PR open; its
+feature merge and production activation require their separate maintainer
+decision. Original whole criteria stay open until all their checks and gates
+are satisfied.
+
+
+## Continuation: current main and advisory remediation
+
+Candidate parent6c63b98f6b4725b00e9193d4d0599f1c54535c38 had source1024/1024,
+owning12/12 with all23 automated mappings, and protected-main article publication.
+Actual owner staging39480944615/1 failed the cold Index-to-Writing equivalent
+readiness:3202.5ms against the unchanged3200ms limit. Other functional and
+performance cases passed; no stable promotion occurred. The retained failure
+ZIP12292946517 has SHA256
+813611ae7ac5c85f9172dca590b856913575a55467e40e3bff83456da767fe65.
+The single controlled repeat39485203354/1 stopped before hosted browsers:
+25/26 preflight guards passed, but the advisory feed now rejected the locked
+certifi2026.7.22 for GHSA-6q48-6c7w-9gw2. It produced no new performance result.
+Retained preflight ZIP12293108963 SHA256
+dd9ecd9b7a6639ea8540a2be64f0c3e243ce2e60b068ca8d856b589ee9af7aa4.
+Both ZIP digests were checked against GitHub artifact metadata.
+
+This iteration integrates actual mainca70a66f340a8e804e4263c02aa9abe79a062765
+(PR115), preserving its mandatory separate-subagent review protocol, policy,
+templates and evidence. Only the three new task-intake query aliases are applied
+to PR79's current RI configuration; feature routing and the combined catalog
+remain. Generated RI and coupling views are regenerated from those owners.
+
+The single dependency change pins certifi2026.10.19. The maintainer advisory
+[GHSA-6q48-6c7w-9gw2](https://github.com/certifi/python-certifi/security/advisories/GHSA-6q48-6c7w-9gw2),
+published20 October2026, identifies compromised emSign intermediates and the
+root removal in2026.10.18. The official
+[2026.10.19 release](https://pypi.org/project/certifi/2026.10.19/) is available;
+its wheel SHA256 is42d35340cc5b9ba78e818ddbff0c5b1c2b779de448a340fd1b989f5fa8670e1b.
+The audit feed recommends2026.10.19. No advisory waiver, dependency looseness,
+scanner exception, performance assertion or budget changes. Article, media,
+PDF, browser runtime and content source remain unchanged.
+
+CS01/04/05: the exact pin stays in the canonical audit lock; protocol integration
+retains the accepted main owner and changes no runtime. CS08/09/10: verify the
+complete installed Python graph and live advisories, Basic, formatter, RI and
+coupling, with new exact-source CI and actual staging after independent review.
+The prior performance failure remains failed; a later success cannot rewrite it.
+Separate whole-feature/editorial/rights/device/publication acceptance remains open.
+
+
+### Independent iteration review — verbatim receipt
+
+Independent review by `/root/pr79_iteration_review` found **no blocking source defects** in commit `257cc6acbe4a0aa20df40b4f23229393391cbc8c`, tree `e7af6aebfb61fb07078364f951dc509473a02bdb`, against parents `6c63b98f6b4725b00e9193d4d0599f1c54535c38` and `ca70a66f340a8e804e4263c02aa9abe79a062765`. I did not implement these changes.
+
+I independently inspected issue5’s original intent and AC01/04/11/12/23, current instructions, actual sixteen-file diff, parsed navigation/catalog/coupling changes, requirements and scanner contracts, existing review evidence, local test reports and retained failed artifacts.
+
+Risks examined:
+
+- **Protocol loss during integration:** eight accepted main protocol/template/policy/evidence files are byte-identical. Feature RI configuration retains every previous owner and validation route, adding exactly three intake aliases. Catalog changes are exactly three main entries. Coupling retains existing checks/layers and adds the two required routes.
+- **Security bypass or unrelated dependency drift:** the requirements delta is solely `certifi==2026.7.22` → `certifi==2026.10.19`. Scanner, exceptions and remaining pins are unchanged. The maintainer advisory and official PyPI release support the remediation. Retained pip-audit evidence identifies this sole vulnerable pin and recommends `2026.10.19`.
+- **Reader/content/controller regression:** `site/`, `docs/`, `tools/site/`, `tools/publishing/`, tests, workflows, staging code and issue5 policy are unchanged from the prior feature head. No manuscript, media, PDF, browser runtime, performance assertion or budget changed.
+- **False delivery evidence:** independently recomputed both failed ZIP hashes and inspected raw performance/advisory reports. Cold Writing remains **3202.5ms against3200ms**, failed. The controlled repeat stopped on advisories without a new browser measurement. Neither proves stable promotion.
+
+Observed Basic16+Color10, full formatter (`changed:[]`), Python115/115, fresh RI and coupling pass. My independent RI/coupling verification passed. The copied local venv’s duplicate-certifi failure is an environment problem being corrected through a fresh full installation; **current clean-environment graph/advisory success remains pending**, alongside fresh remote CI and actual article staging. Local security packaging has no article candidates and cannot supply article-delivery evidence.
+
+This review satisfies the **current integration/remediation source-review scope**. It does not complete whole-feature architecture/export, editorial, rights, device, publication or stable-delivery acceptance. No corrective source iteration is requested.
+
+Manifest uses sorted UTF-8 lines `SHA256␠␠path\n`; SHA256:
+`9d86deca850bcf1b83dcb9921e2a1796b4949d77788afb7460a1f0103f46df41`.
+
+```text
+d54e0207d2f1858289a1fb008f315bcda6db13beb9ca4f5a901a8218654a699b  .github/ACCEPTANCE.md
+29f49b60befc62900b7baec954f38f16e9af2536a491f2f91d6d8add15c968f9  .github/ISSUE_TEMPLATE/work-item.md
+0db03f6fd2d0408fc259110512646e0f27d663b76c0d2e9d6b21aea3e1e17f36  .github/acceptance/issue-114.json
+99e03cdd84823a63a7a355756316f36c2a8e52804d549b84e39d4825b60575a1  .github/pull_request_template.md
+00be6d8e4762095c3b3455b9fb02133e559ed7421421dbc4b540f808e50f2da5  .github/repository-intelligence-config.json
+742f8a4d69faf5d8955a3922c5d1b559fd8af6514abd9c2ccdae9a23642ad3a4  .github/repository-paths.json
+d59db1058f8bfbfc27ce5030c152c74fab3dfc18a012d998799fce1ecedb55e0  AGENTS.md
+f777b734784522acbbc8f97026436b085741830305b8efc20435a765f6f3e2c5  CONTRIBUTING.md
+ebd148bc73dd85510a1a030ec4e3fe01bf1430d6a5cf1389c6ebd2305ae8a1d0  MEMORY.md
+b29c24c656b6eb8cf561d2d9906c4e95781cf63ea68cba1c5320b0171141112d  review/REVIEW-TEMPLATE.md
+2bb7a26a983fa4c247acbab0ea3f7eb6c278785cdbaaaf95771e037efedfacd3  tools/quality/toolchain/requirements.txt
+```
+
+Excluded from this manifest: generated RI views/coupling identity, preexisting issue114 review evidence, and the issue5 review file receiving this receipt. Their changes were inspected. The issue5 file’s reviewed pre-receipt SHA256 is `dfcc9c59a2c7f34dc52e78cef5b4431a1db2d377eff10e98ab63541424ff13fe`; preserve its existing bytes when appending. Refresh coupling and RI afterward because the review file is a coupling input.
+
+### Independent operational addendum — verbatim receipt
+
+20 October 2026, operational addendum by `/root/pr79_iteration_review`: independently verified unchanged clean commit `257cc6acbe4a0aa20df40b4f23229393391cbc8c`, tree `e7af6aebfb61fb07078364f951dc509473a02bdb`.
+
+Fresh installed-graph verification **passes:89 packages,143 dependencies**. Final complete advisory scanner **passes all three engines**. Python audit covers89 packages with zero vulnerabilities, including `certifi2026.10.19`. Quality npm retains only the existing reviewed braces advisory; publication npm reports zero vulnerabilities. No new waiver or source change.
+
+Verified report SHA256 values:
+
+- `advisories.json`: `0a6c13b2fecc4a43be38b0864b6403adb2b0c0227a35f79bc3cb178b089f13a9`
+- `pip-audit.json`: `894fc1f354ca0e0f0f1cb0aac1ef7bb96602d5448f56f4857fb044ebbc9b3376`
+
+This supersedes the prior receipt’s pending local graph/advisory limitation. Fresh remote CI and actual article staging remain pending; previous staging failures retain their failed dispositions.

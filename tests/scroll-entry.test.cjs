@@ -807,6 +807,27 @@ test('route blocks leave in page order and remain held until the destination is 
   }
 });
 
+test('bare deep headings receive a movable ink layer without losing their text', async () => {
+  for (const tag of ['h4', 'h5', 'h6']) {
+    const h = harness({ count: 1 });
+    const heading = h.elements[0];
+    const text = { nodeType: 3, textContent: 'A deep heading' };
+    heading.matches = (selector) => selector.split(',').includes(tag);
+    heading.childNodes = [text];
+    const departing = h.controller.depart(1);
+    const ink = heading.children[0];
+    assert.ok(ink, tag + ' needs an element for the existing child animation');
+    assert.equal(ink.attributes.get('data-scroll-ink'), '');
+    assert.equal(ink.children[0], text, tag + ' retains the original bare text node');
+    assert.equal(heading.attributes.get('data-route-block'), 'departing');
+    assert.ok(Number.parseFloat(heading.styles.get('--route-block-distance')) < 0);
+    h.controller.cancelRoute();
+    assert.equal((await departing).cancelled, true);
+    assert.equal(heading.attributes.get('data-route-block'), undefined);
+    assert.equal(h.tasks.size, 0);
+  }
+});
+
 test('route arrival starts outside the correct edge and releases only after every visible block', async () => {
   for (const direction of [1, -1]) {
     const h = harness({ count: 8 });
@@ -999,7 +1020,9 @@ test('route movement includes media extending outside the semantic shell visual 
   for (const direction of [1, -1]) {
     const h = harness();
     const element = h.elements[0];
-    element.children = [{ getBoundingClientRect: () => ({ top: 16, bottom: 600 }) }];
+    element.children = [
+      { getBoundingClientRect: () => ({ top: 16, bottom: 600, width: 100, height: 584 }) },
+    ];
     const departure = h.controller.depart(direction);
     const exit = Number.parseFloat(element.styles.get('--route-block-distance'));
     assert.ok(
@@ -1017,6 +1040,57 @@ test('route movement includes media extending outside the semantic shell visual 
     );
     h.controller.cancel();
     assert.equal((await arrival).cancelled, true);
+    assert.equal(h.tasks.size, 0);
+  }
+});
+
+test('empty route placeholders cannot retain a phase while real overflowing children still move', async () => {
+  for (const direction of [1, -1]) {
+    const h = harness({ count: 3 });
+    const [empty, overflowing, child] = h.elements;
+    empty.height = 0;
+    overflowing.top = 200;
+    overflowing.height = 0;
+    child.top = 500;
+    child.height = 200;
+    child.parentElement = overflowing;
+    child.closest = () => overflowing;
+    overflowing.children = [
+      child,
+      ...[-500, 2500].map((top) => ({
+        getBoundingClientRect: () => ({ top, bottom: top, width: 0, height: 0 }),
+      })),
+    ];
+    overflowing.contains = (node) => node === overflowing || overflowing.children.includes(node);
+    const departing = h.controller.depart(direction, 17);
+    assert.equal(empty.attributes.get('data-route-block'), undefined);
+    assert.equal(overflowing.attributes.get('data-route-block'), 'departing');
+    assert.equal(
+      child.attributes.get('data-route-block'),
+      undefined,
+      'native parent retains the unit'
+    );
+    assert.equal(h.controller.diagnostics().routeActive, 1);
+    assert.equal(h.probes.at(-1).rows, 1);
+    assert.equal(h.probes.at(-1).count, 1);
+    assert.equal(
+      Number.parseFloat(overflowing.styles.get('--route-block-distance')),
+      direction > 0 ? -732 : 732
+    );
+    h.tick(1000);
+    h.root.emit('animationend', { animationName: 'route-block-depart', target: child });
+    assert.equal(
+      h.controller.diagnostics().routeStage,
+      'holding',
+      'real ink completes without watchdog slack'
+    );
+    assert.equal((await departing).completedBy, 'animationend');
+    h.controller.prepareArrival(direction, 17);
+    const arriving = h.controller.arrive(direction, 17);
+    h.controller.cancelRoute();
+    assert.equal((await arriving).cancelled, true);
+    assert.equal(h.root.attributes.get('data-route-blocks'), undefined);
+    assert.ok(h.elements.every((element) => !element.attributes.has('data-route-block')));
     assert.equal(h.tasks.size, 0);
   }
 });
@@ -1077,7 +1151,9 @@ test('route visual rows overlap within a shared phase while preserving native or
       h.elements[index].top = top;
       h.elements[index].height = index === 2 ? 120 : 60;
     });
-    h.elements[0].children = [{ getBoundingClientRect: () => ({ top: 100, bottom: 660 }) }];
+    h.elements[0].children = [
+      { getBoundingClientRect: () => ({ top: 100, bottom: 660, width: 100, height: 560 }) },
+    ];
     if (stage === 'arriving') h.controller.prepareArrival(direction, 9);
     const phase =
       stage === 'departing' ? h.controller.depart(direction, 9) : h.controller.arrive(direction, 9);
@@ -1476,5 +1552,140 @@ test('a stored Off preference survives motion readiness without consuming unread
   h.preference(true);
   assert.equal(h.state(3), 'waiting', 'later On can observe untouched unread content');
   h.controller.destroy();
+  assert.equal(h.tasks.size, 0);
+});
+
+test('reader route waves move complete component paint and clear their own animation layers', async () => {
+  const h = harness({ count: 3 });
+  h.root.matches = (selector) => selector === '.article-reader';
+  h.elements.forEach((element, index) => {
+    element.top = 100 + index * 160;
+    element.height = 90;
+  });
+  const contents = h.elements[1];
+  contents.borders = {
+    'border-top-width': '1px',
+    'border-top-style': 'solid',
+    'border-top-color': 'rgb(10, 40, 70)',
+    'border-bottom-width': '1px',
+    'border-bottom-style': 'solid',
+    'border-bottom-color': 'rgb(10, 40, 70)',
+  };
+  h.controller.mount(h.root);
+  const departure = h.controller.depart(1, 41);
+  for (const element of h.elements) {
+    assert.equal(element.attributes.get('data-route-layer'), 'self');
+    assert.ok(Number.parseFloat(element.styles.get('--route-block-distance')) < 0);
+  }
+  assert.equal(contents.children.length, 2, 'both dividers belong to the moving component');
+  h.routeWatchdog();
+  await departure;
+  h.controller.prepareArrival(1, 42);
+  const arrival = h.controller.arrive(1, 42);
+  for (const element of h.elements) {
+    assert.equal(element.attributes.get('data-route-layer'), 'self');
+    assert.ok(Number.parseFloat(element.styles.get('--route-block-distance')) > 0);
+  }
+  h.controller.cancelRoute();
+  assert.equal((await arrival).cancelled, true);
+  for (const element of h.elements) {
+    assert.equal(element.attributes.get('data-route-layer'), undefined);
+    assert.equal(element.attributes.get('data-route-block'), undefined);
+  }
+  assert.equal(contents.children.length, 0);
+  assert.equal(h.tasks.size, 0);
+});
+
+test('reader paper uses bounded viewport paint and completes with the common component wave', async () => {
+  for (const top of [120, -18000]) {
+    const h = harness({ count: 3 });
+    const paper = h.document.createElement('article');
+    paper.top = top;
+    paper.height = 30000;
+    h.root.matches = (selector) => selector === '.article-reader';
+    h.root.querySelector = (selector) => (selector === '.reader-mode' ? paper : null);
+    h.elements.forEach((element, index) => {
+      element.top = 160 + index * 180;
+      element.height = 80;
+    });
+    h.controller.mount(h.root);
+    const native = paper.getBoundingClientRect();
+    const departure = h.controller.depart(1, 50);
+    assert.equal(paper.attributes.get('data-route-paper'), '');
+    assert.equal(paper.styles.get('--route-paper-top'), Math.max(0, top) + 'px');
+    assert.equal(paper.styles.get('--route-paper-height'), 900 - Math.max(0, top) + 'px');
+    assert.equal(paper.styles.get('--route-paper-distance'), '-932px');
+    assert.equal(paper.styles.get('--route-paper-duration'), '700ms');
+    assert.equal(paper.styles.get('--route-paper-delay'), '300ms');
+    assert.deepEqual(
+      paper.getBoundingClientRect(),
+      native,
+      'the long article keeps its native geometry'
+    );
+    h.tick(1000);
+    for (const target of h.elements)
+      h.root.emit('animationend', { animationName: 'route-block-depart', target });
+    assert.equal(
+      h.controller.diagnostics().routeStage,
+      'departing',
+      'content cannot hide the paper before its own animation ends'
+    );
+    h.root.emit('animationend', {
+      animationName: 'route-block-depart',
+      target: paper,
+      pseudoElement: '::before',
+    });
+    assert.equal((await departure).completedBy, 'animationend');
+    assert.equal(h.root.attributes.get('data-route-blocks'), 'holding');
+    h.controller.prepareArrival(1, 51);
+    const arrival = h.controller.arrive(1, 51);
+    assert.equal(paper.styles.get('--route-paper-distance'), 932 - Math.max(0, top) + 'px');
+    assert.equal(paper.styles.get('--route-paper-duration'), '700ms');
+    assert.equal(paper.styles.get('--route-paper-delay'), '0ms');
+    h.tick(700);
+    h.root.emit('animationend', {
+      animationName: 'route-block-arrive',
+      target: paper,
+      pseudoElement: '::before',
+    });
+    assert.equal(h.controller.diagnostics().routeStage, 'arriving');
+    h.tick(300);
+    for (const target of h.elements)
+      h.root.emit('animationend', { animationName: 'route-block-arrive', target });
+    assert.equal((await arrival).completedBy, 'animationend');
+    assert.equal(paper.attributes.has('data-route-paper'), false);
+    assert.equal(
+      [...paper.styles.keys()].some((key) => key.startsWith('--route-paper-')),
+      false
+    );
+    assert.deepEqual(paper.getBoundingClientRect(), native);
+    const interrupted = h.controller.depart(1, 52);
+    h.window.emit('beforeprint');
+    assert.equal((await interrupted).cancelled, true);
+    assert.equal(paper.attributes.has('data-route-paper'), false);
+    assert.equal(h.tasks.size, 0);
+  }
+});
+
+test('visible reader paper crosses an otherwise empty viewport instead of completing instantly', async () => {
+  const h = harness({ count: 0 });
+  const paper = h.document.createElement('article');
+  paper.top = -18000;
+  paper.height = 30000;
+  h.root.matches = (selector) => selector === '.article-reader';
+  h.root.querySelector = () => paper;
+  h.controller.mount(h.root);
+  const departure = h.controller.depart(1);
+  assert.equal(h.controller.diagnostics().routeStage, 'departing');
+  assert.equal(paper.styles.get('--route-paper-duration'), '1000ms');
+  h.tick(1000);
+  h.root.emit('animationend', {
+    animationName: 'route-block-depart',
+    target: paper,
+    pseudoElement: '::before',
+  });
+  assert.equal((await departure).completedBy, 'animationend');
+  h.controller.cancelRoute();
+  assert.equal(paper.attributes.has('data-route-paper'), false);
   assert.equal(h.tasks.size, 0);
 });

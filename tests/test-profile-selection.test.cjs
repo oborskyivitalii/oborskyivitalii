@@ -56,6 +56,11 @@ function executionFixture(t, body) {
       source_profiles: {
         pr: { baseline_files: [], known_non_node_paths: [], shared_inputs: [] },
         staging: { baseline_files: [] },
+        content: {
+          authored_inputs: ['site/content/catalog.json'],
+          derived_inputs: ['docs/**'],
+          mandatory_files: [file],
+        },
       },
       tests: [
         {
@@ -64,7 +69,7 @@ function executionFixture(t, body) {
           purpose: 'Controlled actual execution',
           owner: 'guides/SITE-CHECK-PROFILES.md',
           lifecycle: 'permanent',
-          profiles: ['pr-targeted', 'staging', 'production'],
+          profiles: ['pr-targeted', 'staging', 'production', 'content'],
           disposition: 'controlled fixture',
           surviving_route: 'production',
           inputs: [file],
@@ -358,6 +363,241 @@ test('unknown changed source conservatively selects every permanent JS and never
     'unsafe\npath',
   ])
     assert.throws(() => runner.select(root, 'pr', { changedPaths: [bad] }), /unsafe path/);
+});
+test('authored content selection retains all mandatory safety modules and rejects mixed or generated-only changes', () => {
+  const registry = runner.loadRegistry(root);
+  const authored = [
+    'site/content/catalog.json',
+    'site/content/pages/writing/section-1.json',
+    'site/publications/example/manuscript.md',
+    'site/assets/publications/example/figure.svg',
+    'docs/writing.html',
+    'site/output-lock.json',
+    'MEMORY.md',
+    'REPOSITORY-MAP.md',
+    '.github/repository-intelligence/agent-context.json',
+  ];
+  const plan = runner.select(root, 'content', { changedPaths: authored });
+  assert.deepEqual(plan.modules, [...registry.source_profiles.content.mandatory_files].sort());
+  assert.equal(plan.classification.mode, 'content');
+  assert.deepEqual(plan.baselineFiles, []);
+  assert.equal(plan.baselineCommand, null);
+  const pr = runner.select(root, 'pr', { changedPaths: authored });
+  assert.deepEqual(
+    pr.modules,
+    plan.modules.filter((file) => !pr.baselineFiles.includes(file))
+  );
+  assert.ok(!pr.modules.includes('tests/space.test.cjs'));
+  for (const changed of [
+    'site/engine/navigation.js',
+    'site/templates/pages/writing/section-1.html',
+    'tools/site/build.cjs',
+    '.github/workflows/site-checks.yml',
+    'site/content/site.json',
+    'site/content/pages/research/metadata.json',
+    'site/publications/example/executable.cjs',
+    'site/assets/publications/example/active.js',
+    'site/assets/publications/example/PROVENANCE.md',
+    'unknown-owner.json',
+  ]) {
+    assert.throws(
+      () => runner.select(root, 'content', { changedPaths: [...authored, changed] }),
+      /rejects/
+    );
+    assert.equal(
+      runner.select(root, 'pr', { changedPaths: [...authored, changed] }).classification.mode,
+      'platform'
+    );
+  }
+  for (const changedPaths of [[], ['docs/writing.html']])
+    assert.throws(() => runner.select(root, 'content', { changedPaths }), /rejects/);
+});
+test('publication inventory admits content bookkeeping while pinning existing unsupported entries', () => {
+  const registry = runner.loadRegistry(root);
+  const current = JSON.parse(fs.readFileSync(path.join(root, '.github/repository-paths.json')));
+  assert.equal(runner.publicationInventoryCompatible(registry, current, current), true);
+  const provenance = 'site/assets/publications/existing/PROVENANCE.md';
+  const before = {
+    schema_version: 1,
+    entries: {
+      'site/engine/navigation.js': {
+        kind: 'file',
+        owner: 'site/README.md',
+        role: 'source',
+        purpose: 'Existing platform owner',
+      },
+      [provenance]: {
+        kind: 'file',
+        owner: 'guides/ARTICLE-WORKFLOW.md',
+        role: 'source',
+        purpose: 'Existing publication asset provenance',
+      },
+    },
+  };
+  const after = structuredClone(before);
+  after.entries['site/publications/new-article/manuscript.md'] = {
+    kind: 'file',
+    owner: 'guides/ARTICLE-WORKFLOW.md',
+    role: 'source',
+    purpose: 'New authored article',
+  };
+  after.entries['docs/snapshots/' + 'a'.repeat(64) + '/writing.html'] = {
+    kind: 'file',
+    owner: 'site/README.md',
+    role: 'generated',
+    purpose: 'New Writing snapshot',
+  };
+  assert.equal(runner.publicationInventoryCompatible(registry, before, after), true);
+  for (const mutate of [
+    (value) => {
+      value.entries['site/engine/navigation.js'].owner = 'guides/ARTICLE-WORKFLOW.md';
+    },
+    (value) => {
+      value.entries['site/publications/new-article/active.cjs'] =
+        value.entries['site/publications/new-article/manuscript.md'];
+    },
+    (value) => {
+      value.entries['site/assets/publications/new-article/PROVENANCE.md'] =
+        value.entries[provenance];
+    },
+    (value) => {
+      value.entries[provenance].purpose = 'Changed publication asset provenance';
+    },
+    (value) => {
+      value.entries[provenance].role = 'draft';
+    },
+    (value) => {
+      delete value.entries[provenance];
+    },
+    (value) => {
+      value.entries['site/publications/new-article/manuscript.md'].owner = 'MEMORY.md';
+    },
+    (value) => {
+      value.schema_version = 2;
+    },
+    (value) => {
+      value.entries['docs/snapshots/' + 'a'.repeat(64) + '/writing.html'].owner = 'MEMORY.md';
+    },
+    (value) => {
+      value.entries['docs/snapshots/' + 'a'.repeat(64) + '/writing.html'].role = 'source';
+    },
+  ]) {
+    const invalid = structuredClone(after);
+    mutate(invalid);
+    assert.equal(runner.publicationInventoryCompatible(registry, before, invalid), false);
+  }
+  assert.equal(
+    runner.classifyContent(registry, ['site/content/catalog.json', '.github/repository-paths.json'])
+      .mode,
+    'platform',
+    'unbound inventory change cannot select content'
+  );
+});
+test('RI coupling permits only derived identity recalculation while retaining all policy and routes', () => {
+  const before = {
+    schema_version: 1,
+    review: { issue: 'stable owner' },
+    layers: ['unchanged'],
+    checks: ['unchanged'],
+    reviewed_source_identity: {
+      algorithm: 'sha256-path-content-map-v1',
+      digest: 'a'.repeat(64),
+      inputs: [{ path: '.github/repository-paths.json', sha256: 'b'.repeat(64) }],
+    },
+  };
+  const after = structuredClone(before);
+  after.reviewed_source_identity.digest = 'c'.repeat(64);
+  after.reviewed_source_identity.inputs[0].sha256 = 'd'.repeat(64);
+  assert.equal(runner.riIdentityCompatible(before, after), true);
+  for (const mutate of [
+    (value) => {
+      value.checks = [];
+    },
+    (value) => {
+      value.layers = [];
+    },
+    (value) => {
+      value.review.issue = 'another owner';
+    },
+    (value) => {
+      value.reviewed_source_identity.inputs.push({
+        path: 'tools/new-policy.cjs',
+        sha256: 'e'.repeat(64),
+      });
+    },
+    (value) => {
+      value.reviewed_source_identity.digest = 'malformed';
+    },
+  ]) {
+    const invalid = structuredClone(after);
+    mutate(invalid);
+    assert.equal(runner.riIdentityCompatible(before, invalid), false);
+  }
+});
+test('content safety inventory cannot silently omit modules or admit diagnostics', (t) => {
+  const f = fixture(t);
+  f.registry.source_profiles.content.mandatory_files.pop();
+  assert.throws(
+    () => runner.validateRegistry(f.directory, f.registry),
+    /mandatory content inventory/
+  );
+  f.registry = runner.loadRegistry(root);
+  const diagnostic = f.registry.tests.find((row) => row.lifecycle === 'diagnostic');
+  diagnostic.profiles.push('content');
+  f.registry.source_profiles.content.mandatory_files.push(diagnostic.path);
+  assert.throws(
+    () => runner.validateRegistry(f.directory, f.registry),
+    /content modules must retain/
+  );
+});
+test('unconditional CI dispatcher accepts only complete execution for its actual content plan', () => {
+  const plan = { modules: ['tests/content.test.cjs'], changedPaths: ['site/content/catalog.json'] };
+  const record = {
+    contentChecks: {
+      pass: true,
+      sourceTests: {
+        profile: 'content',
+        status: 'passed',
+        pass: true,
+        total: 2,
+        passed: 2,
+        failed: 0,
+        cancelled: 0,
+        skipped: 0,
+        todo: 0,
+        ...plan,
+      },
+    },
+  };
+  assert.equal(runner.verifyContentExecution(plan, record).executionReusedWithinJob, true);
+  for (const changed of [
+    { modules: [] },
+    { changedPaths: [] },
+    { pass: false },
+    { total: 0, passed: 0 },
+    { skipped: 1 },
+    { todo: 1 },
+    { cancelled: 1 },
+    { failed: 1 },
+    { profile: 'pr' },
+    { status: 'planned' },
+    { passed: 1 },
+  ])
+    assert.throws(() =>
+      runner.verifyContentExecution(plan, {
+        contentChecks: {
+          pass: true,
+          sourceTests: { ...record.contentChecks.sourceTests, ...changed },
+        },
+      })
+    );
+  assert.throws(() => runner.verifyContentExecution(plan, {}));
+  assert.equal(runner.argumentsFor(['--ci-profile', '--require-clean']).ciProfile, true);
+  assert.throws(
+    () => runner.argumentsFor(['--ci-profile', '--profile', 'content']),
+    /bound workflow/
+  );
+  assert.throws(() => runner.ciProfile(root, {}, { CONTENT_MODE: 'skip' }), /unknown CI/);
 });
 test('future declared permanent modules enter production/staging and their own changed test route automatically', (t) => {
   const f = fixture(t),
@@ -682,6 +922,23 @@ test('selected execution keeps real process failure and accounting evidence with
     () => runner.run(root, plan, { execute: () => ({ status: 0, stdout: tap({ skipped: 1 }) }) }),
     /skipped/
   );
+  assert.throws(
+    () =>
+      runner.run(root, plan, {
+        execute: () => ({
+          status: null,
+          error: new Error('spawnSync ETIMEDOUT'),
+          stdout: '# Subtest: last observed contract\nnot ok 1 - last observed contract\n',
+          stderr: 'retained child diagnostic',
+        }),
+      }),
+    (error) => {
+      assert.match(error.message, /ETIMEDOUT/);
+      assert.match(error.message, /retained child diagnostic/);
+      assert.match(error.message, /last observed contract/);
+      return true;
+    }
+  );
   assert.throws(() => runner.run(root, { ...plan, modules: [] }));
   assert.throws(
     () => runner.argumentsFor(['--profile', 'production', '--profile', 'staging']),
@@ -768,6 +1025,73 @@ test('source scheduling starts expensive files early with isolated processes and
   ]) {
     f.write(file, body);
     assert.throws(() => runner.run(f.directory, plan));
+  }
+});
+
+test('source scheduling caps simultaneous isolated files at four without dropping queued coverage', async (t) => {
+  const f = fixture(t),
+    active = path.join(f.directory, 'active'),
+    release = path.join(f.directory, 'release'),
+    files = Array.from({ length: 5 }, (_, index) => 'tests/slot-' + index + '.test.cjs');
+  fs.mkdirSync(active);
+  for (const [index, file] of files.entries())
+    f.write(
+      file,
+      "const fs=require('node:fs'),test=require('node:test');" +
+        "test('bounded slot " +
+        index +
+        "',async()=>{" +
+        'const marker=' +
+        JSON.stringify(path.join(active, String(index))) +
+        ';' +
+        "fs.writeFileSync(marker,'active');" +
+        'while(!fs.existsSync(' +
+        JSON.stringify(release) +
+        '))await new Promise(r=>setTimeout(r,10));' +
+        'fs.unlinkSync(marker);});\n'
+    );
+  f.write(
+    'run-source.cjs',
+    'require(' +
+      JSON.stringify(path.join(root, 'tools/quality/source-test-worker.cjs')) +
+      ').runFiles(' +
+      JSON.stringify(files) +
+      ',{parallelism:64});\n'
+  );
+  const env = { ...process.env };
+  delete env.NODE_TEST_CONTEXT;
+  const child = cp.spawn(process.execPath, [path.join(f.directory, 'run-source.cjs')], {
+    cwd: f.directory,
+    env,
+    stdio: ['ignore', 'pipe', 'pipe'],
+  });
+  let stdout = '',
+    stderr = '';
+  child.stdout.on('data', (bytes) => {
+    stdout += bytes;
+  });
+  child.stderr.on('data', (bytes) => {
+    stderr += bytes;
+  });
+  const closed = new Promise((resolve, reject) => {
+    child.once('error', reject);
+    child.once('close', resolve);
+  });
+  try {
+    const deadline = Date.now() + 5000;
+    while (fs.readdirSync(active).length < 4) {
+      assert.ok(Date.now() < deadline, 'four actual source files must overlap');
+      await new Promise((resolve) => setTimeout(resolve, 20));
+    }
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    assert.equal(fs.readdirSync(active).length, 4, 'fifth file stays queued');
+    fs.writeFileSync(release, 'release');
+    assert.equal(await closed, 0, stderr || stdout);
+    assert.equal(runner.accounting(stdout, { modules: files, root: f.directory }).passed, 5);
+  } finally {
+    fs.writeFileSync(release, 'release');
+    if (child.exitCode === null) child.kill('SIGTERM');
+    await closed;
   }
 });
 
@@ -1088,6 +1412,46 @@ test('report write errors cannot become green and clean source failures still le
   );
 });
 
+test('one source execution retains every selected native case and rejects unavailable or empty modules', (t) => {
+  const f = executionFixture(t, "require('node:test')('remaining coverage',()=>{});\n"),
+    scene = 'tests/space.test.cjs',
+    sceneBody = "require('node:test')('scene coverage',()=>{});\n",
+    plan = { profile: 'production', modules: [f.file, scene] };
+  f.write(scene, sceneBody);
+  const execute = () => runner.run(f.directory, plan, { report: f.report });
+  const result = execute(),
+    report = JSON.parse(fs.readFileSync(f.report));
+  assert.equal(result.passed, 2);
+  assert.deepEqual(result.argv.slice(1), plan.modules);
+  assert.deepEqual(result.modules, plan.modules, 'original selected inventory stays intact');
+  assert.equal(report.executions, undefined, 'one source process owns the aggregate budget');
+  assert.equal(report.execution.status, 0);
+  assert.equal(report.execution.timeoutMs, 180000);
+  assert.equal(report.execution.maxBufferBytes, 16 * 1024 * 1024);
+  const raw = fs.readFileSync(report.files.tap);
+  assert.equal(
+    runner.accounting(raw.toString(), { modules: plan.modules, root: f.directory }).passed,
+    2
+  );
+  assert.equal(report.execution.stdoutBytes, raw.length, 'unmodified native TAP is retained');
+  for (const body of [
+    "require('node:test').skip('unavailable scene',()=>{});\n",
+    "require('node:test')('failed scene',()=>{throw Error('original scene failure')});\n",
+  ]) {
+    f.write(scene, body);
+    assert.throws(execute, /selected source test process failed|not all selected|skipped/);
+    const failed = JSON.parse(fs.readFileSync(f.report));
+    assert.equal(failed.pass, false);
+    assert.ok(failed.execution, 'the same single source process retains failure evidence');
+    assert.equal(failed.executions, undefined);
+    assert.match(fs.readFileSync(failed.files.tap, 'utf8'), /remaining coverage/);
+  }
+  f.write(scene, sceneBody);
+  f.write(f.file, '');
+  assert.throws(execute, /empty selected test module/);
+  assert.equal(JSON.parse(fs.readFileSync(f.report)).pass, false);
+});
+
 test('optional successful source reports keep the default API and CLI result shapes', (t) => {
   const f = executionFixture(t, "require('node:test')('available',()=>{});\n"),
     result = runner.run(f.directory, f.plan, { requireClean: true, report: f.report }),
@@ -1179,4 +1543,73 @@ test('repository-only selection omits website smoke and retains affected test fa
       }),
     /selected test failed/
   );
+});
+
+test('CI content reuse retains the actual clean-source report and rejects substituted raw evidence', (t) => {
+  const f = executionFixture(t, "require('node:test')('available content check',()=>{});\n");
+  const git = (...args) =>
+    cp.execFileSync('git', args, { cwd: f.directory, encoding: 'utf8' }).trim();
+  const base = git('rev-parse', 'HEAD');
+  f.write('site/content/catalog.json', '{}\n');
+  git('add', '.');
+  git(
+    '-c',
+    'user.name=Fixture',
+    '-c',
+    'user.email=fixture@example.invalid',
+    'commit',
+    '--quiet',
+    '-m',
+    'content'
+  );
+  const head = git('rev-parse', 'HEAD');
+  const plan = runner.select(f.directory, 'content', { base, head });
+  const executed = runner.run(f.directory, plan, { requireClean: true, report: f.report });
+  const manifest = path.join(path.dirname(f.report), 'artifact.json');
+  fs.writeFileSync(
+    manifest,
+    JSON.stringify({
+      sourceDirty: false,
+      sourceCommit: head,
+      sourceTree: git('rev-parse', 'HEAD^{tree}'),
+      contentRelease: { trustedBaseline: { sourceCommit: base } },
+      contentChecks: { pass: true, sourceTests: executed },
+    })
+  );
+  const environment = {
+    CONTENT_MODE: 'content',
+    CONTENT_BASE_SHA: base,
+    SITE_CANDIDATE_SHA: head,
+    SITE_SOURCE_MANIFEST: manifest,
+  };
+  const reuse = () =>
+    runner.ciProfile(f.directory, { requireClean: true, report: f.report }, environment);
+  const report = fs.readFileSync(f.report, 'utf8');
+  assert.equal(reuse().executionReusedWithinJob, true);
+  assert.equal(fs.readFileSync(f.report, 'utf8'), report, 'actual execution evidence is retained');
+  for (const mutate of [
+    (value) => {
+      value.source.sourceTree = 'a'.repeat(40);
+    },
+    (value) => {
+      value.sourceAfter.sourceDirty = true;
+    },
+    (value) => {
+      value.result.modules = [];
+    },
+    (value) => {
+      value.execution.status = 1;
+    },
+    (value) => {
+      value.cleanSourceRequired = false;
+    },
+  ]) {
+    const invalid = JSON.parse(report);
+    mutate(invalid);
+    fs.writeFileSync(f.report, JSON.stringify(invalid));
+    assert.throws(reuse);
+  }
+  fs.writeFileSync(f.report, report);
+  fs.appendFileSync(JSON.parse(report).files.tap, '\nsubstituted raw result\n');
+  assert.throws(reuse);
 });

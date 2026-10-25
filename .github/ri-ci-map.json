@@ -9,8 +9,16 @@
     {
       "id": "authority-instructions",
       "purpose": "Enduring agent rules, source authority and four-role independent execution protocol; history and generated views cannot supply current instructions or approvals.",
-      "paths": ["AGENTS.md", "CONTRIBUTING.md", "PROJECT-BOOTSTRAP.md"],
-      "checks": ["acceptance-policy", "ri-freshness", "ri-regressions"]
+      "paths": [
+        "AGENTS.md",
+        "CONTRIBUTING.md",
+        "PROJECT-BOOTSTRAP.md"
+      ],
+      "checks": [
+        "acceptance-policy",
+        "ri-freshness",
+        "ri-regressions"
+      ]
     },
     {
       "id": "intent-acceptance",
@@ -145,13 +153,23 @@
         "review/issue-122/2026-10-23-t03-controller-bootstrap-review.md",
         "review/issue-122/2026-10-23-t03r-public-checksum-proof.json.gz"
       ],
-      "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
+      "checks": [
+        "acceptance-policy",
+        "acceptance-policy-selection",
+        "ri-ci-regressions"
+      ]
     },
     {
       "id": "path-catalog",
       "purpose": "Complete file/directory purposes, roles and owners; unknown or stale paths fail visibly.",
-      "paths": [".github/repository-paths.json"],
-      "checks": ["ri-ci-map", "ri-freshness", "ri-regressions"]
+      "paths": [
+        ".github/repository-paths.json"
+      ],
+      "checks": [
+        "ri-ci-map",
+        "ri-freshness",
+        "ri-regressions"
+      ]
     },
     {
       "id": "entry-root-guides",
@@ -217,8 +235,14 @@
         "tests/reader-controller.test.cjs",
         "tests/fixtures/reader-staging-gate.json.gz",
         "tests/fixtures/reader-staging-package.json.gz",
-        "tools/staging/reader-snapshot.cjs",
-        "tools/staging/reader-index.cjs"
+        "tools/site/snapshot.cjs",
+        "tools/site/article-index.cjs",
+        "tools/quality/content-baseline.cjs",
+        "tools/quality/content-gate.cjs",
+        "tests/content-baseline.test.cjs",
+        "tests/content-delivery.test.cjs",
+        "tests/release-controller.test.cjs",
+        "tools/release/staging-policy.cjs"
       ],
       "checks": [
         "acceptance-policy",
@@ -236,13 +260,23 @@
         "tests/test_repository_intelligence.py",
         "tools/repository_intelligence.py"
       ],
-      "checks": ["ri-ci-map", "ri-freshness", "ri-regressions"]
+      "checks": [
+        "ri-ci-map",
+        "ri-freshness",
+        "ri-regressions"
+      ]
     },
     {
       "id": "generated-views",
       "purpose": "Readable map and agent context derive from one projection; neither is editing authority.",
-      "paths": [".github/repository-intelligence/agent-context.json", "REPOSITORY-MAP.md"],
-      "checks": ["ri-freshness", "ri-regressions"]
+      "paths": [
+        ".github/repository-intelligence/agent-context.json",
+        "REPOSITORY-MAP.md"
+      ],
+      "checks": [
+        "ri-freshness",
+        "ri-regressions"
+      ]
     },
     {
       "id": "lookup-validation-routes",
@@ -254,13 +288,23 @@
         "tests/test_ri_ci.py",
         "tools/check_ri_ci.py"
       ],
-      "checks": ["ri-ci-map", "ri-ci-regressions", "ri-regressions"]
+      "checks": [
+        "ri-ci-map",
+        "ri-ci-regressions",
+        "ri-regressions"
+      ]
     },
     {
       "id": "continuity",
       "purpose": "Bounded dated handoff, update rules and required sections; current facts need live revalidation.",
-      "paths": ["MEMORY.md"],
-      "checks": ["acceptance-policy", "ri-freshness", "ri-regressions"]
+      "paths": [
+        "MEMORY.md"
+      ],
+      "checks": [
+        "acceptance-policy",
+        "ri-freshness",
+        "ri-regressions"
+      ]
     },
     {
       "id": "github-live-overlay-ci-boundary",
@@ -323,7 +367,12 @@
         "tests/analytics.test.cjs",
         "tools/release/staging-policy.cjs"
       ],
-      "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-map", "site-basic"]
+      "checks": [
+        "acceptance-policy",
+        "acceptance-policy-selection",
+        "ri-ci-map",
+        "site-basic"
+      ]
     },
     {
       "id": "code-style-architecture",
@@ -334,7 +383,12 @@
         "tools/check_code_style.py",
         "tests/test_code_style.py"
       ],
-      "checks": ["code-style-guard", "code-style-regressions", "ri-ci-regressions", "ri-freshness"]
+      "checks": [
+        "code-style-guard",
+        "code-style-regressions",
+        "ri-ci-regressions",
+        "ri-freshness"
+      ]
     },
     {
       "id": "maintained-source-quality",
@@ -420,7 +474,11 @@
         "tests/delivery-admission.test.cjs",
         ".github/workflows/site-color-review.yml"
       ],
-      "checks": ["site-basic", "test-profile-regressions", "acceptance-policy"]
+      "checks": [
+        "site-basic",
+        "test-profile-regressions",
+        "acceptance-policy"
+      ]
     },
     {
       "id": "control-lock-prototype",
@@ -430,7 +488,11 @@
         "tests/control-lock.test.cjs",
         "guides/SITE-CONTROL-CHANGES.md"
       ],
-      "checks": ["site-basic", "test-profile-regressions", "acceptance-policy"]
+      "checks": [
+        "site-basic",
+        "test-profile-regressions",
+        "acceptance-policy"
+      ]
     },
     {
       "id": "control-runner-prototype",
@@ -443,7 +505,11 @@
         "tests/control-runner.test.cjs",
         ".github/workflows/control-runner-probe.yml"
       ],
-      "checks": ["site-basic", "test-profile-regressions", "acceptance-policy"]
+      "checks": [
+        "site-basic",
+        "test-profile-regressions",
+        "acceptance-policy"
+      ]
     }
   ],
   "checks": [
@@ -461,7 +527,9 @@
         "-p",
         "test_repository_intelligence.py"
       ],
-      "test_selectors": ["test_repository_intelligence.NavigationSafetyTests"],
+      "test_selectors": [
+        "test_repository_intelligence.NavigationSafetyTests"
+      ],
       "event_scope": "ready-pr"
     },
     {
@@ -481,14 +549,27 @@
       "id": "ri-ci-map",
       "workflow": ".github/workflows/navigation.yml",
       "job": "navigation",
-      "argv": ["python3", "tools/check_ri_ci.py", "verify"],
+      "argv": [
+        "python3",
+        "tools/check_ri_ci.py",
+        "verify"
+      ],
       "event_scope": "ready-pr"
     },
     {
       "id": "ri-ci-regressions",
       "workflow": ".github/workflows/navigation.yml",
       "job": "navigation",
-      "argv": ["python3", "-m", "unittest", "discover", "-s", "tests", "-p", "test_ri_ci.py"],
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_ri_ci.py"
+      ],
       "test_selectors": [
         "test_ri_ci.RICICouplingTests",
         "test_ri_ci.RICICouplingTests.test_ready_pr_adapter_requires_exact_guard_and_ready_event"
@@ -499,8 +580,19 @@
       "id": "root-layout-regressions",
       "workflow": ".github/workflows/navigation.yml",
       "job": "navigation",
-      "argv": ["python3", "-m", "unittest", "discover", "-s", "tests", "-p", "test_root_layout.py"],
-      "test_selectors": ["test_root_layout.RootLayoutTests"],
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_root_layout.py"
+      ],
+      "test_selectors": [
+        "test_root_layout.RootLayoutTests"
+      ],
       "event_scope": "ready-pr"
     },
     {
@@ -544,7 +636,12 @@
       "id": "site-basic",
       "workflow": ".github/workflows/site-checks.yml",
       "job": "checks",
-      "argv": ["node", "tools/quality/local.cjs", "--delivery", "quality-artifact"],
+      "argv": [
+        "node",
+        "tools/quality/local.cjs",
+        "--delivery",
+        "quality-artifact"
+      ],
       "event_scope": "ready-pr"
     },
     {
@@ -561,7 +658,9 @@
         "-p",
         "test_repository_test_selection.py"
       ],
-      "test_selectors": ["test_repository_test_selection.RepositoryTestSelectionTests"],
+      "test_selectors": [
+        "test_repository_test_selection.RepositoryTestSelectionTests"
+      ],
       "event_scope": "ready-pr"
     },
     {
@@ -582,14 +681,26 @@
       "id": "code-style-guard",
       "workflow": ".github/workflows/navigation.yml",
       "job": "navigation",
-      "argv": ["python3", "tools/check_code_style.py"],
+      "argv": [
+        "python3",
+        "tools/check_code_style.py"
+      ],
       "event_scope": "ready-pr"
     },
     {
       "id": "code-style-regressions",
       "workflow": ".github/workflows/navigation.yml",
       "job": "navigation",
-      "argv": ["python3", "-m", "unittest", "discover", "-s", "tests", "-p", "test_code_style.py"],
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_code_style.py"
+      ],
       "test_selectors": [
         "test_code_style.CodeStyleTests",
         "test_code_style.CodeStyleRepositoryTests"
@@ -600,21 +711,32 @@
       "id": "maintained-format-check",
       "workflow": ".github/workflows/site-checks.yml",
       "job": "checks",
-      "argv": ["node", "tools/quality/format.cjs", "--check"],
+      "argv": [
+        "node",
+        "tools/quality/format.cjs",
+        "--check"
+      ],
       "event_scope": "ready-pr"
     },
     {
       "id": "maintained-source-lint",
       "workflow": ".github/workflows/site-checks.yml",
       "job": "checks",
-      "argv": ["node", "tools/quality/scanners.cjs", "lint"],
+      "argv": [
+        "node",
+        "tools/quality/scanners.cjs",
+        "lint"
+      ],
       "event_scope": "ready-pr"
     },
     {
       "id": "authored-dependencies",
       "workflow": ".github/workflows/site-checks.yml",
       "job": "checks",
-      "argv": ["node", "tools/quality/architecture.cjs"],
+      "argv": [
+        "node",
+        "tools/quality/architecture.cjs"
+      ],
       "event_scope": "ready-pr"
     },
     {
@@ -663,7 +785,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "5361fe4c6a39acedb33483de25897e5393d0cbe30b0748f8987023e4ab360f8f",
+    "digest": "a79af1d2e7c6454d9a39d82bbfada938025eb6ad87c11194910ca31b4ae7b96c",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -703,7 +825,7 @@
       },
       {
         "path": ".github/acceptance/issue-122.json",
-        "sha256": "6556496fd8d9e9e739f2adb05882ff443e19b8b9faf25e35e3f45d8af6742d67"
+        "sha256": "02c621d7aa69af86d0abf4aeb3b5c1ee8c426c960fceb981e86f59d28e3ec546"
       },
       {
         "path": ".github/acceptance/issue-126.json",
@@ -743,7 +865,7 @@
       },
       {
         "path": ".github/acceptance/issue-5.json",
-        "sha256": "6fe5deba811714ddd6dcb6f4d5d64bcdecb19bf5764d62e93b8f1e64964871d0"
+        "sha256": "27ad8e1dd6f328c5cfeebd48b572abc365e9fdd9c3296be06ea6bd0f4c451429"
       },
       {
         "path": ".github/acceptance/issue-54.json",
@@ -791,15 +913,15 @@
       },
       {
         "path": ".github/repository-intelligence-config.json",
-        "sha256": "fc793067f4a0ba18688c203b3c77708f324888465ecbd07e33ddfcc7fb1ac271"
+        "sha256": "3ba46fb384168f2375230eafc6ff4b582a83d3a3d0761cc1a7e27f71919417c5"
       },
       {
         "path": ".github/repository-layout.json",
-        "sha256": "80ef80d2c1a81162b9ae29a59296c401196c9b48dc9eb4b690ae79f60d2c012a"
+        "sha256": "212b09da71a07dff0c1f015fa0a250628ad82801484d39a0a02be735ba1c2318"
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "4f77c7539afe5106bd5fefa4927a77ff50246d25d26b5cef5354c02fd1c83086"
+        "sha256": "ef9e21f8ea28d1dacf5e1ffc82de1b7bd840324597ba198f254cc1746ba30ecf"
       },
       {
         "path": ".github/workflows/change-admission.yml",
@@ -815,11 +937,11 @@
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
-        "sha256": "820f2a8607191e2241205c7bfd6e61b8fb24df1bb1666b7f0fca251b9b0dbab1"
+        "sha256": "357560e7e65f64e491610c259753ef7bd4539368dea5d28f5fd5429736e5d086"
       },
       {
         "path": ".github/workflows/navigation.yml",
-        "sha256": "e238caaf512fb363d9412f298c2c86b6ecb4d06919d70dbd4758fc1f8aa1212e"
+        "sha256": "a69abdadb442869c446c8c1126f780b2f394f4b54c45d5cbfb0ebec309411786"
       },
       {
         "path": ".github/workflows/site-browser-gate-probe.yml",
@@ -839,11 +961,11 @@
       },
       {
         "path": ".github/workflows/site-checks.yml",
-        "sha256": "106776dd7bdf0542ea367ef1b841deb70d74679fb7e5168c8e3d988dd630fabe"
+        "sha256": "6ec06f40b53f23631a282adbcd38d42e6637b74e244851adb95dbfdebb523dcd"
       },
       {
         "path": ".github/workflows/site-color-review.yml",
-        "sha256": "aef3fdd62477e834fb1fb10ab03258e6a52e1afcbbb9c9834d54a62656d49e96"
+        "sha256": "bb5df6f5a5f03c977f4de356a9245d77d1bb8648beeb5d60d2fe067067bd54e3"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -867,11 +989,11 @@
       },
       {
         "path": ".github/workflows/site-release-candidate.yml",
-        "sha256": "b035032db4fce0b00ca28370bb7faa03fd0ee7ab3f8df23a20bf92b7b277c9ca"
+        "sha256": "af1f221c8fb67e1c065fd5ad352d448ef434adae5fff9f8b9dcbf9d1d761f2dc"
       },
       {
         "path": ".github/workflows/site-release-checks.yml",
-        "sha256": "babf291d2dbabc27022e0329ef3effaf969d28de2f1ea0e3919c330ca6df9277"
+        "sha256": "9bb0525950fce30a82ba374180e8aac00bb8ec36cf6f9ac45f03f85dca67aa6c"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -903,11 +1025,11 @@
       },
       {
         "path": "guides/CODE-STYLE.md",
-        "sha256": "ee3cf88ed2efbb3ab75d019cf7dfc0076518e23e8eda7e56b2935b9b51427d65"
+        "sha256": "cdef877504055734d653af12237fc708f3e3636dd15dfc0703f71e0f6c87ee40"
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "b6b323d8438f17c225ef1e35615aa14ef709be22ad908752e1482268177ad02c"
+        "sha256": "f1c0a0687149254f6f5b3bb017a23878fdb11f48f0602866d14549bd6c4b8319"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -915,23 +1037,23 @@
       },
       {
         "path": "review/issue-5/2026-10-20-controller-bootstrap.md",
-        "sha256": "fdf2fbcaae383cac0bb8426224085ca71303d82b8d80d41e490209b1b93371fe"
+        "sha256": "ec43471294a0b0726cd228a55a359232307c51cdb69f6ed726ce07169e1ce5a8"
       },
       {
         "path": "tests/fixtures/staging-evidence.cjs",
-        "sha256": "be5498c726acec8304fb24df0cd3ff093e9946e111925da6a6d4d88c8e67a438"
+        "sha256": "8189a83db3f0fdb46bbf01cebe254e1cac9359c03236ddc899a32e452bf7a4a7"
       },
       {
         "path": "tests/staging-gate.test.cjs",
-        "sha256": "08210fe5140b6f6465eb211378ceec76eb15312f041040473c32a0623191e1fe"
+        "sha256": "d135c4a270cdac2222bd9012f6146c89074fc5d4c9fe7ad41296adf5b519c117"
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "33bb036574797faa8d19e197ec595e7439d9c622821d5eb5d87fc894eb3ecd27"
+        "sha256": "93452f82bfe25691c6c37ef4ead983c09e1c240d3f4afae7b695e86fd99e8d35"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
-        "sha256": "dfa0e290597f4c71e9f44bb604b7ca79c511f0b88fe34c01a2a0f54c0bf4414d"
+        "sha256": "3ef64369f3b141ad57f8b7af67a8164c9ed8eddedd27ffa99754d61ab3c14a41"
       },
       {
         "path": "tests/test_code_style.py",
@@ -991,7 +1113,7 @@
       },
       {
         "path": "tests/test_issue5_acceptance.py",
-        "sha256": "bce92eb8d3b95ce403c5c6ae8c4963b16902c31181696c3ac25039cfdbd9703d"
+        "sha256": "60305565f93ec694f1945c67dc63cc1e085f2d3ae3c13fcebdc80bf35e082aae"
       },
       {
         "path": "tests/test_issue61_acceptance.py",
@@ -1047,23 +1169,23 @@
       },
       {
         "path": "tools/quality/local.cjs",
-        "sha256": "dc226ed41be29acab39af1d108eb9ed3b33cd546d6475a89fc360ac61408fc12"
+        "sha256": "ea8550ebac5b2f62147c60c8e0b70a54f6e60d20643cf190ec45c6a5d693f96d"
       },
       {
         "path": "tools/quality/source-tests.cjs",
-        "sha256": "09c97200646d30ba21e7e7e3e3c2a6bb3a579358b6e986f15efe9b624db6c975"
+        "sha256": "d9340e739baba3fe916f5e5e6333f7435bf6d1d6b91b2c4e40d94f315a266e14"
       },
       {
         "path": "tools/quality/staging-gate.cjs",
-        "sha256": "c4141fb731dd76636ed5d7349718c389e31f712f4d33ec3d4bee7458ff29b54e"
+        "sha256": "59c0446372f42f0feb3eddf61751cd0dc86cbb4bf99b2bed7c8ca3c588d74e01"
       },
       {
         "path": "tools/quality/staging-regression.cjs",
-        "sha256": "8506723c4d4c68a73ff17bd9e72e5255351b52ec2acc4739f1e3c8fdb1c7636b"
+        "sha256": "299c114db4bc3d358f43f1d7ee84db820c9e508ae1031f81325d7bb721f81f64"
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "59174cbbf1021de357c1c68f184dbebb91c4b7e81c26553ed14ff03c0db0391d"
+        "sha256": "23fb8f2fcdfb48670909553dc332a8662a742dbd63bacc6cac68beaecfa38a22"
       },
       {
         "path": "tools/repository_intelligence.py",

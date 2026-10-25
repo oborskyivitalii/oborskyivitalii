@@ -1,33 +1,33 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-24**.
+Dated continuity, not live authority. Last verified: **2026-10-25**.
 
 ## Snapshot
 
-- Owner remains issue122. R1/PR142 and R2/PR143 plus real repository-only acceptance PR144 are delivered. Protected main3651c5df126b0b1bc96588d22ff46b5f36b4a666; do not restart their proof campaigns.
-- PR144 merged without website work. App5453173, original Basic/RI/conditional Staging and owning15368 checks are required with strict freshness/no bypass. Actual postmerge40131619768 and main navigation40131619315 passed; parent AC02 alone is complete.
-- R3 is authorized. Existing PR79 head86a270461a686d2e69d6cefc19ea5c041501c554 is frozen into isolated preparation; its nine latest article/review paths remain verbatim. PR79 stays Draft/unmodified. Live #122 owns current plan/status.
+- Owner remains #122. R1/PR142, R2/PR143-144 and exact-runtime compatibility/PR145 are delivered; native receipts and timing evidence are in the live issue.
+- Protected main is bea2628; PR145 tested5f60821 and merge share the identical reviewed tree. Its Basic, sole full owner stage, genuine App, protected merge and actual postmerge passed.
+- The current R3 platform candidate continues preserved WIP5a89989 and PR79's86a2704, integrating mainbea2628. It is preparation until its own native delivery passes.
 
 ## Decisions
 
-- User requires status after each delivered atomic step: completed result, exact PR/run, next single step and full remaining plan. Avoid new frameworks, publishers, broad negative matrices or unrelated editorial work.
-- Main-owned privileged package verification has a closed Color runtime inventory. One compatibility-only delivery must precede the stable platform integration; live #122 records four implementation deliveries instead of three, plus completed repository acceptance and later ordinary content delivery.
-- Compatibility adds only exact future three-edition tuples and mandatory rights IDs through the existing reviewed-SHA/conservative full route. All prior families, guards, budgets and rights remain. No authored runtime/site/article change; normal staging metadata/deployment may advance.
-- Stable platform companion substitutes for platform delivery inside concurrent PR79. Keep unaccepted R37 review/rights-pending article outside ordinary public packages; editorial/native-PDF/rights decisions stay with #5/#2.
+- User authorized this next atomic platform integration, requires concise status after delivery and full remaining plan in #122. Minimize scope and reuse completed evidence; no extra experiment or acceptance-only PR.
+- Preserve delivered R1/R2, all14 PR145 producer objects and exact edition tuples, budgets, trusted-base classification and existing serialized publisher. Controls/mixed/unknown/rights changes remain full route.
+- PR79 stays untouched. Ordinary packages exclude rights-pending R37 and reader-reference. Article editorial, native PDF and rights decisions remain #5/#2; platform acceptance does not publish the article.
+- Source/candidate/accepted platform/artifact and actual merge are distinct. Never relabel tested history or old artifacts at a merge commit; require fresh staging for incompatible or unavailable proof.
 
 ## Open work
 
-- This freeze prepares the compatibility-only candidate. Source12/12 tests and four scoped independent roles passed; native Basic/RI/owning/full staging/App/protected merge/postmerge remain pending here. Later live issue delivery receipts supersede these pending statements.
-- Exact prospective runtime/producer freeze and role/check evidence: review/issue-122/2026-10-24-r3-runtime-compatibility.md. Prospective generated packages are diagnostic dirty-source evidence, never accepted native artifacts.
-- After compatibility: stable full platform acceptance S; authenticate complete intervening history and genuine repository-only M; meaningful independent content C through existing publisher with required recovery; final contracts/ACs/timings. No manufactured article/event change for CI.
+- Current review owner: review/issue-122/2026-10-25-r3-platform-integration.md. Concrete syntax, content-production identity and generated-oracle integration defects are corrected; final reviews/current-source/native checks remain pending at this freeze.
+- Parent AC02 remains complete. Other parent ACs retain their whole original requirements. Actual independent content/recovery and final documentation/timing reconciliation follow accepted platformS.
+- Historic PR144 predates newS and cannot alone establish chronological newS→M→C. Do not invent a proof-only merge or manufacture content changes to exercise CI.
 
 ## Next session
 
-1. Revalidate live #122/main/active PR refs and actual latest receipt. Do not repeat a delivered step because this frozen memory says pending.
-2. Deliver or verify the exact compatibility candidate through normal protection, then report status before taking the stable platform companion.
-3. Keep parent issue open until actual content/recovery and remaining original acceptance criteria are reconciled; no production/DNS action follows automatically.
+1. Revalidate live #122, candidate/main/PR79 and exact native outcomes; live receipts supersede frozen pending text.
+2. Finish this platform delivery through existing source/preview/full owner stage/App/protected merge/postmerge. Do not repeat delivered R1/R2/PR145 or original merge-conflict analysis.
+3. Continue actual authorized content/recovery, then reconcile remaining original ACs/contracts/evidence/timings before closing #122.
 
 ## Maintenance
 
-- Keep five sections/120lines. Necessary catalog, coupling identity and RI outputs remain in their owning delivery; no higher bound, broad scanner exemption or receipt-only follow-up PR.
-- Preserve exact accepted-site source/artifact evidence after repository merges. Revalidate source/predecessor leases; never relabel an old artifact at a new tree.
+- Keep five sections/120lines, catalog and RI/CI coupling fresh. The source archive preserves all16 historical v8 HTML originals; generated v11 outputs come from their existing owner.
+- Verbatim receipts and deterministic metadata/RI refreshes do not recursively require review; source/test/claim changes do. Exact-source independent role evidence is required before readiness.

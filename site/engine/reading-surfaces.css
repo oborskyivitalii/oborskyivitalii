@@ -55,7 +55,8 @@
   .section-nav > a,
   .topic-nav > a,
   .site-footer > p,
-  .site-footer > a
+  .site-footer > a,
+  .article-list
 ) {
   position: relative;
   isolation: isolate;
@@ -96,7 +97,8 @@
   .section-nav > a,
   .topic-nav > a,
   .site-footer > p,
-  .site-footer > a
+  .site-footer > a,
+  .article-list
 )::before {
   content: '';
   position: absolute;
@@ -142,7 +144,8 @@
   .section-nav > a,
   .topic-nav > a,
   .site-footer > p,
-  .site-footer > a
+  .site-footer > a,
+  .article-list
 )::before,
 .hero :is(h1, .hero-lead, .hero-description, .audience, .eyebrow)::before,
 .reading-title,
@@ -225,5 +228,27 @@
   .reading-title {
     background: transparent;
     box-shadow: none;
+  }
+}
+
+/* Reader mode owns one opaque paper surface; child components never paint negative-inset patches. */
+.reader-mode,
+.reader-mode .article-toc,
+.reader-mode .reader-contents[data-reader-enhanced] > ol,
+.reader-dialog {
+  background: var(--paper);
+  border-radius: var(--reading-surface-radius);
+}
+.reader-mode[data-route-paper] {
+  background: transparent;
+}
+[data-route-paper]::before {
+  background: var(--paper);
+  border-radius: var(--route-paper-top-radius) var(--route-paper-top-radius)
+    var(--route-paper-bottom-radius) var(--route-paper-bottom-radius);
+}
+@media print {
+  .reader-mode {
+    background: transparent;
   }
 }
