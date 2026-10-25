@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "51aef16fc07fe550025fc094d38c994be427fc9141ebc1594efd4e3bf1b594e7",
+    "digest": "f7a632024c6c637fced3d493a5570283311c73a2ac1c435e9dc9aaa1512dba9b",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -201,7 +201,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "6a30f556b10293b9cee59fd6929257535df48f197b9c5072781195f32094d5db"
+        "sha256": "ccde038bb6e22fff61f12943a7a3dc3512666aeb944c3841552f2fc14e49762c"
       },
       {
         "path": ".github/workflows/change-admission.yml",
@@ -346,7 +346,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "70126f9f98fe5b96a2d3a9929d4f3f8c196e6c1a829e0fe58c75400cd37299c7"
+        "sha256": "572616424d61950e3e4d5b07acf0c7df751ffa6b21190915ca026e0ea4a00795"
       },
       {
         "path": "NOTICE.md",
@@ -995,7 +995,7 @@
       {
         "path": "review/issue-122/2026-10-25-r3-platform-integration.md",
         "identity_mode": "content",
-        "sha256": "69a447a72b0504d75912a10456613570e74e614b99e80c54ee7ee7d4894c60fd"
+        "sha256": "22bcc8d4f7af23c089586a294c4c765d9a459a273a6aa0de6cba9c935f248171"
       },
       {
         "path": "review/issue-126/2026-10-23-announcement-review.md",
@@ -6575,7 +6575,7 @@
       {
         "path": "site/publications/pmday-ai-both-sides/profile.json",
         "identity_mode": "content",
-        "sha256": "01a9a7d6cee0e814c7e8bd5815164c6c0a789bf730812c4feb389c7b0b086c6a"
+        "sha256": "854a76a275ea057737646f93899e6cf5425495a0b5abc581af1f1937274a8033"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/publication.json",

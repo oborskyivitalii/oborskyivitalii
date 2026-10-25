@@ -28,8 +28,8 @@
     }
   },
   "limits": {
-    "linkedinCharacters": 53000,
-    "mediumCharacters": 53000
+    "linkedinCharacters": 54000,
+    "mediumCharacters": 54000
   },
   "reader": {
     "references": "inline",
@@ -85,7 +85,7 @@
     },
     "keepTogether": [
       "0a000288b07ae9d184cfcfff5430af1e020d6afddf07bca1dbf4045a28d5d333",
-      "6ba05c1f2f05ab6fe73fcb9c439d83dbf90871f80c5184268d997dcc395b86f5"
+      "8193c7c369e09a4a19ab6f2c29cf2dec1850e1e47d46189a98e68c66da8741c1"
     ],
     "keepWithNext": [
       "3371b4ed0b043b934aad9fc9129d40ff5a567248b0ec90687966e2721c14e96a",

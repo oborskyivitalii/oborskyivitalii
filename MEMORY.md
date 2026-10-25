@@ -12,19 +12,20 @@ Dated continuity, not live authority. Last verified: **2026-10-25**.
 
 - User authorized this next atomic platform integration, requires concise status after delivery and full remaining plan in #122. Minimize scope and reuse completed evidence; no extra experiment or acceptance-only PR.
 - Preserve delivered R1/R2, all14 PR145 producer objects and exact edition tuples, budgets, trusted-base classification and existing serialized publisher. Controls/mixed/unknown/rights changes remain full route.
+- On25October the maintainer explicitly approved both existing internal article review limits at54,000; preserve the prose and compiled Unicode-code-point measurement. This resolves the earlier53,000 authored blocker.
 - PR79 stays untouched. Ordinary packages exclude rights-pending R37 and reader-reference. Article editorial, native PDF and rights decisions remain #5/#2; platform acceptance does not publish the article.
 - Source/candidate/accepted platform/artifact and actual merge are distinct. Never relabel tested history or old artifacts at a merge commit; require fresh staging for incompatible or unavailable proof.
 
 ## Open work
 
-- Current review owner: review/issue-122/2026-10-25-r3-platform-integration.md. Technical/native corrections are reviewed; PR146 first7aaf source failed and is not accepted. Current R37 compiles53610 versus its explicitly agreed53000 limits. Do not raise/cut/bypass it without the maintainer decision; actual platform/native gates remain pending.
+- Current review owner: review/issue-122/2026-10-25-r3-platform-integration.md. Technical/native corrections are reviewed; PR146 first7aaf source failed and is not accepted. The approved54,000 ceilings and source-proved stale paragraph pin are corrected; actual CLI/full loader and four separate delta roles pass. Final clean-source/native platform delivery remains pending; see the existing review for preserved failures.
 - Parent AC02 remains complete. Other parent ACs retain their whole original requirements. Actual independent content/recovery and final documentation/timing reconciliation follow accepted platformS.
 - Historic PR144 predates newS and cannot alone establish chronological newS→M→C. Do not invent a proof-only merge or manufacture content changes to exercise CI.
 
 ## Next session
 
 1. Revalidate live #122, candidate/main/PR79 and exact native outcomes; live receipts supersede frozen pending text.
-2. Resolve the explicit53000 versus compiled53610 author constraint, then finish this platform delivery through existing source/preview/full owner stage/App/protected merge/postmerge. Do not repeat delivered R1/R2/PR145 or original merge-conflict analysis.
+2. Finish the explicitly approved54,000 ceiling correction and this platform delivery through existing source/preview/full owner stage/App/protected merge/postmerge. Do not repeat delivered R1/R2/PR145 or original merge-conflict analysis.
 3. Continue actual authorized content/recovery, then reconcile remaining original ACs/contracts/evidence/timings before closing #122.
 
 ## Maintenance

@@ -163,9 +163,75 @@ explicit change to the agreed ceiling; retaining53000 requires editorial work.
 No validator bypass, test omission or invented inapplicability supplies acceptance.
 The complete native source/platform delivery remains pending after that decision.
 
+## Authorized ceiling correction — 25 October 2026
+
+The maintainer explicitly approved raising the proposed internal character ceiling
+to54,000. This supersedes the pending decision above and changes only the two
+existing `linkedinCharacters` / `mediumCharacters` values from53,000 to54,000.
+These are authored review bounds measured in Unicode code points of compiled
+upload text, not claims about platform-provider limits. R37 remains byte-exact;
+PR79's separately advanced R38 is not imported. Editions, semantic content,
+rights decisions, scanner policy and all fourteen frozen producer objects remain.
+
+The separate Requirements & Acceptance Reviewer `/root/ceiling_requirements`
+independently fetched live #122/PR146 and inspected original AC01–AC08, the current
+profile loader/tests and prior platform/freeze records before implementation.
+Preimplementation result: ACCEPTED this narrow change; existing Unicode,
+adaptation-selection and over-limit tests plus the actual article loader are
+sufficient. Native full platform delivery remains required; parent AC02 alone
+remains complete. Completed-candidate role results and checks follow below.
+
+CS01/04/05/08/10 apply to the existing profile owner and source-bound maintenance.
+No test, runtime, compiler, scanner, case selection or execution limit is altered.
+Necessary RI/CI metadata is refreshed by its existing owners.
+
+### Newly exposed print-binding correction
+
+The first actual full article load after the ceiling correction passed the
+character guard but failed the existing strict print-binding guard. This exposes
+a previously masked stale `print.keepTogether[1]` binding, not a new text defect.
+Actual historical R30 compilation at14157c20 maps old
+`6ba05c1f2f05ab6fe73fcb9c439d83dbf90871f80c5184268d997dcc395b86f5`
+to the Part III opening paragraph beginning “Correct problem framing makes…”.
+The same functional paragraph in unchanged R37 begins “The first investment
+decision already depends…” and uniquely hashes to
+`8193c7c369e09a4a19ab6f2c29cf2dec1850e1e47d46189a98e68c66da8741c1`.
+Only that exact pin is refreshed; both keep-with-next entries, the valid table
+pin, grouping counts, strict validator and prose remain unchanged.
+
+Requirements independently reproduced the failure, compared the historical/current
+AST nodes and accepted this necessary same-PR metadata repair before editing.
+Code and Operator reproduced the failure. Code initially proposed the current
+second-table hash without matching the old target; direct exact old-pin lookup
+corrected that inference. The original paragraph grouping is retained. Root also
+compiled the actual historical/current sources and confirmed that correspondence.
+This is explicit reconciliation using source evidence, not reviewer majority.
+
+### Completed independent correction reviews and checks
+
+| Role | Separate actual execution | Source-bound result / limits |
+| --- | --- | --- |
+| Requirements & Acceptance | `/root/ceiling_requirements`, preimplementation, stale-pin treatment and completed correction | ACCEPTED: independently fetched live intent/ACs/author decision, compared actual R30/R37 targets and parsed three-value profile delta, executed full loader. Both bounds54,000; R37/rights/edition intact. Native gates remain. |
+| Code Review | `/root/ceiling_code`, initial and actual correction follow-ups | ACCEPTED after withdrawing the unsupported table-target inference and directly matching the historical paragraph. Complete loader passes; all14 frozen producers, source/editions/rights/scanners unchanged. Derived RI scope checked; no code authored. |
+| White-box QA | `/root/ceiling_whitebox`, initial and actual correction follow-ups | ACCEPTED: existing profile suite12/12, zero skips,6.008s; named print-binding case1/1, zero skips,0.705s. An isolated actual-R37 stale-pin probe rejects and corrected-pin probe accepts, retaining the strict guard. No tests authored. |
+| Exploratory / Interaction QA | `/root/ceiling_operator`, failed CLI and actual corrected-source execution | ACCEPTED: real CLI exits0 for R37/22sections/4figures; independently executed full loader gives53,610/54,000 for both equivalent platforms. All24 inspected manuscript/publication/edition files identical; ordinary selection empty. No native-PDF/device/publication claim. |
+
+Reviewed profile SHA256:
+`854a76a275ea057737646f93899e6cf5425495a0b5abc581af1f1937274a8033`.
+The root independently executed CLI/full loader with the same counts/source.
+Existing local Basic passes five routes,16 theme/archive plus10 flight cases.
+Bounded style passes142files. The RI/CI refresh's expanded JSON formatting is
+normalized with pinned Prettier; parsed map data remains identical. Fresh RI,
+format and coupling/current-source checks bind the committed candidate below;
+complete native source execution and platform delivery remain pending.
+
+The existing permanent `publishing-profile.test.cjs` retains targeted/content/
+staging/production allocation for Unicode counts, selected rendition and exact/
+stale/duplicate grouping guards. No new mirrored-value test or broader matrix.
+
 ## Ordered remaining work
 
-1. Persist the reviewed technical corrections and current-source metadata/RI; record the authored constraint and obtain its decision.
+1. The approved54,000 ceilings, original-purpose paragraph pin and scoped four-role reviews are complete; finalize current-source metadata/RI and native delivery. The historical53,000 decision is resolved.
 2. Existing Basic/RI/owning and preview, one owner full platform stage, genuine App,
    protected merge and actual postmerge. Record tested/merged identities separately.
 3. Later actual content/recovery through the existing publisher and complete history.
