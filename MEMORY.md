@@ -6,7 +6,7 @@ Dated continuity, not live authority. Last verified: **2026-10-25**.
 
 - Owner remains #122. R1/PR142, R2/PR143-144 and exact-runtime compatibility/PR145 are delivered; native receipts and timing evidence are in the live issue.
 - Protected main is bea2628; PR145 tested5f60821 and merge share the identical reviewed tree. Its Basic, sole full owner stage, genuine App, protected merge and actual postmerge passed.
-- The current R3 platform candidate continues preserved WIP5a89989 and PR79's86a2704, integrating mainbea2628. It is preparation until its own native delivery passes.
+- PR146 at5edce5d/tree2d577482 preserves the approved54,000 correction. Native RI/owning pass; Basic40172407144 fails validator complexity34/25 before selected source tests. Preview40172407077 fails; Draft, no accepted platform.
 
 ## Decisions
 
@@ -18,14 +18,14 @@ Dated continuity, not live authority. Last verified: **2026-10-25**.
 
 ## Open work
 
-- Current review owner: review/issue-122/2026-10-25-r3-platform-integration.md. Technical/native corrections are reviewed; PR146 first7aaf source failed and is not accepted. The approved54,000 ceilings and source-proved stale paragraph pin are corrected; actual CLI/full loader and four separate delta roles pass. Final clean-source/native platform delivery remains pending; see the existing review for preserved failures.
+- Current review owner: review/issue-122/2026-10-25-r3-platform-integration.md. Four correction roles and actual R37 loader pass53,610/54,000. Current native lint blocker and requested code-complexity audit are recorded there; no rule waiver, refactor or identity migration is approved.
 - Parent AC02 remains complete. Other parent ACs retain their whole original requirements. Actual independent content/recovery and final documentation/timing reconciliation follow accepted platformS.
 - Historic PR144 predates newS and cannot alone establish chronological newS→M→C. Do not invent a proof-only merge or manufacture content changes to exercise CI.
 
 ## Next session
 
 1. Revalidate live #122, candidate/main/PR79 and exact native outcomes; live receipts supersede frozen pending text.
-2. Finish the explicitly approved54,000 ceiling correction and this platform delivery through existing source/preview/full owner stage/App/protected merge/postmerge. Do not repeat delivered R1/R2/PR145 or original merge-conflict analysis.
+2. Read live #122 and the requested audit. Decide the current exact warning treatment and the proposed provenance/runtime identity separation before dependent changes; approval of54,000 is not approval for another prerequisite. Then finish the existing native platform route without repeating delivered work.
 3. Continue actual authorized content/recovery, then reconcile remaining original ACs/contracts/evidence/timings before closing #122.
 
 ## Maintenance

@@ -229,9 +229,98 @@ The existing permanent `publishing-profile.test.cjs` retains targeted/content/
 staging/production allocation for Unicode counts, selected rendition and exact/
 stale/duplicate grouping guards. No new mirrored-value test or broader matrix.
 
+## Requested code-complexity audit — 25 October 2026
+
+The maintainer asked whether the complexity concerns article or code, where the
+code can be simplified and whether the implementation has become unnecessarily
+complicated. This is a bounded analysis request, not authorization for the
+previously proposed prerequisite, a policy exception or an identity migration.
+Inspected clean local5ea10b5 and remote PR1465edce5d share tree
+`2d57748220ac07b26db130e8fa72f2eacab41bd4`; protected main remainsbea2628.
+No production source, test, runtime, scanner policy, rights or threshold change is made by
+this audit record. The earlier blanket minimum-extra-PR framing is qualified below.
+
+### Observed source and native findings
+
+| Finding | Exact owner / observation | Interpretation and bounded treatment |
+| --- | --- | --- |
+| Code metric | profile.cjs327–401: printSelection has75lines and Cognitive Complexity34 against25. Actual pinned single-file ESLint gives0errors/1warning. | This is a maintainability signal about code, unrelated to article length. It is not evidence that the article is wrong or that this function produced an incorrect result. One coherent print-group helper is a real readability improvement; avoid a generic validator framework or helper-per-condition metric gaming. |
+| Hidden blocking severity | eslint.config.cjs69 says warn25; scanners.cjs348–372 rejects every unlisted warning with exceptions.json complexity[]. Actual warning-to-gate probe reproduces the native failure. | Make blocking status explicit and run existing touched-JS lint locally before expensive CI. Bounded style guard success does not establish actual ESLint success. No new CI service/gate is needed. |
+| Broad identity coupling | build.cjs199–209 includes components.producer in browser identity;253–266 hashes every tools/site and tools/publishing source/lock. Color and edition identities inherit that base; color-motion-contract.select1490 requires an exact known fingerprint before byte checks. | Producer provenance is necessary; using every producer edit as a new browser-compatibility family creates avoidable maintenance. Separate source/producer/artifact provenance from runtime byte/behavior/interface compatibility. Keep fresh source checks and complete artifact proof. |
+| Growing historical lookup | color-motion-contract.cjs has50families/139runtime rows/1612lines;1457lines are declarations. There are66 distinct five-file byte sets and90 combinations after preserving edition and all behavior/reader flags.49rows repeat the same edition/bytes/policy while differing in build identity. | Historical identities remain evidence/aliases. Stop requiring another manual historical family for each compatible producer-only edit. Moving the same table into JSON would only move the bookkeeping. |
+| Parallel rights membership | package.cjs publicationRequired196–328 lists114literal IDs/111unique; each of the three R3 IDs is repeated twice. Duplicate rows do not alter some() results. | This is demonstrated redundant maintenance, not evidence of a rights failure. A future single trusted runtime registry may own mandatory-rights classification; independent rights evidence/approval must remain. Candidate-supplied flags cannot grant clearance. |
+
+Operator independently read exported records issue5-r30-print-plain and
+issue5-review-paths-plain: every one of the five browser-file hashes is identical,
+while fingerprints differ. Code and White-box independently measured the full
+registry through actual AST/data. This establishes that producer-only changes
+can churn compatibility identities; it does not establish that every producer
+change is harmless. Identical scripts/styles do not prove compatible rendered
+HTML, schema, behavior, source freshness or publisher semantics.
+
+Native Basic40172407144 on5edce5d passes formatting, architecture and minimal
+source/build checks, then rejects the34/25 warning; selected source execution
+is skipped. Navigation40172407097 and owning40172407142 pass; preview40172407077
+fails. No owner stage, App, merge, production activation or accepted platform.
+The root's separate local scanner command did not execute lint because its
+artifact.json setup was absent. This is an execution gap, not another lint pass;
+the independent single-file ESLint observations above and native log establish
+the actual finding. An earlier touched-JS lint invocation could have found it
+before the native run. No unchanged-source rerun is justified.
+
+### Proportionate choices and proposed sequence
+
+1. For the current warning, explicitly choose a maintenance treatment instead of
+   automatically creating another prerequisite. The small coherent validator
+   refactor is sound; with today's frozen producer/zero-active-debt plan, it still
+   requires the proved compatibility dependency. There is also an existing
+   source-bound, expiring reviewed-debt mechanism in reviewComplexity/CS05:
+   a narrowly approved entry for the exact warning and unchanged validator source
+   file, with the required immutable baseline/expiry/removal evidence, could preserve the
+   frozen identity and avoid that dependency. It postpones cleanup rather than
+   simplifies code, and needs an explicit treatment decision under the current
+   no-waiver plan. Neither a global threshold increase nor any exception is
+   authorized or applied by this analysis.
+2. The higher-value architectural cleanup is one deliberate separation of
+   producer/build provenance from runtime compatibility, followed by the small
+   validator extraction. Bind compatibility to verified emitted runtime bytes and
+   explicit behavior/schema/HTML/edition contracts. Keep complete source/artifact
+   hashes and source/predecessor leases; retain historical aliases/rollback.
+   Consolidate duplicated trusted membership declarations only as needed for that
+   boundary, rather than starting a historical cleanup campaign. This is a proposal
+   requiring scoped design/acceptance before implementation, not a delivered fix.
+
+Preserve current exact-block/type/duplicate/adjacency/bounds checks; the stale
+paragraph failure already demonstrated their value. Preserve actual canonical/
+immutable bytes, unknown/conflicting-runtime rejection, editions, licensed-byte
+anti-relabel and mandatory-rights evidence, current source/artifact admission and
+historical archive verification independent of today's registry. Removing producer
+from a hash or loosening select without a replacement contract would erase a
+binding rather than complete the simplification.
+
+Existing profile12/12, print-binding1/1 and actual stale-pin negative/current-pin
+positive cover their original unchanged validator scope. Existing motion/rights/
+archive tests own unknown/mixed/edition/tamper/anti-relabel/rollback conditions.
+A future identity boundary needs one bounded new oracle showing compatibility
+stability alongside changed provenance; no broad new test matrix is justified.
+A future current-source change still needs its actual ordinary native delivery.
+
+### Separate audit role executions
+
+| Role | Actual separate execution | Independent finding / limits |
+| --- | --- | --- |
+| Requirements & Acceptance | /root/ceiling_requirements, resumed for this user audit | Read live original intent/ACs and sources. Necessary validators versus accidental coupling distinguished. Corrected the unconditional extra-PR framing; existing exact expiring-debt route identified as a decision, not permission. No code/test edits or full reruns. |
+| Code Review | /root/ceiling_code, resumed audit | Actual AST counts and source/consumer inspection:50/139registry,66byte sets/90recorded byte/edition/behavior/reader-flag groups,114/111rights IDs. One grouping helper proposed; provenance/compatibility conflation is the larger issue. No edits/full CI rerun. |
+| White-box QA | /root/ceiling_whitebox, resumed audit | Actual pinned ESLint on four inspected modules finds only profile warning; actual warning-to-gate and producer-only identity probes. Existing risk/oracle allocation retains validator, tamper, rights, edition and archive rejection. No implementation or broad suite. |
+| Exploratory / Operator QA | /root/ceiling_operator, resumed audit | Actual single-file lint and exported same-byte/different-fingerprint pair; native failure/source-step skip inspected. Operator severity and identity fan-out demonstrated; future interface proof remains open. No deploy or expensive full compilation. |
+
+The original parent ACs and their checkbox states are unchanged. Only AC02 is
+complete. #122 remains the owner; PR146 remains Draft. Recommendations are not
+maintainer-approved architecture or policy changes.
+
 ## Ordered remaining work
 
-1. The approved54,000 ceilings, original-purpose paragraph pin and scoped four-role reviews are complete; finalize current-source metadata/RI and native delivery. The historical53,000 decision is resolved.
+1. The approved54,000 ceilings and original-purpose paragraph pin are complete. Read the requested audit and decide the current lint treatment/frozen-producer dependency before further implementation; no waiver, extra prerequisite or identity migration is authorized by the analysis. Then refresh current-source metadata/RI and continue the native route.
 2. Existing Basic/RI/owning and preview, one owner full platform stage, genuine App,
    protected merge and actual postmerge. Record tested/merged identities separately.
 3. Later actual content/recovery through the existing publisher and complete history.
