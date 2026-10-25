@@ -76,6 +76,7 @@ function lockFields(lock) {
   for (const name of [
     'variant',
     'producer',
+    'client',
     'engine',
     'scenes',
     'assets',

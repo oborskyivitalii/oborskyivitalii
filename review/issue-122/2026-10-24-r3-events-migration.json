@@ -15,7 +15,7 @@
     "site/templates/pages/talks/talks.html": "7bb8eef0e51ce63f54fbebdc16d759a957c3f71e4b7097a9cd45e9e9bae4bc0a",
     "tools/site/content.cjs": "9825fa78f7ece5a98ed74710dcf1c6e3166032ce98e99095475187a7f105a9c0",
     "tools/site/events.cjs": "eeefa15880c4541e7de562d2c9c62fab78f2e1d24c4a99a15e48261bda8b3bad",
-    "tools/site/html.cjs": "6dbfb79e88d569e53575325d9be47c8b8afcff6bb0f60d09fb0c59ca861f573f",
+    "tools/site/html.cjs": "202dd77650a535440dde742cc5aa2278057938c6430b941af097e5e6cbb547a8",
     "tools/site/render-content.cjs": "d41abe47bec0c5698e49f1bc114c9bdf55e1d6fcf348374a8587f20e373fcf33",
     "tools/site/render-records.cjs": "2c1c78aeeef93d370086fbc275607294307c2470301a9efad8b105a60fb46cb7",
     "tools/site/validate-catalog.cjs": "cb738e2c332217edca5ee6fad536011579826345eac3baa4060d5918681c4496"

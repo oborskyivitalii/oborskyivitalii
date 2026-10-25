@@ -565,6 +565,28 @@ function riIdentityCompatible(before, after) {
     isDeepStrictEqual(previousPaths, currentPaths)
   );
 }
+function contentCategory(file, side, mode, sources, policy) {
+  const derivedIdentity =
+    file === '.github/ri-ci-map.json' &&
+    sources.base.ciIdentity &&
+    sources.candidate.ciIdentity &&
+    riIdentityCompatible(sources.base.ciIdentity, sources.candidate.ciIdentity);
+  const reject =
+    !['100644', '100755'].includes(mode) ||
+    sources.base.rights.has(file) ||
+    sources.candidate.rights.has(file) ||
+    (control(file) && file !== 'site/output-lock.json' && !derivedIdentity) ||
+    /^site\/(?:engine|templates|scenes|effects|retained)\//.test(file) ||
+    file === 'site/rights.json';
+  const rules = classify(file, sources[side].rights, sources[side].contentPaths);
+  if (reject) return 'rejected';
+  if (derivedIdentity) return 'derived';
+  if (policy.authored_inputs.some((pattern) => matches(file, pattern))) return 'authored';
+  if (policy.derived_inputs.some((pattern) => matches(file, pattern))) return 'derived';
+  return rules.every((rule) => rule.impact === 'repository' && rule.control === false)
+    ? 'repository'
+    : 'rejected';
+}
 function contentSelection(records, sources) {
   const policy = sources.policy.registry.source_profiles.content;
   const result = { eligible: false, authored: [], derived: [], repository: [], rejected: [] };
@@ -575,30 +597,7 @@ function contentSelection(records, sources) {
       const file = side === 'base' ? record.oldPath : record.newPath;
       const mode = side === 'base' ? record.oldMode : record.newMode;
       if (!file) continue;
-      const derivedIdentity =
-        file === '.github/ri-ci-map.json' &&
-        sources.base.ciIdentity &&
-        sources.candidate.ciIdentity &&
-        riIdentityCompatible(sources.base.ciIdentity, sources.candidate.ciIdentity);
-      const reject =
-        !['100644', '100755'].includes(mode) ||
-        sources.base.rights.has(file) ||
-        sources.candidate.rights.has(file) ||
-        (control(file) && file !== 'site/output-lock.json' && !derivedIdentity) ||
-        /^site\/(?:engine|templates|scenes|effects|retained)\//.test(file) ||
-        file === 'site/rights.json';
-      const rules = classify(file, sources[side].rights, sources[side].contentPaths);
-      const category = reject
-        ? 'rejected'
-        : derivedIdentity
-          ? 'derived'
-          : policy.authored_inputs.some((pattern) => matches(file, pattern))
-            ? 'authored'
-            : policy.derived_inputs.some((pattern) => matches(file, pattern))
-              ? 'derived'
-              : rules.every((rule) => rule.impact === 'repository' && rule.control === false)
-                ? 'repository'
-                : 'rejected';
+      const category = contentCategory(file, side, mode, sources, policy);
       if (!result[category].includes(file)) result[category].push(file);
     }
   }

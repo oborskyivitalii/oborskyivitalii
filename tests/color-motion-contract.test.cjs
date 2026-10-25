@@ -978,7 +978,7 @@ test('legacy Color keeps its deadline and requires matching route, finished cont
   assert.equal(waits, 1, 'unreviewed identity cannot start readiness polling');
 });
 
-test('reader-link runtime tuples reproduce the complete current plain, staging and production byte closure', () => {
+test('current platform runtime tuples reproduce the complete plain, staging and production byte closure', () => {
   const fs = require('node:fs');
   const path = require('node:path');
   const os = require('node:os');
@@ -1003,15 +1003,15 @@ test('reader-link runtime tuples reproduce the complete current plain, staging a
     };
     fs.writeFileSync(path.join(plainDirectory, 'artifact.json'), JSON.stringify(source));
     const plain = colorBuild.build(plainDirectory);
-    assert.equal(motion.select(plain).id, 'issue5-r30-print-plain');
+    assert.equal(motion.select(plain).id, 'issue122-r3-platform-plain');
     const stagingDirectory = path.join(directory, 'staging');
     fs.cpSync(plainDirectory, stagingDirectory, { recursive: true });
     const staged = stagingBuild.build(stagingDirectory);
-    assert.equal(motion.select(staged).id, 'issue5-r30-print-staging');
+    assert.equal(motion.select(staged).id, 'issue122-r3-platform-staging');
     const productionDirectory = path.join(directory, 'production');
     fs.cpSync(plainDirectory, productionDirectory, { recursive: true });
     const production = require('../tools/release/edition.cjs').build(productionDirectory, 'color');
-    assert.equal(motion.select(production).id, 'issue5-r30-print-production');
+    assert.equal(motion.select(production).id, 'issue122-r3-platform-production');
     assert.equal(
       new Set([plain, staged, production].map((record) => record.variant.fingerprint)).size,
       3
@@ -1020,7 +1020,7 @@ test('reader-link runtime tuples reproduce the complete current plain, staging a
       assert.deepEqual(record.components.navigation, { contract: 1, articleRenderer: 1 });
       assert.equal(
         record.variant.baseEngine,
-        motion.reviewedRuntime('issue5-r30-print-plain').variant.baseEngine
+        motion.reviewedRuntime('issue122-r3-platform-plain').variant.baseEngine
       );
     }
   } finally {

@@ -1135,18 +1135,26 @@ test('generated field collection follows a changed content identity without modi
     fs.readFileSync(path.join(root, 'tools/quality/secrets-reviewed-checksums.json')),
     before
   );
-  const finding = {
-    type: 'Hex High Entropy String',
-    hashed_secret: fixture.digest(version, 'sha1'),
-    line_number: 1,
-  };
-  assert.equal(
-    fixture.helper.verifiedGeneratedChecksumFinding('docs/writing.html', finding, {
-      proved: collected,
-    }),
-    false,
-    'pure caller-supplied field data cannot create a production admission proof'
-  );
+  for (const [file, value] of [
+    ['docs/writing.html', version],
+    ['site/output-lock.json', fixture.lock.components.client],
+  ]) {
+    const checksum = fixture.digest(value, 'sha1');
+    const locations = collected.get(file)?.locations.get(checksum);
+    assert.ok(locations?.size, 'the candidate finding must have a valid computed location');
+    const finding = {
+      type: 'Hex High Entropy String',
+      hashed_secret: checksum,
+      line_number: locations.values().next().value,
+    };
+    assert.equal(
+      fixture.helper.verifiedGeneratedChecksumFinding(file, finding, {
+        proved: collected,
+      }),
+      false,
+      'pure caller-supplied field data cannot create a production admission proof'
+    );
+  }
   assert.throws(
     () => fixture.helper.admitGeneratedChecksumFindings({}, { proved: collected }),
     /Unverified/
@@ -1181,6 +1189,17 @@ test('generated checksum collection rejects arbitrary fields and same-known-valu
     fixture.write(file, JSON.stringify({ ...fixture.revision, notes: value }, null, 2));
     assert.equal(fixture.has(fixture.collect(), file, value), false);
   }
+  const fixture = generatedChecksumFixture();
+  const file = 'site/output-lock.json';
+  const client = fixture.lock.components.client;
+  assert.match(client, /^[a-f0-9]{64}$/);
+  assert.ok(fixture.has(fixture.collect(), file, client));
+  fixture.write(file, JSON.stringify({ ...fixture.lock, notes: client }, null, 2));
+  assert.equal(
+    fixture.has(fixture.collect(), file, client),
+    false,
+    'a known client fingerprint copied outside its computed field is not admitted'
+  );
 });
 
 test('article resource names and unauthorized owners do not become computed checksum fields', () => {

@@ -662,8 +662,8 @@ test('missing, duplicate or unsafe critical media owners leave the coherent outp
   }
 });
 test('renamed blocks work after descriptor update; missing inputs leave the last coherent output intact', (t) => {
-  const dir = fixture(t);
-  run(dir);
+  const dir = fixture(t),
+    original = run(dir);
   const before = inventory(dir);
   fs.renameSync(
     path.join(dir, 'site/content/pages/index/about.json'),
@@ -675,7 +675,12 @@ test('renamed blocks work after descriptor update; missing inputs leave the last
     s.replace('BLOCK:about', 'BLOCK:biography')
   );
   edit(dir, 'site/content/pages/index/metadata.json', (s) => s.replace('"about"', '"biography"'));
-  assert.deepEqual(run(dir).built, ['index']);
+  const renamed = run(dir);
+  // The template edit changes the bound client contract for every route.
+  assert.notEqual(renamed.components.pageTemplates, original.components.pageTemplates);
+  assert.notEqual(renamed.components.client, original.components.client);
+  assert.notEqual(b.runtimeVersion(renamed.components), b.runtimeVersion(original.components));
+  assert.deepEqual(renamed.built, snapshot.routes);
   const after = inventory(dir);
   fs.unlinkSync(path.join(dir, 'site/content/pages/index/biography.json'));
   assert.throws(() => run(dir), /ENOENT/);

@@ -11659,6 +11659,12 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "review/issue-122/2026-10-25-f5-exact-checksum-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Inert F5 proof of750 exact public checksum findings, distinguishing recomputed bytes and Git identities from historical producer attestations and archival declarations; grants no artifact acceptance or scanner authority.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
     "review/issue-122/2026-10-25-r3-platform-integration.md": {
       "kind": "file",
       "purpose": "Stable R3 platform integration scope, concrete fixes, four independent roles and source-bound delivery evidence.",

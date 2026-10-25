@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "22409bb569afdc17f6fa578232df8063eaf22a9e1749b5cb35a8efc9896b2bbb",
+    "digest": "3fb22f0d6365518e26532d7805f3ac685630db5ebcbf107a6172714f29960a5d",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -196,12 +196,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "2805c18779a3a737f04dcfc642f18cb93ac89680572167b17893487f986470b3"
+        "sha256": "4a02da054cf0f4d35094024963514749e7dfc58a5bcbb3cf1f2267647be18278"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "684599eed1b65935643fb56c0c4ed12c1ec38b55d3341dbb1be4bf0789fcd9c5"
+        "sha256": "688841a648a79d2b5009673cb38859c1c7e4185f53dc75d241689e290b014ec6"
       },
       {
         "path": ".github/workflows/change-admission.yml",
@@ -346,7 +346,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "6b54d65ada3cede5d7248594dd05ee3e95532e47f9412659eb57a6c38f4574c6"
+        "sha256": "525db2d03ab3de264f45dcb372304de9e15cd2b9e3a1aefe408231d3ee471fb6"
       },
       {
         "path": "NOTICE.md",
@@ -985,7 +985,7 @@
       {
         "path": "review/issue-122/2026-10-24-r3-events-migration.json",
         "identity_mode": "content",
-        "sha256": "61d632be2b6aed33f5f68c51bcc427cc760e5a486518d6e4d43e3da769ea7ee4"
+        "sha256": "3d5031a4ca8f256994dbafbf0e393ac0af900144dab4f74a4c67f0d2e4a03949"
       },
       {
         "path": "review/issue-122/2026-10-24-r3-runtime-compatibility.md",
@@ -993,9 +993,14 @@
         "sha256": "9dd066706ea7df31b4be3b9384080b8b7fb69c628dc44540442a49731f94352d"
       },
       {
+        "path": "review/issue-122/2026-10-25-f5-exact-checksum-proof.json.gz",
+        "identity_mode": "content",
+        "sha256": "3f9d8d0e2dd7784d695a9567039537d440e99beab163268e81b0aacbeb495f66"
+      },
+      {
         "path": "review/issue-122/2026-10-25-r3-platform-integration.md",
         "identity_mode": "content",
-        "sha256": "b49b4a4c6cd220fcc05e3ede2ba204e024a0fdc752671dbc80fbccf66d9f5c28"
+        "sha256": "aa01f155eb3bf89526c7ea19b50b22fb78ec8ff193db8bc985c0c3c73a526a9a"
       },
       {
         "path": "review/issue-126/2026-10-23-announcement-review.md",
@@ -2085,7 +2090,7 @@
       {
         "path": "review/issue-5/writing-catalog-amendment.json",
         "identity_mode": "content",
-        "sha256": "daa3b7d7a1faea09cec578e07206db07829dc59fcce31bc633445909a77939c6"
+        "sha256": "21cd08f6ea628042d168dde09ed0b96a88860db674694fb57e47e42cdbc1e653"
       },
       {
         "path": "review/issue-54/2026-10-08-analysis.md",
@@ -5395,7 +5400,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "a08164675148a411f7a94a753dc82d4b83cfec2cb8ae384a9c47d2997d08f8df"
+        "sha256": "a311656b561142a4fc6a0c8bea22a49d4e6ce4ccaf5e32029e9016f152706af7"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -7150,7 +7155,7 @@
       {
         "path": "tests/article-media.test.cjs",
         "identity_mode": "content",
-        "sha256": "25b2433385ac92d557bea105ad2caa3d5cfdaf84eb80dfd9b78cf953c2e97c70"
+        "sha256": "3b5183b0366f689964d87a033b2cdf093e8e05eb9e51ddd47fee1f3b03a01792"
       },
       {
         "path": "tests/article-offline.test.cjs",
@@ -7210,7 +7215,7 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "d552278b1b775f0f3c1d747fde83250d5d9fe7ce9a89420d0f079268e1d2f75b"
+        "sha256": "257d69251baae3f2066ab4325d7947e463611c3c8c8fb4c326725df88d553220"
       },
       {
         "path": "tests/content-baseline.test.cjs",
@@ -7430,7 +7435,7 @@
       {
         "path": "tests/publication-records.test.cjs",
         "identity_mode": "content",
-        "sha256": "b1c97eaddb133e0236a153f4b40581db3c723298d21af2031b64d49b5d4ae4db"
+        "sha256": "9d67bf07e54fc85aedaed57e458d2adaf1292061fdfcd8aa24a594bcdd9e64b2"
       },
       {
         "path": "tests/publishing-history.test.cjs",
@@ -7460,7 +7465,7 @@
       {
         "path": "tests/quality-sources.test.cjs",
         "identity_mode": "content",
-        "sha256": "b16766943c1510c31bdf6ce6fca4140459a8ba9ada1f9bcdc7df7f3c7028617f"
+        "sha256": "cd2ef322970d4bda1d893c84ba14c04ec51e30ef6f43673fb4672c94895665b9"
       },
       {
         "path": "tests/quality.test.cjs",
@@ -7530,7 +7535,7 @@
       {
         "path": "tests/site-engine.test.cjs",
         "identity_mode": "content",
-        "sha256": "fbaa56eac6fe36c793b7762219e757cb1bcbaf43af3a91a5b6264383401c26bd"
+        "sha256": "899410ad3076d5aacc972f71e8456472efe47f7f5da3e8b99a4f16d0b510754c"
       },
       {
         "path": "tests/site-face-preparation.test.cjs",
@@ -8150,7 +8155,7 @@
       {
         "path": "tools/quality/delivery-routing.cjs",
         "identity_mode": "content",
-        "sha256": "39cbaaa0e3a0f5a991cc50f1e1b170f64cbc6dcb66f922337e918429c755be42"
+        "sha256": "87895a82bd35e2396e68915fd202c6a989c1c14c37dced34f1a3d5f692e2e21d"
       },
       {
         "path": "tools/quality/deploy-pages.example.yml",
@@ -8225,7 +8230,7 @@
       {
         "path": "tools/quality/generated-checksums.cjs",
         "identity_mode": "content",
-        "sha256": "05bc5a1bd562f916172b411ba38175a9a704982f83f65fc7e7a78fb9b605655a"
+        "sha256": "42b9b51d0608ba4def4c3bf6408bddad8775de51ee7e697f457e50ee59c37383"
       },
       {
         "path": "tools/quality/geometry.cjs",
@@ -8365,7 +8370,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "b7e999e6f5a829e067ba9b994c3e91d6f41129dc046924fdcc22126e5b5a2435"
+        "sha256": "41ceb7ad9c04b2086c223af9a3f7a2226789ee308c9d188fd1a77183fb86545f"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
@@ -11277,6 +11282,17 @@
         "AGENTS.md"
       ],
       "title": "Issue122 — 24 October 2026 exact-runtime compatibility"
+    },
+    {
+      "path": "review/issue-122/2026-10-25-f5-exact-checksum-proof.json.gz",
+      "kind": "file",
+      "purpose": "Inert F5 proof of750 exact public checksum findings, distinguishing recomputed bytes and Git identities from historical producer attestations and archival declarations; grants no artifact acceptance or scanner authority.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-25-f5-exact-checksum-proof.json.gz"
     },
     {
       "path": "review/issue-122/2026-10-25-r3-platform-integration.md",
