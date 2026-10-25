@@ -1081,3 +1081,41 @@ was built before the changed coupling map was refreshed/formatted. This guard
 correctly rejects the prior map hash. Rebuild the derived view after the final
 canonical map, then rerun the same29 RI cases; preserve the original failed log.
 No source classifier, RI rule or test expectation changes for this correction.
+
+### F5 complete native accounting and portable observation correction
+
+Native Basic40211425193 at clean2db45d3e/tree357a465c completes all79 selected
+modules in129265.093911ms, within the original180000ms budget. Its final native
+accounting is1155tests/1154pass/1fail/0skip/0cancel/0todo; process error is null.
+The run remains FAILED. The single failure is the new observation regression;
+navigation40211425137 and owning40211425152 correctly reject the same defect.
+Preview40211425160 build/publish/hosted two-width smoke pass; F6 Staging admission
+still has no owner-stage proof and is not claimed passed.
+
+The original artifact12605643106 retains matching source JSON, raw TAP and stderr.
+Its159 timing records contain exactly capacity plus79 dispatch/completion pairs;
+actual OS/configured/effective capacity is4/4/4. Last completion is129264ms.
+Space file wrapper measures65.096s and Executive49.470s, including process
+overhead. These are current-run observations, not a causal speedup allocation
+or a pass relabelled at the later correction.
+
+The stronger oracle exposed a portability error: pinned Node24.19 does not
+reliably supply the optional entryFile field used by the local24.22 probe.
+Nested selected-name test durations could therefore precede file completion.
+The sole production correction also requires the documented numeric nesting0,
+keeping path/name/entryFile/seen guards and all authoritative handlers unchanged.
+Unknown depth omits optional observations. These advisory fields cannot prove
+arbitrary malicious top-level name authenticity; canonical accounting separately
+rejects filename-only top-level captions and remains the acceptance authority.
+
+The existing regression now runs both native-metadata and absent-entryFile
+partitions on the actual returned stream. A test-only prepended listener removes
+that optional field before observation, with a sidecar proving genuine nested
+selected-name events retain depth1 and lack the field. Independent outer-wrapper
+duration/status equality remains exact. Removing only the depth guard fails this
+case on local24.22 too, without changing its canonical four passing assertions.
+Root scheduling/portable observations9/9 pass with zero skips; all four distinct
+completed correction roles accept, and Code/White-box/Operator independently run
+both partitions and fault probes. Pinned touched ESLint/Prettier pass. This
+supports fresh corrected-source native verification; no budget,79module set,
+parser, flight matrix, auth rule or prior failed result is changed.

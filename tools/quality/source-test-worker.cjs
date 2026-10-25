@@ -43,7 +43,7 @@ function observeFiles(stream, files, parallelism) {
   });
   for (const event of ['dequeue', 'complete'])
     stream.on('test:' + event, (result) => {
-      if (result.entryFile || typeof result.file !== 'string') return;
+      if (result.nesting !== 0 || result.entryFile || typeof result.file !== 'string') return;
       const file = selected.get(path.resolve(result.file));
       const key = event + ':' + file;
       if (!file || result.name !== file || seen.has(key)) return;

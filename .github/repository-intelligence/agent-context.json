@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "b154c9468957b273ad06ddae6325fd99dff09940909440d8d7a5699394c15669",
+    "digest": "aaf85bb4f2835853358e76572d90889cdbf97b83305a396b91a84f6d88426ce6",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -201,7 +201,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "7f78217852588dc006d5103f44f357ef13f1e74e0a65191565e6d5edbfdc2a45"
+        "sha256": "8c75be8b6042ade9d1fd32e9e739495be915dacb36381aad876bc29aa31651af"
       },
       {
         "path": ".github/workflows/change-admission.yml",
@@ -346,7 +346,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "314b1f803c16b2e66241c30bd7bd2a96608bbe739eea4b6fb2b58b8ab4df3fad"
+        "sha256": "e3bee21dbc6943ecd79d0f7955807785ed30f723f58d6b2b283f550da6710808"
       },
       {
         "path": "NOTICE.md",
@@ -1000,7 +1000,7 @@
       {
         "path": "review/issue-122/2026-10-25-r3-platform-integration.md",
         "identity_mode": "content",
-        "sha256": "38a69db346c82ecc513a4ecd9097f48f0a2d0956bbbfceaf6e0f6e91a599f16d"
+        "sha256": "5c94c3512c3341f261b783ca1b7b5814461fb494f061cd9f9fbc26a584b27750"
       },
       {
         "path": "review/issue-126/2026-10-23-announcement-review.md",
@@ -7580,7 +7580,7 @@
       {
         "path": "tests/test-profile-selection.test.cjs",
         "identity_mode": "content",
-        "sha256": "786056b312c8aa03e27d53ec8d661ff01e64b3cc27c0fe605aeaf0234018f9ab"
+        "sha256": "1ddaa0e261cc43c7ae7cb20f0034a817d9a3eb53fd0389b1cf73fd0262c84427"
       },
       {
         "path": "tests/test_code_style.py",
@@ -8395,7 +8395,7 @@
       {
         "path": "tools/quality/source-test-worker.cjs",
         "identity_mode": "content",
-        "sha256": "4023e7c4c64353662d5c65fd985ef1852c171afbe485043c7db41935ae571e01"
+        "sha256": "fb99cd3aacc0e98470fcf2a4cc50fd159a54d9705bb422824fc9842c43b63945"
       },
       {
         "path": "tools/quality/source-tests.cjs",
