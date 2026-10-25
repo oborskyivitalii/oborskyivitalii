@@ -6,7 +6,7 @@ Dated continuity, not live authority. Last verified: **2026-10-25**.
 
 - Owner remains #122. R1/PR142, R2/PR143-144 and exact-runtime compatibility/PR145 are delivered; native receipts and timing evidence are in the live issue.
 - Protected main is bea2628; PR145 tested5f60821 and merge share the identical reviewed tree. Its Basic, sole full owner stage, genuine App, protected merge and actual postmerge passed.
-- PR146 source20bf4b60/tree93951cee completes F1local compatibility proof against unchangedmainbea2628; F2at74913dc removes34/25lint blocker with identical validator behavior. F3then shares compatibility data:139records/950reader queries preserve public behavior, source9600fb22…;18scoped fixtures pass. Draft, no accepted platform; full module still has the preexisting R30expectation described in the review forF5.
+- PR146 F1proof stays20bf4b60; F2validator74913dc and F3registry3a00cbc preserve behavior. F4canonical rights classifier now owns exactly111IDs/37families; package delegates, existing lint explicitly blocks.725old/current comparisons,23rights cases and2complexity cases pass within recorded scope. Draft; no accepted platform or green full source yet.
 
 ## Decisions
 
@@ -18,7 +18,7 @@ Dated continuity, not live authority. Last verified: **2026-10-25**.
 
 ## Open work
 
-- Current review owner: review/issue-122/2026-10-25-r3-platform-integration.md. F1/F2proof stays bound to20bf4b60/74913dc. F3sourceSHA9600fb22… reduces registry1612→957lines, preserves139IDs/50families/sevenpolicies and existing consumers/rights; F4canonical rights/early lint is next. No rule waiver or extra prerequisite PR.
+- Current review owner: review/issue-122/2026-10-25-r3-platform-integration.md. F1–F4are bounded completed steps. F4source hashes ec4e74f5…/94e340e5…/ae325cf3… preserve111required IDs/28other IDs and known-byte anti-relabel. Flags require separate rights evidence, never approval; current lint passes and actual archived34/25warn still blocks. F5integration is next; no waiver or extra prerequisite PR.
 - F5must reconcile the existing test981/current-generation assertion: it still expects R30though current output isR3. Actual full module25/26; the single case fails identically on74913dc baseline. Scoped18/18 and API parity do not establish a green full module. Keep three-edition byte/edition/navigation coverage when correcting its oracle.
 - Parent AC02 remains complete. Other parent ACs retain their whole original requirements. Actual independent content/recovery and final documentation/timing reconciliation follow accepted platformS.
 - Historic PR144 predates newS and cannot alone establish chronological newS→M→C. Do not invent a proof-only merge or manufacture content changes to exercise CI.
@@ -26,7 +26,7 @@ Dated continuity, not live authority. Last verified: **2026-10-25**.
 ## Next session
 
 1. Revalidate live #122, candidate/main/PR79 and exact native outcomes; live receipts supersede frozen pending text.
-2. Continue after completedF1–F3with F4canonical rights/early lint, F5current-source integration and F6existing native/full-stage/App/merge/postmerge. Keep PR146Draft during iteration and report each completed small step plus the whole remaining plan.
+2. Continue after completedF1–F4with F5current-source integration (includingF3-01), then F6existing native/full-stage/App/merge/postmerge. Keep PR146Draft during iteration and report each completed small step plus the whole remaining plan.
 3. Continue actual authorized content/recovery, then reconcile remaining original ACs/contracts/evidence/timings before closing #122.
 
 ## Maintenance

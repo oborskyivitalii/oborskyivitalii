@@ -328,6 +328,7 @@ const styles = {
 const families = {
   // Exact integrated platform bytes; acceptance still uses the existing full route.
   issue122R3Platform: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue122R3Platform,
     id: 'issue122-r3-platform',
     baseEngine: '43054e4d9861831ec39cbf2e4217ca33b13959bb329959fd7a86413b2ddea3d2',
@@ -338,6 +339,7 @@ const families = {
   },
   // R30 native print hierarchy changes producer identity; browser bytes match R29.
   issue5R30Print: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue5R30Print,
     id: 'issue5-r30-print',
     baseEngine: 'c4aa9fa8604178e3ca297f5158cf62563f5eb3448a82b3b12f97a8a48f461f11',
@@ -348,6 +350,7 @@ const families = {
   },
   // Print indentation and canonical upload paths change identity, not browser bytes.
   issue5ReviewPaths: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue5R30Print,
     id: 'issue5-review-paths',
     baseEngine: '36e9a52051ed974d077e86ea028f5c57838370418637c71391fdf0c9e1eca297',
@@ -358,6 +361,7 @@ const families = {
   },
   // Review PDF wrapping changes engine identity; browser bytes match the CPU family.
   issue5ReviewPrint: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue5R30Print,
     id: 'issue5-review-print',
     baseEngine: '7373993efca8ba40ab7e30805ee156e975f842a3b1e122c17e6ebcdc1b73bcff',
@@ -368,6 +372,7 @@ const families = {
   },
   // Native Canvas field dispatch and reader measurements after initial DOM assembly.
   issue5ReaderCpu: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue5R30Print,
     id: 'issue5-reader-cpu',
     baseEngine: 'f25ab5a57a12f3c428957ca79e7e82e99bd480799646a218b9fda34934ffcc10',
@@ -378,6 +383,7 @@ const families = {
   },
   // Review-export producer inputs change identity; verified browser bytes are unchanged.
   issue5ReviewMarkdown: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue5ReviewMarkdown,
     id: 'issue5-review-markdown',
     baseEngine: '0ae47df264d0690aa610d865f4ea8086aa2a9e1c934a44a3a1ea8e5c1e119a6f',
@@ -388,6 +394,7 @@ const families = {
   },
   // Inert route snapshots and immediate reduced preference reconciliation.
   issue5ReaderDeferredMedia: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue5ReviewMarkdown,
     id: 'issue5-reader-deferred-media',
     baseEngine: 'd69a96a542eb40eb8d61b03f083c6c108ee25e2632e0be415196a49767aa1764',
@@ -398,6 +405,7 @@ const families = {
   },
   // Native lazy figure scheduling changes build identity; all runtime bytes stay unchanged.
   issue5ReaderLoading: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue5ReaderLoading,
     id: 'issue5-reader-loading',
     baseEngine: '8b1ed9dac9df54ed1c31e39dd2038eefa9bd9b97ba907e9b002ed3d543bed079',
@@ -408,6 +416,7 @@ const families = {
   },
   // Build-time reader correction; browser scripts and paper paint are unchanged.
   issue5ReaderFastMedia: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue5ReaderLoading,
     id: 'issue5-reader-fast-media',
     baseEngine: '465c7fdee2b899e612605bad26cb211e9089be51903d18e66fad8a64ade8c4ac',
@@ -417,6 +426,7 @@ const families = {
     production: '6b216a762dc5c262404154b7587582a3822219f722802f98fa3976b8303f514f',
   },
   issue5ReaderStaging: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue5ReaderLoading,
     id: 'issue5-reader-staging',
     baseEngine: 'b75ffa5ea6716d564b3bbb07d18e2186642dc898c0f81a4090538d5e27344b0d',
@@ -427,6 +437,7 @@ const families = {
   },
   // Shared paper joins the bounded reader component wave.
   issue5ReaderPaper: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue5ReaderLoading,
     id: 'issue5-reader-paper',
     baseEngine: 'fce0a3284a9ed13b3fe77e933843d45ecb201c0e57bc5f498317fc31fbd1c5c2',
@@ -437,6 +448,7 @@ const families = {
   },
   // Complete reader component paint; common ambient scene lifecycle.
   issue5ReaderMotion: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue5ReaderMotion,
     id: 'issue5-reader-motion',
     baseEngine: '8dd77389019a4c8d5afc55b5062c56ab0aed7d4d0ca8cdb7c5999257c427f957',
@@ -447,6 +459,7 @@ const families = {
   },
   // Shared reader dialogs and topic navigation; settled article scene is calm.
   issue5ReaderInteractions: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue5ReaderInteractions,
     id: 'issue5-reader-interactions',
     baseEngine: 'b49a998110f2d53f9e33968ac4f5461b2480b7a7acb8d3f469aa4dea96739def',
@@ -457,6 +470,7 @@ const families = {
   },
   // Issue5 visible block inventory: omit unpainted placeholders and keep overflow; same route and scene clocks.
   issue5ReaderVisibleBlocks: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue5ReaderVisibleBlocks,
     id: 'issue5-reader-visible-blocks',
     baseEngine: 'a7bc7a337754e9b6c2f7c56d3b6b94bc236becfff4245e19c8cda877046a3343',
@@ -467,6 +481,7 @@ const families = {
   },
   // Issue5 reader semantic rule shell; same leaf-block runtime and scene clock.
   issue5ReaderBlockElements: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue5ReaderBlockElements,
     id: 'issue5-reader-block-elements',
     baseEngine: 'b34f8929614cf1193b77348c1fcac699496a18376d7bc0d2a1cf5e34dd3d469f',
@@ -477,6 +492,7 @@ const families = {
   },
   // Issue5 article leaf-block wave and hierarchy directions; shared notes UI, same camera clock.
   issue5ReaderBlocks: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue5ReaderBlockElements,
     id: 'issue5-reader-blocks',
     baseEngine: '499425a331ec84cb35108453d1ed3f71353ab842928e100f2f9e316527777d21',
@@ -487,6 +503,7 @@ const families = {
   },
   // Issue5 calm reader: shared single column, native contents and grouped closing; same scene and clock.
   issue5CalmReader: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue5CalmReader,
     id: 'issue5-calm-reader',
     baseEngine: '2435a6dae3b843c6fb9c926e90635818c575b331ea2f61247091dd1b2ec9e898',
@@ -497,6 +514,7 @@ const families = {
   },
   // Editorial hierarchy/roles producer: reader typography changes; all four runtime scripts are identical.
   issue5EditorialReader: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue5EditorialReader,
     id: 'issue5-editorial-reader',
     baseEngine: 'de7565a27af4002f529e471b1476c00279e6182c1534f37a9fce38cc0d53e196',
@@ -507,6 +525,7 @@ const families = {
   },
   // Reusable reader mode: shared presentation/lifecycle; Writing scene geometry is unchanged.
   issue5ReaderMode: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue5EditorialReader,
     id: 'issue5-reader-mode',
     baseEngine: '1f94dbdfcd0d81e593164a085e9337f899738dddbe9e21d997c77c7e8e663eef',
@@ -517,6 +536,7 @@ const families = {
   },
   // Real-article rendition producer; delivered orbit runtime bytes are unchanged.
   issue5RealArticle: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue5RealArticle,
     id: 'issue5-real-article',
     baseEngine: 'b3990c073a30842dd982c166d16d59bc17588d9fecf5fb72edb7a368bf89efb7',
@@ -527,6 +547,7 @@ const families = {
   },
   // Issue5 delivery producer revision; orbit runtime bytes remain identical.
   issue5DeliveryMain: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue5RealArticle,
     id: 'issue5-delivery-main',
     baseEngine: '51766901172d964490fa2495a4c85b9c010eda52541a03c75b76a5219ccb1900',
@@ -536,6 +557,7 @@ const families = {
     production: 'ecb227ed244c75be6155719055df8d3cef76e008a6374aef85f97b18c7654ce7',
   },
   issue5Delivery: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue5RealArticle,
     id: 'issue5-delivery',
     baseEngine: 'fe06ca108e5588c1e08c0e87cd9a308e970e89a0c598fcb6644d0b142d65fb7e',
@@ -546,6 +568,7 @@ const families = {
   },
   // Issue5 reader orbit: same-scene geometry and cancellation independently reviewed in PR79.
   issue5ReaderOrbit: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue5RealArticle,
     id: 'issue5-reader-orbit',
     baseEngine: '5d32de3b5bd9856a376c7347f61b9964231c1f25f6dbdfbf56f66293cf32af3e',
@@ -556,6 +579,7 @@ const families = {
   },
   // Issue5 independent native reader history review: bounded host alias recognition.
   issue5ReaderNativeHistory: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue5ReaderNativeHistory,
     id: 'issue5-reader-native-history',
     baseEngine: 'ef7716cb697d2af720e04c3a8f1d7ccbb0b6a62f78aabbfdf4b8610e1d7b75ac',
@@ -565,6 +589,7 @@ const families = {
     production: 'f86384348c19d23023799eddd65ef34fde0fec4e93acccebdfc381bd87bf2123',
   },
   issue106ReaderCorrections: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue106ReaderCorrections,
     id: 'issue106-reader-corrections',
     baseEngine: '2a8fc6d497c38a669e55417276b18f9359c2c7802111124f8bde053b34af4ec6',
@@ -575,6 +600,7 @@ const families = {
   },
   // Issue5 independent reader-flight review: signed local document trip and history direction.
   issue5ReaderFlight: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue106ReaderCorrections,
     id: 'issue5-reader-flight',
     baseEngine: '4dd8f591aa75d9dde64358c03481902d032ad893f535a36f1ed4a9cafd1d323e',
@@ -585,6 +611,7 @@ const families = {
   },
   // Issue106 self-review: selected material links; exact new resource behavior is tested.
   issue106ReaderMaterials: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue106ReaderMaterials,
     id: 'issue106-reader-materials',
     baseEngine: 'f05675e22407efb397a11bc3f9b823c2595c603f7a2b1e7623353850a6d6013a',
@@ -595,6 +622,7 @@ const families = {
   },
   // Issue5 self-review: optional tag/index component; scene and navigation behavior preserved.
   issue5TagHistory: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue5TagHistory,
     id: 'issue5-tag-history',
     baseEngine: '7afd713fdbfc5b76bcc9a627d57c96be54900356251d2be52f228fb935e698b5',
@@ -604,6 +632,7 @@ const families = {
     production: '9aa6ae46ca99367a738ac0cd8b892c5bedf279464121421722057382515d9d13',
   },
   issue5PublicationTags: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue5PublicationTags,
     id: 'issue5-publication-tags',
     baseEngine: '77d41ae5fb7911f61e73f060d5b08bef94b88d50f2a00c68e867089303c8bffa',
@@ -614,6 +643,7 @@ const families = {
   },
   // Issue5 self-review: explicit template selection and verified native offline WebP.
   issue5GenericReader: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue5GenericReader,
     id: 'issue5-generic-reader',
     baseEngine: 'd65f9a0b17a14a80292d0ef7638d18c3f4639a7ec02c4c84cedcac18d7e5e875',
@@ -624,6 +654,7 @@ const families = {
   },
   // Issue5 self-review: reader resource/notices producer changed; all five runtime bytes match issue5Reconciled.
   issue5ReaderResources: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue5ReaderResources,
     id: 'issue5-reader-resources',
     baseEngine: '9aa5d9bba34f001dcc868a9ebdc64c5b58748ab62a0c09d432cc06282a4d3595',
@@ -633,6 +664,7 @@ const families = {
     production: '8aa18d270794908ce98dc95d631dba2d67f54c4de74176a5672ac53fbaa5f324',
   },
   issue5Reconciled: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue5ReaderResources,
     id: 'issue5-reconciled',
     baseEngine: '2c6db864d4d349effa52078d3fa77d8dbc6c89d044c74c9cb55680c762285452',
@@ -749,6 +781,7 @@ const families = {
     production: 'b4202b7c567affcaaad94eec403329d45ea18fbfd886ac0a3556926ca045f196',
   },
   issue39Licensed: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue76,
     id: 'issue39-licensed',
     baseEngine: '53bb494ae3b2bc9ea5b838755ee5b2b9c48fab7183fc6c53a2461dc44dbb004f',
@@ -758,6 +791,7 @@ const families = {
     production: 'bb5a2643fed4d2caef69289634bffe4a35b0ceef2345affbf3be6f25903c9c06',
   },
   issue39LicensedCompact: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue76,
     id: 'issue39-licensed-compact',
     baseEngine: '73ab537313a205583a5a1f912161092f7b98994d4415a1f70696e0236af7a0b8',
@@ -767,6 +801,7 @@ const families = {
     production: 'b848de73373003be1f141f9d51d30d6fa7343df0b33ce41e00713335d553083e',
   },
   issue39WritingTbt: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue39WritingTbt,
     id: 'issue39-writing-tbt',
     baseEngine: 'ed13aef9321a94422fbe8c5b72150a7eb5f9f1ec883c61a0ad9a800dfc0655a5',
@@ -776,6 +811,7 @@ const families = {
     production: '6f9b49f746e1a5f2e18138d8d34ee0f9dd2b35b7a68d6b6cbe2b015424e28cf4',
   },
   issue39CssClock: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue39CssClock,
     id: 'issue39-css-clock',
     baseEngine: 'd698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb',
@@ -785,6 +821,7 @@ const families = {
     production: '1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17',
   },
   issue122ReadingBatch: {
+    requiresPublicationRights: true,
     ...byteProfiles.issue122ReadingBatch,
     id: 'issue122-reading-batch',
     baseEngine: 'c9d33c990c64a1559211a0dcdf4ce9d1262a4e561489e4aedb74d897623220b7',
@@ -862,6 +899,25 @@ function select(manifest) {
     );
   }
   return runtime;
+}
+function publicationRequired(source, revision) {
+  // Trusted family policy requires evidence; candidate metadata cannot grant clearance.
+  const licensed = runtimes
+    .filter((runtime) => families[runtime.family].requiresPublicationRights === true)
+    .map((runtime) => reviewedRuntime(runtime.id));
+  // Known licensed fingerprints or bytes still require exact identity/edition verification.
+  const knownBytes = licensed.some(
+    (runtime) =>
+      runtime.variant.fingerprint === revision.engine ||
+      Object.entries(runtime.files).every(
+        ([name, sha256]) => source.files?.[name]?.sha256 === sha256
+      )
+  );
+  const actual = { components: revision };
+  if (!knownBytes && common.variant(actual).id !== 'color') return false;
+  const candidate = { ...source, components: revision };
+  const runtime = select(candidate);
+  return licensed.some((reviewed) => reviewed.id === runtime.id);
 }
 function flightCheck(manifest) {
   return select(manifest).behavior === 'fixed-blocks' ? 'blockFlight' : 'spatialFlight';
@@ -945,6 +1001,7 @@ function rowPlan(width, rows) {
 module.exports = {
   select,
   reviewedRuntime,
+  publicationRequired,
   flightCheck,
   articleReadingMode,
   readerInteractionsRequired,

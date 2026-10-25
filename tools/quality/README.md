@@ -22,6 +22,21 @@ node tools/quality/format.cjs --write
 node tools/quality/format.cjs --check
 ```
 
+Before expensive CI, run the pinned lint command on the JavaScript files changed
+in the current step. For the rights/registry/scanner owners:
+
+```sh
+node tools/quality/toolchain/node_modules/eslint/bin/eslint.js \
+  --config tools/quality/eslint.config.cjs --max-warnings 0 \
+  tools/quality/color-motion-contract.cjs tools/staging/package.cjs tools/quality/scanners.cjs
+```
+
+The Sonar cognitive-complexity ceiling is 25. Its configured warning severity
+feeds the scanner's exact reviewed-debt policy; a new or unreviewed warning
+blocks lint. The early command rejects every warning for the supplied files.
+Full CI retains complete inventory/coverage and source-bound debt checks; the
+bounded style guard and the small Basic command have their own narrower scope.
+
 Explicit settings live in [prettier.config.json](prettier.config.json) and
 [ruff-format.toml](ruff-format.toml). HTML whitespace is strict; embedded literals
 are preserved. Ruff formatting does not alter the separately selected lint rules.

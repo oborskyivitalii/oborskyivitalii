@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "bae8f8fb9d3324721e2002a831979384f3b0897ca66f6e600ebb6e12f2889452",
+    "digest": "22409bb569afdc17f6fa578232df8063eaf22a9e1749b5cb35a8efc9896b2bbb",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -346,7 +346,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "509e8846ab31ba7c103e8845f198bdaa25d1199786836379dbe898c0050e62b8"
+        "sha256": "6b54d65ada3cede5d7248594dd05ee3e95532e47f9412659eb57a6c38f4574c6"
       },
       {
         "path": "NOTICE.md",
@@ -725,7 +725,7 @@
       {
         "path": "guides/SITE-RIGHTS.md",
         "identity_mode": "content",
-        "sha256": "998d02945732e7a6a3baa808ae55f913d652d4ddf3f89f3460fed8c63c37c973"
+        "sha256": "e1a0768f58af31d7e28e2cc0290553012ec46cd159b4274affe234451774b4a9"
       },
       {
         "path": "guides/SITE-ROADMAP.md",
@@ -995,7 +995,7 @@
       {
         "path": "review/issue-122/2026-10-25-r3-platform-integration.md",
         "identity_mode": "content",
-        "sha256": "e3b425588a28e243b459919f97b674841cacf835521b2d3c714d8bed5dbcb8fd"
+        "sha256": "b49b4a4c6cd220fcc05e3ede2ba204e024a0fdc752671dbc80fbccf66d9f5c28"
       },
       {
         "path": "review/issue-126/2026-10-23-announcement-review.md",
@@ -7970,7 +7970,7 @@
       {
         "path": "tools/quality/README.md",
         "identity_mode": "content",
-        "sha256": "fe6e4d4fe9c423aeee787a92107634110cc9ca9d9d6a368d5caae66f6ee6f846"
+        "sha256": "040cca56cfc8e8f9eab6d4b64c1f445d3f5f726c677bf8a3713482f9a9184c98"
       },
       {
         "path": "tools/quality/advisory-exceptions.json",
@@ -8070,7 +8070,7 @@
       {
         "path": "tools/quality/color-motion-contract.cjs",
         "identity_mode": "content",
-        "sha256": "9600fb22ad91c3d3af79fe4d7430ce9767eeed3053bbc34ef88e986c6adf3100"
+        "sha256": "ec4e74f5f37abac6cf5d7fb936a27ce1dfc6a40f3c748e29b2df56b9bdd7e15b"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -8345,7 +8345,7 @@
       {
         "path": "tools/quality/scanners.cjs",
         "identity_mode": "content",
-        "sha256": "8da4ba7446f43075cf39e248d33fe7928b65b386933718a9f6c5e4438707de72"
+        "sha256": "ae325cf39063b70a17ea666bf0a6d8b01e93c13b60d68c4a0e22e0179ebfa5ad"
       },
       {
         "path": "tools/quality/scroll-browser.cjs",
@@ -8770,7 +8770,7 @@
       {
         "path": "tools/staging/package.cjs",
         "identity_mode": "content",
-        "sha256": "b6e419a03ee1645d5bd8d440773c27e1c9cc68729cd68d5e3239166039c9a1a0"
+        "sha256": "94e340e5d532ac8dbd5a5aa3649d4468e3a60c852fa2e5b32cee6a165e31736b"
       },
       {
         "path": "tools/staging/review-flow.cjs",

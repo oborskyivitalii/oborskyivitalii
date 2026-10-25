@@ -333,7 +333,7 @@ scanner/lint limits and execution budgets remain.
 | F1 | Separate fresh producer provenance from a verified client descriptor; prove all three actual editions against unchanged main. | Complete: clean-source local proof at20bf4b60; native/full delivery staysF5/F6. |
 | F2 | One cohesive print-group helper; unchanged validator/error behavior and25lint rule. | Complete: bounded source/validator parity; native/full delivery staysF5/F6. |
 | F3 | Consolidate repeated compatibility data while preserving139historical IDs/flags/editions/bytes. | Complete: bounded data/API parity; whole source/native delivery remainsF5/F6. |
-| F4 | Canonical mandatory-rights classification, same111unique IDs/anti-relabel guards; clear early real lint. | Pending. |
+| F4 | Canonical mandatory-rights classification, same111unique IDs/anti-relabel guards; clear early real lint. | Complete: bounded classification/lint step; full source/native delivery remainsF5/F6. |
 | F5 | Generated/catalog/RI/contracts, selected source and four scoped roles; native Basic/RI/owning/preview. | Pending. |
 | F6 | Existing full owner stage, genuine App, protected merge and actual postmerge. | Pending. |
 | R3c | Actual independent content through existing publisher, complete history and required recovery. | Pending. |
@@ -680,7 +680,68 @@ derived agent context accompany the registry source. No generated rendition, out
 lock, catalog/schema or RI/CI policy change is required by this declaration refactor.
 
 F3 provides bounded AC04/07/08 step evidence; only whole parentAC02 is complete.
-F4 canonical mandatory-rights classification/clear early lint is next, then F5,F6,
-R3c,R3d. No native/full-source/scanner/browser/staging/App/merge/production acceptance
+F4 follows below, then F5,F6,R3c,R3d. No native/full-source/scanner/browser/staging/App/merge/production acceptance
 is supplied by this data refactor. F1/F2 evidence remains bound to its original sources.
 PR146 stays Draft.
+
+## F4 completion — canonical rights classification and early lint, 25 October 2026
+
+Owner remains issue122/Draft PR146. Prepared base is3a00cbc7814a19c26b8e300ea142d8f1f06c534f,
+tree99db110aae91709e32adc9285ce5cb2e52ee33c4. The approved step preserves mandatory
+rights and makes existing blocking lint visible; it grants no publication approval.
+Exact uploaded source links remain in the live issue/PR; prepared checks are not native CI.
+
+| Authored owner | Final source SHA256 / change |
+| --- | --- |
+| tools/quality/color-motion-contract.cjs |ec4e74f5f37abac6cf5d7fb936a27ce1dfc6a40f3c748e29b2df56b9bdd7e15b;37trusted family requirements and canonical publicationRequired. |
+| tools/staging/package.cjs |94e340e5d532ac8dbd5a5aa3649d4468e3a60c852fa2e5b32cee6a165e31736b; existing API delegates through the original deferred dependency. |
+| tools/quality/scanners.cjs |ae325cf39063b70a17ea666bf0a6d8b01e93c13b60d68c4a0e22e0179ebfa5ad; adds only the explicit `Lint blocked:` error prefix. |
+
+The former114literal rows are exactly111unique IDs across37uniformly licensed
+families. Trusted `requiresPublicationRights: true` now lives with those historical
+families; the independent rights report/approval remains separately required.
+Candidate flags are ignored. The original licensed-fingerprint OR known-canonical-byte
+discriminator still prevents base/historical relabelling before unchanged exact
+variant/edition/canonical/immutable verification. All139public runtime records remain
+unchanged; the registry exports one new canonical function for its existing consumer.
+No byte-only compatibility or rights-approval shortcut is introduced.
+
+The existing scanner still applies its exact source-bound debt/expiry policy and
+configured warning/25threshold. Its new prefix explains that unreviewed debt blocks
+lint. The quality README supplies the actual pinned touched-JS `--max-warnings 0`
+command; the rights guide points to the canonical classifier and retains separate
+artifact authentication/evidence/approval. CS01/04/05/08/10 apply to these existing
+owners. No test, profile, threshold, exception, scanner coverage or execution budget changes.
+
+| Risk / AC | Actual check or independent oracle | Result / limit |
+| --- | --- | --- |
+| Classification drift / AC04 | Actual immutable3a00cbc package versus current package and canonical registry |725equal result/error comparisons over139IDs:111required/28not required;139public records exact. Sorted required-ID set SHA256ba51804e89a580e568313bcd8d118a9c14930b73097f3149292a6427cb7e0742. |
+| False clearance, relabelling and tamper / AC04 | Old/current false candidate flags, licensed-byte base/historical relabelling, canonical/immutable substitutions; existing Color/rights fixtures |23/23,zero skips,5.740s; no current-generation/whole-module pass claimed. White-box independently executes12negative/binding cases; operator17consumer/lint scenarios pass. |
+| Lint stays blocking / AC04 | Existing source-bound/expiry/debt negatives; real pinned lint and actual archived pre-F2 warning |Code reviewer2/2,zero skips; all3current JS files lint/format clean. Archived actual34/25warning exits1 and current scanner clearly rejects it with file/rule/message. No debt allowance or rule change. |
+| Generated/source/dependency boundary / AC04/08 | Owner build/preview checks, Basic, bounded style and AST |Output/lock/previews unchanged and fresh; Basic5routes/16theme+archive/10flight pass, deploymentAuthorized=false. Style143files/AST118files398edges pass; only the duplicate deferred common import is removed, no new initialization cycle. |
+
+Temporary evidence: /tmp/issue122-f4-parity.json, /tmp/issue122-f4-whitebox.json,
+/tmp/issue122-f4-operator.json. Existing permanent Color/rights and quality-source
+tests retain their PR-targeted/staging/production routes; no duplicated ID ledger or
+implementation-mirroring test was added. Requirements and independent review remain
+separate from the implementer's API comparison and ordinary CI checks.
+
+### Four independent F4 executions and maintenance
+
+| Role | Actual separate F4 follow-up execution | Completed source/final-report result |
+| --- | --- | --- |
+| Requirements & Acceptance | /root/f3_requirements, preimplementation/source/final |Accepts37uniform families/111IDs, independently checks139classifications/records,278forged flags, licensed-set digest and guard failures. Final report/MEMORY retain original ACs and separate approval. |
+| Code Review | /root/f3_code, source/final |Own old-list/new-flag equality, exact source diffs, deferred dependency, actual lint/formatting,2complexity cases and licensed relabelling pass. Reads final parity/QA reports; no blockers. |
+| White-box QA | /root/f3_whitebox, source/final |Independent111-ID/37-family equality and12controlled metadata/binding/negative scenarios pass. Final claims retain verified-artifact prerequisite and F3-01; no findings. |
+| Exploratory / Interaction QA | /root/f3_operator, charter/final |17consumer/lint scenarios, exact README command and actual archived34/25warning→blocking error pass. Final docs/report limits agree; no findings or public action. |
+
+All four final source/report readbacks accepted; production hashes remained unchanged.
+RI1755files/200directories is fresh; RI29/29 in10.108s, coupling20/20 in0.658s and
+17checks/17layers pass. These are implementer maintenance receipts, distinct from
+the reviewers' own executions and any live/native acceptance.
+
+F4 supplies bounded AC04/07/08 evidence; only whole parentAC02 is complete. The last
+full Color-module observation remains F3's25/26; F3-01's stale R30current-generation
+expectation is unchanged and stays open for F5. No full selected-source/scanner/native
+acceptance is claimed here. F5integration/native Basic/RI/owning/preview is next, then
+F6full owner stage/App/merge/postmerge, R3ccontent/recovery and R3dwhole acceptance.

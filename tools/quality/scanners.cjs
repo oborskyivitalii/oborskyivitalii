@@ -369,7 +369,7 @@ function reviewComplexity(
         entry.message === warning.message
     );
     if (matches.length !== 1)
-      throw Error('New or duplicated complexity debt ' + JSON.stringify(warning));
+      throw Error('Lint blocked: New or duplicated complexity debt ' + JSON.stringify(warning));
   }
   for (const entry of policy.complexity) {
     const matches = warnings.filter(
