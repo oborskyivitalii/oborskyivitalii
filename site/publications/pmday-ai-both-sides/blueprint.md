@@ -1,3 +1,17 @@
+## R38 — context-dependent AI operating models (25 October 2026)
+
+Owner: [editorial issue #2](https://github.com/oborskyivitalii/oborskyivitalii/issues/2); publisher [issue #5](https://github.com/oborskyivitalii/oborskyivitalii/issues/5) in [Draft PR #79](https://github.com/oborskyivitalii/oborskyivitalii/pull/79).
+
+The R38 article explicitly proposes **a family of context-dependent AI operating models**, even for successful adopters (legacy, greenfield, regulated, safety-critical and internal products), rather than predicting an inevitable universal AI-native SDLC. Part II applies the same conditional decision to runtime model judgment. Part III challenges an all-in AI bet and makes the CTO's task one of choosing where, how far and under what conditions delegation is warranted. This is a hypothesis/engineering decision framework, **not** an empirical claim that a stable universal equilibrium can never exist. These are bounded substitutions, not an added section.
+
+R38 canonical manuscript SHA-256: `132e78c8424691d2c1fac34c0e98e611009db499099a82341e4a30e082e0b375` (52,935 characters / 53,000 limit, −5 from R37). Separate immutable `pmday-ai-both-sides-en-review-20261025-r38` edition with semantic SHA-256 `2cffb05aa03e7ed5f5c1b315e0c73d73cb4254c4145175497587bfef8129842b`; profile byline and launch source hashes updated. Earlier editions retained. Review-only rights and canonical-null remain unchanged.
+
+A standalone 16-page illustrated WeasyPrint R38 PDF (SHA-256 `7529a15e0802bb14aedbb18bb7be08fb273fd84e7b10ee6498d02ab6ef6104b4`) was created from this exact manuscript, containing four images recovered from the previous R34 author preview (three slide PNGs hash-identical to authored assets; the cover's extracted image encoding differs from original source bytes). It is **a local illustrated review export**, not the repository native publisher PDF or a committed binary. No current-source native platform/export/RI/CI or four-agent acceptance has been established, and the inherited main conflict remains. No release.
+
+See [R38 exact editorial record](../../../review/issue-2/2026-10-25-r38-operating-models.md) for intent, checks and remaining work.
+
+---
+
 ## R36 editorial source and January provenance — 24 October 2026
 
 The author-approved R36 clarifies the potential structural SDLC imbalance and explicitly separates the January 2026 argument from the later Subprime mechanism and Uncertainty Architecture's distinct runtime-control line. The [LinkedIn English article](https://www.linkedin.com/pulse/ai-cost-cutting-fallacy-why-doing-more-less-breaking-teams-oborskyi-cxuif/) displays 2 January 2026; [DOU](https://dou.ua/forums/topic/57244/) displays 5 January. Their dated existence supports **authorial provenance, not a first-ever priority claim**. LinkedIn edit history is not independently versioned.

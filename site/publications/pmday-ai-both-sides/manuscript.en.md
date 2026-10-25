@@ -2,7 +2,7 @@
 
 *AI Changes Both Sides of Software Engineering*
 
-Vitalii Oborskyi · Editorial draft R37 · 24 October 2026
+Vitalii Oborskyi · Editorial draft R38 · 25 October 2026
 
 ![A solitary person stands before a narrow opening of light between monumental dark walls.](asset:cover)
 
@@ -114,9 +114,9 @@ Suppose a bounded component has an executable contract, independently grounded c
 
 For the recovery assistant, maintainers might no longer need to read every generated branch. They would still need to justify the identity policy, know what the checks establish, recognise failures outside their coverage and operate the fallback. A contract cannot establish that its own assumptions match the customer’s needs.
 
-Replace manual inspection where verified mechanisms cover the relevant risks. Preserve or rebuild the judgment and intervention needed for the risks they leave open. Consider the substitution when evidence shows these functions are preserved or improved.
+Replace inspection where verified controls preserve its functions; retain judgment for uncovered risks. Compare review age, rework, stability, recovery and full cost—not approval speed alone.
 
-Compare with the workflow actually operated, including its failures. Test smaller changes, intake limits and AI-assisted review against review age, rework, stability, recovery and full operating cost. Faster approval with slower recovery is not an unqualified improvement.
+**There may be no universal AI-native SDLC to converge on.** We may instead need a **family of context-dependent operating models**, reassessed as tools and constraints change. Even successful adopters may use different models for legacy, greenfield, regulated, safety-critical and internal products. Domain, complexity, technology, teams and clients can justify broad automation, narrow assistance—or none.
 
 ### More software is not more value
 
@@ -258,7 +258,7 @@ Evidence, controls, human capacity and fallback support bounded operation. We ca
 
 The model or provider routing changes, retrieval acquires conflicting material, or demand overwhelms reviewers. No application commit is required for yesterday’s evidence to stop describing today’s system.
 
-Record supported model, data, permissions, workload and staffing conditions, with reassessment triggers. Turn incidents into regression cases; retest controls and capacity; revisit authority when its justification changes.
+Record model, data, permission, workload and staffing limits; retest after incidents. **A Thinking System is not the default:** bounded advice, fixed rules or no model may be better when oversight, risk and recovery outweigh the benefits. Revisit authority as conditions change.
 
 **Release authorises operation under particular conditions. It cannot make those conditions permanent.**
 
@@ -268,9 +268,9 @@ Read the loop as conditions for action: a proposal must pass the relevant checks
 
 ## III. What If Not? From Assumptions to Project Decisions
 
-**The first investment decision already depends on the problem statement.** Approving coding agents without assessing review capacity, shared understanding, maintenance and recovery leaves the delivery problem incomplete. Approving an agentic product without specifying authority, validation, intervention, fallback and full operating cost leaves the control problem incomplete. Both omissions shape the project before implementation starts.
+**The first investment decision is whether, where and how AI belongs in the project.** Faster code generation still depends on verification, shared understanding and recovery. Consequential model judgment also needs bounded authority, evidence, fallback and intervention.
 
-Product narratives understandably highlight speed, autonomy and model capability. Those component gains matter, but do not establish system performance. **Before implementation**, identify actual constraints and critical functions, set boundaries and evidence thresholds, and budget human capacity and recovery. The diagnosis changes requirements, acceptance criteria, risk and staffing.
+**Would you still bet all-in on AI knowing that no universal balance may emerge?** The CTO's task is not to make every project AI-native, but to determine where, how far and under what conditions delegation is justified—and when limited use or none is better. Let context, full cost and risk shape funding.
 
 Compare the AI path with both the current process and the simplest credible safe alternative under the same safety requirements. Use comparable cases, data and staffing, with the same task, identity requirements and definition of successful recovery.
 
@@ -454,16 +454,16 @@ Numbered citations refer to the sources below. Source notes retain the evidence 
 
 ## How to cite this draft
 
-Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R37, 24 October 2026.
+Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R38, 25 October 2026.
 
 Unpublished author-review edition. Cite the revision; no DOI or final publication URL has been assigned.
 
 ```bibtex
-@misc{oborskyi2026sumR37,
+@misc{oborskyi2026sumR38,
   author = {Oborskyi, Vitalii},
   year = {2026},
   title = {The Sum of Our Technology: AI Changes Both Sides of Software Engineering},
-  note = {Editorial draft R37, 24 October 2026; unpublished}
+  note = {Editorial draft R38, 25 October 2026; unpublished}
 }
 ```
 
@@ -480,6 +480,10 @@ Text © 2026 Vitalii Oborskyi. Presentation and third-party credits remain appli
 Vitalii Oborskyi retains editorial responsibility.
 
 ## Revision history
+
+25 October 2026:
+
+- **R38:** Context-dependent AI operating models, selective adoption and CTO investment decisions.
 
 24 October 2026:
 

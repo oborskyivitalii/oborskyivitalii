@@ -4,7 +4,7 @@ What if the AI SDLC succeeds at generating code but fails at delivery, recovery 
 
 My PMDay essay examines two shifts and the socio-technical system we must actually be able to operate. Draft review preview; no publication/canonical URL. Ukrainian recording: https://youtu.be/xSgWjuGqC9I
 
-R37 sharpens the conditional SDLC imbalance: when generated changes outrun verification, review queues and cognitive costs can shift downstream. The Subprime Code Crisis explores the resulting obligations; Uncertainty Architecture examines the separate runtime control problem. The essay connects both to project decisions before implementation, without claiming global priority or universally broken delivery. The policy-error scenario and simpler safe alternatives remain.
+R38 argues that engineering may not converge on one universal AI-native SDLC. Even successful adopters may need different operating models for legacy, greenfield, regulated, safety-critical and internal products, with reassessment as conditions change. The same context-sensitive choice applies to consequential model judgment. The CTO's first decision is where and how far delegation is justified—including limited AI or none. This is a conditional engineering argument, not a prediction that universal balance can never exist. The January 2026 provenance and evidential qualifications remain.
 
 Thank you to Maximiliano Armesto for thoughtful pre-publication feedback on shared policy assumptions and on the value of AI compared with simpler alternatives. Editorial decisions and the final text remain my responsibility.
 

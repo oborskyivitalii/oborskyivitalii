@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "id": "pmday-ai-both-sides-en-review-20261025-r38",
+  "articleId": "pmday-ai-both-sides",
+  "language": "en",
+  "kind": "full-article",
+  "source": {
+    "path": "manuscript.en.md",
+    "sha256": "132e78c8424691d2c1fac34c0e98e611009db499099a82341e4a30e082e0b375",
+    "commit": null,
+    "blob": null
+  },
+  "owner": "site",
+  "derivation": null,
+  "rights": "review-pending",
+  "semanticSha256": "2cffb05aa03e7ed5f5c1b315e0c73d73cb4254c4145175497587bfef8129842b"
+}
