@@ -471,11 +471,13 @@ Text © 2026 Vitalii Oborskyi. Presentation and third-party credits remain appli
 
 ## Review provenance
 
-**Maximiliano Armesto** suggested clarifying how policy mistakes propagate from development into production controls and comparing AI with simpler alternatives under the same safety requirements. Both recommendations informed **R24**.
+**Maximiliano Armesto** raised policy-error propagation and simpler safe alternatives; both informed **R24**.
 
-**Pasquale Langella** contributed a critical reading and an AI-assisted alternative draft. Selected suggestions on reader orientation, navigation and practical responses were incorporated in **R25**.
+**Pasquale Langella** supplied an alternative draft and review; navigation and practical response changes informed **R25**.
 
-**Olivier Leturcq** contributed feedback on the balance between innovation and sustainable operating costs, and suggested examining how architecture affects the context needed for human review and maintenance. These comments are recorded for editorial consideration.
+**Olivier Leturcq** raised sustainable costs and human review/maintenance context; suggestions remain under consideration.
+
+**Dimitrios (Dimitris) Vorisis** reviewed **R23**. He praised the design, flagged density and a buried decision table, suggested a series, and stressed responsibility to customers over vendor experiments. These observations are not endorsement of this later edition.
 
 Vitalii Oborskyi retains editorial responsibility.
 
@@ -484,6 +486,7 @@ Vitalii Oborskyi retains editorial responsibility.
 25 October 2026:
 
 - **R38:** Context-dependent AI operating models, selective adoption and CTO investment decisions.
+- **R38 provenance addendum:** Recorded Dimitris Vorisis’s R23 review; core argument unchanged.
 
 24 October 2026:
 

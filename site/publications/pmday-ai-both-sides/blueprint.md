@@ -1,3 +1,13 @@
+## R38 review-provenance addendum — Dimitrios Vorisis, 25 October 2026
+
+[Source analysis and original-input limits](../../../review/issue-2/2026-10-25-dimitrios-r23-review.md) · editorial [#2](https://github.com/oborskyivitalii/oborskyivitalii/issues/2) · publishing [#5](https://github.com/oborskyivitalii/oborskyivitalii/issues/5) · Draft PR79.
+
+Dimitrios (Dimitris) Vorisis reviewed **R23**, praised its structure/cover, and identified density, weak visibility of the practical table, possible series and accountability to customers. The supplied Grammarly report has 93 overall and 78 categorized suggestions but no sentence-level edits. Compare with **R38** before proposing textual changes; his condensed thesis interpretation does not replace this essay's two distinct problems. The reviewer is not claimed to have reviewed/approved R38.
+
+This addendum **only records provenance**, retains the R38 cover/date/core thesis, all 12 prompts, all prior review credits and source links, and shortens earlier review-credit phrasing without discarding their historical detailed records. New immutable source selection: `pmday-ai-both-sides-en-review-20261025-r38-review-addendum`; manuscript SHA-256 `09e0a3cc9c931b345c21c20d1f2ae9e92fb1f7e3da4284a8cca7d4c4cbf32e60` (52954 of 53,000 characters), semantic SHA-256 `38f844fb5bbfdb88e994a97e43d79d2b484df224fab3e50e4bb1e5bc16ac53b8`. Draft launch SHA-256 `77b0fd9f683ecb9a6cd73855046a9e15d54b2053e3c9c024fc94248f1e47b0d7`. Prior R38 edition and PDF review history remain immutable. No native PDF, platform rendition, site generation, RI/CI, four independent quality agents, human approval or public release is claimed. Follow normal acceptance, rights and release gates.
+
+---
+
 ## R38 — context-dependent AI operating models (25 October 2026)
 
 Owner: [editorial issue #2](https://github.com/oborskyivitalii/oborskyivitalii/issues/2); publisher [issue #5](https://github.com/oborskyivitalii/oborskyivitalii/issues/5) in [Draft PR #79](https://github.com/oborskyivitalii/oborskyivitalii/pull/79).

@@ -12,4 +12,6 @@ Thank you to Pasquale Langella for a critical reading and an alternative editori
 
 Thank you to Olivier Leturcq for feedback on innovation, sustainable operating costs and the context people need to review and maintain code. These suggestions remain under editorial consideration.
 
+Thank you to [Dimitrios (Dimitris) Vorisis](https://www.linkedin.com/in/ACoAAAA0tNUBwWt0f5UvnSWQCoxod86HiQPDtlo) for reviewing R23 and highlighting the document's density, practical-table visibility, and a potential series, as well as customer responsibility beyond vendor claims. This is a credit for R23 feedback, not endorsement of this later edition.
+
 Author-review draft: the article and launch wording await final review.
