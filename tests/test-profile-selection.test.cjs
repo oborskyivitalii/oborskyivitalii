@@ -20,6 +20,9 @@ function fixture(t) {
     write(row.owner, 'fixture owner\n');
   }
   write('tools/quality/local.cjs', fs.readFileSync(path.join(root, 'tools/quality/local.cjs')));
+  for (const file of ['delivery-routing.cjs', 'delivery-json.cjs', 'delivery-git.cjs']) {
+    write('tools/quality/' + file, fs.readFileSync(path.join(root, 'tools/quality', file)));
+  }
   write(runner.REGISTRY, JSON.stringify(registry));
   t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
   return {
@@ -46,6 +49,12 @@ function executionFixture(t, body) {
     'tools/quality/source-test-worker.cjs',
     fs.readFileSync(path.join(root, 'tools/quality/source-test-worker.cjs'))
   );
+  for (const dependency of ['delivery-routing.cjs', 'delivery-json.cjs', 'delivery-git.cjs']) {
+    write(
+      'tools/quality/' + dependency,
+      fs.readFileSync(path.join(root, 'tools/quality', dependency))
+    );
+  }
   write('tools/quality/local.cjs', '// no delegated baseline in this controlled repository\n');
   write('guides/SITE-CHECK-PROFILES.md', 'controlled test owner\n');
   write(
@@ -69,7 +78,8 @@ function executionFixture(t, body) {
           purpose: 'Controlled actual execution',
           owner: 'guides/SITE-CHECK-PROFILES.md',
           lifecycle: 'permanent',
-          profiles: ['pr-targeted', 'staging', 'production', 'content'],
+          profiles: ['pr-targeted', 'staging', 'production'],
+          content: true,
           disposition: 'controlled fixture',
           surviving_route: 'production',
           inputs: [file],
@@ -543,7 +553,7 @@ test('content safety inventory cannot silently omit modules or admit diagnostics
   );
   f.registry = runner.loadRegistry(root);
   const diagnostic = f.registry.tests.find((row) => row.lifecycle === 'diagnostic');
-  diagnostic.profiles.push('content');
+  diagnostic.content = true;
   f.registry.source_profiles.content.mandatory_files.push(diagnostic.path);
   assert.throws(
     () => runner.validateRegistry(f.directory, f.registry),
@@ -821,6 +831,7 @@ test('real Git renames retain both endpoint owners regardless of ambient rename 
       'baselineFiles',
       'baselineCommand',
       'changedPaths',
+      'classification',
       'conservativeFallback',
       'reasons',
       'pythonRoute',
@@ -838,6 +849,7 @@ test('real Git renames retain both endpoint owners regardless of ambient rename 
   assert.equal(plan.taskSnapshots, 'selected owning issue policy only');
   assert.equal(plan.status, 'planned');
   assert.equal(plan.pass, null);
+  assert.equal(plan.classification.mode, 'platform');
 });
 test('real Git ordinary changes, unchanged-source copy and empty diff retain selection boundaries', (t) => {
   const f = gitChangeFixture(t),

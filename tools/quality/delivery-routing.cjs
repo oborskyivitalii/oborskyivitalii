@@ -396,15 +396,9 @@ function validateRegistry(registry) {
     );
     for (const profile of row.profiles)
       assert.ok(
-        [
-          'pr-smoke',
-          'pr-targeted',
-          'content',
-          'staging',
-          'production',
-          'diagnostic',
-          'issue-policy',
-        ].includes(profile),
+        ['pr-smoke', 'pr-targeted', 'staging', 'production', 'diagnostic', 'issue-policy'].includes(
+          profile
+        ),
         'unknown test profile'
       );
   }

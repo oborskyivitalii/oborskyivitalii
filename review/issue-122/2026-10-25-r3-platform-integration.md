@@ -78,8 +78,8 @@ eager; indirect top-level calls, .call/.apply and callback execution remain manu
 review limits. The source-bound callsite observations above are not an all-CLI,
 all-state or general initialization proof. Requirements independently accepted
 this explicit automatic/manual allocation within AC04; whole AC04 stays open.
-The pure RI-identity comparison now belongs to routing and is reexported by the
-source selector, removing the new R3 routing/selection cycle rather than exempting it.
+The pure RI-identity comparison now belongs to routing and is called through a lazy
+forwarding wrapper in the source selector, removing the new R3 routing/selection cycle rather than exempting it.
 
 ## QA allocation and local evidence
 
@@ -127,9 +127,45 @@ case also passes1/1, zero skips, with the210s source wrapper and unchanged180s s
 deadline. The earlier full local attempt remains failed and is not a full current-source
 pass. The next complete source execution is the required native GitHub job.
 
+## First native correction and authored blocker
+
+The first ready source7aafae1 failed native Basic/preview target selection because
+protected main rejects a new per-test profile enum. Its RI/owning jobs also exposed
+incomplete standalone CLI fixtures, the unimplemented four-worker ceiling and a
+stale offline bundle manifest. These are recorded failures, not passed source
+or accepted platform evidence; owner staging has not been requested.
+
+The same19 mandatory content memberships now use typed per-test `content: true`
+while preserving the closed legacy profile namespace. Independent semantic
+comparison proves every other registry value, mandatory membership and permanent
+route is unchanged. The actual protected-main consumer accepts this representation.
+CLI fixtures include the three real canonical delivery dependencies; their plan
+shape explicitly includes the new classification evidence. The lazy forwarding
+wrapper preserves the RI comparison API without requiring unrelated imports at
+module initialization. The worker now enforces its existing maximum of four
+files. The existing offline manifest is regenerated; Code Review independently
+matched all73 public/review entries. This is no new test matrix or prerequisite PR.
+
+All four roles independently reviewed these corrections. Code Review validated
+both registry consumers, exact19-membership semantic equivalence, current manifest
+entries and the unchanged authored limit. Requirements accepted the technical
+scope but identified the character-limit choice as outside implied R3 authority.
+White-box QA executed the existing inventory/diagnostic and worker-ceiling cases:
+2/2, zero skips. Operator independently exercised the actual protected-base consumer
+(74 modules) and current content consumer (19 modules), without claiming those
+whole suites ran. All14 frozen producer objects retain their prior reviewed bytes.
+
+**Readiness is blocked by an authored constraint:** R37 contains52940 raw Markdown
+code points but compiles to53610 upload code points. Both authored limits are53000;
+the publisher correctly rejects this610-point excess. Article/profile/publisher/
+scanner/runtime owners remain unchanged. Raising to54000 requires the maintainer's
+explicit change to the agreed ceiling; retaining53000 requires editorial work.
+No validator bypass, test omission or invented inapplicability supplies acceptance.
+The complete native source/platform delivery remains pending after that decision.
+
 ## Ordered remaining work
 
-1. Finish current-source metadata/RI and four correction reviews; freeze candidate.
+1. Persist the reviewed technical corrections and current-source metadata/RI; record the authored constraint and obtain its decision.
 2. Existing Basic/RI/owning and preview, one owner full platform stage, genuine App,
    protected merge and actual postmerge. Record tested/merged identities separately.
 3. Later actual content/recovery through the existing publisher and complete history.

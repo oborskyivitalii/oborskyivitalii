@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "9cc0402ced17d99520d71754956b24ce8aee1108b0b6e2ad5b6ff0f5f9554fbb",
+    "digest": "51aef16fc07fe550025fc094d38c994be427fc9141ebc1594efd4e3bf1b594e7",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -201,7 +201,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "a6c74b05b49698e4c31fb93bdffe8eecb02399eaa6610d4d2e702d4bcf2c61ae"
+        "sha256": "6a30f556b10293b9cee59fd6929257535df48f197b9c5072781195f32094d5db"
       },
       {
         "path": ".github/workflows/change-admission.yml",
@@ -346,7 +346,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "4fa60e4c175bfb032c05f65bf2b52694f8de387768a0a35970e19bd4a2e8d424"
+        "sha256": "70126f9f98fe5b96a2d3a9929d4f3f8c196e6c1a829e0fe58c75400cd37299c7"
       },
       {
         "path": "NOTICE.md",
@@ -695,7 +695,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "f1c0a0687149254f6f5b3bb017a23878fdb11f48f0602866d14549bd6c4b8319"
+        "sha256": "ab92fb3ee11e57e4238e10b4d237becc379a45be523f3f38addf2c5199b8663b"
       },
       {
         "path": "guides/SITE-CONTENT-RELEASE.md",
@@ -995,7 +995,7 @@
       {
         "path": "review/issue-122/2026-10-25-r3-platform-integration.md",
         "identity_mode": "content",
-        "sha256": "220f3bc80091fbb79181fb621ad952d582fbefc99f5416d50b77bcceef6f905b"
+        "sha256": "69a447a72b0504d75912a10456613570e74e614b99e80c54ee7ee7d4894c60fd"
       },
       {
         "path": "review/issue-126/2026-10-23-announcement-review.md",
@@ -5395,7 +5395,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "d2e01286fca917c861ac4d765864bae791270ecc0da3df1fcf97cd013df6469c"
+        "sha256": "a08164675148a411f7a94a753dc82d4b83cfec2cb8ae384a9c47d2997d08f8df"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -7575,7 +7575,7 @@
       {
         "path": "tests/test-profile-selection.test.cjs",
         "identity_mode": "content",
-        "sha256": "3ef64369f3b141ad57f8b7af67a8164c9ed8eddedd27ffa99754d61ab3c14a41"
+        "sha256": "48f62f161b7e3eedb5931d900a1254d608547a52a4f7b1a9684761c940d3feb5"
       },
       {
         "path": "tests/test_code_style.py",
@@ -8150,7 +8150,7 @@
       {
         "path": "tools/quality/delivery-routing.cjs",
         "identity_mode": "content",
-        "sha256": "8e441c7334adb803df98db67a485c01f203bee4e2b80522544e740a3e6405782"
+        "sha256": "39cbaaa0e3a0f5a991cc50f1e1b170f64cbc6dcb66f922337e918429c755be42"
       },
       {
         "path": "tools/quality/deploy-pages.example.yml",
@@ -8390,12 +8390,12 @@
       {
         "path": "tools/quality/source-test-worker.cjs",
         "identity_mode": "content",
-        "sha256": "498a8ece7e650a1a8432fd6cd993af2f483f5af61039fb836e52a01d46d6b38f"
+        "sha256": "a37fce2d1b404286868c869ab7ac620f3de178c97a5c6734aba1279899c80da5"
       },
       {
         "path": "tools/quality/source-tests.cjs",
         "identity_mode": "content",
-        "sha256": "d9340e739baba3fe916f5e5e6333f7435bf6d1d6b91b2c4e40d94f315a266e14"
+        "sha256": "ffc97dfd66b1d6b3cdbe2d5712cf1a1789c68e51df1d000b1ef65caffb328b33"
       },
       {
         "path": "tools/quality/staging-gate.cjs",
@@ -8420,7 +8420,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "23fb8f2fcdfb48670909553dc332a8662a742dbd63bacc6cac68beaecfa38a22"
+        "sha256": "c6fbaa4445913e8508c09b0bdc51979e32f4a7b565b2f280b69ce92030127854"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",

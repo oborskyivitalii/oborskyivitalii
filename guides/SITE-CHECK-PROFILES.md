@@ -81,6 +81,12 @@ in the permanent renderer and engine suites.
 
 ## Article content updates
 
+The mandatory content membership is the per-test `content: true` field, checked
+against the exact `source_profiles.content.mandatory_files` inventory. The legacy
+per-test `profiles` namespace remains readable by the protected-main selector;
+unknown names still reject. This representation preserves all19 content modules
+and their permanent PR-targeted/staging/production routes during integration.
+
 Issue #5 adds a formal content source profile and automatic generation reuse to
 the ordinary Basic and PR preview workflows. `source-tests.cjs --profile content
 --base <exact-baseline-commit> --head <exact-current-commit>` rejects mixed,

@@ -17,14 +17,14 @@ Dated continuity, not live authority. Last verified: **2026-10-25**.
 
 ## Open work
 
-- Current review owner: review/issue-122/2026-10-25-r3-platform-integration.md. Concrete syntax, content-production identity and generated-oracle integration defects are corrected; final reviews/current-source/native checks remain pending at this freeze.
+- Current review owner: review/issue-122/2026-10-25-r3-platform-integration.md. Technical/native corrections are reviewed; PR146 first7aaf source failed and is not accepted. Current R37 compiles53610 versus its explicitly agreed53000 limits. Do not raise/cut/bypass it without the maintainer decision; actual platform/native gates remain pending.
 - Parent AC02 remains complete. Other parent ACs retain their whole original requirements. Actual independent content/recovery and final documentation/timing reconciliation follow accepted platformS.
 - Historic PR144 predates newS and cannot alone establish chronological newS→M→C. Do not invent a proof-only merge or manufacture content changes to exercise CI.
 
 ## Next session
 
 1. Revalidate live #122, candidate/main/PR79 and exact native outcomes; live receipts supersede frozen pending text.
-2. Finish this platform delivery through existing source/preview/full owner stage/App/protected merge/postmerge. Do not repeat delivered R1/R2/PR145 or original merge-conflict analysis.
+2. Resolve the explicit53000 versus compiled53610 author constraint, then finish this platform delivery through existing source/preview/full owner stage/App/protected merge/postmerge. Do not repeat delivered R1/R2/PR145 or original merge-conflict analysis.
 3. Continue actual authorized content/recovery, then reconcile remaining original ACs/contracts/evidence/timings before closing #122.
 
 ## Maintenance

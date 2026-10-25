@@ -50,7 +50,7 @@ function runFiles(files, { parallelism = os.availableParallelism() } = {}) {
   process.once('SIGINT', cancel);
   const stream = run({
     files: ordered,
-    concurrency: parallelism,
+    concurrency: Math.min(4, parallelism),
     isolation: 'process',
     cwd: process.cwd(),
     signal: controller.signal,

@@ -5,7 +5,6 @@ const fs = require('node:fs'),
   cp = require('node:child_process'),
   assert = require('node:assert/strict');
 const { isDeepStrictEqual } = require('node:util');
-const { riIdentityCompatible } = require('./delivery-routing.cjs');
 const REGISTRY = 'tools/quality/test-profiles.json';
 const executionLimits = Object.freeze({
   timeoutMs: 180000,
@@ -123,6 +122,10 @@ function validateTestRow(root, row, profiles) {
   for (const profile of row.profiles)
     assert.ok(profiles.has(profile), 'unknown test profile ' + profile);
   assert.ok(
+    row.content === undefined || typeof row.content === 'boolean',
+    'invalid content membership'
+  );
+  assert.ok(
     Array.isArray(row.inputs) && row.inputs.includes(row.path),
     'test must target its own changed module ' + row.path
   );
@@ -181,7 +184,6 @@ function validateRegistry(root, registry) {
       'production',
       'diagnostic',
       'issue-policy',
-      'content',
     ]);
   for (const row of registry.tests) {
     safePath(row.path);
@@ -207,7 +209,7 @@ function validateRegistry(root, registry) {
   assert.deepEqual(
     [...content.mandatory_files].sort(),
     registry.tests
-      .filter((row) => row.profiles.includes('content'))
+      .filter((row) => row.content === true)
       .map((row) => row.path)
       .sort(),
     'mandatory content inventory must equal declared content modules'
@@ -358,6 +360,9 @@ function publicationInventoryCompatible(registry, before, after) {
   }
   return true;
 }
+function riIdentityCompatible(before, after) {
+  return require('./delivery-routing.cjs').riIdentityCompatible(before, after);
+}
 function exactDerivedPolicy(root, registry, base, head, file) {
   if (!root || !/^[0-9a-f]{40}$/.test(base || '') || !/^[0-9a-f]{40}$/.test(head || ''))
     return false;
@@ -469,7 +474,7 @@ function select(root, profile, options = {}) {
       );
     if (classification.mode === 'content') {
       changed = { changedPaths, conservativeFallback: [] };
-      for (const row of js.filter((row) => row.profiles.includes('content')))
+      for (const row of js.filter((row) => row.content === true))
         include(row, 'mandatory authored content safety contract');
     } else changed = selectPRTargets(root, registry, options, permanent, include);
   } else {
