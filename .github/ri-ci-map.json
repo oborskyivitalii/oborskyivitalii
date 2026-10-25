@@ -669,7 +669,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "5d8f3dbf97462e392bede180c8cd0b13c52ac65112b9d7376b7b9ae13ca35adb",
+    "digest": "a0d619daa5852cde682f976a836a289d7076c5df97af4e0e16336fc518da82ab",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -709,7 +709,7 @@
       },
       {
         "path": ".github/acceptance/issue-122.json",
-        "sha256": "02c621d7aa69af86d0abf4aeb3b5c1ee8c426c960fceb981e86f59d28e3ec546"
+        "sha256": "cc9a12ba008de1aae8f3b05c641fc798b1d04f8a0630dd80f1f20801b45ddc10"
       },
       {
         "path": ".github/acceptance/issue-126.json",
@@ -805,7 +805,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "ef9e21f8ea28d1dacf5e1ffc82de1b7bd840324597ba198f254cc1746ba30ecf"
+        "sha256": "81fd8b1354f5959e1f4a998982fe7931919c1d717788b8dbacea4d45d5ecb72c"
       },
       {
         "path": ".github/workflows/change-admission.yml",
@@ -1069,7 +1069,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "c6fbaa4445913e8508c09b0bdc51979e32f4a7b565b2f280b69ce92030127854"
+        "sha256": "b09df0ed704316597e142a7fa5c899bc8d1ea6e6c2949fca5911565f0ddeb988"
       },
       {
         "path": "tools/repository_intelligence.py",

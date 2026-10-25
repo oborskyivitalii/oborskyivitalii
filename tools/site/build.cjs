@@ -9,6 +9,7 @@ const { contentLabel } = require('./render-content.cjs');
 const { scriptJSON, stableTagEndings } = require('./html.cjs');
 const { renderPage, validateCriticalMedia } = require('./render-page.cjs');
 const articles = require('./articles.cjs');
+const compatibility = require('./runtime-compatibility.cjs');
 const defaultRoot = path.resolve(__dirname, '../..');
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 const json = (value) => JSON.stringify(value, null, 2) + '\n';
@@ -197,6 +198,8 @@ function fileDigests(root, names) {
   );
 }
 function runtimeVersion(components) {
+  if (Object.hasOwn(components, 'client')) return compatibility.version(components);
+  // Historical generation locks retain their original producer-bound identity.
   return sha(
     json({
       engine: components.engine,
@@ -250,7 +253,23 @@ function retain(root, put) {
     put(name, fs.readFileSync(path.join(directory, name)));
   }
 }
-function fingerprints(root, config, c = catalog(root)) {
+function runtimePayloads(root, definitions, contentOnly = false) {
+  if (contentOnly) return null;
+  return {
+    'theme.js': read(root, 'site/engine/theme.js'),
+    'archive.js':
+      `/* Optional current publication metadata. */\nwindow.SiteArticleTags=(${factory(root, 'site/engine/article-tags.cjs').toString()})();\n` +
+      read(root, 'site/engine/archive.js'),
+    'navigation.js':
+      `/* Shared native reading-entry controller. */\nwindow.SiteScrollEntry=(${factory(root, 'site/engine/scroll-entry.cjs').toString()})();\n` +
+      `window.SiteReader=(${factory(root, 'site/engine/reader.cjs').toString()})();\n` +
+      read(root, 'site/engine/navigation.js'),
+    'styles.css': styles(root),
+    'space.js': runtime(root, definitions),
+  };
+}
+
+function fingerprints(root, config, c = catalog(root), { payloads, baseline } = {}) {
   const producers = files(path.join(root, 'tools/site'))
     .map((x) => 'tools/site/' + x)
     .concat(
@@ -260,7 +279,7 @@ function fingerprints(root, config, c = catalog(root)) {
       ),
       ['package.json', 'package-lock.json'].filter((name) => fs.existsSync(path.join(root, name)))
     );
-  return {
+  const components = {
     contract: config.contract,
     variant: sha(json({ id: 'base', contract: 1 })),
     producer: sha(json(fileDigests(root, producers))),
@@ -329,6 +348,23 @@ function fingerprints(root, config, c = catalog(root)) {
       )
     ),
     routes: sha(json(config)),
+  };
+  // A content build may reuse the byte descriptor only after every complete
+  // platform-source input still matches its verified generation lock.
+  if (baseline && Object.hasOwn(baseline, 'client')) {
+    const { client, ...inputs } = baseline;
+    if (require('node:util').isDeepStrictEqual(inputs, components)) {
+      compatibility.version(baseline);
+      return { ...components, client };
+    }
+  }
+  payloads ??= runtimePayloads(root, configuration(root).definitions);
+  return {
+    ...components,
+    client: compatibility.fingerprint(
+      components,
+      Object.fromEntries(Object.entries(payloads).map(([name, bytes]) => [name, sha(bytes)]))
+    ),
   };
 }
 function validCache(file) {
@@ -536,6 +572,7 @@ function emitArticles({
 
 function emitRevision({ root, components, selectedArticles, result, temporary, put, preview }) {
   const engine = runtimeVersion(components);
+  compatibility.verify(components, result, (name) => read(temporary, name));
   for (const name of ['theme.js', 'space.js', 'archive.js', 'navigation.js', 'styles.css'])
     put(`runtime/${engine}/${name}`, fs.readFileSync(path.join(temporary, name)));
   for (const name of sceneMedia(root).filter((x) => x !== 'nojekyll'))
@@ -745,7 +782,13 @@ function build({
     throw Error('Candidate articles require an isolated preview output');
   const { config, definitions } = configuration(root),
     c = catalog(root),
-    components = fingerprints(root, config, c);
+    previous = !all && !check ? validCache(cacheFile) : null,
+    trusted = validCache(lockFile),
+    payloads = runtimePayloads(root, definitions, contentOnly),
+    components = fingerprints(root, config, c, {
+      payloads,
+      baseline: trusted?.components,
+    });
   const selectedArticles = articles.select(root, candidateArticles, c);
   require('./validate-catalog.cjs').validateLocalCatalog(c, (id) =>
     selectedArticles.find((article) => article.metadata.id === id && !article.candidate)
@@ -755,8 +798,6 @@ function build({
     root,
     config.routes.map((route) => route.url)
   );
-  const previous = !all && !check ? validCache(cacheFile) : null;
-  const trusted = validCache(lockFile);
   if (contentOnly) verifyContentBaseline(output, previous, trusted, components, versioned);
   const parent = path.dirname(output);
   fs.mkdirSync(parent, { recursive: true });
@@ -825,20 +866,7 @@ function build({
       const platformFiles = ['theme.js', 'archive.js', 'navigation.js', 'styles.css', 'space.js'];
       for (const name of platformFiles) put(name, fs.readFileSync(path.join(output, name)));
     } else {
-      put('theme.js', read(root, 'site/engine/theme.js'));
-      put(
-        'archive.js',
-        `/* Optional current publication metadata. */\nwindow.SiteArticleTags=(${factory(root, 'site/engine/article-tags.cjs').toString()})();\n` +
-          read(root, 'site/engine/archive.js')
-      );
-      put(
-        'navigation.js',
-        `/* Shared native reading-entry controller. */\nwindow.SiteScrollEntry=(${factory(root, 'site/engine/scroll-entry.cjs').toString()})();\n` +
-          `window.SiteReader=(${factory(root, 'site/engine/reader.cjs').toString()})();\n` +
-          read(root, 'site/engine/navigation.js')
-      );
-      put('styles.css', styles(root));
-      put('space.js', runtime(root, definitions));
+      for (const [name, bytes] of Object.entries(payloads)) put(name, bytes);
     }
     for (const name of sceneMedia(root)) {
       const target = name === 'nojekyll' ? '.nojekyll' : 'assets/' + name;

@@ -11,21 +11,21 @@ Dated continuity, not live authority. Last verified: **2026-10-25**.
 ## Decisions
 
 - User authorized this next atomic platform integration, requires concise status after delivery and full remaining plan in #122. Minimize scope and reuse completed evidence; no extra experiment or acceptance-only PR.
-- Preserve delivered R1/R2, all14 PR145 producer objects and exact edition tuples, budgets, trusted-base classification and existing serialized publisher. Controls/mixed/unknown/rights changes remain full route.
+- Preserve delivered R1/R2, exact reviewed client tuples, budgets, trusted-base classification and existing serialized publisher. The25October refactor approval supersedes the literal14-object freeze only for affected producer owners; keep the old freeze as history. Controls/mixed/unknown/rights remain full route.
 - On25October the maintainer explicitly approved both existing internal article review limits at54,000; preserve the prose and compiled Unicode-code-point measurement. This resolves the earlier53,000 authored blocker.
 - PR79 stays untouched. Ordinary packages exclude rights-pending R37 and reader-reference. Article editorial, native PDF and rights decisions remain #5/#2; platform acceptance does not publish the article.
 - Source/candidate/accepted platform/artifact and actual merge are distinct. Never relabel tested history or old artifacts at a merge commit; require fresh staging for incompatible or unavailable proof.
 
 ## Open work
 
-- Current review owner: review/issue-122/2026-10-25-r3-platform-integration.md. Four correction roles and actual R37 loader pass53,610/54,000. Current native lint blocker and requested code-complexity audit are recorded there; no rule waiver, refactor or identity migration is approved.
+- Current review owner: review/issue-122/2026-10-25-r3-platform-integration.md. Four correction roles and actual R37 loader pass53,610/54,000. The maintainer approved the audited refactor in PR146, smallerF1–F6steps and status after each. F1client/provenance bridge is prepared; clean-current main-consumer proof and corrected-source roles remain. No rule waiver or extra prerequisite PR.
 - Parent AC02 remains complete. Other parent ACs retain their whole original requirements. Actual independent content/recovery and final documentation/timing reconciliation follow accepted platformS.
 - Historic PR144 predates newS and cannot alone establish chronological newS→M→C. Do not invent a proof-only merge or manufacture content changes to exercise CI.
 
 ## Next session
 
 1. Revalidate live #122, candidate/main/PR79 and exact native outcomes; live receipts supersede frozen pending text.
-2. Read live #122 and the requested audit. Decide the current exact warning treatment and the proposed provenance/runtime identity separation before dependent changes; approval of54,000 is not approval for another prerequisite. Then finish the existing native platform route without repeating delivered work.
+2. Follow approvedF1–F6in live#122: actual-main compatibility proof, print-validator refactor, registry deduplication, canonical rights/early lint, current-source integration, existing native/full-stage/App/merge/postmerge. Keep PR146Draft during iteration and report each completed small step plus the whole remaining plan.
 3. Continue actual authorized content/recovery, then reconcile remaining original ACs/contracts/evidence/timings before closing #122.
 
 ## Maintenance

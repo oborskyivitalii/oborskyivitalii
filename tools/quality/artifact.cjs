@@ -369,7 +369,9 @@ function stagedGeneration(out, directory, articleCandidates) {
   if (
     !require('node:util').isDeepStrictEqual(
       trusted.generation.components,
-      builder.fingerprints(root, config, builder.catalog(root))
+      builder.fingerprints(root, config, builder.catalog(root), {
+        baseline: trusted.generation.components,
+      })
     )
   )
     throw Error('Staged generation platform differs from current source');

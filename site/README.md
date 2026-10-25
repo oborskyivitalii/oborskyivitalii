@@ -218,11 +218,28 @@ geometry and layer opacity. Cache
 bytes, triangle count and global Canvas pixel-ratio limits remain unchanged;
 there is no separate content band or new clock/load/decode. Off/reduced freezes
 the formula with its room; unsupported Canvas restores the projected scene SVG.
-Asset and producer identity
-invalidate the immutable runtime. Static/mobile and standalone renditions derive
+Asset and client-contract changes invalidate the immutable runtime. Complete
+producer provenance remains separately bound to the generation and source.
+Static/mobile and standalone renditions derive
 from that source; diagnostics and issue #36's scoped evidence verify its bounds.
 
 ## Editing and deterministic generation
+
+`tools/site/runtime-compatibility.cjs` binds client compatibility to the five
+freshly assembled runtime file hashes, finite scene/navigation/media contracts
+and existing scene, asset, route and template fingerprints. One exact reviewed
+descriptor retains the prior runtime ID as a compatibility alias. Unknown
+descriptors receive a new ID; malformed descriptors and changed emitted bytes or
+required HTML hooks reject. Historical locks without a client descriptor retain
+their original identity calculation.
+The reviewed alias checks named hooks in canonical generated HTML with quoted or
+boolean attributes; it does not establish general browser parsing or full DOM
+equivalence. Fresh source, snapshot and hosted/browser checks remain required.
+
+This does not reuse source acceptance. The full producer hash remains in the
+generation components and document signatures. Content reuse still requires
+equality of every platform component, including that producer hash; a producer
+refactor therefore follows the full platform route even if client bytes match.
 
 Edit the text/URLs in an individual block, for example
 `content/pages/index/about.json`; its layout belongs to

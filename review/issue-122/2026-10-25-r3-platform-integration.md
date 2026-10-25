@@ -318,9 +318,79 @@ The original parent ACs and their checkbox states are unchanged. Only AC02 is
 complete. #122 remains the owner; PR146 remains Draft. Recommendations are not
 maintainer-approved architecture or policy changes.
 
+## Approved refactor — small steps, 25 October 2026
+
+The maintainer explicitly approved the audited refactor in existing PR146 and
+requested smaller steps, a result/status after each and the complete remaining
+plan. This supersedes the earlier limits-only/no-refactor restriction and amends
+the producer freeze only for affected owners. The old PR145 inputs remain
+historical evidence; no additional prerequisite PR is created. Original AC IDs,
+rights/editorial boundaries, protected delivery, source/artifact freshness,
+scanner/lint limits and execution budgets remain.
+
+| Step | Outcome | Current state |
+| --- | --- | --- |
+| F1 | Separate fresh producer provenance from a verified client descriptor; prove all three actual editions against unchanged main. | Prepared source; clean-source main-consumer proof pending. |
+| F2 | One cohesive print-group helper; unchanged validator/error behavior and25lint rule. | Pending. |
+| F3 | Consolidate repeated compatibility data while preserving139historical IDs/flags/editions/bytes. | Pending. |
+| F4 | Canonical mandatory-rights classification, same111unique IDs/anti-relabel guards; clear early real lint. | Pending. |
+| F5 | Generated/catalog/RI/contracts, selected source and four scoped roles; native Basic/RI/owning/preview. | Pending. |
+| F6 | Existing full owner stage, genuine App, protected merge and actual postmerge. | Pending. |
+| R3c | Actual independent content through existing publisher, complete history and required recovery. | Pending. |
+| R3d | Original whole ACs/contracts/evidence/timing reconciliation. | Pending; only wholeAC02complete. |
+
+### F1 — implementation and bounded verification
+
+`components.producer` still hashes every previous producer input, including the
+new compatibility helper. New `components.client` hashes the five freshly
+assembled base-runtime payloads, typed schema/navigation/article-renderer and
+finite route/media contracts, and existing scene/assets/route/shared/page-template
+fingerprints. Exact descriptor2fe6a007782832aee3818c1a0b80e95a1fb548b11dca1551a3423f690e6dc014
+maps to existing base alias43054e4d9861831ec39cbf2e4217ca33b13959bb329959fd7a86413b2ddea3d2.
+Unknown descriptors receive a different identity; malformed present descriptors
+reject. Historical absent-client locks retain the original calculation.
+
+Full builds assemble payloads once, hash them, emit the same bytes and directly
+rehash the emitted files. The known alias additionally checks required active
+body/control/navigation/footer/fallback/meta hooks in canonical and immutable
+HTML. The existing output tokenizer supplies a bounded canonical-markup view,
+excluding raw text, comments and inert templates; this is not a general browser
+parser or a claim of full DOM/semantic equivalence. Existing snapshot/article boot
+checks and fresh full source/browser admission remain mandatory.
+
+Content reuse compares every non-client component INCLUDING producer before
+reusing the authenticated descriptor, then verifies actual raw bytes/hooks.
+Changed producer code still requires a full platform build; identical client
+bytes do not supply cheap content-release authority. Document signatures and
+current source/tree/generation/artifact evidence remain fresh. Color and edition
+rendering functions, R37 prose/rights and13unaffected frozen producer objects stay
+unchanged in F1. Publication of the article/production is excluded.
+
+The existing permanent Color test owner contains one bounded producer/client
+oracle and its meaningful failure cases; its registry inputs now include the
+helper. Existing three-edition generation/tamper/rights cases are retained.
+Initial stale-generated-output failure is historical, not a test pass; output
+was regenerated through its owner. Initial helper metadata-only hashing and
+raw-regex/data-id/comment/fallback gaps were independently found, corrected and
+allocated to that same oracle. No extra test framework or hosted matrix is added.
+
+Style: CS01/04/05/08/10 apply to build/HTML/client/content evidence owners. Touched
+pinned ESLint and the bounded style/AST guards are distinct checks. Native lint
+of the untouched print validator remains the original F2blocker, not waived.
+
+Separate roles actually resumed for design, source review and corrections:
+The identifiers below are literal agent roles, not deterministic CI checks.
+
+| Role | Agent | Prepared-source observations / remaining proof |
+| --- | --- | --- |
+| Requirements | /root/ceiling_requirements | Accepted scope/design; required direct raw-byte hashing rather than metadata-only claim. Corrected direct-byte and canonical-hook source delta accepted; clean main-consumer proof pending. |
+| Code review | /root/ceiling_code | Inspected full source/diff, producer equality, legacy fallback, dependency direction and output parity. Actual runtime parity and corrected canonical grammar accepted; final proof pending. |
+| White-box | /root/ceiling_whitebox | Actual data-id/comment/missing-fallback fault injections found the hook gaps. Original faults, template underflow and bounded oracle corrected/rechecked; accepted for clean-source main proof; no broad suite. |
+| Operator | /root/ceiling_operator | Actual five routes, canonical/immutable equality, fresh producer/stable client and missing-hook refusal observed. Corrected actual Home fake-hook scenario rejects; final clean-current package/rights consumer proof pending. |
+
 ## Ordered remaining work
 
-1. The approved54,000 ceilings and original-purpose paragraph pin are complete. Read the requested audit and decide the current lint treatment/frozen-producer dependency before further implementation; no waiver, extra prerequisite or identity migration is authorized by the analysis. Then refresh current-source metadata/RI and continue the native route.
+1. The approved54,000 correction is complete. The maintainer subsequently approved F1–F6 above within PR146. Complete the F1 actual-main compatibility proof, then the bounded validator/registry/rights/lint steps and original native delivery; no additional prerequisite or rule waiver.
 2. Existing Basic/RI/owning and preview, one owner full platform stage, genuine App,
    protected merge and actual postmerge. Record tested/merged identities separately.
 3. Later actual content/recovery through the existing publisher and complete history.
@@ -333,3 +403,11 @@ The stable platform integration preserves the exact compatibility-approved runti
 repairs concrete merge defects and finishes existing source/metadata owners.
 Local preparation is not platform acceptance; native stage/merge and later actual
 content/recovery remain separately reported gates in the live issue.
+
+F1 prepared checks: pinned touched-JS ESLint0errors/0warnings; current producer/client
+and actual three-edition generation cases2/2, zero skips; content-release/baseline/
+build-cohesion32/32, zero skips, with subsequent bounded canonical-grammar
+correction probes accepted independently. The first RI attempt before staging
+removed generated paths failed; its29tests had2errors, not acceptance. The catalog,
+index and generated views are reconciled before clean-source proof. Whole native
+source/scanners/hosted outcomes are reserved forF5/F6.

@@ -11581,36 +11581,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/0043c2649e06cf21f99cf9ad0ca3124fce3d3b3eb40492d246a981a3c5a24b5e/writing.html": {
-      "kind": "file",
-      "purpose": "Immutable generated route snapshot; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/07b42bf0857f165e1771989ef77e7c9b94189235558b6668ee21af536dc27830/research.html": {
-      "kind": "file",
-      "purpose": "Immutable generated route snapshot; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/10888fa1d9793313c27b9143bdef98add4a0717476912396420a2848492b0268/index.html": {
-      "kind": "file",
-      "purpose": "Immutable generated route snapshot; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/6c6eac8f125f60c31902568792364ef113fce53b8e6cc341b9edd50b92732e1d/talks.html": {
-      "kind": "file",
-      "purpose": "Immutable generated route snapshot; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/ff592c6fd753998dcbd70b4b9bcfd0c18ffb54e889904c36e66ca68bec971428/credits.html": {
-      "kind": "file",
-      "purpose": "Immutable generated route snapshot; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "review/issue-2/2026-10-24-r32-pr-audit.md": {
       "kind": "file",
       "purpose": "Retained 2026-10-24-r32-pr-audit.md review evidence from PR79; preserves original bytes and review scope.",
@@ -11689,41 +11659,77 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/0043c2649e06cf21f99cf9ad0ca3124fce3d3b3eb40492d246a981a3c5a24b5e": {
-      "kind": "directory",
-      "purpose": "Immutable generated revision files from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/07b42bf0857f165e1771989ef77e7c9b94189235558b6668ee21af536dc27830": {
-      "kind": "directory",
-      "purpose": "Immutable generated revision files from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/10888fa1d9793313c27b9143bdef98add4a0717476912396420a2848492b0268": {
-      "kind": "directory",
-      "purpose": "Immutable generated revision files from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/6c6eac8f125f60c31902568792364ef113fce53b8e6cc341b9edd50b92732e1d": {
-      "kind": "directory",
-      "purpose": "Immutable generated revision files from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/ff592c6fd753998dcbd70b4b9bcfd0c18ffb54e889904c36e66ca68bec971428": {
-      "kind": "directory",
-      "purpose": "Immutable generated revision files from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "review/issue-122/2026-10-25-r3-platform-integration.md": {
       "kind": "file",
       "purpose": "Stable R3 platform integration scope, concrete fixes, four independent roles and source-bound delivery evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "tools/site/runtime-compatibility.cjs": {
+      "kind": "file",
+      "purpose": "Source-independent client descriptor and exact legacy alias with emitted runtime byte and document-hook verification; full producer provenance stays in generation evidence.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/77f62d293309923c0bb88ffb807a76efe0ec7b2ae80c27ee1f020ebe899b76c3": {
+      "kind": "directory",
+      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/0fafb757704130d3c562b715e917d156ad46c9b88904300ecb15a48bc2747c6d": {
+      "kind": "directory",
+      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/655292a067b1b65cf01ac094728c5a57671fe9c50ee140789054cb03ba745346": {
+      "kind": "directory",
+      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/2e8f359060c530f529caa2d12bb08a89babfc3e57a3d1378b10092fd665d5147": {
+      "kind": "directory",
+      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/aabce035b0cc77e2e978f709035ac20bf9b8ad4b7152704da2016663ad76e7ea": {
+      "kind": "directory",
+      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/77f62d293309923c0bb88ffb807a76efe0ec7b2ae80c27ee1f020ebe899b76c3/research.html": {
+      "kind": "file",
+      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/0fafb757704130d3c562b715e917d156ad46c9b88904300ecb15a48bc2747c6d/writing.html": {
+      "kind": "file",
+      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/655292a067b1b65cf01ac094728c5a57671fe9c50ee140789054cb03ba745346/talks.html": {
+      "kind": "file",
+      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/2e8f359060c530f529caa2d12bb08a89babfc3e57a3d1378b10092fd665d5147/credits.html": {
+      "kind": "file",
+      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/aabce035b0cc77e2e978f709035ac20bf9b8ad4b7152704da2016663ad76e7ea/index.html": {
+      "kind": "file",
+      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
     }
   }
 }

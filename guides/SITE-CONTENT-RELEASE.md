@@ -30,6 +30,15 @@ their own declared inputs and actual related translation/link dependencies, not
 every article in the repository. Writing and a featured Home entry can depend on
 linked article snapshots; unrelated routes and articles remain unchanged.
 
+Client compatibility and generation provenance are separate identities. A source
+refactor can preserve an exact reviewed client alias only when its assembled
+runtime bytes and document contract remain compatible. The complete producer
+hash still changes, document/source evidence remains fresh and full platform
+validation is required. Content reuse compares all generation components,
+including producer and client; a stable client alias alone grants no reuse.
+For an unchanged authenticated baseline, its client descriptor is verified
+against actual raw runtime bytes and required document hooks before reuse.
+
 Hosted pages pin a bounded compatible `site-revision.json` on first navigation.
 An article embeds only its initial descriptor. Later routes use the pinned immutable
 snapshots and exact byte checks. Missing or incompatible manifests fall back to an

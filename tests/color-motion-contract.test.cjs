@@ -26,6 +26,115 @@ function manifest(id) {
       value.files[file] = { raw: 5000, gzip: 1000, sha256 };
   return value;
 }
+test('producer refactoring preserves client compatibility while runtime bytes and document hooks stay bound', () => {
+  const fs = require('node:fs'),
+    os = require('node:os'),
+    path = require('node:path'),
+    builder = require('../tools/site/build.cjs'),
+    compatibility = require('../tools/site/runtime-compatibility.cjs'),
+    root = path.resolve(__dirname, '..'),
+    directory = fs.mkdtempSync(path.join(os.tmpdir(), 'client-compatibility-'));
+  try {
+    for (const name of [
+      'site',
+      'tools/site',
+      'tools/publishing',
+      'tools/build_scene_fallbacks.cjs',
+    ]) {
+      fs.mkdirSync(path.dirname(path.join(directory, name)), {
+        recursive: true,
+      });
+      fs.cpSync(path.join(root, name), path.join(directory, name), {
+        recursive: true,
+        filter: (file) => !file.split(path.sep).includes('node_modules'),
+      });
+    }
+    const { config } = builder.configuration(directory),
+      before = builder.fingerprints(directory, config);
+    fs.appendFileSync(
+      path.join(directory, 'tools/publishing/profile.cjs'),
+      '\n// producer-only refactor\n'
+    );
+    const after = builder.fingerprints(directory, config, undefined, {
+      baseline: before,
+    });
+    assert.notEqual(after.producer, before.producer, 'actual changed producer remains fresh');
+    assert.equal(
+      after.client,
+      before.client,
+      'publisher internals do not change the client contract'
+    );
+    const reviewed = motion.reviewedRuntime('issue122-r3-platform-plain');
+    assert.equal(builder.runtimeVersion(after), reviewed.variant.baseEngine);
+    const generation = JSON.parse(fs.readFileSync(path.join(root, 'site/output-lock.json'))),
+      read = (name) => fs.readFileSync(path.join(root, 'docs', name), 'utf8'),
+      hashes = Object.fromEntries(
+        require('../tools/site/snapshot.cjs').runtimeFiles.map((name) => [
+          name,
+          generation.files[name],
+        ])
+      );
+    compatibility.verify(after, generation, read);
+    const changed = structuredClone(generation);
+    changed.files['navigation.js'] = '0'.repeat(64);
+    assert.throws(() => compatibility.verify(after, changed, read), /client runtime bytes differ/);
+    assert.throws(
+      () =>
+        compatibility.verify(after, generation, (name) =>
+          name === 'navigation.js' ? read(name) + '\n// changed runtime bytes\n' : read(name)
+        ),
+      /client runtime bytes differ/
+    );
+    for (const fake of [
+      '',
+      '<!-- <button id="space-motion"></button> --><template><button id="space-motion"></button></template><script type="application/json">{"example":"<button id=space-motion></button>"}</script>',
+    ])
+      assert.throws(
+        () =>
+          compatibility.verify(after, generation, (name) =>
+            read(name)
+              .replace('id="space-motion"', 'data-id="space-motion"')
+              .replace('</body>', fake + '</body>')
+          ),
+        /client document hook space-motion/
+      );
+    assert.throws(
+      () =>
+        compatibility.verify(after, generation, (name) =>
+          read(name).replace('class="space-fallback"', 'class="missing-fallback"')
+        ),
+      /client document class space-fallback/
+    );
+    assert.throws(
+      () =>
+        compatibility.verify(after, generation, (name) =>
+          read(name).replace('<footer ', '<section ').replace('</footer>', '</section>')
+        ),
+      /client document footer/
+    );
+    const interfaceChange = { ...after, templates: '0'.repeat(64) };
+    assert.throws(
+      () => compatibility.verify(interfaceChange, generation, read),
+      /compatibility bytes differ/
+    );
+    interfaceChange.client = compatibility.fingerprint(interfaceChange, hashes);
+    assert.notEqual(builder.runtimeVersion(interfaceChange), reviewed.variant.baseEngine);
+    assert.throws(
+      () => builder.runtimeVersion({ ...after, client: null }),
+      /invalid client compatibility identity/
+    );
+    const { documentElements } = require('../tools/site/html.cjs');
+    for (const malformed of [
+      '</template><template><button id="space-motion"></button>',
+      '<button id=space-motion/>',
+      "<span title=\"<button id='space-motion'></button>",
+    ])
+      assert.throws(() => documentElements(malformed), /document (?:attribute|markup|template)/);
+    assert.deepEqual(documentElements('<button\u00a0id="space-motion">'), []);
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
 test('reading batch records bind actual generated edition bytes and reject tampering', () => {
   const fs = require('node:fs'),
     os = require('node:os'),

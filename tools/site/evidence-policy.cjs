@@ -10,6 +10,7 @@ const keys = [
   'analytics',
   'routes',
   'variant',
+  'client',
 ];
 function propose(before, after) {
   const valid = (value) =>

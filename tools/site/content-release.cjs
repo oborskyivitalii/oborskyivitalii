@@ -63,12 +63,18 @@ function verifyBaseline({ baseline, baselineLock, expectedBaselineLockSha256 }) 
     throw Error('Content baseline requires an undecorated base generation');
   if (builder.runtimeVersion(generation.components) !== revision.engine)
     throw Error('Content baseline platform identity differs from its generation lock');
+  if (Object.hasOwn(generation.components, 'client'))
+    require('./runtime-compatibility.cjs').verify(generation.components, generation, (name) =>
+      fs.readFileSync(path.join(baseline, name), 'utf8')
+    );
   return generation;
 }
 
-function currentComponents(root) {
+function currentComponents(root, baseline) {
   const { config } = builder.configuration(root);
-  return builder.fingerprints(root, config, builder.catalog(root));
+  return builder.fingerprints(root, config, builder.catalog(root), {
+    baseline,
+  });
 }
 
 function lockFor(result) {
@@ -125,7 +131,7 @@ function release({
     .map(([key]) => key.split(':')[0]);
   if (priorCandidates.some((id) => !candidateArticles.includes(id)))
     throw Error('Preview candidate baseline cannot feed an ordinary public content release');
-  const platform = currentComponents(root);
+  const platform = currentComponents(root, previous.components);
   if (!isDeepStrictEqual(platform, previous.components))
     throw Error('Content release platform changed; run an explicit full build');
 
@@ -160,7 +166,7 @@ function release({
         throw Error('Content release changed platform bytes: ' + name);
     const manifest = publicArtifact.manifest(stagedOutput);
     snapshot.verify(stagedOutput, manifest);
-    if (!isDeepStrictEqual(platform, currentComponents(root)))
+    if (!isDeepStrictEqual(platform, currentComponents(root, platform)))
       throw Error('Content release platform source changed during generation');
     verifyBaseline({ baseline, baselineLock, expectedBaselineLockSha256 });
     const report = {

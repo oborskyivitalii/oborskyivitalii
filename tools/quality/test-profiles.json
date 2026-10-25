@@ -1793,7 +1793,7 @@
     {
       "path": "tests/color-motion-contract.test.cjs",
       "language": "javascript",
-      "purpose": "Exact nine-family/eighteen-tuple Color dispatch, preservation of all sixteen published tuples, strict reading/block/spatial guards and malformed/substituted evidence negatives including viewport-batched reading",
+      "purpose": "Exact reviewed Color dispatch, generated three-edition byte proof, source-independent client aliases, historical tuples and strict motion/reading/tamper/edition guards.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -1821,7 +1821,8 @@
         "site/content/production-social.json",
         ".github/workflows/site-release-candidate.yml",
         "tools/quality/edge-input.cjs",
-        "tools/quality/block-observation.cjs"
+        "tools/quality/block-observation.cjs",
+        "tools/site/runtime-compatibility.cjs"
       ]
     },
     {
