@@ -1817,6 +1817,20 @@ test('travel progress is emitted with the displayed camera, retargets cleanly an
   );
 });
 
+// Navigation charters need the first ready paint, not twelve ambient warmup frames.
+// Keep settle() for scrolling, reflow, lifecycle changes and warm remounts.
+function paintInitialRoute(p, page = 'index') {
+  assert.equal(p.draws(), 0, 'a fresh route has not painted');
+  p.frame(60);
+  assert.equal(p.draws(), 1, 'the initial route has actually painted');
+  assert.equal(p.scene.dataset.ready, 'true');
+  assert.equal(p.scene.dataset.travel, 'settled');
+  assert.deepEqual(
+    JSON.parse(p.trace()),
+    model.routePose(page, model.poses[model.initialPoses[page]])
+  );
+  assert.equal(p.pending.size, 1, 'the existing ambient clock is ready for navigation');
+}
 function assertFlightDepths(paints, sourceZ, endpointZ) {
   const direction = Math.sign(endpointZ - sourceZ),
     lower = Math.min(sourceZ, endpointZ),
@@ -1876,7 +1890,7 @@ function reverseEndpointFlight(from, to, narrow) {
   const target = nativeReadingPose(to, 14100, { narrow }),
     paints = [],
     p = visit({ page: from, narrow, ribbonProbe: (state) => paints.push(state) });
-  p.settle();
+  paintInitialRoute(p, from);
   for (const warm of [false, true]) {
     if (warm) {
       p.window.SiteScene.navigate(from, false);
@@ -1914,7 +1928,7 @@ function reverseEndpointFlight(from, to, narrow) {
 test('departure scroll events cannot retarget a flight through source page geometry', () => {
   const paints = [],
     p = visit({ ribbonProbe: (state) => paints.push(state) });
-  p.settle();
+  paintInitialRoute(p);
   p.scroll(14100);
   p.settle();
   const sourceZ = JSON.parse(p.trace()).position[2],
@@ -1963,7 +1977,7 @@ test('history and fragment landings use the fixed destination pose before native
   for (const [to, landing, y, focus] of cases) {
     const paints = [],
       p = visit({ ribbonProbe: (state) => paints.push(state) });
-    p.settle();
+    paintInitialRoute(p);
     p.scroll(14100);
     p.settle();
     const displayed = p.trace(),
@@ -2006,7 +2020,7 @@ test('history and fragment landings use the fixed destination pose before native
 test('midflight destination reflow and pauses preserve the staged camera and shared clock', () => {
   const paints = [],
     p = visit({ ribbonProbe: (state) => paints.push(state) });
-  p.settle();
+  paintInitialRoute(p);
   const records = [],
     before = p.trace(),
     phase = p.phase();
@@ -2219,7 +2233,7 @@ test('each route flight centers, travels in depth and restores its reading compo
       ['research', 'index'],
     ]) {
       const p = visit({ page: from, narrow });
-      p.settle();
+      paintInitialRoute(p, from);
       const source = JSON.parse(p.trace()),
         target = model.routePose(to, model.poses[model.initialPoses[to]]),
         direction = Math.sign(target.position[2] - source.position[2]),
@@ -2305,7 +2319,7 @@ test('Off, hidden and print freeze and resume the displayed centering, transit a
 test('same-route navigation keeps a settled reading camera without a zero-depth journey', () => {
   for (const page of model.routeOrder) {
     const p = visit({ page });
-    p.settle();
+    paintInitialRoute(p, page);
     const camera = p.trace(),
       progress = [];
     p.window.SiteScene.navigate(page, true, (value) => progress.push(value));
@@ -2320,7 +2334,7 @@ test('same-route navigation keeps a settled reading camera without a zero-depth 
 });
 test('returning to the old mounted route during an interrupted flight still travels backward', () => {
   const p = visit();
-  p.settle();
+  paintInitialRoute(p);
   const opening = p.trace();
   p.window.SiteScene.navigate('research');
   advanceUntil(
@@ -2350,7 +2364,7 @@ test('returning to the old mounted route during an interrupted flight still trav
 test('framing and depth flight each retain a readable additive presentation duration', () => {
   const paints = [],
     p = visit({ ribbonProbe: (state) => paints.push(state) });
-  p.settle();
+  paintInitialRoute(p);
   const source = JSON.parse(p.trace()),
     target = model.routePose('research', model.poses.researchOverview);
   p.window.SiteScene.navigate('research');
@@ -2394,7 +2408,7 @@ test('all direct route choices have finite independent camera legs at desktop an
             if (event.kind === 'camera-travel') plans.push(event);
           },
         });
-      p.settle();
+      paintInitialRoute(p, from);
       for (const to of model.routeOrder.filter((route) => route !== from)) {
         plans.length = 0;
         p.window.SiteScene.navigate(from, false);
@@ -2506,7 +2520,7 @@ test('prepared adjacent rooms emerge continuously from zero in both travel direc
               if (event.kind === 'model') prepared.push(event.route);
             },
           });
-        p.settle();
+        paintInitialRoute(p, from);
         paints.length = 0;
         prepared.length = 0;
         p.window.SiteScene.navigate(to);
@@ -2565,7 +2579,7 @@ test('retargeted flights retain their displayed room pair, including reverse and
             if (event.kind === 'model') models.push(event);
           },
         });
-      p.settle();
+      paintInitialRoute(p, from);
       p.window.SiteScene.navigate(first);
       for (let frame = 0; frame < frames; frame++) p.frame(80);
       assert.equal(p.scene.dataset.cameraStage, 'transit', 'interrupt an actual depth flight');
@@ -2609,7 +2623,7 @@ test('retargeting each longer camera leg cancels its plan and completes from its
           if (event.kind.startsWith('camera-travel')) events.push(event);
         },
       });
-    p.settle();
+    paintInitialRoute(p);
     const firstId = index * 2 + 1,
       secondId = firstId + 1;
     p.window.SiteScene.navigate('research', true, null, null, { navigationId: firstId });
@@ -2645,7 +2659,7 @@ test('reader document orbits keep the same fractal centered and return continuou
             if (event.kind === 'paint') paints.push(structuredClone(event));
           },
         });
-      p.settle();
+      paintInitialRoute(p, 'writing');
       const anchor = p.trace(),
         centered = model.documentCenterPose(JSON.parse(anchor)),
         radius = centered.position[2] - centered.target[2],
@@ -2733,7 +2747,7 @@ test('retargeting a reader orbit preserves its exact displayed camera and room w
             if (event.kind === 'paint') paints.push(structuredClone(event));
           },
         });
-      p.settle();
+      paintInitialRoute(p, 'writing');
       p.window.SiteScene.navigate('writing', true, null, null, {
         navigationId: 1,
         documentChange: true,
@@ -2802,7 +2816,7 @@ test('repeating a principal destination before mount retargets without a reader 
           if (event.kind === 'paint') paints.push(structuredClone(event));
         },
       });
-    p.settle();
+    paintInitialRoute(p, from);
     p.window.SiteScene.navigate(to, true, null, null, {
       navigationId: 1,
       documentChange: true,
@@ -2830,7 +2844,7 @@ test('reader orbit reuses the prepared Writing model without building a neighbor
   for (const direction of [1, -1]) {
     const events = [],
       p = visit({ page: 'writing', probe: (event) => events.push(structuredClone(event)) });
-    p.settle();
+    paintInitialRoute(p, 'writing');
     p.window.SiteEngineStages = true;
     events.length = 0;
     p.window.SiteScene.navigate('writing', true, null, null, {
@@ -2858,7 +2872,7 @@ test('reader activation after a principal midpoint preserves the remaining princ
         if (event.kind === 'paint') paints.push(structuredClone(event));
       },
     });
-  p.settle();
+  paintInitialRoute(p, 'credits');
   p.window.SiteScene.navigate('writing', true, null, null, {
     navigationId: 1,
     documentChange: true,
@@ -2899,7 +2913,7 @@ test('repeated principal retargets during orbit recovery keep its original scene
         if (event.kind === 'paint') paints.push(structuredClone(event));
       },
     });
-  p.settle();
+  paintInitialRoute(p, 'writing');
   p.window.SiteScene.navigate('writing', true, null, null, {
     navigationId: 1,
     documentChange: true,

@@ -1230,3 +1230,123 @@ whole-AC/contracts/timings remain; only wholeAC02 is complete. CS01/04/05/07/08/
 map to explicit fixture input ownership, unchanged failure guards, bounded
 before/after checks and source-bound evidence. No unchanged stage retry follows
 from this correction.
+
+### F6 corrected-head native verification — blocked
+
+Actual corrected source7d8706d3e42d2d3edf06a0b47170f04e3f4d35d5 has tree
+de86948c7f1acf5bddb4dee4d231bbc13dfbb917. This section is a local receipt prepared
+after its native executions, not a newly admitted source or another retry reset.
+Live issue122 and PR146 retain the current outcome and full remaining plan.
+
+Basic40217820258/1, job121242690708, fails180000ms with ETIMEDOUT/process1.
+It emits582ok/0not-ok and no final accounting:58modules start,54complete with
+passing wrappers,4remain running and21never start. ZIP12607944489 is41801bytes,
+SHA25672992696b797d278a802b8a7fb499b75764288eb7c62ccf38f5522fb8966a78b.
+Original ZIP CRCs and extracted JSON/TAP/stderr bytes were verified.
+
+Requirements and White-box independently verify the genuine fixture correction,
+unchanged test/runtime/membership/limit inputs and actual broad timing variation:
+all35 completed modules previously over1s are1.40085–1.83375times slower than
+passed808, median1.54964. Corrected Color passes and starts after Space/Executive
+complete, so the correction cannot explain their earlier slowdown. This is not
+proof of an infrastructure cause. The existing issue rule permits exactly one
+evidenced complete retry for this corrected source; both roles accept that scope.
+
+The sole complete retry40217820258/2, job121244681727, also fails180000ms with
+ETIMEDOUT/process1. It emits582ok/0not-ok without final accounting:63modules
+start,59complete with passing wrappers,4remain running and16never start.
+ZIP12609345181 is41981bytes,
+SHA25656547593eccb3d6082e5ad71dd6ccbdba4574128b220835ac0edb52eb6c2870c.
+White-box independently rehashes the ZIP and verifies all three exact raw members
+and failed accounting. Partial success is not selected-source acceptance.
+
+Both attempts are clean7d/tree de869 before and after, Node24.19.0, exactly79
+selected modules, OS/configured/effective capacity4/4/4,180s and16MiB unchanged.
+Corrected Color wrappers pass13.023s/13.214s, including the actual ordinary-edition
+case. Retry Space takes110.711s, Executive79.865s and release-rights54.178s.
+These are observed module durations, not a newly proved critical-path cause.
+
+RI40217820193, owning40217820195 and routing40217820169 pass at7d.
+Preview40217820293 build121242899563, publish121243126895 and smoke121243281796
+pass; smoke executes1440/390 normal/no-canvas cases. Separate Staging admission
+121242824185 fails without corrected owner proof, so the aggregate is not green.
+
+PR146 returned Draft at2026-10-25T17:57:45Z, still open/unmerged at7d/basebea.
+No corrected ownerstage, App, protected merge, stable promotion or production
+action was requested. The unsubmitted App form grants no evidence. Main and PR79
+remain unchanged. Historical808 stage failure and all earlier failures remain.
+
+F6 is blocked. No further unchanged retry, metadata-only reset or speculative
+source churn is permitted. Next is bounded diagnosis of actual repeated test
+cost; any concrete correction needs affected four-role review and fresh evidence
+under the same cases and budgets. Then complete current checks, ownerstage,
+genuine App, protected merge and actual postmerge. R3c meaningful content/recovery
+and R3d whole-AC/contracts/timing follow; only wholeAC02 remains complete.
+
+### F6 bounded test-cost correction — 25 October 2026
+
+Fresh live revalidation retained mainbea2628, DraftPR146head7d8706d and
+the two failed native attempts above. The local9fe636b checkpoint was preserved;
+its receipt is included here without using it to reset remote eligibility.
+The maintainer requested continuation of the next bounded F6 step.
+
+**Changed owner:** tests/space.test.cjs only; corrected bytes888cfd4d…194450a3.
+The actual visit fixture keeps isolated realms and its existing12-frame settle.
+Eighteen cold navigation setup sites now use paintInitialRoute: zero prior draws,
+one actual60ms frame, exactlyone draw, ready stringtrue, settled travel, exact
+model-derived initial route pose and one pending ambient callback. These are six
+assertions, not a time-only readiness assumption. No mutable setup is cached.
+
+Removing the added helper and reversing exactly18 call substitutions reproduces
+the actual7d file byte-for-byte. All72 ordered Space test declarations and every
+original assertion/route pair/flight-frame loop remain. The40flight fresh-context
+matrix is untouched. Native scrolled-pose generation, post-scroll/focus/resize/
+lifecycle settling and distinct warm-remount settling remain exact. This reduces
+redundant cold-start ambient paints; it does change that setup's temporal sampling.
+Executive and its ordered metadata/refusal/parsing boundaries are unchanged.
+
+Matched local commands ran both full modules sequentially on Node24.22.1, with
+no source mutation during either execution. Baseline is clean7d; the candidate
+is dirty7d with only the corrected Space bytes. Raw spec-reporter output, stderr
+and source-bound JSON records are retained as issue122-f6-cost-before/after in
+the local diagnostic directory. The .tap suffix of those files does not make
+them canonical TAP or selected-source admission.
+
+| Observation | Actual before | Actual after |
+| --- | ---: | ---: |
+| Whole-command wall seconds | 148.950 | 170.184 |
+| Sum of72 Space test seconds | 73.708 | 73.116 |
+| Sum of23 unchanged Executive test seconds | 74.536 | 96.339 |
+| Complete test accounting | 95/95 | 95/95 |
+| Failed/cancelled/skipped/todo; stderr bytes | 0/0/0/0;0 | 0/0/0/0;0 |
+
+The unchanged ordered95 names and stable source hashes establish scoped
+integration preservation. These observations do **not** establish an overall
+speedup, a native timeout fix or an environmental cause. No unchanged retry
+or broad Executive refactor follows from them.
+
+| Independent role | Actual separate execution and result |
+| --- | --- |
+| Requirements | /root/f6_cost_requirements: independently fetched live owner/PR, reviewed scope before implementation, proved exact reverse preservation and all18 cold sites, then read both actual measurement records. Accepts the bounded correction and one fresh native verification; whole acceptance remains open. |
+| Code | /root/f6_cost_code: inspected actual source/diff; Acorn confirms72 ordered test names, correcting an earlier71-name regex miss. Exact reverse proof and one positive/seven rejecting helper probes pass. Independently read both measured outputs. Accepts bounded source and honest measurement limits. |
+| White-box | /root/f6_cost_whitebox: separately proved exact reverse preservation and inspected all18 sites. Extracted actual helper passes five routes plus default and rejects nine injected paint/readiness/pose/clock faults. Independently reads95/95 and stable hashes; accepts scope, not timing acceptance. |
+| Operator | /root/f6_cost_operator: actual CLI PRplan remains exactly79modules with the same reasons; staging remains exactly74. Runner/worker/registry/Executive bytes are unchanged. Five routes plus default and eight invalid fixture states give14/14 helper probes. Independently reads both measured executions; accepts verification, browser/device scope inapplicable to this test-only delta. |
+
+AC04/07/08 and CS01/04/05/07/08/10 map to the test owner, unchanged inventories,
+real pinned lint/format, bounded style/Basic/RI/owning checks, exact preservation
+and four separate review executions. No parent criterion is newly complete.
+No runtime/producer/rights/scanner/registry/workflow/limit owner changed.
+
+Prepared-source checks pass: full pinned formatting with no changed files,
+real touched-JS lint with zero warnings, Basic five routes/16theme+archive/
+10flight cases, bounded style143files, fresh RI1756files/200dirs and29regressions,
+coupling20regressions and17checks/17layers. Derived catalog/map topology and
+the RI/CI map remain unchanged; only the existing agent-context projection
+needs regeneration. These local results do not supply clean native admission.
+
+**Next:** commit the reviewed source and deterministic metadata, verify its exact
+clean identity and request one fresh native Basic/source/RI/owning/preview run.
+The same79/cap4/180s/16MiB and zero-skip accounting remain mandatory. Failure
+stays blocked with no unchanged repeat. F6 ownerstage/App/protected merge/
+postmerge, then R3c meaningful content/recovery and R3d whole-AC/contracts/timing
+remain. The current correction grants no staging, merge or production acceptance.
