@@ -82,9 +82,18 @@ the baseline. Missing, partial, linked, modified or incompatible baseline bytes
 fail before replacing output; use the explicit normal full-build command when
 platform sources changed.
 
-Standalone HTML/ZIP exports intentionally embed all routes. Generate those review
-or downloadable renditions separately when needed; they are not an unavoidable
-part of a verified online content release.
+Standalone HTML/ZIP exports intentionally embed all routes. The repository keeps
+18 exact maintained v11 export files: 16 HTML views and two manifests. After a
+content edit, regenerate them with `node tools/build_site_previews.cjs` and
+`python3 tools/build_site_bundle.py`. The ZIP stays outside the repository.
+These files are declared content derivatives, not platform or editorial inputs;
+arbitrary review files and capture evidence remain outside this admission.
+Existing freshness, checksum and scanner guards still verify the complete bytes.
+
+The online artifact continues to reuse authenticated platform bytes. Retained
+repository-export generation is separate work and must be included honestly in
+its timing observations; it is not a performance rerun. Optional standalone
+article downloads remain separate outputs generated when requested.
 
 ## Generated checksums and secret findings
 

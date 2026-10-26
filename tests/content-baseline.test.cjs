@@ -737,6 +737,35 @@ function historyFixture(t, { legacyAncestor = false } = {}) {
   };
 }
 
+test('only exact maintained offline outputs remain derived content and nearby review inputs reject reuse', (t) => {
+  const outputs = [
+    ...Object.keys(require('../tools/build_site_previews.cjs').buildPreviews()),
+    'review/site-v1-offline-bundle-v11.json',
+  ];
+  assert.equal(outputs.length, 18);
+  const f = historyFixture(t);
+  for (const file of outputs) f.write(file, 'Controlled derived export bytes\n');
+  const select = () =>
+    require('../tools/quality/delivery-observation.cjs').selection(f.directory, f.main, f.commit());
+  const admitted = select();
+  assert.equal(admitted.contentOnly, true);
+  for (const file of outputs) assert.ok(admitted.content.derived.includes(file), file);
+  for (const file of [
+    'review/unrelated.html',
+    'review/site-v1-20261004-v12-talks-interactive.html',
+    'review/site-v1-20261004-v11-talks-interactive.html.bak',
+    'review/site-v1-20261004-v11-captures/captures.json',
+    'review/site-v1-20261004-v11.zip',
+    'tools/build_site_previews.cjs',
+  ]) {
+    f.write(file, 'Controlled unsupported input\n');
+    const rejected = select();
+    assert.equal(rejected.contentOnly, false, file);
+    assert.ok(rejected.content.rejected.includes(file), file);
+    fs.rmSync(path.join(f.directory, file));
+  }
+});
+
 test('accepted baseline uses the full platform route before history and keeps current failures fatal', async (t) => {
   const f = historyFixture(t);
   f.write('site/engine/styles.css', '/* controlled platform change */\n');

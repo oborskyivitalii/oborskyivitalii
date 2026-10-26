@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "9917e3cb517027d212d742b37d57b5362ecd6f90d55b2fa037d5a7539c793f86",
+    "digest": "d137be0f911afd07ba93fca2ecbffd44e03a9f659e841ea1361eff7eadcc10bc",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -201,12 +201,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "10cc5984f37355b6f460881e760e0aa6094523fdf0a213a5b14fb22b099ec067"
+        "sha256": "0e4deb6ee4cbe4566e3abb21e31751c0fb9a82e90e6f0f8a48e3a0b88f5f5485"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "dc7fa8e8f1d1f4b0a281bc067bd25d72a3896e5fa40e7e87b0bf417e582e1ccd"
+        "sha256": "ca81a16fa0e4cb1e9530eed03bbb8e605d7756eb7b6e57386c7fc7eeec9062e2"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -266,7 +266,7 @@
       {
         "path": ".github/workflows/site-color-review.yml",
         "identity_mode": "content",
-        "sha256": "9371c1fd69942ec93f5892298538d286d4bac575b53c6576e99b301602f1c23f"
+        "sha256": "d184fb3e54d5c3a42901f10597313e4cd4da0f5d3d51cb0f7ba3ab30a9f4dbe2"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -356,7 +356,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "7fdf088582683758f167ff3199fb6240fd857f872c671d11528da56462d02d77"
+        "sha256": "2fc2991d71cd95ef66131221b69b651cd5d51dea5ad7ac261d3b77a2d9b4d2d8"
       },
       {
         "path": "NOTICE.md",
@@ -715,7 +715,7 @@
       {
         "path": "guides/SITE-CONTENT-RELEASE.md",
         "identity_mode": "content",
-        "sha256": "6cf185ad976ca2474b8184c778868387b2d424dd420c5227d157a37ac95cce4d"
+        "sha256": "1b16367dcd8f43b9117df8ffe722d6674afc709dc510b71f39f0f273548f1ccb"
       },
       {
         "path": "guides/SITE-CONTENT-REVIEW.md",
@@ -1026,6 +1026,11 @@
         "path": "review/issue-122/2026-10-26-browser-security-proof.json.gz",
         "identity_mode": "content",
         "sha256": "658385cc054a5ac0567a2aedfa983ee786b6468f5efeb324a86f1fc0200c53fa"
+      },
+      {
+        "path": "review/issue-122/2026-10-26-content-ci.md",
+        "identity_mode": "content",
+        "sha256": "e8053efc89f96f742d8410f6890bc0de3b2dbdfc0648c3f290d7cda642093f24"
       },
       {
         "path": "review/issue-126/2026-10-23-announcement-review.md",
@@ -7245,12 +7250,12 @@
       {
         "path": "tests/content-baseline.test.cjs",
         "identity_mode": "content",
-        "sha256": "530a9b735bcefa4678a724d41236841b496c3995aedf3f8083b48ab2d77325bc"
+        "sha256": "cac2b4a2845ba2be067d3177c60be210347da59911718042543eec5534e03c2e"
       },
       {
         "path": "tests/content-delivery.test.cjs",
         "identity_mode": "content",
-        "sha256": "3b40c953f0ef3055a11411ca2947a4e024166d69a09fb27663747657c64c67b3"
+        "sha256": "cc888fb8b51af721d11f8f5d6fb0bd2f975c809303c254b96b9146df324ea00a"
       },
       {
         "path": "tests/content-fixture.test.cjs",
@@ -8470,7 +8475,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "35a448e09d9cd38fe1d2723a12cd9c45b2274e7ef612cb90153ae0c0eabb51e0"
+        "sha256": "dd74b837c889fa4893bce820d7664082dea0528c061a692cfb1609d76110c2ec"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -11404,6 +11409,17 @@
         "AGENTS.md"
       ],
       "title": "2026-10-26-browser-security-proof.json.gz"
+    },
+    {
+      "path": "review/issue-122/2026-10-26-content-ci.md",
+      "kind": "file",
+      "purpose": "Issue122 test-mode content pipeline failures and bounded control repair, reviews and source-bound acceptance.",
+      "role": "history",
+      "owner": "guides/SITE-CONTENT-RELEASE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue122 — content CI integration repair — 26 October 2026"
     },
     {
       "path": "review/issue-126/2026-10-23-announcement-review.md",
