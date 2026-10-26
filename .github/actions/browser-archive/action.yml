@@ -1,0 +1,29 @@
+name: Restore pinned browser archive
+description: Verify source-bound native artifacts without downloading from a browser CDN or launching a browser
+inputs:
+  browsers:
+    description: Exact existing comma-separated engine selection
+    required: true
+  directory:
+    description: Optional existing workflow browser-storage location
+    required: false
+    default: ''
+runs:
+  using: composite
+  steps:
+    - name: Restore and verify exact browser bytes without prior launch
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+        BROWSER_ARCHIVE_ENGINES: ${{ inputs.browsers }}
+        BROWSER_ARCHIVE_DESTINATION: ${{ inputs.directory || format('{0}/browser-runtime', runner.temp) }}
+        BROWSER_ARCHIVE_REPORT: ${{ runner.temp }}/browser-archive-report.json
+      run: node tools/quality/browser-runtime.cjs restore --browsers "$BROWSER_ARCHIVE_ENGINES" --directory "$BROWSER_ARCHIVE_DESTINATION"
+    - name: Retain browser supply identity or setup failure
+      if: always()
+      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+      with:
+        name: browser-setup-${{ github.job }}-${{ runner.os }}-${{ runner.arch }}-${{ github.run_id }}-${{ github.run_attempt }}
+        path: ${{ runner.temp }}/browser-archive-report.json
+        if-no-files-found: error
+        retention-days: 90

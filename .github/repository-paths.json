@@ -11736,6 +11736,66 @@
       "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
       "role": "generated",
       "owner": "site/README.md"
+    },
+    ".github/actions": {
+      "kind": "directory",
+      "purpose": "Shared reviewed CI setup actions with bounded source and artifact trust.",
+      "role": "configuration",
+      "owner": "CONTRIBUTING.md"
+    },
+    ".github/actions/browser-archive": {
+      "kind": "directory",
+      "purpose": "Pinned browser supply action; integrity checks without prior browser launch.",
+      "role": "configuration",
+      "owner": "guides/BROWSER-ARCHIVES.md"
+    },
+    ".github/actions/browser-archive/action.yml": {
+      "kind": "file",
+      "purpose": "Shared exact native browser archive restore and retained preparation-failure report.",
+      "role": "configuration",
+      "owner": "guides/BROWSER-ARCHIVES.md"
+    },
+    ".github/workflows/browser-archives.yml": {
+      "kind": "file",
+      "purpose": "Owner-controlled unprivileged native browser archive seed, real producer launches and exact pin records.",
+      "role": "workflow",
+      "owner": "guides/BROWSER-ARCHIVES.md"
+    },
+    "guides/BROWSER-ARCHIVES.md": {
+      "kind": "file",
+      "purpose": "Browser archive preparation, exact pins, consumer cold-ordering and90day refresh operation.",
+      "role": "guide",
+      "owner": "guides/BROWSER-ARCHIVES.md"
+    },
+    "review/issue-122/2026-10-26-browser-archives.md": {
+      "kind": "file",
+      "purpose": "Issue122 authorized browser-supply repair, source-bound review and implementation/native evidence.",
+      "role": "history",
+      "owner": "guides/BROWSER-ARCHIVES.md"
+    },
+    "tools/quality/browser-runtime.cjs": {
+      "kind": "file",
+      "purpose": "Locked browser description and preparer-only launch probe; shared cross-platform CLI adapter.",
+      "role": "validator",
+      "owner": "guides/BROWSER-ARCHIVES.md"
+    },
+    "tools/quality/browser_archives.py": {
+      "kind": "file",
+      "purpose": "Pinned native browser archive origin, bounded extraction, complete byte/mode/link verification and expiry failures.",
+      "role": "validator",
+      "owner": "guides/BROWSER-ARCHIVES.md"
+    },
+    "tools/quality/browser-archives.json": {
+      "kind": "file",
+      "purpose": "Explicit immutable native browser artifact pins by exact toolchain, revision and system identity.",
+      "role": "configuration",
+      "owner": "guides/BROWSER-ARCHIVES.md"
+    },
+    "tests/test_browser_archives.py": {
+      "kind": "file",
+      "purpose": "Browser native origin, locked selection, HTML/hash/path/link and executable failure regressions.",
+      "role": "test",
+      "owner": "guides/BROWSER-ARCHIVES.md"
     }
   }
 }

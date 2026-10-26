@@ -1,0 +1,82 @@
+name: Prepare pinned browser archives
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [labeled]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  prepare:
+    if: >-
+      github.repository == 'oborskyivitalii/oborskyivitalii' &&
+      github.actor == github.repository_owner &&
+      (github.event_name == 'workflow_dispatch' ||
+       (github.event.label.name == 'browser-archive-seed' &&
+        github.event.sender.login == github.repository_owner &&
+        github.event.pull_request.head.repo.full_name == github.repository))
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-24.04
+            engines: chromium,firefox,webkit
+          - os: windows-2025
+            engines: chromium,firefox
+          - os: macos-15
+            engines: webkit
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    env:
+      PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/browser-seed
+      PLAYWRIGHT_DOWNLOAD_CONNECTION_TIMEOUT: '120000'
+      BROWSER_ENGINES: ${{ matrix.engines }}
+      BROWSER_OUTPUT: ${{ runner.temp }}/browser-package
+      BROWSER_RECORD: ${{ runner.temp }}/browser-record.json
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: 3.12.14
+      - name: Install the exact locked producer toolchain
+        run: npm ci --prefix tools/quality/toolchain --ignore-scripts
+      - name: Prepare bounded Ubuntu downloads
+        if: runner.os == 'Linux'
+        run: sudo python3 tools/quality/ubuntu_downloads.py
+      - name: Acquire the pinned browser set once for archive preparation
+        run: |
+          engines="${BROWSER_ENGINES//,/ }"
+          node tools/quality/toolchain/node_modules/playwright/cli.js install --with-deps $engines
+      - name: Validate real launches in this preparer only and freeze archive bytes
+        run: node tools/quality/browser-runtime.cjs pack --browsers "$BROWSER_ENGINES" --directory "$PLAYWRIGHT_BROWSERS_PATH" --output "$BROWSER_OUTPUT"
+      - id: bundle
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: browser-runtime-${{ matrix.os }}-${{ runner.arch }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/browser-package/
+          if-no-files-found: error
+          retention-days: 90
+          compression-level: 0
+      - name: Emit an exact source-bound pin for review
+        env:
+          BROWSER_ARTIFACT: ${{ steps.bundle.outputs.artifact-id }}
+          BROWSER_DIGEST: ${{ steps.bundle.outputs.artifact-digest }}
+          BROWSER_NAME: browser-runtime-${{ matrix.os }}-${{ runner.arch }}-${{ github.run_id }}-${{ github.run_attempt }}
+        run: node tools/quality/browser-runtime.cjs record --directory "$BROWSER_OUTPUT" --artifact "$BROWSER_ARTIFACT" --digest "$BROWSER_DIGEST" --name "$BROWSER_NAME" --output "$BROWSER_RECORD"
+      - name: Retain the reviewed-pin input separately from the frozen archive
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: browser-pin-${{ matrix.os }}-${{ runner.arch }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/browser-record.json
+          if-no-files-found: error
+          retention-days: 90

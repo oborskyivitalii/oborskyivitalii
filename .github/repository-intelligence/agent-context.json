@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "bea2209098a45d7d5ab06a33d0b6abd5aef42b50d2faf29951f03c9f48bccfe7",
+    "digest": "2c1d580de8f7725493c91f84fce0453e1f413c5a2949c671e41a712ea6cfdcd0",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -170,6 +170,11 @@
         "sha256": "4237f57d6c94efedb0a03b794d48dab655b2ba58c5dbdb396ad8805bd7e68873"
       },
       {
+        "path": ".github/actions/browser-archive/action.yml",
+        "identity_mode": "content",
+        "sha256": "d43b0d55c84b6e1ab5b6c4545dbeb5842ea73bfbbd958836dc2bee252d3bf21f"
+      },
+      {
         "path": ".github/code-style.json",
         "identity_mode": "content",
         "sha256": "7f275850381b10adcc9cce83ecc8969fbbdd0d267ac565141c5bfef11fd4a7fc"
@@ -196,12 +201,17 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "4a02da054cf0f4d35094024963514749e7dfc58a5bcbb3cf1f2267647be18278"
+        "sha256": "0f8a54907bcce4fa85f60195ca0c9bf2866b04a70e007c55da117592a42ccbd9"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "0cb3611a646a2837fd57be9655dd872cd2027ad10a91e4eb1c21606a9b5b5393"
+        "sha256": "bcf1408ecdd0b2cac961ad538c5058cc504102c2a36881351d6a30b0c9ab0635"
+      },
+      {
+        "path": ".github/workflows/browser-archives.yml",
+        "identity_mode": "content",
+        "sha256": "eff149fefd03cab8ae8b497f42bf637749a9469b77d7233c8f72b440fb7eef76"
       },
       {
         "path": ".github/workflows/change-admission.yml",
@@ -346,7 +356,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "bf3c042a68d814484daf1e8f3076a2a5a9a87d4a4c9d15c98a3902acbe54e6b9"
+        "sha256": "103d3dea18205677bdc7a7e696644181b83eb389bc54ea8a4711b31263d8c0eb"
       },
       {
         "path": "NOTICE.md",
@@ -671,6 +681,11 @@
         "path": "guides/ARTICLE-WORKFLOW.md",
         "identity_mode": "content",
         "sha256": "83272df023a2ce9ef12a77a8252e684abaf822653102b65c8b9a8e01c26af295"
+      },
+      {
+        "path": "guides/BROWSER-ARCHIVES.md",
+        "identity_mode": "content",
+        "sha256": "aa163876165a308b1052f3b4753a89dcae36becfc63d8b39982c445c9f7ecbb6"
       },
       {
         "path": "guides/CODE-STYLE.md",
@@ -1001,6 +1016,11 @@
         "path": "review/issue-122/2026-10-25-r3-platform-integration.md",
         "identity_mode": "content",
         "sha256": "34c26644d37e8621f18b92d8a99e0acf51e71824b4e00280bf5634d643f7e7b0"
+      },
+      {
+        "path": "review/issue-122/2026-10-26-browser-archives.md",
+        "identity_mode": "content",
+        "sha256": "936f561704732a7912b3c2556b925cdd089cb6bcd8143e756b3af692f2db8923"
       },
       {
         "path": "review/issue-126/2026-10-23-announcement-review.md",
@@ -7583,6 +7603,11 @@
         "sha256": "08e0ac9bce886f3d58923d43f8c1563144e17b8cd02f96bca16b12fa08fed1af"
       },
       {
+        "path": "tests/test_browser_archives.py",
+        "identity_mode": "content",
+        "sha256": "c5b02d8c3c75b7d67449b91c92def18a5672b0e846f9d9e95afe593335483574"
+      },
+      {
         "path": "tests/test_code_style.py",
         "identity_mode": "content",
         "sha256": "6928de833df06bfaf092442c719db0919bd936d3cd19c33d8c04006f29c8ab1c"
@@ -8033,6 +8058,11 @@
         "sha256": "95aa76be742aa534db63dc29378ac050b631735c77d7475e9a2bdb0a3cefd4b9"
       },
       {
+        "path": "tools/quality/browser-archives.json",
+        "identity_mode": "content",
+        "sha256": "48763ffd6372f68c98c4eb370657152f00ad4eec6ebd06648010b838b87444dc"
+      },
+      {
         "path": "tools/quality/browser-gate-diagnostics.cjs",
         "identity_mode": "content",
         "sha256": "ee5a3c2dcc7424870b759a500b422d0f9e1feb252a2081f8c0ff44d9eb0d07ed"
@@ -8046,6 +8076,16 @@
         "path": "tools/quality/browser-lifecycle.cjs",
         "identity_mode": "content",
         "sha256": "7710730f8231ad8bf845dcfcfe42f2aa8e1744775130f730915937683a41916f"
+      },
+      {
+        "path": "tools/quality/browser-runtime.cjs",
+        "identity_mode": "content",
+        "sha256": "9a5f9b7ad09cc4de7ee33f1d280eccec3f9c57a273eb3aaa5beac0970d0320bb"
+      },
+      {
+        "path": "tools/quality/browser_archives.py",
+        "identity_mode": "content",
+        "sha256": "ffc2831c89aa3e6defd264c0c9fa869f47b5239dabc2f2a6a73e72d43e99f32b"
       },
       {
         "path": "tools/quality/budgets.json",
@@ -8425,7 +8465,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "b09df0ed704316597e142a7fa5c899bc8d1ea6e6c2949fca5911565f0ddeb988"
+        "sha256": "0c5925097c5bdc0f1b047756d4ef00a45854cf75aae3e627e270874826f817ab"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -9469,6 +9509,17 @@
       "title": "issue-76.json"
     },
     {
+      "path": ".github/actions/browser-archive/action.yml",
+      "kind": "file",
+      "purpose": "Shared exact native browser archive restore and retained preparation-failure report.",
+      "role": "configuration",
+      "owner": "guides/BROWSER-ARCHIVES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "action.yml"
+    },
+    {
       "path": ".github/code-style.json",
       "kind": "file",
       "purpose": "Exact issue54 legacy source/inline-style debt with frozen-baseline ceilings and removal tasks.",
@@ -9544,6 +9595,17 @@
         "AGENTS.md"
       ],
       "title": "ri-ci-map.json"
+    },
+    {
+      "path": ".github/workflows/browser-archives.yml",
+      "kind": "file",
+      "purpose": "Owner-controlled unprivileged native browser archive seed, real producer launches and exact pin records.",
+      "role": "workflow",
+      "owner": "guides/BROWSER-ARCHIVES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "browser-archives.yml"
     },
     {
       "path": ".github/workflows/change-admission.yml",
@@ -10580,6 +10642,17 @@
       "title": "Article authoring and review workflow"
     },
     {
+      "path": "guides/BROWSER-ARCHIVES.md",
+      "kind": "file",
+      "purpose": "Browser archive preparation, exact pins, consumer cold-ordering and90day refresh operation.",
+      "role": "guide",
+      "owner": "guides/BROWSER-ARCHIVES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Pinned browser supply"
+    },
+    {
       "path": "guides/CODE-STYLE.md",
       "kind": "file",
       "purpose": "Mandatory agent coding, content/template/CSS boundaries, performance and verification standards.",
@@ -11304,6 +11377,17 @@
         "AGENTS.md"
       ],
       "title": "Issue 122 — stable platform integration"
+    },
+    {
+      "path": "review/issue-122/2026-10-26-browser-archives.md",
+      "kind": "file",
+      "purpose": "Issue122 authorized browser-supply repair, source-bound review and implementation/native evidence.",
+      "role": "history",
+      "owner": "guides/BROWSER-ARCHIVES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Browser supply repair — 26 October 2026"
     },
     {
       "path": "review/issue-126/2026-10-23-announcement-review.md",
@@ -25782,6 +25866,17 @@
       "title": "test-profile-selection.test.cjs"
     },
     {
+      "path": "tests/test_browser_archives.py",
+      "kind": "file",
+      "purpose": "Browser native origin, locked selection, HTML/hash/path/link and executable failure regressions.",
+      "role": "test",
+      "owner": "guides/BROWSER-ARCHIVES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "test_browser_archives.py"
+    },
+    {
       "path": "tests/test_code_style.py",
       "kind": "file",
       "purpose": "Negative style-guard fixtures and actual code-path/bilingual agent/RI routing checks.",
@@ -26772,6 +26867,17 @@
       "title": "block-observation.cjs"
     },
     {
+      "path": "tools/quality/browser-archives.json",
+      "kind": "file",
+      "purpose": "Explicit immutable native browser artifact pins by exact toolchain, revision and system identity.",
+      "role": "configuration",
+      "owner": "guides/BROWSER-ARCHIVES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "browser-archives.json"
+    },
+    {
       "path": "tools/quality/browser-gate-diagnostics.cjs",
       "kind": "file",
       "purpose": "Maintained quality/check helper for browser gate diagnostics; applicable profiles are selected by SITE-CHECK-PROFILES.",
@@ -26803,6 +26909,28 @@
         "AGENTS.md"
       ],
       "title": "browser-lifecycle.cjs"
+    },
+    {
+      "path": "tools/quality/browser-runtime.cjs",
+      "kind": "file",
+      "purpose": "Locked browser description and preparer-only launch probe; shared cross-platform CLI adapter.",
+      "role": "validator",
+      "owner": "guides/BROWSER-ARCHIVES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "browser-runtime.cjs"
+    },
+    {
+      "path": "tools/quality/browser_archives.py",
+      "kind": "file",
+      "purpose": "Pinned native browser archive origin, bounded extraction, complete byte/mode/link verification and expiry failures.",
+      "role": "validator",
+      "owner": "guides/BROWSER-ARCHIVES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "browser_archives.py"
     },
     {
       "path": "tools/quality/budgets.json",
@@ -28492,6 +28620,26 @@
       "purpose": "Owning-issue acceptance policies with stable criterion IDs and executable check mappings.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".github/actions",
+      "kind": "directory",
+      "purpose": "Shared reviewed CI setup actions with bounded source and artifact trust.",
+      "role": "configuration",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".github/actions/browser-archive",
+      "kind": "directory",
+      "purpose": "Pinned browser supply action; integrity checks without prior browser launch.",
+      "role": "configuration",
+      "owner": "guides/BROWSER-ARCHIVES.md",
       "instructions": [
         "AGENTS.md"
       ]

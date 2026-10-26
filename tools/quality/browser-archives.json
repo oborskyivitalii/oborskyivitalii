@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "workflow": ".github/workflows/browser-archives.yml",
+  "retentionDays": 90,
+  "archives": []
+}

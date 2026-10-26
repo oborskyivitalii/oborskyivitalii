@@ -2,8 +2,8 @@
   "schema_version": 1,
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/122",
-    "date": "2026-10-24",
-    "summary": "R2 preserves unconditional delivery Basic dispatch, formatting/lint/RI/owning invocations; the trusted conditional repository route reports site work inapplicable. Native protected outcomes remain external."
+    "date": "2026-10-26",
+    "summary": "Browser supply preparer and cold shared consumer retain existing source/admission/profile obligations; native seeds and consumer rollout remain pending."
   },
   "layers": [
     {
@@ -327,7 +327,9 @@
         "tools/release/rights-record.cjs",
         "tools/quality/analytics-browser.cjs",
         "tests/analytics.test.cjs",
-        "tools/release/staging-policy.cjs"
+        "tools/release/staging-policy.cjs",
+        ".github/workflows/browser-archives.yml",
+        ".github/actions/browser-archive/action.yml"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-map", "site-basic"]
     },
@@ -359,7 +361,12 @@
         "tools/quality/phase-checkpoint.cjs",
         "tests/phase-checkpoint.test.cjs",
         "tools/quality/ubuntu_downloads.py",
-        "tests/test_ubuntu_downloads.py"
+        "tests/test_ubuntu_downloads.py",
+        "tools/quality/browser-runtime.cjs",
+        "tools/quality/browser_archives.py",
+        "tools/quality/browser-archives.json",
+        "tests/test_browser_archives.py",
+        "guides/BROWSER-ARCHIVES.md"
       ],
       "checks": [
         "maintained-format-check",
@@ -669,7 +676,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "2f69a9091d8433edf5ce65977bae754d0196f66f07f4f450b9abfc5c38b230f4",
+    "digest": "5d0ee713617c8680e194210742dad9919b448282d9e52fa5b6847b9b79210a5b",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -805,7 +812,11 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "4a02da054cf0f4d35094024963514749e7dfc58a5bcbb3cf1f2267647be18278"
+        "sha256": "0f8a54907bcce4fa85f60195ca0c9bf2866b04a70e007c55da117592a42ccbd9"
+      },
+      {
+        "path": ".github/workflows/browser-archives.yml",
+        "sha256": "eff149fefd03cab8ae8b497f42bf637749a9469b77d7233c8f72b440fb7eef76"
       },
       {
         "path": ".github/workflows/change-admission.yml",
@@ -1069,7 +1080,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "b09df0ed704316597e142a7fa5c899bc8d1ea6e6c2949fca5911565f0ddeb988"
+        "sha256": "0c5925097c5bdc0f1b047756d4ef00a45854cf75aae3e627e270874826f817ab"
       },
       {
         "path": "tools/repository_intelligence.py",
