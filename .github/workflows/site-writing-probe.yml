@@ -71,6 +71,37 @@ jobs:
               z.extractall(root)
           print('Original package native size/SHA/CRC verified.')
           PYTHON
+      - name: Bound Ubuntu downloads and use its primary archive
+        run: |
+          sudo python3 - <<'PYTHON'
+          from pathlib import Path
+          import re
+          apt = Path('/etc/apt')
+          sources = [apt / 'sources.list', *apt.glob('sources.list.d/*.list'), *apt.glob('sources.list.d/*.sources')]
+          mirrors = {apt / 'apt-mirrors.txt'}
+          for source in sources:
+              if source.exists():
+                  active = '\n'.join(line.split('#', 1)[0] for line in source.read_text().splitlines())
+                  for name in re.findall(r'(?<!\S)mirror\+file:(?://)?(/etc/apt/[^\s#]+)', active):
+                      mirror = Path(name)
+                      if not mirror.resolve().is_relative_to(apt.resolve()) or not mirror.is_file():
+                          raise ValueError('Invalid or missing active APT mirror list: ' + name)
+                      mirrors.add(mirror)
+          pattern = r'https?://azure\.archive\.ubuntu\.com/ubuntu(?=/|\s|$)'
+          changed = []
+          for source in [*sources, *sorted(mirrors)]:
+              if not source.exists():
+                  continue
+              before = source.read_text()
+              after = re.sub(pattern, 'https://archive.ubuntu.com/ubuntu', before)
+              if after != before:
+                  source.write_text(after)
+                  changed.append(str(source))
+              if re.search(pattern, source.read_text()):
+                  raise ValueError('Azure archive remains in ' + str(source))
+          (apt / 'apt.conf.d/99-site-download-bounds').write_text('Acquire::http::Timeout "30";\nAcquire::https::Timeout "30";\nAcquire::Retries "0";\n')
+          print('Ubuntu source/mirror files moved to the primary archive:', changed)
+          PYTHON
       - name: Install existing locked tools and browser OS dependencies
         run: |
           test "$(git rev-parse HEAD)" = e5f9d3b291802af57cac95b0c29494b7d5717500
