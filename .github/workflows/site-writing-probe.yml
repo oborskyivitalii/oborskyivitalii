@@ -1,4 +1,4 @@
-name: Issue122 isolated Writing method comparison
+name: Issue122 frozen Research presentation diagnostic
 # Diagnostic branch only. Never merge this overlay; original staging failure remains.
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
-          ref: e5f9d3b291802af57cac95b0c29494b7d5717500
+          ref: 87e5c7f48ecd06349fd7b236b428b8c543f69afe
           path: candidate
           fetch-depth: 0
           persist-credentials: false
@@ -30,7 +30,7 @@ jobs:
           python3 - <<'PYTHON'
           import os
           with open(os.environ['GITHUB_ENV'],'a') as f:
-              for key,leaf in [('STARTUP_PROFILE_PACKAGE','startup-package'),('STARTUP_PROFILE_OUTPUT','startup-profile')]:
+              for key,leaf in [('RESEARCH_DIAGNOSTIC_PACKAGE','research-package'),('RESEARCH_DIAGNOSTIC_OUTPUT','research-presentation')]:
                   f.write(key+'='+os.path.join(os.environ['RUNNER_TEMP'],leaf)+'\n')
           PYTHON
       - name: Authenticate retained failed-stage package metadata
@@ -38,13 +38,13 @@ jobs:
         with:
           script: |
             const a=require('node:assert/strict');
-            const meta=(await github.rest.actions.getArtifact({...context.repo,artifact_id:12658744128})).data;
+            const meta=(await github.rest.actions.getArtifact({...context.repo,artifact_id:12677610204})).data;
             a.equal(meta.expired,false);
-            a.equal(meta.name,'site-review-package-40340587156-1');
+            a.equal(meta.name,'site-review-package-40377241088-1');
             a.equal(meta.size_in_bytes,708319);
-            a.equal(meta.digest,'sha256:9348f239017f29932b00116cd43c425169a59e419a7db384367247c088403397');
-            a.equal(meta.workflow_run.id,40340587156);
-            const run=(await github.rest.actions.getWorkflowRun({...context.repo,run_id:40340587156})).data;
+            a.equal(meta.digest,'sha256:97b5eeb4d7299db96299162194e63a3d5d22bcb813b02bdc037aea3a6ccc22ac');
+            a.equal(meta.workflow_run.id,40377241088);
+            const run=(await github.rest.actions.getWorkflowRun({...context.repo,run_id:40377241088})).data;
             a.equal(run.path,'.github/workflows/site-color-review.yml');
             a.equal(run.head_sha,'83591bdfa99cba7649968cf94a6335e98af2847e');
             a.equal(run.run_attempt,1);
@@ -59,11 +59,11 @@ jobs:
         run: |
           python3 - <<'PYTHON'
           import importlib.util,json,os,pathlib,zipfile
-          root=pathlib.Path(os.environ['STARTUP_PROFILE_PACKAGE']);root.mkdir()
+          root=pathlib.Path(os.environ['RESEARCH_DIAGNOSTIC_PACKAGE']);root.mkdir()
           s=importlib.util.spec_from_file_location('archive','tools/quality/browser_archives.py')
           m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
-          p=root.parent/'startup-package-original.zip'
-          m.download({'artifact':12658744128,'uploadDigest':'sha256:9348f239017f29932b00116cd43c425169a59e419a7db384367247c088403397'},os.environ['GITHUB_TOKEN'],p)
+          p=root.parent/'research-package-original.zip'
+          m.download({'artifact':12677610204,'uploadDigest':'sha256:97b5eeb4d7299db96299162194e63a3d5d22bcb813b02bdc037aea3a6ccc22ac'},os.environ['GITHUB_TOKEN'],p)
           assert p.stat().st_size==708319
           with zipfile.ZipFile(p) as z:
               assert z.testzip() is None
@@ -104,7 +104,7 @@ jobs:
           PYTHON
       - name: Install existing locked tools and browser OS dependencies
         run: |
-          test "$(git rev-parse HEAD)" = e5f9d3b291802af57cac95b0c29494b7d5717500
+          test "$(git rev-parse HEAD)" = 87e5c7f48ecd06349fd7b236b428b8c543f69afe
           test -z "$(git status --porcelain)"
           npm ci --prefix tools/quality/toolchain --ignore-scripts
           tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium
@@ -113,97 +113,445 @@ jobs:
         with:
           browsers: chromium
           working-directory: candidate
-      - name: Collect one fixed Writing Lighthouse method pair; no acceptance
+      - name: Collect one canonical Research trial and one separate instrumented session
         run: |
           node <<'NODE'
           'use strict';
-          const fs = require('node:fs'), path = require('node:path'), zlib = require('node:zlib');
+          const fs = require('node:fs'),
+            path = require('node:path'),
+            zlib = require('node:zlib');
+          const crypto = require('node:crypto'),
+            assert = require('node:assert/strict');
           const { pathToFileURL } = require('node:url');
-          const assert = require('node:assert/strict'), crypto = require('node:crypto');
-          const repo = process.cwd(), output = process.env.STARTUP_PROFILE_OUTPUT;
-          const packageRoot = process.env.STARTUP_PROFILE_PACKAGE;
+          const cp = require('node:child_process');
+          const repo = process.cwd(),
+            output = process.env.RESEARCH_DIAGNOSTIC_OUTPUT;
+          const packageRoot = process.env.RESEARCH_DIAGNOSTIC_PACKAGE;
           const { toolRequire, environment } = require(repo + '/tools/quality/common.cjs');
-          const origin = 'https://de94cc71.oborskyi-author-ci-staging.pages.dev';
+          const origin = 'https://01f83bd6.oborskyi-author-ci-staging.pages.dev';
+          const source = '87e5c7f48ecd06349fd7b236b428b8c543f69afe';
+          const tree = '50396b64513cc3a8315a62316db5dea6bbd7e642';
           const record = {
-            kind: 'one-writing-method-comparison-pair', acceptance: false,
-            source: 'e5f9d3b291802af57cac95b0c29494b7d5717500',
-            tree: '5863806e0e385cfdcdfa931d5ff9e968edf765a1',
-            controller: process.env.GITHUB_SHA, runId: process.env.GITHUB_RUN_ID,
-            attempt: process.env.GITHUB_RUN_ATTEMPT, environment: environment(), origin,
-            packageArtifact: 12658744128, browserArtifact: 12643236386,
-            order: ['simulate', 'devtools'], rows: [],
-            methodDerivedWindows: { simulate: 1000, devtools: 5250, keys: ['cpuQuietThresholdMs', 'networkQuietThresholdMs', 'pauseAfterFcpMs', 'pauseAfterLoadMs'] },
-            question: 'Does actual CPU/network throttling exercise runtime adaptation that post-hoc trace simulation cannot rerun?',
-            limits: 'One fixed pair, one cold process/navigation per method, no repetitions, best-result selection or release acceptance. Only requested method changes. Lighthouse derives four quiet-window settings1000→5250 as well; the complete method changes CPU/network execution, observation windows and metric computation together. One pair cannot establish stability or sole causation. Original failed staging remains failed.',
+            kind: 'frozen-research-presentation-diagnostic',
+            acceptance: false,
+            fullGate: false,
+            performanceAcceptance: false,
+            completed: false,
+            source,
+            tree,
+            controller: process.env.GITHUB_SHA,
+            runId: process.env.GITHUB_RUN_ID,
+            attempt: process.env.GITHUB_RUN_ATTEMPT,
+            environment: environment(),
+            origin,
+            packageArtifact: 12677610204,
+            packageUploadDigest: '97b5eeb4d7299db96299162194e63a3d5d22bcb813b02bdc037aea3a6ccc22ac',
+            observation: {
+              windowMs: 8000,
+              maximumRafRows: 500,
+              traceLimitBytes: 33554432,
+            },
+            protocol:
+              'One untouched canonical mobile/simulated Lighthouse Research trial, close browser, then at most one separately instrumented fresh Research session. No warmup, repeats, forced focus, admission or source changes. Secondary native timings are not equivalent to simulated Lighthouse scores.',
+            launches: 0,
+            canonical: {},
+            instrumented: {},
+            errors: [],
           };
           fs.mkdirSync(output, { recursive: true });
-          const save = () => fs.writeFileSync(path.join(output, 'comparison.json'), JSON.stringify(record, null, 2) + '\n');
+          const save = () =>
+            fs.writeFileSync(path.join(output, 'diagnostic.json'), JSON.stringify(record, null, 2) + '\n');
+          const digest = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
+          function retain(name, value, compressed = false) {
+            const raw = Buffer.from(JSON.stringify(value) + '\n');
+            const bytes = compressed ? zlib.gzipSync(raw) : raw;
+            fs.writeFileSync(path.join(output, name), bytes);
+            return {
+              file: name,
+              bytes: bytes.length,
+              sha256: digest(bytes),
+              rawBytes: raw.length,
+            };
+          }
+          function verifyCheckout() {
+            const head = cp.execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
+            const currentTree = cp
+              .execFileSync('git', ['rev-parse', 'HEAD^{tree}'], { encoding: 'utf8' })
+              .trim();
+            const dirty = cp.execFileSync('git', ['status', '--porcelain'], {
+              encoding: 'utf8',
+            });
+            assert.equal(head, source);
+            assert.equal(currentTree, tree);
+            assert.equal(dirty, '');
+            return { head, tree: currentTree, dirty: false };
+          }
+          async function withBrowser(row, launcher, collect) {
+            row.startedAt = new Date().toISOString();
+            row.collected = false;
+            row.cleanup = false;
+            record.launches += 1;
+            save();
+            assert.ok(record.launches <= 2, 'at most two fresh diagnostic processes');
+            let chrome, failure;
+            try {
+              chrome = await launcher.launch({
+                chromePath: toolRequire('playwright').chromium.executablePath(),
+                chromeFlags: ['--headless', '--no-sandbox', '--disable-dev-shm-usage'],
+              });
+              await collect(chrome);
+              row.collected = true;
+            } catch (error) {
+              row.error = error.stack;
+              failure = error;
+            } finally {
+              try {
+                if (chrome) {
+                  await chrome.kill();
+                  row.cleanup = true;
+                }
+              } catch (error) {
+                row.cleanupError = error.stack;
+                if (!failure) failure = error;
+              } finally {
+                row.endedAt = new Date().toISOString();
+                save();
+              }
+            }
+            if (failure) throw failure;
+          }
+          async function canonical(lighthouse, chrome) {
+            const row = record.canonical;
+            const result = await lighthouse(origin + '/research.html', {
+              port: chrome.port,
+              output: 'json',
+              logLevel: 'error',
+              onlyCategories: ['performance', 'accessibility', 'best-practices'],
+            });
+            row.lhr = retain('canonical-lhr.json', result.lhr);
+            row.trace = retain('canonical-trace.json.gz', result.artifacts.Trace, true);
+            row.devtoolsLog = retain('canonical-devtoolslog.json.gz', result.artifacts.DevtoolsLog, true);
+            row.settings = result.lhr.configSettings;
+            row.lighthouseVersion = result.lhr.lighthouseVersion;
+            row.environment = result.lhr.environment;
+            row.runtimeError = result.lhr.runtimeError || null;
+            row.warnings = result.lhr.runWarnings;
+            const budgets = require(repo + '/tools/quality/budgets.json').lighthouse.mobile;
+            row.budgets = Object.fromEntries(
+              Object.entries(budgets).map(([key, limit]) => {
+                const value = result.lhr.audits[key]?.numericValue;
+                return [key, { value, limit, pass: Number.isFinite(value) && value <= limit }];
+              })
+            );
+            row.budgetPassed = Object.values(row.budgets).every((item) => item.pass);
+            save();
+            assert.equal(row.settings.throttlingMethod, 'simulate');
+            assert.equal(row.settings.throttling.cpuSlowdownMultiplier, 4);
+            assert.equal(row.settings.formFactor, 'mobile');
+            assert.ok(!row.runtimeError, 'Lighthouse collection runtime error');
+            assert.ok(result.artifacts.Trace.traceEvents.length);
+            assert.ok(result.artifacts.DevtoolsLog.length);
+            for (const key of Object.keys(budgets)) assert.ok(Number.isFinite(row.budgets[key].value));
+          }
+          function observe(options) {
+            const state = (window.__issue122Research = {
+              events: [],
+              raf: [],
+              paints: [],
+              limitations: [],
+              complete: false,
+            });
+            const started = performance.now();
+            function snapshot(kind) {
+              state.events.push({
+                kind,
+                time: performance.now(),
+                visibility: document.visibilityState,
+                hidden: document.hidden,
+                focus: document.hasFocus(),
+                url: location.href,
+              });
+            }
+            snapshot('injected');
+            for (const name of ['visibilitychange', 'DOMContentLoaded'])
+              document.addEventListener(name, () => snapshot(name));
+            for (const name of ['focus', 'blur', 'load', 'pageshow', 'pagehide'])
+              window.addEventListener(name, () => snapshot(name));
+            for (const type of ['paint', 'largest-contentful-paint']) {
+              try {
+                const observer = new PerformanceObserver((list) => {
+                  for (const entry of list.getEntries())
+                    state.paints.push({
+                      type,
+                      name: entry.name,
+                      startTime: entry.startTime,
+                      renderTime: entry.renderTime,
+                      loadTime: entry.loadTime,
+                      size: entry.size,
+                    });
+                });
+                observer.observe({ type, buffered: true });
+              } catch (error) {
+                state.limitations.push({ type, error: error.message });
+              }
+            }
+            function frame(time) {
+              state.raf.push({
+                time,
+                observedAt: performance.now(),
+                visibility: document.visibilityState,
+              });
+              if (performance.now() - started < options.windowMs && state.raf.length < options.maximumRafRows)
+                requestAnimationFrame(frame);
+              else {
+                state.complete = true;
+                state.finishedAt = performance.now();
+                snapshot('raf-finished');
+              }
+            }
+            requestAnimationFrame(frame);
+          }
+          async function stopTrace(cdp) {
+            let timer;
+            const completion = new Promise((resolve, reject) => {
+              timer = setTimeout(() => reject(Error('Trace completion timed out')), 15000);
+              cdp.once('Tracing.tracingComplete', resolve);
+            });
+            let stream;
+            try {
+              const [, result] = await Promise.all([cdp.send('Tracing.end'), completion]);
+              stream = result.stream;
+            } finally {
+              clearTimeout(timer);
+            }
+            assert.ok(stream, 'trace stream required');
+            const chunks = [];
+            let size = 0;
+            try {
+              let chunk;
+              do {
+                chunk = await cdp.send('IO.read', { handle: stream, size: 1048576 });
+                const bytes = Buffer.from(chunk.data, chunk.base64Encoded ? 'base64' : 'utf8');
+                chunks.push(bytes);
+                size += bytes.length;
+                assert.ok(size <= record.observation.traceLimitBytes, 'trace byte bound');
+              } while (!chunk.eof);
+            } finally {
+              await cdp.send('IO.close', { handle: stream });
+            }
+            const trace = JSON.parse(Buffer.concat(chunks).toString('utf8'));
+            assert.ok(
+              Array.isArray(trace.traceEvents) && trace.traceEvents.length,
+              'nonempty instrumented trace required'
+            );
+            const eventCount = (name) => trace.traceEvents.filter((event) => event.name === name).length;
+            return {
+              ...retain('instrumented-trace.json.gz', trace, true),
+              pipelineEvents: eventCount('PipelineReporter'),
+              presentationEvents: eventCount('SubmitCompositorFrameToPresentationCompositorFrame'),
+              eventScope: 'Event availability only; no span duration or cause inferred',
+            };
+          }
+          async function instrumented(chrome) {
+            const row = record.instrumented;
+            row.timingScope =
+              'Native CPU1/no network emulation, mobile viewport from canonical settings; script/CDP tracing perturb timings. No admission comparison.';
+            row.events = [];
+            row.requestFailures = [];
+            row.pageErrors = [];
+            row.surfaces = {
+              visibility: 'not-observed',
+              raf: 'not-observed',
+              paint: 'not-observed',
+              lcp: 'not-observed',
+              compositor: 'not-observed',
+              presentation: 'not-observed',
+            };
+            const browser = await toolRequire('puppeteer-core').connect({
+              browserURL: 'http://127.0.0.1:' + chrome.port,
+              protocolTimeout: 15000,
+            });
+            let cdp,
+              page,
+              failure,
+              tracing = false;
+            try {
+              row.browserVersion = await browser.version();
+              const pages = await browser.pages();
+              assert.equal(pages.length, 1, 'one fresh blank target required');
+              page = pages[0];
+              assert.ok(['about:blank', ''].includes(page.url()), 'no prior page navigation');
+              const screen = record.canonical.settings.screenEmulation;
+              await page.setViewport({
+                width: screen.width,
+                height: screen.height,
+                deviceScaleFactor: screen.deviceScaleFactor,
+                isMobile: screen.mobile,
+                hasTouch: true,
+              });
+              await page.setUserAgent(record.canonical.settings.emulatedUserAgent);
+              await page.evaluateOnNewDocument(observe, record.observation);
+              page.on('pageerror', (error) => row.pageErrors.push(error.message));
+              page.on('requestfailed', (request) =>
+                row.requestFailures.push({
+                  url: request.url(),
+                  failure: request.failure(),
+                })
+              );
+              cdp = await page.createCDPSession();
+              await cdp.send('Page.enable');
+              await cdp.send('Page.setLifecycleEventsEnabled', { enabled: true });
+              cdp.on('Page.lifecycleEvent', (event) => row.events.push(event));
+              await cdp.send('Network.enable');
+              await cdp.send('Network.setCacheDisabled', { cacheDisabled: true });
+              await cdp.send('Tracing.start', {
+                categories:
+                  'devtools.timeline,disabled-by-default-devtools.timeline,blink.user_timing,loading,cc,viz,gpu',
+                transferMode: 'ReturnAsStream',
+              });
+              tracing = true;
+              await page.goto(origin + '/research.html', {
+                waitUntil: 'load',
+                timeout: 30000,
+              });
+              await page.waitForFunction(() => window.__issue122Research?.complete === true, {
+                timeout: 12000,
+              });
+              row.observations = await page.evaluate(() => ({
+                ...window.__issue122Research,
+                url: location.href,
+                visibility: document.visibilityState,
+                focus: document.hasFocus(),
+                timeOrigin: performance.timeOrigin,
+              }));
+              assert.ok([origin + '/research', origin + '/research.html'].includes(row.observations.url));
+              assert.ok(row.observations.raf.length > 0, 'RAF observations required');
+              row.surfaces.visibility = row.observations.events.length ? 'observed' : 'not-observed';
+              row.surfaces.raf = row.observations.raf.length ? 'observed' : 'not-observed';
+              row.surfaces.paint = row.observations.paints.some((entry) => entry.type === 'paint')
+                ? 'observed'
+                : 'not-observed';
+              row.surfaces.lcp = row.observations.paints.some(
+                (entry) => entry.type === 'largest-contentful-paint'
+              )
+                ? 'observed'
+                : 'not-observed';
+              row.observed = true;
+              row.observedScope =
+                'Session/visibility/RAF collection; paint/LCP/compositor availability is separate';
+              save();
+            } catch (error) {
+              row.observed = false;
+              if (page) {
+                try {
+                  row.partialObservations = await page.evaluate(() => window.__issue122Research || null);
+                } catch (snapshotError) {
+                  row.partialObservationError = snapshotError.message;
+                }
+              }
+              row.error = error.stack;
+              save();
+              failure = error;
+            } finally {
+              try {
+                if (tracing) {
+                  row.trace = await stopTrace(cdp);
+                  row.surfaces.compositor = row.trace.pipelineEvents ? 'events-observed' : 'not-observed';
+                  row.surfaces.presentation = row.trace.presentationEvents
+                    ? 'events-observed'
+                    : 'not-observed';
+                }
+              } catch (error) {
+                row.traceCleanupError = error.stack;
+                row.surfaces.compositor = 'collection-failed';
+                row.surfaces.presentation = 'collection-failed';
+                if (!failure) failure = error;
+              } finally {
+                try {
+                  await browser.disconnect();
+                } catch (error) {
+                  row.disconnectError = error.stack;
+                  if (!failure) failure = error;
+                }
+                save();
+              }
+            }
+            if (failure) throw failure;
+          }
           async function main() {
+            record.checkout = { before: verifyCheckout() };
             save();
             const manifest = JSON.parse(fs.readFileSync(packageRoot + '/staging-package.json'));
-            assert.equal(manifest.source.sourceCommit, record.source);
-            assert.equal(manifest.source.sourceTree, record.tree);
-            require(repo + '/tools/staging/package.cjs').verify(packageRoot, manifest, { sourceCommit: record.source, sourceTree: record.tree, candidateCommit: record.source });
+            require(repo + '/tools/staging/package.cjs').verify(packageRoot, manifest, {
+              sourceCommit: source,
+              sourceTree: tree,
+              candidateCommit: source,
+            });
+            assert.equal(manifest.source.sourceCommit, source);
+            assert.equal(manifest.source.sourceTree, tree);
+            assert.deepEqual(manifest.source.articleCandidates, []);
+            assert.deepEqual(manifest.gate.articleCandidates, []);
+            record.packageDigest = manifest.packageDigest;
             record.verifiedHostFiles = [];
-            for (const file of ['_staging/revision.json', 'writing.html', 'site-revision.json', ...Object.keys(manifest.source.files).filter(f => /^runtime\/[^/]+\/(space|navigation|theme|archive)\.js$|^runtime\/[^/]+\/styles\.css$/.test(f))]) {
-              const response = await fetch(origin + '/' + file, { signal: AbortSignal.timeout(30000), redirect: 'follow' });
+            for (const file of [
+              '_staging/revision.json',
+              'research.html',
+              'site-revision.json',
+              ...Object.keys(manifest.source.files).filter((file) =>
+                /^runtime\/[^/]+\/(space|navigation|theme|archive)\.js$|^runtime\/[^/]+\/styles\.css$/.test(
+                  file
+                )
+              ),
+            ]) {
+              const response = await fetch(origin + '/' + file, {
+                signal: AbortSignal.timeout(30000),
+                redirect: 'follow',
+              });
               assert.equal(response.status, 200, file);
               assert.equal(new URL(response.url).origin, origin);
-              const digest = crypto.createHash('sha256').update(Buffer.from(await response.arrayBuffer())).digest('hex');
-              assert.equal(digest, manifest.files[file].sha256, 'Immutable hosted bytes: ' + file);
-              record.verifiedHostFiles.push({ file, sha256: digest });
+              const hash = digest(Buffer.from(await response.arrayBuffer()));
+              assert.equal(hash, manifest.files[file].sha256, 'Immutable hosted bytes: ' + file);
+              record.verifiedHostFiles.push({ file, sha256: hash });
             }
             save();
-            const { default: lighthouse } = await import(pathToFileURL(toolRequire.resolve('lighthouse')).href);
+            const { default: lighthouse } = await import(
+              pathToFileURL(toolRequire.resolve('lighthouse')).href
+            );
             const launcher = await import(pathToFileURL(toolRequire.resolve('chrome-launcher')).href);
-            for (const method of record.order) {
-              const row = { method, startedAt: new Date().toISOString(), status: 'starting' };
-              record.rows.push(row); save();
-              const chrome = await launcher.launch({ chromePath: toolRequire('playwright').chromium.executablePath(), chromeFlags: ['--headless', '--no-sandbox', '--disable-dev-shm-usage'] });
-              try {
-                const result = await lighthouse(origin + '/writing.html', { port: chrome.port, output: 'json', logLevel: 'error', onlyCategories: ['performance', 'accessibility', 'best-practices'], throttlingMethod: method });
-                const folder = path.join(output, method); fs.mkdirSync(folder);
-                fs.writeFileSync(path.join(folder, 'lhr.json'), JSON.stringify(result.lhr, null, 2) + '\n');
-                for (const key of ['Trace', 'DevtoolsLog']) fs.writeFileSync(path.join(folder, key.toLowerCase() + '.json.gz'), zlib.gzipSync(JSON.stringify(result.artifacts[key]) + '\n'));
-                row.configSettings = result.lhr.configSettings;
-                row.lighthouseVersion = result.lhr.lighthouseVersion;
-                row.environment = result.lhr.environment;
-                row.metrics = Object.fromEntries(['first-contentful-paint', 'largest-contentful-paint', 'total-blocking-time', 'interactive', 'cumulative-layout-shift'].map(k => [k, result.lhr.audits[k]?.numericValue]));
-                row.runtimeError = result.lhr.runtimeError || null;
-                row.warnings = result.lhr.runWarnings;
-                save();
-                assert.equal(row.configSettings.throttlingMethod, method);
-                assert.equal(row.configSettings.throttling.cpuSlowdownMultiplier, 4);
-                assert.equal(row.configSettings.formFactor, 'mobile');
-                assert.ok(!row.runtimeError, 'Lighthouse collection runtime error');
-                let observer;
-                try {
-                  observer = await toolRequire('puppeteer-core').connect({ browserURL: 'http://127.0.0.1:' + chrome.port });
-                  const page = (await observer.pages()).find(p => p.url().startsWith(origin + '/writing'));
-                  row.postCollectionScene = page ? await page.evaluate(() => ({ url: location.href, scene: { ...document.querySelector('.space-scene')?.dataset }, motion: document.querySelector('#space-motion')?.textContent })) : { observed: false, reason: 'Original Writing target no longer exists' };
-                } catch (e) { row.postCollectionScene = { observed: false, reason: e.message }; }
-                finally { if (observer) await observer.disconnect(); }
-                row.status = 'collected';
-              } finally { await chrome.kill(); row.endedAt = new Date().toISOString(); save(); }
-            }
-            const [a, b] = record.rows.map(r => {
-              const settings = { ...r.configSettings }; delete settings.throttlingMethod;
-              for (const key of record.methodDerivedWindows.keys) {
-                assert.equal(settings[key], record.methodDerivedWindows[r.method], 'Expected method-derived window: ' + key);
-                delete settings[key];
-              }
-              return settings;
-            });
-            assert.deepEqual(a, b, 'All settings except method and its four derived windows must be identical');
-            record.completed = true; save();
-            console.log(JSON.stringify({ completed: true, acceptance: false, rows: record.rows.map(r => ({ method: r.method, metrics: r.metrics, scene: r.postCollectionScene })) }));
+            await withBrowser(record.canonical, launcher, (chrome) => canonical(lighthouse, chrome));
+            assert.equal(
+              record.canonical.cleanup,
+              true,
+              'canonical browser must close before instrumentation'
+            );
+            await withBrowser(record.instrumented, launcher, instrumented);
+            assert.equal(record.instrumented.cleanup, true);
+            record.checkout.after = verifyCheckout();
+            record.completed =
+              record.canonical.collected && record.instrumented.collected && record.instrumented.observed;
+            assert.equal(record.completed, true, 'both declared collections required');
+            save();
+            console.log(
+              JSON.stringify({
+                completed: record.completed,
+                acceptance: false,
+                canonicalBudgets: record.canonical.budgets,
+                launches: record.launches,
+              })
+            );
           }
-          main().catch(e => { record.completed = false; record.error = e.stack; save(); console.error(e.stack); process.exitCode = 1; });
+          main().catch((error) => {
+            record.completed = false;
+            record.errors.push(error.stack);
+            save();
+            console.error(error.stack);
+            process.exitCode = 1;
+          });
           NODE
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always()
         with:
-          name: issue122-writing-method-pair-${{ github.run_id }}-${{ github.run_attempt }}
-          path: ${{ runner.temp }}/startup-profile/
+          name: issue122-research-presentation-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/research-presentation/
           if-no-files-found: warn
           retention-days: 30
