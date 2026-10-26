@@ -333,3 +333,66 @@ method, limits and raw source/run identity. It is proposed, not executed or an
 approval for admission retry, waiver, runtime/CSS edits or another prerequisite PR.
 No source fix is justified yet. AC03/06/08 remain open; PR150c0/PR149d4/PR79 and
 production/DNS stay untouched. This later receipt head inherits no87 native pass.
+
+### Approved frozen Research diagnostic — completed 26 October 2026
+
+Maintainer approval6424790960 authorizes one diagnostic, not another admission
+campaign. The existing never-merge writing-startup diagnostic branch carries
+only the one-workflow overlay. Four separate completed roles accept final local
+1ff78c20/tree8096b495: Requirements resume122_boundary_review, Code
+research_diag_code, White-box research_diag_whitebox and Exploratory
+research_diag_exploratory. Initial488 prelaunch defects (missing import, unsafe
+cleanup throw, unobserved trace-timeout promise, empty trace acceptance) and the
+later primary-error masking path were corrected before any native launch.
+Pinned lint/format, YAML/Node/three Python syntax and32 bounded mocked controls
+pass. They are guard/lifecycle observations, not measured coverage or native
+performance. Test-sandbox cross-Realm/AbortSignal/coarse-oracle corrections stay
+distinct from source corrections. The temporary overlay has read-only tokens,
+pinned tools/archive, a ten-minute job bound and no main/staging/production write.
+
+Remote controller0d3a0a04be2711ae5c9830d304470ce06ebe647e has the identical reviewed
+tree8096b4954796cf9c1116a5755412037d865b1d92. Its single push starts native
+40384402244/1, job121788721173, SUCCESS. Original artifact12681090134 has
+5665876bytes/SHA256eec8e6c1ba4599a7fb8abd02389437476a13a1fe07d6eb6db592b66785e68ca4.
+Separate Requirements and Exploratory physical readbacks verify ZIPCRC and all
+four raw LHR/trace/devlog references. Actual frozen source87e5c7f/tree50396b64,
+original package12677610204, package digest/eight immutable hosted hashes and
+clean identical before/after checkouts match. Exactly two processes execute in
+declared order; canonical closes before observer starts, both cleanup results
+true, errors empty. completed=true; acceptance/fullGate/performanceAcceptance=false.
+
+The canonical trial uses exactly the failed trial's Lighthouse13.5/mobile/
+simulate/CPU-multiplier4 settings and browser version, without instrumentation
+or warmup. LCP2232.407ms, TBT61ms and CLS0 satisfy original2500/200/0.1 budgets.
+The same Research heading is LCP. Observed FCP296.525ms/LCP379.373ms and element
+render delay223.745ms replace the earlier observed2475.399ms in this observation.
+Before observed LCP, independently paired async-span maxima are:
+
+| Span | Failed full stage | New canonical | Accepted S147 |
+| --- | ---: | ---: | ---: |
+| Submit → presentation | 1033.124ms | 20.599ms | 6.925ms |
+| End-activate → submit | 963.659ms | 0.481ms | 0.314ms |
+| Pipeline reporter | 1033.397ms | 87.809ms | 91.434ms |
+
+Parent/substage intervals overlap and are not added. The long presentation stalls
+did not recur in this single canonical observation; variability is observed,
+its cause and stability are not established. Runner image remains20261023.334.3,
+but CPU changes AMD EPYC9V74→7763; benchmarkIndex2927.5→2447. This is not a
+controlled same-hardware causal comparison.
+
+The separate instrumented session is explicitly nativeCPU1/no network emulation,
+not equivalent to simulated scores. It records474RAFrows, visible throughout,
+focusfalse throughout, no visibility/focus transition; RAF median16.7ms/max66.7ms.
+Paint276ms/finalLCPentry376ms, all six surfaces observed, no page/request/observer
+errors. Across that session submit/presentation max9.485ms (3.012ms before final
+LCP), end-activate/submit max2.047ms, pipeline max91.744ms. Lack of focus alone
+did not cause the old symptom here; this cannot establish the old trial's
+visibility or the cause of its stalls.
+
+Both independent native readbacks accept the diagnostic collection only. No
+runtime/CSS patch, further exploratory matrix, admission waiver or additional
+full retry follows automatically. Failed40377241088/1 remains the delivery
+blocker; explicit next delivery/retry decision is required under the existing
+limit. PR151 remains Draft; PR150/149/79, main835 and production stay unchanged.
+This result receipt changes only the existing review, MEMORY and derived RI;
+all native results retain their actual source/controller/run identities.
