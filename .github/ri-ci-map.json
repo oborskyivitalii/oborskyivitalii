@@ -676,7 +676,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "8f04cb5eecdd0ed40a202ecc949329092fddfca11cf2bd8f5206704c143751db",
+    "digest": "380f51f54d8cd8f235b7e0ce59dec91df82023f354b693384a990ac7a45c904d",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -808,7 +808,7 @@
       },
       {
         "path": ".github/repository-layout.json",
-        "sha256": "212b09da71a07dff0c1f015fa0a250628ad82801484d39a0a02be735ba1c2318"
+        "sha256": "0659286075c6f5011a6484af75e7acc99a061841b536ab95a2363ffcd2ad4a1e"
       },
       {
         "path": ".github/repository-paths.json",

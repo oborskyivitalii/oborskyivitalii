@@ -220,10 +220,51 @@ This completes the new browser supply and all existing consumer bindings.
 It does not claim all site profiles ran, protected staging/merge completed,
 content acceptance occurred or a new article was published.
 
+## First current-head navigation failure and bounded correction
+
+Ready-head575bdbc9/treef90aecc4 navigation40304322219/1 failed in the existing
+RootLayoutTests.test_current_active_relative_links_resolve:15cases,14pass/1error,
+`Omitted active Markdown: ['guides/BROWSER-ARCHIVES.md']`. Style, guard negatives,
+RI/coupling, Ubuntu wiring and107selected profile/staging Node cases already
+passed before that failure. The guide was catalogued in RI but omitted from
+the separate active-link inventory, so this is a real integration omission.
+
+The bounded correction registers that exact guide in repository-layout.json's
+active_markdown list and links it from guides/README. No validator/test rule,
+browser binding, producer, pin, workflow, test membership or budget changes.
+PR147 returned to Draft during correction. Preserve the failed native result;
+fresh navigation will test the registered route rather than bypass its guard.
+
+The same575Basic40304322190/1 failed at complete lint before source execution.
+Original artifact12641882535 (nativeSHA25616a49ab52e6d4d79d69b4a03b22a0433
+d4e7e2e7cbb51d9b69a5d924597f7256) was downloaded and verified. Its actual
+ruff.json has exactly twoI001 findings: unsorted stdlib imports in the archive
+helper and its tests. ESLint/stylelint passed; no source-test total is claimed.
+The exact maintained Ruff invocation is isolated/no-cache/no-noqa with
+E4,E7,E9,F,I selection. Format success and touched ESLint had not proved it.
+
+Sort only those import blocks, without changing bodies, validators, tests or
+lint selection. Because the helper's exact bytes belong to the producer trust
+identity, this correction requires a new native seed and new pins; old967/4f1
+native results stay historical and cannot admit this changed producer. Re-run
+the actual complete maintained lint before freezing/seeding again. No integrity
+waiver, import-normalizing source hash or old manifest rewrite is permitted.
+
+The corrected working tree passes the actual maintained lint339files across
+ESLint10.12.0/stylelint17.16.0/Ruff0.16.10; raw Ruff findings are empty. That
+local artifact retains old575Git identity and dirty candidate bytes, so it is
+provisional execution evidence, not a frozen-source result. A clean committed
+lint check is required before publishing the new preparer. Four roles inspect
+the import-only correction against the failed source; identical import sets and
+complete non-import AST preserve behavior. Existing guards/negative tests stay.
+The current registry is explicitly empty until this corrected producer is
+prepared, authenticated and verified again on the same three native platforms.
+
 ## Remaining #122 plan
 
-1. Browser supply/consumer binding and three-platform native proof are complete;
-   obtain current-source checks and the existing protected delivery route.
+1. Prior967/4f1 browser proof remains historical. Finish clean-source full lint,
+   fresh corrected-producer seed, reviewed pins and three-platform consumption;
+   then obtain current-source checks and existing protected delivery.
 2. Obtain the maintainer's exact-head control attestation before owner staging;
    this separate source trust decision cannot be supplied by four agent reviews.
 3. Verify ordinary content/history/recovery against a compatible accepted

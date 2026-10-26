@@ -7,7 +7,6 @@ import hashlib
 import io
 import json
 import os
-from pathlib import Path, PurePosixPath
 import platform
 import re
 import shutil
@@ -16,10 +15,11 @@ import subprocess
 import sys
 import tarfile
 import tempfile
+import urllib.error
 import urllib.parse
 import urllib.request
-import urllib.error
 import zipfile
+from pathlib import Path, PurePosixPath
 
 ROOT = Path(__file__).resolve().parents[2]
 REPOSITORY = "oborskyivitalii/oborskyivitalii"
