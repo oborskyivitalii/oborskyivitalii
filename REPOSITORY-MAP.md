@@ -35,6 +35,8 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.github](.github) | Contributor templates, RI contracts/views and GitHub Actions controllers. | configuration | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [.github/ISSUE_TEMPLATE](.github/ISSUE_TEMPLATE) | Issue intake forms preserving intent, scope and acceptance. | configuration | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [.github/acceptance](.github/acceptance) | Owning-issue acceptance policies with stable criterion IDs and executable check mappings. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/actions](.github/actions) | Shared reviewed CI setup actions with bounded source and artifact trust. | configuration | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [.github/actions/browser-archive](.github/actions/browser-archive) | Pinned browser supply action; integrity checks without prior browser launch. | configuration | [guides/BROWSER-ARCHIVES.md](guides/BROWSER-ARCHIVES.md) |
 | [.github/repository-intelligence](.github/repository-intelligence) | Generated machine navigation view with exact source identity. | generated | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [.github/workflows](.github/workflows) | Pinned CI workflows for navigation, site checks, hosted staging and manual diagnostics. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [docs](docs) | Generated complete public tree and immutable rendition aliases; edit site sources instead. | generated | [site/README.md](site/README.md) |
@@ -282,6 +284,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.github/acceptance/issue-72.json](.github/acceptance/issue-72.json) | Issue72 AC01–AC10 deterministic mapping and separate live/release/merge gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-76.json](.github/acceptance/issue-76.json) | Issue76 preview-first interaction, continuous scene ink, repeat reading entry and shared composition AC mapping. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 
+## .github/actions/browser-archive/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [.github/actions/browser-archive/action.yml](.github/actions/browser-archive/action.yml) | Shared exact native browser archive restore and retained preparation-failure report. | configuration | [guides/BROWSER-ARCHIVES.md](guides/BROWSER-ARCHIVES.md) |
+
 ## .github/repository-intelligence/
 
 | Path | Purpose | Role | Owner / editing route |
@@ -292,6 +300,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
+| [.github/workflows/browser-archives.yml](.github/workflows/browser-archives.yml) | Owner-controlled unprivileged native browser archive seed, real producer launches and exact pin records. | workflow | [guides/BROWSER-ARCHIVES.md](guides/BROWSER-ARCHIVES.md) |
 | [.github/workflows/change-admission.yml](.github/workflows/change-admission.yml) | Manual owner/main-only dedicated App snapshot for one PR; no automatic upstream, push or comment fan-out. | workflow | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [.github/workflows/control-runner-probe.yml](.github/workflows/control-runner-probe.yml) | Read-only nonrequired native containment experiment for relevant ready PR changes; no secrets or admission consumption. | source | [guides/SITE-CONTROL-CHANGES.md](guides/SITE-CONTROL-CHANGES.md) |
 | [.github/workflows/delivery-observation.yml](.github/workflows/delivery-observation.yml) | Read-only candidate-policy routing observations alongside existing required CI; grants no admission authority. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
@@ -520,6 +529,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [guides/ARTICLE-MATERIALS.md](guides/ARTICLE-MATERIALS.md) | Public materials allowlist, reciprocal links, source/review pins and existing rights/resource contracts. | guide | [guides/ARTICLE-MATERIALS.md](guides/ARTICLE-MATERIALS.md) |
 | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) | Canonical site-owned article authoring, semantic editions, candidate exports, observed publication and upstream upgrade workflow. | guide | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
+| [guides/BROWSER-ARCHIVES.md](guides/BROWSER-ARCHIVES.md) | Browser archive preparation, exact pins, consumer cold-ordering and90day refresh operation. | guide | [guides/BROWSER-ARCHIVES.md](guides/BROWSER-ARCHIVES.md) |
 | [guides/CODE-STYLE.md](guides/CODE-STYLE.md) | Mandatory agent coding, content/template/CSS boundaries, performance and verification standards. | guide | [guides/CODE-STYLE.md](guides/CODE-STYLE.md) |
 | [guides/README.md](guides/README.md) | Topic guide index with one current owner for each concern; live issue status is retrieved separately. | guide | [guides/README.md](guides/README.md) |
 | [guides/REPOSITORIES.md](guides/REPOSITORIES.md) | Canonical boundaries and coordinated work routes across site, UA and Subprime. | guide | [guides/REPOSITORIES.md](guides/REPOSITORIES.md) |
@@ -827,6 +837,8 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-122/2026-10-24-r3-runtime-compatibility.md](review/issue-122/2026-10-24-r3-runtime-compatibility.md) | R3 exact-runtime bootstrap dependency, prospective byte/source freeze, independent reviews and compatibility delivery evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-122/2026-10-25-f5-exact-checksum-proof.json.gz](review/issue-122/2026-10-25-f5-exact-checksum-proof.json.gz) | Inert F5 proof of750 exact public checksum findings, distinguishing recomputed bytes and Git identities from historical producer attestations and archival declarations; grants no artifact acceptance or scanner authority. | history | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [review/issue-122/2026-10-25-r3-platform-integration.md](review/issue-122/2026-10-25-r3-platform-integration.md) | Stable R3 platform integration scope, concrete fixes, four independent roles and source-bound delivery evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-122/2026-10-26-browser-archives.md](review/issue-122/2026-10-26-browser-archives.md) | Issue122 authorized browser-supply repair, source-bound review and implementation/native evidence. | history | [guides/BROWSER-ARCHIVES.md](guides/BROWSER-ARCHIVES.md) |
+| [review/issue-122/2026-10-26-browser-security-proof.json.gz](review/issue-122/2026-10-26-browser-security-proof.json.gz) | Inert source-bound proof of exact browser-tooling Bandit findings and public native browser checksum/NPM-integrity classifications under issue122. | history | [guides/BROWSER-ARCHIVES.md](guides/BROWSER-ARCHIVES.md) |
 
 ## review/issue-126/
 
@@ -2625,6 +2637,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/staging-trust.test.cjs](tests/staging-trust.test.cjs) | Behavioral/adversarial tests and fixtures for staging trust. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/staging.test.cjs](tests/staging.test.cjs) | Behavioral/adversarial tests and fixtures for staging. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/test-profile-selection.test.cjs](tests/test-profile-selection.test.cjs) | Exhaustive registry/futuremodule/unknownsource/exactref/source accounting and empty/skip/TODO failure regressions. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/test_browser_archives.py](tests/test_browser_archives.py) | Browser native origin, locked selection, HTML/hash/path/link and executable failure regressions. | test | [guides/BROWSER-ARCHIVES.md](guides/BROWSER-ARCHIVES.md) |
 | [tests/test_code_style.py](tests/test_code_style.py) | Negative style-guard fixtures and actual code-path/bilingual agent/RI routing checks. | test | [guides/CODE-STYLE.md](guides/CODE-STYLE.md) |
 | [tests/test_issue102_acceptance.py](tests/test_issue102_acceptance.py) | Issue102 policy adapter for maintained analytics suite and failure accounting. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue108_acceptance.py](tests/test_issue108_acceptance.py) | Issue108 task-only adapter selecting maintained content and adversarial SEO cases. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
@@ -2754,9 +2767,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tools/quality/bandit-triage.cjs](tools/quality/bandit-triage.cjs) | Strict reviewed internal-tooling Bandit admission: exact source/line/rule/owner/expiry, raw finding and scan coverage accounting; untriaged changes fail. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/block-flight.cjs](tools/quality/block-flight.cjs) | Strict native block timing, layers, separators, overlap and camera-phase checks for reviewed Color runtime. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/block-observation.cjs](tools/quality/block-observation.cjs) | Shared native CSSAnimation observations and strict separator path/clock/movement checks; base and version-selected Color keep distinct pacing. | validator | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tools/quality/browser-archives.json](tools/quality/browser-archives.json) | Explicit immutable native browser artifact pins by exact toolchain, revision and system identity. | configuration | [guides/BROWSER-ARCHIVES.md](guides/BROWSER-ARCHIVES.md) |
 | [tools/quality/browser-gate-diagnostics.cjs](tools/quality/browser-gate-diagnostics.cjs) | Maintained quality/check helper for browser gate diagnostics; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/browser-gate-trace.cjs](tools/quality/browser-gate-trace.cjs) | Maintained quality/check helper for browser gate trace; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/browser-lifecycle.cjs](tools/quality/browser-lifecycle.cjs) | Maintained quality/check helper for browser lifecycle; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/browser-runtime.cjs](tools/quality/browser-runtime.cjs) | Locked browser description and preparer-only launch probe; shared cross-platform CLI adapter. | validator | [guides/BROWSER-ARCHIVES.md](guides/BROWSER-ARCHIVES.md) |
+| [tools/quality/browser_archives.py](tools/quality/browser_archives.py) | Pinned native browser archive origin, bounded extraction, complete byte/mode/link verification and expiry failures. | validator | [guides/BROWSER-ARCHIVES.md](guides/BROWSER-ARCHIVES.md) |
 | [tools/quality/budgets.json](tools/quality/budgets.json) | Quality/release configuration: budgets; preserve reviewed budgets, pins and exception provenance. | configuration | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/candidate-source.cjs](tools/quality/candidate-source.cjs) | Cold exact-source reconstruction of explicit article candidate artifacts including Color/staging transformation layers. | validator | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tools/quality/cause-probe.cjs](tools/quality/cause-probe.cjs) | Maintained private browser cause attribution: original Research/WebKit protocols and bounded four-input Writing CPU/network evidence with exact parent identity. Issue39 PR40 current-runtime evidence: five ordinary trials plus one separate CPU sample; no admission. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |

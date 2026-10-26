@@ -22,6 +22,7 @@ acceptance live in issues/PRs; [MEMORY](../MEMORY.md) is a dated continuity hint
 | [SITE-SEO](SITE-SEO.md) | Topic vocabulary, visible content mapping and discoverability evidence | Content owner; production measurement #8; later guides #11 |
 | [SITE-ANALYTICS](SITE-ANALYTICS.md) | Disabled-by-default measurement adapter and actual-origin activation | Hosting/analytics #8; release coverage #13 |
 | [SITE-CHECK-PROFILES](SITE-CHECK-PROFILES.md) | PR smoke/targeted acceptance, bounded staging and full production check selection; test registry/dispositions | Test optimization #35; hosting/gates #8/#13 |
+| [BROWSER-ARCHIVES](BROWSER-ARCHIVES.md) | Exact native browser supply, verified pins, cold setup and archive refresh | Browser delivery #122 |
 | [SITE-RELEASE-GATES](SITE-RELEASE-GATES.md) | Security, browser/device, performance budgets and exact-artifact evidence | Release gates #13 and hosting #8 |
 | [SITE-STAGING](SITE-STAGING.md) | CI controller, immutable preview/staging, promotion and recovery mechanics | Hosting/gates #8/#13 |
 | [SITE-CONTROL-CHANGES](SITE-CONTROL-CHANGES.md) | Bounded lock-patch structural prototype, operator interface and explicit nonauthority | Delivery admission #122 |

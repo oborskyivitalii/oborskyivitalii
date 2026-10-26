@@ -804,7 +804,8 @@
         "tools/quality/hosted.cjs",
         "tools/quality/advisory-exceptions.json",
         "tools/quality/toolchain/requirements.txt",
-        "tools/quality/toolchain/package-lock.json"
+        "tools/quality/toolchain/package-lock.json",
+        "tools/quality/browser-archives.json"
       ]
     },
     {
@@ -2758,6 +2759,36 @@
       ],
       "disposition": "Retain permanent source guards; real native containment and full delivery remain separate external evidence, with no App authority.",
       "surviving_route": "Existing Basic changed-source selection and permanent staging/production source profiles; native control-runner-probe separately exercises actual Docker containment."
+    },
+    {
+      "path": "tests/test_browser_archives.py",
+      "language": "python",
+      "purpose": "Exact native browser supply origin, revision/system pins, archive integrity, safe extraction and complete consumer/platform wiring; failures precede browser tests.",
+      "owner": "guides/BROWSER-ARCHIVES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain independent supplier failure surfaces; cold consumer never launches a browser",
+      "surviving_route": "python3 tools/run_repository_tests.py",
+      "inputs": [
+        "tests/test_browser_archives.py",
+        "tools/quality/browser_archives.py",
+        "tools/quality/browser-runtime.cjs",
+        "tools/quality/browser-archives.json",
+        ".github/actions/browser-archive/action.yml",
+        ".github/workflows/browser-archives.yml",
+        ".github/workflows/site-browser-gate-probe.yml",
+        ".github/workflows/site-cause-fix-probe.yml",
+        ".github/workflows/site-cause-probe.yml",
+        ".github/workflows/site-color-review.yml",
+        ".github/workflows/site-gtk-native-probe.yml",
+        ".github/workflows/site-gtk-target-probe.yml",
+        ".github/workflows/site-navigation-probe.yml",
+        ".github/workflows/site-pages-migration.yml",
+        ".github/workflows/site-production.yml",
+        ".github/workflows/site-release-checks.yml",
+        ".github/workflows/site-staging.yml",
+        ".github/workflows/site-writing-probe.yml"
+      ]
     }
   ]
 }

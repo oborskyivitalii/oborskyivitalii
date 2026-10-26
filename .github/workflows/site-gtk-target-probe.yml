@@ -8,6 +8,7 @@ on:
         type: string
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: gtk-target-${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
   cancel-in-progress: true
@@ -77,11 +78,13 @@ jobs:
       - name: Install Ubuntu WebKit and display dependencies without prior launch
         timeout-minutes: 5
         run: tools/quality/toolchain/node_modules/.bin/playwright install-deps webkit
-      - name: Download pinned WebKit without prior launch
+      - name: Restore verified pinned browsers without prior launch
         timeout-minutes: 3
-        run: |
-          tools/quality/toolchain/node_modules/.bin/playwright install webkit
-          command -v Xvfb
+        uses: ./.github/actions/browser-archive
+        with:
+          browsers: webkit
+      - name: Verify the existing display server
+        run: command -v Xvfb
       - name: Collect every private first-evaluation cell and its original result
         env:
           DEBUG: pw:browser

@@ -486,6 +486,8 @@ function secretReviewEntry(entry, file) {
   // exact inventory path additionally requires a current lock proof at admission.
   if (file === secretReviewInputs[3] && entry?.path === 'tools/publishing/toolchain/licenses.json')
     rules.push('Base64 High Entropy String');
+  if (file === secretReviewInputs[2] && entry?.path === 'tools/quality/browser-archives.json')
+    rules.push('Base64 High Entropy String');
   if (
     !entry ||
     typeof entry !== 'object' ||
@@ -574,13 +576,94 @@ function publicationIntegrityProof(projectRoot = root) {
   }
   return proved;
 }
-function reviewedSecretFinding(file, finding, reviewed, publicationIntegrities = new Set()) {
+function browserIntegrityProof(projectRoot = root, selectedToolchain = tools) {
+  const readInput = (base, relative) => {
+    const file = require('./bandit-triage.cjs').safePath(base, relative);
+    assert.ok(fs.statSync(file).size <= 2000000, 'Oversized browser integrity proof input');
+    return fs.readFileSync(file);
+  };
+  const registry = JSON.parse(readInput(projectRoot, 'tools/quality/browser-archives.json'));
+  const lockBytes = readInput(projectRoot, 'tools/quality/toolchain/package-lock.json');
+  assert.deepEqual(
+    readInput(selectedToolchain, 'package-lock.json'),
+    lockBytes,
+    'Selected browser toolchain lock differs'
+  );
+  const lock = JSON.parse(lockBytes);
+  const installed = JSON.parse(readInput(selectedToolchain, 'node_modules/.package-lock.json'));
+  const names = ['playwright', 'playwright-core'];
+  const packages = {};
+  for (const name of names) {
+    const location = 'node_modules/' + name;
+    const pinned = lock.packages?.[location];
+    const actual = installed.packages?.[location];
+    const metadata = JSON.parse(readInput(selectedToolchain, location + '/package.json'));
+    assert.ok(
+      pinned && typeof pinned.version === 'string' && typeof pinned.resolved === 'string',
+      'Missing browser package lock entry'
+    );
+    assert.ok(
+      /^sha512-[A-Za-z0-9+/]{86}==$/.test(pinned.integrity || '') &&
+        Buffer.from(pinned.integrity.slice(7), 'base64').toString('base64') ===
+          pinned.integrity.slice(7),
+      'Noncanonical browser package integrity'
+    );
+    for (const key of ['version', 'integrity', 'resolved'])
+      assert.equal(actual?.[key], pinned[key], 'Installed browser package lock differs');
+    assert.equal(metadata.name, name, 'Installed browser package name differs');
+    assert.equal(metadata.version, pinned.version, 'Installed browser package version differs');
+    packages[name] = { version: pinned.version, integrity: pinned.integrity };
+  }
+  assert.ok(
+    registry.schema === 1 &&
+      Array.isArray(registry.archives) &&
+      registry.archives.length > 0 &&
+      registry.archives.length <= 16,
+    'Invalid browser integrity inventory'
+  );
+  const fields = new Set();
+  registry.archives.forEach((record, index) => {
+    assert.deepEqual(record.identity?.packages, packages, 'Browser inventory package differs');
+    for (const name of names)
+      fields.add(JSON.stringify(['archives', index, 'identity', 'packages', name, 'integrity']));
+  });
+  const integrities = names.map((name) => packages[name].integrity);
+  function checkFields(value, parts = []) {
+    if (typeof value === 'string') {
+      if (integrities.some((integrity) => value.includes(integrity)))
+        assert.ok(fields.has(JSON.stringify(parts)), 'Browser integrity outside its package field');
+    } else if (value && typeof value === 'object') {
+      for (const [name, child] of Object.entries(value)) {
+        assert.ok(
+          !integrities.some((integrity) => name.includes(integrity)),
+          'Browser integrity in an object property name'
+        );
+        checkFields(child, [...parts, Array.isArray(value) ? Number(name) : name]);
+      }
+    }
+  }
+  checkFields(registry);
+  return new Set(
+    integrities.map((value) =>
+      require('node:crypto').createHash('sha1').update(value).digest('hex')
+    )
+  );
+}
+function reviewedSecretFinding(
+  file,
+  finding,
+  reviewed,
+  publicationIntegrities = new Set(),
+  browserIntegrities = new Set()
+) {
   const reviewedValue = reviewed.has([file, finding.type, finding.hashed_secret].join(':'));
   if (finding.type !== 'Base64 High Entropy String') return reviewedValue;
   return (
     reviewedValue &&
-    file === 'tools/publishing/toolchain/licenses.json' &&
-    publicationIntegrities.has(finding.hashed_secret)
+    ((file === 'tools/publishing/toolchain/licenses.json' &&
+      publicationIntegrities.has(finding.hashed_secret)) ||
+      (file === 'tools/quality/browser-archives.json' &&
+        browserIntegrities.has(finding.hashed_secret)))
   );
 }
 function lint() {
@@ -842,6 +925,11 @@ function security() {
         fs.writeFileSync(path.join(out, 'detect-secrets.json'), JSON.stringify(secrets, null, 2));
         const reviewed = loadSecretReviews(),
           publicationIntegrities = publicationIntegrityProof(),
+          browserIntegrities = (secrets.results['tools/quality/browser-archives.json'] || []).some(
+            (finding) => finding.type === 'Base64 High Entropy String'
+          )
+            ? browserIntegrityProof(root, tools)
+            : new Set(),
           newFindings = [];
         const navigationFile = '.github/repository-intelligence/agent-context.json';
         run(py('python'), [
@@ -880,7 +968,13 @@ function security() {
             if (
               !provedChecksum &&
               !generatedAdmitted.has(generatedChecksums.findingKey(file, finding)) &&
-              !reviewedSecretFinding(file, finding, reviewed, publicationIntegrities)
+              !reviewedSecretFinding(
+                file,
+                finding,
+                reviewed,
+                publicationIntegrities,
+                browserIntegrities
+              )
             )
               newFindings.push({
                 file,
@@ -1065,4 +1159,5 @@ module.exports = {
   loadSecretReviews,
   reviewedSecretFinding,
   publicationIntegrityProof,
+  browserIntegrityProof,
 };

@@ -82,14 +82,18 @@ npm ci --prefix tools/quality/toolchain --ignore-scripts
 python -m venv tools/quality/toolchain/venv
 tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps -r tools/quality/toolchain/requirements.txt
 tools/quality/toolchain/venv/bin/python tools/quality/python_toolchain.py
-tools/quality/toolchain/node_modules/.bin/playwright install --with-deps
+tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium firefox webkit
+node tools/quality/browser-runtime.cjs restore --browsers chromium,firefox,webkit --directory /tmp/site-browsers
+export PLAYWRIGHT_BROWSERS_PATH=/tmp/site-browsers
 node tools/quality/artifact.cjs build /tmp/site-check
 export SITE_PUBLIC_DIR=/tmp/site-check/public
 export SITE_ARTIFACT_MANIFEST=/tmp/site-check/artifact.json
 export SITE_REPORT_DIR=/tmp/site-check/reports
 ```
 
-On Windows use `venv/Scripts` and `node .../playwright/cli.js install`.
+Browser restore needs the scoped `GITHUB_TOKEN` read credential and the reviewed
+[native archive pins](../../guides/BROWSER-ARCHIVES.md); it never falls back to a CDN.
+On Windows use `venv/Scripts` and a native path for the restored browser directory.
 `SITE_AUDIT_TOOLS` can point to the identical installed locked toolchain;
 `SITE_AUDIT_CHROME` changes the executable and is recorded in evidence. Reports
 identify actual runner/CPU/OS/engine versions. A runner name does not freeze its
@@ -158,6 +162,10 @@ historical ledger and frozen baseline retain their bytes; the named companion
 records. Duplicate, malformed, missing or oversized ledgers fail visibly under
 the unchanged RI 2 MB source-read bound. A companion is storage for exact review,
 not an entropy-rule exemption or blanket checksum admission.
+For `browser-archives.json` only, the two exact reviewed NPM SRI values also need
+the current authored/selected quality lock and installed package proof. The
+proof binds their actual package fields and rejects misplaced values or keys;
+it cannot authorize a new review ID or substitute the publication proof.
 
 For a local reproduction against the same immutable hosted candidate, set
 `SITE_TEST_BASE_URL` to its HTTPS URL and `SITE_TEST_PROFILE=staging`, retain the

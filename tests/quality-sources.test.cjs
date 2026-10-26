@@ -836,6 +836,202 @@ test('closed secret ledgers admit only exact reviewed path, rule and hashed valu
   }
 });
 
+function browserIntegrityFixture() {
+  const f = secretReviewFixture();
+  const crypto = require('node:crypto');
+  const inventoryFile = 'tools/quality/browser-archives.json';
+  const selected = path.join(f.directory, 'selected-toolchain');
+  const packages = {};
+  const lock = { lockfileVersion: 3, packages: {} };
+  for (const name of ['playwright', 'playwright-core']) {
+    const integrity =
+      'sha512-' +
+      crypto
+        .createHash('sha512')
+        .update('public ' + name)
+        .digest('base64');
+    packages[name] = { version: '1.63.0', integrity };
+    lock.packages['node_modules/' + name] = {
+      ...packages[name],
+      resolved: 'https://registry.npmjs.org/' + name + '/-/' + name + '-1.63.0.tgz',
+    };
+  }
+  const snapshots = new Map();
+  const write = (file, value) => {
+    fs.mkdirSync(path.dirname(file), { recursive: true });
+    fs.writeFileSync(file, JSON.stringify(value));
+    snapshots.set(file, fs.readFileSync(file));
+  };
+  write(path.join(f.directory, inventoryFile), {
+    schema: 1,
+    archives: [{ identity: { packages } }],
+  });
+  write(path.join(f.directory, 'tools/quality/toolchain/package-lock.json'), lock);
+  write(path.join(selected, 'package-lock.json'), lock);
+  write(path.join(selected, 'node_modules/.package-lock.json'), lock);
+  for (const name of Object.keys(packages))
+    write(path.join(selected, 'node_modules/' + name + '/package.json'), {
+      name,
+      version: '1.63.0',
+    });
+  const findings = Object.values(packages).map((entry) => ({
+    type: 'Base64 High Entropy String',
+    hashed_secret: crypto.createHash('sha1').update(entry.integrity).digest('hex'),
+  }));
+  f.reviews[2].findings = findings.map((finding) =>
+    f.entry(inventoryFile, finding.type, finding.hashed_secret)
+  );
+  f.write(2);
+  return { ...f, inventoryFile, selected, packages, findings, snapshots };
+}
+
+test('browser SRI findings require exact review IDs and a separate selected-toolchain proof', () => {
+  const {
+    loadSecretReviews,
+    browserIntegrityProof,
+    reviewedSecretFinding,
+  } = require('../tools/quality/scanners.cjs');
+  const f = browserIntegrityFixture();
+  try {
+    const reviewed = loadSecretReviews(f.directory);
+    const proof = browserIntegrityProof(f.directory, f.selected);
+    assert.equal(proof.size, 2);
+    for (const finding of f.findings) {
+      assert.equal(
+        reviewedSecretFinding(f.inventoryFile, finding, reviewed, new Set(), proof),
+        true
+      );
+      assert.equal(reviewedSecretFinding(f.inventoryFile, finding, reviewed), false);
+      assert.equal(
+        reviewedSecretFinding(f.inventoryFile, finding, new Map(), new Set(), proof),
+        false
+      );
+      assert.equal(
+        reviewedSecretFinding(f.inventoryFile, finding, reviewed, proof),
+        false,
+        'publication proof cannot authorize browser fields'
+      );
+      assert.equal(
+        reviewedSecretFinding('other/' + f.inventoryFile, finding, reviewed, new Set(), proof),
+        false
+      );
+      assert.equal(
+        reviewedSecretFinding(
+          f.inventoryFile,
+          { ...finding, type: 'Secret Keyword' },
+          reviewed,
+          new Set(),
+          proof
+        ),
+        false
+      );
+    }
+    const unknown = { type: f.findings[0].type, hashed_secret: 'a'.repeat(40) };
+    reviewed.set(f.entry(f.inventoryFile, unknown.type, unknown.hashed_secret).id, {});
+    assert.equal(
+      reviewedSecretFinding(f.inventoryFile, unknown, reviewed, new Set(), proof),
+      false
+    );
+    for (const index of [0, 1, 3]) {
+      f.reviews[2].findings = [];
+      f.write(2);
+      f.reviews[index].findings = [
+        f.entry(f.inventoryFile, f.findings[0].type, f.findings[0].hashed_secret),
+      ];
+      f.write(index);
+      assert.throws(() => loadSecretReviews(f.directory), /Invalid exact secret review entry/);
+      f.reviews[index].findings = [];
+      f.write(index);
+    }
+  } finally {
+    fs.rmSync(f.directory, { recursive: true, force: true });
+  }
+});
+
+test('browser integrity proof rejects field, authored-lock and selected installation drift', () => {
+  const { browserIntegrityProof } = require('../tools/quality/scanners.cjs');
+  const f = browserIntegrityFixture();
+  const inventory = path.join(f.directory, f.inventoryFile);
+  const authored = path.join(f.directory, 'tools/quality/toolchain/package-lock.json');
+  const selectedLock = path.join(f.selected, 'package-lock.json');
+  const installedLock = path.join(f.selected, 'node_modules/.package-lock.json');
+  const installedPackage = path.join(f.selected, 'node_modules/playwright/package.json');
+  try {
+    for (const [file, mutate] of [
+      [inventory, (value) => (value.archives[0].identity.packages.playwright.version = 'other')],
+      [
+        inventory,
+        (value) =>
+          (value.archives[0].identity.packages.playwright.integrity =
+            f.packages['playwright-core'].integrity),
+      ],
+      [inventory, (value) => (value.archives[0].identity.packages.other = f.packages.playwright)],
+      [
+        inventory,
+        (value) =>
+          (value.notes = 'Copied outside its package field: ' + f.packages.playwright.integrity),
+      ],
+      [
+        inventory,
+        (value) =>
+          (value.unrelated = { [f.packages.playwright.integrity]: 'copied as a property name' }),
+      ],
+      [inventory, (value) => (value.archives = [])],
+      [authored, (value) => (value.packages['node_modules/playwright'].version = 'other')],
+      [selectedLock, (value) => (value.packages['node_modules/playwright'].integrity = 'unproved')],
+      [
+        installedLock,
+        (value) => (value.packages['node_modules/playwright'].integrity = 'unproved'),
+      ],
+      [installedLock, (value) => (value.packages['node_modules/playwright'].resolved = 'other')],
+      [installedPackage, (value) => (value.name = 'other')],
+      [installedPackage, (value) => (value.version = 'other')],
+    ]) {
+      const value = JSON.parse(f.snapshots.get(file));
+      mutate(value);
+      fs.writeFileSync(file, JSON.stringify(value));
+      assert.throws(() => browserIntegrityProof(f.directory, f.selected));
+      fs.writeFileSync(file, f.snapshots.get(file));
+    }
+    // Matching malformed strings across every input still do not prove a canonical NPM integrity.
+    for (const file of [inventory, authored, selectedLock, installedLock]) {
+      const value = JSON.parse(f.snapshots.get(file));
+      const entry =
+        file === inventory
+          ? value.archives[0].identity.packages.playwright
+          : value.packages['node_modules/playwright'];
+      entry.integrity = 'sha512-not-canonical';
+      fs.writeFileSync(file, JSON.stringify(value));
+    }
+    assert.throws(() => browserIntegrityProof(f.directory, f.selected), /Noncanonical/);
+  } finally {
+    fs.rmSync(f.directory, { recursive: true, force: true });
+  }
+});
+
+test('browser integrity proof refuses missing, malformed, symlinked or oversized proof files', () => {
+  const { browserIntegrityProof } = require('../tools/quality/scanners.cjs');
+  const f = browserIntegrityFixture();
+  try {
+    for (const [file, original] of f.snapshots) {
+      fs.unlinkSync(file);
+      assert.throws(() => browserIntegrityProof(f.directory, f.selected), /ENOENT/);
+      fs.writeFileSync(file, '{');
+      assert.throws(() => browserIntegrityProof(f.directory, f.selected));
+      fs.writeFileSync(file + '.original', original);
+      fs.unlinkSync(file);
+      fs.symlinkSync(file + '.original', file);
+      assert.throws(() => browserIntegrityProof(f.directory, f.selected), /symlink/);
+      fs.unlinkSync(file);
+      fs.writeFileSync(file, Buffer.alloc(2000001, 32));
+      assert.throws(() => browserIntegrityProof(f.directory, f.selected), /Oversized/);
+      fs.writeFileSync(file, original);
+    }
+  } finally {
+    fs.rmSync(f.directory, { recursive: true, force: true });
+  }
+});
+
 test('public npm integrity dispositions require the exact inventory path, ledger and current lock proof', () => {
   const crypto = require('node:crypto');
   const {
