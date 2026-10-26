@@ -1,342 +1,176 @@
-name: Writing cold comparison
-# Historical Writing diagnostics remain manual. Issue #36 evidence requires
-# an explicit label event; ordinary PR updates keep fast checks.
+name: Issue122 isolated Writing startup profile
+# Diagnostic branch only. Never merge this overlay; original staging failure remains.
 on:
-  pull_request:
-    types: [labeled]
-  workflow_dispatch:
-    inputs:
-      candidate_sha:
-        description: Exact current candidate commit
-        required: true
-        type: string
-      diagnosis:
-        description: Run the dated bounded diagnosis instead of the original PR23 comparison
-        required: false
-        default: false
-        type: boolean
-      localization:
-        description: Replay the dated Writing localization or supported-fix confirmation
-        required: false
-        default: false
-        type: boolean
+  push:
+    branches: [work/issue-122-writing-startup-diagnostic-20261026]
 permissions:
   contents: read
   actions: read
-concurrency:
-  group: writing-comparison-${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
-  cancel-in-progress: true
-defaults:
-  run:
-    shell: bash
-    working-directory: candidate
 jobs:
-  reading-clarity:
-    if: github.event_name == 'pull_request' && github.event.label.name == 'site-reading-clarity-evidence' && github.event.pull_request.head.repo.full_name == github.repository
+  startup:
+    if: github.repository == 'oborskyivitalii/oborskyivitalii' && github.actor == 'oborskyivitalii' && github.event_name == 'push'
     runs-on: ubuntu-24.04
     timeout-minutes: 10
-    env:
-      SITE_CANDIDATE_SHA: ${{ github.event.pull_request.head.sha }}
-      READING_BASELINE_SHA: 76f2a786a016c8f40230e3d23b14f7ee36c16a57
+    defaults:
+      run:
+        shell: bash
+        working-directory: candidate
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: e5f9d3b291802af57cac95b0c29494b7d5717500
           path: candidate
-          persist-credentials: false
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
-        with:
-          ref: 76f2a786a016c8f40230e3d23b14f7ee36c16a57
-          path: baseline
+          fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: 24.19.0
-      - name: Install locked Node tools before source checks
-        run: npm ci --prefix tools/quality/toolchain --ignore-scripts
-      - name: Verify source and generated inputs once
+      - name: Initialize private diagnostic paths at runtime
         run: |
-          test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
-          test "$(git -C ../baseline rev-parse HEAD)" = "$READING_BASELINE_SHA"
-          node tools/site/build.cjs --check
-          node ../baseline/tools/site/build.cjs --check
-          node tools/quality/artifact.cjs build "$RUNNER_TEMP/clarity-input/candidate"
-          node tools/staging/color.cjs "$RUNNER_TEMP/clarity-input/candidate"
-          SITE_CANDIDATE_SHA="$READING_BASELINE_SHA" node ../baseline/tools/quality/artifact.cjs build "$RUNNER_TEMP/clarity-input/baseline"
-          node ../baseline/tools/staging/color.cjs "$RUNNER_TEMP/clarity-input/baseline"
-      - name: Bound Ubuntu downloads and use its primary archive
-        run: |
-          sudo python3 - <<'PYTHON'
-          from pathlib import Path
-          import re
-          apt = Path('/etc/apt')
-          sources = [apt / 'sources.list', *apt.glob('sources.list.d/*.list'), *apt.glob('sources.list.d/*.sources')]
-          mirrors = {apt / 'apt-mirrors.txt'}
-          for source in sources:
-              if source.exists():
-                  active = '\n'.join(line.split('#', 1)[0] for line in source.read_text().splitlines())
-                  for name in re.findall(r'(?<!\S)mirror\+file:(?://)?(/etc/apt/[^\s#]+)', active):
-                      mirror = Path(name)
-                      if not mirror.resolve().is_relative_to(apt.resolve()) or not mirror.is_file():
-                          raise ValueError('Invalid or missing active APT mirror list: ' + name)
-                      mirrors.add(mirror)
-          pattern = r'https?://azure\.archive\.ubuntu\.com/ubuntu(?=/|\s|$)'
-          changed = []
-          for source in [*sources, *sorted(mirrors)]:
-              if not source.exists():
-                  continue
-              before = source.read_text()
-              after = re.sub(pattern, 'https://archive.ubuntu.com/ubuntu', before)
-              if after != before:
-                  source.write_text(after)
-                  changed.append(str(source))
-              if re.search(pattern, source.read_text()):
-                  raise ValueError('Azure archive remains in ' + str(source))
-          (apt / 'apt.conf.d/99-site-download-bounds').write_text('Acquire::http::Timeout "30";\nAcquire::https::Timeout "30";\nAcquire::Retries "0";\n')
-          print('Ubuntu source/mirror files moved to the primary archive:', changed)
+          python3 - <<'PYTHON'
+          import os
+          with open(os.environ['GITHUB_ENV'],'a') as f:
+              for key,leaf in [('STARTUP_PROFILE_PACKAGE','startup-package'),('STARTUP_PROFILE_OUTPUT','startup-profile')]:
+                  f.write(key+'='+os.path.join(os.environ['RUNNER_TEMP'],leaf)+'\n')
           PYTHON
-      - name: Install pinned Chromium only
-        run: |
-          tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium
-      - name: Restore verified pinned browsers without prior launch
-        uses: ./candidate/.github/actions/browser-archive
+      - name: Authenticate retained failed-stage package metadata
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         with:
-          browsers: chromium
-          working-directory: candidate
-      - name: Check heading geometry, formula and bounded ribbon flights
-        run: node tools/quality/reading-clarity.cjs "$RUNNER_TEMP/clarity-input/candidate/public" "$RUNNER_TEMP/clarity-input/baseline/public" "$RUNNER_TEMP/reading-clarity"
-      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
-        if: always()
-        with:
-          name: reading-clarity-${{ github.run_id }}-${{ github.run_attempt }}
-          path: ${{ runner.temp }}/reading-clarity/
-          if-no-files-found: error
-          retention-days: 30
-  writing:
-    if: github.event_name == 'workflow_dispatch' && !inputs.diagnosis && !inputs.localization
-    runs-on: ubuntu-24.04
-    timeout-minutes: 15
-    env:
-      SITE_CANDIDATE_SHA: ${{ inputs.candidate_sha }}
-      WRITING_REFERENCE_SHA: 174bef1f14390363953cc94ebc0ced136d39da82
-    steps:
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
-        with:
-          ref: ${{ inputs.candidate_sha }}
-          path: candidate
-          persist-credentials: false
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
-        with:
-          ref: 174bef1f14390363953cc94ebc0ced136d39da82
-          path: reference
-          persist-credentials: false
-      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
-        with:
-          node-version: 24.19.0
-      - name: Install locked Node tools before source checks
-        run: npm ci --prefix tools/quality/toolchain --ignore-scripts
-      - name: Package original PR23 base, current base and current Color
-        run: |
-          test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
-          SITE_CANDIDATE_SHA="$WRITING_REFERENCE_SHA" node ../reference/tools/quality/artifact.cjs build "$RUNNER_TEMP/writing-input/pr23-base"
-          node tools/quality/artifact.cjs build "$RUNNER_TEMP/writing-input/current-base"
-          node -e "const fs=require('node:fs'),p=process.env.RUNNER_TEMP+'/writing-input/';fs.cpSync(p+'current-base',p+'current-color',{recursive:true})"
-          node tools/staging/color.cjs "$RUNNER_TEMP/writing-input/current-color"
-      - name: Install pinned Chromium only
-        run: |
-          tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium
-      - name: Restore verified pinned browsers without prior launch
-        uses: ./candidate/.github/actions/browser-archive
-        with:
-          browsers: chromium
-          working-directory: candidate
-      - name: Collect paired cold Writing evidence and retain every trial
-        run: node tools/quality/writing-probe.cjs "$RUNNER_TEMP/writing-input" "$RUNNER_TEMP/writing-results"
-      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
-        if: always()
-        with:
-          name: writing-cold-comparison-${{ github.run_id }}-${{ github.run_attempt }}
-          path: ${{ runner.temp }}/writing-results/
-          if-no-files-found: error
-          retention-days: 30
-  diagnosis:
-    if: github.event_name == 'workflow_dispatch' && inputs.diagnosis && !inputs.localization
-    runs-on: ubuntu-24.04
-    timeout-minutes: 15
-    env:
-      SITE_CANDIDATE_SHA: ${{ inputs.candidate_sha }}
-      WRITING_BEFORE_SHA: 6b73399c4f0afeba497c92809686bba4b7a3200a
-      WRITING_DIAGNOSIS_TRACE: 'false'
-    steps:
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
-        with:
-          ref: ${{ inputs.candidate_sha }}
-          path: candidate
-          persist-credentials: false
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
-        with:
-          ref: 6b73399c4f0afeba497c92809686bba4b7a3200a
-          path: reference
-          persist-credentials: false
-      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
-        with:
-          node-version: 24.19.0
-      - name: Install locked Node tools before source checks
-        run: npm ci --prefix tools/quality/toolchain --ignore-scripts
-      - name: Check diagnostic helpers and package exact paired inputs
-        run: |
-          test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
-          node --test tests/writing-diagnosis.test.cjs tests/writing-variants.test.cjs
-          SITE_CANDIDATE_SHA="$WRITING_BEFORE_SHA" node ../reference/tools/quality/artifact.cjs build "$RUNNER_TEMP/writing-input/before-color"
-          node ../reference/tools/staging/color.cjs "$RUNNER_TEMP/writing-input/before-color"
-          node tools/quality/artifact.cjs build "$RUNNER_TEMP/writing-input/current-base"
-          node -e "const fs=require('node:fs'),p=process.env.RUNNER_TEMP+'/writing-input/';fs.cpSync(p+'current-base',p+'current-color',{recursive:true})"
-          node tools/staging/color.cjs "$RUNNER_TEMP/writing-input/current-color"
-          node tools/quality/writing-variants.cjs "$RUNNER_TEMP/writing-input"
-      - name: Install pinned Chromium only
-        run: |
-          tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium
-      - name: Restore verified pinned browsers without prior launch
-        uses: ./candidate/.github/actions/browser-archive
-        with:
-          browsers: chromium
-          working-directory: candidate
-      - name: Confirm the supported change with clean paired cold boots and flights
-        run: node tools/quality/writing-diagnosis.cjs "$RUNNER_TEMP/writing-input" "$RUNNER_TEMP/writing-results" review/writing-diagnosis-20261006/run.json
-      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
-        if: always()
-        with:
-          name: writing-diagnosis-${{ github.run_id }}-${{ github.run_attempt }}
-          path: ${{ runner.temp }}/writing-results/
-          if-no-files-found: error
-          retention-days: 90
-
-  paradigm:
-    if: github.event_name == 'pull_request' && github.event.action == 'labeled' && github.event.label.name == 'site-writing-paradigm-evidence' && github.event.pull_request.number == 38 && github.event.pull_request.head.repo.full_name == github.repository
-    runs-on: ubuntu-24.04
-    timeout-minutes: 45
-    env:
-      SITE_CANDIDATE_SHA: ${{ github.event.pull_request.head.sha }}
-      WRITING_BASELINE_SHA: 11e5432d908ca0b81431ca4eac6721b076c33cb6
-    steps:
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-          path: candidate
-          persist-credentials: false
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
-        with:
-          ref: 11e5432d908ca0b81431ca4eac6721b076c33cb6
-          path: reference
-          persist-credentials: false
-      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
-        with:
-          node-version: 24.19.0
-      - name: Install locked Node tools before source checks
-        run: npm ci --prefix tools/quality/toolchain --ignore-scripts
-      - name: Validate opt-in contract and package exact Color comparison
-        id: inputs
-        run: |
-          test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
-          test "$(git -C ../reference rev-parse HEAD)" = "$WRITING_BASELINE_SHA"
-          node --test tests/writing-paradigm-ci.test.cjs
-          SITE_CANDIDATE_SHA="$WRITING_BASELINE_SHA" node ../reference/tools/quality/artifact.cjs build "$RUNNER_TEMP/writing-paradigm-input/baseline"
-          node ../reference/tools/staging/color.cjs "$RUNNER_TEMP/writing-paradigm-input/baseline"
-          node tools/quality/artifact.cjs build "$RUNNER_TEMP/writing-paradigm-input/candidate"
-          node tools/staging/color.cjs "$RUNNER_TEMP/writing-paradigm-input/candidate"
-      - name: Install pinned Linux browser engines
-        run: |
-          tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium firefox
-      - name: Restore verified pinned browsers without prior launch
-        id: browsers
-        uses: ./candidate/.github/actions/browser-archive
-        with:
-          browsers: chromium,firefox
-          working-directory: candidate
-      - name: Check Writing lifecycle and retain scene captures
+          script: |
+            const a=require('node:assert/strict');
+            const meta=(await github.rest.actions.getArtifact({...context.repo,artifact_id:12658744128})).data;
+            a.equal(meta.expired,false);
+            a.equal(meta.name,'site-review-package-40340587156-1');
+            a.equal(meta.size_in_bytes,708319);
+            a.equal(meta.digest,'sha256:9348f239017f29932b00116cd43c425169a59e419a7db384367247c088403397');
+            a.equal(meta.workflow_run.id,40340587156);
+            const run=(await github.rest.actions.getWorkflowRun({...context.repo,run_id:40340587156})).data;
+            a.equal(run.path,'.github/workflows/site-color-review.yml');
+            a.equal(run.head_sha,'83591bdfa99cba7649968cf94a6335e98af2847e');
+            a.equal(run.run_attempt,1);
+            a.equal(run.event,'issue_comment');
+            a.equal(run.actor.login,'oborskyivitalii');
+            a.equal(run.status,'completed');
+            a.equal(run.conclusion,'failure');
+            core.info('Original failed-stage package identity authenticated; failure retained.');
+      - name: Download original ZIP and verify native digest before extraction
         env:
-          SITE_REPORT_DIR: ${{ runner.temp }}/writing-paradigm-results/browser
-          SITE_AUDIT_LIFECYCLE: 'true'
-          DEBUG: pw:browser
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
-          set -o pipefail
-          mkdir -p "$RUNNER_TEMP/writing-paradigm-results/browser"
-          node tools/quality/writing-paradigm-browser.cjs "$RUNNER_TEMP/writing-paradigm-input/candidate" "$RUNNER_TEMP/writing-paradigm-results/browser" 2>&1 | tee "$RUNNER_TEMP/writing-paradigm-results/browser/browser-run.log"
-      - name: Measure three ordered pairs per profile without parallel browsers
-        if: ${{ !cancelled() && steps.inputs.outcome == 'success' && steps.browsers.outcome == 'success' }}
-        run: node tools/quality/writing-paradigm.cjs "$RUNNER_TEMP/writing-paradigm-input" "$RUNNER_TEMP/writing-paradigm-results/performance"
-      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
-        if: always()
-        with:
-          name: writing-paradigm-evidence-${{ github.run_id }}-${{ github.run_attempt }}
-          path: ${{ runner.temp }}/writing-paradigm-results/
-          if-no-files-found: error
-          retention-days: 90
-
-  localization:
-    if: github.event_name == 'workflow_dispatch' && inputs.localization
-    runs-on: ubuntu-24.04
-    timeout-minutes: 15
-    env:
-      SITE_CANDIDATE_SHA: ${{ inputs.candidate_sha }}
-      WRITING_BEFORE_SHA: 6d538e171ecbbaa3c3948aa0d8d118fad4aaaf5d
-      WRITING_DIAGNOSIS_TRACE: 'false'
-    steps:
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
-        with:
-          ref: ${{ inputs.candidate_sha }}
-          path: candidate
-          persist-credentials: false
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
-        with:
-          ref: 6d538e171ecbbaa3c3948aa0d8d118fad4aaaf5d
-          path: reference
-          persist-credentials: false
-      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
-        with:
-          node-version: 24.19.0
-      - name: Install locked Node tools before source checks
-        run: npm ci --prefix tools/quality/toolchain --ignore-scripts
-      - name: Check localization helpers and package exact controls
+          python3 - <<'PYTHON'
+          import importlib.util,json,os,pathlib,zipfile
+          root=pathlib.Path(os.environ['STARTUP_PROFILE_PACKAGE']);root.mkdir()
+          s=importlib.util.spec_from_file_location('archive','tools/quality/browser_archives.py')
+          m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
+          p=root.parent/'startup-package-original.zip'
+          m.download({'artifact':12658744128,'uploadDigest':'sha256:9348f239017f29932b00116cd43c425169a59e419a7db384367247c088403397'},os.environ['GITHUB_TOKEN'],p)
+          assert p.stat().st_size==708319
+          with zipfile.ZipFile(p) as z:
+              assert z.testzip() is None
+              assert all(not pathlib.Path(n).is_absolute() and '..' not in pathlib.Path(n).parts for n in z.namelist())
+              z.extractall(root)
+          print('Original package native size/SHA/CRC verified.')
+          PYTHON
+      - name: Install existing locked tools and browser OS dependencies
         run: |
-          test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
-          node --test tests/writing-diagnosis.test.cjs tests/writing-variants.test.cjs tests/writing-layout.test.cjs tests/writing-models.test.cjs tests/writing-localization.test.cjs tests/writing-geometry.test.cjs tests/site-face-preparation.test.cjs tests/navigation.test.cjs tests/space.test.cjs
-          SITE_CANDIDATE_SHA="$WRITING_BEFORE_SHA" node ../reference/tools/quality/artifact.cjs build "$RUNNER_TEMP/writing-input/before-color"
-          node ../reference/tools/staging/color.cjs "$RUNNER_TEMP/writing-input/before-color"
-          node tools/quality/artifact.cjs build "$RUNNER_TEMP/writing-input/current-base"
-          node -e "const fs=require('node:fs'),p=process.env.RUNNER_TEMP+'/writing-input/';fs.cpSync(p+'current-base',p+'current-color',{recursive:true})"
-          node tools/staging/color.cjs "$RUNNER_TEMP/writing-input/current-color"
-          node tools/quality/writing-variants.cjs "$RUNNER_TEMP/writing-input"
-      - name: Install locked Chromium only
-        run: |
+          test "$(git rev-parse HEAD)" = e5f9d3b291802af57cac95b0c29494b7d5717500
+          test -z "$(git status --porcelain)"
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
           tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium
-      - name: Restore verified pinned browsers without prior launch
+      - name: Restore existing authenticated pinned Chromium without prior launch
         uses: ./candidate/.github/actions/browser-archive
         with:
           browsers: chromium
           working-directory: candidate
-      - name: Localize Writing or confirm only the supported source correction
+      - name: Capture one Writing-only cold startup; no acceptance campaign
         run: |
-          node - <<'JS'
-          const fs=require('node:fs'),path=require('node:path');
-          const input=process.env.RUNNER_TEMP+'/writing-input',out=process.env.RUNNER_TEMP+'/writing-results';
-          const config=JSON.parse(fs.readFileSync('review/writing-diagnosis-20261006/localization-run.json'));
-          const driver=config.mode==='v0'?require('./tools/quality/writing-diagnosis.cjs'):require('./tools/quality/writing-localization.cjs');
-          (async()=>{
-            await driver.main(input,out,config);
-            if(config.mode==='v0'){
-              const {serve}=require('./tools/quality/writing-probe.cjs');
-              const inputs=Object.fromEntries(['before-color','current-color'].map(label=>[label,{publicDir:path.join(input,label,'public')}]));
-              const {server,url}=await serve(inputs);
-              try{await require('./tools/quality/writing-geometry.cjs').compare(url+'/before-color',url+'/current-color',out+'/geometry.json');}
-              finally{server.close();}
+          node <<'NODE'
+          'use strict';
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const crypto = require('node:crypto');
+          const repo = process.cwd();
+          const output = process.env.STARTUP_PROFILE_OUTPUT;
+          fs.mkdirSync(output, { recursive: true });
+          const packageRoot = process.env.STARTUP_PROFILE_PACKAGE;
+          const { toolRequire, environment } = require(repo + '/tools/quality/common.cjs');
+          const { start } = require(repo + '/tools/quality/serve.cjs');
+          const record = {
+            kind: 'single-writing-startup-diagnostic', acceptance: false,
+            source: 'e5f9d3b291802af57cac95b0c29494b7d5717500',
+            tree: '5863806e0e385cfdcdfa931d5ff9e968edf765a1',
+            packageArtifact: 12658744128, browserArtifact: 12643236386,
+            environment: environment(),
+            settings: { viewport: { width: 412, height: 823 }, deviceScaleFactor: 1.75, isMobile: true, hasTouch: true, colorScheme: 'light', userAgent: 'Playwright default', serviceWorkers: 'block', cpuRate: 4, cache: false, postDomMs: 4000, samplingIntervalUs: 1000 },
+            limits: 'One process/context/navigation. Existing stage hooks and CPU sampling add overhead. Loopback gzip transport and actual CPU4 differ from hosted Lighthouse CPU1 gather plus Lantern simulation4. No TBT/acceptance conclusion.',
+            errors: [], requestsFailed: [],
+          };
+          function save() { fs.writeFileSync(path.join(output, 'capture.json'), JSON.stringify(record, null, 2) + '\n'); }
+          async function main() {
+            const manifest = JSON.parse(fs.readFileSync(packageRoot + '/staging-package.json'));
+            if (manifest.source.sourceCommit !== record.source || manifest.source.sourceTree !== record.tree) throw Error('Package identity mismatch');
+            require(repo + '/tools/staging/package.cjs').verify(packageRoot, manifest, { sourceCommit: record.source, sourceTree: record.tree, candidateCommit: record.source });
+            let checked = 0;
+            for (const [name, entry] of Object.entries(manifest.source.files)) {
+              const bytes = fs.readFileSync(packageRoot + '/public/' + name);
+              if (crypto.createHash('sha256').update(bytes).digest('hex') !== entry.sha256) throw Error('Package bytes differ: ' + name);
+              checked++;
             }
-          })().catch(error=>{console.error(error.stack);process.exitCode=1;});
-          JS
+            record.verifiedPackageSourceFiles = checked;
+            record.verifiedWholePackage = true;
+            record.diagnosticController = process.env.GITHUB_SHA;
+            record.runId = process.env.GITHUB_RUN_ID;
+            record.runAttempt = process.env.GITHUB_RUN_ATTEMPT;
+            save();
+            const { server, url } = await start({ publicDir: packageRoot + '/public', localOnly: true });
+            let browser;
+            try {
+              browser = await toolRequire('playwright').chromium.launch({ executablePath: toolRequire('playwright').chromium.executablePath(), headless: true, timeout: 30000, args: ['--no-sandbox', '--disable-dev-shm-usage'] });
+              record.browserVersion = browser.version();
+              const context = await browser.newContext({ viewport: record.settings.viewport, deviceScaleFactor: 1.75, isMobile: true, hasTouch: true, colorScheme: 'light', serviceWorkers: 'block' });
+              await context.addInitScript(() => {
+                window.__startupStages = [];
+                window.SiteEngineStages = true;
+                window.SiteEngineProbe = e => {
+                  if (window.__startupStages.length < 10000) window.__startupStages.push({ kind: e.kind, time: e.time, part: e.part, start: e.start, duration: e.duration, route: e.route, page: e.page, reasons: e.reasons });
+                };
+              });
+              const page = await context.newPage();
+              page.on('pageerror', e => record.errors.push(e.message));
+              page.on('requestfailed', r => record.requestsFailed.push({ url: r.url(), error: r.failure() }));
+              const cdp = await context.newCDPSession(page);
+              await cdp.send('Network.enable');
+              await cdp.send('Network.setCacheDisabled', { cacheDisabled: true });
+              await cdp.send('Emulation.setCPUThrottlingRate', { rate: 4 });
+              await cdp.send('Profiler.enable');
+              await cdp.send('Profiler.setSamplingInterval', { interval: 1000 });
+              await cdp.send('Profiler.start');
+              record.startedAt = new Date().toISOString();
+              save();
+              await page.goto(url + '/writing.html', { waitUntil: 'domcontentloaded', timeout: 30000 });
+              await page.waitForTimeout(4000);
+              const { profile } = await cdp.send('Profiler.stop');
+              fs.writeFileSync(path.join(output, 'cpu-profile.json'), JSON.stringify(profile) + '\n');
+              record.observation = await page.evaluate(() => ({ stages: window.__startupStages, now: performance.now(), url: location.pathname, ready: document.querySelector('.space-scene')?.dataset.ready, scene: { ...document.querySelector('.space-scene')?.dataset }, motion: document.querySelector('#space-motion')?.textContent, color: document.documentElement.dataset.theme }));
+              record.completed = true;
+            } catch (e) {
+              record.completed = false;
+              record.error = e.stack;
+              throw e;
+            } finally {
+              record.endedAt = new Date().toISOString();
+              if (browser) await browser.close();
+              server.close();
+              save();
+            }
+            console.log(JSON.stringify({ completed: record.completed, version: record.browserVersion, stages: record.observation.stages.length, errors: record.errors, ready: record.observation.ready }));
+          }
+          main().catch(e => { record.error = e.stack; record.completed = false; save(); console.error(e.stack); process.exitCode = 1; });
+          NODE
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always()
         with:
-          name: writing-localization-${{ github.run_id }}-${{ github.run_attempt }}
-          path: ${{ runner.temp }}/writing-results/
-          if-no-files-found: error
-          retention-days: 90
+          name: issue122-writing-startup-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/startup-profile/
+          if-no-files-found: warn
+          retention-days: 30
