@@ -11796,6 +11796,12 @@
       "purpose": "Browser native origin, locked selection, HTML/hash/path/link and executable failure regressions.",
       "role": "test",
       "owner": "guides/BROWSER-ARCHIVES.md"
+    },
+    "review/issue-122/2026-10-26-browser-security-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Inert source-bound proof of exact browser-tooling Bandit findings and public native browser checksum/NPM-integrity classifications under issue122.",
+      "role": "history",
+      "owner": "guides/BROWSER-ARCHIVES.md"
     }
   }
 }

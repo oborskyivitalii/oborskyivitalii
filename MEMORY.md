@@ -7,7 +7,7 @@ Dated continuity, not live authority. Last verified: **2026-10-26**.
 - Owner remains #122. PR142/R1, PR143–144/R2, PR145/runtime compatibility and PR146/platform integration are delivered.
 - Protected main is56404df6fb4085378079c61891ad85cdbd22bbe7; testedf2f2ac25b6f833cbc547a6156d3f8c8ccaa3de50 shares tree42e1c6c6d23466a157c45f8653b2cef092613205.
 - Exactf2 passes Basic40237142225/1 (79modules/1156tests) and ownerstage40237775868/1 (74modules/1119tests/all26guards/browser/performance/stable). GenuineApp5453173/check121421284515 through40276788563, protectedmerge, postmerge40277125800 and actualmainRI40277132234 pass. Native artifacts retain original source.
-- Current repair is DraftPR147, branch work/issue-122-browser-archives-20261026. Correctedd66/treea6680321 has full clean lint339pass and successful new3OSseed40306092975/1. New3pins are local/reviewed; corrected-producer consumer proof and protected delivery remain pending. Prior4f1 stays historical.
+- Current repair is PR147, branch work/issue-122-browser-archives-20261026. Correctedproducer923 passes seed40306092975; exact38e43fb4/tree5ddaf82 pins pass consumer40307707776/1 (3OS/6firstlaunches/zero setup launches). Final scanner/source integration is implemented; verify live current-head checks before protected delivery. Prior4f1 stays historical.
 - PR79 stays Draft/open at02a4f6aeb04feb663baf7d170e3a9861ae718b6a. R38 is separate unpublished work; no source import or publication follows from #122.
 
 ## Decisions
@@ -28,6 +28,9 @@ Dated continuity, not live authority. Last verified: **2026-10-26**.
 - Fresh4f1native40303175625/1 SUCCESS:3OSrestore receipts/6firstlaunches allpass, zero setup launches. All6original report ZIPs/nativeSHA/CRC/rawJSON physically verified; four independent roles accept bounded repair. Prior40302880035 remainsfailed at old967emptyregistry; live4f1headre-read beforecorrectevent. Siteprofiles/protectedstage/merge remain separate.
 - Ready575 navigation40304322219 fails omittedguide active_markdown (15cases14pass1error); two guide routes corrected, RootLayout15/15 and4rolespass. Basic40304322190 fails actual full Ruff on2I001 import-order findings before source tests. Import-only helper/test correction needs a new producer seed/pins/native proof; old4f1 evidence stays historical. Full maintained lint is now checked before new freeze. No guard/pin/source-hash waiver.
 - CorrectedhelperSHA923246e1, unchangednon-importAST. Cleanlocal55998186/treea6680321 full lint339/all3enginespasses; publishedd66same tree. Newseed40306092975/1 SUCCESS all3OS, runtimeIDs12643236386/12643006802/12642004235; original pin/ZIP/API/newmacruntime layers checked by4roles. Expire2027-01-24T10:16:18Z. Fresh consumption still next.
+- Corrected38consumer40307707776/1 SUCCESS:3OSsetup0launches then6actualprobes. All6ZIP/APIhash/CRC/JSON/steporders independently verified by4roles. Sourceproducer923/CJS9a5/workflowc972/actionc865 and3pins stay fixed through scanner-only changes.
+- Security integration: Semgrep passes;48raw Bandit findings retain37prior+11exactLOW reviews at unchangedNov3expiry.19exact new public checksum/SRI dispositions retain1514prior rows/other3ledgers. SeparatebrowserSRI proof binds exactfields/IDs, authored+selectedlock and installedmetadata; unknown/drift/misplacedvalue-or-key blocks.4roles reviewed implementation, key-bypass correction and6later recomputed policy fingerprints. Inert full raw proof is versioned; no scanner/producer waiver.
+- Preserve local security preflight failures and37/38 dirty-Git source result in review. Clean committed full lint/security/quality-sources and live current-head CI are the next verification; exact-head maintainer attestation still precedes owner stage.
 - Local Chromium download for Playwright1.63.0/Chromium1243 returns HTTP200/text/html/195bytes SiteUnavailable; SHA2565b131ca14aa96311d3432b0062c7443d3b0e6346ec279bd376a75f0a76bcd5d7. This proves this supplier failure, not all historical CI causes.
 - Local actual146-artifact content probe passes3checkpoints in7.527s: Talks→Home→Talks,29platformfiles exact, immutable closure52/53/54 retained, oldTalks restored while newerHome survives. Four roles rehashed actual output;12localhostHTTP checks passed. ReportSHA2563afc86912a0e3922803c51c1eb40fd4a91aefa6e83a0a7938cd436c052b15d16. Three prior failures remain separate.
 - Content probe used only the already-staged R37 reference; no R38. Local evidence is not native content admission/publication. Same-pin Python supplies Pillow13.0.0/WebP1.6.0; that content probe's browser execution remains unobserved.
@@ -38,7 +41,7 @@ Dated continuity, not live authority. Last verified: **2026-10-26**.
 ## Next session
 
 1. Revalidate main/#122/current repair branch/PR and exact checks; keep PR146 accepted head and PR79 untouched.
-2. Newcleanlint/seed/pins accepted for correctedd66producer; finish fresh3OSconsumption. Preserve old4f1 supplier/consumer evidence as historical; no hash or guard waiver.
+2. Correctedseed/pins/new38nativeconsumption accepted. Finish clean-source scanner/source checks and live current-head CI; preserve all old failures/evidence without relabeling.
 3. Complete current-source checks and existing protected delivery. Exact-head maintainer control attestation is required before owner stage; four agent reviews cannot substitute it.
 4. Finish ordinary content/history/recovery, then reconcile original ACs/contracts/roles and queue/setup/execution before closure. No R38 publication dependency.
 

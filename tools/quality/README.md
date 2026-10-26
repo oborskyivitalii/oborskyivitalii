@@ -162,6 +162,10 @@ historical ledger and frozen baseline retain their bytes; the named companion
 records. Duplicate, malformed, missing or oversized ledgers fail visibly under
 the unchanged RI 2 MB source-read bound. A companion is storage for exact review,
 not an entropy-rule exemption or blanket checksum admission.
+For `browser-archives.json` only, the two exact reviewed NPM SRI values also need
+the current authored/selected quality lock and installed package proof. The
+proof binds their actual package fields and rejects misplaced values or keys;
+it cannot authorize a new review ID or substitute the publication proof.
 
 For a local reproduction against the same immutable hosted candidate, set
 `SITE_TEST_BASE_URL` to its HTTPS URL and `SITE_TEST_PROFILE=staging`, retain the

@@ -838,6 +838,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-122/2026-10-25-f5-exact-checksum-proof.json.gz](review/issue-122/2026-10-25-f5-exact-checksum-proof.json.gz) | Inert F5 proof of750 exact public checksum findings, distinguishing recomputed bytes and Git identities from historical producer attestations and archival declarations; grants no artifact acceptance or scanner authority. | history | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [review/issue-122/2026-10-25-r3-platform-integration.md](review/issue-122/2026-10-25-r3-platform-integration.md) | Stable R3 platform integration scope, concrete fixes, four independent roles and source-bound delivery evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-122/2026-10-26-browser-archives.md](review/issue-122/2026-10-26-browser-archives.md) | Issue122 authorized browser-supply repair, source-bound review and implementation/native evidence. | history | [guides/BROWSER-ARCHIVES.md](guides/BROWSER-ARCHIVES.md) |
+| [review/issue-122/2026-10-26-browser-security-proof.json.gz](review/issue-122/2026-10-26-browser-security-proof.json.gz) | Inert source-bound proof of exact browser-tooling Bandit findings and public native browser checksum/NPM-integrity classifications under issue122. | history | [guides/BROWSER-ARCHIVES.md](guides/BROWSER-ARCHIVES.md) |
 
 ## review/issue-126/
 

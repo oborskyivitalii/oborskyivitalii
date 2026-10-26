@@ -804,7 +804,8 @@
         "tools/quality/hosted.cjs",
         "tools/quality/advisory-exceptions.json",
         "tools/quality/toolchain/requirements.txt",
-        "tools/quality/toolchain/package-lock.json"
+        "tools/quality/toolchain/package-lock.json",
+        "tools/quality/browser-archives.json"
       ]
     },
     {

@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "f19ed300673c870da32fb3e3488a63b7cda37a6bc4f6461f278b82d4957e31c6",
+    "digest": "365ce85a4096fa1c95353ae025cd7a122af813a16ff566c38d2879eedec90985",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -201,12 +201,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "0f8a54907bcce4fa85f60195ca0c9bf2866b04a70e007c55da117592a42ccbd9"
+        "sha256": "10cc5984f37355b6f460881e760e0aa6094523fdf0a213a5b14fb22b099ec067"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "d69d6e72c79381f2dbe82d1af0644936557d21c0a6df382ee1b8b745353699aa"
+        "sha256": "dc7fa8e8f1d1f4b0a281bc067bd25d72a3896e5fa40e7e87b0bf417e582e1ccd"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -356,7 +356,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "8c2f55ecda164e39ba697250e429ff2d26688689aa5b484e58643f98aee0e1aa"
+        "sha256": "9496a0e1298bfcb8fff4bf4a6558c8db6974466c33c0afbc4c8555d5fcc3e6fe"
       },
       {
         "path": "NOTICE.md",
@@ -685,7 +685,7 @@
       {
         "path": "guides/BROWSER-ARCHIVES.md",
         "identity_mode": "content",
-        "sha256": "2323e850fbf42914e4af26e2960e99f237c2bbfe3e62a21627d04f7f8ea0fc95"
+        "sha256": "e0811760d4d70a1da56315dbdac4710eaa39672d5d884a77403f94be44804070"
       },
       {
         "path": "guides/CODE-STYLE.md",
@@ -1020,7 +1020,12 @@
       {
         "path": "review/issue-122/2026-10-26-browser-archives.md",
         "identity_mode": "content",
-        "sha256": "63d2856a26c935b00e944b348b4919a99b9c9b725966befa78b95426d7f0e53b"
+        "sha256": "9563fa2a2b6cd2b3134fa222cf71c3b77f636ccc7c02417a272bddf9854c9aca"
+      },
+      {
+        "path": "review/issue-122/2026-10-26-browser-security-proof.json.gz",
+        "identity_mode": "content",
+        "sha256": "c4bfe4052e05b9d124242f0d40ebefd91fa2ed0d914980cd9e61014f3ae34ba1"
       },
       {
         "path": "review/issue-126/2026-10-23-announcement-review.md",
@@ -7485,7 +7490,7 @@
       {
         "path": "tests/quality-sources.test.cjs",
         "identity_mode": "content",
-        "sha256": "cd2ef322970d4bda1d893c84ba14c04ec51e30ef6f43673fb4672c94895665b9"
+        "sha256": "01840204fc5eb119e169588eab04dc4dddebdc9b5ba957bc8625e3165cdc2928"
       },
       {
         "path": "tests/quality.test.cjs",
@@ -8000,7 +8005,7 @@
       {
         "path": "tools/quality/README.md",
         "identity_mode": "content",
-        "sha256": "5a5eb9a421d126b4bc5e48163d29738853f7233a01f5635705516d3046d90cc8"
+        "sha256": "3dd4d6200763e9dd5a9c7850ec57a64c2e3c4edac822d4392de20aff2c3d3d6d"
       },
       {
         "path": "tools/quality/advisory-exceptions.json",
@@ -8040,7 +8045,7 @@
       {
         "path": "tools/quality/bandit-policy.json",
         "identity_mode": "content",
-        "sha256": "fdaf92541b379fc3cb1dece5a79e2aeab8d9acabcedefb1a7e0e6f7346f0ba16"
+        "sha256": "2cfc63c8f722cb4ac739b9086f6e9c515efe0cb5ff7a5b86ab574ea59677701c"
       },
       {
         "path": "tools/quality/bandit-triage.cjs",
@@ -8390,7 +8395,7 @@
       {
         "path": "tools/quality/scanners.cjs",
         "identity_mode": "content",
-        "sha256": "ae325cf39063b70a17ea666bf0a6d8b01e93c13b60d68c4a0e22e0179ebfa5ad"
+        "sha256": "7c92709c202a178914e248e8a4b7bfb50c912a589558bdb5d0d75a640ae376f8"
       },
       {
         "path": "tools/quality/scroll-browser.cjs",
@@ -8410,7 +8415,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "41ceb7ad9c04b2086c223af9a3f7a2226789ee308c9d188fd1a77183fb86545f"
+        "sha256": "629c16706fc59d8fc7b7cd6f8e7bd9a2ff3a8f17d24ee6c99e50f38a0962e4a2"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
@@ -8465,7 +8470,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "15e345f8e2b0be20712b56a24b6dc242bc43ff947154ade2a6f05c6b1e94a1f7"
+        "sha256": "35a448e09d9cd38fe1d2723a12cd9c45b2274e7ef612cb90153ae0c0eabb51e0"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -11388,6 +11393,17 @@
         "AGENTS.md"
       ],
       "title": "Browser supply repair — 26 October 2026"
+    },
+    {
+      "path": "review/issue-122/2026-10-26-browser-security-proof.json.gz",
+      "kind": "file",
+      "purpose": "Inert source-bound proof of exact browser-tooling Bandit findings and public native browser checksum/NPM-integrity classifications under issue122.",
+      "role": "history",
+      "owner": "guides/BROWSER-ARCHIVES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-26-browser-security-proof.json.gz"
     },
     {
       "path": "review/issue-126/2026-10-23-announcement-review.md",

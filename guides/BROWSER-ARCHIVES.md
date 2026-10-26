@@ -40,6 +40,14 @@ producer, OS or architecture requires a matching seed. Missing/expired records
 block setup and name this refresh route; they never enable CDN fallback or
 turn missing browser tests into success.
 
+Static security review retains every raw finding. Each newly reported public
+fingerprint needs an exact reviewed path/type/value disposition. The two NPM
+integrity strings additionally require their exact package fields to match the
+authored quality lock, the selected toolchain's lock and installed metadata.
+Publication integrity proof remains separate. A new, changed or misplaced value
+cannot inherit a prior review; refreshes re-run the existing scanners and
+reconcile their actual findings. The guide owns no scanner exemption.
+
 ## Consume without warming the test machine
 
 After installing the existing locked Node dependencies and the job's existing

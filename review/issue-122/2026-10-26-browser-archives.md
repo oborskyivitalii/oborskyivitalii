@@ -287,11 +287,65 @@ ZIP/inner TAR/manifest/producer hashes and actual26.6launch probe independently
 match. Old967/4f1 artifacts/proof remain historical. Fresh consumption of these
 corrected-producer pins and current-source protected delivery are next.
 
+## Corrected-producer consumption and scanner integration
+
+Fresh consumer40307707776/1 SUCCESS at38e43fb4ea3369f5ed36131b421457fea01f4e3e,
+tree5ddaf82a42f7ff44b34a077fc43b4889dd78c7e1. Three fresh native setups
+authenticate the corrected producer's actual suppliers with zero setup launches;
+six subsequent C/F/W platform probes pass at the same locked versions. All six
+original report ZIP/native SHA/size/CRC/raw JSON and restore-before-probe ordering
+were physically checked by the implementer and all four independent roles.
+
+| Platform | Setup receipt | Subsequent first-launch receipt |
+| --- | --- | --- |
+| Linux C/F/W | 12643387947 | 12643183879 |
+| Windows C/F | 12642714551 | 12643054042 |
+| macOS W | 12643003478 | 12642863731 |
+
+The separate existing local security preflight at38 first passed Semgrep but
+blocked11 new LOW Bandit findings and lacked local publisher dependencies for
+the secret-proof stage. Original full Bandit/hashed-secret reports are retained
+in [the inert proof](2026-10-26-browser-security-proof.json.gz). Reusing actual
+raw secret findings after installing identical-lock publisher dependencies
+identified13 new public values, all in the browser registry:11 exact public
+fingerprints and2 verified Playwright/core NPM SHA512 integrity strings.
+
+Four roles independently classified the actual findings against source/native
+evidence before implementation. Bandit's existing37 rows stay data-identical;
+11 exact LOW reviews bind source923246e1, line/rule/confidence and the unchanged
+2026-11-03 expiry. Its raw48 accounting stays visible. The checksum companion
+adds13 exact dispositions; the other three ledgers remain byte-identical.
+
+The separate browser SRI proof binds authored and selected-toolchain lock bytes,
+installed lock version/integrity/resolved and package name/version, canonical
+SHA512 values, and only the two actual package fields. Base64 admission still
+requires an exact review ID and this separate proof; publication rules stay.
+Missing, malformed, oversized, symlinked, stale, unknown and misplaced inputs
+block. White-box found an unrelated JSON property-name placement bypass in the
+first value-only walk; key inspection and its exact negative regression now
+reject that case and an embedded-key variant. All four roles rechecked it.
+Three new meaningful guard cases and the existing negatives pass; touched
+ESLint has zero warnings. Full refreshed security/current-source CI remain next.
+
+These scanner/policy changes do not alter producer, runtime, action, workflow or
+pins; native38 proof keeps its original source and remains applicable to those
+byte-identical owners. No browser reseed or scanner/threshold waiver follows.
+
+The refreshed local security run passes Semgrep and actual Bandit48/48, while
+the secret stage identifies6 new public source/line fingerprints inside those
+11 Bandit review rows. Each is recomputed from the unchanged helper/line bytes
+and appended as an exact companion disposition; the inert proof retains both
+actual hashed-secret reports and the per-field mapping. No further guard change.
+The complete local quality-sources run had37pass/1failure: its repository-lint
+negative requires a clean Git checkout and therefore could not create its report
+from this dirty implementation tree. Preserve that failed precondition result;
+verify the unchanged test again on the clean committed candidate.
+
 ## Remaining #122 plan
 
-1. Clean-source full lint, corrected-producer seed and reviewed new pins pass.
-   Finish fresh three-platform consumption, then current-source checks and
-   existing protected delivery. Prior967/4f1 proof remains historical.
+1. Clean lint, corrected seed/pins and fresh three-platform consumption pass.
+   Finish scanner/source integration and current-source checks, then existing
+   protected delivery. Prior967/4f1 proof remains historical.
 2. Obtain the maintainer's exact-head control attestation before owner staging;
    this separate source trust decision cannot be supplied by four agent reviews.
 3. Verify ordinary content/history/recovery against a compatible accepted
