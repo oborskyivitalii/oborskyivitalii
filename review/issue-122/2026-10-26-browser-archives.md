@@ -133,6 +133,57 @@ Basic5routes/26theme-flightcases/12scripts, touched ESLint,532-file maintained
 format and143-file bounded style guard. These are source checks, not native
 browser, scanner, site-profile, protected merge or publication acceptance.
 
+## Successful native preparation and actual pins
+
+Run40301062890/1 completed successfully at exact source967c06bad074120c769e45a6b5b3261e805335bc,
+tree056ef93f8e4d73bdd3781547d024dc440025cd48. Native owner and triggering
+actor are oborskyivitalii; workflow/path/source/attempt match. All three jobs
+acquired their existing engine sets, performed real launches and independently
+re-extracted/verified complete archive inventories before upload.
+
+| Native set | Runtime artifact | Original pin artifact | ZIP bytes |
+| --- | --- | --- | --- |
+| Ubuntu24.04/x64 C/F/W | 12641235014 | 12640164040 | 510869378 |
+| Windows2025/x64 C/F | 12640746477 | 12640886167 | 456994450 |
+| macOS15/arm64 W | 12640337995 | 12639854246 | 76727165 |
+
+All artifacts expire2027-01-24T09:38:05Z. The registry retains their actual
+native IDs, names, run/attempt/source, package integrities, system/revision/key,
+native ZIP, inner archive and manifest hashes. Original pin ZIPs were downloaded,
+native-SHA256/CRC checked and their JSON preserved unchanged. Authoring the
+registry adds only `sha256:` before the raw upload action's64hex digest after
+exact comparison with the native API's canonical digest. Requirements and Code
+independently checked/accepted this representation normalization, with no source,
+archive, manifest, key or producer transformation and no weakened check.
+
+The actual macOS runtime ZIP was additionally downloaded: native SHA25648b63a30
+c4071269dbd64ee00346e893f32bb6504ca60da6e2665a5f7b4bd048, inner42761b763250f6b9
+ba6c5b4c9fbc11a0b52757957082ad2aff69c1773cd47afa and manifestd203fd8bc7894973
+cfd23a14d926267196508be91a98dc571f3463f13b70d073 all match. Its6967file
+manifest names the exact frozen producer hashes and successful WebKit26.6 probe.
+Registry data now exists; authenticated consumer restore/first-launch on fresh
+native runners, current-source delivery and site acceptance remain pending.
+
+All four role-specific agents independently accepted the actual three-pin
+ingestion at registrySHA2565391eb775de1bda70f7a1daa9783d26025708b2bf4c56bd05e0d6c8f4c924c43.
+They compared original pin ZIP/JSON, live native metadata, source/producers,
+lock/registry/revision/system identities and all three digest pairs. White-box
+also exercised actual-pin duplicate/bare-digest refusals; Exploratory exercised
+the real pinned CLI's missing-token failure with zero launches/no destination.
+Each leaves fresh native consumption and site acceptance pending. Eleven
+focused cases and current RI/coupling verification pass after actual pins.
+
+Actual seed timings from native job/step timestamps, in seconds:
+
+| OS | Queue to job start | Setup to acquisition | Acquisition | Probe/package/selfcheck | Total job |
+| --- | --- | --- | --- | --- | --- |
+| macOS | 3 | 92 | 11 | 39 | 152 |
+| Windows | 2 | 91 | 175 | 131 | 406 |
+| Ubuntu | 3 | 37 | 77 | 148 | 276 |
+
+These are one-time supplier preparation measurements. They do not measure site
+test execution or establish a healthy-CDN speed comparison or overall AC08 pass.
+
 ## Remaining #122 plan
 
 1. Finish/review this repair; seed exact native archives and rebind consumers.

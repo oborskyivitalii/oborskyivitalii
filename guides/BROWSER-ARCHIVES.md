@@ -27,6 +27,10 @@ and source. Original native upload digests are retained separately.
 Download the three `browser-pin-*` artifacts from that successful run and put
 their JSON records into `tools/quality/browser-archives.json`'s `archives` list.
 Review the actual source/run/attempt, immutable upload digest and archive bytes.
+The upload action emits a bare hexadecimal artifact digest; the API and registry
+use `sha256:HEX`. Check that the original64hex digits equal the API digest payload,
+then add only the `sha256:` prefix to the authored registry's `uploadDigest`.
+Preserve the original pin artifact/JSON; no other identity field is transformed.
 Do not type guessed IDs/hashes or substitute a record from another toolchain.
 Pins are explicit; a consumer never selects a mutable latest successful run.
 
