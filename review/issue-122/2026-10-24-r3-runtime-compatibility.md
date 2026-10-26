@@ -396,3 +396,62 @@ blocker; explicit next delivery/retry decision is required under the existing
 limit. PR151 remains Draft; PR150/149/79, main835 and production stay unchanged.
 This result receipt changes only the existing review, MEMORY and derived RI;
 all native results retain their actual source/controller/run identities.
+
+### Authorized continuation — prerequisite smoke failure, 26 October 2026
+
+The maintainer explicitly answered “Так дозволяю роби” to the concrete
+one-additional-full-stage proposal. [Decision6426971359](https://github.com/oborskyivitalii/oborskyivitalii/issues/122#issuecomment-6426971359)
+authorizes one complete ordinary owner-stage campaign after fresh prerequisites,
+with unchanged limits and a stop on another failure. It supplies no exact-head
+human control attestation. Protected main remains83591bdf. No owner `/stage`
+was issued: the additional full campaign is **unused**, blocked by preview smoke.
+
+Ready source1e1617d63b7e1677d868e5612926f9bcf60007bc/tree4e370a6c94a5704fcf47368bcbb0838439de7567
+has actual current-head Basic40398934640/1 PASS:75modules,1130/1130 tests,
+zero fail/cancel/skip/todo; source before/after clean and identical. Original
+source artifact12688875105 is68119bytes/SHA256
+`a09bb0bad337c7c41938541ab66457b1a9a72d451ab52e902ae61f527ab42310`;
+physical ZIPCRC/size/hash and JSON accounting agree. RI40398934349 and
+owning40398934354 pass. Original owning artifact12686759501 is7850bytes/SHA256
+`57add0736c361d41f82d5095decb4f50c9b8280e53f96af9ae91231e07059207`;
+physical CRC/size/hash/source match; its manual gates remain pending.
+
+Preview40398934425/1 builds and publishes immutable
+https://6aca6f5e.oborskyi-author-ci-staging.pages.dev. Its initial PR admission
+correctly refuses `missing staging admission`; that is not a new owner campaign.
+Browser restoration passes exact pinned archive verification with zero prelaunches.
+Generic smoke1440/390 normal/no-canvas, all their route rows and hosted HTTP pass.
+Color mobile passes its three native edges and other required checks. Desktop
+Color fails before the wheel for one forward edge: native range5222→5453px at
+789.2ms resets stability; at908.4ms only119.2ms is quiet versus required180ms.
+Final position5453 reaches the bottom, but this alone cannot satisfy the guard.
+The original900ms/180ms/2px policy is unchanged and correctly refuses.
+
+Original smoke artifact12688531322 is20119bytes/SHA256
+`0dba2b84181200e59d593cc0739062cc28e2814c09cb476fa11ee19455548b04`;
+physical CRC/size/hash and all three JSON reports were read. Failed job121840323559
+retains its exact source, runner, Chromium153.0.8010.12 and target. Its report
+lacks the failed route/from/to because `prepare()` throws before `edge()`'s try;
+the scenario has two forward preparations. The failing call's wheel was not sent;
+earlier calls may have run. Do not claim a particular route or broken navigation.
+Retained acceptedS147 desktop ranges5453/5537/6668 suggest Home as a hypothesis,
+not an observed current route. No original full failure is erased.
+
+Four separate completed resumed roles independently inspect actual reports and
+source: `/root/requirements`, `/root/resume_code_review`,
+`/root/resume_whitebox`, `/root/resume_operator_qa`. Initial Home/first-wheel
+attributions were challenged and narrowed to the retained observations above.
+The existing late/blocked endpoint fixtures and179ms aggregate negative already
+protect this refusal. Camera readiness is not geometry/reading-animation readiness;
+no retained route/layout/font/animation telemetry identifies the231px change.
+Animation completion is a hypothesis, not a demonstrated cause or correction.
+These are raw-evidence/structural readbacks, not new browser executions or coverage.
+
+PR151 returns Draft. No unchanged preview retry, owner staging, runtime/CSS edit,
+threshold change, App, merge, article, production or DNS action follows. Smallest
+next proposal: observe only the frozen desktop preparation, retaining route/step,
+geometry/font/animation state around the unchanged observation window. No new
+diagnostic framework/matrix or prerequisite PR; any actual harness correction
+needs linked causal evidence and a bounded scope disposition first. The unused
+full-stage authorization cannot waive failed prerequisites. Later receipt metadata
+does not inherit1e native results. AC03/06/08 remain open; PR150/149/79 unchanged.
