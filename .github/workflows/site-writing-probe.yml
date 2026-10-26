@@ -301,18 +301,17 @@ jobs:
               ...Object.values(revision.routes).map((route) => route.url),
             ]);
             assert.equal(hostedFiles.size, 20, 'finite current hosted inventory');
+            const hosted = require(root + '/tools/staging/hosted.cjs');
             for (const name of hostedFiles) {
-              const response = await fetch(origin + '/' + name, {
-                signal: AbortSignal.timeout(10000),
-                redirect: 'error',
-              });
-              assert.equal(response.status, 200);
-              const sha = crypto
-                .createHash('sha256')
-                .update(Buffer.from(await response.arrayBuffer()))
-                .digest('hex');
+              const signal = AbortSignal.timeout(10000);
+              const result = await hosted.request(origin + '/' + name, origin, (target, options) =>
+                fetch(target, { ...options, signal })
+              );
+              assert.equal(result.response.status, 200);
+              if (name.startsWith('snapshots/')) assert.equal(result.redirects, 0);
+              const sha = crypto.createHash('sha256').update(result.bytes).digest('hex');
               assert.equal(sha, bundle.files[name].sha256, 'frozen hosted bytes: ' + name);
-              record.host.push({ name, sha });
+              record.host.push({ name, sha, url: result.url, redirects: result.redirects });
             }
             const { toolRequire, environment, launchOptions } = require(root + '/tools/quality/common.cjs');
             record.environment = environment();
@@ -487,7 +486,15 @@ jobs:
           }
           main().catch((error) => {
             record.completed = false;
-            record.collectionErrors.push({ label: 'main', error: error.stack });
+            const causes = [];
+            let cause = error.cause;
+            for (let i = 0; cause && i < 4; i++, cause = cause.cause)
+              causes.push({
+                name: String(cause.name),
+                message: String(cause.message),
+                code: cause.code || null,
+              });
+            record.collectionErrors.push({ label: 'main', error: error.stack, causes });
             try {
               save();
             } catch (saveError) {
