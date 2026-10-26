@@ -455,3 +455,202 @@ diagnostic framework/matrix or prerequisite PR; any actual harness correction
 needs linked causal evidence and a bounded scope disposition first. The unused
 full-stage authorization cannot waive failed prerequisites. Later receipt metadata
 does not inherit1e native results. AC03/06/08 remain open; PR150/149/79 unchanged.
+
+
+### Frozen desktop diagnostic completed and local readiness proposal — 26 October 2026
+
+The maintainer's “Роби” authorizes the narrow desktop observation in
+[decision6427256475](https://github.com/oborskyivitalii/oborskyivitalii/issues/122#issuecomment-6427256475).
+It does not authorize a permanent helper/runtime correction or supply admission.
+Main835, PR15107235bc9, PR150c0, PR149d4 and PR79 remain unchanged during collection.
+
+Original diagnostic40401873199/1, controller85ab34c0/treea00d2b42, fails before
+browser launch: frozen checkout/package and pinned browser restoration pass;
+launches0/host[]/steps0. Artifact12688927896 is3298bytes/SHA256
+`dbaaa222a79d4bbad847c371fd758293ae6e11678761ad25876a46eee14e5079`;
+CRC/size/hash verified. First strict fetch reports TypeError without its nested
+cause. Retained original HTTP rows show one canonical route redirect, whereas
+the new diagnostic refused every redirect. A real local HTTP comparison reproduces
+fetchfailed/unexpectedredirect and successful same-byte existing bounded request.
+Correct only that diagnostic adapter to frozen hosted.request with one10s signal
+per file, same-origin/finite redirects,20exact hashes and zero snapshot redirects;
+retain bounded error causes. The precise first native exception cause remains
+unproved, and the failed run is retained. This is an actual setup correction,
+not an unchanged campaign retry or a site correction.
+
+Four roles accept final JS92828125e634cd899c801dbfbf163bb1a0ff89932ac9849e66f96e0485b824db;
+29 earlier lifecycle controls and9 targeted redirect/cause controls retain their
+actual source scopes. Pinned lint0warnings, format, syntax/YAML and exact inline
+comparison pass. Local8612f1fc and remote016a5ffb share tree3854a9d2. The existing
+never-merge one-file workflow retains read-only tokens and its10minute bound.
+
+Corrected native40402747609/1 SUCCESS at controller016a5ffb0bca12e76a110acb98d7de822be4c21f
+executes exactly one original desktop1440/light scenario on frozen1e1617d6/tree4e370a6c
+and original package12686584691. Artifact12689379251 is29547bytes/SHA256
+`6c62c9fb052c0ccdae4debb73e91a8fdceea5dc27bd2e53531e9a9aca921f1d7`;
+independent physical CRC/size/hash and both extracted files agree. All20hosted hashes,
+clean identical source before/after, one browser/context and successful cleanup
+match. Three original native edges pass917.9/912.9/900ms stability with900/180/2px
+unchanged. Collection has2043RAFframes/12changes/8events, no errors or truncation;
+acceptance/fullGate remain false. Animation details are capped32/snapshot.
+
+The original failure is NOT reproduced. The same index range5222→5453 occurs at
+519.1ms, before first preparation1564.1ms. Main height grows231.3125px while footer
+height stays90.4375px. Fontsloaded and reading/route/activeanimation counts0 at
+both endpoints do not support an animation-wait fix. Instrumentation and different
+CPU9V74 versus original9V45 limit timing comparison. The failed run's route is
+still unobserved; matching endpoints do not prove it retrospectively.
+
+Independent Requirements, Code, White-box and Exploratory executions accept raw
+collection only. Source review identifies an asynchronous layout dependency:
+Home has five publication cards; archive mounts articleTags, which fetches the
+publication index, appends normal-flow tag lists and only then sets tagsState ready.
+Color's initial geometry setup omits that readiness precondition. Exact231px
+attribution remains an inference: the diagnostic did not capture tag state/mutations.
+No further browser matrix, speculative runtime/CSS patch or unchecked rerun follows.
+
+#### Concrete local-only correction for the maintainer scope decision
+
+Prepared on base0f23a0b5/treea3985a37 (same tree as published072), source_dirty=true:
+7helper lines plus3new tests/93lines in the existing Color contract module.
+Dirty diff SHA256fcef8c6f02527db80f60cf515891f7dfb293b5710eed090100b3ed13b36c281e;
+helperSHA4108d26a5a54099b4b9c43d1d8ef09d96e986c97e67332dc30d75b80af1b836d,
+testsSHA28ea4e070d580a3b4d5ec247353a5d3100439df81f052f9ac62c951f65ff96f1.
+
+Wait for declared normal publication metadata before later DOM/geometry work, using
+the existing10000ms normal readiness deadline. Historical no-index and no-card
+paths remain; loading/unavailable cannot pass the normal scenario. Runtime/CSS,
+route sequence,900/180/2, memberships and outer deadlines stay unchanged.
+
+All four roles accept this exact local proposal only. Actual scoped5/5 zero-skip
+checks cover actual-scenario pending/ready/no-card ordering, old no-index bypass,
+readiness timeout/original error/context cleanup and existing late/blocked endpoint
+and early-timer guards. Touched lint0warnings, bounded style143 and clean diff pass.
+These do not claim full/native source acceptance or native effectiveness of the fix.
+The existing module already selects through PR-targeted/staging/production routes.
+CS01/04/05/06/08 apply to this bounded check owner; no runtime behavior is changed.
+
+The compatibility proposal explicitly excluded helpers. Obtain the concrete bounded
+scope decision before publishing this7line helper plus3tests into PR151; no new
+prerequisite PR is needed. Then perform fresh actual-source prerequisites and the
+already authorized but UNUSED additional owner-stage campaign. Preserve exact-head
+human/App/merge/postmerge and later PR150→freshS/genuineM→testC1/C2/C3 gates.
+AC03/06/08 remain open. No new article, production or DNS action.
+
+<details>
+<summary>Complete reviewed local-only helper/test patch — not published source</summary>
+
+```diff
+diff --git a/tests/color-motion-contract.test.cjs b/tests/color-motion-contract.test.cjs
+index a45aef05..1e97d390 100644
+--- a/tests/color-motion-contract.test.cjs
++++ b/tests/color-motion-contract.test.cjs
+@@ -986,0 +987,93 @@ test('legacy Color keeps its deadline and requires matching route, finished cont
++function publicationScenario({ indexed = true, failure = null } = {}) {
++  const artifact = manifest('fixed-plain');
++  if (indexed) artifact.files['publication-index.json'] = { sha256: '0'.repeat(64) };
++  else delete artifact.files['publication-index.json'];
++  const state = { waits: 0, evaluations: 0, closed: false },
++    stop = Error('Controlled stop before later scenario operations');
++  let release;
++  const pending = new Promise((resolve) => {
++    release = resolve;
++  });
++  const page = {
++    viewportSize: () => ({ width: 1440 }),
++    on() {},
++    async goto() {},
++    async waitForFunction(fn, route, options) {
++      if (route === 'index') return;
++      assert.equal(route, null);
++      state.waits++;
++      state.predicate = fn;
++      state.options = options;
++      if (failure) throw failure;
++      await pending;
++    },
++    async evaluate() {
++      state.evaluations++;
++      throw stop;
++    },
++  };
++  const context = {
++    async addInitScript() {},
++    async newPage() {
++      return page;
++    },
++    async close() {
++      state.closed = true;
++    },
++  };
++  const running = color.scenario(
++    { newContext: async () => context },
++    'https://preview.invalid',
++    artifact,
++    'chromium',
++    1440,
++    'light'
++  );
++  running.catch(() => {});
++  return { state, stop, release: () => release(), running };
++}
++
++test('Color publication readiness blocks the actual scenario until normal metadata settles', async () => {
++  const pending = publicationScenario();
++  await new Promise(setImmediate);
++  assert.equal(pending.state.waits, 1);
++  assert.equal(
++    pending.state.evaluations,
++    0,
++    'pending metadata precedes later DOM and geometry work'
++  );
++  assert.deepEqual(pending.state.options, { timeout: 10000, polling: 25 });
++  const ready = (tagsState, cards = true) =>
++    require('node:vm').runInNewContext('(' + pending.state.predicate.toString() + ')()', {
++      document: { body: { dataset: { tagsState } }, querySelector: () => (cards ? {} : null) },
++    });
++  for (const state of [undefined, 'loading', 'unavailable']) assert.equal(ready(state), false);
++  assert.equal(ready('ready'), true);
++  assert.equal(
++    ready(undefined, false),
++    true,
++    'no publication cards create no asynchronous tag layout'
++  );
++  pending.release();
++  await assert.rejects(pending.running, (error) => error === pending.stop);
++  assert.equal(pending.state.evaluations, 1);
++  assert.equal(pending.state.closed, true);
++});
++
++test('Color publication readiness preserves historical no-index scenarios without an extra wait', async () => {
++  const old = publicationScenario({ indexed: false });
++  await assert.rejects(old.running, (error) => error === old.stop);
++  assert.equal(old.state.waits, 0);
++  assert.equal(old.state.evaluations, 1);
++  assert.equal(old.state.closed, true);
++});
++
++test('Color publication readiness timeout remains a visible failure with context cleanup', async () => {
++  const failure = Error('Controlled metadata readiness deadline');
++  const pending = publicationScenario({ failure });
++  await assert.rejects(pending.running, (error) => error === failure);
++  assert.equal(pending.state.waits, 1);
++  assert.equal(pending.state.evaluations, 0);
++  assert.equal(pending.state.closed, true);
++});
++
+diff --git a/tools/quality/color-browser.cjs b/tools/quality/color-browser.cjs
+index 26215a79..e49ee709 100644
+--- a/tools/quality/color-browser.cjs
++++ b/tools/quality/color-browser.cjs
+@@ -143,0 +144,7 @@ async function scenario(browser, url, artifact, engine, width, theme) {
++    if (artifact.files['publication-index.json'])
++      await page.waitForFunction(
++        () =>
++          !document.querySelector('li.publication') || document.body.dataset.tagsState === 'ready',
++        null,
++        { timeout: 10000, polling: 25 }
++      );
+```
+
+</details>

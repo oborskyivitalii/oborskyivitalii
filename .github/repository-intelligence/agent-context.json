@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "73614ab888deda7faae839cb8292c3b748cadfc3d078fe5ba67bfdad3a67d104",
+    "digest": "b55c950acd9285aeff30d20be54f492d5e28ccd438d048dd354b6817ff18b906",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -356,7 +356,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "3d2646120d9263c28da46cdfcc2405119f55681ce63715c900286ae08bf9bb0f"
+        "sha256": "29a10586d27a91fc599656672293a3e68a8e8a2f26819976aa6f5f287e2400d6"
       },
       {
         "path": "NOTICE.md",
@@ -1005,7 +1005,7 @@
       {
         "path": "review/issue-122/2026-10-24-r3-runtime-compatibility.md",
         "identity_mode": "content",
-        "sha256": "42dff7d1037886a50b584bcbdb260d8d109a856bd89992ba5949622a5c649bc7"
+        "sha256": "8cda105d0247c9b2237a7e0cd5fe3607b2ff05432cf16ea518cc3cf91b0ff902"
       },
       {
         "path": "review/issue-122/2026-10-25-f5-exact-checksum-proof.json.gz",
