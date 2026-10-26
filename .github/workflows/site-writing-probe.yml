@@ -1,4 +1,4 @@
-name: Issue122 isolated Writing startup profile
+name: Issue122 isolated Writing method comparison
 # Diagnostic branch only. Never merge this overlay; original staging failure remains.
 on:
   push:
@@ -113,95 +113,97 @@ jobs:
         with:
           browsers: chromium
           working-directory: candidate
-      - name: Capture one Writing-only cold startup; no acceptance campaign
+      - name: Collect one fixed Writing Lighthouse method pair; no acceptance
         run: |
           node <<'NODE'
           'use strict';
-          const fs = require('node:fs');
-          const path = require('node:path');
-          const crypto = require('node:crypto');
-          const repo = process.cwd();
-          const output = process.env.STARTUP_PROFILE_OUTPUT;
-          fs.mkdirSync(output, { recursive: true });
+          const fs = require('node:fs'), path = require('node:path'), zlib = require('node:zlib');
+          const { pathToFileURL } = require('node:url');
+          const assert = require('node:assert/strict'), crypto = require('node:crypto');
+          const repo = process.cwd(), output = process.env.STARTUP_PROFILE_OUTPUT;
           const packageRoot = process.env.STARTUP_PROFILE_PACKAGE;
           const { toolRequire, environment } = require(repo + '/tools/quality/common.cjs');
-          const { start } = require(repo + '/tools/quality/serve.cjs');
+          const origin = 'https://de94cc71.oborskyi-author-ci-staging.pages.dev';
           const record = {
-            kind: 'single-writing-startup-diagnostic', acceptance: false,
+            kind: 'one-writing-method-comparison-pair', acceptance: false,
             source: 'e5f9d3b291802af57cac95b0c29494b7d5717500',
             tree: '5863806e0e385cfdcdfa931d5ff9e968edf765a1',
+            controller: process.env.GITHUB_SHA, runId: process.env.GITHUB_RUN_ID,
+            attempt: process.env.GITHUB_RUN_ATTEMPT, environment: environment(), origin,
             packageArtifact: 12658744128, browserArtifact: 12643236386,
-            environment: environment(),
-            settings: { viewport: { width: 412, height: 823 }, deviceScaleFactor: 1.75, isMobile: true, hasTouch: true, colorScheme: 'light', userAgent: 'Playwright default', serviceWorkers: 'block', cpuRate: 4, cache: false, postDomMs: 4000, samplingIntervalUs: 1000 },
-            limits: 'One process/context/navigation. Existing stage hooks and CPU sampling add overhead. Loopback gzip transport and actual CPU4 differ from hosted Lighthouse CPU1 gather plus Lantern simulation4. No TBT/acceptance conclusion.',
-            errors: [], requestsFailed: [],
+            order: ['simulate', 'devtools'], rows: [],
+            methodDerivedWindows: { simulate: 1000, devtools: 5250, keys: ['cpuQuietThresholdMs', 'networkQuietThresholdMs', 'pauseAfterFcpMs', 'pauseAfterLoadMs'] },
+            question: 'Does actual CPU/network throttling exercise runtime adaptation that post-hoc trace simulation cannot rerun?',
+            limits: 'One fixed pair, one cold process/navigation per method, no repetitions, best-result selection or release acceptance. Only requested method changes. Lighthouse derives four quiet-window settings1000→5250 as well; the complete method changes CPU/network execution, observation windows and metric computation together. One pair cannot establish stability or sole causation. Original failed staging remains failed.',
           };
-          function save() { fs.writeFileSync(path.join(output, 'capture.json'), JSON.stringify(record, null, 2) + '\n'); }
+          fs.mkdirSync(output, { recursive: true });
+          const save = () => fs.writeFileSync(path.join(output, 'comparison.json'), JSON.stringify(record, null, 2) + '\n');
           async function main() {
-            const manifest = JSON.parse(fs.readFileSync(packageRoot + '/staging-package.json'));
-            if (manifest.source.sourceCommit !== record.source || manifest.source.sourceTree !== record.tree) throw Error('Package identity mismatch');
-            require(repo + '/tools/staging/package.cjs').verify(packageRoot, manifest, { sourceCommit: record.source, sourceTree: record.tree, candidateCommit: record.source });
-            let checked = 0;
-            for (const [name, entry] of Object.entries(manifest.source.files)) {
-              const bytes = fs.readFileSync(packageRoot + '/public/' + name);
-              if (crypto.createHash('sha256').update(bytes).digest('hex') !== entry.sha256) throw Error('Package bytes differ: ' + name);
-              checked++;
-            }
-            record.verifiedPackageSourceFiles = checked;
-            record.verifiedWholePackage = true;
-            record.diagnosticController = process.env.GITHUB_SHA;
-            record.runId = process.env.GITHUB_RUN_ID;
-            record.runAttempt = process.env.GITHUB_RUN_ATTEMPT;
             save();
-            const { server, url } = await start({ publicDir: packageRoot + '/public', localOnly: true });
-            let browser;
-            try {
-              browser = await toolRequire('playwright').chromium.launch({ executablePath: toolRequire('playwright').chromium.executablePath(), headless: true, timeout: 30000, args: ['--no-sandbox', '--disable-dev-shm-usage'] });
-              record.browserVersion = browser.version();
-              const context = await browser.newContext({ viewport: record.settings.viewport, deviceScaleFactor: 1.75, isMobile: true, hasTouch: true, colorScheme: 'light', serviceWorkers: 'block' });
-              await context.addInitScript(() => {
-                window.__startupStages = [];
-                window.SiteEngineStages = true;
-                window.SiteEngineProbe = e => {
-                  if (window.__startupStages.length < 10000) window.__startupStages.push({ kind: e.kind, time: e.time, part: e.part, start: e.start, duration: e.duration, route: e.route, page: e.page, reasons: e.reasons });
-                };
-              });
-              const page = await context.newPage();
-              page.on('pageerror', e => record.errors.push(e.message));
-              page.on('requestfailed', r => record.requestsFailed.push({ url: r.url(), error: r.failure() }));
-              const cdp = await context.newCDPSession(page);
-              await cdp.send('Network.enable');
-              await cdp.send('Network.setCacheDisabled', { cacheDisabled: true });
-              await cdp.send('Emulation.setCPUThrottlingRate', { rate: 4 });
-              await cdp.send('Profiler.enable');
-              await cdp.send('Profiler.setSamplingInterval', { interval: 1000 });
-              await cdp.send('Profiler.start');
-              record.startedAt = new Date().toISOString();
-              save();
-              await page.goto(url + '/writing.html', { waitUntil: 'domcontentloaded', timeout: 30000 });
-              await page.waitForTimeout(4000);
-              const { profile } = await cdp.send('Profiler.stop');
-              fs.writeFileSync(path.join(output, 'cpu-profile.json'), JSON.stringify(profile) + '\n');
-              record.observation = await page.evaluate(() => ({ stages: window.__startupStages, now: performance.now(), url: location.pathname, ready: document.querySelector('.space-scene')?.dataset.ready, scene: { ...document.querySelector('.space-scene')?.dataset }, motion: document.querySelector('#space-motion')?.textContent, color: document.documentElement.dataset.theme }));
-              record.completed = true;
-            } catch (e) {
-              record.completed = false;
-              record.error = e.stack;
-              throw e;
-            } finally {
-              record.endedAt = new Date().toISOString();
-              if (browser) await browser.close();
-              server.close();
-              save();
+            const manifest = JSON.parse(fs.readFileSync(packageRoot + '/staging-package.json'));
+            assert.equal(manifest.source.sourceCommit, record.source);
+            assert.equal(manifest.source.sourceTree, record.tree);
+            require(repo + '/tools/staging/package.cjs').verify(packageRoot, manifest, { sourceCommit: record.source, sourceTree: record.tree, candidateCommit: record.source });
+            record.verifiedHostFiles = [];
+            for (const file of ['_staging/revision.json', 'writing.html', 'site-revision.json', ...Object.keys(manifest.source.files).filter(f => /^runtime\/[^/]+\/(space|navigation|theme|archive)\.js$|^runtime\/[^/]+\/styles\.css$/.test(f))]) {
+              const response = await fetch(origin + '/' + file, { signal: AbortSignal.timeout(30000), redirect: 'follow' });
+              assert.equal(response.status, 200, file);
+              assert.equal(new URL(response.url).origin, origin);
+              const digest = crypto.createHash('sha256').update(Buffer.from(await response.arrayBuffer())).digest('hex');
+              assert.equal(digest, manifest.files[file].sha256, 'Immutable hosted bytes: ' + file);
+              record.verifiedHostFiles.push({ file, sha256: digest });
             }
-            console.log(JSON.stringify({ completed: record.completed, version: record.browserVersion, stages: record.observation.stages.length, errors: record.errors, ready: record.observation.ready }));
+            save();
+            const { default: lighthouse } = await import(pathToFileURL(toolRequire.resolve('lighthouse')).href);
+            const launcher = await import(pathToFileURL(toolRequire.resolve('chrome-launcher')).href);
+            for (const method of record.order) {
+              const row = { method, startedAt: new Date().toISOString(), status: 'starting' };
+              record.rows.push(row); save();
+              const chrome = await launcher.launch({ chromePath: toolRequire('playwright').chromium.executablePath(), chromeFlags: ['--headless', '--no-sandbox', '--disable-dev-shm-usage'] });
+              try {
+                const result = await lighthouse(origin + '/writing.html', { port: chrome.port, output: 'json', logLevel: 'error', onlyCategories: ['performance', 'accessibility', 'best-practices'], throttlingMethod: method });
+                const folder = path.join(output, method); fs.mkdirSync(folder);
+                fs.writeFileSync(path.join(folder, 'lhr.json'), JSON.stringify(result.lhr, null, 2) + '\n');
+                for (const key of ['Trace', 'DevtoolsLog']) fs.writeFileSync(path.join(folder, key.toLowerCase() + '.json.gz'), zlib.gzipSync(JSON.stringify(result.artifacts[key]) + '\n'));
+                row.configSettings = result.lhr.configSettings;
+                row.lighthouseVersion = result.lhr.lighthouseVersion;
+                row.environment = result.lhr.environment;
+                row.metrics = Object.fromEntries(['first-contentful-paint', 'largest-contentful-paint', 'total-blocking-time', 'interactive', 'cumulative-layout-shift'].map(k => [k, result.lhr.audits[k]?.numericValue]));
+                row.runtimeError = result.lhr.runtimeError || null;
+                row.warnings = result.lhr.runWarnings;
+                save();
+                assert.equal(row.configSettings.throttlingMethod, method);
+                assert.equal(row.configSettings.throttling.cpuSlowdownMultiplier, 4);
+                assert.equal(row.configSettings.formFactor, 'mobile');
+                assert.ok(!row.runtimeError, 'Lighthouse collection runtime error');
+                let observer;
+                try {
+                  observer = await toolRequire('puppeteer-core').connect({ browserURL: 'http://127.0.0.1:' + chrome.port });
+                  const page = (await observer.pages()).find(p => p.url().startsWith(origin + '/writing'));
+                  row.postCollectionScene = page ? await page.evaluate(() => ({ url: location.href, scene: { ...document.querySelector('.space-scene')?.dataset }, motion: document.querySelector('#space-motion')?.textContent })) : { observed: false, reason: 'Original Writing target no longer exists' };
+                } catch (e) { row.postCollectionScene = { observed: false, reason: e.message }; }
+                finally { if (observer) await observer.disconnect(); }
+                row.status = 'collected';
+              } finally { await chrome.kill(); row.endedAt = new Date().toISOString(); save(); }
+            }
+            const [a, b] = record.rows.map(r => {
+              const settings = { ...r.configSettings }; delete settings.throttlingMethod;
+              for (const key of record.methodDerivedWindows.keys) {
+                assert.equal(settings[key], record.methodDerivedWindows[r.method], 'Expected method-derived window: ' + key);
+                delete settings[key];
+              }
+              return settings;
+            });
+            assert.deepEqual(a, b, 'All settings except method and its four derived windows must be identical');
+            record.completed = true; save();
+            console.log(JSON.stringify({ completed: true, acceptance: false, rows: record.rows.map(r => ({ method: r.method, metrics: r.metrics, scene: r.postCollectionScene })) }));
           }
-          main().catch(e => { record.error = e.stack; record.completed = false; save(); console.error(e.stack); process.exitCode = 1; });
+          main().catch(e => { record.completed = false; record.error = e.stack; save(); console.error(e.stack); process.exitCode = 1; });
           NODE
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always()
         with:
-          name: issue122-writing-startup-${{ github.run_id }}-${{ github.run_attempt }}
+          name: issue122-writing-method-pair-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/startup-profile/
           if-no-files-found: warn
           retention-days: 30
