@@ -341,11 +341,30 @@ negative requires a clean Git checkout and therefore could not create its report
 from this dirty implementation tree. Preserve that failed precondition result;
 verify the unchanged test again on the clean committed candidate.
 
+## Completed clean-source local acceptance
+
+The clean committed implementation passes complete quality-sources38/38,
+RootLayout15/15 and archive11/11. Complete maintained lint and security both
+pass all three respective engines. All48 Bandit findings remain raw/visible,
+exactly48 reviewed and zero untriaged. All19 new public-value dispositions
+remain exact; previous rows and the three historical ledgers are unchanged.
+
+The inert proof retains the actual clean local commit/tree, its equal remote
+implementation tree, both complete scanner receipts, all eight original raw
+receipt byte/hash/content records, and the complete38/38 test log. Original
+source stamps and earlier failed dirty/preflight runs are preserved. Four
+distinct roles actually rehashed and accepted these completed local results.
+This final receipt changes only evidence/memory/deterministic RI; executable
+guards, tests, policies, browser producer/consumer and pins stay identical to
+the clean tested implementation. Native38 browser proof remains source-bound
+and applicable to its byte-identical owners. Current-source native CI and
+owner-stage/protected merge remain separate gates.
+
 ## Remaining #122 plan
 
-1. Clean lint, corrected seed/pins and fresh three-platform consumption pass.
-   Finish scanner/source integration and current-source checks, then existing
-   protected delivery. Prior967/4f1 proof remains historical.
+1. Clean source/scanners and corrected browser seed/pins/consumption pass.
+   Obtain current-source native CI, then existing protected delivery.
+   Prior967/4f1 proof remains historical.
 2. Obtain the maintainer's exact-head control attestation before owner staging;
    this separate source trust decision cannot be supplied by four agent reviews.
 3. Verify ordinary content/history/recovery against a compatible accepted
