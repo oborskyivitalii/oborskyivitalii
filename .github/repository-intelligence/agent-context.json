@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "e19b03aa7577f58e94b5b6703f141e6ab56bdcc449ac536c467fdce819c68a09",
+    "digest": "ff013f790ec0ac33ecc40e91969f0cc01860a2d9eef4c54db3c1c9c342203551",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -356,7 +356,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "5e448331f6148d13d7284ea2e3b944b068ab196f2b3aaac8462099b166475d51"
+        "sha256": "10f5b36606c3ffe3af205f6ee96bb601ccf20a4e8916772e84fcc0bce908ff1d"
       },
       {
         "path": "NOTICE.md",
@@ -1020,7 +1020,7 @@
       {
         "path": "review/issue-122/2026-10-26-browser-archives.md",
         "identity_mode": "content",
-        "sha256": "f11cbd5a010def849eee0102da996ebafdf942db7048f06521fca4e798d78559"
+        "sha256": "424b391b414d00ec671858704913790b79f028bfe005d45a36ead7e3793b53be"
       },
       {
         "path": "review/issue-126/2026-10-23-announcement-review.md",

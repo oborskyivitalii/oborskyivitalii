@@ -161,8 +161,8 @@ c4071269dbd64ee00346e893f32bb6504ca60da6e2665a5f7b4bd048, inner42761b763250f6b9
 ba6c5b4c9fbc11a0b52757957082ad2aff69c1773cd47afa and manifestd203fd8bc7894973
 cfd23a14d926267196508be91a98dc571f3463f13b70d073 all match. Its6967file
 manifest names the exact frozen producer hashes and successful WebKit26.6 probe.
-Registry data now exists; authenticated consumer restore/first-launch on fresh
-native runners, current-source delivery and site acceptance remain pending.
+At this pinning checkpoint, fresh authenticated consumption was still pending;
+the completed native result follows below. Site delivery remains separate.
 
 All four role-specific agents independently accepted the actual three-pin
 ingestion at registrySHA2565391eb775de1bda70f7a1daa9783d26025708b2bf4c56bd05e0d6c8f4c924c43.
@@ -170,7 +170,7 @@ They compared original pin ZIP/JSON, live native metadata, source/producers,
 lock/registry/revision/system identities and all three digest pairs. White-box
 also exercised actual-pin duplicate/bare-digest refusals; Exploratory exercised
 the real pinned CLI's missing-token failure with zero launches/no destination.
-Each leaves fresh native consumption and site acceptance pending. Eleven
+At pin review each left fresh native consumption and site acceptance pending. Eleven
 focused cases and current RI/coupling verification pass after actual pins.
 
 Actual seed timings from native job/step timestamps, in seconds:
@@ -184,10 +184,48 @@ Actual seed timings from native job/step timestamps, in seconds:
 These are one-time supplier preparation measurements. They do not measure site
 test execution or establish a healthy-CDN speed comparison or overall AC08 pass.
 
+## Completed native consumer proof
+
+Run40303175625/1 SUCCESS at exact pin source4f1b9f00465e340ff507e77fdc81aa5b3cc23f08,
+tree865252c778c0ec0f44b17e5eebd8be0ead40ef78. All three fresh native verify
+jobs succeeded; prepare was correctly skipped. The shared action authenticated
+the successful supplier run/source/attempt, downloaded the original native ZIP,
+verified native/inner/manifest/inventory identities and then exported its path.
+Each setup receipt reports consumerLaunches0. Only the following explicit probe
+step performed the first launch, successfully covering all six native selections:
+Linux C/F/W, Windows C/F and macOS W, at153.0.8010.12/155.0/26.6 respectively.
+
+| Native set | Setup receipt artifact | Subsequent first-launch artifact |
+| --- | --- | --- |
+| Ubuntu C/F/W | 12641392174 | 12641801394 |
+| Windows C/F | 12640444341 | 12640997974 |
+| macOS W | 12641661822 | 12640944444 |
+
+All six original report ZIPs were downloaded; each native SHA256, size, CRC and
+preserved raw JSON matches the API. Setups match the exact three pinned supplier
+IDs/keys/upload digests; probes match full package/registry/revision/executable
+identities. Independent Requirements, Code, White-box and Exploratory actual
+readbacks rechecked the six originals and source/run/step order. They accept
+the bounded archive repair, with site/profile/protected delivery still pending.
+Producer, reader, workflow, action and all26consumer bindings remain unchanged.
+
+Preserve first verify40302880035/1 as a distinct failed wrong-source event: its
+head/actual checkout was967c06ba, whose registry was still empty, and setup
+correctly refused missing pins. It supplies no evidence at4f1b9f00. Before the
+successful current-source event the live PR head was explicitly re-read as
+full4f1b9f00. Different pin inputs/source make that verification informative;
+the failed event was neither erased nor retried as unchanged current source.
+
+This completes the new browser supply and all existing consumer bindings.
+It does not claim all site profiles ran, protected staging/merge completed,
+content acceptance occurred or a new article was published.
+
 ## Remaining #122 plan
 
-1. Finish/review this repair; seed exact native archives and rebind consumers.
-2. Obtain current-source checks and the existing protected delivery route.
+1. Browser supply/consumer binding and three-platform native proof are complete;
+   obtain current-source checks and the existing protected delivery route.
+2. Obtain the maintainer's exact-head control attestation before owner staging;
+   this separate source trust decision cannot be supplied by four agent reviews.
 3. Verify ordinary content/history/recovery against a compatible accepted
    ordinary staging generation. The old146generation includes an R37preview
    reference from the old controller and correctly cannot feed ordinary[]reuse.
