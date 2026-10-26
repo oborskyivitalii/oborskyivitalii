@@ -257,14 +257,41 @@ provisional execution evidence, not a frozen-source result. A clean committed
 lint check is required before publishing the new preparer. Four roles inspect
 the import-only correction against the failed source; identical import sets and
 complete non-import AST preserve behavior. Existing guards/negative tests stay.
-The current registry is explicitly empty until this corrected producer is
-prepared, authenticated and verified again on the same three native platforms.
+At that correction checkpoint the registry was explicitly empty pending a new
+seed. The completed clean lint and corrected producer's actual pins follow.
+
+## Corrected producer: clean lint and new native pins
+
+Complete maintained lint passes339files on clean local55998186dc600e817fc7e76658f08e301fbad2c8,
+treea6680321dc603048e837a32e24b8577dd0a17af9, with all three engines passing
+and empty Ruff findings. Published d66f43b20b365e8471bb12213240aa7fac4abf10
+has this identical tree; the local receipt retains its real source identity.
+
+Fresh native seed40306092975/1 SUCCESS at exactd66f43b2 on all three platforms.
+The corrected Python producerSHA256 is923246e127acc3d16283859279000b56371150314c205d8f345166cdf9ac29e1;
+workflow/CJS/action stay at their preceding frozen identities. All acquisition,
+launch, self-extraction and record steps passed. New native artifact identities:
+
+| Native set | Runtime artifact | Original pin artifact |
+| --- | --- | --- |
+| Ubuntu C/F/W | 12643236386 | 12643211306 |
+| Windows C/F | 12643006802 | 12643146580 |
+| macOS W | 12642004235 | 12642557379 |
+
+All expire2027-01-24T10:16:18Z. Four independent roles accepted the new actual
+pin records at registrySHA25685cb6c629dd5a23bd9c57788d636f4064edb70b77bb8c68d87be70e8a1b73c4f,
+comparing original pin ZIP/JSON, live API/source/owner/run/attempt/digests,
+lock/revision/system/key identities and unchanged engine sets. Only the already
+documented digest-prefix representation normalization occurs. Original new macOS
+ZIP/inner TAR/manifest/producer hashes and actual26.6launch probe independently
+match. Old967/4f1 artifacts/proof remain historical. Fresh consumption of these
+corrected-producer pins and current-source protected delivery are next.
 
 ## Remaining #122 plan
 
-1. Prior967/4f1 browser proof remains historical. Finish clean-source full lint,
-   fresh corrected-producer seed, reviewed pins and three-platform consumption;
-   then obtain current-source checks and existing protected delivery.
+1. Clean-source full lint, corrected-producer seed and reviewed new pins pass.
+   Finish fresh three-platform consumption, then current-source checks and
+   existing protected delivery. Prior967/4f1 proof remains historical.
 2. Obtain the maintainer's exact-head control attestation before owner staging;
    this separate source trust decision cannot be supplied by four agent reviews.
 3. Verify ordinary content/history/recovery against a compatible accepted
