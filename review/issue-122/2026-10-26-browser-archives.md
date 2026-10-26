@@ -372,3 +372,51 @@ owner-stage/protected merge remain separate gates.
    reference from the old controller and correctly cannot feed ordinary[]reuse.
 4. Reconcile documentation/ACs/actual queue/setup/execution and close only after
    all original obligations pass. R38 publication is no prerequisite.
+
+
+## PR147 delivery completed — 26 October 2026
+
+This receipt supersedes pending browser-delivery statements above. Original
+sources, failed observations and native artifacts remain historical.
+[PR147](https://github.com/oborskyivitalii/oborskyivitalii/pull/147) merged normally
+as `a2dba6b7`; tested head `8d87965d` and merge share tree `4a0fc8a6`.
+Merge parents are original protected main56404df6 and tested head8d87965d.
+
+| Original source-bound observation | Completed result |
+| --- | --- |
+| [Basic40315066141](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/40315066141) | 76 modules,1135/1135 tests, zero fail/skip/cancel/todo; clean identical source before/after. Original source ZIP12646093096 verified against native size/digest/CRC. |
+| RI40315066045, owning40315066082, routing40315066054 | Each passes. Preview40315066090 build/publish/two-width smoke pass; its then-missing staging admission remains a historical failure. |
+| [Owner stage40316734726/1](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/40316734726) | All26 preflight guards,74 modules/1122 tests, static/host/browser/performance gate, stable promotion, merge admission and independent receipt pass. Controller remains main564; checked-out candidate remains8d. |
+| Prepublication12647352337 and package12647461898 | Original native size/digest/CRC/extracted bytes match;67 preflight report hashes verify. Source and gate both have `articleCandidates: []`; R38 is absent. |
+| Promotion12648625344 and gate12648545281 | Original ZIPs verified; stable HTTP passes against original8d package. Previous recovery remains actual PR146 sourcef2f2ac25; current recovery remains8d. Bounded staging keeps fullGate/productionEligible/deploymentAuthorized false. |
+| PR-event refresh40318862598 and owning40318862494 | Both pass after successful-stage body receipt; no repeated website build/browser campaign. |
+| [App40319057158/1](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/40319057158) | Genuine App5453173/check121559259755 succeeds with no blockers. Maintainer explicitly confirmed exact8d control head; comment6415164201 records the separate human decision. |
+| [Postmerge40319369015](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/40319369015) and mainRI40319367866 | Both pass. GitHub reported clean protected admission before expected-head normal merge; tested package is not rebuilt/relabelled as merge producer. |
+
+Four distinct browser_archive role agents independently accepted completed native
+Basic/preflight/package evidence: Requirements, Code, White-box and Exploratory.
+They checked original ZIPs, raw accounting, clean source/tree bindings, frozen
+browser owners and empty article selections. Their bounded readbacks did not
+substitute for later staging/App/merge gates; native results above supply those.
+
+Measured native intervals: prepublication guards213s including source tests120.689s;
+browser/performance execution403s; promotion63s. These are execution observations,
+not future latency guarantees. Queue/setup/end-to-end reconciliation remains R3d.
+The [live delivery receipt](https://github.com/oborskyivitalii/oborskyivitalii/issues/122#issuecomment-6415527328)
+retains full Git identities/native artifact pointers. PR79 stays Draft/open at02a4f6ae;
+R38 remains untouched and unpublished. No production/DNS action.
+
+## Necessary repository handoff after accepted S
+
+Current maintenance replaces stale MEMORY statements describing main564/PR147pending,
+appends this delivery record and regenerates RI. Accurate continuity under AGENTS15
+is the substantive purpose. The complete delta must remain repository-only:
+no policy/control guide, workflow, tool, test, site or article edits.
+Current-source classification, repository checks, four completed roles, genuine
+App/protected merge and postmerge remain required; this receipt alone is not M.
+
+After actual M, prepare isolated existing-content C using ordinary accepted PR147 S.
+Require authenticated complete S→M→C history, exact platform reuse, affected hosted
+observations and recovery/source/predecessor leases through the existing owner.
+AC03/06/08 remain open. Final contracts/profile/timing reconciliation follows;
+R38 publication is no prerequisite and fixture generation is not a real release.

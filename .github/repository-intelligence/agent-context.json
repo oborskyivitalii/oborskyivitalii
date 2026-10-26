@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "c1ddfab16113cb94fca526f20173df8f07f301ad96aa9f585e098656425ab6a6",
+    "digest": "9917e3cb517027d212d742b37d57b5362ecd6f90d55b2fa037d5a7539c793f86",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -356,7 +356,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "a214c2b9604472b29db4bd6dd3002eecefbc2803af3b4356753a1192e1175b07"
+        "sha256": "7fdf088582683758f167ff3199fb6240fd857f872c671d11528da56462d02d77"
       },
       {
         "path": "NOTICE.md",
@@ -1020,7 +1020,7 @@
       {
         "path": "review/issue-122/2026-10-26-browser-archives.md",
         "identity_mode": "content",
-        "sha256": "b23679add4448ec399b3e3c36d79fb5620cf84f3435c14919a33dda7db4cb81a"
+        "sha256": "35a3a184cb56466150579d75de678f91ca0b19b6d7bef598c899acdec6514568"
       },
       {
         "path": "review/issue-122/2026-10-26-browser-security-proof.json.gz",

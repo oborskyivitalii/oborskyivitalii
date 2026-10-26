@@ -4,48 +4,42 @@ Dated continuity, not live authority. Last verified: **2026-10-26**.
 
 ## Snapshot
 
-- Owner remains #122. PR142/R1, PR143–144/R2, PR145/runtime compatibility and PR146/platform integration are delivered.
-- Protected main is56404df6fb4085378079c61891ad85cdbd22bbe7; testedf2f2ac25b6f833cbc547a6156d3f8c8ccaa3de50 shares tree42e1c6c6d23466a157c45f8653b2cef092613205.
-- Exactf2 passes Basic40237142225/1 (79modules/1156tests) and ownerstage40237775868/1 (74modules/1119tests/all26guards/browser/performance/stable). GenuineApp5453173/check121421284515 through40276788563, protectedmerge, postmerge40277125800 and actualmainRI40277132234 pass. Native artifacts retain original source.
-- Current repair is PR147, branch work/issue-122-browser-archives-20261026. Correctedproducer923 passes seed40306092975; exact38e43fb4/tree5ddaf82 pins pass consumer40307707776/1 (3OS/6firstlaunches/zero setup launches). Clean source/scanner integration passes; verify live current-head CI and exact maintainer attestation before protected delivery. Prior4f1 stays historical.
-- PR79 stays Draft/open at02a4f6aeb04feb663baf7d170e3a9861ae718b6a. R38 is separate unpublished work; no source import or publication follows from #122.
+- Owner remains #122. PR142/R1, PR143–144/R2, PR145/runtime compatibility, PR146/platform integration and PR147/browser archive repair are delivered.
+- Protected main is `a2dba6b7a8cac00394e4a885590bea45b5b4843a`. PR147 tested `8d87965dd5e433be6bf261f355e9bc5b8ce1e4ed` and the normal two-parent merge share tree `4a0fc8a6b59763aa56bbe7e7149d4e8db865f70d`.
+- Exact PR147 passes Basic40315066141 (76 modules/1135 tests), RI/owning/routing and hosted smoke. Owner stage40316734726/1 passes 26 guards, 74 modules/1122 tests, browser/performance, stable promotion and receipt. Human exact-head attestation, genuine App5453173/check121559259755 through40319057158, protected merge, postmerge40319369015 and mainRI40319367866 pass.
+- Ordinary accepted S has empty article candidate lists. Its source stays tested8d; the merge is not a relabelled package producer. Native artifacts and recovery retain original sources/runs/attempts.
+- Current work is necessary handoff/review/derived-RI maintenance through the repository-only lane. Deliver genuine M after accepted S before isolated content/history/recovery C; website work is inapplicable to this maintenance delta.
+- PR79 remains Draft/open at `02a4f6aeb04feb663baf7d170e3a9861ae718b6a`. R38 remains untouched and unpublished.
 
 ## Decisions
 
-- The maintainer reaffirmed that #122 delivers separate engine/platform, content/media and repository-maintenance routes; finishing/publishing R38 is no prerequisite. Live6410052050 supersedes the mistaken dependency. Original ACs remain; AC01/02/04/05/07 accepted, AC03/06/08 open.
-- The26October instruction authorizes stable browser archives and rebinding every related consumer. One read-only native preparer and shared consumer use existing GitHub artifacts; no Release writer, service, site publisher or production/DNS action.
-- Preserve Ubuntu, Windows2025 and macOS15 engine sets, dependency steps, tests, budgets and native routes. Browser consumers never prelaunch; preparation/separate verification own sanity probes. Cold/performance jobs retain their actual first launch and no CDN/system fallback.
-- Explicit pins bind exact Playwright/packages/revisions/system, source/producer, native upload and inner archive hashes. Missing/expired supply fails setup with refresh instructions; GitHub artifacts retain an explicit90day lifecycle.
-- Existing source300s+30s grace330s,cap4,16MiB and all cases remain. Scanner/default guards180s and product/browser budgets stay unchanged. No CPU blacklist or unchanged failed-campaign retries.
-- Diagnose failures before changing/rerunning: preserve exact source/logs/accounting, inspect the boundary, separate facts/hypotheses, then choose bounded diagnostics/evidenced fixes. Documentation cannot reset eligibility.
-- Preserve54,000 publisher ceilings, client/full-producer provenance, rights/editorial decisions and ordinary draft exclusion. Historical article snapshots stay owning-policy-only.
+- #122 delivers separate engine/platform, content/media and repository-maintenance routes. Finishing/publishing R38 is no prerequisite. AC01/02/04/05/07 are accepted; AC03/06/08 remain open.
+- PR147 delivers all26 browser acquisition declarations across12 workflows, one read-only native preparer and one shared consumer. It adds no production/DNS or article-publishing authority.
+- Preserve native engine/OS sets, dependencies, tests, budgets and cold first-launch ordering. Consumer setup never prelaunches and has no CDN/system-browser fallback. Exact source/producer/package/revision/system/upload/inner archive pins reject wrong, unsafe, missing or expired supply.
+- Corrected seed40306092975 and consumer40307707776 retain their actual sources:3 fresh OS setups report zero launches, then6 first-launch probes pass. Pins expire2027-01-24T10:16:18Z; refresh explicitly under the browser-archive guide.
+- Existing source300s plus30s reporting grace, cap4,16MiB and scanner/browser budgets remain. Diagnose before correction/rerun and preserve original failures; never retry an unchanged failed campaign.
+- Preserve rights/editorial boundaries, ordinary draft exclusion and owning-policy-only historical snapshots. Human control attestation and agent reviews are separate.
+- Keep policy/control guides, workflows, tools, tests and site inputs out of repository-maintenance M; they may invalidate S reuse. Verify trusted-base classification on the complete final diff. No proof-only merge, disabled-route dispatch or settings workaround.
 
 ## Open work
 
-- Repair owner: review/issue-122/2026-10-26-browser-archives.md. Four actual roles accepted the full source/native-Python/26consumer delta. Local11archive/7Ubuntu/67Node/29RI/20coupling, Basic, ESLint,532fileformat and143filestyle pass.
-- Firstseed40298043160 failed workflow validation before jobs (runner.temp forbidden job.env); corrected61a runtimeGITHUB_ENV initialization. Second40298917026 Linuxjob121491695289 passes all3engine preparation; Windows/macOS fail unavailablePython3.12.14, so whole run remainsfailed/unpinnable. Officialreleaseassets support new native-helper3.13.17; Linux3.12.14 stays. No unchanged retry.
-- Corrected967native40301062890/1 SUCCESS on all3OS. RuntimeIDs Ubuntu12641235014, Windows12640746477, macOS12640337995; expire2027-01-24T09:38:05Z. Three4f1pins match original native JSON/API; only approved bareHEX→sha256:HEX representation normalization. MacOS ZIP/inner/manifest/producers physically verified.
-- Fresh4f1native40303175625/1 SUCCESS:3OSrestore receipts/6firstlaunches allpass, zero setup launches. All6original report ZIPs/nativeSHA/CRC/rawJSON physically verified; four independent roles accept bounded repair. Prior40302880035 remainsfailed at old967emptyregistry; live4f1headre-read beforecorrectevent. Siteprofiles/protectedstage/merge remain separate.
-- Ready575 navigation40304322219 fails omittedguide active_markdown (15cases14pass1error); two guide routes corrected, RootLayout15/15 and4rolespass. Basic40304322190 fails actual full Ruff on2I001 import-order findings before source tests. Import-only helper/test correction needs a new producer seed/pins/native proof; old4f1 evidence stays historical. Full maintained lint is now checked before new freeze. No guard/pin/source-hash waiver.
-- CorrectedhelperSHA923246e1, unchangednon-importAST. Cleanlocal55998186/treea6680321 full lint339/all3enginespasses; publishedd66same tree. Newseed40306092975/1 SUCCESS all3OS, runtimeIDs12643236386/12643006802/12642004235; original pin/ZIP/API/newmacruntime layers checked by4roles. Expire2027-01-24T10:16:18Z. Fresh consumption still next.
-- Corrected38consumer40307707776/1 SUCCESS:3OSsetup0launches then6actualprobes. All6ZIP/APIhash/CRC/JSON/steporders independently verified by4roles. Sourceproducer923/CJS9a5/workflowc972/actionc865 and3pins stay fixed through scanner-only changes.
-- Security integration: Semgrep passes;48raw Bandit findings retain37prior+11exactLOW reviews at unchangedNov3expiry.19exact new public checksum/SRI dispositions retain1514prior rows/other3ledgers. SeparatebrowserSRI proof binds exactfields/IDs, authored+selectedlock and installedmetadata; unknown/drift/misplacedvalue-or-key blocks.4roles reviewed implementation, key-bypass correction and6later recomputed policy fingerprints. Inert full raw proof is versioned; no scanner/producer waiver.
-- Preserve local security preflight failures and37/38 dirty-Git source result. Cleanlocalca4a71bb/tree11cfcc64 passes qualitySources38/38,Root15,archive11,full339filelint and all3securityengines/Bandit48exact. Four roles independently rehashed all8rawreceipts; actual source/tree/reports/log retained in versioned inert proof. Live current-head CI/maintainer attestation/ownerstage/protectedmerge remain separate.
-- Local Chromium download for Playwright1.63.0/Chromium1243 returns HTTP200/text/html/195bytes SiteUnavailable; SHA2565b131ca14aa96311d3432b0062c7443d3b0e6346ec279bd376a75f0a76bcd5d7. This proves this supplier failure, not all historical CI causes.
-- Local actual146-artifact content probe passes3checkpoints in7.527s: Talks→Home→Talks,29platformfiles exact, immutable closure52/53/54 retained, oldTalks restored while newerHome survives. Four roles rehashed actual output;12localhostHTTP checks passed. ReportSHA2563afc86912a0e3922803c51c1eb40fd4a91aefa6e83a0a7938cd436c052b15d16. Three prior failures remain separate.
-- Content probe used only the already-staged R37 reference; no R38. Local evidence is not native content admission/publication. Same-pin Python supplies Pillow13.0.0/WebP1.6.0; that content probe's browser execution remains unobserved.
-- Stage146 ran old controllerbea2628 previewdefaulttrue; native12615014294 genuinely contains R37candidate. Currentcontroller narrows preview to Draft79. Ordinary[]reuse correctly falls back; never drop/relabel candidates. A compatible ordinary accepted PR-owner-stage S remains necessary.
-- Genuine repository-only M after S and real content/history/recovery remain. PR144 predates newS. Do not manufacture proof-only merges, confuse diagnostic/release, dispatch disabled legacy staging or flip flags.
-- Preserve all180s timeouts and other failures at original source/run. 7763 association does not prove same physical runner or sole CPU causality. Parser/fixture optimization remains deferred.
+- Browser source, original failures, source-bound security proof and native delivery are owned by `review/issue-122/2026-10-26-browser-archives.md`. PR147/issue122 retain original native artifacts and timing evidence; superseded runs remain historical.
+- The observed local Chromium supplier returned HTTP200/text/html/195-byte SiteUnavailable. That diagnoses this response, not every older failure. Workflow-context, unavailable native Python, guide-inventory and import-order corrections each retain their failed source/run; old producer proofs are not relabelled.
+- Static acceptance preserves48 raw Bandit findings with exact reviews and19 exact public dispositions. Browser SRI proof binds package fields, authored/selected lock and installed metadata. Failed scanner/dirty-precondition observations remain in the versioned inert proof.
+- Four distinct roles accepted PR147 source and original native Basic/preflight/package accounting, identities and empty article lists. This maintenance candidate needs its own four-role review and current-source repository checks.
+- Earlier local content probe against real PR146 artifact passed Talks→Home→Talks:29 platform files exact, newer Home preserved during Talks recovery,12 localhost HTTP checks. Only the already-staged R37 reference was used. This is local evidence, not native publication/admission or whole AC03/06/08 acceptance.
+- Old PR146 staging genuinely contains its R37 preview and cannot supply ordinary empty-selection reuse under the new controller. PR147 now supplies ordinary accepted S. Preserve both histories without stripping candidates or relabelling artifacts.
+- Deliver genuine repository-maintenance M after S, then isolated existing-content C through the existing owner. Require authenticated complete S→M→C history, unchanged platform bytes, affected hosted/browser observations and recovery/source/predecessor leases. Full-platform fallback does not prove the independent content lane.
+- Final reconciliation covers original AC03/06/08, contracts/profile dispositions, lane outcomes and actual queue/setup/execution. Source tests alone do not close the issue; no fabricated speed guarantee.
 
 ## Next session
 
-1. Revalidate main/#122/current repair branch/PR and exact checks; keep PR146 accepted head and PR79 untouched.
-2. Correctedseed/pins/new38nativeconsumption accepted. Finish clean-source scanner/source checks and live current-head CI; preserve all old failures/evidence without relabeling.
-3. Complete current-source checks and existing protected delivery. Exact-head maintainer control attestation is required before owner stage; four agent reviews cannot substitute it.
-4. Finish ordinary content/history/recovery, then reconcile original ACs/contracts/roles and queue/setup/execution before closure. No R38 publication dependency.
+1. Revalidate main/#122/current maintenance branch/PR/checks and accepted PR147 evidence; leave PR79/R38 untouched.
+2. Complete MEMORY/existing-review/derived-RI maintenance; prove repositoryOnly=true/no controls, obtain four completed reviews, use source/RI/owning checks, genuine App, protected merge and postmerge. Website work is inapplicable.
+3. Prepare isolated existing-content C after actual M; verify ordinary accepted S/history/platform reuse and required recovery/current-state scenario through the existing owner. Preserve original source/artifact identities and leases.
+4. Reconcile remaining criteria/contracts/timings and close #122 only after whole acceptance. No production or new-article publication follows.
 
 ## Maintenance
 
-- Keep five sections/120lines; catalog/RI-CI routes fresh; rebuild/verify navigation after edits.
+- Keep five sections/120lines; regenerate/verify RI after edits. Issues own live intent/acceptance; PRs and versioned reviews own execution.
 - Historical evidence grants no release authority. Verbatim receipts/deterministic metadata do not recursively require review; material source/test/claim changes do.
