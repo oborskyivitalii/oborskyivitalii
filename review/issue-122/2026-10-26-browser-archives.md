@@ -40,7 +40,7 @@ workflow/composite action and regression wiring. Run the bounded guard,
 format/lint, owning/RI/coupling and meaningful source tests. Review provenance,
 safe extraction, cold-ordering and all native consumer routes independently.
 
-## Current implementation checkpoint
+## Historical stage1 checkpoint before consumer binding
 
 Producer/consumer code and9focused stdlib tests pass locally. The tests cover
 real extraction/executable bytes, wrong hashes/keys/revisions, unsafe paths,
@@ -80,6 +80,58 @@ their separate browser_archive identities above. WorkflowSHA256d83863c469fd0acf
 quoted path initialization with spaces and Windows-style paths; White-box also
 checked macOS-style paths and independently passed9/9 focused cases. Native
 preparation remains unobserved at this correction checkpoint.
+
+## Native interpreter diagnosis and complete consumer binding
+
+Corrected source61a6555a18de49dbbb00bacd8f6103b4512ae5e4/tree088660ef
+started actual run40298917026/1. Linux job121491695289 completed acquisition,
+real three-engine launches, self-extraction and upload successfully. Windows
+121491695238 and macOS121491694884 failed in setup-python before acquisition:
+Python3.12.14 was unavailable for Windows2025/x64 and macOS15.7.9/arm64.
+The complete run remains failed; its partial Linux artifact cannot be pinned.
+
+Official actions/python-versions release3.12.14-31661455385 contains only
+Linux/RHEL binaries. Release3.13.17-39711892467 provides ordinary Windowsx64
+and macOSarm64 builds. The bounded correction retains Linux3.12.14 and uses
+3.13.17 only for the new native stdlib archive helper. Linux Python/library
+steps, browser package versions and all existing native site sets remain.
+
+All26 download-step declarations in12 existing workflows now use the shared
+consumer; the guide records their complete inventory. Existing install-deps,
+Xvfb, sampling tools, test commands, selection, runner labels and job budgets
+remain. Seven contents-only workflows gain actions:read, with no write grants.
+The five nested Writing checkouts explicitly resolve their candidate action/cwd;
+native-profile retains its explicit storage path. The paradigm setup outcome
+now binds the complete archive action before paired measurements. Equivalent
+historical byte oracles undo only the reviewed npm and supply migrations.
+
+Matrix setup receipts gain a UUID suffix to avoid same-job artifact409 conflicts.
+The shared action still never launches browsers. A separate owner-only verify
+operation exercises authenticated restore and the first launch on the same
+three native platform sets after actual pins are available; it is supply proof,
+not replacement site acceptance. Eleven focused archive/wiring cases, including
+negative missing/wrong/skipped/unauthenticated supply, pass locally; Writing4/4
+and Ubuntu dependency/order7/7 pass. Final four-role/native checks remain pending.
+
+All four distinct roles completed the full delta review against61a6555a and
+accepted it for corrected native seeding. Requirements independently passed
+11/11 and checked intent/matrix/permission traceability. Code passed11archive,
+4Writing and1targeted Linux/native contract. White-box independently compared
+base-derived YAML for all26declarations/12workflows: unchanged guards, matrices,
+budgets, prior actions and every non-acquisition command/dependency order;
+23focused cases passed, plus owner-operation decision tables and distinct UUIDs.
+Exploratory passed11cases and exercised the real nested candidate CLI with a
+spaced destination: missing pins fail visibly with zero launches/no destination.
+All four leave real native pins/restoration/site acceptance pending.
+
+Frozen producer workflowSHA256c972fe35615e52b6289ba3e0d223cd9795a98c28f7f96123a9e0348a32d15e7d,
+CJS9a5f9b7ad09cc4de7ee33f1d280eccec3f9c57a273eb3aaa5beac0970d0320bb,
+Pythonffc2831c89aa3e6defd264c0c9fa869f47b5239dabc2f2a6a73e72d43e99f32b;
+actionc8654276397cdb7d6396a33e8dd2fade5c3d838690c39b38346d1e76dd68703e.
+Implementer verification passes67Node/11archive/7Ubuntu/29RI/20coupling cases,
+Basic5routes/26theme-flightcases/12scripts, touched ESLint,532-file maintained
+format and143-file bounded style guard. These are source checks, not native
+browser, scanner, site-profile, protected merge or publication acceptance.
 
 ## Remaining #122 plan
 

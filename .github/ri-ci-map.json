@@ -676,7 +676,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "f9bc47954caa7d67637d8089369405555d87b0d0961e6bebc5da9684bd316828",
+    "digest": "8f04cb5eecdd0ed40a202ecc949329092fddfca11cf2bd8f5206704c143751db",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -816,7 +816,7 @@
       },
       {
         "path": ".github/workflows/browser-archives.yml",
-        "sha256": "d83863c469fd0acf2272f9859fff5ad34a4f7256df26340ce66f95069cd5543c"
+        "sha256": "c972fe35615e52b6289ba3e0d223cd9795a98c28f7f96123a9e0348a32d15e7d"
       },
       {
         "path": ".github/workflows/change-admission.yml",
@@ -840,7 +840,7 @@
       },
       {
         "path": ".github/workflows/site-browser-gate-probe.yml",
-        "sha256": "b04aff00a83acf725715db40c77c238d28c368f8f1228927aab2e06c4050618b"
+        "sha256": "62db099aaf073d27bfb5e4053f834a263966d00fa0be84f2b033dce0ea6ea7a5"
       },
       {
         "path": ".github/workflows/site-candidate-evidence.yml",
@@ -848,11 +848,11 @@
       },
       {
         "path": ".github/workflows/site-cause-fix-probe.yml",
-        "sha256": "c660b602cbf9231672b99983822dfe5645dfc9cfbc0931281aefbb09cf797b85"
+        "sha256": "839efb2b698d7943dc9621d7803f82255b428ad95699377ea69ad20b722eb7db"
       },
       {
         "path": ".github/workflows/site-cause-probe.yml",
-        "sha256": "5799859ce71847927ebf009ff2bdafd5188bd8015d5c01edbc941b6eee30f201"
+        "sha256": "1de3e1d94a592a433d6c4f48044a5829452f80eed20ced07db5fed91b9877215"
       },
       {
         "path": ".github/workflows/site-checks.yml",
@@ -860,27 +860,27 @@
       },
       {
         "path": ".github/workflows/site-color-review.yml",
-        "sha256": "bb5df6f5a5f03c977f4de356a9245d77d1bb8648beeb5d60d2fe067067bd54e3"
+        "sha256": "9371c1fd69942ec93f5892298538d286d4bac575b53c6576e99b301602f1c23f"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
-        "sha256": "06284b6b8a8c40456245543ecacd6ce63f37541ff5d9abdc42871aba70760fca"
+        "sha256": "0378bb6535be9a928f6c7754b4b0b07618932b99b3b26b165e5dfa924fd3f1df"
       },
       {
         "path": ".github/workflows/site-gtk-target-probe.yml",
-        "sha256": "53ac3b6b90edd9e8a70f9b1f74cbd51d52dc2c7b00c7f1f9541120d995b3304c"
+        "sha256": "a48ba172d2f4e786decaf75b333d66b9523163329aec778cb0abfa7b88076321"
       },
       {
         "path": ".github/workflows/site-navigation-probe.yml",
-        "sha256": "ba70e04ac9e1258017a62c9416fca0405d58294d174020e5cb1fe6ad75fa6702"
+        "sha256": "5dd9dcf9b2eb1c707601d99f7ed7eed049741e7bb0d5749fc7a1a07b0d814f7e"
       },
       {
         "path": ".github/workflows/site-pages-migration.yml",
-        "sha256": "9f3dc5bf781d3323e6f2563bc15953815789a9bd3736c32d0569f2bf83f5680c"
+        "sha256": "eff9df61f54c86a89683fef245ffd8b521d3abfb28fcb78543424661f91c1833"
       },
       {
         "path": ".github/workflows/site-production.yml",
-        "sha256": "bdbd68819e6cd4350da41fa2821100b62e0ae981f1d8e1c00af739a28e0e8ccc"
+        "sha256": "6428be26a7400e14bb11c74afa8911ecff883d8f35ce0ef29721aaba2b787955"
       },
       {
         "path": ".github/workflows/site-release-candidate.yml",
@@ -888,7 +888,7 @@
       },
       {
         "path": ".github/workflows/site-release-checks.yml",
-        "sha256": "9bb0525950fce30a82ba374180e8aac00bb8ec36cf6f9ac45f03f85dca67aa6c"
+        "sha256": "143e605b47f9e9d4729062fb9701e69941c69580eefc64f67fb92fb98a7b9332"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -900,11 +900,11 @@
       },
       {
         "path": ".github/workflows/site-staging.yml",
-        "sha256": "f1b5a3241da4a828ef0575e3e869d53f30fca833f8273f40c45235b14670e877"
+        "sha256": "6e52d1ed8fa57bb5609bafed212da26c393596fc101d2387427526fab3e0a895"
       },
       {
         "path": ".github/workflows/site-writing-probe.yml",
-        "sha256": "5efa4c470ae72c20f215a7d2060aaeb14e15602eb44be2b550a34b8b2707fddc"
+        "sha256": "e2120d05d06eb9f5bcc8b6642d1683b3bbff1a46f5b0db0218f8470a521b7160"
       },
       {
         "path": "AGENTS.md",
@@ -1080,7 +1080,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "0c5925097c5bdc0f1b047756d4ef00a45854cf75aae3e627e270874826f817ab"
+        "sha256": "15e345f8e2b0be20712b56a24b6dc242bc43ff947154ade2a6f05c6b1e94a1f7"
       },
       {
         "path": "tools/repository_intelligence.py",

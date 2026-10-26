@@ -1140,7 +1140,10 @@ test('workflow selects full Linux Chromium/Firefox and macOS WebKit while preser
     /SITE_AUDIT_ENGINES: \$\{\{ inputs\.full && 'chromium,firefox' \|\| 'chromium,firefox,webkit' \}\}/
   );
   assert.match(linux, /playwright install-deps chromium firefox webkit/);
-  assert.match(linux, /playwright install chromium firefox webkit/);
+  assert.match(
+    linux,
+    /uses: \.\/\.github\/actions\/browser-archive\n {8}with:\n {10}browsers: chromium,firefox,webkit/
+  );
   assert.match(linux, /if: inputs\.public_variant == 'color' && !cancelled\(\)/);
   assert.match(linux, /node tools\/quality\/color-browser\.cjs/);
   assert.match(

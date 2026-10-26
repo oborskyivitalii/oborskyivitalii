@@ -7,7 +7,7 @@ Dated continuity, not live authority. Last verified: **2026-10-26**.
 - Owner remains #122. PR142/R1, PR143–144/R2, PR145/runtime compatibility and PR146/platform integration are delivered.
 - Protected main is56404df6fb4085378079c61891ad85cdbd22bbe7; testedf2f2ac25b6f833cbc547a6156d3f8c8ccaa3de50 shares tree42e1c6c6d23466a157c45f8653b2cef092613205.
 - Exactf2 passes Basic40237142225/1 (79modules/1156tests) and ownerstage40237775868/1 (74modules/1119tests/all26guards/browser/performance/stable). GenuineApp5453173/check121421284515 through40276788563, protectedmerge, postmerge40277125800 and actualmainRI40277132234 pass. Native artifacts retain original source.
-- Current browser repair is local branch work/issue-122-browser-archives-20261026. Stage1 source exists; native pins and consumer rewiring are pending, no new source delivery/native pass yet.
+- Current repair is DraftPR147, branch work/issue-122-browser-archives-20261026. Published61a6555a/tree088660ef corrected runtime paths. All26consumer bindings are local; final native pins/review/delivery remain pending.
 - PR79 stays Draft/open at02a4f6aeb04feb663baf7d170e3a9861ae718b6a. R38 is separate unpublished work; no source import or publication follows from #122.
 
 ## Decisions
@@ -22,7 +22,8 @@ Dated continuity, not live authority. Last verified: **2026-10-26**.
 
 ## Open work
 
-- Repair owner: review/issue-122/2026-10-26-browser-archives.md. Stage1 adds native preparer, shared cold consumer, pin registry,9stdlib cases and docs/catalog/RI. Four roles reviewed source/corrections; exact checks and native pins still need completion.
+- Repair owner: review/issue-122/2026-10-26-browser-archives.md. Elevenfocused archive/wiring cases, Writing4/4 and Ubuntu7/7 pass locally. Four roles accepted initial source and runtime-path correction; current native-Python/consumer delta review remains.
+- Firstseed40298043160 failed workflow validation before jobs (runner.temp forbidden job.env); corrected61a runtimeGITHUB_ENV initialization. Second40298917026 Linuxjob121491695289 passes all3engine preparation; Windows/macOS fail unavailablePython3.12.14, so whole run remainsfailed/unpinnable. Officialreleaseassets support new native-helper3.13.17; Linux3.12.14 stays. No unchanged retry.
 - Local Chromium download for Playwright1.63.0/Chromium1243 returns HTTP200/text/html/195bytes SiteUnavailable; SHA2565b131ca14aa96311d3432b0062c7443d3b0e6346ec279bd376a75f0a76bcd5d7. This proves this supplier failure, not all historical CI causes.
 - Local actual146-artifact content probe passes3checkpoints in7.527s: Talks→Home→Talks,29platformfiles exact, immutable closure52/53/54 retained, oldTalks restored while newerHome survives. Four roles rehashed actual output;12localhostHTTP checks passed. ReportSHA2563afc86912a0e3922803c51c1eb40fd4a91aefa6e83a0a7938cd436c052b15d16. Three prior failures remain separate.
 - Probe used only the already-staged R37 reference; no R38. Local evidence is not native content admission/publication. Same-pin Python supplies Pillow13.0.0/WebP1.6.0; browser execution remains unobserved after the failed download.

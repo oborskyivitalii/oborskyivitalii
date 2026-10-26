@@ -462,7 +462,12 @@ jobs:
         if: needs.target.outputs.prototype != 'true' || needs.target.outputs.number == '79'
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
-          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium
+          tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium
+      - name: Restore verified pinned browsers without prior launch
+        if: needs.target.outputs.prototype != 'true' || needs.target.outputs.number == '79'
+        uses: ./.github/actions/browser-archive
+        with:
+          browsers: chromium
       - name: Minimal two-width hosted rendition smoke
         if: needs.target.outputs.prototype != 'true' || needs.target.outputs.number == '79'
         run: node tools/quality/local-browser.cjs --smoke

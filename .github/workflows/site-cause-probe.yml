@@ -12,6 +12,7 @@ on:
         type: string
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: cause-probe-${{ github.event_name == 'pull_request' && format('pr-{0}-{1}', github.event.pull_request.number, github.event.label.name) || inputs.candidate_sha }}
   cancel-in-progress: true
@@ -76,7 +77,11 @@ jobs:
           PYTHON
       - name: Install pinned Chromium only
         run: |
-          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium
+          tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium
+      - name: Restore verified pinned browsers without prior launch
+        uses: ./.github/actions/browser-archive
+        with:
+          browsers: chromium
       - name: Retain four bounded Writing cause observations
         run: >-
           node tools/quality/cause-probe.cjs writing
@@ -156,7 +161,11 @@ jobs:
           PYTHON
       - name: Install pinned Chromium only
         run: |
-          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium
+          tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium
+      - name: Restore verified pinned browsers without prior launch
+        uses: ./.github/actions/browser-archive
+        with:
+          browsers: chromium
       - name: Retain five ordinary Writing trials then one separately CPU-sampled trial
         run: >-
           node tools/quality/cause-probe.cjs writing-current
@@ -202,7 +211,11 @@ jobs:
           JS
       - name: Install pinned browser tools
         run: |
-          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium firefox webkit
+          tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium firefox webkit
+      - name: Restore verified pinned browsers without prior launch
+        uses: ./.github/actions/browser-archive
+        with:
+          browsers: chromium,firefox,webkit
       - name: Retain original failures and function-level profiles
         run: >-
           node tools/quality/cause-probe.cjs ${{ matrix.scope }}

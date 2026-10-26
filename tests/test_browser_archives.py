@@ -6,6 +6,7 @@ import io
 import json
 import os
 from pathlib import Path
+import re
 import shutil
 import stat
 import subprocess
@@ -22,6 +23,141 @@ SPEC = importlib.util.spec_from_file_location(
 )
 SUPPLY = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(SUPPLY)
+
+CONSUMERS = {
+    "site-release-checks.yml": {
+        "linux": "chromium,firefox,webkit",
+        "native": "${{ matrix.engines }}",
+        "performance": "chromium",
+        "captures": "chromium",
+        "staging": "chromium,firefox",
+    },
+    "site-staging.yml": {"deploy": "chromium", "promote": "chromium"},
+    "site-cause-fix-probe.yml": {
+        "native-port": "webkit",
+        "native-profile": "webkit",
+        "cold-native": "webkit",
+        "research-pair": "chromium",
+    },
+    "site-cause-probe.yml": {
+        "writing-attribution": "chromium",
+        "writing-current": "chromium",
+        "diagnose": "chromium,firefox,webkit",
+    },
+    "site-writing-probe.yml": {
+        "reading-clarity": "chromium",
+        "writing": "chromium",
+        "diagnosis": "chromium",
+        "paradigm": "chromium,firefox",
+        "localization": "chromium",
+    },
+    "site-color-review.yml": {"smoke": "chromium"},
+    "site-browser-gate-probe.yml": {"diagnose": "chromium,firefox,webkit"},
+    "site-gtk-native-probe.yml": {"native-target": "webkit"},
+    "site-gtk-target-probe.yml": {"native-target": "webkit"},
+    "site-navigation-probe.yml": {"firefox": "firefox"},
+    "site-pages-migration.yml": {"publish": "chromium"},
+    "site-production.yml": {"publish": "chromium"},
+}
+
+
+def verify_consumers(workflows):
+    """Guard the complete existing supply surface, including deliberate diagnostics."""
+    observed = {}
+    for name, text in workflows.items():
+        if name == "browser-archives.yml":
+            continue
+        if re.search(r"playwright(?:/cli\.js)?\s+install(?!-deps)\b", text):
+            raise AssertionError("Consumer still downloads browsers: " + name)
+        header, body = text.split("\njobs:", 1)
+        jobs = list(re.finditer(r"^  ([\w-]+):\n", body, re.MULTILINE))
+        for index, match in enumerate(jobs):
+            end = jobs[index + 1].start() if index + 1 < len(jobs) else len(body)
+            job = body[match.end() : end]
+            steps = re.split(r"^      - ", job, flags=re.MULTILINE)[1:]
+            restores = [step for step in steps if "/.github/actions/browser-archive" in step]
+            if not restores:
+                continue
+            if len(restores) != 1:
+                raise AssertionError("Browser restore must execute exactly once")
+            restore = restores[0]
+            engines = re.search(r"^          browsers: (.+)$", restore, re.MULTILINE)
+            if not engines or "continue-on-error:" in restore:
+                raise AssertionError("Missing required browser set or ignored setup failure")
+            observed.setdefault(name, {})[match[1]] = engines[1]
+            expected_action = (
+                "./candidate/.github/actions/browser-archive"
+                if name == "site-writing-probe.yml"
+                else "./.github/actions/browser-archive"
+            )
+            if "        uses: " + expected_action + "\n" not in restore:
+                raise AssertionError("Restore does not resolve from the actual checkout")
+            if name == "site-writing-probe.yml" and (
+                "          working-directory: candidate\n" not in restore
+            ):
+                raise AssertionError("Nested checkout reader runs in the wrong directory")
+            permission = re.search(r"^    permissions:\n((?:      .+\n)+)", job, re.MULTILINE)
+            effective = permission[1] if permission else header
+            if not re.search(r"^\s+actions: read$", effective, re.MULTILINE):
+                raise AssertionError("Native artifact origin needs read permission")
+            condition = re.findall(r"^        if: (.+)$", restore, re.MULTILINE)
+            expected_condition = (
+                ["needs.target.outputs.prototype != 'true' || needs.target.outputs.number == '79'"]
+                if name == "site-color-review.yml"
+                else []
+            )
+            if condition != expected_condition:
+                raise AssertionError("Browser setup selection was changed")
+            if name == "site-cause-fix-probe.yml" and match[1] == "native-profile":
+                if "          directory: ${{ env.PLAYWRIGHT_BROWSERS_PATH }}\n" not in restore:
+                    raise AssertionError("Native profile's explicit browser location was lost")
+    if observed != CONSUMERS:
+        raise AssertionError("Existing browser consumer/platform sets differ")
+
+
+class BrowserConsumerWiringTests(unittest.TestCase):
+    def workflows(self):
+        return {
+            file.name: file.read_text(encoding="utf-8")
+            for file in (ROOT / ".github/workflows").glob("*.yml")
+        }
+
+    def test_all_existing_consumers_restore_exact_sets_without_cdn_downloads(self):
+        verify_consumers(self.workflows())
+
+    def test_wiring_oracle_rejects_missing_wrong_skipped_and_unauthenticated_supply(self):
+        workflows = self.workflows()
+        for name, before, after in [
+            ("site-navigation-probe.yml", "browsers: firefox", "browsers: chromium"),
+            ("site-navigation-probe.yml", "actions: read", "actions: none"),
+            ("site-navigation-probe.yml", "        with:\n", "        if: false\n        with:\n"),
+            (
+                "site-navigation-probe.yml",
+                "uses: ./.github/actions/browser-archive",
+                "run: echo missing",
+            ),
+            (
+                "site-writing-probe.yml",
+                "working-directory: candidate\n",
+                "working-directory: absent\n",
+            ),
+            (
+                "site-navigation-probe.yml",
+                "browsers: firefox",
+                "browsers: firefox\n        continue-on-error: true",
+            ),
+            (
+                "site-navigation-probe.yml",
+                "run: node tools/quality/navigation.cjs",
+                "run: node tools/quality/toolchain/node_modules/playwright/cli.js install firefox",
+            ),
+        ]:
+            with self.subTest(name=name, before=before):
+                changed = copy.deepcopy(workflows)
+                self.assertIn(before, changed[name])
+                changed[name] = changed[name].replace(before, after)
+                with self.assertRaises(AssertionError):
+                    verify_consumers(changed)
 
 
 class BrowserArchivesTests(unittest.TestCase):

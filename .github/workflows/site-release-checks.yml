@@ -407,11 +407,13 @@ jobs:
       - name: Install Ubuntu engine dependencies without prior launch
         timeout-minutes: 5
         run: tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium firefox webkit
-      - name: Download pinned engines without prior launch
+      - name: Restore verified pinned browsers without prior launch
         timeout-minutes: 3
-        run: |
-          tools/quality/toolchain/node_modules/.bin/playwright install chromium firefox webkit
-          command -v Xvfb
+        uses: ./.github/actions/browser-archive
+        with:
+          browsers: chromium,firefox,webkit
+      - name: Verify the existing display server
+        run: command -v Xvfb
       - name: Assert the required Linux engine matrix
         run: |
           node tools/quality/artifact.cjs verify quality-artifact/public quality-artifact/artifact.json
@@ -463,10 +465,10 @@ jobs:
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
           npm ci --prefix tools/publishing/toolchain --ignore-scripts
-          node tools/quality/toolchain/node_modules/playwright/cli.js install $SITE_AUDIT_ENGINES
-        env:
-          # CLI uses separate engine arguments, unlike the runner's comma list.
-          SITE_AUDIT_ENGINES: ${{ matrix.platform == 'win32' && 'chromium firefox' || 'webkit' }}
+      - name: Restore verified pinned browsers without prior launch
+        uses: ./.github/actions/browser-archive
+        with:
+          browsers: ${{ matrix.engines }}
       - name: Native full WebKit matrix
         if: matrix.platform == 'darwin'
         run: |
@@ -504,7 +506,11 @@ jobs:
           path: quality-artifact
       - run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
-          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium
+          tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium
+      - name: Restore verified pinned browsers without prior launch
+        uses: ./.github/actions/browser-archive
+        with:
+          browsers: chromium
       - name: Verify performance input artifact
         run: |
           node tools/quality/artifact.cjs verify quality-artifact/public quality-artifact/artifact.json
@@ -547,9 +553,13 @@ jobs:
       - name: Install locked capture tooling
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
-          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium
+          tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium
           python -m pip install Pillow==12.3.0
           command -v ffmpeg || { sudo apt-get update && sudo apt-get install -y ffmpeg; }
+      - name: Restore verified pinned browsers without prior launch
+        uses: ./.github/actions/browser-archive
+        with:
+          browsers: chromium
       - name: Capture all routes and actual motion from tested bytes
         run: |
           node tools/quality/artifact.cjs verify quality-artifact/public quality-artifact/artifact.json
@@ -591,7 +601,11 @@ jobs:
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
           npm ci --prefix tools/publishing/toolchain --ignore-scripts
-          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium firefox
+          tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium firefox
+      - name: Restore verified pinned browsers without prior launch
+        uses: ./.github/actions/browser-archive
+        with:
+          browsers: chromium,firefox
       - name: Verify the unchanged package and run representative browser and performance regression
         run: |
           node tools/quality/artifact.cjs verify quality-artifact/public quality-artifact/artifact.json

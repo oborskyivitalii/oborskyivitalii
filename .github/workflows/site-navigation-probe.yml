@@ -9,6 +9,7 @@ on:
         type: string
 permissions:
   contents: read
+  actions: read
 jobs:
   firefox:
     runs-on: windows-2025
@@ -35,7 +36,10 @@ jobs:
       - name: Install pinned Firefox
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
-          node tools/quality/toolchain/node_modules/playwright/cli.js install firefox
+      - name: Restore verified pinned browsers without prior launch
+        uses: ./.github/actions/browser-archive
+        with:
+          browsers: firefox
       - name: Diagnose desktop navigation and retain state on failure
         run: node tools/quality/navigation.cjs
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f

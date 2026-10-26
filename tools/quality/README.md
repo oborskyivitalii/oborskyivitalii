@@ -82,14 +82,18 @@ npm ci --prefix tools/quality/toolchain --ignore-scripts
 python -m venv tools/quality/toolchain/venv
 tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps -r tools/quality/toolchain/requirements.txt
 tools/quality/toolchain/venv/bin/python tools/quality/python_toolchain.py
-tools/quality/toolchain/node_modules/.bin/playwright install --with-deps
+tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium firefox webkit
+node tools/quality/browser-runtime.cjs restore --browsers chromium,firefox,webkit --directory /tmp/site-browsers
+export PLAYWRIGHT_BROWSERS_PATH=/tmp/site-browsers
 node tools/quality/artifact.cjs build /tmp/site-check
 export SITE_PUBLIC_DIR=/tmp/site-check/public
 export SITE_ARTIFACT_MANIFEST=/tmp/site-check/artifact.json
 export SITE_REPORT_DIR=/tmp/site-check/reports
 ```
 
-On Windows use `venv/Scripts` and `node .../playwright/cli.js install`.
+Browser restore needs the scoped `GITHUB_TOKEN` read credential and the reviewed
+[native archive pins](../../guides/BROWSER-ARCHIVES.md); it never falls back to a CDN.
+On Windows use `venv/Scripts` and a native path for the restored browser directory.
 `SITE_AUDIT_TOOLS` can point to the identical installed locked toolchain;
 `SITE_AUDIT_CHROME` changes the executable and is recorded in evidence. Reports
 identify actual runner/CPU/OS/engine versions. A runner name does not freeze its

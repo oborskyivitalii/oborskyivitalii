@@ -1,6 +1,12 @@
 name: Prepare pinned browser archives
 on:
   workflow_dispatch:
+    inputs:
+      operation:
+        description: Prepare new archives or verify the currently pinned consumer supply
+        type: choice
+        options: [prepare, verify]
+        default: prepare
   pull_request:
     types: [labeled]
 permissions:
@@ -11,7 +17,7 @@ jobs:
     if: >-
       github.repository == 'oborskyivitalii/oborskyivitalii' &&
       github.actor == github.repository_owner &&
-      (github.event_name == 'workflow_dispatch' ||
+      ((github.event_name == 'workflow_dispatch' && inputs.operation == 'prepare') ||
        (github.event.label.name == 'browser-archive-seed' &&
         github.event.sender.login == github.repository_owner &&
         github.event.pull_request.head.repo.full_name == github.repository))
@@ -21,10 +27,13 @@ jobs:
         include:
           - os: ubuntu-24.04
             engines: chromium,firefox,webkit
+            python: 3.12.14
           - os: windows-2025
             engines: chromium,firefox
+            python: 3.13.17
           - os: macos-15
             engines: webkit
+            python: 3.13.17
     runs-on: ${{ matrix.os }}
     timeout-minutes: 20
     env:
@@ -44,7 +53,7 @@ jobs:
           node-version: 24.19.0
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
         with:
-          python-version: 3.12.14
+          python-version: ${{ matrix.python }}
       - name: Initialize private preparation paths on the assigned runner
         run: |
           printf 'PLAYWRIGHT_BROWSERS_PATH=%s/browser-seed\n' "$RUNNER_TEMP" >> "$GITHUB_ENV"
@@ -80,5 +89,63 @@ jobs:
         with:
           name: browser-pin-${{ matrix.os }}-${{ runner.arch }}-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/browser-record.json
+          if-no-files-found: error
+          retention-days: 90
+  verify:
+    if: >-
+      github.repository == 'oborskyivitalii/oborskyivitalii' &&
+      github.actor == github.repository_owner &&
+      ((github.event_name == 'workflow_dispatch' && inputs.operation == 'verify') ||
+       (github.event.label.name == 'browser-archive-verify' &&
+        github.event.sender.login == github.repository_owner &&
+        github.event.pull_request.head.repo.full_name == github.repository))
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-24.04
+            engines: chromium,firefox,webkit
+          - os: windows-2025
+            engines: chromium,firefox
+          - os: macos-15
+            engines: webkit
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    defaults:
+      run:
+        shell: bash
+    env:
+      BROWSER_ENGINES: ${{ matrix.engines }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - name: Install the exact locked consumer toolchain
+        run: npm ci --prefix tools/quality/toolchain --ignore-scripts
+      - name: Prepare bounded Ubuntu downloads
+        if: runner.os == 'Linux'
+        run: sudo python3 tools/quality/ubuntu_downloads.py
+      - name: Install the existing Ubuntu dependencies without prior browser launch
+        if: runner.os == 'Linux'
+        run: |
+          engines="${BROWSER_ENGINES//,/ }"
+          node tools/quality/toolchain/node_modules/playwright/cli.js install-deps $engines
+      - name: Exercise authenticated archive restoration on a fresh native runner
+        uses: ./.github/actions/browser-archive
+        with:
+          browsers: ${{ matrix.engines }}
+      - name: Verify the first launch only after the consumer restored exact bytes
+        run: node tools/quality/browser-runtime.cjs probe "$BROWSER_ENGINES" > "$RUNNER_TEMP/browser-first-launch.json"
+      - name: Retain native consumer first-launch evidence
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: browser-first-launch-${{ matrix.os }}-${{ runner.arch }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/browser-first-launch.json
           if-no-files-found: error
           retention-days: 90
