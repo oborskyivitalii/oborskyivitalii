@@ -149,3 +149,116 @@ Native CI installs the candidate's own unchanged lock normally.
 
 Native checks/staging/merge/postmerge remain pending. The live issue and owning PR
 will hold actual delivered receipts; no receipt-only implementation PR is needed.
+
+
+## 26 October — local-only prospective Writing compatibility proposal
+
+Owner remains issue122. This preparation is not a new PR or authorization to
+publish/merge it. Protected main83591bdf cannot select PR150's exact new runtime.
+Before an eventual accepted /stage, its existing closed controller registry must
+recognize the reviewed future family. Current PR150c0ee1c09 evidence40371156916/1
+passes all26 prepublication guards and1128 native source tests; hosted/browser/
+performance evidence remains pending while this proposal is prepared. No native
+performance, acceptedS, App, merge or production result is inferred.
+
+The independently reviewed requirements restrict this patch to12 literal family
+lines, existing tuple/production/negative/rights/alias test extensions, five exact
+contract-file checksum dispositions and retained proof/catalog/review/RI metadata.
+The five values reproduce from the source-bound existing-producer proof copied
+verbatim from PR150. Its sixth helper-path finding is not admitted in this patch.
+All1533 predecessor checksum records and139 historical runtime tuples remain.
+
+Trusted-main review-flow.readPackage calls package.verify, snapshot.verify and
+publicationRights → motion.publicationRequired/select. This route does not invoke
+the builder-only runtime-compatibility.verify. Accordingly no helper, producer,
+package/controller, workflow, profile, budget, authored site, generated docs,
+output lock or maintained v11 export changes belong in this proposal. Main's
+actual-current builder/three-edition/hook-negative cases stay on R3; the future
+family is tested separately. CS01/CS04/CS05/CS06 apply to these canonical controls.
+
+The approval proposal requires exact native PR150 evidence first and completed
+source checks/four roles. Existing source/rights/tamper/unknown and all protected
+normal delivery gates remain. No test markers, article or production publication.
+Current-source bounded checks, actual c0 package comparison and completed source
+review results will be appended before requesting the separate maintainer decision.
+The initial local patch preparation stopped on a non-unique test-list anchor;
+that assertion changed no source. The corrected edit scopes the existing mixed-
+identity testcase explicitly, preserving all other lists and current R3 oracles.
+
+### Completed local proposal and prerequisite evidence
+
+Local implementation969a49c6b0ad836e068e0d346e5ada617c0d05b3 has tree
+`3c681c195ebefd77d4103265760a0d912dd3e1cb`; all four roles inspected that actual
+nine-file diff. This later checkpoint adds only evidence/handoff/derived RI.
+No proposal branch or PR has been published.
+
+PR150's first corrected full evidence40371156916/1 is SUCCESS on exact
+c0ee1c09f79bba94c9216cd1dbfe03792c2b5d70/tree5e1510356dab69336bd0d407bf88c2a98bedffb3.
+All26 prepublication guards and1128 staging source tests pass, as do hosted static,
+host, functional/browser, performance and final gate. Writing mobile Lighthouse
+13.5 simulatedCPU4 TBT114ms passes the unchanged200ms budget; FCP1604.835ms,
+LCP2223.78ms, CLS0.0765584842. Immutable target is
+https://0062dde5.oborskyi-author-ci-staging.pages.dev.
+Original reports12673139150 have5164370bytes/SHA256
+`264ece8c4d381a151fbe8ab28efad182adb42ccf9f31ad80d79ce54c383a5a2c`;
+prepublication12672434176 has316040bytes/SHA256
+`47110481a8eee4da1877560c3a2b71811f2c6ad5865f1a610ec3c67aac059e0d`;
+package12673780593 has708847bytes/SHA256
+`162dd7e718ff3488a61854544900e101cc345bf0f37a9f4f7b6938d20f13a47c`.
+These original downloads were size/SHA/ZIP-CRC/path checked. The original e5 TBT245
+and0d six-secret-disposition failures remain failed and retained. This run uses
+real corrections, the original method and budgets. It is evidence-only: promotion
+and merge admission are skipped; it does not establish acceptedS/App/production.
+
+On clean local969a, the two affected existing modules initially report63/64 pass.
+The sole failure is scanner-controlflow's generated-checksum proof: both worktrees
+share optional ../deliverables ZIP output. The physical ZIP matches c0's bundle
+hash07d8d239, whereas main's producer exactly reconstructs its unchanged tracked
+manifest and expected ZIP4ccd1b1e. This is an external local input collision, not a
+source/output freshness defect. Preserve the original TAP and byte comparison;
+move the existing c0 ZIP intact to its source-specific temporary path. The optional
+shared ZIP is then absent, as in normal CI. Only the affected existing case runs
+again after that actual input correction:1/1 pass, zero skips. No unchanged64-case
+campaign is rerun and no generated/scanner guard or source changes. Subsequent
+previously unexecuted Basic (empty articles, actual969a, clean), format532,
+code-style143 sources, RI freshness and17 coupling checks pass.
+
+Completed independent roles on969a/tree3c681c19:
+
+- Requirements accepts exactly3 future tuples/five dispositions, all prior rows
+  and selectors/current R3 oracles unchanged; all3 retained manifests select.
+- Code accepts the exact9-file scope and12 additive registry lines; all1533 prior
+  checksum rows/metadata/other ledgers and proof bytes remain. The privileged
+  verification chain excludes the builder helper; no broad source change needed.
+- White-box verifies139 old records identical/142 unique identities, old main
+  refuses3 future tuples and proposal selects them. Three missing-rights and30
+  canonical/immutable byte substitutions reject;5 exact checksum IDs admit and15
+  changed path/type/hash values reject; sixth helper ID stays unadmitted.
+- Exploratory invokes the actual package.verify against the original nativec0
+  package: true with original source/tree and empty articles. Missing rights
+  rejects explicitly. Private copies with canonical/immutable space bytes corrupt
+  both reject; restored copy and untouched original verify. No artifact relabel.
+
+These roles accept the local proposal only. The native PR150 evidence prerequisite
+is now observed; creating an additional prerequisite PR still needs the separate
+maintainer decision recorded in #122. Normal current-source/full trusted stage,
+exact-head human control review/App, protected merge/postmerge and subsequent
+PR150 integration are not supplied by local fixtures or this evidence-only run.
+AC03/06/08 remain open for later test-mode content/recovery and reconciliation.
+
+### Maintainer sequencing decision — 26 October 2026
+
+The maintainer answered “Так” to the concrete request for one separate bounded
+compatibility PR using this prepared patch, followed by returning to PR150.
+[Issue decision6423765029](https://github.com/oborskyivitalii/oborskyivitalii/issues/122#issuecomment-6423765029)
+records that authorization. It supersedes only the additional-prerequisite limit
+for this exact reviewed patch; normal full delivery, exact-head human control
+attestation, rights/editorial boundaries and all other gates remain. No additional
+dependency chain or candidate-controller trust is authorized.
+
+The resumed read-only requirements review independently confirmed that protected
+main835 must recognize the future runtime before PR150's accepted staging; the
+candidate-only registry and completed evidence-label route cannot grant it. This
+receipt changes no implementation, test oracle or prior source evidence. The
+four completed source roles above remain bound to969a/tree3c681c19. Fresh native
+checks belong to the actual published current head and are not yet claimed.

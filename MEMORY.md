@@ -5,15 +5,18 @@ Dated continuity, not live authority. Last verified: **2026-10-26**.
 ## Snapshot
 
 - Owner remains #122. PR142/R1, PR143–144/R2, PR145/runtime compatibility, PR146/platform integration and PR147/browser archive repair are delivered.
-- Protected main is `a2dba6b7a8cac00394e4a885590bea45b5b4843a`. PR147 tested `8d87965dd5e433be6bf261f355e9bc5b8ce1e4ed` and the normal two-parent merge share tree `4a0fc8a6b59763aa56bbe7e7149d4e8db865f70d`.
+- Protected main is `83591bdfa99cba7649968cf94a6335e98af2847e` after genuine repository-maintenance PR148. Tested30e76639 and merge83591bdf share treee84ef941; App40328378277, postmerge40330011197 and mainRI40330011063 pass. PR147 accepted site remains tested8d87965d/stage40316734726; do not relabel its package as main.
 - Exact PR147 passes Basic40315066141 (76 modules/1135 tests), RI/owning/routing and hosted smoke. Owner stage40316734726/1 passes 26 guards, 74 modules/1122 tests, browser/performance, stable promotion and receipt. Human exact-head attestation, genuine App5453173/check121559259755 through40319057158, protected merge, postmerge40319369015 and mainRI40319367866 pass.
 - Ordinary accepted S has empty article candidate lists. Its source stays tested8d; the merge is not a relabelled package producer. Native artifacts and recovery retain original sources/runs/attempts.
-- Current work is necessary handoff/review/derived-RI maintenance through the repository-only lane. Deliver genuine M after accepted S before isolated content/history/recovery C; website work is inapplicable to this maintenance delta.
+- PR150 remains Draft. Frozen e5f9d3b2 passed native Basic1124/1124 and smoke, then owner stage40340587156/1 failed Writing simulated TBT245ms >200. Browser supply, source/prepublication26 guards, static and host proof passed; no promotion. Original failure stays blocking.
+- PR150c0ee1c09/tree5e151035 remains Draft. Corrected evidence40371156916/1 SUCCESS:26guards,1128 native staging source tests, static/host/browser/performance/gate pass. Writing simulatedCPU4 TBT114ms <=200; reports12673139150 SHA264ece8c4d381a151fbe8ab28efad182adb42ccf9f31ad80d79ce54c383a5a2c. Evidence only, no stable/acceptedS/App. Original0d security25/26 and e5 TBT245 failures remain retained.
+- Compatibility implementation969a49c6/tree3c681c19 from main835 adds12 exact family lines,5 exact checksum rows/proof and existing guard-test extensions. Four roles accept; old139 records/main R3 builders preserved. Actual nativec0 package verifies with mandatory rights; corrupt aliases reject. No helper/site/docs/producer/controller/workflow changes. Maintainer explicitly approved one bounded prerequisite PR in comment6423765029; normal full delivery and exact-head human control attestation remain required.
+- Local scheduling cf7/treeca811 full1137tests failed37 (35 unknown runtime,2 old-current IDs); originals retained. Corrected clean1eeb83f9/treedf04063d passes76modules1145/1145, Basic/full lint/format/style/RI and29+20RI/coupling cases. Four source delta roles accept exact enrollment/document guard;139old tuples stay exact,3new. Native evidence still pending; do not relabel local checks as a later metadata/native source.
 - PR79 remains Draft/open at `02a4f6aeb04feb663baf7d170e3a9861ae718b6a`. R38 remains untouched and unpublished.
 
 ## Decisions
 
-- #122 delivers separate engine/platform, content/media and repository-maintenance routes. Finishing/publishing R38 is no prerequisite. AC01/02/04/05/07 are accepted; AC03/06/08 remain open.
+- #122 delivers separate engine/platform, content/media and repository-maintenance routes. The maintainer explicitly requests isolated TEST-MODE content/recovery in comment6417255457; no new-article or production publication. AC01/02/04/05/07 are accepted; AC03/06/08 remain open.
 - PR147 delivers all26 browser acquisition declarations across12 workflows, one read-only native preparer and one shared consumer. It adds no production/DNS or article-publishing authority.
 - Preserve native engine/OS sets, dependencies, tests, budgets and cold first-launch ordering. Consumer setup never prelaunches and has no CDN/system-browser fallback. Exact source/producer/package/revision/system/upload/inner archive pins reject wrong, unsafe, missing or expired supply.
 - Corrected seed40306092975 and consumer40307707776 retain their actual sources:3 fresh OS setups report zero launches, then6 first-launch probes pass. Pins expire2027-01-24T10:16:18Z; refresh explicitly under the browser-archive guide.
@@ -29,15 +32,17 @@ Dated continuity, not live authority. Last verified: **2026-10-26**.
 - Four distinct roles accepted PR147 source and original native Basic/preflight/package accounting, identities and empty article lists. This maintenance candidate needs its own four-role review and current-source repository checks.
 - Earlier local content probe against real PR146 artifact passed Talks→Home→Talks:29 platform files exact, newer Home preserved during Talks recovery,12 localhost HTTP checks. Only the already-staged R37 reference was used. This is local evidence, not native publication/admission or whole AC03/06/08 acceptance.
 - Old PR146 staging genuinely contains its R37 preview and cannot supply ordinary empty-selection reuse under the new controller. PR147 now supplies ordinary accepted S. Preserve both histories without stripping candidates or relabelling artifacts.
-- Deliver genuine repository-maintenance M after S, then isolated existing-content C through the existing owner. Require authenticated complete S→M→C history, unchanged platform bytes, affected hosted/browser observations and recovery/source/predecessor leases. Full-platform fallback does not prove the independent content lane.
-- Final reconciliation covers original AC03/06/08, contracts/profile dispositions, lane outcomes and actual queue/setup/execution. Source tests alone do not close the issue; no fabricated speed guarantee.
+- PR149 is a never-merge test PR, frozen Draft atd4ea6bbd. Native C1 authenticates S147 and M148 but navigation40334261450 fails stale offline exports and preview40334261910 fails missing yaml. No label advancement/retry. Original logs/results remain in review/issue-122/2026-10-26-content-ci.md and native jobs.
+- Repair admits only18 exact existing export derivatives and installs locked quality Node dependencies before ordinary content-preview tests. All freshness/security guards remain. Fresh ordinary accepted S and necessary genuine M must precede isolated C1→C2→C3 after control/runtime changes.
+- Diagnostic40348477192 timed out on Azure APT before any browser. Never-merged branch reused the existing primary-archive guard;40351209955 collected one real CPU4 Writing profile. Method pair40355135427 then measured simulated281.5ms/DevTools232.729ms, both above200. Keep original simulated protocol, thresholds and raw evidence; no benchmark-method switch or unchanged retry.
+- Native diagnostic artifacts12664425612/profile and12665153918/method pair retain frozen e5 source separately from their controller commits. Review/issue-122/2026-10-26-content-ci.md and PR150 receipts own exact identities and limits. No test markers or new article were published.
 
 ## Next session
 
-1. Revalidate main/#122/current maintenance branch/PR/checks and accepted PR147 evidence; leave PR79/R38 untouched.
-2. Complete MEMORY/existing-review/derived-RI maintenance; prove repositoryOnly=true/no controls, obtain four completed reviews, use source/RI/owning checks, genuine App, protected merge and postmerge. Website work is inapplicable.
-3. Prepare isolated existing-content C after actual M; verify ordinary accepted S/history/platform reuse and required recovery/current-state scenario through the existing owner. Preserve original source/artifact identities and leases.
-4. Reconcile remaining criteria/contracts/timings and close #122 only after whole acceptance. No production or new-article publication follows.
+1. Revalidate main83591bdf, #122, repair branch/PR and frozen testPR149; keep PR79/R38 untouched.
+2. Deliver the explicitly approved bounded prospective compatibility PR through the normal full route, owned by review/issue-122/2026-10-24-r3-runtime-compatibility.md. Then integrate current main into PR150 and run exact current-source final gates with new human control attestation. Native c0 evidence remains its original source; no relabel/retry/budget change or further prerequisite chain.
+3. Establish fresh ordinary accepted S after the policy repair, then genuine necessary repository M. Replay isolated test C1 Talks → C2 Talks plus newer Home → C3 only Talks restored, using the existing evidence-only label route; never merge test markers or promote them to stable/production.
+4. Require original source/history/platform reuse, native content gate/host/browser and selective recovery comparisons; reconcile AC03/06/08/contracts/timings before closure. Fixture generation or platform fallback alone is insufficient.
 
 ## Maintenance
 

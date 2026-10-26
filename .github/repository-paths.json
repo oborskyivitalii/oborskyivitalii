@@ -11802,6 +11802,12 @@
       "purpose": "Inert source-bound proof of exact browser-tooling Bandit findings and public native browser checksum/NPM-integrity classifications under issue122.",
       "role": "history",
       "owner": "guides/BROWSER-ARCHIVES.md"
+    },
+    "review/issue-122/2026-10-26-writing-checksum-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Inert source-bound producer proof for six exact public Writing-startup runtime checksum dispositions; retains original native security failure.",
+      "role": "history",
+      "owner": "guides/SITE-CONTENT-RELEASE.md"
     }
   }
 }

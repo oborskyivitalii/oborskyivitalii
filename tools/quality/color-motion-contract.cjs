@@ -326,6 +326,18 @@ const styles = {
   },
 };
 const families = {
+  // Cold Writing preparation yields before its first paint; other R3 bytes match.
+  issue122WritingStartup: {
+    requiresPublicationRights: true,
+    ...byteProfiles.issue122R3Platform,
+    space: '9c12d83a6a738d80847819a7fff061910302512905f21426d0dcef876b974fec',
+    id: 'issue122-writing-startup',
+    baseEngine: 'a41ab65b9c8182318ae1333272289aac5d651fa1e19cc075609632b5fb082b85',
+    styles: styles.readerPaper,
+    plain: '628847e508a6091997ab314b52e5b79323e741778463d6491e544a6023007b5f',
+    staging: '993315bbe3ce601abf0fdec276455f4e50892be022805cbbae86991ca16bd4c5',
+    production: '9f647eb087b95c60a025c6f68823d91f52880ebb250b96b385c84cc1985256c1',
+  },
   // Exact integrated platform bytes; acceptance still uses the existing full route.
   issue122R3Platform: {
     requiresPublicationRights: true,

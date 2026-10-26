@@ -408,6 +408,7 @@ test('only reviewed historical and current launch plain/staging tuples select a 
     'issue39-writing-tbt',
     'issue39-css-clock',
     'issue122-r3-platform',
+    'issue122-writing-startup',
     'issue122-reading-batch',
     'issue5-reconciled',
     'issue5-reader-resources',
@@ -467,6 +468,7 @@ test('production Color has a separate exact edition identity with unchanged appr
     'issue39-writing-tbt',
     'issue39-css-clock',
     'issue122-r3-platform',
+    'issue122-writing-startup',
     'issue122-reading-batch',
     'issue5-reconciled',
     'issue5-reader-resources',
@@ -574,6 +576,9 @@ test('unknown, conflicting, mixed or merely marked runtime identities fail befor
     'issue39-writing-tbt-production',
     'issue39-css-clock-production',
     'issue122-reading-batch-production',
+    'issue122-writing-startup-plain',
+    'issue122-writing-startup-staging',
+    'issue122-writing-startup-production',
   ]) {
     for (const mutate of mutations) {
       const value = manifest(id);
@@ -1235,23 +1240,22 @@ test('deferred-media and CPU runtimes retain byte, edition and mandatory rights 
     }
 });
 
-test('R3 compatibility keeps exact aliases and mandatory rights in all three editions', () => {
+test('R3 and Writing startup compatibility keep exact aliases and mandatory rights in all editions', () => {
   const delivery = require('../tools/staging/package.cjs');
-  for (const edition of ['plain', 'staging', 'production']) {
-    const value = manifest('issue122-r3-platform-' + edition);
-    assert.equal(delivery.publicationRequired(value, value.components), true);
-    assert.throws(
-      () => delivery.publicationRights(null, value, undefined, value.components),
-      /licensed publication rights record required/
-    );
-    for (const name of Object.keys(
-      motion.reviewedRuntime('issue122-r3-platform-' + edition).files
-    )) {
-      for (const alias of [name, 'runtime/' + value.variant.fingerprint + '/' + name]) {
-        const mixed = structuredClone(value);
-        mixed.files[alias].sha256 = '0'.repeat(64);
-        assert.throws(() => motion.select(mixed), /Color bytes/);
+  for (const family of ['issue122-r3-platform', 'issue122-writing-startup'])
+    for (const edition of ['plain', 'staging', 'production']) {
+      const value = manifest(family + '-' + edition);
+      assert.equal(delivery.publicationRequired(value, value.components), true);
+      assert.throws(
+        () => delivery.publicationRights(null, value, undefined, value.components),
+        /licensed publication rights record required/
+      );
+      for (const name of Object.keys(motion.reviewedRuntime(family + '-' + edition).files)) {
+        for (const alias of [name, 'runtime/' + value.variant.fingerprint + '/' + name]) {
+          const mixed = structuredClone(value);
+          mixed.files[alias].sha256 = '0'.repeat(64);
+          assert.throws(() => motion.select(mixed), /Color bytes/);
+        }
       }
     }
-  }
 });
