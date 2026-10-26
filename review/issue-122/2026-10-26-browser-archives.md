@@ -58,6 +58,29 @@ Launch sanity explicitly binds the declared full executable (including the full
 Chromium used by Lighthouse); consumer first-launch ordering is untouched.
 Pending seed/native browser consumption is not a pass or a delivery claim.
 
+## First native preparation failure and correction
+
+PR147 seed source3b683aeb216ea303c9fa23f28905bb0b2e0534ad/tree899ab647
+was rejected before any job in run40298043160/1. GitHub's exact annotation is
+`Unrecognized named-value: 'runner'` at job.env lines31/34/35. There were no
+browser acquisition or test results. The job-level context table in
+https://docs.github.com/en/actions/reference/workflows-and-actions/contexts
+excludes runner from job.env; step execution has RUNNER_TEMP available.
+
+The bounded correction removes only those three job.env path expressions and
+initializes the same paths through quoted RUNNER_TEMP assignments to GITHUB_ENV
+after setup-python. Matrix, permissions, acquisition, launch checks, artifact
+names and budgets remain. Nine focused archive cases still pass. The original
+rejected run is retained; a corrected-source seed is not an unchanged retry.
+
+All four role-specific agents actually re-read the correction and accepted it
+for native preparation: Requirements, Code, White-box and Exploratory under
+their separate browser_archive identities above. WorkflowSHA256d83863c469fd0acf
+2272f9859fff5ad34a4f7256df26340ce66f95069cd5543c. Code/Exploratory executed
+quoted path initialization with spaces and Windows-style paths; White-box also
+checked macOS-style paths and independently passed9/9 focused cases. Native
+preparation remains unobserved at this correction checkpoint.
+
 ## Remaining #122 plan
 
 1. Finish/review this repair; seed exact native archives and rebind consumers.

@@ -676,7 +676,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "5d0ee713617c8680e194210742dad9919b448282d9e52fa5b6847b9b79210a5b",
+    "digest": "f9bc47954caa7d67637d8089369405555d87b0d0961e6bebc5da9684bd316828",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -816,7 +816,7 @@
       },
       {
         "path": ".github/workflows/browser-archives.yml",
-        "sha256": "eff149fefd03cab8ae8b497f42bf637749a9469b77d7233c8f72b440fb7eef76"
+        "sha256": "d83863c469fd0acf2272f9859fff5ad34a4f7256df26340ce66f95069cd5543c"
       },
       {
         "path": ".github/workflows/change-admission.yml",

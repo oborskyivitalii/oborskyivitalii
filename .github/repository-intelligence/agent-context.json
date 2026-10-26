@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "2c1d580de8f7725493c91f84fce0453e1f413c5a2949c671e41a712ea6cfdcd0",
+    "digest": "38ca95dc518c67b2f3629b7c80d85e18e9717bd752452fbf2ace73622f2a4051",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -206,12 +206,12 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "bcf1408ecdd0b2cac961ad538c5058cc504102c2a36881351d6a30b0c9ab0635"
+        "sha256": "bc056f76fa4167ee7ea164dfc339dee37d5d4093471e2938151c865377754e48"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
         "identity_mode": "content",
-        "sha256": "eff149fefd03cab8ae8b497f42bf637749a9469b77d7233c8f72b440fb7eef76"
+        "sha256": "d83863c469fd0acf2272f9859fff5ad34a4f7256df26340ce66f95069cd5543c"
       },
       {
         "path": ".github/workflows/change-admission.yml",
@@ -1020,7 +1020,7 @@
       {
         "path": "review/issue-122/2026-10-26-browser-archives.md",
         "identity_mode": "content",
-        "sha256": "936f561704732a7912b3c2556b925cdd089cb6bcd8143e756b3af692f2db8923"
+        "sha256": "b258d24692b73831dcdaf83739e3218e79ea9523690a079d2360847a10ae6ad7"
       },
       {
         "path": "review/issue-126/2026-10-23-announcement-review.md",
