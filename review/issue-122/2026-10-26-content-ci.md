@@ -221,3 +221,36 @@ without stable promotion, App admission or accepted S. First obtain that actual
 candidate result, then prepare the finite compatibility-only diff for the
 maintainer's separate-PR decision. No additional PR/controller redesign is
 created or authorized here. Compatibility must precede eventual accepted stage.
+
+
+## Completed clean enrollment/source checkpoint
+
+Clean local1eeb83f9b13e392b314484d4511e645d6111e657, treedf04063d12c7a92f9952cf80eac5940c5efabf45,
+passes76selected PR modules/1145tests with zero fail/skip/cancel/todo and clean
+source before/after. Basic, full maintained lint, format532, architecture, style,
+RI/coupling,29RI and20coupling regression cases pass at that exact local source.
+This receipt does not relabel those executions as later metadata/native results.
+
+Four distinct nonauthoring roles completed actual source delta review:
+
+- repository_delivery_requirements: exact additive tuple and two-client document
+  guard satisfy AC04; actual30alias hashes reproduce; original failure/contract
+  and native/compatibility decision boundaries remain explicit.
+- repository_delivery_code: old registry/selector body and legacy version() remain
+  byte-identical; all3derived identities and30physicalaliases match. Only actual
+  current-source expectations change; historical and rights cases remain.
+- repository_delivery_whitebox:6/6targeted existing cases pass, all139old runtime
+  records remain exact and3unique records are added;57output hashes and RI/
+  coupling verify. Unknown/mixed/rights/missing-hook paths still reject.
+- repository_delivery_exploratory:2/2finite current closure/rights/tamper cases
+  pass; actual clean-source artifact verifies with empty article selection;
+  deleting the actual Writing document hook rejects; runtime bytes matchcf7 and
+  reading text/native links remain unchanged. Export freshness and RI verify.
+
+Earlier scheduling source acceptance remains bound tocf7/treeca811. Actual
+browser/Canvas/input latency/cold readiness and original simulated TBT are still
+unobserved on this final integration; local VM/CLI observations are not native
+acceptance. The authorized next action is Draft PR150 update plus the existing
+owner-only staging-regression evidence route. No acceptedS/App/merge or stable/
+production promotion follows. Protected-main prospective compatibility remains
+a separate explicit maintainer decision after actual candidate evidence.
