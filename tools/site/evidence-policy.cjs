@@ -6,9 +6,11 @@ const keys = [
   'scenes',
   'assets',
   'templates',
+  'pageTemplates',
   'analytics',
   'routes',
   'variant',
+  'client',
 ];
 function propose(before, after) {
   const valid = (value) =>

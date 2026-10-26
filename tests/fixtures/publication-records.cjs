@@ -123,7 +123,7 @@ function fixture(parent, modern = true, staging = true) {
     } else source.report = JSON.parse(fs.readFileSync(path.join(source.directory, 'rights.json')));
     assert.equal(
       motion.select(source.record).id,
-      'issue122-reading-batch-' + (staging ? 'staging' : 'plain')
+      'issue122-r3-platform-' + (staging ? 'staging' : 'plain')
     );
     save(source);
     return source;

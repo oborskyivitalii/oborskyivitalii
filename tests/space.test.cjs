@@ -6,7 +6,7 @@ const test = require('node:test'),
   vm = require('node:vm');
 const sourceFile = process.env.SITE_SPACE_SOURCE || path.join(__dirname, '../docs/space.js');
 const source = fs.readFileSync(sourceFile, 'utf8'),
-  script = new vm.Script(source),
+  script = new vm.Script(source, { filename: sourceFile }),
   model = require(sourceFile);
 function visit(options = {}) {
   const events = {},
@@ -53,7 +53,9 @@ function visit(options = {}) {
       name,
       (...args) => {
         for (const arg of args) {
-          if (!Number.isFinite(arg)) assert.fail('Canvas argument must be finite');
+          if (!Number.isFinite(arg)) {
+            assert.ok(Number.isFinite(arg));
+          }
         }
         if (name === 'clearRect') {
           if (failDraw) throw Error('injected');
@@ -186,7 +188,12 @@ function visit(options = {}) {
   const document = {
     readyState: options.readyState,
     hidden: false,
-    body: { dataset: { page: options.page || 'index' } },
+    body: {
+      dataset: {
+        page: options.page || 'index',
+        ...(options.article ? { article: options.article } : {}),
+      },
+    },
     documentElement: {
       get scrollHeight() {
         rangeReads++;
@@ -257,11 +264,13 @@ function visit(options = {}) {
       stored = value;
     },
   };
-  const realm = vm.createContext(vm.constants.DONT_CONTEXTIFY);
-  Object.assign(realm, { document, window, localStorage });
-  script.runInContext(realm);
+  // Keep each page in a fresh realm without Node's contextified-global lookup overhead.
+  const browserContext = vm.createContext(vm.constants.DONT_CONTEXTIFY);
+  Object.assign(browserContext, { document, window, localStorage });
+  script.runInContext(browserContext);
   const api = {
-    realm,
+    browserContext,
+    realm: browserContext,
     window,
     document,
     button,
@@ -343,9 +352,45 @@ function visit(options = {}) {
   };
   return api;
 }
-test('Canvas fixture rejects every nonfinite argument directly', () => {
-  const context = visit().canvas.getContext();
-  for (const method of [
+test('simulated pages retain isolated globals, intrinsics and injected browser fixtures', () => {
+  const first = visit({ saved: 'off' }),
+    second = visit({ saved: 'off' });
+  assert.notEqual(first.browserContext, second.browserContext);
+  assert.notEqual(first.browserContext.localStorage, second.browserContext.localStorage);
+  for (const page of [first, second]) {
+    assert.equal(page.browserContext.window, page.window);
+    assert.equal(page.browserContext.document, page.document);
+    assert.equal(page.browserContext.localStorage.getItem('space-motion'), 'off');
+    for (const name of ['process', 'require', 'module', 'Buffer']) {
+      assert.equal(name in page.browserContext, false, 'host global is absent: ' + name);
+    }
+  }
+  for (const name of ['Math', 'Array', 'Object']) {
+    assert.notEqual(first.browserContext[name], second.browserContext[name]);
+    assert.notEqual(first.browserContext[name], globalThis[name]);
+    assert.notEqual(second.browserContext[name], globalThis[name]);
+  }
+  vm.runInContext(
+    'globalThis.spaceFixtureProbe = 1; Math.spaceFixtureProbe = 1; Array.prototype.spaceFixtureProbe = 1;',
+    first.browserContext
+  );
+  for (const context of [second.browserContext, globalThis]) {
+    assert.equal(context.spaceFixtureProbe, undefined);
+    assert.equal(context.Math.spaceFixtureProbe, undefined);
+    assert.equal(context.Array.prototype.spaceFixtureProbe, undefined);
+  }
+  assert.equal(first.browserContext.spaceFixtureProbe, 1);
+  first.browserContext.localStorage.setItem('space-motion', 'on');
+  assert.equal(first.stored(), 'on');
+  assert.equal(second.stored(), 'off');
+  assert.equal(second.browserContext.localStorage.getItem('space-motion'), 'off');
+});
+
+test('Canvas numeric guards retain every finite argument and reject invalid values before paint side effects', () => {
+  const p = visit({ saved: 'off' });
+  const context = p.canvas.getContext();
+  const valid = [-0, Number.MIN_VALUE, Number.MAX_VALUE, -Number.MAX_VALUE, 0.5, 1, 2, 3];
+  for (const name of [
     'setTransform',
     'clearRect',
     'beginPath',
@@ -356,12 +401,38 @@ test('Canvas fixture rejects every nonfinite argument directly', () => {
     'fill',
     'closePath',
   ]) {
-    for (const value of [NaN, Infinity, -Infinity, '1', null, undefined, {}]) {
-      assert.throws(() => context[method](0, value), { code: 'ERR_ASSERTION' });
+    assert.doesNotThrow(() => context[name]());
+    assert.doesNotThrow(() => context[name](...valid));
+    for (const invalid of [
+      NaN,
+      Infinity,
+      -Infinity,
+      undefined,
+      null,
+      '1',
+      true,
+      new Number(1),
+      1n,
+      Symbol('bad'),
+    ]) {
+      for (let position = 0; position < valid.length; position++) {
+        const args = valid.slice();
+        args[position] = invalid;
+        const before = { draws: p.draws(), bitmap: p.bitmapValid() };
+        assert.throws(() => context[name](...args), {
+          name: 'AssertionError',
+          code: 'ERR_ASSERTION',
+          actual: false,
+          expected: true,
+          operator: '==',
+          message: /assert\.ok\(Number\.isFinite\(arg\)\)/,
+        });
+        assert.deepEqual({ draws: p.draws(), bitmap: p.bitmapValid() }, before);
+      }
     }
-    assert.doesNotThrow(() => context[method](0, 1, -1));
   }
 });
+
 test('compiled runtime creates independent visit contexts and state', () => {
   const first = visit(),
     second = visit();
@@ -441,6 +512,101 @@ test('continuous gestures and pointer events never influence the reading camera'
   assert.equal(p.trace(), camera);
   assert.equal(p.pending.size, 1);
 });
+test('articles use the common ambient loop through layout, appearance and lifecycle changes', () => {
+  for (const narrow of [false, true]) {
+    const p = visit({ page: 'writing', article: 'sample:en', narrow, saved: 'on' });
+    p.settle();
+    const camera = p.trace(),
+      phase = p.phase();
+    assert.equal(p.pending.size, 1);
+    assert.equal(p.window.SiteScene.canTravel(), true);
+    assert.equal(p.stored(), 'on');
+    p.frame(80);
+    assert.ok(p.phase() > phase, 'article ambient time advances like Writing');
+    p.scroll(1500);
+    for (const repaint of [
+      () => p.mutate(),
+      () => p.event('resize'),
+      () => p.layout([]),
+      () => {
+        p.hidden(true);
+        p.hidden(false);
+      },
+      () => {
+        p.events.beforeprint();
+        p.events.afterprint();
+      },
+    ]) {
+      const before = p.draws(),
+        previousPhase = p.phase();
+      repaint();
+      p.settle();
+      assert.ok(p.draws() > before, 'the common scene repaints when its environment changes');
+      assert.equal(p.trace(), camera);
+      assert.ok(p.phase() > previousPhase);
+      assert.equal(p.pending.size, 1);
+    }
+  }
+});
+test('article navigation retains continuous ambient motion and the same-scene orbit', () => {
+  const p = visit({ page: 'writing' });
+  p.settle();
+  const scene = p.window.SiteScene,
+    phase = p.phase();
+  scene.navigate('writing', true, null, null, {
+    documentChange: true,
+    sameSceneDocument: true,
+    fromDocument: 'writing',
+    toDocument: 'article:sample:en',
+    direction: 1,
+  });
+  p.document.body.dataset.article = 'sample:en';
+  scene.refresh();
+  finishFlight(p, 'entering the reader completes the circular journey');
+  assert.ok(p.phase() > phase, 'ambient scene accompanies the requested journey');
+  assert.equal(p.pending.size, 1, 'article arrival retains the common ambient loop');
+  const arrival = p.phase(),
+    camera = p.trace();
+  p.frame(80);
+  assert.ok(p.phase() > arrival);
+  scene.navigate('writing', true, null, null, {
+    documentChange: true,
+    sameSceneDocument: true,
+    fromDocument: 'article:sample:en',
+    toDocument: 'writing',
+    direction: -1,
+  });
+  p.frame(80);
+  assert.ok(p.phase() > arrival, 'ambient time continues through the return orbit');
+  assert.equal(p.scene.dataset.travel, 'flying');
+  delete p.document.body.dataset.article;
+  scene.refresh();
+  finishFlight(p, 'leaving the reader completes the return orbit');
+  assert.equal(p.trace(), camera);
+  assert.equal(p.pending.size, 1, 'Writing retains its ordinary ambient loop');
+  const returned = p.phase();
+  p.frame(80);
+  assert.ok(p.phase() > returned);
+});
+test('articles retain common Off and reduced-motion behavior across document changes', () => {
+  for (const options of [{ saved: 'off' }, { saved: 'on', reduced: true }]) {
+    const p = visit({ page: 'writing', article: 'sample:en', ...options });
+    p.settle();
+    assert.equal(p.window.SiteScene.canTravel(), false);
+    p.window.SiteScene.navigate('writing', true, null, null, {
+      documentChange: true,
+      sameSceneDocument: true,
+      direction: -1,
+    });
+    delete p.document.body.dataset.article;
+    p.window.SiteScene.refresh();
+    p.settle();
+    assert.equal(p.scene.dataset.travel, 'settled');
+    assert.equal(p.phase(), 0);
+    assert.equal(p.pending.size, 0);
+    assert.equal(p.stored(), options.saved);
+  }
+});
 test('Off freezes the exact displayed camera and phase through theme, resize, layout, hidden and print', () => {
   const p = visit({ blockedStorage: true });
   p.settle();
@@ -511,6 +677,30 @@ test('reduced overrides saved On; Off persists; hidden and print pause without e
   p.media.change();
   p.settle();
   assert.equal(p.pending.size, 0);
+});
+test('a reduced preference stops the next frame before a delayed change event and preserves saved On', () => {
+  const p = visit({ saved: 'on' });
+  p.frame(80);
+  p.frame(80);
+  const phase = p.phase();
+  p.media.matches = true;
+  p.frame(80);
+  p.settle();
+  assert.equal(p.phase(), phase, 'queued media notification cannot advance ambient time');
+  assert.equal(p.button.disabled, true);
+  assert.equal(p.button.textContent, 'Motion: reduced');
+  assert.equal(p.pending.size, 0);
+  assert.equal(p.stored(), 'on');
+  const draws = p.draws();
+  p.media.change();
+  assert.equal(p.pending.size, 0, 'late duplicate reduced notification schedules no work');
+  p.frame(80);
+  assert.equal(p.draws(), draws);
+  p.media.matches = false;
+  p.media.change();
+  p.frame(80);
+  p.frame(80);
+  assert.ok(p.phase() > phase, 'saved On resumes when the system preference permits it');
 });
 test('cheap ambient paints reach 30Hz at both 60/120Hz RAF; a stall never causes a paint burst', () => {
   for (const narrow of [false, true])
@@ -1627,6 +1817,20 @@ test('travel progress is emitted with the displayed camera, retargets cleanly an
   );
 });
 
+// Navigation charters need the first ready paint, not twelve ambient warmup frames.
+// Keep settle() for scrolling, reflow, lifecycle changes and warm remounts.
+function paintInitialRoute(p, page = 'index') {
+  assert.equal(p.draws(), 0, 'a fresh route has not painted');
+  p.frame(60);
+  assert.equal(p.draws(), 1, 'the initial route has actually painted');
+  assert.equal(p.scene.dataset.ready, 'true');
+  assert.equal(p.scene.dataset.travel, 'settled');
+  assert.deepEqual(
+    JSON.parse(p.trace()),
+    model.routePose(page, model.poses[model.initialPoses[page]])
+  );
+  assert.equal(p.pending.size, 1, 'the existing ambient clock is ready for navigation');
+}
 function assertFlightDepths(paints, sourceZ, endpointZ) {
   const direction = Math.sign(endpointZ - sourceZ),
     lower = Math.min(sourceZ, endpointZ),
@@ -1686,7 +1890,7 @@ function reverseEndpointFlight(from, to, narrow) {
   const target = nativeReadingPose(to, 14100, { narrow }),
     paints = [],
     p = visit({ page: from, narrow, ribbonProbe: (state) => paints.push(state) });
-  p.settle();
+  paintInitialRoute(p, from);
   for (const warm of [false, true]) {
     if (warm) {
       p.window.SiteScene.navigate(from, false);
@@ -1724,7 +1928,7 @@ function reverseEndpointFlight(from, to, narrow) {
 test('departure scroll events cannot retarget a flight through source page geometry', () => {
   const paints = [],
     p = visit({ ribbonProbe: (state) => paints.push(state) });
-  p.settle();
+  paintInitialRoute(p);
   p.scroll(14100);
   p.settle();
   const sourceZ = JSON.parse(p.trace()).position[2],
@@ -1773,7 +1977,7 @@ test('history and fragment landings use the fixed destination pose before native
   for (const [to, landing, y, focus] of cases) {
     const paints = [],
       p = visit({ ribbonProbe: (state) => paints.push(state) });
-    p.settle();
+    paintInitialRoute(p);
     p.scroll(14100);
     p.settle();
     const displayed = p.trace(),
@@ -1816,7 +2020,7 @@ test('history and fragment landings use the fixed destination pose before native
 test('midflight destination reflow and pauses preserve the staged camera and shared clock', () => {
   const paints = [],
     p = visit({ ribbonProbe: (state) => paints.push(state) });
-  p.settle();
+  paintInitialRoute(p);
   const records = [],
     before = p.trace(),
     phase = p.phase();
@@ -2029,7 +2233,7 @@ test('each route flight centers, travels in depth and restores its reading compo
       ['research', 'index'],
     ]) {
       const p = visit({ page: from, narrow });
-      p.settle();
+      paintInitialRoute(p, from);
       const source = JSON.parse(p.trace()),
         target = model.routePose(to, model.poses[model.initialPoses[to]]),
         direction = Math.sign(target.position[2] - source.position[2]),
@@ -2115,7 +2319,7 @@ test('Off, hidden and print freeze and resume the displayed centering, transit a
 test('same-route navigation keeps a settled reading camera without a zero-depth journey', () => {
   for (const page of model.routeOrder) {
     const p = visit({ page });
-    p.settle();
+    paintInitialRoute(p, page);
     const camera = p.trace(),
       progress = [];
     p.window.SiteScene.navigate(page, true, (value) => progress.push(value));
@@ -2130,7 +2334,7 @@ test('same-route navigation keeps a settled reading camera without a zero-depth 
 });
 test('returning to the old mounted route during an interrupted flight still travels backward', () => {
   const p = visit();
-  p.settle();
+  paintInitialRoute(p);
   const opening = p.trace();
   p.window.SiteScene.navigate('research');
   advanceUntil(
@@ -2160,7 +2364,7 @@ test('returning to the old mounted route during an interrupted flight still trav
 test('framing and depth flight each retain a readable additive presentation duration', () => {
   const paints = [],
     p = visit({ ribbonProbe: (state) => paints.push(state) });
-  p.settle();
+  paintInitialRoute(p);
   const source = JSON.parse(p.trace()),
     target = model.routePose('research', model.poses.researchOverview);
   p.window.SiteScene.navigate('research');
@@ -2204,7 +2408,7 @@ test('all direct route choices have finite independent camera legs at desktop an
             if (event.kind === 'camera-travel') plans.push(event);
           },
         });
-      p.settle();
+      paintInitialRoute(p, from);
       for (const to of model.routeOrder.filter((route) => route !== from)) {
         plans.length = 0;
         p.window.SiteScene.navigate(from, false);
@@ -2261,7 +2465,15 @@ test('all direct route flights paint only their journey rooms through the last t
               });
             },
           });
-        p.settle();
+        p.frame(60);
+        assert.equal(p.draws(), 1, 'the initial route has actually painted');
+        assert.equal(p.scene.dataset.ready, 'true');
+        assert.equal(p.scene.dataset.travel, 'settled');
+        assert.deepEqual(
+          JSON.parse(p.trace()),
+          model.routePose(from, model.poses[model.initialPoses[from]])
+        );
+        assert.equal(p.pending.size, 1, 'the existing ambient clock is ready for the flight');
         paints.length = 0;
         p.window.SiteScene.navigate(to);
         for (let frame = 0; frame < 40 && p.scene.dataset.travel !== 'settled'; frame++) {
@@ -2308,7 +2520,7 @@ test('prepared adjacent rooms emerge continuously from zero in both travel direc
               if (event.kind === 'model') prepared.push(event.route);
             },
           });
-        p.settle();
+        paintInitialRoute(p, from);
         paints.length = 0;
         prepared.length = 0;
         p.window.SiteScene.navigate(to);
@@ -2367,13 +2579,15 @@ test('retargeted flights retain their displayed room pair, including reverse and
             if (event.kind === 'model') models.push(event);
           },
         });
-      p.settle();
+      paintInitialRoute(p, from);
       p.window.SiteScene.navigate(first);
       for (let frame = 0; frame < frames; frame++) p.frame(80);
       assert.equal(p.scene.dataset.cameraStage, 'transit', 'interrupt an actual depth flight');
       const displayed = p.trace(),
         rooms = [...paints.at(-1).paintedRooms].sort(),
-        visibility = JSON.stringify(paints.at(-1).roomVisibility);
+        visibility = JSON.stringify(
+          paints.at(-1).roomVisibility.filter((room) => room.opacity > 0)
+        );
       assert.ok(rooms.length > 0, 'the source geometry was actually painted');
       models.length = 0;
       p.window.SiteScene.navigate(next);
@@ -2391,7 +2605,7 @@ test('retargeted flights retain their displayed room pair, including reverse and
         'the first replacement paint keeps the same contributing rooms'
       );
       assert.equal(
-        JSON.stringify(paints.at(-1).roomVisibility),
+        JSON.stringify(paints.at(-1).roomVisibility.filter((room) => room.opacity > 0)),
         visibility,
         'retargeting keeps the displayed spatial visibility weights'
       );
@@ -2409,7 +2623,7 @@ test('retargeting each longer camera leg cancels its plan and completes from its
           if (event.kind.startsWith('camera-travel')) events.push(event);
         },
       });
-    p.settle();
+    paintInitialRoute(p);
     const firstId = index * 2 + 1,
       secondId = firstId + 1;
     p.window.SiteScene.navigate('research', true, null, null, { navigationId: firstId });
@@ -2432,4 +2646,300 @@ test('retargeting each longer camera leg cancels its plan and completes from its
     assert.deepEqual(JSON.parse(p.trace()), model.routePose('index', model.poses.overview));
     assert.equal(p.pending.size, 1);
   }
+});
+
+test('reader document orbits keep the same fractal centered and return continuously to its anchor', () => {
+  for (const direction of [1, -1])
+    for (const narrow of [false, true]) {
+      const paints = [],
+        p = visit({
+          page: 'writing',
+          narrow,
+          probe: (event) => {
+            if (event.kind === 'paint') paints.push(structuredClone(event));
+          },
+        });
+      paintInitialRoute(p, 'writing');
+      const anchor = p.trace(),
+        centered = model.documentCenterPose(JSON.parse(anchor)),
+        radius = centered.position[2] - centered.target[2],
+        progress = [];
+      p.window.SiteScene.navigate('writing', true, (value) => progress.push(value), null, {
+        navigationId: 7,
+        documentChange: true,
+        sameSceneDocument: true,
+        fromDocument: 'writing',
+        toDocument: 'article:sample:en',
+        direction,
+      });
+      advanceUntil(p, () => progress.at(-1) === 1, 'reader orbit finishes', 60);
+      const flight = paints.filter((paint) => paint.journey?.navigationId === 7),
+        transit = flight.filter(
+          (paint) => paint.journey.elapsed >= 400 && paint.journey.elapsed < 1400
+        );
+      assert.ok(transit.length > 5);
+      assert.ok(transit.some((paint) => paint.current.position[0] > radius * 0.7));
+      assert.ok(transit.some((paint) => paint.current.position[0] < -radius * 0.7));
+      assert.ok(
+        transit.some((paint) => paint.current.position[2] < centered.target[2] - radius * 0.7)
+      );
+      for (const paint of transit) {
+        assert.ok(
+          Math.abs(
+            Math.hypot(paint.current.position[0], paint.current.position[2] - centered.target[2]) -
+              radius
+          ) < 1e-8,
+          'constant orbit radius'
+        );
+        assert.deepEqual(paint.current.target, centered.target, 'fixed scene center');
+        assert.equal(paint.current.framing, 1);
+      }
+      assert.ok(
+        flight.every((paint) => JSON.stringify(paint.paintedRooms) === '["writing"]'),
+        'no neighboring scene or depth-based fade during the orbit'
+      );
+      assert.ok(flight.every((paint) => paint.roomVisibility.every((room) => room.opacity === 1)));
+      assert.equal(p.trace(), anchor);
+      assert.equal(p.scene.dataset.travel, 'settled');
+      assert.ok(Number(p.scene.dataset.rooms) <= 3);
+      assert.ok(Number(p.scene.dataset.roomModels) <= 6);
+    }
+});
+
+test('document orbit has continuous stage endpoints, opposite winding and a nonzero sightline', () => {
+  const pose = model.routePose('writing', model.poses[model.initialPoses.writing]),
+    centered = model.documentCenterPose(pose);
+  for (const direction of [1, -1]) {
+    let previous = centered;
+    let winding = 0;
+    let lastAngle = 0;
+    for (let step = 0; step <= 1000; step++) {
+      const current = model.documentTravelPose(centered, centered, step / 1000, direction),
+        angle = Math.atan2(current.position[0], current.position[2] - centered.target[2]);
+      let delta = angle - lastAngle;
+      if (delta > Math.PI) delta -= Math.PI * 2;
+      if (delta < -Math.PI) delta += Math.PI * 2;
+      winding += delta;
+      assert.ok(direction * delta >= -1e-10, 'one continuous direction');
+      assert.ok(
+        Math.hypot(...current.position.map((value, index) => value - previous.position[index])) <
+          0.6,
+        'no camera reset between adjacent poses'
+      );
+      assert.ok(
+        Math.hypot(...current.target.map((value, index) => value - current.position[index])) > 50
+      );
+      previous = current;
+      lastAngle = angle;
+    }
+    assert.ok(Math.abs(winding - direction * Math.PI * 2) < 1e-8);
+    assert.deepEqual(previous, centered);
+  }
+});
+
+test('retargeting a reader orbit preserves its exact displayed camera and room weights', () => {
+  for (const direction of [1, -1])
+    for (const elapsed of [200, 720, 1260, 1510]) {
+      const paints = [],
+        p = visit({
+          page: 'writing',
+          probe: (event) => {
+            if (event.kind === 'paint') paints.push(structuredClone(event));
+          },
+        });
+      paintInitialRoute(p, 'writing');
+      p.window.SiteScene.navigate('writing', true, null, null, {
+        navigationId: 1,
+        documentChange: true,
+        sameSceneDocument: true,
+        direction,
+      });
+      p.frame(20);
+      for (let time = 0; time < elapsed; time += 20) p.frame(20);
+      const camera = p.trace(),
+        weights = JSON.stringify(paints.at(-1).roomVisibility.filter((room) => room.opacity > 0));
+      p.window.SiteScene.navigate(direction === 1 ? 'research' : 'talks', true, null, null, {
+        navigationId: 2,
+      });
+      p.frame(20);
+      assert.equal(p.trace(), camera);
+      assert.equal(
+        JSON.stringify(paints.at(-1).roomVisibility.filter((room) => room.opacity > 0)),
+        weights,
+        'no alpha discontinuity at replacement'
+      );
+      finishFlight(p, 'retarget settles');
+    }
+});
+test('reader document motion respects Off, reduced motion and hidden native completion', () => {
+  for (const options of [{ saved: 'off' }, { reduced: true }]) {
+    const p = visit({ page: 'writing', ...options });
+    p.settle();
+    const camera = p.trace(),
+      progress = [];
+    p.window.SiteScene.navigate('writing', true, (value) => progress.push(value), null, {
+      documentChange: true,
+      sameSceneDocument: true,
+      direction: 1,
+    });
+    p.frame(80);
+    assert.deepEqual(progress, [1]);
+    assert.equal(p.trace(), camera);
+  }
+  const p = visit({ page: 'writing' });
+  p.settle();
+  let done = 0;
+  p.window.SiteScene.navigate('writing', true, (value) => (done = value), null, {
+    documentChange: true,
+    sameSceneDocument: true,
+    direction: 1,
+  });
+  p.frame(80);
+  const camera = p.trace();
+  p.hidden(true);
+  p.frame(30000);
+  assert.equal(p.trace(), camera);
+  assert.equal(p.pending.size, 0);
+  p.hidden(false);
+  advanceUntil(p, () => done === 1, 'visible reader resumes');
+});
+
+test('repeating a principal destination before mount retargets without a reader excursion', () => {
+  for (const [from, to] of [
+    ['research', 'writing'],
+    ['writing', 'research'],
+  ]) {
+    const paints = [],
+      p = visit({
+        page: from,
+        probe: (event) => {
+          if (event.kind === 'paint') paints.push(structuredClone(event));
+        },
+      });
+    paintInitialRoute(p, from);
+    p.window.SiteScene.navigate(to, true, null, null, {
+      navigationId: 1,
+      documentChange: true,
+      sameSceneDocument: false,
+    });
+    advanceUntil(p, () => p.scene.dataset.cameraStage === 'transit', 'first route reaches transit');
+    const camera = p.trace();
+    p.window.SiteScene.navigate(to, true, null, null, {
+      navigationId: 2,
+      documentChange: true,
+      sameSceneDocument: false,
+    });
+    p.frame(80);
+    assert.equal(p.trace(), camera);
+    assert.equal(paints.at(-1).journey.localDocument, false);
+    finishFlight(p, 'repeated route settles');
+    assert.deepEqual(
+      JSON.parse(p.trace()),
+      model.routePose(to, model.poses[model.initialPoses[to]])
+    );
+  }
+});
+
+test('reader orbit reuses the prepared Writing model without building a neighboring room', () => {
+  for (const direction of [1, -1]) {
+    const events = [],
+      p = visit({ page: 'writing', probe: (event) => events.push(structuredClone(event)) });
+    paintInitialRoute(p, 'writing');
+    p.window.SiteEngineStages = true;
+    events.length = 0;
+    p.window.SiteScene.navigate('writing', true, null, null, {
+      navigationId: 8,
+      documentChange: true,
+      sameSceneDocument: true,
+      direction,
+    });
+    finishFlight(p, 'same-model reader orbit settles');
+    assert.deepEqual(
+      events.filter((event) => event.kind === 'stage' && event.part === 'model-build'),
+      [],
+      'no cold construction before or during the orbit'
+    );
+    assert.equal(Number(p.scene.dataset.rooms), 1);
+    assert.ok(Number(p.scene.dataset.roomModels) <= 2);
+  }
+});
+
+test('reader activation after a principal midpoint preserves the remaining principal corridor', () => {
+  const paints = [],
+    p = visit({
+      page: 'credits',
+      probe: (event) => {
+        if (event.kind === 'paint') paints.push(structuredClone(event));
+      },
+    });
+  paintInitialRoute(p, 'credits');
+  p.window.SiteScene.navigate('writing', true, null, null, {
+    navigationId: 1,
+    documentChange: true,
+    sameSceneDocument: false,
+  });
+  p.frame(20);
+  for (let elapsed = 0; elapsed < 900; elapsed += 20) p.frame(20);
+  const camera = p.trace(),
+    weights = JSON.stringify(paints.at(-1).roomVisibility.filter((room) => room.opacity > 0));
+  // The router has mounted Writing at midpoint; Scene is still arriving from Credits.
+  p.window.SiteScene.navigate('writing', true, null, null, {
+    navigationId: 2,
+    documentChange: true,
+    sameSceneDocument: true,
+    fromDocument: 'writing',
+    toDocument: 'article:sample:en',
+    direction: 1,
+  });
+  p.frame(20);
+  assert.equal(p.trace(), camera);
+  assert.equal(paints.at(-1).journey.localDocument, false);
+  assert.equal(
+    JSON.stringify(paints.at(-1).roomVisibility.filter((room) => room.opacity > 0)),
+    weights
+  );
+  finishFlight(p, 'reader activation finishes the existing corridor');
+  assert.deepEqual(
+    JSON.parse(p.trace()),
+    model.routePose('writing', model.poses[model.initialPoses.writing])
+  );
+});
+
+test('repeated principal retargets during orbit recovery keep its original scene anchor and sightline', () => {
+  const paints = [],
+    p = visit({
+      page: 'writing',
+      probe: (event) => {
+        if (event.kind === 'paint') paints.push(structuredClone(event));
+      },
+    });
+  paintInitialRoute(p, 'writing');
+  p.window.SiteScene.navigate('writing', true, null, null, {
+    navigationId: 1,
+    documentChange: true,
+    sameSceneDocument: true,
+    direction: 1,
+  });
+  p.frame(20);
+  for (let time = 0; time < 940; time += 20) p.frame(20);
+  for (const [index, page] of ['research', 'talks', 'index', 'credits'].entries()) {
+    const before = p.trace();
+    p.window.SiteScene.navigate(page, true, null, null, { navigationId: index + 2 });
+    p.frame(20);
+    assert.equal(p.trace(), before, 'replacement starts at the exact displayed camera');
+    for (let time = 0; time < 200; time += 20) p.frame(20);
+  }
+  finishFlight(p, 'repeated orbit recovery reaches the principal destination');
+  for (const paint of paints) {
+    const { position, target } = paint.current;
+    assert.ok(
+      Math.hypot(...position.map((value, index) => value - target[index])) > 20,
+      'no zero sightline or eye inside the orbit center after another retarget'
+    );
+    assert.ok(paint.paintedRooms.length > 0, 'every actual camera paint retains visible geometry');
+  }
+  assert.deepEqual(
+    JSON.parse(p.trace()),
+    model.routePose('credits', model.poses[model.initialPoses.credits])
+  );
 });

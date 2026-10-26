@@ -4,6 +4,7 @@ const test = require('node:test'),
   fs = require('node:fs'),
   path = require('node:path'),
   os = require('node:os'),
+  cp = require('node:child_process'),
   vm = require('node:vm');
 const root = path.resolve(__dirname, '..'),
   b = require('../tools/site/build.cjs'),
@@ -33,11 +34,17 @@ function fixture(t) {
     'tools/site',
     'tools/build_scene_fallbacks.cjs',
     'tools/build_site_previews.cjs',
+    'tools/quality/artifact.cjs',
+    'tools/quality/budgets.json',
     ...Object.values(require('../tools/site/legal.cjs').sources),
   ]) {
     fs.mkdirSync(path.dirname(path.join(dir, name)), { recursive: true });
     fs.cpSync(path.join(root, name), path.join(dir, name), { recursive: true });
   }
+  fs.writeFileSync(
+    path.join(dir, 'site/content/catalog.json'),
+    JSON.stringify(require('./fixtures/catalog.cjs').legacyCatalog(root), null, 2) + '\n'
+  );
   configure(dir, disabled());
   t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
   return dir;
@@ -360,6 +367,7 @@ test('old analytics bytes and route dependencies survive a token rotation; forge
 });
 test('all fifteen standalone exports and their inert route payloads remove enabled tracking and verification', (t) => {
   const dir = fixture(t);
+  assert.equal(fs.existsSync(path.join(dir, 'tools/publishing')), false);
   configure(dir, enabled());
   b.build({ root: dir });
   const exported = require(path.join(dir, 'tools/build_site_previews.cjs')).buildPreviews(),
@@ -372,8 +380,107 @@ test('all fifteen standalone exports and their inert route payloads remove enabl
       html,
       /cloudflareinsights|analytics\.js|data-site-analytics|google-site-verification|verification-fixture/
     );
-    if (name.endsWith('interactive.html')) assert.match(html, /id="site-pages"/);
+    if (name.endsWith('interactive.html')) {
+      const payload = JSON.parse(
+        html.match(/<script type="application\/json" id="site-pages">([\s\S]*?)<\/script>/)[1]
+      );
+      assert.deepEqual(Object.keys(payload.pages), snapshot.routes);
+      assert.equal(payload.revision.articles, undefined);
+      assert.equal(payload.assets, undefined);
+    }
   }
+});
+test('analytics browser cold preparation owns the complete five-route offline dependency closure', async () => {
+  const collector = require('../tools/quality/analytics-browser.cjs');
+  const producer = require('../tools/build_site_previews.cjs');
+  const boundary = 'controlled cold-preparation boundary; no browser execution';
+  let preparedDirectory,
+    contexts = 0,
+    closed = 0;
+  const page = {
+    setDefaultTimeout(value) {
+      assert.equal(value, 6000);
+    },
+    setDefaultNavigationTimeout(value) {
+      assert.equal(value, 30000);
+    },
+    on() {},
+    async goto(url) {
+      const file = require('node:url').fileURLToPath(url);
+      preparedDirectory = path.dirname(path.dirname(file));
+      for (const owner of ['tools/quality/artifact.cjs', 'tools/quality/budgets.json'])
+        assert.deepEqual(
+          fs.readFileSync(path.join(preparedDirectory, owner)),
+          fs.readFileSync(path.join(root, owner)),
+          'copied canonical offline dependency ' + owner
+        );
+      for (const owner of [
+        'tools/publishing/article.cjs',
+        'tools/publishing/toolchain/package-lock.json',
+      ])
+        assert.deepEqual(
+          fs.readFileSync(path.join(preparedDirectory, owner)),
+          fs.readFileSync(path.join(root, owner)),
+          'copied canonical publication dependency ' + owner
+        );
+      assert.equal(
+        cp
+          .execFileSync('git', ['rev-parse', '--show-toplevel'], {
+            cwd: preparedDirectory,
+            encoding: 'utf8',
+          })
+          .trim(),
+        preparedDirectory,
+        'cold collector retains an isolated explicit Git root'
+      );
+      assert.equal(fs.existsSync(path.join(preparedDirectory, 'tools/quality/toolchain')), false);
+      assert.match(
+        fs.readFileSync(path.join(preparedDirectory, 'docs/index.html'), 'utf8'),
+        /data-site-analytics/
+      );
+      const names = snapshot.routes.flatMap((route) => [
+        producer.filename(route, 'light'),
+        producer.filename(route, 'dark'),
+        producer.interactiveFilename(route),
+      ]);
+      assert.equal(names.length, 15);
+      for (const name of names) {
+        const html = fs.readFileSync(path.join(preparedDirectory, 'review', name), 'utf8');
+        assert.doesNotMatch(html, /cloudflareinsights|analytics\.js|data-site-analytics/);
+        if (name.endsWith('interactive.html')) {
+          const payload = JSON.parse(
+            html.match(/<script type="application\/json" id="site-pages">([\s\S]*?)<\/script>/)[1]
+          );
+          assert.deepEqual(Object.keys(payload.pages), snapshot.routes);
+          assert.equal(payload.revision.articles, undefined);
+          assert.equal(payload.assets, undefined);
+        }
+      }
+      throw Error(boundary);
+    },
+  };
+  const browser = {
+    async newContext() {
+      contexts++;
+      return {
+        newPage: async () => page,
+        async route() {},
+        async close() {
+          closed++;
+        },
+      };
+    },
+  };
+  const rows = await collector.run(browser, 'chromium', [
+    { engine: 'chromium', entry: 'index', mode: 'offline' },
+  ]);
+  assert.equal(contexts, 1, 'cold preparation completed before the browser boundary');
+  assert.equal(closed, 1);
+  assert.equal(rows.length, 1);
+  assert.equal(rows[0].pass, false, 'this preparation fixture cannot authorize browser evidence');
+  assert.equal(rows[0].error, boundary);
+  assert.ok(preparedDirectory);
+  assert.equal(fs.existsSync(preparedDirectory), false, 'the prepared source copy was removed');
 });
 test('analytics and unknown component changes force the full advisory scope without skipping checks', () => {
   const { config } = b.configuration(root),

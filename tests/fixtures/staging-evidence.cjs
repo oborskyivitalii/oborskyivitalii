@@ -662,6 +662,90 @@ function aggregateFixture(color = false) {
     sourceChecks: 'success',
   };
 }
+function contentFixture(f = aggregateFixture(false)) {
+  const content = require('../../tools/quality/content-gate.cjs');
+  f.manifest.components.articles = {};
+  f.manifest.contentRelease = {
+    schema: 1,
+    kind: 'content-release',
+    lane: 'content',
+    engine: f.manifest.components.variant?.baseEngine || f.manifest.components.engine,
+    builtRoutes: ['talks'],
+    reusedRoutes: ['index', 'research', 'writing', 'credits'],
+    builtArticles: [],
+    reusedArticles: [],
+    platformFiles: Object.fromEntries(
+      ['a.js', 'b.js', 'c.js', 'd.js', 'e.js', 'styles.css'].map((name) => [name, 'f'.repeat(64)])
+    ),
+    trustedBaseline: { sourceCommit: 'a'.repeat(40), sourceTree: 'b'.repeat(40) },
+    admission: {
+      schema: 1,
+      kind: 'accepted-content-baseline',
+      mergedSource: 'c'.repeat(40),
+      gateSha256: 'd'.repeat(64),
+      authentication: {
+        kind: 'accepted-staging-source',
+        pass: true,
+        sourceCommit: 'a'.repeat(40),
+        sourceTree: 'b'.repeat(40),
+        mergedSource: 'c'.repeat(40),
+      },
+    },
+  };
+  const historyRecord = {
+    kind: 'accepted-content-history',
+    pass: true,
+    accepted: 'c'.repeat(40),
+    protectedMain: 'c'.repeat(40),
+    candidate: f.manifest.sourceCommit,
+    commits: [{ commit: f.manifest.sourceCommit, parent: 'c'.repeat(40), lane: 'content' }],
+    repositoryCommits: [],
+    repositoryMerges: [],
+  };
+  const historyIdentity = require('../../tools/quality/delivery-json.cjs');
+  f.manifest.contentRelease.admission.history = {
+    ...historyRecord,
+    digest: historyIdentity.digest(historyIdentity.canonical(historyRecord)),
+  };
+  const identity = f.reports.find((report) => report.kind === 'stage-functional');
+  f.reports = f.reports.filter((report) =>
+    ['hosted', 'lint', 'security', 'advisories'].includes(report.kind)
+  );
+  for (const report of f.reports.filter((row) => row.kind !== 'hosted')) {
+    report.target = null;
+    report.environment.runId = '1';
+    report.environment.attempt = '1';
+  }
+  f.reports.push({
+    ...identity,
+    kind: 'content-functional',
+    profile: 'staging',
+    contentContract: 1,
+    browser: 'Controlled fixture; not an observed browser',
+    elapsedMs: 1,
+    policy: content.policy,
+    platformRegression: 'inherited; not rerun',
+    articles: undefined,
+    media: [],
+    rows: content.cases(f.manifest).map((selected) => ({
+      ...selected,
+      pass: true,
+      status: 200,
+      sha256: f.manifest.files[selected.file].sha256,
+      h1: 1,
+      overflow: false,
+      imagesDecoded: true,
+      ...(selected.file === 'writing.html' &&
+      selected.mode === 'normal' &&
+      f.manifest.files['publication-index.json']
+        ? { tagFilter: true }
+        : {}),
+      errors: [],
+    })),
+  });
+  return f;
+}
+
 module.exports = {
   target,
   variant,
@@ -683,4 +767,5 @@ module.exports = {
   colorReport,
   edgeInputs,
   aggregateFixture,
+  contentFixture,
 };

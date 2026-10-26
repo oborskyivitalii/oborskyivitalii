@@ -23,6 +23,10 @@ on:
         description: Full hosted automation; separate from physical/review acceptance
         type: boolean
         default: false
+      content_fixture:
+        description: Explicit local synthetic content diagnostic; never publication or release evidence
+        type: boolean
+        default: false
       public_artifact_id:
         description: Reuse the immutable basic-build artifact without rebuilding
         type: string
@@ -93,6 +97,10 @@ on:
         default: release
       automated_only:
         description: Full hosted automation; separate from physical/review acceptance
+        type: boolean
+        default: false
+      content_fixture:
+        description: Explicit local synthetic content diagnostic; never publication or release evidence
         type: boolean
         default: false
       public_artifact_id:
@@ -174,6 +182,7 @@ jobs:
         if: inputs.prepublication_artifact_id == ''
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
+          npm ci --prefix tools/publishing/toolchain --ignore-scripts
           python3 -m venv tools/quality/toolchain/venv
           tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps -r tools/quality/toolchain/requirements.txt
           tools/quality/toolchain/venv/bin/python tools/quality/python_toolchain.py
@@ -342,6 +351,7 @@ jobs:
         if: inputs.validation_level != 'staging'
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
+          npm ci --prefix tools/publishing/toolchain --ignore-scripts
           python -m venv tools/quality/toolchain/venv
           tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps -r tools/quality/toolchain/requirements.txt
           tools/quality/toolchain/venv/bin/python tools/quality/python_toolchain.py
@@ -376,6 +386,7 @@ jobs:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
           ref: ${{ inputs.candidate_sha }}
+          fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
@@ -390,7 +401,9 @@ jobs:
         run: sudo python3 tools/quality/ubuntu_downloads.py
       - name: Install the pinned Node toolchain
         timeout-minutes: 3
-        run: npm ci --prefix tools/quality/toolchain --ignore-scripts
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          npm ci --prefix tools/publishing/toolchain --ignore-scripts
       - name: Install Ubuntu engine dependencies without prior launch
         timeout-minutes: 5
         run: tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium firefox webkit
@@ -435,6 +448,7 @@ jobs:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
           ref: ${{ inputs.candidate_sha }}
+          fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
@@ -448,6 +462,7 @@ jobs:
       - name: Install pinned native engines
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
+          npm ci --prefix tools/publishing/toolchain --ignore-scripts
           node tools/quality/toolchain/node_modules/playwright/cli.js install $SITE_AUDIT_ENGINES
         env:
           # CLI uses separate engine arguments, unlike the runner's comma list.
@@ -559,6 +574,7 @@ jobs:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
           ref: ${{ inputs.candidate_sha }}
+          fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
@@ -574,11 +590,36 @@ jobs:
       - name: Install locked bounded staging browser tools
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
+          npm ci --prefix tools/publishing/toolchain --ignore-scripts
           tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium firefox
       - name: Verify the unchanged package and run representative browser and performance regression
         run: |
           node tools/quality/artifact.cjs verify quality-artifact/public quality-artifact/artifact.json
-          node tools/quality/staging-regression.cjs
+          if node -e "process.exit(require('./quality-artifact/artifact.json').contentRelease?.admission ? 0 : 1)"; then
+            node tools/quality/content-browser.cjs quality-artifact
+          else
+            node tools/quality/staging-regression.cjs
+          fi
+      - name: Exercise genuine content release on an isolated local fixture
+        if: inputs.content_fixture
+        run: node tools/quality/content-fixture.cjs "$RUNNER_TEMP/content-fixture-report.json"
+      - name: Export and verify the article PDF with locked managed Chromium
+        if: inputs.content_fixture
+        run: node tools/quality/article-print.cjs pmday-two-shifts "$RUNNER_TEMP/article-print"
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always() && inputs.content_fixture
+        with:
+          name: site-article-print-${{ inputs.profile }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/article-print/
+          if-no-files-found: error
+          retention-days: 30
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always() && inputs.content_fixture
+        with:
+          name: site-content-fixture-${{ inputs.profile }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/content-fixture-report.json
+          if-no-files-found: error
+          retention-days: 30
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always()
         with:

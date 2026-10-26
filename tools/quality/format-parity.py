@@ -5,14 +5,10 @@ normal whitespace separators, including inline boundaries; raw-text elements
 retain their exact contents. Runtime/output contracts have their own suites.
 """
 
-import ast
 import json
 import re
 import sys
-from decimal import Decimal
 from html.parser import HTMLParser
-
-import yaml
 
 
 class ObjectPairs(list):
@@ -26,12 +22,19 @@ def object_pairs(pairs):
     return ObjectPairs(pairs)
 
 
-def json_value(value):
+class YAMLContractError(ValueError):
+    """Preserve a YAML parser's diagnostic without importing it for other languages."""
+
+
+def json_value(value, number_type):
     if isinstance(value, ObjectPairs):
-        return ["object", [[name, json_value(item)] for name, item in value]]
+        return [
+            "object",
+            [[name, json_value(item, number_type)] for name, item in value],
+        ]
     if isinstance(value, list):
-        return ["array", [json_value(item) for item in value]]
-    if isinstance(value, Decimal):
+        return ["array", [json_value(item, number_type) for item in value]]
+    if isinstance(value, number_type):
         # Exact decimal comparison also protects large numbers from JS rounding.
         sign, digits, exponent = value.as_tuple()
         digits = list(digits)
@@ -42,7 +45,7 @@ def json_value(value):
     return [type(value).__name__, value]
 
 
-def yaml_value(node, active=None):
+def yaml_value(node, yaml_module, active=None):
     active = set() if active is None else active
     if node is None:
         return None
@@ -50,13 +53,21 @@ def yaml_value(node, active=None):
         raise ValueError("Recursive YAML aliases are outside the source contract")
     active.add(id(node))
     try:
-        if isinstance(node, yaml.ScalarNode):
+        if isinstance(node, yaml_module.ScalarNode):
             return ["scalar", node.tag, node.value]
-        if isinstance(node, yaml.SequenceNode):
-            return ["sequence", node.tag, [yaml_value(item, active) for item in node.value]]
-        if isinstance(node, yaml.MappingNode):
+        if isinstance(node, yaml_module.SequenceNode):
+            return [
+                "sequence",
+                node.tag,
+                [yaml_value(item, yaml_module, active) for item in node.value],
+            ]
+        if isinstance(node, yaml_module.MappingNode):
             pairs = [
-                [yaml_value(key, active), yaml_value(value, active)] for key, value in node.value
+                [
+                    yaml_value(key, yaml_module, active),
+                    yaml_value(value, yaml_module, active),
+                ]
+                for key, value in node.value
             ]
             names = [json.dumps(key, ensure_ascii=False) for key, _ in pairs]
             if len(names) != len(set(names)):
@@ -183,8 +194,12 @@ class HTMLContract(HTMLParser):
 
 def contract(language, source):
     if language == "python":
+        import ast
+
         return ast.dump(ast.parse(source), include_attributes=False)
     if language == "json":
+        from decimal import Decimal
+
         return json_value(
             json.loads(
                 source,
@@ -194,12 +209,19 @@ def contract(language, source):
                 parse_constant=lambda value: (_ for _ in ()).throw(
                     ValueError("Invalid JSON number")
                 ),
-            )
+            ),
+            Decimal,
         )
     if language == "yaml":
-        return [
-            yaml_value(document) for document in yaml.compose_all(source, Loader=yaml.SafeLoader)
-        ]
+        import yaml
+
+        try:
+            return [
+                yaml_value(document, yaml)
+                for document in yaml.compose_all(source, Loader=yaml.SafeLoader)
+            ]
+        except yaml.YAMLError as error:
+            raise YAMLContractError(type(error).__name__ + ": " + str(error)) from error
     if language == "html":
         parser = HTMLContract()
         parser.feed(source)
@@ -214,7 +236,9 @@ def main():
     for request in requests:
         try:
             results.append({"contract": contract(request["language"], request["source"])})
-        except (ValueError, SyntaxError, yaml.YAMLError) as error:
+        except YAMLContractError as error:
+            results.append({"error": str(error)})
+        except (ValueError, SyntaxError) as error:
             results.append({"error": type(error).__name__ + ": " + str(error)})
     json.dump(results, sys.stdout, ensure_ascii=False)
     sys.stdout.write("\n")

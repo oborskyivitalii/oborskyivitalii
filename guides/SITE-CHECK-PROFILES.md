@@ -11,13 +11,15 @@ Draft iteration scheduling while preserving admission and later budgets.
 
 Issue [#122](https://github.com/oborskyivitalii/oborskyivitalii/issues/122) adds the
 [delivery routing and observation contract](#delivery-routing-and-observation-contract).
-It defines proposed lanes and a future observer interface; the current profiles
-and required staging/admission below remain operative.
+R1/R2 and exact-runtime compatibility are delivered; the current R3 integration adds
+accepted-platform/history content reuse. The observer remains advisory, while trusted
+selection and the existing admission/publisher own actual delivery.
 
 | Profile | Trigger | Required coverage |
 | --- | --- | --- |
 | Draft prototype | Same-repository Draft updates | Generated/package/snapshot/size checks, public script syntax and bounded HTTP identity; no toolchain installation or browser/source/governance suites. Deferred admission is explicit. |
 | PR source | Ready PR updates and `ready_for_review` | Small Basic source check, RI/CI coverage and the owning issue's targeted AC policy. Additional source suites follow changed paths in the registry. |
+| Content update | Authored catalog/article/Writing/Home changes with a compatible earlier admitted generation | Mandatory catalog, parser/provenance, unsafe-content, article/delivery/size and reuse-contract source suites; current-source content reconstruction; ordinary hosted smoke plus no-JS Writing and every rebuilt article journey. Unchanged platform generation is reused. |
 | PR hosted smoke | Ready same-repository PR updates | Exact artifact/HTTP identity and Chromium at 1440/390 widths: routes, controls, persistent navigation/history and no-Canvas fallback; authored Color adds its two-width smoke. |
 | Staging regression | Owner `/stage` or dispatch for stable staging; owner `staging-regression` PR label for evidence without promotion | Exact source/public/package/host identity; bounded source suites, lint/security/advisories; Chromium/Firefox journeys, representative failure/navigation/analytics checks, two mobile Lighthouse trials and bounded motion/flight samples. |
 | Production admission | Owner dispatch after successful staging and protected merge | Authenticate original staging jobs/reports and identical complete source tree; freeze production edition, rights and immutable archive. No second browser/performance matrix. |
@@ -41,6 +43,15 @@ them. Hosted smoke remains a distinct report and cannot authorize stable staging
 Preview packaging uses `local.cjs --package-gate` and emits `package-gate` with
 `sourceTestsRun: false`; it proves generated/public/upload identity without
 repeating Basic source tests. The required Basic check remains independent.
+Selected Node source files execute in isolated processes using the available CPU
+allocation, capped at four file workers;
+tests within a file retain their serial default. The stable sorted selection is
+reported separately from execution order: selected Space and executive suites
+start first, then the remaining selected files. This overlaps measured expensive
+work rather than leaving Space at the end of CLI discovery. Every selected case,
+the 300-second process limit, 16MiB output bound, clean-source checks and complete
+zero-skip accounting remain. Reports retain the worker limit, execution order and
+observed host parallelism; timing is evidence for that run, not a speed guarantee.
 After visual approval mark the PR ready; deferred source/RI jobs use distinct
 names, so their skips cannot impersonate required admission contexts. `/stage`
 requires real successful latest raw-head source/RI/issue jobs. Explicit
@@ -67,6 +78,120 @@ new measurements. These reports cannot authorize staging or satisfy production/n
 device gates. Its source fixtures are diagnostics selected by their changed
 helpers or the owning issue policy; current formula runtime assertions remain
 in the permanent renderer and engine suites.
+
+## Article content updates
+
+The mandatory content membership is the per-test `content: true` field, checked
+against the exact `source_profiles.content.mandatory_files` inventory. The legacy
+per-test `profiles` namespace remains readable by the protected-main selector;
+unknown names still reject. This representation preserves all19 content modules
+and their permanent PR-targeted/staging/production routes during integration.
+
+Issue #5 adds a formal content source profile and automatic generation reuse to
+the ordinary Basic and PR preview workflows. `source-tests.cjs --profile content
+--base <exact-baseline-commit> --head <exact-current-commit>` rejects mixed,
+unknown and generated-only changes. Its complete mandatory inventory is declared
+in `source_profiles.content.mandatory_files`; each module retains its permanent
+staging and production routes. Ordinary PR source selection also recognizes this
+bounded authored scope. A classification is a plan, never evidence of execution.
+
+The admitted authored scope is the publication catalog, Home/Writing/Talks JSON prose,
+the canonical `site/content/events.json` event collection,
+article Markdown/JSON and declared publication image/PDF media. Generated public
+files/output lock, dated memory and regenerated RI views may accompany that
+scope. Publication inventory edits require an exact old/new Git comparison:
+only article-owned entries and generated `docs/` entries with their existing
+generated role/site owner may change. The RI/CI map may only recalculate its
+derived reviewed-source identity; input paths, layers, checks, review and policy
+remain unchanged, and unconditional current-source RI verification checks the
+new identity. Platform entries, schema, workflow/test policy and other owners
+remain unchanged. Other page prose,
+templates, styles, engine, tools, configuration or unknown source select the
+ordinary platform route. Source reconstruction, media/URL/schema checks and the
+unconditional RI workflow still verify current bytes; bookkeeping cannot supply
+trust or make a generated-only edit eligible.
+
+`content-baseline.cjs` prefers a successful earlier same-branch generation, then
+main and a bounded inventory of prior merged ancestor branches. It checks the
+same repository and workflow, exact raw source commit/tree, ancestry, immutable
+upload archive SHA256, complete public bytes, raw generation/output-lock SHA256
+and current platform fingerprints. The raw baseline must also have actual
+successful source Basic, RI and owning-issue admission jobs for its exact head.
+Draft-only packaging, skipped jobs and unbound source evidence cannot establish
+reusable platform evidence. Basic retrieves the earlier Basic artifact; preview
+retrieves the earlier review artifact, preserving their separate publication
+and explicit draft-preview selections.
+
+Old artifacts without generation metadata, expired/missing artifacts, absent
+source admission, a changed shared catalog label/platform fingerprint, different
+preview selection or a squash/rebase whose raw head is not an admitted ancestor
+produce an explicit ordinary-build disposition. Invalid source/tree bindings,
+archive bytes, unsafe extraction paths or corrupted declared generation fail;
+they are not silently accepted as reuse. The first platform-mode artifact after
+this implementation establishes the new generation format.
+
+When a compatible baseline exists, `local.cjs --content-package` runs the
+mandatory content source suites and composes a coherent new artifact using
+verified unchanged platform bytes. Its `contentChecks` report retains actual
+source-test accounting. `--package-gate` verifies that bound content generation
+against current source without recompiling the platform. The preview build uses
+the same explicit artifact content arguments. Unaffected controller/Color
+producer source fixtures are reserved for the platform branch; the ordinary
+hosted preview remains required. It adds no-JS Writing at both widths and all
+rebuilt article documents, each with the existing two-width normal and Off,
+no-Canvas/no-JS journeys. Their observed identity/count/reading/navigation
+results remain separate from source fixtures.
+
+Accepted staging now selects a distinct `compatible-content-v1` policy from
+`content-baseline.selectAccepted`. It authenticates a merged ancestor's successful
+staging checkpoint and immutable public/gate uploads; source-only preview reuse
+is insufficient. Its `content-staging-gate` inherits compatible byte-identical
+platform acceptance, runs current scanners/content/rights/budgets, exact hosted
+bytes and affected desktop/mobile normal/no-JS documents, the bounded reader
+journey and actual current image decoding. It records omitted platform/performance
+regression as inherited, never executed. Ordinary platform gates keep their full
+original scope. Production derives the exact accepted generation, rechecks source
+and predecessor leases, and uses the shared protected publisher. Missing or
+incompatible accepted evidence explicitly selects the platform path.
+
+No review, rights or resource budget is relaxed. Old runtime measurements cannot
+cover a changed renderer. Offline all-route
+exports remain explicit commands rather than an automatic content-release
+side effect. Public deployment still uploads one complete verified package.
+
+PR #79 also opts into one bounded local diagnostic through `content_fixture`.
+It creates a genuine verified baseline and content release in an isolated Git
+clone, changes an external URL and one synthetic draft, then exercises two-width
+no-JS Writing plus the draft's five existing article cases in the managed
+Chromium job. Each normal article case observes raw successful camera paints for
+Writing/reader/Back/Forward and every principal destination, with signed depth,
+all three fixed camera stages and canonical final framing. A direct native article
+entry also exercises Back/Forward, including host extensionless aliases and restored header URLs. Visible recommendations
+participate in departure. The Off case also checks reduced motion against saved On;
+static-depth, mixed-ID and missing-stage evidence fails admission. Shared read-only Git objects preserve any existing accepted
+article's frozen provenance; fixture mutations never touch author sources.
+The separate temporary report declares `syntheticFixture: true`, its parent
+source identity and no deployment/production eligibility. It is uploaded
+separately from typed staging gate reports and cannot replace their evidence.
+This explicit diagnostic does not add another full browser matrix or change
+the existing job/performance budgets.
+
+The same admitted PR79 browser jobs also execute `article-print.cjs` against the
+technical article fixture. It invokes the ordinary publisher CLI with `--pdf`,
+verifies the complete kit and PDF/manifest pair, and rejects review-only or
+mismatched browser/toolchain/source identities. The separate `site-article-print-*`
+artifact contains the actual PDF and source-bound report; typed site gate reports
+are unchanged. Existing synthetic print tests remain the cheap failure-contract
+suite, while real rendering uses the already installed managed Chromium once.
+Clean-checkout evidence preserves the draft's declared source status and cannot
+establish editorial, actual-publication, merge or permanent-staging acceptance.
+
+The existing analytics cold collector also keeps its live catalog in an
+isolated shared Git clone. Its offline producer receives the canonical
+publication adapter and locked parser dependency closure, so frozen accepted
+and observed canonical editions retain provenance during cold preparation.
+Linux, native and staging browser jobs install that parser and fetch source
+history. Writing observations use the canonical displayed-entry collection.
 
 ## Bounded staging regression
 
@@ -222,11 +347,23 @@ not counted as an automatic speed improvement.
 
 The source runner delegates execution to
 [`source-test-worker.cjs`](../tools/quality/source-test-worker.cjs). It starts
-the measured long `space`, `executive` and `release-rights` modules first, followed by measured release-controller, pages-migration,
-site-engine, pages-delivery, publication-records and staging modules, then
+the measured long `space`, `executive`, `article-media` and `release-rights` modules first,
+followed by measured `release-controller`, `pages-migration`, `site-engine`,
+`pages-delivery`, `publication-records` and `staging` modules, then
 the remaining selected files lexically, retaining the same selected set, Node
-process isolation, default worker allocation, native TAP and strict accounting.
-The fixed 180-second child bound and 16MiB output bound remain; SIGTERM/SIGINT
+process isolation, a maximum of four workers, native TAP and strict accounting.
+All selected modules, including Space, enter one worker invocation. The complete
+source execution retains one300-second deadline and one16MiB output bound;
+process isolation and priority ordering do not create additional source budgets.
+Every selected module requires complete zero-skip accounting. Retain the original
+single-process stdout/stderr, actual argv/status and source identities even when
+execution, accounting or source stability fails. Content-only plans use that same
+single-process evidence contract. The prepublication wrapper is330seconds:
+one300-second source execution plus30seconds for reporting, independent of the
+selected module count. Scanner180-second bounds and the existing job budget remain.
+The[25October #122 amendment](https://github.com/oborskyivitalii/oborskyivitalii/issues/122#issuecomment-6403603405) changes only this source deadline from180to300seconds
+after retained hardware-associated timeouts; it adds no CPU filter or retry policy.
+SIGTERM/SIGINT
 abort the owned runner and reap its children before timeout evidence is retained.
 
 At every issue's completion, review its tests against PR smoke, bounded staging
@@ -246,9 +383,10 @@ verification; other public metadata hashes use exact reviewed baseline entries.
 
 Contract version: **1, observation only**. This is the canonical decision
 matrix and report interface for issue122. [SITE-STAGING](SITE-STAGING.md#observation-does-not-admit-delivery)
-owns operational interpretation and the producer activation prerequisite. No
-cheaper merge route or content publisher is activated. The T04 executable below
-implements planned observations; issue5/PR79 retains the unfinished content route.
+owns operational interpretation and trusted admission. R2 has delivered repository-only
+admission without website work. The CLI below still emits planned observations; it
+cannot authorize delivery. R3 integrates the existing issue5 publisher with authenticated
+accepted-platform/history reuse; actual content/recovery acceptance remains in #122.
 
 ### Executable planned observer
 
@@ -311,8 +449,10 @@ Markdown extension or RI catalog role. Catalog/generated files cannot redefine
 their own authority. The existing `known_non_node_paths` suppresses only unknown
 Node fallback; directly affected suites and separate Python routes still apply.
 
-Every valid current PR retains **B + R + O + H** below. A proposed lane cannot
-remove any of them. Test sets come from the current registry and actual commands,
+The full website/control route retains **B + R + O + H** below. Trusted R2 repository
+selection uses the explicit website inapplicability described below; trusted content
+selection uses the existing content profile and accepted-platform proof. An advisory
+proposal cannot remove an obligation. Test sets come from the current registry and actual commands,
 not fixed module counts; a directly matched diagnostic can join permanent suites.
 
 | Route key | Existing command and CI owner |
@@ -508,7 +648,10 @@ retain the conservative full route. In particular D03's repository purpose is
 not a cheap exemption for its executable. Mixed/unknown/rights/public inputs
 retain full obligations. See [activation, exact-SHA control review and protected
 recovery](SITE-STAGING.md#trusted-change-admission-and-repository-delivery).
-R3/#5/PR79 alone owns accepted-platform/history reuse and content publication.
+R3/#5 integrates accepted-platform/history reuse and the existing content publisher.
+The selector checks every parent edge from accepted S to C, authenticates repository
+merges, and uses explicit full-platform fallback for incompatible or unavailable proof.
+Actual independent content/recovery and final reporting reconciliation remain open in #122.
 
 ### Worked decisions and future test oracles
 
@@ -518,8 +661,8 @@ the matrix above; every applicable current B/R/O/H obligation stays visible.
 
 | Case | Required report/decision | Existing coverage and remaining proof |
 | --- | --- | --- |
-| Exact template or AGENTS edit | repository proposal; trusted R2 selection uses Basic/R/O/App and explicit website inapplicability. | Existing exact-template/mixed selector tests and RI instruction routes; actual protected lane delivery remains a live #122 gate. |
-| RI Python executable edit | repository purpose plus conservative control/full route and actual RI checks, regardless of zero additional JS. | RI behavioral/negative suites in navigation; later failed-RI admission evidence remains AC02. |
+| Exact template or AGENTS edit | repository proposal; trusted R2 selection uses Basic/R/O/App and explicit website inapplicability. | Existing exact-template/mixed selector tests and RI instruction routes; actual protected repository delivery is recorded by PR143/PR144 in #122. |
+| RI Python executable edit | repository purpose plus conservative control/full route and actual RI checks, regardless of zero additional JS. | RI behavioral/negative suites in navigation; existing failed-executable source regressions and native delivery establish the delivered AC02 scope. |
 | Rendered legal or publication input | website dependency and new matching rights/output obligations. | `site-engine`, `release-rights`, `publication-records`; `.md` or `review/` cannot erase the dependency. |
 | Guide named by rights provenance | website/publication dependency; stale provenance evidence cannot be reused. | Two existing rights/publication suites and R; guide location is insufficient. |
 | Writing content plus its template | impacts include content and website, proposed website lane; union keeps both reasons. | Existing content/render/engine/rights suites; overlapping selections do not collapse ownership. |
@@ -528,11 +671,10 @@ the matrix above; every applicable current B/R/O/H obligation stays visible.
 | Runtime renamed under `review/`, or runtime/control deleted | Include base-side runtime/control and candidate-side ownership; retain website/control obligations even if the candidate no longer has the old file. | Existing selector is name-only; full status/mode/rename/deletion interface needs future independent negative tests. |
 | Unknown path, unsupported type, missing ref or truncated diff | Complete unknown/type inputs are conservative; missing/malformed/incomplete input is invalid; neither is cheap eligibility. Complete empty diff is separately no-change. | Existing safe-path/fallback/RI-type tests cover their current subsets; richer collector negatives remain future work. |
 | New failed/cancelled attempt or moved head/base after green | Preserve earlier evidence historically; current obligation is failed/cancelled/stale and the next action follows the current retry/revalidation rule. | Existing `prototype-admission`/staging-trust lease and attempt negatives; no reuse across identities or attempts. |
-| Accepted site S, repository merge M, then content C | Keep S's source/tree/public/package identity; inspect the complete S-to-C history, including all merge-parent sides and intermediate control/rights/site changes. Missing history or incompatible inputs require fresh website validation. | Current merge observer proves identical complete trees only. Compatible-history reuse/content release is not implemented by this contract. |
+| Accepted site S, repository merge M, then content C | Keep S's source/tree/public/package identity; inspect the complete S-to-C history, including all merge-parent sides and intermediate control/rights/site changes. Missing history or incompatible inputs require fresh website validation. | Current merge observer proves identical complete trees only. R3 implements complete-history inspection/authentication/replay; actual independent content release/recovery remain external acceptance. |
 
 Semantic review of these cases is T02 evidence; it is distinct from T04 execution.
 Mechanical RI/style checks prove
 only their stated subsets; keyword tests do not establish contract completeness.
-QA findings feed the existing test-allocation route above. Implementing the
-protected admission and measuring real lane savings require separately approved
-increments; all whole issue122 ACs remain open.
+QA findings feed the existing test-allocation route above. Protected repository admission and its measured no-website result are delivered by R2.
+Actual content/recovery and final issue-wide reconciliation remain open. ParentAC02 is delivered; all other parent criteria remain open until their complete evidence is reconciled.

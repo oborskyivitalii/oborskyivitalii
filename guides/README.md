@@ -16,6 +16,8 @@ acceptance live in issues/PRs; [MEMORY](../MEMORY.md) is a dated continuity hint
 | [SITE-ROADMAP](SITE-ROADMAP.md) | Priority, publication sequence and dependency routes | Launch #1, PMDay #2, publishing #5, harness #6, rights #7, hosting #8, guides #11 and gates #13 |
 | [SITE-SOURCE-AUDIT](SITE-SOURCE-AUDIT.md) | Public claim/edition provenance and source-reader limitations | Content issue and canonical source record |
 | [SITE-CONTENT-REVIEW](SITE-CONTENT-REVIEW.md) | Editorial, exact-edition, attribution and rights review | Content issue; rights #7; launch/release #1/#8/#13 |
+| [ARTICLE-WORKFLOW](ARTICLE-WORKFLOW.md) | Article blueprint/manuscript/profile, pinned sources, PDF/platform candidates and observed publication events | Publisher #5; PMDay #2; original research and rights owners |
+| [SITE-CONTENT-RELEASE](SITE-CONTENT-RELEASE.md) | Automatic Writing records/count and verified platform reuse for independent static content packages | Publisher #5; existing hosting/release decisions #8/#13 |
 | [SITE-RIGHTS](SITE-RIGHTS.md) | Source, media and retained-edition rights inventory, reuse-policy decision and release approval evidence | Rights #7; production preparation #39; release gates #13 |
 | [SITE-SEO](SITE-SEO.md) | Topic vocabulary, visible content mapping and discoverability evidence | Content owner; production measurement #8; later guides #11 |
 | [SITE-ANALYTICS](SITE-ANALYTICS.md) | Disabled-by-default measurement adapter and actual-origin activation | Hosting/analytics #8; release coverage #13 |
@@ -37,3 +39,5 @@ The archive records byte identity and original source links. Historical proposal
 pause statements, counts and execution steps do not replace maintained rules.
 `docs/` contains generated public output; these guides and review evidence stay
 outside that publication directory.
+
+Public article attachments and observed platform/video links follow [ARTICLE-MATERIALS](ARTICLE-MATERIALS.md), owned by issue106 with the existing reader integration in issue5.

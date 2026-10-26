@@ -1002,13 +1002,17 @@
     "topic.systems": "AI architecture & control",
     "topic.leadership": "Operating models & leadership",
     "topic.strategy": "AI strategy & society",
-    "archive.count": "{count} of {total} primary archive records · newest first within each topic.",
-    "archive.print": "{total} primary archive records · all records and their linked platform editions shown for printing.",
+    "archive.count": "{count} of {total} articles",
+    "archive.print": "{total} articles",
     "edition.link": " edition · ",
     "edition.edited": " · edited",
     "discussion.link": "Reddit discussion ↗",
     "discussion.views": " post views · ",
-    "discussion.comments": " comments"
+    "discussion.comments": " comments",
+    "archive.year": " archive",
+    "archive.undated": "Publication date not recorded",
+    "archive.records": " articles",
+    "archive.browse": "Browse articles ↓"
   },
   "archive": {
     "topics": ["delivery", "systems", "leadership", "strategy"],

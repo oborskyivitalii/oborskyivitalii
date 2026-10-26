@@ -4,7 +4,7 @@ const assert = require('node:assert/strict'),
   fs = require('node:fs'),
   path = require('node:path');
 const artifact = require('../quality/artifact.cjs'),
-  snapshot = require('./reader-snapshot.cjs');
+  snapshot = require('../site/snapshot.cjs');
 const publicFiles = [
   '.nojekyll',
   'index.html',
@@ -194,44 +194,7 @@ function checkLinks(dir) {
   }
 }
 function publicationRequired(source, revision) {
-  // Derive the discriminator from verified public bytes. Optional manifest
-  // metadata cannot relabel a licensed Color artifact as a historical family.
-  const motion = require('../quality/color-motion-contract.cjs');
-  const licensed = [
-    'issue122-r3-platform-plain',
-    'issue122-r3-platform-staging',
-    'issue122-r3-platform-production',
-    'issue5-reader-fast-media-plain',
-    'issue5-reader-fast-media-staging',
-    'issue5-reader-fast-media-production',
-    'issue39-licensed-plain',
-    'issue39-licensed-staging',
-    'issue39-licensed-production',
-    'issue39-licensed-compact-plain',
-    'issue39-licensed-compact-staging',
-    'issue39-licensed-compact-production',
-    'issue39-writing-tbt-plain',
-    'issue39-writing-tbt-staging',
-    'issue39-writing-tbt-production',
-    'issue39-css-clock-plain',
-    'issue39-css-clock-staging',
-    'issue39-css-clock-production',
-    'issue122-reading-batch-plain',
-    'issue122-reading-batch-staging',
-    'issue122-reading-batch-production',
-  ].map(motion.reviewedRuntime);
-  const knownBytes = licensed.some(
-    (runtime) =>
-      runtime.variant.fingerprint === revision.engine ||
-      Object.entries(runtime.files).every(
-        ([name, sha256]) => source.files?.[name]?.sha256 === sha256
-      )
-  );
-  const actual = { components: revision };
-  if (!knownBytes && require('../quality/common.cjs').variant(actual).id !== 'color') return false;
-  const candidate = { ...source, components: revision };
-  const runtime = motion.select(candidate);
-  return licensed.some((reviewed) => reviewed.id === runtime.id);
+  return require('../quality/color-motion-contract.cjs').publicationRequired(source, revision);
 }
 function publicationRights(publicDirectory, source, report, revision) {
   const actualRevision = revision || snapshot.verify(publicDirectory, source);

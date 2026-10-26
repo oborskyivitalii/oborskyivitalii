@@ -22,6 +22,21 @@ node tools/quality/format.cjs --write
 node tools/quality/format.cjs --check
 ```
 
+Before expensive CI, run the pinned lint command on the JavaScript files changed
+in the current step. For the rights/registry/scanner owners:
+
+```sh
+node tools/quality/toolchain/node_modules/eslint/bin/eslint.js \
+  --config tools/quality/eslint.config.cjs --max-warnings 0 \
+  tools/quality/color-motion-contract.cjs tools/staging/package.cjs tools/quality/scanners.cjs
+```
+
+The Sonar cognitive-complexity ceiling is 25. Its configured warning severity
+feeds the scanner's exact reviewed-debt policy; a new or unreviewed warning
+blocks lint. The early command rejects every warning for the supplied files.
+Full CI retains complete inventory/coverage and source-bound debt checks; the
+bounded style guard and the small Basic command have their own narrower scope.
+
 Explicit settings live in [prettier.config.json](prettier.config.json) and
 [ruff-format.toml](ruff-format.toml). HTML whitespace is strict; embedded literals
 are preserved. Ruff formatting does not alter the separately selected lint rules.
@@ -102,13 +117,17 @@ without falling back to system Python. The standard-library-only source guards
 still use `python3`. Lint/security/advisories run in the
 static job. The browser job runs `staging-regression.cjs`:
 
-The source runner owns its fixed 180-second child limit and bounded raw output.
-Its process-isolated Node worker starts the measured long `space`, `executive`
-and `release-rights` source modules first, then the remaining selected files in
-lexical order. Selection, assertions, native TAP/accounting and the existing
-`availableParallelism() - 1` worker allocation remain. Explicit abort handling
+The source runner owns its fixed 300-second child limit and bounded raw output.
+Its process-isolated Node worker starts the measured long source modules first,
+then the remaining selected files in lexical order. Selection, assertions, native
+TAP/accounting and the existing `Math.min(4, availableParallelism())` worker
+ceiling remain. Explicit abort handling
 reaps owned test children after SIGTERM/SIGINT before the report wrapper exits.
-Prepublication allows that reporting wrapper 30 additional seconds for startup,
+Bounded stderr timing diagnostics record capacity and at most one dispatch and
+completion per selected file. Wrapper timings include process overhead; they
+are observations, not CPU time or test coverage. Canonical TAP and complete
+zero-skip accounting remain the sole source-test acceptance evidence.
+Prepublication allows that reporting wrapper 30 additional seconds (330 total) for startup,
 owned child cleanup and report persistence. Other guard commands retain their
 180-second limit. An inner timeout remains a failed check; the extra wrapper
 time preserves its TAP/stderr and report instead of racing them. Both deadlines
@@ -233,6 +252,32 @@ requirements and reject the lighter staging gate. Hosting/TLS/ZAP/live verificat
 remain under #8 and rights/launch decisions under #1/#7.
 
 ## Diagnostics and profile maintenance
+
+### Complete performance diagnostic
+
+With `SITE_PUBLIC_DIR`, `SITE_ARTIFACT_MANIFEST`, the locked toolchain and a fresh
+external `SITE_REPORT_DIR` set as above, run `node tools/quality/performance.cjs`.
+It executes the unchanged full Lighthouse and motion runners sequentially, then
+`reader-performance.cjs` for every article declared in the verified artifact.
+Each independent command has a 50-minute bound; a failure retains its log and
+does not suppress later commands. Reports stay in separate fresh subdirectories.
+No measurement is retried automatically. The command verifies complete public
+bytes before and after execution and never publishes or supplies release admission.
+
+The original matrix remains 30 Lighthouse trials, 60 motion windows, 24 flights,
+three 40-cycle cache observations and one 300-second soak. The reader supplement
+adds six Lighthouse trials and twelve motion windows per article: the same
+mobile/desktop settings, median metric budgets, desktop/mobile/mobile×4 motion,
+positive paints and zero Off/reduced work. It uses existing budget and raw-probe
+validators. Reader navigation/retention and real-device/RUM measurements remain
+separate coverage; this supplement does not claim them. Cold reader traces and
+network logs are retained for every trial. The collector Git identity is distinct
+from the frozen artifact's source identity. `SITE_AUDIT_CHROME` overrides remain
+explicit environmental limitations, not evidence of the managed browser version.
+
+For an already completed original matrix, the supplemental command may be run
+once into a separate fresh report directory; record the original and supplement
+commands/identities separately instead of claiming the wrapper was executed.
 
 Retained diagnostic JavaScript suites run explicitly with
 `node tools/quality/source-tests.cjs --profile diagnostic`, or when their owning

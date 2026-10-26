@@ -85,7 +85,7 @@ function sha(value) {
 function executionPath(file) {
   return routing.control(file);
 }
-function definitions(before, after) {
+function definitions(before, after, contentOnly = false) {
   const names = [...new Set([...before.keys(), ...after.keys()])].sort();
   const inventory = [],
     changed = [];
@@ -97,7 +97,11 @@ function definitions(before, after) {
     const old = before.get(file),
       next = after.get(file);
     if (old) inventory.push([file, old.mode, old.object]);
-    if (!old || !next || old.mode !== next.mode || old.object !== next.object) changed.push(file);
+    if (
+      (!old || !next || old.mode !== next.mode || old.object !== next.object) &&
+      !(contentOnly && ['site/output-lock.json', '.github/ri-ci-map.json'].includes(file))
+    )
+      changed.push(file);
   }
   assert.ok(inventory.length, 'empty pre-change execution inventory');
   return { digest: json.digest(json.canonical(inventory)), inventory, changed };
@@ -385,8 +389,12 @@ async function collect(github, context, number, root = path.resolve(__dirname, '
   }
   const candidate = git.resolve(root, pr.head.sha),
     controller = git.resolve(root, context.sha);
-  const policy = definitions(git.tree(root, context.sha), git.tree(root, pr.head.sha));
   const selection = observation.selection(root, context.sha, pr.head.sha);
+  const policy = definitions(
+    git.tree(root, context.sha),
+    git.tree(root, pr.head.sha),
+    selection.contentOnly
+  );
   const result = {
     kind: 'change-admission-snapshot',
     version: 1,
@@ -399,7 +407,11 @@ async function collect(github, context, number, root = path.resolve(__dirname, '
       : null,
     pr: pr.number,
     state: 'blocked',
-    lane: selection.repositoryOnly ? 'repository' : 'current-full-route',
+    lane: selection.repositoryOnly
+      ? 'repository'
+      : selection.contentOnly
+        ? 'content'
+        : 'current-full-route',
     selection,
     nextAction: 'Resolve the listed blockers, then dispatch this PR again from current main.',
     evidence: [],

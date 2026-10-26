@@ -143,7 +143,14 @@ function inputs(root, revision) {
   const rights = routing.provenance(
     json.parse(git.read(root, revision, 'site/rights.json', entries))
   );
-  return { registry, rights, contentPaths: contentInputs(root, revision, entries) };
+  return {
+    registry,
+    rights,
+    contentPaths: contentInputs(root, revision, entries),
+    ciIdentity: entries.has('.github/ri-ci-map.json')
+      ? json.parse(git.read(root, revision, '.github/ri-ci-map.json', entries))
+      : null,
+  };
 }
 function contentInputs(root, revision, entries) {
   const read = (file) => json.parse(git.read(root, revision, file, entries));
@@ -176,18 +183,16 @@ function selection(root, base, head) {
     git.tree(root, head)
   );
   const baseline = inputs(root, base);
-  const result = routing.analyze(
-    records,
-    { base: baseline, candidate: inputs(root, head), policy: baseline },
-    base,
-    head,
-    true
-  );
+  const sources = { base: baseline, candidate: inputs(root, head), policy: baseline };
+  const result = routing.analyze(records, sources, base, head, true);
+  const content = routing.contentSelection(records, sources);
   return {
     base: before,
     candidate,
     policy: base,
     ...result,
+    content,
+    contentOnly: content.eligible,
     repositoryOnly:
       result.analysis.status === 'complete' &&
       result.analysis.control === false &&

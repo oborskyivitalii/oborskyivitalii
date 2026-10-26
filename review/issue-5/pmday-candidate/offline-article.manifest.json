@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "kind": "standalone-article-review",
+  "articleId": "pmday-two-shifts",
+  "language": "en",
+  "key": "pmday-two-shifts:en",
+  "contentEdition": "pmday-two-shifts-en-review-20261012",
+  "sourceSha256": "ddbf94e087037feda8996f03b5564eaa7cedd897bdffb03ad54298b799cbae7a",
+  "semanticSha256": "426717c86a880fd104d1284ee6312cc8d49bb61afefa4e980acbbcf926e9be9a",
+  "sourceURL": "articles/ai-changes-delivery-system-and-product.html",
+  "sha256": "29b2f9411c29433845c3b7cdfd98eac27876b8bb0876ca65bfd8d7aa0e9329eb",
+  "bytes": 1118006,
+  "gzipBytes": 494844,
+  "assets": {
+    "article-media/cf4271af8cf98041afd51471696eebf2c0e315b5feb9440792e2d99f5372d8d9/control-path.png": {
+      "sha256": "cf4271af8cf98041afd51471696eebf2c0e315b5feb9440792e2d99f5372d8d9",
+      "bytes": 235135
+    }
+  },
+  "inputs": {
+    "articles/ai-changes-delivery-system-and-product.html": "706df4b0d47b77a235b81e13b4fdfe281a6cb7d7c9ec312f6de0e1b84950b757",
+    "site-revision.json": "f482165eeace2692f6dcf74bf9c61dc094c244b83855cec0ecef12617a08af9d",
+    "styles.css": "8fb6e0fc2227b0cdc6ce75cf2de61f8145d8700a899681f67e2a8dc467952f1f",
+    "assets/favicon.svg": "a27a6f79b42bfa41fa8a8d3fe39e3c9570bcd992410c91a17d021de4dc28636e",
+    "assets/vitalii-oborskyi-cutout.webp": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
+    "index.html": "c4783f95a010af804868c508053808b84fb1c0f310105a4c9ad837fcfb08d5aa",
+    "research.html": "c5f855d1dc3920d0707e81829c259271bbb5930829ab436bc8bc89920b4c12ce",
+    "writing.html": "29aee1932536b773d6a33a87949db317ba386f2d11fcd8334d85986db1404bfa",
+    "talks.html": "c409fba32c6e69aacd5b301e3a13c51784778f842d83af006d8d84cfb44569bc",
+    "credits.html": "2fce246c11dda9905c5fa6ddde9384d1fec950f300dea117bfd49f9dcf92e43b",
+    "theme.js": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a",
+    "space.js": "0f48b353a4d326c14ad74d76084b1ecdca9000fb277cc68d861029bb7fc91ae2",
+    "archive.js": "1307b2405daa50937e5746f4d8a71230842718377d853b4d0cf4704e7f2de9ad",
+    "navigation.js": "97ebb41cfd8136e522202037d4d067113d196c0eab06da692a9459b83befb940",
+    "article-media/cf4271af8cf98041afd51471696eebf2c0e315b5feb9440792e2d99f5372d8d9/control-path.png": "cf4271af8cf98041afd51471696eebf2c0e315b5feb9440792e2d99f5372d8d9"
+  },
+  "sourceInputs": {
+    "site/assets/publications/pmday-two-shifts/control-path.png": "cf4271af8cf98041afd51471696eebf2c0e315b5feb9440792e2d99f5372d8d9",
+    "site/publications/pmday-two-shifts/adaptations/linkedin.en.md": "ffb7302e4fa3ecf12ea7c7588153d059cdcdc4d17021d46c4b49086dc05eaa10",
+    "site/publications/pmday-two-shifts/editions/linkedin-en-review-20261012.json": "54ca583099c87a66f8e92b4b53346038abc7a029aeca10fc99ea490b92411ff4",
+    "site/publications/pmday-two-shifts/editions/pmday-two-shifts-en-review-20261012.json": "425e5239d7f02865510bae3e925f5acb508bb99c6cc2f724f054430bfba45574",
+    "site/publications/pmday-two-shifts/launch-post.en.md": "c818740619d10a10fcff399ae44f1a65823d48da755f0af1ea3d90a3f9059fae",
+    "site/publications/pmday-two-shifts/manuscript.en.md": "ddbf94e087037feda8996f03b5564eaa7cedd897bdffb03ad54298b799cbae7a",
+    "site/publications/pmday-two-shifts/profile.json": "89806f65d25f6b3c4a2ac5a7abae14a580eff7715ac8c17bc2f3d37e93221322",
+    "site/publications/pmday-two-shifts/publication.json": "b4c79556b991d11b6e927fea474a29e34b2a78f52e876798f6ad32580e9c52c3"
+  }
+}

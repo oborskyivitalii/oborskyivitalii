@@ -31,6 +31,7 @@ function expectedCoverage(manifest) {
       normalRouteObservations: 20,
       noCanvasJourneys: 2,
       noCanvasRouteObservations: 10,
+      // The bounded article profile exercises one representative in five cases.
       ...(Object.keys(manifest.components?.articles || {}).length
         ? { articleObservations: 5 }
         : {}),
@@ -88,7 +89,7 @@ function validateHost(report, manifest, hostedURL) {
   }
 }
 function validateSizes(sizes, manifest) {
-  artifact.validateArticleSizes(sizes, manifest);
+  require('./artifact.cjs').validateArticleSizes(sizes, manifest);
   assert.equal(sizes.pass, true);
   assert.equal(sizes.artifactDigest, manifest.artifactDigest);
   assert.deepEqual(sizes.files, manifest.files, 'size report inventory differs from artifact');
@@ -125,6 +126,8 @@ function validateSizes(sizes, manifest) {
   }
 }
 function validateGate(manifest, gate, hostedURL) {
+  if (gate.kind === 'content-staging-gate')
+    return require('./content-gate.cjs').validateGate(manifest, gate, hostedURL);
   validateIdentity(manifest);
   const target = require('./hosted-origin.cjs').target(hostedURL, 'staging');
   assert.equal(gate.schema, 1);
@@ -197,6 +200,15 @@ function aggregate({
   profile = 'staging',
   sourceChecks = null,
 }) {
+  if (manifest.contentRelease?.admission)
+    return require('./content-gate.cjs').aggregate({
+      manifest,
+      sizes,
+      reports,
+      jobs,
+      hostedURL,
+      sourceChecks,
+    });
   regression.registryCheck();
   validateIdentity(manifest);
   assert.equal(profile, 'staging', 'staging-only aggregate');

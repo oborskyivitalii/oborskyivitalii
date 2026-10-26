@@ -138,7 +138,9 @@ test('all exact source workflows must finish before owner staging', async () => 
   );
   const api = github();
   api.rest.actions.listWorkflowRuns = async () => ({
-    data: { workflow_runs: [run(), { ...run(), id: 30, status: 'in_progress' }] },
+    data: {
+      workflow_runs: [run(), { ...run(), id: 30, status: 'in_progress' }],
+    },
   });
   await assert.rejects(admission.requireAdmission(api, context, pr()), /still running/);
   assert.equal(api.writes.length, 0);
@@ -280,11 +282,16 @@ test('actual merge identity requires the complete tested tree and the real lates
     rest: {
       repos: {
         getCommit: async ({ ref }) => ({
-          data: { commit: { tree: { sha: ref === source ? tree : mergedTree } } },
+          data: {
+            commit: { tree: { sha: ref === source ? tree : mergedTree } },
+          },
         }),
       },
       checks: { listForRef: 'checks' },
-      actions: { getWorkflowRun: async () => ({ data: r }), listJobsForWorkflowRunAttempt: 'jobs' },
+      actions: {
+        getWorkflowRun: async () => ({ data: r }),
+        listJobsForWorkflowRunAttempt: 'jobs',
+      },
     },
     paginate: async (method) => (method === 'checks' ? [check] : jobs),
   };
@@ -317,7 +324,7 @@ test('actual merge identity requires the complete tested tree and the real lates
   }
 });
 
-test('Draft jobs cannot impersonate required contexts and browser installation is deferred', () => {
+test('Draft jobs cannot impersonate admission; issue5 real-article preview alone opts into bounded browser smoke', () => {
   for (const [file, deferred] of [
     ['site-checks.yml', 'Prototype source admission deferred'],
     ['navigation.yml', 'Prototype RI admission deferred'],
@@ -334,11 +341,17 @@ test('Draft jobs cannot impersonate required contexts and browser installation i
   const smoke = yaml.slice(yaml.indexOf('  smoke:'), yaml.indexOf('  stage-evidence:'));
   assert.match(
     smoke,
-    /Install locked Chromium smoke tools\n\s+if: needs.target.outputs.prototype != 'true'/
+    /Install locked Chromium smoke tools\n\s+if: needs.target.outputs.prototype != 'true' \|\| needs.target.outputs.number == '79'\n/
   );
   assert.match(
     smoke,
-    /Minimal two-width hosted rendition smoke\n\s+if: needs.target.outputs.prototype != 'true'/
+    /Minimal two-width hosted rendition smoke\n\s+if: needs.target.outputs.prototype != 'true' \|\| needs.target.outputs.number == '79'\n/
+  );
+  const articlePreview = [...yaml.matchAll(/^ {6}SITE_ARTICLE_PREVIEW: (.+)$/gm)];
+  assert.equal(articlePreview.length, 1);
+  assert.equal(
+    articlePreview[0][1],
+    "${{ needs.target.outputs.prototype == 'true' && needs.target.outputs.number == '79' && 'true' || 'false' }}"
   );
   assert.doesNotMatch(
     yaml,
@@ -402,7 +415,9 @@ function stagedPRFixture() {
   api.rest.checks.listForRef = 'staged-checks';
   api.rest.actions.listJobsForWorkflowRunAttempt = 'stage-jobs';
   api.rest.actions.getWorkflowRun = async () => ({ data: stagingRun });
-  api.rest.repos.getCommit = async () => ({ data: { commit: { tree: { sha: 'c'.repeat(40) } } } });
+  api.rest.repos.getCommit = async () => ({
+    data: { commit: { tree: { sha: 'c'.repeat(40) } } },
+  });
   api.rest.repos.getBranch = async () => ({ data: main });
   api.rest.pulls = { get: async () => ({ data: p }) };
   return { p, main, c, checkpoint, checks, stagingRun, jobs, api };
@@ -439,8 +454,20 @@ test('PR staging proof rejects stale source, actor, controller, attempt, jobs, c
     (f) => (f.checks.length = 0),
     (f) => (f.checkpoint.app.id = 1),
     (f) => (f.checkpoint.conclusion = 'failure'),
-    (f) => f.checks.push({ ...f.checkpoint, id: 50, external_id: '901/1', status: 'in_progress' }),
-    (f) => f.checks.push({ ...f.checkpoint, id: 50, external_id: '901/1', conclusion: 'failure' }),
+    (f) =>
+      f.checks.push({
+        ...f.checkpoint,
+        id: 50,
+        external_id: '901/1',
+        status: 'in_progress',
+      }),
+    (f) =>
+      f.checks.push({
+        ...f.checkpoint,
+        id: 50,
+        external_id: '901/1',
+        conclusion: 'failure',
+      }),
     (f) => (f.stagingRun.id = 901),
     (f) => (f.stagingRun.head_sha = source),
     (f) => (f.stagingRun.triggering_actor.login = 'another-user'),
@@ -508,7 +535,9 @@ test('source-admission refresh waits boundedly for running jobs but never retrie
     assert.equal(pauses, 2);
   }
   const missing = github();
-  missing.rest.actions.listWorkflowRuns = async () => ({ data: { workflow_runs: [] } });
+  missing.rest.actions.listWorkflowRuns = async () => ({
+    data: { workflow_runs: [] },
+  });
   await assert.rejects(admission.waitForAdmission(missing, context, pr(), runtime));
   assert.equal(pauses, 2);
   clock = 0;

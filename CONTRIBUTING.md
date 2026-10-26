@@ -94,6 +94,36 @@ Draft, implemented, merged, reviewed, staged, published and deployed remain sepa
 Green CI/issue closure cannot change scientific/source-verification state. Merge,
 production activation, domain/DNS and public release retain their maintainer decisions.
 
+### Diagnose failures before changing or rerunning
+
+Apply this flow after any failed test, check or campaign, including infrastructure
+and timeout failures. Retry controls and runbooks describe mechanics; they do not
+authorize another attempt or a speculative fix.
+
+1. Stop advancement and preserve the first failure: exact source/tree and dirty
+   state, command/selector, environment, run/attempt, raw logs/artifacts, exit/signal,
+   elapsed time, limits and complete or partial test accounting. Retain later
+   failures separately; an eventual pass never erases them.
+2. Inspect what failed and where: assertion/behavior, collection/setup, tool or
+   environment, deadline/resources, or evidence/reporting. Check actual inputs,
+   affected owners and comparison evidence before assigning a cause. Partial
+   output, emitted passes and missing final accounting cannot establish success.
+3. In the existing owning issue/review, distinguish observed facts, supported
+   explanations, open hypotheses and unknowns. State the question to resolve;
+   identify what observation would support or contradict each candidate cause.
+4. Choose the smallest bounded diagnostic action that answers that question.
+   Reuse retained evidence first; record scope, instrumentation/comparison,
+   expected evidence and a stopping condition before new execution. A targeted
+   diagnostic run needs a stated information gain and supplies no full acceptance.
+5. Do not rerun an unchanged failed campaign, retry until green or patch by guess.
+   If the cause is unresolved, continue diagnosis. Propose a fix only with evidence
+   linking it to the failure, expected behavior/resource effect and preservation
+   checks. Implement within authorized scope and obtain the applicable review.
+6. Verify the resulting correction in the affected scope, then run required
+   acceptance on the exact candidate. Record what changed and why verification
+   is informative. Preserve scenarios, refusals, limits and gates; documentation
+   or receipt-only changes cannot reset a failed source's eligibility.
+
 ## Acceptance criteria and session evidence
 
 [ACCEPTANCE.md](.github/ACCEPTANCE.md) owns schema, runner, exact-source evidence and checkbox

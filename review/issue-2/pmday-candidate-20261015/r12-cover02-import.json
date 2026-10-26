@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "date": "2026-10-19",
+  "owner": 2,
+  "executionIssue": 5,
+  "pr": 79,
+  "base": "9dc0d4257559c9a954b1114ec787d6b1a18a44c6",
+  "preparationRun": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/39218519951",
+  "readerSha256": "5258aa9e232fb082f4c34353fb0c31601cf092dde15b977d1bdfe2d890e3364b",
+  "previousReaderSha256": "46ff6a07e8f60119dcf6be352a3d642348c0c2b6f54f348b7b60d599f6f71276",
+  "renditionDelta": "Restore only the selected Cover02 image marker; article prose and references unchanged.",
+  "edition": "pmday-ai-both-sides-en-review-20261019-r12-cover02",
+  "pdf": {
+    "path": "review/issue-2/pmday-candidate-20261015/The_Sum_of_Our_Technology_R12_Cover02_Compact.pdf",
+    "sha256": "aa6ef80d0a7f02ce9355df91137737e106b0493078d69ffd1bf12a3ed47eca01",
+    "bytes": 1966163,
+    "pages": 15,
+    "external_urls": 36,
+    "bookmarks": 19,
+    "producer": "WeasyPrint 68.0",
+    "treatment": "Exact previously delivered PDF, not regenerated or republished."
+  },
+  "files": [
+    {
+      "path": "review/issue-2/pmday-candidate-20261015/The_Sum_of_Our_Technology_R12_Cover02_Compact.pdf",
+      "sha256": "aa6ef80d0a7f02ce9355df91137737e106b0493078d69ffd1bf12a3ed47eca01",
+      "bytes": 1966163
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/README.md",
+      "sha256": "1e3eb48f3850d7b9ba2c4b098d29806988fdcf49a0bc50ad863417f75b74669f",
+      "bytes": 1083
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/assets/article-cover-detail-1280x398.jpg",
+      "sha256": "a5e462dbd51cdf6bd99febb27b4701753e18cfea8304e8dd97dda67bee9160b5",
+      "bytes": 95454
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/assets/article-cover-detail-1280x398.png",
+      "sha256": "843c22a1e6e16d16e824e8be74d593dea3c2f2e6e30b36504e1fff9617f82096",
+      "bytes": 373126
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/assets/linkedin-cover-1200x630.jpg",
+      "sha256": "8fcee82455949af959a6e9885cfa00a3c911aadbf0d81347c0210a107bc97122",
+      "bytes": 188676
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/assets/medium-cover-1400x788.jpg",
+      "sha256": "f821e5631237ad63fe5b94d3b570c5ba84e5238deed8f8a6334649cf8cd7cb1d",
+      "bytes": 257111
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/assets/pdf-cover-portrait.jpg",
+      "sha256": "b80047b35a470c50491f911cb8fb20c03f7efe535e49a3a011b4350ff2bb682f",
+      "bytes": 333215
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/assets/site-cover-1600x840.jpg",
+      "sha256": "424eab9a653c08f3f3a8d4388287dad4aeb30b9322bc899706ed580a42b0ac42",
+      "bytes": 309251
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/assets/social-square-1080.jpg",
+      "sha256": "7c00a7d37e6dc282b8fa83a72cb5166712fd2e04b482b7f7df8c75f17cb1336b",
+      "bytes": 325070
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/manifest.json",
+      "sha256": "91b4976e7dad5415a0f1bac48076c81d744e73dddadff32c632345893923ee60",
+      "bytes": 4024
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/originals/cover-02-landscape.png",
+      "sha256": "2a16a6a58262939975691c6b111b1a15d99275e53d43ba7a6e59ba967342567c",
+      "bytes": 1972146
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/originals/cover-02-portrait.png",
+      "sha256": "aafcad065f1700c4f5c61d2d34497e4c7b909c50f244e16279e93cf0d9796a58",
+      "bytes": 1962727
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/originals/cover-02-square.png",
+      "sha256": "3f85468fadc09bdae5fa41b34ff348251c13f7a61fb73494508447d304cd4aae",
+      "bytes": 2167813
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/originals/cover-02-widescreen.png",
+      "sha256": "8020813c4c6db01d4cf4d2c265b1be195473d9149c034bdc73e8aa6e6826540f",
+      "bytes": 1925165
+    }
+  ],
+  "originalAssetsUnchanged": {
+    "site/assets/publications/pmday-ai-both-sides/presentation-cover.png": "199d6d64849905eb047c23f7ce43eaab3ef98d949c5009878c8f15a5df7d1180",
+    "site/assets/publications/pmday-ai-both-sides/pmday-slide-03.png": "1ae890f9c23827a42e7e068327c6a6ff8738c0194cab97584fd535a6b473ef42",
+    "site/assets/publications/pmday-ai-both-sides/pmday-slide-05.png": "cba5ac410a432ea89ba7e44936e730a314c6d2e2495d5a8ecaeed976bc6675e3",
+    "site/assets/publications/pmday-ai-both-sides/pmday-slide-07.png": "7f77b967c8222feefbe6af7a5423cb1833839f6f80b0615a4cbede2005fd864d",
+    "site/assets/publications/pmday-ai-both-sides/pmday-slide-09.png": "ad1479a5366464b0f5f71f863700bb1071867d6ef5f90111d0f64a46e3b807ab",
+    "site/assets/publications/pmday-ai-both-sides/pmday-slide-10.png": "75e49a1521426c85be099bdd2bb7be7e939c03f02304da2472c8c9a5fae5978b",
+    "site/assets/publications/pmday-ai-both-sides/pmday-slide-12.png": "2f13e3eabd00a27460a83169d296cfc2a8cf4b33e068d1ee22079479028c0d18",
+    "site/assets/publications/pmday-ai-both-sides/pmday-slide-14.png": "25e2fdbd8d0fa2660db10191564d1a5628a04addbcf606bb16c6bbcfb9ace8bd"
+  },
+  "review": "Local image selection, PDF metadata/link inventory and exact byte checks were inspected before upload. No PDF regeneration or fresh all-page rendering is claimed in this import.",
+  "verification": "Actual source/format/Basic/RI outcomes are recorded by the preparation run; only successful checks authorize its non-force source push. Known web-transfer and rights blockers remain open.",
+  "acceptance": "Source/media import only. No hosted-preview, independent editorial/rights, platform posting, production or merge acceptance."
+}
