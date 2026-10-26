@@ -1,5 +1,11 @@
 # Issue122 — content CI integration repair — 26 October 2026
 
+Current execution: PR150 published0d42d879/treeaac86c65. Draft preview40366995678
+passes build/publish/smoke. First full evidence-only40367093024/1 stops at security
+before browser/deployment:25/26 prepublication guards pass. The six exact findings
+and their correction are recorded in the final section below; native performance
+of the scheduling correction is still unobserved. No article/production publication.
+
 Owner: https://github.com/oborskyivitalii/oborskyivitalii/issues/122
 Execution: a separate control repair from protected main83591bdf; test PR149 stays
 Draft, unmerged and frozen atd4ea6bbd. This is implementer analysis; independent
@@ -254,3 +260,44 @@ acceptance. The authorized next action is Draft PR150 update plus the existing
 owner-only staging-regression evidence route. No acceptedS/App/merge or stable/
 production promotion follows. Protected-main prospective compatibility remains
 a separate explicit maintainer decision after actual candidate evidence.
+
+## Native checksum triage — current evidence candidate
+
+The first owner-label evidence run40367093024/1 binds actual0d42d879/treeaac86c65.
+Its build fails prepublication security after25/26 guards pass; the security command
+exits1 in138313ms under its unchanged180000ms limit. Semgrep and Bandit pass;
+detect-secrets exits0 but admission correctly refuses six unreviewed Hex findings.
+All hosted/browser/performance/promotion steps are skipped. This is not a new
+performance observation or a successful full stage.
+
+Original artifact12671935855 has313129bytes and native SHA256
+`72325873f78cca1a828bc8863959bc1f5f2cb6148ea8390869c5ef7bc30937c8`.
+The retained raw detector report has1819242bytes/SHA256
+`75b06f0b8e9280cc1f15d1e37ab064d5ba79f892aedf61255dd193712790ee98`.
+Existing generated/RI/coupling proof admits their actual computed fields; the
+remaining six findings are five distinct public identities at six exact paths:
+Color space, base client, plain/staging/production fingerprints in the contract,
+and the same base client in the finite document-guard set.
+
+Before editing the ledger, existing producers on clean0d42d879 regenerated the
+ordinary base and three Color editions locally, with empty article selection.
+The client is independently recomputed from actual runtime files and current
+builder input descriptor; Color/edition producers reproduce each fingerprint.
+The inert per-value proof is
+[2026-10-26-writing-checksum-proof.json.gz](2026-10-26-writing-checksum-proof.json.gz).
+It retains actual source/tree, byte hashes, typed oracles, original failure and
+two corrected local preparation/API mistakes. Production derivation is solely a
+checksum proof and grants no production/hosted acceptance.
+
+The correction appends exactly six path/rule/hashed-value records to the existing
+checksum companion ledger. All predecessor records/order/reasons, other three
+ledgers, scanner logic,139 historical runtime tuples and all budgets remain.
+Requirements accepted this bounded treatment before implementation; completed
+four-role correction review and current-source checks remain pending below.
+No unchanged failed campaign is rerun. Fresh native execution follows the real
+security-input correction, preserving both failed source/run and original TBT
+failure. AC03/06/08 and protected-main compatibility/owner admission remain open.
+
+The first RI build correctly refused the new unclassified inert proof path; its
+exact history/owner catalog entry was then added before regeneration. This was
+a local metadata-preparation failure, not a native security retry.

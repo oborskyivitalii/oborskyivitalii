@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "60666540595fb8d2c6f591603274c2a9be325161321b36735f400e22d95540d3",
+    "digest": "bc4c2e200193cdcc5942a71b7235bb476b981d6ad4be74cca6830f07a5011db6",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -201,12 +201,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "af54bd082e5aabb2226691871d1132ba126435a1c7361e94db506684bd0f4a39"
+        "sha256": "6f665254eb867df6a31551b751c3492312b152c2ac7c3c94eb4fb352e4a085fa"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "f7785bd5e58b2c384a52466fa0cc5543188117e407fd1d141e19604f4d6ffe26"
+        "sha256": "d3f8e0461ba2447d65a1b33663bf2610791bc387585bb40401664b500fd9a03d"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -356,7 +356,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "05748aab625cf9458c0a9964c73ba099e6010ce98cbe12fc2cde9bc601c466a3"
+        "sha256": "1b0a7a5377da335b88fdf30cceb031499712c328d6bd874a0ea01fcf153bf76b"
       },
       {
         "path": "NOTICE.md",
@@ -1030,7 +1030,12 @@
       {
         "path": "review/issue-122/2026-10-26-content-ci.md",
         "identity_mode": "content",
-        "sha256": "c17232aa1a92cf27c4d4dda7c878c7a5506f0258b011f617c521f7ff3beb4885"
+        "sha256": "3e6748451af76f36f3b508e81609519dc3c480977cc7b971b88261ca8be1d1b9"
+      },
+      {
+        "path": "review/issue-122/2026-10-26-writing-checksum-proof.json.gz",
+        "identity_mode": "content",
+        "sha256": "052a71ef936601d59c526789170de58704fe2b262f53b05b8e14a900f4555067"
       },
       {
         "path": "review/issue-126/2026-10-23-announcement-review.md",
@@ -8420,7 +8425,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "629c16706fc59d8fc7b7cd6f8e7bd9a2ff3a8f17d24ee6c99e50f38a0962e4a2"
+        "sha256": "cfc038b3067e854b3b2e2925d60805b4f18233d5d68c37e494b267082dbf11f4"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
@@ -11420,6 +11425,17 @@
         "AGENTS.md"
       ],
       "title": "Issue122 — content CI integration repair — 26 October 2026"
+    },
+    {
+      "path": "review/issue-122/2026-10-26-writing-checksum-proof.json.gz",
+      "kind": "file",
+      "purpose": "Inert source-bound producer proof for six exact public Writing-startup runtime checksum dispositions; retains original native security failure.",
+      "role": "history",
+      "owner": "guides/SITE-CONTENT-RELEASE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-26-writing-checksum-proof.json.gz"
     },
     {
       "path": "review/issue-126/2026-10-23-announcement-review.md",

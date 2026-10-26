@@ -11808,6 +11808,12 @@
       "purpose": "Issue122 test-mode content pipeline failures and bounded control repair, reviews and source-bound acceptance.",
       "role": "history",
       "owner": "guides/SITE-CONTENT-RELEASE.md"
+    },
+    "review/issue-122/2026-10-26-writing-checksum-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Inert source-bound producer proof for six exact public Writing-startup runtime checksum dispositions; retains original native security failure.",
+      "role": "history",
+      "owner": "guides/SITE-CONTENT-RELEASE.md"
     }
   }
 }
