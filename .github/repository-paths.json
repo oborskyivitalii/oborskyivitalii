@@ -11551,31 +11551,31 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
-    "docs/runtime/43054e4d9861831ec39cbf2e4217ca33b13959bb329959fd7a86413b2ddea3d2/archive.js": {
+    "docs/runtime/a41ab65b9c8182318ae1333272289aac5d651fa1e19cc075609632b5fb082b85/archive.js": {
       "kind": "file",
       "purpose": "Immutable generated runtime file; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/43054e4d9861831ec39cbf2e4217ca33b13959bb329959fd7a86413b2ddea3d2/navigation.js": {
+    "docs/runtime/a41ab65b9c8182318ae1333272289aac5d651fa1e19cc075609632b5fb082b85/navigation.js": {
       "kind": "file",
       "purpose": "Immutable generated runtime file; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/43054e4d9861831ec39cbf2e4217ca33b13959bb329959fd7a86413b2ddea3d2/space.js": {
+    "docs/runtime/a41ab65b9c8182318ae1333272289aac5d651fa1e19cc075609632b5fb082b85/space.js": {
       "kind": "file",
       "purpose": "Immutable generated runtime file; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/43054e4d9861831ec39cbf2e4217ca33b13959bb329959fd7a86413b2ddea3d2/styles.css": {
+    "docs/runtime/a41ab65b9c8182318ae1333272289aac5d651fa1e19cc075609632b5fb082b85/styles.css": {
       "kind": "file",
       "purpose": "Immutable generated runtime file; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/43054e4d9861831ec39cbf2e4217ca33b13959bb329959fd7a86413b2ddea3d2/theme.js": {
+    "docs/runtime/a41ab65b9c8182318ae1333272289aac5d651fa1e19cc075609632b5fb082b85/theme.js": {
       "kind": "file",
       "purpose": "Immutable generated runtime file; regenerate from canonical site owners.",
       "role": "generated",
@@ -11653,7 +11653,7 @@
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
-    "docs/runtime/43054e4d9861831ec39cbf2e4217ca33b13959bb329959fd7a86413b2ddea3d2": {
+    "docs/runtime/a41ab65b9c8182318ae1333272289aac5d651fa1e19cc075609632b5fb082b85": {
       "kind": "directory",
       "purpose": "Immutable generated revision files from canonical site sources.",
       "role": "generated",
@@ -11677,61 +11677,61 @@
       "role": "source",
       "owner": "site/README.md"
     },
-    "docs/snapshots/117abbf7ad1b757ae24b7e8d3b75a37141d5e7fb744f40355486a75ca47225e9": {
+    "docs/snapshots/394631882bc669912f6d6a7294b877061e2cd561d2bdd41a78f68e4c9efa88be": {
       "kind": "directory",
       "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/117abbf7ad1b757ae24b7e8d3b75a37141d5e7fb744f40355486a75ca47225e9/writing.html": {
+    "docs/snapshots/394631882bc669912f6d6a7294b877061e2cd561d2bdd41a78f68e4c9efa88be/writing.html": {
       "kind": "file",
       "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/6ee24244b7fed1a3f1a5e0a49bf4e778c8a3512d88a1e02f5a41ecb96274dc7a": {
+    "docs/snapshots/6919104eaaaca4d8cdfb4fda55198b104e5b1f7c4e8c37d6e5d45013c08d79e2": {
       "kind": "directory",
       "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/6ee24244b7fed1a3f1a5e0a49bf4e778c8a3512d88a1e02f5a41ecb96274dc7a/credits.html": {
+    "docs/snapshots/6919104eaaaca4d8cdfb4fda55198b104e5b1f7c4e8c37d6e5d45013c08d79e2/credits.html": {
       "kind": "file",
       "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/8fd6b9c478a2103903537162d71cbfc458ad4c3f49a5bbee014fd6eeb6dd36c6": {
+    "docs/snapshots/19a551701415df4f038a02fbeee280a2fee4d4450b11415c123c9861be9abc17": {
       "kind": "directory",
       "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/8fd6b9c478a2103903537162d71cbfc458ad4c3f49a5bbee014fd6eeb6dd36c6/index.html": {
+    "docs/snapshots/19a551701415df4f038a02fbeee280a2fee4d4450b11415c123c9861be9abc17/index.html": {
       "kind": "file",
       "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/93080e34de39cbc4032ee352a7fbc1a073251ba1cce2a895c6c1a3f2d26ddc03": {
+    "docs/snapshots/99d61ef8900c10ea0b496a9ae910b4d0d95fd853e5e6d3ad3a04d37603c36797": {
       "kind": "directory",
       "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/93080e34de39cbc4032ee352a7fbc1a073251ba1cce2a895c6c1a3f2d26ddc03/research.html": {
+    "docs/snapshots/99d61ef8900c10ea0b496a9ae910b4d0d95fd853e5e6d3ad3a04d37603c36797/research.html": {
       "kind": "file",
       "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/fbbb88a321ccd3b581dfe232c83a024fdaf444ccf9d7bcb5d436184bcd8bbb29": {
+    "docs/snapshots/e90270842e40ad228e372ca3475ee6a51ccc8f43f2d19d6c1e49932e97367d41": {
       "kind": "directory",
       "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/fbbb88a321ccd3b581dfe232c83a024fdaf444ccf9d7bcb5d436184bcd8bbb29/talks.html": {
+    "docs/snapshots/e90270842e40ad228e372ca3475ee6a51ccc8f43f2d19d6c1e49932e97367d41/talks.html": {
       "kind": "file",
       "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
       "role": "generated",

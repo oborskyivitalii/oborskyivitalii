@@ -3,7 +3,7 @@
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/122",
     "date": "2026-10-26",
-    "summary": "Browser supply preparer and cold shared consumer retain existing source/admission/profile obligations; native seeds and consumer rollout remain pending."
+    "summary": "Content derivative admission, ordinary preview dependencies and bounded Writing bootstrap scheduling retain existing source/admission/profile obligations; final current-source native delivery remains required."
   },
   "layers": [
     {
@@ -676,7 +676,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "177142d2ecd0265ca51c0fac644ad8d770fe94bce835afac0239c2711bd4f97c",
+    "digest": "e1134efac6287ac81772c379eb54de598c5d58d4f8b12817336474a65fcf57a5",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -812,7 +812,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "0e4deb6ee4cbe4566e3abb21e31751c0fb9a82e90e6f0f8a48e3a0b88f5f5485"
+        "sha256": "af54bd082e5aabb2226691871d1132ba126435a1c7361e94db506684bd0f4a39"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -944,7 +944,7 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "93452f82bfe25691c6c37ef4ead983c09e1c240d3f4afae7b695e86fd99e8d35"
+        "sha256": "07e85f24c94404c45b0641b5b5169bd105a0ff064f3de02403e1e8eae6f2c463"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",

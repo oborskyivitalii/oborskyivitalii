@@ -15,6 +15,10 @@ const inputKeys = [
 ];
 const reviewedClient = '2fe6a007782832aee3818c1a0b80e95a1fb548b11dca1551a3423f690e6dc014';
 const reviewedEngine = '43054e4d9861831ec39cbf2e4217ca33b13959bb329959fd7a86413b2ddea3d2';
+const reviewedDocumentClients = new Set([
+  reviewedClient,
+  'a41ab65b9c8182318ae1333272289aac5d651fa1e19cc075609632b5fb082b85',
+]);
 
 function fingerprint(components, files) {
   assert.equal(components.contract, 1, 'client scene contract');
@@ -97,7 +101,7 @@ function verify(components, generation, read) {
     components.client,
     'client compatibility bytes differ'
   );
-  if (components.client !== reviewedClient) return;
+  if (!reviewedDocumentClients.has(components.client)) return;
   for (const [route, entry] of Object.entries(generation.routes))
     for (const name of [entry.url, `snapshots/${entry.version}/${entry.url}`])
       verifyDocument(read(name), route);

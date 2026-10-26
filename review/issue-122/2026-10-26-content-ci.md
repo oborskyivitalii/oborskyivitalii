@@ -117,3 +117,107 @@ native CI and the control delivery gates remain mandatory.
 The original failed preview log is now also physically retained alongside the
 navigation log: preview-failed.log57348bytes, navigation-failed.log48395bytes.
 Both preserve original C1 source/run; no new C1 campaign was started.
+
+
+## Writing bootstrap correction — prepared candidate
+
+Frozen remote e5f9d3b2/tree5863806e passed native Basic40339533065 with
+74modules1124/1124, RI/owning and hosted smoke. Owner stage40340587156/1 then
+failed Writing simulated TBT245ms >200. Native archives launched successfully;
+prepublication26/26, source1124/1124, static and full-host proof passed. No stage
+promotion occurred. Preview comment-job HTTP500 is a separate retained reporting
+failure. Neither result is replaced by local or diagnostic observations.
+
+The one native startup profile40351209955/1 retains original artifact12664425612,
+20147bytes, SHA2564b2e7acc3954098d78ee219720cb8ef8265b090188a8052306225b0c9065ace8.
+Ready/active Writing had no page/request errors. Actual CPU4 stage timing shows
+model106.9ms nested inside first projection157.9ms, then paint42.1ms. Medians over
+30paints are projection5.6ms, sort3.05ms and paint8.35ms. Instrumented loopback
+profiling is diagnostic only, not Lighthouse acceptance or CPU-model causation.
+The first native setup40348477192 timed out before browser restore/capture on
+slow Azure APT downloads. Existing primary-archive setup was reused verbatim on
+the never-merged diagnostic branch; it is not a permanent harness addition.
+
+Fixed hosted method pair40355135427/1 retains artifact12665153918,6763928bytes,
+SHA256dbdd5f726978bb321798f0edb09428e773080bf820a4869e348e3b23afd9f821.
+Simulated281.5ms and DevTools232.729ms both exceed200. Lighthouse also derives
+four different quiet windows; late Writing targets were no longer present.
+No method switch, acceptance claim or unchanged staging retry follows. The
+original simulated method, scenarios, trial counts and numeric limits remain.
+
+The evidenced scheduling hypothesis edits only site/engine/lifecycle.cjs:
+prepare the missing cold Writing model inside the existing guarded RAF, yield
+through its single pending owner, then actually paint on the next callback.
+Fallback/readiness and all ambient/journey clocks stay unchanged until paint.
+Preparation stays inside startup traces/callback costs/readiness deadlines;
+its measured cost accumulates across variants and joins the first quality vote
+once. Off/reduced, hidden/print/failure, early navigation and compact/theme changes
+retain their contracts. Other direct-route startup paths are unchanged. Total
+readiness includes the extra yield; a native performance pass is not predicted.
+
+Requirements and code roles independently reviewed this hypothesis before code
+changes. Completed-source requirements/code/white-box/operator review is pending.
+Applicable CS01/04/05/06/07/08/10 map to AC04: canonical lifecycle owner, no second
+clock or style/layout owner, unchanged limits, generated dependencies rebuilt,
+existing selected lifecycle/geometry suites and actual cold hosted acceptance.
+
+Initial dirty-source existing-space execution retained72tests/62pass/10fail:
+the ten failures all assumed Writing painted in its first RAF. Their original
+log is retained. The existing initial-route helper now explicitly asserts the
+unready/no-paint preparation callback before the real paint; one duplicate
+inline charter uses the same oracle. Prepared75/75 then passed. A further focused
+quality-cost case passes1/1 and exercises accumulation/one-time consumption;
+complete current-source accounting is still pending. Exact old/new model parity
+passed all10route/detail worlds and20projected outputs by deep equality.
+
+Four focused cases stay in the existing selected tests/space.test.cjs module;
+no profile membership, budget, source/freshness/security guard or historical
+fixture policy is reduced. Final source/tree, regenerated output/catalog/RI,
+completed role receipts and native stage evidence remain required. PR149/PR79,
+production and DNS remain untouched; AC03/06/08 stay open.
+
+
+## Exact runtime enrollment correction
+
+Clean local cf7bf42e/treeca811899 passed Basic, full lint, format532, architecture,
+style, RI/coupling and29RI+20coupling regressions. Full selected PR source checks
+then executed75modules/1137tests:1100pass/37fail, zero skip/cancel/todo, clean
+before/after. Original pr-source.json/tap/stderr retain that result. All failures
+were classified:35 closed-selector `unreviewed Color motion runtime` refusals,
+plus2 actual-current comparisons against the former R3 identity. No runtime
+failure was waived and no test suite or profile was removed.
+
+Additive family issue122-writing-startup binds base/clientA41ab65b...082b85,
+plain628847e5...007b5f, staging993315bb...bd4c5 and production9f647eb0...256c1.
+The complete exact literals live in color-motion-contract.cjs. Only space bytes
+change (9c12d83a...974fec); all other runtime hashes/styles/reader policies match
+R3, and publication rights remain mandatory. Removing the one added family
+reproduces the prior registry and all selector code byte-for-byte. Existing
+three-edition generation/alias-tamper/unknown/rights tests cover the new tuple;
+only genuinely live-source fixture expectations switch to the current family.
+Historical R3 assertions and every previous family remain.
+
+The first focused integration execution retained77/78: its sole refusal showed
+semantic document verification covered only the old reviewed client. Enroll
+exactA41 alongside that old client in runtime-compatibility.cjs document checks;
+all runtime/fingerprint checks still precede them. Keep version() unchanged:
+only the original client has the legacy43054alias, while A41 maps to itself.
+Existing missing/fake hook negatives stay intact. After regeneration, the
+current client remainsA41 and all three exact edition runtime closures reproduce;
+the affected3module suite passes78/78. This is dirty prepared-source evidence,
+not a full clean-source or native pass. Producer provenance and route snapshots
+are fresh; no changed bytes are aliased as an older runtime.
+
+Four distinct agents accepted the prior scheduling sourcecf7 within its actual
+scope; white-box explicitly blocked readiness on all37 source failures. The
+current enrollment/document-guard correction needs its own completed delta
+reviews and clean full-source accounting. Earlier approvals are not substituted.
+
+Protected main835 still cannot publish this new family for accepted /stage:
+its privileged verifier uses the old closed registry. The existing owner-only
+staging-regression PR-label route instead uses the PR merge controller and exact
+candidate, so it can collect full unchanged simulated performance evidence
+without stable promotion, App admission or accepted S. First obtain that actual
+candidate result, then prepare the finite compatibility-only diff for the
+maintainer's separate-PR decision. No additional PR/controller redesign is
+created or authorized here. Compatibility must precede eventual accepted stage.
