@@ -301,3 +301,44 @@ failure. AC03/06/08 and protected-main compatibility/owner admission remain open
 The first RI build correctly refused the new unclassified inert proof path; its
 exact history/owner catalog entry was then added before regeneration. This was
 a local metadata-preparation failure, not a native security retry.
+
+### Completed checksum-correction source checkpoint
+
+Clean implementationadc50232631fdd39c8b423679eedf14b8f004a00 has tree
+`ee93d311f04bbe3990e92f8924805e60f2dcb2ff`. Remote implementationbebc642561a9395f476172fed6edcf5efa5b4872
+has the identical tree; local checks are not relabelled as remote execution.
+The existing quality-sources module passes38/38, zero failure/skip/cancel/todo.
+Basic passes with empty article selection, actualadc source/tree and clean state;
+all532 format files, code-style143-source guard, RI freshness and17 coupling
+checks pass. No engine, site output, scanner implementation, workflow, test,
+archive pin, profile or budget differs from0d in this correction.
+
+Four completed independent correction roles inspect exactadc/treeee93:
+
+- Requirements: accepts six IDs, exact predecessor ledger and source proof;
+  actual20 runtime hashes/client recomputation and unknown-value refusal pass.
+  Original requirements/AC scope remains; native/compatibility decisions pending.
+- Code: accepts exact8-file scope,1533 prior checksum records/order/metadata,
+  other3 ledgers and scanner/runtime bytes. Six original IDs/source lines/value
+  hashes and30 physical canonical/immutable runtime alias hashes match proof;
+  base client/three edition fingerprints independently recompute. No blocker.
+- White-box: six actual findings admitted,18 wrong path/type/hash substitutions
+  reject; prefix/metadata/source/raw-detector proof passes. Independent temporary
+  build and existing edition producers reproduce base/three editions/15 runtime
+  hashes. No guard or runtime change; no scoped blocker.
+- Exploratory: six exact findings admitted,24 wrong/new hash/path/SecretKeyword/
+  Base64 variants reject. All four actual producer artifacts verify, runtime
+  hashes/client recompute, original detector bytes/hash match. One existing real
+  three-edition producer testcase passes1/1. No operator disposition blocker.
+
+The optional root changed-input fresh detector invocation could not start because
+this local quality venv has no detect-secrets executable (FileNotFound before
+spawn); no scanner run/pass is claimed and no unchanged retry/install followed.
+Existing admission tests and retained-report proof are not fresh native scanning.
+First RI preparation also corrected the catalog JSON key before regeneration;
+all failed local preparations remain distinct from native acceptance.
+
+These are source/preflight correction acceptances only. New native security and
+Writing performance still require the next actual source-bound evidence run.
+Original40367093024/1 and e5 TBT failures remain failed. Metadata receipts do not
+reset them; the six real security-input changes justify the corrected execution.
