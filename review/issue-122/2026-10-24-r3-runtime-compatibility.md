@@ -262,3 +262,74 @@ candidate-only registry and completed evidence-label route cannot grant it. This
 receipt changes no implementation, test oracle or prior source evidence. The
 four completed source roles above remain bound to969a/tree3c681c19. Fresh native
 checks belong to the actual published current head and are not yet claimed.
+
+### PR151 native outcome and bounded blocker — 26 October 2026
+
+Approved PR151 published87e5c7f48ecd06349fd7b236b428b8c543f69afe has tree
+50396b64513cc3a8315a62316db5dea6bbd7e642, exactly final local9db85d5f.
+Independent resumed Requirements execution `/root/resume122_boundary_review`
+confirms only approval receipt/MEMORY/derived RI changed after57a; the four
+completed implementation roles remain bound to969a without relabelled results.
+
+Native Basic40376089073 succeeds:75modules/1130tests, zero fail/cancel/skip/todo,
+clean source before/after,138937ms. Original artifact12675256697 has68102bytes,
+SHA256dde0f744eac2db1d388e1438407f469be5fb6b9da52a25714c8ac6a565877835;
+JSON/TAP/ZIPCRC agree. Its20137stderr bytes remain. Navigation40376089002,
+owning40376088975 and routing40376088594 pass. Preview40376088773 build/publish/
+two-width smoke pass; initial admission correctly refuses missing owner-stage.
+
+First owner40376851877/1 fails before candidate execution: GitHub POST check-runs
+returns HTTP500 at18:21:10UTC, begin-admission121762345233. The API committed an
+in-progress check despite that response; no successful admission is inferred.
+Original target12674218472 is275bytes/SHA256
+d7c10083582adb5b94f97740c66b9f8aa3d1d495e3d5bd2a61508eedcdc4026a.
+After diagnosis and fresh source/base leases, the one permitted complete retry is
+40377241088/1. No partial retry or further unchanged campaign is authorized.
+
+Retry prepublication12675163481 has315634bytes/SHA256
+f782675864915809073fd6d8c8aabd356c1e1fbbab5204b65eb4f3157fd371a6.
+Independent physical readback verifies ZIPCRC, all67 referenced hashes,26/26
+guards,74canonical staging modules/1122tests, zero fail/skip/cancel/todo,
+clean exact87/tree503,195837ms/300000; separate baseline26 and Python139 pass.
+Lint/Semgrep/secrets/advisories pass; all48 raw Bandit findings retain reviews.
+Package12677610204 has708319bytes/SHA256
+97b5eeb4d7299db96299162194e63a3d5d22bcb813b02bdc037aea3a6ccc22ac;
+CRC and actual package.verify pass, source/gate article lists empty. It selects
+current R3 staging4040aee0/base43054; future Writing is enrolled, not substituted.
+Publish/static/host and functional6journeys/2navigation/10recovery/7analytics,
+both preview smoke rows, both motion samples and four flights pass.
+
+Full staging121768566417 and gate fail on one Research mobile Lighthouse trial:
+simulated LCP2537.2495ms > unchanged2500; FCP2502.2495,TBT20,CLS0. Separate
+Writing trial passes LCP1901.217,TBT47.5. Original reports12678296331 have
+5570279bytes/SHA25642147d78a978445491706dc566bfea64a76bcf9f3a731a4aa31cdda3f9a8166a;
+independent CRC/four trace-devlog size/hash checks pass. Stable promotion skips;
+merge admission fails and independent App receipt skips. PR151 returns Draft.
+Native runtime/library source checks do not erase this failed overall result.
+
+The LCP node is Research heading reading-title-ink. Resources finish523.221ms,
+load569.854ms, observed FCP/LCP2475.399ms. There is no matching long main-thread
+CPU task explaining the delay; no failed requests or logged exceptions. The
+heading CSS has no initial delay and visible reading units finish immediately.
+Root and the separate reviewer independently pair sorted async b/e events by
+pid/name/id2 and confirm overlapping compositor/presentation spans:
+
+- Submit-to-presentation436.801→1469.925ms:1033.124ms, dropped high-latency frame138.
+- Frame199 pipeline1453.154→2475.399ms:1022.245ms, presented/high-latency.
+- Its submit/presentation1469.809→2475.235ms:1005.426ms; end-activate/submit
+  1506.911→2470.570ms:963.659ms. Do not add overlapping parent/substage durations.
+
+Retained accepted S147/source8d/run40316734726 has the same R3 runtime and no
+relevant site/runtime/performance-harness source delta. Research simulated
+LCP2142.854ms, observed331.013ms; submit/presentation before LCP max6.925ms,
+end-activate/submit max0.314ms, pipeline max91.434ms. Complete generated page
+hashes differ; no whole-page byte-identity claim. This localizes the delay but
+does not prove visibility throttling, host contention or a transient fault.
+
+The independently accepted smallest next investigation is one frozen Research-
+only native diagnostic of document visibility, frame scheduling and compositor
+presentation against the original immutable package/origin, preserving simulated
+method, limits and raw source/run identity. It is proposed, not executed or an
+approval for admission retry, waiver, runtime/CSS edits or another prerequisite PR.
+No source fix is justified yet. AC03/06/08 remain open; PR150c0/PR149d4/PR79 and
+production/DNS stay untouched. This later receipt head inherits no87 native pass.
