@@ -1,4 +1,4 @@
-name: Issue122 frozen Research presentation diagnostic
+name: Issue122 frozen desktop edge geometry diagnostic
 # Diagnostic branch only. Never merge this overlay; original staging failure remains.
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
-          ref: 87e5c7f48ecd06349fd7b236b428b8c543f69afe
+          ref: 1e1617d63b7e1677d868e5612926f9bcf60007bc
           path: candidate
           fetch-depth: 0
           persist-credentials: false
@@ -30,41 +30,42 @@ jobs:
           python3 - <<'PYTHON'
           import os
           with open(os.environ['GITHUB_ENV'],'a') as f:
-              for key,leaf in [('RESEARCH_DIAGNOSTIC_PACKAGE','research-package'),('RESEARCH_DIAGNOSTIC_OUTPUT','research-presentation')]:
+              for key,leaf in [('GEOMETRY_DIAGNOSTIC_PACKAGE','geometry-package'),('GEOMETRY_DIAGNOSTIC_OUTPUT','desktop-geometry')]:
                   f.write(key+'='+os.path.join(os.environ['RUNNER_TEMP'],leaf)+'\n')
           PYTHON
-      - name: Authenticate retained failed-stage package metadata
+      - name: Authenticate retained failed-preview package metadata
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         with:
           script: |
             const a=require('node:assert/strict');
-            const meta=(await github.rest.actions.getArtifact({...context.repo,artifact_id:12677610204})).data;
+            const meta=(await github.rest.actions.getArtifact({...context.repo,artifact_id:12686584691})).data;
             a.equal(meta.expired,false);
-            a.equal(meta.name,'site-review-package-40377241088-1');
-            a.equal(meta.size_in_bytes,708319);
-            a.equal(meta.digest,'sha256:97b5eeb4d7299db96299162194e63a3d5d22bcb813b02bdc037aea3a6ccc22ac');
-            a.equal(meta.workflow_run.id,40377241088);
-            const run=(await github.rest.actions.getWorkflowRun({...context.repo,run_id:40377241088})).data;
+            a.equal(meta.name,'site-review-package-40398934425-1');
+            a.equal(meta.size_in_bytes,708285);
+            a.equal(meta.digest,'sha256:add7472142c1a323139fe3e221388deeb26c66930782faf757f5805859d8ca6b');
+            a.equal(meta.workflow_run.id,40398934425);
+            const run=(await github.rest.actions.getWorkflowRun({...context.repo,run_id:40398934425})).data;
             a.equal(run.path,'.github/workflows/site-color-review.yml');
-            a.equal(run.head_sha,'83591bdfa99cba7649968cf94a6335e98af2847e');
+            a.equal(run.head_sha,'1e1617d63b7e1677d868e5612926f9bcf60007bc');
             a.equal(run.run_attempt,1);
-            a.equal(run.event,'issue_comment');
+            a.equal(run.event,'pull_request');
+            a.ok(run.pull_requests.some(pr=>pr.number===151));
             a.equal(run.actor.login,'oborskyivitalii');
             a.equal(run.status,'completed');
             a.equal(run.conclusion,'failure');
-            core.info('Original failed-stage package identity authenticated; failure retained.');
+            core.info('Original failed-preview package identity authenticated; failure retained.');
       - name: Download original ZIP and verify native digest before extraction
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           python3 - <<'PYTHON'
           import importlib.util,json,os,pathlib,zipfile
-          root=pathlib.Path(os.environ['RESEARCH_DIAGNOSTIC_PACKAGE']);root.mkdir()
+          root=pathlib.Path(os.environ['GEOMETRY_DIAGNOSTIC_PACKAGE']);root.mkdir()
           s=importlib.util.spec_from_file_location('archive','tools/quality/browser_archives.py')
           m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
-          p=root.parent/'research-package-original.zip'
-          m.download({'artifact':12677610204,'uploadDigest':'sha256:97b5eeb4d7299db96299162194e63a3d5d22bcb813b02bdc037aea3a6ccc22ac'},os.environ['GITHUB_TOKEN'],p)
-          assert p.stat().st_size==708319
+          p=root.parent/'geometry-package-original.zip'
+          m.download({'artifact':12686584691,'uploadDigest':'sha256:add7472142c1a323139fe3e221388deeb26c66930782faf757f5805859d8ca6b'},os.environ['GITHUB_TOKEN'],p)
+          assert p.stat().st_size==708285
           with zipfile.ZipFile(p) as z:
               assert z.testzip() is None
               assert all(not pathlib.Path(n).is_absolute() and '..' not in pathlib.Path(n).parts for n in z.namelist())
@@ -104,7 +105,7 @@ jobs:
           PYTHON
       - name: Install existing locked tools and browser OS dependencies
         run: |
-          test "$(git rev-parse HEAD)" = 87e5c7f48ecd06349fd7b236b428b8c543f69afe
+          test "$(git rev-parse HEAD)" = 1e1617d63b7e1677d868e5612926f9bcf60007bc
           test -z "$(git status --porcelain)"
           npm ci --prefix tools/quality/toolchain --ignore-scripts
           tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium
@@ -113,437 +114,385 @@ jobs:
         with:
           browsers: chromium
           working-directory: candidate
-      - name: Collect one canonical Research trial and one separate instrumented session
+      - name: Observe one original desktop Color scenario without changing its guards
         run: |
           node <<'NODE'
           'use strict';
-          const fs = require('node:fs'),
-            path = require('node:path'),
-            zlib = require('node:zlib');
-          const crypto = require('node:crypto'),
-            assert = require('node:assert/strict');
-          const { pathToFileURL } = require('node:url');
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const crypto = require('node:crypto');
           const cp = require('node:child_process');
-          const repo = process.cwd(),
-            output = process.env.RESEARCH_DIAGNOSTIC_OUTPUT;
-          const packageRoot = process.env.RESEARCH_DIAGNOSTIC_PACKAGE;
-          const { toolRequire, environment } = require(repo + '/tools/quality/common.cjs');
-          const origin = 'https://01f83bd6.oborskyi-author-ci-staging.pages.dev';
-          const source = '87e5c7f48ecd06349fd7b236b428b8c543f69afe';
-          const tree = '50396b64513cc3a8315a62316db5dea6bbd7e642';
+          const assert = require('node:assert/strict');
+          const root = process.cwd();
+          const output = process.env.GEOMETRY_DIAGNOSTIC_OUTPUT;
+          const packageRoot = process.env.GEOMETRY_DIAGNOSTIC_PACKAGE;
+          const source = '1e1617d63b7e1677d868e5612926f9bcf60007bc';
+          const tree = '4e370a6c94a5704fcf47368bcbb0838439de7567';
+          const origin = 'https://6aca6f5e.oborskyi-author-ci-staging.pages.dev';
           const record = {
-            kind: 'frozen-research-presentation-diagnostic',
-            acceptance: false,
-            fullGate: false,
-            performanceAcceptance: false,
-            completed: false,
+            kind: 'frozen-desktop-edge-geometry-diagnostic',
             source,
             tree,
             controller: process.env.GITHUB_SHA,
-            runId: process.env.GITHUB_RUN_ID,
+            run: process.env.GITHUB_RUN_ID,
             attempt: process.env.GITHUB_RUN_ATTEMPT,
-            environment: environment(),
+            packageArtifact: 12686584691,
+            packageUploadDigest: 'sha256:add7472142c1a323139fe3e221388deeb26c66930782faf757f5805859d8ca6b',
             origin,
-            packageArtifact: 12677610204,
-            packageUploadDigest: '97b5eeb4d7299db96299162194e63a3d5d22bcb813b02bdc037aea3a6ccc22ac',
-            observation: {
-              windowMs: 8000,
-              maximumRafRows: 500,
-              traceLimitBytes: 33554432,
-            },
-            protocol:
-              'One untouched canonical mobile/simulated Lighthouse Research trial, close browser, then at most one separately instrumented fresh Research session. No warmup, repeats, forced focus, admission or source changes. Secondary native timings are not equivalent to simulated Lighthouse scores.',
+            acceptance: false,
+            fullGate: false,
+            completed: false,
             launches: 0,
-            canonical: {},
-            instrumented: {},
-            errors: [],
+            host: [],
+            steps: [],
+            pages: [],
+            collectionErrors: [],
+            scenario: { settled: false, pass: false },
+            cleanup: { contexts: [], browser: false },
           };
-          fs.mkdirSync(output, { recursive: true });
-          const save = () =>
-            fs.writeFileSync(path.join(output, 'diagnostic.json'), JSON.stringify(record, null, 2) + '\n');
-          const digest = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
-          function retain(name, value, compressed = false) {
-            const raw = Buffer.from(JSON.stringify(value) + '\n');
-            const bytes = compressed ? zlib.gzipSync(raw) : raw;
-            fs.writeFileSync(path.join(output, name), bytes);
+          function identity() {
+            const git = (...args) => cp.execFileSync('git', args, { encoding: 'utf8' }).trim();
             return {
-              file: name,
-              bytes: bytes.length,
-              sha256: digest(bytes),
-              rawBytes: raw.length,
+              commit: git('rev-parse', 'HEAD'),
+              tree: git('rev-parse', 'HEAD^{tree}'),
+              dirty: git('status', '--porcelain'),
             };
           }
-          function verifyCheckout() {
-            const head = cp.execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
-            const currentTree = cp
-              .execFileSync('git', ['rev-parse', 'HEAD^{tree}'], { encoding: 'utf8' })
-              .trim();
-            const dirty = cp.execFileSync('git', ['status', '--porcelain'], {
-              encoding: 'utf8',
-            });
-            assert.equal(head, source);
-            assert.equal(currentTree, tree);
-            assert.equal(dirty, '');
-            return { head, tree: currentTree, dirty: false };
+          function save() {
+            fs.mkdirSync(output, { recursive: true });
+            const bytes = JSON.stringify(record, null, 2) + '\n';
+            assert.ok(Buffer.byteLength(bytes) <= 8 * 1024 * 1024, 'diagnostic output exceeds8MiB');
+            fs.writeFileSync(path.join(output, 'geometry.json'), bytes);
           }
-          async function withBrowser(row, launcher, collect) {
-            row.startedAt = new Date().toISOString();
-            row.collected = false;
-            row.cleanup = false;
-            record.launches += 1;
-            save();
-            assert.ok(record.launches <= 2, 'at most two fresh diagnostic processes');
-            let chrome, failure;
-            try {
-              chrome = await launcher.launch({
-                chromePath: toolRequire('playwright').chromium.executablePath(),
-                chromeFlags: ['--headless', '--no-sandbox', '--disable-dev-shm-usage'],
-              });
-              await collect(chrome);
-              row.collected = true;
-            } catch (error) {
-              row.error = error.stack;
-              failure = error;
-            } finally {
-              try {
-                if (chrome) {
-                  await chrome.kill();
-                  row.cleanup = true;
-                }
-              } catch (error) {
-                row.cleanupError = error.stack;
-                if (!failure) failure = error;
-              } finally {
-                row.endedAt = new Date().toISOString();
-                save();
-              }
-            }
-            if (failure) throw failure;
-          }
-          async function canonical(lighthouse, chrome) {
-            const row = record.canonical;
-            const result = await lighthouse(origin + '/research.html', {
-              port: chrome.port,
-              output: 'json',
-              logLevel: 'error',
-              onlyCategories: ['performance', 'accessibility', 'best-practices'],
-            });
-            row.lhr = retain('canonical-lhr.json', result.lhr);
-            row.trace = retain('canonical-trace.json.gz', result.artifacts.Trace, true);
-            row.devtoolsLog = retain('canonical-devtoolslog.json.gz', result.artifacts.DevtoolsLog, true);
-            row.settings = result.lhr.configSettings;
-            row.lighthouseVersion = result.lhr.lighthouseVersion;
-            row.environment = result.lhr.environment;
-            row.runtimeError = result.lhr.runtimeError || null;
-            row.warnings = result.lhr.runWarnings;
-            const budgets = require(repo + '/tools/quality/budgets.json').lighthouse.mobile;
-            row.budgets = Object.fromEntries(
-              Object.entries(budgets).map(([key, limit]) => {
-                const value = result.lhr.audits[key]?.numericValue;
-                return [key, { value, limit, pass: Number.isFinite(value) && value <= limit }];
-              })
-            );
-            row.budgetPassed = Object.values(row.budgets).every((item) => item.pass);
-            save();
-            assert.equal(row.settings.throttlingMethod, 'simulate');
-            assert.equal(row.settings.throttling.cpuSlowdownMultiplier, 4);
-            assert.equal(row.settings.formFactor, 'mobile');
-            assert.ok(!row.runtimeError, 'Lighthouse collection runtime error');
-            assert.ok(result.artifacts.Trace.traceEvents.length);
-            assert.ok(result.artifacts.DevtoolsLog.length);
-            for (const key of Object.keys(budgets)) assert.ok(Number.isFinite(row.budgets[key].value));
-          }
-          function observe(options) {
-            const state = (window.__issue122Research = {
+          function observer() {
+            const data = {
+              frames: 0,
+              changes: [],
               events: [],
-              raf: [],
-              paints: [],
-              limitations: [],
-              complete: false,
-            });
-            const started = performance.now();
-            function snapshot(kind) {
-              state.events.push({
-                kind,
+              errors: [],
+              truncated: false,
+            };
+            window.__edgeGeometryDiagnostic = data;
+            const rect = (node) => {
+              if (!node) return null;
+              const r = node.getBoundingClientRect();
+              return {
+                top: r.top,
+                bottom: r.bottom,
+                height: r.height,
+                offsetHeight: node.offsetHeight,
+                scrollHeight: node.scrollHeight,
+              };
+            };
+            function snapshot(label) {
+              const animations = document
+                .getAnimations()
+                .filter((a) => a.playState === 'running' || a.pending);
+              const active = animations.slice(0, 32).map((a) => {
+                const target = a.effect?.target;
+                return {
+                  name: a.animationName || null,
+                  playState: a.playState,
+                  pending: a.pending,
+                  currentTime: a.currentTime,
+                  timing: a.effect?.getComputedTiming(),
+                  target: target
+                    ? {
+                        tag: target.tagName,
+                        id: target.id,
+                        classes: target.className,
+                        dataset: { ...target.dataset },
+                        rect: rect(target),
+                      }
+                    : null,
+                };
+              });
+              return {
+                label,
                 time: performance.now(),
-                visibility: document.visibilityState,
+                route: document.body?.dataset.page || null,
+                range: Math.max(0, document.documentElement.scrollHeight - innerHeight),
+                y: scrollY,
+                fonts: document.fonts?.status || null,
                 hidden: document.hidden,
-                focus: document.hasFocus(),
-                url: location.href,
-              });
+                main: rect(document.querySelector('main')),
+                footer: rect(document.querySelector('footer')),
+                root: rect(document.documentElement),
+                reading: window.SiteScrollEntry?.diagnostics?.() || null,
+                activeAnimations: animations.length,
+                animations: active,
+              };
             }
-            snapshot('injected');
-            for (const name of ['visibilitychange', 'DOMContentLoaded'])
-              document.addEventListener(name, () => snapshot(name));
-            for (const name of ['focus', 'blur', 'load', 'pageshow', 'pagehide'])
-              window.addEventListener(name, () => snapshot(name));
-            for (const type of ['paint', 'largest-contentful-paint']) {
+            window.__edgeGeometrySnapshot = snapshot;
+            const event = (label, extra = {}) => {
+              if (data.events.length >= 100) {
+                data.truncated = true;
+                return;
+              }
               try {
-                const observer = new PerformanceObserver((list) => {
-                  for (const entry of list.getEntries())
-                    state.paints.push({
-                      type,
-                      name: entry.name,
-                      startTime: entry.startTime,
-                      renderTime: entry.renderTime,
-                      loadTime: entry.loadTime,
-                      size: entry.size,
-                    });
-                });
-                observer.observe({ type, buffered: true });
+                data.events.push({ ...snapshot(label), ...extra });
               } catch (error) {
-                state.limitations.push({ type, error: error.message });
+                if (data.errors.length < 20) data.errors.push(String(error));
+                else data.truncated = true;
               }
-            }
-            function frame(time) {
-              state.raf.push({
-                time,
-                observedAt: performance.now(),
-                visibility: document.visibilityState,
-              });
-              if (performance.now() - started < options.windowMs && state.raf.length < options.maximumRafRows)
-                requestAnimationFrame(frame);
-              else {
-                state.complete = true;
-                state.finishedAt = performance.now();
-                snapshot('raf-finished');
-              }
-            }
-            requestAnimationFrame(frame);
-          }
-          async function stopTrace(cdp) {
-            let timer;
-            const completion = new Promise((resolve, reject) => {
-              timer = setTimeout(() => reject(Error('Trace completion timed out')), 15000);
-              cdp.once('Tracing.tracingComplete', resolve);
-            });
-            let stream;
-            try {
-              const [, result] = await Promise.all([cdp.send('Tracing.end'), completion]);
-              stream = result.stream;
-            } finally {
-              clearTimeout(timer);
-            }
-            assert.ok(stream, 'trace stream required');
-            const chunks = [];
-            let size = 0;
-            try {
-              let chunk;
-              do {
-                chunk = await cdp.send('IO.read', { handle: stream, size: 1048576 });
-                const bytes = Buffer.from(chunk.data, chunk.base64Encoded ? 'base64' : 'utf8');
-                chunks.push(bytes);
-                size += bytes.length;
-                assert.ok(size <= record.observation.traceLimitBytes, 'trace byte bound');
-              } while (!chunk.eof);
-            } finally {
-              await cdp.send('IO.close', { handle: stream });
-            }
-            const trace = JSON.parse(Buffer.concat(chunks).toString('utf8'));
-            assert.ok(
-              Array.isArray(trace.traceEvents) && trace.traceEvents.length,
-              'nonempty instrumented trace required'
+            };
+            window.addEventListener(
+              'wheel',
+              (e) => event('wheel', { trusted: e.isTrusted, deltaY: e.deltaY }),
+              { passive: true }
             );
-            const eventCount = (name) => trace.traceEvents.filter((event) => event.name === name).length;
-            return {
-              ...retain('instrumented-trace.json.gz', trace, true),
-              pipelineEvents: eventCount('PipelineReporter'),
-              presentationEvents: eventCount('SubmitCompositorFrameToPresentationCompositorFrame'),
-              eventScope: 'Event availability only; no span duration or cause inferred',
-            };
-          }
-          async function instrumented(chrome) {
-            const row = record.instrumented;
-            row.timingScope =
-              'Native CPU1/no network emulation, mobile viewport from canonical settings; script/CDP tracing perturb timings. No admission comparison.';
-            row.events = [];
-            row.requestFailures = [];
-            row.pageErrors = [];
-            row.surfaces = {
-              visibility: 'not-observed',
-              raf: 'not-observed',
-              paint: 'not-observed',
-              lcp: 'not-observed',
-              compositor: 'not-observed',
-              presentation: 'not-observed',
-            };
-            const browser = await toolRequire('puppeteer-core').connect({
-              browserURL: 'http://127.0.0.1:' + chrome.port,
-              protocolTimeout: 15000,
+            for (const name of ['loading', 'loadingdone', 'loadingerror'])
+              document.fonts?.addEventListener(name, () => event('fonts-' + name));
+            document.addEventListener('DOMContentLoaded', () => event('dom-ready'), {
+              once: true,
             });
-            let cdp,
-              page,
-              failure,
-              tracing = false;
-            try {
-              row.browserVersion = await browser.version();
-              const pages = await browser.pages();
-              assert.equal(pages.length, 1, 'one fresh blank target required');
-              page = pages[0];
-              assert.ok(['about:blank', ''].includes(page.url()), 'no prior page navigation');
-              const screen = record.canonical.settings.screenEmulation;
-              await page.setViewport({
-                width: screen.width,
-                height: screen.height,
-                deviceScaleFactor: screen.deviceScaleFactor,
-                isMobile: screen.mobile,
-                hasTouch: true,
-              });
-              await page.setUserAgent(record.canonical.settings.emulatedUserAgent);
-              await page.evaluateOnNewDocument(observe, record.observation);
-              page.on('pageerror', (error) => row.pageErrors.push(error.message));
-              page.on('requestfailed', (request) =>
-                row.requestFailures.push({
-                  url: request.url(),
-                  failure: request.failure(),
-                })
-              );
-              cdp = await page.createCDPSession();
-              await cdp.send('Page.enable');
-              await cdp.send('Page.setLifecycleEventsEnabled', { enabled: true });
-              cdp.on('Page.lifecycleEvent', (event) => row.events.push(event));
-              await cdp.send('Network.enable');
-              await cdp.send('Network.setCacheDisabled', { cacheDisabled: true });
-              await cdp.send('Tracing.start', {
-                categories:
-                  'devtools.timeline,disabled-by-default-devtools.timeline,blink.user_timing,loading,cc,viz,gpu',
-                transferMode: 'ReturnAsStream',
-              });
-              tracing = true;
-              await page.goto(origin + '/research.html', {
-                waitUntil: 'load',
-                timeout: 30000,
-              });
-              await page.waitForFunction(() => window.__issue122Research?.complete === true, {
-                timeout: 12000,
-              });
-              row.observations = await page.evaluate(() => ({
-                ...window.__issue122Research,
-                url: location.href,
-                visibility: document.visibilityState,
-                focus: document.hasFocus(),
-                timeOrigin: performance.timeOrigin,
-              }));
-              assert.ok([origin + '/research', origin + '/research.html'].includes(row.observations.url));
-              assert.ok(row.observations.raf.length > 0, 'RAF observations required');
-              row.surfaces.visibility = row.observations.events.length ? 'observed' : 'not-observed';
-              row.surfaces.raf = row.observations.raf.length ? 'observed' : 'not-observed';
-              row.surfaces.paint = row.observations.paints.some((entry) => entry.type === 'paint')
-                ? 'observed'
-                : 'not-observed';
-              row.surfaces.lcp = row.observations.paints.some(
-                (entry) => entry.type === 'largest-contentful-paint'
-              )
-                ? 'observed'
-                : 'not-observed';
-              row.observed = true;
-              row.observedScope =
-                'Session/visibility/RAF collection; paint/LCP/compositor availability is separate';
-              save();
-            } catch (error) {
-              row.observed = false;
-              if (page) {
-                try {
-                  row.partialObservations = await page.evaluate(() => window.__issue122Research || null);
-                } catch (snapshotError) {
-                  row.partialObservationError = snapshotError.message;
-                }
-              }
-              row.error = error.stack;
-              save();
-              failure = error;
-            } finally {
+            window.addEventListener('load', () => event('load'), { once: true });
+            let prior = null;
+            function tick() {
               try {
-                if (tracing) {
-                  row.trace = await stopTrace(cdp);
-                  row.surfaces.compositor = row.trace.pipelineEvents ? 'events-observed' : 'not-observed';
-                  row.surfaces.presentation = row.trace.presentationEvents
-                    ? 'events-observed'
-                    : 'not-observed';
+                if (++data.frames > 6000) {
+                  data.truncated = true;
+                  return;
+                }
+                const route = document.body?.dataset.page || null;
+                const range = Math.max(0, document.documentElement.scrollHeight - innerHeight);
+                const key = route + ':' + range;
+                if (key !== prior) {
+                  if (data.changes.length >= 300) {
+                    data.truncated = true;
+                    return;
+                  }
+                  data.changes.push(snapshot('range-change'));
+                  prior = key;
                 }
               } catch (error) {
-                row.traceCleanupError = error.stack;
-                row.surfaces.compositor = 'collection-failed';
-                row.surfaces.presentation = 'collection-failed';
-                if (!failure) failure = error;
-              } finally {
-                try {
-                  await browser.disconnect();
-                } catch (error) {
-                  row.disconnectError = error.stack;
-                  if (!failure) failure = error;
-                }
-                save();
+                data.errors.push(String(error));
+                return;
               }
+              requestAnimationFrame(tick);
             }
-            if (failure) throw failure;
+            requestAnimationFrame(tick);
           }
           async function main() {
-            record.checkout = { before: verifyCheckout() };
-            save();
-            const manifest = JSON.parse(fs.readFileSync(packageRoot + '/staging-package.json'));
-            require(repo + '/tools/staging/package.cjs').verify(packageRoot, manifest, {
-              sourceCommit: source,
-              sourceTree: tree,
-              candidateCommit: source,
-            });
-            assert.equal(manifest.source.sourceCommit, source);
-            assert.equal(manifest.source.sourceTree, tree);
-            assert.deepEqual(manifest.source.articleCandidates, []);
-            assert.deepEqual(manifest.gate.articleCandidates, []);
-            record.packageDigest = manifest.packageDigest;
-            record.verifiedHostFiles = [];
-            for (const file of [
-              '_staging/revision.json',
+            record.sourceBefore = identity();
+            assert.deepEqual(record.sourceBefore, { commit: source, tree, dirty: '' });
+            const bundle = JSON.parse(fs.readFileSync(path.join(packageRoot, 'staging-package.json')));
+            assert.equal(require(root + '/tools/staging/package.cjs').verify(packageRoot, bundle), true);
+            assert.equal(bundle.source.sourceCommit, source);
+            assert.equal(bundle.source.sourceTree, tree);
+            assert.deepEqual(bundle.source.articleCandidates, []);
+            record.artifactDigest = bundle.source.artifactDigest;
+            process.env.SITE_PUBLIC_DIR = path.join(packageRoot, 'public');
+            process.env.SITE_ARTIFACT_MANIFEST = path.join(output, 'frozen-artifact.json');
+            process.env.SITE_TEST_BASE_URL = origin;
+            process.env.SITE_TEST_PROFILE = 'preview';
+            fs.mkdirSync(output, { recursive: true });
+            fs.writeFileSync(process.env.SITE_ARTIFACT_MANIFEST, JSON.stringify(bundle.source));
+            const revision = JSON.parse(fs.readFileSync(path.join(packageRoot, 'public/site-revision.json')));
+            const runtimeFiles = ['styles.css', 'theme.js', 'space.js', 'archive.js', 'navigation.js'];
+            const hostedFiles = new Set([
+              'index.html',
               'research.html',
+              'writing.html',
+              'credits.html',
               'site-revision.json',
-              ...Object.keys(manifest.source.files).filter((file) =>
-                /^runtime\/[^/]+\/(space|navigation|theme|archive)\.js$|^runtime\/[^/]+\/styles\.css$/.test(
-                  file
-                )
-              ),
-            ]) {
-              const response = await fetch(origin + '/' + file, {
-                signal: AbortSignal.timeout(30000),
-                redirect: 'follow',
+              ...runtimeFiles,
+              ...runtimeFiles.map((name) => 'runtime/' + bundle.source.variant.fingerprint + '/' + name),
+              ...Object.values(revision.routes).map((route) => route.url),
+            ]);
+            assert.equal(hostedFiles.size, 20, 'finite current hosted inventory');
+            for (const name of hostedFiles) {
+              const response = await fetch(origin + '/' + name, {
+                signal: AbortSignal.timeout(10000),
+                redirect: 'error',
               });
-              assert.equal(response.status, 200, file);
-              assert.equal(new URL(response.url).origin, origin);
-              const hash = digest(Buffer.from(await response.arrayBuffer()));
-              assert.equal(hash, manifest.files[file].sha256, 'Immutable hosted bytes: ' + file);
-              record.verifiedHostFiles.push({ file, sha256: hash });
+              assert.equal(response.status, 200);
+              const sha = crypto
+                .createHash('sha256')
+                .update(Buffer.from(await response.arrayBuffer()))
+                .digest('hex');
+              assert.equal(sha, bundle.files[name].sha256, 'frozen hosted bytes: ' + name);
+              record.host.push({ name, sha });
             }
-            save();
-            const { default: lighthouse } = await import(
-              pathToFileURL(toolRequire.resolve('lighthouse')).href
-            );
-            const launcher = await import(pathToFileURL(toolRequire.resolve('chrome-launcher')).href);
-            await withBrowser(record.canonical, launcher, (chrome) => canonical(lighthouse, chrome));
-            assert.equal(
-              record.canonical.cleanup,
-              true,
-              'canonical browser must close before instrumentation'
-            );
-            await withBrowser(record.instrumented, launcher, instrumented);
-            assert.equal(record.instrumented.cleanup, true);
-            record.checkout.after = verifyCheckout();
-            record.completed =
-              record.canonical.collected && record.instrumented.collected && record.instrumented.observed;
-            assert.equal(record.completed, true, 'both declared collections required');
-            save();
+            const { toolRequire, environment, launchOptions } = require(root + '/tools/quality/common.cjs');
+            record.environment = environment();
+            const edge = require(root + '/tools/quality/edge-input.cjs');
+            const color = require(root + '/tools/quality/color-browser.cjs');
+            const pw = toolRequire('playwright');
+            let browser;
+            let timer;
+            const capture = async (page, label) => {
+              try {
+                const snapshot = await page.evaluate(
+                  (label) => window.__edgeGeometrySnapshot?.(label) || null,
+                  label
+                );
+                assert.ok(
+                  snapshot &&
+                    typeof snapshot.route === 'string' &&
+                    snapshot.route.length > 0 &&
+                    Number.isFinite(snapshot.time) &&
+                    Number.isFinite(snapshot.range),
+                  'missing direct geometry/route snapshot'
+                );
+                return snapshot;
+              } catch (error) {
+                record.collectionErrors.push({ label, error: error.stack });
+                return null;
+              }
+            };
+            try {
+              browser = await pw.chromium.launch(launchOptions('chromium'));
+              record.launches++;
+              record.browser = browser.version();
+              const instrumented = {
+                async newContext(options) {
+                  const context = await browser.newContext(options);
+                  await context.addInitScript(observer);
+                  return {
+                    addInitScript: (...args) => context.addInitScript(...args),
+                    async newPage() {
+                      const page = await context.newPage();
+                      return new Proxy(page, {
+                        get(target, key) {
+                          if (key === 'evaluate')
+                            return async (fn, args) => {
+                              if (fn !== edge.observe) return target.evaluate(fn, args);
+                              const step = {
+                                id: record.steps.length + 1,
+                                direction: args.direction,
+                                before: await capture(target, 'prepare-before'),
+                              };
+                              record.steps.push(step);
+                              try {
+                                const result = await target.evaluate(fn, args);
+                                step.result = result;
+                                return result;
+                              } catch (error) {
+                                step.error = error.stack;
+                                throw error;
+                              } finally {
+                                step.after = await capture(target, 'prepare-after');
+                              }
+                            };
+                          const value = target[key];
+                          return typeof value === 'function' ? value.bind(target) : value;
+                        },
+                      });
+                    },
+                    async close() {
+                      try {
+                        for (const page of context.pages()) {
+                          try {
+                            record.pages.push(
+                              await page.evaluate(() => ({
+                                final: window.__edgeGeometrySnapshot?.('context-close'),
+                                observation: window.__edgeGeometryDiagnostic,
+                              }))
+                            );
+                          } catch (error) {
+                            record.collectionErrors.push({
+                              label: 'context-close',
+                              error: error.stack,
+                            });
+                          }
+                        }
+                      } finally {
+                        try {
+                          await context.close();
+                          record.cleanup.contexts.push(true);
+                        } catch (error) {
+                          record.cleanup.contexts.push(false);
+                          record.collectionErrors.push({
+                            label: 'context-cleanup',
+                            error: error.stack,
+                          });
+                        }
+                      }
+                    },
+                  };
+                },
+              };
+              const scenario = color.scenario(instrumented, origin, bundle.source, 'chromium', 1440, 'light');
+              scenario.catch(() => {});
+              try {
+                record.scenario.result = await Promise.race([
+                  scenario,
+                  new Promise((_, reject) => {
+                    timer = setTimeout(() => {
+                      record.scenario.timedOut = true;
+                      reject(Error('diagnostic scenario75s deadline'));
+                    }, 75000);
+                  }),
+                ]);
+                record.scenario.pass = true;
+              } catch (error) {
+                record.scenario.error = error.stack;
+                record.scenario.edgeInput = error.edgeInput || null;
+              } finally {
+                clearTimeout(timer);
+                record.scenario.settled = !record.scenario.timedOut;
+              }
+            } catch (error) {
+              record.primaryError = error.stack;
+              throw error;
+            } finally {
+              if (browser) {
+                try {
+                  await browser.close();
+                  record.cleanup.browser = true;
+                } catch (error) {
+                  record.collectionErrors.push({
+                    label: 'browser-cleanup',
+                    error: error.stack,
+                  });
+                }
+              }
+              try {
+                record.sourceAfter = identity();
+                assert.deepEqual(record.sourceAfter, record.sourceBefore);
+              } catch (error) {
+                record.collectionErrors.push({ label: 'source-after', error: error.stack });
+              }
+              record.completed =
+                record.scenario.settled &&
+                record.steps.length > 0 &&
+                record.steps.every((step) => step.before?.route && step.after?.route) &&
+                record.pages.length > 0 &&
+                record.pages.every(
+                  (p) =>
+                    p?.final?.route &&
+                    Number.isFinite(p.final.time) &&
+                    Number.isFinite(p.final.range) &&
+                    p?.observation &&
+                    !p.observation.truncated &&
+                    p.observation.errors.length === 0
+                ) &&
+                record.collectionErrors.length === 0 &&
+                record.cleanup.browser &&
+                record.cleanup.contexts.length === 1 &&
+                record.cleanup.contexts[0];
+              save();
+            }
+            assert.equal(record.completed, true, 'geometry diagnostic incomplete');
             console.log(
               JSON.stringify({
                 completed: record.completed,
-                acceptance: false,
-                canonicalBudgets: record.canonical.budgets,
+                scenarioPass: record.scenario.pass,
                 launches: record.launches,
+                steps: record.steps.length,
+                acceptance: false,
               })
             );
           }
           main().catch((error) => {
             record.completed = false;
-            record.errors.push(error.stack);
-            save();
+            record.collectionErrors.push({ label: 'main', error: error.stack });
+            try {
+              save();
+            } catch (saveError) {
+              console.error(saveError.stack);
+            }
             console.error(error.stack);
             process.exitCode = 1;
           });
@@ -551,7 +500,7 @@ jobs:
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always()
         with:
-          name: issue122-research-presentation-${{ github.run_id }}-${{ github.run_attempt }}
-          path: ${{ runner.temp }}/research-presentation/
+          name: issue122-desktop-geometry-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/desktop-geometry/
           if-no-files-found: warn
           retention-days: 30
