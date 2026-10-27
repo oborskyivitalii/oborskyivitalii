@@ -1626,3 +1626,199 @@ ownerstage before concreteexactheadtrust/App/normalprotectedmerge/postmerge.
 This real integration repair is not a repositoryM or proof-only prerequisite.
 FailedPR149/433 remains frozen; freshC2/C3 follow a delivered compatiblebaseline.
 OriginalAC03/06/08/literalM/productionwithoutarticle remain open.
+
+## PR155 native owner completion — 27 October 2026
+
+Published PR155 exact683807343b85ead73827ada2266d55a6f9c54bac/tree
+385a3ad32de358b59e7f0d382886eab4ff95c665, directparent protectedmain
+3d33a35565209d677dc7d86e806a71ff669cb823. Locald97c has identical complete
+tree; reviewed24ee differs only in3verbatimreceipt/MEMORY/derivedRI paths.
+All4actualroles independently accept publishedsource/evidence boundaries.
+Production/checker/tests/frame/19pins/23checksumdispositions remain reviewedbytes.
+
+Draft40532820019 terminalSUCCESS. ReadyBasic40533395439 original12747715806
+ZIP19449/SHA09c819ecf2c522431b5892af6cceee61a5e23908467b4bb6e314812c20cf5a3f
+verifies9modules176/176zeroall57042ms/cleanbeforeafter; correctedfault and
+freshCLI cases appear in actualTAP. RI40533395154/owning40533395206 PASS.
+Ready40533395407 build/publish/smoke122293282515 PASS, but initialadmission
+122292016196 remains actualmissing-stage FAIL. Original12747675575 retained.
+Preview12748170864 has4generic+2Colorrows/16HTTP; independentlyreadby4roles.
+Protected-base selector12747905690 selects fullwebsite/control obligations.
+
+Owner request6446562127 creates solefull40534615837/1/controller3d33,
+terminalSUCCESS15:48:20Z→16:09:41Z=21m21. Fifteen-minute operationaltarget
+MISS; no waiver/unchangednative retry. Sourcepreflight APIwindow15:49:59→
+15:53:49; worker130571ms/300000,wrapper130645/330000. Browserjob15:55:26→
+16:06:15 includes234s before regression15:59:20→16:06:09, then6sfinalization.
+Initialrun→targetqueue3s; sourcebuild15:49:01→15:53:58 includes58sbeforeguards.
+These distinct APIwindows/monotonicmeasurements do not sum paralleljobs.
+
+Originalpreflight12748790971 ZIP317272/SHA256
+8c97ab8b89d34ad0dd5beee64b0b61640102d77aceed795cba9c101853fa0f21:
+68members/67reporthashes and26guards PASS. Actual74modules1136/1136zeroall,
+cleanexactbeforeafter;139Python20.849s;SEO3000ms/security73160/180000ms PASS.
+All4roles independentlyreadactualpreflight scope; Code/WB existingvalidators
+pass. Native6981reviewedsecretcandidates/308generated admissions retained.
+SeparateextraWB localwhole-secret reclassification stopped at existingoffline
+bundleprecondition; no proven cause/retry/bypass, never relabellednativefailure
+or completedlocalclassification. Final changed-file scan stays1852=1816verifiedRI
++36exactreviewed/0residual atlocald97, complete treeidenticalpublished6838.
+
+Full public12748790983 ZIP1819528/SHA256
+122753af678b428fd920b16114a1afe33e4d2cd57c5f79d71e7d9791f961c691,
+public48a5c63c8ee99f6cee77b9bd03995974c8186b9093ea66145af6003d85abd1a8.
+Package12748236574 ZIP708833/SHA4c29013a7b95464aa7c5c8db1def0a96500d6036af40fdc95e02e09331ebd5ed,
+package573cbbe91a02f782d3573ea923d99a70d9e19f4b1350e4bb2cf430e69b450e4d.
+Ready/full identities match. Publictransport initialIncompleteRead867626/1819528
+was retained; freshURL reacquired sameoriginalZIP and verifiedAPIbytes/SHA/CRC.
+No native rerun. Other collectorpath/type assumptions are localprocessingonly.
+
+Hosted12749091179 validates30rows. Browser12748188016 ZIP4835525/SHA
+3650aac91b840f003fd41e1adbe9ebaf40838144f69e306e825b72e3edaae3a1:
+4normal+2noCanvasjourneys/20+10routeobservations;2navigation/10failure/7analytics/
+2Colorcases PASS. CPU4/2routes/8windows/4cold-warmflights/2singlemobileLH PASS.
+Research LCP1947/TBT65ms;Writing2325/121.5ms versusunchanged2500/200ms.
+Fourrawtrace/log hashes/sizes agree. Chromium153.0.8010.12/Firefox155.0 pinned;
+setup12749290649 has0priorconsumerlaunches. Operator/WB actualreadbacks ACCEPT.
+
+Gate12749216762 ZIP3689/SHAbd5cd70e41e46d2fbec9507c3d8e0cd72c37b529596558ba23bc8c46a935438f
+is passingstaging-gate, allauthorityflagsfalse;7reporthashes/reportsDigest
+044974bd09a7f326034c5d71ef16c9e89eadd8d3216f1ee1361e8909bf6997fb verify.
+Optionalexhaustive/device/soak/retention remainunperformed, not release medians.
+Promotion122307212146 andexactheadadmission122308246226 PASS. Originalpromotion
+12748408749 retains2ALIAS_BYTES_PENDING polls then3rd18byte/statusobservations
+PASS4745.295ms; final16HTTPinventoryseparate. Recovery12748719311 is source/
+package-boundrecord; no rollback performed. ActualActions15368 checkpoint
+122296687042 SUCCESS/external40534615837/1/base3d33, independentlyverifiedCode.
+
+Main-owned independentreceipt producer122308694046 SUCCESS, original12748443966
+ZIP401/SHA619d3a6a94af1888c84e2664eabb3a1a852185a833ef24c509aea67be75ba57e
+bindsPR155/head6838/main3d33/run40534615837/1. Existingmandatory12job/stageReceipt/
+promotionGate validators PASS; Requirements/Code independentlyreadreceipt.
+PRdescription/admission+owningrefresh follows actualownercompletion. Newexact6838
+maintainertrust/App5453173/protectedmerge/postmerge remainpending; old1341trust
+doesnottransfer. Main3d33/production676e/PR79Draft and failedPR149Draft433 unchanged.
+
+Requirements independentlyreconciles minimumfreshsequence afteracceptedS155:
+C2fromnewmain carriesexactC1Talks plusHome, builtindex,talks/12browserrows,
+andmust authenticateS155/history/platform/currentgate itself. Oldb15/C1native
+stayshistoricalS154, notS155baseline; freshC2 is notHome-only versusS155.
+C3directchild selectivelyrestoresTalks tooriginal/S155 andpreservesexactC2rawHome.
+No extraC1native prerequisite exists incurrentselector/originalAC. LiteralM/
+contracts/profile/dispositions/leases/concurrency/timings/originalAC03/06/08
+remainopen. Then exact-bound platform/readerproduction withoutarticle and its
+activationdecision. Thisnativecompletionreceipt is not acceptedwebsite/sourceM.
+
+Finalsamehead description/admissionrefresh40538849729 terminalSUCCESS;
+owning40538849480 terminalSUCCESS, original12750310403 ZIP7848/SHA
+9368f956fdf2435f389bf53f82fd06b023e99b34a774fea6b813840f29d11a83 verifies
+clean6838/tree385a,automation_pass/evidence_valid true,errors[],closurefalse.
+Prior40538753988 refresh was cancelled by descriptionwording correction;
+itsowning40538753775 passed. No source/fullowner campaign rerun. Finalrefresh
+onlyadmissionruns; websitebuild/publish/smoke/full/promote are intentionallyskipped.
+Newexact6838ownertrust/App/protectedmerge/postmerge stillpending.
+
+## PR155 protected delivery completion — 27 October 2026
+
+Maintainer confirmed continuing after the exact6838trust/App+protectedmerge
+request; decision recordedPR155comment6447478064. Samehead/main/nativegates
+revalidated. ExistingGitHubworkflowdispatch used main/pr155/reviewed_sha
+683807343b85ead73827ada2266d55a6f9c54bac, no newissuer/settings/protection change.
+App40541248717/1 terminalSUCCESS atcontroller3d33; actualcheck122320506533
+completedSUCCESS bynumericApp5453173/head6838/external40541248717/1/155.
+Originalsnapshot12751460032 ZIP18235/SHA256
+edf5a82f7b5e20d60669aae75732c6f79f8e573029e615e9118fa802e3e17db2 verifies
+CRC/exact155.json. Code independentlyrecomputed398prechangecontrolentries and
+6changedcontrols, matchingexactreviewedSHA/owner/fullroute/blockers[]. Existing
+issuedCheck validator passes actualnativeAPI/producer/run/attempt/snapshot.
+
+PostAppPRadmission40541832034 andowning40541831904 SUCCESS. Premergefreshlease:
+sourcechecks122292014188,RI122292011870,Stagingadmission122321962122,
+genuineApp122320506533 andowning122321959288 allcompletedSUCCESS at6838
+with expectednumericproducers. Ruleset24568553 active/strictrequiredchecks=true/
+bypassactors[] andall5requirementspreserved. Normal expected-head protectedmerge
+136af46947aaef0b522a0b6621f36bb3bd348a3a hasexactparents
+[3d33a35565209d677dc7d86e806a71ff669cb823,683807343b85ead73827ada2266d55a6f9c54bac]
+andtestedtree385a3ad32de358b59e7f0d382886eab4ff95c665.
+
+Postmerge40542171686/1 andmainRI40542170671 terminalSUCCESS. Originalnative
+identity12750119956 ZIP424/SHA256
+4be566e4e86680b91df8114243ffb93d79e84da9de7c1881ef8d03fa57f1c445/CRC
+bindstested6838→merged136a/tree385a/owner40534615837/1/publicBytesUnchangedtrue.
+ClosedPRworkflowAPIhead remains6838; actualmergeGitobject/context is136a.
+Existingpolicy.authenticate+baseline.inspectAccepted runreadonly on8actual
+GitHubAPIresponses/originalnativepublic+gate passes/reusabletrue: acceptedS155
+retainsoriginaltested6838/controller3d33/owner40534615837/1/public48a5…/
+package573c…/generatione8cad…. No reports orproduceridentity relabelled at136a.
+IndependentWhitebox verifiesnormalparents/tree/ZIPidentity/genuineApp and
+existingauth/reuse validators againstexplicitimmutableobjects. Localreceiptf09
+was not substituted for tested6838. This is verification, never newnativeCI.
+
+Maintainer's timingclarification: total15minuteCI target is operationalfeedback
+forcriticalpath/setup/slowtest/coverage analysis, not independentmergeblocker
+where actualmandatorytest/sitebudgets pass. Observed21m21 staysrecorded. No
+waiver ofsource300s+30sgrace/security180s/sitebudgets; no CIoptimization/test
+coverage change made. ActualstagingLCP1947/2325ms,TBT65/121.5ms passedunchanged
+2500/200ms limits in2singletrials, neverproduction/releasemedian evidence.
+
+Thisboundediteration completes PR155App/protectedmerge/postmerge andS155
+authentication. FreshC2/C3 are notstarted/accepted. Requirements independently
+reaffirms freshC2bothindex+talks/12rows→C3selectiveTalks/preserveHome; no extraC1
+nativeprerequisite. FailedPR149Draft433/original40521370776 andhistoricalC1b15
+remainexact. OriginalAC03/06/08/literalM/contracts/profiles/provenance/concurrency/
+leases/timings remainopen. Production676e/PR79Draft/newarticle unchanged.
+
+## S155 repository handoff maintenance preflight — 27 October 2026
+
+After actualPR155 delivery, main136af still carries its pre-native preparation
+handoff: HomeSEOrepair prepared, exactheadtrust/nativecontrol pending, and S154
+as the newest accepted platform. This is now a materially stale operational
+handoff for the next content/recovery phase. Existingreceipt979b9f3/tree68f79f
+already records the realS155/native/App/protectedmerge/postmerge/timing decision
+and remaining work, together with deterministicRI. It has not been delivered
+to main. AGENTS15 and CONTRIBUTING's handoff protocol require replacing stale
+continuity and recording completed outcomes; the need exists independently of M.
+
+Requirements154 independentlyinspected the exactmain→receipt diff and original
+PR152purpose: ACCEPT this existing substantive handoff as repository maintenance,
+conditional on ordinary source/review/App/protectedmerge/postmerge delivery.
+Protected-base selection at136af is complete/repositoryOnly=true/control=false/
+unresolved[] for exactlyMEMORY/currentreviewowner/derivedagent-context, D01/D02.
+No website source/output/control/policy/rights/article/production changes belong
+in this maintenance. Do not add a separate fake source change merely for M.
+
+The receipt itself remains a historical evidence checkpoint, not acceptance.
+Only an actual new ordinary protected repository merge with genuineApp and
+postmerge/unchangedS155 authentication may become M in subsequent contenthistory.
+FreshC2 must then use that actual protected main while preserving original
+acceptedS155tested6838/owner40534615837/1. No M/nativecontent acceptance is
+asserted at this preparation. Existingfailed433 andhistoricalC1b15 stay exact.
+
+CS01/04/05/08/09/10 apply to canonicaldatedowner/handoff direction, accurate
+source/artifact status, derivedRI and preservation of unchanged pre-change
+checks. Relevant repository formatting/architecture/lint/RI/coupling/owning and
+source-profile obligations remain; websiteBasic/build/preview/staging are
+inapplicable only if trusted native classification confirms repository-only.
+Four current independent nonauthoring reviews and native delivery are pending.
+
+IndependentWhitebox found an information ambiguity at04cbd7c/treee30e:
+MEMORY's compact “Nevermerge or/stage markedtestcontent” intended to forbid
+the stable owner /stage command but can be read as forbidding the authorized
+isolated staging itself. Clarify explicitly: isolatedstaging-regression allowed;
+nevermerge markers orpromote them tostable/production. No executionpolicy or
+permission changes. Requirements/Operator source04 scopedACCEPT is retained;
+allcurrentrole correctionreadbacks/native delivery remainpending.
+Local04RI/coupling17/format532/architecture/diff/fiveowningchecks PASS. Additional
+Node selection is explicitly not-applicable/0modules under repository-only,
+not a synthetic testpass; Python/RI/owning retain their own actualevidence.
+
+All4actualseparate nonauthoring roles ACCEPT corrected096715f31c2e8a75e8a97a9dedf5997403ecc5ad/
+treecaf5cdf2d950b31dbb03588969e5ddafbe2fcfc7 againstprotected136af:
+Requirements154 necessity/scope/originalAC/productionboundary; Code154 complete
+diff/398unchangedcontrols/actualS155auth; Whitebox154 independentlane/inputhash/
+RIdigest/unchangedplatform proof andwordingcorrection; Operator154 actualhandoff
+journey/provenance/currentstatus/websiteinapplicability andcorrectionreadback.
+No role accepts its ownauthoredsource. Prior04scope remains historical.
+Only theseverbatimreceipts/currenthandoff anddeterministicRI follow reviewed096.
+Publishedhead must retain complete reviewedimplementation and run its own
+native repository obligations/App/protectedmerge/postmerge. No M counted yet.
