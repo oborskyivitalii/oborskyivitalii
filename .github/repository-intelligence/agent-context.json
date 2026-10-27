@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "98a5e779243bb8efd112f02a89b39c85978b258c8f8e234b605a9b65719eb25a",
+    "digest": "43f1925edc14eaecae21daf52455ba01440231676b4b760cd965f20742bfcbc8",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -356,7 +356,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "5ba4f5d55bb841a635486145b7c199a8e5b511512681dc6b65b07ac05669f6c4"
+        "sha256": "cd94f14b421739e067c791b367681e9a3f2be0b4e35dc575d432e46f121d4c1b"
       },
       {
         "path": "NOTICE.md",
@@ -1005,7 +1005,7 @@
       {
         "path": "review/issue-122/2026-10-24-r3-runtime-compatibility.md",
         "identity_mode": "content",
-        "sha256": "2216141ff64a0d6d117855fd43ede410cf1931a6308a842fe54b37a68b3eb695"
+        "sha256": "1d43164572bee766c577f1ab6207b6658ccfc8d6cb212067cc05bbf37a1e671c"
       },
       {
         "path": "review/issue-122/2026-10-25-f5-exact-checksum-proof.json.gz",
@@ -7250,7 +7250,7 @@
       {
         "path": "tests/content-baseline.test.cjs",
         "identity_mode": "content",
-        "sha256": "530a9b735bcefa4678a724d41236841b496c3995aedf3f8083b48ab2d77325bc"
+        "sha256": "81d514a4662d52addeb9c874930abf0db69dc4b3d5a0e2a3f2824f26dd1c3281"
       },
       {
         "path": "tests/content-delivery.test.cjs",

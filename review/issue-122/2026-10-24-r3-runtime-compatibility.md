@@ -873,3 +873,62 @@ inherit no4d48native acceptance and do not reset the failed campaign allocation.
 Next decision: include this exact local line in PR151, then fresh current-source
 prerequisites and exactly one complete corrected-source owner campaign, stopping
 on failure. No new prerequisite PR or cleanup-retry loop is proposed.
+
+
+## Authorized fixture isolation integration — 27 October 2026
+
+The maintainer explicitly answered **Так давай** to the exact one-line fixture
+proposal and one new complete source-corrected owner campaign.
+[Issue decision6434981240](https://github.com/oborskyivitalii/oborskyivitalii/issues/122#issuecomment-6434981240)
+and [PR decision6434981569](https://github.com/oborskyivitalii/oborskyivitalii/pull/151#issuecomment-6434981569)
+supersede the previous two-file-only scope only for this additional test-fixture
+line. The preceding local-only sections retain the historical proposal and all
+original failed/pass results; they are not the present authorization state.
+
+Live verified base main83591bdf and clean receipt
+`a41515c223b9ac0d99942c79c5d0f6837eed46e6`, complete tree
+`ab0ad715b32cbc7f1c5dc1425a8cdc48701cf1e8`, match the owning PR151. Its active
+source/test/site bytes are identical to tested4d48 before this integration.
+Use the exact reviewed local proposal, fileSHA256
+`81d514a4662d52addeb9c874930abf0db69dc4b3d5a0e2a3f2824f26dd1c3281`,
+default-context diffSHA256
+`494b4215f2d1a1bda395648967129493ee3f5951803d9d9bfd7326b903c45f76`.
+Only the fixture-local config line is approved active source in this iteration;
+review/MEMORY/deterministic RI remain receipts.
+
+After current-candidate reviews and fresh actual-source Basic/RI/owning/preview
+prerequisites pass, use exactly one new complete owner-stage campaign. Stop on
+failure and diagnose; no failed-job rerun, unchanged retry allocation or waiver.
+Prior40457192061 remains failed/consumed and its original artifact identity
+is unchanged. The new authorization is unused until the exact owner command.
+
+This isolates an observed automatic maintenance path; the original ENOTEMPTY
+was not reproduced and its native cause remains unproved. Real Git/history
+assertions, fatal cleanup, memberships and deadlines remain. No cleanup retry
+or swallowed failure, extraGC configuration, runtime/CSS or production change.
+Human exact-head control attestation/App/protected merge/postmerge and later
+PR150→freshS/genuineM→testC1/C2/C3 remain separate; AC03/06/08 stay open.
+
+### Completed authorized integration checks and reviews
+
+After requirements independently read live decisions6434981240/6434981569, copy
+the exact approved test file onto currenta41515c2. File/diff SHA256 match the
+prepared proposal exactly. Fresh local complete affected module passes13/13,
+zero fail/skip/cancel/todo,12827.994ms; TAP SHA256
+`6da2f15bcba55e4fc76c7f02cf77a22ed49089c947ff940331d624dcc1b7055a`.
+Basic5routes/16theme+archive/10flight, locked touched ESLint0warnings, Prettier,
+bounded style143files/0legacy occurrences and diff check pass. Node24.22.1 and
+Python3.12.14; these are dirty-source local observations, not native admission.
+
+| Distinct final integration reviewer | Completed actual delta review |
+| --- | --- |
+| `/root/requirements` |ACCEPT before implementation and final integrated source/hash/13test output; exact scope and one new unused campaign distinguished from failed40457192061, original ACs/human gates retained. |
+| `/root/resume_code_review` |ACCEPT actual source/decision/receipt delta; syntax/diff checks pass, no blocking design/style/scope finding. Its initial snapshot had local executions pending, so it supplies no fabricated test pass. |
+| `/root/resume_whitebox` |ACCEPT actual file/diff hashes and completed13/13 current module output; strict cleanup/history and selection/budget invariants preserved. Prior3→0trace remains bound to its original prepared source; no new browser/full run. |
+| `/root/resume_operator_qa` |ACCEPT actual one-line integration, fatal cleanup/assertions, completed13/13 fresh output and honest operator authorization/failure states. No additional test/browser execution or edit. |
+
+All four roles independently inspect actual integrated sources. Their conclusions
+do not prove native ENOTEMPTY causality or exact-head human trust. Restore local
+origin/main to live83591bdf for checks; this changes no tracked source. Regenerate
+and verify RI and coupling before committing; current-source native prerequisites
+and the authorized unused complete owner campaign follow publication.
