@@ -2683,3 +2683,101 @@ C1/failedC2/acceptedC2/recoveredC3 archives and test branch remain.
 This receipt-only checkpoint and derived handoff/RI do not alter main or release
 source9318 and require no prerequisite release PR. Close #122 after recording
 the actual AC08 checkbox/current status and final evidence in the owner.
+
+## Authorized remote branch cleanup — 27 October 2026
+
+After the read-only branch audit, the maintainer instructed “Роби” for the
+recommended first batch:51 branch tips already reachable from main and2
+duplicates retained by other exact archive/checkpoint refs. No second archival
+batch, article publication, PR closure or source/runtime change is included.
+This is postdelivery housekeeping in #122; original completed ACs stay closed.
+
+Original before-map81, reviewed plan SHA256
+d4fcd4e28e299145ba54ecc83f0df836950a8dddade27be362a966b8863030ca.
+All four separate pr_housekeeping_requirements/code/whitebox/operator agents
+actually inspected the53-name allowlist,51 actual ancestry checks,2 retention
+relations, current refs and4 open PR dependencies. All ACCEPT before action.
+
+The GitHub connector exposes no delete-ref operation. Existing shell push has
+no authentication; it was not retried. Native signed-in GitHub All branches UI
+performed53 individual allowlisted deletions; each row visibly became Deleted
+with Restore. No atomic expected-SHA lease is claimed for this UI. Complete
+predelete refs and mid-operation refs matched expected SHAs; final remote
+comparison establishes the exact scope and unchanged survivors. No error or
+extra deletion was observed.
+
+Final remote map SHA256
+0fb0806f1112e2f5a2723ac827719cb14062418f475d8be0679cd7256d9d665f
+contains exactly28refs = original81 minus the exact53below. Every remaining
+SHA is unchanged: main/production9318, four active PR branches and22 archived/
+deferred evidence refs. The duplicate07b remains in archiveC3; checkpoint820ee
+remains an ancestor of retained final-status15cd. Public production/tag and
+release content are unaffected. Native UI screenshot is retained separately.
+
+Each of the same four roles performed a new independent final execution:
+Requirements ACCEPT exact authorized outcome; Code ACCEPT fresh live map and
+PR dependencies; Whitebox ACCEPT full set/SHA invariants; Operator ACCEPT fresh
+Git/API state and user-visible four-PR boundaries. PR79/107/110/117 remain open/
+Draft/unmerged, base main, unchanged heads10a1/50ef/9136/8d21. No runtime/source
+tests apply to ref deletion; no build, staging or release was run.
+
+| Removed branch | Exact predelete SHA retained in main or designated keeper |
+| --- | --- |
+| `hotfix/issue-118-arkadiy-name` | `1974446613dc7402141ddb94c546127869f1e44b` |
+| `issue-122-final-contracts-20261027` | `e882f61d96470019957a46e9f476871089e4d722` |
+| `issue-122-home-content-seo-20261027` | `683807343b85ead73827ada2266d55a6f9c54bac` |
+| `issue-122-s155-handoff-20261027` | `901212c1cb5e491b021a727e3a8ff6b4daf08df6` |
+| `work/analytics-search-102-20261018` | `5c973632e7a580da4a181a439253365ad930c1e1` |
+| `work/css-clock-39` | `7de568e1ae97d3d87fbe9a84380c5d9e6e0063b8` |
+| `work/github-pages-domains-39` | `61a83b225e4f654f5f9af152b1a96a44f88823a8` |
+| `work/issue-108-pmday-events-20261019` | `e73f592c5547957f200cbaeb931e62b86d4561bf` |
+| `work/issue-114-iteration-review` | `1a4fb7478b3bd777eb984d3f72d8e3711424b267` |
+| `work/issue-120-independent-qa` | `588225faee192c6ffe1c33f7fd32cf4f4baa174d` |
+| `work/issue-122-browser-archives-20261026` | `8d87965dd5e433be6bf261f355e9bc5b8ce1e4ed` |
+| `work/issue-122-content-ci-fix-20261026` | `11624a452f009f59d58b0c19414c6918a15be116` |
+| `work/issue-122-content-gate-cli-fix` | `1341991e8b1ffd4e0cccd1b22ac274b80a8990b0` |
+| `work/issue-122-control-runner-20261024` | `c2b11d832d218297a6e817fe138e1e326962c5dd` |
+| `work/issue-122-delivery-handoff-20261027` | `cc8d210815231506125bdcab25dfea1b13afc6de` |
+| `work/issue-122-fast-uri-repair-20261024` | `ec5d4a2ff006675e58f3bb9a488a9794e8c21c67` |
+| `work/issue-122-lock-prototype-20261024` | `1f270e0def193b65362a73382ac28f77cd6c2aca` |
+| `work/issue-122-platform-reader-release-20261027` | `439b215f7c80e62e0b9ee1c6b8221fdbf357eea1` |
+| `work/issue-122-r1-manual-admission-20261024` | `7eea54dfea73eb391afd5b636e6e6a6d821a44e2` |
+| `work/issue-122-r2-repository-acceptance-20261024` | `72c27a5f37d96bc826d11562a5a3a9b2b0aaf104` |
+| `work/issue-122-r2-repository-lane-20261024` | `de47a7d7805f71f511850d3d54daecf4a9dcf7c7` |
+| `work/issue-122-r3-content-route-20261024` | `5a8998937d62d96fb4deb6ec5c27e64982a08070` |
+| `work/issue-122-r3-platform-20261025` | `f2f2ac25b6f833cbc547a6156d3f8c8ccaa3de50` |
+| `work/issue-122-r3-runtime-compat-20261024` | `5f60821bb746935559f900f55e79e1bb75fecc98` |
+| `work/issue-122-repository-handoff-20261026` | `30e76639dff5de78b277f794f202c1a0465f472e` |
+| `work/issue-122-t01-review-template` | `588b65b7d5140b670a61b6a3d131ae5bd6eab1fb` |
+| `work/issue-122-t02-routing-contract` | `f8bc82abaea25e7c5f765d7b142797ea246fd810` |
+| `work/issue-122-t02p-otel-repair` | `d046fc92e043f42c67805b265ecbc5fe50bd5151` |
+| `work/issue-122-t03-rename-selection` | `6d2bd63ee947f19fe319137229007fd3a5a96419` |
+| `work/issue-122-t03r-controller-bootstrap` | `8c3fa30b4758a8a244fed77f9fae408b246e1acb` |
+| `work/issue-122-t04-observer` | `dc81c0c64dc00e38afb4241f5c6afaa8b25b0cc2` |
+| `work/issue-122-t04-ubuntu-setup` | `678fd18c5f02bcb5dda8093c03edf71ba1c3fb03` |
+| `work/issue-122-t05-admission` | `24090669a8833aa35967988774456ea801f1d98e` |
+| `work/issue-122-writing-compatibility-20261026` | `1d71517b3e2771acfef4675ae6561750b9950c8d` |
+| `work/issue-126-devcon-announcement` | `418a7d9f93de523e4bdb0b27de8306033cb22ceb` |
+| `work/issue-126-production-retention` | `dc8f3d3902e46ec3255b0060c7be78ba4fd4deb9` |
+| `work/issue-5-perf-checkpoint-20261021` | `92b671f9d94b1be2e7ab9735e6fe267deb6c4aff` |
+| `work/issue-5-reader-loading-checkpoint-20261021` | `7fbb0bc2320b2758f70c806057275878cb263c54` |
+| `work/issue-5-staging-controller-20261020` | `6aae30abf301d71c7bd7eb4813ccd26f6f03cfda` |
+| `work/pr40-canonical-cutover-39` | `2b96ba1b33d678f2ae389ef0a4cbc2b05568d184` |
+| `work/pr40-production-finalization-39` | `8a1baf86ceb1a91a4fc891368f77e22abba2057e` |
+| `work/pr40-writing-identities-39` | `53f1ec3fc00861fb02bd8cdc46423ea12daebbde` |
+| `work/production-analytics-39` | `31f0a57a85091a4004c16bd271f2eb9f6d3a7eae` |
+| `work/production-context-39` | `a19b1c3bb6fb228dba5d6c31c967865f23db499c` |
+| `work/production-deployment-39` | `248e82e2bfe4e65a1106ce178e945dd8a6ef3361` |
+| `work/production-draft-release-39` | `f2ed573428251e44bf38971d85839ba296389bdd` |
+| `work/production-label-recovery-39` | `2451e06ca99665579e4c8c4e361aa7b2fc1e3f49` |
+| `work/production-label-schema-39` | `5a72bcb89df131e01f6eafa43bb36db5481bdfed` |
+| `work/production-readiness-39` | `9aaf0608c2ec46d636dbf406ab7ef45232d52155` |
+| `work/research-fallback-39` | `bc9aa9e45883512ddeac0d56634469260622942d` |
+| `work/staging-led-production-39` | `79a7c9892dc831d6c6e794c968f4d64b3dfd6fcf` |
+| `checkpoint/issue-122-pr157-staged-20261027` | `820eea5e9ed50cf4db37a145c6636671e11d9df4` |
+| `work/issue-122-content-test-20261026` | `07b59003ec74882750faa674cb74b9f1d4a7ccc1` |
+
+Twenty-two archive/deferred branches remain for a separate decision. This
+receipt-only review/MEMORY/derived-RI update may advance the existing receipt
+branch after the28-ref unchanged-map assertion; it creates no new branch or
+PR and does not change main/production or reinterpret the53 deletion result.

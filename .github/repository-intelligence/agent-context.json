@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "8af8be5ce56a3d314103443d77714beb3e349d064c5a9d1792f42b15bb508521",
+    "digest": "1ce23eb89ca7cd1dc7eb9623558da271200523e8f10cf63c2b65544154820e7c",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -356,7 +356,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "90729256921664b17bb66cb354273472f2b4750b304aef84afa5dc7bef51a8a9"
+        "sha256": "8b79106e8a6fa05cf5c775dd0dfd04b018e6ab7d662dcc1945ac6975c0f822c2"
       },
       {
         "path": "NOTICE.md",
@@ -1030,7 +1030,7 @@
       {
         "path": "review/issue-122/2026-10-26-content-ci.md",
         "identity_mode": "content",
-        "sha256": "1444a669833ba3965a814218a33396b11f182d9a1641804fc7a84782d0c9c05d"
+        "sha256": "f5177e710b65b30205768cb711f6d2905324bad61fdba14ba49e2fa62359184f"
       },
       {
         "path": "review/issue-122/2026-10-26-writing-checksum-proof.json.gz",
