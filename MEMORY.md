@@ -4,7 +4,7 @@ Dated continuity, not live authority. Last verified: **2026-10-27**.
 
 ## Snapshot
 
-- Owner #122 open; PR157 delivered as normal protected main merge
+- Owner #122 completed, including actual production publication; PR157 normal main merge
   9318a54a684079bb23e5dadcfa4bf705d6783dd0, parents1689+testedE882,
   exact tested treecfffed1f2b5619cb1476beafa658be9cc2c04fe2.
   Maintainer exact trust6452321830; genuineApp40575067246/1/check122439734348
@@ -58,8 +58,12 @@ Dated continuity, not live authority. Last verified: **2026-10-27**.
   Gate12766478272; Operator independent ACCEPT; root edition/rights/package/gate pass.
   Preview https://2aed4427.oborskyi-author-ci-staging.pages.dev/ verified.
   Exact publicationBase prod-2026-10-23.2/676e/public1b4f08…/package4e4fb1…/PR129.
-- Production revalidated676e3ab6c51f2290df4c44c7d5eac49a508d02fc /
-  prod-2026-10-23.2. PR79 remains separate Draft10a1e7d9/unpublished.
+- Production now9318a54a684079bb23e5dadcfa4bf705d6783dd0/prod-2026-10-27.1,
+  native40583084401/1 SUCCESS6m43, immutable release425981285/deployment7370358056.
+  Exact inventory acceptance/activation6453408715; external rights pass true,
+  frozen report remains unchanged. Pages70/policy69/browser4/Color2 PASS.
+  PR79 renamed article-publication scope, Draft10a1e7d9/unpublished; old branch
+  still contains inherited platform changes and needs current-main reconciliation.
 
 ## Decisions
 
@@ -73,8 +77,8 @@ Dated continuity, not live authority. Last verified: **2026-10-27**.
 - Exact E882 trust is delivered; it supplies no new production inventory approval.
   Other heads retain exact-head trust, genuine App and protected merge/postmerge.
   Keep source/main/predecessor leases and rights/editorial acceptance.
-- AC01–07 accepted; AC03/06 independently reconciled after actual controlled merge.
-  AC08/production remains open. No silent AC amendment,
+- All AC01–08 accepted after actual protected delivery and production/live proof.
+  No silent AC amendment,
   fabricated M, fixture-only native claim or whole-package rollback substitution.
 
 ## Open work
@@ -83,20 +87,15 @@ Dated continuity, not live authority. Last verified: **2026-10-27**.
   now passes using S155 through M156: index built/four reused/eight Home/Writing
   rows, raw Home=C2/Talks=S155 and current hosted Talks bytes. No C2-baseline composition,
   Talks-only native rebuild, C2 staging predecessor lease or universal C2 snapshot retention.
-- Obtain maintainer acceptance of actual frozen rights digest above and explicit
-  activation of prod-2026-10-27.1 (absent when checked); no article publication.
-  Root legal owners/policy/old portrait/advisor grounds unchanged; rights source
-  adds36unshipped pending article inputs+1reader diagram. No blanket new license.
-- Keep main fixed while freezing that exact accepted current tree, inventorying
-  rights and using protected production publisher/live verification without article.
+- No remaining #122 delivery action. PR79 article is a separate future task;
+  retain its authored work/history while reconciling onto accepted platform.
+  PR149 remains frozen Draft07b as completed test evidence; never merge markers.
 
 ## Next session
 
-1. Revalidate main9318, frozen40576181118/1 and active production676e/prod.2.
-2. Obtain actual inventory-bound rights/activation decision; record it durably.
-3. Existing site-production publish: tagprod-2026-10-27.1/run40576181118/PR157,
-   source/variant-bound evidence; all first-release/recovery inputs empty.
-4. Authenticate predecessor/archive, publish/live verify, then reconcile AC08/closure.
+1. Revalidate actual production9318/prod-2026-10-27.1/native40583084401 if continuing.
+2. Follow the user's next task; PR79 article remains unpublished and separate.
+3. Do not restart completed content/test or production campaigns.
 
 ## Maintenance
 
@@ -111,6 +110,7 @@ Dated continuity, not live authority. Last verified: **2026-10-27**.
 - Originals/API under /tmp/issue122-c2-s155/native, /tmp/issue122-home-seo/native,
   /tmp/issue122-m155/native; C3 /tmp/issue122-c3-s155; final source /tmp/issue122-final-contracts.
   Current App/merge /tmp/issue122-pr157-delivery; freeze /tmp/issue122-pr157-production.
+  Production originals /tmp/issue122-pr157-publication/native and release-assets.
   Read-only API replay is not a new native producer or deployment authority.
 - This separate checkpoint is not a release source. Main9318 stays fixed through
   frozen rights/activation; do not merge receipt metadata before publication.

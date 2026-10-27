@@ -2591,3 +2591,72 @@ has occurred; protected production remains676e/prod-2026-10-23.2.
 This checkpoint changes only existing review/MEMORY/derived RI and must not merge
 into main before publication. No new code/test/registry/scanner/exception, content
 campaign or prerequisite PR is introduced.
+
+## Production delivered and PR dispositions — 27 October 2026
+
+Maintainer explicitly accepts the presented frozen inventory/activation, replying
+"Так" before asking about PR149/PR79. Durable decision6453408715 binds exact9318/
+cfff/public13b81781…/inventory7c08c845…/frozen40576181118/1/PR157 and authorizes
+prod-2026-10-27.1 without a new article. External rights evidence has pass=true,
+revieweroborskyivitalii/that actual decision URL; frozen rights.json stays unchanged.
+Existing archive.candidate validates the exact record, staging admission and rights.
+
+Existing protected publisher40583084401/1 runs21:00:47→21:07:30Z,6m43, SUCCESS.
+Authorization122467389772 and Pagespublication122467611319 succeed. First-release
+recovery/disabled paths skip as intended; no rollback/compensation is performed.
+The real previous prod-2026-10-23.2/676e archive is authenticated, new composition
+and rights checked before draft assets/live side effects, and actual source/
+predecessor leases rechecked. Complete Pages digest
+c813684cda5c97c6451d11ac19ee01b688ea12337a916334fd870ec925a061e9 binds root13b81781…
+and all staging slotsnull. Prior accepted bytes remain only for recovery.
+
+Seven original workflow ZIPs verify API sizes/SHA256/CRC/safe paths/extracted bytes.
+Request12769724372 ZIP3077/SHA66408e6aaec1da51f8e00099d29f8d4deb6e03049a25c3f422b258e9ed9dd737;
+Pages12770856380 ZIP1329869/SHA0488b39138f49dcce578d6ca43278ba5aeeb01c566009d96c7b4fee0a21abba3;
+transition12770578070 ZIP14933/SHA145c10549dbb7a03beebd9edd4e0b2e7d544954793225a165755cda1eec51eb5;
+final observations12770737638 ZIP79910/SHAace71d36b1777f016f47eacbacaa532026c788f3daa23392dc7ad9dd94531826.
+Prepared next/previous Pages TARs and pinned-browser setup original are retained.
+
+Actual live Pages70inventory/76readiness observations pass on one poll2635.009612ms;
+root/query/real404 pass and /staging/ plus /staging/writing.html return404.
+Production policy69file observations verify exact hashes/TLS/MIME/canonical/indexing.
+Managed Chromium153.0.8010.12 smoke4 cases (390/1440 normal/noCanvas),20route
+observations and Color2 pass, with tagfilter29cards/7matching/reload/reset/history.
+This is the existing bounded production smoke, not optional full diagnostics or
+new Lighthouse/device/soak acceptance. No article or active test marker is shipped.
+
+Protected production now9318; immutable published release425981285/tagprod-2026-10-27.1,
+deployment7370358056. Native durable-evidence/ref/label/deployment acceptance step
+passes. Archive source/tree/public and rights match the exact accepted frozen
+candidate. public.tar.gz SHA47e3a57fa2565923e706c376db1932be938f4280a346084c5ea691170a74a97d;
+rights.json SHA54d6336b542a7c08a73d2f8fe49473ba67a7a066df605b43389a6fb69762b8ff;
+archive.json SHAe63a142539913d7066bea506e91769a80b69a3adcb94fa2e4b604ebab87d8447;
+activation.json SHA01abb6d4a4c449a00367c5d43e1fe29567f04f1c507471a28e2543ff2305341b.
+Original release archive/activation JSONs download and physically match metadata.
+Browser downloads request all five release assets; only those two become available
+in shared storage within the documented bound. Do not claim independent raw
+release-binary download of the other three. Native controller/archive and retained
+composition/observations verify their actual publication; original frozen rights
+bytes/hash and immutable release metadata remain independently bound.
+
+Exact clean actualmain9318 issue122 mechanical acceptance passes automation/evidence
+true/errors[]; human gates remain separately reconciled from the accumulated real
+lane outcomes, four roles, explicit maintainer decisions and actual merge/live proof.
+All originalAC01–08 are now satisfied under the accepted test-mode clarification;
+close #122 after recording the final independent native readback in its live thread.
+Retain all old failures, timing misses and source boundaries; no campaign restarts.
+
+User also asks about PR149/PR79. PR149 stays frozen Draft07b as completed isolated
+test evidence; its top status is corrected to C2/C3 accepted, never merge markers.
+PR79 is renamed "Prepare The Sum of Our Technology article for publication";
+its top scope now separates delivered platform/reader from future article work.
+This is metadata only: old Draft10a1e7d9 still contains inherited runtime/tools/
+workflow/generated deltas and needs reconciliation onto current platform before
+advancement. Do not claim that branch is already content-only or merge it as-is.
+No article, authored source or branch history is changed by this housekeeping.
+
+Operator154 final verdict: "ACCEPT for the completed production publication."
+Its own seven ZIPs, original archive/activation, reproduced live aggregate,
+source/public/rights/predecessor/deployment/immutable-release and native successful
+acceptance step all verify. It explicitly preserves the three release-asset
+download limits above, bounded smoke scope and no new campaign/source mutation.
