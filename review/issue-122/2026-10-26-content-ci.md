@@ -2474,3 +2474,120 @@ protected-merge/postmerge/frozen-rights/activation/live-verification boundaries.
 This receipt branch changes only existing review/MEMORY/derived RI, introduces
 no implementation or new acceptance source, and must not precede production freeze
 as another main merge. PR157 remains sourceE882, not this checkpoint.
+
+## PR157 protected delivery and frozen production preparation — 27 October 2026
+
+The maintainer explicitly accepts the presented exact E882 control head and
+normal protected merge, replying "Так уперед". Actual decision6452321830 records
+the scope in PR157. Existing Change admission preparation dispatches once from
+protected main1689 with PR157/full reviewed_sha E882:40575067246/1 SUCCESS1m42.
+Genuine App5453173 check122439734348/external40575067246/1/157 passes; bound
+aggregate122439716245 passes. Original snapshot12765808070 ZIP17294/SHA256
+596fa0d11704dfdfa7a948f09e070403224b985023795324599b090de74a20f3 is physically
+verified. Eligible-snapshot/blockers[]/current-full-route, full E882 reviewerowner,
+398prior controls/exact4changed controls and all5evidence groups match. Snapshot
+digestf00c798b750be1292e152b304d51bae0a21b53fcfb6249c5ffc95c1695c1ea76.
+
+Code154 independently ACCEPTS this exact App snapshot/native producer, including
+all raw ZIP/API identities, source/base/reviewed-head/control/evidence bindings.
+Snapshot authority remains merge/deploy/reuseEvidence=false; actual maintainer
+decision and protected rules still govern the next action. Fresh strict ruleset
+24568553/bypass[] and all5 numeric producers pass: Basic122405363802,
+RI122405363128, owning122425540615, Staging122439716245/App15368 and genuine
+Change122439734348/App5453173. Head/base/openReady leases and prospective complete
+tree equality pass immediately before the normal expected-head merge.
+
+PR157 merges as9318a54a684079bb23e5dadcfa4bf705d6783dd0, parents1689+E882, exact
+cfffed1f2b5619cb1476beafa658be9cc2c04fe2. Actual GitHub signed commit/raw Git object
+SHA/tree/parents agree. Postmerge40575632323/1 passes; original identity12766492989
+ZIP425/SHA25679a760af67dd39fc237d6dc146225eae8e9cd22a620b94a5c5303c8265758489
+binds E882→9318/originalstage40565955502/1/publicBytesUnchangedtrue. Actual-main
+RI40575630462/job122441177173 passes. Whitebox154 independently ACCEPTS all those
+originals, actual source/parents/tree/5checks and unchanged tested artifact identity.
+
+Root's first scratch commit constructor dropped the API signature's final line
+continuation; its locally computed SHA refused before writing. Actual Git object
+was available and is verified against both its SHA and signed payload; no source
+or native failure. A later scratch gate readback initially passed {id,uploadDigest}
+where the unchanged API expects {artifactId,uploadDigest}; correct that caller
+mapping only. Original successful native gates and both diagnostic failures remain
+distinct. No workflow retry, budget or validator/source change.
+
+Keep protected main9318 fixed. Existing Frozen production candidate dispatches
+once with exact9318/release_pr157, run40576181118/1,20:14:00→20:16:06Z (2m06),
+terminalSUCCESS; build122443123033/publish122443501052/http122443874242 all pass.
+This is preparation/preview, not production activation or a new full-test campaign.
+
+| Frozen native original | Artifact | ZIP bytes | SHA256 |
+| --- | --- | --- | --- |
+| Production candidate | 12765868805 | 2440565 | eb12b36cff8776ea29a281ff8c8d5ecf2001a315ab5411886287bd13d9bd62e8 |
+| Preview package | 12766603171 | 1326466 | 0f7b0e5acc0ebc3f7ea40f1a70266a70cfbe5b0e229d43e7a7b147b15d86bebb |
+| HTTP observations | 12765889076 | 3070 | 242c3aa6758eb25d1427cae408756c0f1ee4d7b0c45e30b4f87d6357ade75063 |
+| Production admission | 12766478272 | 4991 | 7501195a6965db4cf0133ae44f8646295aa30297b1c1799a63440155e31d11c3 |
+
+All four ZIPs match actual API sizes/SHA/CRC/safe paths/extracted bytes. Frozen
+source/candidate9318/treecfff/public digest
+13b81781e2d8117a1a9dd4daa517fe218f6aa1721b37430f5713b39fedf1979f is a distinct
+production edition, not a relabelled staging artifact. Production Color is
+indexable at https://vitaliioborskyi.ai; social960×887/canonical/robots/sitemap and
+full legal copies verify. Seventy public files/31HTML contain zero active test
+markers; articleCandidates[], hosted articles{}, readers{} and hostedEditions[].
+The36 pending article-review source assets are absent from public generation.
+
+Previewpackage digestee19f0e2be72227c9e497b4aa94c9ca74e23de6d732480b31cb28d2107272bc0
+preserves all70 public files exactly and adds3 transport files. Native36HTTP
+observations (25immutable snapshots) pass exact package SHA/status200/no redirects;
+root/actual404/noindex pass at https://2aed4427.oborskyi-author-ci-staging.pages.dev/.
+The production HTML's indexing and the preview header's noindex are separate,
+correct policies. Root directly opens the preview and verifies its title/current
+Home navigation/content; this is a read-only visual availability observation,
+not another functional matrix or device campaign.
+
+Production-staging-admission12766478272/fullGatefalse validates actual accepted
+E882 staging manifest+gate against its unchanged whole merged source tree and
+production derivation. Original embedded stage/run/artifact/report identities
+remain unchanged. publicationBase is the actual accepted prod-2026-10-23.2,
+source676e3ab6c51f2290df4c44c7d5eac49a508d02fc,
+public1b4f08c483604ccce3fc679460ac29366b59e9ed22817f29d9162f7cb1158c60,
+package4e4fb1e7730323d09eccc44ea748c4426eac88d275f3f3cdf950c3f70a625398,
+PR129/deployment7277813059. Existing publisher must recheck the current source and
+that predecessor before side effects; native preparation is not a production lease.
+
+Frozen rights inventory
+7c08c845863940f13b24a7687bf9f192f703c816ecd52926bfc75dafb1b61acc recomputes and
+verifies against exact9318/public13b8. inventoryPass=true/approvalPass=false.
+Requirements154 independently ACCEPTS the bounded rights-scope delta676e→9318:
+four root legal owners and RI legal owners byte-unchanged; old11bases/5assets/
+policy/sourceGroups/upstream/retained/notices preserved. Rights owner adds157lines,
+one article-review-input basis and37assets (36pending unshipped article inputs,
+one original reader-reference diagram). Current source/catalog/public identities
+differ, so the complete inventory is not unchanged. Existing Apache2/CCBY4 and
+portrait/advisor-consent grounds remain; no blanket new license or renewed old
+portrait/advisor permission is needed. Pending source coverage grants no article
+publication rights. Old676e or E882 edition approval cannot approve this digest.
+
+Operator154 independently ACCEPTS the concrete frozen preview: all4ZIP/API/
+extracted bytes, source/tree, edition+archive/social/indexing, rights recompilation/
+frozen record, package and staging-policy/currentCandidate-predecessor validators,
+all36HTTP rows and no article/marker checks pass. It supplies no human approval,
+production activation, full diagnostic, new production functional or device claim.
+Root edition/rights/artifact/package/gate bindings independently pass as well.
+
+Requirements154 explicitly reconciles whole original AC03=ACCEPT and AC06=ACCEPT
+after actual test-mode S155→M156→C2475→C307b and controlled canonical delivery;
+do not keep completed criteria open merely for production. AC08 remains OPEN for
+the requested actual production outcome and final reconciliation. Live issue
+checkboxes must reflect that distinction; #122 remains open.
+
+Next concrete maintainer decision: accept this exact frozen inventory and activate
+this exact source/public artifact without a new article. Proposed immutable tag
+prod-2026-10-27.1 is absent when checked. Existing protected site-production publish
+uses validation_run_id40576181118/release_pr157 and source/variant-bound rights
+evidence with the accepted inventoryDigest/reviewer/actual durable decision record.
+All first-release/recovery inputs remain empty. Then authenticate real predecessor/
+archive, publish and verify live HTTP/policy/browser/compensation. No activation
+has occurred; protected production remains676e/prod-2026-10-23.2.
+
+This checkpoint changes only existing review/MEMORY/derived RI and must not merge
+into main before publication. No new code/test/registry/scanner/exception, content
+campaign or prerequisite PR is introduced.

@@ -4,12 +4,15 @@ Dated continuity, not live authority. Last verified: **2026-10-27**.
 
 ## Snapshot
 
-- Owner #122 remains open. Main16890621b511f15e432265b9757d1c70b3cd72ad is
-  genuine repository M156, tested901212c1cb5e491b021a727e3a8ff6b4daf08df6,
-  tree38f5a675a8d140ce1d31e59500dfb16c235cde13, parents136a+9012.
-  Exactly MEMORY/owner review/derived RI changed; website work not-applicable.
-  App40549017232/1/check122349123689 (5453173), five protected checks,
-  postmerge40550233296/mainRI40550232282 pass; original identity12755006357.
+- Owner #122 open; PR157 delivered as normal protected main merge
+  9318a54a684079bb23e5dadcfa4bf705d6783dd0, parents1689+testedE882,
+  exact tested treecfffed1f2b5619cb1476beafa658be9cc2c04fe2.
+  Maintainer exact trust6452321830; genuineApp40575067246/1/check122439734348
+  (5453173), five strict numeric checks/bypass[] pass. Code independent ACCEPT.
+  Postmerge40575632323/mainRI40575630462 pass; original identity12766492989
+  binds E882→9318/staging40565955502/1/publicBytesUnchangedtrue. WB ACCEPT.
+  Historical genuine M156 remains1689/tested9012/tree38f5/App40549017232;
+  repository-only evidence and original accepted S155 stay unrelabelled.
 - Accepted S155 retains tested683807343b85ead73827ada2266d55a6f9c54bac,
   merge136af46947aaef0b522a0b6621f36bb3bd348a3a/tree385a3ad3,
   full owner40534615837/1/controller3d33, public48a5c63c8ee99f6cee77b9bd03995974c8186b9093ea66145af6003d85abd1a8,
@@ -32,7 +35,7 @@ Dated continuity, not live authority. Last verified: **2026-10-27**.
   terminal SUCCESS12m56:26guards/232Node/139Python/host30/browser8/contentgate.
   Raw Home=C2/Talks=S155;29raw+18finalplatform exact. No stable promotion.
   Archive07b preserved, PR149 frozenDraft; all four final native readbacks ACCEPT.
-- PR157 Ready e882f61d96470019957a46e9f476871089e4d722/treecfffed1f2b5619cb1476beafa658be9cc2c04fe2
+- PR157 tested e882f61d96470019957a46e9f476871089e4d722/treecfffed1f2b5619cb1476beafa658be9cc2c04fe2
   directly parents main1689. Seven canonical/metadata paths only; no site/docs/
   tools/tests/workflows/rights/registry/scanner-ledger change. Four source roles
   ACCEPT ae2669/tree61a; final published tree adds actual receipts/derived RI only.
@@ -46,8 +49,15 @@ Dated continuity, not live authority. Last verified: **2026-10-27**.
   Seven-report gate digest0622e6828997f686d7e88a266d45047bd30539d4dfcbd2d4949577ed82f95a4e.
   Promotion/recovery/main-owned independent receipt12763569520 PASS;
   source e882/base1689/owner40565955502attempt1 retained. No production authority.
-  Staging check122407990240 PASS; genuine Change admission App still missing.
+  Staging check122407990240 PASS; actual App and merge are recorded above.
   Requirements154/Code154/Whitebox154/Operator154 final native ACCEPT separately.
+- Frozen production40576181118/1 SUCCESS2m06 exactmain9318/PR157; build/publish/http
+  pass. Candidate12765868805/public13b81781e2d8117a1a9dd4daa517fe218f6aa1721b37430f5713b39fedf1979f;
+  rights7c08c845863940f13b24a7687bf9f192f703c816ecd52926bfc75dafb1b61acc,
+  inventoryPass true/approvalPass false.70public/31HTML/36HTTP rows, no article/markers.
+  Gate12766478272; Operator independent ACCEPT; root edition/rights/package/gate pass.
+  Preview https://2aed4427.oborskyi-author-ci-staging.pages.dev/ verified.
+  Exact publicationBase prod-2026-10-23.2/676e/public1b4f08…/package4e4fb1…/PR129.
 - Production revalidated676e3ab6c51f2290df4c44c7d5eac49a508d02fc /
   prod-2026-10-23.2. PR79 remains separate Draft10a1e7d9/unpublished.
 
@@ -60,10 +70,11 @@ Dated continuity, not live authority. Last verified: **2026-10-27**.
   independent blocker when mandatory budgets pass. Retain queue/setup/execution
   and total misses. Source cap4/16MiB/300s+30s grace, security180s and all
   browser/product budgets remain unchanged.
-- Exact6838 trust is delivered, not future-head permission. New controls retain
-  exact-head maintainer trust, genuine App and protected merge/postmerge.
+- Exact E882 trust is delivered; it supplies no new production inventory approval.
+  Other heads retain exact-head trust, genuine App and protected merge/postmerge.
   Keep source/main/predecessor leases and rights/editorial acceptance.
-- AC01/02/04/05/07 accepted; original AC03/06/08 open. No silent AC amendment,
+- AC01–07 accepted; AC03/06 independently reconciled after actual controlled merge.
+  AC08/production remains open. No silent AC amendment,
   fabricated M, fixture-only native claim or whole-package rollback substitution.
 
 ## Open work
@@ -72,18 +83,20 @@ Dated continuity, not live authority. Last verified: **2026-10-27**.
   now passes using S155 through M156: index built/four reused/eight Home/Writing
   rows, raw Home=C2/Talks=S155 and current hosted Talks bytes. No C2-baseline composition,
   Talks-only native rebuild, C2 staging predecessor lease or universal C2 snapshot retention.
-- Reconcile whole AC03/06/08 after exact e882 maintainer control trust, genuine
-  App5453173, normal protected merge and postmerge. Full current staging passes;
-  old6838 trust cannot transfer. No production source inherits S155 across M.
+- Obtain maintainer acceptance of actual frozen rights digest above and explicit
+  activation of prod-2026-10-27.1 (absent when checked); no article publication.
+  Root legal owners/policy/old portrait/advisor grounds unchanged; rights source
+  adds36unshipped pending article inputs+1reader diagram. No blanket new license.
 - Keep main fixed while freezing that exact accepted current tree, inventorying
   rights and using protected production publisher/live verification without article.
 
 ## Next session
 
-1. Revalidate main1689, archived/frozen C3 head07b/native40561612440 and production676e.
-2. Revalidate PR157 e882/base1689/native40565955502; obtain its exact-head trust.
-3. Genuine App with reviewed_sha=e882 full SHA, protected merge/postmerge; keep main fixed.
-4. Exact-current-tree production candidate/rights/publisher/live verification.
+1. Revalidate main9318, frozen40576181118/1 and active production676e/prod.2.
+2. Obtain actual inventory-bound rights/activation decision; record it durably.
+3. Existing site-production publish: tagprod-2026-10-27.1/run40576181118/PR157,
+   source/variant-bound evidence; all first-release/recovery inputs empty.
+4. Authenticate predecessor/archive, publish/live verify, then reconcile AC08/closure.
 
 ## Maintenance
 
@@ -97,8 +110,9 @@ Dated continuity, not live authority. Last verified: **2026-10-27**.
   venv/Node dependencies, corrected without tracked changes; current232 pass.
 - Originals/API under /tmp/issue122-c2-s155/native, /tmp/issue122-home-seo/native,
   /tmp/issue122-m155/native; C3 /tmp/issue122-c3-s155; final source /tmp/issue122-final-contracts.
+  Current App/merge /tmp/issue122-pr157-delivery; freeze /tmp/issue122-pr157-production.
   Read-only API replay is not a new native producer or deployment authority.
-- This checkpoint retains receipts separately; PR157/main heads stay fixed for
-  exact staged-tree merge/freeze. Do not merge this receipt branch first.
+- This separate checkpoint is not a release source. Main9318 stays fixed through
+  frozen rights/activation; do not merge receipt metadata before publication.
 - Browser pins expire2027-01-24T10:16:18Z. Keep five sections/120 lines and
   refresh/verify RI after source or memory changes; receipt-only metadata is nonrecursive.
