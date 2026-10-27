@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "9db4ab29cbff195da59e3ca97b99e33b7849c9ea9d0a417d2b5886154193838e",
+    "digest": "d3033b3c1f2e64a9e8f7e5d6bb5ac851badd19f432e66277f7bcaca61211a292",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -356,7 +356,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "883b7f9c6dfbb8b06424f2d6eda8b854e84abf89a0a876b2b364df6950d901de"
+        "sha256": "d883e4d2ab247ad07c84bd29fa20139c7bf64d8b23de2ad5ce1e3ac6acfcde2d"
       },
       {
         "path": "NOTICE.md",
@@ -1030,7 +1030,7 @@
       {
         "path": "review/issue-122/2026-10-26-content-ci.md",
         "identity_mode": "content",
-        "sha256": "8f4d2a026aade89ccc84f6b25fdac30ef070c0f69db9c50e34417b90795d9bae"
+        "sha256": "f3fbe4a95adc03a0640d67513407f075c1e272ae30256e7571d7d8372cab1215"
       },
       {
         "path": "review/issue-122/2026-10-26-writing-checksum-proof.json.gz",
@@ -7535,7 +7535,7 @@
       {
         "path": "tests/release-rights.test.cjs",
         "identity_mode": "content",
-        "sha256": "f23658b0ea4fc55544f7a76e44f09b2fed56c0084d33514e001e136b1170715b"
+        "sha256": "112fba27e7d0f62d50ccfc254fece34ca8fa83d1e93de4c69660544270663a86"
       },
       {
         "path": "tests/renderer.test.cjs",
@@ -7545,7 +7545,7 @@
       {
         "path": "tests/review-flow.test.cjs",
         "identity_mode": "content",
-        "sha256": "8ab7f072b15cdc8ebc8bc5491b70ad94a4c931332184d3620cfdfbd8696f180f"
+        "sha256": "51371c97f1a4f941a7a463a45000735a5b5cd12d274b23c5e563837b278dfb12"
       },
       {
         "path": "tests/ribbons.test.cjs",
@@ -8830,7 +8830,7 @@
       {
         "path": "tools/staging/package.cjs",
         "identity_mode": "content",
-        "sha256": "94e340e5d532ac8dbd5a5aa3649d4468e3a60c852fa2e5b32cee6a165e31736b"
+        "sha256": "45ab43941be4173797bb656f8e8f2340bed3ed36a85c59c9a36ef67045cb9403"
       },
       {
         "path": "tools/staging/review-flow.cjs",

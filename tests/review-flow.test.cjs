@@ -389,7 +389,7 @@ test('bounded staging proof binds both consumers to actual mandatory reports, ex
     fs.rmSync(f.dir, { recursive: true, force: true });
   }
 });
-test('narrow preview package proof admits only actual generation, snapshot and size scope and cannot authorize staging or production', () => {
+test('narrow preview package proof binds generated or verified content scope and cannot authorize staging or production', () => {
   const f = packageFixture();
   try {
     const gate = {
@@ -403,6 +403,17 @@ test('narrow preview package proof admits only actual generation, snapshot and s
       deploymentAuthorized: false,
     };
     assert.doesNotThrow(() => pkg.sourceGate(f.record.source, gate));
+    const contentSource = { ...f.record.source, contentRelease: { kind: 'content-release' } };
+    const contentGate = {
+      ...gate,
+      checks: ['verified current content source', 'artifact snapshot integrity', 'size budgets'],
+    };
+    assert.doesNotThrow(() => pkg.sourceGate(contentSource, contentGate));
+    assert.throws(() => pkg.sourceGate(contentSource, gate), 'content cannot claim generation');
+    assert.throws(
+      () => pkg.sourceGate(f.record.source, contentGate),
+      'generation cannot claim verified content'
+    );
     for (const mutate of [
       (g) => (g.profile = 'local'),
       (g) => (g.kind = 'pr-gate'),
@@ -418,6 +429,9 @@ test('narrow preview package proof admits only actual generation, snapshot and s
       const invalid = structuredClone(gate);
       mutate(invalid);
       assert.throws(() => pkg.sourceGate(f.record.source, invalid, { artifactId: '123' }));
+      const invalidContent = structuredClone(contentGate);
+      mutate(invalidContent);
+      assert.throws(() => pkg.sourceGate(contentSource, invalidContent, { artifactId: '123' }));
     }
     const url = 'https://abcdefgh.' + flow.project + '.pages.dev';
     assert.throws(

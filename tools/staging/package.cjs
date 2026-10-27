@@ -102,7 +102,7 @@ function sourceGate(source, gate, expected = {}) {
     for (const key of ['fullGate', 'productionEligible', 'deploymentAuthorized'])
       assert.equal(gate[key], false, 'package proof cannot authorize ' + key);
     assert.deepEqual(gate.checks, [
-      'generated source',
+      source.contentRelease ? 'verified current content source' : 'generated source',
       'artifact snapshot integrity',
       'size budgets',
     ]);
