@@ -56,7 +56,7 @@
     {
       "id": "AC08",
       "intent": "Source-bound delivery, complete lane outcomes, documentation and measured result",
-      "automated_scope": "R1/PR142, R2/PR143-144 and exact-runtime compatibility/PR145 are delivered with native receipts and timings in live #122. The current R3 platform integration requires exact-source Basic/RI/owning, four roles, the existing full owner stage, genuine App admission, protected merge and postmerge. Later independent content/recovery and final issue-wide documentation/timing reconciliation remain open.",
+      "automated_scope": "R1/PR142, R2/PR143-144 and exact-runtime compatibility/PR145 are delivered with their native lane receipts and timings in live #122; repository-only delivery omits website work. R3 platform integration including PR146/PR155 is delivered with source-bound Basic/RI/owning, four roles, full owner staging, genuine App admission, protected merge and postmerge. Actual independent content/recovery and final issue-wide documentation/timing reconciliation remain external acceptance; current checks never inherit another source's results.",
       "checks": ["CURRENT-RI", "RI-CI"],
       "gates": ["DELIVERY", "MERGED"]
     }

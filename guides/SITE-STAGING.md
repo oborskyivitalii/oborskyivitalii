@@ -36,11 +36,12 @@ execute those obligations, accept result evidence or evaluate site reuse. Curren
 controller behavior, profile budgets, required contexts and publication authority
 are unchanged. No new content publisher is installed.
 
-Under the current route, a repository proposal still follows Ready source/RI/
-owning checks, preview, owner staging, stable verification and admission before
-protected merge. A Draft remains deferred. An observer may explain a proposed
-cheaper route, but cannot skip those actions, approve rights, publish, merge or
-reuse an earlier site's evidence. PR79/issue5 owns the unfinished content route.
+Actual obligations come from the [trusted repository/content/full-route selection](#trusted-change-admission-and-repository-delivery)
+below. Eligible repository-only delivery explicitly omits website work; compatible
+content requires its own authenticated platform/history and current content gate.
+The observer cannot supply either eligibility, waive a required check, approve
+rights, publish or merge. A Draft remains deferred. PR79's unpublished article
+is separate from the delivered content publisher and is not its prerequisite.
 
 ### Honest obligation states and next actions
 
@@ -80,18 +81,28 @@ The current repository/controller revision, tested candidate/tree, accepted
 website source/tree, platform/content identity, public/package digests and actual
 merged commit are separate records. A source-only repository merge cannot relabel
 the old site's public bytes or test results at the new Git commit. The current
-postmerge observer proves identical complete tested/merged trees; that is narrower
-than future compatibility across different repository trees.
+postmerge observer proves identical complete tested/merged trees. The separate
+accepted-content selector implements authenticated compatibility across repository
+merges; the general planned observer does not supply that authority.
 
-For proposed accepted site S → repository merge M → content C reuse, authenticate
+For accepted site S → repository merge M → content C reuse, authenticate
 S's original evidence and the complete intervening commit/parent history with
 base-side dependencies, not only a final net diff. Any uninspected, reverted
 intermediate, control, rights or website change prevents an unproved reuse claim.
 Keep missing platform/content identities explicit. Use fresh applicable website
-validation when compatibility is absent or unproved. The future compatible-history
-implementation and real content release remain issue122 and issue5/PR79 work.
+validation when compatibility is absent or unproved. Existing `selectAccepted`
+authenticates original staging and every intervening repository merge, retaining
+S's identity. PR155/S155 and actual repository-only PR156 supply delivered source
+and merge evidence; current content/recovery native observations remain in #122.
+PR79's unpublished article does not block the already delivered publisher.
 
 ### Trusted producer prerequisite
+
+**Historical T02 checkpoint — 22 October 2026.** This section preserves the
+capability finding before later AC05/R1/R2
+delivery. Its unresolved disposition and five requirements below describe that
+dated checkpoint. The delivered App-bound route follows in the next section;
+current protection and source-bound outcomes must still be revalidated in #122.
 
 Capability observation on **22 October 2026**: the repository API identifies
 `oborskyivitalii/oborskyivitalii` as public and user-owned. Active
@@ -106,7 +117,7 @@ The documented stronger [ruleset-workflow mechanism](https://docs.github.com/en/
 is configured at organization/enterprise level. Repository admin permission does
 not establish that capability for this user-owned repository.
 
-**Disposition: the future AC05 protection-bound producer proof is unresolved.**
+**Historical T02 disposition: AC05 protection-bound producer proof was unresolved.**
 The current app/name binding does not itself prove that a same-name result from
 another candidate workflow is rejected. This is a capability/design inference
 from the inspected configuration and documentation, not a performed exploit.
@@ -380,8 +391,10 @@ The reusable workflow distinguishes `validation_level` from hosted `profile`.
 The owner staging controller selects `validation_level: staging`,
 `profile: staging`, and `automated_only: true`. It runs successful build/static/host/staging
 jobs and promotes only their matching `staging-gate`, whose `fullGate` and
-`productionEligible` remain false. The operational target is at most 15 minutes
-of active staging jobs; measure the actual run and report queue time separately.
+`productionEligible` remain false. The operational end-to-end CI target is at
+most 15 minutes; measure the actual total and report queue/setup/execution
+separately. Exceeding that target alone is optimization feedback when every
+mandatory test and site budget passes; all hard timeouts remain unchanged.
 
 For an optional full candidate diagnostic, `validation_level: production`
 and `full: true` select the complete regression; production is the reusable
