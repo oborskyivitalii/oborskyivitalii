@@ -232,7 +232,11 @@ function visit(options = {}) {
     disconnect() {}
   }
   window.MutationObserver = MutationObserver;
-  if (options.probe) window.SiteEngineProbe = options.probe;
+  if (options.probe || options.modelCost)
+    window.SiteEngineProbe = (event) => {
+      if (event.kind === 'model') paintClock += options.modelCost || 0;
+      options.probe?.(event);
+    };
   if (options.ribbonProbe) {
     window.SiteRibbonProbe = () => {};
     window.SiteEffects = {
@@ -1817,11 +1821,150 @@ test('travel progress is emitted with the displayed camera, retargets cleanly an
   );
 });
 
-// Navigation charters need the first ready paint, not twelve ambient warmup frames.
+test('cold Writing yields after model preparation and paints its cached first pose once', () => {
+  for (const preference of [{}, { saved: 'off' }, { saved: 'on', reduced: true }]) {
+    const events = [],
+      p = visit({
+        page: 'writing',
+        ...preference,
+        probe: (event) => events.push(event),
+      });
+    p.frame(60);
+    assert.equal(p.draws(), 0);
+    assert.equal(p.scene.dataset.ready, undefined);
+    assert.equal(p.scene.dataset.phase, undefined);
+    assert.equal(p.pending.size, 1, 'the existing RAF owns the pending first paint');
+    assert.equal(events.filter((event) => event.kind === 'model').length, 1);
+    assert.equal(events.filter((event) => event.kind === 'paint').length, 0);
+    p.frame(60);
+    assert.equal(p.draws(), 1);
+    assert.equal(p.scene.dataset.ready, 'true');
+    assert.equal(p.phase(), 0, 'preparation cannot advance the first visible phase');
+    assert.deepEqual(
+      JSON.parse(p.trace()),
+      model.routePose('writing', model.poses[model.initialPoses.writing])
+    );
+    assert.equal(events.filter((event) => event.kind === 'model').length, 1);
+    assert.equal(events.filter((event) => event.kind === 'paint').length, 1);
+    assert.equal(p.pending.size, preference.saved ? 0 : 1);
+  }
+});
+test('a prepared Writing startup pauses, fails or follows an early route without a stale paint', () => {
+  for (const pause of ['hidden', 'print']) {
+    const p = visit({ page: 'writing', saved: 'off' });
+    p.frame(60);
+    if (pause === 'hidden') p.hidden(true);
+    else p.events.beforeprint();
+    assert.equal(p.pending.size, 0);
+    assert.equal(p.draws(), 0);
+    if (pause === 'hidden') p.hidden(false);
+    else p.events.afterprint();
+    p.frame(60);
+    assert.equal(p.draws(), 1);
+    assert.equal(p.phase(), 0);
+    assert.equal(p.pending.size, 0);
+    assert.equal(p.window.SiteScene.diagnostics().rooms[0].models.length, 1);
+  }
+  const failed = visit({ page: 'writing' });
+  failed.frame(60);
+  failed.contextLost();
+  assert.equal(failed.scene.dataset.state, 'fallback');
+  assert.equal(failed.scene.dataset.ready, undefined);
+  assert.equal(failed.draws(), 0);
+  assert.equal(failed.pending.size, 0);
+  for (const animate of [false, true]) {
+    const paints = [],
+      p = visit({
+        page: 'writing',
+        probe: (event) => {
+          if (event.kind === 'paint') paints.push(event);
+        },
+      });
+    p.frame(60);
+    p.window.SiteScene.navigate('research', animate);
+    p.document.body.dataset.page = 'research';
+    assert.equal(p.pending.size, 1);
+    p.frame(60);
+    assert.equal(p.draws(), 1);
+    assert.equal(p.scene.dataset.route, 'research');
+    assert.equal(p.scene.dataset.travel, animate ? 'flying' : 'settled');
+    assert.equal(p.pending.size, 1);
+    if (!animate) assert.deepEqual([...paints[0].paintedRooms], ['research']);
+  }
+});
+test('Writing startup prepares a changed compact variant and fails closed on preparation errors', () => {
+  const models = [],
+    p = visit({
+      page: 'writing',
+      saved: 'off',
+      probe: (event) => {
+        if (event.kind === 'model') models.push(event);
+      },
+    });
+  p.frame(60);
+  p.narrow.matches = true;
+  p.window.innerWidth = 390;
+  p.events.resize();
+  p.mutate();
+  p.frame(60);
+  assert.equal(p.draws(), 0);
+  assert.equal(p.pending.size, 1);
+  assert.deepEqual(
+    models.map((event) => event.compact),
+    [false, true]
+  );
+  p.frame(60);
+  assert.equal(p.draws(), 1);
+  assert.equal(p.scene.dataset.geometry, 'compact');
+  assert.equal(p.phase(), 0);
+  assert.equal(p.pending.size, 0);
+  const failed = visit({
+    page: 'writing',
+    probe: (event) => {
+      if (event.kind === 'model') throw Error('injected preparation failure');
+    },
+  });
+  failed.frame(60);
+  assert.equal(failed.scene.dataset.state, 'fallback');
+  assert.equal(failed.scene.dataset.ready, undefined);
+  assert.equal(failed.draws(), 0);
+  assert.equal(failed.pending.size, 0);
+});
+test('Writing charges all prepared model work to its first quality vote exactly once', () => {
+  for (const { resize, modelCost, paintCost, quality } of [
+    { resize: false, modelCost: 30, paintCost: 30, quality: '1' },
+    { resize: true, modelCost: 15, paintCost: 30, quality: '1' },
+    { resize: false, modelCost: 30, paintCost: 0, quality: '0' },
+  ]) {
+    const p = visit({ page: 'writing', modelCost });
+    p.frame(3000);
+    if (resize) {
+      p.narrow.matches = true;
+      p.window.innerWidth = 390;
+      p.events.resize();
+      p.frame(20);
+    }
+    assert.equal(p.draws(), 0);
+    p.frame(20);
+    assert.equal(p.draws(), 1);
+    p.paintCost(paintCost);
+    for (let i = 0; i < 7; i++) p.frame(200);
+    assert.equal(p.draws(), 8);
+    assert.equal(p.scene.dataset.quality, quality);
+  }
+});
+
+// Navigation charters need the first ready paint, not ambient warmup frames.
 // Keep settle() for scrolling, reflow, lifecycle changes and warm remounts.
 function paintInitialRoute(p, page = 'index') {
   assert.equal(p.draws(), 0, 'a fresh route has not painted');
   p.frame(60);
+  if (page === 'writing') {
+    assert.equal(p.draws(), 0, 'the cold model yields before its first paint');
+    assert.equal(p.scene.dataset.ready, undefined);
+    assert.equal(p.pending.size, 1);
+    p.frame(60);
+  }
   assert.equal(p.draws(), 1, 'the initial route has actually painted');
   assert.equal(p.scene.dataset.ready, 'true');
   assert.equal(p.scene.dataset.travel, 'settled');
@@ -2465,14 +2608,7 @@ test('all direct route flights paint only their journey rooms through the last t
               });
             },
           });
-        p.frame(60);
-        assert.equal(p.draws(), 1, 'the initial route has actually painted');
-        assert.equal(p.scene.dataset.ready, 'true');
-        assert.equal(p.scene.dataset.travel, 'settled');
-        assert.deepEqual(
-          JSON.parse(p.trace()),
-          model.routePose(from, model.poses[model.initialPoses[from]])
-        );
+        paintInitialRoute(p, from);
         assert.equal(p.pending.size, 1, 'the existing ambient clock is ready for the flight');
         paints.length = 0;
         p.window.SiteScene.navigate(to);

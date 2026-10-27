@@ -270,6 +270,9 @@ jobs:
             for(const key of ['mode','directory','artifactDigest','generationSha256','sourceCommit'])
               core.setOutput(key,selection[key]||'');
             core.info(JSON.stringify(selection));
+      - name: Install locked content-source tools for an ordinary preview
+        if: needs.target.outputs.mode == 'preview' && needs.target.outputs.evidence != 'true' && steps.content_baseline.outputs.mode == 'content'
+        run: npm ci --prefix tools/quality/toolchain --ignore-scripts
       - name: Targeted controller checks and one immutable public build
         env:
           CONTENT_MODE: ${{ steps.content_baseline.outputs.mode }}

@@ -3,7 +3,7 @@
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/122",
     "date": "2026-10-26",
-    "summary": "Browser supply preparer and cold shared consumer retain existing source/admission/profile obligations; native seeds and consumer rollout remain pending."
+    "summary": "Content derivative admission, ordinary preview dependencies and bounded Writing bootstrap scheduling retain existing source/admission/profile obligations; final current-source native delivery remains required."
   },
   "layers": [
     {
@@ -676,7 +676,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "56b7930cfb90237ddb4a876c575feb6fc4043458202e4e1684d89c8e034fb25d",
+    "digest": "8abb8e0e8ac31ee9b0c8f96e858914632811b04dfbc58b927b102c10742ee379",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -812,7 +812,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "0c54111c78449f3648416c2eea8d3fcf89215ec32fda7cc73b46ad7f4ee8d501"
+        "sha256": "6f665254eb867df6a31551b751c3492312b152c2ac7c3c94eb4fb352e4a085fa"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -860,7 +860,7 @@
       },
       {
         "path": ".github/workflows/site-color-review.yml",
-        "sha256": "9371c1fd69942ec93f5892298538d286d4bac575b53c6576e99b301602f1c23f"
+        "sha256": "d184fb3e54d5c3a42901f10597313e4cd4da0f5d3d51cb0f7ba3ab30a9f4dbe2"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -944,7 +944,7 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "93452f82bfe25691c6c37ef4ead983c09e1c240d3f4afae7b695e86fd99e8d35"
+        "sha256": "07e85f24c94404c45b0641b5b5169bd105a0ff064f3de02403e1e8eae6f2c463"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
@@ -1080,7 +1080,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "35a448e09d9cd38fe1d2723a12cd9c45b2274e7ef612cb90153ae0c0eabb51e0"
+        "sha256": "dd74b837c889fa4893bce820d7664082dea0528c061a692cfb1609d76110c2ec"
       },
       {
         "path": "tools/repository_intelligence.py",

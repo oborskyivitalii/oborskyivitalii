@@ -69,6 +69,7 @@ module.exports = function (api) {
     layoutReasons = new Set(['initial']),
     layoutPasses = 0;
   let idleRate = 30,
+    startupModelCost = 0,
     costAverage = 0,
     costSamples = 0,
     cadenceSlow = 0,
@@ -540,6 +541,22 @@ module.exports = function (api) {
       journey.elapsed = journey.duration;
     }
   }
+  function prepareWritingStartup() {
+    const detail = compact || detailTier >= 0.5;
+    if (
+      page !== 'writing' ||
+      scene.dataset.ready === 'true' ||
+      journey ||
+      !owns(initialPoses, page) ||
+      document.body.dataset.page !== page ||
+      rooms.get(page)?.has(detail)
+    )
+      return false;
+    const start = clock();
+    roomFor(page, detail);
+    startupModelCost += clock() - start;
+    return true;
+  }
   function frame(time) {
     pending = null;
     if (document.hidden || printing || !initialized || failed) return;
@@ -550,6 +567,12 @@ module.exports = function (api) {
     }
     try {
       flushLayout();
+      // Yield between the cold Writing model and its first Canvas submission.
+      // Both callbacks remain inside startup timing; only a real paint is ready.
+      if (prepareWritingStartup()) {
+        schedule();
+        return;
+      }
     } catch {
       fail();
       return;
@@ -578,7 +601,10 @@ module.exports = function (api) {
         fail();
         return;
       }
-      const renderCost = clock() - start;
+      const renderCost = clock() - start + startupModelCost;
+      // The first quality vote still includes all preparation work, even though
+      // input/rendering can now run between its two startup callbacks.
+      startupModelCost = 0;
       cameraDiagnostic('camera-travel-complete', arrived, 'arrived');
       // Text follows the painted camera, including skipped frames and stalls.
       if (travelUpdate) reportTravel(journeyProgress());

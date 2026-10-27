@@ -123,6 +123,43 @@ test('workflow selection can read accepted checks and feeds economical admission
 
 const candidate = fixture.contentFixture;
 
+test('ordinary content preview installs locked source dependencies after selection and before execution', () => {
+  const fs = require('node:fs');
+  const path = require('node:path');
+  const vm = require('node:vm');
+  const yaml = require('../tools/quality/common.cjs').toolRequire('yaml');
+  const review = yaml.parse(
+    fs.readFileSync(path.join(root, '.github/workflows/site-color-review.yml'), 'utf8')
+  );
+  const steps = review.jobs.build.steps;
+  const selector = steps.findIndex((step) => step.id === 'content_baseline');
+  const install = steps.findIndex(
+    (step) => step.name === 'Install locked content-source tools for an ordinary preview'
+  );
+  const execute = steps.findIndex((step) =>
+    (step.run || '').includes('source-tests.cjs --profile content')
+  );
+  assert.ok(selector >= 0 && selector < install && install < execute);
+  assert.equal(steps[install].run, 'npm ci --prefix tools/quality/toolchain --ignore-scripts');
+  for (const [mode, evidence, selected, expected] of [
+    ['preview', 'false', 'content', true],
+    ['preview', 'true', 'content', false],
+    ['staging', 'false', 'content', false],
+    ['preview', 'false', 'platform', false],
+    ['preview', 'false', '', false],
+  ]) {
+    const actual = vm.runInNewContext(
+      steps[install].if,
+      {
+        needs: { target: { outputs: { mode, evidence } } },
+        steps: { content_baseline: { outputs: { mode: selected } } },
+      },
+      { timeout: 100 }
+    );
+    assert.equal(actual, expected, JSON.stringify({ mode, evidence, selected }));
+  }
+});
+
 test('distinct content gate inherits accepted platform and requires every affected desktop/mobile native document', () => {
   const f = candidate();
   const gate = stage.aggregate(f);
