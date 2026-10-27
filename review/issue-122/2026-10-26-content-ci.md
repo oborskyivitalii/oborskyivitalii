@@ -725,3 +725,108 @@ reviewed564 candidate. Reconfirm final protected-base classifier/clean identitie
 before publishing Draft and require fresh actual-remote-head repository checks,
 genuineApp/conditionalStagingadmission/normalmerge/postmerge. No website work;
 preserve ordinaryS150 source11624/public/package proof. WholeAC03/06/08 open.
+
+## Platform and reader release preparation — 27 October 2026
+
+Owner#122; original intent is usable repository/content/platform delivery and
+the reader without publishing the new article. Main/staging is delivered;
+production remains676e3ab6/prod-2026-10-23.2. The current source20c cannot be
+relabeled as stagedS150: the existing production controller requires an exact
+current-main source with its actual accepted staging tree. This genuine release
+preparation carries the narrowly evidenced package integration correction;
+it is not an additional proof-only prerequisite. Keep all draft articles out.
+
+### C1 native failure and bounded diagnosis
+
+Never-merge PR149 is frozen Draft atdbbb29177d570ef6c2fd768a81e18f962a6a6316,
+tree5051bee70cb572f9715d755b1ea318a5b64458b7, parent20c. Originald4 is archived
+under archive/issue-122-pr149-c1-d4ea6bbd-20261027. Four completed local C1 roles
+accepted e705/tree248; local19modules227/227 passes remain bound there.
+NativeDraft40486593049 passes; ReadyBasic40486926096 passes18additionalmodules
+219/219 in26626ms, zero fail/cancel/skip/todo, same clean dbbb before/after.
+RI40486926045/owning40486925882 pass; original source artifacts12724709653,
+selection12725631938 and owning12725029119 are physically size/SHA/CRC verified.
+
+Readypreview40486926084 build122131211977 fails in package.sourceGate after real
+content selection/assembly/upload. Artifact12725362729,3833614bytes, SHA256
+2e7b749da96587c3641cd1a4257371a5b48eb7b2c35b2de7d7db493ee92ecd7a has194 valid
+ZIP members. It binds dbbb/tree5051, articleCandidates=[], original S15011624/
+tree9d34/owner40476765559 and authenticated history from mergedS7ed through
+genuine M152/20c toC1. This chronology passed; hosted/content-gate did not run.
+The archive was uploaded before gate construction, so its absent gate file is
+not substituted proof of the later native package-gate result.
+
+Observed mismatch: local.gate(package) reconstructs current content and emits
+the accurate first check label 'verified current content source'. The transport
+consumer unconditionally expects 'generated source'. It fails before packaging;
+the preserved native log establishes both actual/expected arrays. Separate
+ReadyStagingadmission122130933066 fails for missing ordinary staging admission.
+No unchanged retry, evidence label, stable promotion or merge follows either.
+
+Requirements and Code independently confirm the minimal treatment: require the
+exact three-check list appropriate to source.contentRelease, preserving current
+producer wording, identities, successful build, sourceTestsRun:false and every
+false authority flag. Add the missing content case/cross-variant refusals to the
+existing narrow-package-proof test; retain existing rejection cases. CS01/04/05/
+08/09 apply; no publisher, runtime, permission, policy exception or budget change.
+
+Before broader execution, run the existing bounded review-flow/content-release
+tests and actual retained C1 producer→old/new consumer comparison. Preserve the
+original archive; diagnostic copies are not new native acceptance or a repaired
+C1 campaign. Then source-bound four-role review, mapped current-source checks
+and the existing conservative native control route are required. Do not put this
+control correction into PR149 and call it content-only.
+
+After actual delivery, reconcile the new accepted source/history and C1 restart
+point explicitly; S150 cannot authorize reuse across the control change. Never
+manufacture repository checkpoints. AC03/06/08, C2/C3 and production stay open.
+
+### Prepared correction evidence and limits
+
+Consumer implementation changes one discriminator-bound expected label. The
+existing narrow review-flow case retains every old refusal and adds content
+success plus cross-variant labels/refusals. The existing real publication CLI
+fixture now also changes Talks in its clean committed fixture, reuses its actual
+staging generation, builds Color/staging, emits the real local package proof,
+packages it successfully, then rejects a substituted generation label. No new
+fixture framework, authored article or standalone test campaign is introduced.
+That actual CLI case passes1/1 in22.993s with no skipped tests. Prepared complete
+review-flow/content-release modules pass34/34 in22.782s; final clean-source
+verification remains required after completing the source/metadata candidate.
+
+The original native artifact was also reconstructed by its unchanged local.gate
+producer from exact clean dbbb; old sourceGate refuses its emitted content label,
+while the corrected sourceGate accepts it. A subsequent diagnostic full build
+was incorrectly invoked from the20c-based correction checkout: rights correctly
+refused the differing Talks input inventory. Preserve that diagnostic failure;
+it is not a new product defect or a full-package pass. The bounded native-artifact
+comparison is only the actual producer→sourceGate boundary. The clean committed
+CLI fixture supplies the separate complete-package integration proof above.
+
+An initial formatter invocation used default80 instead of canonical100 columns;
+the unrelated wrapping was restored before candidate review, then formatting
+used the existing tools/quality/prettier.config.json. Final source scope is one
+consumer line plus the two existing test extensions and owner/RI metadata only.
+
+### Release-preparation source completion
+
+Exact clean3dc100cfbbd74e79d532ca408453958b397d1d94,
+tree971add56054565da9048b76a505fe5e856f5adb1, parent20c:
+complete review-flow/content-release/release-rights modules pass56/56, zero
+fail/cancel/skip/todo,69231ms. Basic5routes/16theme+archive/10flight passes;
+maintainedformat532, architecture118files399edges and touched pinned ESLint
+zero errors/warnings pass. Current-source RI/coupling17checks17layers and all
+five owning mechanical checks pass: automation_pass/evidence_valid=true,
+errors[], ready_for_issue_closure=false. No full/native staging claim follows.
+
+| Actual independent role | Completed 3dc result |
+| --- | --- |
+| Requirements /root/requirements | ACCEPT six-file scope, actual CLI coverage and original AC mapping; require fresh full control delivery, exact-head trust and explicit accepted-source/history reconciliation. |
+| Code /root/resume_code_review | ACCEPT exact discriminator-bound proof, preserved reconstruction/rights/authority guards, actual clean fixture and old refusals; no blocking source findings. |
+| White-box /root/resume_whitebox | ACCEPT; independently old consumer refuses actual reconstructed proof, corrected consumer accepts, swapped label refuses; null diagnostic upload IDs explicitly supply no native upload binding. |
+| Operator /root/resume_operator_qa | ACCEPT; actual retained boundary and five wrong-label/authority/proof/build/source refusals; source/artifact unchanged, same clean checkout; reads actual CLI pass separately. |
+
+Only verbatim receipts and deterministic RI follow this reviewed source. Publish
+as Draft genuine platform/reader release preparation, keep PR149 frozen Draft,
+and require fresh actual-head native/full control obligations before exact-head
+human trust/genuine App/protected merge. No new production/DNS/article authority.

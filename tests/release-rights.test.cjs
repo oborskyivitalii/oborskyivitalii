@@ -901,6 +901,58 @@ test('publication actual edition and package CLIs freeze exact sidecars before a
     fs.writeFileSync(gatePath, gateBytes);
     assert.equal(git(['status', '--porcelain']), '');
   }
+  const baselineDirectory = '.fixture-output/staging';
+  const baseline = JSON.parse(
+    fs.readFileSync(path.join(checkout, baselineDirectory, 'artifact.json'))
+  );
+  const eventsPath = path.join(checkout, 'site/content/events.json');
+  const events = JSON.parse(fs.readFileSync(eventsPath));
+  events.groups[0].events[0].description += ' Content package integration checkpoint.';
+  fs.writeFileSync(eventsPath, JSON.stringify(events, null, 2) + '\n');
+  run('tools/site/build.cjs');
+  git(['add', '--all']);
+  git([
+    '-c',
+    'user.name=Fixture',
+    '-c',
+    'user.email=fixture@example.invalid',
+    'commit',
+    '-qm',
+    'content checkpoint',
+  ]);
+  const contentDirectory = '.fixture-output/content';
+  run('tools/quality/artifact.cjs', [
+    'build',
+    contentDirectory,
+    '--content-baseline',
+    baselineDirectory,
+    '--generation-sha256',
+    baseline.generation.outputLockSha256,
+    '--baseline-digest',
+    baseline.artifactDigest,
+  ]);
+  run('tools/staging/color.cjs', [contentDirectory]);
+  run('tools/staging/edition.cjs', [contentDirectory]);
+  run('tools/quality/local.cjs', ['--package-gate', contentDirectory]);
+  const contentGatePath = path.join(checkout, contentDirectory, 'gate/release-manifest.json');
+  const contentGate = JSON.parse(fs.readFileSync(contentGatePath));
+  assert.deepEqual(contentGate.checks, [
+    'verified current content source',
+    'artifact snapshot integrity',
+    'size budgets',
+  ]);
+  run('tools/staging/package.cjs', ['build', contentDirectory, contentDirectory + '-package']);
+  contentGate.checks[0] = 'generated source';
+  fs.writeFileSync(contentGatePath, JSON.stringify(contentGate));
+  assert.notEqual(
+    command('tools/staging/package.cjs', [
+      'build',
+      contentDirectory,
+      contentDirectory + '-wrong-proof',
+    ]).status,
+    0
+  );
+  assert.equal(git(['status', '--porcelain']), '');
 });
 
 test('publication canonical runtime bytes prevent relabelling a licensed artifact as legacy', (t) => {
