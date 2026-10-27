@@ -2,8 +2,8 @@
   "schema_version": 1,
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/122",
-    "date": "2026-10-26",
-    "summary": "Content derivative admission, ordinary preview dependencies and bounded Writing bootstrap scheduling retain existing source/admission/profile obligations; final current-source native delivery remains required."
+    "date": "2026-10-27",
+    "summary": "Canonical Home SEO body proof and immutable producer/frame bindings retain current source, admission, scanner and profile obligations; exact-source independent and native control delivery remain required."
   },
   "layers": [
     {
@@ -309,6 +309,7 @@
         "tools/site/legal.cjs",
         "site/templates/components/legal-notices.html",
         "tools/check_site_seo.cjs",
+        "review/issue-122/2026-10-27-home-content-frame.json",
         "tests/executive.test.cjs",
         "tests/site-engine.test.cjs",
         "site/content/pages/credits/main.json",
@@ -676,7 +677,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "c5b5e6938ef083c49611e44697d10d7959097cb0cef245e31bae29183fb909ab",
+    "digest": "eef77fed5bb20ff96f155903970a07faf0019f9d24bbe35d611953b2a9a704a0",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -812,7 +813,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "6f665254eb867df6a31551b751c3492312b152c2ac7c3c94eb4fb352e4a085fa"
+        "sha256": "506125397b7d1c34b18862a10089b0a3e16aa9195c6d174c7c81be5b9c80ac05"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -924,7 +925,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "413e8a1a2f967dacb7f0d7084d1448f15358f7a424914d5dd4d1f99a75e3afc4"
+        "sha256": "3f340b443edc0438d0b93308e54a5bb7fc2ca0c18c4c8cceb8f437d8fc4dc656"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",

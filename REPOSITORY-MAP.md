@@ -841,6 +841,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-122/2026-10-26-browser-security-proof.json.gz](review/issue-122/2026-10-26-browser-security-proof.json.gz) | Inert source-bound proof of exact browser-tooling Bandit findings and public native browser checksum/NPM-integrity classifications under issue122. | history | [guides/BROWSER-ARCHIVES.md](guides/BROWSER-ARCHIVES.md) |
 | [review/issue-122/2026-10-26-content-ci.md](review/issue-122/2026-10-26-content-ci.md) | Issue122 test-mode content pipeline failures and bounded control repair, reviews and source-bound acceptance. | history | [guides/SITE-CONTENT-RELEASE.md](guides/SITE-CONTENT-RELEASE.md) |
 | [review/issue-122/2026-10-26-writing-checksum-proof.json.gz](review/issue-122/2026-10-26-writing-checksum-proof.json.gz) | Inert source-bound producer proof for six exact public Writing-startup runtime checksum dispositions; retains original native security failure. | history | [guides/SITE-CONTENT-RELEASE.md](guides/SITE-CONTENT-RELEASE.md) |
+| [review/issue-122/2026-10-27-home-content-frame.json](review/issue-122/2026-10-27-home-content-frame.json) | Immutable approved Home body and exact canonical renderer/template producer bindings for source-bound SEO reconciliation; not an editorial approval. | configuration | [tools/check_site_seo.cjs](tools/check_site_seo.cjs) |
 
 ## review/issue-126/
 

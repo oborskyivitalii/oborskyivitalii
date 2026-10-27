@@ -178,6 +178,18 @@ resources (including linked public materials). It explicitly records inherited
 platform regression and `performanceRerun: false`; it cannot claim omitted suites
 ran. The ordinary platform staging gate retains its original contract.
 
+Home body prose uses the same current-source SEO boundary as the content route.
+The checker renders the seven fixed Home blocks and section navigation from
+validated canonical JSON, verifies their exact template bindings and producer
+pins, and requires the complete emitted body to match that rendering. Only then
+can it reverse that body to the immutable approved main frame for the existing
+historical comparison. Head metadata, shared header/footer and unrelated output
+remain exact. Changed producers/templates, reordered owners, output-only drift
+and stale approved output fail. Parsed Home/catalog data rejects reserved `{{`
+template openings before rendering; composition instructions belong to the pinned
+templates. This source proof supplies no editorial approval;
+the owning PR still reviews the new claims and applicable provenance/rights.
+
 The production candidate consumes the authenticated staging artifact's raw
 generation on the identical source tree, then applies the existing production
 edition/rights controller. It does not rebuild the platform. The accepted

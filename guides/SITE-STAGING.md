@@ -166,7 +166,8 @@ A green evaluation workflow is not a green admission check.
 | Delta against current protected main | Work and operator action |
 | --- | --- |
 | Complete explicitly owned rules/review/RI metadata only | Basic formatting/lint/architecture and affected source tests; existing navigation/RI and owning acceptance. No website build/package/preview/staging/alias/publisher work. After these checks, dispatch the PR number once. |
-| Content, website, mixed, unknown or unsupported impact | Conservative existing full route until R3 integrates content. Finish Basic/RI/owning checks, owner `/stage`, then refresh PR admission and dispatch. |
+| Compatible authored content/media with an authenticated accepted baseline | Current content source/RI/owning checks, exact generation reconstruction and `compatible-content-v1` gate with current scanners, hosted bytes and affected content-browser observations. Owner `/stage` permits stable staging; `staging-regression` records isolated evidence only. |
+| Website, incompatible content, mixed, unknown or unsupported impact | Conservative full route. Finish Basic/RI/owning checks and full owner staging, then refresh PR admission and dispatch. Missing history or incompatible policy/platform records cannot inherit an earlier content gate. |
 | Executable tools/tests, workflows/actions/acceptance or declared controls | Same full route, plus explicit review of the complete diff and **reviewed_sha** equal to the full current head. A missing/wrong/old SHA refuses. It cannot waive any failed/missing full obligation or grant the repository exemption. |
 
 The protected-base classifier, not a candidate wrapper/catalog label, chooses

@@ -4,6 +4,18 @@ This guide owns topic vocabulary and discoverability boundaries. Dated sections
 record their inspected editions and evidence; current editorial/release decisions
 belong to the owning issues and [MEMORY](../MEMORY.md), not an old session handoff.
 
+## Current canonical content reconciliation
+
+The executable SEO checker proves current Home body, Writing catalog and Talks
+event output against validated authored sources before applying the unchanged
+historical amendments. Home has a finite seven-block/main-navigation frame with
+exact source/template bindings and producer pins; only its proven body reverses
+to the immutable approved main snapshot. Metadata, shared chrome, unknown output
+and the five-page outer comparison remain protected. See the
+[content release contract](SITE-CONTENT-RELEASE.md#accepted-content-and-media-lanes).
+Source/render consistency does not establish claim accuracy, editorial approval
+or production publication. The owning issue/PR retains those decisions.
+
 ## Production preservation audit — 2026-10-15
 
 [PR40's launch issue audit](../review/issue-39/2026-10-15-release-issue-audit.md)

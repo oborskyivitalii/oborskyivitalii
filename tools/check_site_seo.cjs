@@ -355,6 +355,109 @@ const structuredMetadata = new Map();
 const eventMigration = JSON.parse(
   fs.readFileSync(path.join(root, 'review/issue-122/2026-10-24-r3-events-migration.json'))
 );
+const homeFrame = JSON.parse(
+  homeSourceFile(root, 'review/issue-122/2026-10-27-home-content-frame.json')
+);
+const homeBlocks = ['hero', 'help', 'research', 'writing', 'acknowledgements', 'about', 'contact'];
+const homeProducerInputs = [
+  'tools/site/content.cjs',
+  'tools/site/html.cjs',
+  'tools/site/render-content.cjs',
+  'tools/site/render-records.cjs',
+  'tools/site/validate-catalog.cjs',
+  'tools/site/legal.cjs',
+  ...['main', ...homeBlocks].map((name) => 'site/templates/pages/index/' + name + '.html'),
+  ...[
+    'publication',
+    'publication-title',
+    'publication-summary',
+    'language-badge',
+    'edition-link',
+  ].map((name) => 'site/templates/components/' + name + '.html'),
+].sort();
+
+function homeSourceFile(projectRoot, name) {
+  const file = path.join(fs.realpathSync(projectRoot), name);
+  assert.equal(fs.realpathSync(file), file, 'Home source must not follow symlinks: ' + name);
+  assert.ok(fs.lstatSync(file).isFile(), 'Regular Home source required: ' + name);
+  return fs.readFileSync(file);
+}
+
+function verifyHomeProducers(projectRoot = root, bindings = homeFrame.producerInputs) {
+  assert.ok(bindings && typeof bindings === 'object', 'Reviewed Home producer identity');
+  assert.deepEqual(
+    Object.keys(bindings).sort(),
+    homeProducerInputs,
+    'Exact Home producer inventory'
+  );
+  for (const file of homeProducerInputs) {
+    assert.match(bindings[file], /^[a-f0-9]{64}$/, 'Home producer SHA256');
+    assert.equal(
+      crypto.createHash('sha256').update(homeSourceFile(projectRoot, file)).digest('hex'),
+      bindings[file],
+      'Home producer changed outside its reviewed frame: ' + file
+    );
+  }
+}
+
+function verifiedHomeFrame(frame = homeFrame) {
+  assert.equal(frame.schema, 1);
+  assert.equal(frame.kind, 'canonical-home-frame');
+  assert.deepEqual(frame.blocks, homeBlocks, 'Exact reviewed Home block order');
+  assert.equal(frame.source.commit, '3d33a35565209d677dc7d86e806a71ff669cb823');
+  assert.equal(frame.source.path, 'docs/index.html');
+  const source = cp.execFileSync('git', ['show', frame.source.commit + ':' + frame.source.path], {
+    cwd: root,
+    maxBuffer: 1024 * 1024,
+  });
+  assert.equal(crypto.createHash('sha256').update(source).digest('hex'), frame.source.sha256);
+  const regions = source.toString('utf8').match(/<main\b[^>]*>[\s\S]*?<\/main>/g);
+  assert.equal(regions?.length, 1, 'One immutable approved Home frame');
+  assert.equal(frame.original, regions[0], 'Home frame differs from its immutable source');
+  assert.equal(
+    crypto.createHash('sha256').update(frame.original).digest('hex'),
+    frame.originalSha256,
+    'Home frame snapshot integrity'
+  );
+  return frame.original;
+}
+
+function homeData(projectRoot, file) {
+  const data = JSON.parse(homeSourceFile(projectRoot, file));
+  assert.doesNotMatch(
+    JSON.stringify(data),
+    /\{\{/,
+    'Home data must not introduce template controls'
+  );
+  return data;
+}
+
+function restoreHomeContent(html, projectRoot = root) {
+  verifyHomeProducers(projectRoot);
+  const directory = 'site/content/pages/index/';
+  const metadata = homeData(projectRoot, directory + 'metadata.json');
+  assert.deepEqual(metadata.blocks, homeBlocks, 'Exact authored Home block order');
+  for (const name of ['main', ...homeBlocks]) {
+    const input = homeData(projectRoot, directory + name + '.json');
+    assert.equal(input.template, 'pages/index/' + name + '.html', 'Exact Home template binding');
+  }
+  const content = require('./site/content.cjs');
+  const catalog = require('./site/validate-catalog.cjs').validateCatalog(
+    homeData(projectRoot, 'site/content/catalog.json')
+  );
+  const current = content.routeInput(projectRoot, { id: 'index' }, catalog);
+  const normalized = normalizeHTML(html);
+  const regions = normalized.match(/<main\b[^>]*>[\s\S]*?<\/main>/g);
+  assert.equal(regions?.length, 1, 'One complete current Home frame');
+  assert.equal(
+    regions[0],
+    normalizeHTML(current.main),
+    'Home output differs from validated source'
+  );
+  // Only proven canonical body bytes reverse; head, chrome and unknown output remain frozen.
+  return normalized.replace(regions[0], () => normalizeHTML(verifiedHomeFrame()));
+}
+
 const eventProducerInputs = [
   'tools/site/content.cjs',
   'tools/site/events.cjs',
@@ -924,16 +1027,15 @@ function verify() {
       encoding: 'utf8',
       maxBuffer: 1024 * 1024,
     });
+    const licensed = restoreApprovedLicensing(
+      require('./build_site_previews.cjs').sourceForPreview(source),
+      page,
+      root,
+      true
+    );
+    const reconciled = page === 'index' ? restoreHomeContent(licensed) : licensed;
     assert.equal(
-      restore(
-        restoreApprovedLicensing(
-          require('./build_site_previews.cjs').sourceForPreview(source),
-          page,
-          root,
-          true
-        ),
-        page
-      ),
+      restore(reconciled, page),
       normalizeHTML(strip(old)),
       'undeclared semantic/source change: ' + file
     );
@@ -995,7 +1097,7 @@ function verify() {
     pass: true,
     rows,
     policy:
-      'Ordered HTML contracts after proving the seven catalog-generated Writing regions, simple count and ItemList against current validated data and reversing the exact hashed Issue5 frame amendment; then reversing the exact hashed Issue41 AI-assisted site case and positioning, Issue61 PMDay recording, Issue48 then original Issue41 content amendments and declared Home hierarchy/wordmark changes, approved contact/title wrappers, reviewed response blocks/Research nav, accessible Writing formula description, exact canonical Home critical media head block and authored-base build identity. ASCII whitespace runs and void-tag spellings are canonicalized; only named Research/Writing/Talks block-fragment EOF seams and exact compact encodings of immutable approved JSON-LD blocks are reversible. Inline separators, attributes/order and all other raw metadata remain exact; decorative fallback SVG is excluded. Includes semantic metadata, publication records, links, languages, dates, portrait and source attribution.',
+      'Ordered HTML contracts after proving the finite Home body against validated current source, exact template/producer identities and its immutable approved frame; proving the seven catalog-generated Writing regions, simple count and ItemList against current validated data; and reversing the exact hashed Issue5 frame amendment. Then reverse the exact hashed Issue41 AI-assisted site case and positioning, Issue61 PMDay recording, Issue48 then original Issue41 content amendments and declared Home hierarchy/wordmark changes, approved contact/title wrappers, reviewed response blocks/Research nav, accessible Writing formula description, exact canonical Home critical media head block and authored-base build identity. ASCII whitespace runs and void-tag spellings are canonicalized; only named Research/Writing/Talks block-fragment EOF seams and exact compact encodings of immutable approved JSON-LD blocks are reversible. Inline separators, attributes/order, head metadata, shared chrome and unrelated output remain exact; decorative fallback SVG is excluded. Includes semantic metadata, publication records, links, languages, dates, portrait and source attribution.',
   };
 }
 if (require.main === module) process.stdout.write(JSON.stringify(verify(), null, 2) + '\n');
@@ -1010,6 +1112,9 @@ module.exports = {
   restoreCriticalMedia,
   restoreStructuredMetadata,
   restoreWritingCatalog,
+  restoreHomeContent,
+  verifyHomeProducers,
+  verifiedHomeFrame,
   restoreEventsCatalog,
   restoreWritingMetadata,
   verifyWritingProducers,
