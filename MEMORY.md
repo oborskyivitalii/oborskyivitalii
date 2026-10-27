@@ -7,10 +7,12 @@ Dated continuity, not live authority. Last verified: **2026-10-27**.
 - Owner remains #122. Deliveries: PR142/R1, PR143–144/R2, PR145 compatibility,
   PR146 platform, PR147 browser archives, PR148 repository maintenance,
   PR151 readiness/compatibility and PR150 content CI/Writing startup.
-- Protected main is `7ed63ee160b68be171384a2a0552c2971c9fd8f4`, normal PR150 merge
-  with parents fc95da63 + 11624a45 and identical tested tree
-  `9d34cc2db2de704cfeffef52ce75203f65d74c36`. Postmerge40480479324 and
-  mainRI40480479148 pass. Delivery: PR1506438240044 / issue6438240385.
+- Protected main is `20c3a6959ee812a632a4a820402873c92a6d3d98`, normal PR152 merge
+  with parents7ed63ee1+cc8d2108 and identical tested tree939b1948. App40482549534,
+  conditional40482909421, postmerge40483186630 and actual-mainRI40483184402 pass.
+  Four metadata paths only; website workN/A. Receipts: PR1526438693606/issue6438700471.
+- PR150 delivered7ed63ee1, parentsfc95da63+11624a45/tree9d34cc2d. Its postmerge
+  40480479324/mainRI40480479148 pass; PR1506438240044/issue6438240385 retain proof.
 - PR150 tested `11624a452f009f59d58b0c19414c6918a15be116`. Basic40475742962
   passes75modules/1140tests; RI40475742838, owning40479235738 and
   PRrefresh40479235778 pass. Owner40476765559/1 passes all mandatory jobs:
@@ -31,8 +33,9 @@ Dated continuity, not live authority. Last verified: **2026-10-27**.
 - PR151 delivered fc95da63 from tested1d71517b/tree47311cdc. Owner40467379806,
   App40473720100, postmerge40473958278 and mainRI40473958044 pass. Late delivery
   receipts are carried by the current necessary maintenance candidate.
-- PR149 stays a frozen never-merge Draft atd4ea6bbd. PR79/R38 stays Draft/open,
-  unpublished at02a4f6aeb04feb663baf7d170e3a9861ae718b6a.
+- PR149 originald4ea6bbd is archived; fresh never-merge C1 is prepared from20c. PR79/R38 is Draft/open,
+  unpublished; live head11a029c4eaf650c88f46ab503e352d338eea5a2e supersedes the
+  stale02a handoff. This delivery did not change PR79; do not infer who moved it.
 
 ## Decisions
 
@@ -52,13 +55,16 @@ Dated continuity, not live authority. Last verified: **2026-10-27**.
 - No R38, production or DNS action. Test markers must never merge into main or
   promote to stable/production. Browser pins expire2027-01-24T10:16:18Z; refresh
   explicitly through the existing owner with no CDN/system-browser fallback/prelaunch.
+- Maintainer requests a later platform/reader production release without the new
+  article. Resolve exact current-main/staging binding; goal alone is no activation.
 
 ## Open work
 
-- Current M is based on verified main7ed. Complete source/claim reviews and existing
-  repository-mode format/lint/architecture/affected-source, RI and owning checks.
-  Then genuine App, conditional Staging admission, normal merge and postmerge/mainRI.
-  No website Basic/build/package/preview/staging/alias/publisher work belongs here.
+- M152 delivered from testedcc8d2108/tree939b1948 after four source ACCEPT roles,
+  current repository checks/App/conditional admission/protected merge/postmerge/RI.
+  Original postmerge12723174403 is493bytes; SHA256 is retained in the delivery
+  receipt. Identity is accepted-repository-merge/pass, websiteN/A.
+  Late receipts stay in GitHub/local handoff; no new proof-only prerequisite PR.
 - Authenticate S150 → genuine M → isolated C1 Talks → C2 newer Home → C3 selective
   Talks recovery preserving Home. Require unchanged platform bytes and actual native
   content gate/host/browser/history/leases. Fixtures or full-platform fallback alone
@@ -72,11 +78,10 @@ Dated continuity, not live authority. Last verified: **2026-10-27**.
 
 ## Next session
 
-1. Revalidate main7ed, #122 and current M branch; keep PR149/PR79 unchanged until
-   their authorized test step. Finish four M roles, publish Draft through an exact
-   lease and wait Draft inventory before Ready.
-2. Complete fresh repository checks/App/conditional admission and protected normal
-   merge/postmerge/mainRI. Preserve S150's original source/artifact without site work.
+1. Revalidate main20c, #122, frozenPR149 and livePR79. Preserve S150's original
+   source/artifact without relabeling at M152. Requirements accepts fresh C1
+   preparation: archived d4, clean20c descendant, exact expected-head PR149 lease.
+2. Authenticate complete S150→genuineM152→contentC history and original native proof.
 3. Execute isolated C1/C2/C3 through the existing test-mode lane after authenticating
    complete S→M→C history. Never merge or promote test markers.
 4. Reconcile original AC03/06/08, contracts, roles, test dispositions and actual
