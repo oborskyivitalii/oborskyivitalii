@@ -4,6 +4,8 @@ Dated continuity, not live authority. Last verified: **2026-10-27**.
 
 ## Snapshot
 
+- Current protected main is M156 merge16890621b511f15e432265b9757d1c70b3cd72ad;
+  PR155/S155 identities below remain original and are not relabelled at M156.
 - Owner #122 open. PR155 delivered as normal main merge
   136af46947aaef0b522a0b6621f36bb3bd348a3a, parents3d33a355+tested
   683807343b85ead73827ada2266d55a6f9c54bac; identical complete tested tree
@@ -49,28 +51,34 @@ Dated continuity, not live authority. Last verified: **2026-10-27**.
   an independentmergeblocker where mandatorytest/sitebudgets pass. Retain21m21
   andqueue/setup/execution observations. No hardtimeout/performance waiver.
   Preserve sourcecap4/16MiB/300s+30sgrace/security180s andallbrowser/sitebudgets.
-- AC01/02/04/05/07 accepted; originalAC03/06/08 open. No authenticated literal
-  repositoryM after acceptedS155 yet. PR155 is control/fullroute, neverM;
+- AC01/02/04/05/07 accepted; originalAC03/06/08 open. Actual repository M156
+  follows accepted S155. PR155 is control/fullroute, never M;
   no fabricatedchange/proof-onlyPR/silentACamendment or historicalrelabel.
 - Diagnose failures before correction/retry; retain alloriginalresults.
   Browserpins expire2027-01-24T10:16:18Z; existingownerrefresh only.
 
 ## Open work
 
-- Deliver actualstalehandoff maintenance first: main136 still saysS155repair/
-  nativecontrol/trustpending. Requirements independentlyaccepts existing3path
-  currenthandoff/ownerreview/RI update as meaningful repository-onlymaintenance.
-  All4rolesACCEPT096715f/treecaf5; genuineApp/normalprotectedmerge/postmerge
-  required before countingactualM. Preserve S155 production-source constraints.
-- FreshC2 notstarted. Requirementspreflight ACCEPT after authenticatedS155:
-  start fromactualprotectedMmain, carryb15events +Homeabout.json:text.T005 sentence.
+- M156 delivered: tested901212c1cb5e491b021a727e3a8ff6b4daf08df6/tree38f5a675,
+  normal main merge16890621b511f15e432265b9757d1c70b3cd72ad, parents136a+9012.
+  Exactly MEMORY/owner review/derived RI changed. Four actual roles ACCEPT096715f;
+  genuine App40549017232/1/check122349123689 (5453173) repository/eligible,
+  controls unchanged/controlReview null. Five protected checks and postmerge
+  40550233296/mainRI40550232282 PASS. Identity12755006357 binds9012→1689,
+  website not-applicable; S155 retains its original tested6838/artifact identity.
+- Fresh C2 prepared from actual main1689: exact b15events + exact433 Home
+  about.json:text.T005 sentence. Raw generation and SEO pass locally; native
+  candidate acceptance is pending. Historical PR149 still Draft433/archive retained.
   Bothroutes index,talks built;credits/research/writing reused;12contentbrowserrows
   (index/talks/writing×390/1440×normal/no-JS), unchangedraw/deliveredplatform,
   articleCandidates[], own compatible-content-v1 gate/performanceRerunfalse.
   Currentfourroles/source/RI/coupling/owning/preview/scanners/hosted proofsrequired.
   No additionalnativeC1 checkpoint is required. OldC1 stays historicalS154.
-- C3directchild ofacceptedfreshC2 restoresonlyoriginalS155Talks andpreserves
-  exactC2rawHome; ownnativegate/current source+predecessorleases required.
+- C3 direct child of verified fresh C2 restores original S155 Talks and preserves
+  exact C2 raw Home. Native accepted baseline remains S155 through M156: index
+  only built/four routes reused/eight browser rows, not C2-generation composition.
+  Prove Home C3=C2/Talks C3=S155; no claimed C2-specific staging predecessor
+  lease or retention of every C2-only snapshot. Production predecessor is separate.
 - Complete literalS→genuine repository-onlyM→C, originalAC03/06/08, contracts/
   test-profiledispositions/provenance/concurrency/leases/timing reconciliation.
 - Prepare exact-bound platform/readerproduction withoutarticle through existing
@@ -78,15 +86,15 @@ Dated continuity, not live authority. Last verified: **2026-10-27**.
 
 ## Next session
 
-1. Revalidate main136a/PR155merged/originalS155native/App/postmerge/production676e.
-2. Deliver reviewed handoff M, then fresh C2 on S155 via PR149's isolated
+1. Revalidate main1689/PR156merged/originalS155+M evidence/production676e.
+2. Complete fresh C2 on S155 through M156 via PR149's isolated
    staging-regression; never merge markers or promote them to stable/production.
 3. C3selectiveTalksrestore/preserveHome, thenliteralM/originalAC/contracts/timings.
 4. Exact-bound platform/readerproduction withoutarticle afteractivationdecision.
 
 ## Maintenance
 
-- Currentdeliveryreceipt is parented by main136a; not newacceptedproducer/M.
+- Current C2 work is parented by actual M156 main1689; not yet native accepted.
   Versionedowner review/issue-122/2026-10-26-content-ci.md retains allfailures,
   sourcecorrectionreviews, nativecompletion/App/merge/postmerge boundaries.
 - S155originals/API /tmp/issue122-home-seo/native andapp-native; actual8API

@@ -11701,18 +11701,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/19a551701415df4f038a02fbeee280a2fee4d4450b11415c123c9861be9abc17": {
-      "kind": "directory",
-      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/19a551701415df4f038a02fbeee280a2fee4d4450b11415c123c9861be9abc17/index.html": {
-      "kind": "file",
-      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/99d61ef8900c10ea0b496a9ae910b4d0d95fd853e5e6d3ad3a04d37603c36797": {
       "kind": "directory",
       "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
@@ -11720,18 +11708,6 @@
       "owner": "site/README.md"
     },
     "docs/snapshots/99d61ef8900c10ea0b496a9ae910b4d0d95fd853e5e6d3ad3a04d37603c36797/research.html": {
-      "kind": "file",
-      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/e90270842e40ad228e372ca3475ee6a51ccc8f43f2d19d6c1e49932e97367d41": {
-      "kind": "directory",
-      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/e90270842e40ad228e372ca3475ee6a51ccc8f43f2d19d6c1e49932e97367d41/talks.html": {
       "kind": "file",
       "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
       "role": "generated",
@@ -11820,6 +11796,30 @@
       "purpose": "Immutable approved Home body and exact canonical renderer/template producer bindings for source-bound SEO reconciliation; not an editorial approval.",
       "role": "configuration",
       "owner": "tools/check_site_seo.cjs"
+    },
+    "docs/snapshots/5dea73b92fa0aa1b288f9a8cb6960dac0cca27b19d65c0d40f19b9cd7ebe494f": {
+      "kind": "directory",
+      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/5dea73b92fa0aa1b288f9a8cb6960dac0cca27b19d65c0d40f19b9cd7ebe494f/talks.html": {
+      "kind": "file",
+      "purpose": "Generated public rendition; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/d61f65ee4506956d6f14c4e6476227e4ec5381dc409f54bed3e56df271dce6a6": {
+      "kind": "directory",
+      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/d61f65ee4506956d6f14c4e6476227e4ec5381dc409f54bed3e56df271dce6a6/index.html": {
+      "kind": "file",
+      "purpose": "Generated public rendition; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
     }
   }
 }
