@@ -830,3 +830,162 @@ Only verbatim receipts and deterministic RI follow this reviewed source. Publish
 as Draft genuine platform/reader release preparation, keep PR149 frozen Draft,
 and require fresh actual-head native/full control obligations before exact-head
 human trust/genuine App/protected merge. No new production/DNS/article authority.
+
+### PR153 native full-route receipt — 27 October 2026
+
+Published439b215f7c80e62e0b9ee1c6b8221fdbf357eea1/tree3e156ee53a4fd6a728e22d5f05261f9a291a29ec,
+parent/protected controller20c3a6959ee812a632a4a820402873c92a6d3d98, remained
+unchanged through Ready and owner staging. Basic40489732179 passes9 additional
+modules115/115 in46185ms, zero fail/cancel/skip/todo; RI40489731974 and owning
+40489731972 pass. Ready preview40489732229 build/publish/two-width smoke pass;
+its initial missing-stage admission failure remains failed, not waived.
+
+Owner request6439894899 starts the sole full attempt40490700796/1. It succeeds
+from10:43:38 to11:01:47UTC (18m09, beyond15min operational target; no budget
+waiver). All26prepublication guards pass:74source modules1131/1131, zero
+fail/cancel/skip/todo, clean439b/tree3e156 before/after. Worker122020ms/300000,
+wrapper122094ms/330000; Python139/139 in19.843s; security68255ms/180000.
+Static/host/browser/performance/gate, stable promotion, merge admission and final
+main-owned independent receipt122151290709 all succeed. Optional exhaustive
+device/soak work remains unexecuted and all three authority flags remain false.
+
+Original ZIPs were physically size/SHA256/CRC/path verified, then the existing
+package/gate/functional/performance/Color validators pass. All67prepublication
+raw-file hashes and7canonical report hashes match. Reports aggregate is
+fc5dcb5c16456b059d4783c84c23eeda42309e056b080a1c0bdf7bd649676b3e.
+Final artifacts: public12728142638, prepublication12728267646,
+package12729082317, gate12729098856, browser12728169640,
+promotion12729130436, recovery12729275243. Independent receipt12729125791
+is402bytes, SHA2561e2833de8baad56701bd479a88be402cfdc0175be3123f6c8edf68b74bb9aa87,
+and binds exactPR153/source/base/run/attempt. Early target evidence remains
+diagnostic; it does not replace that final trusted receipt.
+
+Accepted staging source439b/tree3e156 has public
+1cbfd2d1da17587369f429eb4c9eec6b67a18dc2f8bd84accf89aea39178de4d and package
+5c802510314b7a82cb7b984ad8734f2b5c119107e0567550e053152d71a0bfff.
+Stable readiness passes its first whole18row observation; final16HTTP rows are
+a separate inventory. Six journeys,2navigation,10failure and7analytics cases,
+two Color widths,8CPU4 windows,4cold/warm flights and2Lighthouse trials pass.
+ResearchLCP2266.1055ms/TBT81ms/CLS0; Writing1966.922/111.5/0.004149938636036205
+under unchanged simulateCPU4. Article candidates are empty; no C1Talks marker.
+
+Four distinct completed final native readbacks independently ACCEPT: requirements,
+code, white-box and operator. They inspect actual originals/current source, not
+one another's verdicts. Prior source review remains bound to3dc; final native
+evidence binds439b. Original C1 failure and diagnostic rights refusal remain.
+
+The current explicit maintainer "Роби" authorizes the already presented unchanged
+PR153 through genuine App admission with full reviewed_sha439b215f7c80e62e0b9ee1c6b8221fdbf357eea1
+and normal protected merge after these checks. This records authorization after
+independent review, not a claim of personal line-by-line inspection. PR body edit
+once produces fresh owning40493503107/job122153024142 and eligible admission
+40493503979/job122153028681, both pass. Their original artifacts12730295430 and
+12730640176 physically verify exactsource/tree/base/owner and false authority.
+App40493747793 is requested once frommain20c; completion/merge remain separate
+until observed. AC03/06/08 stay open; no production or new article action.
+
+### PR153 App, protected merge and postmerge completed
+
+App40493747793/1 succeeds in71s with genuine App5453173check122154117172,
+external40493747793/1/153 and bound Actions15368aggregate122154102533.
+Original snapshot12729321677 is17461bytes/SHA256
+855b89f98c3089e87e54b30d4eb78c0e918358a3053969a3bc37073dc1c5803d;
+physically verified eligible-snapshot/current-full-route/blockers[], exact439b/
+tree3e156/controller20c/reviewedSHA439b and current selected source/RI/owning/
+eligiblePRrefresh/fullowner/independentreceipt. Evaluation success is separately
+confirmed by the genuine dedicated and aggregate successful check producers.
+
+Normal protected mergee289f7289ff6f89bc979d27af951c0e6d1d75a06 has parents
+20c3a6959ee812a632a4a820402873c92a6d3d98+439b215f7c80e62e0b9ee1c6b8221fdbf357eea1,
+identical tree3e156ee53a4fd6a728e22d5f05261f9a291a29ec. Before the leased merge,
+ruleset24568553 retained active/strict/all5 producer-bound checks/no bypass.
+Postmerge40494087678 and actual-mainRI40494086048 both pass. Original
+postmerge12729631805 is425bytes/SHA256
+6100cb037a8a2a30145bbcb142a72864e9ab5c3af88ea00dfdc7ba36a99af219;
+accepted-staging-merge/pass/exactsource439b/mergee289/tree3e156/owner40490700796/1,
+publicBytesUnchanged=true. The original tested package stays bound to439b;
+no main rebuild or producer relabel follows.
+
+Durable complete delivery/native-artifact/timing/role receipt is PR153comment6440462447;
+issue122comment6440467163 and top status record completion and the full remainder.
+Actual owner initial run→target start4s, build272s (checkout/runtime/tool setup
+steps42s, prepublication215s), publish31s, full/staging506s, promote88s. Dependent
+job durations are neither independent queue measurements nor additive critical
+path totals. Whole18m09 exceeds15min target; original budgets remain unchanged.
+
+PR149 stays frozen Draftdbbb/tree5051. PR79 stays open Draft, latest observed
+2fecc582837d4c837b446ad46abaa7d04e3ca0a6; this delivery did not modify it or infer
+who moved it. Production remains676e3ab6/prod-2026-10-23.2. AC01/02/04/05/07
+accepted; original AC03/06/08 and issue122 remain open.
+
+Next reconcile actual accepted S153/mergee289/history and legitimate C1 restart;
+no reuse of S150 across controls, invented repository M or proof-only PR chain.
+Then actual isolated C1/C2/C3 selectiveTalks recovery preserving newerHome,
+native content/host/browser/fresh leases and unchanged platform; wholeAC03/06/08/
+contracts/profile dispositions/queue-setup-execution reconciliation; exact-bound
+platform/reader production candidate without the article and its concrete
+activation decision. This local-only receipt adds no inherited native acceptance.
+
+
+## Fresh S153-based C1 restart — 27 October 2026
+
+Owner issue122/comment6440568878; existing never-merge PR149 is reused only
+after archiving failed dbbb29177d570ef6c2fd768a81e18f962a6a6316. New candidate
+directly descends protectede289f7289ff6f89bc979d27af951c0e6d1d75a06. Original
+accepted S153 stays439b/tree3e156/owner40490700796/1/public1cbf/package5c802;
+merged boundarye289 preserves identical bytes, not a producer reassignment.
+
+Requirements independently accepts direct S153→C1 with empty repositoryCommits
+and repositoryMerges because nothing intervened. This does not complete the
+literal original AC03 S→authenticated M→C scenario; earlier S150→M152→failed
+C1 authentication remains separate partial evidence. AC03/06/08 stay open. No
+artificial M, new repair PR or silent acceptance amendment. Late actual PR153
+receipts/MEMORY accompany this necessary content candidate instead.
+
+Scope is the same explicit DevCon description sentence, generated canonical
+docs/lock, all18 maintained derivatives, required snapshot-catalog/RI/RI-CI and
+existing owner metadata. Original title/time/links/rights remain; no new article,
+runtime/template/tool/test/workflow/policy changes. CS01/02/04/05/08/09 map to
+authored JSON ownership, generated dependency direction, bounded source/content
+checks and four distinct source reviews. Never merge/promote these test markers.
+
+Before publish: regenerate from owners, clean coherent commit, actual content
+eligibility/history inspection and current Basic/content/format/style/RI/owning
+checks; four nonauthoring roles inspect exact source. Then lease-update PR149
+from exactdbbb, preserve archive/failures, complete Draft inventory before Ready,
+and require actual current native source/RI/owning/preview. Content acceptance
+requires selectAccepted.mode=content, unchanged raw/final platform bytes,
+compatible-content-v1/content-staging-gate and actual host/browser evidence via
+existing owner-only staging-regression. No /stage/App/merge/production action.
+
+Preparation diagnostic: first RI build/verify was invoked before staging the
+generated snapshot rename, so the index still named the removed snapshot and
+correctly refused it. No acceptance was claimed. Stage the actual generated
+rename before rebuilding RI; canonical JSON formatting removes refresh-only
+layout churn. Candidateb33 was preliminary with stale RI, not source acceptance.
+
+### Fresh C1 clean source completion
+
+Exact clean6acdb74ce96349c91c033bea74735c75453449a8,
+tree310bcf2996214ab352d35d18f490381c95531d0f, basee289:
+Basic5routes/16theme+archive/10flight pass; complete content19modules227/227,
+zero fail/cancel/skip/todo in60703ms/300000, clean same before/after, exit0/noerror.
+The5152stderr bytes are structured source-test scheduler timing observations.
+Maintained format532 passes; current RI/coupling17checks17layers and all five
+owning mechanical checks pass, automation_pass/evidence_valid=true/errors[],
+ready_for_issue_closure=false. Direct history has two content edges/no repository
+commits. Broader advisory conservative/controltrue is not claimed green.
+
+Four completed distinct nonauthoring roles ACCEPT this exact source: Requirements
+inspected intent/AC/diff/history; Code inspected actual source/derived inventories
+and raw227TAP; White-box independently inspected preserved platform/source gates
+and raw accounting; Operator executed bounded HTTP/HTML observations (Talks/Home
+200/exactbytes/singlemarker, retained title/time/agenda, marker removal restores
+original DevCon, four other routes unchanged). Native hosted/browser/content
+gate remains pending, not inapplicable. Only verbatim receipts/deterministic RI
+follow; clarify the inherited MEMORY local-only wording refers to separatec315.
+
+Faileddbbb is physically retained and remotely frozen at
+archive/issue-122-pr149-c1-dbbb2917-20261027. Existing PR149 remains never-merge
+Draft and will be replaced only with an exactdbbb head lease after final checks.
+Published-head native results do not inherit6ac local acceptance or prior C1.
