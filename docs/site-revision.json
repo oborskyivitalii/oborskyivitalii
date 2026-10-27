@@ -19,12 +19,12 @@
     "vitalii-oborskyi-cutout.webp",
     "writing-paradigm.svg"
   ],
-  "content": "207de18f2f930d461ab80ec4eefa43ff04b0378a13eaaae3e406bc87a1228b0b",
+  "content": "4893739ad9af3689e3edd428c85c81243cfbb4136bb7f86cb5eeeedeb9aee3a3",
   "routes": {
     "index": {
-      "version": "19a551701415df4f038a02fbeee280a2fee4d4450b11415c123c9861be9abc17",
-      "url": "snapshots/19a551701415df4f038a02fbeee280a2fee4d4450b11415c123c9861be9abc17/index.html",
-      "sha256": "a6104e41056cb414eb1f6f6cb2c9696b1f97f099b01908f3e1b51aafd940bebc"
+      "version": "d61f65ee4506956d6f14c4e6476227e4ec5381dc409f54bed3e56df271dce6a6",
+      "url": "snapshots/d61f65ee4506956d6f14c4e6476227e4ec5381dc409f54bed3e56df271dce6a6/index.html",
+      "sha256": "2f1fcee5ec47823821c6934d086cae0108a989f5e3a9ee6c3455c5be9657a7e4"
     },
     "research": {
       "version": "99d61ef8900c10ea0b496a9ae910b4d0d95fd853e5e6d3ad3a04d37603c36797",

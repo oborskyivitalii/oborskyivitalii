@@ -11701,13 +11701,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/19a551701415df4f038a02fbeee280a2fee4d4450b11415c123c9861be9abc17": {
+    "docs/snapshots/d61f65ee4506956d6f14c4e6476227e4ec5381dc409f54bed3e56df271dce6a6": {
       "kind": "directory",
       "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/19a551701415df4f038a02fbeee280a2fee4d4450b11415c123c9861be9abc17/index.html": {
+    "docs/snapshots/d61f65ee4506956d6f14c4e6476227e4ec5381dc409f54bed3e56df271dce6a6/index.html": {
       "kind": "file",
       "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
       "role": "generated",

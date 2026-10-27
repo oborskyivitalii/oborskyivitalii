@@ -1296,3 +1296,166 @@ verified. Update existingPR149 with oldheadlease; Draftinventory→Readyprerequi
 →one isolated staging-regression, nevermerge/stable/production. C1 nativegate,
 C2/C3, literalMscenario/originalAC03/06/08/contracts/profile/leases/timings and
 platform/reader production without new article remain open.
+
+
+## Fresh S154 C1 native completion — 27 October 2026
+
+Durable [PR1496443750345](https://github.com/oborskyivitalii/oborskyivitalii/pull/149#issuecomment-6443750345)
+and [issue1226443772942](https://github.com/oborskyivitalii/oborskyivitalii/issues/122#issuecomment-6443772942)
+retain complete native receipts/artifact hashes/four-role scopes/timings/remainder.
+Exact tested source b15c4de9c9c8a26752f285d936c988ac7ca96ffb/tree
+0e829b258d035d6828afd2599b8510ece9b4b043, directparent protectedmain3d33.
+This later local receipt branch preserves b15 unchanged; it supplies no new
+native source identity or prerequisite PR. No receipt is pushed onto frozen C1.
+
+Draft40512662000 passes. ReadyBasic40513402151 passes18additionalmodules219/219;
+RI40513402042/owning40513401981 pass; Ready40513402000 build/publish/two-width
+minimal Color/noCanvas smoke pass. Its separate missing-stable-stage admission
+remains expected failed; no stable-merge authority is inferred.
+
+Sole isolated40514588030/1 is terminalSUCCESS. Target122225080577,
+build122225283934,publish122228421981,stage-build122228803327,
+static122229090955,host122229091891,content-browser122229091052,
+finalgate122229893384,status-comment122230079440 pass. Full-platform/performance/
+device/capture/merge-admission/promote jobs are explicitly skipped by content/
+test-mode applicability, not claimed executed. After terminal success PR149
+returns Draft at exactb15 and staging-regression label is removed.
+
+Actual content baseline retains S154original1341/treebec724/owner40502627321/1,
+merged3d33,publica97ab75b/package49db83fb. Native selection/history/reuse passes;
+onlyTalks built,other4routes reused;29raw and18declared delivered platform files
+byte-identical. Article candidates/builds empty. History has one directcontent
+edge and repositoryCommits[]/repositoryMerges[]; literalM remains unproved.
+
+Native publicac91545d82661e0a5c73fd43d999c0e3e05b963d66ea533ed41bfa109ad41ade;
+package0f0fe6e154a68ec380b0eb4629c88609d6c2609aab3aca69f19ffbb5a49d0ecc.
+Originalpublic12739641081 is3839395bytes/SHA256
+fe6ceaf69d22533d0832eb888f74f5147aa1ae89404b1ea7b4faa38d1f0731bb;
+package12739656052 is712606bytes/da77b0102a29a0b2e580598157475346b30af6fb26fb4ff10f41f46169919f6b;
+preflight12739366116 is273836bytes/6bae2dd94640df7ca97b52976173048f785e3769804cb0c7047af84fc515e084;
+finalgate12739802408 is6895bytes/c6de596c126627415df3cdb3e6361ee066504e0cdfdf7e65f43bf5df170d897a.
+All9original native ZIPs' API sizes/digests/CRC/safe inventories verify; all67
+preflight file hashes and5parsed-report hashes match. Full identities retained
+in durable receipt; local originals/API snapshot under /tmp/issue122-s154-native.
+
+Actual26guards pass. Content19modules227/227,zero fail/cancel/skip/todo,
+worker39783/300000ms,wrapper40258/330000;139Python37.100s/37408mswrapper;
+security137212/180000ms,lint11109ms,advisories3026ms. Exact clean source before/
+after. Current rights/lint/scanners/thresholds/membership/budgets unchanged.
+
+Hosted30/30rows pass at immutablef80786bb.oborskyi-author-ci-staging.pages.dev.
+Actual content-functional8/8Talks/Writing×390/1440×normal/no-JS:HTTP200,
+exacthashes,h1=1,nooverflow,imagesdecoded,errors[],normalWritingtagfiltertrue.
+Chromium153.0.8010.12,9087ms; pinnedarchive consumerLaunches0 before consumer.
+Finalcontent-staging-gate/compatible-content-v1/pass/sourceCheckssuccess; required
+4jobs success. Existing aggregate reconstructs exact native gate plus its CLI
+GitHubartifact binding. ReportsDigest
+3c1f4344fa933e331ed2e644a3e5f47e347b4d78ce32b345af968a3e18eaf841.
+Performance explicitly inherited; performanceRerunfalse/media+articleobservations0;
+fullGate/productionEligible/deploymentAuthorizedfalse.
+
+Four actual completed source roles remain ACCEPT61db/c597, then exact native
+readbacks: Requirements ACCEPT originalgate/history/5hashes/limitedACscope;
+Code ACCEPT public/package/preflight/history/29rawbytes; White-box ACCEPT all3
+upstreamZIPs/67hashes/26guards/227+139/scannerlimits; Operator ACCEPT30host/
+8browser/marker/unchangedbytes/finalgate. Code/White-box upstream acceptance is
+not relabelled as independent finalgate execution. Root existing validators pass.
+
+Buildqueue3s,setup/auth65s,candidatebuild52s+rendition1s,guards223s,
+retention/package/upload12s. Browserqueue3s,setup80s,execution9.087s. Runcreated
+13:43:34Z;gatecomplete13:53:11Z,status13:53:31Z,terminalupdated13:54:49Z;
+created-to-terminal-snapshot11m15s. This is not a performance guarantee. Prior
+S154fullowner20m50 remains a separate scope and exceeded its operational target.
+
+Prior dbbc/40497219704 failure stays archived/failed. Original185/219localblob
+failure and correctedhydration227/227 replay remain distinct. Root/Code readback
+return-type/path/manifestargument/CLI-finalizer-binding mistakes are diagnosed
+inspection errors, corrected using existing APIs/source; no productsource/test/
+nativereport/policy change or native rerun.
+
+BoundedC1complete; originalAC01/02/04/05/07 accepted,AC03/06/08 and issue122open.
+Remaining:C2newerHome preservingC1Talks→C3selectiveTalks restore preservingHome→
+literalMscenario/contracts/profile/test-dispositions/concurrency/leases/timing→
+exact-bound platform/readerproduction without newarticle and concrete activation
+decision. No article/production/DNS action; production676e3ab6/prod-2026-10-23.2,
+PR79separateDraft/unpublished. Never merge/promote testmarkers.
+
+
+## C2 and C3 bounded content recovery — 27 October 2026
+
+Owner122/preflight6444006628; continue existing never-merge PR149. Live main3d33,
+Draftb15 and terminalC1owner40514588030/1 revalidated. Exactb15 archived at
+archive/issue-122-pr149-c1-b15c4de9-20261027; all originals/failures retained.
+Localreceipt6ed5952 remains separate; its verbatim receipts are carried with C2,
+whose source commit directly descends from b15. No repositoryM is invented.
+
+Requirements /root/requirements154 independently accepts the existing component
+rollback contract before source edits. Corrected its owner typo by direct source
+and template inspection: about.json:text.T005, never hero/professionalidentity.
+C2 appends only “Test mode (#122): Home checkpoint C2.” to the existing audience
+paragraph; every C1 event input remains exact. CS01/02/04/05/08/09 cover canonical
+escaped JSON, generated direction, exact bounds/checks and four separate roles.
+No runtime/template/tool/test/workflow/policy/rights/article edit.
+
+C3 must directly descend actual tested C2, restore only events.json to exact
+protectedmain3d33/originalS154 bytes, and preserve C2 about.json/rawHome route
+version, alias and snapshot. RestoreTalks raw bytes/version to originalS154.
+WholeC2 package restoration retains the unwantedTalksmarker; wholeS154 restoration
+loses newerHome. Neither establishes this selective recovery.
+
+Trusted native baseline remains merged S154, not isolatedC1/C2. Expected native
+C2 built[index,talks]/12browserrows; C3 built[index]/8Home+Writingrows. Actual
+hostedTalks bytes and marker restoration remain required even if C3 browser
+membership omits unchangedTalks. Do not compare source-decorated complete HTML
+across candidates as if banners/edition metadata were invariant. All29raw and
+18declared delivered platform bytes/articleCandidates[] stay fixed. A separate
+localcomposition on actualC1 thenC2 rawgenerations can prove onlyHome thenTalks
+dependency changes, never trustednative baseline/admission/production freshness.
+
+Each source requires Basic/19contentmodules/format/style/RI/coupling/owning, four
+completed roles and current native checks plus one isolated contentgate. Preserve
+source/base leases and terminal serialization; no stablepromotion/App/merge.
+Production predecessor lease and concurrency remain separate actual guards/tests,
+not inferred from isolated artifacts. LiteralMscenario/originalAC03/06/08 remain
+open. After C2/C3: originalAC/contracts/profile/test-dispositions/concurrency/
+timing reconciliation, then exact-bound platform/readerproduction withoutarticle
+and concrete activation decision.
+
+C2 preparation04abc708 is not accepted: RI generation ran before the snapshot
+rename was staged, so git's tracked inventory still named removed19a551/index.
+It refused “Tracked file missing or excluded”; later commands in that batch
+did not make RI fresh. Stage the actual A/D inventory, then rebuild/verify.
+A direct Prettier invocation after JSON refresh retained expanded-array layout;
+restore exact base formatting while replacing only the two derived hash values.
+No semantic mapping/input/check/owner/budget change. Preserve this preparation
+diagnostic; no source suite or native campaign was run on04abc708. The local
+format-preserving collector first mistook identity.inputs for identity.files,
+refused before writing, then used the inspected exact schema.
+
+### C2 completed local source and four independent roles
+
+Clean4ecc4eeceacc51f7f98b79378f0ac81819cdbd82/tree
+3e0bc222913e85514efe324820692a290176952a,parentb15. Existing Basic passes
+5routes/16theme+archive/10flight; all19mandatorycontentmodules227/227,zero
+fail/cancel/skip/todo,80304ms/300000,cleanbefore/after. Maintainedformat532,
+architecture,RI/coupling17 and all5owning mechanical checks PASS,
+automation_pass/evidence_validtrue/errors[]/closurefalse. Actual API/ZIP replay
+selects acceptedS154/content and complete3d33→b15→4ecc twoedgehistory/emptyM.
+This local replay is not nativeCI or deployment acceptance.
+
+Four completed independent roles inspect exact4ecc/tree3e0b:
+Requirements154 ACCEPT soleaboutT005marker/events+heroexact/no scope or ACblocker;
+Code154 ACCEPT full20pathdiff/netmain,13input/16preview/73availableofflinehashes,
+5interactivepayloads/2catalogkeys/only2RI-CIhashes;2bundle-onlylaunchers not
+independently reconstructed. Operator154 ACCEPT actual localHTTP5routes200HTML/
+exactbytes,oneHomemarker/oneTalksmarker/zeroelse,retainedIDslinks+times,exact
+source reversibility and3freshnessCLIs. Whitebox154 independently composes from
+originalnativeC1public12739641081/ac91545d/generationbd6fa1b8:onlyindexbuilt,
+other4rawroutesreused,Talksalias+snapshot+versionexactC1/articles[]. All34platform
+files in storedC1generation are byte-identical (original29 plus5retainedColor
+runtimefiles); this local inventory is not mislabelled as nativeS154's29.
+
+Only these verbatim receipts and deterministic RI follow. Finalpublishedtree
+needs current native Draft/Ready inventory and one isolated compatible-content
+gate/host/browser; none inherited from4ecc/localcomposition. C3, literalM,
+originalAC03/06/08 and productionwithoutarticle remain open.

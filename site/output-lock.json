@@ -15,7 +15,7 @@
   },
   "routes": {
     "index": {
-      "version": "19a551701415df4f038a02fbeee280a2fee4d4450b11415c123c9861be9abc17",
+      "version": "d61f65ee4506956d6f14c4e6476227e4ec5381dc409f54bed3e56df271dce6a6",
       "url": "index.html",
       "inputs": [
         "site/content/pages/index/about.json",
@@ -44,7 +44,7 @@
         "publication-07",
         "publication-08"
       ],
-      "snapshotSHA": "a6104e41056cb414eb1f6f6cb2c9696b1f97f099b01908f3e1b51aafd940bebc"
+      "snapshotSHA": "2f1fcee5ec47823821c6934d086cae0108a989f5e3a9ee6c3455c5be9657a7e4"
     },
     "research": {
       "version": "99d61ef8900c10ea0b496a9ae910b4d0d95fd853e5e6d3ad3a04d37603c36797",
@@ -144,8 +144,8 @@
     }
   },
   "files": {
-    "index.html": "69e4e786808c108782c97783f4b521b80e260d2748e33dbc53dcc7c42a28f72e",
-    "snapshots/19a551701415df4f038a02fbeee280a2fee4d4450b11415c123c9861be9abc17/index.html": "a6104e41056cb414eb1f6f6cb2c9696b1f97f099b01908f3e1b51aafd940bebc",
+    "index.html": "02db863390402e4c80f8b2d93d04336e88341d7d71df0ac5d11ef2ada2f920f6",
+    "snapshots/d61f65ee4506956d6f14c4e6476227e4ec5381dc409f54bed3e56df271dce6a6/index.html": "2f1fcee5ec47823821c6934d086cae0108a989f5e3a9ee6c3455c5be9657a7e4",
     "research.html": "792a970025de26d8ed1c5f7b05cd2657c05de3513c6fb86f14a70e3bcd10f36c",
     "snapshots/99d61ef8900c10ea0b496a9ae910b4d0d95fd853e5e6d3ad3a04d37603c36797/research.html": "b0e5c06b327f63fc507f400504dd4660bec222162320e00e703e8f00625c1a51",
     "writing.html": "7be3d74ac34f12b051c054c47b95791e2215a101bccb9c97f064db76ddd65ad8",
@@ -200,6 +200,6 @@
     "snapshots/b57f1dcb99f70ff2df6f748de084f2793f992f438a03c798a30b891c8f9e6461/writing.html": "55cf819e07ca22d5a0b84efe46eb5cbff97e318605e9fd8d2d89c32c28ef2e11",
     "snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920/index.html": "e4bbf6e735ef6b9d3c89d7412e12a1288f2b73b9d47e3097c71419f518b29fd2",
     "snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html": "eef3b91329720bf60b4aaf9e08208bd9ce75790be77b21c2757638c7af7a6fb4",
-    "site-revision.json": "7368fd62441d7c656e2f17e14475284cdfdbdc7a8a543335b5426b85a3bec297"
+    "site-revision.json": "34dccfa2a6a5ce9f13f21133eb78449ec3ce95883899923d7fc476531c7033ad"
   }
 }

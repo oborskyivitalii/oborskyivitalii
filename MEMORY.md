@@ -4,103 +4,103 @@ Dated continuity, not live authority. Last verified: **2026-10-27**.
 
 ## Snapshot
 
-- Owner #122 open. Protected main is PR154 normal merge
-  3d33a35565209d677dc7d86e806a71ff669cb823, parents prior-maine289f728+
-  tested1341991e8b1ffd4e0cccd1b22ac274b80a8990b0; identical tested/staging
-  treebec724c6a6d3c79db2208c7ee4cc03f9902b4644. Remote PR154 is merged.
-- Minimal gate CLI correction: complete existing exports before main; discover
-  existing content-functional reports. Existing fresh-process CLI test covers
-  positive nested discovery and missing-report exit1/overwritten failure receipt.
-  Six files; no validator/workflow/policy/runtime/rights/article change.
-- Exact-head owner trust6442478911 explicitly answers the concrete1341 request.
-  App40508159897/1 passes on controllere289; genuineApp5453173 check122202999729
-  and bound Actions aggregate122202985365 pass. Snapshot12735787615 is17424bytes,
-  SHA25683c219fc37dfd7029f33c4732a8ff8caa36f203c8f101016604c6f376a46cb56;
-  exact154.json/CRC verify,eligible-snapshot,current-full-route,blockers[].
-- Post-App PRrefresh40508412814/check122203598922 and owning40508412880/
-  check122203597092 pass. All5required contexts passed immediately before
-  expected-head normal merge; no bypass/settings change or unchanged stage retry.
-- Postmerge40508611640/1 and actual-mainRI40508610587/1 pass. Original identity
-  12736426455 is426bytes/SHA256
-  d45d2972756dfc5bb74f4e0a48ae3f6098a08617653a65cd2bc49fba37777ca0;
-  exactidentity.json/CRC verify; accepted-staging-merge/pass/publicBytesUnchanged.
-- Accepted S154 retains originalsource1341/treebec724/owner40502627321/1,
+- Owner #122 open. Main is PR154 normal merge
+  3d33a35565209d677dc7d86e806a71ff669cb823, parents e289f728+tested
+  1341991e8b1ffd4e0cccd1b22ac274b80a8990b0, same tested/staging
+  treebec724c6a6d3c79db2208c7ee4cc03f9902b4644. PR154 merged.
+- PR154 minimal gate CLI exports/report-discovery correction delivered.
+  Exact-head trust6442478911; genuineApp40508159897/1/App5453173/check122202999729,
+  protected merge/postmerge40508611640/1 and mainRI40508610587 pass.
+  Original App12735787615 and mergeidentity12736426455 physically verified;
+  delivery PR1546442591351/issue1226442598513, readiness6442378051.
+- Accepted S154 retains original1341/treebec/owner40502627321/1/controllere289,
   publica97ab75be0659c44b7d4a6030645cd0efd835b8db3a0ce04e1a631c541fe6e1f,
-  package49db83fb38f83ec69b4318172e69a66e8d7590d501a42492e9c0aed1e0e5dd40.
-  Merge3d33 preserves tested bytes without rebuild/relabel. Article candidates[].
-- Original Basic40502299510 passes7modules77/77,zeroall24833ms; RI40502299366,
-  Readypreview build/publish/two-width smoke and owning pass. Initial missing-stage
-  admission remains historical failure; latest successful refresh supersedes it.
-- Sole owner40502627321/1 passes26guards,74modules1131/1131,zeroall;
-  worker198831/300000ms,wrapper198931/330000ms;139Python/security136406/180000ms.
-  Mandatory static/host/browser/performance/gate/promotion/independent receipt pass.
-  Whole20m50 exceeds15min operational target without waiver.
-- Original independent receipt12734088776 binds PR154/source1341/maine289/run1.
-  All native ZIP sizes/digests/CRC,67preflight byte hashes and7parsed-report hashes
-  match aggregate8c0c6a6a16e0b2fede14aa520e4f92668341e36dd14da4f905ebd3d2ac603ca4.
-- Four final exact1341/bec roles ACCEPT: requirements154,code154,whitebox154,
-  operator154. Actual CLI/package/gate/native functional/performance/stable
-  validations pass; controlled isolated probes detect both original defects.
-  Local Node24.22 probes remain distinct from native Node24.19 observations.
-- Durable native readiness PR1546442378051; full delivery PR1546442591351/
-  issue1226442598513. Original S153 delivery remains PR1536440462447.
-- PR149 frozen never-merge Draftdbbc70ac1bc813b7c04e1d08712248276cc0f7d6/
-  treed1cd6523,parente289. C1 native40497219704/1 failed finalgate TypeError;
-  upstream source/scanners/static/30host/8content-browser pass is not C1 acceptance.
-  PR1496441189367/issue6441210163 preserve original failure/diagnosis.
-- Earlier dbbb/d4 archive refs remain. S150→M152→failedoldC1 history is separate
-  partial evidence; direct S153→dbbc generation had no M. No unchanged C1 retry.
-- PR79/new article stays separate Draft/unpublished and untouched by this delivery.
-  Production remains676e3ab6c51f2290df4c44c7d5eac49a508d02fc/prod-2026-10-23.2.
+  package49db83fb38f83ec69b4318172e69a66e8d7590d501a42492e9c0aed1e0e5dd40,
+  generatione8cad44078bfec45ff5b34b287c769a128e7a83c84a8e05f24d0f71a38d69c6a.
+  Merge3d33 preserves tested bytes without a new producer. S154owner26guards/
+  1131Node/139Python pass; whole20m50 exceeds15min operational target.
+- Postmerge edited40508823656 refused closedPR; build/publish/promote skip.
+  Accepted manualcheckpoint122184132809/external40502627321/1 remains success;
+  native C1 authentication/reuse independently passes. No retry/repair.
+- Fresh isolated C1 COMPLETE on never-merge Draft PR149 at exact
+  b15c4de9c9c8a26752f285d936c988ac7ca96ffb/tree
+  0e829b258d035d6828afd2599b8510ece9b4b043, directparent3d33. Authored change
+  appends DevCon “Test mode (#122): Talks checkpoint C1.”
+- Draft40512662000 passes. ReadyBasic40513402151 passes219/219,RI40513402042/
+  owning40513401981 pass. Readypreview40513402000 build/publish/minimal Color
+  noCanvas smoke pass; separate missing-stable-stage admission remains failed.
+- Sole isolated40514588030/1 terminalSUCCESS:26guards/19modules227/227,
+  zero fail/cancel/skip/todo;39783msworker/40258wrapper;139Python37.100s;
+  security137212/180000ms. Clean exact source before/after.
+- Native content/compatible-content-v1/content-staging-gate PASS: onlyTalks
+  built,4routes reused,29raw/18delivered platform files byte-identical. Original
+  S154 retained; history singlecontentedge with emptyrepositoryM arrays/articles[].
+  Actual30host/8Talks+Writingbrowser rows pass390/1440 normal/no-JS,exactbytes,
+  nooverflow/imagesdecoded/errors[]/normalWritingtagfilter;Chromium153.0.8010.12,
+  9087ms. Immutablef80786bb.oborskyi-author-ci-staging.pages.dev.
+- Native publicac91545d82661e0a5c73fd43d999c0e3e05b963d66ea533ed41bfa109ad41ade,
+  package0f0fe6e154a68ec380b0eb4629c88609d6c2609aab3aca69f19ffbb5a49d0ecc.
+  Public12739641081/package12739656052/preflight12739366116/gate12739802408
+  plus5report/setup originals verify API size/SHA/CRC;67preflight/5report hashes
+  and exact aggregate match. Allauthorityflagsfalse/performanceRerunfalse.
+- Source fourroles ACCEPT61db/c597 then finalb15 metadata tree0e829. Native
+  Requirements/Operator independently verify finalgate; Code/White-box validate
+  upstream original bytes/history/package/preflight/scanners. Full/platform/
+  performance/device/capture/merge-admission/promote explicitly skip.
+- C1created13:43:34Z,gate13:53:11Z,status13:53:31Z,terminalupdated13:54:49Z
+  (11m15 created→terminalsnapshot); queue/setup/execution separate in receipt.
+  After terminal success PR149 restored Draftb15/stage label removed.
+- Durable C1 PR1496443750345/issue1226443772942; versioned owner
+  review/issue-122/2026-10-26-content-ci.md#fresh-s154-c1-native-completion--27-october-2026.
+- PriorC1dbbc/40497219704 stays failed/exactly archived under
+  archive/issue-122-pr149-c1-dbbc70ac-20261027; olddbbb/d4archives retained.
+  Local61db185/219 failed missinghistoricalblob; sole hydrated227/227 replay
+  passed. Current nativeb15 independently passes; no unchangedCIretry.
+- PR79/newarticle separateDraft/unpublished. Production remains
+  676e3ab6c51f2290df4c44c7d5eac49a508d02fc/prod-2026-10-23.2.
 
 ## Decisions
 
-- Deliver platform/content/repository separation and reader without new article.
-  Maintainer6417255457 permits isolated test content/recovery; markers never merge
-  to main or promote stable/production. Use existing publisher, no new framework.
-- AC01/02/04/05/07 accepted; original AC03/06/08 open. Literal authenticated
-  S→M→C remains explicit. No inventedM/proof-only prerequisite/silentAC amendment,
-  platform fallback as content proof or relabelled original evidence.
-- PR154 exact-head trust/App/protectedmerge/postmerge are complete. Revalidation
-  remains mandatory for any new source;1341 approval is not a future-head waiver.
-- Preserve source/artifacts/rights/editorial gates,cap4/16MiB/source300s+30grace/
-  security180s and existing budgets. Diagnose before correction or rerun.
-- No article/production/DNS action. Browser pins expire2027-01-24T10:16:18Z;
-  refresh through existing owner without CDN/system-browser fallback.
+- Deliver separation/newreader without newarticle. Maintainer6417255457 permits
+  isolatedtestcontent/recovery; nevermerge/promote markers. Existing publisher.
+- AC01/02/04/05/07 accepted; originalAC03/06/08 open. DirectS154→C1 has no
+  authenticated repositoryM; no inventedM/proof-onlyPR/silentACamendment.
+- PR154 trust/App/merge complete; no future-head waiver. Every new C2/C3 source
+  needs current checks/reviews/nativegates/freshleases. Preserve rights/editorial,
+  source/artifact identity,cap4/16MiB/300s+30grace/security180s/allbudgets.
+- Diagnose before correction/retry; retain failures. No article/production/DNS
+  action. Browserpins expire2027-01-24T10:16:18Z; existing owner refresh only.
 
 ## Open work
 
-- Fresh S154-based C1 is being prepared from3d33 on existing PR149 route. Failed
-  dbbc is archived at archive/issue-122-pr149-c1-dbbc70ac-20261027. Source-only
-  preflight accepts the same DevCon test sentence and required derivatives/metadata;
-  four source roles and checks pass at61dbaab9; native content acceptance pending.
-- Closed-PR edited refresh40508823656 failed open-PR lease after delivery; all
-  build/publish/full/promote jobs skipped. Actual manual owner checkpoint remains
-  success. Accepted-source authentication/inspectAccepted pass on exact API/ZIP
-  replay; this is local preparation, not a new native CI or content acceptance.
-- Authenticate actual S154/merge3d33/history before reviewed freshC1. S153 cannot
-  provide unproved reuse across this control change. Keep PR149 frozen meanwhile.
-- C1/C2/C3 require actual compatible-content gate, unchanged platform, native
-  host/browser, selectiveTalks restoration preserving newerHome and fresh
-  source/predecessor leases. Fixtures/local replay/recovery identity alone fail.
-- Finish explicit literalMscenario/originalAC03/06/08/contracts/profile/test
-  dispositions and queue/setup/execution observations without speed claims.
-- Prepare exact-bound platform/reader production without article, then obtain
-  concrete activation decision through existing protected publisher.
+- C2 is locally prepared from b15 with carried6ed receipts: only about.json T005
+  gains marked newerHome; C1Talks exact. Preflight6444006628/four-role inspection
+  accepts scope. Local4ecc/tree3e0b passes227/227+Basic/format532/RI/coupling/
+  owning and4roles; nativeC2gate remains pending. LocalC1→C2 composition only
+  rebuildsHome/preservesTalks+34storedplatformfiles, not nativebaseline authority.
+  C1b15 archive: archive/issue-122-pr149-c1-b15c4de9-20261027.
+- C3: selectively restore originalTalks while preserving C2Home; actual native
+  compatible-content/unchangedplatform/current source+predecessor leases.
+- Complete literal authenticatedS→repositoryM→C and originalAC03/06/08/
+  contracts/profile/test-dispositions/concurrency/queue-setup-execution accounting.
+- Prepare exact-bound platform/readerproduction withoutarticle, then concrete
+  activation decision through existing protected publisher.
 
 ## Next session
 
-1. Revalidate main3d33/S154/original source1341/owner40502627321/1 and history.
-2. Reviewed fresh isolated C1Talks→C2newerHome→C3selectiveTalks restoration.
-3. Reconcile literalMscenario/originalAC/contracts/profile/leases/timing accounting.
-4. Deliver exact-bound platform/reader production without article after its decision.
+1. Revalidate main3d33,PR149Draftb15,originalS154/terminalC1/artifacts.
+2. Reviewed C2newerHome→C3selectiveTalks restoration preservingHome.
+3. Complete literalMscenario/originalAC/contracts/profile/leases/timings.
+4. Deliver exact-bound platform/readerproduction withoutarticle after decision.
 
 ## Maintenance
 
-- Current local C1 includes earlier local delivery receipts; those predecessor
-  receipt branches are not native candidates. Reuse only existing Draft PR149.
-- Originals/snapshot under /tmp/issue122-pr154-native; durable receipts above.
-  Readback-oracle errors remain local diagnostics, not native/product failures.
+- Current local C2 branch directly descends testedb15; carried6ed receipts are
+  metadata, not nativeC2 acceptance. PR149 remains Draftb15 until reviewed update.
+- Originals/API under /tmp/issue122-s154-native; originalS154 authentication/
+  ZIPs under /tmp/issue122-s154-auth and /tmp/issue122-pr154-native.
+- Collector return-type/path/argument/finalizer errors are diagnosed local
+  inspection errors, never native failures/acceptance. No native rerun.
 - Keep five sections/120lines; rebuild/verify RI after owner/MEMORY edits.
-- Verbatim receipts/deterministic metadata need no recursive review; material
-  implementation or changed claims require independent execution.
+- Verbatim receipts/deterministicmetadata need no recursive review; material
+  implementation/changedclaims require independent execution.
