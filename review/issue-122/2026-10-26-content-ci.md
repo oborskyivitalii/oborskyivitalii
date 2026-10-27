@@ -1138,3 +1138,161 @@ profiles, owners and budgets unchanged, then rebuild RI and verify current ownin
 checks. Retain the failed source-bound report; this is a metadata correction,
 not a product guard failure or waiver. Verbatim review receipts/clarification/
 deterministic RI/RI-CI follow without re-auditing unchanged implementation.
+
+
+## PR154 protected delivery receipt — 27 October 2026
+
+Durable [PR1546442591351](https://github.com/oborskyivitalii/oborskyivitalii/pull/154#issuecomment-6442591351)
+and [issue1226442598513](https://github.com/oborskyivitalii/oborskyivitalii/issues/122#issuecomment-6442598513)
+retain current delivery; original source/native/four-role readiness6442378051
+remains exact1341991e/treebec724. This is a local receipt-only branch from actual
+merged3d33; it creates no new native source acceptance or prerequisite PR.
+
+The maintainer explicitly answered the concrete full1341991e trust/App/normalmerge
+request. Decision6442478911 retains the exact scope. App40508159897/1 executes
+protectedmaine289; genuineApp5453173 check122202999729 and boundActions15368
+aggregate122202985365 pass. Native snapshot12735787615 is17424bytes/SHA256
+83c219fc37dfd7029f33c4732a8ff8caa36f203c8f101016604c6f376a46cb56, exact154.json,
+CRCverified,eligible-snapshot/current-full-route/blockers[]/exactreviewedSHA.
+All issuer evaluation/upload/finalize/credentialcleanup/aggregate steps pass.
+
+Post-App currentPRrefresh40508412814/check122203598922 and owning40508412880/
+check122203597092 pass. All5required contexts passed immediately before expected-
+head normal protected merge. No bypass/protection/settings change or stage retry.
+
+Actual merge3d33a35565209d677dc7d86e806a71ff669cb823 has normalparents
+prior-maine289f7289ff6f89bc979d27af951c0e6d1d75a06 and tested
+1341991e8b1ffd4e0cccd1b22ac274b80a8990b0; complete tree
+bec724c6a6d3c79db2208c7ee4cc03f9902b4644 is identical to the tested/staging tree.
+Postmerge40508611640/1 and actual-mainRI40508610587/1 pass.
+Original identity12736426455 is426bytes/SHA256
+ d45d2972756dfc5bb74f4e0a48ae3f6098a08617653a65cd2bc49fba37777ca0;
+exactidentity.json/CRCverify; trustedjob122204287674/uploadpass. It records
+accepted-staging-merge/pass/publicBytesUnchangedtrue and exactsource/tree/owner.
+
+Accepted S154 retains originalsource1341/treebec724/owner40502627321/1,
+publica97ab75be0659c44b7d4a6030645cd0efd835b8db3a0ce04e1a631c541fe6e1f,
+package49db83fb38f83ec69b4318172e69a66e8d7590d501a42492e9c0aed1e0e5dd40.
+Merge3d33 preserves tested bytes without rebuild or relabel; article candidates[].
+No production/article/DNS action. Production remains676e3ab6/prod-2026-10-23.2;
+PR149 remains frozen never-merge Draftdbbc, original C1 failure retained;
+PR79/new article remains separate and untouched. No full suite rerun.
+
+Original Basic77/77, fullstage26guards/1131Node/139Python and scanner/host/browser/
+performance/gate/promotion/independent receipt remain exact1341, with unchanged
+budgets and four distinct final ACCEPT roles recorded in readiness6442378051.
+Whole20m50 exceeds15min operational target without waiver. Local controlled
+probes/readback-oracle errors do not alter native failure or acceptance history.
+
+Remaining: actual S154/merge3d33/history reconciliation before reviewed freshC1;
+C1Talks→C2newerHome→C3selectiveTalks restoration preservingHome with actual
+compatible-content/unchangedplatform/host/browser/freshleases; explicit literal
+Mscenario/originalAC03/06/08/contracts/profile/test-dispositions/timings; then
+exact-bound platform/reader production without article and concrete activation
+decision. No inventedM or proof-only prerequisite. AC01/02/04/05/07 remain
+accepted; AC03/06/08 and issue122 stay open.
+
+
+## Fresh S154-based C1 restart — 27 October 2026
+
+Owner122/comment6442838415. Requirements preflight /root/requirements154 accepts
+fresh C1 directly from protectedmain3d33a35565209d677dc7d86e806a71ff669cb823.
+Original S154 retains tested1341991e/treebec724/owner40502627321/1/publica97ab75b/
+package49db83fb. Failed prior PR149dbbc70ac is exactly archived under
+archive/issue-122-pr149-c1-dbbc70ac-20261027; original40497219704 failure remains.
+The existing never-merge Draft PR149 is reused; no new prerequisite PR or M.
+
+The sole authored change remains the explicit DevCon sentence
+“Test mode (#122): Talks checkpoint C1.” Canonical docs/lock, all18maintained
+derivative obligations, two snapshot catalog keys and existing owner/MEMORY/RI
+metadata follow. No tool/test/workflow/policy/runtime/rights/article input change.
+CS01/02/04/05/08/09 apply to canonical structured content, generated direction,
+exact bounds/checks and four independent roles. Never merge or promote markers.
+
+Postmerge PR154 description update triggered edited40508823656/job122205024455,
+which correctly fails review-flow.lease/verifyPR “PR is no longer open”; all
+build/publish/full/promote jobs skip. This failure is retained; no retry/repair.
+Independent Requirements confirms accepted selectAccepted uses staging-policy.
+authenticate→verifyMerge→stagingEvidence and actual manualcheckpoint122184132809/
+external40502627321/1, not the later failed UUID preview check.
+
+Actual connector-sourced read-only API/ZIP replay through unchanged validators
+authenticates accepted-staging-source/pass source1341/merged3d33/treebec724/
+owner40502627321/1/controller e289/checkpoint122184132809. Original publicZIP
+12734131283 is1819511bytes/SHA256
+7bc69f63cb9c83cdda9c322262f6186c9f30f9f6f05653873e98996782e0a7f0;
+size/CRC/path/gate/archive identities and actual raw generation verify.
+inspectAccepted reusabletrue with empty article selection/current components.
+This local replay is not a new native run or C1 acceptance. First collector
+incorrectly used API defaultlatest and missed manualcheckpoint; the refusal
+“missing staging admission” is retained as local diagnostic. Capturing the
+actual requested filter=all returns82/82checks and passes without changing
+validators. Full response snapshots/ZIPs/driver remain /tmp/issue122-s154-auth.
+
+Next coherent clean candidate must pass content eligibility/complete history,
+Basic, all19mandatory content modules, maintainedformat/style/RI/coupling/owning
+and four completed nonauthoring reviews. Then exactdbbc lease update, Draft
+inventory→Ready prerequisites→one isolated staging-regression. Actual modecontent/
+compatible-content-v1/content-staging-gate/unchangedplatform/host/browser remains
+required. No /stage/App/merge/stable/production/article action.
+
+Direct S154→C1 has no authenticated intervening M and does not complete literal
+originalAC03 S→M→C. AC03/06/08 remain open. After C1: C2newerHome, C3selective
+Talks restoration preservingHome, explicit Mscenario/contracts/profile/leases/
+timings, then exact-bound platform/reader production without new article and
+its concrete activation decision.
+
+Preparation5d294253 had unnecessary whole-catalog key sorting and expanded
+RI-CI JSON layout. Restore exact base key order while renaming only the two
+snapshot keys; use pinned canonical JSON formatting after derived refresh.
+Its local selection replay is retained as preliminary evidence, not final
+source acceptance. No implementation/guard/test behavior changed.
+
+
+### S154 C1 clean source completion
+
+Exact clean61dbaab9b11c1ef0d9b2f85ac1c5eba82587d6c1/tree
+c597782cfacf02116414df77e2bb7a111588c574, directparent3d33. Current
+selectAccepted+verifyHistory on actual API/ZIP replay passes modecontent,
+reusabletrue,observations[],one direct content edge and empty repositoryCommits/
+repositoryMerges. This is not an authenticated M or native content acceptance.
+
+First source invocation using literalHEAD refused before execution because the
+selector requires exact40characterrefs. Corrected invocation on clean61db then
+actually failed19modules219tests/185pass34fail,zeroother due to absent historical
+catalog blob e830752f58535c9e2226550a9661ee51c745bdb3:site/content/catalog.json.
+White-box independently proves commit exists/blobmissing and the fixture
+intentionally uses GIT_NO_LAZY_FETCH=1. All case/setup failures share that input.
+Explicitly hydrate that immutable blob, prove offline cat-file; original blob
+0ceae32053418f55059d191700976b2b0f8e076a. No source/test/policy change. Preserve
+original JSON/TAP/stderr in failed-source-61db; sole reasoned full replay then
+passes19modules227/227,zero fail/cancel/skip/todo,76216ms/300000 on exact clean
+61db before/after. Original failure stays failed; no CI retry.
+
+Current Basic5routes/16theme+archive/10flight, maintainedformat532, architecture
+118files399edges, RI/coupling17checks17layers and all5owning mechanical checks
+PASS,automation_pass/evidence_validtrue/errors[]/closurefalse. No native claim.
+
+Four distinct completed nonauthoring roles inspect exact61db/c597:
+
+| Role | Independent result and scope |
+| --- | --- |
+| /root/requirements154 | ACCEPT source intent/AC/currentselection/history, exactly reversible DevCon marker, source/merge/producer boundaries. Literal M and native gates stay open. |
+| /root/code154 | ACCEPT complete20path diff; authoredonlyevents, four canonical routes and interactive payloads unchanged, all16preview/13source/73available offline hashes match; only2catalog keys/derivedRI hashes. Initial missing-blob failure retained. |
+| /root/whitebox154 | Initial verification BLOCKED on missingblob; re-executed after offlinehydration/reasoned227/227replay and returns ACCEPT. Actual contentartifact onlyTalks built/fourreused,29raw and18declared finalplatform files exact; verifyReuse passes. |
+| /root/operator154 | ACCEPT bounded real localHTTP5routes/200/exactbytes, visiblemarkeronlyTalksonce, originalIDs/links/date/title/time retained; exact source restoration; build/preview/bundle freshness and16HTML/73offline hashes pass. Native hosted/browser remains pending. |
+
+White-box actual artifact uses original authenticated S154 generation and existing
+Color/staging transforms. Rawpublic617cd7cc…/finallocalpublic2938afa6…;14prior
+final snapshots retained,articleCandidates[]. Receiptwhitebox-content-build.json
+sets nativeAcceptance/contentGateObserved/hostedBrowserObserved false. Its first
+Booleanfalse preview argument was refused before output; supported stringfalse
+passes, retained as local invocation diagnostic without source/guard change.
+
+Only verbatim completion receipts, reviewer-requested MEMORY predecessor wording
+clarification and deterministic RI follow; publishedhead needs its own native
+evidence. Keep source/ref/artifact identities separate. Exactdbbc archive already
+verified. Update existingPR149 with oldheadlease; Draftinventory→Readyprerequisites
+→one isolated staging-regression, nevermerge/stable/production. C1 nativegate,
+C2/C3, literalMscenario/originalAC03/06/08/contracts/profile/leases/timings and
+platform/reader production without new article remain open.
