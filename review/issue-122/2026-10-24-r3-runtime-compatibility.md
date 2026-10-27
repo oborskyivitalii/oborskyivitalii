@@ -932,3 +932,270 @@ do not prove native ENOTEMPTY causality or exact-head human trust. Restore local
 origin/main to live83591bdf for checks; this changes no tracked source. Regenerate
 and verify RI and coupling before committing; current-source native prerequisites
 and the authorized unused complete owner campaign follow publication.
+
+
+## Pre-build refusal and repaired latest-run prerequisites — 27 October 2026
+
+This section is a **local receipt only**. Keep the published PR151 head frozen at
+`1d71517b3e2771acfef4675ae6561750b9950c8d`, tree
+`47311cdcebaabd1b73707f0c34c5340eeca106e3`, so the prepared native prerequisites
+remain bound to their actual source. This receipt changes only the existing
+review/MEMORY/derived RI; do not push it as a new candidate before completing
+the current-source delivery. No new PR or implementation is introduced.
+
+The exact approved fixture line was published; all four final integration roles
+accepted it. Original current-source prerequisite receipt6435125866 records
+Basic40458888809/1133passes, RI40458888694, owning40458888772 and preview40458889133
+smoke success. Those results are genuine but did **not** satisfy the trusted
+controller's newest-run condition at the later owner command.
+
+Exact `/stage`6435126150 starts owner40459641313/1. Target122040941098 binds
+source1d71517b/base83591bdf/run40459641313/attempt1. begin-admission122041047113
+creates the new checkpoint, then fails at admission.cjs43:
+`admission workflow failed`, actual`skipped`, required`success`.
+Original target artifact12712879726:275bytes, SHA256
+`291eb5b087929b342e3b3dd2fe0f80cf902d3d1b293c82f2ab6584412232f243`;
+size/SHA/CRC and sole stage-binding.json are physically verified.
+Build122041148857 and all candidate publication, smoke, full checks, promotion
+and receipt jobs are skipped. No candidate execution or stable promotion occurred.
+Event→targetstart4s; target17s; begin-admission16s; status completes06:12:36UTC
+after event06:11:41. The request stays failed/used despite being refused prebuild.
+
+The implementer made an operator-selection error: after nearly simultaneous push
+and Ready events, Draft Basic40458889153 and navigation40458889020 had greater
+run IDs than the inspected successful40458888809/40458888694. The controller sorts
+descending run ID and correctly rejects the newer skipped result. Matching
+source/green artifacts alone are insufficient. Do not blame the trusted guard,
+weaken selection or discard the skipped records.
+[Failure and operational correction6435166650](https://github.com/oborskyivitalii/oborskyivitalii/pull/151#issuecomment-6435166650)
+retains the exact error and input ordering.
+
+Authorized operational repair: Draft→Ready **without a push** creates one distinct
+fresh Ready event on unchanged1d71517b. No source fix or further `/stage` is issued.
+
+| Refreshed native observation | Actual result and original artifact |
+| --- | --- |
+| Basic40459932788/1 |PASS,75modules1133/1133,0fail/skip/cancel/todo,191696/300000ms, clean identical before/after. ZIP12713719562:68394bytes/SHA97b31f75d194ff497f7be42f6916ea819bdbe5bdb269ca619c94399333a20726. |
+| RI40459932794, owning40460370447 |PASS. Latest owning at06:20:39UTC binds clean1d71517b/tree47311cdc; artifact12713734421:7849bytes/SHA683662c1c26b06a7a54beeb56f4ed73ad27eef3b586b04f15bd79f1e6b96c25f; closure/manual gates pending. |
+| Preview40459932900/smoke122042465735 |PASS on immutable https://afee498e.oborskyi-author-ci-staging.pages.dev. ZIP12713868821:41771bytes/SHA78aaa216cc418c17d660a196065d63325aebadeac4c2b78d89354647d6090499. Generic4cells/5routes/errors empty,Color2cells×3edges/original900/180/2,HTTP16/root/404/noindex pass; fullGate/deploymentAuthorized=false. |
+| Actual package12714265868 |708290bytes/SHA9c31d43d8956a8a38900168da0127caf0472bd74d15846a1de9cddb100ced6f1. Existing verifier and35filehashes pass; clean1d71517b, emptyarticles, public7dc7e8ff54b543e9018df39a0fb6afaf1c94284225ab3ba3fe5f956f7a5b0f52/package9340b6220be46e534ce9fc61167ad39ad41fb64c469c2a7c24b3c7d4e52981aa. |
+
+All four original ZIP sizes/SHA/CRC/extracted bytes independently verify.
+
+A read-only selector replay invokes the actual unchanged `requireAdmission`
+module blob`13d1c0b220a5ded8f9b5a05d29e16a59ce89ba57`, identical to protected
+main. Actual complete21-head-run API collection is projected only to consumed
+fields plus identity/timing metadata. All12 members of the three relevant
+workflow collections, including skipped runs, remain. InputSHA256
+`f23e9ec69355016c7b57bafc905a2acbaa4ddc40e72c18343ffcae07bf860a0c`.
+At06:20:39UTC maximum-ID selection accepts Basic40459932788/job122041856962,
+RI40459932794/job122041856464 and owning40460370447/job122043261867. A bounded
+negative control using the retained obsolete Basic pair correctly refuses the
+newer skipped40458889153 before requesting jobs. This is not a recreated full
+historical snapshot, new native admission or a workflow execution.
+The replay explicitly records nativeExecution=false, stagingAcceptance=false
+and allocationRemaining=0. Recheck live inputs/head/base before any future command.
+
+| Separate completed readback | Source-bound conclusion |
+| --- | --- |
+| `/root/requirements` |ACCEPT concrete prerequisite repair/current native reports; exact ONE grant consumed at owner command, old generic retry ceiling is not an additional allocation. Keep remotehead frozen and ask for one additional campaign after concrete preparation. |
+| `/root/resume_code_review` |ACCEPT; independently compares live21-head-run inventory/all12 relevant records and complete selected jobs against projection, trusted controller/adapter/negative oracle and four ZIPs. No code correction indicated. |
+| `/root/resume_whitebox` |ACCEPT; all ZIPs/bytes/critical TAP,75modules1133passes,35packagehashes and complete12-run projection; maximum IDs/negative skipped refusal match intended guard. No rerun/edit/browser. |
+| `/root/resume_operator_qa` |ACCEPT refreshed source/preview only; independently fetches nativefailedbegin-admission log/jobskips, verifies actual fresh smoke/counts/errors/refusal/nonpromotion and explicit replay limitations. No new stage authority. |
+
+[Complete durable repair receipt6435311903](https://github.com/oborskyivitalii/oborskyivitalii/pull/151#issuecomment-6435311903)
+records the new artifacts and independent roles without changing remote source.
+The approved one campaign is used/failed; no further campaign is allocated.
+The next concrete maintainer decision is one additional complete owner campaign
+after these repaired latest-run prerequisites, stopping on failure for diagnosis.
+No new source patch, prerequisite PR, blanket retry or budget waiver is proposed.
+All earlier failures/native causal limits remain; human exact-head trust/App/
+protected merge/postmerge and later PR150→freshS/genuineM→testC1/C2/C3→AC03/06/08
+remain separate. R38/production/DNS remain untouched.
+
+Final live supplementary capture06:26:34UTC includes the owning run created by
+PR metadata refresh: maximum owning40460961204/job122045188271 is now success;
+Basic40459932788 and RI40459932794 remain the greatest IDs and pass. The same
+trusted-selector replay again passes and rejects the obsolete skipped pair;
+inputSHA25686c6d21139ec7d59948fd968e2b1c19fd422b9032c74aec90ec3b564c5ee6c90.
+Only external JSON input/output filenames change for this supplementary replay;
+the guard/adapter/oracles and source are unchanged. This does not allocate a
+campaign or supply native staging. Keep both captures at their actual times.
+
+
+## PR151 complete owner staging accepted — 27 October 2026
+
+The maintainer explicitly authorizes ONE additional complete campaign in
+[issue decision6436230487](https://github.com/oborskyivitalii/oborskyivitalii/issues/122#issuecomment-6436230487)
+and [PR decision6436230739](https://github.com/oborskyivitalii/oborskyivitalii/pull/151#issuecomment-6436230739).
+Fresh07:28:13UTC API inventory plus actual unchanged trusted-selector replay
+accept greatest-ID source40459932788/job122041856962, RI40459932794/job122041856464
+and owning40460961204/job122045188271. All complete successfully. Source1d71517b,
+tree47311cdc and protected main83591bdf remain unchanged; no push or PR body edit
+precedes exact `/stage`6436242076.
+[Pre-command receipt6436241779](https://github.com/oborskyivitalii/oborskyivitalii/pull/151#issuecomment-6436241779)
+retains the current selection and separate allocation decision. The replay's
+reused allocation field is removed from this new diagnostic report because the
+selector does not evaluate permission; authorization is the explicit decision.
+No controller code or oracle is changed.
+
+**Owner40467379806/1 completes SUCCESS**,07:29:02→07:49:30UTC,20m28.
+Target122065970679 binds source
+`1d71517b3e2771acfef4675ae6561750b9950c8d`, complete tree
+`47311cdcebaabd1b73707f0c34c5340eeca106e3`, protected controller/base
+`83591bdfa99cba7649968cf94a6335e98af2847e`, PR151, run and attempt.
+Actual begin-admission122066081693 passes; previous latest-skipped refusal
+40459641313 remains failed/consumed, not reclassified. The new allocation is used.
+
+| Actual mandatory job | Native result |
+| --- | --- |
+| build122066168567 |SUCCESS,26/26 prepublication guards;74Node modules1125/1125,0fail/skip/cancel/todo,204133/300000ms. Same clean source before/after; wrapper204242/330000ms. Python139; rights/lint/security/advisories pass. |
+| publish122068738607 |SUCCESS; immutable `https://c821af67.oborskyi-author-ci-staging.pages.dev`. |
+| full/build122068954359, static122069170663, host122069170764 |SUCCESS; exact package/prepublication authentication, source-bound scanner reuse and hosted30-file coverage. |
+| full/staging122069170785 |SUCCESS; complete bounded functional/Color/performance contract below. |
+| full/gate122071811002 |SUCCESS; all7 checked reports, complete job/source/origin/coverage and report identities agree. Existing `validateGate(package.source,gate,URL)` independently passes. |
+| promote122071923441 |SUCCESS; stable alias complete-source HTTP convergence recorded below. |
+| merge-admission122072416276 |SUCCESS; actual Actions15368 Staging admission122066142844/external_id40467379806/1 succeeds on1d71517b. This is not the dedicated App control check. |
+| independent receipt122072604362 |SUCCESS; separately produced exact PR/source/base/run/attempt artifact retained. |
+
+Original archives physically size/SHA256/CRC checked; all extracted bytes match:
+
+| Archive ID / purpose | Bytes | SHA256 |
+| --- | ---: | --- |
+|12717088576/prepublication|315764|8a6c15a9443e4342584078fc0ada818cddcbcb0e596247c16b8a33a98ea3c5c0|
+|12717038670/package|708289|c8b6c41dd59f04f6a08f9963eed9f912d4cb2dd0e55c2e1d11e7f2cc046594fa|
+|12717382759/browser and performance|5647641|cc2a4000f73388cb8565ce9656c2648a0152aad48682d3b5c2e5dcc3964565b1|
+|12717896927/staging gate|3684|44cd3c91877da2cd8adaf371d76633f9a97027eb52ca441e3a1c6dc8b52d9680|
+|12717419268/promotion|7798|121d81f95a0e1fe27196f5869dca035e98ff55c689ec00233a0d9a6262e06923|
+|12718166438/independent identity|401|488082a851cfc77bbf8ec9c8158f7a2b359fb38b5b2590c3f23f426fc8f242a4|
+|12718335767/recovery metadata|530|fcaef790e975bd47fe9c53143f6b70700dc14a69a7853d518e4839deb85eb286|
+
+Prepublication's67 declared raw-file hashes match. Gate's7 report hashes use
+the contract's native `JSON.stringify(report)` digest; all7 and aggregate
+`5f81b18e2be5ca8e3f5695ff51efbb1c855ab46641f2fa242572cd86af9ebbe1` match.
+An initial ad-hoc raw-pretty-byte comparison used the wrong digest model and
+failed; inspecting staging-gate.cjs identifies the serialization contract, and
+the corrected existing validation passes without any source or gate change.
+A separate inspection also encountered an array-shaped raw Lighthouse devlog;
+type-aware inspection preserves it as raw evidence rather than treating it as
+a report object. Neither inspection error is a native campaign failure.
+
+Coverage exactly matches the bounded profile: Chromium/Firefox4normal journeys
+with20route observations plus2no-Canvas with10;2navigation,10failure,7analytics
+cases; Color2widths/6edges under original900/180/2. Performance2CPU4 route samples
+with8measurement windows,4cold/warm flights and2mobile Lighthouse trials. No
+full production/device/soak/retention claim is introduced.
+
+| Route / original simulated CPU4 mobile method | LCP ms | TBT ms | CLS |
+| --- | ---: | ---: | ---: |
+|Research|2252.0155|37|0|
+|Writing|2149.16|55|0.004149938636036205|
+
+Both pass unchanged original individual budgets. Original gzipped trace/devlog
+references and their declared identities also verify. This successful trial
+does not establish the cause of earlier Research stalls or ENOTEMPTY.
+
+Package verifier passes35file hashes; articleCandidates remains empty. Public
+`7dc7e8ff54b543e9018df39a0fb6afaf1c94284225ab3ba3fe5f956f7a5b0f52`,
+package`9340b6220be46e534ce9fc61167ad39ad41fb64c469c2a7c24b3c7d4e52981aa`,
+source/tree agree throughout. Stable alias
+`https://staging.oborskyi-author-ci-staging.pages.dev` converges on the second
+bounded whole observation; first mixed/404 observation remains retained. Final
+readiness observation has18rows; final stable HTTP inventory has16rows plus
+root/404/noindex observations. These distinct inventories reconcile the two QA
+counts; no stitching or failed-observation erasure occurs. Recovery metadata
+identifies this exact package and is not selective content recovery evidence.
+
+| Final distinct independent role | Completed evidence readback |
+| --- | --- |
+| `/root/requirements` |ACCEPT complete ordinary staging; exact source/contract/promotion/receipt and empty article boundary. Human control/App/merge and original AC03/06/08 remain open. |
+| `/root/resume_code_review` |ACCEPT original archive identities/CRC,7canonical report hashes/aggregate, live mandatory jobs and unchanged performance method/budgets. No source/provenance defect; optional diagnostics remain correctly unselected. |
+| `/root/resume_whitebox` |ACCEPT actual existing gate/functional/performance/Color validators, complete coverage,4original trace/devlog references, first failed/second successful readiness observations and exact receipt/recovery bindings. No new test/browser campaign. |
+| `/root/resume_operator_qa` |ACCEPT actual operator outcome, journey/error/counts, stable convergence and native final job/receipt identities; source-bound staging only, not human App/merge authority. No browser rerun or edits. |
+
+Measured timing separates phases: event→target start3s; target18s; begin admission13s;
+build7m46 (setup/source/tools71s, prepublication386s, remaining report/upload/cleanup);
+source204.133s and security137.425s stay under unchanged individual limits.
+Publish35s; reusable build37s; parallel static30s/host20s/staging7m56; gate17s;
+promotion1m23; API stage-admission13s; independent receipt19s. Actual overall20m28
+is above the15-minute operational target, not a waived mandatory budget or a
+promised speedup. No independent benchmark campaign was added.
+
+[Complete durable result6436653414](https://github.com/oborskyivitalii/oborskyivitalii/pull/151#issuecomment-6436653414)
+and [issue checkpoint6436654415](https://github.com/oborskyivitalii/oborskyivitalii/issues/122#issuecomment-6436654415)
+record the completed step without moving the tested head. Refresh PR staging
+admission through the owner body edit, allowing existing waitForAdmission for
+actual in-progress owning checks. Do not mistake older failed refresh contexts
+for a failure of the new complete owner campaign; require the new native refresh
+to finish before the next action.
+
+The next required maintainer decision is explicit human control trust
+`reviewed_sha=1d71517b3e2771acfef4675ae6561750b9950c8d` for genuine App5453173
+admission and protected merge. This receipt, four agent reviews and stage
+authorization do not supply that attestation. Then protected merge/postmerge,
+PR150 integration/fresh delivery, fresh ordinary S/genuine necessary M, isolated
+Talks→newer Home→selective Talks recovery and original AC03/06/08 contract/timing
+reconciliation remain. R38/production/DNS remain untouched.
+
+This local-only receipt is metadata, not a tested1d71517b native artifact or new
+admission source. Keep published head frozen; do not push this checkpoint before
+completing that source's delivery.
+
+Final native owner-body PR refresh40470180385/1 also completes SUCCESS;
+Staging admission job122075154074 supersedes older failed refresh contexts.
+Original artifact12718451914:533bytes/SHA256
+`50d8ae2c32608b2a725dbee2a78a226917b4f270a6fe9bdf4928dbe6eae95203`,
+size/SHA/CRC verified. Its `accepted-pr-staging` record explicitly binds
+tested1d71517b/tree47311cdc/main83591bdf/staging40467379806/attempt1/check122066142844.
+Actual source admission selects Basic40459932788/job122041856962,
+RI40459932794/job122041856464 and newest owning40470180230/job122075152209, all
+successful. Head remains Ready/unmerged/mergeable. Only the separate explicit
+human exact-head control trust, genuine App and protected merge/postmerge remain
+for PR151. This refresh is not that human trust and does not close issue122.
+
+
+### PR151 protected delivery completed — 27 October 2026
+
+The maintainer replied “Так роби” to the explicit exact-head App/merge request.
+Human trust binds reviewed_sha=`1d71517b3e2771acfef4675ae6561750b9950c8d`,
+recorded in PR1516437135608 and issue1226437135889. It is distinct from agent
+reviews and previous stage allocations. No new owner stage was requested.
+
+Main-owned App workflow40473720100/1 completes SUCCESS in77s
+(08:28:18–08:29:35UTC). Genuine App5453173 Change admission122086961265
+has external_id40473720100/1/151 and success. Bound Actions15368 aggregate
+122086948870 also succeeds after native upload, final evaluation and issuer
+cleanup. Original artifact12719867646 is20195bytes/SHA256
+`2ffe59f1b5b817ab638f98152bf5a4dac1992cc1660880c17738a5fe1d3411a6`;
+physical size/SHA/CRC verify, exactly151.json. Eligible current-full-route
+snapshot has no blockers and binds exact source1d/tree4731, controller83591,
+human reviewedSHA, original Basic/RI/owning/PR-refresh and owner40467379806
+mandatory jobs/independent receipt12718166438.
+
+Expected-head normal protected merge is
+`fc95da63072ecfb65b23f8c37c75659001661e65`, parents
+`83591bdfa99cba7649968cf94a6335e98af2847e` and
+`1d71517b3e2771acfef4675ae6561750b9950c8d`. Its complete tree is
+`47311cdcebaabd1b73707f0c34c5340eeca106e3`, identical to the tested source.
+Observed active ruleset24568553 retains five exact-producer requirements,
+strict up-to-date and zero bypass actors; no settings were changed.
+
+Postmerge40473958278/1 SUCCESS. Original artifact12719339594 is425bytes/SHA256
+`e6938948e41739c4031f4fdb90ea2c48c9c8cb64df5feffbc992c2d751f43738`;
+physical size/SHA/CRC verify, exactly identity.json. Existing native verifier
+records accepted-staging-merge/pass, tested1d, mergedfc95, identicaltree4731,
+original stage40467379806/1 and publicBytesUnchanged=true. Actual-main RI
+40473958044/job122087485946 also SUCCESS. Accepted package stays bound to
+tested1d/stage40467379806; mergefc95 is not a relabelled package producer.
+
+[Completed delivery receipt6437227117](https://github.com/oborskyivitalii/oborskyivitalii/pull/151#issuecomment-6437227117)
+and [issue checkpoint6437227416](https://github.com/oborskyivitalii/oborskyivitalii/issues/122#issuecomment-6437227416)
+retain all original failures and completed four-role stage readbacks. This
+appendix is a verbatim execution receipt, not a new implementation review.
+
+Next: integrate actualmainfc95 into existing DraftPR150/c0ee1c09, reconcile
+exact checksum union/MEMORY/generated RI, review the coherent integration with
+four distinct roles and obtain fresh exact-source delivery. Then freshordinaryS
+→ genuine necessary repositoryM → isolatedTalks/newerHome/selectiveTalksrecovery
+→ original AC03/06/08/contracts/timing reconciliation. No R38, production or DNS
+action. This local-only receipt is not pushed onto the delivered PR151 branch.

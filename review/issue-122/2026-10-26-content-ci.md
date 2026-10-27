@@ -440,3 +440,288 @@ follow these source checks. Final publication must preserve this code/tree
 relationship and obtain fresh actual-remote-head native evidence. The final
 receipt's new source does not inherit d683's local tests as exact-head native
 acceptance.
+
+
+## Fresh integrated native prerequisites and owner request — 27 October 2026
+
+Remote11624a452f009f59d58b0c19414c6918a15be116/tree
+9d34cc2db2de704cfeffef52ce75203f65d74c36 exactly matches final local52178a0d
+tree, with actual parentsc0ee1c09+mainfc95da63. Source stays frozen.
+Before synchronize the PR API retained old base83591, while actualmainref was
+verifiedfc95; afterward PR binds actualfc95. This was the stale base being
+integrated, not permission to bypass a moved ref.
+
+Draft synchronize inventory completed before Ready: source40475575491,
+RI40475575437 and owning40475575444 stay skipped. Draft editedowning40475694280
+and admission40475694470 also skipped before Ready. Ready automatically cancels
+obsolete Draftpreview40475575490 through unchanged concurrency; retain it as
+cancelled, not accepted evidence. Ready greatest IDs below are strictly newer.
+
+| Exact11624 native prerequisite | Result / original identity |
+| --- | --- |
+|Basic40475742962/job122093403683|PASS75modules1140/1140 (1123top+17nested),0fail/skip/cancel/todo,193801ms/300000. Full maintained formatting, architecture and ESLint/stylelint/Ruff pass. Clean identical before/after11624/tree9d34.|
+|RI40475742838/job122093403186|PASS actual clean11624 context, source digestc340a583910d40c7360fe10d504e79048e1b917fa00d4619606812ab2bcb1bec.|
+|Owning40475742854/job122093403226|PASS current source/evidence,automation_pass=true,noerrors,closurefalse.|
+|Readypreview40475742949|build122093794777/publish122094082526/smoke122094327467 PASS. Overall workflow stays failed because separate PRstagingadmission122093660196 correctly reports missing staging admission.|
+
+Physically downloaded originals pass size/SHA/ZIPCRC and exact extracted bytes:
+
+| Artifact | Bytes | SHA256 |
+| --- | ---: | --- |
+|source12721131660|71825|dd821ee2753a46d6fe652812696e4c76769874d74f446e549915a3770d2182c4|
+|owning12720985726|7844|688ef2b7e490812062eeb0a1e25ee9989fda4bf8a2972a1be30ad01762265f36|
+|previewsmoke12721111952|43659|feb6186db8fc6c7d26c22fdc9fb18641da2c67bfcc1f14ec0ca9d889a0fcf4ad|
+|previewpackage12720024435|708826|4612a53197a4055d986a5f0c9c0d28d17aeda18d9aeab31c53e635f4927f3680|
+|missingstage12720821301|255|a16b9bb564db0f956362ccdd8eb410605faf351f78b7e9242d9d2d7d76f4b8a5|
+
+Existing package verifier passes35file hashes, empty article selection and exact
+future Writing staging tuple. Immutable target
+https://b73ceca9.oborskyi-author-ci-staging.pages.dev has generic4cells/20route
+observations/errors0 and Color2widths/6edges under unchanged900/180/2; stable
+observations900–903.1ms. HTTP16rows/root/404/noindex/publicdigest pass. HTTP's
+schema makes no sourceTree claim; source/Color/generic reports bind actual9d34.
+Ad-hoc inspection initially treated arrayJSON as object and assumed HTTP had
+a tree field; corrected type/schema-aware readback preserves the originals.
+These inspection errors are not native test/campaign failures.
+
+Four distinct independent native prerequisite readbacks complete ACCEPT:
+Requirements verifies greatestIDs/AC boundaries; Code verifies all archive and
+source bindings plus explicit native TAP cases; White-box verifies1140raw
+accounting/15critical namedoracles/package and existingColorvalidator; Operator
+verifies actual hosted inventories, emptyerrors/articles and exactpackage. No
+new QA test/browser/full campaign or source edits were made. Their outcome is
+prerequisite acceptance only, not full staging/humantrust/App/merge acceptance.
+
+One new ordinary owner campaign is requested by exact /stage6437632062 after
+precommand6437631720, current-source prechecks and live head/base lease. Native
+run40476765559/1 starts08:54:06UTC, controller/mainfc95, requestedPR150/head11624.
+Target122096804889 and begin-admission122096946729 succeed; build122097060989
+is RUNNING at this checkpoint. Early targetartifact12721202178 is diagnostic
+identity only, not final owner proof. Issue checkpoint6437671219 records the
+current state. No new /stage, failed-job mixing or source push follows here.
+
+Remote11624 remains frozen. Full prepublication/host/browser/performance/gate/
+promotion/final receipt, native PRrefresh, human exact-head trust, genuineApp
+and protectedmerge/postmerge are still pending. Then freshordinaryS/genuine
+necessaryM → isolatedTalks/newerHome/selectiveTalksrecovery → AC03/06/08 final
+contracts/roles/timings. R38/production/DNS untouched. This is LOCAL-ONLY
+receipt metadata with no inherited11624 native acceptance; do not push it onto
+the active tested PR150.
+
+
+## Ordinary owner staging completed — 27 October 2026
+
+Exact tested source11624a452f009f59d58b0c19414c6918a15be116/tree
+9d34cc2db2de704cfeffef52ce75203f65d74c36 remains frozen, Ready/open/unmerged.
+Main/controllerfc95da63072ecfb65b23f8c37c75659001661e65. Sole requested full
+owner40476765559/1 completes SUCCESS08:54:06–09:12:20UTC,18m14. All mandatory
+jobs pass; optional exhaustive jobs retain their explicit skipped status.
+
+26/26prepublicationguards,74modules1131/1131Node/0fail-skip-cancel-todo and
+Python139 pass. Exact source is clean and identical before/after. Source
+144953ms/300000,wrapper145042/330000;Python21.495s;security73423ms/180000.
+All rights, maintained formatting/lint/security/advisories and original budgets
+remain. Native package verifier passes35file hashes with empty article selection.
+All67rawprepublicationfilehashes match; no oldartifact/source is relabelled.
+
+Browser/performance coverage exactly matches bounded staging: Chromium/Firefox
+4normaljourneys20routeobservations+2noCanvas10,2navigation,10failure,7analytics;
+Color2widths6edges under original900/180/2. Performance2CPU4routesamples8windows,
+4cold/warmflights and2mobileLighthouse trials. Original primarysimulateCPU4
+method/budgets remain; no soak/retention/fullproduction/device claim.
+
+| Route | LCP ms | TBT ms | CLS |
+| --- | ---: | ---: | ---: |
+|Research|2179.295|92|0|
+|Writing|2269.292|148|0.004149938636036205|
+
+Immutable candidate https://312975fb.oborskyi-author-ci-staging.pages.dev and
+stable https://staging.oborskyi-author-ci-staging.pages.dev bind actualpublic
+241aae2e10dc5e22047b000d6f2912f0b2d2f6f84006b048e0cfab3a9712686c and
+package772849237ed97faf73f397cbc19050bc5b7c98b6aaa3260f68c81514c488034a.
+Stable's first old-revision refusal remains retained; second whole18row
+readiness observation succeeds. Final HTTP16rows/root/404/noindex is a distinct
+inventory, not stitched proof. Recovery metadata binds this package; it is not
+selective content recovery.
+
+Existing package,gate,functional,performance andColor validators pass. Seven
+report hashes use nativeJSON.stringify(report), all match; aggregate
+0d1eacd5f2b6d6ad60eeca99e252b8d893d58981039508ca100b5632395a5880 matches.
+Original4trace/devlogreferences and raw LHR metrics verify. fullGate=false,
+productionEligible=false,deploymentAuthorized=false preserve bounded-stage
+semantics and grant no production authority. Original failures stay failed.
+
+All originals below are physically downloaded/size/SHA/ZIPCRC verified; extracted
+bytes match archive members. Native-source artifacts are not generated replicas.
+
+| Original archive | Bytes | SHA256 |
+| --- | ---: | --- |
+|gate-12721579692.zip|3687|74c6b02413e271bab3fb085a8f698eae526073d1ea594ec16281080f20febb9e|
+|host-12720663304.zip|2385|819278570ad8a4582278aa20f3f21cf92be70718cb4733f83e148bff5709b245|
+|package-12721745651.zip|708823|4b3daba672006b08aedce8d85cb26f129e483b6036048da756bdf8edb7122240|
+|pr-refresh-12721554487.zip|533|b7da848ce6481d3bab599b9ffa85bfb2243564828e81b6e7cd5f3a888b09427e|
+|prepublication-12721621420.zip|316010|7e3dadb6a73c4733e540ed2e6c375abacda3f37e177fc4a3133d612d5bbfa298|
+|promotion-12721069399.zip|7430|b3edd4cf64b855d66e4c7659ee8202f1f83d01a6ec2dc4969ce4c1c5e27c6998|
+|receipt-12721539144.zip|402|07ef205e0824712e05ad6da585fc28b26072de0f83dd9a67894ab296bb761f33|
+|recovery-12720724545.zip|531|bee7cca5dc86da0a9df013ccf2b9f62ecd736ba34c21d53539e746eda5074372|
+|reports-12721648146.zip|4819252|29d27f34dd14b6c06ab645da02613ce34024a98437f5c8bfe7f2ae945ea6fd9c|
+|static-12721048004.zip|10815|28d3edabbfcaddb09fba84864d343a89ba6675c8b9daf9499b61ed721156dc73|
+
+Native Actions15368 Stagingadmission122097031756,external_id40476765559/1,
+succeeds. Final independentreceipt job122104116506/nativeartifact12721539144
+binds repository/PR150/source11624/protectedmainfc95/run40476765559/attempt1.
+Main-owned controller/native upload identity is distinct from candidate reports.
+
+Four separate full-owner readbacks complete ACCEPT: Requirements verifies
+original AC/identity/rights/staging limits; Code verifies9originalarchives,
+67rawhashes/7canonicalhashes/accounting/nativejob inventory; White-box runs only
+existing pure validators on retained reports and verifies trace/LHR/coverage;
+Operator verifies actual journey/error/promotion/receipt/package outcomes. No
+QA source edits, browser/test reruns or new campaign. White-box's auxiliary
+assertion initially used an incorrect expected previewURL; correction to the
+rawactual312975fb confirms allreports, with no native failure or codechange.
+Agent reviews do not supply human exact-head trust.
+
+Actual phase observations: event→targetstart3s,target18s,begin14s;build5m9
+(setup/source/tools56s,prepublication245s);publish36s,reusablebuild31s;parallel
+static22s/host19s/staging8m34;gate18s,promotion1m11,APIstageadmission14s,
+independentreceipt22s. Overall18m14 exceeds15min operational target; individual
+mandatory limits pass. No fabricated speed guarantee or separate benchmark.
+
+[Complete native result6438007275](https://github.com/oborskyivitalii/oborskyivitalii/pull/150#issuecomment-6438007275)
+records original artifacts and failures. Ownerbody refresh occurs only after
+the full run completes. Latest nativePRrefresh40479235778/job122105068317 and
+owning40479235738/job122105066295 both SUCCESS. Originalrefresh12721554487
+size533/SHA b7da848ce6481d3bab599b9ffa85bfb2243564828e81b6e7cd5f3a888b09427e
+physically verifies; accepted-pr-staging record binds tested11624/tree9d34/
+mainfc95/stage40476765559/attempt1/check122097031756 and exactsourceadmission
+Basic40475742962/RI40475742838/newowning40479235738. These are greatest
+samehead/workflow IDs, not cherry-picked greens. CurrentPRReady/mergeable.
+
+Remaining required decision: explicit human reviewed_sha=
+11624a452f009f59d58b0c19414c6918a15be116 for genuineApp5453173/normalprotected
+merge/postmerge. PR151's humantrust, stage authorization and4agent reviews
+cannot authorize that action. No newstage/push needed; keep remote11624frozen.
+Then genuine necessaryrepositoryM after ordinaryS150 → isolatedTalks/newerHome/
+selectiveTalksrecovery preservingHome → originalAC03/06/08/contracts/roles/timings.
+NoR38/production/DNSaction. This local-only receipt does not inherit11624native
+acceptance or alter the tested candidate.
+
+[Final four-role/native PR-refresh receipt6438067936](https://github.com/oborskyivitalii/oborskyivitalii/pull/150#issuecomment-6438067936)
+confirms all four completed ACCEPT results and greatest-ID refresh bindings.
+Current remote11624 remains Ready/open/unmerged/mergeable. Local receipt only;
+next final chat asks the required human exact-head trust, never assumes it from
+prior151 or stage grants.
+
+
+## PR150 protected delivery and necessary repository handoff — 27 October 2026
+
+The maintainer explicitly replied “Так” to exact reviewed_sha=
+11624a452f009f59d58b0c19414c6918a15be116 App/merge request. Recorded in
+PR1506438138441/issue1226438138879. Main-owned App40480247891/1 SUCCESS
+09:22:12–09:23:20UTC/68s; genuineApp5453173 Changeadmission122108686175
+external_id40480247891/1/150 and boundActions15368 aggregate122108674596 pass.
+Native snapshot12723300239:30123bytes/SHA256
+a43e9b21aecc2a6a68183a5886ab4e38ee8abfc426abea89fb1308d33dcdb7de,
+physicalsize/SHA/CRC verified, exactly150.json. Eligible-snapshot/fullroute/
+no blockers binds actualreviewed11624/tree9d34/mainfc95 and current source/
+RI/owning/PRrefresh/completeowner identities.
+
+Normal protected expected-head merge is
+7ed63ee160b68be171384a2a0552c2971c9fd8f4, parents
+fc95da63072ecfb65b23f8c37c75659001661e65 +
+11624a452f009f59d58b0c19414c6918a15be116. Complete tree
+9d34cc2db2de704cfeffef52ce75203f65d74c36 is identical to testedsource.
+Ruleset24568553 remains active with5exactproducer checks,strictup-to-date and
+zero bypass actors; no setting was changed.
+
+Postmerge40480479324/job122109226432 SUCCESS. Originalartifact12722028244 is
+426bytes/SHA2562c4339797bf2d32c9de4ce14b1ea5d6e919fb7af31013bc994413b2d735a9c1f,
+physicallysize/SHA/CRC verified. Native accepted-staging-merge/pass binds
+actualmerge7ed/tested11624/tree9d34/originalowner40476765559/attempt1 and
+publicBytesUnchanged=true. Actual-main RI40480479148/job122109226092 SUCCESS.
+[Delivered PR150 receipt6438240044](https://github.com/oborskyivitalii/oborskyivitalii/pull/150#issuecomment-6438240044)
+and [issue checkpoint6438240385](https://github.com/oborskyivitalii/oborskyivitalii/issues/122#issuecomment-6438240385).
+S150 remains originaltested11624/tree9d34/stage40476765559/1/public241aae2e
+…2686c/package77284923…034a. Neither merge7ed nor subsequent metadataM is a
+relabeled package producer. All original failures and causal limits remain.
+
+### Necessary genuine repository M scope
+
+Original #122 requires authenticated acceptedS → genuine repositoryM → contentC
+history. This M is necessary maintenance: frozen151/150 candidate heads could
+not include their later fullstaging/App/merge/postmerge receipts; old versioned
+reviews/MEMORY still describe pending states. Carry those observed receipts and
+repair the handoff through the existing repository route. It is not a proof-only
+PR or a new implementation prerequisite. Same owner#122 and existingreviewfiles.
+
+Independent Requirements reviewer accepts before implementation: preparatory
+14204649 has exactly MEMORY.md,twoexistingissue122reviewMarkdown files and
+derivedagent-context.json. Protected classifierD01 owns instructions/review,
+D02 owns derivedRI. No tools/tests/workflows/policies/controlguides/rights/site/
+runtime/checksum/output delta or new evidence archive is allowed. No extra
+control-only reviewed_sha gate is invented for genuinely non-control metadata.
+
+Base actualmain7ed only after its postmerge/mainRI success. Preserve the real
+acceptedS150package/source; inspect complete final diff with protected-base
+classifier and require repositoryOnly=true/control=false/complete identities.
+Run existing repositoryadapter formatting/lint/architecture/affectedsource,RI/
+owning checks and four separate current-M reviews. Unselected source work is
+explicitly inapplicable, not an invented0/0success. Native M delivery requires
+genuine owner/main App, conditionalStagingadmission, protectednormalmerge and
+repositorypostmerge/mainRI. No websiteBasic/package/preview/staging/alias or
+publisher action. This scope records intent/checks, not a completed M outcome.
+
+AC03/06/08 remain open: after actualM authenticate fullS→M→C history and execute
+isolatedTalks/newerHome/selectiveTalksrecovery preservingHome through existing
+test-mode owner. NoR38/articlepublication,production orDNSaction.
+
+Local M verification initially supplied HEAD to targeted source selection. The
+selector correctly refused because exact commit refs are required, before any
+test execution or report. Preserve /tmp/issue122-repository-m-source.log; use
+full base/head identities for the corrected selection. This is an input error,
+not a failed native campaign or permission to report0/0success. Initial clean
+cd8b9fab classification is complete/repositoryOnly=true/control=false, with
+only D01/D02 repository paths; repository adapter reports website inapplicable.
+RI29/29 passes at that initial source. Recheck final metadata identities before
+publishing; full native repository obligations remain pending.
+
+
+### Repository M source-review receipt
+
+Coherent candidate5648593e55efc43ccefaecc5314e4b8c547899e2/tree
+14de59b6f4b99b3351f749b5f76569bdcecd2053 has four completed independent
+ACCEPT results against actual protectedbase7ed63ee1. Requirements confirms
+necessity, four-file scope and original AC boundaries; Code verifies changed
+claims against actual App/postmerge/source/merge identities and91line MEMORY;
+White-box independently verifies the protected classifier, source N/A/absence
+of website output and original native archives; Operator independently checks
+readable handoff/live150delivery/S150identity and the remaining bounded plan.
+No reviewer edits or product/browser/test campaign were required or performed.
+
+Final564 protected-base selection is complete/repositoryOnly=true/control=false,
+no unresolved paths, exactpolicy/base7ed andcandidate/tree564/14de. Four changed
+paths use existing D01/D02 rules. Existing repository adapter reports website
+inapplicable and creates no output directory. Corrected exact-ref source report
+is status=not-applicable,pass=null,modules=[] on identical clean564 before/after.
+This is not an invented0/0test pass. Initial HEAD alias refusal remains recorded.
+
+Architecture, bounded style143, RI build/verify and17check/17layer coupling pass.
+Initialcd8 RI module29/29 passes9.380s. Final564 owning five mechanical checks
+pass with clean exactsource/noerrors/automation_pass=true/closure=false;
+external/native gates remain pending. These local reports do not relabel earlier
+151/150 native results or claim exact-head native acceptance for a later receipt.
+
+An ad-hoc pinnedPrettier call incorrectly targeted generatedagent-context and
+warned. Actual532file maintained formatter inventory excludes all4changed paths;
+existing format-scope.json explicitly assigns .github/repository-intelligence/
+to the RI generator/build/verify contract. Correct canonical RI verification
+passes. No formatting/generator/config exemption or change is added. Native M
+still runs its unchanged full maintained formatting/lint/architecture obligations.
+This was a local check-scope error, not a native campaign failure or waived check.
+
+Only this verbatim receipt and necessary deterministic metadata follow the
+reviewed564 candidate. Reconfirm final protected-base classifier/clean identities
+before publishing Draft and require fresh actual-remote-head repository checks,
+genuineApp/conditionalStagingadmission/normalmerge/postmerge. No website work;
+preserve ordinaryS150 source11624/public/package proof. WholeAC03/06/08 open.
