@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "b55c950acd9285aeff30d20be54f492d5e28ccd438d048dd354b6817ff18b906",
+    "digest": "e58591f6f253f56962cb7aa9aceb39589cf92f3e25425cac7c9f97d16096c37c",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -356,7 +356,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "29a10586d27a91fc599656672293a3e68a8e8a2f26819976aa6f5f287e2400d6"
+        "sha256": "0367688663f859e77cb45c83947bccae3dff8554f8b6b899e2586edece1d44b0"
       },
       {
         "path": "NOTICE.md",
@@ -1005,7 +1005,7 @@
       {
         "path": "review/issue-122/2026-10-24-r3-runtime-compatibility.md",
         "identity_mode": "content",
-        "sha256": "8cda105d0247c9b2237a7e0cd5fe3607b2ff05432cf16ea518cc3cf91b0ff902"
+        "sha256": "57016eb2b6b9565ee9027b3fb0264777851d360ef3f210f45e2b7442ed6c8f38"
       },
       {
         "path": "review/issue-122/2026-10-25-f5-exact-checksum-proof.json.gz",
@@ -7245,7 +7245,7 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "20600a06f6f2635ecd8be21b790e990373c717497ffca86c2cf76d1fa8fc37c8"
+        "sha256": "28ea4e070d580a3b4d5ec247353a5d3100439df81f052f9ac62c951f65ff96f1"
       },
       {
         "path": "tests/content-baseline.test.cjs",
@@ -8120,7 +8120,7 @@
       {
         "path": "tools/quality/color-browser.cjs",
         "identity_mode": "content",
-        "sha256": "89524dcaf52068246386ba365c2b5b0c6ff2182796e6bc0401e68621cb57d478"
+        "sha256": "4108d26a5a54099b4b9c43d1d8ef09d96e986c97e67332dc30d75b80af1b836d"
       },
       {
         "path": "tools/quality/color-motion-contract.cjs",

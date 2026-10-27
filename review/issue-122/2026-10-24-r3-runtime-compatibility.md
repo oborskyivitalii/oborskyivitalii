@@ -654,3 +654,78 @@ index 26215a79..e49ee709 100644
 ```
 
 </details>
+
+
+## Authorized readiness correction — 27 October 2026
+
+The maintainer explicitly answered **Так** to the concrete helper-scope request.
+[Issue decision6434617932](https://github.com/oborskyivitalii/oborskyivitalii/issues/122#issuecomment-6434617932)
+and [PR decision6434618242](https://github.com/oborskyivitalii/oborskyivitalii/pull/151#issuecomment-6434618242)
+supersede only the original helper exclusion for the exact seven-line wait and
+three tests embedded above. The preceding local-only section remains the historical
+proposal, not the present authorization state. No further prerequisite PR is added.
+
+The migrated filesystem retained sources but lost its prior Git worktree object
+directory and temporary artifacts. Restore the repository history from the live
+PR branch and verify the untouched checkout is clean at
+`45845c0b17f4e12aff10ccb66cc3904a1f8c61e2`, complete tree
+`1e8346e5e27d333583a9b0ea418553fd2c796606`. No stale local cleanliness or absent
+temporary evidence is claimed. Original hosted artifacts and dated readbacks
+retain their recorded source/run identities.
+
+Apply the complete embedded patch verbatim to the two actual source files.
+Default-context diff SHA256 remains
+`fcef8c6f02527db80f60cf515891f7dfb293b5710eed090100b3ed13b36c281e`;
+helper/test SHA256 remain `4108d26a5a54099b4b9c43d1d8ef09d96e986c97e67332dc30d75b80af1b836d`
+and `28ea4e070d580a3b4d5ec247353a5d3100439df81f052f9ac62c951f65ff96f1`.
+Only seven helper lines and93 test lines are active source changes in this
+iteration; review/MEMORY and deterministic RI are receipts.
+
+Requirements/Acceptance `/root/requirements` independently reread live decisions
+and actual owners before implementation and accepted this bounded integration.
+It also caught an overstatement in MEMORY: the first native diagnostic's exact
+exception cause was not retained. The corrected handoff distinguishes that
+prelaunch failure from the subsequently discovered redirect-policy mismatch.
+The detailed original result and both failed/successful runs remain unchanged.
+
+Current dirty-source verification on Node24.22.1/Python3.12.14:
+
+| Check | Actual result and limit |
+| --- | --- |
+| Actual-scenario metadata pending/ready/no-card, no-index and timeout/error/cleanup plus existing endpoint/early-timer controls |5/5 pass, zero failures/skips/cancellations/todo. Same scoped command as the original proposal. |
+| `node tools/quality/local.cjs` |PASS; existing generated/source/route/script/size baseline, no new hosted acceptance. |
+| Locked ESLint on the two changed files |PASS,0errors/0warnings. |
+| Locked Prettier on the two changed files; `git diff --check` |PASS. |
+| `python3 tools/check_code_style.py` |PASS,143files/0legacy occurrences; narrower than full architectural judgment. |
+
+Runtime/CSS, scenario route sequence, original900ms/180ms/2px endpoint guard,
+outer deadlines, test memberships and all failed evidence are preserved.
+Exact attribution of the original231px growth to publication tags remains an
+inference, not proved causal telemetry. Native current-head source/RI/owning and
+preview smoke remain required. Diagnostic success and local tests do not clear
+the original smoke failure. The previously authorized one complete owner-stage
+remains UNUSED until all fresh prerequisites pass. Exact-head human control
+attestation, genuine App, protected merge/postmerge, later PR150 and testC1/C2/C3
+remain separate. AC03/06/08 stay open; R38, production and DNS stay outside scope.
+
+### Four final integration delta reviews
+
+All roles inspect the actual restored45845c0b baseline and the integrated two-file
+dirty patch above; their source identities match the approved helper/test hashes.
+
+| Separate role | Completed execution and disposition |
+| --- | --- |
+| `/root/requirements` | Preimplementation and final integration ACCEPT after independent live decision, actual diff/hash and owner reading. Exact approved integration, causal limits and open native/human gates confirmed. |
+| `/root/resume_code_review` | ACCEPT; actual diff/source/decision, syntax and diff checks. No blocking scope/style/test-design finding; pending readiness and error identity use the actual scenario. No browser/full campaign executed. |
+| `/root/resume_whitebox` | ACCEPT; independently executes5/5 zero-skip scoped cases. Pending→ready/no-card, invalid metadata, historical no-index, error identity/cleanup, preserved late/blocked geometry and early-timer oracle. |
+| `/root/resume_operator_qa` | ACCEPT; independently executes3/3 nonbrowser actual-scenario mocks, confirms selected PR/staging/production routes and900/180/2 guard. Native effectiveness/hosted interactions remain pending. |
+
+RI build/verify and RI/CI coupling pass on this source (1766files/202directories,
+17checks/17layers); source/helper ownership and test selection are unchanged.
+These receipts do not supply native acceptance or a human exact-head control
+attestation. Verbatim review receipts and deterministic RI refresh do not change
+the reviewed source/test behavior.
+
+After adding final review receipts, the freshness-only RI verify correctly refused
+the not-yet-regenerated context. Rebuild/verify the deterministic views below; no
+source behavior changed and no failed browser/source campaign was retried.
