@@ -6,7 +6,7 @@ Dated continuity, not live authority. Last verified: **2026-10-27**.
 
 - #122 requested platform/content/repository separation and reader in production,
   without the new article. All original AC01–AC08 now accepted after final native
-  production and four independent roles. Owner closure follows final live readback.
+  production and four independent roles. Owner #122 is closed as completed.
 - Main/protected production/tag prod-2026-10-27.1 all identify
   9318a54a684079bb23e5dadcfa4bf705d6783dd0/treecfffed1f2b5619cb1476beafa658be9cc2c04fe2.
   PR157 delivered testedE882 through trust6452321830/App40575067246/check122439734348,
@@ -54,8 +54,8 @@ Dated continuity, not live authority. Last verified: **2026-10-27**.
 
 ## Open work
 
-- #122 completion: record final production evidence/AC08 checkbox and close owner;
-  no new test campaign, prerequisite PR or maintainer approval is required.
+- #122 closed completed after final readback; all eight actual AC boxes checked.
+  Final owner comment6453681483 and PR157 comment6453688030 retain evidence.
 - Future PR79 work: integrate current main through ordinary reviewed route,
   select actual intended article revision, regenerate exact outputs and complete
   current-source article/editorial/rights/device/publication gates. Do not infer
