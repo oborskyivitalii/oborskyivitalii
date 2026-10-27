@@ -729,3 +729,147 @@ the reviewed source/test behavior.
 After adding final review receipts, the freshness-only RI verify correctly refused
 the not-yet-regenerated context. Rebuild/verify the deterministic views below; no
 source behavior changed and no failed browser/source campaign was retried.
+
+
+## Current-source prerequisites and failed owner stage — 27 October 2026
+
+The authorized readiness patch is published as
+`4d48c4d7f8b9e492e8d9afd112840bfc072ab5c2`, tree
+`0ecd6d2c4da4655c4589da8093a2c43156204d66`. Remote source/helper/test hashes
+match the approved implementation above. Protected main remains83591bdf.
+
+| Fresh native evidence on actual4d48 | Result and original artifact |
+| --- | --- |
+| Basic40456473254/1 |PASS,75modules1133/1133,0fail/skip/cancel/todo,194179ms/300000, identical clean before/after. Original12713005971:68395bytes/SHA25675bf569692cf45c380adedfcafc77acb5ba3d0d2391377f39afefd95151aaff1. Physical ZIP CRC/size/hash and JSON/TAP independently verified; readiness454–456 and endpoint700/earlytimer701 pass. |
+| RI40456473082 and owning40456472966 |PASS. Owning12713025510:7850bytes/SHA25694c4a316cdc17815222d5a23bb33421981ffc2ad314d6e4366ec3cf094ed0599, exact clean source,5mechanical checks pass, human/closure gates pending. |
+| Preview40456473165 build/publish/smoke122031425856 |PASS on immutable `https://48e53989.oborskyi-author-ci-staging.pages.dev`. Original smoke12712502810:41345bytes/SHA25645302b3ef8417bd8317362185e06182f87ac63d9aff8e26ce748a2f3ed221fbc; all3extracted reports/CRC/size/hash verified. Color1440/390 each3edges pass under original900/180/2; stable900–903.7ms. Generic4rows/all5routes and actual smoke-owner16HTTProws pass. Diagnostic20files are a separate inventory. fullGate/deploymentAuthorized=false. |
+| Actual review package12713005520 |708297bytes/SHA2562ef92fe83d6f28a131367aba1788016cd88a0f562ea597f9556978b895e89fbe, CRC/size/hash and existing package verifier pass; exact clean4d48, articles empty, public4a74fed090d5075f04309a192287a0f4c0b1c6649c3d627c03c186c43ce73f08/package3448bae86e18b6bd653813c117af5363a9f71150c761911c7f5ec78148bf2a9f. |
+
+The separate requirements/code/white-box roles independently reconcile the original
+native source/owning evidence. Operator QA independently reconciles original
+smoke/package reports and all six edge preparations. These are read-only completed
+readbacks, not new browser campaigns. NativeNode24.19.0/Chromium153.0.8010.12,
+Ubuntu24/EPYC7763. No exact causal claim about the older231px growth is made.
+
+[Prerequisite receipt6434773599](https://github.com/oborskyivitalii/oborskyivitalii/pull/151#issuecomment-6434773599)
+precedes exact owner `/stage` comment6434773861. This consumes the one additional
+complete campaign authorized by decision6426971359. Main-owned target job
+122033139967 emits the exact binding source4d48/base83591/run40457192061/attempt1.
+The complete [owner run40457192061/1](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/40457192061)
+**FAILS**, retained in [failure/diagnostic decision6434880200](https://github.com/oborskyivitalii/oborskyivitalii/pull/151#issuecomment-6434880200).
+PR151 returns Draft at the same source; no failed-job or new full retry is issued.
+
+Original prepublication artifact12713191808:319572bytes,
+SHA256`e4f9741a29bfc9813a411b3cb50ca0cbfc66023a90f46c4d3fbcf05fabe30a9b`.
+Physical ZIP CRC/size/hash and retained reports are verified independently.
+Prepublication25/26 guards pass. The sole failed guard is source-tests:
+74modules,1125tests/1124pass/1fail,0skip/cancel/todo,134515.526ms TAP and
+134623ms wrapper; both original300000ms/330000ms limits remain. Source before/after
+is identical clean4d48/tree0ecd. No timeout occurred.
+
+The reported failure is `hookFailed`, `ENOTEMPTY` in the `temporary(t)`
+`fs.rmSync` after-hook at `tests/content-baseline.test.cjs:36`, attached to the
+ancestor-generation reuse/Draft-only case376. No body assertion is reported
+failed. Both fixture and bundle parents share the same prefix; the remaining
+entries and writer/process identity were not retained, so the exact directory
+role and cause cannot be established from that pathname alone. Every other
+prepublication guard, including Python139, rights, lint, security and advisories,
+passes at its actual source. No staging package upload, candidate publish,
+host/browser/performance execution or stable promotion follows this failed gate.
+Earlier successful Basic/preview reports do not erase this new failure.
+
+Measured native timing separates phases: event→target start3s; target20s;
+begin-admission14s; build starts05:46:51UTC, setup/source authentication/toolchain
+through05:47:42, targeted checks/build7s, prepublication05:47:49→05:51:47 (238s),
+report upload/cleanup through05:51:51. Build job300s; final failed admission and
+status complete05:52:25. These are actual observations, not a speed guarantee or
+acceptance of the failed campaign.
+
+### Bounded cleanup diagnostic and local-only fixture proposal
+
+Before another execution, record one isolated failed-case Trace2 diagnostic in
+comment6434880200. Requirements accepts this smallest information-gain action.
+At unchanged clean4d48, Node24.22.1/Git2.51.1, run once:
+
+```sh
+GIT_TRACE2_EVENT=/tmp/issue122-content-baseline-git-trace.json node --test --test-name-pattern 'a new branch can reuse an admitted earlier merged ancestor generation; Draft-only evidence stays full' tests/content-baseline.test.cjs
+```
+
+Actual1/1 PASS,0skip/fail,3055.733ms. The native ENOTEMPTY is **not reproduced**.
+Trace409events/44sessions SHA256136bdcfcb0623d0a6a8c4c0b178baf90a25a7637241f672fcdce09ba95715922
+shows3automatic `git maintenance run --auto --quiet --detach` child invocations
+after the three commits. All three also record quick exits locally; there is no
+observed overlap with cleanup and no proven native writer. This establishes an
+automatic, detach-capable fixture activity path, not native causal attribution.
+The [Git maintenance configuration owner](https://git-scm.com/docs/git-maintenance#_configuration)
+defines `maintenance.auto` as the control for those automatic invocations.
+
+Prepare only one local line in the existing repositoryFixture, immediately after
+Git init and before any commits. Set repository-local maintenance.auto=false.
+This applies to its later direct commit through the same disposable repository
+configuration. Production code/global Git configuration, real commit/history
+assertions, cleanup behavior, membership and deadlines remain unchanged. Strict
+`rmSync` still throws; add no generic cleanup retry/catch or extra GC settings.
+
+Local prepared source is detached4d48/tree0ecd, source_dirty=true, only
+`tests/content-baseline.test.cjs` changed. File SHA256
+`81d514a4662d52addeb9c874930abf0db69dc4b3d5a0e2a3f2824f26dd1c3281`;
+default-context diff SHA256
+`494b4215f2d1a1bda395648967129493ee3f5951803d9d9bfd7326b903c45f76`.
+It is not published actual source. Complete inert patch:
+
+```diff
+diff --git a/tests/content-baseline.test.cjs b/tests/content-baseline.test.cjs
+--- a/tests/content-baseline.test.cjs
++++ b/tests/content-baseline.test.cjs
+@@ -209,0 +210 @@ function repositoryFixture(t, { realSources = false } = {}) {
++  git('config', 'maintenance.auto', 'false');
+```
+
+Corrected isolated case executes exactly once:1/1 PASS,0skip/fail,2868.030ms.
+Trace379events/82755bytes SHA256
+`b8626d23865c170aee7b62150d342b031c9d9e435efd3a84c212c0573e56c0b6`
+shows config command and all three expected real commits exit0, with **zero**
+maintenance child invocations. The complete affected module passes13/13,
+0fail/skip/cancel/todo,11542.460ms. Locked touched ESLint0warnings, Prettier,
+bounded style143files/0legacy occurrences and diff check pass. CS01/04/05/06/08
+map to this test-fixture owner and existing permanent PR/staging/production
+selection; no new test/suite or production runtime is added.
+
+This proves removal of the observed automatic fixture path. Neither passing local
+case proves native ENOTEMPTY causality, broad stability or complete delivery.
+The original native failure stays failed. Final requirements/code/white-box/
+operator local-proposal readbacks and concrete maintainer disposition follow.
+Publishing this third test file exceeds the exact7line/3test scope exception;
+the extra full-campaign allocation is consumed. Prepare a reviewable bounded
+decision in the same PR for this one line, fresh actual-source prerequisites
+and one complete source-corrected owner campaign. Do not create a new PR or
+retry an unchanged failure. Human exact-head/App/protected merge/postmerge, later
+PR150→freshS/genuineM→testC1/C2/C3 and AC03/06/08 remain open; R38/production/DNS
+remain untouched.
+
+### Final local fixture-proposal readbacks
+
+| Separate role/execution | Actual inspected scope and completed result |
+| --- | --- |
+| `/root/requirements` |ACCEPT local proposal/decision readiness; original failure, actual source diff/hash and both traces. Necessity, preservation/limits and exact third-file scope/new-campaign decision remain explicit. No native repair claim or new run. |
+| `/root/resume_code_review` |ACCEPT; actual one-line diff/hash, both traces and13/13 module output. Three baseline maintenance sessions also exit quickly; native causal overlap is unproved. Strict cleanup and assertions preserved. Syntax/diff checks pass; no rerun/edit. |
+| `/root/resume_whitebox` |ACCEPT; independently verifies379corrected trace events/82755bytes/SHA, successful config/3commits and0maintenance launches, full module13/13. Removal of observed path, real history retained and cleanup failures still fatal; no rerun/edit. |
+| `/root/resume_operator_qa` |ACCEPT local proposal only; actual diff/config/trace/13test module, existing PR/staging/production allocation and operator nonpromotion/refusal. Original ZIP/failure readback complete, scope/allocation decision remains; no browser/rerun/edit. |
+
+All roles retain the original native failure and the nonreproducing baseline
+diagnostic. Independent readbacks do not turn the proposed fixture isolation
+into proven native repair. No role authored the proposed source.
+
+The failure artifact's full67declared report hashes also match the extracted
+files. Local uncorrected/corrected single-case TAP SHA256 are
+`a7fd178880c2cf157a6ecc7d2d41ddfe82c20cf803df748e8bdb98d2f804f0c7`
+and `ac679d991737b8c952b708cef996d3f390ed700afaf96e1777cad6c7265229b1`;
+full affected-module TAP SHA256
+`910d0d95d1c37b4be86f97baf454a95999b9d335c7839ba59f54a7f8ce45a92d`.
+These source-bound observations and inert patch are preserved here without
+activating the third-file change. Receipt-only review/MEMORY/derived RI changes
+inherit no4d48native acceptance and do not reset the failed campaign allocation.
+Next decision: include this exact local line in PR151, then fresh current-source
+prerequisites and exactly one complete corrected-source owner campaign, stopping
+on failure. No new prerequisite PR or cleanup-retry loop is proposed.
