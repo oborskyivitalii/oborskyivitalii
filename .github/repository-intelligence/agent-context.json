@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "9917e3cb517027d212d742b37d57b5362ecd6f90d55b2fa037d5a7539c793f86",
+    "digest": "43f1925edc14eaecae21daf52455ba01440231676b4b760cd965f20742bfcbc8",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -201,12 +201,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "10cc5984f37355b6f460881e760e0aa6094523fdf0a213a5b14fb22b099ec067"
+        "sha256": "0c54111c78449f3648416c2eea8d3fcf89215ec32fda7cc73b46ad7f4ee8d501"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "dc7fa8e8f1d1f4b0a281bc067bd25d72a3896e5fa40e7e87b0bf417e582e1ccd"
+        "sha256": "2d6deac9c913ce380642e19acf97386fa113129fee94acdee2e365b673d5feb5"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -356,7 +356,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "7fdf088582683758f167ff3199fb6240fd857f872c671d11528da56462d02d77"
+        "sha256": "cd94f14b421739e067c791b367681e9a3f2be0b4e35dc575d432e46f121d4c1b"
       },
       {
         "path": "NOTICE.md",
@@ -1005,7 +1005,7 @@
       {
         "path": "review/issue-122/2026-10-24-r3-runtime-compatibility.md",
         "identity_mode": "content",
-        "sha256": "9dd066706ea7df31b4be3b9384080b8b7fb69c628dc44540442a49731f94352d"
+        "sha256": "1d43164572bee766c577f1ab6207b6658ccfc8d6cb212067cc05bbf37a1e671c"
       },
       {
         "path": "review/issue-122/2026-10-25-f5-exact-checksum-proof.json.gz",
@@ -1026,6 +1026,11 @@
         "path": "review/issue-122/2026-10-26-browser-security-proof.json.gz",
         "identity_mode": "content",
         "sha256": "658385cc054a5ac0567a2aedfa983ee786b6468f5efeb324a86f1fc0200c53fa"
+      },
+      {
+        "path": "review/issue-122/2026-10-26-writing-checksum-proof.json.gz",
+        "identity_mode": "content",
+        "sha256": "052a71ef936601d59c526789170de58704fe2b262f53b05b8e14a900f4555067"
       },
       {
         "path": "review/issue-126/2026-10-23-announcement-review.md",
@@ -7240,12 +7245,12 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "162283784b603c1553f5a3ddc1c928bef89a784ccf17ea00cdbe6085968c1e6e"
+        "sha256": "28ea4e070d580a3b4d5ec247353a5d3100439df81f052f9ac62c951f65ff96f1"
       },
       {
         "path": "tests/content-baseline.test.cjs",
         "identity_mode": "content",
-        "sha256": "530a9b735bcefa4678a724d41236841b496c3995aedf3f8083b48ab2d77325bc"
+        "sha256": "81d514a4662d52addeb9c874930abf0db69dc4b3d5a0e2a3f2824f26dd1c3281"
       },
       {
         "path": "tests/content-delivery.test.cjs",
@@ -8115,12 +8120,12 @@
       {
         "path": "tools/quality/color-browser.cjs",
         "identity_mode": "content",
-        "sha256": "89524dcaf52068246386ba365c2b5b0c6ff2182796e6bc0401e68621cb57d478"
+        "sha256": "4108d26a5a54099b4b9c43d1d8ef09d96e986c97e67332dc30d75b80af1b836d"
       },
       {
         "path": "tools/quality/color-motion-contract.cjs",
         "identity_mode": "content",
-        "sha256": "ec4e74f5f37abac6cf5d7fb936a27ce1dfc6a40f3c748e29b2df56b9bdd7e15b"
+        "sha256": "3cd4b00d260ef3b4b41b2f983c6774428b04d5d1eddede9df9b2ff11aa607c0f"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -8415,7 +8420,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "629c16706fc59d8fc7b7cd6f8e7bd9a2ff3a8f17d24ee6c99e50f38a0962e4a2"
+        "sha256": "e38127f82275f3212dfda6ed111d1d90039ece3fc4ff91183d2523bff41b3abd"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
@@ -11404,6 +11409,17 @@
         "AGENTS.md"
       ],
       "title": "2026-10-26-browser-security-proof.json.gz"
+    },
+    {
+      "path": "review/issue-122/2026-10-26-writing-checksum-proof.json.gz",
+      "kind": "file",
+      "purpose": "Inert source-bound producer proof for six exact public Writing-startup runtime checksum dispositions; retains original native security failure.",
+      "role": "history",
+      "owner": "guides/SITE-CONTENT-RELEASE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-26-writing-checksum-proof.json.gz"
     },
     {
       "path": "review/issue-126/2026-10-23-announcement-review.md",
