@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "event_slug": "devcon-romania-2026",
+  "edition": "DevCon Romania 2026 R5",
+  "revision": "R5",
+  "status": "author-review-draft",
+  "author": "Vitalii Oborskyi",
+  "language": "en",
+  "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/109",
+  "pull_request": "https://github.com/oborskyivitalii/oborskyivitalii/pull/110",
+  "versioning_contract": "guides/PRESENTATION-VERSIONING.md",
+  "repository_predecessor": {
+    "revision": "R3",
+    "commit": "793cfaef95fdf96c17b2f33cafe7d0ba1f0ad6a4",
+    "manifest": "drafts/devcon-romania-2026/r3/edition.json"
+  },
+  "working_lineage": {
+    "note": "Conversation-local R4 working labels were never committed as a repository edition. They are consolidated into R5 to restore one monotonic repository revision number.",
+    "aliases": [
+      "R4 v2",
+      "R4 v3",
+      "R4 v4 speech review",
+      "R4 v5 problem framing",
+      "R4 v6 evidence"
+    ]
+  },
+  "slide_count": 9,
+  "notes_count": 9,
+  "pdf_page_count": 9,
+  "slide_size_emu": {
+    "cx": 12192000,
+    "cy": 6858000
+  },
+  "timing": {
+    "talk_target": "19:55",
+    "qa_target": "7:00",
+    "reserve_target": "3:05",
+    "status": "editorial target; timed English rehearsal and presenting-device verification pending"
+  },
+  "source_pins": {
+    "pmday": {
+      "repository": "UncertaintyArchitectureGroup/uncertainty-architecture",
+      "commit": "22639d311d5fb46a23f3d5cdd819800dbe1169d9"
+    },
+    "article_r38": {
+      "repository": "oborskyivitalii/oborskyivitalii",
+      "pull_request": 79,
+      "commit": "b128ad27b23bc9d14a62b495c5c18b7ae537ab65",
+      "path": "site/publications/pmday-ai-both-sides/manuscript.en.md"
+    }
+  },
+  "artifacts": {
+    "pptx": {
+      "path": "drafts/devcon-romania-2026/r5/devcon-romania-2026-r5.pptx",
+      "bytes": 1387263,
+      "sha256": "fdb0416931f3ddbf4e6139666cf87613de3329c4cf61c325ba639f21c74afad4"
+    },
+    "pdf": {
+      "path": "drafts/devcon-romania-2026/r5/devcon-romania-2026-r5.pdf",
+      "bytes": 376341,
+      "sha256": "d517317b24dfa31e29b1b5e75849716515b688b2c7b28c11f02dc004b10793f7"
+    },
+    "notes": {
+      "path": "drafts/devcon-romania-2026/r5/speaker-notes.md",
+      "bytes": 16285,
+      "sha256": "332680bc836611f48254409a729260aa97715bf404e19527c9add4e74de28a8f"
+    }
+  },
+  "slides": [
+    {"slide": 1, "title": "AI Changes the Delivery System and the Product Itself", "target_time": "1:40"},
+    {"slide": 2, "title": "We Accelerated a Step. Not the System.", "target_time": "1:45"},
+    {"slide": 3, "title": "What Are We Actually Measuring?", "target_time": "2:35"},
+    {"slide": 4, "title": "The Comprehension Gap Is an Ownership Risk", "target_time": "1:45"},
+    {"slide": 5, "title": "Rebalance the SDLC, Not Just Code Review", "target_time": "2:30"},
+    {"slide": 6, "title": "When Model Judgment Enters Runtime", "target_time": "2:40"},
+    {"slide": 7, "title": "The Rollout Ends. The Hypothesis Doesn't.", "target_time": "2:15"},
+    {"slide": 8, "title": "Engineer the Whole Control System.", "target_time": "3:15"},
+    {"slide": 9, "title": "AI Changes Both Sides. The Engineering Must Follow.", "target_time": "1:30"}
+  ],
+  "qr": {
+    "target": "https://vitaliioborskyi.ai/",
+    "status": "decoded from the conversation-local rendered R5 PDF; independent/device gate pending"
+  },
+  "event_selection": {
+    "selected_revision": "R3",
+    "status": "R5 is the current author-review edition; event binding remains on R3 until explicit selection and event-record update"
+  },
+  "acceptance": {
+    "author": "pending",
+    "independent_review": "pending",
+    "repository_checks": "pending on committed R5 source",
+    "timed_rehearsal": "pending",
+    "presenting_device": "pending",
+    "conference_final": false
+  },
+  "delivery_status": {
+    "repository_text_package": "prepared",
+    "repository_binary_artifacts": "pending connector-capable binary upload",
+    "temporary_review_locations": {
+      "pptx": "https://docs.google.com/presentation/d/1lvuBL0-ULEoMnU5MEsDP_RPf-NVlWKih/edit?usp=drivesdk&ouid=118145174109564642939&rtpof=true&sd=true",
+      "pdf": "https://drive.google.com/file/d/1jBcgI5B6PVgtBZylnlBggpLvO3GESnb8/view?usp=drivesdk"
+    },
+    "note": "Temporary Drive copies do not satisfy repository delivery or acceptance. Exact hashes above identify the files that must be committed to the planned R5 paths."
+  }
+}
