@@ -4,111 +4,91 @@ Dated continuity, not live authority. Last verified: **2026-10-27**.
 
 ## Snapshot
 
-- Owner #122 open. Main is PR154 normal merge
-  3d33a35565209d677dc7d86e806a71ff669cb823, parents e289f728+tested
-  1341991e8b1ffd4e0cccd1b22ac274b80a8990b0, same tested/staging
-  treebec724c6a6d3c79db2208c7ee4cc03f9902b4644. PR154 merged.
-- PR154 minimal gate CLI exports/report-discovery correction delivered.
-  Exact-head trust6442478911; genuineApp40508159897/1/App5453173/check122202999729,
-  protected merge/postmerge40508611640/1 and mainRI40508610587 pass.
-  Original App12735787615 and mergeidentity12736426455 physically verified;
-  delivery PR1546442591351/issue1226442598513, readiness6442378051.
-- Accepted S154 retains original1341/treebec/owner40502627321/1/controllere289,
-  publica97ab75be0659c44b7d4a6030645cd0efd835b8db3a0ce04e1a631c541fe6e1f,
-  package49db83fb38f83ec69b4318172e69a66e8d7590d501a42492e9c0aed1e0e5dd40,
+- Owner #122 open. PR155 delivered as normal main merge
+  136af46947aaef0b522a0b6621f36bb3bd348a3a, parents3d33a355+tested
+  683807343b85ead73827ada2266d55a6f9c54bac; identical complete tested tree
+  385a3ad32de358b59e7f0d382886eab4ff95c665. Home SEO integration repaired.
+- Exact6838ownertrust/App+merge decision6447478064. GenuineApp5453173
+  run40541248717/1/check122320506533/external40541248717/1/155 SUCCESS.
+  Originalsnapshot12751460032 ZIP18235/SHAedf5a82f7b5e20d60669aae75732c6f79f8e573029e615e9118fa802e3e17db2
+  physicallyverified; Code independentlyvalidates398prior+6changedcontrols.
+- PostApp admission40541832034 andowning40541831904 PASS. Five required numeric
+  producers/strict main/bypass[] verified before expected-head protected merge.
+- Postmerge40542171686/1 andmainRI40542170671 PASS. Originalidentity12750119956
+  ZIP424/SHA4be566e4e86680b91df8114243ffb93d79e84da9de7c1881ef8d03fa57f1c445
+  verifies6838→136a/tree385a/publicBytesUnchangedtrue; independentWB ACCEPT.
+- AcceptedS155 retains originaltested6838/owner40534615837/1/controller3d33,
+  public48a5c63c8ee99f6cee77b9bd03995974c8186b9093ea66145af6003d85abd1a8,
+  package573cbbe91a02f782d3573ea923d99a70d9e19f4b1350e4bb2cf430e69b450e4d,
   generatione8cad44078bfec45ff5b34b287c769a128e7a83c84a8e05f24d0f71a38d69c6a.
-  Merge3d33 preserves tested bytes without a new producer. S154owner26guards/
-  1131Node/139Python pass; whole20m50 exceeds15min operational target.
-- Postmerge edited40508823656 refused closedPR; build/publish/promote skip.
-  Accepted manualcheckpoint122184132809/external40502627321/1 remains success;
-  native C1 authentication/reuse independently passes. No retry/repair.
-- Fresh isolated C1 COMPLETE on never-merge Draft PR149 at exact
-  b15c4de9c9c8a26752f285d936c988ac7ca96ffb/tree
-  0e829b258d035d6828afd2599b8510ece9b4b043, directparent3d33. Authored change
-  appends DevCon “Test mode (#122): Talks checkpoint C1.”
-- Draft40512662000 passes. ReadyBasic40513402151 passes219/219,RI40513402042/
-  owning40513401981 pass. Readypreview40513402000 build/publish/minimal Color
-  noCanvas smoke pass; separate missing-stable-stage admission remains failed.
-- Sole isolated40514588030/1 terminalSUCCESS:26guards/19modules227/227,
-  zero fail/cancel/skip/todo;39783msworker/40258wrapper;139Python37.100s;
-  security137212/180000ms. Clean exact source before/after.
-- Native content/compatible-content-v1/content-staging-gate PASS: onlyTalks
-  built,4routes reused,29raw/18delivered platform files byte-identical. Original
-  S154 retained; history singlecontentedge with emptyrepositoryM arrays/articles[].
-  Actual30host/8Talks+Writingbrowser rows pass390/1440 normal/no-JS,exactbytes,
-  nooverflow/imagesdecoded/errors[]/normalWritingtagfilter;Chromium153.0.8010.12,
-  9087ms. Immutablef80786bb.oborskyi-author-ci-staging.pages.dev.
-- Native publicac91545d82661e0a5c73fd43d999c0e3e05b963d66ea533ed41bfa109ad41ade,
-  package0f0fe6e154a68ec380b0eb4629c88609d6c2609aab3aca69f19ffbb5a49d0ecc.
-  Public12739641081/package12739656052/preflight12739366116/gate12739802408
-  plus5report/setup originals verify API size/SHA/CRC;67preflight/5report hashes
-  and exact aggregate match. Allauthorityflagsfalse/performanceRerunfalse.
-- Source fourroles ACCEPT61db/c597 then finalb15 metadata tree0e829. Native
-  Requirements/Operator independently verify finalgate; Code/White-box validate
-  upstream original bytes/history/package/preflight/scanners. Full/platform/
-  performance/device/capture/merge-admission/promote explicitly skip.
-- C1created13:43:34Z,gate13:53:11Z,status13:53:31Z,terminalupdated13:54:49Z
-  (11m15 created→terminalsnapshot); queue/setup/execution separate in receipt.
-  After terminal success PR149 restored Draftb15/stage label removed.
-- Durable C1 PR1496443750345/issue1226443772942; versioned owner
-  review/issue-122/2026-10-26-content-ci.md#fresh-s154-c1-native-completion--27-october-2026.
-- PriorC1dbbc/40497219704 stays failed/exactly archived under
-  archive/issue-122-pr149-c1-dbbc70ac-20261027; olddbbb/d4archives retained.
-  Local61db185/219 failed missinghistoricalblob; sole hydrated227/227 replay
-  passed. Current nativeb15 independently passes; no unchangedCIretry.
-- C2 published433b21b3/treeb0609a,parentb15. Draft40519232744/Ready219+RI+owning/
-  hostedminimalsmoke pass, but isolated40521370776/1 terminalFAIL beforeupload:
-  soleSEO716ms/25otherguards pass;227Node+139Python/security72832ms pass.
-  HomeJSON is admitted but current SEO lacks canonicalHome reconciliation.
-  All4independent diagnoses BLOCK; in-memory exactmarker removal restoresfreeze.
-  PR149Draft433/archive433 preserved; C3notstarted/no unchangedretry.
-  Durable PR1496444934344/issue1226444934757; originalpreflight12741029912
-  SHA068727cc59a75d030677b188e5693e981dcb212890ac60e1d0711a119ba6e0dc.
-- PR79/newarticle separateDraft/unpublished. Production remains
+  Existing authenticate/inspectAccepted oncapturedactualAPI/nativebytes pass,
+  reusabletrue. Read-onlyreplay is not a newproducer or candidate native gate.
+- S15526guards/74modules1136Node/139Python/scanners/host30/browser/performance/
+  staginggate/stablepromotion/check122296687042/independentreceipt12748443966 PASS.
+  Source130571/300000ms+30sgrace;security73160/180000ms. Whole21m21 recorded.
+  All4actualroles accept exactsource/scopednativeproofs; authorityflagsfalse.
+- PriorS154/main3d33 retains original1341/owner40502627321/1/controllere289,
+  publica97ab75b/package49db83fb. Fullhistoricalidentities remain inreviewowner.
+- C1b15c4de9/tree0e829b25/40514588030/1 remains historicalS154 PASS:227/227,
+  Talks-onlybuild/4reusedroutes/29raw+18deliveredplatform identical. Exactarchive
+  archive/issue-122-pr149-c1-b15c4de9-20261027; no relabeltoS155.
+- PR149 stays frozenDraft433b21b3/treeb0609a, archive433 preserved. SoleC2
+  40521370776/1 remains FAILprepublicationSEO716ms/25otherguards+227Node+
+  139Python/scannersPASS. Original12741029912 retained. No unchangedretry.
+- PR79 remains separateDraft10a1e7d9/unpublished. Production remains
   676e3ab6c51f2290df4c44c7d5eac49a508d02fc/prod-2026-10-23.2.
 
 ## Decisions
 
-- Deliver separation/newreader without newarticle. Maintainer6417255457 permits
-  isolatedtestcontent/recovery; nevermerge/promote markers. Existing publisher.
-- AC01/02/04/05/07 accepted; originalAC03/06/08 open. DirectS154→C1 has no
-  authenticated repositoryM; no inventedM/proof-onlyPR/silentACamendment.
-- PR154 trust/App/merge complete; no future-head waiver. Every new C2/C3 source
-  needs current checks/reviews/nativegates/freshleases. Preserve rights/editorial,
-  source/artifact identity,cap4/16MiB/300s+30grace/security180s/allbudgets.
-- Diagnose before correction/retry; retain failures. No article/production/DNS
-  action. Browserpins expire2027-01-24T10:16:18Z; existing owner refresh only.
+- Deliver platform/content/repository separation and reader without newarticle.
+  Maintainer6417255457 permits isolatedtestcontent/recovery, never merging or
+  stable/productionpromotion of markers. Use existingpublisher/controllers.
+- Currentexact6838trust is delivered, not a waiver for futureheads. Preserve
+  current source/base/predecessor leases, rights/editorial and genuineApp binding.
+- Maintainer clarified15min totalCI is an operationaloptimizationtarget, not
+  an independentmergeblocker where mandatorytest/sitebudgets pass. Retain21m21
+  andqueue/setup/execution observations. No hardtimeout/performance waiver.
+  Preserve sourcecap4/16MiB/300s+30sgrace/security180s andallbrowser/sitebudgets.
+- AC01/02/04/05/07 accepted; originalAC03/06/08 open. No authenticated literal
+  repositoryM after acceptedS155 yet. PR155 is control/fullroute, neverM;
+  no fabricatedchange/proof-onlyPR/silentACamendment or historicalrelabel.
+- Diagnose failures before correction/retry; retain alloriginalresults.
+  Browserpins expire2027-01-24T10:16:18Z; existingownerrefresh only.
 
 ## Open work
 
-- HomeSEO repair now prepared on clean-main3d33 control branch: canonical7block/
-  mainnav proof,19producerpins/immutable3d33frame; outermetadata/chrome freeze.
-  Corrected24ee/treee97c passes15/15 with4finalroles ACCEPT after realclosure
-  finding/data-token refusal and diagnosedtestoracle correction. Originalbef66/66
-  andRI29/coupling20 are prior scoped checks; nativecontrol/exactheadtrust pending.
-- C3: selectively restore originalTalks while preserving C2Home; actual native
-  compatible-content/unchangedplatform/current source+predecessor leases.
-- Complete literal authenticatedS→repositoryM→C and originalAC03/06/08/
-  contracts/profile/test-dispositions/concurrency/queue-setup-execution accounting.
-- Prepare exact-bound platform/readerproduction withoutarticle, then concrete
-  activation decision through existing protected publisher.
+- FreshC2 notstarted. Requirementspreflight ACCEPT after authenticatedS155:
+  start fromactualmain136a, carryexactb15events +Homeabout.json:text.T005 sentence.
+  Bothroutes index,talks built;credits/research/writing reused;12contentbrowserrows
+  (index/talks/writing×390/1440×normal/no-JS), unchangedraw/deliveredplatform,
+  articleCandidates[], own compatible-content-v1 gate/performanceRerunfalse.
+  Currentfourroles/source/RI/coupling/owning/preview/scanners/hosted proofsrequired.
+  No additionalnativeC1 checkpoint is required. OldC1 stays historicalS154.
+- C3directchild ofacceptedfreshC2 restoresonlyoriginalS155Talks andpreserves
+  exactC2rawHome; ownnativegate/current source+predecessorleases required.
+- Complete literalS→genuine repository-onlyM→C, originalAC03/06/08, contracts/
+  test-profiledispositions/provenance/concurrency/leases/timing reconciliation.
+- Prepare exact-bound platform/readerproduction withoutarticle through existing
+  frozen-candidate/rights/protectedpublisher, then concreteactivationdecision.
 
 ## Next session
 
-1. Revalidate main3d33,PR149Draft433,originalS154/C1/failedC2/originalartifacts.
-2. Deliver reviewed HomeSEOrepair, thenfreshC2→C3selectiveTalks/preserveHome.
-3. Complete literalMscenario/originalAC/contracts/profile/leases/timings.
-4. Deliver exact-bound platform/readerproduction withoutarticle after decision.
+1. Revalidate main136a/PR155merged/originalS155native/App/postmerge/production676e.
+2. ComposefreshC2 onacceptedS155; independentreviews/checks; publish viaPR149
+   isolatedstaging-regression only. Nevermerge or/stage markedtestcontent.
+3. C3selectiveTalksrestore/preserveHome, thenliteralM/originalAC/contracts/timings.
+4. Exact-bound platform/readerproduction withoutarticle afteractivationdecision.
 
 ## Maintenance
 
-- Preserved predecessor receipt725282b descends failed433; current HomeSEOrepair
-  is based on main3d33. Neither relabels original nativeC2 failure.
-- Originals/API under /tmp/issue122-s154-native; originalS154 authentication/
-  ZIPs under /tmp/issue122-s154-auth and /tmp/issue122-pr154-native. C2 originals
-  and diagnosis under /tmp/issue122-c2; read stale snapshot only as handoff.
-- Collector return-type/path/argument/finalizer errors are diagnosed local
-  inspection errors, never native failures/acceptance. No native rerun.
-- Keep five sections/120lines; rebuild/verify RI after owner/MEMORY edits.
-- Verbatim receipts/deterministicmetadata need no recursive review; material
-  implementation/changedclaims require independent execution.
+- Currentdeliveryreceipt is parented by main136a; not newacceptedproducer/M.
+  Versionedowner review/issue-122/2026-10-26-content-ci.md retains allfailures,
+  sourcecorrectionreviews, nativecompletion/App/merge/postmerge boundaries.
+- S155originals/API /tmp/issue122-home-seo/native andapp-native; actual8API
+  authenticationreplay /tmp/issue122-s155-auth. S154originals/auth under
+  /tmp/issue122-pr154-native and /tmp/issue122-s154-auth. C1originals
+  /tmp/issue122-s154-native; failedC2originals/diagnosis /tmp/issue122-c2.
+- Collectorpath/type/transport errors are distinct fromnativefailures; extra
+  localwhole-secret diagnostic stopped atofflinebundleprecondition, not bypassed.
+- Keep five sections/120lines; RIbuild/verify after owner/MEMORY edits.
+  Verbatimreceipts/deterministicmetadata need no recursive source review.

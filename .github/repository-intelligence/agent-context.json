@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "e72eb0abfdeb884dd9dad6fa52d8603071021222c4187803b31d9e83b8cb7bc3",
+    "digest": "c4332b269e0cb50ff51127631bf9d7ff3bae4a5a5522377d32a9e3abdacf5bba",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -356,7 +356,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "efa8ac199f6688e6f4c131f1831522993c3f6f2f3d4d835959dff3c237068cbd"
+        "sha256": "05cc056a64e83f2c4fc610fa16b12a4494beba101e3a12c1c6613ad0f1a4eaec"
       },
       {
         "path": "NOTICE.md",
@@ -1030,7 +1030,7 @@
       {
         "path": "review/issue-122/2026-10-26-content-ci.md",
         "identity_mode": "content",
-        "sha256": "0a388a1ec1ecd11b9abc8e9fcc4ca12010d3efacffdcb4a9f14ccda8954547b1"
+        "sha256": "44d99dfe986d6ce851c871513585353a7f69830f48f84483cac47b6b982befe7"
       },
       {
         "path": "review/issue-122/2026-10-26-writing-checksum-proof.json.gz",
