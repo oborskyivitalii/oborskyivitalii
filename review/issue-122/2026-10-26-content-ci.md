@@ -2660,3 +2660,11 @@ Its own seven ZIPs, original archive/activation, reproduced live aggregate,
 source/public/rights/predecessor/deployment/immutable-release and native successful
 acceptance step all verify. It explicitly preserves the three release-asset
 download limits above, bounded smoke scope and no new campaign/source mutation.
+
+Final live readback supersedes earlier open-Draft status: PR149 is closed without
+merge, title "TEST COMPLETE: C2/C3 selective content recovery (do not merge)",
+same07b source. PR79 remains open at10a with the new article title; current GitHub
+reports mergeable=true/behind, not a current merge conflict. #122 is closed with
+all8original checkboxes accepted; current completed-state update was already
+present when root refreshed before attempting closure, so preserve it rather
+than overwrite concurrent completion. Main and production remain9318.

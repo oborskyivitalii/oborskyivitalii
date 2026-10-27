@@ -89,7 +89,7 @@ Dated continuity, not live authority. Last verified: **2026-10-27**.
   Talks-only native rebuild, C2 staging predecessor lease or universal C2 snapshot retention.
 - No remaining #122 delivery action. PR79 article is a separate future task;
   retain its authored work/history while reconciling onto accepted platform.
-  PR149 remains frozen Draft07b as completed test evidence; never merge markers.
+  PR149 is closed unmerged at frozen07b as completed test evidence; archives retained.
 
 ## Next session
 
