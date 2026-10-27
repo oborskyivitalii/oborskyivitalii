@@ -297,6 +297,7 @@ function readReports(dir) {
     'color-preview-smoke',
     'preview-smoke',
     'functional',
+    'content-functional',
     'color-functional',
     'lighthouse',
     'motion',
@@ -343,6 +344,20 @@ function main() {
   );
   console.log(JSON.stringify(gate));
 }
+module.exports = {
+  requiredJobs,
+  requiredKinds,
+  expectedKinds,
+  expectedCoverage,
+  validateIdentity,
+  validateHost,
+  validateSizes,
+  validateGate,
+  selectedJobs,
+  aggregate,
+  readReports,
+  main,
+};
 if (require.main === module) {
   try {
     main();
@@ -377,17 +392,3 @@ if (require.main === module) {
     }
   }
 }
-module.exports = {
-  requiredJobs,
-  requiredKinds,
-  expectedKinds,
-  expectedCoverage,
-  validateIdentity,
-  validateHost,
-  validateSizes,
-  validateGate,
-  selectedJobs,
-  aggregate,
-  readReports,
-  main,
-};

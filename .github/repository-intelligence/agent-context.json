@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "d3033b3c1f2e64a9e8f7e5d6bb5ac851badd19f432e66277f7bcaca61211a292",
+    "digest": "a0e2d1fd9ee130f62f03a10c7b5fc987556a90850e1d3226e03eb04f122e027e",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -206,7 +206,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "d3f8e0461ba2447d65a1b33663bf2610791bc387585bb40401664b500fd9a03d"
+        "sha256": "d88da639cd85ffe3e3e017a55b8a3e0912569cb55e937eebfe0324a69dfbd6b8"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -356,7 +356,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "d883e4d2ab247ad07c84bd29fa20139c7bf64d8b23de2ad5ce1e3ac6acfcde2d"
+        "sha256": "28e48eddd5c9001b474ffc0c418afba6dffdcad9d09aaa026718efb7f03f9ed0"
       },
       {
         "path": "NOTICE.md",
@@ -1030,7 +1030,7 @@
       {
         "path": "review/issue-122/2026-10-26-content-ci.md",
         "identity_mode": "content",
-        "sha256": "f3fbe4a95adc03a0640d67513407f075c1e272ae30256e7571d7d8372cab1215"
+        "sha256": "3a6e094604c51ec6caf5a0fbacbbb53b81263eab51a62aef923ca652dfc35d32"
       },
       {
         "path": "review/issue-122/2026-10-26-writing-checksum-proof.json.gz",
@@ -7260,7 +7260,7 @@
       {
         "path": "tests/content-delivery.test.cjs",
         "identity_mode": "content",
-        "sha256": "cc888fb8b51af721d11f8f5d6fb0bd2f975c809303c254b96b9146df324ea00a"
+        "sha256": "d449d888a0bb0909895a5cb0b99c29a35c88713e5854418b79973cc1ab77e28f"
       },
       {
         "path": "tests/content-fixture.test.cjs",
@@ -8460,7 +8460,7 @@
       {
         "path": "tools/quality/staging-gate.cjs",
         "identity_mode": "content",
-        "sha256": "59c0446372f42f0feb3eddf61751cd0dc86cbb4bf99b2bed7c8ca3c588d74e01"
+        "sha256": "9f8b0aef06935daa3f6b1078dfd8c52dd6077e42acada532c1a2c8e6e805318f"
       },
       {
         "path": "tools/quality/staging-regression.cjs",
