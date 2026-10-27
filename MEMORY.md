@@ -32,12 +32,22 @@ Dated continuity, not live authority. Last verified: **2026-10-27**.
   terminal SUCCESS12m56:26guards/232Node/139Python/host30/browser8/contentgate.
   Raw Home=C2/Talks=S155;29raw+18finalplatform exact. No stable promotion.
   Archive07b preserved, PR149 frozenDraft; all four final native readbacks ACCEPT.
-- Final canonical reconciliation prepared from main1689 in separate worktree:
-  two real stale guides, only AC08 status prose, existing review/MEMORY/derived RI.
-  All four roles ACCEPT coherent ae2669e9/tree61a04910; final review receipts
-  and derived metadata follow it. Prepared6abd1dc4/tree85d930fa checks stay scoped.
-  Basic26/format532/RI/coupling and mapped2modules53/31028ms pass.
-  No code, site, docs, workflow, test membership or scanner-ledger changes.
+- PR157 Ready e882f61d96470019957a46e9f476871089e4d722/treecfffed1f2b5619cb1476beafa658be9cc2c04fe2
+  directly parents main1689. Seven canonical/metadata paths only; no site/docs/
+  tools/tests/workflows/rights/registry/scanner-ledger change. Four source roles
+  ACCEPT ae2669/tree61a; final published tree adds actual receipts/derived RI only.
+  Ready Basic40565448300/RI40565448189/owning40565448445 PASS.
+- Sole full owner40565955502/1/controller1689 terminalSUCCESS19:05:38→19:30:42Z,
+  25m04 operational target miss;26guards/74modules1136Node/139Python PASS.
+  Source208808/300000ms+30s grace/security137553/180000ms; hard budgets unchanged.
+  Host30/normal20/noCanvas10/navigation2/failures10/analytics7/Color2 PASS.
+  Two mobile Lighthouse trials: Research LCP2294.682/TBT62.5ms;
+  Writing1983.554/146.5ms. Four cold/warm flights/eight windows PASS.
+  Seven-report gate digest0622e6828997f686d7e88a266d45047bd30539d4dfcbd2d4949577ed82f95a4e.
+  Promotion/recovery/main-owned independent receipt12763569520 PASS;
+  source e882/base1689/owner40565955502attempt1 retained. No production authority.
+  Staging check122407990240 PASS; genuine Change admission App still missing.
+  Requirements154/Code154/Whitebox154/Operator154 final native ACCEPT separately.
 - Production revalidated676e3ab6c51f2290df4c44c7d5eac49a508d02fc /
   prod-2026-10-23.2. PR79 remains separate Draft10a1e7d9/unpublished.
 
@@ -62,18 +72,17 @@ Dated continuity, not live authority. Last verified: **2026-10-27**.
   now passes using S155 through M156: index built/four reused/eight Home/Writing
   rows, raw Home=C2/Talks=S155 and current hosted Talks bytes. No C2-baseline composition,
   Talks-only native rebuild, C2 staging predecessor lease or universal C2 snapshot retention.
-- Reconcile original AC03/06/08, exact native outcomes and lease/concurrency/
-  timing/test-allocation limits. Final canonical control candidate needs its own
-  current four roles/Basic/RI/owning/full stage/exact-head trust/App/normal merge/
-  postmerge; no production source can inherit S155 across M's changed whole tree.
+- Reconcile whole AC03/06/08 after exact e882 maintainer control trust, genuine
+  App5453173, normal protected merge and postmerge. Full current staging passes;
+  old6838 trust cannot transfer. No production source inherits S155 across M.
 - Keep main fixed while freezing that exact accepted current tree, inventorying
   rights and using protected production publisher/live verification without article.
 
 ## Next session
 
 1. Revalidate main1689, archived/frozen C3 head07b/native40561612440 and production676e.
-2. Deliver reviewed final canonical source; never merge markers or rerun unchanged campaigns.
-3. Final real canonical control/full-route delivery and original AC reconciliation.
+2. Revalidate PR157 e882/base1689/native40565955502; obtain its exact-head trust.
+3. Genuine App with reviewed_sha=e882 full SHA, protected merge/postmerge; keep main fixed.
 4. Exact-current-tree production candidate/rights/publisher/live verification.
 
 ## Maintenance
@@ -89,5 +98,7 @@ Dated continuity, not live authority. Last verified: **2026-10-27**.
 - Originals/API under /tmp/issue122-c2-s155/native, /tmp/issue122-home-seo/native,
   /tmp/issue122-m155/native; C3 /tmp/issue122-c3-s155; final source /tmp/issue122-final-contracts.
   Read-only API replay is not a new native producer or deployment authority.
+- This checkpoint retains receipts separately; PR157/main heads stay fixed for
+  exact staged-tree merge/freeze. Do not merge this receipt branch first.
 - Browser pins expire2027-01-24T10:16:18Z. Keep five sections/120 lines and
   refresh/verify RI after source or memory changes; receipt-only metadata is nonrecursive.

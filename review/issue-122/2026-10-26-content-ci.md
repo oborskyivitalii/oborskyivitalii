@@ -2355,3 +2355,122 @@ until whole controlled delivery reconciliation. Current full stage, new exact-he
 maintainer trust, genuine App/protected merge/postmerge and then exact-current-main
 frozen rights/production activation/live verification remain distinct pending
 gates. Passing content tests does not supply these decisions or production delivery.
+
+## PR157 current full staging completion — 27 October 2026
+
+This is a receipt checkpoint, not a replacement candidate. PR157 remains exact
+e882f61d96470019957a46e9f476871089e4d722/treecfffed1f2b5619cb1476beafa658be9cc2c04fe2,
+direct child of protected main16890621b511f15e432265b9757d1c70b3cd72ad. Do not move
+that head for these receipts or merge a metadata checkpoint between its accepted
+full stage and production freeze. The prospective normal merge tree is identical.
+
+Ready Basic40565448300/check122405363802, RI40565448189/check122405363128,
+owning40565448445/check122405363639 and routing40565448155 pass at exact e882.
+Draft40565296680 was cancelled by Ready; initial missing-stage admission failure
+remains recorded separately from passing preview build/publish/smoke.
+
+The sole actual full owner40565955502/1 is issue_comment-triggered under protected
+controller1689, 19:05:38→19:30:42Z, terminalSUCCESS. All twelve trusted mandatory
+jobs pass, including full source/static/host/staging/gate, stable promotion,
+merge-admission and the independent receipt. Optional captures/native/performance/
+linux jobs are skipped by the unchanged profile; representative performance runs
+inside full/staging. No campaign rerun or changed budget/registry/exception.
+
+Original archives are verified against actual API sizes/SHA256, CRC and safe paths:
+
+| Native original | Artifact | ZIP bytes | SHA256 |
+| --- | --- | --- | --- |
+| Prepublication | 12763497371 | 317520 | fe05dedc8958841275250f119ad05df73b4ab5855fb521a51393b7ac4673b39c |
+| Public | 12763138480 | 1819512 | 64e8488535a32650ee8d0cd6d231f30f52bec13231b7100d74b35970f7b265f9 |
+| Package | 12763048828 | 708828 | c9f0af1bda2aeca042bb43c5dbea0e46f0fdd2e8d6f6b908e81e75f3a3108077 |
+| Browser/performance | 12764576857 | 5141925 | 787da38de7a1a53c0428515c7370712b0bf67da0c303e18cea83d5bc4badcf64 |
+| Gate | 12763982378 | 3691 | cd6eb212a4db18dae037211ccf8118966b04ba5203a2e92b90e6ef4d90fb4334 |
+| Promotion | 12765076226 | 7733 | 652eca5653645f35931e829531ad73e808ce23934f1b193913924783b7fca691 |
+| Recovery | 12765041361 | 532 | e80d3cc28f869ec130bf7535945b744f41ff43304cbf4edff07bbf7d4759200a |
+| Independent identity | 12763569520 | 402 | c0c835f0825d7e3142050b3d8b9a015472b6df575106e573cb6ebedb7a529472 |
+
+Current public digestb3c5c7a0417387d8584049d598fd9c0ef08d1293c998256d1e4db52a5f047ffd
+and package004d8fa3fb04ebcedebb6fecb913f581a6c4f8b7648e7157bebaf27d7f60b9c1
+remain E882 artifacts. All57 raw generation files/locke8cad440…/rawc2676f65… and
+18final platform files equal actual accepted S155 bytes, with fresh current-source
+reports. Article candidates and hosted article inventory are empty; all31 final
+public files have zero active test markers. Rights inventory passes; approval
+does not pass and no new edition approval is claimed.
+
+Native preflight passes26/26 guards, exact74modules/1136Node cases with zero
+failure/cancel/skip/todo, clean identical source/tree before/after, and139Python
+cases/37.500s. Worker208808/300000ms, wrapper208911/330000ms, security137553/180000ms.
+Semgrep337/337/error0;48existing Bandit dispositions remain unchanged. The67
+preflight report/stream hashes and existing reconstruction/package/rights guards
+are validated from originals. These are current results, not inherited S155 passes.
+
+Root seven-report staging aggregate independently reproduces checkedReports,
+reportsDigest0622e6828997f686d7e88a266d45047bd30539d4dfcbd2d4949577ed82f95a4e
+and exact coverage:4normal journeys/20route observations,2noCanvas journeys/
+10observations,2navigation/10failure/7analytics cases,30hosted files and2Color cases.
+Performance has2routes/8measurement windows/4flights(2cold+2warm), two single mobile
+Lighthouse trials, zero soak/retention. Research LCP2294.682/TBT62.5ms and Writing
+1983.554/146.5ms pass unchanged2500/200 budgets under CPU4. Both raw LH JSONs and
+all four compressed trace/devtools hashes/bytes agree with the authoritative
+stage-performance record. The latest summary list only contains Writing; it is
+not the complete trial inventory. Do not infer production medians or exhaustive
+device coverage. Functional elapsed262932.444339ms; performance74876.732503ms.
+
+Promotion retains the identical gate and new source-bound recovery, with original
+S155 as prior stable recovery rather than unmerged C2/C3. Stable HTTP preserves
+its first alias-propagation poll failure and second passing poll in2784.560112ms;
+this is one bounded readiness loop, not a failed/repeated workflow campaign.
+Independent identity12763569520 binds PR157/sourceE882/base1689/run40565955502/1;
+trusted receipt job122420311200 and exact upload step succeed. Existing admission
+completeJobs/stageReceipt validators accept all twelve actual jobs and receipt.
+Staging admission122407990240 passes with external40565955502/1/App15368.
+
+Actual owner elapsed25m04 misses the15minute end-to-end optimization target;
+mandatory hard/product budgets pass. Job elapsed build510s/fullstaging526s/promotion115s
+includes setup and reporting; do not sum parallel jobs or equate it with site
+performance. Original failures and historical operational misses remain retained.
+
+Live protected ruleset24568553 remains strict with five numeric producers and
+bypass actors[]/current_user_can_bypass=never. Four contexts currently pass;
+dedicated Change admission App5453173 is missing. Exact E882 maintainer trust is
+still required by protected SITE-STAGING's control-attestation contract. Old6838
+trust cannot supply this new control decision. Then genuine App, normal protected
+merge and postmerge; keep main fixed for frozen current-main candidate, new exact
+inventoryDigest rights/activation decision, existing publisher and live verification.
+Production remains676e3ab6c51f2290df4c44c7d5eac49a508d02fc/prod-2026-10-23.2.
+Original AC03/06 technical test-mode evidence is accepted; whole AC03/06/08 stay
+open until controlled reconciliation and the requested actual production outcome.
+
+### Four final independent native readbacks
+
+All four existing separate nonauthoring agents complete their own readbacks of
+exactE882/treecfff/controller1689/owner40565955502/1. No role authors source,
+dispatches another campaign or treats a launch as acceptance:
+
+- Requirements154: "ACCEPT — PR157's bounded native staging delivery." Own original
+  archive/gate/public/promotion/receipt/job checks pass,26/1136/139 and all current
+  functional/performance/host coverage verified. Original AC03/06 test-mode proof
+  remains accepted; no additional C1/M/content campaign. Whole protected/production
+  reconciliation is unfinished; old head trust cannot transfer.
+- Code154: "PR157 final native Code review: ACCEPT. No blocking findings." Own13
+  original ZIP byte/hash/CRC/safe-path/extracted-byte checks, seven-report aggregate,
+  actual12jobs/promotion/stableHTTP/independentreceipt and current Staging check pass.
+  Complete control review confirms398prior inventory and exactly4changed controls:
+  AC08 status prose, derived coupling identity and2guides. Executable obligations,
+  source/runtime/workflows/rights/tests unchanged. Genuine App missing.
+- Whitebox154: "ACCEPT final native staging." Own exact gate/mandatoryjobs/receipt,
+  source accounting, host/browser/Color and rawLH hashes/sizes pass. Stable readiness
+ 18observations/16finalrows matches, firstpollpending remains and second passes.
+  No rollback, soak/retention/device or production authority inferred.
+- Operator154: "ACCEPT within native staging scope." Own13ZIP API/CRC/extracted
+  bytes, artifact/package/scanners/7reports/gate and all actual functional cases pass;
+  rawResearch/Writing metrics and4compressed evidence hashes/bytes/gzipJSON agree.
+  Promotion/recovery/main-ownedidentity+uploadstep and all12jobs verify; no article
+  or test markers. No browser rerun or source write.
+
+The four final verdicts consistently retain25m04 target miss, unchanged hard
+budgets, all false production-authority flags and fresh exact-head trust/App/
+protected-merge/postmerge/frozen-rights/activation/live-verification boundaries.
+This receipt branch changes only existing review/MEMORY/derived RI, introduces
+no implementation or new acceptance source, and must not precede production freeze
+as another main merge. PR157 remains sourceE882, not this checkpoint.
