@@ -160,13 +160,100 @@ test('ordinary content preview installs locked source dependencies after selecti
   }
 });
 
-test('distinct content gate inherits accepted platform and requires every affected desktop/mobile native document', () => {
+test('distinct content gate inherits accepted platform and requires every affected desktop/mobile native document', (t) => {
   const f = candidate();
   const gate = stage.aggregate(f);
   assert.equal(gate.kind, 'content-staging-gate');
   assert.equal(gate.coverage.performanceRerun, false);
   assert.equal(gate.coverage.contentRows, 8);
   assert.equal(stage.validateGate(f.manifest, gate, f.hostedURL), true);
+
+  // Exercise module initialization and on-disk discovery through the real CLI.
+  // Reports remain controlled fixtures, not claimed browser/scanner observations.
+  const fs = require('node:fs'),
+    path = require('node:path'),
+    cp = require('node:child_process');
+  const artifact = require('../tools/quality/artifact.cjs');
+  const directory = fs.mkdtempSync(path.join(require('node:os').tmpdir(), 'content-gate-cli-'));
+  t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
+  const output = path.join(directory, 'public');
+  fs.cpSync(path.join(root, 'docs'), output, { recursive: true });
+  const ref = (name) =>
+    cp.execFileSync('git', ['rev-parse', name], { cwd: root, encoding: 'utf8' }).trim();
+  Object.assign(f.manifest, artifact.manifest(output), {
+    sourceCommit: ref('HEAD'),
+    sourceTree: ref('HEAD^{tree}'),
+    candidateCommit: ref('HEAD'),
+  });
+  delete f.manifest.components;
+  f.manifest.components = require('../tools/site/snapshot.cjs').verify(output, f.manifest);
+  f.manifest.contentRelease.engine = f.manifest.components.engine;
+  const history = f.manifest.contentRelease.admission.history;
+  history.candidate = f.manifest.sourceCommit;
+  history.commits[0].commit = f.manifest.sourceCommit;
+  const record = { ...history };
+  delete record.digest;
+  const identity = require('../tools/quality/delivery-json.cjs');
+  history.digest = identity.digest(identity.canonical(record));
+  f.sizes = artifact.checkSize(output);
+  for (const report of f.reports) {
+    for (const key of ['sourceCommit', 'sourceTree', 'candidateCommit', 'artifactDigest'])
+      report[key] = f.manifest[key];
+    report.variant = require('../tools/quality/common.cjs').variant(f.manifest);
+    if (report.kind === 'hosted')
+      report.rows = Object.entries(f.manifest.files)
+        .filter(([file]) => file !== '.nojekyll')
+        .map(([file, info]) => ({
+          file,
+          status: 200,
+          sha256: info.sha256,
+          url: f.hostedURL + '/' + file,
+          mime: require('../tools/quality/serve.cjs').canonicalType(file),
+        }));
+    if (report.kind === 'content-functional')
+      for (const row of report.rows) {
+        row.sha256 = f.manifest.files[row.file].sha256;
+        if (
+          row.file === 'writing.html' &&
+          row.mode === 'normal' &&
+          f.manifest.files['publication-index.json']
+        )
+          row.tagFilter = true;
+      }
+  }
+  const write = (file, data) => fs.writeFileSync(path.join(directory, file), JSON.stringify(data));
+  write('artifact.json', f.manifest);
+  write('sizes.json', f.sizes);
+  fs.mkdirSync(path.join(directory, 'reports/nested'), { recursive: true });
+  for (const report of f.reports) write('reports/nested/' + report.kind + '.json', report);
+  const run = () =>
+    cp.spawnSync(process.execPath, [path.join(root, 'tools/quality/staging-gate.cjs'), directory], {
+      cwd: root,
+      encoding: 'utf8',
+      timeout: 30000,
+      env: {
+        ...process.env,
+        SITE_CANDIDATE_SHA: f.manifest.sourceCommit,
+        SITE_TEST_BASE_URL: f.hostedURL,
+        SITE_TEST_PROFILE: 'staging',
+        SITE_SOURCE_CHECKS_OUTCOME: 'success',
+        SITE_JOB_RESULTS: JSON.stringify(f.jobs),
+        SITE_EXPECTED_PUBLIC_DIGEST: f.manifest.artifactDigest,
+      },
+    });
+  const result = run();
+  assert.equal(result.status, 0, result.stderr);
+  const emitted = JSON.parse(fs.readFileSync(path.join(directory, 'release-manifest.json')));
+  assert.equal(stage.validateGate(f.manifest, emitted, f.hostedURL), true);
+  assert.deepEqual(emitted.checkedReports, stage.aggregate(f).checkedReports);
+  fs.unlinkSync(path.join(directory, 'reports/nested/content-functional.json'));
+  const refused = run();
+  assert.equal(refused.status, 1, refused.stderr);
+  assert.match(refused.stderr, /content reports/);
+  const failed = JSON.parse(fs.readFileSync(path.join(directory, 'release-manifest.json')));
+  assert.equal(failed.pass, false);
+  for (const key of ['fullGate', 'productionEligible', 'deploymentAuthorized'])
+    assert.equal(failed[key], false);
 });
 
 test('content admission rejects missing acceptance, runtime mismatch, omitted/no-JS/wrong-source/undecoded observations', () => {

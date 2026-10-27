@@ -830,3 +830,311 @@ Only verbatim receipts and deterministic RI follow this reviewed source. Publish
 as Draft genuine platform/reader release preparation, keep PR149 frozen Draft,
 and require fresh actual-head native/full control obligations before exact-head
 human trust/genuine App/protected merge. No new production/DNS/article authority.
+
+### PR153 native full-route receipt — 27 October 2026
+
+Published439b215f7c80e62e0b9ee1c6b8221fdbf357eea1/tree3e156ee53a4fd6a728e22d5f05261f9a291a29ec,
+parent/protected controller20c3a6959ee812a632a4a820402873c92a6d3d98, remained
+unchanged through Ready and owner staging. Basic40489732179 passes9 additional
+modules115/115 in46185ms, zero fail/cancel/skip/todo; RI40489731974 and owning
+40489731972 pass. Ready preview40489732229 build/publish/two-width smoke pass;
+its initial missing-stage admission failure remains failed, not waived.
+
+Owner request6439894899 starts the sole full attempt40490700796/1. It succeeds
+from10:43:38 to11:01:47UTC (18m09, beyond15min operational target; no budget
+waiver). All26prepublication guards pass:74source modules1131/1131, zero
+fail/cancel/skip/todo, clean439b/tree3e156 before/after. Worker122020ms/300000,
+wrapper122094ms/330000; Python139/139 in19.843s; security68255ms/180000.
+Static/host/browser/performance/gate, stable promotion, merge admission and final
+main-owned independent receipt122151290709 all succeed. Optional exhaustive
+device/soak work remains unexecuted and all three authority flags remain false.
+
+Original ZIPs were physically size/SHA256/CRC/path verified, then the existing
+package/gate/functional/performance/Color validators pass. All67prepublication
+raw-file hashes and7canonical report hashes match. Reports aggregate is
+fc5dcb5c16456b059d4783c84c23eeda42309e056b080a1c0bdf7bd649676b3e.
+Final artifacts: public12728142638, prepublication12728267646,
+package12729082317, gate12729098856, browser12728169640,
+promotion12729130436, recovery12729275243. Independent receipt12729125791
+is402bytes, SHA2561e2833de8baad56701bd479a88be402cfdc0175be3123f6c8edf68b74bb9aa87,
+and binds exactPR153/source/base/run/attempt. Early target evidence remains
+diagnostic; it does not replace that final trusted receipt.
+
+Accepted staging source439b/tree3e156 has public
+1cbfd2d1da17587369f429eb4c9eec6b67a18dc2f8bd84accf89aea39178de4d and package
+5c802510314b7a82cb7b984ad8734f2b5c119107e0567550e053152d71a0bfff.
+Stable readiness passes its first whole18row observation; final16HTTP rows are
+a separate inventory. Six journeys,2navigation,10failure and7analytics cases,
+two Color widths,8CPU4 windows,4cold/warm flights and2Lighthouse trials pass.
+ResearchLCP2266.1055ms/TBT81ms/CLS0; Writing1966.922/111.5/0.004149938636036205
+under unchanged simulateCPU4. Article candidates are empty; no C1Talks marker.
+
+Four distinct completed final native readbacks independently ACCEPT: requirements,
+code, white-box and operator. They inspect actual originals/current source, not
+one another's verdicts. Prior source review remains bound to3dc; final native
+evidence binds439b. Original C1 failure and diagnostic rights refusal remain.
+
+The current explicit maintainer "Роби" authorizes the already presented unchanged
+PR153 through genuine App admission with full reviewed_sha439b215f7c80e62e0b9ee1c6b8221fdbf357eea1
+and normal protected merge after these checks. This records authorization after
+independent review, not a claim of personal line-by-line inspection. PR body edit
+once produces fresh owning40493503107/job122153024142 and eligible admission
+40493503979/job122153028681, both pass. Their original artifacts12730295430 and
+12730640176 physically verify exactsource/tree/base/owner and false authority.
+App40493747793 is requested once frommain20c; completion/merge remain separate
+until observed. AC03/06/08 stay open; no production or new article action.
+
+### PR153 App, protected merge and postmerge completed
+
+App40493747793/1 succeeds in71s with genuine App5453173check122154117172,
+external40493747793/1/153 and bound Actions15368aggregate122154102533.
+Original snapshot12729321677 is17461bytes/SHA256
+855b89f98c3089e87e54b30d4eb78c0e918358a3053969a3bc37073dc1c5803d;
+physically verified eligible-snapshot/current-full-route/blockers[], exact439b/
+tree3e156/controller20c/reviewedSHA439b and current selected source/RI/owning/
+eligiblePRrefresh/fullowner/independentreceipt. Evaluation success is separately
+confirmed by the genuine dedicated and aggregate successful check producers.
+
+Normal protected mergee289f7289ff6f89bc979d27af951c0e6d1d75a06 has parents
+20c3a6959ee812a632a4a820402873c92a6d3d98+439b215f7c80e62e0b9ee1c6b8221fdbf357eea1,
+identical tree3e156ee53a4fd6a728e22d5f05261f9a291a29ec. Before the leased merge,
+ruleset24568553 retained active/strict/all5 producer-bound checks/no bypass.
+Postmerge40494087678 and actual-mainRI40494086048 both pass. Original
+postmerge12729631805 is425bytes/SHA256
+6100cb037a8a2a30145bbcb142a72864e9ab5c3af88ea00dfdc7ba36a99af219;
+accepted-staging-merge/pass/exactsource439b/mergee289/tree3e156/owner40490700796/1,
+publicBytesUnchanged=true. The original tested package stays bound to439b;
+no main rebuild or producer relabel follows.
+
+Durable complete delivery/native-artifact/timing/role receipt is PR153comment6440462447;
+issue122comment6440467163 and top status record completion and the full remainder.
+Actual owner initial run→target start4s, build272s (checkout/runtime/tool setup
+steps42s, prepublication215s), publish31s, full/staging506s, promote88s. Dependent
+job durations are neither independent queue measurements nor additive critical
+path totals. Whole18m09 exceeds15min target; original budgets remain unchanged.
+
+PR149 stays frozen Draftdbbb/tree5051. PR79 stays open Draft, latest observed
+2fecc582837d4c837b446ad46abaa7d04e3ca0a6; this delivery did not modify it or infer
+who moved it. Production remains676e3ab6/prod-2026-10-23.2. AC01/02/04/05/07
+accepted; original AC03/06/08 and issue122 remain open.
+
+Next reconcile actual accepted S153/mergee289/history and legitimate C1 restart;
+no reuse of S150 across controls, invented repository M or proof-only PR chain.
+Then actual isolated C1/C2/C3 selectiveTalks recovery preserving newerHome,
+native content/host/browser/fresh leases and unchanged platform; wholeAC03/06/08/
+contracts/profile dispositions/queue-setup-execution reconciliation; exact-bound
+platform/reader production candidate without the article and its concrete
+activation decision. This local-only receipt adds no inherited native acceptance.
+
+
+## Fresh S153-based C1 restart — 27 October 2026
+
+Owner issue122/comment6440568878; existing never-merge PR149 is reused only
+after archiving failed dbbb29177d570ef6c2fd768a81e18f962a6a6316. New candidate
+directly descends protectede289f7289ff6f89bc979d27af951c0e6d1d75a06. Original
+accepted S153 stays439b/tree3e156/owner40490700796/1/public1cbf/package5c802;
+merged boundarye289 preserves identical bytes, not a producer reassignment.
+
+Requirements independently accepts direct S153→C1 with empty repositoryCommits
+and repositoryMerges because nothing intervened. This does not complete the
+literal original AC03 S→authenticated M→C scenario; earlier S150→M152→failed
+C1 authentication remains separate partial evidence. AC03/06/08 stay open. No
+artificial M, new repair PR or silent acceptance amendment. Late actual PR153
+receipts/MEMORY accompany this necessary content candidate instead.
+
+Scope is the same explicit DevCon description sentence, generated canonical
+docs/lock, all18 maintained derivatives, required snapshot-catalog/RI/RI-CI and
+existing owner metadata. Original title/time/links/rights remain; no new article,
+runtime/template/tool/test/workflow/policy changes. CS01/02/04/05/08/09 map to
+authored JSON ownership, generated dependency direction, bounded source/content
+checks and four distinct source reviews. Never merge/promote these test markers.
+
+Before publish: regenerate from owners, clean coherent commit, actual content
+eligibility/history inspection and current Basic/content/format/style/RI/owning
+checks; four nonauthoring roles inspect exact source. Then lease-update PR149
+from exactdbbb, preserve archive/failures, complete Draft inventory before Ready,
+and require actual current native source/RI/owning/preview. Content acceptance
+requires selectAccepted.mode=content, unchanged raw/final platform bytes,
+compatible-content-v1/content-staging-gate and actual host/browser evidence via
+existing owner-only staging-regression. No /stage/App/merge/production action.
+
+Preparation diagnostic: first RI build/verify was invoked before staging the
+generated snapshot rename, so the index still named the removed snapshot and
+correctly refused it. No acceptance was claimed. Stage the actual generated
+rename before rebuilding RI; canonical JSON formatting removes refresh-only
+layout churn. Candidateb33 was preliminary with stale RI, not source acceptance.
+
+### Fresh C1 clean source completion
+
+Exact clean6acdb74ce96349c91c033bea74735c75453449a8,
+tree310bcf2996214ab352d35d18f490381c95531d0f, basee289:
+Basic5routes/16theme+archive/10flight pass; complete content19modules227/227,
+zero fail/cancel/skip/todo in60703ms/300000, clean same before/after, exit0/noerror.
+The5152stderr bytes are structured source-test scheduler timing observations.
+Maintained format532 passes; current RI/coupling17checks17layers and all five
+owning mechanical checks pass, automation_pass/evidence_valid=true/errors[],
+ready_for_issue_closure=false. Direct history has two content edges/no repository
+commits. Broader advisory conservative/controltrue is not claimed green.
+
+Four completed distinct nonauthoring roles ACCEPT this exact source: Requirements
+inspected intent/AC/diff/history; Code inspected actual source/derived inventories
+and raw227TAP; White-box independently inspected preserved platform/source gates
+and raw accounting; Operator executed bounded HTTP/HTML observations (Talks/Home
+200/exactbytes/singlemarker, retained title/time/agenda, marker removal restores
+original DevCon, four other routes unchanged). Native hosted/browser/content
+gate remains pending, not inapplicable. Only verbatim receipts/deterministic RI
+follow; clarify the inherited MEMORY local-only wording refers to separatec315.
+
+Faileddbbb is physically retained and remotely frozen at
+archive/issue-122-pr149-c1-dbbb2917-20261027. Existing PR149 remains never-merge
+Draft and will be replaced only with an exactdbbb head lease after final checks.
+Published-head native results do not inherit6ac local acceptance or prior C1.
+
+### Fresh C1 native prerequisites — published dbbc
+
+Publisheddbbc70ac1bc813b7c04e1d08712248276cc0f7d6/tree
+d1cd6523c42ce18a83d4a803489410e10872e483 has exactparente289 and identical
+final01e tree. ExistingPR149 was replaced with an exactdbbb lease after archive.
+Draft40495919924 inventory/preview succeeds; ReadyBasic40496256591 passes
+18additionalmodules219/219,0fail/cancel/skip/todo,39243ms, clean identical
+dbbc/tree d1cd before/after. RI40496256093 and owning40496255923 pass.
+
+Readypreview40496256128 build122162478592 and publish122163249651 succeed.
+Original public12730733588 is3833080bytes/SHA256
+b2f07dd500e231188ba0003bc4e5f7245d70e3ba207fb4c5260fe71831076f95;
+source12730584149, selection12730319301, basicgate12730674018 and
+owning12730333851 physically verify size/SHA256/ZIPCRC/safe extracted bytes.
+Actual content admission retains S153source439b/tree3e156/owner40490700796/1
+and mergede289. History has one native content edge and empty repository
+commits/proofs. Existing verifyReuse/verifyHistory pass;29raw/final platform
+files stay exact, onlyTalks built, other4routes reused, articleCandidates[].
+
+Native public58030f2b45f58b6f8cc0f2602a65ba7a15d74b5b508560e2941b5c0cf4237d88,
+packagef8a663e8054d04a2997818a271f9206db587b90051f4258b937a02a6e38462df.
+Original package12730524030 is712607bytes/SHA256
+80cee24f375f4f8e3818f369e870e854e8acc86494b0a7cbfefd3d447aca66d0; existing
+package verifier passes current source/public and exact first check label
+verified current content source. This is the actual native handoff formerly
+blocked by the old consumer, not a fixture or relabeled old result.
+
+Initial PRmerge-admission122162339924 fails missing staging admission as
+expected for an unpromoted never-merge test; original12730514047 is255bytes/
+SHA256f70a47b31fd6adecb4b14aa0bde0aff1af7c3adde2b93314f53dae402f1a3e0d,
+passfalse/source dbbc. This failure stays red. The local download helper first
+refused JSON booleans embedded as Python literals; corrected JSON decoding
+preceded physical downloads. No product/CI failure or campaign rerun followed.
+Ready two-width smoke/content staging gate/host/browser remain pending.
+
+### Fresh C1 final failure and bounded CLI diagnosis
+
+Isolated40497219704/1 is FAILURE, created11:34:55/updated11:45:11UTC (10m16,
+failed timing only). Source remainsdbbc70ac/tree d1cd, parente289. Build122165741398
+passes26guards/67rawhashes,19contentmodules227/227/zeroall39917ms worker and
+40414ms wrapper,139Python37.997s, security139202ms/180000. Static122168820580,
+host122168820416 and browser122168820440 pass. Originalhost12731881521 has30rows;
+functional12731532167 has8Talks/Writing rows390/1440 normal/noJS, errors[],
+nooverflow/imageschecked and Writingnormal tagfilter. Media/article observations0;
+platform regression inherited/performanceRerunfalse. No device/performance claim.
+
+Finalgate122169590082 fails step8 with TypeError stage.validateIdentity is not a
+function. Original12731781846 is6241bytes/SHA256
+1d0298afe530986849b4105141232c76ab071c2ba4973094583a0dbef472d824, passfalse,
+exactsource/tree/allauthorityfalse, no checkedReports/reportsDigest. All16downloaded
+originalZIPs size/SHA/CRC/path verify; final native artifact/job/log inventories
+are retained. Source/upstream success does not make C1 accepted. No retry or
+control patch inC1. PR149 returns to frozen Draftdbbc; olddbbb archive remains.
+
+Independent Code/White-box diagnosis: staging-gate.cjs declares/exports the
+validators correctly, but executes synchronous main before module.exports. Content
+aggregation re-enters its still-loading module and receives empty exports. Also
+readReports excludes existing content-functional, a second concrete latent
+refusal. Tests import completed modules and pass report arrays directly, missing
+both actual CLI boundaries. Minimal treatment is export-before-entry and admitting
+that existing report kind; exact validation/refusal/budget obligations stay.
+
+One bounded replay used isolated copies of exact native public/sizes/all5reports,
+original source/head/tree/job dispositions and target. The unchanged fresh-process
+CLI reproduces the exact TypeError. The proposed one-file/two-treatment processor
+produces a diagnostic-only content gate with source/public unchanged,8rows and
+allauthorityfalse; deleting the mandatory content report refuses. Five canonical
+report hashes aggregate to
+671cb3c568597523425b441fb44337f2b2e8b87fe2bad134469036b6855c77b6.
+Original native artifact/extractions remain untouched; replay directories/logs
+are separate. The processor checkout was explicitly dirty during this comparison:
+this is not a newly admitted source, native execution or staged acceptance.
+The first log-parser preparation stopped at a nested JSON close, then used
+balanced parsing of the same actual job environment; no campaign rerun followed.
+
+Local diagnostic07fbdb7fac6308540c354916fbf1c57481580978 (tree571939b3, parentdbbc)
+contains only this control-file delta and is never published/merged. It inherits
+C1 test markers, so only its one-file diff may be applied on actual main later.
+It is not a reviewed delivery candidate. Before any normal control delivery,
+extend an existing test with the actual fresh-process CLI, verifiable public
+bytes/nested reports and positive plus missing/wrong-source refusal; obtain
+current four-role/mapped/full-route checks. No new framework or waiver is implied.
+
+Four source roles accepted6ac; native White-box/Operator correctly return BLOCKED.
+QA corrected extra inspection-oracle assumptions: verifyHistory returns true;
+final edition/source metadata changes HTML; staging removes raw analytics. These
+local inspection refusals are not product/CI defects. Four raw-generation routes
+and29raw platform files match; do not conflate them with whole final HTML bytes.
+
+Durable failure/diagnosis PR149comment6441189367 and issue122comment6441210163
+plus current status retain this result; AC03/06/08 and C1 remain open. Maine289/
+S153 and production676e3ab6/prod-2026-10-23.2 remain separate; no stable/testmerge/
+production/article action. Next minimal reviewed CLI control correction, fresh
+accepted-source/C1 reconciliation without fabricatedM, C1/C2/C3 selectiveTalks
+recovery preservingHome, explicit originalMscenario/AC/contracts/profile/leases/
+timings, then exact-bound platform/reader production without article and concrete
+activation decision. No new PR was created in this bounded iteration.
+
+
+## Main-based content gate CLI correction — 27 October 2026
+
+Owner122; maintainer current Роби authorizes bounded source preparation/reviews
+and mapped checks. Requirements preflight ACCEPT: apply only the diagnostic
+staging-gate delta to actual maine289, without C1 markers. Existing exports
+move before CLI entry; readReports includes existing content-functional. No
+validator, workflow, policy, runtime, rights, article or budget changes. CS01
+module initialization/back-reference completion, CS04/05/08/09 apply.
+
+The existing distinct-content-gate case now also copies verifiable current
+public bytes, binds actual Git source/tree, writes five controlled reports in
+nested directories and invokes a fresh process using the real CLI. Positive
+checks emitted identity/hash coverage/false authority through existing validator;
+removing mandatory report requires exit1 and a failed nonauthorizing receipt.
+Controlled report fixtures never claim hosted/browser/scanner observations.
+
+Initial scoped case failed because adapting the existing fixture to real docs
+introduced publication-index without its controlled Writing tagFilter result.
+Corrected the fixture observation; no production guard changed. Corrected1case
+and affected content-delivery/staging-gate modules17/17 pass, zeroall,4935ms.
+Bounded fault checks prove the same regression fails for original export order
+(TypeError) and for corrected order without content report discovery (exact
+content-report refusal); both original failures retained. No CI rerun.
+
+Current source needs four completed independent reviews and exact mapped checks
+before publishing. PR149 stays frozen Draftdbbc; C1 failure40497219704 remains.
+The local replay/these tests do not grant native content or production acceptance.
+After proper full control delivery, reconcile actual accepted source/history;
+then C1/C2/C3, literalMscenario/originalAC03/06/08/contracts/timings and exact-bound
+platform/reader production without article. No proof-only M or new framework.
+
+### CLI correction source-review completion
+
+Clean002ed3dc26c9ca4a80d7786fa76a630ef7ab1999/tree
+db3b921817e9a434db0735248e0f7b26e305aaac has four distinct final ACCEPT roles.
+Requirements accepts exact scope/test/authority boundaries and requests the
+now-applied MEMORY wording clarification. Code accepts actual export lifecycle
+and recursive CLI discovery/test/failure receipt. White-box independently checks
+unchanged validator bodies and sensitivity to both original faults. Operator
+executes actualCLIcase1/1,zero skips,1.17s; no browser or native claim.
+
+At exact clean002ed: affected modules17/17,zeroall4071ms; Basic passes,532-file
+format and touched pinned ESLint pass. First owning mapping has four passes and
+RI-CI failure: changed staging-gate source correctly invalidates its derived
+reviewed-source digest. Refresh only derived RI/CI hashes with definitions,
+profiles, owners and budgets unchanged, then rebuild RI and verify current owning
+checks. Retain the failed source-bound report; this is a metadata correction,
+not a product guard failure or waiver. Verbatim review receipts/clarification/
+deterministic RI/RI-CI follow without re-auditing unchanged implementation.
