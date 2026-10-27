@@ -576,6 +576,9 @@ test('unknown, conflicting, mixed or merely marked runtime identities fail befor
     'issue39-writing-tbt-production',
     'issue39-css-clock-production',
     'issue122-reading-batch-production',
+    'issue122-writing-startup-plain',
+    'issue122-writing-startup-staging',
+    'issue122-writing-startup-production',
   ]) {
     for (const mutate of mutations) {
       const value = manifest(id);
@@ -979,6 +982,99 @@ test('legacy Color keeps its deadline and requires matching route, finished cont
   unknown.files['styles.css'].sha256 = '0'.repeat(64);
   await assert.rejects(() => color.settled(page, 'research', unknown), /Color bytes/);
   assert.equal(waits, 1, 'unreviewed identity cannot start readiness polling');
+});
+
+function publicationScenario({ indexed = true, failure = null } = {}) {
+  const artifact = manifest('fixed-plain');
+  if (indexed) artifact.files['publication-index.json'] = { sha256: '0'.repeat(64) };
+  else delete artifact.files['publication-index.json'];
+  const state = { waits: 0, evaluations: 0, closed: false },
+    stop = Error('Controlled stop before later scenario operations');
+  let release;
+  const pending = new Promise((resolve) => {
+    release = resolve;
+  });
+  const page = {
+    viewportSize: () => ({ width: 1440 }),
+    on() {},
+    async goto() {},
+    async waitForFunction(fn, route, options) {
+      if (route === 'index') return;
+      assert.equal(route, null);
+      state.waits++;
+      state.predicate = fn;
+      state.options = options;
+      if (failure) throw failure;
+      await pending;
+    },
+    async evaluate() {
+      state.evaluations++;
+      throw stop;
+    },
+  };
+  const context = {
+    async addInitScript() {},
+    async newPage() {
+      return page;
+    },
+    async close() {
+      state.closed = true;
+    },
+  };
+  const running = color.scenario(
+    { newContext: async () => context },
+    'https://preview.invalid',
+    artifact,
+    'chromium',
+    1440,
+    'light'
+  );
+  running.catch(() => {});
+  return { state, stop, release: () => release(), running };
+}
+
+test('Color publication readiness blocks the actual scenario until normal metadata settles', async () => {
+  const pending = publicationScenario();
+  await new Promise(setImmediate);
+  assert.equal(pending.state.waits, 1);
+  assert.equal(
+    pending.state.evaluations,
+    0,
+    'pending metadata precedes later DOM and geometry work'
+  );
+  assert.deepEqual(pending.state.options, { timeout: 10000, polling: 25 });
+  const ready = (tagsState, cards = true) =>
+    require('node:vm').runInNewContext('(' + pending.state.predicate.toString() + ')()', {
+      document: { body: { dataset: { tagsState } }, querySelector: () => (cards ? {} : null) },
+    });
+  for (const state of [undefined, 'loading', 'unavailable']) assert.equal(ready(state), false);
+  assert.equal(ready('ready'), true);
+  assert.equal(
+    ready(undefined, false),
+    true,
+    'no publication cards create no asynchronous tag layout'
+  );
+  pending.release();
+  await assert.rejects(pending.running, (error) => error === pending.stop);
+  assert.equal(pending.state.evaluations, 1);
+  assert.equal(pending.state.closed, true);
+});
+
+test('Color publication readiness preserves historical no-index scenarios without an extra wait', async () => {
+  const old = publicationScenario({ indexed: false });
+  await assert.rejects(old.running, (error) => error === old.stop);
+  assert.equal(old.state.waits, 0);
+  assert.equal(old.state.evaluations, 1);
+  assert.equal(old.state.closed, true);
+});
+
+test('Color publication readiness timeout remains a visible failure with context cleanup', async () => {
+  const failure = Error('Controlled metadata readiness deadline');
+  const pending = publicationScenario({ failure });
+  await assert.rejects(pending.running, (error) => error === failure);
+  assert.equal(pending.state.waits, 1);
+  assert.equal(pending.state.evaluations, 0);
+  assert.equal(pending.state.closed, true);
 });
 
 test('current platform runtime tuples reproduce the complete plain, staging and production byte closure', () => {

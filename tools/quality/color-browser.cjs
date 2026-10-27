@@ -141,6 +141,13 @@ async function scenario(browser, url, artifact, engine, width, theme) {
     page.on('pageerror', (error) => errors.push(error.message));
     await page.goto(url + '/index.html');
     await settled(page, 'index', artifact);
+    if (artifact.files['publication-index.json'])
+      await page.waitForFunction(
+        () =>
+          !document.querySelector('li.publication') || document.body.dataset.tagsState === 'ready',
+        null,
+        { timeout: 10000, polling: 25 }
+      );
     await page.evaluate((mode) => {
       const control = document.getElementById('theme-mode');
       control.value = mode;

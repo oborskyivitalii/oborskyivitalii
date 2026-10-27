@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "fc894eb84e9b8232a6238ff01421aafeef559e63216f48cfe27f9b9c134e38bf",
+    "digest": "c340a583910d40c7360fe10d504e79048e1b917fa00d4619606812ab2bcb1bec",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -356,7 +356,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "4120dbea781a659b485827134e63b6ddb3ca06bb790836d251fb3573974a2ae0"
+        "sha256": "ddd63af617cd66ed9df912a96b622c224d119da956f026638fc48c86e3fe5db2"
       },
       {
         "path": "NOTICE.md",
@@ -1005,7 +1005,7 @@
       {
         "path": "review/issue-122/2026-10-24-r3-runtime-compatibility.md",
         "identity_mode": "content",
-        "sha256": "9dd066706ea7df31b4be3b9384080b8b7fb69c628dc44540442a49731f94352d"
+        "sha256": "1d43164572bee766c577f1ab6207b6658ccfc8d6cb212067cc05bbf37a1e671c"
       },
       {
         "path": "review/issue-122/2026-10-25-f5-exact-checksum-proof.json.gz",
@@ -1030,7 +1030,7 @@
       {
         "path": "review/issue-122/2026-10-26-content-ci.md",
         "identity_mode": "content",
-        "sha256": "d32f8f92b569d68e591e87ebe04fe5fd9d8831536415fd7e8d686f5143776f39"
+        "sha256": "ae7ac3bc079c67086469e5443ec476a0ccbaaf26230244d3fcfd820a005eac25"
       },
       {
         "path": "review/issue-122/2026-10-26-writing-checksum-proof.json.gz",
@@ -7250,12 +7250,12 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "5208a636921fe84840a4171008e001b7d2e3dfb730f45788ddc16ddebd7c7c58"
+        "sha256": "a9f78a0d50af3b477b49de5b5a735dd2206831c8f1a7b780a50eb4eb9a3cbabd"
       },
       {
         "path": "tests/content-baseline.test.cjs",
         "identity_mode": "content",
-        "sha256": "cac2b4a2845ba2be067d3177c60be210347da59911718042543eec5534e03c2e"
+        "sha256": "3f20383b37f5571af756d9614d3ec0d0bbd79ed31002001a446d1d3f6e4f96ae"
       },
       {
         "path": "tests/content-delivery.test.cjs",
@@ -8125,7 +8125,7 @@
       {
         "path": "tools/quality/color-browser.cjs",
         "identity_mode": "content",
-        "sha256": "89524dcaf52068246386ba365c2b5b0c6ff2182796e6bc0401e68621cb57d478"
+        "sha256": "4108d26a5a54099b4b9c43d1d8ef09d96e986c97e67332dc30d75b80af1b836d"
       },
       {
         "path": "tools/quality/color-motion-contract.cjs",

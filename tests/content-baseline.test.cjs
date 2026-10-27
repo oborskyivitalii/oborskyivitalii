@@ -207,6 +207,7 @@ function repositoryFixture(t, { realSources = false } = {}) {
       })
       .trim();
   git('init', '--quiet');
+  git('config', 'maintenance.auto', 'false');
   git('add', '.');
   git('commit', '--quiet', '-m', 'base');
   const base = git('rev-parse', 'HEAD');
