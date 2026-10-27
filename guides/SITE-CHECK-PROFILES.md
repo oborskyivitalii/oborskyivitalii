@@ -11,8 +11,9 @@ Draft iteration scheduling while preserving admission and later budgets.
 
 Issue [#122](https://github.com/oborskyivitalii/oborskyivitalii/issues/122) adds the
 [delivery routing and observation contract](#delivery-routing-and-observation-contract).
-R1/R2 and exact-runtime compatibility are delivered; the current R3 integration adds
-accepted-platform/history content reuse. The observer remains advisory, while trusted
+R1/R2, exact-runtime compatibility and accepted-platform/history integration are
+delivered. Actual independent content/recovery observations and whole issue
+acceptance remain source-bound in #122. The observer remains advisory; trusted
 selection and the existing admission/publisher own actual delivery.
 
 | Profile | Trigger | Required coverage |
@@ -162,6 +163,13 @@ cover a changed renderer. Offline all-route
 exports remain explicit commands rather than an automatic content-release
 side effect. Public deployment still uploads one complete verified package.
 
+Tracked canonical `docs/` and its output lock follow ordinary source generation.
+Accepted-artifact composition separately retains the authenticated baseline's
+immutable closure; copying that artifact closure into canonical output can add
+stale files. PR content Basic uses its source-admitted generation, while staging
+prepublication still requires ordinary Basic and its canonical freshness guard.
+Neither Basic route replaces the other or waives current source reconstruction.
+
 PR #79 also opts into one bounded local diagnostic through `content_fixture`.
 It creates a genuine verified baseline and content release in an isolated Git
 clone, changes an external URL and one synthetic draft, then exercises two-width
@@ -247,9 +255,12 @@ The complete bounded matrix is executable in `tools/quality/staging-regression.c
 
 Staging omits native macOS/Windows jobs, the full Color12 matrix, thirty
 Lighthouse runs, the five-minute soak, release captures and long cache-retention
-loops. Those remain in production regression. Staging's active-job duration
+loops. Those remain in production regression. Staging's end-to-end CI duration
 target is at most 15 minutes; only measured CI durations establish achieved
-performance, and queue time is reported separately.
+performance, with queue/setup/execution reported separately. The maintainer's
+27 October clarification makes this an operational optimization target: exceeding
+it alone does not block delivery when every mandatory test and site budget passes.
+Worker/scanner timeouts and browser/product performance budgets remain unchanged.
 
 The runner produces `stage-functional` and `stage-performance` reports.
 `tools/quality/staging-gate.cjs` checks exact completeness, successful build/static/
@@ -388,8 +399,9 @@ Contract version: **1, observation only**. This is the canonical decision
 matrix and report interface for issue122. [SITE-STAGING](SITE-STAGING.md#observation-does-not-admit-delivery)
 owns operational interpretation and trusted admission. R2 has delivered repository-only
 admission without website work. The CLI below still emits planned observations; it
-cannot authorize delivery. R3 integrates the existing issue5 publisher with authenticated
-accepted-platform/history reuse; actual content/recovery acceptance remains in #122.
+cannot authorize delivery. The delivered R3 integration uses the existing issue5
+publisher with authenticated accepted-platform/history reuse; actual current
+content/recovery acceptance remains in #122, independently of this observer.
 
 ### Executable planned observer
 
@@ -472,12 +484,12 @@ A control change preserves trusted pre-change obligations and proposes the
 website route until separately proven safe. A known ordinary instruction/review
 edit can remain a repository proposal; it cannot change executable authority.
 
-| ID | Representative input | Actual owner/dependency | Proposed impact; control | Current checks in addition to the common route | Future eligibility boundary |
+| ID | Representative input | Actual owner/dependency | Proposed impact; control | Current checks in addition to the common route | Trusted eligibility boundary |
 | --- | --- | --- | --- | --- | --- |
-| D01 | `AGENTS.md`, `review/REVIEW-TEMPLATE.md`, dated review Markdown, `MEMORY.md` | CONTRIBUTING/acceptance protocol and RI inventory/continuity | repository; false | R includes `test_repository_intelligence.py`, `test_root_layout.py`; exact template boundary is in `test-profile-selection.test.cjs`. | Inspect dependencies and retain all four role executions; a repository proposal does not yet waive H. |
+| D01 | `AGENTS.md`, `review/REVIEW-TEMPLATE.md`, dated review Markdown, `MEMORY.md` | CONTRIBUTING/acceptance protocol and RI inventory/continuity | repository; false | R includes `test_repository_intelligence.py`, `test_root_layout.py`; exact template boundary is in `test-profile-selection.test.cjs`. | Inspect dependencies and retain all four role executions. The advisory proposal cannot waive H; delivered trusted repository selection can record website work explicitly inapplicable for its complete eligible delta. |
 | D02 | `.github/repository-paths.json`, `.github/repository-intelligence-config.json`, `REPOSITORY-MAP.md`, derived agent context | `repository_intelligence.py` and RI/CI coupling; generated views are not editing sources | repository; false | R: `test_repository_intelligence.py`, `test_ri_ci.py`, RI and coupling verification. | Regenerate and verify actual owners; neither a catalog label nor a fresh view establishes delivery eligibility. |
-| D03 | `tools/repository_intelligence.py` | Executable RI behavior, safe inventory, source identity and navigation | repository; false | R executes RI behavior/negative tests even when additional Node selection is empty. | A real failed-RI admission rejection remains AC02 work; Python purpose is no exemption. |
-| D04 | `site/content/pages/writing/main.json`, other page/catalog content | `tools/site/content.cjs`, render/validation owners, declared templates and rights | content; false | Registry-selected `content`, `content-rendering`, `site-engine`, `publication-records`, `release-rights` and other matching suites; B/R/O/H remain. | Authenticate accepted platform/schema, validate all references/media and complete intervening history; issue5/PR79 must deliver the real publisher. |
+| D03 | `tools/repository_intelligence.py` | Executable RI behavior, safe inventory, source identity and navigation | repository; false | R executes RI behavior/negative tests even when additional Node selection is empty. | Delivered trusted selection treats this executable as control/full route; failed RI blocks admission. The repository-purpose proposal grants no executable exemption. |
+| D04 | `site/content/pages/writing/main.json`, other page/catalog content | `tools/site/content.cjs`, render/validation owners, declared templates and rights | content; false | Registry-selected `content`, `content-rendering`, `site-engine`, `publication-records`, `release-rights` and other matching suites; B/R/O/H remain. | Authenticate accepted platform/schema, validate all references/media and complete intervening history; use the delivered publisher and current compatible-content gate. PR79's unpublished article is not a publisher prerequisite. |
 | D05 | `site/templates/pages/writing/main.html`, `site/engine/**`, scenes/effects/assets, `tools/site/**` | Authored website implementation and `tools/site/build.cjs` dependency closure | website; false unless also a control | Exact affected registry suites, build/snapshot/rights checks and H. Build, snapshot, edition and evidence-policy controls also match the control row. | Full applicable current website validation; no content-only shortcut for layout/runtime/build changes. |
 | D06 | `LICENSING.md`, `LICENSE-CODE.md`, `LICENSE-CONTENT.md`, `NOTICE.md` | `tools/site/legal.cjs` reads full text into Credits through `legal-notices.html`; rights/publication consumers also read it | website; false | Selected `site-engine`, `release-rights`, `publication-records` and other matching suites; generated output must follow authored owners. | Changed rendered/legal bytes and frozen rights records need new applicable evidence. Root Markdown is not inert. |
 | D07 | `guides/SITE-SOURCE-AUDIT.md`, `guides/SITE-CONTENT-REVIEW.md`, `tools/RI-LICENSE.md`, `tools/RI-NOTICE.md` | Paths explicitly referenced by `site/rights.json`; `tools/release/rights.cjs::validateManifest` hashes provenance bytes | website/publication dependency; false | Registry selects `release-rights.test.cjs` and `publication-records.test.cjs` despite known non-Node matches; retain R. | No unproved accepted-artifact reuse after provenance changes, even if rendered pages happen to be identical. |
@@ -651,7 +663,8 @@ retain the conservative full route. In particular D03's repository purpose is
 not a cheap exemption for its executable. Mixed/unknown/rights/public inputs
 retain full obligations. See [activation, exact-SHA control review and protected
 recovery](SITE-STAGING.md#trusted-change-admission-and-repository-delivery).
-R3/#5 integrates accepted-platform/history reuse and the existing content publisher.
+The delivered R3/#5 integration uses accepted-platform/history reuse and the
+existing content publisher.
 The accepted selector checks every parent edge from S to C, authenticates repository
 merges, and records explicit full-platform fallback for incompatible or unavailable proof.
 Actual independent content/recovery and final reporting are source-bound external
@@ -670,12 +683,12 @@ the matrix above; every applicable current B/R/O/H obligation stays visible.
 | Rendered legal or publication input | website dependency and new matching rights/output obligations. | `site-engine`, `release-rights`, `publication-records`; `.md` or `review/` cannot erase the dependency. |
 | Guide named by rights provenance | website/publication dependency; stale provenance evidence cannot be reused. | Two existing rights/publication suites and R; guide location is insufficient. |
 | Writing content plus its template | impacts include content and website, proposed website lane; union keeps both reasons. | Existing content/render/engine/rights suites; overlapping selections do not collapse ownership. |
-| RI configuration plus Writing content | repository + content, proposed content lane, control false for this RI-only config; R and all content obligations survive. | RI and existing content suites; conditional content eligibility still depends on issue5/PR79. |
+| RI configuration plus Writing content | repository + content, proposed content lane, control false for this RI-only config; R and all content obligations survive. | RI and existing content suites; actual eligibility requires the protected classifier, authenticated accepted platform/history and current content gate, not PR79 publication. |
 | Registry, selector, workflow or admission policy/controller | control true, proposed website route and trusted pre-change obligations. | Existing selection/coupling/admission negatives prove their subsets; actual AC05 producer/protection proof is separate. |
-| Runtime renamed under `review/`, or runtime/control deleted | Include base-side runtime/control and candidate-side ownership; retain website/control obligations even if the candidate no longer has the old file. | Existing selector is name-only; full status/mode/rename/deletion interface needs future independent negative tests. |
-| Unknown path, unsupported type, missing ref or truncated diff | Complete unknown/type inputs are conservative; missing/malformed/incomplete input is invalid; neither is cheap eligibility. Complete empty diff is separately no-change. | Existing safe-path/fallback/RI-type tests cover their current subsets; richer collector negatives remain future work. |
+| Runtime renamed under `review/`, or runtime/control deleted | Include base-side runtime/control and candidate-side ownership; retain website/control obligations even if the candidate no longer has the old file. | Existing `delivery-observation.test.cjs` uses real Git moves/deletions/modes/types and base-side ownership; trusted selector/admission tests retain their distinct authority boundaries. Fixtures do not establish native delivery. |
+| Unknown path, unsupported type, missing ref or truncated diff | Complete unknown/type inputs are conservative; missing/malformed/incomplete input is invalid; neither is cheap eligibility. Complete empty diff is separately no-change. | Existing collector tests reject invalid/truncated/tampered records and retain conservative unknown/type cases. RI and source-selection suites cover their own subsets; current native source identity remains separately required. |
 | New failed/cancelled attempt or moved head/base after green | Preserve earlier evidence historically; current obligation is failed/cancelled/stale and the next action follows the current retry/revalidation rule. | Existing `prototype-admission`/staging-trust lease and attempt negatives; no reuse across identities or attempts. |
-| Accepted site S, repository merge M, then content C | Keep S's source/tree/public/package identity; inspect the complete S-to-C history, including all merge-parent sides and intermediate control/rights/site changes. Missing history or incompatible inputs require fresh website validation. | Current merge observer proves identical complete trees only. R3 implements complete-history inspection/authentication/replay; actual independent content release/recovery remain external acceptance. |
+| Accepted site S, repository merge M, then content C | Keep S's source/tree/public/package identity; inspect the complete S-to-C history, including all merge-parent sides and intermediate control/rights/site changes. Missing history or incompatible inputs require fresh website validation. | Delivered `content-baseline` selection authenticates/replays complete history, with existing real-Git/reverted-control negative fixtures. Actual independent content/recovery remains source-bound external acceptance. The general planned observer still grants no reuse authority. |
 
 Semantic review of these cases is T02 evidence; it is distinct from T04 execution.
 Mechanical RI/style checks prove
