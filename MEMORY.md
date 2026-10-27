@@ -81,13 +81,14 @@ Dated continuity, not live authority. Last verified: **2026-10-27**.
 
 ## Open work
 
-- HomeSEO repair now prepared on clean-main3d33 control branch: canonical7block/
-  mainnav proof,19producerpins/immutable3d33frame; outermetadata/chrome freeze.
-  Corrected24ee/treee97c passes15/15 with4finalroles ACCEPT after realclosure
-  finding/data-token refusal and diagnosedtestoracle correction. Originalbef66/66
-  andRI29/coupling20 are prior scoped checks; nativecontrol/exactheadtrust pending.
-- C3: selectively restore originalTalks while preserving C2Home; actual native
-  compatible-content/unchangedplatform/current source+predecessor leases.
+- HomeSEO PR155Ready683807343b85ead73827ada2266d55a6f9c54bac/tree385a3ad3,
+  parentmain3d33, actual4roles ACCEPT. Solefull40534615837/1 terminalSUCCESS:
+  26guards/74modules1136Node/139Python/scanners/host30/browser+performance/gate/
+  stablepromotion/check122296687042/independentreceipt12748443966 allPASS.
+  Whole21m21 misses15min target. Refresh40538849729/owning40538849480 PASS;
+  exact6838trust/App5453173/protectedmerge/postmerge pending; no1341trusttransfer.
+- FreshC2underacceptedS155 must verifybothcarriedTalks+Home/index,talks/12rows;
+  oldC1stayhistoricalS154. C3directchild restoresTalks andpreservesexactC2Home.
 - Complete literal authenticatedS→repositoryM→C and originalAC03/06/08/
   contracts/profile/test-dispositions/concurrency/queue-setup-execution accounting.
 - Prepare exact-bound platform/readerproduction withoutarticle, then concrete
@@ -96,7 +97,7 @@ Dated continuity, not live authority. Last verified: **2026-10-27**.
 ## Next session
 
 1. Revalidate main3d33,PR149Draft433,originalS154/C1/failedC2/originalartifacts.
-2. Deliver reviewed HomeSEOrepair, thenfreshC2→C3selectiveTalks/preserveHome.
+2. ObtainPR155exact6838trust/App/merge/postmerge, thenfreshC2→C3.
 3. Complete literalMscenario/originalAC/contracts/profile/leases/timings.
 4. Deliver exact-bound platform/readerproduction withoutarticle after decision.
 
@@ -107,6 +108,8 @@ Dated continuity, not live authority. Last verified: **2026-10-27**.
 - Originals/API under /tmp/issue122-s154-native; originalS154 authentication/
   ZIPs under /tmp/issue122-s154-auth and /tmp/issue122-pr154-native. C2 originals
   and diagnosis under /tmp/issue122-c2; read stale snapshot only as handoff.
+- PR155native originals/terminalAPI under /tmp/issue122-home-seo/native;
+  reviewowner#pr155-native-owner-completion--27-october-2026 retainsfullreceipts.
 - Collector return-type/path/argument/finalizer errors are diagnosed local
   inspection errors, never native failures/acceptance. No native rerun.
 - Keep five sections/120lines; rebuild/verify RI after owner/MEMORY edits.
