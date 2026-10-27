@@ -2591,3 +2591,95 @@ has occurred; protected production remains676e/prod-2026-10-23.2.
 This checkpoint changes only existing review/MEMORY/derived RI and must not merge
 into main before publication. No new code/test/registry/scanner/exception, content
 campaign or prerequisite PR is introduced.
+
+## Production activation and PR disposition — 27 October 2026
+
+The maintainer accepted the exact frozen inventory and activation of
+prod-2026-10-27.1 in reply to the concrete release question. Durable decision
+[6453408715](https://github.com/oborskyivitalii/oborskyivitalii/pull/157#issuecomment-6453408715)
+binds source9318a54a684079bb23e5dadcfa4bf705d6783dd0/treecfffed1f2b5619cb1476beafa658be9cc2c04fe2,
+public13b81781e2d8117a1a9dd4daa517fe218f6aa1721b37430f5713b39fedf1979f,
+rights7c08c845863940f13b24a7687bf9f192f703c816ecd52926bfc75dafb1b61acc,
+freeze40576181118/1 and PR157. Frozen rights bytes stay unchanged. No new article
+publication, old portrait permission or broader reuse license is approved.
+
+[Protected production40583084401/1](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/40583084401)
+completed SUCCESS. Authorization122467389772 and publication122467611319 pass;
+actual predecessor prod-2026-10-23.2/source676e/PR129/deployment7277813059 is
+authenticated before side effects. Deploy, HTTP, policy, browser, retention and
+final immutable-archive acceptance pass. Recovery/rollback is inapplicable and
+skipped; no failure or unchanged campaign was retried.
+
+Original request12769724372 ZIP3077/SHA256
+66408e6aaec1da51f8e00099d29f8d4deb6e03049a25c3f422b258e9ed9dd737
+is physically verified. Its original request.json member SHA256 is
+4150762c94eb85b3dbad5de741b2654b0fbb007a78a6a03d22735b69996800a7;
+a reformatted scratch copy is semantically equal, not byte-identical.
+Original observations12770737638 ZIP79910/SHA256
+ace71d36b1777f016f47eacbacaa532026c788f3daa23392dc7ad9dd94531826
+passes API digest/CRC/safe-path/extraction checks. Native HTTP70 rows,
+production-policy69 file rows, four browser groups at1440/390 normal/no-canvas
+with20 route observations and two Color rows all pass at the canonical origin.
+No overflow/browser errors; history and publication-tag reload/reset/history pass.
+
+[Immutable Release425981285](https://github.com/oborskyivitalii/oborskyivitalii/releases/tag/prod-2026-10-27.1)
+is published21:07:19Z, draft=false, immutable=true. Main, protected production
+and tag all identify source9318. Deployment7370358056/status20764187537 is
+success21:07:25Z at https://vitaliioborskyi.ai/. PR157 is active-production;
+PR129 is archived-production. Prior immutable release is retained.
+
+| Downloaded durable asset | Bytes | SHA256 |
+| --- | --- | --- |
+| public.tar.gz |1275065|47e3a57fa2565923e706c376db1932be938f4280a346084c5ea691170a74a97d|
+| archive.json |53096|e63a142539913d7066bea506e91769a80b69a3adcb94fa2e4b604ebab87d8447|
+| rights.json |81648|54d6336b542a7c08a73d2f8fe49473ba67a7a066df605b43389a6fb69762b8ff|
+| activation.json |793|01abb6d4a4c449a00367c5d43e1fe29567f04f1c507471a28e2543ff2305341b|
+| observations.tar.gz |65212|cf50bc06ef92994b20f5907242094350d6f64a232f3147bd4e4779b6d76ec5c6|
+
+All downloaded asset hashes match the public immutable Release API. Actual
+archive.verify succeeds against the downloaded71-member package (artifact.json
+plus70public files), frozen rights and original gate/acceptance. Activation
+binds native40583084401/1/controller9318, deployment7370358056 and retained
+HTTP/policy/browser=true. The durable observations match original native files.
+Two scratch readback mistakes (counting members after closing tar, then treating
+artifact.json as a public member) are retained as caller diagnostics; inspecting
+the canonical format and using unchanged archive.verify resolves them. They are
+not native failures, source changes or another test campaign.
+
+Four actual separate nonauthoring roles completed final current-evidence review:
+
+- /root/pr_housekeeping_requirements: ACCEPT original whole AC08 and #122 outcome;
+  exact source/rights/predecessor/immutable activation/deployment and previous
+  source/lane/contracts/timing reconciliation satisfy the original intent.
+- /root/pr_housekeeping_code: ACCEPT controller/original package/rights/evidence,
+  terminal native run, immutable release and final source/tag/label identity.
+- /root/pr_housekeeping_whitebox: ACCEPT original HTTP/policy/browser accounting,
+  source/state/lease identities, durable hashes, activation and deployment success.
+  Its bounded pass verified frozen public files and published package digest;
+  root additionally downloaded and canonically verified the complete durable TAR.
+- /root/pr_housekeeping_operator: ACCEPT independent live200/MIME/frozen-byte
+  observations for five pages, revision and navigation.js; original native4/20/2
+  browser observations and final publication identities. Live navigation SHA256
+  82d59217e998a5ec5f158ec7712947f07e1ad9329691c64bb09e58f54e625f44
+  contains reader mechanisms. No new article or test marker is served.
+
+No new full/browser/device campaign is claimed. Reader code is delivered;
+reader-on-article interaction is unavailable intentionally because articles[]
+is empty. Historical CI duration misses remain;15minutes is an optimization
+target, not a fabricated speed guarantee. Existing source-bound final owning
+report at main9318 is automation_pass/evidence_valid=true, clean/errors[].
+All eight original ACs now satisfy their current checks and external gates.
+
+Administrative readbacks also pass all four roles: PR79 is renamed
+“Prepare The Sum of Our Technology article for publication”, open/Draft,
+head10a1e7d9 unchanged, one standalone Refs#5 selector (with a space in actual
+metadata). Its effective main...head diff from merge-base86a270 is14article/review
+files; no engine/workflow/test changes. Direct240-path tree differences reflect
+later main work and are not unmerged PR changes. SelectedR38 versus prepared
+R39–R41 remains distinct. Article publication stays separate and unauthorized.
+PR149 is closed without merge at unchanged07b, title TEST COMPLETE; exact
+C1/failedC2/acceptedC2/recoveredC3 archives and test branch remain.
+
+This receipt-only checkpoint and derived handoff/RI do not alter main or release
+source9318 and require no prerequisite release PR. Close #122 after recording
+the actual AC08 checkbox/current status and final evidence in the owner.
