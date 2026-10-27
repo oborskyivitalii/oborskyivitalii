@@ -1976,3 +1976,130 @@ All roles preserve C2 two-built/three-reused/twelve-browser-row obligations and
 C3 nativeS155/index-only/eight-row limits. Native C2 acceptance is still pending.
 Only these actual review receipts and deterministic RI metadata follow reviewed
 d062 before publication; no implementation/website bytes are changed by receipt.
+
+## Fresh C2 native preflight and C3 preparation — 27 October 2026
+
+Published C2 is47515243bfa42e5338046a13fb4b8aa2f6e83cd9/tree8a311639, one parent
+actual M156 main1689; its final local11a33ea tree is identical. Ready
+Basic40554235384/RI40554235159/owning40554235206 pass. Draft preview40554159437
+is cancelled by Ready; Ready preview40554235610 builds/publishes and its two-width
+smoke passes, while initial missing-staging admission fails and is retained.
+No stable promotion/merge admission is requested for this test candidate.
+
+Actual isolated native40554807239/1 passes prepublication26/26 guards. Original
+preflight12755704139 ZIP275696/SHA256
+c723de815d7241a3bce79bce0029beb59ec29b96cfe27d41cd84ffd6f31123dc/68members;
+public12755854002 ZIP3858023/SHA256
+515b434559748b56084280a49c474879a8c0f680798057f0e9f84abacdc20839/196members;
+package12757101794 ZIP712965/SHA256
+e153b5bde46b63f014220eb72396611a89d2587f9248b7b624298504d18ac0c6/36members
+are API-size/SHA/CRC/safe-path verified. Native publicce5aa27d366efc9fe008968a8d53b9efa8665e5898548f846ab2118696143121,
+generationd21a79c767a9f4b4e0bda6e0300533863737785252a8bb296836663cf7e38f9c,
+generation lock187cece3f828159db04ceb66012a06d66103eebbc7149bea3f1e8c7bed36f5e3
+remain bound to exact475/tree8a, original S1556838/public48a5/generatione8cad
+and genuine M1569012→1689 proof, not a relabelled accepted source.
+
+Independent Whitebox154 actual preflight readback verifies all67 report hashes
+and existing artifact/preflight/package/reuse/accepted-baseline/history validators.
+19modules232/232, zero fail/cancel/skip/todo; clean exact475 before/after.
+Worker24457/300000ms, wrapper24813/330000ms; Python139/20.873s; ordinaryBasic1112ms,
+generated214ms, SEO3124ms and security71605/180000ms pass. All29 raw and18
+delivered platform files physically equal original S155. Builtindex,talks/reused3,
+articleCandidates[]. Native stored generation has69files after final immutable
+retention: the lower-level release's59 and canonical57 counts are different
+observations, not universal native counts. Code154 independently validates the
+same actual public/reconstruction/history/package/preflight scope. Hosted/browser
+and final gate remain pending; these successes do not establish whole C2 acceptance.
+
+C3 is prepared as a direct child of published475, without moving PR149 or
+requesting another native attempt before C2 terminal acceptance. Restore exact
+original S1556838 events; preserve C2 About and Home. Ordinary canonical generation
+restores e902 Talks and removes5dea C1 Talks; catalog, previews, bundle and locks
+follow. Its separate raw release from original S155 buildsindex/reuses4/articles[].
+Actual native C2 raw Home and prepared C3 raw Home are byte-identical SHA256
+02db863390402e4c80f8b2d93d04336e88341d7d71df0ac5d11ef2ada2f920f6;
+prepared C3 raw Talks is byte-identical original S155. Requirements154 independently
+accepts prepared state/test design and derives eight rows from actual gate cases:
+index/writing×390/1440×normal/no-JS. Hosted Talks must match current manifest and
+omit C1; raw S155 equality is separate from decorated source/edition metadata.
+
+The native accepted baseline remains S155 through M156, never unmerged C2.
+Prove selective state, source descent and exact Home preservation; do not claim
+C2-generation native composition, Talks-only rebuild, C2-specific staging
+predecessor leases or retention of every C2-only snapshot. Current-source/history,
+ordinary/content checks/four actual roles and C3's own native content gate remain
+pending. All original failures stay retained; no new test or publisher is needed.
+
+## Fresh C2 terminal acceptance and C3 source completion — 27 October 2026
+
+Actual40554807239/1 is terminalSUCCESS17:53:27→18:14:34Z,21m07 end-to-end.
+Build/publish and all four required stage-evidence jobs/gate pass. Stable
+promotion/merge admission/independent change-admission receipt are actually
+skipped. Original content gate12757378917 ZIP7206/SHA256
+df5da65e0618696748b92db106322db005f6061f00c0a46d2f61db5b89626dcd;
+browser12757213970 ZIP1169/SHA256
+bb142b64ab8b7303449188b4064f2da13bcc988a736cc2fb6526d98a5b9b5985;
+host12756573943 ZIP2391/SHA256
+22b7c6442fdec209693298881015bb057c601393fa510137fbd4b1ed8ed383ce;
+setup12757788355 ZIP426/SHA256
+ce69f5f09f1ddd5fa09d78dc236239a25b5894f10b71f27fc8a61b1cbcd23a0e
+verify against actual terminal API size/digest, CRC and extracted bytes.
+
+All12 Home/Talks/Writing×390/1440×normal/no-JS rows pass: HTTP200/current hashes,
+no errors/overflow, decoded images and observed Writing filters. Host30passes;
+setup records0prior launches. Existing content-gate.aggregate reaggregates the
+five actual static/host/browser reports to reportsDigest
+11903cfb9c171a8737bd441257b5495a516521e2ad4146e75bfe3fde84bf6310 and actual
+content-staging-gate, performanceRerunfalse/allthreeauthorityflagsfalse. Its
+checked-report hashes bind JSON.stringify(report), not formatted file bytes;
+the root's initial physical-file hash assumption was corrected from the existing
+producer contract, without changing any native report or rerunning the campaign.
+
+Requirements154/Code154 independently validate originals/reuse/history and
+reaggregate the final gate; Whitebox154 independently validates all actual native
+preflight/package/platform scope; Operator154 independently validates final12/30
+observations/scanners/gate and operator limits. All accept their own bounded exact
+475/tree8a native scopes. Literal acceptedS155(original6838/136a/artifacts) →
+genuine repositoryM1569012→1689 → C2 is now actually demonstrated. This is the
+bounded C2/history checkpoint, not whole AC03/06/08 or production acceptance.
+
+The15minute operational target is missed and retained. Browser observation is
+13020ms; its634second job includes checkout551s, locked tools38s and browser
+restore21s. Mandatory worker/security/browser/site budgets pass unchanged; no
+waiver. Actual endpoint/setup/execution observations are distinct from site
+performance. Fresh C2 is archived exactly at
+archive/issue-122-pr149-c2-47515243-20261027, frozenDraft475 and label removed only
+after terminal success. Completion comments: PR1496450237523/issue1226450237849.
+
+C3 coherent reviewed localsource7fe94cefa6497a379e99c6c932304b9d843369a8,
+treefc966181f9f21fec58744e42d510a8525358e48d, remains directchild475. Its first
+local content campaign failed220observed/204pass/16fail, zero cancel/skip/todo:
+the new worktree lacked ignored locked quality venv/Node modules, selecting
+system Pillow and missing YAML/format helper. Original reports/TAP/stderr remain
+under the local environment-failure evidence directory. Existing code's default
+paths establish the cause. Restore the same unchanged locked toolchain: actual
+Pillow13.0.0 and required Node dependencies, without tracked source/guard changes.
+Reasoned corrected content Basic passes232/232, zeroall,91892ms, exactclean7fe
+before/after. Ordinary Basic16+10/format/SEO/five owning/RI/coupling/history pass;
+automation_pass/evidence_valid true/errors[]. These are local, not C3 native proof.
+
+All four actual separate nonauthoring roles ACCEPT exact7fe/treefc966:
+Requirements154 independently checks directparent/originalevent/Home/rawnativeC2/
+catalog/history/eight actual gate cases; Code154 independently checks canonical57,
+raw29,16exports/13source hashes, actual ZIP75 and exactly Talks-only changes in
+five interactive payloads; Whitebox154 independently checks alias/snapshot/raw
+oracles, source-bound232 correction, generation/catalog/RI and layer boundaries;
+Operator154 independently checks visible marker placement/restoration, links/
+times/unchanged routes/exports and observed offline75total/73source-backed entries.
+No reviewer authors source or repeats the campaign. Preserve verdict limits:
+local content artifact is undecorated; final18 delivered Color platform bytes,
+hostedTalks/currenthash and C3's own eight-row native gate remain pending.
+
+C2→C3 authored diff restores events; protectedmain1689→C3 authored delta is only
+About because events now equal main. Actual current selectAccepted/verifyHistory
+uses original S155 through genuine M156 and C2/C3 content edges. It does not adopt
+unmerged C2 as platform baseline or promise C2-specific staging predecessor or
+snapshot retention. Only these actual outcome/review receipts, current handoff and
+deterministic RI follow reviewed7fe before publication; authored/generated bytes
+remain exact. C3 may now advance to current published-source checks and one own
+isolated native attempt. Original AC03/06/08 and production remain open.

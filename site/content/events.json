@@ -10,7 +10,7 @@
           "anchor": "devcon-romania-2026",
           "language": null,
           "title": "AI Changes the Delivery System and the Product Itself",
-          "description": "I’ll be speaking in Bucharest about two connected engineering shifts: AI can generate code faster than teams can understand, review and integrate it; and AI inside a product makes runtime judgment, human authority, fallback and recovery part of the design. The talk asks how we preserve engineering rigor across both. Test mode (#122): Talks checkpoint C1.",
+          "description": "I’ll be speaking in Bucharest about two connected engineering shifts: AI can generate code faster than teams can understand, review and integrate it; and AI inside a product makes runtime judgment, human authority, fallback and recovery part of the design. The talk asks how we preserve engineering rigor across both.",
           "metadata": [
             {
               "kind": "text",

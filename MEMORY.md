@@ -34,7 +34,7 @@ Dated continuity, not live authority. Last verified: **2026-10-27**.
 - C1b15c4de9/tree0e829b25/40514588030/1 remains historicalS154 PASS:227/227,
   Talks-onlybuild/4reusedroutes/29raw+18deliveredplatform identical. Exactarchive
   archive/issue-122-pr149-c1-b15c4de9-20261027; no relabeltoS155.
-- PR149 stays frozenDraft433b21b3/treeb0609a, archive433 preserved. SoleC2
+- Historical PR149433b21b3/treeb0609a and its exact archive are preserved. Sole old C2
   40521370776/1 remains FAILprepublicationSEO716ms/25otherguards+227Node+
   139Python/scannersPASS. Original12741029912 retained. No unchangedretry.
 - PR79 remains separateDraft10a1e7d9/unpublished. Production remains
@@ -66,28 +66,40 @@ Dated continuity, not live authority. Last verified: **2026-10-27**.
   controls unchanged/controlReview null. Five protected checks and postmerge
   40550233296/mainRI40550232282 PASS. Identity12755006357 binds9012→1689,
   website not-applicable; S155 retains its original tested6838/artifact identity.
-- Fresh C2 prepared from actual main1689: exact b15events + exact433 Home
-  about.json:text.T005 sentence. Raw generation and SEO pass locally; native
-  candidate acceptance is pending. Historical PR149 still Draft433/archive retained.
+- Fresh C2 published47515243bfa42e5338046a13fb4b8aa2f6e83cd9/tree8a311639,
+  direct actual main1689: exact b15events + exact433 AboutT005. Four actual roles
+  ACCEPT corrected d062/treefd7b; ordinary Basic/SEO/RI/coupling/owning pass.
+  Ready Basic40554235384/RI40554235159/owning40554235206 PASS; preview build/
+  publish/smoke PASS, initial missing-staging admission FAIL retained.
+  Isolated native40554807239/1 terminal SUCCESS21m07:26guards/232Node/139Python,
+  browser12/host30/contentgate,29raw+18deliveredplatform exact. Four native
+  readbacks ACCEPT; no stable promotion. Archive475 preserved; PR149 frozenDraft.
+  Local canonical extra-snapshot blocker fixed; all failures retained.
   Bothroutes index,talks built;credits/research/writing reused;12contentbrowserrows
   (index/talks/writing×390/1440×normal/no-JS), unchangedraw/deliveredplatform,
   articleCandidates[], own compatible-content-v1 gate/performanceRerunfalse.
-  Currentfourroles/source/RI/coupling/owning/preview/scanners/hosted proofsrequired.
+  Source/RI/coupling/owning/preview/scanners/hosted proofs completed at475.
   No additionalnativeC1 checkpoint is required. OldC1 stays historicalS154.
-- C3 direct child of verified fresh C2 restores original S155 Talks and preserves
+- C3 prepared7fe94cef/treefc966181 directly from475; four actual roles ACCEPT.
+  Ordinary Basic/format/SEO/owning/RI/history and content232/232 pass. Initial
+  local220/204/16 environment failure retained; exact locked dependencies restored.
+  C2 terminal prerequisite satisfied; C3 published-source/native proof pending.
+  It restores original S155 Talks and preserves
   exact C2 raw Home. Native accepted baseline remains S155 through M156: index
   only built/four routes reused/eight browser rows, not C2-generation composition.
   Prove Home C3=C2/Talks C3=S155; no claimed C2-specific staging predecessor
   lease or retention of every C2-only snapshot. Production predecessor is separate.
-- Complete literalS→genuine repository-onlyM→C, originalAC03/06/08, contracts/
-  test-profiledispositions/provenance/concurrency/leases/timing reconciliation.
+- Complete actual C2/C3, originalAC03/06/08 and final contracts/profile/provenance/
+  concurrency/leases/timing reconciliation. Minimal final control/full-route source
+  is being prepared from main1689: two real stale guides, only AC08 status prose,
+  existing review/MEMORY and derived RI. No code/test/registry/guard changes.
 - Prepare exact-bound platform/readerproduction withoutarticle through existing
   frozen-candidate/rights/protectedpublisher, then concreteactivationdecision.
 
 ## Next session
 
 1. Revalidate main1689/PR156merged/originalS155+M evidence/production676e.
-2. Complete fresh C2 on S155 through M156 via PR149's isolated
+2. Finish native fresh C2 on S155 through M156 via PR149's isolated
    staging-regression; never merge markers or promote them to stable/production.
 3. C3selectiveTalksrestore/preserveHome, thenliteralM/originalAC/contracts/timings.
 4. Exact-bound platform/readerproduction withoutarticle afteractivationdecision.
