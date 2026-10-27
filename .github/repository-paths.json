@@ -11814,6 +11814,12 @@
       "purpose": "Inert source-bound producer proof for six exact public Writing-startup runtime checksum dispositions; retains original native security failure.",
       "role": "history",
       "owner": "guides/SITE-CONTENT-RELEASE.md"
+    },
+    "review/issue-122/2026-10-27-home-content-frame.json": {
+      "kind": "file",
+      "purpose": "Immutable approved Home body and exact canonical renderer/template producer bindings for source-bound SEO reconciliation; not an editorial approval.",
+      "role": "configuration",
+      "owner": "tools/check_site_seo.cjs"
     }
   }
 }

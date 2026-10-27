@@ -5,6 +5,219 @@ const { renderSlots, safeURL } = require('../tools/site/render-content.cjs');
 const { nextRecordId, nextYear } = require('./fixtures/catalog.cjs');
 const { renderPage } = require('../tools/site/render-page.cjs');
 
+function homeFixture(t) {
+  const fs = require('node:fs'),
+    path = require('node:path'),
+    os = require('node:os');
+  const root = path.resolve(__dirname, '..');
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'home-source-'));
+  t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
+  const frame = require('../review/issue-122/2026-10-27-home-content-frame.json');
+  const owners = ['metadata', 'main', ...frame.blocks].map(
+    (name) => 'site/content/pages/index/' + name + '.json'
+  );
+  for (const file of [
+    ...Object.keys(frame.producerInputs),
+    ...owners,
+    'site/content/catalog.json',
+  ]) {
+    fs.mkdirSync(path.dirname(path.join(directory, file)), { recursive: true });
+    fs.copyFileSync(path.join(root, file), path.join(directory, file));
+  }
+  const content = require('../tools/site/content.cjs');
+  return {
+    directory,
+    frame,
+    read: (file) => JSON.parse(fs.readFileSync(path.join(directory, file))),
+    write: (file, value) => fs.writeFileSync(path.join(directory, file), JSON.stringify(value)),
+    render: () => content.routeInput(directory, { id: 'index' }, content.catalog(directory)).main,
+  };
+}
+
+test('Home SEO proves every declared prose block, section navigation and featured catalog against current source', (t) => {
+  const fixture = homeFixture(t);
+  const seo = require('../tools/check_site_seo.cjs');
+  const expected = seo.normalizeHTML(fixture.frame.original);
+  for (const name of ['main', ...fixture.frame.blocks]) {
+    const file = 'site/content/pages/index/' + name + '.json';
+    const original = fixture.read(file);
+    const changed = structuredClone(original);
+    const key = Object.keys(changed.text).find((id) => typeof changed.text[id] === 'string');
+    changed.text[key] += " Authored revision $& $` $' <readable>.";
+    fixture.write(file, changed);
+    const html = fixture.render();
+    assert.ok(html.includes('&lt;readable&gt;'), 'authored text stays inert');
+    assert.equal(seo.restoreHomeContent(html, fixture.directory), expected, name);
+    fixture.write(file, original);
+  }
+  const catalogFile = 'site/content/catalog.json';
+  const catalog = fixture.read(catalogFile);
+  catalog.records[catalog.featured[0]].presentation.summary += ' A current featured summary.';
+  fixture.write(catalogFile, catalog);
+  assert.equal(seo.restoreHomeContent(fixture.render(), fixture.directory), expected);
+});
+
+test('Home SEO refuses stale approved output, altered copy or links and incomplete or extra body regions', (t) => {
+  const fixture = homeFixture(t);
+  const seo = require('../tools/check_site_seo.cjs');
+  const original = fixture.render();
+  const owner = 'site/content/pages/index/about.json';
+  const data = fixture.read(owner);
+  data.text.T005 += ' A newer independently authored paragraph.';
+  fixture.write(owner, data);
+  const current = fixture.render();
+  const sections = current.match(/<section\b[\s\S]*?<\/section>/g);
+  const reordered = current
+    .replace(sections[0], 'SECTION-SWAP')
+    .replace(sections[1], sections[0])
+    .replace('SECTION-SWAP', sections[1]);
+  for (const invalid of [
+    original,
+    current.replace('A newer independently authored paragraph.', 'Output-only drift.'),
+    current.replace(
+      'https://www.linkedin.com/in/vitaliioborskyi/',
+      'https://example.invalid/drift'
+    ),
+    current.replace('id="about"', 'id="other-about"'),
+    '<main id="main"></main>',
+    current + current,
+    reordered,
+    current.replace('</main>', '<p>Undeclared output</p></main>'),
+  ]) {
+    assert.notEqual(invalid, current, 'tamper target exists');
+    assert.throws(() => seo.restoreHomeContent(invalid, fixture.directory), /Home|current/);
+  }
+});
+
+test('Home SEO binds source templates, complete producer pins and the immutable approved frame', (t) => {
+  const fs = require('node:fs'),
+    path = require('node:path'),
+    crypto = require('node:crypto');
+  const fixture = homeFixture(t);
+  const seo = require('../tools/check_site_seo.cjs');
+  const html = fixture.render();
+  const owner = 'site/content/pages/index/about.json';
+  const original = fixture.read(owner);
+  fixture.write(owner, { ...original, template: 'pages/index/hero.html' });
+  assert.throws(() => seo.restoreHomeContent(html, fixture.directory), /template binding/);
+  fixture.write(owner, original);
+  const metadata = fixture.read('site/content/pages/index/metadata.json');
+  fixture.write('site/content/pages/index/metadata.json', {
+    ...metadata,
+    blocks: [...metadata.blocks].reverse(),
+  });
+  assert.throws(() => seo.restoreHomeContent(html, fixture.directory), /block order/);
+  fixture.write('site/content/pages/index/metadata.json', metadata);
+  for (const file of ['tools/site/content.cjs', 'site/templates/pages/index/about.html']) {
+    const target = path.join(fixture.directory, file);
+    const bytes = fs.readFileSync(target);
+    fs.appendFileSync(target, '\n');
+    assert.throws(() => seo.restoreHomeContent(html, fixture.directory), /Home producer/);
+    fs.writeFileSync(target, bytes);
+  }
+  const bindings = fixture.frame.producerInputs;
+  for (const changed of [
+    Object.fromEntries(Object.entries(bindings).slice(1)),
+    { ...bindings, 'site/templates/unknown.html': '0'.repeat(64) },
+  ])
+    assert.throws(() => seo.verifyHomeProducers(fixture.directory, changed), /inventory/);
+  const altered = structuredClone(fixture.frame);
+  altered.original += ' altered';
+  altered.originalSha256 = crypto.createHash('sha256').update(altered.original).digest('hex');
+  assert.throws(() => seo.verifiedHomeFrame(altered), /immutable source/);
+  const target = path.join(fixture.directory, owner);
+  fs.renameSync(target, target + '.original');
+  fs.symlinkSync(target + '.original', target);
+  assert.throws(() => seo.restoreHomeContent(html, fixture.directory), /symlinks/);
+});
+
+test('Home data cannot activate unreviewed discussion templates through prose or catalog labels', (t) => {
+  const fs = require('node:fs'),
+    path = require('node:path');
+  const fixture = homeFixture(t);
+  const seo = require('../tools/check_site_seo.cjs');
+  for (const name of ['discussion-row', 'discussion-counts']) {
+    const file = 'site/templates/components/' + name + '.html';
+    fs.copyFileSync(path.join(__dirname, '..', file), path.join(fixture.directory, file));
+  }
+  fs.appendFileSync(
+    path.join(fixture.directory, 'site/templates/components/discussion-row.html'),
+    '<!-- Unpinned component drift -->'
+  );
+  const owner = 'site/content/pages/index/about.json';
+  const original = fixture.read(owner);
+  const changed = structuredClone(original);
+  changed.text.T005 += '{{DISCUSSION_ROWS}}';
+  fixture.write(owner, changed);
+  const fromProse = fixture.render();
+  assert.ok(fromProse.includes('Unpinned component drift'), 'the original fault is reachable');
+  assert.throws(() => seo.restoreHomeContent(fromProse, fixture.directory), /template controls/);
+  fixture.write(owner, original);
+  const file = 'site/content/catalog.json';
+  const catalog = fixture.read(file);
+  const label = catalog.labels['route.research'];
+  catalog.labels['route.research'] += '{{DISCUSSION_ROWS}}';
+  fixture.write(file, catalog);
+  const fromCatalog = fixture.render();
+  assert.ok(fromCatalog.includes('Unpinned component drift'), 'catalog values share the fault');
+  assert.throws(() => seo.restoreHomeContent(fromCatalog, fixture.directory), /template controls/);
+  catalog.labels['route.research'] = label;
+  catalog.records[catalog.featured[0]].presentation.summary += '{{DISCUSSION_ROWS}}';
+  fixture.write(file, catalog);
+  assert.throws(() => fixture.render(), /Unused\/invalid component value publication-summary/);
+  assert.throws(
+    () => seo.restoreHomeContent(fixture.frame.original, fixture.directory),
+    /template controls/
+  );
+});
+
+test('fresh SEO CLI accepts current authored Home text and refuses stale approved body bytes', (t) => {
+  const fs = require('node:fs'),
+    path = require('node:path'),
+    os = require('node:os'),
+    cp = require('node:child_process');
+  const root = path.resolve(__dirname, '..');
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'home-seo-cli-'));
+  t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
+  cp.execFileSync('git', ['clone', '--shared', '--quiet', root, directory]);
+  for (const file of [
+    'tools/check_site_seo.cjs',
+    'review/issue-122/2026-10-27-home-content-frame.json',
+  ])
+    fs.copyFileSync(path.join(root, file), path.join(directory, file));
+  const owner = path.join(directory, 'site/content/pages/index/about.json');
+  const data = JSON.parse(fs.readFileSync(owner));
+  data.text.T005 += ' Test mode (#122): Home checkpoint C2.';
+  fs.writeFileSync(owner, JSON.stringify(data));
+  const content = require('../tools/site/content.cjs');
+  const main = content.routeInput(directory, { id: 'index' }, content.catalog(directory)).main;
+  const file = path.join(directory, 'docs/index.html');
+  const before = fs.readFileSync(file, 'utf8');
+  fs.writeFileSync(
+    file,
+    before.replace(/<main\b[\s\S]*?<\/main>/, () => main)
+  );
+  const run = () =>
+    cp.spawnSync(process.execPath, ['tools/check_site_seo.cjs'], {
+      cwd: directory,
+      encoding: 'utf8',
+      timeout: 30000,
+      maxBuffer: 1024 * 1024,
+      env: {
+        ...process.env,
+        SITE_AUDIT_TOOLS:
+          process.env.SITE_AUDIT_TOOLS || path.join(root, 'tools/quality/toolchain'),
+      },
+    });
+  const valid = run();
+  assert.equal(valid.status, 0, valid.stderr);
+  assert.equal(JSON.parse(valid.stdout).pass, true);
+  fs.writeFileSync(file, before);
+  const stale = run();
+  assert.equal(stale.status, 1);
+  assert.match(stale.stderr, /Home output differs from validated source/);
+});
+
 test('compact page metadata preserves structured values and cannot close its script container', () => {
   const schema = {
     name: '</script><script>unexpected()</script> & \u2028\u2029',

@@ -21,7 +21,7 @@ selection and the existing admission/publisher own actual delivery.
 | PR source | Ready PR updates and `ready_for_review` | Small Basic source check, RI/CI coverage and the owning issue's targeted AC policy. Additional source suites follow changed paths in the registry. |
 | Content update | Authored catalog/article/Writing/Home changes with a compatible earlier admitted generation | Mandatory catalog, parser/provenance, unsafe-content, article/delivery/size and reuse-contract source suites; current-source content reconstruction; ordinary hosted smoke plus no-JS Writing and every rebuilt article journey. Unchanged platform generation is reused. |
 | PR hosted smoke | Ready same-repository PR updates | Exact artifact/HTTP identity and Chromium at 1440/390 widths: routes, controls, persistent navigation/history and no-Canvas fallback; authored Color adds its two-width smoke. |
-| Staging regression | Owner `/stage` or dispatch for stable staging; owner `staging-regression` PR label for evidence without promotion | Exact source/public/package/host identity; bounded source suites, lint/security/advisories; Chromium/Firefox journeys, representative failure/navigation/analytics checks, two mobile Lighthouse trials and bounded motion/flight samples. |
+| Staging regression | Owner `/stage` or dispatch for stable staging; owner `staging-regression` PR label for evidence without promotion | Exact source/public/package/host identity, source suites and current lint/security/advisories. Platform route: Chromium/Firefox journeys, failure/navigation/analytics, two mobile Lighthouse trials and motion/flight samples. Compatible content route: authenticated platform inheritance plus exact affected desktop/mobile normal/no-JS documents and reader/media observations; no platform performance rerun. |
 | Production admission | Owner dispatch after successful staging and protected merge | Authenticate original staging jobs/reports and identical complete source tree; freeze production edition, rights and immutable archive. No second browser/performance matrix. |
 | Post-production smoke | Publication or rollback | Exact served bytes, routes/assets, HTTPS, canonical/indexing/404 policy and bounded Chromium navigation/control smoke. |
 | Optional production regression | Manual dispatch when needed | Complete unchanged source/scanner/advisory/browser/native/Color/accessibility/failure/Lighthouse/CPU/soak/capture matrix and bounded passive ZAP. Its status never blocks publication. |
@@ -111,16 +111,19 @@ ordinary platform route. Source reconstruction, media/URL/schema checks and the
 unconditional RI workflow still verify current bytes; bookkeeping cannot supply
 trust or make a generated-only edit eligible.
 
-`content-baseline.cjs` prefers a successful earlier same-branch generation, then
-main and a bounded inventory of prior merged ancestor branches. It checks the
+The Basic-generation selector in `content-baseline.cjs` prefers a successful
+earlier same-branch generation, then main and prior merged ancestor branches.
+The preview and owner-staging route instead uses `selectAccepted`, described
+below, to authenticate an accepted merged staging source and complete history.
+Both generation selectors check the
 same repository and workflow, exact raw source commit/tree, ancestry, immutable
 upload archive SHA256, complete public bytes, raw generation/output-lock SHA256
 and current platform fingerprints. The raw baseline must also have actual
 successful source Basic, RI and owning-issue admission jobs for its exact head.
 Draft-only packaging, skipped jobs and unbound source evidence cannot establish
-reusable platform evidence. Basic retrieves the earlier Basic artifact; preview
-retrieves the earlier review artifact, preserving their separate publication
-and explicit draft-preview selections.
+reusable platform evidence. Basic retrieves its earlier Basic artifact; the
+accepted-staging route retrieves the original admitted review artifact. Both
+preserve the exact ordinary publication or explicit draft-preview selection.
 
 Old artifacts without generation metadata, expired/missing artifacts, absent
 source admission, a changed shared catalog label/platform fingerprint, different
@@ -649,9 +652,10 @@ not a cheap exemption for its executable. Mixed/unknown/rights/public inputs
 retain full obligations. See [activation, exact-SHA control review and protected
 recovery](SITE-STAGING.md#trusted-change-admission-and-repository-delivery).
 R3/#5 integrates accepted-platform/history reuse and the existing content publisher.
-The selector checks every parent edge from accepted S to C, authenticates repository
-merges, and uses explicit full-platform fallback for incompatible or unavailable proof.
-Actual independent content/recovery and final reporting reconciliation remain open in #122.
+The accepted selector checks every parent edge from S to C, authenticates repository
+merges, and records explicit full-platform fallback for incompatible or unavailable proof.
+Actual independent content/recovery and final reporting are source-bound external
+acceptance in the live #122 owner, separate from this scheduling contract.
 
 ### Worked decisions and future test oracles
 
@@ -677,4 +681,6 @@ Semantic review of these cases is T02 evidence; it is distinct from T04 executio
 Mechanical RI/style checks prove
 only their stated subsets; keyword tests do not establish contract completeness.
 QA findings feed the existing test-allocation route above. Protected repository admission and its measured no-website result are delivered by R2.
-Actual content/recovery and final issue-wide reconciliation remain open. ParentAC02 is delivered; all other parent criteria remain open until their complete evidence is reconciled.
+The live #122 owner records current criterion acceptance. These historical semantic
+walkthroughs cannot establish current content/recovery or issue-wide delivery;
+each still requires its complete source-bound checks and external evidence.

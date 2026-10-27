@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "a0e2d1fd9ee130f62f03a10c7b5fc987556a90850e1d3226e03eb04f122e027e",
+    "digest": "e72eb0abfdeb884dd9dad6fa52d8603071021222c4187803b31d9e83b8cb7bc3",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -201,12 +201,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "6f665254eb867df6a31551b751c3492312b152c2ac7c3c94eb4fb352e4a085fa"
+        "sha256": "506125397b7d1c34b18862a10089b0a3e16aa9195c6d174c7c81be5b9c80ac05"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "d88da639cd85ffe3e3e017a55b8a3e0912569cb55e937eebfe0324a69dfbd6b8"
+        "sha256": "86b9494e09a6cd34fea1c442435870b282a06791e7e6f17f91afa49024db67df"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -356,7 +356,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "28e48eddd5c9001b474ffc0c418afba6dffdcad9d09aaa026718efb7f03f9ed0"
+        "sha256": "efa8ac199f6688e6f4c131f1831522993c3f6f2f3d4d835959dff3c237068cbd"
       },
       {
         "path": "NOTICE.md",
@@ -710,12 +710,12 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "413e8a1a2f967dacb7f0d7084d1448f15358f7a424914d5dd4d1f99a75e3afc4"
+        "sha256": "3f340b443edc0438d0b93308e54a5bb7fc2ca0c18c4c8cceb8f437d8fc4dc656"
       },
       {
         "path": "guides/SITE-CONTENT-RELEASE.md",
         "identity_mode": "content",
-        "sha256": "1b16367dcd8f43b9117df8ffe722d6674afc709dc510b71f39f0f273548f1ccb"
+        "sha256": "0e3891ae1875275a1a9de3c2e8761682711c77330a88fd31bee0bd72f7d9503c"
       },
       {
         "path": "guides/SITE-CONTENT-REVIEW.md",
@@ -750,7 +750,7 @@
       {
         "path": "guides/SITE-SEO.md",
         "identity_mode": "content",
-        "sha256": "974e9c5d2930adadd14b03a31ce423b8c90803ed7e61631ef2f7ac33f4294955"
+        "sha256": "6337257ede9c17701d43ca0d947708067714413d649aaa6373be2b0e3a470dae"
       },
       {
         "path": "guides/SITE-SOURCE-AUDIT.md",
@@ -760,7 +760,7 @@
       {
         "path": "guides/SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "769ae6c1778707baa9f107f4f41436800eccf5d798a62686cb31282d3fc439f3"
+        "sha256": "4ea6537d43df419ad3c5785849ec2e5e223af2af4d832aa67f18b835338af973"
       },
       {
         "path": "guides/github-pages-domains.json",
@@ -1030,12 +1030,17 @@
       {
         "path": "review/issue-122/2026-10-26-content-ci.md",
         "identity_mode": "content",
-        "sha256": "3a6e094604c51ec6caf5a0fbacbbb53b81263eab51a62aef923ca652dfc35d32"
+        "sha256": "0a388a1ec1ecd11b9abc8e9fcc4ca12010d3efacffdcb4a9f14ccda8954547b1"
       },
       {
         "path": "review/issue-122/2026-10-26-writing-checksum-proof.json.gz",
         "identity_mode": "content",
         "sha256": "052a71ef936601d59c526789170de58704fe2b262f53b05b8e14a900f4555067"
+      },
+      {
+        "path": "review/issue-122/2026-10-27-home-content-frame.json",
+        "identity_mode": "content",
+        "sha256": "596ae540b00d671e830575794764c131dea63de286bfb26026e20766f03b2680"
       },
       {
         "path": "review/issue-126/2026-10-23-announcement-review.md",
@@ -7280,7 +7285,7 @@
       {
         "path": "tests/content-rendering.test.cjs",
         "identity_mode": "content",
-        "sha256": "6dffab2e4d4b6bc245a23bb0fc7418151a19302357abd2ad255eada22ba8611e"
+        "sha256": "8810d69da25c631a4a3bd9e01b0d1517d052df1846b700a109940e5e000aa4dd"
       },
       {
         "path": "tests/content.test.cjs",
@@ -7865,7 +7870,7 @@
       {
         "path": "tools/check_site_seo.cjs",
         "identity_mode": "content",
-        "sha256": "c45212d8518ed0682e34d37a17c0a8ab94f79a4d612d57acb6c7d9809d79661c"
+        "sha256": "c97cf87c6bbb285fd2b074b77c958f15973e91a68e2d5218d1dae8ded1cbcc95"
       },
       {
         "path": "tools/compact_site_recordings.cjs",
@@ -8425,7 +8430,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "cfc038b3067e854b3b2e2925d60805b4f18233d5d68c37e494b267082dbf11f4"
+        "sha256": "d9e324b852558352efad4fdc8a31c07c4ea7cc0200ba95a433d9c2b6dce73f6d"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
@@ -11436,6 +11441,17 @@
         "AGENTS.md"
       ],
       "title": "2026-10-26-writing-checksum-proof.json.gz"
+    },
+    {
+      "path": "review/issue-122/2026-10-27-home-content-frame.json",
+      "kind": "file",
+      "purpose": "Immutable approved Home body and exact canonical renderer/template producer bindings for source-bound SEO reconciliation; not an editorial approval.",
+      "role": "configuration",
+      "owner": "tools/check_site_seo.cjs",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-27-home-content-frame.json"
     },
     {
       "path": "review/issue-126/2026-10-23-announcement-review.md",
