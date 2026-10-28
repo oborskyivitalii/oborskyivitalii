@@ -27,6 +27,12 @@ Dated continuity, not live authority. Last verified: **2026-10-28**.
 
 ## Open work
 
+- Stage40700127408/1 passed source2427501/tree1a88 including stable promotion.
+  Its Ready preview40699258029/1 failed390normal Writing→Talks. The existing
+  staging-verification review retains distinct receipts and local setup limits.
+  Narrow smoke diagnostic capture needs its own reviewed final head/CI/staging;
+  earlier stage success cannot be relabelled at that new source.
+
 - B2.1 clean policy8/8 and four actual roles ACCEPT; current-artifact B2.2
   local native smoke passed4generic+2Color on clean7100d2b. Baseline RUM427 includes
   264Headless; non-headless163 is not humans. Sampling/limits are in the receipt.
@@ -41,10 +47,8 @@ Dated continuity, not live authority. Last verified: **2026-10-28**.
 
 1. Revalidate current main/production, #159 and analytics Draft PR160.
 2. Read review/issue-159/2026-10-28-staging-verification.md and latest PR/issue comments.
-3. First stage40694186899/1 failed preupload: one public baseline Git-SHA
-   secret candidate. Exact1563rd checksum-ledger row/proof fixes admission;
-   delta reviews ACCEPT clean009188;59/59+8/8+RI29/29+coupling20/20 passed.
-   Fresh final-head CI/full stage remain, old failed stage stays failed.
+3. Finish reviewed smoke failure diagnostic preservation, then freeze the complete
+   new source before Ready/native preview/owner stage; dynamic receipts stay in comments.
    Exact-head owner reviewed_sha trust remains distinct before App admission.
 4. Report batch outcome, next action, full remaining sequence and plan deviations.
 

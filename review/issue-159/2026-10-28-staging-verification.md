@@ -241,3 +241,107 @@ and complete owner staging. The actual ledger correction, rather than a receipt
 refresh, justifies this new candidate. Keep all later results in comments; the
 failed40694186899/1 remains failed. Exact-head owner control trust and subsequent
 merge/production/provider gates remain separate.
+
+## Smoke failure diagnostics preservation
+
+On frozen24275016620031b2b42d4afa89ffeb307b103100/tree1a88d758,
+Ready Basic1140/1140, RI and owning8/8 passed. Owner stage40700127408/1
+completed SUCCESS including stable promotion, merge-admission and the native
+change-admission receipt. Independently verified gate ZIP12822063471 SHA256
+`ebde9fca9168fe14fd894896ea424ae95e726b331d18b9e35a365efdac1877aa`
+binds that source/tree and public digest137d7418 at immutable ba2fcd5c origin.
+Browser ZIP12822466860 SHA256
+`12812dd32e6546bd8e415b355b2504642b6e44826132577752986154af36f012`
+retains6journeys/30route observations,2navigation,10failure and7analytics cases,
+Color2,2CPU4x samples,4flights and2single Lighthouse trials. These remain staging
+observations, fullGate:false/deploymentAuthorized:false, not production evidence.
+
+The separate preview40699258029/1 failed job122855840730 on390normal
+Writing→Talks at the unchanged6950ms deadline. Three sibling scenarios and HTTP
+identity passed. Failure ZIP12820963213 SHA256 is
+`7d7eeae7a57d53ae867caa12aa46863c4e65236b3c2442864cb4474519a3232a`.
+Screenshot remains Writing; report retains a Talks snapshot without response,
+later closed-target body read and state:null. Missing native failure/timing
+prevents causal attribution. A later successful stage on another hostname cannot
+replace that failed preview.
+
+Two bounded local attempts did not execute the journey. The preceding execution
+context stopped in routeBytes with direct-DNS EAI_AGAIN before page navigation.
+Configured-proxy curl HEAD reached the original preview308→200. A separately
+reviewed proxy-capable one-case script then stopped before browser startup:
+sandbox denial of Chromium's process-singleton socket, SIGABRT/exit1. Zero page
+journeys; neither setup failure explains the CI timeout. No sandbox escalation,
+alternative safety flag, unchanged campaign retry or increased budget was used.
+
+### Accepted correction and verification
+
+`/root/b22_secret_requirements` inspected actual source/failure and accepted this
+AC11/AC13 treatment before implementation. The confirmed defect is lost failure
+diagnostics: screenshot/response drain precede state capture, and null responses
+lose native request context. This correction does not claim to fix the unknown
+historical navigation cause.
+
+Authored local-browser now captures existing page/scene state at catch entry,
+then records secondary screenshot/drain errors while preserving the original
+error/stack/pass:false. Failed state capture is explicit. Missing responses still
+reject, retaining URL/method/resource type/native failure/timing and unavailable
+getter errors in failed reports. Cleanup is mandatory: a failed verdict retains
+the close error; close failure after an otherwise successful scenario still rejects.
+Existing state fields are preserved; no new aria-busy/location sensor is claimed.
+
+Five new cases use the existing preview-smoke route: destructive cleanup ordering,
+primary-error preservation through diagnostic faults, native null-response details
+and rejection, unavailable getter faults, and mandatory cleanup/error propagation.
+Prepared suite23/23 passes with no skips; focused ESLint passes without warnings.
+Existing served-byte/redirect/pending-read tests remain selected. No new suite,
+registry trigger, deadline, retry rule or weakened assertion. Scenario/success
+verification, original readiness and8000ms runtime abort, collector routing and
+service-worker policy are unchanged.
+
+CS01/04/05/06/07/08/09/10 apply. Public content/runtime/CSS/output bytes are
+unchanged; CS02/03 have no changed public surface. The existing compressed archive
+preserves prior records and adds the original preview ZIP, both local setup
+failures, script/observer limits, prepared test streams and successful staging
+gate/run identities. Raw records retain base64 bytes plus SHA256; prepared tests
+are explicitly dirty with exact harness/test file digests. Final four-role review,
+format/style/architecture, RI/coupling and unified policy remain required.
+
+This substantive harness correction needs a new complete source: old successful
+stage2427501 is historical. Freeze/review/check the corrected head, obtain fresh
+Ready native preview and owner staging, then the separate exact-head owner control
+decision. Main/production are unchanged, no whole AC is ticked. Remaining sequence:
+B2 current-source acceptance → B3 protected analytics production/live/bounded
+baseline → B4 Terra → B5 SEO/two briefs/staging → B6 SEO production/live → B7
+reconciliation. All original provider/editorial/human/release gates remain.
+
+### Completed correction review and freeze
+
+All four roles independently ACCEPT clean prepared
+eebc4599b1e4547e376f4aa8dcfd6123f82f8905/treee98f04a2f81e97a0a461ceddc334727b197c452d,
+inspecting all six changed paths. The unchanged tested helper/test SHA256s are
+f0906e8f7428c46a5c67ad6d7738bc5b9c9b25d4aa966cb8056bf9c163a14bf3 /
+ebd1b29dcf2530f5f6d1c5db64453915b3dbb1a82bbd3fb398ad53bfd0096ec2.
+
+| Role | Separate execution and actual evidence | Disposition |
+| --- | --- | --- |
+| Requirements | `/root/b22_secret_requirements`: preflight plus final six-path/AC/archive inspection; independent23/23 source tests | ACCEPT, no AC drift; historical navigation cause remains unknown |
+| Code | `/root/b22_secret_code`: actual diff/helpers/tests, independent23/23 and final RI/coupling/format/diff verification | ACCEPT, no weakened success or failure contract |
+| White-box | `/root/b22_secret_whitebox`: independent23/23; actual scenario integration with navigation/screenshot/close faults; complete provenance delta | ACCEPT; original failure/state and one close attempt retained |
+| Operator | `/root/b22_secret_operator`: six actual CLI/VM-DOM cases, source binding and archive/raw-byte readback | ACCEPT6/6; reporting behavior only, no browser or hosted-cause claim |
+
+Actual clean prepared policy8/8 passed, evidence_valid:true/errors empty and
+closure:false with21external gates pending. Formatter535, architecture, bounded
+style, RI29/29 and coupling20/20 passed. Each role independently verified code
+identity and archived evidence; no reviewer authored the correction. Verbatim
+raw independent receipts, primary policy/check streams and their source bindings
+join the existing archive without changing prior records or the reviewed code.
+This final receipt/derived-RI refresh is nonrecursive metadata. Fresh final-head
+GitHub source/native/staging evidence and the exact owner decision remain future
+observations; later dynamic receipts stay in comments after the complete freeze.
+
+The raw receipt bundle also retains a verified Git bundle for exact prepared
+eebc4599, with prerequisite2427501, so its check source remains reproducible when
+the connector publishes an equivalent tree under a different commit identity.
+The first raw-SHA bundle invocation advertised no named ref and was refused as
+empty; the nonempty revision range was verified and a local checkpoint ref supplied.
+Git bundle verification then passed. This changes no candidate behavior or check.

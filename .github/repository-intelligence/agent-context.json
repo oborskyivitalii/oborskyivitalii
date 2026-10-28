@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "79fadc3c1e37aab9bbed0fee40a667339d7062dff05f2911877572651b361d58",
+    "digest": "dce4e26def3eb028c99fff9992a59106f6527a5385e8456752742c5188182323",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -361,7 +361,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "01ff17aa4e83993e9454d2defc29f3a7bf5103d0571b2c95413feb91336e60fb"
+        "sha256": "cbc2ff4bbd25ae4ff9c7eb698493d641fc5d0ea5f6ae0dff20ae5e83b4b38407"
       },
       {
         "path": "NOTICE.md",
@@ -1100,7 +1100,7 @@
       {
         "path": "review/issue-159/2026-10-28-current-artifact-evidence.json.gz",
         "identity_mode": "content",
-        "sha256": "55abaef629d30b999beaf030a00c593c6de46821867064804a2305f8b23059a6"
+        "sha256": "da90c731d165608fd9a72c3aa3ef7cfa6ed516435bdbf4031ea8123a15b64ac4"
       },
       {
         "path": "review/issue-159/2026-10-28-qa-isolation.md",
@@ -1115,7 +1115,7 @@
       {
         "path": "review/issue-159/2026-10-28-staging-verification.md",
         "identity_mode": "content",
-        "sha256": "e67f8c9d2775141e97a623e50667dab4be042af5f92a2b5edd77ddd0ef1be36f"
+        "sha256": "f9b103872399b5916de5623b1a1d6044ad4bedde9ff7bc21dd178b3956c2cc1c"
       },
       {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -7515,7 +7515,7 @@
       {
         "path": "tests/preview-smoke.test.cjs",
         "identity_mode": "content",
-        "sha256": "c8a6339662a06ae221bb799d9f057f7042f0d3e02e7d7b4e90f8661639aa92c0"
+        "sha256": "ebd1b29dcf2530f5f6d1c5db64453915b3dbb1a82bbd3fb398ad53bfd0096ec2"
       },
       {
         "path": "tests/preview.test.cjs",
@@ -8390,7 +8390,7 @@
       {
         "path": "tools/quality/local-browser.cjs",
         "identity_mode": "content",
-        "sha256": "b0e6fc00094e59fa6a627b77ff7605d88a3a1d40662e6664c6a4ad36126eb57e"
+        "sha256": "f0906e8f7428c46a5c67ad6d7738bc5b9c9b25d4aa966cb8056bf9c163a14bf3"
       },
       {
         "path": "tools/quality/local.cjs",

@@ -89,8 +89,71 @@ async function verifyRequest(request, base, manifest, checkedFiles) {
   // Register ownership before response headers arrive. A pending request must
   // not become invisible to the document-navigation body-read barrier.
   const response = await request.response();
-  assert.ok(response, 'request failed before response ' + request.url());
+  if (!response) {
+    const observation = requestFailure(request);
+    const error = new Error('request failed before response ' + observation.url);
+    error.requestFailure = observation;
+    throw error;
+  }
   return verifyResponse(response, base, manifest, checkedFiles);
+}
+function requestFailure(request) {
+  const observation = { url: null, method: null, resourceType: null, failure: null, timing: null };
+  const unavailable = {};
+  for (const name of Object.keys(observation)) {
+    try {
+      if (typeof request[name] !== 'function') {
+        unavailable[name] = 'unavailable';
+      } else {
+        observation[name] = request[name]() ?? null;
+      }
+    } catch (error) {
+      unavailable[name] = error.message;
+    }
+  }
+  return { ...observation, unavailable };
+}
+async function failedScenario(page, error, responseChecks, details, reportDirectory = out) {
+  const result = {
+    ...details,
+    pass: false,
+    error: error.message,
+    stack: error.stack,
+    state: null,
+    stateCaptureError: null,
+    diagnosticErrors: [],
+  };
+  // Snapshot before screenshot/drain can cross the runtime's native fallback.
+  try {
+    result.state = await state(page);
+  } catch (captureError) {
+    result.stateCaptureError = captureError.message;
+  }
+  try {
+    fs.mkdirSync(reportDirectory, { recursive: true });
+    await page.screenshot({
+      path: path.join(reportDirectory, 'preview-' + details.width + '-' + details.mode + '.png'),
+    });
+  } catch (screenshotError) {
+    result.diagnosticErrors.push({ kind: 'screenshot', error: screenshotError.message });
+  }
+  try {
+    await drainResponses(responseChecks);
+  } catch (verificationError) {
+    result.diagnosticErrors.push({
+      kind: 'response-verification',
+      error: verificationError.message,
+    });
+  }
+  return result;
+}
+async function closeScenarioContext(context, failure) {
+  try {
+    await context.close();
+  } catch (error) {
+    if (!failure) throw error;
+    failure.diagnosticErrors.push({ kind: 'context-close', error: error.message });
+  }
 }
 function identity(manifest) {
   if (process.env.SITE_EXPECTED_PUBLIC_DIGEST)
@@ -424,7 +487,9 @@ async function scenario(browser, url, manifest, variant, width, mode, isolation 
       isolation
     ),
     page = await context.newPage();
+  let failure;
   const errors = [],
+    requestFailures = [],
     external = [],
     analytics = [],
     responseChecks = [],
@@ -447,6 +512,7 @@ async function scenario(browser, url, manifest, variant, width, mode, isolation 
       responseChecks.push(
         verifyRequest(request, url, manifest, checkedFiles).catch((error) => {
           errors.push(error.message);
+          if (error.requestFailure) requestFailures.push(error.requestFailure);
         })
       );
       return;
@@ -560,25 +626,18 @@ async function scenario(browser, url, manifest, variant, width, mode, isolation 
       verifiedResponses: [...checkedFiles].sort(),
     };
   } catch (error) {
-    fs.mkdirSync(out, { recursive: true });
-    await page
-      .screenshot({ path: path.join(out, 'preview-' + width + '-' + mode + '.png') })
-      .catch(() => {});
-    await drainResponses(responseChecks);
-    return {
+    failure = await failedScenario(page, error, responseChecks, {
       width,
       mode,
-      pass: false,
-      error: error.message,
-      stack: error.stack,
       rows,
-      state: await state(page).catch(() => null),
       errors,
+      requestFailures,
       externalRequests: external,
       analyticsRequests: analytics,
-    };
+    });
+    return failure;
   } finally {
-    await context.close();
+    await closeScenarioContext(context, failure);
   }
 }
 async function main() {
@@ -691,6 +750,9 @@ module.exports = {
   artifactFile,
   verifyResponse,
   verifyRequest,
+  requestFailure,
+  failedScenario,
+  closeScenarioContext,
   documentNavigation,
   navigationAction,
   contentDocuments,

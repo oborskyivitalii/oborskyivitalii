@@ -6,6 +6,9 @@ const {
   artifactFile,
   verifyResponse,
   verifyRequest,
+  requestFailure,
+  failedScenario,
+  closeScenarioContext,
   identity,
   verifyRuntimeIdentity,
   analyticsRequest,
@@ -14,6 +17,160 @@ const {
 } = require('../tools/quality/local-browser.cjs');
 const { validate } = require('../tools/quality/flight-detail.cjs');
 const qaIsolation = require('../tools/quality/analytics-isolation.cjs');
+
+test('context cleanup remains mandatory and cannot replace an already failed verdict', async () => {
+  let closes = 0;
+  const context = {
+    close: async () => {
+      closes++;
+      throw Error('context unavailable');
+    },
+  };
+  const failure = { pass: false, error: 'original deadline', diagnosticErrors: [] };
+  await closeScenarioContext(context, failure);
+  assert.equal(closes, 1);
+  assert.deepEqual(failure, {
+    pass: false,
+    error: 'original deadline',
+    diagnosticErrors: [{ kind: 'context-close', error: 'context unavailable' }],
+  });
+  await assert.rejects(closeScenarioContext(context), /context unavailable/);
+  assert.equal(closes, 2, 'one close attempt for each invocation');
+});
+
+test('failed smoke retains the earliest state before screenshot and response cleanup', async (t) => {
+  const fs = require('node:fs');
+  const os = require('node:os');
+  const path = require('node:path');
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'smoke-failure-'));
+  t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
+  const actions = [];
+  let pageName = 'writing';
+  let finish;
+  const pending = new Promise((resolve) => {
+    finish = resolve;
+  }).then(() => {
+    actions.push('drain');
+    pageName = 'destroyed';
+  });
+  const page = {
+    evaluate: async () => {
+      actions.push('state');
+      return { page: pageName, busy: 'true' };
+    },
+    screenshot: async () => {
+      actions.push('screenshot');
+      pageName = 'fallback';
+      finish();
+    },
+  };
+  const error = Error('original readiness deadline');
+  const result = await failedScenario(
+    page,
+    error,
+    [pending],
+    { width: 390, mode: 'normal' },
+    directory
+  );
+  assert.deepEqual(actions, ['state', 'screenshot', 'drain']);
+  assert.deepEqual(result.state, { page: 'writing', busy: 'true' });
+  assert.equal(pageName, 'destroyed');
+  assert.equal(result.pass, false);
+  assert.equal(result.error, error.message);
+  assert.equal(result.stack, error.stack);
+  assert.equal(result.stateCaptureError, null);
+  assert.deepEqual(result.diagnosticErrors, []);
+});
+
+test('secondary smoke diagnostics cannot replace the original failure', async (t) => {
+  const fs = require('node:fs');
+  const os = require('node:os');
+  const path = require('node:path');
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'smoke-failure-'));
+  t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
+  const error = Error('original readiness deadline');
+  const page = {
+    evaluate: async () => {
+      throw Error('renderer unavailable');
+    },
+    screenshot: async () => {
+      throw Error('screenshot unavailable');
+    },
+  };
+  // Defer rejection until collection so the fixture has no unhandled rejection.
+  const checks = [{ then: (_resolve, reject) => reject(Error('response unavailable')) }];
+  const result = await failedScenario(
+    page,
+    error,
+    checks,
+    { width: 390, mode: 'normal' },
+    directory
+  );
+  assert.equal(result.pass, false);
+  assert.equal(result.error, error.message);
+  assert.equal(result.stack, error.stack);
+  assert.equal(result.state, null);
+  assert.equal(result.stateCaptureError, 'renderer unavailable');
+  assert.deepEqual(result.diagnosticErrors, [
+    { kind: 'screenshot', error: 'screenshot unavailable' },
+    { kind: 'response-verification', error: 'response unavailable' },
+  ]);
+});
+
+test('null response retains native request diagnostics and still rejects', async () => {
+  const observation = {
+    url: 'https://example.test/snapshots/version/talks.html',
+    method: 'GET',
+    resourceType: 'fetch',
+    failure: { errorText: 'net::ERR_TIMED_OUT' },
+    timing: { startTime: 123, responseStart: -1, responseEnd: -1 },
+  };
+  const request = Object.fromEntries(
+    Object.entries(observation).map(([key, value]) => [key, () => value])
+  );
+  request.response = async () => null;
+  const checked = new Set();
+  await assert.rejects(
+    verifyRequest(request, 'https://example.test', { files: {} }, checked),
+    (error) => {
+      assert.match(error.message, /request failed before response/);
+      assert.deepEqual(error.requestFailure, { ...observation, unavailable: {} });
+      return true;
+    }
+  );
+  assert.equal(checked.size, 0, 'missing response cannot verify bytes');
+});
+
+test('unavailable request diagnostics remain explicit without hiding request rejection', async () => {
+  const request = {
+    url: () => 'https://example.test/talks.html',
+    response: async () => null,
+    failure: () => {
+      throw Error('request disposed');
+    },
+  };
+  assert.deepEqual(requestFailure(request), {
+    url: request.url(),
+    method: null,
+    resourceType: null,
+    failure: null,
+    timing: null,
+    unavailable: {
+      method: 'unavailable',
+      resourceType: 'unavailable',
+      failure: 'request disposed',
+      timing: 'unavailable',
+    },
+  });
+  await assert.rejects(
+    verifyRequest(request, 'https://example.test', { files: {} }, new Set()),
+    (error) => {
+      assert.match(error.message, /request failed before response/);
+      assert.equal(error.requestFailure.unavailable.failure, 'request disposed');
+      return true;
+    }
+  );
+});
 
 test('QA collector predicate is exact and leaves SDK, lookalikes and unrelated paths alone', () => {
   for (const value of [qaIsolation.collector, qaIsolation.collector + '?v=1'])
