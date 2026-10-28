@@ -864,7 +864,9 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-159/2026-10-28-b2-browser.json.gz](review/issue-159/2026-10-28-b2-browser.json.gz) | Actual pinned Chromium B2 contrast observations, exact core hashes and verified archive-origin receipts; no real provider telemetry. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-159/2026-10-28-b2-diagnostics.json.gz](review/issue-159/2026-10-28-b2-diagnostics.json.gz) | Preserved B2 preliminary cold/Color failures and bounded operator/white-box diagnostics with dirty-source limits. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-159/2026-10-28-baseline.json](review/issue-159/2026-10-28-baseline.json) | Sanitized fixed-window Cloudflare RUM and separate Search Console receipts, reproducible query templates and sampling/access limitations. | history | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
+| [review/issue-159/2026-10-28-current-artifact-evidence.json.gz](review/issue-159/2026-10-28-current-artifact-evidence.json.gz) | Raw B2.2 clean7100 staging Color artifact, independent native smoke, metadata and lint/architecture receipts; first invocation failure retained. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-159/2026-10-28-qa-isolation.md](review/issue-159/2026-10-28-qa-isolation.md) | B2 source-bound isolation decision, four independent reviews, test allocation and release limits. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-159/2026-10-28-staging-verification.md](review/issue-159/2026-10-28-staging-verification.md) | B2.2 exact current-artifact native/source verification, role review and frozen-head staging/admission boundaries. | history | [AGENTS.md](AGENTS.md) |
 
 ## review/issue-2/
 

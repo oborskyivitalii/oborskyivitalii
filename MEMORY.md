@@ -27,8 +27,8 @@ Dated continuity, not live authority. Last verified: **2026-10-28**.
 
 ## Open work
 
-- B1 corrected policy7/7, RI29/29, coupling20/20 and four actual roles ACCEPT;
-  use Draft PR160 for final clean-head evidence and source/run links. Baseline RUM427 includes
+- B2.1 clean policy8/8 and four actual roles ACCEPT; current-artifact B2.2
+  local native smoke passed4generic+2Color on clean7100d2b. Baseline RUM427 includes
   264Headless; non-headless163 is not humans. Sampling/limits are in the receipt.
 - B2 native pinned Chromium contrast passed6blocked versus6following-ordinary
   sink-allowed attempts. Source/role/final policy receipts live in the B2 review.
@@ -40,8 +40,9 @@ Dated continuity, not live authority. Last verified: **2026-10-28**.
 ## Next session
 
 1. Revalidate current main/production, #159 and analytics Draft PR160.
-2. Read review/issue-159/2026-10-28-qa-isolation.md and exact-source results.
-3. Finish B2 staging/control verification, then B3 delivery on PR160; Terra follows.
+2. Read review/issue-159/2026-10-28-staging-verification.md and latest PR/issue comments.
+3. Freeze source before Ready/owner stage; final CI/stage refs stay in comments.
+   Exact-head owner reviewed_sha trust remains distinct before App admission.
 4. Report batch outcome, next action, full remaining sequence and plan deviations.
 
 ## Maintenance
@@ -50,6 +51,8 @@ Dated continuity, not live authority. Last verified: **2026-10-28**.
   wrong selector corrected and exact historical fixture blobs materialized.
 - Local clone uses blob:none. Tests forbid lazy fetching: materialize required
   immutable historical dependencies before fixture runs, never weaken pins/tests.
+- Do not add receipt/MEMORY commits after accepted staging: complete-tree leases
+  would move. Keep dynamic CI/staging refs in PR/issue comments until next source work.
 - Current-source reports stay outside checkout. Preserve dirty/clean identities,
   pending gates and failed outcomes; no unchanged blind campaign retry.
 - Maintain five sections/120 lines and rebuild/verify RI after indexed changes.

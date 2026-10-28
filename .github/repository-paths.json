@@ -11886,6 +11886,18 @@
       "purpose": "Actual pinned Chromium B2 contrast observations, exact core hashes and verified archive-origin receipts; no real provider telemetry.",
       "role": "history",
       "owner": "AGENTS.md"
+    },
+    "review/issue-159/2026-10-28-staging-verification.md": {
+      "kind": "file",
+      "purpose": "B2.2 exact current-artifact native/source verification, role review and frozen-head staging/admission boundaries.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-159/2026-10-28-current-artifact-evidence.json.gz": {
+      "kind": "file",
+      "purpose": "Raw B2.2 clean7100 staging Color artifact, independent native smoke, metadata and lint/architecture receipts; first invocation failure retained.",
+      "role": "history",
+      "owner": "AGENTS.md"
     }
   }
 }
