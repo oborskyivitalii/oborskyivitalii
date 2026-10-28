@@ -10,6 +10,16 @@ on:
         description: Exact candidate for private cause attribution
         required: true
         type: string
+      scope:
+        description: Historical private cases or bounded current-production analytics observation
+        required: true
+        default: historical
+        type: choice
+        options: [historical, analytics-live]
+      release_tag:
+        description: Accepted immutable current production tag, required only for analytics-live
+        required: false
+        type: string
 permissions:
   contents: read
   actions: read
@@ -17,6 +27,67 @@ concurrency:
   group: cause-probe-${{ github.event_name == 'pull_request' && format('pr-{0}-{1}', github.event.pull_request.number, github.event.label.name) || inputs.candidate_sha }}
   cancel-in-progress: true
 jobs:
+  analytics-live:
+    if: >-
+      github.event_name == 'workflow_dispatch' && inputs.scope == 'analytics-live' &&
+      github.repository == 'oborskyivitalii/oborskyivitalii' &&
+      github.actor == github.repository_owner
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    permissions:
+      contents: read
+      actions: read
+      deployments: read
+    env:
+      SITE_CANDIDATE_SHA: ${{ inputs.candidate_sha }}
+      SITE_ANALYTICS_RELEASE: ${{ inputs.release_tag }}
+      SITE_ANALYTICS_LIVE_DIR: ${{ runner.temp }}/analytics-live-input
+      SITE_REPORT_DIR: ${{ runner.temp }}/analytics-live-results
+      SITE_TEST_PROFILE: production
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ inputs.candidate_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '24.19.0'
+      - name: Install the existing locked diagnostic tools
+        run: npm ci --prefix tools/quality/toolchain --ignore-scripts
+      - name: Check the bounded diagnostic and historical routing negatives
+        run: node --test tests/cause-probe.test.cjs
+      - name: Authenticate and restore the exact accepted production archive
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        with:
+          script: await require('./tools/quality/analytics-live-actions.cjs').prepare(github,context)
+      - name: Install the pinned Chromium system dependencies
+        run: tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium
+      - name: Restore verified pinned Chromium without prior launch
+        uses: ./.github/actions/browser-archive
+        with:
+          browsers: chromium
+      - name: Record two Forward conditions and a separate real-SDK CPU sample
+        id: observe
+        continue-on-error: true
+        run: node tools/quality/analytics-live.cjs "$SITE_ANALYTICS_LIVE_DIR/target" "$SITE_REPORT_DIR"
+      - name: Recheck production identity and retain the actual diagnostic verdict
+        if: always() && (steps.observe.outcome == 'success' || steps.observe.outcome == 'failure')
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        with:
+          script: await require('./tools/quality/analytics-live-actions.cjs').finish(github,context)
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: analytics-live-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/analytics-live-results/
+            ${{ runner.temp }}/analytics-live-input/target/binding.json
+          if-no-files-found: error
+          retention-days: 90
+      - name: Keep the original failed collection red
+        if: always() && steps.observe.outcome == 'failure'
+        run: exit 1
   writing-attribution:
     if: github.event_name == 'pull_request' && github.event.label.name == 'site-writing-cause-evidence' && github.event.pull_request.number == 47 && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-24.04
@@ -180,7 +251,7 @@ jobs:
           if-no-files-found: error
           retention-days: 90
   diagnose:
-    if: github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'workflow_dispatch' && inputs.scope != 'analytics-live'
     strategy:
       fail-fast: false
       matrix:

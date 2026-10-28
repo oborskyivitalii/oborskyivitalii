@@ -4,62 +4,54 @@ Dated continuity, not live authority. Last verified: **2026-10-28**.
 
 ## Snapshot
 
-- Current owner #159 combines SEO/analytics and retired #158/#102 obligations.
-  Main and production revalidated9318a54a684079bb23e5dadcfa4bf705d6783dd0.
-  Earlier #122 platform/C2/C3 evidence remains in its versioned review history;
-  old MEMORY source/ref claims must not replace this live verification.
-- Branch issue-159-analytics-p1 starts from that main; analytics B2 candidate
-  is unmerged/unreleased. Draft PR160 is open; exact head/check pointers belong in its owner review
-  and PR conversation.
-- Four existing open PR79/107/110/117 remain separate owners. PR79 article is
-  unpublished; no article or campaign work is included in this increment.
+- Owner #159 combines SEO/analytics and retired #158/#102 obligations.
+  Main and production revalidated c68db162ca294ed3bd88e7e2280ecbd8f37e3dd3.
+  PR160 merged; immutable prod-2026-10-28.1 published in40723608614.
+  Public digest1f258d4f29f0a50328ae110fde0d940cb172742cda8881756b93020af0b75a81.
+- Four open PR79/107/110/117 are separate owners; no article/campaign work here.
+  Current source work is issue-159-live-diagnostics from c68db162.
 
 ## Decisions
 
 - User orders analytics delivery/live verification first, then Terra SEO work.
-  One active #159 PR at a time; two production increments retain one policy
-  AC01–AC18 and all original external/provider/human/release obligations.
-- B2 implements explicit context-owned collector interception across mandatory
-  smoke/article-tags/article/Color consumers; public site bytes are unchanged.
-  Optional functional/nav/motion/Lighthouse sibling contexts remain residual.
-- New policy/workflow controls use ordinary full-route/exact-head admission.
-  Preserve source/artifact/rights leases and all existing budgets.
+  One active #159 PR at a time; original AC01–AC18 and all external gates persist.
+- Production QA isolation delivered: seven native contexts blocked162 collector
+  attempts; ordinary CUA/provider observation is separate. Fixture contrast6/6
+  is not actual provider proof. Runtime/public bytes stay unchanged in diagnostics.
+- Use existing manual cause workflow and pinned tools for two unprofiled Forward
+  conditions plus separate6s real-SDK CPU/transport. Exact collector differs from
+  immutable target; actual browser bytes and active full deployment lease required.
+- Historical CUA Forward6000ms wait errored after3.9791sec then correct DOM;
+  cause remains unknown. Never relabel it after a later Playwright result.
 
 ## Open work
 
-- Stage40700127408/1 passed source2427501/tree1a88 including stable promotion.
-  Its Ready preview40699258029/1 failed390normal Writing→Talks. The existing
-  staging-verification review retains distinct receipts and local setup limits.
-  Narrow smoke diagnostic capture needs its own reviewed final head/CI/staging;
-  earlier stage success cannot be relabelled at that new source.
-
-- B2.1 clean policy8/8 and four actual roles ACCEPT; current-artifact B2.2
-  local native smoke passed4generic+2Color on clean7100d2b. Baseline RUM427 includes
-  264Headless; non-headless163 is not humans. Sampling/limits are in the receipt.
-- B2 native pinned Chromium contrast passed6blocked versus6following-ordinary
-  sink-allowed attempts. Source/role/final policy receipts live in the B2 review.
-  No real provider receipt or production cutover is supplied by this fixture.
-- B3 requires authorized staging/merge/production, actual provider/history/vital/
-  SDK-cost evidence and bounded before/after reporting. Source/stub tests do not
-  prove ingestion. Later SEO/human/briefs/publication gates remain open.
+- Current diagnostic source/review:
+  review/issue-159/2026-10-28-live-diagnostics.md. Four initial reviewers found
+  selector, byte/lease binding, timeline, CPU and failure-capture gaps. Corrected
+  source guards17/17 passed and four corrected-source roles ACCEPT. Final
+  repository/policy checks, freeze and first native dispatch remain pending.
+- B3 actual provider16:20–16:24Z9loads/3visits and real navigation/reload/routing
+  rows observed. Equal300sec windows3/1Safari versus2/1Chrome are tiny unequal
+  clients and not a causal reduction. Weekly427/166 includes264Headless;
+  nonheadless163/144 is not verified humans. GSC six cached dates1click17impressions.
+- Issue159 currently9/46 checkbox lines complete: AC10/12/14/17 whole criteria.
+  B3 SDK cost/Forward diagnosis and later SEO/editorial/human gates remain open.
+  PR117 private LCP acquisition/replay cannot substitute for real live SDK evidence.
 
 ## Next session
 
-1. Revalidate current main/production, #159 and analytics Draft PR160.
-2. Read review/issue-159/2026-10-28-staging-verification.md and latest PR/issue comments.
-3. Finish reviewed smoke failure diagnostic preservation, then freeze the complete
-   new source before Ready/native preview/owner stage; dynamic receipts stay in comments.
-   Exact-head owner reviewed_sha trust remains distinct before App admission.
-4. Report batch outcome, next action, full remaining sequence and plan deviations.
+1. Revalidate main/production, #159 and any new diagnostic Draft PR/head/checks.
+2. Complete final four role re-review and current source/RI/policy checks.
+3. Freeze source; use existing owner-dispatched analytics-live branch workflow,
+   retain first native timing/CPU/network result. Diagnose failure before rerun.
+4. Reconcile B3 against original AC; then proceed Terra SEO under same #159 owner.
+   Dynamic receipts stay comments after source freeze; no receipt-only commits.
 
 ## Maintenance
 
-- Preserve first/second failed-policy and early RI logs in the issue159 archives;
-  wrong selector corrected and exact historical fixture blobs materialized.
-- Local clone uses blob:none. Tests forbid lazy fetching: materialize required
-  immutable historical dependencies before fixture runs, never weaken pins/tests.
-- Do not add receipt/MEMORY commits after accepted staging: complete-tree leases
-  would move. Keep dynamic CI/staging refs in PR/issue comments until next source work.
-- Current-source reports stay outside checkout. Preserve dirty/clean identities,
-  pending gates and failed outcomes; no unchanged blind campaign retry.
-- Maintain five sections/120 lines and rebuild/verify RI after indexed changes.
+- Preserve original failed source/setup/native outcomes and exact identities.
+- Local blob:none clone: materialize pinned historical blobs before fixture runs;
+  never weaken tests or permit lazy fetch as a substitute.
+- Current-source reports stay outside checkout. No unchanged blind retries.
+- Maintain five sections/120 lines; rebuild RI and refresh/verify RI-CI after changes.

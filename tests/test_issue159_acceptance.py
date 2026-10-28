@@ -9,6 +9,29 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class Issue159AcceptanceTests(unittest.TestCase):
+    def test_live_diagnostic_guards(self):
+        script = """
+const runner = require('./tools/quality/source-tests.cjs');
+process.stdout.write(JSON.stringify(runner.run(process.cwd(), {
+  profile: 'issue159', modules: ['tests/cause-probe.test.cjs'],
+})));
+"""
+        result = subprocess.run(
+            ["node", "-e", script],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+            timeout=190,
+        )
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        report = json.loads(result.stdout)
+        self.assertEqual(report["status"], "passed")
+        self.assertGreater(report["total"], 0)
+        self.assertEqual(report["passed"], report["total"])
+        for key in ("failed", "cancelled", "skipped", "todo"):
+            self.assertEqual(report[key], 0)
+
     def test_qa_collector_isolation(self):
         script = """
 const runner = require('./tools/quality/source-tests.cjs');

@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "dce4e26def3eb028c99fff9992a59106f6527a5385e8456752742c5188182323",
+    "digest": "3d4f0146b05e1dd3c6e758a06fd87c98c2aacb1e5fa1060a0657b98b4ab30afa",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -82,7 +82,7 @@
       {
         "path": ".github/acceptance/issue-159.json",
         "identity_mode": "content",
-        "sha256": "6ffd7daeb2c912f18a79af3fc06accff5ba53960901494060902fae1bc29d0d1"
+        "sha256": "fb792b514397558cb1af85f8bcce49885ff447bccaf1825800095aa8ea5fc0f2"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -206,12 +206,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "d5dba7ce5d8d8aa8103bd83f15ae4dc6944afea5ba4eb64f6c77c348377f54c7"
+        "sha256": "872ffb338c29fbfac3056f76f36163dfbe5bab59db1443127ceb08e2f56dc94e"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "05b0d5a35ae8dce43b919d4a3ad7eb70de6e91a5ea75c12772ec3cfad3c25dad"
+        "sha256": "8b2f94531a566c4888b5e04a035e3244215b8253db2a6e2d56535e738c10cdc0"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -261,7 +261,7 @@
       {
         "path": ".github/workflows/site-cause-probe.yml",
         "identity_mode": "content",
-        "sha256": "1de3e1d94a592a433d6c4f48044a5829452f80eed20ced07db5fed91b9877215"
+        "sha256": "78e49c3e1b78020d8cb0458d3179b05af6f0b6e5ccefc51d32f509f4a04d8beb"
       },
       {
         "path": ".github/workflows/site-checks.yml",
@@ -361,7 +361,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "cbc2ff4bbd25ae4ff9c7eb698493d641fc5d0ea5f6ae0dff20ae5e83b4b38407"
+        "sha256": "65412d349773202a1d9d6c44c765e6071a5212f56d66b37f5ee70b19ce9d8de3"
       },
       {
         "path": "NOTICE.md",
@@ -710,12 +710,12 @@
       {
         "path": "guides/SITE-ANALYTICS.md",
         "identity_mode": "content",
-        "sha256": "c6d04f2d5e11d732228eefa01bc84df9017738b0c3382229d471eda306c74496"
+        "sha256": "bfece46ffaffdd42ba18df6785490a6e09133d50823b8bc19ade58505c412c07"
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "86b963441b201bc156733c65d61c61c21881c21d6a09ca538535c34879c4c8b0"
+        "sha256": "4d04212f1f3f7810ed9cc43695a57fb18c1bb3e3ed15249d2839e7dd80566258"
       },
       {
         "path": "guides/SITE-CONTENT-RELEASE.md",
@@ -1101,6 +1101,11 @@
         "path": "review/issue-159/2026-10-28-current-artifact-evidence.json.gz",
         "identity_mode": "content",
         "sha256": "da90c731d165608fd9a72c3aa3ef7cfa6ed516435bdbf4031ea8123a15b64ac4"
+      },
+      {
+        "path": "review/issue-159/2026-10-28-live-diagnostics.md",
+        "identity_mode": "content",
+        "sha256": "64079905fc82b26243ccf00833d5b6cbea5d91cd6be699e6e6c02f669dc78ae1"
       },
       {
         "path": "review/issue-159/2026-10-28-qa-isolation.md",
@@ -7300,7 +7305,7 @@
       {
         "path": "tests/cause-probe.test.cjs",
         "identity_mode": "content",
-        "sha256": "755bac2bfe63bc05479b0388bfdf26b9971610081f6aefdde2f16b3043c7a3d3"
+        "sha256": "95084abc68cd78cdb9ea01b5d982000425171e3d53477dc740c61138f28e9d88"
       },
       {
         "path": "tests/color-build.test.cjs",
@@ -7705,7 +7710,7 @@
       {
         "path": "tests/test_issue159_acceptance.py",
         "identity_mode": "content",
-        "sha256": "9b0f330f75869905b19577d1f2c3e4b06ba850cb0f59070db2b2b42d563c04f9"
+        "sha256": "9769545b3c325a7bedb6b370db43a13fd350f1f987fe8f4dfff52fe8f04ab4d3"
       },
       {
         "path": "tests/test_issue31_acceptance.py",
@@ -8096,6 +8101,16 @@
         "path": "tools/quality/analytics-isolation.cjs",
         "identity_mode": "content",
         "sha256": "b486ec0938d0e5fb9219a6b9905f92c830a1b0eb8497aab228542fafbfb24b47"
+      },
+      {
+        "path": "tools/quality/analytics-live-actions.cjs",
+        "identity_mode": "content",
+        "sha256": "6a30a1c4186680f3b46fe637dac4e91f2f15d271ecebc3d806d42d3065eafc2a"
+      },
+      {
+        "path": "tools/quality/analytics-live.cjs",
+        "identity_mode": "content",
+        "sha256": "1a6389fbeaa42eaeba00402f8bcd9bfcc9ea6cea25dc1e8b33f65a0dab6fd6db"
       },
       {
         "path": "tools/quality/architecture.cjs",
@@ -8550,7 +8565,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "df72a5ae8e9f80899bd24ca5cf6ff6ffd0d74fafcd04e959a280d0e7ad325fe4"
+        "sha256": "0d556fbfcb7686da8a4f08aa2455c1dad87658359df43e07ebb25a7b2c95db3b"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -9794,7 +9809,7 @@
     {
       "path": ".github/workflows/site-cause-probe.yml",
       "kind": "file",
-      "purpose": "Explicit historical cause replay plus issue45 same-repository PR47 Writing label attribution; four source-bound private inputs, never stage or release admission. Issue39 PR40 current-runtime evidence: five ordinary trials plus one separate CPU sample; no admission. Issue122 T03-D adds owner-controlled exact PR128 opt-in routing with actual-expression event-boundary tests; protocol and admission remain unchanged.",
+      "purpose": "Explicit historical cause replay plus issue45 same-repository PR47 Writing label attribution; four source-bound private inputs, never stage or release admission. Issue39 PR40 current-runtime evidence: five ordinary trials plus one separate CPU sample; no admission. Issue122 T03-D adds owner-controlled exact PR128 opt-in routing with actual-expression event-boundary tests; protocol and admission remain unchanged. Issue159 adds explicit owner-only analytics-live dispatch against accepted immutable production with separate unprofiled Forward and real-SDK cost phases; no release admission.",
       "role": "workflow",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -11649,6 +11664,17 @@
         "AGENTS.md"
       ],
       "title": "2026-10-28-current-artifact-evidence.json.gz"
+    },
+    {
+      "path": "review/issue-159/2026-10-28-live-diagnostics.md",
+      "kind": "file",
+      "purpose": "B3 live diagnostic charter, exact source/target boundaries, independent role findings and retained first observations.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue159 — 2026-10-28 bounded live diagnostics"
     },
     {
       "path": "review/issue-159/2026-10-28-qa-isolation.md",
@@ -27038,6 +27064,28 @@
         "AGENTS.md"
       ],
       "title": "analytics-isolation.cjs"
+    },
+    {
+      "path": "tools/quality/analytics-live-actions.cjs",
+      "kind": "file",
+      "purpose": "Read-only manual diagnostic adapter authenticating immutable accepted current production, collector/source distinction and final production lease.",
+      "role": "source",
+      "owner": "guides/SITE-ANALYTICS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "analytics-live-actions.cjs"
+    },
+    {
+      "path": "tools/quality/analytics-live.cjs",
+      "kind": "file",
+      "purpose": "Bounded ordinary current-production Forward timing and separate real-SDK transfer/CPU observation; retained failures and no admission.",
+      "role": "validator",
+      "owner": "guides/SITE-ANALYTICS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "analytics-live.cjs"
     },
     {
       "path": "tools/quality/architecture.cjs",

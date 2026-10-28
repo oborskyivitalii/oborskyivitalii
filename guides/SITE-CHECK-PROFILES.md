@@ -316,6 +316,18 @@ See [SITE-RELEASE-GATES](SITE-RELEASE-GATES.md) for unchanged release budgets an
 [SITE-STAGING](SITE-STAGING.md) for controller, source leases, promotion and
 retained recovery. Production activation remains outside routine staging.
 
+## Current-production analytics diagnostic
+
+The existing manual `site-cause-probe.yml` defaults to historical cases. Its explicit
+owner-only `analytics-live` scope takes an exact collector candidate SHA and current
+immutable release tag. `analytics-live-actions.cjs` authenticates the archive and
+current accepted production deployment full lease; `analytics-live.cjs` observes two
+unprofiled Forward conditions and one separate real-SDK CPU/transport window. Source
+guards run first in the existing `cause-probe.test.cjs` diagnostic suite. Native
+observations are opt-in only, with no new schedule, stage/production admission or
+performance-budget claim. The [analytics contract](SITE-ANALYTICS.md#bounded-ordinary-live-diagnostics)
+owns boundaries and the issue159 review retains original failures and QA dispositions.
+
 ## QA findings to GitHub Actions
 
 The [independent quality-agent protocol](../CONTRIBUTING.md#independent-quality-agents)
