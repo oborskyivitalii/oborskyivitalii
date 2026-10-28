@@ -77,10 +77,10 @@ latest raw-head hosted CI or the trusted-main staging controller.
 
 | Role | Separate identity | Actually inspected/executed scope | Current result |
 | --- | --- | --- | --- |
-| Requirements | `/root/b22_requirements` | Live issue/PR, profiles/controller/control requirements; source classification; raw artifact/native reports | Preflight ACCEPT; final record binding pending |
-| Code/artifact | `/root/b22_artifact` | Complete implementation diff; actual artifact verify and five HTML metadata checks; raw native inventories | ACCEPT bounded source/current-artifact scope; final record binding pending |
-| White-box | `/root/b22_whitebox` | Actual source selectors, branch matrix, metadata negative boundary and all native raw reports/exit | ACCEPT current-artifact scope; no new test needed; final record binding pending |
-| Operator | `/root/b22_operator` | Single actual full native smoke, pre/post identity and complete terminal accounting | ACCEPT bounded local scope; final record binding pending |
+| Requirements | `/root/b22_requirements` | Live issue/PR, profiles/controller/control requirements; source classification; raw artifact/native reports | Preflight and final ACCEPT; complete digest independently reproduced |
+| Code/artifact | `/root/b22_artifact` | Complete implementation diff; actual artifact verify and five HTML metadata checks; raw native inventories | Final ACCEPT; digest/raw evidence independently verified |
+| White-box | `/root/b22_whitebox` | Actual source selectors, branch matrix, metadata negative boundary and all native raw reports/exit | Final ACCEPT; digest/raw evidence/RI checks verified; no new test needed |
+| Operator | `/root/b22_operator` | Single actual full native smoke, pre/post identity and complete terminal accounting | Final ACCEPT; digest and own archived raw receipts match exactly |
 
 No role authored implementation/tests or impersonated another. New regression tests
 are not justified for an unchanged implementation with passing maintained behavior.
@@ -128,3 +128,29 @@ comparable baseline → B4 Terra audience/query research → B5 SEO/two briefs/s
 → B6 separate SEO production/live verification → B7 complete reconciliation.
 Only the original B2 source-versus-verification allocation is refined; no gate is
 removed and Terra remains after analytics production verification.
+
+## Final local checkpoint and immutable review binding
+
+All four separate roles returned final ACCEPT and independently recomputed1780
+actual tracked/untracked nonignored files (including RI) with prepared digest
+`95e3aa8ff5d67a6eb56fe03a48367b1d912147d43f3c9e062076537296fde976`
+(sorted path, NUL, raw SHA256(file)). Exact prepared tree
+`3f383b397e47a54252525ac8e854e50526b55bc3` is retained in
+[e334294](https://github.com/oborskyivitalii/oborskyivitalii/commit/e3342948fb05ccce97a78c2b04d9f21f8ec73f92).
+They inspected the actual complete seven-path metadata/evidence delta rather
+than relying on implementer summaries. No code/tests were authored by reviewers.
+
+Actual prepared checks: full RI29/29, coupling20/20 and formatter535files passed,
+no changes. Code/artifact and white-box roles independently inspected these
+receipts; requirements and operator did not attribute outcomes to themselves.
+All four verified raw current-artifact/native evidence and its stated limits;
+operator's own six raw receipt/log records match the archive exactly. All three
+lint engines passed341files/zero warnings; first invocation failure remains
+preserved. No new required test or implementation correction was identified.
+
+The final receipt commit contains only these completed role/check facts and
+deterministic RI. Native/artifact/lint evidence remains exactly attributed to
+clean7100d2b, whose tested harness/public bytes are unchanged. Later hosted CI,
+stable staging, current head/tree, exact control decision and final status will
+be linked in PR160/issue159 comments without moving the frozen staged source.
+This checkpoint supplies no hosted/staging/App/merge/production pass in advance.

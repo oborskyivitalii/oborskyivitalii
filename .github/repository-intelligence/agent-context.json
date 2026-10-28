@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "abd4810bcffb9c98390cf89de503ce26f16727fa014f2a538adf1c0b279e92f9",
+    "digest": "0d663f8828e29d43d5f8101156955963bcedbfeb9905e2423cd10952b1f0b50f",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -1110,7 +1110,7 @@
       {
         "path": "review/issue-159/2026-10-28-staging-verification.md",
         "identity_mode": "content",
-        "sha256": "d6053997318562f436ec41147f42051f754862efb43269a0140d3229cd414270"
+        "sha256": "d6f9fd19b11432af8a593075566c50a95db6cc4002a2871b0ecc17c0927c98d8"
       },
       {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",
