@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "f703a476c6dcc4039537fad214614b6d8ad32c76f6cccea2c778490552f865a2",
+    "digest": "d6dbaefb5f5eb741a159070b2657c1fd4a98d2b3baee2fdfb1e8f54c0f4b3770",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -206,12 +206,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "dde1f3594c3a41c4e7494af92ccb2273b1dbf0f113cf7bf5136733c5d7c09e23"
+        "sha256": "c610f4d59c32046f8cd5fec7c93f24803fe5d91ec3473aaa2985ab2b8face5e3"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "3d6ca5d9317eddf8ce5346f71c703e4af2dd36383cd072f90416ea07198f4543"
+        "sha256": "8424ebb8565c3816857ee2af568d7d4151a9f112d8e0470c93b3af928b085bab"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -361,7 +361,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "47ff26c677e2add25caab392d7f5eb2f415745f74691e69bef491722f875cd40"
+        "sha256": "645d4346f7e1ecc35a617a03f230121ef503edc01637b08ab331a1c8dc4adcb0"
       },
       {
         "path": "NOTICE.md",
@@ -415,12 +415,12 @@
       {
         "path": "docs/credits.html",
         "identity_mode": "content",
-        "sha256": "4d205671a25b539414b58c53a91d348c1142be69dd219e145fd55d32878a286c"
+        "sha256": "57d8aca647324cb25888c21bc89164038a9c921c4999854e5e5b3b3ef0a5372a"
       },
       {
         "path": "docs/index.html",
         "identity_mode": "content",
-        "sha256": "407adc8421cb1aeca11fc5c1f48b4bea545f41499e402cf90f26ef451c2449f4"
+        "sha256": "dd9e0a145a90b01b9e4edccab57ef6e703f31b9960a35ca5dc1938640f6ea8b1"
       },
       {
         "path": "docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg",
@@ -455,7 +455,7 @@
       {
         "path": "docs/research.html",
         "identity_mode": "content",
-        "sha256": "40b8111006bfbe6c0cee66387246a6c10c67e17e8a98d03a8f27f8cc6f19ab71"
+        "sha256": "1f3a740f1a273950c9d2d5fdab3b481685103379e9ba85318697d62bdbc2fdd9"
       },
       {
         "path": "docs/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/archive.js",
@@ -540,7 +540,12 @@
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "396ef8e43bada3485dbbf12cdd0fcdb306f58042587d5e1ba729bed72abb31ba"
+        "sha256": "408dff9d00c82b11279149f416b84cd390ee0a6934cbc25302ae03da9e221a86"
+      },
+      {
+        "path": "docs/snapshots/09cbc41df0d13e646264fd6527726be475d4cc9fa491a9672097ffc1c1b0584d/talks.html",
+        "identity_mode": "content",
+        "sha256": "24160889e9743f5ea6f9aa1ca9d42cb1ae380b1cfe10991dcae1f79776fa726d"
       },
       {
         "path": "docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2/talks.html",
@@ -548,19 +553,19 @@
         "sha256": "05054fd2a4ca2aca6cd0d05717fe332cb95390720e1089331271ca62f3c53f4c"
       },
       {
-        "path": "docs/snapshots/200f0e637b3f5495095af5dc2182e39e82b82b4259a71036f27146aba9f86d47/writing.html",
-        "identity_mode": "content",
-        "sha256": "0585b0b3b65cd458e01f624fa9b5ac6e88c00afdcaf0e6e65b270336042b386e"
-      },
-      {
         "path": "docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e/talks.html",
         "identity_mode": "content",
         "sha256": "93c88b5f9c73e559b067866cb38eb604e93013c2225a06a36f96e8f215d397b3"
       },
       {
-        "path": "docs/snapshots/219297d33d55274beca718824970058d692d48aa77c9a99f09df97392905fa75/talks.html",
+        "path": "docs/snapshots/4b6df828e0a082fbde4159346a3594533dc784b3cd5d6aea3f2e0c8faf4dd082/writing.html",
         "identity_mode": "content",
-        "sha256": "761064151d5edcfc8b2b4889e1b0d2ec7d790e907b5611094e0166c85f0ff8fd"
+        "sha256": "c1708f9e7958fe1c79097132c298198f60071d08ee3c4078614876391a72d693"
+      },
+      {
+        "path": "docs/snapshots/5237cb42f1a1423dc5716ac5d0584fb0df524c6dd3f9bca57ba9bccc1575e4de/research.html",
+        "identity_mode": "content",
+        "sha256": "12c427e2e1eb05313e1c8bd15d32ca69a79730ef40f63a2f09712d9466403c72"
       },
       {
         "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
@@ -571,6 +576,11 @@
         "path": "docs/snapshots/632f4f29ebdbc51215b02592fd45a1f10a99fb8596d2dec8b3f18bc8be847f06/credits.html",
         "identity_mode": "content",
         "sha256": "f6b20241842beb0bcc0b649bfb4443d8f446fc4d3dcfd65684b3b6facafca4e2"
+      },
+      {
+        "path": "docs/snapshots/65c28e7999f916c129c844ee5cd292df0bb91125a0242d556e3cc5e7bdd43848/index.html",
+        "identity_mode": "content",
+        "sha256": "167a0660e443de2f52b6032d7663efec00d40f0860af641588c0617e4e92410d"
       },
       {
         "path": "docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed/research.html",
@@ -628,19 +638,9 @@
         "sha256": "eef3b91329720bf60b4aaf9e08208bd9ce75790be77b21c2757638c7af7a6fb4"
       },
       {
-        "path": "docs/snapshots/d740e5e69a009a080a66059f40a0e0ecf17cb7e284af58c788171e72ffab6007/credits.html",
+        "path": "docs/snapshots/e024ae1464ed82886ad1f0c430bc74b38a3671bcc49a77e682c3a5eac2c78225/credits.html",
         "identity_mode": "content",
-        "sha256": "78107bc485d74ce138d1167aa0bbb0dd52c47bba9ef7c3a5d1bb107c54175200"
-      },
-      {
-        "path": "docs/snapshots/e5389e441c7fd4254f8e605c57e68646d1fc5555e4c7fa879ec520a61dd91acd/index.html",
-        "identity_mode": "content",
-        "sha256": "050a60b800e8f6c13a57b09590142ee8de6fa433d63b005cf38588f385826f99"
-      },
-      {
-        "path": "docs/snapshots/f3954b4a584f79484a13b8e20ffd6877df95200b3a725f00cd919de3a3c03412/research.html",
-        "identity_mode": "content",
-        "sha256": "ff3f24f9827c7caf91b1feef0c809c892c641037bb0340e5999091af91bd2e61"
+        "sha256": "c0a74b4d6885b1086c5f66c5861ed94b28108f7573c5b7c0134d6dd90c4e5208"
       },
       {
         "path": "docs/space.js",
@@ -655,7 +655,7 @@
       {
         "path": "docs/talks.html",
         "identity_mode": "content",
-        "sha256": "d14d9247ed328e3e16763aa232210923c9451d41f38e80470d5a2c1a512801f3"
+        "sha256": "9675a725db89291dfffa7f201e02b52ac4e9f20e20af8185a3ab7b585504a1af"
       },
       {
         "path": "docs/theme.js",
@@ -665,7 +665,7 @@
       {
         "path": "docs/writing.html",
         "identity_mode": "content",
-        "sha256": "73f1b8851aac0766ad472b44e12b0dac5060010beb375817a224090607019452"
+        "sha256": "d775a340f418f6195697c7e5e5ee48d97360d469e752dbb1f395ebadb9bfe90e"
       },
       {
         "path": "drafts/medium-profile-revision-20261001.html",
@@ -1125,7 +1125,7 @@
       {
         "path": "review/issue-159/2026-10-28-seo-implementation.md",
         "identity_mode": "content",
-        "sha256": "6c802b4e7696b80dd00e7b3d4a31f6cad993424d9c2b706d696f89d9a46496eb"
+        "sha256": "c4d55147040a185b4dbe80bad51e93fa5497569f481cfe6f58a39904699be380"
       },
       {
         "path": "review/issue-159/2026-10-28-seo-query-research.md",
@@ -5440,22 +5440,22 @@
       {
         "path": "review/site-v1-20261004-v11-credits-day.html",
         "identity_mode": "content",
-        "sha256": "1ec8f8ca26683708ce69951ab68a66803ec35068ebd34e299ed730b353701cc6"
+        "sha256": "47444524f2264e3ed7b08cbdfcf647b991962d26b0c93fa8b4f9631874a54cac"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-interactive.html",
         "identity_mode": "content",
-        "sha256": "83d7ba052212f5c6a03106a3815e099013d56458fa824fde15b89b9144a104a0"
+        "sha256": "48879937233128561764ccf68b17ba9551081c5da49ef7679f87265fbe4bee23"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-night.html",
         "identity_mode": "content",
-        "sha256": "696850b86f7b68777caea7cb21093a104a9e67ac983cdd8caf66daf350b0cd58"
+        "sha256": "0ae3f913841b2d7a1f78d9986f9ff5c2d622e1f1d488b633ef62289be0a6e39e"
       },
       {
         "path": "review/site-v1-20261004-v11-day.html",
         "identity_mode": "content",
-        "sha256": "a112a1bca4c98c725dbc8ac35697763f47332ec3d828f8e4a1c5dd19627e4719"
+        "sha256": "8ab38f0c8a348a6cb86c671e5391ecdf64868b0af5e1ecd29c5e3e0f63d7500e"
       },
       {
         "path": "review/site-v1-20261004-v11-index.html",
@@ -5465,57 +5465,57 @@
       {
         "path": "review/site-v1-20261004-v11-interactive.html",
         "identity_mode": "content",
-        "sha256": "4af5655010fd43afcfebf3bee22b2acdfef123db17bf18eb5700d41ed80e59f5"
+        "sha256": "d1acad882cef07fb406affea98aa48684d9a8fa183e252eb6c55e195bb804ba9"
       },
       {
         "path": "review/site-v1-20261004-v11-night.html",
         "identity_mode": "content",
-        "sha256": "5a7f5c2b800d835d7ea57bc539b2d369c2632068e715a2c298eef15964e7ed7b"
+        "sha256": "7cb37d81298514e3a763b9b680f6160eac6a04761b1688a09b10468f429e2a64"
       },
       {
         "path": "review/site-v1-20261004-v11-research-day.html",
         "identity_mode": "content",
-        "sha256": "384854c2b41f85e009831ba0b38920b7c8cc5347ed8fbe6a372fa400dcbbb5ee"
+        "sha256": "3dee35908c1e891edc183d937d2e5947523659f9d8e9395b763f3060daa4697e"
       },
       {
         "path": "review/site-v1-20261004-v11-research-interactive.html",
         "identity_mode": "content",
-        "sha256": "5c2496946f8556f916ca614b21d0da680b1f836d03c6404d2e2ca3692046d3ea"
+        "sha256": "6bddb1d60ddad461e4f673448baa4494ab38e499cf12bfc9a6c735dbe25bdb2b"
       },
       {
         "path": "review/site-v1-20261004-v11-research-night.html",
         "identity_mode": "content",
-        "sha256": "71cb869cf76dfdb0ccf7e8f5eae0a663088f54e0bb23e051b98ae646adf78def"
+        "sha256": "d8563f5a79d077406b853a73023c769be1a5f5a94081eddc4e4db42d901e606b"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-day.html",
         "identity_mode": "content",
-        "sha256": "45a85c48d94abe5ea73cbda19ef19b7615b3aa58d510a464f611206e42563654"
+        "sha256": "033dfc5de3e0dffae4f12e708c453f450b62d4ffe516df7b65b5eee4eb7accac"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-interactive.html",
         "identity_mode": "content",
-        "sha256": "d968128fed69c5ef043d1f5523dae0d23c5af6057f9de2152781b0e8cb0a4368"
+        "sha256": "e74bb0e03e0c7ca9fcc59da92aa4f5cd6ab32a90c6988e6a1bc8990ae82b4803"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-night.html",
         "identity_mode": "content",
-        "sha256": "59618003a3e1a37868c12c455caebc5e166ca4beae58725883a6c049288296f5"
+        "sha256": "d3f06a0c866f7c7f1cb08164c59db06e839ee88bd39f9e9cfe0569e3311388cb"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-day.html",
         "identity_mode": "content",
-        "sha256": "15971a589e3ff29c578a9ad942b0b3a58706bfb0b1cd7738ce434af4d943555d"
+        "sha256": "aa3410a279ef22569ba323bec67b55919fedb78e76f14d5006b8997a4ffa823c"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-interactive.html",
         "identity_mode": "content",
-        "sha256": "5fe180f7b386cbc4e6eb23691f56e69eaa16ac6f34f2e1fb04d631c65994385c"
+        "sha256": "b6d3dba78ed036a43e5668b6c37b4afec00a5b9ea2ae5fb1df9b8deb38f514bf"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-night.html",
         "identity_mode": "content",
-        "sha256": "2c3e3dc46e286c8058dc579345aba9e71b1fa96776eaa0fcbb8611769ea2a113"
+        "sha256": "797242064b6cf931e917506fa73a9a6cae468a1597fca5497f8c6dfe590379cf"
       },
       {
         "path": "review/site-v1-offline-bundle-v10.json",
@@ -5525,7 +5525,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "3b84aa7e261cdbcfcb2288d58bd8eeab8831aa8e2c920a6a03f248a993ad042b"
+        "sha256": "c31da36b136f7c7733820de89f5f10597d6906302f60dc8a1f7f6ff9e585e730"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -5580,7 +5580,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "b0ce2d785f6eb2d40a3e45f37226e9d4a7ba0066e3f601865190adfbe74c5185"
+        "sha256": "77aa2528d7b20605f39260bc3f4a139a84fbc60e838c0c395579ca9fe1927f75"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -6575,7 +6575,7 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "815efaf543ecdb84619a806eeeb7e39050ee34914d83330a487118899f595650"
+        "sha256": "d1ac34d13c0674594e5c340073d0807f041889bc7224bd6abde07a111b49d6d9"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/blueprint.md",
@@ -7345,7 +7345,7 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "0e980ee2ef7d1c82bd62a1236da472013c29182deb73a0c99d96955449f98d2f"
+        "sha256": "09ee2aba27c8c21eb0031966d3cc4f8de9a0f4317524b8922d9128be2b6f9cc0"
       },
       {
         "path": "tests/content-baseline.test.cjs",
@@ -7625,7 +7625,7 @@
       {
         "path": "tests/release-controller.test.cjs",
         "identity_mode": "content",
-        "sha256": "b207fe25e222c2c7de3258ec82d8ae99e06067e3ee86e3b063582fdd035782e6"
+        "sha256": "843dee025afadffa336b298af75c48d5d17637686c885a23c2537ddb223a93e7"
       },
       {
         "path": "tests/release-rights.test.cjs",
@@ -7665,7 +7665,7 @@
       {
         "path": "tests/site-engine.test.cjs",
         "identity_mode": "content",
-        "sha256": "899410ad3076d5aacc972f71e8456472efe47f7f5da3e8b99a4f16d0b510754c"
+        "sha256": "517b9a12abbacbde5a9604d2647c5716428f9bb28d0414956f40117be12c960a"
       },
       {
         "path": "tests/site-face-preparation.test.cjs",
@@ -7690,7 +7690,7 @@
       {
         "path": "tests/staging-regression.test.cjs",
         "identity_mode": "content",
-        "sha256": "07e85f24c94404c45b0641b5b5169bd105a0ff064f3de02403e1e8eae6f2c463"
+        "sha256": "7f67905369b0acc9f6d76effb9422e29fd3167ad20f655b3d160bb92377fc581"
       },
       {
         "path": "tests/staging-reporting.test.cjs",
@@ -8245,7 +8245,7 @@
       {
         "path": "tools/quality/color-motion-contract.cjs",
         "identity_mode": "content",
-        "sha256": "3cd4b00d260ef3b4b41b2f983c6774428b04d5d1eddede9df9b2ff11aa607c0f"
+        "sha256": "991c9e510ca756ffca622db2195fff4f2efe5d7e84777fe50b319ac52780d248"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -8890,7 +8890,7 @@
       {
         "path": "tools/site/runtime-compatibility.cjs",
         "identity_mode": "content",
-        "sha256": "40dbfe731e1dc438da53eef8e8cea5af388bc6541223566d99aab85117f765b9"
+        "sha256": "27d9ab167fe0478ea9db4b19b58fbb2e45901d7c759e8a936303b5d510c9f26b"
       },
       {
         "path": "tools/site/scene-assets.cjs",
@@ -10464,6 +10464,17 @@
       "title": "site-revision.json"
     },
     {
+      "path": "docs/snapshots/09cbc41df0d13e646264fd6527726be475d4cc9fa491a9672097ffc1c1b0584d/talks.html",
+      "kind": "file",
+      "purpose": "Immutable generated route snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "talks.html"
+    },
+    {
       "path": "docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2/talks.html",
       "kind": "file",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
@@ -10473,17 +10484,6 @@
         "AGENTS.md"
       ],
       "title": "talks.html"
-    },
-    {
-      "path": "docs/snapshots/200f0e637b3f5495095af5dc2182e39e82b82b4259a71036f27146aba9f86d47/writing.html",
-      "kind": "file",
-      "purpose": "Immutable generated route snapshot; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "writing.html"
     },
     {
       "path": "docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e/talks.html",
@@ -10497,7 +10497,7 @@
       "title": "talks.html"
     },
     {
-      "path": "docs/snapshots/219297d33d55274beca718824970058d692d48aa77c9a99f09df97392905fa75/talks.html",
+      "path": "docs/snapshots/4b6df828e0a082fbde4159346a3594533dc784b3cd5d6aea3f2e0c8faf4dd082/writing.html",
       "kind": "file",
       "purpose": "Immutable generated route snapshot; regenerate from canonical site owners.",
       "role": "generated",
@@ -10505,7 +10505,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "talks.html"
+      "title": "writing.html"
+    },
+    {
+      "path": "docs/snapshots/5237cb42f1a1423dc5716ac5d0584fb0df524c6dd3f9bca57ba9bccc1575e4de/research.html",
+      "kind": "file",
+      "purpose": "Immutable generated route snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "research.html"
     },
     {
       "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
@@ -10528,6 +10539,17 @@
         "AGENTS.md"
       ],
       "title": "credits.html"
+    },
+    {
+      "path": "docs/snapshots/65c28e7999f916c129c844ee5cd292df0bb91125a0242d556e3cc5e7bdd43848/index.html",
+      "kind": "file",
+      "purpose": "Immutable generated route snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index.html"
     },
     {
       "path": "docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed/research.html",
@@ -10651,7 +10673,7 @@
       "title": "writing.html"
     },
     {
-      "path": "docs/snapshots/d740e5e69a009a080a66059f40a0e0ecf17cb7e284af58c788171e72ffab6007/credits.html",
+      "path": "docs/snapshots/e024ae1464ed82886ad1f0c430bc74b38a3671bcc49a77e682c3a5eac2c78225/credits.html",
       "kind": "file",
       "purpose": "Immutable generated route snapshot; regenerate from canonical site owners.",
       "role": "generated",
@@ -10660,28 +10682,6 @@
         "AGENTS.md"
       ],
       "title": "credits.html"
-    },
-    {
-      "path": "docs/snapshots/e5389e441c7fd4254f8e605c57e68646d1fc5555e4c7fa879ec520a61dd91acd/index.html",
-      "kind": "file",
-      "purpose": "Immutable generated route snapshot; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "index.html"
-    },
-    {
-      "path": "docs/snapshots/f3954b4a584f79484a13b8e20ffd6877df95200b3a725f00cd919de3a3c03412/research.html",
-      "kind": "file",
-      "purpose": "Immutable generated route snapshot; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "research.html"
     },
     {
       "path": "docs/space.js",
@@ -29181,9 +29181,9 @@
       ]
     },
     {
-      "path": "docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2",
+      "path": "docs/snapshots/09cbc41df0d13e646264fd6527726be475d4cc9fa491a9672097ffc1c1b0584d",
       "kind": "directory",
-      "purpose": "Generated public rendition; regenerate from canonical site sources.",
+      "purpose": "Immutable generated revision files from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -29191,9 +29191,9 @@
       ]
     },
     {
-      "path": "docs/snapshots/200f0e637b3f5495095af5dc2182e39e82b82b4259a71036f27146aba9f86d47",
+      "path": "docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2",
       "kind": "directory",
-      "purpose": "Immutable generated revision files from canonical site sources.",
+      "purpose": "Generated public rendition; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -29211,7 +29211,17 @@
       ]
     },
     {
-      "path": "docs/snapshots/219297d33d55274beca718824970058d692d48aa77c9a99f09df97392905fa75",
+      "path": "docs/snapshots/4b6df828e0a082fbde4159346a3594533dc784b3cd5d6aea3f2e0c8faf4dd082",
+      "kind": "directory",
+      "purpose": "Immutable generated revision files from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/5237cb42f1a1423dc5716ac5d0584fb0df524c6dd3f9bca57ba9bccc1575e4de",
       "kind": "directory",
       "purpose": "Immutable generated revision files from canonical site sources.",
       "role": "generated",
@@ -29234,6 +29244,16 @@
       "path": "docs/snapshots/632f4f29ebdbc51215b02592fd45a1f10a99fb8596d2dec8b3f18bc8be847f06",
       "kind": "directory",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/65c28e7999f916c129c844ee5cd292df0bb91125a0242d556e3cc5e7bdd43848",
+      "kind": "directory",
+      "purpose": "Immutable generated revision files from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -29351,27 +29371,7 @@
       ]
     },
     {
-      "path": "docs/snapshots/d740e5e69a009a080a66059f40a0e0ecf17cb7e284af58c788171e72ffab6007",
-      "kind": "directory",
-      "purpose": "Immutable generated revision files from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/e5389e441c7fd4254f8e605c57e68646d1fc5555e4c7fa879ec520a61dd91acd",
-      "kind": "directory",
-      "purpose": "Immutable generated revision files from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/f3954b4a584f79484a13b8e20ffd6877df95200b3a725f00cd919de3a3c03412",
+      "path": "docs/snapshots/e024ae1464ed82886ad1f0c430bc74b38a3671bcc49a77e682c3a5eac2c78225",
       "kind": "directory",
       "purpose": "Immutable generated revision files from canonical site sources.",
       "role": "generated",

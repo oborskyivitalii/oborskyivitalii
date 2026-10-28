@@ -37,6 +37,14 @@ Dated continuity, not live authority. Last verified: **2026-10-28**.
   mounted within2sec; separate SDK10478encoded/31853decoded bytes and6.474ms
   sampled CPU attribution. Provider17:34–17:36Z15loads/3visits was deliberate QA.
   Historical CUA6000 wait errored after3.9791sec; cause still unknown, not relabelled.
+- B5 Draft PR164 first freeze7675702e/tree7029aad: Basic passed. Preview40762149497
+  failed strict unknown Color at package binding; selected1159 actual tests had
+  1121pass/38fail,0omissions (35same refusal,3stale proof/tuple oracles).
+  Manual policy40762478861 had7/9pass and same two diagnosed failures.
+- Additive exact issue159-reading-paths Color family and document clienta404
+  retain old guards/rights/JS. Actual dirty cold plain/stage/prod tuples match;
+  affected77/77 and latent controller1/1 passed; four independent correction roles
+  retain actual interactions/human/rights gates. New frozen checks/preview pending.
 - B5 prepared page/checker sources and Terra briefs are not accepted/public copy.
   Source/style/checker/independent and changed-surface validation is in progress:
   review/issue-159/2026-10-28-seo-implementation.md. Original29/46 edition and

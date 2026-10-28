@@ -18,6 +18,7 @@ const reviewedEngine = '43054e4d9861831ec39cbf2e4217ca33b13959bb329959fd7a86413b
 const reviewedDocumentClients = new Set([
   reviewedClient,
   'a41ab65b9c8182318ae1333272289aac5d651fa1e19cc075609632b5fb082b85',
+  'a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee',
 ]);
 
 function fingerprint(components, files) {

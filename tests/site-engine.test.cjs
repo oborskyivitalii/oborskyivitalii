@@ -456,10 +456,21 @@ test('source migration preserves publication HTML and thematic geometry when sha
         ['show', '6041a5801729e561c425092323a12cc8e4062f85:docs/' + route.url],
         { cwd: root, encoding: 'utf8' }
       );
-    const { restoreApprovedContent, normalizeHTML } = require('../tools/check_site_seo.cjs');
+    const {
+      restoreApprovedContent,
+      restoreHomeContent,
+      normalizeHTML,
+    } = require('../tools/check_site_seo.cjs');
     const mainPattern = /<main\b[\s\S]*?<\/main[\t\n\f\r ]*>/;
+    const current = rendered.match(mainPattern)[0];
+    // The immutable Home frame carries generated media aliases. Reuse the
+    // checker path that restores those aliases before exact historical deltas.
+    const reconciled =
+      route.id === 'index'
+        ? require('../tools/build_site_previews.cjs').sourceForPreview(restoreHomeContent(current))
+        : current;
     assert.equal(
-      restoreApprovedContent(rendered.match(mainPattern)[0], route.id),
+      restoreApprovedContent(reconciled, route.id),
       normalizeHTML(original.match(mainPattern)[0]),
       route.id + ' publication content with exact approved contact/title/response transformations'
     );

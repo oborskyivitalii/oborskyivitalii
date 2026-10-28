@@ -11899,61 +11899,61 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/200f0e637b3f5495095af5dc2182e39e82b82b4259a71036f27146aba9f86d47": {
+    "docs/snapshots/09cbc41df0d13e646264fd6527726be475d4cc9fa491a9672097ffc1c1b0584d": {
       "kind": "directory",
       "purpose": "Immutable generated revision files from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/200f0e637b3f5495095af5dc2182e39e82b82b4259a71036f27146aba9f86d47/writing.html": {
+    "docs/snapshots/09cbc41df0d13e646264fd6527726be475d4cc9fa491a9672097ffc1c1b0584d/talks.html": {
       "kind": "file",
       "purpose": "Immutable generated route snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/219297d33d55274beca718824970058d692d48aa77c9a99f09df97392905fa75": {
+    "docs/snapshots/4b6df828e0a082fbde4159346a3594533dc784b3cd5d6aea3f2e0c8faf4dd082": {
       "kind": "directory",
       "purpose": "Immutable generated revision files from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/219297d33d55274beca718824970058d692d48aa77c9a99f09df97392905fa75/talks.html": {
+    "docs/snapshots/4b6df828e0a082fbde4159346a3594533dc784b3cd5d6aea3f2e0c8faf4dd082/writing.html": {
       "kind": "file",
       "purpose": "Immutable generated route snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/d740e5e69a009a080a66059f40a0e0ecf17cb7e284af58c788171e72ffab6007": {
+    "docs/snapshots/5237cb42f1a1423dc5716ac5d0584fb0df524c6dd3f9bca57ba9bccc1575e4de": {
       "kind": "directory",
       "purpose": "Immutable generated revision files from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/d740e5e69a009a080a66059f40a0e0ecf17cb7e284af58c788171e72ffab6007/credits.html": {
+    "docs/snapshots/5237cb42f1a1423dc5716ac5d0584fb0df524c6dd3f9bca57ba9bccc1575e4de/research.html": {
       "kind": "file",
       "purpose": "Immutable generated route snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/e5389e441c7fd4254f8e605c57e68646d1fc5555e4c7fa879ec520a61dd91acd": {
+    "docs/snapshots/65c28e7999f916c129c844ee5cd292df0bb91125a0242d556e3cc5e7bdd43848": {
       "kind": "directory",
       "purpose": "Immutable generated revision files from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/e5389e441c7fd4254f8e605c57e68646d1fc5555e4c7fa879ec520a61dd91acd/index.html": {
+    "docs/snapshots/65c28e7999f916c129c844ee5cd292df0bb91125a0242d556e3cc5e7bdd43848/index.html": {
       "kind": "file",
       "purpose": "Immutable generated route snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/f3954b4a584f79484a13b8e20ffd6877df95200b3a725f00cd919de3a3c03412": {
+    "docs/snapshots/e024ae1464ed82886ad1f0c430bc74b38a3671bcc49a77e682c3a5eac2c78225": {
       "kind": "directory",
       "purpose": "Immutable generated revision files from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/f3954b4a584f79484a13b8e20ffd6877df95200b3a725f00cd919de3a3c03412/research.html": {
+    "docs/snapshots/e024ae1464ed82886ad1f0c430bc74b38a3671bcc49a77e682c3a5eac2c78225/credits.html": {
       "kind": "file",
       "purpose": "Immutable generated route snapshot; regenerate from canonical site owners.",
       "role": "generated",
