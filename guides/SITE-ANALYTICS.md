@@ -1,7 +1,18 @@
 # Site measurement and provider access
 
-Current post-release follow-up: [#102](https://github.com/oborskyivitalii/oborskyivitalii/issues/102)
-owns route coverage; [#103](https://github.com/oborskyivitalii/oborskyivitalii/issues/103)
+## Current intake — 28 October 2026
+
+Issue #159 now owns the transferred #102/#158 work. Read-only Cloudflare RUM and
+the Windsor `searchconsole` property are available in this session; the dated
+18 October access limitations below are historical. The
+[current receipt](../review/issue-159/2026-10-28-baseline.json) records exact query
+windows, sampling and missing data. Analytics delivery precedes Terra SEO work.
+This intake does not change collection, publish a release or establish indexing,
+real-user classification, per-vital samples or SDK cost.
+
+Current post-release follow-up: [#159](https://github.com/oborskyivitalii/oborskyivitalii/issues/159)
+owns route coverage, QA isolation and reporting after the #102/#158 transfers;
+[#103](https://github.com/oborskyivitalii/oborskyivitalii/issues/103)
 owns assistant access to Google/Windsor. [#8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8)
 retains overall measurement and Search Console acceptance. Dated evidence and
 remaining gates are recorded in the [18 October audit](../review/issue-102/2026-10-18-analytics-and-search-access.md).
@@ -29,7 +40,7 @@ preserves dated PR #10/#16 observations and the then-applicable publication paus
 
 An interactive topic/link dashboard or click/conversion instrumentation is a
 separate increment. Preserve the existing nine topic clusters, author identity,
-27 primary editions and distinct rendition rather than inventing a new search
+the declared publication editions and distinct renditions rather than inventing a new search
 graph from analytics counters. See #8's decision record and the existing SEO plan.
 
 ## Implemented source contract
@@ -38,7 +49,7 @@ Edit **`site/analytics.json`**, never generated `docs/` HTML. On 15 October the
 owner's Cloudflare Web Analytics site was registered for `vitaliioborskyi.ai`
 with automatic injection off; the returned public beacon identifier and exact
 `https://vitaliioborskyi.ai/` URL are configured with `enabled: true` for the first
-release. Production `prod-2026-10-17.4` is now live. A bounded provider read on
+release. Historical production `prod-2026-10-17.4` was live at the 18 October audit. A bounded provider read on
 18 October confirmed received pageviews; see the dated audit for counts and
 coverage limits. `searchConsoleVerification` remains null because DNS verification
 is already present; this optional HTML field does not establish Google ownership.
@@ -166,8 +177,12 @@ Web Analytics retains recent unsampled beacon data for seven days, then aggregat
 history; its documented query window is six months. Do not pool low-volume Core
 Web Vitals percentiles or treat pageview sample size as each vital's sample size.
 
-All automated browser fixtures stub the vendor and prevent real telemetry;
-loopback/staging/offline origins also fail the production guard. Do not delete
+Dedicated analytics fixtures stub the vendor. Production smoke and its separate
+article-tags/article/Color browser contexts can load the actual provider; they
+do not currently isolate collector egress. Loopback/staging/offline origins fail
+the production guard. The [28 October intake](../review/issue-159/2026-10-28-analytics-intake.md)
+records the actual source inventory and read-only baseline; isolation remains
+pending implementation and live verification. Do not delete
 historical traffic by guessed geography/referrer filters. Owner visits, prior
 live smoke checks, blockers and the extensionless entry gap limit the baseline.
 Real-provider SPA/filter/history receipt, individual vital sample sizes and hosted

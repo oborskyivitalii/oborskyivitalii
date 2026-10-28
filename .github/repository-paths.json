@@ -11820,6 +11820,42 @@
       "purpose": "Immutable approved Home body and exact canonical renderer/template producer bindings for source-bound SEO reconciliation; not an editorial approval.",
       "role": "configuration",
       "owner": "tools/check_site_seo.cjs"
+    },
+    ".github/acceptance/issue-159.json": {
+      "kind": "file",
+      "purpose": "Issue159 unified analytics-first and later SEO criteria with bounded invariant checks and explicit provider/human/release gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-159": {
+      "kind": "directory",
+      "purpose": "Issue159 analytics baseline, source-bound intake and independent delivery review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-159/2026-10-28-analytics-intake.md": {
+      "kind": "file",
+      "purpose": "Issue159 B1 emitter inventory, minimal isolation decision, policy mapping and exact-source independent review/check handoff.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-159/2026-10-28-baseline.json": {
+      "kind": "file",
+      "purpose": "Sanitized fixed-window Cloudflare RUM and separate Search Console receipts, reproducible query templates and sampling/access limitations.",
+      "role": "history",
+      "owner": "guides/SITE-ANALYTICS.md"
+    },
+    "review/issue-159/2026-10-28-b1-failed-policy.json.gz": {
+      "kind": "file",
+      "purpose": "Preserved first B1 owning-policy failure with exact dirty source, invalid SEO selector and unavailable historical fixture blobs.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-159/2026-10-28-b1-diagnostics.json.gz": {
+      "kind": "file",
+      "purpose": "Preserved corrected-policy missing historical Research blob failure and RI regression runs observed before final regeneration.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

@@ -86,6 +86,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-120](review/issue-120) | Issue120 independent quality-agent integration, role receipts and source-bound acceptance evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-122](review/issue-122) | Issue122 atomic delivery-lane increments, independent quality-agent reviews and source-bound acceptance evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-126](review/issue-126) | DevCon announcement source and review evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-159](review/issue-159) | Issue159 analytics baseline, source-bound intake and independent delivery review evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-2](review/issue-2) | Dated editorial, source and publication review evidence for the PMDay article owner. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-2/pmday-candidate-20261015](review/issue-2/pmday-candidate-20261015) | PR79 PMDay review candidate, independent findings and source-qualified export evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-2/r26-20261023](review/issue-2/r26-20261023) | Public-safe R26 native review deliverables with exact manuscript, PDF, kit and source/producer inventory. | history | [review/issue-2/2026-10-23-r26-integration.md](review/issue-2/2026-10-23-r26-integration.md) |
@@ -265,6 +266,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.github/acceptance/issue-120.json](.github/acceptance/issue-120.json) | Issue120 requirements, code-review and QA protocol acceptance: real routing checks with separate independent-role and delivery gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-122.json](.github/acceptance/issue-122.json) | Issue122 delivery-lane AC mapping: retained selection checks, T02 semantic contract review and pending lane, trust, independent-review and delivery gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-126.json](.github/acceptance/issue-126.json) | Issue126 observable announcement acceptance with separate independent, hosted and release gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/acceptance/issue-159.json](.github/acceptance/issue-159.json) | Issue159 unified analytics-first and later SEO criteria with bounded invariant checks and explicit provider/human/release gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-31.json](.github/acceptance/issue-31.json) | Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-33.json](.github/acceptance/issue-33.json) | Bootstrap/root optimization AC01–AC06 mapped to source-bound assertions and separate review, merge and linkage gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-35.json](.github/acceptance/issue-35.json) | Test optimization AC01–AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
@@ -851,6 +853,15 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-126/2026-10-23-production-retention-review.md](review/issue-126/2026-10-23-production-retention-review.md) | Issue126 previous production retention provenance, immutable reference and independent correction review. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-126/content-amendment.json](review/issue-126/content-amendment.json) | Issue126 source-bound DevCon announcement review, factual provenance and exact reversible content delta. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-126/production-retention.json](review/issue-126/production-retention.json) | Issue126 previous production retention provenance, immutable reference and independent correction review. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+
+## review/issue-159/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-159/2026-10-28-analytics-intake.md](review/issue-159/2026-10-28-analytics-intake.md) | Issue159 B1 emitter inventory, minimal isolation decision, policy mapping and exact-source independent review/check handoff. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-159/2026-10-28-b1-diagnostics.json.gz](review/issue-159/2026-10-28-b1-diagnostics.json.gz) | Preserved corrected-policy missing historical Research blob failure and RI regression runs observed before final regeneration. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-159/2026-10-28-b1-failed-policy.json.gz](review/issue-159/2026-10-28-b1-failed-policy.json.gz) | Preserved first B1 owning-policy failure with exact dirty source, invalid SEO selector and unavailable historical fixture blobs. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-159/2026-10-28-baseline.json](review/issue-159/2026-10-28-baseline.json) | Sanitized fixed-window Cloudflare RUM and separate Search Console receipts, reproducible query templates and sampling/access limitations. | history | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
 
 ## review/issue-2/
 
