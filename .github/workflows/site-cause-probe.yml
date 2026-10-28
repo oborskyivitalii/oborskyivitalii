@@ -41,8 +41,6 @@ jobs:
     env:
       SITE_CANDIDATE_SHA: ${{ inputs.candidate_sha }}
       SITE_ANALYTICS_RELEASE: ${{ inputs.release_tag }}
-      SITE_ANALYTICS_LIVE_DIR: ${{ runner.temp }}/analytics-live-input
-      SITE_REPORT_DIR: ${{ runner.temp }}/analytics-live-results
       SITE_TEST_PROFILE: production
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
@@ -53,6 +51,10 @@ jobs:
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: '24.19.0'
+      - name: Select runner-owned diagnostic directories
+        run: |
+          echo "SITE_ANALYTICS_LIVE_DIR=$RUNNER_TEMP/analytics-live-input" >> "$GITHUB_ENV"
+          echo "SITE_REPORT_DIR=$RUNNER_TEMP/analytics-live-results" >> "$GITHUB_ENV"
       - name: Install the existing locked diagnostic tools
         run: npm ci --prefix tools/quality/toolchain --ignore-scripts
       - name: Check the bounded diagnostic and historical routing negatives

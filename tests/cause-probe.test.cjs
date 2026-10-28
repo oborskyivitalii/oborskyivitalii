@@ -207,6 +207,24 @@ test('actual live diagnostic route requires explicit owner dispatch and keeps hi
     actions: 'read',
     deployments: 'read',
   });
+  for (const value of Object.values(workflow.jobs['analytics-live'].env))
+    assert.ok(!value.includes('runner.'), 'runner context is unavailable in job env');
+  const setup = workflow.jobs['analytics-live'].steps.find(
+    (step) => step.name === 'Select runner-owned diagnostic directories'
+  );
+  const temporary = fs.mkdtempSync(path.join(os.tmpdir(), 'live-workflow-env-'));
+  const environmentFile = path.join(temporary, 'environment');
+  try {
+    require('node:child_process').execFileSync('bash', ['-e', '-c', setup.run], {
+      env: { ...process.env, RUNNER_TEMP: temporary, GITHUB_ENV: environmentFile },
+    });
+    assert.deepEqual(fs.readFileSync(environmentFile, 'utf8').trim().split('\n'), [
+      'SITE_ANALYTICS_LIVE_DIR=' + temporary + '/analytics-live-input',
+      'SITE_REPORT_DIR=' + temporary + '/analytics-live-results',
+    ]);
+  } finally {
+    fs.rmSync(temporary, { recursive: true, force: true });
+  }
   const authorize = require('../tools/quality/analytics-live-actions.cjs').authorize;
   const request = {
     eventName: 'workflow_dispatch',

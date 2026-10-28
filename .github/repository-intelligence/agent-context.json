@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "3d4f0146b05e1dd3c6e758a06fd87c98c2aacb1e5fa1060a0657b98b4ab30afa",
+    "digest": "35c5d9a19d905606078353c6202d6a28275da89a9d0649b124863d5fe0810711",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -211,7 +211,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "8b2f94531a566c4888b5e04a035e3244215b8253db2a6e2d56535e738c10cdc0"
+        "sha256": "5df5fa220800677f31fca5887f7496cc2fc5d3ecbdac1c53ff21344753c798c1"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -261,7 +261,7 @@
       {
         "path": ".github/workflows/site-cause-probe.yml",
         "identity_mode": "content",
-        "sha256": "78e49c3e1b78020d8cb0458d3179b05af6f0b6e5ccefc51d32f509f4a04d8beb"
+        "sha256": "589b07e3f7dafb965324888da2e684efca12adf5505f83b4a977da96be5645fb"
       },
       {
         "path": ".github/workflows/site-checks.yml",
@@ -1105,7 +1105,7 @@
       {
         "path": "review/issue-159/2026-10-28-live-diagnostics.md",
         "identity_mode": "content",
-        "sha256": "64079905fc82b26243ccf00833d5b6cbea5d91cd6be699e6e6c02f669dc78ae1"
+        "sha256": "f45a7bb7aea2198a96a97d92c5cf58f0df22972b0d94880ab023f4c4a52ce23e"
       },
       {
         "path": "review/issue-159/2026-10-28-qa-isolation.md",
@@ -7305,7 +7305,7 @@
       {
         "path": "tests/cause-probe.test.cjs",
         "identity_mode": "content",
-        "sha256": "95084abc68cd78cdb9ea01b5d982000425171e3d53477dc740c61138f28e9d88"
+        "sha256": "ce6c3d5a036472dbeddd67d653860954688a5d2f7b685bb91f5d72fb93a437c9"
       },
       {
         "path": "tests/color-build.test.cjs",

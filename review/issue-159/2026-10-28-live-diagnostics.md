@@ -112,3 +112,21 @@ clean-source checks must be completed before dispatch. Native timing, SDK CPU/tr
 are not established by this prepared source evidence. Issue159 remains open; the
 prior 9/46 checked obligations and all pending SEO/human/provider gates retain
 separate truth. Dynamic final receipts stay comments once the complete source freezes.
+
+## Workflow registration correction
+
+Published prepared source a036fa6e098b49435e0288b889f9418076fe6d4f (tree
+7a8302874ee4007af3c8cb9c1f43232b4b48b001) became Draft PR161. GitHub's automatic
+push-time validation failed in40735626556/1 before any job/dispatch/live request:
+`runner.temp` is unavailable in job-level `env` (lines44/45). The YAML parser and
+four source reviewers missed this Actions expression-context boundary. Preserve
+that failed registration; no unchanged retry. A runner step now writes the two
+runner-owned temporary paths to GITHUB_ENV. The actual workflow source test rejects
+runner references in job env and executes the extracted initialization step against
+a temporary RUNNER_TEMP/GITHUB_ENV fixture, checking both resulting paths.
+
+Post-freeze broader source selection also revealed worktree-only missing publisher
+dependencies; the retained first log is separate from actual product assertions.
+Existing locked dependencies are reused locally without package changes. Initial
+exact-ref CLI mistakes and the subsequent corrected clean-source run are separate
+receipts. No source test, registration or Draft check establishes live SDK evidence.
