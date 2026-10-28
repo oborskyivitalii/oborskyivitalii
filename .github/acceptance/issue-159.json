@@ -91,8 +91,8 @@
     {
       "id": "AC13",
       "intent": "Original #158/AC04: exact-source contracts/style/delivery",
-      "automated_scope": "Generated/static/size/H1/footer/theme/archive subset only; no exact SEO or whole browser matrix. Bounded enforced code-style subset only. Current catalog/generated navigation freshness only. Current source-to-CI coupling only. ISOLATION checks finite collector/setup/abort source negatives; actual network contrast runs in existing hosted browser journeys.",
-      "checks": ["BASIC", "STYLE", "RI", "RI-CI", "ISOLATION"],
+      "automated_scope": "Generated/static/size/H1/footer/theme/archive subset only; no exact SEO or whole browser matrix. Bounded enforced code-style subset only. Current catalog/generated navigation freshness only. Current source-to-CI coupling only. ISOLATION checks finite collector/setup/abort source negatives; actual network contrast runs in existing hosted browser journeys. LIVE-DIAGNOSTIC checks source/CPU/report/owner-routing negatives only; actual live timing/cost and release acceptance remain external.",
+      "checks": ["BASIC", "STYLE", "RI", "RI-CI", "ISOLATION", "LIVE-DIAGNOSTIC"],
       "gates": ["STYLE-REVIEW", "QUALITY", "RELEASES"]
     },
     {
@@ -112,8 +112,8 @@
     {
       "id": "AC16",
       "intent": "Original #102/AC02 via #158/AC07: guard/history/filter evidence",
-      "automated_scope": "Maintained analytics/quality/staging source regressions only; not live provider, browser or cost proof. ISOLATION checks finite collector/setup/abort source negatives; actual network contrast runs in existing hosted browser journeys.",
-      "checks": ["ANALYTICS", "ISOLATION"],
+      "automated_scope": "Maintained analytics/quality/staging source regressions only; not live provider, browser or cost proof. ISOLATION checks finite collector/setup/abort source negatives; actual network contrast runs in existing hosted browser journeys. LIVE-DIAGNOSTIC checks source/CPU/report/owner-routing negatives only; actual live timing/cost and release acceptance remain external.",
+      "checks": ["ANALYTICS", "ISOLATION", "LIVE-DIAGNOSTIC"],
       "gates": ["BROWSER", "LIVE"]
     },
     {
@@ -126,8 +126,8 @@
     {
       "id": "AC18",
       "intent": "Original #102/AC04 via #158/AC09: dimensions/sample/cost/runbook",
-      "automated_scope": "Maintained analytics/quality/staging source regressions only; not live provider, browser or cost proof. Generated/static/size/H1/footer/theme/archive subset only; no exact SEO or whole browser matrix. ISOLATION checks finite collector/setup/abort source negatives; actual network contrast runs in existing hosted browser journeys.",
-      "checks": ["ANALYTICS", "BASIC", "ISOLATION"],
+      "automated_scope": "Maintained analytics/quality/staging source regressions only; not live provider, browser or cost proof. Generated/static/size/H1/footer/theme/archive subset only; no exact SEO or whole browser matrix. ISOLATION checks finite collector/setup/abort source negatives; actual network contrast runs in existing hosted browser journeys. LIVE-DIAGNOSTIC checks source/CPU/report/owner-routing negatives only; actual live timing/cost and release acceptance remain external.",
+      "checks": ["ANALYTICS", "BASIC", "ISOLATION", "LIVE-DIAGNOSTIC"],
       "gates": ["VITALS-COST", "LIVE", "STYLE-REVIEW"]
     }
   ],
@@ -162,6 +162,10 @@
     "ISOLATION": {
       "kind": "unittest",
       "test": "test_issue159_acceptance.Issue159AcceptanceTests.test_qa_collector_isolation"
+    },
+    "LIVE-DIAGNOSTIC": {
+      "kind": "unittest",
+      "test": "test_issue159_acceptance.Issue159AcceptanceTests.test_live_diagnostic_guards"
     }
   },
   "gates": {

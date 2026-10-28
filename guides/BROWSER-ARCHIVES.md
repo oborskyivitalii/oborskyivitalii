@@ -77,12 +77,12 @@ retain their own evidence.
 | site-color-review | conditional hosted smoke C |
 | site-navigation-probe | Windows Firefox |
 | site-browser-gate-probe | C/F/W |
-| site-cause-probe | two Chromium jobs; three-engine diagnosis |
+| site-cause-probe | three Chromium jobs; three-engine diagnosis |
 | site-cause-fix-probe | three WebKit jobs; Chromium research pair |
 | site-gtk-native-probe; site-gtk-target-probe | WebKit, with existing display checks |
 | site-writing-probe | four Chromium jobs; Chromium/Firefox paradigm |
 
-C/F/W mean Chromium, Firefox and WebKit. These are26 existing download-step
+C/F/W mean Chromium, Firefox and WebKit. These are27 existing download-step
 declarations across12 workflows; matrix declarations retain their original
 platform expansion. The permanent archive suite guards the complete mapping,
 selection, read permissions and failure propagation with negative cases.

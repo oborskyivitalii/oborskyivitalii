@@ -681,7 +681,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "caa31aab01ed796d737f5c26a55bd33e231411c8f0589b41869737ab07210daf",
+    "digest": "d5144b08cb595cb660d77907d270a6384b0be00e159f2a79d00277371ec2b8d0",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -729,7 +729,7 @@
       },
       {
         "path": ".github/acceptance/issue-159.json",
-        "sha256": "6ffd7daeb2c912f18a79af3fc06accff5ba53960901494060902fae1bc29d0d1"
+        "sha256": "fb792b514397558cb1af85f8bcce49885ff447bccaf1825800095aa8ea5fc0f2"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -821,7 +821,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "d5dba7ce5d8d8aa8103bd83f15ae4dc6944afea5ba4eb64f6c77c348377f54c7"
+        "sha256": "872ffb338c29fbfac3056f76f36163dfbe5bab59db1443127ceb08e2f56dc94e"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -861,7 +861,7 @@
       },
       {
         "path": ".github/workflows/site-cause-probe.yml",
-        "sha256": "1de3e1d94a592a433d6c4f48044a5829452f80eed20ced07db5fed91b9877215"
+        "sha256": "589b07e3f7dafb965324888da2e684efca12adf5505f83b4a977da96be5645fb"
       },
       {
         "path": ".github/workflows/site-checks.yml",
@@ -933,7 +933,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "86b963441b201bc156733c65d61c61c21881c21d6a09ca538535c34879c4c8b0"
+        "sha256": "4d04212f1f3f7810ed9cc43695a57fb18c1bb3e3ed15249d2839e7dd80566258"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -977,7 +977,7 @@
       },
       {
         "path": "tests/test_issue159_acceptance.py",
-        "sha256": "9b0f330f75869905b19577d1f2c3e4b06ba850cb0f59070db2b2b42d563c04f9"
+        "sha256": "9769545b3c325a7bedb6b370db43a13fd350f1f987fe8f4dfff52fe8f04ab4d3"
       },
       {
         "path": "tests/test_issue31_acceptance.py",
@@ -1093,7 +1093,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "df72a5ae8e9f80899bd24ca5cf6ff6ffd0d74fafcd04e959a280d0e7ad325fe4"
+        "sha256": "0d556fbfcb7686da8a4f08aa2455c1dad87658359df43e07ebb25a7b2c95db3b"
       },
       {
         "path": "tools/repository_intelligence.py",

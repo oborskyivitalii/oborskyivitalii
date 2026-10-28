@@ -273,7 +273,7 @@
     },
     ".github/workflows/site-cause-probe.yml": {
       "kind": "file",
-      "purpose": "Explicit historical cause replay plus issue45 same-repository PR47 Writing label attribution; four source-bound private inputs, never stage or release admission. Issue39 PR40 current-runtime evidence: five ordinary trials plus one separate CPU sample; no admission. Issue122 T03-D adds owner-controlled exact PR128 opt-in routing with actual-expression event-boundary tests; protocol and admission remain unchanged.",
+      "purpose": "Explicit historical cause replay plus issue45 same-repository PR47 Writing label attribution; four source-bound private inputs, never stage or release admission. Issue39 PR40 current-runtime evidence: five ordinary trials plus one separate CPU sample; no admission. Issue122 T03-D adds owner-controlled exact PR128 opt-in routing with actual-expression event-boundary tests; protocol and admission remain unchanged. Issue159 adds explicit owner-only analytics-live dispatch against accepted immutable production with separate unprofiled Forward and real-SDK cost phases; no release admission.",
       "role": "workflow",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -11904,6 +11904,24 @@
       "purpose": "Retained failed staging security report and exact per-ID public baseline Git-commit checksum proof; single scoped false-positive correction.",
       "role": "history",
       "owner": "AGENTS.md"
+    },
+    "review/issue-159/2026-10-28-live-diagnostics.md": {
+      "kind": "file",
+      "purpose": "B3 live diagnostic charter, exact source/target boundaries, independent role findings and retained first observations.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "tools/quality/analytics-live-actions.cjs": {
+      "kind": "file",
+      "purpose": "Read-only manual diagnostic adapter authenticating immutable accepted current production, collector/source distinction and final production lease.",
+      "role": "source",
+      "owner": "guides/SITE-ANALYTICS.md"
+    },
+    "tools/quality/analytics-live.cjs": {
+      "kind": "file",
+      "purpose": "Bounded ordinary current-production Forward timing and separate real-SDK transfer/CPU observation; retained failures and no admission.",
+      "role": "validator",
+      "owner": "guides/SITE-ANALYTICS.md"
     }
   }
 }

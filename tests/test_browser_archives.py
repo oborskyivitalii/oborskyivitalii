@@ -40,6 +40,7 @@ CONSUMERS = {
         "research-pair": "chromium",
     },
     "site-cause-probe.yml": {
+        "analytics-live": "chromium",
         "writing-attribution": "chromium",
         "writing-current": "chromium",
         "diagnose": "chromium,firefox,webkit",
@@ -156,6 +157,22 @@ class BrowserConsumerWiringTests(unittest.TestCase):
                 changed = copy.deepcopy(workflows)
                 self.assertIn(before, changed[name])
                 changed[name] = changed[name].replace(before, after)
+                with self.assertRaises(AssertionError):
+                    verify_consumers(changed)
+
+    def test_live_consumer_rejects_missing_or_wrong_pinned_browser(self):
+        workflows = self.workflows()
+        live, historical = workflows["site-cause-probe.yml"].split("\n  writing-attribution:", 1)
+        for before, after in [
+            ("browsers: chromium", "browsers: firefox"),
+            ("uses: ./.github/actions/browser-archive", "run: echo missing"),
+        ]:
+            with self.subTest(before=before):
+                changed = copy.deepcopy(workflows)
+                self.assertEqual(live.count(before), 1)
+                changed["site-cause-probe.yml"] = (
+                    live.replace(before, after) + "\n  writing-attribution:" + historical
+                )
                 with self.assertRaises(AssertionError):
                     verify_consumers(changed)
 

@@ -466,7 +466,7 @@
     {
       "path": "tests/cause-probe.test.cjs",
       "language": "javascript",
-      "purpose": "Private causal normal/trace identity, original CPU/network evidence, exact four-input Writing derivation/count and retained failures without performance admission. Five ordinary current Writing trials plus one separate CPU sample, fresh-process failure retention and unchanged budgets.",
+      "purpose": "Private causal normal/trace identity, original CPU/network evidence, exact four-input Writing derivation/count and retained failures without performance admission. Five ordinary current Writing trials plus one separate CPU sample, fresh-process failure retention and unchanged budgets. Bounded live analytics source/CPU/timing and read-only dispatch guards; no actual live cost inferred.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "diagnostic",
       "profiles": ["diagnostic", "pr-targeted"],
@@ -475,7 +475,9 @@
       "inputs": [
         "tests/cause-probe.test.cjs",
         "tools/quality/cause-probe.cjs",
-        ".github/workflows/site-cause-probe.yml"
+        ".github/workflows/site-cause-probe.yml",
+        "tools/quality/analytics-live.cjs",
+        "tools/quality/analytics-live-actions.cjs"
       ]
     },
     {

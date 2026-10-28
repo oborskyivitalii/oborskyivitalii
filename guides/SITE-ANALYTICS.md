@@ -135,6 +135,29 @@ tracking may count those URL changes. Compare actual reported paths/counts befor
 declaring route measurement accepted. Also test Back/Forward, native reload,
 tab hiding and an ad blocker; missing beacon data is a known coverage limit.
 
+## Bounded ordinary live diagnostics
+
+Issue159's explicit `analytics-live` mode in the existing manual
+`site-cause-probe.yml` observes current production with the real mutable SDK.
+Owner dispatch requires the exact collector SHA and current immutable release tag;
+read-only deployment records bind tag/source/public digest/deployment ID before and
+after collection. Production runtime and admission are unchanged. See the
+[diagnostic charter and review](../review/issue-159/2026-10-28-live-diagnostics.md).
+
+Two unprofiled fresh contexts measure Forward after Back mounts versus settles,
+requiring distinct observed busy conditions and complete browser-clock milestones.
+The original attached 6000 ms and existing settled limits are unchanged; settled
+means navigation idle under the existing aria-busy oracle, not separately measured
+visual settling. The runtime 8000 ms abort policy is unchanged; postdeadline
+recovery is not observed here. A separate
+6000 ms Home context records real SDK bytes, encoded transfer/cache fields and raw
+1000 µs sampled CPU. Actual browser response hashes and mounted identities must
+match the frozen manifest. Raw failures survive secondary capture/cleanup errors.
+These three deliberate ordinary contexts send provider traffic; report their window
+separately from isolated QA. Profiles are advisory sampled attribution; absent SDK
+samples mean unresolved cost, never zero cost or performance acceptance. A new CI
+observation does not explain a historical CUA tool timeout.
+
 ## Current provider access and operator steps
 
 As checked on 18 October 2026, the `.ai` site uses GitHub Pages with DNS-only
