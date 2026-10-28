@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "42cbcbebc60405dbc439634ec12c30ab4619984ab3d8bf5ad45b91d0af3fd155",
+    "digest": "e2991dca9b64e6fad04b825a67042ac868d7971d87950cd533ced4b82ad31c0a",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -361,7 +361,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "b82cbd32c7a7047102090636d74a1a6bdda377e6cd38c0fe36d80ee5e17e2959"
+        "sha256": "c51a67bc3dd68a2ee53ae8185f89b21a77cd43098df5afd586ed367f728de7a2"
       },
       {
         "path": "NOTICE.md",
@@ -1100,7 +1100,7 @@
       {
         "path": "review/issue-159/2026-10-28-qa-isolation.md",
         "identity_mode": "content",
-        "sha256": "8fef88551f473535b75c251a86d41e264ec21c146006115a232f42ee14836f56"
+        "sha256": "c25ae73e83445e0a4910ceaef31fb1d193cb0278e2a6631fae4b0b610f8a22c7"
       },
       {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",

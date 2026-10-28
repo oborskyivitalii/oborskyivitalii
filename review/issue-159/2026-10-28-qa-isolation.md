@@ -74,10 +74,10 @@ and absence of cross-context suppression, not accepted production events.
 
 | Role | Identity | Actual inspected source/checks | Verdict and limits |
 | --- | --- | --- | --- |
-| Requirements | `/root/b2_requirements` | Live issue159, B1/current source and preflight design | Pre-edit ACCEPT; final candidate pending |
-| Code reviewer | pending | pending | pending |
-| White-box QA | pending | pending | pending |
-| Exploratory/operator QA | pending | pending | pending |
+| Requirements | `/root/b2_requirements` | Live intent, complete prepared source, policy/report/native receipts | Pre-edit and final ACCEPT; source portion only, staging/admission pending |
+| Code reviewer | `/root/b2_code` | Complete prepared diff; actual cold/Color failures and correction fault model | ACCEPT; C1–C4 resolved, complete-file digest independently reproduced |
+| White-box QA | `/root/b2_whitebox` | Complete source; source suites47/47; independent native contrast and leakage/suppression mutants | ACCEPT; W1/W2 resolved, digest reproduced; local controlled proof |
+| Exploratory/operator QA | `/root/b2_operator` | Actual helper API, twice-replayed saved report and independent native contrast | ACCEPT; artifact-schema correction re-reviewed, digest reproduced; no provider query claimed |
 
 ## Acceptance evidence and failures
 
@@ -142,3 +142,54 @@ Native contrast supplies bounded mechanism proof; full current-artifact child
 journeys/staging, exact-head control admission, protected merge, production,
 provider receipt, finalized report comparison/vital samples/SDK cost stay B3.
 Draft prototype previews skip browsers and cannot supply those observations.
+
+## Final reviewed source and correction receipts
+
+All four roles independently reproduced **1778** actual files and accepted
+prepared digest `bbeb7e923909edd8f2b999e269749aa77e9e39a278912b207821268d5ed06d20`
+(sorted path, NUL, raw SHA256(file); tracked and untracked nonignored files,
+including RI views). The exact prepared tree is
+`ca2e331e6375ed255b18fc7e67b18307fd57b284`, published as
+[950d0de](https://github.com/oborskyivitalii/oborskyivitalii/commit/950d0de87c5112a2c572cffc19659ebd590f3cad).
+Owning runner working-tree digest was separately
+`152529f7ad89ebdbd1dfbd13729289634c12f50ce0026a787723361225e574bf`;
+these are different declared algorithms, not competing commit identities.
+
+Actual prepared-policy result: **8/8 PASS**, `evidence_valid:true`, `errors:[]`,
+21 external gates pending, closure false. Policy SHA256
+`6ffd7daeb2c912f18a79af3fc06accff5ba53960901494060902fae1bc29d0d1`.
+Stable full RI **29/29**, coupling **20/20** and formatter **535** files passed.
+No failed evidence is erased. Final receipt commit changes only these verbatim
+role/check/source facts, dated status qualification/MEMORY and deterministic RI;
+its own **clean-source** policy report must be posted in PR160 after publishing.
+The prepared runner result above remains explicitly dirty-source evidence.
+
+Separate conclusions retained:
+
+- Requirements: ACCEPT implemented source/fixture/report; stable ACs, route
+  allocation and remaining external gates preserved. Full original B2 exit
+  includes staging/control admission, which has not passed.
+- Code: ACCEPT full prepared digest; all four found regressions resolved. The
+  independently executed Color-main routing-fault model retained two failed rows,
+  two receipts, browser cleanup and final rejection. RI/coupling logs inspected;
+  policy was still running at that reviewer's binding, so its pass is supplied
+  by the actual runner/other completed inspections rather than inferred by code.
+- White-box: ACCEPT full digest; independent47/47 and pinned native contrast;
+  unchanged helper's leakage and excessive SDK-suppression mutants rejected.
+  Prepared8/8, RI29/29 and coupling20/20 independently inspected.
+- Operator: ACCEPT full digest and report-schema correction; independent native
+  receipt12:13:44.236Z is retained exactly in browser archive. Actual helper API
+  and repeated saved-report checks remain distinct from fresh provider reads.
+  Policy/RI were running at operator binding, so no outcome is attributed to it.
+
+### Batch allocation qualification and next action
+
+B2's **source/controlled-fixture/report portion** is complete. The original B2
+staging/control-admission exit remains open; it is carried into the next
+verification/delivery batch (B2b verification, then B3 release). Earlier prose
+placing those checks wholly under B3 describes that allocation refinement, not
+an observed pass or removed requirement. The release order and total scope are
+unchanged: finish current-artifact child journeys/source/staging/control checks,
+then authorized analytics merge/production/live evidence and comparable baseline;
+only afterward Terra → SEO/briefs/staging → separate SEO production → full closure.
+No whole live-gated AC or issue checkbox is completed by this batch alone.

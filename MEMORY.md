@@ -41,7 +41,7 @@ Dated continuity, not live authority. Last verified: **2026-10-28**.
 
 1. Revalidate current main/production, #159 and analytics Draft PR160.
 2. Read review/issue-159/2026-10-28-qa-isolation.md and exact-source results.
-3. Continue B3 verification/delivery on PR160; defer Terra until analytics is live.
+3. Finish B2 staging/control verification, then B3 delivery on PR160; Terra follows.
 4. Report batch outcome, next action, full remaining sequence and plan deviations.
 
 ## Maintenance
