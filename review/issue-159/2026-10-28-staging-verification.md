@@ -154,3 +154,60 @@ clean7100d2b, whose tested harness/public bytes are unchanged. Later hosted CI,
 stable staging, current head/tree, exact control decision and final status will
 be linked in PR160/issue159 comments without moving the frozen staged source.
 This checkpoint supplies no hosted/staging/App/merge/production pass in advance.
+
+## Failed first owner staging and exact correction
+
+The first owner staging40694186899/attempt1 failed at clean frozen
+`beec5174ecb60b2bff36979513bb9f4750030849` / tree
+`4c020433b3ab3f0f5fbe1e21722861dfa398fcb7`, before candidate publication.
+25/26 prepublication guards passed. Security alone failed: Semgrep and reviewed
+Bandit passed, while detect-secrets returned one untriaged hashed candidate.
+Advisories and source/Python/style/RI/format/architecture/generated/SEO/artifact/
+rights/lint/package/selftest/unchanged guards passed. Publish, native staging
+regression and stable promotion did not run; merge admission correctly failed.
+The old failed stage remains failed and is never a later-head pass.
+
+[Retained raw failure and per-ID proof](2026-10-28-stage-security-proof.json.gz)
+binds native artifact12818777585 and original ZIP SHA256
+`c0061b67d8d7d6be49b8f2bf2f813ab9b66d5aaa355bb87b4434bbb79623464f`.
+Its hashed detector candidate is baseline.json:5, Hex High Entropy String,
+SHA1 `56c9e8676659d40c9010ecb4705a12ef85d98b2e`. The actual baseline source_ref
+is public protected-main commit9318a54a684079bb23e5dadcfa4bf705d6783dd0;
+SHA1(value), immutable Git type and independently fetched main prove this exact
+public provenance. Baseline bytes remain unchanged. No credential value is added.
+
+Requirements pre-edit delta ACCEPT treats this as necessary AC13 correction.
+Append exactly one path/type/hashed-value false-positive row to the existing
+checksum ledger (1562→1563), preserving all prior rows/order/reasons/top metadata,
+the other three ledgers, scanner/rules/input list/pins/budgets byte-identically.
+The proof is exact; no wildcard, automatic new checksum allowance or scanner
+exemption is introduced. Actual exported admission helpers accept the exact row
+and reject wrong path/type/hash and a removed disposition. Fresh current-tree
+detector admission and selected ledger/source checks follow before new CI/staging.
+
+This real admission correction supersedes the earlier frozen source; it is not
+a receipt-only post-stage update. No accepted staging lease was acquired. New
+complete head requires ordinary review/source/hosted/full owner stage again.
+Actual Ready/source/hosted PASS on beec517 remains correctly dated: source1140/1140,
+RI/owning checks and exact HTTPS preview50aebc2c; raw browser ZIP12818336801 was
+independently hash-verified, with4generic+2Color/7contexts and6vs6controlled proof.
+Final current-stage/App/production outcomes remain pending, not implied by it.
+
+Correction verification: exact current-tree detector1.5.0 scan completed exit0
+on1371 tracked text files in42.7s; actual unchanged scanner admission helpers
+admitted the resulting6997 hashed candidates with **zero untriaged** (actual
+accounting retained in proof, not an exception). Existing finite-ledger negative
+oracles deny wrong path/type/hash, unrelated candidates and the removed exact row.
+Independent white-box comparison proves all1562 prior rows/top metadata and
+seven scanner/other-ledger inputs unchanged; ledger SHA256
+`ed2adb5342e9fa8883c0e7d04b7b87ae0b3e038b945edc2d2a06e8e84f24308d`.
+
+Local broad source check retained58/59 on the explicitly dirty prepared tree.
+The one repository-lint integration fixture requires clean source: child execution
+stopped at delivery-git.clean before its failure-report file existed. The bounded
+diagnostic reproduced dirty-candidate rejection; no candidate code was changed.
+Selected exact-ledger tests can run on prepared source; the complete suite must
+pass on the actual clean new CI head before staging. The first white-box temporary
+byte-comparison probe also hit Node's default buffer on the existing2MB baseline;
+its corrected comparison used exact41byte Git blob IDs, preserving every oracle.
+Both diagnostic failures/limits are retained, not converted into scanner passes.

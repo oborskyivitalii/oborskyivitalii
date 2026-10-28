@@ -11898,6 +11898,12 @@
       "purpose": "Raw B2.2 clean7100 staging Color artifact, independent native smoke, metadata and lint/architecture receipts; first invocation failure retained.",
       "role": "history",
       "owner": "AGENTS.md"
+    },
+    "review/issue-159/2026-10-28-stage-security-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Retained failed staging security report and exact per-ID public baseline Git-commit checksum proof; single scoped false-positive correction.",
+      "role": "history",
+      "owner": "AGENTS.md"
     }
   }
 }

@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "0d663f8828e29d43d5f8101156955963bcedbfeb9905e2423cd10952b1f0b50f",
+    "digest": "9a8c2d831fe147fe3488a5055cfc76af7492dc4706cf36a1e3daa064f2452c00",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -206,12 +206,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "5462ffcde04673a73695a0e7d5f559e778d7f0e675f696627d71db8f0a374d0c"
+        "sha256": "d5dba7ce5d8d8aa8103bd83f15ae4dc6944afea5ba4eb64f6c77c348377f54c7"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "159a44364b3e058fd2399a8df4e3a0a7759e0dc440f943fe8b92c62a86501ca8"
+        "sha256": "05b0d5a35ae8dce43b919d4a3ad7eb70de6e91a5ea75c12772ec3cfad3c25dad"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -361,7 +361,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "27b69a2d5d3c1e7d9a0457477fb7141ad18e23eca039048b432feb4932b40369"
+        "sha256": "2626bf89c78c224c78361b5aa5dcaf505434f31e12c3447b9bc14e0e3b07f769"
       },
       {
         "path": "NOTICE.md",
@@ -1108,9 +1108,14 @@
         "sha256": "c25ae73e83445e0a4910ceaef31fb1d193cb0278e2a6631fae4b0b610f8a22c7"
       },
       {
+        "path": "review/issue-159/2026-10-28-stage-security-proof.json.gz",
+        "identity_mode": "content",
+        "sha256": "50098146480c7747b5c8962f9d3b3cf237f3af3f3408341c29917e95e5e40e6c"
+      },
+      {
         "path": "review/issue-159/2026-10-28-staging-verification.md",
         "identity_mode": "content",
-        "sha256": "d6f9fd19b11432af8a593075566c50a95db6cc4002a2871b0ecc17c0927c98d8"
+        "sha256": "4705968da928779d6bb80fdf0ad03083b56470165ff7ffa21fda573cc16567b3"
       },
       {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -8490,7 +8495,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "d9e324b852558352efad4fdc8a31c07c4ea7cc0200ba95a433d9c2b6dce73f6d"
+        "sha256": "ed2adb5342e9fa8883c0e7d04b7b87ae0b3e038b945edc2d2a06e8e84f24308d"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
@@ -11655,6 +11660,17 @@
         "AGENTS.md"
       ],
       "title": "Issue 159 — B2 QA isolation, 28 October 2026"
+    },
+    {
+      "path": "review/issue-159/2026-10-28-stage-security-proof.json.gz",
+      "kind": "file",
+      "purpose": "Retained failed staging security report and exact per-ID public baseline Git-commit checksum proof; single scoped false-positive correction.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-28-stage-security-proof.json.gz"
     },
     {
       "path": "review/issue-159/2026-10-28-staging-verification.md",

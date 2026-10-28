@@ -41,7 +41,9 @@ Dated continuity, not live authority. Last verified: **2026-10-28**.
 
 1. Revalidate current main/production, #159 and analytics Draft PR160.
 2. Read review/issue-159/2026-10-28-staging-verification.md and latest PR/issue comments.
-3. Freeze source before Ready/owner stage; final CI/stage refs stay in comments.
+3. First stage40694186899/1 failed preupload: one public baseline Git-SHA
+   secret candidate. Exact1563rd checksum-ledger row/proof fixes admission;
+   finish delta review/current detector, then fresh CI/full stage on new head.
    Exact-head owner reviewed_sha trust remains distinct before App admission.
 4. Report batch outcome, next action, full remaining sequence and plan deviations.
 
