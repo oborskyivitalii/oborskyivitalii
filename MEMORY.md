@@ -43,7 +43,8 @@ Dated continuity, not live authority. Last verified: **2026-10-28**.
 2. Read review/issue-159/2026-10-28-staging-verification.md and latest PR/issue comments.
 3. First stage40694186899/1 failed preupload: one public baseline Git-SHA
    secret candidate. Exact1563rd checksum-ledger row/proof fixes admission;
-   finish delta review/current detector, then fresh CI/full stage on new head.
+   delta reviews ACCEPT clean009188;59/59+8/8+RI29/29+coupling20/20 passed.
+   Fresh final-head CI/full stage remain, old failed stage stays failed.
    Exact-head owner reviewed_sha trust remains distinct before App admission.
 4. Report batch outcome, next action, full remaining sequence and plan deviations.
 

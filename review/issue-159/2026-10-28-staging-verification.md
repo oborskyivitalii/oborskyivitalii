@@ -211,3 +211,33 @@ pass on the actual clean new CI head before staging. The first white-box tempora
 byte-comparison probe also hit Node's default buffer on the existing2MB baseline;
 its corrected comparison used exact41byte Git blob IDs, preserving every oracle.
 Both diagnostic failures/limits are retained, not converted into scanner passes.
+
+## Reviewed clean correction checkpoint
+
+All four roles independently accepted clean prepared commit
+`0091881d85301bc73947fc9951434935d865b8a9`, tree
+`3470c6ae6aa74afcfe2f6b7544fadb6dc1b7d289`,1781-file digest
+`3928388acd9be56a8d455c8d6fd24249a6f40a90a44fa6df6329a0faedbf56fd`.
+They inspected the complete eight-path correction and exact raw/proof preservation.
+Requirements/code/white-box/operator each verified ledger1562→1563 and unchanged
+scanner/other-ledger/baseline inputs. No blocking finding or source authorship.
+
+Actual clean prepared results: quality59/59 (the formerly dirty-precondition
+fixture now passes unchanged), owning policy8/8/evidence_valid:true/errors empty/
+source_dirty:false/closure false, RI29/29 and coupling20/20. Selected ledger
+negatives also passed12/12 with no skips. Each final reviewer inspected these
+actual clean receipts; no prepared/old-stage result is a final admission claim.
+
+The current detector6997/zero-untriaged receipt remains explicitly attributed to
+its dirty beec517-based prepared scan and1371-file input inventory, as its retained
+summary states. It is distinct from clean009188 and the eventual new CI/staging
+source. The raw detector reports and first-stage failure remain unaltered.
+Operator found the draft3382-versus6997 wording error and independently accepted
+the corrected6997 prose; the raw proof was never changed to fit a claim.
+
+The final child records only these completed role/check/source facts and
+continuity/derived RI. Freeze that new head before fresh Ready CI/hosted/native
+and complete owner staging. The actual ledger correction, rather than a receipt
+refresh, justifies this new candidate. Keep all later results in comments; the
+failed40694186899/1 remains failed. Exact-head owner control trust and subsequent
+merge/production/provider gates remain separate.
