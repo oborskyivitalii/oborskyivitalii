@@ -26,26 +26,32 @@ Dated continuity, not live authority. Last verified: **2026-10-28**.
 
 ## Open work
 
-- Current diagnostic source/review:
-  review/issue-159/2026-10-28-live-diagnostics.md. Four initial reviewers found
-  selector, byte/lease binding, timeline, CPU and failure-capture gaps. Corrected
-  source guards17/17 passed and four corrected-source roles ACCEPT. Final
-  repository/policy checks, freeze and first native dispatch remain pending.
+- PR161 diagnostic source/review:
+  review/issue-159/2026-10-28-live-diagnostics.md. Native40736775395/1 succeeded
+  at6c4ad913/tree6a7f6c83 against immutablec68db162. Both Forward conditions
+  mounted within2sec; separate SDK10478encoded/31853decoded bytes and6.474ms
+  sampled CPU attribution. Provider17:34–17:36Z15loads/3visits is deliberate QA.
+- Ready source40741828285/1 passed1162/1162; manual policy40742223319/1 passed9/9.
+  Preview4+2 passed. Stage40743921270/1 build cancelled at original10min while
+  security unfinished. Raw Python139run/1failed exposed missing analytics-live
+  Chromium in exact consumer inventory. PR returned Draft for narrow correction;
+  preserved original artifact12841326931 ZIP4b690f23… and failure diagnosis.
 - B3 actual provider16:20–16:24Z9loads/3visits and real navigation/reload/routing
   rows observed. Equal300sec windows3/1Safari versus2/1Chrome are tiny unequal
   clients and not a causal reduction. Weekly427/166 includes264Headless;
   nonheadless163/144 is not verified humans. GSC six cached dates1click17impressions.
-- Issue159 currently9/46 checkbox lines complete: AC10/12/14/17 whole criteria.
-  B3 SDK cost/Forward diagnosis and later SEO/editorial/human gates remain open.
+- Issue159 currently15/46 checkbox lines complete: AC10/11/12/14/15/16/17/18 whole.
+  Diagnostic delivery/AC13 and later SEO/editorial/human gates remain open.
   PR117 private LCP acquisition/replay cannot substitute for real live SDK evidence.
 
 ## Next session
 
 1. Revalidate main/production, #159 and any new diagnostic Draft PR/head/checks.
-2. Complete final four role re-review and current source/RI/policy checks.
-3. Freeze source; use existing owner-dispatched analytics-live branch workflow,
-   retain first native timing/CPU/network result. Diagnose failure before rerun.
-4. Reconcile B3 against original AC; then proceed Terra SEO under same #159 owner.
+2. Finish browser inventory correction, affected checks and four distinct reviews.
+3. Freeze corrected source, complete Ready checks/full owner staging and refresh
+   admission; obtain actual exact-head owner control trust and merge decision.
+   Preserve6c4 native observations without relabelling them as new-head execution.
+4. Reconcile B3 delivery; then proceed Terra SEO under the same #159 owner.
    Dynamic receipts stay comments after source freeze; no receipt-only commits.
 
 ## Maintenance

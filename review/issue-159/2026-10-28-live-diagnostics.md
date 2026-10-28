@@ -130,3 +130,43 @@ dependencies; the retained first log is separate from actual product assertions.
 Existing locked dependencies are reused locally without package changes. Initial
 exact-ref CLI mistakes and the subsequent corrected clean-source run are separate
 receipts. No source test, registration or Draft check establishes live SDK evidence.
+
+## Browser consumer inventory correction
+
+Native diagnostic40736775395/1 succeeded at6c4ad913/tree6a7f6c83 against the
+unchanged accepted productionc68db162; its raw observation and later provider
+receipt remain bound to that source. Ready source40741828285/1 separately passed
+1162/1162 in75 modules with exact Pillow13.0. Manual issue policy40742223319/1
+passed9/9; Ready preview generic4/4 and Color2/2 passed. These do not replace
+the mandatory full staging route or establish a pass at a later corrected head.
+
+Owner stage40743921270/1 used candidate6c4ad913 and protected controllerc68db162.
+Build123013837584 was cancelled at its unchanged10-minute outer job limit during
+security scanning; full staging/publication/promotion did not run. Raw retained
+prepublication artifact12841326931 has ZIP SHA256
+4b690f23c157747c39764359cb437eacd4b902d5444153a7c9f0e907ecbf1096.
+Its Python campaign completed139 tests with one actual failure in
+`BrowserConsumerWiringTests.test_all_existing_consumers_restore_exact_sets_without_cdn_downloads`.
+The exact inventory expected26 consumers but observed27: only the newly added
+`site-cause-probe.yml` / `analytics-live` Chromium consumer was unregistered.
+Its existing pinned local restore, selection and read permissions already pass
+the guard. The cancellation does not establish security success or its root cause.
+
+Requirements preflight accepts registering precisely that consumer and updating
+its guide. New negative cases mutate only the live job to a wrong browser or
+missing restore, preserving exact inventory equality and all existing origin,
+permission, setup-failure and no-CDN checks. No workflow, scanner, timeout, runtime
+or production bytes change. First retain and reproduce the inventory failure,
+then verify the bounded correction, four independent roles and new-head required
+checks/staging. No unchanged failed campaign retry or new ordinary live visit.
+AC13.3 maps CS01/04 to the existing inventory owner, CS05 to pinned Python format,
+CS08/09 to the complete archive suite and bounded guard, and CS10 to this record.
+
+Independent operator comparison separates deadline consumption from that source
+defect: failed checkout took251s, versus15s in successful stage40709724866/1
+build122891806987. Its unchanged prepublication step completed in320s; the failed
+attempt was cancelled after308s of prepublication because earlier setup consumed
+the outer job budget. This supports slow fetch as a contributing budget cost,
+not a deterministic scanner regression or a security pass. The corrected-head
+attempt retains the original10-minute job and every guard; inspect its actual
+timings and retained outcome rather than assuming that inventory repair fixes time.
