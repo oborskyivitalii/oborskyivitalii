@@ -77,8 +77,8 @@
     {
       "id": "AC11",
       "intent": "Original #158/AC02: isolate identified QA without dropping readers",
-      "automated_scope": "Maintained analytics/quality/staging source regressions only; not the unimplemented isolation mechanism, live provider, browser or cost proof.",
-      "checks": ["ANALYTICS"],
+      "automated_scope": "Maintained analytics/quality/staging source regressions only; not live provider, browser or cost proof. ISOLATION checks finite collector/setup/abort source negatives; actual network contrast runs in existing hosted browser journeys.",
+      "checks": ["ANALYTICS", "ISOLATION"],
       "gates": ["ISOLATION-BEHAVIOR", "BROWSER", "LIVE"]
     },
     {
@@ -91,29 +91,29 @@
     {
       "id": "AC13",
       "intent": "Original #158/AC04: exact-source contracts/style/delivery",
-      "automated_scope": "Generated/static/size/H1/footer/theme/archive subset only; no exact SEO or whole browser matrix. Bounded enforced code-style subset only. Current catalog/generated navigation freshness only. Current source-to-CI coupling only.",
-      "checks": ["BASIC", "STYLE", "RI", "RI-CI"],
+      "automated_scope": "Generated/static/size/H1/footer/theme/archive subset only; no exact SEO or whole browser matrix. Bounded enforced code-style subset only. Current catalog/generated navigation freshness only. Current source-to-CI coupling only. ISOLATION checks finite collector/setup/abort source negatives; actual network contrast runs in existing hosted browser journeys.",
+      "checks": ["BASIC", "STYLE", "RI", "RI-CI", "ISOLATION"],
       "gates": ["STYLE-REVIEW", "QUALITY", "RELEASES"]
     },
     {
       "id": "AC14",
       "intent": "Original #158/AC05: article measurement readiness",
-      "automated_scope": "Maintained analytics/quality/staging source regressions only; not the unimplemented isolation mechanism, live provider, browser or cost proof.",
-      "checks": ["ANALYTICS"],
+      "automated_scope": "Maintained analytics/quality/staging source regressions only; not live provider, browser or cost proof. ISOLATION checks finite collector/setup/abort source negatives; actual network contrast runs in existing hosted browser journeys.",
+      "checks": ["ANALYTICS", "ISOLATION"],
       "gates": ["ARTICLE-HANDOFF"]
     },
     {
       "id": "AC15",
       "intent": "Original #102/AC01 via #158/AC06: declared entries and isolation",
-      "automated_scope": "Maintained analytics/quality/staging source regressions only; not the unimplemented isolation mechanism, live provider, browser or cost proof.",
-      "checks": ["ANALYTICS"],
+      "automated_scope": "Maintained analytics/quality/staging source regressions only; not live provider, browser or cost proof. ISOLATION checks finite collector/setup/abort source negatives; actual network contrast runs in existing hosted browser journeys.",
+      "checks": ["ANALYTICS", "ISOLATION"],
       "gates": ["BROWSER", "LIVE"]
     },
     {
       "id": "AC16",
       "intent": "Original #102/AC02 via #158/AC07: guard/history/filter evidence",
-      "automated_scope": "Maintained analytics/quality/staging source regressions only; not the unimplemented isolation mechanism, live provider, browser or cost proof.",
-      "checks": ["ANALYTICS"],
+      "automated_scope": "Maintained analytics/quality/staging source regressions only; not live provider, browser or cost proof. ISOLATION checks finite collector/setup/abort source negatives; actual network contrast runs in existing hosted browser journeys.",
+      "checks": ["ANALYTICS", "ISOLATION"],
       "gates": ["BROWSER", "LIVE"]
     },
     {
@@ -126,8 +126,8 @@
     {
       "id": "AC18",
       "intent": "Original #102/AC04 via #158/AC09: dimensions/sample/cost/runbook",
-      "automated_scope": "Maintained analytics/quality/staging source regressions only; not the unimplemented isolation mechanism, live provider, browser or cost proof. Generated/static/size/H1/footer/theme/archive subset only; no exact SEO or whole browser matrix.",
-      "checks": ["ANALYTICS", "BASIC"],
+      "automated_scope": "Maintained analytics/quality/staging source regressions only; not live provider, browser or cost proof. Generated/static/size/H1/footer/theme/archive subset only; no exact SEO or whole browser matrix. ISOLATION checks finite collector/setup/abort source negatives; actual network contrast runs in existing hosted browser journeys.",
+      "checks": ["ANALYTICS", "BASIC", "ISOLATION"],
       "gates": ["VITALS-COST", "LIVE", "STYLE-REVIEW"]
     }
   ],
@@ -158,6 +158,10 @@
     "RI-CI": {
       "kind": "unittest",
       "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    },
+    "ISOLATION": {
+      "kind": "unittest",
+      "test": "test_issue159_acceptance.Issue159AcceptanceTests.test_qa_collector_isolation"
     }
   },
   "gates": {
@@ -215,7 +219,7 @@
     },
     "ISOLATION-BEHAVIOR": {
       "kind": "human",
-      "description": "New mechanism remains pending: actual contrast/leak/failure cases must prove identified QA suppression and ordinary collection; existing alias tests alone cannot prove it."
+      "description": "Actual browser contrast and context receipts must prove identified QA suppression and ordinary collection; predicate/setup unit checks alone cannot prove network behavior."
     },
     "BROWSER": {
       "kind": "human",

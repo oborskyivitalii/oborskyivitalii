@@ -1,4 +1,5 @@
 'use strict';
+const qaIsolation = require('./analytics-isolation.cjs');
 // A bounded article journey reuses the admitted browser and the five-route shell.
 const assert = require('node:assert/strict');
 
@@ -1351,11 +1352,24 @@ async function failedArticleCheckpoint(page, requestDeferral) {
   return checkpoint;
 }
 
-async function normalJourney(browser, baseURL, key, descriptor, descriptors, width, timeout) {
+async function normalJourney(
+  browser,
+  baseURL,
+  key,
+  descriptor,
+  descriptors,
+  width,
+  timeout,
+  isolation
+) {
   const urls = articleURLs(baseURL, descriptor);
-  const context = await browser.newContext({
-    viewport: { width, height: width === 390 ? 844 : 900 },
-  });
+  const context = await qaIsolation.createContext(
+    browser,
+    {
+      viewport: { width, height: width === 390 ? 844 : 900 },
+    },
+    isolation
+  );
   await context.addInitScript(installArticleFlightDiagnostics);
   const page = await context.newPage();
   const imageRequests = [];
@@ -1641,12 +1655,25 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
   }
 }
 
-async function fallbackJourney(browser, baseURL, key, descriptor, descriptors, mode, timeout) {
+async function fallbackJourney(
+  browser,
+  baseURL,
+  key,
+  descriptor,
+  descriptors,
+  mode,
+  timeout,
+  isolation
+) {
   const urls = articleURLs(baseURL, descriptor);
-  const context = await browser.newContext({
-    viewport: { width: 390, height: 844 },
-    javaScriptEnabled: mode !== 'no-js',
-  });
+  const context = await qaIsolation.createContext(
+    browser,
+    {
+      viewport: { width: 390, height: 844 },
+      javaScriptEnabled: mode !== 'no-js',
+    },
+    isolation
+  );
   if (mode === 'off')
     await context.addInitScript(() => {
       if (localStorage.getItem('vo.motion') !== 'on') localStorage.setItem('vo.motion', 'off');
@@ -1779,6 +1806,7 @@ async function articleJourney(
     widths = [1440, 390],
     timeout = 10000,
     modes = ['normal', 'off', 'no-canvas', 'no-js'],
+    isolation = [],
   } = {}
 ) {
   assert.ok(browser, 'article journey requires the existing admitted browser');
@@ -1797,15 +1825,35 @@ async function articleJourney(
     if (modes.includes('normal')) {
       for (const width of widths)
         observations.push(
-          await normalJourney(browser, baseURL, key, descriptor, descriptors, width, timeout)
+          await normalJourney(
+            browser,
+            baseURL,
+            key,
+            descriptor,
+            descriptors,
+            width,
+            timeout,
+            isolation
+          )
         );
     }
     for (const mode of modes.filter((mode) => mode !== 'normal')) {
       observations.push(
-        await fallbackJourney(browser, baseURL, key, descriptor, descriptors, mode, timeout)
+        await fallbackJourney(
+          browser,
+          baseURL,
+          key,
+          descriptor,
+          descriptors,
+          mode,
+          timeout,
+          isolation
+        )
       );
     }
+    qaIsolation.validate(isolation);
     return {
+      qaIsolation: isolation,
       kind: 'bounded-article-journey',
       browser: browser.version(),
       documents: [key],

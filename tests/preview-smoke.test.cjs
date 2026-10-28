@@ -13,6 +13,136 @@ const {
   navigationAction,
 } = require('../tools/quality/local-browser.cjs');
 const { validate } = require('../tools/quality/flight-detail.cjs');
+const qaIsolation = require('../tools/quality/analytics-isolation.cjs');
+
+test('QA collector predicate is exact and leaves SDK, lookalikes and unrelated paths alone', () => {
+  for (const value of [qaIsolation.collector, qaIsolation.collector + '?v=1'])
+    assert.equal(qaIsolation.collectorRequest(value), true, value);
+  for (const value of [
+    'https://static.cloudflareinsights.com/beacon.min.js',
+    'https://cloudflareinsights.com.evil.example/cdn-cgi/rum',
+    'https://cloudflareinsights.com:444/cdn-cgi/rum',
+    'http://cloudflareinsights.com/cdn-cgi/rum',
+    'https://user@cloudflareinsights.com/cdn-cgi/rum',
+    qaIsolation.collector + '/',
+    qaIsolation.collector + '-other',
+    'https://cloudflareinsights.com/cdn-cgi/%72um',
+    'https://vitaliioborskyi.ai/cdn-cgi/rum',
+    'not a URL',
+  ])
+    assert.equal(qaIsolation.collectorRequest(value), false, value);
+});
+
+test('QA context installs before page creation, aborts collector and closes on setup failure', async () => {
+  const actions = [];
+  const receipts = [];
+  let handler;
+  const context = {
+    route: async (predicate, callback) => {
+      actions.push('route');
+      assert.equal(predicate(qaIsolation.collector), true);
+      handler = callback;
+    },
+    newPage: async () => {
+      actions.push('page');
+    },
+    close: async () => {
+      actions.push('close');
+    },
+  };
+  const browser = {
+    newContext: async (options) => {
+      assert.equal(options.serviceWorkers, 'block');
+      return context;
+    },
+  };
+  const isolated = await qaIsolation.createContext(browser, {}, receipts);
+  await isolated.newPage();
+  await handler({
+    abort: async (reason) => {
+      assert.equal(reason, 'blockedbyclient');
+      actions.push('abort');
+    },
+  });
+  assert.deepEqual(actions, ['route', 'page', 'abort']);
+  assert.equal(receipts[0].blocked, 1);
+  qaIsolation.validate(receipts);
+  await assert.rejects(qaIsolation.createContext(browser, { serviceWorkers: 'allow' }), /bypass/);
+  context.route = async () => {
+    throw Error('routing unavailable');
+  };
+  await assert.rejects(qaIsolation.createContext(browser), /before navigation/);
+  assert.deepEqual(actions, ['route', 'page', 'abort', 'close']);
+  assert.throws(() => qaIsolation.validate([]), /missing/);
+  assert.throws(() => qaIsolation.validate([{ installed: false, failures: [] }]), /not installed/);
+  assert.throws(() => qaIsolation.validate([{ installed: true, failures: ['fault'] }]), /failed/);
+});
+
+test('fresh ordinary collector transport remains available after isolation setup fails', async () => {
+  const contexts = [];
+  const browser = {
+    newContext: async () => {
+      const current = {
+        closed: false,
+        pages: 0,
+        allowed: [],
+        route: async () => {
+          throw Error('setup fault');
+        },
+        newPage: async () => {
+          current.pages++;
+        },
+        close: async () => {
+          current.closed = true;
+        },
+        send: async (url) => {
+          current.allowed.push(url);
+        },
+      };
+      contexts.push(current);
+      return current;
+    },
+  };
+  await assert.rejects(qaIsolation.createContext(browser), /before navigation/);
+  assert.equal(contexts[0].closed, true);
+  assert.equal(contexts[0].pages, 0);
+  const ordinary = await browser.newContext();
+  assert.notEqual(ordinary, contexts[0]);
+  await ordinary.newPage();
+  await ordinary.send(qaIsolation.collector);
+  assert.equal(ordinary.closed, false);
+  assert.equal(ordinary.pages, 1);
+  assert.deepEqual(ordinary.allowed, [qaIsolation.collector]);
+  assert.deepEqual(contexts[0].allowed, []);
+});
+
+test('failed collector abort closes the isolated context and invalidates its receipt', async () => {
+  let handler;
+  let closed = false;
+  const receipts = [];
+  await qaIsolation.createContext(
+    {
+      newContext: async () => ({
+        route: async (_predicate, callback) => {
+          handler = callback;
+        },
+        close: async () => {
+          closed = true;
+        },
+      }),
+    },
+    {},
+    receipts
+  );
+  await handler({
+    abort: async () => {
+      throw Error('abort fault');
+    },
+  });
+  assert.equal(closed, true);
+  assert.equal(receipts[0].blocked, 0);
+  assert.throws(() => qaIsolation.validate(receipts), /failed/);
+});
 test('native document navigation waits for owned byte reads and preserves their failures', async () => {
   let finish,
     finishLate,

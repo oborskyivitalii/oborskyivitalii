@@ -11856,6 +11856,36 @@
       "purpose": "Preserved corrected-policy missing historical Research blob failure and RI regression runs observed before final regeneration.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "tools/quality/analytics-isolation.cjs": {
+      "kind": "file",
+      "purpose": "Explicit QA context collector interception with fail-before-navigation setup and bounded request receipts.",
+      "role": "validator",
+      "owner": "guides/SITE-ANALYTICS.md"
+    },
+    "tests/test_issue159_acceptance.py": {
+      "kind": "file",
+      "purpose": "Issue159 owning-policy adapter for maintained QA collector isolation source guards.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-159/2026-10-28-qa-isolation.md": {
+      "kind": "file",
+      "purpose": "B2 source-bound isolation decision, four independent reviews, test allocation and release limits.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-159/2026-10-28-b2-diagnostics.json.gz": {
+      "kind": "file",
+      "purpose": "Preserved B2 preliminary cold/Color failures and bounded operator/white-box diagnostics with dirty-source limits.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-159/2026-10-28-b2-browser.json.gz": {
+      "kind": "file",
+      "purpose": "Actual pinned Chromium B2 contrast observations, exact core hashes and verified archive-origin receipts; no real provider telemetry.",
+      "role": "history",
+      "owner": "AGENTS.md"
     }
   }
 }

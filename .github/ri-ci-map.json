@@ -146,7 +146,8 @@
         "review/issue-122/2026-10-23-t03r-public-checksum-proof.json.gz",
         ".github/acceptance/issue-159.json",
         "review/issue-159/2026-10-28-baseline.json",
-        "review/issue-159/2026-10-28-analytics-intake.md"
+        "review/issue-159/2026-10-28-analytics-intake.md",
+        "tests/test_issue159_acceptance.py"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -680,7 +681,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "444ec05caaab87330a90e31efebbe15148971e681b61f15fc03ec0e1ebe43fb8",
+    "digest": "c33580ddf8019eef55040b0bb9a07b3a92f58d4932d65fa12cdbddea8c3543ef",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -728,7 +729,7 @@
       },
       {
         "path": ".github/acceptance/issue-159.json",
-        "sha256": "fcbe271b6e86d78c3d6ad4978145cfe60abb7f673dbb9e28b65babb382ef80b8"
+        "sha256": "6ffd7daeb2c912f18a79af3fc06accff5ba53960901494060902fae1bc29d0d1"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -820,7 +821,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "4e912adb5551a7430c31d7285098be5b2c56d64db469b44ac2c01ff5f3b32f22"
+        "sha256": "58d5d3c90e0008d1e6b83b4526af10cfe4a771722d45acf952df119b4e4b7df8"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -975,6 +976,10 @@
         "sha256": "dbe06bd5f970e48a531889ba0da3572a3b282452ba78fe5c7c3872dba24c4efc"
       },
       {
+        "path": "tests/test_issue159_acceptance.py",
+        "sha256": "9b0f330f75869905b19577d1f2c3e4b06ba850cb0f59070db2b2b42d563c04f9"
+      },
+      {
         "path": "tests/test_issue31_acceptance.py",
         "sha256": "aee20aab4fc11eb662f0cd5fe904634a2f629b3e4886c22a647d58628211de7a"
       },
@@ -1088,7 +1093,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "dd74b837c889fa4893bce820d7664082dea0528c061a692cfb1609d76110c2ec"
+        "sha256": "df72a5ae8e9f80899bd24ca5cf6ff6ffd0d74fafcd04e959a280d0e7ad325fe4"
       },
       {
         "path": "tools/repository_intelligence.py",

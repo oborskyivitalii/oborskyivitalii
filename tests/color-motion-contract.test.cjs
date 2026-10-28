@@ -1012,9 +1012,15 @@ function publicationScenario({ indexed = true, failure = null } = {}) {
       throw stop;
     },
   };
+  let isolationInstalled = false;
   const context = {
+    async route(predicate) {
+      assert.equal(predicate('https://cloudflareinsights.com/cdn-cgi/rum'), true);
+      isolationInstalled = true;
+    },
     async addInitScript() {},
     async newPage() {
+      assert.equal(isolationInstalled, true, 'collector isolation precedes readiness browsing');
       return page;
     },
     async close() {

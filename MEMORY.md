@@ -8,7 +8,7 @@ Dated continuity, not live authority. Last verified: **2026-10-28**.
   Main and production revalidated9318a54a684079bb23e5dadcfa4bf705d6783dd0.
   Earlier #122 platform/C2/C3 evidence remains in its versioned review history;
   old MEMORY source/ref claims must not replace this live verification.
-- Branch issue-159-analytics-p1 starts from that main; B1 intake/policy candidate
+- Branch issue-159-analytics-p1 starts from that main; analytics B2 candidate
   is unmerged/unreleased. Draft PR160 is open; exact head/check pointers belong in its owner review
   and PR conversation.
 - Four existing open PR79/107/110/117 remain separate owners. PR79 article is
@@ -19,9 +19,9 @@ Dated continuity, not live authority. Last verified: **2026-10-28**.
 - User orders analytics delivery/live verification first, then Terra SEO work.
   One active #159 PR at a time; two production increments retain one policy
   AC01–AC18 and all original external/provider/human/release obligations.
-- B1 changes policy/CI prerequisites, runbook and dated evidence only. B2 chooses
-  explicit context-owned collector interception across smoke child consumers;
-  no telemetry change or universal isolation is claimed by the source inventory.
+- B2 implements explicit context-owned collector interception across mandatory
+  smoke/article-tags/article/Color consumers; public site bytes are unchanged.
+  Optional functional/nav/motion/Lighthouse sibling contexts remain residual.
 - New policy/workflow controls use ordinary full-route/exact-head admission.
   Preserve source/artifact/rights leases and all existing budgets.
 
@@ -30,8 +30,9 @@ Dated continuity, not live authority. Last verified: **2026-10-28**.
 - B1 corrected policy7/7, RI29/29, coupling20/20 and four actual roles ACCEPT;
   use Draft PR160 for final clean-head evidence and source/run links. Baseline RUM427 includes
   264Headless; non-headless163 is not humans. Sampling/limits are in the receipt.
-- Implement/test context isolation, ordinary collection and child consumers in B2.
-  Keep Lighthouse/CDP and unknown automation explicitly residual until verified.
+- B2 native pinned Chromium contrast passed6blocked versus6following-ordinary
+  sink-allowed attempts. Source/role/final policy receipts live in the B2 review.
+  No real provider receipt or production cutover is supplied by this fixture.
 - B3 requires authorized staging/merge/production, actual provider/history/vital/
   SDK-cost evidence and bounded before/after reporting. Source/stub tests do not
   prove ingestion. Later SEO/human/briefs/publication gates remain open.
@@ -39,8 +40,8 @@ Dated continuity, not live authority. Last verified: **2026-10-28**.
 ## Next session
 
 1. Revalidate current main/production, #159 and analytics Draft PR160.
-2. Read review/issue-159/2026-10-28-analytics-intake.md and exact-source results.
-3. Continue B2 on the same PR; defer Terra until analytics delivery as requested.
+2. Read review/issue-159/2026-10-28-qa-isolation.md and exact-source results.
+3. Continue B3 verification/delivery on PR160; defer Terra until analytics is live.
 4. Report batch outcome, next action, full remaining sequence and plan deviations.
 
 ## Maintenance

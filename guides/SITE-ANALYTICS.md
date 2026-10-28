@@ -177,16 +177,113 @@ Web Analytics retains recent unsampled beacon data for seven days, then aggregat
 history; its documented query window is six months. Do not pool low-volume Core
 Web Vitals percentiles or treat pageview sample size as each vital's sample size.
 
-Dedicated analytics fixtures stub the vendor. Production smoke and its separate
-article-tags/article/Color browser contexts can load the actual provider; they
-do not currently isolate collector egress. Loopback/staging/offline origins fail
-the production guard. The [28 October intake](../review/issue-159/2026-10-28-analytics-intake.md)
-records the actual source inventory and read-only baseline; isolation remains
-pending implementation and live verification. Do not delete
+Dedicated analytics fixtures stub the vendor. The B2 source now creates the
+maintained production-smoke contexts through `tools/quality/analytics-isolation.cjs`:
+normal/content smoke, article-tags primary/text/failure contexts, article
+normal/fallback contexts and Color. It installs a context-owned route before any
+page is created, blocks service workers and aborts only the manual collector at
+`https://cloudflareinsights.com/cdn-cgi/rum` (including query suffixes). The real
+SDK remains loadable; requests to other hosts/paths are unaffected. Setup failure
+closes the context and stops before browsing. Reports retain per-context setup,
+blocked-request counts and failures, without beacon payloads. Route interception
+disables the context's HTTP cache; these smoke observations are not hosted cost
+or cold-performance measurements. Product adapter and public output bytes remain
+unchanged.
+
+The existing native preview/production smoke runs
+a bounded contrast: actual adapter, stub vendor and a local network sink. An
+isolated context blocks six synthetic attempts over entry/navigation, reload and
+history; a fresh ordinary context afterward permits six to the fixture sink.
+Declared article canonical/alias entries load one SDK per document; undeclared
+variants do not. Draft prototype previews skip this native route; a passing prototype preview
+does not supply its browser evidence. The sink serves every request locally, including the ordinary
+contrast: it never supplies a production receipt. Existing blocked/delayed vendor
+cases remain separate and retain their budgets.
+
+Until their own contexts are wired and observed, optional full functional/
+navigation, motion, Lighthouse/CDP and other diagnostic/owner browsers remain
+possible emitters. Article/Color consumers using the shared helper are isolated
+also when called from those optional suites; that does not cover their sibling
+contexts. No universal zero-QA-traffic claim follows. A new page-level route or
+broad context handler must not continue collector requests past the helper; use
+route fallback for unmatched traffic and re-run the contrast after routing edits.
+Provider destination/proxy changes require a reviewed finite predicate update.
+Ordinary visitors and deliberate labelled owner/provider observations never use
+this QA factory. Loopback/staging/offline origins retain the production guard.
+The [28 October intake](../review/issue-159/2026-10-28-analytics-intake.md) and
+[B2 review](../review/issue-159/2026-10-28-qa-isolation.md) separate implementation,
+executed evidence and pending deployment/live verification. Do not delete
 historical traffic by guessed geography/referrer filters. Owner visits, prior
 live smoke checks, blockers and the extensionless entry gap limit the baseline.
 Real-provider SPA/filter/history receipt, individual vital sample sizes and hosted
 SDK cost remain live acceptance work after deployment, under unchanged budgets.
+
+## Fixed-window report procedure
+
+Inputs are an inclusive UTC start, exclusive UTC end, exact discovered provider
+site/property and a declared page selection. Keep the unmodified query/response,
+retrieval time, source/artifact SHA, requested/returned dates, filters, dimensions,
+sampling and any provider errors. Copy the sanitized query templates from
+[the baseline JSON](../review/issue-159/2026-10-28-baseline.json), replace both
+literal window endpoints with the selected interval and resolve account/site tags
+through the authorized inventory. Do not publish credentials or opaque account
+identifiers. A read-only GraphQL POST is a query, not a configuration change.
+
+1. Run `cloudflare.queries.total`, `.browsers` and `.segments` independently. The
+   latter returns direct-filter non-ChromeHeadless totals and path groups. Preserve
+   each row's `sampleInterval`; do not subtract independently sampled totals to
+   invent an exact cohort. The templates use only fields actually returned in B1.
+2. Read the exact tested/released `artifact.json` from its immutable artifact:
+   room IDs come from `components.routes` and their HTML must exist in `files`;
+   article paths come from `components.articles`. A descriptor does not expand
+   the adapter allowlist: admit only declared aliases accepted by the compiled
+   loader; retain immutable snapshot paths separately as untracked paths. The public `site-revision.json` has a different schema
+   (`routes` and optional top-level `articles`); it is not an artifact manifest.
+   Match `requestHost` and `requestPath` rows locally against that inventory. Keep
+   `/`, `/index.html`, declared extensionless aliases and supported article aliases
+   as separate raw paths. Record unmatched rows. Never invent a trailing-slash
+   article alias or add an unpublished article to the selection. Path-group counts
+   describe loads; they do not turn property visits into page-level unique people.
+3. Retain property-wide raw totals alongside the selected-page load table. A
+   locally selected table is not a new provider query/cohort. With the baseline's
+   100-group query limit, a response at the limit has unknown completeness; narrow
+   the interval or use the provider's documented pagination before claiming complete
+   paths. Missing path rows mean unavailable/unobserved, not a proven zero.
+4. Record referrers separately when the authorized dashboard/API exposes them.
+   Keep known external hosts, same-site hosts and direct/empty/unknown apart;
+   preserve the provider's actual labels. B1 did not query a referrer field and its
+   receipt cannot reconstruct this breakdown. If access/schema or rows are absent,
+   record `unavailable` and that reason; never infer referrers from browser/country.
+5. Rediscover Windsor `searchconsole` inventory/options. Request `date`, `clicks`,
+   `impressions`, `data_fetched_at` for the exact property and inclusive calendar
+   dates corresponding to the intended GSC period, with
+   `options: {include_fresh_data: false}`. Record the connector-default search type
+   unless explicitly selected. Returned dates govern observed coverage; UTC RUM
+   boundaries do not establish GSC timezone equivalence. Run a separate page query
+   when needed; URL impressions are not additive to property impressions. Missing
+   dates/query rows remain unknown, not zero; clicks are not leads.
+6. Repeat with identical inputs and retain both retrieval times/query definitions.
+   Explain changed coverage, sampling or provider freshness instead of replacing
+   the first receipt. Offline replay of the saved baseline is only a method check:
+   all-browser 427 loads/166 visits, direct non-headless 163/144, and finalized GSC
+   returned dates 21–26 October with 1 click/17 property impressions. It is not a
+   fresh provider query. Provider visits are not unique people; non-headless is not
+   human-only. Query/source definitions stay separate across platforms.
+
+For B3 record the actual isolation rollout time and independent SEO rollout time.
+Compare equal elapsed windows with unchanged source/filter definitions; show raw
+and segmented views and label changed sampling, missing coverage and cohort breaks.
+Allow provider finalization before calling a period complete. Residual automation
+and owner visits remain. Neither a count decrease nor the later SEO cutover proves
+causal improvement. Separate per-vital sample counts and hosted SDK cost require
+their own live evidence; absent INP is unavailable rather than a good result.
+
+After the future article is actually published, #5 AC08/AC17 with #2 owns its
+canonical/declared-alias entry, history/filter/reload, one-SDK and labelled provider
+receipt. Select only its actual manifest paths in the report above; record exact
+release/actions/time and request versus received-aggregate limits. #8 owns organic
+visibility and #104 conversions using this same isolation boundary. Fixture
+readiness does not publish the article or implement conversions.
 
 ## Activation and later reconfiguration
 

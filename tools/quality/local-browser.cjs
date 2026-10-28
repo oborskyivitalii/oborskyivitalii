@@ -13,6 +13,7 @@ const {
   } = require('./common.cjs'),
   { start } = require('./serve.cjs');
 const flightDetail = require('./flight-detail.cjs');
+const qaIsolation = require('./analytics-isolation.cjs');
 const routes = ['index', 'research', 'writing', 'talks', 'credits'];
 const catalog = require('../../site/content/catalog.json'),
   primaryCount = require('../site/validate-catalog.cjs').writingEntries(catalog).length;
@@ -38,10 +39,10 @@ function analyticsRequest(value, base, manifest, settings = require('../../site/
     return false;
   const config = require('../site/analytics.cjs').validate(settings);
   if (!config.enabled || config.siteURL !== base.replace(/\/$/, '') + '/') return false;
-  return [
-    'https://static.cloudflareinsights.com/beacon.min.js',
-    'https://cloudflareinsights.com/cdn-cgi/rum',
-  ].includes(value);
+  return (
+    value === 'https://static.cloudflareinsights.com/beacon.min.js' ||
+    qaIsolation.collectorRequest(value)
+  );
 }
 function artifactFile(value, base, manifest) {
   const url = new URL(value),
@@ -174,15 +175,19 @@ function contentDocuments(manifest) {
   return changed;
 }
 
-async function contentJourney(browser, baseURL, manifest) {
+async function contentJourney(browser, baseURL, manifest, isolation = []) {
   const documents = contentDocuments(manifest);
   assert.ok(documents, 'content journey needs explicit content release');
   const writing = [];
   for (const width of [1440, 390]) {
-    const context = await browser.newContext({
-      viewport: { width, height: 900 },
-      javaScriptEnabled: false,
-    });
+    const context = await qaIsolation.createContext(
+      browser,
+      {
+        viewport: { width, height: 900 },
+        javaScriptEnabled: false,
+      },
+      isolation
+    );
     try {
       const page = await context.newPage();
       const response = await page.goto(baseURL.replace(/\/$/, '') + '/writing.html');
@@ -211,6 +216,7 @@ async function contentJourney(browser, baseURL, manifest) {
     ]);
     const observation = await require('./article-browser.cjs').articleJourney(baseURL, ordered, {
       browser,
+      isolation,
     });
     require('./article-browser.cjs').validateArticleJourney(observation, ordered, {
       engine: manifest.components.engine,
@@ -408,11 +414,15 @@ function assertRenderedMode(observed, id, mode) {
     );
   }
 }
-async function scenario(browser, url, manifest, variant, width, mode) {
-  const context = await browser.newContext({
-      viewport: { width, height: width === 390 ? 844 : 900 },
-      reducedMotion: 'no-preference',
-    }),
+async function scenario(browser, url, manifest, variant, width, mode, isolation = []) {
+  const context = await qaIsolation.createContext(
+      browser,
+      {
+        viewport: { width, height: width === 390 ? 844 : 900 },
+        reducedMotion: 'no-preference',
+      },
+      isolation
+    ),
     page = await context.newPage();
   const errors = [],
     external = [],
@@ -580,10 +590,12 @@ async function main() {
     variant = identity(manifest),
     { server, url } = await start();
   const rows = [],
+    isolation = [],
     pw = toolRequire('playwright');
   let browser, pass, articles, content, publicationTags;
   try {
     browser = await pw.chromium.launch(launchOptions('chromium'));
+    const isolationContrast = await require('./analytics-browser.cjs').isolationJourney(browser);
     if (manifest.files['publication-index.json']) {
       const index = JSON.parse(
         fs.readFileSync(path.join(process.env.SITE_PUBLIC_DIR, 'publication-index.json'))
@@ -592,12 +604,13 @@ async function main() {
         browser,
         url,
         index,
-        manifest.components.articles || {}
+        manifest.components.articles || {},
+        { isolation }
       );
     }
     for (const width of [1440, 390])
       for (const mode of ['normal', 'no-canvas']) {
-        const row = await scenario(browser, url, manifest, variant, width, mode);
+        const row = await scenario(browser, url, manifest, variant, width, mode, isolation);
         rows.push(row);
         console.log('Preview smoke:', width, mode, row.pass ? 'pass' : row.error);
       }
@@ -605,7 +618,7 @@ async function main() {
       articles = await require('./article-browser.cjs').articleJourney(
         url,
         manifest.components.articles,
-        { browser }
+        { browser, isolation }
       );
       require('./article-browser.cjs').validateArticleJourney(
         articles,
@@ -613,7 +626,9 @@ async function main() {
         { engine: manifest.components.engine, baseURL: url }
       );
     }
-    if (contentDocuments(manifest)) content = await contentJourney(browser, url, manifest);
+    if (contentDocuments(manifest))
+      content = await contentJourney(browser, url, manifest, isolation);
+    qaIsolation.validate(isolation);
     pass = rows.length === 4 && rows.every((row) => row.pass);
     report(
       'preview-smoke',
@@ -622,6 +637,8 @@ async function main() {
         profile: 'preview',
         variant,
         browser: browser.version(),
+        qaIsolation: isolation,
+        isolationContrast,
         routes,
         widths: [1440, 390],
         modes: ['normal', 'no-canvas'],
@@ -643,6 +660,7 @@ async function main() {
         variant,
         rows,
         error: error.message,
+        qaIsolation: isolation,
         ...(error.articleCheckpoint ? { articleCheckpoint: error.articleCheckpoint } : {}),
         ...(error.articleObservations ? { articles: error.articleObservations } : {}),
         fullGate: false,
