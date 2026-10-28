@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "9ae578160643b3088ef96a74c5df387c18f4d028c158efe3b72a9bcb2b295bfd",
+    "digest": "dce4e26def3eb028c99fff9992a59106f6527a5385e8456752742c5188182323",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -78,6 +78,11 @@
         "path": ".github/acceptance/issue-126.json",
         "identity_mode": "content",
         "sha256": "5ecebd805ad73203e5dd387f40cd72554efc09eb09b4ce002b99ca979016f34e"
+      },
+      {
+        "path": ".github/acceptance/issue-159.json",
+        "identity_mode": "content",
+        "sha256": "6ffd7daeb2c912f18a79af3fc06accff5ba53960901494060902fae1bc29d0d1"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -201,12 +206,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "506125397b7d1c34b18862a10089b0a3e16aa9195c6d174c7c81be5b9c80ac05"
+        "sha256": "d5dba7ce5d8d8aa8103bd83f15ae4dc6944afea5ba4eb64f6c77c348377f54c7"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "4d9aaeab89c07436977c63c265dad6236a7afbfc53fc2ae0f9963a502fcb708f"
+        "sha256": "05b0d5a35ae8dce43b919d4a3ad7eb70de6e91a5ea75c12772ec3cfad3c25dad"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -231,7 +236,7 @@
       {
         "path": ".github/workflows/issue-acceptance.yml",
         "identity_mode": "content",
-        "sha256": "357560e7e65f64e491610c259753ef7bd4539368dea5d28f5fd5429736e5d086"
+        "sha256": "61d0f22ee010b13f4a65b451ad577b6731b58c7b20564d3938b0694fc2142e70"
       },
       {
         "path": ".github/workflows/navigation.yml",
@@ -356,7 +361,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "ff9e16efad25798d1008479423407331049a39465f23702331f33af0aced1de8"
+        "sha256": "cbc2ff4bbd25ae4ff9c7eb698493d641fc5d0ea5f6ae0dff20ae5e83b4b38407"
       },
       {
         "path": "NOTICE.md",
@@ -705,7 +710,7 @@
       {
         "path": "guides/SITE-ANALYTICS.md",
         "identity_mode": "content",
-        "sha256": "9be2112cfb9b1a3b124fe7f44bde4ea259f70b9d69604769db9ff36b99aeb61d"
+        "sha256": "c6d04f2d5e11d732228eefa01bc84df9017738b0c3382229d471eda306c74496"
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
@@ -1061,6 +1066,56 @@
         "path": "review/issue-126/production-retention.json",
         "identity_mode": "content",
         "sha256": "1f63228031594432263df8ca6342ddda74528579935b50c9a85a23cf3cea3e37"
+      },
+      {
+        "path": "review/issue-159/2026-10-28-analytics-intake.md",
+        "identity_mode": "content",
+        "sha256": "156a64ca525594ac11a479beef78297143186ff124d3e2fbdab0e08404b2a288"
+      },
+      {
+        "path": "review/issue-159/2026-10-28-b1-diagnostics.json.gz",
+        "identity_mode": "content",
+        "sha256": "9b71044d928e352ae43c9b77717f031915ce7ede05be3e6d8402ad297e8eac87"
+      },
+      {
+        "path": "review/issue-159/2026-10-28-b1-failed-policy.json.gz",
+        "identity_mode": "content",
+        "sha256": "2142582e4793a1349b72589bbb3afb2a65cbf53b55b512007538879e6fbba5cd"
+      },
+      {
+        "path": "review/issue-159/2026-10-28-b2-browser.json.gz",
+        "identity_mode": "content",
+        "sha256": "a1fbffbd177e89b05b217de49d8f6492299792d7ef8bca6e91929e371fb11d24"
+      },
+      {
+        "path": "review/issue-159/2026-10-28-b2-diagnostics.json.gz",
+        "identity_mode": "content",
+        "sha256": "80a131e9da99b825ce1342f4a733811c09d426a80b8e794b16c992c20045a429"
+      },
+      {
+        "path": "review/issue-159/2026-10-28-baseline.json",
+        "identity_mode": "content",
+        "sha256": "9e57cb52564d2843b4e64dcf5fdb761bee4203b1928fde7c655a929bd717e09f"
+      },
+      {
+        "path": "review/issue-159/2026-10-28-current-artifact-evidence.json.gz",
+        "identity_mode": "content",
+        "sha256": "da90c731d165608fd9a72c3aa3ef7cfa6ed516435bdbf4031ea8123a15b64ac4"
+      },
+      {
+        "path": "review/issue-159/2026-10-28-qa-isolation.md",
+        "identity_mode": "content",
+        "sha256": "c25ae73e83445e0a4910ceaef31fb1d193cb0278e2a6631fae4b0b610f8a22c7"
+      },
+      {
+        "path": "review/issue-159/2026-10-28-stage-security-proof.json.gz",
+        "identity_mode": "content",
+        "sha256": "50098146480c7747b5c8962f9d3b3cf237f3af3f3408341c29917e95e5e40e6c"
+      },
+      {
+        "path": "review/issue-159/2026-10-28-staging-verification.md",
+        "identity_mode": "content",
+        "sha256": "f9b103872399b5916de5623b1a1d6044ad4bedde9ff7bc21dd178b3956c2cc1c"
       },
       {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -7255,7 +7310,7 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "a9f78a0d50af3b477b49de5b5a735dd2206831c8f1a7b780a50eb4eb9a3cbabd"
+        "sha256": "0e980ee2ef7d1c82bd62a1236da472013c29182deb73a0c99d96955449f98d2f"
       },
       {
         "path": "tests/content-baseline.test.cjs",
@@ -7460,7 +7515,7 @@
       {
         "path": "tests/preview-smoke.test.cjs",
         "identity_mode": "content",
-        "sha256": "24e21267badb30c43a3162439d6625ca41053d01a0ffaaf19a148d78bd37ed26"
+        "sha256": "ebd1b29dcf2530f5f6d1c5db64453915b3dbb1a82bbd3fb398ad53bfd0096ec2"
       },
       {
         "path": "tests/preview.test.cjs",
@@ -7646,6 +7701,11 @@
         "path": "tests/test_issue126_acceptance.py",
         "identity_mode": "content",
         "sha256": "dbe06bd5f970e48a531889ba0da3572a3b282452ba78fe5c7c3872dba24c4efc"
+      },
+      {
+        "path": "tests/test_issue159_acceptance.py",
+        "identity_mode": "content",
+        "sha256": "9b0f330f75869905b19577d1f2c3e4b06ba850cb0f59070db2b2b42d563c04f9"
       },
       {
         "path": "tests/test_issue31_acceptance.py",
@@ -8030,7 +8090,12 @@
       {
         "path": "tools/quality/analytics-browser.cjs",
         "identity_mode": "content",
-        "sha256": "3b9893033413cfe05ee15c11a8103099a4ae5a64e19955f6a8640bf3516dc134"
+        "sha256": "4747160b95b9c762a2b50ae20bc395dd1f7f2f293ffd9ea2c6b3d4a003714604"
+      },
+      {
+        "path": "tools/quality/analytics-isolation.cjs",
+        "identity_mode": "content",
+        "sha256": "b486ec0938d0e5fb9219a6b9905f92c830a1b0eb8497aab228542fafbfb24b47"
       },
       {
         "path": "tools/quality/architecture.cjs",
@@ -8040,7 +8105,7 @@
       {
         "path": "tools/quality/article-browser.cjs",
         "identity_mode": "content",
-        "sha256": "ef4ecdfc89208d5d8f3fca7b22f54745870b480046b5ca01e07d417d1aa4d839"
+        "sha256": "2fb138d1355e70d5df9a037827288f0a97f75f6ce33e9e5b3213ac2f21ce7072"
       },
       {
         "path": "tools/quality/article-print.cjs",
@@ -8050,7 +8115,7 @@
       {
         "path": "tools/quality/article-tags-browser.cjs",
         "identity_mode": "content",
-        "sha256": "a8249ab827a9830bb93937c749be6af478999529ad28fcdd42b72fe6741e3693"
+        "sha256": "ff8f846f5d9b9a56976e114fe84dd277d08db81758ce8a80a579bbb080f78dce"
       },
       {
         "path": "tools/quality/artifact.cjs",
@@ -8130,7 +8195,7 @@
       {
         "path": "tools/quality/color-browser.cjs",
         "identity_mode": "content",
-        "sha256": "4108d26a5a54099b4b9c43d1d8ef09d96e986c97e67332dc30d75b80af1b836d"
+        "sha256": "757b11c1426e8195c3609d5d2662c1c67932476f2c4e1c79a2bc73a98ec41de8"
       },
       {
         "path": "tools/quality/color-motion-contract.cjs",
@@ -8325,7 +8390,7 @@
       {
         "path": "tools/quality/local-browser.cjs",
         "identity_mode": "content",
-        "sha256": "b8a6b7576fa6c24513811a012ef1b622adaed0c7df6ccd27be4c627afecb966e"
+        "sha256": "f0906e8f7428c46a5c67ad6d7738bc5b9c9b25d4aa966cb8056bf9c163a14bf3"
       },
       {
         "path": "tools/quality/local.cjs",
@@ -8430,7 +8495,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "d9e324b852558352efad4fdc8a31c07c4ea7cc0200ba95a433d9c2b6dce73f6d"
+        "sha256": "ed2adb5342e9fa8883c0e7d04b7b87ae0b3e038b945edc2d2a06e8e84f24308d"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
@@ -8485,7 +8550,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "dd74b837c889fa4893bce820d7664082dea0528c061a692cfb1609d76110c2ec"
+        "sha256": "df72a5ae8e9f80899bd24ca5cf6ff6ffd0d74fafcd04e959a280d0e7ad325fe4"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -9329,6 +9394,17 @@
         "AGENTS.md"
       ],
       "title": "issue-126.json"
+    },
+    {
+      "path": ".github/acceptance/issue-159.json",
+      "kind": "file",
+      "purpose": "Issue159 unified analytics-first and later SEO criteria with bounded invariant checks and explicit provider/human/release gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-159.json"
     },
     {
       "path": ".github/acceptance/issue-31.json",
@@ -11496,6 +11572,116 @@
         "AGENTS.md"
       ],
       "title": "production-retention.json"
+    },
+    {
+      "path": "review/issue-159/2026-10-28-analytics-intake.md",
+      "kind": "file",
+      "purpose": "Issue159 B1 emitter inventory, minimal isolation decision, policy mapping and exact-source independent review/check handoff.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 159 — analytics P1 intake, 28 October 2026"
+    },
+    {
+      "path": "review/issue-159/2026-10-28-b1-diagnostics.json.gz",
+      "kind": "file",
+      "purpose": "Preserved corrected-policy missing historical Research blob failure and RI regression runs observed before final regeneration.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-28-b1-diagnostics.json.gz"
+    },
+    {
+      "path": "review/issue-159/2026-10-28-b1-failed-policy.json.gz",
+      "kind": "file",
+      "purpose": "Preserved first B1 owning-policy failure with exact dirty source, invalid SEO selector and unavailable historical fixture blobs.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-28-b1-failed-policy.json.gz"
+    },
+    {
+      "path": "review/issue-159/2026-10-28-b2-browser.json.gz",
+      "kind": "file",
+      "purpose": "Actual pinned Chromium B2 contrast observations, exact core hashes and verified archive-origin receipts; no real provider telemetry.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-28-b2-browser.json.gz"
+    },
+    {
+      "path": "review/issue-159/2026-10-28-b2-diagnostics.json.gz",
+      "kind": "file",
+      "purpose": "Preserved B2 preliminary cold/Color failures and bounded operator/white-box diagnostics with dirty-source limits.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-28-b2-diagnostics.json.gz"
+    },
+    {
+      "path": "review/issue-159/2026-10-28-baseline.json",
+      "kind": "file",
+      "purpose": "Sanitized fixed-window Cloudflare RUM and separate Search Console receipts, reproducible query templates and sampling/access limitations.",
+      "role": "history",
+      "owner": "guides/SITE-ANALYTICS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-28-baseline.json"
+    },
+    {
+      "path": "review/issue-159/2026-10-28-current-artifact-evidence.json.gz",
+      "kind": "file",
+      "purpose": "Raw B2.2 clean7100 staging Color artifact, independent native smoke, metadata and lint/architecture receipts; first invocation failure retained.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-28-current-artifact-evidence.json.gz"
+    },
+    {
+      "path": "review/issue-159/2026-10-28-qa-isolation.md",
+      "kind": "file",
+      "purpose": "B2 source-bound isolation decision, four independent reviews, test allocation and release limits.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 159 — B2 QA isolation, 28 October 2026"
+    },
+    {
+      "path": "review/issue-159/2026-10-28-stage-security-proof.json.gz",
+      "kind": "file",
+      "purpose": "Retained failed staging security report and exact per-ID public baseline Git-commit checksum proof; single scoped false-positive correction.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-28-stage-security-proof.json.gz"
+    },
+    {
+      "path": "review/issue-159/2026-10-28-staging-verification.md",
+      "kind": "file",
+      "purpose": "B2.2 exact current-artifact native/source verification, role review and frozen-head staging/admission boundaries.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue159 — B2.2 current-artifact and staging verification, 28 October 2026"
     },
     {
       "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -25985,6 +26171,17 @@
       "title": "test_issue126_acceptance.py"
     },
     {
+      "path": "tests/test_issue159_acceptance.py",
+      "kind": "file",
+      "purpose": "Issue159 owning-policy adapter for maintained QA collector isolation source guards.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "test_issue159_acceptance.py"
+    },
+    {
       "path": "tests/test_issue31_acceptance.py",
       "kind": "file",
       "purpose": "Issue 31 observable acceptance checks for RI provenance, inventory, memory, workflow, unchanged site and bootstrap.",
@@ -26830,6 +27027,17 @@
         "AGENTS.md"
       ],
       "title": "analytics-browser.cjs"
+    },
+    {
+      "path": "tools/quality/analytics-isolation.cjs",
+      "kind": "file",
+      "purpose": "Explicit QA context collector interception with fail-before-navigation setup and bounded request receipts.",
+      "role": "validator",
+      "owner": "guides/SITE-ANALYTICS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "analytics-isolation.cjs"
     },
     {
       "path": "tools/quality/architecture.cjs",
@@ -29192,6 +29400,16 @@
       "path": "review/issue-126",
       "kind": "directory",
       "purpose": "DevCon announcement source and review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-159",
+      "kind": "directory",
+      "purpose": "Issue159 analytics baseline, source-bound intake and independent delivery review evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [

@@ -371,7 +371,8 @@
         "LICENSE-CODE.md",
         "LICENSE-CONTENT.md",
         "NOTICE.md",
-        "tools/site/legal.cjs"
+        "tools/site/legal.cjs",
+        "tools/quality/analytics-isolation.cjs"
       ]
     },
     {
@@ -732,7 +733,7 @@
     {
       "path": "tests/preview-smoke.test.cjs",
       "language": "javascript",
-      "purpose": "Actual PR smoke helper identity, redirects, route fingerprints, exact visible names and Color route detail",
+      "purpose": "Actual PR smoke helper identity, redirects, route fingerprints, exact visible names and Color route detail; bounded QA collector predicate/setup/abort negatives and all mandatory smoke consumer allocation",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -759,7 +760,12 @@
         "LICENSE-CONTENT.md",
         "NOTICE.md",
         "tools/site/legal.cjs",
-        "site/templates/components/legal-notices.html"
+        "site/templates/components/legal-notices.html",
+        "tools/quality/analytics-isolation.cjs",
+        "tools/quality/analytics-browser.cjs",
+        "tools/quality/article-browser.cjs",
+        "tools/quality/article-tags-browser.cjs",
+        "tools/quality/color-browser.cjs"
       ]
     },
     {
@@ -1395,7 +1401,7 @@
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
       "profiles": ["issue-policy"],
-      "disposition": "owning issue41 policy only; AC01–AC06 and manual gates preserved, AC07–AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17–AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure",
+      "disposition": "owning issue41 policy only; AC01\u2013AC06 and manual gates preserved, AC07\u2013AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17\u2013AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure",
       "surviving_route": ".github/acceptance/issue-41.json",
       "inputs": [
         "tests/test_issue41_acceptance.py",
@@ -2806,6 +2812,27 @@
         ".github/workflows/site-release-checks.yml",
         ".github/workflows/site-staging.yml",
         ".github/workflows/site-writing-probe.yml"
+      ]
+    },
+    {
+      "path": "tests/test_issue159_acceptance.py",
+      "language": "python",
+      "purpose": "Owning issue159 bridge executes maintained QA collector isolation and preview smoke source negatives.",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": ["issue-policy"],
+      "disposition": "Issue159 only; permanent preview-smoke guards and actual browser contrast remain in existing source/hosted profiles.",
+      "surviving_route": ".github/acceptance/issue-159.json",
+      "inputs": [
+        "tests/test_issue159_acceptance.py",
+        ".github/acceptance/issue-159.json",
+        "tests/preview-smoke.test.cjs",
+        "tools/quality/analytics-isolation.cjs",
+        "tools/quality/analytics-browser.cjs",
+        "tools/quality/local-browser.cjs",
+        "tools/quality/article-browser.cjs",
+        "tools/quality/article-tags-browser.cjs",
+        "tools/quality/color-browser.cjs"
       ]
     }
   ]

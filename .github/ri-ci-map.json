@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/122",
-    "date": "2026-10-27",
-    "summary": "Canonical Home SEO body proof and immutable producer/frame bindings retain current source, admission, scanner and profile obligations; exact-source independent and native control delivery remain required."
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/159",
+    "date": "2026-10-28",
+    "summary": "Add unified analytics-first acceptance policy and current baseline/intake evidence; retain actual source and independent/provider/release gate boundaries."
   },
   "layers": [
     {
@@ -143,7 +143,11 @@
         "tests/test_issue126_acceptance.py",
         "review/issue-122/2026-10-23-t03-review.md",
         "review/issue-122/2026-10-23-t03-controller-bootstrap-review.md",
-        "review/issue-122/2026-10-23-t03r-public-checksum-proof.json.gz"
+        "review/issue-122/2026-10-23-t03r-public-checksum-proof.json.gz",
+        ".github/acceptance/issue-159.json",
+        "review/issue-159/2026-10-28-baseline.json",
+        "review/issue-159/2026-10-28-analytics-intake.md",
+        "tests/test_issue159_acceptance.py"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -677,7 +681,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "f5499a62b4bc1e1383c0765500508b803b760b479252b99db70a621fbc1d06da",
+    "digest": "caa31aab01ed796d737f5c26a55bd33e231411c8f0589b41869737ab07210daf",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -722,6 +726,10 @@
       {
         "path": ".github/acceptance/issue-126.json",
         "sha256": "5ecebd805ad73203e5dd387f40cd72554efc09eb09b4ce002b99ca979016f34e"
+      },
+      {
+        "path": ".github/acceptance/issue-159.json",
+        "sha256": "6ffd7daeb2c912f18a79af3fc06accff5ba53960901494060902fae1bc29d0d1"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -813,7 +821,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "506125397b7d1c34b18862a10089b0a3e16aa9195c6d174c7c81be5b9c80ac05"
+        "sha256": "d5dba7ce5d8d8aa8103bd83f15ae4dc6944afea5ba4eb64f6c77c348377f54c7"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -833,7 +841,7 @@
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
-        "sha256": "357560e7e65f64e491610c259753ef7bd4539368dea5d28f5fd5429736e5d086"
+        "sha256": "61d0f22ee010b13f4a65b451ad577b6731b58c7b20564d3938b0694fc2142e70"
       },
       {
         "path": ".github/workflows/navigation.yml",
@@ -968,6 +976,10 @@
         "sha256": "dbe06bd5f970e48a531889ba0da3572a3b282452ba78fe5c7c3872dba24c4efc"
       },
       {
+        "path": "tests/test_issue159_acceptance.py",
+        "sha256": "9b0f330f75869905b19577d1f2c3e4b06ba850cb0f59070db2b2b42d563c04f9"
+      },
+      {
         "path": "tests/test_issue31_acceptance.py",
         "sha256": "aee20aab4fc11eb662f0cd5fe904634a2f629b3e4886c22a647d58628211de7a"
       },
@@ -1081,7 +1093,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "dd74b837c889fa4893bce820d7664082dea0528c061a692cfb1609d76110c2ec"
+        "sha256": "df72a5ae8e9f80899bd24ca5cf6ff6ffd0d74fafcd04e959a280d0e7ad325fe4"
       },
       {
         "path": "tools/repository_intelligence.py",

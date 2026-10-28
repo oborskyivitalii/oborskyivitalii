@@ -6,6 +6,9 @@ const {
   artifactFile,
   verifyResponse,
   verifyRequest,
+  requestFailure,
+  failedScenario,
+  closeScenarioContext,
   identity,
   verifyRuntimeIdentity,
   analyticsRequest,
@@ -13,6 +16,290 @@ const {
   navigationAction,
 } = require('../tools/quality/local-browser.cjs');
 const { validate } = require('../tools/quality/flight-detail.cjs');
+const qaIsolation = require('../tools/quality/analytics-isolation.cjs');
+
+test('context cleanup remains mandatory and cannot replace an already failed verdict', async () => {
+  let closes = 0;
+  const context = {
+    close: async () => {
+      closes++;
+      throw Error('context unavailable');
+    },
+  };
+  const failure = { pass: false, error: 'original deadline', diagnosticErrors: [] };
+  await closeScenarioContext(context, failure);
+  assert.equal(closes, 1);
+  assert.deepEqual(failure, {
+    pass: false,
+    error: 'original deadline',
+    diagnosticErrors: [{ kind: 'context-close', error: 'context unavailable' }],
+  });
+  await assert.rejects(closeScenarioContext(context), /context unavailable/);
+  assert.equal(closes, 2, 'one close attempt for each invocation');
+});
+
+test('failed smoke retains the earliest state before screenshot and response cleanup', async (t) => {
+  const fs = require('node:fs');
+  const os = require('node:os');
+  const path = require('node:path');
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'smoke-failure-'));
+  t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
+  const actions = [];
+  let pageName = 'writing';
+  let finish;
+  const pending = new Promise((resolve) => {
+    finish = resolve;
+  }).then(() => {
+    actions.push('drain');
+    pageName = 'destroyed';
+  });
+  const page = {
+    evaluate: async () => {
+      actions.push('state');
+      return { page: pageName, busy: 'true' };
+    },
+    screenshot: async () => {
+      actions.push('screenshot');
+      pageName = 'fallback';
+      finish();
+    },
+  };
+  const error = Error('original readiness deadline');
+  const result = await failedScenario(
+    page,
+    error,
+    [pending],
+    { width: 390, mode: 'normal' },
+    directory
+  );
+  assert.deepEqual(actions, ['state', 'screenshot', 'drain']);
+  assert.deepEqual(result.state, { page: 'writing', busy: 'true' });
+  assert.equal(pageName, 'destroyed');
+  assert.equal(result.pass, false);
+  assert.equal(result.error, error.message);
+  assert.equal(result.stack, error.stack);
+  assert.equal(result.stateCaptureError, null);
+  assert.deepEqual(result.diagnosticErrors, []);
+});
+
+test('secondary smoke diagnostics cannot replace the original failure', async (t) => {
+  const fs = require('node:fs');
+  const os = require('node:os');
+  const path = require('node:path');
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'smoke-failure-'));
+  t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
+  const error = Error('original readiness deadline');
+  const page = {
+    evaluate: async () => {
+      throw Error('renderer unavailable');
+    },
+    screenshot: async () => {
+      throw Error('screenshot unavailable');
+    },
+  };
+  // Defer rejection until collection so the fixture has no unhandled rejection.
+  const checks = [{ then: (_resolve, reject) => reject(Error('response unavailable')) }];
+  const result = await failedScenario(
+    page,
+    error,
+    checks,
+    { width: 390, mode: 'normal' },
+    directory
+  );
+  assert.equal(result.pass, false);
+  assert.equal(result.error, error.message);
+  assert.equal(result.stack, error.stack);
+  assert.equal(result.state, null);
+  assert.equal(result.stateCaptureError, 'renderer unavailable');
+  assert.deepEqual(result.diagnosticErrors, [
+    { kind: 'screenshot', error: 'screenshot unavailable' },
+    { kind: 'response-verification', error: 'response unavailable' },
+  ]);
+});
+
+test('null response retains native request diagnostics and still rejects', async () => {
+  const observation = {
+    url: 'https://example.test/snapshots/version/talks.html',
+    method: 'GET',
+    resourceType: 'fetch',
+    failure: { errorText: 'net::ERR_TIMED_OUT' },
+    timing: { startTime: 123, responseStart: -1, responseEnd: -1 },
+  };
+  const request = Object.fromEntries(
+    Object.entries(observation).map(([key, value]) => [key, () => value])
+  );
+  request.response = async () => null;
+  const checked = new Set();
+  await assert.rejects(
+    verifyRequest(request, 'https://example.test', { files: {} }, checked),
+    (error) => {
+      assert.match(error.message, /request failed before response/);
+      assert.deepEqual(error.requestFailure, { ...observation, unavailable: {} });
+      return true;
+    }
+  );
+  assert.equal(checked.size, 0, 'missing response cannot verify bytes');
+});
+
+test('unavailable request diagnostics remain explicit without hiding request rejection', async () => {
+  const request = {
+    url: () => 'https://example.test/talks.html',
+    response: async () => null,
+    failure: () => {
+      throw Error('request disposed');
+    },
+  };
+  assert.deepEqual(requestFailure(request), {
+    url: request.url(),
+    method: null,
+    resourceType: null,
+    failure: null,
+    timing: null,
+    unavailable: {
+      method: 'unavailable',
+      resourceType: 'unavailable',
+      failure: 'request disposed',
+      timing: 'unavailable',
+    },
+  });
+  await assert.rejects(
+    verifyRequest(request, 'https://example.test', { files: {} }, new Set()),
+    (error) => {
+      assert.match(error.message, /request failed before response/);
+      assert.equal(error.requestFailure.unavailable.failure, 'request disposed');
+      return true;
+    }
+  );
+});
+
+test('QA collector predicate is exact and leaves SDK, lookalikes and unrelated paths alone', () => {
+  for (const value of [qaIsolation.collector, qaIsolation.collector + '?v=1'])
+    assert.equal(qaIsolation.collectorRequest(value), true, value);
+  for (const value of [
+    'https://static.cloudflareinsights.com/beacon.min.js',
+    'https://cloudflareinsights.com.evil.example/cdn-cgi/rum',
+    'https://cloudflareinsights.com:444/cdn-cgi/rum',
+    'http://cloudflareinsights.com/cdn-cgi/rum',
+    'https://user@cloudflareinsights.com/cdn-cgi/rum',
+    qaIsolation.collector + '/',
+    qaIsolation.collector + '-other',
+    'https://cloudflareinsights.com/cdn-cgi/%72um',
+    'https://vitaliioborskyi.ai/cdn-cgi/rum',
+    'not a URL',
+  ])
+    assert.equal(qaIsolation.collectorRequest(value), false, value);
+});
+
+test('QA context installs before page creation, aborts collector and closes on setup failure', async () => {
+  const actions = [];
+  const receipts = [];
+  let handler;
+  const context = {
+    route: async (predicate, callback) => {
+      actions.push('route');
+      assert.equal(predicate(qaIsolation.collector), true);
+      handler = callback;
+    },
+    newPage: async () => {
+      actions.push('page');
+    },
+    close: async () => {
+      actions.push('close');
+    },
+  };
+  const browser = {
+    newContext: async (options) => {
+      assert.equal(options.serviceWorkers, 'block');
+      return context;
+    },
+  };
+  const isolated = await qaIsolation.createContext(browser, {}, receipts);
+  await isolated.newPage();
+  await handler({
+    abort: async (reason) => {
+      assert.equal(reason, 'blockedbyclient');
+      actions.push('abort');
+    },
+  });
+  assert.deepEqual(actions, ['route', 'page', 'abort']);
+  assert.equal(receipts[0].blocked, 1);
+  qaIsolation.validate(receipts);
+  await assert.rejects(qaIsolation.createContext(browser, { serviceWorkers: 'allow' }), /bypass/);
+  context.route = async () => {
+    throw Error('routing unavailable');
+  };
+  await assert.rejects(qaIsolation.createContext(browser), /before navigation/);
+  assert.deepEqual(actions, ['route', 'page', 'abort', 'close']);
+  assert.throws(() => qaIsolation.validate([]), /missing/);
+  assert.throws(() => qaIsolation.validate([{ installed: false, failures: [] }]), /not installed/);
+  assert.throws(() => qaIsolation.validate([{ installed: true, failures: ['fault'] }]), /failed/);
+});
+
+test('fresh ordinary collector transport remains available after isolation setup fails', async () => {
+  const contexts = [];
+  const browser = {
+    newContext: async () => {
+      const current = {
+        closed: false,
+        pages: 0,
+        allowed: [],
+        route: async () => {
+          throw Error('setup fault');
+        },
+        newPage: async () => {
+          current.pages++;
+        },
+        close: async () => {
+          current.closed = true;
+        },
+        send: async (url) => {
+          current.allowed.push(url);
+        },
+      };
+      contexts.push(current);
+      return current;
+    },
+  };
+  await assert.rejects(qaIsolation.createContext(browser), /before navigation/);
+  assert.equal(contexts[0].closed, true);
+  assert.equal(contexts[0].pages, 0);
+  const ordinary = await browser.newContext();
+  assert.notEqual(ordinary, contexts[0]);
+  await ordinary.newPage();
+  await ordinary.send(qaIsolation.collector);
+  assert.equal(ordinary.closed, false);
+  assert.equal(ordinary.pages, 1);
+  assert.deepEqual(ordinary.allowed, [qaIsolation.collector]);
+  assert.deepEqual(contexts[0].allowed, []);
+});
+
+test('failed collector abort closes the isolated context and invalidates its receipt', async () => {
+  let handler;
+  let closed = false;
+  const receipts = [];
+  await qaIsolation.createContext(
+    {
+      newContext: async () => ({
+        route: async (_predicate, callback) => {
+          handler = callback;
+        },
+        close: async () => {
+          closed = true;
+        },
+      }),
+    },
+    {},
+    receipts
+  );
+  await handler({
+    abort: async () => {
+      throw Error('abort fault');
+    },
+  });
+  assert.equal(closed, true);
+  assert.equal(receipts[0].blocked, 0);
+  assert.throws(() => qaIsolation.validate(receipts), /failed/);
+});
 test('native document navigation waits for owned byte reads and preserves their failures', async () => {
   let finish,
     finishLate,

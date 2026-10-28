@@ -8,6 +8,7 @@ const assert = require('node:assert/strict'),
   { pathToFileURL } = require('node:url');
 const { root } = require('./common.cjs'),
   { routes } = require('../site/snapshot.cjs');
+const qaIsolation = require('./analytics-isolation.cjs');
 const model = 'enabled source fixture; vendor stubbed';
 const primaryCount = require('../site/validate-catalog.cjs').writingEntries(
   require('../site/content.cjs').catalog(root)
@@ -31,6 +32,145 @@ const checks = [
   'originIsolation',
   'offlineIsolation',
 ];
+
+async function isolationJourney(browser) {
+  // A local network sink owns every request, including the ordinary contrast.
+  // Use the actual adapter with a fake token; never contact the real provider.
+  const origin = 'https://analytics.example.com';
+  const collector = qaIsolation.collector;
+  const factory = require('../../site/integrations/cloudflare.cjs');
+  const options = {
+    origin,
+    pathnames: [
+      '/author/',
+      '/author/index.html',
+      '/author/writing.html',
+      '/author/articles/fixture.html',
+    ],
+    token: 'a'.repeat(32),
+  };
+  const adapter = '(' + factory.toString() + ')(' + JSON.stringify(options) + ');';
+  const documents = new Set(
+    options.pathnames.flatMap((name) =>
+      name.endsWith('.html') ? [name, name.slice(0, -5)] : [name]
+    )
+  );
+  const undeclared = [
+    '/author/articles/unknown.html',
+    '/author/articles/fixture/',
+    '/author/snapshots/fixture.html',
+  ];
+  const observations = [];
+  for (const isolated of [true, false]) {
+    const isolation = [];
+    const allowed = [];
+    let vendors = 0;
+    const fixtureBrowser = {
+      async newContext(contextOptions) {
+        const context = await browser.newContext(contextOptions);
+        await context.route('**/*', async (route) => {
+          const url = new URL(route.request().url());
+          if (qaIsolation.collectorRequest(url)) {
+            allowed.push(url.href);
+            await route.fulfill({ status: 204, headers: { 'access-control-allow-origin': '*' } });
+          } else if (url.href === 'https://static.cloudflareinsights.com/beacon.min.js') {
+            vendors++;
+            await route.fulfill({
+              contentType: 'text/javascript',
+              body: 'window.__vendorFixtureLoads=(window.__vendorFixtureLoads||0)+1;',
+            });
+          } else if (
+            url.origin === origin &&
+            (documents.has(url.pathname) || undeclared.includes(url.pathname))
+          ) {
+            await route.fulfill({
+              contentType: 'text/html',
+              body:
+                '<!doctype html><title>QA isolation fixture</title><h1>Fixture</h1>' +
+                '<script>' +
+                adapter +
+                adapter +
+                '</script>',
+            });
+          } else await route.abort('blockedbyclient');
+        });
+        return context;
+      },
+    };
+    const context = isolated
+      ? await qaIsolation.createContext(fixtureBrowser, {}, isolation)
+      : await fixtureBrowser.newContext({ serviceWorkers: 'block' });
+    const outcomes = [];
+    try {
+      const page = await context.newPage();
+      page.setDefaultTimeout(6000);
+      page.setDefaultNavigationTimeout(30000);
+      const emit = async () => {
+        await page.waitForFunction(() => window.__vendorFixtureLoads === 1);
+        assert.equal(await page.locator('#site-cloudflare-beacon').count(), 1);
+        outcomes.push(
+          await page.evaluate(async (url) => {
+            try {
+              await fetch(url, { method: 'POST', body: 'synthetic', credentials: 'omit' });
+              return 'allowed-to-fixture';
+            } catch {
+              return 'blocked';
+            }
+          }, collector + '?fixture=qa')
+        );
+      };
+      await page.goto(origin + '/author/index?entry=alias#content');
+      await emit();
+      await page.evaluate(() => history.pushState({}, '', 'writing?tag=systems'));
+      await emit();
+      await page.reload();
+      await emit();
+      await page.evaluate(() => history.pushState({}, '', '?tag=delivery'));
+      await page.goBack();
+      await emit();
+      await page.goForward();
+      await emit();
+      await page.goto(origin + '/author/articles/fixture.html');
+      await emit();
+      assert.equal(vendors, 3, 'one SDK for each of three documents, none for history');
+      assert.deepEqual(outcomes, Array(6).fill(isolated ? 'blocked' : 'allowed-to-fixture'));
+      assert.equal(
+        allowed.length,
+        isolated ? 0 : 6,
+        'collector cannot leak or suppress next context'
+      );
+      if (isolated) {
+        qaIsolation.validate(isolation);
+        assert.equal(isolation[0].blocked, 6, 'every attempted fixture beacon intercepted');
+      }
+      await page.goto(origin + '/author/articles/fixture?entry=alias');
+      await page.waitForFunction(() => window.__vendorFixtureLoads === 1);
+      assert.equal(vendors, 4, 'declared article alias loads one SDK');
+      for (const pathname of undeclared) {
+        await page.goto(origin + pathname);
+        assert.equal(await page.locator('#site-cloudflare-beacon').count(), 0);
+      }
+      assert.equal(vendors, 4, 'undeclared article/snapshot variants cannot start the SDK');
+      observations.push({
+        isolated,
+        vendors,
+        attempted: outcomes.length,
+        allowedToFixture: allowed.length,
+        isolation,
+        outcomes,
+        undeclaredRejected: undeclared,
+      });
+    } finally {
+      await context.close();
+    }
+  }
+  return {
+    model: 'actual adapter; vendor stub and local network sink',
+    pass: true,
+    observations,
+    liveTelemetryValidated: false,
+  };
+}
 function cases(engine) {
   return [
     ...routes.map((entry) => ({ engine, entry, mode: 'enabled' })),
@@ -354,6 +494,7 @@ async function run(browser, engine, selection = cases(engine)) {
   }
 }
 module.exports = {
+  isolationJourney,
   run,
   cases,
   selectedCases,

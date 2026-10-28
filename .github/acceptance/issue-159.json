@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 159,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/159",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Source-bound execution inventory",
+      "automated_scope": "Current catalog/generated navigation freshness only.",
+      "checks": ["RI"],
+      "gates": ["INVENTORY"]
+    },
+    {
+      "id": "AC02",
+      "intent": "Credible audience and positioning",
+      "automated_scope": "No deterministic check substitutes for this source/provider/editorial/human obligation; manual-only pending.",
+      "checks": [],
+      "gates": ["EDITORIAL"]
+    },
+    {
+      "id": "AC03",
+      "intent": "Honest query-to-page map",
+      "automated_scope": "No deterministic check substitutes for this source/provider/editorial/human obligation; manual-only pending.",
+      "checks": [],
+      "gates": ["QUERY-INTENT"]
+    },
+    {
+      "id": "AC04",
+      "intent": "Useful existing-page SEO candidate",
+      "automated_scope": "Maintained catalog/render/filter invariants only, not future SEO wording/usefulness. Exact maintained approved HTML/amendment verifier only, not rankings or editorial acceptance.",
+      "checks": ["CATALOG", "SEO"],
+      "gates": ["P2-CONTENT", "EDITORIAL", "SURFACES"]
+    },
+    {
+      "id": "AC05",
+      "intent": "Two implementation-ready native answer briefs",
+      "automated_scope": "No deterministic check substitutes for this source/provider/editorial/human obligation; manual-only pending.",
+      "checks": [],
+      "gates": ["BRIEFS", "EDITORIAL"]
+    },
+    {
+      "id": "AC06",
+      "intent": "Technical/style preservation",
+      "automated_scope": "Generated/static/size/H1/footer/theme/archive subset only; no exact SEO or whole browser matrix. Maintained catalog/render/filter invariants only, not future SEO wording/usefulness. Exact maintained approved HTML/amendment verifier only, not rankings or editorial acceptance. Bounded enforced code-style subset only.",
+      "checks": ["BASIC", "CATALOG", "SEO", "STYLE"],
+      "gates": ["STYLE-REVIEW", "SURFACES", "P2-CONTENT"]
+    },
+    {
+      "id": "AC07",
+      "intent": "Independent review and reproducible handoff",
+      "automated_scope": "Current catalog/generated navigation freshness only. Current source-to-CI coupling only.",
+      "checks": ["RI", "RI-CI"],
+      "gates": ["QUALITY", "SURFACES", "RELEASES"]
+    },
+    {
+      "id": "AC08",
+      "intent": "Measurement and bounded completion",
+      "automated_scope": "No deterministic check substitutes for this source/provider/editorial/human obligation; manual-only pending.",
+      "checks": [],
+      "gates": ["MEASUREMENT", "RELEASES"]
+    },
+    {
+      "id": "AC09",
+      "intent": "Inherited actual first-reader understanding",
+      "automated_scope": "No deterministic check substitutes for this source/provider/editorial/human obligation; manual-only pending.",
+      "checks": [],
+      "gates": ["HUMAN-READER", "EDITORIAL", "SURFACES"]
+    },
+    {
+      "id": "AC10",
+      "intent": "Original #158/AC01: emitter attribution and comparable baseline",
+      "automated_scope": "No deterministic check substitutes for this source/provider/editorial/human obligation; manual-only pending.",
+      "checks": [],
+      "gates": ["BASELINE", "ISOLATION-DECISION"]
+    },
+    {
+      "id": "AC11",
+      "intent": "Original #158/AC02: isolate identified QA without dropping readers",
+      "automated_scope": "Maintained analytics/quality/staging source regressions only; not live provider, browser or cost proof. ISOLATION checks finite collector/setup/abort source negatives; actual network contrast runs in existing hosted browser journeys.",
+      "checks": ["ANALYTICS", "ISOLATION"],
+      "gates": ["ISOLATION-BEHAVIOR", "BROWSER", "LIVE"]
+    },
+    {
+      "id": "AC12",
+      "intent": "Original #158/AC03: trustworthy repeatable reporting",
+      "automated_scope": "No deterministic check substitutes for this source/provider/editorial/human obligation; manual-only pending.",
+      "checks": [],
+      "gates": ["REPORT", "COMPARISON"]
+    },
+    {
+      "id": "AC13",
+      "intent": "Original #158/AC04: exact-source contracts/style/delivery",
+      "automated_scope": "Generated/static/size/H1/footer/theme/archive subset only; no exact SEO or whole browser matrix. Bounded enforced code-style subset only. Current catalog/generated navigation freshness only. Current source-to-CI coupling only. ISOLATION checks finite collector/setup/abort source negatives; actual network contrast runs in existing hosted browser journeys.",
+      "checks": ["BASIC", "STYLE", "RI", "RI-CI", "ISOLATION"],
+      "gates": ["STYLE-REVIEW", "QUALITY", "RELEASES"]
+    },
+    {
+      "id": "AC14",
+      "intent": "Original #158/AC05: article measurement readiness",
+      "automated_scope": "Maintained analytics/quality/staging source regressions only; not live provider, browser or cost proof. ISOLATION checks finite collector/setup/abort source negatives; actual network contrast runs in existing hosted browser journeys.",
+      "checks": ["ANALYTICS", "ISOLATION"],
+      "gates": ["ARTICLE-HANDOFF"]
+    },
+    {
+      "id": "AC15",
+      "intent": "Original #102/AC01 via #158/AC06: declared entries and isolation",
+      "automated_scope": "Maintained analytics/quality/staging source regressions only; not live provider, browser or cost proof. ISOLATION checks finite collector/setup/abort source negatives; actual network contrast runs in existing hosted browser journeys.",
+      "checks": ["ANALYTICS", "ISOLATION"],
+      "gates": ["BROWSER", "LIVE"]
+    },
+    {
+      "id": "AC16",
+      "intent": "Original #102/AC02 via #158/AC07: guard/history/filter evidence",
+      "automated_scope": "Maintained analytics/quality/staging source regressions only; not live provider, browser or cost proof. ISOLATION checks finite collector/setup/abort source negatives; actual network contrast runs in existing hosted browser journeys.",
+      "checks": ["ANALYTICS", "ISOLATION"],
+      "gates": ["BROWSER", "LIVE"]
+    },
+    {
+      "id": "AC17",
+      "intent": "Original #102/AC03 via #158/AC08: preserve historical accepted evidence",
+      "automated_scope": "No deterministic check substitutes for this source/provider/editorial/human obligation; manual-only pending.",
+      "checks": [],
+      "gates": ["HISTORY"]
+    },
+    {
+      "id": "AC18",
+      "intent": "Original #102/AC04 via #158/AC09: dimensions/sample/cost/runbook",
+      "automated_scope": "Maintained analytics/quality/staging source regressions only; not live provider, browser or cost proof. Generated/static/size/H1/footer/theme/archive subset only; no exact SEO or whole browser matrix. ISOLATION checks finite collector/setup/abort source negatives; actual network contrast runs in existing hosted browser journeys.",
+      "checks": ["ANALYTICS", "BASIC", "ISOLATION"],
+      "gates": ["VITALS-COST", "LIVE", "STYLE-REVIEW"]
+    }
+  ],
+  "checks": {
+    "BASIC": {
+      "kind": "node-basic"
+    },
+    "ANALYTICS": {
+      "kind": "unittest",
+      "test": "test_issue102_acceptance.Issue102AcceptanceTests.test_declared_entry_aliases_and_isolation"
+    },
+    "CATALOG": {
+      "kind": "unittest",
+      "test": "test_issue5_acceptance.Issue5AcceptanceTests.test_writing_catalog_contracts"
+    },
+    "SEO": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_seo_exact_amendment_and_unrelated_semantics_reconcile"
+    },
+    "STYLE": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    },
+    "ISOLATION": {
+      "kind": "unittest",
+      "test": "test_issue159_acceptance.Issue159AcceptanceTests.test_qa_collector_isolation"
+    }
+  },
+  "gates": {
+    "INVENTORY": {
+      "kind": "human",
+      "description": "Record current refs/route receipts, authored owners and exact evidence manifest; old audit is historical."
+    },
+    "EDITORIAL": {
+      "kind": "human",
+      "description": "Named source/editorial/rights review of exact public claims and useful reader situations; no inferred endorsement."
+    },
+    "QUERY-INTENT": {
+      "kind": "human",
+      "description": "After analytics delivery, review evidence-backed reader/problem/query/page map, overlap, priority and unknown demand; no Terra execution inferred."
+    },
+    "P2-CONTENT": {
+      "kind": "human",
+      "description": "P2 actual Home/Research/Writing/Talks candidate satisfies reader paths and preserves catalog, URLs, state and Credits; current invariant tests do not prove future usefulness."
+    },
+    "BRIEFS": {
+      "kind": "human",
+      "description": "P2 useful delivery and agent-control briefs with artifacts/examples, evidence/rights, links and #11/#2/#5 overlap/handoff; no publication."
+    },
+    "STYLE-REVIEW": {
+      "kind": "human",
+      "description": "Independent applicable CS01-CS10 architecture/readability/behavior review; bounded guard proves only its enforced subset."
+    },
+    "QUALITY": {
+      "kind": "human",
+      "description": "Four distinct completed requirements, code, white-box and exploratory inspections on exact candidate, with test allocation and correction re-review."
+    },
+    "SURFACES": {
+      "kind": "human",
+      "description": "Actual applicable desktop/mobile/theme/keyboard/touch/motion/no-JS/print observations; retain separate physical-device/human limits."
+    },
+    "RELEASES": {
+      "kind": "human",
+      "description": "Separate P1 and P2 staging/admission, protected merge, identical-tree production candidate, authorizations, live smoke and recovery identities; P1 does not close the issue."
+    },
+    "MEASUREMENT": {
+      "kind": "human",
+      "description": "Reproducible Cloudflare/GSC baseline and equal-window learning method; raw/filtered/source denominators and release cutovers separate; future ranks/volume not a closure oracle."
+    },
+    "HUMAN-READER": {
+      "kind": "human",
+      "description": "P2 uncoached actual first-time reader including enterprise/IT-services perspective explains author, two directions, relevant work/contact; resolve confusion on corrected source."
+    },
+    "BASELINE": {
+      "kind": "human",
+      "description": "Exact fixed-window aggregate RUM and separate GSC receipts with sampling/freshness/returned coverage and observed emitter inventory; no history attribution from browser alone."
+    },
+    "ISOLATION-DECISION": {
+      "kind": "human",
+      "description": "Review traced production contexts and selected minimal isolation boundary/residual gaps before telemetry edits; no blanket headless/reader suppression."
+    },
+    "ISOLATION-BEHAVIOR": {
+      "kind": "human",
+      "description": "Actual browser contrast and context receipts must prove identified QA suppression and ordinary collection; predicate/setup unit checks alone cannot prove network behavior."
+    },
+    "BROWSER": {
+      "kind": "human",
+      "description": "Run applicable maintained vendor-stub/current candidate browser journeys; fixture success is not production ingestion."
+    },
+    "LIVE": {
+      "kind": "human",
+      "description": "After P1 release observe actual production canonical/alias/history/filter/reload/SDK and deliberate bounded provider receipt; revalidate applicable P2 behavior separately."
+    },
+    "REPORT": {
+      "kind": "human",
+      "description": "Operator reproduces actual read-only interval/page/referrer reporting with raw/non-headless/visits/GSC separate and unavailable fields explicit."
+    },
+    "COMPARISON": {
+      "kind": "human",
+      "description": "Retain comparable before/after elapsed windows and both release cutovers; sampling/cohort breaks prevent causal or human/lead claims."
+    },
+    "ARTICLE-HANDOFF": {
+      "kind": "human",
+      "description": "Manifest-declared fixture/report readiness; real future article receipt remains #5 AC08/AC17 with #2, organic #8, conversions #104; no draft publication."
+    },
+    "HISTORY": {
+      "kind": "human",
+      "description": "Preserve #158/#102 source-to-local mapping and accepted dated #102/AC03 tick without declaring a new clean baseline; review exact archived provenance."
+    },
+    "VITALS-COST": {
+      "kind": "human",
+      "description": "Actual dimensions and separate per-vital samples, absent-INP limits, hosted SDK transfer/CPU cost under existing budgets and corrected runbook; no loopback substitute."
+    }
+  }
+}

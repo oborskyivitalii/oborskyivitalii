@@ -11820,6 +11820,90 @@
       "purpose": "Immutable approved Home body and exact canonical renderer/template producer bindings for source-bound SEO reconciliation; not an editorial approval.",
       "role": "configuration",
       "owner": "tools/check_site_seo.cjs"
+    },
+    ".github/acceptance/issue-159.json": {
+      "kind": "file",
+      "purpose": "Issue159 unified analytics-first and later SEO criteria with bounded invariant checks and explicit provider/human/release gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-159": {
+      "kind": "directory",
+      "purpose": "Issue159 analytics baseline, source-bound intake and independent delivery review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-159/2026-10-28-analytics-intake.md": {
+      "kind": "file",
+      "purpose": "Issue159 B1 emitter inventory, minimal isolation decision, policy mapping and exact-source independent review/check handoff.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-159/2026-10-28-baseline.json": {
+      "kind": "file",
+      "purpose": "Sanitized fixed-window Cloudflare RUM and separate Search Console receipts, reproducible query templates and sampling/access limitations.",
+      "role": "history",
+      "owner": "guides/SITE-ANALYTICS.md"
+    },
+    "review/issue-159/2026-10-28-b1-failed-policy.json.gz": {
+      "kind": "file",
+      "purpose": "Preserved first B1 owning-policy failure with exact dirty source, invalid SEO selector and unavailable historical fixture blobs.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-159/2026-10-28-b1-diagnostics.json.gz": {
+      "kind": "file",
+      "purpose": "Preserved corrected-policy missing historical Research blob failure and RI regression runs observed before final regeneration.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "tools/quality/analytics-isolation.cjs": {
+      "kind": "file",
+      "purpose": "Explicit QA context collector interception with fail-before-navigation setup and bounded request receipts.",
+      "role": "validator",
+      "owner": "guides/SITE-ANALYTICS.md"
+    },
+    "tests/test_issue159_acceptance.py": {
+      "kind": "file",
+      "purpose": "Issue159 owning-policy adapter for maintained QA collector isolation source guards.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-159/2026-10-28-qa-isolation.md": {
+      "kind": "file",
+      "purpose": "B2 source-bound isolation decision, four independent reviews, test allocation and release limits.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-159/2026-10-28-b2-diagnostics.json.gz": {
+      "kind": "file",
+      "purpose": "Preserved B2 preliminary cold/Color failures and bounded operator/white-box diagnostics with dirty-source limits.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-159/2026-10-28-b2-browser.json.gz": {
+      "kind": "file",
+      "purpose": "Actual pinned Chromium B2 contrast observations, exact core hashes and verified archive-origin receipts; no real provider telemetry.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-159/2026-10-28-staging-verification.md": {
+      "kind": "file",
+      "purpose": "B2.2 exact current-artifact native/source verification, role review and frozen-head staging/admission boundaries.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-159/2026-10-28-current-artifact-evidence.json.gz": {
+      "kind": "file",
+      "purpose": "Raw B2.2 clean7100 staging Color artifact, independent native smoke, metadata and lint/architecture receipts; first invocation failure retained.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-159/2026-10-28-stage-security-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Retained failed staging security report and exact per-ID public baseline Git-commit checksum proof; single scoped false-positive correction.",
+      "role": "history",
+      "owner": "AGENTS.md"
     }
   }
 }

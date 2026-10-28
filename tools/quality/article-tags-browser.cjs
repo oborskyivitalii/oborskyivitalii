@@ -1,11 +1,16 @@
 'use strict';
 // Bounded current-index observations share the existing Chromium preview job.
 const assert = require('node:assert/strict');
+const qaIsolation = require('./analytics-isolation.cjs');
 const api = require('../../site/engine/article-tags.cjs')();
-async function journey(browser, baseURL, index, descriptors) {
+async function journey(browser, baseURL, index, descriptors, { isolation = [] } = {}) {
   api.validate(index);
   const base = new URL(baseURL.replace(/\/$/, '') + '/');
-  const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
+  const context = await qaIsolation.createContext(
+    browser,
+    { viewport: { width: 390, height: 844 } },
+    isolation
+  );
   const page = await context.newPage();
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));
@@ -85,7 +90,7 @@ async function journey(browser, baseURL, index, descriptors) {
       );
       assert.ok(!urls.includes(new URL(descriptor.alias, base).href));
       observations.reader = { key, tags: reader.tags.length, related: urls.length, urls };
-      const isolatedText = await browser.newContext();
+      const isolatedText = await qaIsolation.createContext(browser, {}, isolation);
       try {
         const poisoned = structuredClone(index);
         poisoned.vocabulary[reader.tags[0]] = '<img src=x onerror="window.tagInjection=true">';
@@ -114,7 +119,11 @@ async function journey(browser, baseURL, index, descriptors) {
         await isolatedText.close();
       }
       for (const mode of ['blocked', 'invalid']) {
-        const isolated = await browser.newContext({ viewport: { width: 390, height: 844 } });
+        const isolated = await qaIsolation.createContext(
+          browser,
+          { viewport: { width: 390, height: 844 } },
+          isolation
+        );
         try {
           await isolated.route('**/publication-index.json', (route) =>
             mode === 'blocked'
@@ -141,7 +150,14 @@ async function journey(browser, baseURL, index, descriptors) {
       }
     }
     assert.deepEqual(errors, [], 'tag journey has no browser exceptions');
-    return { schema: 1, kind: 'publication-tags-journey', pass: true, observations };
+    qaIsolation.validate(isolation);
+    return {
+      schema: 1,
+      kind: 'publication-tags-journey',
+      pass: true,
+      observations,
+      qaIsolation: isolation,
+    };
   } catch (error) {
     throw new Error(
       error.message +
