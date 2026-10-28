@@ -343,7 +343,8 @@ function validateReadingPaths(c) {
         typeof selection.when !== 'string' ||
         !selection.when.trim() ||
         selection.when.length > 1000 ||
-        /\u0000|\{\{/.test(selection.when)
+        selection.when.includes('\u0000') ||
+        selection.when.includes('{{')
       )
         throw Error('Invalid reading path record or context');
       selected.add(selection.record);

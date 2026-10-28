@@ -20,7 +20,7 @@
     },
     "tools/site/validate-catalog.cjs": {
       "beforeSHA256": "cb738e2c332217edca5ee6fad536011579826345eac3baa4060d5918681c4496",
-      "afterSHA256": "9d555dfeef2dfc161b93b2a79465343c1407c85381af8b0437f5d245b9df4ab6"
+      "afterSHA256": "6a61f3af40e94c42b4240c1afb21a2a25474f2cf58381a2c40f12dea12becc6c"
     }
   },
   "styles": {

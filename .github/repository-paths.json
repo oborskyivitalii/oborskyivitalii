@@ -11899,65 +11899,71 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/09cbc41df0d13e646264fd6527726be475d4cc9fa491a9672097ffc1c1b0584d": {
+    "docs/snapshots/fc608c919774ea577376d07a05a8840f124548e63b29f65d53f241a1bde0bcd3": {
       "kind": "directory",
       "purpose": "Immutable generated revision files from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/09cbc41df0d13e646264fd6527726be475d4cc9fa491a9672097ffc1c1b0584d/talks.html": {
+    "docs/snapshots/fc608c919774ea577376d07a05a8840f124548e63b29f65d53f241a1bde0bcd3/talks.html": {
       "kind": "file",
       "purpose": "Immutable generated route snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/4b6df828e0a082fbde4159346a3594533dc784b3cd5d6aea3f2e0c8faf4dd082": {
+    "docs/snapshots/3d917ef82b56fed016f2947a6165bfb2a2d4a66effa03d4b3f66ca8f9efe265b": {
       "kind": "directory",
       "purpose": "Immutable generated revision files from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/4b6df828e0a082fbde4159346a3594533dc784b3cd5d6aea3f2e0c8faf4dd082/writing.html": {
+    "docs/snapshots/3d917ef82b56fed016f2947a6165bfb2a2d4a66effa03d4b3f66ca8f9efe265b/writing.html": {
       "kind": "file",
       "purpose": "Immutable generated route snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/5237cb42f1a1423dc5716ac5d0584fb0df524c6dd3f9bca57ba9bccc1575e4de": {
+    "docs/snapshots/ae7ab7e7e866f302054f2c5f8d1125c511569171d56ceecec58266881ca59c44": {
       "kind": "directory",
       "purpose": "Immutable generated revision files from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/5237cb42f1a1423dc5716ac5d0584fb0df524c6dd3f9bca57ba9bccc1575e4de/research.html": {
+    "docs/snapshots/ae7ab7e7e866f302054f2c5f8d1125c511569171d56ceecec58266881ca59c44/research.html": {
       "kind": "file",
       "purpose": "Immutable generated route snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/65c28e7999f916c129c844ee5cd292df0bb91125a0242d556e3cc5e7bdd43848": {
+    "docs/snapshots/11bfbae523fb1f6f94c3f9abae10f1b356d6fed674ab9f3f8aef8c7bb5c0b79c": {
       "kind": "directory",
       "purpose": "Immutable generated revision files from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/65c28e7999f916c129c844ee5cd292df0bb91125a0242d556e3cc5e7bdd43848/index.html": {
+    "docs/snapshots/11bfbae523fb1f6f94c3f9abae10f1b356d6fed674ab9f3f8aef8c7bb5c0b79c/index.html": {
       "kind": "file",
       "purpose": "Immutable generated route snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/e024ae1464ed82886ad1f0c430bc74b38a3671bcc49a77e682c3a5eac2c78225": {
+    "docs/snapshots/1aeb00e57ea4d59de81913be2aba0edf5837279ba1273fc5a7f817740cc24e82": {
       "kind": "directory",
       "purpose": "Immutable generated revision files from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/e024ae1464ed82886ad1f0c430bc74b38a3671bcc49a77e682c3a5eac2c78225/credits.html": {
+    "docs/snapshots/1aeb00e57ea4d59de81913be2aba0edf5837279ba1273fc5a7f817740cc24e82/credits.html": {
       "kind": "file",
       "purpose": "Immutable generated route snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
+    },
+    "review/issue-159/2026-10-28-seo-scanner-proof.json.gz": {
+      "kind": "file",
+      "purpose": "B5 failed native scanner identity, exact per-ID frozen/current public checksum proof and bounded source correction; no scanner bypass or rights approval.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

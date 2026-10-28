@@ -49,7 +49,17 @@ Dated continuity, not live authority. Last verified: **2026-10-28**.
   fullselected1168actual had1161pass/7fail,0omissions. All7 stoppedatone imported
   modern publication-fixture oldfamily prefix. Exactoneprefix correction25/25
   withCode/Requirements actualACCEPT; historical/product/docs/offline unchanged.
-  Final fixture+review/MEMORY/RI-only head and allfrozenchecks/preview pending.
+  Clean5bc/adf then passed1168/1168 in76modules, Basic and local/native9/9.
+  Draft40766166686 HTTP passed;070 desktop journeys and5bc badge observed.
+- Evidence-only stage40766984867 failed24/26 beforepublish/browser: lint NULregex
+  and63untriaged Hex candidates. Source74modules1151/1151+Basic3 andPython140/140
+  passed. Raw/native failure and all prior failures remain; no unchanged retry.
+- Requirements accepted NUL-equivalent string checks plus exact per-ID public
+  checksum proof. New B5 scanner proof retains frozen63 and current63, with one
+  validator successor replacement; checksum ledger append-only, no scanner change.
+  Generated snapshot/producer identities refreshed; copy/CSS/runtime unchanged.
+  Four actual correction roles ACCEPT; schema1/1, ledger5/5, lint0 and189refusals
+  pass. Source metadata/RI refreshed; freeze/new-head lint/security/staging follow.
 - B5 prepared page/checker sources and Terra briefs are not accepted/public copy.
   Source/style/checker/independent and changed-surface validation is in progress:
   review/issue-159/2026-10-28-seo-implementation.md. Original29/46 edition and
