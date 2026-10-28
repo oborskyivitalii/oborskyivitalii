@@ -3,9 +3,9 @@
   "template": "pages/research/intro.html",
   "text": {
     "T001": "Research / Living questions",
-    "T002": "Two systems.",
-    "T003": "One engineering perspective.",
-    "T004": "How we deliver software, and how we govern systems whose behavior relies on model judgment —\n    including AI agents in production."
+    "T002": "AI-assisted delivery.",
+    "T003": "AI agent governance.",
+    "T004": "Two research directions for delivery leaders, architects and AI teams: turn local coding gains into useful delivery, and govern consequential actions in systems that rely on model judgment."
   },
   "attributes": {},
   "urls": {}

@@ -578,10 +578,12 @@ test('Writing SEO reconciliation accepts generated catalog changes and rejects o
   changed.structuredOrder.push({ record: id });
   const after = render(changed);
   assert.equal(seo.restoreWritingCatalog(after.main, { catalog: changed }), restored);
+  const heading = after.main.match(/<h1\b[^>]*>[\s\S]*?<\/h1\s*>/)?.[0];
+  assert.ok(heading, 'current Writing output contains its authored heading');
+  const alteredHeading = after.main.replace(heading, '<h1>Undeclared heading</h1>');
+  assert.notEqual(alteredHeading, after.main, 'the actual current heading mutation is meaningful');
   assert.notEqual(
-    seo.restoreWritingCatalog(after.main.replace('Find your next read.', 'Undeclared heading'), {
-      catalog: changed,
-    }),
+    seo.restoreWritingCatalog(alteredHeading, { catalog: changed }),
     restored,
     'authored copy stays visible to the immutable amendment proof'
   );
@@ -669,7 +671,10 @@ test('Writing generated-view normalization cannot approve changed renderer or co
   const amendment = require('../review/issue-5/writing-catalog-amendment.json');
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'writing-producer-proof-'));
   t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
-  for (const file of Object.keys(amendment.producerInputs)) {
+  for (const file of [
+    ...Object.keys(amendment.producerInputs),
+    'site/templates/components/archive-reading-link.html',
+  ]) {
     fs.mkdirSync(path.dirname(path.join(dir, file)), { recursive: true });
     fs.copyFileSync(path.join(root, file), path.join(dir, file));
   }

@@ -26,8 +26,8 @@
 
 
 
-  <meta name="site-engine" content="a41ab65b9c8182318ae1333272289aac5d651fa1e19cc075609632b5fb082b85">
-  <meta name="site-route" content="394631882bc669912f6d6a7294b877061e2cd561d2bdd41a78f68e4c9efa88be">
+  <meta name="site-engine" content="a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee">
+  <meta name="site-route" content="200f0e637b3f5495095af5dc2182e39e82b82b4259a71036f27146aba9f86d47">
   <meta name="site-contract" content="1">
   <meta name="site-article-renderer" content="1">
   <meta name="site-variant" content="base">
@@ -1637,6 +1637,34 @@ body[data-page='writing'] #archive-results {
   margin-block: 12px;
 }
 
+/* Issue159: curated paths share the existing topic target and filter owner. */
+.archive-landings > .topic-landing {
+  flex: 1 1 440px;
+  min-width: 0;
+  padding: 16px;
+}
+.topic-landing h2 {
+  margin: 0;
+  font-size: 17px;
+  letter-spacing: 0;
+  line-height: 1.5;
+}
+.topic-landing .reading-recommendation {
+  margin-block: 16px;
+  font-weight: 400;
+}
+.reading-recommendation a {
+  font-size: 15px;
+}
+.reading-context,
+.reading-recommendation .edition-link {
+  display: block;
+}
+.reading-context {
+  margin-top: 6px;
+  font-size: 14px;
+}
+
 /* Canonical reading backdrop paint for every route and base/Color rendition.
    Placement remains paint-only; text wrapping and line boxes are unchanged. */
 :where(:root) {
@@ -2756,10 +2784,33 @@ body[data-page] [data-entry-border-source] {
     <header class="site-header wrap"><a class="wordmark" href="site-v1-20261004-v11-day.html" aria-label="Vitalii Oborskyi, home"><span class="monogram" aria-hidden="true">vo<span class="monogram-dot">.</span></span><span>Vitalii Oborskyi</span></a><nav aria-label="Main navigation"><a href="site-v1-20261004-v11-day.html">Home</a><a href="site-v1-20261004-v11-research-day.html">Research</a><a href="site-v1-20261004-v11-writing-day.html" aria-current="page">Writing</a><a href="site-v1-20261004-v11-talks-day.html">Talks</a></nav><details class="appearance"><summary>Appearance</summary><noscript><p>Display follows your browser’s color preference. Animated motion needs JavaScript.</p></noscript
     ><div class="display-controls"><nav class="theme-control" aria-label="Review theme"><span>Preview theme</span><a href="site-v1-20261004-v11-writing-day.html" aria-current="page" style="text-decoration:underline">Day</a><a href="site-v1-20261004-v11-writing-night.html">Night</a></nav></div></details></header>
 <aside class="wrap" aria-label="Review copy" style="padding-block:14px;font-size:13px;color:var(--muted)"><a href="site-v1-20261004-v11-index.html">All five pages</a> · fixed Day review · static background. Motion, filters and Auto run in the interactive copy. Review candidate.</aside>
-<main id="main" tabindex="-1"><section class="archive-intro wrap" data-space-stop><p class="eyebrow">Writing / Original published editions</p><h1><span class="reading-title"><span class="reading-title-ink">Follow the questions.<br/>Find your next read.</span></span></h1><p class="hero-description">AI architecture, delivery, operating models and strategy, with original titles, dates and
-    languages retained.</p></section>
+<main id="main" tabindex="-1"><section class="archive-intro wrap" data-space-stop><p class="eyebrow">Writing / Original published editions</p><h1><span class="reading-title"><span class="reading-title-ink">AI architecture, delivery<br/>and operating models.</span></span></h1><p class="hero-description">Choose a topic for a short reading path, then explore the complete English and Ukrainian archive. Original titles, platform dates and edition links stay separate.</p></section>
 <p class="sr-only" data-writing-formula-description>y = f(x) → y ∼ P(y|x): a shift from deterministic mapping to conditional probabilistic
-    modeling.</p><nav class="topic-nav wrap" data-archive-navigation aria-label="Browse article topics"><a href="#topic-delivery"  data-filter-topic="delivery">AI-assisted delivery</a><a href="#topic-systems"  data-filter-topic="systems">AI architecture &amp; control</a><a href="#topic-leadership"  data-filter-topic="leadership">Operating models &amp; leadership</a><a href="#topic-strategy"  data-filter-topic="strategy">AI strategy &amp; society</a></nav><div class="wrap"><nav class="section-nav" aria-label="Browse publication year" data-archive-navigation><a href="#year-2026">2026</a><a href="#year-2025">2025</a></nav><div class="archive-landings" role="navigation" aria-label="Archive topics"><h2 id="topic-delivery" class="topic-landing">AI-assisted delivery<a href="#topic-delivery-2026">Browse articles ↓</a></h2><h2 id="topic-systems" class="topic-landing">AI architecture &amp; control<a href="#topic-systems-2026">Browse articles ↓</a></h2><h2 id="topic-leadership" class="topic-landing">Operating models &amp; leadership<a href="#topic-leadership-2025">Browse articles ↓</a></h2><h2 id="topic-strategy" class="topic-landing">AI strategy &amp; society<a href="#topic-strategy-2026">Browse articles ↓</a></h2></div><h2 id="archive-heading" class="archive-heading" hidden>All topics · All years · EN + UA</h2><p id="archive-count" data-count="{count} of {total} articles" data-print="{total} articles" class="section-note" role="status" aria-live="polite">29 articles</p><p class="section-note">Alternate platforms and community discussions share an article’s row. Dates belong to the linked platform edition. “Edited” marks a last-updated date. Related articles are not assumed to be translations.</p><p id="archive-empty" class="empty-state" hidden>No articles match these filters. Change a filter or reset to see everything.</p></div><div id="archive-results" class="archive-results"><h2 id="year-2026" class="year-landing">2026 archive</h2>
+    modeling.</p><nav class="topic-nav wrap" data-archive-navigation aria-label="Browse article topics"><a href="#topic-delivery"  data-filter-topic="delivery">AI-assisted delivery</a><a href="#topic-systems"  data-filter-topic="systems">AI architecture &amp; control</a><a href="#topic-leadership"  data-filter-topic="leadership">Operating models &amp; leadership</a><a href="#topic-strategy"  data-filter-topic="strategy">AI strategy &amp; society</a></nav><div class="wrap"><nav class="section-nav" aria-label="Browse publication year" data-archive-navigation><a href="#year-2026">2026</a><a href="#year-2025">2025</a></nav><div class="archive-landings" role="navigation" aria-label="Archive topics"><section id="topic-delivery" class="topic-landing" aria-labelledby="reading-delivery-title">
+  <h2 id="reading-delivery-title">AI-assisted delivery</h2>
+  <p class="reading-recommendation">
+  <a href="https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0">AI, the Externalization of Reasoning, and the Verification Crisis</a><span class="edition-link">EN · English · 12 Jun 2026</span><span class="reading-context">Read this when faster generation leaves questions about verification and human understanding. The author’s argument connects code output with responsibility for checking it.</span>
+</p><p class="reading-recommendation">
+  <a href="https://www.linkedin.com/pulse/ai-cost-cutting-fallacy-why-doing-more-less-breaking-teams-oborskyi-cxuif/">The AI Cost-Cutting Fallacy: Why "Doing More with Less" is Breaking Engineering Teams</a><span class="edition-link">EN · English · 2 Jan 2026</span><span class="reading-context">Read this when coding-tool savings are being treated as a reason to reduce engineering capacity. A critical author perspective on shifted costs, not a validated ROI model.</span>
+</p><a href="#topic-delivery-2026">Browse articles ↓</a>
+</section><section id="topic-systems" class="topic-landing" aria-labelledby="reading-systems-title">
+  <h2 id="reading-systems-title">AI architecture &amp; control</h2>
+  <p class="reading-recommendation">
+  <a href="https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db">Uncertainty Architecture: Thinking Systems, When the Controlled Object Changes</a><span class="edition-link">EN · English · 30 Aug 2026</span><span class="reading-context">Read this when a product relies on consequential model judgment and you need to distinguish the software from its wider control perimeter. A conceptual starting point, not production assurance.</span>
+</p><p class="reading-recommendation">
+  <a href="https://pub.towardsai.net/uncertainty-architecture-why-ai-governance-is-actually-control-theory-511f3e73ed6e">Uncertainty Architecture: Why AI Governance is Actually Control Theory</a><span class="edition-link">EN · English · 13 Dec 2025</span><span class="reading-context">Read this for the December 2025 control-theory perspective on AI governance. Its human-only controller examples are historical; use the living Uncertainty Architecture specification for current meanings.</span>
+</p><a href="#topic-systems-2026">Browse articles ↓</a>
+</section><section id="topic-leadership" class="topic-landing" aria-labelledby="reading-leadership-title">
+  <h2 id="reading-leadership-title">Operating models &amp; leadership</h2>
+  <p class="reading-recommendation">
+  <a href="https://medium.com/agileinsider/pmo-value-creator-or-bureaucratic-overhead-dc4abcc38dfc">PMO: Value Creator or Bureaucratic Overhead?</a><span class="edition-link">EN · English · 31 May 2025</span><span class="reading-context">Read this when deciding whether PMO roles and metrics help delivery or add overhead. A practitioner view of contextual operating choices.</span>
+</p><p class="reading-recommendation">
+  <a href="https://medium.com/@undersmoker/terraforming-your-organization-a-data-driven-journey-from-chaos-to-stability-of-human-and-ai-84790092d2df">Terraforming Your Organization: A Data-Driven Journey from Chaos to Stability of Human and AI</a><span class="edition-link">EN · English · 3 Apr 2025</span><span class="reading-context">Read this when exploring roles and communication across human and AI work. The organizational model is a preliminary example, not a confirmed implementation result.</span>
+</p><a href="#topic-leadership-2025">Browse articles ↓</a>
+</section><section id="topic-strategy" class="topic-landing" aria-labelledby="reading-strategy-title">
+  <h2 id="reading-strategy-title">AI strategy &amp; society</h2>
+  <a href="#topic-strategy-2026">Browse articles ↓</a>
+</section></div><h2 id="archive-heading" class="archive-heading" hidden>All topics · All years · EN + UA</h2><p id="archive-count" data-count="{count} of {total} articles" data-print="{total} articles" class="section-note" role="status" aria-live="polite">29 articles</p><p class="section-note">Alternate platforms and community discussions share an article’s row. Dates belong to the linked platform edition. “Edited” marks a last-updated date. Related articles are not assumed to be translations.</p><p id="archive-empty" class="empty-state" hidden>No articles match these filters. Change a filter or reset to see everything.</p></div><div id="archive-results" class="archive-results"><h2 id="year-2026" class="year-landing">2026 archive</h2>
 <section id="results-year-2026" class="section wrap archive-year" data-year="2026" aria-labelledby="year-2026-title" data-space-stop><div class="year-heading"><h2 id="year-2026-title">2026</h2><span>9 articles</span></div><section class="archive-group" data-topic="delivery" aria-labelledby="topic-delivery-2026"><h3 id="topic-delivery-2026" class="writing-topic">AI-assisted delivery</h3><ol class="publication-list"><li class="publication" data-language="uk" data-topic="delivery" data-year="2026"><div class="publication-meta"><time datetime="2026-06-17">17 Jun 2026</time><span><span class="language-badge" lang="uk">UA · Українська</span> · Article · DOU</span></div><div><a class="publication-title" href="https://dou.ua/forums/topic/60177/"><span lang="uk">Субпрайм-криза коду — чому AI-асистенти роблять нас повільнішими (Частина 2)</span><span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
 <li class="publication" data-language="en" data-topic="delivery" data-year="2026"><div class="publication-meta"><time datetime="2026-06-12">12 Jun 2026</time><span><span class="language-badge">EN · English</span> · Article · Agile Insider</span></div><div><a class="publication-title" href="https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0">AI, the Externalization of Reasoning, and the Verification Crisis<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/ai-externalization-reasoning-verification-crisis-vitalii-oborskyi-ihzwe/" title="AI, the Externalization of Reasoning, and the Verification Crisis">LinkedIn edition · 10 Jun 2026</a></p></div></li>
 <li class="publication" data-language="uk" data-topic="delivery" data-year="2026"><div class="publication-meta"><time datetime="2026-02-10">10 Feb 2026</time><span><span class="language-badge" lang="uk">UA · Українська</span> · Article · DOU</span></div><div><a class="publication-title" href="https://dou.ua/forums/topic/57846/"><span lang="uk">Субпрайм-криза коду: чому AI-асистенти роблять нас повільнішими — і дані це доводять</span><span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>

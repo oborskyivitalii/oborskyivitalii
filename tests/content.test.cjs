@@ -891,7 +891,11 @@ test('Home provides the agreed reader path, precise public actions and a real co
     'about',
     'contact',
   ]);
-  assert.match(home, /<h1 id="author-name">AI tools everywhere\./);
+  // Exact copy is owned by the SEO amendment; retain the single reader landmark.
+  const headings = [...home.matchAll(/<h1\b[^>]*>[\s\S]*?<\/h1>/g)];
+  assert.equal(headings.length, 1);
+  assert.match(headings[0][0], /<h1 id="author-name">[^<]/);
+  assert.notEqual(headings[0][0].replace(/<[^>]+>/g, '').trim(), '');
   assert.ok(
     home.includes(
       'Vitalii Oborskyi · Enterprise delivery leader &amp; independent research author.'
@@ -930,12 +934,12 @@ test('Home provides the agreed reader path, precise public actions and a real co
     /href="#"|Trusted by|CPC|RankSpot|4400|4,400|established consultancy|consulting firm|service packages|guaranteed outcomes/
   );
   for (const text of [
-    'human understanding, verification and ownership',
-    'human roles, evidence, decision authority and corrective action',
-    'hypotheses to test in context',
-    'Much remains to develop and test',
+    'generation, understanding, verification and ownership',
+    'human roles, decision authority, evidence and corrective action',
+    'those responses need testing in each setting',
+    'proposals to develop and test, not a production assurance standard',
     'Examples of work, depending on the role, organization and agreed scope',
-    'Research, publications, talks and practical engineering experiments.',
+    'Enterprise delivery experience, independent research, published articles and talks.',
   ])
     assert.ok(home.includes(text), text);
   for (const page of Object.values(pages))

@@ -272,7 +272,9 @@ function validateCatalogOrder(c) {
 function validateLabels(c) {
   if (
     !c.archive ||
-    Object.keys(c.archive).sort().join(',') !== 'languages,months,topics' ||
+    !['languages,months,topics', 'languages,months,readingPaths,topics'].includes(
+      Object.keys(c.archive).sort().join(',')
+    ) ||
     !Array.isArray(c.archive.topics) ||
     !c.archive.topics.length ||
     c.archive.topics.length > 12 ||
@@ -311,6 +313,41 @@ function validateLabels(c) {
     const tokens = [...c.labels[key].matchAll(/\{([^}]+)\}/g)].map((x) => x[1]);
     if (tokens.join(',') !== (key === 'archive.count' ? 'count,total' : 'total'))
       throw Error('Invalid archive count label');
+  }
+}
+
+function validateReadingPaths(c) {
+  const paths = c.archive.readingPaths;
+  if (paths === undefined) return;
+  if (!paths || typeof paths !== 'object' || Array.isArray(paths))
+    throw Error('Invalid reading path inventory');
+  for (const [topic, selections] of Object.entries(paths)) {
+    if (
+      !c.archive.topics.includes(topic) ||
+      !Array.isArray(selections) ||
+      selections.length < 2 ||
+      selections.length > 3
+    )
+      throw Error('Invalid reading path topic or selection count');
+    const selected = new Set();
+    for (const selection of selections) {
+      if (
+        !selection ||
+        typeof selection !== 'object' ||
+        Array.isArray(selection) ||
+        Object.keys(selection).sort().join(',') !== 'record,when' ||
+        typeof selection.record !== 'string' ||
+        !Object.hasOwn(c.records, selection.record) ||
+        c.records[selection.record].presentation?.topic !== topic ||
+        selected.has(selection.record) ||
+        typeof selection.when !== 'string' ||
+        !selection.when.trim() ||
+        selection.when.length > 1000 ||
+        /\u0000|\{\{/.test(selection.when)
+      )
+        throw Error('Invalid reading path record or context');
+      selected.add(selection.record);
+    }
   }
 }
 function validateRecordInventory(c, id, record) {
@@ -432,6 +469,7 @@ function validateCatalog(c) {
     validatePresentation(c, id, record);
   }
   validateCatalogOrder(c);
+  validateReadingPaths(c);
   return c;
 }
 

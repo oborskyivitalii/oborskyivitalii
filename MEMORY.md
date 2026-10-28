@@ -5,59 +5,63 @@ Dated continuity, not live authority. Last verified: **2026-10-28**.
 ## Snapshot
 
 - Owner #159 combines SEO/analytics and retired #158/#102 obligations.
-  Main and production revalidated c68db162ca294ed3bd88e7e2280ecbd8f37e3dd3.
-  PR160 merged; immutable prod-2026-10-28.1 published in40723608614.
-  Public digest1f258d4f29f0a50328ae110fde0d940cb172742cda8881756b93020af0b75a81.
-- Four open PR79/107/110/117 are separate owners; no article/campaign work here.
-  Current source work is issue-159-live-diagnostics from c68db162.
+  Main af8a7b38d08f49c06e9257234a5ec458363a6275; production remains
+  c68db162ca294ed3bd88e7e2280ecbd8f37e3dd3, immutable prod-2026-10-28.1.
+- PR161 protected squash merged after explicit owner source trust/merge approval.
+  Accepted tree5c9891eb4be54ce80c6315fec094d812506ba932 equals tested d9755790.
+  No production activation accompanied the diagnostic harness merge.
+- PR79/107/110/117 remain separate owners. Current #159 work branches from af8a7b38
+  for B4/B5 research and existing-page SEO; no article or sibling-repo edits.
 
 ## Decisions
 
 - User orders analytics delivery/live verification first, then Terra SEO work.
-  One active #159 PR at a time; original AC01–AC18 and all external gates persist.
-- Production QA isolation delivered: seven native contexts blocked162 collector
-  attempts; ordinary CUA/provider observation is separate. Fixture contrast6/6
-  is not actual provider proof. Runtime/public bytes stay unchanged in diagnostics.
-- Use existing manual cause workflow and pinned tools for two unprofiled Forward
-  conditions plus separate6s real-SDK CPU/transport. Exact collector differs from
-  immutable target; actual browser bytes and active full deployment lease required.
-- Historical CUA Forward6000ms wait errored after3.9791sec then correct DOM;
-  cause remains unknown. Never relabel it after a later Playwright result.
+  One active #159 PR at a time; original AC01–AC18/external gates persist.
+- B4 actual gpt-6.1-terra query/audience research received four distinct ACCEPT
+  re-reviews after named-work/current-path/PMDay-overlap corrections. Source:
+  review/issue-159/2026-10-28-seo-query-research.md. No research AC ticked.
+- B5 Requirements preflight ACCEPT authorizes already requested drafting.
+  Existing-page paths plus two implementation-ready briefs; no new route family.
+  Guide publication remains #11 after accepted PMDay through #2/#5.
+- Semrush returned nonretryable no_api_units once: no metrics, retry or purchase.
+  Historical estimates and sparse unequal GSC windows are not a trend or demand proof.
 
 ## Open work
 
-- PR161 diagnostic source/review:
-  review/issue-159/2026-10-28-live-diagnostics.md. Native40736775395/1 succeeded
-  at6c4ad913/tree6a7f6c83 against immutablec68db162. Both Forward conditions
+- PR161 Ready40747055207 passed1162/1162; stage40748013670/1 succeeded,
+  including exact-source security, bounded regressions, stable promotion and receipt.
+  App5453173 Check123050079904 succeeded via owner ChangeAdmission40754395577/1.
+  Accepted merge observer40754947158 and main RI40754946337 both succeeded.
+  Exact raw receipts/old failures remain in PR161 comments and live-diagnostics report.
+- Native40736775395/1 used6c4ad913 against immutablec68. Both Forward conditions
   mounted within2sec; separate SDK10478encoded/31853decoded bytes and6.474ms
-  sampled CPU attribution. Provider17:34–17:36Z15loads/3visits is deliberate QA.
-- Ready source40741828285/1 passed1162/1162; manual policy40742223319/1 passed9/9.
-  Preview4+2 passed. Stage40743921270/1 build cancelled at original10min while
-  security unfinished. Raw Python139run/1failed exposed missing analytics-live
-  Chromium in exact consumer inventory. PR returned Draft for narrow correction;
-  preserved original artifact12841326931 ZIP4b690f23… and failure diagnosis.
-- B3 actual provider16:20–16:24Z9loads/3visits and real navigation/reload/routing
-  rows observed. Equal300sec windows3/1Safari versus2/1Chrome are tiny unequal
-  clients and not a causal reduction. Weekly427/166 includes264Headless;
-  nonheadless163/144 is not verified humans. GSC six cached dates1click17impressions.
-- Issue159 currently15/46 checkbox lines complete: AC10/11/12/14/15/16/17/18 whole.
-  Diagnostic delivery/AC13 and later SEO/editorial/human gates remain open.
-  PR117 private LCP acquisition/replay cannot substitute for real live SDK evidence.
+  sampled CPU attribution. Provider17:34–17:36Z15loads/3visits was deliberate QA.
+  Historical CUA6000 wait errored after3.9791sec; cause still unknown, not relabelled.
+- B5 prepared page/checker sources and Terra briefs are not accepted/public copy.
+  Source/style/checker/independent and changed-surface validation is in progress:
+  review/issue-159/2026-10-28-seo-implementation.md. Original29/46 edition and
+  four-topic archive invariants persist; Research/templates/checker select full route.
+- Briefs compare actual PR79 selected R38 and prepared R42 bodies, preserving
+  distinct source/edition/rights status. They adapt existing decision structures;
+  no novelty or published PMDay/guide route is asserted.
+- #159 has15/46 checkbox lines complete: wholeAC10/11/12/14/15/16/17/18 only.
+  SEO/current-copy usefulness, AC13 completion and actual first-reader, editorial,
+  rights, applicable device, merge and publication gates remain open.
 
 ## Next session
 
-1. Revalidate main/production, #159 and any new diagnostic Draft PR/head/checks.
-2. Finish browser inventory correction, affected checks and four distinct reviews.
-3. Freeze corrected source, complete Ready checks/full owner staging and refresh
-   admission; obtain actual exact-head owner control trust and merge decision.
-   Preserve6c4 native observations without relabelling them as new-head execution.
-4. Reconcile B3 delivery; then proceed Terra SEO under the same #159 owner.
-   Dynamic receipts stay comments after source freeze; no receipt-only commits.
+1. Revalidate main/production, #159 and current SEO Draft PR/head/checks.
+2. Complete B5 exact-source checks, four distinct final reviews and bounded
+   desktop/mobile/theme/motion/no-JS/print observations; fix real findings.
+3. Supply the concrete exact candidate for genuine uncoached first-time human
+   comprehension and exact-copy editorial/rights decisions; do not simulate them.
+4. Follow existing owner preview/staging/admission before separate SEO merge and
+   production decisions. Manual4/8-week GSC learning remains manual, no reminders.
 
 ## Maintenance
 
-- Preserve original failed source/setup/native outcomes and exact identities.
-- Local blob:none clone: materialize pinned historical blobs before fixture runs;
-  never weaken tests or permit lazy fetch as a substitute.
-- Current-source reports stay outside checkout. No unchanged blind retries.
-- Maintain five sections/120 lines; rebuild RI and refresh/verify RI-CI after changes.
+- Dated receipts stay in issue/PR comments after source freeze; no receipt-only commits.
+- Preserve exact failed source/setup/native outcomes and original budgets.
+- Local blob:none history needs pinned blobs materialized before fixture runs.
+  No blanket scanner/SEO bypass, unchanged failed-campaign retry or invented humans.
+- Keep five sections/120 lines; refresh/verify RI-CI, then build/verify RI last.

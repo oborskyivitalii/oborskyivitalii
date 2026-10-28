@@ -269,13 +269,23 @@ test('unknown URL values and blocked history do not disable the local archive', 
   assert.equal(page.shown().length, year2025);
 });
 test('without scripts every topic/year fragment belongs to visible semantic HTML, not hidden navigation', () => {
-  for (const topic of ['delivery', 'systems', 'leadership', 'strategy'])
-    assert.match(
-      html,
+  for (const topic of ['delivery', 'systems', 'leadership', 'strategy']) {
+    const owner = html.match(
       new RegExp(
-        `<h2 id="topic-${topic}" class="topic-landing">[^<]+<a href="[^"]+">Browse articles ↓</a></h2>`
+        '<section id="topic-' +
+          topic +
+          '" class="topic-landing" aria-labelledby="reading-' +
+          topic +
+          '-title">((?:(?!</?section\\b)[\\s\\S])*)</section>'
       )
     );
+    assert.ok(owner, 'one visible topic section owns its own content');
+    assert.match(owner[1], new RegExp('^\\s*<h2 id="reading-' + topic + '-title">[^<]+</h2>'));
+    const browse = owner[1].match(/<a href="([^"]+)">Browse articles ↓<\/a>\s*$/);
+    assert.ok(browse, 'Browse belongs to this topic section');
+    assert.ok(browse[1].startsWith('#topic-' + topic + '-'));
+    assert.ok(html.includes('id="' + browse[1].slice(1) + '"'), 'Browse reaches an existing group');
+  }
   for (const year of ['2026', '2025'])
     assert.match(
       html,

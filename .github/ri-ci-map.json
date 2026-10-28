@@ -3,7 +3,7 @@
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/159",
     "date": "2026-10-28",
-    "summary": "Add unified analytics-first acceptance policy and current baseline/intake evidence; retain actual source and independent/provider/release gate boundaries."
+    "summary": "Review bounded issue159 existing-page SEO, exact amendment/producer/CSS successor and curated catalog checks while preserving unified acceptance and all source/manual/release gates."
   },
   "layers": [
     {
@@ -147,7 +147,12 @@
         ".github/acceptance/issue-159.json",
         "review/issue-159/2026-10-28-baseline.json",
         "review/issue-159/2026-10-28-analytics-intake.md",
-        "tests/test_issue159_acceptance.py"
+        "tests/test_issue159_acceptance.py",
+        "review/issue-159/2026-10-28-seo-query-research.md",
+        "review/issue-159/2026-10-28-seo-implementation.md",
+        "review/issue-159/2026-10-28-seo-brief-delivery.md",
+        "review/issue-159/2026-10-28-seo-brief-agent-control.md",
+        "review/issue-159/content-amendment.json"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -681,7 +686,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "d5144b08cb595cb660d77907d270a6384b0be00e159f2a79d00277371ec2b8d0",
+    "digest": "338567f871ea561072dc41a5f02567dcbf10f18b94865c5c6cfbf05f194a287e",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -821,7 +826,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "872ffb338c29fbfac3056f76f36163dfbe5bab59db1443127ceb08e2f56dc94e"
+        "sha256": "dde1f3594c3a41c4e7494af92ccb2273b1dbf0f113cf7bf5136733c5d7c09e23"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -1093,7 +1098,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "0d556fbfcb7686da8a4f08aa2455c1dad87658359df43e07ebb25a7b2c95db3b"
+        "sha256": "7925ed6d907f8e2bef2cc7ccce93f80c6a24f9cfccffa13cfbdfd0e117665f03"
       },
       {
         "path": "tools/repository_intelligence.py",

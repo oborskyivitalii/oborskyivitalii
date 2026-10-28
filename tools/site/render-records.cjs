@@ -160,6 +160,25 @@ function archiveViews(templates, catalog, entries) {
         return component(templates, 'archive-topic-landing', {
           TOPIC: escapeAttribute(topic),
           LABEL: escapeText(topicLabel(topic)),
+          READINGS: (catalog.archive.readingPaths?.[topic] || [])
+            .map(({ record: id, when }) => {
+              const record = catalog.records[id];
+              const edition = record.edition;
+              const date = edition.datePublished || edition.dateModified;
+              return component(templates, 'archive-reading-link', {
+                URL: escapeAttribute(edition.url),
+                TITLE: escapeText(edition.name),
+                LANGUAGE: escapeText(contentLabel(catalog, 'language.' + edition.inLanguage)),
+                DATE: escapeText(
+                  date
+                    ? dateLabel(date, catalog) +
+                        (edition.datePublished ? '' : contentLabel(catalog, 'edition.edited'))
+                    : contentLabel(catalog, 'archive.undated')
+                ),
+                WHEN: escapeText(when),
+              });
+            })
+            .join(''),
           URL: escapeAttribute(first ? `#topic-${topic}-${first.year}` : '#archive-results'),
           BROWSE: escapeText(contentLabel(catalog, 'archive.browse')),
         });

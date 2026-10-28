@@ -1602,6 +1602,34 @@ body[data-page='writing'] #archive-results {
   margin-block: 12px;
 }
 
+/* Issue159: curated paths share the existing topic target and filter owner. */
+.archive-landings > .topic-landing {
+  flex: 1 1 440px;
+  min-width: 0;
+  padding: 16px;
+}
+.topic-landing h2 {
+  margin: 0;
+  font-size: 17px;
+  letter-spacing: 0;
+  line-height: 1.5;
+}
+.topic-landing .reading-recommendation {
+  margin-block: 16px;
+  font-weight: 400;
+}
+.reading-recommendation a {
+  font-size: 15px;
+}
+.reading-context,
+.reading-recommendation .edition-link {
+  display: block;
+}
+.reading-context {
+  margin-top: 6px;
+  font-size: 14px;
+}
+
 /* Canonical reading backdrop paint for every route and base/Color rendition.
    Placement remains paint-only; text wrapping and line boxes are unchanged. */
 :where(:root) {

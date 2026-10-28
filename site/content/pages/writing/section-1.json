@@ -3,9 +3,9 @@
   "template": "pages/writing/section-1.html",
   "text": {
     "T001": "Writing / Original published editions",
-    "T002": "Follow the questions.",
-    "T003": "Find your next read.",
-    "T004": "AI architecture, delivery, operating models and strategy, with original titles, dates and\n    languages retained."
+    "T002": "AI architecture, delivery",
+    "T003": "and operating models.",
+    "T004": "Choose a topic for a short reading path, then explore the complete English and Ukrainian archive. Original titles, platform dates and edition links stay separate."
   },
   "attributes": {},
   "urls": {}

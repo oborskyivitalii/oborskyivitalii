@@ -195,6 +195,27 @@ const issue126 = JSON.parse(
 const issue108 = JSON.parse(
   fs.readFileSync(path.join(root, 'review/issue-108/content-amendment.json'), 'utf8')
 );
+const issue159 = JSON.parse(
+  fs.readFileSync(path.join(root, 'review/issue-159/content-amendment.json'), 'utf8')
+);
+const issue159ProducerPaths = [
+  'site/templates/components/archive-reading-link.html',
+  'site/templates/components/archive-topic-landing.html',
+  'tools/site/render-records.cjs',
+  'tools/site/validate-catalog.cjs',
+];
+
+function reviewedProducerBindings(bindings, additions = []) {
+  assert.deepEqual(Object.keys(issue159.producerChanges).sort(), issue159ProducerPaths);
+  const reviewed = { ...bindings };
+  for (const [file, change] of Object.entries(issue159.producerChanges)) {
+    if (!Object.hasOwn(bindings, file) && !additions.includes(file)) continue;
+    assert.equal(change.beforeSHA256, bindings[file] || null, 'Exact prior producer pin: ' + file);
+    assert.match(change.afterSHA256, /^[a-f0-9]{64}$/, 'Reviewed successor producer SHA256');
+    reviewed[file] = change.afterSHA256;
+  }
+  return reviewed;
+}
 const positioning = JSON.parse(
   fs.readFileSync(path.join(root, 'review/issue-41/2026-10-09-positioning-amendment.json'), 'utf8')
 );
@@ -341,8 +362,24 @@ function verifyApprovedLicensingCSS(sourceRoot = root) {
       encoding: 'utf8',
       maxBuffer: 1024 * 1024,
     });
+    const { block, sha256 } = issue159.styles;
+    assert.equal(crypto.createHash('sha256').update(block).digest('hex'), sha256);
+    assert.deepEqual(Object.keys(issue159.styles.afterSHA256).sort(), [
+      'docs/styles.css',
+      'site/engine/styles.css',
+    ]);
     assert.equal(
-      current,
+      crypto.createHash('sha256').update(current).digest('hex'),
+      issue159.styles.afterSHA256[file],
+      'unrelated stylesheet change outside exact reviewed successor: ' + file
+    );
+    assert.equal(
+      current.split(block).length,
+      2,
+      'unrelated stylesheet change: one exact reviewed reading-path block required: ' + file
+    );
+    assert.equal(
+      current.replace(block, ''),
       expected,
       'unrelated stylesheet change outside approved reader/licensing: ' + file
     );
@@ -384,6 +421,7 @@ function homeSourceFile(projectRoot, name) {
 }
 
 function verifyHomeProducers(projectRoot = root, bindings = homeFrame.producerInputs) {
+  bindings = reviewedProducerBindings(bindings);
   assert.ok(bindings && typeof bindings === 'object', 'Reviewed Home producer identity');
   assert.deepEqual(
     Object.keys(bindings).sort(),
@@ -479,7 +517,8 @@ const eventProducerInputs = [
 ].sort();
 
 function restoreEventsCatalog(html, projectRoot = root) {
-  assert.deepEqual(Object.keys(eventMigration.producerInputs).sort(), eventProducerInputs);
+  const bindings = reviewedProducerBindings(eventMigration.producerInputs);
+  assert.deepEqual(Object.keys(bindings).sort(), eventProducerInputs);
   for (const file of eventProducerInputs) {
     const stat = fs.lstatSync(path.join(projectRoot, file));
     assert.ok(stat.isFile() && !stat.isSymbolicLink());
@@ -488,7 +527,7 @@ function restoreEventsCatalog(html, projectRoot = root) {
         .createHash('sha256')
         .update(fs.readFileSync(path.join(projectRoot, file)))
         .digest('hex'),
-      eventMigration.producerInputs[file],
+      bindings[file],
       'unreviewed event producer ' + file
     );
   }
@@ -520,6 +559,7 @@ const writingProducerInputs = [
   'site/templates/components/archive-option.html',
   'site/templates/components/archive-navigation-link.html',
   'site/templates/components/archive-topic-landing.html',
+  'site/templates/components/archive-reading-link.html',
   'site/templates/components/archive-group.html',
   'site/templates/components/archive-year.html',
   'site/templates/components/publication.html',
@@ -530,6 +570,9 @@ const writingProducerInputs = [
 ].sort();
 
 function verifyWritingProducers(projectRoot = root, bindings = writingCatalog.producerInputs) {
+  bindings = reviewedProducerBindings(bindings, [
+    'site/templates/components/archive-reading-link.html',
+  ]);
   assert.ok(bindings && typeof bindings === 'object', 'Reviewed Writing producer identity');
   assert.deepEqual(
     Object.keys(bindings).sort(),
@@ -902,13 +945,14 @@ function restoreResearchNavigation(html, page) {
 }
 function restoreApprovedContent(html, page) {
   if (page === 'talks') html = restoreEventsCatalog(html);
+  if (page === 'writing') html = restoreWritingCatalog(html);
+  html = restoreContentAmendment(html, page, issue159);
   html = restoreContentAmendment(html, page, issue126);
   html = restoreContentAmendment(html, page, issue118);
   html = restoreResearchNavigation(normalizeHTML(html), page);
   html = normalizeHTML(html);
   html = restoreContentAmendment(html, page, issue108);
   if (page === 'writing') {
-    html = restoreWritingCatalog(html);
     html = restoreContentAmendment(html, page, writingCatalog);
   }
   html = restoreApprovedLicensing(html, page);
@@ -1050,6 +1094,7 @@ function verify() {
           ...issue61.changes,
           ...issue108.changes,
           ...issue118.changes,
+          ...issue159.changes,
           ...positioning.changes,
           ...sitecase.changes,
           ...arkadiy.changes,
@@ -1097,7 +1142,7 @@ function verify() {
     pass: true,
     rows,
     policy:
-      'Ordered HTML contracts after proving the finite Home body against validated current source, exact template/producer identities and its immutable approved frame; proving the seven catalog-generated Writing regions, simple count and ItemList against current validated data; and reversing the exact hashed Issue5 frame amendment. Then reverse the exact hashed Issue41 AI-assisted site case and positioning, Issue61 PMDay recording, Issue48 then original Issue41 content amendments and declared Home hierarchy/wordmark changes, approved contact/title wrappers, reviewed response blocks/Research nav, accessible Writing formula description, exact canonical Home critical media head block and authored-base build identity. ASCII whitespace runs and void-tag spellings are canonicalized; only named Research/Writing/Talks block-fragment EOF seams and exact compact encodings of immutable approved JSON-LD blocks are reversible. Inline separators, attributes/order, head metadata, shared chrome and unrelated output remain exact; decorative fallback SVG is excluded. Includes semantic metadata, publication records, links, languages, dates, portrait and source attribution.',
+      'Ordered HTML contracts after proving the finite Home body against validated current source, exact template/producer identities and its immutable approved frame; proving the seven catalog-generated Writing regions, simple count and ItemList against current validated data; and reversing the exact hashed Issue5 frame amendment. Then reverse the exact hashed Issue41 AI-assisted site case and positioning, Issue61 PMDay recording, Issue48 then original Issue41 content amendments and declared Home hierarchy/wordmark changes, approved contact/title wrappers, reviewed response blocks/Research nav, accessible Writing formula description, exact canonical Home critical media head block and authored-base build identity. Issue159 proves current Writing views before reversing exact reader-path copy/metadata, retains all historical frames and producer inventories with four exact reviewed successor pins, and binds both complete stylesheet successor hashes before reversing its exact CSS suffix. ASCII whitespace runs and void-tag spellings are canonicalized; only named Research/Writing/Talks block-fragment EOF seams and exact compact encodings of immutable approved JSON-LD blocks are reversible. Inline separators, attributes/order, head metadata, shared chrome and unrelated output remain exact; decorative fallback SVG is excluded. Includes semantic metadata, publication records, links, languages, dates, portrait and source attribution.',
   };
 }
 if (require.main === module) process.stdout.write(JSON.stringify(verify(), null, 2) + '\n');
