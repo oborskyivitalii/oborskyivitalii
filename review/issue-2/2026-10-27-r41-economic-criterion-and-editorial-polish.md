@@ -361,3 +361,77 @@ SHA-256 SOURCE R41. Результати фінальної перевірки �
 фізичні пристрої, hosted CI і готовність до публікації не перевірено. Новий
 автоматизований UI-тест для рев’ю не потрібен; фактичне редагування і нативний
 випуск потребують власного виконання чинних перевірок і рішень.
+
+---
+
+## 28 October 2026 — R42 literary revision and matching review files
+
+The author requested a rewritten **R42** after the preceding literary review,
+as complete Markdown and PDF. This is a prepared, unpublished editorial edition;
+no source selection, native publisher build, merge, staging, production or external
+post is claimed. Editorial ownership remains #2, publisher execution #5 / Draft PR79.
+
+| Artifact | Exact identity |
+| --- | --- |
+| [Authoring SOURCE R42](https://chatgpt.com/library?file_id=libfile_83ceea889c308191aca11757cb381425&account_id=personal) | SHA-256 `6bd5735c6bb2fe094a8aabc82a4793eb21e62326cc127602264980abe59ea0e7` |
+| [Navigable reading Markdown R42](https://chatgpt.com/library?file_id=libfile_5f9078ba2b6481919c40d8f5ba964a0d&account_id=personal) | SHA-256 `4b484770112f1f439397044007dd320ed1ad96aa87043940a0a8cb64d1767b9b` |
+| [Illustrated review PDF R42](https://chatgpt.com/library?file_id=libfile_31bddacee6d8819196d640567efd66de&account_id=personal) | Delivered SHA-256 `5371774da69c5cf6db19edf60c41967707bb172e0847fd5c6b2574f81a7f9795`; 944,608 bytes; 22 A4 pages |
+| Locally rendered PDF before storage | SHA-256 `bfffad37674758c5c6df310ffa939c0821c1f69335d48b41a3fe8a509c128499`; 845,235 bytes |
+
+The author-approved editorial direction led to 36 paragraph-level source
+replacements: a more varied voice and rhythm; an explicit problem-definition
+loop; a clearer historical bridge; distinct hypothetical recovery failures;
+the real cost and limits of human review; separated evidence measures; and
+less formulaic, still distinct adoption and runtime project plans. The three
+problem-led openings, all 12 standalone refrains, three tables, 37 reference
+notes, source qualifications, author/reviewer provenance, two customer
+accountability statements and R41 history remain. The original R41 files are
+unchanged; no arbitrary manuscript-length ceiling was used.
+
+The reading Markdown retains the detailed contents and chapter navigation and
+uses public, commit-pinned GitHub image URLs, so image display requires network
+access. Its cover is byte-identical to the supplied R41 asset; the three slide
+PNGs have different encoded bytes but identical decoded RGBA pixels and sizes.
+The PDF was generated using the four supplied R41 review image files; embedded
+slides retain identical decoded pixels, while their encoded bytes may differ.
+It was produced locally with Pandoc/XeLaTeX, not by the repository's native
+Chromium publishing pipeline.
+
+Readback confirmed both Markdown files match their stated SHA-256 values. The
+stored PDF contains an additional embedded `Content Credentials` / C2PA
+manifest and therefore has different bytes from the local producer output.
+All 22 page renders at 1×, extracted page text, metadata, outline, named
+destinations and the positions and targets of all 301 links match the local review PDF. The
+manifest's cryptographic validity was not separately evaluated.
+
+### Independently executed review of these outputs
+
+| Role / agent | Scope and observed result |
+| --- | --- |
+| Requirements & Acceptance — `/root/r42_requirements` | Preflight and final delta: distinct decisions, economic baseline, conditional runtime/skills wording, author constraints and draft status retained; 12/12 refrains and their first answers grouped; source/PDF navigation checked. |
+| Code / editorial review — `/root/r42_editorial` | Full R41→R42 reading and final PDF delta; initial ambiguity about runtime action, overgeneralised wording and missing problem emphases corrected. All 43 revised paragraphs and 194 inspected source text blocks located in the final PDF; no remaining blocker in scope. |
+| White-box QA — `/root/r42_whitebox` | Final exact-PDF 16/16 checks: 272 source text blocks, 33 table cells, 37 sources, 12 refrains, four image pixel comparisons, 44 external targets, 48 citation/return pairs, 29 contents destinations, 30 bookmarks and in-page text bounds. |
+| Exploratory / interaction QA — `/root/r42_exploratory` | Rendered and inspected all 22 final pages, with closer checks of passages, figures, tables, bibliography, BibTeX and history. 29 contents entries, 30 outline destinations and 230 internal named links resolve on the expected pages. |
+
+The latest PDF keeps every standalone refrain with its complete first response;
+the two decision tables are intact on p14, source 37 and its provenance caveat
+are together on p20, and the complete BibTeX is on p21. Final rendered pages
+show no clipped text, missing glyphs, blank pages or overlapping tables. A previous
+candidate split passages and BibTeX; the pagination was corrected and the roles
+rechecked the final local PDF `bfffad37…`. The delivered `5371774d…` PDF was
+independently compared to it after storage, with the equivalence and extra
+attachment described above. External targets were retained, not live-tested;
+physical devices, independent source audit, rights and publication approval were
+not assessed.
+
+PR79's native manuscript/profile selection remains R38. Integrating an accepted
+R42 into those sources, creating the native reader/PDF/export identities,
+resolving the existing RI/CI state and completing #2 AC01–AC06 / #5 gates remain
+separate follow-up work. The historical #2 AC07–AC08 recording acceptance is
+unchanged; these preparation results do not tick another criterion.
+
+On the prepared review-file change based on `c914b593` before the delivered-hash
+clarification, `git diff --check` passed. RI `verify` failed with the existing
+content-hash bound exceeded at `tools/quality/secrets-reviewed.json`; the earlier
+`10a1e7d` baseline had the same failure. The bound was not changed and no fresh
+RI/CI pass is claimed.
