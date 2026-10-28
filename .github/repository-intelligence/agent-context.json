@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "71718cba5cbc34a58929dd8767d99004c45383ce771352052377f29898ae8115",
+    "digest": "f615c73d78161c0fac82604be928e108386ae5c42187f48ef3d3ee7264f45260",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -361,7 +361,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "678b24d08c74d261f0f557e3a11d60ba6e07aabbe3e88d6aea8059de1d089a4e"
+        "sha256": "50de31ee30321fefd928b53c9d2a09219a5565599d44e3a490a879b51b7851ab"
       },
       {
         "path": "NOTICE.md",
@@ -1070,7 +1070,7 @@
       {
         "path": "review/issue-159/2026-10-28-analytics-intake.md",
         "identity_mode": "content",
-        "sha256": "e47171ab66f862b67add963d8f0a3cac1ccaccfd8c113fa3a001aa4c6e803fad"
+        "sha256": "156a64ca525594ac11a479beef78297143186ff124d3e2fbdab0e08404b2a288"
       },
       {
         "path": "review/issue-159/2026-10-28-b1-diagnostics.json.gz",

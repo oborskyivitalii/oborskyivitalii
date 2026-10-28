@@ -9,7 +9,8 @@ Dated continuity, not live authority. Last verified: **2026-10-28**.
   Earlier #122 platform/C2/C3 evidence remains in its versioned review history;
   old MEMORY source/ref claims must not replace this live verification.
 - Branch issue-159-analytics-p1 starts from that main; B1 intake/policy candidate
-  is unmerged/unreleased. PR/head/check pointers belong in the owner review.
+  is unmerged/unreleased. Draft PR160 is open; exact head/check pointers belong in its owner review
+  and PR conversation.
 - Four existing open PR79/107/110/117 remain separate owners. PR79 article is
   unpublished; no article or campaign work is included in this increment.
 
@@ -26,8 +27,8 @@ Dated continuity, not live authority. Last verified: **2026-10-28**.
 
 ## Open work
 
-- Complete B1 current-source checks/four independent roles, publish owning Draft
-  PR and update exact issue/commit links. Baseline RUM427 reported loads includes
+- B1 corrected policy7/7, RI29/29, coupling20/20 and four actual roles ACCEPT;
+  use Draft PR160 for final clean-head evidence and source/run links. Baseline RUM427 includes
   264Headless; non-headless163 is not humans. Sampling/limits are in the receipt.
 - Implement/test context isolation, ordinary collection and child consumers in B2.
   Keep Lighthouse/CDP and unknown automation explicitly residual until verified.
@@ -37,7 +38,7 @@ Dated continuity, not live authority. Last verified: **2026-10-28**.
 
 ## Next session
 
-1. Revalidate current main/production, #159 and its existing analytics Draft PR.
+1. Revalidate current main/production, #159 and analytics Draft PR160.
 2. Read review/issue-159/2026-10-28-analytics-intake.md and exact-source results.
 3. Continue B2 on the same PR; defer Terra until analytics delivery as requested.
 4. Report batch outcome, next action, full remaining sequence and plan deviations.

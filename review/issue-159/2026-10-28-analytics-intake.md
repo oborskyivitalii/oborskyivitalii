@@ -3,8 +3,8 @@
 Owner: [issue 159](https://github.com/oborskyivitalii/oborskyivitalii/issues/159).
 Iteration B1; implementer self-analysis, independent results below.
 Base `9318a54a684079bb23e5dadcfa4bf705d6783dd0`, tree
-`cfffed1f2b5619cb1476beafa658be9cc2c04fe2`. Draft PR link and final
-tested candidate identity will be recorded after review/push.
+`cfffed1f2b5619cb1476beafa658be9cc2c04fe2`. Owning [Draft PR160](https://github.com/oborskyivitalii/oborskyivitalii/pull/160).
+Final clean-source evidence is recorded in that PR conversation.
 
 ## Intent and acceptance
 
@@ -122,10 +122,10 @@ failure requires altering product code, historical pins, assertions or deadlines
 
 | Role | Execution | Result / scope |
 | --- | --- | --- |
-| Requirements | `analytics_requirements` | Preflight accepts analytics-first scope; baseline/design prerequisites; final candidate review pending |
-| Code / artifact | pending | Actual policy/workflow/receipt/design delta |
-| White-box QA | pending | Structural/check-allocation and meaningful future mechanism negatives |
-| Exploratory / operator | pending | Reporting/policy/operator steps; no production browser execution in B1 |
+| Requirements | `/root/analytics_requirements` | ACCEPT corrected actual source; all named selectors resolve, stable scope/gates and sequential delivery preserved |
+| Code / artifact | `/root/analytics_artifact` | ACCEPT corrected candidate and actual 7/7 policy, 29/29 RI and 20/20 coupling evidence; no runtime/live claim |
+| White-box QA | `/root/analytics_whitebox` | ACCEPT corrected candidate; independent schema/selector/baseline/RI/source checks, future B2 risk matrix remains designed work |
+| Exploratory / operator | `/root/analytics_operator` | ACCEPT; sole-owner selection succeeds, conflicting owner rejected, saved report totals reproduce; no production beacon generated |
 
 Final exact source, actual checks/accounting, dispositions and review receipts
 are appended after execution. No whole AC is ticked from partial evidence.
@@ -137,3 +137,26 @@ analytics production/live baseline → B4 Terra → B5 SEO/briefs/staging → B6
 production → B7 full reconciliation. The only sequencing refinement is the user's
 explicit no-parallel-Terra instruction. Stable scope/IDs/budgets and actual
 maintainer release decisions remain; this Draft PR is the analytics execution route.
+
+## B1 reviewed checkpoint and actual verification
+
+All four roles completed final corrected-candidate inspections and returned ACCEPT.
+They inspected the actual source bound by dirty-policy working-tree digest
+`63750f88eb6e01ad203f20f36dbc0d9c9b153e5d9d77fe2bf7e807289b31c402`;
+its published source tree is `60f643f105919fe6c81a1e47a5fb4a6b7d183a16`
+in commit `c772efacc0635cefca02564e37f25fa750c8c601`. This records the reviewed
+identity, not a clean-commit run. Policy digest is
+`fcbe271b6e86d78c3d6ad4978145cfe60abb7f673dbb9e28b65babb382ef80b8`.
+
+Actual corrected dirty-source results: policy **7/7 passed**, evidence valid,
+errors empty, 21 external gates pending and closure false; RI **29/29** and
+coupling **20/20** passed; formatter **533** files, no changes. First/second
+failed runs remain archived and distinct. Bounded operator selection and
+saved-aggregate reproduction passed. These tests prove their existing invariant,
+metadata and source-ownership subsets; they cannot establish the new B2 mechanism.
+
+The final receipt-only commit adds this verified review/PR/check provenance and
+bounded MEMORY handoff, with regenerated RI. Its own clean-source policy report
+must be recorded in PR160 after committing; do not relabel the dirty report above.
+No website byte, selector/requirement, test assertion or budget changes in this
+receipt step. CI/hosted/provider/merge/release evidence remains separate.
