@@ -45,6 +45,11 @@ Dated continuity, not live authority. Last verified: **2026-10-28**.
   retain old guards/rights/JS. Actual dirty cold plain/stage/prod tuples match;
   affected77/77 and latent controller1/1 passed; four independent correction roles
   retain actual interactions/human/rights gates. New frozen checks/preview pending.
+- Corrected0702307e/tree7065e148: Basic and native policy40765077782 passed9/9;
+  fullselected1168actual had1161pass/7fail,0omissions. All7 stoppedatone imported
+  modern publication-fixture oldfamily prefix. Exactoneprefix correction25/25
+  withCode/Requirements actualACCEPT; historical/product/docs/offline unchanged.
+  Final fixture+review/MEMORY/RI-only head and allfrozenchecks/preview pending.
 - B5 prepared page/checker sources and Terra briefs are not accepted/public copy.
   Source/style/checker/independent and changed-surface validation is in progress:
   review/issue-159/2026-10-28-seo-implementation.md. Original29/46 edition and
