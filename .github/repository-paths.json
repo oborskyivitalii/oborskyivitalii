@@ -11922,6 +11922,18 @@
       "purpose": "Bounded ordinary current-production Forward timing and separate real-SDK transfer/CPU observation; retained failures and no admission.",
       "role": "validator",
       "owner": "guides/SITE-ANALYTICS.md"
+    },
+    "review/issue-159/2026-10-29-runtime-preregistration.md": {
+      "kind": "file",
+      "purpose": "Issue159 exact prospective runtime registration dependency, failed owner-stage diagnosis, unchanged-site proof, four independent roles and separate protected-delivery plan.",
+      "role": "history",
+      "owner": "guides/SITE-STAGING.md"
+    },
+    "review/issue-159/2026-10-28-seo-scanner-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Verbatim reviewed945 per-ID public checksum proof; prospective compatibility consumes only its six exact registry findings, without admitting the other candidate-only records.",
+      "role": "history",
+      "owner": "guides/SITE-RELEASE-GATES.md"
     }
   }
 }

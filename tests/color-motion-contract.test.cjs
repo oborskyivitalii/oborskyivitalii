@@ -409,6 +409,7 @@ test('only reviewed historical and current launch plain/staging tuples select a 
     'issue39-css-clock',
     'issue122-r3-platform',
     'issue122-writing-startup',
+    'issue159-reading-paths',
     'issue122-reading-batch',
     'issue5-reconciled',
     'issue5-reader-resources',
@@ -469,6 +470,7 @@ test('production Color has a separate exact edition identity with unchanged appr
     'issue39-css-clock',
     'issue122-r3-platform',
     'issue122-writing-startup',
+    'issue159-reading-paths',
     'issue122-reading-batch',
     'issue5-reconciled',
     'issue5-reader-resources',
@@ -579,6 +581,9 @@ test('unknown, conflicting, mixed or merely marked runtime identities fail befor
     'issue122-writing-startup-plain',
     'issue122-writing-startup-staging',
     'issue122-writing-startup-production',
+    'issue159-reading-paths-plain',
+    'issue159-reading-paths-staging',
+    'issue159-reading-paths-production',
   ]) {
     for (const mutate of mutations) {
       const value = manifest(id);
@@ -722,6 +727,9 @@ test('licensed contracts reject every missing or substituted canonical and immut
     'issue39-writing-tbt-production',
     'issue39-css-clock-production',
     'issue122-reading-batch-production',
+    'issue159-reading-paths-plain',
+    'issue159-reading-paths-staging',
+    'issue159-reading-paths-production',
   ]) {
     const runtime = motion.reviewedRuntime(id);
     for (const name of Object.keys(runtime.files))
@@ -1339,9 +1347,13 @@ test('deferred-media and CPU runtimes retain byte, edition and mandatory rights 
     }
 });
 
-test('R3 and Writing startup compatibility keep exact aliases and mandatory rights in all editions', () => {
+test('R3, Writing startup and prospective reading paths keep exact aliases and mandatory rights in all editions', () => {
   const delivery = require('../tools/staging/package.cjs');
-  for (const family of ['issue122-r3-platform', 'issue122-writing-startup'])
+  for (const family of [
+    'issue122-r3-platform',
+    'issue122-writing-startup',
+    'issue159-reading-paths',
+  ])
     for (const edition of ['plain', 'staging', 'production']) {
       const value = manifest(family + '-' + edition);
       assert.equal(delivery.publicationRequired(value, value.components), true);
