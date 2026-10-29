@@ -11911,65 +11911,89 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/fc608c919774ea577376d07a05a8840f124548e63b29f65d53f241a1bde0bcd3": {
+    "docs/article-media": {
       "kind": "directory",
-      "purpose": "Immutable generated revision files from canonical site sources.",
+      "purpose": "Digest-addressed passive Research fallback vectors generated from the canonical authored scene; no article publication.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/fc608c919774ea577376d07a05a8840f124548e63b29f65d53f241a1bde0bcd3/talks.html": {
-      "kind": "file",
-      "purpose": "Immutable generated route snapshot; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/3d917ef82b56fed016f2947a6165bfb2a2d4a66effa03d4b3f66ca8f9efe265b": {
+    "docs/article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618": {
       "kind": "directory",
-      "purpose": "Immutable generated revision files from canonical site sources.",
+      "purpose": "Digest-addressed passive Research fallback vectors generated from the canonical authored scene; no article publication.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/3d917ef82b56fed016f2947a6165bfb2a2d4a66effa03d4b3f66ca8f9efe265b/writing.html": {
+    "docs/article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618/research-fallback.svg": {
       "kind": "file",
-      "purpose": "Immutable generated route snapshot; regenerate from canonical site owners.",
+      "purpose": "Digest-addressed passive Research fallback vectors generated from the canonical authored scene; no article publication.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/ae7ab7e7e866f302054f2c5f8d1125c511569171d56ceecec58266881ca59c44": {
+    "docs/snapshots/30c4d9b1e7e9be6bbc81063f34938f52501644c9b48c73173433251664a3e9b5": {
       "kind": "directory",
-      "purpose": "Immutable generated revision files from canonical site sources.",
+      "purpose": "Current immutable generated room snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/ae7ab7e7e866f302054f2c5f8d1125c511569171d56ceecec58266881ca59c44/research.html": {
+    "docs/snapshots/30c4d9b1e7e9be6bbc81063f34938f52501644c9b48c73173433251664a3e9b5/research.html": {
       "kind": "file",
-      "purpose": "Immutable generated route snapshot; regenerate from canonical site owners.",
+      "purpose": "Current immutable generated room snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/11bfbae523fb1f6f94c3f9abae10f1b356d6fed674ab9f3f8aef8c7bb5c0b79c": {
+    "docs/snapshots/4b8747ffc22ce0e753070c3a865aade7bf523feff3bda0167b592025e2c4248e": {
       "kind": "directory",
-      "purpose": "Immutable generated revision files from canonical site sources.",
+      "purpose": "Current immutable generated room snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/11bfbae523fb1f6f94c3f9abae10f1b356d6fed674ab9f3f8aef8c7bb5c0b79c/index.html": {
+    "docs/snapshots/4b8747ffc22ce0e753070c3a865aade7bf523feff3bda0167b592025e2c4248e/index.html": {
       "kind": "file",
-      "purpose": "Immutable generated route snapshot; regenerate from canonical site owners.",
+      "purpose": "Current immutable generated room snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/1aeb00e57ea4d59de81913be2aba0edf5837279ba1273fc5a7f817740cc24e82": {
+    "docs/snapshots/52bd0a0fe2c3f92a59d0e44930ab780b1b8cae0bd0466c11f59b33d44a2d15d3": {
       "kind": "directory",
-      "purpose": "Immutable generated revision files from canonical site sources.",
+      "purpose": "Current immutable generated room snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/1aeb00e57ea4d59de81913be2aba0edf5837279ba1273fc5a7f817740cc24e82/credits.html": {
+    "docs/snapshots/52bd0a0fe2c3f92a59d0e44930ab780b1b8cae0bd0466c11f59b33d44a2d15d3/talks.html": {
       "kind": "file",
-      "purpose": "Immutable generated route snapshot; regenerate from canonical site owners.",
+      "purpose": "Current immutable generated room snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md"
+    },
+    "docs/snapshots/a8906fc60c042e9b98de446cd34fa1b1457489bda9011b70628eba1ca148735d": {
+      "kind": "directory",
+      "purpose": "Current immutable generated room snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/a8906fc60c042e9b98de446cd34fa1b1457489bda9011b70628eba1ca148735d/credits.html": {
+      "kind": "file",
+      "purpose": "Current immutable generated room snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/ce77cccb11c8c1463a9d6f5c3f46748ef62433b370a580d4693e433fa560eef7": {
+      "kind": "directory",
+      "purpose": "Current immutable generated room snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/ce77cccb11c8c1463a9d6f5c3f46748ef62433b370a580d4693e433fa560eef7/writing.html": {
+      "kind": "file",
+      "purpose": "Current immutable generated room snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "review/issue-159/2026-10-29-research-carrier-checksum-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Frozen independent exact19 Research carrier Git/producer/SVG/checksum findings and per-occurrence source proof; no scanner admission authority.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

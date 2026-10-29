@@ -18,6 +18,51 @@ const {
 const { validate } = require('../tools/quality/flight-detail.cjs');
 const qaIsolation = require('../tools/quality/analytics-isolation.cjs');
 
+test('resource observations retain the actual response only after its immutable bytes are verified', async () => {
+  const bytes = Buffer.from('<svg xmlns="http://www.w3.org/2000/svg"></svg>');
+  const sha256 = crypto.createHash('sha256').update(bytes).digest('hex');
+  const file = `article-media/${sha256}/research-fallback.svg`;
+  const base = 'https://example.test/author';
+  const checked = new Set(),
+    observations = new Map();
+  let finish;
+  const bodyReady = new Promise((resolve) => {
+    finish = resolve;
+  });
+  let reads = 0;
+  const response = {
+    url: () => base + '/' + file,
+    status: () => 200,
+    headers: () => ({ 'content-type': 'image/svg+xml' }),
+    body: async () => {
+      reads++;
+      await bodyReady;
+      return bytes;
+    },
+  };
+  const pending = verifyRequest(
+    { response: async () => response },
+    base,
+    { files: { [file]: { sha256 } } },
+    checked,
+    observations
+  );
+  await Promise.resolve();
+  assert.equal(observations.size, 0);
+  assert.equal(checked.size, 0);
+  finish();
+  const result = await pending;
+  assert.deepEqual(result, { observed: true, file, status: 200, sha256 });
+  assert.deepEqual(observations.get(file), {
+    ...result,
+    url: base + '/' + file,
+    mime: 'image/svg+xml',
+    bytes: bytes.length,
+  });
+  assert.equal(reads, 1);
+  assert.deepEqual([...checked], [file]);
+});
+
 test('context cleanup remains mandatory and cannot replace an already failed verdict', async () => {
   let closes = 0;
   const context = {

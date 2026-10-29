@@ -103,6 +103,30 @@ function verifyPublicationIndex(read, files) {
   }
 }
 
+function verifyRoomFallbacks({ read, files, id, route, html }) {
+  for (const [document, prefix] of [
+    [html, ''],
+    [read(route.url).toString(), '../../'],
+  ]) {
+    const svg = document.match(/<svg class="space-fallback"[\s\S]*?<\/svg>/)?.[0];
+    if (svg || route.assets !== undefined) {
+      assert.ok(svg, 'missing declared room fallback');
+      require('./fallback.cjs').resolveRouteResource(
+        svg,
+        id,
+        route.assets,
+        (name) => {
+          assert.ok(Object.hasOwn(files, name), 'missing room fallback resource');
+          const bytes = read(name);
+          assert.equal(hash(bytes), name.split('/')[1], 'room fallback resource digest');
+          return bytes;
+        },
+        prefix
+      );
+    }
+  }
+}
+
 function verify(dir, record) {
   const files = record.files;
   const read = (name) => fs.readFileSync(path.join(dir, name));
@@ -180,6 +204,7 @@ function verify(dir, record) {
     assert.equal(route.url, `snapshots/${route.version}/${id}.html`);
     assert.equal(hash(read(route.url)), route.sha256, 'route snapshot digest');
     const html = read(id + '.html').toString();
+    verifyRoomFallbacks({ read, files, id, route, html });
     assert.ok(html.includes(`name="site-engine" content="${revision.engine}"`));
     assert.ok(html.includes(`name="site-route" content="${route.version}"`));
     verifyDocumentContract(html, revision);

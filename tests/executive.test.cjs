@@ -15,6 +15,41 @@ function issue159CopyFixture(t, names) {
   }
   return directory;
 }
+test('Research carrier reconstructs the accepted scene and rejects unknown producer or geometry identities', (t) => {
+  const path = require('node:path');
+  const seo = require('../tools/check_site_seo.cjs');
+  const record = require('../review/issue-159/content-amendment.json').researchCarrier;
+  assert.equal(seo.verifyResearchCarrier().resource, record.resource);
+  const directory = issue159CopyFixture(t, Object.keys(record.producerChanges));
+  for (const name of Object.keys(record.producerChanges)) {
+    const file = path.join(directory, name);
+    const before = fs.readFileSync(file);
+    fs.appendFileSync(file, '\n// Unreviewed carrier producer.\n');
+    assert.throws(() => seo.verifyResearchCarrier(directory), /Research carrier producer bytes/);
+    fs.writeFileSync(file, before);
+  }
+  const root = path.resolve(__dirname, '..');
+  const changedPredecessor = structuredClone(record);
+  changedPredecessor.producerChanges[Object.keys(record.producerChanges)[0]].beforeSHA256 =
+    '0'.repeat(64);
+  assert.throws(
+    () => seo.verifyResearchCarrier(root, changedPredecessor),
+    /Research predecessor producer bytes/
+  );
+  assert.throws(
+    () => seo.verifyResearchCarrier(root, { ...record, acceptedSvgSHA256: '0'.repeat(64) }),
+    /accepted Research geometry/
+  );
+  assert.throws(
+    () =>
+      seo.verifyResearchCarrier(root, {
+        ...record,
+        resource: record.resource.replace('research-fallback', 'writing-fallback'),
+      }),
+    /Research carrier identity/
+  );
+});
+
 test('issue159 reading paths reject invalid inventories, references and ambiguous context', () => {
   const { validateCatalog } = require('../tools/site/validate-catalog.cjs');
   const original = require('../tools/site/content.cjs').catalog(

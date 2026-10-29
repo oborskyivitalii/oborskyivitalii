@@ -270,6 +270,94 @@ test('selected browser regression requires all route observations, navigation, f
     assert.throws(() => stage.validateFunctional(report, fixture.manifest()));
   }
 });
+
+test('declared Research resources require actual no-JS and no-Canvas response, geometry and capture evidence', () => {
+  const manifest = fixture.manifest();
+  const name = 'article-media/' + 'f'.repeat(64) + '/research-fallback.svg';
+  manifest.components.routes = { research: { assets: [name] } };
+  manifest.files[name] = { sha256: 'f'.repeat(64), raw: 5000, gzip: 1000 };
+  const report = fixture.functional(manifest);
+  const proof = (mode, width, theme) => ({
+    kind: 'research-static-fallback',
+    mode,
+    width,
+    theme,
+    resource: {
+      file: name,
+      status: 200,
+      sha256: manifest.files[name].sha256,
+      bytes: 5000,
+      mime: 'image/svg+xml',
+      url: fixture.target + '/' + name,
+    },
+    geometry: {
+      page: 'research',
+      h1: 1,
+      href: name + '#research-fallback',
+      resourceURL: fixture.target + '/' + name + '#research-fallback',
+      viewBox: '0 0 1440 900',
+      preserveAspectRatio: 'xMidYMid slice',
+      useCount: 1,
+      visible: true,
+      viewport: { width, height: 844 },
+      box: { x: 1, y: 1, width: 100, height: 100 },
+      dataTheme: mode === 'no-js' ? null : theme,
+      prefersDark: false,
+      palette: { paper: '#f8f7f3', accent: '#075d7b', systems: '#895710' },
+    },
+    png: {
+      file: `research-fallback-${mode}-${width}-${theme}.png`,
+      sha256: 'e'.repeat(64),
+      bytes: 1000,
+    },
+  });
+  const noJS = report.failures.find((row) => row.mode === 'no-js');
+  noJS.checks.researchFallback = {
+    ...proof('no-js', 320, 'light'),
+    fallback: structuredClone(noJS.checks),
+  };
+  const noCanvas = report.journeys
+    .find((row) => row.mode === 'no-canvas' && row.width === 390)
+    .rows.find((row) => row.route === 'research');
+  noCanvas.researchFallback = proof('no-canvas', 390, 'dark');
+  assert.doesNotThrow(() => stage.validateFunctional(report, manifest));
+  const changes = [
+    (item) => delete item.resource,
+    (item) => (item.resource.sha256 = '0'.repeat(64)),
+    (item) => (item.resource.mime = 'image/png'),
+    (item) => (item.resource.url = 'https://foreign.example.invalid/' + name),
+    (item) => (item.geometry.page = 'writing'),
+    (item) => (item.geometry.box.width = 0),
+    (item) => (item.geometry.visible = false),
+    (item) => (item.geometry.palette.accent = ''),
+    (item) => (item.geometry.resourceURL = fixture.target + '/../' + name + '#research-fallback'),
+    (item) => (item.geometry.dataTheme = 'wrong'),
+    (item) => delete item.png,
+    (item) => (item.png.sha256 = 'not-a-digest'),
+  ];
+  for (const mode of ['no-js', 'no-canvas']) {
+    for (const change of changes) {
+      const invalid = structuredClone(report);
+      const selected =
+        mode === 'no-js'
+          ? invalid.failures.find((row) => row.mode === mode).checks
+          : invalid.journeys
+              .find((row) => row.mode === mode && row.width === 390)
+              .rows.find((row) => row.route === 'research');
+      change(selected.researchFallback);
+      assert.throws(() => stage.validateFunctional(invalid, manifest));
+    }
+    const absent = structuredClone(report);
+    const selected =
+      mode === 'no-js'
+        ? absent.failures.find((row) => row.mode === mode).checks
+        : absent.journeys
+            .find((row) => row.mode === mode && row.width === 390)
+            .rows.find((row) => row.route === 'research');
+    delete selected.researchFallback;
+    assert.throws(() => stage.validateFunctional(absent, manifest));
+  }
+});
 test('staging performance validates actual raw windows, cold/warm flights and two single Lighthouse trials', () => {
   assert.equal(stage.validatePerformance(fixture.performanceReport()).lighthouseTrials, 2);
   const mutations = [

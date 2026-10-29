@@ -605,6 +605,7 @@ function emitRevision({ root, components, selectedArticles, result, temporary, p
           version: route.version,
           url: `snapshots/${route.version}/${route.url}`,
           sha256: route.snapshotSHA,
+          ...(route.assets ? { assets: route.assets } : {}),
         },
       ])
     ),
@@ -652,7 +653,15 @@ function baselineFallback(output, route) {
   const html = fs.readFileSync(path.join(output, route + '.html'), 'utf8');
   const matches = [...html.matchAll(/<svg\b[^>]*\bclass="space-fallback"[^>]*>[\s\S]*?<\/svg>/g)];
   if (matches.length !== 1) throw Error('Content baseline fallback is incomplete');
-  return matches[0][0];
+  const revision = JSON.parse(fs.readFileSync(path.join(output, 'site-revision.json')));
+  return (
+    require('./fallback.cjs').resolveRouteResource(
+      matches[0][0],
+      route,
+      revision.routes[route]?.assets,
+      (name) => fs.readFileSync(path.join(output, name))
+    )?.html || matches[0][0]
+  );
 }
 
 function verifyContentBaseline(output, previous, trusted, components, versioned) {
@@ -675,6 +684,17 @@ function verifyContentBaseline(output, previous, trusted, components, versioned)
   });
   if (revision.engine !== runtimeVersion(components) || revision.navigation?.articleRenderer !== 1)
     throw Error('Content baseline runtime contract differs');
+}
+
+function emitRouteFallback({ root, definitions, route, contentOnly, output, put, api }) {
+  if (route.id !== 'research') return { api };
+  if (!contentOnly) api ??= model(root, definitions);
+  const resource = require('./fallback.cjs').routeResource(
+    contentOnly ? baselineFallback(output, route.id) : fallback(api, route.id),
+    route.id
+  );
+  put(resource.name, resource.bytes);
+  return { api, resource };
 }
 
 function emitRoutes({
@@ -720,6 +740,17 @@ function emitRoutes({
       );
     const old = previous?.routes[route.id],
       file = path.join(output, route.url);
+    const routeFallback = emitRouteFallback({
+      root,
+      definitions,
+      route,
+      contentOnly,
+      output,
+      put,
+      api,
+    });
+    api = routeFallback.api;
+    const fallbackResource = routeFallback.resource;
     let html;
     if (
       old?.version === version &&
@@ -738,7 +769,7 @@ function emitRoutes({
         input,
         api,
         measurement.head,
-        contentOnly ? baselineFallback(output, route.id) : null
+        fallbackResource?.html || (contentOnly ? baselineFallback(output, route.id) : null)
       );
       if (versioned) html = versionHTML(html, version, components);
       html = articles.documentIndex(html, [], preview);
@@ -750,6 +781,7 @@ function emitRoutes({
       url: route.url,
       inputs: pageInputs,
       records: Object.keys(input.records),
+      ...(fallbackResource ? { assets: [fallbackResource.name] } : {}),
     };
     if (versioned) {
       const name = `snapshots/${version}/${route.url}`;

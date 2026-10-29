@@ -269,7 +269,21 @@ function presentationLinks(environment, inline = false) {
   return resourceLinks(environment, inline, 'application/pdf');
 }
 
-function inlineFallback(html, environment) {
+function inlineFallback(html, environment, route = null) {
+  if (route !== null) {
+    const descriptor = environment.revision.routes[route];
+    if (!descriptor) throw Error('Unknown standalone room');
+    const svg = html.match(/<svg class="space-fallback"[\s\S]*?<\/svg>/)?.[0];
+    if (!svg && descriptor.assets === undefined) return html;
+    if (!svg) throw Error('Missing standalone room fallback');
+    const resource = require('./fallback.cjs').resolveRouteResource(
+      svg,
+      route,
+      descriptor.assets,
+      (name) => fs.readFileSync(path.join(environment.publicDirectory, name))
+    );
+    return resource ? html.replace(svg, resource.html) : html;
+  }
   const descriptor = environment.revision.articles[environment.articleKey];
   html = html.replace(/<use href="([^"]+)#writing-fallback"><\/use>/g, (_, name) => {
     if (!descriptor.assets.includes(name)) throw Error('Unknown standalone fallback');

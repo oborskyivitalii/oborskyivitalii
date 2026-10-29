@@ -274,6 +274,16 @@ function payload(html) {
   return JSON.parse(data[1]);
 }
 
+function assertInlineResearch(html, revision, root) {
+  const canonical = require('../tools/site/fallback.cjs').fromModel(
+    builder.model(root, builder.configuration(root).definitions),
+    'research'
+  );
+  assert.equal(html.match(/<svg class="space-fallback"[\s\S]*?<\/svg>/)?.[0], canonical);
+  assert.doesNotMatch(html, /<use\b|research-fallback\.svg/);
+  if (revision) assert.equal(revision.routes.research.assets, undefined);
+}
+
 function exportSelected(fixture, articleId, extra = {}) {
   return preview.exportArticle({
     repoRoot: fixture.root,
@@ -467,6 +477,29 @@ test('ordinary offline payloads exclude all article bodies, descriptors, indexes
   });
   assert.deepEqual(Object.keys(ordinary.pages), snapshot.routes);
   assert.deepEqual(Object.keys(ordinary.revision.articles || {}), []);
+  assertInlineResearch(ordinary.pages.research, ordinary.revision, f.root);
+  const environment = require('../tools/site/offline.cjs').context({
+    repoRoot: f.root,
+    publicDirectory: f.publicDirectory,
+  });
+  const research = fs.readFileSync(path.join(f.publicDirectory, 'research.html'), 'utf8');
+  const css = fs.readFileSync(path.join(f.publicDirectory, 'styles.css'), 'utf8');
+  assertInlineResearch(
+    preview.renderPage(research, css, 'research', 'light', portrait, environment),
+    null,
+    f.root
+  );
+  const scripts = Object.fromEntries(
+    ['theme', 'space', 'archive', 'navigation'].map((name) => [
+      name,
+      fs.readFileSync(path.join(f.publicDirectory, name + '.js'), 'utf8'),
+    ])
+  );
+  assertInlineResearch(
+    preview.renderInteractive(research, css, 'research', portrait, scripts, ordinary, environment),
+    null,
+    f.root
+  );
   const bytes = JSON.stringify(ordinary);
   assert.doesNotMatch(
     bytes,
@@ -487,6 +520,7 @@ test('explicit article export contains one selected document, bounded inert HTML
   const f = fixture(t);
   const result = exportSelected(f, f.english.metadata.id);
   const data = payload(result.html);
+  assertInlineResearch(data.pages.research, data.revision, f.root);
   const key = f.english.metadata.id + ':en';
   assert.deepEqual(Object.keys(data.pages), [...snapshot.routes, 'article:' + key]);
   assert.deepEqual(Object.keys(data.revision.articles), [key]);

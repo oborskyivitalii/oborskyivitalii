@@ -22,8 +22,9 @@ function manifest() {
     files: Object.fromEntries(
       [
         ...budgets.routes.map((route) => route + '.html'),
-        'space.js',
-        'styles.css',
+        ...require('../../tools/site/snapshot.cjs').runtimeFiles,
+        'assets/favicon.svg',
+        'assets/vitalii-oborskyi-cutout.webp',
         'snapshot.json',
         '.nojekyll',
       ].map((file) => [file, { sha256: 'e'.repeat(64), raw: 5000, gzip: 1000 }])
@@ -605,13 +606,7 @@ function aggregateFixture(color = false) {
         status: 200,
         sha256: m.files[file].sha256,
         url: target + '/' + file,
-        mime: file.endsWith('.html')
-          ? 'text/html'
-          : file.endsWith('.js')
-            ? 'application/javascript'
-            : file.endsWith('.css')
-              ? 'text/css'
-              : 'application/json',
+        mime: require('../../tools/quality/serve.cjs').canonicalType(file),
       })),
   };
   const scan = (kind, detail) => ({ ...identity(m), kind, detail });
@@ -650,7 +645,17 @@ function aggregateFixture(color = false) {
         route,
         ...m.files[route + '.html'],
         svgNodes: 100,
-        totalGzipBytes: 10000,
+        totalGzipBytes:
+          m.files[route + '.html'].gzip +
+          [
+            'styles.css',
+            'theme.js',
+            'space.js',
+            'archive.js',
+            'navigation.js',
+            'assets/favicon.svg',
+            ...(route === 'index' ? ['assets/vitalii-oborskyi-cutout.webp'] : []),
+          ].reduce((sum, name) => sum + m.files[name].gzip, 0),
       })),
     },
     reports,

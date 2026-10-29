@@ -89,6 +89,7 @@ function validateHost(report, manifest, hostedURL) {
   }
 }
 function validateSizes(sizes, manifest) {
+  require('./artifact.cjs').validateRouteSizes(sizes, manifest);
   require('./artifact.cjs').validateArticleSizes(sizes, manifest);
   assert.equal(sizes.pass, true);
   assert.equal(sizes.artifactDigest, manifest.artifactDigest);

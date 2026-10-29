@@ -59,6 +59,136 @@ const aliases = [
   'assets/vitalii-oborskyi.jpg',
   'assets/vitalii-oborskyi-cutout.webp',
 ];
+test('Research shares exact passive vectors while declaring and budgeting the complete resource', (t) => {
+  const dir = fixture(t);
+  run(dir);
+  const output = path.join(dir, 'docs');
+  const read = (name) => fs.readFileSync(path.join(output, name));
+  const fallback = require('../tools/site/fallback.cjs');
+  const api = b.model(dir, b.configuration(dir).definitions);
+  const revision = snapshot.verify(output, artifact.manifest(output));
+  const descriptor = revision.routes.research;
+  assert.equal(descriptor.assets.length, 1);
+  const name = descriptor.assets[0];
+  const canonical = fallback.fromModel(api, 'research');
+  for (const document of ['research.html', descriptor.url]) {
+    const svg = read(document)
+      .toString()
+      .match(/<svg class="space-fallback"[\s\S]*?<\/svg>/)[0];
+    const prefix = document === 'research.html' ? '' : '../../';
+    const resolved = fallback.resolveRouteResource(
+      svg,
+      'research',
+      descriptor.assets,
+      read,
+      prefix
+    );
+    assert.equal(resolved.html, canonical, document + ' retains every vector and paint value');
+    assert.throws(() => fallback.resolveRouteResource(svg, 'research', [], read), /Undeclared/);
+    assert.throws(
+      () =>
+        fallback.resolveRouteResource(
+          svg.replace('#research-fallback', '#writing-fallback'),
+          'research',
+          descriptor.assets,
+          read,
+          prefix
+        ),
+      /closure/
+    );
+    assert.throws(
+      () =>
+        fallback.resolveRouteResource(
+          svg,
+          'research',
+          ['article-media/' + '0'.repeat(64) + '/research-fallback.svg'],
+          read,
+          prefix
+        ),
+      /closure/
+    );
+    assert.throws(
+      () => fallback.resolveRouteResource(svg.replace('<use ', '<Use '), 'research', [], read),
+      /Undeclared/
+    );
+    assert.throws(
+      () =>
+        fallback.resolveRouteResource(
+          svg,
+          'research',
+          descriptor.assets,
+          read,
+          prefix ? '' : '../../'
+        ),
+      /closure/
+    );
+    assert.throws(
+      () => fallback.resolveRouteResource(svg, 'writing', descriptor.assets, read),
+      /Unsupported/
+    );
+    assert.throws(
+      () => fallback.resolveRouteResource(svg, 'research', [name, name], read),
+      /Finite/
+    );
+  }
+  for (const id of ['index', 'writing', 'talks', 'credits']) {
+    assert.equal(revision.routes[id].assets, undefined);
+    assert.equal(
+      read(id + '.html')
+        .toString()
+        .match(/<svg class="space-fallback"[\s\S]*?<\/svg>/)[0],
+      fallback.fromModel(api, id)
+    );
+  }
+  const sizes = artifact.checkSize(output);
+  const row = sizes.rows.find((item) => item.route === 'research');
+  const originalNodes = (canonical.match(/<[a-z][\w-]*(?:\s|>)/gi) || []).length;
+  assert.equal(row.svgNodes, originalNodes + 2, 'instance use and external group are not hidden');
+  assert.equal(row.fallbackResource, name);
+  assert.equal(row.assets.filter((asset) => asset === name).length, 1);
+  assert.equal(
+    row.totalGzipBytes,
+    sizes.files['research.html'].gzip +
+      row.assets.reduce((n, asset) => n + sizes.files[asset].gzip, 0)
+  );
+  const record = { ...artifact.manifest(output), components: revision };
+  assert.doesNotThrow(() => artifact.validateRouteSizes(sizes, record));
+  for (const mutate of [
+    (item) => item.totalGzipBytes--,
+    (item) => item.assets.pop(),
+    (item) => delete item.fallbackResource,
+    (item) => item.raw++,
+  ]) {
+    const forged = structuredClone(sizes);
+    mutate(forged.rows.find((item) => item.route === 'research'));
+    assert.throws(() => artifact.validateRouteSizes(forged, record), /route|transfer/);
+  }
+  const bytes = read(name);
+  assert.equal(b.sha(bytes), name.split('/')[1]);
+  const first = inventory(dir);
+  const reused = run(dir);
+  assert.ok(reused.reused.includes('research'));
+  assert.deepEqual(inventory(dir), first, 'a reused document retains its exact resource');
+  fs.unlinkSync(path.join(output, name));
+  assert.throws(() => snapshot.verify(output, artifact.manifest(output)), /missing room fallback/);
+  fs.writeFileSync(path.join(output, name), Buffer.from('substituted'));
+  assert.throws(() => artifact.checkSize(output), /identity/);
+  fs.writeFileSync(path.join(output, name), bytes);
+  const unsafe = Buffer.from(
+    bytes
+      .toString()
+      .replace('<g id="research-fallback">', '<g id="research-fallback"><script>alert(1)</script>')
+  );
+  const unsafeName = `article-media/${b.sha(unsafe)}/research-fallback.svg`;
+  assert.throws(() => fallback.resourceContent(unsafeName, unsafe, 'research'), /Unsupported/);
+  assert.throws(() => fallback.resourceContent(name, bytes, 'writing'), /identity/);
+  assert.throws(
+    () => fallback.resourceContent(name, bytes),
+    /identity/,
+    'article callers retain Writing-only validation'
+  );
+});
+
 test('generated tag endings preserve raw elements, quoted values and unquoted separators', () => {
   const opaque =
     '<script>const x="</span \\n>";</script><style>.x::after{content:"<span >"}</style><!-- <span > -->';

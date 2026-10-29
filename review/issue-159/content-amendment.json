@@ -456,5 +456,40 @@
       ]
     },
     "intent": "AC04 reuse the four existing topic controls; three paths select exact existing catalog IDs, without changing any edition or creating archive rows"
+  },
+  "researchCarrier": {
+    "schema": 1,
+    "date": "2026-10-29",
+    "acceptedSource": "6b0248f9fc667d968140fa034278490f22c1480d",
+    "acceptedSvgSHA256": "afd670d4651035dce324acb94b6efb83b7b7e0372d978a4f5a961f0eb86d7341",
+    "resource": "article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618/research-fallback.svg",
+    "hypothesis": "Reduce critical Research HTML by moving the identical passive vectors into one digest-addressed resource; retain complete resource transfer and instantiated node budgets. Actual added request, paint and LCP require native new-source evidence. Original101ms non-CPU wait cause remains unknown.",
+    "producerChanges": {
+      "tools/build_scene_fallbacks.cjs": {
+        "beforeSHA256": "9cf1c707980d973c27eba308f97427ead471cda6ab347e6e5624a4dad946948c",
+        "afterSHA256": "df1422827dcd35ceb2000207c21d156e4164a5a3e59a1ec8830301a63119dcdf"
+      },
+      "tools/build_site_previews.cjs": {
+        "beforeSHA256": "067c787eacbedf0dab047ca703fe0b070f35f76c57bec03648b8bff4fab89754",
+        "afterSHA256": "54ca6b30753cf343f906b9aa1d551a96212136a4882ec047c56a186e831285e6"
+      },
+      "tools/site/build.cjs": {
+        "beforeSHA256": "0949691cab43b0ef640eee4af7bc3956bc9851de9d52cce78ba7ff9d6434b929",
+        "afterSHA256": "fce23e9a21e641e829b07e48029ecbbf3b754904376b1fdda4146e7d09c66bde"
+      },
+      "tools/site/fallback.cjs": {
+        "beforeSHA256": "47b4627aa8ba28b1dd286de9464299c75ccf429207a2d32cf6b4ef368660bcd0",
+        "afterSHA256": "66822a96b98fa151762dd72e601299c63b4ff57249a7d7134ee55d8ca03969c9"
+      },
+      "tools/site/offline.cjs": {
+        "beforeSHA256": "67f7e3456eb0493044920a2f366f1a7f1e387f82b255fd7bc70667e3052e836f",
+        "afterSHA256": "04970b8c3718d886e2884e2ce63e488aea7a20aebce0bed8778cc7ff8e5288be"
+      },
+      "tools/site/snapshot.cjs": {
+        "beforeSHA256": "ee1768cef4ccfa3fa8c0e952c382dc35afcdacd806d908a99de74b3c2fa20f42",
+        "afterSHA256": "eae15e6734b64ebc015d56e34ebc0a3118ae21f3e1fb340df89075cb1df206f4"
+      }
+    },
+    "predecessorBaseline": "2072b76e5e970db72122a0fd38fcb25da9a5bd46"
   }
 }

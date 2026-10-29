@@ -204,6 +204,95 @@ const issue159ProducerPaths = [
   'tools/site/render-records.cjs',
   'tools/site/validate-catalog.cjs',
 ];
+const researchCarrierInputs = [
+  'tools/build_scene_fallbacks.cjs',
+  'tools/build_site_previews.cjs',
+  'tools/site/build.cjs',
+  'tools/site/fallback.cjs',
+  'tools/site/offline.cjs',
+  'tools/site/snapshot.cjs',
+];
+
+function verifyResearchCarrier(projectRoot = root, record = issue159.researchCarrier) {
+  assert.equal(record?.schema, 1, 'Research carrier record');
+  assert.equal(record.acceptedSource, '6b0248f9fc667d968140fa034278490f22c1480d');
+  assert.equal(record.predecessorBaseline, '2072b76e5e970db72122a0fd38fcb25da9a5bd46');
+  assert.match(record.acceptedSvgSHA256, /^[a-f0-9]{64}$/);
+  assert.deepEqual(Object.keys(record.producerChanges).sort(), researchCarrierInputs);
+  for (const [name, binding] of Object.entries(record.producerChanges)) {
+    assert.match(binding.beforeSHA256, /^[a-f0-9]{64}$/);
+    const previous = cp.execFileSync('git', ['show', record.predecessorBaseline + ':' + name], {
+      cwd: root,
+    });
+    assert.equal(
+      crypto.createHash('sha256').update(previous).digest('hex'),
+      binding.beforeSHA256,
+      'Research predecessor producer bytes: ' + name
+    );
+    assert.equal(
+      crypto.createHash('sha256').update(homeSourceFile(projectRoot, name)).digest('hex'),
+      binding.afterSHA256,
+      'Research carrier producer bytes: ' + name
+    );
+  }
+  const previousHTML = cp.execFileSync(
+    'git',
+    ['show', record.predecessorBaseline + ':docs/research.html'],
+    { cwd: root, encoding: 'utf8' }
+  );
+  const previousSVG = previousHTML.match(/<svg class="space-fallback"[\s\S]*?<\/svg>/)?.[0];
+  assert.ok(previousSVG, 'Research predecessor SVG');
+  assert.equal(
+    crypto.createHash('sha256').update(previousSVG).digest('hex'),
+    record.acceptedSvgSHA256,
+    'Exact accepted Research geometry'
+  );
+  const builder = require('./site/build.cjs');
+  const fallback = require('./site/fallback.cjs');
+  const svg = fallback.fromModel(
+    builder.model(projectRoot, builder.configuration(projectRoot).definitions),
+    'research'
+  );
+  assert.equal(
+    crypto.createHash('sha256').update(svg).digest('hex'),
+    record.acceptedSvgSHA256,
+    'Exact accepted Research geometry'
+  );
+  const resource = fallback.routeResource(svg, 'research');
+  assert.equal(resource.name, record.resource, 'Exact Research carrier identity');
+  assert.deepEqual(
+    fs.readFileSync(path.join(projectRoot, 'docs', resource.name)),
+    resource.bytes,
+    'Exact Research carrier bytes'
+  );
+  const revision = JSON.parse(fs.readFileSync(path.join(projectRoot, 'docs/site-revision.json')));
+  const route = revision.routes.research;
+  assert.deepEqual(route.assets, [resource.name]);
+  for (const [name, prefix] of [
+    ['research.html', ''],
+    [route.url, '../../'],
+  ]) {
+    const html = fs.readFileSync(path.join(projectRoot, 'docs', name), 'utf8');
+    const actual = html.match(/<svg class="space-fallback"[\s\S]*?<\/svg>/)?.[0];
+    assert.ok(actual, 'Research carrier SVG');
+    assert.equal(
+      fallback.resolveRouteResource(
+        actual,
+        'research',
+        route.assets,
+        (file) => fs.readFileSync(path.join(projectRoot, 'docs', file)),
+        prefix
+      ).html,
+      svg,
+      'Exact Research carrier reconstruction'
+    );
+  }
+  return {
+    route: 'research',
+    resource: resource.name,
+    acceptedSvgSHA256: record.acceptedSvgSHA256,
+  };
+}
 
 function reviewedProducerBindings(bindings, additions = []) {
   assert.deepEqual(Object.keys(issue159.producerChanges).sort(), issue159ProducerPaths);
@@ -1061,6 +1150,7 @@ function restore(html, page) {
   return restoreFormatterBlockSeams(normalizeHTML(strip(result)), page);
 }
 function verify() {
+  const researchCarrier = verifyResearchCarrier();
   const rows = [];
   verifyApprovedLicensingCSS();
   for (const page of ['index', 'research', 'writing', 'talks', 'credits']) {
@@ -1141,12 +1231,14 @@ function verify() {
     baseline,
     pass: true,
     rows,
+    researchCarrier,
     policy:
       'Ordered HTML contracts after proving the finite Home body against validated current source, exact template/producer identities and its immutable approved frame; proving the seven catalog-generated Writing regions, simple count and ItemList against current validated data; and reversing the exact hashed Issue5 frame amendment. Then reverse the exact hashed Issue41 AI-assisted site case and positioning, Issue61 PMDay recording, Issue48 then original Issue41 content amendments and declared Home hierarchy/wordmark changes, approved contact/title wrappers, reviewed response blocks/Research nav, accessible Writing formula description, exact canonical Home critical media head block and authored-base build identity. Issue159 proves current Writing views before reversing exact reader-path copy/metadata, retains all historical frames and producer inventories with four exact reviewed successor pins, and binds both complete stylesheet successor hashes before reversing its exact CSS suffix. ASCII whitespace runs and void-tag spellings are canonicalized; only named Research/Writing/Talks block-fragment EOF seams and exact compact encodings of immutable approved JSON-LD blocks are reversible. Inline separators, attributes/order, head metadata, shared chrome and unrelated output remain exact; decorative fallback SVG is excluded. Includes semantic metadata, publication records, links, languages, dates, portrait and source attribution.',
   };
 }
 if (require.main === module) process.stdout.write(JSON.stringify(verify(), null, 2) + '\n');
 module.exports = {
+  verifyResearchCarrier,
   createHTMLNormalizer,
   verify,
   restore,
