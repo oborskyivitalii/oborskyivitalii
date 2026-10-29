@@ -510,7 +510,7 @@ test('explicit production Color preserves approved runtime and rejects a differe
   assert.equal(edition.verify(source.directory, source.record), true);
   assert.equal(
     require('../tools/quality/color-motion-contract.cjs').select(source.record).id,
-    'issue122-writing-startup-production'
+    'issue159-reading-paths-production'
   );
   assert.notEqual(source.record.variant.fingerprint, color.variant.fingerprint);
   for (const name of require('../tools/site/snapshot.cjs').runtimeFiles)
@@ -1360,9 +1360,7 @@ async function stagedProductionFixture(t, { content = false } = {}) {
       })),
   };
   input.manifest = manifest;
-  input.sizes.artifactDigest = manifest.artifactDigest;
-  input.sizes.files = manifest.files;
-  for (const row of input.sizes.rows) Object.assign(row, manifest.files[row.route + '.html']);
+  input.sizes = artifact.checkSize(path.join(tested.directory, 'public'));
   input.reports = [
     host,
     ...input.reports

@@ -1,6 +1,7 @@
 'use strict';
 // Controlled validator fixtures. These are not browser, device or performance evidence.
 const stage = require('../../tools/quality/staging-regression.cjs'),
+  assert = require('node:assert/strict'),
   common = require('../../tools/quality/common.cjs'),
   colorMotion = require('../../tools/quality/color-motion-contract.cjs'),
   motion = require('../../tools/quality/motion.cjs'),
@@ -22,8 +23,9 @@ function manifest() {
     files: Object.fromEntries(
       [
         ...budgets.routes.map((route) => route + '.html'),
-        'space.js',
-        'styles.css',
+        ...require('../../tools/site/snapshot.cjs').runtimeFiles,
+        'assets/favicon.svg',
+        'assets/vitalii-oborskyi-cutout.webp',
         'snapshot.json',
         '.nojekyll',
       ].map((file) => [file, { sha256: 'e'.repeat(64), raw: 5000, gzip: 1000 }])
@@ -209,8 +211,52 @@ function analyticsRow(selected) {
       : Array(2).fill('https://static.cloudflareinsights.com/beacon.min.js'),
   };
 }
-function functional(m = manifest()) {
+// Synthetic validator input only; no browser response, geometry or PNG was observed.
+function researchFallbackProof(m, mode, width, theme) {
+  const names = m.components.routes.research.assets;
+  assert.ok(Array.isArray(names) && names.length === 1);
+  const name = names[0],
+    file = m.files[name];
+  assert.ok(file, 'controlled resource must belong to its manifest');
   return {
+    kind: 'research-static-fallback',
+    synthetic: true,
+    mode,
+    width,
+    theme,
+    resource: {
+      file: name,
+      status: 200,
+      sha256: file.sha256,
+      bytes: file.raw,
+      mime: require('../../tools/quality/serve.cjs').canonicalType(name),
+      url: target + '/' + name,
+    },
+    geometry: {
+      page: 'research',
+      h1: 1,
+      href: name + '#research-fallback',
+      resourceURL: target + '/' + name + '#research-fallback',
+      viewBox: '0 0 1440 900',
+      preserveAspectRatio: 'xMidYMid slice',
+      useCount: 1,
+      visible: true,
+      viewport: { width, height: 844 },
+      box: { x: 1, y: 1, width: 100, height: 100 },
+      dataTheme: mode === 'no-js' ? null : theme,
+      prefersDark: false,
+      palette: { paper: '#f8f7f3', accent: '#075d7b', systems: '#895710' },
+    },
+    png: {
+      file: `research-fallback-${mode}-${width}-${theme}.png`,
+      sha256: 'e'.repeat(64),
+      bytes: 1000,
+    },
+  };
+}
+
+function functional(m = manifest()) {
+  const report = {
     ...identity(m),
     kind: 'stage-functional',
     profile: 'staging',
@@ -230,6 +276,18 @@ function functional(m = manifest()) {
     analytics: stage.analyticsCases().map(analyticsRow),
     startupFailures: [],
   };
+  if (m.components?.routes?.research?.assets?.length) {
+    const noJS = report.failures.find((row) => row.mode === 'no-js' && row.width === 320);
+    noJS.checks.researchFallback = {
+      ...researchFallbackProof(m, 'no-js', 320, 'light'),
+      fallback: clone(noJS.checks),
+    };
+    const noCanvas = report.journeys
+      .find((row) => row.mode === 'no-canvas' && row.width === 390)
+      .rows.find((row) => row.route === 'research');
+    noCanvas.researchFallback = researchFallbackProof(m, 'no-canvas', 390, 'dark');
+  }
+  return report;
 }
 function measurement(kind, zero = ['off', 'reduced'].includes(kind), start = 0) {
   const elapsed = ['idle', 'scroll'].includes(kind) ? 4000 : 2100,
@@ -605,13 +663,7 @@ function aggregateFixture(color = false) {
         status: 200,
         sha256: m.files[file].sha256,
         url: target + '/' + file,
-        mime: file.endsWith('.html')
-          ? 'text/html'
-          : file.endsWith('.js')
-            ? 'application/javascript'
-            : file.endsWith('.css')
-              ? 'text/css'
-              : 'application/json',
+        mime: require('../../tools/quality/serve.cjs').canonicalType(file),
       })),
   };
   const scan = (kind, detail) => ({ ...identity(m), kind, detail });
@@ -650,7 +702,17 @@ function aggregateFixture(color = false) {
         route,
         ...m.files[route + '.html'],
         svgNodes: 100,
-        totalGzipBytes: 10000,
+        totalGzipBytes:
+          m.files[route + '.html'].gzip +
+          [
+            'styles.css',
+            'theme.js',
+            'space.js',
+            'archive.js',
+            'navigation.js',
+            'assets/favicon.svg',
+            ...(route === 'index' ? ['assets/vitalii-oborskyi-cutout.webp'] : []),
+          ].reduce((sum, name) => sum + m.files[name].gzip, 0),
       })),
     },
     reports,

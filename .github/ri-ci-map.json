@@ -2,8 +2,8 @@
   "schema_version": 1,
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/159",
-    "date": "2026-10-28",
-    "summary": "Add unified analytics-first acceptance policy and current baseline/intake evidence; retain actual source and independent/provider/release gate boundaries."
+    "date": "2026-10-29",
+    "summary": "Integrate accepted protected runtime preregistration and preserve reviewed existing-page SEO, exact amendment/producer/CSS successor and curated catalog checks; retain source/manual/release gates."
   },
   "layers": [
     {
@@ -147,7 +147,13 @@
         ".github/acceptance/issue-159.json",
         "review/issue-159/2026-10-28-baseline.json",
         "review/issue-159/2026-10-28-analytics-intake.md",
-        "tests/test_issue159_acceptance.py"
+        "tests/test_issue159_acceptance.py",
+        "review/issue-159/2026-10-28-seo-query-research.md",
+        "review/issue-159/2026-10-28-seo-implementation.md",
+        "review/issue-159/2026-10-28-seo-brief-delivery.md",
+        "review/issue-159/2026-10-28-seo-brief-agent-control.md",
+        "review/issue-159/content-amendment.json",
+        "review/issue-159/2026-10-29-runtime-preregistration.md"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -182,7 +188,7 @@
     },
     {
       "id": "test-profile-selection",
-      "purpose": "Canonical test inventory/source allocation, selected staging evidence and reviewed source-scanner controls; explicit cheap unconditional negatives verify source/expiry/coverage and exact selection.",
+      "purpose": "Canonical test inventory/source allocation, selected staging evidence and reviewed source-scanner controls; explicit cheap unconditional negatives verify source/expiry/coverage and exact selection. Research carrier response/paint evidence stays inside the two existing no-JS/no-Canvas cases, with exact full-resource size validation and unchanged bounds.",
       "paths": [
         "guides/SITE-CHECK-PROFILES.md",
         "tests/fixtures/staging-evidence.cjs",
@@ -384,7 +390,7 @@
     },
     {
       "id": "refactoring-contracts",
-      "purpose": "Content/template and canonical CSS ownership, pure camera/build seams, authored dependency/cycle negatives and comparable original-budget measurements under issue58.",
+      "purpose": "Content/template and canonical CSS ownership, pure camera/build seams, authored dependency/cycle negatives and comparable original-budget measurements under issue58. Issue159 keeps Research passive-resource closure, exact vector reconstruction and offline adapters on these existing source/check owners.",
       "paths": [
         "tools/quality/architecture.cjs",
         "tools/quality/refactor-metrics.cjs",
@@ -681,7 +687,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "5584bd31f0b1658f25b8009831ee9d0cf4adf22634d82c68b1a68eb1f04b9bf8",
+    "digest": "fced9482ad96149a2a08ff3ccd93c5a7871c575aaa30a07378a0962e11d556e9",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -821,7 +827,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "4f473d7f11f5c2839abafcb53e79dc1dcc2f0f6bea033017dab7e1333d74d7c2"
+        "sha256": "fdf37748325e6b03a999b41c7b55c22b2cb21c105d843faf710d646aed816fab"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -945,7 +951,7 @@
       },
       {
         "path": "tests/fixtures/staging-evidence.cjs",
-        "sha256": "8189a83db3f0fdb46bbf01cebe254e1cac9359c03236ddc899a32e452bf7a4a7"
+        "sha256": "f398a730ba3556b1bcfe311a8dc51b25d80aa4805a22ad7cf4f5cf2e04b3f13d"
       },
       {
         "path": "tests/staging-gate.test.cjs",
@@ -953,7 +959,7 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "07e85f24c94404c45b0641b5b5169bd105a0ff064f3de02403e1e8eae6f2c463"
+        "sha256": "2d5a169ffd9321667c33a3d21d37650cf0917eca889a5ac6c807bd38b9d3601c"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
@@ -1085,15 +1091,15 @@
       },
       {
         "path": "tools/quality/staging-gate.cjs",
-        "sha256": "9f8b0aef06935daa3f6b1078dfd8c52dd6077e42acada532c1a2c8e6e805318f"
+        "sha256": "60f8c37c98278f6693971d6484776774b3b2a8268dd26cfc7b9ddff3890342fd"
       },
       {
         "path": "tools/quality/staging-regression.cjs",
-        "sha256": "299c114db4bc3d358f43f1d7ee84db820c9e508ae1031f81325d7bb721f81f64"
+        "sha256": "c33d08aecec46f22e8d1f86b62ba9f6f1bc2477d7219c27a6a654d77daa1237a"
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "0d556fbfcb7686da8a4f08aa2455c1dad87658359df43e07ebb25a7b2c95db3b"
+        "sha256": "7925ed6d907f8e2bef2cc7ccce93f80c6a24f9cfccffa13cfbdfd0e117665f03"
       },
       {
         "path": "tools/repository_intelligence.py",

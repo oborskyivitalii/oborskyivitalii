@@ -53,7 +53,7 @@ function artifactFile(value, base, manifest) {
   const canonical = name.endsWith('/') || name === '' ? name + 'index.html' : name + '.html';
   return Object.hasOwn(manifest.files, canonical) ? canonical : null;
 }
-async function verifyResponse(response, base, manifest, checkedFiles) {
+async function verifyResponse(response, base, manifest, checkedFiles, observations = null) {
   const source = new URL(response.url()),
     scope = new URL(base.replace(/\/$/, '') + '/');
   if (source.origin !== scope.origin || !source.pathname.startsWith(scope.pathname))
@@ -80,12 +80,20 @@ async function verifyResponse(response, base, manifest, checkedFiles) {
   }
   if (!file) return { observed: false };
   assert.equal(status, 200, 'public response ' + file);
-  const digest = hash(await response.body());
+  const bytes = await response.body();
+  const digest = hash(bytes);
   assert.equal(digest, manifest.files[file].sha256, 'served bytes ' + file);
   checkedFiles.add(file);
-  return { observed: true, file, status, sha256: digest };
+  const result = { observed: true, file, status, sha256: digest };
+  observations?.set(file, {
+    ...result,
+    url: response.url(),
+    mime: response.headers()['content-type'],
+    bytes: bytes.length,
+  });
+  return result;
 }
-async function verifyRequest(request, base, manifest, checkedFiles) {
+async function verifyRequest(request, base, manifest, checkedFiles, observations = null) {
   // Register ownership before response headers arrive. A pending request must
   // not become invisible to the document-navigation body-read barrier.
   const response = await request.response();
@@ -95,7 +103,121 @@ async function verifyRequest(request, base, manifest, checkedFiles) {
     error.requestFailure = observation;
     throw error;
   }
-  return verifyResponse(response, base, manifest, checkedFiles);
+  return verifyResponse(response, base, manifest, checkedFiles, observations);
+}
+
+function validateResearchFallback(evidence, manifest, { mode, width, theme, baseURL }) {
+  assert.ok(
+    (mode === 'no-js' && width === 320 && theme === 'light') ||
+      (mode === 'no-canvas' && width === 390 && theme === 'dark'),
+    'bounded Research fallback observation'
+  );
+  const names = manifest.components?.routes?.research?.assets;
+  assert.equal(names?.length, 1, 'declared Research fallback');
+  const name = names[0];
+  assert.equal(evidence?.kind, 'research-static-fallback');
+  for (const [key, expected] of Object.entries({ mode, width, theme }))
+    assert.equal(evidence[key], expected, 'Research fallback scenario ' + key);
+  assert.equal(evidence.resource?.file, name, 'Research fallback response identity');
+  assert.equal(evidence.resource.status, 200);
+  assert.equal(evidence.resource.sha256, manifest.files[name].sha256);
+  assert.equal(evidence.resource.bytes, manifest.files[name].raw);
+  assert.equal(evidence.resource.url, new URL(name, baseURL.replace(/\/$/, '') + '/').href);
+  require('./serve.cjs').assertContentType(name, evidence.resource.mime);
+  const geometry = evidence.geometry;
+  assert.equal(geometry?.page, 'research');
+  assert.equal(geometry.h1, 1);
+  assert.equal(
+    geometry.resourceURL,
+    new URL(name + '#research-fallback', baseURL.replace(/\/$/, '') + '/').href
+  );
+  assert.equal(geometry.viewBox, '0 0 1440 900');
+  assert.equal(geometry.preserveAspectRatio, 'xMidYMid slice');
+  assert.equal(geometry.useCount, 1);
+  assert.equal(geometry.visible, true);
+  assert.equal(geometry.viewport.width, width);
+  for (const key of ['x', 'y', 'width', 'height'])
+    assert.ok(Number.isFinite(geometry.box[key]), 'Research fallback geometry ' + key);
+  assert.ok(geometry.box.width > 0 && geometry.box.height > 0, 'unpainted Research use geometry');
+  if (mode === 'no-js') {
+    assert.equal(geometry.dataTheme, null, 'no-JS theme remains CSS-owned');
+    assert.equal(geometry.prefersDark, false, 'no-JS light color preference');
+  } else assert.equal(geometry.dataTheme, theme);
+  for (const key of ['paper', 'accent', 'systems'])
+    assert.ok(
+      typeof geometry.palette[key] === 'string' && geometry.palette[key].trim(),
+      'unobserved Research palette'
+    );
+  assert.equal(evidence.png?.file, `research-fallback-${mode}-${width}-${theme}.png`);
+  assert.match(evidence.png.sha256, /^[a-f0-9]{64}$/);
+  assert.ok(Number.isInteger(evidence.png.bytes) && evidence.png.bytes > 0);
+}
+
+async function observeResearchFallback(page, manifest, observations, scenario, baseURL) {
+  assert.ok(
+    (scenario.mode === 'no-js' && scenario.width === 320 && scenario.theme === 'light') ||
+      (scenario.mode === 'no-canvas' && scenario.width === 390 && scenario.theme === 'dark'),
+    'bounded Research fallback capture'
+  );
+  const name = manifest.components.routes.research.assets[0];
+  const resource = observations.get(name);
+  assert.ok(resource, 'unobserved Research SVG response');
+  const geometry = await page.evaluate(() => {
+    const svg = document.querySelector('svg.space-fallback');
+    const use = svg?.querySelector('use');
+    const box = use?.getBBox();
+    const rectangle = svg?.getBoundingClientRect();
+    const style = svg && getComputedStyle(svg);
+    const parent = svg?.parentElement && getComputedStyle(svg.parentElement);
+    const root = getComputedStyle(document.documentElement);
+    return {
+      page: document.body.dataset.page,
+      h1: document.querySelectorAll('h1').length,
+      href: use?.getAttribute('href'),
+      resourceURL: use && new URL(use.getAttribute('href'), document.baseURI).href,
+      documentURL: location.href,
+      viewBox: svg?.getAttribute('viewBox'),
+      preserveAspectRatio: svg?.getAttribute('preserveAspectRatio'),
+      useCount: svg?.querySelectorAll('use').length,
+      box: box && { x: box.x, y: box.y, width: box.width, height: box.height },
+      visible: Boolean(
+        style &&
+          parent &&
+          rectangle.width > 0 &&
+          rectangle.height > 0 &&
+          rectangle.right > 0 &&
+          rectangle.bottom > 0 &&
+          rectangle.left < innerWidth &&
+          rectangle.top < innerHeight &&
+          style.display !== 'none' &&
+          style.visibility === 'visible' &&
+          Number(style.opacity) > 0 &&
+          parent.display !== 'none' &&
+          parent.visibility === 'visible' &&
+          Number(parent.opacity) > 0
+      ),
+      viewport: { width: innerWidth, height: innerHeight },
+      dataTheme: document.documentElement.getAttribute('data-theme'),
+      prefersDark: matchMedia('(prefers-color-scheme: dark)').matches,
+      colorScheme: root.colorScheme,
+      palette: Object.fromEntries(
+        ['paper', 'accent', 'systems'].map((key) => [key, root.getPropertyValue('--' + key).trim()])
+      ),
+    };
+  });
+  const file = `research-fallback-${scenario.mode}-${scenario.width}-${scenario.theme}.png`;
+  const bytes = await page.screenshot();
+  fs.mkdirSync(out, { recursive: true });
+  fs.writeFileSync(path.join(out, file), bytes);
+  const evidence = {
+    kind: 'research-static-fallback',
+    ...scenario,
+    resource,
+    geometry,
+    png: { file, sha256: hash(bytes), bytes: bytes.length },
+  };
+  validateResearchFallback(evidence, manifest, { ...scenario, baseURL });
+  return evidence;
 }
 function requestFailure(request) {
   const observation = { url: null, method: null, resourceType: null, failure: null, timing: null };
@@ -477,6 +599,36 @@ function assertRenderedMode(observed, id, mode) {
     );
   }
 }
+async function researchScenarioFallback({
+  page,
+  manifest,
+  responseChecks,
+  responseObservations,
+  id,
+  mode,
+  width,
+  theme,
+  url,
+}) {
+  if (
+    id !== 'research' ||
+    mode !== 'no-canvas' ||
+    width !== 390 ||
+    !manifest.components?.routes?.research?.assets
+  )
+    return {};
+  await drainResponses(responseChecks);
+  return {
+    researchFallback: await observeResearchFallback(
+      page,
+      manifest,
+      responseObservations,
+      { mode, width, theme },
+      url
+    ),
+  };
+}
+
 async function scenario(browser, url, manifest, variant, width, mode, isolation = []) {
   const context = await qaIsolation.createContext(
       browser,
@@ -494,6 +646,7 @@ async function scenario(browser, url, manifest, variant, width, mode, isolation 
     analytics = [],
     responseChecks = [],
     checkedFiles = new Set(),
+    responseObservations = new Map(),
     rows = [];
   page.setDefaultTimeout(8000);
   await context.addInitScript((mode) => {
@@ -510,7 +663,7 @@ async function scenario(browser, url, manifest, variant, width, mode, isolation 
     const value = request.url();
     if (value.startsWith(url + '/')) {
       responseChecks.push(
-        verifyRequest(request, url, manifest, checkedFiles).catch((error) => {
+        verifyRequest(request, url, manifest, checkedFiles, responseObservations).catch((error) => {
           errors.push(error.message);
           if (error.requestFailure) requestFailures.push(error.requestFailure);
         })
@@ -587,12 +740,24 @@ async function scenario(browser, url, manifest, variant, width, mode, isolation 
         await drainResponses(responseChecks);
       }
       if (id === 'research') await researchControls(page, mode, width);
+      const researchFallbackEvidence = await researchScenarioFallback({
+        page,
+        manifest,
+        responseChecks,
+        responseObservations,
+        id,
+        mode,
+        width,
+        theme,
+        url,
+      });
       if (id === 'index' || id === 'research') await responseNames(page, id);
       rows.push({
         route: id,
         pass: true,
         state: observed,
         detail,
+        ...researchFallbackEvidence,
         checks: [
           'exact identity',
           'heading',
@@ -750,6 +915,9 @@ module.exports = {
   artifactFile,
   verifyResponse,
   verifyRequest,
+  observeResearchFallback,
+  validateResearchFallback,
+  drainResponses,
   requestFailure,
   failedScenario,
   closeScenarioContext,

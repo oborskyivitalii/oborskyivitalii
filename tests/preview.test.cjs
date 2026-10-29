@@ -138,7 +138,14 @@ test("fixed and interactive rewriters retain query/hash intent, including the of
 
 test('manifest records exact inputs/outputs and unknown source shapes fail visibly', () => {
   const manifest = JSON.parse(files['review/site-v1-static-previews-v11.json']);
-  assert.equal(Object.keys(manifest.sources).length, 13);
+  const resource = JSON.parse(fs.readFileSync(path.join(root, 'docs/site-revision.json'))).routes
+    .research.assets?.[0];
+  assert.equal(Object.keys(manifest.sources).length, 13 + (resource ? 1 : 0));
+  if (resource)
+    assert.equal(
+      manifest.sources['docs/' + resource],
+      digest(fs.readFileSync(path.join(root, 'docs', resource)))
+    );
   assert.equal(Object.keys(manifest.files).length, 16);
   for (const [file, hash] of Object.entries(manifest.sources))
     assert.equal(digest(fs.readFileSync(path.join(root, file))), hash);

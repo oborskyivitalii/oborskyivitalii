@@ -64,6 +64,7 @@ function inlineIcon(html, publicDirectory = path.join(root, 'docs')) {
 }
 
 function renderPage(source, css, page, theme, portrait, environment = offline.context()) {
+  source = offline.inlineFallback(source, environment, page);
   source = offline.documents(
     offline.articleLinks(sourceForPreview(source), environment),
     environment
@@ -134,6 +135,7 @@ function renderInteractive(
   payloads,
   environment = offline.context()
 ) {
+  source = offline.inlineFallback(source, environment, page);
   source = offline.documents(
     offline.articleLinks(sourceForPreview(source), environment),
     environment
@@ -196,6 +198,7 @@ function routePayloads(portrait, options = {}) {
         let source = sourceForPreview(
           fs.readFileSync(path.join(environment.publicDirectory, `${page}.html`), 'utf8')
         );
+        source = offline.inlineFallback(source, environment, page);
         // Route data is inert. Only the persistent document runs executable scripts.
         source = replaceStylesheet(source.replace(/<script src="[^"]+"[^>]*><\/script>/g, ''), '');
         source = offline.documents(offline.articleLinks(source, environment), environment);
@@ -229,7 +232,10 @@ function routePayloads(portrait, options = {}) {
       throw Error('Standalone article HTML byte budget');
     payload.revision.articles[environment.articleKey].sha256 = digest(payload.pages[key]);
   }
-  for (const page of pages) payload.revision.routes[page].sha256 = digest(payload.pages[page]);
+  for (const page of pages) {
+    delete payload.revision.routes[page].assets;
+    payload.revision.routes[page].sha256 = digest(payload.pages[page]);
+  }
   return payload;
 }
 
@@ -441,6 +447,10 @@ function buildPreviews() {
     const sourcePath = `docs/${page}.html`;
     const source = fs.readFileSync(path.join(root, sourcePath), 'utf8');
     sources[sourcePath] = digest(source);
+    for (const name of environment.revision.routes[page].assets || [])
+      sources['docs/' + name] = digest(
+        fs.readFileSync(path.join(environment.publicDirectory, name))
+      );
     for (const theme of Object.keys(themes)) {
       files[`review/${filename(page, theme)}`] = renderPage(
         source,

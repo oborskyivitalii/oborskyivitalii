@@ -823,15 +823,36 @@ test('the ordinary Writing collection accepts undated multi-author local edition
   );
 });
 
-test('page IDs, ARIA targets, local resources and fragments resolve without draft leakage', () => {
+function localTargetIds(html, name) {
+  const values = [...html.matchAll(/\bid="([^"]+)"/g)].map((m) => m[1]);
+  assert.equal(values.length, new Set(values).size, name);
+  return new Set(values);
+}
+
+function assertLocalPageReferences(documents, revision, readResource) {
   const ids = new Map(
-    Object.entries(pages).map(([name, html]) => {
-      const values = [...html.matchAll(/\bid="([^"]+)"/g)].map((m) => m[1]);
-      assert.equal(values.length, new Set(values).size, name);
-      return [name + '.html', new Set(values)];
-    })
+    Object.entries(documents).map(([name, html]) => [name + '.html', localTargetIds(html, name)])
   );
-  for (const [name, html] of Object.entries(pages)) {
+  const resources = [];
+  for (const [name, html] of Object.entries(documents)) {
+    const svg = html.match(/<svg class="space-fallback"[\s\S]*?<\/svg>/)?.[0];
+    assert.ok(svg, name + ' has its canonical fallback');
+    let resourceBytes;
+    const resource = require('../tools/site/fallback.cjs').resolveRouteResource(
+      svg,
+      name,
+      revision.routes[name].assets,
+      (target) => {
+        resourceBytes = readResource(target);
+        return resourceBytes;
+      }
+    );
+    if (!resource) continue;
+    assert.ok(!ids.has(resource.name), 'duplicate local resource target');
+    ids.set(resource.name, localTargetIds(resourceBytes.toString('utf8'), resource.name));
+    resources.push(resource.name);
+  }
+  for (const [name, html] of Object.entries(documents)) {
     for (const [, values] of html.matchAll(/aria-(?:labelledby|describedby)="([^"]+)"/g)) {
       for (const id of values.split(/\s+/)) assert.ok(ids.get(name + '.html').has(id), id);
     }
@@ -845,6 +866,43 @@ test('page IDs, ARIA targets, local resources and fragments resolve without draf
       assert.ok(fs.existsSync(absolute), value);
       if (fragment) assert.ok(ids.get(target)?.has(fragment), value);
     }
+  }
+  return resources;
+}
+
+test('page IDs, ARIA targets, local resources and fragments resolve without draft leakage', () => {
+  const revision = JSON.parse(fs.readFileSync(path.join(root, 'site-revision.json')));
+  const readResource = (target) => fs.readFileSync(path.join(root, target));
+  const resources = assertLocalPageReferences(pages, revision, readResource);
+  if (resources.length) {
+    assert.equal(resources.length, 1, 'one active Research resource');
+    assert.deepEqual(resources, revision.routes.research.assets);
+    const [namespace, digest, filename] = resources[0].split('/');
+    assert.equal(namespace, 'article-media');
+    assert.deepEqual(fs.readdirSync(path.join(root, namespace)), [digest]);
+    assert.deepEqual(fs.readdirSync(path.join(root, namespace, digest)), [filename]);
+    assert.throws(
+      () =>
+        assertLocalPageReferences(
+          { ...pages, index: pages.index + `<a href="${resources[0]}#missing-fragment">x</a>` },
+          revision,
+          readResource
+        ),
+      /missing-fragment/
+    );
+    const undeclared = structuredClone(revision);
+    delete undeclared.routes.research.assets;
+    assert.throws(
+      () => assertLocalPageReferences(pages, undeclared, readResource),
+      /Undeclared room fallback resource/
+    );
+    assert.throws(
+      () =>
+        assertLocalPageReferences(pages, revision, (target) =>
+          Buffer.concat([readResource(target), Buffer.from('\n')])
+        ),
+      /fallback resource identity differs/
+    );
   }
   const expected = [
     '.nojekyll',
@@ -864,8 +922,8 @@ test('page IDs, ARIA targets, local resources and fragments resolve without draf
     'talks.html',
     'theme.js',
     'writing.html',
-  ];
-  assert.deepEqual(fs.readdirSync(root).sort(), expected);
+  ].concat(resources.length ? ['article-media'] : []);
+  assert.deepEqual(fs.readdirSync(root).sort(), expected.sort());
   const { mediaFiles } = require('../tools/site/snapshot.cjs');
   assert.deepEqual(
     JSON.parse(fs.readFileSync(path.join(root, 'site-revision.json'))).mediaFiles,
@@ -891,7 +949,11 @@ test('Home provides the agreed reader path, precise public actions and a real co
     'about',
     'contact',
   ]);
-  assert.match(home, /<h1 id="author-name">AI tools everywhere\./);
+  // Exact copy is owned by the SEO amendment; retain the single reader landmark.
+  const headings = [...home.matchAll(/<h1\b[^>]*>[\s\S]*?<\/h1>/g)];
+  assert.equal(headings.length, 1);
+  assert.match(headings[0][0], /<h1 id="author-name">[^<]/);
+  assert.notEqual(headings[0][0].replace(/<[^>]+>/g, '').trim(), '');
   assert.ok(
     home.includes(
       'Vitalii Oborskyi · Enterprise delivery leader &amp; independent research author.'
@@ -930,12 +992,12 @@ test('Home provides the agreed reader path, precise public actions and a real co
     /href="#"|Trusted by|CPC|RankSpot|4400|4,400|established consultancy|consulting firm|service packages|guaranteed outcomes/
   );
   for (const text of [
-    'human understanding, verification and ownership',
-    'human roles, evidence, decision authority and corrective action',
-    'hypotheses to test in context',
-    'Much remains to develop and test',
+    'generation, understanding, verification and ownership',
+    'human roles, decision authority, evidence and corrective action',
+    'those responses need testing in each setting',
+    'proposals to develop and test, not a production assurance standard',
     'Examples of work, depending on the role, organization and agreed scope',
-    'Research, publications, talks and practical engineering experiments.',
+    'Enterprise delivery experience, independent research, published articles and talks.',
   ])
     assert.ok(home.includes(text), text);
   for (const page of Object.values(pages))

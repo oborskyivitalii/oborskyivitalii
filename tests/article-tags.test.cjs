@@ -264,6 +264,8 @@ test('tag-only content generation changes the index while old HTML, readers and 
   const saved = Object.fromEntries(
     Object.keys(before.files).map((name) => [name, fs.readFileSync(path.join(output, name))])
   );
+  const researchAssets = JSON.parse(saved['site-revision.json']).routes.research.assets;
+  assert.equal(researchAssets.length, 1);
   const forged = JSON.parse(saved['publication-index.json']);
   forged.articles[0].title = 'A substituted publication title';
   fs.writeFileSync(path.join(output, 'publication-index.json'), JSON.stringify(forged));
@@ -301,6 +303,14 @@ test('tag-only content generation changes the index while old HTML, readers and 
     (name) => !saved[name]?.equals(fs.readFileSync(path.join(output, name)))
   );
   assert.deepEqual(changed, ['publication-index.json']);
+  const revision = require('../tools/site/snapshot.cjs').verify(output, artifact.manifest(output));
+  assert.deepEqual(revision.routes.research.assets, researchAssets);
+  for (const name of researchAssets)
+    assert.deepEqual(
+      fs.readFileSync(path.join(output, name)),
+      saved[name],
+      'content-only Research resource'
+    );
   assert.notDeepEqual(
     api.related(
       JSON.parse(saved['publication-index.json']),

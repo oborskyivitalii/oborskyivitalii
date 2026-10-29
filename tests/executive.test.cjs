@@ -4,6 +4,249 @@ const test = require('node:test'),
   fs = require('node:fs');
 const { normalizeHTML } = require('../tools/check_site_seo.cjs');
 const readHTML = (file) => normalizeHTML(fs.readFileSync(file, 'utf8'));
+function issue159CopyFixture(t, names) {
+  const path = require('node:path');
+  const directory = fs.mkdtempSync(path.join(require('node:os').tmpdir(), 'issue159-seo-'));
+  t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
+  for (const name of names) {
+    const target = path.join(directory, name);
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.copyFileSync(path.join(__dirname, '..', name), target);
+  }
+  return directory;
+}
+test('Research carrier reconstructs the accepted scene and rejects unknown producer or geometry identities', (t) => {
+  const path = require('node:path');
+  const seo = require('../tools/check_site_seo.cjs');
+  const record = require('../review/issue-159/content-amendment.json').researchCarrier;
+  assert.equal(seo.verifyResearchCarrier().resource, record.resource);
+  const directory = issue159CopyFixture(t, Object.keys(record.producerChanges));
+  for (const name of Object.keys(record.producerChanges)) {
+    const file = path.join(directory, name);
+    const before = fs.readFileSync(file);
+    fs.appendFileSync(file, '\n// Unreviewed carrier producer.\n');
+    assert.throws(() => seo.verifyResearchCarrier(directory), /Research carrier producer bytes/);
+    fs.writeFileSync(file, before);
+  }
+  const root = path.resolve(__dirname, '..');
+  const changedPredecessor = structuredClone(record);
+  changedPredecessor.producerChanges[Object.keys(record.producerChanges)[0]].beforeSHA256 =
+    '0'.repeat(64);
+  assert.throws(
+    () => seo.verifyResearchCarrier(root, changedPredecessor),
+    /Research predecessor producer bytes/
+  );
+  assert.throws(
+    () => seo.verifyResearchCarrier(root, { ...record, acceptedSvgSHA256: '0'.repeat(64) }),
+    /accepted Research geometry/
+  );
+  assert.throws(
+    () =>
+      seo.verifyResearchCarrier(root, {
+        ...record,
+        resource: record.resource.replace('research-fallback', 'writing-fallback'),
+      }),
+    /Research carrier identity/
+  );
+});
+
+test('issue159 reading paths reject invalid inventories, references and ambiguous context', () => {
+  const { validateCatalog } = require('../tools/site/validate-catalog.cjs');
+  const original = require('../tools/site/content.cjs').catalog(
+    require('node:path').resolve(__dirname, '..')
+  );
+  const changes = [
+    (c) => (c.archive.readingPaths = null),
+    (c) => (c.archive.readingPaths = []),
+    (c) => (c.archive.readingPaths.unknown = c.archive.readingPaths.delivery),
+    (c) => (c.archive.readingPaths.delivery = null),
+    (c) => (c.archive.readingPaths.delivery = c.archive.readingPaths.delivery.slice(0, 1)),
+    (c) =>
+      (c.archive.readingPaths.delivery = c.archive.readingPaths.delivery.concat(
+        c.archive.readingPaths.delivery
+      )),
+    (c) => delete c.archive.readingPaths.delivery[0].record,
+    (c) => (c.archive.readingPaths.delivery[0].record = 'publication-missing'),
+    (c) => (c.archive.readingPaths.delivery[0].record = 'publication-05'),
+    (c) => (c.archive.readingPaths.delivery[1].record = c.archive.readingPaths.delivery[0].record),
+    (c) => (c.archive.readingPaths.delivery[0].url = 'https://example.test/second-source'),
+    (c) => delete c.archive.readingPaths.delivery[0].when,
+    ...[null, [], ' ', '\u0000', '{{PUBLICATION:publication-02:archive}}', 'x'.repeat(1001)].map(
+      (when) => (c) => (c.archive.readingPaths.delivery[0].when = when)
+    ),
+  ];
+  for (const change of changes) {
+    const candidate = structuredClone(original);
+    change(candidate);
+    assert.notDeepEqual(candidate, original, 'negative changes the actual catalog');
+    assert.throws(() => validateCatalog(candidate), /reading path|archive configuration/);
+  }
+  const without = structuredClone(original);
+  delete without.archive.readingPaths;
+  assert.doesNotThrow(() => validateCatalog(without), 'curation remains optional');
+  const three = structuredClone(original);
+  const next = Object.keys(three.records).find(
+    (id) =>
+      three.records[id].presentation.topic === 'delivery' &&
+      !three.archive.readingPaths.delivery.some((selection) => selection.record === id)
+  );
+  assert.ok(next, 'a distinct existing record exercises the upper accepted bound');
+  three.archive.readingPaths.delivery.push({
+    record: next,
+    when: 'An additional existing source.',
+  });
+  assert.doesNotThrow(() => validateCatalog(three));
+});
+test('issue159 reading recommendations derive escaped editions without becoming archive records', () => {
+  const path = require('node:path');
+  const content = require('../tools/site/content.cjs');
+  const { validateCatalog, catalogCounts } = require('../tools/site/validate-catalog.cjs');
+  const root = path.resolve(__dirname, '..');
+  const original = content.catalog(root);
+  const candidate = structuredClone(original);
+  const selection = candidate.archive.readingPaths.delivery[0];
+  const record = candidate.records[selection.record];
+  const oldURL = record.edition.url;
+  record.edition.url = 'https://example.test/reading?q=a&b=%22safe%22';
+  record.edition.name = 'A <reading> & "source"';
+  record.edition.datePublished = '2024-02-29';
+  record.edition.inLanguage = 'uk';
+  selection.when = 'Use <policy> & "bounds".';
+  validateCatalog(candidate);
+  const route = require('../site/routes.json').routes.find((row) => row.id === 'writing');
+  const rendered = content.routeInput(root, route, candidate);
+  const html = normalizeHTML(rendered.main);
+  const recommendations = [...html.matchAll(/<p class="reading-recommendation">([\s\S]*?)<\/p>/g)];
+  assert.equal(recommendations.length, Object.values(candidate.archive.readingPaths).flat().length);
+  const selected = recommendations[0][1];
+  assert.ok(selected.includes('href="https://example.test/reading?q=a&amp;b=%22safe%22"'));
+  assert.ok(selected.includes('A &lt;reading&gt; &amp; "source"'));
+  assert.ok(selected.includes(candidate.labels['language.uk'] + ' · 29 Feb 2024'));
+  assert.ok(selected.includes('Use &lt;policy&gt; &amp; "bounds".'));
+  assert.ok(!selected.includes(oldURL), 'the catalog replaces the old edition destination');
+  assert.doesNotMatch(selected, /<policy>|<reading>|class="publication"/);
+  assert.ok(
+    Object.hasOwn(rendered.records, selection.record),
+    'selected work remains a declared dependency'
+  );
+  const counts = catalogCounts(candidate);
+  assert.equal(counts.primary.total, catalogCounts(original).primary.total);
+  assert.equal(counts.linked.total, catalogCounts(original).linked.total);
+  assert.equal((html.match(/<li class="publication"/g) || []).length, counts.primary.total);
+  assert.equal(rendered.schema.mainEntity.numberOfItems, counts.primary.total);
+  assert.equal(rendered.schema.mainEntity.itemListElement.length, counts.primary.total);
+  const omitted = structuredClone(candidate);
+  delete omitted.archive.readingPaths;
+  const plain = content.routeInput(root, route, omitted);
+  assert.doesNotMatch(plain.main, /class="reading-recommendation"/);
+  assert.deepEqual(plain.schema.mainEntity, rendered.schema.mainEntity);
+});
+test('issue159 exact copy reversal retains immutable predecessors and unrelated drift', () => {
+  const path = require('node:path');
+  const cp = require('node:child_process');
+  const crypto = require('node:crypto');
+  const seo = require('../tools/check_site_seo.cjs');
+  const amendment = require('../review/issue-159/content-amendment.json');
+  assert.equal(amendment.baseline, 'af8a7b38d08f49c06e9257234a5ec458363a6275');
+  const base = new Map();
+  for (const change of amendment.changes) {
+    if (!base.has(change.page))
+      base.set(
+        change.page,
+        normalizeHTML(
+          cp.execFileSync('git', ['show', amendment.baseline + ':docs/' + change.page + '.html'], {
+            cwd: path.resolve(__dirname, '..'),
+            encoding: 'utf8',
+            maxBuffer: 1024 * 1024,
+          })
+        )
+      );
+    const before = normalizeHTML(change.before);
+    const after = normalizeHTML(change.after);
+    assert.ok(
+      base.get(change.page).includes(before),
+      'before fragment comes from the immutable base'
+    );
+    for (const version of ['before', 'after'])
+      assert.equal(
+        crypto.createHash('sha256').update(change[version]).digest('hex'),
+        change[version + 'SHA256']
+      );
+    const record = { changes: [change] };
+    assert.equal(seo.restoreContentAmendment(after, change.page, record), before);
+    const outside = '<a href="https://example.test/unapproved">Unapproved claim</a>';
+    assert.equal(
+      seo.restoreContentAmendment(after + outside, change.page, record),
+      before + outside
+    );
+    const wrong = after.replace('>', ' data-unreviewed="true">');
+    assert.notEqual(wrong, after, 'the actual approved owner is changed');
+    assert.notEqual(seo.restoreContentAmendment(wrong, change.page, record), before);
+    const corrupt = structuredClone(record);
+    corrupt.changes[0].after += ' unreviewed';
+    assert.throws(
+      () => seo.restoreContentAmendment(after, change.page, corrupt),
+      /snapshot integrity/
+    );
+  }
+  const credits = readHTML(path.join(__dirname, '../docs/credits.html'));
+  assert.equal(seo.restoreContentAmendment(credits, 'credits', amendment), credits);
+});
+test('issue159 successor producer pins retain their prior inventory and reject changed current bytes', (t) => {
+  const path = require('node:path');
+  const seo = require('../tools/check_site_seo.cjs');
+  const amendment = require('../review/issue-159/content-amendment.json');
+  const writing = require('../review/issue-5/writing-catalog-amendment.json');
+  const home = require('../review/issue-122/2026-10-27-home-content-frame.json');
+  const names = [
+    ...new Set([
+      ...Object.keys(writing.producerInputs),
+      ...Object.keys(home.producerInputs),
+      'site/templates/components/archive-reading-link.html',
+    ]),
+  ];
+  const directory = issue159CopyFixture(t, names);
+  assert.doesNotThrow(() => seo.verifyWritingProducers(directory));
+  assert.doesNotThrow(() => seo.verifyHomeProducers(directory));
+  for (const [name, successor] of Object.entries(amendment.producerChanges)) {
+    assert.equal(successor.beforeSHA256, writing.producerInputs[name] || null);
+    const target = path.join(directory, name);
+    const original = fs.readFileSync(target);
+    fs.appendFileSync(target, '\nUnreviewed producer\n');
+    assert.throws(() => seo.verifyWritingProducers(directory), /producer changed/);
+    if (Object.hasOwn(home.producerInputs, name))
+      assert.throws(() => seo.verifyHomeProducers(directory), /Home producer changed/);
+    fs.writeFileSync(target, original);
+  }
+  const forged = structuredClone(writing.producerInputs);
+  forged['tools/site/render-records.cjs'] =
+    amendment.producerChanges['tools/site/render-records.cjs'].afterSHA256;
+  assert.throws(() => seo.verifyWritingProducers(directory, forged), /Exact prior producer pin/);
+  const added = path.join(directory, 'site/templates/components/archive-reading-link.html');
+  fs.unlinkSync(added);
+  assert.throws(() => seo.verifyWritingProducers(directory), /ENOENT/);
+});
+test('issue159 CSS refuses relocation of the same exact reviewed block', (t) => {
+  const path = require('node:path');
+  const seo = require('../tools/check_site_seo.cjs');
+  const { block } = require('../review/issue-159/content-amendment.json').styles;
+  const names = ['site/engine/styles.css', 'docs/styles.css'];
+  const directory = issue159CopyFixture(t, names);
+  assert.doesNotThrow(() => seo.verifyApprovedLicensingCSS(directory));
+  for (const name of names) {
+    const target = path.join(directory, name);
+    const original = fs.readFileSync(target, 'utf8');
+    assert.equal(original.split(block).length, 2);
+    const without = original.replace(block, '');
+    for (const changed of [block + without, without.replace(':root {', ':root {' + block)]) {
+      assert.notEqual(changed, original, 'same bytes occupy a different CSS location');
+      assert.equal(changed.split(block).length, 2, 'the exact approved block remains present once');
+      fs.writeFileSync(target, changed);
+      assert.throws(() => seo.verifyApprovedLicensingCSS(directory), /exact reviewed successor/);
+      fs.writeFileSync(target, original);
+    }
+  }
+});
 test('normalization cache keeps recent exact inputs within entry and UTF-8 bounds without caching failures', () => {
   const { createHTMLNormalizer } = require('../tools/check_site_seo.cjs');
   let calls = 0;

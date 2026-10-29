@@ -5,27 +5,39 @@ const fs = require('node:fs'),
 const budgets = require('./budgets.json'),
   root = path.resolve(__dirname, '../..');
 const { digest, entries, manifest } = require('../site/public-artifact.cjs');
+function routeSizeAssets(files, route, resources = []) {
+  return [
+    'styles.css',
+    'theme.js',
+    'space.js',
+    'archive.js',
+    'navigation.js',
+    'assets/favicon.svg',
+    ...(files['publication-index.json'] ? ['publication-index.json'] : []),
+    ...(route === 'index' ? ['assets/vitalii-oborskyi-cutout.webp'] : []),
+    ...resources,
+  ];
+}
 function checkSize(dir) {
   const m = manifest(dir),
     rows = [];
+  const revision = JSON.parse(fs.readFileSync(path.join(dir, 'site-revision.json'), 'utf8'));
   for (const route of budgets.routes) {
     const file = route + '.html',
       html = fs.readFileSync(path.join(dir, file), 'utf8'),
       svg = html.match(/<svg class="space-fallback"[\s\S]*?<\/svg>/)?.[0];
     if (!svg) throw Error('Missing static fallback ' + route);
-    const nodes = (svg.match(/<[a-z][\w-]*(?:\s|>)/gi) || []).length;
+    let nodes = (svg.match(/<[a-z][\w-]*(?:\s|>)/gi) || []).length;
+    const fallback = require('../site/fallback.cjs').resolveRouteResource(
+      svg,
+      route,
+      revision.routes?.[route]?.assets,
+      (name) => fs.readFileSync(path.join(dir, name))
+    );
+    if (fallback) nodes += 1 + (fallback.content.match(/<[a-z][\w-]*(?:\s|>)/gi) || []).length;
     if (m.files[file].raw > budgets.htmlRawBytes || nodes > budgets.svgElements)
       throw Error('Size budget ' + route);
-    const assets = [
-      'styles.css',
-      'theme.js',
-      'space.js',
-      'archive.js',
-      'navigation.js',
-      'assets/favicon.svg',
-      ...(m.files['publication-index.json'] ? ['publication-index.json'] : []),
-      ...(route === 'index' ? ['assets/vitalii-oborskyi-cutout.webp'] : []),
-    ];
+    const assets = routeSizeAssets(m.files, route, revision.routes?.[route]?.assets);
     const transfer = m.files[file].gzip + assets.reduce((n, f) => n + m.files[f].gzip, 0);
     if (transfer > budgets.routeGzipBytes) throw Error('Route transfer ' + route);
     rows.push({
@@ -33,6 +45,7 @@ function checkSize(dir) {
       ...m.files[file],
       svgNodes: nodes,
       totalGzipBytes: transfer,
+      ...(fallback ? { assets, fallbackResource: fallback.name } : {}),
     });
   }
   for (const [file, info] of Object.entries(m.files)) {
@@ -40,7 +53,6 @@ function checkSize(dir) {
     if (!file.endsWith('.html') && info.raw > budgets.assetRawBytes)
       throw Error('Asset size ' + file);
   }
-  const revision = JSON.parse(fs.readFileSync(path.join(dir, 'site-revision.json'), 'utf8'));
   const articleRows = Object.entries(revision.articles || {}).map(([key, descriptor]) => {
     const html = fs.readFileSync(path.join(dir, descriptor.alias), 'utf8');
     const downloads = require('../site/snapshot.cjs').downloads(descriptor, html, (name) =>
@@ -88,6 +100,51 @@ function checkSize(dir) {
     };
   });
   return { schema: 1, kind: 'sizes', pass: true, ...m, rows, articleRows };
+}
+
+function validateRouteSizes(sizes, record) {
+  const assert = require('node:assert/strict');
+  assert.deepEqual(
+    sizes.rows.map((row) => row.route),
+    budgets.routes,
+    'exact route size inventory'
+  );
+  for (const row of sizes.rows) {
+    const file = record.files[row.route + '.html'];
+    for (const key of ['sha256', 'raw', 'gzip'])
+      assert.equal(row[key], file[key], 'wrong-source route size ' + row.route);
+    const declared = record.components?.routes?.[row.route]?.assets;
+    const resources = declared === undefined ? [] : declared;
+    assert.ok(Array.isArray(resources) && resources.length <= 1, 'finite route resources');
+    if (resources.length) {
+      assert.equal(row.route, 'research', 'unsupported route size resource');
+      assert.match(resources[0], /^article-media\/[a-f0-9]{64}\/research-fallback\.svg$/);
+      assert.equal(
+        record.files[resources[0]]?.sha256,
+        resources[0].split('/')[1],
+        'route resource size identity'
+      );
+    }
+    const assets = routeSizeAssets(record.files, row.route, resources);
+    if (resources.length) {
+      assert.deepEqual(row.assets, assets, 'route size resource closure differs');
+      assert.equal(row.fallbackResource, resources[0], 'missing route fallback size evidence');
+    } else {
+      assert.equal(row.assets, undefined, 'undeclared route size resources');
+      assert.equal(row.fallbackResource, undefined, 'undeclared route fallback evidence');
+    }
+    const transfer =
+      file.gzip +
+      assets.reduce((sum, name) => {
+        assert.ok(record.files[name], 'missing route size dependency ' + name);
+        return sum + record.files[name].gzip;
+      }, 0);
+    assert.equal(row.totalGzipBytes, transfer, 'incomplete route transfer accounting');
+    assert.ok(
+      Number.isInteger(row.svgNodes) && row.svgNodes > 0 && row.svgNodes <= budgets.svgElements
+    );
+    assert.ok(row.raw <= budgets.htmlRawBytes && transfer <= budgets.routeGzipBytes);
+  }
 }
 
 function validateArticleSizes(sizes, record) {
@@ -501,6 +558,7 @@ if (require.main === module) {
 module.exports = {
   manifest,
   checkSize,
+  validateRouteSizes,
   validateArticleSizes,
   previewSelection,
   build,

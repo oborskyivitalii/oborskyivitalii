@@ -4,59 +4,86 @@ Dated continuity, not live authority. Last verified: **2026-10-29**.
 
 ## Snapshot
 
-- Owner159 retains original AC01–18 and consolidated analytics/SEO scope.
-  Mainaf8a7b38 includes mergedPR161. Productionc68db162 remains immutable
-  prod-2026-10-28.1; PR160/P1 analytics is delivered and observed.
-- PR164 accepted SEO/brief candidate945aaa5 is parked Draft after the owner-stage
-  controller compatibility refusal. No article/guide publication.
-- Current prerequisite work/issue159-runtime-preregistration starts frommainaf8.
-  Only the exact prospective family, six proven checksum records and guard tests
-  change; current public/runtime/site source bytes remain unchanged.
+- Owner159, active DraftPR164. Remotehead9bfb3c99/treeff6292f0;
+  protectedmain2072b76e, protectedproductionc68db162/prod-2026-10-28.1.
+- Local seo159 branchwork/issue159-seo-delivery contains meaningful dirty
+  Research carrier/catalog correction frozen9bfb; dirty bounded15-failure correction.
+- Canonical review: review/issue-159/2026-10-28-seo-implementation.md,
+  dated Research critical-document correction. Revalidate actual refs/CI.
 
 ## Decisions
 
-- On29October the owner accepted copy/source/rights, declined recruiting a first
-  reader and instructed production. PR164 comment6493352483 records AC09.1/.2
-  as explicitly waived/not executed, not human evidence.
-- Same159 owner; one actively implemented increment while dependentPR164 is parked.
-  Preserve original AC IDs/history and source/review/control/release gates.
-- Follow finite preregistration precedent PR151 beforePR150. Preserve privileged
-  publisher checkout, unknown-runtime guard, workflows, protections, budgets and
-  accepted SEO copy/visuals.
+- Owner29October accepts exact current copy/source/rights, declines external
+  first reader and authorizes production. PR164comment6493352483 persists it.
+- AC09.1/.2 explicitly waived/not executed and unchecked; only their dependent
+  human gates waived. Final44 applicable accepted needs actual delivery/live.
+- Same issue/PR, original AC IDs, original budgets, existing publisher/controller.
+  No article/guide publication or schedules. Two-brief handoff11comment6493407716.
+- All four distinct roles accepted bounded Research-only carrier hypothesis.
+  Copy/vectors/CSS/five runtime bytes stay exact accepted6b; no timing claim.
 
 ## Open work
 
-- Actual945 Ready40852148895 passed76modules/1168tests; RI40852148799 and policy
-  40852148711 passed9/9. Browser smoke passed; initial admission correctly refused
-  missing owner staging. Label40771299127 remains evidence-only without promotion.
-- Ownerstage40852961061 built26/26, source1151/1151 and Python140/140, then
-  protected-main publish123380537027 refused unknown Color runtime before upload.
-  Package12888248170 ZIP verified. No production change or blind retry.
-  Diagnosis/sequence: PR164 comment6493735515; versioned report
-  review/issue-159/2026-10-29-runtime-preregistration.md.
-- Actual four roles reused: p2_requirements, p2_code, p2_whitebox, p2_operator.
-  Prepared/local, native/source and release observations stay distinct.
-- Two briefs handed to11 in comment6493407716; PMDay-first2/5 remains.
-  Issue159 retains15 historical checked lines until final release reconciliation.
-  Intended final44accepted plus2waived requires all remaining applicable evidence.
+- PR166 preregistration delivered:97eb1504/tree91d1873e native75/1153,
+  policy9/9, ownerstage40858230483all12mandatory, App40861253589 passed.
+  Protected squash2072 has identical tree/soleparentaf8; postmerge40861722899
+  andRI40861721307 passed. Do not redo this prerequisite.
+- Current6b policy40864548226passed9/9; Ready40865079583passed75/1160.
+  Ownerstage40866083938 published under2072 but FAILED ResearchLCP2589.6795
+  against2500; Writing2338.912passed. No promotion/admission; oldfailure retained.
+- Rawtrace replay/counterfactual retained: nonCPU preload wait cause unknown.
+  Document-transfer hypothesis models150ms gain, not acceptance. Full newroute
+  gzip100081 includes9940SVG; HTML22555raw/7043gzip;89instantiatednodes.
+- Local browser diagnostic stopped firstlaunch socketEPERM:zero measurements,
+  requests/PNGs; no security changes or retry. CUA priorpartial/blank transition
+  followedcorrectarrival stays unexplained, not fixed by inference.
+- Local source core26/26; first8groups125/151failed26; corrected151/156failed5.
+  Exact publisherdependencies, regenerateddocs/coherentfixtures, pinnedPillow13/
+  WebP1.6 environment and five inactive untracked snapshots treatment recorded.
+  Latest five modules102/102 then correction111/111zeroomit; Basic/SEO/fallback passed.
+- Requirements predecessor finding resolved: finite six producer beforepins and
+  acceptedSVG now proven from trusted immutable2072, byte-identicalto6b.
+  Native newsourceperformance/twoPNG/wholechecks and finalmetadata reviews pending.
+- Three new lintcomplexitywarnings blocked despiteexit0; coherentResearchhelpers
+  extracted. Final3files0errors/0warnings, three roles independentlyaccept.
+  Intermediate1warning preserved; thresholds/exceptionlist unchanged.
+
+- Frozen788 actual package passed pristine2072;32public/36package files. Native
+  policy40887047473 FAILED8/9: CATALOG45tests44pass1fail, AC04/06affected.
+  Existing content.test IDs coveredHTMLonly, rejectedactualdeclaredSVGfragment;
+  rootinventoryalsoomitsarticle-media. Correction45/45zeroomit andlint0/0passed;
+  Requirements/Codepreflightacceptednarrow
+  strictresolver+actualSVGIDs+finiteinventory/negative correction. Ready STOPPED.
+
+- Current9bfb manual/auto policy9/9 andnativeRI29/29passed. Ready40890325094
+  completed79modules1193tests1178pass15fail0omit176799msunder300s; allsource
+  casescompleted. Preview40890324477controller45/41/4failedbeforepublish/browser.
+- All15diagnosed across6existingowners; realcalculatorAPI restored, other
+  fixtureclosure/transfer/MIME/dependencyoracles corrected. Sharedfunctional
+  proofsexplicitlysynthetic;24+2missing/tampernegatives preserved. PRDraft.
+- Boundedcorrection8modules160/160zeroomit75883ms; all15oldfailednamesnowpass
+  once. NinechangedCJS lint0/0; canonicalgeneration--checkpass. Finalmetadata
+  reviews/freeze/newnativepending. No1193nativepassoractualPNG/LCPclaim.
 
 ## Next session
 
-1. Revalidate main/production,159, both dependent PRs and source/check identities.
-2. Finish prerequisite proof/reviews/Basic/policy/RI; freeze and deliver via normal
-   Ready, owner stage, exact-head App admission and protected merge/postmerge.
-3. Refresh parkedPR164 on accepted main, preserve reviewed content, re-review/check
-   exact source, then complete its own owner staging/admission/merge.
-4. Freeze its production edition/rights, publish under existing owner authorization
-   and verify actual live SEO plus analytics/isolation.
-5. Reconcile159 and concrete equal28day GSC learning windows; later4/8week manual
-   observations do not block closure and are not scheduled.
+1. Finish bounded15-failure correction after full79-module Ready failure. API
+   checkSize retains articles-only/inline compatibility; undeclared use refuses.
+2. Verify six failed modules plus staging-regression/site-engine; all4actual
+   source/metadata reviews, RI-CI/format thenRIbuildlast. No productbytechange.
+3. Meaningful newsourcefreeze Refs159, nativefrozenpolicy/Ready(fullRI/source),
+   ownownerstage/actual2PNGs/LCP/stableadmission; preserveoldfailedruns.
+4. ExactheadApp/protectedsquash/postmerge, frozenproduction/newrights/archive,
+   publishunderexistingauthority, actualliveoperator/provider/screenshot.
+5. Reconcile44applicable+2waivedunchecked; original46lines thenclose159.
 
 ## Maintenance
 
-- Preserve original native/source/setup failures at actual identities.
-  Interrupted local945 full run has no accounting; keep it stopped.
-- No receipt-only source commits after freeze. Logs stay outside checkout.
-- Unrelated PRs/repos/private correspondence/tasks stay separate.
-- Five sections/120line cap; stage owned paths, refresh RI-CI, format map, build RI
-  last and verify. Never invent physical-device or human observations.
+- Preserve all original failures; no unchangedfailedcampaign/old945suite retry.
+- Local source tools need SITE_AUDIT_TOOLS existingrepo pinnedtoolchain and
+  SITE_MEDIA_PYTHON scratchp2-media-pinned-env/venv/bin/python. No pin change.
+- Checkpoint evidence/p2-delivery-state.json outsidecheckout records run/rawstate;
+  remote6b is not current dirtyprototype. Dynamic receipts stay PRcomments.
+- Existing1626 checksumrows/order preserved;19 proved exact carrier records appended,
+  dated compressed proof retained; all otherledgers/scanners unchanged.
+- Stage new/deleted paths beforeRI-CI; keep five sections/120lines and RI fresh.

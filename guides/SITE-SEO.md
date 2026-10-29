@@ -16,6 +16,19 @@ and the five-page outer comparison remain protected. See the
 Source/render consistency does not establish claim accuracy, editorial approval
 or production publication. The owning issue/PR retains those decisions.
 
+## Issue159 candidate — 2026-10-28
+
+The current #159 candidate adds explicit delivery/control reader paths and three
+curated Writing topic selections from the existing catalog. The exact
+[successor amendment](../review/issue-159/content-amendment.json) retains all old
+snapshots and the immutable five-page comparison. Home still proves its entire
+current body before reconstruction; Writing proves current catalog regions and
+metadata before reversing the scoped copy changes. Only the declared producer
+pin successors and one exact reading-path CSS block extend those reviewed owners.
+The [implementation record](../review/issue-159/2026-10-28-seo-implementation.md)
+tracks actual checks and remaining human/editorial/rights and release gates.
+A reviewed draft or green check does not establish publication or search impact.
+
 ## Production preservation audit — 2026-10-15
 
 [PR40's launch issue audit](../review/issue-39/2026-10-15-release-issue-audit.md)

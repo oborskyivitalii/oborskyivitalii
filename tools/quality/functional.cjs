@@ -629,7 +629,7 @@ async function failure(page, mode) {
   assert.ok(b.paints > a.paints);
   return { positiveProbe: true, evidence: { before: a, after: b } };
 }
-async function scenario(browser, url, s) {
+async function scenario(browser, url, s, manifest = null) {
   const ctx = await browser.newContext({
     viewport: { width: s.width, height: s.width === 1440 ? 900 : 844 },
     colorScheme: s.theme === 'light' ? 'light' : 'dark',
@@ -671,6 +671,48 @@ async function scenario(browser, url, s) {
     if (s.mode === 'css-delayed') checks.beforeCSSNoPaint = true;
     if (s.mode === 'css-blocked' && s.route === 'index')
       checks.criticalMediaJourney = await criticalMediaJourney(page);
+    if (
+      s.mode === 'no-js' &&
+      s.route === 'index' &&
+      manifest?.components?.routes?.research?.assets
+    ) {
+      const preview = require('./local-browser.cjs');
+      const pending = [],
+        checked = new Set(),
+        observations = new Map();
+      const resourceErrors = [];
+      const listener = (request) => {
+        if (
+          preview.artifactFile(request.url(), url, manifest) ===
+          manifest.components.routes.research.assets[0]
+        )
+          pending.push(
+            preview
+              .verifyRequest(request, url, manifest, checked, observations)
+              .catch((error) => resourceErrors.push(error.message))
+          );
+      };
+      page.on('request', listener);
+      try {
+        await navigateDocument(page, `${url}/research.html`);
+        const fallback = await failure(page, 'no-js');
+        await preview.drainResponses(pending);
+        assert.deepEqual(resourceErrors, [], 'Research fallback resource response');
+        checks.researchFallback = {
+          ...(await preview.observeResearchFallback(
+            page,
+            manifest,
+            observations,
+            { mode: s.mode, width: s.width, theme: s.theme },
+            url
+          )),
+          fallback,
+        };
+      } finally {
+        page.off('request', listener);
+        await preview.drainResponses(pending);
+      }
+    }
     assert.deepEqual(errors, []);
     assert.deepEqual(external, []);
     return {

@@ -164,29 +164,48 @@ function fromModel(api, page) {
 }
 // Articles share the exact Writing geometry rather than repeating its path data
 // in every HTML document. Paint still inherits the reader's current theme.
-function articleResource(svg) {
-  if (!svg.startsWith('<svg class="space-fallback"') || !svg.includes('data-motif="writing"'))
-    throw Error('Expected canonical Writing fallback');
+function resource(svg, route) {
+  if (
+    !['writing', 'research'].includes(route) ||
+    !svg.startsWith('<svg class="space-fallback"') ||
+    !svg.includes(`data-motif="${route}"`)
+  )
+    throw Error('Expected canonical ' + route + ' fallback');
   const content = svg.slice(svg.indexOf('>') + 1, -6);
   const bytes = Buffer.from(
-    '<svg xmlns="http://www.w3.org/2000/svg"><g id="writing-fallback">' + content + '</g></svg>'
+    `<svg xmlns="http://www.w3.org/2000/svg"><g id="${route}-fallback">` + content + '</g></svg>'
   );
   const digest = require('node:crypto').createHash('sha256').update(bytes).digest('hex');
-  const name = `article-media/${digest}/writing-fallback.svg`;
+  const name = `article-media/${digest}/${route}-fallback.svg`;
   const html = svg.replace(
     />[\s\S]*<\/svg>$/,
-    `><use href="${name}#writing-fallback"></use></svg>`
+    `><use href="${name}#${route}-fallback"></use></svg>`
   );
   return { name, bytes, html };
 }
 
-function resourceContent(name, bytes) {
+function articleResource(svg) {
+  return resource(svg, 'writing');
+}
+
+function routeResource(svg, route) {
+  if (route !== 'research') throw Error('Unsupported room fallback resource');
+  return resource(svg, route);
+}
+
+function resourceContent(name, bytes, expectedRoute = 'writing') {
+  const route = name.match(/^article-media\/[a-f0-9]{64}\/(writing|research)-fallback\.svg$/)?.[1];
   const digest = require('node:crypto').createHash('sha256').update(bytes).digest('hex');
-  if (name !== `article-media/${digest}/writing-fallback.svg` || bytes.length > 2000000)
+  if (
+    !route ||
+    (expectedRoute !== null && route !== expectedRoute) ||
+    name !== `article-media/${digest}/${route}-fallback.svg` ||
+    bytes.length > 2000000
+  )
     throw Error('Writing fallback resource identity differs');
   const text = bytes.toString('utf8');
   if (!Buffer.from(text).equals(bytes)) throw Error('Writing fallback must be UTF-8');
-  const prefix = '<svg xmlns="http://www.w3.org/2000/svg"><g id="writing-fallback">';
+  const prefix = `<svg xmlns="http://www.w3.org/2000/svg"><g id="${route}-fallback">`;
   if (!text.startsWith(prefix) || !text.endsWith('</g></svg>'))
     throw Error('Writing fallback resource wrapper differs');
   const content = text.slice(prefix.length, -10);
@@ -236,4 +255,36 @@ function resourceContent(name, bytes) {
   return content;
 }
 
-module.exports = { fromModel, formulaRendition, compact, articleResource, resourceContent };
+// An active room descriptor owns its resource; retained files do not enlarge it.
+function resolveRouteResource(svg, route, assets = [], read, prefix = '') {
+  if (!Array.isArray(assets) || assets.length > 1)
+    throw Error('Finite room fallback resource inventory');
+  if (!assets.length) {
+    if (/<use\b/i.test(svg)) throw Error('Undeclared room fallback resource');
+    return null;
+  }
+  if (route !== 'research') throw Error('Unsupported room fallback resource');
+  if (!['', '../../'].includes(prefix)) throw Error('Unsupported room fallback depth');
+  const inner = svg.slice(svg.indexOf('>') + 1, -6);
+  const escapedPrefix = prefix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const match = inner.match(
+    new RegExp(
+      '^<use href="' +
+        escapedPrefix +
+        '(article-media/[a-f0-9]{64}/research-fallback\\.svg)#research-fallback"></use>$'
+    )
+  );
+  if (!match || assets[0] !== match[1]) throw Error('Room fallback resource closure differs');
+  const content = resourceContent(match[1], read(match[1]), route);
+  return { name: match[1], content, html: svg.replace(inner, content) };
+}
+
+module.exports = {
+  fromModel,
+  formulaRendition,
+  compact,
+  articleResource,
+  routeResource,
+  resourceContent,
+  resolveRouteResource,
+};

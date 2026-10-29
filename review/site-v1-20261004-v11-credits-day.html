@@ -26,8 +26,8 @@
 
 
 
-  <meta name="site-engine" content="a41ab65b9c8182318ae1333272289aac5d651fa1e19cc075609632b5fb082b85">
-  <meta name="site-route" content="6919104eaaaca4d8cdfb4fda55198b104e5b1f7c4e8c37d6e5d45013c08d79e2">
+  <meta name="site-engine" content="a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee">
+  <meta name="site-route" content="a8906fc60c042e9b98de446cd34fa1b1457489bda9011b70628eba1ca148735d">
   <meta name="site-contract" content="1">
   <meta name="site-article-renderer" content="1">
   <meta name="site-variant" content="base">
@@ -1635,6 +1635,34 @@ body[data-page='writing'] #archive-results {
 }
 .article-related li {
   margin-block: 12px;
+}
+
+/* Issue159: curated paths share the existing topic target and filter owner. */
+.archive-landings > .topic-landing {
+  flex: 1 1 440px;
+  min-width: 0;
+  padding: 16px;
+}
+.topic-landing h2 {
+  margin: 0;
+  font-size: 17px;
+  letter-spacing: 0;
+  line-height: 1.5;
+}
+.topic-landing .reading-recommendation {
+  margin-block: 16px;
+  font-weight: 400;
+}
+.reading-recommendation a {
+  font-size: 15px;
+}
+.reading-context,
+.reading-recommendation .edition-link {
+  display: block;
+}
+.reading-context {
+  margin-top: 6px;
+  font-size: 14px;
 }
 
 /* Canonical reading backdrop paint for every route and base/Color rendition.

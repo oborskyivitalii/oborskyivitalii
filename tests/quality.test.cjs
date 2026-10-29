@@ -185,30 +185,36 @@ function fixture() {
         : Array(2).fill('https://static.cloudflareinsights.com/beacon.min.js'),
     }))
   );
+  const files = Object.fromEntries([
+    ...budgets.routes.map((route) => [
+      route + '.html',
+      { sha256: 'e'.repeat(64), raw: 50000, gzip: 10000 },
+    ]),
+    ...[
+      'styles.css',
+      'theme.js',
+      'space.js',
+      'archive.js',
+      'navigation.js',
+      'assets/favicon.svg',
+      'assets/vitalii-oborskyi-cutout.webp',
+    ].map((name) => [name, { sha256: 'e'.repeat(64), raw: 5000, gzip: 1000 }]),
+  ]);
   return {
     manifest: {
       ...identity,
       components: { variant },
       sourceDirty: false,
-      files: Object.fromEntries(
-        budgets.routes.map((route) => [
-          route + '.html',
-          {
-            sha256: 'e'.repeat(64),
-            raw: 50000,
-            gzip: 10000,
-          },
-        ])
-      ),
+      files,
     },
     sizes: {
       pass: true,
       artifactDigest: identity.artifactDigest,
       rows: budgets.routes.map((route) => ({
         route,
-        raw: 50000,
+        ...files[route + '.html'],
         svgNodes: 100,
-        totalGzipBytes: 10000,
+        totalGzipBytes: 16000 + (route === 'index' ? 1000 : 0),
       })),
     },
     jobs: {
@@ -728,16 +734,20 @@ function fullFixture() {
     { ...identity, pass: true, kind: 'lighthouse', ...lighthouseFixture() },
     { ...identity, pass: true, kind: 'motion', ...motionFixture() }
   );
-  x.manifest.files = Object.fromEntries(
-    budgets.routes.map((route) => [
-      route + '.html',
-      {
-        sha256: 'd'.repeat(64),
-        raw: 50000,
-        gzip: 10000,
-      },
-    ])
-  );
+  x.manifest.files = {
+    ...x.manifest.files,
+    ...Object.fromEntries(
+      budgets.routes.map((route) => [
+        route + '.html',
+        {
+          sha256: 'd'.repeat(64),
+          raw: 50000,
+          gzip: 10000,
+        },
+      ])
+    ),
+  };
+  for (const row of x.sizes.rows) Object.assign(row, x.manifest.files[row.route + '.html']);
   const capture = {
     ...identity,
     pass: true,

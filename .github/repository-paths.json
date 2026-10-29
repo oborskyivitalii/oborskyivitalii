@@ -11551,36 +11551,6 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
-    "docs/runtime/a41ab65b9c8182318ae1333272289aac5d651fa1e19cc075609632b5fb082b85/archive.js": {
-      "kind": "file",
-      "purpose": "Immutable generated runtime file; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/a41ab65b9c8182318ae1333272289aac5d651fa1e19cc075609632b5fb082b85/navigation.js": {
-      "kind": "file",
-      "purpose": "Immutable generated runtime file; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/a41ab65b9c8182318ae1333272289aac5d651fa1e19cc075609632b5fb082b85/space.js": {
-      "kind": "file",
-      "purpose": "Immutable generated runtime file; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/a41ab65b9c8182318ae1333272289aac5d651fa1e19cc075609632b5fb082b85/styles.css": {
-      "kind": "file",
-      "purpose": "Immutable generated runtime file; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/a41ab65b9c8182318ae1333272289aac5d651fa1e19cc075609632b5fb082b85/theme.js": {
-      "kind": "file",
-      "purpose": "Immutable generated runtime file; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "review/issue-2/2026-10-24-r32-pr-audit.md": {
       "kind": "file",
       "purpose": "Retained 2026-10-24-r32-pr-audit.md review evidence from PR79; preserves original bytes and review scope.",
@@ -11653,12 +11623,6 @@
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
-    "docs/runtime/a41ab65b9c8182318ae1333272289aac5d651fa1e19cc075609632b5fb082b85": {
-      "kind": "directory",
-      "purpose": "Immutable generated revision files from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "review/issue-122/2026-10-25-f5-exact-checksum-proof.json.gz": {
       "kind": "file",
       "purpose": "Inert F5 proof of750 exact public checksum findings, distinguishing recomputed bytes and Git identities from historical producer attestations and archival declarations; grants no artifact acceptance or scanner authority.",
@@ -11675,66 +11639,6 @@
       "kind": "file",
       "purpose": "Source-independent client descriptor and exact legacy alias with emitted runtime byte and document-hook verification; full producer provenance stays in generation evidence.",
       "role": "source",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/394631882bc669912f6d6a7294b877061e2cd561d2bdd41a78f68e4c9efa88be": {
-      "kind": "directory",
-      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/394631882bc669912f6d6a7294b877061e2cd561d2bdd41a78f68e4c9efa88be/writing.html": {
-      "kind": "file",
-      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/6919104eaaaca4d8cdfb4fda55198b104e5b1f7c4e8c37d6e5d45013c08d79e2": {
-      "kind": "directory",
-      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/6919104eaaaca4d8cdfb4fda55198b104e5b1f7c4e8c37d6e5d45013c08d79e2/credits.html": {
-      "kind": "file",
-      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/19a551701415df4f038a02fbeee280a2fee4d4450b11415c123c9861be9abc17": {
-      "kind": "directory",
-      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/19a551701415df4f038a02fbeee280a2fee4d4450b11415c123c9861be9abc17/index.html": {
-      "kind": "file",
-      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/99d61ef8900c10ea0b496a9ae910b4d0d95fd853e5e6d3ad3a04d37603c36797": {
-      "kind": "directory",
-      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/99d61ef8900c10ea0b496a9ae910b4d0d95fd853e5e6d3ad3a04d37603c36797/research.html": {
-      "kind": "file",
-      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/e90270842e40ad228e372ca3475ee6a51ccc8f43f2d19d6c1e49932e97367d41": {
-      "kind": "directory",
-      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/e90270842e40ad228e372ca3475ee6a51ccc8f43f2d19d6c1e49932e97367d41/talks.html": {
-      "kind": "file",
-      "purpose": "Generated current immutable route snapshot; regenerate from site sources and the site builder.",
-      "role": "generated",
       "owner": "site/README.md"
     },
     ".github/actions": {
@@ -11829,7 +11733,7 @@
     },
     "review/issue-159": {
       "kind": "directory",
-      "purpose": "Issue159 analytics baseline, source-bound intake and independent delivery review evidence.",
+      "purpose": "Issue159 analytics delivery, audience/query research and exact existing-page SEO/brief implementation evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -11931,9 +11835,165 @@
     },
     "review/issue-159/2026-10-28-seo-scanner-proof.json.gz": {
       "kind": "file",
-      "purpose": "Verbatim reviewed945 per-ID public checksum proof; prospective compatibility consumes only its six exact registry findings, without admitting the other candidate-only records.",
+      "purpose": "Exact frozen/current B5 public checksum proof, preserved byte-for-byte from945; six findings preregistered by166 and57 integrated here, with no scanner bypass or rights approval.",
       "role": "history",
-      "owner": "guides/SITE-RELEASE-GATES.md"
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-159/2026-10-28-seo-query-research.md": {
+      "kind": "file",
+      "purpose": "B4 Terra audience/query/source matrix, actual four-role correction review and bounded B5 handoff.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-159/2026-10-28-seo-implementation.md": {
+      "kind": "file",
+      "purpose": "B5 Requirements preflight, source/style plan, changed-surface review and exact acceptance evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-159/2026-10-28-seo-brief-delivery.md": {
+      "kind": "file",
+      "purpose": "Implementation-ready delivery measurement/constraint brief; actual PMDay edition overlap and future issue11 handoff.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-159/2026-10-28-seo-brief-agent-control.md": {
+      "kind": "file",
+      "purpose": "Implementation-ready agent authority/evidence/intervention brief; actual PMDay overlap and future issue11 handoff.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-159/content-amendment.json": {
+      "kind": "file",
+      "purpose": "Exact bounded issue159 copy/metadata, reading-path CSS and successor producer pin amendment; historical snapshots retained.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "site/templates/components/archive-reading-link.html": {
+      "kind": "file",
+      "purpose": "Canonical compact catalog-derived reading recommendation; exact edition link/title/date/language and escaped context.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee": {
+      "kind": "directory",
+      "purpose": "Immutable generated revision files from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/archive.js": {
+      "kind": "file",
+      "purpose": "Immutable generated runtime file; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/navigation.js": {
+      "kind": "file",
+      "purpose": "Immutable generated runtime file; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/space.js": {
+      "kind": "file",
+      "purpose": "Immutable generated runtime file; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/styles.css": {
+      "kind": "file",
+      "purpose": "Immutable generated runtime file; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/theme.js": {
+      "kind": "file",
+      "purpose": "Immutable generated runtime file; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media": {
+      "kind": "directory",
+      "purpose": "Digest-addressed passive Research fallback vectors generated from the canonical authored scene; no article publication.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618": {
+      "kind": "directory",
+      "purpose": "Digest-addressed passive Research fallback vectors generated from the canonical authored scene; no article publication.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618/research-fallback.svg": {
+      "kind": "file",
+      "purpose": "Digest-addressed passive Research fallback vectors generated from the canonical authored scene; no article publication.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/30c4d9b1e7e9be6bbc81063f34938f52501644c9b48c73173433251664a3e9b5": {
+      "kind": "directory",
+      "purpose": "Current immutable generated room snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/30c4d9b1e7e9be6bbc81063f34938f52501644c9b48c73173433251664a3e9b5/research.html": {
+      "kind": "file",
+      "purpose": "Current immutable generated room snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/4b8747ffc22ce0e753070c3a865aade7bf523feff3bda0167b592025e2c4248e": {
+      "kind": "directory",
+      "purpose": "Current immutable generated room snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/4b8747ffc22ce0e753070c3a865aade7bf523feff3bda0167b592025e2c4248e/index.html": {
+      "kind": "file",
+      "purpose": "Current immutable generated room snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/52bd0a0fe2c3f92a59d0e44930ab780b1b8cae0bd0466c11f59b33d44a2d15d3": {
+      "kind": "directory",
+      "purpose": "Current immutable generated room snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/52bd0a0fe2c3f92a59d0e44930ab780b1b8cae0bd0466c11f59b33d44a2d15d3/talks.html": {
+      "kind": "file",
+      "purpose": "Current immutable generated room snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/a8906fc60c042e9b98de446cd34fa1b1457489bda9011b70628eba1ca148735d": {
+      "kind": "directory",
+      "purpose": "Current immutable generated room snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/a8906fc60c042e9b98de446cd34fa1b1457489bda9011b70628eba1ca148735d/credits.html": {
+      "kind": "file",
+      "purpose": "Current immutable generated room snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/ce77cccb11c8c1463a9d6f5c3f46748ef62433b370a580d4693e433fa560eef7": {
+      "kind": "directory",
+      "purpose": "Current immutable generated room snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/ce77cccb11c8c1463a9d6f5c3f46748ef62433b370a580d4693e433fa560eef7/writing.html": {
+      "kind": "file",
+      "purpose": "Current immutable generated room snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "review/issue-159/2026-10-29-research-carrier-checksum-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Frozen independent exact19 Research carrier Git/producer/SVG/checksum findings and per-occurrence source proof; no scanner admission authority.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

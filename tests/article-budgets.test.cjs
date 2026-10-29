@@ -45,6 +45,13 @@ test('article aliases share the original HTML, fallback and full transfer budget
     f.record.files[f.alias].gzip +
       assets.reduce((total, name) => total + f.record.files[name].gzip, 0)
   );
+  fs.writeFileSync(
+    path.join(f.directory, 'research.html'),
+    '<svg class="space-fallback"><use href="article-media/' +
+      '0'.repeat(64) +
+      '/research-fallback.svg#research-fallback"></use></svg>'
+  );
+  assert.throws(() => artifact.checkSize(f.directory), /Undeclared room fallback resource/);
 });
 
 test('UTF8 byte oversize rejects article aliases and retained HTML before size evidence passes', (t) => {

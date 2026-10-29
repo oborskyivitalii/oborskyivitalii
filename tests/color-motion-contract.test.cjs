@@ -64,7 +64,7 @@ test('producer refactoring preserves client compatibility while runtime bytes an
       before.client,
       'publisher internals do not change the client contract'
     );
-    const reviewed = motion.reviewedRuntime('issue122-writing-startup-plain');
+    const reviewed = motion.reviewedRuntime('issue159-reading-paths-plain');
     assert.equal(builder.runtimeVersion(after), reviewed.variant.baseEngine);
     const generation = JSON.parse(fs.readFileSync(path.join(root, 'site/output-lock.json'))),
       read = (name) => fs.readFileSync(path.join(root, 'docs', name), 'utf8'),
@@ -160,7 +160,7 @@ test('reading batch records bind actual generated edition bytes and reject tampe
       const root = path.join(directory, name),
         publicDir = path.join(root, 'public'),
         actual = JSON.parse(fs.readFileSync(path.join(root, 'artifact.json'))),
-        reviewed = motion.reviewedRuntime('issue122-writing-startup-' + name);
+        reviewed = motion.reviewedRuntime('issue159-reading-paths-' + name);
       assert.equal(artifact.verify(publicDir, actual), true);
       assert.deepEqual(actual.variant, reviewed.variant);
       for (const [file, expected] of Object.entries(reviewed.files)) {
@@ -358,13 +358,7 @@ function evidence(id) {
       status: 200,
       sha256: selected.files[file].sha256,
       url: value.hostedURL + '/' + file,
-      mime: file.endsWith('.html')
-        ? 'text/html'
-        : file.endsWith('.js')
-          ? 'application/javascript'
-          : file.endsWith('.css')
-            ? 'text/css'
-            : 'application/json',
+      mime: require('../tools/quality/serve.cjs').canonicalType(file),
     }));
   for (const journey of value.reports.find((row) => row.kind === 'stage-functional').journeys)
     for (const row of journey.rows) row.state.engine = selected.variant.fingerprint;
@@ -620,6 +614,7 @@ test('unknown, conflicting, mixed or merely marked runtime identities fail befor
     'issue39-writing-tbt-staging',
     'issue39-css-clock-staging',
     'issue122-reading-batch-staging',
+    'issue159-reading-paths-staging',
   ]) {
     const staged = manifest(id);
     delete staged.edition;
@@ -1116,15 +1111,15 @@ test('current platform runtime tuples reproduce the complete plain, staging and 
     };
     fs.writeFileSync(path.join(plainDirectory, 'artifact.json'), JSON.stringify(source));
     const plain = colorBuild.build(plainDirectory);
-    assert.equal(motion.select(plain).id, 'issue122-writing-startup-plain');
+    assert.equal(motion.select(plain).id, 'issue159-reading-paths-plain');
     const stagingDirectory = path.join(directory, 'staging');
     fs.cpSync(plainDirectory, stagingDirectory, { recursive: true });
     const staged = stagingBuild.build(stagingDirectory);
-    assert.equal(motion.select(staged).id, 'issue122-writing-startup-staging');
+    assert.equal(motion.select(staged).id, 'issue159-reading-paths-staging');
     const productionDirectory = path.join(directory, 'production');
     fs.cpSync(plainDirectory, productionDirectory, { recursive: true });
     const production = require('../tools/release/edition.cjs').build(productionDirectory, 'color');
-    assert.equal(motion.select(production).id, 'issue122-writing-startup-production');
+    assert.equal(motion.select(production).id, 'issue159-reading-paths-production');
     assert.equal(
       new Set([plain, staged, production].map((record) => record.variant.fingerprint)).size,
       3
@@ -1133,7 +1128,7 @@ test('current platform runtime tuples reproduce the complete plain, staging and 
       assert.deepEqual(record.components.navigation, { contract: 1, articleRenderer: 1 });
       assert.equal(
         record.variant.baseEngine,
-        motion.reviewedRuntime('issue122-writing-startup-plain').variant.baseEngine
+        motion.reviewedRuntime('issue159-reading-paths-plain').variant.baseEngine
       );
     }
   } finally {
@@ -1369,4 +1364,45 @@ test('R3, Writing startup and prospective reading paths keep exact aliases and m
         }
       }
     }
+});
+
+test('reading-path runtime retains startup scripts while binding new CSS, editions and publication rights', () => {
+  const delivery = require('../tools/staging/package.cjs');
+  for (const edition of ['plain', 'staging', 'production']) {
+    const id = 'issue159-reading-paths-' + edition,
+      current = motion.reviewedRuntime(id),
+      previous = motion.reviewedRuntime('issue122-writing-startup-' + edition);
+    assert.notEqual(current.variant.baseEngine, previous.variant.baseEngine);
+    assert.notEqual(current.variant.fingerprint, previous.variant.fingerprint);
+    assert.notEqual(current.files['styles.css'], previous.files['styles.css']);
+    for (const name of ['theme.js', 'space.js', 'archive.js', 'navigation.js'])
+      assert.equal(
+        current.files[name],
+        previous.files[name],
+        name + ' retains reviewed startup bytes'
+      );
+    const selected = manifest(id);
+    assert.equal(delivery.publicationRequired(selected, selected.components), true);
+    assert.throws(
+      () => delivery.publicationRights(null, selected, undefined, selected.components),
+      /licensed publication rights record required/
+    );
+    for (const location of ['canonical', 'immutable', 'both']) {
+      const mixed = manifest(id);
+      if (location !== 'immutable') mixed.files['styles.css'].sha256 = previous.files['styles.css'];
+      if (location !== 'canonical')
+        mixed.files['runtime/' + current.variant.fingerprint + '/styles.css'].sha256 =
+          previous.files['styles.css'];
+      assert.throws(() => motion.select(mixed), /Color bytes/);
+    }
+    const wrongEdition = manifest(id);
+    wrongEdition.edition =
+      edition === 'staging' ? undefined : { id: 'staging', indexable: false, analytics: false };
+    assert.throws(() => motion.select(wrongEdition), /edition differs/);
+    const relabeled = manifest(id);
+    relabeled.components.variant = { id: 'base', contract: 1, fingerprint: '0'.repeat(64) };
+    relabeled.components.engine = '0'.repeat(64);
+    assert.throws(() => delivery.publicationRequired(relabeled, relabeled.components));
+  }
+  assert.throws(() => motion.reviewedRuntime('issue159-reading-paths-unknown'));
 });

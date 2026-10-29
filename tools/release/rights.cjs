@@ -333,6 +333,27 @@ function hostedInventory(publicDirectory, sourceRoot, record, manifest) {
   return { files, editions };
 }
 
+function roomInventory(publicDirectory, sourceRoot, record) {
+  const revision = record.components || snapshot.verify(publicDirectory, record);
+  const files = {};
+  let api;
+  for (const [route, descriptor] of Object.entries(revision.routes)) {
+    if (descriptor.assets === undefined) continue;
+    const build = require('../site/build.cjs');
+    api ??= build.model(sourceRoot, build.configuration(sourceRoot).definitions);
+    const fallback = require('../site/fallback.cjs');
+    const resource = fallback.routeResource(fallback.fromModel(api, route), route);
+    assert.deepEqual(descriptor.assets, [resource.name], 'room source resource closure differs');
+    assert.deepEqual(
+      readSource(publicDirectory, resource.name),
+      resource.bytes,
+      'room fallback source geometry differs'
+    );
+    files[resource.name] = { bases: ['original-code', 'original-diagram'], retained: false };
+  }
+  return files;
+}
+
 function publicNotices(publicDirectory, sourceRoot, record) {
   const credits = jsonSource(sourceRoot, 'site/content/pages/credits/main.json');
   const required = ['T004', 'T006', 'T008', 'T014', 'T043', 'T051', 'T052', 'T053'];
@@ -369,9 +390,10 @@ function compile(publicDirectory, record, options = {}) {
   const manifest = jsonSource(sourceRoot, manifestPath);
   const { provenance, notices } = validateManifest(sourceRoot, manifest);
   const hosted = hostedInventory(publicDirectory, sourceRoot, record, manifest);
+  const generatedFiles = { ...hosted.files, ...roomInventory(publicDirectory, sourceRoot, record) };
   const files = {};
   for (const file of artifact.entries(publicDirectory)) {
-    const coverage = publicBasis(file.path, file.bytes, manifest, hosted.files);
+    const coverage = publicBasis(file.path, file.bytes, manifest, generatedFiles);
     basesFor(manifest, coverage.bases);
     files[file.path] = { sha256: artifact.digest(file.bytes), ...coverage };
   }

@@ -136,6 +136,10 @@ test('hosted review editions carry exact visible notices and cannot acquire prod
 test('rights inventory covers actual current and retained bytes without granting approval', (t) => {
   const source = fixture(t);
   const report = source.compile();
+  const resource = JSON.parse(
+    fs.readFileSync(path.join(source.publicDirectory, 'site-revision.json'))
+  ).routes.research.assets[0];
+  assert.deepEqual(report.files[resource].bases, ['original-code', 'original-diagram']);
   assert.equal(artifact.checkSize(source.publicDirectory).pass, true);
   assert.equal(report.inventoryPass, true);
   assert.equal(report.approvalPass, false);
@@ -176,6 +180,40 @@ test('rights inventory covers actual current and retained bytes without granting
     }),
     true
   );
+});
+
+test('a coherently redigested passive Research resource cannot replace the authored scene', (t) => {
+  const source = fixture(t);
+  const directory = source.publicDirectory;
+  const revisionFile = path.join(directory, 'site-revision.json');
+  const revision = JSON.parse(fs.readFileSync(revisionFile));
+  const descriptor = revision.routes.research;
+  const original = descriptor.assets[0];
+  const bytes = fs.readFileSync(path.join(directory, original));
+  const changed = Buffer.from(
+    bytes
+      .toString()
+      .replace(/ d="M(-?\d+(?:\.\d+)?)/, (_, number) => ' d="M' + (Number(number) + 1))
+  );
+  assert.notDeepEqual(changed, bytes);
+  const replacement = `article-media/${artifact.digest(changed)}/research-fallback.svg`;
+  assert.doesNotThrow(() =>
+    require('../tools/site/fallback.cjs').resourceContent(replacement, changed, 'research')
+  );
+  fs.mkdirSync(path.dirname(path.join(directory, replacement)), { recursive: true });
+  fs.writeFileSync(path.join(directory, replacement), changed);
+  for (const name of ['research.html', descriptor.url]) {
+    const file = path.join(directory, name);
+    fs.writeFileSync(file, fs.readFileSync(file, 'utf8').replaceAll(original, replacement));
+  }
+  descriptor.assets = [replacement];
+  descriptor.sha256 = artifact.digest(fs.readFileSync(path.join(directory, descriptor.url)));
+  fs.writeFileSync(revisionFile, JSON.stringify(revision));
+  fs.unlinkSync(path.join(directory, original));
+  assert.doesNotThrow(() =>
+    require('../tools/site/snapshot.cjs').verify(directory, source.record())
+  );
+  assert.throws(source.compile, /room source resource closure differs/);
 });
 
 test('complete inline license texts bind authored owners and reject truncation or a stale legal edition', (t) => {

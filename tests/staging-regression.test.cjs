@@ -18,7 +18,7 @@ test('selected journeys compare actual base runtime and Color identities without
     components: { ...components, variant, engine: variant.fingerprint },
   };
   const reviewed = require('../tools/quality/color-motion-contract.cjs').reviewedRuntime(
-    'issue122-writing-startup-plain'
+    'issue159-reading-paths-plain'
   );
   assert.deepEqual(variant, reviewed.variant, 'fixture uses the reviewed authored runtime');
   for (const [name, sha256] of Object.entries(reviewed.files))
@@ -268,6 +268,51 @@ test('selected browser regression requires all route observations, navigation, f
     const report = fixture.functional();
     mutate(report);
     assert.throws(() => stage.validateFunctional(report, fixture.manifest()));
+  }
+});
+
+test('declared Research resources require actual no-JS and no-Canvas response, geometry and capture evidence', () => {
+  const manifest = fixture.manifest();
+  const name = 'article-media/' + 'f'.repeat(64) + '/research-fallback.svg';
+  manifest.components.routes = { research: { assets: [name] } };
+  manifest.files[name] = { sha256: 'f'.repeat(64), raw: 5000, gzip: 1000 };
+  const report = fixture.functional(manifest);
+  assert.doesNotThrow(() => stage.validateFunctional(report, manifest));
+  const changes = [
+    (item) => delete item.resource,
+    (item) => (item.resource.sha256 = '0'.repeat(64)),
+    (item) => (item.resource.mime = 'image/png'),
+    (item) => (item.resource.url = 'https://foreign.example.invalid/' + name),
+    (item) => (item.geometry.page = 'writing'),
+    (item) => (item.geometry.box.width = 0),
+    (item) => (item.geometry.visible = false),
+    (item) => (item.geometry.palette.accent = ''),
+    (item) => (item.geometry.resourceURL = fixture.target + '/../' + name + '#research-fallback'),
+    (item) => (item.geometry.dataTheme = 'wrong'),
+    (item) => delete item.png,
+    (item) => (item.png.sha256 = 'not-a-digest'),
+  ];
+  for (const mode of ['no-js', 'no-canvas']) {
+    for (const change of changes) {
+      const invalid = structuredClone(report);
+      const selected =
+        mode === 'no-js'
+          ? invalid.failures.find((row) => row.mode === mode).checks
+          : invalid.journeys
+              .find((row) => row.mode === mode && row.width === 390)
+              .rows.find((row) => row.route === 'research');
+      change(selected.researchFallback);
+      assert.throws(() => stage.validateFunctional(invalid, manifest));
+    }
+    const absent = structuredClone(report);
+    const selected =
+      mode === 'no-js'
+        ? absent.failures.find((row) => row.mode === mode).checks
+        : absent.journeys
+            .find((row) => row.mode === mode && row.width === 390)
+            .rows.find((row) => row.route === 'research');
+    delete selected.researchFallback;
+    assert.throws(() => stage.validateFunctional(absent, manifest));
   }
 });
 test('staging performance validates actual raw windows, cold/warm flights and two single Lighthouse trials', () => {

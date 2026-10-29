@@ -167,6 +167,7 @@ test('historical edition verification survives changed or absent authored portra
     'tools/quality/artifact.cjs',
     'tools/quality/budgets.json',
     'tools/site/snapshot.cjs',
+    'tools/site/fallback.cjs',
     'tools/site/public-artifact.cjs',
     'site/engine/article-tags.cjs',
   ]) {

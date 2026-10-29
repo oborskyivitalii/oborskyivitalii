@@ -163,7 +163,7 @@ function clean(row, label) {
   assert.deepEqual(row.errors, [], `${label} runtime errors`);
   assert.deepEqual(row.externalRequests, [], `${label} external requests`);
 }
-function validateFailure(row) {
+function validateFailure(row, manifest = null, baseURL) {
   clean(row, 'capability fixture');
   const checks = row.checks,
     validator = require('./validate.cjs');
@@ -171,8 +171,17 @@ function validateFailure(row) {
   if (row.mode === 'css-delayed') assert.equal(checks.beforeCSSNoPaint, true);
   if (row.mode === 'css-blocked')
     validator.validateCriticalMediaJourney(checks.criticalMediaJourney, row.width);
+  if (row.mode === 'no-js' && manifest?.components?.routes?.research?.assets?.length) {
+    require('./local-browser.cjs').validateResearchFallback(checks.researchFallback, manifest, {
+      mode: row.mode,
+      width: row.width,
+      theme: row.theme,
+      baseURL,
+    });
+    validator.functionalFailure('no-js', checks.researchFallback.fallback);
+  }
 }
-function validateJourney(journey, manifest) {
+function validateJourney(journey, manifest, baseURL) {
   const variant = common.variant(manifest);
   assert.match(manifest.components.engine, /^[a-f0-9]{64}$/, 'journey runtime engine identity');
   if (variant.id === 'color') assert.equal(variant.fingerprint, manifest.components.engine);
@@ -221,6 +230,17 @@ function validateJourney(journey, manifest) {
       assert.equal(row.state.ready, false);
       assert.equal(row.state.fallback, true);
       assert.equal(row.state.motion.hidden || row.state.motion.disabled, true);
+      if (
+        row.route === 'research' &&
+        journey.width === 390 &&
+        manifest.components?.routes?.research?.assets
+      )
+        require('./local-browser.cjs').validateResearchFallback(row.researchFallback, manifest, {
+          mode: journey.mode,
+          width: journey.width,
+          theme: 'dark',
+          baseURL,
+        });
     }
   }
   for (const key of ['cta', 'localNavigation', 'history', 'directAnchor'])
@@ -281,7 +301,7 @@ function validateFunctional(report, manifest) {
   for (const browser of report.browsers)
     assert.ok(browser.version && browser.executable, 'missing actual browser identity');
   exactRows(report.journeys, journeyCases(), ['engine', 'width', 'mode'], 'route journeys');
-  for (const journey of report.journeys) validateJourney(journey, manifest);
+  for (const journey of report.journeys) validateJourney(journey, manifest, report.target);
   exactRows(report.navigation, navigationCases(), ['engine', 'width', 'theme'], 'navigation cases');
   for (const row of report.navigation) validateNavigation(row);
   exactRows(
@@ -290,7 +310,7 @@ function validateFunctional(report, manifest) {
     ['engine', 'route', 'width', 'theme', 'mode'],
     'capability fixtures'
   );
-  for (const row of report.failures) validateFailure(row);
+  for (const row of report.failures) validateFailure(row, manifest, report.target);
   exactRows(report.analytics, analyticsCases(), ['engine', 'entry', 'mode'], 'analytics fixtures');
   for (const row of report.analytics) validateAnalytics(row);
   return {
@@ -591,7 +611,7 @@ async function collectFunctionalEngine(api, engine, url, manifest, variant) {
       detail.navigation.push(await api.nav(browser, url, selected));
     if (engine === 'chromium') {
       for (const selected of failureCases())
-        detail.failures.push(await api.failure(browser, url, selected));
+        detail.failures.push(await api.failure(browser, url, selected, manifest));
       detail.analytics.push(...(await api.analytics(browser, engine, analyticsCases())));
       if (Object.keys(manifest.components?.articles || {}).length)
         detail.articles = await api.article(browser, url, manifest);

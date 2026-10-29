@@ -610,7 +610,8 @@
         "NOTICE.md",
         "tools/site/legal.cjs",
         "docs/styles.css",
-        "review/issue-126/content-amendment.json"
+        "review/issue-126/content-amendment.json",
+        "review/issue-159/content-amendment.json"
       ]
     },
     {
@@ -1403,7 +1404,7 @@
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
       "profiles": ["issue-policy"],
-      "disposition": "owning issue41 policy only; AC01\u2013AC06 and manual gates preserved, AC07\u2013AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17\u2013AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure",
+      "disposition": "owning issue41 policy only; AC01–AC06 and manual gates preserved, AC07–AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17–AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure",
       "surviving_route": ".github/acceptance/issue-41.json",
       "inputs": [
         "tests/test_issue41_acceptance.py",
