@@ -4,10 +4,10 @@ Dated continuity, not live authority. Last verified: **2026-10-29**.
 
 ## Snapshot
 
-- Owner159, active DraftPR164. Remotehead6b0248f9/tree4e5313a6;
+- Owner159, active DraftPR164. Remotehead78885493/tree35dbf18f;
   protectedmain2072b76e, protectedproductionc68db162/prod-2026-10-28.1.
 - Local seo159 branchwork/issue159-seo-delivery contains meaningful dirty
-  Research-only SVG-carrier correction; no new frozen/uploaded source yet.
+  Research carrier is frozen788; current dirty change corrects its catalog test oracle.
 - Canonical review: review/issue-159/2026-10-28-seo-implementation.md,
   dated Research critical-document correction. Revalidate actual refs/CI.
 
@@ -48,12 +48,20 @@ Dated continuity, not live authority. Last verified: **2026-10-29**.
   extracted. Final3files0errors/0warnings, three roles independentlyaccept.
   Intermediate1warning preserved; thresholds/exceptionlist unchanged.
 
+- Frozen788 actual package passed pristine2072;32public/36package files. Native
+  policy40887047473 FAILED8/9: CATALOG45tests44pass1fail, AC04/06affected.
+  Existing content.test IDs coveredHTMLonly, rejectedactualdeclaredSVGfragment;
+  rootinventoryalsoomitsarticle-media. Correction45/45zeroomit andlint0/0passed;
+  Requirements/Codepreflightacceptednarrow
+  strictresolver+actualSVGIDs+finiteinventory/negative correction. Ready STOPPED.
+
 ## Next session
 
-1. Finish current metadata/catalog/exactchecksumledger disposition, Basic/SEO,
+1. Finish the narrow content.test local SVG-fragment/finite inventory correction,
    RI-CIrefresh/format thenRIbuildlast+verify, requiredRI Python checks.
-2. Obtain four actual prepared-source/metadata reviews. Verify actual prepared
-   newpackage with pristine2072. Freeze meaningfulcommit Refs159; no receiptcommit.
+2. Obtain four actual correction reviews;788 package already passed pristine2072.
+   Preserve product/generated788 bytes. Freeze meaningful test correction, then
+   new frozenpolicy/Ready/RI/source; no unchanged retry or receiptcommit.
 3. Newhead frozenpolicy/Ready/own ownerstage allmandatory, two Research PNGs and
    LCP bound; normal admissionrefresh, exactheadApp, protectedsquash/postmerge.
 4. Freeze productioncandidate/newrights/archive; bind existingowneracceptance,

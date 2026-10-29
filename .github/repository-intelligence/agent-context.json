@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "647e36bfff205cd7330adbcc26f024a273d36685b14bb5bff018a55d759ac1f8",
+    "digest": "e625255d67a1c7982e7753d85ea7d1589d847baef633c1d116d6c6e7711fd40a",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -361,7 +361,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "ca7e614813a6a500ad446ce7c96566708162e2430c0864f95d4e3cfc7c64f749"
+        "sha256": "ff432a62c533c3d83759026c2e87e47744a1604a6146e2452635852f9029d946"
       },
       {
         "path": "NOTICE.md",
@@ -1130,7 +1130,7 @@
       {
         "path": "review/issue-159/2026-10-28-seo-implementation.md",
         "identity_mode": "content",
-        "sha256": "7f1c01ce5c11110336aa74f9a82e6c30b311435e0ce8023beb83b34f325e55b6"
+        "sha256": "47baf5ea98361b17592ca1818f2ac053a70ab3427f7b2e33f220d6f4cb636f89"
       },
       {
         "path": "review/issue-159/2026-10-28-seo-query-research.md",
@@ -7400,7 +7400,7 @@
       {
         "path": "tests/content.test.cjs",
         "identity_mode": "content",
-        "sha256": "081a0489a9bb4a89a02a0f1aebb3486786ce39bcddb0da34f4ee497e81aeedbe"
+        "sha256": "ece0be12695137b4347b38a0eb661d3965ea795bbf0ffe1fed2dd0c5224c043c"
       },
       {
         "path": "tests/control-lock.test.cjs",
