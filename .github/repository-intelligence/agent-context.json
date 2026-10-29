@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "16717bfe08618107ac5c2a93b039924d2ad27d2d8e482e0b4aad29fa7315663f",
+    "digest": "7ef142dbeb5f65de9084524e5aeecea1e7aa2b6e90bd376ac0996a634a45cc7e",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -206,12 +206,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "872ffb338c29fbfac3056f76f36163dfbe5bab59db1443127ceb08e2f56dc94e"
+        "sha256": "4f473d7f11f5c2839abafcb53e79dc1dcc2f0f6bea033017dab7e1333d74d7c2"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "5df5fa220800677f31fca5887f7496cc2fc5d3ecbdac1c53ff21344753c798c1"
+        "sha256": "e9aec57b225c2bd1a4da552feeee157a539e4146e247f3e075c485529a751be3"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -361,7 +361,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "cba3c6435ddf7a584a0bfd14d70d6222983ecfc3b4e80576080c91eb1cbd1c51"
+        "sha256": "14e3ebe4f0bf899798833f6e9bbcb1a32bfebd5fb06cff4dadff2bce4ff3e512"
       },
       {
         "path": "NOTICE.md",
@@ -1113,6 +1113,11 @@
         "sha256": "c25ae73e83445e0a4910ceaef31fb1d193cb0278e2a6631fae4b0b610f8a22c7"
       },
       {
+        "path": "review/issue-159/2026-10-28-seo-scanner-proof.json.gz",
+        "identity_mode": "content",
+        "sha256": "2f5bfaac39899e737b483b08a23f8965c035589534fdab7fdf35e6d11a08471f"
+      },
+      {
         "path": "review/issue-159/2026-10-28-stage-security-proof.json.gz",
         "identity_mode": "content",
         "sha256": "50098146480c7747b5c8962f9d3b3cf237f3af3f3408341c29917e95e5e40e6c"
@@ -1121,6 +1126,11 @@
         "path": "review/issue-159/2026-10-28-staging-verification.md",
         "identity_mode": "content",
         "sha256": "f9b103872399b5916de5623b1a1d6044ad4bedde9ff7bc21dd178b3956c2cc1c"
+      },
+      {
+        "path": "review/issue-159/2026-10-29-runtime-preregistration.md",
+        "identity_mode": "content",
+        "sha256": "fa0a52964fa1b0f572e5411d898c0b8c3b6c34e611b0ee1ac74e065145554b2b"
       },
       {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -7315,7 +7325,7 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "0e980ee2ef7d1c82bd62a1236da472013c29182deb73a0c99d96955449f98d2f"
+        "sha256": "acefd257a645ed5670d3361d98e012124c5cb3e91de95959cbb5d3a4c8df039d"
       },
       {
         "path": "tests/content-baseline.test.cjs",
@@ -8215,7 +8225,7 @@
       {
         "path": "tools/quality/color-motion-contract.cjs",
         "identity_mode": "content",
-        "sha256": "3cd4b00d260ef3b4b41b2f983c6774428b04d5d1eddede9df9b2ff11aa607c0f"
+        "sha256": "991c9e510ca756ffca622db2195fff4f2efe5d7e84777fe50b319ac52780d248"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -8510,7 +8520,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "ed2adb5342e9fa8883c0e7d04b7b87ae0b3e038b945edc2d2a06e8e84f24308d"
+        "sha256": "6b1b5a0c08392aad40460c0bd695e831c8f785246ab7cf89337025ce63ea556d"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
@@ -11688,6 +11698,17 @@
       "title": "Issue 159 — B2 QA isolation, 28 October 2026"
     },
     {
+      "path": "review/issue-159/2026-10-28-seo-scanner-proof.json.gz",
+      "kind": "file",
+      "purpose": "Verbatim reviewed945 per-ID public checksum proof; prospective compatibility consumes only its six exact registry findings, without admitting the other candidate-only records.",
+      "role": "history",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-28-seo-scanner-proof.json.gz"
+    },
+    {
       "path": "review/issue-159/2026-10-28-stage-security-proof.json.gz",
       "kind": "file",
       "purpose": "Retained failed staging security report and exact per-ID public baseline Git-commit checksum proof; single scoped false-positive correction.",
@@ -11708,6 +11729,17 @@
         "AGENTS.md"
       ],
       "title": "Issue159 — B2.2 current-artifact and staging verification, 28 October 2026"
+    },
+    {
+      "path": "review/issue-159/2026-10-29-runtime-preregistration.md",
+      "kind": "file",
+      "purpose": "Issue159 exact prospective runtime registration dependency, failed owner-stage diagnosis, unchanged-site proof, four independent roles and separate protected-delivery plan.",
+      "role": "history",
+      "owner": "guides/SITE-STAGING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue159 — 29 October 2026 runtime preregistration"
     },
     {
       "path": "review/issue-2/2026-10-15-editorial-draft.md",

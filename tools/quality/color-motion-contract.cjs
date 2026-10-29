@@ -843,6 +843,20 @@ const families = {
     production: '3434d837588d950585ae419c407f95043a6a6920eaf9ebec9b08873ad8c6228a',
   },
 };
+// Issue159 changes only the reviewed reading-path CSS and document identity.
+// Inherit the exact existing scripts, reader behavior and mandatory rights policy.
+families.issue159ReadingPaths = {
+  ...families.issue122WritingStartup,
+  id: 'issue159-reading-paths',
+  baseEngine: 'a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee',
+  styles: {
+    plain: '3fcf8b787fb9614c28eee584d7629174c9ee2210e5e4028b64e526f6134fd4f0',
+    staging: '576619b4c7d399e0a268dc80974882e249ec0a26f7da7cbd326966eb2f2c6f7c',
+  },
+  plain: '8aac0b7197d83f1e4d6057c6431fe8073daba693ba94ca4863ce85f9a4d17a6e',
+  staging: '3f94169c7d487c7d198c69c9a8b9d0dbd6e54bcbbd2fbdc1ab6abfaba3721897',
+  production: 'e1464b7e62dbe36fc425b37f1ba9a81a8342c8e0899dd2a0ddd8b1e66ffc2a90',
+};
 // Expand only explicitly reviewed editions; an absent edition is never admitted.
 const runtimes = Object.entries(families).flatMap(([family, value]) =>
   ['plain', 'staging', 'production']
