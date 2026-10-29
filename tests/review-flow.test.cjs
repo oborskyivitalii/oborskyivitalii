@@ -496,6 +496,7 @@ function principalHttpFiles(record) {
     runtime + 'navigation.js',
     runtime + 'styles.css',
     ...(record.source.files['publication-index.json'] ? ['publication-index.json'] : []),
+    ...(record.source.components.routes?.research?.assets ?? []),
   ].sort();
 }
 test('fast hosted smoke binds all five routes, both revisions and actual base runtime hashes', async () => {
@@ -507,6 +508,8 @@ test('fast hosted smoke binds all five routes, both revisions and actual base ru
     assert.equal(result.sourceCommit, source);
     assert.equal(result.actual404, true);
     assert.equal(result.variant.id, 'base');
+    const researchResource = f.record.source.components.routes.research.assets[0];
+    assert.ok(result.rows.some((row) => row.file === researchResource));
     const observed = (match, mime) => async (url) => {
       const response = await fetchFixture(f)(url);
       if (response.status !== 301 && match(new URL(url))) {
@@ -519,6 +522,7 @@ test('fast hosted smoke binds all five routes, both revisions and actual base ru
       (url) => url.pathname === '/research',
       (url) => url.pathname.endsWith('/space.js'),
       (url) => url.pathname === '/publication-index.json',
+      (url) => url.pathname === '/' + researchResource,
       (url) => url.pathname === '/',
       (url) => url.pathname.includes('__pr_preview_missing_'),
     ])
@@ -536,6 +540,16 @@ test('fast hosted smoke binds all five routes, both revisions and actual base ru
     );
     await assert.rejects(
       () => flow.quickHttp(base, f.record, fetchFixture(f, 'runtime')),
+      /wrong served bytes/
+    );
+    await assert.rejects(
+      () =>
+        flow.quickHttp(base, f.record, async (url) => {
+          const response = await fetchFixture(f)(url);
+          return new URL(url).pathname === '/' + researchResource
+            ? new Response('changed passive SVG', { status: 200, headers: response.headers })
+            : response;
+        }),
       /wrong served bytes/
     );
     await assert.rejects(() => flow.quickHttp(base, f.record, fetchFixture(f, 'robots')));

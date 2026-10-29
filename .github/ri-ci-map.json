@@ -687,7 +687,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "62d0270abff33b34326be948bc71627c7fc4c541bb6ab03479e43d00fbeb2d68",
+    "digest": "fced9482ad96149a2a08ff3ccd93c5a7871c575aaa30a07378a0962e11d556e9",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -951,7 +951,7 @@
       },
       {
         "path": "tests/fixtures/staging-evidence.cjs",
-        "sha256": "175e1b743b58815b1bb54516a17c19660d2ee957c9387c6618c4686351813c26"
+        "sha256": "f398a730ba3556b1bcfe311a8dc51b25d80aa4805a22ad7cf4f5cf2e04b3f13d"
       },
       {
         "path": "tests/staging-gate.test.cjs",
@@ -959,7 +959,7 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "d0e5bb237adb148f405a00f2c10268ebf4995e71bd75950ac0470d26fd7d045b"
+        "sha256": "2d5a169ffd9321667c33a3d21d37650cf0917eca889a5ac6c807bd38b9d3601c"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",

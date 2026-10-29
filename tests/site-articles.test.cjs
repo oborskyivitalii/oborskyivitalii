@@ -355,13 +355,23 @@ test('adding, editing and removing a private-only allowlist preserves all public
   assert.deepEqual(preview(root).files, baseline.files);
 });
 
+function filesWithoutPrincipalResources(root, directory, result) {
+  const revision = snapshot.verify(path.join(root, directory), { files: result.files });
+  const principal = new Set(revision.routes.research.assets ?? []);
+  return Object.keys(result.files).filter((name) => !principal.has(name));
+}
+
 test('default output excludes draft body, catalog descriptors, files and assets; preview selection is explicit', (t) => {
   const root = fixture(t);
   publication(root);
   const ordinary = build.build({ root });
   assert.deepEqual(Object.keys(ordinary.routes), snapshot.routes);
   assert.deepEqual(ordinary.articles, {});
-  assert.ok(!Object.keys(ordinary.files).some((name) => /article|publications/.test(name)));
+  assert.ok(
+    !filesWithoutPrincipalResources(root, 'docs', ordinary).some((name) =>
+      /article|publications/.test(name)
+    )
+  );
   assert.doesNotMatch(html(root, 'writing.html', 'docs'), /Reader profile/);
   assert.throws(
     () => build.build({ root, candidateArticles: ['reader-profile'] }),
@@ -500,7 +510,12 @@ test('article changes, slug rename and deletion have cold/incremental equality w
   fs.rmSync(path.join(root, record.directory), { recursive: true });
   const deleted = preview(root, []);
   assert.deepEqual(deleted.articles, {});
-  assert.ok(!Object.keys(deleted.files).some((name) => name.startsWith('article-')));
+  assert.ok(
+    !filesWithoutPrincipalResources(root, 'candidate', deleted).some((name) =>
+      name.startsWith('article-')
+    )
+  );
+  assert.ok(!Object.keys(deleted.files).some((name) => name.startsWith('articles/')));
 });
 
 test('accepted article rename retains source history while staging isolates HTML and preserves media', (t) => {

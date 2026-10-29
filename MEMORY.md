@@ -4,10 +4,10 @@ Dated continuity, not live authority. Last verified: **2026-10-29**.
 
 ## Snapshot
 
-- Owner159, active DraftPR164. Remotehead78885493/tree35dbf18f;
+- Owner159, active DraftPR164. Remotehead9bfb3c99/treeff6292f0;
   protectedmain2072b76e, protectedproductionc68db162/prod-2026-10-28.1.
 - Local seo159 branchwork/issue159-seo-delivery contains meaningful dirty
-  Research carrier is frozen788; current dirty change corrects its catalog test oracle.
+  Research carrier/catalog correction frozen9bfb; dirty bounded15-failure correction.
 - Canonical review: review/issue-159/2026-10-28-seo-implementation.md,
   dated Research critical-document correction. Revalidate actual refs/CI.
 
@@ -55,19 +55,27 @@ Dated continuity, not live authority. Last verified: **2026-10-29**.
   Requirements/Codepreflightacceptednarrow
   strictresolver+actualSVGIDs+finiteinventory/negative correction. Ready STOPPED.
 
+- Current9bfb manual/auto policy9/9 andnativeRI29/29passed. Ready40890325094
+  completed79modules1193tests1178pass15fail0omit176799msunder300s; allsource
+  casescompleted. Preview40890324477controller45/41/4failedbeforepublish/browser.
+- All15diagnosed across6existingowners; realcalculatorAPI restored, other
+  fixtureclosure/transfer/MIME/dependencyoracles corrected. Sharedfunctional
+  proofsexplicitlysynthetic;24+2missing/tampernegatives preserved. PRDraft.
+- Boundedcorrection8modules160/160zeroomit75883ms; all15oldfailednamesnowpass
+  once. NinechangedCJS lint0/0; canonicalgeneration--checkpass. Finalmetadata
+  reviews/freeze/newnativepending. No1193nativepassoractualPNG/LCPclaim.
+
 ## Next session
 
-1. Finish the narrow content.test local SVG-fragment/finite inventory correction,
-   RI-CIrefresh/format thenRIbuildlast+verify, requiredRI Python checks.
-2. Obtain four actual correction reviews;788 package already passed pristine2072.
-   Preserve product/generated788 bytes. Freeze meaningful test correction, then
-   new frozenpolicy/Ready/RI/source; no unchanged retry or receiptcommit.
-3. Newhead frozenpolicy/Ready/own ownerstage allmandatory, two Research PNGs and
-   LCP bound; normal admissionrefresh, exactheadApp, protectedsquash/postmerge.
-4. Freeze productioncandidate/newrights/archive; bind existingowneracceptance,
-   publish free prod-2026-10-29.1 via existing workflow, verifypointer/live.
-5. Actual operator production journey+UTCwindow+screenshot and bounded provider
-   receipt; final four-role reconciliation, original44ticks/2waived, close159.
+1. Finish bounded15-failure correction after full79-module Ready failure. API
+   checkSize retains articles-only/inline compatibility; undeclared use refuses.
+2. Verify six failed modules plus staging-regression/site-engine; all4actual
+   source/metadata reviews, RI-CI/format thenRIbuildlast. No productbytechange.
+3. Meaningful newsourcefreeze Refs159, nativefrozenpolicy/Ready(fullRI/source),
+   ownownerstage/actual2PNGs/LCP/stableadmission; preserveoldfailedruns.
+4. ExactheadApp/protectedsquash/postmerge, frozenproduction/newrights/archive,
+   publishunderexistingauthority, actualliveoperator/provider/screenshot.
+5. Reconcile44applicable+2waivedunchecked; original46lines thenclose159.
 
 ## Maintenance
 

@@ -31,13 +31,13 @@ function checkSize(dir) {
     const fallback = require('../site/fallback.cjs').resolveRouteResource(
       svg,
       route,
-      revision.routes[route]?.assets,
+      revision.routes?.[route]?.assets,
       (name) => fs.readFileSync(path.join(dir, name))
     );
     if (fallback) nodes += 1 + (fallback.content.match(/<[a-z][\w-]*(?:\s|>)/gi) || []).length;
     if (m.files[file].raw > budgets.htmlRawBytes || nodes > budgets.svgElements)
       throw Error('Size budget ' + route);
-    const assets = routeSizeAssets(m.files, route, revision.routes[route]?.assets);
+    const assets = routeSizeAssets(m.files, route, revision.routes?.[route]?.assets);
     const transfer = m.files[file].gzip + assets.reduce((n, f) => n + m.files[f].gzip, 0);
     if (transfer > budgets.routeGzipBytes) throw Error('Route transfer ' + route);
     rows.push({

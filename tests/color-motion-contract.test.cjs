@@ -358,13 +358,7 @@ function evidence(id) {
       status: 200,
       sha256: selected.files[file].sha256,
       url: value.hostedURL + '/' + file,
-      mime: file.endsWith('.html')
-        ? 'text/html'
-        : file.endsWith('.js')
-          ? 'application/javascript'
-          : file.endsWith('.css')
-            ? 'text/css'
-            : 'application/json',
+      mime: require('../tools/quality/serve.cjs').canonicalType(file),
     }));
   for (const journey of value.reports.find((row) => row.kind === 'stage-functional').journeys)
     for (const row of journey.rows) row.state.engine = selected.variant.fingerprint;

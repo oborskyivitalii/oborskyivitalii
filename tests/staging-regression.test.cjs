@@ -277,49 +277,6 @@ test('declared Research resources require actual no-JS and no-Canvas response, g
   manifest.components.routes = { research: { assets: [name] } };
   manifest.files[name] = { sha256: 'f'.repeat(64), raw: 5000, gzip: 1000 };
   const report = fixture.functional(manifest);
-  const proof = (mode, width, theme) => ({
-    kind: 'research-static-fallback',
-    mode,
-    width,
-    theme,
-    resource: {
-      file: name,
-      status: 200,
-      sha256: manifest.files[name].sha256,
-      bytes: 5000,
-      mime: 'image/svg+xml',
-      url: fixture.target + '/' + name,
-    },
-    geometry: {
-      page: 'research',
-      h1: 1,
-      href: name + '#research-fallback',
-      resourceURL: fixture.target + '/' + name + '#research-fallback',
-      viewBox: '0 0 1440 900',
-      preserveAspectRatio: 'xMidYMid slice',
-      useCount: 1,
-      visible: true,
-      viewport: { width, height: 844 },
-      box: { x: 1, y: 1, width: 100, height: 100 },
-      dataTheme: mode === 'no-js' ? null : theme,
-      prefersDark: false,
-      palette: { paper: '#f8f7f3', accent: '#075d7b', systems: '#895710' },
-    },
-    png: {
-      file: `research-fallback-${mode}-${width}-${theme}.png`,
-      sha256: 'e'.repeat(64),
-      bytes: 1000,
-    },
-  });
-  const noJS = report.failures.find((row) => row.mode === 'no-js');
-  noJS.checks.researchFallback = {
-    ...proof('no-js', 320, 'light'),
-    fallback: structuredClone(noJS.checks),
-  };
-  const noCanvas = report.journeys
-    .find((row) => row.mode === 'no-canvas' && row.width === 390)
-    .rows.find((row) => row.route === 'research');
-  noCanvas.researchFallback = proof('no-canvas', 390, 'dark');
   assert.doesNotThrow(() => stage.validateFunctional(report, manifest));
   const changes = [
     (item) => delete item.resource,

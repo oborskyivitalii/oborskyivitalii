@@ -1360,9 +1360,7 @@ async function stagedProductionFixture(t, { content = false } = {}) {
       })),
   };
   input.manifest = manifest;
-  input.sizes.artifactDigest = manifest.artifactDigest;
-  input.sizes.files = manifest.files;
-  for (const row of input.sizes.rows) Object.assign(row, manifest.files[row.route + '.html']);
+  input.sizes = artifact.checkSize(path.join(tested.directory, 'public'));
   input.reports = [
     host,
     ...input.reports
