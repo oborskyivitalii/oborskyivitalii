@@ -1,90 +1,66 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-28**.
+Dated continuity, not live authority. Last verified: **2026-10-29**.
 
 ## Snapshot
 
-- Owner #159 combines SEO/analytics and retired #158/#102 obligations.
-  Main af8a7b38d08f49c06e9257234a5ec458363a6275; production remains
-  c68db162ca294ed3bd88e7e2280ecbd8f37e3dd3, immutable prod-2026-10-28.1.
-- PR161 protected squash merged after explicit owner source trust/merge approval.
-  Accepted tree5c9891eb4be54ce80c6315fec094d812506ba932 equals tested d9755790.
-  No production activation accompanied the diagnostic harness merge.
-- PR79/107/110/117 remain separate owners. Current #159 work branches from af8a7b38
-  for B4/B5 research and existing-page SEO; no article or sibling-repo edits.
+- Owner159 retains original AC01–18 and consolidated analytics/SEO scope.
+  Protected main2072b76e includes mergedPR161 and prospective registryPR166.
+  Protected productionc68db162 remains immutable prod-2026-10-28.1.
+- ActivePR164 accepted SEO/brief candidate945aaa5 is being integrated withactual
+  protectedmain2072. Local worktree seo159/branchwork/issue159-seo-delivery;
+  no new frozen source yet. Product/copy/visual parity to945 is required.
 
 ## Decisions
 
-- User orders analytics delivery/live verification first, then Terra SEO work.
-  One active #159 PR at a time; original AC01–AC18/external gates persist.
-- B4 actual gpt-6.1-terra query/audience research received four distinct ACCEPT
-  re-reviews after named-work/current-path/PMDay-overlap corrections. Source:
-  review/issue-159/2026-10-28-seo-query-research.md. No research AC ticked.
-- B5 Requirements preflight ACCEPT authorizes already requested drafting.
-  Existing-page paths plus two implementation-ready briefs; no new route family.
-  Guide publication remains #11 after accepted PMDay through #2/#5.
-- Semrush returned nonretryable no_api_units once: no metrics, retry or purchase.
-  Historical estimates and sparse unequal GSC windows are not a trend or demand proof.
+- On29October owner accepted current copy/source/rights, declined recruiting a
+  first reader and instructed production. PR164 comment6493352483 records
+  AC09.1/.2 as explicitly waived/not executed; no human observation is invented.
+- Necessary exact runtime preregistration followed existingPR151-beforePR150
+  route under159; PR166 merged after ordinary native/admission/protected gates.
+  Sameowner, originalAC IDs/history, originalbudgets and one activeincrement.
+- Current integration preserves1569protected-main ledgerrows/order, appends only
+  57remaining exact945records, retains1626unique. No detector/guard/pin change.
+  Proof/preregistration report bytes remain original; catalogue follows indexed
+  currentfiles, excluding16oldgeneratedpaths absent from945.
 
 ## Open work
 
-- PR161 Ready40747055207 passed1162/1162; stage40748013670/1 succeeded,
-  including exact-source security, bounded regressions, stable promotion and receipt.
-  App5453173 Check123050079904 succeeded via owner ChangeAdmission40754395577/1.
-  Accepted merge observer40754947158 and main RI40754946337 both succeeded.
-  Exact raw receipts/old failures remain in PR161 comments and live-diagnostics report.
-- Native40736775395/1 used6c4ad913 against immutablec68. Both Forward conditions
-  mounted within2sec; separate SDK10478encoded/31853decoded bytes and6.474ms
-  sampled CPU attribution. Provider17:34–17:36Z15loads/3visits was deliberate QA.
-  Historical CUA6000 wait errored after3.9791sec; cause still unknown, not relabelled.
-- B5 Draft PR164 first freeze7675702e/tree7029aad: Basic passed. Preview40762149497
-  failed strict unknown Color at package binding; selected1159 actual tests had
-  1121pass/38fail,0omissions (35same refusal,3stale proof/tuple oracles).
-  Manual policy40762478861 had7/9pass and same two diagnosed failures.
-- Additive exact issue159-reading-paths Color family and document clienta404
-  retain old guards/rights/JS. Actual dirty cold plain/stage/prod tuples match;
-  affected77/77 and latent controller1/1 passed; four independent correction roles
-  retain actual interactions/human/rights gates. New frozen checks/preview pending.
-- Corrected0702307e/tree7065e148: Basic and native policy40765077782 passed9/9;
-  fullselected1168actual had1161pass/7fail,0omissions. All7 stoppedatone imported
-  modern publication-fixture oldfamily prefix. Exactoneprefix correction25/25
-  withCode/Requirements actualACCEPT; historical/product/docs/offline unchanged.
-  Clean5bc/adf then passed1168/1168 in76modules, Basic and local/native9/9.
-  Draft40766166686 HTTP passed;070 desktop journeys and5bc badge observed.
-- Evidence-only stage40766984867 failed24/26 beforepublish/browser: lint NULregex
-  and63untriaged Hex candidates. Source74modules1151/1151+Basic3 andPython140/140
-  passed. Raw/native failure and all prior failures remain; no unchanged retry.
-- Requirements accepted NUL-equivalent string checks plus exact per-ID public
-  checksum proof. New B5 scanner proof retains frozen63 and current63, with one
-  validator successor replacement; checksum ledger append-only, no scanner change.
-  Generated snapshot/producer identities refreshed; copy/CSS/runtime unchanged.
-  Four actual correction roles ACCEPT; schema1/1, ledger5/5, lint0 and189refusals
-  pass. Source metadata/RI refreshed; freeze/new-head lint/security/staging follow.
-- B5 prepared page/checker sources and Terra briefs are not accepted/public copy.
-  Source/style/checker/independent and changed-surface validation is in progress:
-  review/issue-159/2026-10-28-seo-implementation.md. Original29/46 edition and
-  four-topic archive invariants persist; Research/templates/checker select full route.
-- Briefs compare actual PR79 selected R38 and prepared R42 bodies, preserving
-  distinct source/edition/rights status. They adapt existing decision structures;
-  no novelty or published PMDay/guide route is asserted.
-- #159 has15/46 checkbox lines complete: wholeAC10/11/12/14/15/16/17/18 only.
-  SEO/current-copy usefulness, AC13 completion and actual first-reader, editorial,
-  rights, applicable device, merge and publication gates remain open.
+- PR16697eb1504 testedtree91d1873e merged as2072b76e, sole parentaf8a7b38;
+  full tested/merged trees identical. Ready75modules1153/1153, policy9/9,
+  ownerstage40858230483all12mandatoryjobs succeeded inclstable/admissionreceipt.
+- GenuineApp5453173check123405034383 on97/external40861253589/1/166 passed.
+  Postmerge40861722899 accepted-staging-merge/publicBytesUnchangedtrue;
+  mainRI40861721307 passed on2072. PR166 comment6494886909 and1596494887308.
+- Old945ownerstage40852961061 built26/26 then mainaf8publisher refused unknown
+  runtime BEFOREupload. This failure staysfailed; deliveredregistryprerequisite
+  is the meaningful correction, followedbynewP2source/nativeevidence.
+- Preparedintegration resolves six metadata/ledgerconflicts only. Sourceproduct,
+  generatedHTML/runtime, templates/renderers and maintained exports stay945bytes.
+  Current four roles p2_requirements/code/whitebox/operator must re-review newsource.
+- Two briefs handed to11 in6493407716; PMDay-first2/5 remains. No article/guide
+  publication. Issue159 historical15ticks remain until actualP2release/closure.
+  Finalintended44accepted+2waived requires all remaining applicable evidence.
 
 ## Next session
 
-1. Revalidate main/production, #159 and current SEO Draft PR/head/checks.
-2. Complete B5 exact-source checks, four distinct final reviews and bounded
-   desktop/mobile/theme/motion/no-JS/print observations; fix real findings.
-3. Supply the concrete exact candidate for genuine uncoached first-time human
-   comprehension and exact-copy editorial/rights decisions; do not simulate them.
-4. Follow existing owner preview/staging/admission before separate SEO merge and
-   production decisions. Manual4/8-week GSC learning remains manual, no reminders.
+1. Revalidate main/production,159/164 refs, pendingmergestate and reviewedsource.
+2. Finish actual2072integration, physical945parity, ledger/proof/catalog checks,
+   meaningfulB5report/MEMORY, RI-CIrefresh/format thenRIbuildlast+verify.
+3. Obtainfourdistinctpreparedreviews; create sourcecommitwithparents945+2072,
+   expected945fastforward oforiginal164branch; freeze/clean thennativeDraftpolicy.
+4. Completeactualnewhead Ready, ownownerstage/stableadmission, exactheadApptrust
+   andprotectedP2merge/postmerge. Earlier945/97runs staytheiroriginalexecutions.
+5. Freezeproductioneditionandrights/archive, publishunderexistingownerauthority,
+   verifyliveSEO andcontinuedanalytics/isolation, reconcileall159ACsandclose.
+   Recordequal28dayGSClearningmethod; later4/8weekmanualobservationsnonblocking.
 
 ## Maintenance
 
-- Dated receipts stay in issue/PR comments after source freeze; no receipt-only commits.
-- Preserve exact failed source/setup/native outcomes and original budgets.
-- Local blob:none history needs pinned blobs materialized before fixture runs.
-  No blanket scanner/SEO bypass, unchanged failed-campaign retry or invented humans.
-- Keep five sections/120 lines; refresh/verify RI-CI, then build/verify RI last.
+- Originalsource/native/setupfailures retained. InterruptedLOCAL945fullrun stays
+  stopped, no finalaccounting. Newmaterialsource/nativechecks are separate.
+- ExistingSITE_AUDIT_TOOLS option selects pinnedtools inlegacyrepo; newworktrees
+  lacklocalvenv/modules. No broadlocalpolicyretry forknownsetupgap is needed.
+- Sourcefreeze forbidsreceipt-onlycommits; dynamicrunreceipts staycomments.
+- Keepfive sections/120lines, stagesownednewpaths beforeRI, no ignoreexception,
+  no inventedphysical-device/human/provider evidence or unrelatedrepo/task work.

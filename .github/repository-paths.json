@@ -11827,6 +11827,18 @@
       "role": "validator",
       "owner": "guides/SITE-ANALYTICS.md"
     },
+    "review/issue-159/2026-10-29-runtime-preregistration.md": {
+      "kind": "file",
+      "purpose": "Issue159 exact prospective runtime registration dependency, failed owner-stage diagnosis, unchanged-site proof, four independent roles and separate protected-delivery plan.",
+      "role": "history",
+      "owner": "guides/SITE-STAGING.md"
+    },
+    "review/issue-159/2026-10-28-seo-scanner-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Exact frozen/current B5 public checksum proof, preserved byte-for-byte from945; six findings preregistered by166 and57 integrated here, with no scanner bypass or rights approval.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-159/2026-10-28-seo-query-research.md": {
       "kind": "file",
       "purpose": "B4 Terra audience/query/source matrix, actual four-role correction review and bounded B5 handoff.",
@@ -11958,12 +11970,6 @@
       "purpose": "Immutable generated route snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
-    },
-    "review/issue-159/2026-10-28-seo-scanner-proof.json.gz": {
-      "kind": "file",
-      "purpose": "B5 failed native scanner identity, exact per-ID frozen/current public checksum proof and bounded source correction; no scanner bypass or rights approval.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
     }
   }
 }

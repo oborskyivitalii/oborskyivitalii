@@ -2,8 +2,8 @@
   "schema_version": 1,
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/159",
-    "date": "2026-10-28",
-    "summary": "Review bounded issue159 existing-page SEO, exact amendment/producer/CSS successor and curated catalog checks while preserving unified acceptance and all source/manual/release gates."
+    "date": "2026-10-29",
+    "summary": "Integrate accepted protected runtime preregistration and preserve reviewed existing-page SEO, exact amendment/producer/CSS successor and curated catalog checks; retain source/manual/release gates."
   },
   "layers": [
     {
@@ -152,7 +152,8 @@
         "review/issue-159/2026-10-28-seo-implementation.md",
         "review/issue-159/2026-10-28-seo-brief-delivery.md",
         "review/issue-159/2026-10-28-seo-brief-agent-control.md",
-        "review/issue-159/content-amendment.json"
+        "review/issue-159/content-amendment.json",
+        "review/issue-159/2026-10-29-runtime-preregistration.md"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -686,7 +687,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "86b95e0dd5b07990c4a53f7ae9389055b7d48c86c64b9303a8b2df4dcce8449c",
+    "digest": "e81d7897db61328e05db1a751c6e718a25d027c3d900fcaef6221f0be0547664",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -826,7 +827,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "4d3a8162125d5d6544d5dd6ec2d982fde34aed351eefd77968253dde4632046e"
+        "sha256": "e784ac2aa2175990c530d99ca270f421b9b9336c1bfbd1a7a6efbff3400f7f25"
       },
       {
         "path": ".github/workflows/browser-archives.yml",

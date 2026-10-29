@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "481940afc06cc60c9e4e9296710cbb7599548c7310f6889e12986f5a1a1e99a8",
+    "digest": "f698cbdf00177f797c8eee712c6e8563b188a45cd70009e2c2f9a6c75383cbd4",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -206,12 +206,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "4d3a8162125d5d6544d5dd6ec2d982fde34aed351eefd77968253dde4632046e"
+        "sha256": "e784ac2aa2175990c530d99ca270f421b9b9336c1bfbd1a7a6efbff3400f7f25"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "44ee9802a6520e3671dcd3590490ea5d507d7009fb96e199b52d143bf36f22c6"
+        "sha256": "d43aa808cea12fffc82f17dcea888962f2f1202a1ee3cf198cf96160b1baca22"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -361,7 +361,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "9c314d876c72e98ca884f199a442a61fcde0765f524d9b630a964036b5bbbecb"
+        "sha256": "7789115b0dd15b09cb0fa42309ec1a829a752405c8741323f650afbf4f9663cd"
       },
       {
         "path": "NOTICE.md",
@@ -1125,7 +1125,7 @@
       {
         "path": "review/issue-159/2026-10-28-seo-implementation.md",
         "identity_mode": "content",
-        "sha256": "325f152b09d8156433e522ee12b8ed05e72b985decfce6961f62ad4e59b6d0cc"
+        "sha256": "2b9c3a7c6676420cdfba05b09ff8069a2759c6672538f16ab6830deaa49bd4cd"
       },
       {
         "path": "review/issue-159/2026-10-28-seo-query-research.md",
@@ -1146,6 +1146,11 @@
         "path": "review/issue-159/2026-10-28-staging-verification.md",
         "identity_mode": "content",
         "sha256": "f9b103872399b5916de5623b1a1d6044ad4bedde9ff7bc21dd178b3956c2cc1c"
+      },
+      {
+        "path": "review/issue-159/2026-10-29-runtime-preregistration.md",
+        "identity_mode": "content",
+        "sha256": "fa0a52964fa1b0f572e5411d898c0b8c3b6c34e611b0ee1ac74e065145554b2b"
       },
       {
         "path": "review/issue-159/content-amendment.json",
@@ -7350,7 +7355,7 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "09ee2aba27c8c21eb0031966d3cc4f8de9a0f4317524b8922d9128be2b6f9cc0"
+        "sha256": "47642006a678c1ebc9e2cfa4dd0186e6a7b6c9aa51e92e9cc65eddb4c80c108c"
       },
       {
         "path": "tests/content-baseline.test.cjs",
@@ -8545,7 +8550,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "2f4687f4fb12a4b79ad2adbbb3a173dbcb69b1c0a56ebe8b817d61cfcaa7b765"
+        "sha256": "c9abe79650377567919da0042da50fed852121f18b6933b70e551c8c260c19ec"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
@@ -11769,7 +11774,7 @@
     {
       "path": "review/issue-159/2026-10-28-seo-scanner-proof.json.gz",
       "kind": "file",
-      "purpose": "B5 failed native scanner identity, exact per-ID frozen/current public checksum proof and bounded source correction; no scanner bypass or rights approval.",
+      "purpose": "Exact frozen/current B5 public checksum proof, preserved byte-for-byte from945; six findings preregistered by166 and57 integrated here, with no scanner bypass or rights approval.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -11798,6 +11803,17 @@
         "AGENTS.md"
       ],
       "title": "Issue159 — B2.2 current-artifact and staging verification, 28 October 2026"
+    },
+    {
+      "path": "review/issue-159/2026-10-29-runtime-preregistration.md",
+      "kind": "file",
+      "purpose": "Issue159 exact prospective runtime registration dependency, failed owner-stage diagnosis, unchanged-site proof, four independent roles and separate protected-delivery plan.",
+      "role": "history",
+      "owner": "guides/SITE-STAGING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue159 — 29 October 2026 runtime preregistration"
     },
     {
       "path": "review/issue-159/content-amendment.json",
