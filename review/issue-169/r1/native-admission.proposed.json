@@ -1,0 +1,25 @@
+{
+  "status": "proposed-native-integration-not-an-active-publication-record",
+  "id": "sdlc-out-of-balance",
+  "title": "The SDLC Is Out of Balance",
+  "subtitle": "Why faster code and faster reviews do not automatically produce a healthier delivery system",
+  "language": "en",
+  "author": "Vitalii Oborskyi",
+  "source": "manuscript.en.md",
+  "canonicalUrl": null,
+  "hostedPdfUrl": null,
+  "nativeOwner": "site/publications/sdlc-out-of-balance",
+  "tagOwner": "site/content/article-tags.json",
+  "tags": ["ai-delivery", "software-economics", "verification", "human-ai", "operating-models"],
+  "relatedReading": {
+    "site": "existing publication-index and shared component; actual rendering remains unverified",
+    "platforms": "preserve authored References and related work items 6-8",
+    "archiveExamples": ["publication-02", "publication-01", "publication-03", "publication-04"]
+  },
+  "figures": ["workstream-system", "review-functions", "imbalance-loop"],
+  "coverCandidate": "images/cover-editorial.png",
+  "pdfReview": "The_SDLC_Is_Out_of_Balance_R1.pdf",
+  "sourceSha256": "a4a5975ffe2f3312b39d451f4594321d40270bfcc76b3aa98a2507a9e91bfe11",
+  "pdfSha256": "b5c65ff00fa9638fe0fe48d5943d5b1c496c0d2cda97cda660c4fc941f14b608",
+  "publicationApproved": false
+}
