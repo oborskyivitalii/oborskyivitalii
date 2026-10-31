@@ -6,6 +6,7 @@ const path = require('node:path');
 const os = require('node:os');
 const cp = require('node:child_process');
 const vm = require('node:vm');
+const crypto = require('node:crypto');
 const build = require('../tools/site/build.cjs');
 const snapshot = require('../tools/site/snapshot.cjs');
 const artifact = require('../tools/quality/artifact.cjs');
@@ -234,7 +235,11 @@ function accept(root, record) {
 test('selected public materials enter native article/resource closure; campaign drafts stay private', (t) => {
   const root = fixture(t);
   const record = publication(root);
-  const pdf = Buffer.from('%PDF-1.7\nsynthetic material fixture\n%%EOF\n');
+  const pdf = Buffer.concat([
+    Buffer.from('%PDF-1.7\nsynthetic material fixture\n'),
+    crypto.randomBytes(850000),
+    Buffer.from('\n%%EOF\n'),
+  ]);
   const file = 'site/assets/publications/reader-profile/materials/reading.pdf';
   write(root, file, pdf);
   const review = 'Synthetic review evidence; no real author acceptance.\n';
@@ -242,7 +247,10 @@ test('selected public materials enter native article/resource closure; campaign 
   const declaration = {
     schema: 1,
     articleId: 'reader-profile',
-    source: { editionId: record.edition.id, semanticSha256: record.edition.semanticSha256 },
+    source: {
+      editionId: record.edition.id,
+      semanticSha256: record.edition.semanticSha256,
+    },
     items: [
       {
         id: 'reading-pdf',
@@ -265,18 +273,41 @@ test('selected public materials enter native article/resource closure; campaign 
   declaration.items[0].approval = {
     bindingSha256: material.reviewBinding(declaration, declaration.items[0]),
     reviewedAt: '2026-10-19T10:00:00Z',
-    evidence: { path: 'materials/reviews/reading-pdf.md', sha256: build.sha(review) },
+    evidence: {
+      path: 'materials/reviews/reading-pdf.md',
+      sha256: build.sha(review),
+    },
   };
   json(root, `${record.directory}/materials.json`, declaration);
   const first = preview(root);
   const article = html(root, 'articles/reader-profile.html');
   assert.match(article, /id="article-materials"/);
   assert.match(article, /Full reading PDF/);
-  const revision = snapshot.verify(path.join(root, 'candidate'), { files: first.files });
+  const revision = snapshot.verify(path.join(root, 'candidate'), {
+    files: first.files,
+  });
   const selected = revision.articles['reader-profile:en'];
   const download = `article-media/${build.sha(pdf)}/reading.pdf`;
   assert.ok(selected.assets.includes(download));
+  assert.deepEqual(selected.downloads, [download]);
   assert.deepEqual(fs.readFileSync(path.join(root, 'candidate', download)), pdf);
+  const sizes = artifact.checkSize(path.join(root, 'candidate')).articleRows[0];
+  assert.ok(sizes.downloadGzipBytes > 800000, 'optional PDF exceeds the reading budget alone');
+  assert.ok(sizes.totalGzipBytes < 800000, 'ordinary reading excludes the user-activated PDF');
+  const read = (name) => fs.readFileSync(path.join(root, 'candidate', name));
+  assert.throws(
+    () => snapshot.downloads(selected, article + `<iframe src="../${download}"></iframe>`, read),
+    /one native link/
+  );
+  assert.throws(
+    () =>
+      snapshot.downloads(
+        selected,
+        article.replace('<a href="../' + download, '<embed src="../' + download),
+        read
+      ),
+    /ordinary anchor/
+  );
   assert.ok(
     first.articles['reader-profile:en'].inputs.includes(`${record.directory}/materials.json`)
   );
@@ -292,7 +323,11 @@ test('selected public materials enter native article/resource closure; campaign 
     Object.keys(second.files).some((name) => /campaign|reviews|materials.json/.test(name)),
     false
   );
-  const pending = { ...structuredClone(declaration.items[0]), id: 'pending-copy', approval: null };
+  const pending = {
+    ...structuredClone(declaration.items[0]),
+    id: 'pending-copy',
+    approval: null,
+  };
   declaration.items.push(pending);
   for (const visibility of ['private', 'public', 'private']) {
     pending.visibility = visibility;
@@ -310,6 +345,25 @@ test('selected public materials enter native article/resource closure; campaign 
       recursive: true,
     });
   }
+  const extra = structuredClone(declaration.items[0]);
+  extra.id = 'second-pdf';
+  extra.target.path = 'materials/second.pdf';
+  write(root, 'site/assets/publications/reader-profile/materials/second.pdf', pdf);
+  write(root, `${record.directory}/materials/reviews/second-pdf.md`, review);
+  extra.approval = {
+    bindingSha256: material.reviewBinding(declaration, extra),
+    reviewedAt: '2026-10-19T10:00:00Z',
+    evidence: {
+      path: 'materials/reviews/second-pdf.md',
+      sha256: build.sha(review),
+    },
+  };
+  declaration.items.push(extra);
+  json(root, `${record.directory}/materials.json`, declaration);
+  const multiple = preview(root);
+  assert.equal(multiple.articles['reader-profile:en'].downloads, undefined);
+  assert.throws(() => artifact.checkSize(path.join(root, 'candidate')), /Article transfer size/);
+  declaration.items.pop();
   declaration.items[0].target.sha256 = '0'.repeat(64);
   json(root, `${record.directory}/materials.json`, declaration);
   assert.throws(() => preview(root), /stale/i);
@@ -322,7 +376,10 @@ test('adding, editing and removing a private-only allowlist preserves all public
   const declaration = {
     schema: 1,
     articleId: 'reader-profile',
-    source: { editionId: record.edition.id, semanticSha256: record.edition.semanticSha256 },
+    source: {
+      editionId: record.edition.id,
+      semanticSha256: record.edition.semanticSha256,
+    },
     items: [
       {
         id: 'private-copy',
@@ -356,7 +413,9 @@ test('adding, editing and removing a private-only allowlist preserves all public
 });
 
 function filesWithoutPrincipalResources(root, directory, result) {
-  const revision = snapshot.verify(path.join(root, directory), { files: result.files });
+  const revision = snapshot.verify(path.join(root, directory), {
+    files: result.files,
+  });
   const principal = new Set(revision.routes.research.assets ?? []);
   return Object.keys(result.files).filter((name) => !principal.has(name));
 }
@@ -722,7 +781,10 @@ test('project-base routing and history use distinct finite article keys while sc
     },
     page: 'article:reader-profile:en',
     historyIndex: 4,
-    content: { inert: false, querySelector: () => ({ getAttribute: () => null }) },
+    content: {
+      inert: false,
+      querySelector: () => ({ getAttribute: () => null }),
+    },
     document: { activeElement: { id: 'article-title' } },
     window: {
       location: {

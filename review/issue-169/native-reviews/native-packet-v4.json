@@ -1,0 +1,385 @@
+{
+  "kind": "prepared dirty native integration, reviewed subset excluding peer receipts",
+  "base": "8ed52aa1fe39be8483a2b5b4079df4142fbc5b5d",
+  "sourceParent": "73ed1dcdab9e0e0471ab150c70ba728e844a7e55",
+  "files": [
+    {
+      "path": ".github/acceptance/issue-169.json",
+      "bytes": 7413,
+      "sha256": "339e867715fbaa6816605a0efd6232e3415a406c4e27adb8b67be9624c115a40"
+    },
+    {
+      "path": ".github/repository-intelligence/agent-context.json",
+      "bytes": 1243991,
+      "sha256": "9990afad153f2d15bfd0dd580ae01c89c0571dc4f09fb9617a04e3d0ad7eccda"
+    },
+    {
+      "path": ".github/repository-paths.json",
+      "bytes": 599553,
+      "sha256": "5032fa23223ec469bd9e4aaa2eb2bf20d717e5a61a068d5ae7fba9682cc16dfd"
+    },
+    {
+      "path": ".github/ri-ci-map.json",
+      "bytes": 47610,
+      "sha256": "6cfc1332355aa89015dc61908626227530ecf324a2bd513b5fcfa5b537513141"
+    },
+    {
+      "path": "MEMORY.md",
+      "bytes": 2631,
+      "sha256": "0304ce96d6fc666d4bc621fe12e5700d2f1dad763f60fe92f17f38d5de453871"
+    },
+    {
+      "path": "REPOSITORY-MAP.md",
+      "bytes": 610634,
+      "sha256": "2010dace680dc384cdef4c208505da435ed168d018ad0773d51ee53709857c63"
+    },
+    {
+      "path": "docs/article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292/systemic-response.webp",
+      "bytes": 57134,
+      "sha256": "1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292"
+    },
+    {
+      "path": "docs/article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg",
+      "bytes": 53669,
+      "sha256": "2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16"
+    },
+    {
+      "path": "docs/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3/imbalance-loop.webp",
+      "bytes": 67108,
+      "sha256": "45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3"
+    },
+    {
+      "path": "docs/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c/reading.pdf",
+      "bytes": 1981992,
+      "sha256": "70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c"
+    },
+    {
+      "path": "docs/article-media/79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6/review-functions.webp",
+      "bytes": 78004,
+      "sha256": "79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6"
+    },
+    {
+      "path": "docs/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry.webp",
+      "bytes": 65044,
+      "sha256": "8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f"
+    },
+    {
+      "path": "docs/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1/workstream-system.webp",
+      "bytes": 78988,
+      "sha256": "8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1"
+    },
+    {
+      "path": "docs/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f/hero-web.jpg",
+      "bytes": 242215,
+      "sha256": "fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f"
+    },
+    {
+      "path": "docs/article-snapshots/21f1e97116d30f37432f199896fff4728d44722db399e7737f86314e39d2c570/the-sdlc-is-out-of-balance.html",
+      "bytes": 34003,
+      "sha256": "67b0ff6b7787f65b59dcd501ad87a301be4d642f3c82e247e7449b4d52539310"
+    },
+    {
+      "path": "docs/articles/the-sdlc-is-out-of-balance.html",
+      "bytes": 33886,
+      "sha256": "3360bbbf4d98bdd49a6f1a9e82a994f1af45a9dafc959e8fd54b3eaa312e57c6"
+    },
+    {
+      "path": "docs/credits.html",
+      "bytes": 83977,
+      "sha256": "e695747c48b969717dfed61f4496fd5ff594cf2428548895c75b6a97c73437f5"
+    },
+    {
+      "path": "docs/index.html",
+      "bytes": 52774,
+      "sha256": "8e30353951ac19a138150993b5843870b3fc2414ed647113ee96b0cdfa0c9d70"
+    },
+    {
+      "path": "docs/publication-index.json",
+      "bytes": 9954,
+      "sha256": "d8f7f201434039234ad6fce61b87f90f782f83ae788e4a02f257de7be058954b"
+    },
+    {
+      "path": "docs/research.html",
+      "bytes": 22555,
+      "sha256": "a6876cd43921ccc83e2b3f5df378da65b5984f8951a615bf9bcc975b5cd80eaf"
+    },
+    {
+      "path": "docs/site-revision.json",
+      "bytes": 4110,
+      "sha256": "bd850be38d018797431e9d33e093b85f734cba58e80203ae92964d5cca42b2df"
+    },
+    {
+      "path": "docs/snapshots/4cf95bbc4065732f2145d6a52d212cf5bcf473f778858e34b2a67ce7415f0e21/research.html",
+      "bytes": 22669,
+      "sha256": "e04a2cbbac4e087a54a49073118996d5fced4bf62975a55f40ac493ca29faa46"
+    },
+    {
+      "path": "docs/snapshots/536181bf124ff1c32030e477b1a41f3300012c9884cfc5b66086104abdb45513/index.html",
+      "bytes": 52912,
+      "sha256": "ee6491b4638911d79941e944cc65b305d9ee0b25cdbd9ec76c60b4791a17fcdf"
+    },
+    {
+      "path": "docs/snapshots/6a2575df0c92bf53d7292668aa31fe0825f851a50859993c6b896161f91334e7/credits.html",
+      "bytes": 84067,
+      "sha256": "6c4785780b2e16932148238fe5b0a61a644a174b2027b0c521ed7c51b1e140bd"
+    },
+    {
+      "path": "docs/snapshots/d5c5bf9bd5c2e88016f45292ed58595a1d7ee1d1f702f2e74efc666068a3c6eb/writing.html",
+      "bytes": 99752,
+      "sha256": "3cc76c9d920385b86ea11badaa2af71f7de38f5cfee74f54876d332ee2671fcd"
+    },
+    {
+      "path": "docs/snapshots/fec1b7ae82d606379afd7af75629b0ae3ddce142a7683be9c85796fbcc61083c/talks.html",
+      "bytes": 50785,
+      "sha256": "4f6686137b5f15d5508007c16309815103ee48ab5662aaa1a6cd00998d33d965"
+    },
+    {
+      "path": "docs/talks.html",
+      "bytes": 50683,
+      "sha256": "b19f104e15d83f5da7ce0fb2173227550b2696a406f6c96fab5031a8cbf7a2ff"
+    },
+    {
+      "path": "docs/writing.html",
+      "bytes": 99582,
+      "sha256": "3044d6bc56fb88534b255096479656e62503a04fd36c94571e5f8217f1125389"
+    },
+    {
+      "path": "review/issue-169/2026-10-31-native-publication.md",
+      "bytes": 5664,
+      "sha256": "aab963f33fd33b1ea06e9e8b1e06c8b08a654fccdb5a2eb874866eff6f4590ae"
+    },
+    {
+      "path": "review/issue-169/native-check-allocation.md",
+      "bytes": 3356,
+      "sha256": "a8c486257545f7e5a037456f8829c9f84ab9a0847cabb822485d10aac3cffe86"
+    },
+    {
+      "path": "review/site-v1-20261004-v11-credits-day.html",
+      "bytes": 139872,
+      "sha256": "a4f24a00103c088b0f4bdb72dfee93cd7152e7ab3a064880cf7256921b1068ff"
+    },
+    {
+      "path": "review/site-v1-20261004-v11-credits-interactive.html",
+      "bytes": 846853,
+      "sha256": "fea42c291af9b478b73ed96c702774690df00db8a96bda208b4278a39e825c97"
+    },
+    {
+      "path": "review/site-v1-20261004-v11-credits-night.html",
+      "bytes": 139891,
+      "sha256": "02175988fe25cc5731b295a71c8dd40aaa5f150dde6c7c4fb7b790d496e271cc"
+    },
+    {
+      "path": "review/site-v1-20261004-v11-day.html",
+      "bytes": 182696,
+      "sha256": "9d43107111944e5324fbc7a253865380a44f4d101e649f2f9dc8afe47daf3842"
+    },
+    {
+      "path": "review/site-v1-20261004-v11-interactive.html",
+      "bytes": 889733,
+      "sha256": "3a915a61b18dadaea8626dca4c92846890cd3e432747f146a96e7648dcdd4d67"
+    },
+    {
+      "path": "review/site-v1-20261004-v11-night.html",
+      "bytes": 182729,
+      "sha256": "0d1a5bbdaeef0a72f660e76e494daf5770e1c226df4a7dcf0ffa9b9f831fbcda"
+    },
+    {
+      "path": "review/site-v1-20261004-v11-research-day.html",
+      "bytes": 114498,
+      "sha256": "86db44a675dd7c1506b02b1bc6cb17e194fe45c3666e194466ee29534c129c29"
+    },
+    {
+      "path": "review/site-v1-20261004-v11-research-interactive.html",
+      "bytes": 821503,
+      "sha256": "24915eaef2b485662f2b35f004d9a0a43dfade71b2c48796e54e739057767df9"
+    },
+    {
+      "path": "review/site-v1-20261004-v11-research-night.html",
+      "bytes": 114523,
+      "sha256": "31fc6c99b6c1b149daf6f9ad875beb69763fd6be7dab6af098400a0cee919833"
+    },
+    {
+      "path": "review/site-v1-20261004-v11-talks-day.html",
+      "bytes": 106618,
+      "sha256": "f0d58a49785b564390ed2947d9bd6ced35edcf8ce7e1fc02dc91223783b537d1"
+    },
+    {
+      "path": "review/site-v1-20261004-v11-talks-interactive.html",
+      "bytes": 813615,
+      "sha256": "467dc1fd6f9ee35f6e5d0e418299472948fb0bb0b135ea2d61eefef8d878328e"
+    },
+    {
+      "path": "review/site-v1-20261004-v11-talks-night.html",
+      "bytes": 106641,
+      "sha256": "da6e677c99da9759a6948ab8157a144bf99efde20bce90ff8a02266103757fef"
+    },
+    {
+      "path": "review/site-v1-20261004-v11-writing-day.html",
+      "bytes": 154501,
+      "sha256": "7ab1883bf5cca23f93eb349e7460dd2e189fc716b2ae32a82cb36373a29573e9"
+    },
+    {
+      "path": "review/site-v1-20261004-v11-writing-interactive.html",
+      "bytes": 862390,
+      "sha256": "9c731593f4be2c24ad084c94c69f12bd2e1b61a305010c0e0d3bf40d6b29e39f"
+    },
+    {
+      "path": "review/site-v1-20261004-v11-writing-night.html",
+      "bytes": 154520,
+      "sha256": "50aadf8a2cf6f99ac97bb09a4b7fcfc6feb9a7a1b81e89729ae8e4d9b37ce4d5"
+    },
+    {
+      "path": "review/site-v1-offline-bundle-v11.json",
+      "bytes": 12652,
+      "sha256": "b047265a17011cdda8c5d6193cbd093b90ffd60d993ede84975d600dd0e7002c"
+    },
+    {
+      "path": "review/site-v1-static-previews-v11.json",
+      "bytes": 4165,
+      "sha256": "ccae4d2bb8835d2058c014024e7882bf2ad34e1dd292c1d884f37df3df51ef18"
+    },
+    {
+      "path": "site/README.md",
+      "bytes": 42145,
+      "sha256": "9b1a10a98d092ab3b5b37931dd19fb4c83bdd28b4669494a078335b8e3ea06b0"
+    },
+    {
+      "path": "site/assets/publications/sdlc-out-of-balance/asymmetry.png",
+      "bytes": 176663,
+      "sha256": "638a68bb36912fdd7dbff45235d79994912ff38cd5fda902db51db4695bbe06d"
+    },
+    {
+      "path": "site/assets/publications/sdlc-out-of-balance/hero-web.jpg",
+      "bytes": 242215,
+      "sha256": "fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f"
+    },
+    {
+      "path": "site/assets/publications/sdlc-out-of-balance/hero-web.png",
+      "bytes": 801921,
+      "sha256": "3fb21ca8f7aae0ebe85f9da0cc5aaf5e124deb916d9fc625d3a46e4dfd33293f"
+    },
+    {
+      "path": "site/assets/publications/sdlc-out-of-balance/hero.png",
+      "bytes": 995621,
+      "sha256": "a43b9c72ed8f3560ae7c6e967730548be2f977fb0d1973b083dead16c633adf5"
+    },
+    {
+      "path": "site/assets/publications/sdlc-out-of-balance/imbalance-loop.png",
+      "bytes": 212773,
+      "sha256": "da05a299cc23463c0c8e607b1d11d80708b5a8d825fd9ed24e8207d8fef49857"
+    },
+    {
+      "path": "site/assets/publications/sdlc-out-of-balance/materials/reading.pdf",
+      "bytes": 1981992,
+      "sha256": "70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c"
+    },
+    {
+      "path": "site/assets/publications/sdlc-out-of-balance/review-functions.png",
+      "bytes": 221665,
+      "sha256": "a87289a6cf6067c10fbe0663f732842a08335c6901c99917524e2c3d5ef963c6"
+    },
+    {
+      "path": "site/assets/publications/sdlc-out-of-balance/systemic-response.png",
+      "bytes": 168639,
+      "sha256": "5184c829d2e47cfd8deb933c3774b70787861ad1e107919c6fbb616ab182a0f2"
+    },
+    {
+      "path": "site/assets/publications/sdlc-out-of-balance/workstream-system.png",
+      "bytes": 240577,
+      "sha256": "ed2182751692a92b262ef7c806227583761d7b23099e1cd910a73e9509a85abf"
+    },
+    {
+      "path": "site/content/article-tags.json",
+      "bytes": 3794,
+      "sha256": "b936d993450c318cd93288b4f52e305567e218423e6821083223c97827f0d144"
+    },
+    {
+      "path": "site/content/catalog.json",
+      "bytes": 36790,
+      "sha256": "b496827e92bf5a8c012f5511484d49c862dc0ae681f761ad110e2dfd8d8f401d"
+    },
+    {
+      "path": "site/output-lock.json",
+      "bytes": 18848,
+      "sha256": "65355dcd54fd5d470c6c1ac9d3e548cca971c8cc533e4a6b32b61f8cd0a59bf2"
+    },
+    {
+      "path": "site/publications/sdlc-out-of-balance/PROVENANCE.md",
+      "bytes": 2928,
+      "sha256": "7ec5357cb904834a92c3e7517fcaf4e5b11c6a03bd627d152d32fd34ca348396"
+    },
+    {
+      "path": "site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r3-20261031.json",
+      "bytes": 547,
+      "sha256": "6f05e12e5d862704ad01539715467919e9f1b15a39dc0067e9188ec08a4b867f"
+    },
+    {
+      "path": "site/publications/sdlc-out-of-balance/launch-post.en.md",
+      "bytes": 977,
+      "sha256": "1640e2beb09587f3a70b23575158fb8a701ecff6edd288a4ebb19815be7b6f80"
+    },
+    {
+      "path": "site/publications/sdlc-out-of-balance/materials.json",
+      "bytes": 1183,
+      "sha256": "dffb2c0e9c0932ce92cb2ce58be624deb429496fe9c3b4e6148f543aaa99f6df"
+    },
+    {
+      "path": "site/publications/sdlc-out-of-balance/materials/reviews/reading-pdf.md",
+      "bytes": 1839,
+      "sha256": "909af209a05215a457024025bd2be1a344f272ac681ac2aee599ed7967cf9156"
+    },
+    {
+      "path": "site/publications/sdlc-out-of-balance/profile.json",
+      "bytes": 1582,
+      "sha256": "6072df9eaab7ecb7b2bae90e0b961680bb8818178520454e611614b05dc4e716"
+    },
+    {
+      "path": "site/publications/sdlc-out-of-balance/publication.json",
+      "bytes": 7565,
+      "sha256": "b84614b8a7af29982c1ae45114675001617324fe16a12b386e86307ebe53f70f"
+    },
+    {
+      "path": "site/rights.json",
+      "bytes": 25888,
+      "sha256": "a08bf509eb11096a5b95f89f5499cd7266930858522d327c5fbaffd7208f981f"
+    },
+    {
+      "path": "tests/article-budgets.test.cjs",
+      "bytes": 4715,
+      "sha256": "380dd2b4fc62b0933e357359e46b3b5a8a1777ac5381dfaf470458982549f3a5"
+    },
+    {
+      "path": "tests/article-media.test.cjs",
+      "bytes": 16231,
+      "sha256": "3c3d575e911062e44afe12f1294bcb4ec5d5a6fa7f4d7b09410a4ad6afa371b3"
+    },
+    {
+      "path": "tests/site-articles.test.cjs",
+      "bytes": 46465,
+      "sha256": "e658e65b7617c1342d3b86c38b82445ed145a8bed7b0407e2ad441151803a683"
+    },
+    {
+      "path": "tools/site/articles.cjs",
+      "bytes": 15845,
+      "sha256": "78eba91a08bd9a83d4c4c644216968ce99a80382631302792a7971f24ee57954"
+    }
+  ],
+  "prompts": {
+    "agents/reviewers/README.md": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb",
+    "agents/reviewers/requirements-acceptance.md": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6",
+    "agents/reviewers/code-review.md": "26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697",
+    "agents/reviewers/white-box-qa.md": "832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f",
+    "agents/reviewers/exploratory-interaction-qa.md": "280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a"
+  },
+  "authority": [
+    {
+      "path": "issue169.json",
+      "sha256": "1c4323f4b3b3f90a3fb9a63a47d2dd568a6d671b405b7f554233357c8488a479"
+    },
+    {
+      "path": "author-scope.md",
+      "sha256": "11f8a52f865d2feb06a7081fc0f8490dae9a58a0a41cde595f2d0f6decf0f104"
+    }
+  ],
+  "packetSha256": "86c21c63c403a67832da1e39512e70d76c825043b5f31076da249f61cb0467d2"
+}

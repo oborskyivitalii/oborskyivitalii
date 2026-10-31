@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "id": "sdlc-out-of-balance-r3",
+  "platforms": {
+    "linkedin": {
+      "formats": ["html", "md", "txt", "copy-ready"],
+      "relationship": "equivalent-rendition"
+    },
+    "medium": {
+      "formats": ["html", "md", "txt", "copy-ready"],
+      "relationship": "equivalent-rendition"
+    }
+  },
+  "launch": {
+    "source": "launch-post.en.md",
+    "sha256": "1640e2beb09587f3a70b23575158fb8a701ecff6edd288a4ebb19815be7b6f80"
+  },
+  "seo": {
+    "title": "The SDLC Is Out of Balance \u2014 AI-assisted software delivery",
+    "summary": "AI accelerates coding, but sustainable delivery also depends on understanding, verification, integration and ownership. The review bottleneck is a symptom of a wider imbalance."
+  },
+  "assets": {
+    "cover": {
+      "id": "hero"
+    },
+    "hero": {
+      "id": "hero"
+    }
+  },
+  "limits": {
+    "linkedinCharacters": 20000,
+    "mediumCharacters": 30000
+  },
+  "reader": {
+    "references": "inline",
+    "images": "webp-lossless",
+    "sections": {
+      "references": "references-and-related-work",
+      "appendices": ["references-and-related-work", "about-the-author"]
+    },
+    "equivalentImages": {
+      "hero": {
+        "path": "site/assets/publications/sdlc-out-of-balance/hero-web.jpg",
+        "sha256": "fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f"
+      }
+    }
+  },
+  "print": {
+    "titleBlock": {
+      "subtitle": "a2a51c35362aa8291c64706c0b63272aca9ad081c5c6f7f13cd64682a534a4a9",
+      "byline": "d43df0d70940ab6e1e090aef2850d1817548ad35fa09c67ea44301ad75d1efc6"
+    }
+  }
+}

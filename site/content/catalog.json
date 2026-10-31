@@ -826,9 +826,35 @@
         "kind": "Essay",
         "publisher": "LinkedIn"
       }
+    },
+    "publication-30": {
+      "kind": "local-article",
+      "article": "sdlc-out-of-balance",
+      "edition": {
+        "@type": "Article",
+        "name": "The SDLC Is Out of Balance",
+        "url": "articles/the-sdlc-is-out-of-balance.html",
+        "inLanguage": "en",
+        "author": {
+          "@type": "Person",
+          "name": "Vitalii Oborskyi",
+          "url": "https://vitaliioborskyi.ai/"
+        }
+      },
+      "editions": [],
+      "discussions": [],
+      "presentation": {
+        "topic": "delivery",
+        "kind": "Article",
+        "publisher": "Author site",
+        "summary": "AI accelerates coding, but sustainable delivery also depends on understanding, verification, integration and ownership. The review bottleneck is a symptom of a wider imbalance."
+      }
     }
   },
   "structuredOrder": [
+    {
+      "record": "publication-30"
+    },
     {
       "record": "publication-01"
     },
@@ -989,7 +1015,11 @@
       }
     }
   },
-  "discussionOrder": ["reddit-agentic-loops", "reddit-delivery-bottlenecks", "reddit-controller"],
+  "discussionOrder": [
+    "reddit-agentic-loops",
+    "reddit-delivery-bottlenecks",
+    "reddit-controller"
+  ],
   "labels": {
     "route.index": "Home",
     "route.research": "Research",
@@ -1017,7 +1047,20 @@
   "archive": {
     "topics": ["delivery", "systems", "leadership", "strategy"],
     "languages": ["en", "uk"],
-    "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    "months": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
     "readingPaths": {
       "delivery": [
         {

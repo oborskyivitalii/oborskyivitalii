@@ -12,8 +12,7 @@ Dated continuity, not live authority. Last verified: **2026-10-31**.
 
 ## Decisions
 
-- Author authorized production, then requested first integrating/expanding a supplied
-  infographic and showing R3. Current increment stops at author review.
+- Author requested integrating/expanding a supplied infographic, then accepted displayed R3 and authorized website production; external posts remain manual.
 - Five explanatory themes integrated; six argument sections, sources and limits kept.
 - Preserve R1/R2 history. Use existing publisher/catalog/tags/materials/release flow.
 - No external LinkedIn/Medium post. Copies are for manual author use.
@@ -22,8 +21,10 @@ Dated continuity, not live authority. Last verified: **2026-10-31**.
 
 ## Open work
 
-- R3 author/editorial/visual acceptance and native import remain pending.
-- Binary kit/PDF/figures were supplied in conversation; this PR holds source and receipts.
+- R3 author acceptance received; native integration prepared at source parent73ed1dcd.
+- Current native evidence: review/issue-169/2026-10-31-native-publication.md.
+- Final native four-role review, source/hosted checks and controlled release pending.
+- Six figures and original compact PDF are imported into native source/assets/materials.
 - Local R2 native attempts are excluded, not accepted deployment/CI evidence.
 - Browser start was blocked by Unix socket permissions before page creation;
   actual desktop/mobile/device and native-editor rendering remain unobserved.
@@ -32,7 +33,7 @@ Dated continuity, not live authority. Last verified: **2026-10-31**.
 ## Next session
 
 1. Fetch live main/PR170/issue169 and read the R3 review checkpoint/source.
-2. Apply author feedback; accept exact source/visuals before native publication.
+2. Preserve accepted R3 source/visuals and complete native independent review.
 3. Import using existing native owners, declare edition/provenance/rights/tags/PDF,
    then generate and run actual mapped source/RI/acceptance/hosted checks.
 4. Existing staging → protected merge → production candidate/rights/archive → live

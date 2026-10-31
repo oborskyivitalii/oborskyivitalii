@@ -37,6 +37,7 @@ test.before(() => {
       recursive: true,
     });
   }
+  require('./fixtures/catalog.cjs').isolatePublicationCatalog(prepared, repo);
 });
 test.after(() => fs.rmSync(prepared, { recursive: true, force: true }));
 
@@ -151,7 +152,7 @@ test('template artifact fits unchanged budgets, reconstructs its purpose and exp
     /preview cannot become production/
   );
   const rights = require('../tools/release/rights.cjs').compile(output, record, {
-    sourceRoot: repo,
+    sourceRoot: root,
   });
   assert.equal(rights.inventoryPass, true);
   assert.equal(rights.approvalPass, false);
@@ -341,7 +342,7 @@ test('current article preview retains full edition and PDF closure inside unchan
     row = sizes.articleRows[0];
   assert.equal(artifact.validateArticleSizes(sizes, record), true);
   const rights = require('../tools/release/rights.cjs').compile(output, record, {
-    sourceRoot: repo,
+    sourceRoot: root,
   });
   assert.equal(rights.inventoryPass, true);
   assert.equal(rights.approvalPass, false);

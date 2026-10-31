@@ -388,7 +388,7 @@ large decks and images still count against the existing complete transfer budget
 The explicit `download` mode instead permits exactly one user-activated PDF anchor,
 without embed, preload or automatic loading. The PDF stays in the full immutable,
 rights, source and offline inventory under the unchanged 2000000-byte asset cap.
-Size evidence reports its download transfer separately.
+Size evidence reports its download transfer separately. A single approved public local PDF material uses the same optional-download validation: one ordinary anchor, no automatic use, unchanged2MB cap and full immutable inventory. Multiple material PDFs conservatively retain their complete reading transfer cost.
 The shared reader keeps its first rendered image and declared cover eager, and
 uses native lazy loading for later figures. Intrinsic dimensions and admitted
 image/original URLs remain unchanged; this schedules requests without changing

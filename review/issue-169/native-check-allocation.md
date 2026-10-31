@@ -1,0 +1,17 @@
+# Native acceptance check allocation
+
+Refs #169 / PR170. Later author acceptance admits website production with six visuals; external platform posting remains manual. Original AC IDs remain unchanged. This allocation supplements the bounded automated issue policy; RI/style passes alone never satisfy native article acceptance.
+
+| AC | Exact maintained check or observation | Result boundary |
+| --- | --- | --- |
+| AC01/02/03 | Accepted R3 source, evidence map and figure briefs; independent editorial/requirements/artifact review; author acceptance | Argument/source limits and accepted five-page/six-visual scope; no measured-curve claim |
+| AC04/07/08/09 | `node tools/publishing/cli.cjs validate sdlc-out-of-balance`; `node tools/site/build.cjs --check`; `node tools/quality/local.cjs` | Native committed provenance, parser/figure/profile/material admission, complete public bytes/transfer, actual selected source suites; not editorial or live acceptance |
+| AC05/11 | Four distinct clean-context roles, receipts and affected correction review; `python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify`; `python3 tools/check_ri_ci.py verify`; owning issue policy runner | Exact candidate/source identity, inventory/routing and independent findings; provider model/context internals unknown |
+| AC05 style | CS01/02/04/05/07/08/10: existing article/material adapters, structured metadata and unchanged bounds; `python3 tools/check_code_style.py`; pinned formatting, lint/architecture and mapped tests in trusted CI/staging | No new content registry, layout policy, budget increase or release engine; unautomated ownership/meaning reviewed independently |
+| AC08/09 | Native `tests/site-articles.test.cjs`, `tests/article-materials.test.cjs`, `tests/article-budgets.test.cjs`, media/publisher/profile selectors in maintained content-source plan | Single reviewed material PDF uses existing optional-download validation; duplicate/embed/automatic-use and multiple-PDF accounting remain bounded; five diagrams and original PDF retained |
+| AC08/10 | Existing hosted affected-reader journey at desktop/mobile normal/no-JS; independent actual browser interaction; existing tag/index/component checks | Full readable media, captions/alt, references and valid nonself related destinations; local structure alone is insufficient |
+| AC09 | Imported PDF byte/page/link identity, all five rendered pages; complete matching LinkedIn/Medium kit | Original accepted PDF preserved; native web hero is explicitly compressed; final URLs only after observed release |
+| AC04/05/09/10 | Raw-head source/RI/issue CI; owner staging; protected identical-tree merge; frozen production candidate, exact inventory rights, immutable archive and bounded live smoke | Distinct observed gates, no inherited/older green result substituted |
+| AC06 | Historical Draft milestone and retained source/plan history | Later production authorization supersedes historical no-publish boundary |
+
+Actual source hashes, commands, selected case accounting, reviewer results, run URLs and remaining gates are recorded in the native publication review and PR. Pending/failed/skipped/wrong-source observations remain pending. The author handles LinkedIn/Medium editor verification and posting after website release; neither is claimed executed here.

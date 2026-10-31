@@ -68,14 +68,18 @@ function select(root, candidates = [], catalog = { records: {} }) {
       if (technical.has(id) && article.metadata.status !== 'draft')
         throw Error('Template references must remain draft technical material');
       if (!articleId.test(article.metadata.slug)) throw Error('Invalid article slug');
+      const optionalDownloads =
+        article.profile.reader?.presentation === 'download'
+          ? [article.presentation.file]
+          : materials.assets.filter((asset) => asset.mime === 'application/pdf');
       return {
         ...article,
         publicMaterials: materials,
         inputs: [...new Set([...article.inputs, ...materials.inputs])],
         assets: resources,
-        ...(article.profile.reader?.presentation === 'download'
-          ? { downloads: [assetName(article.presentation.file)] }
-          : {}),
+        // The snapshot validator enforces one ordinary anchor and no automatic use.
+        // Multiple material PDFs conservatively retain their full transfer cost.
+        ...(optionalDownloads.length === 1 ? { downloads: optionalDownloads.map(assetName) } : {}),
         key: `${id}:${article.metadata.language}`,
         url: `articles/${article.metadata.slug}.html`,
         candidate: article.metadata.status !== 'accepted',

@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "articleId": "sdlc-out-of-balance",
+  "source": {
+    "editionId": "sdlc-out-of-balance-en-r3-20261031",
+    "semanticSha256": "642e5cdcdf5a8d06b513e35f5816c22302117702318c15ff5fcdb12e8ea2b31b"
+  },
+  "items": [
+    {
+      "id": "reading-pdf",
+      "kind": "pdf",
+      "label": "Download the illustrated PDF",
+      "description": "Complete five-page R3 reading edition with six illustrations and source links.",
+      "credit": "Vitalii Oborskyi. Original text and non-brand illustrations: CC BY 4.0. Embedded fonts and third-party sources retain their own terms.",
+      "visibility": "public",
+      "target": {
+        "kind": "file",
+        "path": "materials/reading.pdf",
+        "sha256": "70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c",
+        "mime": "application/pdf"
+      },
+      "approval": {
+        "bindingSha256": "312297befef21c39e27b77d443dc5c740aa0dc37f76286e99762ec16304d4103",
+        "reviewedAt": "2026-10-31T20:16:18Z",
+        "evidence": {
+          "path": "materials/reviews/reading-pdf.md",
+          "sha256": "909af209a05215a457024025bd2be1a344f272ac681ac2aee599ed7967cf9156"
+        }
+      }
+    }
+  ]
+}

@@ -27,6 +27,7 @@ function fixture(t) {
     fs.mkdirSync(path.dirname(path.join(root, relative)), { recursive: true });
     fs.cpSync(path.join(repo, relative), path.join(root, relative), { recursive: true });
   }
+  require('./fixtures/catalog.cjs').isolatePublicationCatalog(root, repo);
   return root;
 }
 
@@ -278,7 +279,7 @@ test('tag-only content generation changes the index while old HTML, readers and 
   };
   record.components = require('../tools/site/snapshot.cjs').verify(output, record);
   assert.throws(
-    () => require('../tools/release/rights.cjs').compile(output, record, { sourceRoot: repo }),
+    () => require('../tools/release/rights.cjs').compile(output, record, { sourceRoot: root }),
     /published tag index differs from canonical source/
   );
   fs.writeFileSync(path.join(output, 'publication-index.json'), saved['publication-index.json']);

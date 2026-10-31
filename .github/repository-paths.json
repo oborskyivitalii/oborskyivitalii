@@ -11929,66 +11929,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/30c4d9b1e7e9be6bbc81063f34938f52501644c9b48c73173433251664a3e9b5": {
-      "kind": "directory",
-      "purpose": "Current immutable generated room snapshot and complete runtime/resource closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/30c4d9b1e7e9be6bbc81063f34938f52501644c9b48c73173433251664a3e9b5/research.html": {
-      "kind": "file",
-      "purpose": "Current immutable generated room snapshot and complete runtime/resource closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/4b8747ffc22ce0e753070c3a865aade7bf523feff3bda0167b592025e2c4248e": {
-      "kind": "directory",
-      "purpose": "Current immutable generated room snapshot and complete runtime/resource closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/4b8747ffc22ce0e753070c3a865aade7bf523feff3bda0167b592025e2c4248e/index.html": {
-      "kind": "file",
-      "purpose": "Current immutable generated room snapshot and complete runtime/resource closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/52bd0a0fe2c3f92a59d0e44930ab780b1b8cae0bd0466c11f59b33d44a2d15d3": {
-      "kind": "directory",
-      "purpose": "Current immutable generated room snapshot and complete runtime/resource closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/52bd0a0fe2c3f92a59d0e44930ab780b1b8cae0bd0466c11f59b33d44a2d15d3/talks.html": {
-      "kind": "file",
-      "purpose": "Current immutable generated room snapshot and complete runtime/resource closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/a8906fc60c042e9b98de446cd34fa1b1457489bda9011b70628eba1ca148735d": {
-      "kind": "directory",
-      "purpose": "Current immutable generated room snapshot and complete runtime/resource closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/a8906fc60c042e9b98de446cd34fa1b1457489bda9011b70628eba1ca148735d/credits.html": {
-      "kind": "file",
-      "purpose": "Current immutable generated room snapshot and complete runtime/resource closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/ce77cccb11c8c1463a9d6f5c3f46748ef62433b370a580d4693e433fa560eef7": {
-      "kind": "directory",
-      "purpose": "Current immutable generated room snapshot and complete runtime/resource closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/ce77cccb11c8c1463a9d6f5c3f46748ef62433b370a580d4693e433fa560eef7/writing.html": {
-      "kind": "file",
-      "purpose": "Current immutable generated room snapshot and complete runtime/resource closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "review/issue-159/2026-10-29-research-carrier-checksum-proof.json.gz": {
       "kind": "file",
       "purpose": "Frozen independent exact19 Research carrier Git/producer/SVG/checksum findings and per-occurrence source proof; no scanner admission authority.",
@@ -12328,6 +12268,414 @@
     "review/issue-169/r3/reviews/whitebox-r3.md": {
       "kind": "file",
       "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    ".github/acceptance/issue-169.json": {
+      "kind": "file",
+      "purpose": "Issue169 AC01–AC11 mapping to existing checks and explicit actual editorial/review/copy/publication gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "docs/article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292": {
+      "kind": "directory",
+      "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292/systemic-response.webp": {
+      "kind": "file",
+      "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16": {
+      "kind": "directory",
+      "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg": {
+      "kind": "file",
+      "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3": {
+      "kind": "directory",
+      "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3/imbalance-loop.webp": {
+      "kind": "file",
+      "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c": {
+      "kind": "directory",
+      "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c/reading.pdf": {
+      "kind": "file",
+      "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6": {
+      "kind": "directory",
+      "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6/review-functions.webp": {
+      "kind": "file",
+      "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f": {
+      "kind": "directory",
+      "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry.webp": {
+      "kind": "file",
+      "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1": {
+      "kind": "directory",
+      "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1/workstream-system.webp": {
+      "kind": "file",
+      "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots": {
+      "kind": "directory",
+      "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/articles": {
+      "kind": "directory",
+      "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/articles/the-sdlc-is-out-of-balance.html": {
+      "kind": "file",
+      "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "review/issue-169/2026-10-31-native-publication.md": {
+      "kind": "file",
+      "purpose": "Source-bound native R3 integration, review and release evidence under issue169.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/native-reviews": {
+      "kind": "directory",
+      "purpose": "Source-bound native R3 integration, review and release evidence under issue169.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/native-reviews/requirements-preflight.md": {
+      "kind": "file",
+      "purpose": "Source-bound native R3 integration, review and release evidence under issue169.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "site/assets/publications/sdlc-out-of-balance": {
+      "kind": "directory",
+      "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/sdlc-out-of-balance/asymmetry.png": {
+      "kind": "file",
+      "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/sdlc-out-of-balance/hero.png": {
+      "kind": "file",
+      "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/sdlc-out-of-balance/imbalance-loop.png": {
+      "kind": "file",
+      "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/sdlc-out-of-balance/materials": {
+      "kind": "directory",
+      "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/sdlc-out-of-balance/materials/reading.pdf": {
+      "kind": "file",
+      "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/sdlc-out-of-balance/review-functions.png": {
+      "kind": "file",
+      "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/sdlc-out-of-balance/systemic-response.png": {
+      "kind": "file",
+      "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/sdlc-out-of-balance/workstream-system.png": {
+      "kind": "file",
+      "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/sdlc-out-of-balance": {
+      "kind": "directory",
+      "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/sdlc-out-of-balance/PROVENANCE.md": {
+      "kind": "file",
+      "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/sdlc-out-of-balance/editions": {
+      "kind": "directory",
+      "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r3-20261031.json": {
+      "kind": "file",
+      "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/sdlc-out-of-balance/launch-post.en.md": {
+      "kind": "file",
+      "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/sdlc-out-of-balance/manuscript.en.md": {
+      "kind": "file",
+      "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/sdlc-out-of-balance/materials": {
+      "kind": "directory",
+      "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/sdlc-out-of-balance/materials.json": {
+      "kind": "file",
+      "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/sdlc-out-of-balance/materials/reviews": {
+      "kind": "directory",
+      "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/sdlc-out-of-balance/materials/reviews/reading-pdf.md": {
+      "kind": "file",
+      "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/sdlc-out-of-balance/profile.json": {
+      "kind": "file",
+      "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/sdlc-out-of-balance/publication.json": {
+      "kind": "file",
+      "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "docs/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f": {
+      "kind": "directory",
+      "purpose": "Generated native article, immutable media or snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f/hero-web.jpg": {
+      "kind": "file",
+      "purpose": "Generated native article, immutable media or snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/21f1e97116d30f37432f199896fff4728d44722db399e7737f86314e39d2c570": {
+      "kind": "directory",
+      "purpose": "Generated native article, immutable media or snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/21f1e97116d30f37432f199896fff4728d44722db399e7737f86314e39d2c570/the-sdlc-is-out-of-balance.html": {
+      "kind": "file",
+      "purpose": "Generated native article, immutable media or snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/4cf95bbc4065732f2145d6a52d212cf5bcf473f778858e34b2a67ce7415f0e21": {
+      "kind": "directory",
+      "purpose": "Generated native article, immutable media or snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/4cf95bbc4065732f2145d6a52d212cf5bcf473f778858e34b2a67ce7415f0e21/research.html": {
+      "kind": "file",
+      "purpose": "Generated native article, immutable media or snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/536181bf124ff1c32030e477b1a41f3300012c9884cfc5b66086104abdb45513": {
+      "kind": "directory",
+      "purpose": "Generated native article, immutable media or snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/536181bf124ff1c32030e477b1a41f3300012c9884cfc5b66086104abdb45513/index.html": {
+      "kind": "file",
+      "purpose": "Generated native article, immutable media or snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/6a2575df0c92bf53d7292668aa31fe0825f851a50859993c6b896161f91334e7": {
+      "kind": "directory",
+      "purpose": "Generated native article, immutable media or snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/6a2575df0c92bf53d7292668aa31fe0825f851a50859993c6b896161f91334e7/credits.html": {
+      "kind": "file",
+      "purpose": "Generated native article, immutable media or snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/d5c5bf9bd5c2e88016f45292ed58595a1d7ee1d1f702f2e74efc666068a3c6eb": {
+      "kind": "directory",
+      "purpose": "Generated native article, immutable media or snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/d5c5bf9bd5c2e88016f45292ed58595a1d7ee1d1f702f2e74efc666068a3c6eb/writing.html": {
+      "kind": "file",
+      "purpose": "Generated native article, immutable media or snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/fec1b7ae82d606379afd7af75629b0ae3ddce142a7683be9c85796fbcc61083c": {
+      "kind": "directory",
+      "purpose": "Generated native article, immutable media or snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/fec1b7ae82d606379afd7af75629b0ae3ddce142a7683be9c85796fbcc61083c/talks.html": {
+      "kind": "file",
+      "purpose": "Generated native article, immutable media or snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "review/issue-169/native-check-allocation.md": {
+      "kind": "file",
+      "purpose": "Issue169 native integration review and acceptance evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/native-reviews/requirements-v2.md": {
+      "kind": "file",
+      "purpose": "Issue169 native integration review and acceptance evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "site/assets/publications/sdlc-out-of-balance/hero-web.jpg": {
+      "kind": "file",
+      "purpose": "Accepted SDLC article artwork, compressed web rendition or PDF material.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/sdlc-out-of-balance/hero-web.png": {
+      "kind": "file",
+      "purpose": "Accepted SDLC article artwork, compressed web rendition or PDF material.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "review/issue-169/native-reviews/author-scope.md": {
+      "kind": "file",
+      "purpose": "Source-bound native review packet, primary owner snapshot, explicit clean-context execution receipts and preserved correction results for issue169.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/native-reviews/code-final.md": {
+      "kind": "file",
+      "purpose": "Source-bound native review packet, primary owner snapshot, explicit clean-context execution receipts and preserved correction results for issue169.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/native-reviews/execution-receipts.json": {
+      "kind": "file",
+      "purpose": "Source-bound native review packet, primary owner snapshot, explicit clean-context execution receipts and preserved correction results for issue169.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/native-reviews/issue169.json": {
+      "kind": "file",
+      "purpose": "Source-bound native review packet, primary owner snapshot, explicit clean-context execution receipts and preserved correction results for issue169.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/native-reviews/native-packet-v5.json": {
+      "kind": "file",
+      "purpose": "Source-bound native review packet, primary owner snapshot, explicit clean-context execution receipts and preserved correction results for issue169.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/native-reviews/requirements-final.md": {
+      "kind": "file",
+      "purpose": "Source-bound native review packet, primary owner snapshot, explicit clean-context execution receipts and preserved correction results for issue169.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/native-reviews/whitebox-final.md": {
+      "kind": "file",
+      "purpose": "Source-bound native review packet, primary owner snapshot, explicit clean-context execution receipts and preserved correction results for issue169.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/native-reviews/native-packet-v4.json": {
+      "kind": "file",
+      "purpose": "Preserved first native four-role prepared source packet identity before fixture corrections.",
       "role": "history",
       "owner": "AGENTS.md"
     }

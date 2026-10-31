@@ -71,7 +71,8 @@
         "LICENSING.md",
         "LICENSE-CONTENT.md",
         "NOTICE.md",
-        "guides/SITE-SOURCE-AUDIT.md"
+        "guides/SITE-SOURCE-AUDIT.md",
+        "site/publications/sdlc-out-of-balance/PROVENANCE.md"
       ],
       "scope": "Original website editorial text and new original author-owned hosted article text unless an edition states otherwise. No retrospective blanket grant for externally linked publications or third-party quotations."
     },
@@ -82,7 +83,8 @@
         "LICENSING.md",
         "LICENSE-CONTENT.md",
         "site/assets/writing-paradigm.svg",
-        "guides/SITE-SOURCE-AUDIT.md"
+        "guides/SITE-SOURCE-AUDIT.md",
+        "site/publications/sdlc-out-of-balance/PROVENANCE.md"
       ],
       "scope": "Original non-brand diagram artwork, including writing-paradigm.svg. Rendering implementation remains original code; identity artwork is excluded."
     },
@@ -298,6 +300,42 @@
     },
     "writing-paradigm.svg": {
       "sha256": "02def4e19d34b76462f5e74bbe916323ff56a50d3e97a02834b3adf92723b31f",
+      "bases": ["original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/hero.png": {
+      "sha256": "a43b9c72ed8f3560ae7c6e967730548be2f977fb0d1973b083dead16c633adf5",
+      "bases": ["original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/asymmetry.png": {
+      "sha256": "638a68bb36912fdd7dbff45235d79994912ff38cd5fda902db51db4695bbe06d",
+      "bases": ["original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/imbalance-loop.png": {
+      "sha256": "da05a299cc23463c0c8e607b1d11d80708b5a8d825fd9ed24e8207d8fef49857",
+      "bases": ["original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/review-functions.png": {
+      "sha256": "a87289a6cf6067c10fbe0663f732842a08335c6901c99917524e2c3d5ef963c6",
+      "bases": ["original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/systemic-response.png": {
+      "sha256": "5184c829d2e47cfd8deb933c3774b70787861ad1e107919c6fbb616ab182a0f2",
+      "bases": ["original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/workstream-system.png": {
+      "sha256": "ed2182751692a92b262ef7c806227583761d7b23099e1cd910a73e9509a85abf",
+      "bases": ["original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/materials/reading.pdf": {
+      "sha256": "70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c",
+      "bases": ["original-text", "original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/hero-web.png": {
+      "sha256": "3fb21ca8f7aae0ebe85f9da0cc5aaf5e124deb916d9fc625d3a46e4dfd33293f",
+      "bases": ["original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/hero-web.jpg": {
+      "sha256": "fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f",
       "bases": ["original-diagram"]
     }
   },
