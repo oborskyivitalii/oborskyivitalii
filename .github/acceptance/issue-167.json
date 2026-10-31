@@ -8,151 +8,85 @@
       "id": "AC01",
       "intent": "WEB-AC01: scope; preserve original whole-pilot definition. Numeric AC alias required by the existing policy schema, not a renumbering.",
       "automated_scope": "Existing checks cover only current repository/source invariants, never whole pilot, real execution or synthetic-input authenticity. Offline P01–P06 evidence is a subset; external gates remain pending.",
-      "checks": [
-        "RI",
-        "RI-CI"
-      ],
-      "gates": [
-        "PILOT",
-        "COMPONENT"
-      ]
+      "checks": ["RI", "RI-CI"],
+      "gates": ["PILOT", "COMPONENT"]
     },
     {
       "id": "AC02",
       "intent": "WEB-AC02: routes; preserve original whole-pilot definition. Numeric AC alias required by the existing policy schema, not a renumbering.",
       "automated_scope": "Existing checks cover only current repository/source invariants, never whole pilot, real execution or synthetic-input authenticity. Offline P01–P06 evidence is a subset; external gates remain pending.",
-      "checks": [
-        "RI",
-        "RI-CI"
-      ],
-      "gates": [
-        "PILOT",
-        "QUALITY"
-      ]
+      "checks": ["RI", "RI-CI"],
+      "gates": ["PILOT", "QUALITY"]
     },
     {
       "id": "AC03",
       "intent": "WEB-AC03: model/context; preserve original whole-pilot definition. Numeric AC alias required by the existing policy schema, not a renumbering.",
       "automated_scope": "Existing checks cover only current repository/source invariants, never whole pilot, real execution or synthetic-input authenticity. Offline P01–P06 evidence is a subset; external gates remain pending.",
       "checks": [],
-      "gates": [
-        "PILOT",
-        "COMPONENT",
-        "HUMAN"
-      ]
+      "gates": ["PILOT", "COMPONENT", "HUMAN"]
     },
     {
       "id": "AC04",
       "intent": "WEB-AC04: transitions; preserve original whole-pilot definition. Numeric AC alias required by the existing policy schema, not a renumbering.",
       "automated_scope": "Existing checks cover only current repository/source invariants, never whole pilot, real execution or synthetic-input authenticity. Offline P01–P06 evidence is a subset; external gates remain pending.",
       "checks": [],
-      "gates": [
-        "PILOT",
-        "COMPONENT"
-      ]
+      "gates": ["PILOT", "COMPONENT"]
     },
     {
       "id": "AC05",
       "intent": "WEB-AC05: failure/budget; preserve original whole-pilot definition. Numeric AC alias required by the existing policy schema, not a renumbering.",
       "automated_scope": "Existing checks cover only current repository/source invariants, never whole pilot, real execution or synthetic-input authenticity. Offline P01–P06 evidence is a subset; external gates remain pending.",
       "checks": [],
-      "gates": [
-        "PILOT",
-        "COMPONENT",
-        "HUMAN"
-      ]
+      "gates": ["PILOT", "COMPONENT", "HUMAN"]
     },
     {
       "id": "AC06",
       "intent": "WEB-AC06: handoff/notice; preserve original whole-pilot definition. Numeric AC alias required by the existing policy schema, not a renumbering.",
       "automated_scope": "Existing checks cover only current repository/source invariants, never whole pilot, real execution or synthetic-input authenticity. Offline P01–P06 evidence is a subset; external gates remain pending.",
       "checks": [],
-      "gates": [
-        "PILOT",
-        "COMPONENT",
-        "HUMAN"
-      ]
+      "gates": ["PILOT", "COMPONENT", "HUMAN"]
     },
     {
       "id": "AC07",
       "intent": "WEB-AC07: native sync; preserve original whole-pilot definition. Numeric AC alias required by the existing policy schema, not a renumbering.",
       "automated_scope": "Existing checks cover only current repository/source invariants, never whole pilot, real execution or synthetic-input authenticity. Offline P01–P06 evidence is a subset; external gates remain pending.",
-      "checks": [
-        "RI",
-        "RI-CI"
-      ],
-      "gates": [
-        "PILOT",
-        "DELIVERY"
-      ]
+      "checks": ["RI", "RI-CI"],
+      "gates": ["PILOT", "DELIVERY"]
     },
     {
       "id": "AC08",
       "intent": "WEB-AC08: hierarchy/priority; preserve original whole-pilot definition. Numeric AC alias required by the existing policy schema, not a renumbering.",
       "automated_scope": "Existing checks cover only current repository/source invariants, never whole pilot, real execution or synthetic-input authenticity. Offline P01–P06 evidence is a subset; external gates remain pending.",
-      "checks": [
-        "RI",
-        "RI-CI"
-      ],
-      "gates": [
-        "PILOT"
-      ]
+      "checks": ["RI", "RI-CI"],
+      "gates": ["PILOT"]
     },
     {
       "id": "AC09",
       "intent": "WEB-AC09: artifacts/delivery; preserve original whole-pilot definition. Numeric AC alias required by the existing policy schema, not a renumbering.",
       "automated_scope": "Existing checks cover only current repository/source invariants, never whole pilot, real execution or synthetic-input authenticity. Offline P01–P06 evidence is a subset; external gates remain pending.",
-      "checks": [
-        "RI",
-        "RI-CI"
-      ],
-      "gates": [
-        "PILOT",
-        "COMPONENT",
-        "NATIVE",
-        "DELIVERY"
-      ]
+      "checks": ["RI", "RI-CI"],
+      "gates": ["PILOT", "COMPONENT", "NATIVE", "DELIVERY"]
     },
     {
       "id": "AC10",
       "intent": "WEB-AC10: safe execution/recovery; preserve original whole-pilot definition. Numeric AC alias required by the existing policy schema, not a renumbering.",
       "automated_scope": "Existing checks cover only current repository/source invariants, never whole pilot, real execution or synthetic-input authenticity. Offline P01–P06 evidence is a subset; external gates remain pending.",
-      "checks": [
-        "BASIC",
-        "STYLE"
-      ],
-      "gates": [
-        "PILOT",
-        "COMPONENT",
-        "NATIVE",
-        "HUMAN"
-      ]
+      "checks": ["BASIC", "STYLE"],
+      "gates": ["PILOT", "COMPONENT", "NATIVE", "HUMAN"]
     },
     {
       "id": "AC11",
       "intent": "WEB-AC11: independent review/evidence; preserve original whole-pilot definition. Numeric AC alias required by the existing policy schema, not a renumbering.",
       "automated_scope": "Existing checks cover only current repository/source invariants, never whole pilot, real execution or synthetic-input authenticity. Offline P01–P06 evidence is a subset; external gates remain pending.",
-      "checks": [
-        "RI",
-        "RI-CI"
-      ],
-      "gates": [
-        "PILOT",
-        "QUALITY",
-        "NATIVE"
-      ]
+      "checks": ["RI", "RI-CI"],
+      "gates": ["PILOT", "QUALITY", "NATIVE"]
     },
     {
       "id": "AC12",
       "intent": "WEB-AC12: owner-accepted pilot; preserve original whole-pilot definition. Numeric AC alias required by the existing policy schema, not a renumbering.",
       "automated_scope": "Existing checks cover only current repository/source invariants, never whole pilot, real execution or synthetic-input authenticity. Offline P01–P06 evidence is a subset; external gates remain pending.",
       "checks": [],
-      "gates": [
-        "PILOT",
-        "NATIVE",
-        "HUMAN",
-        "DELIVERY"
-      ]
+      "gates": ["PILOT", "NATIVE", "HUMAN", "DELIVERY"]
     }
   ],
   "checks": {

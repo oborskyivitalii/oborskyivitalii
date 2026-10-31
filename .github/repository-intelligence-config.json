@@ -314,13 +314,7 @@
     {
       "concern": "offline WEB orchestration fixture component",
       "path": "guides/WEB-ORCHESTRATION.md",
-      "queries": [
-        "orchestration",
-        "WEB-18",
-        "VIT-22",
-        "reducer",
-        "receipt recovery"
-      ]
+      "queries": ["orchestration", "WEB-18", "VIT-22", "reducer", "receipt recovery"]
     },
     {
       "concern": "independent requirements and acceptance-quality review detailed prompt",
@@ -686,10 +680,7 @@
         "tests/fixtures/orchestration-start.json",
         "guides/WEB-ORCHESTRATION.md"
       ],
-      "commands": [
-        "node --test tests/orchestration.test.cjs",
-        "node tools/quality/local.cjs"
-      ],
+      "commands": ["node --test tests/orchestration.test.cjs", "node tools/quality/local.cjs"],
       "read": [
         "guides/WEB-ORCHESTRATION.md",
         "guides/SITE-CHECK-PROFILES.md",
@@ -700,9 +691,7 @@
     },
     {
       "concern": "detailed reviewer prompt requirements-acceptance",
-      "paths": [
-        "agents/reviewers/requirements-acceptance.md"
-      ],
+      "paths": ["agents/reviewers/requirements-acceptance.md"],
       "read": [
         "agents/reviewers/README.md",
         "agents/reviewers/requirements-acceptance.md",
@@ -717,14 +706,8 @@
     },
     {
       "concern": "detailed reviewer prompt code-review",
-      "paths": [
-        "agents/reviewers/code-review.md"
-      ],
-      "read": [
-        "agents/reviewers/README.md",
-        "agents/reviewers/code-review.md",
-        "CONTRIBUTING.md"
-      ],
+      "paths": ["agents/reviewers/code-review.md"],
+      "read": ["agents/reviewers/README.md", "agents/reviewers/code-review.md", "CONTRIBUTING.md"],
       "commands": [
         "python3 tools/check_ri_ci.py verify",
         "python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'"
@@ -734,14 +717,8 @@
     },
     {
       "concern": "detailed reviewer prompt white-box-qa",
-      "paths": [
-        "agents/reviewers/white-box-qa.md"
-      ],
-      "read": [
-        "agents/reviewers/README.md",
-        "agents/reviewers/white-box-qa.md",
-        "CONTRIBUTING.md"
-      ],
+      "paths": ["agents/reviewers/white-box-qa.md"],
+      "read": ["agents/reviewers/README.md", "agents/reviewers/white-box-qa.md", "CONTRIBUTING.md"],
       "commands": [
         "python3 tools/check_ri_ci.py verify",
         "python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'"
@@ -751,9 +728,7 @@
     },
     {
       "concern": "detailed reviewer prompt exploratory-interaction-qa",
-      "paths": [
-        "agents/reviewers/exploratory-interaction-qa.md"
-      ],
+      "paths": ["agents/reviewers/exploratory-interaction-qa.md"],
       "read": [
         "agents/reviewers/README.md",
         "agents/reviewers/exploratory-interaction-qa.md",

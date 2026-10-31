@@ -16,12 +16,15 @@ function boundedJson(value, depth = 0, counter = { nodes: 0 }) {
     return Number.isFinite(value);
   }
   if (Array.isArray(value)) {
-    return value.length <= contract.limits.array
-      && value.every((item) => boundedJson(item, depth + 1, counter));
+    return (
+      value.length <= contract.limits.array &&
+      value.every((item) => boundedJson(item, depth + 1, counter))
+    );
   }
   if (value !== null && typeof value === 'object') {
-    return Object.entries(value).every(([key, item]) => key.length <= contract.limits.string
-      && boundedJson(item, depth + 1, counter));
+    return Object.entries(value).every(
+      ([key, item]) => key.length <= contract.limits.string && boundedJson(item, depth + 1, counter)
+    );
   }
   return value === null || typeof value === 'boolean';
 }
@@ -54,10 +57,13 @@ function matches(value, specification) {
       return false;
     }
     const fields = specification.fields;
-    return Object.keys(value).length === Object.keys(fields).length
-      && Object.keys(value).every((key) => Object.hasOwn(fields, key))
-      && Object.entries(fields).every(([key, field]) => Object.hasOwn(value, key)
-        && matches(value[key], field));
+    return (
+      Object.keys(value).length === Object.keys(fields).length &&
+      Object.keys(value).every((key) => Object.hasOwn(fields, key)) &&
+      Object.entries(fields).every(
+        ([key, field]) => Object.hasOwn(value, key) && matches(value[key], field)
+      )
+    );
   }
   return false;
 }
@@ -75,9 +81,11 @@ function parseInput(text) {
 }
 
 function operationKey(operation) {
-  const canonical = Object.fromEntries(Object.keys(operation).sort().map((key) => [
-    key, operation[key],
-  ]));
+  const canonical = Object.fromEntries(
+    Object.keys(operation)
+      .sort()
+      .map((key) => [key, operation[key]])
+  );
   return createHash('sha256').update(JSON.stringify(canonical), 'utf8').digest('hex');
 }
 
@@ -102,9 +110,24 @@ function held(state) {
 function canStart(input, key) {
   const decision = input.decision;
   const model = input.model;
-  return decision.operationKey === key && decision.accepted && decision.start
-    && decision.authority && !decision.revoked && model.supported
-    && (model.policy === 'default-allowed' || model.pair !== 'unverified');
+  return (
+    decision.operationKey === key &&
+    decision.accepted &&
+    decision.start &&
+    decision.authority &&
+    !decision.revoked &&
+    model.supported &&
+    (model.policy === 'default-allowed' || model.pair !== 'unverified')
+  );
+}
+
+function reconcileReceipt(state, event) {
+  if (state.receipt === null || state.receipt === event.receipt) {
+    state.receipt = event.receipt;
+    state.receiptUnknown = false;
+  } else {
+    state.receiptUnknown = true;
+  }
 }
 
 function applyEvent(state, event, authorized, effects) {
@@ -139,12 +162,7 @@ function applyEvent(state, event, authorized, effects) {
       state.receiptUnknown = true;
     }
   } else if (event.kind === 'reconcile-receipt' && state.dispatched && event.receipt !== null) {
-    if (state.receipt === null || state.receipt === event.receipt) {
-      state.receipt = event.receipt;
-      state.receiptUnknown = false;
-    } else {
-      state.receiptUnknown = true;
-    }
+    reconcileReceipt(state, event);
   }
 }
 
@@ -166,22 +184,40 @@ function reduce(text) {
   const key = operationKey(input.operation);
   const state = input.prior === null ? initialState(key, input.run) : { ...input.prior };
   state.seen = [...state.seen];
-  if (new Set(state.seen).size !== state.seen.length
-    || (!state.dispatched && state.runtime !== 'idle')) {
+  if (
+    new Set(state.seen).size !== state.seen.length ||
+    (!state.dispatched && state.runtime !== 'idle')
+  ) {
     return { ok: false, error: 'invalid-fixture-state', effects: [] };
   }
   if (state.operationKey !== key) {
     // This bounded component never forgets a previous operation to admit another.
-    return { ok: true, disposition: 'prior-operation-hold', state, effects: [], public: projection(state) };
+    return {
+      ok: true,
+      disposition: 'prior-operation-hold',
+      state,
+      effects: [],
+      public: projection(state),
+    };
   }
   if (state.run !== input.run) {
-    return { ok: true, disposition: 'run-mismatch-hold', state, effects: [], public: projection(state) };
+    return {
+      ok: true,
+      disposition: 'run-mismatch-hold',
+      state,
+      effects: [],
+      public: projection(state),
+    };
   }
   const effects = [];
   const authorized = canStart(input, key);
   for (const event of input.events) {
-    if (event.operationKey !== key || event.run !== state.run
-      || state.seen.includes(event.id) || event.sequence <= state.lastSequence) {
+    if (
+      event.operationKey !== key ||
+      event.run !== state.run ||
+      state.seen.includes(event.id) ||
+      event.sequence <= state.lastSequence
+    ) {
       continue;
     }
     if (state.seen.length >= contract.limits.array) {

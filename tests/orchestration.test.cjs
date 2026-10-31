@@ -28,24 +28,54 @@ function event(input, kind, sequence, overrides = {}) {
 }
 
 function keyFor(operation) {
-  const entries = Object.keys(operation).sort().map((key) => [key, operation[key]]);
-  return createHash('sha256').update(JSON.stringify(Object.fromEntries(entries))).digest('hex');
+  const entries = Object.keys(operation)
+    .sort()
+    .map((key) => [key, operation[key]]);
+  return createHash('sha256')
+    .update(JSON.stringify(Object.fromEntries(entries)))
+    .digest('hex');
 }
 
 test('P01: malformed, unknown, nonfixture, oversized and deeply nested inputs fail closed', () => {
-  const invalid = ['{', 'null', '{}', 12, { get secret() { throw Error('not JSON'); } }];
+  const invalid = [
+    '{',
+    'null',
+    '{}',
+    12,
+    {
+      get secret() {
+        throw Error('not JSON');
+      },
+    },
+  ];
   for (const value of invalid) {
     assert.equal(reduce(value).ok, false);
   }
   const edits = [
-    (input) => { input.extra = 'PRIVATE-OPAQUE-SENTINEL'; },
-    (input) => { input.operation.owner = 'real-owner'; },
-    (input) => { input.events[0].sequence = -1; },
-    (input) => { input.model.pair = 'automatic-fallback'; },
-    (input) => { input.private = 'x'.repeat(1025); },
-    (input) => { input.events = Array(129).fill(input.events[0]); },
-    (input) => { input.prior = []; },
-    (input) => { input.private = { a: { a: { a: { a: { a: { a: { a: {} } } } } } } }; },
+    (input) => {
+      input.extra = 'PRIVATE-OPAQUE-SENTINEL';
+    },
+    (input) => {
+      input.operation.owner = 'real-owner';
+    },
+    (input) => {
+      input.events[0].sequence = -1;
+    },
+    (input) => {
+      input.model.pair = 'automatic-fallback';
+    },
+    (input) => {
+      input.private = 'x'.repeat(1025);
+    },
+    (input) => {
+      input.events = Array(129).fill(input.events[0]);
+    },
+    (input) => {
+      input.prior = [];
+    },
+    (input) => {
+      input.private = { a: { a: { a: { a: { a: { a: { a: {} } } } } } } };
+    },
   ];
   for (const edit of edits) {
     const input = fixture();
@@ -66,7 +96,11 @@ test('P01/P05: evaluation is deterministic, does not mutate fixture and never ec
   assert.deepEqual(first, evaluate(input));
   assert.ok(!JSON.stringify(first).includes(input.private));
   assert.deepEqual(Object.keys(first.public).sort(), [
-    'acceptance', 'held', 'owningIssueClosed', 'runtime', 'scope',
+    'acceptance',
+    'held',
+    'owningIssueClosed',
+    'runtime',
+    'scope',
   ]);
 });
 
@@ -83,12 +117,24 @@ test('P02: accept-only yields zero proposals; combined start queues one proposal
 
 test('P02/P04: missing or revoked authority, unsupported and unverified required pair hold', () => {
   const edits = [
-    (input) => { input.decision.authority = false; },
-    (input) => { input.decision.revoked = true; },
-    (input) => { input.decision.accepted = false; },
-    (input) => { input.model.supported = false; },
-    (input) => { input.model.pair = 'unverified'; },
-    (input) => { input.decision.operationKey = 'c'.repeat(64); },
+    (input) => {
+      input.decision.authority = false;
+    },
+    (input) => {
+      input.decision.revoked = true;
+    },
+    (input) => {
+      input.decision.accepted = false;
+    },
+    (input) => {
+      input.model.supported = false;
+    },
+    (input) => {
+      input.model.pair = 'unverified';
+    },
+    (input) => {
+      input.decision.operationKey = 'c'.repeat(64);
+    },
   ];
   for (const edit of edits) {
     const input = fixture();
@@ -128,8 +174,8 @@ test('P03: plan/routing/model change cannot repeat dispatch; semantic source cha
   assert.deepEqual(revised.effects, []);
   for (const field of ['candidate', 'semanticInputs', 'target', 'intent']) {
     const changed = structuredClone(input);
-    changed.operation[field] = field === 'candidate' || field === 'semanticInputs'
-      ? 'c'.repeat(64) : 'fixture:different';
+    changed.operation[field] =
+      field === 'candidate' || field === 'semanticInputs' ? 'c'.repeat(64) : 'fixture:different';
     changed.decision.operationKey = keyFor(changed.operation);
     changed.events = [event(changed, 'request-start', 3)];
     assert.equal(evaluate(changed).disposition, 'prior-operation-hold');
@@ -156,7 +202,7 @@ test('P04: receipt recovery cannot clear unknown cessation; late result cannot r
     event(input, 'receipt-missing', 3),
     event(input, 'stop-unknown', 4),
     event(input, 'reconcile-receipt', 5, { receipt: 'fixture:receipt-one' }),
-    event(input, 'result-observed', 6),
+    event(input, 'result-observed', 6)
   );
   const result = evaluate(input);
   assert.equal(result.state.receiptUnknown, false);
@@ -176,9 +222,12 @@ test('P04: wrong-source receipt cannot repair; matching recovery never replays w
   input.events.push(event(input, 'receipt-missing', 2));
   const missing = evaluate(input);
   input.prior = missing.state;
-  input.events = [event(input, 'reconcile-receipt', 3, {
-    operationKey: 'c'.repeat(64), receipt: 'fixture:receipt-one',
-  })];
+  input.events = [
+    event(input, 'reconcile-receipt', 3, {
+      operationKey: 'c'.repeat(64),
+      receipt: 'fixture:receipt-one',
+    }),
+  ];
   assert.equal(evaluate(input).state.receiptUnknown, true);
   input.events.push(event(input, 'reconcile-receipt', 4, { receipt: 'fixture:receipt-one' }));
   const recovered = evaluate(input);
@@ -192,8 +241,9 @@ test('P04: wrong-source receipt cannot repair; matching recovery never replays w
 test('P03 correction: reconciled candidate change holds without resetting operation lineage', () => {
   const input = fixture();
   input.events.push(
-    event(input, 'start-observed', 2), event(input, 'result-observed', 3),
-    event(input, 'reconcile-receipt', 4, { receipt: 'fixture:receipt-one' }),
+    event(input, 'start-observed', 2),
+    event(input, 'result-observed', 3),
+    event(input, 'reconcile-receipt', 4, { receipt: 'fixture:receipt-one' })
   );
   input.prior = evaluate(input).state;
   input.operation.candidate = 'c'.repeat(64);
