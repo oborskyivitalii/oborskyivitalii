@@ -12108,6 +12108,12 @@
       "purpose": "Exact bounded historical source excerpts and hashes supporting the reviewer usefulness audit.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-167/2026-10-31-native-integration.md": {
+      "kind": "file",
+      "purpose": "Source-bound native RI/CI integration, retained failures, reviewer prompt control regressions and actual independent/native evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }
