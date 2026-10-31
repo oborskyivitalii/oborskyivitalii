@@ -100,6 +100,8 @@ class RICICouplingTests(unittest.TestCase):
             {layer["id"] for layer in data["layers"]},
             {
                 "authority-instructions",
+                "reviewer-prompts",
+                "offline-web-orchestration",
                 "intent-acceptance",
                 "path-catalog",
                 "producer-identity",
@@ -311,6 +313,55 @@ process.stdout.write(JSON.stringify(observations));
         self.write(path, "// Changed profile-selection behavior\n")
         with self.assertRaisesRegex(ValueError, "Stale RI/CI mapping"):
             ci.verify(self.root)
+
+    def test_reviewer_prompt_edits_and_unmapped_additions_require_review(self):
+        existing = "agents/reviewers/README.md"
+        self.write(existing, "# Common reviewer contract\n")
+        self.data["layers"][0]["paths"].append(existing)
+        self.refresh()
+        self.assertTrue(ci.verify(self.root)["pass"])
+        self.write(existing, "# Changed reviewer launch contract\n")
+        with self.assertRaisesRegex(ValueError, "Stale RI/CI mapping"):
+            ci.verify(self.root)
+        self.refresh()
+        self.assertTrue(ci.verify(self.root)["pass"])
+
+        added = "agents/reviewers/new-role.md"
+        for entries in [{}, {added: {"kind": "file", "role": "guide", "owner": added}}]:
+            with self.subTest(catalog_entries=entries):
+                self.write(added, "# New reviewer role\n")
+                self.write(ci.CATALOG, json.dumps({"entries": entries}))
+                with self.assertRaisesRegex(ValueError, "Unmapped.*new-role.md"):
+                    self.refresh()
+        self.data["layers"][0]["paths"].append(added)
+        self.refresh()
+        self.assertTrue(ci.verify(self.root)["pass"])
+
+    def test_fixed_diff_retains_removed_and_renamed_reviewer_prompts(self):
+        def git(*args):
+            return subprocess.check_output(["git", "-C", str(self.root), *args], text=True).strip()
+
+        deleted = "agents/reviewers/deleted.md"
+        renamed = "agents/reviewers/renamed.md"
+        self.write(deleted, "# Deleted role\n")
+        self.write(renamed, "# Renamed role\n")
+        self.data["layers"][0]["paths"].extend([deleted, renamed])
+        self.refresh()
+        git("init", "-q")
+        git("config", "user.name", "RI CI fixture")
+        git("config", "user.email", "fixture@example.invalid")
+        git("add", ".")
+        git("commit", "-qm", "Reviewer fixture base")
+        base = git("rev-parse", "HEAD")
+        (self.root / deleted).unlink()
+        (self.root / renamed).rename(self.root / "role-contract.md")
+        self.data["layers"][0]["paths"].remove(deleted)
+        self.data["layers"][0]["paths"].remove(renamed)
+        self.refresh()
+        git("add", ".")
+        git("commit", "-qm", "Reviewer fixture head")
+        result = ci.verify(self.root, base=base, head=git("rev-parse", "HEAD"))
+        self.assertTrue({deleted, renamed} <= set(result["comparison"]["changed_controls"]))
 
     def test_new_code_style_owned_control_must_be_mapped(self):
         path = "tools/check_new_style_rule.py"

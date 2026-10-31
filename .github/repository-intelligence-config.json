@@ -310,6 +310,78 @@
         "ліцензія коду",
         "ліцензія контенту"
       ]
+    },
+    {
+      "concern": "offline WEB orchestration fixture component",
+      "path": "guides/WEB-ORCHESTRATION.md",
+      "queries": ["orchestration", "WEB-18", "VIT-22", "reducer", "receipt recovery"]
+    },
+    {
+      "concern": "independent requirements and acceptance-quality review detailed prompt",
+      "path": "agents/reviewers/requirements-acceptance.md",
+      "queries": [
+        "requirements reviewer",
+        "requirements review",
+        "requirements quality",
+        "acceptance quality",
+        "якість вимог",
+        "перевірка вимог",
+        "якість критеріїв приймання",
+        "requirements prompt"
+      ]
+    },
+    {
+      "concern": "independent code review and correction acceptance detailed prompt",
+      "path": "agents/reviewers/code-review.md",
+      "queries": [
+        "code reviewer",
+        "independent code review",
+        "ревʼю коду",
+        "код ревью",
+        "незалежне ревю коду",
+        "code review prompt"
+      ]
+    },
+    {
+      "concern": "independent white-box QA and structural test design detailed prompt",
+      "path": "agents/reviewers/white-box-qa.md",
+      "queries": [
+        "white-box QA",
+        "white-box testing",
+        "white box testing",
+        "whitebox testing",
+        "вайтбокс тестування",
+        "тестування білої скриньки",
+        "white-box prompt"
+      ]
+    },
+    {
+      "concern": "independent exploratory and interaction QA detailed prompt",
+      "path": "agents/reviewers/exploratory-interaction-qa.md",
+      "queries": [
+        "exploratory testing",
+        "exploratory QA",
+        "interaction QA",
+        "manual testing",
+        "дослідницьке тестування",
+        "ручне тестування",
+        "тестування взаємодії",
+        "exploratory prompt"
+      ]
+    },
+    {
+      "concern": "common reviewer launch, source packet, isolation and execution receipts",
+      "path": "agents/reviewers/README.md",
+      "queries": [
+        "reviewer launch contract",
+        "reviewer source packet",
+        "reviewer isolation",
+        "reviewer execution receipt",
+        "separate agent launches",
+        "independent agents",
+        "окремі запуски агентів",
+        "контракт запуску ревʼюерів"
+      ]
     }
   ],
   "map_output": "REPOSITORY-MAP.md",
@@ -360,7 +432,8 @@
         ".github/ri-ci-map.json",
         "tools/check_ri_ci.py",
         "tests/test_ri_ci.py",
-        "PROJECT-BOOTSTRAP.md"
+        "PROJECT-BOOTSTRAP.md",
+        "agents/reviewers/"
       ],
       "commands": [
         "python3 tools/check_ri_ci.py verify",
@@ -428,7 +501,8 @@
         "guides/SITE-CHECK-PROFILES.md",
         "tools/quality/test-profiles.json",
         "tools/quality/source-tests.cjs",
-        "tests/test_repository_intelligence.py"
+        "tests/test_repository_intelligence.py",
+        "agents/reviewers/"
       ],
       "commands": [
         "python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'",
@@ -436,6 +510,7 @@
       ],
       "read": [
         "CONTRIBUTING.md",
+        "agents/reviewers/README.md",
         ".github/ACCEPTANCE.md",
         "review/REVIEW-TEMPLATE.md",
         "guides/SITE-CHECK-PROFILES.md",
@@ -461,7 +536,8 @@
         "PROJECT-BOOTSTRAP.md",
         "tests/test_issue33_acceptance.py",
         "tests/test_issue35_acceptance.py",
-        "tests/test_issue36_acceptance.py"
+        "tests/test_issue36_acceptance.py",
+        "agents/reviewers/"
       ],
       "commands": ["python3 tools/issue_acceptance.py --help"],
       "read": [".github/ACCEPTANCE.md", "review/REVIEW-TEMPLATE.md"],
@@ -594,6 +670,76 @@
       ],
       "workflow": ".github/workflows/site-checks.yml",
       "note": "Changed-source tests are selected through test-profiles.json; issue39 selects its source-bound implementation checks. Fixtures cannot supply maintainer reuse-policy or rights decisions, protected settings, actual domain migration, device acceptance or publication approval."
+    },
+    {
+      "concern": "fixture-only WEB orchestration state and recovery",
+      "paths": [
+        "tools/orchestration/",
+        "tests/orchestration.test.cjs",
+        "tests/fixtures/orchestration-accept-only.json",
+        "tests/fixtures/orchestration-start.json",
+        "guides/WEB-ORCHESTRATION.md"
+      ],
+      "commands": ["node --test tests/orchestration.test.cjs", "node tools/quality/local.cjs"],
+      "read": [
+        "guides/WEB-ORCHESTRATION.md",
+        "guides/SITE-CHECK-PROFILES.md",
+        "guides/SITE-STAGING.md"
+      ],
+      "workflow": ".github/workflows/site-checks.yml",
+      "note": "Direct node command is component evidence; maintained registry selects the suite through existing Basic/source profiles. Executable full B/R/O/H route and native RI/admission remain pending on Draft; this route never dispatches agents or deploys."
+    },
+    {
+      "concern": "detailed reviewer prompt requirements-acceptance",
+      "paths": ["agents/reviewers/requirements-acceptance.md"],
+      "read": [
+        "agents/reviewers/README.md",
+        "agents/reviewers/requirements-acceptance.md",
+        "CONTRIBUTING.md"
+      ],
+      "commands": [
+        "python3 tools/check_ri_ci.py verify",
+        "python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'"
+      ],
+      "workflow": ".github/workflows/navigation.yml",
+      "note": "Read the common contract and this single role prompt for a role launch; navigation checks do not establish reviewer execution."
+    },
+    {
+      "concern": "detailed reviewer prompt code-review",
+      "paths": ["agents/reviewers/code-review.md"],
+      "read": ["agents/reviewers/README.md", "agents/reviewers/code-review.md", "CONTRIBUTING.md"],
+      "commands": [
+        "python3 tools/check_ri_ci.py verify",
+        "python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'"
+      ],
+      "workflow": ".github/workflows/navigation.yml",
+      "note": "Read the common contract and this single role prompt for a role launch; navigation checks do not establish reviewer execution."
+    },
+    {
+      "concern": "detailed reviewer prompt white-box-qa",
+      "paths": ["agents/reviewers/white-box-qa.md"],
+      "read": ["agents/reviewers/README.md", "agents/reviewers/white-box-qa.md", "CONTRIBUTING.md"],
+      "commands": [
+        "python3 tools/check_ri_ci.py verify",
+        "python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'"
+      ],
+      "workflow": ".github/workflows/navigation.yml",
+      "note": "Read the common contract and this single role prompt for a role launch; navigation checks do not establish reviewer execution."
+    },
+    {
+      "concern": "detailed reviewer prompt exploratory-interaction-qa",
+      "paths": ["agents/reviewers/exploratory-interaction-qa.md"],
+      "read": [
+        "agents/reviewers/README.md",
+        "agents/reviewers/exploratory-interaction-qa.md",
+        "CONTRIBUTING.md"
+      ],
+      "commands": [
+        "python3 tools/check_ri_ci.py verify",
+        "python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'"
+      ],
+      "workflow": ".github/workflows/navigation.yml",
+      "note": "Read the common contract and this single role prompt for a role launch; navigation checks do not establish reviewer execution."
     }
   ]
 }

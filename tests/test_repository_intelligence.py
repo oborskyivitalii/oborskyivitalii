@@ -452,8 +452,27 @@ class NavigationSafetyTests(unittest.TestCase):
                 )
                 self.assertEqual(result["status"], "candidates-read-sources")
 
+        prompt_queries = {
+            "reviewer launch contract": "README.md",
+            "requirements quality": "requirements-acceptance.md",
+            "якість вимог": "requirements-acceptance.md",
+            "independent code review": "code-review.md",
+            "ревʼю коду": "code-review.md",
+            "white-box testing": "white-box-qa.md",
+            "вайтбокс тестування": "white-box-qa.md",
+            "exploratory testing": "exploratory-interaction-qa.md",
+            "ручне тестування": "exploratory-interaction-qa.md",
+        }
+        for query, prompt in prompt_queries.items():
+            with self.subTest(prompt_query=query):
+                self.assertIn(
+                    "agents/reviewers/" + prompt,
+                    {owner["path"] for owner in ri.lookup(surface, query)["owner_candidates"]},
+                )
+
         command = ["python3", "tools/repository_intelligence.py", "--config", config]
         required_reads = {
+            "agents/reviewers/README.md",
             "CONTRIBUTING.md",
             ".github/ACCEPTANCE.md",
             "review/REVIEW-TEMPLATE.md",
@@ -462,8 +481,7 @@ class NavigationSafetyTests(unittest.TestCase):
             ".github/workflows/issue-acceptance.yml",
         }
         for query in [
-            "requirements quality",
-            "ручне тестування",
+            *prompt_queries,
             "tools/quality/source-tests.cjs",
         ]:
             with self.subTest(context=query):
@@ -481,6 +499,19 @@ class NavigationSafetyTests(unittest.TestCase):
                         for route in result["validation_routes"]
                     )
                 )
+                prompt = prompt_queries.get(query)
+                if query == "agents/reviewers/code-review.md":
+                    prompt = "code-review.md"
+                if prompt and prompt != "README.md":
+                    self.assertTrue(
+                        any(
+                            {"agents/reviewers/README.md", "agents/reviewers/" + prompt}
+                            <= set(route.get("read", []))
+                            and route.get("workflow") == ".github/workflows/navigation.yml"
+                            and "python3 tools/check_ri_ci.py verify" in route["commands"]
+                            for route in result["validation_routes"]
+                        )
+                    )
                 if query != "tools/quality/source-tests.cjs":
                     self.assertTrue(
                         any(

@@ -10,5 +10,8 @@
     "playwright": "1.63.0",
     "prettier": "3.6.2",
     "stylelint": "17.16.0"
+  },
+  "overrides": {
+    "minimatch": "11.0.1"
   }
 }
