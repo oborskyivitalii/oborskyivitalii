@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "891b9fc5d0658bb7e78bf48ca15121ff68e4bce890e604600258e381508440f3",
+    "digest": "13e22ec712006303186a4be809e2385d040dce9280f7c231456d24b4ff164993",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -206,7 +206,7 @@
       {
         "path": ".github/repository-layout.json",
         "identity_mode": "content",
-        "sha256": "b5dc7ae946aa029d1266c8121fce588b1c70b639b94d7818fd4e7c6ca99d1522"
+        "sha256": "274834aa91b8d049d2c2767303dd50f5147db7b06f0f1602c8e507758d04d1a3"
       },
       {
         "path": ".github/repository-paths.json",
@@ -216,7 +216,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "49008896403b7fe8ed34bc0a28679acd0529158e703a6a9ed4ae6e78362283d6"
+        "sha256": "c2646e11d6e52e8c80eb37bf178922d1d0427e196faa389be030a8f9e6bc6b9e"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -1205,7 +1205,7 @@
       {
         "path": "review/issue-167/2026-10-31-native-integration.md",
         "identity_mode": "content",
-        "sha256": "07962f13ec9ed1586bba22c92fadf72fdb4fed9860b01cac108b2e7045aac6a5"
+        "sha256": "d22068a48bf7f7ff6edb7d975d87158b2173612cdcf75f0dbfd691687171a3ec"
       },
       {
         "path": "review/issue-167/2026-10-31-offline-prototype.md",

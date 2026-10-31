@@ -383,3 +383,149 @@ Preserved historical identities: first report SHA256 `5f994abcae046598774648b705
 
 First verdict and limits remain unchanged. Direct code-review path test coverage is retained/deferred under WEB-18/#167; the alias cases executed, while no current-source direct-path case execution is claimed. No production behavior or oracle requirement was waived.
 ```
+
+
+## Native follow-up diagnosis — active documentation registration
+
+Changed-source navigation run41189481556 on323451562fc8e89e31fc604ac94536fec18820a1
+passed style15/15, Ubuntu7/7, coupling22/22 and profile/gate checks, then failed
+root-layout15tests with one error: omitted active guides/WEB-ORCHESTRATION.md.
+Later steps remained skipped. The owning acceptance form was cancelled without
+submission; no unchanged retry. This is an explicit bounded replan for one
+existing guide's missing active_markdown entry, preserving the link validator
+and all original oracles. No workflow/runtime/permission change.
+
+Register that one existing guide, use real refresh/build/verify, and run the
+actual active-link validator directly (its original class-level historical
+setup remains unavailable locally). Four actual affected role checks and one
+native run on a new source complete this metadata correction. Prior failures,
+source identities and role-turn accounting remain retained; this is no budget
+reset or new execution authority. Whole native/full-pilot gates stay separate.
+
+
+## C2 completed affected review receipts
+
+Four actual same-role continuation executions assessed the four-path metadata
+correction against the retained native failure. No blocking defect found. They
+are affected rechecks, not newly fresh contexts; any incidental reading of
+frozen prior receipts is disclosed in the individual reports. Implementation,
+prompts, tests, workflows and acceptance oracles remain unchanged from3234515.
+Actual validation returned4,367 links; in-memory omission reproduces the refusal.
+Final changed-head native execution remains a required later observation.
+
+### Frozen C2 /root/native_final_requirements
+
+Actual followup_task execution; SHA-256 `b8a0939d7dfbdd7bbc5aa26902bb586ab391a04a8f3593323178c9ade60f7add`.
+
+```text
+# Requirements & Acceptance — C2 targeted continuation
+
+Verdict: no blocking requirement/oracle defect in this four-file metadata correction. Registering the existing guide satisfies the unchanged active-document completeness requirement; it does not waive the failed native root-layout result or establish a passing changed-source run. The original final first judgment remains intact.
+
+Inspected packet SHA-256 `e849ab7014534f33da558ea1bfa06d784c7832ec2575d0906595d2049e856da5`, C2 manifest `947b6ce01a51413e7d7c3312ad57e03c5bcf18857a895d78461dec55d1780c6a` (1,810 entries), native failure log `f1554c44acd305c3d367d6a0d5138224e64dc22391cb28e0851150ebc5d72668`, delivered baseline manifest and baseline layout. Native baseline commit `323451562fc8e89e31fc604ac94536fec18820a1`, tree `fd3b393cd8d47631f9b429026b5245538e38ce44`. Packet/log/manifest hashes and all four changed candidate-file hashes match.
+
+The manifest comparison identifies exactly these changes: `.github/repository-layout.json`, `.github/ri-ci-map.json`, `.github/repository-intelligence/agent-context.json`, and the existing native-integration report. Structural comparison of baseline/current layout confirms its only change is appending `guides/WEB-ORCHESTRATION.md` to `active_markdown`. The guide already exists and its bytes are unchanged. The actual root-layout validator/tests, navigation workflow, issue167 acceptance policy, common contract and Requirements prompt retain delivered-baseline hashes. Thus historical provenance checks, link-resolution behavior and acceptance boundaries have not been relaxed.
+
+| Affected obligation | Evidence and disposition |
+| --- | --- |
+| N01: retain/diagnose failures | Raw run41189481556 checks out exact3234515… source. It passes the style guard and15 code-style tests, Ubuntu7, coupling22 and preceding profile/gate checks, then runs15 root-layout tests with one `Omitted active Markdown: ['guides/WEB-ORCHESTRATION.md']` error. Later steps remain unexecuted. This is an observed new failure, not an unchanged retry. |
+| N02–N04: complete metadata and real projections | One existing guide is added to the declared active-document inventory; report records failure/replan, coupling identity and RI context are updated. Prior prompt-routing/negative-test findings are reused because their source bytes are unchanged. No new test or selection route is needed for this metadata-only fix. |
+| N05: exact checks and limits | Independently invoked the unchanged real `validate_links` with the actual root and baseline layout: it still refuses exactly the omitted guide. Identity/delta/negative-oracle audit took0.015s. Supplied positive direct-validator observation is4367; that is component link evidence, not15 locally passing root-layout tests. Native historical-object setup remains unavailable locally. |
+| N06–N07: review, delivery and source-bound native result | This is one affected same-role delta result. Parent must retain the four actual delta receipts, exact changed-head delivery/readback and one authorized new-source native observation. Whole-pilot and other native gates remain open. |
+
+The retained report describes an explicit bounded WEB-18 replan, preserving owner/Draft status and prior failures. The narrow correction fits the already accepted native-check repair scope; it introduces no runtime, workflow, permission, merge/deployment or whole-AC promotion. No new authority is inferred from this review.
+
+Disclosure: while locating the appended C2 diagnosis, the candidate report tail exposed frozen prior Whitebox/Exploratory receipt text. This is a same-role continuation, not a fresh-context first judgment; no current C2 peer output was read and no peer conclusion supports this verdict. The first independent judgment predates that exposure. Prior unaffected acceptance judgments are reused only for demonstrably unchanged bytes.
+
+Next gate: reconcile all four affected role results, preserve the original failed native observations, deliver/read back the exact correction and observe the bounded new-head navigation run with complete executed/skipped accounting. Owning acceptance, Basic/source selection, full B/R/O/H, actual runtime admission and original whole WEB-AC/human decisions remain separate. No full suite replay, implementation edit, native dispatch, external write or delegation was performed by this reviewer.
+```
+
+### Frozen C2 /root/native_final_code
+
+Actual followup_task execution; SHA-256 `d5238403113bb188577baf07bd709f7c3e188b9280b02207846bf07d09a7b64a`.
+
+```text
+# C2 Code review — same-role targeted continuation
+
+Verdict: no blocking defect in this correction; the active-guide omission is corrected without weakening its validator. Native final-source verification remains pending. This supplements and preserves my first judgment in `final-code.md`.
+
+Identity: `/root/native_final_code`, nonauthor Code Reviewer; targeted continuation, not newly fresh context. Packet SHA256 `e849ab7014534f33da558ea1bfa06d784c7832ec2575d0906595d2049e856da5`; candidate 1,810-file manifest SHA256 `947b6ce01a51413e7d7c3312ad57e03c5bcf18857a895d78461dec55d1780c6a`. All listed current file hashes independently matched. Starting delivered commit `323451562fc8e89e31fc604ac94536fec18820a1`, tree `fd3b393cd8d47631f9b429026b5245538e38ce44`; no local original-HEAD claim. Common prompt remains `2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb`; code prompt remains `26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697`.
+
+Inspected actual layout baseline/current, unchanged validator/root-layout tests, existing guide, four changed path identities, generated verification, and raw native log SHA256 `f1554c44acd305c3d367d6a0d5138224e64dc22391cb28e0851150ebc5d72668`. The real log checks out the stated commit and records the root-layout missing-guide exception: 15 tests, one error. Later skipped steps remain unproved.
+
+Only four paths differ from my first reviewed manifest: layout, native-integration report, coupling identity and generated agent context. The authored layout delta adds exactly existing `guides/WEB-ORCHESTRATION.md` to `active_markdown`; schema/base/root inventory/preservation dispositions and every preexisting route are unchanged. Tests, validator, workflows, runtime/production source, permissions and acceptance gates are byte-unchanged. Adding the guide expands link validation rather than hiding the omission. Existing-guide semantics and original prompt/control/oracle review can therefore be reused unchanged.
+
+Actual bounded affected checks completed in 2.628 seconds: current `validate_links` resolves 4,367 links; removing solely the new registration in an in-memory layout reproduces the exact missing-guide failure. Real coupling verify passes (digest `662d3abda4dc15e3329a3d1ae92a149691fc66eefb0f311491037df0de7de6ae`); real RI verify compares generated outputs successfully (digest `1096dc059613fb1cfa55e8f361b74b850efb819f5128d8fb782244f21c91c320`). Final layout SHA256 `274834aa91b8d049d2c2767303dd50f5147db7b06f0f1602c8e507758d04d1a3`. No full suite, dispatch, edits, delegation or external writes performed.
+
+Exposure disclosure: reading the candidate report tail to inspect its appended failure text also displayed an embedded frozen Whitebox receipt/count correction. I did not use its conclusions; this is a declared same-role correction continuation. My original first judgment remains intact. Provider-internal identity/context remains unknown.
+
+Required before N05/N07 completion: preserve failed native history, deliver/read back the exact corrected bytes, obtain remaining affected-role checks and run the authorized native lane on the new real head. History-bound full root-layout and later navigation steps are not established by this direct function check. Owning acceptance, Basic/full B/R/O/H, runtime admission, whole pilot, merge/deployment and Draft/owner gates remain separate.
+```
+
+### Frozen C2 /root/native_final_whitebox
+
+Actual followup_task execution; SHA-256 `687c58e9bfaa7820b97a746a810b2f7bd0c774c76b0ae443da73f8fe2bba03e5`.
+
+```text
+# White-box QA — C2 affected correction
+
+Verdict: the omitted active-guide registration is correctly repaired without weakening the validator. The actual positive link check returns 4,367 accounted links; removing only the added registration in memory reproduces the exact native omission error. No blocking defect found in this correction; final changed-head native verification remains pending.
+
+This is `/root/native_final_whitebox`, same-role continuation after the preserved first judgment and count correction, not fresh-context review. No delegation, external writes, native dispatch, full suite or accepted source/test edits. C2 explicitly adds four affected role turns under the same owner; this check does not reset earlier accounting or authority. Provider-resolved model/context remains unverified. Inspection of the candidate report tail incidentally displayed frozen receipt prose alongside this role's own count correction; no initial judgment is relabelled fresh and no peer verdict was used as an oracle.
+
+Pinned packet SHA256 `e849ab7014534f33da558ea1bfa06d784c7832ec2575d0906595d2049e856da5`; C2 manifest `947b6ce01a51413e7d7c3312ad57e03c5bcf18857a895d78461dec55d1780c6a`. All 1,810 file hashes matched. Baseline source reference 323451562fc8e89e31fc604ac94536fec18820a1, tree fd3b393cd8d47631f9b429026b5245538e38ce44; prepared files still do not supply original native Git history. Actual failure log SHA256 `f1554c44acd305c3d367d6a0d5138224e64dc22391cb28e0851150ebc5d72668` identifies run 41189481556. Its root-layout result is 15 tests/one error, with `Omitted active Markdown: ['guides/WEB-ORCHESTRATION.md']`; this remains a failure, not replaced by this bounded check.
+
+Source inspection: actual `.github/repository-layout.json` differs from supplied baseline only by adding existing `guides/WEB-ORCHESTRATION.md` to `active_markdown`. Actual `validate_links` and existing positive/negative test oracles are unchanged. The validator derives required guides from actual `guides/**/*.md`, checks required⊆declared before traversing links, then rejects missing targets, escaping paths and invalid local fragments. Registering the guide therefore enables the existing link traversal rather than bypassing it.
+
+| Risk / AC | Scenario and independent oracle | Actual evidence / allocation |
+| --- | --- | --- |
+| N03/N05 required guide omitted | Every actual guide must be declared; remove this entry only → exact omission refusal | Own in-memory negative: expected ValueError with WEB-ORCHESTRATION path; 0.001s |
+| N04/N05 new declared file exposes broken links | Real candidate declaration → every traversed local target/fragment must resolve | Own actual `validate_links(actual root, actual JSON)` positive:4,367 links, 0.579s |
+| N01/N06 failure erased or tests relaxed | Original native failure retained; original checker/tests unchanged | Raw failure inspected; checker SHA256 bb72d6bd8f5d8d2eea158023168ddd7ff99fc37513d9a51e45273caddd18c42b; test SHA256 8af16dcbe4310d9e67be23354346a1a6d479538723c56ecbb529294bb6b52e39 |
+
+Allocation remains `test_current_active_relative_links_resolve` and `test_broken_reference_inline_links_and_omitted_active_guide_fail` in existing `tests/test_root_layout.py`, navigation workflow/job. No new suite or weakening needed. Own raw receipt `c2-whitebox-raw.json` preserves variants, exact errors, timing and source identities; total recorded operation 0.787s, under 30s. These two direct function calls are executed checks, not a full 15-test result or measured coverage.
+
+Unchanged first-review control/prompt/config/test identities permit reuse of that source analysis and reviewer-glob sensitivity evidence; generated identity/report bytes are intentionally updated and are not claimed unchanged. The deferred direct code-review path test coverage gap remains under WEB-18/#167 with no claim that a direct-path case executed and no oracle waiver. First verdict, raw receipt and receipt-count correction remain separate historical files.
+
+Native history-dependent class setup remains unavailable locally. Final new-head native outcome, whole acceptance/Basic/full B/R/O/H, owner delivery/readback and runtime/pilot gates are not established here. Source inspection plus direct active-link execution supports proceeding to the already authorized changed-source native gate; it does not erase either native failure.
+```
+
+### Frozen C2 /root/native_final_exploratory
+
+Actual followup_task execution; SHA-256 `1fe8b566093d2493ebdb565408292f7209b70ec1c3d8b50a961b7e7df8ddaf75`.
+
+```text
+# C2 Exploratory / Interaction QA — affected correction
+
+**Verdict: no blocking defect found in the affected guide/index/link journey.** This is a same-role targeted continuation, not a new fresh-context judgment. Original first report and raw receipt remain unchanged. Owner WEB-18/#167; coordinator VIT-22; same Draft PR168.
+
+Charter: follow the maintained guide index to the existing WEB-ORCHESTRATION guide and its reviewer contract, validate actual current links/owners, verify that removing only this active registration still refuses, and check actual RI context discovery. Bound30s; no full-suite rerun, source/test edits, delegation, dispatch or external writes. Unchanged common/four-role lookup journeys are reused from the first result after comparing source manifests: only the four C2-declared files differ; prompts, config, guide/index and validators are unchanged.
+
+| Actual action | Expected | Observed |
+| --- | --- | --- |
+| Read guides/README → WEB-ORCHESTRATION → reviewer launch contract | Existing maintained links and bounded component/admission ownership remain usable | All routes found and read; no runtime admission proof implied |
+| `validate_links(actual root, actual LAYOUT)` | No omitted guide or broken local target/fragment | Returned4367; PASS |
+| Same validator, in-memory layout minus WEB-ORCHESTRATION | Original omission refusal | Exact `ValueError: Omitted active Markdown: ['guides/WEB-ORCHESTRATION.md']`; expected refusal PASS |
+| `validate_current_owners(actual root, actual LAYOUT)` | Guide/catalog/configured route owners remain live | Returned without exception; PASS |
+| Actual RI `context-for-task guides/WEB-ORCHESTRATION.md` | Fresh context and guide reading/check route | Exit0, `candidates-read-sources`, guide artifact and original component validation route; PASS |
+
+Checks completed in2.59626s; full1,810-file C2 manifest also matched with zero mismatches. Direct baseline layout comparison shows exactly one added active_markdown entry, no removals and all other fields equal. This broadens active-link validation to an already existing guide; the negative check proves omission rejection remains intact. No accepted tests or fixes authored.
+
+Raw native failure log was inspected: run41189481556 on323451562fc8e89e31fc604ac94536fec18820a1 reached root-layout after passing preceding checks, ran15 tests and failed with one omitted-active-guide error. That failure remains retained. The actual source-level failure is corrected in this bounded journey; a direct function invocation does not claim all15 local tests passed. Original native Git history remains unavailable locally; class-level baseline setup is not bypassed or waived. Final changed-head native run, delivery/readback, owning acceptance/Basic/full B/R/O/H, runtime admission and whole-pilot gates remain pending/not observed.
+
+Existing allocation remains `test_current_active_relative_links_resolve` and omission negatives in `tests/test_root_layout.py` → native navigation workflow/job. No new suite is proposed. CLI navigation and tabletop reading cannot attest dispatch/context isolation.
+
+Input exposure: supplied C2 packet and primary sources only; the candidate report tail also displayed frozen historical role receipts while locating its appended C2 diagnosis. Those historical peer conclusions were not used as an oracle; no current C2 peer conclusion was read. The initial independent first judgment remains preserved.
+
+Identities:
+
+- C2 packet SHA256 `e849ab7014534f33da558ea1bfa06d784c7832ec2575d0906595d2049e856da5`.
+- C2 manifest SHA256 `947b6ce01a51413e7d7c3312ad57e03c5bcf18857a895d78461dec55d1780c6a`.
+- Native failure log SHA256 `f1554c44acd305c3d367d6a0d5138224e64dc22391cb28e0851150ebc5d72668`.
+- Baseline323451562fc8e89e31fc604ac94536fec18820a1 / treefd3b393cd8d47631f9b429026b5245538e38ce44; prepared bytes, no candidate native HEAD claim.
+- Common prompt SHA256 `2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb`.
+- Exploratory prompt SHA256 `280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a`.
+- Original first report SHA256 `ad0675951f4fe3499047aa6feb526811b740e6c7628a74e9c56fd172acc74529`; original raw SHA256 `0c8745aeb91975a2599c7758a28efa73a871c64dda95643237470d2232c5412b`.
+
+Own raw correction receipt: `c2-exploratory-raw.json`, including exact inputs, negative oracle, CLI argv/output, timings and inspected source hashes. No new independent-provider assurance claimed.
+```
