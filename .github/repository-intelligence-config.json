@@ -310,6 +310,17 @@
         "ліцензія коду",
         "ліцензія контенту"
       ]
+    },
+    {
+      "concern": "offline WEB orchestration fixture component",
+      "path": "guides/WEB-ORCHESTRATION.md",
+      "queries": [
+        "orchestration",
+        "WEB-18",
+        "VIT-22",
+        "reducer",
+        "receipt recovery"
+      ]
     }
   ],
   "map_output": "REPOSITORY-MAP.md",
@@ -594,6 +605,27 @@
       ],
       "workflow": ".github/workflows/site-checks.yml",
       "note": "Changed-source tests are selected through test-profiles.json; issue39 selects its source-bound implementation checks. Fixtures cannot supply maintainer reuse-policy or rights decisions, protected settings, actual domain migration, device acceptance or publication approval."
+    },
+    {
+      "concern": "fixture-only WEB orchestration state and recovery",
+      "paths": [
+        "tools/orchestration/",
+        "tests/orchestration.test.cjs",
+        "tests/fixtures/orchestration-accept-only.json",
+        "tests/fixtures/orchestration-start.json",
+        "guides/WEB-ORCHESTRATION.md"
+      ],
+      "commands": [
+        "node --test tests/orchestration.test.cjs",
+        "node tools/quality/local.cjs"
+      ],
+      "read": [
+        "guides/WEB-ORCHESTRATION.md",
+        "guides/SITE-CHECK-PROFILES.md",
+        "guides/SITE-STAGING.md"
+      ],
+      "workflow": ".github/workflows/site-checks.yml",
+      "note": "Direct node command is component evidence; maintained registry selects the suite through existing Basic/source profiles. Executable full B/R/O/H route and native RI/admission remain pending on Draft; this route never dispatches agents or deploys."
     }
   ]
 }

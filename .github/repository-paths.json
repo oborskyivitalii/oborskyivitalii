@@ -11994,6 +11994,66 @@
       "purpose": "Frozen independent exact19 Research carrier Git/producer/SVG/checksum findings and per-occurrence source proof; no scanner admission authority.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "tools/orchestration": {
+      "kind": "directory",
+      "purpose": "Fixture-only offline WEB orchestration computations; no external effect adapters.",
+      "role": "source",
+      "owner": "guides/WEB-ORCHESTRATION.md"
+    },
+    "tools/orchestration/contract.json": {
+      "kind": "file",
+      "purpose": "Consumed bounded JSON fixture contract for offline orchestration proposals; synthetic inputs authenticate no real authority.",
+      "role": "configuration",
+      "owner": "guides/WEB-ORCHESTRATION.md"
+    },
+    "tools/orchestration/reducer.cjs": {
+      "kind": "file",
+      "purpose": "Pure JSON-text reducer for synthetic acceptance/start, semantic dedupe, receipt/cessation holds and safe public projection.",
+      "role": "source",
+      "owner": "guides/WEB-ORCHESTRATION.md"
+    },
+    "tests/orchestration.test.cjs": {
+      "kind": "file",
+      "purpose": "Permanent behavioral positive/negative coverage of fixture-only orchestration state and recovery proposals.",
+      "role": "test",
+      "owner": "guides/WEB-ORCHESTRATION.md"
+    },
+    "tests/fixtures/orchestration-accept-only.json": {
+      "kind": "file",
+      "purpose": "Synthetic accept-only input with zero permitted dispatch proposals.",
+      "role": "test",
+      "owner": "guides/WEB-ORCHESTRATION.md"
+    },
+    "tests/fixtures/orchestration-start.json": {
+      "kind": "file",
+      "purpose": "Synthetic combined accept/start input; proposed queue only, no actual execution.",
+      "role": "test",
+      "owner": "guides/WEB-ORCHESTRATION.md"
+    },
+    "guides/WEB-ORCHESTRATION.md": {
+      "kind": "file",
+      "purpose": "Offline component contract, operator example, synthetic trust boundary and pending native full-route gates.",
+      "role": "guide",
+      "owner": "guides/WEB-ORCHESTRATION.md"
+    },
+    ".github/acceptance/issue-167.json": {
+      "kind": "file",
+      "purpose": "Whole WEB-AC01–12 numeric aliases, bounded existing checks and explicit prototype/native/human/delivery gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-167": {
+      "kind": "directory",
+      "purpose": "Dated WEB orchestration review/evidence; not executable source or current authority.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-167/2026-10-31-offline-prototype.md": {
+      "kind": "file",
+      "purpose": "Source-bound offline prototype scope, independent review results, retained accounting and pending native gates.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

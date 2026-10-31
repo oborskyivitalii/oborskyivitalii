@@ -1,0 +1,67 @@
+{
+  "version": "fixture-v1",
+  "limits": {
+    "bytes": 32768,
+    "depth": 8,
+    "nodes": 2048,
+    "string": 1024,
+    "array": 128
+  },
+  "types": {
+    "id": { "type": "string", "pattern": "^fixture:[a-z][a-z0-9-]{0,47}$" },
+    "digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "revision": { "type": "integer", "min": 1, "max": 1000000 },
+    "nullableId": { "type": "nullable", "value": "id" },
+    "runtime": { "type": "enum", "values": ["idle", "queued", "running", "completed", "stopped"] },
+    "operation": {
+      "type": "object",
+      "fields": {
+        "owner": "id", "intent": "id", "step": "id", "action": "id",
+        "target": "id", "candidate": "digest", "semanticInputs": "digest"
+      }
+    },
+    "decision": {
+      "type": "object",
+      "fields": {
+        "operationKey": "digest", "accepted": "boolean", "start": "boolean",
+        "authority": "boolean", "revoked": "boolean"
+      }
+    },
+    "model": {
+      "type": "object",
+      "fields": {
+        "policy": { "type": "enum", "values": ["required", "preferred", "default-allowed"] },
+        "pair": { "type": "enum", "values": ["sol-medium", "sol-low", "astra-medium", "terra-medium", "unverified"] },
+        "supported": "boolean"
+      }
+    },
+    "state": {
+      "type": "object",
+      "fields": {
+        "operationKey": "digest", "run": "id", "runtime": "runtime",
+        "dispatched": "boolean", "stopUnknown": "boolean", "receiptUnknown": "boolean",
+        "receipt": "nullableId", "lastSequence": { "type": "integer", "min": 0, "max": 1000000 },
+        "seen": { "type": "array", "item": "id" }
+      }
+    },
+    "event": {
+      "type": "object",
+      "fields": {
+        "id": "id", "operationKey": "digest", "run": "id", "sequence": "revision",
+        "kind": { "type": "enum", "values": ["request-start", "queue-ack", "start-observed", "result-observed", "stop-unknown", "stop-observed", "receipt-missing", "reconcile-receipt"] },
+        "receipt": "nullableId"
+      }
+    },
+    "input": {
+      "type": "object",
+      "fields": {
+        "version": { "type": "enum", "values": ["fixture-v1"] },
+        "operation": "operation", "run": "id", "decision": "decision", "model": "model",
+        "planRevision": "revision", "routingRevision": "revision",
+        "events": { "type": "array", "item": "event" },
+        "prior": { "type": "nullable", "value": "state" },
+        "private": "string"
+      }
+    }
+  }
+}

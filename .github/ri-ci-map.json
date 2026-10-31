@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/159",
-    "date": "2026-10-29",
-    "summary": "Integrate accepted protected runtime preregistration and preserve reviewed existing-page SEO, exact amendment/producer/CSS successor and curated catalog checks; retain source/manual/release gates."
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/167",
+    "date": "2026-10-31",
+    "summary": "Authored offline component paths/acceptance/test selection mapping. Prior reviewed_source_identity remains stale and MUST be refreshed/verified on complete native source before readiness; no RI-CI pass claimed on partial workspace."
   },
   "layers": [
     {
@@ -153,7 +153,9 @@
         "review/issue-159/2026-10-28-seo-brief-delivery.md",
         "review/issue-159/2026-10-28-seo-brief-agent-control.md",
         "review/issue-159/content-amendment.json",
-        "review/issue-159/2026-10-29-runtime-preregistration.md"
+        "review/issue-159/2026-10-29-runtime-preregistration.md",
+        ".github/acceptance/issue-167.json",
+        "review/issue-167/2026-10-31-offline-prototype.md"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -468,6 +470,24 @@
         ".github/workflows/control-runner-probe.yml"
       ],
       "checks": ["site-basic", "test-profile-regressions", "acceptance-policy"]
+    },
+    {
+      "id": "offline-web-orchestration",
+      "purpose": "Synthetic-only reducer and consumed bounded contract, semantic dedupe/receipt/cessation behavior. Existing maintained source registry selects component tests through Basic; no real dispatch or native admission from fixture proposals.",
+      "paths": [
+        "guides/WEB-ORCHESTRATION.md",
+        "tools/orchestration/contract.json",
+        "tools/orchestration/reducer.cjs",
+        "tests/orchestration.test.cjs",
+        "tests/fixtures/orchestration-accept-only.json",
+        "tests/fixtures/orchestration-start.json"
+      ],
+      "checks": [
+        "site-basic",
+        "acceptance-policy",
+        "test-profile-regressions",
+        "ri-freshness"
+      ]
     }
   ],
   "checks": [
