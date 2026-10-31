@@ -130,3 +130,29 @@ publication, new service, native Linear dispatch or paid route is supplied here.
 Four actual nonauthor Requirements, Code, Whitebox and Exploratory results on
 the exact integrated candidate and affected correction rechecks remain required.
 Full B2 exit, B1/M1 and all twelve global WEB-AC criteria remain open.
+
+## Reviewer admission and prompt ownership
+
+The session orchestrator must enforce the repository's
+[reviewer launch contract](../agents/reviewers/README.md) before accepting each
+required independent review. Linear records intent/routing and references this
+admission requirement; detailed role prompts and rubrics live together in that
+directory. AGENTS routes, CONTRIBUTING owns mandatory lifecycle gates, and the
+issue's existing versioned review records actual launch/input/result receipts.
+
+Required admission inputs are a distinct nonauthor role, explicit none-fork or
+verified equivalent, accessible original intent/ACs and pinned source/diff,
+common/role prompt and packet identities, allowed check bounds and an actual
+accepted launch. Missing/unknown isolation holds dependent review acceptance.
+Preserve each first judgment before reconciliation; actual corrections recheck
+affected scope. Prompt file existence, hashes and self-reports prove neither
+execution nor provider-internal isolation. Shared platform/memory/filesystem
+boundaries must be reported honestly.
+
+This is a documentation contract. The current reducer has no reviewer command,
+launcher or adapter; it does not enforce this admission gate, validate these
+receipts or demonstrate fresh-context runtime behavior. Implementing and testing
+that gate belongs to subsequent source-bound B2/B5 work and B6 acceptance under
+WEB-AC03/11. Do not add a synthetic flag and call isolation verified. Retained
+historical findings and the current audit are in the same issue's
+[review](../review/issue-167/2026-10-31-reviewer-isolation.md).

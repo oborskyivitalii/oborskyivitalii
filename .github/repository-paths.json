@@ -12054,6 +12054,60 @@
       "purpose": "Source-bound offline prototype scope, independent review results, retained accounting and pending native gates.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "agents": {
+      "kind": "directory",
+      "purpose": "Repository agent role prompts and shared launch contracts; not installed skills.",
+      "role": "guide",
+      "owner": "agents/reviewers/README.md"
+    },
+    "agents/reviewers": {
+      "kind": "directory",
+      "purpose": "Canonical common reviewer launch contract and four separate detailed role prompts.",
+      "role": "guide",
+      "owner": "agents/reviewers/README.md"
+    },
+    "agents/reviewers/README.md": {
+      "kind": "file",
+      "purpose": "Common clean-context launch, source packet, execution evidence and correction contract.",
+      "role": "guide",
+      "owner": "agents/reviewers/README.md"
+    },
+    "agents/reviewers/code-review.md": {
+      "kind": "file",
+      "purpose": "Detailed independent code review reviewer prompt; requires common contract and explicit source packet.",
+      "role": "guide",
+      "owner": "agents/reviewers/code-review.md"
+    },
+    "agents/reviewers/exploratory-interaction-qa.md": {
+      "kind": "file",
+      "purpose": "Detailed independent exploratory interaction qa reviewer prompt; requires common contract and explicit source packet.",
+      "role": "guide",
+      "owner": "agents/reviewers/exploratory-interaction-qa.md"
+    },
+    "agents/reviewers/requirements-acceptance.md": {
+      "kind": "file",
+      "purpose": "Detailed independent requirements acceptance reviewer prompt; requires common contract and explicit source packet.",
+      "role": "guide",
+      "owner": "agents/reviewers/requirements-acceptance.md"
+    },
+    "agents/reviewers/white-box-qa.md": {
+      "kind": "file",
+      "purpose": "Detailed independent white box qa reviewer prompt; requires common contract and explicit source packet.",
+      "role": "guide",
+      "owner": "agents/reviewers/white-box-qa.md"
+    },
+    "review/issue-167/2026-10-31-reviewer-isolation.md": {
+      "kind": "file",
+      "purpose": "Source-bound reviewer isolation audit, historical usefulness, prompt extraction and actual independent execution receipts.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-167/2026-10-31-reviewer-history-evidence.json": {
+      "kind": "file",
+      "purpose": "Exact bounded historical source excerpts and hashes supporting the reviewer usefulness audit.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

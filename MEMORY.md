@@ -9,8 +9,9 @@ Dated continuity, not live authority. Last verified: **2026-10-31**.
   full tree 6f95c7f8813f86479a5b7be6b20ae017d641b2ea.
 - API-bound partial text workspace, not full Git checkout; no clean-head or full
   RI claim. Complete base tree must be inherited by GitData delivery.
-- No owning active PR found at intake. Open unrelated PRs 117, 110, 107, 79
-  remain with their owners; revalidate live state before touching them.
+- Active Draft PR168 at reviewer-audit intake: 6babd71287be9c428d5dbc355f0e385658c05c55.
+  Latest continuation adds reviewer isolation audit and separated role prompts;
+  revalidate live head before dependent work. Other PR owners stay unchanged.
 
 ## Decisions
 
@@ -21,12 +22,15 @@ Dated continuity, not live authority. Last verified: **2026-10-31**.
 - Keep substantive delivery Draft. No merge, deploy, public release, paid API,
   native Linear dispatch, new infrastructure or B3–B7 start.
 - Follow CONTRIBUTING four distinct nonauthor roles and diagnosis-before-retry.
+- Fresh reviewers use explicit none-fork and source/prompt/packet receipts via
+  agents/reviewers/README.md; historical reviewer fork modes remain unknown.
   Whole WEB-AC01–12 and B1/B2/M1 remain open.
 
 ## Open work
 
 - Current evidence/handoff owner:
-  review/issue-167/2026-10-31-offline-prototype.md.
+  review/issue-167/2026-10-31-offline-prototype.md; reviewer audit and pending
+  runtime isolation gate: review/issue-167/2026-10-31-reviewer-isolation.md.
 - Component evidence cannot pass full B/R/O/H route. Native Basic/style/source
   selection, RI build/verify, RI-CI refresh/verify, owning acceptance and full
   staging/admission remain pending; no hand-edited generated views.

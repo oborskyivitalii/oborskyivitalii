@@ -146,6 +146,11 @@
     "guides/SITE-PRODUCTION.md",
     "guides/ARTICLE-WORKFLOW.md",
     "guides/ARTICLE-MATERIALS.md",
-    "guides/SITE-CONTENT-RELEASE.md"
+    "guides/SITE-CONTENT-RELEASE.md",
+    "agents/reviewers/README.md",
+    "agents/reviewers/requirements-acceptance.md",
+    "agents/reviewers/code-review.md",
+    "agents/reviewers/white-box-qa.md",
+    "agents/reviewers/exploratory-interaction-qa.md"
   ]
 }

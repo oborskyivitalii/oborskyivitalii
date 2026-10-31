@@ -25,6 +25,7 @@ acceptance live in issues/PRs; [MEMORY](../MEMORY.md) is a dated continuity hint
 | [BROWSER-ARCHIVES](BROWSER-ARCHIVES.md) | Exact native browser supply, verified pins, cold setup and archive refresh | Browser delivery #122 |
 | [SITE-RELEASE-GATES](SITE-RELEASE-GATES.md) | Security, browser/device, performance budgets and exact-artifact evidence | Release gates #13 and hosting #8 |
 | [SITE-STAGING](SITE-STAGING.md) | CI controller, immutable preview/staging, promotion and recovery mechanics | Hosting/gates #8/#13 |
+| [Reviewer prompts](../agents/reviewers/README.md) | Common clean-context launch contract and four detailed independent role prompts | CONTRIBUTING protocol; WEB-18 / #167 |
 | [WEB-ORCHESTRATION](WEB-ORCHESTRATION.md) | Fixture-only offline orchestration state/recovery component; proposed effects and explicit native delivery gaps | WEB-18 / #167, coordinated by VIT-22 |
 | [SITE-CONTROL-CHANGES](SITE-CONTROL-CHANGES.md) | Bounded lock-patch structural prototype, operator interface and explicit nonauthority | Delivery admission #122 |
 | [SITE-PRODUCTION](SITE-PRODUCTION.md) | GitHub Pages .ai canonical domain, .com redirect and phased owner/provider preparation | Domain readiness #39 under #8/#13 |

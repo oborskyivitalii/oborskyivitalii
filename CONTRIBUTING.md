@@ -140,128 +140,84 @@ Update actual issue checkboxes alongside evidence; tables alone are insufficient
 
 ### Independent quality agents
 
-For every coherent changed candidate/iteration, the orchestrator must actually
-launch **four distinct subagents** with the roles below and obtain their completed
-results before advancing or claiming completion/readiness. This includes T0–T4
-work and material corrections/integration. One agent cannot fill multiple roles
-for the same candidate or substitute for the implementer's independent reviewers.
-Run independent work in parallel where useful; queue roles in waves when capacity
-is limited. Reuse a role-specific agent through an actual follow-up execution for
-corrections; merely retaining an earlier approval is insufficient.
+For every coherent changed candidate/iteration, actually launch **four distinct
+nonauthor subagents** and obtain completed independent results before advancing
+or claiming readiness. Applies to T0–T4, material corrections and integration;
+use waves when capacity is limited. One agent cannot fill multiple roles or
+accept implementation/tests it authored. Findings/proposed treatments alone do
+not make the reviewer the implementer.
 
-| Independent role | Question and required output |
+[agents/reviewers/README.md](agents/reviewers/README.md) owns the common launch,
+source-packet, isolation and execution-evidence contract. Every fresh reviewer
+uses explicit `fork_turns="none"` or a verified equivalent; unsupported/unknown
+isolation blocks dependent acceptance. No author conversation or current peer
+verdicts before the first independent judgment. Shared instructions, permitted
+sources, tools and filesystem are not an isolated security sandbox. Preserve
+requested/accepted/provider-observed evidence separately.
+
+| Independent role | Canonical detailed prompt |
 | --- | --- |
-| Requirements & Acceptance Reviewer | Are the requirements themselves adequate, and do the ACs express the intended outcome? Return requirement/AC defects, traceability, proposed treatments and remaining decisions. |
-| Code Reviewer | Does the candidate satisfy intent with sound design and maintainable source? Review the actual diff, code and tests under the existing iteration protocol; for non-code work review the changed artifacts. |
-| White-box QA | Which structural faults could escape the tests? Inspect affected implementation/design and existing coverage; return a bounded risk-to-test matrix and actual check results or explicit execution gaps. |
-| Exploratory / Interaction QA | Does the real user/operator surface deliver the promised behavior? Independently design and execute a bounded charter; return actions, observations, evidence and proposed regression cases. |
+| Requirements & Acceptance | [requirements-acceptance.md](agents/reviewers/requirements-acceptance.md) |
+| Code / changed artifact | [code-review.md](agents/reviewers/code-review.md) |
+| White-box QA | [white-box-qa.md](agents/reviewers/white-box-qa.md) |
+| Exploratory / Interaction QA | [exploratory-interaction-qa.md](agents/reviewers/exploratory-interaction-qa.md) |
 
-Give each role the original request, live owning issue/ACs, instructions,
-base/candidate identity and direct access to actual sources, tests and evidence.
-Each independently inspects those inputs and forms its own findings before
-reconciliation; another agent's conclusion or an implementer summary cannot be
-its sole basis. The orchestrator reconciles findings and contradictions with
-evidence, not majority vote. Distinct agents do not guarantee uncorrelated errors.
+Each role receives original intent/ACs, applicable instructions, actual sources,
+diff and test/evidence access plus exact prompt/packet/candidate identities.
+It inspects independently; author summaries or peer conclusions cannot be its
+sole basis. Reconcile contradictions with evidence, never majority vote.
+Different agents/models alone do not guarantee uncorrelated errors.
 
-All four roles must launch even when the change is small. The launched role may
-return a reasoned **not applicable** for a genuinely absent surface, naming the
-inspected scope; this avoids unnecessary tests, not the independent execution.
-For example, prose-only work may need no dynamic white-box or interaction tests.
-Unavailable access, tooling or devices is **not observed/blocked**, not not
-applicable. A pending, failed or unavailable required role and unresolved blocking
-findings prevent advancement/readiness; independent read-only preparation may
-continue. Preserve existing optional device/full-diagnostic policy: naming a role
-does not create another mandatory device/browser matrix.
-
-No role may independently accept requirements, production code or tests it authored
-or implemented. Prefer findings, scenarios and proposed treatments for the
-implementer. If QA implements tests, a different nonauthoring reviewer must inspect
-those test changes; this does not replace QA's analysis of production behavior.
-Ordinary findings/proposed treatments do not make a reviewer the implementer.
-Replace a reviewer for any scope with an actual authorship conflict.
+All four roles launch even for small changes. The launched role may return
+reasoned not applicable for a genuinely absent surface after inspection; this
+avoids unnecessary dynamic tests, not the execution. Unavailable access/tools/
+devices is not observed/blocked. Missing/pending/failed required roles and
+unresolved blockers prevent advancement; read-only preparation may continue.
+Preserve existing human/editorial/rights/device and optional diagnostic decisions.
 
 #### Requirements and acceptance quality
 
-Run this role before dependent implementation, after material intent/requirement/AC
-changes, and again on the completed candidate. Inspect both each requirement and
-the set: necessity and rationale, clarity, one independently assessable obligation,
-feasibility, verifiability and traceability; completeness, consistent terminology,
-interfaces/dependencies and relevant failure/nonfunctional conditions. Separate
-confirmed constraints from assumptions, open questions and proposed solutions.
-
-For each AC identify preconditions/inputs, observable expected outcome and oracle,
-relevant limits/units/tolerances, check method and explicit nonautomated decision.
-Use stable AC IDs and independently verifiable subconditions where needed; Gherkin
-is optional. Flag vague claims such as “works correctly” or “fast” without an
-observable criterion. Check both directions: original intent → requirement/AC →
-test or external gate → evidence, and whether evidence actually covers the AC.
-Do not invent intent, introduce unapproved scope, or weaken ACs to fit the code.
-The maintainer retains material decisions; agent review is not owner approval.
-
-These questions are informed by [NASA's requirements checklist](https://www.nasa.gov/reference/appendix-c-how-to-write-a-good-requirement/).
-Use it proportionally; this workflow does not claim certification or formal compliance.
+Run Requirements before dependent implementation, after material intent/AC/oracle
+changes, and on the completed candidate. The [role prompt](agents/reviewers/requirements-acceptance.md)
+owns requirement quality, completeness and bidirectional acceptance traceability.
+It cannot invent intent, weaken criteria or replace an owner decision.
 
 #### White-box test design
 
-Start from accepted intent and current design, then inspect the changed candidate
-and existing test inventory. Identify relevant branches/condition outcomes, state
-transitions, data flow and invariants; error/fallback paths, boundaries, invalid
-inputs, ordering/cancellation, partial execution and cleanup where applicable.
-Derive expected results from the accepted contract, not a copy of the implementation.
-Separate structural analysis from executed tests and measured coverage; never claim
-branch coverage from reading source alone or impose a blanket percentage target.
-
-Propose the smallest useful cases at the appropriate level: unit/component,
-integration, browser/CLI or retained manual observation. Reuse existing tests when
-they detect the same risk. For critical guards, use a bounded fault injection or
-negative case when needed to show that the assertion detects the intended fault;
-do not mandate a mutation-testing tool or full matrix. Boundary values, input
-partitions and decision tables can complement structural techniques without being
-mislabelled as white-box coverage. See [ISTQB CTFL v4.0.1, sections 4.1–4.4](https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf).
+The [White-box prompt](agents/reviewers/white-box-qa.md) owns structural risk/test
+design, independent oracles, bounded actual checks and uncovered scope. Structural
+inspection is not execution or measured coverage; no blanket percentage/tool mandate.
 
 #### Exploratory and interaction testing
 
-Derive a charter from user/operator outcomes and risks independently of the
-white-box agent's conclusions. Inspect the actual candidate surface: browser/UI
-for interaction changes; CLI/API/RI queries and failures for tooling changes.
-Use input partitions, boundary/state scenarios and experience-based exploration
-where relevant. Test changed journeys, error/recovery paths, navigation, focus,
-accessibility or perceptual behavior according to scope; do not mechanically run
-all of them. Code inspection may inform diagnosis but cannot replace interaction.
-
-Record candidate/artifact/origin, environment/capabilities, charter/time or case
-bound, actions, expected and observed outcomes and retained evidence. Keep
-**designed**, **executed/pass**, **executed/fail** and **not observed** distinct.
-Browser automation or an agent's interactive observation is not a physical-device
-or human usability observation. A manually triggered Actions job is still an
-automated test. Preserve existing owner/editorial/rights/device decisions.
+The [Exploratory prompt](agents/reviewers/exploratory-interaction-qa.md) owns
+independent charter, actual operator/UI surface, bounded actions/observations and
+regression proposals. Code reading cannot replace applicable interaction.
 
 #### Findings, CI handoff and completion
 
-Both QA agents contribute cases to the existing issue review artifact and
-[test allocation owner](guides/SITE-CHECK-PROFILES.md#qa-findings-to-github-actions).
-Record risk/AC → scenario and independent oracle → existing/proposed test →
-suite/profile/workflow/job → actual result/source or manual/deferred disposition.
-Requirements review checks the intent/AC linkage; code review inspects implemented
-tests; QA checks that the selected cases detect the intended failures. A new test
-needs an owner and actual selection route, not just a filename in the repository.
-Agent executions occur in the development/review session; GitHub Actions executes
-the resulting selected tests. No CI LLM agent/service is implied by these rules.
+Both QA roles allocate cases through the existing issue review artifact and
+[test allocation owner](guides/SITE-CHECK-PROFILES.md#qa-findings-to-github-actions):
+risk/AC → scenario and independent oracle → existing/proposed check → suite/
+profile/workflow/job → actual source/result or manual/deferred disposition.
+Requirements checks intent linkage; Code reviews implemented tests; QA checks
+failure detection. QA-authored tests need a different nonauthor reviewer.
+A new test needs an actual owner/selection route. Session agents produce review
+results; Actions runs selected tests. No CI LLM service is implied.
 
-Record each role's separate identity/execution, inspected source/diff, scope,
-findings/AC impact, actual checks, limits and dispositions in the existing versioned
-review artifact. Preserve each independent conclusion; distinguish proposed work
-from completed evidence. On corrections each role performs a delta assessment,
-reuses only demonstrably unaffected evidence and rechecks affected scope; material
-AC changes return to requirements review before dependent implementation. Resolve
-blocking findings and contradictions before readiness, retaining remaining risks.
-Summarize the failure mechanism and tested invariant so a maintainer can understand
-what the checks protect; passing automation alone does not establish understanding.
+Record separate role/execution, actual isolation launch parameters/acceptance,
+common/role prompt and packet identities, inspected source/diff, independent
+conclusion, findings/AC impact, checks, limits and dispositions in the existing
+versioned review artifact. A launch or summary is not a completed result.
+On correction perform actual affected re-review with source-bound delta inputs;
+reuse only unchanged evidence. Preserve first conclusions and disclose later
+reconciliation exposure. Follow the common contract for contaminated replacement
+or a newly fresh review. Explain the failure mechanism and protected invariant.
 
-The existing iteration definition and exemptions for unchanged read-only status,
-verbatim receipts and deterministic RI/metadata refreshes apply. Those exemptions
-cannot cover a changed requirement, implementation, test oracle or substantive claim.
-Missing independent execution is an explicit gate, never fabricated approval.
+Existing exemptions for unchanged read-only status, verbatim receipts and
+deterministic metadata/RI refreshes remain; they cannot cover changed requirements,
+implementation, test oracles or substantive claims. Missing independent execution
+is an explicit gate, never fabricated approval.
 
 ### Independent review after every iteration
 
