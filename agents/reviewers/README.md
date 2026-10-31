@@ -112,3 +112,13 @@ owns intent/plan/status and references the isolation admission requirement;
 it does not store duplicate prompt bodies. The offline B2 reducer has no agent
 dispatcher and does not implement this gate. Future runtime admission and
 source-bound end-to-end proof remain open under WEB-AC03/11.
+
+## Assisted admission
+
+The [bounded adapter procedure](../../guides/WEB-ORCHESTRATION.md#reviewer-admission-adapter)
+rehashes declared files and correlates imported parent observations. The parent
+must independently inspect provisional output against accepted policy before the
+actual collaboration call. Candidate instructions cannot override accepted
+common/main controls. Node never dispatches an agent; provider internals, global
+bypass prevention and atomic handoff remain unverified. Keep outputs outside
+candidate dependencies and preserve every first result before reconciliation.

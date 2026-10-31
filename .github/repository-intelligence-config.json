@@ -382,6 +382,11 @@
         "окремі запуски агентів",
         "контракт запуску ревʼюерів"
       ]
+    },
+    {
+      "concern": "reviewer admission adapter",
+      "path": "guides/WEB-ORCHESTRATION.md",
+      "queries": ["reviewer admission", "record-launch", "assess-set", "RA01", "RA05"]
     }
   ],
   "map_output": "REPOSITORY-MAP.md",
@@ -740,6 +745,19 @@
       ],
       "workflow": ".github/workflows/navigation.yml",
       "note": "Read the common contract and this single role prompt for a role launch; navigation checks do not establish reviewer execution."
+    },
+    {
+      "concern": "parent-mediated reviewer admission and native observations",
+      "paths": [
+        "tools/orchestration/reviewer-admission.cjs",
+        "tools/orchestration/reviewer-admission-cli.cjs",
+        "tools/orchestration/reviewer-admission-contract.json",
+        "tests/reviewer-admission.test.cjs"
+      ],
+      "commands": ["node --test tests/reviewer-admission.test.cjs"],
+      "read": ["agents/reviewers/README.md", "guides/WEB-ORCHESTRATION.md"],
+      "workflow": ".github/workflows/site-checks.yml",
+      "note": "Bounded component checks; actual collaboration is performed and reconciled by the parent, never by Node. Whole WEB gates remain unchanged."
     }
   ]
 }

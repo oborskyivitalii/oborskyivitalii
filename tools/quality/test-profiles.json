@@ -2853,6 +2853,22 @@
         "tests/fixtures/orchestration*.json",
         "guides/WEB-ORCHESTRATION.md"
       ]
+    },
+    {
+      "path": "tests/reviewer-admission.test.cjs",
+      "language": "javascript",
+      "purpose": "Bounded reviewer admission, native observation correlation, immutable adverse results, correction lineage and actual CLI refusal cases.",
+      "owner": "guides/WEB-ORCHESTRATION.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "Permanent component evidence; actual parent collaboration path and independent final reviews remain separate.",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/reviewer-admission.test.cjs",
+        "tools/orchestration/reviewer-admission*",
+        "agents/reviewers/**",
+        "guides/WEB-ORCHESTRATION.md"
+      ]
     }
   ]
 }

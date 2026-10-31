@@ -908,6 +908,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [review/issue-167/2026-10-31-native-integration.md](review/issue-167/2026-10-31-native-integration.md) | Source-bound native RI/CI integration, retained failures, reviewer prompt control regressions and actual independent/native evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-167/2026-10-31-offline-prototype.md](review/issue-167/2026-10-31-offline-prototype.md) | Source-bound offline prototype scope, independent review results, retained accounting and pending native gates. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-167/2026-10-31-reviewer-admission.md](review/issue-167/2026-10-31-reviewer-admission.md) | Public-safe reviewer admission plan, routing, requirement dispositions and bounded evidence; final independent results pending. | history | [guides/WEB-ORCHESTRATION.md](guides/WEB-ORCHESTRATION.md) |
 | [review/issue-167/2026-10-31-reviewer-history-evidence.json](review/issue-167/2026-10-31-reviewer-history-evidence.json) | Exact bounded historical source excerpts and hashes supporting the reviewer usefulness audit. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-167/2026-10-31-reviewer-isolation.md](review/issue-167/2026-10-31-reviewer-isolation.md) | Source-bound reviewer isolation audit, historical usefulness, prompt extraction and actual independent execution receipts. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
@@ -2687,6 +2688,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/release-rights.test.cjs](tests/release-rights.test.cjs) | Complete artifact/source rights inventory, provenance/notice integrity, frozen archived verification and unapproved-policy negatives. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/renderer.test.cjs](tests/renderer.test.cjs) | Maintained renderer palette, ordered drawing/state equivalence and cache invalidation, bounded formula projection/sampling/cache and geometry/resource regressions. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/review-flow.test.cjs](tests/review-flow.test.cjs) | Behavioral/adversarial tests and fixtures for review flow. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/reviewer-admission.test.cjs](tests/reviewer-admission.test.cjs) | Bounded parent-mediated reviewer admission component regressions. | test | [guides/WEB-ORCHESTRATION.md](guides/WEB-ORCHESTRATION.md) |
 | [tests/ribbons.test.cjs](tests/ribbons.test.cjs) | Explicit historical optional ribbon geometry/material/clock diagnostic; active Color excludes ribbons. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/scroll-entry.test.cjs](tests/scroll-entry.test.cjs) | Serialized native reading-entry lifecycle, one-shot/jump/tall/cap/stagger and readable fallback behavioral contracts. Issue122 T03-R uses post-cleanup per-batch geometry/focus and behavioral read/write-order, fresh-event and forward-queue regressions. | test | [site/README.md](site/README.md) |
 | [tests/scroll-sync.test.cjs](tests/scroll-sync.test.cjs) | Behavioral/adversarial tests and fixtures for scroll sync. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
@@ -2782,6 +2784,9 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [tools/orchestration/contract.json](tools/orchestration/contract.json) | Consumed bounded JSON fixture contract for offline orchestration proposals; synthetic inputs authenticate no real authority. | configuration | [guides/WEB-ORCHESTRATION.md](guides/WEB-ORCHESTRATION.md) |
 | [tools/orchestration/reducer.cjs](tools/orchestration/reducer.cjs) | Pure JSON-text reducer for synthetic acceptance/start, semantic dedupe, receipt/cessation holds and safe public projection. | source | [guides/WEB-ORCHESTRATION.md](guides/WEB-ORCHESTRATION.md) |
+| [tools/orchestration/reviewer-admission-cli.cjs](tools/orchestration/reviewer-admission-cli.cjs) | Bounded parent-mediated reviewer admission contract and implementation; no dispatcher or provider attestation. | source | [guides/WEB-ORCHESTRATION.md](guides/WEB-ORCHESTRATION.md) |
+| [tools/orchestration/reviewer-admission-contract.json](tools/orchestration/reviewer-admission-contract.json) | Bounded parent-mediated reviewer admission contract and implementation; no dispatcher or provider attestation. | configuration | [guides/WEB-ORCHESTRATION.md](guides/WEB-ORCHESTRATION.md) |
+| [tools/orchestration/reviewer-admission.cjs](tools/orchestration/reviewer-admission.cjs) | Bounded parent-mediated reviewer admission contract and implementation; no dispatcher or provider attestation. | source | [guides/WEB-ORCHESTRATION.md](guides/WEB-ORCHESTRATION.md) |
 
 ## tools/pages/
 

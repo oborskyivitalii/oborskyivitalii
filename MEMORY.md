@@ -4,62 +4,46 @@ Dated continuity, not live authority. Last verified: **2026-10-31**.
 
 ## Snapshot
 
-- WEB-18/#167, coordinator VIT-22, same Draft PR168.
-- Security-correction baseline8c0087b99f4bd77886b2f174ff30d12f67855cee,
-  treef9055428997b0f40af098f6862c30883b1e99ac8; revalidate live head.
-- Full1810-file snapshot verified against all Git blobs/tree (1809 index paths
-  plus native integration report on disk).
-  Original local Git history/HEAD unavailable; no synthetic HEAD accepted.
-- Baseline Basic41194698327, navigation41194698305 and owning41194698347
-  passed automated scope. Full stage41195104012/job124519732378 then failed
-  security/advisories before upload; first failures/artifacts retained.
+- Owner WEB-18/#167, coordinator VIT-22. PR168 is merged history.
+- Parent-verified main8cf15883125892710633b17133d9ee0fc4b23b92,
+  tree1f8e758a6c4565b12b8112477e77b9637f4938a9, 1810 native blobs.
+- Current prepared source has no authentic Git history; never fabricate HEAD.
+- New reviewer admission candidate is separate from unchanged fixture reducer.
 
 ## Decisions
 
-- Current continuation covers bounded native RI/CI integration under #167.
-  Prompt family is watched/mapped; real generated RI/coupling refreshed.
-  Existing reducer still returns only data/proposals, with no dispatcher.
-- Linear remains intent/coordination owner; manual session ingress. Preferred
-  Sol/medium author request is not provider identity attestation.
-- Keep substantive delivery Draft. No merge, deploy, public release, paid API,
-  native Linear dispatch, new infrastructure or B3–B7 start.
-- Follow CONTRIBUTING four distinct nonauthor roles and diagnosis-before-retry.
-- Fresh reviewers use explicit none-fork and source/prompt/packet receipts via
-  agents/reviewers/README.md; historical reviewer fork modes remain unknown.
-  Whole WEB-AC01–12 and B1/B2/M1 remain open.
+- Authorized bounded parent-assisted adapter and Draft delivery only.
+- Node cannot dispatch collaboration or authenticate provider internals.
+- Parent imports actual receipts and independently validates provisional output
+  against accepted main/common controls. Candidate instructions cannot override them.
+- Four distinct nonauthor final roles remain mandatory; first outputs immutable.
+- Unknown native effects require transcript reconciliation, never blind retry.
+- Whole WEB-AC01–12, B1/full B2/M1 and staging/merge/production remain open.
 
 ## Open work
 
-- Current evidence/handoff owner:
-  review/issue-167/2026-10-31-offline-prototype.md; reviewer audit and pending
-  runtime isolation gate: review/issue-167/2026-10-31-reviewer-isolation.md;
-  native correction: review/issue-167/2026-10-31-native-integration.md.
-- Bounded security repair proposes five existing Bandit source/line refreshes,
-  exact70 initial checksum dispositions (62 recomputed,2 fixture keys,6 qualified
-  historical receipts) plus1 fresh Bandit checksum; independent review pending.
-- Exact minimatch11.0.1 override produced real lock/install and clean audit.
-  Actual consumer modes pass;210 broader partial-match differences retained.
-  Local scanner/selector regression80cases:77pass/3history-dependent failures.
-  Native changed-head checks and full staging/admission remain mandatory.
-- Real human/provider provenance, dispatcher, cancellation, crash recovery,
-  native status/sync/notice and served artifact verification remain unproved.
-- Previous #159 handoff is retained at the pinned base MEMORY.md history;
-  its 29 October refs/failures are historical, not current task authority.
+- Evidence owner: review/issue-167/2026-10-31-reviewer-admission.md.
+- First adverse set remains held/BLOCKER. Four actual same-role corrections
+  resolved their own findings; CLI accepted the reviewed source-bound set.
+  Fifteen child turns used; exact Draft source/readback and native checks are next.
+- Full unmodified preflight/four first reports and correction routing delta are
+  now appended after all first judgments. Reconciliation exposure is explicit.
+- Native history guard and maintained Basic/source route require authentic CI;
+  Draft site-check deferral is not a pass or authority to mark Ready.
 
 ## Next session
 
-1. Read current #167/WEB-18, actual Draft PR head/diff/checks and this review.
-2. Revalidate exact delivered head and real native Actions results. Complete
-   source is available; local frozen Git-history objects are still absent.
-3. Complete final four-role security review, exact final scan and native checks; use
-   retained failures and exact command/source receipts, never a synthetic HEAD.
-4. Reconcile P01–P06 subsets without closing original whole-pilot criteria.
-5. B3–B7 need their exact scope/guards; offline proposals do not launch them.
+1. Read current owning issue/PR refs and accepted controls, not this dated summary.
+2. Read the full immutable first/correction results and actual receipt scope.
+3. Preserve reviewed source versus literal receipt/RI metadata distinction;
+   do not reuse changed dependencies silently or reset prepared reservations.
+4. Verify current Draft source/readback and eligible native CI; Basic/full route
+   and whole-pilot gates remain pending until their actual obligations pass.
 
 ## Maintenance
 
-- Keep this five-section handoff within 120 lines. Real generated RI/coupling
-  must stay fresh after this edit; source-bound receipts retain exact results.
-  Style guard needs missing frozen Git baseline; native checks remain pending.
-- Keep original failures, owners, source identities, test profiles and budgets.
-- Store no private execution/approval URLs or secrets in repository/Linear.
+- Source-bound plan/routing and clarified operation/outcome oracles are versioned
+  in the evidence owner. Controlled raw intent/bundle/transcripts remain external.
+- Component and governance raw logs are retained outside candidate dependencies;
+  final command accounting and exact hashes belong to the parent handoff.
+- No author release/readiness or final-review verdict is supplied by this memory.

@@ -156,3 +156,145 @@ that gate belongs to subsequent source-bound B2/B5 work and B6 acceptance under
 WEB-AC03/11. Do not add a synthetic flag and call isolation verified. Retained
 historical findings and the current audit are in the same issue's
 [review](../review/issue-167/2026-10-31-reviewer-isolation.md).
+
+## Reviewer admission adapter
+
+The adjacent `reviewer-admission.cjs` is a separate deterministic admission and
+receipt component. It leaves the synthetic reducer and its contract unchanged.
+`reviewer-admission-contract.json` owns its finite roles, routing and byte limits.
+The thin CLI reads files only; it has no network, subprocess or collaboration SDK.
+
+Run `node tools/orchestration/reviewer-admission-cli.cjs CANDIDATE_ROOT EVIDENCE_ROOT request.json`.
+Roots are trusted explicit selections and must be disjoint; the request path is
+relative to the evidence root. The CLI emits one JSON object and exits nonzero
+on refusal, without echoing raw input or filesystem exceptions. The caller writes
+output/state outside candidate inputs and supplies that returned state next time.
+Parent is the sole writer; state is an imported observation record, never an
+authenticated, atomic or crash-safe journal. Lost/unknown native effects require
+manual transcript reconciliation; no retry/reset is supplied by this API.
+
+The request has exactly `operation`, `input`, `state`. Initial state is
+`{version:1,excludedHandles:[AUTHOR,PLANNER,ROUTER,PREFLIGHT],executions:[]}`.
+The excluded list is parent-maintained actual execution provenance; JSON labels
+cannot authenticate actor identity. Each reference has exactly
+`{space,path,bytes,sha256,kind}`, where space is candidate/evidence, path is normalized
+relative POSIX, bytes is actual UTF-8/raw length, and SHA-256 hashes raw bytes.
+The complete parent-verified baseline manifest and reviewed delta are mandatory
+hashed dependencies, as are instructions, intent, oracle, policy, capability,
+preflight receipt, source, common/role prompt and packet. A bounded read set does
+not establish complete repository provenance. Parent checks manifest completeness
+against the actual native tree; no `complete`/`approved` boolean supplies proof.
+
+1. `prepare`: input has `batch:{owner:"WEB-18/#167",step:"RA-06",normativeDigest,
+   preflightHandle}`, role, phase, taskName, forkTurns, model, effort, dependencies,
+   prior and ledger. The phase is first/correction/replacement. Explicit none plus the exact
+   planned role model/medium is required. Prior is null for first; otherwise it
+   names immediate predecessor requestDigest and predecessorResultDigest, plus
+   immutable root firstResultDigest. Packet file bytes are the
+   exact full message, so the parent can seal a short source-reference message.
+   The sealed prelaunch ledger classifies that message and every dependency;
+   missing, unknown or forbidden classifications hold before any launchable args.
+   Output prepared includes digest, tool and exact args. Correction emits only
+   followup_task target/message for the same existing handle, never spawn args.
+2. `record-launch`: input has requestDigest, submitted, invocation, response,
+   outcome, handle. Invocation bytes are parent-captured JSON `{tool,arguments}`;
+   fresh native response JSON retains the actual `task_name` handle. Natural
+   followup responses are preserved separately; accepted outcome is the parent's
+   observed interpretation, with target fixed by the imported invocation.
+   Only accepted matching requests and distinct nonauthor fresh handles record.
+   Tool acceptance does not supply completion or provider identity.
+3. `record-result`: input has requestDigest, handle, artifact, completion,
+   sourceDigest, firstResultDigest, ledger, verdict, findings, checks, limits,
+   inspectedScope, completionSequence. The artifact (kind result) and completion (kind observation) must use the evidence
+   root and cannot collide with any dependency. The artifact is the own natural Markdown
+   result; the parent completion JSON has handle, status:"completed",
+   artifactSha256 and completionSequence. sourceDigest uses the dependencies
+   domain below. Ordered ledger rows extend the identical prepared ledger prefix and have
+   sequence (zero based), category and
+   sha256; first row hashes the actual complete message. Unknown/author/peer
+   exposure is refused; classifications remain parent observations requiring
+   transcript inspection and reviewer disclosure. A correction or replacement preserves the
+   original root first-result digest; predecessorResultDigest separately binds the
+   immediate predecessor artifact, including after multiple continuations. Valid adverse completed results record intact.
+4. `assess-set`: input has four requests, current dependencies, comparisons,
+   reconciliation. Dependencies are the sealed union of current relevant read
+   sets; each comparison names requestDigest, previousDigest, currentDigest and
+   explicit sorted changed path keys. Role/packet references for other roles
+   are ignored in additions; other new inputs hold pending affected review.
+   Reconciliation has exact resultDigests, conflicts and an evidence reference.
+   The newest prepared attempt per role/batch supersedes every earlier result
+   immediately, including while pending or after failed/unknown native response.
+   Selecting an older pass fails SUPERSEDED; selecting an incomplete newest attempt
+   fails INCOMPLETE. Missing results, stale dependencies, open blockers, adverse
+   current verdicts or unresolved conflicts hold. A removed blocking finding requires an actual
+   correlated same-role recheck explicitly resolving its stable ID; changing a
+   parent flag cannot resolve it. Nonblocking open improvements remain evidence.
+
+Finding fields are id, impact (blocking/nonblocking), status (open/resolved),
+evidence. Verdicts are pass, changes-required, blocked, not-applicable; the latter
+requires the executed role's inspectedScope and explanation in its own result.
+No semantic truth or applicability is inferred from the declared vocabulary.
+Canonical JSON sorts object keys recursively, preserves array order and encodes
+compact UTF-8. Object digests hash `reviewer-admission/v1/DOMAIN\n` followed by
+canonical JSON. Domains are prepared (payload/tool/args, without digest),
+dependencies (reference array), result (structured result). This serializer is
+separate from the normative bundle serializer; never trim normative bytes.
+
+The parent actually consumes prepare output, compares it independently against
+accepted routing/common controls, rechecks frozen dependency bytes, then invokes
+the native collaboration tool itself. It imports the actual invocation/response,
+waits for the own completed result and records completion. There is a visible
+non-atomic gap. Candidate source instructions are review subjects and cannot
+supersede accepted policy/main/common controls. Imported parent observations do
+not authenticate provider context/model/memory or prevent unrelated bypass.
+
+Permanent component checks: `node --test tests/orchestration.test.cjs tests/reviewer-admission.test.cjs`.
+The maintained registry selects the new suite for adapter/contract/test/prompt
+changes and staging/production. Real four-role launches, first outputs and final
+parent reconciliation remain separate evidence. See the
+[dated scope and pending gates](../review/issue-167/2026-10-31-reviewer-admission.md).
+
+The single policy dependency is a closed imported control JSON envelope:
+`{batch,baselineSha256,deltaSha256,capabilitySha256,preflightSha256}`. Its batch
+must exactly equal the declared batch; the four hashes must match the single
+actual hashed baseline/delta/capability/preflight references. This correlates
+nominal normative/preflight/source-control identity with sealed imported bytes.
+Baseline manifest contents, source authenticity, actual prior preflight completion
+and the meaning of capability/policy records remain independently inspected
+parent observations; opaque reference contents are not authenticated by a label.
+
+
+### Correction ancestry and retained evidence
+
+The state is one declared batch with at most15 executions, unchanged from the
+original finite ceiling. A correction/replacement must reference the latest
+completed same-role execution using exactly
+`{requestDigest,firstResultDigest,predecessorResultDigest}`. requestDigest and
+predecessorResultDigest bind the immediate predecessor request and its own result
+artifact. firstResultDigest always identifies the original first artifact at the
+root, including through correction → correction → fresh replacement. Ancestors
+must be earlier entries of the same role/batch; missing, skipped, unrelated or
+cyclic ancestry holds. No later attempt resets first evidence or restores a
+superseded old pass. A failed/unknown native response leaves the prepared attempt
+pending and holds the role; reconcile its actual effects rather than reset state
+or blindly dispatch a replacement.
+
+Every necessary ancestor invocation, native/parent-observation response, own
+result and completion artifact is reread and hash/correlation checked before
+preparing a descendant or accepting the current set. Historical source dependency
+bytes are not compared to current files: their sealed identities remain historical,
+and the parent retains their snapshots separately. Current selected dependencies
+still require actual matching bytes and explicit current/prior scope comparison.
+A result digest stored in state alone cannot substitute for its retained artifact.
+All blocking IDs introduced in ancestry must remain explicitly blocking/resolved
+in the selected descendant. Removing or downgrading an inherited blocking ID holds;
+resolved IDs can survive further correlated rechecks without pretending that every
+ancestor is the immediate predecessor. Parent semantic reconciliation remains
+required; no JSON label authenticates provider/human judgment.
+
+Repeated same-role handles are valid only for correlated correction ancestry.
+A fresh replacement retains the root-first identity but requires a new none-fork
+spawn and distinct handle. The four selected roles remain distinct nonauthors.
+The followup tool may return no native body; preserve that absence and a clearly
+identified parent-observation response envelope instead of fabricating a provider
+target echo. Exact submitted target/message and observed completion must correlate.

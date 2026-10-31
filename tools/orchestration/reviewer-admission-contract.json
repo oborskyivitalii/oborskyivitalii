@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "limits": {
+    "requestBytes": 262144,
+    "depth": 12,
+    "values": 8192,
+    "files": 256,
+    "fileBytes": 4194304,
+    "aggregateBytes": 33554432,
+    "executions": 15
+  },
+  "roles": {
+    "requirements-acceptance": "gpt-6-astra",
+    "code-review": "gpt-6.1-sol",
+    "white-box-qa": "gpt-6.1-sol",
+    "exploratory-interaction-qa": "gpt-6.1-sol"
+  },
+  "effort": "medium",
+  "kinds": [
+    "source",
+    "instruction",
+    "common",
+    "role",
+    "intent",
+    "oracle",
+    "capability",
+    "baseline",
+    "delta",
+    "policy",
+    "preflight",
+    "packet",
+    "observation",
+    "result"
+  ],
+  "exposures": [
+    "primary-source",
+    "candidate-claim",
+    "instruction",
+    "intent",
+    "raw-evidence",
+    "own-prior-result",
+    "reconciliation"
+  ],
+  "verdicts": ["pass", "changes-required", "blocked", "not-applicable"],
+  "dependencyKinds": [
+    "source",
+    "instruction",
+    "common",
+    "role",
+    "intent",
+    "oracle",
+    "capability",
+    "baseline",
+    "delta",
+    "policy",
+    "preflight",
+    "packet"
+  ]
+}
