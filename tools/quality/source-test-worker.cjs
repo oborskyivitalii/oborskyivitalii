@@ -10,7 +10,7 @@ const assert = require('node:assert/strict'),
 const priority = [
   'tests/space.test.cjs',
   'tests/executive.test.cjs',
-  'tests/article-media.test.cjs',
+  'tests/publication-records.test.cjs',
   'tests/release-rights.test.cjs',
   'tests/release-controller.test.cjs',
   'tests/publishing.test.cjs',
@@ -19,7 +19,7 @@ const priority = [
   'tests/pages-migration.test.cjs',
   'tests/site-engine.test.cjs',
   'tests/pages-delivery.test.cjs',
-  'tests/publication-records.test.cjs',
+  'tests/article-media.test.cjs',
   'tests/staging.test.cjs',
 ];
 function observeFiles(stream, files, parallelism) {

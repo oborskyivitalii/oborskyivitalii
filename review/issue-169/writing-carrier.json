@@ -7,6 +7,10 @@
   "acceptedSvgSHA256": "943eaad6a4a49f83671d25ae9f9d766e80196f8b25b5aa68173715be5e955874",
   "resource": "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg",
   "producerChanges": {
+    "tools/build_site_previews.cjs": {
+      "beforeSHA256": "54ca6b30753cf343f906b9aa1d551a96212136a4882ec047c56a186e831285e6",
+      "afterSHA256": "40d21b0be4e88ec9452350b62d3f9e5159fceb61f9dffd43fd25f731d203cf6e"
+    },
     "tools/site/build.cjs": {
       "beforeSHA256": "fce23e9a21e641e829b07e48029ecbbf3b754904376b1fdda4146e7d09c66bde",
       "afterSHA256": "3d9b80f989008ae487cccf4b38aea630bd4ddf62782a971e7e62142c9fbbc869"
@@ -14,6 +18,10 @@
     "tools/site/fallback.cjs": {
       "beforeSHA256": "66822a96b98fa151762dd72e601299c63b4ff57249a7d7134ee55d8ca03969c9",
       "afterSHA256": "0060c45f858b1669a1ab830c0de6ab4ba8a69d0f8589502bd4f17f8e545161d9"
+    },
+    "tools/site/offline.cjs": {
+      "beforeSHA256": "04970b8c3718d886e2884e2ce63e488aea7a20aebce0bed8778cc7ff8e5288be",
+      "afterSHA256": "23fc1d4c2da8b2345c37180a1a76803ff08f948b68e517969c48a7524791007b"
     }
   }
 }

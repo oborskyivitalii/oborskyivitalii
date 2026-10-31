@@ -353,17 +353,14 @@ test('current article preview retains full edition and PDF closure inside unchan
   assert.equal(descriptor.sourceSha256, expectedSourceSha);
   assert.equal(descriptor.contentEdition, expectedEdition);
   assert.equal(descriptor.downloads.length, 1);
-  // This increment delivers hosted/native reading. The existing standalone
-  // codec deliberately rejects JPEG rather than emitting an invalid payload.
-  assert.throws(
-    () =>
-      require('../tools/site/offline.cjs').assets({
-        articleKey: 'pmday-ai-both-sides:en',
-        revision: record.components,
-        publicDirectory: output,
-      }),
-    /Unsupported standalone article resource/
-  );
+  const resources = require('../tools/site/offline.cjs').assets({
+    articleKey: 'pmday-ai-both-sides:en',
+    revision: record.components,
+    publicDirectory: output,
+  });
+  const jpeg = descriptor.assets.find((name) => name.endsWith('.jpg'));
+  assert.equal(resources[jpeg].mime, 'image/jpeg');
+  assert.equal(resources[jpeg].sha256, jpeg.split('/')[1]);
   const pdf = descriptor.downloads[0],
     read = (name) => fs.readFileSync(path.join(output, name));
   assert.ok(descriptor.assets.includes(pdf));

@@ -416,7 +416,12 @@ function filesWithoutPrincipalResources(root, directory, result) {
   const revision = snapshot.verify(path.join(root, directory), {
     files: result.files,
   });
-  const principal = new Set(revision.routes.research.assets ?? []);
+  const principal = new Set(Object.values(revision.routes).flatMap((route) => route.assets ?? []));
+  const retained = JSON.parse(fs.readFileSync(path.join(root, 'site/retained/manifest.json')));
+  for (const [name, digest] of Object.entries(retained.files)) {
+    assert.equal(result.files[name], digest, 'declared retained resource bytes');
+    principal.add(name);
+  }
   return Object.keys(result.files).filter((name) => !principal.has(name));
 }
 

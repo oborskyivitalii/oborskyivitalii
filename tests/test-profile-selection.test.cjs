@@ -1482,6 +1482,11 @@ test('source scheduling starts measured long files early without losing selected
   const f = fixture(t);
   const files = [
     'tests/ordinary-z.test.cjs',
+    'tests/article-media.test.cjs',
+    'tests/publication-records.test.cjs',
+    'tests/release-rights.test.cjs',
+    'tests/executive.test.cjs',
+    'tests/space.test.cjs',
     'tests/site-articles.test.cjs',
     'tests/quality-sources.test.cjs',
     'tests/publishing.test.cjs',
@@ -1518,9 +1523,14 @@ test('source scheduling starts measured long files early without losing selected
   });
   assert.equal(child.status, 0, child.stderr || child.stdout);
   assert.deepEqual(fs.readFileSync(log, 'utf8').trim().split('\n').map(JSON.parse), [
+    'tests/space.test.cjs',
+    'tests/executive.test.cjs',
+    'tests/publication-records.test.cjs',
+    'tests/release-rights.test.cjs',
     'tests/publishing.test.cjs',
     'tests/quality-sources.test.cjs',
     'tests/site-articles.test.cjs',
+    'tests/article-media.test.cjs',
     'tests/ordinary-a.test.cjs',
     'tests/ordinary-z.test.cjs',
   ]);

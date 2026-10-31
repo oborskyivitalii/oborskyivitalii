@@ -867,6 +867,19 @@ families.issue169Sdlc = {
   staging: null,
   production: '40d23525f7ebc10af989936ebfe1382106f11936ed667557d6c3380c9e27da62',
 };
+// Native snapshot links retain their frozen destination while tag lookup uses
+// the canonical publication identity. Navigation also verifies the existing JPEG
+// rendition with the same finite asset inventory, MIME, size and hash checks.
+families.issue169NativeTags = {
+  ...families.issue159ReadingPaths,
+  id: 'issue169-native-tags',
+  baseEngine: 'c36b28140796f556d7f6019efa223c5164e7ca55e880e1e6a64bb596283430da',
+  archive: 'f7da9f6646746ec1415a5fbfc9ac7505913b0bc8a7e6551f213997bc6d381146',
+  navigation: '94ca7a7d3c1d19d839e44f56cd4a1d533f126fc389d6cd3d62f7d8a31aa4d2ef',
+  plain: '1f5551456a0f0a2c61e05b8ebf1fbc6eb4b9b791b1058be502def1f2eea6f35a',
+  staging: 'be64c404fc3f61f787c8cca528d84662dd19411eb6f4d498560ce5ceec4df8c9',
+  production: '0af8ae2b7a0d5db0d3bb2369806bf3b2283253996dfd1fd312c118e4867278cd',
+};
 // Expand only explicitly reviewed editions; an absent edition is never admitted.
 const runtimes = Object.entries(families).flatMap(([family, value]) =>
   ['plain', 'staging', 'production']

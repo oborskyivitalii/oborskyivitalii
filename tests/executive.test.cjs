@@ -25,6 +25,8 @@ test('Writing carrier proof rejects altered source, geometry and resource bindin
     (record) => (record.issue = 0),
     (record) => (record.producerChanges = {}),
     (record) => delete record.producerChanges['tools/site/fallback.cjs'],
+    (record) => delete record.producerChanges['tools/site/offline.cjs'],
+    (record) => delete record.producerChanges['tools/build_site_previews.cjs'],
     (record) => (record.predecessorSource = '0'.repeat(40)),
     (record) => (record.producerChanges['tools/site/build.cjs'].beforeSHA256 = '0'.repeat(64)),
     (record) => (record.producerChanges['tools/site/build.cjs'].afterSHA256 = '0'.repeat(64)),

@@ -116,6 +116,24 @@ window.SiteArticleTags=(function articleTags() {
       .slice(0, 3)
       .map((row) => row.article);
   }
+  function publicationIdentity(href, root) {
+    const url = new URL(href);
+    const snapshots = new URL('article-snapshots/', root);
+    if (
+      url.origin === snapshots.origin &&
+      !url.username &&
+      !url.password &&
+      !url.search &&
+      !url.hash &&
+      url.pathname.startsWith(snapshots.pathname)
+    ) {
+      const match = url.pathname
+        .slice(snapshots.pathname.length)
+        .match(/^[a-f0-9]{64}\/([a-z][a-z0-9-]{0,79})\.html$/);
+      if (match) return new URL('articles/' + match[1] + '.html', root).href;
+    }
+    return href;
+  }
   async function read(response, signal) {
     if (
       !response.ok ||
@@ -244,7 +262,7 @@ window.SiteArticleTags=(function articleTags() {
       const indexed = new Map(data.articles.map((entry) => [new URL(entry.url, root).href, entry]));
       for (const card of cards) {
         const anchor = card.querySelector('a.publication-title');
-        const entry = anchor && indexed.get(anchor.href);
+        const entry = anchor && indexed.get(publicationIdentity(anchor.href, root));
         if (!entry) continue;
         card.dataset.tags = entry.tags.join(' ');
         add(anchor.parentElement, tagList(entry.tags, data));

@@ -508,10 +508,14 @@
             ? 'application/pdf'
             : name.endsWith('.webp')
               ? 'image/webp'
-              : 'image/png';
+              : /\.jpe?g$/.test(name)
+                ? 'image/jpeg'
+                : 'image/png';
           const prefix = 'data:' + mime + ';base64,';
           if (
-            !/^article-media\/[a-f0-9]{64}\/[a-z0-9][a-z0-9._-]*\.(?:png|webp|pdf)$/.test(name) ||
+            !/^article-media\/[a-f0-9]{64}\/[a-z0-9][a-z0-9._-]*\.(?:png|webp|jpe?g|pdf)$/.test(
+              name
+            ) ||
             asset.mime !== mime ||
             asset.sha256 !== name.split('/')[1] ||
             !Number.isSafeInteger(asset.bytes) ||

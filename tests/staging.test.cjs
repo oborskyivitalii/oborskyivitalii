@@ -116,6 +116,7 @@ function fixture(ref) {
     sourceTree: 'b'.repeat(40),
     ...artifact.manifest(path.join(input, 'public')),
   };
+  source.components = snapshot.verify(path.join(input, 'public'), source);
   const gate = {
     schema: 1,
     kind: 'pr-gate',
@@ -175,8 +176,9 @@ function legacyFixture(ref) {
   );
   fs.writeFileSync(revisionFile, JSON.stringify(revision));
   const manifest = artifact.manifest(publicDir);
-  Object.assign(f.source, manifest);
-  Object.assign(f.gate, manifest);
+  const components = snapshot.verify(publicDir, manifest);
+  Object.assign(f.source, manifest, { components });
+  Object.assign(f.gate, manifest, { components });
   f.expected.publicDigest = manifest.artifactDigest;
   fs.writeFileSync(path.join(f.input, 'artifact.json'), JSON.stringify(f.source));
   fs.writeFileSync(path.join(f.input, 'gate/release-manifest.json'), JSON.stringify(f.gate));
@@ -197,8 +199,9 @@ function formulaFixture(ref) {
     fs.writeFileSync(path.join(publicDir, file), svg);
   fs.writeFileSync(revisionFile, JSON.stringify(revision));
   const manifest = artifact.manifest(publicDir);
-  Object.assign(f.source, manifest);
-  Object.assign(f.gate, manifest);
+  const components = snapshot.verify(publicDir, manifest);
+  Object.assign(f.source, manifest, { components });
+  Object.assign(f.gate, manifest, { components });
   f.expected.publicDigest = manifest.artifactDigest;
   fs.writeFileSync(path.join(f.input, 'artifact.json'), JSON.stringify(f.source));
   fs.writeFileSync(path.join(f.input, 'gate/release-manifest.json'), JSON.stringify(f.gate));
@@ -388,8 +391,9 @@ function retainedSnapshotFixture() {
     path.join(publicDir, retained)
   );
   const manifest = artifact.manifest(publicDir);
-  Object.assign(f.source, manifest);
-  Object.assign(f.gate, manifest);
+  const components = snapshot.verify(publicDir, manifest);
+  Object.assign(f.source, manifest, { components });
+  Object.assign(f.gate, manifest, { components });
   f.expected.publicDigest = manifest.artifactDigest;
   fs.writeFileSync(path.join(f.input, 'artifact.json'), JSON.stringify(f.source));
   fs.writeFileSync(path.join(f.input, 'gate/release-manifest.json'), JSON.stringify(f.gate));
@@ -708,6 +712,8 @@ function fetchFixture(f, options = {}) {
       '.js': 'text/javascript',
       '.svg': 'image/svg+xml',
       '.webp': 'image/webp',
+      '.png': 'image/png',
+      '.pdf': 'application/pdf',
       '.jpg': 'image/jpeg',
       '.json': 'application/json',
     };

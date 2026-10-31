@@ -221,8 +221,10 @@ function verifyCarrierRecord(successor) {
   assert.equal(successor.issue, 169, 'Writing carrier owner');
   assert.equal(successor.predecessorSource, 'bd70996a386665e14f87440653e3a107fed15e43');
   assert.deepEqual(Object.keys(successor.producerChanges).sort(), [
+    'tools/build_site_previews.cjs',
     'tools/site/build.cjs',
     'tools/site/fallback.cjs',
+    'tools/site/offline.cjs',
   ]);
 }
 

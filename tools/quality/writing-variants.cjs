@@ -341,12 +341,22 @@ function derive(parentDir, targetDir, label) {
   const fingerprint = artifact.digest(
     JSON.stringify({ contract: 1, parentEngine: prior.engine, intervention })
   );
-  const diagnostic = { label, description: descriptions[label], fullGate: false };
+  const diagnostic = {
+    label,
+    description: descriptions[label],
+    fullGate: false,
+  };
   const variant = { ...prior.variant, fingerprint, diagnostic };
   if (label === 'no-ribbons')
     variant.effects = variant.effects.filter((effect) => effect !== 'ribbons');
   const versions = Object.fromEntries(
     snapshot.routes.map((id) => [id, artifact.digest(prior.routes[id].version + ':' + fingerprint)])
+  );
+  const articleVersions = Object.fromEntries(
+    Object.entries(prior.articles || {}).map(([key, article]) => [
+      key,
+      artifact.digest(article.version + ':' + fingerprint),
+    ])
   );
   const render = (html) => {
     assert.equal(
@@ -357,6 +367,8 @@ function derive(parentDir, targetDir, label) {
     let result = html.replaceAll(prior.engine, fingerprint);
     for (const id of snapshot.routes)
       result = result.replaceAll(prior.routes[id].version, versions[id]);
+    for (const [key, article] of Object.entries(prior.articles || {}))
+      result = result.replaceAll(article.version, articleVersions[key]);
     // Diagnostic metadata needs room under the same delivery budget. Compact
     // JSON-LD formatting only; preserve its data and every visible body byte.
     result = result.replace(
@@ -381,6 +393,15 @@ function derive(parentDir, targetDir, label) {
       render(fs.readFileSync(path.join(source, prior.routes[id].url), 'utf8')),
     ])
   );
+  const articlePages = Object.fromEntries(
+    Object.entries(prior.articles || {}).map(([key, article]) => [
+      key,
+      {
+        alias: render(fs.readFileSync(path.join(source, article.alias), 'utf8')),
+        snapshot: render(fs.readFileSync(path.join(source, article.url), 'utf8')),
+      },
+    ])
+  );
   fs.rmSync(targetDir, { recursive: true, force: true });
   fs.cpSync(parentDir, targetDir, { recursive: true });
   const publicDir = path.join(targetDir, 'public');
@@ -392,11 +413,24 @@ function derive(parentDir, targetDir, label) {
     if (!fs.readdirSync(path.join(publicDir, 'runtime', name)).length)
       fs.rmdirSync(path.join(publicDir, 'runtime', name));
   fs.rmSync(path.join(publicDir, 'snapshots'), { recursive: true });
+  // Diagnostic renditions replace documents and their engine together. Omit
+  // inactive article snapshots too, so none refers to a removed parent runtime.
+  fs.rmSync(path.join(publicDir, 'article-snapshots'), {
+    recursive: true,
+    force: true,
+  });
   for (const [name, bytes] of Object.entries(scripts)) {
     write(publicDir, name, bytes);
     write(publicDir, 'runtime/' + fingerprint + '/' + name, bytes);
   }
-  const revision = { ...prior, engine: fingerprint, variant, diagnostic, routes: {} };
+  const revision = {
+    ...prior,
+    engine: fingerprint,
+    variant,
+    diagnostic,
+    routes: {},
+    articles: {},
+  };
   for (const id of snapshot.routes) {
     const url = 'snapshots/' + versions[id] + '/' + id + '.html';
     write(publicDir, id + '.html', aliases[id]);
@@ -408,7 +442,21 @@ function derive(parentDir, targetDir, label) {
       sha256: artifact.digest(pages[id]),
     };
   }
-  revision.content = artifact.digest(JSON.stringify(versions));
+  for (const [key, article] of Object.entries(prior.articles || {})) {
+    const version = articleVersions[key];
+    const url = 'article-snapshots/' + version + '/' + path.posix.basename(article.alias);
+    write(publicDir, article.alias, articlePages[key].alias);
+    write(publicDir, url, articlePages[key].snapshot);
+    revision.articles[key] = {
+      ...article,
+      version,
+      url,
+      sha256: artifact.digest(articlePages[key].snapshot),
+    };
+  }
+  revision.content = artifact.digest(
+    JSON.stringify({ routes: versions, articles: articleVersions })
+  );
   write(publicDir, 'site-revision.json', JSON.stringify(revision, null, 2) + '\n');
   const manifest = {
     ...parent,

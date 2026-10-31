@@ -12757,66 +12757,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/03ec7ce6771149e12b3b90ec5c2f58b3b91a75ea3405289be49ace7b71741bca": {
-      "kind": "directory",
-      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/03ec7ce6771149e12b3b90ec5c2f58b3b91a75ea3405289be49ace7b71741bca/research.html": {
-      "kind": "file",
-      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/597878c2f446798f8b77600f6a9421540aa56ba1b994156bb70cbd2e5f8b2132": {
-      "kind": "directory",
-      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/597878c2f446798f8b77600f6a9421540aa56ba1b994156bb70cbd2e5f8b2132/credits.html": {
-      "kind": "file",
-      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/692098d982e702276971275ef0dd72d7d43d6072fcfa38d44fd08c0a14540dbc": {
-      "kind": "directory",
-      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/692098d982e702276971275ef0dd72d7d43d6072fcfa38d44fd08c0a14540dbc/writing.html": {
-      "kind": "file",
-      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/781f9f96503b5b9bb45e91523055ee944aba3dbb5919bcb872e7b65e3d567907": {
-      "kind": "directory",
-      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/781f9f96503b5b9bb45e91523055ee944aba3dbb5919bcb872e7b65e3d567907/index.html": {
-      "kind": "file",
-      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/8bf0360fb634dc7d1130e1cbdeb199b2c413bb75a64eb46e9503410d0fe4a90e": {
-      "kind": "directory",
-      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/8bf0360fb634dc7d1130e1cbdeb199b2c413bb75a64eb46e9503410d0fe4a90e/talks.html": {
-      "kind": "file",
-      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "review/issue-169/native-reviews/correction/checksum-proof-script.py.gz": {
       "kind": "file",
       "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
@@ -13120,6 +13060,756 @@
     "review/issue-169/native-reviews/correction/whitebox-ledger-review.md.gz": {
       "kind": "file",
       "purpose": "Issue169 exact independent correction/data review, retained primary diagnostic evidence and deterministic formatter parity; no release acceptance implied.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "docs/runtime/c36b28140796f556d7f6019efa223c5164e7ca55e880e1e6a64bb596283430da": {
+      "kind": "directory",
+      "purpose": "Exact current native article and immutable dependency closure; source-bound preparation, no prior-publication claim.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/c36b28140796f556d7f6019efa223c5164e7ca55e880e1e6a64bb596283430da/styles.css": {
+      "kind": "file",
+      "purpose": "Exact current native article and immutable dependency closure; source-bound preparation, no prior-publication claim.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/c36b28140796f556d7f6019efa223c5164e7ca55e880e1e6a64bb596283430da": {
+      "kind": "directory",
+      "purpose": "Exact current native article and immutable dependency closure; source-bound preparation, no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/c36b28140796f556d7f6019efa223c5164e7ca55e880e1e6a64bb596283430da/styles.css": {
+      "kind": "file",
+      "purpose": "Exact current native article and immutable dependency closure; source-bound preparation, no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/c36b28140796f556d7f6019efa223c5164e7ca55e880e1e6a64bb596283430da/theme.js": {
+      "kind": "file",
+      "purpose": "Exact current native article and immutable dependency closure; source-bound preparation, no prior-publication claim.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/c36b28140796f556d7f6019efa223c5164e7ca55e880e1e6a64bb596283430da/theme.js": {
+      "kind": "file",
+      "purpose": "Exact current native article and immutable dependency closure; source-bound preparation, no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/c36b28140796f556d7f6019efa223c5164e7ca55e880e1e6a64bb596283430da/space.js": {
+      "kind": "file",
+      "purpose": "Exact current native article and immutable dependency closure; source-bound preparation, no prior-publication claim.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/c36b28140796f556d7f6019efa223c5164e7ca55e880e1e6a64bb596283430da/space.js": {
+      "kind": "file",
+      "purpose": "Exact current native article and immutable dependency closure; source-bound preparation, no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/c36b28140796f556d7f6019efa223c5164e7ca55e880e1e6a64bb596283430da/archive.js": {
+      "kind": "file",
+      "purpose": "Exact current native article and immutable dependency closure; source-bound preparation, no prior-publication claim.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/c36b28140796f556d7f6019efa223c5164e7ca55e880e1e6a64bb596283430da/archive.js": {
+      "kind": "file",
+      "purpose": "Exact current native article and immutable dependency closure; source-bound preparation, no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/c36b28140796f556d7f6019efa223c5164e7ca55e880e1e6a64bb596283430da/navigation.js": {
+      "kind": "file",
+      "purpose": "Exact current native article and immutable dependency closure; source-bound preparation, no prior-publication claim.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/c36b28140796f556d7f6019efa223c5164e7ca55e880e1e6a64bb596283430da/navigation.js": {
+      "kind": "file",
+      "purpose": "Exact current native article and immutable dependency closure; source-bound preparation, no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-build-final.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing-phase.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-requirements-preflight.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing-callback.entries.jsonl.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing-pair.probe.cjs.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/fresh-secret-component.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing-callback.probe.cjs.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing-cancellation.tap.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/native-final-basic.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing.handle-probe.cjs.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing-setup.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing-setup.tap.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-whitebox-diagnosis.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/pr-source-release.tap.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-code-final.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-retained-snapshot.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/native-jpeg-tags-tests.tap.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing.tap.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-tags-requirements.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing-cancellation.probe.cjs.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/pr-source-release.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing-direct.handles.jsonl.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing-setup.handles.jsonl.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/native-scheduling-tests.tap.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing-callback.tap.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing-scheduling.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/pr-source-release.stderr.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing.runner.cjs.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing-setup.events.jsonl.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-runtime-packet.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-exploratory.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/native-current-basic-v2.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-intermediate-raw.html.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/native-scheduling-order-exact.tap.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing-direct.probe.cjs.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing-callback.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-whitebox-final-audit-setup.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing.handles.jsonl.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-whitebox-final-runtime.raw.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-native-tags-test.tap.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/fresh-secret-component.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-code-diagnosis.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-scheduling-requirements.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing-phase.phases.jsonl.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/pr-source-release-diagnosis.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-focused-v3.tap.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing-pair.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing-cancellation.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-build.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-corrections-targeted-stop.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-corrections-targeted.tap.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing-phase.processes.jsonl.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing-phase.probe.cjs.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-format.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing-direct.tap.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing-pair.handles.jsonl.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-freshness.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing-callback.handles.jsonl.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-nativecase.tap.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-native-tags-diagnosis.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-targeted-v2.tap.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing-phase.tap.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing-pair.tap.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing-cancellation.handles.jsonl.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing-direct.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/native-final-retention.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-whitebox-diagnostic.tap.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-publication-timing.events.jsonl.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-whitebox-final-tags-jpeg.raw.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound post-C1 diagnostic or independent correction evidence; original failed results and limits preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003": {
+      "kind": "directory",
+      "purpose": "Exact current native raw article rendition and existing immutable closure; no prior-publication claim.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/the-sdlc-is-out-of-balance.html": {
+      "kind": "file",
+      "purpose": "Exact current native raw article rendition and existing immutable closure; no prior-publication claim.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003": {
+      "kind": "directory",
+      "purpose": "Exact current native raw article rendition and existing immutable closure; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/the-sdlc-is-out-of-balance.html": {
+      "kind": "file",
+      "purpose": "Exact current native raw article rendition and existing immutable closure; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "review/issue-169/native-reviews/correction/native-release-freshness.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound failed diagnostics, affected independent correction reviews and bounded verification; broader release gates separate.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/native-client-guard-test.tap.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound failed diagnostics, affected independent correction reviews and bounded verification; broader release gates separate.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/native-release-build.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound failed diagnostics, affected independent correction reviews and bounded verification; broader release gates separate.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-whitebox-final.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound failed diagnostics, affected independent correction reviews and bounded verification; broader release gates separate.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/native-release-previews.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound failed diagnostics, affected independent correction reviews and bounded verification; broader release gates separate.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/native-release-bundle.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound failed diagnostics, affected independent correction reviews and bounded verification; broader release gates separate.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/post-c1-whitebox-final-client-guard.raw.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound failed diagnostics, affected independent correction reviews and bounded verification; broader release gates separate.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/intermediate-6a3a4cfa657424e69d30e4d4cfb8278fe7385f5b4d0bd7e9da635732b5f030be.html.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound failed diagnostics, affected independent correction reviews and bounded verification; broader release gates separate.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/native-final-runtime-tests.tap.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound failed diagnostics, affected independent correction reviews and bounded verification; broader release gates separate.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/native-client-guard-build.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound failed diagnostics, affected independent correction reviews and bounded verification; broader release gates separate.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "docs/snapshots/cb7c6c487671196b5ada91becd9d15d5900585d9466111bf3f9449bd33c242ee": {
+      "kind": "directory",
+      "purpose": "Generated native website publication output; edit canonical site owners and regenerate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/48656c32211fd72d8db6fc2b4ae8e351c54e21e8c5b0c7bd2708942711dbd09f": {
+      "kind": "directory",
+      "purpose": "Generated native website publication output; edit canonical site owners and regenerate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/2b564ce672cf59242a916d3c072726d8157ee44b8cbb3b17aef07e74a0d511d9": {
+      "kind": "directory",
+      "purpose": "Generated native website publication output; edit canonical site owners and regenerate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/2985c6b9d0da790cc8ac8bdd3633022f0073b5caa5a9eee10a7df3e5f2827d5e": {
+      "kind": "directory",
+      "purpose": "Generated native website publication output; edit canonical site owners and regenerate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/9238da25002c4ddd6d0636aa3e670a797b5d43c6441fcd0749f2530b6992f731": {
+      "kind": "directory",
+      "purpose": "Generated native website publication output; edit canonical site owners and regenerate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/cb7c6c487671196b5ada91becd9d15d5900585d9466111bf3f9449bd33c242ee/writing.html": {
+      "kind": "file",
+      "purpose": "Generated native website publication output; edit canonical site owners and regenerate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/48656c32211fd72d8db6fc2b4ae8e351c54e21e8c5b0c7bd2708942711dbd09f/research.html": {
+      "kind": "file",
+      "purpose": "Generated native website publication output; edit canonical site owners and regenerate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/2b564ce672cf59242a916d3c072726d8157ee44b8cbb3b17aef07e74a0d511d9/index.html": {
+      "kind": "file",
+      "purpose": "Generated native website publication output; edit canonical site owners and regenerate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/2985c6b9d0da790cc8ac8bdd3633022f0073b5caa5a9eee10a7df3e5f2827d5e/credits.html": {
+      "kind": "file",
+      "purpose": "Generated native website publication output; edit canonical site owners and regenerate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/9238da25002c4ddd6d0636aa3e670a797b5d43c6441fcd0749f2530b6992f731/talks.html": {
+      "kind": "file",
+      "purpose": "Generated native website publication output; edit canonical site owners and regenerate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "review/issue-169/native-reviews/correction/native-regeneration-phase-diagnostic.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 preserved actual diagnostic and affected correction evidence, with explicit limits.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/native-checksum-whitebox-math.raw.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 preserved source-bound independent audit, exact public checksum proof or bounded verification with original failures retained.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/release-ri-regressions.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 preserved source-bound independent audit, exact public checksum proof or bounded verification with original failures retained.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/native-checksum-code.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 preserved source-bound independent audit, exact public checksum proof or bounded verification with original failures retained.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/release-coupling-regressions.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 preserved source-bound independent audit, exact public checksum proof or bounded verification with original failures retained.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/native-checksum-proposal.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 preserved source-bound independent audit, exact public checksum proof or bounded verification with original failures retained.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/release-ri-diagnostic-disposition.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 preserved source-bound independent audit, exact public checksum proof or bounded verification with original failures retained.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/native-checksum-append.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 preserved source-bound independent audit, exact public checksum proof or bounded verification with original failures retained.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/prepared-release-secret-scan.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 preserved source-bound independent audit, exact public checksum proof or bounded verification with original failures retained.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/release-coupling-correct-owner.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 preserved source-bound independent audit, exact public checksum proof or bounded verification with original failures retained.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/release-carrier-pins-tests.tap.gz": {
+      "kind": "file",
+      "purpose": "Issue169 preserved source-bound independent audit, exact public checksum proof or bounded verification with original failures retained.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/native-checksum-requirements.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 preserved source-bound independent audit, exact public checksum proof or bounded verification with original failures retained.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/native-checksum-whitebox.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 preserved source-bound independent audit, exact public checksum proof or bounded verification with original failures retained.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/native-checksum-code-negative-audit.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 preserved source-bound independent audit, exact public checksum proof or bounded verification with original failures retained.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/native-checksum-whitebox-version.raw.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 preserved source-bound independent audit, exact public checksum proof or bounded verification with original failures retained.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/prepared-release-secret-component.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 preserved source-bound independent audit, exact public checksum proof or bounded verification with original failures retained.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/native-checksum-code-append-audit.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 preserved source-bound independent audit, exact public checksum proof or bounded verification with original failures retained.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/native-checksum-whitebox.raw.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 preserved source-bound independent audit, exact public checksum proof or bounded verification with original failures retained.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     }
