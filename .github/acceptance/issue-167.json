@@ -113,7 +113,7 @@
     },
     "COMPONENT": {
       "kind": "human",
-      "description": "Review exact-source node --test tests/orchestration.test.cjs accounting and P01–P05 positive/negative outcomes; automated component evidence is external to this fixed-command policy runner. No live adapter or real identity proof."
+      "description": "Review exact-source node --test tests/orchestration.test.cjs accounting and P01–P05 positive/negative outcomes; automated component evidence is external to this fixed-command policy runner. Reviewer admission component checks are separately selected through the maintained registry; actual parent-assisted launch/result evidence remains a distinct gate, never provider identity proof."
     },
     "QUALITY": {
       "kind": "human",

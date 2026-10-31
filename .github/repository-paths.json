@@ -12114,6 +12114,36 @@
       "purpose": "Source-bound native RI/CI integration, retained failures, reviewer prompt control regressions and actual independent/native evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "tools/orchestration/reviewer-admission.cjs": {
+      "kind": "file",
+      "purpose": "Bounded parent-mediated reviewer admission contract and implementation; no dispatcher or provider attestation.",
+      "role": "source",
+      "owner": "guides/WEB-ORCHESTRATION.md"
+    },
+    "tools/orchestration/reviewer-admission-cli.cjs": {
+      "kind": "file",
+      "purpose": "Bounded parent-mediated reviewer admission contract and implementation; no dispatcher or provider attestation.",
+      "role": "source",
+      "owner": "guides/WEB-ORCHESTRATION.md"
+    },
+    "tools/orchestration/reviewer-admission-contract.json": {
+      "kind": "file",
+      "purpose": "Bounded parent-mediated reviewer admission contract and implementation; no dispatcher or provider attestation.",
+      "role": "configuration",
+      "owner": "guides/WEB-ORCHESTRATION.md"
+    },
+    "tests/reviewer-admission.test.cjs": {
+      "kind": "file",
+      "purpose": "Bounded parent-mediated reviewer admission component regressions.",
+      "role": "test",
+      "owner": "guides/WEB-ORCHESTRATION.md"
+    },
+    "review/issue-167/2026-10-31-reviewer-admission.md": {
+      "kind": "file",
+      "purpose": "Public-safe reviewer admission plan, routing, requirement dispositions and bounded evidence; final independent results pending.",
+      "role": "history",
+      "owner": "guides/WEB-ORCHESTRATION.md"
     }
   }
 }

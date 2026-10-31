@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "e4ae9572d05f12ce7fc60c07fd472abf304a2d886cf6e5dc896c639904d013d9",
+    "digest": "03cf48f54514541b36fe2d00433166462391351282f902ca9758219580f7f74e",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -87,7 +87,7 @@
       {
         "path": ".github/acceptance/issue-167.json",
         "identity_mode": "content",
-        "sha256": "11ce6d8358c62ef5cce8b6ea8e15520e3dda2427019c024167507587e61e7ca6"
+        "sha256": "a9b189be4560fc90d1c68f33af740a49591d862832c7693966984189ced98f1a"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -197,7 +197,7 @@
       {
         "path": ".github/repository-intelligence-config.json",
         "identity_mode": "content",
-        "sha256": "67494fc85d415b0033bc1d4346dce968ea56fdd772b63a36838544b05433edac"
+        "sha256": "0f8a69a6dece4f96d4f2bf8fbececb0fccb4477e8bfb1e5d73bce593feee7dc8"
       },
       {
         "path": ".github/repository-intelligence/agent-context.json",
@@ -211,12 +211,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "13daa51bb03f1f18638eba8aeb489029f4b84a49edc03719df817e2aaccbd901"
+        "sha256": "5ac6423d6998762f94b6b2b3f0c926c952bd427e14c8440f72994bbb21f7ade7"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "695ffb4fca2b259bb24d59125269deacb085ec898221639647a7892d686dc3f2"
+        "sha256": "992a7e50519c8379f026dda33f9b4f11db8666d3966c172f5529d705b5d8a9e0"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -366,7 +366,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "9aed70a67e68abf6ac606b47153454f6e43e3b88b1c6e6e429d5d3dc0282ae2d"
+        "sha256": "30404155f0c38d2e1a0480949f9545505eca0145e8519006e9b33b07939cfe16"
       },
       {
         "path": "NOTICE.md",
@@ -390,7 +390,7 @@
       {
         "path": "agents/reviewers/README.md",
         "identity_mode": "content",
-        "sha256": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb"
+        "sha256": "78cdc59c63c067a7b7cb3302237055acf8139ebc1172bb9b75690a12e7cae030"
       },
       {
         "path": "agents/reviewers/code-review.md",
@@ -805,7 +805,7 @@
       {
         "path": "guides/WEB-ORCHESTRATION.md",
         "identity_mode": "content",
-        "sha256": "fcc75b9f6a123bf3f8130c30f1246767dda0fbd546e8bcc750e797acddad5e4e"
+        "sha256": "04d29600c81abf4bea1ca44897b6839bf18f70bc249d596263c97dba66687799"
       },
       {
         "path": "guides/github-pages-domains.json",
@@ -1211,6 +1211,11 @@
         "path": "review/issue-167/2026-10-31-offline-prototype.md",
         "identity_mode": "content",
         "sha256": "1fdc1c2ba1e24e54deb93248a1b1d948b42db5e3da4a31dc9e4f8679281b8e43"
+      },
+      {
+        "path": "review/issue-167/2026-10-31-reviewer-admission.md",
+        "identity_mode": "content",
+        "sha256": "5d3bbfde71d46d5627dd90038e0cef4f334573c317de2b510c3cce95bab72832"
       },
       {
         "path": "review/issue-167/2026-10-31-reviewer-history-evidence.json",
@@ -7733,6 +7738,11 @@
         "sha256": "c2d630f749153de064abf3700b6da59fe4b78ea95e5837725e9f93d1ad0f0af9"
       },
       {
+        "path": "tests/reviewer-admission.test.cjs",
+        "identity_mode": "content",
+        "sha256": "e71923c6b776463ea9943d04e511b24af00b9ae12da6971f041c9ffd0eea2cd4"
+      },
+      {
         "path": "tests/ribbons.test.cjs",
         "identity_mode": "content",
         "sha256": "83b56ea3409a6dccd7aad4eb3908a4eca2f787c0edf3610700683c4ddab31851"
@@ -7800,7 +7810,7 @@
       {
         "path": "tests/test-profile-selection.test.cjs",
         "identity_mode": "content",
-        "sha256": "08e0ac9bce886f3d58923d43f8c1563144e17b8cd02f96bca16b12fa08fed1af"
+        "sha256": "b25e1855df050c11f0df83e54a07f5df46835125c4071226f75e08d79d603503"
       },
       {
         "path": "tests/test_browser_archives.py",
@@ -7935,7 +7945,7 @@
       {
         "path": "tests/test_ri_ci.py",
         "identity_mode": "content",
-        "sha256": "e2c545ef45f11431f45ed7eab9810911f3843d9207e0240ac150f792291dc57c"
+        "sha256": "cada5d69960147856baaf9b32097774e6b3afbff067df64003bc922136e31076"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -8076,6 +8086,21 @@
         "path": "tools/orchestration/reducer.cjs",
         "identity_mode": "content",
         "sha256": "fbdfcfa670b259079d9bc9d1809ba4082d2b035d2dd361bed1ae0cf36034fdc5"
+      },
+      {
+        "path": "tools/orchestration/reviewer-admission-cli.cjs",
+        "identity_mode": "content",
+        "sha256": "e1783353217577e19940717b8fffef3640a3699a9eec68e8185972d228d29391"
+      },
+      {
+        "path": "tools/orchestration/reviewer-admission-contract.json",
+        "identity_mode": "content",
+        "sha256": "4a110ef6e40867724696b84fd56cd0c7ee60ca0fcdf522a61067916c11435985"
+      },
+      {
+        "path": "tools/orchestration/reviewer-admission.cjs",
+        "identity_mode": "content",
+        "sha256": "d4b1feb6c2bb498da2091bf3c362994111eb5365bcf96921040913299f5d6a68"
       },
       {
         "path": "tools/pages/controller.cjs",
@@ -8695,7 +8720,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "52e8060b0039a2490eeb23217d55965c68088087710e7209397397a874681579"
+        "sha256": "456f4ae8d1bdc935eb203c1bd7d6b2147d923e4f7f3c588baacdcb5b98861708"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -9073,7 +9098,7 @@
     "path": "tools/repository_intelligence.py",
     "sha256": "dad68d88d241c2cd223081d6a28961c1aa7abc19c0f4c223c9c3382c562aa792",
     "config_path": ".github/repository-intelligence-config.json",
-    "config_sha256": "67494fc85d415b0033bc1d4346dce968ea56fdd772b63a36838544b05433edac"
+    "config_sha256": "0f8a69a6dece4f96d4f2bf8fbececb0fccb4477e8bfb1e5d73bce593feee7dc8"
   },
   "owners": [
     {
@@ -9474,6 +9499,17 @@
         "independent agents",
         "окремі запуски агентів",
         "контракт запуску ревʼюерів"
+      ]
+    },
+    {
+      "concern": "reviewer admission adapter",
+      "path": "guides/WEB-ORCHESTRATION.md",
+      "queries": [
+        "reviewer admission",
+        "record-launch",
+        "assess-set",
+        "RA01",
+        "RA05"
       ]
     }
   ],
@@ -12114,6 +12150,17 @@
         "AGENTS.md"
       ],
       "title": "Issue 167 — 2026-10-31 offline B2 prototype"
+    },
+    {
+      "path": "review/issue-167/2026-10-31-reviewer-admission.md",
+      "kind": "file",
+      "purpose": "Public-safe reviewer admission plan, routing, requirement dispositions and bounded evidence; final independent results pending.",
+      "role": "history",
+      "owner": "guides/WEB-ORCHESTRATION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 167 — 2026-10-31 reviewer admission candidate"
     },
     {
       "path": "review/issue-167/2026-10-31-reviewer-history-evidence.json",
@@ -26460,6 +26507,17 @@
       "title": "review-flow.test.cjs"
     },
     {
+      "path": "tests/reviewer-admission.test.cjs",
+      "kind": "file",
+      "purpose": "Bounded parent-mediated reviewer admission component regressions.",
+      "role": "test",
+      "owner": "guides/WEB-ORCHESTRATION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reviewer-admission.test.cjs"
+    },
+    {
       "path": "tests/ribbons.test.cjs",
       "kind": "file",
       "purpose": "Explicit historical optional ribbon geometry/material/clock diagnostic; active Color excludes ribbons.",
@@ -27217,6 +27275,39 @@
         "AGENTS.md"
       ],
       "title": "reducer.cjs"
+    },
+    {
+      "path": "tools/orchestration/reviewer-admission-cli.cjs",
+      "kind": "file",
+      "purpose": "Bounded parent-mediated reviewer admission contract and implementation; no dispatcher or provider attestation.",
+      "role": "source",
+      "owner": "guides/WEB-ORCHESTRATION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reviewer-admission-cli.cjs"
+    },
+    {
+      "path": "tools/orchestration/reviewer-admission-contract.json",
+      "kind": "file",
+      "purpose": "Bounded parent-mediated reviewer admission contract and implementation; no dispatcher or provider attestation.",
+      "role": "configuration",
+      "owner": "guides/WEB-ORCHESTRATION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reviewer-admission-contract.json"
+    },
+    {
+      "path": "tools/orchestration/reviewer-admission.cjs",
+      "kind": "file",
+      "purpose": "Bounded parent-mediated reviewer admission contract and implementation; no dispatcher or provider attestation.",
+      "role": "source",
+      "owner": "guides/WEB-ORCHESTRATION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reviewer-admission.cjs"
     },
     {
       "path": "tools/pages/controller.cjs",
@@ -31854,6 +31945,24 @@
       ],
       "workflow": ".github/workflows/navigation.yml",
       "note": "Read the common contract and this single role prompt for a role launch; navigation checks do not establish reviewer execution."
+    },
+    {
+      "concern": "parent-mediated reviewer admission and native observations",
+      "paths": [
+        "tools/orchestration/reviewer-admission.cjs",
+        "tools/orchestration/reviewer-admission-cli.cjs",
+        "tools/orchestration/reviewer-admission-contract.json",
+        "tests/reviewer-admission.test.cjs"
+      ],
+      "commands": [
+        "node --test tests/reviewer-admission.test.cjs"
+      ],
+      "read": [
+        "agents/reviewers/README.md",
+        "guides/WEB-ORCHESTRATION.md"
+      ],
+      "workflow": ".github/workflows/site-checks.yml",
+      "note": "Bounded component checks; actual collaboration is performed and reconciled by the parent, never by Node. Whole WEB gates remain unchanged."
     }
   ],
   "upstream": {

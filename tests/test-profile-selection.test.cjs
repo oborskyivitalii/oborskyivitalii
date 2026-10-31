@@ -1782,3 +1782,23 @@ test('CI content reuse retains the actual clean-source report and rejects substi
   fs.appendFileSync(JSON.parse(report).files.tap, '\nsubstituted raw result\n');
   assert.throws(reuse);
 });
+
+test('reviewer admission changes select the permanent adapter suite and unrelated guide does not', () => {
+  for (const changed of [
+    'tools/orchestration/reviewer-admission.cjs',
+    'tools/orchestration/reviewer-admission-cli.cjs',
+    'tools/orchestration/reviewer-admission-contract.json',
+    'tests/reviewer-admission.test.cjs',
+  ]) {
+    const selected = runner.select(root, 'pr', { changedPaths: [changed], repositoryOnly: true });
+    assert.ok(selected.modules.includes('tests/reviewer-admission.test.cjs'), changed);
+  }
+  const unrelated = runner.select(root, 'pr', {
+    changedPaths: ['guides/SITE-SEO.md'],
+    repositoryOnly: true,
+  });
+  assert.equal(unrelated.modules.includes('tests/reviewer-admission.test.cjs'), false);
+  for (const profile of ['staging', 'production']) {
+    assert.ok(runner.select(root, profile).modules.includes('tests/reviewer-admission.test.cjs'));
+  }
+});
