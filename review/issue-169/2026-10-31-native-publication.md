@@ -46,3 +46,37 @@ Actual clean-context Requirements/Code/White-box executions and preserved first/
 RI regression29/29 and RI/CI regression22/22 passed. Issue169 automated policy passed its declared RI/STYLE checks on explicitly dirty prepared source, with all human/delivery gates pending; this is not clean-source CI or whole-AC completion. Existing style guard passed with no legacy occurrences. Exact current-source CI will run on the committed PR head.
 
 Registry selector regression completed42/42 with zero failed/skipped. Final Code result independently verifies both shared-fixture consumers are selected; metadata routing correction does not alter tested production or fixture bytes.
+
+## Production-size correction — 31 October 2026
+
+The clean first native tree5b4c1bdd did not pass its75-module local source campaign: deadline300000ms, ETIMEDOUT, no aggregate accounting. Failed-source JSON/TAP are retained beside this record. This result is not accepted source evidence. Subsequent bounded diagnostics separated actual production Writing100293bytes against the unchanged100000cap from synthetic fixture provenance and inventory assumptions.
+
+The correction reuses the existing immutable passive Writing SVG carrier for the Writing room. It reconstructs the exact predecessor geometry; current Writing46123bytes, production46834, full route108902gzip bytes/137SVGnodes. Runtime JS/CSS bytes are identical to predecessorbd70996. The finite route/integrity/transfer rules and all budgets remain enforced. `writing-carrier.json` binds the exact predecessor, producer delta and geometry/resource. Rights reconstruction resolves the same canonical SVG.
+
+Synthetic fixtures own their historical catalog plus matching rights inputs. Actual-doc delivery fixtures retain actual article selection and immutable source Git objects; fixture commits preserve the existing index. Current route/resource/material inventory is derived from declared actual inputs. Controlled browser-report fixtures remain validator inputs, never actual browser observations. Shared helper consumers are explicitly selected by the permanent registry.
+
+After these evidenced corrections and stale generated-file cleanup, the11 affected modules passed165/165, skipped0,135795.806723ms; raw `correction-affected.log.gz`. A subsequent finite-record helper guard validates schema/issue/exact producer keys before iteration; its two affected carrier tests pass2/2 including missing/empty producer negatives. Generated/RI refresh, current independent roles and actual hosted/source/staging/production gates remain distinct and pending.
+
+Generated cleanup diagnostic: obsolete files absent from the output lock were still present after earlier directory-generation transactions. Explicit finite unlink of only those obsolete generated paths followed by source loading/configuration/cold `--check` passed, with no file reappearance in that process or later process. No builder/policy relaxation was introduced; underlying transient reappearance mechanism remains unestablished. The canonical Git tree removes those obsolete paths.
+
+### Archived native article correction
+
+The current actual-doc archived edition check exposed a separate five-principal-route sitemap assumption in `tools/release/edition-archive.cjs`. Its historical verifier now derives native descriptors from the verified frozen revision, proves record-component equality, validates exact sorted article URLs and alias/snapshot canonical/robots/social parity. The existing independent future-controller test preserves no current authored-registry dependency and now rejects omitted/extra/foreign sitemap locations, component omission and a foreign article canonical. Whole affected module passes8/8, skipped0. Original supplemental campaign timeout/partial failure and the correction raw result are retained under `native-reviews/correction/`; no partial campaign pass is claimed.
+
+Current correction first judgments, historical-summary exposure replacements, archive preflight/correction and actual launch receipts are preserved separately under `native-reviews/correction/`. The pending hosted Explorer result is explicit. Predecessor desktop/PDF Explorer result is retained as predecessor-only evidence, not changed-source acceptance. Final source/RI/CI, hosted/staging/merge/production and copy-kit live URLs remain pending.
+
+### Final current-source retention and controller disposition
+
+The production sitemap changes the exact Color production identity while all five runtime byte pairs remain identical to the previously reviewed Issue159 family. Only the measured40d23525 production fingerprint is registered under a new unique Issue169 ID; all previous identities/refusals remain. Production preserves only exact source-declared active immutable paths in addition to normal prior editions, validating declaration/schema/path/hash/present bytes before replacement. The retained map stays outside runtime fingerprint inputs. Staging preserves exact immutable media under media/ and article-media/, omits dormant HTML/runtime, and keeps current source-validated resources classified as current. No pending article/media approval is supplied.
+
+The four current controller admission cases pass4/4. Exact declaration guard1/1 and four affected rights/current-stage/baseproduction/real-CLI cases pass4/4. Earlier30-case controller26/30, intermediate4-case failures, and the mixed-source26-case rights23/26 remain retained diagnostic results; later bounded passes do not erase them. Final whole-source CI remains required. Controlled source-test fixtures now explicitly supply the actual selected native journey/media descriptors; those are validator inputs, not browser observations.
+
+Two superseded local raw renditions were never committed, pushed or deployed. Their exact bytes remain only in intermediate-raw-snapshots.json.gz for diagnostic provenance. Current source retains the final02a5 raw snapshot plus its complete immutable dependency closure; manuscript, PDF, artwork, original metadata and applicable rights are unchanged. No previously published edition is pruned.
+
+### Exact scanner dispositions and current checkpoint
+
+The unchanged scanner produced exact public checksum/identity findings plus one preserved review-prose false positive. The candidate appends387 exact rows to the checksum ledger and one exact prose row to the existing general reviewed ledger; all prior rows/metadata and original2MB caps remain. Only one fixed catalogue path/type/hashed-value tuple receives a narrow schema/runtime allowance, still requiring ledger presence. Other Base64 findings retain their prior refusal. No detector, scanned input, entropy threshold, budget or generic file exemption changes.
+
+Three independent affected reviews audit all388 actual literal/SHA1/source-context bindings, qualified historical limits and append-only records; Code/White-box independently refuse1164 changed path/type/value tuples. Named compressed reports, primary raw scan/proposals/proof script and formatter parity are preserved under native-reviews/correction/. Pinned formatting only changes new-row indentation; all parsed data and prior checksum-ledger byte prefix remain exact. Whole-source scanner/CI is still required.
+
+Current prepared source Basic passes16+10 focused cases and native publisher validation; no final clean-head CI, current hosted Explorer, accepted staging, main merge or production activation is claimed by this checkpoint. Draft preview remains the next independently observable surface.

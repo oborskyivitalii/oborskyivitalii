@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "72faec9e2a2ae384ad7d420afdb38e16c9e19dbe0de7896589fb8ee4ccaebc35",
+    "digest": "a45cbb0d72866664079fef6d380d5dfc5fe014acc78854ccd8db706473bb16f3",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -216,12 +216,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "dea9d5a4ebd498febcfafc9f822e27955da30faf01629b53d1728324219754cb"
+        "sha256": "df17501d1807b1c41d62a23692012af27c688782c4326e4e70fe82ea9149b42c"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "ac67c07b2f8e7b03edcc758dae130543f0c7858e592e83945d10553c3bc46d3a"
+        "sha256": "95023d67a83b42e3d8106fd926779dde53fba7221b5f6bd26ab5e4010d9b4ecb"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -371,7 +371,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "0304ce96d6fc666d4bc621fe12e5700d2f1dad763f60fe92f17f38d5de453871"
+        "sha256": "cccdff3ce76c8c06a85b928b3ae8440d8b27c6191f7bf3b38cfbf8f4118680f5"
       },
       {
         "path": "NOTICE.md",
@@ -473,14 +473,14 @@
         "sha256": "fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f"
       },
       {
-        "path": "docs/article-snapshots/21f1e97116d30f37432f199896fff4728d44722db399e7737f86314e39d2c570/the-sdlc-is-out-of-balance.html",
+        "path": "docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684/the-sdlc-is-out-of-balance.html",
         "identity_mode": "content",
-        "sha256": "67b0ff6b7787f65b59dcd501ad87a301be4d642f3c82e247e7449b4d52539310"
+        "sha256": "f1d53fa07e9c2d947922eb82b5cc12b7b7bbefd62cf728e80b9cfcbde8a5ffa9"
       },
       {
         "path": "docs/articles/the-sdlc-is-out-of-balance.html",
         "identity_mode": "content",
-        "sha256": "3360bbbf4d98bdd49a6f1a9e82a994f1af45a9dafc959e8fd54b3eaa312e57c6"
+        "sha256": "cb8ddc555bc958c0530e0f466f514ccb605353299edb085c337e0d2a221dc698"
       },
       {
         "path": "docs/assets/favicon.svg",
@@ -505,12 +505,12 @@
       {
         "path": "docs/credits.html",
         "identity_mode": "content",
-        "sha256": "e695747c48b969717dfed61f4496fd5ff594cf2428548895c75b6a97c73437f5"
+        "sha256": "c45af296b5d84a91cdce0701518a733f5436cacdd4733622defc65e869be7bf1"
       },
       {
         "path": "docs/index.html",
         "identity_mode": "content",
-        "sha256": "8e30353951ac19a138150993b5843870b3fc2414ed647113ee96b0cdfa0c9d70"
+        "sha256": "c706a581c736e498d9d79f2c8d1b3a6e2d67eeaf3e440466da94aad98e021f86"
       },
       {
         "path": "docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg",
@@ -545,7 +545,7 @@
       {
         "path": "docs/research.html",
         "identity_mode": "content",
-        "sha256": "a6876cd43921ccc83e2b3f5df378da65b5984f8951a615bf9bcc975b5cd80eaf"
+        "sha256": "45c491b9da1160c5eed5c622b8e39053cc7bd890c51da65d7df20a5c6d7fdd66"
       },
       {
         "path": "docs/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/archive.js",
@@ -630,7 +630,12 @@
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "bd850be38d018797431e9d33e093b85f734cba58e80203ae92964d5cca42b2df"
+        "sha256": "dd74cb834e23e46954bd2aeb67b89c73b5d496d5fc693e1e80851e5cf9100024"
+      },
+      {
+        "path": "docs/snapshots/03ec7ce6771149e12b3b90ec5c2f58b3b91a75ea3405289be49ace7b71741bca/research.html",
+        "identity_mode": "content",
+        "sha256": "d2932445e5e5c90dc8f422b7260411a2f2547506e9592589f7e689c2ca891d33"
       },
       {
         "path": "docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2/talks.html",
@@ -643,19 +648,14 @@
         "sha256": "93c88b5f9c73e559b067866cb38eb604e93013c2225a06a36f96e8f215d397b3"
       },
       {
-        "path": "docs/snapshots/4cf95bbc4065732f2145d6a52d212cf5bcf473f778858e34b2a67ce7415f0e21/research.html",
-        "identity_mode": "content",
-        "sha256": "e04a2cbbac4e087a54a49073118996d5fced4bf62975a55f40ac493ca29faa46"
-      },
-      {
-        "path": "docs/snapshots/536181bf124ff1c32030e477b1a41f3300012c9884cfc5b66086104abdb45513/index.html",
-        "identity_mode": "content",
-        "sha256": "ee6491b4638911d79941e944cc65b305d9ee0b25cdbd9ec76c60b4791a17fcdf"
-      },
-      {
         "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
         "identity_mode": "content",
         "sha256": "3dd82a25eee6f3915f0748192a6dc34bfbd214879b0ed933f116b3d47a363df7"
+      },
+      {
+        "path": "docs/snapshots/597878c2f446798f8b77600f6a9421540aa56ba1b994156bb70cbd2e5f8b2132/credits.html",
+        "identity_mode": "content",
+        "sha256": "c60363558c1dedf2fc534406a96d79cdd032e09de41d4e5994d34c5946a29821"
       },
       {
         "path": "docs/snapshots/632f4f29ebdbc51215b02592fd45a1f10a99fb8596d2dec8b3f18bc8be847f06/credits.html",
@@ -668,9 +668,14 @@
         "sha256": "395fd7fcc670e0b7984ed05e7395958dd9432a701f3bfc43151fb956e6d289a1"
       },
       {
-        "path": "docs/snapshots/6a2575df0c92bf53d7292668aa31fe0825f851a50859993c6b896161f91334e7/credits.html",
+        "path": "docs/snapshots/692098d982e702276971275ef0dd72d7d43d6072fcfa38d44fd08c0a14540dbc/writing.html",
         "identity_mode": "content",
-        "sha256": "6c4785780b2e16932148238fe5b0a61a644a174b2027b0c521ed7c51b1e140bd"
+        "sha256": "5a630adf5ef4298f9d4e4cc690ec6226bd1da17271ab931a05c351edbc3dc2ba"
+      },
+      {
+        "path": "docs/snapshots/781f9f96503b5b9bb45e91523055ee944aba3dbb5919bcb872e7b65e3d567907/index.html",
+        "identity_mode": "content",
+        "sha256": "33d3c0d0f5d1d8fda66b802fd0bcf17fad141a3e3468e43873f21ae01c3ce372"
       },
       {
         "path": "docs/snapshots/7b62f25175a003a9fcc24f430e26ff321f267a8e77a28699984f86bf1dfdd3b6/research.html",
@@ -686,6 +691,11 @@
         "path": "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html",
         "identity_mode": "content",
         "sha256": "4284e646405e3c2dc1288fd3e222e15b8564e44cbaeca8be0b0b01927a248736"
+      },
+      {
+        "path": "docs/snapshots/8bf0360fb634dc7d1130e1cbdeb199b2c413bb75a64eb46e9503410d0fe4a90e/talks.html",
+        "identity_mode": "content",
+        "sha256": "7b3a9367dd46f9f68e7beabf782fd06d96accbf419cd38f2200ed5a691e22a64"
       },
       {
         "path": "docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html",
@@ -723,16 +733,6 @@
         "sha256": "eef3b91329720bf60b4aaf9e08208bd9ce75790be77b21c2757638c7af7a6fb4"
       },
       {
-        "path": "docs/snapshots/d5c5bf9bd5c2e88016f45292ed58595a1d7ee1d1f702f2e74efc666068a3c6eb/writing.html",
-        "identity_mode": "content",
-        "sha256": "3cc76c9d920385b86ea11badaa2af71f7de38f5cfee74f54876d332ee2671fcd"
-      },
-      {
-        "path": "docs/snapshots/fec1b7ae82d606379afd7af75629b0ae3ddce142a7683be9c85796fbcc61083c/talks.html",
-        "identity_mode": "content",
-        "sha256": "4f6686137b5f15d5508007c16309815103ee48ab5662aaa1a6cd00998d33d965"
-      },
-      {
         "path": "docs/space.js",
         "identity_mode": "content",
         "sha256": "7812c824ce3dac0d5d36f40788c65ca66cc553e5a0287850a24a499a02d4eab4"
@@ -745,7 +745,7 @@
       {
         "path": "docs/talks.html",
         "identity_mode": "content",
-        "sha256": "b19f104e15d83f5da7ce0fb2173227550b2696a406f6c96fab5031a8cbf7a2ff"
+        "sha256": "f391d5a9847f10237c2a9f901215e9cfa2578998d40c4d6264f29379753d24df"
       },
       {
         "path": "docs/theme.js",
@@ -755,7 +755,7 @@
       {
         "path": "docs/writing.html",
         "identity_mode": "content",
-        "sha256": "3044d6bc56fb88534b255096479656e62503a04fd36c94571e5f8217f1125389"
+        "sha256": "5e56bac217fbd8908f552da9e38ec4a81abf8cf32fda2bf5e3d8be39d264a2e2"
       },
       {
         "path": "drafts/medium-profile-revision-20261001.html",
@@ -1305,7 +1305,7 @@
       {
         "path": "review/issue-169/2026-10-31-native-publication.md",
         "identity_mode": "content",
-        "sha256": "ef019eff14bed9e90d3249f88f32f00bd328d9648fef811ade79f66de84c4a87"
+        "sha256": "63d32a10c32553f34cbf87115e9effa6f11809337f8cee439c0633993f12ff9b"
       },
       {
         "path": "review/issue-169/2026-10-31-r3-illustrated-review.md",
@@ -1313,9 +1313,24 @@
         "sha256": "91a2e1665bf48909ccb9868b0cdf0a39f92206633f708c38bd11ff8db9a220e9"
       },
       {
+        "path": "review/issue-169/correction-affected.log.gz",
+        "identity_mode": "content",
+        "sha256": "79b6aa9cf7d8b30df6e48697bb8175005be3b3782cbd11ceb024a814950574b0"
+      },
+      {
+        "path": "review/issue-169/failed-source-run.json.gz",
+        "identity_mode": "content",
+        "sha256": "c0ce080e44db33594b20a32b7943b33ff43cc813a017b3f7221c0a7aea7609d5"
+      },
+      {
+        "path": "review/issue-169/failed-source-run.tap.gz",
+        "identity_mode": "content",
+        "sha256": "3d255259780a6c4729c55032a13f731a053a6cc79164cbbf8dd9dc1092c680e2"
+      },
+      {
         "path": "review/issue-169/native-check-allocation.md",
         "identity_mode": "content",
-        "sha256": "a8c486257545f7e5a037456f8829c9f84ab9a0847cabb822485d10aac3cffe86"
+        "sha256": "375d03e1fa8b9d33eb9393d4969169daf3cd261e1bdc14ad9f16cd9f60105022"
       },
       {
         "path": "review/issue-169/native-reviews/author-scope.md",
@@ -1328,9 +1343,224 @@
         "sha256": "7d643cd15a3a80d49b3b86c6425d2e0d3eaadcecdc95932282eeefebae7761bd"
       },
       {
+        "path": "review/issue-169/native-reviews/correction/archive-correction.log.gz",
+        "identity_mode": "content",
+        "sha256": "904d36fd72640eaa06a224f8abe63d8df48d8661a955f6d5954583fcce159e50"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/carrier-guard-negative.log.gz",
+        "identity_mode": "content",
+        "sha256": "f178c8fc4ac2c4d2b05d6419980fe71e2b35cc4b5b5821d223cdbe69fc640880"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/catalogue-tuple-tests.log.gz",
+        "identity_mode": "content",
+        "sha256": "47ec0958283a8ead681d65c623d87595b93588b4020ed6174aad7ae7967c2a56"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/checksum-proof-script.py.gz",
+        "identity_mode": "content",
+        "sha256": "56e05ca44b1131b80dbbe7d928c8e438a75f35744a625c9338e11b7e74a01100"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/checksum-proposals.json.gz",
+        "identity_mode": "content",
+        "sha256": "d72c0955e5ef6a94e13191b1601acd251d23e9152c4eda7249df7ff5d3e5aa02"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/checksum-scan.json.gz",
+        "identity_mode": "content",
+        "sha256": "63963e3f01f3b0756064249afa1f343f8b725dd4d711584a6ab55ef09abfd358"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/code-ledger-review.md.gz",
+        "identity_mode": "content",
+        "sha256": "f51065dfcb4bb55fc33d8f0cbb86777fa45c5efe3e38ac4f94797d2ed5b9d597"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/color-production-identity.json.gz",
+        "identity_mode": "content",
+        "sha256": "2a6fd3ff9df806c3eab8ba24f08554135d112a3d0c9cbaa98dc3eb223a879d71"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/controller-correction-final.log.gz",
+        "identity_mode": "content",
+        "sha256": "2e22c602ca73ebb95eb90fad3746907ba2f25df083d2eeb325663655b71b128d"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/controller-correction-four.log.gz",
+        "identity_mode": "content",
+        "sha256": "c005a13a36da8bf6047223acae46840c8f262e501aaec82cbb68fbc419d0a66f"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/controller-fixture-final.log.gz",
+        "identity_mode": "content",
+        "sha256": "080c6084552a0fe3df9e2ab16e8904a1832c2a3e3feb9b1d2c42257d788ffa1e"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/correction-code-clean.md",
+        "identity_mode": "content",
+        "sha256": "65cdd64a4e45ce35c9d04f6b462f7ab4251d48c62251dd1f9d1bb5ebba9d1990"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/correction-code.md",
+        "identity_mode": "content",
+        "sha256": "c20d9d5b06b8ac25473342bfafa7bf0756f456631da77c8b4ac1ea0feaeb6b0a"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/correction-exploratory.md",
+        "identity_mode": "content",
+        "sha256": "bbf6a34f8c580441adbf3f5f40b4eae7e0e9b326e2ff822e45df2f874e3b3433"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/correction-intent.md",
+        "identity_mode": "content",
+        "sha256": "0f6d28ba8675f73ce9806795ca8716a941cb8c7b72b39c007d6271e66153c2d1"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/correction-packet-v2.json",
+        "identity_mode": "content",
+        "sha256": "9bf897b60e7d447682cfd315affec2a7b9340e5dae3f5990161be593cbdc4da1"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/correction-packet.json",
+        "identity_mode": "content",
+        "sha256": "1db803ff0a41bbb51b0e59d1d8521cada3ea0ca881ab507fcc60a49da4258095"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/correction-registry-current.log.gz",
+        "identity_mode": "content",
+        "sha256": "f34b65013efcecc43a605532b54804d200634e06b2cd8b506890bf36669de1ea"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/correction-requirements-clean.md",
+        "identity_mode": "content",
+        "sha256": "d9097a3e03794475be7c3d1b87ab550b5397381ee4badd8cd1355f63a827967f"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/correction-requirements.md",
+        "identity_mode": "content",
+        "sha256": "6c5765ee308c29369d40d8daff25415d3e10ad9333815b86095a4590b23e42e9"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/correction-review-v2.diff",
+        "identity_mode": "content",
+        "sha256": "8b1d01e2392a41345ed75964a45cc060e9b623a7ea2bb0727bfcacd4c4b6ca34"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/correction-review.diff",
+        "identity_mode": "content",
+        "sha256": "5e115ec2a0d2867028d9a7d5f9d827b3d8fa650f4e9edb7012ea247b7038daa7"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/correction-whitebox-controller.md",
+        "identity_mode": "content",
+        "sha256": "cfed1eea14cb38ea80f6b82979f264c983cbfbc550a37544b8909cf05c3a5834"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/correction-whitebox-data-cleanup.md",
+        "identity_mode": "content",
+        "sha256": "cb8a71b347240fb8d51d3346aee07e1466bcd57cc168b31efd06f958e1339d02"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/correction-whitebox-delta.md",
+        "identity_mode": "content",
+        "sha256": "c4b4cb0de00510866a5ee8a65610455448133653c3f3acc7a1065b478900e6ff"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/correction-whitebox-final-delta.md",
+        "identity_mode": "content",
+        "sha256": "a3b21f73365355d1f3d80b0c17fa433d282f66dd23d8fee2e0f17da577095908"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/correction-whitebox-scanner-guard.md",
+        "identity_mode": "content",
+        "sha256": "2513865bb6e19ec2e404a3bb8112e4ea26901d7a6a54ed6a3214ae0b9bf33f2c"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/correction-whitebox-v3.md",
+        "identity_mode": "content",
+        "sha256": "9a4e4c1e057c922095a2294b267b5e3b8b42927093b225bedab5af026cd75614"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/correction-whitebox.md",
+        "identity_mode": "content",
+        "sha256": "284a62f11cfc09835f3ee1c4cab52ec2abb9358842d290fed7fd8f86afe2338e"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/correction-whitebox.raw.log.gz",
+        "identity_mode": "content",
+        "sha256": "6814428ff121db23226a23769137e29a56f1df6c8ea78572f6aefbfc7c0d1c84"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/execution-receipts.json",
+        "identity_mode": "content",
+        "sha256": "f87ce0cc7d66ec72c0128cdb8f24d5bca69759875bf3789d60dded5c2e6d97d1"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/intermediate-raw-snapshots.json.gz",
+        "identity_mode": "content",
+        "sha256": "4ff5eb06273fa050c23a3d6516866df98cc6a21e29c17c5900eeb1bdf6dc2a8a"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/ledger-before-format.json.gz",
+        "identity_mode": "content",
+        "sha256": "c142a916d0e8e3cd6764cae1bc970f940cb1e41c4ee94a86012253b69385c6f3"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/ledger-format-parity.json.gz",
+        "identity_mode": "content",
+        "sha256": "e297b504bfbddc40a6206d88f52a65030cbd103203afcc3a7dc7b562ef2aaf89"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/media-retention-four.log.gz",
+        "identity_mode": "content",
+        "sha256": "81eab00d67843235048a1e288c333108e559d3ca0db54b60e105751413377b89"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/requirements-ledger-review.md.gz",
+        "identity_mode": "content",
+        "sha256": "1553df0fcda60f6b1fe7d75b0b6c68e01620ffd53a27a2292e4633a33cc9cd91"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/retained-article-closure.json.gz",
+        "identity_mode": "content",
+        "sha256": "19e2667ffafffc5d500599a8de50db934a4ac02c1bfacefbfa22e3cf1f24a904"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/retained-final-snapshot.json.gz",
+        "identity_mode": "content",
+        "sha256": "7323174898424eea6ed979fe248d6c17880731cc9e6a15232540aefadc69093f"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/retention-adapter-guard.log.gz",
+        "identity_mode": "content",
+        "sha256": "3481d7b91d279808f1a5e76753b867996f281c6482e09dcb008a3894d643745f"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/retention-final-targeted.log.gz",
+        "identity_mode": "content",
+        "sha256": "bb55e2c3bd076d46dd088053531fc4c48cfae91be1d8ce3f5a9ee407c1b78d6e"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/retention-final-verified.log.gz",
+        "identity_mode": "content",
+        "sha256": "f94e2f90bde175b4aae2037b3dd0d1ddcb7491170fdd50420f7be1467f821ad4"
+      },
+      {
+        "path": "review/issue-169/native-reviews/correction/whitebox-ledger-review.md.gz",
+        "identity_mode": "content",
+        "sha256": "d9e6783a2f9dfd02028ae99fa39e250d833abc7f75996f73c7fb52f9fd2814c8"
+      },
+      {
         "path": "review/issue-169/native-reviews/execution-receipts.json",
         "identity_mode": "content",
         "sha256": "cecff2c14f003c8b02662a8c56c2e7a2d5d75e5b11e47be8ba9dd3f3b0fe3111"
+      },
+      {
+        "path": "review/issue-169/native-reviews/exploratory-predecessor.md",
+        "identity_mode": "content",
+        "sha256": "0a75d41689412c7a23f73ab65c65927cbb6c553b881d38857a496fababce73b9"
       },
       {
         "path": "review/issue-169/native-reviews/issue169.json",
@@ -1486,6 +1716,11 @@
         "path": "review/issue-169/r3/reviews/whitebox-r3.md",
         "identity_mode": "content",
         "sha256": "c257ed43e2d7c78d5be7fe78d0b2d83ed5ca2715492f39f6baa7697cca3f9b49"
+      },
+      {
+        "path": "review/issue-169/writing-carrier.json",
+        "identity_mode": "content",
+        "sha256": "067834aa78ff870989e095b7dc8f79973cda0e9289621bd6d1c81500a4dd6de7"
       },
       {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -5780,22 +6015,22 @@
       {
         "path": "review/site-v1-20261004-v11-credits-day.html",
         "identity_mode": "content",
-        "sha256": "a4f24a00103c088b0f4bdb72dfee93cd7152e7ab3a064880cf7256921b1068ff"
+        "sha256": "8ac975e5f456ece6929d21367f29a840b457bd9b1ce8d7c6c16b772c9045c078"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-interactive.html",
         "identity_mode": "content",
-        "sha256": "fea42c291af9b478b73ed96c702774690df00db8a96bda208b4278a39e825c97"
+        "sha256": "8a08f433d64314ad146b92a559cb6417cb7a51da719c4ac6fd18567bd7bbffed"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-night.html",
         "identity_mode": "content",
-        "sha256": "02175988fe25cc5731b295a71c8dd40aaa5f150dde6c7c4fb7b790d496e271cc"
+        "sha256": "77fd6489d799933b6f0a961c063a33d084cc44fbf05b9eef33c0d86a82a26909"
       },
       {
         "path": "review/site-v1-20261004-v11-day.html",
         "identity_mode": "content",
-        "sha256": "9d43107111944e5324fbc7a253865380a44f4d101e649f2f9dc8afe47daf3842"
+        "sha256": "0b57af03b773fc45835f68c0b2dc2035095916b672dd0fa8fb9a600e2297284f"
       },
       {
         "path": "review/site-v1-20261004-v11-index.html",
@@ -5805,57 +6040,57 @@
       {
         "path": "review/site-v1-20261004-v11-interactive.html",
         "identity_mode": "content",
-        "sha256": "3a915a61b18dadaea8626dca4c92846890cd3e432747f146a96e7648dcdd4d67"
+        "sha256": "38f39c09158ee8a3789d9dfa7444f9bb93fbdfcf373fbd0dd9cc37ddf92faec6"
       },
       {
         "path": "review/site-v1-20261004-v11-night.html",
         "identity_mode": "content",
-        "sha256": "0d1a5bbdaeef0a72f660e76e494daf5770e1c226df4a7dcf0ffa9b9f831fbcda"
+        "sha256": "a36651b2fd65e28871ca21f48d7d16523a0f7ee7860e98d4a605ed621c008b01"
       },
       {
         "path": "review/site-v1-20261004-v11-research-day.html",
         "identity_mode": "content",
-        "sha256": "86db44a675dd7c1506b02b1bc6cb17e194fe45c3666e194466ee29534c129c29"
+        "sha256": "66d8e8e9bc2418d59d15eba61d512c072e5ee44d1b7638dafcdd11d84f527156"
       },
       {
         "path": "review/site-v1-20261004-v11-research-interactive.html",
         "identity_mode": "content",
-        "sha256": "24915eaef2b485662f2b35f004d9a0a43dfade71b2c48796e54e739057767df9"
+        "sha256": "8b9655cecab9fbba2de9146afed5c2a6e4476c2b80171e6a5a64a4ba976de3c9"
       },
       {
         "path": "review/site-v1-20261004-v11-research-night.html",
         "identity_mode": "content",
-        "sha256": "31fc6c99b6c1b149daf6f9ad875beb69763fd6be7dab6af098400a0cee919833"
+        "sha256": "72f9ac797ccf5410f4ea3c986a90d29c5dc5046d341d902a1738d9f33c4b0735"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-day.html",
         "identity_mode": "content",
-        "sha256": "f0d58a49785b564390ed2947d9bd6ced35edcf8ce7e1fc02dc91223783b537d1"
+        "sha256": "09fa03b47bc340cc019e70bcefc93c44bed8bcd95e4f7e43d5504385c1d2b725"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-interactive.html",
         "identity_mode": "content",
-        "sha256": "467dc1fd6f9ee35f6e5d0e418299472948fb0bb0b135ea2d61eefef8d878328e"
+        "sha256": "2c0cf0ceee0e74e7994395d29539866ce6583938ca0a167dbb6122aa182b0d03"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-night.html",
         "identity_mode": "content",
-        "sha256": "da6e677c99da9759a6948ab8157a144bf99efde20bce90ff8a02266103757fef"
+        "sha256": "4cad648e90173a5dda12c5d2c01d5c218b471f552fb0609ee5b86c8daafe2570"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-day.html",
         "identity_mode": "content",
-        "sha256": "7ab1883bf5cca23f93eb349e7460dd2e189fc716b2ae32a82cb36373a29573e9"
+        "sha256": "56aa7258339c1810717b03cd494192d276f454edbef8e72cc5bf8780ebdba77a"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-interactive.html",
         "identity_mode": "content",
-        "sha256": "9c731593f4be2c24ad084c94c69f12bd2e1b61a305010c0e0d3bf40d6b29e39f"
+        "sha256": "57dcbb44ac885c63ef75cefc52455e50d1d818a15314f9d068496b5feeb3e8dc"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-night.html",
         "identity_mode": "content",
-        "sha256": "50aadf8a2cf6f99ac97bb09a4b7fcfc6feb9a7a1b81e89729ae8e4d9b37ce4d5"
+        "sha256": "ad237473eb8ca8a6747a028ebc683d9b06145e0a0a7e0e59652a694e303a912e"
       },
       {
         "path": "review/site-v1-offline-bundle-v10.json",
@@ -5865,7 +6100,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "b047265a17011cdda8c5d6193cbd093b90ffd60d993ede84975d600dd0e7002c"
+        "sha256": "117e1e8e8b291a7f40dc75f8e0bc48b66f269a388f69a99c981bd88c6d6bc786"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -5920,7 +6155,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "ccae4d2bb8835d2058c014024e7882bf2ad34e1dd292c1d884f37df3df51ef18"
+        "sha256": "a732f678c4127fdfc00ef600b218ce1bdac5234d436a5219d0cb3b0557d40610"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -6420,7 +6655,7 @@
       {
         "path": "site/README.md",
         "identity_mode": "content",
-        "sha256": "9b1a10a98d092ab3b5b37931dd19fb4c83bdd28b4669494a078335b8e3ea06b0"
+        "sha256": "6696e8f54d09d314ad1b0dda5249dffbcd1a1a6e80c62316ec5d2dabe7e50436"
       },
       {
         "path": "site/analytics.json",
@@ -6695,12 +6930,12 @@
       {
         "path": "site/content/article-tags.json",
         "identity_mode": "content",
-        "sha256": "b936d993450c318cd93288b4f52e305567e218423e6821083223c97827f0d144"
+        "sha256": "dc314dcdd2871ecc368dd014739dffc9767bc6767347133411f2d47e51c20a73"
       },
       {
         "path": "site/content/catalog.json",
         "identity_mode": "content",
-        "sha256": "b496827e92bf5a8c012f5511484d49c862dc0ae681f761ad110e2dfd8d8f401d"
+        "sha256": "8abb0b8a85206c7042515313631e205e10d61c4c67e32260faae678e4d73e710"
       },
       {
         "path": "site/content/events.json",
@@ -6960,7 +7195,7 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "65355dcd54fd5d470c6c1ac9d3e548cca971c8cc533e4a6b32b61f8cd0a59bf2"
+        "sha256": "99dd9845465a15b35543c9bb591d6d84f4cd0e5e3498beeff9b764ec0f2328e0"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/blueprint.md",
@@ -7223,9 +7458,54 @@
         "sha256": "b84614b8a7af29982c1ae45114675001617324fe16a12b386e86307ebe53f70f"
       },
       {
+        "path": "site/retained/article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292/systemic-response.webp",
+        "identity_mode": "content",
+        "sha256": "1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292"
+      },
+      {
+        "path": "site/retained/article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg",
+        "identity_mode": "content",
+        "sha256": "2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16"
+      },
+      {
+        "path": "site/retained/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3/imbalance-loop.webp",
+        "identity_mode": "content",
+        "sha256": "45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3"
+      },
+      {
+        "path": "site/retained/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c/reading.pdf",
+        "identity_mode": "content",
+        "sha256": "70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c"
+      },
+      {
+        "path": "site/retained/article-media/79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6/review-functions.webp",
+        "identity_mode": "content",
+        "sha256": "79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6"
+      },
+      {
+        "path": "site/retained/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry.webp",
+        "identity_mode": "content",
+        "sha256": "8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f"
+      },
+      {
+        "path": "site/retained/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1/workstream-system.webp",
+        "identity_mode": "content",
+        "sha256": "8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1"
+      },
+      {
+        "path": "site/retained/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f/hero-web.jpg",
+        "identity_mode": "content",
+        "sha256": "fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f"
+      },
+      {
+        "path": "site/retained/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684/the-sdlc-is-out-of-balance.html",
+        "identity_mode": "content",
+        "sha256": "f1d53fa07e9c2d947922eb82b5cc12b7b7bbefd62cf728e80b9cfcbde8a5ffa9"
+      },
+      {
         "path": "site/retained/manifest.json",
         "identity_mode": "content",
-        "sha256": "6191ed2006d08bf076c13863241c0816eb9a7c92b3ffe2a5016d1ecb43824c4b"
+        "sha256": "63419a290f8266e5765b8871c45ef072405e7dd1aa22687a09a427027fc4d5c6"
       },
       {
         "path": "site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg",
@@ -7276,6 +7556,31 @@
         "path": "site/retained/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff/analytics.js",
         "identity_mode": "content",
         "sha256": "7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff"
+      },
+      {
+        "path": "site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/archive.js",
+        "identity_mode": "content",
+        "sha256": "24691f49c8c0b458958de6422396af4a6ea73f2d6bffa610e4f0ca788b04f383"
+      },
+      {
+        "path": "site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/navigation.js",
+        "identity_mode": "content",
+        "sha256": "078b790a9b374b44bb4c26f09f0161cfcbe0c0edf5c369d9e4606aa6487d08bb"
+      },
+      {
+        "path": "site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/space.js",
+        "identity_mode": "content",
+        "sha256": "7812c824ce3dac0d5d36f40788c65ca66cc553e5a0287850a24a499a02d4eab4"
+      },
+      {
+        "path": "site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/styles.css",
+        "identity_mode": "content",
+        "sha256": "677304b835527266f87d9f5c039fa7b321e8d296e07a133077e1f7094d9a0cc0"
+      },
+      {
+        "path": "site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/theme.js",
+        "identity_mode": "content",
+        "sha256": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a"
       },
       {
         "path": "site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/archive.js",
@@ -7380,7 +7685,7 @@
       {
         "path": "site/rights.json",
         "identity_mode": "content",
-        "sha256": "a08bf509eb11096a5b95f89f5499cd7266930858522d327c5fbaffd7208f981f"
+        "sha256": "ccd2c8df6a34c076e5bc41ebe2bac169e2feb781dcb860be4f8f96f425fb0604"
       },
       {
         "path": "site/routes.json",
@@ -7685,7 +7990,7 @@
       {
         "path": "tests/article-browser-evidence.test.cjs",
         "identity_mode": "content",
-        "sha256": "e315cebd3d4647d6095f6c81bb9a85b2e2ecd3c967b8c9af09840ca7827e47ba"
+        "sha256": "4fb8e83b9d3ec2bdf6938a12d65511adbdddcdcbbb580a256eb1edf78fd24bcd"
       },
       {
         "path": "tests/article-budgets.test.cjs",
@@ -7700,7 +8005,7 @@
       {
         "path": "tests/article-delivery.test.cjs",
         "identity_mode": "content",
-        "sha256": "c1e0572a524a0b27b314403af1ef4e1ba318133b744dcb874cb6a4dd8b0c6d62"
+        "sha256": "ca61f4dc6a22274c4ad2189e1ce9243d871b0b6d60c9f52a6397bdc1d7b2b116"
       },
       {
         "path": "tests/article-materials.test.cjs",
@@ -7780,7 +8085,7 @@
       {
         "path": "tests/content-delivery.test.cjs",
         "identity_mode": "content",
-        "sha256": "d449d888a0bb0909895a5cb0b99c29a35c88713e5854418b79973cc1ab77e28f"
+        "sha256": "71e0fc15d30997c89bee853a87d186aa30b3755c89759d16f487cbb8ceb8a042"
       },
       {
         "path": "tests/content-fixture.test.cjs",
@@ -7805,7 +8110,7 @@
       {
         "path": "tests/content.test.cjs",
         "identity_mode": "content",
-        "sha256": "ece0be12695137b4347b38a0eb661d3965ea795bbf0ffe1fed2dd0c5224c043c"
+        "sha256": "920f4a764d9d44d0ca61450d725561e75120efd887228975388f9c5021925e81"
       },
       {
         "path": "tests/control-lock.test.cjs",
@@ -7830,7 +8135,7 @@
       {
         "path": "tests/edition-retention.test.cjs",
         "identity_mode": "content",
-        "sha256": "4289ab70d118dfa61f474ff5d97176ad1b0bdbaa2c6d6eb3d6fe8d5133bc03a4"
+        "sha256": "05e2f79984fa14c8bc431e9d1007b413c8fd36c83c768a69cc0c889eb012957a"
       },
       {
         "path": "tests/effects.test.cjs",
@@ -7855,12 +8160,12 @@
       {
         "path": "tests/executive.test.cjs",
         "identity_mode": "content",
-        "sha256": "ba4a75983c776075e96a6aaf5c3b29d98f923269134a87ae8f3d7b2e5aa6a2ca"
+        "sha256": "4ca5db321107dfc5b6dd3a831228de9e31cbd8cc2aaa7c40909d2b3b34a9c07e"
       },
       {
         "path": "tests/fixtures/article-flight.cjs",
         "identity_mode": "content",
-        "sha256": "cc712f81f56e72e4f688ec522931b5de2c62cb9d92a8b8121a237d2dc9a32687"
+        "sha256": "1654392ecbe41a5571baf54a36cf8c64f1740e8158fc41afd971043c19640149"
       },
       {
         "path": "tests/fixtures/catalog.cjs",
@@ -7870,7 +8175,7 @@
       {
         "path": "tests/fixtures/delivery.cjs",
         "identity_mode": "content",
-        "sha256": "6702059042f1de98920201e898f995165d191314ec1f65ec6cf4082928e25937"
+        "sha256": "4bf3c43e42c63d5006d209d7c85acaceb86ad62b457e36c29882d71056b66adf"
       },
       {
         "path": "tests/fixtures/orchestration-accept-only.json",
@@ -7900,7 +8205,7 @@
       {
         "path": "tests/fixtures/staging-evidence.cjs",
         "identity_mode": "content",
-        "sha256": "f398a730ba3556b1bcfe311a8dc51b25d80aa4805a22ad7cf4f5cf2e04b3f13d"
+        "sha256": "614fd3334fbbcf72b11fd033b1668065e82d205b028a731a0885eee9ee42e174"
       },
       {
         "path": "tests/flight.test.cjs",
@@ -7995,7 +8300,7 @@
       {
         "path": "tests/preview.test.cjs",
         "identity_mode": "content",
-        "sha256": "04a7994cd4f7526cb3cc8efea82e668db669308a11ab243bc9a8a78af2d4e747"
+        "sha256": "aaf17489d6f448ea694227a3fac22237002f15f857ef1024543b6878ddf109ff"
       },
       {
         "path": "tests/prototype-admission.test.cjs",
@@ -8035,7 +8340,7 @@
       {
         "path": "tests/quality-sources.test.cjs",
         "identity_mode": "content",
-        "sha256": "01840204fc5eb119e169588eab04dc4dddebdc9b5ba957bc8625e3165cdc2928"
+        "sha256": "39c3972ab04f741493ba3a0079b5d5b0b55b11a9c615197e5da506ab316d8d15"
       },
       {
         "path": "tests/quality.test.cjs",
@@ -8045,7 +8350,7 @@
       {
         "path": "tests/reader-controller.test.cjs",
         "identity_mode": "content",
-        "sha256": "b7faf319ab1c640c52fa74fa42b34bae5980fcd103d321817c663bcc79d7de3f"
+        "sha256": "8c0df8dac972b1fb33ecf36ff01a49243dc0aaada8b872944f4fb43a2d7060e2"
       },
       {
         "path": "tests/reader-mode.test.cjs",
@@ -8060,17 +8365,17 @@
       {
         "path": "tests/release-archive.test.cjs",
         "identity_mode": "content",
-        "sha256": "5bbf2560d185176fdfe0ce1400a2d89a13297ebb7e22040834006bbadb4bd9bf"
+        "sha256": "60f24c9d62a699c8acf082759ab2854c957ea0747dfe14cb661d9fbb867f5bde"
       },
       {
         "path": "tests/release-controller.test.cjs",
         "identity_mode": "content",
-        "sha256": "643d3a088173c3b0076a265262a5cad5f6088c49f496330e6d9e1b704f0bd590"
+        "sha256": "efd8a099dbe869610d2fa71334398d91c511130c14d6afa51174f081547f21ec"
       },
       {
         "path": "tests/release-rights.test.cjs",
         "identity_mode": "content",
-        "sha256": "da470988185b577a404787d958845e62149dacaf24ebe5560db24244400c3ba0"
+        "sha256": "7b779d869107b887df81e82fb60ffe226739ed4ecfe40efc5f0c87a265362127"
       },
       {
         "path": "tests/renderer.test.cjs",
@@ -8080,7 +8385,7 @@
       {
         "path": "tests/review-flow.test.cjs",
         "identity_mode": "content",
-        "sha256": "c2d630f749153de064abf3700b6da59fe4b78ea95e5837725e9f93d1ad0f0af9"
+        "sha256": "f9298acad79cd89b03576afcdf5c175ca179914e7f57f2051e4fdd9121a7dab1"
       },
       {
         "path": "tests/ribbons.test.cjs",
@@ -8105,7 +8410,7 @@
       {
         "path": "tests/site-engine.test.cjs",
         "identity_mode": "content",
-        "sha256": "3d6b250754720145988d546b6dbf55414624cbfb0c569cb1775dc9c9310a09de"
+        "sha256": "01dfd51bf53cd71d60337d1e89baa1ecec75ae92ef2228e02e546e36ed3e689a"
       },
       {
         "path": "tests/site-face-preparation.test.cjs",
@@ -8135,7 +8440,7 @@
       {
         "path": "tests/staging-reporting.test.cjs",
         "identity_mode": "content",
-        "sha256": "78ce32dc0c2b954b604138062d11ba013d4224467799ccebf6231f4428b3588b"
+        "sha256": "54aa4eec72d51a6b2dcc9646941bf5761d8e7c9530d5ae6528c3aa9a924fb457"
       },
       {
         "path": "tests/staging-trust.test.cjs",
@@ -8405,7 +8710,7 @@
       {
         "path": "tools/check_site_seo.cjs",
         "identity_mode": "content",
-        "sha256": "fba4ba8d1ed788a3c21f2e0a8e7f0bedf422fc06a0659ad8ef107ba34e4ac66f"
+        "sha256": "81757f27115d399d1649f8df6a962d2b36553485137429921051ce5f4b91c5bc"
       },
       {
         "path": "tools/compact_site_recordings.cjs",
@@ -8615,7 +8920,7 @@
       {
         "path": "tools/quality/artifact.cjs",
         "identity_mode": "content",
-        "sha256": "c8584b089b6ad78686920461f2159347473550ef8140e7c7d465de63edd16d13"
+        "sha256": "3dab8113e50df470c14a7f0e59d9a6ecae8b13ef799a8383b43538be37f9fc29"
       },
       {
         "path": "tools/quality/bandit-policy.json",
@@ -8695,7 +9000,7 @@
       {
         "path": "tools/quality/color-motion-contract.cjs",
         "identity_mode": "content",
-        "sha256": "991c9e510ca756ffca622db2195fff4f2efe5d7e84777fe50b319ac52780d248"
+        "sha256": "7ca5a2a41e79c567d954b8cfd9f6ef281fabc76d876f56b40a2022819f5aa09c"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -8715,7 +9020,7 @@
       {
         "path": "tools/quality/content-fixture.cjs",
         "identity_mode": "content",
-        "sha256": "284d332de5469bb9d6b7ed659fa2ac5ff6c76d762ffd390287abdaa8d9f0763f"
+        "sha256": "739bae6881332997fd47ab011ffabb438c503c7a2a1c144a8a76acf561dc34c8"
       },
       {
         "path": "tools/quality/content-gate.cjs",
@@ -8970,7 +9275,7 @@
       {
         "path": "tools/quality/scanners.cjs",
         "identity_mode": "content",
-        "sha256": "7c92709c202a178914e248e8a4b7bfb50c912a589558bdb5d0d75a640ae376f8"
+        "sha256": "c6a6f63965ffe668f40549ae779e40c76fca06e30937ef75b80d0474e5de8188"
       },
       {
         "path": "tools/quality/scroll-browser.cjs",
@@ -8990,12 +9295,12 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "b6854593b2e419c7fa3f49287902891b7394b9a16910eaad357f42657648e885"
+        "sha256": "857038d23586083aed328c1fa48998300ff9c11d4c0832e6c8f182dd14bd28a8"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
         "identity_mode": "content",
-        "sha256": "f376f5be9aaf5bb743d19fa42cf25968db42fc9b8c009007cda953aef9c46e2f"
+        "sha256": "d51e004bbb36d0354a0094fa5e9885bf9e9e52e19dfdd47bddd121c550f78cbb"
       },
       {
         "path": "tools/quality/security-rules.yml",
@@ -9045,7 +9350,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "a3492dfa64c2fd3348a5f56532a1cf2677ca119357927bf7271f083e6a526d5f"
+        "sha256": "c5a4d292e0cfad0ff882f8b962ad13f26c77daebd17395ef2627ec82567e82ee"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -9165,12 +9470,12 @@
       {
         "path": "tools/release/edition-archive.cjs",
         "identity_mode": "content",
-        "sha256": "9ebd7fdce236cd40fb0ddff9e49536eb655d674bb05cdada368705915a13793a"
+        "sha256": "281f56ce375c3a31d5faabe14b1105a76f5bb2ea0f1b648b5e903670dd33343a"
       },
       {
         "path": "tools/release/edition.cjs",
         "identity_mode": "content",
-        "sha256": "b8c85b9371492c74167b96207928b35b2e8a24d207bdf8065b0506c1cb85c98e"
+        "sha256": "ded3d9fcccea3fb007c393a9f5afc6a63fb3eb49122d91999ee6d2cf00839ea3"
       },
       {
         "path": "tools/release/live.cjs",
@@ -9195,7 +9500,7 @@
       {
         "path": "tools/release/rights.cjs",
         "identity_mode": "content",
-        "sha256": "79c8b4fc2025a0d54d1d64a60618fdb6ad39487dc50bd7e9ab6c73136eb5531b"
+        "sha256": "1730fb1090799cdb81ece8af66102c73bb90732de4d99e8d19734f213757ceb6"
       },
       {
         "path": "tools/release/staging-policy.cjs",
@@ -9245,7 +9550,7 @@
       {
         "path": "tools/site/build.cjs",
         "identity_mode": "content",
-        "sha256": "fce23e9a21e641e829b07e48029ecbbf3b754904376b1fdda4146e7d09c66bde"
+        "sha256": "3d9b80f989008ae487cccf4b38aea630bd4ddf62782a971e7e62142c9fbbc869"
       },
       {
         "path": "tools/site/content-release.cjs",
@@ -9260,12 +9565,12 @@
       {
         "path": "tools/site/edition-retention.cjs",
         "identity_mode": "content",
-        "sha256": "c9cf534693ce8a23bb736572a5d927d2faded58b62ae99aae98f09d53746d479"
+        "sha256": "9e1ce89d5883a639fb79147f8a86f7a5030c8916baa338b1256bf984b7ee1b4d"
       },
       {
         "path": "tools/site/edition.cjs",
         "identity_mode": "content",
-        "sha256": "ab78b3745c020ae9d07a5f7deffe06cd170b528a5d541b74df07002049ed54ce"
+        "sha256": "ed16f02e53abd85c03e40aca3039f285cf5638a133a98a2c92933ae9dd84b798"
       },
       {
         "path": "tools/site/effects.cjs",
@@ -9290,7 +9595,7 @@
       {
         "path": "tools/site/fallback.cjs",
         "identity_mode": "content",
-        "sha256": "66822a96b98fa151762dd72e601299c63b4ff57249a7d7134ee55d8ca03969c9"
+        "sha256": "0060c45f858b1669a1ab830c0de6ab4ba8a69d0f8589502bd4f17f8e545161d9"
       },
       {
         "path": "tools/site/html.cjs",
@@ -10838,9 +11143,9 @@
       "title": "hero-web.jpg"
     },
     {
-      "path": "docs/article-snapshots/21f1e97116d30f37432f199896fff4728d44722db399e7737f86314e39d2c570/the-sdlc-is-out-of-balance.html",
+      "path": "docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684/the-sdlc-is-out-of-balance.html",
       "kind": "file",
-      "purpose": "Generated native article, immutable media or snapshot.",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -11190,6 +11495,17 @@
       "title": "site-revision.json"
     },
     {
+      "path": "docs/snapshots/03ec7ce6771149e12b3b90ec5c2f58b3b91a75ea3405289be49ace7b71741bca/research.html",
+      "kind": "file",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "research.html"
+    },
+    {
       "path": "docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2/talks.html",
       "kind": "file",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
@@ -11212,28 +11528,6 @@
       "title": "talks.html"
     },
     {
-      "path": "docs/snapshots/4cf95bbc4065732f2145d6a52d212cf5bcf473f778858e34b2a67ce7415f0e21/research.html",
-      "kind": "file",
-      "purpose": "Generated native article, immutable media or snapshot.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "research.html"
-    },
-    {
-      "path": "docs/snapshots/536181bf124ff1c32030e477b1a41f3300012c9884cfc5b66086104abdb45513/index.html",
-      "kind": "file",
-      "purpose": "Generated native article, immutable media or snapshot.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "index.html"
-    },
-    {
       "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
@@ -11243,6 +11537,17 @@
         "AGENTS.md"
       ],
       "title": "writing.html"
+    },
+    {
+      "path": "docs/snapshots/597878c2f446798f8b77600f6a9421540aa56ba1b994156bb70cbd2e5f8b2132/credits.html",
+      "kind": "file",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "credits.html"
     },
     {
       "path": "docs/snapshots/632f4f29ebdbc51215b02592fd45a1f10a99fb8596d2dec8b3f18bc8be847f06/credits.html",
@@ -11267,15 +11572,26 @@
       "title": "research.html"
     },
     {
-      "path": "docs/snapshots/6a2575df0c92bf53d7292668aa31fe0825f851a50859993c6b896161f91334e7/credits.html",
+      "path": "docs/snapshots/692098d982e702276971275ef0dd72d7d43d6072fcfa38d44fd08c0a14540dbc/writing.html",
       "kind": "file",
-      "purpose": "Generated native article, immutable media or snapshot.",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "credits.html"
+      "title": "writing.html"
+    },
+    {
+      "path": "docs/snapshots/781f9f96503b5b9bb45e91523055ee944aba3dbb5919bcb872e7b65e3d567907/index.html",
+      "kind": "file",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index.html"
     },
     {
       "path": "docs/snapshots/7b62f25175a003a9fcc24f430e26ff321f267a8e77a28699984f86bf1dfdd3b6/research.html",
@@ -11309,6 +11625,17 @@
         "AGENTS.md"
       ],
       "title": "credits.html"
+    },
+    {
+      "path": "docs/snapshots/8bf0360fb634dc7d1130e1cbdeb199b2c413bb75a64eb46e9503410d0fe4a90e/talks.html",
+      "kind": "file",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "talks.html"
     },
     {
       "path": "docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html",
@@ -11386,28 +11713,6 @@
         "AGENTS.md"
       ],
       "title": "writing.html"
-    },
-    {
-      "path": "docs/snapshots/d5c5bf9bd5c2e88016f45292ed58595a1d7ee1d1f702f2e74efc666068a3c6eb/writing.html",
-      "kind": "file",
-      "purpose": "Generated native article, immutable media or snapshot.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "writing.html"
-    },
-    {
-      "path": "docs/snapshots/fec1b7ae82d606379afd7af75629b0ae3ddce142a7683be9c85796fbcc61083c/talks.html",
-      "kind": "file",
-      "purpose": "Generated native article, immutable media or snapshot.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "talks.html"
     },
     {
       "path": "docs/space.js",
@@ -12686,6 +12991,39 @@
       "title": "R3 illustrated author-review checkpoint"
     },
     {
+      "path": "review/issue-169/correction-affected.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "correction-affected.log.gz"
+    },
+    {
+      "path": "review/issue-169/failed-source-run.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "failed-source-run.json.gz"
+    },
+    {
+      "path": "review/issue-169/failed-source-run.tap.gz",
+      "kind": "file",
+      "purpose": "Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "failed-source-run.tap.gz"
+    },
+    {
       "path": "review/issue-169/native-check-allocation.md",
       "kind": "file",
       "purpose": "Issue169 native integration review and acceptance evidence.",
@@ -12719,6 +13057,468 @@
       "title": "Independent Code / changed-artifact review — issue169 / PR170"
     },
     {
+      "path": "review/issue-169/native-reviews/correction/archive-correction.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "archive-correction.log.gz"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/carrier-guard-negative.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "carrier-guard-negative.log.gz"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/catalogue-tuple-tests.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 independent source-bound correction review and actual targeted scanner/retention evidence; broader release gates separate.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "catalogue-tuple-tests.log.gz"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/checksum-proof-script.py.gz",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "checksum-proof-script.py.gz"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/checksum-proposals.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "checksum-proposals.json.gz"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/checksum-scan.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "checksum-scan.json.gz"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/code-ledger-review.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 exact independent correction/data review, retained primary diagnostic evidence and deterministic formatter parity; no release acceptance implied.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "code-ledger-review.md.gz"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/color-production-identity.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "color-production-identity.json.gz"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/controller-correction-final.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "controller-correction-final.log.gz"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/controller-correction-four.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "controller-correction-four.log.gz"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/controller-fixture-final.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "controller-fixture-final.log.gz"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/correction-code-clean.md",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Independent Code / changed artifact judgment — correction v2"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/correction-code.md",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Code / changed artifact — correction preparation receipt"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/correction-exploratory.md",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Correction Exploratory / Interaction QA"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/correction-intent.md",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "correction-intent.md"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/correction-packet-v2.json",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "correction-packet-v2.json"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/correction-packet.json",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "correction-packet.json"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/correction-registry-current.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "correction-registry-current.log.gz"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/correction-requirements-clean.md",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Requirements & Acceptance — first independent correction judgment"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/correction-requirements.md",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Requirements & Acceptance — correction preparation result"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/correction-review-v2.diff",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "correction-review-v2.diff"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/correction-review.diff",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "correction-review.diff"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/correction-whitebox-controller.md",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "White-box QA — controller failures structural diagnosis"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/correction-whitebox-data-cleanup.md",
+      "kind": "file",
+      "purpose": "Issue169 independent source-bound correction review and actual targeted scanner/retention evidence; broader release gates separate.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "White-box QA — final data cleanup"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/correction-whitebox-delta.md",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "White-box QA — archive correction addendum"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/correction-whitebox-final-delta.md",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "White-box QA — final retention/media delta"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/correction-whitebox-scanner-guard.md",
+      "kind": "file",
+      "purpose": "Issue169 independent source-bound correction review and actual targeted scanner/retention evidence; broader release gates separate.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "White-box QA — exact catalogue scanner guard"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/correction-whitebox-v3.md",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "White-box QA — V3 affected correction result"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/correction-whitebox.md",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Independent White-box QA — correction first result"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/correction-whitebox.raw.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "correction-whitebox.raw.log.gz"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/execution-receipts.json",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "execution-receipts.json"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/intermediate-raw-snapshots.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "intermediate-raw-snapshots.json.gz"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/ledger-before-format.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 exact independent correction/data review, retained primary diagnostic evidence and deterministic formatter parity; no release acceptance implied.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ledger-before-format.json.gz"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/ledger-format-parity.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 exact independent correction/data review, retained primary diagnostic evidence and deterministic formatter parity; no release acceptance implied.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ledger-format-parity.json.gz"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/media-retention-four.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "media-retention-four.log.gz"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/requirements-ledger-review.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 exact independent correction/data review, retained primary diagnostic evidence and deterministic formatter parity; no release acceptance implied.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "requirements-ledger-review.md.gz"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/retained-article-closure.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "retained-article-closure.json.gz"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/retained-final-snapshot.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "retained-final-snapshot.json.gz"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/retention-adapter-guard.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "retention-adapter-guard.log.gz"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/retention-final-targeted.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "retention-final-targeted.log.gz"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/retention-final-verified.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "retention-final-verified.log.gz"
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction/whitebox-ledger-review.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 exact independent correction/data review, retained primary diagnostic evidence and deterministic formatter parity; no release acceptance implied.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "whitebox-ledger-review.md.gz"
+    },
+    {
       "path": "review/issue-169/native-reviews/execution-receipts.json",
       "kind": "file",
       "purpose": "Source-bound native review packet, primary owner snapshot, explicit clean-context execution receipts and preserved correction results for issue169.",
@@ -12728,6 +13528,17 @@
         "AGENTS.md"
       ],
       "title": "execution-receipts.json"
+    },
+    {
+      "path": "review/issue-169/native-reviews/exploratory-predecessor.md",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Independent Exploratory / Interaction QA — issue169 / PR170"
     },
     {
       "path": "review/issue-169/native-reviews/issue169.json",
@@ -13069,6 +13880,17 @@
         "AGENTS.md"
       ],
       "title": "Issue 169 — R3 independent White-box QA, first judgment"
+    },
+    {
+      "path": "review/issue-169/writing-carrier.json",
+      "kind": "file",
+      "purpose": "Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "writing-carrier.json"
     },
     {
       "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -25688,6 +26510,105 @@
       "title": "publication.json"
     },
     {
+      "path": "site/retained/article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292/systemic-response.webp",
+      "kind": "file",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "systemic-response.webp"
+    },
+    {
+      "path": "site/retained/article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg",
+      "kind": "file",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "writing-fallback.svg"
+    },
+    {
+      "path": "site/retained/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3/imbalance-loop.webp",
+      "kind": "file",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "imbalance-loop.webp"
+    },
+    {
+      "path": "site/retained/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c/reading.pdf",
+      "kind": "file",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reading.pdf"
+    },
+    {
+      "path": "site/retained/article-media/79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6/review-functions.webp",
+      "kind": "file",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "review-functions.webp"
+    },
+    {
+      "path": "site/retained/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry.webp",
+      "kind": "file",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "asymmetry.webp"
+    },
+    {
+      "path": "site/retained/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1/workstream-system.webp",
+      "kind": "file",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "workstream-system.webp"
+    },
+    {
+      "path": "site/retained/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f/hero-web.jpg",
+      "kind": "file",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "hero-web.jpg"
+    },
+    {
+      "path": "site/retained/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684/the-sdlc-is-out-of-balance.html",
+      "kind": "file",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "the-sdlc-is-out-of-balance.html"
+    },
+    {
       "path": "site/retained/manifest.json",
       "kind": "file",
       "purpose": "Verified imported prior-public manifest generated by tools/site/retain.cjs; preserve exact retained byte identities.",
@@ -25807,6 +26728,61 @@
         "AGENTS.md"
       ],
       "title": "analytics.js"
+    },
+    {
+      "path": "site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/archive.js",
+      "kind": "file",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "archive.js"
+    },
+    {
+      "path": "site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/navigation.js",
+      "kind": "file",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "navigation.js"
+    },
+    {
+      "path": "site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/space.js",
+      "kind": "file",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "space.js"
+    },
+    {
+      "path": "site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/styles.css",
+      "kind": "file",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "styles.css"
+    },
+    {
+      "path": "site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/theme.js",
+      "kind": "file",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "theme.js"
     },
     {
       "path": "site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/archive.js",
@@ -30739,9 +31715,9 @@
       ]
     },
     {
-      "path": "docs/article-snapshots/21f1e97116d30f37432f199896fff4728d44722db399e7737f86314e39d2c570",
+      "path": "docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684",
       "kind": "directory",
-      "purpose": "Generated native article, immutable media or snapshot.",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -30849,6 +31825,16 @@
       ]
     },
     {
+      "path": "docs/snapshots/03ec7ce6771149e12b3b90ec5c2f58b3b91a75ea3405289be49ace7b71741bca",
+      "kind": "directory",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2",
       "kind": "directory",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
@@ -30869,29 +31855,19 @@
       ]
     },
     {
-      "path": "docs/snapshots/4cf95bbc4065732f2145d6a52d212cf5bcf473f778858e34b2a67ce7415f0e21",
-      "kind": "directory",
-      "purpose": "Generated native article, immutable media or snapshot.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/536181bf124ff1c32030e477b1a41f3300012c9884cfc5b66086104abdb45513",
-      "kind": "directory",
-      "purpose": "Generated native article, immutable media or snapshot.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
       "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347",
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/597878c2f446798f8b77600f6a9421540aa56ba1b994156bb70cbd2e5f8b2132",
+      "kind": "directory",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -30919,9 +31895,19 @@
       ]
     },
     {
-      "path": "docs/snapshots/6a2575df0c92bf53d7292668aa31fe0825f851a50859993c6b896161f91334e7",
+      "path": "docs/snapshots/692098d982e702276971275ef0dd72d7d43d6072fcfa38d44fd08c0a14540dbc",
       "kind": "directory",
-      "purpose": "Generated native article, immutable media or snapshot.",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/781f9f96503b5b9bb45e91523055ee944aba3dbb5919bcb872e7b65e3d567907",
+      "kind": "directory",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -30952,6 +31938,16 @@
       "path": "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68",
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/8bf0360fb634dc7d1130e1cbdeb199b2c413bb75a64eb46e9503410d0fe4a90e",
+      "kind": "directory",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -31022,26 +32018,6 @@
       "path": "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647",
       "kind": "directory",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/d5c5bf9bd5c2e88016f45292ed58595a1d7ee1d1f702f2e74efc666068a3c6eb",
-      "kind": "directory",
-      "purpose": "Generated native article, immutable media or snapshot.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/fec1b7ae82d606379afd7af75629b0ae3ddce142a7683be9c85796fbcc61083c",
-      "kind": "directory",
-      "purpose": "Generated native article, immutable media or snapshot.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -31254,6 +32230,16 @@
       "purpose": "Source-bound native R3 integration, review and release evidence under issue169.",
       "role": "history",
       "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-169/native-reviews/correction",
+      "kind": "directory",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
       "instructions": [
         "AGENTS.md"
       ]
@@ -32399,6 +33385,116 @@
       ]
     },
     {
+      "path": "site/retained/article-media",
+      "kind": "directory",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/retained/article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292",
+      "kind": "directory",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/retained/article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16",
+      "kind": "directory",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/retained/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3",
+      "kind": "directory",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/retained/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c",
+      "kind": "directory",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/retained/article-media/79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6",
+      "kind": "directory",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/retained/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f",
+      "kind": "directory",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/retained/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1",
+      "kind": "directory",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/retained/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f",
+      "kind": "directory",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/retained/article-snapshots",
+      "kind": "directory",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/retained/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684",
+      "kind": "directory",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "site/retained/media",
       "kind": "directory",
       "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
@@ -32442,6 +33538,16 @@
       "path": "site/retained/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff",
       "kind": "directory",
       "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
+      "role": "history",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee",
+      "kind": "directory",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
       "role": "history",
       "owner": "site/README.md",
       "instructions": [

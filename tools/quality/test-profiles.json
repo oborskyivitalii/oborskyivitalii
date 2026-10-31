@@ -372,7 +372,8 @@
         "LICENSE-CONTENT.md",
         "NOTICE.md",
         "tools/site/legal.cjs",
-        "tools/quality/analytics-isolation.cjs"
+        "tools/quality/analytics-isolation.cjs",
+        "tests/fixtures/catalog.cjs"
       ]
     },
     {
@@ -588,6 +589,7 @@
       "disposition": "retain enduring edition/semantic failure checks; issue41 positioning removes stale visible unknown-language assertions, adds catalog-count mutation coverage and exact successor amendment negatives; no new browser/performance suite; same-issue sitecase layers exact About/Credits restoration and extends existing claim/evidence-link negatives rather than adding a new suite; #7/#39 reverses only the exact approved Credits legal fragments/full texts and three wrapping declarations, retaining historical baseline and all unrelated source/SEO negatives",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
+        "review/issue-169/writing-carrier.json",
         "tests/executive.test.cjs",
         "tools/check_site_seo.cjs",
         "tools/quality/format-parity.py",
@@ -977,7 +979,8 @@
         "NOTICE.md",
         "tools/site/legal.cjs",
         "site/engine/styles.css",
-        "docs/styles.css"
+        "docs/styles.css",
+        "tests/fixtures/catalog.cjs"
       ]
     },
     {
@@ -1590,7 +1593,8 @@
         "LICENSE-CODE.md",
         "LICENSE-CONTENT.md",
         "NOTICE.md",
-        "tools/site/legal.cjs"
+        "tools/site/legal.cjs",
+        "tests/fixtures/catalog.cjs"
       ]
     },
     {
@@ -1780,6 +1784,7 @@
       "disposition": "extend existing permanent behavior with staged-source admission and wrong-source/tree/attempt/report/edition/artifact negatives; preserve historical full verification and compensation; no new suite or staging case removal",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
+        "tests/fixtures/article-flight.cjs",
         "tests/release-controller.test.cjs",
         "tools/release/**",
         "tools/pages/**",
@@ -1973,7 +1978,8 @@
         "site/engine/navigation.js",
         "site/engine/scroll-entry.cjs",
         "site/engine/reading-surfaces.css",
-        "site/templates/**"
+        "site/templates/**",
+        "tests/fixtures/catalog.cjs"
       ],
       "content": true
     },
@@ -2104,7 +2110,8 @@
         "tools/site/articles.cjs",
         "site/engine/navigation.js",
         "site/publications/**",
-        "site/templates/**"
+        "site/templates/**",
+        "tests/fixtures/catalog.cjs"
       ]
     },
     {
@@ -2172,7 +2179,8 @@
         "site/assets/publications/**",
         "site/templates/**",
         "site/engine/navigation.js",
-        "site/article-template-preview.json"
+        "site/article-template-preview.json",
+        "tests/fixtures/catalog.cjs"
       ]
     },
     {
@@ -2216,7 +2224,8 @@
         "site/publications/**",
         "site/templates/**",
         "tools/site/public-artifact.cjs",
-        "tools/quality/content-fixture.cjs"
+        "tools/quality/content-fixture.cjs",
+        "tests/fixtures/catalog.cjs"
       ],
       "content": true
     },
@@ -2421,7 +2430,8 @@
         "tools/staging/color.cjs",
         "tools/quality/budgets.json",
         "tools/quality/common.cjs",
-        "tools/quality/color-motion-contract.cjs"
+        "tools/quality/color-motion-contract.cjs",
+        "tests/fixtures/catalog.cjs"
       ]
     },
     {
@@ -2591,7 +2601,8 @@
         ".github/workflows/site-color-review.yml",
         ".github/workflows/site-release-checks.yml",
         ".github/workflows/site-release-candidate.yml",
-        ".github/workflows/site-production.yml"
+        ".github/workflows/site-production.yml",
+        "tests/fixtures/article-flight.cjs"
       ],
       "content": true
     },

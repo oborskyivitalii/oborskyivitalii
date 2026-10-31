@@ -12535,78 +12535,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/21f1e97116d30f37432f199896fff4728d44722db399e7737f86314e39d2c570": {
-      "kind": "directory",
-      "purpose": "Generated native article, immutable media or snapshot.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/21f1e97116d30f37432f199896fff4728d44722db399e7737f86314e39d2c570/the-sdlc-is-out-of-balance.html": {
-      "kind": "file",
-      "purpose": "Generated native article, immutable media or snapshot.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/4cf95bbc4065732f2145d6a52d212cf5bcf473f778858e34b2a67ce7415f0e21": {
-      "kind": "directory",
-      "purpose": "Generated native article, immutable media or snapshot.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/4cf95bbc4065732f2145d6a52d212cf5bcf473f778858e34b2a67ce7415f0e21/research.html": {
-      "kind": "file",
-      "purpose": "Generated native article, immutable media or snapshot.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/536181bf124ff1c32030e477b1a41f3300012c9884cfc5b66086104abdb45513": {
-      "kind": "directory",
-      "purpose": "Generated native article, immutable media or snapshot.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/536181bf124ff1c32030e477b1a41f3300012c9884cfc5b66086104abdb45513/index.html": {
-      "kind": "file",
-      "purpose": "Generated native article, immutable media or snapshot.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/6a2575df0c92bf53d7292668aa31fe0825f851a50859993c6b896161f91334e7": {
-      "kind": "directory",
-      "purpose": "Generated native article, immutable media or snapshot.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/6a2575df0c92bf53d7292668aa31fe0825f851a50859993c6b896161f91334e7/credits.html": {
-      "kind": "file",
-      "purpose": "Generated native article, immutable media or snapshot.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/d5c5bf9bd5c2e88016f45292ed58595a1d7ee1d1f702f2e74efc666068a3c6eb": {
-      "kind": "directory",
-      "purpose": "Generated native article, immutable media or snapshot.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/d5c5bf9bd5c2e88016f45292ed58595a1d7ee1d1f702f2e74efc666068a3c6eb/writing.html": {
-      "kind": "file",
-      "purpose": "Generated native article, immutable media or snapshot.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/fec1b7ae82d606379afd7af75629b0ae3ddce142a7683be9c85796fbcc61083c": {
-      "kind": "directory",
-      "purpose": "Generated native article, immutable media or snapshot.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/fec1b7ae82d606379afd7af75629b0ae3ddce142a7683be9c85796fbcc61083c/talks.html": {
-      "kind": "file",
-      "purpose": "Generated native article, immutable media or snapshot.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "review/issue-169/native-check-allocation.md": {
       "kind": "file",
       "purpose": "Issue169 native integration review and acceptance evidence.",
@@ -12678,6 +12606,522 @@
       "purpose": "Preserved first native four-role prepared source packet identity before fixture corrections.",
       "role": "history",
       "owner": "AGENTS.md"
+    },
+    "review/issue-169/correction-affected.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/failed-source-run.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/failed-source-run.tap.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/writing-carrier.json": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction": {
+      "kind": "directory",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/archive-correction.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/carrier-guard-negative.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/correction-code-clean.md": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/correction-code.md": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/correction-exploratory.md": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/correction-intent.md": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/correction-packet-v2.json": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/correction-packet.json": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/correction-registry-current.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/correction-requirements-clean.md": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/correction-requirements.md": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/correction-review-v2.diff": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/correction-review.diff": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/correction-whitebox-delta.md": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/correction-whitebox.md": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/correction-whitebox.raw.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/execution-receipts.json": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/exploratory-predecessor.md": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684": {
+      "kind": "directory",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684/the-sdlc-is-out-of-balance.html": {
+      "kind": "file",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/03ec7ce6771149e12b3b90ec5c2f58b3b91a75ea3405289be49ace7b71741bca": {
+      "kind": "directory",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/03ec7ce6771149e12b3b90ec5c2f58b3b91a75ea3405289be49ace7b71741bca/research.html": {
+      "kind": "file",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/597878c2f446798f8b77600f6a9421540aa56ba1b994156bb70cbd2e5f8b2132": {
+      "kind": "directory",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/597878c2f446798f8b77600f6a9421540aa56ba1b994156bb70cbd2e5f8b2132/credits.html": {
+      "kind": "file",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/692098d982e702276971275ef0dd72d7d43d6072fcfa38d44fd08c0a14540dbc": {
+      "kind": "directory",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/692098d982e702276971275ef0dd72d7d43d6072fcfa38d44fd08c0a14540dbc/writing.html": {
+      "kind": "file",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/781f9f96503b5b9bb45e91523055ee944aba3dbb5919bcb872e7b65e3d567907": {
+      "kind": "directory",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/781f9f96503b5b9bb45e91523055ee944aba3dbb5919bcb872e7b65e3d567907/index.html": {
+      "kind": "file",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/8bf0360fb634dc7d1130e1cbdeb199b2c413bb75a64eb46e9503410d0fe4a90e": {
+      "kind": "directory",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/8bf0360fb634dc7d1130e1cbdeb199b2c413bb75a64eb46e9503410d0fe4a90e/talks.html": {
+      "kind": "file",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "review/issue-169/native-reviews/correction/checksum-proof-script.py.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/checksum-proposals.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/checksum-scan.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/color-production-identity.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/controller-correction-final.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/controller-correction-four.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/controller-fixture-final.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/correction-whitebox-controller.md": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/correction-whitebox-final-delta.md": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/correction-whitebox-v3.md": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/intermediate-raw-snapshots.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/media-retention-four.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/retained-article-closure.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/retained-final-snapshot.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/retention-adapter-guard.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/retention-final-targeted.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/retention-final-verified.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "site/retained/article-media": {
+      "kind": "directory",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292": {
+      "kind": "directory",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292/systemic-response.webp": {
+      "kind": "file",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16": {
+      "kind": "directory",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg": {
+      "kind": "file",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3": {
+      "kind": "directory",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3/imbalance-loop.webp": {
+      "kind": "file",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c": {
+      "kind": "directory",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c/reading.pdf": {
+      "kind": "file",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-media/79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6": {
+      "kind": "directory",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-media/79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6/review-functions.webp": {
+      "kind": "file",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f": {
+      "kind": "directory",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry.webp": {
+      "kind": "file",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1": {
+      "kind": "directory",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1/workstream-system.webp": {
+      "kind": "file",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f": {
+      "kind": "directory",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f/hero-web.jpg": {
+      "kind": "file",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-snapshots": {
+      "kind": "directory",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684": {
+      "kind": "directory",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684/the-sdlc-is-out-of-balance.html": {
+      "kind": "file",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee": {
+      "kind": "directory",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/archive.js": {
+      "kind": "file",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/navigation.js": {
+      "kind": "file",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/space.js": {
+      "kind": "file",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/styles.css": {
+      "kind": "file",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/theme.js": {
+      "kind": "file",
+      "purpose": "Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "review/issue-169/native-reviews/correction/catalogue-tuple-tests.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 independent source-bound correction review and actual targeted scanner/retention evidence; broader release gates separate.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/correction-whitebox-data-cleanup.md": {
+      "kind": "file",
+      "purpose": "Issue169 independent source-bound correction review and actual targeted scanner/retention evidence; broader release gates separate.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/correction-whitebox-scanner-guard.md": {
+      "kind": "file",
+      "purpose": "Issue169 independent source-bound correction review and actual targeted scanner/retention evidence; broader release gates separate.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/code-ledger-review.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact independent correction/data review, retained primary diagnostic evidence and deterministic formatter parity; no release acceptance implied.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/ledger-before-format.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact independent correction/data review, retained primary diagnostic evidence and deterministic formatter parity; no release acceptance implied.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/ledger-format-parity.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact independent correction/data review, retained primary diagnostic evidence and deterministic formatter parity; no release acceptance implied.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/requirements-ledger-review.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact independent correction/data review, retained primary diagnostic evidence and deterministic formatter parity; no release acceptance implied.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/whitebox-ledger-review.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact independent correction/data review, retained primary diagnostic evidence and deterministic formatter parity; no release acceptance implied.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

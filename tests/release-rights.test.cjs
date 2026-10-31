@@ -48,6 +48,7 @@ function fixture(t) {
       recursive: true,
     });
   }
+  require('./fixtures/catalog.cjs').isolatePublicationCatalog(sourceRoot, root);
   builder.build({ root: sourceRoot, output: publicDirectory, all: true });
   const record = () => ({
     sourceCommit: 'a'.repeat(40),
@@ -164,7 +165,15 @@ test('rights inventory covers actual current and retained bytes without granting
     Object.keys(report.files)
       .filter((name) => report.files[name].retained)
       .sort(),
-    Object.keys(source.manifest.retained).sort()
+    Object.keys(source.manifest.retained)
+      .filter(
+        (name) =>
+          !Object.values(
+            require('../tools/site/snapshot.cjs').verify(source.publicDirectory, source.record())
+              .routes
+          ).some((route) => (route.assets || []).includes(name))
+      )
+      .sort()
   );
   assert.equal(Object.keys(report.linkedPublications).length, 29);
   assert.equal(Object.keys(report.linkedDiscussions).length, 3);
@@ -438,14 +447,49 @@ test('publication records bind staging and production editions without granting 
     const report = rights.readPublication(source.directory, source.record);
     assert.equal(rights.publication(source.record, report), true);
     assert.equal(report.approvalPass, false);
-    assert.equal(report.materials.hostedEditions.length, 0);
-    assert.equal(report.materials.linkedEditionCount, 46);
-    assert.equal(Object.keys(report.linkedPublications).length, 29);
+    const catalog = require('../site/content/catalog.json');
+    assert.equal(
+      report.materials.hostedEditions.length,
+      Object.values(catalog.records).filter((record) => record.kind === 'local-article').length
+    );
+    assert.equal(
+      report.materials.linkedEditionCount,
+      Object.values(catalog.records).reduce(
+        (total, record) => total + 1 + record.editions.length,
+        0
+      )
+    );
+    assert.equal(
+      Object.keys(report.linkedPublications).length,
+      Object.keys(catalog.records).length
+    );
     const retained = JSON.parse(
       fs.readFileSync(path.join(source.directory + '-rights-source', 'site/retained/manifest.json'))
     );
+    const current = require('../tools/site/snapshot.cjs').verify(
+      path.join(source.directory, 'public'),
+      source.record
+    );
+    const activeResources = new Set([
+      ...Object.values(current.articles || {}).flatMap((article) => [
+        article.alias,
+        article.url,
+        ...article.assets,
+      ]),
+      ...Object.values(current.routes).flatMap((route) => route.assets || []),
+    ]);
+    for (const name of activeResources) {
+      assert.ok(report.files[name], 'active source-validated resource remains public');
+      assert.equal(
+        report.files[name].retained,
+        false,
+        'active resource keeps current-source classification'
+      );
+    }
     const expectedRetained = Object.keys(retained.files).filter(
-      (name) => source.record.edition.id !== 'staging' || name.startsWith('media/')
+      (name) =>
+        !activeResources.has(name) &&
+        (source.record.edition.id !== 'staging' || /^(?:media|article-media)\//.test(name))
     );
     assert.deepEqual(
       Object.keys(report.files)

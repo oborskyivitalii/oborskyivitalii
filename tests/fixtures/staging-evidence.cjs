@@ -724,9 +724,9 @@ function aggregateFixture(color = false) {
     sourceChecks: 'success',
   };
 }
-function contentFixture(f = aggregateFixture(false)) {
+function contentFixture(f = aggregateFixture(false), { articles = {}, media = [] } = {}) {
   const content = require('../../tools/quality/content-gate.cjs');
-  f.manifest.components.articles = {};
+  f.manifest.components.articles = articles;
   f.manifest.contentRelease = {
     schema: 1,
     kind: 'content-release',
@@ -735,7 +735,7 @@ function contentFixture(f = aggregateFixture(false)) {
     builtRoutes: ['talks'],
     reusedRoutes: ['index', 'research', 'writing', 'credits'],
     builtArticles: [],
-    reusedArticles: [],
+    reusedArticles: Object.keys(articles).sort(),
     platformFiles: Object.fromEntries(
       ['a.js', 'b.js', 'c.js', 'd.js', 'e.js', 'styles.css'].map((name) => [name, 'f'.repeat(64)])
     ),
@@ -787,8 +787,14 @@ function contentFixture(f = aggregateFixture(false)) {
     elapsedMs: 1,
     policy: content.policy,
     platformRegression: 'inherited; not rerun',
-    articles: undefined,
-    media: [],
+    articles: Object.keys(articles).length
+      ? require('./article-flight.cjs').currentJourney(
+          articles,
+          f.manifest.components.engine,
+          f.hostedURL
+        )
+      : undefined,
+    media,
     rows: content.cases(f.manifest).map((selected) => ({
       ...selected,
       pass: true,

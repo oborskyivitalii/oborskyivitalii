@@ -477,6 +477,10 @@ function secretReviewPath(file) {
   }
   return file.split('/').every((part) => part && part !== '.' && part !== '..');
 }
+// One exact public immutable-directory literal; its source/hash proof is retained
+// under issue169. Other catalogue/Base64 findings retain the existing refusal.
+const reviewedCataloguePath =
+  '.github/repository-paths.json:Base64 High Entropy String:41ceb5699f64d5bfeaccc5850d0cf398a19b10c9';
 function secretReviewEntry(entry, file) {
   const checksumOnly = file === secretReviewInputs[2];
   const rules = checksumOnly
@@ -487,6 +491,8 @@ function secretReviewEntry(entry, file) {
   if (file === secretReviewInputs[3] && entry?.path === 'tools/publishing/toolchain/licenses.json')
     rules.push('Base64 High Entropy String');
   if (file === secretReviewInputs[2] && entry?.path === 'tools/quality/browser-archives.json')
+    rules.push('Base64 High Entropy String');
+  if (file === secretReviewInputs[2] && entry?.id === reviewedCataloguePath)
     rules.push('Base64 High Entropy String');
   if (
     !entry ||
@@ -656,14 +662,16 @@ function reviewedSecretFinding(
   publicationIntegrities = new Set(),
   browserIntegrities = new Set()
 ) {
-  const reviewedValue = reviewed.has([file, finding.type, finding.hashed_secret].join(':'));
+  const key = [file, finding.type, finding.hashed_secret].join(':');
+  const reviewedValue = reviewed.has(key);
   if (finding.type !== 'Base64 High Entropy String') return reviewedValue;
   return (
     reviewedValue &&
     ((file === 'tools/publishing/toolchain/licenses.json' &&
       publicationIntegrities.has(finding.hashed_secret)) ||
       (file === 'tools/quality/browser-archives.json' &&
-        browserIntegrities.has(finding.hashed_secret)))
+        browserIntegrities.has(finding.hashed_secret)) ||
+      key === reviewedCataloguePath)
   );
 }
 function lint() {

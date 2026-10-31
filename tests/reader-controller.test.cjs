@@ -52,7 +52,7 @@ function fixture(t) {
     contentEdition: 'fixture',
     sourceSha256: artifact.digest('controlled manuscript'),
     semanticSha256: artifact.digest('controlled semantic edition'),
-    assets: [image, download],
+    assets: [...(revision.routes.writing.assets || []), image, download],
     downloads: [download],
     version,
   };
@@ -77,7 +77,7 @@ function fixture(t) {
   article.sha256 = artifact.digest(immutableHtml);
   put(article.alias, html);
   put(article.url, immutableHtml);
-  revision.articles = { 'probe:en': article };
+  revision.articles = { ...revision.articles, 'probe:en': article };
   put('site-revision.json', JSON.stringify(revision));
   const source = {
     schema: 1,
@@ -109,8 +109,8 @@ test('new article closure is validated while legacy principal documents retain t
   assert.deepEqual(snapshot.verify(f.publicDir, f.source), f.revision);
   assert.equal(artifact.verify(f.publicDir, f.source), true);
   const size = artifact.checkSize(f.publicDir);
-  assert.equal(size.articleRows.length, 1);
-  assert.deepEqual(size.articleRows[0].downloads, [f.download]);
+  assert.equal(size.articleRows.length, Object.keys(f.revision.articles).length);
+  assert.deepEqual(size.articleRows.find((row) => row.key === 'probe:en').downloads, [f.download]);
   assert.equal(artifact.validateArticleSizes(size, f.source), true);
   for (const route of snapshot.routes)
     assert.deepEqual(

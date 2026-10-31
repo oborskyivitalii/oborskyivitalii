@@ -120,6 +120,9 @@ function build(directory, variant = 'base') {
   return edition.build(directory, {
     edition: { id: 'production', indexable: true, origin },
     css: '',
+    retained: require('../site/edition-retention.cjs').declaration(
+      JSON.parse(fs.readFileSync(path.join(__dirname, '../../site/retained/manifest.json')))
+    ),
     inputs: { origin, robots, sitemap: productionSitemap, notFound, social },
     render: (html, id) => render(html, id, articles),
     files: { 'robots.txt': robots, 'sitemap.xml': productionSitemap, '404.html': notFound },

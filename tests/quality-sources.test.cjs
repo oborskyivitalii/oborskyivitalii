@@ -790,6 +790,43 @@ function secretReviewFixture() {
   return { directory, files, reviews, write, entry };
 }
 
+test('one known public catalogue path requires its exact reviewed tuple', () => {
+  const { loadSecretReviews, reviewedSecretFinding } = require('../tools/quality/scanners.cjs');
+  const f = secretReviewFixture();
+  try {
+    const entry = f.entry(
+      '.github/repository-paths.json',
+      'Base64 High Entropy String',
+      '41ceb5699f64d5bfeaccc5850d0cf398a19b10c9'
+    );
+    const finding = { type: entry.rule, hashed_secret: entry.id.slice(-40) };
+    assert.equal(reviewedSecretFinding(entry.path, finding, new Map()), false);
+    f.reviews[2].findings = [entry];
+    f.write(2);
+    const reviewed = loadSecretReviews(f.directory);
+    assert.equal(reviewedSecretFinding(entry.path, finding, reviewed), true);
+    assert.equal(reviewedSecretFinding('other/catalogue.json', finding, reviewed), false);
+    assert.equal(
+      reviewedSecretFinding(entry.path, { ...finding, hashed_secret: 'a'.repeat(40) }, reviewed),
+      false
+    );
+    assert.equal(
+      reviewedSecretFinding(entry.path, { ...finding, type: 'Hex High Entropy String' }, reviewed),
+      false
+    );
+    for (const bad of [
+      f.entry(entry.path, entry.rule, 'a'.repeat(40)),
+      f.entry('other/catalogue.json', entry.rule, finding.hashed_secret),
+    ]) {
+      f.reviews[2].findings = [bad];
+      f.write(2);
+      assert.throws(() => loadSecretReviews(f.directory), /Invalid exact secret review entry/);
+    }
+  } finally {
+    fs.rmSync(f.directory, { recursive: true, force: true });
+  }
+});
+
 test('closed secret ledgers admit only exact reviewed path, rule and hashed value', () => {
   const { loadSecretReviews, reviewedSecretFinding } = require('../tools/quality/scanners.cjs');
   const f = secretReviewFixture();

@@ -98,7 +98,10 @@ function build(directory, descriptor) {
     .map((name) => [name, fs.readFileSync(path.join(publicDir, name))]);
   // Staging has its own noindex/badge/analytics isolation contract for every
   // served HTML file. Prior public editions are retained only for production.
-  const retained = descriptor.edition.id === 'staging' ? [] : retention.capture(publicDir, base);
+  const retained =
+    descriptor.edition.id === 'staging'
+      ? []
+      : retention.capture(publicDir, base, { declared: descriptor.retained });
   fs.rmSync(path.join(publicDir, 'runtime'), { recursive: true });
   fs.rmSync(path.join(publicDir, 'snapshots'), { recursive: true });
   fs.rmSync(path.join(publicDir, 'article-snapshots'), { recursive: true, force: true });

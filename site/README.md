@@ -308,7 +308,7 @@ Principal-section trips retain corridor travel. One lifecycle owns timing,
 interruption, the original orbit-return anchor and motion/native fallbacks.
 The supported axis/pivot and enclosing radius are validated with the scene inputs.
 
-Article documents reference the canonical Writing fallback through one generated,
+The Writing room and article documents reference the canonical Writing fallback through one generated,
 content-addressed `article-media/<sha256>/writing-fallback.svg` group. The scene
 geometry and theme paint remain single-owned. Size reports include this resource
 and its instantiated SVG nodes. Standalone exports verify and inline its passive

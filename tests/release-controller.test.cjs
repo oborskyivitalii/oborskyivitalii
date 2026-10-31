@@ -510,7 +510,14 @@ test('explicit production Color preserves approved runtime and rejects a differe
   assert.equal(edition.verify(source.directory, source.record), true);
   assert.equal(
     require('../tools/quality/color-motion-contract.cjs').select(source.record).id,
-    'issue159-reading-paths-production'
+    'issue169-sdlc-production'
+  );
+  assert.equal(
+    require('../tools/quality/color-motion-contract.cjs').reviewedRuntime(
+      'issue159-reading-paths-production'
+    ).variant.fingerprint,
+    'e1464b7e62dbe36fc425b37f1ba9a81a8342c8e0899dd2a0ddd8b1e66ffc2a90',
+    'previous production identity remains exact'
   );
   assert.notEqual(source.record.variant.fingerprint, color.variant.fingerprint);
   for (const name of require('../tools/site/snapshot.cjs').runtimeFiles)
@@ -1370,8 +1377,33 @@ async function stagedProductionFixture(t, { content = false } = {}) {
     controlled.performanceReport(manifest),
     controlled.colorReport(manifest),
   ];
+  // Controlled validator inputs follow actual selected documents; no browser ran.
+  input.reports.find((row) => row.kind === 'stage-functional').articles = Object.keys(
+    manifest.components.articles || {}
+  ).length
+    ? require('./fixtures/article-flight.cjs').currentJourney(
+        manifest.components.articles,
+        manifest.components.engine,
+        input.hostedURL
+      )
+    : undefined;
   if (content) {
-    controlled.contentFixture(input);
+    const media = require('../tools/site/articles.cjs')
+      .select(path.resolve(__dirname, '..'), [], require('../site/content/catalog.json'))
+      .flatMap((article) => article.assets)
+      .filter((asset) => /^image\//.test(asset.mime))
+      .map((asset) => ({
+        file: asset.url,
+        status: 200,
+        pass: true,
+        sha256: manifest.files[asset.url].sha256,
+        width: asset.width,
+        height: asset.height,
+      }));
+    controlled.contentFixture(input, {
+      articles: structuredClone(manifest.components.articles || {}),
+      media,
+    });
     source.record.contentRelease = structuredClone(manifest.contentRelease);
     fs.writeFileSync(path.join(source.directory, 'artifact.json'), JSON.stringify(source.record));
     fs.writeFileSync(path.join(tested.directory, 'artifact.json'), JSON.stringify(manifest));

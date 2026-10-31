@@ -302,7 +302,13 @@ function hostedInventory(publicDirectory, sourceRoot, record, manifest) {
     const svg = readSource(publicDirectory, 'writing.html')
       .toString()
       .match(/<svg class="space-fallback"[\s\S]*?<\/svg>/)?.[0];
-    const fallback = require('../site/fallback.cjs').articleResource(svg || '');
+    const renderer = require('../site/fallback.cjs');
+    const writing =
+      record.components?.routes?.writing || snapshot.verify(publicDirectory, record).routes.writing;
+    const resolved = renderer.resolveRouteResource(svg || '', 'writing', writing.assets, (name) =>
+      readSource(publicDirectory, name)
+    );
+    const fallback = renderer.articleResource(resolved?.html || svg || '');
     assert.deepEqual(
       readSource(publicDirectory, fallback.name),
       fallback.bytes,
@@ -400,7 +406,10 @@ function compile(publicDirectory, record, options = {}) {
   for (const name of Object.keys(manifest.retained)) {
     // Staging intentionally excludes prior HTML/runtime editions. Their media
     // remain unchanged; production retains the complete historical closure.
-    const excluded = record.edition?.id === 'staging' && !name.startsWith('media/');
+    const excluded =
+      record.edition?.id === 'staging' &&
+      !/^(?:media|article-media)\//.test(name) &&
+      !Object.hasOwn(generatedFiles, name);
     assert.equal(
       Object.hasOwn(files, name),
       !excluded,

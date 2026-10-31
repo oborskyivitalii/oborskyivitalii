@@ -212,8 +212,96 @@ const researchCarrierInputs = [
   'tools/site/offline.cjs',
   'tools/site/snapshot.cjs',
 ];
+const writingCarrier = JSON.parse(
+  fs.readFileSync(path.join(root, 'review/issue-169/writing-carrier.json'), 'utf8')
+);
 
-function verifyResearchCarrier(projectRoot = root, record = issue159.researchCarrier) {
+function verifyCarrierRecord(successor) {
+  assert.equal(successor.schema, 1, 'Writing carrier schema');
+  assert.equal(successor.issue, 169, 'Writing carrier owner');
+  assert.equal(successor.predecessorSource, 'bd70996a386665e14f87440653e3a107fed15e43');
+  assert.deepEqual(Object.keys(successor.producerChanges).sort(), [
+    'tools/site/build.cjs',
+    'tools/site/fallback.cjs',
+  ]);
+}
+
+function carrierProducer(name, binding, successor) {
+  verifyCarrierRecord(successor);
+  const change = successor.producerChanges[name];
+  if (!change) return binding.afterSHA256;
+  assert.equal(change.beforeSHA256, binding.afterSHA256, 'Writing carrier predecessor producer');
+  const before = cp.execFileSync('git', ['show', successor.predecessorSource + ':' + name], {
+    cwd: root,
+  });
+  assert.equal(crypto.createHash('sha256').update(before).digest('hex'), change.beforeSHA256);
+  assert.match(change.afterSHA256, /^[a-f0-9]{64}$/);
+  return change.afterSHA256;
+}
+
+function verifyWritingCarrier(projectRoot = root, record = writingCarrier) {
+  verifyCarrierRecord(record);
+  for (const name of Object.keys(record.producerChanges)) {
+    assert.equal(
+      crypto.createHash('sha256').update(homeSourceFile(projectRoot, name)).digest('hex'),
+      carrierProducer(name, issue159.researchCarrier.producerChanges[name], record),
+      'Writing carrier producer bytes'
+    );
+  }
+  const previous = cp.execFileSync(
+    'git',
+    ['show', record.predecessorSource + ':docs/writing.html'],
+    {
+      cwd: root,
+      encoding: 'utf8',
+    }
+  );
+  const svg = previous.match(/<svg class="space-fallback"[\s\S]*?<\/svg>/)?.[0];
+  assert.ok(svg, 'Writing predecessor geometry');
+  assert.equal(crypto.createHash('sha256').update(svg).digest('hex'), record.acceptedSvgSHA256);
+  const builder = require('./site/build.cjs');
+  const fallback = require('./site/fallback.cjs');
+  assert.equal(
+    fallback.fromModel(
+      builder.model(projectRoot, builder.configuration(projectRoot).definitions),
+      'writing'
+    ),
+    svg,
+    'Writing geometry is unchanged'
+  );
+  const resource = fallback.routeResource(svg, 'writing');
+  assert.equal(resource.name, record.resource, 'Writing carrier identity');
+  assert.deepEqual(fs.readFileSync(path.join(projectRoot, 'docs', resource.name)), resource.bytes);
+  const revision = JSON.parse(fs.readFileSync(path.join(projectRoot, 'docs/site-revision.json')));
+  const route = revision.routes.writing;
+  assert.deepEqual(route.assets, [resource.name]);
+  for (const [name, prefix] of [
+    ['writing.html', ''],
+    [route.url, '../../'],
+  ]) {
+    const html = fs.readFileSync(path.join(projectRoot, 'docs', name), 'utf8');
+    const actual = html.match(/<svg class="space-fallback"[\s\S]*?<\/svg>/)?.[0];
+    assert.ok(actual, 'Writing carrier SVG');
+    assert.equal(
+      fallback.resolveRouteResource(
+        actual,
+        'writing',
+        route.assets,
+        (file) => fs.readFileSync(path.join(projectRoot, 'docs', file)),
+        prefix
+      ).html,
+      svg,
+      'Writing carrier reconstruction'
+    );
+  }
+  return { route: 'writing', resource: resource.name, acceptedSvgSHA256: record.acceptedSvgSHA256 };
+}
+
+function verifyResearchCarrier(
+  projectRoot = root,
+  record = issue159.researchCarrier,
+  successor = writingCarrier
+) {
   assert.equal(record?.schema, 1, 'Research carrier record');
   assert.equal(record.acceptedSource, '6b0248f9fc667d968140fa034278490f22c1480d');
   assert.equal(record.predecessorBaseline, '2072b76e5e970db72122a0fd38fcb25da9a5bd46');
@@ -231,7 +319,7 @@ function verifyResearchCarrier(projectRoot = root, record = issue159.researchCar
     );
     assert.equal(
       crypto.createHash('sha256').update(homeSourceFile(projectRoot, name)).digest('hex'),
-      binding.afterSHA256,
+      carrierProducer(name, binding, successor),
       'Research carrier producer bytes: ' + name
     );
   }
@@ -1151,6 +1239,7 @@ function restore(html, page) {
 }
 function verify() {
   const researchCarrier = verifyResearchCarrier();
+  verifyWritingCarrier();
   const rows = [];
   verifyApprovedLicensingCSS();
   for (const page of ['index', 'research', 'writing', 'talks', 'credits']) {
@@ -1239,6 +1328,7 @@ function verify() {
 if (require.main === module) process.stdout.write(JSON.stringify(verify(), null, 2) + '\n');
 module.exports = {
   verifyResearchCarrier,
+  verifyWritingCarrier,
   createHTMLNormalizer,
   verify,
   restore,

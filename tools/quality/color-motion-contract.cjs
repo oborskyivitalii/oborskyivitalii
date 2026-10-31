@@ -857,6 +857,16 @@ families.issue159ReadingPaths = {
   staging: '3f94169c7d487c7d198c69c9a8b9d0dbd6e54bcbbd2fbdc1ab6abfaba3721897',
   production: 'e1464b7e62dbe36fc425b37f1ba9a81a8342c8e0899dd2a0ddd8b1e66ffc2a90',
 };
+// Issue169 adds a native article sitemap entry. The production edition identity
+// changes; every runtime byte and behavior remains in the reviewed Issue159 family.
+// Plain/staging identities retain their original unique lookups.
+families.issue169Sdlc = {
+  ...families.issue159ReadingPaths,
+  id: 'issue169-sdlc',
+  plain: null,
+  staging: null,
+  production: '40d23525f7ebc10af989936ebfe1382106f11936ed667557d6c3380c9e27da62',
+};
 // Expand only explicitly reviewed editions; an absent edition is never admitted.
 const runtimes = Object.entries(families).flatMap(([family, value]) =>
   ['plain', 'staging', 'production']

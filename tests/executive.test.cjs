@@ -15,6 +15,30 @@ function issue159CopyFixture(t, names) {
   }
   return directory;
 }
+
+test('Writing carrier proof rejects altered source, geometry and resource bindings', () => {
+  const { verifyWritingCarrier } = require('../tools/check_site_seo.cjs');
+  const original = require('../review/issue-169/writing-carrier.json');
+  assert.doesNotThrow(() => verifyWritingCarrier());
+  for (const mutate of [
+    (record) => (record.schema = 999),
+    (record) => (record.issue = 0),
+    (record) => (record.producerChanges = {}),
+    (record) => delete record.producerChanges['tools/site/fallback.cjs'],
+    (record) => (record.predecessorSource = '0'.repeat(40)),
+    (record) => (record.producerChanges['tools/site/build.cjs'].beforeSHA256 = '0'.repeat(64)),
+    (record) => (record.producerChanges['tools/site/build.cjs'].afterSHA256 = '0'.repeat(64)),
+    (record) => (record.acceptedSvgSHA256 = '0'.repeat(64)),
+    (record) =>
+      (record.resource = record.resource.replace('writing-fallback', 'research-fallback')),
+  ]) {
+    const changed = structuredClone(original);
+    mutate(changed);
+    assert.throws(() =>
+      verifyWritingCarrier(require('node:path').resolve(__dirname, '..'), changed)
+    );
+  }
+});
 test('Research carrier reconstructs the accepted scene and rejects unknown producer or geometry identities', (t) => {
   const path = require('node:path');
   const seo = require('../tools/check_site_seo.cjs');
@@ -976,7 +1000,11 @@ test('practical positioning allowances reject unsupported claims, status and con
     ['talks', 'Invited speaker at Corning’s', 'Consulting partner of Corning’s'],
     ['talks', 'internal technical AI workshop', 'validated enterprise AI deployment'],
     ['talks', 'index.html#contact', 'https://unapproved.example/book'],
-    ['writing', '29 articles</p>', '27 articles</p>'],
+    [
+      'writing',
+      `${Object.keys(require('../site/content/catalog.json').records).length} articles</p>`,
+      '0 articles</p>',
+    ],
     ['index', 'credits.html#built-with-ai', 'credits.html#missing-case'],
     ['credits', 'I direct its architecture', 'AI autonomously directs its architecture'],
     [

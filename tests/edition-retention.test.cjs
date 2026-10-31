@@ -52,3 +52,44 @@ test('retention rejects altered immutable paths rather than replacing them', (t)
     /only immutable retained paths/
   );
 });
+
+test('only exact declared active immutable files survive production capture', (t) => {
+  const source = fixture.source(fixture.temporary(t), 'declared-active');
+  const directory = path.join(source.directory, 'public');
+  const revision = snapshot.verify(directory, source.record);
+  const name = revision.routes.writing.url;
+  const digest = artifact.digest(fs.readFileSync(path.join(directory, name)));
+  assert.equal(
+    retention.capture(directory, revision).some((entry) => entry.path === name),
+    false
+  );
+  const selected = retention.capture(directory, revision, { declared: { [name]: digest } });
+  assert.ok(selected.some((entry) => entry.path === name));
+  assert.equal(
+    selected.some((entry) => entry.path === revision.routes.research.url),
+    false,
+    'other active documents stay excluded'
+  );
+  assert.throws(
+    () => retention.capture(directory, revision, { declared: { [name]: '0'.repeat(64) } }),
+    /declared retained bytes differ/
+  );
+  assert.throws(
+    () => retention.capture(directory, revision, { declared: { '../outside.js': digest } }),
+    /immutable path/
+  );
+  assert.throws(() => retention.capture(directory, revision, { declared: [] }), /retention map/);
+});
+
+test('production retention declaration rejects a missing source map before capture', () => {
+  for (const record of [
+    {},
+    { schema: 0, files: {} },
+    { schema: 1 },
+    { schema: 1, files: null },
+    { schema: 1, files: [] },
+  ])
+    assert.throws(() => retention.declaration(record), /retention declaration/);
+  const files = {};
+  assert.equal(retention.declaration({ schema: 1, files }), files);
+});

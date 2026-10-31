@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "issue": 169,
+  "date": "2026-10-31",
+  "predecessorSource": "bd70996a386665e14f87440653e3a107fed15e43",
+  "scope": "Reuse the existing passive immutable Writing SVG carrier for the Writing room without changing geometry, content, runtime or quality budgets. Author accepted article production; independent implementation/hosted/release checks remain separate.",
+  "acceptedSvgSHA256": "943eaad6a4a49f83671d25ae9f9d766e80196f8b25b5aa68173715be5e955874",
+  "resource": "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg",
+  "producerChanges": {
+    "tools/site/build.cjs": {
+      "beforeSHA256": "fce23e9a21e641e829b07e48029ecbbf3b754904376b1fdda4146e7d09c66bde",
+      "afterSHA256": "3d9b80f989008ae487cccf4b38aea630bd4ddf62782a971e7e62142c9fbbc869"
+    },
+    "tools/site/fallback.cjs": {
+      "beforeSHA256": "66822a96b98fa151762dd72e601299c63b4ff57249a7d7134ee55d8ca03969c9",
+      "afterSHA256": "0060c45f858b1669a1ab830c0de6ab4ba8a69d0f8589502bd4f17f8e545161d9"
+    }
+  }
+}

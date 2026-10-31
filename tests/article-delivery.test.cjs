@@ -79,6 +79,7 @@ function mime(file) {
     '.webp': 'image/webp',
     '.jpg': 'image/jpeg',
     '.png': 'image/png',
+    '.pdf': 'application/pdf',
   };
   return types[path.extname(file)] || 'application/octet-stream';
 }
@@ -111,7 +112,10 @@ function transport(directory, prefix = '/', wrongPNG = false, cloudflare = false
 test('article delivery includes a finite separate inventory, immutable document and exact PNG bytes', (t) => {
   const { publicDir, record, article } = fixture(t);
   assert.deepEqual(Object.keys(record.components.routes), snapshot.routes);
-  assert.deepEqual(Object.keys(record.components.articles), [key]);
+  const accepted = Object.values(require('../site/content/catalog.json').records)
+    .filter((row) => row.kind === 'local-article')
+    .map((row) => row.article + ':' + row.edition.inLanguage);
+  assert.deepEqual(Object.keys(record.components.articles).sort(), [...accepted, key].sort());
   assert.equal(record.components.preview, true);
   assert.equal(snapshot.immutable(article.alias), false);
   assert.equal(snapshot.immutable(article.url), true);
@@ -125,16 +129,23 @@ test('article delivery includes a finite separate inventory, immutable document 
 });
 
 test('article fallback preserves exact scene geometry and its resources remain budgeted', (t) => {
-  const { publicDir, article } = fixture(t);
+  const { publicDir, article, record } = fixture(t);
   const fallback = require('../tools/site/fallback.cjs');
   const writing = fs.readFileSync(path.join(publicDir, 'writing.html'), 'utf8');
   const svg = writing.match(/<svg class="space-fallback"[\s\S]*?<\/svg>/)[0];
-  const resource = fallback.articleResource(svg);
+  const resolved = fallback.resolveRouteResource(
+    svg,
+    'writing',
+    record.components.routes.writing.assets,
+    (name) => fs.readFileSync(path.join(publicDir, name))
+  );
+  const inline = resolved?.html || svg;
+  const resource = fallback.articleResource(inline);
   assert.ok(article.assets.includes(resource.name));
   assert.deepEqual(fs.readFileSync(path.join(publicDir, resource.name)), resource.bytes);
   assert.equal(
     fallback.resourceContent(resource.name, resource.bytes),
-    svg.slice(svg.indexOf('>') + 1, -6)
+    inline.slice(inline.indexOf('>') + 1, -6)
   );
   const html = fs.readFileSync(path.join(publicDir, article.alias), 'utf8');
   assert.match(
@@ -277,7 +288,10 @@ test('staging package admits article inventory and enforces immutable PNG/HTML c
     ...artifact.manifest(retainedPublic),
   };
   retainedSource.components = snapshot.verify(retainedPublic, retainedSource);
-  assert.equal(Object.keys(retainedSource.components.articles || {}).length, 0);
+  assert.deepEqual(
+    Object.keys(retainedSource.components.articles || {}).sort(),
+    Object.keys(require('../docs/site-revision.json').articles || {}).sort()
+  );
   assert.equal(snapshot.immutable(retainedPDF), true);
   fs.writeFileSync(path.join(retainedInput, 'artifact.json'), JSON.stringify(retainedSource));
   fs.mkdirSync(path.join(retainedInput, 'gate'));
@@ -315,7 +329,7 @@ test('Pages article documents and PNGs stay inside a project/staging base with n
   const record = pages.build(directory, output, null, null, null, '/project/');
   const base = 'https://author.invalid/project';
   const result = await pagesHTTP.check(output, base, transport(output, '/project/'));
-  assert.equal(result.articleDocuments, 1);
+  assert.equal(result.articleDocuments, Object.keys(stage.components.articles).length);
   assert.equal(result.articleDeepLinks, true);
   assert.deepEqual(pages.subtree(record.files, 'staging/'), stage.files);
   const urls = articleURLs(base + '/staging/', stage.components.articles[key]);

@@ -86,6 +86,20 @@ function verify(directory, record) {
   assert.ok(['base', 'color'].includes(record.components.variant?.id || 'base'));
   const publicDirectory = path.join(directory, 'public');
   artifact.verify(publicDirectory, record, record.artifactDigest);
+  const articles = snapshot.verify(publicDirectory, record).articles || {};
+  assert.deepEqual(
+    record.components.articles || {},
+    articles,
+    'archived article inventory differs'
+  );
+  const articleURLs = Object.keys(articles)
+    .sort()
+    .map((key) => {
+      const article = articles[key];
+      assert.notEqual(article.candidate, true, 'archived candidate article');
+      assert.match(article.alias, /^articles\/[a-z][a-z0-9-]{0,79}\.html$/);
+      return origin + '/' + article.alias;
+    });
   const read = (name) => fs.readFileSync(path.join(publicDirectory, name));
   const tags = socialTags(read('index.html').toString());
   const social = socialDescriptor(tags, record, read);
@@ -95,6 +109,19 @@ function verify(directory, record) {
       assert.match(html, /name="robots" content="index,follow"/);
       assert.ok(html.includes('<link rel="canonical" href="' + routeURL(id) + '">'));
       assert.deepEqual(socialTags(html), tags, 'archived route social metadata differs');
+      assert.doesNotMatch(html, /class="site-environment"|name="robots" content="noindex/);
+    }
+  }
+  for (const [key, article] of Object.entries(articles)) {
+    const canonical = origin + '/' + article.alias;
+    for (const file of [article.alias, article.url]) {
+      const html = read(file).toString();
+      assert.match(html, /name="robots" content="index,follow"/);
+      assert.ok(
+        html.includes('<link rel="canonical" href="' + canonical + '">'),
+        'archived article canonical differs: ' + key
+      );
+      assert.deepEqual(socialTags(html), tags, 'archived article social metadata differs');
       assert.doesNotMatch(html, /class="site-environment"|name="robots" content="noindex/);
     }
   }
@@ -108,7 +135,11 @@ function verify(directory, record) {
       .toString()
       .matchAll(/<loc>([^<]+)<\/loc>/g),
   ].map((match) => match[1]);
-  assert.deepEqual(locations, snapshot.routes.map(routeURL), 'archived sitemap routes differ');
+  assert.deepEqual(
+    locations,
+    [...snapshot.routes.map(routeURL), ...articleURLs],
+    'archived sitemap routes differ'
+  );
   const notFound = read('404.html').toString();
   assert.match(notFound, /name="robots" content="noindex,nofollow"/);
   assert.ok(notFound.includes('href="/"'), 'archived 404 has no home route');

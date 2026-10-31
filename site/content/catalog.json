@@ -1015,11 +1015,7 @@
       }
     }
   },
-  "discussionOrder": [
-    "reddit-agentic-loops",
-    "reddit-delivery-bottlenecks",
-    "reddit-controller"
-  ],
+  "discussionOrder": ["reddit-agentic-loops", "reddit-delivery-bottlenecks", "reddit-controller"],
   "labels": {
     "route.index": "Home",
     "route.research": "Research",
@@ -1047,20 +1043,7 @@
   "archive": {
     "topics": ["delivery", "systems", "leadership", "strategy"],
     "languages": ["en", "uk"],
-    "months": [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec"
-    ],
+    "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     "readingPaths": {
       "delivery": [
         {

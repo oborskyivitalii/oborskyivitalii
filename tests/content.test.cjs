@@ -875,12 +875,28 @@ test('page IDs, ARIA targets, local resources and fragments resolve without draf
   const readResource = (target) => fs.readFileSync(path.join(root, target));
   const resources = assertLocalPageReferences(pages, revision, readResource);
   if (resources.length) {
-    assert.equal(resources.length, 1, 'one active Research resource');
-    assert.deepEqual(resources, revision.routes.research.assets);
-    const [namespace, digest, filename] = resources[0].split('/');
-    assert.equal(namespace, 'article-media');
-    assert.deepEqual(fs.readdirSync(path.join(root, namespace)), [digest]);
-    assert.deepEqual(fs.readdirSync(path.join(root, namespace, digest)), [filename]);
+    assert.deepEqual(
+      resources.sort(),
+      Object.values(revision.routes)
+        .flatMap((route) => route.assets || [])
+        .sort(),
+      'complete declared room resource set'
+    );
+    const retained = require('../site/retained/manifest.json').files;
+    const expectedMedia = [
+      ...new Set([
+        ...resources,
+        ...Object.values(revision.articles || {}).flatMap((article) => article.assets),
+        ...Object.keys(retained).filter((name) => name.startsWith('article-media/')),
+      ]),
+    ].sort();
+    assert.deepEqual(
+      require('../tools/quality/artifact.cjs')
+        .entries(path.join(root, 'article-media'))
+        .map((entry) => 'article-media/' + entry.path)
+        .sort(),
+      expectedMedia
+    );
     assert.throws(
       () =>
         assertLocalPageReferences(
@@ -922,7 +938,10 @@ test('page IDs, ARIA targets, local resources and fragments resolve without draf
     'talks.html',
     'theme.js',
     'writing.html',
-  ].concat(resources.length ? ['article-media'] : []);
+  ].concat(
+    resources.length ? ['article-media'] : [],
+    Object.keys(revision.articles || {}).length ? ['articles', 'article-snapshots'] : []
+  );
   assert.deepEqual(fs.readdirSync(root).sort(), expected.sort());
   const { mediaFiles } = require('../tools/site/snapshot.cjs');
   assert.deepEqual(

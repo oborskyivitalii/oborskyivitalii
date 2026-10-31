@@ -210,7 +210,26 @@ test('distinct content gate inherits accepted platform and requires every affect
           url: f.hostedURL + '/' + file,
           mime: require('../tools/quality/serve.cjs').canonicalType(file),
         }));
-    if (report.kind === 'content-functional')
+    if (report.kind === 'content-functional') {
+      report.articles = require('./fixtures/article-flight.cjs').currentJourney(
+        f.manifest.components.articles || {},
+        f.manifest.components.engine,
+        f.hostedURL
+      );
+      // Controlled fixture records match the actual selected media inventory;
+      // these are not claimed browser observations.
+      report.media = require('../tools/site/articles.cjs')
+        .select(root, [], require('../tools/site/build.cjs').catalog(root))
+        .flatMap((article) => article.assets)
+        .filter((asset) => /^image\//.test(asset.mime))
+        .map((asset) => ({
+          file: asset.url,
+          status: 200,
+          pass: true,
+          sha256: f.manifest.files[asset.url].sha256,
+          width: asset.width,
+          height: asset.height,
+        }));
       for (const row of report.rows) {
         row.sha256 = f.manifest.files[row.file].sha256;
         if (
@@ -220,6 +239,7 @@ test('distinct content gate inherits accepted platform and requires every affect
         )
           row.tagFilter = true;
       }
+    }
   }
   const write = (file, data) => fs.writeFileSync(path.join(directory, file), JSON.stringify(data));
   write('artifact.json', f.manifest);

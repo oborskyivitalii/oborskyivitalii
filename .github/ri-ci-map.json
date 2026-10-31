@@ -715,7 +715,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "1c1f18b7e920ae20073d5c1b024670ae87f53c6b61ccf9fb70cceba5cd053af2",
+    "digest": "0f5426c9124a3e4bc20b0c769d878532ffd6beae10e4eb75cb7388b37a5b04c1",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -863,7 +863,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "dea9d5a4ebd498febcfafc9f822e27955da30faf01629b53d1728324219754cb"
+        "sha256": "df17501d1807b1c41d62a23692012af27c688782c4326e4e70fe82ea9149b42c"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -1007,7 +1007,7 @@
       },
       {
         "path": "tests/fixtures/staging-evidence.cjs",
-        "sha256": "f398a730ba3556b1bcfe311a8dc51b25d80aa4805a22ad7cf4f5cf2e04b3f13d"
+        "sha256": "614fd3334fbbcf72b11fd033b1668065e82d205b028a731a0885eee9ee42e174"
       },
       {
         "path": "tests/staging-gate.test.cjs",
@@ -1155,7 +1155,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "a3492dfa64c2fd3348a5f56532a1cf2677ca119357927bf7271f083e6a526d5f"
+        "sha256": "c5a4d292e0cfad0ff882f8b962ad13f26c77daebd17395ef2627ec82567e82ee"
       },
       {
         "path": "tools/repository_intelligence.py",

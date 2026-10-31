@@ -53,7 +53,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1](docs/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f](docs/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f) | Generated native article, immutable media or snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-snapshots](docs/article-snapshots) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
-| [docs/article-snapshots/21f1e97116d30f37432f199896fff4728d44722db399e7737f86314e39d2c570](docs/article-snapshots/21f1e97116d30f37432f199896fff4728d44722db399e7737f86314e39d2c570) | Generated native article, immutable media or snapshot. | generated | [site/README.md](site/README.md) |
+| [docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684](docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684) | Current immutable generated room/article snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
 | [docs/articles](docs/articles) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/assets](docs/assets) | Generated legacy-compatible aliases for authored portrait/icon assets. | generated | [site/README.md](site/README.md) |
 | [docs/media](docs/media) | Generated content-addressed asset editions. | generated | [site/README.md](site/README.md) |
@@ -64,17 +64,19 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee](docs/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee) | Immutable generated revision files from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62](docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots](docs/snapshots) | Generated exact-route HTML snapshots. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/03ec7ce6771149e12b3b90ec5c2f58b3b91a75ea3405289be49ace7b71741bca](docs/snapshots/03ec7ce6771149e12b3b90ec5c2f58b3b91a75ea3405289be49ace7b71741bca) | Current immutable generated room/article snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2](docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2) | Generated public rendition; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e](docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e) | Verified prior production immutable snapshot retained with its exact published bytes. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/4cf95bbc4065732f2145d6a52d212cf5bcf473f778858e34b2a67ce7415f0e21](docs/snapshots/4cf95bbc4065732f2145d6a52d212cf5bcf473f778858e34b2a67ce7415f0e21) | Generated native article, immutable media or snapshot. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/536181bf124ff1c32030e477b1a41f3300012c9884cfc5b66086104abdb45513](docs/snapshots/536181bf124ff1c32030e477b1a41f3300012c9884cfc5b66086104abdb45513) | Generated native article, immutable media or snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347](docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/597878c2f446798f8b77600f6a9421540aa56ba1b994156bb70cbd2e5f8b2132](docs/snapshots/597878c2f446798f8b77600f6a9421540aa56ba1b994156bb70cbd2e5f8b2132) | Current immutable generated room/article snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/632f4f29ebdbc51215b02592fd45a1f10a99fb8596d2dec8b3f18bc8be847f06](docs/snapshots/632f4f29ebdbc51215b02592fd45a1f10a99fb8596d2dec8b3f18bc8be847f06) | Verified prior production immutable snapshot retained with its exact published bytes. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed](docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed) | Generated public rendition; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/6a2575df0c92bf53d7292668aa31fe0825f851a50859993c6b896161f91334e7](docs/snapshots/6a2575df0c92bf53d7292668aa31fe0825f851a50859993c6b896161f91334e7) | Generated native article, immutable media or snapshot. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/692098d982e702276971275ef0dd72d7d43d6072fcfa38d44fd08c0a14540dbc](docs/snapshots/692098d982e702276971275ef0dd72d7d43d6072fcfa38d44fd08c0a14540dbc) | Current immutable generated room/article snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/781f9f96503b5b9bb45e91523055ee944aba3dbb5919bcb872e7b65e3d567907](docs/snapshots/781f9f96503b5b9bb45e91523055ee944aba3dbb5919bcb872e7b65e3d567907) | Current immutable generated room/article snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/7b62f25175a003a9fcc24f430e26ff321f267a8e77a28699984f86bf1dfdd3b6](docs/snapshots/7b62f25175a003a9fcc24f430e26ff321f267a8e77a28699984f86bf1dfdd3b6) | Verified prior production immutable snapshot retained with its exact published bytes. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa](docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68](docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/8bf0360fb634dc7d1130e1cbdeb199b2c413bb75a64eb46e9503410d0fe4a90e](docs/snapshots/8bf0360fb634dc7d1130e1cbdeb199b2c413bb75a64eb46e9503410d0fe4a90e) | Current immutable generated room/article snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946](docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/95b57d8257b5ffb3f4b9924d90694110e982f7bdc9aecb6f09969d46b3a8b2e0](docs/snapshots/95b57d8257b5ffb3f4b9924d90694110e982f7bdc9aecb6f09969d46b3a8b2e0) | Verified prior production immutable snapshot retained with its exact published bytes. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700](docs/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700) | Generated public rendition; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
@@ -82,8 +84,6 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/snapshots/b57f1dcb99f70ff2df6f748de084f2793f992f438a03c798a30b891c8f9e6461](docs/snapshots/b57f1dcb99f70ff2df6f748de084f2793f992f438a03c798a30b891c8f9e6461) | Generated public rendition; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920](docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920) | Generated public rendition; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647](docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647) | Verified prior production immutable snapshot retained with its exact published bytes. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/d5c5bf9bd5c2e88016f45292ed58595a1d7ee1d1f702f2e74efc666068a3c6eb](docs/snapshots/d5c5bf9bd5c2e88016f45292ed58595a1d7ee1d1f702f2e74efc666068a3c6eb) | Generated native article, immutable media or snapshot. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/fec1b7ae82d606379afd7af75629b0ae3ddce142a7683be9c85796fbcc61083c](docs/snapshots/fec1b7ae82d606379afd7af75629b0ae3ddce142a7683be9c85796fbcc61083c) | Generated native article, immutable media or snapshot. | generated | [site/README.md](site/README.md) |
 | [drafts](drafts) | Unpublished article/profile proposals excluded from public builds. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [guides](guides) | Maintained topic guides for repository boundaries, publication, quality and hosting; root stays an entry surface. | guide | [guides/README.md](guides/README.md) |
 | [review](review) | Dated plans, evidence, captures and renditions; current Color/export inputs are explicitly marked. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -105,6 +105,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-167](review/issue-167) | Dated WEB orchestration review/evidence; not executable source or current authority. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169](review/issue-169) | Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-169/native-reviews](review/issue-169/native-reviews) | Source-bound native R3 integration, review and release evidence under issue169. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/native-reviews/correction](review/issue-169/native-reviews/correction) | Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/r1](review/issue-169/r1) | Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-169/r1/masters](review/issue-169/r1/masters) | Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-169/r2](review/issue-169/r2) | Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated. | history | [AGENTS.md](AGENTS.md) |
@@ -219,11 +220,23 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [site/publications/sdlc-out-of-balance/materials](site/publications/sdlc-out-of-balance/materials) | Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/publications/sdlc-out-of-balance/materials/reviews](site/publications/sdlc-out-of-balance/materials/reviews) | Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/retained](site/retained) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/article-media](site/retained/article-media) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
+| [site/retained/article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292](site/retained/article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
+| [site/retained/article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16](site/retained/article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
+| [site/retained/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3](site/retained/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
+| [site/retained/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c](site/retained/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
+| [site/retained/article-media/79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6](site/retained/article-media/79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
+| [site/retained/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f](site/retained/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
+| [site/retained/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1](site/retained/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
+| [site/retained/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f](site/retained/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
+| [site/retained/article-snapshots](site/retained/article-snapshots) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
+| [site/retained/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684](site/retained/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
 | [site/retained/media](site/retained/media) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
 | [site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc](site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
 | [site/retained/runtime](site/retained/runtime) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
 | [site/retained/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17](site/retained/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17) | Verified previous production immutable rendition retained byte-for-byte. | history | [site/README.md](site/README.md) |
 | [site/retained/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff](site/retained/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff) | Verified previous production immutable rendition retained byte-for-byte. | history | [site/README.md](site/README.md) |
+| [site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee](site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
 | [site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62](site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
 | [site/retained/snapshots](site/retained/snapshots) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
 | [site/retained/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2](site/retained/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2) | Verified previous production immutable rendition retained byte-for-byte. | history | [site/README.md](site/README.md) |
@@ -440,11 +453,11 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [docs/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f/hero-web.jpg](docs/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f/hero-web.jpg) | Generated native article, immutable media or snapshot. | generated | [site/README.md](site/README.md) |
 
-## docs/article-snapshots/21f1e97116d30f37432f199896fff4728d44722db399e7737f86314e39d2c570/
+## docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/article-snapshots/21f1e97116d30f37432f199896fff4728d44722db399e7737f86314e39d2c570/the-sdlc-is-out-of-balance.html](docs/article-snapshots/21f1e97116d30f37432f199896fff4728d44722db399e7737f86314e39d2c570/the-sdlc-is-out-of-balance.html) | Generated native article, immutable media or snapshot. | generated | [site/README.md](site/README.md) |
+| [docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684/the-sdlc-is-out-of-balance.html](docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684/the-sdlc-is-out-of-balance.html) | Current immutable generated room/article snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
 
 ## docs/articles/
 
@@ -506,6 +519,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css](docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
 | [docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js](docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
 
+## docs/snapshots/03ec7ce6771149e12b3b90ec5c2f58b3b91a75ea3405289be49ace7b71741bca/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/03ec7ce6771149e12b3b90ec5c2f58b3b91a75ea3405289be49ace7b71741bca/research.html](docs/snapshots/03ec7ce6771149e12b3b90ec5c2f58b3b91a75ea3405289be49ace7b71741bca/research.html) | Current immutable generated room/article snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
+
 ## docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2/
 
 | Path | Purpose | Role | Owner / editing route |
@@ -518,23 +537,17 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e/talks.html](docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e/talks.html) | Verified prior production immutable snapshot retained with its exact published bytes. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/4cf95bbc4065732f2145d6a52d212cf5bcf473f778858e34b2a67ce7415f0e21/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/4cf95bbc4065732f2145d6a52d212cf5bcf473f778858e34b2a67ce7415f0e21/research.html](docs/snapshots/4cf95bbc4065732f2145d6a52d212cf5bcf473f778858e34b2a67ce7415f0e21/research.html) | Generated native article, immutable media or snapshot. | generated | [site/README.md](site/README.md) |
-
-## docs/snapshots/536181bf124ff1c32030e477b1a41f3300012c9884cfc5b66086104abdb45513/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/536181bf124ff1c32030e477b1a41f3300012c9884cfc5b66086104abdb45513/index.html](docs/snapshots/536181bf124ff1c32030e477b1a41f3300012c9884cfc5b66086104abdb45513/index.html) | Generated native article, immutable media or snapshot. | generated | [site/README.md](site/README.md) |
-
 ## docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html](docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/597878c2f446798f8b77600f6a9421540aa56ba1b994156bb70cbd2e5f8b2132/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/597878c2f446798f8b77600f6a9421540aa56ba1b994156bb70cbd2e5f8b2132/credits.html](docs/snapshots/597878c2f446798f8b77600f6a9421540aa56ba1b994156bb70cbd2e5f8b2132/credits.html) | Current immutable generated room/article snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
 
 ## docs/snapshots/632f4f29ebdbc51215b02592fd45a1f10a99fb8596d2dec8b3f18bc8be847f06/
 
@@ -548,11 +561,17 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed/research.html](docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed/research.html) | Generated public rendition; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/6a2575df0c92bf53d7292668aa31fe0825f851a50859993c6b896161f91334e7/
+## docs/snapshots/692098d982e702276971275ef0dd72d7d43d6072fcfa38d44fd08c0a14540dbc/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/snapshots/6a2575df0c92bf53d7292668aa31fe0825f851a50859993c6b896161f91334e7/credits.html](docs/snapshots/6a2575df0c92bf53d7292668aa31fe0825f851a50859993c6b896161f91334e7/credits.html) | Generated native article, immutable media or snapshot. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/692098d982e702276971275ef0dd72d7d43d6072fcfa38d44fd08c0a14540dbc/writing.html](docs/snapshots/692098d982e702276971275ef0dd72d7d43d6072fcfa38d44fd08c0a14540dbc/writing.html) | Current immutable generated room/article snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/781f9f96503b5b9bb45e91523055ee944aba3dbb5919bcb872e7b65e3d567907/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/781f9f96503b5b9bb45e91523055ee944aba3dbb5919bcb872e7b65e3d567907/index.html](docs/snapshots/781f9f96503b5b9bb45e91523055ee944aba3dbb5919bcb872e7b65e3d567907/index.html) | Current immutable generated room/article snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
 
 ## docs/snapshots/7b62f25175a003a9fcc24f430e26ff321f267a8e77a28699984f86bf1dfdd3b6/
 
@@ -571,6 +590,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html](docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/8bf0360fb634dc7d1130e1cbdeb199b2c413bb75a64eb46e9503410d0fe4a90e/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/8bf0360fb634dc7d1130e1cbdeb199b2c413bb75a64eb46e9503410d0fe4a90e/talks.html](docs/snapshots/8bf0360fb634dc7d1130e1cbdeb199b2c413bb75a64eb46e9503410d0fe4a90e/talks.html) | Current immutable generated room/article snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
 
 ## docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/
 
@@ -613,18 +638,6 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html](docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html) | Verified prior production immutable snapshot retained with its exact published bytes. | generated | [site/README.md](site/README.md) |
-
-## docs/snapshots/d5c5bf9bd5c2e88016f45292ed58595a1d7ee1d1f702f2e74efc666068a3c6eb/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/d5c5bf9bd5c2e88016f45292ed58595a1d7ee1d1f702f2e74efc666068a3c6eb/writing.html](docs/snapshots/d5c5bf9bd5c2e88016f45292ed58595a1d7ee1d1f702f2e74efc666068a3c6eb/writing.html) | Generated native article, immutable media or snapshot. | generated | [site/README.md](site/README.md) |
-
-## docs/snapshots/fec1b7ae82d606379afd7af75629b0ae3ddce142a7683be9c85796fbcc61083c/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/fec1b7ae82d606379afd7af75629b0ae3ddce142a7683be9c85796fbcc61083c/talks.html](docs/snapshots/fec1b7ae82d606379afd7af75629b0ae3ddce142a7683be9c85796fbcc61083c/talks.html) | Generated native article, immutable media or snapshot. | generated | [site/README.md](site/README.md) |
 
 ## drafts/
 
@@ -1007,7 +1020,11 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-169/2026-10-31-illustration-briefs.md](review/issue-169/2026-10-31-illustration-briefs.md) | Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-169/2026-10-31-native-publication.md](review/issue-169/2026-10-31-native-publication.md) | Source-bound native R3 integration, review and release evidence under issue169. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-169/2026-10-31-r3-illustrated-review.md](review/issue-169/2026-10-31-r3-illustrated-review.md) | Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/correction-affected.log.gz](review/issue-169/correction-affected.log.gz) | Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/failed-source-run.json.gz](review/issue-169/failed-source-run.json.gz) | Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/failed-source-run.tap.gz](review/issue-169/failed-source-run.tap.gz) | Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/native-check-allocation.md](review/issue-169/native-check-allocation.md) | Issue169 native integration review and acceptance evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/writing-carrier.json](review/issue-169/writing-carrier.json) | Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/issue-169/native-reviews/
 
@@ -1016,6 +1033,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-169/native-reviews/author-scope.md](review/issue-169/native-reviews/author-scope.md) | Source-bound native review packet, primary owner snapshot, explicit clean-context execution receipts and preserved correction results for issue169. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-169/native-reviews/code-final.md](review/issue-169/native-reviews/code-final.md) | Source-bound native review packet, primary owner snapshot, explicit clean-context execution receipts and preserved correction results for issue169. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-169/native-reviews/execution-receipts.json](review/issue-169/native-reviews/execution-receipts.json) | Source-bound native review packet, primary owner snapshot, explicit clean-context execution receipts and preserved correction results for issue169. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/native-reviews/exploratory-predecessor.md](review/issue-169/native-reviews/exploratory-predecessor.md) | Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/native-reviews/issue169.json](review/issue-169/native-reviews/issue169.json) | Source-bound native review packet, primary owner snapshot, explicit clean-context execution receipts and preserved correction results for issue169. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-169/native-reviews/native-packet-v4.json](review/issue-169/native-reviews/native-packet-v4.json) | Preserved first native four-role prepared source packet identity before fixture corrections. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-169/native-reviews/native-packet-v5.json](review/issue-169/native-reviews/native-packet-v5.json) | Source-bound native review packet, primary owner snapshot, explicit clean-context execution receipts and preserved correction results for issue169. | history | [AGENTS.md](AGENTS.md) |
@@ -1023,6 +1041,53 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-169/native-reviews/requirements-preflight.md](review/issue-169/native-reviews/requirements-preflight.md) | Source-bound native R3 integration, review and release evidence under issue169. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-169/native-reviews/requirements-v2.md](review/issue-169/native-reviews/requirements-v2.md) | Issue169 native integration review and acceptance evidence. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-169/native-reviews/whitebox-final.md](review/issue-169/native-reviews/whitebox-final.md) | Source-bound native review packet, primary owner snapshot, explicit clean-context execution receipts and preserved correction results for issue169. | history | [AGENTS.md](AGENTS.md) |
+
+## review/issue-169/native-reviews/correction/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-169/native-reviews/correction/archive-correction.log.gz](review/issue-169/native-reviews/correction/archive-correction.log.gz) | Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/carrier-guard-negative.log.gz](review/issue-169/native-reviews/correction/carrier-guard-negative.log.gz) | Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/catalogue-tuple-tests.log.gz](review/issue-169/native-reviews/correction/catalogue-tuple-tests.log.gz) | Issue169 independent source-bound correction review and actual targeted scanner/retention evidence; broader release gates separate. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/checksum-proof-script.py.gz](review/issue-169/native-reviews/correction/checksum-proof-script.py.gz) | Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/checksum-proposals.json.gz](review/issue-169/native-reviews/correction/checksum-proposals.json.gz) | Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/checksum-scan.json.gz](review/issue-169/native-reviews/correction/checksum-scan.json.gz) | Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/code-ledger-review.md.gz](review/issue-169/native-reviews/correction/code-ledger-review.md.gz) | Issue169 exact independent correction/data review, retained primary diagnostic evidence and deterministic formatter parity; no release acceptance implied. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/color-production-identity.json.gz](review/issue-169/native-reviews/correction/color-production-identity.json.gz) | Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/controller-correction-final.log.gz](review/issue-169/native-reviews/correction/controller-correction-final.log.gz) | Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/controller-correction-four.log.gz](review/issue-169/native-reviews/correction/controller-correction-four.log.gz) | Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/controller-fixture-final.log.gz](review/issue-169/native-reviews/correction/controller-fixture-final.log.gz) | Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/correction-code-clean.md](review/issue-169/native-reviews/correction/correction-code-clean.md) | Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/correction-code.md](review/issue-169/native-reviews/correction/correction-code.md) | Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/correction-exploratory.md](review/issue-169/native-reviews/correction/correction-exploratory.md) | Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/correction-intent.md](review/issue-169/native-reviews/correction/correction-intent.md) | Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/correction-packet-v2.json](review/issue-169/native-reviews/correction/correction-packet-v2.json) | Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/correction-packet.json](review/issue-169/native-reviews/correction/correction-packet.json) | Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/correction-registry-current.log.gz](review/issue-169/native-reviews/correction/correction-registry-current.log.gz) | Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/correction-requirements-clean.md](review/issue-169/native-reviews/correction/correction-requirements-clean.md) | Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/correction-requirements.md](review/issue-169/native-reviews/correction/correction-requirements.md) | Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/correction-review-v2.diff](review/issue-169/native-reviews/correction/correction-review-v2.diff) | Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/correction-review.diff](review/issue-169/native-reviews/correction/correction-review.diff) | Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/correction-whitebox-controller.md](review/issue-169/native-reviews/correction/correction-whitebox-controller.md) | Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/correction-whitebox-data-cleanup.md](review/issue-169/native-reviews/correction/correction-whitebox-data-cleanup.md) | Issue169 independent source-bound correction review and actual targeted scanner/retention evidence; broader release gates separate. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/correction-whitebox-delta.md](review/issue-169/native-reviews/correction/correction-whitebox-delta.md) | Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/correction-whitebox-final-delta.md](review/issue-169/native-reviews/correction/correction-whitebox-final-delta.md) | Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/correction-whitebox-scanner-guard.md](review/issue-169/native-reviews/correction/correction-whitebox-scanner-guard.md) | Issue169 independent source-bound correction review and actual targeted scanner/retention evidence; broader release gates separate. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/correction-whitebox-v3.md](review/issue-169/native-reviews/correction/correction-whitebox-v3.md) | Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/correction-whitebox.md](review/issue-169/native-reviews/correction/correction-whitebox.md) | Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/correction-whitebox.raw.log.gz](review/issue-169/native-reviews/correction/correction-whitebox.raw.log.gz) | Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/execution-receipts.json](review/issue-169/native-reviews/correction/execution-receipts.json) | Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/intermediate-raw-snapshots.json.gz](review/issue-169/native-reviews/correction/intermediate-raw-snapshots.json.gz) | Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/ledger-before-format.json.gz](review/issue-169/native-reviews/correction/ledger-before-format.json.gz) | Issue169 exact independent correction/data review, retained primary diagnostic evidence and deterministic formatter parity; no release acceptance implied. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/ledger-format-parity.json.gz](review/issue-169/native-reviews/correction/ledger-format-parity.json.gz) | Issue169 exact independent correction/data review, retained primary diagnostic evidence and deterministic formatter parity; no release acceptance implied. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/media-retention-four.log.gz](review/issue-169/native-reviews/correction/media-retention-four.log.gz) | Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/requirements-ledger-review.md.gz](review/issue-169/native-reviews/correction/requirements-ledger-review.md.gz) | Issue169 exact independent correction/data review, retained primary diagnostic evidence and deterministic formatter parity; no release acceptance implied. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/retained-article-closure.json.gz](review/issue-169/native-reviews/correction/retained-article-closure.json.gz) | Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/retained-final-snapshot.json.gz](review/issue-169/native-reviews/correction/retained-final-snapshot.json.gz) | Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/retention-adapter-guard.log.gz](review/issue-169/native-reviews/correction/retention-adapter-guard.log.gz) | Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/retention-final-targeted.log.gz](review/issue-169/native-reviews/correction/retention-final-targeted.log.gz) | Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/retention-final-verified.log.gz](review/issue-169/native-reviews/correction/retention-final-verified.log.gz) | Issue169 source-bound independent correction review and exact retained diagnostic/check/provenance evidence; not release acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/native-reviews/correction/whitebox-ledger-review.md.gz](review/issue-169/native-reviews/correction/whitebox-ledger-review.md.gz) | Issue169 exact independent correction/data review, retained primary diagnostic evidence and deterministic formatter parity; no release acceptance implied. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/issue-169/r1/
 
@@ -2577,6 +2642,60 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [site/retained/manifest.json](site/retained/manifest.json) | Verified imported prior-public manifest generated by tools/site/retain.cjs; preserve exact retained byte identities. | generated | [site/README.md](site/README.md) |
 
+## site/retained/article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292/systemic-response.webp](site/retained/article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292/systemic-response.webp) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
+
+## site/retained/article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg](site/retained/article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
+
+## site/retained/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3/imbalance-loop.webp](site/retained/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3/imbalance-loop.webp) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
+
+## site/retained/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c/reading.pdf](site/retained/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c/reading.pdf) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
+
+## site/retained/article-media/79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/article-media/79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6/review-functions.webp](site/retained/article-media/79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6/review-functions.webp) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
+
+## site/retained/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry.webp](site/retained/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry.webp) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
+
+## site/retained/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1/workstream-system.webp](site/retained/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1/workstream-system.webp) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
+
+## site/retained/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f/hero-web.jpg](site/retained/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f/hero-web.jpg) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
+
+## site/retained/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684/the-sdlc-is-out-of-balance.html](site/retained/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684/the-sdlc-is-out-of-balance.html) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
+
 ## site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/
 
 | Path | Purpose | Role | Owner / editing route |
@@ -2601,6 +2720,16 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [site/retained/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff/analytics.js](site/retained/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff/analytics.js) | Verified previous production immutable rendition retained byte-for-byte. | history | [site/README.md](site/README.md) |
+
+## site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/archive.js](site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/archive.js) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
+| [site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/navigation.js](site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/navigation.js) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
+| [site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/space.js](site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/space.js) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
+| [site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/styles.css](site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/styles.css) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
+| [site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/theme.js](site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/theme.js) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
 
 ## site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/
 

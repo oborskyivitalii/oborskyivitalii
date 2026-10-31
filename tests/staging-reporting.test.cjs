@@ -42,6 +42,11 @@ function fixture() {
       jobs: { build: { result: 'success' } },
       githubArtifact: { id: '123', uploadDigest: publicUpload },
     };
+  source.components = require('../tools/site/snapshot.cjs').verify(
+    path.join(input, 'public'),
+    source
+  );
+  gate.components = source.components;
   save('input/artifact.json', source);
   save('input/gate/release-manifest.json', gate);
   const record = pkg.build(input, out),
