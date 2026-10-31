@@ -1011,3 +1011,977 @@ No candidate-blocking defect found for the narrow next action of changed-source 
 Website visual, focus, browser/device and accessibility interaction assessment is reasoned not applicable to this formatting/private-helper/metadata delta: no presentation or browser execution source changed. No browser pass or human/physical-device observation is claimed. Existing full hosted obligations still apply because executable tools/tests and control registry routes retain B/R/O/H; absence of a visual delta does not waive H.
 
 Not observed here: full native clean source selection, native scanner/artifact binding, all original PR behavioral partitions, provider identity, live dispatcher/connector/state/stop behavior, crash durability, current external owner controls, actual staging admission. Those are explicit boundaries, not passes or blanket N/A. The orchestrator must validate launch isolation and final unchanged bytes before using this first judgment; missing accepted none-fork evidence blocks independent-review acceptance under the common contract. Preserve this result before reconciliation.
+
+## Bounded staging security correction — 2026-10-31
+
+This author iteration retains WEB-18/#167, VIT-22 and Draft PR168. Its native
+baseline is8c0087b99f4bd77886b2f174ff30d12f67855cee; complete1810 initial
+source bytes matched the retained manifest. The local original HEAD/history is
+still absent. Baseline Basic41194698327 passed75 selected modules/1166tests,
+navigation41194698305 passed94 Python and111 Node tests, and owning41194698347
+reported automated pass with closure false. Those successes bind that old source.
+Full staging41195104012/attempt1, build job124519732378 failed security/advisories
+before candidate upload. Its raw reports and verified artifact remain retained;
+no unchanged full-stage retry occurred. Other prepublication guards retained
+their observed results, with security/advisory failures distinct from them.
+
+The five existing `tools/check_ri_ci.py` Bandit records were individually compared
+to the previous reviewed source and actual48-finding report. The complete source
+delta adds only the reviewer-prompt control pattern and related docstring. Each
+flagged statement is unchanged: subprocess import; compile/exec of explicitly
+mapped repository test modules; shell-free authored Git argv through setup-owned
+PATH (two rules); and boolean report acceptance state. Only their exact source
+binding, shifted line locations and appended dated rationale changed. All43
+other entries, rule names/severity/confidence, owners, issue35, deadline and
+refusal behavior remain unchanged. Fresh pinned Bandit emitted48 raw findings;
+existing admission verified48/48, with no untriaged finding or scanner error.
+
+Initial70 exact secret-candidate identities were reconciled one-to-one against
+all six source paths and their actual SHA1 detector identities. Proposed exact
+checksum-ledger additions preserve all1645 old rows/order/reasons:62 SHA256s
+recompute against retained source/packet/report files; two fixture operation
+keys recompute from the sorted synthetic seven-field operation JSON. Six older
+receipt/packet/prompt/map/patch identities have qualified historical public-source
+provenance only: their earlier exact bytes were not found. They are expressly
+not called recomputed or authenticated reviewer-execution evidence. Every row
+has source-specific proof and remains subject to independent per-finding review.
+The first fresh scan over all1810 prepared paths (1398 text inputs) retained7185
+raw findings and found one additional detector identity: the recomputed current
+public source SHA256 repeated in the five Bandit records. Its separate proposed
+exact disposition does not alter the initial70 accounting. No baseline reset,
+scanner change, entropy exclusion, threshold or new admission authority was used.
+
+The quality manifest adds one exact minimatch11.0.1 override for the published
+patched advisory. Real npm generated the lock and a clean ignore-scripts install
+completed. Only two lock package locations changed: minimatch10.2.6→11.0.1 and
+new required `@isaacs/nonrecursive-glob-match`1.0.3. Existing brace-expansion5.0.12
+already satisfies the new dependency and is unchanged. All three consumers
+(ESLint, config-array, Sonar) actually resolve11.0.1; their own versions remain
+unchanged. Published engine range18/20/22+ admits local24.22.1 and observed
+native24.19.0. Installed package notices retain BlueOak-1.0.0 licenses. Fresh
+quality npm audit reports zero vulnerabilities; no advisory waiver was added.
+
+Compatibility is bounded, not global library parity. The broad436800-case
+old/new comparison failed with210 differences, all partial matching without
+`dot:true` for two patterns. Raw cases and the failed assertion remain visible.
+ESLint partial traversal always uses `dot:true`; config-array and Sonar use
+full matches. All305760 cases in these observed consumer modes match. Actual
+config-array include/reject, Sonar dependency-glob include/reject and package
+find-up calls passed. Actual maintained/generated lint passed290 JavaScript files
+with zero errors/warnings,45 Python files with zero findings, and existing CSS
+lint. Full installed npm tree inspection succeeded. The existing combined
+scanner/selector regression campaign completed80 tests:77 passed, three failed,
+zero skipped/cancelled/TODO. All three failures require unavailable original Git
+history/HEAD: historical ledger retrieval, publication-history proof inside the
+scanner fixture, and repository-lint identity before report creation. No test,
+oracle or synthetic history was substituted; new native source checks remain due.
+
+Canonical Semgrep ran eight rules over342 targets, zero findings/errors. Full
+pinned Python installation was checked by the existing installed-graph verifier:
+91 packages/147 dependencies passed after an orphan uninstalled pip25 metadata
+directory was moved to a retained external sidecar; actual pip26 package/pins and
+verifier were unchanged. Fresh pip audit reports zero advisories. First failed
+diagnostic observations are retained separately: a Bandit raw-output/receipt name
+collision, two mistaken Semgrep input paths, and duplicate old pip metadata.
+Corrected observations changed only diagnostic inputs or local installation
+residue, never repository scanner behavior. No unchanged failed campaign rerun.
+
+| Condition | Author evidence and remaining gate |
+| --- | --- |
+| S01 | Failed stage/raw evidence retained; exact1810-byte baseline and bounded owners; no scanner/control waiver. |
+| S02 | Five existing bindings justified; fresh48/48 admission,43 unchanged rows; independent Code/QA review pending. |
+| S03 | Initial70 exact identities:62 recomputed checksums,2 synthetic keys,6 qualified historical receipts; individual worksheet retained. |
+| S04 | Original1645 checksum rows and all other ledgers preserved;70 initial plus1 fresh exact proposal; independent dispositions pending. |
+| S05 | Real narrow lock/install, three actual consumers, bounded compatibility and clean audit observed; global parity disproved and native runtime acceptance pending. |
+| S06 | Actual detector/lint/advisory diagnostics retained; history-dependent local regressions failed; current native full security/source gate and four final roles remain required. |
+| S07 | Authored facts finalized before final generation/scan; raw manifests, findings and execution identities stay in the controlled packet; any new token needs exact review. |
+| S08 | Genuine coupling/RI producers and pinned formatting bind the frozen source; changed-source native checks, full owner staging/admission and final exact-head owner trust remain pending. |
+
+CS01/04 retain security-policy and dependency ownership; CS05 confines JSON edits
+to the evidenced concern; CS06/07 preserve detector/effect/resource boundaries;
+CS08 reuses meaningful source/scanner negatives; CS09's native-history guard is
+not replaced; CS10 maps exact scope/evidence here. No presentation/CSS/content
+surface changes (CS02/03). No whole WEB criterion, B1/fullB2/M1, merge, production,
+new permission/service, dispatcher or B3–B7 acceptance follows from this section.
+Detailed final role outputs and source-bound launch/scan receipts accompany the
+controlled packet. No current security peer judgment is appended by this author.
+
+
+## Security final launch receipts and independent first results
+
+Literal launch/completion record and unmodified first independent outputs follow. This recording does not establish native security, staging/admission, owner exact-head trust or whole-pilot acceptance. Receipt insertion changes tracked bytes; subsequent real freshness, complete scanning and any actual finding-specific delta review remain mandatory.
+
+```json
+{
+  "provenance": "Parent literal record of actual spawn requests and accepted task-handle responses. First independent outputs were preserved before reconciliation. Provider internals are not attested.",
+  "packet_sha256": "4c66d93c0bd076566fe34d736c4bab8c13bccc1b720a53c7d91521ffe0c71c17",
+  "inspected_manifest_sha256": "3c925313fc19cd9f2ff87718c00ec8da928e0fc25079bc402b91534c4ca97f26",
+  "roles": [
+    {
+      "role": "Requirements & Acceptance",
+      "requested": {
+        "task_name": "security_final_requirements",
+        "fork_turns": "none",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "medium"
+      },
+      "accepted_response": {
+        "task_name": "/root/security_final_requirements"
+      },
+      "provider_model_effort_context_memory": "unverified",
+      "report": "final-requirements.md",
+      "report_sha256": "470d64ac754fa26c3c6017409e5275176fa1ec60540967d6a20590424b2516f3"
+    },
+    {
+      "role": "Code / changed artifact",
+      "requested": {
+        "task_name": "security_final_code",
+        "fork_turns": "none",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "medium"
+      },
+      "accepted_response": {
+        "task_name": "/root/security_final_code"
+      },
+      "provider_model_effort_context_memory": "unverified",
+      "report": "final-code.md",
+      "report_sha256": "866c52bc821f294f62d0481dfd55680a27e384f374c8d652d9a392e41deda51d"
+    },
+    {
+      "role": "White-box QA",
+      "requested": {
+        "task_name": "security_final_whitebox",
+        "fork_turns": "none",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "medium"
+      },
+      "accepted_response": {
+        "task_name": "/root/security_final_whitebox"
+      },
+      "provider_model_effort_context_memory": "unverified",
+      "report": "final-whitebox.md",
+      "report_sha256": "8b68df40f4cce2cec0d2c05be7fede3dedac56a2ec19a88540a459da6236b895"
+    },
+    {
+      "role": "Exploratory / Interaction QA",
+      "requested": {
+        "task_name": "security_final_exploratory",
+        "fork_turns": "none",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "medium"
+      },
+      "accepted_response": {
+        "task_name": "/root/security_final_exploratory"
+      },
+      "provider_model_effort_context_memory": "unverified",
+      "report": "final-exploratory.md",
+      "report_sha256": "7f7ad9cb80a3f587dfbc28f5ce006c18cf0158e0817c04d52afafdaa43e41d75"
+    }
+  ]
+}
+```
+
+
+### Requirements & Acceptance — literal completed security report
+
+# Security final Requirements & Acceptance — first judgment
+
+Verdict: the frozen seven-path security correction is acceptable from Requirements & Acceptance for advancement to changed-source native CI **after all four required roles complete without unresolved blockers, actual launch isolation is verified, and required completed results are recorded**. This is not native security acceptance, staging/admission acceptance, owner trust, whole-pilot completion or merge/publication authorization. No blocking defect in the proposed 71 exact dispositions, five existing Bandit bindings, or bounded dependency remediation was found. The table-only receipt proposal is insufficient by itself; the supplied version-two operation supplies the necessary treatment below.
+
+This first result is preserved before reconciliation. Reviewer: `/root/security_final_requirements`, distinct nonauthor Requirements & Acceptance, final phase. No author conversation, current security peer verdict, planning/routing/preflight report or parent scratch note was read. Historical source reports/checksum subjects were inspected as candidate evidence, not accepted as independent execution. No implementation, test alteration, recursive delegation or external write occurred.
+
+## Canonical identities and launch limits
+
+- Source root: `/workspace/scratch/cb830f99d107/native-b2/repo`; owner WEB-18/#167, VIT-22, Draft PR168.
+- Protected base `1f814f594e6a25fe07a5537ffcc814d182b27590`; native baseline `8c0087b99f4bd77886b2f174ff30d12f67855cee`, tree `f9055428997b0f40af098f6862c30883b1e99ac8`.
+- Packet `security/final-packet.json`: SHA256 `4c66d93c0bd076566fe34d736c4bab8c13bccc1b720a53c7d91521ffe0c71c17`.
+- Frozen sorted 1810-path manifest `author-logs/final-manifest.json`: SHA256 `3c925313fc19cd9f2ff87718c00ec8da928e0fc25079bc402b91534c4ca97f26`.
+- Prepared delta `author-logs/available-before-source.diff`: SHA256 `91ac2a68fd44365df32ecf77e8939afb8f73a9c2a48245aea715291e46b69d14`.
+- Complete baseline patch package `base-to-8c-patches.json`: SHA256 `3c21ecec5d5d1e7d957723e675b70a1ab8166250789c92c45005c9d819555c72`, 32 paths. Its omitted large added native-integration patch was reconstructed from exact baseline bytes plus protected-base absent-path proof; this is not local Git history reconstruction.
+- Actual common prompt `agents/reviewers/README.md`: SHA256 `2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb`; actual role `agents/reviewers/requirements-acceptance.md`: SHA256 `010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6`.
+- AGENTS SHA256 `ad4f179ec04c7af12867229d70598a660c5ae41f3cb456cafd02aca3d12a9988`; CONTRIBUTING SHA256 `804fb3da9a0bc7369bbd902313224221becc6c6b775536ca943f8664bf741442`.
+
+The launch task imposes one distinct diagnostic with <=30 seconds execution, no full campaign replay, assigned output only. The received task handle is observable here; the parent's actual requested/accepted `fork_turns=none` call response must be attached by the orchestrator. I cannot attest provider-resolved model/effort, provider context/memory internals or an OS isolation boundary. This conditional limitation cannot be relabeled verified from my role name. Shared platform instructions/filesystem remain shared.
+
+## Inspected evidence and actual diagnostic
+
+Read canonical common/role prompts and CONTRIBUTING; dated owner input; bounded security brief; complete baseline patch package inventory and relevant acceptance, reducer/contract, behavioral tests, registry, prompt/RI/coupling changes; seven-path security delta; actual source contexts for every proposed disposition; actual Bandit admission code and five-binding proof; native raw security/advisory/prepublication reports and failure log; real lock and installed consumer matching call sites; retained compatibility differences; raw scan/receipt/reconciliation and final receipt proposals. Historical large review records were examined for the relevant checksum occurrences and provenance limits, not recertified in full as current independent acceptance.
+
+Own chosen diagnostic: `timeout 30s python` with independent assertions, completed exit 0 in 0.254 seconds (tool wall 0.183 seconds). It verified all 13 packet input hashes, all seven instruction identities, all 1810 source hashes, exact seven changed paths, preservation of original 1645 ledger rows/order, exact 71 additions, all 70 source-line values and SHA1 detector identities, 62 retained-source SHA256 recomputations, two sorted seven-field synthetic operation keys, six explicitly historical contexts, the additional current public-source checksum, all five exact Bandit source/line/raw-rule/severity/confidence bindings and 43 unchanged policy rows. It also established final scan receipt source map equals the frozen manifest, changedDuringScan=[], and 7185 raw findings. No detector campaign, network audit or full tests were replayed; assertion success is bounded identity/accounting evidence, not measured coverage or a negative scanner execution.
+
+The native failure is real: run41195104012/attempt1/job124519732378, security false (Bandit source binding mismatch and70 untriaged candidates), advisories false (GHSA-g3hv-75wg-m249), before upload. Baseline passes bind the old8c source. Retained combined regression output is80 tests/77 pass/3 fail/0 skip/cancel/TODO, with absent original HEAD/history preconditions; those failures stay failed. Local scan accounting7185=5103 exact ledger+1866 current RI/coupling+216 unchanged native generated identities. The last216 are reuse of unchanged baseline evidence, not a newly computed native history proof.
+
+## Findings and dispositions
+
+| ID / severity | Location and mechanism | AC impact and disposition |
+| --- | --- | --- |
+| R-S01 / medium, conditional operation defect | `author-logs/receipt-proposal.md`, table-only launch/completion operation; common contract “Execution receipt and result” and CONTRIBUTING require completed source-bound findings/results in the existing versioned review artifact. External result references alone do not satisfy that durable result requirement. | S07/S08, P06, WEB-AC09/11. Do not use the narrow table as the sole recording operation. `receipt-operation-v2.md` explicitly appends unmodified completed reports plus actual launch receipts and is an adequate proposed treatment. It is not yet performed or verified. |
+| R-S02 / low, residual compatibility risk | `tools/quality/toolchain/package.json:14` exact override and lock minimatch11.0.1 cross three declared ^10 ranges. Retained broad matrix has210 differences in partial matching without dot:true. | S05/S06, P06/WEB-AC10. Bounded compatibility, not global parity, is the appropriate claim. Actual ESLint partial traversal uses dot:true; config-array uses full matches with dot:true; Sonar dependency/find-up uses full matches. Retained actual consumer probes, maintained lint and305760 consumer-mode comparisons support advancement; native Node24.19.0/source selection/full security remain mandatory. No waiver requested. |
+| R-S03 / informational evidence limit | `review/issue-167/2026-10-31-reviewer-isolation.md:146,148,226,737,796,823`; six historical receipt identities have no retained earlier exact bytes. | S03/S04, WEB-AC11. Accept only as public historical checksum false-positive dispositions; source field/context and stable baseline support noncredential classification. Do not call these recomputed, authenticated launches or actual provider proof. Candidate explicitly preserves this limit. |
+
+No threshold, expiry, severity, exclusion, advisory exception, scanner implementation, behavioral test oracle, workflow or authority expansion is introduced by the seven-path delta. Five Bandit rows are the same reviewed tooling behavior: import subprocess; compile/exec of explicitly mapped repository tests; two shell-free authored Git-argv findings; boolean acceptance report state. Source delta adds reviewer-control discovery/docstring, not changed flagged operations. Exact admission remains fail-closed on scanner errors, coverage, source/line/rule/severity/confidence/expiry mismatch; reviewBy remains2026-11-03. No blanket rebinding is accepted.
+
+All71 proposed secret dispositions are acceptable for this bounded correction:62 recomputed public file/report/packet SHA256s; two synthetic reducer operation identities; six qualified public historical receipt identities; one newly detected public tools/check_ri_ci.py SHA256 in five existing policy entries. Exact path/type/SHA1(value) identity matters: this finding grants no permission for another hex value, path, credential, receipt or new detection. See complete per-finding inventory below. The original1645 rows and unrelated ledgers are preserved.
+
+## Bidirectional acceptance trace
+
+S01–S08 are review subconditions refining existing P/WEB criteria, not replacement whole-pilot criteria. The existing issue167 policy retains PILOT/COMPONENT/QUALITY/NATIVE/HUMAN/DELIVERY gates and original AC01–12 aliases. No new checkboxes may be treated as whole criterion completion.
+
+| Intent / AC | Check or owner gate | Observed scope and remaining gate |
+| --- | --- | --- |
+| S01 / P06 / WEB-AC09,10 | Retain exact failure, scope, raw source/artifact identity | Native failed reports/log retained; seven-path correction links diagnosed failures. No unchanged full-stage retry authorized by this review. |
+| S02 / P06 / WEB-AC10 | Exact existing Bandit row/source/signature admission | Five bindings independently checked;43 rows unchanged; retained fresh48/48 admission. Full native current-source security due. |
+| S03–04 / P05–06 / WEB-AC09–11 | All71 exact per-value classifications and old-ledger preservation | Each row independently matched source/hash/proof class;6 historical limitations explicit. No general entropy bypass. |
+| S05 / P06 / WEB-AC10 | Real npm lock/install/audit, actual consumer compatibility, maintained lint | Narrow two-location lock change; new nonrecursive matcher; brace-expansion unchanged; zero retained audit vulnerabilities. Broad210 differences remain failed comparison; actual consumer domain has0/305760 differences. Native execution due. |
+| S06 / P06 / WEB-AC10–11 | Existing scanner/selector regressions and native B/R/O/H route |77 pass/3 fail retained; no local full-native pass. Future native complete source/history required, four role results pending in this first judgment. |
+| S07 / P06 / WEB-AC09,11 | Completed literal results+launch receipts, post-mutation final scan and exact finding review | Version-two operation is acceptable conditionally; table-only operation insufficient. Every new token/source mutation needs exact rescan and affected delta review. |
+| S08 / P06 / WEB-AC02,09,11–12 | Real RI/coupling producer/freshness, same-branch source readback, native checks, staging/admission, owner trust | Retained producer verification and frozen manifest bind present bytes. No native changed-source result, owner reviewed_sha, full stage or admission is supplied here. |
+| P01–05 / WEB-AC01,03–06,09–10 | Existing reducer/contract/tests and synthetic guard owners | Security delta changes no reducer/contract/test bytes. Existing synthetic-only no-effect/identity/recovery/private-output boundaries preserved; no runtime/provider/authenticity/stop/durability acceptance follows. |
+
+## Receipt operation and next gate
+
+Use the version-two completed-result operation, preserving these first results verbatim before peer reconciliation. Copy requested and accepted launch facts separately; provider identity stays unknown. A literal appendix is not permission to omit unresolved findings or rewrite a role verdict. Once results are appended, regenerate real affected RI/coupling outputs and formatting/freshness, then perform a complete exact-source scan. New candidates require per-value proof and actual affected reviews by all four roles under a frozen delta packet; follow-up reuses original role identity and is not a fresh none-fork launch. Record actual delta results literally and scan again after mutation. Any new finding stops advancement. An external final manifest/scan receipt can bind upload bytes without putting its own digest into the scanned candidate.
+
+After those operations and all required roles, this correction may advance to changed-source native CI. Existing source/history, complete security/advisory and selection gates must run on the delivered exact native head; clean full staging/admission and the owner's explicit exact-final-head reviewed_sha remain separate. Keep Draft and retain all failed results. No B1/fullB2/M1, whole WEB-AC, runtime dispatcher, B3–B7, new permission/service, merge or production closure is accepted.
+
+## All proposed exact dispositions
+
+Each row below was individually checked against its source-line value and SHA1 detector identity. R=recomputed retained public SHA256; H=qualified historical public checksum only; K=recomputed synthetic operation key. All are accepted only at the exact listed path/type/hash. Rule for all rows is Hex High Entropy String.
+
+| # | Source path:line | SHA1(value) | Proof |
+| --- | --- | --- | --- |
+| 1 | `review/issue-167/2026-10-31-native-integration.md:135` | `0e78986ca827077f29d58ff71eba2409f7b52f08` | R |
+| 2 | `review/issue-167/2026-10-31-native-integration.md:136` | `516102f50f3b81192a1f706a96b3616cfa32727a` | R |
+| 3 | `review/issue-167/2026-10-31-native-integration.md:138` | `a16f24762d26b37efc386a345edbde7c262e8ccf` | R |
+| 4 | `review/issue-167/2026-10-31-native-integration.md:151` | `8e25ec0a5b3a7094c83ace7560b96c28c9622821` | R |
+| 5 | `review/issue-167/2026-10-31-native-integration.md:164` | `8e2225d1d09dce2b85105d3557fee61f099c77a8` | R |
+| 6 | `review/issue-167/2026-10-31-native-integration.md:177` | `ab3c4b84ef853dfe2fa41ff085d6b688cf6f74e9` | R |
+| 7 | `review/issue-167/2026-10-31-native-integration.md:190` | `b5b6ed63816494b6b87d43890f20912973ccc5b8` | R |
+| 8 | `review/issue-167/2026-10-31-native-integration.md:623` | `dd71b27d5e43d21a78d7edf4da5a9a5f140d1ed8` | R |
+| 9 | `review/issue-167/2026-10-31-native-integration.md:624` | `debc881897313bd095f4e06c33be958f53054362` | R |
+| 10 | `review/issue-167/2026-10-31-native-integration.md:639` | `839d9cb20e02bcd0a90d03448b270354583b649a` | R |
+| 11 | `review/issue-167/2026-10-31-native-integration.md:654` | `18a953660ee129af4f473250dc02dfaa0d6e999f` | R |
+| 12 | `review/issue-167/2026-10-31-native-integration.md:669` | `31ad172bb65ef53f0dfa3440e6ec544135fc93da` | R |
+| 13 | `review/issue-167/2026-10-31-native-integration.md:684` | `998ba8b01b1400054ce59a73fd313dc7243c5ad6` | R |
+| 14 | `review/issue-167/2026-10-31-offline-prototype.md:599` | `e13a418b892d3cd900ba60ad190ff75f7c2a39d1` | R |
+| 15 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:7` | `bc7aae15bc36d8c21142e0bcb3dfa0926aab9768` | R |
+| 16 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:14` | `31311dfc08c2ace2050ba7309f21599583a5eebc` | R |
+| 17 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:21` | `abfdc2a8d2618015fdc2881fd0de2a45dfcc4520` | R |
+| 18 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:28` | `ea5f6a9b7f89c8191c7b210ff3a93bbce4b674f0` | R |
+| 19 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:35` | `c59134987ad3341ebc744f2895ee6493a0e38ef4` | R |
+| 20 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:42` | `7fa5af34db5f508d1e8dc4ae5a8d97dc65d9f0b3` | R |
+| 21 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:49` | `aa7cbeae80c1c0a107b83b648c3090ab559372a6` | R |
+| 22 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:56` | `9a1d8a30304027a587fb11e6572df130973c8fa9` | R |
+| 23 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:63` | `a721041e7382c123ef63b1abf4e42a9b6fa72281` | R |
+| 24 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:70` | `ff84bc8af35f43c2f9890ada1662c1f199dfd61d` | R |
+| 25 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:77` | `0cf44103e4ee4f7839efabc1e7e626fe3ca8beaa` | R |
+| 26 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:84` | `b55054df9d0169b99bf13a69cd643c9257e0291d` | R |
+| 27 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:91` | `4e0d0f1680b8b1d8951084c6fd7af05901d363e6` | R |
+| 28 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:98` | `17ec352d626981fb0f62287a7c8b6c495ad74763` | R |
+| 29 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:105` | `eb596323b09684674d2478031ccb90eae1d5eb7f` | R |
+| 30 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:112` | `aa97f751dc872501817934ea012cc325df6a62ec` | R |
+| 31 | `review/issue-167/2026-10-31-reviewer-isolation.md:146` | `a58ce9872f0ee4eeb85ca5d3950b1adef0ac44a8` | H |
+| 32 | `review/issue-167/2026-10-31-reviewer-isolation.md:147` | `8c46c64b9e2056acf8ffe72a2d7a5a041a53afa0` | R |
+| 33 | `review/issue-167/2026-10-31-reviewer-isolation.md:148` | `39ac3a75aee6290d20cd8552c6ec85708d7aca76` | H |
+| 34 | `review/issue-167/2026-10-31-reviewer-isolation.md:149` | `96537532a7a2397a9fcd6ffc455210a4862d0cac` | R |
+| 35 | `review/issue-167/2026-10-31-reviewer-isolation.md:152` | `a1c7824bba106c4b2a48a9562da4f138ca344069` | R |
+| 36 | `review/issue-167/2026-10-31-reviewer-isolation.md:156` | `68bde96a407899054ba1d507253ec1a7d22bf00e` | R |
+| 37 | `review/issue-167/2026-10-31-reviewer-isolation.md:161` | `a2a378b2ebe1c914a7fe66a03e7d3c1088a42a89` | R |
+| 38 | `review/issue-167/2026-10-31-reviewer-isolation.md:166` | `b67736d4ab51cf716459bb9ab7a14211c53fc564` | R |
+| 39 | `review/issue-167/2026-10-31-reviewer-isolation.md:171` | `a6128d6e18a38cf02b2170adfab42259eac5087c` | R |
+| 40 | `review/issue-167/2026-10-31-reviewer-isolation.md:176` | `518d77ec2a2fd4394891a2f405f769feb67df5e4` | R |
+| 41 | `review/issue-167/2026-10-31-reviewer-isolation.md:186` | `d2fd357fa1e088c34a2e36e54942a7c627064972` | R |
+| 42 | `review/issue-167/2026-10-31-reviewer-isolation.md:191` | `16f193d167b8a7e3040ac499243c01ecb620bec2` | R |
+| 43 | `review/issue-167/2026-10-31-reviewer-isolation.md:196` | `2fa89f87701bea7998fcadf5bfccc7f807d3d777` | R |
+| 44 | `review/issue-167/2026-10-31-reviewer-isolation.md:201` | `2687eb299ba8ae2cbce80c2e2141687b53591e36` | R |
+| 45 | `review/issue-167/2026-10-31-reviewer-isolation.md:206` | `f1ca34f56ca8ffba264bb2f8b9a4803b87056693` | R |
+| 46 | `review/issue-167/2026-10-31-reviewer-isolation.md:211` | `8a1dd4b1816bd70bb8e3b07636175e063ceeb682` | R |
+| 47 | `review/issue-167/2026-10-31-reviewer-isolation.md:216` | `9d31e6a3f4f002d2dc2949cbc05ce2081d3b7c2a` | R |
+| 48 | `review/issue-167/2026-10-31-reviewer-isolation.md:221` | `9b77629ae5ee02565221740925be3b397839e881` | R |
+| 49 | `review/issue-167/2026-10-31-reviewer-isolation.md:226` | `4543d5ca6b0f940cf5f2ced8805337af5d7450cc` | H |
+| 50 | `review/issue-167/2026-10-31-reviewer-isolation.md:233` | `e793294e10e7baa1591cbc449e098694743a5f8a` | R |
+| 51 | `review/issue-167/2026-10-31-reviewer-isolation.md:237` | `fb1788df6f8c6f11da599b2ef9977a35d0efb040` | R |
+| 52 | `review/issue-167/2026-10-31-reviewer-isolation.md:241` | `1a7e31d619bdc85905c8d08c6a7b275411b4fd66` | R |
+| 53 | `review/issue-167/2026-10-31-reviewer-isolation.md:245` | `075c783398ed1ea3d8cb02a67c7455f5bd02e920` | R |
+| 54 | `review/issue-167/2026-10-31-reviewer-isolation.md:262` | `65e9d35de68a01ea5370f17e260025b036f940ed` | R |
+| 55 | `review/issue-167/2026-10-31-reviewer-isolation.md:266` | `1e4fcc03c91c6fb377ded22509fab00436c61c79` | R |
+| 56 | `review/issue-167/2026-10-31-reviewer-isolation.md:283` | `59b0cd4c2d72c9cfd789efb8991bf2429dea503d` | R |
+| 57 | `review/issue-167/2026-10-31-reviewer-isolation.md:287` | `3f05c0a58b9338f129dbef2d4f9482bfa5c0b4f4` | R |
+| 58 | `review/issue-167/2026-10-31-reviewer-isolation.md:304` | `9429d8b5c329d859767179310ac47b70722d633d` | R |
+| 59 | `review/issue-167/2026-10-31-reviewer-isolation.md:308` | `641cb9e3b72b2dc86b10cce529d5bf0b3f475766` | R |
+| 60 | `review/issue-167/2026-10-31-reviewer-isolation.md:325` | `1b5fe91c9b8f04f9655f86164a0ac6e8cceb0c3f` | R |
+| 61 | `review/issue-167/2026-10-31-reviewer-isolation.md:329` | `3d1300e21464e6bf5310ef54ee35e41fe0375813` | R |
+| 62 | `review/issue-167/2026-10-31-reviewer-isolation.md:737` | `78944182f18b33602664209dde9ec17afcd51310` | H |
+| 63 | `review/issue-167/2026-10-31-reviewer-isolation.md:796` | `cf2b20fe1797135da6c904da686f2568421d11a3` | H |
+| 64 | `review/issue-167/2026-10-31-reviewer-isolation.md:803` | `b596fea2b73b9cd06e825725b8167610c5354156` | R |
+| 65 | `review/issue-167/2026-10-31-reviewer-isolation.md:808` | `7225a1f355ec1f1f2436a8c96691ad0728423de8` | R |
+| 66 | `review/issue-167/2026-10-31-reviewer-isolation.md:813` | `07888c4d7974e3ffe4997b22465c10fefdbdc9bb` | R |
+| 67 | `review/issue-167/2026-10-31-reviewer-isolation.md:818` | `ecbaece6fb255f19030d36ab69370bbdd12db07e` | R |
+| 68 | `review/issue-167/2026-10-31-reviewer-isolation.md:823` | `5deb7663bda8252665a0ccf23b93fb23707514cf` | H |
+| 69 | `tests/fixtures/orchestration-accept-only.json:14` | `b26818d0bc8b4052029f874856cd7941ec58e342` | K |
+| 70 | `tests/fixtures/orchestration-start.json:14` | `b26818d0bc8b4052029f874856cd7941ec58e342` | K |
+| 71 | `tools/quality/bandit-policy.json:128` (five source fields) | `20e05e07bb74baf4337d574843ae84aa20f8c19c` | R: current tools/check_ri_ci.py |
+
+
+### Code / changed artifact — literal completed security report
+
+# First independent Code / changed-artifact judgment
+
+Reviewer: `/root/security_final_code`, distinct nonauthor, first phase. Owner WEB-18/#167, VIT-22, Draft PR168. This output is the first judgment and must be retained unchanged. No current security peer verdict, author conversation, planning/routing/preflight document or unrelated memory was read. Historical artifacts named by per-value provenance were hashed without reading their conclusions. Candidate report claims were examined as subjects. Actual launch request/acceptance and provider-internal isolation/model facts remain the orchestrator's evidence obligation; I cannot attest those internals.
+
+## Verdict
+
+No blocking defect found in the frozen seven-path security correction. The 71 exact proposed dispositions are acceptable for their specific paths/types/value identities; all five existing Bandit refreshes are justified. The narrow major-version override is supportable for the actual three consumers with the bounded compatibility evidence and native checks still required. Advance to changed-source native CI only after all four roles complete, findings are reconciled, completed results are recorded in the existing versioned review artifact, and any receipt-induced changes pass the exact final-scan/delta-review rule below. This is not a native security pass, owner trust, staging/admission acceptance, or permission to merge/publish.
+
+## Canonical source identities
+
+- Packet `security/final-packet.json`: SHA256 `4c66d93c0bd076566fe34d736c4bab8c13bccc1b720a53c7d91521ffe0c71c17`.
+- Frozen complete1810 manifest: `3c925313fc19cd9f2ff87718c00ec8da928e0fc25079bc402b91534c4ca97f26`; independently hashed all1810 actual paths: zero mismatches.
+- Prepared delta: `91ac2a68fd44365df32ecf77e8939afb8f73a9c2a48245aea715291e46b69d14`.
+- Complete baseline PR patch artifact: `3c21ecec5d5d1e7d957723e675b70a1ab8166250789c92c45005c9d819555c72`; 32 nonempty patches, 485024 characters. API's omitted added report patch was explicitly reconstructed, not presented as original API patch data.
+- Native baseline commit `8c0087b99f4bd77886b2f174ff30d12f67855cee`, tree `f9055428997b0f40af098f6862c30883b1e99ac8`; protected base `1f814f594e6a25fe07a5537ffcc814d182b27590`.
+- Common prompt `agents/reviewers/README.md`: `2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb`; Code prompt `26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697`. Read actual prompts, AGENTS, CONTRIBUTING and CODE-STYLE.
+
+Scope inspected: actual baseline patch inventory and relevant source/contract/test/receipt changes; current reducer's data-only boundary and operation identity; current source and retained previously reviewed check_ri_ci source; full seven-path prepared delta including policy/ledger/package/lock/report/memory/generated RI relationships. This is a complete prepared byte snapshot, not native Git history. It does not independently repeat every historical behavioral campaign or establish all original WEB/P criteria.
+
+## Findings and required dispositions
+
+**F1 — Medium, conditional advancement blocker: `security/author-logs/receipt-proposal.md`, allowed serializer/output and external-only completed-result references.** A four-row launch/completion table alone does not satisfy the common contract's versioned source-bound completed findings/result requirement. The newer `security/receipt-operation-v2.md` supplies an acceptable treatment: preserve first outputs, append their unmodified full reports plus actual launch receipts to `review/issue-167/2026-10-31-native-integration.md`, maintain requested/accepted versus unknown provider facts, and apply actual affected review to every new substantive disposition. Use v2; do not claim the narrow launch table alone completes WEB-AC11/S07/S08. This finding concerns an unperformed proposal; it does not require changing the frozen security implementation before recording real results.
+
+**F2 — Evidence boundary, not a source fix: S06/S08 and native gate.** Raw scanner/selector campaign is 80 tests, 77 pass, 3 fail, zero skips. The retained failures are historical ledger retrieval at quality-sources.test.cjs:1241, publication-history prerequisite in scanner category flow at :1981, and missing repository-lint report at :2258. The first two raw errors explicitly expose unavailable Git history; the third's report absence is not itself a successful scanner run. Do not turn those into a local full security pass. Native changed-head checks must settle them and full clean source selection. The original stage security/advisory failure is preserved, not reset by documentation or this review.
+
+No other blocking findings. Nonblocking risk: exact11 override deliberately crosses all three consumers' declared ^10 ranges; future consumer/API/engine upgrades require renewed compatibility evidence. A zero audit cannot establish that compatibility.
+
+## All71 secret dispositions
+
+Every initial row was independently checked against its actual source line and SHA1(value) detector identity. All62 retained-source checksum rows independently recompute to at least one named retained byte artifact. I inspected the source-specific roles, including report/packet identities, source files, historical evidence records, and fixture identity consumers. Hashing historical result files does not accept their verdicts. The two synthetic operation keys independently recompute from compact sorted seven-field operation JSON, and the actual reducer consumes them as identity, with no authentication/adapter effect. Existing1645 ledger rows/order/reasons remain semantically identical; exactly71 new rows are added, with no scanner threshold or exclusion changes.
+
+The six historical values deserve weaker but sufficient classification: reviewer-isolation.md:146 and :148 are packet-history digests within an explicit parent receipt; :226 is the reviewed-manifest identity for the pre-append public document; :737 is a requirements prompt identity within retained source-verification records; :796 is the earlier map.md identity; :823 is candidate.patch identity. I inspected the surrounding JSON/path associations and receipt boundaries, and independently confirmed each literal is added in the actual baseline public PR patch. None is used as a password, endpoint secret or authorization capability. This supports exact historical-public-checksum false-positive dispositions. The earlier bytes remain unavailable, so these six are **not recomputed, authenticated reviewer execution, or proof of current source**. Labels/hex length alone were not the basis.
+
+The following table identifies every reviewed initial row in the supplied worksheet; `R` means actual retained-byte SHA256 recomputed, `H` means the six qualified historical public receipt contexts above, `K` means synthetic operation-key recomputation. All are accepted only for their exact path/type/SHA1 identity.
+
+| Row | Source path and line | SHA1(value) | Basis |
+| --- | --- | --- | --- |
+| 1 | `review/issue-167/2026-10-31-native-integration.md:135` | `0e78986ca827077f29d58ff71eba2409f7b52f08` | R |
+| 2 | `review/issue-167/2026-10-31-native-integration.md:136` | `516102f50f3b81192a1f706a96b3616cfa32727a` | R |
+| 3 | `review/issue-167/2026-10-31-native-integration.md:138` | `a16f24762d26b37efc386a345edbde7c262e8ccf` | R |
+| 4 | `review/issue-167/2026-10-31-native-integration.md:151` | `8e25ec0a5b3a7094c83ace7560b96c28c9622821` | R |
+| 5 | `review/issue-167/2026-10-31-native-integration.md:164` | `8e2225d1d09dce2b85105d3557fee61f099c77a8` | R |
+| 6 | `review/issue-167/2026-10-31-native-integration.md:177` | `ab3c4b84ef853dfe2fa41ff085d6b688cf6f74e9` | R |
+| 7 | `review/issue-167/2026-10-31-native-integration.md:190` | `b5b6ed63816494b6b87d43890f20912973ccc5b8` | R |
+| 8 | `review/issue-167/2026-10-31-native-integration.md:623` | `dd71b27d5e43d21a78d7edf4da5a9a5f140d1ed8` | R |
+| 9 | `review/issue-167/2026-10-31-native-integration.md:624` | `debc881897313bd095f4e06c33be958f53054362` | R |
+| 10 | `review/issue-167/2026-10-31-native-integration.md:639` | `839d9cb20e02bcd0a90d03448b270354583b649a` | R |
+| 11 | `review/issue-167/2026-10-31-native-integration.md:654` | `18a953660ee129af4f473250dc02dfaa0d6e999f` | R |
+| 12 | `review/issue-167/2026-10-31-native-integration.md:669` | `31ad172bb65ef53f0dfa3440e6ec544135fc93da` | R |
+| 13 | `review/issue-167/2026-10-31-native-integration.md:684` | `998ba8b01b1400054ce59a73fd313dc7243c5ad6` | R |
+| 14 | `review/issue-167/2026-10-31-offline-prototype.md:599` | `e13a418b892d3cd900ba60ad190ff75f7c2a39d1` | R |
+| 15 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:7` | `bc7aae15bc36d8c21142e0bcb3dfa0926aab9768` | R |
+| 16 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:14` | `31311dfc08c2ace2050ba7309f21599583a5eebc` | R |
+| 17 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:21` | `abfdc2a8d2618015fdc2881fd0de2a45dfcc4520` | R |
+| 18 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:28` | `ea5f6a9b7f89c8191c7b210ff3a93bbce4b674f0` | R |
+| 19 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:35` | `c59134987ad3341ebc744f2895ee6493a0e38ef4` | R |
+| 20 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:42` | `7fa5af34db5f508d1e8dc4ae5a8d97dc65d9f0b3` | R |
+| 21 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:49` | `aa7cbeae80c1c0a107b83b648c3090ab559372a6` | R |
+| 22 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:56` | `9a1d8a30304027a587fb11e6572df130973c8fa9` | R |
+| 23 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:63` | `a721041e7382c123ef63b1abf4e42a9b6fa72281` | R |
+| 24 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:70` | `ff84bc8af35f43c2f9890ada1662c1f199dfd61d` | R |
+| 25 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:77` | `0cf44103e4ee4f7839efabc1e7e626fe3ca8beaa` | R |
+| 26 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:84` | `b55054df9d0169b99bf13a69cd643c9257e0291d` | R |
+| 27 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:91` | `4e0d0f1680b8b1d8951084c6fd7af05901d363e6` | R |
+| 28 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:98` | `17ec352d626981fb0f62287a7c8b6c495ad74763` | R |
+| 29 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:105` | `eb596323b09684674d2478031ccb90eae1d5eb7f` | R |
+| 30 | `review/issue-167/2026-10-31-reviewer-history-evidence.json:112` | `aa97f751dc872501817934ea012cc325df6a62ec` | R |
+| 31 | `review/issue-167/2026-10-31-reviewer-isolation.md:146` | `a58ce9872f0ee4eeb85ca5d3950b1adef0ac44a8` | H |
+| 32 | `review/issue-167/2026-10-31-reviewer-isolation.md:147` | `8c46c64b9e2056acf8ffe72a2d7a5a041a53afa0` | R |
+| 33 | `review/issue-167/2026-10-31-reviewer-isolation.md:148` | `39ac3a75aee6290d20cd8552c6ec85708d7aca76` | H |
+| 34 | `review/issue-167/2026-10-31-reviewer-isolation.md:149` | `96537532a7a2397a9fcd6ffc455210a4862d0cac` | R |
+| 35 | `review/issue-167/2026-10-31-reviewer-isolation.md:152` | `a1c7824bba106c4b2a48a9562da4f138ca344069` | R |
+| 36 | `review/issue-167/2026-10-31-reviewer-isolation.md:156` | `68bde96a407899054ba1d507253ec1a7d22bf00e` | R |
+| 37 | `review/issue-167/2026-10-31-reviewer-isolation.md:161` | `a2a378b2ebe1c914a7fe66a03e7d3c1088a42a89` | R |
+| 38 | `review/issue-167/2026-10-31-reviewer-isolation.md:166` | `b67736d4ab51cf716459bb9ab7a14211c53fc564` | R |
+| 39 | `review/issue-167/2026-10-31-reviewer-isolation.md:171` | `a6128d6e18a38cf02b2170adfab42259eac5087c` | R |
+| 40 | `review/issue-167/2026-10-31-reviewer-isolation.md:176` | `518d77ec2a2fd4394891a2f405f769feb67df5e4` | R |
+| 41 | `review/issue-167/2026-10-31-reviewer-isolation.md:186` | `d2fd357fa1e088c34a2e36e54942a7c627064972` | R |
+| 42 | `review/issue-167/2026-10-31-reviewer-isolation.md:191` | `16f193d167b8a7e3040ac499243c01ecb620bec2` | R |
+| 43 | `review/issue-167/2026-10-31-reviewer-isolation.md:196` | `2fa89f87701bea7998fcadf5bfccc7f807d3d777` | R |
+| 44 | `review/issue-167/2026-10-31-reviewer-isolation.md:201` | `2687eb299ba8ae2cbce80c2e2141687b53591e36` | R |
+| 45 | `review/issue-167/2026-10-31-reviewer-isolation.md:206` | `f1ca34f56ca8ffba264bb2f8b9a4803b87056693` | R |
+| 46 | `review/issue-167/2026-10-31-reviewer-isolation.md:211` | `8a1dd4b1816bd70bb8e3b07636175e063ceeb682` | R |
+| 47 | `review/issue-167/2026-10-31-reviewer-isolation.md:216` | `9d31e6a3f4f002d2dc2949cbc05ce2081d3b7c2a` | R |
+| 48 | `review/issue-167/2026-10-31-reviewer-isolation.md:221` | `9b77629ae5ee02565221740925be3b397839e881` | R |
+| 49 | `review/issue-167/2026-10-31-reviewer-isolation.md:226` | `4543d5ca6b0f940cf5f2ced8805337af5d7450cc` | H |
+| 50 | `review/issue-167/2026-10-31-reviewer-isolation.md:233` | `e793294e10e7baa1591cbc449e098694743a5f8a` | R |
+| 51 | `review/issue-167/2026-10-31-reviewer-isolation.md:237` | `fb1788df6f8c6f11da599b2ef9977a35d0efb040` | R |
+| 52 | `review/issue-167/2026-10-31-reviewer-isolation.md:241` | `1a7e31d619bdc85905c8d08c6a7b275411b4fd66` | R |
+| 53 | `review/issue-167/2026-10-31-reviewer-isolation.md:245` | `075c783398ed1ea3d8cb02a67c7455f5bd02e920` | R |
+| 54 | `review/issue-167/2026-10-31-reviewer-isolation.md:262` | `65e9d35de68a01ea5370f17e260025b036f940ed` | R |
+| 55 | `review/issue-167/2026-10-31-reviewer-isolation.md:266` | `1e4fcc03c91c6fb377ded22509fab00436c61c79` | R |
+| 56 | `review/issue-167/2026-10-31-reviewer-isolation.md:283` | `59b0cd4c2d72c9cfd789efb8991bf2429dea503d` | R |
+| 57 | `review/issue-167/2026-10-31-reviewer-isolation.md:287` | `3f05c0a58b9338f129dbef2d4f9482bfa5c0b4f4` | R |
+| 58 | `review/issue-167/2026-10-31-reviewer-isolation.md:304` | `9429d8b5c329d859767179310ac47b70722d633d` | R |
+| 59 | `review/issue-167/2026-10-31-reviewer-isolation.md:308` | `641cb9e3b72b2dc86b10cce529d5bf0b3f475766` | R |
+| 60 | `review/issue-167/2026-10-31-reviewer-isolation.md:325` | `1b5fe91c9b8f04f9655f86164a0ac6e8cceb0c3f` | R |
+| 61 | `review/issue-167/2026-10-31-reviewer-isolation.md:329` | `3d1300e21464e6bf5310ef54ee35e41fe0375813` | R |
+| 62 | `review/issue-167/2026-10-31-reviewer-isolation.md:737` | `78944182f18b33602664209dde9ec17afcd51310` | H |
+| 63 | `review/issue-167/2026-10-31-reviewer-isolation.md:796` | `cf2b20fe1797135da6c904da686f2568421d11a3` | H |
+| 64 | `review/issue-167/2026-10-31-reviewer-isolation.md:803` | `b596fea2b73b9cd06e825725b8167610c5354156` | R |
+| 65 | `review/issue-167/2026-10-31-reviewer-isolation.md:808` | `7225a1f355ec1f1f2436a8c96691ad0728423de8` | R |
+| 66 | `review/issue-167/2026-10-31-reviewer-isolation.md:813` | `07888c4d7974e3ffe4997b22465c10fefdbdc9bb` | R |
+| 67 | `review/issue-167/2026-10-31-reviewer-isolation.md:818` | `ecbaece6fb255f19030d36ab69370bbdd12db07e` | R |
+| 68 | `review/issue-167/2026-10-31-reviewer-isolation.md:823` | `5deb7663bda8252665a0ccf23b93fb23707514cf` | H |
+| 69 | `tests/fixtures/orchestration-accept-only.json:14` | `b26818d0bc8b4052029f874856cd7941ec58e342` | K |
+| 70 | `tests/fixtures/orchestration-start.json:14` | `b26818d0bc8b4052029f874856cd7941ec58e342` | K |
+
+Row71 is `tools/quality/bandit-policy.json:128`, Hex High Entropy String SHA1(value) `20e05e07bb74baf4337d574843ae84aa20f8c19c`: independently recomputed current public `tools/check_ri_ci.py` SHA256 `6bd4f27642e43d2afdd6b452fa80fe6c8a5092991fa83d5b83a4f11c7906cf46`, verified detector identity and five policy source fields. Accepted exact source checksum, not a credential.
+
+## Bandit source and refusal boundaries
+
+Retained prior source `native-b2/sources/tools/check_ri_ci.py` hashes to `ad2c3beb905849b49da1433c2569fb61e339e856981a88791bb0e9b249bed9d9`. Independently compared its complete text to current source: only reviewer-prompt CONTROL_PATTERNS addition and explanatory docstring change. Five flagged statements remain byte-identical, including indentation and exact line hashes:
+
+| Rule | Old → current line | Context |
+| --- | --- | --- |
+| B404 | 16 →16 | subprocess import for developer tooling |
+| B102 | 299 →301 | compile/exec of explicitly mapped repository tests after safe path/selector validation |
+| B607 | 373 →375 | Git resolved through setup-owned PATH |
+| B603 | 373 →375 | list argv check_output, no shell |
+| B105 | 428 →430 | boolean `pass` report field |
+
+Independently matched fresh48 to native failed-stage48 raw signatures (filename/line/rule/test/severity/confidence), and all five proposed bindings to fresh raw findings. All43 other entries are identical after JSON decoding; quote escaping is serialization only. Five changed rows preserve rule/test/severity/confidence/line hash/owner/issue35/reviewBy2026-11-03; only source hash, shifted line and appended rationale differ. Admission still checks source and line digests, expiry, scope, errors and exact identities. Developer repository execution is not a hostile-code sandbox; no expansion of that trust boundary is implied.
+
+## Dependency/API and raw check evidence
+
+Real npm producer command is `npm install --package-lock-only --ignore-scripts --no-audit --prefix tools/quality/toolchain`, exit0, followed by real `npm ci --ignore-scripts --no-audit`, exit0. Actual package/lock diff changes only exact minimatch override11.0.1, minimatch package entry and new @isaacs/nonrecursive-glob-match1.0.3; brace-expansion5.0.12 stays unchanged. All three installed consumers resolve11.0.1 despite ^10 declarations. Their own versions are unchanged. Node18/20/22+ engines admit observed local24.22.1/native24.19.0; licenses remain BlueOak-1.0.0.
+
+Actual ESLint eslint-helpers.js constructs Minimatch with dot:true, and its traversal .match(path,true) calls use those matchers. Config-array sets dot:true and uses full .match(path). Sonar dependency parsing uses nocase:true/matchBase:true full match; find-up uses default full basename match; package workspace resolver uses nonegate:true full relative-directory match. The retained actual ConfigArray include/ignore/unconfigured, Sonar dependency include/reject, package find-up, and workspace positive/negative/catalog checks exercise these APIs. Installed tree inspection and maintained lint raw observations provide integration evidence.
+
+Broad436800 comparison has210 retained differences: partial matching with dot:false for **/.* or **/node_modules/. Independently grouped all210 records; none is full-match or dot:true. The305760 tested consumer-domain cases report zero differences. This narrows the mismatch's relevance without claiming global library parity. Fresh npm audit and pip audit show zero advisories; Semgrep's first failed diagnostic inputs are retained and the corrected canonical-input run exits0. Fresh Bandit is48 raw/no errors, admission48/48. No test/oracle/scanner/exclusion/advisory waiver was changed.
+
+Own distinct checks were bounded scripts only, under30 seconds total: all1810 hashes; all70 source/SHA1/proof bindings, prior1645 preservation and71st checksum; source diff and five exact binding/line checks; native/fresh48 signature comparison; actual installed three-consumer resolution plus15 positive/negative Minimatch API assertions and3 version assertions. The script's printed “25” API count was a logging arithmetic error: actual loop is3×5=15, not25. An initial ad hoc line-hash comparison incorrectly stripped indentation and was corrected to the validator's exact-line rule; all five then match. An initial native signature script requested nonexistent `code` fields and exited1; subsequent comparison used actual available signature fields. These are reviewer diagnostic errors, not product failures or erased observations. No broad campaign replay, implementation edit, test authoring, delegation, external write or network action occurred.
+
+## Exact final scan and advancement
+
+Retained final prepared scan covers1810 candidate paths/1398 text inputs,7185 raw findings, no mutation during scan; its scanSourceSha256 map exactly equals the frozen manifest. Reconciliation retains5103 ledger findings,1866 current RI/coupling checksums,216 unchanged native-baseline generated findings, zero unknowns. The216 reuse and absent original history explicitly prevent a native security-pass claim.
+
+Any appended reports/receipts mutate tracked bytes and invalidate this scan's final-byte claim. Preserve first judgments, record actual completed reports in the versioned owner artifact, regenerate applicable real RI/coupling/format outputs, run a new complete exact-candidate scan, and independently classify each new path/type/SHA1(value) against actual source bytes. A new disposition needs a frozen delta and actual affected assessments from all four same-role reviewers, preserving first outputs and declaring later exposure. After literal delta results are recorded, regenerate and scan again; any newly detected value stops advancement under the same rule. No encoding workaround, automatic checksum exemption, exclusion or self-hash append. Freeze external manifest/scan binding only after the final mutation. Native clean full security/advisory, required Basic/source/style/owning checks, full owner staging/admission, exact final reviewed_sha owner trust and existing release boundaries remain separate gates.
+
+
+### White-box QA — literal completed security report
+
+# Security correction — independent first White-box QA result
+
+Verdict: suitable for advancement to existing changed-source native CI only, conditional on the orchestrator's verified clean launch receipt and the final exact-byte recording/scan gate below. No source correction requested by this review. Native full security/advisory, staging/admission, exact-head owner trust, whole WEB/B1/B2/M1 acceptance remain unestablished.
+
+## Canonical execution receipt
+
+- Role/task: distinct nonauthor White-box QA, `/root/security_final_whitebox`; first judgment, security correction phase. No delegation, repository mutation, external write, permanent test, whole-campaign replay or owner approval.
+- Launch: parent supplied literal neutral launcher metadata before this report was returned: requested `task_name=security_final_whitebox`, `fork_turns=none`, `model=gpt-6.1-sol`, `reasoning_effort=medium`; actual spawn response accepted `task_name=/root/security_final_whitebox`. This is parent-reported launcher evidence, not independently visible provider attestation. Provider-resolved model/effort/context/memory internals remain unknown. The parent retains the original tool receipt. No author conversation/plans/preflight or current security peer result was read. Historical result files were read as hash bytes only where required for per-value provenance; their conclusions were not imported.
+- Owner/scope: WEB-18/#167, VIT-22, PR168; original instruction and S01–S08 in packet/brief and candidate security section, preserving P/WEB and CS constraints. No merge, production, new service/permission/dispatcher or B3–B7 authorization.
+- Packet SHA256 `4c66d93c0bd076566fe34d736c4bab8c13bccc1b720a53c7d91521ffe0c71c17`; all packet input hashes independently match. Prepared manifest SHA256 `3c925313fc19cd9f2ff87718c00ec8da928e0fc25079bc402b91534c4ca97f26`, 1810 paths, all current bytes match. Prepared diff identity is packet-bound `91ac2a68fd44365df32ecf77e8939afb8f73a9c2a48245aea715291e46b69d14`.
+- Common prompt `agents/reviewers/README.md` SHA256 `2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb`; role prompt `agents/reviewers/white-box-qa.md` SHA256 `832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f`. Both actual prompts read. Packet instruction hashes, including AGENTS/CONTRIBUTING, match.
+- Baseline native commit `8c0087b99f4bd77886b2f174ff30d12f67855cee`, tree `f9055428997b0f40af098f6862c30883b1e99ac8`; protected base `1f814f594e6a25fe07a5537ffcc814d182b27590`. This is a prepared subset with absent original local HEAD/history, not a clean Git checkout. Complete baseline PR patch envelope includes 32 paths; large added native report patch is reconstructed as explicitly disclosed. Reviewed relevant complete code/control patches, prepared changes, actual policy/ledger/source/lock/consumer code, existing test cases and raw artifacts; not re-certifying earlier design/runtime reviews.
+- Environment: managed Linux, actual Node v24.22.1; native report records v24.19.0. Initial result preserved in this file before reconciliation.
+
+## Risk → scenario/oracle → maintained route
+
+| Risk/AC | Structural scenario and independent oracle | Executed/retained evidence and existing profile |
+| --- | --- | --- |
+| S01/S02 stale Bandit authorization | Compare all five exact statements, whole-source/line hashes and raw signatures. Perturb source hash, line hash, expiry, raw severity/rule, remove finding or add scanner error: every mutation must refuse. | Own 7 negative checks + real48-finding admission. Existing `tests/quality-sources.test.cjs` Bandit fixture cases; permanent source routes `pr-targeted`, staging, production; staging security engine. |
+| S03/S04 broad secret suppression | For EVERY71 new exact IDs, recover actual source value/context, SHA1 detector identity and specific provenance; exact positive then altered path/type/hash must refuse. Preserve original1645 rows byte-equivalent as parsed records and in original order. | Own71 exact positives +213 refusals; independent SHA256/source checks. Existing closed-ledger, malformed/duplicate/path and historical preservation cases in quality-sources suite; staging secrets engine. |
+| S05 major API/options change | Actual minimatch constructor/match API, dotfiles, partial traversal, full-match include/reject and globstar boundaries must meet explicit expected booleans. Inspect actual three consumers' call modes. | Own10 independently expected boolean cases. Existing maintained lint/selector tests in `quality-sources.test.cjs` and `test-profile-selection.test.cjs`; Basic source and staging current lint/advisories. Author differential is additional bounded evidence, not sole oracle. |
+| S06 false clean/native claim | Raw stage errors and absent-history regression failures must remain failures; old baseline jobs cannot accept changed source. | Raw stage security/advisory and regression artifacts read; native full route pending. SITE-CHECK-PROFILES PR source, staging regression, production admission rows distinguish these gates. |
+| S07/S08 scan-after-record ordering | Literal report append changes tracked bytes. Final manifest/scan must bind the bytes ultimately uploaded, and new unknowns trigger individual review. Never let a successful scan attest later mutation. | Independently compared final scan's complete1810 source map to frozen manifest and checked inherited216 source+detector keys; further receipt operations pending. Existing RI/coupling verify, scanner and native source-clean gates retain their roles. |
+
+## Source conclusions
+
+Five refreshed rows in `tools/quality/bandit-policy.json` bind the actual `tools/check_ri_ci.py` SHA256 `6bd4f27642e43d2afdd6b452fa80fe6c8a5092991fa83d5b83a4f11c7906cf46`. The complete relevant Python delta adds the `agents/reviewers/*.md` control pattern and related docstring only. Findings are B404:16 (subprocess import), B102:301 (compile/exec mapped repository test bytes), B607/B603:375 (explicit Git argv, no shell), B105:430 (`"pass": True`, a result flag). Former lines299/373/428 move +2; line hashes remain unchanged. All five match actual raw test-name/severity/confidence; issue35, owner, expiry2026-11-03 and all other fields outside source/line/rationale are preserved. All43 other records are exactly equal. These intentionally trusted developer-tool boundaries are not hostile-code sandbox guarantees. Negative checks demonstrate fail-closed bindings, not branch coverage.
+
+All71 dispositions are acceptable exact false-positive classifications for this prepared candidate:62 retained-byte SHA256s, two synthetic fixture operation keys, six historical public receipt identities qualified as context-only, plus one public Bandit source SHA256. The six historical values appear in the baseline added-file patch and corresponding receipt contexts; their prior bytes and execution authenticity are not recomputed or authenticated. They must never be used as current provider/execution assurance. No credential-looking unknown was identified in these71 contexts. Original1645 checksum records/order/reasons remain unchanged; the other ledgers, scanner thresholds/exclusions/rules and advisory exceptions remain unchanged. The initial70 worksheet's pending labels were not treated as an oracle.
+
+The lock change is narrow: root exact minimatch11.0.1 override; minimatch and new `@isaacs/nonrecursive-glob-match` package locations change, brace-expansion stays5.0.12. It intentionally crosses the three declared^10 consumer ranges. Actual ESLint partial match calls use `dot:true`; config-array calls full match with dot enabled; Sonar dependency glob calls use full match with nocase/matchBase and find-up uses full matching. Installed constructor/export API and independently expected boundary cases work. Broad parity remains disproved (210/436800 differences, partial dotfalse); the305760 consumer-mode comparison is bounded corroboration. Native pinned-runtime/full-source acceptance is still required; this review supplies no global minimatch equivalence claim.
+
+Raw stage41195104012 security report fails Bandit stale-source and70 untriaged secrets; advisory report fails npm, with Semgrep/publication npm/pip observations kept distinct. The original48 findings and detector raw artifact remain visible. Bounded diagnostic corrections retain their first failures: Bandit raw filename collision, incorrect Semgrep roots, orphan pip metadata. Scanner/selector retained TAP reports80 tests,77 pass/3 fail/0 skip; historical ledger retrieval fails absent commit path, scanner control-flow secrets prerequisite fails missing publication history, repository-lint fixture lacks its output. These are not green checks, and own negatives do not replace their native rerun.
+
+Final prepared scan retains7185 raw findings:5103 exact-ledger findings,1866 claimed producer-bound RI/coupling checksums,216 unchanged native-generated findings. Own comparison verifies raw row membership/counts and all216 exact old detector keys and unchanged source hashes, not a fresh native history proof or a re-execution of all producer admission. The final scan source map equals the1810 manifest and `changedDuringScan=[]`. 1398 text inputs were scanned. Full native scanner acceptance remains pending.
+
+## Actual execution and accounting
+
+Read/hash preparation is source inspection, not test execution or measured coverage. Three chosen read-only diagnostics, each shell-bounded `timeout 10s`, all exit0, no signal/timeout/retry, no skip/cancel/TODO:
+
+1. `timeout 10s python3 -` with independent standard-library assertions over all71 sources, detector SHA1s, retained-byte SHA256s, sorted synthetic operation JSON and original1645 prefix:0.022989 seconds internally; tool reference881a4d. Printed full71 provenance result (70 detailed rows plus separate71 proof).
+2. `timeout 10s node` importing actual frozen `bandit-triage.cjs`, `scanners.cjs` and installed minimatch, using structuredClone-only mutations:82 positive assertions (one48-finding admission +71 ledger exact positives +10 expected match cases),220 negative refusals (7 Bandit +213 ledger path/type/hash). Internal119.719ms; tool referencef8fc86. Raw output: `reject stale-source`, `wrong-line`, `expired`, `severity-change`, `unknown-rule`, `missing-finding`, `scanner-error`; final JSON `{"pass":82,"negativeRefusals":220,"elapsedMs":119.71881700000002,"node":"v24.22.1"}`.
+3. `timeout 10s python3 -` independently comparing raw7185 reconciliation membership/counts, scan map,216 inherited identities, six historical baseline-patch values and all five Bandit binding invariants:0.039319 seconds internally; tool reference5d6564. Raw counts5103/1866/216; no assertion failure.
+
+Total diagnostic runtime <1 second observed (all three combined internal times~0.182s), below30s. Source/hash preparation and report writing are not campaigns. No full suite, full scanner, network/publication, browser/UI or native checkout was executed by this role. Dynamic UI is genuinely absent in this security policy/lock/report delta. No coverage percentage or runtime-security guarantee is claimed. Existing maintained suites, raw bounded diagnostics and native CI have separate scope.
+
+## Literal receipt and final-scan proposal
+
+The narrow `receipt-proposal.md` four-row launch/completion table alone does not meet the versioned completed-result requirement. The superseding `receipt-operation-v2.md` is acceptable as a procedure: preserve these first outputs; append actual unmodified completed reports and actual request/accepted launcher receipts to the existing versioned report, keeping requested, accepted and unknown provider facts separate. Do not invent success or rewrite failed findings. It is a proposed operation, not an already reviewed final candidate.
+
+Every append invalidates this scan binding. Regenerate real affected RI/coupling/format outputs; scan the complete exact candidate again. New detector IDs require per-value proof and actual affected assessment by all four same-role reviewers in a frozen delta packet, with later peer exposure disclosed. Literal delta results then change bytes again, so regenerate/re-scan again. Stop on any new unknown; no representation/exclusion/rule changes or self-hash churn. Freeze the final external manifest/scan receipt after the last mutation. A deterministic/verbatim exemption cannot admit a new substantive secret disposition. After a clean final binding and all roles, request the existing changed-source native jobs; only their actual successful exact-head results permit later full owner staging/admission. Owner reviewed_sha remains a separate decision.
+
+## Findings and limits
+
+No implementation defect found that blocks CI-only advancement on these frozen bytes. Blocking procedural condition if unmet: verified original clean-context launcher admission and completed versioned results/final exact scan as above (S06–S08/common reviewer contract). Current absent native history, unexecuted native full acceptance, six qualified historical receipts, unmeasured branches and intentional minimatch cross-major scope remain limits, not waived requirements. This first judgment is preserved; later relevant source changes need affected review.
+
+## Individual proposed dispositions
+
+Rows1–70 use worksheet order, but the verdict below derives from direct source/byte checks. `R` = retained-byte SHA256 verified; `H` = qualified historical public receipt context only, not recomputed/authenticated; `K` = recomputed synthetic sorted operation SHA256. Every row also matches actual source value, rule and detector SHA1, and has its own exact ledger disposition. Source paths shortened only in this table: N=native-integration report, O=offline-prototype report, E=reviewer-history-evidence JSON, I=reviewer-isolation report, F=fixture path.
+
+| # | Source:line | SHA1(value) | Independent disposition |
+| --- | --- | --- | --- |
+| 1 | N:135 | `0e78986ca827077f29d58ff71eba2409f7b52f08` | R: false positive, exact ID only |
+| 2 | N:136 | `516102f50f3b81192a1f706a96b3616cfa32727a` | R: false positive, exact ID only |
+| 3 | N:138 | `a16f24762d26b37efc386a345edbde7c262e8ccf` | R: false positive, exact ID only |
+| 4 | N:151 | `8e25ec0a5b3a7094c83ace7560b96c28c9622821` | R: false positive, exact ID only |
+| 5 | N:164 | `8e2225d1d09dce2b85105d3557fee61f099c77a8` | R: false positive, exact ID only |
+| 6 | N:177 | `ab3c4b84ef853dfe2fa41ff085d6b688cf6f74e9` | R: false positive, exact ID only |
+| 7 | N:190 | `b5b6ed63816494b6b87d43890f20912973ccc5b8` | R: false positive, exact ID only |
+| 8 | N:623 | `dd71b27d5e43d21a78d7edf4da5a9a5f140d1ed8` | R: false positive, exact ID only |
+| 9 | N:624 | `debc881897313bd095f4e06c33be958f53054362` | R: false positive, exact ID only |
+| 10 | N:639 | `839d9cb20e02bcd0a90d03448b270354583b649a` | R: false positive, exact ID only |
+| 11 | N:654 | `18a953660ee129af4f473250dc02dfaa0d6e999f` | R: false positive, exact ID only |
+| 12 | N:669 | `31ad172bb65ef53f0dfa3440e6ec544135fc93da` | R: false positive, exact ID only |
+| 13 | N:684 | `998ba8b01b1400054ce59a73fd313dc7243c5ad6` | R: false positive, exact ID only |
+| 14 | O:599 | `e13a418b892d3cd900ba60ad190ff75f7c2a39d1` | R: false positive, exact ID only |
+| 15 | E:7 | `bc7aae15bc36d8c21142e0bcb3dfa0926aab9768` | R: false positive, exact ID only |
+| 16 | E:14 | `31311dfc08c2ace2050ba7309f21599583a5eebc` | R: false positive, exact ID only |
+| 17 | E:21 | `abfdc2a8d2618015fdc2881fd0de2a45dfcc4520` | R: false positive, exact ID only |
+| 18 | E:28 | `ea5f6a9b7f89c8191c7b210ff3a93bbce4b674f0` | R: false positive, exact ID only |
+| 19 | E:35 | `c59134987ad3341ebc744f2895ee6493a0e38ef4` | R: false positive, exact ID only |
+| 20 | E:42 | `7fa5af34db5f508d1e8dc4ae5a8d97dc65d9f0b3` | R: false positive, exact ID only |
+| 21 | E:49 | `aa7cbeae80c1c0a107b83b648c3090ab559372a6` | R: false positive, exact ID only |
+| 22 | E:56 | `9a1d8a30304027a587fb11e6572df130973c8fa9` | R: false positive, exact ID only |
+| 23 | E:63 | `a721041e7382c123ef63b1abf4e42a9b6fa72281` | R: false positive, exact ID only |
+| 24 | E:70 | `ff84bc8af35f43c2f9890ada1662c1f199dfd61d` | R: false positive, exact ID only |
+| 25 | E:77 | `0cf44103e4ee4f7839efabc1e7e626fe3ca8beaa` | R: false positive, exact ID only |
+| 26 | E:84 | `b55054df9d0169b99bf13a69cd643c9257e0291d` | R: false positive, exact ID only |
+| 27 | E:91 | `4e0d0f1680b8b1d8951084c6fd7af05901d363e6` | R: false positive, exact ID only |
+| 28 | E:98 | `17ec352d626981fb0f62287a7c8b6c495ad74763` | R: false positive, exact ID only |
+| 29 | E:105 | `eb596323b09684674d2478031ccb90eae1d5eb7f` | R: false positive, exact ID only |
+| 30 | E:112 | `aa97f751dc872501817934ea012cc325df6a62ec` | R: false positive, exact ID only |
+| 31 | I:146 | `a58ce9872f0ee4eeb85ca5d3950b1adef0ac44a8` | H: false positive, exact ID only |
+| 32 | I:147 | `8c46c64b9e2056acf8ffe72a2d7a5a041a53afa0` | R: false positive, exact ID only |
+| 33 | I:148 | `39ac3a75aee6290d20cd8552c6ec85708d7aca76` | H: false positive, exact ID only |
+| 34 | I:149 | `96537532a7a2397a9fcd6ffc455210a4862d0cac` | R: false positive, exact ID only |
+| 35 | I:152 | `a1c7824bba106c4b2a48a9562da4f138ca344069` | R: false positive, exact ID only |
+| 36 | I:156 | `68bde96a407899054ba1d507253ec1a7d22bf00e` | R: false positive, exact ID only |
+| 37 | I:161 | `a2a378b2ebe1c914a7fe66a03e7d3c1088a42a89` | R: false positive, exact ID only |
+| 38 | I:166 | `b67736d4ab51cf716459bb9ab7a14211c53fc564` | R: false positive, exact ID only |
+| 39 | I:171 | `a6128d6e18a38cf02b2170adfab42259eac5087c` | R: false positive, exact ID only |
+| 40 | I:176 | `518d77ec2a2fd4394891a2f405f769feb67df5e4` | R: false positive, exact ID only |
+| 41 | I:186 | `d2fd357fa1e088c34a2e36e54942a7c627064972` | R: false positive, exact ID only |
+| 42 | I:191 | `16f193d167b8a7e3040ac499243c01ecb620bec2` | R: false positive, exact ID only |
+| 43 | I:196 | `2fa89f87701bea7998fcadf5bfccc7f807d3d777` | R: false positive, exact ID only |
+| 44 | I:201 | `2687eb299ba8ae2cbce80c2e2141687b53591e36` | R: false positive, exact ID only |
+| 45 | I:206 | `f1ca34f56ca8ffba264bb2f8b9a4803b87056693` | R: false positive, exact ID only |
+| 46 | I:211 | `8a1dd4b1816bd70bb8e3b07636175e063ceeb682` | R: false positive, exact ID only |
+| 47 | I:216 | `9d31e6a3f4f002d2dc2949cbc05ce2081d3b7c2a` | R: false positive, exact ID only |
+| 48 | I:221 | `9b77629ae5ee02565221740925be3b397839e881` | R: false positive, exact ID only |
+| 49 | I:226 | `4543d5ca6b0f940cf5f2ced8805337af5d7450cc` | H: false positive, exact ID only |
+| 50 | I:233 | `e793294e10e7baa1591cbc449e098694743a5f8a` | R: false positive, exact ID only |
+| 51 | I:237 | `fb1788df6f8c6f11da599b2ef9977a35d0efb040` | R: false positive, exact ID only |
+| 52 | I:241 | `1a7e31d619bdc85905c8d08c6a7b275411b4fd66` | R: false positive, exact ID only |
+| 53 | I:245 | `075c783398ed1ea3d8cb02a67c7455f5bd02e920` | R: false positive, exact ID only |
+| 54 | I:262 | `65e9d35de68a01ea5370f17e260025b036f940ed` | R: false positive, exact ID only |
+| 55 | I:266 | `1e4fcc03c91c6fb377ded22509fab00436c61c79` | R: false positive, exact ID only |
+| 56 | I:283 | `59b0cd4c2d72c9cfd789efb8991bf2429dea503d` | R: false positive, exact ID only |
+| 57 | I:287 | `3f05c0a58b9338f129dbef2d4f9482bfa5c0b4f4` | R: false positive, exact ID only |
+| 58 | I:304 | `9429d8b5c329d859767179310ac47b70722d633d` | R: false positive, exact ID only |
+| 59 | I:308 | `641cb9e3b72b2dc86b10cce529d5bf0b3f475766` | R: false positive, exact ID only |
+| 60 | I:325 | `1b5fe91c9b8f04f9655f86164a0ac6e8cceb0c3f` | R: false positive, exact ID only |
+| 61 | I:329 | `3d1300e21464e6bf5310ef54ee35e41fe0375813` | R: false positive, exact ID only |
+| 62 | I:737 | `78944182f18b33602664209dde9ec17afcd51310` | H: false positive, exact ID only |
+| 63 | I:796 | `cf2b20fe1797135da6c904da686f2568421d11a3` | H: false positive, exact ID only |
+| 64 | I:803 | `b596fea2b73b9cd06e825725b8167610c5354156` | R: false positive, exact ID only |
+| 65 | I:808 | `7225a1f355ec1f1f2436a8c96691ad0728423de8` | R: false positive, exact ID only |
+| 66 | I:813 | `07888c4d7974e3ffe4997b22465c10fefdbdc9bb` | R: false positive, exact ID only |
+| 67 | I:818 | `ecbaece6fb255f19030d36ab69370bbdd12db07e` | R: false positive, exact ID only |
+| 68 | I:823 | `5deb7663bda8252665a0ccf23b93fb23707514cf` | H: false positive, exact ID only |
+| 69 | tests/fixtures/orchestration-accept-only.json:14 | `b26818d0bc8b4052029f874856cd7941ec58e342` | K: false positive, exact ID only |
+| 70 | tests/fixtures/orchestration-start.json:14 | `b26818d0bc8b4052029f874856cd7941ec58e342` | K: false positive, exact ID only |
+| 71 | tools/quality/bandit-policy.json:128 (value repeated in five rows) | `20e05e07bb74baf4337d574843ae84aa20f8c19c` | R: current public tools/check_ri_ci.py source SHA256; exact ID only |
+
+
+### Exploratory / Interaction QA — literal completed security report
+
+# First independent Exploratory / Interaction QA judgment — security correction
+
+Verdict: no blocking defect found in the frozen security correction's actual operator/API interactions examined here. The frozen candidate may advance to changed-source native CI only after the orchestrator has all four completed role results, reconciled findings, verified accepted launch isolation and recorded literal completed results under the versioned protocol. This is not native security acceptance, staging/admission, owner trust or pilot approval. A later tracked receipt append is a new byte state and cannot inherit the present scan.
+
+## Canonical receipt and independence
+
+- Role: distinct nonauthor Exploratory / Interaction QA; task handle `/root/security_final_exploratory`; phase: first final security judgment. This report is the preserved first judgment, before reconciliation.
+- Actual launcher request/accepted response is not exposed in this child context. Requested model/effort, accepted fork parameter and provider model/context internals are not inferred. Parent must attach the actual launch receipt and confirm explicit `fork_turns=none`; missing accepted isolation blocks using this result as independent acceptance. The task payload supplies neutral source references, not author conversation or current peer verdicts. I did not read current security peer reports, author planning/preflight or unrelated memory. Candidate source/diff claims, including the tracked handoff diff, were treated as review subjects. Historical retained reports used as checksum material were hashed as bytes, not read for verdicts.
+- Owner/intended scope: WEB-18/#167, VIT-22, PR168. Bounded repair of failed security/advisory gate; no merge, production, new permission/service, dispatcher or B3–B7. Original owner input and packet scope inspected; whole WEB-AC and P criteria stay open.
+- Prepared source baseline commit `8c0087b99f4bd77886b2f174ff30d12f67855cee`, tree `f9055428997b0f40af098f6862c30883b1e99ac8`; protected base `1f814f594e6a25fe07a5537ffcc814d182b27590`. Original local native HEAD/history are absent; this is a prepared snapshot, not a clean native checkout.
+- Packet SHA256 `4c66d93c0bd076566fe34d736c4bab8c13bccc1b720a53c7d91521ffe0c71c17`; frozen sorted1810 manifest SHA256 `3c925313fc19cd9f2ff87718c00ec8da928e0fc25079bc402b91534c4ca97f26`; prepared diff SHA256 `91ac2a68fd44365df32ecf77e8939afb8f73a9c2a48245aea715291e46b69d14`.
+- Common prompt `agents/reviewers/README.md`: `2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb`. Own role prompt `agents/reviewers/exploratory-interaction-qa.md`: `280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a`. Root AGENTS and CONTRIBUTING identities match packet. All packet input identities, prepared diff, manifest and all1810 actual candidate file hashes verified independently. Other role prompts were not used to design this charter.
+- Environment: local Linux prepared source, installed Node dependencies available, Node API/CLI via shell. No browser/physical-device observation. No repository edits, permanent tests, delegation, external service writes or full campaign replay. Only assigned external review report written.
+
+## Charter, designed before own diagnostics
+
+Walk the operator route from raw failed staging evidence to exact dispositions, patched consumer behavior and receipt mutation. Independently expected observations: a current exact Bandit policy admits the retained48 findings while an unknown rule, wrong severity, expired review or stale source pin refuses; an exact secret identity admits only its own path/type/value; actual consumers retain hidden-path includes, explicit exclusions and extension boundaries after the major override; appending a literal result makes the old scan receipt invalid. A fresh complete exact-candidate scan and newly reviewed delta must precede advancement of mutated bytes. Website presentation unchanged means browser interaction is reasoned inapplicable to this correction, not browser validation passed.
+
+## Actions, expected versus observed, and accounting
+
+One bounded in-memory Node diagnostic was executed with `timeout 30s node` heredoc, using actual `bandit-triage.cjs`, `scanners.cjs`, ConfigArray and Sonar dependency parser APIs. It completed successfully, internal elapsed123ms (shell wall0.5s). No fixture/source file was mutated. Independent supporting identity/hash checks took less than2s in total; all chosen diagnostic execution is below30s.
+
+| Action | Independent expectation | Actual observation |
+| --- | --- | --- |
+| Review retained fresh raw Bandit using current policy and actual report coverage inventory at2026-10-31 | Exact48 admitted | `baseline Bandit:48` |
+| Replace first raw test_id with B999 | Unknown finding refused | `unreviewed Bandit finding: tools/check_code_style.py:B999:13` |
+| Replace first severity with HIGH | Severity drift refused | `Bandit severity changed` |
+| Replace one check_ri_ci source pin with old ad2c… | Stale pin refused | `Bandit reviewed source changed: tools/check_ri_ci.py` |
+| Change policy and rows' deadline to2026-01-01 | Expired policy refused | `Bandit review expired: tools/check_repository_layout.py:B404:12` |
+| Actual secret review API: exact first proposal, then changed path and unknown SHA1(value) | Exact true, both negatives false | Exact admitted; wrong path and unknown value refused |
+| Resolve minimatch from ESLint/config-array/Sonar entrypoints | Three patched consumers | All three resolve11.0.1 |
+| Actual ConfigArray with tools brace-extension selector and excluded directory | Hidden CJS matched; excluded CJS ignored; Python unconfigured; nested test CJS matched | All four exact statuses observed |
+| Actual Sonar addDependenciesArray using @Team/* and *.CJS | Case-insensitive package include/reject, basename hidden-path CJS include/Python reject | All four assertions passed |
+| Compare current tracked integration report with scanSourceSha256; hash an in-memory literal append | Current matches; appended bytes differ | Both assertions passed; old receipt invalidated |
+
+Accounting: all designed diagnostic actions above executed/pass, zero executed/fail, zero skipped/cancelled. Negative probes passed by detecting the expected refusal. This is a bounded diagnostic, not a test-suite count or a full scanner run. Raw output is retained in this execution's tool response; the exact strings above are its observations. Source review/identity inspection is separate from diagnostic execution. No browser cases designed/executed because no presentation source changed; native full stage remains not observed here.
+
+## Source and disposition walkthrough
+
+Inspected actual available-before diff, complete protected-base-to8c patch material, current check_ri_ci code at findings, scanner refusal APIs, five binding worksheet, all70 initial provenance entries, additional checksum proof, exact ledger, real package/lock and installed consumer call sites. The native patch for check_ri_ci contains only reviewer-control glob plus docstring changes; the flagged statements remain subprocess import at16, repository-selected compile/exec at301, authored shell-free Git argv at375 (B607/B603), boolean pass state at430. Five source/line/rule/confidence/owner/expiry bindings are consistent; source SHA256 is6bd4…cf46. Whole-source admission and exact line hashes were independently exercised. No blanket rebinding permission is implied.
+
+All70 initial identities were checked against exact source line/value and SHA1(value), with exact path/type/hash ledger IDs. All62 retained-source checksum values were independently recomputed from a listed retained byte source. Two operation keys independently recompute from sorted seven-field synthetic fixture operation JSON, matching reducer operationKey semantics; fixture owner/intent/action/target/candidate are explicitly synthetic. All1645 prior checksum rows, order and reasons are identical; current ledger1716 rows adds exactly71. Additional Bandit source checksum matches current public check_ri_ci bytes and five policy source fields. Exact disposition for each is in the appendix. The six historical rows are accepted solely as public contextual receipt identities, not recomputed earlier bytes, signed/provider proof, or proof of reviewer isolation. Their source contexts name packet history, old reviewed-manifest/prompt/map/patch digests, not credential use. This limited historical classification must remain visible.
+
+Installed ESLint uses dot:true for traversal/partial matching; config-array uses full matching and Sonar dependency parser uses nocase/matchBase. Actual include/exclude boundaries above passed. The retained broad comparison has210 differences out of436800, including partial matching without dot:true, so global parity is disproved. Retained305760 observed consumer-mode cases report zero differences; I did not replay them. The three declared ^10 ranges are crossed by an explicit11.0.1 override; this remains intentional compatibility risk subject to changed-source native checks, not an upstream-range satisfaction claim.
+
+Native raw evidence independently inspected: staging41195104012 attempt1 at8c/f905 failed security and advisories before upload. Raw security reports and nested report byte/hash bindings verify; Bandit had48 raw findings but stale check_ri_ci source binding; secrets had70 untriaged identities. Advisory engine refused GHSA-g3hv-75wg-m249 in root npm while publication npm and pip observed pass. The original failure stays failed. The complete baseline patch envelope notes one omitted added integration-report patch reconstructed from exact8c bytes plus absent-base path proof; it does not reconstruct native Git history.
+
+Prepared final scan receipt exits0, allCandidatePaths1810, text paths1398, source digest map1810, changedDuringScan empty. Every recorded source hash still matches frozen actual bytes. Reconciliation7185 =5103 exact ledger +1866 current generated RI/coupling checksums +216 unchanged native baseline generated findings. The216 are reused native8c proof, not freshly reproduced native generated/publication-history admission. Original history-dependent local77pass/3fail campaign remains a failure; it was not rerun. Prepared scan/reconciliation cannot establish full native security acceptance.
+
+## Literal results and next scan operation
+
+The narrower receipt-proposal.md launch/completion table cannot alone satisfy CONTRIBUTING/common-contract versioned completed findings/results. receipt-operation-v2.md resolves that gap if actually performed: append original unmodified four role reports plus literal actual launcher request/accepted response facts to the versioned integration artifact, preserving requested versus accepted versus provider-unknown distinctions. A reference-only table may accompany those actual results but cannot replace them. Current frozen artifact does not yet contain these security first judgments; record them before relying on completed iteration acceptance.
+
+That operation necessarily changes tracked bytes. Regenerate affected actual RI/coupling and formatting, then run a new complete exact-candidate scan. Newly detected hashes require exact path/type/SHA1(value) classification against retained bytes and four affected role delta assessments. Record those literal delta results, regenerate and scan again. Stop on any new unresolved value or substantive change; an earlier scan cannot attest a later append. External final manifest/receipt avoids self-hash churn. A follow-up is continuation with disclosed peer exposure, not a fresh none-fork launch. The protocol proposal is sound; the operation and final scan are not performed or approved by this report.
+
+## Regression/profile and manual disposition
+
+| Risk/case | Existing route or disposition |
+| --- | --- |
+| Bandit unknown/stale/wrong-severity/expired refusal; exact secret path/value | Existing quality-sources scanner negatives; Basic/PR source selected suite under test-profiles registry; my probes are one-off diagnostic evidence, no new permanent test authored |
+| Patched include/exclude extension, hidden-path and case semantics | Existing maintained lint/source selection plus changed-source native PR/source checks; my actual consumer API cases are bounded Diagnostics under SITE-CHECK-PROFILES, not a duplicate broad campaign |
+| Missing Git/history-dependent ledger/publication/selector checks | Defer to original native source suites with clean actual HEAD/history; retain3 failed local cases explicitly |
+| Literal result/launch transcription and new finding classification | Manual four-role versioned completion/delta review under CONTRIBUTING/common contract, owner #167/VIT-22; not an automated dispatcher guarantee |
+| Fresh scanner/advisory and artifact/source binding | Existing staging regression/current security-advisories route in SITE-CHECK-PROFILES; mandatory changed-source native/full stage, not fulfilled by old baseline runs |
+| Website browser/device/accessibility | Correction has no presentation/runtime delta; reasoned inapplicable here. Applicable hosted staging obligations remain pending, no browser pass invented |
+
+No new defect found in examined unknown/stale/wrong-source failures, consumer boundaries, per-value public checksum contexts or scan mutation journey. Limits: no native HEAD/history, no full scanner replay, no actual new hosted/staging artifact, no provider/internal isolation attestation, no physical-human UX. The orchestrator must preserve this first result and verify final source identity before dependent advancement. All original owner trust, source-bound admission and whole-pilot gates remain open.
+
+## Per-finding disposition appendix
+
+Every row below is an independent exact public false-positive disposition limited to its path/type/SHA1(value), with proof strength explicit. Numbering is initial70-provenance.json order; source locations are the actual inspected line. No value category grants future blanket exemption.
+
+| Row | Source | SHA1(value) | Disposition / proof |
+| --- | --- | --- | --- |
+| 1 | review/issue-167/2026-10-31-native-integration.md:135 | 0e78986ca827077f29d58ff71eba2409f7b52f08 | Public checksum; independently recomputed |
+| 2 | review/issue-167/2026-10-31-native-integration.md:136 | 516102f50f3b81192a1f706a96b3616cfa32727a | Public checksum; independently recomputed |
+| 3 | review/issue-167/2026-10-31-native-integration.md:138 | a16f24762d26b37efc386a345edbde7c262e8ccf | Public checksum; independently recomputed |
+| 4 | review/issue-167/2026-10-31-native-integration.md:151 | 8e25ec0a5b3a7094c83ace7560b96c28c9622821 | Public checksum; independently recomputed |
+| 5 | review/issue-167/2026-10-31-native-integration.md:164 | 8e2225d1d09dce2b85105d3557fee61f099c77a8 | Public checksum; independently recomputed |
+| 6 | review/issue-167/2026-10-31-native-integration.md:177 | ab3c4b84ef853dfe2fa41ff085d6b688cf6f74e9 | Public checksum; independently recomputed |
+| 7 | review/issue-167/2026-10-31-native-integration.md:190 | b5b6ed63816494b6b87d43890f20912973ccc5b8 | Public checksum; independently recomputed |
+| 8 | review/issue-167/2026-10-31-native-integration.md:623 | dd71b27d5e43d21a78d7edf4da5a9a5f140d1ed8 | Public checksum; independently recomputed |
+| 9 | review/issue-167/2026-10-31-native-integration.md:624 | debc881897313bd095f4e06c33be958f53054362 | Public checksum; independently recomputed |
+| 10 | review/issue-167/2026-10-31-native-integration.md:639 | 839d9cb20e02bcd0a90d03448b270354583b649a | Public checksum; independently recomputed |
+| 11 | review/issue-167/2026-10-31-native-integration.md:654 | 18a953660ee129af4f473250dc02dfaa0d6e999f | Public checksum; independently recomputed |
+| 12 | review/issue-167/2026-10-31-native-integration.md:669 | 31ad172bb65ef53f0dfa3440e6ec544135fc93da | Public checksum; independently recomputed |
+| 13 | review/issue-167/2026-10-31-native-integration.md:684 | 998ba8b01b1400054ce59a73fd313dc7243c5ad6 | Public checksum; independently recomputed |
+| 14 | review/issue-167/2026-10-31-offline-prototype.md:599 | e13a418b892d3cd900ba60ad190ff75f7c2a39d1 | Public checksum; independently recomputed |
+| 15 | review/issue-167/2026-10-31-reviewer-history-evidence.json:7 | bc7aae15bc36d8c21142e0bcb3dfa0926aab9768 | Public checksum; independently recomputed |
+| 16 | review/issue-167/2026-10-31-reviewer-history-evidence.json:14 | 31311dfc08c2ace2050ba7309f21599583a5eebc | Public checksum; independently recomputed |
+| 17 | review/issue-167/2026-10-31-reviewer-history-evidence.json:21 | abfdc2a8d2618015fdc2881fd0de2a45dfcc4520 | Public checksum; independently recomputed |
+| 18 | review/issue-167/2026-10-31-reviewer-history-evidence.json:28 | ea5f6a9b7f89c8191c7b210ff3a93bbce4b674f0 | Public checksum; independently recomputed |
+| 19 | review/issue-167/2026-10-31-reviewer-history-evidence.json:35 | c59134987ad3341ebc744f2895ee6493a0e38ef4 | Public checksum; independently recomputed |
+| 20 | review/issue-167/2026-10-31-reviewer-history-evidence.json:42 | 7fa5af34db5f508d1e8dc4ae5a8d97dc65d9f0b3 | Public checksum; independently recomputed |
+| 21 | review/issue-167/2026-10-31-reviewer-history-evidence.json:49 | aa7cbeae80c1c0a107b83b648c3090ab559372a6 | Public checksum; independently recomputed |
+| 22 | review/issue-167/2026-10-31-reviewer-history-evidence.json:56 | 9a1d8a30304027a587fb11e6572df130973c8fa9 | Public checksum; independently recomputed |
+| 23 | review/issue-167/2026-10-31-reviewer-history-evidence.json:63 | a721041e7382c123ef63b1abf4e42a9b6fa72281 | Public checksum; independently recomputed |
+| 24 | review/issue-167/2026-10-31-reviewer-history-evidence.json:70 | ff84bc8af35f43c2f9890ada1662c1f199dfd61d | Public checksum; independently recomputed |
+| 25 | review/issue-167/2026-10-31-reviewer-history-evidence.json:77 | 0cf44103e4ee4f7839efabc1e7e626fe3ca8beaa | Public checksum; independently recomputed |
+| 26 | review/issue-167/2026-10-31-reviewer-history-evidence.json:84 | b55054df9d0169b99bf13a69cd643c9257e0291d | Public checksum; independently recomputed |
+| 27 | review/issue-167/2026-10-31-reviewer-history-evidence.json:91 | 4e0d0f1680b8b1d8951084c6fd7af05901d363e6 | Public checksum; independently recomputed |
+| 28 | review/issue-167/2026-10-31-reviewer-history-evidence.json:98 | 17ec352d626981fb0f62287a7c8b6c495ad74763 | Public checksum; independently recomputed |
+| 29 | review/issue-167/2026-10-31-reviewer-history-evidence.json:105 | eb596323b09684674d2478031ccb90eae1d5eb7f | Public checksum; independently recomputed |
+| 30 | review/issue-167/2026-10-31-reviewer-history-evidence.json:112 | aa97f751dc872501817934ea012cc325df6a62ec | Public checksum; independently recomputed |
+| 31 | review/issue-167/2026-10-31-reviewer-isolation.md:146 | a58ce9872f0ee4eeb85ca5d3950b1adef0ac44a8 | Public historical receipt identity; qualified, earlier bytes unavailable |
+| 32 | review/issue-167/2026-10-31-reviewer-isolation.md:147 | 8c46c64b9e2056acf8ffe72a2d7a5a041a53afa0 | Public checksum; independently recomputed |
+| 33 | review/issue-167/2026-10-31-reviewer-isolation.md:148 | 39ac3a75aee6290d20cd8552c6ec85708d7aca76 | Public historical receipt identity; qualified, earlier bytes unavailable |
+| 34 | review/issue-167/2026-10-31-reviewer-isolation.md:149 | 96537532a7a2397a9fcd6ffc455210a4862d0cac | Public checksum; independently recomputed |
+| 35 | review/issue-167/2026-10-31-reviewer-isolation.md:152 | a1c7824bba106c4b2a48a9562da4f138ca344069 | Public checksum; independently recomputed |
+| 36 | review/issue-167/2026-10-31-reviewer-isolation.md:156 | 68bde96a407899054ba1d507253ec1a7d22bf00e | Public checksum; independently recomputed |
+| 37 | review/issue-167/2026-10-31-reviewer-isolation.md:161 | a2a378b2ebe1c914a7fe66a03e7d3c1088a42a89 | Public checksum; independently recomputed |
+| 38 | review/issue-167/2026-10-31-reviewer-isolation.md:166 | b67736d4ab51cf716459bb9ab7a14211c53fc564 | Public checksum; independently recomputed |
+| 39 | review/issue-167/2026-10-31-reviewer-isolation.md:171 | a6128d6e18a38cf02b2170adfab42259eac5087c | Public checksum; independently recomputed |
+| 40 | review/issue-167/2026-10-31-reviewer-isolation.md:176 | 518d77ec2a2fd4394891a2f405f769feb67df5e4 | Public checksum; independently recomputed |
+| 41 | review/issue-167/2026-10-31-reviewer-isolation.md:186 | d2fd357fa1e088c34a2e36e54942a7c627064972 | Public checksum; independently recomputed |
+| 42 | review/issue-167/2026-10-31-reviewer-isolation.md:191 | 16f193d167b8a7e3040ac499243c01ecb620bec2 | Public checksum; independently recomputed |
+| 43 | review/issue-167/2026-10-31-reviewer-isolation.md:196 | 2fa89f87701bea7998fcadf5bfccc7f807d3d777 | Public checksum; independently recomputed |
+| 44 | review/issue-167/2026-10-31-reviewer-isolation.md:201 | 2687eb299ba8ae2cbce80c2e2141687b53591e36 | Public checksum; independently recomputed |
+| 45 | review/issue-167/2026-10-31-reviewer-isolation.md:206 | f1ca34f56ca8ffba264bb2f8b9a4803b87056693 | Public checksum; independently recomputed |
+| 46 | review/issue-167/2026-10-31-reviewer-isolation.md:211 | 8a1dd4b1816bd70bb8e3b07636175e063ceeb682 | Public checksum; independently recomputed |
+| 47 | review/issue-167/2026-10-31-reviewer-isolation.md:216 | 9d31e6a3f4f002d2dc2949cbc05ce2081d3b7c2a | Public checksum; independently recomputed |
+| 48 | review/issue-167/2026-10-31-reviewer-isolation.md:221 | 9b77629ae5ee02565221740925be3b397839e881 | Public checksum; independently recomputed |
+| 49 | review/issue-167/2026-10-31-reviewer-isolation.md:226 | 4543d5ca6b0f940cf5f2ced8805337af5d7450cc | Public historical receipt identity; qualified, earlier bytes unavailable |
+| 50 | review/issue-167/2026-10-31-reviewer-isolation.md:233 | e793294e10e7baa1591cbc449e098694743a5f8a | Public checksum; independently recomputed |
+| 51 | review/issue-167/2026-10-31-reviewer-isolation.md:237 | fb1788df6f8c6f11da599b2ef9977a35d0efb040 | Public checksum; independently recomputed |
+| 52 | review/issue-167/2026-10-31-reviewer-isolation.md:241 | 1a7e31d619bdc85905c8d08c6a7b275411b4fd66 | Public checksum; independently recomputed |
+| 53 | review/issue-167/2026-10-31-reviewer-isolation.md:245 | 075c783398ed1ea3d8cb02a67c7455f5bd02e920 | Public checksum; independently recomputed |
+| 54 | review/issue-167/2026-10-31-reviewer-isolation.md:262 | 65e9d35de68a01ea5370f17e260025b036f940ed | Public checksum; independently recomputed |
+| 55 | review/issue-167/2026-10-31-reviewer-isolation.md:266 | 1e4fcc03c91c6fb377ded22509fab00436c61c79 | Public checksum; independently recomputed |
+| 56 | review/issue-167/2026-10-31-reviewer-isolation.md:283 | 59b0cd4c2d72c9cfd789efb8991bf2429dea503d | Public checksum; independently recomputed |
+| 57 | review/issue-167/2026-10-31-reviewer-isolation.md:287 | 3f05c0a58b9338f129dbef2d4f9482bfa5c0b4f4 | Public checksum; independently recomputed |
+| 58 | review/issue-167/2026-10-31-reviewer-isolation.md:304 | 9429d8b5c329d859767179310ac47b70722d633d | Public checksum; independently recomputed |
+| 59 | review/issue-167/2026-10-31-reviewer-isolation.md:308 | 641cb9e3b72b2dc86b10cce529d5bf0b3f475766 | Public checksum; independently recomputed |
+| 60 | review/issue-167/2026-10-31-reviewer-isolation.md:325 | 1b5fe91c9b8f04f9655f86164a0ac6e8cceb0c3f | Public checksum; independently recomputed |
+| 61 | review/issue-167/2026-10-31-reviewer-isolation.md:329 | 3d1300e21464e6bf5310ef54ee35e41fe0375813 | Public checksum; independently recomputed |
+| 62 | review/issue-167/2026-10-31-reviewer-isolation.md:737 | 78944182f18b33602664209dde9ec17afcd51310 | Public historical receipt identity; qualified, earlier bytes unavailable |
+| 63 | review/issue-167/2026-10-31-reviewer-isolation.md:796 | cf2b20fe1797135da6c904da686f2568421d11a3 | Public historical receipt identity; qualified, earlier bytes unavailable |
+| 64 | review/issue-167/2026-10-31-reviewer-isolation.md:803 | b596fea2b73b9cd06e825725b8167610c5354156 | Public checksum; independently recomputed |
+| 65 | review/issue-167/2026-10-31-reviewer-isolation.md:808 | 7225a1f355ec1f1f2436a8c96691ad0728423de8 | Public checksum; independently recomputed |
+| 66 | review/issue-167/2026-10-31-reviewer-isolation.md:813 | 07888c4d7974e3ffe4997b22465c10fefdbdc9bb | Public checksum; independently recomputed |
+| 67 | review/issue-167/2026-10-31-reviewer-isolation.md:818 | ecbaece6fb255f19030d36ab69370bbdd12db07e | Public checksum; independently recomputed |
+| 68 | review/issue-167/2026-10-31-reviewer-isolation.md:823 | 5deb7663bda8252665a0ccf23b93fb23707514cf | Public historical receipt identity; qualified, earlier bytes unavailable |
+| 69 | tests/fixtures/orchestration-accept-only.json:14 | b26818d0bc8b4052029f874856cd7941ec58e342 | Synthetic operation key; independently recomputed |
+| 70 | tests/fixtures/orchestration-start.json:14 | b26818d0bc8b4052029f874856cd7941ec58e342 | Synthetic operation key; independently recomputed |
+| 71 | tools/quality/bandit-policy.json:128 (same exact value repeated in five source fields) | 20e05e07bb74baf4337d574843ae84aa20f8c19c | Public current-source checksum; independently recomputed |
+
+
+## Security affected same-role result recording
+
+The following are unmodified actual affected follow-up results from the same four role executions. Their first judgments and original launch receipts above remain preserved. These follow-ups retained context and could encounter peer results after the first judgments; they are not fresh none-fork launches or provider attestations. This literal append requires subsequent real freshness and another complete exact-candidate scan; it grants no native, staging, owner-trust or whole-pilot acceptance.
+
+
+### Requirements & Acceptance — literal affected delta result
+
+# Security Requirements affected delta assessment
+
+Verdict: accept the actual three-path delta for changed-source native CI after the other required roles complete their affected assessments. R-S01 is resolved by performed versioned-result bytes. All six additional exact checksum dispositions are accepted. This does not accept native full security, staging/admission, exact-head owner trust, whole-pilot completion or production.
+
+Reviewer `/root/security_final_requirements`, same Requirements & Acceptance execution, affected correction phase. First report `security/final-requirements.md` remains unchanged, SHA256470d64ac754fa26c3c6017409e5275176fa1ec60540967d6a20590424b2516f3. Later peer exposure is now disclosed: I inspected literal peer reports as transcribed result subjects; I did not adopt their conclusions as my evidence. This follow-up is not a fresh none-fork execution. Original canonical common/role prompt identities and source/history limits from my first report remain applicable.
+
+Inputs: `security/delta-packet.json` SHA256a5f38f77b4ab50e7121783eb18a51ae7c15f26facc1223881787bd55d004911e; current complete1810-path manifest `security/post-receipt/final-manifest.json` SHA25658e8990b6784a79fa061e100014767cfd0c6f648eca147c1a69dc31a06577581. Prior manifest remains3c925313fc19cd9f2ff87718c00ec8da928e0fc25079bc402b91534c4ca97f26. Owner remains WEB-18/#167, VIT-22, Draft PR168. Allowed diagnostic budget<=10s; no implementation, delegation, external writes or full campaign replay.
+
+## Actual checks and finding disposition
+
+I inspected the actual three-path diff, six proof rows, performed literal appendix, retained first reports and launcher record, current ledger and RI output, scan receipt/raw findings/accounting, and real RI/coupling/format verification logs.
+
+Own independent `timeout 10s python` diagnostic checked all packet input hashes and four original first-report hashes; all1810 current source hashes; exactly three changed paths; pre-receipt source report recovered as a hash-bound byte-exact prefix; all four first reports and launcher JSON present byte-exact; first1716 ledger entries preserved in order; exactly six appended rows; each source-line value, material SHA256, detector SHA1(value) and exact proposed ledger row; final scan source map equals current manifest with changedDuringScan=[]; and7191 raw findings. All these assertions completed before my last accounting assertion failed with KeyError:unknown because I read the command receipt as the result object. This was a reviewer diagnostic schema mistake, not a candidate failure. I retained that result and read the actual files: final-reconciliation.json is execution receipt; final-reconciliation.log is the result. A distinct targeted follow-up verified the result log hash against the receipt and checked7191=5109+1866+216, unknown=[], and7191 reconciliation rows, exit0,0.0091s. First diagnostic tool wall0.228s; combined execution far below10s. No scanner campaign was rerun and no negative-detection coverage is claimed from identity assertions.
+
+| Finding / severity | Actual location/evidence | Requirements disposition |
+| --- | --- | --- |
+| R-S01 / prior medium conditional defect | `review/issue-167/2026-10-31-native-integration.md:1110` onward now contains actual launch record and complete unmodified first results, not just a launch/completion table. Prefix and four first-result transcriptions checked byte-exact. | Resolved for S07/S08, P06, WEB-AC09/11. Completed findings, scope, identities and limits are now in the existing versioned artifact. Original first-report historical wording remains preserved as first judgment, not silently rewritten. |
+| R-S02 / prior low compatibility risk | Package, lock, runtime, contract, tests and scanners unchanged from first reviewed manifest. | Unchanged bounded-consumer acceptance reused;210 broad differences remain retained. No global parity or native result is inferred. |
+| R-S03 / prior informational history limit | Six earlier historical checksum contexts and216 inherited generated findings unchanged in their relevant source. | Limits retained; neither historical public-checksum classification nor unchanged native proof reuse becomes provider attestation or fresh history verification. |
+
+Original actual launch record now shows requested fork_turns=none and distinct accepted task handles for all four roles; requested model/effort and unverified provider internals are separately labeled. This is retained parent launcher evidence, not a provider-signed isolation attestation or evidence that this continuation is fresh.
+
+## Six individual exact dispositions
+
+All six are public packet/manifest/report SHA256s in `review/issue-167/2026-10-31-native-integration.md`, detected by Hex High Entropy String. I recomputed each material SHA256 and its source token SHA1, checked the actual line and exact appended ledger row. Accept each only for that exact path/type/SHA1 identity; no new general allowance follows.
+
+| Source line | Exact detector SHA1(value) | Independently recomputed material |
+| --- | --- | --- |
+|1163|1a6413f81f8e63f54dda48551184dc47465bafe6|security/final-whitebox.md|
+|1118|4c4d5ea5956c4bd8d44584fd18c95e32b4751495|security/author-logs/final-manifest.json|
+|1178|555dee99e1d47cc4884fea5c9a191acd38024121|security/final-exploratory.md|
+|1117|dcdd2eab85572819bda710bd8a3f4298ac85f286|security/final-packet.json|
+|1148|e1222bacacbda4f0fbea02bf991e53690707c363|security/final-code.md|
+|1133|fd6b3654141d2415146a6f828c0386d672640cc7|security/final-requirements.md|
+
+The prior1716 rows remain exact; current ledger1722 rows. These checksums identify retained bytes, never authentication authority, provider identity, actual native success or owner approval.
+
+## Scope and acceptance trace
+
+| AC / invariant | Observed exact-source result | Remaining gate |
+| --- | --- | --- |
+| S03/S04; P05/P06; WEB-AC09–11 | Six exact additional false positives justified; prior1716 rows unchanged. | Any new finding needs new exact source-specific classification and affected review. |
+| S07; P06; WEB-AC09/11 | Four completed first reports and original literal launch record transcribed; inspected pre-append prefix unchanged. | Preserve this first report and this affected result; do not rewrite peer findings as author conclusions. |
+| S06/S08; P06; WEB-AC10/11 | Complete1810-path scan,1398 text files,7191 raw findings;5109 exact ledger,1866 RI/coupling,216 unchanged baseline generated identities; unknown0. Real RI/coupling freshness and pinned formatter checks retained. | Prepared scan remains history-limited. Native current exact-head source selection/full security/advisories must pass. |
+| P01–05 and original owner boundaries | Exactly report/ledger/RI output changed. Runtime/contract/tests/package/lock/scanners/advisory policy/expiry/thresholds unchanged; unchanged first review evidence reusable. | Whole WEB criteria, B1/fullB2/M1, runtime dispatch and human/owner gates remain open. |
+
+No new blocking requirement defect was found in this affected source. The native-history216 proof limit remains explicit: unchanged baseline detector/source identities are reused, not locally reconstructed or freshly verified against absent native history. The earlier80-test campaign remains77pass/3fail; this delta does not erase failures or accept local history-dependent checks.
+
+## Eventual literal delta-result recording
+
+Copying these eventual delta results verbatim into the same versioned review artifact can qualify as unchanged-meaning result metadata, provided actual copy provenance is checked, completed results are copied in full, original role/continuation identity and peer-exposure limits remain explicit, and no findings/verdict/requirements/oracles are substantively rewritten. It does not require inventing another fresh none-fork execution merely to record the result.
+
+That recording changes tracked bytes and invalidates the current scan binding. Run genuine affected freshness/formatting and a new complete exact-source final scan after the last append; freeze an external manifest/scan binding to the actual upload bytes. No fresh finding is automatically accepted, even a checksum in this report. A new finding requires exact per-value classification and affected review before advancement. Any substantive result or source change requires affected substantive review. Do not append a candidate self-hash and call the earlier scan final.
+
+Once all affected role results and the last exact-source scan/freshness conditions are satisfied, proceed to changed-source native CI. Keep existing full native security/advisory/source checks, full owner staging/admission and explicit exact-final-head owner reviewed_sha as separate mandatory gates. No merge, production, new service/permission or B3–B7 authorization follows.
+
+
+### Code / changed artifact — literal affected delta result
+
+# Code reviewer — actual affected delta assessment
+
+Reviewer `/root/security_final_code`, same-role continuation after the first independent judgment. Retained context and later peer-result exposure through the literal combined report/diff are disclosed. This is not a fresh none-fork launch or provider-internal attestation. First report `security/final-code.md` remains unchanged at SHA256 `866c52bc821f294f62d0481dfd55680a27e384f374c8d652d9a392e41deda51d`. Other roles' conclusions are not adopted as my evidence.
+
+## Verdict and F1 disposition
+
+Accept this affected delta. F1 from the first Code report is resolved for the actual inspected source: the existing versioned `review/issue-167/2026-10-31-native-integration.md` now contains the literal complete four first reports and original launch record, rather than only a launch/completion table. I independently verified each retained report's exact bytes appear unchanged in that source and its original hash-bound129932-byte prefix is unchanged. The full launch JSON also appears unchanged. The source preserves requested model/effort/fork facts separately from accepted task-name response and explicitly unverified provider internals. This verifies transcription of the supplied receipt; authenticity of the underlying launcher calls remains the parent execution-record obligation.
+
+No new blocking code/artifact finding. Prior F2 native/history evidence boundary remains open. Advancement to changed-source native CI is acceptable from this role after every required role's actual delta result and reconciliation, with the final literal-recording/freshness/scan rule below. No native security, full staging/admission, owner trust, whole WEB/P criteria, merge or publication pass follows.
+
+## Identities and changed scope
+
+- Owner WEB-18/#167, VIT-22, PR168; original scope/exclusions unchanged.
+- Delta packet SHA256 `a5f38f77b4ab50e7121783eb18a51ae7c15f26facc1223881787bd55d004911e`.
+- Current1810-path manifest SHA256 `58e8990b6784a79fa061e100014767cfd0c6f648eca147c1a69dc31a06577581`.
+- Prior reviewed1810-path manifest `3c925313fc19cd9f2ff87718c00ec8da928e0fc25079bc402b91534c4ca97f26`.
+- Actual receipt/correction diff `f1fb07c067aa950097b010958dc7e4d7a95840ccf6a72723da284a1d42c45010`; author delta `9ffeee46c9202126c8f6386e90eafbaaf702818350fc5111cbe6b42e7598fceb`.
+- Common/Code prompt identities and baseline commit/tree remain as recorded in the preserved first report.
+
+Independently rehashed all1810 current paths: every byte hash matches the current manifest. Comparing manifests yields exactly three changed paths: combined native-integration report, checksum ledger and generated agent-context.json. Package, lock, runtime, contract, tests, Bandit, scanner inputs/code, rules, thresholds, expiry and advisory policy remain unchanged from the first reviewed candidate; their affected evidence is reused, not rerun or newly declared native-accepted.
+
+The ledger preserves all1716 earlier finding rows, their order and reasons exactly after JSON decoding;1722 rows now exist. Its scope string appends a description of the six exact proposals, retaining the complete former text. Other metadata is unchanged. The generated RI delta changes only source_identity, its digest and the two report/ledger input hashes. Retained real RI build/verify, coupling verify and formatter-check receipts exit0. No hand-authored routing/ownership change appears in this delta.
+
+## Six individual dispositions
+
+All six findings occur in `review/issue-167/2026-10-31-native-integration.md`, rule `Hex High Entropy String`. For each I independently checked the actual source line, recomputed SHA256 from the referenced retained artifact, verified SHA1 of that literal value equals the detector identity, and verified the proposed exact ledger entry is among the six additions. All are accepted false positives for these exact identities: public packet/manifest/report checksums, not credentials or authorization authority.
+
+| Line | SHA1(value) detector identity | Actual recomputed material |
+| --- | --- | --- |
+| 1163 | `1a6413f81f8e63f54dda48551184dc47465bafe6` | `security/final-whitebox.md` |
+| 1118 | `4c4d5ea5956c4bd8d44584fd18c95e32b4751495` | `security/author-logs/final-manifest.json` |
+| 1178 | `555dee99e1d47cc4884fea5c9a191acd38024121` | `security/final-exploratory.md` |
+| 1117 | `dcdd2eab85572819bda710bd8a3f4298ac85f286` | `security/final-packet.json` |
+| 1148 | `e1222bacacbda4f0fbea02bf991e53690707c363` | `security/final-code.md` |
+| 1133 | `fd6b3654141d2415146a6f828c0386d672640cc7` | `security/final-requirements.md` |
+
+These hashes identify their actual retained bytes. They do not prove provider identity, independence beyond the documented execution facts, native acceptance, staging or owner approval. This assessment does not relabel the six separately qualified historical values from the first review as recomputed.
+
+## Checks, failures and limits
+
+Own selected checks were short read-only Python identity/transcription/delta proofs, under10 seconds total; no scanner campaign replay, authored test, implementation edit, delegation or external write. The only written artifact is this assigned report outside the repo. One initial assertion assumed all ledger metadata was byte-equivalent and exited1: inspection showed the permitted scope-description suffix. I checked its exact preservation of the former scope text and unchanged other metadata, then completed the six proofs. This diagnostic failure is retained here; it was not a product failure.
+
+Independently counted7191 raw findings in the retained final scan. The scan receipt binds the exact current1810-path manifest,1398 text inputs, exit0/no signal and no changedDuringScan paths. The retained reconciliation log hash matches its execution receipt; it accounts5109 exact ledger findings +1866 current RI/coupling checksums +216 unchanged native-baseline generated findings =7191, unknown0. The original pre-triage reconciliation failure remains retained and its six unknowns motivated this exact correction. This is prepared-source reconciliation, not native full security acceptance. The216 inherited generated-proof findings and original local Git history/HEAD limitation remain explicit. Prior77/80 regression accounting and native stage failure are not erased.
+
+## Subsequent literal delta-result recording
+
+Exact literal insertion of the completed delta reports and actual same-role follow-up receipt into the existing versioned artifact can be treated as unchanged-meaning result metadata only if provenance and byte copying are verified, no original report/result is rewritten, and retained-context/later-exposure facts stay explicit. It must not be presented as another fresh independent none-fork launch.
+
+That insertion still changes tracked bytes. Regenerate genuine affected RI/coupling outputs, verify freshness/format, then run a new complete exact-candidate scan after the final mutation and bind it with an external manifest. Newly detected values are not accepted by this review in advance: each needs actual source-specific path/type/SHA1 proof and affected independent review; substantive disposition changes require their own frozen delta. If nothing new is detected, preserve the exact copying and final scan evidence without adding a new self-hash into its own candidate. Native changed-source full checks, clean security/advisories, owner staging/admission and exact final reviewed_sha trust remain mandatory future observations.
+
+
+### White-box QA — literal affected delta result
+
+# White-box QA — affected security receipt delta
+
+Verdict: the six added checksum dispositions and performed literal first-result recording are acceptable on this frozen prepared candidate. CI-only advancement remains supported after the final receipt append/freshness/complete scan gate. No native full security, staging/admission, owner reviewed_sha or whole-pilot acceptance is granted.
+
+## Receipt and continuity
+
+This is an actual same-role continuation of `/root/security_final_whitebox`, not a new clean fork or provider attestation. Original `final-whitebox.md` is preserved unchanged at SHA256 `8b68df40f4cce2cec0d2c05be7fede3dedac56a2ec19a88540a459da6236b895`. I retain its inspected code, initial71 provenance, five Bandit checks,82 positive assertions and220 negative refusals. The candidate now incorporates all four peer first results; later peer exposure occurs through the completed-result appendix and launcher receipt. Their verdicts are not this delta's oracle. Literal comparisons use their exact retained bytes. This disclosure does not relabel initial isolation or make this follow-up freshly independent.
+
+Delta packet SHA256 `a5f38f77b4ab50e7121783eb18a51ae7c15f26facc1223881787bd55d004911e`; all referenced input hashes match. Current manifest SHA256 `58e8990b6784a79fa061e100014767cfd0c6f648eca147c1a69dc31a06577581`,1810 actual files, all hashes match. Prior manifest `3c925313fc19cd9f2ff87718c00ec8da928e0fc25079bc402b91534c4ca97f26`; exactly three paths differ: native-integration report, checksum ledger and generated RI agent context. Prompt/common/owner/accepted-scope and native-history limits are reused unchanged from first report. Actual parent launch record retains requested none-fork/model/effort separately from accepted task handle and unknown provider context/memory facts. No implementation, repository modification, permanent tests, delegation or external writes were performed.
+
+## Risk/scenario/oracle and route
+
+| Risk / obligation | Actual independent oracle and result | Existing route |
+| --- | --- | --- |
+| S03/S04: new public digest treated as secret or broadly admitted | Individually recompute six actual SHA256 materials, source line inclusion and SHA1(value), exact path/type/hash ledger and detector identity. All six match; accept only these exact false positives. | quality-sources closed-ledger cases, pr-targeted/staging/production source routes; staging secrets engine |
+| S04: new review destroys earlier authority | Original1716 ledger rows equal current prefix in original order;1722 current rows, exactly six append entries. Remove one exact row in-memory: its finding refuses despite all other reviews. | Existing exact-ledger and historical-preservation suite; own bounded missing-disposition negatives |
+| Common contract/S06: table substitutes for completed findings | Original report reconstructed prefix hashes to prior manifest and is an exact current prefix; all four retained reports and full launch JSON occur unmodified in appendix. | Versioned review artifact plus common reviewer/result contract; maintained RI/source controls |
+| S07/S08: scan attests mutated source or fake RI | Final scan source map equals current1810 manifest; changedDuringScan empty. Actual current RI verifier passes. Literal later append requires fresh complete final scan and generation. | Existing RI verify, coupling and format checks; native source-clean and staging security gates |
+
+## Six individual dispositions
+
+All six values occur at `review/issue-167/2026-10-31-native-integration.md` and rule `Hex High Entropy String`. Actual retained bytes produce the stated SHA256; the detector value's SHA1 matches the exact ledger ID. They identify public evidence files, not authentication credentials or authenticated provider execution.
+
+| Source line | Material | Exact SHA1(value) | Result |
+| --- | --- | --- | --- |
+| 1163 | final-whitebox.md | `1a6413f81f8e63f54dda48551184dc47465bafe6` | Accept exact false positive |
+| 1118 | final-manifest.json | `4c4d5ea5956c4bd8d44584fd18c95e32b4751495` | Accept exact false positive |
+| 1178 | final-exploratory.md | `555dee99e1d47cc4884fea5c9a191acd38024121` | Accept exact false positive |
+| 1117 | final-packet.json | `dcdd2eab85572819bda710bd8a3f4298ac85f286` | Accept exact false positive |
+| 1148 | final-code.md | `e1222bacacbda4f0fbea02bf991e53690707c363` | Accept exact false positive |
+| 1133 | final-requirements.md | `fd6b3654141d2415146a6f828c0386d672640cc7` | Accept exact false positive |
+
+The performed appendix closes the table-only recording insufficiency identified in my first review: it contains completed source-bound reports, scopes, findings, actual checks and limitations as literal original text, rather than just four launch/completion rows. This resolves the recording condition for the first results only; it supplies no native acceptance or provider attestation. The old prefix and every original first report remain unchanged. Subsequent delta-result recording is still outstanding.
+
+## Actual bounded execution
+
+Chosen checks used Node v24.22.1/Linux, no broad rerun. Four commands, all exit0; no signal/timeout, retry, skip/cancel/TODO or failed assertion. Total actual selected execution approximately2.5 seconds, within10s. No branch-coverage metric claimed.
+
+1. `timeout 5s python3 -` (stdin, standard-library assertions), tool09e70b: independently verified packet/all input identities, complete1810 source map and exactly three changed paths, original report hash-bound prefix, literal four reports/full launch JSON, retained1716 rows, all six SHA256/value/SHA1/path/rule/current detector entries, and full final-scan map/no change during scan. Internal0.238411s. Six source/material results printed individually.
+2. `timeout 3s node` (stdin, actual frozen scanners module), tool765d43: six exact positives,36 negative refusals. For each six new findings, removed its exact disposition from an in-memory Map and proved refusal;30 cross-value/removal checks additionally prove other newly reviewed checksum entries cannot substitute. No source/test/ledger file mutated. Output `{"positive":6,"negative":36,"oracle":"deleting required exact disposition refuses the same new finding; other new entries cannot substitute","elapsedMs":122.854072,"node":"v24.22.1"}`.
+3. `timeout 4s python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify`, repository cwd, tool45ee28: exit0,1.912567s observed, `Repository Intelligence context is fresh.` Read-only verification, not a producer replacement.
+4. `timeout 2s python3 -` (stdin), toold593a4: every reconciliation row occurs in actual raw detector results;7191 rows count5109 exact ledger/1866 producer-checksum/216 inherited. Independently confirmed all216 exact native detector keys and unchanged baseline source hashes. This confirms reuse identity, not native generated/publication history proof.
+
+Retained actual complete final scan ran1398 text inputs over1810 prepared paths, raw7191, reconciliation unknown=[]; scan receipt binds current exact manifest. The reconciliation JSON wrapper is an execution receipt, so actual result was read from `final-reconciliation.log` and cross-checked with `final-reconciliation-rows.json`/raw findings. Native-history216 limit remains qualified. The1866 producer checks rely on maintained producer admission; current RI was independently verified and unchanged coupling proof retained. No fresh full native scanner, remote audit, staging or full suite was run by this role.
+
+Author retained pre-triage reconciliation exit1 (six unknown new checksum IDs), then exact proof/ledger correction and real producer/freshness/format/final scan observations. No scanner/threshold/expiry/advisory/package/Bandit/runtime/test change appears in the manifest delta. Unchanged first-review structural checks remain reusable; no majority or peer assertion substitutes for these direct observations.
+
+## Final recording and advancement boundary
+
+An eventual append of the actual unmodified delta results and existing continuation identity may be treated as unchanged-meaning literal metadata only after exact copying is verified. Preserve the first reports and this separate continuation; do not claim a fresh none-fork or invent resolution/native success. That operation changes candidate bytes: regenerate genuinely affected RI/coupling/format outputs, verify freshness, and perform another complete exact-candidate secret scan after the last mutation. Freeze external manifest/scan receipts afterward. Any fresh finding or substantive changed assertion needs actual exact-source classification and affected independent review; deterministic/verbatim exemptions cannot automatically cover a newly added ledger disposition.
+
+No new defect blocks CI-only advancement once all affected role results and this last scan/freshness binding are complete. Original absent-history/full-native/security/staging/admission/owner trust gates remain pending. No post-scan byte mutation is accepted in advance.
+
+
+### Exploratory / Interaction QA — literal affected delta result
+
+# Exploratory / Interaction QA — affected security recording delta
+
+Verdict: affected operator delta passes within the prepared-source limits. All six newly detected exact checksum dispositions are accepted individually as public checksum false positives. The completed first reports are now literally recorded; the earlier table-only/result-recording concern is resolved by inspected bytes. No new blocking defect found. The candidate can progress toward changed-source native CI after all affected roles and final unchanged-byte verification. No native full security, staging/admission, owner trust or whole-pilot acceptance is granted.
+
+## Receipt and context
+
+Same reviewer/task `/root/security_final_exploratory`, continuation/affected delta phase; this is not a fresh isolated execution. My first report remains untouched at security/final-exploratory.md with SHA2567f7ad9cb80a3f587dfbc28f5ce006c18cf0158e0817c04d52afafdaa43e41d75. I retain its source/charter context. The supplied delta and embedded literal first reports expose later peer material; that exposure is disclosed, and no peer conclusion is used as my oracle. Applicable common/own role prompt identities remain those in the first report and unchanged source manifest.
+
+Owner WEB-18/#167, VIT-22, PR168; delta packet SHA256a5f38f77b4ab50e7121783eb18a51ae7c15f26facc1223881787bd55d004911e and complete1810 manifest SHA25658e8990b6784a79fa061e100014767cfd0c6f648eca147c1a69dc31a06577581 independently verified. All packet input hashes, first-report hashes and all1810 candidate hashes match. Exactly three paths differ from the previously reviewed manifest: versioned native-integration report, checksum ledger, generated RI agent-context. No other runtime, contract, scanner, threshold, advisory, expiry, package/lock, test or presentation bytes changed. The first review's missing native HEAD/history and provider-internal uncertainty remain.
+
+The retained original launch JSON records requested `fork_turns=none`, requested gpt-6.1-sol/medium, and accepted task handles for all four roles, with provider internals explicitly unverified. My handle matches. I verified its literal JSON bytes occur in the tracked report, rather than inferring provider identity from role names. This continuation has no new none-fork launch claim.
+
+## Charter and actual actions
+
+Affected charter: navigate from the performed complete-results append to the six-value refusal, per-value proof, corrected exact review lookup and current scan binding. Expected: old ledger refuses the six novel path/type/hash identities; new ledger admits only those exact identities; changed path stays refused; any later literal delta append invalidates the current scan. The original reviewed report prefix and first1716 ledger rows must survive exactly.
+
+Independently inspected delta/proofs, exact tracked appendix and report prefix, literal first report/launch bytes, prior/current ledger, RI field delta, retained pre-triage/final raw/log/receipt evidence. Hash-bound original report prefix matches the prior candidate report and remains an exact prefix. Each of four entire first reports is present byte-for-byte with original SHA256; original launcher JSON is present literally. This is completed-result recording, not merely pointers or a completion table. The new RI changes only source_identity.digest plus the report and checksum-ledger input hashes. Retained genuine RI build/verify, coupling verify and formatter-check command logs hash-match their receipts and each exits0.
+
+Own distinct actual interaction check: `timeout 10s node` heredoc loaded unchanged scanners.cjs APIs, removed precisely six entries in an in-memory review Map, exercised all six against prior/current maps and a wrong path, then compared an in-memory report append against the final scan receipt. Runtime80ms (shell wall0.4s), all designed actions executed/pass; no failed, skipped or cancelled action. No broad campaign replay or permanent test/repo/external service write. Supporting inspection/hash scripts took under2s; total chosen diagnostics below10s.
+
+| Probe | Expected | Observed |
+| --- | --- | --- |
+| Six exact identities with six entries removed | Refuse all six | removedSixRefused:6 |
+| Same six with current actual ledger | Admit all six | currentExactAdmitted:6 |
+| Six values moved to review/wrong-source.md | Refuse all six | wrongPathRefused:6 |
+| Current report against final receipt | Match | Assertion passes |
+| In-memory literal delta-result append | Old receipt stale | Different SHA256 observed |
+
+These are bounded API diagnostic observations, not six scanner reruns or a native acceptance suite.
+
+## Six individual dispositions
+
+For every row below, independently checked exact source line/value, SHA1(value), SHA256 of named retained material, and exact new ledger record. All1716 old ledger rows/order/reasons remain identical and total rows1722. Six new rows only, with scope text retaining source-specific proof/review language. None of these checks authenticates provider execution or accepts native CI.
+
+All six use source `review/issue-167/2026-10-31-native-integration.md`, detector `Hex High Entropy String`:
+
+| Line | SHA1(value) | Retained material | Independent disposition |
+| --- | --- | --- | --- |
+| 1163 | 1a6413f81f8e63f54dda48551184dc47465bafe6 | final-whitebox.md | Exact public SHA256 checksum; recomputed, false positive accepted |
+| 1118 | 4c4d5ea5956c4bd8d44584fd18c95e32b4751495 | final-manifest.json | Exact public SHA256 checksum; recomputed, false positive accepted |
+| 1178 | 555dee99e1d47cc4884fea5c9a191acd38024121 | final-exploratory.md | Exact public SHA256 checksum; recomputed, false positive accepted |
+| 1117 | dcdd2eab85572819bda710bd8a3f4298ac85f286 | final-packet.json | Exact public SHA256 checksum; recomputed, false positive accepted |
+| 1148 | e1222bacacbda4f0fbea02bf991e53690707c363 | final-code.md | Exact public SHA256 checksum; recomputed, false positive accepted |
+| 1133 | fd6b3654141d2415146a6f828c0386d672640cc7 | final-requirements.md | Exact public SHA256 checksum; recomputed, false positive accepted |
+
+## Failure preservation and scan accounting
+
+The retained pre-triage reconciliation actually exits1 and records exactly six unknown identities at1117,1118,1133,1148,1163,1178. This failure was detected before adding dispositions and is preserved. Its7191 findings decompose as5103 exact ledger +1866 current RI/coupling +216 unchanged native generated +6 unknown. The six proof identities correspond one-to-one to those unknowns; the current lookup experiment independently reproduces refusal without them.
+
+Corrected prepared final scan exits0 with1810 total candidate paths,1398 scanned text paths, empty changedDuringScan and a1810-entry digest map exactly matching inspected final manifest. Final reconciliation7191 =5109 exact ledger +1866 current RI/coupling +216 inherited unchanged native generated, unknown0, exit0. Hashes for pre-triage/final reconciliation logs verify against their command receipts. This is a prepared final scan result with qualified evidence reuse, not a fresh native security pass. The216 inherit baseline8c proof because authentic local history/HEAD remains missing. Previous history-dependent local failures stay failed; no synthetic Git source or old native pass substitutes for changed-source CI/full staging.
+
+## Next literal delta recording and profile disposition
+
+Exact verbatim copying of these completed delta results into the existing versioned report may be treated as unchanged-meaning result metadata only when it actually preserves each original output and launch/context qualification. It is not authority to summarize away findings, change dispositions, insert approval claims or alter acceptance meaning. Verify exact append/prefix, regenerate real affected RI/coupling/formatting, and perform another complete1810 exact-candidate scan afterward. My actual hash probe shows the present scan cannot cover that future append. Any new detected identity must stop advancement until its exact source-specific proof/classification and affected independent review are complete; unchanged-meaning prose does not exempt new entropy findings. Freeze an external final manifest/scan receipt after all last writes. Any substantive delta needs affected review; future receipt-copy permission cannot pre-accept unknown bytes.
+
+Regression routing unchanged from first report: API negatives remain a one-off Diagnostics observation under SITE-CHECK-PROFILES; existing quality-sources scanner refusal coverage remains selected PR/source coverage. Literal result/provenance correctness is manual four-role completion/delta review owned by #167/VIT-22. Real RI/coupling/format freshness and full changed-source native security/advisories/staging remain existing gates. No new test suite or universal device matrix is introduced. Presentation bytes unchanged: no browser/device/accessibility interaction executed or claimed; hosted staging requirements remain pending.
+
+No blocking issue observed in append navigation, six exact public classifications, old-row/prefix preservation, unknown refusal or scan binding. The first judgment is preserved; this result adds affected assessment only. All roles and the orchestrator's final source/isolation gates remain required before dependent advancement.

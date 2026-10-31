@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "ef566b671f7fda6091320e5ce06663817867cd3af23853ffab4bc2d5ca9c04bb",
+    "digest": "e4ae9572d05f12ce7fc60c07fd472abf304a2d886cf6e5dc896c639904d013d9",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -366,7 +366,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "ec068a023f1eb4c5acc022ca8e3bea566f718a3eeed913e0e0b7e6919ec178ff"
+        "sha256": "9aed70a67e68abf6ac606b47153454f6e43e3b88b1c6e6e429d5d3dc0282ae2d"
       },
       {
         "path": "NOTICE.md",
@@ -1205,7 +1205,7 @@
       {
         "path": "review/issue-167/2026-10-31-native-integration.md",
         "identity_mode": "content",
-        "sha256": "c9aad6d7015c38237b28b5ef0329c016b07d1cb251eca4eefa108f6cf675f7aa"
+        "sha256": "555782c438101723e58f1588c03d33aa1f6c52d12791b6c26a17a6543e13891f"
       },
       {
         "path": "review/issue-167/2026-10-31-offline-prototype.md",
@@ -8270,7 +8270,7 @@
       {
         "path": "tools/quality/bandit-policy.json",
         "identity_mode": "content",
-        "sha256": "2cfc63c8f722cb4ac739b9086f6e9c515efe0cb5ff7a5b86ab574ea59677701c"
+        "sha256": "45a2ec82fc755c0edc93e5ec7b7314d2d970f213ad3c69a28e6d1897862feb5c"
       },
       {
         "path": "tools/quality/bandit-triage.cjs",
@@ -8640,7 +8640,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "d83b0a139a4c4c3ee4da4541c957f87e1504ae8861edba0c88e0aef5472de117"
+        "sha256": "b6854593b2e419c7fa3f49287902891b7394b9a16910eaad357f42657648e885"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
@@ -8700,12 +8700,12 @@
       {
         "path": "tools/quality/toolchain/package-lock.json",
         "identity_mode": "content",
-        "sha256": "fd67a0a8a07da35c68d04f783845295430389582b275a18b3f511547e0b30efc"
+        "sha256": "495a831561cda23d412d122c4f213d0d14194c8c57b64d53f0003705041b77da"
       },
       {
         "path": "tools/quality/toolchain/package.json",
         "identity_mode": "content",
-        "sha256": "193700ba5680daf9877029af1ad0e5b9c5eadae0d5644abf83fd0947fb833fc3"
+        "sha256": "a22a10b16c22c226e73169532ed8e66d3965a19e2d8d7a9bea45a17f6f4fab43"
       },
       {
         "path": "tools/quality/toolchain/requirements.txt",
