@@ -2837,6 +2837,22 @@
         "tools/quality/article-tags-browser.cjs",
         "tools/quality/color-browser.cjs"
       ]
+    },
+    {
+      "path": "tests/orchestration.test.cjs",
+      "language": "javascript",
+      "purpose": "Fixture-only offline WEB state/recovery proposals: strict input boundary, acceptance/start separation, stable semantic dedupe, unknown receipt/cessation holds and public allowlist.",
+      "owner": "guides/WEB-ORCHESTRATION.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "Retain behavioral positives and meaningful stale/duplicate/mismatch/private negatives; no real adapter/provider/identity/crash-durability claim.",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/orchestration.test.cjs",
+        "tools/orchestration/**",
+        "tests/fixtures/orchestration*.json",
+        "guides/WEB-ORCHESTRATION.md"
+      ]
     }
   ]
 }

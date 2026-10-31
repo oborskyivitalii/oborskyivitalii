@@ -49,6 +49,7 @@ CONTROL_FILES = {
     "tests/fixtures/staging-evidence.cjs",
 }
 CONTROL_PATTERNS = (
+    "agents/reviewers/*.md",
     ".github/workflows/*.yml",
     ".github/workflows/*.yaml",
     ".github/ISSUE_TEMPLATE/*.md",
@@ -96,7 +97,8 @@ def control_paths(root):
 
     MEMORY content is deliberately outside coupling identity: its bounded format
     is a producer contract; changing a dated handoff still invalidates RI itself.
-    All workflow definitions are watched, including new workflow files. Test
+    All reviewer prompts and workflow definitions are watched, including new files
+    absent from the catalog or assigned another owner. Test
     profile selection and stage-gate control families are explicitly watched;
     sharing a hosting-guide owner does not make all historical probes RI controls.
     """

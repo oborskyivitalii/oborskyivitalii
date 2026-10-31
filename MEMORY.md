@@ -1,89 +1,65 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-29**.
+Dated continuity, not live authority. Last verified: **2026-10-31**.
 
 ## Snapshot
 
-- Owner159, active DraftPR164. Remotehead9bfb3c99/treeff6292f0;
-  protectedmain2072b76e, protectedproductionc68db162/prod-2026-10-28.1.
-- Local seo159 branchwork/issue159-seo-delivery contains meaningful dirty
-  Research carrier/catalog correction frozen9bfb; dirty bounded15-failure correction.
-- Canonical review: review/issue-159/2026-10-28-seo-implementation.md,
-  dated Research critical-document correction. Revalidate actual refs/CI.
+- WEB-18/#167, coordinator VIT-22, same Draft PR168.
+- Security-correction baseline8c0087b99f4bd77886b2f174ff30d12f67855cee,
+  treef9055428997b0f40af098f6862c30883b1e99ac8; revalidate live head.
+- Full1810-file snapshot verified against all Git blobs/tree (1809 index paths
+  plus native integration report on disk).
+  Original local Git history/HEAD unavailable; no synthetic HEAD accepted.
+- Baseline Basic41194698327, navigation41194698305 and owning41194698347
+  passed automated scope. Full stage41195104012/job124519732378 then failed
+  security/advisories before upload; first failures/artifacts retained.
 
 ## Decisions
 
-- Owner29October accepts exact current copy/source/rights, declines external
-  first reader and authorizes production. PR164comment6493352483 persists it.
-- AC09.1/.2 explicitly waived/not executed and unchecked; only their dependent
-  human gates waived. Final44 applicable accepted needs actual delivery/live.
-- Same issue/PR, original AC IDs, original budgets, existing publisher/controller.
-  No article/guide publication or schedules. Two-brief handoff11comment6493407716.
-- All four distinct roles accepted bounded Research-only carrier hypothesis.
-  Copy/vectors/CSS/five runtime bytes stay exact accepted6b; no timing claim.
+- Current continuation covers bounded native RI/CI integration under #167.
+  Prompt family is watched/mapped; real generated RI/coupling refreshed.
+  Existing reducer still returns only data/proposals, with no dispatcher.
+- Linear remains intent/coordination owner; manual session ingress. Preferred
+  Sol/medium author request is not provider identity attestation.
+- Keep substantive delivery Draft. No merge, deploy, public release, paid API,
+  native Linear dispatch, new infrastructure or B3–B7 start.
+- Follow CONTRIBUTING four distinct nonauthor roles and diagnosis-before-retry.
+- Fresh reviewers use explicit none-fork and source/prompt/packet receipts via
+  agents/reviewers/README.md; historical reviewer fork modes remain unknown.
+  Whole WEB-AC01–12 and B1/B2/M1 remain open.
 
 ## Open work
 
-- PR166 preregistration delivered:97eb1504/tree91d1873e native75/1153,
-  policy9/9, ownerstage40858230483all12mandatory, App40861253589 passed.
-  Protected squash2072 has identical tree/soleparentaf8; postmerge40861722899
-  andRI40861721307 passed. Do not redo this prerequisite.
-- Current6b policy40864548226passed9/9; Ready40865079583passed75/1160.
-  Ownerstage40866083938 published under2072 but FAILED ResearchLCP2589.6795
-  against2500; Writing2338.912passed. No promotion/admission; oldfailure retained.
-- Rawtrace replay/counterfactual retained: nonCPU preload wait cause unknown.
-  Document-transfer hypothesis models150ms gain, not acceptance. Full newroute
-  gzip100081 includes9940SVG; HTML22555raw/7043gzip;89instantiatednodes.
-- Local browser diagnostic stopped firstlaunch socketEPERM:zero measurements,
-  requests/PNGs; no security changes or retry. CUA priorpartial/blank transition
-  followedcorrectarrival stays unexplained, not fixed by inference.
-- Local source core26/26; first8groups125/151failed26; corrected151/156failed5.
-  Exact publisherdependencies, regenerateddocs/coherentfixtures, pinnedPillow13/
-  WebP1.6 environment and five inactive untracked snapshots treatment recorded.
-  Latest five modules102/102 then correction111/111zeroomit; Basic/SEO/fallback passed.
-- Requirements predecessor finding resolved: finite six producer beforepins and
-  acceptedSVG now proven from trusted immutable2072, byte-identicalto6b.
-  Native newsourceperformance/twoPNG/wholechecks and finalmetadata reviews pending.
-- Three new lintcomplexitywarnings blocked despiteexit0; coherentResearchhelpers
-  extracted. Final3files0errors/0warnings, three roles independentlyaccept.
-  Intermediate1warning preserved; thresholds/exceptionlist unchanged.
-
-- Frozen788 actual package passed pristine2072;32public/36package files. Native
-  policy40887047473 FAILED8/9: CATALOG45tests44pass1fail, AC04/06affected.
-  Existing content.test IDs coveredHTMLonly, rejectedactualdeclaredSVGfragment;
-  rootinventoryalsoomitsarticle-media. Correction45/45zeroomit andlint0/0passed;
-  Requirements/Codepreflightacceptednarrow
-  strictresolver+actualSVGIDs+finiteinventory/negative correction. Ready STOPPED.
-
-- Current9bfb manual/auto policy9/9 andnativeRI29/29passed. Ready40890325094
-  completed79modules1193tests1178pass15fail0omit176799msunder300s; allsource
-  casescompleted. Preview40890324477controller45/41/4failedbeforepublish/browser.
-- All15diagnosed across6existingowners; realcalculatorAPI restored, other
-  fixtureclosure/transfer/MIME/dependencyoracles corrected. Sharedfunctional
-  proofsexplicitlysynthetic;24+2missing/tampernegatives preserved. PRDraft.
-- Boundedcorrection8modules160/160zeroomit75883ms; all15oldfailednamesnowpass
-  once. NinechangedCJS lint0/0; canonicalgeneration--checkpass. Finalmetadata
-  reviews/freeze/newnativepending. No1193nativepassoractualPNG/LCPclaim.
+- Current evidence/handoff owner:
+  review/issue-167/2026-10-31-offline-prototype.md; reviewer audit and pending
+  runtime isolation gate: review/issue-167/2026-10-31-reviewer-isolation.md;
+  native correction: review/issue-167/2026-10-31-native-integration.md.
+- Bounded security repair proposes five existing Bandit source/line refreshes,
+  exact70 initial checksum dispositions (62 recomputed,2 fixture keys,6 qualified
+  historical receipts) plus1 fresh Bandit checksum; independent review pending.
+- Exact minimatch11.0.1 override produced real lock/install and clean audit.
+  Actual consumer modes pass;210 broader partial-match differences retained.
+  Local scanner/selector regression80cases:77pass/3history-dependent failures.
+  Native changed-head checks and full staging/admission remain mandatory.
+- Real human/provider provenance, dispatcher, cancellation, crash recovery,
+  native status/sync/notice and served artifact verification remain unproved.
+- Previous #159 handoff is retained at the pinned base MEMORY.md history;
+  its 29 October refs/failures are historical, not current task authority.
 
 ## Next session
 
-1. Finish bounded15-failure correction after full79-module Ready failure. API
-   checkSize retains articles-only/inline compatibility; undeclared use refuses.
-2. Verify six failed modules plus staging-regression/site-engine; all4actual
-   source/metadata reviews, RI-CI/format thenRIbuildlast. No productbytechange.
-3. Meaningful newsourcefreeze Refs159, nativefrozenpolicy/Ready(fullRI/source),
-   ownownerstage/actual2PNGs/LCP/stableadmission; preserveoldfailedruns.
-4. ExactheadApp/protectedsquash/postmerge, frozenproduction/newrights/archive,
-   publishunderexistingauthority, actualliveoperator/provider/screenshot.
-5. Reconcile44applicable+2waivedunchecked; original46lines thenclose159.
+1. Read current #167/WEB-18, actual Draft PR head/diff/checks and this review.
+2. Revalidate exact delivered head and real native Actions results. Complete
+   source is available; local frozen Git-history objects are still absent.
+3. Complete final four-role security review, exact final scan and native checks; use
+   retained failures and exact command/source receipts, never a synthetic HEAD.
+4. Reconcile P01–P06 subsets without closing original whole-pilot criteria.
+5. B3–B7 need their exact scope/guards; offline proposals do not launch them.
 
 ## Maintenance
 
-- Preserve all original failures; no unchangedfailedcampaign/old945suite retry.
-- Local source tools need SITE_AUDIT_TOOLS existingrepo pinnedtoolchain and
-  SITE_MEDIA_PYTHON scratchp2-media-pinned-env/venv/bin/python. No pin change.
-- Checkpoint evidence/p2-delivery-state.json outsidecheckout records run/rawstate;
-  remote6b is not current dirtyprototype. Dynamic receipts stay PRcomments.
-- Existing1626 checksumrows/order preserved;19 proved exact carrier records appended,
-  dated compressed proof retained; all otherledgers/scanners unchanged.
-- Stage new/deleted paths beforeRI-CI; keep five sections/120lines and RI fresh.
+- Keep this five-section handoff within 120 lines. Real generated RI/coupling
+  must stay fresh after this edit; source-bound receipts retain exact results.
+  Style guard needs missing frozen Git baseline; native checks remain pending.
+- Keep original failures, owners, source identities, test profiles and budgets.
+- Store no private execution/approval URLs or secrets in repository/Linear.

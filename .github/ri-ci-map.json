@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/159",
-    "date": "2026-10-29",
-    "summary": "Integrate accepted protected runtime preregistration and preserve reviewed existing-page SEO, exact amendment/producer/CSS successor and curated catalog checks; retain source/manual/release gates."
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/167",
+    "date": "2026-10-31",
+    "summary": "Authored offline component paths/acceptance/test selection mapping. Prior reviewed_source_identity remains stale and MUST be refreshed/verified on complete native source before readiness; no RI-CI pass claimed on partial workspace."
   },
   "layers": [
     {
@@ -11,6 +11,18 @@
       "purpose": "Enduring agent rules, source authority and four-role independent execution protocol; history and generated views cannot supply current instructions or approvals.",
       "paths": ["AGENTS.md", "CONTRIBUTING.md", "PROJECT-BOOTSTRAP.md"],
       "checks": ["acceptance-policy", "ri-freshness", "ri-regressions"]
+    },
+    {
+      "id": "reviewer-prompts",
+      "purpose": "Canonical common launch/packet/receipt contract and four detailed role prompts; coupling watches new prompt files independently of catalog ownership. Mechanical checks establish navigation and freshness, never actual reviewer execution.",
+      "paths": [
+        "agents/reviewers/README.md",
+        "agents/reviewers/requirements-acceptance.md",
+        "agents/reviewers/code-review.md",
+        "agents/reviewers/white-box-qa.md",
+        "agents/reviewers/exploratory-interaction-qa.md"
+      ],
+      "checks": ["ri-ci-map", "ri-ci-regressions", "ri-freshness", "ri-regressions"]
     },
     {
       "id": "intent-acceptance",
@@ -153,7 +165,9 @@
         "review/issue-159/2026-10-28-seo-brief-delivery.md",
         "review/issue-159/2026-10-28-seo-brief-agent-control.md",
         "review/issue-159/content-amendment.json",
-        "review/issue-159/2026-10-29-runtime-preregistration.md"
+        "review/issue-159/2026-10-29-runtime-preregistration.md",
+        ".github/acceptance/issue-167.json",
+        "review/issue-167/2026-10-31-offline-prototype.md"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -468,6 +482,19 @@
         ".github/workflows/control-runner-probe.yml"
       ],
       "checks": ["site-basic", "test-profile-regressions", "acceptance-policy"]
+    },
+    {
+      "id": "offline-web-orchestration",
+      "purpose": "Synthetic-only reducer and consumed bounded contract, semantic dedupe/receipt/cessation behavior. Existing maintained source registry selects component tests through Basic; no real dispatch or native admission from fixture proposals.",
+      "paths": [
+        "guides/WEB-ORCHESTRATION.md",
+        "tools/orchestration/contract.json",
+        "tools/orchestration/reducer.cjs",
+        "tests/orchestration.test.cjs",
+        "tests/fixtures/orchestration-accept-only.json",
+        "tests/fixtures/orchestration-start.json"
+      ],
+      "checks": ["site-basic", "acceptance-policy", "test-profile-regressions", "ri-freshness"]
     }
   ],
   "checks": [
@@ -687,7 +714,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "fced9482ad96149a2a08ff3ccd93c5a7871c575aaa30a07378a0962e11d556e9",
+    "digest": "5da2250868e67c62fbf98121a0fad8389e9999a08ed9e6379360475ee8065a1c",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -703,7 +730,7 @@
       },
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
-        "sha256": "9f4c9d85c0b1145bd443d411a402bad81d20b0f26338c8e0261789d8b387d91f"
+        "sha256": "cca61bab2ab0866641953f623698cc4628db3ebad7120b4b8fad205a3a354cca"
       },
       {
         "path": ".github/acceptance/issue-102.json",
@@ -736,6 +763,10 @@
       {
         "path": ".github/acceptance/issue-159.json",
         "sha256": "fb792b514397558cb1af85f8bcce49885ff447bccaf1825800095aa8ea5fc0f2"
+      },
+      {
+        "path": ".github/acceptance/issue-167.json",
+        "sha256": "11ce6d8358c62ef5cce8b6ea8e15520e3dda2427019c024167507587e61e7ca6"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -819,15 +850,15 @@
       },
       {
         "path": ".github/repository-intelligence-config.json",
-        "sha256": "3ba46fb384168f2375230eafc6ff4b582a83d3a3d0761cc1a7e27f71919417c5"
+        "sha256": "67494fc85d415b0033bc1d4346dce968ea56fdd772b63a36838544b05433edac"
       },
       {
         "path": ".github/repository-layout.json",
-        "sha256": "0659286075c6f5011a6484af75e7acc99a061841b536ab95a2363ffcd2ad4a1e"
+        "sha256": "274834aa91b8d049d2c2767303dd50f5147db7b06f0f1602c8e507758d04d1a3"
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "fdf37748325e6b03a999b41c7b55c22b2cb21c105d843faf710d646aed816fab"
+        "sha256": "13daa51bb03f1f18638eba8aeb489029f4b84a49edc03719df817e2aaccbd901"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -923,15 +954,35 @@
       },
       {
         "path": "AGENTS.md",
-        "sha256": "7114900f9f5992446ca7f999e175dd3608b16cb153fba26c29cfa2a09210d338"
+        "sha256": "ad4f179ec04c7af12867229d70598a660c5ae41f3cb456cafd02aca3d12a9988"
       },
       {
         "path": "CONTRIBUTING.md",
-        "sha256": "952dc886fa09ab96d3561cc46f9673310dbfa0a68f4e5047868d6914f2ab9269"
+        "sha256": "804fb3da9a0bc7369bbd902313224221becc6c6b775536ca943f8664bf741442"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
         "sha256": "b69656ee56d8b30f0b805bc69a5bbbb5d568c7889aedf09cc1c19bb4ad46851e"
+      },
+      {
+        "path": "agents/reviewers/README.md",
+        "sha256": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb"
+      },
+      {
+        "path": "agents/reviewers/code-review.md",
+        "sha256": "26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697"
+      },
+      {
+        "path": "agents/reviewers/exploratory-interaction-qa.md",
+        "sha256": "280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a"
+      },
+      {
+        "path": "agents/reviewers/requirements-acceptance.md",
+        "sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6"
+      },
+      {
+        "path": "agents/reviewers/white-box-qa.md",
+        "sha256": "832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f"
       },
       {
         "path": "guides/CODE-STYLE.md",
@@ -943,7 +994,7 @@
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
-        "sha256": "d3a89e6f6252f264121009c75a4b8b2125b94046ae6c07597d244cdbb92c7907"
+        "sha256": "1298a0af2adf9b1720a8d539106ecf0aca47cf0e2b4bea673c240a4c4020c5ab"
       },
       {
         "path": "review/issue-5/2026-10-20-controller-bootstrap.md",
@@ -1051,7 +1102,7 @@
       },
       {
         "path": "tests/test_repository_intelligence.py",
-        "sha256": "28a928725ad9a6f63228b7ad37b71f084566fec1c15391c6ed020457eff6df5a"
+        "sha256": "44d726dbf263dba2fbfed4a863a38f26c7f7cd3df751afcf592c429cc0bf2a08"
       },
       {
         "path": "tests/test_repository_test_selection.py",
@@ -1059,7 +1110,7 @@
       },
       {
         "path": "tests/test_ri_ci.py",
-        "sha256": "f01ebab43fb210bdb021f2c26e0114b2ed490e78eda5b453ee0fe2ce9cf671a3"
+        "sha256": "e2c545ef45f11431f45ed7eab9810911f3843d9207e0240ac150f792291dc57c"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -1075,7 +1126,7 @@
       },
       {
         "path": "tools/check_ri_ci.py",
-        "sha256": "ad2c3beb905849b49da1433c2569fb61e339e856981a88791bb0e9b249bed9d9"
+        "sha256": "6bd4f27642e43d2afdd6b452fa80fe6c8a5092991fa83d5b83a4f11c7906cf46"
       },
       {
         "path": "tools/issue_acceptance.py",
@@ -1099,7 +1150,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "7925ed6d907f8e2bef2cc7ccce93f80c6a24f9cfccffa13cfbdfd0e117665f03"
+        "sha256": "52e8060b0039a2490eeb23217d55965c68088087710e7209397397a874681579"
       },
       {
         "path": "tools/repository_intelligence.py",

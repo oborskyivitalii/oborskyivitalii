@@ -42,6 +42,7 @@ the JSON and [coupling validator](../tools/check_ri_ci.py) enforce the routes.
 | Layer | Maintained paths and authority | CI companion and what it proves |
 | --- | --- | --- |
 | Authority and instructions | Root/scoped `AGENTS.md`; [CONTRIBUTING](../CONTRIBUTING.md); [project bootstrap](../PROJECT-BOOTSTRAP.md). Source owners supply meaning; archived guides supply history. | [navigation](workflows/navigation.yml): `NavigationSafetyTests` verifies scope, historical isolation and guide bounds. Issue acceptance tests exercise the documented task/review protocol. |
+| Reviewer prompts | [Common launch contract](../agents/reviewers/README.md) and its four detailed role prompts; CONTRIBUTING retains lifecycle and acceptance authority. | Navigation RI regressions exercise common/role aliases and validation companions. Coupling watches `agents/reviewers/*.md` regardless of catalog presence or owner, including added files and base-side removals/renames. These checks cannot establish actual isolated reviewer execution. |
 | Intent and acceptance | Live owning issue with stable AC IDs; [issue templates](ISSUE_TEMPLATE/work-item.md), [research intake](ISSUE_TEMPLATE/research-input.md), [PR template](pull_request_template.md), [acceptance protocol](ACCEPTANCE.md), `.github/acceptance/issue-N.json`; `review/issue-N/` files use [one review format](../review/REVIEW-TEMPLATE.md). | [issue-acceptance](workflows/issue-acceptance.yml): `tools/issue_acceptance.py` executes the selected owning issue policy's named assertions at an exact source, maps evidence back to AC IDs and leaves owner/manual/merge criteria pending. Green automated checks alone cannot close an issue. |
 | Path catalog | [repository-paths.json](repository-paths.json): every file/directory's purpose, role and editing owner, including root files. | Navigation's `NavigationSafetyTests` checks unknown/missing paths, kinds, purposes and owners. RI `verify` compares the complete outputs against that catalog. |
 | Entry, root and guides | [layout contract](repository-layout.json), [maintained guides](../guides/README.md), [archived originals](../review/root-history-20261007/README.md) and provenance manifest. README owns purpose; AGENTS owns rules; bootstrap only routes. | Navigation runs `RootLayoutTests` for bounded entry points, complete dispositions, exact archive identity, active links and current owners. Issue #33 alone selects its frozen public/history snapshot checks; later site work is not frozen to that base. The enduring-suite selector retains every permanent Python module while task modules stay with their owning policy; its regressions run unconditionally in navigation. |
@@ -85,7 +86,7 @@ routes require checking the dependent layer and CI selection in the same PR:
    workflow's exact source, failure propagation and test selection.
 3. Update this table/config routes and `ri-ci-map.json` where dependencies changed.
    New workflows, catalog-owned RI/acceptance controls and declared test-profile/
-   stage-gate control families require explicit map entries. Review affected checks before running `check_ri_ci.py refresh`; its
+   stage-gate and reviewer prompt control families require explicit map entries. Review affected checks before running `check_ri_ci.py refresh`; its
    digest records exact maintained input bytes and map interpretation, rather
    than accepting a meaningless edit to the map file as evidence of review.
 4. At issue completion review every new/changed test's PR smoke/targeted AC,
@@ -147,7 +148,8 @@ configured; it does not invent local copies of UA/Subprime research status.
 The canonical [independent quality-agent protocol](../CONTRIBUTING.md#independent-quality-agents)
 defines separately launched requirements/acceptance, code review, white-box QA and
 exploratory/interaction QA. Bilingual owner aliases and validation companions route
-each role to that protocol, acceptance, the review template and the existing test
+each role to its detailed prompt and the common launch contract, alongside the
+retained CONTRIBUTING lifecycle protocol, acceptance, review template and existing test
 allocation owner. Role executions and original conclusions belong to the owning
 issue's review artifact; this derived projection cannot launch an agent or establish
 that it ran. Test design follows risk/AC → scenario/oracle → suite/profile/workflow

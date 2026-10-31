@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "211a3cf37993bce7d46bc568f8367736cdece2916279179fe40235e203c127cf",
+    "digest": "e4ae9572d05f12ce7fc60c07fd472abf304a2d886cf6e5dc896c639904d013d9",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -42,7 +42,7 @@
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
         "identity_mode": "content",
-        "sha256": "9f4c9d85c0b1145bd443d411a402bad81d20b0f26338c8e0261789d8b387d91f"
+        "sha256": "cca61bab2ab0866641953f623698cc4628db3ebad7120b4b8fad205a3a354cca"
       },
       {
         "path": ".github/acceptance/issue-102.json",
@@ -83,6 +83,11 @@
         "path": ".github/acceptance/issue-159.json",
         "identity_mode": "content",
         "sha256": "fb792b514397558cb1af85f8bcce49885ff447bccaf1825800095aa8ea5fc0f2"
+      },
+      {
+        "path": ".github/acceptance/issue-167.json",
+        "identity_mode": "content",
+        "sha256": "11ce6d8358c62ef5cce8b6ea8e15520e3dda2427019c024167507587e61e7ca6"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -192,7 +197,7 @@
       {
         "path": ".github/repository-intelligence-config.json",
         "identity_mode": "content",
-        "sha256": "3ba46fb384168f2375230eafc6ff4b582a83d3a3d0761cc1a7e27f71919417c5"
+        "sha256": "67494fc85d415b0033bc1d4346dce968ea56fdd772b63a36838544b05433edac"
       },
       {
         "path": ".github/repository-intelligence/agent-context.json",
@@ -201,17 +206,17 @@
       {
         "path": ".github/repository-layout.json",
         "identity_mode": "content",
-        "sha256": "0659286075c6f5011a6484af75e7acc99a061841b536ab95a2363ffcd2ad4a1e"
+        "sha256": "274834aa91b8d049d2c2767303dd50f5147db7b06f0f1602c8e507758d04d1a3"
       },
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "fdf37748325e6b03a999b41c7b55c22b2cb21c105d843faf710d646aed816fab"
+        "sha256": "13daa51bb03f1f18638eba8aeb489029f4b84a49edc03719df817e2aaccbd901"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "893fc4edf8c7a72e2e864a57edea674d7247aba22ab6983aaaf1295da7baec95"
+        "sha256": "695ffb4fca2b259bb24d59125269deacb085ec898221639647a7892d686dc3f2"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -336,12 +341,12 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "7114900f9f5992446ca7f999e175dd3608b16cb153fba26c29cfa2a09210d338"
+        "sha256": "ad4f179ec04c7af12867229d70598a660c5ae41f3cb456cafd02aca3d12a9988"
       },
       {
         "path": "CONTRIBUTING.md",
         "identity_mode": "content",
-        "sha256": "952dc886fa09ab96d3561cc46f9673310dbfa0a68f4e5047868d6914f2ab9269"
+        "sha256": "804fb3da9a0bc7369bbd902313224221becc6c6b775536ca943f8664bf741442"
       },
       {
         "path": "LICENSE-CODE.md",
@@ -361,7 +366,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "5de15a8a53b8f3d53abc5122f2315d92ee926e97a4a439a62e4ccd83269f26f5"
+        "sha256": "9aed70a67e68abf6ac606b47153454f6e43e3b88b1c6e6e429d5d3dc0282ae2d"
       },
       {
         "path": "NOTICE.md",
@@ -381,6 +386,31 @@
       {
         "path": "REPOSITORY-MAP.md",
         "identity_mode": "derived"
+      },
+      {
+        "path": "agents/reviewers/README.md",
+        "identity_mode": "content",
+        "sha256": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb"
+      },
+      {
+        "path": "agents/reviewers/code-review.md",
+        "identity_mode": "content",
+        "sha256": "26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697"
+      },
+      {
+        "path": "agents/reviewers/exploratory-interaction-qa.md",
+        "identity_mode": "content",
+        "sha256": "280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a"
+      },
+      {
+        "path": "agents/reviewers/requirements-acceptance.md",
+        "identity_mode": "content",
+        "sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6"
+      },
+      {
+        "path": "agents/reviewers/white-box-qa.md",
+        "identity_mode": "content",
+        "sha256": "832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f"
       },
       {
         "path": "docs/.nojekyll",
@@ -705,7 +735,7 @@
       {
         "path": "guides/README.md",
         "identity_mode": "content",
-        "sha256": "a25a809ea38f035944257071209ddbb4392c8b73adee3819ec27de943598705f"
+        "sha256": "cf157db6e15b370336cbc7b0829d03b63be2e74d5e8759a3cb18ada213d1b7a6"
       },
       {
         "path": "guides/REPOSITORIES.md",
@@ -773,6 +803,11 @@
         "sha256": "44c37986027125585e54787337da6debdd014b0b5b70c87518f92ed74d62f63a"
       },
       {
+        "path": "guides/WEB-ORCHESTRATION.md",
+        "identity_mode": "content",
+        "sha256": "fcc75b9f6a123bf3f8130c30f1246767dda0fbd546e8bcc750e797acddad5e4e"
+      },
+      {
         "path": "guides/github-pages-domains.json",
         "identity_mode": "content",
         "sha256": "d9f079e816a98a05cba6f315ac036ee3ce664cedc23f7b8f53c22bc9e4993330"
@@ -780,7 +815,7 @@
       {
         "path": "review/REVIEW-TEMPLATE.md",
         "identity_mode": "content",
-        "sha256": "d3a89e6f6252f264121009c75a4b8b2125b94046ae6c07597d244cdbb92c7907"
+        "sha256": "1298a0af2adf9b1720a8d539106ecf0aca47cf0e2b4bea673c240a4c4020c5ab"
       },
       {
         "path": "review/assets/site-day-night-concept-20261002.png",
@@ -1166,6 +1201,26 @@
         "path": "review/issue-159/content-amendment.json",
         "identity_mode": "content",
         "sha256": "8d6e8736f11089ab76ca9a494c988be68516d3c7e54cee3afab20131d2e5bf4c"
+      },
+      {
+        "path": "review/issue-167/2026-10-31-native-integration.md",
+        "identity_mode": "content",
+        "sha256": "555782c438101723e58f1588c03d33aa1f6c52d12791b6c26a17a6543e13891f"
+      },
+      {
+        "path": "review/issue-167/2026-10-31-offline-prototype.md",
+        "identity_mode": "content",
+        "sha256": "1fdc1c2ba1e24e54deb93248a1b1d948b42db5e3da4a31dc9e4f8679281b8e43"
+      },
+      {
+        "path": "review/issue-167/2026-10-31-reviewer-history-evidence.json",
+        "identity_mode": "content",
+        "sha256": "4353e5b686118fd030e570c8833dbfbdc304a7d3d542857ea0133bf811a99dc0"
+      },
+      {
+        "path": "review/issue-167/2026-10-31-reviewer-isolation.md",
+        "identity_mode": "content",
+        "sha256": "cc33bcc3d54b6d55713e2fcef51b8741ca863b3b68c4f6b2e508f72b771419d8"
       },
       {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -7468,6 +7523,16 @@
         "sha256": "6702059042f1de98920201e898f995165d191314ec1f65ec6cf4082928e25937"
       },
       {
+        "path": "tests/fixtures/orchestration-accept-only.json",
+        "identity_mode": "content",
+        "sha256": "f3bb2f5fc8dee18a4f2b8320567456a8318e4010bd50efa2c061460b4dff4af5"
+      },
+      {
+        "path": "tests/fixtures/orchestration-start.json",
+        "identity_mode": "content",
+        "sha256": "cb3f53c44940644fe53fa160c4a15fd959603cce2341c01e7aab391d56f16dfa"
+      },
+      {
         "path": "tests/fixtures/publication-records.cjs",
         "identity_mode": "content",
         "sha256": "4142868e9658bef5450224e7514072ba43cf1ffd3ba7c87efe83388f15f64384"
@@ -7541,6 +7606,11 @@
         "path": "tests/navigation.test.cjs",
         "identity_mode": "content",
         "sha256": "96aeeef1d8545fe4d19c46fcba484beb50ef5792e8b49f5b439382225e75e9e6"
+      },
+      {
+        "path": "tests/orchestration.test.cjs",
+        "identity_mode": "content",
+        "sha256": "1da3cb3d941cb27d2d4253776b02b89c9274ec9807d389fd17e9d706af9cbb6d"
       },
       {
         "path": "tests/pages-delivery.test.cjs",
@@ -7855,7 +7925,7 @@
       {
         "path": "tests/test_repository_intelligence.py",
         "identity_mode": "content",
-        "sha256": "28a928725ad9a6f63228b7ad37b71f084566fec1c15391c6ed020457eff6df5a"
+        "sha256": "44d726dbf263dba2fbfed4a863a38f26c7f7cd3df751afcf592c429cc0bf2a08"
       },
       {
         "path": "tests/test_repository_test_selection.py",
@@ -7865,7 +7935,7 @@
       {
         "path": "tests/test_ri_ci.py",
         "identity_mode": "content",
-        "sha256": "f01ebab43fb210bdb021f2c26e0114b2ed490e78eda5b453ee0fe2ce9cf671a3"
+        "sha256": "e2c545ef45f11431f45ed7eab9810911f3843d9207e0240ac150f792291dc57c"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -7975,7 +8045,7 @@
       {
         "path": "tools/check_ri_ci.py",
         "identity_mode": "content",
-        "sha256": "ad2c3beb905849b49da1433c2569fb61e339e856981a88791bb0e9b249bed9d9"
+        "sha256": "6bd4f27642e43d2afdd6b452fa80fe6c8a5092991fa83d5b83a4f11c7906cf46"
       },
       {
         "path": "tools/check_site_contrast.cjs",
@@ -7996,6 +8066,16 @@
         "path": "tools/issue_acceptance.py",
         "identity_mode": "content",
         "sha256": "c4d98db96844f19d73e4f66d389d3c54b5f0eead60029395d77d970c18950a97"
+      },
+      {
+        "path": "tools/orchestration/contract.json",
+        "identity_mode": "content",
+        "sha256": "e3cd3d9a08f438764857b3b294eb6e5a1eec93f3a46e6622d364b2031e9c1110"
+      },
+      {
+        "path": "tools/orchestration/reducer.cjs",
+        "identity_mode": "content",
+        "sha256": "fbdfcfa670b259079d9bc9d1809ba4082d2b035d2dd361bed1ae0cf36034fdc5"
       },
       {
         "path": "tools/pages/controller.cjs",
@@ -8190,7 +8270,7 @@
       {
         "path": "tools/quality/bandit-policy.json",
         "identity_mode": "content",
-        "sha256": "2cfc63c8f722cb4ac739b9086f6e9c515efe0cb5ff7a5b86ab574ea59677701c"
+        "sha256": "45a2ec82fc755c0edc93e5ec7b7314d2d970f213ad3c69a28e6d1897862feb5c"
       },
       {
         "path": "tools/quality/bandit-triage.cjs",
@@ -8560,7 +8640,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "d83b0a139a4c4c3ee4da4541c957f87e1504ae8861edba0c88e0aef5472de117"
+        "sha256": "b6854593b2e419c7fa3f49287902891b7394b9a16910eaad357f42657648e885"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
@@ -8615,17 +8695,17 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "7925ed6d907f8e2bef2cc7ccce93f80c6a24f9cfccffa13cfbdfd0e117665f03"
+        "sha256": "52e8060b0039a2490eeb23217d55965c68088087710e7209397397a874681579"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
         "identity_mode": "content",
-        "sha256": "fd67a0a8a07da35c68d04f783845295430389582b275a18b3f511547e0b30efc"
+        "sha256": "495a831561cda23d412d122c4f213d0d14194c8c57b64d53f0003705041b77da"
       },
       {
         "path": "tools/quality/toolchain/package.json",
         "identity_mode": "content",
-        "sha256": "193700ba5680daf9877029af1ad0e5b9c5eadae0d5644abf83fd0947fb833fc3"
+        "sha256": "a22a10b16c22c226e73169532ed8e66d3965a19e2d8d7a9bea45a17f6f4fab43"
       },
       {
         "path": "tools/quality/toolchain/requirements.txt",
@@ -8993,7 +9073,7 @@
     "path": "tools/repository_intelligence.py",
     "sha256": "dad68d88d241c2cd223081d6a28961c1aa7abc19c0f4c223c9c3382c562aa792",
     "config_path": ".github/repository-intelligence-config.json",
-    "config_sha256": "3ba46fb384168f2375230eafc6ff4b582a83d3a3d0761cc1a7e27f71919417c5"
+    "config_sha256": "67494fc85d415b0033bc1d4346dce968ea56fdd772b63a36838544b05433edac"
   },
   "owners": [
     {
@@ -9317,6 +9397,84 @@
         "ліцензія коду",
         "ліцензія контенту"
       ]
+    },
+    {
+      "concern": "offline WEB orchestration fixture component",
+      "path": "guides/WEB-ORCHESTRATION.md",
+      "queries": [
+        "orchestration",
+        "WEB-18",
+        "VIT-22",
+        "reducer",
+        "receipt recovery"
+      ]
+    },
+    {
+      "concern": "independent requirements and acceptance-quality review detailed prompt",
+      "path": "agents/reviewers/requirements-acceptance.md",
+      "queries": [
+        "requirements reviewer",
+        "requirements review",
+        "requirements quality",
+        "acceptance quality",
+        "якість вимог",
+        "перевірка вимог",
+        "якість критеріїв приймання",
+        "requirements prompt"
+      ]
+    },
+    {
+      "concern": "independent code review and correction acceptance detailed prompt",
+      "path": "agents/reviewers/code-review.md",
+      "queries": [
+        "code reviewer",
+        "independent code review",
+        "ревʼю коду",
+        "код ревью",
+        "незалежне ревю коду",
+        "code review prompt"
+      ]
+    },
+    {
+      "concern": "independent white-box QA and structural test design detailed prompt",
+      "path": "agents/reviewers/white-box-qa.md",
+      "queries": [
+        "white-box QA",
+        "white-box testing",
+        "white box testing",
+        "whitebox testing",
+        "вайтбокс тестування",
+        "тестування білої скриньки",
+        "white-box prompt"
+      ]
+    },
+    {
+      "concern": "independent exploratory and interaction QA detailed prompt",
+      "path": "agents/reviewers/exploratory-interaction-qa.md",
+      "queries": [
+        "exploratory testing",
+        "exploratory QA",
+        "interaction QA",
+        "manual testing",
+        "дослідницьке тестування",
+        "ручне тестування",
+        "тестування взаємодії",
+        "exploratory prompt"
+      ]
+    },
+    {
+      "concern": "common reviewer launch, source packet, isolation and execution receipts",
+      "path": "agents/reviewers/README.md",
+      "queries": [
+        "reviewer launch contract",
+        "reviewer source packet",
+        "reviewer isolation",
+        "reviewer execution receipt",
+        "separate agent launches",
+        "independent agents",
+        "окремі запуски агентів",
+        "контракт запуску ревʼюерів"
+      ]
     }
   ],
   "terms": [],
@@ -9470,6 +9628,17 @@
         "AGENTS.md"
       ],
       "title": "issue-159.json"
+    },
+    {
+      "path": ".github/acceptance/issue-167.json",
+      "kind": "file",
+      "purpose": "Whole WEB-AC01–12 numeric aliases, bounded existing checks and explicit prototype/native/human/delivery gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-167.json"
     },
     {
       "path": ".github/acceptance/issue-31.json",
@@ -10130,6 +10299,61 @@
         "AGENTS.md"
       ],
       "title": "REPOSITORY-MAP.md"
+    },
+    {
+      "path": "agents/reviewers/README.md",
+      "kind": "file",
+      "purpose": "Common clean-context launch, source packet, execution evidence and correction contract.",
+      "role": "guide",
+      "owner": "agents/reviewers/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Independent reviewer launch contract"
+    },
+    {
+      "path": "agents/reviewers/code-review.md",
+      "kind": "file",
+      "purpose": "Detailed independent code review reviewer prompt; requires common contract and explicit source packet.",
+      "role": "guide",
+      "owner": "agents/reviewers/code-review.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Code / Artifact Reviewer"
+    },
+    {
+      "path": "agents/reviewers/exploratory-interaction-qa.md",
+      "kind": "file",
+      "purpose": "Detailed independent exploratory interaction qa reviewer prompt; requires common contract and explicit source packet.",
+      "role": "guide",
+      "owner": "agents/reviewers/exploratory-interaction-qa.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Exploratory / Interaction QA"
+    },
+    {
+      "path": "agents/reviewers/requirements-acceptance.md",
+      "kind": "file",
+      "purpose": "Detailed independent requirements acceptance reviewer prompt; requires common contract and explicit source packet.",
+      "role": "guide",
+      "owner": "agents/reviewers/requirements-acceptance.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Requirements & Acceptance Reviewer"
+    },
+    {
+      "path": "agents/reviewers/white-box-qa.md",
+      "kind": "file",
+      "purpose": "Detailed independent white box qa reviewer prompt; requires common contract and explicit source packet.",
+      "role": "guide",
+      "owner": "agents/reviewers/white-box-qa.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "White-box QA"
     },
     {
       "path": "docs/.nojekyll",
@@ -10988,6 +11212,17 @@
         "AGENTS.md"
       ],
       "title": "PR previews and explicit staging"
+    },
+    {
+      "path": "guides/WEB-ORCHESTRATION.md",
+      "kind": "file",
+      "purpose": "Offline component contract, operator example, synthetic trust boundary and pending native full-route gates.",
+      "role": "guide",
+      "owner": "guides/WEB-ORCHESTRATION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Offline orchestration fixture component"
     },
     {
       "path": "guides/github-pages-domains.json",
@@ -11857,6 +12092,50 @@
         "AGENTS.md"
       ],
       "title": "content-amendment.json"
+    },
+    {
+      "path": "review/issue-167/2026-10-31-native-integration.md",
+      "kind": "file",
+      "purpose": "Source-bound native RI/CI integration, retained failures, reviewer prompt control regressions and actual independent/native evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 167 — 2026-10-31 native RI/CI integration"
+    },
+    {
+      "path": "review/issue-167/2026-10-31-offline-prototype.md",
+      "kind": "file",
+      "purpose": "Source-bound offline prototype scope, independent review results, retained accounting and pending native gates.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 167 — 2026-10-31 offline B2 prototype"
+    },
+    {
+      "path": "review/issue-167/2026-10-31-reviewer-history-evidence.json",
+      "kind": "file",
+      "purpose": "Exact bounded historical source excerpts and hashes supporting the reviewer usefulness audit.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-31-reviewer-history-evidence.json"
+    },
+    {
+      "path": "review/issue-167/2026-10-31-reviewer-isolation.md",
+      "kind": "file",
+      "purpose": "Source-bound reviewer isolation audit, historical usefulness, prompt extraction and actual independent execution receipts.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 167 — 2026-10-31 reviewer isolation and prompt ownership"
     },
     {
       "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -25719,6 +25998,28 @@
       "title": "delivery.cjs"
     },
     {
+      "path": "tests/fixtures/orchestration-accept-only.json",
+      "kind": "file",
+      "purpose": "Synthetic accept-only input with zero permitted dispatch proposals.",
+      "role": "test",
+      "owner": "guides/WEB-ORCHESTRATION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "orchestration-accept-only.json"
+    },
+    {
+      "path": "tests/fixtures/orchestration-start.json",
+      "kind": "file",
+      "purpose": "Synthetic combined accept/start input; proposed queue only, no actual execution.",
+      "role": "test",
+      "owner": "guides/WEB-ORCHESTRATION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "orchestration-start.json"
+    },
+    {
       "path": "tests/fixtures/publication-records.cjs",
       "kind": "file",
       "purpose": "Explicit synthetic licensed runtime and bounded legal-copy fixtures for consumer failures; never actual edition rights acceptance.",
@@ -25882,6 +26183,17 @@
         "AGENTS.md"
       ],
       "title": "navigation.test.cjs"
+    },
+    {
+      "path": "tests/orchestration.test.cjs",
+      "kind": "file",
+      "purpose": "Permanent behavioral positive/negative coverage of fixture-only orchestration state and recovery proposals.",
+      "role": "test",
+      "owner": "guides/WEB-ORCHESTRATION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "orchestration.test.cjs"
     },
     {
       "path": "tests/pages-delivery.test.cjs",
@@ -26883,6 +27195,28 @@
         "AGENTS.md"
       ],
       "title": "issue_acceptance.py"
+    },
+    {
+      "path": "tools/orchestration/contract.json",
+      "kind": "file",
+      "purpose": "Consumed bounded JSON fixture contract for offline orchestration proposals; synthetic inputs authenticate no real authority.",
+      "role": "configuration",
+      "owner": "guides/WEB-ORCHESTRATION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "contract.json"
+    },
+    {
+      "path": "tools/orchestration/reducer.cjs",
+      "kind": "file",
+      "purpose": "Pure JSON-text reducer for synthetic acceptance/start, semantic dedupe, receipt/cessation holds and safe public projection.",
+      "role": "source",
+      "owner": "guides/WEB-ORCHESTRATION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reducer.cjs"
     },
     {
       "path": "tools/pages/controller.cjs",
@@ -29145,6 +29479,26 @@
       ]
     },
     {
+      "path": "agents",
+      "kind": "directory",
+      "purpose": "Repository agent role prompts and shared launch contracts; not installed skills.",
+      "role": "guide",
+      "owner": "agents/reviewers/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "agents/reviewers",
+      "kind": "directory",
+      "purpose": "Canonical common reviewer launch contract and four separate detailed role prompts.",
+      "role": "guide",
+      "owner": "agents/reviewers/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs",
       "kind": "directory",
       "purpose": "Generated complete public tree and immutable rendition aliases; edit site sources instead.",
@@ -29638,6 +29992,16 @@
       "path": "review/issue-159",
       "kind": "directory",
       "purpose": "Issue159 analytics delivery, audience/query research and exact existing-page SEO/brief implementation evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-167",
+      "kind": "directory",
+      "purpose": "Dated WEB orchestration review/evidence; not executable source or current authority.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -31035,6 +31399,16 @@
       ]
     },
     {
+      "path": "tools/orchestration",
+      "kind": "directory",
+      "purpose": "Fixture-only offline WEB orchestration computations; no external effect adapters.",
+      "role": "source",
+      "owner": "guides/WEB-ORCHESTRATION.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "tools/pages",
       "kind": "directory",
       "purpose": "Issue72 source-bound staging and Pages delivery controller.",
@@ -31134,7 +31508,8 @@
         ".github/ri-ci-map.json",
         "tools/check_ri_ci.py",
         "tests/test_ri_ci.py",
-        "PROJECT-BOOTSTRAP.md"
+        "PROJECT-BOOTSTRAP.md",
+        "agents/reviewers/"
       ],
       "commands": [
         "python3 tools/check_ri_ci.py verify",
@@ -31210,7 +31585,8 @@
         "guides/SITE-CHECK-PROFILES.md",
         "tools/quality/test-profiles.json",
         "tools/quality/source-tests.cjs",
-        "tests/test_repository_intelligence.py"
+        "tests/test_repository_intelligence.py",
+        "agents/reviewers/"
       ],
       "commands": [
         "python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'",
@@ -31218,6 +31594,7 @@
       ],
       "read": [
         "CONTRIBUTING.md",
+        "agents/reviewers/README.md",
         ".github/ACCEPTANCE.md",
         "review/REVIEW-TEMPLATE.md",
         "guides/SITE-CHECK-PROFILES.md",
@@ -31243,7 +31620,8 @@
         "PROJECT-BOOTSTRAP.md",
         "tests/test_issue33_acceptance.py",
         "tests/test_issue35_acceptance.py",
-        "tests/test_issue36_acceptance.py"
+        "tests/test_issue36_acceptance.py",
+        "agents/reviewers/"
       ],
       "commands": [
         "python3 tools/issue_acceptance.py --help"
@@ -31387,6 +31765,95 @@
       ],
       "workflow": ".github/workflows/site-checks.yml",
       "note": "Changed-source tests are selected through test-profiles.json; issue39 selects its source-bound implementation checks. Fixtures cannot supply maintainer reuse-policy or rights decisions, protected settings, actual domain migration, device acceptance or publication approval."
+    },
+    {
+      "concern": "fixture-only WEB orchestration state and recovery",
+      "paths": [
+        "tools/orchestration/",
+        "tests/orchestration.test.cjs",
+        "tests/fixtures/orchestration-accept-only.json",
+        "tests/fixtures/orchestration-start.json",
+        "guides/WEB-ORCHESTRATION.md"
+      ],
+      "commands": [
+        "node --test tests/orchestration.test.cjs",
+        "node tools/quality/local.cjs"
+      ],
+      "read": [
+        "guides/WEB-ORCHESTRATION.md",
+        "guides/SITE-CHECK-PROFILES.md",
+        "guides/SITE-STAGING.md"
+      ],
+      "workflow": ".github/workflows/site-checks.yml",
+      "note": "Direct node command is component evidence; maintained registry selects the suite through existing Basic/source profiles. Executable full B/R/O/H route and native RI/admission remain pending on Draft; this route never dispatches agents or deploys."
+    },
+    {
+      "concern": "detailed reviewer prompt requirements-acceptance",
+      "paths": [
+        "agents/reviewers/requirements-acceptance.md"
+      ],
+      "read": [
+        "agents/reviewers/README.md",
+        "agents/reviewers/requirements-acceptance.md",
+        "CONTRIBUTING.md"
+      ],
+      "commands": [
+        "python3 tools/check_ri_ci.py verify",
+        "python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'"
+      ],
+      "workflow": ".github/workflows/navigation.yml",
+      "note": "Read the common contract and this single role prompt for a role launch; navigation checks do not establish reviewer execution."
+    },
+    {
+      "concern": "detailed reviewer prompt code-review",
+      "paths": [
+        "agents/reviewers/code-review.md"
+      ],
+      "read": [
+        "agents/reviewers/README.md",
+        "agents/reviewers/code-review.md",
+        "CONTRIBUTING.md"
+      ],
+      "commands": [
+        "python3 tools/check_ri_ci.py verify",
+        "python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'"
+      ],
+      "workflow": ".github/workflows/navigation.yml",
+      "note": "Read the common contract and this single role prompt for a role launch; navigation checks do not establish reviewer execution."
+    },
+    {
+      "concern": "detailed reviewer prompt white-box-qa",
+      "paths": [
+        "agents/reviewers/white-box-qa.md"
+      ],
+      "read": [
+        "agents/reviewers/README.md",
+        "agents/reviewers/white-box-qa.md",
+        "CONTRIBUTING.md"
+      ],
+      "commands": [
+        "python3 tools/check_ri_ci.py verify",
+        "python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'"
+      ],
+      "workflow": ".github/workflows/navigation.yml",
+      "note": "Read the common contract and this single role prompt for a role launch; navigation checks do not establish reviewer execution."
+    },
+    {
+      "concern": "detailed reviewer prompt exploratory-interaction-qa",
+      "paths": [
+        "agents/reviewers/exploratory-interaction-qa.md"
+      ],
+      "read": [
+        "agents/reviewers/README.md",
+        "agents/reviewers/exploratory-interaction-qa.md",
+        "CONTRIBUTING.md"
+      ],
+      "commands": [
+        "python3 tools/check_ri_ci.py verify",
+        "python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'"
+      ],
+      "workflow": ".github/workflows/navigation.yml",
+      "note": "Read the common contract and this single role prompt for a role launch; navigation checks do not establish reviewer execution."
     }
   ],
   "upstream": {

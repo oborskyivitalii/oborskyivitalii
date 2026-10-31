@@ -39,6 +39,8 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.github/actions/browser-archive](.github/actions/browser-archive) | Pinned browser supply action; integrity checks without prior browser launch. | configuration | [guides/BROWSER-ARCHIVES.md](guides/BROWSER-ARCHIVES.md) |
 | [.github/repository-intelligence](.github/repository-intelligence) | Generated machine navigation view with exact source identity. | generated | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [.github/workflows](.github/workflows) | Pinned CI workflows for navigation, site checks, hosted staging and manual diagnostics. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [agents](agents) | Repository agent role prompts and shared launch contracts; not installed skills. | guide | [agents/reviewers/README.md](agents/reviewers/README.md) |
+| [agents/reviewers](agents/reviewers) | Canonical common reviewer launch contract and four separate detailed role prompts. | guide | [agents/reviewers/README.md](agents/reviewers/README.md) |
 | [docs](docs) | Generated complete public tree and immutable rendition aliases; edit site sources instead. | generated | [site/README.md](site/README.md) |
 | [docs/article-media](docs/article-media) | Digest-addressed passive Research fallback vectors generated from the canonical authored scene; no article publication. | generated | [site/README.md](site/README.md) |
 | [docs/article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618](docs/article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618) | Digest-addressed passive Research fallback vectors generated from the canonical authored scene; no article publication. | generated | [site/README.md](site/README.md) |
@@ -89,6 +91,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-122](review/issue-122) | Issue122 atomic delivery-lane increments, independent quality-agent reviews and source-bound acceptance evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-126](review/issue-126) | DevCon announcement source and review evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-159](review/issue-159) | Issue159 analytics delivery, audience/query research and exact existing-page SEO/brief implementation evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-167](review/issue-167) | Dated WEB orchestration review/evidence; not executable source or current authority. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-2](review/issue-2) | Dated editorial, source and publication review evidence for the PMDay article owner. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-2/pmday-candidate-20261015](review/issue-2/pmday-candidate-20261015) | PR79 PMDay review candidate, independent findings and source-qualified export evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-2/r26-20261023](review/issue-2/r26-20261023) | Public-safe R26 native review deliverables with exact manuscript, PDF, kit and source/producer inventory. | history | [review/issue-2/2026-10-23-r26-integration.md](review/issue-2/2026-10-23-r26-integration.md) |
@@ -228,6 +231,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests](tests) | Behavioral, adversarial and fixture checks for RI, engine, exporters and CI/staging trust. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/fixtures](tests/fixtures) | Shared controlled evidence builders for selected staging validator/consumer tests; fixtures do not claim actual browser or CI execution. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tools](tools) | Repository navigation, public generation and offline review/export entry points. | source | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [tools/orchestration](tools/orchestration) | Fixture-only offline WEB orchestration computations; no external effect adapters. | source | [guides/WEB-ORCHESTRATION.md](guides/WEB-ORCHESTRATION.md) |
 | [tools/pages](tools/pages) | Issue72 source-bound staging and Pages delivery controller. | validator | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tools/publishing](tools/publishing) | Isolated build-time article AST, source/provenance, profile, kit, history and print adapters. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [tools/publishing/toolchain](tools/publishing/toolchain) | Exact locked build-time publisher/parser/print toolchain and transitive license inventory. | configuration | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
@@ -269,6 +273,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.github/acceptance/issue-122.json](.github/acceptance/issue-122.json) | Issue122 delivery-lane AC mapping: retained selection checks, T02 semantic contract review and pending lane, trust, independent-review and delivery gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-126.json](.github/acceptance/issue-126.json) | Issue126 observable announcement acceptance with separate independent, hosted and release gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-159.json](.github/acceptance/issue-159.json) | Issue159 unified analytics-first and later SEO criteria with bounded invariant checks and explicit provider/human/release gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/acceptance/issue-167.json](.github/acceptance/issue-167.json) | Whole WEB-AC01–12 numeric aliases, bounded existing checks and explicit prototype/native/human/delivery gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-31.json](.github/acceptance/issue-31.json) | Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-33.json](.github/acceptance/issue-33.json) | Bootstrap/root optimization AC01–AC06 mapped to source-bound assertions and separate review, merge and linkage gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-35.json](.github/acceptance/issue-35.json) | Test optimization AC01–AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
@@ -327,6 +332,16 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.github/workflows/site-staging-merge.yml](.github/workflows/site-staging-merge.yml) | Read-only actual merge/source-tree and authenticated Cloudflare-only staging admission observation. | workflow | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [.github/workflows/site-staging.yml](.github/workflows/site-staging.yml) | GitHub Actions: Verified site staging; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [.github/workflows/site-writing-probe.yml](.github/workflows/site-writing-probe.yml) | GitHub Actions: Writing cold comparison; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+
+## agents/reviewers/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [agents/reviewers/README.md](agents/reviewers/README.md) | Common clean-context launch, source packet, execution evidence and correction contract. | guide | [agents/reviewers/README.md](agents/reviewers/README.md) |
+| [agents/reviewers/code-review.md](agents/reviewers/code-review.md) | Detailed independent code review reviewer prompt; requires common contract and explicit source packet. | guide | [agents/reviewers/code-review.md](agents/reviewers/code-review.md) |
+| [agents/reviewers/exploratory-interaction-qa.md](agents/reviewers/exploratory-interaction-qa.md) | Detailed independent exploratory interaction qa reviewer prompt; requires common contract and explicit source packet. | guide | [agents/reviewers/exploratory-interaction-qa.md](agents/reviewers/exploratory-interaction-qa.md) |
+| [agents/reviewers/requirements-acceptance.md](agents/reviewers/requirements-acceptance.md) | Detailed independent requirements acceptance reviewer prompt; requires common contract and explicit source packet. | guide | [agents/reviewers/requirements-acceptance.md](agents/reviewers/requirements-acceptance.md) |
+| [agents/reviewers/white-box-qa.md](agents/reviewers/white-box-qa.md) | Detailed independent white box qa reviewer prompt; requires common contract and explicit source packet. | guide | [agents/reviewers/white-box-qa.md](agents/reviewers/white-box-qa.md) |
 
 ## docs/
 
@@ -555,6 +570,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [guides/SITE-SEO.md](guides/SITE-SEO.md) | Search/topic plan, structured publication metadata and discoverability constraints. | guide | [guides/SITE-SEO.md](guides/SITE-SEO.md) |
 | [guides/SITE-SOURCE-AUDIT.md](guides/SITE-SOURCE-AUDIT.md) | Public-source identities, publication inventory, contribution provenance and access limits. | guide | [guides/SITE-SOURCE-AUDIT.md](guides/SITE-SOURCE-AUDIT.md) |
 | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) | Current preview/staging controller and recovery runbook; proposed observation lifecycle, accepted-site identity and trusted-producer activation boundary. | guide | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
+| [guides/WEB-ORCHESTRATION.md](guides/WEB-ORCHESTRATION.md) | Offline component contract, operator example, synthetic trust boundary and pending native full-route gates. | guide | [guides/WEB-ORCHESTRATION.md](guides/WEB-ORCHESTRATION.md) |
 | [guides/github-pages-domains.json](guides/github-pages-domains.json) | Prepared finite .ai Pages DNS and .com redirect desired-state; no deploy controller consumes it yet. | configuration | [guides/SITE-PRODUCTION.md](guides/SITE-PRODUCTION.md) |
 
 ## review/
@@ -885,6 +901,15 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-159/2026-10-29-research-carrier-checksum-proof.json.gz](review/issue-159/2026-10-29-research-carrier-checksum-proof.json.gz) | Frozen independent exact19 Research carrier Git/producer/SVG/checksum findings and per-occurrence source proof; no scanner admission authority. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-159/2026-10-29-runtime-preregistration.md](review/issue-159/2026-10-29-runtime-preregistration.md) | Issue159 exact prospective runtime registration dependency, failed owner-stage diagnosis, unchanged-site proof, four independent roles and separate protected-delivery plan. | history | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [review/issue-159/content-amendment.json](review/issue-159/content-amendment.json) | Exact bounded issue159 copy/metadata, reading-path CSS and successor producer pin amendment; historical snapshots retained. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+
+## review/issue-167/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-167/2026-10-31-native-integration.md](review/issue-167/2026-10-31-native-integration.md) | Source-bound native RI/CI integration, retained failures, reviewer prompt control regressions and actual independent/native evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-167/2026-10-31-offline-prototype.md](review/issue-167/2026-10-31-offline-prototype.md) | Source-bound offline prototype scope, independent review results, retained accounting and pending native gates. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-167/2026-10-31-reviewer-history-evidence.json](review/issue-167/2026-10-31-reviewer-history-evidence.json) | Exact bounded historical source excerpts and hashes supporting the reviewer usefulness audit. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-167/2026-10-31-reviewer-isolation.md](review/issue-167/2026-10-31-reviewer-isolation.md) | Source-bound reviewer isolation audit, historical usefulness, prompt extraction and actual independent execution receipts. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/issue-2/
 
@@ -2637,6 +2662,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/navigation-fixtures.test.cjs](tests/navigation-fixtures.test.cjs) | Behavioral/adversarial tests and fixtures for navigation fixtures. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/navigation-motion-fixtures.test.cjs](tests/navigation-motion-fixtures.test.cjs) | Behavioral/adversarial tests and fixtures for navigation motion fixtures. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/navigation.test.cjs](tests/navigation.test.cjs) | Behavioral/adversarial tests and fixtures for navigation. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/orchestration.test.cjs](tests/orchestration.test.cjs) | Permanent behavioral positive/negative coverage of fixture-only orchestration state and recovery proposals. | test | [guides/WEB-ORCHESTRATION.md](guides/WEB-ORCHESTRATION.md) |
 | [tests/pages-delivery.test.cjs](tests/pages-delivery.test.cjs) | Meaningful admission, Pages preservation/recovery and durable archive regressions. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/pages-migration.test.cjs](tests/pages-migration.test.cjs) | Authenticated prefix-to-canonical migration, bounded ZIP extraction, settings/source leases and exact recovery failure surfaces. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/performance-suite.test.cjs](tests/performance-suite.test.cjs) | Performance diagnostic failure propagation, reader inventory/profile completeness and positive/zero motion regressions. | test | [tools/quality/README.md](tools/quality/README.md) |
@@ -2722,6 +2748,8 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/fixtures/article-flight.cjs](tests/fixtures/article-flight.cjs) | Independent content/event/media admission, identity and rollback behavioral contracts or controlled validator fixture. | test | [guides/SITE-CONTENT-RELEASE.md](guides/SITE-CONTENT-RELEASE.md) |
 | [tests/fixtures/catalog.cjs](tests/fixtures/catalog.cjs) | Immutable historical external catalog seed and collision-free fixture helpers; never an active publication catalog. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/fixtures/delivery.cjs](tests/fixtures/delivery.cjs) | Meaningful admission, Pages preservation/recovery and durable archive regressions. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/fixtures/orchestration-accept-only.json](tests/fixtures/orchestration-accept-only.json) | Synthetic accept-only input with zero permitted dispatch proposals. | test | [guides/WEB-ORCHESTRATION.md](guides/WEB-ORCHESTRATION.md) |
+| [tests/fixtures/orchestration-start.json](tests/fixtures/orchestration-start.json) | Synthetic combined accept/start input; proposed queue only, no actual execution. | test | [guides/WEB-ORCHESTRATION.md](guides/WEB-ORCHESTRATION.md) |
 | [tests/fixtures/publication-records.cjs](tests/fixtures/publication-records.cjs) | Explicit synthetic licensed runtime and bounded legal-copy fixtures for consumer failures; never actual edition rights acceptance. | test | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tests/fixtures/reader-staging-gate.json.gz](tests/fixtures/reader-staging-gate.json.gz) | Frozen 1d2d195 staging-regression report for validator tests only; not fresh admission evidence. | test | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tests/fixtures/reader-staging-package.json.gz](tests/fixtures/reader-staging-package.json.gz) | Frozen e24168e real reader package metadata for runtime/rights tests only; not live approval. | test | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
@@ -2747,6 +2775,13 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tools/issue_acceptance.py](tools/issue_acceptance.py) | Bounded acceptance policy runner with deterministic unittest/basic checks and exact-source per-AC evidence. | validator | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tools/repository_intelligence.py](tools/repository_intelligence.py) | Bounded deterministic site RI producer, catalog validation, scoped lookup and generated-view verification. | source | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [tools/run_repository_tests.py](tools/run_repository_tests.py) | Run all enduring Python regression suites while reserving exact numeric issue acceptance modules for their selected source-bound policies. | validator | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
+
+## tools/orchestration/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [tools/orchestration/contract.json](tools/orchestration/contract.json) | Consumed bounded JSON fixture contract for offline orchestration proposals; synthetic inputs authenticate no real authority. | configuration | [guides/WEB-ORCHESTRATION.md](guides/WEB-ORCHESTRATION.md) |
+| [tools/orchestration/reducer.cjs](tools/orchestration/reducer.cjs) | Pure JSON-text reducer for synthetic acceptance/start, semantic dedupe, receipt/cessation holds and safe public projection. | source | [guides/WEB-ORCHESTRATION.md](guides/WEB-ORCHESTRATION.md) |
 
 ## tools/pages/
 

@@ -7,6 +7,10 @@ Iteration/checkpoint and separate reviewer subagent identity (not its implemente
 Inspected commit/tree or explicitly dirty prepared state:
 Base/candidate diff identity and final re-reviewed identity:
 Materials read, checks actually executed and access limits:
+Actual fork/memory mode and requested/accepted launch evidence reference:
+Common and role prompt identities; explicit source packet identity:
+First independent result; later reconciliation/correction exposure:
+Shared-source/provider isolation limits; final inspected-source hash check:
 
 Apply [the mandatory per-iteration review protocol](../CONTRIBUTING.md#independent-review-after-every-iteration).
 
