@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "aeec0516fb24cc4dcc96e77422af5aead3110588882a13d063cc6d048dc95e58",
+    "digest": "edbe9ff661c6b5e6b885e044f46bf3b8e1980815595abe400d740e9ee1aafc37",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -8575,7 +8575,7 @@
       {
         "path": "tests/article-delivery.test.cjs",
         "identity_mode": "content",
-        "sha256": "ca61f4dc6a22274c4ad2189e1ce9243d871b0b6d60c9f52a6397bdc1d7b2b116"
+        "sha256": "39076a39f80a64611468fbbb1e975de2d2538105ab5f2c73cc0d824d4e144f48"
       },
       {
         "path": "tests/article-materials.test.cjs",
@@ -9475,7 +9475,7 @@
       {
         "path": "tools/quality/article-browser.cjs",
         "identity_mode": "content",
-        "sha256": "40b34dff244027140a12934a5c3c3a8fe2f2ff7798784cdc316ddf55eff65aac"
+        "sha256": "1e6ae566303fb557a3933d7772939ee26623bc346d32ddeef559140cfbca12a1"
       },
       {
         "path": "tools/quality/article-print.cjs",
