@@ -1,16 +1,18 @@
-# The SDLC Is Out of Balance
+# The SDLC Is Out of Balance: Beyond the AI Code Review Bottleneck
 
-*The review bottleneck is a symptom. The delivery system needs rebalancing.*
+*Why faster reviews alone do not establish better software delivery.*
 
-Vitalii Oborskyi · 31 October 2026 · [vitaliioborskyi.ai](https://vitaliioborskyi.ai/)
+Vitalii Oborskyi · 1 November 2026 · [vitaliioborskyi.ai](https://vitaliioborskyi.ai/)
 
 ![An accelerated coding stage tilts the delivery chain while people support the downstream work.](asset:hero)
 
-## The problem is imbalance, not a queue
+## The AI code review bottleneck is a symptom
 
 “Code review is the next bottleneck” is progress. It is not the full diagnosis.
 
 **My diagnosis: AI adoption has pushed the SDLC out of balance at industry level.** We are accelerating cognitive work faster than organisations are rebuilding the capacity to understand, verify, integrate and own its results.
+
+**This is a systemic counterargument to a review-only diagnosis of AI-assisted software delivery.** Review automation can remove a real constraint. A shorter review queue, by itself, does not establish that the delivery system is producing better outcomes.
 
 Buying licences changes what people can produce. It does not redesign the system that turns that production into business value. When the strategy stops at access, training and usage targets, the organisation leaves the hardest part of the transformation to chance.
 
@@ -23,6 +25,14 @@ This is not only a coding asymmetry. Faster requirements, design options, tests 
 **The problem is not that one step is too slow. We changed the pace of work without redesigning the system responsible for the result.**
 
 ![A conceptual orange curve for potential AI task pace rises above a teal curve for effective human and organisational capacity across seven lifecycle stages. The shaded gap represents pressure to rebalance; no values are measured.](asset:asymmetry)
+
+## What the code-review bottleneck accounts actually show
+
+[Anthropic’s Code Review announcement](https://claude.com/resources/articles/code-review) describes review pressure as code output grows. [Microsoft’s Stephen Toub](https://devblogs.microsoft.com/dotnet/ten-months-with-cca-in-dotnet-runtime/) describes generating pull requests faster than expert colleagues could review them. [OpenAI’s Codex account](https://developers.openai.com/blog/custom-code-review-rules-for-codex) connects rising PR volume with scarce contextual knowledge; [GitHub’s review guidance](https://github.blog/ai-and-ml/generative-ai/agent-pull-requests-are-everywhere-heres-how-to-review-them/) describes human review capacity lagging agent-generated work. These are first-party accounts and guidance, not a controlled measure of every organisation.
+
+[DORA’s analysis of Google engineers’ experiences](https://dora.dev/insights/balancing-ai-tensions/) reports gains alongside verification overhead and added reviewer burden. It also recommends measuring the whole lifecycle. That supports the systemic argument rather than contradicting it.
+
+The disagreement is with reducing the diagnosis to one queue. These sources do not all do that: [Anthropic’s source-control account](https://www.anthropic.com/research/redesigning-source-control) identifies builds and CI as constraints too, while acknowledging its unusually intensive workload. **Removing a bottleneck and rebalancing a delivery system are different claims.**
 
 ## The workstream is not the system
 
@@ -38,7 +48,7 @@ The organisational scale matters. Three to five people can share context and ren
 
 ![Seven delivery activities connect to outcomes and a feedback path. Beneath them are six enabling relationships: dependencies, learning, decision rights, capacity, ownership and recovery.](asset:workstream-system)
 
-## Code review is part of the ownership mechanism
+## AI code review, shared understanding and ownership
 
 Code review makes the missing relationships visible. [Bacchelli and Bird’s research](https://www.microsoft.com/en-us/research/publication/expectations-outcomes-and-challenges-of-modern-code-review/) identifies knowledge transfer, team awareness and alternative solutions alongside defect detection. Review is also one of the places where people learn what changed, why it changed and how it fits.
 
@@ -74,7 +84,7 @@ Rebalancing is how we turn the new production capability into a durable advantag
 
 ![Admitted work above effective capacity can increase interruptions and overload for people, fragility and change costs for products, and rework and ownership costs for business. Repair consumes improvement capacity and reinforces the overload.](asset:imbalance-loop)
 
-## Rebalancing requires an owner, not another licence
+## Rebalancing the SDLC requires an accountable owner
 
 A better problem statement must change the organisation’s decisions.
 
@@ -100,12 +110,18 @@ This is one of the two problem spaces in my DevCon Romania talk, *AI Changes the
 
 ## References and related work
 
-1. Demirer, Musolff & Yang (2026). [Writing Code vs. Shipping Code](https://www.nber.org/papers/w35275). NBER Working Paper 35275. Observational working paper; activity and release outcomes differ. No effect-size estimates are used here.
+1. Demirer, Musolff & Yang (2026). [Writing Code vs. Shipping Code](https://www.nber.org/papers/w35275). NBER Working Paper 35275, revised September. Observational working paper; activity and release gains differ. No effect-size estimates are used here.
 2. DORA (2025). [State of AI-assisted Software Development](https://dora.dev/research/2025/dora-report/). Official report summary; organisational context and returns from AI.
-3. Bacchelli & Bird (2013). [Expectations, Outcomes, and Challenges of Modern Code Review](https://www.microsoft.com/en-us/research/publication/expectations-outcomes-and-challenges-of-modern-code-review/). ICSE; study of Microsoft teams, not an AI-adoption experiment.
-4. Osmani, Lunt & Wang (15 October 2026). [How the Claude Code team does code review](https://claude.dev/blog/solving-code-review-at-anthropic/). First-party engineering account; not a controlled comparison.
-5. Oborskyi. [The Subprime Code Crisis](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis) and [The Verification Crisis](https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0). Research synthesis and related analysis of AI-assisted delivery.
-6. Oborskyi. [Thinking Systems](https://www.linkedin.com/pulse/thinking-systems-when-controlled-object-changes-vitalii-oborskyi-6k4we/) and [Uncertainty Architecture](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture). Related research on control around consequential model judgment.
+3. Baolin & Harvey (10 March 2026). [Balancing AI tensions: Moving from AI adoption to effective SDLC use](https://dora.dev/insights/balancing-ai-tensions/). Qualitative analysis of Google engineers’ survey responses; reported experiences, not a causal industry-wide estimate.
+4. Bacchelli & Bird (2013). [Expectations, Outcomes, and Challenges of Modern Code Review](https://www.microsoft.com/en-us/research/publication/expectations-outcomes-and-challenges-of-modern-code-review/). ICSE; Microsoft teams, not an AI-adoption experiment.
+5. Anthropic (9 March 2026). [Bringing Code Review to Claude Code](https://claude.com/resources/articles/code-review). Product announcement with internal observations and customer reports; human approval remains explicit.
+6. Toub, Microsoft (23 March 2026). [Ten Months with Copilot Coding Agent in dotnet/runtime](https://devblogs.microsoft.com/dotnet/ten-months-with-cca-in-dotnet-runtime/). Firsthand engineering experience; preserves expert judgment, not a controlled comparison.
+7. Griffiths, GitHub (7 May 2026). [Agent pull requests are everywhere. Here’s how to review them.](https://github.blog/ai-and-ml/generative-ai/agent-pull-requests-are-everywhere-heres-how-to-review-them/). Vendor guidance; automated first pass with contextual human judgment.
+8. Srikanth, OpenAI (20 July 2026). [Custom Code Review rules for Codex](https://developers.openai.com/blog/custom-code-review-rules-for-codex). Product/engineering account of review context and repository rules.
+9. Osmani, Lunt & Wang (15 October 2026). [How the Claude Code team does code review](https://claude.dev/blog/solving-code-review-at-anthropic/). First-party engineering account; separates defect detection and shared understanding.
+10. Anthropic (13 October 2026; updated 15 October). [Redesigning source control at Anthropic](https://www.anthropic.com/research/redesigning-source-control). Infrastructure case study under an unusually intensive workload; not a prescription for ordinary teams.
+11. Oborskyi. [The Subprime Code Crisis](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis) and [The Verification Crisis](https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0). Research synthesis and related analysis of AI-assisted delivery.
+12. Oborskyi. [Thinking Systems](https://www.linkedin.com/pulse/thinking-systems-when-controlled-object-changes-vitalii-oborskyi-6k4we/) and [Uncertainty Architecture](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture). Related research on control around consequential model judgment.
 
 **Evidence note.** The industry-level diagnosis and feedback loop are my systems synthesis. The studies support parts of the argument, not a measured rate of organisational failure. The illustrations explain mechanisms; they are not statistical charts.
 
@@ -115,4 +131,4 @@ This is one of the two problem spaces in my DevCon Romania talk, *AI Changes the
 
 [Website and research](https://vitaliioborskyi.ai/) · [LinkedIn](https://www.linkedin.com/in/vitaliioborskyi/)
 
-© 2026 Vitalii Oborskyi. R3 edition. Original text and diagrams: CC BY 4.0. AI-assisted illustrations; third-party sources retain their rights.
+© 2026 Vitalii Oborskyi. R4 edition. Original text and diagrams: CC BY 4.0. AI-assisted illustrations; third-party sources retain their rights.
