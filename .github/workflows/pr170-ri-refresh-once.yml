@@ -1,0 +1,43 @@
+name: PR170 one-time RI byte-projection refresh
+on:
+  pull_request:
+    types: [synchronize]
+permissions:
+  contents: write
+jobs:
+  ri-refresh:
+    if: >-
+      ${{ github.event.pull_request.number == 170 &&
+          github.repository == 'oborskyivitalii/oborskyivitalii' &&
+          github.event.pull_request.head.repo.full_name == github.repository &&
+          github.event.pull_request.head.ref == 'work/issue-169-sdlc-out-of-balance-plan' &&
+          github.actor == 'oborskyivitalii' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: 3.12.14
+      - name: Rebuild exact derived RI after formatting-only map correction
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          rm -- .github/workflows/pr170-ri-refresh-once.yml
+          git add -A -- .github/workflows/pr170-ri-refresh-once.yml
+          python3 tools/check_ri_ci.py verify
+          python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json build
+          python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify
+          python3 tools/check_ri_ci.py verify
+          git add -A -- REPOSITORY-MAP.md .github/repository-intelligence/agent-context.json
+          git diff --cached --stat
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "chore: resync RI projection after map formatting (Refs #169)"
+          git push origin HEAD:refs/heads/work/issue-169-sdlc-out-of-balance-plan
