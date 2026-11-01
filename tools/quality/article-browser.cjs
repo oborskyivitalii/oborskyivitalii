@@ -1025,7 +1025,8 @@ function installArticleFlightDiagnostics() {
       .flatMap((animation) => animation.effect?.getKeyframes() || []);
     if (frames.length >= 2) return frames;
     const snapshot = witnessed.get(element);
-    return snapshot?.state === element.closest?.('[data-route-block]')?.dataset.routeBlock
+    return snapshot &&
+      snapshot.state === element.closest?.('[data-route-block]')?.dataset.routeBlock
       ? snapshot.frames
       : frames;
   }

@@ -1013,11 +1013,11 @@ test('source scheduling starts expensive files early with isolated processes and
   );
   assert.equal(child.status, 0, child.stderr || child.stdout);
   assert.deepEqual(fs.readFileSync(log, 'utf8').trim().split('\n'), [
-    'tests/space.test.cjs',
-    'tests/executive.test.cjs',
     'tests/release-rights.test.cjs',
     'tests/release-controller.test.cjs',
     'tests/pages-migration.test.cjs',
+    'tests/space.test.cjs',
+    'tests/executive.test.cjs',
     'tests/staging.test.cjs',
     'tests/aaa.test.cjs',
   ]);
