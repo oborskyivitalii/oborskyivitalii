@@ -16,7 +16,21 @@ test('Color and production preserve prior editions while staging remains isolate
   const temp = fixture.temporary(t);
   for (const kind of ['staging', 'production']) {
     const source = fixture.source(temp, kind);
+    const baseRevision = JSON.parse(
+      fs.readFileSync(path.join(source.directory, 'public/site-revision.json'))
+    );
+    const replacedArticleSnapshots = Object.values(baseRevision.articles || {}).map(
+      (article) => article.url
+    );
+    assert.ok(replacedArticleSnapshots.length, 'current native article selected');
     color.build(source.directory);
+    const coloredRecord = JSON.parse(fs.readFileSync(path.join(source.directory, 'artifact.json')));
+    for (const name of replacedArticleSnapshots)
+      assert.equal(
+        coloredRecord.files[name],
+        undefined,
+        'Color cannot silently retain the just-replaced base article snapshot'
+      );
     const record =
       kind === 'staging'
         ? staging.build(source.directory)

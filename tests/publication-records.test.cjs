@@ -657,14 +657,23 @@ test('rehashed public revision metadata cannot relabel exact licensed runtime by
         path.join(publicDirectory, 'runtime', old),
         path.join(publicDirectory, 'runtime', revision.engine)
       );
-      for (const name of Object.keys(source.record.files).filter((name) =>
-        name.endsWith('.html')
-      )) {
+      // Mutate only the selected, current documents. Historical immutable HTML
+      // cannot be rehashed into the synthetic variant; its bytes remain frozen.
+      const currentDocuments = [
+        ...Object.entries(revision.routes).flatMap(([id, route]) => [id + '.html', route.url]),
+        ...Object.values(revision.articles || {}).flatMap((article) => [
+          article.alias,
+          article.url,
+        ]),
+      ];
+      for (const name of currentDocuments) {
         const file = path.join(publicDirectory, name);
         fs.writeFileSync(file, fs.readFileSync(file, 'utf8').replaceAll(old, revision.engine));
       }
       for (const route of Object.values(revision.routes))
         route.sha256 = artifact.digest(fs.readFileSync(path.join(publicDirectory, route.url)));
+      for (const article of Object.values(revision.articles || {}))
+        article.sha256 = artifact.digest(fs.readFileSync(path.join(publicDirectory, article.url)));
     }
     revision.variant = { id: 'base', contract: 1, fingerprint: revision.engine };
     fs.writeFileSync(path.join(publicDirectory, 'site-revision.json'), JSON.stringify(revision));

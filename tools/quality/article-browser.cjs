@@ -1048,10 +1048,18 @@ function installArticleFlightDiagnostics() {
       throw Error('article flight evidence overflow');
     if (event.kind === 'route-block' && ['departure', 'arrival'].includes(event.stage)) {
       if (window.__articleBlockEvents.length >= 40) throw Error('article block evidence overflow');
-      window.__articleBlockEvents.push({
-        ...structuredClone(event),
-        units: [...document.querySelectorAll('[data-route-block]')].map(blockUnit).filter(Boolean),
-        paper: paperUnit(),
+      const record = { ...structuredClone(event), units: [], paper: null };
+      window.__articleBlockEvents.push(record);
+      // The engine dispatches its probe in the same synchronous turn as it
+      // changes route CSS attributes. Observe rendered CSS animations after
+      // the next paint, while the original 1s native wave is still active.
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          record.units = [...document.querySelectorAll('[data-route-block]')]
+            .map(blockUnit)
+            .filter(Boolean);
+          record.paper = paperUnit();
+        });
       });
     }
     if (

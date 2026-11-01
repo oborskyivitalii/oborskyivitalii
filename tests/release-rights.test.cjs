@@ -20,7 +20,7 @@ function rehash(report) {
   report.inventoryDigest = artifact.digest(JSON.stringify(body));
 }
 
-function fixture(t) {
+function fixture(t, { nativeCurrentArticle = false } = {}) {
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'release-rights-'));
   t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
   const publicDirectory = path.join(directory, 'public');
@@ -48,7 +48,15 @@ function fixture(t) {
       recursive: true,
     });
   }
-  require('./fixtures/catalog.cjs').isolatePublicationCatalog(sourceRoot, root);
+  if (nativeCurrentArticle) {
+    // The current accepted article pins an earlier immutable source commit.
+    // Resolve only those original Git objects through a local alternate object
+    // store, so this fixture can exercise the real reviewed Color tuple.
+    cp.execFileSync('git', ['init', '-q'], { cwd: sourceRoot });
+    const alternates = path.join(sourceRoot, '.git/objects/info/alternates');
+    fs.mkdirSync(path.dirname(alternates), { recursive: true });
+    fs.writeFileSync(alternates, path.join(root, '.git/objects') + '\n');
+  } else require('./fixtures/catalog.cjs').isolatePublicationCatalog(sourceRoot, root);
   builder.build({ root: sourceRoot, output: publicDirectory, all: true });
   const record = () => ({
     sourceCommit: 'a'.repeat(40),
@@ -852,7 +860,7 @@ test('publication notice markup rejects incomplete ambiguous and unbounded conte
 
 test('publication actual edition and package CLIs freeze exact sidecars before any upload', (t) => {
   const pkg = require('../tools/staging/package.cjs');
-  const source = fixture(t);
+  const source = fixture(t, { nativeCurrentArticle: true });
   const checkout = source.sourceRoot;
   for (const name of [
     'tools/staging/edition.cjs',

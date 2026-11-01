@@ -92,7 +92,10 @@ function decoratePublic(dir) {
       },
     ])
   );
-  const retained = retention.capture(dir, base, { preserveActive: true });
+  // A new Color rendition replaces the active base document and runtime. Keep
+  // only earlier immutable editions; the just-replaced base snapshot was never
+  // published or approved as a retained edition.
+  const retained = retention.capture(dir, base);
   fs.rmSync(path.join(dir, 'runtime'), { recursive: true });
   fs.rmSync(path.join(dir, 'snapshots'), { recursive: true });
   fs.rmSync(path.join(dir, 'article-snapshots'), { recursive: true, force: true });
