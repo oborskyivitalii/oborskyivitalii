@@ -814,7 +814,8 @@ test('text-only scroll-continue footer uses the actual box as its route animatio
     const text = { nodeType: 3, textContent: 'Keep scrolling for Talks' };
     link.top = 350;
     link.childNodes = [text];
-    link.matches = (selector) => selector.split(',').includes('a') || selector === '.scroll-continue';
+    link.matches = (selector) =>
+      selector.split(',').includes('a') || selector === '.scroll-continue';
     const departure = h.controller.depart(direction);
     assert.equal(link.attributes.get('data-route-block'), 'departing');
     assert.equal(link.attributes.get('data-route-layer'), 'self');

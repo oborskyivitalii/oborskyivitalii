@@ -694,8 +694,12 @@ window.SiteScrollEntry=(function () {
     const upward = state === 'departing' ? travelDirection > 0 : travelDirection < 0;
     for (const { element } of measured) clearRouteUnit(element);
     const wholeBlocks = root.matches('.article-reader');
+    // This footer control has bare inline text and can retain a stale ink-node
+    // identity after a prior route. Animate its actual box, not an optional
+    // child whose CSS animation may never start on a subsequent navigation.
+    const movesAsBox = (element) => wholeBlocks || element.matches('.scroll-continue');
     for (const { element, record } of selected)
-      if (!wholeBlocks && !record.ink) wrapInk(element, record);
+      if (!movesAsBox(element) && !record.ink) wrapInk(element, record);
     attachSeparators(measured.separators, 'route');
     prepareRoutePaper(measured.paper, timing, upward, state);
     for (const [index, row] of rows.entries()) {
@@ -707,7 +711,7 @@ window.SiteScrollEntry=(function () {
       for (const { element } of row.units) {
         // Reader components own their background, borders and native markers.
         // Move the complete box once instead of leaving shell paint behind.
-        if (wholeBlocks) element.setAttribute('data-route-layer', 'self');
+        if (movesAsBox(element)) element.setAttribute('data-route-layer', 'self');
         const order = travelDirection > 0 ? index : rows.length - 1 - index;
         element.style.setProperty('--route-block-distance', `${Math.round(distance)}px`);
         element.style.setProperty('--route-block-delay', `${order * timing.rowStepMs}ms`);
