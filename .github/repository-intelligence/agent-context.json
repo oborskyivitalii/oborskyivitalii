@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "2d58bfa3a3ba73610a7a0c36f1ef966c18e4305be5d08707820bd39dd7f0e7c1",
+    "digest": "f17c973a4825b359f85e6d39d36dcd94a40c411f7381cee1028cff72dffe2d36",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -8895,7 +8895,7 @@
       {
         "path": "tests/quality-sources.test.cjs",
         "identity_mode": "content",
-        "sha256": "431cfaf1c25424f2b377a58cba51a807787ffeb1c97f80e114bb5a2b7ffe42e5"
+        "sha256": "dd6514717733dfcdee4217a10ee499f1203035698fcfdd91a583caf30a134172"
       },
       {
         "path": "tests/quality.test.cjs",
