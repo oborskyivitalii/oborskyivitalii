@@ -75,7 +75,7 @@ jobs:
           python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json build
           python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify
           python3 tools/check_ri_ci.py verify
-          git add -A -- docs site/output-lock.json .github/repository-paths.json .github/ri-ci-map.json REPOSITORY-MAP.md .github/repository-intelligence/agent-context.json .github/workflows/pr170-r4-regenerate-once.yml
+          git add -A -- docs site/output-lock.json .github/repository-paths.json .github/ri-ci-map.json REPOSITORY-MAP.md .github/repository-intelligence/agent-context.json
           git diff --cached --stat
           git commit -m "build: regenerate accepted R4 site outputs and RI (Refs #169)"
           git push origin HEAD:refs/heads/work/issue-169-sdlc-out-of-balance-plan
