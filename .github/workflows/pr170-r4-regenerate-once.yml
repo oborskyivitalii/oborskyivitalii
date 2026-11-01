@@ -1,0 +1,73 @@
+name: PR170 one-time native R4 regeneration
+on:
+  pull_request:
+    types: [synchronize]
+permissions:
+  contents: write
+jobs:
+  regenerate:
+    if: >-
+      ${{ github.event.pull_request.number == 170 &&
+          github.repository == 'oborskyivitalii/oborskyivitalii' &&
+          github.event.pull_request.head.repo.full_name == github.repository &&
+          github.event.pull_request.head.ref == 'work/issue-169-sdlc-out-of-balance-plan' &&
+          github.actor == 'oborskyivitalii' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: 3.12.14
+      - name: Regenerate admitted R4 via existing publisher, site builder and RI
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          rm .github/workflows/pr170-r4-regenerate-once.yml
+          npm ci --prefix tools/publishing/toolchain --ignore-scripts
+          python3 -m venv tools/quality/toolchain/venv
+          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps "$(python3 tools/publishing/web-media.py --requirement)"
+          node tools/publishing/cli.cjs validate sdlc-out-of-balance
+          node tools/site/build.cjs --all
+          node tools/site/build.cjs --check
+          python3 - <<'PY'
+          import json, pathlib, re
+          catalog=pathlib.Path('.github/repository-paths.json')
+          data=json.loads(catalog.read_text())
+          entries=data['entries']
+          old='site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r3-20261031.json'
+          new='site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r4-20261101.json'
+          assert old in entries and pathlib.Path(new).is_file()
+          entries[new]=dict(entries[old],purpose='Current author-directed R4 native article edition and original R3 preservation.')
+          allowed=re.compile(r'^docs/(?:article-media|article-snapshots|snapshots|runtime)/[a-f0-9]{64}(?:/[A-Za-z0-9._-]+)?$')
+          added=[]
+          for p in sorted(pathlib.Path('docs').rglob('*')):
+              rel=p.as_posix()
+              if rel in entries:continue
+              if not allowed.fullmatch(rel):raise SystemExit('Unclassified generated output path: '+rel)
+              entries[rel]={'kind':'directory' if p.is_dir() else 'file','purpose':'Generated immutable R4 article or dependent native-site output, built from the current authored sources.','role':'generated','owner':'site/README.md'}
+              added.append(rel)
+          for name,info in list(entries.items()):
+              if name.startswith('docs/') and info.get('role')=='generated' and not pathlib.Path(name).exists():
+                  raise SystemExit('Missing cataloged generated path: '+name)
+          data['entries']={key:entries[key] for key in sorted(entries)}
+          catalog.write_text(json.dumps(data,indent=2,ensure_ascii=False)+'\n')
+          print('RI path inventory: added',len(added),'generated paths')
+          PY
+          python3 tools/check_ri_ci.py refresh
+          python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json build
+          python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify
+          python3 tools/check_ri_ci.py verify
+          git add -A -- docs site/output-lock.json .github/repository-paths.json .github/ri-ci-map.json REPOSITORY-MAP.md .github/repository-intelligence/agent-context.json .github/workflows/pr170-r4-regenerate-once.yml
+          git diff --cached --stat
+          git commit -m "build: regenerate accepted R4 site outputs and RI (Refs #169)"
+          git push origin HEAD:refs/heads/work/issue-169-sdlc-out-of-balance-plan

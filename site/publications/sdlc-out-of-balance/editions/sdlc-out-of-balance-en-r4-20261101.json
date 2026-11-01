@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "id": "sdlc-out-of-balance-en-r4-20261101",
+  "articleId": "sdlc-out-of-balance",
+  "language": "en",
+  "kind": "full-article",
+  "source": {
+    "path": "manuscript.en.md",
+    "sha256": "888dcbb81866b06d5f7729b3eca348fe488563bda60651368ee03851e0acabc2",
+    "commit": "20f2105913247381267ff09ee0a2bb9f3fa51f3a",
+    "blob": "31ac025e76fbc414e154a1e594795b491068ad40"
+  },
+  "owner": "site",
+  "derivation": null,
+  "rights": "accepted",
+  "semanticSha256": "40608f5e4b09b2ad7f12c0516d13f64e80a86971745c5ef74e69d6060a80c574"
+}

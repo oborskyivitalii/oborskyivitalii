@@ -2,8 +2,8 @@
   "schema": 1,
   "id": "sdlc-out-of-balance",
   "slug": "the-sdlc-is-out-of-balance",
-  "title": "The SDLC Is Out of Balance",
-  "summary": "AI accelerates coding, but sustainable delivery also depends on understanding, verification, integration and ownership. The review bottleneck is a symptom of a wider imbalance.",
+  "title": "The SDLC Is Out of Balance: Beyond the AI Code Review Bottleneck",
+  "summary": "The AI code review bottleneck is a symptom of a wider SDLC imbalance. Faster reviews alone cannot prove better delivery, shared understanding, reliability or sustainable ownership.",
   "authors": [
     {
       "name": "Vitalii Oborskyi",
@@ -18,13 +18,14 @@
   },
   "status": "accepted",
   "source": "manuscript.en.md",
-  "edition": "sdlc-out-of-balance-en-r3-20261031",
+  "edition": "sdlc-out-of-balance-en-r4-20261101",
   "rights": {
     "status": "accepted",
-    "notice": "\u00a9 2026 Vitalii Oborskyi. Original article text and non-brand explanatory diagrams: CC BY 4.0. The hero is AI-assisted editorial artwork selected by the author. Third-party research is linked and retains its own terms; no third-party figures are reproduced.",
+    "notice": "© 2026 Vitalii Oborskyi. Original article text and non-brand explanatory diagrams: CC BY 4.0. The hero is AI-assisted editorial artwork selected by the author. Third-party research is linked and retains its own terms; no third-party figures are reproduced.",
     "references": [
       "https://github.com/oborskyivitalii/oborskyivitalii/issues/169#issuecomment-6548579356",
-      "https://github.com/oborskyivitalii/oborskyivitalii/issues/7"
+      "https://github.com/oborskyivitalii/oborskyivitalii/issues/7",
+      "https://github.com/oborskyivitalii/oborskyivitalii/issues/169"
     ]
   },
   "references": [
@@ -67,6 +68,30 @@
     {
       "id": "source-10",
       "url": "https://www.linkedin.com/in/vitaliioborskyi/"
+    },
+    {
+      "id": "source-11",
+      "url": "https://claude.com/resources/articles/code-review"
+    },
+    {
+      "id": "source-12",
+      "url": "https://devblogs.microsoft.com/dotnet/ten-months-with-cca-in-dotnet-runtime/"
+    },
+    {
+      "id": "source-13",
+      "url": "https://developers.openai.com/blog/custom-code-review-rules-for-codex"
+    },
+    {
+      "id": "source-14",
+      "url": "https://github.blog/ai-and-ml/generative-ai/agent-pull-requests-are-everywhere-heres-how-to-review-them/"
+    },
+    {
+      "id": "source-15",
+      "url": "https://dora.dev/insights/balancing-ai-tensions/"
+    },
+    {
+      "id": "source-16",
+      "url": "https://www.anthropic.com/research/redesigning-source-control"
     }
   ],
   "assets": [
@@ -106,7 +131,7 @@
       "sha256": "a87289a6cf6067c10fbe0663f732842a08335c6901c99917524e2c3d5ef963c6",
       "width": 2160,
       "height": 882,
-      "alt": "Four review functions reported by Bacchelli and Bird\u2014defect detection, knowledge transfer, team awareness and alternative solutions\u2014sit above the operational capabilities to explain, diagnose, intervene and recover.",
+      "alt": "Four review functions reported by Bacchelli and Bird—defect detection, knowledge transfer, team awareness and alternative solutions—sit above the operational capabilities to explain, diagnose, intervene and recover.",
       "caption": "Figure 3. Review functions and operational capabilities are distinct. Automation can change the practice; the necessary functions still need a working mechanism.",
       "credit": "Original explanatory diagram by Vitalii Oborskyi. Top functions: Bacchelli and Bird (2013); extension to ownership and recovery: author systems synthesis. Original non-brand editorial artwork, CC BY 4.0."
     },

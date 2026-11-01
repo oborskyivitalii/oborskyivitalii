@@ -327,7 +327,7 @@
       "bases": ["original-diagram"]
     },
     "publications/sdlc-out-of-balance/materials/reading.pdf": {
-      "sha256": "70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c",
+      "sha256": "be35778ef93948ca7e809b7917faf1771d11e670e327a0dfc49d95ab4cfc2d98",
       "bases": ["original-text", "original-diagram"]
     },
     "publications/sdlc-out-of-balance/hero-web.png": {

@@ -832,7 +832,7 @@
       "article": "sdlc-out-of-balance",
       "edition": {
         "@type": "Article",
-        "name": "The SDLC Is Out of Balance",
+        "name": "The SDLC Is Out of Balance: Beyond the AI Code Review Bottleneck",
         "url": "articles/the-sdlc-is-out-of-balance.html",
         "inLanguage": "en",
         "author": {
@@ -847,7 +847,7 @@
         "topic": "delivery",
         "kind": "Article",
         "publisher": "Author site",
-        "summary": "AI accelerates coding, but sustainable delivery also depends on understanding, verification, integration and ownership. The review bottleneck is a symptom of a wider imbalance."
+        "summary": "The AI code review bottleneck is a symptom of a wider SDLC imbalance. Faster reviews alone cannot prove better delivery, shared understanding, reliability or sustainable ownership."
       }
     }
   },
