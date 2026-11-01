@@ -831,7 +831,7 @@ function installArticleHistoryDiagnostics(anchor, scope = window) {
     height: document.documentElement.scrollHeight,
     maxScroll: Math.max(0, document.documentElement.scrollHeight - scope.innerHeight),
     viewportHeight: scope.innerHeight,
-    focus: document.activeElement?.id || null,
+    focus: document.activeElement?.id || document.activeElement?.getAttribute?.('href') || null,
     page: document.body.dataset.page,
     article: document.body.dataset.article || null,
     inert: content.inert,
@@ -839,7 +839,7 @@ function installArticleHistoryDiagnostics(anchor, scope = window) {
     history: scope.structuredClone(scope.history.state?.site || null),
     saved: scope.structuredClone(saved),
     main: box('main'),
-    articleList: box('.article-list'),
+    articleList: box('.publication-list'),
     footer: box('#site-content footer'),
     waiting: document.querySelectorAll('[data-scroll-entry="waiting"]').length,
     entering: document.querySelectorAll('[data-scroll-entry="entering"]').length,
@@ -857,7 +857,7 @@ function installArticleHistoryDiagnostics(anchor, scope = window) {
     phase = 'departure';
     scope.__articleArchiveDeparture = {
       scroll: scope.scrollY,
-      focus: document.activeElement?.id,
+      focus: document.activeElement?.id || document.activeElement?.getAttribute?.('href') || null,
     };
     // Capture primitives before the navigation owner cancels native smooth scroll.
     // Geometry reads here could advance the viewport before that boundary.
@@ -933,7 +933,8 @@ function articleHistoryCheckpoint(scope = window) {
     url: scope.location.href,
     departure: scope.__articleArchiveDeparture,
     history: scope.structuredClone(scope.history.state?.site || null),
-    focus: scope.document.activeElement?.id,
+    focus:
+      scope.document.activeElement?.id || scope.document.activeElement?.getAttribute?.('href') || null,
     scroll: scope.scrollY,
     busy: scope.document.querySelector('#site-content')?.hasAttribute('aria-busy'),
     historyDiagnostics: scope.__articleHistoryDiagnostics,
@@ -1382,7 +1383,7 @@ async function normalJourney(
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));
   try {
-    const writingURL = urls.writing + '?topic=systems&language=' + key.split(':').at(-1);
+    const writingURL = urls.writing + '?language=' + key.split(':').at(-1);
     await page.goto(writingURL);
     await settled(page, 'writing', timeout);
     const engine = await page.locator('meta[name="site-engine"]').getAttribute('content');
@@ -1413,10 +1414,19 @@ async function normalJourney(
         canvas: document.querySelector('canvas'),
       };
     });
-    const articleLink = page.locator('.article-list a[href="' + descriptor.alias + '"]');
+    const articleLink = page.locator(
+      '.publication-list a.publication-title[href="' + descriptor.alias + '"]'
+    );
     assert.equal(await articleLink.count(), 1, 'Writing lists the admitted article');
+    const articleTopic = await articleLink.evaluate(
+      (link) => link.closest('li.publication')?.dataset.topic || null
+    );
+    assert.match(articleTopic, /^[a-z][a-z0-9-]*$/, 'admitted article has a catalog topic');
+    await page.locator('#archive-topic').selectOption(articleTopic);
+    assert.equal(await articleLink.isVisible(), true, 'article stays visible under its own topic filter');
     await articleLink.scrollIntoViewIfNeeded();
-    const archiveFocus = await articleLink.getAttribute('id');
+    const archiveFocus =
+      (await articleLink.getAttribute('id')) || (await articleLink.getAttribute('href'));
     assert.ok(archiveFocus, 'article link has a stable history focus identity');
     await articleLink.evaluate(installArticleHistoryDiagnostics);
     await articleLink.click();
@@ -1458,7 +1468,8 @@ async function normalJourney(
     assert.equal(new URL(page.url()).search, archive.search, 'Back restored archive query');
     await page.waitForFunction(
       (expected) =>
-        document.activeElement?.id === expected.focus && Math.abs(scrollY - expected.scroll) <= 2,
+        (document.activeElement?.id || document.activeElement?.getAttribute?.('href')) ===
+          expected.focus && Math.abs(scrollY - expected.scroll) <= 2,
       { focus: archiveFocus, scroll: archiveScroll },
       { polling: 50, timeout: 2000 }
     );

@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "f17c973a4825b359f85e6d39d36dcd94a40c411f7381cee1028cff72dffe2d36",
+    "digest": "11e661bffd70357b905562352d21f0daba039bc8325766a40a4c3740adcbd935",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -9460,7 +9460,7 @@
       {
         "path": "tools/quality/article-browser.cjs",
         "identity_mode": "content",
-        "sha256": "2fb138d1355e70d5df9a037827288f0a97f75f6ce33e9e5b3213ac2f21ce7072"
+        "sha256": "f185d70bfbd39097a3e19de308dd3b787f32c5b017c59588d7bf0a819dd2b353"
       },
       {
         "path": "tools/quality/article-print.cjs",
