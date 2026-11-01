@@ -159,17 +159,28 @@ jobs:
           SITE_REPOSITORY_ONLY: ${{ steps.selection.outputs.repository_only }}
           SITE_REPORT_DIR: quality-reports
         run: node tools/quality/scanners.cjs lint
-      - name: Run only additional source tests owned by the current PR changes
+      - name: Fetch this workflow attempt's distinct raw source shard receipts
+        if: steps.content_baseline.outputs.mode != 'content' || steps.selection.outputs.repository_only == 'true'
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          pattern: site-source-shard-${{ github.run_id }}-${{ github.run_attempt }}-*
+          path: quality-reports/shards
+          merge-multiple: false
+      - name: Verify all source partitions or the separately authenticated content reuse
         env:
           SITE_SOURCE_EVENT: ${{ github.event_name }}
           CONTENT_MODE: ${{ steps.content_baseline.outputs.mode }}
           CONTENT_BASE_SHA: ${{ steps.content_baseline.outputs.sourceCommit }}
           SITE_SOURCE_MANIFEST: quality-artifact/artifact.json
+          SITE_REPOSITORY_ONLY: ${{ steps.selection.outputs.repository_only }}
         run: |
-          if [ "${{ steps.selection.outputs.repository_only }}" = true ]; then
-            node tools/quality/source-tests.cjs --profile pr --base "$SITE_BASE_SHA" --head "$SITE_CANDIDATE_SHA" --repository-only --require-clean --report quality-reports/source-tests.json
-          else
+          set -euo pipefail
+          if [ "$CONTENT_MODE" = content ] && [ "$SITE_REPOSITORY_ONLY" != true ]; then
             node tools/quality/source-tests.cjs --ci-profile --require-clean --report quality-reports/source-tests.json
+          elif [ "$SITE_SOURCE_EVENT" = pull_request ]; then
+            node tools/quality/source-test-shards.cjs aggregate --profile pr --base "$SITE_BASE_SHA" --head "$SITE_CANDIDATE_SHA" --input quality-reports/shards --output quality-reports/source-tests.json
+          else
+            node tools/quality/source-test-shards.cjs aggregate --profile staging --head "$SITE_CANDIDATE_SHA" --input quality-reports/shards --output quality-reports/source-tests.json
           fi
       - name: Retain exact source-test accounting and failure streams
         if: always()
