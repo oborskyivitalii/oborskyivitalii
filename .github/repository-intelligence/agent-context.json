@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "d88b99322cedf5a9ec49a299956362f82fa87f2dccab5fd46f102660d2fd0ecb",
+    "digest": "0f48aac9ff3388ca331e88cc42c7f782fdc6ccdc6ada7eac11930fdc39c1c985",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -216,12 +216,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "8b2ccd0fa546d4834fdf89991dc1ea0e43d92a67b1d6a5f81e4f1b659636d4e8"
+        "sha256": "a1eeb42ab17fd6f8cad8d78a834b82d52061524e2f87786cde209fa3e55d6886"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "cefef7f462f0e678e8257d5510b4e1b634ce21d175c8dbcbda725e3f0422377f"
+        "sha256": "c71d5464d89da631f6ac8957de00fa652e83abf6299ddcc9fb3e889deae4a6a3"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -9050,7 +9050,7 @@
       {
         "path": "tests/test-profile-selection.test.cjs",
         "identity_mode": "content",
-        "sha256": "a0107515e4d788940a972e59c8d6e55cb067ae38fcaec9caae45e2b864fef8b4"
+        "sha256": "4eade13d4ac855f8d6f6a62cf0d784fd1ac3ccf315b10c2f78d67a3887d860b6"
       },
       {
         "path": "tests/test_browser_archives.py",
@@ -9913,6 +9913,11 @@
         "sha256": "822f515cfa9e192a550f8e3f19497f6378ddf7cb6c3507987932c9ad56f0a79e"
       },
       {
+        "path": "tools/quality/source-test-shards.cjs",
+        "identity_mode": "content",
+        "sha256": "813b104bb328db281eb47aaebf4f63b24fef08a0316a43f61eacf37ce949193a"
+      },
+      {
         "path": "tools/quality/source-test-worker.cjs",
         "identity_mode": "content",
         "sha256": "415426b649d4344b17698d10aace6bab61a9c5e87cc37e31b3f56d458098a16f"
@@ -9945,7 +9950,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "c5a4d292e0cfad0ff882f8b962ad13f26c77daebd17395ef2627ec82567e82ee"
+        "sha256": "2f5829d1118c616bc374de93f7c63c45fa09cc7667be002105cfd93914387b14"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -32504,6 +32509,17 @@
         "AGENTS.md"
       ],
       "title": "serve.cjs"
+    },
+    {
+      "path": "tools/quality/source-test-shards.cjs",
+      "kind": "file",
+      "purpose": "Fail-closed complete source-test sharding, native report accounting and current-run exact-source receipt aggregation within existing per-process bounds.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "source-test-shards.cjs"
     },
     {
       "path": "tools/quality/source-test-worker.cjs",

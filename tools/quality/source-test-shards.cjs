@@ -86,9 +86,14 @@ function runOne(root, plan, index, output) {
   assert.ok(directory.startsWith(path.resolve(root, 'quality-reports') + path.sep));
   fs.mkdirSync(directory, { recursive: true });
   const filename = path.join(directory, 'source-tests.json');
-  source.run(root, { ...plan, modules: split(plan.modules)[index] }, {
-    requireClean: true, report: filename,
-  });
+  source.run(
+    root,
+    { ...plan, modules: split(plan.modules)[index] },
+    {
+      requireClean: true,
+      report: filename,
+    }
+  );
   const report = JSON.parse(fs.readFileSync(filename));
   const tap = fs.readFileSync(path.join(directory, 'source-tests.tap'), 'utf8');
   const stderr = fs.readFileSync(path.join(directory, 'source-tests.stderr'), 'utf8');
@@ -134,16 +139,34 @@ function verify(root, plan, receipts, identity) {
       assert.equal(report.execution, undefined);
       assert.equal(tap, '');
     }
-    admitted.push({ index: i, modules: groups[i], tests: report.result?.total || 0,
-      receiptSha256: fingerprint(meta) });
+    admitted.push({
+      index: i,
+      modules: groups[i],
+      tests: report.result?.total || 0,
+      receiptSha256: fingerprint(meta),
+    });
   }
-  exactGroups(plan.modules, admitted.map((row) => row.modules));
+  exactGroups(
+    plan.modules,
+    admitted.map((row) => row.modules)
+  );
   assert.ok(total > 0, 'no selected source tests were executed');
   return {
-    schema: 1, kind: 'source-tests', status: 'passed', pass: true,
-    profile: plan.profile, mode: 'eight-bounded-shards', source: identity,
-    modules: plan.modules, fullModulesSha256: fingerprint(plan.modules),
-    total, passed: total, failed: 0, cancelled: 0, skipped: 0, todo: 0,
+    schema: 1,
+    kind: 'source-tests',
+    status: 'passed',
+    pass: true,
+    profile: plan.profile,
+    mode: 'eight-bounded-shards',
+    source: identity,
+    modules: plan.modules,
+    fullModulesSha256: fingerprint(plan.modules),
+    total,
+    passed: total,
+    failed: 0,
+    cancelled: 0,
+    skipped: 0,
+    todo: 0,
     shards: admitted,
   };
 }
@@ -201,13 +224,29 @@ function main(argv = process.argv.slice(2)) {
   const options = argumentsFor(argv);
   const root = path.resolve(__dirname, '../..');
   const plan = selected(root, options.profile, options.base, options.head);
-  const result = options.mode === 'run'
-    ? runOne(root, plan, Number(options.index), options.output)
-    : aggregate(root, plan, options.input, options.output);
+  const result =
+    options.mode === 'run'
+      ? runOne(root, plan, Number(options.index), options.output)
+      : aggregate(root, plan, options.input, options.output);
   console.log(JSON.stringify({ status: 'passed', mode: options.mode, result }));
 }
 if (require.main === module) {
-  try { main(); }
-  catch (error) { console.error(error.stack || error.message); process.exitCode = 1; }
+  try {
+    main();
+  } catch (error) {
+    console.error(error.stack || error.message);
+    process.exitCode = 1;
+  }
 }
-module.exports = { COUNT, split, exactGroups, selected, packet, runOne, verify, aggregate, argumentsFor, main };
+module.exports = {
+  COUNT,
+  split,
+  exactGroups,
+  selected,
+  packet,
+  runOne,
+  verify,
+  aggregate,
+  argumentsFor,
+  main,
+};
