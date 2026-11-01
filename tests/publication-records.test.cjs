@@ -589,30 +589,39 @@ test('known licensed publications require frozen rights by actual runtime bytes 
       () => staging.build(source.directory, path.join(temp, 'missing-' + edition)),
       /rights record required|rights\.json/
     );
-    for (const alter of [
-      (record) => {
-        delete record.variant;
-        delete record.components;
-      },
-      (record) => {
-        delete record.variant;
-        record.components = { contract: 1, engine: '0'.repeat(64) };
-      },
-      (record) => {
-        record.variant = {
-          id: 'base',
-          contract: 1,
-          fingerprint: '0'.repeat(64),
-        };
-      },
+    // Stripping the article descriptor also makes its still-shipped alias
+    // unclassified. This exact fail-closed inventory error is the expected
+    // earliest refusal; it cannot count as a rights-approval bypass.
+    for (const [alter, refusal] of [
+      [
+        (record) => {
+          delete record.variant;
+          delete record.components;
+        },
+        /unexpected public input articles\/the-sdlc-is-out-of-balance\.html/,
+      ],
+      [
+        (record) => {
+          delete record.variant;
+          record.components = { contract: 1, engine: '0'.repeat(64) };
+        },
+        /unexpected public input articles\/the-sdlc-is-out-of-balance\.html/,
+      ],
+      [
+        (record) => {
+          record.variant = {
+            id: 'base',
+            contract: 1,
+            fingerprint: '0'.repeat(64),
+          };
+        },
+        /rights record required|rights\.json|conflicting tested runtime identity/,
+      ],
     ]) {
       const record = structuredClone(source.record);
       alter(record);
       fs.writeFileSync(path.join(source.directory, 'artifact.json'), JSON.stringify(record));
-      assert.throws(
-        () => staging.build(source.directory, path.join(temp, 'opt-out')),
-        /rights record required|rights\.json|conflicting tested runtime identity/
-      );
+      assert.throws(() => staging.build(source.directory, path.join(temp, 'opt-out')), refusal);
     }
   }
 });
