@@ -41,7 +41,8 @@ jobs:
           tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps "$(python3 tools/publishing/web-media.py --requirement)"
           node tools/quality/toolchain/node_modules/prettier/bin/prettier.cjs --config tools/quality/prettier.config.json --write \
             tools/staging/color.cjs tests/edition-retention.test.cjs \
-            tests/publication-records.test.cjs tests/release-rights.test.cjs tools/quality/article-browser.cjs
+            tests/publication-records.test.cjs tests/release-rights.test.cjs \
+            tools/quality/article-browser.cjs tests/article-browser-evidence.test.cjs
           python3 tools/check_ri_ci.py refresh
           node tools/quality/toolchain/node_modules/prettier/bin/prettier.cjs --config tools/quality/prettier.config.json --write .github/ri-ci-map.json
           python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json build
@@ -56,7 +57,8 @@ jobs:
           git add -A -- .github/workflows/pr170-r4-fix-verify-once.yml \
             tools/staging/color.cjs tests/edition-retention.test.cjs \
             tests/publication-records.test.cjs tests/release-rights.test.cjs \
-            tools/quality/article-browser.cjs .github/ri-ci-map.json \
+            tools/quality/article-browser.cjs tests/article-browser-evidence.test.cjs \
+            .github/ri-ci-map.json \
             REPOSITORY-MAP.md .github/repository-intelligence/agent-context.json
           git diff --cached --check
           git diff --cached --stat
