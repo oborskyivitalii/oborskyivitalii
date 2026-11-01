@@ -556,17 +556,18 @@ test('block diagnostics omit empty shells, collect later child animations and re
   assert.throws(() => validateArticleBlocks(observedFlight), /actual common CSS animation/);
   // A late real animationstart must repair the sampled evidence, but a
   // cancellation must revoke it. Frames can only come from the DOM animation.
-  bare.getAnimations = () => [];
   const actualBare = units.at(-1);
-  actualBare.closest = () => actualBare;
-  actualBare.getAnimations = () => [
+  const lateInk = node();
+  lateInk.closest = () => actualBare;
+  actualBare.children.push(lateInk);
+  lateInk.getAnimations = () => [
     { animationName: 'route-block-depart', effect: { getKeyframes: () => frames } },
   ];
-  listeners.animationstart({ target: actualBare, animationName: 'route-block-depart' });
+  listeners.animationstart({ target: lateInk, animationName: 'route-block-depart' });
   const witnessed = scope.window.__articleBlockEvents[1].units.at(-1);
   assert.deepEqual(witnessed.frames, frames, 'actual CSS event restores late keyframes');
-  actualBare.getAnimations = () => [];
-  listeners.animationcancel({ target: actualBare, animationName: 'route-block-depart' });
+  lateInk.getAnimations = () => [];
+  listeners.animationcancel({ target: lateInk, animationName: 'route-block-depart' });
   assert.deepEqual(scope.window.__articleBlockEvents[1].units.at(-1).frames, []);
   const component = animated();
   component.dataset.routeLayer = 'self';
