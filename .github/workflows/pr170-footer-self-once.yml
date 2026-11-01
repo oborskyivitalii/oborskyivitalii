@@ -57,9 +57,36 @@ jobs:
                   raise SystemExit('Unclassified generated path: '+rel)
               entries[rel]={'kind':'directory' if path.is_dir() else 'file','purpose':'Generated current R4 runtime and immutable article assets from authored site sources.','role':'generated','owner':'site/README.md'}
               new_paths.append(rel)
+          # These six former CURRENT (not approved historic) snapshots were
+          # replaced by the verified new R4 runtime; generated paths only.
+          removed_files=[
+              'docs/article-snapshots/ac790b715c322b200c52f0cb1655e862b4ab35734cb7cda535030586d8a10c94/the-sdlc-is-out-of-balance.html',
+              'docs/snapshots/2985c6b9d0da790cc8ac8bdd3633022f0073b5caa5a9eee10a7df3e5f2827d5e/credits.html',
+              'docs/snapshots/2b564ce672cf59242a916d3c072726d8157ee44b8cbb3b17aef07e74a0d511d9/index.html',
+              'docs/snapshots/48656c32211fd72d8db6fc2b4ae8e351c54e21e8c5b0c7bd2708942711dbd09f/research.html',
+              'docs/snapshots/9238da25002c4ddd6d0636aa3e670a797b5d43c6441fcd0749f2530b6992f731/talks.html',
+              'docs/snapshots/dbf73764485e5bd4aefd058726ee3a0ea75c8b7421da874d5df9ad442c9ceaa0/writing.html',
+          ]
+          frozen=json.loads(pathlib.Path('site/retained/manifest.json').read_text())['files']
+          rights=json.loads(pathlib.Path('site/rights.json').read_text())['retained']
+          for name in removed_files:
+              relative=name.removeprefix('docs/')
+              if relative in frozen or relative in rights:
+                  raise SystemExit('Cannot retire declared historical content: '+name)
+              record=entries.get(name)
+              if not record or record.get('role')!='generated' or record.get('kind')!='file' or pathlib.Path(name).exists():
+                  raise SystemExit('Unexpected generated file retirement: '+name)
+              del entries[name]
+              parent=name.rsplit('/',1)[0]
+              if any(path.startswith(parent+'/') for path in entries):
+                  raise SystemExit('Retired directory still contains indexed files: '+parent)
+              folder=entries.get(parent)
+              if not folder or folder.get('role')!='generated' or folder.get('kind')!='directory' or pathlib.Path(parent).exists():
+                  raise SystemExit('Unexpected generated directory retirement: '+parent)
+              del entries[parent]
           missing=[path for path,v in entries.items() if path.startswith('docs/') and v.get('role')=='generated' and not pathlib.Path(path).exists()]
           if missing:
-              raise SystemExit('Generated path retirement requires explicit reviewed disposition: '+repr(missing[:15]))
+              raise SystemExit('Additional unreviewed generated deletion: '+repr(missing[:15]))
           data['entries']={k:entries[k] for k in sorted(entries)}
           catalog.write_text(json.dumps(data,indent=2,ensure_ascii=False)+'\n')
           print('Added generated paths',len(new_paths))
