@@ -56,9 +56,14 @@ jobs:
               if not allowed.fullmatch(rel):raise SystemExit('Unclassified generated output path: '+rel)
               entries[rel]={'kind':'directory' if p.is_dir() else 'file','purpose':'Generated immutable R4 article or dependent native-site output, built from the current authored sources.','role':'generated','owner':'site/README.md'}
               added.append(rel)
+          obsolete='docs/snapshots/cb7c6c487671196b5ada91becd9d15d5900585d9466111bf3f9449bd33c242ee'
           for name,info in list(entries.items()):
               if name.startswith('docs/') and info.get('role')=='generated' and not pathlib.Path(name).exists():
-                  raise SystemExit('Missing cataloged generated path: '+name)
+                  if name in (obsolete, obsolete+'/writing.html'):
+                      entries.pop(name)
+                      print('Retired exact replaced, unpublished Writing snapshot:', name)
+                      continue
+                  raise SystemExit('Missing unrelated cataloged generated path: '+name)
           data['entries']={key:entries[key] for key in sorted(entries)}
           catalog.write_text(json.dumps(data,indent=2,ensure_ascii=False)+'\n')
           print('RI path inventory: added',len(added),'generated paths')
