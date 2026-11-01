@@ -2105,6 +2105,17 @@ test('actual scanner category control flow keeps later engines and reports faile
           },
           report: (reportKind, value, pass) => reports.push({ kind: reportKind, value, pass }),
         };
+      // This scanner-orchestration fixture has no detected secrets. Keep its
+      // generated-checksum input synthetic: producer/media reconstruction is
+      // tested separately and requires a pinned image toolchain in hosted CI.
+      if (name === './generated-checksums.cjs')
+        return {
+          proveGeneratedChecksums: () => ({ detail: { synthetic: true } }),
+          admitGeneratedChecksumFindings: () => new Set(),
+          findingKey: () => {
+            throw Error('unexpected generated checksum finding in empty controlled scan');
+          },
+        };
       if (name === './format.cjs')
         return {
           sourceInventory: () => ({
