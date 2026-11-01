@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "927954f0b4c8bb953b2a2eb21c9ac1f3fb0b561b0126c4f83471f237c2435ab1",
+    "digest": "7b6ba69da02afe3dee11d0388ad9dd83bb0944479b9c0d548a81fbe4e2f73a08",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -221,7 +221,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "aa4aad254dda495da174382c0d93a9e7fc22a3ebdd9dc707376450d9a0dd367e"
+        "sha256": "4c52f37c1f38d06fd3fb15053f3776eb3d402c5beedd131fc21220f5480be25e"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -845,7 +845,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "4d04212f1f3f7810ed9cc43695a57fb18c1bb3e3ed15249d2839e7dd80566258"
+        "sha256": "97682b3d4059077ba8aedcbd6daf1ba847a4033f3b5eb2384cb143a490e163aa"
       },
       {
         "path": "guides/SITE-CONTENT-RELEASE.md",
@@ -8560,7 +8560,7 @@
       {
         "path": "tests/article-browser-evidence.test.cjs",
         "identity_mode": "content",
-        "sha256": "1ae61c893c5784528e719c9fd153a34773e7b6f0d23e718c7ce6ed8007c481b9"
+        "sha256": "8fc6a66ff761cf611511c75a5c8027d1fe4b4c03c86040f6588944ea1a8e0b06"
       },
       {
         "path": "tests/article-budgets.test.cjs",
@@ -9025,7 +9025,7 @@
       {
         "path": "tests/test-profile-selection.test.cjs",
         "identity_mode": "content",
-        "sha256": "b2c74e5c652b3c9e6a7a7816278b314ef404dea27b9328e9809f005a4e4bff8d"
+        "sha256": "a0107515e4d788940a972e59c8d6e55cb067ae38fcaec9caae45e2b864fef8b4"
       },
       {
         "path": "tests/test_browser_archives.py",
@@ -9475,7 +9475,7 @@
       {
         "path": "tools/quality/article-browser.cjs",
         "identity_mode": "content",
-        "sha256": "b8d86dadeb247eb3d9f7cb63fdcc436202593ad5555a26fd9402c1a78c324341"
+        "sha256": "b52c67fca8ce592531d1574b5886b95d2dd95f614b460bcecf460c229f36b05c"
       },
       {
         "path": "tools/quality/article-print.cjs",
@@ -9890,7 +9890,7 @@
       {
         "path": "tools/quality/source-test-worker.cjs",
         "identity_mode": "content",
-        "sha256": "9a1af4b858870f255f848c849c6edac3a42d43d6acfaf02c582852cd4f1d1e6d"
+        "sha256": "415426b649d4344b17698d10aace6bab61a9c5e87cc37e31b3f56d458098a16f"
       },
       {
         "path": "tools/quality/source-tests.cjs",

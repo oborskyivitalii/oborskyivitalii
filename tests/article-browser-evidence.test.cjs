@@ -565,10 +565,17 @@ test('block diagnostics omit empty shells, collect later child animations and re
   ];
   listeners.animationstart({ target: lateInk, animationName: 'route-block-depart' });
   const witnessed = scope.window.__articleBlockEvents[1].units.at(-1);
-  assert.deepEqual(JSON.parse(JSON.stringify(witnessed.frames)), frames, 'actual CSS event restores late keyframes');
+  assert.deepEqual(
+    JSON.parse(JSON.stringify(witnessed.frames)),
+    frames,
+    'actual CSS event restores late keyframes'
+  );
   lateInk.getAnimations = () => [];
   listeners.animationcancel({ target: lateInk, animationName: 'route-block-depart' });
-  assert.deepEqual(JSON.parse(JSON.stringify(scope.window.__articleBlockEvents[1].units.at(-1).frames)), []);
+  assert.deepEqual(
+    JSON.parse(JSON.stringify(scope.window.__articleBlockEvents[1].units.at(-1).frames)),
+    []
+  );
   const component = animated();
   component.dataset.routeLayer = 'self';
   component.children.push(node());
