@@ -12,9 +12,59 @@ permissions:
   contents: read
   actions: read
 jobs:
-  checks:
-    name: ${{ github.event_name == 'pull_request' && github.event.pull_request.draft && 'Prototype source admission deferred' || 'checks' }}
+  source_shards:
+    name: source-shard-${{ matrix.shard }}
     if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7]
+    env:
+      SITE_CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
+      SITE_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: 3.12.14
+      - name: Install exact source test toolchain
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          npm ci --prefix tools/publishing/toolchain --ignore-scripts
+          python3 -m venv tools/quality/toolchain/venv
+          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps ruff==0.16.10 PyYAML==6.0.3 packaging==26.3
+          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps "$(python3 tools/publishing/web-media.py --requirement)"
+      - name: Execute exact selected shard with the original 300-second process deadline
+        env:
+          SOURCE_EVENT: ${{ github.event_name }}
+        run: |
+          set -euo pipefail
+          if [ "$SOURCE_EVENT" = pull_request ]; then
+            node tools/quality/source-test-shards.cjs run --profile pr --base "$SITE_BASE_SHA" --head "$SITE_CANDIDATE_SHA" --index "${{ matrix.shard }}" --output "quality-reports/shard-${{ matrix.shard }}"
+          else
+            node tools/quality/source-test-shards.cjs run --profile staging --head "$SITE_CANDIDATE_SHA" --index "${{ matrix.shard }}" --output "quality-reports/shard-${{ matrix.shard }}"
+          fi
+      - name: Retain original native TAP, stderr, source and shard identity even if failed
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: site-source-shard-${{ github.run_id }}-${{ github.run_attempt }}-${{ matrix.shard }}
+          path: quality-reports/shard-${{ matrix.shard }}/
+          if-no-files-found: error
+          retention-days: 30
+  checks:
+    needs: source_shards
+    name: ${{ github.event_name == 'pull_request' && github.event.pull_request.draft && 'Prototype source admission deferred' || 'checks' }}
+    if: ${{ always() && (github.event_name != 'pull_request' || github.event.pull_request.draft == false) }}
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     outputs:
@@ -27,6 +77,8 @@ jobs:
       SITE_CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
       SITE_BASE_SHA: ${{ github.event.pull_request.base.sha }}
     steps:
+      - name: Reject incomplete, skipped, failed or cancelled source matrix
+        run: test "${{ needs.source_shards.result }}" = "success"
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
           ref: ${{ github.event.pull_request.base.sha || inputs.candidate_sha }}
