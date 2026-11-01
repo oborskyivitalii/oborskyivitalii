@@ -52,8 +52,11 @@ jobs:
           print('Eight-way full-suite Basic YAML parsed and fail-closed edge found')
           PY
           node --test tests/test-profile-selection.test.cjs
+          tools/quality/toolchain/venv/bin/ruff format tools/check_ri_ci.py tests/test_ri_ci.py
+          node tools/quality/toolchain/node_modules/prettier/bin/prettier.cjs --config tools/quality/prettier.config.json --write .github/ri-ci-map.json
+          python3 -m unittest discover -s tests -p 'test_ri_ci.py'
           node tools/quality/format.cjs --check
-          git add -A -- .github/workflows/site-checks.yml guides/SITE-CHECK-PROFILES.md tools/quality/test-profiles.json tests/test-profile-selection.test.cjs tools/quality/source-test-shards.cjs
+          git add -A -- .github/workflows/site-checks.yml guides/SITE-CHECK-PROFILES.md tools/quality/test-profiles.json tests/test-profile-selection.test.cjs tools/quality/source-test-shards.cjs tools/check_ri_ci.py tests/test_ri_ci.py
           python3 tools/check_ri_ci.py refresh
           node tools/quality/toolchain/node_modules/prettier/bin/prettier.cjs --config tools/quality/prettier.config.json --write .github/ri-ci-map.json
           git add -A -- .github/ri-ci-map.json
