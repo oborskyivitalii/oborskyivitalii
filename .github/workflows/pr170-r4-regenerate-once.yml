@@ -68,6 +68,9 @@ jobs:
           catalog.write_text(json.dumps(data,indent=2,ensure_ascii=False)+'\n')
           print('RI path inventory: added',len(added),'generated paths')
           PY
+          # RI reads Git's staged file inventory: retire exact stale generated paths
+          # and the ephemeral self-deleting workflow BEFORE rebuilding projections.
+          git add -A -- docs site/output-lock.json .github/workflows/pr170-r4-regenerate-once.yml
           python3 tools/check_ri_ci.py refresh
           python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json build
           python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify
