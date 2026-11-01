@@ -486,18 +486,24 @@ test('block diagnostics omit empty shells, collect later child animations and re
   });
   const animated = () => node({ animations: [{ effect: { getKeyframes: () => frames } }] });
   const empty = node({ height: 0 });
+  const delayed = animated();
+  const originalAnimations = delayed.getAnimations;
+  let animationSamples = 0;
+  delayed.getAnimations = () => (++animationSamples === 1 ? [] : originalAnimations());
   const hiddenFirst = node({
-    children: [node({ width: 0, height: 0 }), animated()],
+    children: [node({ width: 0, height: 0 }), delayed],
   });
   const childOnly = node({ height: 0, children: [animated()] });
   const units = [empty, hiddenFirst, childOnly];
   const scheduled = [];
   const paint = () => {
-    for (let index = 0; index < 2; index++) {
+    let frames = 0;
+    while (scheduled.length) {
+      assert.ok(++frames <= 5, 'CSS diagnostic sampling must remain within five frames');
       const callbacks = scheduled.splice(0);
-      assert.ok(callbacks.length, 'paint frame must be scheduled for CSS observation');
       callbacks.forEach((callback) => callback());
     }
+    assert.ok(frames >= 2, 'paint frame must be scheduled for CSS observation');
   };
   const scope = {
     window: { requestAnimationFrame: (callback) => scheduled.push(callback) },

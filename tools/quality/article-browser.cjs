@@ -1050,15 +1050,34 @@ function installArticleFlightDiagnostics() {
       if (window.__articleBlockEvents.length >= 40) throw Error('article block evidence overflow');
       const record = { ...structuredClone(event), units: [], paper: null };
       window.__articleBlockEvents.push(record);
-      // The engine dispatches its probe in the same synchronous turn as it
-      // changes route CSS attributes. Observe rendered CSS animations after
-      // the next paint, while the original 1s native wave is still active.
+      // A CSS animation can be queued after the first painted frame under
+      // contention. Preserve actual animation keyframes observed on the same
+      // DOM element across at most five frames, within the unchanged 1s wave.
+      // Never fabricate frames or treat an absent animation as a pass.
       window.requestAnimationFrame(() => {
         window.requestAnimationFrame(() => {
-          record.units = [...document.querySelectorAll('[data-route-block]')]
-            .map(blockUnit)
-            .filter(Boolean);
-          record.paper = paperUnit();
+          const seen = new Map();
+          function capture(remainingFrames) {
+            for (const element of document.querySelectorAll('[data-route-block]')) {
+              const next = blockUnit(element);
+              const previous = seen.get(element);
+              if (!seen.has(element) || (!previous && next)) seen.set(element, next);
+              else if (previous && next && next.frames.length > previous.frames.length)
+                previous.frames = next.frames;
+            }
+            record.units = [...seen.values()].filter(Boolean);
+            const paper = paperUnit();
+            if (!record.paper || (paper && paper.frames.length > record.paper.frames.length))
+              record.paper = paper;
+            if (
+              !remainingFrames ||
+              (record.units.every((unit) => unit.frames.length >= 2) &&
+                (!record.paper || record.paper.frames.length >= 2))
+            )
+              return;
+            window.requestAnimationFrame(() => capture(remainingFrames - 1));
+          }
+          capture(3);
         });
       });
     }
