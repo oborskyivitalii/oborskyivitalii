@@ -19,7 +19,7 @@
     "vitalii-oborskyi-cutout.webp",
     "writing-paradigm.svg"
   ],
-  "content": "b4123a7473da76bbede2f7de7797ea4bc95f69d2a5f614a19012d2c41498302b",
+  "content": "b0418560273ff228836862cd855550ec0790f0f85abed6ef4ade3c29b81b589c",
   "routes": {
     "index": {
       "version": "2b564ce672cf59242a916d3c072726d8157ee44b8cbb3b17aef07e74a0d511d9",
@@ -35,9 +35,9 @@
       ]
     },
     "writing": {
-      "version": "cb7c6c487671196b5ada91becd9d15d5900585d9466111bf3f9449bd33c242ee",
-      "url": "snapshots/cb7c6c487671196b5ada91becd9d15d5900585d9466111bf3f9449bd33c242ee/writing.html",
-      "sha256": "6de5fa22381d94d91f582009f1c100acb37275f1d31931d295fabdcedd494b61",
+      "version": "dbf73764485e5bd4aefd058726ee3a0ea75c8b7421da874d5df9ad442c9ceaa0",
+      "url": "snapshots/dbf73764485e5bd4aefd058726ee3a0ea75c8b7421da874d5df9ad442c9ceaa0/writing.html",
+      "sha256": "87e632f4ece1676ec752d18c47e8c0ad6ffbf8c1d9427dd8ecbf8ab745be109c",
       "assets": [
         "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
       ]
@@ -55,9 +55,9 @@
   },
   "articles": {
     "sdlc-out-of-balance:en": {
-      "version": "bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003",
-      "url": "article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/the-sdlc-is-out-of-balance.html",
-      "sha256": "4aa1ae74ff48155957e9f897b7697e1cee35e3b38d8319d0906c15da2d44fd7b",
+      "version": "ac790b715c322b200c52f0cb1655e862b4ab35734cb7cda535030586d8a10c94",
+      "url": "article-snapshots/ac790b715c322b200c52f0cb1655e862b4ab35734cb7cda535030586d8a10c94/the-sdlc-is-out-of-balance.html",
+      "sha256": "e373da8f233d1d9ba2936f78f0a6adf36141759934a74942c0ab747b262c9750",
       "alias": "articles/the-sdlc-is-out-of-balance.html",
       "scene": "writing",
       "assets": [
@@ -67,17 +67,17 @@
         "article-media/79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6/review-functions.webp",
         "article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3/imbalance-loop.webp",
         "article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292/systemic-response.webp",
-        "article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c/reading.pdf",
+        "article-media/be35778ef93948ca7e809b7917faf1771d11e670e327a0dfc49d95ab4cfc2d98/reading.pdf",
         "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
       ],
       "downloads": [
-        "article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c/reading.pdf"
+        "article-media/be35778ef93948ca7e809b7917faf1771d11e670e327a0dfc49d95ab4cfc2d98/reading.pdf"
       ],
       "candidate": false,
       "articleId": "sdlc-out-of-balance",
-      "contentEdition": "sdlc-out-of-balance-en-r3-20261031",
-      "sourceSha256": "db47dcbed76c5052355d24cd78e3d9ea2a9727c23be030796463f975e0b8667b",
-      "semanticSha256": "642e5cdcdf5a8d06b513e35f5816c22302117702318c15ff5fcdb12e8ea2b31b"
+      "contentEdition": "sdlc-out-of-balance-en-r4-20261101",
+      "sourceSha256": "888dcbb81866b06d5f7729b3eca348fe488563bda60651368ee03851e0acabc2",
+      "semanticSha256": "40608f5e4b09b2ad7f12c0516d13f64e80a86971745c5ef74e69d6060a80c574"
     }
   }
 }

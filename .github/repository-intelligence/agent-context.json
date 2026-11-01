@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "2425c19ab98606d68e9030f32c8dbc8dc81c4f098801dc026fc5e6cd2024e870",
+    "digest": "ee2f7167249967abb8364509b41ca298247690ec2b95fadaac10fe66661ccb86",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -216,12 +216,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "16bcfcd3f3aa8d48e4cf431ef915f2a76be2b97b7b39b47448ffb37bfca69d3d"
+        "sha256": "a9297888dc86719e5cee799ddb4d8a4ec8415ad23240f6d629ebf344669ed2f2"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "f8472454f7e542d895025707210fc2775aec9861be23d56a6855f93aa7025b93"
+        "sha256": "c61198f85fc3ca968d5ad876964fd6eccad41743bf43523cd27e5bf88e125a67"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -468,6 +468,11 @@
         "sha256": "8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1"
       },
       {
+        "path": "docs/article-media/be35778ef93948ca7e809b7917faf1771d11e670e327a0dfc49d95ab4cfc2d98/reading.pdf",
+        "identity_mode": "content",
+        "sha256": "be35778ef93948ca7e809b7917faf1771d11e670e327a0dfc49d95ab4cfc2d98"
+      },
+      {
         "path": "docs/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f/hero-web.jpg",
         "identity_mode": "content",
         "sha256": "fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f"
@@ -478,6 +483,11 @@
         "sha256": "f1d53fa07e9c2d947922eb82b5cc12b7b7bbefd62cf728e80b9cfcbde8a5ffa9"
       },
       {
+        "path": "docs/article-snapshots/ac790b715c322b200c52f0cb1655e862b4ab35734cb7cda535030586d8a10c94/the-sdlc-is-out-of-balance.html",
+        "identity_mode": "content",
+        "sha256": "e373da8f233d1d9ba2936f78f0a6adf36141759934a74942c0ab747b262c9750"
+      },
+      {
         "path": "docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/the-sdlc-is-out-of-balance.html",
         "identity_mode": "content",
         "sha256": "4aa1ae74ff48155957e9f897b7697e1cee35e3b38d8319d0906c15da2d44fd7b"
@@ -485,7 +495,7 @@
       {
         "path": "docs/articles/the-sdlc-is-out-of-balance.html",
         "identity_mode": "content",
-        "sha256": "040060d56a4090ef46ae70ad0ad0c1a1ec66a035b8b7c1a0845bd0d24dd25f6e"
+        "sha256": "0882211846ecba2481592cfde13fd7b8a363917def365e07e63fd0bc1758c065"
       },
       {
         "path": "docs/assets/favicon.svg",
@@ -545,7 +555,7 @@
       {
         "path": "docs/publication-index.json",
         "identity_mode": "content",
-        "sha256": "d8f7f201434039234ad6fce61b87f90f782f83ae788e4a02f257de7be058954b"
+        "sha256": "6186dca6384e202a2d405e210ede3620c6baf40e8aafe9571516654f35e2b124"
       },
       {
         "path": "docs/research.html",
@@ -660,7 +670,7 @@
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "84ba591a86258ef9571039a28b8d931308a2b7dca839e422aef140d07de45213"
+        "sha256": "c0b9aea24b8235f9195c320224692445833fde4dbbaf0cdcff4c6d37f50064c3"
       },
       {
         "path": "docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2/talks.html",
@@ -753,14 +763,14 @@
         "sha256": "e4bbf6e735ef6b9d3c89d7412e12a1288f2b73b9d47e3097c71419f518b29fd2"
       },
       {
-        "path": "docs/snapshots/cb7c6c487671196b5ada91becd9d15d5900585d9466111bf3f9449bd33c242ee/writing.html",
-        "identity_mode": "content",
-        "sha256": "6de5fa22381d94d91f582009f1c100acb37275f1d31931d295fabdcedd494b61"
-      },
-      {
         "path": "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html",
         "identity_mode": "content",
         "sha256": "eef3b91329720bf60b4aaf9e08208bd9ce75790be77b21c2757638c7af7a6fb4"
+      },
+      {
+        "path": "docs/snapshots/dbf73764485e5bd4aefd058726ee3a0ea75c8b7421da874d5df9ad442c9ceaa0/writing.html",
+        "identity_mode": "content",
+        "sha256": "87e632f4ece1676ec752d18c47e8c0ad6ffbf8c1d9427dd8ecbf8ab745be109c"
       },
       {
         "path": "docs/space.js",
@@ -785,7 +795,7 @@
       {
         "path": "docs/writing.html",
         "identity_mode": "content",
-        "sha256": "0063fa0cac0be27d2811d14831c591f9803b12ee112c3ec37fff5073564b2071"
+        "sha256": "98fe698ae9db59e5f05ae91f578fb6950f63089696285b7f94e55201909eaf09"
       },
       {
         "path": "drafts/medium-profile-revision-20261001.html",
@@ -7420,7 +7430,7 @@
       {
         "path": "site/assets/publications/sdlc-out-of-balance/materials/reading.pdf",
         "identity_mode": "content",
-        "sha256": "70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c"
+        "sha256": "be35778ef93948ca7e809b7917faf1771d11e670e327a0dfc49d95ab4cfc2d98"
       },
       {
         "path": "site/assets/publications/sdlc-out-of-balance/review-functions.png",
@@ -7460,7 +7470,7 @@
       {
         "path": "site/content/catalog.json",
         "identity_mode": "content",
-        "sha256": "8abb0b8a85206c7042515313631e205e10d61c4c67e32260faae678e4d73e710"
+        "sha256": "ca5ad58534246c0ec225019d4b8a331261a9b5b857561c81aa28496875cb8e2e"
       },
       {
         "path": "site/content/events.json",
@@ -7720,7 +7730,7 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "0093cec8d162333be3e14326662cc065ccce37aed8501f49ee40d16a4de93e52"
+        "sha256": "f2c04f0b95ad5175a51e5bc45d398a242f49aace99b67d55685fafa8bd876203"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/blueprint.md",
@@ -7945,12 +7955,17 @@
       {
         "path": "site/publications/sdlc-out-of-balance/PROVENANCE.md",
         "identity_mode": "content",
-        "sha256": "7ec5357cb904834a92c3e7517fcaf4e5b11c6a03bd627d152d32fd34ca348396"
+        "sha256": "96d936cc95e94f77831295fa9ab5835929536dc1a458d47aeb9ec0df48ff197c"
       },
       {
         "path": "site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r3-20261031.json",
         "identity_mode": "content",
         "sha256": "6f05e12e5d862704ad01539715467919e9f1b15a39dc0067e9188ec08a4b867f"
+      },
+      {
+        "path": "site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r4-20261101.json",
+        "identity_mode": "content",
+        "sha256": "36bf4cd7f87c7a9362fb67cf32bb4c84fd59f5f0c6237997b84aa8b903b03138"
       },
       {
         "path": "site/publications/sdlc-out-of-balance/launch-post.en.md",
@@ -7960,27 +7975,27 @@
       {
         "path": "site/publications/sdlc-out-of-balance/manuscript.en.md",
         "identity_mode": "content",
-        "sha256": "db47dcbed76c5052355d24cd78e3d9ea2a9727c23be030796463f975e0b8667b"
+        "sha256": "888dcbb81866b06d5f7729b3eca348fe488563bda60651368ee03851e0acabc2"
       },
       {
         "path": "site/publications/sdlc-out-of-balance/materials.json",
         "identity_mode": "content",
-        "sha256": "dffb2c0e9c0932ce92cb2ce58be624deb429496fe9c3b4e6148f543aaa99f6df"
+        "sha256": "64b60b2db7b6218efc228e2ccfc51fdca1ae2db3390bae78fb020422fa6c569d"
       },
       {
         "path": "site/publications/sdlc-out-of-balance/materials/reviews/reading-pdf.md",
         "identity_mode": "content",
-        "sha256": "909af209a05215a457024025bd2be1a344f272ac681ac2aee599ed7967cf9156"
+        "sha256": "e4c04e3127698bcd2b0e343b71be437753a72d7e4872150852b401447850406a"
       },
       {
         "path": "site/publications/sdlc-out-of-balance/profile.json",
         "identity_mode": "content",
-        "sha256": "6072df9eaab7ecb7b2bae90e0b961680bb8818178520454e611614b05dc4e716"
+        "sha256": "3958db4341938abe44f5a4070b416f40b94e8096a7d2f6221b072984c7137d14"
       },
       {
         "path": "site/publications/sdlc-out-of-balance/publication.json",
         "identity_mode": "content",
-        "sha256": "b84614b8a7af29982c1ae45114675001617324fe16a12b386e86307ebe53f70f"
+        "sha256": "9bfca0f9b0348aaee6267b24a89973fcf01c06200135d6028e3fe8f6a89263bd"
       },
       {
         "path": "site/retained/article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292/systemic-response.webp",
@@ -8240,7 +8255,7 @@
       {
         "path": "site/rights.json",
         "identity_mode": "content",
-        "sha256": "5934f55f2b333671e037f0511f447dcd0ccc918809f53e0ad59470f62a9e470f"
+        "sha256": "d938dc380e74c2c3fb32623af9b6a121de132f842504589d3c8a3fd84c408559"
       },
       {
         "path": "site/routes.json",
@@ -11687,6 +11702,17 @@
       "title": "workstream-system.webp"
     },
     {
+      "path": "docs/article-media/be35778ef93948ca7e809b7917faf1771d11e670e327a0dfc49d95ab4cfc2d98/reading.pdf",
+      "kind": "file",
+      "purpose": "Generated immutable R4 article or dependent native-site output, built from the current authored sources.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reading.pdf"
+    },
+    {
       "path": "docs/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f/hero-web.jpg",
       "kind": "file",
       "purpose": "Generated native article, immutable media or snapshot.",
@@ -11701,6 +11727,17 @@
       "path": "docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684/the-sdlc-is-out-of-balance.html",
       "kind": "file",
       "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "the-sdlc-is-out-of-balance.html"
+    },
+    {
+      "path": "docs/article-snapshots/ac790b715c322b200c52f0cb1655e862b4ab35734cb7cda535030586d8a10c94/the-sdlc-is-out-of-balance.html",
+      "kind": "file",
+      "purpose": "Generated immutable R4 article or dependent native-site output, built from the current authored sources.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -12314,9 +12351,9 @@
       "title": "index.html"
     },
     {
-      "path": "docs/snapshots/cb7c6c487671196b5ada91becd9d15d5900585d9466111bf3f9449bd33c242ee/writing.html",
+      "path": "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html",
       "kind": "file",
-      "purpose": "Generated native website publication output; edit canonical site owners and regenerate.",
+      "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -12325,9 +12362,9 @@
       "title": "writing.html"
     },
     {
-      "path": "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html",
+      "path": "docs/snapshots/dbf73764485e5bd4aefd058726ee3a0ea75c8b7421da874d5df9ad442c9ceaa0/writing.html",
       "kind": "file",
-      "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
+      "purpose": "Generated immutable R4 article or dependent native-site output, built from the current authored sources.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -28154,6 +28191,17 @@
       "title": "sdlc-out-of-balance-en-r3-20261031.json"
     },
     {
+      "path": "site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r4-20261101.json",
+      "kind": "file",
+      "purpose": "Current author-directed R4 native article edition and original R3 preservation.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "sdlc-out-of-balance-en-r4-20261101.json"
+    },
+    {
       "path": "site/publications/sdlc-out-of-balance/launch-post.en.md",
       "kind": "file",
       "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
@@ -28173,7 +28221,7 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "The SDLC Is Out of Balance"
+      "title": "The SDLC Is Out of Balance: Beyond the AI Code Review Bottleneck"
     },
     {
       "path": "site/publications/sdlc-out-of-balance/materials.json",
@@ -28195,7 +28243,7 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Exact R3 reading PDF material"
+      "title": "R4 reading PDF — exact material review"
     },
     {
       "path": "site/publications/sdlc-out-of-balance/profile.json",
@@ -33471,6 +33519,16 @@
       ]
     },
     {
+      "path": "docs/article-media/be35778ef93948ca7e809b7917faf1771d11e670e327a0dfc49d95ab4cfc2d98",
+      "kind": "directory",
+      "purpose": "Generated immutable R4 article or dependent native-site output, built from the current authored sources.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f",
       "kind": "directory",
       "purpose": "Generated native article, immutable media or snapshot.",
@@ -33494,6 +33552,16 @@
       "path": "docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684",
       "kind": "directory",
       "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-snapshots/ac790b715c322b200c52f0cb1655e862b4ab35734cb7cda535030586d8a10c94",
+      "kind": "directory",
+      "purpose": "Generated immutable R4 article or dependent native-site output, built from the current authored sources.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -33801,9 +33869,9 @@
       ]
     },
     {
-      "path": "docs/snapshots/cb7c6c487671196b5ada91becd9d15d5900585d9466111bf3f9449bd33c242ee",
+      "path": "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647",
       "kind": "directory",
-      "purpose": "Generated native website publication output; edit canonical site owners and regenerate.",
+      "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -33811,9 +33879,9 @@
       ]
     },
     {
-      "path": "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647",
+      "path": "docs/snapshots/dbf73764485e5bd4aefd058726ee3a0ea75c8b7421da874d5df9ad442c9ceaa0",
       "kind": "directory",
-      "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
+      "purpose": "Generated immutable R4 article or dependent native-site output, built from the current authored sources.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
