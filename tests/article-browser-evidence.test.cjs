@@ -491,8 +491,16 @@ test('block diagnostics omit empty shells, collect later child animations and re
   });
   const childOnly = node({ height: 0, children: [animated()] });
   const units = [empty, hiddenFirst, childOnly];
+  const scheduled = [];
+  const paint = () => {
+    for (let index = 0; index < 2; index++) {
+      const callbacks = scheduled.splice(0);
+      assert.ok(callbacks.length, 'paint frame must be scheduled for CSS observation');
+      callbacks.forEach((callback) => callback());
+    }
+  };
   const scope = {
-    window: {},
+    window: { requestAnimationFrame: (callback) => scheduled.push(callback) },
     document: { querySelectorAll: () => units, querySelector: () => null },
     structuredClone,
   };
@@ -506,6 +514,8 @@ test('block diagnostics omit empty shells, collect later child animations and re
     plannedDurationMs: 1000,
   };
   scope.window.SiteEngineProbe(phase);
+  assert.equal(scope.window.__articleBlockEvents[0].units.length, 0, 'do not read unpainted CSS');
+  paint();
   const recorded = JSON.parse(JSON.stringify(scope.window.__articleBlockEvents[0]));
   assert.equal(recorded.units.length, 2, 'zero-area placeholder has no painted motion to prove');
   assert.deepEqual(
@@ -525,6 +535,7 @@ test('block diagnostics omit empty shells, collect later child animations and re
   validateArticleBlocks(observedFlight);
   units.push(node({ tag: 'H4' }));
   scope.window.SiteEngineProbe(phase);
+  paint();
   observedFlight.blocks[0] = JSON.parse(JSON.stringify(scope.window.__articleBlockEvents[1]));
   const bare = observedFlight.blocks[0].units.at(-1);
   assert.equal(bare.tag, 'H4', 'positive-area bare text must remain in the diagnostic inventory');
@@ -535,6 +546,7 @@ test('block diagnostics omit empty shells, collect later child animations and re
   component.children.push(node());
   units.splice(0, units.length, component);
   scope.window.SiteEngineProbe(phase);
+  paint();
   const whole = JSON.parse(JSON.stringify(scope.window.__articleBlockEvents[2].units[0]));
   assert.equal(whole.layer, 'self');
   assert.deepEqual(whole.frames, frames, 'the actual component box owns its CSS animation');
@@ -560,8 +572,9 @@ test('block diagnostics omit empty shells, collect later child animations and re
     backgroundColor: pseudo ? 'rgb(248, 247, 243)' : 'rgba(0, 0, 0, 0)',
   });
   scope.window.SiteEngineProbe(phase);
-  const paint = JSON.parse(JSON.stringify(scope.window.__articleBlockEvents[3].paper));
-  assert.deepEqual(paint.frames, frames, 'paper evidence excludes descendant pseudo-elements');
+  paint();
+  const paperEvidence = JSON.parse(JSON.stringify(scope.window.__articleBlockEvents[3].paper));
+  assert.deepEqual(paperEvidence.frames, frames, 'paper evidence excludes descendant pseudo-elements');
   scope.window.SiteEngineProbe({ ...phase, stage: 'holding', completedBy: 'animationend' });
   assert.equal(scope.window.__articleBlockEvents[3].completedBy, 'animationend');
 });

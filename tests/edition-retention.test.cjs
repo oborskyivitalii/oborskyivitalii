@@ -31,6 +31,12 @@ test('Color and production preserve prior editions while staging remains isolate
         undefined,
         'Color cannot silently retain the just-replaced base article snapshot'
       );
+    for (const [name, digest] of Object.entries(declared))
+      assert.equal(
+        coloredRecord.files[name]?.sha256,
+        digest,
+        'Color must retain the exact declared historical dependency'
+      );
     const record =
       kind === 'staging'
         ? staging.build(source.directory)

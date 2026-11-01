@@ -92,10 +92,14 @@ function decoratePublic(dir) {
       },
     ])
   );
-  // A new Color rendition replaces the active base document and runtime. Keep
-  // only earlier immutable editions; the just-replaced base snapshot was never
-  // published or approved as a retained edition.
-  const retained = retention.capture(dir, base);
+  // An article's replaced base snapshot was not a retained publication. But an
+  // older approved snapshot can still depend on the exact active base runtime.
+  // Retain that dependency only when the frozen retained source declares its
+  // path and bytes; do not implicitly retain every replaced active page.
+  const declared = retention.declaration(
+    JSON.parse(fs.readFileSync(path.join(__dirname, '../../site/retained/manifest.json')))
+  );
+  const retained = retention.capture(dir, base, { declared });
   fs.rmSync(path.join(dir, 'runtime'), { recursive: true });
   fs.rmSync(path.join(dir, 'snapshots'), { recursive: true });
   fs.rmSync(path.join(dir, 'article-snapshots'), { recursive: true, force: true });
