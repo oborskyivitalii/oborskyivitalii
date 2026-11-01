@@ -49,6 +49,7 @@
         "tools/quality/budgets.json",
         "tools/quality/source-tests.cjs",
         "tools/quality/source-test-worker.cjs",
+        "tools/quality/source-test-shards.cjs",
         "tools/quality/test-profiles.json",
         "tools/site/build.cjs",
         "tools/site/snapshot.cjs",
@@ -1149,7 +1150,8 @@
         "tools/quality/source-tests.cjs",
         "tools/quality/test-profiles.json",
         "tools/quality/local.cjs",
-        "tools/quality/source-test-worker.cjs"
+        "tools/quality/source-test-worker.cjs",
+        "tools/quality/source-test-shards.cjs"
       ]
     },
     {

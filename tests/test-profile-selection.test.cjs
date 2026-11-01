@@ -972,6 +972,77 @@ test('selected execution keeps real process failure and accounting evidence with
   );
 });
 
+test('bounded source shard identities cover every selected module once and reject substitution', () => {
+  const shards = require('../tools/quality/source-test-shards.cjs');
+  const files = [
+    'tests/release-rights.test.cjs',
+    'tests/release-controller.test.cjs',
+    'tests/pages-delivery.test.cjs',
+    'tests/pages-migration.test.cjs',
+    'tests/publication-records.test.cjs',
+    'tests/space.test.cjs',
+    'tests/executive.test.cjs',
+    'tests/staging.test.cjs',
+    'tests/site-engine.test.cjs',
+    'tests/article-media.test.cjs',
+    'tests/article-browser-evidence.test.cjs',
+  ].sort();
+  const groups = shards.split(files);
+  assert.equal(groups.length, 8);
+  assert.deepEqual(groups.flat().sort(), files);
+  assert.deepEqual(shards.split(files), groups, 'fixed source partition is repeatable');
+  assert.equal(shards.exactGroups(files, groups), true);
+  assert.throws(() => shards.split([...files, files[0]].sort()), /duplicate module/);
+  assert.throws(() => shards.exactGroups(files, groups.slice(1)), /eight/);
+  const corrupt = groups.map((group) => [...group]);
+  const index = corrupt.findIndex((group) => group.length);
+  corrupt[index].pop();
+  assert.throws(() => shards.exactGroups(files, corrupt), /shard identity|coverage/);
+
+  const identity = { sourceCommit: '1'.repeat(40), sourceTree: '2'.repeat(40), sourceDirty: false };
+  const plan = { profile: 'pr', modules: files };
+  const tap = 'TAP version 13\n# Subtest: witnessed leaf test\nok 1 - witnessed leaf test\n' +
+    '# tests 1\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n';
+  const receipts = groups.map((modules, i) => {
+    const active = modules.length > 0;
+    const output = active ? tap : '';
+    const report = {
+      schema: 1,
+      kind: 'source-tests',
+      profile: 'pr',
+      modules,
+      cleanSourceRequired: true,
+      status: active ? 'passed' : 'not-applicable',
+      pass: active ? true : null,
+      source: identity,
+      sourceAfter: identity,
+      ...(active ? {
+        execution: {
+          status: 0,
+          signal: null,
+          error: null,
+          timeoutMs: 300000,
+          stdoutBytes: Buffer.byteLength(output),
+          stderrBytes: 0,
+        },
+      } : {}),
+      result: active ? { total: 1, passed: 1, failed: 0, cancelled: 0, skipped: 0, todo: 0 } : {},
+    };
+    return { report, tap: output, stderr: '', meta: shards.packet(plan, i, identity, report, output, '') };
+  });
+  const result = shards.verify(root, plan, receipts, identity);
+  assert.equal(result.pass, true);
+  assert.equal(result.total, groups.filter((g) => g.length).length);
+  assert.equal(result.modules.length, files.length);
+  const changed = structuredClone(receipts);
+  changed[0].report.execution.status = 1;
+  assert.throws(() => shards.verify(root, plan, changed, identity), /reportSha256|not pass|deep|status/);
+  const incomplete = structuredClone(receipts);
+  incomplete[0].tap = '';
+  assert.throws(() => shards.verify(root, plan, incomplete, identity), /tapSha256/);
+  assert.throws(() => shards.verify(root, plan, receipts.slice(0, 7), identity), /shard receipt count/);
+});
+
 test('source scheduling starts expensive files early with isolated processes and preserves failure accounting', (t) => {
   const f = fixture(t),
     files = [

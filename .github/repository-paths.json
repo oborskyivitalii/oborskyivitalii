@@ -13369,6 +13369,12 @@
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
     },
+    "tools/quality/source-test-shards.cjs": {
+      "kind": "file",
+      "purpose": "Fail-closed complete source-test sharding, native report accounting and current-run exact-source receipt aggregation within existing per-process bounds.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
     "tools/quality/source-test-worker.cjs": {
       "kind": "file",
       "purpose": "Bounded source-runner scheduling with measured long files first, isolated Node processes, original TAP and owned signal cleanup.",
