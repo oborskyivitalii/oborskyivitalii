@@ -91,8 +91,12 @@ jobs:
           catalog.write_text(json.dumps(data,indent=2,ensure_ascii=False)+'\n')
           print('Added generated paths',len(new_paths))
           PY
+          # RI indexes the actual staged Git tree, not only the filesystem.
+          # Record exact generated deletions/additions before rebuilding its view.
+          git add -A -- docs .github/repository-paths.json
           python3 tools/check_ri_ci.py refresh
           node tools/quality/toolchain/node_modules/prettier/bin/prettier.cjs --config tools/quality/prettier.config.json --write .github/ri-ci-map.json
+          git add -A -- .github/ri-ci-map.json
           python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json build
           python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify
           python3 tools/check_ri_ci.py verify
