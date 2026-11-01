@@ -54,8 +54,7 @@ jobs:
             tests/edition-retention.test.cjs tests/publication-records.test.cjs \
             tests/release-rights.test.cjs tests/release-controller.test.cjs \
             tests/article-browser-evidence.test.cjs
-          git add -A -- .github/workflows/pr170-r4-fix-verify-once.yml \
-            tools/staging/color.cjs tests/edition-retention.test.cjs \
+          git add -A -- tools/staging/color.cjs tests/edition-retention.test.cjs \
             tests/publication-records.test.cjs tests/release-rights.test.cjs \
             tools/quality/article-browser.cjs tests/article-browser-evidence.test.cjs \
             .github/ri-ci-map.json \
