@@ -807,6 +807,28 @@ test('route blocks leave in page order and remain held until the destination is 
   }
 });
 
+test('text-only scroll-continue footer uses the actual box as its route animation layer', async () => {
+  for (const direction of [1, -1]) {
+    const h = harness({ count: 2, footerCount: 1 });
+    const link = h.footerElements[0];
+    const text = { nodeType: 3, textContent: 'Keep scrolling for Talks' };
+    link.top = 350;
+    link.childNodes = [text];
+    link.matches = (selector) => selector.split(',').includes('a') || selector === '.scroll-continue';
+    const departure = h.controller.depart(direction);
+    assert.equal(link.attributes.get('data-route-block'), 'departing');
+    assert.equal(link.attributes.get('data-route-layer'), 'self');
+    assert.deepEqual(link.childNodes, [text], 'footer link retains its native text');
+    assert.equal(link.children.length, 0, 'route does not depend on an optional ink child');
+    assert.ok(Number.isFinite(Number.parseFloat(link.styles.get('--route-block-distance'))));
+    h.controller.cancelRoute();
+    assert.equal((await departure).cancelled, true);
+    assert.equal(link.attributes.get('data-route-block'), undefined);
+    assert.equal(link.attributes.get('data-route-layer'), undefined);
+    assert.equal(h.tasks.size, 0);
+  }
+});
+
 test('bare deep headings receive a movable ink layer without losing their text', async () => {
   for (const tag of ['h4', 'h5', 'h6']) {
     const h = harness({ count: 1 });
