@@ -991,6 +991,44 @@ function installArticleFlightDiagnostics() {
   window.__articleFlightEvents = [];
   window.__articleBlockEvents = [];
   let active = null;
+  let currentBlock = null;
+  let witnessed = new WeakMap();
+  // Capture real native animationstart keyframes even when a busy browser
+  // misses the brief CSSAnimation in its frame-by-frame snapshot.
+  function witness(event, cancelled = false) {
+    if (!['route-block-depart', 'route-block-arrive'].includes(event.animationName)) return;
+    if (event.pseudoElement) return;
+    const element = event.target;
+    const owner = element.closest?.('[data-route-block]');
+    const state = owner?.dataset.routeBlock;
+    const stage = state === 'departing' ? 'departure' : state === 'arriving' ? 'arrival' : null;
+    if (!stage || !currentBlock || currentBlock.stage !== stage) return;
+    const expected = stage === 'departure' ? 'route-block-depart' : 'route-block-arrive';
+    if (event.animationName !== expected) return;
+    if (cancelled) witnessed.delete(element);
+    else {
+      const frames = element
+        .getAnimations()
+        .filter((animation) => animation.animationName === expected)
+        .flatMap((animation) => animation.effect?.getKeyframes() || []);
+      if (frames.length >= 2) witnessed.set(element, { state, frames });
+    }
+    currentBlock.units = [...document.querySelectorAll('[data-route-block]')]
+      .map(blockUnit)
+      .filter(Boolean);
+  }
+  document.addEventListener('animationstart', (event) => witness(event), true);
+  document.addEventListener('animationcancel', (event) => witness(event, true), true);
+  function layerFrames(element) {
+    const frames = element
+      .getAnimations()
+      .flatMap((animation) => animation.effect?.getKeyframes() || []);
+    if (frames.length >= 2) return frames;
+    const snapshot = witnessed.get(element);
+    return snapshot?.state === element.closest?.('[data-route-block]')?.dataset.routeBlock
+      ? snapshot.frames
+      : frames;
+  }
   function blockUnit(element) {
     const children = [...element.children];
     const hasArea = [element, ...children].some((node) => {
@@ -1014,9 +1052,7 @@ function installArticleFlightDiagnostics() {
               ['route-block-depart', 'route-block-arrive'].includes(animation.animationName)
             ).length
         : 0,
-      frames: layers.flatMap((child) =>
-        child.getAnimations().flatMap((animation) => animation.effect?.getKeyframes() || [])
-      ),
+      frames: layers.flatMap(layerFrames),
     };
   }
   function paperUnit() {
@@ -1049,6 +1085,8 @@ function installArticleFlightDiagnostics() {
     if (event.kind === 'route-block' && ['departure', 'arrival'].includes(event.stage)) {
       if (window.__articleBlockEvents.length >= 40) throw Error('article block evidence overflow');
       const record = { ...structuredClone(event), units: [], paper: null };
+      witnessed = new WeakMap();
+      currentBlock = record;
       window.__articleBlockEvents.push(record);
       // A CSS animation can be queued after the first painted frame under
       // contention. Preserve actual animation keyframes observed on the same

@@ -505,9 +505,16 @@ test('block diagnostics omit empty shells, collect later child animations and re
     }
     assert.ok(frames >= 2, 'paint frame must be scheduled for CSS observation');
   };
+  const listeners = {};
   const scope = {
     window: { requestAnimationFrame: (callback) => scheduled.push(callback) },
-    document: { querySelectorAll: () => units, querySelector: () => null },
+    document: {
+      querySelectorAll: () => units,
+      querySelector: () => null,
+      addEventListener: (kind, callback) => {
+        listeners[kind] = callback;
+      },
+    },
     structuredClone,
   };
   vm.runInNewContext('(' + installArticleFlightDiagnostics.toString() + ')();', scope);
@@ -547,6 +554,20 @@ test('block diagnostics omit empty shells, collect later child animations and re
   assert.equal(bare.tag, 'H4', 'positive-area bare text must remain in the diagnostic inventory');
   assert.deepEqual(bare.frames, []);
   assert.throws(() => validateArticleBlocks(observedFlight), /actual common CSS animation/);
+  // A late real animationstart must repair the sampled evidence, but a
+  // cancellation must revoke it. Frames can only come from the DOM animation.
+  bare.getAnimations = () => [];
+  const actualBare = units.at(-1);
+  actualBare.closest = () => actualBare;
+  actualBare.getAnimations = () => [
+    { animationName: 'route-block-depart', effect: { getKeyframes: () => frames } },
+  ];
+  listeners.animationstart({ target: actualBare, animationName: 'route-block-depart' });
+  const witnessed = scope.window.__articleBlockEvents[1].units.at(-1);
+  assert.deepEqual(witnessed.frames, frames, 'actual CSS event restores late keyframes');
+  actualBare.getAnimations = () => [];
+  listeners.animationcancel({ target: actualBare, animationName: 'route-block-depart' });
+  assert.deepEqual(scope.window.__articleBlockEvents[1].units.at(-1).frames, []);
   const component = animated();
   component.dataset.routeLayer = 'self';
   component.children.push(node());
