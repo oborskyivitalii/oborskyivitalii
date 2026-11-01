@@ -217,14 +217,23 @@ test('staging derives labelled article snapshots and removes prior unlabelled HT
   pages.checkStaging(directory, stage);
 });
 
-test('Color derives article versions with the selected runtime and preserves earlier immutable documents', (t) => {
+test('Color replaces an unpublished base article while retaining declared historical bytes', (t) => {
   const { directory, publicDir, record, article } = fixture(t);
-  const oldBytes = fs.readFileSync(path.join(publicDir, article.url));
   const color = require('../tools/staging/color.cjs').build(directory);
   assert.equal(color.components.variant.id, 'color');
   assert.notEqual(color.components.articles[key].version, article.version);
   assert.notEqual(color.components.engine, record.components.engine);
-  assert.deepEqual(fs.readFileSync(path.join(publicDir, article.url)), oldBytes);
+  assert.equal(
+    color.files[article.url],
+    undefined,
+    'undeclared replaced base snapshot cannot become historical'
+  );
+  assert.equal(fs.existsSync(path.join(publicDir, article.url)), false);
+  const retained = require('../site/retained/manifest.json').files;
+  for (const [name, sha256] of Object.entries(retained)) {
+    assert.equal(color.files[name]?.sha256, sha256, 'retained historical file ' + name);
+    assert.equal(artifact.digest(fs.readFileSync(path.join(publicDir, name))), sha256);
+  }
   const current = fs.readFileSync(
     path.join(publicDir, color.components.articles[key].alias),
     'utf8'

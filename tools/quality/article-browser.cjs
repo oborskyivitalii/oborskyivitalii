@@ -1213,7 +1213,15 @@ function validateArticleBlockUnit(unit, { departure, sign, rows, wholeReader }) 
   assert.equal(unit.state, departure ? 'departing' : 'arriving');
   assert.ok(
     Array.isArray(unit.frames) && unit.frames.length >= 2,
-    'actual common CSS animation exists'
+    'actual common CSS animation exists: ' +
+      JSON.stringify({
+        tag: unit.tag,
+        classes: unit.classes,
+        layer: unit.layer,
+        state: unit.state,
+        row: unit.row,
+        frameCount: unit.frames?.length ?? null,
+      })
   );
   assert.equal(typeof unit.classes, 'string');
   assert.ok(!/\breader-(chapter|introduction)\b/.test(unit.classes), 'readable leaf unit');
