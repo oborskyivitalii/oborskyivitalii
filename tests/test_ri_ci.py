@@ -525,11 +525,15 @@ process.stdout.write(JSON.stringify(observations));
         workflow = ".github/workflows/site-checks.yml"
         original = (REPO / workflow).read_text()
         self.write(workflow, original)
+
         def check():
             return ci.workflow_commands(
                 self.root, workflow, "checks", "ready-pr", "source-shards-v1"
             )
-        self.assertIn(["node", "tools/quality/local.cjs", "--delivery", "quality-artifact"], check())
+
+        self.assertIn(
+            ["node", "tools/quality/local.cjs", "--delivery", "quality-artifact"], check()
+        )
         with self.assertRaisesRegex(ValueError, "reachability adapter"):
             ci.workflow_commands(self.root, workflow, "checks", "ready-pr")
         for old, new in [
@@ -537,20 +541,29 @@ process.stdout.write(JSON.stringify(observations));
             ("    needs: source_shards", ""),
             ("        shard: [0, 1, 2, 3, 4, 5, 6, 7]", "        shard: [0, 1]"),
             ("      fail-fast: false", "      fail-fast: true"),
-            ("    if: ${{ always() && (github.event_name != 'pull_request' || github.event.pull_request.draft == false) }}",
-             "    if: ${{ success() && (github.event_name != 'pull_request' || github.event.pull_request.draft == false) }}"),
-            ('        run: test "${{ needs.source_shards.result }}" = "success"', "        run: echo green"),
+            (
+                "    if: ${{ always() && (github.event_name != 'pull_request' || github.event.pull_request.draft == false) }}",
+                "    if: ${{ success() && (github.event_name != 'pull_request' || github.event.pull_request.draft == false) }}",
+            ),
+            (
+                '        run: test "${{ needs.source_shards.result }}" = "success"',
+                "        run: echo green",
+            ),
             ("          if-no-files-found: error", "          if-no-files-found: warn"),
             ("        if: always()", "        if: success()"),
-            ("    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false",
-             "    if: false"),
+            (
+                "    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false",
+                "    if: false",
+            ),
         ]:
             self.assertIn(old, original)
             self.write(workflow, original.replace(old, new, 1))
             with self.subTest(old=old), self.assertRaises(ValueError):
                 check()
         self.write(workflow, original)
-        self.assertIn(["node", "tools/quality/local.cjs", "--delivery", "quality-artifact"], check())
+        self.assertIn(
+            ["node", "tools/quality/local.cjs", "--delivery", "quality-artifact"], check()
+        )
 
     def test_mapped_job_needs_cannot_hide_unreachable_checks(self):
         original = (self.root / self.workflow).read_text()

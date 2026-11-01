@@ -417,7 +417,10 @@ def validate_definition(root, data):
         raise ValueError("Unused mapped checks: " + ", ".join(sorted(set(checks) - used)))
     for check in checks.values():
         if check["argv"] not in workflow_commands(
-            root, check["workflow"], check["job"], check.get("event_scope", "all-pr"),
+            root,
+            check["workflow"],
+            check["job"],
+            check.get("event_scope", "all-pr"),
             check.get("reachability_adapter"),
         ):
             raise ValueError("Mapped check is not invoked unconditionally: " + check["id"])
