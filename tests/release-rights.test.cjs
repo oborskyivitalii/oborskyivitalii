@@ -52,10 +52,7 @@ function fixture(t, { nativeCurrentArticle = false } = {}) {
     // The current R4 lossless renderer reads these two immutable toolchain
     // declarations from its explicit source root, not the installed interpreter.
     // Copy only the source inputs: never install a new dependency or weaken checks.
-    for (const name of [
-      'tools/quality/toolchain/requirements.txt',
-      'tools/quality/budgets.json',
-    ]) {
+    for (const name of ['tools/quality/toolchain/requirements.txt', 'tools/quality/budgets.json']) {
       const target = path.join(sourceRoot, name);
       fs.mkdirSync(path.dirname(target), { recursive: true });
       fs.copyFileSync(path.join(root, name), target);

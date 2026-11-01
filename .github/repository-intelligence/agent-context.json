@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "4cf412d7b3278ebadf95da5fec823b2582d1af9de84c418d77a5d13743b8fa30",
+    "digest": "aeec0516fb24cc4dcc96e77422af5aead3110588882a13d063cc6d048dc95e58",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -8560,7 +8560,7 @@
       {
         "path": "tests/article-browser-evidence.test.cjs",
         "identity_mode": "content",
-        "sha256": "4fb8e83b9d3ec2bdf6938a12d65511adbdddcdcbbb580a256eb1edf78fd24bcd"
+        "sha256": "f04b58c72e37bb345911676bef33b4393d9d6e704a8edaf83839c2dc7fa3cf8b"
       },
       {
         "path": "tests/article-budgets.test.cjs",
@@ -8705,7 +8705,7 @@
       {
         "path": "tests/edition-retention.test.cjs",
         "identity_mode": "content",
-        "sha256": "05e2f79984fa14c8bc431e9d1007b413c8fd36c83c768a69cc0c889eb012957a"
+        "sha256": "2a13ca1e4e8c80d360d43277814be0916921a4033a22b36520c56a96eaf060c5"
       },
       {
         "path": "tests/effects.test.cjs",
@@ -8880,7 +8880,7 @@
       {
         "path": "tests/publication-records.test.cjs",
         "identity_mode": "content",
-        "sha256": "c8ec850da9ecd6c735a9c5b911f36a2e2a938702bbf7ecd3c610a10758cc7beb"
+        "sha256": "ba3ffdb3c8139a78b8df6b37e1c5ec0f0399c7e9133ae2276ea7cb6730017d0e"
       },
       {
         "path": "tests/publishing-history.test.cjs",
@@ -8945,7 +8945,7 @@
       {
         "path": "tests/release-rights.test.cjs",
         "identity_mode": "content",
-        "sha256": "7b779d869107b887df81e82fb60ffe226739ed4ecfe40efc5f0c87a265362127"
+        "sha256": "36e20d4a7b9b9b6757178070fcadf2b3cd38ec97da0a22640a96d13175983b28"
       },
       {
         "path": "tests/renderer.test.cjs",
@@ -9475,7 +9475,7 @@
       {
         "path": "tools/quality/article-browser.cjs",
         "identity_mode": "content",
-        "sha256": "ee4e48c38688d5be1dcad53fc6f2ad202089120a40b70771e6433a25cd7df2a2"
+        "sha256": "40b34dff244027140a12934a5c3c3a8fe2f2ff7798784cdc316ddf55eff65aac"
       },
       {
         "path": "tools/quality/article-print.cjs",
@@ -10255,7 +10255,7 @@
       {
         "path": "tools/staging/color.cjs",
         "identity_mode": "content",
-        "sha256": "b5ccb20bbab237b969286a30bed1aa8bc449ecec8c5a4a8c8caa11a155fd7a8b"
+        "sha256": "a48869d6f68c51fd92994ad12fe7161b13435f6fe05721f3a119f4e6149a7c69"
       },
       {
         "path": "tools/staging/edition.cjs",

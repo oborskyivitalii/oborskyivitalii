@@ -574,7 +574,11 @@ test('block diagnostics omit empty shells, collect later child animations and re
   scope.window.SiteEngineProbe(phase);
   paint();
   const paperEvidence = JSON.parse(JSON.stringify(scope.window.__articleBlockEvents[3].paper));
-  assert.deepEqual(paperEvidence.frames, frames, 'paper evidence excludes descendant pseudo-elements');
+  assert.deepEqual(
+    paperEvidence.frames,
+    frames,
+    'paper evidence excludes descendant pseudo-elements'
+  );
   scope.window.SiteEngineProbe({ ...phase, stage: 'holding', completedBy: 'animationend' });
   assert.equal(scope.window.__articleBlockEvents[3].completedBy, 'animationend');
 });
