@@ -373,10 +373,10 @@ not counted as an automatic speed improvement.
 
 The source runner delegates execution to
 [`source-test-worker.cjs`](../tools/quality/source-test-worker.cjs). It starts
-the measured long `space`, `executive`, `article-media` and `release-rights` modules first,
-followed by measured `release-controller`, `pages-migration`, `site-engine`,
-`pages-delivery`, `publication-records` and `staging` modules, then
-the remaining selected files lexically, retaining the same selected set, Node
+the longest-observed controller, rights and Pages suites first, followed by
+publication records, Space, executive and staging tests, then the remaining
+selected files lexically. The order was updated against the 1 November 2026
+source-test timing receipts without changing the selected set, Node
 process isolation, a maximum of four workers, native TAP and strict accounting.
 All selected modules, including Space, enter one worker invocation. The complete
 source execution retains one300-second deadline and one16MiB output bound;

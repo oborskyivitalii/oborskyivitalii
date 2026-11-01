@@ -7,20 +7,24 @@ const assert = require('node:assert/strict'),
   { run } = require('node:test'),
   { tap } = require('node:test/reporters'),
   { safePath } = require('./source-tests.cjs');
+// Use longest-observed-first scheduling on the same four isolated workers.
+// The 1 Nov CI receipts show controller, rights and Pages paths dominate the
+// five-minute critical path when short tests delay their start. No module is
+// removed, and the 300-second single-source deadline remains unchanged.
 const priority = [
-  'tests/space.test.cjs',
-  'tests/executive.test.cjs',
-  'tests/publication-records.test.cjs',
   'tests/release-rights.test.cjs',
   'tests/release-controller.test.cjs',
-  'tests/publishing.test.cjs',
-  'tests/quality-sources.test.cjs',
-  'tests/site-articles.test.cjs',
-  'tests/pages-migration.test.cjs',
-  'tests/site-engine.test.cjs',
   'tests/pages-delivery.test.cjs',
-  'tests/article-media.test.cjs',
+  'tests/pages-migration.test.cjs',
+  'tests/publication-records.test.cjs',
+  'tests/space.test.cjs',
+  'tests/executive.test.cjs',
   'tests/staging.test.cjs',
+  'tests/publishing.test.cjs',
+  'tests/site-articles.test.cjs',
+  'tests/site-engine.test.cjs',
+  'tests/article-media.test.cjs',
+  'tests/quality-sources.test.cjs',
 ];
 function observeFiles(stream, files, parallelism) {
   const selected = new Map(files.map((file) => [path.resolve(file), file]));
