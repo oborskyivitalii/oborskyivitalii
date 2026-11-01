@@ -371,26 +371,43 @@ Historical issue-specific policies remain source-pinned evidence; the current
 issue selects its own policy. Manual diagnostic workflows stay manual and are
 not counted as an automatic speed improvement.
 
-The source runner delegates execution to
-[`source-test-worker.cjs`](../tools/quality/source-test-worker.cjs). It starts
-the longest-observed controller, rights and Pages suites first, followed by
-publication records, Space, executive and staging tests, then the remaining
-selected files lexically. The order was updated against the 1 November 2026
-source-test timing receipts without changing the selected set, Node
-process isolation, a maximum of four workers, native TAP and strict accounting.
-All selected modules, including Space, enter one worker invocation. The complete
-source execution retains one300-second deadline and one16MiB output bound;
-process isolation and priority ordering do not create additional source budgets.
-Every selected module requires complete zero-skip accounting. Retain the original
-single-process stdout/stderr, actual argv/status and source identities even when
-execution, accounting or source stability fails. Content-only plans use that same
-single-process evidence contract. The prepublication wrapper is330seconds:
-one300-second source execution plus30seconds for reporting, independent of the
-selected module count. Scanner180-second bounds and the existing job budget remain.
-The[25October #122 amendment](https://github.com/oborskyivitalii/oborskyivitalii/issues/122#issuecomment-6403603405) changes only this source deadline from180to300seconds
-after retained hardware-associated timeouts; it adds no CPU filter or retry policy.
-SIGTERM/SIGINT
-abort the owned runner and reap its children before timeout evidence is retained.
+The source runner still uses
+[`source-test-worker.cjs`](../tools/quality/source-test-worker.cjs) with a
+maximum of four isolated workers, original native TAP, 16 MiB output bound,
+strict accounting and 300-second process deadline. The original 1 November
+81-module single-runner execution completed only nine modules in 300 seconds.
+It was **failed**, not waived by changing test order.
+
+**1 November 2026 CI topology amendment — issue #169.**
+[`source-test-shards.cjs`](../tools/quality/source-test-shards.cjs) selects
+the *same entire* registry-derived PR/staging module inventory and divides
+it into eight deterministic, non-overlapping groups using observed suite
+durations. Each group executes the unchanged 300-second source runner on
+an independent GitHub job and retains native TAP, stderr, full report and
+exact source/tree identity. This intentionally increases parallel runner
+capacity; it does not claim an unchanged aggregate CPU budget.
+
+The required Basic `checks` job is `always()`-eligible when the source
+matrix fails and must itself fail before any other checks if the source
+matrix was missing, skipped, cancelled or unsuccessful. On successful
+matrix execution, the aggregator requires **all eight** same-run/attempt
+artifacts, recomputes the complete selected module list from the exact
+protected base and candidate, rejects duplicate/missing/extra members,
+changed source identities, altered reports, nonzero child status,
+incomplete native TAP, empty selected suites, failures, cancellation,
+skips and TODOs. A shard with zero assigned modules may be explicitly
+inapplicable, never silently stand in for a required module.
+
+The previous content-only source-admitted reuse route retains its
+own strict source/raw accounting and remains conditional on its exact
+trusted baseline. The unchanged Basic formatter, architecture, lint,
+generated-output, rights, hosted, staging and production gates remain
+separate; **passing shards do not authorize deployment**. The normal
+one-process runner still serves targeted diagnostics and preserves
+the 300-second limit. Explicitly review the changed CI security and
+coverage boundary with independent code/white-box reviewers before
+marking Ready, staging, merging or releasing. No single reviewer
+or source plan may fabricate successful raw runner evidence.
 
 At every issue's completion, review its tests against PR smoke, bounded staging
 and full production coverage. Record additions, merged duplicate assertions,

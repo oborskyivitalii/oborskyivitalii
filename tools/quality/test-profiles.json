@@ -54,6 +54,7 @@
         "tools/site/build.cjs",
         "tools/site/snapshot.cjs",
         "tools/site/evidence-policy.cjs",
+        ".github/workflows/site-checks.yml",
         ".github/workflows/site-release-checks.yml",
         "tools/site/edition.cjs"
       ]

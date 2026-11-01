@@ -972,6 +972,19 @@ test('selected execution keeps real process failure and accounting evidence with
   );
 });
 
+test('required Basic source admission cannot skip an incomplete shard matrix', () => {
+  const workflow = fs.readFileSync(path.join(root, '.github/workflows/site-checks.yml'), 'utf8');
+  assert.match(workflow, /source_shards:/);
+  assert.match(workflow, /shard: \[0, 1, 2, 3, 4, 5, 6, 7\]/);
+  assert.match(workflow, /needs: source_shards/);
+  assert.match(workflow, /always\(\) &&/);
+  assert.match(workflow, /needs\.source_shards\.result/);
+  assert.match(workflow, /source-test-shards\.cjs run --profile pr/);
+  assert.match(workflow, /source-test-shards\.cjs aggregate --profile pr/);
+  assert.match(workflow, /site-source-shard-/);
+  assert.match(workflow, /merge-multiple: false/);
+});
+
 test('bounded source shard identities cover every selected module once and reject substitution', () => {
   const shards = require('../tools/quality/source-test-shards.cjs');
   const files = [
