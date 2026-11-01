@@ -934,7 +934,9 @@ function articleHistoryCheckpoint(scope = window) {
     departure: scope.__articleArchiveDeparture,
     history: scope.structuredClone(scope.history.state?.site || null),
     focus:
-      scope.document.activeElement?.id || scope.document.activeElement?.getAttribute?.('href') || null,
+      scope.document.activeElement?.id ||
+      scope.document.activeElement?.getAttribute?.('href') ||
+      null,
     scroll: scope.scrollY,
     busy: scope.document.querySelector('#site-content')?.hasAttribute('aria-busy'),
     historyDiagnostics: scope.__articleHistoryDiagnostics,
@@ -1402,12 +1404,6 @@ async function normalJourney(
       { timeout }
     );
     const writingHead = await inspectHead(page);
-    const archive = {
-      topic: await page.locator('#archive-topic').inputValue(),
-      language: await page.locator('#archive-language').inputValue(),
-      year: await page.locator('#archive-year').inputValue(),
-      search: new URL(page.url()).search,
-    };
     await page.evaluate(() => {
       window.__articleShell = {
         header: document.querySelector('header'),
@@ -1423,7 +1419,18 @@ async function normalJourney(
     );
     assert.match(articleTopic, /^[a-z][a-z0-9-]*$/, 'admitted article has a catalog topic');
     await page.locator('#archive-topic').selectOption(articleTopic);
-    assert.equal(await articleLink.isVisible(), true, 'article stays visible under its own topic filter');
+    assert.equal(
+      await articleLink.isVisible(),
+      true,
+      'article stays visible under its own topic filter'
+    );
+    const archive = {
+      topic: await page.locator('#archive-topic').inputValue(),
+      language: await page.locator('#archive-language').inputValue(),
+      year: await page.locator('#archive-year').inputValue(),
+      search: new URL(page.url()).search,
+    };
+    assert.equal(archive.topic, articleTopic, 'archive selected the admitted article topic');
     await articleLink.scrollIntoViewIfNeeded();
     const archiveFocus =
       (await articleLink.getAttribute('id')) || (await articleLink.getAttribute('href'));
