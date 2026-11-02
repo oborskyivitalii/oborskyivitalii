@@ -12117,7 +12117,7 @@
     },
     ".github/acceptance/issue-109.json": {
       "kind": "file",
-      "purpose": "Issue109 stable AC01–AC19 mapping for current R8 reorder and unchanged R13 speech; stable content gates, bounded repository checks and separate human/event obligations. Includes requested S07 human monitoring and S08 control/business-case clarity.",
+      "purpose": "Issue109 stable AC01–AC19 mapping for R9 architecture-before-runtime order, all-nine alignment, preserved R13 speech and separate human/event gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -12141,7 +12141,7 @@
     },
     "drafts/devcon-romania-2026/README.md": {
       "kind": "file",
-      "purpose": "Current R8 author-review package with R13 speech; historical R6 preserved, exact reorder mapping and separate event selection. Includes requested S07 human monitoring and S08 control/business-case clarity.",
+      "purpose": "DevCon Romania retained edition index, current R9 author-review package and separate event selection.",
       "role": "draft",
       "owner": "drafts/devcon-romania-2026/README.md"
     },
@@ -13000,6 +13000,294 @@
     "review/issue-109/r8-reviewer-receipts/requirements-capacity-final.md": {
       "kind": "file",
       "purpose": "Retained source-bound R8 review, diagnostic or bounded capacity-maintenance evidence for issue 109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "drafts/devcon-romania-2026/r9": {
+      "kind": "directory",
+      "purpose": "R9 presentation, matching rendition, synchronized notes or exact native source payload.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r9/README.md": {
+      "kind": "file",
+      "purpose": "R9 presentation, matching rendition, synchronized notes or exact native source payload.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r9/devcon-romania-2026-r9.pdf": {
+      "kind": "file",
+      "purpose": "R9 presentation, matching rendition, synchronized notes or exact native source payload.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r9/devcon-romania-2026-r9.pptx": {
+      "kind": "file",
+      "purpose": "R9 presentation, matching rendition, synchronized notes or exact native source payload.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r9/edition.json": {
+      "kind": "file",
+      "purpose": "R9 presentation, matching rendition, synchronized notes or exact native source payload.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r9/sources": {
+      "kind": "directory",
+      "purpose": "R9 presentation, matching rendition, synchronized notes or exact native source payload.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r9/sources/ppt": {
+      "kind": "directory",
+      "purpose": "R9 presentation, matching rendition, synchronized notes or exact native source payload.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r9/sources/ppt/notesSlides": {
+      "kind": "directory",
+      "purpose": "R9 presentation, matching rendition, synchronized notes or exact native source payload.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r9/sources/ppt/notesSlides/notesSlide7.xml": {
+      "kind": "file",
+      "purpose": "R9 presentation, matching rendition, synchronized notes or exact native source payload.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r9/sources/ppt/notesSlides/notesSlide8.xml": {
+      "kind": "file",
+      "purpose": "R9 presentation, matching rendition, synchronized notes or exact native source payload.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r9/sources/ppt/notesSlides/notesSlide9.xml": {
+      "kind": "file",
+      "purpose": "R9 presentation, matching rendition, synchronized notes or exact native source payload.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r9/sources/ppt/presentation.xml": {
+      "kind": "file",
+      "purpose": "R9 presentation, matching rendition, synchronized notes or exact native source payload.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r9/sources/ppt/slides": {
+      "kind": "directory",
+      "purpose": "R9 presentation, matching rendition, synchronized notes or exact native source payload.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r9/sources/ppt/slides/slide1.xml": {
+      "kind": "file",
+      "purpose": "R9 presentation, matching rendition, synchronized notes or exact native source payload.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r9/sources/ppt/slides/slide2.xml": {
+      "kind": "file",
+      "purpose": "R9 presentation, matching rendition, synchronized notes or exact native source payload.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r9/sources/ppt/slides/slide3.xml": {
+      "kind": "file",
+      "purpose": "R9 presentation, matching rendition, synchronized notes or exact native source payload.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r9/sources/ppt/slides/slide4.xml": {
+      "kind": "file",
+      "purpose": "R9 presentation, matching rendition, synchronized notes or exact native source payload.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r9/sources/ppt/slides/slide5.xml": {
+      "kind": "file",
+      "purpose": "R9 presentation, matching rendition, synchronized notes or exact native source payload.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r9/sources/ppt/slides/slide6.xml": {
+      "kind": "file",
+      "purpose": "R9 presentation, matching rendition, synchronized notes or exact native source payload.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r9/sources/ppt/slides/slide7.xml": {
+      "kind": "file",
+      "purpose": "R9 presentation, matching rendition, synchronized notes or exact native source payload.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r9/sources/ppt/slides/slide8.xml": {
+      "kind": "file",
+      "purpose": "R9 presentation, matching rendition, synchronized notes or exact native source payload.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r9/sources/ppt/slides/slide9.xml": {
+      "kind": "file",
+      "purpose": "R9 presentation, matching rendition, synchronized notes or exact native source payload.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r9/speaker-notes.md": {
+      "kind": "file",
+      "purpose": "R9 presentation, matching rendition, synchronized notes or exact native source payload.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "review/issue-109/2026-11-02-r9-review.md": {
+      "kind": "file",
+      "purpose": "R9 ordering, whole-deck review, exact artifact evidence, independent roles and pending human acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r9-input": {
+      "kind": "directory",
+      "purpose": "R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r9-input/candidate-package-manifest.json": {
+      "kind": "file",
+      "purpose": "R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r9-input/candidate-visual-manifest.json": {
+      "kind": "file",
+      "purpose": "R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r9-input/code-candidate-manifest.json": {
+      "kind": "file",
+      "purpose": "R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r9-input/issue-109-snapshot.md": {
+      "kind": "file",
+      "purpose": "R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r9-input/issue109-before-r9.md": {
+      "kind": "file",
+      "purpose": "R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r9-input/pr110-before-r9.md": {
+      "kind": "file",
+      "purpose": "R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r9-input/preflight-manifest.json": {
+      "kind": "file",
+      "purpose": "R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r9-input/request.md": {
+      "kind": "file",
+      "purpose": "R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r9-reviewer-receipts": {
+      "kind": "directory",
+      "purpose": "R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r9-reviewer-receipts/assembly.json": {
+      "kind": "file",
+      "purpose": "R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r9-reviewer-receipts/code-first.md": {
+      "kind": "file",
+      "purpose": "R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r9-reviewer-receipts/launch-and-results.json": {
+      "kind": "file",
+      "purpose": "R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r9-reviewer-receipts/native-finalization.json": {
+      "kind": "file",
+      "purpose": "R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r9-reviewer-receipts/notes-preservation.json": {
+      "kind": "file",
+      "purpose": "R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r9-reviewer-receipts/requirements-final-first.md": {
+      "kind": "file",
+      "purpose": "R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r9-reviewer-receipts/requirements-preflight.md": {
+      "kind": "file",
+      "purpose": "R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r9-reviewer-receipts/visual-baseline.md": {
+      "kind": "file",
+      "purpose": "R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r9-reviewer-receipts/visual-final-first.md": {
+      "kind": "file",
+      "purpose": "R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r9-reviewer-receipts/whitebox-baseline.md": {
+      "kind": "file",
+      "purpose": "R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r9-reviewer-receipts/whitebox-final-first.md": {
+      "kind": "file",
+      "purpose": "R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r9-reviewer-receipts/code-metadata-correction.md": {
+      "kind": "file",
+      "purpose": "R9 bounded independent correction receipt or actual precommit navigation regression result.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r9-reviewer-receipts/ri-regressions-precommit.log": {
+      "kind": "file",
+      "purpose": "R9 bounded independent correction receipt or actual precommit navigation regression result.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r9-reviewer-receipts/acceptance-first-clean-head.json": {
+      "kind": "file",
+      "purpose": "Preserved first R9 clean-head acceptance report including diagnosed stale RI/CI source identity.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     }

@@ -1,0 +1,112 @@
+{
+  "base_sha256": "ee370d10570f43b4ff09d262927428af6a5ee4cd5c7823268fcd2422813cc3fe",
+  "candidate_sha256": "32e95f4382ba3913640a9229de4853f5cdbcafa55375c194e733a0826767f1a1",
+  "candidate_path": "/workspace/scratch/05b05f9b1c10/build/r9-assembly/candidate-r9.pptx",
+  "changed_parts": [
+    "ppt/presentation.xml",
+    "ppt/slides/slide1.xml",
+    "ppt/slides/slide2.xml",
+    "ppt/slides/slide3.xml",
+    "ppt/slides/slide4.xml",
+    "ppt/slides/slide5.xml",
+    "ppt/slides/slide6.xml",
+    "ppt/slides/slide7.xml",
+    "ppt/notesSlides/notesSlide7.xml",
+    "ppt/slides/slide8.xml",
+    "ppt/notesSlides/notesSlide8.xml",
+    "ppt/slides/slide9.xml",
+    "ppt/notesSlides/notesSlide9.xml"
+  ],
+  "unchanged_relationship_parts": 23,
+  "unchanged_media_parts": 2,
+  "existing_helper_receipts": [
+    {
+      "source_sha256": "ee370d10570f43b4ff09d262927428af6a5ee4cd5c7823268fcd2422813cc3fe",
+      "donor_sha256": "2c052ea9b106280a457571fc371db3acc23658c0c74747037853de801913d79e",
+      "output_sha256": "98f10db9f7fbf752ed11805cf741eb3db082f033c20c1a7cb375b19bd54d84e4",
+      "source_part_count": 58,
+      "donor_part_count": 58,
+      "output_part_count": 58,
+      "changed_parts": [
+        "ppt/slides/slide5.xml"
+      ],
+      "unchanged_part_count": 57,
+      "all_existing_relationships_preserved": true,
+      "shared_parts_equal": [
+        "ppt/slideLayouts/slideLayout1.xml",
+        "ppt/notesMasters/notesMaster1.xml",
+        "ppt/slideMasters/theme/theme2.xml",
+        "ppt/notesMasters/theme/theme3.xml"
+      ],
+      "master_equal_after_relationship_resolution": true,
+      "complete_source_notes_prefix_preserved": true
+    },
+    {
+      "source_sha256": "98f10db9f7fbf752ed11805cf741eb3db082f033c20c1a7cb375b19bd54d84e4",
+      "donor_sha256": "2c052ea9b106280a457571fc371db3acc23658c0c74747037853de801913d79e",
+      "output_sha256": "cb7fdbbbb6d1ce3f6b2978075b40ec1b27cd169c24e28359f6aeccd9355d36a3",
+      "source_part_count": 58,
+      "donor_part_count": 58,
+      "output_part_count": 58,
+      "changed_parts": [
+        "ppt/slides/slide7.xml"
+      ],
+      "unchanged_part_count": 57,
+      "all_existing_relationships_preserved": true,
+      "shared_parts_equal": [
+        "ppt/slideLayouts/slideLayout1.xml",
+        "ppt/notesMasters/notesMaster1.xml",
+        "ppt/slideMasters/theme/theme2.xml",
+        "ppt/notesMasters/theme/theme3.xml"
+      ],
+      "master_equal_after_relationship_resolution": true,
+      "complete_source_notes_prefix_preserved": true
+    },
+    {
+      "source_sha256": "cb7fdbbbb6d1ce3f6b2978075b40ec1b27cd169c24e28359f6aeccd9355d36a3",
+      "donor_sha256": "2c052ea9b106280a457571fc371db3acc23658c0c74747037853de801913d79e",
+      "output_sha256": "2c052ea9b106280a457571fc371db3acc23658c0c74747037853de801913d79e",
+      "source_part_count": 58,
+      "donor_part_count": 58,
+      "output_part_count": 58,
+      "changed_parts": [
+        "ppt/slides/slide8.xml"
+      ],
+      "unchanged_part_count": 57,
+      "all_existing_relationships_preserved": true,
+      "shared_parts_equal": [
+        "ppt/slideLayouts/slideLayout1.xml",
+        "ppt/notesMasters/notesMaster1.xml",
+        "ppt/slideMasters/theme/theme2.xml",
+        "ppt/notesMasters/theme/theme3.xml"
+      ],
+      "master_equal_after_relationship_resolution": true,
+      "complete_source_notes_prefix_preserved": true
+    },
+    {
+      "source_sha256": "2c052ea9b106280a457571fc371db3acc23658c0c74747037853de801913d79e",
+      "output_sha256": "db3f5c31a4b65b87634b0f09c389d0d69ac22868008b91501690c6611b20174f",
+      "source_positions_in_delivery_order": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        7,
+        9
+      ],
+      "changed_parts": [
+        "ppt/presentation.xml",
+        "ppt/slides/slide7.xml",
+        "ppt/notesSlides/notesSlide7.xml",
+        "ppt/slides/slide8.xml",
+        "ppt/notesSlides/notesSlide8.xml"
+      ],
+      "unchanged_part_count": 53,
+      "relationship_part_count": 23,
+      "all_relationship_parts_unchanged": true
+    }
+  ]
+}

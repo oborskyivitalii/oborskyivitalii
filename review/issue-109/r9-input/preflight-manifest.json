@@ -1,0 +1,56 @@
+{
+  "source_kind": "prepared subset; not a Git checkout",
+  "base_commit": "9330c424b2dd66177de9e5e50db5f132b2c57001",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 6748,
+      "sha256": "2985c29e16043d810e5efa9184b2f2ecbc467ef0024a2fcbaf64fbc82a16e3dd"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "bytes": 19705,
+      "sha256": "cdf4f04358192b2c562d0e15aa34af86f03278d0c417c032df21633a8e3878d4"
+    },
+    {
+      "path": "agents/reviewers/README.md",
+      "bytes": 6965,
+      "sha256": "11370925623aae0243944cbfa4b59244d0b081149ff15709cf2abe2c586b360b"
+    },
+    {
+      "path": "agents/reviewers/requirements-acceptance.md",
+      "bytes": 3269,
+      "sha256": "44d2431d6de4f3618f90140813c43a994b55e1ea5897064a45adccca33750788"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r8/devcon-romania-2026-r8.pptx",
+      "bytes": 1426852,
+      "sha256": "ee370d10570f43b4ff09d262927428af6a5ee4cd5c7823268fcd2422813cc3fe"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r8/edition.json",
+      "bytes": 8518,
+      "sha256": "b32911e6986370d77fe12662495d431f745f560973c91dbc7bf0758ddc470ede"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r8/speaker-notes.md",
+      "bytes": 36920,
+      "sha256": "cc9c3cece8830dcbf9d66dfdeac79a85980a02037e742aac943656fe3c1362a2"
+    },
+    {
+      "path": "guides/PRESENTATION-VERSIONING.md",
+      "bytes": 3128,
+      "sha256": "a0cd69f9ba05f4593fe36efde357ec366a703e813b1e48d9bcc4379ac12737a9"
+    },
+    {
+      "path": "review/issue-109/r9-input/issue-109-snapshot.md",
+      "bytes": 80920,
+      "sha256": "805159cdc39d91a52ed9496b9dd3371858b26afcb0f6774acc79445ce2ebca33"
+    },
+    {
+      "path": "review/issue-109/r9-input/request.md",
+      "bytes": 2812,
+      "sha256": "ce63ed80994310bec2aa5f0328198777653ae2879accda12ccc49f799b2dc68d"
+    }
+  ]
+}

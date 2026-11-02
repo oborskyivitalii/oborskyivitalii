@@ -3,38 +3,38 @@
 **AI Changes the Delivery System and the Product Itself**  
 Vitalii Oborskyi · DevOps Stage · 4 November 2026
 
-**Current author-review edition: R8 — complete editable PPTX and matching PDF.**
-The slide3/4 exchange is retained. Slide7 now monitors people explicitly; slide8
-shows a single control loop, human architectural dependencies and the business-case
-decision beyond a successful demo.
+**Current author-review edition: R9 — complete editable PPTX and matching PDF.**
+Architecture and project commitment now precede runtime validation. Both slides
+have a clearer reading order with their technical breadth retained. All nine
+slides were inspected and alignment polished.
 
 One owner: [issue109](https://github.com/oborskyivitalii/oborskyivitalii/issues/109)
 · existing [Draft PR110](https://github.com/oborskyivitalii/oborskyivitalii/pull/110).
 
-## Review R8
+## Review R9
 
-- [Editable PowerPoint](r8/devcon-romania-2026-r8.pptx)
-- [Matching PDF](r8/devcon-romania-2026-r8.pdf)
-- [Notes with R8 delivery addenda](r8/speaker-notes.md)
-- [Edition identity and artifact hashes](r8/edition.json)
-- [Native source/provenance and re-export](r8/README.md)
-- [Bounded review](../../review/issue-109/2026-11-02-r8-review.md)
+- [Editable PowerPoint](r9/devcon-romania-2026-r9.pptx)
+- [Matching PDF](r9/devcon-romania-2026-r9.pdf)
+- [Complete synchronized notes](r9/speaker-notes.md)
+- [Edition identity and artifact hashes](r9/edition.json)
+- [Native source/provenance and reproduction](r9/README.md)
+- [Bounded review](../../review/issue-109/2026-11-02-r9-review.md)
 
-S07 separates **service, behavior, controls and people/capacity**. S08 names
-sensors, controller, actuators and the controlled system, with visible feedback
-and action constraints. Human sensing and decisions can make qualified operators
-an architectural dependency. The project decision evaluates control adequacy and
-full cost in context; a successful happy-path demonstration alone is insufficient.
+S07 follows the control loop, conditional human architectural dependency and
+control/operating/business evidence before commitment. S08 follows admission,
+ongoing observation and reassessment of operating authority. The 196/3/1 example,
+preventive limits, qualified human capacity, full cost and intervention options
+remain visible; neither slide becomes a list of slogans.
 
 The first-half sequence remains **delivery imbalance → comprehension/ownership
-(S03) → qualified evidence (S04) → contextual responses**. The source-position
-order is 1,2,4,3,5,6,7,8,9. All other seven slide visuals remain identical to R7.
-R13 source speech is preserved; S07/S08 receive concise labeled delivery addenda.
-The historical [R13 script](devcon-romania-2026-r13-concise-stage-script.md) keeps
-its original order. Use current attached/Markdown notes for presentation delivery.
+(S03) → qualified evidence (S04) → contextual responses**. The R6/R13 source order
+is `1,2,4,3,5,6,8,7,9`. R13 spoken wording is retained, with delivery labels and
+reference navigation synchronized. The historical [R13 script](devcon-romania-2026-r13-concise-stage-script.md)
+keeps its original order; use the current attached/Markdown notes for delivery.
 
-The previous **19:55 talk + 7:00 Q&A + 3:05 reserve** remains an editorial target;
-R8 additions are not timed rehearsal evidence. Author/device acceptance is separate.
+The planning envelope is **at most 23 minutes speaking + 7 minutes Q&A** in the
+30-minute slot. This has not been verified by timed English rehearsal. Older
+reference-note estimates remain historical; author/device acceptance is separate.
 
 ## Argument
 
@@ -54,7 +54,8 @@ responsibilities, two closing projects and one final homepage QR.
 
 | Edition | Repository status | Purpose |
 | --- | --- | --- |
-| **R8** | Current author-review draft; complete package | Explicit people monitoring and control architecture/business-case decision |
+| **R9** | Current author-review draft; complete package | Architecture/planning before runtime; clearer S07/S08 and all-nine alignment |
+| **R8** | Preserved complete package | Explicit people monitoring and control architecture/business-case decision |
 | **R7** | Preserved complete package | R6 positions3/4 exchanged; notes and delivery numbers synchronized |
 | **R6** | Preserved complete PPTX/PDF/notes package | Approved systemic-first slide 4 integrated into the full R13 working deck |
 | **R5** | Historical notes/manifest; declared PPTX/PDF were not committed | Problem-framing narrative and consolidated R4 working lineage |
@@ -70,14 +71,14 @@ retained in the [R3 README at its exact commit](https://github.com/oborskyivital
 ## Reproduce and validate
 
 Follow the [presentation versioning contract](../../guides/PRESENTATION-VERSIONING.md)
-and the [native source/re-export instructions](r8/README.md). Export the verified
+and the [native source/re-export instructions](r9/README.md). Export the verified
 final PPTX using the existing LibreOffice Impress rendition method:
 
 ```bash
 soffice --headless --convert-to pdf:impress_pdf_Export \
-  --outdir /tmp/devcon-r8-export \
-  drafts/devcon-romania-2026/r8/devcon-romania-2026-r8.pptx
-python3 tools/presentations/validate_edition.py drafts/devcon-romania-2026/r8
+  --outdir /tmp/devcon-r9-export \
+  drafts/devcon-romania-2026/r9/devcon-romania-2026-r9.pptx
+python3 tools/presentations/validate_edition.py drafts/devcon-romania-2026/r9
 ```
 
 Use a new scratch output directory for re-export. PDF metadata can differ between
@@ -88,11 +89,11 @@ acceptance.
 
 ## Event binding and provenance
 
-The event record continues to select the exact R3 PDF. Preparing R8 in Draft
-PR110 does not publish it, merge it or select it for the conference. Full R8 author
+The event record continues to select the exact R3 PDF. Preparing R9 in Draft
+PR110 does not publish it, merge it or select it for the conference. Full R9 author
 approval, an explicit event selection and the remaining human checks are separate.
 
-Historical PMDay/R38 pins are retained in `r8/edition.json`. The complete R6 source
+Historical PMDay/R38 pins are retained in `r9/edition.json`. The complete R6 source
 is pinned there; its original native input identities and the approved ownership
 reference remain under `r6/sources/`. The full
 notes retain the original citations and caveats. The curves are conceptual, with

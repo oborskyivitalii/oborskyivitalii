@@ -1,0 +1,113 @@
+{
+  "owner": "issue109 / Draft PR110",
+  "scope": "Actual isolated first launches and role-specific continuations from the current conversation. No model/effort overrides were requested.",
+  "provider_model_context_internals": "unknown",
+  "shared_filesystem": "Operational reading boundary, not OS isolation or provider attestation.",
+  "common_prompt_sha256": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb",
+  "executions": [
+    {
+      "role": "requirements",
+      "accepted_task_handle": "/root/r9_requirements_preflight",
+      "initial_launch": {
+        "tool": "collaboration.spawn_agent",
+        "requested_fork_turns": "none",
+        "model_override": "omitted",
+        "reasoning_effort_override": "omitted",
+        "accepted_response": "Canonical task handle returned; no provider-internal context claim"
+      },
+      "continuation": "collaboration.followup_task for completed-candidate review",
+      "prompt_path": "agents/reviewers/requirements-acceptance.md",
+      "prompt_sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6",
+      "results": [
+        {
+          "path": "review/issue-109/r9-reviewer-receipts/requirements-preflight.md",
+          "sha256": "9c1e3bd5f7d7e532bac90d6b496e307722ea1b04b73f9f164144001383c79f64"
+        },
+        {
+          "path": "review/issue-109/r9-reviewer-receipts/requirements-final-first.md",
+          "sha256": "a135a9dea55f6a0fc90000c7a27e6e3de61bc4923fa1fda629e39607704a75f4"
+        }
+      ]
+    },
+    {
+      "role": "code",
+      "accepted_task_handle": "/root/r9_code_review",
+      "initial_launch": {
+        "tool": "collaboration.spawn_agent",
+        "requested_fork_turns": "none",
+        "model_override": "omitted",
+        "reasoning_effort_override": "omitted",
+        "accepted_response": "Canonical task handle returned; no provider-internal context claim"
+      },
+      "continuation": "First candidate review, fresh none-fork launch",
+      "prompt_path": "agents/reviewers/code-review.md",
+      "prompt_sha256": "26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697",
+      "results": [
+        {
+          "path": "review/issue-109/r9-reviewer-receipts/code-first.md",
+          "sha256": "c1c871944ed55aac10235ef9e72ffbb7cbf76ae3d87d301c376f08a0c6f94c3d"
+        }
+      ]
+    },
+    {
+      "role": "whitebox",
+      "accepted_task_handle": "/root/r9_whitebox_review",
+      "initial_launch": {
+        "tool": "collaboration.spawn_agent",
+        "requested_fork_turns": "none",
+        "model_override": "omitted",
+        "reasoning_effort_override": "omitted",
+        "accepted_response": "Canonical task handle returned; no provider-internal context claim"
+      },
+      "continuation": "collaboration.followup_task for completed-candidate review",
+      "prompt_path": "agents/reviewers/white-box-qa.md",
+      "prompt_sha256": "832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f",
+      "results": [
+        {
+          "path": "review/issue-109/r9-reviewer-receipts/whitebox-baseline.md",
+          "sha256": "1ad76100d16e1ee58ccc1b17f4db0af9c5be5124275f7e3bd1dcc5ca963658fc"
+        },
+        {
+          "path": "review/issue-109/r9-reviewer-receipts/whitebox-final-first.md",
+          "sha256": "414d4a52caf366638eaa7000fc723246811d1e51a31e513333ffbca6eb6bdcf0"
+        }
+      ]
+    },
+    {
+      "role": "visual",
+      "accepted_task_handle": "/root/r9_visual_review",
+      "initial_launch": {
+        "tool": "collaboration.spawn_agent",
+        "requested_fork_turns": "none",
+        "model_override": "omitted",
+        "reasoning_effort_override": "omitted",
+        "accepted_response": "Canonical task handle returned; no provider-internal context claim"
+      },
+      "continuation": "collaboration.followup_task for completed-candidate review",
+      "prompt_path": "agents/reviewers/exploratory-interaction-qa.md",
+      "prompt_sha256": "280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a",
+      "results": [
+        {
+          "path": "review/issue-109/r9-reviewer-receipts/visual-baseline.md",
+          "sha256": "659d0c5cc86fe242482fa594e0cc95cd997c6af19f7ba933ec8b5c692752abb4"
+        },
+        {
+          "path": "review/issue-109/r9-reviewer-receipts/visual-final-first.md",
+          "sha256": "ec9e26aeca0da641721cdc99b82cdb766d1f8623621075039b1cc6b1e952c13c"
+        }
+      ]
+    }
+  ],
+  "packet_identities": {
+    "candidate-visual-manifest.json": "1a40cdc8b92822a5762f6cc524cd0352413398a25412a973ac2c92d7d7753229",
+    "code-candidate-manifest.json": "a1af780ec808a5f56da36daa909291070520b923cf400b7778a7bfb84b0cfa3c",
+    "preflight-manifest.json": "7ef6cf35f2c2ea084158a5b7d024f18dea722c533777c8935496d0be6e920d74",
+    "candidate-package-manifest.json": "7ca4fc1c4920fe169e2d8ebd5c0d8bf5b11905166a7d706cf5064b1ce4a6043a"
+  },
+  "metadata_correction": {
+    "agent": "/root/r9_code_review",
+    "mode": "role continuation after first independent judgment; peer reconciliation now exposed",
+    "path": "review/issue-109/r9-reviewer-receipts/code-metadata-correction.md",
+    "sha256": "6db37c295743c7d88e43fc3f69d2d28f42a1f9e3b90c65d966fb87c77f884e32"
+  }
+}
