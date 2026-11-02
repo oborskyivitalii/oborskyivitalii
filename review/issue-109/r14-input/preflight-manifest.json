@@ -1,0 +1,75 @@
+{
+  "base": "6bd9e990251a6211f56ce6ba424960fe24879a71",
+  "files": [
+    {
+      "path": ".github/acceptance/issue-109.json",
+      "bytes": 38070,
+      "sha256": "905dc7024963db321197fe13add4ec365151302ca833f977840a68a37b86f427"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 6747,
+      "sha256": "ad4f179ec04c7af12867229d70598a660c5ae41f3cb456cafd02aca3d12a9988"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "bytes": 19704,
+      "sha256": "804fb3da9a0bc7369bbd902313224221becc6c6b775536ca943f8664bf741442"
+    },
+    {
+      "path": "agents/reviewers/README.md",
+      "bytes": 6964,
+      "sha256": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb"
+    },
+    {
+      "path": "agents/reviewers/code-review.md",
+      "bytes": 2663,
+      "sha256": "26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697"
+    },
+    {
+      "path": "agents/reviewers/exploratory-interaction-qa.md",
+      "bytes": 2850,
+      "sha256": "280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a"
+    },
+    {
+      "path": "agents/reviewers/requirements-acceptance.md",
+      "bytes": 3268,
+      "sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6"
+    },
+    {
+      "path": "agents/reviewers/white-box-qa.md",
+      "bytes": 3266,
+      "sha256": "832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/devcon-romania-2026-r13-concise-stage-script.md",
+      "bytes": 18219,
+      "sha256": "8b00bb3e6f25884fdcb024bb01fae5a80ba9ca0903e6682a7796477a2380bb84"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r9/devcon-romania-2026-r9.pdf",
+      "bytes": 898057,
+      "sha256": "52b97b711e8d1934833db0ce6aa0f21aa7b5a8406522393a8ee39ea7815b9277"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r9/devcon-romania-2026-r9.pptx",
+      "bytes": 1426339,
+      "sha256": "32e95f4382ba3913640a9229de4853f5cdbcafa55375c194e733a0826767f1a1"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r9/speaker-notes.md",
+      "bytes": 37138,
+      "sha256": "eadb088b9121685023c3f96e346ae6d215170b90f89803310b8a2455c9828db2"
+    },
+    {
+      "path": "guides/PRESENTATION-VERSIONING.md",
+      "bytes": 3127,
+      "sha256": "917ec0d4323d55081a5a1c9e671f656c01b4173c4b8d8371eb24857a09fbb75e"
+    },
+    {
+      "path": "review/issue-109/r14-input/request.md",
+      "bytes": 3167,
+      "sha256": "942ea424d158d741b2814bfd71e6956ab4e676c69d63ece1d32a81e0db00c479"
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "word_pattern": "\\b\\w+(?:[-'\u2019]\\w+)*\\b",
+  "baseline_words": 1552,
+  "candidate_words": 1530,
+  "delta": -22,
+  "old_slide_order": [
+    1,
+    2,
+    4,
+    3,
+    5,
+    6,
+    8,
+    7,
+    9
+  ],
+  "unchanged_current_slides": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    9
+  ],
+  "per_slide": [
+    {
+      "slide": 1,
+      "source_slide": 1,
+      "words": 153
+    },
+    {
+      "slide": 2,
+      "source_slide": 2,
+      "words": 214
+    },
+    {
+      "slide": 3,
+      "source_slide": 4,
+      "words": 166
+    },
+    {
+      "slide": 4,
+      "source_slide": 3,
+      "words": 168
+    },
+    {
+      "slide": 5,
+      "source_slide": 5,
+      "words": 146
+    },
+    {
+      "slide": 6,
+      "source_slide": 6,
+      "words": 183
+    },
+    {
+      "slide": 7,
+      "source_slide": 8,
+      "words": 165
+    },
+    {
+      "slide": 8,
+      "source_slide": 7,
+      "words": 166
+    },
+    {
+      "slide": 9,
+      "source_slide": 9,
+      "words": 169
+    }
+  ],
+  "script_sha256": "ea00d981ee541d9316b371da51d26184e1635baa006915c1b1598b2b53b95403"
+}

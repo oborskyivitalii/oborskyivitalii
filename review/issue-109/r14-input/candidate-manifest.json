@@ -1,0 +1,96 @@
+{
+  "base": "6bd9e990251a6211f56ce6ba424960fe24879a71",
+  "scope": "Standalone R14 speech for unchanged R9; candidate review, not conference-final acceptance. PDF is generated from Markdown. Catalog and RI refresh follows final receipts.",
+  "files": [
+    {
+      "path": ".github/acceptance/issue-109.json",
+      "bytes": 44520,
+      "sha256": "994a5915c703bd212108d5c256de2e7beaa3dee29b9566ee5ba7ff36a4b78e82"
+    },
+    {
+      "path": "MEMORY.md",
+      "bytes": 2808,
+      "sha256": "e1f68ed61bfca8d1e0f6c6eec6be278426cd2c2585b561b9f6f8410d8e9baa49"
+    },
+    {
+      "path": "agents/reviewers/README.md",
+      "bytes": 6964,
+      "sha256": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb"
+    },
+    {
+      "path": "agents/reviewers/code-review.md",
+      "bytes": 2663,
+      "sha256": "26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697"
+    },
+    {
+      "path": "agents/reviewers/exploratory-interaction-qa.md",
+      "bytes": 2850,
+      "sha256": "280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a"
+    },
+    {
+      "path": "agents/reviewers/requirements-acceptance.md",
+      "bytes": 3268,
+      "sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6"
+    },
+    {
+      "path": "agents/reviewers/white-box-qa.md",
+      "bytes": 3266,
+      "sha256": "832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/README.md",
+      "bytes": 6396,
+      "sha256": "20bff8c8da72420163dd8fd23980ff2f1c39f0b47e9a393030838f1f89e71200"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/devcon-romania-2026-r13-concise-stage-script.md",
+      "bytes": 18219,
+      "sha256": "8b00bb3e6f25884fdcb024bb01fae5a80ba9ca0903e6682a7796477a2380bb84"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/devcon-romania-2026-r14-concise-stage-script.md",
+      "bytes": 18316,
+      "sha256": "ea00d981ee541d9316b371da51d26184e1635baa006915c1b1598b2b53b95403"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/devcon-romania-2026-r14-concise-stage-script.pdf",
+      "bytes": 72406,
+      "sha256": "f5170f11d8276c279f95be73c52e0ab8b530fbc14f7ba9e9f0fa3a862091230c"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r9/devcon-romania-2026-r9.pdf",
+      "bytes": 898057,
+      "sha256": "52b97b711e8d1934833db0ce6aa0f21aa7b5a8406522393a8ee39ea7815b9277"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r9/devcon-romania-2026-r9.pptx",
+      "bytes": 1426339,
+      "sha256": "32e95f4382ba3913640a9229de4853f5cdbcafa55375c194e733a0826767f1a1"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r9/speaker-notes.md",
+      "bytes": 37138,
+      "sha256": "eadb088b9121685023c3f96e346ae6d215170b90f89803310b8a2455c9828db2"
+    },
+    {
+      "path": "review/issue-109/r14-input/candidate.diff",
+      "bytes": 57595,
+      "sha256": "b1cbb5b3946082d495ec5e54ec19869ac5ea6d7ef42132761ba098a9774f7eea"
+    },
+    {
+      "path": "review/issue-109/r14-input/issue109-before-r14.md",
+      "bytes": 7286,
+      "sha256": "269f5ecf48afac97ab047c9ee0504f7b95c096a8e1aa44d93b2538067ceb2edd"
+    },
+    {
+      "path": "review/issue-109/r14-input/pr110-before-r14.md",
+      "bytes": 5948,
+      "sha256": "d62d04c57ca326c0682d68b860d750d101af9a09a7747b0733f0fdaedb65f264"
+    },
+    {
+      "path": "review/issue-109/r14-input/request.md",
+      "bytes": 3167,
+      "sha256": "942ea424d158d741b2814bfd71e6956ab4e676c69d63ece1d32a81e0db00c479"
+    }
+  ]
+}

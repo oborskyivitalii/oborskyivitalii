@@ -11,6 +11,21 @@ slides were inspected and alignment polished.
 One owner: [issue109](https://github.com/oborskyivitalii/oborskyivitalii/issues/109)
 · existing [Draft PR110](https://github.com/oborskyivitalii/oborskyivitalii/pull/110).
 
+## Current stage script: R14 for deck R9
+
+- [Concise English script R14](devcon-romania-2026-r14-concise-stage-script.md)
+- [Reading PDF: one slide per page](devcon-romania-2026-r14-concise-stage-script.pdf)
+- [Speech-only alignment review](../../review/issue-109/2026-11-02-r14-speech-review.md)
+
+R14 contains **1,530 spoken words**, compared with **1,552 in R13**. Seven
+spoken blocks remain verbatim; current S07/S08 receive targeted emphasis edits.
+Architecture and commitment stay in S07; runtime monitoring, human response
+capacity and intervention move together to S08. Delivery cues follow R9.
+
+R14 is a separate speech revision. The retained R9 package, its native/Markdown
+notes and the historical R13 script remain unchanged. Use R14 for the current
+concise delivery; attached R9 notes retain the earlier speech and references.
+
 ## Review R9
 
 - [Editable PowerPoint](r9/devcon-romania-2026-r9.pptx)
@@ -30,7 +45,8 @@ The first-half sequence remains **delivery imbalance → comprehension/ownership
 (S03) → qualified evidence (S04) → contextual responses**. The R6/R13 source order
 is `1,2,4,3,5,6,8,7,9`. R13 spoken wording is retained, with delivery labels and
 reference navigation synchronized. The historical [R13 script](devcon-romania-2026-r13-concise-stage-script.md)
-keeps its original order; use the current attached/Markdown notes for delivery.
+keeps its original order. R14 above is the current concise delivery script;
+R9 attached/Markdown notes remain the unchanged historical package.
 
 The planning envelope is **at most 23 minutes speaking + 7 minutes Q&A** in the
 30-minute slot. This has not been verified by timed English rehearsal. Older

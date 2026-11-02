@@ -1,0 +1,145 @@
+RI unavailable: Stale or altered RI context; rebuild or use direct repository reading. Read authoritative sources directly.
+ERI unavailable: Stale or altered RI context; rebuild or use direct repository reading. Read authoritative sources directly.
+ERI unavailable: Stale or altered RI context; rebuild or use direct repository reading. Read authoritative sources directly.
+ERI unavailable: Stale or altered RI context; rebuild or use direct repository reading. Read authoritative sources directly.
+ERI unavailable: Stale or altered RI context; rebuild or use direct repository reading. Read authoritative sources directly.
+ERI unavailable: Stale or altered RI context; rebuild or use direct repository reading. Read authoritative sources directly.
+ERI unavailable: Stale or altered RI context; rebuild or use direct repository reading. Read authoritative sources directly.
+ERI unavailable: Stale or altered RI context; rebuild or use direct repository reading. Read authoritative sources directly.
+ERI unavailable: Stale or altered RI context; rebuild or use direct repository reading. Read authoritative sources directly.
+ERI unavailable: Stale or altered RI context; rebuild or use direct repository reading. Read authoritative sources directly.
+E.
+======================================================================
+ERROR: test_quality_agent_queries_and_context_route_to_existing_checks (test_repository_intelligence.NavigationSafetyTests.test_quality_agent_queries_and_context_route_to_existing_checks) (context='reviewer launch contract')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/05b05f9b1c10/repository-r9/tests/test_repository_intelligence.py", line 489, in test_quality_agent_queries_and_context_route_to_existing_checks
+    subprocess.check_output(
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['python3', 'tools/repository_intelligence.py', '--config', '.github/repository-intelligence-config.json', 'context-for-task', 'reviewer launch contract']' returned non-zero exit status 1.
+
+======================================================================
+ERROR: test_quality_agent_queries_and_context_route_to_existing_checks (test_repository_intelligence.NavigationSafetyTests.test_quality_agent_queries_and_context_route_to_existing_checks) (context='requirements quality')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/05b05f9b1c10/repository-r9/tests/test_repository_intelligence.py", line 489, in test_quality_agent_queries_and_context_route_to_existing_checks
+    subprocess.check_output(
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['python3', 'tools/repository_intelligence.py', '--config', '.github/repository-intelligence-config.json', 'context-for-task', 'requirements quality']' returned non-zero exit status 1.
+
+======================================================================
+ERROR: test_quality_agent_queries_and_context_route_to_existing_checks (test_repository_intelligence.NavigationSafetyTests.test_quality_agent_queries_and_context_route_to_existing_checks) (context='якість вимог')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/05b05f9b1c10/repository-r9/tests/test_repository_intelligence.py", line 489, in test_quality_agent_queries_and_context_route_to_existing_checks
+    subprocess.check_output(
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['python3', 'tools/repository_intelligence.py', '--config', '.github/repository-intelligence-config.json', 'context-for-task', 'якість вимог']' returned non-zero exit status 1.
+
+======================================================================
+ERROR: test_quality_agent_queries_and_context_route_to_existing_checks (test_repository_intelligence.NavigationSafetyTests.test_quality_agent_queries_and_context_route_to_existing_checks) (context='independent code review')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/05b05f9b1c10/repository-r9/tests/test_repository_intelligence.py", line 489, in test_quality_agent_queries_and_context_route_to_existing_checks
+    subprocess.check_output(
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['python3', 'tools/repository_intelligence.py', '--config', '.github/repository-intelligence-config.json', 'context-for-task', 'independent code review']' returned non-zero exit status 1.
+
+======================================================================
+ERROR: test_quality_agent_queries_and_context_route_to_existing_checks (test_repository_intelligence.NavigationSafetyTests.test_quality_agent_queries_and_context_route_to_existing_checks) (context='ревʼю коду')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/05b05f9b1c10/repository-r9/tests/test_repository_intelligence.py", line 489, in test_quality_agent_queries_and_context_route_to_existing_checks
+    subprocess.check_output(
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['python3', 'tools/repository_intelligence.py', '--config', '.github/repository-intelligence-config.json', 'context-for-task', 'ревʼю коду']' returned non-zero exit status 1.
+
+======================================================================
+ERROR: test_quality_agent_queries_and_context_route_to_existing_checks (test_repository_intelligence.NavigationSafetyTests.test_quality_agent_queries_and_context_route_to_existing_checks) (context='white-box testing')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/05b05f9b1c10/repository-r9/tests/test_repository_intelligence.py", line 489, in test_quality_agent_queries_and_context_route_to_existing_checks
+    subprocess.check_output(
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['python3', 'tools/repository_intelligence.py', '--config', '.github/repository-intelligence-config.json', 'context-for-task', 'white-box testing']' returned non-zero exit status 1.
+
+======================================================================
+ERROR: test_quality_agent_queries_and_context_route_to_existing_checks (test_repository_intelligence.NavigationSafetyTests.test_quality_agent_queries_and_context_route_to_existing_checks) (context='вайтбокс тестування')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/05b05f9b1c10/repository-r9/tests/test_repository_intelligence.py", line 489, in test_quality_agent_queries_and_context_route_to_existing_checks
+    subprocess.check_output(
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['python3', 'tools/repository_intelligence.py', '--config', '.github/repository-intelligence-config.json', 'context-for-task', 'вайтбокс тестування']' returned non-zero exit status 1.
+
+======================================================================
+ERROR: test_quality_agent_queries_and_context_route_to_existing_checks (test_repository_intelligence.NavigationSafetyTests.test_quality_agent_queries_and_context_route_to_existing_checks) (context='exploratory testing')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/05b05f9b1c10/repository-r9/tests/test_repository_intelligence.py", line 489, in test_quality_agent_queries_and_context_route_to_existing_checks
+    subprocess.check_output(
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['python3', 'tools/repository_intelligence.py', '--config', '.github/repository-intelligence-config.json', 'context-for-task', 'exploratory testing']' returned non-zero exit status 1.
+
+======================================================================
+ERROR: test_quality_agent_queries_and_context_route_to_existing_checks (test_repository_intelligence.NavigationSafetyTests.test_quality_agent_queries_and_context_route_to_existing_checks) (context='ручне тестування')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/05b05f9b1c10/repository-r9/tests/test_repository_intelligence.py", line 489, in test_quality_agent_queries_and_context_route_to_existing_checks
+    subprocess.check_output(
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['python3', 'tools/repository_intelligence.py', '--config', '.github/repository-intelligence-config.json', 'context-for-task', 'ручне тестування']' returned non-zero exit status 1.
+
+======================================================================
+ERROR: test_quality_agent_queries_and_context_route_to_existing_checks (test_repository_intelligence.NavigationSafetyTests.test_quality_agent_queries_and_context_route_to_existing_checks) (context='tools/quality/source-tests.cjs')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/05b05f9b1c10/repository-r9/tests/test_repository_intelligence.py", line 489, in test_quality_agent_queries_and_context_route_to_existing_checks
+    subprocess.check_output(
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['python3', 'tools/repository_intelligence.py', '--config', '.github/repository-intelligence-config.json', 'context-for-task', 'tools/quality/source-tests.cjs']' returned non-zero exit status 1.
+
+----------------------------------------------------------------------
+Ran 2 tests in 16.700s
+
+FAILED (errors=10)

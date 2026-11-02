@@ -1,0 +1,23 @@
+{
+  "base": "6bd9e990251a6211f56ce6ba424960fe24879a71",
+  "source_dirty": true,
+  "catalog_sha256_before_fix": "18504ee16b3d31f375efcf5343a9a0bcd59e612ce0564c70c5815faee0743aad",
+  "policy_sha256": "994a5915c703bd212108d5c256de2e7beaa3dee29b9566ee5ba7ff36a4b78e82",
+  "first_campaign": "python3 -m unittest discover -s tests -p test_repository_intelligence.py",
+  "first_result": "27 passed; 2 errors; 29 executed",
+  "raw_log": "review/issue-109/r14-reviewer-receipts/ri-regressions-precommit.log",
+  "diagnosis": "The output log was created inside the indexed checkout after the catalog/RI build. Both errors explicitly identify only that unclassified log path. Test assertions and producers are unchanged.",
+  "fix": "Register the retained first log and this diagnosis, run only the two affected real-repository adapter tests with output outside checkout, then catalog the final recheck receipt and regenerate RI.",
+  "bounded_recheck": [
+    "test_repository_intelligence.NavigationSafetyTests.test_quality_agent_queries_and_context_route_to_existing_checks",
+    "test_repository_intelligence.NavigationSafetyTests.test_real_adapter_owners_and_cross_repo_isolation"
+  ],
+  "second_campaign": {
+    "log": "review/issue-109/r14-reviewer-receipts/ri-recheck.log",
+    "selectors": 2,
+    "result": "real adapter owner check passed; query/context selector errored in ten subcases",
+    "diagnosis": "Path classification is fixed. The context-for-task subprocess calls require fresh generated RI; catalog and review metadata had changed without a subsequent RI build. Each failed subcase reports stale or altered RI context.",
+    "catalog_sha256": "0f7b7ccb093113dcb57ea12590dc2b7e82b1e53e4a077a7d9f1c09dd700ba728",
+    "fix": "Retain/classify this failed log, regenerate RI/coupling after all prepared metadata changes, and rerun only the affected query/context selector with output outside checkout."
+  }
+}

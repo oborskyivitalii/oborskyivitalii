@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "bda92a48db8db9e021c156c2d9336ac5b6599a346da0e0e1a255e1f02fed4431",
+    "digest": "fc3789e9f3780efc280e9ff12c8eeb17feae0c1f9fe320e71ef1f6fa043d4b40",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -57,7 +57,7 @@
       {
         "path": ".github/acceptance/issue-109.json",
         "identity_mode": "content",
-        "sha256": "905dc7024963db321197fe13add4ec365151302ca833f977840a68a37b86f427"
+        "sha256": "994a5915c703bd212108d5c256de2e7beaa3dee29b9566ee5ba7ff36a4b78e82"
       },
       {
         "path": ".github/acceptance/issue-114.json",
@@ -216,12 +216,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "14a8e461b11207674701ba753323d66a57cb55f4bb7dc150a8ed26d8944c02f7"
+        "sha256": "448d362498e45ec788ccef9f44ec25b48c4008bbbf82a58d2fb1a42b3b8655f6"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "928b6e7f9f0f59ab6d3ee96ca2ae164dc5248d93626f052788c0fcea8139f42c"
+        "sha256": "782ac79c3fd4ebf503df9f6875314041d0a1218c7c44ce2a716333c324c3a6a5"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -371,7 +371,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "f658e7b50e24795cac43570cd0805e0db995db7e28162bf0897629ba63321951"
+        "sha256": "507f05af9f0e64a98c44cc55a1d249143cc19edbd14d26bc889317030c327300"
       },
       {
         "path": "NOTICE.md",
@@ -720,12 +720,22 @@
       {
         "path": "drafts/devcon-romania-2026/README.md",
         "identity_mode": "content",
-        "sha256": "1a13d07f3f71ff228b2053c8fc2faee2e0db1e792dbda7417557dffff4238832"
+        "sha256": "20bff8c8da72420163dd8fd23980ff2f1c39f0b47e9a393030838f1f89e71200"
       },
       {
         "path": "drafts/devcon-romania-2026/devcon-romania-2026-r13-concise-stage-script.md",
         "identity_mode": "content",
         "sha256": "8b00bb3e6f25884fdcb024bb01fae5a80ba9ca0903e6682a7796477a2380bb84"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/devcon-romania-2026-r14-concise-stage-script.md",
+        "identity_mode": "content",
+        "sha256": "ea00d981ee541d9316b371da51d26184e1635baa006915c1b1598b2b53b95403"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/devcon-romania-2026-r14-concise-stage-script.pdf",
+        "identity_mode": "content",
+        "sha256": "f5170f11d8276c279f95be73c52e0ab8b530fbc14f7ba9e9f0fa3a862091230c"
       },
       {
         "path": "drafts/devcon-romania-2026/edition.json",
@@ -1293,6 +1303,11 @@
         "sha256": "38106f91e0f5855d6a59afe6a58015c9ff0dc34debcf753839cf48bff5252d4b"
       },
       {
+        "path": "review/issue-109/2026-11-02-r14-speech-review.md",
+        "identity_mode": "content",
+        "sha256": "9f4e579c9377f0a326465342aec11a6979c1b4eee4e541bbd05413833b7c8770"
+      },
+      {
         "path": "review/issue-109/2026-11-02-r6-review.md",
         "identity_mode": "content",
         "sha256": "5653c666ccd4837c7ad91dda42769aa502a9334af3bba20d513015de2de99717"
@@ -1311,6 +1326,111 @@
         "path": "review/issue-109/2026-11-02-r9-review.md",
         "identity_mode": "content",
         "sha256": "d0e05775c762ae2984d1f798288e94e55b60eac7383d3846c83cf17ea7ad50b5"
+      },
+      {
+        "path": "review/issue-109/r14-input/candidate-manifest.json",
+        "identity_mode": "content",
+        "sha256": "56f4b69d2566cb2a7fc12925a4247a0d2e3b755f4feb13b1ce62759164ce2abb"
+      },
+      {
+        "path": "review/issue-109/r14-input/candidate.diff",
+        "identity_mode": "content",
+        "sha256": "b1cbb5b3946082d495ec5e54ec19869ac5ea6d7ef42132761ba098a9774f7eea"
+      },
+      {
+        "path": "review/issue-109/r14-input/issue109-before-r14.md",
+        "identity_mode": "content",
+        "sha256": "269f5ecf48afac97ab047c9ee0504f7b95c096a8e1aa44d93b2538067ceb2edd"
+      },
+      {
+        "path": "review/issue-109/r14-input/metadata-candidate-manifest.json",
+        "identity_mode": "content",
+        "sha256": "4c37cb969affc65d4b3875abef6e2c3514b932fb7798edd5bec65c4f6a814744"
+      },
+      {
+        "path": "review/issue-109/r14-input/metadata-candidate.diff",
+        "identity_mode": "content",
+        "sha256": "0369aa4fd18972bc3e162a3d2f1b6628cb6dde385a84ac39ed25e41eebe2d989"
+      },
+      {
+        "path": "review/issue-109/r14-input/pr110-before-r14.md",
+        "identity_mode": "content",
+        "sha256": "d62d04c57ca326c0682d68b860d750d101af9a09a7747b0733f0fdaedb65f264"
+      },
+      {
+        "path": "review/issue-109/r14-input/preflight-manifest.json",
+        "identity_mode": "content",
+        "sha256": "5a51538e7795d95e66c45bc0c30d146446e8f1590922ac09b3d9ede51f2d754e"
+      },
+      {
+        "path": "review/issue-109/r14-input/request.md",
+        "identity_mode": "content",
+        "sha256": "942ea424d158d741b2814bfd71e6956ab4e676c69d63ece1d32a81e0db00c479"
+      },
+      {
+        "path": "review/issue-109/r14-reviewer-receipts/code-first.md",
+        "identity_mode": "content",
+        "sha256": "580c41f59e67ee9ec21880e761d41defb84662aeca7fbeefea00999dbf205902"
+      },
+      {
+        "path": "review/issue-109/r14-reviewer-receipts/exploratory-first.md",
+        "identity_mode": "content",
+        "sha256": "7d45e1bdfd8b98e62e36236b5b2144f74723a14fe7fcb9c5ec995add3ba24ea9"
+      },
+      {
+        "path": "review/issue-109/r14-reviewer-receipts/launch-and-results.json",
+        "identity_mode": "content",
+        "sha256": "59ff5798f25616137419e95e84f628cad35266a7e3d021c48c7fe96c64e67fe2"
+      },
+      {
+        "path": "review/issue-109/r14-reviewer-receipts/requirements-final-first.md",
+        "identity_mode": "content",
+        "sha256": "dcc4ca34d5599001aa312f4def6b8fdd0b0083d89eaf18ee2e6f009ec7e7890e"
+      },
+      {
+        "path": "review/issue-109/r14-reviewer-receipts/requirements-metadata-correction.md",
+        "identity_mode": "content",
+        "sha256": "3f814745309cd8da87fffb9d208d6fb2fd8e535d88dc5fb04d35a22d80668d44"
+      },
+      {
+        "path": "review/issue-109/r14-reviewer-receipts/requirements-preflight.md",
+        "identity_mode": "content",
+        "sha256": "a8413afbb830e10b310c8c1add2d82d56acf35d30e7642e4605a2fa72579ee67"
+      },
+      {
+        "path": "review/issue-109/r14-reviewer-receipts/ri-context-recheck-passed.log",
+        "identity_mode": "content",
+        "sha256": "7630a8db8bbc6364136c9f049267aa26f043543a26f0d9174b7232a01863ab06"
+      },
+      {
+        "path": "review/issue-109/r14-reviewer-receipts/ri-log-diagnosis.json",
+        "identity_mode": "content",
+        "sha256": "3b1b07361da37f8c63b200a95d73b49699cc244375edfee76002c977b1f10f22"
+      },
+      {
+        "path": "review/issue-109/r14-reviewer-receipts/ri-recheck.log",
+        "identity_mode": "content",
+        "sha256": "fcb8759eceb9dffa370538636c9cbda3e80a48e398d2cfdb007e7b3a4042962c"
+      },
+      {
+        "path": "review/issue-109/r14-reviewer-receipts/ri-regressions-precommit.log",
+        "identity_mode": "content",
+        "sha256": "4e96d65a7434b433911484dcf3fa866fe35c5a4ae736b35a6bd0598b7180c64c"
+      },
+      {
+        "path": "review/issue-109/r14-reviewer-receipts/whitebox-baseline.md",
+        "identity_mode": "content",
+        "sha256": "8872376580c0a524d6cff09e5f49d0be1ccd19a1d50df2e8c10e02e3eef60034"
+      },
+      {
+        "path": "review/issue-109/r14-reviewer-receipts/whitebox-final-first.md",
+        "identity_mode": "content",
+        "sha256": "9189dec5ee1e99fbd390e11263e3699c867159748ef8abf93915e3386ca7120e"
+      },
+      {
+        "path": "review/issue-109/r14-reviewer-receipts/word-count-and-order.json",
+        "identity_mode": "content",
+        "sha256": "7a51e9ae66b10cdc6755e4db53a0b0503e6f73468ccb64a4d57b9eb1bd6a202d"
       },
       {
         "path": "review/issue-109/r6-reviewer-receipts/artifact-candidate-manifest-v2.json",
@@ -11909,6 +12029,28 @@
       "title": "DevCon Romania 2026 — Concise Stage Script R13"
     },
     {
+      "path": "drafts/devcon-romania-2026/devcon-romania-2026-r14-concise-stage-script.md",
+      "kind": "file",
+      "purpose": "Concise speech R14 aligned to unchanged deck R9, or its generated reading PDF.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "DevCon Romania 2026 — Concise Stage Script R14"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/devcon-romania-2026-r14-concise-stage-script.pdf",
+      "kind": "file",
+      "purpose": "Concise speech R14 aligned to unchanged deck R9, or its generated reading PDF.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "devcon-romania-2026-r14-concise-stage-script.pdf"
+    },
+    {
       "path": "drafts/devcon-romania-2026/edition.json",
       "kind": "file",
       "purpose": "DevCon R1 artifact identities, pinned upstream source, selected-slide mapping and explicit derivative provenance.",
@@ -13152,6 +13294,17 @@
       "title": "Issue 109 — 19 October 2026 DevCon draft review"
     },
     {
+      "path": "review/issue-109/2026-11-02-r14-speech-review.md",
+      "kind": "file",
+      "purpose": "R14 speech alignment request, source pins, exact review receipt or bounded evidence owner.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue109 — 2 November 2026 — R14 concise speech alignment"
+    },
+    {
       "path": "review/issue-109/2026-11-02-r6-review.md",
       "kind": "file",
       "purpose": "Source-bound R6 presentation build or independent review evidence under issue109.",
@@ -13194,6 +13347,237 @@
         "AGENTS.md"
       ],
       "title": "Issue109 — 2 November 2026 — R9 ordering and whole-deck review"
+    },
+    {
+      "path": "review/issue-109/r14-input/candidate-manifest.json",
+      "kind": "file",
+      "purpose": "R14 speech alignment request, source pins, exact review receipt or bounded evidence owner.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "candidate-manifest.json"
+    },
+    {
+      "path": "review/issue-109/r14-input/candidate.diff",
+      "kind": "file",
+      "purpose": "R14 speech alignment request, source pins, exact review receipt or bounded evidence owner.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "candidate.diff"
+    },
+    {
+      "path": "review/issue-109/r14-input/issue109-before-r14.md",
+      "kind": "file",
+      "purpose": "R14 speech alignment request, source pins, exact review receipt or bounded evidence owner.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue109-before-r14.md"
+    },
+    {
+      "path": "review/issue-109/r14-input/metadata-candidate-manifest.json",
+      "kind": "file",
+      "purpose": "R14 speech alignment request, source pins, exact review receipt or bounded evidence owner.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "metadata-candidate-manifest.json"
+    },
+    {
+      "path": "review/issue-109/r14-input/metadata-candidate.diff",
+      "kind": "file",
+      "purpose": "R14 speech alignment request, source pins, exact review receipt or bounded evidence owner.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "metadata-candidate.diff"
+    },
+    {
+      "path": "review/issue-109/r14-input/pr110-before-r14.md",
+      "kind": "file",
+      "purpose": "R14 speech alignment request, source pins, exact review receipt or bounded evidence owner.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "pr110-before-r14.md"
+    },
+    {
+      "path": "review/issue-109/r14-input/preflight-manifest.json",
+      "kind": "file",
+      "purpose": "R14 speech alignment request, source pins, exact review receipt or bounded evidence owner.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "preflight-manifest.json"
+    },
+    {
+      "path": "review/issue-109/r14-input/request.md",
+      "kind": "file",
+      "purpose": "R14 speech alignment request, source pins, exact review receipt or bounded evidence owner.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "R14 speech alignment request - 2026-11-02"
+    },
+    {
+      "path": "review/issue-109/r14-reviewer-receipts/code-first.md",
+      "kind": "file",
+      "purpose": "R14 source-bound reviewer receipt or retained exact repository-check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "R14 first independent Code / changed-artifact review"
+    },
+    {
+      "path": "review/issue-109/r14-reviewer-receipts/exploratory-first.md",
+      "kind": "file",
+      "purpose": "R14 source-bound reviewer receipt or retained exact repository-check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "R14 first independent Exploratory / Interaction QA result"
+    },
+    {
+      "path": "review/issue-109/r14-reviewer-receipts/launch-and-results.json",
+      "kind": "file",
+      "purpose": "R14 source-bound reviewer receipt or retained exact repository-check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "launch-and-results.json"
+    },
+    {
+      "path": "review/issue-109/r14-reviewer-receipts/requirements-final-first.md",
+      "kind": "file",
+      "purpose": "R14 source-bound reviewer receipt or retained exact repository-check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "R14 Requirements & Acceptance — first final-candidate result"
+    },
+    {
+      "path": "review/issue-109/r14-reviewer-receipts/requirements-metadata-correction.md",
+      "kind": "file",
+      "purpose": "R14 source-bound reviewer receipt or retained exact repository-check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "R14 Requirements & Acceptance — metadata correction continuation"
+    },
+    {
+      "path": "review/issue-109/r14-reviewer-receipts/requirements-preflight.md",
+      "kind": "file",
+      "purpose": "R14 source-bound reviewer receipt or retained exact repository-check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "R14 Requirements & Acceptance — first preflight"
+    },
+    {
+      "path": "review/issue-109/r14-reviewer-receipts/ri-context-recheck-passed.log",
+      "kind": "file",
+      "purpose": "Passing query/context selector after catalog repair and current RI regeneration; first two failures retained separately.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ri-context-recheck-passed.log"
+    },
+    {
+      "path": "review/issue-109/r14-reviewer-receipts/ri-log-diagnosis.json",
+      "kind": "file",
+      "purpose": "R14 source-bound reviewer receipt or retained exact repository-check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ri-log-diagnosis.json"
+    },
+    {
+      "path": "review/issue-109/r14-reviewer-receipts/ri-recheck.log",
+      "kind": "file",
+      "purpose": "Retained R14 repository-check failure or bounded corrective evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ri-recheck.log"
+    },
+    {
+      "path": "review/issue-109/r14-reviewer-receipts/ri-regressions-precommit.log",
+      "kind": "file",
+      "purpose": "R14 source-bound reviewer receipt or retained exact repository-check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ri-regressions-precommit.log"
+    },
+    {
+      "path": "review/issue-109/r14-reviewer-receipts/whitebox-baseline.md",
+      "kind": "file",
+      "purpose": "R14 source-bound reviewer receipt or retained exact repository-check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "White-box QA — R14 baseline inspection"
+    },
+    {
+      "path": "review/issue-109/r14-reviewer-receipts/whitebox-final-first.md",
+      "kind": "file",
+      "purpose": "R14 source-bound reviewer receipt or retained exact repository-check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "White-box QA — first completed R14 candidate result"
+    },
+    {
+      "path": "review/issue-109/r14-reviewer-receipts/word-count-and-order.json",
+      "kind": "file",
+      "purpose": "R14 source-bound reviewer receipt or retained exact repository-check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "word-count-and-order.json"
     },
     {
       "path": "review/issue-109/r6-reviewer-receipts/artifact-candidate-manifest-v2.json",
@@ -32864,6 +33248,26 @@
       "path": "review/issue-109",
       "kind": "directory",
       "purpose": "Versioned DevCon edition preparation and exact-source review evidence under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-109/r14-input",
+      "kind": "directory",
+      "purpose": "R14 speech alignment request, source pins, exact review receipt or bounded evidence owner.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-109/r14-reviewer-receipts",
+      "kind": "directory",
+      "purpose": "R14 speech alignment request, source pins, exact review receipt or bounded evidence owner.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [

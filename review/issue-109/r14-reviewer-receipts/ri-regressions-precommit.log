@@ -1,0 +1,33 @@
+.....................EE......
+======================================================================
+ERROR: test_quality_agent_queries_and_context_route_to_existing_checks (test_repository_intelligence.NavigationSafetyTests.test_quality_agent_queries_and_context_route_to_existing_checks)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/05b05f9b1c10/repository-r9/tests/test_repository_intelligence.py", line 433, in test_quality_agent_queries_and_context_route_to_existing_checks
+    surface = ri.build(REPO, config)
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/05b05f9b1c10/repository-r9/tools/repository_intelligence.py", line 427, in build
+    artifacts, directories = path_inventory(root, config, records, texts, instructions)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/05b05f9b1c10/repository-r9/tools/repository_intelligence.py", line 267, in path_inventory
+    raise ValueError(
+ValueError: Path catalog coverage mismatch; unclassified=['review/issue-109/r14-reviewer-receipts/ri-regressions-precommit.log']; missing/stale=[]
+
+======================================================================
+ERROR: test_real_adapter_owners_and_cross_repo_isolation (test_repository_intelligence.NavigationSafetyTests.test_real_adapter_owners_and_cross_repo_isolation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/05b05f9b1c10/repository-r9/tests/test_repository_intelligence.py", line 412, in test_real_adapter_owners_and_cross_repo_isolation
+    surface = ri.build(REPO, path.relative_to(REPO).as_posix())
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/05b05f9b1c10/repository-r9/tools/repository_intelligence.py", line 427, in build
+    artifacts, directories = path_inventory(root, config, records, texts, instructions)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/05b05f9b1c10/repository-r9/tools/repository_intelligence.py", line 267, in path_inventory
+    raise ValueError(
+ValueError: Path catalog coverage mismatch; unclassified=['review/issue-109/r14-reviewer-receipts/ri-regressions-precommit.log']; missing/stale=[]
+
+----------------------------------------------------------------------
+Ran 29 tests in 1.752s
+
+FAILED (errors=2)
