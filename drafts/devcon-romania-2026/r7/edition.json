@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "event_slug": "devcon-romania-2026",
+  "edition": "DevCon Romania 2026 R7",
+  "revision": "R7",
+  "status": "author-review-draft",
+  "author": "Vitalii Oborskyi",
+  "language": "en",
+  "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/109",
+  "pull_request": "https://github.com/oborskyivitalii/oborskyivitalii/pull/110",
+  "versioning_contract": "guides/PRESENTATION-VERSIONING.md",
+  "repository_predecessor": {
+    "revision": "R6",
+    "commit": "75ca39219685dc279ec8301ed7602d4769201b3f",
+    "manifest": "drafts/devcon-romania-2026/r6/edition.json",
+    "status": "complete immutable retained edition"
+  },
+  "working_lineage": {
+    "native_speech_revision": "R13",
+    "note": "R7 changes delivery order only. The standalone historical R13 script retains its original section order and bytes; attached R7 notes and Markdown follow current delivery positions. R13 is a speech revision, not repository edition R13.",
+    "stage_script": {
+      "path": "drafts/devcon-romania-2026/devcon-romania-2026-r13-concise-stage-script.md",
+      "bytes": 18219,
+      "sha256": "8b00bb3e6f25884fdcb024bb01fae5a80ba9ca0903e6682a7796477a2380bb84"
+    }
+  },
+  "slide_count": 9,
+  "notes_count": 9,
+  "pdf_page_count": 9,
+  "slide_size_emu": {
+    "cx": 12192000,
+    "cy": 6858000
+  },
+  "timing": {
+    "talk_target": "19:55",
+    "qa_target": "7:00",
+    "reserve_target": "3:05",
+    "status": "editorial target; timed English rehearsal and presenting-device verification pending"
+  },
+  "source_pins": {
+    "pmday": {
+      "repository": "UncertaintyArchitectureGroup/uncertainty-architecture",
+      "commit": "22639d311d5fb46a23f3d5cdd819800dbe1169d9"
+    },
+    "article_r38": {
+      "repository": "oborskyivitalii/oborskyivitalii",
+      "pull_request": 79,
+      "commit": "b128ad27b23bc9d14a62b495c5c18b7ae537ab65",
+      "path": "site/publications/pmday-ai-both-sides/manuscript.en.md"
+    }
+  },
+  "artifacts": {
+    "pptx": {
+      "path": "drafts/devcon-romania-2026/r7/devcon-romania-2026-r7.pptx",
+      "bytes": 1422905,
+      "sha256": "ec8478a8c55d7db17a922e761a137759cb4c2de86b135f9153b709f76c7a9b29"
+    },
+    "pdf": {
+      "path": "drafts/devcon-romania-2026/r7/devcon-romania-2026-r7.pdf",
+      "bytes": 1114624,
+      "sha256": "7056f7423652563aaeafe722a22ab6b139e77c4e630710dd90eaf02aa59d8517"
+    },
+    "notes": {
+      "path": "drafts/devcon-romania-2026/r7/speaker-notes.md",
+      "bytes": 35191,
+      "sha256": "0d98a801a8f1af30ecf1716c37bff8a819cc19cb31eea4fd876f409560373945"
+    }
+  },
+  "native_input": {
+    "path": "drafts/devcon-romania-2026/r6/devcon-romania-2026-r6.pptx",
+    "bytes": 1422904,
+    "sha256": "b3269196b0eac9dde5fd58706e16a6e84cff4bc2b3e3b368a634087b1cc5eef9"
+  },
+  "inherited_approved_native_inputs": {
+    "full_deck": {
+      "path": "drafts/devcon-romania-2026/r6/sources/scratch-r13-native-full-deck.pptx",
+      "bytes": 1395078,
+      "sha256": "6e62b5b83c55fa09e63cf25806bdcf4472ffe313e89b85d1f26d1484c777ebbf"
+    },
+    "slide_04": {
+      "path": "drafts/devcon-romania-2026/r6/sources/approved-slide-04-native.pptx",
+      "bytes": 44767,
+      "sha256": "1741f44748706fae660f442636470c48223f721af567c83315c89e56a52d1c4c"
+    },
+    "visual_reference": {
+      "path": "drafts/devcon-romania-2026/r6/sources/approved-slide-04-preview.png",
+      "bytes": 481796,
+      "sha256": "c3ba556b7e28cf38e6d87375af070885aceeb9cb79fc260a9834a573230c3259"
+    },
+    "reviewed_slide_05_layout_donor": {
+      "path": "drafts/devcon-romania-2026/r6/sources/slide-05-spacing-donor-full-package.pptx",
+      "bytes": 1395111,
+      "sha256": "0bd149ed530046326e25111d7911dd15aea48ae830d19832c259ef5b199f437d"
+    }
+  },
+  "source_positions_in_delivery_order": [1, 2, 4, 3, 5, 6, 7, 8, 9],
+  "slides": [
+    {
+      "slide": 1,
+      "r6_source_position": 1,
+      "r13_source_section": 1,
+      "title": "AI Changes the Delivery System and the Product Itself"
+    },
+    {
+      "slide": 2,
+      "r6_source_position": 2,
+      "r13_source_section": 2,
+      "title": "We Accelerated a Step. Not the System."
+    },
+    {
+      "slide": 3,
+      "r6_source_position": 4,
+      "r13_source_section": 4,
+      "title": "The Comprehension Gap Is an Ownership Risk"
+    },
+    {
+      "slide": 4,
+      "r6_source_position": 3,
+      "r13_source_section": 3,
+      "title": "What Are We Actually Measuring?"
+    },
+    {
+      "slide": 5,
+      "r6_source_position": 5,
+      "r13_source_section": 5,
+      "title": "Rebalancing a Node Affects More Than Flow"
+    },
+    {
+      "slide": 6,
+      "r6_source_position": 6,
+      "r13_source_section": 6,
+      "title": "When Model Judgment Enters Runtime"
+    },
+    {
+      "slide": 7,
+      "r6_source_position": 7,
+      "r13_source_section": 7,
+      "title": "The Rollout Ends. The Hypothesis Doesn’t."
+    },
+    {
+      "slide": 8,
+      "r6_source_position": 8,
+      "r13_source_section": 8,
+      "title": "Engineer the Whole Control System."
+    },
+    {
+      "slide": 9,
+      "r6_source_position": 9,
+      "r13_source_section": 9,
+      "title": "AI Changes Both Sides. The Engineering Must Follow."
+    }
+  ],
+  "integration": {
+    "helper": "tools/presentations/reorder_native_slides.py",
+    "recipe": "drafts/devcon-romania-2026/r7/reorder-recipe.json",
+    "changed_package_payloads": [
+      "ppt/presentation.xml",
+      "ppt/slides/slide3.xml",
+      "ppt/notesSlides/notesSlide3.xml",
+      "ppt/slides/slide4.xml",
+      "ppt/notesSlides/notesSlide4.xml"
+    ],
+    "other_package_payloads_unchanged": 53,
+    "relationship_parts_unchanged": 23,
+    "spoken_sections_unchanged": 9,
+    "nonspoken_reference_sections_unchanged": 9,
+    "visible_numbers": "03 on original ownership slide; 04 on original evidence slide",
+    "native_note_headers": "delivery labels updated; notes stay attached through unchanged relationships",
+    "source_lineage": "R6 ownership content and its approved systemic-first layout now occupy R7 S03; R6 qualified evidence now occupies R7 S04; the R6 S05 geometry correction remains intact."
+  },
+  "pdf_export": {
+    "method": "LibreOffice Impress impress_pdf_Export from the exact final R7 PPTX",
+    "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+    "rasterized_pages": false,
+    "verification": "Mapped source-page text, links and 1921x1080 rasters compared. Seven pages pixel-identical; swapped pages differ only within visible footer-number glyphs (118 and151 pixels)."
+  },
+  "qr": {
+    "target": "https://vitaliioborskyi.ai/",
+    "status": "Final PDF raster decodes to expected homepage; native QR asset and relationships are byte-identical to the decoded R6 asset. Physical-device scan remains pending."
+  },
+  "editorial_assessment": {
+    "sequence": "delivery imbalance -> comprehension and ownership -> qualified empirical evidence -> contextual responses",
+    "boundary": "The evidence page measures different populations and outcomes; it does not directly establish a comprehension gap at every SDLC node. Illustrative and empirical qualifications remain intact.",
+    "reference_notes": "Two nonspoken transition sentences on source section4 are less immediate after the exchange. They remain outside the stage script and retain their exact historical wording."
+  },
+  "acceptance_mapping": {
+    "AC13": "Evidence content: R6 S03 -> R7 S04. Historical SLIDE-03-ACCEPTANCE retains content lineage.",
+    "AC14": "Ownership content: R6 S04 -> R7 S03. Historical SLIDE-04-ACCEPTANCE retains content lineage; prior approval follows this content."
+  },
+  "event_selection": {
+    "selected_revision": "R3",
+    "status": "R7 is the current author-review edition. The event record remains on R3 until explicit author selection and event-record update."
+  },
+  "acceptance": {
+    "author": "Reorder authorized; prior ownership-content approval retained; exact full R7 package pending author review",
+    "independent_review": "Source-bound receipts and dispositions in review/issue-109/2026-11-02-r7-review.md",
+    "repository_checks": "Exact source/results recorded in R7 review and PR110",
+    "timed_rehearsal": "pending",
+    "presenting_device": "pending",
+    "conference_final": false
+  },
+  "delivery_status": {
+    "repository_text_package": "included",
+    "repository_binary_artifacts": "included; R6 and all prior history retained unchanged"
+  },
+  "review_record": "review/issue-109/2026-11-02-r7-review.md"
+}

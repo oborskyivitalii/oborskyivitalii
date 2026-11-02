@@ -1,4 +1,23 @@
-## Current amendment — R6, 2 November 2026
+## Current amendment — R7, 2 November 2026
+
+The author requests exchanging current slides 3 and 4 and an assessment of that
+order. R7 uses R6 source positions **1, 2, 4, 3, 5, 6, 7, 8, 9**. Delivery numbers
+and attached native/Markdown notes follow the new positions; all visible content,
+layout and R13 spoken wording remain intact. The historical standalone R13 script
+keeps its source section order. See [current package](README.md), [R7 manifest](r7/edition.json)
+and [review](../../review/issue-109/2026-11-02-r7-review.md).
+
+The narrative now moves from delivery imbalance to comprehension and ownership,
+then to qualified empirical signals and contextual responses. The studies retain
+their population/outcome limits; they do not establish a measured comprehension
+gap at every lifecycle stage. Stable AC13 and its historical slide-03 gate follow
+evidence content to R7 position4; AC14 and its historical slide-04 gate follow
+ownership content to R7 position3. Full-package acceptance, rehearsal and device
+checks remain separate. The event still selects R3. R6 is retained unchanged.
+
+---
+
+## Previous amendment — R6, 2 November 2026
 
 The current author request approves the `systemic-first` slide-4 preview and asks
 for integration into the full native deck, review of all nine slides, matching

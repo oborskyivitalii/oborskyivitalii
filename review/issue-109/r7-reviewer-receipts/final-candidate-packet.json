@@ -1,0 +1,194 @@
+{
+  "phase": "R7 final-candidate independent review",
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "repository_root": "/workspace/scratch/d8b65f68acc8/devcon-repo",
+  "issue": 109,
+  "pull_request": 110,
+  "base_head": "75ca39219685dc279ec8301ed7602d4769201b3f",
+  "source_state": "Prepared staged subset in an intentionally dirty checkout, not a clean commit. Listed authored source bytes are frozen; later catalog/generated RI and verbatim review receipts are separate metadata.",
+  "primary_request": "review/issue-109/r7-reviewer-receipts/request.md",
+  "required_source_order": [
+    1,
+    2,
+    4,
+    3,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "allowed_checks": "Bounded read-only source/native/PDF inspection, independent calculations and scratch-only checks; no implementation/external writes/delegation; do not read MEMORY, private conversation, parent scratch notes or current peer verdicts. Treat candidate claims as review subjects.",
+  "review_surfaces": {
+    "native": "R7 PPTX and exact R6 comparator",
+    "pdf": "R7 and R6 PDF; rendered pages available in /workspace/scratch/d8b65f68acc8/devcon-r7/build/renders-r7",
+    "unavailable": "Native PowerPoint UI, physical projection, timed author rehearsal. No browser application change."
+  },
+  "files": [
+    {
+      "path": ".github/acceptance/issue-109.json",
+      "bytes": 36235,
+      "sha256": "5127a6003b4d425005c7470283758e8c412ce394ad8860c1f1e92f8245298eaa"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 6747,
+      "sha256": "ad4f179ec04c7af12867229d70598a660c5ae41f3cb456cafd02aca3d12a9988"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "bytes": 19704,
+      "sha256": "804fb3da9a0bc7369bbd902313224221becc6c6b775536ca943f8664bf741442"
+    },
+    {
+      "path": "agents/reviewers/README.md",
+      "bytes": 6964,
+      "sha256": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb"
+    },
+    {
+      "path": "agents/reviewers/code-review.md",
+      "bytes": 2663,
+      "sha256": "26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697"
+    },
+    {
+      "path": "agents/reviewers/exploratory-interaction-qa.md",
+      "bytes": 2850,
+      "sha256": "280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a"
+    },
+    {
+      "path": "agents/reviewers/requirements-acceptance.md",
+      "bytes": 3268,
+      "sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6"
+    },
+    {
+      "path": "agents/reviewers/white-box-qa.md",
+      "bytes": 3266,
+      "sha256": "832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/README.md",
+      "bytes": 5686,
+      "sha256": "cc8e4e282db2e090ba60093f9c3ee15c2d7ed6df1d619193dac9bcd6b5fc7a8f"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/devcon-romania-2026-r13-concise-stage-script.md",
+      "bytes": 18219,
+      "sha256": "8b00bb3e6f25884fdcb024bb01fae5a80ba9ca0903e6682a7796477a2380bb84"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/plan.md",
+      "bytes": 42658,
+      "sha256": "6d3df9d93e1f516ccc2f7526ecea8a670ee5e6fc5001f6e54cc39b08a03a1dc0"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r6/devcon-romania-2026-r6.pdf",
+      "bytes": 1114519,
+      "sha256": "8d070574648dbc640b30e4fb4e996ee9992664c332b762297b13bf5b8532fa20"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r6/devcon-romania-2026-r6.pptx",
+      "bytes": 1422904,
+      "sha256": "b3269196b0eac9dde5fd58706e16a6e84cff4bc2b3e3b368a634087b1cc5eef9"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r6/edition.json",
+      "bytes": 7147,
+      "sha256": "94a65484815a4217fdbedda53c0368c08c78d976f804f2ede20ed26660493db3"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r6/speaker-notes.md",
+      "bytes": 35106,
+      "sha256": "3772174bc7e27eb32339a43541cc17191c898bac710ec994ae9c8c30f1d86976"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r7/README.md",
+      "bytes": 4720,
+      "sha256": "8ba807249815ffd5ce36363c9a2dbfd118cbd1135da95ad72b8c72bf46b7b18d"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r7/devcon-romania-2026-r7.pdf",
+      "bytes": 1114624,
+      "sha256": "7056f7423652563aaeafe722a22ab6b139e77c4e630710dd90eaf02aa59d8517"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r7/devcon-romania-2026-r7.pptx",
+      "bytes": 1422905,
+      "sha256": "ec8478a8c55d7db17a922e761a137759cb4c2de86b135f9153b709f76c7a9b29"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r7/edition.json",
+      "bytes": 8482,
+      "sha256": "247c57ad8afdc87e07327374bc26a679adfa81be5b489c21f5e2240bc9a63a8a"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r7/reorder-recipe.json",
+      "bytes": 552,
+      "sha256": "116e85de2938628b0828535fba3f4b2cb016e36280a7069db4d290e5be847a03"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r7/speaker-notes.md",
+      "bytes": 35191,
+      "sha256": "0d98a801a8f1af30ecf1716c37bff8a819cc19cb31eea4fd876f409560373945"
+    },
+    {
+      "path": "guides/CODE-STYLE.md",
+      "bytes": 13720,
+      "sha256": "cdef877504055734d653af12237fc708f3e3636dd15dfc0703f71e0f6c87ee40"
+    },
+    {
+      "path": "guides/PRESENTATION-VERSIONING.md",
+      "bytes": 3127,
+      "sha256": "917ec0d4323d55081a5a1c9e671f656c01b4173c4b8d8371eb24857a09fbb75e"
+    },
+    {
+      "path": "review/issue-109/r7-reviewer-receipts/finalization-source.mjs.txt",
+      "bytes": 1571,
+      "sha256": "6f75c5a11fff6efba132599ca8b50bddf1127947f2d4ef08d82de79e2f122c50"
+    },
+    {
+      "path": "review/issue-109/r7-reviewer-receipts/finalization.validation.json",
+      "bytes": 3600,
+      "sha256": "fc8d16c42cc2771d7ce66fc5d4f1d8f0c4472e2f7a8a68c96feb135dc508123c"
+    },
+    {
+      "path": "review/issue-109/r7-reviewer-receipts/helper-checks.json",
+      "bytes": 977,
+      "sha256": "a7752b099be6e000327434c3641f50c4a4cda7736edebd7ac618cdc16df16583"
+    },
+    {
+      "path": "review/issue-109/r7-reviewer-receipts/prepared-source.diff.txt",
+      "bytes": 123113,
+      "sha256": "0c88a15e2dcf44192d32ed320d4bfcd9f2774fa4cf60c9b61f2f25d907ceca73"
+    },
+    {
+      "path": "review/issue-109/r7-reviewer-receipts/proof.json",
+      "bytes": 22185,
+      "sha256": "9506d99cd585983fb8c50111cca95f38f4f353b5416e9e6bd9dfabd94ee2de98"
+    },
+    {
+      "path": "review/issue-109/r7-reviewer-receipts/reorder.json",
+      "bytes": 582,
+      "sha256": "e770862370b3c960f0c2f819181464ec853053bfe5fda9a9b21449a0e84d0911"
+    },
+    {
+      "path": "review/issue-109/r7-reviewer-receipts/request.md",
+      "bytes": 1351,
+      "sha256": "61ec228672cdc8717c2769f7338f49b0c05c9b890a2b8a37f096cfecea26e0e3"
+    },
+    {
+      "path": "review/issue-109/r7-reviewer-receipts/verification-source.py.txt",
+      "bytes": 6369,
+      "sha256": "26c44998c5d0041ac14b9f85aea7d8c0720ef1e0e6f2c3436ad7d626c5576527"
+    },
+    {
+      "path": "tools/presentations/reorder_native_slides.py",
+      "bytes": 7491,
+      "sha256": "9423597518bee6ea2fcbb8e5c57b7e0d997f4612901c929a8597c7e8e4ae9225"
+    },
+    {
+      "path": "tools/presentations/validate_edition.py",
+      "bytes": 4960,
+      "sha256": "4d5a1cf4c6f7ad7fde3e0a9161bdee9cf21533189f611ece1411112df9fdbf2b"
+    }
+  ]
+}

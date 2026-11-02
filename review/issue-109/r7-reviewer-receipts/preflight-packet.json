@@ -1,0 +1,75 @@
+{
+  "phase": "R7 requirements preflight",
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 109,
+  "pr": 110,
+  "base_head": "75ca39219685dc279ec8301ed7602d4769201b3f",
+  "source_state": "Clean native Git checkout verified; prepared reviewer subset below",
+  "files": [
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-r7/request.md",
+      "sha256": "61ec228672cdc8717c2769f7338f49b0c05c9b890a2b8a37f096cfecea26e0e3",
+      "bytes": 1351
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-repo/.github/acceptance/issue-109.json",
+      "sha256": "b4ece808f9882bf81c9ac86e980427c4a3f502793a8799e3e69a87cc7670ba3b",
+      "bytes": 30565
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-repo/AGENTS.md",
+      "sha256": "ad4f179ec04c7af12867229d70598a660c5ae41f3cb456cafd02aca3d12a9988",
+      "bytes": 6747
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-repo/CONTRIBUTING.md",
+      "sha256": "804fb3da9a0bc7369bbd902313224221becc6c6b775536ca943f8664bf741442",
+      "bytes": 19704
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-repo/agents/reviewers/README.md",
+      "sha256": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb",
+      "bytes": 6964
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-repo/agents/reviewers/requirements-acceptance.md",
+      "sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6",
+      "bytes": 3268
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/README.md",
+      "sha256": "5cb1fe96eb086b6c93b489c4358db02702ed69a88d5167dd6cc5cac6962aeb94",
+      "bytes": 5280
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/devcon-romania-2026-r13-concise-stage-script.md",
+      "sha256": "8b00bb3e6f25884fdcb024bb01fae5a80ba9ca0903e6682a7796477a2380bb84",
+      "bytes": 18219
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/devcon-romania-2026-r6.pdf",
+      "sha256": "8d070574648dbc640b30e4fb4e996ee9992664c332b762297b13bf5b8532fa20",
+      "bytes": 1114519
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/devcon-romania-2026-r6.pptx",
+      "sha256": "b3269196b0eac9dde5fd58706e16a6e84cff4bc2b3e3b368a634087b1cc5eef9",
+      "bytes": 1422904
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/edition.json",
+      "sha256": "94a65484815a4217fdbedda53c0368c08c78d976f804f2ede20ed26660493db3",
+      "bytes": 7147
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/speaker-notes.md",
+      "sha256": "3772174bc7e27eb32339a43541cc17191c898bac710ec994ae9c8c30f1d86976",
+      "bytes": 35106
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-repo/guides/PRESENTATION-VERSIONING.md",
+      "sha256": "917ec0d4323d55081a5a1c9e671f656c01b4173c4b8d8371eb24857a09fbb75e",
+      "bytes": 3127
+    }
+  ]
+}

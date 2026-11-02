@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "513059a467bb9547010ed5309d294bd228d0dd9d3a2818ff9db2b336fcd57613",
+    "digest": "828a711d8f655839ef55e83f1e8b57e665bf8bfc5ac2c9a5ad6da9da40f245b8",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -57,7 +57,7 @@
       {
         "path": ".github/acceptance/issue-109.json",
         "identity_mode": "content",
-        "sha256": "b4ece808f9882bf81c9ac86e980427c4a3f502793a8799e3e69a87cc7670ba3b"
+        "sha256": "5127a6003b4d425005c7470283758e8c412ce394ad8860c1f1e92f8245298eaa"
       },
       {
         "path": ".github/acceptance/issue-114.json",
@@ -216,12 +216,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "1322e3f4d3c439c81a5e14d614c6d3d078567deb269ea2e6f1b7962f68ea0899"
+        "sha256": "b56a00f26b2dae6a878960b9668e9cacc2daa169a5c128f29d3def4a4b5e74a1"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "b198b84ecc9c11651391cfe01cb89e4a58fb0ecda7a9a6b3a378bc70e346cc6d"
+        "sha256": "9e48ffb84648ea58970c7d395d48eca481c935dce51e5235b91b36afc39eb722"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -371,7 +371,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "079cc59e68cf6f7862ab650146123b753acdc3caa4ce87af678ad58017b2d148"
+        "sha256": "eca72bff81110fea32cc9a60cadc02d3e7157c5ad5141a9c12931e13e968f43c"
       },
       {
         "path": "NOTICE.md",
@@ -720,7 +720,7 @@
       {
         "path": "drafts/devcon-romania-2026/README.md",
         "identity_mode": "content",
-        "sha256": "5cb1fe96eb086b6c93b489c4358db02702ed69a88d5167dd6cc5cac6962aeb94"
+        "sha256": "cc8e4e282db2e090ba60093f9c3ee15c2d7ed6df1d619193dac9bcd6b5fc7a8f"
       },
       {
         "path": "drafts/devcon-romania-2026/devcon-romania-2026-r13-concise-stage-script.md",
@@ -735,7 +735,7 @@
       {
         "path": "drafts/devcon-romania-2026/plan.md",
         "identity_mode": "content",
-        "sha256": "cad261d1d0f68966bb0411e0d6ae76dab97c0a4480999e28967afcfe481e5bc7"
+        "sha256": "6d3df9d93e1f516ccc2f7526ecea8a670ee5e6fc5001f6e54cc39b08a03a1dc0"
       },
       {
         "path": "drafts/devcon-romania-2026/r2/devcon-romania-2026-r2.pdf",
@@ -841,6 +841,36 @@
         "path": "drafts/devcon-romania-2026/r6/speaker-notes.md",
         "identity_mode": "content",
         "sha256": "3772174bc7e27eb32339a43541cc17191c898bac710ec994ae9c8c30f1d86976"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r7/README.md",
+        "identity_mode": "content",
+        "sha256": "8ba807249815ffd5ce36363c9a2dbfd118cbd1135da95ad72b8c72bf46b7b18d"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r7/devcon-romania-2026-r7.pdf",
+        "identity_mode": "content",
+        "sha256": "7056f7423652563aaeafe722a22ab6b139e77c4e630710dd90eaf02aa59d8517"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r7/devcon-romania-2026-r7.pptx",
+        "identity_mode": "content",
+        "sha256": "ec8478a8c55d7db17a922e761a137759cb4c2de86b135f9153b709f76c7a9b29"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r7/edition.json",
+        "identity_mode": "content",
+        "sha256": "247c57ad8afdc87e07327374bc26a679adfa81be5b489c21f5e2240bc9a63a8a"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r7/reorder-recipe.json",
+        "identity_mode": "content",
+        "sha256": "116e85de2938628b0828535fba3f4b2cb016e36280a7069db4d290e5be847a03"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r7/speaker-notes.md",
+        "identity_mode": "content",
+        "sha256": "0d98a801a8f1af30ecf1716c37bff8a819cc19cb31eea4fd876f409560373945"
       },
       {
         "path": "drafts/devcon-romania-2026/speaker-notes.md",
@@ -1133,6 +1163,11 @@
         "sha256": "5653c666ccd4837c7ad91dda42769aa502a9334af3bba20d513015de2de99717"
       },
       {
+        "path": "review/issue-109/2026-11-02-r7-review.md",
+        "identity_mode": "content",
+        "sha256": "a1f2f51a24f44435e14dc767f13e70c8dc285c8406e2b887a474c072e0b62a49"
+      },
+      {
         "path": "review/issue-109/r6-reviewer-receipts/artifact-candidate-manifest-v2.json",
         "identity_mode": "content",
         "sha256": "9c5cd97fc8959e3c9110178c5813ecefa36ccff645119ef2789ea1fbda9f2687"
@@ -1276,6 +1311,101 @@
         "path": "review/issue-109/r6-reviewer-receipts/whitebox-fixture-diagnostic.json",
         "identity_mode": "content",
         "sha256": "a1454ed9b0ba45d20776b0841320ed9d907e38d55813b2e7b45c7d7344eb6307"
+      },
+      {
+        "path": "review/issue-109/r7-reviewer-receipts/author-frozen-files.json",
+        "identity_mode": "content",
+        "sha256": "e37dbb4f472046271bfa363a4cae12e390681649eefa9dc2910982af64fcc13b"
+      },
+      {
+        "path": "review/issue-109/r7-reviewer-receipts/code-first.md",
+        "identity_mode": "content",
+        "sha256": "1a7fc31c139d7d88f763959f8b9770aab567698c640949bebb31ed3d6daf2516"
+      },
+      {
+        "path": "review/issue-109/r7-reviewer-receipts/exploratory-first.md",
+        "identity_mode": "content",
+        "sha256": "c59b4b826a200e85ef79075e05b4d6b86de0b981004c6ca8f42920604384b539"
+      },
+      {
+        "path": "review/issue-109/r7-reviewer-receipts/final-candidate-packet.json",
+        "identity_mode": "content",
+        "sha256": "5d5d4d4e48626c67b8c6efff066309c61b590bf20c8c9d019db3eaae936abc92"
+      },
+      {
+        "path": "review/issue-109/r7-reviewer-receipts/finalization-source.mjs.txt",
+        "identity_mode": "content",
+        "sha256": "6f75c5a11fff6efba132599ca8b50bddf1127947f2d4ef08d82de79e2f122c50"
+      },
+      {
+        "path": "review/issue-109/r7-reviewer-receipts/finalization.validation.json",
+        "identity_mode": "content",
+        "sha256": "fc8d16c42cc2771d7ce66fc5d4f1d8f0c4472e2f7a8a68c96feb135dc508123c"
+      },
+      {
+        "path": "review/issue-109/r7-reviewer-receipts/helper-checks.json",
+        "identity_mode": "content",
+        "sha256": "a7752b099be6e000327434c3641f50c4a4cda7736edebd7ac618cdc16df16583"
+      },
+      {
+        "path": "review/issue-109/r7-reviewer-receipts/launch-and-result-receipts.json",
+        "identity_mode": "content",
+        "sha256": "fa50a933fe9342785dba32a1c9ddcb35ba77d563ca48975067528c6ed3f0b10d"
+      },
+      {
+        "path": "review/issue-109/r7-reviewer-receipts/pdf-export.stderr.log",
+        "identity_mode": "content",
+        "sha256": "494af2ebbeb73db3d1525179ce641bdd5aae0ab55f5e0be52642b7c246b6c865"
+      },
+      {
+        "path": "review/issue-109/r7-reviewer-receipts/pdf-export.stdout.log",
+        "identity_mode": "content",
+        "sha256": "0becb39f22b3ccabed6cc4ebc7488e2d64d69487204cd4be7660dad3a16e7be9"
+      },
+      {
+        "path": "review/issue-109/r7-reviewer-receipts/preflight-packet.json",
+        "identity_mode": "content",
+        "sha256": "090afb08d2bbd0cfce886ea99e00ae634772b8da71d246fc336dc24563d3e758"
+      },
+      {
+        "path": "review/issue-109/r7-reviewer-receipts/prepared-source.diff.txt",
+        "identity_mode": "content",
+        "sha256": "0c88a15e2dcf44192d32ed320d4bfcd9f2774fa4cf60c9b61f2f25d907ceca73"
+      },
+      {
+        "path": "review/issue-109/r7-reviewer-receipts/proof.json",
+        "identity_mode": "content",
+        "sha256": "9506d99cd585983fb8c50111cca95f38f4f353b5416e9e6bd9dfabd94ee2de98"
+      },
+      {
+        "path": "review/issue-109/r7-reviewer-receipts/reorder.json",
+        "identity_mode": "content",
+        "sha256": "e770862370b3c960f0c2f819181464ec853053bfe5fda9a9b21449a0e84d0911"
+      },
+      {
+        "path": "review/issue-109/r7-reviewer-receipts/request.md",
+        "identity_mode": "content",
+        "sha256": "61ec228672cdc8717c2769f7338f49b0c05c9b890a2b8a37f096cfecea26e0e3"
+      },
+      {
+        "path": "review/issue-109/r7-reviewer-receipts/requirements-final.md",
+        "identity_mode": "content",
+        "sha256": "cd99ce20f5ca4187965c3a04fdce9527918e0fb1aeff26844223e7a611e69088"
+      },
+      {
+        "path": "review/issue-109/r7-reviewer-receipts/requirements-preflight.md",
+        "identity_mode": "content",
+        "sha256": "276b0c42f92abff722b9f18e9a65cba7d7c0f0b0b6bde4fe6d0ec0390d152572"
+      },
+      {
+        "path": "review/issue-109/r7-reviewer-receipts/verification-source.py.txt",
+        "identity_mode": "content",
+        "sha256": "26c44998c5d0041ac14b9f85aea7d8c0720ef1e0e6f2c3436ad7d626c5576527"
+      },
+      {
+        "path": "review/issue-109/r7-reviewer-receipts/whitebox-first.md",
+        "identity_mode": "content",
+        "sha256": "5cd4448737ed2dc13389520fccc38dd23f8c4eb40a69cabe5cb7ddcb5237074d"
       },
       {
         "path": "review/issue-114/2026-10-20-review.md",
@@ -8443,6 +8573,11 @@
         "sha256": "5756a926f4caa409fc7c3d36b78e3f2d8600efce1fb353d6238cc43d4b24f317"
       },
       {
+        "path": "tools/presentations/reorder_native_slides.py",
+        "identity_mode": "content",
+        "sha256": "9423597518bee6ea2fcbb8e5c57b7e0d997f4612901c929a8597c7e8e4ae9225"
+      },
+      {
         "path": "tools/presentations/validate_edition.py",
         "identity_mode": "content",
         "sha256": "4d5a1cf4c6f7ad7fde3e0a9161bdee9cf21533189f611ece1411112df9fdbf2b"
@@ -9911,7 +10046,7 @@
     {
       "path": ".github/acceptance/issue-109.json",
       "kind": "file",
-      "purpose": "Issue109 stable AC01–AC19 mapping for current R6 artifacts and unchanged R13 speech; bounded repository checks and separate artifact, independent, author, rehearsal, device and event gates.",
+      "purpose": "Issue109 stable AC01–AC19 mapping for current R7 reorder and unchanged R13 speech; stable content gates, bounded repository checks and separate human/event obligations.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md",
       "instructions": [
@@ -11374,7 +11509,7 @@
     {
       "path": "drafts/devcon-romania-2026/README.md",
       "kind": "file",
-      "purpose": "Current R6 author-review package with R13 speech; retained historical editions, reproducible native integration, exact artifacts and separate event selection.",
+      "purpose": "Current R7 author-review package with R13 speech; historical R6 preserved, exact reorder mapping and separate event selection.",
       "role": "draft",
       "owner": "drafts/devcon-romania-2026/README.md",
       "instructions": [
@@ -11407,7 +11542,7 @@
     {
       "path": "drafts/devcon-romania-2026/plan.md",
       "kind": "file",
-      "purpose": "Historical DevCon outline with dated R6 approved slide4/full-deck scope amendment and explicit current-package routing.",
+      "purpose": "Historical DevCon outline with dated R7 slide3/4 reorder scope and earlier R6 integration amendment.",
       "role": "draft",
       "owner": "drafts/devcon-romania-2026/README.md",
       "instructions": [
@@ -11645,6 +11780,72 @@
         "AGENTS.md"
       ],
       "title": "DevCon Romania 2026 — R6 speaker notes"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r7/README.md",
+      "kind": "file",
+      "purpose": "R7 native reorder package: retained R6 source-position order, matching artifacts, notes and reproducible provenance.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "R7 native reorder provenance and reproduction"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r7/devcon-romania-2026-r7.pdf",
+      "kind": "file",
+      "purpose": "R7 native reorder package: retained R6 source-position order, matching artifacts, notes and reproducible provenance.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "devcon-romania-2026-r7.pdf"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r7/devcon-romania-2026-r7.pptx",
+      "kind": "file",
+      "purpose": "R7 native reorder package: retained R6 source-position order, matching artifacts, notes and reproducible provenance.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "devcon-romania-2026-r7.pptx"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r7/edition.json",
+      "kind": "file",
+      "purpose": "R7 native reorder package: retained R6 source-position order, matching artifacts, notes and reproducible provenance.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "edition.json"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r7/reorder-recipe.json",
+      "kind": "file",
+      "purpose": "R7 native reorder package: retained R6 source-position order, matching artifacts, notes and reproducible provenance.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reorder-recipe.json"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r7/speaker-notes.md",
+      "kind": "file",
+      "purpose": "R7 native reorder package: retained R6 source-position order, matching artifacts, notes and reproducible provenance.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "DevCon Romania 2026 — R7 speaker notes"
     },
     {
       "path": "drafts/devcon-romania-2026/speaker-notes.md",
@@ -12285,6 +12486,17 @@
       "title": "DevCon Romania R6 integration and review"
     },
     {
+      "path": "review/issue-109/2026-11-02-r7-review.md",
+      "kind": "file",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "DevCon Romania R7 — exchange slides 3 and 4"
+    },
+    {
       "path": "review/issue-109/r6-reviewer-receipts/artifact-candidate-manifest-v2.json",
       "kind": "file",
       "purpose": "Retained exact-source R6 review execution, first/correction judgment, primary request or bounded verification evidence.",
@@ -12602,6 +12814,215 @@
         "AGENTS.md"
       ],
       "title": "whitebox-fixture-diagnostic.json"
+    },
+    {
+      "path": "review/issue-109/r7-reviewer-receipts/author-frozen-files.json",
+      "kind": "file",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "author-frozen-files.json"
+    },
+    {
+      "path": "review/issue-109/r7-reviewer-receipts/code-first.md",
+      "kind": "file",
+      "purpose": "Retained exact-source R7 independent role first/continuation judgment and launch/result evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "R7 — independent Code / changed-artifact first result"
+    },
+    {
+      "path": "review/issue-109/r7-reviewer-receipts/exploratory-first.md",
+      "kind": "file",
+      "purpose": "Retained exact-source R7 independent role first/continuation judgment and launch/result evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "R7 exploratory / interaction QA — first independent result"
+    },
+    {
+      "path": "review/issue-109/r7-reviewer-receipts/final-candidate-packet.json",
+      "kind": "file",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "final-candidate-packet.json"
+    },
+    {
+      "path": "review/issue-109/r7-reviewer-receipts/finalization-source.mjs.txt",
+      "kind": "file",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "finalization-source.mjs.txt"
+    },
+    {
+      "path": "review/issue-109/r7-reviewer-receipts/finalization.validation.json",
+      "kind": "file",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "finalization.validation.json"
+    },
+    {
+      "path": "review/issue-109/r7-reviewer-receipts/helper-checks.json",
+      "kind": "file",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "helper-checks.json"
+    },
+    {
+      "path": "review/issue-109/r7-reviewer-receipts/launch-and-result-receipts.json",
+      "kind": "file",
+      "purpose": "Retained exact-source R7 independent role first/continuation judgment and launch/result evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "launch-and-result-receipts.json"
+    },
+    {
+      "path": "review/issue-109/r7-reviewer-receipts/pdf-export.stderr.log",
+      "kind": "file",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "pdf-export.stderr.log"
+    },
+    {
+      "path": "review/issue-109/r7-reviewer-receipts/pdf-export.stdout.log",
+      "kind": "file",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "pdf-export.stdout.log"
+    },
+    {
+      "path": "review/issue-109/r7-reviewer-receipts/preflight-packet.json",
+      "kind": "file",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "preflight-packet.json"
+    },
+    {
+      "path": "review/issue-109/r7-reviewer-receipts/prepared-source.diff.txt",
+      "kind": "file",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "prepared-source.diff.txt"
+    },
+    {
+      "path": "review/issue-109/r7-reviewer-receipts/proof.json",
+      "kind": "file",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "proof.json"
+    },
+    {
+      "path": "review/issue-109/r7-reviewer-receipts/reorder.json",
+      "kind": "file",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reorder.json"
+    },
+    {
+      "path": "review/issue-109/r7-reviewer-receipts/request.md",
+      "kind": "file",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Primary author request and bounded scope"
+    },
+    {
+      "path": "review/issue-109/r7-reviewer-receipts/requirements-final.md",
+      "kind": "file",
+      "purpose": "Retained exact-source R7 independent role first/continuation judgment and launch/result evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "R7 final-candidate Requirements & Acceptance review"
+    },
+    {
+      "path": "review/issue-109/r7-reviewer-receipts/requirements-preflight.md",
+      "kind": "file",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "R7 requirements and acceptance preflight"
+    },
+    {
+      "path": "review/issue-109/r7-reviewer-receipts/verification-source.py.txt",
+      "kind": "file",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "verification-source.py.txt"
+    },
+    {
+      "path": "review/issue-109/r7-reviewer-receipts/whitebox-first.md",
+      "kind": "file",
+      "purpose": "Retained exact-source R7 independent role first/continuation judgment and launch/result evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "R7 — independent White-box QA first judgment"
     },
     {
       "path": "review/issue-114/2026-10-20-review.md",
@@ -28367,6 +28788,17 @@
       "title": "integrate_native_slide.py"
     },
     {
+      "path": "tools/presentations/reorder_native_slides.py",
+      "kind": "file",
+      "purpose": "Bounded native PPTX reorder with pinned source, explicit permutation and synchronized footer/note labels.",
+      "role": "source",
+      "owner": "guides/PRESENTATION-VERSIONING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reorder_native_slides.py"
+    },
+    {
       "path": "tools/presentations/validate_edition.py",
       "kind": "file",
       "purpose": "Bounded presentation edition identity and native slide integration tooling.",
@@ -30993,6 +31425,16 @@
       ]
     },
     {
+      "path": "drafts/devcon-romania-2026/r7",
+      "kind": "directory",
+      "purpose": "R7 native reorder package: retained R6 source-position order, matching artifacts, notes and reproducible provenance.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "drafts/events",
       "kind": "directory",
       "purpose": "Unpublished event sources and campaign plans prepared for the separately owned event distribution adapter.",
@@ -31146,6 +31588,16 @@
       "path": "review/issue-109/r6-reviewer-receipts",
       "kind": "directory",
       "purpose": "Source-bound R6 presentation build or independent review evidence under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-109/r7-reviewer-receipts",
+      "kind": "directory",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [

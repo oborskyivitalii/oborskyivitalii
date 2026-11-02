@@ -3,7 +3,7 @@
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/109",
     "date": "2026-11-02",
-    "summary": "Reconcile current-main RI/CI routes with PR110 and the R6 AC01-AC19 policy. Keep all current control families and unconditional checks; the policy records four distinct external reviewer gates. Refresh and verification results are recorded in the R6 review."
+    "summary": "Reconcile current RI/CI routes with PR110 and the R7 AC01-AC19 policy. Preserve stable evidence/ownership gate lineage through the authorized slide3/4 permutation. Retain all current control families and unconditional checks; exact results and four independent role receipts are recorded in the R7 review."
   },
   "layers": [
     {
@@ -174,7 +174,8 @@
         ".github/acceptance/issue-167.json",
         "review/issue-167/2026-10-31-offline-prototype.md",
         ".github/acceptance/issue-109.json",
-        "review/issue-109/2026-11-02-r6-review.md"
+        "review/issue-109/2026-11-02-r6-review.md",
+        "review/issue-109/2026-11-02-r7-review.md"
       ],
       "checks": [
         "acceptance-policy",
@@ -777,7 +778,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "ae20f5d7e6aa294ea2c064fcc86c52a5b37ebb1c5dded81a3e5550e916ce1623",
+    "digest": "5699ba6daf99603180a69e039104992acc286990b98bb8c98d43e51c2507349b",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -805,7 +806,7 @@
       },
       {
         "path": ".github/acceptance/issue-109.json",
-        "sha256": "b4ece808f9882bf81c9ac86e980427c4a3f502793a8799e3e69a87cc7670ba3b"
+        "sha256": "5127a6003b4d425005c7470283758e8c412ce394ad8860c1f1e92f8245298eaa"
       },
       {
         "path": ".github/acceptance/issue-114.json",
@@ -925,7 +926,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "1322e3f4d3c439c81a5e14d614c6d3d078567deb269ea2e6f1b7962f68ea0899"
+        "sha256": "b56a00f26b2dae6a878960b9668e9cacc2daa169a5c128f29d3def4a4b5e74a1"
       },
       {
         "path": ".github/workflows/browser-archives.yml",

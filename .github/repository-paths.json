@@ -12117,7 +12117,7 @@
     },
     ".github/acceptance/issue-109.json": {
       "kind": "file",
-      "purpose": "Issue109 stable AC01–AC19 mapping for current R6 artifacts and unchanged R13 speech; bounded repository checks and separate artifact, independent, author, rehearsal, device and event gates.",
+      "purpose": "Issue109 stable AC01–AC19 mapping for current R7 reorder and unchanged R13 speech; stable content gates, bounded repository checks and separate human/event obligations.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -12141,7 +12141,7 @@
     },
     "drafts/devcon-romania-2026/README.md": {
       "kind": "file",
-      "purpose": "Current R6 author-review package with R13 speech; retained historical editions, reproducible native integration, exact artifacts and separate event selection.",
+      "purpose": "Current R7 author-review package with R13 speech; historical R6 preserved, exact reorder mapping and separate event selection.",
       "role": "draft",
       "owner": "drafts/devcon-romania-2026/README.md"
     },
@@ -12159,7 +12159,7 @@
     },
     "drafts/devcon-romania-2026/plan.md": {
       "kind": "file",
-      "purpose": "Historical DevCon outline with dated R6 approved slide4/full-deck scope amendment and explicit current-package routing.",
+      "purpose": "Historical DevCon outline with dated R7 slide3/4 reorder scope and earlier R6 integration amendment.",
       "role": "draft",
       "owner": "drafts/devcon-romania-2026/README.md"
     },
@@ -12598,6 +12598,180 @@
     "review/issue-109/r6-reviewer-receipts/whitebox-fixture-diagnostic.json": {
       "kind": "file",
       "purpose": "Retained exact-source R6 review execution, first/correction judgment, primary request or bounded verification evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "drafts/devcon-romania-2026/r7/README.md": {
+      "kind": "file",
+      "purpose": "R7 native reorder package: retained R6 source-position order, matching artifacts, notes and reproducible provenance.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r7": {
+      "kind": "directory",
+      "purpose": "R7 native reorder package: retained R6 source-position order, matching artifacts, notes and reproducible provenance.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r7/devcon-romania-2026-r7.pdf": {
+      "kind": "file",
+      "purpose": "R7 native reorder package: retained R6 source-position order, matching artifacts, notes and reproducible provenance.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r7/devcon-romania-2026-r7.pptx": {
+      "kind": "file",
+      "purpose": "R7 native reorder package: retained R6 source-position order, matching artifacts, notes and reproducible provenance.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r7/edition.json": {
+      "kind": "file",
+      "purpose": "R7 native reorder package: retained R6 source-position order, matching artifacts, notes and reproducible provenance.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r7/reorder-recipe.json": {
+      "kind": "file",
+      "purpose": "R7 native reorder package: retained R6 source-position order, matching artifacts, notes and reproducible provenance.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r7/speaker-notes.md": {
+      "kind": "file",
+      "purpose": "R7 native reorder package: retained R6 source-position order, matching artifacts, notes and reproducible provenance.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "review/issue-109/2026-11-02-r7-review.md": {
+      "kind": "file",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r7-reviewer-receipts/author-frozen-files.json": {
+      "kind": "file",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r7-reviewer-receipts": {
+      "kind": "directory",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r7-reviewer-receipts/final-candidate-packet.json": {
+      "kind": "file",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r7-reviewer-receipts/finalization-source.mjs.txt": {
+      "kind": "file",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r7-reviewer-receipts/finalization.validation.json": {
+      "kind": "file",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r7-reviewer-receipts/helper-checks.json": {
+      "kind": "file",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r7-reviewer-receipts/pdf-export.stderr.log": {
+      "kind": "file",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r7-reviewer-receipts/pdf-export.stdout.log": {
+      "kind": "file",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r7-reviewer-receipts/preflight-packet.json": {
+      "kind": "file",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r7-reviewer-receipts/prepared-source.diff.txt": {
+      "kind": "file",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r7-reviewer-receipts/proof.json": {
+      "kind": "file",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r7-reviewer-receipts/reorder.json": {
+      "kind": "file",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r7-reviewer-receipts/request.md": {
+      "kind": "file",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r7-reviewer-receipts/requirements-preflight.md": {
+      "kind": "file",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r7-reviewer-receipts/verification-source.py.txt": {
+      "kind": "file",
+      "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "tools/presentations/reorder_native_slides.py": {
+      "kind": "file",
+      "purpose": "Bounded native PPTX reorder with pinned source, explicit permutation and synchronized footer/note labels.",
+      "role": "source",
+      "owner": "guides/PRESENTATION-VERSIONING.md"
+    },
+    "review/issue-109/r7-reviewer-receipts/code-first.md": {
+      "kind": "file",
+      "purpose": "Retained exact-source R7 independent role first/continuation judgment and launch/result evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r7-reviewer-receipts/exploratory-first.md": {
+      "kind": "file",
+      "purpose": "Retained exact-source R7 independent role first/continuation judgment and launch/result evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r7-reviewer-receipts/launch-and-result-receipts.json": {
+      "kind": "file",
+      "purpose": "Retained exact-source R7 independent role first/continuation judgment and launch/result evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r7-reviewer-receipts/requirements-final.md": {
+      "kind": "file",
+      "purpose": "Retained exact-source R7 independent role first/continuation judgment and launch/result evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r7-reviewer-receipts/whitebox-first.md": {
+      "kind": "file",
+      "purpose": "Retained exact-source R7 independent role first/continuation judgment and launch/result evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     }
