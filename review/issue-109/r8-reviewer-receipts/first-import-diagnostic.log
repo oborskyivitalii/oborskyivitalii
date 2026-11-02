@@ -1,0 +1,13 @@
+Error: The text value is not a valid enumeration value.
+   at DocumentFormat.OpenXml.EnumValue`1[[DocumentFormat.OpenXml.Drawing.TextAlignmentTypeValues, DocumentFormat.OpenXml, Version=3.3.0.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17]].Parse(String )
+   at PptxReader.ParseParagraphs(IEnumerable`1 , OpenXmlPart )
+   at PptxReader.ParseShapeTree(ShapeTree , Boolean , OpenXmlPart )
+   at PptxReader.ExtractSlidesProto(Byte[] , Boolean )
+   at PptxReader.__Wrapper_ExtractSlidesProto_337833867(JSMarshalerArgument* __arguments_buffer)
+Error: The text value is not a valid enumeration value.
+    at an (file:///opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules/@oai/artifact-tool/node_modules/@oai/walnut/wasm/dotnet.runtime.sv8x6wte7f.js:3:26895)
+    at gn (file:///opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules/@oai/artifact-tool/node_modules/@oai/walnut/wasm/dotnet.runtime.sv8x6wte7f.js:3:28883)
+    at Object.<anonymous> (file:///opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules/@oai/artifact-tool/node_modules/@oai/walnut/wasm/dotnet.runtime.sv8x6wte7f.js:3:37068)
+    at GJe (file:///opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules/@oai/artifact-tool/dist/artifact_tool.mjs:3118:38869)
+    at async KJe.importPptx (file:///opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules/@oai/artifact-tool/dist/artifact_tool.mjs:3118:58720)
+    at async file:///workspace/scratch/d8b65f68acc8/devcon-r8/build/import-diagnostic.mjs:4:10

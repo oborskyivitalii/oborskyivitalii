@@ -1,0 +1,143 @@
+{
+  "state": "Prepared dirty subset, not clean commit",
+  "base_commit": "1044c6ee6effc3580ec735ead4f4f7f9ea26a069",
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 109,
+  "pull_request": 110,
+  "primary_request": "review/issue-109/r8-reviewer-receipts/request.md",
+  "files": [
+    {
+      "path": ".github/acceptance/issue-109.json",
+      "bytes": 37045,
+      "sha256": "00dbdd168e592cecd6bb78fc582bfc4780fa5a4eac64a80b122cb572b166fb38"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 6747,
+      "sha256": "ad4f179ec04c7af12867229d70598a660c5ae41f3cb456cafd02aca3d12a9988"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "bytes": 19704,
+      "sha256": "804fb3da9a0bc7369bbd902313224221becc6c6b775536ca943f8664bf741442"
+    },
+    {
+      "path": "agents/reviewers/README.md",
+      "bytes": 6964,
+      "sha256": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb"
+    },
+    {
+      "path": "agents/reviewers/code-review.md",
+      "bytes": 2663,
+      "sha256": "26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697"
+    },
+    {
+      "path": "agents/reviewers/exploratory-interaction-qa.md",
+      "bytes": 2850,
+      "sha256": "280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a"
+    },
+    {
+      "path": "agents/reviewers/requirements-acceptance.md",
+      "bytes": 3268,
+      "sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6"
+    },
+    {
+      "path": "agents/reviewers/white-box-qa.md",
+      "bytes": 3266,
+      "sha256": "832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r7/devcon-romania-2026-r7.pdf",
+      "bytes": 1114624,
+      "sha256": "7056f7423652563aaeafe722a22ab6b139e77c4e630710dd90eaf02aa59d8517"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r7/devcon-romania-2026-r7.pptx",
+      "bytes": 1422905,
+      "sha256": "ec8478a8c55d7db17a922e761a137759cb4c2de86b135f9153b709f76c7a9b29"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r7/speaker-notes.md",
+      "bytes": 35191,
+      "sha256": "0d98a801a8f1af30ecf1716c37bff8a819cc19cb31eea4fd876f409560373945"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r8/README.md",
+      "bytes": 2374,
+      "sha256": "277ac161956d97cc5b23322ea9179c30d5fb341b1672db01527a8cd4a78cb6cc"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r8/devcon-romania-2026-r8.pdf",
+      "bytes": 1114376,
+      "sha256": "d8511c35d69e1b79886670901db794ecc66679f4cb0da46d3350fea7f33c4f7f"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r8/devcon-romania-2026-r8.pptx",
+      "bytes": 1426852,
+      "sha256": "ee370d10570f43b4ff09d262927428af6a5ee4cd5c7823268fcd2422813cc3fe"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r8/edition.json",
+      "bytes": 8517,
+      "sha256": "4980f6201f319ec709197eb83abf5b56bb4872ba78d43d9e61784757398e492b"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r8/sources/notesSlide7.xml",
+      "bytes": 8979,
+      "sha256": "9fb32f42eb2f1395cdf5656a21e857d1c1d59dfe4fb10ead67606f48943a1a4f"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r8/sources/notesSlide8.xml",
+      "bytes": 12104,
+      "sha256": "a2b280741ef689f77344e98bb1ffe4c1bf70757cbe89444b5ab3a628068d98d2"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r8/sources/slide7.xml",
+      "bytes": 104022,
+      "sha256": "e0af831675868a4390824b44ce1bb716bd1f6a369d95ab2d570fc0100582dd28"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r8/sources/slide8.xml",
+      "bytes": 57565,
+      "sha256": "2dc13ed23bb0213682d567264fb88a992d66b3357fdc7b4f0aa44cca7645c5d3"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r8/speaker-notes.md",
+      "bytes": 36919,
+      "sha256": "192dab4a1c2e61508db53fd00cd8b019bdefc9b9d47c68b132c66a08ec9eaa17"
+    },
+    {
+      "path": "guides/PRESENTATION-VERSIONING.md",
+      "bytes": 3127,
+      "sha256": "917ec0d4323d55081a5a1c9e671f656c01b4173c4b8d8371eb24857a09fbb75e"
+    },
+    {
+      "path": "review/issue-109/r8-reviewer-receipts/finalization.validation.json",
+      "bytes": 3600,
+      "sha256": "043ecec3741f89412ca49f556564d1a50757ea9d0008c9dbf939de9b30a9f7ca"
+    },
+    {
+      "path": "review/issue-109/r8-reviewer-receipts/first-import-diagnostic.log",
+      "bytes": 1554,
+      "sha256": "a631fabe9127f4827fed378e3af67f1d6a817fc6e252087bcba68f1abd7360bb"
+    },
+    {
+      "path": "review/issue-109/r8-reviewer-receipts/proof.json",
+      "bytes": 2916,
+      "sha256": "38f16989308091422549832923553ed7ff739dab47b38cd55684c5e9ce5cc8b1"
+    },
+    {
+      "path": "review/issue-109/r8-reviewer-receipts/request.md",
+      "bytes": 1876,
+      "sha256": "5376b659ba9d9107db9d85e7653b3e6abee920e1172aa1d321d3090441d13ea2"
+    },
+    {
+      "path": "tools/presentations/integrate_native_slide.py",
+      "bytes": 11236,
+      "sha256": "5756a926f4caa409fc7c3d36b78e3f2d8600efce1fb353d6238cc43d4b24f317"
+    }
+  ],
+  "render_dir": "/workspace/scratch/d8b65f68acc8/devcon-r8/build/renders",
+  "constraints": "Read actual sources; no implementation/external writes/delegation; no MEMORY/currentpeerreports/privatehistory/preflight verdict. Provider isolation unknown. Final PowerPoint UI and physicalprojection unobserved.",
+  "known_diagnostic": "Initial donor had invalid XML alignment c. Corrected to ctr; final import passes. Rawdiagnostic retained; inspect legalcurrentattributes andfinalactualexport."
+}

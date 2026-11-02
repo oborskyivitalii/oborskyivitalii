@@ -1,0 +1,136 @@
+{
+  "base_commit": "1044c6ee6effc3580ec735ead4f4f7f9ea26a069",
+  "common_prompt_sha256": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb",
+  "executions": [
+    {
+      "role_prompt": "agents/reviewers/requirements-acceptance.md",
+      "role_prompt_sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6",
+      "agent": "/root/r8_req_final",
+      "actual_requested_launch": {
+        "tool": "collaboration.spawn_agent",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "accepted_tool_response": {
+        "task_name": "/root/r8_req_final"
+      },
+      "first_result": "requirements-final.md",
+      "first_result_sha256": "0952fa11afce748f7d4450e7e1854b90f75e1fc9f65f110f6f3467dc40b6987e",
+      "packet_sha256": "8211010cbaac9790cc7b1e66f2d69995decb4f11fd189e391e4ea0bdf0913a5a",
+      "provider_internals": "unknown"
+    },
+    {
+      "role_prompt": "agents/reviewers/code-review.md",
+      "role_prompt_sha256": "26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697",
+      "agent": "/root/r8_code",
+      "actual_requested_launch": {
+        "tool": "collaboration.spawn_agent",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "accepted_tool_response": {
+        "task_name": "/root/r8_code"
+      },
+      "first_result": "code-first.md",
+      "first_result_sha256": "f66cb8e8bd1816ae154664517c9e1c16a437a4518c68139125c901857ceda600",
+      "packet_sha256": "8211010cbaac9790cc7b1e66f2d69995decb4f11fd189e391e4ea0bdf0913a5a",
+      "provider_internals": "unknown"
+    },
+    {
+      "role_prompt": "agents/reviewers/white-box-qa.md",
+      "role_prompt_sha256": "832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f",
+      "agent": "/root/r8_whitebox",
+      "actual_requested_launch": {
+        "tool": "collaboration.spawn_agent",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "accepted_tool_response": {
+        "task_name": "/root/r8_whitebox"
+      },
+      "first_result": "whitebox-first.md",
+      "first_result_sha256": "b76a8851a35bf9dcb0295b33d693953dc0ef633e86c241dfbd73ef943db7d80c",
+      "packet_sha256": "8211010cbaac9790cc7b1e66f2d69995decb4f11fd189e391e4ea0bdf0913a5a",
+      "provider_internals": "unknown"
+    },
+    {
+      "role_prompt": "agents/reviewers/exploratory-interaction-qa.md",
+      "role_prompt_sha256": "280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a",
+      "agent": "/root/r8_exploratory",
+      "actual_requested_launch": {
+        "tool": "collaboration.spawn_agent",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "accepted_tool_response": {
+        "task_name": "/root/r8_exploratory"
+      },
+      "first_result": "exploratory-first.md",
+      "first_result_sha256": "60e9da87496603dcefca50a8e33c91cf7b9fb037d03c7a51ef2d8dfc77f26cdf",
+      "packet_sha256": "8211010cbaac9790cc7b1e66f2d69995decb4f11fd189e391e4ea0bdf0913a5a",
+      "provider_internals": "unknown"
+    }
+  ],
+  "corrections": {
+    "tool": "collaboration.followup_task",
+    "scope": "pdf_export.method only; firstresultsretained; same role continuation, not freshfirstcontext",
+    "results": {
+      "code-correction.md": "4265fbd9af6d994f38879c31b569d8e9b8ded6c4cc519be2da5be0adf3b20feb",
+      "whitebox-correction.md": "715c8d22b34bf28b42ca6eeb965239fc9d168867ad191a751f0b3ab84d3d472c"
+    }
+  },
+  "preflight_boundary": "Contentpreflightbeforeimplementationreported incidental historical R6/R7 snippets; not used as final isolation evidence. Fresh independent final Requirements role used the exact candidate packet and no preflight/peer outputs.",
+  "final_packet_sha256": "f92fd8c31460cbddb1ce1ea322f63483f353b5a35c3aa92c2040f9c8c483375e",
+  "final_source_confirmation": "Root verified all26finalpacket identities after correction; binary/notes unchanged since review and delivery.",
+  "capacity_continuations": {
+    "tool": "collaboration.followup_task",
+    "scope": "Aggregate streaming hash cap and its documented value only; same-role continuations, not fresh initial contexts.",
+    "packet": "capacity-delta.json",
+    "packet_sha256": "acfba947c7b85a141d95b847b045b1c1db0fb0d641fcb97e8e802cd92abc161b",
+    "results": [
+      {
+        "agent": "/root/r8_req_final",
+        "result": "capacity-preflight.md",
+        "sha256": "123c7d1f41bcbe142b5f5180031dcc932e318dc89548a4010dc12c87d0b4e2a8"
+      },
+      {
+        "agent": "/root/r8_code",
+        "result": "code-capacity.md",
+        "sha256": "a88c1f435a1e4c648e0c656cb89cd798bbee847ba6e58321e356ae68f279ba58"
+      },
+      {
+        "agent": "/root/r8_whitebox",
+        "result": "whitebox-capacity.md",
+        "sha256": "e9d9fe5c6d149d624dce57e57bcd196a345d11c5b43152649ec0f4d26898c8ff"
+      },
+      {
+        "agent": "/root/r8_req_final",
+        "result": "requirements-capacity-final.md",
+        "sha256": "8b4e4bdb971616855d89d358932e8b2b7ae3768b94241eb91a0af4689eec446b"
+      }
+    ]
+  },
+  "capacity_exploratory": {
+    "role_prompt": "agents/reviewers/exploratory-interaction-qa.md",
+    "role_prompt_sha256": "280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a",
+    "agent": "/root/r8_capacity_exploratory",
+    "actual_requested_launch": {
+      "tool": "collaboration.spawn_agent",
+      "fork_turns": "none",
+      "model": "omitted",
+      "reasoning_effort": "omitted"
+    },
+    "accepted_tool_response": {
+      "task_name": "/root/r8_capacity_exploratory"
+    },
+    "packet": "capacity-delta.json",
+    "packet_sha256": "acfba947c7b85a141d95b847b045b1c1db0fb0d641fcb97e8e802cd92abc161b",
+    "first_result": "exploratory-capacity.md",
+    "first_result_sha256": "22893bc9011f225969b9e7f8111d16fbd25849185c7054086709c4131f62e42d",
+    "provider_internals": "unknown"
+  }
+}

@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "828a711d8f655839ef55e83f1e8b57e665bf8bfc5ac2c9a5ad6da9da40f245b8",
+    "digest": "9444d7d67c53bd5fa8110dab5ad00b25390b875241c3607c26c9ebda2762c38b",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -42,7 +42,7 @@
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
         "identity_mode": "content",
-        "sha256": "cca61bab2ab0866641953f623698cc4628db3ebad7120b4b8fad205a3a354cca"
+        "sha256": "29a6dc08787505c268b5b6e759d5e95949872f740a7ae8dd370d3fb7b7f74e43"
       },
       {
         "path": ".github/acceptance/issue-102.json",
@@ -57,7 +57,7 @@
       {
         "path": ".github/acceptance/issue-109.json",
         "identity_mode": "content",
-        "sha256": "5127a6003b4d425005c7470283758e8c412ce394ad8860c1f1e92f8245298eaa"
+        "sha256": "00dbdd168e592cecd6bb78fc582bfc4780fa5a4eac64a80b122cb572b166fb38"
       },
       {
         "path": ".github/acceptance/issue-114.json",
@@ -216,12 +216,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "b56a00f26b2dae6a878960b9668e9cacc2daa169a5c128f29d3def4a4b5e74a1"
+        "sha256": "67be451c473a442421d0db549eb57524a275ecbabc5f713c21f41777e82f5810"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "9e48ffb84648ea58970c7d395d48eca481c935dce51e5235b91b36afc39eb722"
+        "sha256": "94ee5c02130f99028c2001231200033d25ed113fffe387b6ebdedc25ebb5dcab"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -371,7 +371,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "eca72bff81110fea32cc9a60cadc02d3e7157c5ad5141a9c12931e13e968f43c"
+        "sha256": "63e8943024c5445d3cef1d3f635dc06b0da146c10ee33860c26fe41051a6a79e"
       },
       {
         "path": "NOTICE.md",
@@ -720,7 +720,7 @@
       {
         "path": "drafts/devcon-romania-2026/README.md",
         "identity_mode": "content",
-        "sha256": "cc8e4e282db2e090ba60093f9c3ee15c2d7ed6df1d619193dac9bcd6b5fc7a8f"
+        "sha256": "d53bc8ffcc25b0b4c9fc778fe6e9ef5d79715602492194f5ddc31aaf53356d6a"
       },
       {
         "path": "drafts/devcon-romania-2026/devcon-romania-2026-r13-concise-stage-script.md",
@@ -735,7 +735,7 @@
       {
         "path": "drafts/devcon-romania-2026/plan.md",
         "identity_mode": "content",
-        "sha256": "6d3df9d93e1f516ccc2f7526ecea8a670ee5e6fc5001f6e54cc39b08a03a1dc0"
+        "sha256": "cf02472107bdc5c48c2bb3a46f6c6fcd8dda23d731ad8858093e1848e4643ac9"
       },
       {
         "path": "drafts/devcon-romania-2026/r2/devcon-romania-2026-r2.pdf",
@@ -871,6 +871,51 @@
         "path": "drafts/devcon-romania-2026/r7/speaker-notes.md",
         "identity_mode": "content",
         "sha256": "0d98a801a8f1af30ecf1716c37bff8a819cc19cb31eea4fd876f409560373945"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r8/README.md",
+        "identity_mode": "content",
+        "sha256": "277ac161956d97cc5b23322ea9179c30d5fb341b1672db01527a8cd4a78cb6cc"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r8/devcon-romania-2026-r8.pdf",
+        "identity_mode": "content",
+        "sha256": "d8511c35d69e1b79886670901db794ecc66679f4cb0da46d3350fea7f33c4f7f"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r8/devcon-romania-2026-r8.pptx",
+        "identity_mode": "content",
+        "sha256": "ee370d10570f43b4ff09d262927428af6a5ee4cd5c7823268fcd2422813cc3fe"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r8/edition.json",
+        "identity_mode": "content",
+        "sha256": "b74de7f91e7ac8c5ed62187a1f9c07b25a147d1f29f229d94e170e43c41b756b"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r8/sources/notesSlide7.xml",
+        "identity_mode": "content",
+        "sha256": "9fb32f42eb2f1395cdf5656a21e857d1c1d59dfe4fb10ead67606f48943a1a4f"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r8/sources/notesSlide8.xml",
+        "identity_mode": "content",
+        "sha256": "a2b280741ef689f77344e98bb1ffe4c1bf70757cbe89444b5ab3a628068d98d2"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r8/sources/slide7.xml",
+        "identity_mode": "content",
+        "sha256": "e0af831675868a4390824b44ce1bb716bd1f6a369d95ab2d570fc0100582dd28"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r8/sources/slide8.xml",
+        "identity_mode": "content",
+        "sha256": "2dc13ed23bb0213682d567264fb88a992d66b3357fdc7b4f0aa44cca7645c5d3"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r8/speaker-notes.md",
+        "identity_mode": "content",
+        "sha256": "192dab4a1c2e61508db53fd00cd8b019bdefc9b9d47c68b132c66a08ec9eaa17"
       },
       {
         "path": "drafts/devcon-romania-2026/speaker-notes.md",
@@ -1168,6 +1213,11 @@
         "sha256": "a1f2f51a24f44435e14dc767f13e70c8dc285c8406e2b887a474c072e0b62a49"
       },
       {
+        "path": "review/issue-109/2026-11-02-r8-review.md",
+        "identity_mode": "content",
+        "sha256": "bc6343661a4a0298487b2e7f41f212b881aa6e0b59d264cad717a04be74fe6de"
+      },
+      {
         "path": "review/issue-109/r6-reviewer-receipts/artifact-candidate-manifest-v2.json",
         "identity_mode": "content",
         "sha256": "9c5cd97fc8959e3c9110178c5813ecefa36ccff645119ef2789ea1fbda9f2687"
@@ -1406,6 +1456,131 @@
         "path": "review/issue-109/r7-reviewer-receipts/whitebox-first.md",
         "identity_mode": "content",
         "sha256": "5cd4448737ed2dc13389520fccc38dd23f8c4eb40a69cabe5cb7ddcb5237074d"
+      },
+      {
+        "path": "review/issue-109/r8-reviewer-receipts/candidate-final-packet.json",
+        "identity_mode": "content",
+        "sha256": "f92fd8c31460cbddb1ce1ea322f63483f353b5a35c3aa92c2040f9c8c483375e"
+      },
+      {
+        "path": "review/issue-109/r8-reviewer-receipts/candidate-packet.json",
+        "identity_mode": "content",
+        "sha256": "8211010cbaac9790cc7b1e66f2d69995decb4f11fd189e391e4ea0bdf0913a5a"
+      },
+      {
+        "path": "review/issue-109/r8-reviewer-receipts/capacity-delta.json",
+        "identity_mode": "content",
+        "sha256": "acfba947c7b85a141d95b847b045b1c1db0fb0d641fcb97e8e802cd92abc161b"
+      },
+      {
+        "path": "review/issue-109/r8-reviewer-receipts/capacity-preflight.md",
+        "identity_mode": "content",
+        "sha256": "123c7d1f41bcbe142b5f5180031dcc932e318dc89548a4010dc12c87d0b4e2a8"
+      },
+      {
+        "path": "review/issue-109/r8-reviewer-receipts/code-capacity.md",
+        "identity_mode": "content",
+        "sha256": "a88c1f435a1e4c648e0c656cb89cd798bbee847ba6e58321e356ae68f279ba58"
+      },
+      {
+        "path": "review/issue-109/r8-reviewer-receipts/code-correction.md",
+        "identity_mode": "content",
+        "sha256": "4265fbd9af6d994f38879c31b569d8e9b8ded6c4cc519be2da5be0adf3b20feb"
+      },
+      {
+        "path": "review/issue-109/r8-reviewer-receipts/code-first.md",
+        "identity_mode": "content",
+        "sha256": "f66cb8e8bd1816ae154664517c9e1c16a437a4518c68139125c901857ceda600"
+      },
+      {
+        "path": "review/issue-109/r8-reviewer-receipts/edition-before-provenance-correction.json",
+        "identity_mode": "content",
+        "sha256": "4980f6201f319ec709197eb83abf5b56bb4872ba78d43d9e61784757398e492b"
+      },
+      {
+        "path": "review/issue-109/r8-reviewer-receipts/exploratory-capacity.md",
+        "identity_mode": "content",
+        "sha256": "22893bc9011f225969b9e7f8111d16fbd25849185c7054086709c4131f62e42d"
+      },
+      {
+        "path": "review/issue-109/r8-reviewer-receipts/exploratory-first.md",
+        "identity_mode": "content",
+        "sha256": "60e9da87496603dcefca50a8e33c91cf7b9fb037d03c7a51ef2d8dfc77f26cdf"
+      },
+      {
+        "path": "review/issue-109/r8-reviewer-receipts/finalization.validation.json",
+        "identity_mode": "content",
+        "sha256": "043ecec3741f89412ca49f556564d1a50757ea9d0008c9dbf939de9b30a9f7ca"
+      },
+      {
+        "path": "review/issue-109/r8-reviewer-receipts/first-import-diagnostic.log",
+        "identity_mode": "content",
+        "sha256": "a631fabe9127f4827fed378e3af67f1d6a817fc6e252087bcba68f1abd7360bb"
+      },
+      {
+        "path": "review/issue-109/r8-reviewer-receipts/launch-and-result-receipts.json",
+        "identity_mode": "content",
+        "sha256": "041da296760ac7fd322d7e2b956713d86d0e74064dd9470ee3aca56f283c09db"
+      },
+      {
+        "path": "review/issue-109/r8-reviewer-receipts/metadata-correction.json",
+        "identity_mode": "content",
+        "sha256": "690c36a758e05dabba642b3a8a77ab0fee76d887fc8ffb0a81c9bb9e42855e57"
+      },
+      {
+        "path": "review/issue-109/r8-reviewer-receipts/proof.json",
+        "identity_mode": "content",
+        "sha256": "38f16989308091422549832923553ed7ff739dab47b38cd55684c5e9ce5cc8b1"
+      },
+      {
+        "path": "review/issue-109/r8-reviewer-receipts/request.md",
+        "identity_mode": "content",
+        "sha256": "5376b659ba9d9107db9d85e7653b3e6abee920e1172aa1d321d3090441d13ea2"
+      },
+      {
+        "path": "review/issue-109/r8-reviewer-receipts/requirements-capacity-final.md",
+        "identity_mode": "content",
+        "sha256": "8b4e4bdb971616855d89d358932e8b2b7ae3768b94241eb91a0af4689eec446b"
+      },
+      {
+        "path": "review/issue-109/r8-reviewer-receipts/requirements-final.md",
+        "identity_mode": "content",
+        "sha256": "0952fa11afce748f7d4450e7e1854b90f75e1fc9f65f110f6f3467dc40b6987e"
+      },
+      {
+        "path": "review/issue-109/r8-reviewer-receipts/requirements-preflight.md",
+        "identity_mode": "content",
+        "sha256": "4713fa038e662395c3c9d98bb2e8a21351c2fdec3e9fae8d33567ea57097012d"
+      },
+      {
+        "path": "review/issue-109/r8-reviewer-receipts/ri-regressions-after-capacity.log",
+        "identity_mode": "content",
+        "sha256": "9559c1526badb0610e8ce4e63c50aa76e7ecfc84bdb3ffbe9efead320ca3125a"
+      },
+      {
+        "path": "review/issue-109/r8-reviewer-receipts/ri-regressions-before-capacity.log",
+        "identity_mode": "content",
+        "sha256": "bd2321bb380f24f47a0d203496a9c923b0c7163f1da72a59ea5ab8ec4f517113"
+      },
+      {
+        "path": "review/issue-109/r8-reviewer-receipts/ri-regressions-before-regeneration.log",
+        "identity_mode": "content",
+        "sha256": "b426604357f2c131cf6333d2fb800f0d6ef0e4c7194df45d4f8b91f72ce3ca51"
+      },
+      {
+        "path": "review/issue-109/r8-reviewer-receipts/whitebox-capacity.md",
+        "identity_mode": "content",
+        "sha256": "e9d9fe5c6d149d624dce57e57bcd196a345d11c5b43152649ec0f4d26898c8ff"
+      },
+      {
+        "path": "review/issue-109/r8-reviewer-receipts/whitebox-correction.md",
+        "identity_mode": "content",
+        "sha256": "715c8d22b34bf28b42ca6eeb965239fc9d168867ad191a751f0b3ab84d3d472c"
+      },
+      {
+        "path": "review/issue-109/r8-reviewer-receipts/whitebox-first.md",
+        "identity_mode": "content",
+        "sha256": "b76a8851a35bf9dcb0295b33d693953dc0ef633e86c241dfbd73ef943db7d80c"
       },
       {
         "path": "review/issue-114/2026-10-20-review.md",
@@ -9335,7 +9510,7 @@
       {
         "path": "tools/repository_intelligence.py",
         "identity_mode": "content",
-        "sha256": "dad68d88d241c2cd223081d6a28961c1aa7abc19c0f4c223c9c3382c562aa792"
+        "sha256": "9be024a28215c5852bb26893fc5696dc6543d7056f37c40500e796519178d821"
       },
       {
         "path": "tools/run_repository_tests.py",
@@ -9551,7 +9726,7 @@
   },
   "producer": {
     "path": "tools/repository_intelligence.py",
-    "sha256": "dad68d88d241c2cd223081d6a28961c1aa7abc19c0f4c223c9c3382c562aa792",
+    "sha256": "9be024a28215c5852bb26893fc5696dc6543d7056f37c40500e796519178d821",
     "config_path": ".github/repository-intelligence-config.json",
     "config_sha256": "67494fc85d415b0033bc1d4346dce968ea56fdd772b63a36838544b05433edac"
   },
@@ -10046,7 +10221,7 @@
     {
       "path": ".github/acceptance/issue-109.json",
       "kind": "file",
-      "purpose": "Issue109 stable AC01–AC19 mapping for current R7 reorder and unchanged R13 speech; stable content gates, bounded repository checks and separate human/event obligations.",
+      "purpose": "Issue109 stable AC01–AC19 mapping for current R8 reorder and unchanged R13 speech; stable content gates, bounded repository checks and separate human/event obligations. Includes requested S07 human monitoring and S08 control/business-case clarity.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md",
       "instructions": [
@@ -11509,7 +11684,7 @@
     {
       "path": "drafts/devcon-romania-2026/README.md",
       "kind": "file",
-      "purpose": "Current R7 author-review package with R13 speech; historical R6 preserved, exact reorder mapping and separate event selection.",
+      "purpose": "Current R8 author-review package with R13 speech; historical R6 preserved, exact reorder mapping and separate event selection. Includes requested S07 human monitoring and S08 control/business-case clarity.",
       "role": "draft",
       "owner": "drafts/devcon-romania-2026/README.md",
       "instructions": [
@@ -11542,7 +11717,7 @@
     {
       "path": "drafts/devcon-romania-2026/plan.md",
       "kind": "file",
-      "purpose": "Historical DevCon outline with dated R7 slide3/4 reorder scope and earlier R6 integration amendment.",
+      "purpose": "Historical DevCon outline with dated R8 slide3/4 reorder scope and earlier R6 integration amendment. Includes requested S07 human monitoring and S08 control/business-case clarity.",
       "role": "draft",
       "owner": "drafts/devcon-romania-2026/README.md",
       "instructions": [
@@ -11846,6 +12021,105 @@
         "AGENTS.md"
       ],
       "title": "DevCon Romania 2026 — R7 speaker notes"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r8/README.md",
+      "kind": "file",
+      "purpose": "R8 native presentation, matching rendition, preserved notes with delivery addenda or exact edited native source parts.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "R8 — human capacity and the control architecture"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r8/devcon-romania-2026-r8.pdf",
+      "kind": "file",
+      "purpose": "R8 native presentation, matching rendition, preserved notes with delivery addenda or exact edited native source parts.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "devcon-romania-2026-r8.pdf"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r8/devcon-romania-2026-r8.pptx",
+      "kind": "file",
+      "purpose": "R8 native presentation, matching rendition, preserved notes with delivery addenda or exact edited native source parts.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "devcon-romania-2026-r8.pptx"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r8/edition.json",
+      "kind": "file",
+      "purpose": "R8 native presentation, matching rendition, preserved notes with delivery addenda or exact edited native source parts.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "edition.json"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r8/sources/notesSlide7.xml",
+      "kind": "file",
+      "purpose": "R8 native presentation, matching rendition, preserved notes with delivery addenda or exact edited native source parts.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "notesSlide7.xml"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r8/sources/notesSlide8.xml",
+      "kind": "file",
+      "purpose": "R8 native presentation, matching rendition, preserved notes with delivery addenda or exact edited native source parts.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "notesSlide8.xml"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r8/sources/slide7.xml",
+      "kind": "file",
+      "purpose": "R8 native presentation, matching rendition, preserved notes with delivery addenda or exact edited native source parts.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "slide7.xml"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r8/sources/slide8.xml",
+      "kind": "file",
+      "purpose": "R8 native presentation, matching rendition, preserved notes with delivery addenda or exact edited native source parts.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "slide8.xml"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r8/speaker-notes.md",
+      "kind": "file",
+      "purpose": "R8 native presentation, matching rendition, preserved notes with delivery addenda or exact edited native source parts.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "DevCon Romania 2026 — R8 speaker notes"
     },
     {
       "path": "drafts/devcon-romania-2026/speaker-notes.md",
@@ -12497,6 +12771,17 @@
       "title": "DevCon Romania R7 — exchange slides 3 and 4"
     },
     {
+      "path": "review/issue-109/2026-11-02-r8-review.md",
+      "kind": "file",
+      "purpose": "Source-bound R8 content/control review, native verification or independent launch/result evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "DevCon R8 — explicit human capacity and control architecture"
+    },
+    {
       "path": "review/issue-109/r6-reviewer-receipts/artifact-candidate-manifest-v2.json",
       "kind": "file",
       "purpose": "Retained exact-source R6 review execution, first/correction judgment, primary request or bounded verification evidence.",
@@ -13023,6 +13308,281 @@
         "AGENTS.md"
       ],
       "title": "R7 — independent White-box QA first judgment"
+    },
+    {
+      "path": "review/issue-109/r8-reviewer-receipts/candidate-final-packet.json",
+      "kind": "file",
+      "purpose": "Source-bound R8 content/control review, native verification or independent launch/result evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "candidate-final-packet.json"
+    },
+    {
+      "path": "review/issue-109/r8-reviewer-receipts/candidate-packet.json",
+      "kind": "file",
+      "purpose": "Source-bound R8 content/control review, native verification or independent launch/result evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "candidate-packet.json"
+    },
+    {
+      "path": "review/issue-109/r8-reviewer-receipts/capacity-delta.json",
+      "kind": "file",
+      "purpose": "Retained source-bound R8 review, diagnostic or bounded capacity-maintenance evidence for issue 109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "capacity-delta.json"
+    },
+    {
+      "path": "review/issue-109/r8-reviewer-receipts/capacity-preflight.md",
+      "kind": "file",
+      "purpose": "Retained source-bound R8 review, diagnostic or bounded capacity-maintenance evidence for issue 109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Capacity maintenance — Requirements preflight"
+    },
+    {
+      "path": "review/issue-109/r8-reviewer-receipts/code-capacity.md",
+      "kind": "file",
+      "purpose": "Retained source-bound R8 review, diagnostic or bounded capacity-maintenance evidence for issue 109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "R8 capacity delta — Code review"
+    },
+    {
+      "path": "review/issue-109/r8-reviewer-receipts/code-correction.md",
+      "kind": "file",
+      "purpose": "Source-bound R8 content/control review, native verification or independent launch/result evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "R8 Code review — metadata correction"
+    },
+    {
+      "path": "review/issue-109/r8-reviewer-receipts/code-first.md",
+      "kind": "file",
+      "purpose": "Source-bound R8 content/control review, native verification or independent launch/result evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "R8 Code / changed-artifact — first independent result"
+    },
+    {
+      "path": "review/issue-109/r8-reviewer-receipts/edition-before-provenance-correction.json",
+      "kind": "file",
+      "purpose": "Source-bound R8 content/control review, native verification or independent launch/result evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "edition-before-provenance-correction.json"
+    },
+    {
+      "path": "review/issue-109/r8-reviewer-receipts/exploratory-capacity.md",
+      "kind": "file",
+      "purpose": "Retained source-bound R8 review, diagnostic or bounded capacity-maintenance evidence for issue 109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "R8 aggregate-capacity exploratory review"
+    },
+    {
+      "path": "review/issue-109/r8-reviewer-receipts/exploratory-first.md",
+      "kind": "file",
+      "purpose": "Source-bound R8 content/control review, native verification or independent launch/result evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "R8 Exploratory / Interaction QA — first independent result"
+    },
+    {
+      "path": "review/issue-109/r8-reviewer-receipts/finalization.validation.json",
+      "kind": "file",
+      "purpose": "Source-bound R8 content/control review, native verification or independent launch/result evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "finalization.validation.json"
+    },
+    {
+      "path": "review/issue-109/r8-reviewer-receipts/first-import-diagnostic.log",
+      "kind": "file",
+      "purpose": "Source-bound R8 content/control review, native verification or independent launch/result evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "first-import-diagnostic.log"
+    },
+    {
+      "path": "review/issue-109/r8-reviewer-receipts/launch-and-result-receipts.json",
+      "kind": "file",
+      "purpose": "Source-bound R8 content/control review, native verification or independent launch/result evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "launch-and-result-receipts.json"
+    },
+    {
+      "path": "review/issue-109/r8-reviewer-receipts/metadata-correction.json",
+      "kind": "file",
+      "purpose": "Source-bound R8 content/control review, native verification or independent launch/result evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "metadata-correction.json"
+    },
+    {
+      "path": "review/issue-109/r8-reviewer-receipts/proof.json",
+      "kind": "file",
+      "purpose": "Source-bound R8 content/control review, native verification or independent launch/result evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "proof.json"
+    },
+    {
+      "path": "review/issue-109/r8-reviewer-receipts/request.md",
+      "kind": "file",
+      "purpose": "Source-bound R8 content/control review, native verification or independent launch/result evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "request.md"
+    },
+    {
+      "path": "review/issue-109/r8-reviewer-receipts/requirements-capacity-final.md",
+      "kind": "file",
+      "purpose": "Retained source-bound R8 review, diagnostic or bounded capacity-maintenance evidence for issue 109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Final capacity Requirements continuation"
+    },
+    {
+      "path": "review/issue-109/r8-reviewer-receipts/requirements-final.md",
+      "kind": "file",
+      "purpose": "Source-bound R8 content/control review, native verification or independent launch/result evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "R8 independent final Requirements & Acceptance review"
+    },
+    {
+      "path": "review/issue-109/r8-reviewer-receipts/requirements-preflight.md",
+      "kind": "file",
+      "purpose": "Source-bound R8 content/control review, native verification or independent launch/result evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "R8 Requirements preflight — bounded S07/S08 amendment"
+    },
+    {
+      "path": "review/issue-109/r8-reviewer-receipts/ri-regressions-after-capacity.log",
+      "kind": "file",
+      "purpose": "Retained source-bound R8 review, diagnostic or bounded capacity-maintenance evidence for issue 109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ri-regressions-after-capacity.log"
+    },
+    {
+      "path": "review/issue-109/r8-reviewer-receipts/ri-regressions-before-capacity.log",
+      "kind": "file",
+      "purpose": "Retained source-bound R8 review, diagnostic or bounded capacity-maintenance evidence for issue 109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ri-regressions-before-capacity.log"
+    },
+    {
+      "path": "review/issue-109/r8-reviewer-receipts/ri-regressions-before-regeneration.log",
+      "kind": "file",
+      "purpose": "Retained source-bound R8 review, diagnostic or bounded capacity-maintenance evidence for issue 109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ri-regressions-before-regeneration.log"
+    },
+    {
+      "path": "review/issue-109/r8-reviewer-receipts/whitebox-capacity.md",
+      "kind": "file",
+      "purpose": "Retained source-bound R8 review, diagnostic or bounded capacity-maintenance evidence for issue 109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "R8 White-box QA — capacity continuation"
+    },
+    {
+      "path": "review/issue-109/r8-reviewer-receipts/whitebox-correction.md",
+      "kind": "file",
+      "purpose": "Source-bound R8 content/control review, native verification or independent launch/result evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "R8 White-box QA — metadata correction"
+    },
+    {
+      "path": "review/issue-109/r8-reviewer-receipts/whitebox-first.md",
+      "kind": "file",
+      "purpose": "Source-bound R8 content/control review, native verification or independent launch/result evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "R8 — independent White-box QA, first result"
     },
     {
       "path": "review/issue-114/2026-10-20-review.md",
@@ -31435,6 +31995,26 @@
       ]
     },
     {
+      "path": "drafts/devcon-romania-2026/r8",
+      "kind": "directory",
+      "purpose": "R8 native presentation, matching rendition, preserved notes with delivery addenda or exact edited native source parts.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r8/sources",
+      "kind": "directory",
+      "purpose": "R8 native presentation, matching rendition, preserved notes with delivery addenda or exact edited native source parts.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "drafts/events",
       "kind": "directory",
       "purpose": "Unpublished event sources and campaign plans prepared for the separately owned event distribution adapter.",
@@ -31598,6 +32178,16 @@
       "path": "review/issue-109/r7-reviewer-receipts",
       "kind": "directory",
       "purpose": "Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-109/r8-reviewer-receipts",
+      "kind": "directory",
+      "purpose": "Source-bound R8 content/control review, native verification or independent launch/result evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [

@@ -3,46 +3,38 @@
 **AI Changes the Delivery System and the Product Itself**  
 Vitalii Oborskyi · DevOps Stage · 4 November 2026
 
-**Current author-review edition: R7 — nine editable slides, attached R13 English
-stage notes, and matching text/vector PDF.** Slides 3 and 4 exchange positions:
-comprehension/ownership now precedes the research evidence. All slide content and
-layout are preserved from R6; only order and delivery labels change.
+**Current author-review edition: R8 — complete editable PPTX and matching PDF.**
+The slide3/4 exchange is retained. Slide7 now monitors people explicitly; slide8
+shows a single control loop, human architectural dependencies and the business-case
+decision beyond a successful demo.
 
-One owner and one execution thread: [issue 109](https://github.com/oborskyivitalii/oborskyivitalii/issues/109)
-· [Draft PR110](https://github.com/oborskyivitalii/oborskyivitalii/pull/110).
+One owner: [issue109](https://github.com/oborskyivitalii/oborskyivitalii/issues/109)
+· existing [Draft PR110](https://github.com/oborskyivitalii/oborskyivitalii/pull/110).
 
-## Review R7
+## Review R8
 
-- [Editable PowerPoint](r7/devcon-romania-2026-r7.pptx)
-- [Matching PDF](r7/devcon-romania-2026-r7.pdf)
-- [Native notes in delivery order](r7/speaker-notes.md)
-- [Edition identity, mapping and exact hashes](r7/edition.json)
-- [Reproduction instructions and pinned input](r7/README.md)
-- [Source-bound review and remaining acceptance gates](../../review/issue-109/2026-11-02-r7-review.md)
+- [Editable PowerPoint](r8/devcon-romania-2026-r8.pptx)
+- [Matching PDF](r8/devcon-romania-2026-r8.pdf)
+- [Notes with R8 delivery addenda](r8/speaker-notes.md)
+- [Edition identity and artifact hashes](r8/edition.json)
+- [Native source/provenance and re-export](r8/README.md)
+- [Bounded review](../../review/issue-109/2026-11-02-r8-review.md)
 
-The argument now runs **delivery imbalance → comprehension and ownership →
-qualified evidence → contextual responses**. The new slide 3 keeps the approved
-narrow/systemic review comparison, local comprehension-gap explanation, ownership
-consequences and lower lifecycle illustration in the existing dark theme. The new
-slide 4 retains all empirical qualifications. Those studies measure different
-populations and outcomes; the lifecycle curves remain explicitly illustrative.
+S07 separates **service, behavior, controls and people/capacity**. S08 names
+sensors, controller, actuators and the controlled system, with visible feedback
+and action constraints. Human sensing and decisions can make qualified operators
+an architectural dependency. The project decision evaluates control adequacy and
+full cost in context; a successful happy-path demonstration alone is insufficient.
 
-| R7 position | Content | R6 / standalone R13 section |
-| --- | --- | --- |
-| 3 | The Comprehension Gap Is an Ownership Risk | 4 |
-| 4 | What Are We Actually Measuring? | 3 |
+The first-half sequence remains **delivery imbalance → comprehension/ownership
+(S03) → qualified evidence (S04) → contextual responses**. The source-position
+order is 1,2,4,3,5,6,7,8,9. All other seven slide visuals remain identical to R7.
+R13 source speech is preserved; S07/S08 receive concise labeled delivery addenda.
+The historical [R13 script](devcon-romania-2026-r13-concise-stage-script.md) keeps
+its original order. Use current attached/Markdown notes for presentation delivery.
 
-All other positions are unchanged. The R6 slide-5 spacing correction remains
-intact. Visible numbers and native note headings follow the current delivery
-order. **R13 remains the speech revision; R7 is the repository edition.** The
-historical [standalone R13 script](devcon-romania-2026-r13-concise-stage-script.md)
-is unchanged; use R7's attached notes or Markdown notes for the reordered talk.
-Two inherited reference-note transitions are retained outside the spoken section;
-no R13 spoken text has been rewritten.
-
-The retained editorial allocation is **19:55 talk + 7:00 Q&A + 3:05 reserve**.
-It is a planning target, not a measured duration of the R13 script. Timed rehearsal
-and presenting-device acceptance remain pending.
+The previous **19:55 talk + 7:00 Q&A + 3:05 reserve** remains an editorial target;
+R8 additions are not timed rehearsal evidence. Author/device acceptance is separate.
 
 ## Argument
 
@@ -62,7 +54,8 @@ responsibilities, two closing projects and one final homepage QR.
 
 | Edition | Repository status | Purpose |
 | --- | --- | --- |
-| **R7** | Current author-review draft; complete PPTX/PDF/notes package | R6 positions 3 and 4 exchanged; notes and delivery numbers synchronized |
+| **R8** | Current author-review draft; complete package | Explicit people monitoring and control architecture/business-case decision |
+| **R7** | Preserved complete package | R6 positions3/4 exchanged; notes and delivery numbers synchronized |
 | **R6** | Preserved complete PPTX/PDF/notes package | Approved systemic-first slide 4 integrated into the full R13 working deck |
 | **R5** | Historical notes/manifest; declared PPTX/PDF were not committed | Problem-framing narrative and consolidated R4 working lineage |
 | **R4** | No repository package | Historical scratch labels; no retained edition |
@@ -77,14 +70,14 @@ retained in the [R3 README at its exact commit](https://github.com/oborskyivital
 ## Reproduce and validate
 
 Follow the [presentation versioning contract](../../guides/PRESENTATION-VERSIONING.md)
-and the [native reorder command](r7/README.md). Export the verified
+and the [native source/re-export instructions](r8/README.md). Export the verified
 final PPTX using the existing LibreOffice Impress rendition method:
 
 ```bash
 soffice --headless --convert-to pdf:impress_pdf_Export \
-  --outdir /tmp/devcon-r7-export \
-  drafts/devcon-romania-2026/r7/devcon-romania-2026-r7.pptx
-python3 tools/presentations/validate_edition.py drafts/devcon-romania-2026/r7
+  --outdir /tmp/devcon-r8-export \
+  drafts/devcon-romania-2026/r8/devcon-romania-2026-r8.pptx
+python3 tools/presentations/validate_edition.py drafts/devcon-romania-2026/r8
 ```
 
 Use a new scratch output directory for re-export. PDF metadata can differ between
@@ -95,11 +88,11 @@ acceptance.
 
 ## Event binding and provenance
 
-The event record continues to select the exact R3 PDF. Preparing R7 in Draft
-PR110 does not publish it, merge it or select it for the conference. Full R7 author
+The event record continues to select the exact R3 PDF. Preparing R8 in Draft
+PR110 does not publish it, merge it or select it for the conference. Full R8 author
 approval, an explicit event selection and the remaining human checks are separate.
 
-Historical PMDay/R38 pins are retained in `r7/edition.json`. The complete R6 source
+Historical PMDay/R38 pins are retained in `r8/edition.json`. The complete R6 source
 is pinned there; its original native input identities and the approved ownership
 reference remain under `r6/sources/`. The full
 notes retain the original citations and caveats. The curves are conceptual, with

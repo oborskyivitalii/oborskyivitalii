@@ -203,7 +203,7 @@ producer. Empty/untracked directories do not become repository artifacts.
 
 Every input's exact bytes are streamed into SHA-256, including JS/CSS/HTML,
 images, compressed logs and archived evidence. Bounds: 5000 files, 32 MB per
-hashed file, 250 MB total. Parsed navigation text remains bounded at 2 MB per
+hashed file, 260 MB total. Parsed navigation text remains bounded at 2 MB per
 file / 50 MB total. These site-specific streaming bounds admit the existing large
 review bundles without loading/parsing them as policy or silently dropping them.
 Unsafe paths, symlinks, unsupported source tables or bounds fail visibly.

@@ -1,4 +1,17 @@
-## Current amendment — R7, 2 November 2026
+## Current amendment — R8, 2 November 2026
+
+The author requests completed PDF/PPTX with two additional visible changes:
+S07 monitors human availability, workload and timely response capacity; S08 shows
+one clear control loop, explicit constraints and human sensing/controller roles
+as conditional architectural dependencies. The project decision must assess the
+control loop's adequacy and full cost for the business case, beyond a successful
+happy-path demo. Preserve R7's slide3/4 exchange and the other seven slide visuals.
+Use [R8](r8/edition.json) and its attached delivery addenda. Prior R13 text remains
+preserved. This amendment extends AC17/18; event selection remains R3.
+
+---
+
+## Previous amendment — R7, 2 November 2026
 
 The author requests exchanging current slides 3 and 4 and an assessment of that
 order. R7 uses R6 source positions **1, 2, 4, 3, 5, 6, 7, 8, 9**. Delivery numbers

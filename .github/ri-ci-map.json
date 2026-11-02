@@ -3,7 +3,7 @@
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/109",
     "date": "2026-11-02",
-    "summary": "Reconcile current RI/CI routes with PR110 and the R7 AC01-AC19 policy. Preserve stable evidence/ownership gate lineage through the authorized slide3/4 permutation. Retain all current control families and unconditional checks; exact results and four independent role receipts are recorded in the R7 review."
+    "summary": "PR110 current R8 artifact delta: explicit human monitoring and control architecture on S07/S08, retaining the R7 slide3/4 exchange. Keep existing four bounded checks and independent role gates; no website runtime or release change."
   },
   "layers": [
     {
@@ -175,7 +175,8 @@
         "review/issue-167/2026-10-31-offline-prototype.md",
         ".github/acceptance/issue-109.json",
         "review/issue-109/2026-11-02-r6-review.md",
-        "review/issue-109/2026-11-02-r7-review.md"
+        "review/issue-109/2026-11-02-r7-review.md",
+        "review/issue-109/2026-11-02-r8-review.md"
       ],
       "checks": [
         "acceptance-policy",
@@ -778,7 +779,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "5699ba6daf99603180a69e039104992acc286990b98bb8c98d43e51c2507349b",
+    "digest": "d132a9a8dd284ba8464abd22adb5eedc594cffba62c11345d3ea9c6922574624",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -794,7 +795,7 @@
       },
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
-        "sha256": "cca61bab2ab0866641953f623698cc4628db3ebad7120b4b8fad205a3a354cca"
+        "sha256": "29a6dc08787505c268b5b6e759d5e95949872f740a7ae8dd370d3fb7b7f74e43"
       },
       {
         "path": ".github/acceptance/issue-102.json",
@@ -806,7 +807,7 @@
       },
       {
         "path": ".github/acceptance/issue-109.json",
-        "sha256": "5127a6003b4d425005c7470283758e8c412ce394ad8860c1f1e92f8245298eaa"
+        "sha256": "00dbdd168e592cecd6bb78fc582bfc4780fa5a4eac64a80b122cb572b166fb38"
       },
       {
         "path": ".github/acceptance/issue-114.json",
@@ -926,7 +927,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "b56a00f26b2dae6a878960b9668e9cacc2daa169a5c128f29d3def4a4b5e74a1"
+        "sha256": "67be451c473a442421d0db549eb57524a275ecbabc5f713c21f41777e82f5810"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -1222,7 +1223,7 @@
       },
       {
         "path": "tools/repository_intelligence.py",
-        "sha256": "dad68d88d241c2cd223081d6a28961c1aa7abc19c0f4c223c9c3382c562aa792"
+        "sha256": "9be024a28215c5852bb26893fc5696dc6543d7056f37c40500e796519178d821"
       },
       {
         "path": "tools/run_repository_tests.py",
