@@ -20,6 +20,9 @@ function fixture(t) {
     write(row.owner, 'fixture owner\n');
   }
   write('tools/quality/local.cjs', fs.readFileSync(path.join(root, 'tools/quality/local.cjs')));
+  for (const file of ['delivery-routing.cjs', 'delivery-json.cjs', 'delivery-git.cjs']) {
+    write('tools/quality/' + file, fs.readFileSync(path.join(root, 'tools/quality', file)));
+  }
   write(runner.REGISTRY, JSON.stringify(registry));
   t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
   return {
@@ -46,6 +49,12 @@ function executionFixture(t, body) {
     'tools/quality/source-test-worker.cjs',
     fs.readFileSync(path.join(root, 'tools/quality/source-test-worker.cjs'))
   );
+  for (const dependency of ['delivery-routing.cjs', 'delivery-json.cjs', 'delivery-git.cjs']) {
+    write(
+      'tools/quality/' + dependency,
+      fs.readFileSync(path.join(root, 'tools/quality', dependency))
+    );
+  }
   write('tools/quality/local.cjs', '// no delegated baseline in this controlled repository\n');
   write('guides/SITE-CHECK-PROFILES.md', 'controlled test owner\n');
   write(
@@ -56,6 +65,11 @@ function executionFixture(t, body) {
       source_profiles: {
         pr: { baseline_files: [], known_non_node_paths: [], shared_inputs: [] },
         staging: { baseline_files: [] },
+        content: {
+          authored_inputs: ['site/content/catalog.json'],
+          derived_inputs: ['docs/**'],
+          mandatory_files: [file],
+        },
       },
       tests: [
         {
@@ -65,6 +79,7 @@ function executionFixture(t, body) {
           owner: 'guides/SITE-CHECK-PROFILES.md',
           lifecycle: 'permanent',
           profiles: ['pr-targeted', 'staging', 'production'],
+          content: true,
           disposition: 'controlled fixture',
           surviving_route: 'production',
           inputs: [file],
@@ -217,11 +232,7 @@ test('PR selection targets affected current contracts, diagnostic helper changes
   });
   assert.ok(helper.modules.includes('tests/writing-geometry.test.cjs'));
   const python = runner.select(root, 'pr', {
-    changedPaths: [
-      'tests/test_root_layout.py',
-      'tests/test_issue35_acceptance.py',
-      'guides/SITE-STAGING.md',
-    ],
+    changedPaths: ['tests/test_root_layout.py', 'tests/test_issue35_acceptance.py'],
   });
   assert.deepEqual(python.modules, []);
   assert.deepEqual(python.conservativeFallback, []);
@@ -229,6 +240,94 @@ test('PR selection targets affected current contracts, diagnostic helper changes
   assert.equal(result.pass, null);
   assert.equal(result.status, 'not-applicable');
   assert.equal(result.total, 0);
+});
+test('delivery contract guides select their applicable admission and observer regressions', () => {
+  for (const [guide, modules] of [
+    [
+      'guides/SITE-STAGING.md',
+      ['tests/delivery-admission.test.cjs', 'tests/delivery-observation.test.cjs'],
+    ],
+    ['guides/SITE-CHECK-PROFILES.md', ['tests/delivery-observation.test.cjs']],
+  ]) {
+    const plan = runner.select(root, 'pr', { changedPaths: [guide] });
+    assert.deepEqual(plan.modules, modules);
+    assert.deepEqual(plan.conservativeFallback, []);
+    assert.equal(plan.baselineCommand, 'node tools/quality/local.cjs');
+    assert.equal(plan.pythonRoute, 'python3 tools/run_repository_tests.py');
+    assert.equal(plan.taskSnapshots, 'selected owning issue policy only');
+  }
+});
+test('review template ownership preserves baseline and separate non-Node routes', () => {
+  const registry = runner.loadRegistry(root),
+    plan = runner.select(root, 'pr', { changedPaths: ['review/REVIEW-TEMPLATE.md'] });
+  assert.deepEqual(plan.modules, []);
+  assert.deepEqual(plan.conservativeFallback, []);
+  assert.deepEqual(plan.reasons, {});
+  assert.deepEqual(plan.baselineFiles, registry.source_profiles.pr.baseline_files);
+  assert.equal(plan.baselineCommand, 'node tools/quality/local.cjs');
+  assert.equal(plan.pythonRoute, 'python3 tools/run_repository_tests.py');
+  assert.equal(plan.taskSnapshots, 'selected owning issue policy only');
+});
+test('review template mixtures retain unknown, shared-control and known-input coverage', () => {
+  const template = 'review/REVIEW-TEMPLATE.md',
+    registry = runner.loadRegistry(root),
+    baseline = registry.source_profiles.pr.baseline_files,
+    broad = registry.tests
+      .filter(
+        (row) =>
+          row.language === 'javascript' &&
+          row.lifecycle === 'permanent' &&
+          !baseline.includes(row.path)
+      )
+      .map((row) => row.path)
+      .sort();
+  for (const unknown of [
+    'review/REVIEW-TEMPLATE-extra.md',
+    'review/templates/REVIEW-TEMPLATE.md',
+  ]) {
+    for (const changedPaths of [[unknown], [template, unknown]]) {
+      const plan = runner.select(root, 'pr', { changedPaths });
+      assert.deepEqual(plan.modules, broad, changedPaths.join(', '));
+      assert.deepEqual(plan.conservativeFallback, [unknown]);
+      for (const file of broad)
+        assert.ok(plan.reasons[file].includes('unknown changed source ' + unknown), file);
+    }
+  }
+  const control = 'tools/quality/test-profiles.json';
+  for (const changedPaths of [[control], [template, control]]) {
+    const plan = runner.select(root, 'pr', { changedPaths });
+    assert.deepEqual(plan.modules, broad, changedPaths.join(', '));
+    assert.deepEqual(plan.conservativeFallback, []);
+    for (const file of broad)
+      assert.ok(plan.reasons[file].includes('shared source control ' + control), file);
+  }
+  for (const { changedPaths, required } of [
+    {
+      changedPaths: ['site/content/pages/index/about.html'],
+      required: ['content', 'executive', 'site-engine', 'analytics'],
+    },
+    {
+      changedPaths: ['AGENTS.md', 'CONTRIBUTING.md'],
+      required: ['release-rights', 'publication-records'],
+    },
+    { changedPaths: ['NOTICE.md'], required: ['publication-records'] },
+  ]) {
+    const original = runner.select(root, 'pr', { changedPaths }),
+      mixed = runner.select(root, 'pr', { changedPaths: [template, ...changedPaths] });
+    for (const name of required)
+      assert.ok(original.modules.includes('tests/' + name + '.test.cjs'), name);
+    assert.deepEqual(original.conservativeFallback, []);
+    for (const field of [
+      'modules',
+      'conservativeFallback',
+      'reasons',
+      'baselineFiles',
+      'baselineCommand',
+      'pythonRoute',
+      'taskSnapshots',
+    ])
+      assert.deepEqual(mixed[field], original[field], changedPaths.join(', ') + ': ' + field);
+  }
 });
 test('authored legal and edition changes directly select publication record coverage', () => {
   for (const changed of [
@@ -274,6 +373,241 @@ test('unknown changed source conservatively selects every permanent JS and never
     'unsafe\npath',
   ])
     assert.throws(() => runner.select(root, 'pr', { changedPaths: [bad] }), /unsafe path/);
+});
+test('authored content selection retains all mandatory safety modules and rejects mixed or generated-only changes', () => {
+  const registry = runner.loadRegistry(root);
+  const authored = [
+    'site/content/catalog.json',
+    'site/content/pages/writing/section-1.json',
+    'site/publications/example/manuscript.md',
+    'site/assets/publications/example/figure.svg',
+    'docs/writing.html',
+    'site/output-lock.json',
+    'MEMORY.md',
+    'REPOSITORY-MAP.md',
+    '.github/repository-intelligence/agent-context.json',
+  ];
+  const plan = runner.select(root, 'content', { changedPaths: authored });
+  assert.deepEqual(plan.modules, [...registry.source_profiles.content.mandatory_files].sort());
+  assert.equal(plan.classification.mode, 'content');
+  assert.deepEqual(plan.baselineFiles, []);
+  assert.equal(plan.baselineCommand, null);
+  const pr = runner.select(root, 'pr', { changedPaths: authored });
+  assert.deepEqual(
+    pr.modules,
+    plan.modules.filter((file) => !pr.baselineFiles.includes(file))
+  );
+  assert.ok(!pr.modules.includes('tests/space.test.cjs'));
+  for (const changed of [
+    'site/engine/navigation.js',
+    'site/templates/pages/writing/section-1.html',
+    'tools/site/build.cjs',
+    '.github/workflows/site-checks.yml',
+    'site/content/site.json',
+    'site/content/pages/research/metadata.json',
+    'site/publications/example/executable.cjs',
+    'site/assets/publications/example/active.js',
+    'site/assets/publications/example/PROVENANCE.md',
+    'unknown-owner.json',
+  ]) {
+    assert.throws(
+      () => runner.select(root, 'content', { changedPaths: [...authored, changed] }),
+      /rejects/
+    );
+    assert.equal(
+      runner.select(root, 'pr', { changedPaths: [...authored, changed] }).classification.mode,
+      'platform'
+    );
+  }
+  for (const changedPaths of [[], ['docs/writing.html']])
+    assert.throws(() => runner.select(root, 'content', { changedPaths }), /rejects/);
+});
+test('publication inventory admits content bookkeeping while pinning existing unsupported entries', () => {
+  const registry = runner.loadRegistry(root);
+  const current = JSON.parse(fs.readFileSync(path.join(root, '.github/repository-paths.json')));
+  assert.equal(runner.publicationInventoryCompatible(registry, current, current), true);
+  const provenance = 'site/assets/publications/existing/PROVENANCE.md';
+  const before = {
+    schema_version: 1,
+    entries: {
+      'site/engine/navigation.js': {
+        kind: 'file',
+        owner: 'site/README.md',
+        role: 'source',
+        purpose: 'Existing platform owner',
+      },
+      [provenance]: {
+        kind: 'file',
+        owner: 'guides/ARTICLE-WORKFLOW.md',
+        role: 'source',
+        purpose: 'Existing publication asset provenance',
+      },
+    },
+  };
+  const after = structuredClone(before);
+  after.entries['site/publications/new-article/manuscript.md'] = {
+    kind: 'file',
+    owner: 'guides/ARTICLE-WORKFLOW.md',
+    role: 'source',
+    purpose: 'New authored article',
+  };
+  after.entries['docs/snapshots/' + 'a'.repeat(64) + '/writing.html'] = {
+    kind: 'file',
+    owner: 'site/README.md',
+    role: 'generated',
+    purpose: 'New Writing snapshot',
+  };
+  assert.equal(runner.publicationInventoryCompatible(registry, before, after), true);
+  for (const mutate of [
+    (value) => {
+      value.entries['site/engine/navigation.js'].owner = 'guides/ARTICLE-WORKFLOW.md';
+    },
+    (value) => {
+      value.entries['site/publications/new-article/active.cjs'] =
+        value.entries['site/publications/new-article/manuscript.md'];
+    },
+    (value) => {
+      value.entries['site/assets/publications/new-article/PROVENANCE.md'] =
+        value.entries[provenance];
+    },
+    (value) => {
+      value.entries[provenance].purpose = 'Changed publication asset provenance';
+    },
+    (value) => {
+      value.entries[provenance].role = 'draft';
+    },
+    (value) => {
+      delete value.entries[provenance];
+    },
+    (value) => {
+      value.entries['site/publications/new-article/manuscript.md'].owner = 'MEMORY.md';
+    },
+    (value) => {
+      value.schema_version = 2;
+    },
+    (value) => {
+      value.entries['docs/snapshots/' + 'a'.repeat(64) + '/writing.html'].owner = 'MEMORY.md';
+    },
+    (value) => {
+      value.entries['docs/snapshots/' + 'a'.repeat(64) + '/writing.html'].role = 'source';
+    },
+  ]) {
+    const invalid = structuredClone(after);
+    mutate(invalid);
+    assert.equal(runner.publicationInventoryCompatible(registry, before, invalid), false);
+  }
+  assert.equal(
+    runner.classifyContent(registry, ['site/content/catalog.json', '.github/repository-paths.json'])
+      .mode,
+    'platform',
+    'unbound inventory change cannot select content'
+  );
+});
+test('RI coupling permits only derived identity recalculation while retaining all policy and routes', () => {
+  const before = {
+    schema_version: 1,
+    review: { issue: 'stable owner' },
+    layers: ['unchanged'],
+    checks: ['unchanged'],
+    reviewed_source_identity: {
+      algorithm: 'sha256-path-content-map-v1',
+      digest: 'a'.repeat(64),
+      inputs: [{ path: '.github/repository-paths.json', sha256: 'b'.repeat(64) }],
+    },
+  };
+  const after = structuredClone(before);
+  after.reviewed_source_identity.digest = 'c'.repeat(64);
+  after.reviewed_source_identity.inputs[0].sha256 = 'd'.repeat(64);
+  assert.equal(runner.riIdentityCompatible(before, after), true);
+  for (const mutate of [
+    (value) => {
+      value.checks = [];
+    },
+    (value) => {
+      value.layers = [];
+    },
+    (value) => {
+      value.review.issue = 'another owner';
+    },
+    (value) => {
+      value.reviewed_source_identity.inputs.push({
+        path: 'tools/new-policy.cjs',
+        sha256: 'e'.repeat(64),
+      });
+    },
+    (value) => {
+      value.reviewed_source_identity.digest = 'malformed';
+    },
+  ]) {
+    const invalid = structuredClone(after);
+    mutate(invalid);
+    assert.equal(runner.riIdentityCompatible(before, invalid), false);
+  }
+});
+test('content safety inventory cannot silently omit modules or admit diagnostics', (t) => {
+  const f = fixture(t);
+  f.registry.source_profiles.content.mandatory_files.pop();
+  assert.throws(
+    () => runner.validateRegistry(f.directory, f.registry),
+    /mandatory content inventory/
+  );
+  f.registry = runner.loadRegistry(root);
+  const diagnostic = f.registry.tests.find((row) => row.lifecycle === 'diagnostic');
+  diagnostic.content = true;
+  f.registry.source_profiles.content.mandatory_files.push(diagnostic.path);
+  assert.throws(
+    () => runner.validateRegistry(f.directory, f.registry),
+    /content modules must retain/
+  );
+});
+test('unconditional CI dispatcher accepts only complete execution for its actual content plan', () => {
+  const plan = { modules: ['tests/content.test.cjs'], changedPaths: ['site/content/catalog.json'] };
+  const record = {
+    contentChecks: {
+      pass: true,
+      sourceTests: {
+        profile: 'content',
+        status: 'passed',
+        pass: true,
+        total: 2,
+        passed: 2,
+        failed: 0,
+        cancelled: 0,
+        skipped: 0,
+        todo: 0,
+        ...plan,
+      },
+    },
+  };
+  assert.equal(runner.verifyContentExecution(plan, record).executionReusedWithinJob, true);
+  for (const changed of [
+    { modules: [] },
+    { changedPaths: [] },
+    { pass: false },
+    { total: 0, passed: 0 },
+    { skipped: 1 },
+    { todo: 1 },
+    { cancelled: 1 },
+    { failed: 1 },
+    { profile: 'pr' },
+    { status: 'planned' },
+    { passed: 1 },
+  ])
+    assert.throws(() =>
+      runner.verifyContentExecution(plan, {
+        contentChecks: {
+          pass: true,
+          sourceTests: { ...record.contentChecks.sourceTests, ...changed },
+        },
+      })
+    );
+  assert.throws(() => runner.verifyContentExecution(plan, {}));
+  assert.equal(runner.argumentsFor(['--ci-profile', '--require-clean']).ciProfile, true);
+  assert.throws(
+    () => runner.argumentsFor(['--ci-profile', '--profile', 'content']),
+    /bound workflow/
+  );
+  assert.throws(() => runner.ciProfile(root, {}, { CONTENT_MODE: 'skip' }), /unknown CI/);
 });
 test('future declared permanent modules enter production/staging and their own changed test route automatically', (t) => {
   const f = fixture(t),
@@ -393,6 +727,166 @@ test('exact Git refs must match real checkout and contain no shell-like or symbo
   f.write('unknown-extension.js', 'changed\n');
   assert.throws(() => runner.requireClean(f.directory), /clean checkout/);
 });
+function gitChangeFixture(t) {
+  const f = fixture(t);
+  const git = (...args) =>
+    cp.execFileSync('git', args, { cwd: f.directory, encoding: 'utf8' }).trim();
+  git('init', '--quiet');
+  git('config', 'user.name', 'Fixture');
+  git('config', 'user.email', 'fixture@example.invalid');
+  const commit = () => {
+    git('add', '.');
+    git('commit', '--quiet', '-m', 'controlled change');
+    return git('rev-parse', 'HEAD');
+  };
+  return { ...f, git, commit };
+}
+test('real Git renames retain both endpoint owners regardless of ambient rename policy', (t) => {
+  const f = gitChangeFixture(t),
+    control = 'tools/quality/budgets.json',
+    destination = 'review/issue-122/renamed.json',
+    oldHelper = 'tools/quality/writing-geometry.cjs',
+    newHelper = 'tools/quality/writing-layout.cjs',
+    baseline = new Set(f.registry.source_profiles.pr.baseline_files),
+    broad = f.registry.tests
+      .filter((row) => row.language === 'javascript' && row.lifecycle === 'permanent')
+      .map((row) => row.path)
+      .filter((file) => !baseline.has(file))
+      .sort();
+  // Compare each move independently so shared coverage cannot hide a lost owner.
+  f.write(control, '{"controlled":"shared-budget"}\n');
+  f.write(oldHelper, '// distinct targeted helper\n');
+  f.write(
+    'tools/quality/source-tests.cjs',
+    fs.readFileSync(path.join(root, 'tools/quality/source-tests.cjs'))
+  );
+  const base = f.commit();
+  fs.mkdirSync(path.dirname(path.join(f.directory, destination)), { recursive: true });
+  fs.renameSync(path.join(f.directory, control), path.join(f.directory, destination));
+  const head = f.commit(),
+    expectedPaths = [control, destination].sort();
+  for (const policy of ['true', 'false', 'copies']) {
+    f.git('config', 'diff.renames', policy);
+    const selected = f.select('pr', { base, head });
+    assert.deepEqual(selected.changedPaths, expectedPaths, policy);
+    assert.deepEqual(selected.modules, broad, policy);
+    assert.deepEqual(selected.conservativeFallback, []);
+    assert.deepEqual(selected.baselineFiles, [...baseline]);
+    assert.ok(selected.modules.every((file) => !file.endsWith('.py')));
+    assert.ok(
+      selected.modules.every(
+        (file) => f.registry.tests.find((row) => row.path === file).lifecycle !== 'task-snapshot'
+      )
+    );
+    for (const file of broad)
+      assert.ok(selected.reasons[file].includes('shared source control ' + control), file);
+  }
+  // A second comparison excludes the shared control: broad coverage cannot mask a lost owner.
+  f.git('checkout', base, '--', control);
+  fs.unlinkSync(path.join(f.directory, destination));
+  fs.renameSync(path.join(f.directory, oldHelper), path.join(f.directory, newHelper));
+  const targetedHead = f.commit(),
+    expectedModules = f.registry.tests
+      .filter((row) => row.language === 'javascript' && row.lifecycle !== 'task-snapshot')
+      .filter((row) => row.inputs.includes(oldHelper) || row.inputs.includes(newHelper))
+      .map((row) => row.path)
+      .filter((file) => !baseline.has(file))
+      .sort();
+  assert.ok(expectedModules.length > 1 && expectedModules.length < broad.length);
+  for (const policy of ['true', 'false', 'copies']) {
+    f.git('config', 'diff.renames', policy);
+    const selected = f.select('pr', { base, head: targetedHead });
+    assert.deepEqual(selected.changedPaths, [oldHelper, newHelper].sort());
+    assert.deepEqual(selected.modules, expectedModules);
+    assert.deepEqual(selected.conservativeFallback, []);
+    for (const input of [oldHelper, newHelper])
+      for (const row of f.registry.tests.filter(
+        (row) => expectedModules.includes(row.path) && row.inputs.includes(input)
+      ))
+        assert.ok(selected.reasons[row.path].includes('changed ' + input));
+  }
+  const cli = cp.spawnSync(
+    process.execPath,
+    [
+      path.join(f.directory, 'tools/quality/source-tests.cjs'),
+      '--profile',
+      'pr',
+      '--base',
+      base,
+      '--head',
+      targetedHead,
+      '--require-clean',
+      '--plan',
+    ],
+    { cwd: f.directory, encoding: 'utf8', timeout: 20000 }
+  );
+  assert.equal(cli.status, 0, cli.stderr);
+  const plan = JSON.parse(cli.stdout);
+  assert.deepEqual(
+    Object.keys(plan).sort(),
+    [
+      'profile',
+      'registry',
+      'modules',
+      'baselineFiles',
+      'baselineCommand',
+      'changedPaths',
+      'classification',
+      'conservativeFallback',
+      'reasons',
+      'pythonRoute',
+      'taskSnapshots',
+      'websiteSmoke',
+      'status',
+      'pass',
+    ].sort()
+  );
+  assert.deepEqual(plan.changedPaths, [oldHelper, newHelper].sort());
+  assert.deepEqual(plan.modules, expectedModules);
+  assert.deepEqual(plan.reasons, f.select('pr', { base, head: targetedHead }).reasons);
+  assert.deepEqual(plan.baselineFiles, [...baseline]);
+  assert.equal(plan.pythonRoute, 'python3 tools/run_repository_tests.py');
+  assert.equal(plan.taskSnapshots, 'selected owning issue policy only');
+  assert.equal(plan.status, 'planned');
+  assert.equal(plan.pass, null);
+  assert.equal(plan.classification.mode, 'platform');
+});
+test('real Git ordinary changes, unchanged-source copy and empty diff retain selection boundaries', (t) => {
+  const f = gitChangeFixture(t),
+    original = 'review/issue-122/original.json',
+    copied = 'review/issue-122/copied.json',
+    modified = 'review/REVIEW-TEMPLATE.md',
+    deleted = 'tools/quality/writing-geometry.cjs',
+    added = 'tools/quality/writing-layout.cjs';
+  f.write(original, '{"copy":"source remains"}\n');
+  f.write(modified, 'original template\n');
+  f.write(deleted, '// removed helper\n');
+  const base = f.commit();
+  f.write(copied, fs.readFileSync(path.join(f.directory, original)));
+  f.write(modified, 'updated template\n');
+  fs.unlinkSync(path.join(f.directory, deleted));
+  f.write(added, '// added helper, distinct contents\n');
+  const head = f.commit(),
+    expectedPaths = [added, copied, deleted, modified].sort(),
+    expectedModules = f.registry.tests
+      .filter((row) => row.language === 'javascript' && row.lifecycle !== 'task-snapshot')
+      .filter((row) => row.inputs.includes(deleted) || row.inputs.includes(added))
+      .map((row) => row.path)
+      .filter((file) => !f.registry.source_profiles.pr.baseline_files.includes(file))
+      .sort();
+  f.git('config', 'diff.renames', 'copies');
+  const selected = f.select('pr', { base, head });
+  assert.deepEqual(selected.changedPaths, expectedPaths);
+  assert.ok(!selected.changedPaths.includes(original), 'unchanged copy source is not deleted');
+  assert.deepEqual(selected.modules, expectedModules);
+  assert.deepEqual(selected.conservativeFallback, []);
+  const empty = f.select('pr', { base: head, head });
+  assert.deepEqual(empty.changedPaths, []);
+  assert.deepEqual(empty.modules, []);
+  assert.deepEqual(empty.baselineFiles, f.registry.source_profiles.pr.baseline_files);
+  assert.equal(empty.pythonRoute, 'python3 tools/run_repository_tests.py');
+  assert.equal(empty.taskSnapshots, 'selected owning issue policy only');
+});
 test('TAP accounting rejects skips, TODOs, missing, empty, duplicate, cancelled and partial successes', () => {
   assert.deepEqual(runner.accounting(tap()), {
     total: 2,
@@ -440,6 +934,23 @@ test('selected execution keeps real process failure and accounting evidence with
     () => runner.run(root, plan, { execute: () => ({ status: 0, stdout: tap({ skipped: 1 }) }) }),
     /skipped/
   );
+  assert.throws(
+    () =>
+      runner.run(root, plan, {
+        execute: () => ({
+          status: null,
+          error: new Error('spawnSync ETIMEDOUT'),
+          stdout: '# Subtest: last observed contract\nnot ok 1 - last observed contract\n',
+          stderr: 'retained child diagnostic',
+        }),
+      }),
+    (error) => {
+      assert.match(error.message, /ETIMEDOUT/);
+      assert.match(error.message, /retained child diagnostic/);
+      assert.match(error.message, /last observed contract/);
+      return true;
+    }
+  );
   assert.throws(() => runner.run(root, { ...plan, modules: [] }));
   assert.throws(
     () => runner.argumentsFor(['--profile', 'production', '--profile', 'staging']),
@@ -465,6 +976,9 @@ test('source scheduling starts expensive files early with isolated processes and
   const f = fixture(t),
     files = [
       'tests/aaa.test.cjs',
+      'tests/staging.test.cjs',
+      'tests/pages-migration.test.cjs',
+      'tests/release-controller.test.cjs',
       'tests/release-rights.test.cjs',
       'tests/executive.test.cjs',
       'tests/space.test.cjs',
@@ -490,7 +1004,7 @@ test('source scheduling starts expensive files early with isolated processes and
     'run-source.cjs',
     'require(' +
       JSON.stringify(path.join(root, 'tools/quality/source-test-worker.cjs')) +
-      ').runFiles(JSON.parse(process.argv[2]),{parallelism:2});\n'
+      ').runFiles(JSON.parse(process.argv[2]),{parallelism:1});\n'
   );
   const child = cp.spawnSync(
     process.execPath,
@@ -502,9 +1016,15 @@ test('source scheduling starts expensive files early with isolated processes and
     'tests/space.test.cjs',
     'tests/executive.test.cjs',
     'tests/release-rights.test.cjs',
+    'tests/release-controller.test.cjs',
+    'tests/pages-migration.test.cjs',
+    'tests/staging.test.cjs',
     'tests/aaa.test.cjs',
   ]);
-  assert.equal(runner.accounting(child.stdout, { modules: files, root: f.directory }).passed, 4);
+  assert.equal(
+    runner.accounting(child.stdout, { modules: files, root: f.directory }).passed,
+    files.length
+  );
   const file = files[0],
     plan = { profile: 'production', modules: [file] };
   for (const body of [
@@ -517,6 +1037,73 @@ test('source scheduling starts expensive files early with isolated processes and
   ]) {
     f.write(file, body);
     assert.throws(() => runner.run(f.directory, plan));
+  }
+});
+
+test('source scheduling caps simultaneous isolated files at four without dropping queued coverage', async (t) => {
+  const f = fixture(t),
+    active = path.join(f.directory, 'active'),
+    release = path.join(f.directory, 'release'),
+    files = Array.from({ length: 5 }, (_, index) => 'tests/slot-' + index + '.test.cjs');
+  fs.mkdirSync(active);
+  for (const [index, file] of files.entries())
+    f.write(
+      file,
+      "const fs=require('node:fs'),test=require('node:test');" +
+        "test('bounded slot " +
+        index +
+        "',async()=>{" +
+        'const marker=' +
+        JSON.stringify(path.join(active, String(index))) +
+        ';' +
+        "fs.writeFileSync(marker,'active');" +
+        'while(!fs.existsSync(' +
+        JSON.stringify(release) +
+        '))await new Promise(r=>setTimeout(r,10));' +
+        'fs.unlinkSync(marker);});\n'
+    );
+  f.write(
+    'run-source.cjs',
+    'require(' +
+      JSON.stringify(path.join(root, 'tools/quality/source-test-worker.cjs')) +
+      ').runFiles(' +
+      JSON.stringify(files) +
+      ',{parallelism:64});\n'
+  );
+  const env = { ...process.env };
+  delete env.NODE_TEST_CONTEXT;
+  const child = cp.spawn(process.execPath, [path.join(f.directory, 'run-source.cjs')], {
+    cwd: f.directory,
+    env,
+    stdio: ['ignore', 'pipe', 'pipe'],
+  });
+  let stdout = '',
+    stderr = '';
+  child.stdout.on('data', (bytes) => {
+    stdout += bytes;
+  });
+  child.stderr.on('data', (bytes) => {
+    stderr += bytes;
+  });
+  const closed = new Promise((resolve, reject) => {
+    child.once('error', reject);
+    child.once('close', resolve);
+  });
+  try {
+    const deadline = Date.now() + 5000;
+    while (fs.readdirSync(active).length < 4) {
+      assert.ok(Date.now() < deadline, 'four actual source files must overlap');
+      await new Promise((resolve) => setTimeout(resolve, 20));
+    }
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    assert.equal(fs.readdirSync(active).length, 4, 'fifth file stays queued');
+    fs.writeFileSync(release, 'release');
+    assert.equal(await closed, 0, stderr || stdout);
+    assert.equal(runner.accounting(stdout, { modules: files, root: f.directory }).passed, 5);
+  } finally {
+    fs.writeFileSync(release, 'release');
+    if (child.exitCode === null) child.kill('SIGTERM');
+    await closed;
   }
 });
 
@@ -745,7 +1332,7 @@ test('explicit source reporting retains actual failed process streams and source
   assert.ok(raw.length > 8000);
   assert.match(raw, /original process failure/);
   assert.equal(report.execution.stdoutBytes, Buffer.byteLength(raw));
-  assert.equal(report.execution.timeoutMs, 180000);
+  assert.equal(report.execution.timeoutMs, 300000);
   assert.equal(report.execution.maxBufferBytes, 16 * 1024 * 1024);
   assert.deepEqual(report.observedAccounting.fail, [1]);
 });
@@ -837,6 +1424,46 @@ test('report write errors cannot become green and clean source failures still le
   );
 });
 
+test('one source execution retains every selected native case and rejects unavailable or empty modules', (t) => {
+  const f = executionFixture(t, "require('node:test')('remaining coverage',()=>{});\n"),
+    scene = 'tests/space.test.cjs',
+    sceneBody = "require('node:test')('scene coverage',()=>{});\n",
+    plan = { profile: 'production', modules: [f.file, scene] };
+  f.write(scene, sceneBody);
+  const execute = () => runner.run(f.directory, plan, { report: f.report });
+  const result = execute(),
+    report = JSON.parse(fs.readFileSync(f.report));
+  assert.equal(result.passed, 2);
+  assert.deepEqual(result.argv.slice(1), plan.modules);
+  assert.deepEqual(result.modules, plan.modules, 'original selected inventory stays intact');
+  assert.equal(report.executions, undefined, 'one source process owns the aggregate budget');
+  assert.equal(report.execution.status, 0);
+  assert.equal(report.execution.timeoutMs, 300000);
+  assert.equal(report.execution.maxBufferBytes, 16 * 1024 * 1024);
+  const raw = fs.readFileSync(report.files.tap);
+  assert.equal(
+    runner.accounting(raw.toString(), { modules: plan.modules, root: f.directory }).passed,
+    2
+  );
+  assert.equal(report.execution.stdoutBytes, raw.length, 'unmodified native TAP is retained');
+  for (const body of [
+    "require('node:test').skip('unavailable scene',()=>{});\n",
+    "require('node:test')('failed scene',()=>{throw Error('original scene failure')});\n",
+  ]) {
+    f.write(scene, body);
+    assert.throws(execute, /selected source test process failed|not all selected|skipped/);
+    const failed = JSON.parse(fs.readFileSync(f.report));
+    assert.equal(failed.pass, false);
+    assert.ok(failed.execution, 'the same single source process retains failure evidence');
+    assert.equal(failed.executions, undefined);
+    assert.match(fs.readFileSync(failed.files.tap, 'utf8'), /remaining coverage/);
+  }
+  f.write(scene, sceneBody);
+  f.write(f.file, '');
+  assert.throws(execute, /empty selected test module/);
+  assert.equal(JSON.parse(fs.readFileSync(f.report)).pass, false);
+});
+
 test('optional successful source reports keep the default API and CLI result shapes', (t) => {
   const f = executionFixture(t, "require('node:test')('available',()=>{});\n"),
     result = runner.run(f.directory, f.plan, { requireClean: true, report: f.report }),
@@ -849,4 +1476,309 @@ test('optional successful source reports keep the default API and CLI result sha
   assert.equal(child.status, 0, child.stderr);
   assert.equal(JSON.parse(child.stdout).status, 'passed');
   assert.equal(Object.hasOwn(JSON.parse(child.stdout), 'files'), false);
+});
+
+test('source scheduling starts measured long files early without losing selected assertions', (t) => {
+  const f = fixture(t);
+  const files = [
+    'tests/ordinary-z.test.cjs',
+    'tests/site-articles.test.cjs',
+    'tests/quality-sources.test.cjs',
+    'tests/publishing.test.cjs',
+    'tests/ordinary-a.test.cjs',
+  ];
+  for (const [index, file] of files.entries())
+    f.write(
+      file,
+      "require('node:test')('selected assertion " +
+        index +
+        "', () => require('node:assert/strict').equal(1 + 1, 2));\n"
+    );
+  const log = path.join(f.directory, 'ordered-files.jsonl');
+  f.write(
+    'run-order.cjs',
+    "const fs = require('node:fs'), path = require('node:path');\n" +
+      'require(' +
+      JSON.stringify(path.join(root, 'tools/quality/source-test-worker.cjs')) +
+      ').runFiles(' +
+      JSON.stringify(files) +
+      ', {parallelism:1}).on("test:summary", result => {\n' +
+      'if (result.file) fs.appendFileSync(' +
+      JSON.stringify(log) +
+      ', JSON.stringify(path.relative(process.cwd(), result.file).split(path.sep).join("/")) + "\\n");\n' +
+      '});\n'
+  );
+  const env = { ...process.env };
+  delete env.NODE_TEST_CONTEXT;
+  const child = cp.spawnSync(process.execPath, [path.join(f.directory, 'run-order.cjs')], {
+    cwd: f.directory,
+    env,
+    encoding: 'utf8',
+    timeout: 10000,
+  });
+  assert.equal(child.status, 0, child.stderr || child.stdout);
+  assert.deepEqual(fs.readFileSync(log, 'utf8').trim().split('\n').map(JSON.parse), [
+    'tests/publishing.test.cjs',
+    'tests/quality-sources.test.cjs',
+    'tests/site-articles.test.cjs',
+    'tests/ordinary-a.test.cjs',
+    'tests/ordinary-z.test.cjs',
+  ]);
+  assert.equal(
+    runner.accounting(child.stdout, { modules: files, root: f.directory }).passed,
+    files.length
+  );
+});
+
+for (const withoutEntryFile of [false, true])
+  test(
+    'source timing diagnoses only selected file wrappers without counting nested test names' +
+      (withoutEntryFile ? ' when optional entryFile is absent' : ''),
+    (t) => {
+      const f = fixture(t);
+      const files = ['tests/ordinary-a.test.cjs', 'tests/publishing.test.cjs'];
+      const wrappers = path.join(f.directory, 'wrappers.jsonl');
+      const stripped = path.join(f.directory, 'stripped-nested.jsonl');
+      for (const [index, file] of files.entries())
+        f.write(
+          file,
+          "const test = require('node:test'), assert = require('node:assert/strict');\n" +
+            "test('selected container " +
+            index +
+            "', async t => { await t.test(" +
+            JSON.stringify(file) +
+            ', () => assert.equal(1 + 1, 2)); });\n'
+        );
+      f.write(
+        'run-timing.cjs',
+        "const fs = require('node:fs');\nrequire(" +
+          JSON.stringify(path.join(root, 'tools/quality/source-test-worker.cjs')) +
+          ').runFiles(' +
+          JSON.stringify(files) +
+          ', {parallelism:1})' +
+          (withoutEntryFile
+            ? '.prependListener("test:dequeue", result => { delete result.entryFile; })' +
+              '.prependListener("test:complete", result => {\n' +
+              'delete result.entryFile; if (result.nesting > 0 && ' +
+              JSON.stringify(files) +
+              '.includes(result.name)) fs.appendFileSync(' +
+              JSON.stringify(stripped) +
+              ', JSON.stringify({name:result.name, nesting:result.nesting, hasEntryFile:Object.hasOwn(result,"entryFile")}) + "\\n");\n' +
+              '})'
+            : '') +
+          '.on("test:complete", result => {\n' +
+          'if (result.nesting === 0 && ' +
+          JSON.stringify(files) +
+          '.includes(result.name)) fs.appendFileSync(' +
+          JSON.stringify(wrappers) +
+          ', JSON.stringify({file:result.name, wrapperDurationMs:result.details.duration_ms, wrapperPassed:result.details.passed}) + "\\n");\n' +
+          '});\n'
+      );
+      const env = { ...process.env };
+      delete env.NODE_TEST_CONTEXT;
+      const child = cp.spawnSync(process.execPath, [path.join(f.directory, 'run-timing.cjs')], {
+        cwd: f.directory,
+        env,
+        encoding: 'utf8',
+        timeout: 10000,
+      });
+      assert.equal(child.status, 0, child.stderr || child.stdout);
+      const [capacity, ...events] = child.stderr.trim().split('\n').map(JSON.parse);
+      assert.deepEqual(capacity, {
+        kind: 'source-test-timing',
+        event: 'capacity',
+        node: process.version,
+        availableParallelism: os.availableParallelism(),
+        configuredParallelism: 1,
+        concurrency: 1,
+        files: files.length,
+      });
+      assert.deepEqual(
+        events.map(({ event, file }) => [event, file]),
+        [
+          ['dequeue', files[1]],
+          ['complete', files[1]],
+          ['dequeue', files[0]],
+          ['complete', files[0]],
+        ]
+      );
+      for (const event of events) {
+        assert.equal(event.kind, 'source-test-timing');
+        assert.ok(Number.isFinite(event.elapsedMs) && event.elapsedMs >= 0);
+        if (event.event === 'complete') {
+          assert.ok(Number.isFinite(event.wrapperDurationMs) && event.wrapperDurationMs >= 0);
+          assert.equal(event.wrapperPassed, true);
+        }
+      }
+      assert.deepEqual(
+        events
+          .filter(({ event }) => event === 'complete')
+          .map(({ file, wrapperDurationMs, wrapperPassed }) => ({
+            file,
+            wrapperDurationMs,
+            wrapperPassed,
+          })),
+        fs.readFileSync(wrappers, 'utf8').trim().split('\n').map(JSON.parse)
+      );
+      if (withoutEntryFile) {
+        const nested = fs.readFileSync(stripped, 'utf8').trim().split('\n').map(JSON.parse);
+        assert.deepEqual(
+          nested.map(({ name }) => name),
+          [files[1], files[0]]
+        );
+        assert.ok(nested.every(({ nesting, hasEntryFile }) => nesting === 1 && !hasEntryFile));
+      }
+      assert.equal(
+        runner.accounting(child.stdout, { modules: files, root: f.directory }).passed,
+        files.length * 2
+      );
+    }
+  );
+
+test('source scheduling uses configured worker capacity without exceeding its ceiling', (t) => {
+  const f = fixture(t);
+  const files = Array.from({ length: 6 }, (_, index) => 'tests/slot-' + index + '.test.cjs');
+  const active = path.join(f.directory, 'active');
+  const release = path.join(f.directory, 'released');
+  const log = path.join(f.directory, 'capacity.jsonl');
+  fs.mkdirSync(active);
+  for (const [index, file] of files.entries()) {
+    f.write(
+      file,
+      `
+      const test = require('node:test'), assert = require('node:assert/strict');
+      const fs = require('node:fs'), path = require('node:path');
+      test('isolated capacity slot ${index}', async () => {
+        const marker = path.join(${JSON.stringify(active)}, '${index}.active');
+        fs.writeFileSync(marker, 'active');
+        const count = fs.readdirSync(${JSON.stringify(active)}).length;
+        fs.appendFileSync(${JSON.stringify(log)}, JSON.stringify({ count }) + '\\n');
+        assert.ok(count <= 4, 'configured concurrency ceiling');
+        if (count === 4) fs.writeFileSync(${JSON.stringify(release)}, 'released');
+        const deadline = Date.now() + 3000;
+        while (!fs.existsSync(${JSON.stringify(release)})) {
+          assert.ok(Date.now() < deadline, 'all four configured slots must overlap');
+          await new Promise(resolve => setTimeout(resolve, 20));
+        }
+        await new Promise(resolve => setTimeout(resolve, 80));
+        fs.unlinkSync(marker);
+      });
+    `
+    );
+  }
+  f.write(
+    'run-capacity.cjs',
+    'require(' +
+      JSON.stringify(path.join(root, 'tools/quality/source-test-worker.cjs')) +
+      ').runFiles(' +
+      JSON.stringify(files) +
+      ', {parallelism:4});\n'
+  );
+  const env = { ...process.env };
+  delete env.NODE_TEST_CONTEXT;
+  const child = cp.spawnSync(process.execPath, [path.join(f.directory, 'run-capacity.cjs')], {
+    cwd: f.directory,
+    env,
+    encoding: 'utf8',
+    timeout: 10000,
+  });
+  assert.equal(child.status, 0, child.stderr || child.stdout);
+  const observations = fs.readFileSync(log, 'utf8').trim().split('\n').map(JSON.parse);
+  assert.equal(observations.length, files.length);
+  assert.equal(Math.max(...observations.map((row) => row.count)), 4);
+  assert.ok(observations.every((row) => row.count <= 4));
+  assert.equal(
+    runner.accounting(child.stdout, { modules: files, root: f.directory }).passed,
+    files.length
+  );
+  assert.deepEqual(fs.readdirSync(active), []);
+});
+
+test('repository-only selection omits website smoke and retains affected test failures', () => {
+  const plan = runner.select(root, 'pr', { changedPaths: ['AGENTS.md'], repositoryOnly: true });
+  assert.deepEqual(plan.modules, []);
+  assert.deepEqual(plan.baselineFiles, []);
+  assert.equal(plan.baselineCommand, null);
+  assert.equal(runner.run(root, plan).status, 'not-applicable');
+  const affected = runner.select(root, 'pr', {
+    changedPaths: ['tests/delivery-admission.test.cjs'],
+    repositoryOnly: true,
+  });
+  assert.ok(affected.modules.includes('tests/delivery-admission.test.cjs'));
+  assert.throws(
+    () =>
+      runner.run(root, affected, {
+        execute: () => ({ status: 1, stderr: 'selected test failed' }),
+      }),
+    /selected test failed/
+  );
+});
+
+test('CI content reuse retains the actual clean-source report and rejects substituted raw evidence', (t) => {
+  const f = executionFixture(t, "require('node:test')('available content check',()=>{});\n");
+  const git = (...args) =>
+    cp.execFileSync('git', args, { cwd: f.directory, encoding: 'utf8' }).trim();
+  const base = git('rev-parse', 'HEAD');
+  f.write('site/content/catalog.json', '{}\n');
+  git('add', '.');
+  git(
+    '-c',
+    'user.name=Fixture',
+    '-c',
+    'user.email=fixture@example.invalid',
+    'commit',
+    '--quiet',
+    '-m',
+    'content'
+  );
+  const head = git('rev-parse', 'HEAD');
+  const plan = runner.select(f.directory, 'content', { base, head });
+  const executed = runner.run(f.directory, plan, { requireClean: true, report: f.report });
+  const manifest = path.join(path.dirname(f.report), 'artifact.json');
+  fs.writeFileSync(
+    manifest,
+    JSON.stringify({
+      sourceDirty: false,
+      sourceCommit: head,
+      sourceTree: git('rev-parse', 'HEAD^{tree}'),
+      contentRelease: { trustedBaseline: { sourceCommit: base } },
+      contentChecks: { pass: true, sourceTests: executed },
+    })
+  );
+  const environment = {
+    CONTENT_MODE: 'content',
+    CONTENT_BASE_SHA: base,
+    SITE_CANDIDATE_SHA: head,
+    SITE_SOURCE_MANIFEST: manifest,
+  };
+  const reuse = () =>
+    runner.ciProfile(f.directory, { requireClean: true, report: f.report }, environment);
+  const report = fs.readFileSync(f.report, 'utf8');
+  assert.equal(reuse().executionReusedWithinJob, true);
+  assert.equal(fs.readFileSync(f.report, 'utf8'), report, 'actual execution evidence is retained');
+  for (const mutate of [
+    (value) => {
+      value.source.sourceTree = 'a'.repeat(40);
+    },
+    (value) => {
+      value.sourceAfter.sourceDirty = true;
+    },
+    (value) => {
+      value.result.modules = [];
+    },
+    (value) => {
+      value.execution.status = 1;
+    },
+    (value) => {
+      value.cleanSourceRequired = false;
+    },
+  ]) {
+    const invalid = JSON.parse(report);
+    mutate(invalid);
+    fs.writeFileSync(f.report, JSON.stringify(invalid));
+    assert.throws(reuse);
+  }
+  fs.writeFileSync(f.report, report);
+  fs.appendFileSync(JSON.parse(report).files.tap, '\nsubstituted raw result\n');
+  assert.throws(reuse);
 });

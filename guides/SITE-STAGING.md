@@ -26,6 +26,312 @@ Read [MEMORY](../MEMORY.md), the live owning issue/PR and current run/deployment
 records for the latest candidate, source and acceptance. This runbook defines
 mechanics; a historical accepted run does not admit a later candidate.
 
+## Observation does not admit delivery
+
+The canonical [issue122 decision matrix and observation interface](SITE-CHECK-PROFILES.md#delivery-routing-and-observation-contract)
+define proposed repository/content/website routing. This section owns its
+operational interpretation. T04's executable observer emits planned obligations
+and a read-only workflow retains its report alongside current CI. It cannot
+execute those obligations, accept result evidence or evaluate site reuse. Current
+controller behavior, profile budgets, required contexts and publication authority
+are unchanged. No new content publisher is installed.
+
+Actual obligations come from the [trusted repository/content/full-route selection](#trusted-change-admission-and-repository-delivery)
+below. Eligible repository-only delivery explicitly omits website work; compatible
+content requires its own authenticated platform/history and current content gate.
+The observer cannot supply either eligibility, waive a required check, approve
+rights, publish or merge. A Draft remains deferred. PR79's unpublished article
+is separate from the delivered content publisher and is not its prerequisite.
+
+### Honest obligation states and next actions
+
+These states belong to each obligation, not merely to report generation. The
+report's analysis status separately describes complete/conservative/invalid/
+no-change input analysis. A successful analysis is never a test result.
+
+| State | Required observation | Supported next action |
+| --- | --- | --- |
+| `planned` | Required check/gate identified; no matching completed result. | `run-current-checks`: execute its existing route or obtain its external decision. |
+| `Draft-deferred` | Current workflow deliberately defers admission for a Draft; keep required obligations visible. | `finish-draft`: finish review/visual approval where applicable, then mark Ready through the existing process. A skipped deferred job is not a pass. |
+| `running` | Actual matching current run/attempt has started and has no terminal result. | `wait`: inspect that run; do not launch duplicate work merely because it is slow. |
+| `passed` | Actual complete successful evidence matches source/tree, policy/producer, profile/origin and run/attempt. | `continue-current-process`: proceed only to the next existing authorized action, such as owner staging after source admission. An observation grants no authority itself. |
+| `failed` | Matching required execution failed, was incomplete, or was skipped without valid inapplicability. | `repair`: inspect retained failure, correct the owner or use the existing bounded retry rule when justified. Never select an older green attempt as current. |
+| `cancelled` | Matching attempt was cancelled; preserve its partial evidence as incomplete. | `inspect-retry`: determine cause and use the current supported retry route; cancellation cannot inherit a pass. |
+| `stale` | Earlier evidence no longer matches current head/base, policy/producer, applicable profile/origin or selected attempt. | `revalidate`: collect current identities, reassess affected review/checks and follow the existing fresh admission route. Keep original evidence attributed to its original source. |
+| `inapplicable` | The actual owner establishes a bounded reason that this obligation does not apply; report that reason and evidence. | `continue-current-process` for remaining obligations. A proposed repository lane cannot establish current hosted inapplicability. |
+
+Missing or incomplete collector/ref/policy inputs use `collect-inputs`; complete
+unknown dependencies/types use `inspect-owner`. A verified complete empty
+diff uses `no-change`, with no delivery permission; existing open-PR requirements
+remain owned by the current controller. These action literals, together with the
+table, are the complete observation `nextAction.action` vocabulary. An action is
+advice, not a command dispatcher. List every blocking obligation; an unresolved
+required gate prevents a completed-delivery claim even if some checks passed.
+
+Recompute the observation when base/head, policy/producer or relevant capability
+changes. Before side effects, the trusted controller must freshly authenticate
+protected main, PR head and predecessor leases. A newer failed, cancelled or
+running applicable staging attempt prevents using an older green attempt for
+admission. For owner staging, the existing full-attempt retry rule below remains:
+new owner `/stage` or Re-run all jobs, never mixed-attempt partial recovery.
+
+### Repository identity and accepted website identity
+
+The current repository/controller revision, tested candidate/tree, accepted
+website source/tree, platform/content identity, public/package digests and actual
+merged commit are separate records. A source-only repository merge cannot relabel
+the old site's public bytes or test results at the new Git commit. The current
+postmerge observer proves identical complete tested/merged trees. The separate
+accepted-content selector implements authenticated compatibility across repository
+merges; the general planned observer does not supply that authority.
+
+For accepted site S → repository merge M → content C reuse, authenticate
+S's original evidence and the complete intervening commit/parent history with
+base-side dependencies, not only a final net diff. Any uninspected, reverted
+intermediate, control, rights or website change prevents an unproved reuse claim.
+Keep missing platform/content identities explicit. Use fresh applicable website
+validation when compatibility is absent or unproved. Existing `selectAccepted`
+authenticates original staging and every intervening repository merge, retaining
+S's identity. PR155/S155 and actual repository-only PR156 supply delivered source
+and merge evidence; current content/recovery native observations remain in #122.
+PR79's unpublished article does not block the already delivered publisher.
+
+### Trusted producer prerequisite
+
+**Historical T02 checkpoint — 22 October 2026.** This section preserves the
+capability finding before later AC05/R1/R2
+delivery. Its unresolved disposition and five requirements below describe that
+dated checkpoint. The delivered App-bound route follows in the next section;
+current protection and source-bound outcomes must still be revalidated in #122.
+
+Capability observation on **22 October 2026**: the repository API identifies
+`oborskyivitalii/oborskyivitalii` as public and user-owned. Active
+[ruleset 24568553](https://github.com/oborskyivitalii/oborskyivitalii/rules/24568553)
+requires an up-to-date branch and the contexts `checks`, `Local navigation and RI
+freshness`, `Staging admission`, each bound to GitHub Actions app ID `15368`;
+there are no bypass actors. Revalidate the live API before a later migration.
+
+GitHub documents [expected-app status binding](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/available-rules-for-rulesets#require-status-checks-to-pass-before-merging),
+but [status-check matching excludes workflow, matrix and event identity](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/troubleshooting-rules#troubleshooting-required-status-checks).
+The documented stronger [ruleset-workflow mechanism](https://docs.github.com/en/enterprise-cloud@latest/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/troubleshooting-rules#troubleshooting-ruleset-workflows)
+is configured at organization/enterprise level. Repository admin permission does
+not establish that capability for this user-owned repository.
+
+**Historical T02 disposition: AC05 protection-bound producer proof was unresolved.**
+The current app/name binding does not itself prove that a same-name result from
+another candidate workflow is rejected. This is a capability/design inference
+from the inspected configuration and documentation, not a performed exploit.
+Current internal source/workflow/actor/attempt/lease checks remain valuable and
+unchanged; they cannot substitute for proof at the protection boundary.
+
+Before W3 or any cheaper authoritative admission is activated, its separately
+approved implementation must demonstrate all of the following against the
+actual protection configuration:
+
+1. A trusted evaluator and pre-change policy outside candidate control; changed
+   policy/wrapper inputs preserve their previous obligations and control override.
+2. A separately trusted issuer/controller, whose credentials and authoritative
+   check production are inaccessible to executed candidate code. Pinning an
+   evaluator checkout alone does not isolate its producer.
+3. The required check actually consumes that issuer identity. Reject a same-name
+   result from a wrong workflow/producer/event and wrong source/run/attempt at
+   the protected merge boundary, not only inside a unit fixture or JSON report.
+4. Supported Draft/Ready/update/refresh/merge lifecycle, complete selected-job
+   accounting and explicit valid inapplicability. Missing, failed, skipped,
+   cancelled, stale or mixed-attempt required evidence blocks; no Pending deadlock
+   or skipped-success bypass is accepted.
+5. A protected migration and recovery sequence that preserves current required
+   checks until the replacement is proven. Current head/main/predecessor leases
+   remain fresh before side effects, and accepted-site identity survives repo merges.
+
+T02 may finish with this evidenced unresolved disposition. It does not complete
+AC05 or authorize a new service, credential, organization move, settings change
+or alternate release mechanism. A revised design needs separate maintainer
+approval **and still needs the actual AC05 proof**; approval does not waive it.
+The existing delivery process remains in force while that requirement is open.
+
+### Trusted change admission and repository delivery
+
+Issue122 R2 reuses the existing classifier, App5453173 and owner staging. It
+adds no publisher or general control certifier. The enabling PR uses the original
+full route. Live activation and real lane outcomes belong to the owning issue;
+source preparation alone does not establish protected-main delivery.
+
+#### R1: one explicit admission request
+
+In Actions, select **Change admission preparation**, **Run workflow**, branch
+**main**, and enter one PR number. Only the repository owner can request it.
+Push/comment/upstream events never dispatch admission or enumerate other PRs.
+The App job checks out protected main and reads candidate Git objects as data.
+It never loads candidate modules or installs candidate dependencies.
+
+The summary and retained JSON bind controller/base, candidate commit/tree,
+classification, selected run/attempt/jobs, blockers and next action. Expected
+Draft/stale/incomplete/failed evidence is an admission refusal: the App check
+stays failed while completed evaluation succeeds. API/authentication, malformed
+or foreign identities, dirty controller and storage/protocol faults fail hard.
+A green evaluation workflow is not a green admission check.
+
+#### R2: selected repository route and reviewed controls
+
+| Delta against current protected main | Work and operator action |
+| --- | --- |
+| Complete explicitly owned rules/review/RI metadata only | Basic formatting/lint/architecture and affected source tests; existing navigation/RI and owning acceptance. No website build/package/preview/staging/alias/publisher work. After these checks, dispatch the PR number once. |
+| Compatible authored content/media with an authenticated accepted baseline | Current content source/RI/owning checks, exact generation reconstruction and `compatible-content-v1` gate with current scanners, hosted bytes and affected content-browser observations. Owner `/stage` permits stable staging; `staging-regression` records isolated evidence only. |
+| Website, incompatible content, mixed, unknown or unsupported impact | Conservative full route. Finish Basic/RI/owning checks and full owner staging, then refresh PR admission and dispatch. Missing history or incompatible policy/platform records cannot inherit an earlier content gate. |
+| Executable tools/tests, workflows/actions/acceptance or declared controls | Same full route, plus explicit review of the complete diff and **reviewed_sha** equal to the full current head. A missing/wrong/old SHA refuses. It cannot waive any failed/missing full obligation or grant the repository exemption. |
+
+The protected-base classifier, not a candidate wrapper/catalog label, chooses
+eligibility. Both raw Git endpoints and all modes are inspected; moves retain
+both sides. Exact rights/public inputs still select website work. An RI executable
+is a control even when its purpose is repository-only; its actual failing checks
+block. The broader observation report remains advisory and preserves its full
+planned baseline; the trusted selection report records actual conditional work.
+
+Control attestation is the maintainer's explicit trust decision on the exact
+candidate, not automatic semantic certification. Review must preserve applicable
+pre-change obligations and failure propagation, including modified test/policy
+wrappers. Candidate code remains in existing scoped jobs. The issuer still
+requires the trusted-main workflow's mandatory jobs and independently uploaded
+receipt; correct-named candidate results or modified policy cannot select that
+receipt. Review a new head again rather than copying an old attestation.
+
+Owner staging is globally serialized, but evidence selection is per PR/head/base.
+The main-owned run title identifies the requested PR before candidate work; a
+single binding in the completed trusted target job log proves head/base/run/attempt.
+The early native artifact remains diagnostic; candidate jobs cannot use its mutable
+metadata to establish an older-head exemption. Only then does newest
+applicable attempt precedence apply. Another PR and a resolved older head are
+irrelevant. A running/cancelled same-PR attempt whose target is unresolved blocks
+older green conservatively; failed attempts are not hidden by a success-only
+receipt filter. Genuine ordinary comments whose entire job inventory was skipped
+remain inapplicable. Required skips/failures/cancellation/missing or mixed attempts
+never become passed; optional exhaustive diagnostics keep their original status.
+
+The final main-owned `change-admission-receipt` still requires its exact successful
+upload step, unique nonexpired native artifact/digest and run/controller binding.
+The App consumes exact workflow identities and attempt-specific job inventories.
+No candidate code enters its credential job. Repository postmerge verifies the
+actual normal merge parents/tree and App producer bound to the previous protected
+base. It records website work as inapplicable and never relabels the accepted site's
+original source/public/package digest at a repository merge. The initial cheap postmerge
+route uses a normal two-parent merge; existing website squash/rebase observation
+retains its previous full-proof behavior.
+
+#### Ordered protection activation and recovery
+
+The actual `protect-main` ruleset24568553 starts with Actions15368 contexts
+`checks`, `Local navigation and RI freshness`, `Staging admission`, strict
+up-to-date enabled and no bypass actors. Preserve PR/deletion/force-push rules.
+
+1. Deliver the enabling control PR through that unchanged full route and verify
+   postmerge. The implemented conditional route does not itself change settings.
+2. Prepare the one meaningful repository-only acceptance PR and its exact source,
+   independent roles, Basic/RI/owning results and genuine App check. Its old
+   `Staging admission` consumer authenticates that App check rather than creating
+   a site exemption without trusted admission. After dispatch completes, edit the PR description once to trigger the existing
+   `edited` admission/owning refresh (for example, add the exact run link).
+3. Add **Change admission from App5453173** and the already executed Actions15368
+   **Owning issue deterministic acceptance mapping** context. Retain the original
+   three required contexts, including the now conditional `Staging admission`.
+   Its repository branch checks evidence without website staging; keeping the guard
+   preserves same-head attempt revocation. Verify numeric producers, strict
+   up-to-date and no bypass. Merge with an expected-head lease; no protection gap.
+4. Observe actual repository postmerge and unchanged accepted site source/artifact.
+   Save exact native runs/settings and queue/setup/execution observations in #122.
+
+Each manual evaluation first creates its own source/base-bound Actions aggregate
+checkpoint before App authentication. Eligible App results remain in progress until
+native report upload and a fresh bound evaluation. The last aggregate operation runs
+after App finalization and credential revocation, updates only its recorded check ID,
+and fails if any preceding step or final head/base lease failed. Cancellation leaves
+non-success; another request's or stage's checkpoint is never completed by this run.
+The eligible PR consumer authenticates the completed issuer workflow and current
+source/owning evidence. These existing contexts add no website work for repository PRs.
+
+Manual refresh alone cannot synchronously revoke an old green. The actual strict
+up-to-date protected rule rejects a head lacking current main; the issuer checks
+current head/base before and after collection and again before success. A moved
+head/base requires fresh checks and dispatch. Expected-head merge prevents
+following a changed candidate. These controls do not authorize public release.
+
+**App outage / control repair:** first restore the original three Actions15368
+requirements **alongside** the App; verify strict/current-base and no bypass.
+Then remove the unavailable App requirement. Do not remove old protection first.
+For a repository repair PR, explicit owner `/stage` still forces the full existing
+build/staging route even though automatic preview is inapplicable. After explicit owner staging completes, edit the PR description once to refresh
+`Staging admission` and owning acceptance. The old
+`Staging admission` consumer accepts only a genuine App decision or the complete
+original full staging proof; postmerge follows the same protected full fallback.
+Complete all original checks and merge normally. Restore the App alongside the full requirements after repair,
+verify its exact producer/result, retaining the conditional aggregate and owning requirement. No admin
+merge bypass, disabled ruleset, persistent exemption or candidate issuer is used.
+Settings access/recovery availability and control route verification are activation
+conditions; keep old requirements if a concrete condition is unavailable.
+
+#### Exact proposed App setup and bounded proof
+
+The later [control-change structural prototype](SITE-CONTROL-CHANGES.md) is a
+separate, credential-free preparation step. It supplies no admission authority
+and does not relax the current rejection of execution-control changes.
+
+Do not apply this credential/configuration proposal without its explicit owner
+decision. T05 approval already permits reversible code/test preparation.
+
+1. Register a private App, suggested name `oborskyi-change-admission` (availability
+   unverified), with this repository as homepage and no webhook receiver. Grant
+   only repository Checks:write, Commit statuses:write and implicit Metadata:read;
+   install it only into this repository. No content, PR, deployment or admin
+   write permission and no paid/external controller service is needed.
+2. Create environment `change-admission` with selected **branch** exactly `main`,
+   no tag rule and administrator bypass disabled. Read back those restrictions.
+   A ref filter is not a workflow allowlist: all secret-consuming code still
+   needs review. Never execute candidate code, local actions, dependency hooks
+   or candidate caches in that job.
+3. Put the private key only in environment secret
+   `CHANGE_ADMISSION_APP_PRIVATE_KEY`; put numeric nonsecret App/installation IDs
+   in environment variables `CHANGE_ADMISSION_APP_ID` and
+   `CHANGE_ADMISSION_INSTALLATION_ID`. Never put the key in chat or an ordinary
+   repository secret. Verify the installation and distinct numeric App identity.
+4. Set repository variable `CHANGE_ADMISSION_ENABLED=true` **last**, after the
+   reviewed controller reaches main and setup is verified. Until then, the
+   configuration observation explicitly says not configured; no App result is
+   issued and the environment/credential job is not requested.
+5. Separately approve an isolated `probe/issue-122-change-admission` target and
+   exact temporary rule requiring `Change admission` from that numeric App,
+   strict up-to-date comparison and no bypass. The collector and staging still
+   accept **main-target PRs only**. For an executable SHA-binding proof, create
+   two harmless verification PRs sharing exactly the same head SHA: one targets
+   main and follows the complete existing source/preview/owner-stage/admission
+   route; the other targets the isolated branch initially at the same main SHA.
+   Put `Refs #122` in both bodies. No merge into main occurs during this proof.
+   The genuine App result is produced for the main-target PR; GitHub consumes
+   that same SHA-bound check at the isolated target. Satisfy other applicable
+   rules and retain native denial for missing check/same-name Actions green,
+   then genuine acceptance/merge into the isolated branch. Wrong-evidence,
+   cancellation/attempt/head/main probes must still return blocking results.
+6. Record exact refs/rules/native outcomes, final staging identity and recovery
+   artifacts before closing the main-target verification PR unmerged. Remove
+   only the temporary isolated rule/ref; retain the tested source and receipts.
+   Do not relabel the accepted staging source or claim rollback without a real
+   CI recovery. Main's original three requirements stay intact throughout.
+
+That isolated proof establishes App/SHA binding at the tested target, not
+per-PR policy enforcement or synchronous freshness on main. It does not prove
+that the collector accepts a probe-base PR; that path deliberately rejects.
+Unsupported control changes, asynchronous freshness and a protected migration/
+recovery route must be resolved before the later authoritative lane transition.
+App registration, setup and native proof are not established by unit fixtures.
+
+If source work is running, wait for it. Correct failed work and use the existing
+full staging retry route, then the owner dispatch described above; never mix attempts. If issuance is
+interrupted, restore the environment-only key/installation or event route and
+repeat the single-PR dispatch from current main. Inspect the named controller run and retained
+blocking diagnostics. The adapter uses a repository-scoped short-lived token,
+revokes it after use and never falls back to the Actions identity. Missing or
+failed setup is not an authoritative pass. This preparation does not authorize
+changing protection as a recovery shortcut.
+
 ## Deployment flow
 
 Custom-domain production planning is in [SITE-PRODUCTION](SITE-PRODUCTION.md).
@@ -85,8 +391,10 @@ The reusable workflow distinguishes `validation_level` from hosted `profile`.
 The owner staging controller selects `validation_level: staging`,
 `profile: staging`, and `automated_only: true`. It runs successful build/static/host/staging
 jobs and promotes only their matching `staging-gate`, whose `fullGate` and
-`productionEligible` remain false. The operational target is at most 15 minutes
-of active staging jobs; measure the actual run and report queue time separately.
+`productionEligible` remain false. The operational end-to-end CI target is at
+most 15 minutes; measure the actual total and report queue/setup/execution
+separately. Exceeding that target alone is optimization feedback when every
+mandatory test and site budget passes; all hard timeouts remain unchanged.
 
 For an optional full candidate diagnostic, `validation_level: production`
 and `full: true` select the complete regression; production is the reusable
@@ -168,6 +476,15 @@ fails; TLS/origin, security-header, MIME and other status errors do not poll.
 Exhausted convergence remains a failed promotion or recovery. This polling never
 dispatches another staging workflow or reruns browser/performance cases.
 
+Ubuntu preview smoke and bounded staging prepare the official primary archive
+through `tools/quality/ubuntu_downloads.py`, shared with the production Linux job.
+It preserves signed repository metadata and package/engine requests while applying
+the existing bounded APT transport settings. Fixture/wiring checks run in navigation
+and the enduring Python suite. Native installation and actual browser reports are
+still required; changing a mirror does not prove identical OS package versions.
+The owner controller executes its protected-main workflow; a candidate workflow
+repair needs the existing candidate evidence route and protected admission.
+
 For the staging controller, retry with **Re-run all jobs**, or create a
 new owner `/stage` request. **Re-run failed jobs** is not supported: reused jobs
 and admission outputs can belong to an earlier attempt, so they cannot prove one
@@ -218,6 +535,15 @@ RI/CI routes as required by SITE-CHECK-PROFILES.
 
 ## One pre-upload preflight and Cloudflare admission
 
+PR79 includes a finite build-CLI bridge for the exact82b57b89 main controller,
+which predates the locked publisher install and explicit article-preview mode.
+Only its main workflow/ref/event, original workspace and color-artifact command
+can prepare the already pinned publisher and declared article preview. Explicit
+modes, nested validation, ordinary builds and production remain on their existing
+paths. Admission, all source/scanner/browser gates, protected publication and
+recovery still belong to the trusted controller. Remove this bridge after the
+updated workflow is integrated into main; a newer controller cannot select it.
+
 Before an explicit stable-staging or optional full diagnostic upload, prepare the
 selected frozen artifact once, then run the existing local check owner:
 
@@ -238,7 +564,7 @@ the production-candidate freeze instead authenticates successful staging without
 repeating its checks. Ordinary Draft preview keeps its existing bounded path. Diagnostic reports are
 retained even when preparation fails. The later native upload identity binding,
 host/browser/performance/live leases and release decisions remain mandatory;
-preflight never grants production eligibility or deployment authority.
+preflight never grants production eligibility or deployment authority. The CLI uses two slots for independent guards, with source tests and security scans running alone; package proof and final identity checks wait for preceding work. Commands, per-process time/output bounds, failure retention and the overall controller budget stay unchanged.
 
 Run the separately selected current owning-issue policy on that same clean
 source before preparation; the enduring Python runner excludes numbered task
@@ -309,3 +635,5 @@ legacy package verification remains for historical/recovery consumers. Canonical
 migration from the current project-prefix origin, live deployment and actual
 compensation remain separate #39 cutover acceptance, not fixture results. See the scoped
 [execution record](../review/issue-72/2026-10-16-cloudflare-only-staging.md).
+
+Source tests and security scans have exclusive CPU phases; other independent preflight guards retain at most two slots. Package proof and final identity checks remain barriers. Lossless WebP uses the faster method4 encoder setting at quality100; RGBA, ICC, dimensions, originals, input/output limits and pinned codec verification remain mandatory. The reviewed R18 slide bytes are identical to method6.

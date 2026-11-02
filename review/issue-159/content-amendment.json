@@ -1,0 +1,495 @@
+{
+  "schema": 1,
+  "issue": 159,
+  "date": "2026-10-28",
+  "baseline": "af8a7b38d08f49c06e9257234a5ec458363a6275",
+  "authorization": "Original issue159 AC04–AC07 authorizes existing-page candidate drafting; no merge/publication, editorial or human decision is supplied.",
+  "scope": "Four current-page copy/meta changes; three catalog-derived reading paths within existing topic controls; exact CSS suffix and reviewed successor producer pins. All old amendments and immutable0333c4d comparison retained.",
+  "producerChanges": {
+    "site/templates/components/archive-reading-link.html": {
+      "beforeSHA256": null,
+      "afterSHA256": "f10fddd9e911ee73d622a95228323ff0b38804b24699f66fbed3752167eea513"
+    },
+    "site/templates/components/archive-topic-landing.html": {
+      "beforeSHA256": "5dd0e766e6322e56ad2d3d32ff5a943b38d014a861364f61ab255cc13700d907",
+      "afterSHA256": "2797391c056946db779bf8ac403ef9079f048bbc1ed4a82ec18820095bbc805e"
+    },
+    "tools/site/render-records.cjs": {
+      "beforeSHA256": "2c1c78aeeef93d370086fbc275607294307c2470301a9efad8b105a60fb46cb7",
+      "afterSHA256": "24f1bec530b762009a6b03a1d91700e7ee5c56345a0b8d9a4a4c6f0ff561038c"
+    },
+    "tools/site/validate-catalog.cjs": {
+      "beforeSHA256": "cb738e2c332217edca5ee6fad536011579826345eac3baa4060d5918681c4496",
+      "afterSHA256": "6a61f3af40e94c42b4240c1afb21a2a25474f2cf58381a2c40f12dea12becc6c"
+    }
+  },
+  "styles": {
+    "block": "\n/* Issue159: curated paths share the existing topic target and filter owner. */\n.archive-landings > .topic-landing {\n  flex: 1 1 440px;\n  min-width: 0;\n  padding: 16px;\n}\n.topic-landing h2 {\n  margin: 0;\n  font-size: 17px;\n  letter-spacing: 0;\n  line-height: 1.5;\n}\n.topic-landing .reading-recommendation {\n  margin-block: 16px;\n  font-weight: 400;\n}\n.reading-recommendation a {\n  font-size: 15px;\n}\n.reading-context,\n.reading-recommendation .edition-link {\n  display: block;\n}\n.reading-context {\n  margin-top: 6px;\n  font-size: 14px;\n}\n",
+    "sha256": "876560a4e7a19448373a21fa8a3dc38cf59afd374e0c1f0713188284c0eb7d5c",
+    "afterSHA256": {
+      "docs/styles.css": "677304b835527266f87d9f5c039fa7b321e8d296e07a133077e1f7094d9a0cc0",
+      "site/engine/styles.css": "b32e8a5b046d942cefc09aeaba77b66261d18fc4721c089e6165c85a4e41b006"
+    }
+  },
+  "changes": [
+    {
+      "page": "index",
+      "id": "title",
+      "intent": "AC04/AC06 metadata describes the bounded existing-page reader paths",
+      "before": "<title>Vitalii Oborskyi | AI Delivery Governance &amp; Agentic Operating Models</title>",
+      "after": "<title>Vitalii Oborskyi | AI Delivery &amp; Agent Governance</title>",
+      "beforeSHA256": "6df7381a635d6e28427c831dff1ad2220a46eb2792b6009b2b8b35ed70b2a929",
+      "afterSHA256": "4bcc9ad56567f280eec75d6a506e92fe18e8ca6b4da550ad1bef3117cdf50d4e"
+    },
+    {
+      "page": "index",
+      "id": "description",
+      "intent": "AC04/AC06 metadata describes the bounded existing-page reader paths",
+      "before": "<meta name=\"description\" content=\"AI adoption without delivery gains? Agents hard to control in production? Research and practical work on AI delivery governance, verification and operating models.\">",
+      "after": "<meta name=\"description\" content=\"Delivery leadership and independent research by Vitalii Oborskyi: AI coding gains, verification capacity, AI agent authority and operational control.\">",
+      "beforeSHA256": "747d0523bc5b12203e85ee41879122b6830f46586a94be9f8c451a6ba4080a36",
+      "afterSHA256": "60f8bdabd4fe8b445f835c8e6b41097089d19080444772f036431f5e395616d2"
+    },
+    {
+      "page": "index",
+      "id": "og:title",
+      "intent": "AC04/AC06 metadata describes the bounded existing-page reader paths",
+      "before": "<meta property=\"og:title\" content=\"Vitalii Oborskyi | AI Delivery Governance &amp; Agentic Operating Models\">",
+      "after": "<meta property=\"og:title\" content=\"Vitalii Oborskyi | AI Delivery &amp; Agent Governance\">",
+      "beforeSHA256": "bd362938a23cd4b14ff4ff38ec0255ef9da4697fb37b7b029312da4423695455",
+      "afterSHA256": "d3c4213f80555d2be9b7c9cb9f5f86939ce04af47175fff30b97ed9b0002950e"
+    },
+    {
+      "page": "index",
+      "id": "og:description",
+      "intent": "AC04/AC06 metadata describes the bounded existing-page reader paths",
+      "before": "<meta property=\"og:description\" content=\"AI adoption without delivery gains? Agents hard to control in production? Research and practical work on AI delivery governance, verification and operating models.\">",
+      "after": "<meta property=\"og:description\" content=\"Delivery leadership and independent research by Vitalii Oborskyi: AI coding gains, verification capacity, AI agent authority and operational control.\">",
+      "beforeSHA256": "99611ee6960e31327b6fbe7334f9462ff0b38baf74b664efe58223c3b3d6ecc1",
+      "afterSHA256": "3fec920f025ef41bfe054fa85d3f96f0ca86cd220d50cbf065ff749010c00082"
+    },
+    {
+      "page": "index",
+      "id": "twitter:title",
+      "intent": "AC04/AC06 metadata describes the bounded existing-page reader paths",
+      "before": "<meta name=\"twitter:title\" content=\"Vitalii Oborskyi | AI Delivery Governance &amp; Agentic Operating Models\">",
+      "after": "<meta name=\"twitter:title\" content=\"Vitalii Oborskyi | AI Delivery &amp; Agent Governance\">",
+      "beforeSHA256": "94a152bd6d497c87b99eb4d28d842c4c69b66818c7be4b54a2934ab4dcee88a8",
+      "afterSHA256": "e80ac41c81d620987b651b359740abbdcad7294ba26b8d0c6db523780ebad440"
+    },
+    {
+      "page": "index",
+      "id": "twitter:description",
+      "intent": "AC04/AC06 metadata describes the bounded existing-page reader paths",
+      "before": "<meta name=\"twitter:description\" content=\"AI adoption without delivery gains? Agents hard to control in production? Research and practical work on AI delivery governance, verification and operating models.\">",
+      "after": "<meta name=\"twitter:description\" content=\"Delivery leadership and independent research by Vitalii Oborskyi: AI coding gains, verification capacity, AI agent authority and operational control.\">",
+      "beforeSHA256": "afeceea1c00a633e36a7428febeb5faeb086f76313d34a73f757751e5b359c7d",
+      "afterSHA256": "3669bdeab44c3cf8a983169ff9ba098f5941e6b64ed06db83bef2d740f94ad6d"
+    },
+    {
+      "page": "research",
+      "id": "title",
+      "intent": "AC04/AC06 metadata describes the bounded existing-page reader paths",
+      "before": "<title>Research | AI Agent Governance &amp; Delivery Systems | Vitalii Oborskyi</title>",
+      "after": "<title>AI Delivery &amp; Agent Governance Research | Vitalii Oborskyi</title>",
+      "beforeSHA256": "bc2ec966b9ee952050bc7d785c2ca9c75b2c2c5c06d7d72fcd54b7ad456f8b56",
+      "afterSHA256": "6d5ba081a55cfbec548bcb4451715885e10c150e55617bb152ce3a2ff54adbea"
+    },
+    {
+      "page": "research",
+      "id": "description",
+      "intent": "AC04/AC06 metadata describes the bounded existing-page reader paths",
+      "before": "<meta name=\"description\" content=\"Research on AI agent governance, control theory, Thinking Systems and AI-assisted delivery: human understanding, verification, authority and operating models.\">",
+      "after": "<meta name=\"description\" content=\"Two research paths: AI-assisted delivery, verification and ownership; and AI agent authority, evaluation, intervention and recovery. Sources and limits included.\">",
+      "beforeSHA256": "8acc8b0303c71bfe6b821dd388167f5f4232f17b01f12a255a78cd0325baa622",
+      "afterSHA256": "9d4c686edb16ee15bd49003141efbaebbb6f88e99386b065ee7b5710034ae79b"
+    },
+    {
+      "page": "research",
+      "id": "og:title",
+      "intent": "AC04/AC06 metadata describes the bounded existing-page reader paths",
+      "before": "<meta property=\"og:title\" content=\"Research | AI Agent Governance &amp; Delivery Systems | Vitalii Oborskyi\">",
+      "after": "<meta property=\"og:title\" content=\"AI Delivery &amp; Agent Governance Research | Vitalii Oborskyi\">",
+      "beforeSHA256": "b83d44194170d05fb74146c86367a0eb22220e5bd82945f51da519ce83ea3cff",
+      "afterSHA256": "b30bd39c69c93b0912184737a7e1a1d3c6f4d732695622228a9bb15533a1abfb"
+    },
+    {
+      "page": "research",
+      "id": "og:description",
+      "intent": "AC04/AC06 metadata describes the bounded existing-page reader paths",
+      "before": "<meta property=\"og:description\" content=\"Research on AI agent governance, control theory, Thinking Systems and AI-assisted delivery: human understanding, verification, authority and operating models.\">",
+      "after": "<meta property=\"og:description\" content=\"Two research paths: AI-assisted delivery, verification and ownership; and AI agent authority, evaluation, intervention and recovery. Sources and limits included.\">",
+      "beforeSHA256": "4234747e3d07ff850a7382da1b42b1a3ef703279e28e2db772be5f8a2ab86e5b",
+      "afterSHA256": "08dea4bc4c740e77499639c672a052dc3a4aba17f83bc1e42a9f465c5ae565e7"
+    },
+    {
+      "page": "research",
+      "id": "twitter:title",
+      "intent": "AC04/AC06 metadata describes the bounded existing-page reader paths",
+      "before": "<meta name=\"twitter:title\" content=\"Research | AI Agent Governance &amp; Delivery Systems | Vitalii Oborskyi\">",
+      "after": "<meta name=\"twitter:title\" content=\"AI Delivery &amp; Agent Governance Research | Vitalii Oborskyi\">",
+      "beforeSHA256": "ed63ed7aa3c9d60de1f8b71d9780e2c9a89ea2e77a793f2d04abb3f216e2dfbc",
+      "afterSHA256": "3a03e5ce075f8cddd3ce72fcff87311d1d78b1269aa636481c8394d61d93a258"
+    },
+    {
+      "page": "research",
+      "id": "twitter:description",
+      "intent": "AC04/AC06 metadata describes the bounded existing-page reader paths",
+      "before": "<meta name=\"twitter:description\" content=\"Research on AI agent governance, control theory, Thinking Systems and AI-assisted delivery: human understanding, verification, authority and operating models.\">",
+      "after": "<meta name=\"twitter:description\" content=\"Two research paths: AI-assisted delivery, verification and ownership; and AI agent authority, evaluation, intervention and recovery. Sources and limits included.\">",
+      "beforeSHA256": "d5b9f5b85961552511d0ba0e6bfdd692d5c00211f549a33dbf273afb67a431d3",
+      "afterSHA256": "6a8b8ab63188186306f6ed6a8e9d775f0fc360a1c13db1cbc5057c10e443cc6c"
+    },
+    {
+      "page": "research",
+      "id": "descriptive-intro",
+      "intent": "AC04 descriptive H1 and initial reader context; established route and heading count retained",
+      "before": "<section class=\"archive-intro wrap\" data-space-stop=\"intro\"><p class=\"eyebrow\">Research / Living questions</p><h1><span class=\"reading-title\"><span class=\"reading-title-ink\">Two systems.<br>One engineering perspective.</span></span></h1><p class=\"hero-description\">How we deliver software, and how we govern systems whose behavior relies on model judgment — including AI agents in production.</p></section>",
+      "after": "<section class=\"archive-intro wrap\" data-space-stop=\"intro\"><p class=\"eyebrow\">Research / Living questions</p><h1><span class=\"reading-title\"><span class=\"reading-title-ink\">AI-assisted delivery.<br>AI agent governance.</span></span></h1><p class=\"hero-description\">Two research directions for delivery leaders, architects and AI teams: turn local coding gains into useful delivery, and govern consequential actions in systems that rely on model judgment.</p></section>",
+      "beforeSHA256": "a165887b178e484a6d929c594d3f56761db7e2a6709f46b1fd6988720d806733",
+      "afterSHA256": "c00883b86c37bac150dca5be0c8e82348fc4a79bff504f5603bf1a4a2c231bad"
+    },
+    {
+      "page": "research",
+      "id": "research-paths",
+      "intent": "AC04 two distinct problem/interpretation/evidence-limit/start-reading paths; source repositories and anchors preserved",
+      "before": "<section data-space-stop=\"research\" id=\"research\" class=\"section wrap\" aria-labelledby=\"research-title\"> <div class=\"section-heading\"><p class=\"eyebrow\">01 / Research</p><h2 id=\"research-title\">Two directions, connected.</h2></div> <div class=\"research-grid\"> <article id=\"delivery\" class=\"research-card\"> <p class=\"card-kicker\"><span class=\"small-number\">01</span> How we deliver software</p> <h3>The Subprime<br>Code Crisis</h3> <p>What happens across review, testing, security and maintenance when generating code gets easier? This research synthesis studies AI-assisted software delivery as a complete system: verification capacity, code quality, technical debt and long-term ownership, with an inspectable evidence library and adaptable operating protocols.</p> <ul class=\"topic-list\" aria-label=\"Delivery research topics\"><li>Verification capacity</li><li>System throughput</li><li>Long-term ownership</li></ul> <a class=\"text-link\" href=\"https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis\">Explore the research <span aria-hidden=\"true\">↗</span></a> </article> <article id=\"systems\" class=\"research-card\"> <p class=\"card-kicker\"><span class=\"small-number\">02</span> What we build</p> <h3>Uncertainty<br>Architecture</h3> <p>How do we design and operate software whose behavior depends on probabilistic Model Judgment? Uncertainty Architecture develops an engineering vocabulary and draft specification for Thinking Systems, AI control architecture, evaluation, decision authority, runtime control and correction.</p> <ul class=\"topic-list\" aria-label=\"System research topics\"><li>Model judgment</li><li>Control architecture</li><li>Release &amp; runtime evidence</li></ul> <a class=\"text-link\" href=\"https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture\">Explore the framework <span aria-hidden=\"true\">↗</span></a> </article> </div> <p class=\"section-note\">The repositories hold the living research and its sources. My articles connect the ideas across both directions.</p> </section>",
+      "after": "<section data-space-stop=\"research\" id=\"research\" class=\"section wrap\" aria-labelledby=\"research-title\"> <div class=\"section-heading\"> <p class=\"eyebrow\">01 / Research</p> <h2 id=\"research-title\">Start with the problem you face.</h2> </div> <div class=\"research-grid\"> <article id=\"delivery\" class=\"research-card\"> <p class=\"card-kicker\"> <span class=\"small-number\">01</span> Coding gains without delivery gains </p> <h3>The Subprime<br>Code Crisis</h3> <p>Code is produced faster, yet work may wait for review, integration or release. My interpretation is that generation, understanding, verification and ownership must be considered together. The Subprime Code Crisis studies that delivery system; it does not assume review is always the constraint.</p> <p>Evidence and limits: an inspectable research synthesis and source library, with proposed operating protocols. Evidence differs across tasks and settings; neither more code nor this synthesis proves a universal productivity effect.</p> <ul class=\"topic-list\" aria-label=\"Delivery research topics\"> <li>Verification capacity</li> <li>System throughput</li> <li>Long-term ownership</li> </ul> <a class=\"text-link\" href=\"https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis\">Explore the research <span aria-hidden=\"true\">↗</span></a> <p><a class=\"text-link\" href=\"writing.html#topic-delivery\">Start with verification and delivery-cost reading →</a></p> </article> <article id=\"systems\" class=\"research-card\"> <p class=\"card-kicker\"> <span class=\"small-number\">02</span> Consequential actions under model judgment </p> <h3>Uncertainty<br>Architecture</h3> <p>An agent can propose a plausible action while its authority, evidence or recovery path remains unclear. Uncertainty Architecture studies the software system and its wider control perimeter: human roles, operating limits, evidence, decision authority and correction.</p> <p>Evidence and limits: early-stage conceptual research and a draft engineering specification, not an accepted standard or a demonstrated guarantee of safe operation. Current meanings belong to the living specification.</p> <ul class=\"topic-list\" aria-label=\"System research topics\"> <li>Model judgment</li> <li>Control architecture</li> <li>Release &amp; runtime evidence</li> </ul> <a class=\"text-link\" href=\"https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture\">Explore the framework <span aria-hidden=\"true\">↗</span></a> <p><a class=\"text-link\" href=\"writing.html#topic-systems\">Start with Thinking Systems and control reading →</a></p> </article> </div> <p class=\"section-note\">The repositories are the living sources. Articles are dated author perspectives; their claims and proposed practices need assessment in context.</p> </section>",
+      "beforeSHA256": "80c7f5610cb15ce66f295e93a5d1d7cd9792a88e471ac313f9a7e5349f9b5378",
+      "afterSHA256": "1e024701d1ced21b5b5c4f60279c3f4650162ab845256a19ee270d1339c52752"
+    },
+    {
+      "page": "writing",
+      "id": "descriptive-intro",
+      "intent": "AC04 descriptive H1 and initial reader context; established route and heading count retained",
+      "before": "<section class=\"archive-intro wrap\" data-space-stop><p class=\"eyebrow\">Writing / Original published editions</p><h1><span class=\"reading-title\"><span class=\"reading-title-ink\">Follow the questions.<br>Find your next read.</span></span></h1><p class=\"hero-description\">AI architecture, delivery, operating models and strategy, with original titles, dates and languages retained.</p></section>",
+      "after": "<section class=\"archive-intro wrap\" data-space-stop><p class=\"eyebrow\">Writing / Original published editions</p><h1><span class=\"reading-title\"><span class=\"reading-title-ink\">AI architecture, delivery<br>and operating models.</span></span></h1><p class=\"hero-description\">Choose a topic for a short reading path, then explore the complete English and Ukrainian archive. Original titles, platform dates and edition links stay separate.</p></section>",
+      "beforeSHA256": "77a321ff634a3b89483a599b21f9bc6167c899cfc4c09912a67f75813792a918",
+      "afterSHA256": "aefd470452bda609b98261a9240e8c3879fe22bac1ec478f24ef907989edd6d8"
+    },
+    {
+      "page": "talks",
+      "id": "title",
+      "intent": "AC04/AC06 metadata describes the bounded existing-page reader paths",
+      "before": "<title>Talks &amp; Workshops | Vitalii Oborskyi</title>",
+      "after": "<title>AI Architecture &amp; Software Delivery Talks | Vitalii Oborskyi</title>",
+      "beforeSHA256": "b8954e8fb0852eba2e0db2de465576cedc339b261514a4c716e589d186c0bdea",
+      "afterSHA256": "9b6b2893970bbace7dcf275204b919711304ca1b5c4b7f498b90f5dce93646eb"
+    },
+    {
+      "page": "talks",
+      "id": "og:title",
+      "intent": "AC04/AC06 metadata describes the bounded existing-page reader paths",
+      "before": "<meta property=\"og:title\" content=\"Talks &amp; Workshops | Vitalii Oborskyi\">",
+      "after": "<meta property=\"og:title\" content=\"AI Architecture &amp; Software Delivery Talks | Vitalii Oborskyi\">",
+      "beforeSHA256": "fc659edb0825a768b193f64752a60b56ac5e192d894104f2bdf1b225fb71ac37",
+      "afterSHA256": "fcabe1781591b6496a58b946a0ce677f0eea9653fdc47689aab7ce99f335cfd3"
+    },
+    {
+      "page": "talks",
+      "id": "twitter:title",
+      "intent": "AC04/AC06 metadata describes the bounded existing-page reader paths",
+      "before": "<meta name=\"twitter:title\" content=\"Talks &amp; Workshops | Vitalii Oborskyi\">",
+      "after": "<meta name=\"twitter:title\" content=\"AI Architecture &amp; Software Delivery Talks | Vitalii Oborskyi\">",
+      "beforeSHA256": "87f9170cdac0f5204d502ed54e18b1e177d397cc94430c891b9c897811dbfa72",
+      "afterSHA256": "8724fb3c199d01b28a361b598e981a0f281310e1f7aae8f0ddb9d88240219911"
+    },
+    {
+      "page": "talks",
+      "id": "descriptive-intro",
+      "intent": "AC04 descriptive H1 and initial reader context; established route and heading count retained",
+      "before": "<section class=\"archive-intro wrap\" data-space-stop=\"intro\"><p class=\"eyebrow\">Talks &amp; workshops</p><h1><span class=\"reading-title\"><span class=\"reading-title-ink\">Questions are better<br>in conversation.</span></span></h1><p class=\"hero-description\">Public announcements and follow-ups on AI architecture, delivery and the engineering work around non-deterministic systems.</p></section>",
+      "after": "<section class=\"archive-intro wrap\" data-space-stop=\"intro\"><p class=\"eyebrow\">Talks &amp; workshops</p><h1><span class=\"reading-title\"><span class=\"reading-title-ink\">Talks on AI architecture<br>and software delivery.</span></span></h1><p class=\"hero-description\">Talks and workshops by Vitalii Oborskyi on AI-assisted delivery, AI systems and operational responsibility. Upcoming announcements and available recordings are labelled separately; language is stated only when confirmed.</p></section>",
+      "beforeSHA256": "9f53e579e595d6ed38d6ef3a57f19e4de8a1717dd250829ce33e7dc85a64f6ef",
+      "afterSHA256": "8e540663ddd3df84d5a52d2a2c6f7eaae4b17c37fc8cf62e112ebb28475aa868"
+    }
+  ],
+  "homeChanges": [
+    {
+      "path": "site/content/pages/index/hero.json",
+      "before": {
+        "schema": 1,
+        "template": "pages/index/hero.html",
+        "text": {
+          "T001": "AI delivery governance & agentic\n      operating models",
+          "T002": "AI tools everywhere.",
+          "T003": "Better delivery?",
+          "T004": "Harder to\n      tell.",
+          "T005": "Vitalii Oborskyi · Enterprise delivery leader & independent research author.",
+          "T006": "My work combines enterprise software delivery leadership with independent research into how AI changes engineering, operating models and the systems we build.",
+          "T007": "Research, publications, talks and practical engineering experiments.",
+          "T008": "Start a conversation ",
+          "T009": "↗",
+          "T010": "Explore the research ",
+          "T011": "↓",
+          "T012": "AI is a fundamental shift: an attempt to delegate parts of thinking to machines.",
+          "T013": "More than 20 years in software engineering and technology delivery, including over a decade\n      in leadership. Delivery and PMO responsibility across a portfolio of around 25 projects\n      and more than 120 engineers. That experience shapes my research into software delivery\n      and systems that depend on model judgment."
+        },
+        "attributes": {
+          "A001": "Portrait of Vitalii Oborskyi with the background removed"
+        },
+        "urls": {
+          "U001": "#contact",
+          "U002": "#research",
+          "U003": "assets/vitalii-oborskyi-cutout.webp"
+        }
+      },
+      "after": {
+        "schema": 1,
+        "template": "pages/index/hero.html",
+        "text": {
+          "T001": "AI-assisted delivery & AI agent governance",
+          "T002": "AI changes delivery.",
+          "T003": "And the systems",
+          "T004": "we build.",
+          "T005": "Vitalii Oborskyi · Enterprise delivery leader & independent research author.",
+          "T006": "I help teams examine two different problems: AI coding gains that do not become better delivery, and AI applications whose actions need clear authority, evidence and ways to stop or recover.",
+          "T007": "Enterprise delivery experience, independent research, published articles and talks.",
+          "T008": "Start a conversation ",
+          "T009": "↗",
+          "T010": "Explore the research ",
+          "T011": "↓",
+          "T012": "AI is a fundamental shift: an attempt to delegate parts of thinking to machines.",
+          "T013": "More than 20 years in software engineering and technology delivery, including over a decade\n      in leadership. Delivery and PMO responsibility across a portfolio of around 25 projects\n      and more than 120 engineers. That experience shapes my research into software delivery\n      and systems that depend on model judgment."
+        },
+        "attributes": {
+          "A001": "Portrait of Vitalii Oborskyi with the background removed"
+        },
+        "urls": {
+          "U001": "#contact",
+          "U002": "#research",
+          "U003": "assets/vitalii-oborskyi-cutout.webp"
+        }
+      },
+      "beforeSHA256": "4bc0154a11b04d4cfc80ac7fc5eddad0bcd79db88ac18759b9bbabb7b8b3a400",
+      "afterSHA256": "b11d5d650d8b84b2630814670a08cdbff1b5b0d9b735332c2fe303f6fb1afcfd"
+    },
+    {
+      "path": "site/content/pages/index/help.json",
+      "before": {
+        "schema": 1,
+        "template": "pages/index/help.html",
+        "text": {
+          "T001": "01 / Professional contribution",
+          "T002": "Where I work",
+          "T003": "and contribute.",
+          "T004": "Delivery / Transformation and verification",
+          "T005": "AI-assisted delivery",
+          "T006": "transformation and verification.",
+          "T007": "Assess the delivery flow, review and verification capacity, rework, knowledge dependencies\n        and costs. Investigate the actual constraint.",
+          "T008": "Possible output:",
+          "T009": " A prioritized diagnosis of delivery constraints and a plan for testing the next changes.",
+          "T010": "Governance / Agentic operating models",
+          "T011": "Enterprise AI governance",
+          "T012": "and agentic operating models.",
+          "T013": "Review delegated judgment, permissions, limits, evaluation evidence, cost ownership,\n        escalation and corrective action.",
+          "T014": "Possible output:",
+          "T015": " A review of decision authority, operating limits and evidence gaps, with priorities for\n        addressing them.",
+          "T016": "Leadership / Capability and research",
+          "T017": "Engineering leadership,",
+          "T018": "organizational capability and applied research.",
+          "T019": "Work through requirements, evaluation, release decisions and human capacity through organizational work, applied research or focused workshops.",
+          "T020": "Possible output:",
+          "T021": " draft role and decision boundaries, learning routines and\n        an improvement backlog.",
+          "T022": "Examples of work, depending on the role, organization and agreed scope. ",
+          "T023": "Start a conversation →"
+        },
+        "attributes": {},
+        "urls": {
+          "U001": "#contact"
+        }
+      },
+      "after": {
+        "schema": 1,
+        "template": "pages/index/help.html",
+        "text": {
+          "T001": "01 / Professional contribution",
+          "T002": "Where I work",
+          "T003": "and contribute.",
+          "T004": "Delivery / Transformation and verification",
+          "T005": "AI-assisted delivery",
+          "T006": "transformation and verification.",
+          "T007": "Investigate where AI-assisted work waits, where rework enters, who can verify critical changes and what the full delivery costs show.",
+          "T008": "Possible output:",
+          "T009": " A prioritized diagnosis of delivery constraints and a plan for testing the next changes.",
+          "T010": "Governance / Agentic operating models",
+          "T011": "Enterprise AI governance",
+          "T012": "and agentic operating models.",
+          "T013": "Examine which actions a model may recommend or execute, who owns the decision, what evidence is required and how intervention or recovery works.",
+          "T014": "Possible output:",
+          "T015": " A review of decision authority, operating limits and evidence gaps, with priorities for\n        addressing them.",
+          "T016": "Leadership / Capability and research",
+          "T017": "Engineering leadership,",
+          "T018": "organizational capability and applied research.",
+          "T019": "Work through requirements, evaluation, release decisions and human capacity through organizational work, applied research or focused workshops.",
+          "T020": "Possible output:",
+          "T021": " draft role and decision boundaries, learning routines and\n        an improvement backlog.",
+          "T022": "Examples of work, depending on the role, organization and agreed scope. ",
+          "T023": "Start a conversation →"
+        },
+        "attributes": {},
+        "urls": {
+          "U001": "#contact"
+        }
+      },
+      "beforeSHA256": "e3a5007df5c6bf93f550585081722e0a197fa9299be35fa090316896be00053f",
+      "afterSHA256": "9e290f86f6924adb291a31f34c504b14b0b51abd4ad57d828e285f75367566da"
+    },
+    {
+      "path": "site/content/pages/index/research.json",
+      "before": {
+        "schema": 1,
+        "template": "pages/index/research.html",
+        "text": {
+          "T001": "02 / Research",
+          "T002": "Two questions behind the work.",
+          "T003": "What happens when machines generate faster than people can understand and verify? And what\n      changes when the software itself relies on model judgment?",
+          "T004": "01 / How we build",
+          "T005": "How do we rebalance",
+          "T006": "AI-assisted delivery?",
+          "T007": "I see the AI-assisted SDLC as structurally unbalanced where generation accelerates faster\n        than human understanding, verification and ownership. More output can coexist with review\n        queues, rework and fragile maintenance.",
+          "T008": "The Subprime Code Crisis",
+          "T009": " investigates this gap and how teams can rebalance\n        generation, verification and ownership. It treats proposed responses as hypotheses to test\n        in context.",
+          "T010": "Explore delivery research ↗",
+          "T011": "Methods & evidence ↗",
+          "T012": "Start with\n        ",
+          "T013": "Externalization & the verification crisis",
+          "T014": ".",
+          "T015": "02 / What we build and operate",
+          "T016": "How do we engineer systems",
+          "T017": "that rely on model judgment?",
+          "T018": "Uncertainty Architecture",
+          "T019": " studies what I call Thinking Systems: software in\n        which consequential runtime responsibilities depend partly on probabilistic model judgment.\n        This is where I see the fullest expression of today's AI potential — and some of its hardest\n        engineering problems.",
+          "T020": "The controlled object is the software system. Its control perimeter also includes human\n        roles, evidence, decision authority and corrective action. It needs development lifecycles\n        and operating models suited to uncertainty. Much remains to develop and test.",
+          "T021": "Explore systems research ↗",
+          "T022": "Living specification ↗",
+          "T023": "Start with\n        ",
+          "T024": "Thinking Systems",
+          "T025": "."
+        },
+        "attributes": {},
+        "urls": {
+          "U001": "research.html#delivery",
+          "U002": "https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis",
+          "U003": "https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0",
+          "U004": "research.html#systems",
+          "U005": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture",
+          "U006": "https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db"
+        }
+      },
+      "after": {
+        "schema": 1,
+        "template": "pages/index/research.html",
+        "text": {
+          "T001": "02 / Research",
+          "T002": "Two engineering problems. Two starting points.",
+          "T003": "For delivery leaders: where did the coding gains go? For architects and AI teams: what may a system decide and do, and what happens when it is wrong?",
+          "T004": "01 / How we build",
+          "T005": "Faster coding.",
+          "T006": "Better delivery?",
+          "T007": "When more generated code meets longer review queues, rework or fragile maintenance, examine the whole flow before assuming which step is the constraint.",
+          "T008": "The Subprime Code Crisis",
+          "T009": " is my research synthesis on generation, understanding, verification and ownership. It combines source evidence and proposed operating responses; those responses need testing in each setting.",
+          "T010": "Delivery problem, evidence & reading ↗",
+          "T011": "Methods & evidence ↗",
+          "T012": "Start with\n        ",
+          "T013": "Externalization & the verification crisis",
+          "T014": ".",
+          "T015": "02 / What we build and operate",
+          "T016": "AI agents in production.",
+          "T017": "Who can act, stop and correct?",
+          "T018": "Uncertainty Architecture",
+          "T019": " is my early-stage engineering research into Thinking Systems: software where consequential runtime responsibilities depend partly on probabilistic model judgment.",
+          "T020": "The software is the controlled object. Its control perimeter also includes human roles, decision authority, evidence and corrective action. The vocabulary and draft specification are proposals to develop and test, not a production assurance standard.",
+          "T021": "Agent control, limits & reading ↗",
+          "T022": "Living specification ↗",
+          "T023": "Start with\n        ",
+          "T024": "Thinking Systems",
+          "T025": "."
+        },
+        "attributes": {},
+        "urls": {
+          "U001": "research.html#delivery",
+          "U002": "https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis",
+          "U003": "https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0",
+          "U004": "research.html#systems",
+          "U005": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture",
+          "U006": "https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db"
+        }
+      },
+      "beforeSHA256": "ca58b71c46a79df3dc150e244ffcdfdc7338b983ee887bf75b39a902229f027f",
+      "afterSHA256": "1001814d9961c0914cde787aa2c1e8f30b9bcd056d15cb0c5a882e5cef9aa01c"
+    }
+  ],
+  "curationChanges": {
+    "before": null,
+    "after": {
+      "delivery": [
+        {
+          "record": "publication-02",
+          "when": "Read this when faster generation leaves questions about verification and human understanding. The author’s argument connects code output with responsibility for checking it."
+        },
+        {
+          "record": "publication-28",
+          "when": "Read this when coding-tool savings are being treated as a reason to reduce engineering capacity. A critical author perspective on shifted costs, not a validated ROI model."
+        }
+      ],
+      "systems": [
+        {
+          "record": "publication-05",
+          "when": "Read this when a product relies on consequential model judgment and you need to distinguish the software from its wider control perimeter. A conceptual starting point, not production assurance."
+        },
+        {
+          "record": "publication-09",
+          "when": "Read this for the December 2025 control-theory perspective on AI governance. Its human-only controller examples are historical; use the living Uncertainty Architecture specification for current meanings."
+        }
+      ],
+      "leadership": [
+        {
+          "record": "publication-19",
+          "when": "Read this when deciding whether PMO roles and metrics help delivery or add overhead. A practitioner view of contextual operating choices."
+        },
+        {
+          "record": "publication-23",
+          "when": "Read this when exploring roles and communication across human and AI work. The organizational model is a preliminary example, not a confirmed implementation result."
+        }
+      ]
+    },
+    "intent": "AC04 reuse the four existing topic controls; three paths select exact existing catalog IDs, without changing any edition or creating archive rows"
+  },
+  "researchCarrier": {
+    "schema": 1,
+    "date": "2026-10-29",
+    "acceptedSource": "6b0248f9fc667d968140fa034278490f22c1480d",
+    "acceptedSvgSHA256": "afd670d4651035dce324acb94b6efb83b7b7e0372d978a4f5a961f0eb86d7341",
+    "resource": "article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618/research-fallback.svg",
+    "hypothesis": "Reduce critical Research HTML by moving the identical passive vectors into one digest-addressed resource; retain complete resource transfer and instantiated node budgets. Actual added request, paint and LCP require native new-source evidence. Original101ms non-CPU wait cause remains unknown.",
+    "producerChanges": {
+      "tools/build_scene_fallbacks.cjs": {
+        "beforeSHA256": "9cf1c707980d973c27eba308f97427ead471cda6ab347e6e5624a4dad946948c",
+        "afterSHA256": "df1422827dcd35ceb2000207c21d156e4164a5a3e59a1ec8830301a63119dcdf"
+      },
+      "tools/build_site_previews.cjs": {
+        "beforeSHA256": "067c787eacbedf0dab047ca703fe0b070f35f76c57bec03648b8bff4fab89754",
+        "afterSHA256": "54ca6b30753cf343f906b9aa1d551a96212136a4882ec047c56a186e831285e6"
+      },
+      "tools/site/build.cjs": {
+        "beforeSHA256": "0949691cab43b0ef640eee4af7bc3956bc9851de9d52cce78ba7ff9d6434b929",
+        "afterSHA256": "fce23e9a21e641e829b07e48029ecbbf3b754904376b1fdda4146e7d09c66bde"
+      },
+      "tools/site/fallback.cjs": {
+        "beforeSHA256": "47b4627aa8ba28b1dd286de9464299c75ccf429207a2d32cf6b4ef368660bcd0",
+        "afterSHA256": "66822a96b98fa151762dd72e601299c63b4ff57249a7d7134ee55d8ca03969c9"
+      },
+      "tools/site/offline.cjs": {
+        "beforeSHA256": "67f7e3456eb0493044920a2f366f1a7f1e387f82b255fd7bc70667e3052e836f",
+        "afterSHA256": "04970b8c3718d886e2884e2ce63e488aea7a20aebce0bed8778cc7ff8e5288be"
+      },
+      "tools/site/snapshot.cjs": {
+        "beforeSHA256": "ee1768cef4ccfa3fa8c0e952c382dc35afcdacd806d908a99de74b3c2fa20f42",
+        "afterSHA256": "eae15e6734b64ebc015d56e34ebc0a3118ae21f3e1fb340df89075cb1df206f4"
+      }
+    },
+    "predecessorBaseline": "2072b76e5e970db72122a0fd38fcb25da9a5bd46"
+  }
+}

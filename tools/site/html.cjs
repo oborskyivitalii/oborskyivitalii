@@ -73,18 +73,58 @@ const scriptJSON = (value, indentation = 2) =>
     .replace(/</g, '\\u003c')
     .replace(/\u2028/g, '\\u2028')
     .replace(/\u2029/g, '\\u2029');
+const markupTokens =
+  /<(script|style|textarea|title|xmp|iframe|noembed|noframes|noscript)\b(?:[^>"']|"[^"]*"|'[^']*')*>[\s\S]*?(?:<\/\1[ \t\r\n]*>|$)|<plaintext\b[\s\S]*$|<!--[\s\S]*?(?:-->|$)|<(?:[^>"']|"[^"]*"|'[^']*')*>/gi;
+const inertMarkup =
+  /^(?:<(?:script|style|textarea|title|xmp|iframe|noembed|noframes|noscript|plaintext)\b|<!--)/i;
+
+function elementAttributes(source) {
+  // Generated markup uses quoted values or boolean attributes. Refuse other
+  // grammar instead of emulating browser recovery for malformed authored HTML.
+  const attributes = Object.create(null);
+  let end = 0;
+  for (const match of source.matchAll(
+    /[ \t\r\n\f]+([a-z_:][\w:.-]*)(?:[ \t\r\n\f]*=[ \t\r\n\f]*(?:"([^"]*)"|'([^']*)'))?/gi
+  )) {
+    if (match.index !== end) throw Error('Noncanonical document attribute');
+    end += match[0].length;
+    const name = match[1].toLowerCase();
+    if (Object.hasOwn(attributes, name)) throw Error('Duplicate document attribute ' + name);
+    attributes[name] = match[2] ?? match[3] ?? true;
+  }
+  if (!/^[ \t\r\n\f]*\/?$/.test(source.slice(end))) throw Error('Noncanonical document attribute');
+  return attributes;
+}
+
+function documentElements(html) {
+  // A bounded view of canonical generated markup, shared with output compaction.
+  // Raw text, comments and inert template contents cannot supply document hooks.
+  const elements = [];
+  let templateDepth = 0;
+  let end = 0;
+  for (const match of html.matchAll(markupTokens)) {
+    if (html.slice(end, match.index).includes('<')) throw Error('Noncanonical document markup');
+    const token = match[0];
+    end = match.index + token.length;
+    if (/^<template\b/i.test(token)) templateDepth += 1;
+    if (/^<\/template\b/i.test(token)) {
+      templateDepth -= 1;
+      if (templateDepth < 0) throw Error('Unbalanced document template');
+    }
+    const tag = token.match(/^<([a-z][\w:-]*)((?:[ \t\r\n\f][\s\S]*)?)>$/i);
+    if (templateDepth || !tag || inertMarkup.test(token)) continue;
+    elements.push({ tag: tag[1].toLowerCase(), attributes: elementAttributes(tag[2]) });
+  }
+  if (html.slice(end).includes('<')) throw Error('Noncanonical document markup');
+  if (templateDepth) throw Error('Unbalanced document template');
+  return elements;
+}
+
 function stableTagEndings(html) {
   // Source indentation remains readable; equivalent tag endings keep the original byte budget.
   // Raw elements, comments, quoted attribute values and unquoted-value separators retain bytes.
-  const tokens =
-    /<(script|style|textarea|title|xmp|iframe|noembed|noframes|noscript)\b(?:[^>"']|"[^"]*"|'[^']*')*>[\s\S]*?<\/\1[ \t\r\n]*>|<plaintext\b[\s\S]*$|<!--[\s\S]*?-->|<(?:[^>"']|"[^"]*"|'[^']*')*>/gi;
-  return html.replace(tokens, (token) => {
-    if (
-      /^(?:<(?:script|style|textarea|title|xmp|iframe|noembed|noframes|noscript|plaintext)\b|<!--)/i.test(
-        token
-      )
-    )
-      return token;
+  return html.replace(markupTokens, (token) => {
+    if (inertMarkup.test(token)) return token;
     // A malformed slash separated from '>' must not become a self-close.
     if (/\/[ \t\r\n]+>$/.test(token)) return token;
     // Output-only attribute separators can span source lines. Preserve quoted
@@ -103,5 +143,6 @@ module.exports = {
   validateFragment,
   substitute,
   scriptJSON,
+  documentElements,
   stableTagEndings,
 };

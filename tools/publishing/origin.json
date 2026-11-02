@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "upstream": {
+    "repository": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture",
+    "commit": "345c8f50745e5fde1303d0d7952634f7899220c9"
+  },
+  "license": {
+    "id": "Apache-2.0",
+    "upstreamPath": "LICENSE-CODE.md",
+    "localText": "tools/RI-LICENSE.md",
+    "scope": "The two adapted code helpers; publication content rights are separate."
+  },
+  "files": [
+    {
+      "upstreamPath": "quartz/scripts/publication-path-safety.mjs",
+      "upstreamBytes": 5025,
+      "upstreamSha256": "9e307d4293a8f1f509f38f3e7a854d28b0c41168957fd373d3722c5379797f76",
+      "upstreamBlob": "66f8e3b710c5f2dc6dc9ba758dafb8eb02ba78ca",
+      "localPath": "tools/publishing/safety.cjs",
+      "treatment": "adapted",
+      "siteChanges": [
+        "CommonJS exports and explicit source/output roots replace repository-specific defaults.",
+        "Synchronous bounded source reading rejects traversal, symbolic links and hardlinks.",
+        "Output checks support regular files and generation directories, protected-path overlap and aliases.",
+        "Directory transactions replace the upstream single-file atomic writer, retain backups until byte and inventory verification, and report preserved recovery paths on rollback failure."
+      ]
+    },
+    {
+      "upstreamPath": "quartz/scripts/publication-provenance.mjs",
+      "upstreamBytes": 2548,
+      "upstreamSha256": "3c12e8366c33d873cddf830d859f717ce2ed89145f0f4fe5a3570b4a8ae70aea",
+      "upstreamBlob": "f9200c1dfed767beb41d44f8b06abd31c3e00169",
+      "localPath": "tools/publishing/provenance.cjs",
+      "treatment": "adapted",
+      "siteChanges": [
+        "CommonJS and bounded synchronous Git calls use the caller's explicit repository root and disable Git replacement objects.",
+        "The declaration pins SHA256 bytes and either two null Git identities or an exact commit and blob pair.",
+        "Null identities are explicitly working-tree-review; frozen editions verify regular tree mode, the committed blob and exact committed bytes.",
+        "Historical committed pins can be verified directly from Git objects after the working manuscript moves to a new edition.",
+        "Dirty previews require an explicit option and retain the actual working blob identity; neither SHA256 nor the declared committed blob can be bypassed."
+      ]
+    }
+  ],
+  "exclusions": [
+    "tools/publishing/history.cjs is a new site implementation, not an upstream extraction.",
+    "No Quartz application, runtime, dependency tree, publication renderer, research registry or upstream doctrine is copied by this extraction.",
+    "Article manuscripts, figures, metadata and edition permissions retain their own provenance and rights."
+  ]
+}

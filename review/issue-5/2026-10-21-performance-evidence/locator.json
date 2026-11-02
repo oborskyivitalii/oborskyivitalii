@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "role": "evidence-only standalone tree; never merge as implementation/release candidate",
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "evidenceBranch": "evidence/issue-5/performance-20261021",
+  "evidenceCommit": "9147ecccc96247ee6a1ec40c786cb99db211ad1a",
+  "evidenceTree": "8c4d4dc2463571ff5aa5720a84b7b235f80371c0",
+  "evidenceParent": "283b32f65f0589e85c0aa914d0990704dcf8ac38",
+  "immutableFolderURL": "https://github.com/oborskyivitalii/oborskyivitalii/tree/9147ecccc96247ee6a1ec40c786cb99db211ad1a/review/issue-5/2026-10-21-performance-evidence",
+  "manifestSha256": "ef2171514708627733b18eeb83c62058472903122235e0a30a94673294670b28",
+  "summarySha256": "36961407befb7769ab906dd9c7f6e11b947d931316986d655c9215f591b5c205",
+  "remoteGitFetchVerified": true,
+  "envelopeFiles": [
+    {
+      "path": "README.md",
+      "blob": "f172f55243f8780c972858d27990c585a81d6333",
+      "bytes": 1744,
+      "sha256": "9bd0445fdd1f2ceed865a04073b2acbb9e0b32ef3f305137665880ff92b8663b"
+    },
+    {
+      "path": "review/issue-5/2026-10-21-performance-evidence/manifest.json",
+      "blob": "1a4c93a56de0b68e8c09da41a1b1c9a7444593ce",
+      "bytes": 22935,
+      "sha256": "ef2171514708627733b18eeb83c62058472903122235e0a30a94673294670b28"
+    },
+    {
+      "path": "review/issue-5/2026-10-21-performance-evidence/raw-01.zip",
+      "blob": "7f315c15df65bb1397db2472a13b252efcc01056",
+      "bytes": 3161213,
+      "sha256": "2732c1146a4c1097cd54383ce5352559a5c47ea1026d2cd3571b4df8a124e80b"
+    },
+    {
+      "path": "review/issue-5/2026-10-21-performance-evidence/raw-02.zip",
+      "blob": "85dd95494a4abd8fef748a29f4f97947784343a3",
+      "bytes": 3091884,
+      "sha256": "87b955dbdcd9636dce49b85371b115d18a7836d28a8a8c101cf011544359b980"
+    },
+    {
+      "path": "review/issue-5/2026-10-21-performance-evidence/raw-03.zip",
+      "blob": "abddc146f060e4383e32ae9b2f8088ada071e93d",
+      "bytes": 3104789,
+      "sha256": "e6162f86c282bf9c1c01e9e313a5fc26bbf01076a7efd39b9d822125e648735d"
+    },
+    {
+      "path": "review/issue-5/2026-10-21-performance-evidence/raw-04.zip",
+      "blob": "3b6bede7f27253a2a19bab3e1a93e4d3a7c82315",
+      "bytes": 2578346,
+      "sha256": "14496ae958ac24ce1cb4cdde4701fde544f71c7e4422cf783d9e6351b4b33578"
+    },
+    {
+      "path": "review/issue-5/2026-10-21-performance-evidence/raw-05.zip",
+      "blob": "612f6d826f4f743fcafcb551dc7b1cbd31c2951f",
+      "bytes": 3310527,
+      "sha256": "fd3515b569530b419040411542b0ee1d0d1ffaf1945f0f80f2e7ca136c5f10b6"
+    },
+    {
+      "path": "review/issue-5/2026-10-21-performance-evidence/raw-06.zip",
+      "blob": "d62991eb0c9410071d9555851bd29ded4d537bf3",
+      "bytes": 2289778,
+      "sha256": "28a38072ee9c8564dc6ad99c3cdfc2a8361470089956966a53f0311ff908fba8"
+    },
+    {
+      "path": "review/issue-5/2026-10-21-performance-evidence/raw-07.zip",
+      "blob": "160d2bd9c45b8388afb23719aedee9c33b6a0c86",
+      "bytes": 2957838,
+      "sha256": "e48783b4ab6a956ef9e2376c09593dbd1bbf53170b07bca6d2382fc5897792cd"
+    },
+    {
+      "path": "review/issue-5/2026-10-21-performance-evidence/raw-08.zip",
+      "blob": "151191ca561965f26ea2ef25f7d358d53179bcd4",
+      "bytes": 2959296,
+      "sha256": "096cd629ccab12a29ee75ed92820d85c4f62e08d82a87ae4faff3a6407a73d28"
+    },
+    {
+      "path": "review/issue-5/2026-10-21-performance-evidence/raw-09.zip",
+      "blob": "f7924874f1d278d623e94ebbed86550ee4c82d82",
+      "bytes": 3297945,
+      "sha256": "0b80f0784b4918c686e1918dc89ef0119e61d26f059d5239ecc894b1527a1b0e"
+    },
+    {
+      "path": "review/issue-5/2026-10-21-performance-evidence/raw-10.zip",
+      "blob": "12ecb0f068420dc0bdefba52879e8545fbae6785",
+      "bytes": 3164673,
+      "sha256": "77e67d7e62ba8acf3fe1a12a3161345959afef817b023739c6247f4979ad617b"
+    },
+    {
+      "path": "review/issue-5/2026-10-21-performance-evidence/raw-11.zip",
+      "blob": "63eb66f32d53bfc9140c9e89d4a8628210e69c26",
+      "bytes": 2593675,
+      "sha256": "3c3fbfba69969c88aa502e3c83d724a0addc97f49eb90dbb0e012824d87ba039"
+    },
+    {
+      "path": "review/issue-5/2026-10-21-performance-evidence/raw-12.zip",
+      "blob": "a11da5830dd0f1896e5fa45f29037505cad3836b",
+      "bytes": 3049899,
+      "sha256": "d6e3a3652793063314a59b8690ae42a09125b1b4deed151ab37a71ad8079d07a"
+    },
+    {
+      "path": "review/issue-5/2026-10-21-performance-evidence/raw-13.zip",
+      "blob": "5226bc879772dbb70c1d7d8331a2c543f8b529cd",
+      "bytes": 2923234,
+      "sha256": "bd1a6cad9e29212e0a4b45dd6469efcebddbde345c62fdaabc0b69e458d90b87"
+    },
+    {
+      "path": "review/issue-5/2026-10-21-performance-evidence/raw-14.zip",
+      "blob": "d002a482c9a0c47653c9743c6ffd8f030e6fc4d9",
+      "bytes": 2939190,
+      "sha256": "bbfdcee8bb60ae30c783187bbded4659b7e31d083106b31bee080028f57ec4ab"
+    },
+    {
+      "path": "review/issue-5/2026-10-21-performance-evidence/raw-15.zip",
+      "blob": "f5776e6a6b92fde8e52d43832a3b7f4d18034a56",
+      "bytes": 2976294,
+      "sha256": "d0f9cb90647d230e435b33769e3a86fc27052c291025cd6e2a3e270fa0184076"
+    },
+    {
+      "path": "review/issue-5/2026-10-21-performance-evidence/summary.json",
+      "blob": "d45f07c4c0d643807e9a0c59d476f6b7862f3f2e",
+      "bytes": 10505,
+      "sha256": "36961407befb7769ab906dd9c7f6e11b947d931316986d655c9215f591b5c205"
+    }
+  ],
+  "reason": "44,398,581 archive bytes would exceed the existing active-candidate250MB RI hash bound. Keep bounds/history unchanged; raw evidence is external to the implementation tree and linked from issue5/PR79."
+}

@@ -1,4 +1,5 @@
 'use strict';
+const qaIsolation = require('./analytics-isolation.cjs');
 // Authored Color behavior against the same exact artifact used by generic smoke.
 const assert = require('node:assert/strict'),
   fs = require('node:fs');
@@ -127,12 +128,16 @@ async function preferences(page, id, value) {
     { id, value }
   );
 }
-async function scenario(browser, url, artifact, engine, width, theme) {
+async function scenario(browser, url, artifact, engine, width, theme, isolation = []) {
   const runtime = colorMotion.select(artifact);
-  const context = await browser.newContext({
-    viewport: { width, height: width === 390 ? 844 : 900 },
-    reducedMotion: 'no-preference',
-  });
+  const context = await qaIsolation.createContext(
+    browser,
+    {
+      viewport: { width, height: width === 390 ? 844 : 900 },
+      reducedMotion: 'no-preference',
+    },
+    isolation
+  );
   const errors = [];
   try {
     await context.addInitScript(paintProbe);
@@ -141,6 +146,13 @@ async function scenario(browser, url, artifact, engine, width, theme) {
     page.on('pageerror', (error) => errors.push(error.message));
     await page.goto(url + '/index.html');
     await settled(page, 'index', artifact);
+    if (artifact.files['publication-index.json'])
+      await page.waitForFunction(
+        () =>
+          !document.querySelector('li.publication') || document.body.dataset.tagsState === 'ready',
+        null,
+        { timeout: 10000, polling: 25 }
+      );
     await page.evaluate((mode) => {
       const control = document.getElementById('theme-mode');
       control.value = mode;
@@ -252,6 +264,7 @@ async function main(options = {}) {
   const runtime = colorMotion.select(artifact);
   const { server, url } = await start(),
     rows = [],
+    isolation = [],
     browsers = [];
   let pass = true;
   try {
@@ -262,7 +275,7 @@ async function main(options = {}) {
         for (const width of [1440, 390])
           for (const theme of smoke ? ['light'] : ['light', 'dark']) {
             try {
-              rows.push(await scenario(browser, url, artifact, engine, width, theme));
+              rows.push(await scenario(browser, url, artifact, engine, width, theme, isolation));
             } catch (error) {
               pass = false;
               rows.push({
@@ -282,6 +295,13 @@ async function main(options = {}) {
   } finally {
     server.close();
   }
+  let isolationError = null;
+  try {
+    qaIsolation.validate(isolation);
+  } catch (error) {
+    pass = false;
+    isolationError = error.message;
+  }
   report(
     smoke ? 'color-preview-smoke' : 'color-functional',
     {
@@ -290,6 +310,8 @@ async function main(options = {}) {
       motionContract: runtime,
       browsers,
       rows,
+      qaIsolation: isolation,
+      isolationError,
       ...(smoke ? { profile: 'preview', fullGate: false, deploymentAuthorized: false } : {}),
     },
     pass

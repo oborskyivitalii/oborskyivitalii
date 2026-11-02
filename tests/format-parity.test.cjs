@@ -12,6 +12,59 @@ const equal = (file, before, after) => assert.equal(compareSources(file, before,
 const different = (file, before, after) =>
   assert.equal(compareSources(file, before, after).pass, false);
 
+test('primary parser diagnostics retain exact types and messages before and after YAML requests', () => {
+  const root = path.resolve(__dirname, '..');
+  const tools = path.resolve(
+    process.env.SITE_AUDIT_TOOLS || path.join(root, 'tools/quality/toolchain')
+  );
+  const python = path.join(
+    tools,
+    process.platform === 'win32' ? 'venv/Scripts/python.exe' : 'venv/bin/python'
+  );
+  const fixtures = [
+    ['html', '<p id="one" id="two">duplicate</p>', 'ValueError: Duplicate HTML attribute'],
+    ['json', '{"incomplete":', 'JSONDecodeError: Expecting value: line 1 column 15 (char 14)'],
+    ['python', 'def incomplete(:\n', 'SyntaxError: invalid syntax (<unknown>, line 1)'],
+    [
+      'yaml',
+      'sequence: [one,\n',
+      'ParserError: while parsing a flow node\n' +
+        "expected the node content, but found '<stream end>'\n" +
+        '  in "<unicode string>", line 2, column 1:\n    \n    ^',
+    ],
+    [
+      'yaml',
+      'key: "unterminated\n',
+      'ScannerError: while scanning a quoted scalar\n' +
+        '  in "<unicode string>", line 1, column 6:\n    key: "unterminated\n         ^\n' +
+        'found unexpected end of stream\n' +
+        '  in "<unicode string>", line 2, column 1:\n    \n    ^',
+    ],
+    ['yaml', 'key: 1\nkey: 2\n', 'ValueError: Duplicate YAML mapping key'],
+    [
+      'yaml',
+      'recursive: &self [*self]\n',
+      'ValueError: Recursive YAML aliases are outside the source contract',
+    ],
+  ].map(([language, source, error]) => ({ request: { language, source }, row: { error } }));
+  for (const selected of [
+    ...fixtures.map((fixture) => [fixture]),
+    fixtures,
+    [...fixtures].reverse(),
+  ]) {
+    const result = cp.spawnSync(python, [path.join(root, 'tools/quality/format-parity.py')], {
+      input: JSON.stringify(selected.map((fixture) => fixture.request)),
+      encoding: 'utf8',
+    });
+    assert.equal(result.status, 0, result.stderr);
+    assert.equal(result.stderr, '');
+    assert.deepEqual(
+      JSON.parse(result.stdout),
+      selected.map((fixture) => fixture.row)
+    );
+  }
+});
+
 test('JS formatting preserves decoded literals, AST order and operators', () => {
   equal(
     'fixture.cjs',

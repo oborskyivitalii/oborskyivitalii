@@ -138,6 +138,7 @@ function installEndScroll(gateFactory, isEnd, isStart) {
     function available(direction = 0) {
       return (
         enabled &&
+        !document.body.dataset.article &&
         !!(direction ? neighbor(direction) : neighbor(1) || neighbor(-1)) &&
         !printing &&
         !document.hidden &&
@@ -150,7 +151,7 @@ function installEndScroll(gateFactory, isEnd, isStart) {
         route = neighbor(1);
       if (!footer) return;
       hint = footer.querySelector('.scroll-continue');
-      if (!route) {
+      if (!route || document.body.dataset.article) {
         hint?.remove();
         hint = null;
         return;

@@ -1,4 +1,5 @@
 name: Site PR preview and staging
+run-name: "Site ${{ github.event_name == 'pull_request' && 'preview' || 'staging' }} PR #${{ github.event.pull_request.number || github.event.issue.number || inputs.pr_number }}"
 on:
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review, labeled, edited]
@@ -42,7 +43,8 @@ jobs:
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ github.event.pull_request.base.sha }}
+          fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
@@ -56,7 +58,13 @@ jobs:
             try{
               const pr=(await github.rest.pulls.get({...context.repo,pull_number:context.payload.pull_request.number})).data;
               const main=(await github.rest.repos.getBranch({...context.repo,branch:'main'})).data;
-              const proof=await require('./tools/staging/admission.cjs').verifyPR(github,context,pr,main);
+              const select=require('./tools/quality/delivery-observation.cjs').selection;
+              require('node:child_process').execFileSync('git',['fetch','--no-tags','origin',pr.head.sha]);
+              const repositoryOnly=select && select(process.cwd(),main.commit.sha,pr.head.sha).repositoryOnly;
+              const proof=repositoryOnly
+                ? await require('./tools/staging/admission.cjs').verifyRepositoryPR(github,context,pr,main)
+                : await require('./tools/staging/admission.cjs').verifyPR(github,context,pr,main);
+              if(repositoryOnly)await core.summary.addRaw(proof.website==='not-applicable'?'Website staging is inapplicable; exact protected-base dedicated App admission authenticated.':'Protected full-route recovery authenticated; website staging actually ran.').write();
               fs.writeFileSync(file,JSON.stringify(proof,null,2)+'\n');
               core.info(JSON.stringify(proof));
             }catch(error){
@@ -89,13 +97,17 @@ jobs:
       prototype: ${{ steps.target.outputs.prototype }}
       number: ${{ steps.target.outputs.number }}
       source: ${{ steps.target.outputs.source }}
+      base: ${{ steps.target.outputs.base }}
       branch: ${{ steps.target.outputs.branch }}
       enabled: ${{ steps.target.outputs.enabled }}
       evidence: ${{ steps.target.outputs.evidence }}
+      binding: ${{ steps.target.outputs.binding }}
+      repository_only: ${{ steps.target.outputs.repository_only }}
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
-          ref: ${{ github.sha }}
+          ref: ${{ github.event.pull_request.base.sha || github.sha }}
+          fetch-depth: 0
           persist-credentials: false
       - id: target
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
@@ -105,14 +117,41 @@ jobs:
           REVIEW_STAGING_ENABLED: ${{ vars.SITE_PR_STAGING_ENABLED }}
         with:
           script: |
+            const fs=require('node:fs'),path=require('node:path');
             const flow=require('./tools/staging/review-flow.cjs');
             const number=flow.positive(process.env.REVIEW_PR);
             const {data:pr}=await github.rest.pulls.get({...context.repo,pull_number:number});
             const main=context.eventName!=='pull_request'?(await github.rest.repos.getBranch({...context.repo,branch:'main'})).data:null;
             const target=flow.resolve(context,pr,main);
+            target.base=pr.base.sha;
             target.evidence=String(flow.previewEvidence(context));
             target.enabled=String(process.env[target.mode==='preview'?'REVIEW_PREVIEW_ENABLED':'REVIEW_STAGING_ENABLED']==='true');
+            target.repository_only='false';
+            const select=require('./tools/quality/delivery-observation.cjs').selection;
+            if(select && target.mode==='preview'){
+              require('node:child_process').execFileSync('git',['fetch','--no-tags','origin',pr.head.sha]);
+              const plan=select(process.cwd(),pr.base.sha,pr.head.sha);
+              if(plan.repositoryOnly){
+                target.enabled='false';
+                target.repository_only='true';
+                await core.summary.addRaw('Repository-only delta: website preview/build/publication are inapplicable. Explicit owner staging remains available for protected recovery.').write();
+              }
+            }
+            if(target.mode==='staging'){
+              target.binding=['change-stage-target',number,pr.head.sha,context.sha,context.runId,process.env.GITHUB_RUN_ATTEMPT].join('-');
+              const identity={pr:number,source:pr.head.sha,base:context.sha,run:context.runId,attempt:Number(process.env.GITHUB_RUN_ATTEMPT)};
+              core.info('change-stage-target-v1 '+JSON.stringify(identity));
+              fs.writeFileSync(path.join(process.env.RUNNER_TEMP,'stage-binding.json'),JSON.stringify(identity,null,2)+'\n');
+            }
             for(const [key,value]of Object.entries(target))core.setOutput(key,value);
+      - name: Retain the staging target before candidate work
+        if: steps.target.outputs.mode == 'staging'
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: ${{ steps.target.outputs.binding }}
+          path: ${{ runner.temp }}/stage-binding.json
+          if-no-files-found: error
+          retention-days: 90
   begin-admission:
     needs: target
     if: needs.target.outputs.mode == 'staging'
@@ -153,8 +192,14 @@ jobs:
             }
   build:
     needs: [target, begin-admission]
+    permissions:
+      contents: read
+      actions: read
+      checks: read
+      pull-requests: read
     if: >-
       always() && needs.target.result == 'success' && !cancelled() &&
+      needs.target.outputs.repository_only != 'true' &&
       (needs.target.outputs.mode == 'preview' || needs.begin-admission.result == 'success')
     runs-on: ubuntu-24.04
     timeout-minutes: 10
@@ -171,6 +216,7 @@ jobs:
       variant: ${{ steps.rendition.outputs.variant }}
     env:
       SITE_CANDIDATE_SHA: ${{ needs.target.outputs.source }}
+      SITE_ARTICLE_PREVIEW: ${{ needs.target.outputs.prototype == 'true' && needs.target.outputs.number == '79' && 'true' || 'false' }}
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
@@ -184,7 +230,7 @@ jobs:
         id: source_identity
         run: test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
-        if: needs.target.outputs.mode == 'staging' || needs.target.outputs.evidence == 'true'
+        if: hashFiles('tools/publishing/toolchain/package-lock.json') != '' || needs.target.outputs.mode == 'staging' || needs.target.outputs.evidence == 'true'
         with:
           python-version: 3.12.14
       - name: Install locked prepublication tools for an explicit staging attempt
@@ -194,7 +240,46 @@ jobs:
           python3 -m venv tools/quality/toolchain/venv
           tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps -r tools/quality/toolchain/requirements.txt
           tools/quality/toolchain/venv/bin/python tools/quality/python_toolchain.py
+      - name: Install declared locked publication tools when available
+        if: hashFiles('tools/publishing/toolchain/package-lock.json') != ''
+        run: |
+          npm ci --prefix tools/publishing/toolchain --ignore-scripts
+          if [ -f tools/publishing/web-media.py ]; then
+            if [ ! -x tools/quality/toolchain/venv/bin/python ]; then
+              python3 -m venv tools/quality/toolchain/venv
+            fi
+            tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps "$(python3 tools/publishing/web-media.py --requirement)"
+          fi
+      - id: content_baseline
+        name: Select a trusted earlier generation for authored content updates
+        if: needs.target.outputs.prototype != 'true'
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        env:
+          CONTENT_BRANCH: ${{ github.event.pull_request.head.ref }}
+          CONTENT_BASE_SHA: ${{ needs.target.outputs.base }}
+        with:
+          script: |
+            const fs=require('node:fs'),path=require('node:path');
+            const selection=await require('./tools/quality/content-baseline.cjs').selectAccepted({
+              github,repo:context.repo,branch:process.env.CONTENT_BRANCH,
+              candidate:process.env.SITE_CANDIDATE_SHA,base:process.env.CONTENT_BASE_SHA,
+              root:process.cwd(),
+              temporaryRoot:process.env.RUNNER_TEMP,
+            });
+            fs.writeFileSync(path.join(process.env.RUNNER_TEMP,'content-baseline-selection.json'),JSON.stringify(selection,null,2)+'\n');
+            for(const key of ['mode','directory','artifactDigest','generationSha256','sourceCommit'])
+              core.setOutput(key,selection[key]||'');
+            core.info(JSON.stringify(selection));
+      - name: Install locked content-source tools for an ordinary preview
+        if: needs.target.outputs.mode == 'preview' && needs.target.outputs.evidence != 'true' && steps.content_baseline.outputs.mode == 'content'
+        run: npm ci --prefix tools/quality/toolchain --ignore-scripts
       - name: Targeted controller checks and one immutable public build
+        env:
+          CONTENT_MODE: ${{ steps.content_baseline.outputs.mode }}
+          CONTENT_BASELINE: ${{ steps.content_baseline.outputs.directory }}
+          CONTENT_BASELINE_DIGEST: ${{ steps.content_baseline.outputs.artifactDigest }}
+          CONTENT_GENERATION_SHA256: ${{ steps.content_baseline.outputs.generationSha256 }}
+          CONTENT_BASE_SHA: ${{ steps.content_baseline.outputs.sourceCommit }}
         run: |
           if [ "${{ needs.target.outputs.prototype }}" != true ]; then
             node --test tests/review-flow.test.cjs tests/preview-smoke.test.cjs
@@ -202,7 +287,12 @@ jobs:
               node --test tests/color-build.test.cjs
             fi
           fi
-          node tools/quality/artifact.cjs build color-artifact
+          if [ "$CONTENT_MODE" = content ]; then
+            node tools/quality/source-tests.cjs --profile content --base "$CONTENT_BASE_SHA" --head "$SITE_CANDIDATE_SHA" --require-clean
+            node tools/quality/artifact.cjs build color-artifact --content-baseline "$CONTENT_BASELINE" --generation-sha256 "$CONTENT_GENERATION_SHA256" --baseline-digest "$CONTENT_BASELINE_DIGEST"
+          else
+            node tools/quality/artifact.cjs build color-artifact
+          fi
       - id: rendition
         name: Select the supported source rendition and bind its visual identity
         run: |
@@ -353,6 +443,7 @@ jobs:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
           ref: ${{ needs.target.outputs.source }}
+          fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
@@ -367,14 +458,45 @@ jobs:
           path: staging-package
       - name: Verify current hosted routes, revision and runtime
         run: node tools/staging/review-flow.cjs http staging-package "$SITE_TEST_BASE_URL" staging-reports/http.json
-      - name: Install locked Chromium smoke tools
+      - name: Prepare bounded Ubuntu downloads
         if: needs.target.outputs.prototype != 'true'
+        run: sudo python3 tools/quality/ubuntu_downloads.py
+      - name: Install locked Chromium smoke tools
+        if: needs.target.outputs.prototype != 'true' || needs.target.outputs.number == '79'
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
-          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium
+          tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium
+      - name: Restore verified pinned browsers without prior launch
+        if: needs.target.outputs.prototype != 'true' || needs.target.outputs.number == '79'
+        uses: ./.github/actions/browser-archive
+        with:
+          browsers: chromium
       - name: Minimal two-width hosted rendition smoke
-        if: needs.target.outputs.prototype != 'true'
+        if: needs.target.outputs.prototype != 'true' || needs.target.outputs.number == '79'
         run: node tools/quality/local-browser.cjs --smoke
+      - name: Install the locked parser for the issue-5 local diagnostic
+        if: needs.target.outputs.number == '79'
+        run: npm ci --prefix tools/publishing/toolchain --ignore-scripts
+      - name: Exercise genuine content release on an isolated local fixture
+        if: needs.target.outputs.number == '79'
+        run: node tools/quality/content-fixture.cjs "$RUNNER_TEMP/content-fixture-report.json"
+      - name: Export and verify the article PDF with locked managed Chromium
+        if: needs.target.outputs.prototype != 'true' && needs.target.outputs.number == '79'
+        run: node tools/quality/article-print.cjs pmday-two-shifts "$RUNNER_TEMP/article-print"
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always() && needs.target.outputs.prototype != 'true' && needs.target.outputs.number == '79'
+        with:
+          name: site-article-print-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/article-print/
+          if-no-files-found: error
+          retention-days: 30
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always() && needs.target.outputs.number == '79'
+        with:
+          name: site-content-fixture-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/content-fixture-report.json
+          if-no-files-found: error
+          retention-days: 30
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always()
         with:
@@ -396,6 +518,7 @@ jobs:
       full: true
       profile: staging
       automated_only: true
+      content_fixture: ${{ needs.target.outputs.number == '79' }}
       public_variant: ${{ needs.build.outputs.variant }}
       base_url: ${{ needs.publish.outputs.url }}
       public_run_id: ${{ github.run_id }}
@@ -417,6 +540,7 @@ jobs:
       full: true
       profile: staging
       automated_only: true
+      content_fixture: ${{ needs.target.outputs.number == '79' }}
       public_variant: ${{ needs.build.outputs.variant }}
       base_url: ${{ needs.publish.outputs.url }}
       public_artifact_id: ${{ needs.build.outputs.public_artifact }}
@@ -655,6 +779,7 @@ jobs:
           script: |
             const n=JSON.parse(process.env.REVIEW_RESULTS),preview=process.env.REVIEW_MODE==='preview',evidence=process.env.REVIEW_EVIDENCE==='true';
             let status='Deployment is disabled; complete the owner setup in guides/SITE-STAGING.md.';
+            if(n.target.outputs.repository_only==='true')status='Repository-only: website build, preview and deployment are inapplicable. Complete source/RI/owning checks, then dispatch Change admission for this PR.';
             if(n.target.outputs.enabled==='true'){
               if(n.build.result!=='success'||n.publish.result!=='success')status='Build/deployment failed; no accepted update.';
               else if(evidence)status=n['stage-evidence'].result==='success'?'Bounded staging regression passed for these preview bytes; stable staging was not promoted.':'Bounded staging evidence failed or is incomplete; stable staging was not changed.';
@@ -665,3 +790,57 @@ jobs:
               else status='Bounded staging regression passed, but promotion failed.'+(n.promote.outputs.rollback==='success'?' Previous staging restored and verified.':' Check recovery evidence.');
             }
             await require('./tools/staging/review-flow.cjs').updateComment(github,context,{source:process.env.REVIEW_SOURCE,url:n.publish.outputs.url||'',alias:preview?(n.publish.outputs.alias||''):(n.promote.result==='success'?n.promote.outputs.stable:''),status,run:`https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`});
+  change-admission-receipt:
+    needs:
+      [
+        target,
+        build,
+        publish,
+        smoke,
+        stage-evidence,
+        full,
+        promote,
+        merge-admission,
+        status-comment,
+      ]
+    if: >-
+      always() && needs.target.outputs.mode == 'staging' &&
+      needs.full.result == 'success' && needs.promote.result == 'success' &&
+      needs.merge-admission.result == 'success'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - id: receipt
+        name: Produce staging identity without executing candidate code
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        env:
+          REVIEW_PR: ${{ needs.target.outputs.number }}
+          REVIEW_SOURCE: ${{ needs.target.outputs.source }}
+        with:
+          script: |
+            const fs = require('node:fs');
+            const path = require('node:path');
+            const receipt = await require('./tools/quality/delivery-admission.cjs').stageIdentity(
+              github, context, process.env.REVIEW_PR, process.env.REVIEW_SOURCE
+            );
+            const file = path.join(process.env.RUNNER_TEMP, 'independent-stage-identity.json');
+            fs.writeFileSync(file, JSON.stringify(receipt, null, 2) + '\n', { flag: 'wx' });
+            core.setOutput('name', receipt.artifactName);
+      - name: Retain independently produced staging identity
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: ${{ steps.receipt.outputs.name }}
+          path: ${{ runner.temp }}/independent-stage-identity.json
+          if-no-files-found: error
+          overwrite: false
+          retention-days: 90

@@ -1,0 +1,19 @@
+{
+  "finding": "Code correction durable scope pointer",
+  "old": "devcon-review-inputs/r6-layout-preflight-addendum.md",
+  "new": "review/issue-109/r6-reviewer-receipts/requirements-layout-addendum.md",
+  "target_sha256": "b562b49c353309ecc20dfb6aef3a7b5d9e58da6d3045bc998cdb5abe4bcd13d6",
+  "changed": [
+    {
+      "path": "drafts/devcon-romania-2026/r6/sources/slide-05-spacing-recipe.json",
+      "before_sha256": "7dc13bea20ca64a4732a624b6dfdc1df79b16e5892d339d3a98aafb9aa07a1d4",
+      "after_sha256": "6104cacd048760ebfbca01a02340acc491bf631750979e70b9ec59db397ed037"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r6/sources/provenance.json",
+      "before_sha256": "7ee57c35a5600e04f93bed60c5463d8a95d6ef2b39a395a10c6f6c4d78933a83",
+      "after_sha256": "55e85fbdf0d688cb07ba296e9a5b2c3c6a6fec3d6c46accdc9bdd98f55bee160"
+    }
+  ],
+  "artifact_bytes_changed": false
+}

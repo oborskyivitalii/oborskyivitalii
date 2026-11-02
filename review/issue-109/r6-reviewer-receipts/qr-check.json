@@ -1,0 +1,15 @@
+{
+  "decoder": "zxing-cpp 2.3.0",
+  "native_asset": "ppt/media/image2.png",
+  "native_asset_sha256": "a41f34f3039f8b4673b0f62ecf08c315ebe0ad0f55bcec5b8b8b3544ead8c38e",
+  "native_targets": [
+    "https://vitaliioborskyi.ai/"
+  ],
+  "pdf_page9_raster_sha256": "04a8440e23ccdfbb6325466b7a2d0ee5952ad867702eeedb21e73aa0f3ebb8c0",
+  "pdf_page9_targets": [
+    "https://vitaliioborskyi.ai/"
+  ],
+  "expected": "https://vitaliioborskyi.ai/",
+  "pass": true,
+  "physical_device": "not observed"
+}

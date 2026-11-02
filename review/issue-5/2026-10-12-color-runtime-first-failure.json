@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "reviewOnly": true,
+  "managedBrowser": false,
+  "fullGate": false,
+  "productionEligible": false,
+  "sourceCommit": "7c6ca6456ae57ba712feb063b5613d84fe57026a",
+  "sourceTree": "5fe5d2d8d21f3bff8e81e45c77b913b33bc6142d",
+  "sourceDirty": true,
+  "artifactDigest": "b9d59cdf4ea0b94869a2805a08487eb56a7b982d515550ff55a5b74ac1419764",
+  "browser": "153.0.8010.0",
+  "binarySha256": "53a15d6c3a3d27dfb54c4ba60278b1683136f70cf1e67e989da7dfbd3d451ef0",
+  "target": "http://127.0.0.1:42099",
+  "motionContract": {
+    "id": "issue5-staging",
+    "behavior": "fixed-blocks",
+    "edition": "staging",
+    "variant": {
+      "id": "color",
+      "contract": 1,
+      "fingerprint": "c8380b538263d61cdb264876bcca05da4bdf4c1863268d66caf7e03b27693a0e",
+      "baseEngine": "3e3cb96b935edfa17a2077283b7cba619e953ca5f4e4a0cca4536d12d165dec4",
+      "effects": [
+        "travel"
+      ]
+    },
+    "files": {
+      "styles.css": "ba3b199f1443788d200d0867bbf560aeeac2b856458c2b0ac6aeb42fab25bbfc",
+      "theme.js": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a",
+      "space.js": "0632b41dbfdc9e931db7513729c88b625240673c5a039c2bc61686cf15578487",
+      "archive.js": "1307b2405daa50937e5746f4d8a71230842718377d853b4d0cf4704e7f2de9ad",
+      "navigation.js": "ea20ee883df7f191db398348d4a78c7d92900bcb604beaed219c337a17dc73b9"
+    }
+  },
+  "rows": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "pass": false,
+      "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('footer a[href=\"credits.html\"]')\u001b[22m\n\n    at travel (/workspace/scratch/b7678b878593/author-site/tools/quality/color-browser.cjs:43:32)\n    at Object.scenario (/workspace/scratch/b7678b878593/author-site/tools/quality/color-browser.cjs:202:11)\n    at async /tmp/issue5-color-browser-run.cjs:21:30"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "light",
+      "pass": false,
+      "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('footer a[href=\"credits.html\"]')\u001b[22m\n\n    at travel (/workspace/scratch/b7678b878593/author-site/tools/quality/color-browser.cjs:43:32)\n    at Object.scenario (/workspace/scratch/b7678b878593/author-site/tools/quality/color-browser.cjs:202:11)\n    at async /tmp/issue5-color-browser-run.cjs:21:30"
+    }
+  ],
+  "pass": false
+}

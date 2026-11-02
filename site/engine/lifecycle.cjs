@@ -19,6 +19,9 @@ module.exports = function (api) {
     projectedWorld,
     paintShapes,
     routePose,
+    documentCenterPose,
+    documentTravelPose,
+    documentReturnPose,
     centerPose,
     roomOffset,
     translatePose,
@@ -66,6 +69,7 @@ module.exports = function (api) {
     layoutReasons = new Set(['initial']),
     layoutPasses = 0;
   let idleRate = 30,
+    startupModelCost = 0,
     costAverage = 0,
     costSamples = 0,
     cadenceSlow = 0,
@@ -155,8 +159,15 @@ module.exports = function (api) {
       navigationId: planned.navigationId,
       from: planned.fromPage,
       to: planned.toPage,
+      fromDocument: planned.fromDocument,
+      toDocument: planned.toDocument,
+      direction: planned.direction,
+      localDocument: planned.localDocument,
+      ...(planned.localDocument ? { orbitCenter: planned.centeredTo.target } : {}),
       fromZ: planned.from.position[2],
       toZ: planned.to.position[2],
+      fromPose: planned.from,
+      toPose: planned.to,
       plannedDurationMs: planned.duration,
       centerDurationMs: planned.centerDuration,
       transitDurationMs: planned.transitDuration,
@@ -256,6 +267,7 @@ module.exports = function (api) {
     // Its logical source page may still be several rooms away from that paint.
     if (elapsed < travel.centerDuration && travel.fromRooms.length > 1) return travel.fromRooms;
     const targetIndex = routeOrder.indexOf(travel.toPage);
+    if (travel.localDocument) return [targetIndex];
     const first = Math.min(...travel.fromRooms, targetIndex),
       last = Math.max(...travel.fromRooms, targetIndex);
     let near = first;
@@ -279,8 +291,15 @@ module.exports = function (api) {
     const next = readingPose(routeOrder[index + 1]).position[2];
     return smooth(clamp((cameraDepth - next) / (depth - next)));
   }
+  function travelVisibility(travel, name, pose, elapsed = travel?.elapsed) {
+    if (!travel || travel.localDocument) return 1;
+    const opacity = roomVisibility(name, pose);
+    if (elapsed >= travel.centerDuration) return opacity;
+    const start = travel.fromOpacity[name] || 0;
+    return start + (opacity - start) * smooth(elapsed / travel.centerDuration);
+  }
   function visibleRooms() {
-    if (!journey || journeyStage() === 'restore') {
+    if (!journey || journey.localDocument || journeyStage() === 'restore') {
       const room = roomFor(page);
       const shapes = projectedWorld(
         room.world,
@@ -300,7 +319,7 @@ module.exports = function (api) {
     const names = travelRoomIndices(journey, current).map((index) => routeOrder[index]);
     const active = [...new Set(names)];
     const shapes = active.flatMap((name) => {
-      const opacity = roomVisibility(name, current);
+      const opacity = travelVisibility(journey, name, current);
       if (opacity === 0) return [];
       // Entire room envelope behind the camera cannot contribute geometry.
       const local = translatePose(current, -roomOffset(name));
@@ -389,7 +408,7 @@ module.exports = function (api) {
         roomVisibility: (!journey || journeyStage() === 'restore'
           ? [page]
           : travelRoomIndices(journey, current).map((index) => routeOrder[index])
-        ).map((name) => ({ route: name, opacity: roomVisibility(name, current) })),
+        ).map((name) => ({ route: name, opacity: travelVisibility(journey, name, current) })),
         ordinaryShapes: geometry.length,
         customShapes: custom.length,
       });
@@ -502,13 +521,15 @@ module.exports = function (api) {
     if (elapsed === 0) {
       current = journey.from;
     } else if (elapsed < centerEnd) {
-      current = mix(journey.from, journey.centeredFrom, smooth(elapsed / centerEnd));
+      current =
+        journey.fromOrbit && !journey.localDocument
+          ? documentReturnPose(journey.from, journey.centeredFrom, elapsed / centerEnd)
+          : mix(journey.from, journey.centeredFrom, smooth(elapsed / centerEnd));
     } else if (elapsed < transitEnd) {
-      current = mix(
-        journey.centeredFrom,
-        journey.centeredTo,
-        smooth((elapsed - centerEnd) / (transitEnd - centerEnd))
-      );
+      const progress = (elapsed - centerEnd) / (transitEnd - centerEnd);
+      current = journey.localDocument
+        ? documentTravelPose(journey.centeredFrom, journey.centeredTo, progress, journey.direction)
+        : mix(journey.centeredFrom, journey.centeredTo, smooth(progress));
     } else if (elapsed < journey.duration) {
       current = mix(
         journey.centeredTo,
@@ -520,11 +541,38 @@ module.exports = function (api) {
       journey.elapsed = journey.duration;
     }
   }
+  function prepareWritingStartup() {
+    const detail = compact || detailTier >= 0.5;
+    if (
+      page !== 'writing' ||
+      scene.dataset.ready === 'true' ||
+      journey ||
+      !owns(initialPoses, page) ||
+      document.body.dataset.page !== page ||
+      rooms.get(page)?.has(detail)
+    )
+      return false;
+    const start = clock();
+    roomFor(page, detail);
+    startupModelCost += clock() - start;
+    return true;
+  }
   function frame(time) {
     pending = null;
     if (document.hidden || printing || !initialized || failed) return;
+    // The query can change before its queued notification reaches the listener.
+    if (enabled && reduced.matches) {
+      preferenceChanged();
+      return;
+    }
     try {
       flushLayout();
+      // Yield between the cold Writing model and its first Canvas submission.
+      // Both callbacks remain inside startup timing; only a real paint is ready.
+      if (prepareWritingStartup()) {
+        schedule();
+        return;
+      }
     } catch {
       fail();
       return;
@@ -553,7 +601,10 @@ module.exports = function (api) {
         fail();
         return;
       }
-      const renderCost = clock() - start;
+      const renderCost = clock() - start + startupModelCost;
+      // The first quality vote still includes all preparation work, even though
+      // input/rendering can now run between its two startup callbacks.
+      startupModelCost = 0;
       cameraDiagnostic('camera-travel-complete', arrived, 'arrived');
       // Text follows the painted camera, including skipped frames and stalls.
       if (travelUpdate) reportTravel(journeyProgress());
@@ -563,6 +614,7 @@ module.exports = function (api) {
       if (living) quality(renderCost, time);
     }
     if (living && !hold) schedule();
+    else lastFrame = nextDraw = null;
   }
   function updateControl() {
     if (failed) return;
@@ -605,7 +657,7 @@ module.exports = function (api) {
       if (was) cancel();
     }
     updateControl();
-    schedule();
+    if (enabled || was) schedule();
     if (window.dispatchEvent) window.dispatchEvent(new CustomEvent('site:motion-preference'));
   }
   control.addEventListener('click', () => {
@@ -693,6 +745,84 @@ module.exports = function (api) {
   }
   observeLayout();
   document.fonts?.addEventListener?.('loadingdone', resize);
+
+  function cameraDeparture() {
+    const from = displayedCamera,
+      sourcePage = page,
+      fromRooms =
+        journey && displayedElapsed < journey.centerDuration + journey.transitDuration
+          ? travelRoomIndices(journey, from, displayedElapsed)
+          : [routeOrder.indexOf(sourcePage)],
+      fromOpacity = Object.fromEntries(
+        fromRooms.map((index) => {
+          const name = routeOrder[index];
+          return [name, travelVisibility(journey, name, from, displayedElapsed)];
+        })
+      ),
+      fromOrbit =
+        journey?.localDocument === true ||
+        (journey?.fromOrbit === true && displayedElapsed < journey.centerDuration),
+      orbitAnchor = journey?.orbitAnchor || readingPose(sourcePage);
+    return {
+      from,
+      sourcePage,
+      fromRooms,
+      fromOpacity,
+      fromOrbit,
+      orbitAnchor,
+      centeredDocument: documentCenterPose(from, fromOrbit),
+      centeredPrincipal: fromOrbit ? documentCenterPose(orbitAnchor) : centerPose(from),
+    };
+  }
+  function cameraPath(next, departure, metadata) {
+    const { sourcePage, from } = departure,
+      documentChange = metadata?.documentChange === true,
+      localDocument =
+        next === sourcePage &&
+        documentChange &&
+        metadata.sameSceneDocument === true &&
+        (!journey || journey.localDocument),
+      target = readingPose(next),
+      forward = localDocument
+        ? metadata.direction !== -1
+        : target.position[2] === from.position[2]
+          ? routeOrder.indexOf(next) > routeOrder.indexOf(sourcePage)
+          : target.position[2] < from.position[2];
+    return { documentChange, localDocument, target, forward };
+  }
+  function cameraJourney(next, departure, path, metadata) {
+    const { from, sourcePage, fromRooms, fromOpacity, fromOrbit, orbitAnchor } = departure,
+      { localDocument, target, forward } = path,
+      navigationId = metadata?.navigationId,
+      centerDuration = 400,
+      transitDuration = 1000,
+      restoreDuration = 350;
+    return {
+      navigationId: Number.isSafeInteger(navigationId) && navigationId > 0 ? navigationId : null,
+      fromPage: sourcePage,
+      toPage: next,
+      localDocument,
+      fromOrbit,
+      orbitAnchor: localDocument ? target : orbitAnchor,
+      direction: forward ? 1 : -1,
+      fromDocument: metadata?.fromDocument,
+      toDocument: metadata?.toDocument,
+      fromRooms,
+      fromOpacity,
+      from,
+      to: target,
+      elapsed: 0,
+      centeredFrom: localDocument ? departure.centeredDocument : departure.centeredPrincipal,
+      centeredTo: localDocument ? documentCenterPose(target) : centerPose(target),
+      // Center, orbit/corridor and reading restoration share a fixed camera
+      // budget. Direct route choices change distance, never waiting time.
+      centerDuration,
+      transitDuration,
+      restoreDuration,
+      duration: centerDuration + transitDuration + restoreDuration,
+      started: false,
+    };
+  }
   window.SiteScene = {
     motionState,
     managesLayout: true,
@@ -712,48 +842,20 @@ module.exports = function (api) {
         cancel();
         updateControl();
       }
-      const from = displayedCamera,
-        sourcePage = page,
-        fromRooms =
-          journey && displayedElapsed < journey.centerDuration + journey.transitDuration
-            ? travelRoomIndices(journey, from, displayedElapsed)
-            : [routeOrder.indexOf(sourcePage)];
+      const departure = cameraDeparture(),
+        { from, sourcePage, fromRooms } = departure;
       page = next;
-      const travelling = animate && next !== sourcePage && this.canTravel(),
-        target = readingPose();
+      const metadata = options[1],
+        path = cameraPath(next, departure, metadata),
+        { documentChange, target, forward } = path,
+        travelling = animate && (next !== sourcePage || documentChange) && this.canTravel();
       cameraDiagnostic('camera-travel-cancelled', journey, travelling ? 'retargeted' : 'instant');
       current = from;
-      const forward =
-        target.position[2] === from.position[2]
-          ? routeOrder.indexOf(page) > routeOrder.indexOf(sourcePage)
-          : target.position[2] < from.position[2];
       scene.dataset.direction = forward ? 'forward' : 'backward';
       if (travelling) {
         // The fourth router argument remains its native landing contract;
         // the optional fifth argument carries navigation measurement identity.
-        const navigationId = options[1]?.navigationId,
-          centerDuration = 400,
-          transitDuration = 1000,
-          restoreDuration = 350;
-        journey = {
-          navigationId:
-            Number.isSafeInteger(navigationId) && navigationId > 0 ? navigationId : null,
-          fromPage: sourcePage,
-          toPage: page,
-          fromRooms,
-          from,
-          to: target,
-          elapsed: 0,
-          centeredFrom: centerPose(from),
-          centeredTo: centerPose(target),
-          // Center, depth travel and reading restoration share a fixed camera
-          // budget. Direct route choices change distance, never waiting time.
-          centerDuration,
-          transitDuration,
-          restoreDuration,
-          duration: centerDuration + transitDuration + restoreDuration,
-          started: false,
-        };
+        journey = cameraJourney(next, departure, path, metadata);
       } else {
         journey = null;
         current = target;

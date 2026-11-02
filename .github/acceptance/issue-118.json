@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 118,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/118",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Full identification and natural first-name prose on Home and Research",
+      "automated_scope": "Basic verifies coherent generated HTML; the independent source review compares the exact three reversible text replacements, full headings and unchanged links/claims. Automation does not assert editorial acceptance.",
+      "checks": ["BASIC"],
+      "gates": ["REVIEW"]
+    },
+    {
+      "id": "AC02",
+      "intent": "Coherent dependent output and focused source verification",
+      "automated_scope": "Basic includes output freshness and existing source contracts. Style and RI/CI checks cover their bounded mechanical subsets; independent review covers CS01/CS02/CS04/CS05/CS08/CS09/CS10 and the complete content/output delta.",
+      "checks": ["BASIC", "STYLE", "CURRENT-RI", "RI-CI"],
+      "gates": ["REVIEW"]
+    },
+    {
+      "id": "AC03",
+      "intent": "Reviewed exact-source production delivery through existing controllers",
+      "automated_scope": "Basic establishes local source consistency only. Actual current-head CI, hosted preview, bounded staging, protected merge, production admission, rights/archive and live smoke require separate authenticated delivery evidence.",
+      "checks": ["BASIC"],
+      "gates": ["REVIEW", "DELIVERY", "MERGED"]
+    }
+  ],
+  "checks": {
+    "BASIC": {
+      "kind": "node-basic"
+    },
+    "STYLE": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "CURRENT-RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    }
+  },
+  "gates": {
+    "REVIEW": {
+      "kind": "human",
+      "description": "Separate non-implementing subagent inspects exact prepared diff and source, unchanged headings/links/claims/runtime and dependent output, policy coverage and applicable CS rules; record findings/dispositions and re-review corrections. Maintainer authorised the exact first-name wording."
+    },
+    "DELIVERY": {
+      "kind": "human",
+      "description": "Record authenticated exact-source ready checks, preview, staging, production derivation, per-edition rights/archive and successful canonical live smoke. Maintainer explicitly authorised production in the 21 October hotfix request."
+    },
+    "MERGED": {
+      "kind": "merge",
+      "description": "Protected merge with exact tested-head and merged-tree linkage. Close only after production and live-wording verification."
+    }
+  }
+}

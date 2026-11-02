@@ -1,3 +1,25 @@
+## Current amendment — R6, 2 November 2026
+
+The current author request approves the `systemic-first` slide-4 preview and asks
+for integration into the full native deck, review of all nine slides, matching
+PPTX/PDF and an update to Draft PR110. The deliverable is repository edition R6
+with the unchanged R13 spoken script. See [the current package index](README.md)
+and [R6 manifest](r6/edition.json).
+
+Slide 4 presents narrow versus systemic code-review outputs first, retains the
+local comprehension-gap/ownership argument, and extends it across the SDLC below.
+The seven other slide payloads, all notes, media, links and QR remain intact. A
+full-deck review also identified tight spacing in the slide-5 Disposable
+implementation card; a 10-point downward shift of its body box preserves all
+wording while separating it from the two-line heading. Native
+editable components and the existing dark theme are required. The lower curve is
+illustrative, not measured evidence. Full author acceptance, timed rehearsal,
+presentation-device checks and event selection remain separate; the event still
+selects R3. The historical outline below is retained for provenance and does not
+override the current R6 package or acceptance-policy scope amendment.
+
+---
+
 # DevCon Romania — slide outline, draft 01
 
 **AI Changes the Delivery System — and the Product Itself**

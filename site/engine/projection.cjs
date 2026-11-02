@@ -14,7 +14,7 @@ module.exports = function (math, definitions) {
     clipPolygon,
     cameraView,
   } = math;
-  const { poses, routeOrder, roomSpacing } = definitions;
+  const { poses, routeOrder, roomSpacing, documentOrbit } = definitions;
   // Authored spline waypoints pass through the open centres of successive structures.
   function journeyPose(ids, progress) {
     const path = ids.map((id) => poses[id]);
@@ -417,6 +417,44 @@ module.exports = function (math, definitions) {
     ...(pose.framing !== undefined ? { framing: pose.framing } : {}),
   });
   const routePose = (page, pose) => translatePose(pose, roomOffset(page));
+  // Native article documents share Writing's one model. Keep the eye outside
+  // that composition and look at its center throughout a horizontal orbit.
+  function documentCenterPose(pose, retainPosition = false) {
+    return {
+      position: retainPosition ? pose.position : centerPose(pose).position,
+      target: add(documentOrbit.center, [0, 0, roomOffset('writing')]),
+      framing: 1,
+    };
+  }
+  function orbitPose(from, to, progress, endAngle) {
+    const p = clamp(progress);
+    if (p === 0) return from;
+    if (p === 1) return to;
+    const center = to.target,
+      x = from.position[0] - center[0],
+      z = from.position[2] - center[2],
+      start = Math.atan2(x, z),
+      angle = start + (endAngle - start) * smooth(p),
+      radius =
+        Math.hypot(x, z) +
+        (Math.hypot(to.position[0] - center[0], to.position[2] - center[2]) - Math.hypot(x, z)) *
+          smooth(p);
+    return {
+      position: [
+        center[0] + Math.sin(angle) * radius,
+        from.position[1] + (to.position[1] - from.position[1]) * smooth(p),
+        center[2] + Math.cos(angle) * radius,
+      ],
+      target: lerp(from.target, center, smooth(p)),
+      framing: (from.framing || 0) + (1 - (from.framing || 0)) * smooth(p),
+    };
+  }
+  function documentTravelPose(from, to, progress, direction) {
+    return orbitPose(from, to, progress, Math.sign(direction) * Math.PI * 2);
+  }
+  function documentReturnPose(from, to, progress) {
+    return orbitPose(from, to, progress, 0);
+  }
   return {
     loopTransform,
     cameraVertices,
@@ -428,6 +466,9 @@ module.exports = function (math, definitions) {
     journeyPose,
     blendColor,
     routePose,
+    documentCenterPose,
+    documentTravelPose,
+    documentReturnPose,
     centerPose,
     roomOffset,
     translatePose,

@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "event_slug": "devcon-romania-2026",
+  "edition": "DevCon Romania 2026 R6",
+  "revision": "R6",
+  "status": "author-review-draft",
+  "author": "Vitalii Oborskyi",
+  "language": "en",
+  "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/109",
+  "pull_request": "https://github.com/oborskyivitalii/oborskyivitalii/pull/110",
+  "versioning_contract": "guides/PRESENTATION-VERSIONING.md",
+  "repository_predecessor": {
+    "revision": "R5",
+    "commit": "327ec57d9c4b7539d83631204b91bdc36545c862",
+    "manifest": "drafts/devcon-romania-2026/r5/edition.json",
+    "status": "retained notes and manifest; its declared PPTX/PDF were not committed; R6 does not repair or relabel historical R5 bytes"
+  },
+  "last_complete_repository_predecessor": {
+    "revision": "R3",
+    "commit": "793cfaef95fdf96c17b2f33cafe7d0ba1f0ad6a4",
+    "manifest": "drafts/devcon-romania-2026/r3/edition.json"
+  },
+  "working_lineage": {
+    "native_speech_revision": "R13",
+    "note": "The retained conversation input originally named devcon-romania-2026-r13-final.pptx supplies the full native deck and R13 spoken notes. R13 is a speech/working-file identity, not repository edition R13 or conference-final approval. The next retained repository edition after R5 is R6.",
+    "stage_script": {
+      "path": "drafts/devcon-romania-2026/devcon-romania-2026-r13-concise-stage-script.md",
+      "bytes": 18219,
+      "sha256": "8b00bb3e6f25884fdcb024bb01fae5a80ba9ca0903e6682a7796477a2380bb84"
+    }
+  },
+  "slide_count": 9,
+  "notes_count": 9,
+  "pdf_page_count": 9,
+  "slide_size_emu": {
+    "cx": 12192000,
+    "cy": 6858000
+  },
+  "timing": {
+    "talk_target": "19:55",
+    "qa_target": "7:00",
+    "reserve_target": "3:05",
+    "status": "editorial target; timed English rehearsal and presenting-device verification pending"
+  },
+  "source_pins": {
+    "pmday": {
+      "repository": "UncertaintyArchitectureGroup/uncertainty-architecture",
+      "commit": "22639d311d5fb46a23f3d5cdd819800dbe1169d9"
+    },
+    "article_r38": {
+      "repository": "oborskyivitalii/oborskyivitalii",
+      "pull_request": 79,
+      "commit": "b128ad27b23bc9d14a62b495c5c18b7ae537ab65",
+      "path": "site/publications/pmday-ai-both-sides/manuscript.en.md"
+    }
+  },
+  "artifacts": {
+    "pptx": {
+      "path": "drafts/devcon-romania-2026/r6/devcon-romania-2026-r6.pptx",
+      "bytes": 1422904,
+      "sha256": "b3269196b0eac9dde5fd58706e16a6e84cff4bc2b3e3b368a634087b1cc5eef9"
+    },
+    "pdf": {
+      "path": "drafts/devcon-romania-2026/r6/devcon-romania-2026-r6.pdf",
+      "bytes": 1114519,
+      "sha256": "8d070574648dbc640b30e4fb4e996ee9992664c332b762297b13bf5b8532fa20"
+    },
+    "notes": {
+      "path": "drafts/devcon-romania-2026/r6/speaker-notes.md",
+      "bytes": 35106,
+      "sha256": "3772174bc7e27eb32339a43541cc17191c898bac710ec994ae9c8c30f1d86976"
+    }
+  },
+  "approved_native_inputs": {
+    "full_deck": {
+      "path": "drafts/devcon-romania-2026/r6/sources/scratch-r13-native-full-deck.pptx",
+      "bytes": 1395078,
+      "sha256": "6e62b5b83c55fa09e63cf25806bdcf4472ffe313e89b85d1f26d1484c777ebbf"
+    },
+    "slide_04": {
+      "path": "drafts/devcon-romania-2026/r6/sources/approved-slide-04-native.pptx",
+      "bytes": 44767,
+      "sha256": "1741f44748706fae660f442636470c48223f721af567c83315c89e56a52d1c4c"
+    },
+    "visual_reference": {
+      "path": "drafts/devcon-romania-2026/r6/sources/approved-slide-04-preview.png",
+      "bytes": 481796,
+      "sha256": "c3ba556b7e28cf38e6d87375af070885aceeb9cb79fc260a9834a573230c3259"
+    },
+    "reviewed_slide_05_layout_donor": {
+      "path": "drafts/devcon-romania-2026/r6/sources/slide-05-spacing-donor-full-package.pptx",
+      "bytes": 1395111,
+      "sha256": "0bd149ed530046326e25111d7911dd15aea48ae830d19832c259ef5b199f437d"
+    }
+  },
+  "slides": [
+    {
+      "slide": 1,
+      "title": "AI Changes the Delivery System and the Product Itself"
+    },
+    {
+      "slide": 2,
+      "title": "We Accelerated a Step. Not the System."
+    },
+    {
+      "slide": 3,
+      "title": "What Are We Actually Measuring?"
+    },
+    {
+      "slide": 4,
+      "title": "The Comprehension Gap Is an Ownership Risk"
+    },
+    {
+      "slide": 5,
+      "title": "Rebalancing a Node Affects More Than Flow"
+    },
+    {
+      "slide": 6,
+      "title": "When Model Judgment Enters Runtime"
+    },
+    {
+      "slide": 7,
+      "title": "The Rollout Ends. The Hypothesis Doesn’t."
+    },
+    {
+      "slide": 8,
+      "title": "Engineer the Whole Control System."
+    },
+    {
+      "slide": 9,
+      "title": "AI Changes Both Sides. The Engineering Must Follow."
+    }
+  ],
+  "integration": {
+    "helper": "tools/presentations/integrate_native_slide.py",
+    "changed_package_payloads": [
+      "ppt/slides/slide4.xml",
+      "ppt/notesSlides/notesSlide4.xml",
+      "ppt/slides/slide5.xml"
+    ],
+    "other_package_payloads_unchanged": 55,
+    "relationship_parts_unchanged": 23,
+    "spoken_sections_unchanged": 9,
+    "approved_slide_04": "Narrow vs systemic code-review outcomes first; original local comprehension gap and ownership consequences retained; lifecycle-wide illustrative asymmetry below. Native elements in the established dark theme.",
+    "slide_05_spacing_correction": {
+      "reason": "Inherited tight spacing found during full-deck review; requirements addendum permits a geometry-only correction under AC03/AC15.",
+      "shape_id": 30,
+      "shape_name": "Scope Disposable implementation",
+      "property": "a:xfrm/a:off/@y",
+      "from_emu": 4069079,
+      "to_emu": 4196079,
+      "delta_pt": 10,
+      "text_and_notes": "unchanged"
+    }
+  },
+  "pdf_export": {
+    "method": "LibreOffice Impress impress_pdf_Export from the exact final PPTX",
+    "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+    "rasterized_pages": false,
+    "verification": "Same-renderer text and raster equality for seven unchanged pages; page4 raster equals approved donor; all source slide5 text and links retained; corrected slide5 spacing independently reviewed."
+  },
+  "qr": {
+    "target": "https://vitaliioborskyi.ai/",
+    "status": "Decoded independently from native QR and final PDF raster to the expected homepage; physical-device scan remains pending."
+  },
+  "event_selection": {
+    "selected_revision": "R3",
+    "status": "R6 is the current author-review edition. The event record remains on R3 until explicit author selection and event-record update."
+  },
+  "acceptance": {
+    "author": "slide4 approved; full R6 package pending author review",
+    "independent_review": "source-bound receipts and dispositions in review/issue-109/2026-11-02-r6-review.md",
+    "repository_checks": "exact source/results recorded in the R6 review and PR110",
+    "timed_rehearsal": "pending",
+    "presenting_device": "pending",
+    "conference_final": false
+  },
+  "delivery_status": {
+    "repository_text_package": "included",
+    "repository_binary_artifacts": "included in this edition; historical R5 binary delivery remains incomplete"
+  },
+  "review_record": "review/issue-109/2026-11-02-r6-review.md"
+}

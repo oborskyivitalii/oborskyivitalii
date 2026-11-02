@@ -31,6 +31,11 @@ Before creating an implementation PR or implementing, record:
 - **Acceptance:** stable `AC01`, `AC02`, … IDs, observable pass conditions and required decisions.
 - **Plan:** next step, linked PRs and full issue URLs for cross-repository work.
 
+Before dependent implementation, obtain the separate requirements/acceptance
+review defined in [independent quality agents](#independent-quality-agents).
+Resolve material ambiguity against the original request; continue independent
+inspection/preparation while a dependent decision remains open.
+
 Compare execution with intent before editing, during review and before closure. Correct
 divergence or append the maintainer's dated change with reason/decision reference; never
 rewrite intent to excuse results. Issues do not replace canonical registries or decisions.
@@ -70,8 +75,9 @@ Guard success does not establish full architecture, formatting or performance co
    references while review/deployment/publication/sibling work remains; merging code alone
    does not justify `Closes`/`Fixes`.
 2. Follow accepted scope and existing review, synchronization, validation and source/research
-   procedures. Keep substantive PRs Draft during iteration; independently check where
-   required, return corrections through the owning flow and record disagreement/missing review.
+   procedures. Keep substantive PRs Draft during iteration; apply the mandatory
+   [four independent quality-agent roles](#independent-quality-agents) and
+   [independent subagent review after every iteration](#independent-review-after-every-iteration).
 3. Run the mapped checks and reconcile human/live gates through
    [ACCEPTANCE.md](.github/ACCEPTANCE.md), including session-end issue checkbox updates.
 4. Before readiness fetch current issue/PR/commits/reviews/CI and match evidence to the exact
@@ -88,6 +94,36 @@ Draft, implemented, merged, reviewed, staged, published and deployed remain sepa
 Green CI/issue closure cannot change scientific/source-verification state. Merge,
 production activation, domain/DNS and public release retain their maintainer decisions.
 
+### Diagnose failures before changing or rerunning
+
+Apply this flow after any failed test, check or campaign, including infrastructure
+and timeout failures. Retry controls and runbooks describe mechanics; they do not
+authorize another attempt or a speculative fix.
+
+1. Stop advancement and preserve the first failure: exact source/tree and dirty
+   state, command/selector, environment, run/attempt, raw logs/artifacts, exit/signal,
+   elapsed time, limits and complete or partial test accounting. Retain later
+   failures separately; an eventual pass never erases them.
+2. Inspect what failed and where: assertion/behavior, collection/setup, tool or
+   environment, deadline/resources, or evidence/reporting. Check actual inputs,
+   affected owners and comparison evidence before assigning a cause. Partial
+   output, emitted passes and missing final accounting cannot establish success.
+3. In the existing owning issue/review, distinguish observed facts, supported
+   explanations, open hypotheses and unknowns. State the question to resolve;
+   identify what observation would support or contradict each candidate cause.
+4. Choose the smallest bounded diagnostic action that answers that question.
+   Reuse retained evidence first; record scope, instrumentation/comparison,
+   expected evidence and a stopping condition before new execution. A targeted
+   diagnostic run needs a stated information gain and supplies no full acceptance.
+5. Do not rerun an unchanged failed campaign, retry until green or patch by guess.
+   If the cause is unresolved, continue diagnosis. Propose a fix only with evidence
+   linking it to the failure, expected behavior/resource effect and preservation
+   checks. Implement within authorized scope and obtain the applicable review.
+6. Verify the resulting correction in the affected scope, then run required
+   acceptance on the exact candidate. Record what changed and why verification
+   is informative. Preserve scenarios, refusals, limits and gates; documentation
+   or receipt-only changes cannot reset a failed source's eligibility.
+
 ## Acceptance criteria and session evidence
 
 [ACCEPTANCE.md](.github/ACCEPTANCE.md) owns schema, runner, exact-source evidence and checkbox
@@ -101,6 +137,122 @@ only. Missing/partial/skipped/failed/unmapped/stale/wrong-source/pending is neve
 Update actual issue checkboxes alongside evidence; tables alone are insufficient.
 
 ## Review, analysis and model handoff
+
+### Independent quality agents
+
+For every coherent changed candidate/iteration, actually launch **four distinct
+nonauthor subagents** and obtain completed independent results before advancing
+or claiming readiness. Applies to T0–T4, material corrections and integration;
+use waves when capacity is limited. One agent cannot fill multiple roles or
+accept implementation/tests it authored. Findings/proposed treatments alone do
+not make the reviewer the implementer.
+
+[agents/reviewers/README.md](agents/reviewers/README.md) owns the common launch,
+source-packet, isolation and execution-evidence contract. Every fresh reviewer
+uses explicit `fork_turns="none"` or a verified equivalent; unsupported/unknown
+isolation blocks dependent acceptance. No author conversation or current peer
+verdicts before the first independent judgment. Shared instructions, permitted
+sources, tools and filesystem are not an isolated security sandbox. Preserve
+requested/accepted/provider-observed evidence separately.
+
+| Independent role | Canonical detailed prompt |
+| --- | --- |
+| Requirements & Acceptance | [requirements-acceptance.md](agents/reviewers/requirements-acceptance.md) |
+| Code / changed artifact | [code-review.md](agents/reviewers/code-review.md) |
+| White-box QA | [white-box-qa.md](agents/reviewers/white-box-qa.md) |
+| Exploratory / Interaction QA | [exploratory-interaction-qa.md](agents/reviewers/exploratory-interaction-qa.md) |
+
+Each role receives original intent/ACs, applicable instructions, actual sources,
+diff and test/evidence access plus exact prompt/packet/candidate identities.
+It inspects independently; author summaries or peer conclusions cannot be its
+sole basis. Reconcile contradictions with evidence, never majority vote.
+Different agents/models alone do not guarantee uncorrelated errors.
+
+All four roles launch even for small changes. The launched role may return
+reasoned not applicable for a genuinely absent surface after inspection; this
+avoids unnecessary dynamic tests, not the execution. Unavailable access/tools/
+devices is not observed/blocked. Missing/pending/failed required roles and
+unresolved blockers prevent advancement; read-only preparation may continue.
+Preserve existing human/editorial/rights/device and optional diagnostic decisions.
+
+#### Requirements and acceptance quality
+
+Run Requirements before dependent implementation, after material intent/AC/oracle
+changes, and on the completed candidate. The [role prompt](agents/reviewers/requirements-acceptance.md)
+owns requirement quality, completeness and bidirectional acceptance traceability.
+It cannot invent intent, weaken criteria or replace an owner decision.
+
+#### White-box test design
+
+The [White-box prompt](agents/reviewers/white-box-qa.md) owns structural risk/test
+design, independent oracles, bounded actual checks and uncovered scope. Structural
+inspection is not execution or measured coverage; no blanket percentage/tool mandate.
+
+#### Exploratory and interaction testing
+
+The [Exploratory prompt](agents/reviewers/exploratory-interaction-qa.md) owns
+independent charter, actual operator/UI surface, bounded actions/observations and
+regression proposals. Code reading cannot replace applicable interaction.
+
+#### Findings, CI handoff and completion
+
+Both QA roles allocate cases through the existing issue review artifact and
+[test allocation owner](guides/SITE-CHECK-PROFILES.md#qa-findings-to-github-actions):
+risk/AC → scenario and independent oracle → existing/proposed check → suite/
+profile/workflow/job → actual source/result or manual/deferred disposition.
+Requirements checks intent linkage; Code reviews implemented tests; QA checks
+failure detection. QA-authored tests need a different nonauthor reviewer.
+A new test needs an actual owner/selection route. Session agents produce review
+results; Actions runs selected tests. No CI LLM service is implied.
+
+Record separate role/execution, actual isolation launch parameters/acceptance,
+common/role prompt and packet identities, inspected source/diff, independent
+conclusion, findings/AC impact, checks, limits and dispositions in the existing
+versioned review artifact. A launch or summary is not a completed result.
+On correction perform actual affected re-review with source-bound delta inputs;
+reuse only unchanged evidence. Preserve first conclusions and disclose later
+reconciliation exposure. Follow the common contract for contaminated replacement
+or a newly fresh review. Explain the failure mechanism and protected invariant.
+
+Existing exemptions for unchanged read-only status, verbatim receipts and
+deterministic metadata/RI refreshes remain; they cannot cover changed requirements,
+implementation, test oracles or substantive claims. Missing independent execution
+is an explicit gate, never fabricated approval.
+
+### Independent review after every iteration
+
+After **every completed work iteration**, obtain substantive independent review by a
+**separate reviewer subagent** before advancing to the next implementation iteration,
+declaring the iteration complete, marking ready or merging/promoting its result. This
+applies to all T0–T4 work, including follow-up corrections and rebases/integration that
+change the candidate. An iteration is a coherent proposed result/checkpoint, not each
+command or keystroke. Read-only inspection/status with no changed candidate needs no
+new review; retain the applicable prior review and identify its exact scope.
+
+The reviewer must not have authored or implemented the changes under review. Give it
+the original issue/ACs, applicable instructions, base/candidate identities and actual
+diff/source/check evidence. It must inspect those materials independently, challenge
+correctness, completeness, regressions and relevant architecture/evidence gaps, and
+assess the result against intent. An implementer summary, green tests, a different
+role/model name or a ceremonial approval does not establish independent review.
+
+Record the iteration, subagent identity/role, inspected commit/tree or prepared-diff
+identity, materials/checks and limits in the existing versioned review artifact. Each
+finding needs severity, source evidence/location, implication, affected AC and an
+action/disposition. A no-findings result still names the risks examined and limits.
+The implementer resolves findings with evidenced fixes or reasoned dispositions;
+unresolved blocking findings prevent advancement. The reviewer rechecks corrections
+and materially disputed findings on the updated candidate, including affected
+integration. Reuse unaffected reviewed scope rather than repeat the whole audit.
+
+Record the re-review outcome and final reviewed identity before advancing. Verbatim
+review receipts and deterministic RI/metadata refreshes do not recursively require
+review of their own receipt: verify their provenance/byte identity and unchanged
+meaning. Any substantive correction or changed meaning requires renewed independent
+review. If a reviewer subagent is unavailable, record the missing gate and limits;
+read-only triage/preparation may continue, but self-review cannot satisfy it or justify
+readiness/completion. This rule adds no per-iteration maintainer approval; existing
+human, editorial, rights, device, merge and release decisions remain separate.
 
 Keep model work in the owning issue/PR; names are roles, not tasks/proof of independence.
 Use `review/issue-N/YYYY-MM-DD-kind.md` (`analysis`, `review`, `handoff`) with

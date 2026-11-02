@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: Apache-2.0
-"""Verify installed audit dependencies and the single reviewed MCP compatibility override."""
+"""Verify the complete audit graph and exact reviewed Semgrep compatibility records."""
 
 import importlib.metadata
 import json
@@ -72,6 +72,18 @@ def verify(text, distributions):
                     extras[dependency].update(requested)
                     changed = True
 
+    # These exact Semgrep declarations are reviewed with patched MCP/OpenTelemetry.
+    # They leave distribution metadata and advisory findings unchanged.
+    reviewed_overrides = {
+        ("mcp==1.29.0", "mcp==1.30.0"),
+        ("opentelemetry-api~=1.37.0", "opentelemetry-api==1.45.1"),
+        ("opentelemetry-sdk~=1.37.0", "opentelemetry-sdk==1.45.1"),
+        (
+            "opentelemetry-exporter-otlp-proto-http~=1.37.0",
+            "opentelemetry-exporter-otlp-proto-http==1.45.1",
+        ),
+    }
+    observed_overrides = set()
     overrides = []
     checked = 0
     for name in locked:
@@ -88,25 +100,26 @@ def verify(text, distributions):
             checked += 1
             if locked[dependency] in requirement.specifier:
                 continue
-            # Semgrep CE's unchanged scan command uses the patched 1.x SDK.
-            # This changes one dependency constraint, never an advisory result.
+            override = (str(requirement), dependency + "==" + locked[dependency])
             if (
                 name == "semgrep"
                 and distribution.version == "1.179.0"
-                and str(requirement) == "mcp==1.29.0"
-                and locked[dependency] == "1.30.0"
+                and override in reviewed_overrides
             ):
+                if override in observed_overrides:
+                    raise ValueError("Duplicated reviewed Semgrep constraint")
+                observed_overrides.add(override)
                 overrides.append(
                     {
                         "package": name,
-                        "declared": str(requirement),
-                        "installed": "mcp==1.30.0",
+                        "declared": override[0],
+                        "installed": override[1],
                     }
                 )
                 continue
             raise ValueError("Incompatible installed dependency of " + name + ": " + dependency)
-    if "semgrep" in locked and len(overrides) != 1:
-        raise ValueError("Changed or duplicated Semgrep/MCP constraint")
+    if "semgrep" in locked and observed_overrides != reviewed_overrides:
+        raise ValueError("Missing or changed reviewed Semgrep constraint")
     return {
         "pass": True,
         "packages": len(locked),

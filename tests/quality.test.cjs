@@ -185,16 +185,36 @@ function fixture() {
         : Array(2).fill('https://static.cloudflareinsights.com/beacon.min.js'),
     }))
   );
+  const files = Object.fromEntries([
+    ...budgets.routes.map((route) => [
+      route + '.html',
+      { sha256: 'e'.repeat(64), raw: 50000, gzip: 10000 },
+    ]),
+    ...[
+      'styles.css',
+      'theme.js',
+      'space.js',
+      'archive.js',
+      'navigation.js',
+      'assets/favicon.svg',
+      'assets/vitalii-oborskyi-cutout.webp',
+    ].map((name) => [name, { sha256: 'e'.repeat(64), raw: 5000, gzip: 1000 }]),
+  ]);
   return {
-    manifest: { ...identity, components: { variant }, sourceDirty: false },
+    manifest: {
+      ...identity,
+      components: { variant },
+      sourceDirty: false,
+      files,
+    },
     sizes: {
       pass: true,
       artifactDigest: identity.artifactDigest,
       rows: budgets.routes.map((route) => ({
         route,
-        raw: 50000,
+        ...files[route + '.html'],
         svgNodes: 100,
-        totalGzipBytes: 10000,
+        totalGzipBytes: 16000 + (route === 'index' ? 1000 : 0),
       })),
     },
     jobs: {
@@ -287,6 +307,12 @@ test('complete source-bound PR evidence passes; missing and controlled failures 
       fs.readFileSync(path.join(root, '.github/workflows/' + id + '.yml'), 'utf8'),
     ])
   );
+  const diagnosticCollision = structuredClone(sources);
+  diagnosticCollision['site-release-checks'] = diagnosticCollision['site-release-checks'].replace(
+    'site-content-fixture-${{ inputs.profile }}-',
+    'site-content-fixture-'
+  );
+  assert.throws(() => workflow.check(root, diagnosticCollision), /collision/);
   sources['site-checks'] = sources['site-checks'].replace(
     'site-gate-basic-',
     'site-gate-full-staging-'
@@ -708,9 +734,20 @@ function fullFixture() {
     { ...identity, pass: true, kind: 'lighthouse', ...lighthouseFixture() },
     { ...identity, pass: true, kind: 'motion', ...motionFixture() }
   );
-  x.manifest.files = Object.fromEntries(
-    budgets.routes.map((route) => [route + '.html', { sha256: 'd'.repeat(64) }])
-  );
+  x.manifest.files = {
+    ...x.manifest.files,
+    ...Object.fromEntries(
+      budgets.routes.map((route) => [
+        route + '.html',
+        {
+          sha256: 'd'.repeat(64),
+          raw: 50000,
+          gzip: 10000,
+        },
+      ])
+    ),
+  };
+  for (const row of x.sizes.rows) Object.assign(row, x.manifest.files[row.route + '.html']);
   const capture = {
     ...identity,
     pass: true,
@@ -1113,7 +1150,10 @@ test('workflow selects full Linux Chromium/Firefox and macOS WebKit while preser
     /SITE_AUDIT_ENGINES: \$\{\{ inputs\.full && 'chromium,firefox' \|\| 'chromium,firefox,webkit' \}\}/
   );
   assert.match(linux, /playwright install-deps chromium firefox webkit/);
-  assert.match(linux, /playwright install chromium firefox webkit/);
+  assert.match(
+    linux,
+    /uses: \.\/\.github\/actions\/browser-archive\n {8}with:\n {10}browsers: chromium,firefox,webkit/
+  );
   assert.match(linux, /if: inputs\.public_variant == 'color' && !cancelled\(\)/);
   assert.match(linux, /node tools\/quality\/color-browser\.cjs/);
   assert.match(
@@ -1150,7 +1190,7 @@ test('full hosted evidence cannot use local measurements, a missing file or anot
       'sitemap.xml',
       'opaque',
     ]) {
-      x.manifest.files[file] = { sha256: 'e'.repeat(64) };
+      x.manifest.files[file] = { sha256: 'e'.repeat(64), raw: 5000, gzip: 1000 };
       x.reports.find((r) => r.kind === 'captures').public_sources['docs/' + file] = 'e'.repeat(64);
     }
     x.reports.push({

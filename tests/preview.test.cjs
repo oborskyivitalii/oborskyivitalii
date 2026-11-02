@@ -12,6 +12,8 @@ const {
   pages,
   interactiveFilename,
   sourceForPreview,
+  captureEvidence,
+  renderGallery,
 } = require('../tools/build_site_previews.cjs');
 const root = path.resolve(__dirname, '..');
 const css = fs.readFileSync(path.join(root, 'docs/styles.css'), 'utf8');
@@ -136,7 +138,14 @@ test("fixed and interactive rewriters retain query/hash intent, including the of
 
 test('manifest records exact inputs/outputs and unknown source shapes fail visibly', () => {
   const manifest = JSON.parse(files['review/site-v1-static-previews-v11.json']);
-  assert.equal(Object.keys(manifest.sources).length, 13);
+  const resource = JSON.parse(fs.readFileSync(path.join(root, 'docs/site-revision.json'))).routes
+    .research.assets?.[0];
+  assert.equal(Object.keys(manifest.sources).length, 13 + (resource ? 1 : 0));
+  if (resource)
+    assert.equal(
+      manifest.sources['docs/' + resource],
+      digest(fs.readFileSync(path.join(root, 'docs', resource)))
+    );
   assert.equal(Object.keys(manifest.files).length, 16);
   for (const [file, hash] of Object.entries(manifest.sources))
     assert.equal(digest(fs.readFileSync(path.join(root, file))), hash);
@@ -233,4 +242,32 @@ test('interactive copies contain exact executable sources after their required D
       assert.equal(payload.files[route], interactiveFilename(route));
     }
   }
+});
+
+test('historical captures retain exact bytes but cannot illustrate a different current source', (t) => {
+  const fixture = fs.mkdtempSync(path.join(require('node:os').tmpdir(), 'preview-captures-'));
+  t.after(() => fs.rmSync(fixture, { recursive: true, force: true }));
+  const directory = path.join(fixture, 'review/site-v1-20261004-v11-captures');
+  fs.mkdirSync(directory, { recursive: true });
+  fs.mkdirSync(path.join(fixture, 'docs'));
+  fs.writeFileSync(path.join(fixture, 'docs/index.html'), 'captured source');
+  fs.writeFileSync(path.join(directory, 'index-day-desktop.png'), 'frozen capture bytes');
+  const record = {
+    browser: 'Fixture source-bound browser',
+    public_sources: { 'docs/index.html': digest('captured source') },
+    files: { 'index-day-desktop.png': digest('frozen capture bytes') },
+  };
+  const recordFile = path.join(directory, 'captures.json');
+  fs.writeFileSync(recordFile, JSON.stringify(record));
+  const before = fs.readFileSync(recordFile);
+  assert.equal(captureEvidence(fixture).current, true);
+  fs.writeFileSync(path.join(fixture, 'docs/index.html'), 'different current source');
+  const historical = captureEvidence(fixture);
+  assert.equal(historical.current, false);
+  assert.deepEqual(historical.staleSources, ['docs/index.html']);
+  assert.match(renderGallery(historical), /Browser captures are pending/);
+  assert.doesNotMatch(renderGallery(historical), /Recorded ambient motion|Real browser captures/);
+  assert.deepEqual(fs.readFileSync(recordFile), before);
+  fs.writeFileSync(path.join(directory, 'index-day-desktop.png'), 'changed frozen capture');
+  assert.throws(() => captureEvidence(fixture), /Capture bytes changed/);
 });

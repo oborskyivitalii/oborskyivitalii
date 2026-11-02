@@ -143,6 +143,22 @@ async function publicInputs(github, context, core) {
     gate.sourceCommit
   );
   assert.deepEqual(staging, gate.staging.authentication, 'staging admission changed');
+  if (Object.hasOwn(gate, 'publicationBase'))
+    assert.deepEqual(
+      gate.publicationBase,
+      proof.current,
+      'production composition changed; prepare and test a new candidate'
+    );
+  const baseline = gate.staging.manifest.contentRelease?.admission;
+  if (baseline) {
+    const accepted = await require('./staging-policy.cjs').authenticate(
+      github,
+      context,
+      baseline.authentication.pr,
+      baseline.authentication.sourceCommit
+    );
+    assert.deepEqual(accepted, baseline.authentication, 'content platform admission changed');
+  }
   proof.validation.reports.push(staging.public, staging.gate, ...staging.reports);
   proof.validation.reportRuns = [proof.validation.run.id, staging.runId];
   save('release-control/request.json', proof);
@@ -276,6 +292,7 @@ async function prepareArchive(github, context) {
   const publicItem = read('release-control/public.json');
   const record = controller.admission('production-source', gate, proof.evidence, publicItem);
   await controller.sourcePR(github, context, record, proof.releasePR);
+  controller.currentCandidate(record, context.sha, gate, proof.current);
   assert.deepEqual(await pages.activeProduction(github, context), proof.current);
   const evidenceFiles = retainReports(proof.validation, 'release-assets');
   cp.execFileSync('python3', [

@@ -15,16 +15,23 @@ function update(check = false) {
     require('./site/build.cjs').build({ all: true });
     return;
   }
+  const revision = JSON.parse(fs.readFileSync(path.join(root, 'docs/site-revision.json')));
   for (const page of pages) {
     const file = path.join(root, `docs/${page}.html`),
       source = fs.readFileSync(file, 'utf8');
     const svg = fallback(page),
       pattern = /<svg class="space-fallback"[\s\S]*?<\/svg>/;
     if (!pattern.test(source)) throw Error(`Missing scene fallback in ${page}`);
-    const result = source.replace(pattern, () => svg);
+    const current = source.match(pattern)[0];
+    const resolved = require('./site/fallback.cjs').resolveRouteResource(
+      current,
+      page,
+      revision.routes[page].assets,
+      (name) => fs.readFileSync(path.join(root, 'docs', name))
+    );
     if (check) {
-      if (source !== result) throw Error(`Stale scene fallback in ${page}`);
-    } else fs.writeFileSync(file, result);
+      if ((resolved?.html || current) !== svg) throw Error(`Stale scene fallback in ${page}`);
+    }
   }
 }
 if (require.main === module) {

@@ -6,80 +6,147 @@
   "criteria": [
     {
       "id": "AC01",
-      "intent": "Deliver an editable English edition with attached notes and a pacing plan. The dated 19 October 2026 R3 amendment replaces the earlier 13/11-screen selections with 9 total slides including the closing QR and 3-5 English cue-card sentences per slide; the new allocation is 20 minutes presenting, 7 minutes Q&A and 3 minutes reserve.",
-      "automated_scope": "Record the exact 9-slide presentation relationships, nine attached cue-card sections, sentence counts and matching short Markdown notes. Count title and closing screens explicitly. Cue cards are not a verbatim 20-minute script; slide count, word count and an editorial allocation cannot establish actual speaking time. Confirm the approved reduction of explanatory scope and preserve timed rehearsal under AC06.",
+      "intent": "Deliver exactly nine editable English slides with the official title, one final homepage QR and nine attached notes synchronized to the existing R13 stage script. Retain realistic proposed pacing separately from measured rehearsal.",
+      "automated_scope": "Artifact/source, exact export, author and independent-review evidence is assessed through the named external gates. No prose/keyword/count check substitutes for substantive acceptance. R6 is the next retained repository package, built from the pinned private R13 full deck and the author-approved slide 4, with one measured S05 text-box spacing correction under AC03/AC15. The standalone R13 stage script remains unchanged. The 2 November 2026 instruction supersedes historical R3/R4/R5 package targets, cue-only note form and the older literal S04 question labels, while preserving the stable acceptance IDs and substantive review, source, device and release obligations. Evidence is recorded in review/issue-109/2026-11-02-r6-review.md.",
       "checks": [],
-      "gates": [
-        "ARTIFACT-REVIEW"
-      ]
+      "gates": ["ARTIFACT-REVIEW"]
     },
     {
       "id": "AC02",
-      "intent": "Retain PMDay dimensions, the native components used in the reduced edition and the complete evidence slide, recording every visible change. The dated R3 compression deliberately omits the R2 evaluation chart and detailed control lesson and conclusion laboratory diagram from the presenting sequence while preserving R1 and R2 files.",
-      "automated_scope": "Compare the pinned source, exact R2 predecessor and exact R3 package. R3 selects R2 slides 1, 2, 3, 4, 5, 6, 9, 10 and 11; slide 7 recasts the HOW/WHAT table as the sociotechnical synthesis; slide 8 keeps four large native questions and removes the laboratory workflow/feedback diagram. Preserve the complete reports slide except original pagination and retain appropriate artwork, diagrams, tables, master/theme and dimensions. R2 chart/workbook preservation remains historical evidence, not a requirement to show that omitted lesson in R3. Record retained and removed component identities, text/geometry changes and render observations separately.",
+      "intent": "Preserve source/content fidelity, qualified empirical evidence and rights, distinct HOW/WHAT problems, the account-recovery scenario, user-capacity link, contextual/no-AI choices and visible authority/control path. Integrate exact approved S04; preserve every other slide’s wording, notes, media and relationships. A measured S05 text-box spacing correction from full-deck review is permitted; seven other slide payloads and all historical edition bytes remain unchanged.",
+      "automated_scope": "Artifact/source, exact export, author and independent-review evidence is assessed through the named external gates. No prose/keyword/count check substitutes for substantive acceptance. R6 is the next retained repository package, built from the pinned private R13 full deck and the author-approved slide 4, with one measured S05 text-box spacing correction under AC03/AC15. The standalone R13 stage script remains unchanged. The 2 November 2026 instruction supersedes historical R3/R4/R5 package targets, cue-only note form and the older literal S04 question labels, while preserving the stable acceptance IDs and substantive review, source, device and release obligations. Evidence is recorded in review/issue-109/2026-11-02-r6-review.md.",
       "checks": [],
-      "gates": [
-        "ARTIFACT-REVIEW"
-      ]
+      "gates": ["SOURCE-RIGHTS-REVIEW", "ARTIFACT-REVIEW"]
     },
     {
       "id": "AC03",
-      "intent": "Independently review every rendered R3 slide against the agreed visual plan and its dated R3 compression amendment, the short cue cards and the SDLC equilibrium, cognitive delegation and sociotechnical argument.",
-      "automated_scope": "Compare all nine final renders with drafts/devcon-romania-2026/plan.md including the dated R3 amendment. Inspect the 3-5-sentence English cue cards, visible narrative, readability, complete reports slide, one runtime example and the sociotechnical synthesis. Confirm removed evaluation/control lessons are not hidden as a full talk in the notes. Successful conversion, generic source checks, R1/R2 reviews and authoring self-review cannot supply independent R3 acceptance or prove timing.",
+      "intent": "Independently inspect all nine actual final native/PDF renders, the visible argument, sources, readability, notes and talk economy. Obtain all four distinct source-bound quality-role results; no hidden notes-only lecture or inherited verdict establishes completion.",
+      "automated_scope": "Artifact/source, exact export, author and independent-review evidence is assessed through the named external gates. No prose/keyword/count check substitutes for substantive acceptance. R6 is the next retained repository package, built from the pinned private R13 full deck and the author-approved slide 4, with one measured S05 text-box spacing correction under AC03/AC15. The standalone R13 stage script remains unchanged. The 2 November 2026 instruction supersedes historical R3/R4/R5 package targets, cue-only note form and the older literal S04 question labels, while preserving the stable acceptance IDs and substantive review, source, device and release obligations. Evidence is recorded in review/issue-109/2026-11-02-r6-review.md.",
       "checks": [],
       "gates": [
-        "INDEPENDENT-REVIEW"
+        "REQUIREMENTS-REVIEW",
+        "CODE-ARTIFACT-REVIEW",
+        "WHITEBOX-QA",
+        "EXPLORATORY-QA"
       ]
     },
     {
       "id": "AC04",
-      "intent": "Commit matching R3 PPTX/PDF, short notes, mapping, provenance and revision decisions in the same issue109-linked Draft PR110, preserving the four files of each R1 and R2 predecessor edition.",
-      "automated_scope": "Record actual R3 artifact checksums and correspondence, the pinned PMDay source, retained/removed slide mapping, cue cards and dated plan amendment. Compare R1 PPTX/PDF/notes/edition with f1531f321a9ea0b983ccee427cf485a161ab3b21 and R2 PPTX/PDF/notes/edition with a2aac3e395c190dc31a3974d83d5da065d12c304. The common README is the current index. Observe committed files, exact commit links and live Draft PR110 linkage separately; repository checks do not supply GitHub approval.",
+      "intent": "Commit matching R6 editable PPTX, its exact exported PDF, synchronized notes, source inputs, provenance/rights mapping and edition index in existing Draft PR110 under issue109. Preserve R1-R3, the incomplete R5 record and the standalone R13 script.",
+      "automated_scope": "Artifact/source, exact export, author and independent-review evidence is assessed through the named external gates. No prose/keyword/count check substitutes for substantive acceptance. R6 is the next retained repository package, built from the pinned private R13 full deck and the author-approved slide 4, with one measured S05 text-box spacing correction under AC03/AC15. The standalone R13 stage script remains unchanged. The 2 November 2026 instruction supersedes historical R3/R4/R5 package targets, cue-only note form and the older literal S04 question labels, while preserving the stable acceptance IDs and substantive review, source, device and release obligations. Evidence is recorded in review/issue-109/2026-11-02-r6-review.md.",
       "checks": [],
-      "gates": [
-        "DELIVERY-LINKAGE"
-      ]
+      "gates": ["DELIVERY-LINKAGE", "GENERATION-PROOF"]
     },
     {
       "id": "AC05",
-      "intent": "Maintain the exact R3 draft path catalog, stable AC01-AC08 mapping, bounded checks, RI freshness and versioned handoff.",
-      "automated_scope": "BASIC checks the existing site source/output contract. STYLE checks its declared guard subset. CURRENT-RI verifies the complete catalog and generated views; RI-CI verifies unchanged workflow routes and the amended owning policy. Review the draft-only diff, stable criteria and applicable CS01, CS02, CS04, CS05, CS08-CS10 separately. Keep the four existing checks and established budgets; no new tests, browser matrix, workflow, copied event engine or public output is needed for this editorial compression.",
-      "checks": [
-        "BASIC",
-        "STYLE",
-        "CURRENT-RI",
-        "RI-CI"
-      ],
+      "intent": "Reconcile all stable AC01-AC19 to the current R6 scope; maintain readable source, complete path catalog, current RI/coupling and exact-source check/handoff evidence. Preserve actual delivery-lane and mandatory independent-review obligations.",
+      "automated_scope": "The four retained bounded repository checks report their actual scope and exact source only. The changed acceptance/tooling controls conservatively retain BASIC; no protected repository-only admission is claimed. Website hosted/staging work is not authorized or established by this check. R6 is the next retained repository package, built from the pinned private R13 full deck and the author-approved slide 4, with one measured S05 text-box spacing correction under AC03/AC15. The standalone R13 stage script remains unchanged. The 2 November 2026 instruction supersedes historical R3/R4/R5 package targets, cue-only note form and the older literal S04 question labels, while preserving the stable acceptance IDs and substantive review, source, device and release obligations. Evidence is recorded in review/issue-109/2026-11-02-r6-review.md.",
+      "checks": ["BASIC", "STYLE", "CURRENT-RI", "RI-CI"],
       "gates": [
-        "HANDOFF-REVIEW"
+        "HANDOFF-REVIEW",
+        "REQUIREMENTS-REVIEW",
+        "CODE-ARTIFACT-REVIEW",
+        "WHITEBOX-QA",
+        "EXPLORATORY-QA"
       ]
     },
     {
       "id": "AC06",
-      "intent": "Obtain the author's review, timed rehearsal and presenting-device acceptance before designating a final conference edition.",
-      "automated_scope": "Author acceptance, actual speaking time and presenting-device behavior remain pending until exact-edition evidence is recorded. The R3 20+7+3 allocation and short cue cards are a proposed pacing method, not a verified duration; local renders and repository checks cannot complete this criterion.",
+      "intent": "Obtain author acceptance of the exact complete R6 package, timed rehearsal within the real thirty-minute slot and presenting-device/projection acceptance before a final conference designation.",
+      "automated_scope": "Artifact/source, exact export, author and independent-review evidence is assessed through the named external gates. No prose/keyword/count check substitutes for substantive acceptance. R6 is the next retained repository package, built from the pinned private R13 full deck and the author-approved slide 4, with one measured S05 text-box spacing correction under AC03/AC15. The standalone R13 stage script remains unchanged. The 2 November 2026 instruction supersedes historical R3/R4/R5 package targets, cue-only note form and the older literal S04 question labels, while preserving the stable acceptance IDs and substantive review, source, device and release obligations. Evidence is recorded in review/issue-109/2026-11-02-r6-review.md.",
       "checks": [],
-      "gates": [
-        "AUTHOR-ACCEPTANCE"
-      ]
+      "gates": ["AUTHOR-ACCEPTANCE"]
     },
     {
       "id": "AC07",
-      "intent": "Retain the 19 October 2026 QR amendment: the final R3 slide has one QR for https://vitaliioborskyi.ai/ and a readable matching URL labeled Research · Articles · Talks.",
-      "automated_scope": "Record exact payload decoding from the PPTX QR asset and final rendered R3 PDF slide, the one visible QR, displayed URL and label. Generic repository checks and an earlier edition's decode do not establish final-candidate readability. This homepage destination does not claim that the draft deck is published; actual projection and presenting-device acceptance remain AC06.",
+      "intent": "Retain one final QR that decodes to https://vitaliioborskyi.ai/ from both native asset and final PDF render, with the matching readable URL. Physical projection remains a separate author/device gate.",
+      "automated_scope": "Artifact/source, exact export, author and independent-review evidence is assessed through the named external gates. No prose/keyword/count check substitutes for substantive acceptance. R6 is the next retained repository package, built from the pinned private R13 full deck and the author-approved slide 4, with one measured S05 text-box spacing correction under AC03/AC15. The standalone R13 stage script remains unchanged. The 2 November 2026 instruction supersedes historical R3/R4/R5 package targets, cue-only note form and the older literal S04 question labels, while preserving the stable acceptance IDs and substantive review, source, device and release obligations. Evidence is recorded in review/issue-109/2026-11-02-r6-review.md.",
       "checks": [],
-      "gates": [
-        "QR-REVIEW"
-      ]
+      "gates": ["QR-REVIEW"]
     },
     {
       "id": "AC08",
-      "intent": "Bind the current R3 edition and DevCon event/campaign records to the exact lowercase PDF path and hashes, preserving the R1 and R2 predecessors and using the existing pinned event adapter.",
-      "automated_scope": "Record byte-level R1/R2 preservation and R3 edition/artifact correspondence. Inspect strict schema1 event deck path, sha256 and credit and schema2 campaign pieces[], event-source and brief hashes. Run the existing event CLI from PR107 producer head 5ce3a256be5ce882bc871f9bdf976b06727d3e69 against the exact PR110 checkout. Keep source compatibility separate from the four AC05 checks, final-conference acceptance, scheduling and publication.",
+      "intent": "After deliberate exact-edition selection, bind the event and campaign plan to the selected PDF path, SHA256 and source credit through the existing event contract. A newer review draft does not silently change event selection or publication.",
+      "automated_scope": "Artifact/source, exact export, author and independent-review evidence is assessed through the named external gates. No prose/keyword/count check substitutes for substantive acceptance. R6 is the next retained repository package, built from the pinned private R13 full deck and the author-approved slide 4, with one measured S05 text-box spacing correction under AC03/AC15. The standalone R13 stage script remains unchanged. The 2 November 2026 instruction supersedes historical R3/R4/R5 package targets, cue-only note form and the older literal S04 question labels, while preserving the stable acceptance IDs and substantive review, source, device and release obligations. Evidence is recorded in review/issue-109/2026-11-02-r6-review.md.",
       "checks": [],
-      "gates": [
-        "VERSION-EVENT-BINDING"
-      ]
+      "gates": ["VERSION-EVENT-BINDING"]
+    },
+    {
+      "id": "AC09",
+      "intent": "Document and apply a minimal reusable native-source/approved-slide/notes workflow producing editable PPTX and matching PDF with provenance, edition identity and hashes, using the existing presentation contract and validator.",
+      "automated_scope": "Artifact/source, exact export, author and independent-review evidence is assessed through the named external gates. No prose/keyword/count check substitutes for substantive acceptance. R6 is the next retained repository package, built from the pinned private R13 full deck and the author-approved slide 4, with one measured S05 text-box spacing correction under AC03/AC15. The standalone R13 stage script remains unchanged. The 2 November 2026 instruction supersedes historical R3/R4/R5 package targets, cue-only note form and the older literal S04 question labels, while preserving the stable acceptance IDs and substantive review, source, device and release obligations. Evidence is recorded in review/issue-109/2026-11-02-r6-review.md.",
+      "checks": [],
+      "gates": ["GENERATION-PROOF"]
+    },
+    {
+      "id": "AC10",
+      "intent": "Record one controlled regeneration/re-export and a minimal independent reuse example with native/PDF/notes/QR/manifest checks, without expanding into a performance or hosted test programme.",
+      "automated_scope": "Artifact/source, exact export, author and independent-review evidence is assessed through the named external gates. No prose/keyword/count check substitutes for substantive acceptance. R6 is the next retained repository package, built from the pinned private R13 full deck and the author-approved slide 4, with one measured S05 text-box spacing correction under AC03/AC15. The standalone R13 stage script remains unchanged. The 2 November 2026 instruction supersedes historical R3/R4/R5 package targets, cue-only note form and the older literal S04 question labels, while preserving the stable acceptance IDs and substantive review, source, device and release obligations. Evidence is recorded in review/issue-109/2026-11-02-r6-review.md.",
+      "checks": [],
+      "gates": ["REUSE-PROOF"]
+    },
+    {
+      "id": "AC11",
+      "intent": "S01: retain the native two-sided opening, authentic artwork, official title, What if not? question and separate system-ROI/runtime-judgment theses with matching R13 narration.",
+      "automated_scope": "Artifact/source, exact export, author and independent-review evidence is assessed through the named external gates. No prose/keyword/count check substitutes for substantive acceptance. R6 is the next retained repository package, built from the pinned private R13 full deck and the author-approved slide 4, with one measured S05 text-box spacing correction under AC03/AC15. The standalone R13 stage script remains unchanged. The 2 November 2026 instruction supersedes historical R3/R4/R5 package targets, cue-only note form and the older literal S04 question labels, while preserving the stable acceptance IDs and substantive review, source, device and release obligations. Evidence is recorded in review/issue-109/2026-11-02-r6-review.md.",
+      "checks": [],
+      "gates": ["SLIDE-01-ACCEPTANCE", "ARTIFACT-REVIEW", "EXPLORATORY-QA"]
+    },
+    {
+      "id": "AC12",
+      "intent": "S02: retain the explicitly hypothetical fixed-downstream-capacity case and admitted-work assumption, overload consequence and admission/WIP/automation qualifications with matching R13 narration.",
+      "automated_scope": "Artifact/source, exact export, author and independent-review evidence is assessed through the named external gates. No prose/keyword/count check substitutes for substantive acceptance. R6 is the next retained repository package, built from the pinned private R13 full deck and the author-approved slide 4, with one measured S05 text-box spacing correction under AC03/AC15. The standalone R13 stage script remains unchanged. The 2 November 2026 instruction supersedes historical R3/R4/R5 package targets, cue-only note form and the older literal S04 question labels, while preserving the stable acceptance IDs and substantive review, source, device and release obligations. Evidence is recorded in review/issue-109/2026-11-02-r6-review.md.",
+      "checks": [],
+      "gates": ["SLIDE-02-ACCEPTANCE", "ARTIFACT-REVIEW", "EXPLORATORY-QA"]
+    },
+    {
+      "id": "AC13",
+      "intent": "S03: retain the qualified NBER/agent-adoption/complexity evidence and DORA/GitClear distinctions in the selected R13 source, without adding on-screen METR or turning observational proxies into causal system-ROI claims.",
+      "automated_scope": "Artifact/source, exact export, author and independent-review evidence is assessed through the named external gates. No prose/keyword/count check substitutes for substantive acceptance. R6 is the next retained repository package, built from the pinned private R13 full deck and the author-approved slide 4, with one measured S05 text-box spacing correction under AC03/AC15. The standalone R13 stage script remains unchanged. The 2 November 2026 instruction supersedes historical R3/R4/R5 package targets, cue-only note form and the older literal S04 question labels, while preserving the stable acceptance IDs and substantive review, source, device and release obligations. Evidence is recorded in review/issue-109/2026-11-02-r6-review.md.",
+      "checks": [],
+      "gates": ["SLIDE-03-ACCEPTANCE", "ARTIFACT-REVIEW", "EXPLORATORY-QA"]
+    },
+    {
+      "id": "AC14",
+      "intent": "S04: preserve the exact author-approved narrow/systemic review comparison as the first row, local potential-comprehension-gap chart and What if not? questions as the second, ownership consequence/definition, experiment caveats and lower lifecycle illustration. Retain all five review functions, dark styling and unchanged R13 spoken wording.",
+      "automated_scope": "Artifact/source, exact export, author and independent-review evidence is assessed through the named external gates. No prose/keyword/count check substitutes for substantive acceptance. R6 is the next retained repository package, built from the pinned private R13 full deck and the author-approved slide 4, with one measured S05 text-box spacing correction under AC03/AC15. The standalone R13 stage script remains unchanged. The 2 November 2026 instruction supersedes historical R3/R4/R5 package targets, cue-only note form and the older literal S04 question labels, while preserving the stable acceptance IDs and substantive review, source, device and release obligations. Evidence is recorded in review/issue-109/2026-11-02-r6-review.md.",
+      "checks": [],
+      "gates": ["SLIDE-04-ACCEPTANCE", "ARTIFACT-REVIEW", "EXPLORATORY-QA"]
+    },
+    {
+      "id": "AC15",
+      "intent": "S05: retain the six contextual countermeasure hypotheses, interactions between speed/full cost, delivery/product quality and knowledge/ownership; no universal prescription or license-only system-ROI claim.",
+      "automated_scope": "Artifact/source, exact export, author and independent-review evidence is assessed through the named external gates. No prose/keyword/count check substitutes for substantive acceptance. R6 is the next retained repository package, built from the pinned private R13 full deck and the author-approved slide 4, with one measured S05 text-box spacing correction under AC03/AC15. The standalone R13 stage script remains unchanged. The 2 November 2026 instruction supersedes historical R3/R4/R5 package targets, cue-only note form and the older literal S04 question labels, while preserving the stable acceptance IDs and substantive review, source, device and release obligations. Evidence is recorded in review/issue-109/2026-11-02-r6-review.md.",
+      "checks": [],
+      "gates": ["SLIDE-05-ACCEPTANCE", "ARTIFACT-REVIEW", "EXPLORATORY-QA"]
+    },
+    {
+      "id": "AC16",
+      "intent": "S06: retain the HOW-to-WHAT pivot, explicit-rule and conditional model-judgment distinction, changed requirements/bug/DoD implications and bounded runtime authority, with the account-recovery example.",
+      "automated_scope": "Artifact/source, exact export, author and independent-review evidence is assessed through the named external gates. No prose/keyword/count check substitutes for substantive acceptance. R6 is the next retained repository package, built from the pinned private R13 full deck and the author-approved slide 4, with one measured S05 text-box spacing correction under AC03/AC15. The standalone R13 stage script remains unchanged. The 2 November 2026 instruction supersedes historical R3/R4/R5 package targets, cue-only note form and the older literal S04 question labels, while preserving the stable acceptance IDs and substantive review, source, device and release obligations. Evidence is recorded in review/issue-109/2026-11-02-r6-review.md.",
+      "checks": [],
+      "gates": ["SLIDE-06-ACCEPTANCE", "ARTIFACT-REVIEW", "EXPLORATORY-QA"]
+    },
+    {
+      "id": "AC17",
+      "intent": "S07: retain the illustrative 196/3/1 case and forbidden-outcome veto, safe staged exposure, ongoing behavior/control observation and restriction/fallback under changed conditions without an application-SHA change.",
+      "automated_scope": "Artifact/source, exact export, author and independent-review evidence is assessed through the named external gates. No prose/keyword/count check substitutes for substantive acceptance. R6 is the next retained repository package, built from the pinned private R13 full deck and the author-approved slide 4, with one measured S05 text-box spacing correction under AC03/AC15. The standalone R13 stage script remains unchanged. The 2 November 2026 instruction supersedes historical R3/R4/R5 package targets, cue-only note form and the older literal S04 question labels, while preserving the stable acceptance IDs and substantive review, source, device and release obligations. Evidence is recorded in review/issue-109/2026-11-02-r6-review.md.",
+      "checks": [],
+      "gates": ["SLIDE-07-ACCEPTANCE", "ARTIFACT-REVIEW", "EXPLORATORY-QA"]
+    },
+    {
+      "id": "AC18",
+      "intent": "S08: retain the enforced authority/control path and staffed observe/decide/act/verify loop, feasibility and economic alternatives, and the R13 DevOps/SRE human-capacity/control-system narration.",
+      "automated_scope": "Artifact/source, exact export, author and independent-review evidence is assessed through the named external gates. No prose/keyword/count check substitutes for substantive acceptance. R6 is the next retained repository package, built from the pinned private R13 full deck and the author-approved slide 4, with one measured S05 text-box spacing correction under AC03/AC15. The standalone R13 stage script remains unchanged. The 2 November 2026 instruction supersedes historical R3/R4/R5 package targets, cue-only note form and the older literal S04 question labels, while preserving the stable acceptance IDs and substantive review, source, device and release obligations. Evidence is recorded in review/issue-109/2026-11-02-r6-review.md.",
+      "checks": [],
+      "gates": ["SLIDE-08-ACCEPTANCE", "ARTIFACT-REVIEW", "EXPLORATORY-QA"]
+    },
+    {
+      "id": "AC19",
+      "intent": "S09: retain the single closing slide, both research/project identities and links, distinct HOW/WHAT actions, role context, shortened closing copy and one homepage QR with the existing R13 closing speech.",
+      "automated_scope": "Artifact/source, exact export, author and independent-review evidence is assessed through the named external gates. No prose/keyword/count check substitutes for substantive acceptance. R6 is the next retained repository package, built from the pinned private R13 full deck and the author-approved slide 4, with one measured S05 text-box spacing correction under AC03/AC15. The standalone R13 stage script remains unchanged. The 2 November 2026 instruction supersedes historical R3/R4/R5 package targets, cue-only note form and the older literal S04 question labels, while preserving the stable acceptance IDs and substantive review, source, device and release obligations. Evidence is recorded in review/issue-109/2026-11-02-r6-review.md.",
+      "checks": [],
+      "gates": ["SLIDE-09-ACCEPTANCE", "ARTIFACT-REVIEW", "EXPLORATORY-QA"]
     }
   ],
   "checks": {
@@ -102,31 +169,91 @@
   "gates": {
     "ARTIFACT-REVIEW": {
       "kind": "human",
-      "description": "Review exact source, predecessor and R3 artifact hashes; nine total slides including title and QR; nine attached English cue cards with 3-5 sentences each; matching Markdown notes; retained native components; removed evaluation/control lessons; and 20+7+3 pacing against the dated R3 plan. Prove the complete reports slide changes only original pagination. Record observations and limits in review/issue-109/2026-10-19-r3-review.md. Cue-card or slide counts cannot prove a 20-minute talk."
+      "description": "Inspect exact R6 native/PDF sources and notes, structural identity and all-nine-slide correspondence. Counts and successful export alone do not establish visual, empirical, rights or author acceptance."
     },
-    "INDEPENDENT-REVIEW": {
+    "SOURCE-RIGHTS-REVIEW": {
       "kind": "human",
-      "description": "Record independent content and all-nine-slide visual review of the exact final R3 PPTX/PDF against the original plan and its dated R3 amendment. Inspect hierarchy, the full reports slide, one runtime example, the HOW/WHAT sociotechnical synthesis, four final questions, short English cue cards and homepage QR. Verify real scope removal rather than narration relocated to notes. Identify reviewer role, exact artifact hashes, findings and dispositions; prior R1/R2 or authoring self-review is insufficient."
+      "description": "Trace retained PMDay/native components, the R13 source and approved S04, its article/infographic additions and source caveats. Preserve licensing and provenance boundaries; no new scientific or institutional endorsement is asserted."
+    },
+    "REQUIREMENTS-REVIEW": {
+      "kind": "human",
+      "description": "Completed distinct nonauthor Requirements & Acceptance execution on original intent/current ACs and the final candidate, with actual isolation launch, prompt/packet/source identities and first-result receipt."
+    },
+    "CODE-ARTIFACT-REVIEW": {
+      "kind": "human",
+      "description": "Completed distinct nonauthor Code/changed-artifact execution inspecting actual helper/native sources and diff, dependency preservation, readability, relevant CS rules and check implementation. Do not substitute the implementer review."
+    },
+    "WHITEBOX-QA": {
+      "kind": "human",
+      "description": "Completed distinct nonauthor White-box QA execution with structural risks, independent oracles, bounded actual checks and exact source/results; distinguish inspection from execution and uncovered scope."
+    },
+    "EXPLORATORY-QA": {
+      "kind": "human",
+      "description": "Completed distinct nonauthor Exploratory/Interaction QA execution on actual presentation/PDF viewing surfaces, independent charter, all-nine-slide observations and honest device/physical limits."
     },
     "DELIVERY-LINKAGE": {
       "kind": "human",
-      "description": "Observe the matching versioned R3 PPTX/PDF, cue cards, exact source/provenance mapping, plan and decisions in a commit linked with Refs #109 and the same Draft PR110 on work/issue-109-devcon-romania-r1. Verify all four files of each R1 and R2 predecessor without changing their history. Record exact file/commit links, separating draft preparation from merge, public publication and final author acceptance."
+      "description": "Observe actual R6 PPTX/PDF/notes/manifest/source files and hashes in an issue109-linked commit on existing Draft PR110. Verify immutable predecessor bytes and distinguish repository delivery from merge, selection and release."
     },
     "HANDOFF-REVIEW": {
       "kind": "human",
-      "description": "Review stable AC01-AC08 with the dated R3 scope, authored draft owners, readable JSON and CS01, CS02, CS04, CS05, CS08-CS10 obligations. Record fresh RI/coupling, exact-source results and actual issue checkbox reconciliation. Four unchanged repository checks map only to AC05. Do not claim skipped Draft CI as a pass or create a new hosted/staging/production matrix for this editorial change."
+      "description": "Reconcile AC01-AC19, applicable CS01/02/04/05/08/09/10, catalog/RI/CI mapping and actual issue checkbox states. Attach exact-source results and all four independent executions; skipped Draft CI is not a pass."
     },
     "AUTHOR-ACCEPTANCE": {
       "kind": "human",
-      "description": "Record the author's exact-R3 content review, timed rehearsal fitting the 30-minute slot with Q&A and reserve, and actual presenting-device acceptance before a final DevCon designation. The 20-minute presentation allocation and short cue-card format remain provisional. Preparing or pushing a draft does not require inventing this evidence."
+      "description": "Record whole-R6 author approval, measured rehearsal and presenting-device/projection/lunch-handover acceptance. The current instruction approves S04 and its integration, not those unobserved whole-package gates."
     },
     "QR-REVIEW": {
       "kind": "human",
-      "description": "On the exact final R3 screen verify one visible QR, decoded payload exactly https://vitaliioborskyi.ai/, readable matching URL and Research · Articles · Talks. Decode the native QR asset and final PDF raster and record method, hashes and layout review. Actual projection/device acceptance remains AC06; the homepage link does not imply published DevCon slides."
+      "description": "Decode the one final homepage QR from native and final PDF raster to exactly https://vitaliioborskyi.ai/, inspect the readable URL and preserve actual decoded-image/source identities. Projector distance remains AC06."
     },
     "VERSION-EVENT-BINDING": {
       "kind": "human",
-      "description": "Compare R1's four edition files with f1531f321a9ea0b983ccee427cf485a161ab3b21 and R2's four files with a2aac3e395c190dc31a3974d83d5da065d12c304. Verify actual R3 artifact/manifest hashes and event.json schema1 deck {path, sha256, credit} selecting drafts/devcon-romania-2026/r3/devcon-romania-2026-r3.pdf. Verify plan.json schema2 pieces[], event-source and brief hashes. Retain successful CLI compatibility evidence from PR107 producer 5ce3a256be5ce882bc871f9bdf976b06727d3e69 on the PR110 source; the engine stays with its existing owner."
+      "description": "Keep the existing R3 event selection until explicit exact-package selection. Then verify event deck path/hash/credit and plan source hashes with the existing event adapter. No silent selection, merge or public release."
+    },
+    "GENERATION-PROOF": {
+      "kind": "human",
+      "description": "Record actual pinned native source plus approved donor, unchanged-part/notes proof, native finalization and LibreOffice PDF export commands/tool identity and exact outputs. Run tools/presentations/validate_edition.py on R6; a manifest-only claim is insufficient."
+    },
+    "REUSE-PROOF": {
+      "kind": "human",
+      "description": "Inspect source-bound controlled re-export/regeneration and a bounded independent non-DevCon example using the same minimal mechanism. Preserve genuine unavailable/partial evidence as pending; do not invent a generic-engine or performance requirement."
+    },
+    "SLIDE-01-ACCEPTANCE": {
+      "kind": "human",
+      "description": "Inspect actual editable S01, attached R13 note, source mapping and exact final rendering; record explicit author approval and applicable independent visual/content/source review. The 2 November approval covers exact S04; do not infer approval of other slides or whole R6. A plan, source preservation, PNG-only concept, generic pass or prior-edition verdict is insufficient."
+    },
+    "SLIDE-02-ACCEPTANCE": {
+      "kind": "human",
+      "description": "Inspect actual editable S02, attached R13 note, source mapping and exact final rendering; record explicit author approval and applicable independent visual/content/source review. The 2 November approval covers exact S04; do not infer approval of other slides or whole R6. A plan, source preservation, PNG-only concept, generic pass or prior-edition verdict is insufficient."
+    },
+    "SLIDE-03-ACCEPTANCE": {
+      "kind": "human",
+      "description": "Inspect actual editable S03, attached R13 note, source mapping and exact final rendering; record explicit author approval and applicable independent visual/content/source review. The 2 November approval covers exact S04; do not infer approval of other slides or whole R6. A plan, source preservation, PNG-only concept, generic pass or prior-edition verdict is insufficient."
+    },
+    "SLIDE-04-ACCEPTANCE": {
+      "kind": "human",
+      "description": "Inspect actual editable S04, attached R13 note, source mapping and exact final rendering; record explicit author approval and applicable independent visual/content/source review. The 2 November approval covers exact S04; do not infer approval of other slides or whole R6. A plan, source preservation, PNG-only concept, generic pass or prior-edition verdict is insufficient."
+    },
+    "SLIDE-05-ACCEPTANCE": {
+      "kind": "human",
+      "description": "Inspect actual editable S05, attached R13 note, source mapping and exact final rendering; record explicit author approval and applicable independent visual/content/source review. The 2 November approval covers exact S04; do not infer approval of other slides or whole R6. A plan, source preservation, PNG-only concept, generic pass or prior-edition verdict is insufficient."
+    },
+    "SLIDE-06-ACCEPTANCE": {
+      "kind": "human",
+      "description": "Inspect actual editable S06, attached R13 note, source mapping and exact final rendering; record explicit author approval and applicable independent visual/content/source review. The 2 November approval covers exact S04; do not infer approval of other slides or whole R6. A plan, source preservation, PNG-only concept, generic pass or prior-edition verdict is insufficient."
+    },
+    "SLIDE-07-ACCEPTANCE": {
+      "kind": "human",
+      "description": "Inspect actual editable S07, attached R13 note, source mapping and exact final rendering; record explicit author approval and applicable independent visual/content/source review. The 2 November approval covers exact S04; do not infer approval of other slides or whole R6. A plan, source preservation, PNG-only concept, generic pass or prior-edition verdict is insufficient."
+    },
+    "SLIDE-08-ACCEPTANCE": {
+      "kind": "human",
+      "description": "Inspect actual editable S08, attached R13 note, source mapping and exact final rendering; record explicit author approval and applicable independent visual/content/source review. The 2 November approval covers exact S04; do not infer approval of other slides or whole R6. A plan, source preservation, PNG-only concept, generic pass or prior-edition verdict is insufficient."
+    },
+    "SLIDE-09-ACCEPTANCE": {
+      "kind": "human",
+      "description": "Inspect actual editable S09, attached R13 note, source mapping and exact final rendering; record explicit author approval and applicable independent visual/content/source review. The 2 November approval covers exact S04; do not infer approval of other slides or whole R6. A plan, source preservation, PNG-only concept, generic pass or prior-edition verdict is insufficient."
     }
   }
 }

@@ -1,0 +1,422 @@
+{
+  "artifactId": "8b1686cb3f856fab534418d9e191db7aeb30c127a2404604a428b59b2913d592",
+  "source": {
+    "path": "site/publications/pmday-ai-both-sides/manuscript.en.md",
+    "sha256": "9c75ec7b9372e159cc33c332e25e68010fcedd81293c838ba53ce1bf7f679d1e",
+    "commit": null,
+    "blob": null,
+    "state": "working-tree-review"
+  },
+  "edition": {
+    "schema": 1,
+    "id": "pmday-ai-both-sides-en-review-20261024-r29",
+    "articleId": "pmday-ai-both-sides",
+    "language": "en",
+    "kind": "full-article",
+    "source": {
+      "path": "manuscript.en.md",
+      "sha256": "9c75ec7b9372e159cc33c332e25e68010fcedd81293c838ba53ce1bf7f679d1e",
+      "commit": null,
+      "blob": null
+    },
+    "owner": "site",
+    "derivation": null,
+    "rights": "review-pending",
+    "semanticSha256": "5b88219df109fc0510deef572baed2c88c7fc2602e3a560cfffae7f4271759d4"
+  },
+  "genericTextCharacters": 50992,
+  "emittedTextCharacters": {
+    "article": 50829,
+    "linkedin": 50829,
+    "medium": 50829
+  },
+  "profileLimits": {
+    "linkedinCharacters": 51000,
+    "mediumCharacters": 51000
+  },
+  "pdf": {
+    "bytes": 1417566,
+    "sha256": "7939f15ebfe1ac2588c0cedc79f53f4400d1a0271b174df732e4b0c2447ed7d1",
+    "pages": 22
+  },
+  "keyPassagePages": {
+    "deliveryProblem": [
+      3
+    ],
+    "runtimeProblem": [
+      8
+    ],
+    "planningConsequence": [
+      13,
+      14
+    ]
+  },
+  "browser": {
+    "name": "chromium",
+    "version": "153.0.8010.0",
+    "revision": null,
+    "executableSha256": "53a15d6c3a3d27dfb54c4ba60278b1683136f70cf1e67e989da7dfbd3d451ef0",
+    "managedBrowser": false,
+    "reviewOnly": true,
+    "package": {
+      "name": "@sparticuz/chromium",
+      "version": "153.0.0",
+      "packageSha256": "ae40b07607139f1e0c6b7d8bd19a1b336019c88033a55a8fa4af4a70e4075bfd",
+      "archiveSha256": "20e5656fcdcf4118ede85edfb9d6bb9cc1bbb7ffb8b75622fffbcf36a835c3c0"
+    }
+  },
+  "toolchain": {
+    "playwrightVersion": "1.63.0",
+    "lockSha256": "8b4895a11735ff8f614accd5882470af24ecb1e1c2bcb691bc31c4fb708c811d"
+  },
+  "pipeline": "Existing native pipeline with previously reviewed print indentation and stable upload-path corrections; no further producer or runtime changes for R29.",
+  "runtime": "Node24.19.0",
+  "reviewProducer": {
+    "selection": "Same explicit review producer and exact package/archive/executable hashes as R27.",
+    "restoration": "Temporary dependencies were absent; restored @sparticuz/chromium153.0.0 archive and verified prior hashes. tar-fs3.1.2 used for extraction.",
+    "execution": "Native child processes and package extraction required approved sandbox escalation. Failed partial sandbox extraction was replaced before verified build.",
+    "managedDownload": "Historical R26 managed download was not repeated.",
+    "limits": "managedBrowser:false and reviewOnly:true; local review is separate from native-editor, hosted, device, rights or publication acceptance."
+  },
+  "sourceIdentity": "Author-review edition; accepted-source commit/blob pins and canonical remain null.",
+  "baseline": {
+    "edition": "pmday-ai-both-sides-en-review-20261024-r28",
+    "sourceSha256": "4bc0136b86e46c4792c61791612243e2c0d0b513c2012cbe9baa1bab97223650",
+    "nativeKit": "4bf1bcf7c8346d312a7f59299c4fe5c472bd91f79231be806d801f0c8e871996"
+  },
+  "scope": "Author-requested stronger emphasis: two bold problem statements immediately under Part I/II and explicit causal project-planning paragraph in Part III. Preserve the original evidence, prompt inventory, qualifications and contributor dispositions.",
+  "scopeAnchor": "https://github.com/oborskyivitalii/oborskyivitalii/issues/5#issuecomment-6383375681",
+  "archive": {
+    "path": "The_Sum_of_Our_Technology_R29_2026-10-24_Native_Review_Kit.tar.xz",
+    "format": "tar.xz",
+    "bytes": 3418440,
+    "sha256": "038392346ededf1852b91981ae8f8826551e5202ce6ddfaa6d57e81d1ff1e089",
+    "members": 34,
+    "nativeInventoryExact": true
+  },
+  "deliveryFiles": [
+    {
+      "path": "The_Sum_of_Our_Technology_R29_2026-10-24.md",
+      "bytes": 50569,
+      "sha256": "9c75ec7b9372e159cc33c332e25e68010fcedd81293c838ba53ce1bf7f679d1e"
+    },
+    {
+      "path": "The_Sum_of_Our_Technology_R29_2026-10-24.pdf",
+      "bytes": 1417566,
+      "sha256": "7939f15ebfe1ac2588c0cedc79f53f4400d1a0271b174df732e4b0c2447ed7d1"
+    },
+    {
+      "path": "The_Sum_of_Our_Technology_R29_2026-10-24_Native_Review_Kit.tar.xz",
+      "bytes": 3418440,
+      "sha256": "038392346ededf1852b91981ae8f8826551e5202ce6ddfaa6d57e81d1ff1e089"
+    }
+  ],
+  "nativeMembers": [
+    {
+      "path": "INSTRUCTIONS.md",
+      "bytes": 3409,
+      "sha256": "69fb28e7701c4590465428c1061e1143b78255ff2ccac5145f8ba1a6328fbb12"
+    },
+    {
+      "path": "article-print.css",
+      "bytes": 2731,
+      "sha256": "45b6773ce87ae21198bc2b5ca2ec2711e1a0c242e61a9fc88b94aef528752a27"
+    },
+    {
+      "path": "article.html",
+      "bytes": 59847,
+      "sha256": "2eff1c37726d30e9aafa6e4569e03100e7b08eeca321c7fdb975c6dbb09aea7d"
+    },
+    {
+      "path": "article.manifest.json",
+      "bytes": 3338,
+      "sha256": "01e1667d30bd9bf60ccc745fb8c4d0075603ac904321efe13b696e677265fccf"
+    },
+    {
+      "path": "article.md",
+      "bytes": 50569,
+      "sha256": "9c75ec7b9372e159cc33c332e25e68010fcedd81293c838ba53ce1bf7f679d1e"
+    },
+    {
+      "path": "article.pdf",
+      "bytes": 1417566,
+      "sha256": "7939f15ebfe1ac2588c0cedc79f53f4400d1a0271b174df732e4b0c2447ed7d1"
+    },
+    {
+      "path": "article.pdf.artifacts/d6892f183263122fd370e50026aee1dd85d44c1f89ff513b23a1d9175e79c0e1/artifact.pdf",
+      "bytes": 1417566,
+      "sha256": "7939f15ebfe1ac2588c0cedc79f53f4400d1a0271b174df732e4b0c2447ed7d1"
+    },
+    {
+      "path": "article.pdf.artifacts/d6892f183263122fd370e50026aee1dd85d44c1f89ff513b23a1d9175e79c0e1/manifest.json",
+      "bytes": 3338,
+      "sha256": "01e1667d30bd9bf60ccc745fb8c4d0075603ac904321efe13b696e677265fccf"
+    },
+    {
+      "path": "article.txt",
+      "bytes": 51167,
+      "sha256": "913e0944c78d8653a7816d5f893b2594c0cc3d3925248c1a6cab6a2d5a60eb92"
+    },
+    {
+      "path": "cover.png",
+      "bytes": 373126,
+      "sha256": "843c22a1e6e16d16e824e8be74d593dea3c2f2e6e30b36504e1fff9617f82096"
+    },
+    {
+      "path": "hero.png",
+      "bytes": 373126,
+      "sha256": "843c22a1e6e16d16e824e8be74d593dea3c2f2e6e30b36504e1fff9617f82096"
+    },
+    {
+      "path": "images/01-cover.png",
+      "bytes": 373126,
+      "sha256": "843c22a1e6e16d16e824e8be74d593dea3c2f2e6e30b36504e1fff9617f82096"
+    },
+    {
+      "path": "images/02-presentation-cover.png",
+      "bytes": 22667,
+      "sha256": "199d6d64849905eb047c23f7ce43eaab3ef98d949c5009878c8f15a5df7d1180"
+    },
+    {
+      "path": "images/03-pmday-slide-03.png",
+      "bytes": 115546,
+      "sha256": "1ae890f9c23827a42e7e068327c6a6ff8738c0194cab97584fd535a6b473ef42"
+    },
+    {
+      "path": "images/04-pmday-slide-09.png",
+      "bytes": 188436,
+      "sha256": "ad1479a5366464b0f5f71f863700bb1071867d6ef5f90111d0f64a46e3b807ab"
+    },
+    {
+      "path": "images/05-pmday-slide-12.png",
+      "bytes": 170621,
+      "sha256": "2f13e3eabd00a27460a83169d296cfc2a8cf4b33e068d1ee22079479028c0d18"
+    },
+    {
+      "path": "launch-post.md",
+      "bytes": 1571,
+      "sha256": "33cc5a02419866a26b55ffa59a1a3b65717c8d9636e8b389cefe796696e2480d"
+    },
+    {
+      "path": "launch-post.txt",
+      "bytes": 1602,
+      "sha256": "9147f32731b92ee3cc3dc9e42d833729eb0e305a71e39e86a5c364f720f7ce95"
+    },
+    {
+      "path": "linkedin-copy-ready.html",
+      "bytes": 1193249,
+      "sha256": "7d96afb9d7a9067cc2d474bca9c9036b29c797b39dfac16e95d3840ef4ddaf66"
+    },
+    {
+      "path": "linkedin.html",
+      "bytes": 60256,
+      "sha256": "4dbe596d82c57d57d8b89289d0d3cb77b37741b9e3a62a411532d4f7c7c843c5"
+    },
+    {
+      "path": "linkedin.md",
+      "bytes": 51908,
+      "sha256": "ba978ef19f36e65d676bc943225a71b6b6b74bda02ff6329084274111a0f8804"
+    },
+    {
+      "path": "linkedin.txt",
+      "bytes": 51167,
+      "sha256": "913e0944c78d8653a7816d5f893b2594c0cc3d3925248c1a6cab6a2d5a60eb92"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 18020,
+      "sha256": "e2a33adeb7cec28e89beaa89cf24886aab3e39ff83b4e3d87255e509b1e4276a"
+    },
+    {
+      "path": "medium-copy-ready.html",
+      "bytes": 1193249,
+      "sha256": "7d96afb9d7a9067cc2d474bca9c9036b29c797b39dfac16e95d3840ef4ddaf66"
+    },
+    {
+      "path": "medium-upload-kit.json",
+      "bytes": 2878,
+      "sha256": "ad6a9228be8d525cbbc0090b16f583c52223022cb6ecb1a8a69f39bf580a4a37"
+    },
+    {
+      "path": "medium.html",
+      "bytes": 60256,
+      "sha256": "4dbe596d82c57d57d8b89289d0d3cb77b37741b9e3a62a411532d4f7c7c843c5"
+    },
+    {
+      "path": "medium.md",
+      "bytes": 51908,
+      "sha256": "ba978ef19f36e65d676bc943225a71b6b6b74bda02ff6329084274111a0f8804"
+    },
+    {
+      "path": "medium.txt",
+      "bytes": 51167,
+      "sha256": "913e0944c78d8653a7816d5f893b2594c0cc3d3925248c1a6cab6a2d5a60eb92"
+    },
+    {
+      "path": "presentation.pdf",
+      "bytes": 663363,
+      "sha256": "b3fa9fb0220a6620db0b28ac3d560b987791be0dfb6cdd02c53c04975d881782"
+    },
+    {
+      "path": "print.html",
+      "bytes": 59847,
+      "sha256": "2eff1c37726d30e9aafa6e4569e03100e7b08eeca321c7fdb975c6dbb09aea7d"
+    },
+    {
+      "path": "print.html.source.json",
+      "bytes": 1314,
+      "sha256": "b0fee7fcdff33e347cf9fd06e4c811d4bb0bb8112e0a943af1c1edf41452562e"
+    },
+    {
+      "path": "profile.json",
+      "bytes": 2570,
+      "sha256": "5b35262a4b2ba539996278ccc1dbeede00f287724fad4bbc30007570bbf00b94"
+    },
+    {
+      "path": "review.md",
+      "bytes": 54090,
+      "sha256": "e8ed11c247ae1e5ef1493767af22d010c615e037fdcc0e1a82843afa708bd6f6"
+    },
+    {
+      "path": "seo.json",
+      "bytes": 274,
+      "sha256": "7d4335050c4638653730b63fc10d525389b28c8c3baf733b3cc8aebc501ebcd2"
+    }
+  ],
+  "inputHashes": [
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/assets/article-cover-detail-1280x398.png",
+      "sha256": "843c22a1e6e16d16e824e8be74d593dea3c2f2e6e30b36504e1fff9617f82096"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-03.png",
+      "sha256": "1ae890f9c23827a42e7e068327c6a6ff8738c0194cab97584fd535a6b473ef42"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-09.png",
+      "sha256": "ad1479a5366464b0f5f71f863700bb1071867d6ef5f90111d0f64a46e3b807ab"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-12.png",
+      "sha256": "2f13e3eabd00a27460a83169d296cfc2a8cf4b33e068d1ee22079479028c0d18"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/presentation-cover.png",
+      "sha256": "199d6d64849905eb047c23f7ce43eaab3ef98d949c5009878c8f15a5df7d1180"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/presentation-v35.pdf",
+      "sha256": "b3fa9fb0220a6620db0b28ac3d560b987791be0dfb6cdd02c53c04975d881782"
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261024-r29.json",
+      "sha256": "201e232b540a950d59b43edf2f2dc73105d73eca71ed2b5bfa9bd734f0ca07d9"
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/launch-post.en.md",
+      "sha256": "33cc5a02419866a26b55ffa59a1a3b65717c8d9636e8b389cefe796696e2480d"
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/manuscript.en.md",
+      "sha256": "9c75ec7b9372e159cc33c332e25e68010fcedd81293c838ba53ce1bf7f679d1e"
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/profile.json",
+      "sha256": "5b35262a4b2ba539996278ccc1dbeede00f287724fad4bbc30007570bbf00b94"
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/publication.json",
+      "sha256": "8aa99012a3c5a9bbef6f141e96268b5e4ccd40701899d9478aa13f7f744ce664"
+    }
+  ],
+  "producer": {
+    "inputs": [
+      {
+        "path": "tools/publishing/article.cjs",
+        "sha256": "54459f1f49b3405bc5fdf9f5a3e627d026ad3bbe7822026dc1ca4602a69eb7cb"
+      },
+      {
+        "path": "tools/publishing/ast.mjs",
+        "sha256": "b7ca7eadfb43bbe8eac8fd0b1684452dea58755afd55616674d6b49db3bd8155"
+      },
+      {
+        "path": "tools/publishing/kit.cjs",
+        "sha256": "e0d9c6576987eefaa0b3523f66bd63ab67fa308d652909aee2f95a1c6a85509d"
+      },
+      {
+        "path": "tools/publishing/safety.cjs",
+        "sha256": "b2946d6fa8b1b8e2aca4105a6929788c5479c5dbb78d0e49f8efd139051de4cb"
+      },
+      {
+        "path": "tools/publishing/provenance.cjs",
+        "sha256": "d228ca0aaad7c508f79367f95d613d1f5dd22ef0b2dde31a55be4416b0a59c80"
+      },
+      {
+        "path": "tools/publishing/history.cjs",
+        "sha256": "a9d6cfc68cd9c441489f0a795a76572aa64442467d36f898f82810cf46fa39bb"
+      },
+      {
+        "path": "tools/publishing/events.cjs",
+        "sha256": "145a9391dae7ae6fc5a88469de2029663ff046eebe1a11458040d867cbdb939c"
+      },
+      {
+        "path": "tools/publishing/site-event.cjs",
+        "sha256": "da9981654fe438be47f1ca2bd29cd911bdb0e68d9a8da4161ce94ee2ae9bc2ff"
+      },
+      {
+        "path": "tools/publishing/semantic.cjs",
+        "sha256": "64fdf4907eec576a143ecf459d26954d5d5981d010ce8bd45c071f4aecdafbfe"
+      },
+      {
+        "path": "tools/publishing/profile.cjs",
+        "sha256": "04df709ffb412c96b1b6652d9d59796818d2b35b5f20d480d20eae9b37ab7e92"
+      },
+      {
+        "path": "tools/publishing/text.cjs",
+        "sha256": "9d36b09fa64068d5a292a23b6b9acec2819e461bda9b20b23116157e9264c860"
+      },
+      {
+        "path": "tools/publishing/presentation.cjs",
+        "sha256": "eee79078d2f9cff4c9132ee64e0bdf338aee319dce06014369b5e0e14b2d978c"
+      },
+      {
+        "path": "site/templates/articles/print.html",
+        "sha256": "cd16823cecfdf3db4fba3223e5283c6d1dd8d7b3396eafeff73c1a4ece09ef3b"
+      },
+      {
+        "path": "site/engine/article-print.css",
+        "sha256": "45b6773ce87ae21198bc2b5ca2ec2711e1a0c242e61a9fc88b94aef528752a27"
+      },
+      {
+        "path": "tools/publishing/print.mjs",
+        "sha256": "d027e724d1d944fb643e5bf64e106cc673f63972f87059afa30fbdafd9d2fddc"
+      },
+      {
+        "path": "tools/publishing/print-resource.cjs",
+        "sha256": "c5ba9afc55b8a818cbcef003e845a47c4ea20275f8b8f52bd11b2be0d39483bf"
+      }
+    ],
+    "node": "v24.19.0",
+    "dependencyLockSha256": "8b4895a11735ff8f614accd5882470af24ecb1e1c2bcb691bc31c4fb708c811d"
+  },
+  "reviewRoute": "review/issue-2/2026-10-24-r29-problem-framing.md",
+  "deliveryCheckpoint": "https://github.com/oborskyivitalii/oborskyivitalii/pull/79#issuecomment-6382894842",
+  "verificationBoundary": "Native verification and byte/member checks complete; independent final page/interaction reviews and exact-clean-source policy/delivery are recorded in the linked review and checkpoint.",
+  "priorFailedPolicy": "../r28-20261024/acceptance-e877-failed.json",
+  "transportCorrection": {
+    "reason": "Complete native ZIP exceeded the existing cumulative RI content-hash budget after addition to retained historical artifacts. Lossless TAR.XZ preserves every native member while staying within the unchanged budget.",
+    "previousUncommittedArchive": {
+      "path": "The_Sum_of_Our_Technology_R29_2026-10-24_Native_Review_Kit.zip",
+      "bytes": 6525139,
+      "sha256": "40c376d6139d6d551a1a429e5a5dbb3e0a9807246b618bb9711af85546635117",
+      "members": 34,
+      "nativeInventoryExact": true
+    },
+    "sourcePdfAndNativeKitUnchanged": true,
+    "tarFormat": "PAX",
+    "xzPreset": 6,
+    "originalRiHashTotalBytes": 251815573,
+    "unchangedRiHashTotalLimit": 250000000,
+    "archiveBytesSaved": 3106699
+  }
+}

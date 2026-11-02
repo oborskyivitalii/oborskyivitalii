@@ -1,0 +1,404 @@
+{
+  "cases": [
+    {
+      "case": "01_packet_hashes",
+      "passed": true,
+      "manifests": [
+        {
+          "file": "artifact-candidate-manifest.json",
+          "actual_sha256": "c71edff082b7d03bf6df0164991931341ec9e4f17d6c2c5c8831003a074254b9",
+          "manifest_digest_matches": true,
+          "file_count": 39,
+          "mismatches": []
+        },
+        {
+          "file": "artifact-candidate-manifest-v2.json",
+          "actual_sha256": "9c5cd97fc8959e3c9110178c5813ecefa36ccff645119ef2789ea1fbda9f2687",
+          "manifest_digest_matches": true,
+          "file_count": 42,
+          "mismatches": []
+        }
+      ]
+    },
+    {
+      "case": "02_positive_deterministic",
+      "passed": true,
+      "runs": [
+        {
+          "command": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+            "/workspace/scratch/d8b65f68acc8/devcon-repo/tools/presentations/integrate_native_slide.py",
+            "--source",
+            "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/sources/scratch-r13-native-full-deck.pptx",
+            "--donor",
+            "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/sources/approved-slide-04-native.pptx",
+            "--slide",
+            "4",
+            "--donor-slide",
+            "1",
+            "--output",
+            "/workspace/scratch/d8b65f68acc8/r6-whitebox-scratch/repeat1.pptx"
+          ],
+          "exit": 0,
+          "stdout": "{\n  \"source_sha256\": \"6e62b5b83c55fa09e63cf25806bdcf4472ffe313e89b85d1f26d1484c777ebbf\",\n  \"donor_sha256\": \"1741f44748706fae660f442636470c48223f721af567c83315c89e56a52d1c4c\",\n  \"output_sha256\": \"fa461eadcf41cd314b6861be6968824545719254e5430f6de705a2071f8cbd94\",\n  \"source_part_count\": 58,\n  \"donor_part_count\": 21,\n  \"output_part_count\": 58,\n  \"changed_parts\": [\n    \"ppt/slides/slide4.xml\",\n    \"ppt/notesSlides/notesSlide4.xml\"\n  ],\n  \"unchanged_part_count\": 56,\n  \"all_existing_relationships_preserved\": true,\n  \"shared_parts_equal\": [\n    \"ppt/slideLayouts/slideLayout1.xml\",\n    \"ppt/notesMasters/notesMaster1.xml\",\n    \"ppt/slideMasters/theme/theme2.xml\",\n    \"ppt/notesMasters/theme/theme3.xml\"\n  ],\n  \"master_equal_after_relationship_resolution\": true,\n  \"complete_source_notes_prefix_preserved\": true\n}\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+            "/workspace/scratch/d8b65f68acc8/devcon-repo/tools/presentations/integrate_native_slide.py",
+            "--source",
+            "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/sources/scratch-r13-native-full-deck.pptx",
+            "--donor",
+            "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/sources/approved-slide-04-native.pptx",
+            "--slide",
+            "4",
+            "--donor-slide",
+            "1",
+            "--output",
+            "/workspace/scratch/d8b65f68acc8/r6-whitebox-scratch/repeat2.pptx"
+          ],
+          "exit": 0,
+          "stdout": "{\n  \"source_sha256\": \"6e62b5b83c55fa09e63cf25806bdcf4472ffe313e89b85d1f26d1484c777ebbf\",\n  \"donor_sha256\": \"1741f44748706fae660f442636470c48223f721af567c83315c89e56a52d1c4c\",\n  \"output_sha256\": \"fa461eadcf41cd314b6861be6968824545719254e5430f6de705a2071f8cbd94\",\n  \"source_part_count\": 58,\n  \"donor_part_count\": 21,\n  \"output_part_count\": 58,\n  \"changed_parts\": [\n    \"ppt/slides/slide4.xml\",\n    \"ppt/notesSlides/notesSlide4.xml\"\n  ],\n  \"unchanged_part_count\": 56,\n  \"all_existing_relationships_preserved\": true,\n  \"shared_parts_equal\": [\n    \"ppt/slideLayouts/slideLayout1.xml\",\n    \"ppt/notesMasters/notesMaster1.xml\",\n    \"ppt/slideMasters/theme/theme2.xml\",\n    \"ppt/notesMasters/theme/theme3.xml\"\n  ],\n  \"master_equal_after_relationship_resolution\": true,\n  \"complete_source_notes_prefix_preserved\": true\n}\n",
+          "stderr": ""
+        }
+      ],
+      "hashes": [
+        "fa461eadcf41cd314b6861be6968824545719254e5430f6de705a2071f8cbd94",
+        "fa461eadcf41cd314b6861be6968824545719254e5430f6de705a2071f8cbd94",
+        "fa461eadcf41cd314b6861be6968824545719254e5430f6de705a2071f8cbd94"
+      ]
+    },
+    {
+      "case": "03_package_notes_pdf",
+      "passed": true,
+      "changed_parts": [
+        "ppt/slides/slide4.xml",
+        "ppt/notesSlides/notesSlide4.xml"
+      ],
+      "parts": 58,
+      "unchanged_parts": 56,
+      "xml_parsed": 53,
+      "notes_source_prefix": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "markdown_note_paragraphs_match": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "standalone_script_paragraphs_match": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "pdf_pages": 9,
+      "pdf_page_sizes": [
+        [
+          0.0,
+          0.0,
+          960.0094604492188,
+          540.0
+        ],
+        [
+          0.0,
+          0.0,
+          960.0094604492188,
+          540.0
+        ],
+        [
+          0.0,
+          0.0,
+          960.0094604492188,
+          540.0
+        ],
+        [
+          0.0,
+          0.0,
+          960.0094604492188,
+          540.0
+        ],
+        [
+          0.0,
+          0.0,
+          960.0094604492188,
+          540.0
+        ],
+        [
+          0.0,
+          0.0,
+          960.0094604492188,
+          540.0
+        ],
+        [
+          0.0,
+          0.0,
+          960.0094604492188,
+          540.0
+        ],
+        [
+          0.0,
+          0.0,
+          960.0094604492188,
+          540.0
+        ],
+        [
+          0.0,
+          0.0,
+          960.0094604492188,
+          540.0
+        ]
+      ],
+      "pdf_link_uris": [
+        "https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis",
+        "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture",
+        "https://vitaliioborskyi.ai/"
+      ]
+    },
+    {
+      "case": "04_media_dependency",
+      "passed": true,
+      "run": {
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "/workspace/scratch/d8b65f68acc8/devcon-repo/tools/presentations/integrate_native_slide.py",
+          "--source",
+          "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/sources/scratch-r13-native-full-deck.pptx",
+          "--donor",
+          "/workspace/scratch/d8b65f68acc8/r6-whitebox-scratch/media.pptx",
+          "--slide",
+          "4",
+          "--donor-slide",
+          "1",
+          "--output",
+          "/workspace/scratch/d8b65f68acc8/r6-whitebox-scratch/04_media_dependency-output.pptx"
+        ],
+        "exit": 1,
+        "stdout": "",
+        "stderr": "Native slide integration refused: Unsupported dependencies in ppt/slides/slide1.xml: ['image', 'notesSlide', 'slideLayout']\n"
+      },
+      "output_preserved_or_absent": true
+    },
+    {
+      "case": "05_external_dependency",
+      "passed": true,
+      "run": {
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "/workspace/scratch/d8b65f68acc8/devcon-repo/tools/presentations/integrate_native_slide.py",
+          "--source",
+          "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/sources/scratch-r13-native-full-deck.pptx",
+          "--donor",
+          "/workspace/scratch/d8b65f68acc8/r6-whitebox-scratch/external.pptx",
+          "--slide",
+          "4",
+          "--donor-slide",
+          "1",
+          "--output",
+          "/workspace/scratch/d8b65f68acc8/r6-whitebox-scratch/05_external_dependency-output.pptx"
+        ],
+        "exit": 1,
+        "stdout": "",
+        "stderr": "Native slide integration refused: External link: ppt/slides/slide1.xml\n"
+      },
+      "output_preserved_or_absent": true
+    },
+    {
+      "case": "06_changed_notes",
+      "passed": true,
+      "run": {
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "/workspace/scratch/d8b65f68acc8/devcon-repo/tools/presentations/integrate_native_slide.py",
+          "--source",
+          "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/sources/scratch-r13-native-full-deck.pptx",
+          "--donor",
+          "/workspace/scratch/d8b65f68acc8/r6-whitebox-scratch/notes.pptx",
+          "--slide",
+          "4",
+          "--donor-slide",
+          "1",
+          "--output",
+          "/workspace/scratch/d8b65f68acc8/r6-whitebox-scratch/06_changed_notes-output.pptx"
+        ],
+        "exit": 1,
+        "stdout": "",
+        "stderr": "Native slide integration refused: Donor notes do not preserve the complete source notes as a prefix\n"
+      },
+      "output_preserved_or_absent": true
+    },
+    {
+      "case": "07_existing_output",
+      "passed": true,
+      "run": {
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "/workspace/scratch/d8b65f68acc8/devcon-repo/tools/presentations/integrate_native_slide.py",
+          "--source",
+          "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/sources/scratch-r13-native-full-deck.pptx",
+          "--donor",
+          "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/sources/approved-slide-04-native.pptx",
+          "--slide",
+          "4",
+          "--donor-slide",
+          "1",
+          "--output",
+          "/workspace/scratch/d8b65f68acc8/r6-whitebox-scratch/existing.pptx"
+        ],
+        "exit": 1,
+        "stdout": "",
+        "stderr": "Native slide integration refused: Refusing to overwrite: /workspace/scratch/d8b65f68acc8/r6-whitebox-scratch/existing.pptx\n"
+      },
+      "output_preserved_or_absent": true
+    },
+    {
+      "case": "08_symlink_output",
+      "passed": true,
+      "run": {
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "/workspace/scratch/d8b65f68acc8/devcon-repo/tools/presentations/integrate_native_slide.py",
+          "--source",
+          "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/sources/scratch-r13-native-full-deck.pptx",
+          "--donor",
+          "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/sources/approved-slide-04-native.pptx",
+          "--slide",
+          "4",
+          "--donor-slide",
+          "1",
+          "--output",
+          "/workspace/scratch/d8b65f68acc8/r6-whitebox-scratch/symlink.pptx"
+        ],
+        "exit": 1,
+        "stdout": "",
+        "stderr": "Native slide integration refused: Refusing to overwrite: /workspace/scratch/d8b65f68acc8/r6-whitebox-scratch/symlink.pptx\n"
+      },
+      "output_preserved_or_absent": true
+    },
+    {
+      "case": "09_incompatible_size",
+      "passed": true,
+      "run": {
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "/workspace/scratch/d8b65f68acc8/devcon-repo/tools/presentations/integrate_native_slide.py",
+          "--source",
+          "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/sources/scratch-r13-native-full-deck.pptx",
+          "--donor",
+          "/workspace/scratch/d8b65f68acc8/r6-whitebox-scratch/size.pptx",
+          "--slide",
+          "4",
+          "--donor-slide",
+          "1",
+          "--output",
+          "/workspace/scratch/d8b65f68acc8/r6-whitebox-scratch/09_incompatible_size-output.pptx"
+        ],
+        "exit": 1,
+        "stdout": "",
+        "stderr": "Native slide integration refused: Incompatible sldSz\n"
+      },
+      "output_preserved_or_absent": true
+    },
+    {
+      "case": "10_duplicate_zip_member",
+      "passed": true,
+      "run": {
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "/workspace/scratch/d8b65f68acc8/devcon-repo/tools/presentations/integrate_native_slide.py",
+          "--source",
+          "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/sources/scratch-r13-native-full-deck.pptx",
+          "--donor",
+          "/workspace/scratch/d8b65f68acc8/r6-whitebox-scratch/duplicate.pptx",
+          "--slide",
+          "4",
+          "--donor-slide",
+          "1",
+          "--output",
+          "/workspace/scratch/d8b65f68acc8/r6-whitebox-scratch/10_duplicate_zip_member-output.pptx"
+        ],
+        "exit": 1,
+        "stdout": "",
+        "stderr": "Native slide integration refused: Duplicate ZIP member names are unsupported\n"
+      },
+      "output_preserved_or_absent": true
+    },
+    {
+      "case": "11_invalid_slide",
+      "passed": true,
+      "run": {
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "/workspace/scratch/d8b65f68acc8/devcon-repo/tools/presentations/integrate_native_slide.py",
+          "--source",
+          "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/sources/scratch-r13-native-full-deck.pptx",
+          "--donor",
+          "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/sources/approved-slide-04-native.pptx",
+          "--slide",
+          "0",
+          "--donor-slide",
+          "1",
+          "--output",
+          "/workspace/scratch/d8b65f68acc8/r6-whitebox-scratch/11_invalid_slide-output.pptx"
+        ],
+        "exit": 1,
+        "stdout": "",
+        "stderr": "Native slide integration refused: Slide 0 is outside this deck's slide list\n"
+      },
+      "output_preserved_or_absent": true
+    },
+    {
+      "case": "12_different_theme",
+      "passed": false,
+      "run": {
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "/workspace/scratch/d8b65f68acc8/devcon-repo/tools/presentations/integrate_native_slide.py",
+          "--source",
+          "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/sources/scratch-r13-native-full-deck.pptx",
+          "--donor",
+          "/workspace/scratch/d8b65f68acc8/r6-whitebox-scratch/theme.pptx",
+          "--slide",
+          "4",
+          "--donor-slide",
+          "1",
+          "--output",
+          "/workspace/scratch/d8b65f68acc8/r6-whitebox-scratch/12_different_theme-output.pptx"
+        ],
+        "exit": 0,
+        "stdout": "{\n  \"source_sha256\": \"6e62b5b83c55fa09e63cf25806bdcf4472ffe313e89b85d1f26d1484c777ebbf\",\n  \"donor_sha256\": \"56f5ef4c6771ce05efd2c5c8ead0db8b83dcdef4ce6470fcf8c1e3506098fa83\",\n  \"output_sha256\": \"fa461eadcf41cd314b6861be6968824545719254e5430f6de705a2071f8cbd94\",\n  \"source_part_count\": 58,\n  \"donor_part_count\": 21,\n  \"output_part_count\": 58,\n  \"changed_parts\": [\n    \"ppt/slides/slide4.xml\",\n    \"ppt/notesSlides/notesSlide4.xml\"\n  ],\n  \"unchanged_part_count\": 56,\n  \"all_existing_relationships_preserved\": true,\n  \"shared_parts_equal\": [\n    \"ppt/slideLayouts/slideLayout1.xml\",\n    \"ppt/notesMasters/notesMaster1.xml\",\n    \"ppt/slideMasters/theme/theme2.xml\",\n    \"ppt/notesMasters/theme/theme3.xml\"\n  ],\n  \"master_equal_after_relationship_resolution\": true,\n  \"complete_source_notes_prefix_preserved\": true\n}\n",
+        "stderr": ""
+      },
+      "output_preserved_or_absent": false
+    }
+  ],
+  "source_identities": {
+    "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/sources/scratch-r13-native-full-deck.pptx": "6e62b5b83c55fa09e63cf25806bdcf4472ffe313e89b85d1f26d1484c777ebbf",
+    "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/sources/approved-slide-04-native.pptx": "1741f44748706fae660f442636470c48223f721af567c83315c89e56a52d1c4c",
+    "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/devcon-romania-2026-r6.pptx": "fa461eadcf41cd314b6861be6968824545719254e5430f6de705a2071f8cbd94",
+    "/workspace/scratch/d8b65f68acc8/devcon-repo/tools/presentations/integrate_native_slide.py": "3cae90c8b59665883c887f6df45459972b047e07387ea88baa2c6573e6fefe02",
+    "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/speaker-notes.md": "3772174bc7e27eb32339a43541cc17191c898bac710ec994ae9c8c30f1d86976",
+    "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/devcon-romania-2026-r6.pdf": "2a8d7a63764b014dfc0fdbdf65562296d744f6c527ef1319a2f034465db9fa05"
+  },
+  "source_identities_unchanged": true
+}

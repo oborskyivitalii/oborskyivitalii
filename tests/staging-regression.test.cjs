@@ -18,12 +18,15 @@ test('selected journeys compare actual base runtime and Color identities without
     components: { ...components, variant, engine: variant.fingerprint },
   };
   const reviewed = require('../tools/quality/color-motion-contract.cjs').reviewedRuntime(
-    'issue39-css-clock-plain'
+    'issue159-reading-paths-plain'
   );
   assert.deepEqual(variant, reviewed.variant, 'fixture uses the reviewed authored runtime');
   for (const [name, sha256] of Object.entries(reviewed.files))
     for (const file of [name, 'runtime/' + variant.fingerprint + '/' + name])
-      colored.files[file] = { ...(colored.files[file] || { raw: 5000, gzip: 1000 }), sha256 };
+      colored.files[file] = {
+        ...(colored.files[file] || { raw: 5000, gzip: 1000 }),
+        sha256,
+      };
   assert.notEqual(components.variant.fingerprint, components.engine, 'base descriptor is separate');
   for (const manifest of [base, colored]) {
     const journey = fixture.journeyRow(
@@ -267,6 +270,51 @@ test('selected browser regression requires all route observations, navigation, f
     assert.throws(() => stage.validateFunctional(report, fixture.manifest()));
   }
 });
+
+test('declared Research resources require actual no-JS and no-Canvas response, geometry and capture evidence', () => {
+  const manifest = fixture.manifest();
+  const name = 'article-media/' + 'f'.repeat(64) + '/research-fallback.svg';
+  manifest.components.routes = { research: { assets: [name] } };
+  manifest.files[name] = { sha256: 'f'.repeat(64), raw: 5000, gzip: 1000 };
+  const report = fixture.functional(manifest);
+  assert.doesNotThrow(() => stage.validateFunctional(report, manifest));
+  const changes = [
+    (item) => delete item.resource,
+    (item) => (item.resource.sha256 = '0'.repeat(64)),
+    (item) => (item.resource.mime = 'image/png'),
+    (item) => (item.resource.url = 'https://foreign.example.invalid/' + name),
+    (item) => (item.geometry.page = 'writing'),
+    (item) => (item.geometry.box.width = 0),
+    (item) => (item.geometry.visible = false),
+    (item) => (item.geometry.palette.accent = ''),
+    (item) => (item.geometry.resourceURL = fixture.target + '/../' + name + '#research-fallback'),
+    (item) => (item.geometry.dataTheme = 'wrong'),
+    (item) => delete item.png,
+    (item) => (item.png.sha256 = 'not-a-digest'),
+  ];
+  for (const mode of ['no-js', 'no-canvas']) {
+    for (const change of changes) {
+      const invalid = structuredClone(report);
+      const selected =
+        mode === 'no-js'
+          ? invalid.failures.find((row) => row.mode === mode).checks
+          : invalid.journeys
+              .find((row) => row.mode === mode && row.width === 390)
+              .rows.find((row) => row.route === 'research');
+      change(selected.researchFallback);
+      assert.throws(() => stage.validateFunctional(invalid, manifest));
+    }
+    const absent = structuredClone(report);
+    const selected =
+      mode === 'no-js'
+        ? absent.failures.find((row) => row.mode === mode).checks
+        : absent.journeys
+            .find((row) => row.mode === mode && row.width === 390)
+            .rows.find((row) => row.route === 'research');
+    delete selected.researchFallback;
+    assert.throws(() => stage.validateFunctional(absent, manifest));
+  }
+});
 test('staging performance validates actual raw windows, cold/warm flights and two single Lighthouse trials', () => {
   assert.equal(stage.validatePerformance(fixture.performanceReport()).lighthouseTrials, 2);
   const mutations = [
@@ -382,7 +430,11 @@ test('conditional Color smoke keeps two travel cases with ordinary paint and abs
   const report = evidence.reports.at(-1);
   assert.equal(stage.validateColor(report, evidence.manifest), 2);
   const zeroDataset = structuredClone(report);
-  zeroDataset.rows[0].ribbons.dataset = { ribbons: '0', ribbonFaces: '0', ribbonSignals: '0' };
+  zeroDataset.rows[0].ribbons.dataset = {
+    ribbons: '0',
+    ribbonFaces: '0',
+    ribbonSignals: '0',
+  };
   assert.equal(stage.validateColor(zeroDataset, evidence.manifest), 2);
   const mutations = [
     (value) => (value.variant.effects = ['ribbons', 'travel']),
@@ -596,8 +648,11 @@ test('performance driver runs two route samples and two audits serially with a c
     'audit writing',
   ]);
   assert.equal(
-    stage.validatePerformance({ ...fixture.identity(), kind: 'stage-performance', ...report })
-      .soakSeconds,
+    stage.validatePerformance({
+      ...fixture.identity(),
+      kind: 'stage-performance',
+      ...report,
+    }).soakSeconds,
     0
   );
 });
@@ -842,7 +897,10 @@ test('selected flight driver uses a fresh context for each destination and measu
     },
     measure: async (pair, selected, setup) => {
       calls.push('measure ' + pair.id + ' ' + selected.to + ' ' + selected.phase);
-      return { ...fixture.flight(selected.to, selected.from, selected.phase), setup };
+      return {
+        ...fixture.flight(selected.to, selected.from, selected.phase),
+        setup,
+      };
     },
     restore: async (pair) => calls.push('restore index ' + pair.id),
   });
@@ -863,7 +921,11 @@ test('selected flight driver uses a fresh context for each destination and measu
     'close 2',
   ]);
   assert.deepEqual(
-    rows.map(({ from, to, transitionPhase }) => ({ from, to, phase: transitionPhase })),
+    rows.map(({ from, to, transitionPhase }) => ({
+      from,
+      to,
+      phase: transitionPhase,
+    })),
     stage.flightCases()
   );
 });
@@ -883,7 +945,9 @@ test('flight setup observes live paints and quiet preparation while preserving a
     __stageFlightSetup: probe,
     __qualityMotion: { paints: 4, events: [{ kind: 'model', time: 100 }] },
     SiteScene: {
-      diagnostics: () => ({ rooms: [{ route: 'research', models: [{ compact: true }] }] }),
+      diagnostics: () => ({
+        rooms: [{ route: 'research', models: [{ compact: true }] }],
+      }),
     },
   };
   const document = {
@@ -926,7 +990,10 @@ test('failed flight collection retains previous and failing raw records instead 
         measure: async (pair, selected) =>
           selected.phase === 'cold'
             ? cold
-            : { ...fixture.flight('research', 'index', 'warm'), transitionPhase: 'cold' },
+            : {
+                ...fixture.flight('research', 'index', 'warm'),
+                transitionPhase: 'cold',
+              },
       }),
     (error) => {
       assert.equal(error.flightEvidence.length, 2);

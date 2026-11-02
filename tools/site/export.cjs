@@ -4,33 +4,7 @@ const fs = require('node:fs'),
   path = require('node:path'),
   assert = require('node:assert/strict');
 const { decorateColor } = require('./effects.cjs');
-function standalone(html) {
-  const notice = /<aside\b[^>]*aria-label="Review copy"[^>]*>[\s\S]*?<\/aside>/g;
-  assert.equal([...html.matchAll(notice)].length, 1);
-  html = html.replace(notice, '');
-  const data = /(<script type="application\/json" id="site-pages">)([\s\S]*?)(<\/script>)/,
-    match = html.match(data),
-    payload = JSON.parse(match[2]);
-  assert.deepEqual(Object.keys(payload.pages), [
-    'index',
-    'research',
-    'writing',
-    'talks',
-    'credits',
-  ]);
-  const links = (text) =>
-    Object.entries(payload.files).reduce(
-      (text, [route, file]) => text.replaceAll('href="' + file, 'href="?view=' + route),
-      text
-    );
-  for (const route of Object.keys(payload.pages))
-    payload.pages[route] = links(payload.pages[route]);
-  html = html.replace(
-    data,
-    () => match[1] + JSON.stringify(payload).replace(/</g, '\\u003c') + match[3]
-  );
-  return links(html);
-}
+const { standalone } = require('./standalone.cjs');
 function exportVariants(directory, { variant = 'both' } = {}) {
   assert.ok(['base', 'color', 'both'].includes(variant), 'explicit base/color variant');
   directory = path.resolve(directory);
@@ -61,6 +35,13 @@ function exportVariants(directory, { variant = 'both' } = {}) {
   return editions.map(([file]) => file);
 }
 if (require.main === module) {
-  console.log(exportVariants(process.argv[2], { variant: process.argv[3] || 'both' }).join('\n'));
+  console.log(
+    exportVariants(process.argv[2], {
+      variant: process.argv[3] || 'both',
+    }).join('\n')
+  );
 }
-module.exports = { standalone, exportVariants };
+function exportArticle(options) {
+  return require('../build_site_previews.cjs').exportArticle(options);
+}
+module.exports = { standalone, exportVariants, exportArticle };

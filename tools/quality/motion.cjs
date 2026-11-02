@@ -222,12 +222,12 @@ async function sample(browser, url, route, profile) {
   const page = await ctx.newPage(),
     errors = [];
   page.on('pageerror', (e) => errors.push(e.message));
+  const measurements = [];
   const cdp = await ctx.newCDPSession(page);
   await cdp.send('Emulation.setCPUThrottlingRate', { rate: profile.rate });
   try {
     await page.goto(`${url}/${route}.html`);
     await page.waitForTimeout(800);
-    const measurements = [];
     for (const kind of ['idle', 'scroll']) measurements.push(await collect(page, kind, 4000));
     const positiveProbe = measurements.some((x) => x.paints >= budgets.minimumPaints);
     await page.locator('.appearance summary').click();
@@ -239,6 +239,24 @@ async function sample(browser, url, route, profile) {
     await page.waitForTimeout(200);
     measurements.push(await collect(page, 'reduced', 1000));
     return { route, ...profile, positiveProbe, measurements, errors };
+  } catch (error) {
+    const state = await page
+      .evaluate(() => {
+        const control = document.querySelector('#space-motion');
+        return {
+          reduced: matchMedia('(prefers-reduced-motion: reduce)').matches,
+          visibility: document.visibilityState,
+          control: control
+            ? { text: control.textContent, disabled: control.disabled, hidden: control.hidden }
+            : null,
+          scene: { ...document.querySelector('.space-scene')?.dataset },
+          motion: window.SiteScene?.motionState?.(),
+          pendingFrames: window.__qualityMotion?.frames,
+        };
+      })
+      .catch(() => null);
+    error.motionSample = { route, ...profile, measurements, errors, state };
+    throw error;
   } finally {
     await ctx.close();
   }
@@ -474,7 +492,7 @@ async function main() {
     require('./validate.cjs').motion(report('motion', details));
     assert.ok(samples.every((x) => x.errors.length === 0));
   } catch (e) {
-    report('motion', { ...details, error: e.stack }, false);
+    report('motion', { ...details, error: e.stack, failedSample: e.motionSample || null }, false);
     throw e;
   } finally {
     if (browser) await browser.close();

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800">
+<title>Example access-recovery control path</title>
+<desc>Fallible semantic checking and permissions are distinct. Rejected or unavailable required checks go to safe fallback. Delivered and fallback paths are observed; evidence supports authorized decisions and intervention whose effects are observed.</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#31576e"/></marker><marker id="observe" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#327b8d"/></marker></defs>
+<rect width="1280" height="800" fill="#f6f8fa"/>
+<rect x="30" y="126" width="1220" height="634" rx="16" fill="#ffffff" stroke="#a9bac5" stroke-width="2"/>
+<g font-family="Arial, Liberation Sans, sans-serif" fill="#173546">
+<text x="64" y="55" font-size="31" font-weight="700">An example access-recovery assistant</text>
+<text x="64" y="94" font-size="22">Approved limits and access boundaries apply throughout.</text>
+</g>
+<g fill="none" stroke="#31576e" stroke-width="3" marker-end="url(#arrow)">
+<path d="M304 215 H348"/><path d="M588 215 H632"/><path d="M872 215 H916"/>
+<path d="M468 265 V350"/><path d="M752 265 V305 H468 V350"/>
+<path d="M1036 265 V350"/><path d="M588 400 H916"/>
+<path d="M1036 450 V635 H872"/><path d="M632 635 H588"/>
+<path d="M348 635 H48 V215 H64"/>
+</g>
+<path d="M468 685 V730 H1200 V400 H1156" fill="none" stroke="#327b8d" stroke-width="3" stroke-dasharray="8 7" marker-end="url(#observe)"/>
+<g stroke-width="2">
+<rect x="64" y="165" width="240" height="100" rx="10" fill="#e6f1f5" stroke="#75a0b0"/>
+<rect x="348" y="165" width="240" height="100" rx="10" fill="#fff4db" stroke="#bb994c"/>
+<rect x="632" y="165" width="240" height="100" rx="10" fill="#fff4db" stroke="#bb994c"/>
+<rect x="916" y="165" width="240" height="100" rx="10" fill="#e6f1f5" stroke="#75a0b0"/>
+<rect x="348" y="350" width="240" height="100" rx="10" fill="#fff4db" stroke="#bb994c"/>
+<rect x="916" y="350" width="240" height="100" rx="10" fill="#e6f1f5" stroke="#75a0b0"/>
+<rect x="632" y="585" width="240" height="100" rx="10" fill="#edf0f3" stroke="#8ca3b2"/>
+<rect x="348" y="585" width="240" height="100" rx="10" fill="#edf0f3" stroke="#8ca3b2"/>
+</g>
+<g font-family="Arial, Liberation Sans, sans-serif" font-size="24" fill="#173546" text-anchor="middle">
+<text x="184" y="209">Model proposal</text><text x="184" y="240" font-size="20">No new authority</text>
+<text x="468" y="203">Semantic check</text><text x="468" y="234" font-size="18">Against criteria; fallible</text>
+<text x="752" y="203">Permissions</text><text x="752" y="234" font-size="20">+ required approval</text>
+<text x="1036" y="203">Deliver / execute</text><text x="1036" y="234" font-size="20">Permitted result</text>
+<text x="468" y="391">Deny / fallback</text><text x="468" y="422" font-size="20">Agreed safe alternative</text>
+<text x="1036" y="389">Observe outcomes</text><text x="1036" y="420" font-size="20">+ control health</text>
+<text x="752" y="624" font-size="22">Authorized decision</text><text x="752" y="655" font-size="20">Compare with limits</text>
+<text x="468" y="624">Intervene</text><text x="468" y="655" font-size="17">Stop, narrow, disable tools</text>
+</g>
+<g font-family="Arial, Liberation Sans, sans-serif" font-size="20" fill="#31576e">
+<text x="490" y="333">Rejected or unavailable</text>
+<text x="662" y="384">Fallback evidence</text>
+<text x="1060" y="533">Evidence</text>
+<text x="62" y="540">Human authority where required:</text>
+<text x="62" y="570">evidence, rights, competence, time, capacity.</text>
+<text x="208" y="700">Change operation</text>
+<text x="635" y="721" fill="#327b8d">Verify intervention effect</text>
+</g></svg>

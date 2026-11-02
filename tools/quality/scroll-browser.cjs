@@ -21,11 +21,16 @@ const checks = [
   'filtered',
   'short',
 ];
+function authoredModel() {
+  const builder = require('../site/build.cjs');
+  const root = require('./common.cjs').root;
+  return builder.model(root, builder.configuration(root).definitions);
+}
 async function range(page) {
   return page.evaluate(() => Math.max(0, document.documentElement.scrollHeight - innerHeight));
 }
 async function semanticWaypoint(page, route) {
-  const model = require('../../docs/space.js'),
+  const model = authoredModel(),
     config = require('../../site/routes.json').routes.find((r) => r.id === route);
   const goal = await page.evaluate((config) => {
     const end = document.documentElement.scrollHeight - innerHeight;
@@ -84,7 +89,7 @@ async function probe(page, label, route) {
   for (const sample of samples)
     assert.equal(sample.camera, start, label + ' reading camera stays fixed at ' + sample.fraction);
   assert.equal(samples.at(-1).y, end, label + ' native scroll reaches bottom');
-  const model = require('../../docs/space.js');
+  const model = authoredModel();
   assert.deepEqual(
     JSON.parse(start),
     model.routePose(route, model.poses[model.initialPoses[route]]),

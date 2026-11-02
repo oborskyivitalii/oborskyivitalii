@@ -31,17 +31,30 @@ function historicalJobWithReviewedInstallMove(text, id) {
       '        run: ' +
       command +
       '\n',
+    dependencies =
+      '          tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium\n',
     browser =
-      '          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium\n';
+      '      - name: Restore verified pinned browsers without prior launch\n' +
+      '        uses: ./candidate/.github/actions/browser-archive\n' +
+      '        with:\n' +
+      '          browsers: chromium\n' +
+      '          working-directory: candidate\n';
   assert.equal(block.split(command).length - 1, 1, 'one exact locked npm command');
   assert.equal(block.split(install).length - 1, 1, 'one reviewed early dependency step');
-  assert.equal(block.split(browser).length - 1, 1, 'one unchanged Chromium install');
+  assert.equal(block.split(dependencies).length - 1, 1, 'one Chromium dependency install');
+  assert.equal(block.split(browser).length - 1, 1, 'one verified Chromium archive restore');
   const firstNode = block.search(/^ {10}(?:node |SITE_CANDIDATE_SHA="[^\n]+" node )/m);
   assert.ok(firstNode > block.indexOf(install) + install.length, 'install precedes source checks');
   assert.ok(block.indexOf(browser) > firstNode, 'browser install retains its later position');
-  // Issue58 moves only the existing locked npm command ahead of parser users.
-  // Restore precisely that reviewed move before checking the immutable job hash.
-  return block.replace(install, '').replace(browser, '          ' + command + '\n' + browser);
+  // Restore only issue58's early npm move and issue122's browser supply change.
+  // The immutable oracle still protects every other historical job byte.
+  return block
+    .replace(install, '')
+    .replace(browser, '')
+    .replace(
+      dependencies,
+      '          ' + command + '\n' + dependencies.replace('install-deps', 'install --with-deps')
+    );
 }
 function guards(text) {
   const value = job(text, 'paradigm').match(/^ {4}if: (.+)$/m)?.[1];
@@ -121,14 +134,20 @@ function contract(text) {
     /node tools\/staging\/color\.cjs "\$RUNNER_TEMP\/writing-paradigm-input\/candidate"/
   );
   assert.match(current, /npm ci --prefix tools\/quality\/toolchain --ignore-scripts/);
-  assert.match(current, /playwright install --with-deps chromium firefox\s*$/m);
+  assert.match(current, /playwright install-deps chromium firefox\s*$/m);
+  assert.match(
+    current,
+    /id: browsers\n {8}uses: \.\/candidate\/\.github\/actions\/browser-archive\n {8}with:\n {10}browsers: chromium,firefox\n {10}working-directory: candidate/
+  );
   assert.doesNotMatch(
     current,
     /\bwebkit\b/,
     'native macOS WebKit belongs to the production profile'
   );
-  for (const action of current.matchAll(/uses: (\S+)/g))
+  for (const action of current.matchAll(/uses: (\S+)/g)) {
+    if (action[1] === './candidate/.github/actions/browser-archive') continue;
     assert.match(action[1], /^actions\/[a-z-]+@[a-f0-9]{40}$/, 'mutable action pin');
+  }
   assert.match(
     current,
     /node tools\/quality\/writing-paradigm-browser\.cjs "\$RUNNER_TEMP\/writing-paradigm-input\/candidate" "\$RUNNER_TEMP\/writing-paradigm-results\/browser"/
@@ -196,16 +215,8 @@ test('source binding, opt-in guards and raw failure retention cannot be weakened
       text.replace('ref: ${{ github.event.pull_request.head.sha }}', 'ref: ${{ github.sha }}'),
     (text) => text.replaceAll('persist-credentials: false', 'persist-credentials: true'),
     (text) => text.replaceAll('npm ci --prefix', 'npm install --prefix'),
-    (text) =>
-      text.replace(
-        'playwright install --with-deps chromium firefox',
-        'playwright install --with-deps chromium'
-      ),
-    (text) =>
-      text.replace(
-        'playwright install --with-deps chromium firefox',
-        'playwright install --with-deps chromium firefox webkit'
-      ),
+    (text) => text.replace('browsers: chromium,firefox', 'browsers: chromium'),
+    (text) => text.replace('browsers: chromium,firefox', 'browsers: chromium,firefox,webkit'),
     (text) => text.replace("SITE_AUDIT_LIFECYCLE: 'true'", "SITE_AUDIT_LIFECYCLE: 'false'"),
     (text) =>
       text.replace(

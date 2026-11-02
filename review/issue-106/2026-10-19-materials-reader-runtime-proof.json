@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "kind": "issue106-reviewed-runtime-bytes",
+  "role": "implementation-self-review; not independent/device/release acceptance",
+  "family": {
+    "behavior": "fixed-blocks",
+    "baseEngine": "f05675e22407efb397a11bc3f9b823c2595c603f7a2b1e7623353850a6d6013a",
+    "theme": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a",
+    "space": "d5d1593e9c0c76910e68d5c965714f68af73bf2b26480f8835f784b02f953c41",
+    "navigation": "de284482d7712000da599f9fe7eef5ee867dcc60b56b12a18e9c5b35542633cf",
+    "archive": "e5077478895fbe15af0cbd3fe586bcefbdc4327b2921efcc84b64ace50c52760"
+  },
+  "runtimes": [
+    {
+      "id": "issue106-reader-materials-plain",
+      "family": "issue106ReaderMaterials",
+      "edition": "plain",
+      "fingerprint": "617ffe2feb6aa9e83d21f719bc827fbf4147e013cf4fbaf7b313302eb557e8ab",
+      "styles": "358112c885a415ab809328d463f3ff0786c8b090e1fc377a62f35f2a04725189"
+    },
+    {
+      "id": "issue106-reader-materials-staging",
+      "family": "issue106ReaderMaterials",
+      "edition": "staging",
+      "fingerprint": "e218d0ad5d3bdea13de6de3e7022aa0c841438c37fcc45b84c6c81c91bbf27ab",
+      "styles": "0f172ce76a054c39df2d0c2ad36c945dcb402f0143bf89d434ece6bb75ea1180"
+    },
+    {
+      "id": "issue106-reader-materials-production",
+      "family": "issue106ReaderMaterials",
+      "edition": "production",
+      "fingerprint": "11c81fc93b7ba04a6024065df43b3e4db074e09312758331669f99aa21eaf905",
+      "styles": "358112c885a415ab809328d463f3ff0786c8b090e1fc377a62f35f2a04725189"
+    }
+  ],
+  "sourceDirty": true,
+  "scope": "dirty preparatory artifact byte derivation; final exact-source checks recorded in PR"
+}

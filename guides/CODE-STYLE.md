@@ -16,19 +16,25 @@ history are not duplicate editing authorities.
 | Concern | Canonical editing owner | Contract |
 | --- | --- | --- |
 | Publications, routes, metadata, prose | `site/content/` | Data/content, not engine or presentation policy |
+| Full authored articles and editorial sources | `site/publications/` | Blueprint, manuscript, declared profile/adaptation and observed edition records; archive selection stays in the catalog |
 | Semantic HTML and repeated views | `site/templates/` | Render validated content; no business or animation logic |
 | Runtime, navigation and lifecycle | `site/engine/` | Consume scene/content contracts; never import generated output or build tools |
 | Scene models and visual geometry | `site/scenes/` | Explicit parameters and pure computations where possible |
 | Optional effect descriptors and helpers | `site/effects/` | Pure effect exports; hosted/offline adapters remain in `tools/site/` |
 | Media | `site/assets/` | Referenced through existing asset/edition identity contracts |
 | Build/export orchestration | `tools/site/` | Validate, render, hash and emit; do not become a second content registry |
+| Article AST and publication adapters | `tools/publishing/` | Isolated build-time parser, provenance, print and platform exports; never imported by runtime |
 | Hosting and checks | `tools/staging/`, `tools/quality/`, `tests/` | Consume declared sources/artifacts and preserve evidence identity |
 | Public renditions | `docs/`, declared offline outputs | Generated; change their authored owners and regenerate |
 | Decisions, diagnostics and history | `review/`, `drafts/` | Not a home for new active runtime/build code |
 
 When moving sources, update all consumers, catalog, source hashes and test/scanner
-inventory together; preserve real historical evidence. No circular dependencies,
-process-global monkey patches to capture exports, or hidden `require` side effects.
+inventory together; preserve real historical evidence. Runtime and pure-owner dependency graphs must be acyclic, and build/check modules
+must have acyclic module initialization. Function-scoped build/check back references
+require explicit independent review of invocation, initialization and export completion;
+function scope alone is not proof of deferral. The AST guard reports these components
+for that review, including IIFE/top-level-call limits. No process-global monkey patches
+to capture exports or hidden `require` side effects.
 Prefer explicit inputs and returned
 descriptors. Existing browser factory serialization must remain closure-safe
 until deliberately replaced with its identity tests.
@@ -139,7 +145,9 @@ a faster page. Do not raise budgets or repeat full matrices to chase one number.
 ## CS08 — Verification proportional to the change
 
 Run Basic (`node tools/quality/local.cjs`) and the applicable source suites/profile
-from the maintained registry. Add tests for behavioral contracts and meaningful
+from the maintained registry. Protected repository-only delivery instead runs its
+selected formatting/lint/source/RI/owning Basic without website build/package work.
+Add tests for behavioral contracts and meaningful
 failure cases; do not add assertions that only mirror implementation text.
 Architecture/guard changes need negative cases proving the guard can reject a
 violation. Pure prose/routing work does not justify a new browser matrix.

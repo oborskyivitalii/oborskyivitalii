@@ -42,10 +42,12 @@ the JSON and [coupling validator](../tools/check_ri_ci.py) enforce the routes.
 | Layer | Maintained paths and authority | CI companion and what it proves |
 | --- | --- | --- |
 | Authority and instructions | Root/scoped `AGENTS.md`; [CONTRIBUTING](../CONTRIBUTING.md); [project bootstrap](../PROJECT-BOOTSTRAP.md). Source owners supply meaning; archived guides supply history. | [navigation](workflows/navigation.yml): `NavigationSafetyTests` verifies scope, historical isolation and guide bounds. Issue acceptance tests exercise the documented task/review protocol. |
+| Reviewer prompts | [Common launch contract](../agents/reviewers/README.md) and its four detailed role prompts; CONTRIBUTING retains lifecycle and acceptance authority. | Navigation RI regressions exercise common/role aliases and validation companions. Coupling watches `agents/reviewers/*.md` regardless of catalog presence or owner, including added files and base-side removals/renames. These checks cannot establish actual isolated reviewer execution. |
 | Intent and acceptance | Live owning issue with stable AC IDs; [issue templates](ISSUE_TEMPLATE/work-item.md), [research intake](ISSUE_TEMPLATE/research-input.md), [PR template](pull_request_template.md), [acceptance protocol](ACCEPTANCE.md), `.github/acceptance/issue-N.json`; `review/issue-N/` files use [one review format](../review/REVIEW-TEMPLATE.md). | [issue-acceptance](workflows/issue-acceptance.yml): `tools/issue_acceptance.py` executes the selected owning issue policy's named assertions at an exact source, maps evidence back to AC IDs and leaves owner/manual/merge criteria pending. Green automated checks alone cannot close an issue. |
 | Path catalog | [repository-paths.json](repository-paths.json): every file/directory's purpose, role and editing owner, including root files. | Navigation's `NavigationSafetyTests` checks unknown/missing paths, kinds, purposes and owners. RI `verify` compares the complete outputs against that catalog. |
 | Entry, root and guides | [layout contract](repository-layout.json), [maintained guides](../guides/README.md), [archived originals](../review/root-history-20261007/README.md) and provenance manifest. README owns purpose; AGENTS owns rules; bootstrap only routes. | Navigation runs `RootLayoutTests` for bounded entry points, complete dispositions, exact archive identity, active links and current owners. Issue #33 alone selects its frozen public/history snapshot checks; later site work is not frozen to that base. The enduring-suite selector retains every permanent Python module while task modules stay with their owning policy; its regressions run unconditionally in navigation. |
 | Test profiles and dispositions | [profile owner](../guides/SITE-CHECK-PROFILES.md), [complete test registry](../tools/quality/test-profiles.json), conservative source selector and distinct staging runner/gate. The registry declares permanent, targeted diagnostic and owning-policy-only task suites. | Navigation unconditionally runs `node --test tests/test-profile-selection.test.cjs tests/staging-gate.test.cjs tests/staging-regression.test.cjs`: cheap inventory/selection and adversarial completeness, identity and staging-versus-production guard fixtures. The coupling validator watches these explicit control families; conditional hosted matrices still need their own actual run evidence. |
+| Conditional admission | [Trusted selection, single-PR action, control review and protected recovery](../guides/SITE-STAGING.md#trusted-change-admission-and-repository-delivery), existing quality modules and selected regressions. | Protected-base selection retains source/RI/owning checks without website work for repository deltas; controls remain full route. Actual App-bound ruleset transition and no-website merge are external #122 gates, distinct from source tests. |
 | Producer and identity | [producer](../tools/repository_intelligence.py), [config](repository-intelligence-config.json), upstream pin and notices; source bytes are data, not automatically accepted meaning. | Navigation's RI regressions exercise byte mutation, bounds, exclusions, unsafe inputs and config/producer invalidation; RI `verify` establishes deterministic freshness. |
 | Generated views | [REPOSITORY-MAP](../REPOSITORY-MAP.md) and [agent context](repository-intelligence/agent-context.json), generated from one source projection. | Navigation's `verify` regenerates both and compares them exactly; mutation/missing-output regressions fail. The workflow records checkout/blob/source identity. |
 | Lookup and validation routes | Config owner aliases/routes, this architecture and the checked CI map; `query`, `context-for-task` and `inventory` remain navigation. | RI regressions check unresolved queries, aliases, authority boundaries and scoped owners. `check_ri_ci.py verify` resolves declared test selectors and verifies actual unconditional CI command invocation. `RICICouplingTests` checks broken routes, stale mapping and new controls. |
@@ -84,7 +86,7 @@ routes require checking the dependent layer and CI selection in the same PR:
    workflow's exact source, failure propagation and test selection.
 3. Update this table/config routes and `ri-ci-map.json` where dependencies changed.
    New workflows, catalog-owned RI/acceptance controls and declared test-profile/
-   stage-gate control families require explicit map entries. Review affected checks before running `check_ri_ci.py refresh`; its
+   stage-gate and reviewer prompt control families require explicit map entries. Review affected checks before running `check_ri_ci.py refresh`; its
    digest records exact maintained input bytes and map interpretation, rather
    than accepting a meaningless edit to the map file as evidence of review.
 4. At issue completion review every new/changed test's PR smoke/targeted AC,
@@ -142,6 +144,22 @@ merge or deployment acceptance. This repository has no source/glossary registry
 configured; it does not invent local copies of UA/Subprime research status.
 
 ## Agent route
+
+The canonical [independent quality-agent protocol](../CONTRIBUTING.md#independent-quality-agents)
+defines separately launched requirements/acceptance, code review, white-box QA and
+exploratory/interaction QA. Bilingual owner aliases and validation companions route
+each role to its detailed prompt and the common launch contract, alongside the
+retained CONTRIBUTING lifecycle protocol, acceptance, review template and existing test
+allocation owner. Role executions and original conclusions belong to the owning
+issue's review artifact; this derived projection cannot launch an agent or establish
+that it ran. Test design follows risk/AC → scenario/oracle → suite/profile/workflow
+→ source-bound result, with explicit manual/unobserved dispositions.
+
+The permanent RI regression exercises actual role lookups and context routes in
+the existing navigation job. Coupling checks bind the protocol/config/test bytes
+and existing workflow invocation. These prove discoverability and mechanical
+freshness, not requirement quality, substantive QA, reviewer independence or
+acceptance. Each of those remains an actual separately recorded role execution.
 
 Use the T0–T4 routes in [AGENTS](../AGENTS.md) after its common intake. Mixed
 work uses the union of applicable owners; missing or uncertain classifications

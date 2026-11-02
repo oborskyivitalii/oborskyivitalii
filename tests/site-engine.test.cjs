@@ -10,6 +10,7 @@ const root = path.resolve(__dirname, '..'),
   b = require('../tools/site/build.cjs'),
   artifact = require('../tools/quality/artifact.cjs'),
   snapshot = require('../tools/site/snapshot.cjs');
+const { legacyCatalog } = require('./fixtures/catalog.cjs');
 function fixture(t) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'site-engine-'));
   for (const name of [
@@ -21,6 +22,13 @@ function fixture(t) {
     fs.mkdirSync(path.dirname(path.join(dir, name)), { recursive: true });
     fs.cpSync(path.join(root, name), path.join(dir, name), { recursive: true });
   }
+  // These legacy route/cache cases do not carry the repository's accepted Git sources.
+  fs.writeFileSync(
+    path.join(dir, 'site/content/catalog.json'),
+    JSON.stringify(legacyCatalog(root), null, 2) + '\n'
+  );
+  fs.rmSync(path.join(dir, 'site/publications'), { recursive: true, force: true });
+  fs.rmSync(path.join(dir, 'site/assets/publications'), { recursive: true, force: true });
   t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
   return dir;
 }
@@ -51,6 +59,136 @@ const aliases = [
   'assets/vitalii-oborskyi.jpg',
   'assets/vitalii-oborskyi-cutout.webp',
 ];
+test('Research shares exact passive vectors while declaring and budgeting the complete resource', (t) => {
+  const dir = fixture(t);
+  run(dir);
+  const output = path.join(dir, 'docs');
+  const read = (name) => fs.readFileSync(path.join(output, name));
+  const fallback = require('../tools/site/fallback.cjs');
+  const api = b.model(dir, b.configuration(dir).definitions);
+  const revision = snapshot.verify(output, artifact.manifest(output));
+  const descriptor = revision.routes.research;
+  assert.equal(descriptor.assets.length, 1);
+  const name = descriptor.assets[0];
+  const canonical = fallback.fromModel(api, 'research');
+  for (const document of ['research.html', descriptor.url]) {
+    const svg = read(document)
+      .toString()
+      .match(/<svg class="space-fallback"[\s\S]*?<\/svg>/)[0];
+    const prefix = document === 'research.html' ? '' : '../../';
+    const resolved = fallback.resolveRouteResource(
+      svg,
+      'research',
+      descriptor.assets,
+      read,
+      prefix
+    );
+    assert.equal(resolved.html, canonical, document + ' retains every vector and paint value');
+    assert.throws(() => fallback.resolveRouteResource(svg, 'research', [], read), /Undeclared/);
+    assert.throws(
+      () =>
+        fallback.resolveRouteResource(
+          svg.replace('#research-fallback', '#writing-fallback'),
+          'research',
+          descriptor.assets,
+          read,
+          prefix
+        ),
+      /closure/
+    );
+    assert.throws(
+      () =>
+        fallback.resolveRouteResource(
+          svg,
+          'research',
+          ['article-media/' + '0'.repeat(64) + '/research-fallback.svg'],
+          read,
+          prefix
+        ),
+      /closure/
+    );
+    assert.throws(
+      () => fallback.resolveRouteResource(svg.replace('<use ', '<Use '), 'research', [], read),
+      /Undeclared/
+    );
+    assert.throws(
+      () =>
+        fallback.resolveRouteResource(
+          svg,
+          'research',
+          descriptor.assets,
+          read,
+          prefix ? '' : '../../'
+        ),
+      /closure/
+    );
+    assert.throws(
+      () => fallback.resolveRouteResource(svg, 'writing', descriptor.assets, read),
+      /Unsupported/
+    );
+    assert.throws(
+      () => fallback.resolveRouteResource(svg, 'research', [name, name], read),
+      /Finite/
+    );
+  }
+  for (const id of ['index', 'writing', 'talks', 'credits']) {
+    assert.equal(revision.routes[id].assets, undefined);
+    assert.equal(
+      read(id + '.html')
+        .toString()
+        .match(/<svg class="space-fallback"[\s\S]*?<\/svg>/)[0],
+      fallback.fromModel(api, id)
+    );
+  }
+  const sizes = artifact.checkSize(output);
+  const row = sizes.rows.find((item) => item.route === 'research');
+  const originalNodes = (canonical.match(/<[a-z][\w-]*(?:\s|>)/gi) || []).length;
+  assert.equal(row.svgNodes, originalNodes + 2, 'instance use and external group are not hidden');
+  assert.equal(row.fallbackResource, name);
+  assert.equal(row.assets.filter((asset) => asset === name).length, 1);
+  assert.equal(
+    row.totalGzipBytes,
+    sizes.files['research.html'].gzip +
+      row.assets.reduce((n, asset) => n + sizes.files[asset].gzip, 0)
+  );
+  const record = { ...artifact.manifest(output), components: revision };
+  assert.doesNotThrow(() => artifact.validateRouteSizes(sizes, record));
+  for (const mutate of [
+    (item) => item.totalGzipBytes--,
+    (item) => item.assets.pop(),
+    (item) => delete item.fallbackResource,
+    (item) => item.raw++,
+  ]) {
+    const forged = structuredClone(sizes);
+    mutate(forged.rows.find((item) => item.route === 'research'));
+    assert.throws(() => artifact.validateRouteSizes(forged, record), /route|transfer/);
+  }
+  const bytes = read(name);
+  assert.equal(b.sha(bytes), name.split('/')[1]);
+  const first = inventory(dir);
+  const reused = run(dir);
+  assert.ok(reused.reused.includes('research'));
+  assert.deepEqual(inventory(dir), first, 'a reused document retains its exact resource');
+  fs.unlinkSync(path.join(output, name));
+  assert.throws(() => snapshot.verify(output, artifact.manifest(output)), /missing room fallback/);
+  fs.writeFileSync(path.join(output, name), Buffer.from('substituted'));
+  assert.throws(() => artifact.checkSize(output), /identity/);
+  fs.writeFileSync(path.join(output, name), bytes);
+  const unsafe = Buffer.from(
+    bytes
+      .toString()
+      .replace('<g id="research-fallback">', '<g id="research-fallback"><script>alert(1)</script>')
+  );
+  const unsafeName = `article-media/${b.sha(unsafe)}/research-fallback.svg`;
+  assert.throws(() => fallback.resourceContent(unsafeName, unsafe, 'research'), /Unsupported/);
+  assert.throws(() => fallback.resourceContent(name, bytes, 'writing'), /identity/);
+  assert.throws(
+    () => fallback.resourceContent(name, bytes),
+    /identity/,
+    'article callers retain Writing-only validation'
+  );
+});
+
 test('generated tag endings preserve raw elements, quoted values and unquoted separators', () => {
   const opaque =
     '<script>const x="</span \\n>";</script><style>.x::after{content:"<span >"}</style><!-- <span > -->';
@@ -448,10 +586,21 @@ test('source migration preserves publication HTML and thematic geometry when sha
         ['show', '6041a5801729e561c425092323a12cc8e4062f85:docs/' + route.url],
         { cwd: root, encoding: 'utf8' }
       );
-    const { restoreApprovedContent, normalizeHTML } = require('../tools/check_site_seo.cjs');
+    const {
+      restoreApprovedContent,
+      restoreHomeContent,
+      normalizeHTML,
+    } = require('../tools/check_site_seo.cjs');
     const mainPattern = /<main\b[\s\S]*?<\/main[\t\n\f\r ]*>/;
+    const current = rendered.match(mainPattern)[0];
+    // The immutable Home frame carries generated media aliases. Reuse the
+    // checker path that restores those aliases before exact historical deltas.
+    const reconciled =
+      route.id === 'index'
+        ? require('../tools/build_site_previews.cjs').sourceForPreview(restoreHomeContent(current))
+        : current;
     assert.equal(
-      restoreApprovedContent(rendered.match(mainPattern)[0], route.id),
+      restoreApprovedContent(reconciled, route.id),
       normalizeHTML(original.match(mainPattern)[0]),
       route.id + ' publication content with exact approved contact/title/response transformations'
     );
@@ -551,13 +700,20 @@ test('critical media has one canonical stylesheet slot and exact dependency-boun
     source = fs.readFileSync(path.join(dir, 'site/engine/critical-media.css'), 'utf8'),
     authoredStyles = fs.readFileSync(path.join(dir, 'site/engine/styles.css'), 'utf8'),
     readingStyles = fs.readFileSync(path.join(dir, 'site/engine/reading-surfaces.css'), 'utf8'),
+    readerStyles = fs.readFileSync(path.join(dir, 'site/engine/reader.css'), 'utf8'),
     entryStyles = fs.readFileSync(path.join(dir, 'site/engine/scroll-entry.css'), 'utf8'),
     stylesheet = fs.readFileSync(path.join(dir, 'docs/styles.css'), 'utf8');
   const marker = '/* {{CRITICAL_MEDIA}} */\n';
   assert.equal(authoredStyles.split(marker).length - 1, 1, 'one declared stylesheet position');
   assert.equal(
     stylesheet,
-    authoredStyles.replace(marker, source) + '\n' + readingStyles + '\n' + entryStyles,
+    authoredStyles.replace(marker, source) +
+      '\n' +
+      readingStyles +
+      '\n' +
+      readerStyles +
+      '\n' +
+      entryStyles,
     'current canonical sources retain their declared order and exact bytes'
   );
   assert.equal(stylesheet.split(source).length - 1, 1);
@@ -579,6 +735,7 @@ test('reading entry shares immutable hosted and Color runtime without adding rou
   const navigation = fs.readFileSync(path.join(dir, 'docs/navigation.js'), 'utf8');
   const context = {
     window: {},
+    history: { state: null },
     document: {
       readyState: 'interactive',
       addEventListener() {},
@@ -646,8 +803,8 @@ test('missing, duplicate or unsafe critical media owners leave the coherent outp
   }
 });
 test('renamed blocks work after descriptor update; missing inputs leave the last coherent output intact', (t) => {
-  const dir = fixture(t);
-  run(dir);
+  const dir = fixture(t),
+    original = run(dir);
   const before = inventory(dir);
   fs.renameSync(
     path.join(dir, 'site/content/pages/index/about.json'),
@@ -659,7 +816,12 @@ test('renamed blocks work after descriptor update; missing inputs leave the last
     s.replace('BLOCK:about', 'BLOCK:biography')
   );
   edit(dir, 'site/content/pages/index/metadata.json', (s) => s.replace('"about"', '"biography"'));
-  assert.deepEqual(run(dir).built, ['index']);
+  const renamed = run(dir);
+  // The template edit changes the bound client contract for every route.
+  assert.notEqual(renamed.components.pageTemplates, original.components.pageTemplates);
+  assert.notEqual(renamed.components.client, original.components.client);
+  assert.notEqual(b.runtimeVersion(renamed.components), b.runtimeVersion(original.components));
+  assert.deepEqual(renamed.built, snapshot.routes);
   const after = inventory(dir);
   fs.unlinkSync(path.join(dir, 'site/content/pages/index/biography.json'));
   assert.throws(() => run(dir), /ENOENT/);
@@ -750,6 +912,7 @@ test('content-only classification is advisory, unknown scope is full, and all ma
     null,
     {},
     { ...components, engine: '0'.repeat(64) },
+    { ...components, pageTemplates: '0'.repeat(64) },
     { ...components, producer: undefined },
   ])
     assert.equal(policy.propose(components, next).scope, 'full');
@@ -868,4 +1031,30 @@ test('discussion metrics can be omitted while links, work counts and JSON-LD ret
     counts.linked.total,
     counts.primary.total + Object.values(c.records).reduce((n, r) => n + r.editions.length, 0)
   );
+});
+
+test('document orbit configuration rejects off-axis, degenerate and unsupported enclosing circles', (t) => {
+  const dir = fixture(t),
+    file = path.join(dir, 'site/scenes/paths.json'),
+    original = JSON.parse(fs.readFileSync(file, 'utf8'));
+  assert.deepEqual(b.configuration(dir).definitions.documentOrbit.center, [0, 0, -32]);
+  for (const center of [
+    undefined,
+    [],
+    [0, 0],
+    [null, 0, -32],
+    [1, 0, -32],
+    [0, 1, -32],
+    [0, 0, 24],
+    [0, 0, -41],
+  ]) {
+    const changed = structuredClone(original);
+    changed.documentOrbit = { center };
+    fs.writeFileSync(file, JSON.stringify(changed));
+    assert.throws(() => b.configuration(dir), /Invalid document orbit center/);
+  }
+  const changed = structuredClone(original);
+  changed.poses.library.position[2] = -32;
+  fs.writeFileSync(file, JSON.stringify(changed));
+  assert.throws(() => b.configuration(dir), /Invalid document orbit radius/);
 });

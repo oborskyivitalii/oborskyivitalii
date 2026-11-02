@@ -1,0 +1,39 @@
+{
+  "version": "fixture-v1",
+  "operation": {
+    "owner": "fixture:web167",
+    "intent": "fixture:offline-one",
+    "step": "fixture:reducer",
+    "action": "fixture:evaluate",
+    "target": "fixture:artifact",
+    "candidate": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "semanticInputs": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+  },
+  "run": "fixture:run-one",
+  "decision": {
+    "operationKey": "0244898e86100e2d776dc23c3ec96a18bd617c5a74fb17367d1ce17b49077780",
+    "accepted": true,
+    "start": true,
+    "authority": true,
+    "revoked": false
+  },
+  "model": {
+    "policy": "required",
+    "pair": "sol-medium",
+    "supported": true
+  },
+  "planRevision": 1,
+  "routingRevision": 1,
+  "events": [
+    {
+      "id": "fixture:start",
+      "operationKey": "0244898e86100e2d776dc23c3ec96a18bd617c5a74fb17367d1ce17b49077780",
+      "run": "fixture:run-one",
+      "sequence": 1,
+      "kind": "request-start",
+      "receipt": null
+    }
+  ],
+  "prior": null,
+  "private": "PRIVATE-OPAQUE-SENTINEL"
+}

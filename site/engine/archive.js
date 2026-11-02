@@ -3,15 +3,21 @@
   'use strict';
   let detach = () => {},
     print = () => {};
+  const tagRoot =
+    window.SiteArticleTags &&
+    new URL(document.querySelector('meta[name="site-base"]')?.content || '.', window.location.href);
   function mount() {
     detach();
     print = () => {};
+    const stopTags = window.SiteArticleTags?.mount({ document, window, root: tagRoot });
+    detach = () => stopTags?.();
     const listeners = [];
     const on = (target, name, handler) => {
       target.addEventListener(name, handler);
       listeners.push(() => target.removeEventListener(name, handler));
     };
     detach = () => {
+      stopTags?.();
       for (const remove of listeners) remove();
     };
     const form = document.getElementById('archive-filters');
@@ -19,9 +25,12 @@
     const controls = Object.fromEntries(
       ['topic', 'year', 'language'].map((key) => [key, document.getElementById(`archive-${key}`)])
     );
-    const rows = [...document.querySelectorAll('li.publication')];
-    const groups = [...document.querySelectorAll('.archive-group')];
-    const years = [...document.querySelectorAll('.archive-year')];
+    const cachedTag = document.getElementById('archive-tag');
+    if (cachedTag) controls.tag = cachedTag;
+    const results = document.getElementById('archive-results');
+    const rows = [...results.querySelectorAll('li.publication')];
+    const groups = [...results.querySelectorAll('.archive-group')];
+    const years = [...results.querySelectorAll('.archive-year')];
     const topics = [...controls.topic.options]
       .map((option) => option.value)
       .filter((value) => value !== 'all');
@@ -50,8 +59,8 @@
           ? value
           : 'all';
       }
-      const topic = window.location.hash.match(/^#topic-([a-z][a-z0-9-]*?)(?:-(\d{4}))?$/);
-      const year = window.location.hash.match(/^#year-(\d{4})$/);
+      const topic = window.location.hash.match(/^#topic-([a-z][a-z0-9-]*?)(?:-(\d{4}|undated))?$/);
+      const year = window.location.hash.match(/^#year-(\d{4}|undated)$/);
       if (topic && topics.includes(topic[1])) {
         controls.topic.value = topic[1];
         if (yearValues.includes(topic[2])) controls.year.value = topic[2];
@@ -81,7 +90,9 @@
       const visibleYears = new Set();
       let count = 0;
       for (const row of rows) {
-        const hidden = active.some(([key, value]) => row.dataset[key] !== value);
+        const hidden = active.some(([key, value]) =>
+          key === 'tag' ? !row.dataset.tags?.split(' ').includes(value) : row.dataset[key] !== value
+        );
         if (row.hidden !== hidden) row.hidden = hidden;
         if (!hidden) {
           count++;
@@ -103,8 +114,10 @@
           controls.year.value !== year && !visibleYears.has(year);
       }
       heading.hidden = false;
-      heading.textContent = `${label(controls.topic)} · ${label(controls.year)} · ${label(controls.language)}`;
-      countLabel.textContent = countText('count', count);
+      heading.textContent =
+        `${label(controls.topic)} · ${label(controls.year)} · ${label(controls.language)}` +
+        (controls.tag && controls.tag.value !== 'all' ? ' · ' + label(controls.tag) : '');
+      countLabel.textContent = countText(count === rows.length ? 'print' : 'count', count);
       document.getElementById('archive-empty').hidden = count !== 0;
       emit('site:archive-layout', {});
       if (lastTopic !== controls.topic.value || reason === 'initial' || reason === 'reset') {
@@ -140,6 +153,13 @@
     });
     on(window, 'hashchange', () => onNavigation('navigation'));
     on(window, 'popstate', () => onNavigation('history'));
+    on(window, 'site:tags-ready', () => {
+      const tag = document.getElementById('archive-tag');
+      if (tag) {
+        controls.tag = tag;
+        onNavigation('tags');
+      } else emit('site:archive-layout', {});
+    });
     print = () => {
       for (const element of [...rows, ...groups, ...years]) element.hidden = false;
       for (const year of yearValues) document.getElementById(`year-${year}`).hidden = false;

@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "id": "pmday-two-shifts-distribution-review-20261012",
+  "platforms": {
+    "linkedin": {
+      "formats": ["html", "md", "txt", "copy-ready"],
+      "relationship": "adaptation"
+    },
+    "medium": {
+      "formats": ["html", "md", "txt", "copy-ready"],
+      "relationship": "equivalent-rendition"
+    }
+  },
+  "launch": {
+    "source": "launch-post.en.md",
+    "sha256": "c818740619d10a10fcff399ae44f1a65823d48da755f0af1ea3d90a3f9059fae"
+  },
+  "seo": {
+    "title": "AI Changes the Delivery System and the Product Itself",
+    "summary": "AI changes how teams deliver software and what they must control when model judgment enters a running product. A practical explanation of flow, evidence, authority and recovery."
+  },
+  "assets": {
+    "cover": { "id": "control-path" },
+    "hero": { "id": "control-path" }
+  },
+  "limits": {
+    "linkedinCharacters": 20000,
+    "mediumCharacters": 50000
+  }
+}

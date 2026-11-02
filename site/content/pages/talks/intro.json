@@ -3,9 +3,9 @@
   "template": "pages/talks/intro.html",
   "text": {
     "T001": "Talks & workshops",
-    "T002": "Questions are better",
-    "T003": "in conversation.",
-    "T004": "Public announcements and follow-ups on AI architecture, delivery and the engineering work\n    around non-deterministic systems."
+    "T002": "Talks on AI architecture",
+    "T003": "and software delivery.",
+    "T004": "Talks and workshops by Vitalii Oborskyi on AI-assisted delivery, AI systems and operational responsibility. Upcoming announcements and available recordings are labelled separately; language is stated only when confirmed."
   },
   "attributes": {},
   "urls": {}

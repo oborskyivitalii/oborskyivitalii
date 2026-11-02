@@ -80,5 +80,6 @@
     "delivery": ["library", "verification", "libraryMid", "verificationEnd"],
     "leadership": ["controller", "help", "controllerEnd"]
   },
-  "roomSpacing": 128
+  "roomSpacing": 128,
+  "documentOrbit": { "center": [0, 0, -32] }
 }

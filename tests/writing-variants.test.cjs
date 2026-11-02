@@ -311,7 +311,28 @@ test('family intervention preserves construction and all Research projection whi
 test('no-canvas retains actual diagnostic frames/geometry/effects; prewarm explicitly prepares one cached Writing model', () => {
   const dir = controls();
   try {
-    const results = diagnostic.build(dir),
+    const baseDirectory = path.join(dir, 'current-base');
+    const colorDirectory = path.join(dir, 'current-color');
+    const base = JSON.parse(fs.readFileSync(path.join(baseDirectory, 'artifact.json')));
+    const colorControl = JSON.parse(fs.readFileSync(path.join(colorDirectory, 'artifact.json')));
+    artifact.verify(path.join(baseDirectory, 'public'), base);
+    artifact.verify(path.join(colorDirectory, 'public'), colorControl);
+    assert.equal(
+      colorControl.derivation?.baseArtifactDigest,
+      base.artifactDigest,
+      'matched current base/Color control'
+    );
+    assert.equal(colorControl.sourceCommit, base.sourceCommit);
+    assert.equal(colorControl.sourceTree, base.sourceTree);
+    // The full matrix and its repeated deterministic build stay in the package test above.
+    const results = {
+        inputs: Object.fromEntries(
+          ['no-canvas-draw', 'model-prewarm', 'no-ribbons'].map((label) => [
+            label,
+            diagnostic.derive(colorDirectory, path.join(dir, label), label),
+          ])
+        ),
+      },
       read = (label) =>
         fs.readFileSync(path.join(results.inputs[label].publicDir, 'space.js'), 'utf8');
     const frame = browser(read('no-canvas-draw'));

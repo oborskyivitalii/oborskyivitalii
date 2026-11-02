@@ -1002,17 +1002,53 @@
     "topic.systems": "AI architecture & control",
     "topic.leadership": "Operating models & leadership",
     "topic.strategy": "AI strategy & society",
-    "archive.count": "{count} of {total} primary archive records · newest first within each topic.",
-    "archive.print": "{total} primary archive records · all records and their linked platform editions shown for printing.",
+    "archive.count": "{count} of {total} articles",
+    "archive.print": "{total} articles",
     "edition.link": " edition · ",
     "edition.edited": " · edited",
     "discussion.link": "Reddit discussion ↗",
     "discussion.views": " post views · ",
-    "discussion.comments": " comments"
+    "discussion.comments": " comments",
+    "archive.year": " archive",
+    "archive.undated": "Publication date not recorded",
+    "archive.records": " articles",
+    "archive.browse": "Browse articles ↓"
   },
   "archive": {
     "topics": ["delivery", "systems", "leadership", "strategy"],
     "languages": ["en", "uk"],
-    "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    "readingPaths": {
+      "delivery": [
+        {
+          "record": "publication-02",
+          "when": "Read this when faster generation leaves questions about verification and human understanding. The author’s argument connects code output with responsibility for checking it."
+        },
+        {
+          "record": "publication-28",
+          "when": "Read this when coding-tool savings are being treated as a reason to reduce engineering capacity. A critical author perspective on shifted costs, not a validated ROI model."
+        }
+      ],
+      "systems": [
+        {
+          "record": "publication-05",
+          "when": "Read this when a product relies on consequential model judgment and you need to distinguish the software from its wider control perimeter. A conceptual starting point, not production assurance."
+        },
+        {
+          "record": "publication-09",
+          "when": "Read this for the December 2025 control-theory perspective on AI governance. Its human-only controller examples are historical; use the living Uncertainty Architecture specification for current meanings."
+        }
+      ],
+      "leadership": [
+        {
+          "record": "publication-19",
+          "when": "Read this when deciding whether PMO roles and metrics help delivery or add overhead. A practitioner view of contextual operating choices."
+        },
+        {
+          "record": "publication-23",
+          "when": "Read this when exploring roles and communication across human and AI work. The organizational model is a preliminary example, not a confirmed implementation result."
+        }
+      ]
+    }
   }
 }

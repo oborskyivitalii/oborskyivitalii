@@ -16,12 +16,18 @@ acceptance live in issues/PRs; [MEMORY](../MEMORY.md) is a dated continuity hint
 | [SITE-ROADMAP](SITE-ROADMAP.md) | Priority, publication sequence and dependency routes | Launch #1, PMDay #2, publishing #5, harness #6, rights #7, hosting #8, guides #11 and gates #13 |
 | [SITE-SOURCE-AUDIT](SITE-SOURCE-AUDIT.md) | Public claim/edition provenance and source-reader limitations | Content issue and canonical source record |
 | [SITE-CONTENT-REVIEW](SITE-CONTENT-REVIEW.md) | Editorial, exact-edition, attribution and rights review | Content issue; rights #7; launch/release #1/#8/#13 |
+| [ARTICLE-WORKFLOW](ARTICLE-WORKFLOW.md) | Article blueprint/manuscript/profile, pinned sources, PDF/platform candidates and observed publication events | Publisher #5; PMDay #2; original research and rights owners |
+| [SITE-CONTENT-RELEASE](SITE-CONTENT-RELEASE.md) | Automatic Writing records/count and verified platform reuse for independent static content packages | Publisher #5; existing hosting/release decisions #8/#13 |
 | [SITE-RIGHTS](SITE-RIGHTS.md) | Source, media and retained-edition rights inventory, reuse-policy decision and release approval evidence | Rights #7; production preparation #39; release gates #13 |
 | [SITE-SEO](SITE-SEO.md) | Topic vocabulary, visible content mapping and discoverability evidence | Content owner; production measurement #8; later guides #11 |
 | [SITE-ANALYTICS](SITE-ANALYTICS.md) | Disabled-by-default measurement adapter and actual-origin activation | Hosting/analytics #8; release coverage #13 |
 | [SITE-CHECK-PROFILES](SITE-CHECK-PROFILES.md) | PR smoke/targeted acceptance, bounded staging and full production check selection; test registry/dispositions | Test optimization #35; hosting/gates #8/#13 |
+| [BROWSER-ARCHIVES](BROWSER-ARCHIVES.md) | Exact native browser supply, verified pins, cold setup and archive refresh | Browser delivery #122 |
 | [SITE-RELEASE-GATES](SITE-RELEASE-GATES.md) | Security, browser/device, performance budgets and exact-artifact evidence | Release gates #13 and hosting #8 |
 | [SITE-STAGING](SITE-STAGING.md) | CI controller, immutable preview/staging, promotion and recovery mechanics | Hosting/gates #8/#13 |
+| [Reviewer prompts](../agents/reviewers/README.md) | Common clean-context launch contract and four detailed independent role prompts | CONTRIBUTING protocol; WEB-18 / #167 |
+| [WEB-ORCHESTRATION](WEB-ORCHESTRATION.md) | Fixture-only offline orchestration state/recovery component; proposed effects and explicit native delivery gaps | WEB-18 / #167, coordinated by VIT-22 |
+| [SITE-CONTROL-CHANGES](SITE-CONTROL-CHANGES.md) | Bounded lock-patch structural prototype, operator interface and explicit nonauthority | Delivery admission #122 |
 | [SITE-PRODUCTION](SITE-PRODUCTION.md) | GitHub Pages .ai canonical domain, .com redirect and phased owner/provider preparation | Domain readiness #39 under #8/#13 |
 
 Read dated evidence as evidence of its exact source; it cannot admit a later
@@ -36,3 +42,5 @@ The archive records byte identity and original source links. Historical proposal
 pause statements, counts and execution steps do not replace maintained rules.
 `docs/` contains generated public output; these guides and review evidence stay
 outside that publication directory.
+
+Public article attachments and observed platform/video links follow [ARTICLE-MATERIALS](ARTICLE-MATERIALS.md), owned by issue106 with the existing reader integration in issue5.

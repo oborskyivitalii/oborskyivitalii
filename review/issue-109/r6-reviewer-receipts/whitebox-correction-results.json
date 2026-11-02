@@ -1,0 +1,123 @@
+{
+  "packet_sha256": "c2db4a3e6089e62f321b98880579d19f93c4c0538462103187e4da063b4f05f6",
+  "packet_files": 53,
+  "packet_mismatches": [],
+  "helper_sha256": "5756a926f4caa409fc7c3d36b78e3f2d8600efce1fb353d6238cc43d4b24f317",
+  "reconstructed_original_helper_sha256": "3cae90c8b59665883c887f6df45459972b047e07387ea88baa2c6573e6fefe02",
+  "helper_ast_identical": true,
+  "runs": [
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/d8b65f68acc8/devcon-repo/tools/presentations/integrate_native_slide.py",
+        "--source",
+        "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/sources/scratch-r13-native-full-deck.pptx",
+        "--donor",
+        "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/sources/approved-slide-04-native.pptx",
+        "--slide",
+        "4",
+        "--donor-slide",
+        "1",
+        "--output",
+        "/workspace/scratch/d8b65f68acc8/r6-whitebox-scratch/correction-slide04.pptx"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"source_sha256\": \"6e62b5b83c55fa09e63cf25806bdcf4472ffe313e89b85d1f26d1484c777ebbf\",\n  \"donor_sha256\": \"1741f44748706fae660f442636470c48223f721af567c83315c89e56a52d1c4c\",\n  \"output_sha256\": \"fa461eadcf41cd314b6861be6968824545719254e5430f6de705a2071f8cbd94\",\n  \"source_part_count\": 58,\n  \"donor_part_count\": 21,\n  \"output_part_count\": 58,\n  \"changed_parts\": [\n    \"ppt/slides/slide4.xml\",\n    \"ppt/notesSlides/notesSlide4.xml\"\n  ],\n  \"unchanged_part_count\": 56,\n  \"all_existing_relationships_preserved\": true,\n  \"shared_parts_equal\": [\n    \"ppt/slideLayouts/slideLayout1.xml\",\n    \"ppt/notesMasters/notesMaster1.xml\",\n    \"ppt/slideMasters/theme/theme2.xml\",\n    \"ppt/notesMasters/theme/theme3.xml\"\n  ],\n  \"master_equal_after_relationship_resolution\": true,\n  \"complete_source_notes_prefix_preserved\": true\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/d8b65f68acc8/devcon-repo/tools/presentations/integrate_native_slide.py",
+        "--source",
+        "/workspace/scratch/d8b65f68acc8/r6-whitebox-scratch/correction-slide04.pptx",
+        "--donor",
+        "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/sources/slide-05-spacing-donor-full-package.pptx",
+        "--slide",
+        "5",
+        "--donor-slide",
+        "5",
+        "--output",
+        "/workspace/scratch/d8b65f68acc8/r6-whitebox-scratch/correction-final.pptx"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"source_sha256\": \"fa461eadcf41cd314b6861be6968824545719254e5430f6de705a2071f8cbd94\",\n  \"donor_sha256\": \"0bd149ed530046326e25111d7911dd15aea48ae830d19832c259ef5b199f437d\",\n  \"output_sha256\": \"b3269196b0eac9dde5fd58706e16a6e84cff4bc2b3e3b368a634087b1cc5eef9\",\n  \"source_part_count\": 58,\n  \"donor_part_count\": 58,\n  \"output_part_count\": 58,\n  \"changed_parts\": [\n    \"ppt/slides/slide5.xml\"\n  ],\n  \"unchanged_part_count\": 57,\n  \"all_existing_relationships_preserved\": true,\n  \"shared_parts_equal\": [\n    \"ppt/slideLayouts/slideLayout1.xml\",\n    \"ppt/notesMasters/notesMaster1.xml\",\n    \"ppt/slideMasters/theme/theme2.xml\",\n    \"ppt/notesMasters/theme/theme3.xml\"\n  ],\n  \"master_equal_after_relationship_resolution\": true,\n  \"complete_source_notes_prefix_preserved\": true\n}\n",
+      "stderr": ""
+    }
+  ],
+  "reproduced_final_sha256": "b3269196b0eac9dde5fd58706e16a6e84cff4bc2b3e3b368a634087b1cc5eef9",
+  "candidate_sha256": "b3269196b0eac9dde5fd58706e16a6e84cff4bc2b3e3b368a634087b1cc5eef9",
+  "same_bytes": true,
+  "parts": 58,
+  "changed_parts": [
+    "ppt/slides/slide4.xml",
+    "ppt/notesSlides/notesSlide4.xml",
+    "ppt/slides/slide5.xml"
+  ],
+  "unchanged_parts": 55,
+  "spacing_donor_changed_parts": [
+    "ppt/slides/slide5.xml"
+  ],
+  "slide5_xml_differences": [
+    [
+      "/cSld[0]/spTree[1]/sp[30]/spPr[1]/xfrm[0]/off[0]",
+      "@y",
+      "4069079",
+      "4196079"
+    ]
+  ],
+  "shape30": [
+    {
+      "name": "Scope Disposable implementation",
+      "offset": {
+        "x": "4599432",
+        "y": "4196079"
+      },
+      "extent": {
+        "cx": "3054096",
+        "cy": "338328"
+      }
+    }
+  ],
+  "notes_unchanged_from_first_review": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "all_visible_slide_text_unchanged_from_first_review": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "source_sha256": "6e62b5b83c55fa09e63cf25806bdcf4472ffe313e89b85d1f26d1484c777ebbf",
+  "approved_s04_sha256": "1741f44748706fae660f442636470c48223f721af567c83315c89e56a52d1c4c",
+  "notes_sha256": "3772174bc7e27eb32339a43541cc17191c898bac710ec994ae9c8c30f1d86976",
+  "pdf_sha256": "8d070574648dbc640b30e4fb4e996ee9992664c332b762297b13bf5b8532fa20",
+  "pdf_pages": 9,
+  "pdf_pages_nonempty": true,
+  "edition_sha256": "94a65484815a4217fdbedda53c0368c08c78d976f804f2ede20ed26660493db3",
+  "validator": {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "/workspace/scratch/d8b65f68acc8/devcon-repo/tools/presentations/validate_edition.py",
+      "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6",
+      "--json"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"ok\": true,\n  \"edition\": \"R6\",\n  \"path\": \"/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6\",\n  \"observed\": {\n    \"pptx\": {\n      \"bytes\": 1422904,\n      \"sha256\": \"b3269196b0eac9dde5fd58706e16a6e84cff4bc2b3e3b368a634087b1cc5eef9\"\n    },\n    \"pdf\": {\n      \"bytes\": 1114519,\n      \"sha256\": \"8d070574648dbc640b30e4fb4e996ee9992664c332b762297b13bf5b8532fa20\"\n    },\n    \"notes\": {\n      \"bytes\": 35106,\n      \"sha256\": \"3772174bc7e27eb32339a43541cc17191c898bac710ec994ae9c8c30f1d86976\"\n    },\n    \"pptx_slide_count\": 9,\n    \"pptx_notes_count\": 9,\n    \"pdf_page_count\": 9\n  },\n  \"errors\": []\n}\n",
+    "stderr": ""
+  },
+  "first_review_sha256": "b47343803b6a73e08335917b62a29457818afafe344ed03e0e64f99ff84db44f"
+}

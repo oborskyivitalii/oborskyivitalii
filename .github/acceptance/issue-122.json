@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 122,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/122",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Correct and explainable repository, content, website and control routing",
+      "automated_scope": "R2 adds protected-base complete-diff classification reused by Basic/preview/App, conditional repository obligations and explicit website inapplicability. Executable/control/mixed/unknown/rights inputs remain conservative. Existing selected Node suites own behavior; actual protected lane remains external.",
+      "checks": ["SELECTION"],
+      "gates": ["ROUTING", "REQUIREMENTS", "REVIEW", "WHITEBOX", "EXPLORATORY"]
+    },
+    {
+      "id": "AC02",
+      "intent": "A genuine protected repository-only merge without website deployment work",
+      "automated_scope": "R2 implements source/style/RI/owning checks without website package/preview/staging for owned repository deltas. Relevant executable RI failures still block on the full control route. One real protected rules/RI merge with no site work and exact source/run/postmerge evidence remains the external REPOSITORY-LANE gate.",
+      "checks": [],
+      "gates": ["REPOSITORY-LANE"]
+    },
+    {
+      "id": "AC03",
+      "intent": "Integrate the existing content lane with accepted platform and complete intervening-history evidence",
+      "automated_scope": "R3 implements accepted-platform selection, complete S-to-C parent-edge history inspection, genuine repository-merge authentication and exact replay through the existing issue5 publisher. Selected content-baseline/content-delivery/source-profile and release suites exercise compatibility, invalid content, reverted controls and source/predecessor leases. Actual accepted platform, independent content release and recovery remain the external CONTENT-LANE gate; generation tests do not complete it.",
+      "checks": [],
+      "gates": ["CONTENT-LANE"]
+    },
+    {
+      "id": "AC04",
+      "intent": "Preserve applicable website and control coverage, budgets, profiles and source architecture",
+      "automated_scope": "Preserve delivered T01/T02/T02-P/T03 source/profile/toolchain/scanner/runtime/rights obligations and their exact historical evidence; bounded T03 delivery completed as main e6ee496 after stage39972503855, eligible39975171739 and postmerge39975383796. T04 adds observation-only tools/quality code, independent real-Git regressions through the existing permanent registry and a read-only report workflow. Existing required Basic/RI/owning/preview/owner-stage/admission/merge route, tool pins, test cases, scanner inputs/limits/dispositions, source deadlines, hosted budgets and production eligibility remain. Candidate registry edits cannot erase base-side report obligations. Four stdlib owning checks establish only their mapped mechanical subset, not Node/hosted execution. Actual full selected source/prepublication/security coverage and independent CS01/CS04/CS05/CS07/CS08/CS09/CS10 review remain required. No result ingestion, accepted-site history/reuse, publisher, authoritative W3 evaluator, ruleset or production action is implemented by T04. T04-P delivered the shared primary Ubuntu archive helper in PR132/mainbab166e, retaining signed-source metadata, unchanged package/engine commands and the seven UBUNTU preservation/wiring tests in permanent Python/navigation routes. Preserve those inherited helper obligations during observer integration. CR01–CR06 add a credential-free structural lock-leaf prototype with immutable Git inputs and no execution/admission authority; its permanent Node suite uses existing selected source profiles. Original verification obligations and budgets remain. TR01–TR08 add an explicitly nonauthoritative, P-owned fixed external oracle for immutable delivery-json module execution inside locally assembled Linux Docker containment, with real native positive/adversarial resource/cleanup proof required. Existing full source, scanner, audit, staging and admission obligations remain unchanged; no App control acceptance or main protection change. R1 changes only manual single-PR snapshot scheduling and refusal classification. Delivered App/lock/containment proofs stay historical; retain their permanent source regressions without restarting isolated campaigns. CS01/CS04/CS05/CS08/CS09/CS10, unchanged source/scanner/audit/profile/budget and original full delivery obligations apply. R2 preserves applicable full route for controls/website and all original budgets/scanners; conditional repository checks do not claim hosted execution. CS01/CS04/CS05/CS08/CS09/CS10 and actual source-bound independent review apply. The25October approved F1 refactor separates a verified client descriptor from full producer provenance, retaining one exact legacy alias and historical calculation. Existing Color generation tests own producer-only, byte/hook/interface and malformed-descriptor negatives. Complete platform equality, rights, source and all full/native obligations remain; this does not authorize content reuse after a producer change. The25October maintainer decision6403603405 supersedes only the fixed complete-source execution deadline180s with300s plus unchanged30s reporting grace330s. Preserve79selected modules,cap4,16MiB,process isolation,strict accounting,abort cleanup and all failures; scanner/default-guard180s,workflow and browser/product budgets remain unchanged. Apply only to the new candidate; retain original180s failures without relabelling.",
+      "checks": ["SELECTION", "STYLE", "UBUNTU"],
+      "gates": ["COVERAGE", "REVIEW", "REQUIREMENTS", "WHITEBOX", "EXPLORATORY"]
+    },
+    {
+      "id": "AC05",
+      "intent": "Admission cannot exempt itself or accept an impersonated or invalid result",
+      "automated_scope": "R2 adds per-PR/head/base trusted target-job log binding before latest applicable staging attempt; owner/main exact reviewed SHA for controls with full pre-change obligations; independent App/producer attempt authentication; full-route protected recovery; ordered App/owning addition while retaining the conditional Staging guard. Deterministic Node evidence cannot establish actual settings/native outcomes; TRUST remains external.",
+      "checks": [],
+      "gates": ["TRUST"]
+    },
+    {
+      "id": "AC06",
+      "intent": "Preserve accepted-site provenance and concurrency after repository-only merges",
+      "automated_scope": "R2 repository postmerge authenticates App/base/normal-parent/identical-tree identity without relabeling accepted website bytes. R3 adds complete intervening-history authentication and replay from accepted S, explicit platform fallback and existing serialized publisher leases. Tests use real temporary Git history with bounded mocked native APIs; actual independent content/recovery and concurrency evidence remain external.",
+      "checks": [],
+      "gates": ["PROVENANCE"]
+    },
+    {
+      "id": "AC07",
+      "intent": "Four actual independent roles and actionable test handoff for each coherent candidate",
+      "automated_scope": "No deterministic check can establish separate nonauthoring execution, semantic requirement quality, independent test oracles or actual exploratory observations.",
+      "checks": [],
+      "gates": ["REQUIREMENTS", "REVIEW", "WHITEBOX", "EXPLORATORY"]
+    },
+    {
+      "id": "AC08",
+      "intent": "Source-bound delivery, complete lane outcomes, documentation and measured result",
+      "automated_scope": "R1/PR142, R2/PR143-144 and exact-runtime compatibility/PR145 are delivered with their native lane receipts and timings in live #122; repository-only delivery omits website work. R3 platform integration including PR146/PR155 is delivered with source-bound Basic/RI/owning, four roles, full owner staging, genuine App admission, protected merge and postmerge. Actual independent content/recovery and final issue-wide documentation/timing reconciliation remain external acceptance; current checks never inherit another source's results.",
+      "checks": ["CURRENT-RI", "RI-CI"],
+      "gates": ["DELIVERY", "MERGED"]
+    }
+  ],
+  "checks": {
+    "SELECTION": {
+      "kind": "unittest",
+      "test": "test_issue35_acceptance.Issue35AcceptanceTests.test_test_profile_registry_selection_and_accounting"
+    },
+    "STYLE": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "CURRENT-RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    },
+    "UBUNTU": {
+      "kind": "unittest",
+      "test": "test_ubuntu_downloads.UbuntuDownloadsTests.test_workflow_installer_order_and_preserved_commands"
+    }
+  },
+  "gates": {
+    "ROUTING": {
+      "kind": "human",
+      "description": "Whole AC01 requires the canonical decision table, status/mode-aware complete routing and exact source/base/policy reports across repository, content, website and control changes. Retain independent real-Git owner/control/type/deletion/invalid-input, base-side registry/provenance and false-authority regressions. R2 repository admission is delivered; the observer remains explicitly nonauthoritative. Reconcile content selection/report obligations before whole criterion acceptance."
+    },
+    "REPOSITORY-LANE": {
+      "kind": "human",
+      "description": "Observe a real protected repository-only merge after applicable source/RI/acceptance and independent-role checks, without hosted preview, website staging, alias or publisher actions. Demonstrate a changed RI executable failure blocks admission. Not delivered by T01 or T02."
+    },
+    "CONTENT-LANE": {
+      "kind": "human",
+      "description": "Use issue5's existing coherent publisher for actual independent content release and required recovery after an authenticated accepted platform S. Authenticate the complete S through repository-only M to content C history, retaining exact S evidence and current source/predecessor leases. Invalid content/media/references or incompatible/unknown intervening inputs must fail or require fresh platform validation. Local generated fixtures and the earlier PR144 merge alone do not establish this later chronological/native outcome."
+    },
+    "COVERAGE": {
+      "kind": "human",
+      "description": "Inspect actual owners, dependency closure and required CI to confirm baseline, permanent source, repository, website/control, staging and production obligations, budgets, failure propagation and provenance. Preserve optional diagnostics and applicable unautomated style rules. T02 documents existing versus proposed routes without changing behavior; whole future lane-level preservation remains pending. Resumed T02 preserves delivered T02-P obligations: source-bound execution of all nine unchanged test_python_toolchain.py methods by the existing tools/run_repository_tests.py runner under the complete locked venv in owner-stage prepublication, with complete module/test accounting and no failures or skips. Four owning-policy checks alone do not establish that execution. Also require actual complete91-package installed-graph verification with exactly four individually required Semgrep compatibility records, unchanged metadata, complete current Python advisory coverage without waivers, real CE positive/negative controls and full expected source scan coverage. Preserve the delivered91-pin lock, existing npm disposition, workflows, budgets and failure boundaries. T03-D additionally requires actual source-bound cause-probe.test.cjs routing/protocol execution through the existing selected Basic route, plus independent actual-expression boundary review. Preserve all previously required checks; the sole approved workflow delta is the opt-in PR128 writing-current condition, never a required admission workflow or permission change. T03-R also requires actual current-source scroll-entry behavioral regression execution, independent original-order fault detection and real original-profile staging evidence, preserving the inherited scanner/toolchain cases and budgets. Current-source Color compatibility checks must verify real generated plain/staging bytes and both alias forms, physical tampering rejection and all inherited unknown/mixed tuple guards; only the exact three edition tuples and all three inherited licensed-rights obligations, no scanner waiver or production action. T03 bootstrap additionally requires real current-source Color motion, publication/default-rights/relabel and release coverage, exact reviewed future bytes in canonical/immutable aliases, preserved current/old runtime families and PR129 retained closure. No wildcard acceptance or scalar-only identity can replace byte binding. Bootstrap scanner correction6364509014 permits only five source-proved exact path/type/SHA1 public fingerprint dispositions appended in the existing secrets-publication.json. All1496prior publication rows and all three baseline ledgers, PR129 checksum closure, scanner code/closed inputs/limits and current-source execution remain required. Actual PR130 bootstrap is delivered as protectedmaincc67a2092c16179218044fc47a30985df1891405, tested8c3fa30b/tree d559b570 with ownerstage39952774218, eligible admission39955383275 and postmerge39955744615. Current PR128 R03 main integration additionally requires source-proved exact generated-public-checksum dispositions in existing secrets-publication.json only, preserving all1501 inherited rows ordered/data-identical and all three other ledgers including PR129 checksum closure byte-for-byte. Derive final additions from the actual regenerated final detector report and canonical producer proof; old180 feasibility is not final-source acceptance. Existing scanner code, closed inputs, limits, profiles, registry, workflows, cases and budgets remain unchanged. Four actual integration roles, clean full current-source prepublication/security and fresh native CI precede the original sole R04 owner stage/report. No PR128 runtime merge or production. T04-P6370000839 permits only shared Ubuntu mirror/download setup repair for the same jobs; preserve signed-source metadata, pins, package/engine requests, cases and all original deadlines. Retain actual OS versions without assuming mirror byte equality. Source: see DELIVERY."
+    },
+    "TRUST": {
+      "kind": "human",
+      "description": "For R1 inspect owner/main/manual-only entry, one current PR/head, typed refusal without successful App admission, hard API/auth/identity/dirty-source/storage/protocol errors, and no unbound success after head movement. Authenticate one actual manual-main run, its retained report and genuine App check. Preserve the configured isolated credential/issuer boundary and unchanged original main protection. Existing App and experimental proofs stay source-bound history. Per-PR staging isolation, conservative control admission/recovery, synchronous freshness and protection replacement remain R2 activation prerequisites; R1 cannot claim them."
+    },
+    "PROVENANCE": {
+      "kind": "human",
+      "description": "Verify repository/controller and accepted site/platform/content/artifact identities independently after repository-only merge. Prove complete intervening compatibility or use fresh staging, without relabeling old artifacts. Exercise fresh-base decisions, source/predecessor leases and timing/recovery cases preserving newer accepted content. T02 specifies these requirements without executing the future scenario."
+    },
+    "REQUIREMENTS": {
+      "kind": "human",
+      "description": "Actual separate nonauthoring Requirements & Acceptance Reviewer checks original intent, requirement quality, AC/check/gate traceability before dependent implementation, after material changes and on the completed candidate. Retain exact-source conclusions and unresolved decisions; task-definition review alone does not accept implementation."
+    },
+    "REVIEW": {
+      "kind": "human",
+      "description": "Actual separate nonimplementing Code Reviewer inspects the complete candidate, tests, policy and RI integration, including applicable CS01/CS04/CS05/CS08/CS09/CS10. Record independent findings, scope and source; actually recheck affected corrections. T03-R specifically includes CS06/CS07 batch cleanup/geometry/focus boundaries, both callers, generated-output coherence and unchanged lifecycle behavior."
+    },
+    "WHITEBOX": {
+      "kind": "human",
+      "description": "Actual distinct White-box QA independently inspects changed branches, boundaries, invariants and tests; records risk-to-oracle mapping, meaningful fault detection and actual source-bound results or execution gaps. It cannot accept tests or implementation it authored."
+    },
+    "EXPLORATORY": {
+      "kind": "human",
+      "description": "Actual independent nonauthoring exploratory QA executes a bounded charter on T04 Git collector/routing/CLI reports: real repository/content/site/control/mixed, moved/deleted owners, conservative and invalid inputs, operator next actions and exact source/policy bindings. Inspect native observation source/workflow/run/attempt alongside current required delivery. Retain earlier T03 observations as historical, not current observer evidence. Missing execution remains pending; optional device diagnostics are unchanged. Preserve inherited Ubuntu helper CLI/preservation/symlink/reference fixtures and source-bound native evidence; original Azure failures, cancelled owner staging and Writing failure remain attributed to their exact runs. Fixtures do not establish network performance."
+    },
+    "DELIVERY": {
+      "kind": "human",
+      "description": "For the current R3 platform integration, obtain four actual nonauthoring roles and affected correction review, exact-source Basic/RI/owning/preview, existing full owner staging/admission, normal protected merge and actual postmerge. Preserve required toolchain/scanner/profile/case/budget/rights and failure obligations, delivered R1/R2 and the fourteen PR145 runtime producer objects. Do not repeat historical experiments. Actual later content/recovery and whole parent acceptance remain separate; no production activation is authorized by this platform step. The25October maintainer decision6403603405 supersedes only the fixed complete-source execution deadline180s with300s plus unchanged30s reporting grace330s. Preserve79selected modules,cap4,16MiB,process isolation,strict accounting,abort cleanup and all failures; scanner/default-guard180s,workflow and browser/product budgets remain unchanged. Apply only to the new candidate; retain original180s failures without relabelling."
+    },
+    "MERGED": {
+      "kind": "merge",
+      "description": "Observe the current integration normal protected merge, identical tested/merged tree and actual postmerge under the existing strict producer-bound requirements. Retain tested artifact identity separately from the merge commit. Keep delivered R1/R2/PR145 receipts, report current step and full remaining #122 plan, and leave the parent open for actual content/recovery and final reconciliation."
+    }
+  }
+}

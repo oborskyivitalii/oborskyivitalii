@@ -29,6 +29,12 @@ include/exclude/narrow/defer recommendation).
 Assign stable IDs and observable pass conditions before implementation. Map each
 criterion to deterministic tests/policy and keep required human decisions explicit.
 
+Apply [independent quality agents](../../CONTRIBUTING.md#independent-quality-agents).
+Record independent requirements/AC review before dependent integration, and four
+separate completed role results on each coherent candidate. Each QA role assesses
+its own bounded applicability; research/editorial and maintainer decisions remain
+with their existing owners. No dynamic test surface is different from missing access.
+
 ### AC01
 
 - [ ] Exact source/version and limitations inspected.

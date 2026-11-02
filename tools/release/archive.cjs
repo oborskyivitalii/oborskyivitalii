@@ -145,11 +145,11 @@ function immutable(existing, desired) {
   return true;
 }
 
+module.exports = { tag, candidate, create, verifyRights, verify, transition, immutable };
+
 if (require.main === module) {
   const [mode, directory, recordFile, packageFile] = process.argv.slice(2);
   if (mode !== 'verify')
     throw Error('Usage: archive.cjs verify SOURCE ARCHIVE_JSON PACKAGE_TAR_GZ');
   verify(directory, JSON.parse(fs.readFileSync(recordFile)), fs.readFileSync(packageFile));
 }
-
-module.exports = { tag, candidate, create, verifyRights, verify, transition, immutable };

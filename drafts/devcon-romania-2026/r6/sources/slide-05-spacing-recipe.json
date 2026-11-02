@@ -1,0 +1,28 @@
+{
+  "purpose": "Bounded R6 slide5 spacing correction; native input donor, not a repository edition",
+  "source_sha256": "6e62b5b83c55fa09e63cf25806bdcf4472ffe313e89b85d1f26d1484c777ebbf",
+  "donor_sha256": "0bd149ed530046326e25111d7911dd15aea48ae830d19832c259ef5b199f437d",
+  "part": "ppt/slides/slide5.xml",
+  "source_part_sha256": "5317c5b5ae067a49e997f275ebf56ede931a609fbc4146715991891e5b756e32",
+  "output_part_sha256": "55329aaac36bd9e1648104cebb074f9997845b45bcaa9ec020bf58df676b3238",
+  "shape_id": 30,
+  "shape_name": "Scope Disposable implementation",
+  "text_verbatim": "Regenerate isolated, bounded features.",
+  "before_emu": {
+    "x": 4599432,
+    "y": 4069079,
+    "cx": 3054096,
+    "cy": 338328
+  },
+  "after_emu": {
+    "x": 4599432,
+    "y": 4196079,
+    "cx": 3054096,
+    "cy": 338328
+  },
+  "delta_y_pt": 10,
+  "other_shape_properties_unchanged": true,
+  "all_other_57_package_parts_unchanged": true,
+  "reason": "Separate body text from the two-line heading while retaining space above the question. Original PDF text extents overlapped by5.355988pt; no missing wording or proven ink collision.",
+  "scope_authorization": "review/issue-109/r6-reviewer-receipts/requirements-layout-addendum.md"
+}

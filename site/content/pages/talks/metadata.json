@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "lang": "en",
-  "title": "Talks & Workshops | Vitalii Oborskyi",
-  "description": "Talks and workshops on AI architecture and software delivery, including PMDay, Corning Learn-AI-Palooza, Betelgeuse and swarchua, with public sources.",
+  "title": "AI Architecture & Software Delivery Talks | Vitalii Oborskyi",
+  "description": "Upcoming DevCon Romania 2026 and UA Online PMDay 2027 Winter, plus recordings and workshops on AI architecture and software delivery.",
   "structuredData": {
     "@context": "https://schema.org",
     "@type": "CollectionPage",

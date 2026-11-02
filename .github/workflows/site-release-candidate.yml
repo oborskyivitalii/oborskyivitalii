@@ -52,6 +52,8 @@ jobs:
             const proof=await require('./tools/release/staging-policy.cjs').authenticate(github,context,process.env.RELEASE_PR,context.sha);
             fs.mkdirSync('quality-reports',{recursive:true});
             fs.writeFileSync('quality-reports/staging-authentication.json',JSON.stringify(proof,null,2)+'\n');
+            const previous=await require('./tools/pages/controller.cjs').activeProduction(github,context);
+            fs.writeFileSync('quality-reports/publication-base.json',JSON.stringify(previous,null,2)+'\n');
             for(const [key,value] of Object.entries({stage_run:proof.runId,public_id:proof.public.id,public_digest:proof.public.digest,gate_id:proof.gate.id,gate_digest:proof.gate.digest}))core.setOutput(key,value);
       - name: Retrieve authenticated staging artifact and original gate
         env:
@@ -68,7 +70,7 @@ jobs:
           python3 tools/pages/unpack.py quality-reports/staging/gate.zip quality-reports/staging/gate "$STAGE_GATE_DIGEST"
       - name: Freeze the production edition from the accepted identical source tree
         run: |
-          node tools/quality/artifact.cjs build quality-artifact
+          node tools/quality/artifact.cjs build quality-artifact --accepted-generation quality-reports/staging/public
           node tools/staging/color.cjs quality-artifact
           node tools/release/edition.cjs build quality-artifact color
           node tools/release/edition.cjs verify quality-artifact
@@ -79,7 +81,7 @@ jobs:
           node tools/release/rights.cjs verify quality-artifact quality-artifact/rights.json
           node -e "const r=require('./quality-artifact/rights.json');require('node:fs').appendFileSync(process.env.GITHUB_OUTPUT,'digest='+r.inventoryDigest+'\npolicy_status='+r.policy.status+'\n')"
       - name: Bind production derivation to the original successful staging
-        run: node tools/release/staging-policy.cjs bind quality-artifact quality-reports/staging-authentication.json quality-reports/staging/public quality-reports/staging/gate/release-manifest.json
+        run: node tools/release/staging-policy.cjs bind quality-artifact quality-reports/staging-authentication.json quality-reports/staging/public quality-reports/staging/gate/release-manifest.json quality-reports/publication-base.json
       - id: public
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         with:

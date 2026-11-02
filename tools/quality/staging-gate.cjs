@@ -31,6 +31,10 @@ function expectedCoverage(manifest) {
       normalRouteObservations: 20,
       noCanvasJourneys: 2,
       noCanvasRouteObservations: 10,
+      // The bounded article profile exercises one representative in five cases.
+      ...(Object.keys(manifest.components?.articles || {}).length
+        ? { articleObservations: 5 }
+        : {}),
       navigation: 2,
       failures: 10,
       analytics: regression.contract().analytics_rows,
@@ -85,6 +89,8 @@ function validateHost(report, manifest, hostedURL) {
   }
 }
 function validateSizes(sizes, manifest) {
+  require('./artifact.cjs').validateRouteSizes(sizes, manifest);
+  require('./artifact.cjs').validateArticleSizes(sizes, manifest);
   assert.equal(sizes.pass, true);
   assert.equal(sizes.artifactDigest, manifest.artifactDigest);
   assert.deepEqual(sizes.files, manifest.files, 'size report inventory differs from artifact');
@@ -121,6 +127,8 @@ function validateSizes(sizes, manifest) {
   }
 }
 function validateGate(manifest, gate, hostedURL) {
+  if (gate.kind === 'content-staging-gate')
+    return require('./content-gate.cjs').validateGate(manifest, gate, hostedURL);
   validateIdentity(manifest);
   const target = require('./hosted-origin.cjs').target(hostedURL, 'staging');
   assert.equal(gate.schema, 1);
@@ -193,6 +201,15 @@ function aggregate({
   profile = 'staging',
   sourceChecks = null,
 }) {
+  if (manifest.contentRelease?.admission)
+    return require('./content-gate.cjs').aggregate({
+      manifest,
+      sizes,
+      reports,
+      jobs,
+      hostedURL,
+      sourceChecks,
+    });
   regression.registryCheck();
   validateIdentity(manifest);
   assert.equal(profile, 'staging', 'staging-only aggregate');
@@ -281,6 +298,7 @@ function readReports(dir) {
     'color-preview-smoke',
     'preview-smoke',
     'functional',
+    'content-functional',
     'color-functional',
     'lighthouse',
     'motion',
@@ -327,6 +345,20 @@ function main() {
   );
   console.log(JSON.stringify(gate));
 }
+module.exports = {
+  requiredJobs,
+  requiredKinds,
+  expectedKinds,
+  expectedCoverage,
+  validateIdentity,
+  validateHost,
+  validateSizes,
+  validateGate,
+  selectedJobs,
+  aggregate,
+  readReports,
+  main,
+};
 if (require.main === module) {
   try {
     main();
@@ -361,17 +393,3 @@ if (require.main === module) {
     }
   }
 }
-module.exports = {
-  requiredJobs,
-  requiredKinds,
-  expectedKinds,
-  expectedCoverage,
-  validateIdentity,
-  validateHost,
-  validateSizes,
-  validateGate,
-  selectedJobs,
-  aggregate,
-  readReports,
-  main,
-};

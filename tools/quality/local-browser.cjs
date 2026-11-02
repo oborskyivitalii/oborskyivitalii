@@ -13,9 +13,10 @@ const {
   } = require('./common.cjs'),
   { start } = require('./serve.cjs');
 const flightDetail = require('./flight-detail.cjs');
+const qaIsolation = require('./analytics-isolation.cjs');
 const routes = ['index', 'research', 'writing', 'talks', 'credits'];
 const catalog = require('../../site/content/catalog.json'),
-  primaryCount = Object.keys(catalog.records).length;
+  primaryCount = require('../site/validate-catalog.cjs').writingEntries(catalog).length;
 const selectedResponses = ['Arkadiy Dobkin', 'Matthew Skelton', 'Markus Kopko'];
 const completeResponses = [
   'Markus Kopko',
@@ -38,10 +39,10 @@ function analyticsRequest(value, base, manifest, settings = require('../../site/
     return false;
   const config = require('../site/analytics.cjs').validate(settings);
   if (!config.enabled || config.siteURL !== base.replace(/\/$/, '') + '/') return false;
-  return [
-    'https://static.cloudflareinsights.com/beacon.min.js',
-    'https://cloudflareinsights.com/cdn-cgi/rum',
-  ].includes(value);
+  return (
+    value === 'https://static.cloudflareinsights.com/beacon.min.js' ||
+    qaIsolation.collectorRequest(value)
+  );
 }
 function artifactFile(value, base, manifest) {
   const url = new URL(value),
@@ -52,7 +53,7 @@ function artifactFile(value, base, manifest) {
   const canonical = name.endsWith('/') || name === '' ? name + 'index.html' : name + '.html';
   return Object.hasOwn(manifest.files, canonical) ? canonical : null;
 }
-async function verifyResponse(response, base, manifest, checkedFiles) {
+async function verifyResponse(response, base, manifest, checkedFiles, observations = null) {
   const source = new URL(response.url()),
     scope = new URL(base.replace(/\/$/, '') + '/');
   if (source.origin !== scope.origin || !source.pathname.startsWith(scope.pathname))
@@ -79,10 +80,202 @@ async function verifyResponse(response, base, manifest, checkedFiles) {
   }
   if (!file) return { observed: false };
   assert.equal(status, 200, 'public response ' + file);
-  const digest = hash(await response.body());
+  const bytes = await response.body();
+  const digest = hash(bytes);
   assert.equal(digest, manifest.files[file].sha256, 'served bytes ' + file);
   checkedFiles.add(file);
-  return { observed: true, file, status, sha256: digest };
+  const result = { observed: true, file, status, sha256: digest };
+  observations?.set(file, {
+    ...result,
+    url: response.url(),
+    mime: response.headers()['content-type'],
+    bytes: bytes.length,
+  });
+  return result;
+}
+async function verifyRequest(request, base, manifest, checkedFiles, observations = null) {
+  // Register ownership before response headers arrive. A pending request must
+  // not become invisible to the document-navigation body-read barrier.
+  const response = await request.response();
+  if (!response) {
+    const observation = requestFailure(request);
+    const error = new Error('request failed before response ' + observation.url);
+    error.requestFailure = observation;
+    throw error;
+  }
+  return verifyResponse(response, base, manifest, checkedFiles, observations);
+}
+
+function validateResearchFallback(evidence, manifest, { mode, width, theme, baseURL }) {
+  assert.ok(
+    (mode === 'no-js' && width === 320 && theme === 'light') ||
+      (mode === 'no-canvas' && width === 390 && theme === 'dark'),
+    'bounded Research fallback observation'
+  );
+  const names = manifest.components?.routes?.research?.assets;
+  assert.equal(names?.length, 1, 'declared Research fallback');
+  const name = names[0];
+  assert.equal(evidence?.kind, 'research-static-fallback');
+  for (const [key, expected] of Object.entries({ mode, width, theme }))
+    assert.equal(evidence[key], expected, 'Research fallback scenario ' + key);
+  assert.equal(evidence.resource?.file, name, 'Research fallback response identity');
+  assert.equal(evidence.resource.status, 200);
+  assert.equal(evidence.resource.sha256, manifest.files[name].sha256);
+  assert.equal(evidence.resource.bytes, manifest.files[name].raw);
+  assert.equal(evidence.resource.url, new URL(name, baseURL.replace(/\/$/, '') + '/').href);
+  require('./serve.cjs').assertContentType(name, evidence.resource.mime);
+  const geometry = evidence.geometry;
+  assert.equal(geometry?.page, 'research');
+  assert.equal(geometry.h1, 1);
+  assert.equal(
+    geometry.resourceURL,
+    new URL(name + '#research-fallback', baseURL.replace(/\/$/, '') + '/').href
+  );
+  assert.equal(geometry.viewBox, '0 0 1440 900');
+  assert.equal(geometry.preserveAspectRatio, 'xMidYMid slice');
+  assert.equal(geometry.useCount, 1);
+  assert.equal(geometry.visible, true);
+  assert.equal(geometry.viewport.width, width);
+  for (const key of ['x', 'y', 'width', 'height'])
+    assert.ok(Number.isFinite(geometry.box[key]), 'Research fallback geometry ' + key);
+  assert.ok(geometry.box.width > 0 && geometry.box.height > 0, 'unpainted Research use geometry');
+  if (mode === 'no-js') {
+    assert.equal(geometry.dataTheme, null, 'no-JS theme remains CSS-owned');
+    assert.equal(geometry.prefersDark, false, 'no-JS light color preference');
+  } else assert.equal(geometry.dataTheme, theme);
+  for (const key of ['paper', 'accent', 'systems'])
+    assert.ok(
+      typeof geometry.palette[key] === 'string' && geometry.palette[key].trim(),
+      'unobserved Research palette'
+    );
+  assert.equal(evidence.png?.file, `research-fallback-${mode}-${width}-${theme}.png`);
+  assert.match(evidence.png.sha256, /^[a-f0-9]{64}$/);
+  assert.ok(Number.isInteger(evidence.png.bytes) && evidence.png.bytes > 0);
+}
+
+async function observeResearchFallback(page, manifest, observations, scenario, baseURL) {
+  assert.ok(
+    (scenario.mode === 'no-js' && scenario.width === 320 && scenario.theme === 'light') ||
+      (scenario.mode === 'no-canvas' && scenario.width === 390 && scenario.theme === 'dark'),
+    'bounded Research fallback capture'
+  );
+  const name = manifest.components.routes.research.assets[0];
+  const resource = observations.get(name);
+  assert.ok(resource, 'unobserved Research SVG response');
+  const geometry = await page.evaluate(() => {
+    const svg = document.querySelector('svg.space-fallback');
+    const use = svg?.querySelector('use');
+    const box = use?.getBBox();
+    const rectangle = svg?.getBoundingClientRect();
+    const style = svg && getComputedStyle(svg);
+    const parent = svg?.parentElement && getComputedStyle(svg.parentElement);
+    const root = getComputedStyle(document.documentElement);
+    return {
+      page: document.body.dataset.page,
+      h1: document.querySelectorAll('h1').length,
+      href: use?.getAttribute('href'),
+      resourceURL: use && new URL(use.getAttribute('href'), document.baseURI).href,
+      documentURL: location.href,
+      viewBox: svg?.getAttribute('viewBox'),
+      preserveAspectRatio: svg?.getAttribute('preserveAspectRatio'),
+      useCount: svg?.querySelectorAll('use').length,
+      box: box && { x: box.x, y: box.y, width: box.width, height: box.height },
+      visible: Boolean(
+        style &&
+          parent &&
+          rectangle.width > 0 &&
+          rectangle.height > 0 &&
+          rectangle.right > 0 &&
+          rectangle.bottom > 0 &&
+          rectangle.left < innerWidth &&
+          rectangle.top < innerHeight &&
+          style.display !== 'none' &&
+          style.visibility === 'visible' &&
+          Number(style.opacity) > 0 &&
+          parent.display !== 'none' &&
+          parent.visibility === 'visible' &&
+          Number(parent.opacity) > 0
+      ),
+      viewport: { width: innerWidth, height: innerHeight },
+      dataTheme: document.documentElement.getAttribute('data-theme'),
+      prefersDark: matchMedia('(prefers-color-scheme: dark)').matches,
+      colorScheme: root.colorScheme,
+      palette: Object.fromEntries(
+        ['paper', 'accent', 'systems'].map((key) => [key, root.getPropertyValue('--' + key).trim()])
+      ),
+    };
+  });
+  const file = `research-fallback-${scenario.mode}-${scenario.width}-${scenario.theme}.png`;
+  const bytes = await page.screenshot();
+  fs.mkdirSync(out, { recursive: true });
+  fs.writeFileSync(path.join(out, file), bytes);
+  const evidence = {
+    kind: 'research-static-fallback',
+    ...scenario,
+    resource,
+    geometry,
+    png: { file, sha256: hash(bytes), bytes: bytes.length },
+  };
+  validateResearchFallback(evidence, manifest, { ...scenario, baseURL });
+  return evidence;
+}
+function requestFailure(request) {
+  const observation = { url: null, method: null, resourceType: null, failure: null, timing: null };
+  const unavailable = {};
+  for (const name of Object.keys(observation)) {
+    try {
+      if (typeof request[name] !== 'function') {
+        unavailable[name] = 'unavailable';
+      } else {
+        observation[name] = request[name]() ?? null;
+      }
+    } catch (error) {
+      unavailable[name] = error.message;
+    }
+  }
+  return { ...observation, unavailable };
+}
+async function failedScenario(page, error, responseChecks, details, reportDirectory = out) {
+  const result = {
+    ...details,
+    pass: false,
+    error: error.message,
+    stack: error.stack,
+    state: null,
+    stateCaptureError: null,
+    diagnosticErrors: [],
+  };
+  // Snapshot before screenshot/drain can cross the runtime's native fallback.
+  try {
+    result.state = await state(page);
+  } catch (captureError) {
+    result.stateCaptureError = captureError.message;
+  }
+  try {
+    fs.mkdirSync(reportDirectory, { recursive: true });
+    await page.screenshot({
+      path: path.join(reportDirectory, 'preview-' + details.width + '-' + details.mode + '.png'),
+    });
+  } catch (screenshotError) {
+    result.diagnosticErrors.push({ kind: 'screenshot', error: screenshotError.message });
+  }
+  try {
+    await drainResponses(responseChecks);
+  } catch (verificationError) {
+    result.diagnosticErrors.push({
+      kind: 'response-verification',
+      error: verificationError.message,
+    });
+  }
+  return result;
+}
+async function closeScenarioContext(context, failure) {
+  try {
+    await context.close();
+  } catch (error) {
+    if (!failure) throw error;
+    failure.diagnosticErrors.push({ kind: 'context-close', error: error.message });
+  }
 }
 function identity(manifest) {
   if (process.env.SITE_EXPECTED_PUBLIC_DIGEST)
@@ -153,6 +346,71 @@ async function routeBytes(context, url, manifest) {
     })
   );
 }
+function contentDocuments(manifest) {
+  if (!manifest.contentRelease) return null;
+  assert.equal(manifest.contentRelease.kind, 'content-release');
+  const changed = manifest.contentRelease.builtArticles;
+  assert.ok(Array.isArray(changed) && changed.length <= 50, 'bounded changed article inventory');
+  assert.equal(new Set(changed).size, changed.length, 'duplicate changed article smoke target');
+  for (const key of changed)
+    assert.ok(
+      Object.hasOwn(manifest.components.articles || {}, key),
+      'missing changed article descriptor'
+    );
+  return changed;
+}
+
+async function contentJourney(browser, baseURL, manifest, isolation = []) {
+  const documents = contentDocuments(manifest);
+  assert.ok(documents, 'content journey needs explicit content release');
+  const writing = [];
+  for (const width of [1440, 390]) {
+    const context = await qaIsolation.createContext(
+      browser,
+      {
+        viewport: { width, height: 900 },
+        javaScriptEnabled: false,
+      },
+      isolation
+    );
+    try {
+      const page = await context.newPage();
+      const response = await page.goto(baseURL.replace(/\/$/, '') + '/writing.html');
+      await verifyResponse(response, baseURL, manifest, new Set());
+      assert.equal(await page.locator('h1').count(), 1, 'no-JS Writing main heading');
+      const count = await page.locator('#archive-results li.publication').count();
+      assert.equal(count, primaryCount, 'no-JS Writing complete catalog rows');
+      const label = (await page.locator('#archive-count').textContent()).trim();
+      assert.equal(Number(label.match(/^\d+/)?.[0]), count, 'no-JS count matches actual cards');
+      assert.equal(
+        await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1),
+        false,
+        'no-JS Writing overflow'
+      );
+      writing.push({ width, mode: 'no-js', count, label, completeCatalog: true });
+    } finally {
+      await context.close();
+    }
+  }
+  const articles = [];
+  const descriptors = manifest.components.articles || {};
+  for (const key of documents) {
+    const ordered = Object.fromEntries([
+      [key, descriptors[key]],
+      ...Object.entries(descriptors).filter(([other]) => other !== key),
+    ]);
+    const observation = await require('./article-browser.cjs').articleJourney(baseURL, ordered, {
+      browser,
+      isolation,
+    });
+    require('./article-browser.cjs').validateArticleJourney(observation, ordered, {
+      engine: manifest.components.engine,
+      baseURL,
+    });
+    articles.push(observation);
+  }
+  return { kind: 'content-smoke', writing, documents, articles, fullGate: false };
+}
 async function responseNames(page, route) {
   assert.ok(['index', 'research'].includes(route), 'known response route');
   const selector =
@@ -195,30 +453,53 @@ async function discussionAnchor(page) {
     { polling: 40, timeout: 3000 }
   );
 }
-async function discussionNavigation(page, url) {
-  await page.locator(routeSelector('index')).evaluate((el) => el.click());
+async function documentNavigation(page, url, responseChecks) {
+  return navigationAction(responseChecks, () => page.goto(url, { waitUntil: 'load' }));
+}
+async function navigationAction(responseChecks, navigate) {
+  // Document replacement discards CDP bodies; an in-shell route change can
+  // also abort the departing archive's still-pending publication-index fetch.
+  await drainResponses(responseChecks);
+  return navigate();
+}
+async function drainResponses(responseChecks) {
+  let checked = 0;
+  while (checked < responseChecks.length) {
+    const batch = responseChecks.slice(checked);
+    checked = responseChecks.length;
+    await Promise.all(batch);
+  }
+}
+async function discussionNavigation(page, url, responseChecks) {
+  await navigationAction(responseChecks, () =>
+    page.locator(routeSelector('index')).evaluate((el) => el.click())
+  );
   await ready(page, 'index');
   const home = await responseNames(page, 'index'),
     cta = page.locator('#acknowledgements > a.text-link');
   assert.equal(await cta.getAttribute('href'), 'research.html#acknowledgements');
   assert.equal(await cta.textContent(), 'Full discussion & source context ↗');
-  await cta.evaluate((el) => el.click());
+  await navigationAction(responseChecks, () => cta.evaluate((el) => el.click()));
   await ready(page, 'research');
   await discussionAnchor(page);
   const research = await responseNames(page, 'research');
-  await page.goBack();
+  await navigationAction(responseChecks, () => page.goBack());
   await ready(page, 'index');
   await responseNames(page, 'index');
-  await page.goForward();
+  await navigationAction(responseChecks, () => page.goForward());
   await ready(page, 'research');
   await discussionAnchor(page);
   const nav = page.locator('nav[aria-label="Research sections"] a[href="#acknowledgements"]');
   assert.equal(await nav.textContent(), 'Advisors & responses');
-  await page.locator(routeSelector('index')).evaluate((el) => el.click());
+  await navigationAction(responseChecks, () =>
+    page.locator(routeSelector('index')).evaluate((el) => el.click())
+  );
   await ready(page, 'index');
-  await page
-    .locator('#acknowledgements a[href="research.html#ua-advisors"]')
-    .evaluate((el) => el.click());
+  await navigationAction(responseChecks, () =>
+    page
+      .locator('#acknowledgements a[href="research.html#ua-advisors"]')
+      .evaluate((el) => el.click())
+  );
   await ready(page, 'research');
   assert.equal(new URL(page.url()).hash, '#ua-advisors');
   await page.waitForFunction(
@@ -232,34 +513,46 @@ async function discussionNavigation(page, url) {
   await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
   await nav.click();
   await discussionAnchor(page);
-  await page.goto(url + '/research.html#acknowledgements', { waitUntil: 'load' });
+  await documentNavigation(page, url + '/research.html#acknowledgements', responseChecks);
   await ready(page, 'research');
   await discussionAnchor(page);
   await responseNames(page, 'research');
   return { home, research, cta: true, localNavigation: true, history: true, directAnchor: true };
 }
-async function writingControls(page) {
+async function writingControls(page, publicationIndex = false) {
+  if (publicationIndex)
+    await page.waitForFunction(() => document.body.dataset.tagsState === 'ready', null, {
+      timeout: 10000,
+    });
   await page.locator('#archive-topic').selectOption('systems');
   assert.ok(
-    (await page.locator('li.publication:visible').count()) > 0,
+    (await page.locator('#archive-results li.publication:visible').count()) > 0,
     'Writing filter has results'
   );
   await page.evaluate(() => window.dispatchEvent(new Event('beforeprint')));
   await page.emulateMedia({ media: 'print' });
+  const printedCount = await page.locator('#archive-results li.publication:visible').count();
   assert.equal(
-    await page.locator('li.publication:visible').count(),
+    printedCount,
     primaryCount,
     'print shows all primary records and their edition links'
   );
-  assert.match(
-    await page.locator('#archive-count').textContent(),
-    /their linked platform editions shown for printing/
+  const printLabel = await page.locator('#archive-count').evaluate((element) => ({
+    actual: element.textContent.trim(),
+    template: element.dataset.print,
+  }));
+  assert.equal(
+    printLabel.actual,
+    printLabel.template
+      .replaceAll('{count}', String(printedCount))
+      .replaceAll('{total}', String(primaryCount)),
+    'Writing print count matches its current authored label and displayed rows'
   );
   await page.emulateMedia({ media: 'screen' });
   await page.evaluate(() => window.dispatchEvent(new Event('afterprint')));
   await page.locator('.filter-reset').evaluate((el) => el.click());
   assert.equal(
-    await page.locator('li.publication:visible').count(),
+    await page.locator('#archive-results li.publication:visible').count(),
     primaryCount,
     'Writing Reset retains every primary record'
   );
@@ -306,17 +599,54 @@ function assertRenderedMode(observed, id, mode) {
     );
   }
 }
-async function scenario(browser, url, manifest, variant, width, mode) {
-  const context = await browser.newContext({
-      viewport: { width, height: width === 390 ? 844 : 900 },
-      reducedMotion: 'no-preference',
-    }),
+async function researchScenarioFallback({
+  page,
+  manifest,
+  responseChecks,
+  responseObservations,
+  id,
+  mode,
+  width,
+  theme,
+  url,
+}) {
+  if (
+    id !== 'research' ||
+    mode !== 'no-canvas' ||
+    width !== 390 ||
+    !manifest.components?.routes?.research?.assets
+  )
+    return {};
+  await drainResponses(responseChecks);
+  return {
+    researchFallback: await observeResearchFallback(
+      page,
+      manifest,
+      responseObservations,
+      { mode, width, theme },
+      url
+    ),
+  };
+}
+
+async function scenario(browser, url, manifest, variant, width, mode, isolation = []) {
+  const context = await qaIsolation.createContext(
+      browser,
+      {
+        viewport: { width, height: width === 390 ? 844 : 900 },
+        reducedMotion: 'no-preference',
+      },
+      isolation
+    ),
     page = await context.newPage();
+  let failure;
   const errors = [],
+    requestFailures = [],
     external = [],
     analytics = [],
     responseChecks = [],
     checkedFiles = new Set(),
+    responseObservations = new Map(),
     rows = [];
   page.setDefaultTimeout(8000);
   await context.addInitScript((mode) => {
@@ -331,20 +661,21 @@ async function scenario(browser, url, manifest, variant, width, mode) {
   page.on('pageerror', (error) => errors.push(error.message));
   page.on('request', (request) => {
     const value = request.url();
-    if (value.startsWith(url + '/')) return;
+    if (value.startsWith(url + '/')) {
+      responseChecks.push(
+        verifyRequest(request, url, manifest, checkedFiles, responseObservations).catch((error) => {
+          errors.push(error.message);
+          if (error.requestFailure) requestFailures.push(error.requestFailure);
+        })
+      );
+      return;
+    }
     if (analyticsRequest(value, url, manifest)) analytics.push(value);
     else external.push(value);
   });
-  page.on('response', (response) => {
-    responseChecks.push(
-      verifyResponse(response, url, manifest, checkedFiles).catch((error) => {
-        errors.push(error.message);
-      })
-    );
-  });
   try {
     const served = await routeBytes(context, url, manifest);
-    await page.goto(url + '/index.html', { waitUntil: 'load' });
+    await documentNavigation(page, url + '/index.html', responseChecks);
     await ready(page, 'index');
     if (mode === 'normal')
       await page.waitForFunction(
@@ -362,7 +693,9 @@ async function scenario(browser, url, manifest, variant, width, mode) {
       const checkDetail = mode === 'normal' && id === 'writing';
       if (checkDetail) await flightDetail.begin(page);
       if (id !== 'index') {
-        await page.locator(routeSelector(id)).evaluate((el) => el.click());
+        await navigationAction(responseChecks, () =>
+          page.locator(routeSelector(id)).evaluate((el) => el.click())
+        );
         await ready(page, id);
       }
       const detail = checkDetail ? await flightDetail.finish(page) : null;
@@ -402,14 +735,29 @@ async function scenario(browser, url, manifest, variant, width, mode) {
         await page.locator('#space-motion').click();
       }
       await page.locator('.appearance summary').click();
-      if (id === 'writing') await writingControls(page);
+      if (id === 'writing') {
+        await writingControls(page, Boolean(manifest.files['publication-index.json']));
+        await drainResponses(responseChecks);
+      }
       if (id === 'research') await researchControls(page, mode, width);
+      const researchFallbackEvidence = await researchScenarioFallback({
+        page,
+        manifest,
+        responseChecks,
+        responseObservations,
+        id,
+        mode,
+        width,
+        theme,
+        url,
+      });
       if (id === 'index' || id === 'research') await responseNames(page, id);
       rows.push({
         route: id,
         pass: true,
         state: observed,
         detail,
+        ...researchFallbackEvidence,
         checks: [
           'exact identity',
           'heading',
@@ -420,12 +768,12 @@ async function scenario(browser, url, manifest, variant, width, mode) {
         ],
       });
     }
-    await page.goBack();
+    await navigationAction(responseChecks, () => page.goBack());
     await ready(page, 'talks');
-    await page.goForward();
+    await navigationAction(responseChecks, () => page.goForward());
     await ready(page, 'credits');
-    const discussion = await discussionNavigation(page, url);
-    await Promise.all(responseChecks);
+    const discussion = await discussionNavigation(page, url, responseChecks);
+    await drainResponses(responseChecks);
     assert.deepEqual(errors, [], 'runtime and served-byte errors');
     assert.deepEqual(external, [], 'unexpected external requests');
     return {
@@ -443,25 +791,18 @@ async function scenario(browser, url, manifest, variant, width, mode) {
       verifiedResponses: [...checkedFiles].sort(),
     };
   } catch (error) {
-    fs.mkdirSync(out, { recursive: true });
-    await page
-      .screenshot({ path: path.join(out, 'preview-' + width + '-' + mode + '.png') })
-      .catch(() => {});
-    await Promise.all(responseChecks);
-    return {
+    failure = await failedScenario(page, error, responseChecks, {
       width,
       mode,
-      pass: false,
-      error: error.message,
-      stack: error.stack,
       rows,
-      state: await state(page).catch(() => null),
       errors,
+      requestFailures,
       externalRequests: external,
       analyticsRequests: analytics,
-    };
+    });
+    return failure;
   } finally {
-    await context.close();
+    await closeScenarioContext(context, failure);
   }
 }
 async function main() {
@@ -473,16 +814,45 @@ async function main() {
     variant = identity(manifest),
     { server, url } = await start();
   const rows = [],
+    isolation = [],
     pw = toolRequire('playwright');
-  let browser, pass;
+  let browser, pass, articles, content, publicationTags;
   try {
     browser = await pw.chromium.launch(launchOptions('chromium'));
+    const isolationContrast = await require('./analytics-browser.cjs').isolationJourney(browser);
+    if (manifest.files['publication-index.json']) {
+      const index = JSON.parse(
+        fs.readFileSync(path.join(process.env.SITE_PUBLIC_DIR, 'publication-index.json'))
+      );
+      publicationTags = await require('./article-tags-browser.cjs').journey(
+        browser,
+        url,
+        index,
+        manifest.components.articles || {},
+        { isolation }
+      );
+    }
     for (const width of [1440, 390])
       for (const mode of ['normal', 'no-canvas']) {
-        const row = await scenario(browser, url, manifest, variant, width, mode);
+        const row = await scenario(browser, url, manifest, variant, width, mode, isolation);
         rows.push(row);
         console.log('Preview smoke:', width, mode, row.pass ? 'pass' : row.error);
       }
+    if (Object.keys(manifest.components.articles || {}).length) {
+      articles = await require('./article-browser.cjs').articleJourney(
+        url,
+        manifest.components.articles,
+        { browser, isolation }
+      );
+      require('./article-browser.cjs').validateArticleJourney(
+        articles,
+        manifest.components.articles,
+        { engine: manifest.components.engine, baseURL: url }
+      );
+    }
+    if (contentDocuments(manifest))
+      content = await contentJourney(browser, url, manifest, isolation);
+    qaIsolation.validate(isolation);
     pass = rows.length === 4 && rows.every((row) => row.pass);
     report(
       'preview-smoke',
@@ -491,10 +861,15 @@ async function main() {
         profile: 'preview',
         variant,
         browser: browser.version(),
+        qaIsolation: isolation,
+        isolationContrast,
         routes,
         widths: [1440, 390],
         modes: ['normal', 'no-canvas'],
         rows,
+        ...(articles ? { articles } : {}),
+        ...(content ? { content } : {}),
+        ...(publicationTags ? { publicationTags } : {}),
         fullGate: false,
         deploymentAuthorized: false,
       },
@@ -509,6 +884,9 @@ async function main() {
         variant,
         rows,
         error: error.message,
+        qaIsolation: isolation,
+        ...(error.articleCheckpoint ? { articleCheckpoint: error.articleCheckpoint } : {}),
+        ...(error.articleObservations ? { articles: error.articleObservations } : {}),
         fullGate: false,
         deploymentAuthorized: false,
       },
@@ -536,5 +914,17 @@ module.exports = {
   state,
   artifactFile,
   verifyResponse,
+  verifyRequest,
+  observeResearchFallback,
+  validateResearchFallback,
+  drainResponses,
+  requestFailure,
+  failedScenario,
+  closeScenarioContext,
+  documentNavigation,
+  navigationAction,
+  contentDocuments,
+  contentJourney,
+  writingControls,
   analyticsRequest,
 };

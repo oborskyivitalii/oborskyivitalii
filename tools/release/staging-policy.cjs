@@ -146,6 +146,19 @@ function validate(manifest, admission, expectedArtifact = null) {
   assert.equal(tested.sourceCommit, authentication.testedSource, 'wrong tested staging source');
   assert.deepEqual(tested.edition, { id: 'staging', indexable: false, analytics: false });
   stageGate.validateGate(tested, gate, gate.hostedOrigin);
+  if (gate.kind === 'content-staging-gate') {
+    require('../quality/content-gate.cjs').admission(tested);
+    assert.deepEqual(manifest.contentRelease, tested.contentRelease);
+    assert.ok(
+      Object.hasOwn(admission, 'publicationBase'),
+      'content publication requires an exact predecessor lease'
+    );
+  }
+  if (admission.publicationBase !== undefined && admission.publicationBase !== null) {
+    require('./archive.cjs').tag(admission.publicationBase.tag);
+    assert.match(admission.publicationBase.sourceCommit, /^[a-f0-9]{40}$/);
+    assert.match(admission.publicationBase.publicDigest, /^[a-f0-9]{64}$/);
+  }
   const expectedNames = names(authentication.runId, authentication.attempt);
   for (const [record, name] of [
     [authentication.public, expectedNames.public],
@@ -186,7 +199,7 @@ function validate(manifest, admission, expectedArtifact = null) {
   return true;
 }
 
-function bind(directory, authenticationFile, testedDirectory, gateFile) {
+function bind(directory, authenticationFile, testedDirectory, gateFile, publicationBaseFile) {
   const read = (file) => JSON.parse(fs.readFileSync(file));
   const manifest = read(path.join(directory, 'artifact.json'));
   const tested = read(path.join(testedDirectory, 'artifact.json'));
@@ -205,6 +218,7 @@ function bind(directory, authenticationFile, testedDirectory, gateFile) {
     artifactDigest: manifest.artifactDigest,
     variant: require('../quality/common.cjs').variant(manifest),
     derivation: 'production-edition-from-identical-staged-source-tree',
+    ...(publicationBaseFile ? { publicationBase: read(publicationBaseFile) } : {}),
     staging: { authentication: read(authenticationFile), manifest: tested, gate: read(gateFile) },
   };
   validate(manifest, admission);

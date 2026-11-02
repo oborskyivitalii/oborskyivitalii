@@ -1,0 +1,537 @@
+{
+  "schema": 1,
+  "kind": "article-render-artifact",
+  "articleId": "pmday-ai-both-sides",
+  "contentEdition": "pmday-ai-both-sides-en-review-20261024-r30",
+  "semanticSha256": "35324c43d2eb499e1bb17d2a4a07ec80649d9714a6715206705fadd9f5e1ee06",
+  "source": {
+    "path": "site/publications/pmday-ai-both-sides/manuscript.en.md",
+    "sha256": "2c8729927685f7abec734865013dded9e98cce925bbd727faae74f074006bc29",
+    "commit": null,
+    "blob": null,
+    "state": "working-tree-review"
+  },
+  "generatedAt": "2026-10-24T12:42:27.107Z",
+  "selection": "review",
+  "canonical": null,
+  "producer": {
+    "inputs": [
+      {
+        "path": "tools/publishing/article.cjs",
+        "sha256": "54459f1f49b3405bc5fdf9f5a3e627d026ad3bbe7822026dc1ca4602a69eb7cb"
+      },
+      {
+        "path": "tools/publishing/ast.mjs",
+        "sha256": "b7ca7eadfb43bbe8eac8fd0b1684452dea58755afd55616674d6b49db3bd8155"
+      },
+      {
+        "path": "tools/publishing/kit.cjs",
+        "sha256": "370344064b930fb0c6c801005a4152bd9f135f86ecfff1e5406490a7a80f97ec"
+      },
+      {
+        "path": "tools/publishing/render.cjs",
+        "sha256": "400ba0bf93150389591f05e2b05a12619b35d584222777149f08e8a7bafb2f10"
+      },
+      {
+        "path": "tools/publishing/safety.cjs",
+        "sha256": "b2946d6fa8b1b8e2aca4105a6929788c5479c5dbb78d0e49f8efd139051de4cb"
+      },
+      {
+        "path": "tools/publishing/provenance.cjs",
+        "sha256": "d228ca0aaad7c508f79367f95d613d1f5dd22ef0b2dde31a55be4416b0a59c80"
+      },
+      {
+        "path": "tools/publishing/history.cjs",
+        "sha256": "a9d6cfc68cd9c441489f0a795a76572aa64442467d36f898f82810cf46fa39bb"
+      },
+      {
+        "path": "tools/publishing/events.cjs",
+        "sha256": "145a9391dae7ae6fc5a88469de2029663ff046eebe1a11458040d867cbdb939c"
+      },
+      {
+        "path": "tools/publishing/site-event.cjs",
+        "sha256": "da9981654fe438be47f1ca2bd29cd911bdb0e68d9a8da4161ce94ee2ae9bc2ff"
+      },
+      {
+        "path": "tools/publishing/semantic.cjs",
+        "sha256": "64fdf4907eec576a143ecf459d26954d5d5981d010ce8bd45c071f4aecdafbfe"
+      },
+      {
+        "path": "tools/publishing/profile.cjs",
+        "sha256": "589be280c3d8ee1d9676414bae2ef846ffa2cbffef9ee0bc04a4e068c104db55"
+      },
+      {
+        "path": "tools/publishing/text.cjs",
+        "sha256": "9d36b09fa64068d5a292a23b6b9acec2819e461bda9b20b23116157e9264c860"
+      },
+      {
+        "path": "tools/publishing/presentation.cjs",
+        "sha256": "eee79078d2f9cff4c9132ee64e0bdf338aee319dce06014369b5e0e14b2d978c"
+      },
+      {
+        "path": "site/templates/articles/print.html",
+        "sha256": "f06eebb1c638fe4de44545a460a6618328d6cfe0b4f42d5feaa363b085ee7dd0"
+      },
+      {
+        "path": "site/engine/article-print.css",
+        "sha256": "085b5d48cf79bdb8e6321f017353b8e882ffeb705883149871b09e940c0ea0fd"
+      },
+      {
+        "path": "tools/publishing/print.mjs",
+        "sha256": "d027e724d1d944fb643e5bf64e106cc673f63972f87059afa30fbdafd9d2fddc"
+      },
+      {
+        "path": "tools/publishing/print-resource.cjs",
+        "sha256": "c5ba9afc55b8a818cbcef003e845a47c4ea20275f8b8f52bd11b2be0d39483bf"
+      }
+    ],
+    "node": "v24.22.1",
+    "dependencyLockSha256": "8b4895a11735ff8f614accd5882470af24ecb1e1c2bcb691bc31c4fb708c811d"
+  },
+  "inputHashes": [
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/assets/article-cover-detail-1280x398.png",
+      "sha256": "843c22a1e6e16d16e824e8be74d593dea3c2f2e6e30b36504e1fff9617f82096"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-03.png",
+      "sha256": "1ae890f9c23827a42e7e068327c6a6ff8738c0194cab97584fd535a6b473ef42"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-09.png",
+      "sha256": "ad1479a5366464b0f5f71f863700bb1071867d6ef5f90111d0f64a46e3b807ab"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-12.png",
+      "sha256": "2f13e3eabd00a27460a83169d296cfc2a8cf4b33e068d1ee22079479028c0d18"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/presentation-cover.png",
+      "sha256": "199d6d64849905eb047c23f7ce43eaab3ef98d949c5009878c8f15a5df7d1180"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/presentation-v35.pdf",
+      "sha256": "b3fa9fb0220a6620db0b28ac3d560b987791be0dfb6cdd02c53c04975d881782"
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261024-r30.json",
+      "sha256": "987a347df2f25890b933decfeccda7fc0e89a0750ff2909626457c72660836ca"
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/launch-post.en.md",
+      "sha256": "416ac6c41811d3ce5643108bedb8fc241f245500d2d00458bb773d9515a99bd9"
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/manuscript.en.md",
+      "sha256": "2c8729927685f7abec734865013dded9e98cce925bbd727faae74f074006bc29"
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/profile.json",
+      "sha256": "8fea9becceb2b4b9e128d36515fbf7dc68145e195067dd643d66bdb8d326ec4c"
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/publication.json",
+      "sha256": "e7f992912dbae34a285042f6f43ef2521f63b1ba881abdade2bf6debe3278045"
+    }
+  ],
+  "assets": [
+    {
+      "id": "cover",
+      "path": "images/01-cover.png",
+      "sha256": "843c22a1e6e16d16e824e8be74d593dea3c2f2e6e30b36504e1fff9617f82096"
+    },
+    {
+      "id": "presentation-cover",
+      "path": "images/02-presentation-cover.png",
+      "sha256": "199d6d64849905eb047c23f7ce43eaab3ef98d949c5009878c8f15a5df7d1180"
+    },
+    {
+      "id": "pmday-slide-03",
+      "path": "images/03-pmday-slide-03.png",
+      "sha256": "1ae890f9c23827a42e7e068327c6a6ff8738c0194cab97584fd535a6b473ef42"
+    },
+    {
+      "id": "pmday-slide-09",
+      "path": "images/04-pmday-slide-09.png",
+      "sha256": "ad1479a5366464b0f5f71f863700bb1071867d6ef5f90111d0f64a46e3b807ab"
+    },
+    {
+      "id": "pmday-slide-12",
+      "path": "images/05-pmday-slide-12.png",
+      "sha256": "2f13e3eabd00a27460a83169d296cfc2a8cf4b33e068d1ee22079479028c0d18"
+    }
+  ],
+  "transformations": [
+    {
+      "platform": "linkedin",
+      "relationship": "equivalent-rendition",
+      "source": {
+        "path": "site/publications/pmday-ai-both-sides/manuscript.en.md",
+        "sha256": "2c8729927685f7abec734865013dded9e98cce925bbd727faae74f074006bc29",
+        "commit": null,
+        "blob": null,
+        "state": "working-tree-review"
+      },
+      "contentEdition": "pmday-ai-both-sides-en-review-20261024-r30",
+      "transforms": [
+        "GFM tables to labeled row sections",
+        "heading link fallback",
+        "declared figure captions and credits"
+      ],
+      "omissions": []
+    },
+    {
+      "platform": "medium",
+      "relationship": "equivalent-rendition",
+      "source": {
+        "path": "site/publications/pmday-ai-both-sides/manuscript.en.md",
+        "sha256": "2c8729927685f7abec734865013dded9e98cce925bbd727faae74f074006bc29",
+        "commit": null,
+        "blob": null,
+        "state": "working-tree-review"
+      },
+      "contentEdition": "pmday-ai-both-sides-en-review-20261024-r30",
+      "transforms": [
+        "GFM tables to labeled row sections",
+        "heading link fallback",
+        "declared figure captions and credits"
+      ],
+      "omissions": []
+    }
+  ],
+  "review": {
+    "path": "review.md",
+    "relationship": "equivalent-rendition",
+    "transforms": [
+      "local figure paths",
+      "declared figure captions and credits"
+    ],
+    "preserved": [
+      "GFM tables"
+    ],
+    "administrativeNotes": "INSTRUCTIONS.md"
+  },
+  "profile": {
+    "id": "pmday-ai-both-sides-review-20261024-r30",
+    "selection": {
+      "schema": 1,
+      "id": "pmday-ai-both-sides-review-20261024-r30",
+      "platforms": {
+        "linkedin": {
+          "formats": [
+            "html",
+            "md",
+            "txt",
+            "copy-ready"
+          ],
+          "relationship": "equivalent-rendition"
+        },
+        "medium": {
+          "formats": [
+            "html",
+            "md",
+            "txt",
+            "copy-ready"
+          ],
+          "relationship": "equivalent-rendition"
+        }
+      },
+      "launch": {
+        "source": "launch-post.en.md",
+        "sha256": "416ac6c41811d3ce5643108bedb8fc241f245500d2d00458bb773d9515a99bd9"
+      },
+      "seo": {
+        "title": "The Sum of Our Technology — AI Changes Both Sides of Software Engineering",
+        "summary": "What if AI acceleration fails outside a code generator? Two shifts in software engineering demand evidence, sustainable delivery and viable socio-technical control."
+      },
+      "assets": {
+        "cover": {
+          "id": "cover"
+        },
+        "hero": {
+          "id": "cover"
+        }
+      },
+      "limits": {
+        "linkedinCharacters": 51000,
+        "mediumCharacters": 51000
+      },
+      "reader": {
+        "references": "inline",
+        "presentation": "download",
+        "images": "webp-lossless",
+        "equivalentImages": {
+          "cover": {
+            "path": "site/assets/publications/pmday-ai-both-sides/cover02/assets/article-cover-detail-1280x398.jpg",
+            "sha256": "a5e462dbd51cdf6bd99febb27b4701753e18cfea8304e8dd97dda67bee9160b5"
+          }
+        },
+        "sections": {
+          "references": "sources-references",
+          "appendices": [
+            "sources-references",
+            "how-to-cite-this-draft",
+            "review-provenance",
+            "revision-history"
+          ]
+        },
+        "elements": [
+          {
+            "role": "prompt",
+            "sha256": "c6b1626abc38043da5c956bf51c3b05aaaa2157b55dbc15a6bb8cb1f6e4e4c48"
+          },
+          {
+            "role": "quotation",
+            "sha256": "264b4acdfaf886788b2a002e6b8143c109f1db17052dfcfa2a22129bf92ee8a1",
+            "attribution": "63fc6c3ee36255a9b385d04155fac3bc00280a155a4115a647ff39b1671482d8"
+          },
+          {
+            "role": "quotation",
+            "sha256": "b81f3755f09ff2ec9eebd88c95a100085c4bea800f7657934ba8a2a92444760c",
+            "attribution": "0d3fdc2e4b999aa4bed721d9a0e2013b1de18807d9e09abd7a17da03fa205e2a"
+          },
+          {
+            "role": "endnote",
+            "sha256": "a7883b0c575a4571744b82c26bcc96dc27e9aa29e4f8ccda55f872dda69fe360"
+          },
+          {
+            "role": "process",
+            "sha256": "691d50bb2f9eceef0d83569b36fdad67546408b64c62a981b3891c1b42dbc6af",
+            "label": "The software delivery lifecycle",
+            "separator": " → ",
+            "emphasizeStep": 3
+          }
+        ]
+      },
+      "print": {
+        "titleBlock": {
+          "subtitle": "4fea5e7e52ba6cf9effd6928a16b37635c7ee06e306513e66b153ed89e118f8e",
+          "byline": "06dd8e42b643bd600b46dd1e3f71390bc2235c7394e6bd5e33309a400f2f701d"
+        },
+        "keepTogether": [
+          "0a000288b07ae9d184cfcfff5430af1e020d6afddf07bca1dbf4045a28d5d333",
+          "6ba05c1f2f05ab6fe73fcb9c439d83dbf90871f80c5184268d997dcc395b86f5"
+        ],
+        "keepWithNext": [
+          "3371b4ed0b043b934aad9fc9129d40ff5a567248b0ec90687966e2721c14e96a",
+          "612115907b62f680d79649fc458d8143fa7034b9ad8144720086e90334999870"
+        ]
+      }
+    },
+    "launchSource": {
+      "path": "site/publications/pmday-ai-both-sides/launch-post.en.md",
+      "sha256": "416ac6c41811d3ce5643108bedb8fc241f245500d2d00458bb773d9515a99bd9"
+    },
+    "furniture": {
+      "seo": {
+        "title": "The Sum of Our Technology — AI Changes Both Sides of Software Engineering",
+        "summary": "What if AI acceleration fails outside a code generator? Two shifts in software engineering demand evidence, sustainable delivery and viable socio-technical control."
+      },
+      "cover": {
+        "id": "cover",
+        "path": "site/assets/publications/pmday-ai-both-sides/cover02/assets/article-cover-detail-1280x398.png",
+        "sha256": "843c22a1e6e16d16e824e8be74d593dea3c2f2e6e30b36504e1fff9617f82096",
+        "width": 1280,
+        "height": 398,
+        "alt": "A solitary person stands before a narrow opening of light between monumental dark walls.",
+        "caption": "The Sum of Our Technology — cover illustration.",
+        "credit": "AI-generated illustration selected by Vitalii Oborskyi (18 October 2026)."
+      },
+      "hero": {
+        "id": "cover",
+        "path": "site/assets/publications/pmday-ai-both-sides/cover02/assets/article-cover-detail-1280x398.png",
+        "sha256": "843c22a1e6e16d16e824e8be74d593dea3c2f2e6e30b36504e1fff9617f82096",
+        "width": 1280,
+        "height": 398,
+        "alt": "A solitary person stands before a narrow opening of light between monumental dark walls.",
+        "caption": "The Sum of Our Technology — cover illustration.",
+        "credit": "AI-generated illustration selected by Vitalii Oborskyi (18 October 2026)."
+      }
+    }
+  },
+  "omissions": [
+    {
+      "scope": "print",
+      "feature": "Full-size diagram reader control",
+      "reason": "Hidden by canonical print stylesheet."
+    },
+    {
+      "scope": "platform",
+      "feature": "Full-size diagram reader control",
+      "reason": "Native editors use the declared upload kit."
+    },
+    {
+      "scope": "print and platform",
+      "feature": "Interactive presentation viewer",
+      "reason": "Poster and source PDF link retained; original PDF included separately in the kit."
+    }
+  ],
+  "outputs": [
+    {
+      "path": "article-print.css",
+      "sha256": "085b5d48cf79bdb8e6321f017353b8e882ffeb705883149871b09e940c0ea0fd",
+      "bytes": 3267
+    },
+    {
+      "path": "article.html",
+      "sha256": "d348dbbe553e3efdbeeb1eb887093e30045bd3417efed2b1a5aacc63e2c8c418",
+      "bytes": 59356
+    },
+    {
+      "path": "article.manifest.json",
+      "sha256": "19835c6caaac741a3db6687b343b029a500a82559a797d01591941beedfb2fc0",
+      "bytes": 3340
+    },
+    {
+      "path": "article.md",
+      "sha256": "2c8729927685f7abec734865013dded9e98cce925bbd727faae74f074006bc29",
+      "bytes": 49262
+    },
+    {
+      "path": "article.pdf",
+      "sha256": "e96c4f21ce1f5a130527d3a37fce8f3f46e4b02c57b8fc701331ad1c72374cc1",
+      "bytes": 1422262
+    },
+    {
+      "path": "article.pdf.artifacts/b2e2da0625437288550c37be5410fb5e0019742cda80cf6f0c96938ff870d0e4/artifact.pdf",
+      "sha256": "e96c4f21ce1f5a130527d3a37fce8f3f46e4b02c57b8fc701331ad1c72374cc1",
+      "bytes": 1422262
+    },
+    {
+      "path": "article.pdf.artifacts/b2e2da0625437288550c37be5410fb5e0019742cda80cf6f0c96938ff870d0e4/manifest.json",
+      "sha256": "19835c6caaac741a3db6687b343b029a500a82559a797d01591941beedfb2fc0",
+      "bytes": 3340
+    },
+    {
+      "path": "article.txt",
+      "sha256": "25a33494d2ebfc60138ebc41501d1a46402f6b0baabfd860e78f75d93657e7b8",
+      "bytes": 49876
+    },
+    {
+      "path": "cover.png",
+      "sha256": "843c22a1e6e16d16e824e8be74d593dea3c2f2e6e30b36504e1fff9617f82096",
+      "bytes": 373126
+    },
+    {
+      "path": "hero.png",
+      "sha256": "843c22a1e6e16d16e824e8be74d593dea3c2f2e6e30b36504e1fff9617f82096",
+      "bytes": 373126
+    },
+    {
+      "path": "images/01-cover.png",
+      "sha256": "843c22a1e6e16d16e824e8be74d593dea3c2f2e6e30b36504e1fff9617f82096",
+      "bytes": 373126
+    },
+    {
+      "path": "images/02-presentation-cover.png",
+      "sha256": "199d6d64849905eb047c23f7ce43eaab3ef98d949c5009878c8f15a5df7d1180",
+      "bytes": 22667
+    },
+    {
+      "path": "images/03-pmday-slide-03.png",
+      "sha256": "1ae890f9c23827a42e7e068327c6a6ff8738c0194cab97584fd535a6b473ef42",
+      "bytes": 115546
+    },
+    {
+      "path": "images/04-pmday-slide-09.png",
+      "sha256": "ad1479a5366464b0f5f71f863700bb1071867d6ef5f90111d0f64a46e3b807ab",
+      "bytes": 188436
+    },
+    {
+      "path": "images/05-pmday-slide-12.png",
+      "sha256": "2f13e3eabd00a27460a83169d296cfc2a8cf4b33e068d1ee22079479028c0d18",
+      "bytes": 170621
+    },
+    {
+      "path": "INSTRUCTIONS.md",
+      "sha256": "623df52408ca474b56d3a66153b57e75dd853085921be8cfd70eb8f13de461a3",
+      "bytes": 3535
+    },
+    {
+      "path": "launch-post.md",
+      "sha256": "416ac6c41811d3ce5643108bedb8fc241f245500d2d00458bb773d9515a99bd9",
+      "bytes": 1528
+    },
+    {
+      "path": "launch-post.txt",
+      "sha256": "31f28bebe0c61efbd5b99bbe61a81ce3b30332a93f156adc5464ff47a0178acd",
+      "bytes": 1559
+    },
+    {
+      "path": "linkedin-copy-ready.html",
+      "sha256": "8002fceb5081873584cdfcd45a2fe92f32b6d73d4c2ab638d865d3e141c1e56f",
+      "bytes": 1193312
+    },
+    {
+      "path": "linkedin.html",
+      "sha256": "b86a5206985b796b37e2e434d8fbe1b0332584a8e3597e58e48ef932589f626d",
+      "bytes": 59765
+    },
+    {
+      "path": "linkedin.md",
+      "sha256": "32e0eaf80be02a81ed31a56857bf111c1f9ba9c0650987a59192445fba491899",
+      "bytes": 50601
+    },
+    {
+      "path": "linkedin.txt",
+      "sha256": "25a33494d2ebfc60138ebc41501d1a46402f6b0baabfd860e78f75d93657e7b8",
+      "bytes": 49876
+    },
+    {
+      "path": "medium-copy-ready.html",
+      "sha256": "8002fceb5081873584cdfcd45a2fe92f32b6d73d4c2ab638d865d3e141c1e56f",
+      "bytes": 1193312
+    },
+    {
+      "path": "medium-upload-kit.json",
+      "sha256": "09214ddf8dc35ee5933e195b81b656cc7d2614a1c5c8d1e0a7c4b42e230be177",
+      "bytes": 2878
+    },
+    {
+      "path": "medium.html",
+      "sha256": "b86a5206985b796b37e2e434d8fbe1b0332584a8e3597e58e48ef932589f626d",
+      "bytes": 59765
+    },
+    {
+      "path": "medium.md",
+      "sha256": "32e0eaf80be02a81ed31a56857bf111c1f9ba9c0650987a59192445fba491899",
+      "bytes": 50601
+    },
+    {
+      "path": "medium.txt",
+      "sha256": "25a33494d2ebfc60138ebc41501d1a46402f6b0baabfd860e78f75d93657e7b8",
+      "bytes": 49876
+    },
+    {
+      "path": "presentation.pdf",
+      "sha256": "b3fa9fb0220a6620db0b28ac3d560b987791be0dfb6cdd02c53c04975d881782",
+      "bytes": 663363
+    },
+    {
+      "path": "print.html",
+      "sha256": "d348dbbe553e3efdbeeb1eb887093e30045bd3417efed2b1a5aacc63e2c8c418",
+      "bytes": 59356
+    },
+    {
+      "path": "print.html.source.json",
+      "sha256": "c8adaac1b19d21d5846989c05789ffe4d342b603625384bd6f905c1477da9bc6",
+      "bytes": 1316
+    },
+    {
+      "path": "profile.json",
+      "sha256": "8fea9becceb2b4b9e128d36515fbf7dc68145e195067dd643d66bdb8d326ec4c",
+      "bytes": 3135
+    },
+    {
+      "path": "review.md",
+      "sha256": "74f75343b07f6c20449f480ae75adce9343417085d9545d5fed92e2176201e2b",
+      "bytes": 52783
+    },
+    {
+      "path": "seo.json",
+      "sha256": "7d4335050c4638653730b63fc10d525389b28c8c3baf733b3cc8aebc501ebcd2",
+      "bytes": 274
+    }
+  ],
+  "artifactId": "14743fdc40b0f06232203da46ec01fd941c17c5b3cd353930f452ba7c03f685b"
+}

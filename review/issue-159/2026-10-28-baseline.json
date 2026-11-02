@@ -1,0 +1,385 @@
+{
+  "schema_version": 1,
+  "owner_issue": 159,
+  "observed_at": "2026-10-28T11:21:57.377Z",
+  "source_ref": "9318a54a684079bb23e5dadcfa4bf705d6783dd0",
+  "cloudflare": {
+    "provider": "Cloudflare Web Analytics",
+    "dataset": "rumPageloadEventsAdaptiveGroups",
+    "hostname": "vitaliioborskyi.ai",
+    "window": {
+      "from": "2026-10-21T00:00:00Z",
+      "to_exclusive": "2026-10-28T00:00:00Z"
+    },
+    "selection": {
+      "site": "Exact site discovered from authorized rum/site_info/list; opaque identifiers omitted",
+      "host_filter": "No explicit host filter; grouped returned host values all vitaliioborskyi.ai",
+      "path_filter": null
+    },
+    "totals": [
+      {
+        "avg": {
+          "sampleInterval": 1.0648379052369077
+        },
+        "count": 427,
+        "sum": {
+          "visits": 166
+        }
+      }
+    ],
+    "browsers": [
+      {
+        "avg": {
+          "sampleInterval": 1
+        },
+        "count": 34,
+        "dimensions": {
+          "userAgentBrowser": "Edge"
+        },
+        "sum": {
+          "visits": 34
+        }
+      },
+      {
+        "avg": {
+          "sampleInterval": 1
+        },
+        "count": 8,
+        "dimensions": {
+          "userAgentBrowser": "Safari"
+        },
+        "sum": {
+          "visits": 7
+        }
+      },
+      {
+        "avg": {
+          "sampleInterval": 1.1092436974789917
+        },
+        "count": 264,
+        "dimensions": {
+          "userAgentBrowser": "ChromeHeadless"
+        },
+        "sum": {
+          "visits": 22
+        }
+      },
+      {
+        "avg": {
+          "sampleInterval": 1
+        },
+        "count": 12,
+        "dimensions": {
+          "userAgentBrowser": "Firefox"
+        },
+        "sum": {
+          "visits": 12
+        }
+      },
+      {
+        "avg": {
+          "sampleInterval": 1
+        },
+        "count": 56,
+        "dimensions": {
+          "userAgentBrowser": "Chrome"
+        },
+        "sum": {
+          "visits": 50
+        }
+      },
+      {
+        "avg": {
+          "sampleInterval": 1
+        },
+        "count": 1,
+        "dimensions": {
+          "userAgentBrowser": "MobileSafariWebview"
+        },
+        "sum": {
+          "visits": 1
+        }
+      },
+      {
+        "avg": {
+          "sampleInterval": 1
+        },
+        "count": 1,
+        "dimensions": {
+          "userAgentBrowser": "ChromeDerivative"
+        },
+        "sum": {
+          "visits": 1
+        }
+      },
+      {
+        "avg": {
+          "sampleInterval": 1
+        },
+        "count": 9,
+        "dimensions": {
+          "userAgentBrowser": "MobileSafari"
+        },
+        "sum": {
+          "visits": 9
+        }
+      },
+      {
+        "avg": {
+          "sampleInterval": 1
+        },
+        "count": 2,
+        "dimensions": {
+          "userAgentBrowser": "Unknown"
+        },
+        "sum": {
+          "visits": 2
+        }
+      },
+      {
+        "avg": {
+          "sampleInterval": 1
+        },
+        "count": 40,
+        "dimensions": {
+          "userAgentBrowser": "ChromeMobile"
+        },
+        "sum": {
+          "visits": 28
+        }
+      }
+    ],
+    "nonHeadless": [
+      {
+        "avg": {
+          "sampleInterval": 1
+        },
+        "count": 163,
+        "sum": {
+          "visits": 144
+        }
+      }
+    ],
+    "paths": [
+      {
+        "avg": {
+          "sampleInterval": 1
+        },
+        "count": 17,
+        "dimensions": {
+          "requestHost": "vitaliioborskyi.ai",
+          "requestPath": "/index.html"
+        }
+      },
+      {
+        "avg": {
+          "sampleInterval": 1.0204081632653061
+        },
+        "count": 50,
+        "dimensions": {
+          "requestHost": "vitaliioborskyi.ai",
+          "requestPath": "/writing.html"
+        }
+      },
+      {
+        "avg": {
+          "sampleInterval": 1
+        },
+        "count": 1,
+        "dimensions": {
+          "requestHost": "vitaliioborskyi.ai",
+          "requestPath": "/talks"
+        }
+      },
+      {
+        "avg": {
+          "sampleInterval": 1.064516129032258
+        },
+        "count": 33,
+        "dimensions": {
+          "requestHost": "vitaliioborskyi.ai",
+          "requestPath": "/credits.html"
+        }
+      },
+      {
+        "avg": {
+          "sampleInterval": 1.0512820512820513
+        },
+        "count": 41,
+        "dimensions": {
+          "requestHost": "vitaliioborskyi.ai",
+          "requestPath": "/talks.html"
+        }
+      },
+      {
+        "avg": {
+          "sampleInterval": 1.1158536585365855
+        },
+        "count": 183,
+        "dimensions": {
+          "requestHost": "vitaliioborskyi.ai",
+          "requestPath": "/"
+        }
+      },
+      {
+        "avg": {
+          "sampleInterval": 1.02
+        },
+        "count": 102,
+        "dimensions": {
+          "requestHost": "vitaliioborskyi.ai",
+          "requestPath": "/research.html"
+        }
+      }
+    ],
+    "queries": {
+      "total": "query { viewer { accounts(filter: {accountTag: \"<ACCOUNT_TAG>\"}) { rumPageloadEventsAdaptiveGroups(limit: 1, filter: {datetime_geq: \"2026-10-21T00:00:00Z\", datetime_lt: \"2026-10-28T00:00:00Z\", siteTag: \"<SITE_TAG>\"}) { count sum { visits } avg { sampleInterval } } } } }",
+      "browsers": "query { viewer { accounts(filter: {accountTag: \"<ACCOUNT_TAG>\"}) { rumPageloadEventsAdaptiveGroups(limit: 100, filter: {datetime_geq: \"2026-10-21T00:00:00Z\", datetime_lt: \"2026-10-28T00:00:00Z\", siteTag: \"<SITE_TAG>\"}) { count sum { visits } avg { sampleInterval } dimensions { userAgentBrowser } } } } }",
+      "segments": "query { viewer { accounts(filter: {accountTag: \"<ACCOUNT_TAG>\"}) { nonHeadless: rumPageloadEventsAdaptiveGroups(limit: 1, filter: {datetime_geq: \"2026-10-21T00:00:00Z\", datetime_lt: \"2026-10-28T00:00:00Z\", siteTag: \"<SITE_TAG>\", userAgentBrowser_neq: \"ChromeHeadless\"}) { count sum { visits } avg { sampleInterval } } paths: rumPageloadEventsAdaptiveGroups(limit: 100, filter: {datetime_geq: \"2026-10-21T00:00:00Z\", datetime_lt: \"2026-10-28T00:00:00Z\", siteTag: \"<SITE_TAG>\"}) { count avg { sampleInterval } dimensions { requestHost requestPath } } } } }"
+    },
+    "limits": [
+      "Counts are provider-reported and sampled where sampleInterval exceeds one; not exact event logs or people.",
+      "Cloudflare data watermark/cache freshness not exposed by these responses.",
+      "ChromeHeadless is automation evidence, not attribution to a CI job; non-headless is not human-only.",
+      "No synthetic visit or browser execution was generated by these read-only API queries.",
+      "Referrer groups, per-vital samples and hosted SDK cost were not queried in B1; remain pending.",
+      "Initial Account introspection returned null; broader schema request depleted rate budget. After provider-directed cooldown, changed bounded dataset queries succeeded; no unchanged failed campaign was rerun."
+    ]
+  },
+  "search_console": {
+    "connector": "Windsor searchconsole",
+    "property": "sc-domain:vitaliioborskyi.ai",
+    "requested_dates": {
+      "from": "2026-10-21",
+      "to": "2026-10-27"
+    },
+    "options": {
+      "include_fresh_data": false
+    },
+    "search_type": "Connector default; not selected or filtered; not proof of all search types",
+    "timezone": "Provider date boundaries not exposed; data_fetched_at described UTC by field metadata, literals lack suffix",
+    "daily_request_fields": [
+      "date",
+      "clicks",
+      "impressions",
+      "data_fetched_at"
+    ],
+    "daily": {
+      "status": "done",
+      "data": [
+        {
+          "date": "2026-10-21",
+          "clicks": 1,
+          "impressions": 11,
+          "data_fetched_at": "2026-10-28T11:15:33"
+        },
+        {
+          "date": "2026-10-22",
+          "clicks": 0,
+          "impressions": 0,
+          "data_fetched_at": "2026-10-28T11:15:33"
+        },
+        {
+          "date": "2026-10-23",
+          "clicks": 0,
+          "impressions": 3,
+          "data_fetched_at": "2026-10-28T11:15:33"
+        },
+        {
+          "date": "2026-10-24",
+          "clicks": 0,
+          "impressions": 1,
+          "data_fetched_at": "2026-10-28T11:15:33"
+        },
+        {
+          "date": "2026-10-25",
+          "clicks": 0,
+          "impressions": 2,
+          "data_fetched_at": "2026-10-28T11:15:33"
+        },
+        {
+          "date": "2026-10-26",
+          "clicks": 0,
+          "impressions": 0,
+          "data_fetched_at": "2026-10-28T11:15:33"
+        }
+      ],
+      "total_rows": 6
+    },
+    "page_request_fields": [
+      "date",
+      "page",
+      "clicks",
+      "impressions",
+      "data_fetched_at"
+    ],
+    "pages": {
+      "status": "done",
+      "data": [
+        {
+          "date": "2026-10-21",
+          "page": "https://vitaliioborskyi.ai/writing.html",
+          "clicks": 1,
+          "impressions": 6,
+          "data_fetched_at": "2026-10-28T11:17:33"
+        },
+        {
+          "date": "2026-10-21",
+          "page": "https://vitaliioborskyi.ai/",
+          "clicks": 0,
+          "impressions": 11,
+          "data_fetched_at": "2026-10-28T11:17:33"
+        },
+        {
+          "date": "2026-10-23",
+          "page": "https://vitaliioborskyi.ai/",
+          "clicks": 0,
+          "impressions": 2,
+          "data_fetched_at": "2026-10-28T11:17:33"
+        },
+        {
+          "date": "2026-10-23",
+          "page": "https://vitaliioborskyi.ai/research.html",
+          "clicks": 0,
+          "impressions": 1,
+          "data_fetched_at": "2026-10-28T11:17:33"
+        },
+        {
+          "date": "2026-10-23",
+          "page": "https://vitaliioborskyi.ai/writing.html",
+          "clicks": 0,
+          "impressions": 1,
+          "data_fetched_at": "2026-10-28T11:17:33"
+        },
+        {
+          "date": "2026-10-24",
+          "page": "https://vitaliioborskyi.ai/research.html",
+          "clicks": 0,
+          "impressions": 1,
+          "data_fetched_at": "2026-10-28T11:17:33"
+        },
+        {
+          "date": "2026-10-25",
+          "page": "https://vitaliioborskyi.ai/",
+          "clicks": 0,
+          "impressions": 2,
+          "data_fetched_at": "2026-10-28T11:17:33"
+        },
+        {
+          "date": "2026-10-25",
+          "page": "https://vitaliioborskyi.ai/writing.html",
+          "clicks": 0,
+          "impressions": 1,
+          "data_fetched_at": "2026-10-28T11:17:33"
+        }
+      ],
+      "total_rows": 8
+    },
+    "limits": [
+      "Daily returned coverage ends 2026-10-26; missing 27 October is unknown, not zero.",
+      "Daily/property impressions and URL-level impressions are not additive; do not reconcile by summing URLs.",
+      "No query/audience/lead inference; Terra SEO research deferred until analytics delivery.",
+      "No forced refresh; preserve connector data_fetched_at separately from retrieval time."
+    ]
+  }
+}

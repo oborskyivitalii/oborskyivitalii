@@ -5,7 +5,12 @@ const path = require('node:path');
 const { documentTemplate, renderSlots } = require('./render-content.cjs');
 const recordsRenderer = require('./render-records.cjs');
 const { validateFragment, substitute, escapeText, escapeAttribute } = require('./html.cjs');
-const { validateCatalog, catalogCounts, editionURL } = require('./validate-catalog.cjs');
+const {
+  validateCatalog,
+  writingEntries,
+  catalogCounts,
+  editionURL,
+} = require('./validate-catalog.cjs');
 const legal = require('./legal.cjs');
 const read = (root, name) => fs.readFileSync(path.join(root, name), 'utf8');
 const load = (root, name) => JSON.parse(read(root, name));
@@ -15,7 +20,21 @@ function catalog(root) {
 function fragment(root, file, c) {
   const content = load(root, file),
     template = documentTemplate(content, file);
-  return { html: renderSlots(read(root, template), content, c, file), inputs: [file, template] };
+  let html = renderSlots(read(root, template), content, c, file);
+  const inputs = [file, template];
+  if (html.includes('{{EVENT_GROUPS}}')) {
+    if (
+      file !== 'site/content/pages/talks/talks.json' ||
+      html.split('{{EVENT_GROUPS}}').length !== 2
+    )
+      throw Error('Event collection requires its unique Talks slot');
+    const events = 'site/content/events.json';
+    html = html.replace('{{EVENT_GROUPS}}', () =>
+      require('./events.cjs').render(load(root, events), loadComponents(root))
+    );
+    inputs.push(events);
+  }
+  return { html, inputs };
 }
 function loadComponents(root) {
   const dir = 'site/templates/components/';
@@ -75,8 +94,14 @@ function routeInput(root, route, c) {
   const components = loadComponents(root);
   main = publication(components, main, c, dependencies, discussionDependencies, route);
   if (route.id === 'writing') {
+    const entries = writingEntries(c);
+    for (const { id, record } of entries) {
+      dependencies.add(id);
+      for (const key of record.discussions) discussionDependencies.add(key);
+    }
     const counts = catalogCounts(c),
       values = {
+        ...recordsRenderer.archiveViews(components, c, entries),
         CATALOG_PRIMARY_COUNT: counts.primary.total,
         CATALOG_EN_COUNT: counts.primary.en,
         CATALOG_UK_COUNT: counts.primary.uk,
@@ -86,7 +111,6 @@ function routeInput(root, route, c) {
       };
     main = main.replace(/\{\{CATALOG_YEAR:(\d{4})\}\}/g, (_, year) => counts.years[year] || 0);
     main = substitute(main, values, 'catalog totals');
-    for (const id of Object.keys(c.records)) dependencies.add(id);
   }
   if (main.includes('{{DISCUSSION_ROWS}}'))
     main = main.replace(
@@ -102,10 +126,11 @@ function routeInput(root, route, c) {
   const schema = structuredClone(meta.structuredData);
   if (meta.catalogList) {
     if (route.id !== 'writing' || !schema.mainEntity) throw Error('Invalid catalog target');
-    schema.mainEntity.numberOfItems = c.structuredOrder.length;
-    schema.mainEntity.itemListElement = c.structuredOrder.map((entry, i) => {
-      dependencies.add(entry.record);
-      return { '@type': 'ListItem', position: i + 1, item: c.records[entry.record].edition };
+    const entries = writingEntries(c);
+    schema.mainEntity.numberOfItems = entries.length;
+    schema.mainEntity.itemListElement = entries.map(({ id, record }, i) => {
+      dependencies.add(id);
+      return { '@type': 'ListItem', position: i + 1, item: record.edition };
     });
   }
   if (/\{\{/.test(main)) throw Error('Unresolved content token ' + route.id);

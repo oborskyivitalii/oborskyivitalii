@@ -104,7 +104,11 @@ jobs:
       - name: Install locked hosted browser tools
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
-          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium
+          tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium
+      - name: Restore verified pinned browsers without prior launch
+        uses: ./.github/actions/browser-archive
+        with:
+          browsers: chromium
       - name: Register non-production GitHub deployment
         run: node tools/staging/state.cjs register
         env:
@@ -209,7 +213,11 @@ jobs:
       - name: Install locked stable-alias browser checks
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
-          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium
+          tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium
+      - name: Restore verified pinned browsers without prior launch
+        uses: ./.github/actions/browser-archive
+        with:
+          browsers: chromium
       - name: Verify candidate metadata and reject a newly stale tip before promotion
         run: |
           node tools/staging/package.cjs verify staging-package

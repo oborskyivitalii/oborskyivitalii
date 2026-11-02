@@ -4,6 +4,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { normalizeHTML } = require('../tools/check_site_seo.cjs');
+const { nextRecordId, nextYear } = require('./fixtures/catalog.cjs');
 const root = path.resolve(__dirname, '../docs');
 const pages = Object.fromEntries(
   ['index', 'research', 'writing', 'talks', 'credits'].map((name) => [
@@ -11,11 +12,18 @@ const pages = Object.fromEntries(
     normalizeHTML(fs.readFileSync(path.join(root, name + '.html'), 'utf8')),
   ])
 );
+const beforeDevCon = (html) =>
+  require('../tools/check_site_seo.cjs').restoreContentAmendment(
+    html,
+    'talks',
+    require('../review/issue-126/content-amendment.json')
+  );
 const schema = (html) =>
   JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
 const articleRows = (html) => [
   ...html.matchAll(/<li class="publication" data-language="(en|uk)"[^>]*>([\s\S]*?)<\/li>/g),
 ];
+const events = require('../site/content/events.json').groups.flatMap((group) => group.events);
 const talkRows = (html) =>
   [...html.matchAll(/<article class="publication"([^>]*)>([\s\S]*?)<\/article>/g)].map((row) => [
     row[0],
@@ -30,6 +38,50 @@ const plainTitle = (html) =>
       /&(amp|quot|apos|lt|gt);/g,
       (_, entity) => ({ amp: '&', quot: '"', apos: "'", lt: '<', gt: '>' })[entity]
     );
+
+function assertWritingCollection(catalog, html, collection) {
+  const { escapeAttribute } = require('../tools/site/html.cjs');
+  const rows = articleRows(html);
+  const items = collection.itemListElement;
+  const recordsByHref = new Map(
+    Object.values(catalog.records).map((record) => [escapeAttribute(record.edition.url), record])
+  );
+  assert.equal(rows.length, recordsByHref.size);
+  assert.equal(items.length, rows.length);
+  assert.equal(collection.numberOfItems, rows.length);
+  assert.deepEqual(
+    items.map(({ item }) => escapeAttribute(item.url)),
+    rows.map((row) => row[2].match(/class="publication-title" href="([^"]+)"/)[1])
+  );
+  assert.deepEqual(
+    items.map((item) => item.position),
+    rows.map((_, index) => index + 1)
+  );
+  for (let index = 0; index < rows.length; index++) {
+    const row = rows[index];
+    const href = row[2].match(/class="publication-title" href="([^"]+)"/)[1];
+    const record = recordsByHref.get(href);
+    assert.ok(record, href);
+    const item = items[index].item;
+    assert.deepEqual(item, record.edition, 'complete primary edition/byline identity: ' + href);
+    const title = row[2].match(/class="publication-title" href="[^"]+">([\s\S]*?)<\/a>/)[1];
+    assert.equal(item.name, plainTitle(title), href);
+    assert.equal(item.inLanguage, row[1]);
+    const date = record.edition.datePublished || record.edition.dateModified;
+    const time = row[2].match(/<time datetime="([^"]+)">([\s\S]*?)<\/time>/);
+    if (date) {
+      assert.ok(time, 'dated primary edition retains its time element');
+      assert.equal(time[1], date);
+      if (!record.edition.datePublished) assert.match(time[2], /· edited/);
+    } else {
+      assert.equal(record.kind, 'local-article', 'only declared local preparation is undated');
+      assert.equal(time, null, 'undated preparation does not invent a publication date');
+      assert.equal(item.datePublished, undefined);
+      assert.equal(item.dateModified, undefined);
+    }
+  }
+  return { rows, items };
+}
 
 test('selected Home responses link to the complete Research inventory with preserved evidence', () => {
   const names = {
@@ -206,7 +258,7 @@ test('canonical topic-first public records preserve bounded copy, source bylines
   }
   assert.ok(
     sections.index.includes(
-      'In his public response to <em>Thinking Systems</em>, Dobkin recommended reading the article and added two propositions: a broader market for model-mediated software and differentiation through domain-specific runtime control architectures.'
+      'In his public response to <em>Thinking Systems</em>, Arkadiy recommended reading the article and added two propositions: a broader market for model-mediated software and differentiation through domain-specific runtime control architectures.'
     )
   );
   const [advisors, responses] = sections.research.split(
@@ -218,12 +270,12 @@ test('canonical topic-first public records preserve bounded copy, source bylines
   assert.ok(responses.includes('Public response by <a'));
   assert.ok(
     responses.includes(
-      'In a public LinkedIn post about <em>Thinking Systems</em>, Dobkin recommended the article to readers building systems where model judgment has consequential effects. He emphasized runtime control and outlined two possibilities: model-mediated software could address problems previously impractical to automate, while domain- and client-specific control architectures could remain differentiating as models and generic infrastructure commoditize.'
+      'In a public LinkedIn post about <em>Thinking Systems</em>, Arkadiy recommended the article to readers building systems where model judgment has consequential effects. He emphasized runtime control and outlined two possibilities: model-mediated software could address problems previously impractical to automate, while domain- and client-specific control architectures could remain differentiating as models and generic infrastructure commoditize.'
     )
   );
   assert.ok(
     responses.includes(
-      'The published article separately credits an earlier exchange with Dobkin for helping shape the <em>Thinking Systems</em> formulation.'
+      'The published article separately credits an earlier exchange with Arkadiy for helping shape the <em>Thinking Systems</em> formulation.'
     )
   );
 });
@@ -382,27 +434,7 @@ test('language-labelled editions match article schema and retain the original pr
     if (row[1] === 'uk') assert.ok(row[2].includes('<span lang="uk">'));
   }
   const items = schema(pages.writing).mainEntity.itemListElement;
-  assert.equal(items.length, rows.length);
-  assert.deepEqual(
-    items.map((item) => item.item.url),
-    rows.map((row) => row[2].match(/class="publication-title" href="([^"]+)"/)[1])
-  );
-  assert.deepEqual(
-    items.map((item) => item.position),
-    rows.map((_, index) => index + 1)
-  );
-  for (const row of rows) {
-    const url = row[2].match(/class="publication-title" href="([^"]+)"/)[1];
-    const item = items.find((i) => i.item.url === url)?.item;
-    assert.ok(item, url);
-    const title = row[2].match(/class="publication-title" href="[^"]+">([\s\S]*?)<\/a>/)[1];
-    assert.equal(item.name, plainTitle(title), url);
-    assert.equal(item.author.name, 'Vitalii Oborskyi');
-    assert.equal(item.inLanguage, row[1]);
-    const date = row[2].match(/datetime="([^"]+)"/)[1];
-    assert.equal(item[row[2].includes('· edited') ? 'dateModified' : 'datePublished'], date);
-    if (row[2].includes('· edited')) assert.equal(item.datePublished, undefined);
-  }
+  assertWritingCollection(catalog, pages.writing, schema(pages.writing).mainEntity);
   const featured = articleRows(pages.index);
   assert.equal(featured.length, 5);
   assert.ok(featured.every((r) => r[1] === 'en'));
@@ -448,17 +480,18 @@ test('portrait is a real sized local asset and unverified talk languages are omi
   const talks = talkRows(pages.talks);
   assert.deepEqual(
     talks.map((row) => row[1]),
-    ['uk', undefined, undefined, undefined]
+    events.map((event) => event.language || undefined)
   );
-  for (const row of talks.slice(1)) {
+  for (const [index, row] of talks.entries()) {
+    if (events[index].language) continue;
     assert.doesNotMatch(row[0], /data-language|language-badge|Language unconfirmed/);
   }
   assert.doesNotMatch(pages.talks, /not yet been confirmed|Language unconfirmed/);
-  assert.ok(talks[0][2].includes('PMDay 2026 · Recording in Ukrainian'));
+  assert.ok(talks[0][2].includes(events[0].metadata[0].text));
   assert.ok(pages.talks.includes('id="ukrainian-talks"'));
 });
 
-test('Talks curates distinct events with source-supported dates, language and resources', () => {
+test('Talks follows canonical events while retaining the frozen provenance of its migrated collection', () => {
   const inventory = require('../review/issue-48/source-inventory.json').talks;
   const amendment = require('../review/issue-48/content-amendment.json');
   const recordingAmendment = require('../review/issue-61/content-amendment.json');
@@ -479,9 +512,14 @@ test('Talks curates distinct events with source-supported dates, language and re
       require('../tools/site/content.cjs').catalog(path.join(root, '..'))
     ).html
   );
+  const provenSection = restoreContentAmendment(
+    beforeDevCon(require('../tools/check_site_seo.cjs').restoreEventsCatalog(currentSection)),
+    'talks',
+    require('../review/issue-108/content-amendment.json')
+  );
   assert.equal(
     restoreContentAmendment(
-      restoreContentAmendment(currentSection, 'talks', positioningAmendment),
+      restoreContentAmendment(provenSection, 'talks', positioningAmendment),
       'talks',
       recordingAmendment
     ),
@@ -489,9 +527,10 @@ test('Talks curates distinct events with source-supported dates, language and re
     'the exact positioning and PMDay amendments preserve the earlier event inventory'
   );
   assert.ok(pages.talks.includes(currentSection), 'generated page carries the authored section');
-  const cards = talkRows(currentSection);
+  const cards = talkRows(provenSection);
+  assert.equal(talkRows(currentSection).length, events.length);
   const earlierCards = talkRows(
-    restoreContentAmendment(currentSection, 'talks', positioningAmendment)
+    restoreContentAmendment(provenSection, 'talks', positioningAmendment)
   );
   const priorCards = talkRows(section.after);
   const oldCards = talkRows(section.before);
@@ -512,7 +551,7 @@ test('Talks curates distinct events with source-supported dates, language and re
   assert.equal(earlierCards[1][0], oldCards[1][0], 'historical Corning remains exact');
   for (const old of oldCards) {
     for (const [, url] of old[0].matchAll(/href="([^"]+)"/g)) {
-      assert.ok(currentSection.includes(`href="${url}"`), 'existing event source survives');
+      assert.ok(provenSection.includes(`href="${url}"`), 'frozen event source survives');
     }
   }
   assert.deepEqual(
@@ -550,7 +589,7 @@ test('Talks curates distinct events with source-supported dates, language and re
     );
   });
   assert.deepEqual(
-    [...currentSection.matchAll(/<time datetime="([^"]+)"/g)].map((row) => row[1]),
+    [...provenSection.matchAll(/<time datetime="([^"]+)"/g)].map((row) => row[1]),
     ['2026-09-26']
   );
   assert.doesNotMatch(
@@ -615,7 +654,7 @@ test('Talks curates distinct events with source-supported dates, language and re
   const description = require('../site/content/pages/talks/metadata.json').description;
   assert.equal(
     description,
-    'Talks and workshops on AI architecture and software delivery, including PMDay, Corning Learn-AI-Palooza, Betelgeuse and swarchua, with public sources.'
+    'Upcoming DevCon Romania 2026 and UA Online PMDay 2027 Winter, plus recordings and workshops on AI architecture and software delivery.'
   );
   for (const tag of [
     '<meta name="description"',
@@ -626,7 +665,7 @@ test('Talks curates distinct events with source-supported dates, language and re
   }
 });
 
-test('Writing intro and archive counters derive from the same catalog under edition and language changes', () => {
+test('Writing counts the rendered article collection and keeps alternate platforms inside their row', () => {
   const projectRoot = path.resolve(root, '..');
   const { catalog, routeInput } = require('../tools/site/content.cjs');
   const { validateCatalog, catalogCounts } = require('../tools/site/validate-catalog.cjs');
@@ -636,38 +675,24 @@ test('Writing intro and archive counters derive from the same catalog under edit
     validateCatalog(candidate);
     const rendered = routeInput(projectRoot, route, candidate);
     const html = normalizeHTML(rendered.main);
-    const intro = html.match(
-      /<p class="hero-description">(\d+) primary archive records: (\d+) English and (\d+) Ukrainian[.;] (\d+) linked platform editions/
-    );
-    const archive = html.match(
-      /<p id="archive-count"[^>]*>(\d+) primary archive records · (\d+) EN \/ (\d+) UA\.<\/p>/
-    );
-    const editions = html.match(
-      /The catalog links (\d+) platform editions \((\d+) EN \/ (\d+) UA\)/
-    );
-    assert.ok(intro && archive && editions, 'all declared count presentations render');
-    const observed = {
-      intro: intro.slice(1).map(Number),
-      primary: archive.slice(1).map(Number),
-      linked: editions.slice(1).map(Number),
-    };
+    const archive = html.match(/<p id="archive-count"[^>]*>(\d+) articles<\/p>/);
+    assert.ok(archive, 'a simple generated count renders without authored count prose');
+    const rows = articleRows(html);
     const counts = catalogCounts(candidate);
-    assert.deepEqual(observed.intro, [
-      counts.primary.total,
-      counts.primary.en,
-      counts.primary.uk,
-      counts.linked.total,
-    ]);
-    assert.deepEqual(observed.primary, [
-      counts.primary.total,
-      counts.primary.en,
-      counts.primary.uk,
-    ]);
-    assert.deepEqual(observed.linked, [counts.linked.total, counts.linked.en, counts.linked.uk]);
-    assert.equal(rendered.schema.mainEntity.numberOfItems, counts.primary.total);
-    assert.equal(rendered.schema.mainEntity.itemListElement.length, counts.primary.total);
-    assert.doesNotMatch(html, /\{\{CATALOG_|27 primary archive records: 20 English/);
-    return observed;
+    assert.equal(Number(archive[1]), rows.length);
+    assert.equal(rows.length, counts.primary.total);
+    assert.equal(rendered.schema.mainEntity.numberOfItems, rows.length);
+    assert.deepEqual(
+      rendered.schema.mainEntity.itemListElement.map((entry) =>
+        require('../tools/site/html.cjs').escapeAttribute(entry.item.url)
+      ),
+      rows.map((row) => row[2].match(/<a class="publication-title" href="([^"]+)"/)[1])
+    );
+    assert.doesNotMatch(html, /\{\{CATALOG_|primary archive records|The catalog links/);
+    return {
+      primary: [counts.primary.total, counts.primary.en, counts.primary.uk],
+      linked: [counts.linked.total, counts.linked.en, counts.linked.uk],
+    };
   };
   const before = readCounts(original);
   const languageChange = structuredClone(original);
@@ -685,7 +710,10 @@ test('Writing intro and archive counters derive from the same catalog under edit
   ]);
   const alternateChange = structuredClone(original);
   const target = Object.values(alternateChange.records).find(
-    (record) => record.editions.length < 2 && record.edition.inLanguage === 'en'
+    (record) =>
+      record.kind !== 'local-article' &&
+      record.editions.length < 2 &&
+      record.edition.inLanguage === 'en'
   );
   target.editions.push({
     ...target.edition,
@@ -706,7 +734,13 @@ test('Writing intro and archive counters derive from the same catalog under edit
     before.linked[2],
   ]);
   const duplicate = structuredClone(alternateChange);
-  duplicate.records['publication-19'].editions.push(structuredClone(target.editions.at(-1)));
+  const duplicateTarget = Object.values(duplicate.records).find(
+    (record) =>
+      record.kind !== 'local-article' &&
+      record.edition.url !== target.edition.url &&
+      record.editions.length < 2
+  );
+  duplicateTarget.editions.push(structuredClone(target.editions.at(-1)));
   assert.throws(
     () => validateCatalog(duplicate),
     /Duplicate edition URL/,
@@ -714,15 +748,111 @@ test('Writing intro and archive counters derive from the same catalog under edit
   );
 });
 
-test('page IDs, ARIA targets, local resources and fragments resolve without draft leakage', () => {
-  const ids = new Map(
-    Object.entries(pages).map(([name, html]) => {
-      const values = [...html.matchAll(/\bid="([^"]+)"/g)].map((m) => m[1]);
-      assert.equal(values.length, new Set(values).size, name);
-      return [name + '.html', new Set(values)];
-    })
+test('the ordinary Writing collection accepts undated multi-author local editions and escaped query URLs', () => {
+  const projectRoot = path.resolve(root, '..');
+  const content = require('../tools/site/content.cjs');
+  const { validateLocalCatalog } = require('../tools/site/validate-catalog.cjs');
+  const route = require('../site/routes.json').routes.find((entry) => entry.id === 'writing');
+  const catalog = content.catalog(projectRoot);
+  const existingModels = new Map(
+    require('../tools/site/articles.cjs')
+      .select(projectRoot, [], catalog)
+      .map((article) => [article.metadata.id, article])
   );
-  for (const [name, html] of Object.entries(pages)) {
+  const originalCount = Object.keys(catalog.records).length;
+  const year = nextYear(catalog);
+  const authors = [
+    { '@type': 'Person', name: 'First declared author', url: 'https://author.example/first' },
+    { '@type': 'Person', name: 'Second declared author', url: 'https://author.example/second' },
+  ];
+  const local = {
+    kind: 'local-article',
+    article: 'multi-author-test',
+    edition: {
+      '@type': 'Article',
+      name: 'An accepted preparation without an observed publication date',
+      url: 'articles/multi-author-test.html',
+      inLanguage: 'en',
+      author: authors,
+    },
+    editions: [],
+    discussions: [],
+    presentation: { topic: 'systems', kind: 'Article', publisher: 'Author site' },
+  };
+  const localRecord = nextRecordId(catalog);
+  catalog.records[localRecord] = local;
+  catalog.structuredOrder.push({ record: localRecord });
+  const query = structuredClone(catalog.records['publication-01']);
+  query.edition.name = 'A dated external article with query parameters';
+  query.edition.url = 'https://example.test/article?a=1&b=2';
+  query.edition.datePublished = year + '-01-01';
+  const queryRecord = nextRecordId(catalog);
+  catalog.records[queryRecord] = query;
+  catalog.structuredOrder.push({ record: queryRecord });
+  const accepted = {
+    metadata: {
+      id: local.article,
+      status: 'accepted',
+      title: local.edition.name,
+      language: local.edition.inLanguage,
+      authors,
+    },
+    url: local.edition.url,
+    source: { state: 'committed', sha256: 'a'.repeat(64) },
+    edition: { id: 'first-preparation' },
+    events: [],
+  };
+  validateLocalCatalog(catalog, (id) => (id === local.article ? accepted : existingModels.get(id)));
+  const rendered = content.routeInput(projectRoot, route, catalog);
+  const html = normalizeHTML(rendered.main);
+  const { rows, items } = assertWritingCollection(catalog, html, rendered.schema.mainEntity);
+  assert.equal(rows.length, originalCount + 2);
+  assert.match(
+    html,
+    new RegExp('id="archive-count"[^>]*>' + (originalCount + 2) + ' articles</p>')
+  );
+  assert.match(html, /href="https:\/\/example\.test\/article\?a=1&amp;b=2"/);
+  assert.match(html, /id="year-undated"/);
+  const item = items.find(({ item }) => item.url === local.edition.url).item;
+  assert.deepEqual(item.author, authors);
+  assert.equal(item.datePublished, undefined);
+  assert.equal(item.dateModified, undefined);
+  assert.equal(
+    items.find(({ item }) => item.url === query.edition.url).item.url,
+    query.edition.url
+  );
+});
+
+function localTargetIds(html, name) {
+  const values = [...html.matchAll(/\bid="([^"]+)"/g)].map((m) => m[1]);
+  assert.equal(values.length, new Set(values).size, name);
+  return new Set(values);
+}
+
+function assertLocalPageReferences(documents, revision, readResource) {
+  const ids = new Map(
+    Object.entries(documents).map(([name, html]) => [name + '.html', localTargetIds(html, name)])
+  );
+  const resources = [];
+  for (const [name, html] of Object.entries(documents)) {
+    const svg = html.match(/<svg class="space-fallback"[\s\S]*?<\/svg>/)?.[0];
+    assert.ok(svg, name + ' has its canonical fallback');
+    let resourceBytes;
+    const resource = require('../tools/site/fallback.cjs').resolveRouteResource(
+      svg,
+      name,
+      revision.routes[name].assets,
+      (target) => {
+        resourceBytes = readResource(target);
+        return resourceBytes;
+      }
+    );
+    if (!resource) continue;
+    assert.ok(!ids.has(resource.name), 'duplicate local resource target');
+    ids.set(resource.name, localTargetIds(resourceBytes.toString('utf8'), resource.name));
+    resources.push(resource.name);
+  }
+  for (const [name, html] of Object.entries(documents)) {
     for (const [, values] of html.matchAll(/aria-(?:labelledby|describedby)="([^"]+)"/g)) {
       for (const id of values.split(/\s+/)) assert.ok(ids.get(name + '.html').has(id), id);
     }
@@ -737,6 +867,43 @@ test('page IDs, ARIA targets, local resources and fragments resolve without draf
       if (fragment) assert.ok(ids.get(target)?.has(fragment), value);
     }
   }
+  return resources;
+}
+
+test('page IDs, ARIA targets, local resources and fragments resolve without draft leakage', () => {
+  const revision = JSON.parse(fs.readFileSync(path.join(root, 'site-revision.json')));
+  const readResource = (target) => fs.readFileSync(path.join(root, target));
+  const resources = assertLocalPageReferences(pages, revision, readResource);
+  if (resources.length) {
+    assert.equal(resources.length, 1, 'one active Research resource');
+    assert.deepEqual(resources, revision.routes.research.assets);
+    const [namespace, digest, filename] = resources[0].split('/');
+    assert.equal(namespace, 'article-media');
+    assert.deepEqual(fs.readdirSync(path.join(root, namespace)), [digest]);
+    assert.deepEqual(fs.readdirSync(path.join(root, namespace, digest)), [filename]);
+    assert.throws(
+      () =>
+        assertLocalPageReferences(
+          { ...pages, index: pages.index + `<a href="${resources[0]}#missing-fragment">x</a>` },
+          revision,
+          readResource
+        ),
+      /missing-fragment/
+    );
+    const undeclared = structuredClone(revision);
+    delete undeclared.routes.research.assets;
+    assert.throws(
+      () => assertLocalPageReferences(pages, undeclared, readResource),
+      /Undeclared room fallback resource/
+    );
+    assert.throws(
+      () =>
+        assertLocalPageReferences(pages, revision, (target) =>
+          Buffer.concat([readResource(target), Buffer.from('\n')])
+        ),
+      /fallback resource identity differs/
+    );
+  }
   const expected = [
     '.nojekyll',
     'archive.js',
@@ -745,6 +912,7 @@ test('page IDs, ARIA targets, local resources and fragments resolve without draf
     'index.html',
     'media',
     'navigation.js',
+    'publication-index.json',
     'research.html',
     'runtime',
     'site-revision.json',
@@ -754,8 +922,8 @@ test('page IDs, ARIA targets, local resources and fragments resolve without draf
     'talks.html',
     'theme.js',
     'writing.html',
-  ];
-  assert.deepEqual(fs.readdirSync(root).sort(), expected);
+  ].concat(resources.length ? ['article-media'] : []);
+  assert.deepEqual(fs.readdirSync(root).sort(), expected.sort());
   const { mediaFiles } = require('../tools/site/snapshot.cjs');
   assert.deepEqual(
     JSON.parse(fs.readFileSync(path.join(root, 'site-revision.json'))).mediaFiles,
@@ -781,7 +949,11 @@ test('Home provides the agreed reader path, precise public actions and a real co
     'about',
     'contact',
   ]);
-  assert.match(home, /<h1 id="author-name">AI tools everywhere\./);
+  // Exact copy is owned by the SEO amendment; retain the single reader landmark.
+  const headings = [...home.matchAll(/<h1\b[^>]*>[\s\S]*?<\/h1>/g)];
+  assert.equal(headings.length, 1);
+  assert.match(headings[0][0], /<h1 id="author-name">[^<]/);
+  assert.notEqual(headings[0][0].replace(/<[^>]+>/g, '').trim(), '');
   assert.ok(
     home.includes(
       'Vitalii Oborskyi · Enterprise delivery leader &amp; independent research author.'
@@ -812,18 +984,20 @@ test('Home provides the agreed reader path, precise public actions and a real co
     home.includes('href="https://calendar.app.google/zy9rAnUcoWygSdxH7">Book a conversation')
   );
   assert.ok(home.includes('href="mailto:oborskyivitalii@gmail.com">oborskyivitalii@gmail.com'));
-  // Generated decorative coordinates/opacity decimals are not author claims.
+  // Decorative SVG and exact engine/route identities are not author claims.
   assert.doesNotMatch(
-    home.replace(/<svg\b[\s\S]*?<\/svg>/g, ''),
+    home
+      .replace(/<svg\b[\s\S]*?<\/svg>/g, '')
+      .replace(/<meta name="site-(?:engine|route)" content="[a-f0-9]{64}"\s*\/?>/g, ''),
     /href="#"|Trusted by|CPC|RankSpot|4400|4,400|established consultancy|consulting firm|service packages|guaranteed outcomes/
   );
   for (const text of [
-    'human understanding, verification and ownership',
-    'human roles, evidence, decision authority and corrective action',
-    'hypotheses to test in context',
-    'Much remains to develop and test',
+    'generation, understanding, verification and ownership',
+    'human roles, decision authority, evidence and corrective action',
+    'those responses need testing in each setting',
+    'proposals to develop and test, not a production assurance standard',
     'Examples of work, depending on the role, organization and agreed scope',
-    'Research, publications, talks and practical engineering experiments.',
+    'Enterprise delivery experience, independent research, published articles and talks.',
   ])
     assert.ok(home.includes(text), text);
   for (const page of Object.values(pages))
@@ -840,4 +1014,97 @@ test('Home provides the agreed reader path, precise public actions and a real co
         .digest('hex'),
       hash
     );
+});
+
+test('PMDay upcoming and Autumn naming preserve confirmed facts and existing presentation', () => {
+  const { restoreEventsCatalog, restoreContentAmendment } = require('../tools/check_site_seo.cjs');
+  const record = require('../review/issue-108/content-amendment.json');
+  const html = beforeDevCon(restoreEventsCatalog(pages.talks));
+  const cards = talkRows(html);
+  assert.equal(cards.length, 5);
+  const upcoming = cards[0][0];
+  assert.match(upcoming, /id="pmday-winter-2027"/);
+  assert.match(upcoming, /<span>Upcoming<\/span><span>Online conference<\/span>/);
+  assert.match(upcoming, /<time datetime="2027-01-30">30 January 2027<\/time>/);
+  assert.match(upcoming, /<h3 class="talk-title">UA Online PMDay 2027 Winter<\/h3>/);
+  assert.match(upcoming, /I’ll be speaking at UA Online PMDay 2027 Winter/);
+  assert.match(upcoming, /href="https:\/\/pmday.org\/online">Programme &amp; registration /);
+  assert.doesNotMatch(upcoming, /data-language|language-badge|datetime="[^"T]+T|slides|recording/i);
+  assert.match(cards[1][0], /UA Online PMDay 2026 Autumn · Recording in Ukrainian/);
+  assert.equal(cards[1][1], 'uk');
+  assert.match(cards[1][0], /datetime="2026-09-26"/);
+  assert.ok(html.indexOf('id="upcoming-talks"') < html.indexOf('id="ukrainian-talks"'));
+  assert.match(html, /href="#upcoming-talks">Upcoming<\/a>/);
+  const earlier = talkRows(restoreContentAmendment(html, 'talks', record));
+  assert.deepEqual(cards.slice(2), earlier.slice(1), 'all other talk cards remain exact');
+  assert.deepEqual(
+    [...cards[1][0].matchAll(/href="([^"]+)"/g)].map((row) => row[1]),
+    [...earlier[0][0].matchAll(/href="([^"]+)"/g)].map((row) => row[1]),
+    'Autumn recording, original announcement and reflection destinations survive'
+  );
+  const preserved = restoreContentAmendment(html, 'talks', record);
+  for (const [from, to] of [
+    ['UA Online PMDay 2027 Winter', 'UA Online PMDay 2026 Autumn'],
+    ['datetime="2027-01-30"', 'datetime="2027-01-31"'],
+    ['https://pmday.org/online', 'https://example.com/tickets'],
+    ['UA Online PMDay 2026 Autumn ·', 'PMDay 2026 ·'],
+    ['<span>Online conference</span>', '<span>In-person conference</span>'],
+    [upcoming, upcoming.replace('<article ', '<article data-language="en" ')],
+    [upcoming, ''],
+  ]) {
+    assert.ok(html.includes(from));
+    assert.notEqual(restoreContentAmendment(html.replace(from, to), 'talks', record), preserved);
+  }
+});
+
+test('DevCon announcement preserves previous events and rejects changed public facts', () => {
+  const { restore } = require('../tools/check_site_seo.cjs');
+  const cp = require('node:child_process');
+  const record = require('../review/issue-126/content-amendment.json');
+  const baseline = normalizeHTML(
+    cp.execFileSync('git', ['show', record.baseline + ':docs/talks.html'], {
+      cwd: path.join(root, '..'),
+      encoding: 'utf8',
+    })
+  );
+  const html = pages.talks;
+  const cards = talkRows(html);
+  assert.equal(cards.length, 6);
+  const card = cards[0][0];
+  assert.match(card, /id="devcon-romania-2026"/);
+  assert.match(card, /DevCon Romania 2026 · DevOps Con/);
+  assert.match(card, /datetime="2026-11-04T12:30:00\+02:00">4 November 2026/);
+  assert.match(card, /12:30–13:00 · Bucharest time/);
+  assert.match(card, /AI Changes the Delivery System and the Product Itself/);
+  assert.match(card, /href="https:\/\/www.dev-con.ro\/agenda\/12-devops-con"/);
+  assert.doesNotMatch(card, /slides|recording|Hotel Caro/i);
+  assert.deepEqual(
+    cards.slice(1),
+    talkRows(baseline),
+    'every previous event remains exact and ordered'
+  );
+  const section = (value) => value.match(/<section id="talks"[\s\S]*?<\/section>/)[0];
+  assert.equal(
+    section(beforeDevCon(require('../tools/check_site_seo.cjs').restoreEventsCatalog(html))),
+    section(baseline)
+  );
+  assert.equal(
+    talkRows(html.replace(card, '')).length,
+    5,
+    'missing card fails the six-event inventory oracle'
+  );
+  assert.doesNotThrow(() => restore(html, 'talks'));
+  for (const [from, to] of [
+    ['2026-11-04T12:30:00+02:00', '2026-11-05T12:30:00+02:00'],
+    ['12:30–13:00 · Bucharest time', '12:30–13:00 · Warsaw time'],
+    ['https://www.dev-con.ro/agenda/12-devops-con', 'https://example.com/agenda'],
+    [card, card.replace('</article>', '<a href="draft.pdf">Slides</a></article>')],
+  ]) {
+    assert.notEqual(from, to);
+    assert.ok(html.includes(from));
+    assert.throws(
+      () => restore(html.replace(from, to), 'talks'),
+      /event output differs from validated canonical data/
+    );
+  }
 });

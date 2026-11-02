@@ -9,6 +9,7 @@ on:
         type: string
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: cause-fix-${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
   cancel-in-progress: true
@@ -56,7 +57,11 @@ jobs:
           JS
       - name: Install pinned WebKit without prior launch
         run: |
-          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps webkit
+          tools/quality/toolchain/node_modules/.bin/playwright install-deps webkit
+      - name: Restore verified pinned browsers without prior launch
+        uses: ./.github/actions/browser-archive
+        with:
+          browsers: webkit
       - name: Observe first-process WPE or GTK with the complete normal rendition
         run: >-
           xvfb-run -a node tools/quality/cold-native-probe.cjs ${{ matrix.label }}
@@ -98,9 +103,14 @@ jobs:
           require('./tools/staging/color.cjs').build(root+'/color');
           require('./tools/quality/writing-variants.cjs').derive(root+'/color',root+'/control','browser-gate-trace');
           JS
-          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps webkit
+          tools/quality/toolchain/node_modules/.bin/playwright install-deps webkit
           sudo apt-get update
           sudo apt-get install -y linux-tools-common linux-tools-generic
+      - name: Restore verified pinned browsers without prior launch
+        uses: ./.github/actions/browser-archive
+        with:
+          browsers: webkit
+          directory: ${{ env.PLAYWRIGHT_BROWSERS_PATH }}
       - name: Sample only the cold probe and its browser children
         run: |
           mkdir -p "$RUNNER_TEMP/cause-fix-results"
@@ -194,7 +204,11 @@ jobs:
           JS
       - name: Install pinned WebKit without launching a browser
         run: |
-          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps webkit
+          tools/quality/toolchain/node_modules/.bin/playwright install-deps webkit
+      - name: Restore verified pinned browsers without prior launch
+        uses: ./.github/actions/browser-archive
+        with:
+          browsers: webkit
       - name: Retain one first-process cold observation and its original result
         run: >-
           node tools/quality/cold-native-probe.cjs ${{ matrix.label }}
@@ -238,7 +252,11 @@ jobs:
           JS
       - name: Install pinned Chromium tools
         run: |
-          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium
+          tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium
+      - name: Restore verified pinned browsers without prior launch
+        uses: ./.github/actions/browser-archive
+        with:
+          browsers: chromium
       - name: Retain all balanced normal and profiled Research trials
         run: >-
           node tools/quality/research-pair-probe.cjs

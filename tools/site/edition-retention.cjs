@@ -6,14 +6,17 @@ const path = require('node:path');
 const artifact = require('../quality/artifact.cjs');
 const snapshot = require('./snapshot.cjs');
 
-function capture(directory, revision) {
+function capture(directory, revision, { preserveActive = false } = {}) {
   const active = new Set([
     ...snapshot.runtimeFiles.map((name) => 'runtime/' + revision.engine + '/' + name),
     ...snapshot.routes.map((id) => revision.routes[id].url),
+    ...Object.values(revision.articles || {}).map((article) => article.url),
   ]);
   const retained = artifact
     .entries(directory)
-    .filter((entry) => snapshot.immutable(entry.path) && !active.has(entry.path));
+    .filter(
+      (entry) => snapshot.immutable(entry.path) && (preserveActive || !active.has(entry.path))
+    );
   assert.ok(retained.length <= 1000, 'retained edition inventory bound');
   return retained;
 }

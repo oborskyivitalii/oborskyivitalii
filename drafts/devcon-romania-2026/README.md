@@ -3,67 +3,96 @@
 **AI Changes the Delivery System and the Product Itself**  
 Vitalii Oborskyi · DevOps Stage · 4 November 2026
 
-**Current author-review edition: R5 — 9 slides, attached English stage notes, and matching PDF.**  
-Target: **19:55 talk + 7:00 Q&A + 3:05 reserve**. This is an editorial allocation; timed rehearsal and presenting-device acceptance remain pending.
+**Current author-review edition: R6 — nine editable slides, attached R13 English
+stage notes, and matching text/vector PDF.** The approved slide 4 is integrated
+into the complete native deck. A measured spacing correction separates the two-line heading and description on
+slide 5. The seven other slide payloads and all nine spoken sections retain their
+source bytes/text.
 
-One owner and one execution thread: [issue 109](https://github.com/oborskyivitalii/oborskyivitalii/issues/109) · [Draft PR110](https://github.com/oborskyivitalii/oborskyivitalii/pull/110).
+One owner and one execution thread: [issue 109](https://github.com/oborskyivitalii/oborskyivitalii/issues/109)
+· [Draft PR110](https://github.com/oborskyivitalii/oborskyivitalii/pull/110).
 
-## Review R5
+## Review R6
 
-**Repository delivery status:** the R5 notes, manifest, versioning contract and validator are prepared for this Draft PR. The exact PPTX/PDF are temporarily staged for review and must still be committed to the planned R5 paths before repository acceptance.
+- [Editable PowerPoint](r6/devcon-romania-2026-r6.pptx)
+- [Matching PDF](r6/devcon-romania-2026-r6.pdf)
+- [Full native notes transcribed by slide](r6/speaker-notes.md)
+- [Edition identity, inputs and exact artifact hashes](r6/edition.json)
+- [Retained native inputs and reproduction command](r6/sources/README.md)
+- [Source-bound review and remaining acceptance gates](../../review/issue-109/2026-11-02-r6-review.md)
 
-- [Planned editable PowerPoint path](r5/devcon-romania-2026-r5.pptx)
-- [Matching PDF](r5/devcon-romania-2026-r5.pdf)
-- [Full English script, split by slide](r5/speaker-notes.md)
-- [Edition identity, source pins, timing and artifact hashes](r5/edition.json)
-- [Presentation versioning contract](../../guides/PRESENTATION-VERSIONING.md)
+Slide 4 begins with the narrow and systemic views of code review, including its
+knowledge, shared understanding, ownership, operability and architecture outputs.
+It retains the local comprehension-gap explanation and ownership consequences,
+then extends the argument across the SDLC with an explicitly illustrative graph.
+All additions use the existing dark theme and native editable elements. The full-deck
+review also moves one slide-5 body-text box down by 10 points; wording stays intact.
 
-R5 consolidates the uncommitted conversation-local working labels `R4 v2` through `R4 v6`. Those labels were scratch lineage, not repository editions. The previous committed repository edition is R3; R1–R3 remain immutable.
+R6 integrates the conversation's full R13 working deck and approved slide donor.
+**R13 remains the speech revision; R6 is the repository edition.** The unchanged
+[concise stage script R13](devcon-romania-2026-r13-concise-stage-script.md) remains
+available separately. The native notes append slide-4 context and source details
+outside the spoken section.
 
-## R5 argument
+The retained editorial allocation is **19:55 talk + 7:00 Q&A + 3:05 reserve**.
+It is a planning target, not a measured duration of the R13 script. Timed rehearsal
+and presenting-device acceptance remain pending.
 
-R5 uses the engineering cycle **problem → hypothesis → build → verify → reframe** to state two owned system problems:
+## Argument
 
-1. **How We Build:** rebalance the SDLC as a complete delivery system; licenses, code volume or review speed alone do not establish system-level ROI.
-2. **What We Build:** determine whether consequential runtime model judgment can be kept useful, bounded, observable, correctable and economically viable in a specific business context.
+The engineering cycle **problem → hypothesis → build → verify → reframe** links
+two owned system problems:
 
-The presentation is designed for DevOps/SRE/platform practitioners, developers, QA, architects and technical leadership. It retains one account-recovery scenario, qualified evidence, explicit operational responsibilities and one final homepage QR.
+1. **How We Build:** rebalance the SDLC as a complete delivery system; licenses,
+   code volume or review speed alone do not establish system-level ROI.
+2. **What We Build:** determine whether consequential runtime model judgment can
+   remain useful, bounded, observable, correctable and economically viable in a
+   specific business context.
+
+The deck retains the account-recovery scenario, qualified evidence, operational
+responsibilities, two closing projects and one final homepage QR.
 
 ## Editions
 
 | Edition | Repository status | Purpose |
-|---|---|---|
-| **R5** | Current author-review draft | Problem-framing narrative; full 9-slide R4 working lineage consolidated into one repository edition |
-| **R4** | No repository package | Reserved working lineage only; intentionally skipped as a committed edition to end nested `R4 vN` naming |
-| **R3** | Preserved in PR110 head `793cfae` | Nine-slide compression with short cue cards |
+| --- | --- | --- |
+| **R6** | Current author-review draft; complete PPTX/PDF/notes package | Approved systemic-first slide 4 integrated into the full R13 working deck |
+| **R5** | Historical notes/manifest; declared PPTX/PDF were not committed | Problem-framing narrative and consolidated R4 working lineage |
+| **R4** | No repository package | Historical scratch labels; no retained edition |
+| **R3** | Preserved; still selected by the event record | Nine-slide compression with short cue cards |
 | **R2** | Preserved | Eleven-screen correction of R1 visual drift |
 | **R1** | Preserved | First thirteen-screen adaptation |
 
-Detailed R1–R3 rationale remains available in the [R3 README at its exact commit](https://github.com/oborskyivitalii/oborskyivitalii/blob/793cfaef95fdf96c17b2f33cafe7d0ba1f0ad6a4/drafts/devcon-romania-2026/README.md).
+Historical editions remain unchanged. In particular, R6 bytes do not replace the
+missing R5 files or claim to satisfy their declared hashes. R1–R3 rationale is
+retained in the [R3 README at its exact commit](https://github.com/oborskyivitalii/oborskyivitalii/blob/793cfaef95fdf96c17b2f33cafe7d0ba1f0ad6a4/drafts/devcon-romania-2026/README.md).
 
-## Versioning rules
+## Reproduce and validate
 
-Presentation revisions follow [the repository presentation versioning contract](../../guides/PRESENTATION-VERSIONING.md):
-
-- one monotonic `R<number>` per retained review package;
-- the same revision in PPTX, PDF, notes and manifest names;
-- status (`draft`, `approved`, `conference-final`, `published`) is separate from the revision;
-- earlier editions are immutable;
-- temporary renders do not receive durable repository revision numbers;
-- event selection is separate from the newest author-review edition.
-
-Validate the mechanical package with:
+Follow the [presentation versioning contract](../../guides/PRESENTATION-VERSIONING.md)
+and the [native integration command](r6/sources/README.md). Export the verified
+final PPTX using the existing LibreOffice Impress rendition method:
 
 ```bash
-python tools/presentations/validate_edition.py drafts/devcon-romania-2026/r5
+soffice --headless --convert-to pdf:impress_pdf_Export \
+  --outdir /tmp/devcon-r6-export \
+  drafts/devcon-romania-2026/r6/devcon-romania-2026-r6.pptx
+python3 tools/presentations/validate_edition.py drafts/devcon-romania-2026/r6
 ```
 
-This does not replace content, source, QR, timing, independent-review or projector gates.
+Use a new scratch output directory for re-export. PDF metadata can differ between
+exports; compare page content, text, links and rendered pages as well as recording
+the actual delivered byte identity. The edition validator checks mechanical
+identity and counts; it does not replace content, source, QR, rehearsal or device
+acceptance.
 
-## Event binding
+## Event binding and provenance
 
-The event record still selects the exact R3 PDF. R5 becomes event-selected only after author approval and a deliberate update of the event PDF path/hash and event-plan source pin. Preparing R5 in this Draft PR does not publish it, merge it or authorize conference release.
+The event record continues to select the exact R3 PDF. Preparing R6 in Draft
+PR110 does not publish it, merge it or select it for the conference. Full R6 author
+approval, an explicit event selection and the remaining human checks are separate.
 
-## Source and provenance
-
-R5 retains native PMDay v35 components from Uncertainty Architecture commit `22639d311d5fb46a23f3d5cdd819800dbe1169d9` and the R38 conceptual source pinned at personal-site PR79 head `b128ad27b23bc9d14a62b495c5c18b7ae537ab65`. Exact identities and limits are recorded in `r5/edition.json` and the attached notes.
+Historical PMDay/R38 pins are retained in `r6/edition.json`. Exact native input
+identities and the approved slide-4 reference are under `r6/sources/`; the full
+notes retain the original citations and caveats. The curves are conceptual, with
+no empirical scale or invented measured values.

@@ -18,6 +18,27 @@ function authorize(context, main, enabled) {
   assert.equal(enabled, 'true', 'production activation is disabled');
 }
 
+function currentCandidate(record, mainSource, gate, current) {
+  assert.equal(
+    record.sourceCommit,
+    mainSource,
+    'production candidate is stale; prepare current main'
+  );
+  if (Object.hasOwn(gate, 'publicationBase'))
+    assert.deepEqual(
+      gate.publicationBase,
+      current,
+      'accepted production composition moved; recompose and retest'
+    );
+  else
+    assert.notEqual(
+      gate.staging?.gate?.kind,
+      'content-staging-gate',
+      'content candidate has no predecessor lease'
+    );
+  return true;
+}
+
 async function optional(operation) {
   try {
     return (await operation()).data;
@@ -850,6 +871,7 @@ async function recover(
 }
 
 module.exports = {
+  currentCandidate,
   workflow,
   authorize,
   producer,

@@ -1,6 +1,7 @@
 'use strict';
 // Controlled validator fixtures. These are not browser, device or performance evidence.
 const stage = require('../../tools/quality/staging-regression.cjs'),
+  assert = require('node:assert/strict'),
   common = require('../../tools/quality/common.cjs'),
   colorMotion = require('../../tools/quality/color-motion-contract.cjs'),
   motion = require('../../tools/quality/motion.cjs'),
@@ -22,8 +23,9 @@ function manifest() {
     files: Object.fromEntries(
       [
         ...budgets.routes.map((route) => route + '.html'),
-        'space.js',
-        'styles.css',
+        ...require('../../tools/site/snapshot.cjs').runtimeFiles,
+        'assets/favicon.svg',
+        'assets/vitalii-oborskyi-cutout.webp',
         'snapshot.json',
         '.nojekyll',
       ].map((file) => [file, { sha256: 'e'.repeat(64), raw: 5000, gzip: 1000 }])
@@ -209,8 +211,52 @@ function analyticsRow(selected) {
       : Array(2).fill('https://static.cloudflareinsights.com/beacon.min.js'),
   };
 }
-function functional(m = manifest()) {
+// Synthetic validator input only; no browser response, geometry or PNG was observed.
+function researchFallbackProof(m, mode, width, theme) {
+  const names = m.components.routes.research.assets;
+  assert.ok(Array.isArray(names) && names.length === 1);
+  const name = names[0],
+    file = m.files[name];
+  assert.ok(file, 'controlled resource must belong to its manifest');
   return {
+    kind: 'research-static-fallback',
+    synthetic: true,
+    mode,
+    width,
+    theme,
+    resource: {
+      file: name,
+      status: 200,
+      sha256: file.sha256,
+      bytes: file.raw,
+      mime: require('../../tools/quality/serve.cjs').canonicalType(name),
+      url: target + '/' + name,
+    },
+    geometry: {
+      page: 'research',
+      h1: 1,
+      href: name + '#research-fallback',
+      resourceURL: target + '/' + name + '#research-fallback',
+      viewBox: '0 0 1440 900',
+      preserveAspectRatio: 'xMidYMid slice',
+      useCount: 1,
+      visible: true,
+      viewport: { width, height: 844 },
+      box: { x: 1, y: 1, width: 100, height: 100 },
+      dataTheme: mode === 'no-js' ? null : theme,
+      prefersDark: false,
+      palette: { paper: '#f8f7f3', accent: '#075d7b', systems: '#895710' },
+    },
+    png: {
+      file: `research-fallback-${mode}-${width}-${theme}.png`,
+      sha256: 'e'.repeat(64),
+      bytes: 1000,
+    },
+  };
+}
+
+function functional(m = manifest()) {
+  const report = {
     ...identity(m),
     kind: 'stage-functional',
     profile: 'staging',
@@ -230,6 +276,18 @@ function functional(m = manifest()) {
     analytics: stage.analyticsCases().map(analyticsRow),
     startupFailures: [],
   };
+  if (m.components?.routes?.research?.assets?.length) {
+    const noJS = report.failures.find((row) => row.mode === 'no-js' && row.width === 320);
+    noJS.checks.researchFallback = {
+      ...researchFallbackProof(m, 'no-js', 320, 'light'),
+      fallback: clone(noJS.checks),
+    };
+    const noCanvas = report.journeys
+      .find((row) => row.mode === 'no-canvas' && row.width === 390)
+      .rows.find((row) => row.route === 'research');
+    noCanvas.researchFallback = researchFallbackProof(m, 'no-canvas', 390, 'dark');
+  }
+  return report;
 }
 function measurement(kind, zero = ['off', 'reduced'].includes(kind), start = 0) {
   const elapsed = ['idle', 'scroll'].includes(kind) ? 4000 : 2100,
@@ -605,13 +663,7 @@ function aggregateFixture(color = false) {
         status: 200,
         sha256: m.files[file].sha256,
         url: target + '/' + file,
-        mime: file.endsWith('.html')
-          ? 'text/html'
-          : file.endsWith('.js')
-            ? 'application/javascript'
-            : file.endsWith('.css')
-              ? 'text/css'
-              : 'application/json',
+        mime: require('../../tools/quality/serve.cjs').canonicalType(file),
       })),
   };
   const scan = (kind, detail) => ({ ...identity(m), kind, detail });
@@ -650,7 +702,17 @@ function aggregateFixture(color = false) {
         route,
         ...m.files[route + '.html'],
         svgNodes: 100,
-        totalGzipBytes: 10000,
+        totalGzipBytes:
+          m.files[route + '.html'].gzip +
+          [
+            'styles.css',
+            'theme.js',
+            'space.js',
+            'archive.js',
+            'navigation.js',
+            'assets/favicon.svg',
+            ...(route === 'index' ? ['assets/vitalii-oborskyi-cutout.webp'] : []),
+          ].reduce((sum, name) => sum + m.files[name].gzip, 0),
       })),
     },
     reports,
@@ -662,6 +724,90 @@ function aggregateFixture(color = false) {
     sourceChecks: 'success',
   };
 }
+function contentFixture(f = aggregateFixture(false)) {
+  const content = require('../../tools/quality/content-gate.cjs');
+  f.manifest.components.articles = {};
+  f.manifest.contentRelease = {
+    schema: 1,
+    kind: 'content-release',
+    lane: 'content',
+    engine: f.manifest.components.variant?.baseEngine || f.manifest.components.engine,
+    builtRoutes: ['talks'],
+    reusedRoutes: ['index', 'research', 'writing', 'credits'],
+    builtArticles: [],
+    reusedArticles: [],
+    platformFiles: Object.fromEntries(
+      ['a.js', 'b.js', 'c.js', 'd.js', 'e.js', 'styles.css'].map((name) => [name, 'f'.repeat(64)])
+    ),
+    trustedBaseline: { sourceCommit: 'a'.repeat(40), sourceTree: 'b'.repeat(40) },
+    admission: {
+      schema: 1,
+      kind: 'accepted-content-baseline',
+      mergedSource: 'c'.repeat(40),
+      gateSha256: 'd'.repeat(64),
+      authentication: {
+        kind: 'accepted-staging-source',
+        pass: true,
+        sourceCommit: 'a'.repeat(40),
+        sourceTree: 'b'.repeat(40),
+        mergedSource: 'c'.repeat(40),
+      },
+    },
+  };
+  const historyRecord = {
+    kind: 'accepted-content-history',
+    pass: true,
+    accepted: 'c'.repeat(40),
+    protectedMain: 'c'.repeat(40),
+    candidate: f.manifest.sourceCommit,
+    commits: [{ commit: f.manifest.sourceCommit, parent: 'c'.repeat(40), lane: 'content' }],
+    repositoryCommits: [],
+    repositoryMerges: [],
+  };
+  const historyIdentity = require('../../tools/quality/delivery-json.cjs');
+  f.manifest.contentRelease.admission.history = {
+    ...historyRecord,
+    digest: historyIdentity.digest(historyIdentity.canonical(historyRecord)),
+  };
+  const identity = f.reports.find((report) => report.kind === 'stage-functional');
+  f.reports = f.reports.filter((report) =>
+    ['hosted', 'lint', 'security', 'advisories'].includes(report.kind)
+  );
+  for (const report of f.reports.filter((row) => row.kind !== 'hosted')) {
+    report.target = null;
+    report.environment.runId = '1';
+    report.environment.attempt = '1';
+  }
+  f.reports.push({
+    ...identity,
+    kind: 'content-functional',
+    profile: 'staging',
+    contentContract: 1,
+    browser: 'Controlled fixture; not an observed browser',
+    elapsedMs: 1,
+    policy: content.policy,
+    platformRegression: 'inherited; not rerun',
+    articles: undefined,
+    media: [],
+    rows: content.cases(f.manifest).map((selected) => ({
+      ...selected,
+      pass: true,
+      status: 200,
+      sha256: f.manifest.files[selected.file].sha256,
+      h1: 1,
+      overflow: false,
+      imagesDecoded: true,
+      ...(selected.file === 'writing.html' &&
+      selected.mode === 'normal' &&
+      f.manifest.files['publication-index.json']
+        ? { tagFilter: true }
+        : {}),
+      errors: [],
+    })),
+  });
+  return f;
+}
+
 module.exports = {
   target,
   variant,
@@ -683,4 +829,5 @@ module.exports = {
   colorReport,
   edgeInputs,
   aggregateFixture,
+  contentFixture,
 };

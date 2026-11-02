@@ -38,7 +38,14 @@ const headers = `/*
 /snapshots/*
   ! Cache-Control
   Cache-Control: public, max-age=31536000, immutable
+/article-media/*
+  ! Cache-Control
+  Cache-Control: public, max-age=31536000, immutable
+/article-snapshots/*
+  ! Cache-Control
+  Cache-Control: public, max-age=31536000, immutable
 `;
+const legacyHeaders = headers.slice(0, headers.indexOf('/article-media/*'));
 const notFound =
   '<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Page not found · Vitalii Oborskyi</title><link rel="stylesheet" href="/styles.css"><main class="wrap" id="main"><h1>Page not found</h1><p>This address does not exist in this review version.</p><p><a href="/">Home</a> · <a href="/research.html">Research</a> · <a href="/writing.html">Writing</a> · <a href="/talks.html">Talks</a> · <a href="/credits.html">Credits</a></p></main></html>\n';
 const identityKeys = ['sourceCommit', 'sourceTree', 'candidateCommit', 'artifactDigest'];
@@ -52,7 +59,12 @@ function selectedHostPolicy(value) {
 }
 function snapshotProxyRules(source) {
   const names = Object.keys(source.files);
-  snapshot.inventory(names, snapshot.legacyMediaFiles, source.edition?.id);
+  snapshot.inventory(
+    names,
+    snapshot.legacyMediaFiles,
+    source.edition?.id,
+    source.components?.articles || {}
+  );
   const immutable = names
     .filter((name) => name.startsWith('snapshots/') && snapshot.immutable(name))
     .sort();
@@ -76,7 +88,12 @@ function sourceGate(source, gate, expected = {}) {
   assert.match(source.sourceCommit, /^[0-9a-f]{40}$/);
   assert.match(source.sourceTree, /^[0-9a-f]{40}$/);
   assert.equal(source.candidateCommit, source.sourceCommit, 'candidate/source mismatch');
-  snapshot.inventory(Object.keys(source.files), snapshot.legacyMediaFiles, source.edition?.id);
+  snapshot.inventory(
+    Object.keys(source.files),
+    snapshot.legacyMediaFiles,
+    source.edition?.id,
+    source.components?.articles || {}
+  );
   assert.equal(gate.schema, 1);
   assert.equal(gate.pass, true, 'Source package proof did not pass');
   if (gate.kind === 'package-gate') {
@@ -85,7 +102,7 @@ function sourceGate(source, gate, expected = {}) {
     for (const key of ['fullGate', 'productionEligible', 'deploymentAuthorized'])
       assert.equal(gate[key], false, 'package proof cannot authorize ' + key);
     assert.deepEqual(gate.checks, [
-      'generated source',
+      source.contentRelease ? 'verified current content source' : 'generated source',
       'artifact snapshot integrity',
       'size budgets',
     ]);
@@ -125,7 +142,11 @@ function additions(source, hostPolicy = hostPolicies.legacy) {
     publicDigest: source.artifactDigest,
   };
   return {
-    _headers: headers,
+    _headers: Object.keys(source.files).some((file) =>
+      /^(?:article-media|article-snapshots)\//.test(file)
+    )
+      ? headers
+      : legacyHeaders,
     ...(source.files['404.html'] ? {} : { '404.html': notFound }),
     '_staging/revision.json': JSON.stringify(revision, null, 2) + '\n',
     ...(hostPolicy === hostPolicies.snapshotProxy
@@ -134,7 +155,9 @@ function additions(source, hostPolicy = hostPolicies.legacy) {
   };
 }
 function policyHeaders(name) {
-  if (/^snapshots\/[a-f0-9]{64}\/[a-z]+$/.test(name)) name += '.html';
+  if (/^(?:snapshots|article-snapshots)\/[a-f0-9]{64}\/[a-z][a-z0-9-]*$/.test(name)) {
+    name += '.html';
+  }
   const common = Object.fromEntries(
     headers
       .split('/runtime/*')[0]
@@ -151,13 +174,10 @@ function policyHeaders(name) {
 }
 function checkLinks(dir) {
   const admitted = Object.keys(artifact.manifest(dir).files);
-  for (const route of ['index', 'research', 'writing', 'talks', 'credits']) {
-    const html = fs.readFileSync(path.join(dir, route + '.html'), 'utf8');
+  for (const document of admitted.filter((name) => name.endsWith('.html'))) {
+    const html = fs.readFileSync(path.join(dir, document), 'utf8');
     for (const match of html.matchAll(/\b(?:href|src)="([^"]+)"/g)) {
-      const url = new URL(
-        match[1].replaceAll('&amp;', '&'),
-        'https://staging.invalid/' + route + '.html'
-      );
+      const url = new URL(match[1].replaceAll('&amp;', '&'), 'https://staging.invalid/' + document);
       if (url.origin !== 'https://staging.invalid') continue;
       const file = decodeURIComponent(url.pathname).replace(/^\//, '') || 'index.html';
       assert.ok(admitted.includes(file), 'unknown local destination ' + file);
@@ -174,35 +194,7 @@ function checkLinks(dir) {
   }
 }
 function publicationRequired(source, revision) {
-  // Derive the discriminator from verified public bytes. Optional manifest
-  // metadata cannot relabel a licensed Color artifact as a historical family.
-  const motion = require('../quality/color-motion-contract.cjs');
-  const licensed = [
-    'issue39-licensed-plain',
-    'issue39-licensed-staging',
-    'issue39-licensed-production',
-    'issue39-licensed-compact-plain',
-    'issue39-licensed-compact-staging',
-    'issue39-licensed-compact-production',
-    'issue39-writing-tbt-plain',
-    'issue39-writing-tbt-staging',
-    'issue39-writing-tbt-production',
-    'issue39-css-clock-plain',
-    'issue39-css-clock-staging',
-    'issue39-css-clock-production',
-  ].map(motion.reviewedRuntime);
-  const knownBytes = licensed.some(
-    (runtime) =>
-      runtime.variant.fingerprint === revision.engine ||
-      Object.entries(runtime.files).every(
-        ([name, sha256]) => source.files?.[name]?.sha256 === sha256
-      )
-  );
-  const actual = { components: revision };
-  if (!knownBytes && require('../quality/common.cjs').variant(actual).id !== 'color') return false;
-  const candidate = { ...source, components: revision };
-  const runtime = motion.select(candidate);
-  return licensed.some((reviewed) => reviewed.id === runtime.id);
+  return require('../quality/color-motion-contract.cjs').publicationRequired(source, revision);
 }
 function publicationRights(publicDirectory, source, report, revision) {
   const actualRevision = revision || snapshot.verify(publicDirectory, source);

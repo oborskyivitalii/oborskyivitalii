@@ -8,6 +8,7 @@ on:
         type: string
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: gtk-native-${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
   cancel-in-progress: true
@@ -85,11 +86,13 @@ jobs:
             set -o pipefail
             sudo apt-get install -y --no-install-recommends --no-upgrade gdb 2>&1 | tee "$RUNNER_TEMP/gtk-native-results/gdb-install.log"
           fi
-      - name: Download pinned WebKit without prior launch
+      - name: Restore verified pinned browsers without prior launch
         timeout-minutes: 3
-        run: |
-          tools/quality/toolchain/node_modules/.bin/playwright install webkit
-          command -v Xvfb
+        uses: ./.github/actions/browser-archive
+        with:
+          browsers: webkit
+      - name: Verify the existing display server
+        run: command -v Xvfb
       - name: Retain three fresh GTK outcomes and exact failed-process offline core evidence
         env:
           DEBUG: pw:browser

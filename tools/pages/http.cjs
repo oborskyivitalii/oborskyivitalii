@@ -105,7 +105,17 @@ async function check(directory, value, fetcher = fetch, observe = () => {}) {
     if (failed) throw failed.reason;
     rows.push(...observations.map((item) => item.value));
   }
+  const articles = Object.values(
+    record.staging?.components.articles || record.production?.components?.articles || {}
+  );
+  const articlePrefix = record.staging ? '/staging/' : '/';
   const journeys = [
+    ...articles.flatMap((article) =>
+      [article.alias, article.url].map((file) => [
+        articlePrefix + file,
+        articlePrefix.slice(1) + file,
+      ])
+    ),
     ['/', 'index.html'],
     ...(record.staging
       ? [
@@ -135,6 +145,7 @@ async function check(directory, value, fetcher = fetch, observe = () => {}) {
     staging: record.staging !== null,
     query: true,
     actual404: true,
+    ...(articles.length ? { articleDocuments: articles.length, articleDeepLinks: true } : {}),
   };
 }
 

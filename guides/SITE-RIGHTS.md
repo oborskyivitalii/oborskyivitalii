@@ -72,6 +72,12 @@ nonpublic report before the existing workflow uploads the complete artifact
 directory. The report stays beside `artifact.json`, outside `public/`, so it
 does not change public route/runtime identities or recursively hash itself.
 Both validation levels recompute it against the exact clean candidate checkout.
+The trusted [runtime registry](../tools/quality/color-motion-contract.cjs) owns
+which historical Color families require this report; the existing
+[package API](../tools/staging/package.cjs) delegates that classification.
+Candidate flags cannot remove the requirement, and known licensed bytes still
+require exact runtime/edition verification. Registry policy requires evidence;
+the compiler, frozen-record verifier and independent approval supply that evidence.
 Source tests exercise the actual edition and package CLIs in a clean temporary
 Git checkout, including report-before-upload and missing/stale/source/tree failures.
 Staging packaging requires that report before creating an uploadable package;

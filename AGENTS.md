@@ -19,6 +19,8 @@ Enduring rules and task routing. Issues own intent; PRs own execution;
    does not establish absence; inspect relevant inventories before creating an owner.
 5. Add the applicable routes below to the common reading above. For mixed work,
    use their union; uncertain classification requires owner/source inspection.
+   Launch the separate Requirements & Acceptance Reviewer before dependent
+   implementation under [independent quality agents](CONTRIBUTING.md#independent-quality-agents).
 
 | Type | Additional reading |
 | --- | --- |
@@ -41,17 +43,28 @@ Enduring rules and task routing. Issues own intent; PRs own execution;
    checks, and review unautomated rules. Legacy debt cannot authorize new debt.
 9. Preserve issue intent; append dated scope decisions. Link PRs and every
    implementation commit using `Refs #N`; refresh exact links after rebase/squash.
-   Keep substantive PRs Draft during iteration and preserve required independent,
-   editorial, rights and device review. Label self-review and independent review honestly.
+   Keep substantive PRs Draft during iteration. After every completed work iteration,
+   require substantive independent review by a separate reviewer subagent before
+   advancing; follow [the iteration protocol](CONTRIBUTING.md#independent-review-after-every-iteration).
+   Launch the four roles through [reviewer prompts](agents/reviewers/README.md),
+   with explicit clean-context parameters and source-bound launch/result receipts.
+   Preserve editorial, rights and device review; self-review is not independent review.
 10. Keep analysis/review/model tasks in the owning PR's versioned
     `review/issue-N/YYYY-MM-DD-kind.md`, using [REVIEW-TEMPLATE](review/REVIEW-TEMPLATE.md).
     Give the issue a dated anchor, short outcome and exact file/section link;
     continue model changes on that same route. History never authorizes new work.
-11. Run `node tools/quality/local.cjs` and applicable mapped checks. After indexed
+11. Run the trusted lane's Basic and applicable mapped checks. Repository-only
+    delivery omits website Basic/package work; other changes retain
+    `node tools/quality/local.cjs`. After indexed
     path/source or memory changes run RI `build` and `verify`; RI/flow changes also
     require `test_repository_intelligence.py`. Update and verify the [RI/CI map](.github/ri-ci-map.json)
     when RI changes. Runtime/content edits use applicable hosted profiles and registry;
     dated diagnostics remain targeted, not routine suites.
+    If a test/check fails, preserve exact-source logs and accounting, then follow
+    [failure diagnosis](CONTRIBUTING.md#diagnose-failures-before-changing-or-rerunning).
+    Do not rerun an unchanged failed campaign or patch by guess. Inspect what failed
+    and why, separate facts from hypotheses, and record the next bounded diagnostic
+    action or evidenced fix hypothesis before proceeding. Retain the failed result.
 12. At session end follow acceptance policy: map every AC, run current-source checks,
     report AC → check → result → exact source/run, and update actual issue checkboxes.
     Tick only whole criteria with all checks/gates verified; clear invalidated ticks.

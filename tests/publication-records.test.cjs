@@ -24,6 +24,268 @@ function fixtureEnvironment(source, outer = process.env) {
   };
 }
 
+test('parallel preflight overlaps real guards in two slots and waits before package proof', async (t) => {
+  const directory = delivery.temporary(t);
+  const runner = require('../tools/quality/prepublication-runner.cjs');
+  const source = `const fs=require('node:fs'),p=require('node:path');
+    const [directory,id]=process.argv.slice(1);
+    fs.writeFileSync(p.join(directory,id+'.started'),'');
+    const finish=()=>{fs.writeFileSync(p.join(directory,id+'.done'),'');process.stdout.write(id+' output');process.stderr.write(id+' diagnostic');};
+    if(['a','b'].includes(id)){const tick=setInterval(()=>{if(['a','b'].every(x=>fs.existsSync(p.join(directory,x+'.started')))){clearInterval(tick);finish();}},10);}
+    else finish();`;
+  const prepared = {
+    checks: [{ id: 'clean-source', pass: true }],
+    tasks: ['a', 'b', 'c', 'package-proof'].map((id) => ({
+      id,
+      command: process.execPath,
+      args: ['-e', source, directory, id],
+      dependencies: ['clean-source'],
+      barrier: id === 'package-proof',
+    })),
+    execution: {
+      root: directory,
+      environment: process.env,
+      reportDirectory: directory,
+      reportStem: 'guard',
+      timeout: () => 3000,
+    },
+  };
+  let active = 0,
+    maximum = 0;
+  await runner.runParallel(prepared, {
+    execute: async (command, args, options) => {
+      if (args.at(-1) === 'package-proof')
+        for (const id of ['a', 'b', 'c'])
+          assert.ok(fs.existsSync(path.join(directory, id + '.done')));
+      maximum = Math.max(maximum, ++active);
+      try {
+        return await runner.executeAsync(command, args, options);
+      } finally {
+        active--;
+      }
+    },
+  });
+  assert.equal(maximum, 2);
+  assert.equal(active, 0);
+  assert.equal(prepared.checks.length, 5);
+  assert.ok(prepared.checks.every((row) => row.pass));
+  for (const row of prepared.checks.slice(1)) {
+    assert.equal(fs.readFileSync(row.stdout, 'utf8'), row.id + ' output');
+    assert.equal(fs.readFileSync(row.stderr, 'utf8'), row.id + ' diagnostic');
+  }
+});
+
+test('CPU-heavy preflight guards run alone while other real guards retain two slots', async (t) => {
+  const directory = delivery.temporary(t),
+    runner = require('../tools/quality/prepublication-runner.cjs');
+  const prepared = {
+    checks: [],
+    tasks: ['a', 'b', 'source-tests', 'c', 'security', 'end'].map((id) => ({
+      id,
+      command: process.execPath,
+      args: ['-e', 'setTimeout(()=>process.stdout.write(process.argv[1]),50)', id],
+      dependencies: [],
+      exclusive: ['source-tests', 'security'].includes(id),
+    })),
+    execution: {
+      root: directory,
+      environment: process.env,
+      reportDirectory: directory,
+      reportStem: 'exclusive',
+      timeout: () => 3000,
+    },
+  };
+  const active = new Set();
+  await runner.runParallel(prepared, {
+    execute: async (command, args, options) => {
+      const id = args.at(-1);
+      if (['source-tests', 'security'].includes(id)) assert.equal(active.size, 0);
+      else assert.ok(!active.has('source-tests') && !active.has('security'));
+      active.add(id);
+      try {
+        return await runner.executeAsync(command, args, options);
+      } finally {
+        active.delete(id);
+      }
+    },
+  });
+  assert.equal(active.size, 0);
+  assert.equal(prepared.checks.length, 6);
+  assert.ok(prepared.checks.every((row) => row.pass));
+});
+
+test('parallel preflight retains every independent failure, blocks dependencies and preserves canonical accounting', async (t) => {
+  const directory = delivery.temporary(t),
+    calls = [];
+  const result = await local.prepublicationParallel('staging', path.join(directory, 'artifact'), {
+    report: path.join(directory, 'reports/preflight.json'),
+    identify: () => ({
+      sourceCommit: process.env.SITE_CANDIDATE_SHA || 'a'.repeat(40),
+      sourceTree: 'b'.repeat(40),
+      sourceDirty: false,
+    }),
+    execute: async (_command, args) => {
+      calls.push(args[0] + ':' + (args[1] || ''));
+      const fail = args[0] === 'tools/quality/artifact.cjs' && args[1] === 'verify';
+      return {
+        status: fail ? 1 : 0,
+        stdout: 'native output',
+        stderr: fail ? 'invalid artifact' : '',
+      };
+    },
+  });
+  assert.equal(result.pass, false);
+  assert.deepEqual(
+    result.checks.map((row) => row.id),
+    require('../tools/quality/prepublication.cjs').checkIds('staging')
+  );
+  for (const id of ['source-tests', 'python-tests', 'selftest', 'generated'])
+    assert.equal(result.checks.find((row) => row.id === id).status, 'passed');
+  for (const id of [
+    'artifact-source',
+    'security',
+    'advisories',
+    'edition-rights',
+    'package-proof',
+    'package',
+    'artifact-unchanged',
+  ])
+    assert.equal(result.checks.find((row) => row.id === id).status, 'blocked');
+  assert.equal(
+    calls.filter((call) => call.startsWith('tools/quality/source-tests.cjs:')).length,
+    1
+  );
+  assert.equal(result.checks.find((row) => row.id === 'artifact').exitCode, 1);
+  assert.deepEqual(
+    JSON.parse(fs.readFileSync(path.join(directory, 'reports/preflight.json'))),
+    result
+  );
+});
+
+test('parallel preflight completes the full guard inventory before final source admission', async (t) => {
+  const directory = delivery.temporary(t);
+  for (const level of ['staging', 'production']) {
+    let sourceFinished = false;
+    let identities = 0;
+    const result = await local.prepublicationParallel(level, path.join(directory, 'artifact'), {
+      report: path.join(directory, level, 'preflight.json'),
+      identify: () => ({
+        sourceCommit: process.env.SITE_CANDIDATE_SHA || 'a'.repeat(40),
+        sourceTree: 'b'.repeat(40),
+        sourceDirty: level === 'production' && ++identities > 1,
+      }),
+      execute: async (_command, args) => {
+        if (args[0] === 'tools/quality/source-tests.cjs') {
+          sourceFinished = true;
+          return { status: 0, stdout: 'original source output', stderr: '' };
+        }
+        if (args.includes('--package-gate')) assert.equal(sourceFinished, true);
+        return { status: 0, stdout: 'original guard output', stderr: '' };
+      },
+    });
+    assert.equal(result.pass, level === 'staging');
+    assert.equal(
+      result.checks.find((row) => row.id === 'unchanged-source').pass,
+      level === 'staging'
+    );
+    assert.ok(
+      result.checks.filter((row) => row.id !== 'unchanged-source').every((row) => row.pass)
+    );
+    assert.deepEqual(
+      result.checks.map((row) => row.id),
+      require('../tools/quality/prepublication.cjs').checkIds(level)
+    );
+    const source = result.checks.find((row) => row.id === 'source-tests');
+    assert.equal(fs.readFileSync(source.stdout, 'utf8'), 'original source output');
+    assert.equal(result.fullGate, false);
+    assert.equal(result.deploymentAuthorized, false);
+  }
+});
+
+test('asynchronous native guard limits preserve partial streams and reject overflow and cancellation', async () => {
+  const { executeAsync } = require('../tools/quality/prepublication-runner.cjs');
+  const options = { encoding: 'utf8', timeout: 500, maxBuffer: 16 * 1024 * 1024 };
+  const timed = await executeAsync(
+    process.execPath,
+    [
+      '-e',
+      "process.stdout.write('partial TAP');process.stderr.write('partial diagnostic');setInterval(()=>{},1000)",
+    ],
+    options
+  );
+  assert.equal(timed.status, null);
+  assert.ok(timed.error);
+  assert.equal(timed.signal, 'SIGTERM');
+  assert.equal(timed.stdout, 'partial TAP');
+  assert.equal(timed.stderr, 'partial diagnostic');
+  const overflow = await executeAsync(
+    process.execPath,
+    ['-e', "process.stdout.write('x'.repeat(10000))"],
+    { ...options, maxBuffer: 64 }
+  );
+  assert.equal(overflow.status, null);
+  assert.equal(overflow.error.code, 'ERR_CHILD_PROCESS_STDIO_MAXBUFFER');
+  assert.ok(Buffer.byteLength(overflow.stdout) <= 64);
+  const combined = await executeAsync(
+    process.execPath,
+    [
+      '-e',
+      "process.stdout.write('a'.repeat(40));process.stderr.write('b'.repeat(40));setInterval(()=>{},1000)",
+    ],
+    { ...options, maxBuffer: 64 }
+  );
+  assert.equal(combined.status, null);
+  assert.equal(combined.error.code, 'ENOBUFS');
+  assert.equal(combined.stdout, 'a'.repeat(40));
+  assert.equal(combined.stderr, 'b'.repeat(40));
+  const controller = new AbortController();
+  controller.abort();
+  const cancelled = await executeAsync(
+    process.execPath,
+    ['-e', "process.stdout.write('not admitted')"],
+    { ...options, signal: controller.signal }
+  );
+  assert.equal(cancelled.status, null);
+  assert.equal(cancelled.error.code, 'ABORT_ERR');
+});
+
+test('interrupted parallel preflight stops queued guards and waits for active aborts', async (t) => {
+  const directory = delivery.temporary(t),
+    runner = require('../tools/quality/prepublication-runner.cjs');
+  const controller = new AbortController();
+  const prepared = {
+    checks: [],
+    tasks: ['a', 'b', 'queued'].map((id) => ({
+      id,
+      command: process.execPath,
+      args: ['-e', 'setInterval(()=>{},1000)'],
+      dependencies: [],
+    })),
+    execution: {
+      root: directory,
+      environment: process.env,
+      reportDirectory: directory,
+      reportStem: 'abort',
+      timeout: () => 3000,
+    },
+  };
+  let started = 0;
+  await runner.runParallel(prepared, {
+    signal: controller.signal,
+    execute: async (command, args, options) => {
+      const result = runner.executeAsync(command, args, options);
+      if (++started === 2) controller.abort();
+      return result;
+    },
+  });
+  assert.equal(started, 2);
+  assert.equal(prepared.checks.length, 3);
+  assert.ok(prepared.checks.every((row) => !row.pass));
+  assert.deepEqual(prepared.checks.find((row) => row.id === 'queued').blockedBy, ['interrupted']);
+  for (const row of prepared.checks.filter((row) => row.status === 'failed'))
+    assert.equal(row.error.code, 'ABORT_ERR');
+});
+
 test('prepublication collects independent guard failures and preserves their source-bound diagnostics before admission', (t) => {
   const directory = delivery.temporary(t);
   const report = path.join(directory, 'reports/preflight.json');
@@ -212,7 +474,7 @@ test('prepublication preserves distinct child runner stderr and command-level fa
 test('prepublication preserves inner source timeout evidence before its distinct outer deadline', (t) => {
   const directory = delivery.temporary(t),
     runner = require('../tools/quality/source-tests.cjs');
-  assert.equal(runner.executionLimits.timeoutMs, 180000);
+  assert.equal(runner.executionLimits.timeoutMs, 300000);
   for (const level of ['staging', 'production']) {
     let runnerReport;
     let sourceDeadline;
@@ -260,18 +522,19 @@ test('prepublication preserves inner source timeout evidence before its distinct
       result.checks.filter((row) => !row.pass).map((row) => row.id),
       ['source-tests']
     );
-    assert.equal(sourceDeadline, 210000);
+    // One bounded native batch retains a separate 30-second reporting grace.
+    assert.equal(sourceDeadline, 330000);
     assert.ok(otherDeadlines.length > 0);
     assert.ok(otherDeadlines.every((timeout) => timeout === 180000));
     const raw = JSON.parse(fs.readFileSync(runnerReport, 'utf8')),
       wrapper = result.checks.find((row) => row.id === 'source-tests');
     assert.equal(raw.pass, false);
-    assert.equal(raw.execution.timeoutMs, 180000);
+    assert.equal(raw.execution.timeoutMs, 300000);
     assert.equal(raw.execution.error.code, 'ETIMEDOUT');
     assert.equal(fs.readFileSync(raw.files.tap, 'utf8'), 'original partial child TAP\n');
     assert.equal(fs.readFileSync(raw.files.stderr, 'utf8'), 'original inner timeout stderr\n');
     assert.deepEqual(JSON.parse(fs.readFileSync(wrapper.stdout, 'utf8')), raw);
-    assert.equal(wrapper.timeoutMs, 210000);
+    assert.equal(wrapper.timeoutMs, 330000);
     assert.equal(result.checks.find((row) => row.id === 'security').pass, true);
     assert.equal(result.checks.find((row) => row.id === 'unchanged-source').pass, true);
   }
@@ -706,12 +969,13 @@ test('staging and optional full diagnostics retain prepublication while producti
   const ready = read('site-checks');
   assert.match(
     ready,
-    /source-tests\.cjs --profile pr[^\n]*--report quality-reports\/source-tests\.json/
+    /source-tests\.cjs --ci-profile --require-clean --report quality-reports\/source-tests\.json/
   );
-  assert.match(
-    ready,
-    /source-tests\.cjs --profile staging[^\n]*--report quality-reports\/source-tests\.json/
-  );
+  // The CI adapter retains exact PR/staging selection and can reuse only bound content evidence.
+  assert.match(ready, /SITE_SOURCE_EVENT: \$\{\{ github\.event_name \}\}/);
+  assert.match(ready, /SITE_SOURCE_MANIFEST: quality-artifact\/artifact\.json/);
+  const runner = require('../tools/quality/source-tests.cjs');
+  assert.equal(typeof runner.ciProfile, 'function');
   const reusable = read('site-release-checks');
   const reusableBuild = reusable.slice(reusable.indexOf('  build:'), reusable.indexOf('  host:'));
   assert.equal((reusableBuild.match(/id: source_checks/g) || []).length, 1);

@@ -25,98 +25,8 @@
         "quality gates",
         "security audit",
         "performance budget",
-        "\u043f\u0430\u0439\u043f\u043b\u0430\u0439\u043d \u0440\u0435\u043b\u0456\u0437\u0443",
-        "\u043f\u0435\u0440\u0435\u0432\u0456\u0440\u043a\u0438 \u043f\u0435\u0440\u0435\u0434 \u0440\u0435\u043b\u0456\u0437\u043e\u043c"
-      ]
-    },
-    {
-      "concern": "current visual and scene source with applicable acceptance routes",
-      "path": "site/README.md",
-      "queries": [
-        "visual review",
-        "design proposal",
-        "portrait cutout",
-        "\u0432\u0456\u0437\u0443\u0430\u043b\u044c\u043d\u0438\u0439 \u0441\u0442\u0438\u043b\u044c",
-        "\u0434\u0438\u0437\u0430\u0439\u043d \u0441\u0430\u0439\u0442\u0443",
-        "\u0444\u043e\u0442\u043e"
-      ]
-    },
-    {
-      "concern": "search discoverability and topic map",
-      "path": "guides/SITE-SEO.md",
-      "queries": [
-        "SEO",
-        "keywords",
-        "search visibility",
-        "\u043a\u043b\u044e\u0447\u043e\u0432\u0456 \u0441\u043b\u043e\u0432\u0430",
-        "\u043e\u043f\u0442\u0438\u043c\u0456\u0437\u0430\u0446\u0456\u044f \u0441\u0430\u0439\u0442\u0443"
-      ]
-    },
-    {
-      "concern": "agent operation",
-      "path": "AGENTS.md",
-      "queries": ["agent workflow", "\u0430\u0433\u0435\u043d\u0442"]
-    },
-    {
-      "concern": "task intake and closure",
-      "path": "CONTRIBUTING.md",
-      "queries": [
-        "issue workflow",
-        "backlog",
-        "\u0456\u0448\u044c\u044e",
-        "\u0431\u0435\u043a\u043b\u043e\u0433"
-      ]
-    },
-    {
-      "concern": "author profile entry point",
-      "path": "README.md",
-      "queries": [
-        "author",
-        "about",
-        "\u043f\u0440\u043e\u0444\u0456\u043b\u044c",
-        "\u043f\u0440\u043e \u0430\u0432\u0442\u043e\u0440\u0430"
-      ]
-    },
-    {
-      "concern": "milestone sequence",
-      "path": "guides/SITE-ROADMAP.md",
-      "queries": [
-        "roadmap",
-        "milestones",
-        "\u043f\u043b\u0430\u043d \u0441\u0430\u0439\u0442\u0443"
-      ]
-    },
-    {
-      "concern": "publication priorities and migration issue routes",
-      "path": "guides/SITE-ROADMAP.md",
-      "queries": [
-        "publication",
-        "pmday",
-        "publisher",
-        "pdf",
-        "quartz",
-        "\u043f\u0443\u0431\u043b\u0456\u043a\u0430\u0446\u0456\u044f",
-        "\u043f\u0434\u0444"
-      ]
-    },
-    {
-      "concern": "canonical research ownership",
-      "path": "guides/REPOSITORIES.md",
-      "queries": [
-        "cross repository",
-        "research owners",
-        "migration",
-        "\u043c\u0456\u0433\u0440\u0430\u0446\u0456\u044f",
-        "\u0434\u043e\u0441\u043b\u0456\u0434\u0436\u0435\u043d\u043d\u044f"
-      ]
-    },
-    {
-      "concern": "navigation projection",
-      "path": ".github/REPOSITORY-INTELLIGENCE.md",
-      "queries": [
-        "repository intelligence",
-        "RI adapter",
-        "\u043d\u0430\u0432\u0456\u0433\u0430\u0446\u0456\u044f \u0440\u0435\u043f\u043e"
+        "пайплайн релізу",
+        "перевірки перед релізом"
       ]
     },
     {
@@ -127,8 +37,114 @@
         "site source",
         "engine implementation",
         "snapshot pinning",
-        "\u0440\u0435\u0434\u0430\u0433\u0443\u0432\u0430\u043d\u043d\u044f \u0442\u0435\u043a\u0441\u0442\u0443",
-        "\u0440\u0443\u0448\u0456\u0439 \u0441\u0430\u0439\u0442\u0443"
+        "редагування тексту",
+        "рушій сайту"
+      ]
+    },
+    {
+      "concern": "search discoverability and topic map",
+      "path": "guides/SITE-SEO.md",
+      "queries": ["SEO", "keywords", "search visibility", "ключові слова", "оптимізація сайту"]
+    },
+    {
+      "concern": "agent operation",
+      "path": "AGENTS.md",
+      "queries": ["agent workflow", "агент"]
+    },
+    {
+      "concern": "task intake and closure",
+      "path": "CONTRIBUTING.md",
+      "queries": [
+        "issue workflow",
+        "independent subagent review",
+        "iteration review",
+        "незалежне ревю субагентом",
+        "independent quality agents",
+        "independent agents",
+        "separate agent launches",
+        "незалежний запуск агентів",
+        "окремі запуски агентів",
+        "backlog",
+        "ішью",
+        "беклог"
+      ]
+    },
+    {
+      "concern": "independent requirements and acceptance-quality review",
+      "path": "CONTRIBUTING.md",
+      "queries": [
+        "requirements reviewer",
+        "requirements review",
+        "requirements quality",
+        "acceptance quality",
+        "якість вимог",
+        "перевірка вимог",
+        "якість критеріїв приймання"
+      ]
+    },
+    {
+      "concern": "independent code review and correction acceptance",
+      "path": "CONTRIBUTING.md",
+      "queries": [
+        "code reviewer",
+        "independent code review",
+        "ревʼю коду",
+        "код ревью",
+        "незалежне ревю коду"
+      ]
+    },
+    {
+      "concern": "independent white-box QA and structural test design",
+      "path": "CONTRIBUTING.md",
+      "queries": [
+        "white-box QA",
+        "white-box testing",
+        "white box testing",
+        "whitebox testing",
+        "вайтбокс тестування",
+        "тестування білої скриньки"
+      ]
+    },
+    {
+      "concern": "independent exploratory and interaction QA",
+      "path": "CONTRIBUTING.md",
+      "queries": [
+        "exploratory testing",
+        "exploratory QA",
+        "interaction QA",
+        "manual testing",
+        "дослідницьке тестування",
+        "ручне тестування",
+        "тестування взаємодії"
+      ]
+    },
+    {
+      "concern": "author profile entry point",
+      "path": "README.md",
+      "queries": ["author", "about", "профіль", "про автора"]
+    },
+    {
+      "concern": "publication priorities and migration issue routes",
+      "path": "guides/SITE-ROADMAP.md",
+      "queries": ["publication", "pmday", "publisher", "pdf", "quartz", "публікація", "пдф"]
+    },
+    {
+      "concern": "canonical research ownership",
+      "path": "guides/REPOSITORIES.md",
+      "queries": ["cross repository", "research owners", "migration", "міграція", "дослідження"]
+    },
+    {
+      "concern": "complete repository structure and editing routes",
+      "path": ".github/REPOSITORY-INTELLIGENCE.md",
+      "queries": [
+        "repository map",
+        "file inventory",
+        "root files",
+        "repo structure",
+        "структура репо",
+        "індекс репо",
+        "каталоги",
+        "файли в корені"
       ]
     },
     {
@@ -139,9 +155,9 @@
         "Cloudflare Web Analytics",
         "Search Console",
         "visitor measurement",
-        "\u0430\u043d\u0430\u043b\u0456\u0442\u0438\u043a\u0430 \u0441\u0430\u0439\u0442\u0443",
-        "\u0432\u0456\u0434\u0432\u0456\u0434\u0443\u0432\u0430\u0447\u0456",
-        "\u043f\u043e\u0448\u0443\u043a\u043e\u0432\u0438\u0439 \u0433\u0440\u0430\u0444"
+        "аналітика сайту",
+        "відвідувачі",
+        "пошуковий граф"
       ]
     },
     {
@@ -151,24 +167,10 @@
         "session memory",
         "current work",
         "handoff",
-        "\u043f\u0430\u043c\u02bc\u044f\u0442\u044c",
-        "\u043f\u0430\u043c\u044f\u0442\u044c",
-        "\u043f\u043e\u0442\u043e\u0447\u043d\u0438\u0439 \u0441\u0442\u0430\u043d",
-        "\u043d\u0430\u0441\u0442\u0443\u043f\u043d\u0430 \u0441\u0435\u0441\u0456\u044f"
-      ]
-    },
-    {
-      "concern": "complete repository structure and editing routes",
-      "path": ".github/REPOSITORY-INTELLIGENCE.md",
-      "queries": [
-        "repository map",
-        "file inventory",
-        "root files",
-        "repo structure",
-        "\u0441\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u0430 \u0440\u0435\u043f\u043e",
-        "\u0456\u043d\u0434\u0435\u043a\u0441 \u0440\u0435\u043f\u043e",
-        "\u043a\u0430\u0442\u0430\u043b\u043e\u0433\u0438",
-        "\u0444\u0430\u0439\u043b\u0438 \u0432 \u043a\u043e\u0440\u0435\u043d\u0456"
+        "памʼять",
+        "память",
+        "поточний стан",
+        "наступна сесія"
       ]
     },
     {
@@ -178,8 +180,8 @@
         "acceptance criteria",
         "AC mapping",
         "deterministic tests",
-        "\u0430\u043a\u0441\u0435\u043f\u0442\u0430\u043d\u0441",
-        "\u043a\u0440\u0438\u0442\u0435\u0440\u0456\u0457 \u043f\u0440\u0438\u0439\u043c\u0430\u043d\u043d\u044f",
+        "аксептанс",
+        "критерії приймання",
         "policy"
       ]
     },
@@ -190,12 +192,12 @@
         "Astra",
         "review handoff",
         "analysis tasks",
-        "\u0440\u0435\u0432\u02bc\u044e",
-        "\u0430\u043d\u0430\u043b\u0456\u0437",
-        "\u0437\u0430\u0432\u0434\u0430\u043d\u043d\u044f \u0441\u043e\u043b\u0443",
+        "ревʼю",
+        "аналіз",
+        "завдання солу",
         "Sol",
         "execution plan",
-        "\u043f\u043b\u0430\u043d \u0434\u043b\u044f \u0441\u043e\u043b"
+        "план для сол"
       ]
     },
     {
@@ -205,8 +207,8 @@
         "bootstrap prompt",
         "project description",
         "ChatGPT project",
-        "\u0431\u0443\u0442\u0441\u0442\u0440\u0430\u043f",
-        "\u043e\u043f\u0438\u0441 \u043f\u0440\u043e\u0435\u043a\u0442\u0443"
+        "бутстрап",
+        "опис проекту"
       ]
     },
     {
@@ -219,11 +221,11 @@
         "staging regression",
         "production regression",
         "duplicate tests",
-        "\u0442\u0435\u0441\u0442\u0438",
-        "\u0441\u043c\u043e\u0443\u043a",
-        "\u0440\u0435\u0433\u0440\u0435\u0441\u0456\u044f",
-        "\u0434\u0443\u0431\u043b\u0456\u043a\u0430\u0442\u0438 \u0442\u0435\u0441\u0442\u0456\u0432",
-        "\u043e\u043f\u0442\u0438\u043c\u0456\u0437\u0430\u0446\u0456\u044f \u0442\u0435\u0441\u0442\u0456\u0432"
+        "тести",
+        "смоук",
+        "регресія",
+        "дублікати тестів",
+        "оптимізація тестів"
       ]
     },
     {
@@ -234,10 +236,36 @@
         "coding standards",
         "refactoring",
         "content engine separation",
-        "\u0441\u0442\u0438\u043b\u044c \u043a\u043e\u0434\u0443",
-        "\u043a\u043e\u0434 \u0441\u0442\u0430\u0439\u043b",
-        "\u0440\u0435\u0444\u0430\u043a\u0442\u043e\u0440\u0438\u043d\u0433",
-        "\u043f\u0440\u0430\u0432\u0438\u043b\u0430 \u043d\u0430\u043f\u0438\u0441\u0430\u043d\u043d\u044f \u043a\u043e\u0434\u0443"
+        "стиль коду",
+        "код стайл",
+        "рефакторинг",
+        "правила написання коду"
+      ]
+    },
+    {
+      "concern": "full authored articles and reusable publication workflow",
+      "path": "guides/ARTICLE-WORKFLOW.md",
+      "queries": [
+        "article authoring",
+        "full articles",
+        "LinkedIn adaptation",
+        "publication events",
+        "підготовка статей",
+        "повні статті",
+        "редакційний процес"
+      ]
+    },
+    {
+      "concern": "independent article catalog and static content release",
+      "path": "guides/SITE-CONTENT-RELEASE.md",
+      "queries": [
+        "content release",
+        "article counter",
+        "Writing catalog",
+        "content-only build",
+        "лічильник статей",
+        "випуск контенту",
+        "додати статтю"
       ]
     },
     {
@@ -263,9 +291,9 @@
         "rights inventory",
         "reuse license",
         "copyright",
-        "\u043b\u0456\u0446\u0435\u043d\u0437\u0443\u0432\u0430\u043d\u043d\u044f \u0441\u0430\u0439\u0442\u0443",
-        "\u043f\u0440\u0430\u0432\u0430 \u043d\u0430 \u043c\u0430\u0442\u0435\u0440\u0456\u0430\u043b\u0438",
-        "\u043b\u0456\u0446\u0435\u043d\u0437\u0456\u044f"
+        "ліцензування сайту",
+        "права на матеріали",
+        "ліцензія"
       ]
     },
     {
@@ -278,9 +306,81 @@
         "Apache-2.0",
         "CC BY 4.0",
         "copyright",
-        "\u043b\u0456\u0446\u0435\u043d\u0437\u0443\u0432\u0430\u043d\u043d\u044f \u0441\u0430\u0439\u0442\u0443",
-        "\u043b\u0456\u0446\u0435\u043d\u0437\u0456\u044f \u043a\u043e\u0434\u0443",
-        "\u043b\u0456\u0446\u0435\u043d\u0437\u0456\u044f \u043a\u043e\u043d\u0442\u0435\u043d\u0442\u0443"
+        "ліцензування сайту",
+        "ліцензія коду",
+        "ліцензія контенту"
+      ]
+    },
+    {
+      "concern": "offline WEB orchestration fixture component",
+      "path": "guides/WEB-ORCHESTRATION.md",
+      "queries": ["orchestration", "WEB-18", "VIT-22", "reducer", "receipt recovery"]
+    },
+    {
+      "concern": "independent requirements and acceptance-quality review detailed prompt",
+      "path": "agents/reviewers/requirements-acceptance.md",
+      "queries": [
+        "requirements reviewer",
+        "requirements review",
+        "requirements quality",
+        "acceptance quality",
+        "якість вимог",
+        "перевірка вимог",
+        "якість критеріїв приймання",
+        "requirements prompt"
+      ]
+    },
+    {
+      "concern": "independent code review and correction acceptance detailed prompt",
+      "path": "agents/reviewers/code-review.md",
+      "queries": [
+        "code reviewer",
+        "independent code review",
+        "ревʼю коду",
+        "код ревью",
+        "незалежне ревю коду",
+        "code review prompt"
+      ]
+    },
+    {
+      "concern": "independent white-box QA and structural test design detailed prompt",
+      "path": "agents/reviewers/white-box-qa.md",
+      "queries": [
+        "white-box QA",
+        "white-box testing",
+        "white box testing",
+        "whitebox testing",
+        "вайтбокс тестування",
+        "тестування білої скриньки",
+        "white-box prompt"
+      ]
+    },
+    {
+      "concern": "independent exploratory and interaction QA detailed prompt",
+      "path": "agents/reviewers/exploratory-interaction-qa.md",
+      "queries": [
+        "exploratory testing",
+        "exploratory QA",
+        "interaction QA",
+        "manual testing",
+        "дослідницьке тестування",
+        "ручне тестування",
+        "тестування взаємодії",
+        "exploratory prompt"
+      ]
+    },
+    {
+      "concern": "common reviewer launch, source packet, isolation and execution receipts",
+      "path": "agents/reviewers/README.md",
+      "queries": [
+        "reviewer launch contract",
+        "reviewer source packet",
+        "reviewer isolation",
+        "reviewer execution receipt",
+        "separate agent launches",
+        "independent agents",
+        "окремі запуски агентів",
+        "контракт запуску ревʼюерів"
       ]
     }
   ],
@@ -332,7 +432,8 @@
         ".github/ri-ci-map.json",
         "tools/check_ri_ci.py",
         "tests/test_ri_ci.py",
-        "PROJECT-BOOTSTRAP.md"
+        "PROJECT-BOOTSTRAP.md",
+        "agents/reviewers/"
       ],
       "commands": [
         "python3 tools/check_ri_ci.py verify",
@@ -389,8 +490,41 @@
       "note": "Select the authorized hosted profile; this route does not trigger deployment."
     },
     {
+      "concern": "independent quality-agent protocol and risk-to-test handoff",
+      "paths": [
+        "AGENTS.md",
+        "CONTRIBUTING.md",
+        ".github/ACCEPTANCE.md",
+        ".github/ISSUE_TEMPLATE/",
+        ".github/pull_request_template.md",
+        "review/REVIEW-TEMPLATE.md",
+        "guides/SITE-CHECK-PROFILES.md",
+        "tools/quality/test-profiles.json",
+        "tools/quality/source-tests.cjs",
+        "tests/test_repository_intelligence.py",
+        "agents/reviewers/"
+      ],
+      "commands": [
+        "python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'",
+        "python3 tools/check_ri_ci.py verify"
+      ],
+      "read": [
+        "CONTRIBUTING.md",
+        "agents/reviewers/README.md",
+        ".github/ACCEPTANCE.md",
+        "review/REVIEW-TEMPLATE.md",
+        "guides/SITE-CHECK-PROFILES.md",
+        "tools/quality/test-profiles.json",
+        ".github/workflows/issue-acceptance.yml"
+      ],
+      "workflow": ".github/workflows/navigation.yml",
+      "note": "Follow CONTRIBUTING.md#independent-quality-agents for separately launched Requirements/Acceptance Reviewer, Code Reviewer, White-box QA and Exploratory/Interaction QA. These commands verify navigation and CI coupling, not agent execution or acceptance. Map findings and test dispositions to the live owning issue, existing profile registry and its acceptance policy; retain actual role results and manual limits in the review artifact."
+    },
+    {
       "concern": "issue acceptance and anchored analysis/review handoff",
       "paths": [
+        "AGENTS.md",
+        "CONTRIBUTING.md",
         ".github/ACCEPTANCE.md",
         ".github/acceptance/",
         ".github/workflows/issue-acceptance.yml",
@@ -402,20 +536,19 @@
         "PROJECT-BOOTSTRAP.md",
         "tests/test_issue33_acceptance.py",
         "tests/test_issue35_acceptance.py",
-        "tests/test_issue36_acceptance.py"
+        "tests/test_issue36_acceptance.py",
+        "agents/reviewers/"
       ],
-      "commands": [
-        "python3 tools/issue_acceptance.py run --policy .github/acceptance/issue-36.json --report /tmp/issue-36-acceptance.json"
-      ],
+      "commands": ["python3 tools/issue_acceptance.py --help"],
+      "read": [".github/ACCEPTANCE.md", "review/REVIEW-TEMPLATE.md"],
       "workflow": ".github/workflows/issue-acceptance.yml",
-      "note": "Choose the owning issue policy. Current #36 Writing integration uses scoped source/browser/performance mappings; completed #35 test allocation and #31/#33 snapshots remain pinned to their original sources. Automated assertions cannot supply independent review, observed hosted timing, owner/device acceptance, merge or live GitHub linkage."
+      "note": "Help only describes invocation; it is not an acceptance check. Revalidate the live owning issue and select its policy from the PR's single Refs line or explicit dispatch issue, following ACCEPTANCE.md for exact-source execution. Historical policies do not select current work. Automated assertions cannot supply independent role execution/review, observed hosted timing, owner/device acceptance, merge or live GitHub linkage."
     },
     {
       "concern": "canonical test inventory, changed-source selection and selected staging evidence",
       "paths": [
         "tools/quality/test-profiles.json",
         "tools/quality/source-tests.cjs",
-        "tools/quality/source-test-worker.cjs",
         "tools/quality/staging-regression.cjs",
         "tools/quality/staging-gate.cjs",
         "tests/test-profile-selection.test.cjs",
@@ -426,12 +559,14 @@
         "tools/quality/bandit-triage.cjs",
         "tools/quality/bandit-policy.json",
         "tools/quality/scanners.cjs",
+        "tools/quality/generated-checksums.cjs",
         "tools/quality/secrets-baseline.json",
         "tests/quality-sources.test.cjs",
         "tools/quality/secrets-reviewed.json",
         "tools/quality/secrets-reviewed-checksums.json",
         "tools/quality/transition-pacing.json",
-        "tools/quality/transition-pacing.cjs"
+        "tools/quality/transition-pacing.cjs",
+        "tools/quality/source-test-worker.cjs"
       ],
       "commands": [
         "node --test tests/test-profile-selection.test.cjs tests/staging-gate.test.cjs tests/staging-regression.test.cjs tests/quality-sources.test.cjs",
@@ -464,6 +599,36 @@
       "read": ["guides/CODE-STYLE.md"],
       "workflow": ".github/workflows/navigation.yml",
       "note": "Read and follow applicable CS rules before code/template/style/config edits; map them to an issue AC and PR evidence. Guard success establishes only its stated subset; review unautomated rules and exact legacy allowances. This route does not authorize refactoring historical artifacts."
+    },
+    {
+      "concern": "authored article publisher and Writing reader",
+      "paths": [
+        "site/publications/",
+        "site/article-preview.json",
+        "site/assets/publications/",
+        "tools/publishing/",
+        "tools/site/articles.cjs",
+        "tests/publishing",
+        "tests/site-articles.test.cjs",
+        "tests/article-",
+        "guides/ARTICLE-WORKFLOW.md",
+        "tests/test_issue5_acceptance.py",
+        ".github/acceptance/issue-5.json",
+        "tools/site/offline.cjs",
+        "tools/site/standalone.cjs",
+        "tools/quality/candidate-source.cjs",
+        "tools/quality/article-browser.cjs",
+        "tests/local-catalog-relationships.test.cjs",
+        "tests/site-transaction.test.cjs"
+      ],
+      "commands": [
+        "node --test tests/publishing.test.cjs tests/publishing-history.test.cjs tests/publishing-profile.test.cjs tests/publishing-safety.test.cjs tests/publishing-print.test.cjs",
+        "node --test tests/site-articles.test.cjs tests/site-transaction.test.cjs tests/article-offline.test.cjs tests/local-catalog-relationships.test.cjs tests/article-budgets.test.cjs tests/article-browser-evidence.test.cjs tests/article-candidate-source.test.cjs tests/article-delivery.test.cjs",
+        "python3 tools/issue_acceptance.py run --policy .github/acceptance/issue-5.json --report /tmp/issue-5-acceptance.json"
+      ],
+      "read": ["guides/ARTICLE-WORKFLOW.md", "site/README.md", "guides/SITE-CHECK-PROFILES.md"],
+      "workflow": ".github/workflows/issue-acceptance.yml",
+      "note": "Prepare the locked build-only toolchain before selected source checks. Actual PDF/native-editor/browser/rights/publication evidence and controller promotion remain separate; this route does not publish."
     },
     {
       "concern": "production preparation, canonical Pages migration and release-bound rights inventory",
@@ -505,6 +670,76 @@
       ],
       "workflow": ".github/workflows/site-checks.yml",
       "note": "Changed-source tests are selected through test-profiles.json; issue39 selects its source-bound implementation checks. Fixtures cannot supply maintainer reuse-policy or rights decisions, protected settings, actual domain migration, device acceptance or publication approval."
+    },
+    {
+      "concern": "fixture-only WEB orchestration state and recovery",
+      "paths": [
+        "tools/orchestration/",
+        "tests/orchestration.test.cjs",
+        "tests/fixtures/orchestration-accept-only.json",
+        "tests/fixtures/orchestration-start.json",
+        "guides/WEB-ORCHESTRATION.md"
+      ],
+      "commands": ["node --test tests/orchestration.test.cjs", "node tools/quality/local.cjs"],
+      "read": [
+        "guides/WEB-ORCHESTRATION.md",
+        "guides/SITE-CHECK-PROFILES.md",
+        "guides/SITE-STAGING.md"
+      ],
+      "workflow": ".github/workflows/site-checks.yml",
+      "note": "Direct node command is component evidence; maintained registry selects the suite through existing Basic/source profiles. Executable full B/R/O/H route and native RI/admission remain pending on Draft; this route never dispatches agents or deploys."
+    },
+    {
+      "concern": "detailed reviewer prompt requirements-acceptance",
+      "paths": ["agents/reviewers/requirements-acceptance.md"],
+      "read": [
+        "agents/reviewers/README.md",
+        "agents/reviewers/requirements-acceptance.md",
+        "CONTRIBUTING.md"
+      ],
+      "commands": [
+        "python3 tools/check_ri_ci.py verify",
+        "python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'"
+      ],
+      "workflow": ".github/workflows/navigation.yml",
+      "note": "Read the common contract and this single role prompt for a role launch; navigation checks do not establish reviewer execution."
+    },
+    {
+      "concern": "detailed reviewer prompt code-review",
+      "paths": ["agents/reviewers/code-review.md"],
+      "read": ["agents/reviewers/README.md", "agents/reviewers/code-review.md", "CONTRIBUTING.md"],
+      "commands": [
+        "python3 tools/check_ri_ci.py verify",
+        "python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'"
+      ],
+      "workflow": ".github/workflows/navigation.yml",
+      "note": "Read the common contract and this single role prompt for a role launch; navigation checks do not establish reviewer execution."
+    },
+    {
+      "concern": "detailed reviewer prompt white-box-qa",
+      "paths": ["agents/reviewers/white-box-qa.md"],
+      "read": ["agents/reviewers/README.md", "agents/reviewers/white-box-qa.md", "CONTRIBUTING.md"],
+      "commands": [
+        "python3 tools/check_ri_ci.py verify",
+        "python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'"
+      ],
+      "workflow": ".github/workflows/navigation.yml",
+      "note": "Read the common contract and this single role prompt for a role launch; navigation checks do not establish reviewer execution."
+    },
+    {
+      "concern": "detailed reviewer prompt exploratory-interaction-qa",
+      "paths": ["agents/reviewers/exploratory-interaction-qa.md"],
+      "read": [
+        "agents/reviewers/README.md",
+        "agents/reviewers/exploratory-interaction-qa.md",
+        "CONTRIBUTING.md"
+      ],
+      "commands": [
+        "python3 tools/check_ri_ci.py verify",
+        "python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'"
+      ],
+      "workflow": ".github/workflows/navigation.yml",
+      "note": "Read the common contract and this single role prompt for a role launch; navigation checks do not establish reviewer execution."
     }
   ]
 }

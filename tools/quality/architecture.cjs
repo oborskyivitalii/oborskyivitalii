@@ -10,6 +10,7 @@ const sourceRoots = [
   'site/effects',
   'site/integrations',
   'tools/site',
+  'tools/publishing',
 ];
 const pureOwners = new Set([
   'site/engine/math.cjs',
@@ -19,27 +20,56 @@ const pureOwners = new Set([
   'tools/site/render-page.cjs',
   'tools/site/render-content.cjs',
   'tools/site/render-records.cjs',
+  'tools/site/events.cjs',
   'tools/site/validate-catalog.cjs',
   'tools/site/fallback.cjs',
 ]);
-function walk(node, visit) {
+function walk(node, visit, parent, grandparent, functionDepth = 0) {
   if (!node || typeof node !== 'object') return;
-  if (node.type) visit(node);
+  const isFunction = [
+    'FunctionDeclaration',
+    'FunctionExpression',
+    'ArrowFunctionExpression',
+  ].includes(node.type);
+  const immediatelyInvoked = parent?.type === 'CallExpression' && parent.callee === node;
+  const depth = functionDepth + (isFunction && !immediatelyInvoked ? 1 : 0);
+  if (node.type) visit(node, parent, grandparent, depth);
   for (const value of Object.values(node)) {
-    if (Array.isArray(value)) value.forEach((child) => walk(child, visit));
-    else if (value && typeof value === 'object') walk(value, visit);
+    if (Array.isArray(value)) value.forEach((child) => walk(child, visit, node, parent, depth));
+    else if (value && typeof value === 'object') walk(value, visit, node, parent, depth);
   }
+}
+function deterministicHash(node, parent, grandparent, name) {
+  return (
+    name === 'tools/site/fallback.cjs' &&
+    node.type === 'CallExpression' &&
+    node.callee.type === 'Identifier' &&
+    node.callee.name === 'require' &&
+    node.arguments.length === 1 &&
+    node.arguments[0].type === 'Literal' &&
+    node.arguments[0].value === 'node:crypto' &&
+    parent?.type === 'MemberExpression' &&
+    !parent.computed &&
+    parent.property.name === 'createHash' &&
+    grandparent?.type === 'CallExpression' &&
+    grandparent.callee === parent &&
+    grandparent.arguments.length === 1 &&
+    grandparent.arguments[0].type === 'Literal' &&
+    grandparent.arguments[0].value === 'sha256'
+  );
 }
 function imports(source, name) {
   if (name.endsWith('.json')) {
     JSON.parse(source);
-    return { edges: [], computed: [], ambient: [] };
+    return { edges: [], eagerEdges: [], deferred: [], computed: [], ambient: [] };
   }
   const ast = parser.parse(source, { ecmaVersion: 'latest', sourceType: 'module', loc: true });
   const edges = [],
+    eagerEdges = [],
+    deferred = [],
     computed = [],
     ambient = [];
-  walk(ast, (node) => {
+  walk(ast, (node, parent, grandparent, functionDepth) => {
     let target;
     if (['ImportDeclaration', 'ExportNamedDeclaration', 'ExportAllDeclaration'].includes(node.type))
       target = node.source;
@@ -51,8 +81,17 @@ function imports(source, name) {
     )
       target = node.arguments[0];
     if (target) {
-      if (target.type === 'Literal' && typeof target.value === 'string') edges.push(target.value);
-      else computed.push({ path: name, line: node.loc.start.line });
+      if (target.type === 'Literal' && typeof target.value === 'string') {
+        if (
+          pureOwners.has(name) &&
+          target.value === 'node:crypto' &&
+          !deterministicHash(node, parent, grandparent, name)
+        )
+          throw Error('Non-deterministic crypto dependency in pure owner: ' + name);
+        edges.push(target.value);
+        if (functionDepth === 0) eagerEdges.push(target.value);
+        else deferred.push({ path: name, line: node.loc.start.line, edge: target.value });
+      } else computed.push({ path: name, line: node.loc.start.line });
     }
     if (
       pureOwners.has(name) &&
@@ -69,7 +108,7 @@ function imports(source, name) {
     )
       ambient.push({ path: name, line: node.loc.start.line, name: node.name });
   });
-  return { edges, computed, ambient };
+  return { edges, eagerEdges, deferred, computed, ambient };
 }
 function localCandidates(name, target) {
   const resolved = path.posix.normalize(path.posix.join(path.posix.dirname(name), target));
@@ -103,7 +142,7 @@ function allowedEdge(name, target) {
     return target.startsWith('site/effects/') || target === 'site/engine/math.cjs';
   return true;
 }
-function rejectCycles(graph) {
+function rejectCycles(graph, starts = Object.keys(graph)) {
   const complete = new Set(),
     visiting = new Set(),
     chain = [];
@@ -118,13 +157,42 @@ function rejectCycles(graph) {
     visiting.delete(name);
     complete.add(name);
   }
-  for (const name of Object.keys(graph)) visit(name);
+  for (const name of starts) visit(name);
+}
+function cyclicComponents(graph) {
+  const reachable = {};
+  for (const name of Object.keys(graph)) {
+    const found = new Set();
+    const pending = [...graph[name]];
+    while (pending.length) {
+      const target = pending.pop();
+      if (found.has(target)) continue;
+      found.add(target);
+      pending.push(...(graph[target] || []));
+    }
+    reachable[name] = found;
+  }
+  const assigned = new Set();
+  const components = [];
+  for (const name of Object.keys(graph)) {
+    if (assigned.has(name) || !reachable[name].has(name)) continue;
+    const files = [...reachable[name]].filter((target) => reachable[target]?.has(name)).sort();
+    files.forEach((file) => assigned.add(file));
+    components.push(files);
+  }
+  return components;
 }
 function dependency(name, edge, sources) {
   if (path.posix.isAbsolute(edge))
     throw Error('Absolute authored dependency: ' + name + ' -> ' + edge);
   if (!edge.startsWith('.')) {
-    if (pureOwners.has(name)) throw Error('I/O dependency in pure owner: ' + name + ' -> ' + edge);
+    // Strict assertions inspect values without introducing ambient state or I/O.
+    if (
+      pureOwners.has(name) &&
+      edge !== 'node:assert/strict' &&
+      !(name === 'tools/site/fallback.cjs' && edge === 'node:crypto')
+    )
+      throw Error('I/O dependency in pure owner: ' + name + ' -> ' + edge);
     if (name.startsWith('site/') && edge !== 'node:assert/strict')
       throw Error('Runtime dependency: ' + name + ' -> ' + edge);
     return null;
@@ -136,6 +204,8 @@ function dependency(name, edge, sources) {
 }
 function check(sources) {
   const graph = {},
+    eagerGraph = {},
+    deferred = [],
     computed = [];
   for (const name of Object.keys(sources).sort()) {
     const scan = imports(sources[name], name);
@@ -144,21 +214,42 @@ function check(sources) {
     if (name.startsWith('site/') && scan.computed.length)
       throw Error('Computed runtime import: ' + name);
     computed.push(...scan.computed);
+    deferred.push(...scan.deferred);
     graph[name] = [];
+    eagerGraph[name] = [];
     for (const edge of scan.edges) {
       const target = dependency(name, edge, sources);
-      if (target) graph[name].push(target);
+      if (target) {
+        graph[name].push(target);
+        if (scan.eagerEdges.includes(edge)) eagerGraph[name].push(target);
+      }
     }
   }
-  rejectCycles(graph);
+  rejectCycles(eagerGraph);
+  rejectCycles(
+    graph,
+    Object.keys(graph).filter((name) => name.startsWith('site/') || pureOwners.has(name))
+  );
+  const deferredCycles = cyclicComponents(graph).map((files) => ({
+    files,
+    imports: deferred.filter(
+      (row) =>
+        files.includes(row.path) &&
+        row.edge.startsWith('.') &&
+        files.includes(resolveLocal(row.path, row.edge, sources))
+    ),
+    review:
+      'Required: inspect invocation and module-export ordering; function scope alone does not prove deferred execution.',
+  }));
   return {
     pass: true,
     files: Object.keys(graph).length,
     edges: Object.values(graph).reduce((n, edges) => n + edges.length, 0),
     graph,
     computed,
+    deferredCycles,
     limits:
-      'AST literal import/require/export edges; require aliases, computed build imports, supplied API calls and serialized function dependencies require explicit source/serialization review.',
+      'All literal edges retain ownership checks. Module-scope literal cycles and all-edge runtime/pure cycles reject. Function-scoped build/check cycles require manual invocation/export-order review; IIFEs, top-level calls, require aliases, computed imports, supplied API calls and serialized dependencies limit automatic proof.',
   };
 }
 function readSources(root = repositoryRoot) {
@@ -167,7 +258,7 @@ function readSources(root = repositoryRoot) {
     for (const entry of fs.readdirSync(path.join(root, name), { withFileTypes: true })) {
       const child = name + '/' + entry.name;
       if (entry.isSymbolicLink()) throw Error('Symlink authored source: ' + child);
-      if (entry.isDirectory()) directory(child);
+      if (entry.isDirectory() && entry.name !== 'node_modules') directory(child);
       else if (/\.(?:cjs|mjs|js)$/.test(child))
         sources[child] = fs.readFileSync(path.join(root, child), 'utf8');
     }
