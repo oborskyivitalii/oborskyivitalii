@@ -2401,6 +2401,12 @@
       "role": "history",
       "owner": "AGENTS.md"
     },
+    "review/issue-169/2026-11-05-r9-html-producer-correction.md": {
+      "kind": "file",
+      "purpose": "Issue169 exact HTML producer successor failure diagnosis, correction, checks and independent review disposition; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-169/2026-11-05-r9-native.md": {
       "kind": "file",
       "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
@@ -3439,17 +3445,35 @@
       "role": "history",
       "owner": "AGENTS.md"
     },
+    "review/issue-169/native-reviews/requirements-preflight.md.gz": {
+      "kind": "file",
+      "purpose": "Lossless historical issue169 role review; adjacent readable index preserves decoded byte identity and all findings.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-169/native-reviews/requirements-v2.md": {
       "kind": "file",
       "purpose": "Issue169 native integration review and acceptance evidence.",
       "role": "history",
       "owner": "AGENTS.md"
     },
+    "review/issue-169/native-reviews/requirements-v2.md.gz": {
+      "kind": "file",
+      "purpose": "Lossless original historical issue169 role review with decoded identity in adjacent readable index.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-169/native-reviews/whitebox-final.md": {
       "kind": "file",
       "purpose": "Source-bound native review packet, primary owner snapshot, explicit clean-context execution receipts and preserved correction results for issue169.",
       "role": "history",
       "owner": "AGENTS.md"
+    },
+    "review/issue-169/native-reviews/whitebox-final.md.gz": {
+      "kind": "file",
+      "purpose": "Lossless historical issue169 role review; adjacent readable index preserves decoded byte identity and all findings.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     },
     "review/issue-169/r1": {
       "kind": "directory",
@@ -3624,6 +3648,12 @@
       "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
+    },
+    "review/issue-169/r3/reviews/whitebox-r3.md.gz": {
+      "kind": "file",
+      "purpose": "Lossless original historical issue169 role review with decoded identity in adjacent readable index.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     },
     "review/issue-169/r9": {
       "kind": "directory",
@@ -4174,6 +4204,18 @@
     "review/issue-169/r9/runtime-review/exploratory.md.gz": {
       "kind": "file",
       "purpose": "Issue169 source-bound reader/history runtime admission evidence, exact review packets or lossless role execution receipts; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/r9/runtime-review/html-successor-packet-v2.json": {
+      "kind": "file",
+      "purpose": "Exact prepared HTML producer successor and content-dependency correction review input packet; source-bound evidence only.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/r9/runtime-review/html-successor-packet.json": {
+      "kind": "file",
+      "purpose": "Exact prepared HTML producer successor and content-dependency correction review input packet; source-bound evidence only.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },

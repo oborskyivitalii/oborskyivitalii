@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "owner": 169,
+  "baseCommit": "9b68b8c7238833a1bff22f11563a383b011d8da7",
+  "state": "prepared dirty correction plus explicit content dependency; not clean successor CI",
+  "parentPacket": "html-successor-packet.json",
+  "parentSha256": "b3bf908911959409b3ddbb88b1d337f863dc5d588db4b2b611d2ea4fb7d5e2dd",
+  "filesOverride": {
+    "tools/quality/test-profiles.json": {
+      "sha256": "7ead8d93deb31e33537764806cb467227f98776e7822950c91ae81d2039d8a62",
+      "bytes": 132733
+    },
+    "tests/test-profile-selection.test.cjs": {
+      "sha256": "0748cc44dc6c5d1670dff138d9bed8559c3eb943decb8cffda79c338684387d0",
+      "bytes": 78104
+    }
+  },
+  "delta": "Only exact check_site_seo\u2192content test input and its existing selector regression; content profile membership/workflow/budgets unchanged. Checker/helper and original17 source files otherwise unchanged.",
+  "checks": {
+    "content": "13/13 pass, zero skipped, /workspace/scratch/5ba265a57f36/html-successor-content-tests.log",
+    "originalAffected": "77/77 pass, /workspace/scratch/5ba265a57f36/html-successor-tests.log",
+    "selection": "/workspace/scratch/5ba265a57f36/html-successor-selection-tests.log; running at creation, do not infer final result"
+  }
+}

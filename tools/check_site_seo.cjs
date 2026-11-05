@@ -384,6 +384,35 @@ function verifyResearchCarrier(
   };
 }
 
+const htmlParserProducer = Object.freeze({
+  issue: 169,
+  predecessorSource: '8cf15883125892710633b17133d9ee0fc4b23b92',
+  path: 'tools/site/html.cjs',
+  beforeSHA256: '202dd77650a535440dde742cc5aa2278057938c6430b941af097e5e6cbb547a8',
+  afterSHA256: '386b6503b6166646e49895e6cd8af8d84b3596accc979731590dd1dc382d3c3b',
+});
+
+function reviewedHTMLProducerBindings(bindings, successor = htmlParserProducer) {
+  assert.deepEqual(successor, htmlParserProducer, 'Exact HTML producer successor');
+  const reviewed = { ...bindings };
+  if (!Object.hasOwn(bindings, successor.path)) return reviewed;
+  assert.equal(bindings[successor.path], successor.beforeSHA256, 'Exact prior HTML producer pin');
+  const before = cp.execFileSync(
+    'git',
+    ['show', successor.predecessorSource + ':' + successor.path],
+    { cwd: root }
+  );
+  assert.equal(
+    crypto.createHash('sha256').update(before).digest('hex'),
+    successor.beforeSHA256,
+    'Immutable HTML producer predecessor'
+  );
+  // Only retention opts into live script sources. Historical producer frames
+  // keep their original pins; each owner still verifies the complete current file.
+  reviewed[successor.path] = successor.afterSHA256;
+  return reviewed;
+}
+
 function reviewedProducerBindings(bindings, additions = []) {
   assert.deepEqual(Object.keys(issue159.producerChanges).sort(), issue159ProducerPaths);
   const reviewed = { ...bindings };
@@ -393,7 +422,7 @@ function reviewedProducerBindings(bindings, additions = []) {
     assert.match(change.afterSHA256, /^[a-f0-9]{64}$/, 'Reviewed successor producer SHA256');
     reviewed[file] = change.afterSHA256;
   }
-  return reviewed;
+  return reviewedHTMLProducerBindings(reviewed);
 }
 const positioning = JSON.parse(
   fs.readFileSync(path.join(root, 'review/issue-41/2026-10-09-positioning-amendment.json'), 'utf8')
@@ -1329,6 +1358,8 @@ function verify() {
 }
 if (require.main === module) process.stdout.write(JSON.stringify(verify(), null, 2) + '\n');
 module.exports = {
+  htmlParserProducer,
+  reviewedHTMLProducerBindings,
   verifyResearchCarrier,
   verifyWritingCarrier,
   createHTMLNormalizer,

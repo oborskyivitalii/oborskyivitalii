@@ -252,6 +252,96 @@ test('issue159 successor producer pins retain their prior inventory and reject c
   fs.unlinkSync(added);
   assert.throws(() => seo.verifyWritingProducers(directory), /ENOENT/);
 });
+test('HTML parser successor preserves exact predecessor pins, current bytes and default parsing', (t) => {
+  const path = require('node:path');
+  const cp = require('node:child_process');
+  const vm = require('node:vm');
+  const crypto = require('node:crypto');
+  const seo = require('../tools/check_site_seo.cjs');
+  const record = seo.htmlParserProducer;
+  const predecessor = cp.execFileSync(
+    'git',
+    ['show', record.predecessorSource + ':' + record.path],
+    { cwd: path.resolve(__dirname, '..'), encoding: 'utf8' }
+  );
+  const current = fs.readFileSync(path.join(__dirname, '..', record.path), 'utf8');
+  const digest = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
+  assert.equal(digest(predecessor), record.beforeSHA256);
+  assert.equal(digest(current), record.afterSHA256);
+  const prior = { [record.path]: record.beforeSHA256, unrelated: 'f'.repeat(64) };
+  const next = seo.reviewedHTMLProducerBindings(prior);
+  assert.deepEqual(next, { ...prior, [record.path]: record.afterSHA256 });
+  assert.equal(prior[record.path], record.beforeSHA256, 'historical input is immutable');
+  assert.throws(
+    () => seo.reviewedHTMLProducerBindings({ [record.path]: record.afterSHA256 }),
+    /Exact prior HTML producer pin/
+  );
+  for (const mutate of [
+    (r) => (r.issue = 0),
+    (r) => (r.predecessorSource = '0'.repeat(40)),
+    (r) => (r.path = 'tools/site/unknown.cjs'),
+    (r) => (r.beforeSHA256 = '0'.repeat(64)),
+    (r) => (r.afterSHA256 = '0'.repeat(64)),
+    (r) => (r.extra = true),
+    (r) => delete r.path,
+  ]) {
+    const changed = structuredClone(record);
+    mutate(changed);
+    assert.throws(() => seo.reviewedHTMLProducerBindings(prior, changed), /Exact HTML/);
+  }
+  const oldModule = { exports: {} };
+  vm.runInNewContext(predecessor, { module: oldModule });
+  const parser = require('../tools/site/html.cjs');
+  const files = cp
+    .execFileSync('git', ['ls-files', 'docs/*.html', 'docs/**/*.html'], {
+      cwd: path.resolve(__dirname, '..'),
+      encoding: 'utf8',
+    })
+    .trim()
+    .split('\n')
+    .filter(Boolean);
+  const inert =
+    '<!-- <script src="comment.js"></script> -->' +
+    '<template><script src="template.js"></script></template>' +
+    '<script src="live.js">const text = "<img src=\'inert.jpg\'>";</script>' +
+    '<main title="a > b"><p>Text</p></main>';
+  for (const html of [
+    ...files.map((name) => fs.readFileSync(path.join(__dirname, '..', name), 'utf8')),
+    inert,
+  ]) {
+    const expected = JSON.stringify(oldModule.exports.documentElements(html));
+    assert.equal(JSON.stringify(parser.documentElements(html)), expected);
+    assert.equal(
+      JSON.stringify(parser.documentElements(html, { includeScriptSources: false })),
+      expected
+    );
+  }
+  assert.deepEqual(
+    parser
+      .documentElements(inert, { includeScriptSources: true })
+      .filter((element) => element.tag === 'script')
+      .map((element) => element.attributes.src),
+    ['live.js']
+  );
+  const writing = require('../review/issue-5/writing-catalog-amendment.json');
+  const home = require('../review/issue-122/2026-10-27-home-content-frame.json');
+  const names = [
+    ...new Set([
+      ...Object.keys(writing.producerInputs),
+      ...Object.keys(home.producerInputs),
+      'site/templates/components/archive-reading-link.html',
+    ]),
+  ];
+  const directory = issue159CopyFixture(t, names);
+  assert.doesNotThrow(() => seo.verifyHomeProducers(directory));
+  assert.doesNotThrow(() => seo.verifyWritingProducers(directory));
+  const target = path.join(directory, record.path);
+  for (const bytes of [predecessor, current + '\n// unreviewed parser\n']) {
+    fs.writeFileSync(target, bytes);
+    assert.throws(() => seo.verifyHomeProducers(directory), /Home producer changed/);
+    assert.throws(() => seo.verifyWritingProducers(directory), /Writing producer changed/);
+  }
+});
 test('issue159 CSS refuses relocation of the same exact reviewed block', (t) => {
   const path = require('node:path');
   const seo = require('../tools/check_site_seo.cjs');

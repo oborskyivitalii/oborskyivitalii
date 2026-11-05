@@ -6,9 +6,13 @@ Initial source packet SHA256 `b726f00ba9c4b65d37bc6c034be64aa6bf708ff2d06e90971f
 
 | Role / accepted handle | Original review SHA256 | Complete original |
 | --- | --- | --- |
-| requirements / `/root/reader_runtime_requirements` | `f4801450970cf141b576ed50f970b7d23ee8080116f1665cf65f25d7a7eddd00` | [requirements.md.gz](requirements.md.gz) |
-| code / `/root/reader_runtime_code` | `e825d708e7251bed2d027e441a18dde7921c017a140708e2ef7503c3f8cbd2bb` | [code.md.gz](code.md.gz) |
-| whitebox / `/root/reader_runtime_whitebox` | `28b5d51a8e6921d78d4f6a11048c2b41b0406f3559b110571152f22d7a043d5f` | [whitebox.md.gz](whitebox.md.gz) |
-| exploratory / `/root/reader_runtime_exploratory` | `70853dc653099dd5bfa0649931f73aad213db1a752cbd336e2eb4c5558ccc2f3` | [exploratory.md.gz](exploratory.md.gz) |
+| requirements / `/root/reader_runtime_requirements` | `4f83d5ae544165ee9dbb01bffdcce8098b128fba46c2820984bd11975a6c4344` | [requirements.md.gz](requirements.md.gz) |
+| code / `/root/reader_runtime_code` | `c39f7f5e5e0eed4fce8797bdbe8a5f34769956b755d7eb2cbb8422f3389d1dda` | [code.md.gz](code.md.gz) |
+| whitebox / `/root/reader_runtime_whitebox` | `e2d53bc780ea539283cf0792c6f7900b4155a074fd6796d6282b2efb1e0f3878` | [whitebox.md.gz](whitebox.md.gz) |
+| exploratory / `/root/reader_runtime_exploratory` | `7aefc2cab748e36543d2332c7f152b57105669e579f2eef21908005a1aaa62ea` | [exploratory.md.gz](exploratory.md.gz) |
 
 All four completed their final bounded review with no unresolved scoped blocker. This does not establish current full CI, hosted delivery, staging, merge or production acceptance. Raw browser report/hash, private dirty production lineage, unchanged application/probe bytes, source failures and actual checks remain distinguished in each original.
+
+## HTML producer correction continuation
+
+Actual same-role follow-ups inspected failed clean9b68 source jobs and immutable predecessor lineage before the correction; final packet `html-successor-packet.json` SHA256 `b3bf908911959409b3ddbb88b1d337f863dc5d588db4b2b611d2ea4fb7d5e2dd`, then allocation delta `html-successor-packet-v2.json` SHA256 `7453a8be0ee09f3c67de77467efc720cafa9b09465856145a22931556b950ba8`. All19 final pins matched. Code's first missing-content selection finding is preserved and resolved by its exact dependency/assertion; affected77/77, content13/13 and selector46/46 passed. These are continuations, not new fresh forks. No unresolved scoped blocker remains; new exact-head CI and delivery gates remain pending. Original raw conclusions are in the archives above.

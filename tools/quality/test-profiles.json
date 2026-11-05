@@ -547,7 +547,8 @@
         "tools/site/analytics.cjs",
         "site/routes.json",
         "tools/quality/artifact.cjs",
-        "review/issue-126/content-amendment.json"
+        "review/issue-126/content-amendment.json",
+        "tools/check_site_seo.cjs"
       ],
       "content": true
     },

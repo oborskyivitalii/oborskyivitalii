@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "18b26b21cc97af4c346c7c81db074587496bf32ac834766693297d679166fd33",
+    "digest": "2f9db7338ef8051e726fd79ebc191ebba1f70b5893b27be841eaacfbfeb0c813",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -216,12 +216,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "38725e051d17f51f6f29574c8e05e91ce49d7c3cd90d50c971cc90f2b2ffdfac"
+        "sha256": "6d20d14c09e454c5bfbb0eefbac35538378a61758fa642ff386953de5ae6315f"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "66159cd633f0be7508061e9d6294a07832f889f11ca46c62f9f7274c93f4784e"
+        "sha256": "87d862167272ec638699022755f40a2883e7ece78fc4e30908ef336133e63446"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -371,7 +371,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "2a5b80c6407a6e08f40b00ac3488c07e493ae3b5306d5828338a422a5ef50e3f"
+        "sha256": "45f99ce2e2767916f910849911d33c85c8009454f6d1d6e383760278b854b340"
       },
       {
         "path": "NOTICE.md",
@@ -1613,6 +1613,11 @@
         "sha256": "783da6a1889c232801e9e07a5561de33826cec2520ac152aeade35b2bff4eab8"
       },
       {
+        "path": "review/issue-169/2026-11-05-r9-html-producer-correction.md",
+        "identity_mode": "content",
+        "sha256": "3c4ebdea3ef77967d32942cf9a73503eb19a20280e2fd229c7e3171e68257144"
+      },
+      {
         "path": "review/issue-169/2026-11-05-r9-native.md",
         "identity_mode": "content",
         "sha256": "eaebd5ed5f975ecd171144bcb9dbf4f6eefb837688f6b013e7fef07002d4cf21"
@@ -2465,17 +2470,32 @@
       {
         "path": "review/issue-169/native-reviews/requirements-preflight.md",
         "identity_mode": "content",
-        "sha256": "0ac4bdac6934916bc32df33d20dcf5cf00d3cf84ba6c8fdd54fecc6ecc418ca9"
+        "sha256": "bc909a6094cd068efb6d64907854795c76e7fdccadba70ce403ed364af1dbda8"
+      },
+      {
+        "path": "review/issue-169/native-reviews/requirements-preflight.md.gz",
+        "identity_mode": "content",
+        "sha256": "d563eba686177fb59d3b3502b6966eabfc70f6d2c657c65ac13bc52b70edf8ad"
       },
       {
         "path": "review/issue-169/native-reviews/requirements-v2.md",
         "identity_mode": "content",
-        "sha256": "ce9bef9d772565628bb11dc55d40ff397c2f9969c15da2a46cf07609a474c2a6"
+        "sha256": "ea674b0ab0c35e2fe83400061f0b80234a35005595904a544b9c7fac8a5a961c"
+      },
+      {
+        "path": "review/issue-169/native-reviews/requirements-v2.md.gz",
+        "identity_mode": "content",
+        "sha256": "e075b3ea8630aecb5b1275b4e5a3584a49fa75f74ef2fa7c542131adbb425010"
       },
       {
         "path": "review/issue-169/native-reviews/whitebox-final.md",
         "identity_mode": "content",
-        "sha256": "de0b858c89884eb03a00d91ab3a3a24186d93785cc83e4821e2dd7cf14d44a6d"
+        "sha256": "8ad4d48a036dec49a515a3d58a844143decb578aae83c956d8ede8545c6adf39"
+      },
+      {
+        "path": "review/issue-169/native-reviews/whitebox-final.md.gz",
+        "identity_mode": "content",
+        "sha256": "64a9aceec65f7f558387fd62dcec3e0eb1f04ccaf1d155fe12ff9c80fba73261"
       },
       {
         "path": "review/issue-169/r1/README.md",
@@ -2595,7 +2615,12 @@
       {
         "path": "review/issue-169/r3/reviews/whitebox-r3.md",
         "identity_mode": "content",
-        "sha256": "c257ed43e2d7c78d5be7fe78d0b2d83ed5ca2715492f39f6baa7697cca3f9b49"
+        "sha256": "fb4cce46955bb4ded991a3bd3015686263a119ad1e4d5073f0f74fc2adaba520"
+      },
+      {
+        "path": "review/issue-169/r3/reviews/whitebox-r3.md.gz",
+        "identity_mode": "content",
+        "sha256": "a8fdd7f076acaaa929f735b48b662ffd4a97f13e46fbbea931c97fac85284b49"
       },
       {
         "path": "review/issue-169/r9/accepted.md",
@@ -3015,7 +3040,7 @@
       {
         "path": "review/issue-169/r9/runtime-review/README.md",
         "identity_mode": "content",
-        "sha256": "b505a391e610d3461f4e8b075a2e9cbaf26ef622af8da85531d7a9b8d8ba1360"
+        "sha256": "7a3421b7b22fa38c9df8311045160743df6fa3b0bcac86be62360e8c8e330567"
       },
       {
         "path": "review/issue-169/r9/runtime-review/admission-final-packet.json",
@@ -3025,17 +3050,27 @@
       {
         "path": "review/issue-169/r9/runtime-review/code.md.gz",
         "identity_mode": "content",
-        "sha256": "b5ee6e1c5fdb8ef74bff94bec6dc5339bee5ca59e73b16afcac8d7a0775011f2"
+        "sha256": "8761201fdcef430fe69783d67a1ec396c0696541e5e2b4020111998c0d4f3ca0"
       },
       {
         "path": "review/issue-169/r9/runtime-review/exploratory.md.gz",
         "identity_mode": "content",
-        "sha256": "742c1e5d62ab1249a8d2f118f627d7b07ff9ef51f437788a58ae37b0a261d879"
+        "sha256": "bf5d7f33aaa0804211e381d73652b7d19f95a0b8b5ec52993bb65ebcd62fd806"
+      },
+      {
+        "path": "review/issue-169/r9/runtime-review/html-successor-packet-v2.json",
+        "identity_mode": "content",
+        "sha256": "7453a8be0ee09f3c67de77467efc720cafa9b09465856145a22931556b950ba8"
+      },
+      {
+        "path": "review/issue-169/r9/runtime-review/html-successor-packet.json",
+        "identity_mode": "content",
+        "sha256": "b3bf908911959409b3ddbb88b1d337f863dc5d588db4b2b611d2ea4fb7d5e2dd"
       },
       {
         "path": "review/issue-169/r9/runtime-review/requirements.md.gz",
         "identity_mode": "content",
-        "sha256": "f472500a1c4c99ed2eeb9d6bffdf66dec6be1bb52cd6899b59213be8f9395e7c"
+        "sha256": "7e2afc909e1b877119a3f4e7260cf3c64d4dc01645572ea56b8fd66bda9026b8"
       },
       {
         "path": "review/issue-169/r9/runtime-review/reviewer-packet.json",
@@ -3045,7 +3080,7 @@
       {
         "path": "review/issue-169/r9/runtime-review/whitebox.md.gz",
         "identity_mode": "content",
-        "sha256": "48d87e89fb54e92062c132f65829abe6f322fc3046c701b0426c99726a864156"
+        "sha256": "a1e9fe4d40e83a6e0340a3689da0f0e1425a87172f7f38190d76e0e3a3ba6a7a"
       },
       {
         "path": "review/issue-169/writing-carrier.json",
@@ -9560,7 +9595,7 @@
       {
         "path": "tests/executive.test.cjs",
         "identity_mode": "content",
-        "sha256": "bc2302e1a5997952e7e32ba744fc4dd62319a3916703a9c15ad14e0a01cd3ef5"
+        "sha256": "74d6d95dbd01dd19f008ae440d3469034196345beda9d504538c502e13010319"
       },
       {
         "path": "tests/fixtures/article-flight.cjs",
@@ -9870,7 +9905,7 @@
       {
         "path": "tests/test-profile-selection.test.cjs",
         "identity_mode": "content",
-        "sha256": "9438b9746922466335b565a74b0ceb8a60fc584bcd051adef7ee9267266dba0d"
+        "sha256": "0748cc44dc6c5d1670dff138d9bed8559c3eb943decb8cffda79c338684387d0"
       },
       {
         "path": "tests/test_browser_archives.py",
@@ -10125,7 +10160,7 @@
       {
         "path": "tools/check_site_seo.cjs",
         "identity_mode": "content",
-        "sha256": "3bc1382c9085c4e8cc1544b53d4797cbfd2a30c1968880ea2a0b304aaf5a23cd"
+        "sha256": "f9ac3f6a4b17ce99289c9574a3217b6fe6b7735c4dae1dd1ae1df22a33c1d379"
       },
       {
         "path": "tools/compact_site_recordings.cjs",
@@ -10770,7 +10805,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "113acb2d9a641fabd8d98fde51503db048de566a2df981c651482e743bf8bc32"
+        "sha256": "7ead8d93deb31e33537764806cb467227f98776e7822950c91ae81d2039d8a62"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -15071,6 +15106,17 @@
       "title": "R9 full CI failure diagnosis and bounded corrections"
     },
     {
+      "path": "review/issue-169/2026-11-05-r9-html-producer-correction.md",
+      "kind": "file",
+      "purpose": "Issue169 exact HTML producer successor failure diagnosis, correction, checks and independent review disposition; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Exact HTML producer successor correction"
+    },
+    {
       "path": "review/issue-169/2026-11-05-r9-native.md",
       "kind": "file",
       "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
@@ -16949,7 +16995,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Native R3 Requirements & Acceptance preflight — issue169 / PR170"
+      "title": "Preserved historical review"
+    },
+    {
+      "path": "review/issue-169/native-reviews/requirements-preflight.md.gz",
+      "kind": "file",
+      "purpose": "Lossless historical issue169 role review; adjacent readable index preserves decoded byte identity and all findings.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "requirements-preflight.md.gz"
     },
     {
       "path": "review/issue-169/native-reviews/requirements-v2.md",
@@ -16960,7 +17017,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Requirements & Acceptance — independent native R3 review v2"
+      "title": "Preserved historical review"
+    },
+    {
+      "path": "review/issue-169/native-reviews/requirements-v2.md.gz",
+      "kind": "file",
+      "purpose": "Lossless original historical issue169 role review with decoded identity in adjacent readable index.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "requirements-v2.md.gz"
     },
     {
       "path": "review/issue-169/native-reviews/whitebox-final.md",
@@ -16971,7 +17039,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Independent White-box QA — first judgment"
+      "title": "Preserved historical review"
+    },
+    {
+      "path": "review/issue-169/native-reviews/whitebox-final.md.gz",
+      "kind": "file",
+      "purpose": "Lossless historical issue169 role review; adjacent readable index preserves decoded byte identity and all findings.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "whitebox-final.md.gz"
     },
     {
       "path": "review/issue-169/r1/README.md",
@@ -17235,7 +17314,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 169 — R3 independent White-box QA, first judgment"
+      "title": "Preserved historical review"
+    },
+    {
+      "path": "review/issue-169/r3/reviews/whitebox-r3.md.gz",
+      "kind": "file",
+      "purpose": "Lossless original historical issue169 role review with decoded identity in adjacent readable index.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "whitebox-r3.md.gz"
     },
     {
       "path": "review/issue-169/r9/accepted.md",
@@ -18193,6 +18283,28 @@
         "AGENTS.md"
       ],
       "title": "exploratory.md.gz"
+    },
+    {
+      "path": "review/issue-169/r9/runtime-review/html-successor-packet-v2.json",
+      "kind": "file",
+      "purpose": "Exact prepared HTML producer successor and content-dependency correction review input packet; source-bound evidence only.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "html-successor-packet-v2.json"
+    },
+    {
+      "path": "review/issue-169/r9/runtime-review/html-successor-packet.json",
+      "kind": "file",
+      "purpose": "Exact prepared HTML producer successor and content-dependency correction review input packet; source-bound evidence only.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "html-successor-packet.json"
     },
     {
       "path": "review/issue-169/r9/runtime-review/requirements.md.gz",
