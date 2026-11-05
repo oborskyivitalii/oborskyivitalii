@@ -175,6 +175,62 @@ function visit(query = '', historyBlocked = false, candidate = catalog) {
     focuses: () => emitted.filter((e) => e.type === 'site:scene-focus').map((e) => e.detail.focus),
   };
 }
+test('foreign document history preserves the outgoing archive and same-document history still refreshes', () => {
+  const page = visit('?topic=delivery');
+  page.window.SiteNavigation = {
+    addressPage: () =>
+      page.window.location.pathname === '/writing.html'
+        ? 'writing'
+        : page.window.location.pathname === '/articles/example.html'
+          ? 'article:example:en'
+          : null,
+  };
+  const shown = page.shown();
+  const textOwners = ['archive-heading', 'archive-count'].map((id) => {
+    const owner = page.ids[id];
+    let text = owner.textContent;
+    const ink = { parentElement: owner, textContent: text };
+    owner.children = [ink];
+    Object.defineProperty(owner, 'textContent', {
+      get: () => text,
+      set(value) {
+        for (const child of owner.children) child.parentElement = null;
+        owner.children = [];
+        text = value;
+      },
+    });
+    return { owner, ink, text };
+  });
+  const topic = page.ids['topic-delivery'];
+  assert.equal(topic.hidden, false);
+  page.window.location = new URL('https://example.test/articles/example.html');
+  page.events.popstate();
+  assert.equal(topic.hidden, false, 'outgoing topic visibility cannot change from an article URL');
+  assert.deepEqual(page.shown(), shown);
+  for (const { owner, ink, text } of textOwners) {
+    assert.equal(owner.textContent, text);
+    assert.deepEqual(owner.children, [ink], 'outgoing text keeps its live animation child');
+    assert.equal(ink.parentElement, owner);
+  }
+  page.window.location = new URL('https://example.test/unknown.html#topic-delivery');
+  page.events.hashchange();
+  assert.equal(topic.hidden, false, 'an unresolved address does not own this archive');
+  const other = page.ids['archive-topic'].options.find(
+    (option) => !['all', 'delivery'].includes(option.value)
+  );
+  assert.ok(other);
+  page.window.location = new URL('https://example.test/writing.html?topic=' + other.value);
+  page.events.popstate();
+  assert.equal(page.ids['archive-topic'].value, other.value);
+  assert.equal(page.ids['topic-' + other.value].hidden, false);
+  assert.equal(topic.hidden, true);
+  assert.ok(page.ids['archive-heading'].textContent.includes(other.textContent));
+  assert.ok(
+    textOwners.every(({ ink }) => ink.parentElement === null),
+    'a valid archive refresh still replaces its text'
+  );
+});
+
 test('intersected filters and empty state are useful; Reset restores the fixed complete catalog', () => {
   const page = visit();
   assert.equal(page.shown().length, total);

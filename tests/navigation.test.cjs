@@ -42,24 +42,47 @@ test('footer links share native and embedded destination rules with the router',
     },
   ]) {
     const entry = new URL(context.entry);
+    const currentWindow = { location: new URL(context.entry) };
     const navigation = vm.runInNewContext(
       '(() => {' +
         section('routeFor', 'address') +
         section('address', 'routeHref') +
         hrefSource +
-        '; return { href: routeHref, routeFor }; })()',
+        '; return { href: routeHref, routeFor, addressPage }; })()',
       {
         URL,
         routes,
         entry,
+        window: currentWindow,
+        initialPage: 'writing',
         directory: new URL(context.directory),
         embedded: context.embedded || null,
         articles: {},
         document: { body: { dataset: { entryPage: 'writing' } } },
       }
     );
-    for (const route of routes)
-      assert.equal(navigation.routeFor(new URL(navigation.href(route))), route, context.entry);
+    assert.equal(
+      navigation.addressPage(),
+      'writing',
+      'the initial document owns its filter address'
+    );
+    for (const route of routes) {
+      currentWindow.location = new URL(navigation.href(route));
+      assert.equal(navigation.routeFor(currentWindow.location), route, context.entry);
+      assert.equal(navigation.addressPage(), route, 'live destination, not the mounted prior page');
+    }
+    currentWindow.location = new URL('unknown.html', context.directory);
+    assert.equal(navigation.addressPage(), null, 'unknown different document stays unresolved');
+    currentWindow.location = new URL('https://elsewhere.invalid/writing.html');
+    assert.equal(navigation.addressPage(), null, 'a different origin never owns the archive');
+    currentWindow.location = new URL(context.entry);
+    currentWindow.location.searchParams.set('topic', 'delivery');
+    currentWindow.location.hash = 'topic-delivery';
+    assert.equal(
+      navigation.addressPage(),
+      'writing',
+      'initial native snapshot or embedded document keeps query/hash ownership'
+    );
     assert.equal(navigation.href('https://other.invalid/'), null);
     const footer = { querySelector: () => null, append() {} };
     const hint = vm.runInNewContext(

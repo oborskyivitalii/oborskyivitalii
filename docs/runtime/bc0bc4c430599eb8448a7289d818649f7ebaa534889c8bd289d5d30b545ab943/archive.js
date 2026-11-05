@@ -466,6 +466,10 @@ window.SiteArticleTags=(function articleTags() {
       destination.scrollIntoView({ block: 'start', behavior: 'instant' });
     }
     function onNavigation(reason) {
+      // During history navigation the URL already belongs to the next document;
+      // the outgoing archive must keep its measured visibility and text layers.
+      const addressed = window.SiteNavigation?.addressPage?.();
+      if (addressed !== undefined && addressed !== 'writing') return;
       restoreURL();
       refresh(reason);
       landOnVisibleTarget();

@@ -393,7 +393,8 @@
         "site/templates/**",
         "tests/fixtures/catalog.cjs",
         "site/engine/article-tags.cjs",
-        "site/content/article-tags.json"
+        "site/content/article-tags.json",
+        "site/engine/navigation.js"
       ],
       "content": true
     },
@@ -740,7 +741,8 @@
         "site/engine/**",
         "site/scenes/**",
         "site/site.json",
-        "site/effects/flight.cjs"
+        "site/effects/flight.cjs",
+        "site/engine/archive.js"
       ]
     },
     {

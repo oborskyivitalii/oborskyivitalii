@@ -1880,6 +1880,15 @@ window.SiteReader=(function readerMode() {
       ) || null
     );
   }
+  function addressPage() {
+    const url = new URL(window.location.href);
+    // Initial immutable principal documents keep their own filter history even
+    // when their snapshot path is not a canonical router destination.
+    return (
+      routeFor(url) ||
+      (url.origin === entry.origin && url.pathname === entry.pathname ? initialPage : null)
+    );
+  }
   function address(url, next) {
     if (!embedded) {
       if (!next.startsWith('article:')) return url;
@@ -2884,6 +2893,7 @@ window.SiteReader=(function readerMode() {
     push,
     primaryRoutes,
     href: routeHref,
+    addressPage,
     reconcileEndpoint,
     contentFlight(value) {
       const enabled = presentation?.contentFlight?.(value) ?? true;
