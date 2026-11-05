@@ -892,6 +892,18 @@ families.issue169FooterRoutes = {
   staging: '1fce9ff8d1acbf867828680a0a68fa386ed8571a4828442ab9167227bffb42e0',
   production: '3364305b3dd69355813459c48ec671ea995f3db88d4d0f5b17c22cda052a4a23',
 };
+// Exact reader/history observations at223456b, native run42112795903.
+// Production identity comes from its separate normal guarded private derivation.
+families.issue169ReaderHistory = {
+  ...families.issue169FooterRoutes,
+  id: 'issue169-reader-history',
+  baseEngine: '68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c',
+  archive: 'bf1b9e42356b282f3c08f7763a7a59263241c752df5dd9ee776a6b0bf86b0caa',
+  navigation: '0c447ce8a4a8a02835753d144939e14842bd407f735273e8820cf1ff9121cb3e',
+  plain: 'b6f3a98b4b0fb438ec1747952f050baa4b016fb4f6d942b8b364e37638af2768',
+  staging: 'ace81eb56ccb8fca35099e960d684ca90aa855733c7a8e9dfe35eab66da84f78',
+  production: 'c8c444e30127b60e1dac052ab6a2b53d3ff48f40efc68d526cc7c71f17151ebb',
+};
 // Expand only explicitly reviewed editions; an absent edition is never admitted.
 const runtimes = Object.entries(families).flatMap(([family, value]) =>
   ['plain', 'staging', 'production']

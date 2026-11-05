@@ -26,30 +26,35 @@ function manifest(id) {
       value.files[file] = { raw: 5000, gzip: 1000, sha256 };
   return value;
 }
-test('reviewed footer runtime admits observed bytes while retaining edition and mixed-byte refusals', () => {
-  const observed = require('./fixtures/r9-footer-runtime.json');
-  for (const row of observed.runtimes) {
-    const actual = row.manifest;
-    assert.equal(motion.select(actual).id, 'issue169-footer-routes-' + row.edition);
-    assert.equal(motion.publicationRequired(actual, actual.components), true);
-    const base = structuredClone(actual);
-    base.variant.baseEngine = '0'.repeat(64);
-    base.components.variant.baseEngine = '0'.repeat(64);
-    assert.throws(() => motion.select(base), /identity/);
-    const edition = structuredClone(actual);
-    edition.edition =
-      row.edition === 'plain' ? { id: 'staging', indexable: false, analytics: false } : undefined;
-    assert.throws(() => motion.select(edition), /edition differs/);
-    for (const name of Object.keys(actual.files)) {
-      const changed = structuredClone(actual);
-      changed.files[name].sha256 = '0'.repeat(64);
-      assert.throws(() => motion.select(changed), /Color bytes/);
+test('observed runtime families retain exact editions and mixed-byte refusals', () => {
+  for (const [file, family] of [
+    ['r9-footer-runtime', 'issue169-footer-routes'],
+    ['r9-reader-history-runtime', 'issue169-reader-history'],
+  ]) {
+    const observed = require('./fixtures/' + file + '.json');
+    for (const row of observed.runtimes) {
+      const actual = row.manifest;
+      assert.equal(motion.select(actual).id, family + '-' + row.edition);
+      assert.equal(motion.publicationRequired(actual, actual.components), true);
+      const base = structuredClone(actual);
+      base.variant.baseEngine = '0'.repeat(64);
+      base.components.variant.baseEngine = '0'.repeat(64);
+      assert.throws(() => motion.select(base), /identity/);
+      const edition = structuredClone(actual);
+      edition.edition =
+        row.edition === 'plain' ? { id: 'staging', indexable: false, analytics: false } : undefined;
+      assert.throws(() => motion.select(edition), /edition differs/);
+      for (const name of Object.keys(actual.files)) {
+        const changed = structuredClone(actual);
+        changed.files[name].sha256 = '0'.repeat(64);
+        assert.throws(() => motion.select(changed), /Color bytes/);
+      }
+      const mixed = structuredClone(actual);
+      mixed.files['navigation.js'].sha256 = motion.reviewedRuntime(
+        'issue169-native-tags-plain'
+      ).files['navigation.js'];
+      assert.throws(() => motion.select(mixed), /Color bytes/);
     }
-    const mixed = structuredClone(actual);
-    mixed.files['navigation.js'].sha256 = motion.reviewedRuntime(
-      'issue169-native-tags-plain'
-    ).files['navigation.js'];
-    assert.throws(() => motion.select(mixed), /Color bytes/);
   }
 });
 test('producer refactoring preserves client compatibility while runtime bytes and document hooks stay bound', () => {
@@ -90,7 +95,7 @@ test('producer refactoring preserves client compatibility while runtime bytes an
       before.client,
       'publisher internals do not change the client contract'
     );
-    const reviewed = motion.reviewedRuntime('issue169-footer-routes-plain');
+    const reviewed = motion.reviewedRuntime('issue169-reader-history-plain');
     assert.equal(builder.runtimeVersion(after), reviewed.variant.baseEngine);
     const generation = JSON.parse(fs.readFileSync(path.join(root, 'site/output-lock.json'))),
       read = (name) => fs.readFileSync(path.join(root, 'docs', name), 'utf8'),
@@ -186,7 +191,7 @@ test('reading batch records bind actual generated edition bytes and reject tampe
       const root = path.join(directory, name),
         publicDir = path.join(root, 'public'),
         actual = JSON.parse(fs.readFileSync(path.join(root, 'artifact.json'))),
-        reviewed = motion.reviewedRuntime('issue169-footer-routes-' + name);
+        reviewed = motion.reviewedRuntime('issue169-reader-history-' + name);
       assert.equal(artifact.verify(publicDir, actual), true);
       assert.deepEqual(actual.variant, reviewed.variant);
       for (const [file, expected] of Object.entries(reviewed.files)) {
@@ -432,6 +437,7 @@ test('only reviewed historical and current launch plain/staging tuples select a 
     'issue159-reading-paths',
     'issue169-native-tags',
     'issue169-footer-routes',
+    'issue169-reader-history',
     'issue122-reading-batch',
     'issue5-reconciled',
     'issue5-reader-resources',
@@ -495,6 +501,7 @@ test('production Color has a separate exact edition identity with unchanged appr
     'issue159-reading-paths',
     'issue169-native-tags',
     'issue169-footer-routes',
+    'issue169-reader-history',
     'issue122-reading-batch',
     'issue5-reconciled',
     'issue5-reader-resources',
@@ -614,6 +621,9 @@ test('unknown, conflicting, mixed or merely marked runtime identities fail befor
     'issue169-footer-routes-plain',
     'issue169-footer-routes-staging',
     'issue169-footer-routes-production',
+    'issue169-reader-history-plain',
+    'issue169-reader-history-staging',
+    'issue169-reader-history-production',
   ]) {
     for (const mutate of mutations) {
       const value = manifest(id);
@@ -767,6 +777,9 @@ test('licensed contracts reject every missing or substituted canonical and immut
     'issue169-footer-routes-plain',
     'issue169-footer-routes-staging',
     'issue169-footer-routes-production',
+    'issue169-reader-history-plain',
+    'issue169-reader-history-staging',
+    'issue169-reader-history-production',
   ]) {
     const runtime = motion.reviewedRuntime(id);
     for (const name of Object.keys(runtime.files))
@@ -1153,15 +1166,15 @@ test('current platform runtime tuples reproduce the complete plain, staging and 
     };
     fs.writeFileSync(path.join(plainDirectory, 'artifact.json'), JSON.stringify(source));
     const plain = colorBuild.build(plainDirectory);
-    assert.equal(motion.select(plain).id, 'issue169-footer-routes-plain');
+    assert.equal(motion.select(plain).id, 'issue169-reader-history-plain');
     const stagingDirectory = path.join(directory, 'staging');
     fs.cpSync(plainDirectory, stagingDirectory, { recursive: true });
     const staged = stagingBuild.build(stagingDirectory);
-    assert.equal(motion.select(staged).id, 'issue169-footer-routes-staging');
+    assert.equal(motion.select(staged).id, 'issue169-reader-history-staging');
     const productionDirectory = path.join(directory, 'production');
     fs.cpSync(plainDirectory, productionDirectory, { recursive: true });
     const production = require('../tools/release/edition.cjs').build(productionDirectory, 'color');
-    assert.equal(motion.select(production).id, 'issue169-footer-routes-production');
+    assert.equal(motion.select(production).id, 'issue169-reader-history-production');
     assert.equal(
       new Set([plain, staged, production].map((record) => record.variant.fingerprint)).size,
       3
@@ -1170,7 +1183,7 @@ test('current platform runtime tuples reproduce the complete plain, staging and 
       assert.deepEqual(record.components.navigation, { contract: 1, articleRenderer: 1 });
       assert.equal(
         record.variant.baseEngine,
-        motion.reviewedRuntime('issue169-footer-routes-plain').variant.baseEngine
+        motion.reviewedRuntime('issue169-reader-history-plain').variant.baseEngine
       );
     }
   } finally {
@@ -1392,6 +1405,7 @@ test('R3, Writing startup and prospective reading paths keep exact aliases and m
     'issue159-reading-paths',
     'issue169-native-tags',
     'issue169-footer-routes',
+    'issue169-reader-history',
   ])
     for (const edition of ['plain', 'staging', 'production']) {
       const value = manifest(family + '-' + edition);

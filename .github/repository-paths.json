@@ -745,18 +745,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/6ef7cca0b38cb5abd2d1d00bb54242d05c5d032bae8bf18650e4a6e26632a999": {
-      "kind": "directory",
-      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/6ef7cca0b38cb5abd2d1d00bb54242d05c5d032bae8bf18650e4a6e26632a999/the-sdlc-is-out-of-balance.html": {
-      "kind": "file",
-      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003": {
       "kind": "directory",
       "purpose": "Exact current native raw article rendition and existing immutable closure; no prior-publication claim.",
@@ -766,6 +754,18 @@
     "docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/the-sdlc-is-out-of-balance.html": {
       "kind": "file",
       "purpose": "Exact current native raw article rendition and existing immutable closure; no prior-publication claim.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/f52e371b9d98cd765074ce072c182237fd4d097ff1f21e30ee21b1d11098a83c": {
+      "kind": "directory",
+      "purpose": "Generated R9 reader/runtime snapshot or producer-dependent public route; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/f52e371b9d98cd765074ce072c182237fd4d097ff1f21e30ee21b1d11098a83c/the-sdlc-is-out-of-balance.html": {
+      "kind": "file",
+      "purpose": "Generated R9 reader/runtime snapshot or producer-dependent public route; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1087,18 +1087,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/0aaac113f89ea3e2ef6bc9cad73b239b23b58536570a19784dcd977c6932894b": {
-      "kind": "directory",
-      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/0aaac113f89ea3e2ef6bc9cad73b239b23b58536570a19784dcd977c6932894b/talks.html": {
-      "kind": "file",
-      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2": {
       "kind": "directory",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
@@ -1111,15 +1099,15 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/0dfb70a85bbbc71dff00bdd1e9a0d91981fbb6efe6fa95bced3962fa80c6ca64": {
+    "docs/snapshots/190a2156f05681ebd8b82830083f869edb073695f707fa15ff39611ebe1be7d3": {
       "kind": "directory",
-      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
+      "purpose": "Generated R9 reader/runtime snapshot or producer-dependent public route; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/0dfb70a85bbbc71dff00bdd1e9a0d91981fbb6efe6fa95bced3962fa80c6ca64/credits.html": {
+    "docs/snapshots/190a2156f05681ebd8b82830083f869edb073695f707fa15ff39611ebe1be7d3/credits.html": {
       "kind": "file",
-      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
+      "purpose": "Generated R9 reader/runtime snapshot or producer-dependent public route; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1135,6 +1123,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/50ee569b40c942c98ec61e5688114142ae3032be91d92c57a7152012411e7521": {
+      "kind": "directory",
+      "purpose": "Generated R9 reader/runtime snapshot or producer-dependent public route; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/50ee569b40c942c98ec61e5688114142ae3032be91d92c57a7152012411e7521/index.html": {
+      "kind": "file",
+      "purpose": "Generated R9 reader/runtime snapshot or producer-dependent public route; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -1144,6 +1144,18 @@
     "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/5741244054ac4ed16f8a70f20f09a29e46cd57a06fdcf649d7cb0abc1fd26c1f": {
+      "kind": "directory",
+      "purpose": "Generated R9 reader/runtime snapshot or producer-dependent public route; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/5741244054ac4ed16f8a70f20f09a29e46cd57a06fdcf649d7cb0abc1fd26c1f/research.html": {
+      "kind": "file",
+      "purpose": "Generated R9 reader/runtime snapshot or producer-dependent public route; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1168,18 +1180,6 @@
     "docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed/research.html": {
       "kind": "file",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/6d924526af3397c532c52a589108c5fc84a5a4a8d96cc9953ed01c48a7aec053": {
-      "kind": "directory",
-      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/6d924526af3397c532c52a589108c5fc84a5a4a8d96cc9953ed01c48a7aec053/index.html": {
-      "kind": "file",
-      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1267,18 +1267,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/b3f8e0c4eb8895b63b0d9c7b9092237c65185036403dd5292db4b63cf4e06d24": {
-      "kind": "directory",
-      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/b3f8e0c4eb8895b63b0d9c7b9092237c65185036403dd5292db4b63cf4e06d24/research.html": {
-      "kind": "file",
-      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/b57f1dcb99f70ff2df6f748de084f2793f992f438a03c798a30b891c8f9e6461": {
       "kind": "directory",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
@@ -1303,6 +1291,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/c017db2fffe5470a977c10b2d6686b53b6fee281e98008ae9f2d4ccd159ff5c2": {
+      "kind": "directory",
+      "purpose": "Generated R9 reader/runtime snapshot or producer-dependent public route; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/c017db2fffe5470a977c10b2d6686b53b6fee281e98008ae9f2d4ccd159ff5c2/talks.html": {
+      "kind": "file",
+      "purpose": "Generated R9 reader/runtime snapshot or producer-dependent public route; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647": {
       "kind": "directory",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
@@ -1315,15 +1315,15 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/e1b9f8fc9808662662c8a21c186dd26a56974a1dd39f9bf2e0e3cd84d1d5eabf": {
+    "docs/snapshots/e1d246ac5213d1094eb7db3c2b9a3bb6cce00df7fce9e747c10ef1773ab6d1c0": {
       "kind": "directory",
-      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
+      "purpose": "Generated R9 reader/runtime snapshot or producer-dependent public route; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/e1b9f8fc9808662662c8a21c186dd26a56974a1dd39f9bf2e0e3cd84d1d5eabf/writing.html": {
+    "docs/snapshots/e1d246ac5213d1094eb7db3c2b9a3bb6cce00df7fce9e747c10ef1773ab6d1c0/writing.html": {
       "kind": "file",
-      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
+      "purpose": "Generated R9 reader/runtime snapshot or producer-dependent public route; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -2407,6 +2407,12 @@
       "role": "history",
       "owner": "AGENTS.md"
     },
+    "review/issue-169/2026-11-05-r9-reader-history-admission.md": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound reader/history runtime admission evidence, exact review packets or lossless role execution receipts; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-169/2026-11-05-r9-runtime-admission.md": {
       "kind": "file",
       "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
@@ -2605,6 +2611,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-169/native-reviews/correction/correction-code-clean.md.gz": {
+      "kind": "file",
+      "purpose": "Lossless original Code correction review; adjacent readable index preserves decoded hash and acceptance limits.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-169/native-reviews/correction/correction-code.md": {
       "kind": "file",
       "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
@@ -2644,6 +2656,12 @@
     "review/issue-169/native-reviews/correction/correction-requirements-clean.md": {
       "kind": "file",
       "purpose": "Issue169 source-bound independent correction review, actual launch/exposure receipts, primary packet and retained failure/check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/correction/correction-requirements-clean.md.gz": {
+      "kind": "file",
+      "purpose": "Lossless original Requirements correction report with decoded hash and readable adjacent index; historical evidence only.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -4128,6 +4146,54 @@
       "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
       "role": "history",
       "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/runtime-review": {
+      "kind": "directory",
+      "purpose": "Issue169 source-bound reader/history runtime admission evidence, exact review packets or lossless role execution receipts; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/r9/runtime-review/README.md": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound reader/history runtime admission evidence, exact review packets or lossless role execution receipts; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/r9/runtime-review/admission-final-packet.json": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound reader/history runtime admission evidence, exact review packets or lossless role execution receipts; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/r9/runtime-review/code.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound reader/history runtime admission evidence, exact review packets or lossless role execution receipts; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/r9/runtime-review/exploratory.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound reader/history runtime admission evidence, exact review packets or lossless role execution receipts; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/r9/runtime-review/requirements.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound reader/history runtime admission evidence, exact review packets or lossless role execution receipts; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/r9/runtime-review/reviewer-packet.json": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound reader/history runtime admission evidence, exact review packets or lossless role execution receipts; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/r9/runtime-review/whitebox.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound reader/history runtime admission evidence, exact review packets or lossless role execution receipts; not release acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     },
     "review/issue-169/writing-carrier.json": {
       "kind": "file",
@@ -12934,6 +13000,12 @@
     "tests/fixtures/r9-footer-runtime.json": {
       "kind": "file",
       "purpose": "Fixed runtime projection from actual R9 CI and honest private guarded production derivation; no release acceptance.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tests/fixtures/r9-reader-history-runtime.json": {
+      "kind": "file",
+      "purpose": "Exact source-bound R9 reader/history plain, staging and guarded private production runtime observations; controlled compatibility fixture, not release admission.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },

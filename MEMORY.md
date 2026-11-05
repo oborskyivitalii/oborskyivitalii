@@ -28,13 +28,13 @@ Dated continuity, not live authority. Last verified: **2026-11-05**.
 - User requested reader foundation/cross-PR and complete navigation/delivery audit before production. Main/PR170 already contain foundation; PR79 effective14article/editorial paths only, no template dependency. Evidence:2026-11-05-reader-foundation-audit-and-corrections.md plus role reports.
 - Actual42105950320 atd3a:20pass/2fail/18unobserved, newForward CSS passes but Back restores stale2163/3832 vs574/1076. Raw reporta3c12c99/ZIPb5048216 preserved. Prepared per-entry bounded native-pop reading cache retains350ms serialization; arrival guard, exact initial-entry routing and actual immutable mount base fix independently reproduced foundation defects.
 - Final prepared reader/nav/archive/evidence99/99, selector46/46, article routing/head2/2 and Basic17+10 pass; four affected role continuations complete. Final source packet:r9/reader-audit-final-delta-input-manifest.json. Ten missing dependency pairs plus frozen-resource fixture edge corrected; content19 and all budgets/guards remain. Original40probe09e995 unchanged; new browser proof pending.
-- New current runtime remains unadmitted; all55old families preserved. Fresh-current family assertions migrate only after real native proof and independent actual plain/staging/guarded-production byte review. Frozen goldens stay intact.
+- Reader/history runtime: clean223456b/treeeb37 diagnostic42112795903 passed40/40,24legs/fourcontexts,134249ms; reportb61435e2/ZIP84196364. Prepared finite family/client68fa now binds actual plainb6f3/stagingace81/guarded private productionc8c444; dirty derivation is not eligibility. All old families/goldens preserved. New four distinct none-fork reviewers completed final source/evidence acceptance;144/144 admission source tests pass. Exact receipt:2026-11-05-r9-reader-history-admission.md. Current final full CI/hosted/staging/release remain pending.
 - R9 is not staged, merged or published. Final public URL/served-byte verification, finalized external kit and AC reconciliation remain pending.
 
 ## Next session
 
 1. Verify current PR/source/checks and exact R9 checkpoint; do not substitute old greens.
-2. Finish reader-audit correction check/RI receipts and coherent Draft commit, run unchanged40-case diagnostic on changed source, then independently review/admit actual new three-edition family/client/goldens through existing guards.
+2. Finish coherent observed runtime-admission commit and RI/check receipts; native browser and four-role review are complete for223456b runtime bytes. Then mark Ready for fresh full current CI/hosted checks; do not rerun the diagnostic unchanged.
 3. After actual changed-runtime admission, mark Ready and obtain new full exact-head eight-shard/hosted checks; owner staging, trusted control admission, protected identical-tree merge and frozen production rights/archive/publish route.
 4. Verify served article/PDF/SEO, finalize complete LinkedIn/Medium copies with actual URLs and reconcile original AC01–AC11. Close only whole verified criteria.
 

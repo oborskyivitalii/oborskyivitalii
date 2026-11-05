@@ -317,6 +317,7 @@ test('reader-block evidence is required for every current identity while histori
     'issue5-review-markdown',
     'issue169-native-tags',
     'issue169-footer-routes',
+    'issue169-reader-history',
   ].flatMap((family) =>
     ['plain', 'staging', 'production'].map(
       (edition) => motion.reviewedRuntime(family + '-' + edition).variant
@@ -470,7 +471,7 @@ test('reader-block evidence is required for every current identity while histori
 
 test('current route phases refuse watchdog, cancellation and absent completion on either history direction', () => {
   const motion = require('../tools/quality/color-motion-contract.cjs');
-  const current = motion.reviewedRuntime('issue169-footer-routes-staging').variant.fingerprint;
+  const current = motion.reviewedRuntime('issue169-reader-history-staging').variant.fingerprint;
   const make = () =>
     require('./fixtures/article-flight.cjs').currentJourney(descriptors, current, baseURL);
   assert.deepEqual(validateArticleJourney(make(), descriptors, { engine: current, baseURL }), {

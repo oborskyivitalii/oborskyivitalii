@@ -370,6 +370,7 @@ test('reader and delivery owner changes select their directly consuming assertio
     ['tools/check_site_seo.cjs', 'content-rendering'],
     ['tools/site/articles.cjs', 'release-controller'],
     ['tests/fixtures/reader-resource-links.json', 'navigation'],
+    ['tests/fixtures/r9-reader-history-runtime.json', 'color-motion-contract'],
   ]) {
     const selected = runner.select(root, 'pr', { changedPaths: [owner] });
     assert.ok(
