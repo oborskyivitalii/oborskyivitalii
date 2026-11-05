@@ -48,14 +48,17 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16](docs/article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3](docs/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c](docs/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
+| [docs/article-media/75e052d6a5c386ae79cb1a51d59cdf42e53d3a7279bf0db31c227ee145bb18b4](docs/article-media/75e052d6a5c386ae79cb1a51d59cdf42e53d3a7279bf0db31c227ee145bb18b4) | Generated R9 native article, digest media/material or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-media/79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6](docs/article-media/79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f](docs/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1](docs/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
-| [docs/article-media/be35778ef93948ca7e809b7917faf1771d11e670e327a0dfc49d95ab4cfc2d98](docs/article-media/be35778ef93948ca7e809b7917faf1771d11e670e327a0dfc49d95ab4cfc2d98) | Generated immutable R4 article or dependent native-site output, built from the current authored sources. | generated | [site/README.md](site/README.md) |
+| [docs/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a](docs/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a) | Generated R9 native article, digest media/material or dependent route snapshot. | generated | [site/README.md](site/README.md) |
+| [docs/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551](docs/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551) | Generated R9 native article, digest media/material or dependent route snapshot. | generated | [site/README.md](site/README.md) |
+| [docs/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7](docs/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7) | Generated R9 native article, digest media/material or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f](docs/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f) | Generated native article, immutable media or snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-snapshots](docs/article-snapshots) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684](docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684) | Current immutable generated room/article snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
-| [docs/article-snapshots/9b22ba2d80c954a90211bdfa1bc9266e5e9d8acec4af18aa7014e8c1f42a91ab](docs/article-snapshots/9b22ba2d80c954a90211bdfa1bc9266e5e9d8acec4af18aa7014e8c1f42a91ab) | Generated current R4 runtime and immutable article assets from authored site sources. | generated | [site/README.md](site/README.md) |
+| [docs/article-snapshots/5107c391274e1a41404442e25ad574a0fcb80357647a901dd0dc9034f5b8589f](docs/article-snapshots/5107c391274e1a41404442e25ad574a0fcb80357647a901dd0dc9034f5b8589f) | Generated R9 native article, digest media/material or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003](docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003) | Exact current native raw article rendition and existing immutable closure; no prior-publication claim. | generated | [site/README.md](site/README.md) |
 | [docs/articles](docs/articles) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/assets](docs/assets) | Generated legacy-compatible aliases for authored portrait/icon assets. | generated | [site/README.md](site/README.md) |
@@ -88,7 +91,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920](docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920) | Generated public rendition; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647](docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647) | Verified prior production immutable snapshot retained with its exact published bytes. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/d7e256ba0261fe2390db7cbb4c097c78ddd81c463a9ae2725a3b0ee16f48fb50](docs/snapshots/d7e256ba0261fe2390db7cbb4c097c78ddd81c463a9ae2725a3b0ee16f48fb50) | Generated current R4 runtime and immutable article assets from authored site sources. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/ed76c1627e765824071b837a1913ebe283830b9527c45f0d5fb6b9f7835e5387](docs/snapshots/ed76c1627e765824071b837a1913ebe283830b9527c45f0d5fb6b9f7835e5387) | Generated current R4 runtime and immutable article assets from authored site sources. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/f66caf3834ce13cef24d94d0348b2e835cdc9d57fcc0127697c560c99f0f0e80](docs/snapshots/f66caf3834ce13cef24d94d0348b2e835cdc9d57fcc0127697c560c99f0f0e80) | Generated R9 native article, digest media/material or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 | [drafts](drafts) | Unpublished article/profile proposals excluded from public builds. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [guides](guides) | Maintained topic guides for repository boundaries, publication, quality and hosting; root stays an entry surface. | guide | [guides/README.md](guides/README.md) |
 | [review](review) | Dated plans, evidence, captures and renditions; current Color/export inputs are explicitly marked. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -116,6 +119,10 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-169/r2](review/issue-169/r2) | Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-169/r3](review/issue-169/r3) | Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-169/r3/reviews](review/issue-169/r3/reviews) | Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/r9](review/issue-169/r9) | Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/r9/checks](review/issue-169/r9/checks) | Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/r9/masters](review/issue-169/r9/masters) | Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/r9/reviews](review/issue-169/r9/reviews) | Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-2](review/issue-2) | Dated editorial, source and publication review evidence for the PMDay article owner. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-2/pmday-candidate-20261015](review/issue-2/pmday-candidate-20261015) | PR79 PMDay review candidate, independent findings and source-qualified export evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-2/r26-20261023](review/issue-2/r26-20261023) | Public-safe R26 native review deliverables with exact manuscript, PDF, kit and source/producer inventory. | history | [review/issue-2/2026-10-23-r26-integration.md](review/issue-2/2026-10-23-r26-integration.md) |
@@ -436,6 +443,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [docs/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c/reading.pdf](docs/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c/reading.pdf) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 
+## docs/article-media/75e052d6a5c386ae79cb1a51d59cdf42e53d3a7279bf0db31c227ee145bb18b4/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/article-media/75e052d6a5c386ae79cb1a51d59cdf42e53d3a7279bf0db31c227ee145bb18b4/reading-r9.pdf](docs/article-media/75e052d6a5c386ae79cb1a51d59cdf42e53d3a7279bf0db31c227ee145bb18b4/reading-r9.pdf) | Generated R9 native article, digest media/material or dependent route snapshot. | generated | [site/README.md](site/README.md) |
+
 ## docs/article-media/79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6/
 
 | Path | Purpose | Role | Owner / editing route |
@@ -446,6 +459,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
+| [docs/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry-r9.webp](docs/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry-r9.webp) | Generated R9 native article, digest media/material or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry.webp](docs/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry.webp) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 
 ## docs/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1/
@@ -454,11 +468,23 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [docs/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1/workstream-system.webp](docs/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1/workstream-system.webp) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 
-## docs/article-media/be35778ef93948ca7e809b7917faf1771d11e670e327a0dfc49d95ab4cfc2d98/
+## docs/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/article-media/be35778ef93948ca7e809b7917faf1771d11e670e327a0dfc49d95ab4cfc2d98/reading.pdf](docs/article-media/be35778ef93948ca7e809b7917faf1771d11e670e327a0dfc49d95ab4cfc2d98/reading.pdf) | Generated immutable R4 article or dependent native-site output, built from the current authored sources. | generated | [site/README.md](site/README.md) |
+| [docs/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a/review-learning-r7.webp](docs/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a/review-learning-r7.webp) | Generated R9 native article, digest media/material or dependent route snapshot. | generated | [site/README.md](site/README.md) |
+
+## docs/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551/comprehension-gap-r7.webp](docs/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551/comprehension-gap-r7.webp) | Generated R9 native article, digest media/material or dependent route snapshot. | generated | [site/README.md](site/README.md) |
+
+## docs/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7/delivery-capacity-r6.webp](docs/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7/delivery-capacity-r6.webp) | Generated R9 native article, digest media/material or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 
 ## docs/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f/
 
@@ -472,11 +498,11 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684/the-sdlc-is-out-of-balance.html](docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684/the-sdlc-is-out-of-balance.html) | Current immutable generated room/article snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
 
-## docs/article-snapshots/9b22ba2d80c954a90211bdfa1bc9266e5e9d8acec4af18aa7014e8c1f42a91ab/
+## docs/article-snapshots/5107c391274e1a41404442e25ad574a0fcb80357647a901dd0dc9034f5b8589f/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/article-snapshots/9b22ba2d80c954a90211bdfa1bc9266e5e9d8acec4af18aa7014e8c1f42a91ab/the-sdlc-is-out-of-balance.html](docs/article-snapshots/9b22ba2d80c954a90211bdfa1bc9266e5e9d8acec4af18aa7014e8c1f42a91ab/the-sdlc-is-out-of-balance.html) | Generated current R4 runtime and immutable article assets from authored site sources. | generated | [site/README.md](site/README.md) |
+| [docs/article-snapshots/5107c391274e1a41404442e25ad574a0fcb80357647a901dd0dc9034f5b8589f/the-sdlc-is-out-of-balance.html](docs/article-snapshots/5107c391274e1a41404442e25ad574a0fcb80357647a901dd0dc9034f5b8589f/the-sdlc-is-out-of-balance.html) | Generated R9 native article, digest media/material or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 
 ## docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/
 
@@ -488,7 +514,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/articles/the-sdlc-is-out-of-balance.html](docs/articles/the-sdlc-is-out-of-balance.html) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
+| [docs/articles/the-sdlc-is-out-of-balance.html](docs/articles/the-sdlc-is-out-of-balance.html) | Current accepted R9 native article rendition. | generated | [site/README.md](site/README.md) |
 
 ## docs/assets/
 
@@ -678,11 +704,11 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [docs/snapshots/d7e256ba0261fe2390db7cbb4c097c78ddd81c463a9ae2725a3b0ee16f48fb50/talks.html](docs/snapshots/d7e256ba0261fe2390db7cbb4c097c78ddd81c463a9ae2725a3b0ee16f48fb50/talks.html) | Generated current R4 runtime and immutable article assets from authored site sources. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/ed76c1627e765824071b837a1913ebe283830b9527c45f0d5fb6b9f7835e5387/
+## docs/snapshots/f66caf3834ce13cef24d94d0348b2e835cdc9d57fcc0127697c560c99f0f0e80/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/snapshots/ed76c1627e765824071b837a1913ebe283830b9527c45f0d5fb6b9f7835e5387/writing.html](docs/snapshots/ed76c1627e765824071b837a1913ebe283830b9527c45f0d5fb6b9f7835e5387/writing.html) | Generated current R4 runtime and immutable article assets from authored site sources. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/f66caf3834ce13cef24d94d0348b2e835cdc9d57fcc0127697c560c99f0f0e80/writing.html](docs/snapshots/f66caf3834ce13cef24d94d0348b2e835cdc9d57fcc0127697c560c99f0f0e80/writing.html) | Generated R9 native article, digest media/material or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 
 ## drafts/
 
@@ -1065,6 +1091,11 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-169/2026-10-31-illustration-briefs.md](review/issue-169/2026-10-31-illustration-briefs.md) | Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-169/2026-10-31-native-publication.md](review/issue-169/2026-10-31-native-publication.md) | Source-bound native R3 integration, review and release evidence under issue169. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-169/2026-10-31-r3-illustrated-review.md](review/issue-169/2026-10-31-r3-illustrated-review.md) | Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/2026-11-05-devcon-editorial-analysis.md](review/issue-169/2026-11-05-devcon-editorial-analysis.md) | Historical DevCon/article editorial comparison and author discussion before accepted R9; retained source-bound analysis. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/2026-11-05-native-r9-code-delta-review.md](review/issue-169/2026-11-05-native-r9-code-delta-review.md) | Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/2026-11-05-native-r9-requirements-delta.md](review/issue-169/2026-11-05-native-r9-requirements-delta.md) | Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/2026-11-05-native-r9-whitebox-delta.md](review/issue-169/2026-11-05-native-r9-whitebox-delta.md) | Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/2026-11-05-r9-native.md](review/issue-169/2026-11-05-r9-native.md) | Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-169/correction-affected.log.gz](review/issue-169/correction-affected.log.gz) | Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/failed-source-run.json.gz](review/issue-169/failed-source-run.json.gz) | Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/failed-source-run.tap.gz](review/issue-169/failed-source-run.tap.gz) | Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -1281,6 +1312,48 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-169/r3/reviews/requirements-r3-final.md](review/issue-169/r3/reviews/requirements-r3-final.md) | Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-169/r3/reviews/requirements-r3-preflight.md](review/issue-169/r3/reviews/requirements-r3-preflight.md) | Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-169/r3/reviews/whitebox-r3.md](review/issue-169/r3/reviews/whitebox-r3.md) | Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated. | history | [AGENTS.md](AGENTS.md) |
+
+## review/issue-169/r9/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-169/r9/accepted.md](review/issue-169/r9/accepted.md) | Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/r9/native-launch-receipts.json](review/issue-169/r9/native-launch-receipts.json) | Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/r9/release-intent.md](review/issue-169/r9/release-intent.md) | Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence. | history | [AGENTS.md](AGENTS.md) |
+
+## review/issue-169/r9/checks/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-169/r9/checks/native-r9-basic-failed.log.gz](review/issue-169/r9/checks/native-r9-basic-failed.log.gz) | Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/r9/checks/native-r9-basic.log.gz](review/issue-169/r9/checks/native-r9-basic.log.gz) | Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/r9/checks/native-r9-format-final.log.gz](review/issue-169/r9/checks/native-r9-format-final.log.gz) | Issue169 R9 exact-source local check or preserved failure log; no hosted/release acceptance implied. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/r9/checks/native-r9-format-pass.log.gz](review/issue-169/r9/checks/native-r9-format-pass.log.gz) | Issue169 R9 exact-source local check or preserved failure log; no hosted/release acceptance implied. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/r9/checks/native-r9-publishing-tests.log.gz](review/issue-169/r9/checks/native-r9-publishing-tests.log.gz) | Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/r9/checks/native-r9-quality-tests.log.gz](review/issue-169/r9/checks/native-r9-quality-tests.log.gz) | Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/r9/checks/native-r9-ri-ci-tests.log.gz](review/issue-169/r9/checks/native-r9-ri-ci-tests.log.gz) | Issue169 R9 exact-source local check or preserved failure log; no hosted/release acceptance implied. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/r9/checks/native-r9-ri-tests-final.log.gz](review/issue-169/r9/checks/native-r9-ri-tests-final.log.gz) | Issue169 R9 exact-source local check or preserved failure log; no hosted/release acceptance implied. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/r9/checks/native-r9-ri-tests.log.gz](review/issue-169/r9/checks/native-r9-ri-tests.log.gz) | Issue169 R9 exact-source local check or preserved failure log; no hosted/release acceptance implied. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/r9/checks/native-r9-shards-tests-failed.log.gz](review/issue-169/r9/checks/native-r9-shards-tests-failed.log.gz) | Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/r9/checks/native-r9-shards-tests-final.log.gz](review/issue-169/r9/checks/native-r9-shards-tests-final.log.gz) | Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/r9/checks/release-latest-preview.log.gz](review/issue-169/r9/checks/release-latest-preview.log.gz) | Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence. | history | [AGENTS.md](AGENTS.md) |
+
+## review/issue-169/r9/masters/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-169/r9/masters/comprehension-gap-r7.svg](review/issue-169/r9/masters/comprehension-gap-r7.svg) | Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/r9/masters/delivery-capacity-r6.svg](review/issue-169/r9/masters/delivery-capacity-r6.svg) | Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/r9/masters/review-learning-r7.svg](review/issue-169/r9/masters/review-learning-r7.svg) | Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence. | history | [AGENTS.md](AGENTS.md) |
+
+## review/issue-169/r9/reviews/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-169/r9/reviews/native-r9-code-preflight.md](review/issue-169/r9/reviews/native-r9-code-preflight.md) | Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/r9/reviews/native-r9-exploratory-local.md](review/issue-169/r9/reviews/native-r9-exploratory-local.md) | Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/r9/reviews/native-r9-requirements-preflight.md](review/issue-169/r9/reviews/native-r9-requirements-preflight.md) | Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/r9/reviews/native-r9-whitebox-preflight.md](review/issue-169/r9/reviews/native-r9-whitebox-preflight.md) | Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence. | history | [AGENTS.md](AGENTS.md) |
 
 ## review/issue-2/
 
@@ -2550,12 +2623,16 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
+| [site/assets/publications/sdlc-out-of-balance/asymmetry-r9.png](site/assets/publications/sdlc-out-of-balance/asymmetry-r9.png) | Accepted R9 source, edition, five-visual asset or exact PDF review evidence through existing publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/assets/publications/sdlc-out-of-balance/asymmetry.png](site/assets/publications/sdlc-out-of-balance/asymmetry.png) | Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
+| [site/assets/publications/sdlc-out-of-balance/comprehension-gap-r7.png](site/assets/publications/sdlc-out-of-balance/comprehension-gap-r7.png) | Accepted R9 source, edition, five-visual asset or exact PDF review evidence through existing publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
+| [site/assets/publications/sdlc-out-of-balance/delivery-capacity-r6.png](site/assets/publications/sdlc-out-of-balance/delivery-capacity-r6.png) | Accepted R9 source, edition, five-visual asset or exact PDF review evidence through existing publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/assets/publications/sdlc-out-of-balance/hero-web.jpg](site/assets/publications/sdlc-out-of-balance/hero-web.jpg) | Accepted SDLC article artwork, compressed web rendition or PDF material. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/assets/publications/sdlc-out-of-balance/hero-web.png](site/assets/publications/sdlc-out-of-balance/hero-web.png) | Accepted SDLC article artwork, compressed web rendition or PDF material. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/assets/publications/sdlc-out-of-balance/hero.png](site/assets/publications/sdlc-out-of-balance/hero.png) | Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/assets/publications/sdlc-out-of-balance/imbalance-loop.png](site/assets/publications/sdlc-out-of-balance/imbalance-loop.png) | Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/assets/publications/sdlc-out-of-balance/review-functions.png](site/assets/publications/sdlc-out-of-balance/review-functions.png) | Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
+| [site/assets/publications/sdlc-out-of-balance/review-learning-r7.png](site/assets/publications/sdlc-out-of-balance/review-learning-r7.png) | Accepted R9 source, edition, five-visual asset or exact PDF review evidence through existing publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/assets/publications/sdlc-out-of-balance/systemic-response.png](site/assets/publications/sdlc-out-of-balance/systemic-response.png) | Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/assets/publications/sdlc-out-of-balance/workstream-system.png](site/assets/publications/sdlc-out-of-balance/workstream-system.png) | Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 
@@ -2563,6 +2640,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
+| [site/assets/publications/sdlc-out-of-balance/materials/reading-r9.pdf](site/assets/publications/sdlc-out-of-balance/materials/reading-r9.pdf) | Accepted R9 source, edition, five-visual asset or exact PDF review evidence through existing publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/assets/publications/sdlc-out-of-balance/materials/reading.pdf](site/assets/publications/sdlc-out-of-balance/materials/reading.pdf) | Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 
 ## site/content/
@@ -2763,22 +2841,24 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [site/publications/sdlc-out-of-balance/PROVENANCE.md](site/publications/sdlc-out-of-balance/PROVENANCE.md) | Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/publications/sdlc-out-of-balance/launch-post.en.md](site/publications/sdlc-out-of-balance/launch-post.en.md) | Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
-| [site/publications/sdlc-out-of-balance/manuscript.en.md](site/publications/sdlc-out-of-balance/manuscript.en.md) | Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
-| [site/publications/sdlc-out-of-balance/materials.json](site/publications/sdlc-out-of-balance/materials.json) | Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
-| [site/publications/sdlc-out-of-balance/profile.json](site/publications/sdlc-out-of-balance/profile.json) | Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
-| [site/publications/sdlc-out-of-balance/publication.json](site/publications/sdlc-out-of-balance/publication.json) | Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
+| [site/publications/sdlc-out-of-balance/manuscript.en.md](site/publications/sdlc-out-of-balance/manuscript.en.md) | Current accepted R9 native source, semantic/profile/material inputs and hero plus four figures. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
+| [site/publications/sdlc-out-of-balance/materials.json](site/publications/sdlc-out-of-balance/materials.json) | Current accepted R9 native source, semantic/profile/material inputs and hero plus four figures. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
+| [site/publications/sdlc-out-of-balance/profile.json](site/publications/sdlc-out-of-balance/profile.json) | Current accepted R9 native source, semantic/profile/material inputs and hero plus four figures. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
+| [site/publications/sdlc-out-of-balance/publication.json](site/publications/sdlc-out-of-balance/publication.json) | Current accepted R9 native source, semantic/profile/material inputs and hero plus four figures. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 
 ## site/publications/sdlc-out-of-balance/editions/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r3-20261031.json](site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r3-20261031.json) | Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
-| [site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r4-20261101.json](site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r4-20261101.json) | Current author-directed R4 native article edition and original R3 preservation. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
+| [site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r4-20261101.json](site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r4-20261101.json) | Historical frozen R4 native article edition, retained with original R3 history. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
+| [site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r9-20261105.json](site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r9-20261105.json) | Accepted R9 source, edition, five-visual asset or exact PDF review evidence through existing publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 
 ## site/publications/sdlc-out-of-balance/materials/reviews/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
+| [site/publications/sdlc-out-of-balance/materials/reviews/reading-pdf-r9.md](site/publications/sdlc-out-of-balance/materials/reviews/reading-pdf-r9.md) | Accepted R9 source, edition, five-visual asset or exact PDF review evidence through existing publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/publications/sdlc-out-of-balance/materials/reviews/reading-pdf.md](site/publications/sdlc-out-of-balance/materials/reviews/reading-pdf.md) | Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 
 ## site/retained/

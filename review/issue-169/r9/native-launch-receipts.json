@@ -1,0 +1,62 @@
+{
+  "scope": "Issue169 accepted R9 native integration and existing runtime/CI delta; prepared working tree on frozen source601d7cb; not full release acceptance",
+  "launch_tool": "collaboration.spawn_agent",
+  "initial_packet_references": {
+    "intent": "review/issue-169/r9/release-intent.md",
+    "intent_sha256": "7036f0f97be12e72bb7e45e6b6dc456ac52c72bbce07374977901c4d90ef354b",
+    "owner_snapshot_sha256": "7274ee92568eca12c8971f9123a5048996ef5838c2b5d96b802103ca88cd46f9",
+    "initial_source": "d4c58e526261acd52ebf18fbfb261a33c8ffff37",
+    "base": "8cf15883125892710633b17133d9ee0fc4b23b92"
+  },
+  "prompt_sha256": {
+    "README.md": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb",
+    "requirements-acceptance.md": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6",
+    "code-review.md": "26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697",
+    "white-box-qa.md": "832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f",
+    "exploratory-interaction-qa.md": "280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a"
+  },
+  "launches": [
+    {
+      "role": "Requirements",
+      "task_handle": "/root/native_r9_requirements",
+      "requested_fork_turns": "none",
+      "accepted_task_handle": "/root/native_r9_requirements",
+      "model_override": null,
+      "role_prompt": "agents/reviewers/requirements-acceptance.md",
+      "first_result": "review/issue-169/r9/reviews/native-r9-requirements-preflight.md",
+      "provider_context_memory_internals": "unknown"
+    },
+    {
+      "role": "Code",
+      "task_handle": "/root/native_r9_code",
+      "requested_fork_turns": "none",
+      "accepted_task_handle": "/root/native_r9_code",
+      "model_override": null,
+      "role_prompt": "agents/reviewers/code-review.md",
+      "first_result": "review/issue-169/r9/reviews/native-r9-code-preflight.md",
+      "provider_context_memory_internals": "unknown"
+    },
+    {
+      "role": "White-box",
+      "task_handle": "/root/native_r9_whitebox",
+      "requested_fork_turns": "none",
+      "accepted_task_handle": "/root/native_r9_whitebox",
+      "model_override": null,
+      "role_prompt": "agents/reviewers/white-box-qa.md",
+      "first_result": "review/issue-169/r9/reviews/native-r9-whitebox-preflight.md",
+      "provider_context_memory_internals": "unknown"
+    },
+    {
+      "role": "Exploratory",
+      "task_handle": "/root/native_r9_exploratory",
+      "requested_fork_turns": "none",
+      "accepted_task_handle": "/root/native_r9_exploratory",
+      "model_override": null,
+      "role_prompt": "agents/reviewers/exploratory-interaction-qa.md",
+      "first_result": "review/issue-169/r9/reviews/native-r9-exploratory-local.md",
+      "provider_context_memory_internals": "unknown"
+    }
+  ],
+  "continuations": "Actual collaboration.followup_task targeted correction turns on same role agents; not fresh isolation. Own reports disclose corrected sources and supplied observations. No peer verdict supplied before initial result.",
+  "limits": "Receipt reconstructed from actual accepted tool handles and immutable inputs; not a provider attestation. Launch-time aggregate native candidate manifest was not centrally persisted; initial source is exact Git d4c58, R9 subset inputs separately hash-bound and role source checks recorded. Dirty prepared subset is not a clean final commit."
+}

@@ -1061,6 +1061,12 @@ test('bounded source shard identities cover every selected module once and rejec
     () => shards.verify(root, plan, changed, identity),
     /reportSha256|not pass|deep|status/
   );
+  changed[0].meta = shards.packet(plan, 0, identity, changed[0].report, changed[0].tap, '');
+  assert.throws(() => shards.verify(root, plan, changed, identity), /1 !== 0/);
+  const drifted = structuredClone(receipts);
+  drifted[0].report.sourceAfter = { ...identity, sourceTree: '3'.repeat(40) };
+  drifted[0].meta = shards.packet(plan, 0, identity, drifted[0].report, drifted[0].tap, '');
+  assert.throws(() => shards.verify(root, plan, drifted, identity), /source changed/);
   const incomplete = structuredClone(receipts);
   incomplete[0].tap = '';
   assert.throws(() => shards.verify(root, plan, incomplete, identity), /tapSha256/);
@@ -1068,6 +1074,52 @@ test('bounded source shard identities cover every selected module once and rejec
     () => shards.verify(root, plan, receipts.slice(0, 7), identity),
     /shard receipt count/
   );
+});
+
+test('empty PR shard selection stays inapplicable and rejects coherently rehashed process errors', () => {
+  const shards = require('../tools/quality/source-test-shards.cjs');
+  const identity = { sourceCommit: '1'.repeat(40), sourceTree: '2'.repeat(40), sourceDirty: false };
+  const plan = { profile: 'pr', modules: [] };
+  const receipts = Array.from({ length: 8 }, (_, index) => {
+    const report = {
+      schema: 1,
+      kind: 'source-tests',
+      profile: 'pr',
+      modules: [],
+      cleanSourceRequired: true,
+      status: 'not-applicable',
+      pass: null,
+      source: identity,
+      sourceAfter: identity,
+      result: { total: 0, passed: 0 },
+    };
+    return {
+      report,
+      tap: '',
+      stderr: '',
+      meta: shards.packet(plan, index, identity, report, '', ''),
+    };
+  });
+  const result = shards.verify(root, plan, receipts, identity);
+  assert.equal(result.status, 'not-applicable');
+  assert.equal(result.pass, null);
+  assert.equal(result.total, 0);
+  assert.equal(result.shards.length, 8);
+  assert.throws(() => shards.verify(root, plan, receipts.slice(1), identity), /receipt count/);
+  for (const name of ['total', 'passed', 'failed', 'cancelled', 'skipped', 'todo']) {
+    const inconsistent = structuredClone(receipts);
+    inconsistent[0].report.result[name] = 99;
+    inconsistent[0].meta = shards.packet(plan, 0, identity, inconsistent[0].report, '', '');
+    assert.throws(() => shards.verify(root, plan, inconsistent, identity), /empty shard result/);
+  }
+  const changed = structuredClone(receipts);
+  changed[0].stderr = 'process setup failed';
+  changed[0].meta = shards.packet(plan, 0, identity, changed[0].report, '', changed[0].stderr);
+  assert.throws(() => shards.verify(root, plan, changed, identity), /process errors/);
+  changed[0].stderr = '';
+  changed[0].report.execution = { status: 1 };
+  changed[0].meta = shards.packet(plan, 0, identity, changed[0].report, '', '');
+  assert.throws(() => shards.verify(root, plan, changed, identity));
 });
 
 test('source scheduling starts expensive files early with isolated processes and preserves failure accounting', (t) => {

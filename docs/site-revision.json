@@ -19,7 +19,7 @@
     "vitalii-oborskyi-cutout.webp",
     "writing-paradigm.svg"
   ],
-  "content": "2736e4d0a78c6c22a7a773239333da36e5788871037ebf66b2dfd99ff383c849",
+  "content": "b37c1856fe5eb0186bfb8af957e986f4e81cc487da00f3c2ea90d986631c2a30",
   "routes": {
     "index": {
       "version": "4ca9b43fbda6768b4d76d8a5b0db418612642b1ca701a634f66310ebfdb0f234",
@@ -35,9 +35,9 @@
       ]
     },
     "writing": {
-      "version": "ed76c1627e765824071b837a1913ebe283830b9527c45f0d5fb6b9f7835e5387",
-      "url": "snapshots/ed76c1627e765824071b837a1913ebe283830b9527c45f0d5fb6b9f7835e5387/writing.html",
-      "sha256": "0ff68bd10d3a7c05ca439a52a5487c14b307585e3046844508637f87a8a36553",
+      "version": "f66caf3834ce13cef24d94d0348b2e835cdc9d57fcc0127697c560c99f0f0e80",
+      "url": "snapshots/f66caf3834ce13cef24d94d0348b2e835cdc9d57fcc0127697c560c99f0f0e80/writing.html",
+      "sha256": "1dd4a1d11f7fa77f3d84410d36ff27c50b9f03f9725600eda5e167c7a22db47e",
       "assets": [
         "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
       ]
@@ -55,29 +55,28 @@
   },
   "articles": {
     "sdlc-out-of-balance:en": {
-      "version": "9b22ba2d80c954a90211bdfa1bc9266e5e9d8acec4af18aa7014e8c1f42a91ab",
-      "url": "article-snapshots/9b22ba2d80c954a90211bdfa1bc9266e5e9d8acec4af18aa7014e8c1f42a91ab/the-sdlc-is-out-of-balance.html",
-      "sha256": "9b35dbbaca73d2a4e5c7c4e647f514da3f8b3a5e5efe95c53e958c3e4e5dea88",
+      "version": "5107c391274e1a41404442e25ad574a0fcb80357647a901dd0dc9034f5b8589f",
+      "url": "article-snapshots/5107c391274e1a41404442e25ad574a0fcb80357647a901dd0dc9034f5b8589f/the-sdlc-is-out-of-balance.html",
+      "sha256": "fc8bb23d7bee0115decf79ec6575be27ff2e4499133a2939fb3722809a20f918",
       "alias": "articles/the-sdlc-is-out-of-balance.html",
       "scene": "writing",
       "assets": [
         "article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f/hero-web.jpg",
-        "article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry.webp",
-        "article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1/workstream-system.webp",
-        "article-media/79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6/review-functions.webp",
-        "article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3/imbalance-loop.webp",
-        "article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292/systemic-response.webp",
-        "article-media/be35778ef93948ca7e809b7917faf1771d11e670e327a0dfc49d95ab4cfc2d98/reading.pdf",
+        "article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7/delivery-capacity-r6.webp",
+        "article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a/review-learning-r7.webp",
+        "article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551/comprehension-gap-r7.webp",
+        "article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry-r9.webp",
+        "article-media/75e052d6a5c386ae79cb1a51d59cdf42e53d3a7279bf0db31c227ee145bb18b4/reading-r9.pdf",
         "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
       ],
       "downloads": [
-        "article-media/be35778ef93948ca7e809b7917faf1771d11e670e327a0dfc49d95ab4cfc2d98/reading.pdf"
+        "article-media/75e052d6a5c386ae79cb1a51d59cdf42e53d3a7279bf0db31c227ee145bb18b4/reading-r9.pdf"
       ],
       "candidate": false,
       "articleId": "sdlc-out-of-balance",
-      "contentEdition": "sdlc-out-of-balance-en-r4-20261101",
-      "sourceSha256": "888dcbb81866b06d5f7729b3eca348fe488563bda60651368ee03851e0acabc2",
-      "semanticSha256": "40608f5e4b09b2ad7f12c0516d13f64e80a86971745c5ef74e69d6060a80c574"
+      "contentEdition": "sdlc-out-of-balance-en-r9-20261105",
+      "sourceSha256": "ccaddfe2c40c6a8ba5f4bd75abd4a3c762e94fcbb15997e5e5014e1d6f8fa654",
+      "semanticSha256": "c7a14160aa9369d1f359aeb04523e1167c8a189ec5518d378f8de7d27d44da08"
     }
   }
 }

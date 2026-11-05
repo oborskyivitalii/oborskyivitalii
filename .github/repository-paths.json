@@ -625,6 +625,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/article-media/75e052d6a5c386ae79cb1a51d59cdf42e53d3a7279bf0db31c227ee145bb18b4": {
+      "kind": "directory",
+      "purpose": "Generated R9 native article, digest media/material or dependent route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/75e052d6a5c386ae79cb1a51d59cdf42e53d3a7279bf0db31c227ee145bb18b4/reading-r9.pdf": {
+      "kind": "file",
+      "purpose": "Generated R9 native article, digest media/material or dependent route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/article-media/79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6": {
       "kind": "directory",
       "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
@@ -640,6 +652,12 @@
     "docs/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f": {
       "kind": "directory",
       "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry-r9.webp": {
+      "kind": "file",
+      "purpose": "Generated R9 native article, digest media/material or dependent route snapshot.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -661,15 +679,39 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-media/be35778ef93948ca7e809b7917faf1771d11e670e327a0dfc49d95ab4cfc2d98": {
+    "docs/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a": {
       "kind": "directory",
-      "purpose": "Generated immutable R4 article or dependent native-site output, built from the current authored sources.",
+      "purpose": "Generated R9 native article, digest media/material or dependent route snapshot.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-media/be35778ef93948ca7e809b7917faf1771d11e670e327a0dfc49d95ab4cfc2d98/reading.pdf": {
+    "docs/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a/review-learning-r7.webp": {
       "kind": "file",
-      "purpose": "Generated immutable R4 article or dependent native-site output, built from the current authored sources.",
+      "purpose": "Generated R9 native article, digest media/material or dependent route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551": {
+      "kind": "directory",
+      "purpose": "Generated R9 native article, digest media/material or dependent route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551/comprehension-gap-r7.webp": {
+      "kind": "file",
+      "purpose": "Generated R9 native article, digest media/material or dependent route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7": {
+      "kind": "directory",
+      "purpose": "Generated R9 native article, digest media/material or dependent route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7/delivery-capacity-r6.webp": {
+      "kind": "file",
+      "purpose": "Generated R9 native article, digest media/material or dependent route snapshot.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -703,15 +745,15 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/9b22ba2d80c954a90211bdfa1bc9266e5e9d8acec4af18aa7014e8c1f42a91ab": {
+    "docs/article-snapshots/5107c391274e1a41404442e25ad574a0fcb80357647a901dd0dc9034f5b8589f": {
       "kind": "directory",
-      "purpose": "Generated current R4 runtime and immutable article assets from authored site sources.",
+      "purpose": "Generated R9 native article, digest media/material or dependent route snapshot.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/9b22ba2d80c954a90211bdfa1bc9266e5e9d8acec4af18aa7014e8c1f42a91ab/the-sdlc-is-out-of-balance.html": {
+    "docs/article-snapshots/5107c391274e1a41404442e25ad574a0fcb80357647a901dd0dc9034f5b8589f/the-sdlc-is-out-of-balance.html": {
       "kind": "file",
-      "purpose": "Generated current R4 runtime and immutable article assets from authored site sources.",
+      "purpose": "Generated R9 native article, digest media/material or dependent route snapshot.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -735,7 +777,7 @@
     },
     "docs/articles/the-sdlc-is-out-of-balance.html": {
       "kind": "file",
-      "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
+      "purpose": "Current accepted R9 native article rendition.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1273,15 +1315,15 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/ed76c1627e765824071b837a1913ebe283830b9527c45f0d5fb6b9f7835e5387": {
+    "docs/snapshots/f66caf3834ce13cef24d94d0348b2e835cdc9d57fcc0127697c560c99f0f0e80": {
       "kind": "directory",
-      "purpose": "Generated current R4 runtime and immutable article assets from authored site sources.",
+      "purpose": "Generated R9 native article, digest media/material or dependent route snapshot.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/ed76c1627e765824071b837a1913ebe283830b9527c45f0d5fb6b9f7835e5387/writing.html": {
+    "docs/snapshots/f66caf3834ce13cef24d94d0348b2e835cdc9d57fcc0127697c560c99f0f0e80/writing.html": {
       "kind": "file",
-      "purpose": "Generated current R4 runtime and immutable article assets from authored site sources.",
+      "purpose": "Generated R9 native article, digest media/material or dependent route snapshot.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -2098,6 +2140,36 @@
     "review/issue-169/2026-10-31-r3-illustrated-review.md": {
       "kind": "file",
       "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-devcon-editorial-analysis.md": {
+      "kind": "file",
+      "purpose": "Historical DevCon/article editorial comparison and author discussion before accepted R9; retained source-bound analysis.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-code-delta-review.md": {
+      "kind": "file",
+      "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-requirements-delta.md": {
+      "kind": "file",
+      "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-whitebox-delta.md": {
+      "kind": "file",
+      "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-r9-native.md": {
+      "kind": "file",
+      "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
       "role": "history",
       "owner": "AGENTS.md"
     },
@@ -3220,6 +3292,162 @@
     "review/issue-169/r3/reviews/whitebox-r3.md": {
       "kind": "file",
       "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9": {
+      "kind": "directory",
+      "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/accepted.md": {
+      "kind": "file",
+      "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks": {
+      "kind": "directory",
+      "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/native-r9-basic-failed.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/native-r9-basic.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/native-r9-format-final.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R9 exact-source local check or preserved failure log; no hosted/release acceptance implied.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/native-r9-format-pass.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R9 exact-source local check or preserved failure log; no hosted/release acceptance implied.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/native-r9-publishing-tests.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/native-r9-quality-tests.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/native-r9-ri-ci-tests.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R9 exact-source local check or preserved failure log; no hosted/release acceptance implied.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/native-r9-ri-tests-final.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R9 exact-source local check or preserved failure log; no hosted/release acceptance implied.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/native-r9-ri-tests.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R9 exact-source local check or preserved failure log; no hosted/release acceptance implied.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/native-r9-shards-tests-failed.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/native-r9-shards-tests-final.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/release-latest-preview.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/masters": {
+      "kind": "directory",
+      "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/masters/comprehension-gap-r7.svg": {
+      "kind": "file",
+      "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/masters/delivery-capacity-r6.svg": {
+      "kind": "file",
+      "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/masters/review-learning-r7.svg": {
+      "kind": "file",
+      "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/native-launch-receipts.json": {
+      "kind": "file",
+      "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/release-intent.md": {
+      "kind": "file",
+      "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/reviews": {
+      "kind": "directory",
+      "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/reviews/native-r9-code-preflight.md": {
+      "kind": "file",
+      "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/reviews/native-r9-exploratory-local.md": {
+      "kind": "file",
+      "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/reviews/native-r9-requirements-preflight.md": {
+      "kind": "file",
+      "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/reviews/native-r9-whitebox-preflight.md": {
+      "kind": "file",
+      "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
       "role": "history",
       "owner": "AGENTS.md"
     },
@@ -9895,9 +10123,27 @@
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
+    "site/assets/publications/sdlc-out-of-balance/asymmetry-r9.png": {
+      "kind": "file",
+      "purpose": "Accepted R9 source, edition, five-visual asset or exact PDF review evidence through existing publisher/materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
     "site/assets/publications/sdlc-out-of-balance/asymmetry.png": {
       "kind": "file",
       "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/sdlc-out-of-balance/comprehension-gap-r7.png": {
+      "kind": "file",
+      "purpose": "Accepted R9 source, edition, five-visual asset or exact PDF review evidence through existing publisher/materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/sdlc-out-of-balance/delivery-capacity-r6.png": {
+      "kind": "file",
+      "purpose": "Accepted R9 source, edition, five-visual asset or exact PDF review evidence through existing publisher/materials.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
@@ -9931,6 +10177,12 @@
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
+    "site/assets/publications/sdlc-out-of-balance/materials/reading-r9.pdf": {
+      "kind": "file",
+      "purpose": "Accepted R9 source, edition, five-visual asset or exact PDF review evidence through existing publisher/materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
     "site/assets/publications/sdlc-out-of-balance/materials/reading.pdf": {
       "kind": "file",
       "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
@@ -9940,6 +10192,12 @@
     "site/assets/publications/sdlc-out-of-balance/review-functions.png": {
       "kind": "file",
       "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/sdlc-out-of-balance/review-learning-r7.png": {
+      "kind": "file",
+      "purpose": "Accepted R9 source, edition, five-visual asset or exact PDF review evidence through existing publisher/materials.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
@@ -10713,7 +10971,13 @@
     },
     "site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r4-20261101.json": {
       "kind": "file",
-      "purpose": "Current author-directed R4 native article edition and original R3 preservation.",
+      "purpose": "Historical frozen R4 native article edition, retained with original R3 history.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r9-20261105.json": {
+      "kind": "file",
+      "purpose": "Accepted R9 source, edition, five-visual asset or exact PDF review evidence through existing publisher/materials.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
@@ -10725,7 +10989,7 @@
     },
     "site/publications/sdlc-out-of-balance/manuscript.en.md": {
       "kind": "file",
-      "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "purpose": "Current accepted R9 native source, semantic/profile/material inputs and hero plus four figures.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
@@ -10737,13 +11001,19 @@
     },
     "site/publications/sdlc-out-of-balance/materials.json": {
       "kind": "file",
-      "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "purpose": "Current accepted R9 native source, semantic/profile/material inputs and hero plus four figures.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
     "site/publications/sdlc-out-of-balance/materials/reviews": {
       "kind": "directory",
       "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/sdlc-out-of-balance/materials/reviews/reading-pdf-r9.md": {
+      "kind": "file",
+      "purpose": "Accepted R9 source, edition, five-visual asset or exact PDF review evidence through existing publisher/materials.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
@@ -10755,13 +11025,13 @@
     },
     "site/publications/sdlc-out-of-balance/profile.json": {
       "kind": "file",
-      "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "purpose": "Current accepted R9 native source, semantic/profile/material inputs and hero plus four figures.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
     "site/publications/sdlc-out-of-balance/publication.json": {
       "kind": "file",
-      "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "purpose": "Current accepted R9 native source, semantic/profile/material inputs and hero plus four figures.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },

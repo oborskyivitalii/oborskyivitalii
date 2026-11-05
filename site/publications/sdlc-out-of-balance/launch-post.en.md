@@ -1,19 +1,14 @@
-“Code review is the next bottleneck” identifies a queue. It does not diagnose the system.
+“Code review is the next bottleneck” is a useful observation. It is a partial diagnosis.
 
-I have expanded that argument into a short illustrated article: The SDLC Is Out of Balance.
+AI accelerated coding. Automating review can help, but the next slow stage is only part of the problem. A local improvement can also weaken a capability elsewhere: code review transfers knowledge that supports ownership, maintenance and recovery.
 
-The central problem is not simply that humans cannot review code fast enough. It is that AI is changing the pace of cognitive work across the lifecycle while organisational capacity, learning and ownership remain structured around a different pace.
+My new illustrated article follows that mechanism through the delivery system, business discovery and users’ ability to absorb change. It asks what an organisation must deliberately rebalance to turn faster work into useful outcomes at acceptable total cost.
 
-The article maps three things:
-— why the workstream is not the whole system;
-— why review does more than filter defects;
-— how local acceleration can feed a loop of rework, weaker understanding and higher ownership cost.
-
-The question is not whether to use AI. It is who owns the job of making the whole delivery system work with it.
+For a large company, waiting for the system to balance itself is a financial risk. A long adjustment period means continuing spend, rework and missed opportunities.
 
 Read the article: {{SITE_ARTICLE_URL}}
 Illustrated PDF: {{SITE_PDF_URL}}
 
-One of the two problem spaces in my DevCon Romania talk on 4 November.
+Developed from the delivery-system argument in my DevCon Romania talk on 4 November 2026.
 
 #SoftwareEngineering #AISDLC #EngineeringLeadership

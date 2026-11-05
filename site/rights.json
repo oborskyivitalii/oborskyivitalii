@@ -337,6 +337,26 @@
     "publications/sdlc-out-of-balance/hero-web.jpg": {
       "sha256": "fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f",
       "bases": ["original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/delivery-capacity-r6.png": {
+      "sha256": "327adbaf3721383619fd5b67de49a5792cf0470d298c4d43080570f9a79ad5d5",
+      "bases": ["original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/review-learning-r7.png": {
+      "sha256": "372ca25f635dbcc8440381a4e35027806f6b61168e9a27c1723f688741bf1c43",
+      "bases": ["original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/comprehension-gap-r7.png": {
+      "sha256": "338acabde7cd23ce93534c23a0bce2e71978a69c246feade8d779850af8c61b1",
+      "bases": ["original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/asymmetry-r9.png": {
+      "sha256": "65741f7bf96495d834a4163e4122b2c03d0b5e0e966048679bf144d4925a7249",
+      "bases": ["original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/materials/reading-r9.pdf": {
+      "sha256": "75e052d6a5c386ae79cb1a51d59cdf42e53d3a7279bf0db31c227ee145bb18b4",
+      "bases": ["original-text", "original-diagram"]
     }
   },
   "retained": {

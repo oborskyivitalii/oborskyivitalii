@@ -17,3 +17,11 @@ The author-directed R4 source adds the explicit systemic counterargument to revi
 The selected R4 five-page PDF SHA256 be35778ef93948ca7e809b7917faf1771d11e670e327a0dfc49d95ab4cfc2d98 was imported unchanged from the previously attached and independently reviewed archive SHA256 dfb2253bfe1e9667ca1fa5f864b91bfe919cfd02994ed522e8ef1d4111f7b2d5 (original review archive link and exact import record in PR170). It is distinct from the later four-page local ChatGPT export and is not presented as byte-identical to that export. The archived R3 source/edition and original publicly retained media remain historical; no earlier validated result is relabelled for R4.
 
 Site canonical and actual publication events, current-source CI, hosted interactions, stable staging, protected merge, production rights/archive and served-byte observation remain pending until verified. LinkedIn/Medium posting remains author-owned and manual.
+
+## R9 accepted integration — 5 November 2026
+
+Owner issue169 / PR170. Author-directed continuation: https://github.com/oborskyivitalii/oborskyivitalii/issues/169#issuecomment-6662296140. The displayed R9 MD/PDF and five visuals supersede R4 as the current selection; R3/R4 source Git objects, frozen edition records, former image files and PDF remain intact.
+
+Accepted MD SHA256 b4389006470d7fb85ca33f9620e16495a26d019d35b03db39aef0670cfb01e56 is retained at review/issue-169/r9/accepted.md. The native manuscript moves its four exact Figure-caption paragraphs into the existing declared asset captions, so the shared renderer emits each caption once. All argument paragraphs, source links, byline and edition labels retain their text. Hero uses the same accepted existing JPEG derivative; four R9 diagrams are imported exactly, with available SVG masters in review/issue-169/r9/masters.
+
+Accepted five-page PDF SHA25675e052d6a5c386ae79cb1a51d59cdf42e53d3a7279bf0db31c227ee145bb18b4 is imported unchanged as materials/reading-r9.pdf, preserving the former reading.pdf. PDF/export reviews concern R9 only; native runtime/CI/hosted/staging/merge and production acceptance remain separate. External platform posting remains author-manual.

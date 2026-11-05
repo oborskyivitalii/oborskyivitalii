@@ -62,7 +62,11 @@ function selected(root, profile, base, head) {
   const observation = require('./delivery-observation.cjs').selection(root, base, head);
   assert.equal(observation.base.commit, base);
   assert.equal(observation.candidate.commit, head);
-  return source.select(root, 'pr', { base, head, repositoryOnly: observation.repositoryOnly });
+  return source.select(root, 'pr', {
+    base,
+    head,
+    repositoryOnly: observation.repositoryOnly,
+  });
 }
 function packet(plan, index, identity, report, tap, stderr) {
   return {
@@ -136,8 +140,16 @@ function verify(root, plan, receipts, identity) {
     } else {
       assert.equal(report.status, 'not-applicable');
       assert.equal(report.pass, null);
+      for (const name of ['total', 'passed'])
+        assert.equal(report.result?.[name], 0, 'empty shard result must have zero ' + name);
+      for (const name of ['failed', 'cancelled', 'skipped', 'todo'])
+        assert.ok(
+          report.result[name] === undefined || report.result[name] === 0,
+          'empty shard result cannot contain ' + name
+        );
       assert.equal(report.execution, undefined);
       assert.equal(tap, '');
+      assert.equal(stderr, '', 'empty shard cannot contain process errors');
     }
     admitted.push({
       index: i,
@@ -150,12 +162,16 @@ function verify(root, plan, receipts, identity) {
     plan.modules,
     admitted.map((row) => row.modules)
   );
-  assert.ok(total > 0, 'no selected source tests were executed');
+  if (plan.modules.length) {
+    assert.ok(total > 0, 'no selected source tests were executed');
+  } else {
+    assert.equal(plan.profile, 'pr', 'only PR selection can be inapplicable');
+  }
   return {
     schema: 1,
     kind: 'source-tests',
-    status: 'passed',
-    pass: true,
+    status: plan.modules.length ? 'passed' : 'not-applicable',
+    pass: plan.modules.length ? true : null,
     profile: plan.profile,
     mode: 'eight-bounded-shards',
     source: identity,
@@ -228,7 +244,7 @@ function main(argv = process.argv.slice(2)) {
     options.mode === 'run'
       ? runOne(root, plan, Number(options.index), options.output)
       : aggregate(root, plan, options.input, options.output);
-  console.log(JSON.stringify({ status: 'passed', mode: options.mode, result }));
+  console.log(JSON.stringify({ status: result.status || 'passed', mode: options.mode, result }));
 }
 if (require.main === module) {
   try {

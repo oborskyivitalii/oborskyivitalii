@@ -8,17 +8,31 @@ function names(source, context) {
       ? [...source.matchAll(/^\s+platform: ([a-z0-9]+)$/gm)].map(([, platform]) => platform)
       : [''];
     assert.ok(platforms.length, 'missing artifact platform matrix');
-    return platforms.map((platform) =>
-      name.replace(/\$\{\{\s*([^}]+?)\s*\}\}/g, (_, key) => {
-        const values = {
-          'github.run_id': context.run,
-          'github.run_attempt': context.attempt,
-          'inputs.profile': context.profile,
-          'matrix.platform': platform,
-        };
-        assert.ok(Object.hasOwn(values, key), 'unknown artifact discriminator ' + key);
-        return values[key];
-      })
+    let shards = [''];
+    if (name.includes('matrix.shard')) {
+      const declared = source.match(/^\s+shard: \[([0-9, ]+)\]$/m);
+      assert.ok(declared, 'missing artifact shard matrix');
+      shards = declared[1].split(',').map((value) => value.trim());
+      assert.deepEqual(
+        shards,
+        Array.from({ length: 8 }, (_, index) => String(index)),
+        'bounded artifact shard matrix'
+      );
+    }
+    return platforms.flatMap((platform) =>
+      shards.map((shard) =>
+        name.replace(/\$\{\{\s*([^}]+?)\s*\}\}/g, (_, key) => {
+          const values = {
+            'github.run_id': context.run,
+            'github.run_attempt': context.attempt,
+            'inputs.profile': context.profile,
+            'matrix.platform': platform,
+            'matrix.shard': shard,
+          };
+          assert.ok(Object.hasOwn(values, key), 'unknown artifact discriminator ' + key);
+          return values[key];
+        })
+      )
     );
   });
 }

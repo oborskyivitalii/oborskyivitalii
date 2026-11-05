@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "id": "sdlc-out-of-balance-r4",
+  "id": "sdlc-out-of-balance-r9",
   "platforms": {
     "linkedin": {
       "formats": ["html", "md", "txt", "copy-ready"],
@@ -13,11 +13,11 @@
   },
   "launch": {
     "source": "launch-post.en.md",
-    "sha256": "1640e2beb09587f3a70b23575158fb8a701ecff6edd288a4ebb19815be7b6f80"
+    "sha256": "d9ac5bab3e3dd827e5f01d10e66055c55200e5a57f61c7dfa092d8907e201ef4"
   },
   "seo": {
-    "title": "AI Code Review Bottleneck \u2014 The SDLC Is Out of Balance",
-    "summary": "The AI code review bottleneck is a symptom of a wider SDLC imbalance. Faster reviews alone cannot prove better delivery, shared understanding, reliability or sustainable ownership."
+    "title": "AI Code Review Bottleneck — The SDLC Is Out of Balance",
+    "summary": "AI code review is one part of a wider SDLC imbalance. Local automation can move costs, weaken shared understanding and delay business returns. Rebalance the whole delivery system."
   },
   "assets": {
     "cover": {
@@ -47,8 +47,8 @@
   },
   "print": {
     "titleBlock": {
-      "subtitle": "ac437a6bd3a049a894a4635f5799c067e07410cf3284fc81073020bb32b0db31",
-      "byline": "b4f249035beaa24fce73f50fec17bca406f56cb8c985003b5fb0260b70f15d5d"
+      "subtitle": "816836a6e529705c65b7ae6a6d01df933af1bb73a72864a475c3a31de83610cf",
+      "byline": "5ebc0ad8bd5e14ac0ce20d6388016eb2f0d0655107e3133517acdaa999f4a4d1"
     }
   }
 }

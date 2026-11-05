@@ -3,7 +3,7 @@
   "id": "sdlc-out-of-balance",
   "slug": "the-sdlc-is-out-of-balance",
   "title": "The SDLC Is Out of Balance: Beyond the AI Code Review Bottleneck",
-  "summary": "The AI code review bottleneck is a symptom of a wider SDLC imbalance. Faster reviews alone cannot prove better delivery, shared understanding, reliability or sustainable ownership.",
+  "summary": "AI code review is one part of a wider SDLC imbalance. Local automation can move costs, weaken shared understanding and delay business returns. Rebalance the whole delivery system.",
   "authors": [
     {
       "name": "Vitalii Oborskyi",
@@ -18,14 +18,15 @@
   },
   "status": "accepted",
   "source": "manuscript.en.md",
-  "edition": "sdlc-out-of-balance-en-r4-20261101",
+  "edition": "sdlc-out-of-balance-en-r9-20261105",
   "rights": {
     "status": "accepted",
     "notice": "© 2026 Vitalii Oborskyi. Original article text and non-brand explanatory diagrams: CC BY 4.0. The hero is AI-assisted editorial artwork selected by the author. Third-party research is linked and retains its own terms; no third-party figures are reproduced.",
     "references": [
       "https://github.com/oborskyivitalii/oborskyivitalii/issues/169#issuecomment-6548579356",
       "https://github.com/oborskyivitalii/oborskyivitalii/issues/7",
-      "https://github.com/oborskyivitalii/oborskyivitalii/issues/169"
+      "https://github.com/oborskyivitalii/oborskyivitalii/issues/169",
+      "https://github.com/oborskyivitalii/oborskyivitalii/issues/169#issuecomment-6662296140"
     ]
   },
   "references": [
@@ -92,6 +93,10 @@
     {
       "id": "source-16",
       "url": "https://www.anthropic.com/research/redesigning-source-control"
+    },
+    {
+      "id": "source-17",
+      "url": "https://fion.ac/jellyfish.pdf"
     }
   ],
   "assets": [
@@ -106,54 +111,44 @@
       "credit": "Author-selected AI-assisted editorial illustration from the R2 kit. Original non-brand editorial artwork, CC BY 4.0. Web rendition uses the existing JPEG compression; original accepted PNG is retained in source provenance and the PDF."
     },
     {
+      "id": "delivery-capacity-r6",
+      "path": "site/assets/publications/sdlc-out-of-balance/delivery-capacity-r6.png",
+      "sha256": "327adbaf3721383619fd5b67de49a5792cf0470d298c4d43080570f9a79ad5d5",
+      "width": 2000,
+      "height": 825,
+      "alt": "A lifecycle workstream sits above a before-and-after comparison. Before, generation, review and integration each handle eight comparable changes per month, with no backlog growth. After coding accelerates, generation reaches 100 while review and integration remain at eight; admitting all 100 adds 92 waiting changes per month.",
+      "caption": "Figure 1. One faster stage, unchanged downstream capacity. This is a thought experiment, not measured AI productivity. Comparable changes per month; all generated work admitted; no rework or other departures assumed.",
+      "credit": "Original explanatory diagram by Vitalii Oborskyi. CC BY 4.0. Conceptual illustration; source distinctions are stated in the caption."
+    },
+    {
+      "id": "review-learning-r7",
+      "path": "site/assets/publications/sdlc-out-of-balance/review-learning-r7.png",
+      "sha256": "372ca25f635dbcc8440381a4e35027806f6b61168e9a27c1723f688741bf1c43",
+      "width": 2000,
+      "height": 538,
+      "alt": "Code review has two complementary paths. Verification produces evidence about the proposed change. Knowledge transfer supports shared understanding, which helps enable competent ownership and the ability to maintain, diagnose and recover the system.",
+      "caption": "Figure 2. Review supports verification and learning. Review functions: Bacchelli and Bird (2013). The links to competent ownership, maintenance and recovery are the author’s synthesis.",
+      "credit": "Original diagram by Vitalii Oborskyi. Review functions: Bacchelli and Bird (2013); ownership and recovery links: author systems synthesis. CC BY 4.0."
+    },
+    {
+      "id": "comprehension-gap-r7",
+      "path": "site/assets/publications/sdlc-out-of-balance/comprehension-gap-r7.png",
+      "sha256": "338acabde7cd23ce93534c23a0bce2e71978a69c246feade8d779850af8c61b1",
+      "width": 2000,
+      "height": 638,
+      "alt": "A conceptual time graph compares generation capacity with team understanding capacity, both expressed as comparable changes per month. The potential gap illustrates a workflow whose learning mechanisms have not kept pace.",
+      "caption": "Figure 3. A potential comprehension gap when generation scales faster than the team’s learning mechanisms. Illustrative capacities, not measurements or a forecast.",
+      "credit": "Original explanatory diagram by Vitalii Oborskyi. CC BY 4.0. Conceptual illustration; source distinctions are stated in the caption."
+    },
+    {
       "id": "asymmetry",
-      "path": "site/assets/publications/sdlc-out-of-balance/asymmetry.png",
-      "sha256": "638a68bb36912fdd7dbff45235d79994912ff38cd5fda902db51db4695bbe06d",
+      "path": "site/assets/publications/sdlc-out-of-balance/asymmetry-r9.png",
+      "sha256": "65741f7bf96495d834a4163e4122b2c03d0b5e0e966048679bf144d4925a7249",
       "width": 2160,
       "height": 630,
-      "alt": "A conceptual orange curve for potential AI task pace rises above a teal curve for effective human and organisational capacity across seven lifecycle stages. The shaded gap represents pressure to rebalance; no values are measured.",
-      "caption": "Figure 1. Speed asymmetry across the lifecycle. Curve heights and gaps are illustrative, not measured values, rankings or throughput estimates.",
-      "credit": "Original explanatory diagram by Vitalii Oborskyi, developed from the supplied infographic. Original non-brand editorial artwork, CC BY 4.0."
-    },
-    {
-      "id": "workstream-system",
-      "path": "site/assets/publications/sdlc-out-of-balance/workstream-system.png",
-      "sha256": "ed2182751692a92b262ef7c806227583761d7b23099e1cd910a73e9509a85abf",
-      "width": 2160,
-      "height": 900,
-      "alt": "Seven delivery activities connect to outcomes and a feedback path. Beneath them are six enabling relationships: dependencies, learning, decision rights, capacity, ownership and recovery.",
-      "caption": "Figure 2. The workstream is one view of the delivery system. Its results depend on relationships and capabilities that the arrows alone do not show.",
-      "credit": "Original explanatory diagram by Vitalii Oborskyi, developed from the supplied infographic. Original non-brand editorial artwork, CC BY 4.0."
-    },
-    {
-      "id": "review-functions",
-      "path": "site/assets/publications/sdlc-out-of-balance/review-functions.png",
-      "sha256": "a87289a6cf6067c10fbe0663f732842a08335c6901c99917524e2c3d5ef963c6",
-      "width": 2160,
-      "height": 882,
-      "alt": "Four review functions reported by Bacchelli and Bird—defect detection, knowledge transfer, team awareness and alternative solutions—sit above the operational capabilities to explain, diagnose, intervene and recover.",
-      "caption": "Figure 3. Review functions and operational capabilities are distinct. Automation can change the practice; the necessary functions still need a working mechanism.",
-      "credit": "Original explanatory diagram by Vitalii Oborskyi. Top functions: Bacchelli and Bird (2013); extension to ownership and recovery: author systems synthesis. Original non-brand editorial artwork, CC BY 4.0."
-    },
-    {
-      "id": "imbalance-loop",
-      "path": "site/assets/publications/sdlc-out-of-balance/imbalance-loop.png",
-      "sha256": "da05a299cc23463c0c8e607b1d11d80708b5a8d825fd9ed24e8207d8fef49857",
-      "width": 2160,
-      "height": 1007,
-      "alt": "Admitted work above effective capacity can increase interruptions and overload for people, fragility and change costs for products, and rework and ownership costs for business. Repair consumes improvement capacity and reinforces the overload.",
-      "caption": "Figure 4. How overload can move costs across people, product and business. A conditional risk mechanism, not an inevitable forecast.",
-      "credit": "Original explanatory diagram by Vitalii Oborskyi, developed from the supplied infographic and the R2 overload mechanism. Original non-brand editorial artwork, CC BY 4.0."
-    },
-    {
-      "id": "systemic-response",
-      "path": "site/assets/publications/sdlc-out-of-balance/systemic-response.png",
-      "sha256": "5184c829d2e47cfd8deb933c3774b70787861ad1e107919c6fbb616ab182a0f2",
-      "width": 2160,
-      "height": 594,
-      "alt": "An accountable owner supports a four-step feedback loop: frame the problem, test a hypothesis, evaluate system outcomes, then keep, change or stop. Evidence can send the organisation back to its original diagnosis.",
-      "caption": "Figure 5. A systemic response is a learning loop. Authority and resources make the owner effective; evidence can change both the intervention and the problem statement.",
-      "credit": "Original explanatory diagram by Vitalii Oborskyi, developed from the supplied infographic. Original non-brand editorial artwork, CC BY 4.0."
+      "alt": "Potential AI task pace and effective human and organisational capacity across the lifecycle. Curves and gaps are conceptual, with no measured values or stage rankings.",
+      "caption": "Figure 4. The same human and organisational capacity problem extends across the lifecycle. Illustrative curves, not measured stage performance.",
+      "credit": "Original explanatory diagram by Vitalii Oborskyi. CC BY 4.0. Conceptual illustration; source distinctions are stated in the caption."
     }
   ],
   "platforms": {
