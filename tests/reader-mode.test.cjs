@@ -607,7 +607,7 @@ test('same-document fragment history restores disclosure geometry before applyin
     path = require('node:path'),
     vm = require('node:vm');
   const source = fs.readFileSync(path.join(__dirname, '../site/engine/navigation.js'), 'utf8');
-  const start = source.indexOf("window.addEventListener('popstate'");
+  const start = source.indexOf("window.addEventListener('popstate', (event)");
   const end = source.indexOf("window.addEventListener('site:reader-state'", start);
   assert.ok(start > 0 && end > start);
   const events = {},
@@ -630,13 +630,27 @@ test('same-document fragment history restores disclosure geometry before applyin
       interrupt: () => false,
       scrollEntry: { resume: () => calls.push(['resume']) },
       restoreScroll: (...values) => calls.push(['scroll', ...values]),
+      readingState: (state) => state,
+      restoreReadingFocus: () => calls.push(['focus']),
       save() {},
     }
   );
   events.popstate({
-    state: { site: { index: 4, reader: [false, true, true], scroll: [0, 1900] } },
+    state: {
+      site: {
+        page: 'article:fixture:en',
+        index: 4,
+        reader: [false, true, true],
+        scroll: [0, 1900],
+      },
+    },
   });
-  assert.deepEqual(calls, [['disclosures', [false, true, true]], ['scroll', 0, 1900], ['resume']]);
+  assert.deepEqual(calls, [
+    ['disclosures', [false, true, true]],
+    ['scroll', 0, 1900],
+    ['focus'],
+    ['resume'],
+  ]);
 });
 
 test('declared editorial roles preserve words, group attribution and keep prose emphasis out of contents', () => {

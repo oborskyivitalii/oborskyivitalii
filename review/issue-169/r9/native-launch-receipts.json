@@ -104,5 +104,48 @@
     "app_authorship": "Root authored the read-only router address ownership and archive callback boundary; Requirements preflight preceded implementation, Code/White-box independently reviewed source and fault checks.",
     "qa_reuse": "Same09e995 observer,40 cases/24 normal legs/four contexts/240s; source unchanged and affected re-execution still pending.",
     "limits": "Prepared unit/controlled results are not CSS/hosted/release acceptance. All prior actual failures remain source-attributed; new runtime remains closed until actual observations and exact-family review."
+  },
+  "reader_audit_iteration": {
+    "packet": "review/issue-169/r9/reader-audit-final-delta-input-manifest.json",
+    "packetSha256": "b8090c1093ca5c9aef5da217817c8e491f17b122a0df21d4ad58ca1cff614b95",
+    "launches": "Actual followup_task continuations on four original distinct none-fork roles, not new fresh-context launches. Requirements preflight preceded dependent implementation. Provider model/memory internals unobserved.",
+    "roles": {
+      "/root/native_r9_requirements": "2026-11-05-reader-audit-correction-v2-requirements-final.md",
+      "/root/native_r9_code": "2026-11-05-reader-audit-correction-code-v2.md",
+      "/root/native_r9_whitebox": "2026-11-05-reader-history-correction-whitebox-v2.md",
+      "/root/native_r9_exploratory": "2026-11-05-reader-correction-v2-exploratory-charter.md"
+    },
+    "actualFailure": {
+      "run": 42105950320,
+      "source": "d3a49960714e5f158afba23d02dd0f8e871cb28e",
+      "result": "20passed/2failed/18unobserved"
+    },
+    "limits": "Original40-case probe unchanged; no new browser, full CI, runtime admission or release pass. Original role findings preserved below as verified lossless archives.",
+    "archivedOriginalReports": [
+      {
+        "path": "review/issue-169/2026-11-05-reader-foundation-navigation-route-requirements-preflight.md",
+        "originalSha256": "fb23a5432f943ddc7587f6d0bda9f529271b82134a6733531dffe155cd684e6b",
+        "archive": "review/issue-169/2026-11-05-reader-foundation-navigation-route-requirements-preflight.md.gz",
+        "archiveSha256": "980012aa48c91b9edfa765520baed926b8b43e31cf80f645e6162267b21def76",
+        "originalBytes": 19798,
+        "archiveBytes": 8121
+      },
+      {
+        "path": "review/issue-169/2026-11-05-navigation-delivery-reader-whitebox-audit-v1.md",
+        "originalSha256": "7bd9b5728d3f2e89c3179f9dbc5d2364ecf2e8cc439c9c1fe27fc8667057565b",
+        "archive": "review/issue-169/2026-11-05-navigation-delivery-reader-whitebox-audit-v1.md.gz",
+        "archiveSha256": "986f8d5066aa05b7d7d95451d7273d32d4f725356e295dfbdea5767d53d0b45e",
+        "originalBytes": 14534,
+        "archiveBytes": 6226
+      },
+      {
+        "path": "review/issue-169/2026-11-05-reader-foundation-exploratory-audit.md",
+        "originalSha256": "de22690e32f9a3e57e6194a28673683aa9b239a37003e2cda7ef172531ed71a7",
+        "archive": "review/issue-169/2026-11-05-reader-foundation-exploratory-audit.md.gz",
+        "archiveSha256": "9a6b3fb37bbdc464609a9fc35817b20d64fd0258de625ef2c360622906ea8770",
+        "originalBytes": 13069,
+        "archiveBytes": 5981
+      }
+    ]
   }
 }

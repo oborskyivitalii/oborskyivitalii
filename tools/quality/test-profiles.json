@@ -742,7 +742,8 @@
         "site/scenes/**",
         "site/site.json",
         "site/effects/flight.cjs",
-        "site/engine/archive.js"
+        "site/engine/archive.js",
+        "tests/fixtures/reader-resource-links.json"
       ]
     },
     {
@@ -990,7 +991,8 @@
         "tools/site/legal.cjs",
         "site/engine/styles.css",
         "docs/styles.css",
-        "tests/fixtures/catalog.cjs"
+        "tests/fixtures/catalog.cjs",
+        "tools/staging/color.cjs"
       ]
     },
     {
@@ -1418,7 +1420,7 @@
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
       "profiles": ["issue-policy"],
-      "disposition": "owning issue41 policy only; AC01\u2013AC06 and manual gates preserved, AC07\u2013AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17\u2013AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure",
+      "disposition": "owning issue41 policy only; AC01–AC06 and manual gates preserved, AC07–AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17–AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure",
       "surviving_route": ".github/acceptance/issue-41.json",
       "inputs": [
         "tests/test_issue41_acceptance.py",
@@ -1639,7 +1641,8 @@
         "tools/site/**",
         "site/content/**",
         "site/templates/**",
-        "tests/fixtures/catalog.cjs"
+        "tests/fixtures/catalog.cjs",
+        "tools/check_site_seo.cjs"
       ],
       "content": true
     },
@@ -1754,7 +1757,8 @@
         "tools/release/rights-record.cjs",
         "tools/release/rights.cjs",
         "site/rights.json",
-        "tools/quality/serve.cjs"
+        "tools/quality/serve.cjs",
+        "tools/release/edition.cjs"
       ]
     },
     {
@@ -1820,7 +1824,8 @@
         "site/templates/components/legal-notices.html",
         "tools/staging/admission.cjs",
         "tools/quality/staging-gate.cjs",
-        "tests/fixtures/staging-evidence.cjs"
+        "tests/fixtures/staging-evidence.cjs",
+        "tools/site/articles.cjs"
       ]
     },
     {
@@ -1867,7 +1872,8 @@
         "tools/quality/edge-input.cjs",
         "tools/quality/block-observation.cjs",
         "tools/site/runtime-compatibility.cjs",
-        "tests/fixtures/r9-footer-runtime.json"
+        "tests/fixtures/r9-footer-runtime.json",
+        "tools/site/html.cjs"
       ]
     },
     {
@@ -2166,7 +2172,8 @@
         "tools/quality/staging-gate.cjs",
         "tools/quality/validate.cjs",
         "tests/fixtures/staging-evidence.cjs",
-        "tests/fixtures/article-flight.cjs"
+        "tests/fixtures/article-flight.cjs",
+        "tools/quality/color-motion-contract.cjs"
       ]
     },
     {
@@ -2653,13 +2660,17 @@
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/reader-mode.test.cjs",
+        "site/engine/navigation.js",
         "tools/site/reader.cjs",
         "tools/publishing/**",
         "site/engine/reader.cjs",
         "site/engine/reader.css",
         "site/engine/reading-surfaces.css",
         "site/templates/pages/article.html",
-        "site/templates/components/reader-contents.html"
+        "site/templates/components/reader-contents.html",
+        "tools/site/html.cjs",
+        "tools/site/articles.cjs",
+        "site/templates/components/reader-tools.html"
       ],
       "content": true
     },

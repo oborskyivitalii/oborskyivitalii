@@ -1302,6 +1302,12 @@ function validateArticleBlocks({ blocks, events, from, to, direction }, engine =
     assert.equal(block.navigationId, events[0].navigationId);
     assert.ok(Number.isInteger(block.rows) && block.rows > 0 && block.rows <= 24);
     assert.equal(block.plannedDurationMs, 1000);
+    if (require('./color-motion-contract.cjs').readerPaperRequired(engine))
+      assert.equal(
+        block.completedBy,
+        'animationend',
+        'current route phases complete through native CSS events'
+      );
     if (
       source.startsWith('article:') &&
       require('./color-motion-contract.cjs').readerPaperRequired(engine)
@@ -1356,11 +1362,6 @@ function validateArticlePaper(block, departure) {
     'the moving paper is painted'
   );
   assert.ok(Array.isArray(paper.frames) && paper.frames.length >= 2, 'actual paper CSS frames');
-  assert.equal(
-    block.completedBy,
-    'animationend',
-    'paper and content complete through native CSS events'
-  );
 }
 
 function articleBlocksRequired(engine) {

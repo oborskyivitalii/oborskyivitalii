@@ -351,6 +351,46 @@ test('authored legal and edition changes directly select publication record cove
     assert.deepEqual(plan.conservativeFallback, [], changed + ' has direct declared ownership');
   }
 });
+test('reader and delivery owner changes select their directly consuming assertions without unknown fallback', () => {
+  const historical = new Set(
+    runner
+      .loadRegistry(root)
+      .tests.filter((row) => row.lifecycle === 'task-snapshot')
+      .map((row) => row.path)
+  );
+  for (const [owner, consumer] of [
+    ['tools/site/html.cjs', 'reader-mode'],
+    ['tools/site/articles.cjs', 'reader-mode'],
+    ['site/templates/components/reader-tools.html', 'reader-mode'],
+    ['site/engine/navigation.js', 'reader-mode'],
+    ['tools/quality/color-motion-contract.cjs', 'article-browser-evidence'],
+    ['tools/site/html.cjs', 'color-motion-contract'],
+    ['tools/release/edition.cjs', 'pages-delivery'],
+    ['tools/staging/color.cjs', 'site-engine'],
+    ['tools/check_site_seo.cjs', 'content-rendering'],
+    ['tools/site/articles.cjs', 'release-controller'],
+    ['tests/fixtures/reader-resource-links.json', 'navigation'],
+  ]) {
+    const selected = runner.select(root, 'pr', { changedPaths: [owner] });
+    assert.ok(
+      selected.modules.includes('tests/' + consumer + '.test.cjs'),
+      owner + ' → ' + consumer
+    );
+    assert.deepEqual(
+      selected.conservativeFallback,
+      [],
+      'explicit owner mapping, not broad fallback'
+    );
+    assert.ok(
+      selected.modules.every((file) => !historical.has(file)),
+      'current owner changes do not select historical task snapshots'
+    );
+  }
+  const unrelated = runner.select(root, 'pr', { changedPaths: ['site/engine/theme.js'] });
+  assert.ok(!unrelated.modules.includes('tests/reader-mode.test.cjs'));
+  assert.deepEqual(unrelated.conservativeFallback, []);
+});
+
 test('unknown changed source conservatively selects every permanent JS and never promotes historical snapshots', () => {
   const plan = runner.select(root, 'pr', { changedPaths: ['new-engine-extension.js'] });
   assert.deepEqual(plan.conservativeFallback, ['new-engine-extension.js']);

@@ -177,14 +177,29 @@ function visit(query = '', historyBlocked = false, candidate = catalog) {
 }
 test('foreign document history preserves the outgoing archive and same-document history still refreshes', () => {
   const page = visit('?topic=delivery');
-  page.window.SiteNavigation = {
-    addressPage: () =>
-      page.window.location.pathname === '/writing.html'
-        ? 'writing'
-        : page.window.location.pathname === '/articles/example.html'
-          ? 'article:example:en'
-          : null,
-  };
+  const navigation = fs.readFileSync(path.join(root, 'site/engine/navigation.js'), 'utf8');
+  const routes = navigation.slice(
+    navigation.indexOf('  function routeFor('),
+    navigation.indexOf('  function address(')
+  );
+  page.window.SiteNavigation = vm.runInNewContext(
+    '(() => {' + routes + '; return { addressPage }; })()',
+    {
+      URL,
+      window: page.window,
+      entry: new URL(page.window.location),
+      directory: new URL('https://example.test/'),
+      initialPage: 'writing',
+      embedded: null,
+      routes: ['index', 'research', 'writing', 'talks', 'credits'],
+      articles: {
+        'example:en': {
+          url: 'articles/example.html',
+          snapshot: `article-snapshots/${'a'.repeat(64)}/example.html`,
+        },
+      },
+    }
+  );
   const shown = page.shown();
   const textOwners = ['archive-heading', 'archive-count'].map((id) => {
     const owner = page.ids[id];

@@ -786,6 +786,7 @@ test('project-base routing and history use distinct finite article keys while sc
     },
     page: 'article:reader-profile:en',
     historyIndex: 4,
+    readingEntries: new Map(),
     content: {
       inert: false,
       querySelector: () => ({ getAttribute: () => null }),

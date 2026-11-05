@@ -315,6 +315,8 @@ test('reader-block evidence is required for every current identity while histori
     'issue5-review-paths',
     'issue5-review-print',
     'issue5-review-markdown',
+    'issue169-native-tags',
+    'issue169-footer-routes',
   ].flatMap((family) =>
     ['plain', 'staging', 'production'].map(
       (edition) => motion.reviewedRuntime(family + '-' + edition).variant
@@ -464,6 +466,36 @@ test('reader-block evidence is required for every current identity while histori
       baseURL,
     })
   );
+});
+
+test('current route phases refuse watchdog, cancellation and absent completion on either history direction', () => {
+  const motion = require('../tools/quality/color-motion-contract.cjs');
+  const current = motion.reviewedRuntime('issue169-footer-routes-staging').variant.fingerprint;
+  const make = () =>
+    require('./fixtures/article-flight.cjs').currentJourney(descriptors, current, baseURL);
+  assert.deepEqual(validateArticleJourney(make(), descriptors, { engine: current, baseURL }), {
+    documents: 1,
+    observations: 5,
+  });
+  for (const inventory of ['flights', 'nativeHistory']) {
+    const records = make().observations[0][inventory];
+    for (let leg = 0; leg < records.length; leg++) {
+      for (let phase = 0; phase < 2; phase++) {
+        for (const completion of ['watchdog', 'cancelled', null, undefined]) {
+          const invalid = make();
+          const block = invalid.observations[0][inventory][leg].blocks[phase];
+          if (completion === undefined) delete block.completedBy;
+          else block.completedBy = completion;
+          assert.throws(
+            () => validateArticleJourney(invalid, descriptors, { engine: current, baseURL }),
+            /current route phases complete through native CSS events/,
+            `${inventory} leg ${leg} phase ${phase} must refuse ${completion}`
+          );
+        }
+      }
+    }
+  }
+  assert.doesNotThrow(() => validateArticleJourney(observed(), descriptors, { engine, baseURL }));
 });
 
 test('block diagnostics omit empty shells, collect later child animations and retain bare painted text', () => {

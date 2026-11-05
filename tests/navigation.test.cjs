@@ -29,6 +29,10 @@ test('footer links share native and embedded destination rules with the router',
   );
   const hrefSource = source.match(/^ {2}function routeHref\(next\) \{[\s\S]*?^ {2}\}/m)[0];
   const routes = ['index', 'research', 'writing', 'talks', 'credits'];
+  const declaredArticle = {
+    url: 'articles/reader-profile.html',
+    snapshot: `article-snapshots/${'a'.repeat(64)}/reader-profile.html`,
+  };
   for (const context of [
     { entry: 'https://author.invalid/writing.html', directory: 'https://author.invalid/' },
     {
@@ -36,9 +40,17 @@ test('footer links share native and embedded destination rules with the router',
       directory: 'https://author.invalid/project/',
     },
     {
+      entry: 'https://author.invalid/project/' + declaredArticle.snapshot,
+      directory: 'https://author.invalid/project/',
+      initialPage: 'article:reader-profile:en',
+    },
+    {
       entry: 'file:///review/ColorPrototype.html?view=writing',
       directory: 'file:///review/',
-      embedded: { files: { talks: 'talks.html' }, pages: {} },
+      embedded: {
+        files: { talks: 'talks.html' },
+        pages: { 'article:reader-profile:en': {} },
+      },
     },
   ]) {
     const entry = new URL(context.entry);
@@ -54,16 +66,16 @@ test('footer links share native and embedded destination rules with the router',
         routes,
         entry,
         window: currentWindow,
-        initialPage: 'writing',
+        initialPage: context.initialPage || 'writing',
         directory: new URL(context.directory),
         embedded: context.embedded || null,
-        articles: {},
+        articles: { 'reader-profile:en': declaredArticle },
         document: { body: { dataset: { entryPage: 'writing' } } },
       }
     );
     assert.equal(
       navigation.addressPage(),
-      'writing',
+      context.initialPage || 'writing',
       'the initial document owns its filter address'
     );
     for (const route of routes) {
@@ -71,8 +83,22 @@ test('footer links share native and embedded destination rules with the router',
       assert.equal(navigation.routeFor(currentWindow.location), route, context.entry);
       assert.equal(navigation.addressPage(), route, 'live destination, not the mounted prior page');
     }
+    for (const file of [
+      declaredArticle.url,
+      declaredArticle.url.slice(0, -5),
+      declaredArticle.snapshot,
+    ]) {
+      currentWindow.location = context.embedded
+        ? new URL(context.entry)
+        : new URL(file, context.directory);
+      if (context.embedded)
+        currentWindow.location.searchParams.set('view', 'article:reader-profile:en');
+      assert.equal(navigation.addressPage(), 'article:reader-profile:en', file);
+    }
     currentWindow.location = new URL('unknown.html', context.directory);
     assert.equal(navigation.addressPage(), null, 'unknown different document stays unresolved');
+    currentWindow.location = new URL('snapshots/another/writing.html', context.directory);
+    assert.equal(navigation.addressPage(), null, 'another principal snapshot is not admitted');
     currentWindow.location = new URL('https://elsewhere.invalid/writing.html');
     assert.equal(navigation.addressPage(), null, 'a different origin never owns the archive');
     currentWindow.location = new URL(context.entry);
@@ -80,7 +106,7 @@ test('footer links share native and embedded destination rules with the router',
     currentWindow.location.hash = 'topic-delivery';
     assert.equal(
       navigation.addressPage(),
-      'writing',
+      context.initialPage || 'writing',
       'initial native snapshot or embedded document keeps query/hash ownership'
     );
     assert.equal(navigation.href('https://other.invalid/'), null);
@@ -530,6 +556,10 @@ function routeHarness({
   initialPage = 'index',
   contentFlight = true,
   lazyArticleAdmission = false,
+  holdArrival = null,
+  initialURL = null,
+  realRouter = false,
+  siteBase = 'https://fixture.test/',
 } = {}) {
   const calls = [],
     probes = [],
@@ -537,10 +567,12 @@ function routeHarness({
     tasks = new Map(),
     timerDelays = new Map(),
     listeners = new Map(),
+    captureListeners = new Map(),
     historyEntries = [],
     historyWrites = [],
     blurredFocus = [],
-    nativeScrollCalls = [];
+    nativeScrollCalls = [],
+    rebaseTargets = [];
   let timer = 0,
     clock = 10,
     historyIndex = 0,
@@ -551,13 +583,17 @@ function routeHarness({
     releaseRead,
     resolveDeparture,
     releaseDeparture,
+    resolveArrival,
+    releaseArrival,
     nativeSmooth = null,
     articleRegistryReady = !lazyArticleAdmission;
   const departureStarted = new Promise((resolve) => (resolveDeparture = resolve)),
     departureGate = new Promise((resolve) => (releaseDeparture = resolve)),
     sceneStarted = new Promise((resolve) => (resolveScene = resolve)),
     readStarted = new Promise((resolve) => (resolveRead = resolve)),
-    readGate = new Promise((resolve) => (releaseRead = resolve));
+    readGate = new Promise((resolve) => (releaseRead = resolve)),
+    arrivalStarted = new Promise((resolve) => (resolveArrival = resolve)),
+    arrivalGate = new Promise((resolve) => (releaseArrival = resolve));
   const node = (id = 'main', href = null) => {
     const attributes = new Map();
     return {
@@ -633,11 +669,17 @@ function routeHarness({
     },
     async arrive(direction, navigationId) {
       calls.push({ kind: 'arrival', direction, navigationId });
+      content.main.setAttribute('data-route-blocks', 'arriving');
+      if (holdArrival === navigationId) {
+        resolveArrival();
+        await arrivalGate;
+      }
+      content.main.removeAttribute('data-route-blocks');
     },
   };
   const window = {
     location: {
-      href: `https://fixture.test/${initialPage}.html`,
+      href: initialURL || new URL(initialPage + '.html', siteBase).href,
       assign: (url) => assigned.push(url),
     },
     scrollX: 0,
@@ -659,7 +701,8 @@ function routeHarness({
       tasks.delete(id);
       timerDelays.delete(id);
     },
-    addEventListener: (name, listener) => listeners.set(name, listener),
+    addEventListener: (name, listener, capture) =>
+      (capture === true ? captureListeners : listeners).set(name, listener),
     dispatchEvent() {},
     SiteEngineProbe: (event) => probes.push(event),
     SiteScene: {
@@ -726,6 +769,16 @@ function routeHarness({
       }
     },
     URL,
+    entry: new URL(window.location.href),
+    directory: new URL(siteBase),
+    embedded: null,
+    initialPage,
+    articles: {
+      'sample:en': {
+        url: 'articles/sample-en.html',
+        snapshot: `article-snapshots/${'a'.repeat(64)}/sample-en.html`,
+      },
+    },
     innerHeight: 600,
     metadata: 'fixture-metadata',
     routes: ['index', 'research', 'writing', 'talks', 'credits'],
@@ -765,22 +818,30 @@ function routeHarness({
     closeSlides() {},
     arriveEndpoint() {},
     mountEndpoint() {},
-    rebaseResources() {},
+    rebaseResources(data, url) {
+      rebaseTargets.push(url.href);
+    },
   };
   context.document.activeElement = context.document.body;
   const start = source.indexOf('  function documentDirection('),
     end = source.indexOf('  document.body.dataset.entryPage = page;', start),
     scrollStart = source.indexOf('  // One write after a gesture'),
-    scrollEnd = source.indexOf("  window.addEventListener('site:motion-preference'", scrollStart);
+    scrollEnd = source.indexOf("  window.addEventListener('site:motion-preference'", scrollStart),
+    popStart = source.indexOf("  window.addEventListener('popstate', rememberReadingDeparture"),
+    popEnd = source.indexOf("  window.addEventListener('site:reader-state'", popStart);
   assert.ok(start > 0 && end > start, 'missing authored navigation lifecycle boundary');
   assert.ok(scrollStart > 0 && scrollEnd > scrollStart, 'missing authored scroll-save boundary');
+  assert.ok(popStart > 0 && popEnd > popStart, 'missing native history event boundary');
   vm.runInNewContext(
-    `let page=${JSON.stringify(initialPage)},historyIndex=0,serial=0,request=null,transition=null,endpoint=null,inputTail=null,lastKey=null,scrollSave=null;
-    ${section('save', 'push')}
+    `let page=${JSON.stringify(initialPage)},historyIndex=0,serial=0,request=null,transition=null,endpoint=null,inputTail=null,lastKey=null,scrollSave=null,readingAddress=window.location.href;
+    const readingEntries=new Map();
+    ${realRouter ? section('routeFor', 'routeHref') : ''}
+    ${section('save', 'push')}${section('push', 'revisionValid')}
     ${interruptSource}${section('motionAllowed', 'restoreScroll')}${section('restoreScroll', 'endpointProbe')}${flightSource}
     ${section('mount', 'prepare')}${source.slice(start, end)}
     ${source.slice(scrollStart, scrollEnd)}
-    globalThis.navigate=navigate;`,
+    ${source.slice(popStart, popEnd)}
+    globalThis.navigate=navigate; globalThis.push=push;`,
     context
   );
   return {
@@ -796,9 +857,13 @@ function routeHarness({
     finishScene: () => finishScene(),
     readStarted,
     releaseRead,
+    arrivalStarted,
+    releaseArrival,
     historyEntries,
     historyWrites,
+    push: (url) => context.push(new URL(url, window.location.href)),
     nativeScrollCalls,
+    rebaseTargets,
     blurredFocus,
     document: context.document,
     window,
@@ -828,7 +893,9 @@ function routeHarness({
       assert.ok(historyEntries[historyIndex], 'expected native history entry');
       const entry = historyEntries[historyIndex];
       window.location.href = entry.url;
-      return context.navigate(new URL(entry.url), { pop: true, position: entry.state.site.scroll });
+      const event = { state: entry.state };
+      captureListeners.get('popstate')?.(event);
+      return listeners.get('popstate')(event);
     },
   };
 }
@@ -948,6 +1015,232 @@ test('article Back restores the archive link and scroll captured before inert bl
   assert.equal(h.window.scrollY, articleState.site.scroll[1]);
   assert.deepEqual(h.assigned, []);
 });
+test('recent reading survives native Forward and Back before the scroll persistence debounce', async () => {
+  const h = routeHarness({ initialPage: 'writing' });
+  h.window.location.href += '?topic=delivery';
+  h.focus('article-sample-en');
+  h.window.scrollY = 2163;
+  await h.navigate(new URL('https://fixture.test/articles/sample-en.html'));
+  await h.travel(-1);
+  h.window.scrollY = 574;
+  h.focus('archive-topic');
+  h.scheduleScrollSave();
+  const writingBefore = structuredClone(h.historyEntries[0]);
+  const articleBefore = structuredClone(h.historyEntries[1]);
+  const writesBefore = h.historyWrites.length;
+  await h.travel(1);
+  assert.deepEqual(
+    h.historyEntries[0],
+    writingBefore,
+    'capture never writes the departed entry through incoming history'
+  );
+  assert.equal(h.historyWrites.length, writesBefore + 1, 'only ordinary arrival writes history');
+  assert.equal(h.historyEntries[1].state.site.page, articleBefore.state.site.page);
+  h.runTimer(350);
+  await h.travel(-1);
+  assert.equal(h.window.scrollY, 574, 'latest native reading position, without waiting350ms');
+  assert.equal(h.document.activeElement.id, 'archive-topic');
+  assert.equal(new URL(h.window.location.href).search, '?topic=delivery');
+  assert.equal(h.historyEntries.length, 2);
+  assert.equal(h.historyEntries[0].state.unrelated, 'retained');
+  assert.equal(h.historyEntries[0].state.site.scroll[1], 574);
+  assert.deepEqual(h.assigned, []);
+});
+
+test('an arrival-time scroll timer preserves the recent target until focus restoration', async () => {
+  const h = routeHarness({ initialPage: 'writing', holdArrival: 4 });
+  h.focus('article-sample-en');
+  h.window.scrollY = 2163;
+  await h.navigate(new URL('https://fixture.test/articles/sample-en.html'));
+  await h.travel(-1);
+  h.window.scrollY = 574;
+  h.focus('archive-topic');
+  h.scheduleScrollSave();
+  await h.travel(1);
+  const back = h.travel(-1);
+  await h.arrivalStarted;
+  const writes = h.historyWrites.length;
+  assert.equal(h.content.inert, false);
+  assert.equal(h.content.main.getAttribute('data-route-blocks'), 'arriving');
+  h.runTimer(350);
+  assert.equal(
+    h.historyWrites.length,
+    writes,
+    'transient arrival cannot serialize or retire the target'
+  );
+  h.releaseArrival();
+  await back;
+  assert.equal(h.window.scrollY, 574);
+  assert.equal(h.document.activeElement.id, 'archive-topic');
+  assert.equal(h.historyEntries[0].state.site.focus, 'archive-topic');
+  assert.equal(h.historyWrites.length, writes + 1, 'one ordinary final-ready commit');
+});
+
+test('a direct initial principal snapshot restores its Writing document and recent state after native history', async () => {
+  const original = `https://fixture.test/snapshots/${'b'.repeat(64)}/writing.html?topic=delivery`;
+  const h = routeHarness({ initialPage: 'writing', initialURL: original, realRouter: true });
+  h.focus('article-sample-en');
+  h.window.scrollY = 705;
+  await h.navigate(new URL('https://fixture.test/articles/sample-en.html'));
+  await h.travel(-1);
+  assert.equal(h.window.location.href, original);
+  assert.equal(h.document.body.dataset.article, undefined);
+  assert.equal(h.window.scrollY, 705);
+  assert.equal(h.document.activeElement.id, 'article-sample-en');
+  h.window.scrollY = 574;
+  h.focus('archive-topic');
+  await h.travel(1);
+  await h.travel(-1);
+  assert.equal(h.window.location.href, original);
+  assert.equal(h.document.body.dataset.article, undefined);
+  assert.equal(h.window.scrollY, 574);
+  assert.equal(h.document.activeElement.id, 'archive-topic');
+  assert.equal(h.historyEntries.length, 2);
+  assert.deepEqual(h.assigned, []);
+});
+
+test('native history keeps duplicate Writing entries and new forward branches independent', async () => {
+  const h = routeHarness({ initialPage: 'writing' });
+  h.focus('archive-topic');
+  h.window.scrollY = 100;
+  h.push('?topic=delivery');
+  h.window.scrollY = 200;
+  h.focus('archive-language');
+  h.push('?topic=delivery');
+  h.window.scrollY = 300;
+  h.focus('article-sample-en');
+  await h.navigate(new URL('https://fixture.test/articles/sample-en.html'));
+  await h.travel(-1);
+  h.window.scrollY = 350;
+  h.scheduleScrollSave();
+  await h.travel(-1);
+  assert.equal(h.window.scrollY, 200, 'earlier same-URL entry keeps its own position');
+  assert.equal(h.document.activeElement.id, 'archive-language');
+  await h.travel(1);
+  assert.equal(h.window.scrollY, 350, 'later duplicate entry keeps recent reading');
+  assert.equal(h.document.activeElement.id, 'article-sample-en');
+  await h.travel(-1);
+  h.push('?topic=systems');
+  h.window.scrollY = 475;
+  h.focus('archive-topic');
+  await h.navigate(new URL('https://fixture.test/articles/sample-en.html'));
+  await h.travel(-1);
+  assert.equal(h.window.scrollY, 475, 'abandoned forward entry cannot replace a new branch');
+  assert.equal(new URL(h.window.location.href).search, '?topic=systems');
+  assert.equal(h.document.activeElement.id, 'archive-topic');
+  assert.equal(h.historyEntries.length, 4);
+  assert.deepEqual(h.assigned, []);
+});
+
+test('a direct immutable article entry retains its exact address and latest reading position', async () => {
+  const original = `https://fixture.test/article-snapshots/${'a'.repeat(64)}/sample-en.html#detail`;
+  const h = routeHarness({
+    initialPage: 'article:sample:en',
+    initialURL: original,
+    realRouter: true,
+  });
+  h.focus('main');
+  h.window.scrollY = 725;
+  await h.navigate(new URL('https://fixture.test/writing.html'));
+  await h.travel(-1);
+  assert.equal(h.window.location.href, original);
+  assert.equal(h.window.scrollY, 725);
+  h.window.scrollY = 620;
+  await h.travel(1);
+  await h.travel(-1);
+  assert.equal(h.window.location.href, original);
+  assert.equal(h.window.scrollY, 620, 'history ownership uses the actual immutable address');
+  assert.equal(h.document.body.dataset.article, 'sample:en');
+  assert.equal(h.historyEntries.length, 2);
+  assert.deepEqual(h.assigned, []);
+});
+
+test('recent history matches the exact entry and remains bounded without writing incoming state', () => {
+  const entries = new Map();
+  let departing = false;
+  const context = {
+    URL,
+    page: 'writing',
+    historyIndex: 0,
+    readingAddress: 'https://fixture.test/writing.html?topic=delivery',
+    readingEntries: entries,
+    request: null,
+    content: {
+      inert: false,
+      querySelector: () => ({ getAttribute: () => (departing ? 'departing' : null) }),
+    },
+    document: { activeElement: { id: 'archive-topic' } },
+    history: {
+      replaceState() {
+        throw Error('incoming entry must not be written');
+      },
+    },
+    routeFor: (url) => (url.pathname === '/unknown.html' ? null : 'writing'),
+    window: {
+      location: { href: 'https://fixture.test/articles/sample-en.html' },
+      scrollX: 12,
+      scrollY: 574,
+    },
+  };
+  vm.runInNewContext(
+    section('save', 'push') +
+      section('push', 'revisionValid') +
+      ';globalThis.recent={capture:rememberReadingDeparture,state:readingState,prune:pruneForwardReading};',
+    context
+  );
+  const event = { state: { site: { index: 1 } } };
+  context.recent.capture(event);
+  assert.equal(entries.size, 1);
+  const persisted = { page: 'writing', index: 0, scroll: [0, 2163], focus: 'article-sample-en' };
+  context.window.location.href = context.readingAddress;
+  assert.equal(context.recent.state(persisted).scroll[1], 574);
+  assert.equal(context.recent.state(persisted).focus, 'archive-topic');
+  for (const state of [
+    { ...persisted, page: 'talks' },
+    { ...persisted, index: 1 },
+  ])
+    assert.equal(context.recent.state(state), state);
+  context.window.location.href += '&language=en';
+  assert.equal(
+    context.recent.state(persisted),
+    persisted,
+    'another query cannot reuse entry state'
+  );
+  assert.equal(context.recent.state(null), null);
+  context.window.location.href = 'https://fixture.test/articles/sample-en.html';
+  for (const mode of ['request', 'inert', 'departure', 'same-entry', 'unknown', 'missing-index']) {
+    context.request = mode === 'request' ? {} : null;
+    context.content.inert = mode === 'inert';
+    departing = mode === 'departure';
+    context.window.location.href =
+      'https://fixture.test/' + (mode === 'unknown' ? 'unknown.html' : 'writing.html');
+    const guarded = { state: { site: { index: mode === 'same-entry' ? 0 : 1 } } };
+    if (mode === 'missing-index') delete guarded.state.site.index;
+    context.window.scrollY = 999;
+    context.recent.capture(guarded);
+    assert.equal(entries.get(0).site.scroll[1], 574, mode + ' preserves captured reading');
+  }
+  context.request = null;
+  context.content.inert = false;
+  departing = false;
+  for (let index = 1; index <= 130; index++) {
+    context.historyIndex = index;
+    context.readingAddress = 'https://fixture.test/writing.html?entry=' + index;
+    context.recent.capture({ state: { site: { index: index + 1 } } });
+  }
+  assert.equal(entries.size, 128);
+  context.window.location.href = 'https://fixture.test/writing.html?topic=delivery';
+  assert.equal(
+    context.recent.state(persisted),
+    persisted,
+    'evicted entry keeps serialized fallback'
+  );
+  context.historyIndex = 129;
+  context.recent.prune();
+  assert.ok(entries.has(129));
+  assert.ok(!entries.has(130), 'a new branch discards abandoned future state');
+});
+
 test('initial navigation replaces the entry without storing departure state or pushing history', async () => {
   const h = routeHarness({ initialPage: 'writing' });
   h.focus('article-sample-en');
@@ -1526,7 +1819,12 @@ function sequenceHarness() {
     clearText() {},
     releaseEndpoint() {},
     releaseTail() {},
-    history: { pushState() {}, replaceState() {} },
+    history: {
+      pushState(state, unused, url) {
+        context.window.location.href = String(url);
+      },
+      replaceState() {},
+    },
     announcement: {},
     content,
     window: {
@@ -1542,11 +1840,14 @@ function sequenceHarness() {
       clearTimeout() {},
     },
     AbortController,
+    URL,
   };
   const start = source.indexOf('  function documentDirection(');
   const end = source.indexOf('  document.body.dataset.entryPage', start);
   vm.runInNewContext(
-    `let page='index',historyIndex=0,serial=0,request=null,endpoint=null,inputTail=null,lastKey=null;
+    `let page='index',historyIndex=0,serial=0,request=null,endpoint=null,inputTail=null,lastKey=null,readingAddress=window.location.href;
+    const readingEntries=new Map();
+    ${section('readingState', 'departureUnavailable')}${section('push', 'revisionValid')}
     ${section('departureUnavailable', 'push')}
     ${source.slice(start, end)}
     globalThis.currentPage=value=>page=value;
@@ -1738,6 +2039,97 @@ test('verified snapshot resources regain native root and nested article links at
   const footerLink = element({ href: '?view=credits' });
   context.rebase({ footer: element({}, [footerLink]) }, entry);
   assert.equal(footerLink.attributes.href, '?view=credits', 'offline query links stay native');
+});
+
+test('native immutable history mounts against the browser base for frozen reader resources and header links', async () => {
+  const projection = require('./fixtures/reader-resource-links.json');
+  const imageSource = projection.imageSrc;
+  const pdfSource = projection.pdfHref;
+  const headerHrefs = projection.headerHrefs;
+  const snapshotPath = projection.origin.htmlPath.replace(/^docs\//, '');
+  assert.ok(headerHrefs.length >= 5);
+  const headerStart = source.indexOf(
+    "    for (const link of document.querySelectorAll('.site-header a'))"
+  );
+  const headerEnd = source.indexOf("    span('mount-dom');", headerStart);
+  assert.ok(headerStart > 0 && headerEnd > headerStart);
+  const element = (attributes = {}, children = []) => ({
+    attributes: { ...attributes },
+    getAttribute(name) {
+      return this.attributes[name] || null;
+    },
+    setAttribute(name, value) {
+      this.attributes[name] = value;
+    },
+    removeAttribute(name) {
+      delete this.attributes[name];
+    },
+    querySelectorAll() {
+      return children;
+    },
+  });
+  for (const siteBase of ['https://fixture.test/', 'https://fixture.test/project/']) {
+    const original = new URL(`article-snapshots/${'a'.repeat(64)}/sample-en.html`, siteBase);
+    const h = routeHarness({
+      initialPage: 'article:sample:en',
+      initialURL: original.href,
+      realRouter: true,
+      siteBase,
+    });
+    await h.navigate(new URL('writing.html', siteBase));
+    await h.travel(-1);
+    const url = new URL(h.rebaseTargets.at(-1));
+    const sourceURL = new URL(snapshotPath, siteBase);
+    const image = element({ src: imageSource });
+    const pdf = element({ href: pdfSource });
+    const links = headerHrefs.map((href) => element({ href }));
+    const headerURLs = new Map(
+      links.map((link) => [link, new URL(link.getAttribute('href'), sourceURL)])
+    );
+    const data = {
+      sourceURL,
+      main: element({}, [image, pdf]),
+      footer: element(),
+      fallback: element(),
+      scene: 'writing',
+    };
+    const context = {
+      URL,
+      entry: original,
+      directory: new URL(siteBase),
+      embedded: null,
+      data,
+      url,
+      page: 'article:sample:en',
+      headerURLs,
+      routeFor: () => 'writing',
+      document: { querySelectorAll: () => links },
+    };
+    vm.runInNewContext(
+      section('rebaseResources', 'extract') +
+        '\nrebaseResources(data,url);' +
+        source.slice(headerStart, headerEnd),
+      context
+    );
+    assert.equal(
+      new URL(image.getAttribute('src'), h.window.location.href).href,
+      new URL(imageSource, sourceURL).href
+    );
+    assert.equal(
+      new URL(pdf.getAttribute('href'), h.window.location.href).href,
+      new URL(pdfSource, sourceURL).href
+    );
+    for (const link of links)
+      assert.equal(
+        new URL(link.getAttribute('href'), h.window.location.href).href,
+        headerURLs.get(link).href
+      );
+    assert.equal(
+      url.href,
+      original.href,
+      'the actual immutable address owns native mount geometry'
+    );
+  }
 });
 
 test('first hosted article activation admits its registry before selecting block directions', async () => {
