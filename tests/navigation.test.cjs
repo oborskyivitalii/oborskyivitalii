@@ -20,6 +20,76 @@ const extractSource = source.slice(
 const cacheDocumentSource = source.match(/^ {2}const cacheDocument = .+$/m)[0];
 const finishSource = source.match(/^ {2}function finishText\s*\(\s*\)\s*\{[\s\S]*?^ {2}\}/m)[0];
 
+test('footer links share native and embedded destination rules with the router', () => {
+  const { installEndScroll } = require('../site/effects/flight.cjs');
+  const effect = installEndScroll.toString();
+  const hintSource = effect.slice(
+    effect.indexOf('    function updateHint()'),
+    effect.indexOf('    function clear()')
+  );
+  const hrefSource = source.match(/^ {2}function routeHref\(next\) \{[\s\S]*?^ {2}\}/m)[0];
+  const routes = ['index', 'research', 'writing', 'talks', 'credits'];
+  for (const context of [
+    { entry: 'https://author.invalid/writing.html', directory: 'https://author.invalid/' },
+    {
+      entry: 'https://author.invalid/project/snapshots/abc/writing.html',
+      directory: 'https://author.invalid/project/',
+    },
+    {
+      entry: 'file:///review/ColorPrototype.html?view=writing',
+      directory: 'file:///review/',
+      embedded: { files: { talks: 'talks.html' }, pages: {} },
+    },
+  ]) {
+    const entry = new URL(context.entry);
+    const navigation = vm.runInNewContext(
+      '(() => {' +
+        section('routeFor', 'address') +
+        section('address', 'routeHref') +
+        hrefSource +
+        '; return { href: routeHref, routeFor }; })()',
+      {
+        URL,
+        routes,
+        entry,
+        directory: new URL(context.directory),
+        embedded: context.embedded || null,
+        articles: {},
+        document: { body: { dataset: { entryPage: 'writing' } } },
+      }
+    );
+    for (const route of routes)
+      assert.equal(navigation.routeFor(new URL(navigation.href(route))), route, context.entry);
+    assert.equal(navigation.href('https://other.invalid/'), null);
+    const footer = { querySelector: () => null, append() {} };
+    const hint = vm.runInNewContext(
+      '(() => { let hint = null;' + hintSource + '; updateHint(); return hint; })()',
+      {
+        content: { querySelector: () => footer },
+        neighbor: () => 'talks',
+        document: { body: { dataset: {} }, createElement: () => ({}) },
+        window: { SiteNavigation: { href: navigation.href } },
+        routes,
+        names: ['Home', 'Research', 'Writing', 'Talks'],
+        enabled: true,
+      }
+    );
+    assert.equal(navigation.routeFor(new URL(hint.href, entry)), 'talks');
+    const target = new URL(hint.href);
+    if (context.embedded) {
+      assert.equal(target.pathname, entry.pathname, 'offline stays in its one document');
+      assert.equal(target.searchParams.get('view'), 'talks');
+    } else {
+      assert.equal(target.href, new URL('talks.html', context.directory).href);
+      assert.equal(
+        navigation.routeFor(new URL('writing.html?view=talks', context.directory)),
+        'writing',
+        'the observed old query link cannot select a native Talks document'
+      );
+    }
+  }
+});
+
 for (const admission of [
   'router',
   'no-fetch',

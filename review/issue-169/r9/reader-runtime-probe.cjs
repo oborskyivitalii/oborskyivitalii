@@ -778,21 +778,51 @@ async function observeContext(mode, width, manifest, descriptor, base) {
               text: node.textContent,
               rect: node.getBoundingClientRect().toJSON(),
             }));
-            const primaryRoutes = await page.evaluate(() => [
-              ...window.SiteNavigation.primaryRoutes,
-            ]);
-            row.destination = new URL(row.control.href).searchParams.get('view');
-            assert.equal(new URL(row.control.href).origin, new URL(base).origin);
-            assert.equal(
-              row.destination,
-              primaryRoutes[primaryRoutes.indexOf('writing') + 1],
-              'Actual footer target agrees with native primary route order'
-            );
+            const itinerary = await page.evaluate(() => ({
+              primaryRoutes: [...window.SiteNavigation.primaryRoutes],
+              currentPage: document.body.dataset.page,
+              currentArticle: document.body.dataset.article || null,
+              siteBase: new URL(
+                document.querySelector('meta[name="site-base"]')?.content || '.',
+                location.href
+              ).href,
+            }));
+            assert.equal(itinerary.currentPage, 'writing');
+            assert.equal(itinerary.currentArticle, null);
+            const currentIndex = itinerary.primaryRoutes.indexOf(itinerary.currentPage);
+            assert.ok(currentIndex >= 0 && currentIndex + 1 < itinerary.primaryRoutes.length);
+            row.destination = itinerary.primaryRoutes[currentIndex + 1];
             assert.ok(
               manifest.components.routes[row.destination],
-              'Footer destination is an exact prepared route'
+              'Expected next destination belongs to prepared route inventory'
             );
-            row.routeOrder = primaryRoutes;
+            const nativeAlias =
+              row.destination === 'index' ? 'index.html' : row.destination + '.html';
+            assert.ok(
+              manifest.files[nativeAlias],
+              'Expected native route alias exists in exact prepared public files'
+            );
+            const siteBase = new URL(itinerary.siteBase);
+            assert.equal(
+              siteBase.origin,
+              new URL(base).origin,
+              'Native site base remains on prepared fixture'
+            );
+            row.canonicalRouteURLs = [
+              new URL(row.destination === 'index' ? './' : nativeAlias, siteBase).href,
+            ];
+            const actualHref = new URL(row.control.href);
+            assert.equal(
+              actualHref.search + actualHref.hash,
+              '',
+              'Native footer cannot use an offline-only view query or fragment'
+            );
+            assert.ok(
+              row.canonicalRouteURLs.includes(actualHref.href),
+              'Actual footer href is the prepared canonical native route URL'
+            );
+            row.routeOrder = itinerary.primaryRoutes;
+            row.siteBase = itinerary.siteBase;
             await evidence(page, prefix + '-footer-before');
             row.writingURL = page.url();
             await control.evaluate(article.installArticleHistoryDiagnostics);

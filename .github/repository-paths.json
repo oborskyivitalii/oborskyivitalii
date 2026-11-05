@@ -745,15 +745,15 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/5107c391274e1a41404442e25ad574a0fcb80357647a901dd0dc9034f5b8589f": {
+    "docs/article-snapshots/4290622153c781f417705c158a2797f20854b4c8db50571b775972b4a2282916": {
       "kind": "directory",
-      "purpose": "Generated R9 native article, digest media/material or dependent route snapshot.",
+      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/5107c391274e1a41404442e25ad574a0fcb80357647a901dd0dc9034f5b8589f/the-sdlc-is-out-of-balance.html": {
+    "docs/article-snapshots/4290622153c781f417705c158a2797f20854b4c8db50571b775972b4a2282916/the-sdlc-is-out-of-balance.html": {
       "kind": "file",
-      "purpose": "Generated R9 native article, digest media/material or dependent route snapshot.",
+      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -919,6 +919,42 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/runtime/72702f750f37e9cc6678b2d1181da57aa8c121293ebf70c9deae4e7aec568237": {
+      "kind": "directory",
+      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/72702f750f37e9cc6678b2d1181da57aa8c121293ebf70c9deae4e7aec568237/archive.js": {
+      "kind": "file",
+      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/72702f750f37e9cc6678b2d1181da57aa8c121293ebf70c9deae4e7aec568237/navigation.js": {
+      "kind": "file",
+      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/72702f750f37e9cc6678b2d1181da57aa8c121293ebf70c9deae4e7aec568237/space.js": {
+      "kind": "file",
+      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/72702f750f37e9cc6678b2d1181da57aa8c121293ebf70c9deae4e7aec568237/styles.css": {
+      "kind": "file",
+      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/72702f750f37e9cc6678b2d1181da57aa8c121293ebf70c9deae4e7aec568237/theme.js": {
+      "kind": "file",
+      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff": {
       "kind": "directory",
       "purpose": "Generated public output identity directory; owned by the site producer.",
@@ -964,42 +1000,6 @@
     "docs/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/theme.js": {
       "kind": "file",
       "purpose": "Immutable generated runtime file; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/c09e0fe18a1f9ce5f5ab59ab6ac1ea80a0736e213a4e41d769f1f2c0a89a1f97": {
-      "kind": "directory",
-      "purpose": "Generated current R4 runtime and immutable article assets from authored site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/c09e0fe18a1f9ce5f5ab59ab6ac1ea80a0736e213a4e41d769f1f2c0a89a1f97/archive.js": {
-      "kind": "file",
-      "purpose": "Generated current R4 runtime and immutable article assets from authored site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/c09e0fe18a1f9ce5f5ab59ab6ac1ea80a0736e213a4e41d769f1f2c0a89a1f97/navigation.js": {
-      "kind": "file",
-      "purpose": "Generated current R4 runtime and immutable article assets from authored site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/c09e0fe18a1f9ce5f5ab59ab6ac1ea80a0736e213a4e41d769f1f2c0a89a1f97/space.js": {
-      "kind": "file",
-      "purpose": "Generated current R4 runtime and immutable article assets from authored site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/c09e0fe18a1f9ce5f5ab59ab6ac1ea80a0736e213a4e41d769f1f2c0a89a1f97/styles.css": {
-      "kind": "file",
-      "purpose": "Generated current R4 runtime and immutable article assets from authored site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/c09e0fe18a1f9ce5f5ab59ab6ac1ea80a0736e213a4e41d769f1f2c0a89a1f97/theme.js": {
-      "kind": "file",
-      "purpose": "Generated current R4 runtime and immutable article assets from authored site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1111,18 +1111,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/4ca9b43fbda6768b4d76d8a5b0db418612642b1ca701a634f66310ebfdb0f234": {
-      "kind": "directory",
-      "purpose": "Generated current R4 runtime and immutable article assets from authored site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/4ca9b43fbda6768b4d76d8a5b0db418612642b1ca701a634f66310ebfdb0f234/index.html": {
-      "kind": "file",
-      "purpose": "Generated current R4 runtime and immutable article assets from authored site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -1132,6 +1120,30 @@
     "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/5b9db96f30131246c8e3f0255ab501502a9703cfba190d1ee6158665288bcd38": {
+      "kind": "directory",
+      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/5b9db96f30131246c8e3f0255ab501502a9703cfba190d1ee6158665288bcd38/writing.html": {
+      "kind": "file",
+      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/5fa89ddd59364943c65fd5ccc87ebe14638f6a2d6b67a2968a5bf5af94ceb8b3": {
+      "kind": "directory",
+      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/5fa89ddd59364943c65fd5ccc87ebe14638f6a2d6b67a2968a5bf5af94ceb8b3/index.html": {
+      "kind": "file",
+      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1147,6 +1159,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/658b6f507a2b748a2e7e5fd46efd3f3f6f36a7c3ee445578230cb802c99c03fe": {
+      "kind": "directory",
+      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/658b6f507a2b748a2e7e5fd46efd3f3f6f36a7c3ee445578230cb802c99c03fe/research.html": {
+      "kind": "file",
+      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed": {
       "kind": "directory",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
@@ -1156,30 +1180,6 @@
     "docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed/research.html": {
       "kind": "file",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/728327a0e7a60d7f16ab5b2d901dc666ca553f3350028b19196f6f714a8c6477": {
-      "kind": "directory",
-      "purpose": "Generated current R4 runtime and immutable article assets from authored site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/728327a0e7a60d7f16ab5b2d901dc666ca553f3350028b19196f6f714a8c6477/credits.html": {
-      "kind": "file",
-      "purpose": "Generated current R4 runtime and immutable article assets from authored site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/75cb5abf27f0d172ef68f0c3622c38d3ebdb7b11a2ad41d77a8c68f9076c94ae": {
-      "kind": "directory",
-      "purpose": "Generated current R4 runtime and immutable article assets from authored site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/75cb5abf27f0d172ef68f0c3622c38d3ebdb7b11a2ad41d77a8c68f9076c94ae/research.html": {
-      "kind": "file",
-      "purpose": "Generated current R4 runtime and immutable article assets from authored site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1204,6 +1204,18 @@
     "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/866398c5c9c1226dcdcbf2108b596399a0751950e8c8dc8150318f223d6c6d58": {
+      "kind": "directory",
+      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/866398c5c9c1226dcdcbf2108b596399a0751950e8c8dc8150318f223d6c6d58/talks.html": {
+      "kind": "file",
+      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1303,27 +1315,15 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/d7e256ba0261fe2390db7cbb4c097c78ddd81c463a9ae2725a3b0ee16f48fb50": {
+    "docs/snapshots/f6138e652569be16d8e98e1f1756eb25e525c5ef3dbe3a6f7c8ca6c2a780d364": {
       "kind": "directory",
-      "purpose": "Generated current R4 runtime and immutable article assets from authored site sources.",
+      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/d7e256ba0261fe2390db7cbb4c097c78ddd81c463a9ae2725a3b0ee16f48fb50/talks.html": {
+    "docs/snapshots/f6138e652569be16d8e98e1f1756eb25e525c5ef3dbe3a6f7c8ca6c2a780d364/credits.html": {
       "kind": "file",
-      "purpose": "Generated current R4 runtime and immutable article assets from authored site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/f66caf3834ce13cef24d94d0348b2e835cdc9d57fcc0127697c560c99f0f0e80": {
-      "kind": "directory",
-      "purpose": "Generated R9 native article, digest media/material or dependent route snapshot.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/f66caf3834ce13cef24d94d0348b2e835cdc9d57fcc0127697c560c99f0f0e80/writing.html": {
-      "kind": "file",
-      "purpose": "Generated R9 native article, digest media/material or dependent route snapshot.",
+      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -2173,9 +2173,45 @@
       "role": "history",
       "owner": "AGENTS.md"
     },
+    "review/issue-169/2026-11-05-native-r9-diagnostic-result-requirements.md": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound actual browser failure, bounded footer correction, independent review or exact-source diagnostic packet.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-diagnostic-run-whitebox.md": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound actual browser failure, bounded footer correction, independent review or exact-source diagnostic packet.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-169/2026-11-05-native-r9-diagnostic-whitebox.md": {
       "kind": "file",
       "purpose": "Issue169 bounded R9 diagnostic source packet, actual independent review or exact-source check/failure evidence; not runtime admission.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-exploratory-pinned-first.md": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound actual browser failure, bounded footer correction, independent review or exact-source diagnostic packet.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-footer-correction-whitebox.md": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound actual browser failure, bounded footer correction, independent review or exact-source diagnostic packet.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-footer-failure-code-analysis.md": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound actual browser failure, bounded footer correction, independent review or exact-source diagnostic packet.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-footer-fix-code-review.md": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound actual browser failure, bounded footer correction, independent review or exact-source diagnostic packet.",
       "role": "history",
       "owner": "AGENTS.md"
     },
@@ -2188,6 +2224,12 @@
     "review/issue-169/2026-11-05-native-r9-whitebox-delta.md": {
       "kind": "file",
       "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-r9-footer-routing-fix.md": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound actual browser failure, bounded footer correction, independent review or exact-source diagnostic packet.",
       "role": "history",
       "owner": "AGENTS.md"
     },
@@ -3349,6 +3391,18 @@
       "role": "history",
       "owner": "AGENTS.md"
     },
+    "review/issue-169/r9/checks/footer-route-final.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound actual browser failure, bounded footer correction, independent review or exact-source diagnostic packet.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/footer-route-first-failed.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound actual browser failure, bounded footer correction, independent review or exact-source diagnostic packet.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-169/r9/checks/native-r9-basic-failed.log.gz": {
       "kind": "file",
       "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
@@ -3445,9 +3499,21 @@
       "role": "history",
       "owner": "AGENTS.md"
     },
+    "review/issue-169/r9/checks/run42087148352-report.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound actual browser failure, bounded footer correction, independent review or exact-source diagnostic packet.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-169/r9/diagnostic-input-manifest.json": {
       "kind": "file",
       "purpose": "Issue169 bounded R9 diagnostic source packet, actual independent review or exact-source check/failure evidence; not runtime admission.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/footer-fix-input-manifest.json": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound actual browser failure, bounded footer correction, independent review or exact-source diagnostic packet.",
       "role": "history",
       "owner": "AGENTS.md"
     },

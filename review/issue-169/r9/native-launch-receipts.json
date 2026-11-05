@@ -65,5 +65,12 @@
     "launches": "Actual collaboration.followup_task on each of four existing distinct roles; operational continuations, not fresh forks.",
     "role_outputs": "Dated diagnostic Requirements preflight/reconciliation, Code and White-box reports; Exploratory QA script and later actual result inspection.",
     "limits": "QA-only script authored by application-independent Exploratory; observation code independently checked by Code/White-box. No browser acceptance before actual CI evidence."
+  },
+  "footer_fix_iteration": {
+    "source_packet": "review/issue-169/r9/footer-fix-input-manifest.json",
+    "packet_sha256": "ac1317d2eae0badc2e029b9d2bfa83b55ad35ec5958b20cb74d19806330e62fc",
+    "launches": "Actual followup_task correction turns on all four existing isolated initial role agents.",
+    "source": "Prepared delta from3c532d2; app authored by root, QA-only oracle by application-independent Exploratory; Code/White-box inspect both.",
+    "outcomes": "Dated actual-result Requirements, footer fix Code/correction White-box and first pinned Exploratory reports; no corrected browser pass yet."
   }
 }

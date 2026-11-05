@@ -319,6 +319,13 @@
     result.searchParams.set('view', next);
     return result;
   }
+  function routeHref(next) {
+    if (!routes.includes(next)) return null;
+    return address(
+      new URL(embedded?.files[next] || (next === 'index' ? './' : next + '.html'), directory),
+      next
+    ).href;
+  }
   // The scroll/flight itinerary follows the header; utility links stay accessible.
   const primaryRoutes = Object.freeze(
     [...document.querySelectorAll('.site-header nav a[href]')]
@@ -1301,6 +1308,7 @@
   window.SiteNavigation = {
     push,
     primaryRoutes,
+    href: routeHref,
     reconcileEndpoint,
     contentFlight(value) {
       const enabled = presentation?.contentFlight?.(value) ?? true;
@@ -1316,10 +1324,7 @@
         transition
       )
         return false;
-      navigate(
-        new URL(embedded?.files[next] || (next === 'index' ? './' : next + '.html'), directory),
-        { position: atEnd ? 'end' : null, input }
-      );
+      navigate(new URL(routeHref(next)), { position: atEnd ? 'end' : null, input });
       return true;
     },
   };
