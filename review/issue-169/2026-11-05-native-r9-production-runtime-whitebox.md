@@ -1,0 +1,66 @@
+# White-box — actual private production tuple and final three-row runtime delta
+
+Refs #169 / PR170. 5 November2026. Reviewer `/root/native_r9_whitebox`, same-role continuation. Independent actualoutput/readback and finaldata/test review; nopeerresults, implementationedits, artifactbuildrerun, browserrun or externalcalls. Prior two-row/actualbrowser reports remainpreserved. This receipt accepts theboundedruntime-data treatment only; itdoesnot establish cleanCI,stagingacceptance orreleaseeligibility.
+
+## Actual normal guarded private build
+
+HEAD`e92de9bb5e3e4bcd80c4207457732808d2d67015`,tree`626278d38d4d0592663646ae0eeb0b7b68e3eed3`. Preparedpolicy/client/fixture changes were dirtywhen theprivateartifactwasbuilt; bothplainandproductionrecords honestlyretain`sourceDirty:true`,candidate/source e92de9,sametree. Thetree is committedHEADtree,not anidentity oftheentire dirtypreparedstate.
+
+Read actual `/workspace/scratch/83aaf5811f83/tmp/r9-private-production.cjs`: freshplain output usesnormal `artifact.build`,normalColorbuild, actualreviewedplainselect andcomparisonofallobservedruntimefilerows; copiesinput then invokesnormalguarded `tools/release/edition.build(...,'color')`. No sourceDirty rewriting orselector/CIguardbypass wasfound. Normalproductionentrypoint still calls`motion.select` oninput beforetransformation. Existingeditionwriter carries`...source`,retainingdirtiness.
+
+| Actual retainedrecord | SHA256 / binding |
+| --- | --- |
+| Privateplain artifact.json | e0e805ec9758772477a173ba2c27066888895bed8d07b993cdcfb01b6a05f02c |
+| Privateproduction artifact.json | b65dea3b72518217c51ff5cdfe31b197357b6d6973c3c20451af20fe272f699c |
+| observed-production.json / readbacklog | 002406eb6391d91c29f92140379349ad883bd21088775f0f64fee6ac1417f11b |
+| Currentprivateentrypoint | 12895130b24b77e8f87a3f929ccf03827058578267912005503219fa41abc227 |
+| Preservedinitialdiagnosticlog | 3eb23299ba96c60d5dac3612d8577c64dffd02d26c7b09bb897236b8c3af361a |
+| Normalreleaseedition source | ded3d9fcccea3fb007c393a9f5afc6a63fb3eb49122d91999ee6d2cf00839ea3 |
+| Normalsharededition source | ed16f02e53abd85c03e40aca3039f285cf5638a133a98a2c92933ae9dd84b798 |
+
+Independentlyexecutedreadonly `artifact.verify` onboth actualpublicdirectories:pass. Productionartifactdigest`48a6e40acef6b1213018e08b3d60fe073cddf2a5afb3463360c7c6e05d49b0cc`;derivationkindproduction-edition,parentDigest`0920aff88b8c230ad97998de9acfd5450ee4243da135b8be85c529c46466b9f1` exactlymatchesactualprivateplainartifact. Everyprojectedsummaryfield matchesfullproductionrecord. All10canonical+immutable runtimefile rows matchactualpublicbytes,fullmanifest,summaryandreviewedplainbyteclosure.
+
+Observedproductiontuple is:
+
+- fingerprint`3364305b3dd69355813459c48ec671ea995f3db88d4d0f5b17c22cda052a4a23`;
+- baseEngine`72702f750f37e9cc6678b2d1181da57aa8c121293ebf70c9deae4e7aec568237`,Colorcontract1,effects[travel];
+- editionexactly`{id:production,indexable:true,origin:https://vitaliioborskyi.ai}`;
+- theme6500c6…,space9c12d8…,archivef7da9f…,navigationd2cacf…,CSS3fcf8b…: eachsameexactfullSHA256asverifiedactualplainrecordandcanonical+immutablepaths; no stagingenvironmentCSS.
+
+Privateplainclient/runtimebytes match observedCIplain9cec exactly, butitsfullartifact isdifferent: regeneratedHTML/snapshotversions/site-revision andoutput-lock provenance differ. Components/generation cannotbe calledbyte-identicaltotheoldCIartifact. OldCIartifactdigest6d4634… andprivateplain0920af… remainseparaterecords. CurrentgenerationlockSHA`fda97f22ac83388bdc78aaaa69beddb9266bd4a91bd01bc97d3cac657093ef71`; regenerationsuppliesnewsourceprovenance,notnewbrowser/fullreleaseevidence.
+
+## Preserved diagnostic errors versus actual output
+
+Theinitialprivatebuild reachedactualproductionoutput, thenits expected-refusalassertion incorrectly matched`/unknown/`; actualselector correctlythrew`unreviewed Color motion runtime`. Thepreservedlog records thatregexmismatch; itisadiagnosticassertionfailure,notafailedproductiontransformation orincorrectguard. Currententrypointshowscorrectedregex, soitisnot claimedbyte-identicaltotheinitialscratchscript. Readback usedexistingactualartifacts, verifiedtheirbytes/parent/dirtiness andrecordedtheexactrefusal without rebuilding. Beforetheproductionrow wasauthored,thisreviewer independentlyconfirmedactualproductionselectrefusedandnewproductionreviewedRuntimeIDdidnotexist.
+
+Anadditionalreviewerdescriptor-onlyVM diagnostic initiallyfailed at host`deepStrictEqual` because JSONparsedobjects camefromadifferentVMrealm; printedidentityvalues wereequal. Correctedtheisolatedharness to usehostJSON,suppressingonlythemutatingeditionwriter,notinputmotionguard. Actualnormalproductiondescriptor then independentlyreproducedfingerprint3364305… fromactualplainbase/edition/render/inputs. Thisreadonlydiagnostic exited0; noactualproductionrebuild,sourcechange orguardrelaxation occurred. Theseerrors remaindistinguishedfromactualoutputverification.
+
+## Final three-row implementation and lineage
+
+Finalreviewedsourcebytehashes:
+
+| Path | SHA256 |
+| --- | --- |
+| tools/quality/color-motion-contract.cjs | 26de4b368dce8b2f057c5d7ba472e0a8e013733831b753c33b3e750f5949137a |
+| tools/site/runtime-compatibility.cjs | 3efd9ba45d1dfcf5701be79b898feb0eed45ed9b7d95dd0ffce05cde854c2c39 |
+| tests/color-motion-contract.test.cjs | f8de24044530c67caf18bdde398e9e80e1280acbe238a0e03fc5b793ececdd9f |
+| tests/fixtures/r9-footer-runtime.json | a210bb9c7355f91f6c3ca4ab0e6e50b8c2b86d2387ef065ce35d964e02b27b92 |
+| tools/quality/test-profiles.json | b1843136683e805079f50cc92610ce4cd4fb342c94463e3787fadfb2e55d8ece |
+
+Fixtureparsedsemanticdigest, definedasUTF8JSON withsortedkeys,compactseparators andnonASCIIpreserved: `597e588e63e53cd8b042bfdd5def27d00c4a94cb1d443b4509d1a7532ab03dde`. Perrowmanifestcanonicaldigests: plain`af8e7e80fb02a1b660757427b71bf21410d044a1ed36f977f070169052be2293`;staging`d14a916f05884a19d90562a63a433bf0ed6256efa6585fe01db6dba866f787e7`;production`30744466ee68bbd0ebfecce834100518cd58d52a3b42ed0fe653e76350625bb0`. No semantic-JavaScripthash isclaimed; codeidentity isexactbyteSHAabove.
+
+Newfamily'sproductionnull isreplacedonlybytheactualobserved3364…constant. All54historicalfamilyobjects independentlyremainJSONdata-identicaltoHEAD. Plain/staging constantsandtrustedrights/behaviorinheritance unchangedfromreviewedtwo-rowstate. Clientcompanion remainsoneexact727membership; nolegacyalias/fingerprint/semanticguardchange.
+
+Goldenfixture nowhas3exactprojections. Independentlycomparedallincludedsource/tree/dirty/artifact/variant,edition,components,derivationand10runtimefilerows toactualfullplainCI,stagingCI andprivateproductionrecords. Productionrowtruthfullyretainsdirtytrue;proofmanifest/projectionhashesmatchactualfiles. Itsnestedproductionevidencestatesprivateguardedderivation andnoneligibility. InitialfixturetopmeaningoverstatedallrowsasCI; finalreadbackcorrectlystates “actual source-bound CI and private guarded derivation records.” Thismetadata-onlyclarificationchangesnofamily/rowtupleorassertion.
+
+Existingcurrentgeneratedclosure references nowmigrateplain/staging/production/baseexpectedIDsto thenewactualfamily. Existingunknown/mixed,licensedmissing/substitutedcanonical+immutable andmandatoryrightsloops addall3newIDswhilepreservingoldIDs. Goldenwrongbase nowchangesbothdeclaredvariants beforeassertingexactidentityrefusal. NoCIworkflow,acceptancepolicy,release/stagingentrypoint diff wasfound inpreparedchange; noassertion/deadline/selectionrefusal wasweakened.
+
+## Actual bounded final checks
+
+`node --test --test-name-pattern='reviewed footer runtime|only reviewed historical|production Color has|unknown, conflicting, mixed|licensed contracts reject|R3, Writing startup|producer refactoring preserves' tests/color-motion-contract.test.cjs` — exit0;7tests/pass7/fail0/cancelled0/skipped0/todo0;2102.070969ms. Includesactualgoldenall3positives,coherentwrongbase/edition/10singlebytechanges/oldnavmix,semanticclienthooks,allhistorical/currenteditionselects,newfamilyunknown/mixedguardloops,eachlicensedmissingcanonical/immutablefile andtrustedrightschecks.
+
+Independentadditionalactualproductionmutations refused5/5: indexablefalse,wrongorigin,stagingeditionmetadata,coherentlyunknownvariant/engine,andbase-relabelrightsescape. All3actualrows returnpublicationRequiredtrue. Independentcomparisonagainconfirmed54historicalfamiliesunchanged. Positiveproductionnowselectsnewfamilyonlyaftertheactualrowaddition; thepriorunreviewedrefusal remainsrecordedabove. Fixtureonlyselectionwasverifiedinpriorcontinuationandregistryrouteunchanged.
+
+FullColor/releasecontroller/stagingregression campaigns belongtoorchestrator'sseparaterawlogs; theywerenotduplicatedorclaimedexecutedbythisrole. Finalfixturemeaningwasclarifiedafterthe7caseexecution; runtimepolicy/testsourceandallrowsemanticvalues remainedtheinspectedones, soassertionresultisreusedonlyforthoseunchangedinputs. Nofreshbrowser/hosted/security/RI/fullacceptance resultisclaimed.
+
+**Verdict: actualproductiontupleandfinalexactthree-rowfamily/client/golden/testtreatment pass scopedWhite-boxreview.** Mandatoryrights,unknown/mixed/edition/byte refusals and54historicalfamiliesarepreserved. Theproductionrowis supportedbyactualnormalguardedadapteroutput,notaguess. Itsdirtyprivateprovenance confersnoreleaseeligibility: obtainnewcleancommittedsource/currentchecks,remainingindependentroles,existinghosted/staging/merge/productiongates andactualreleaseevidence beforeadvancement. Preservebothfailedactualrun42087148352 andsuccessfulbounded42090631531 plusprivateregexfailure/readback.

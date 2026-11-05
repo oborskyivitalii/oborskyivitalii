@@ -880,6 +880,18 @@ families.issue169NativeTags = {
   staging: 'be64c404fc3f61f787c8cca528d84662dd19411eb6f4d498560ce5ceec4df8c9',
   production: '0af8ae2b7a0d5db0d3bb2369806bf3b2283253996dfd1fd312c118e4867278cd',
 };
+// Source-bound R9 reader/footer observations: run42090631531, exact e92de9bb.
+// Production identity was observed separately through the normal guarded edition adapter.
+families.issue169FooterRoutes = {
+  ...families.issue169NativeTags,
+  id: 'issue169-footer-routes',
+  baseEngine: '72702f750f37e9cc6678b2d1181da57aa8c121293ebf70c9deae4e7aec568237',
+  space: '9c12d83a6a738d80847819a7fff061910302512905f21426d0dcef876b974fec',
+  navigation: 'd2cacfa7c564f5216bcc5b1beaff6131410ee651fd9b5e68f4ef5a5cbf68def0',
+  plain: '9cecac55d9bfe19edb42bbfb2df7edc59bde76598e49e2dc896fd73f376077d5',
+  staging: '1fce9ff8d1acbf867828680a0a68fa386ed8571a4828442ab9167227bffb42e0',
+  production: '3364305b3dd69355813459c48ec671ea995f3db88d4d0f5b17c22cda052a4a23',
+};
 // Expand only explicitly reviewed editions; an absent edition is never admitted.
 const runtimes = Object.entries(families).flatMap(([family, value]) =>
   ['plain', 'staging', 'production']

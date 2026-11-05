@@ -1864,7 +1864,8 @@
         ".github/workflows/site-release-candidate.yml",
         "tools/quality/edge-input.cjs",
         "tools/quality/block-observation.cjs",
-        "tools/site/runtime-compatibility.cjs"
+        "tools/site/runtime-compatibility.cjs",
+        "tests/fixtures/r9-footer-runtime.json"
       ]
     },
     {

@@ -72,5 +72,15 @@
     "launches": "Actual followup_task correction turns on all four existing isolated initial role agents.",
     "source": "Prepared delta from3c532d2; app authored by root, QA-only oracle by application-independent Exploratory; Code/White-box inspect both.",
     "outcomes": "Dated actual-result Requirements, footer fix Code/correction White-box and first pinned Exploratory reports; no corrected browser pass yet."
+  },
+  "runtime_admission_iteration": {
+    "source_packet": "review/issue-169/r9/runtime-admission-input-manifest.json",
+    "packet_sha256": "9608c510e651c5e925de5af6b86902227cbfd3cf07c7ed28e052113d9911f673",
+    "launches": "Actual followup_task continuation turns on existing separate Requirements/Code/White-box roles; Exploratory independently inspected exact corrected CI result. Not fresh forks.",
+    "actual_browser_source": "e92de9bb5e3e4bcd80c4207457732808d2d67015",
+    "actual_browser_run": 42090631531,
+    "actual_browser_result": "28/28 passed, bounded diagnostic/fullGate false.",
+    "production_data": "Actual normal guarded private output, sourceDirty true, tuple3364305b independently inspected before registration. Not release eligibility.",
+    "limits": "Current exact-head full source/hosted/staging/merge/rights/archive/served-byte gates pending. Provider memory internals unknown; older observations retain original identities."
   }
 }

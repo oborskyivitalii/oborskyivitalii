@@ -105,37 +105,37 @@
     },
     ".github/acceptance/issue-167.json": {
       "kind": "file",
-      "purpose": "Whole WEB-AC01–12 numeric aliases, bounded existing checks and explicit prototype/native/human/delivery gates.",
+      "purpose": "Whole WEB-AC01\u201312 numeric aliases, bounded existing checks and explicit prototype/native/human/delivery gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-169.json": {
       "kind": "file",
-      "purpose": "Issue169 AC01–AC11 mapping to existing checks and explicit actual editorial/review/copy/publication gates.",
+      "purpose": "Issue169 AC01\u2013AC11 mapping to existing checks and explicit actual editorial/review/copy/publication gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-31.json": {
       "kind": "file",
-      "purpose": "Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates.",
+      "purpose": "Cleanup AC01\u2013AC11 mapped to source-bound deterministic tests and separate readiness gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-33.json": {
       "kind": "file",
-      "purpose": "Bootstrap/root optimization AC01–AC06 mapped to source-bound assertions and separate review, merge and linkage gates.",
+      "purpose": "Bootstrap/root optimization AC01\u2013AC06 mapped to source-bound assertions and separate review, merge and linkage gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-35.json": {
       "kind": "file",
-      "purpose": "Test optimization AC01–AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates.",
+      "purpose": "Test optimization AC01\u2013AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-36.json": {
       "kind": "file",
-      "purpose": "Writing formula AC01–AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit.",
+      "purpose": "Writing formula AC01\u2013AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -177,13 +177,13 @@
     },
     ".github/acceptance/issue-56.json": {
       "kind": "file",
-      "purpose": "Issue56 AC01–AC06 source-bound R1 extraction/tool coverage policy with independent/live delivery gates.",
+      "purpose": "Issue56 AC01\u2013AC06 source-bound R1 extraction/tool coverage policy with independent/live delivery gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-58.json": {
       "kind": "file",
-      "purpose": "Shared issue58 AC01–AC10 mapping: frozen R2 checkpoint and current content/CSS/cohesion/resource contracts with final review/live/merge gates.",
+      "purpose": "Shared issue58 AC01\u2013AC10 mapping: frozen R2 checkpoint and current content/CSS/cohesion/resource contracts with final review/live/merge gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -195,7 +195,7 @@
     },
     ".github/acceptance/issue-61.json": {
       "kind": "file",
-      "purpose": "PMDay recording AC01–AC03 mapped to existing current-source content/semantic/RI checks and explicit review/CI/linkage gates.",
+      "purpose": "PMDay recording AC01\u2013AC03 mapped to existing current-source content/semantic/RI checks and explicit review/CI/linkage gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -207,13 +207,13 @@
     },
     ".github/acceptance/issue-69.json": {
       "kind": "file",
-      "purpose": "Issue69 AC01–AC10 mapped entry, stationary camera, sequential navigation, shared delivery and exact-source checks with explicit external acceptance gates.",
+      "purpose": "Issue69 AC01\u2013AC10 mapped entry, stationary camera, sequential navigation, shared delivery and exact-source checks with explicit external acceptance gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-72.json": {
       "kind": "file",
-      "purpose": "Issue72 AC01–AC10 deterministic mapping and separate live/release/merge gates.",
+      "purpose": "Issue72 AC01\u2013AC10 deterministic mapping and separate live/release/merge gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -745,15 +745,15 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/4290622153c781f417705c158a2797f20854b4c8db50571b775972b4a2282916": {
+    "docs/article-snapshots/7f461e214a5bb9f57239e9ebe5701d9266e60abec60a00652f450aef3e838507": {
       "kind": "directory",
-      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
+      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/4290622153c781f417705c158a2797f20854b4c8db50571b775972b4a2282916/the-sdlc-is-out-of-balance.html": {
+    "docs/article-snapshots/7f461e214a5bb9f57239e9ebe5701d9266e60abec60a00652f450aef3e838507/the-sdlc-is-out-of-balance.html": {
       "kind": "file",
-      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
+      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1123,30 +1123,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/5b9db96f30131246c8e3f0255ab501502a9703cfba190d1ee6158665288bcd38": {
-      "kind": "directory",
-      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/5b9db96f30131246c8e3f0255ab501502a9703cfba190d1ee6158665288bcd38/writing.html": {
-      "kind": "file",
-      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/5fa89ddd59364943c65fd5ccc87ebe14638f6a2d6b67a2968a5bf5af94ceb8b3": {
-      "kind": "directory",
-      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/5fa89ddd59364943c65fd5ccc87ebe14638f6a2d6b67a2968a5bf5af94ceb8b3/index.html": {
-      "kind": "file",
-      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/632f4f29ebdbc51215b02592fd45a1f10a99fb8596d2dec8b3f18bc8be847f06": {
       "kind": "directory",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
@@ -1159,18 +1135,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/658b6f507a2b748a2e7e5fd46efd3f3f6f36a7c3ee445578230cb802c99c03fe": {
-      "kind": "directory",
-      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/658b6f507a2b748a2e7e5fd46efd3f3f6f36a7c3ee445578230cb802c99c03fe/research.html": {
-      "kind": "file",
-      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed": {
       "kind": "directory",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
@@ -1180,6 +1144,30 @@
     "docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed/research.html": {
       "kind": "file",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/6b377e11e228527ef09d6aecc5afeac5f8144b8fbdb95fbf254777af1ba747b7": {
+      "kind": "directory",
+      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/6b377e11e228527ef09d6aecc5afeac5f8144b8fbdb95fbf254777af1ba747b7/research.html": {
+      "kind": "file",
+      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/7051b498b2395f9420151baf8146e863895b3fe995a3b5c419b6a4ac0d409146": {
+      "kind": "directory",
+      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/7051b498b2395f9420151baf8146e863895b3fe995a3b5c419b6a4ac0d409146/credits.html": {
+      "kind": "file",
+      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1204,18 +1192,6 @@
     "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/866398c5c9c1226dcdcbf2108b596399a0751950e8c8dc8150318f223d6c6d58": {
-      "kind": "directory",
-      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/866398c5c9c1226dcdcbf2108b596399a0751950e8c8dc8150318f223d6c6d58/talks.html": {
-      "kind": "file",
-      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1252,6 +1228,30 @@
     "docs/snapshots/95b57d8257b5ffb3f4b9924d90694110e982f7bdc9aecb6f09969d46b3a8b2e0/index.html": {
       "kind": "file",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/9611f23c550f679a88201e66357892dde84affea61ac8e0a11b3396bb6bf6364": {
+      "kind": "directory",
+      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/9611f23c550f679a88201e66357892dde84affea61ac8e0a11b3396bb6bf6364/index.html": {
+      "kind": "file",
+      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/a571af3fd5bbd567e0e25e7b3db992b181beef898491b19d15f1c863670010ea": {
+      "kind": "directory",
+      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/a571af3fd5bbd567e0e25e7b3db992b181beef898491b19d15f1c863670010ea/writing.html": {
+      "kind": "file",
+      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1315,15 +1315,15 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/f6138e652569be16d8e98e1f1756eb25e525c5ef3dbe3a6f7c8ca6c2a780d364": {
+    "docs/snapshots/ed6df3487667d45452588536fa1591bb8f8fb09dbfbbe91b725cf0ce24a3c9d1": {
       "kind": "directory",
-      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
+      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/f6138e652569be16d8e98e1f1756eb25e525c5ef3dbe3a6f7c8ca6c2a780d364/credits.html": {
+    "docs/snapshots/ed6df3487667d45452588536fa1591bb8f8fb09dbfbbe91b725cf0ce24a3c9d1/talks.html": {
       "kind": "file",
-      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
+      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -2097,37 +2097,37 @@
     },
     "review/issue-169": {
       "kind": "directory",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/2026-10-31-article-plan.md": {
       "kind": "file",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/2026-10-31-evidence-map.md": {
       "kind": "file",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/2026-10-31-execution-plan-r2.md": {
       "kind": "file",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/2026-10-31-execution-plan-r3.md": {
       "kind": "file",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/2026-10-31-illustration-briefs.md": {
       "kind": "file",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
@@ -2139,7 +2139,7 @@
     },
     "review/issue-169/2026-10-31-r3-illustrated-review.md": {
       "kind": "file",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
@@ -2152,6 +2152,18 @@
     "review/issue-169/2026-11-05-native-r9-code-delta-review.md": {
       "kind": "file",
       "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-control-runtime-reconciliation.md": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-corrected-run-whitebox.md": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
       "role": "history",
       "owner": "AGENTS.md"
     },
@@ -2191,9 +2203,21 @@
       "role": "history",
       "owner": "AGENTS.md"
     },
+    "review/issue-169/2026-11-05-native-r9-exploratory-pinned-correction.md": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-169/2026-11-05-native-r9-exploratory-pinned-first.md": {
       "kind": "file",
       "purpose": "Issue169 source-bound actual browser failure, bounded footer correction, independent review or exact-source diagnostic packet.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-family-final-code-review.md": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
       "role": "history",
       "owner": "AGENTS.md"
     },
@@ -2215,9 +2239,33 @@
       "role": "history",
       "owner": "AGENTS.md"
     },
+    "review/issue-169/2026-11-05-native-r9-plain-staging-family-code-review.md": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-production-runtime-whitebox.md": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-169/2026-11-05-native-r9-requirements-delta.md": {
       "kind": "file",
       "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-runtime-admission-requirements.md": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-runtime-data-whitebox.md": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
       "role": "history",
       "owner": "AGENTS.md"
     },
@@ -2236,6 +2284,12 @@
     "review/issue-169/2026-11-05-r9-native.md": {
       "kind": "file",
       "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-r9-runtime-admission.md": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
       "role": "history",
       "owner": "AGENTS.md"
     },
@@ -3195,175 +3249,175 @@
     },
     "review/issue-169/r1": {
       "kind": "directory",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/r1/README.md": {
       "kind": "file",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/r1/checks.json": {
       "kind": "file",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/r1/launch-post.en.md": {
       "kind": "file",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/r1/manuscript.en.md": {
       "kind": "file",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/r1/masters": {
       "kind": "directory",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/r1/masters/cover-typographic.svg": {
       "kind": "file",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/r1/masters/imbalance-loop.svg": {
       "kind": "file",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/r1/masters/review-functions.svg": {
       "kind": "file",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/r1/masters/workstream-system.svg": {
       "kind": "file",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/r1/native-admission.proposed.json": {
       "kind": "file",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/r2": {
       "kind": "directory",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/r2/README.md": {
       "kind": "file",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/r2/checks.json": {
       "kind": "file",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/r2/launch-post.en.md": {
       "kind": "file",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/r2/manuscript.en.md": {
       "kind": "file",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/r3": {
       "kind": "directory",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/r3/COPY-INSTRUCTIONS.md": {
       "kind": "file",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/r3/README.md": {
       "kind": "file",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/r3/candidate-manifest-corrected.json": {
       "kind": "file",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/r3/checks.json": {
       "kind": "file",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/r3/figures.json": {
       "kind": "file",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/r3/manuscript.en.md": {
       "kind": "file",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/r3/reviews": {
       "kind": "directory",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/r3/reviews/artifact-r3.md": {
       "kind": "file",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/r3/reviews/exploratory-r3.md": {
       "kind": "file",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/r3/reviews/requirements-r3-final.md": {
       "kind": "file",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/r3/reviews/requirements-r3-preflight.md": {
       "kind": "file",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
     "review/issue-169/r3/reviews/whitebox-r3.md": {
       "kind": "file",
-      "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "purpose": "Issue169 article planning, R1\u2013R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
     },
@@ -3505,6 +3559,96 @@
       "role": "history",
       "owner": "AGENTS.md"
     },
+    "review/issue-169/r9/checks/runtime-architecture.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/runtime-basic.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/runtime-corrected-report.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/runtime-format-cataloged.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/runtime-format.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/runtime-lint-cataloged.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/runtime-lint.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/runtime-pre-regeneration-freshness.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/runtime-private-production-artifact.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/runtime-private-production-readback.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/runtime-private-production-regex-failed.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/runtime-ri-first-stale.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/runtime-style.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/runtime-tests.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/runtime-wrong-config-failed.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-169/r9/diagnostic-input-manifest.json": {
       "kind": "file",
       "purpose": "Issue169 bounded R9 diagnostic source packet, actual independent review or exact-source check/failure evidence; not runtime admission.",
@@ -3586,6 +3730,12 @@
     "review/issue-169/r9/reviews/native-r9-whitebox-preflight.md": {
       "kind": "file",
       "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/runtime-admission-input-manifest.json": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
       "role": "history",
       "owner": "AGENTS.md"
     },
@@ -5031,7 +5181,7 @@
     },
     "review/issue-58": {
       "kind": "directory",
-      "purpose": "Single R2–R6 refactoring handoff, immutable phase observations and integrated evidence under continuing DraftPR60.",
+      "purpose": "Single R2\u2013R6 refactoring handoff, immutable phase observations and integrated evidence under continuing DraftPR60.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -12390,6 +12540,12 @@
       "purpose": "Explicit synthetic licensed runtime and bounded legal-copy fixtures for consumer failures; never actual edition rights acceptance.",
       "role": "test",
       "owner": "guides/SITE-STAGING.md"
+    },
+    "tests/fixtures/r9-footer-runtime.json": {
+      "kind": "file",
+      "purpose": "Fixed runtime projection from actual R9 CI and honest private guarded production derivation; no release acceptance.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/fixtures/reader-staging-gate.json.gz": {
       "kind": "file",

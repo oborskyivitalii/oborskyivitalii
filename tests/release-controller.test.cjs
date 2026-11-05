@@ -510,7 +510,7 @@ test('explicit production Color preserves approved runtime and rejects a differe
   assert.equal(edition.verify(source.directory, source.record), true);
   assert.equal(
     require('../tools/quality/color-motion-contract.cjs').select(source.record).id,
-    'issue169-native-tags-production'
+    'issue169-footer-routes-production'
   );
   assert.equal(
     require('../tools/quality/color-motion-contract.cjs').reviewedRuntime(
