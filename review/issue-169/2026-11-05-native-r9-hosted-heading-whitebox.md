@@ -1,0 +1,89 @@
+# White-box diagnosis — hosted archive heading has no actual animation frames
+
+Refs #169 / PR170. 5 November2026. Reviewer `/root/native_r9_whitebox`, same-role continuation. Independently inspectedactualhostedfailure/source/oracle andexecutedawrite-free detached-childcounterexample usingactualscroll-entryfactory/existingtestharness. Nopeerdiagnosis/reportread,app/testedit,blockedlocalbrowserrerunornewexternalcall. Transitive-retentioncorrectionanditsacceptedsourcepinsremainseparate; thisfindingdoesnotinvalidateorreplaceits4focused/18rawpassedresults.
+
+## Exact source and actual retained report
+
+HEAD`1c060edd33259800420ec314c6245c72be32eda8`,tree`640907753a9a7179612a29f85ca01abda71cf2d2`; actualpreviewrun42095940300/job127487701705,attempt1. Hostedtarget`https://86364091.oborskyi-author-ci-staging.pages.dev`. Source/candidate/tree inreportmatchclean1c060. Localworkingtree containsseparatelyreviewedretentiondelta,withnoarchive/scroll-entry/article-browserdiff for thisdiagnosis.
+
+Supplied `/workspace/scratch/83aaf5811f83/tmp/r9-preview-smoke-failure/smoke.zip`:independentlyrecomputedSHA256`7b7912d895543637b7cbc8d4889d44a941d3dc180606df29c16e5571e40c5167`,1042082bytes. Report`preview-smoke.json` SHA256`7ccab21f0a345883ecd7642f52c479b167635cc9ac4d2be38f65205488dd6ccd`;HTTPJSON SHA256`9e92fc42b4a35b9e32102c131d836ba681d0623b30eaa09690a054c1537779f0`.
+
+Reportedartifactdigest`48db534cad4386f16e7469eb1e4e0b9fc42061065ae8e2aa6b423d44dbe6697b`;Colorstagingfingerprint`1fce9ff8d1acbf867828680a0a68fa386ed8571a4828442ab9167227bffb42e0`,base727. HTTPchecks passroot/actual404/noindex/publicdigest. Fourprincipalrows(1440/390 × normal/noCanvas)eachpassall5routes,20boundedprincipalrouteobservations. Overallpreview-smokepassfalse;article-resultsarrayempty becauseaffectedjourneydidnotcomplete. fullGatefalse,deploymentAuthorizedfalse. ArtifactcontainsHTTP/reportand3PNGobservations,butnonativetrace/events sufficienttoidentifytherefreshinstant.
+
+Exacterror: `actual common CSS animation exists: {"tag":"H2","classes":"archive-heading","layer":"children","state":"departing","row":4,"frameCount":0}`. Articlecheckpoint showsR9URL,scroll9914,focus`../writing.html`,busyfalse; eventualroute/readerarrivalisnotproofthateverydepartingunitanimated. No missingresource/HTTPidentityfailureisreportedbythiserror.
+
+InspectedsourceSHA256: `site/engine/archive.js`=`01d8803a9cc02edde612fa247a046cc9c295bc088ed8ba64e407ba00e34c35ed`; `site/engine/scroll-entry.cjs`=`268ed2aed873105d229f54b146f34b5f1fd3c40cad8d83759cc0aa1635619b4d`; `tools/quality/article-browser.cjs`=`b52c67fca8ce592531d1574b5886b95d2dd95f614b460bcecf460c229f36b05c`; existingharness/tests=`d1e6513061d0ff768266a2d2145d8c4b6f66929c1d51d88cf983a848349e0a41`.
+
+## High finding WB-H2-01 — stale cached ink ownership after child replacement
+
+`archive.js:116–121` unconditionallyassignsheading.textContent oneveryrefresh(initial,filter,history,tags,print-return),thenemitssite:archive-layout. RealDOMtextContentassignmentreplacesallchildnodes,includinganyscroll-entrycreatedinkspan,evenwhendisplayedtextisunchanged.
+
+`scroll-entry.cjs:221–237` reuses knownRecordsbythepersistentheadingelement. Itdoesnotverifythatcachedrecord.inkisstillanactualchildofthatowner. `wrapInk`255–262 initiallymovesheadingtextintoaspandirectchild. Bothroute(around703)andreading(around867)callersguardonlyon`!record.ink`. Whenarchive refreshdetachesink,butrecord.ink remainsatruthyJSreference, thelaterinventoryreusesitandthelaterdeparture doesnotwrapcurrenttext.
+
+Theheading canthereforereach data-route-blockdeparting withlayerchildren andzeroactualelementchildren. CSS`[data-route-block=departing]:not([data-route-layer=self]) > *`hasnoreallayeronwhichtostartanimation; abaretextnodeisnotCSSanimatable. Noadditionalwaitcancreatekeyframesfromanonexistentchild. ThismechanismdirectlymatchesreportedH2children/departing/frameCount0.
+
+Archive-layout alreadydefersreconcile0ms; addingadelayorreplayingreconcilewithoutvalidatingownershipdoesnotcleartruthyink. Router'sarchive/scroll-entrymountorder helpsinitialmountbutdoesnotprotectlaterfilter/tags/historytextrefreshes. Thehostedarticlejourneyexplicitlyselectsarchive-topicbeforeactivation,providingaplausiblerefreshpath. RetainedreportdoesnotrecordexactDOMmutationtiming,sofullcausalorderingintheactualbrowser remainsasupportedhypothesis,notatelemetryfact.
+
+## Independent meaningful counterexample
+
+Usedtheactualfactoryandexistingharnessdefinitionfrom`tests/scroll-entry.test.cjs`inmemorywithoutregisteringorwritingnewrepositorytests. ConfiguredoneH2-likeunitwithtext; firstdeparturecreatedaninkchildownedbyheading. Cancelledthatroute. SimulatedrealtextContentreplacementbydetachingtheoldspan,clearingactualelementchildrenandinstallingupdatedtext. Emittedactualarchive-layouteventandrandeferred0msreconcile; thenrequestedseconddepartureinbothdirections.
+
+Actualreadback:
+
+```json
+{"direction":1,"routeBlock":"departing","layer":"children","oldInkStillDetached":true,"actualDirectChildren":0,"actualText":"AI architecture · 2026 · English"}
+{"direction":-1,"routeBlock":"departing","layer":"children","oldInkStillDetached":true,"actualDirectChildren":0,"actualText":"AI architecture · 2026 · English"}
+```
+
+Thefirstownedchildassertionandsecondzerochildassertionspassed; commandexit0. ThisisstructuralDOMownershipcounterexample,notactualCSSframes/hostedreproduction. Itdemonstrates thattheunchangedcontroller leavesbarecurrenttextwithastaleinkrecorddespitearchive-layoutreconcile. Noconnectedinkownershipinvariantiscurrentlyenforced.
+
+## Minimal fix hypothesis and nonregression oracles
+
+Centralizeinkownershipvalidation: a cachedinkspanisonlyreusableifitsdirectparentisexactlyitsregisteredowner(anditremainsanownedinklayer). Invalidateastale/detached/movedreferencebeforebothrouteandreadingreuse; recreateaspanfromtheowner'scurrentchildrenonlywhenneeded,withoutduplicatingavalidwrapper. Preferoneowner/helperusedconsistentlyratherthanH2class-specificexceptions. Preserveelement/recordidentityanddonehistoryunlessareadermotionrequirementexplicitlyrequiresreset. Guarddestroy/unwrappingagainstforeign/detachedownershipsothatcleanupcannotmutateanunrelatedparent.
+
+Archivecanavoidunnecessarysame-textwritesasanoptionalboundedoptimization,butthatdoesnotfixthelegitimatechanged-filterlabelreplacementcasealone. Do notblanketmakeallheadingsselflayers,clearallknownRecords,reload/remountthewholepage,disablemotion,changewait/framebudgetsoracceptwatchdog/URLsettlementasCSSproof.
+
+| Risk / AC05/10/11 | Meaningful scenario and independentexpectedresult | Owner |
+| --- | --- | --- |
+| Detachedchildregression | Firstwrap→textContentreplacement→archive-layout→seconddepartforward/back;newactualinkdirectchildcontainsonlycurrenttext;oldreferenceisnotreused | Existing scroll-entry.test.cjs actualcontrollerharness withrealisticparent/childrenreplacement |
+| Idempotence | Reconcile/routephasewithstillownedinkdoesnotaddsecondwrapperorrewrapsamechild | Sameunitowner |
+| Readingpath | Belowfoldcurrenttextrefreshcanrearm/wrapnewownedinkwithoutstaleorblankcontent;visiblecontentsettlesnormally | Existingreadingcasesplusreplacementcase |
+| Ownershipcleanup | Detached/movedoldinkisnotusedorunwrappedinforeignparent;destroy/cancelcleansowntimers/layerswithouttextloss | Existingcancellation/destroycasesplusmovedchildnegative |
+| Nativebrowseroracle | Exactnewhostedfilter→article→Backjourney observes>=2actualkeyframesoneveryunitincludingH2,selffooterasapplicable,andnormalcompletion | Existingarticle-browser/preview/stagingroute; actualnewsourceboundevidence required |
+| Contentidentity | Filterheading/count/year/topic/languagelabelsandarchivehistory remaincorrectafterchanged/same-textrefresh | Existingarchive.test.cjs plusexactcurrentlabelobservation |
+
+`article-browser.installArticleFlightDiagnostics` observesrealnativeanimationstart,getsactualgetKeyframes,andretainsnativewitnessesbyactualDOMelement/state; italso samplesatmost5frameswithinunchangedwave. `validateArticleBlockUnit`requiresframes.length>=2. Thoseassertionsaremeaningfulandmustremainunchanged: otherunitscanfinishaphasewhileH2neveranimates. Anewmockchildcountpassisnecessarystructuralprotectionbutinsufficientactualframesacceptance.
+
+Smallestnextdiagnostic/fixverificationis thedetachedchildcounterexample undercorrectedownerlogic,thenexistingreading/cancel/archivecasesandtheactualnewcandidatehostedarticlejourney. Ifactualhostedfailurepersists,capturebefore/afterheadingchildren+cachedownershipandnativeeventcorrelation ratherthanloosenassertions. No unchangedhosted/fullcampaignrerun isjustifiedbythisreceipt.
+
+**Verdict: highstale-inkownershipdefect isindependentlysupported;actualhostedadvancementremainsblocked.** Theprevioussuccessfulfour-footer/16-leglocaldiagnosticdidnotexerciseeveryfilter-drivenheadingrefreshfromthishostedcharter,soitdoesnotcontradictthisfailure. Transitiveclosurefixremainsseparateandacceptedatitsrecordedpins; thisnewruntimefixmustobtainitsownsource/fingerprint/role/checkevidence.
+
+
+## Affected central ownership fix — independent source/check readback
+
+Afterpreservingthefirstdiagnosisabove, independentlyinspectedactualpreparedfix ondirty1c060base. NewsourceSHA256`site/engine/scroll-entry.cjs`=`c3a51a1148da710c2fd0add270cb8615bac6a5dd71a3430db5c6e5f32b83252e`;newtestSHA256`tests/scroll-entry.test.cjs`=`b1d010a5b79a0870796de1d478e052399e83e81c44fc787317e2bebe738692ea`. Archiveandactualbrowserframesoracle retainabovehashes/zerodiff.
+
+ActualfixcentralizesvalidityinsidewrapInk: reuseonlywhen`record.ink?.parentElement===element`;otherwisecreateownedinkfromcurrentchildNodesandoverwritecachedreference. Routeandreadingcallersnowalwaysinvokethathelperwherewrappingapplies,insteadoftruthinessshortcircuit. Correctlyownedspansremainunchanged/idempotent. Destroyunwrapsonlyspansthatstillbelongtotheirregisteredowner;foreign/detachedlayersarenotmutated. Recordid/donehistory isnotblanketreset; noH2self-layerexception,archivefilterrewrite,globalremountorCSS/oraclethresholdchangewasintroduced.
+
+Newregression exercisesfirstownedH2wrap→detachedchildreplacement→secondwavewithnewcurrenttext→thirdwavewithsameownedink,forwardandbackward,andcancelswith0tasks. Readretainedrawold-sourcefailure `../tmp/r9-heading-regression-before.log`,SHA256`bbf026cabd1eede7b4021dce172783de3a0a84ce8e2efabe4ac88cefcaa420a4`:0/1pass,expectedmovablechild1actual0. Readcorrectedfullscrollsuite rawlog`../tmp/r9-heading-tests.log`,SHA256`88bc9e5aabb074e9f5da7cd2d9c5773b9aab8f7fcc2f221954d8a67bb1f0e33a`:49/49pass,0fail/cancelled/skipped/todo,224.426362ms. Theseare retainedauthorexecutions,notduplicatedwhole-suiteexecutionbythisreviewer.
+
+Independenttargetedexecution:
+
+`node --test --test-name-pattern='archive text refresh|text-only scroll-continue|bare deep headings|repeat reading keeps|route-only cleanup' tests/scroll-entry.test.cjs`
+
+Exit0;5tests/pass5/fail0/cancelled0/skipped0/todo0;103.711706ms. ThiscoversnewdetachedH2/idempotencecase,priorfooteractual-boxspecialcase,deepheadingink,route-onlycleanupandsharedreadingpaintownership.
+
+Additionalactualfactory/harness controlledchecks(write-free):
+
+```json
+{"case":"below-fold-reading-refresh","recreatedOwnedInk":true,"currentTextPreserved":true,"state":"waiting"}
+{"case":"destroy-foreign","unwraps":0,"tasks":0}
+{"case":"destroy-detached","unwraps":0,"tasks":0}
+{"case":"destroy-owned","unwraps":1,"tasks":0}
+```
+
+Readingcase mountsabelowfoldH2withcurrenttext,detachesitsoldink,emitsarchive-layoutandexecutesdeferredreconcile: freshownedinkcontainsnewtextandreadingremainswaiting. CleanupcasesattachaboundedreplaceWithwitness totheactualcachedspan,thenmarkitforeign/detached/owned: onlyactualownedspanunwrapsonce;alltasksrelease. Thesearemeaningfulownership/refusalobservations,notrealnativeanimationframes.
+
+Separatetransitiveretentionpinswere recheckedunchanged:retentioneed451…,parser386b65…,Color482287…,retentiontestsd8f446…,registry89c7d5…. Thus itsacceptedscopedresultisreusedonlyforthoseunchangedbytes. H2fix doesnotclaimtoresolveorretsetanyretentioncase.
+
+**Affected source/unit verdict: pass for the central ownership correction at c3a51a…/b1d010… within the inspected scope.** WB-H2-01 is structurallytreatedandregressiondetectsactualoldbehavior. Actualhostedfilter/historyH2start/end/keyframes verificationonnewsource remainspending; a currentlyunreviewednewruntimecannotinheritoldfamilyadmission. EnhancedQAcharter/sourcewasnotyetreviewed/executedbythisreceipt. Keepactualframes>=2andnativeeventoracleunchanged,obtainrequirednewruntime/source/role/CIevidence,andpreservetheoriginalhostedfailure. No blockedlocalbrowserrerun orhostedpassisclaimed.

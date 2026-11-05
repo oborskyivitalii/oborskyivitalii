@@ -254,6 +254,8 @@ window.SiteScrollEntry=(function () {
   function wrapInk(element, record) {
     // Inline text needs one movable layer; publication/grid children stay intact.
     if (!element.matches('p,h1,h2,h3,h4,h5,h6,a')) return;
+    // Archive refresh replaces textContent while the owning element is reused.
+    if (record.ink?.parentElement === element) return;
     const ink = document.createElement('span');
     ink.setAttribute('data-scroll-ink', '');
     ink.append(...element.childNodes);
@@ -698,8 +700,7 @@ window.SiteScrollEntry=(function () {
     // identity after a prior route. Animate its actual box, not an optional
     // child whose CSS animation may never start on a subsequent navigation.
     const movesAsBox = (element) => wholeBlocks || element.matches('.scroll-continue');
-    for (const { element, record } of selected)
-      if (!movesAsBox(element) && !record.ink) wrapInk(element, record);
+    for (const { element, record } of selected) if (!movesAsBox(element)) wrapInk(element, record);
     attachSeparators(measured.separators, 'route');
     prepareRoutePaper(measured.paper, timing, upward, state);
     for (const [index, row] of rows.entries()) {
@@ -863,7 +864,7 @@ window.SiteScrollEntry=(function () {
       return;
     }
     record.done = false;
-    if (!record.ink) wrapInk(element, record);
+    wrapInk(element, record);
     attachSeparators(borders, 'reading', element);
     element.setAttribute('data-scroll-entry', 'waiting');
   }
@@ -1058,7 +1059,7 @@ window.SiteScrollEntry=(function () {
     suspend();
     for (const remove of listeners.splice(0)) remove();
     for (const [element, record] of knownRecords) {
-      if (record.ink) record.ink.replaceWith(...record.ink.childNodes);
+      if (record.ink?.parentElement === element) record.ink.replaceWith(...record.ink.childNodes);
       clearState(element);
     }
     records.clear();

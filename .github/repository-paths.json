@@ -745,18 +745,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/7f461e214a5bb9f57239e9ebe5701d9266e60abec60a00652f450aef3e838507": {
-      "kind": "directory",
-      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/7f461e214a5bb9f57239e9ebe5701d9266e60abec60a00652f450aef3e838507/the-sdlc-is-out-of-balance.html": {
-      "kind": "file",
-      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003": {
       "kind": "directory",
       "purpose": "Exact current native raw article rendition and existing immutable closure; no prior-publication claim.",
@@ -766,6 +754,18 @@
     "docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/the-sdlc-is-out-of-balance.html": {
       "kind": "file",
       "purpose": "Exact current native raw article rendition and existing immutable closure; no prior-publication claim.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/f33acabc16e51e9b68d65e6a1510e431324f125b120eb7d9c02907e6ef8baadf": {
+      "kind": "directory",
+      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/f33acabc16e51e9b68d65e6a1510e431324f125b120eb7d9c02907e6ef8baadf/the-sdlc-is-out-of-balance.html": {
+      "kind": "file",
+      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -919,39 +919,39 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/72702f750f37e9cc6678b2d1181da57aa8c121293ebf70c9deae4e7aec568237": {
+    "docs/runtime/7663db9d0489123d242cda1c3ffadbae83170add3c35a717ba42b1bf5021a363": {
       "kind": "directory",
-      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
+      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/72702f750f37e9cc6678b2d1181da57aa8c121293ebf70c9deae4e7aec568237/archive.js": {
+    "docs/runtime/7663db9d0489123d242cda1c3ffadbae83170add3c35a717ba42b1bf5021a363/archive.js": {
       "kind": "file",
-      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
+      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/72702f750f37e9cc6678b2d1181da57aa8c121293ebf70c9deae4e7aec568237/navigation.js": {
+    "docs/runtime/7663db9d0489123d242cda1c3ffadbae83170add3c35a717ba42b1bf5021a363/navigation.js": {
       "kind": "file",
-      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
+      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/72702f750f37e9cc6678b2d1181da57aa8c121293ebf70c9deae4e7aec568237/space.js": {
+    "docs/runtime/7663db9d0489123d242cda1c3ffadbae83170add3c35a717ba42b1bf5021a363/space.js": {
       "kind": "file",
-      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
+      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/72702f750f37e9cc6678b2d1181da57aa8c121293ebf70c9deae4e7aec568237/styles.css": {
+    "docs/runtime/7663db9d0489123d242cda1c3ffadbae83170add3c35a717ba42b1bf5021a363/styles.css": {
       "kind": "file",
-      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
+      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/72702f750f37e9cc6678b2d1181da57aa8c121293ebf70c9deae4e7aec568237/theme.js": {
+    "docs/runtime/7663db9d0489123d242cda1c3ffadbae83170add3c35a717ba42b1bf5021a363/theme.js": {
       "kind": "file",
-      "purpose": "Generated native site/runtime/media snapshot from current authored owners; publication gates remain separate.",
+      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1087,6 +1087,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/00abf3a6e2e7afb6a4fc52fd834919f6fbc1a38ed457f4743b75c10050588525": {
+      "kind": "directory",
+      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/00abf3a6e2e7afb6a4fc52fd834919f6fbc1a38ed457f4743b75c10050588525/index.html": {
+      "kind": "file",
+      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2": {
       "kind": "directory",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
@@ -1099,6 +1111,30 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/1438ef7a04e8f762eb7769a7788acf61316652aa4074bb61c8c383e100cef79d": {
+      "kind": "directory",
+      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/1438ef7a04e8f762eb7769a7788acf61316652aa4074bb61c8c383e100cef79d/talks.html": {
+      "kind": "file",
+      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/174b78059be710f7423db3ff8c283e82108b0617365198acb641b397463be088": {
+      "kind": "directory",
+      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/174b78059be710f7423db3ff8c283e82108b0617365198acb641b397463be088/writing.html": {
+      "kind": "file",
+      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e": {
       "kind": "directory",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
@@ -1108,6 +1144,18 @@
     "docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e/talks.html": {
       "kind": "file",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/227bbb62dd82988d96e2383aba3a10e8635ef2d78f4130c0f2631f951813b225": {
+      "kind": "directory",
+      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/227bbb62dd82988d96e2383aba3a10e8635ef2d78f4130c0f2631f951813b225/credits.html": {
+      "kind": "file",
+      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1144,30 +1192,6 @@
     "docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed/research.html": {
       "kind": "file",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/6b377e11e228527ef09d6aecc5afeac5f8144b8fbdb95fbf254777af1ba747b7": {
-      "kind": "directory",
-      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/6b377e11e228527ef09d6aecc5afeac5f8144b8fbdb95fbf254777af1ba747b7/research.html": {
-      "kind": "file",
-      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/7051b498b2395f9420151baf8146e863895b3fe995a3b5c419b6a4ac0d409146": {
-      "kind": "directory",
-      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/7051b498b2395f9420151baf8146e863895b3fe995a3b5c419b6a4ac0d409146/credits.html": {
-      "kind": "file",
-      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1231,30 +1255,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/9611f23c550f679a88201e66357892dde84affea61ac8e0a11b3396bb6bf6364": {
-      "kind": "directory",
-      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/9611f23c550f679a88201e66357892dde84affea61ac8e0a11b3396bb6bf6364/index.html": {
-      "kind": "file",
-      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/a571af3fd5bbd567e0e25e7b3db992b181beef898491b19d15f1c863670010ea": {
-      "kind": "directory",
-      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/a571af3fd5bbd567e0e25e7b3db992b181beef898491b19d15f1c863670010ea/writing.html": {
-      "kind": "file",
-      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700": {
       "kind": "directory",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
@@ -1264,6 +1264,18 @@
     "docs/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700/credits.html": {
       "kind": "file",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/aee203e0745b6caa5384f5d81a0e93b4b4c13e58f16d7f3a866fc648abcaceb4": {
+      "kind": "directory",
+      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/aee203e0745b6caa5384f5d81a0e93b4b4c13e58f16d7f3a866fc648abcaceb4/research.html": {
+      "kind": "file",
+      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1312,18 +1324,6 @@
     "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html": {
       "kind": "file",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/ed6df3487667d45452588536fa1591bb8f8fb09dbfbbe91b725cf0ce24a3c9d1": {
-      "kind": "directory",
-      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/ed6df3487667d45452588536fa1591bb8f8fb09dbfbbe91b725cf0ce24a3c9d1/talks.html": {
-      "kind": "file",
-      "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -2155,6 +2155,18 @@
       "role": "history",
       "owner": "AGENTS.md"
     },
+    "review/issue-169/2026-11-05-native-r9-content-retention-requirements-preflight.md": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-content-retention-whitebox.md": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-169/2026-11-05-native-r9-control-runtime-reconciliation.md": {
       "kind": "file",
       "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
@@ -2239,6 +2251,42 @@
       "role": "history",
       "owner": "AGENTS.md"
     },
+    "review/issue-169/2026-11-05-native-r9-heading-diagnostic-charter.md": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-heading-probe-code-review.md": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-heading-probe-whitebox.md": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-hosted-heading-exploratory.md": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-hosted-heading-requirements-preflight.md": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-hosted-heading-whitebox.md": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-169/2026-11-05-native-r9-plain-staging-family-code-review.md": {
       "kind": "file",
       "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
@@ -2254,6 +2302,18 @@
     "review/issue-169/2026-11-05-native-r9-requirements-delta.md": {
       "kind": "file",
       "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-retention-fix-whitebox.md": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-retention-heading-code-review.md": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
       "role": "history",
       "owner": "AGENTS.md"
     },
@@ -2278,6 +2338,12 @@
     "review/issue-169/2026-11-05-r9-footer-routing-fix.md": {
       "kind": "file",
       "purpose": "Issue169 source-bound actual browser failure, bounded footer correction, independent review or exact-source diagnostic packet.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-r9-full-ci-corrections.md": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
       "role": "history",
       "owner": "AGENTS.md"
     },
@@ -3445,6 +3511,36 @@
       "role": "history",
       "owner": "AGENTS.md"
     },
+    "review/issue-169/r9/checks/corrections-architecture.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/corrections-basic.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/corrections-format.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/corrections-lint.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/corrections-style.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-169/r9/checks/footer-route-final.log.gz": {
       "kind": "file",
       "purpose": "Issue169 source-bound actual browser failure, bounded footer correction, independent review or exact-source diagnostic packet.",
@@ -3454,6 +3550,60 @@
     "review/issue-169/r9/checks/footer-route-first-failed.log.gz": {
       "kind": "file",
       "purpose": "Issue169 source-bound actual browser failure, bounded footer correction, independent review or exact-source diagnostic packet.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/full-ci-hosted-preview-smoke.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/full-ci-shard0.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/full-ci-shard0.stderr.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/full-ci-shard0.tap.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/full-ci-shard5.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/full-ci-shard5.stderr.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/full-ci-shard5.tap.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/heading-regression-before-failed.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/heading-source-pass.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
       "role": "history",
       "owner": "AGENTS.md"
     },
@@ -3553,6 +3703,36 @@
       "role": "history",
       "owner": "AGENTS.md"
     },
+    "review/issue-169/r9/checks/retention-cli-pass.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/retention-first-failed.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/retention-reproduce-failed.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/retention-runtime-only-failed.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/retention-transitive-pass.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-169/r9/checks/run42087148352-report.json.gz": {
       "kind": "file",
       "purpose": "Issue169 source-bound actual browser failure, bounded footer correction, independent review or exact-source diagnostic packet.",
@@ -3644,6 +3824,12 @@
       "owner": "AGENTS.md"
     },
     "review/issue-169/r9/checks/runtime-wrong-config-failed.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/corrections-input-manifest.json": {
       "kind": "file",
       "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
       "role": "history",

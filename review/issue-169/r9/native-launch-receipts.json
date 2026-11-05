@@ -82,5 +82,16 @@
     "actual_browser_result": "28/28 passed, bounded diagnostic/fullGate false.",
     "production_data": "Actual normal guarded private output, sourceDirty true, tuple3364305b independently inspected before registration. Not release eligibility.",
     "limits": "Current exact-head full source/hosted/staging/merge/rights/archive/served-byte gates pending. Provider memory internals unknown; older observations retain original identities."
+  },
+  "full_ci_correction_iteration": {
+    "source_packet": "review/issue-169/r9/corrections-input-manifest.json",
+    "packet_sha256": "0b6cc0c18eb78db9fd8a751bdddcf95583efc91720780a5635a7bd529f975e14",
+    "launches": "Actual followup_task continuation turns on four original separate role agents; not fresh forks.",
+    "actual_failed_source": "1c060edd33259800420ec314c6245c72be32eda8",
+    "actual_failed_source_run": 42095940383,
+    "actual_failed_hosted_run": 42095940300,
+    "app_authorship": "Root authored dependency closure and live animation-layer ownership fixes; Requirements preflight preceded dependent edits. Code/White-box independently reviewed source and meaningful negative regressions.",
+    "qa_authorship": "Application-independent Exploratory authored only the dated40-case observer extension; Code/White-box pretrigger source review distinct from browser execution.",
+    "limits": "Prior28-case e92 diagnostic and failed1c060 hosted/source outcomes retain original identities. No new browser pass or runtime-family admission before actual clean-source execution. Provider memory internals unknown."
   }
 }

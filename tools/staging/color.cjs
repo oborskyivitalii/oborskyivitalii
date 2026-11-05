@@ -94,8 +94,8 @@ function decoratePublic(dir) {
   );
   // An article's replaced base snapshot was not a retained publication. But an
   // older approved snapshot can still depend on the exact active base runtime.
-  // Retain that dependency only when the frozen retained source declares its
-  // path and bytes; do not implicitly retain every replaced active page.
+  // Capture keeps exact frozen declarations and immutable dependencies of surviving
+  // immutable documents; it does not retain every replaced active page.
   const declared = retention.declaration(
     JSON.parse(fs.readFileSync(path.join(__dirname, '../../site/retained/manifest.json')))
   );

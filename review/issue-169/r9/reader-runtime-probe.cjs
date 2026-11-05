@@ -56,18 +56,34 @@ const report = {
   ],
   environment: common.environment(),
   charter:
-    '1440/390 normal and no-JS reader; five images, captions, alt, PDF/local targets; image open/Escape/button close; two Writing→article→Back→footer next→Back cycles per normal width; native footer animationstart AND animationend with actual self-box and positive elapsed duration.',
+    '1440/390 normal and no-JS reader; five images, captions, alt, PDF/local targets; image open/Escape/button close; two original Writing→article→Back→footer next→Back cycles per normal width, plus actual topic refresh and Forward→reader→Back in each cycle with native H2 text-layer CSS start/end;40cases/24normallegs; native footer animationstart AND animationend with actual self-box and positive elapsed duration.',
   limits: [
     'Loopback exact bytes, not hosted delivery/TLS/headers.',
     'Automated Chromium, not physical devices or human usability.',
     'External source URLs are inspected but not fetched or posted.',
     'No runtime-family selector, release admission or performance result.',
   ],
+  plan: {
+    originalCases: 28,
+    addedFilterCases: 4,
+    addedHistoryCases: 8,
+    totalCases: 40,
+    contexts: 4,
+    originalNormalLegs: 16,
+    addedHistoryLegs: 8,
+    totalNormalLegs: 24,
+  },
   plannedCases: [1440, 390].flatMap((width) => [
     ...[1, 2].flatMap((cycle) =>
-      ['writing-reader', 'reader-back', 'footer-next', 'footer-back'].map(
-        (name) => 'normal-' + width + '-cycle-' + cycle + '-' + name
-      )
+      [
+        'filter-refresh',
+        'writing-reader',
+        'reader-back',
+        'forward-reader',
+        'forward-back',
+        'footer-next',
+        'footer-back',
+      ].map((name) => 'normal-' + width + '-cycle-' + cycle + '-' + name)
     ),
     'normal-' + width + '-reader',
     'normal-' + width + '-viewer',
@@ -100,6 +116,22 @@ function save() {
   report.elapsedMs = Date.now() - started;
   report.notObserved = report.plannedCases.filter(
     (id) => !report.cases.some((row) => row.id === id && ['pass', 'fail'].includes(row.state))
+  );
+  report.legAccounting = Object.fromEntries(
+    [
+      ['original', false, report.plan.originalNormalLegs],
+      ['addedHistory', true, report.plan.addedHistoryLegs],
+    ].map(([name, added, planned]) => [
+      name,
+      {
+        planned,
+        captured: report.cases.filter((row) => Boolean(row.historyLeg) === added && row.observed)
+          .length,
+        passed: report.cases.filter(
+          (row) => Boolean(row.historyLeg) === added && row.observed && row.state === 'pass'
+        ).length,
+      },
+    ])
   );
   fs.writeFileSync(reportFile, JSON.stringify(report, null, 2) + '\n');
 }
@@ -179,6 +211,7 @@ function installNativeAnimationObservation() {
       (event) => {
         if (!['route-block-depart', 'route-block-arrive'].includes(event.animationName)) return;
         const node = event.target;
+        const owner = node.closest?.('[data-route-block]');
         if (!ids.has(node)) ids.set(node, ++serial);
         const animations =
           type === 'animationstart'
@@ -205,20 +238,56 @@ function installNativeAnimationObservation() {
           classes: node.className,
           routeLayer: node.dataset.routeLayer || null,
           routeBlock: node.dataset.routeBlock || null,
+          ownerTag: owner?.tagName || null,
+          ownerId: owner?.id || null,
+          ownerClasses: owner?.className || null,
+          ownerRouteLayer: owner?.dataset.routeLayer || null,
+          targetIsDirectChild: node.parentElement === owner,
+          targetIsInk: node.hasAttribute('data-scroll-ink'),
+          targetConnected: node.isConnected,
+          targetText: node.textContent.trim(),
+          ownerText: owner?.id === 'archive-heading' ? owner.textContent.trim() : null,
           animations,
         });
       },
       true
     );
 }
-async function transition(page, row, from, to, direction, activate, footer = false) {
+async function transition(
+  page,
+  row,
+  from,
+  to,
+  direction,
+  activate,
+  footer = false,
+  heading = false
+) {
   const before = await page.evaluate(() => ({
     flight: window.__articleFlightEvents.length,
     block: window.__articleBlockEvents.length,
     native: window.__r9NativeAnimations.length,
   }));
+  row.observationOffsets = before;
+  save();
   await activate();
-  await settled(page, to);
+  try {
+    await settled(page, to);
+  } catch (error) {
+    row.failedFlight = await page
+      .evaluate(
+        (offset) => ({
+          url: location.href,
+          events: window.__articleFlightEvents.slice(offset.flight),
+          blocks: window.__articleBlockEvents.slice(offset.block),
+          nativeAnimations: window.__r9NativeAnimations.slice(offset.native),
+        }),
+        before
+      )
+      .catch(() => null);
+    save();
+    throw error;
+  }
   row.observed = await page.evaluate(
     (offset) => ({
       url: location.href,
@@ -285,7 +354,172 @@ async function transition(page, row, from, to, direction, activate, footer = fal
     );
     row.footerAnimation = { start, end: ends[0] };
   }
+  if (heading) validateHeadingAnimation(row);
   await evidence(page, row.id);
+}
+function validateHeadingAnimation(row) {
+  const events = row.observed.nativeAnimations;
+  const starts = events.filter(
+    (event) =>
+      event.type === 'animationstart' &&
+      event.name === 'route-block-depart' &&
+      event.ownerTag === 'H2' &&
+      event.ownerId === 'archive-heading' &&
+      !event.pseudoElement &&
+      event.targetConnected &&
+      ((event.tag === 'SPAN' && event.targetIsDirectChild && event.targetIsInk) ||
+        (event.tag === 'H2' && event.ownerRouteLayer === 'self'))
+  );
+  assert.equal(
+    starts.length,
+    1,
+    'Actual visible archive-heading text layer must emit one native CSS animationstart'
+  );
+  const start = starts[0];
+  assert.equal(
+    start.targetText,
+    start.ownerText,
+    'The live animated layer contains all current heading text'
+  );
+  assert.equal(
+    start.ownerText,
+    row.headingRefresh.after.text,
+    'The current refreshed heading text owns the animation'
+  );
+  assert.ok(
+    start.animations.some(
+      (animation) => Number(animation.duration) > 0 && animation.keyframes.length >= 2
+    ),
+    'Current heading text has real CSS keyframes and positive duration'
+  );
+  const ends = events.filter(
+    (event) =>
+      event.type === 'animationend' &&
+      event.nodeId === start.nodeId &&
+      event.name === start.name &&
+      !event.pseudoElement
+  );
+  assert.equal(ends.length, 1, 'The same current heading text layer emits native animationend');
+  assert.ok(
+    ends[0].elapsedTime > 0 && ends[0].time > start.time,
+    'Heading native animation has positive elapsed duration'
+  );
+  assert.equal(
+    events.some(
+      (event) =>
+        event.type === 'animationcancel' &&
+        event.nodeId === start.nodeId &&
+        event.name === start.name
+    ),
+    false,
+    'Heading text animation was not cancelled'
+  );
+  row.headingAnimation = { start, end: ends[0] };
+}
+async function headingSnapshot(heading) {
+  return heading.evaluate((node) => ({
+    text: node.textContent.trim(),
+    outerHTML: node.outerHTML,
+    childCount: node.children.length,
+    ownedInk: [...node.children]
+      .filter((child) => child.hasAttribute('data-scroll-ink'))
+      .map((child) => ({
+        text: child.textContent,
+        connected: child.isConnected,
+        direct: child.parentElement === node,
+      })),
+    rect: node.getBoundingClientRect().toJSON(),
+    viewportHeight: innerHeight,
+  }));
+}
+async function filterRefresh(page, row, descriptor) {
+  await page.waitForFunction(() => document.body.dataset.tagsState === 'ready', null, {
+    timeout: timeout(),
+  });
+  const card = page.locator(
+    '.publication-list a.publication-title[href="' + descriptor.alias + '"]'
+  );
+  assert.equal(await card.count(), 1);
+  row.topic = await card.evaluate((node) => node.closest('li.publication').dataset.topic);
+  assert.match(row.topic, /^[a-z][a-z0-9-]*$/);
+  const select = page.locator('#archive-topic');
+  const heading = page.locator('h2#archive-heading');
+  row.before = {
+    topic: await select.inputValue(),
+    url: page.url(),
+    heading: await headingSnapshot(heading),
+  };
+  if (row.before.topic === row.topic) await select.selectOption('all', { timeout: timeout() });
+  await select.selectOption(row.topic, { timeout: timeout() });
+  assert.equal(await select.inputValue(), row.topic);
+  assert.equal(
+    new URL(page.url()).searchParams.get('topic'),
+    row.topic,
+    'Real topic UI changed archive URL'
+  );
+  assert.equal(await card.isVisible(), true, 'Article remains in its actual topic');
+  row.after = {
+    topic: await select.inputValue(),
+    url: page.url(),
+    heading: await headingSnapshot(heading),
+    visibleCards: await page.locator('li.publication:not([hidden])').count(),
+  };
+  assert.ok(row.after.visibleCards > 0 && row.after.heading.text);
+}
+async function refreshedForward(page, row, topic, width) {
+  const heading = page.locator('h2#archive-heading');
+  await heading.scrollIntoViewIfNeeded({ timeout: timeout() });
+  const beforeURL = page.url();
+  const ink = heading.locator(':scope > [data-scroll-ink]');
+  const inkCount = await ink.count();
+  assert.ok(inkCount <= 1, 'No duplicate owned heading ink before refresh');
+  const previousInk = inkCount ? await ink.elementHandle() : null;
+  row.headingRefresh = { topic, before: await headingSnapshot(heading), beforeURL };
+  try {
+    // Actual selectOption change event refreshes text; the unchanged value leaves Forward history intact.
+    assert.equal(await page.locator('#archive-topic').inputValue(), topic);
+    await page.locator('#archive-topic').selectOption(topic, { timeout: timeout() });
+    row.headingRefresh.previousInkWasPresent = Boolean(previousInk);
+    if (previousInk)
+      row.headingRefresh.previousInkDetached = await previousInk.evaluate(
+        (node) => !node.isConnected
+      );
+  } finally {
+    await previousInk?.dispose();
+  }
+  assert.equal(page.url(), beforeURL, 'Same-topic refresh preserves Forward entry');
+  await heading.scrollIntoViewIfNeeded({ timeout: timeout() });
+  row.headingRefresh.after = await headingSnapshot(heading);
+  assert.ok(
+    row.headingRefresh.after.rect.bottom > 0 &&
+      row.headingRefresh.after.rect.top < row.headingRefresh.after.viewportHeight,
+    'Actual heading is in the departure viewport'
+  );
+  assert.equal(row.headingRefresh.after.text, row.headingRefresh.before.text);
+  if (row.headingRefresh.previousInkWasPresent)
+    assert.equal(
+      row.headingRefresh.previousInkDetached,
+      true,
+      'Actual archive text refresh replaced the previous live ink node'
+    );
+  row.writingURL = page.url();
+  row.writingDeparture = await page.evaluate(() => ({
+    scroll: scrollY,
+    focus: document.activeElement?.id || document.activeElement?.getAttribute?.('href') || null,
+  }));
+  assert.ok(row.writingDeparture.focus, 'Actual Forward departure focus is recorded');
+  row.historyLeg = 'added-forward';
+  await evidence(page, 'normal-' + width + '-' + row.id + '-heading-refreshed');
+  await transition(
+    page,
+    row,
+    'writing',
+    'article:' + key,
+    1,
+    () => page.goForward({ timeout: timeout() }),
+    false,
+    true
+  );
 }
 async function verifyLinks(page, row, manifest, base) {
   const links = await page.locator('main.article-reader a[href]').evaluateAll((anchors) =>
@@ -721,6 +955,12 @@ async function observeContext(mode, width, manifest, descriptor, base) {
       await contextMetadata(page, record);
       for (let cycle = 1; cycle <= 2; cycle++) {
         const prefix = mode + '-' + width + '-cycle-' + cycle;
+        const filtered = await runCase(
+          prefix + '-filter-refresh',
+          'Actual article topic selection refreshes heading/count and keeps the R9 card',
+          (row) => filterRefresh(page, row, descriptor)
+        );
+        if (filtered.state !== 'pass') break;
         const opened = await runCase(
           prefix + '-writing-reader',
           'Writing card enters R9 through real normal-motion native route',
@@ -766,6 +1006,24 @@ async function observeContext(mode, width, manifest, descriptor, base) {
           }
         );
         if (back.state !== 'pass') break;
+        const forwarded = await runCase(
+          prefix + '-forward-reader',
+          'After real topic refresh, browser Forward animates current visible H2 text through actual CSS start/end and reaches R9',
+          (row) => refreshedForward(page, row, filtered.topic, width)
+        );
+        if (forwarded.state !== 'pass') break;
+        const forwardBack = await runCase(
+          prefix + '-forward-back',
+          'Browser Back after Forward restores Writing heading-position scroll/focus',
+          async (row) => {
+            row.historyLeg = 'added-back';
+            await transition(page, row, 'article:' + key, 'writing', -1, () =>
+              page.goBack({ timeout: timeout() })
+            );
+            await restoration(page, row, forwarded.writingDeparture, forwarded.writingURL);
+          }
+        );
+        if (forwardBack.state !== 'pass') break;
         const next = await runCase(
           prefix + '-footer-next',
           'Footer actual anchor box starts and ends its CSS departure animation, then reaches Talks',
@@ -997,6 +1255,8 @@ async function main() {
       path.join(quality, 'serve.cjs'),
       path.join(quality, 'artifact.cjs'),
       path.join(root, 'site/engine/scroll-entry.cjs'),
+      path.join(root, 'site/engine/scroll-entry.css'),
+      path.join(root, 'site/engine/archive.js'),
       path.join(root, 'site/engine/reader.cjs'),
     ].map((file) => [path.relative(root, file), artifact.digest(fs.readFileSync(file))])
   );
@@ -1075,6 +1335,22 @@ async function main() {
     report.cases.every((row) => row.state === 'pass'),
     true
   );
+  for (const width of [1440, 390])
+    for (let cycle = 1; cycle <= 2; cycle++)
+      for (const name of ['filter-refresh', 'forward-reader', 'forward-back'])
+        assert.equal(
+          report.cases.find((row) => row.id === 'normal-' + width + '-cycle-' + cycle + '-' + name)
+            ?.state,
+          'pass',
+          'Every added filter/history case executed'
+        );
+  report.observedLegCounts = {
+    original: report.cases.filter((row) => row.observed && !row.historyLeg).length,
+    addedHistory: report.cases.filter((row) => row.observed && row.historyLeg).length,
+  };
+  assert.equal(report.observedLegCounts.original, report.plan.originalNormalLegs);
+  assert.equal(report.observedLegCounts.addedHistory, report.plan.addedHistoryLegs);
+  assert.equal(report.cases.length, report.plan.totalCases);
   assert.deepEqual(
     report.evidenceErrors,
     [],

@@ -73,7 +73,7 @@ test('retention rejects altered immutable paths rather than replacing them', (t)
   );
 });
 
-test('only exact declared active immutable files survive production capture', (t) => {
+test('active documents require an exact declaration while unrelated active documents stay excluded', (t) => {
   const source = fixture.source(fixture.temporary(t), 'declared-active');
   const directory = path.join(source.directory, 'public');
   const revision = snapshot.verify(directory, source.record);
@@ -99,6 +99,81 @@ test('only exact declared active immutable files survive production capture', (t
     /immutable path/
   );
   assert.throws(() => retention.capture(directory, revision, { declared: [] }), /retention map/);
+});
+
+test('retained documents keep transitive immutable dependencies while unrelated active files stay excluded', (t) => {
+  const directory = fixture.temporary(t);
+  const engine = 'a'.repeat(64);
+  const old = 'snapshots/' + '0'.repeat(64) + '/writing.html';
+  const routes = Object.fromEntries(
+    snapshot.routes.map((id, index) => [
+      id,
+      {
+        url: 'snapshots/' + String(index + 1).repeat(64) + '/' + id + '.html',
+      },
+    ])
+  );
+  const revision = { engine, routes };
+  const write = (name, text) => {
+    fs.mkdirSync(path.dirname(path.join(directory, name)), { recursive: true });
+    fs.writeFileSync(path.join(directory, name), text);
+  };
+  for (const name of snapshot.runtimeFiles)
+    write('runtime/' + engine + '/' + name, 'Exact source bytes: ' + name);
+  write(routes.writing.url, '<html><body>Replaced active page</body></html>');
+  const related =
+    '<html><head><script src="../../runtime/' +
+    engine +
+    '/theme.js?version=1#entry"></script></head><body><a href="../../' +
+    old +
+    '">Prior document</a></body></html>';
+  write(routes.index.url, related);
+  assert.equal(
+    require('../tools/site/html.cjs')
+      .documentElements(related)
+      .some((element) => element.tag === 'script'),
+    false,
+    'ordinary document hooks continue to exclude raw script elements'
+  );
+  write(
+    old,
+    '<html><body><a href="../../' +
+      routes.index.url +
+      '">Shared snapshot</a>' +
+      '<!-- <script src="../../runtime/' +
+      engine +
+      '/space.js"></script> -->' +
+      '<template><script src="../../runtime/' +
+      engine +
+      '/archive.js"></script></template>' +
+      '<script type="application/json">{"src":"../../runtime/' +
+      engine +
+      '/navigation.js"}</script>' +
+      '<link href="https://elsewhere.invalid/runtime/' +
+      engine +
+      '/styles.css">' +
+      '</body></html>'
+  );
+  const captured = retention.capture(directory, revision);
+  assert.deepEqual(
+    captured.map((entry) => entry.path).sort(),
+    [old, routes.index.url, 'runtime/' + engine + '/theme.js'].sort()
+  );
+  assert.deepEqual(
+    captured.find((entry) => entry.path.endsWith('/theme.js')).bytes,
+    fs.readFileSync(path.join(directory, 'runtime/' + engine + '/theme.js'))
+  );
+  fs.rmSync(path.join(directory, 'runtime/' + engine + '/theme.js'));
+  assert.throws(
+    () => retention.capture(directory, revision),
+    /retained immutable dependency missing/
+  );
+  write('runtime/' + engine + '/theme.js', 'Exact source bytes: theme.js');
+  fs.rmSync(path.join(directory, routes.index.url));
+  assert.throws(
+    () => retention.capture(directory, revision),
+    /retained immutable dependency missing/
+  );
 });
 
 test('production retention declaration rejects a missing source map before capture', () => {
