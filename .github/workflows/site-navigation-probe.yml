@@ -1,25 +1,24 @@
 name: Site navigation diagnostic
-# Explicit diagnosis only. Basic PR checks and hosted full navigation own CI.
+# Explicit issue169 R9 diagnostic only; not runtime admission or a hosted gate.
 on:
   workflow_dispatch:
     inputs:
       candidate_sha:
-        description: Exact source commit to diagnose
+        description: Exact coherent workflow/script/candidate commit to diagnose
         required: true
         type: string
 permissions:
   contents: read
   actions: read
 jobs:
-  firefox:
-    runs-on: windows-2025
+  chromium:
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     env:
       SITE_CANDIDATE_SHA: ${{ inputs.candidate_sha }}
-      SITE_PUBLIC_DIR: ${{ github.workspace }}/quality-artifact/public
-      SITE_ARTIFACT_MANIFEST: ${{ github.workspace }}/quality-artifact/artifact.json
+      SITE_PUBLIC_DIR: ${{ github.workspace }}/color-artifact/public
+      SITE_ARTIFACT_MANIFEST: ${{ github.workspace }}/color-artifact/artifact.json
       SITE_REPORT_DIR: ${{ github.workspace }}/quality-reports
-      SITE_NAVIGATION_PROBE: 'true'
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
@@ -29,22 +28,35 @@ jobs:
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: 24.19.0
-      - name: Validate and copy the exact candidate
-        run: |
-          node -e "require('node:assert/strict').match(process.env.SITE_CANDIDATE_SHA,/^[0-9a-f]{40}$/)"
-          node tools/quality/artifact.cjs build quality-artifact
-      - name: Install pinned Firefox
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: 3.12.14
+      - name: Install locked diagnostic dependencies
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
+          npm ci --prefix tools/publishing/toolchain --ignore-scripts
+          python3 -m venv tools/quality/toolchain/venv
+          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps "$(python3 tools/publishing/web-media.py --requirement)"
+      - name: Build exact unadmitted Color diagnostic input
+        run: |
+          node -e "require('node:assert/strict').match(process.env.SITE_CANDIDATE_SHA,/^[0-9a-f]{40}$/)"
+          test "$GITHUB_SHA" = "$SITE_CANDIDATE_SHA"
+          test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
+          test -z "$(git status --porcelain --untracked-files=all)"
+          node tools/quality/artifact.cjs build color-artifact
+          node tools/staging/color.cjs color-artifact
+      - name: Install native Chromium dependencies
+        run: tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium
       - name: Restore verified pinned browsers without prior launch
         uses: ./.github/actions/browser-archive
         with:
-          browsers: firefox
-      - name: Diagnose desktop navigation and retain state on failure
-        run: node tools/quality/navigation.cjs
+          browsers: chromium
+      - name: Observe bounded R9 reader and repeated footer animation
+        run: node review/issue-169/r9/reader-runtime-probe.cjs
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always()
         with:
-          name: navigation-diagnostic-${{ github.run_id }}
+          name: navigation-diagnostic-${{ github.run_id }}-${{ github.run_attempt }}
           path: quality-reports/
+          if-no-files-found: error
           retention-days: 14

@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "7cec520bd067a8c463229aff2ecb905085625fecd12e5e60c8578b682a828b21",
+    "digest": "ced8530db56779a2a3a4fee26d6caf621d936c25772eb6161e693ce63c4469c9",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -216,12 +216,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "702fdd8130c84fc7705c0261477849f478430d2c911e8be7c579dee53af20460"
+        "sha256": "d7fbaa2a35e20a026a3b0065fd9e1fe14dbe4c45803205d9fc58d709f16f0fa4"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "985220acb6dddc42abcec03daf2eea898c693cf6a5265d249a841cca977e3844"
+        "sha256": "8c38780a00522d9eba7108495bab676a1381ba1640a1c575171d47cc37c917e0"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -296,7 +296,7 @@
       {
         "path": ".github/workflows/site-navigation-probe.yml",
         "identity_mode": "content",
-        "sha256": "5dd9dcf9b2eb1c707601d99f7ed7eed049741e7bb0d5749fc7a1a07b0d814f7e"
+        "sha256": "1e2aaeef31c626e70e10cacca304e10171cc6e4bde5a71a4cdbd9f115bfaa19d"
       },
       {
         "path": ".github/workflows/site-pages-migration.yml",
@@ -371,7 +371,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "53de5448a14d835da600652769329a9fcbc325c685ce12f619f6de63a9feb20f"
+        "sha256": "3cdd19f1046fb0d4a840784b95eaee2307d0842bc248ede2c6096eff53d6ad1e"
       },
       {
         "path": "NOTICE.md",
@@ -865,7 +865,7 @@
       {
         "path": "guides/BROWSER-ARCHIVES.md",
         "identity_mode": "content",
-        "sha256": "efe65e5de6c1ae273a6ec7d5a47982c4576f7c827a04cd36b05ede16e92b59a6"
+        "sha256": "73635af3faacd7919bc6a2dab7a78e34f68a96c9b180e7a9cfab7f61e2444d20"
       },
       {
         "path": "guides/CODE-STYLE.md",
@@ -1408,6 +1408,26 @@
         "sha256": "8e62a747b8f9788b39abe28b34076e0f54efdd4285e7461f4e21afd37db21cf1"
       },
       {
+        "path": "review/issue-169/2026-11-05-native-r9-diagnostic-code-review.md",
+        "identity_mode": "content",
+        "sha256": "767dbed7a195fa25c51f02f77445c53194366a172c0e018e5ffd253f7a434b43"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-native-r9-diagnostic-requirements-preflight.md",
+        "identity_mode": "content",
+        "sha256": "9da44d5d48df1e804a2b9d1a2ccd99e69b07a8d6e6c3df32a963a80bc98d8b92"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-native-r9-diagnostic-requirements-reconciliation.md",
+        "identity_mode": "content",
+        "sha256": "09aa82bf2b019369af22fef0caa1ff619f1f58a145255fbc1b050ece9b841671"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-native-r9-diagnostic-whitebox.md",
+        "identity_mode": "content",
+        "sha256": "4a4041d976499633ee8200e888618e6ff8b9329fc2f5e51e0204b0e3a9e6d7a7"
+      },
+      {
         "path": "review/issue-169/2026-11-05-native-r9-requirements-delta.md",
         "identity_mode": "content",
         "sha256": "f4ae1e95995ffa26a1966742d49b707504461b5478cfa196f97943abdae45bca"
@@ -1421,6 +1441,11 @@
         "path": "review/issue-169/2026-11-05-r9-native.md",
         "identity_mode": "content",
         "sha256": "eaebd5ed5f975ecd171144bcb9dbf4f6eefb837688f6b013e7fef07002d4cf21"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-r9-runtime-diagnostic.md",
+        "identity_mode": "content",
+        "sha256": "ba3503fc31dc48809f2c0c18b8e9201b4ad0841dff3cda5d2ff03460e8981566"
       },
       {
         "path": "review/issue-169/correction-affected.log.gz",
@@ -2328,6 +2353,11 @@
         "sha256": "b4389006470d7fb85ca33f9620e16495a26d019d35b03db39aef0670cfb01e56"
       },
       {
+        "path": "review/issue-169/r9/checks/clean-fb5b68e-lint.json.gz",
+        "identity_mode": "content",
+        "sha256": "d83d9a1ed18a5d7e73e752c7c786ee5fcf3336d62feaa8671e6b8d63a0c90f0f"
+      },
+      {
         "path": "review/issue-169/r9/checks/native-r9-basic-failed.log.gz",
         "identity_mode": "content",
         "sha256": "8070edfc3dbc5b751656125577bb81a7ba86cb8d8044d0eeb8adebf16786d71c"
@@ -2336,6 +2366,21 @@
         "path": "review/issue-169/r9/checks/native-r9-basic.log.gz",
         "identity_mode": "content",
         "sha256": "fab555ab676b08b685cf0387f8218fe5e2ec66eb2d865142d6c1089eceae6b0e"
+      },
+      {
+        "path": "review/issue-169/r9/checks/native-r9-browser-wiring.log.gz",
+        "identity_mode": "content",
+        "sha256": "32cc6e5e024244a79177b69a3c92b0f1adb8e74c68dc46219de9d4e95e6c90d0"
+      },
+      {
+        "path": "review/issue-169/r9/checks/native-r9-diagnostic-basic.log.gz",
+        "identity_mode": "content",
+        "sha256": "fab555ab676b08b685cf0387f8218fe5e2ec66eb2d865142d6c1089eceae6b0e"
+      },
+      {
+        "path": "review/issue-169/r9/checks/native-r9-diagnostic-quality.log.gz",
+        "identity_mode": "content",
+        "sha256": "acd5760d60c86f6511500e95f4246c1b43a9b195019f5cc1033759ccae94eeba"
       },
       {
         "path": "review/issue-169/r9/checks/native-r9-format-final.log.gz",
@@ -2383,9 +2428,19 @@
         "sha256": "3d4b9d116fd343eb72e1b2db4c2737196b11ca1cd19bf4044a4144a07861f94c"
       },
       {
+        "path": "review/issue-169/r9/checks/r9-current-preview-fb5b68e.log.gz",
+        "identity_mode": "content",
+        "sha256": "af68f0453f168f43f2da49771ad693e737da07a8a38934992fe4fffe0e43f77c"
+      },
+      {
         "path": "review/issue-169/r9/checks/release-latest-preview.log.gz",
         "identity_mode": "content",
         "sha256": "0852de99973275b4af5cf24e13ce71c1b124f6a455a6b3c04d252a20e7cc3b26"
+      },
+      {
+        "path": "review/issue-169/r9/diagnostic-input-manifest.json",
+        "identity_mode": "content",
+        "sha256": "627f188be8fab5aedd1770e62214a60b9463545ec4fbead78e38c59c5a66be2a"
       },
       {
         "path": "review/issue-169/r9/masters/comprehension-gap-r7.svg",
@@ -2405,7 +2460,12 @@
       {
         "path": "review/issue-169/r9/native-launch-receipts.json",
         "identity_mode": "content",
-        "sha256": "99b0ccf11dda5b0f129e7a1b01dbe68d8b027b931caacdf0cdea5a896dccbfe2"
+        "sha256": "f6bba3845918085cd4c5c461dd98431f284fdb00583e480016cdd4183ac88441"
+      },
+      {
+        "path": "review/issue-169/r9/reader-runtime-probe.cjs",
+        "identity_mode": "content",
+        "sha256": "3c676a232d326af94ad33461fe5b4f138395df972d0132acf99438ca95c2df2a"
       },
       {
         "path": "review/issue-169/r9/release-intent.md",
@@ -9245,7 +9305,7 @@
       {
         "path": "tests/test_browser_archives.py",
         "identity_mode": "content",
-        "sha256": "42a5ed0bba4d03b22ff871f1a9be1cb0e562a4e792f4f3c8a0679336acc79b21"
+        "sha256": "977e30a4f7d268a64d0e28cbdabe3a435af24db2e3458f7d39cd71757b4016f5"
       },
       {
         "path": "tests/test_code_style.py",
@@ -13990,6 +14050,50 @@
       "title": "Native R9 Code delta review — 5 November 2026"
     },
     {
+      "path": "review/issue-169/2026-11-05-native-r9-diagnostic-code-review.md",
+      "kind": "file",
+      "purpose": "Issue169 bounded R9 diagnostic source packet, actual independent review or exact-source check/failure evidence; not runtime admission.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "R9 bounded browser diagnostic — Code review"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-native-r9-diagnostic-requirements-preflight.md",
+      "kind": "file",
+      "purpose": "Issue169 bounded R9 diagnostic source packet, actual independent review or exact-source check/failure evidence; not runtime admission.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Native R9 browser diagnostic — requirements preflight"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-native-r9-diagnostic-requirements-reconciliation.md",
+      "kind": "file",
+      "purpose": "Issue169 bounded R9 diagnostic source packet, actual independent review or exact-source check/failure evidence; not runtime admission.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "R9 diagnostic — requirements reconciliation before dispatch"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-native-r9-diagnostic-whitebox.md",
+      "kind": "file",
+      "purpose": "Issue169 bounded R9 diagnostic source packet, actual independent review or exact-source check/failure evidence; not runtime admission.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "White-box QA — R9 bounded browser diagnostic"
+    },
+    {
       "path": "review/issue-169/2026-11-05-native-r9-requirements-delta.md",
       "kind": "file",
       "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
@@ -14021,6 +14125,17 @@
         "AGENTS.md"
       ],
       "title": "Issue169 — accepted R9 native integration"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-r9-runtime-diagnostic.md",
+      "kind": "file",
+      "purpose": "Issue169 bounded R9 diagnostic source packet, actual independent review or exact-source check/failure evidence; not runtime admission.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue169 — bounded R9 runtime diagnostic preparation"
     },
     {
       "path": "review/issue-169/correction-affected.log.gz",
@@ -16014,6 +16129,17 @@
       "title": "The SDLC Is Out of Balance: Beyond the AI Code Review Bottleneck"
     },
     {
+      "path": "review/issue-169/r9/checks/clean-fb5b68e-lint.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded R9 diagnostic source packet, actual independent review or exact-source check/failure evidence; not runtime admission.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "clean-fb5b68e-lint.json.gz"
+    },
+    {
       "path": "review/issue-169/r9/checks/native-r9-basic-failed.log.gz",
       "kind": "file",
       "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
@@ -16034,6 +16160,39 @@
         "AGENTS.md"
       ],
       "title": "native-r9-basic.log.gz"
+    },
+    {
+      "path": "review/issue-169/r9/checks/native-r9-browser-wiring.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded R9 diagnostic source packet, actual independent review or exact-source check/failure evidence; not runtime admission.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "native-r9-browser-wiring.log.gz"
+    },
+    {
+      "path": "review/issue-169/r9/checks/native-r9-diagnostic-basic.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded R9 diagnostic source packet, actual independent review or exact-source check/failure evidence; not runtime admission.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "native-r9-diagnostic-basic.log.gz"
+    },
+    {
+      "path": "review/issue-169/r9/checks/native-r9-diagnostic-quality.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded R9 diagnostic source packet, actual independent review or exact-source check/failure evidence; not runtime admission.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "native-r9-diagnostic-quality.log.gz"
     },
     {
       "path": "review/issue-169/r9/checks/native-r9-format-final.log.gz",
@@ -16135,6 +16294,17 @@
       "title": "native-r9-shards-tests-final.log.gz"
     },
     {
+      "path": "review/issue-169/r9/checks/r9-current-preview-fb5b68e.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded R9 diagnostic source packet, actual independent review or exact-source check/failure evidence; not runtime admission.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "r9-current-preview-fb5b68e.log.gz"
+    },
+    {
       "path": "review/issue-169/r9/checks/release-latest-preview.log.gz",
       "kind": "file",
       "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
@@ -16144,6 +16314,17 @@
         "AGENTS.md"
       ],
       "title": "release-latest-preview.log.gz"
+    },
+    {
+      "path": "review/issue-169/r9/diagnostic-input-manifest.json",
+      "kind": "file",
+      "purpose": "Issue169 bounded R9 diagnostic source packet, actual independent review or exact-source check/failure evidence; not runtime admission.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagnostic-input-manifest.json"
     },
     {
       "path": "review/issue-169/r9/masters/comprehension-gap-r7.svg",
@@ -16188,6 +16369,17 @@
         "AGENTS.md"
       ],
       "title": "native-launch-receipts.json"
+    },
+    {
+      "path": "review/issue-169/r9/reader-runtime-probe.cjs",
+      "kind": "file",
+      "purpose": "Issue169 bounded R9 diagnostic source packet, actual independent review or exact-source check/failure evidence; not runtime admission.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reader-runtime-probe.cjs"
     },
     {
       "path": "review/issue-169/r9/release-intent.md",

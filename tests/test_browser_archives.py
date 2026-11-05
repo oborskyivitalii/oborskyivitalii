@@ -56,7 +56,7 @@ CONSUMERS = {
     "site-browser-gate-probe.yml": {"diagnose": "chromium,firefox,webkit"},
     "site-gtk-native-probe.yml": {"native-target": "webkit"},
     "site-gtk-target-probe.yml": {"native-target": "webkit"},
-    "site-navigation-probe.yml": {"firefox": "firefox"},
+    "site-navigation-probe.yml": {"chromium": "chromium"},
     "site-pages-migration.yml": {"publish": "chromium"},
     "site-production.yml": {"publish": "chromium"},
 }
@@ -129,7 +129,7 @@ class BrowserConsumerWiringTests(unittest.TestCase):
     def test_wiring_oracle_rejects_missing_wrong_skipped_and_unauthenticated_supply(self):
         workflows = self.workflows()
         for name, before, after in [
-            ("site-navigation-probe.yml", "browsers: firefox", "browsers: chromium"),
+            ("site-navigation-probe.yml", "browsers: chromium", "browsers: firefox"),
             ("site-navigation-probe.yml", "actions: read", "actions: none"),
             ("site-navigation-probe.yml", "        with:\n", "        if: false\n        with:\n"),
             (
@@ -144,13 +144,13 @@ class BrowserConsumerWiringTests(unittest.TestCase):
             ),
             (
                 "site-navigation-probe.yml",
-                "browsers: firefox",
-                "browsers: firefox\n        continue-on-error: true",
+                "browsers: chromium",
+                "browsers: chromium\n        continue-on-error: true",
             ),
             (
                 "site-navigation-probe.yml",
-                "run: node tools/quality/navigation.cjs",
-                "run: node tools/quality/toolchain/node_modules/playwright/cli.js install firefox",
+                "run: node review/issue-169/r9/reader-runtime-probe.cjs",
+                "run: node tools/quality/toolchain/node_modules/playwright/cli.js install chromium",
             ),
         ]:
             with self.subTest(name=name, before=before):

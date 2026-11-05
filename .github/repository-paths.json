@@ -2155,6 +2155,30 @@
       "role": "history",
       "owner": "AGENTS.md"
     },
+    "review/issue-169/2026-11-05-native-r9-diagnostic-code-review.md": {
+      "kind": "file",
+      "purpose": "Issue169 bounded R9 diagnostic source packet, actual independent review or exact-source check/failure evidence; not runtime admission.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-diagnostic-requirements-preflight.md": {
+      "kind": "file",
+      "purpose": "Issue169 bounded R9 diagnostic source packet, actual independent review or exact-source check/failure evidence; not runtime admission.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-diagnostic-requirements-reconciliation.md": {
+      "kind": "file",
+      "purpose": "Issue169 bounded R9 diagnostic source packet, actual independent review or exact-source check/failure evidence; not runtime admission.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-diagnostic-whitebox.md": {
+      "kind": "file",
+      "purpose": "Issue169 bounded R9 diagnostic source packet, actual independent review or exact-source check/failure evidence; not runtime admission.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-169/2026-11-05-native-r9-requirements-delta.md": {
       "kind": "file",
       "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
@@ -2170,6 +2194,12 @@
     "review/issue-169/2026-11-05-r9-native.md": {
       "kind": "file",
       "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-r9-runtime-diagnostic.md": {
+      "kind": "file",
+      "purpose": "Issue169 bounded R9 diagnostic source packet, actual independent review or exact-source check/failure evidence; not runtime admission.",
       "role": "history",
       "owner": "AGENTS.md"
     },
@@ -3313,6 +3343,12 @@
       "role": "history",
       "owner": "AGENTS.md"
     },
+    "review/issue-169/r9/checks/clean-fb5b68e-lint.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded R9 diagnostic source packet, actual independent review or exact-source check/failure evidence; not runtime admission.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-169/r9/checks/native-r9-basic-failed.log.gz": {
       "kind": "file",
       "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
@@ -3322,6 +3358,24 @@
     "review/issue-169/r9/checks/native-r9-basic.log.gz": {
       "kind": "file",
       "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/native-r9-browser-wiring.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded R9 diagnostic source packet, actual independent review or exact-source check/failure evidence; not runtime admission.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/native-r9-diagnostic-basic.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded R9 diagnostic source packet, actual independent review or exact-source check/failure evidence; not runtime admission.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/checks/native-r9-diagnostic-quality.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded R9 diagnostic source packet, actual independent review or exact-source check/failure evidence; not runtime admission.",
       "role": "history",
       "owner": "AGENTS.md"
     },
@@ -3379,9 +3433,21 @@
       "role": "history",
       "owner": "AGENTS.md"
     },
+    "review/issue-169/r9/checks/r9-current-preview-fb5b68e.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded R9 diagnostic source packet, actual independent review or exact-source check/failure evidence; not runtime admission.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-169/r9/checks/release-latest-preview.log.gz": {
       "kind": "file",
       "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/diagnostic-input-manifest.json": {
+      "kind": "file",
+      "purpose": "Issue169 bounded R9 diagnostic source packet, actual independent review or exact-source check/failure evidence; not runtime admission.",
       "role": "history",
       "owner": "AGENTS.md"
     },
@@ -3412,6 +3478,12 @@
     "review/issue-169/r9/native-launch-receipts.json": {
       "kind": "file",
       "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/r9/reader-runtime-probe.cjs": {
+      "kind": "file",
+      "purpose": "Issue169 bounded R9 diagnostic source packet, actual independent review or exact-source check/failure evidence; not runtime admission.",
       "role": "history",
       "owner": "AGENTS.md"
     },

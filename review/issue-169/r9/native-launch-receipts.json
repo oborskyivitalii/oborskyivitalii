@@ -58,5 +58,12 @@
     }
   ],
   "continuations": "Actual collaboration.followup_task targeted correction turns on same role agents; not fresh isolation. Own reports disclose corrected sources and supplied observations. No peer verdict supplied before initial result.",
-  "limits": "Receipt reconstructed from actual accepted tool handles and immutable inputs; not a provider attestation. Launch-time aggregate native candidate manifest was not centrally persisted; initial source is exact Git d4c58, R9 subset inputs separately hash-bound and role source checks recorded. Dirty prepared subset is not a clean final commit."
+  "limits": "Receipt reconstructed from actual accepted tool handles and immutable inputs; not a provider attestation. Launch-time aggregate native candidate manifest was not centrally persisted; initial source is exact Git d4c58, R9 subset inputs separately hash-bound and role source checks recorded. Dirty prepared subset is not a clean final commit.",
+  "diagnostic_iteration": {
+    "source_packet": "review/issue-169/r9/diagnostic-input-manifest.json",
+    "packet_sha256": "627f188be8fab5aedd1770e62214a60b9463545ec4fbead78e38c59c5a66be2a",
+    "launches": "Actual collaboration.followup_task on each of four existing distinct roles; operational continuations, not fresh forks.",
+    "role_outputs": "Dated diagnostic Requirements preflight/reconciliation, Code and White-box reports; Exploratory QA script and later actual result inspection.",
+    "limits": "QA-only script authored by application-independent Exploratory; observation code independently checked by Code/White-box. No browser acceptance before actual CI evidence."
+  }
 }
