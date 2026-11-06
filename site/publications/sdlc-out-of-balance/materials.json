@@ -2,29 +2,29 @@
   "schema": 1,
   "articleId": "sdlc-out-of-balance",
   "source": {
-    "editionId": "sdlc-out-of-balance-en-r9-20261105",
-    "semanticSha256": "c7a14160aa9369d1f359aeb04523e1167c8a189ec5518d378f8de7d27d44da08"
+    "editionId": "sdlc-out-of-balance-en-r10-20261106",
+    "semanticSha256": "889016f856311fb220f7433869c320a13e9f08c1a92366b8a03162a10d9a934b"
   },
   "items": [
     {
-      "id": "reading-pdf-r9",
+      "id": "reading-pdf-r10",
       "kind": "pdf",
       "label": "Download the illustrated PDF",
-      "description": "Complete five-page R9 reading edition with five illustrations and source links.",
+      "description": "Complete five-page R10 reading edition with five illustrations and source links.",
       "credit": "Vitalii Oborskyi. Original text and non-brand illustrations: CC BY 4.0. Embedded fonts and third-party sources retain their own terms.",
       "visibility": "public",
       "target": {
         "kind": "file",
-        "path": "materials/reading-r9.pdf",
-        "sha256": "75e052d6a5c386ae79cb1a51d59cdf42e53d3a7279bf0db31c227ee145bb18b4",
+        "path": "materials/reading-r10.pdf",
+        "sha256": "36269db33a71781084053ae40cc41e411a0106bea5e593ef0b08414014c4ca40",
         "mime": "application/pdf"
       },
       "approval": {
-        "bindingSha256": "1665738158479a51a8d66fc6d74d431c624a55e0f87d21d019f989f1e3b2ade8",
-        "reviewedAt": "2026-11-05T15:55:13Z",
+        "bindingSha256": "7d9dda792c528cc191eb5061e7beac3192d58a51f72b13bce1d6e9efdf387c46",
+        "reviewedAt": "2026-11-06T08:07:00Z",
         "evidence": {
-          "path": "materials/reviews/reading-pdf-r9.md",
-          "sha256": "0b691969bafab9df827ce14b8b908b06274bd75593bf753e1d8035f6a6bace7a"
+          "path": "materials/reviews/reading-pdf-r10.md",
+          "sha256": "b92e3916e3ca45da7bea71a040cadad1f8874907a6f677bfd4637accc4e5a37a"
         }
       }
     }

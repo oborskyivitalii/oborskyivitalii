@@ -357,6 +357,10 @@
     "publications/sdlc-out-of-balance/materials/reading-r9.pdf": {
       "sha256": "75e052d6a5c386ae79cb1a51d59cdf42e53d3a7279bf0db31c227ee145bb18b4",
       "bases": ["original-text", "original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/materials/reading-r10.pdf": {
+      "sha256": "36269db33a71781084053ae40cc41e411a0106bea5e593ef0b08414014c4ca40",
+      "bases": ["original-text", "original-diagram"]
     }
   },
   "retained": {

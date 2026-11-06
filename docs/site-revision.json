@@ -19,7 +19,7 @@
     "vitalii-oborskyi-cutout.webp",
     "writing-paradigm.svg"
   ],
-  "content": "14ff1c2b8b3f153f5cb7982365f869ef6243923a4f5329cf9a9f6def3b615a39",
+  "content": "b0378ccdc911271defd99c0886903e1e1ae3ec99284229c3ed68b6c0d25a2208",
   "routes": {
     "index": {
       "version": "50ee569b40c942c98ec61e5688114142ae3032be91d92c57a7152012411e7521",
@@ -35,9 +35,9 @@
       ]
     },
     "writing": {
-      "version": "e1d246ac5213d1094eb7db3c2b9a3bb6cce00df7fce9e747c10ef1773ab6d1c0",
-      "url": "snapshots/e1d246ac5213d1094eb7db3c2b9a3bb6cce00df7fce9e747c10ef1773ab6d1c0/writing.html",
-      "sha256": "9971080be381419a1122c58dc2bc6f4ba87bf5f8fa0a94af8d14b739b3f4ae4e",
+      "version": "bd564d74d6ac2d9a42393f3af405adac74c67a3b140d405a6859b95bda3bf7a0",
+      "url": "snapshots/bd564d74d6ac2d9a42393f3af405adac74c67a3b140d405a6859b95bda3bf7a0/writing.html",
+      "sha256": "3c2a6fe525eee9bde2d3d06fc6e6b8b87de5be11e3783eb4b84ab47912a97bbe",
       "assets": [
         "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
       ]
@@ -55,9 +55,9 @@
   },
   "articles": {
     "sdlc-out-of-balance:en": {
-      "version": "f52e371b9d98cd765074ce072c182237fd4d097ff1f21e30ee21b1d11098a83c",
-      "url": "article-snapshots/f52e371b9d98cd765074ce072c182237fd4d097ff1f21e30ee21b1d11098a83c/the-sdlc-is-out-of-balance.html",
-      "sha256": "970a457bf45ab0a6351e72f42d554a5ce0a7944aa5f88ca5cf5bed51a686cc60",
+      "version": "2c6f525877b751f355c1b3e7c365148be777c351ad40f0005e96a3b901e7b494",
+      "url": "article-snapshots/2c6f525877b751f355c1b3e7c365148be777c351ad40f0005e96a3b901e7b494/the-sdlc-is-out-of-balance.html",
+      "sha256": "cc672c241cec1161d767c983b09cdaa5505e5e86f5f74216d34f95fd226610a6",
       "alias": "articles/the-sdlc-is-out-of-balance.html",
       "scene": "writing",
       "assets": [
@@ -66,17 +66,17 @@
         "article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a/review-learning-r7.webp",
         "article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551/comprehension-gap-r7.webp",
         "article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry-r9.webp",
-        "article-media/75e052d6a5c386ae79cb1a51d59cdf42e53d3a7279bf0db31c227ee145bb18b4/reading-r9.pdf",
+        "article-media/36269db33a71781084053ae40cc41e411a0106bea5e593ef0b08414014c4ca40/reading-r10.pdf",
         "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
       ],
       "downloads": [
-        "article-media/75e052d6a5c386ae79cb1a51d59cdf42e53d3a7279bf0db31c227ee145bb18b4/reading-r9.pdf"
+        "article-media/36269db33a71781084053ae40cc41e411a0106bea5e593ef0b08414014c4ca40/reading-r10.pdf"
       ],
       "candidate": false,
       "articleId": "sdlc-out-of-balance",
-      "contentEdition": "sdlc-out-of-balance-en-r9-20261105",
-      "sourceSha256": "ccaddfe2c40c6a8ba5f4bd75abd4a3c762e94fcbb15997e5e5014e1d6f8fa654",
-      "semanticSha256": "c7a14160aa9369d1f359aeb04523e1167c8a189ec5518d378f8de7d27d44da08"
+      "contentEdition": "sdlc-out-of-balance-en-r10-20261106",
+      "sourceSha256": "70386a2d2f602b5f60c93d35293a375e4e4abbc6f63a0dd888024031078b3d1f",
+      "semanticSha256": "889016f856311fb220f7433869c320a13e9f08c1a92366b8a03162a10d9a934b"
     }
   }
 }
