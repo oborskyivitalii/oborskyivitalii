@@ -798,37 +798,45 @@ test('the two public inventory paths each require their exact reviewed tuple', (
       '.github/repository-paths.json',
       '.github/repository-intelligence/agent-context.json',
     ]) {
-      const entry = f.entry(
-        file,
-        'Base64 High Entropy String',
-        '41ceb5699f64d5bfeaccc5850d0cf398a19b10c9'
-      );
-      const finding = { type: entry.rule, hashed_secret: entry.id.slice(-40) };
-      assert.equal(reviewedSecretFinding(entry.path, finding, new Map()), false);
-      f.reviews[2].findings = [entry];
-      f.write(2);
-      const reviewed = loadSecretReviews(f.directory);
-      assert.equal(reviewedSecretFinding(entry.path, finding, reviewed), true);
-      assert.equal(reviewedSecretFinding('other/catalogue.json', finding, reviewed), false);
-      assert.equal(
-        reviewedSecretFinding(entry.path, { ...finding, hashed_secret: 'a'.repeat(40) }, reviewed),
-        false
-      );
-      assert.equal(
-        reviewedSecretFinding(
-          entry.path,
-          { ...finding, type: 'Hex High Entropy String' },
-          reviewed
-        ),
-        false
-      );
-      for (const bad of [
-        f.entry(entry.path, entry.rule, 'a'.repeat(40)),
-        f.entry('other/catalogue.json', entry.rule, finding.hashed_secret),
+      for (const hash of [
+        '41ceb5699f64d5bfeaccc5850d0cf398a19b10c9',
+        'eb3400c0b18476eb7e38e5a430d52a263f917b89',
       ]) {
-        f.reviews[2].findings = [bad];
+        const entry = f.entry(file, 'Base64 High Entropy String', hash);
+        const finding = {
+          type: entry.rule,
+          hashed_secret: entry.id.slice(-40),
+        };
+        assert.equal(reviewedSecretFinding(entry.path, finding, new Map()), false);
+        f.reviews[2].findings = [entry];
         f.write(2);
-        assert.throws(() => loadSecretReviews(f.directory), /Invalid exact secret review entry/);
+        const reviewed = loadSecretReviews(f.directory);
+        assert.equal(reviewedSecretFinding(entry.path, finding, reviewed), true);
+        assert.equal(reviewedSecretFinding('other/catalogue.json', finding, reviewed), false);
+        assert.equal(
+          reviewedSecretFinding(
+            entry.path,
+            { ...finding, hashed_secret: 'a'.repeat(40) },
+            reviewed
+          ),
+          false
+        );
+        assert.equal(
+          reviewedSecretFinding(
+            entry.path,
+            { ...finding, type: 'Hex High Entropy String' },
+            reviewed
+          ),
+          false
+        );
+        for (const bad of [
+          f.entry(entry.path, entry.rule, 'a'.repeat(40)),
+          f.entry('other/catalogue.json', entry.rule, finding.hashed_secret),
+        ]) {
+          f.reviews[2].findings = [bad];
+          f.write(2);
+          assert.throws(() => loadSecretReviews(f.directory), /Invalid exact secret review entry/);
+        }
       }
     }
   } finally {

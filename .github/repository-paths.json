@@ -16728,6 +16728,36 @@
       "purpose": "Protected source/artifact/controller/PR lease validation before hosted action.",
       "role": "source",
       "owner": "guides/SITE-STAGING.md"
+    },
+    "review/issue-169/stage-security-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Exact per-finding source and native producer proof for the retained nine staging secret-scanner candidates.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/2026-11-06-staging-security-followup.md": {
+      "kind": "file",
+      "purpose": "Issue169 native staging security failure, exact bounded tuple correction and review/delivery limits.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/code-final.md.gz": {
+      "kind": "file",
+      "purpose": "Lossless original human review with decoded prior Git-byte proof in the staging security evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/exploratory-predecessor.md.gz": {
+      "kind": "file",
+      "purpose": "Lossless original human review with decoded prior Git-byte proof in the staging security evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/native-reviews/requirements-final.md.gz": {
+      "kind": "file",
+      "purpose": "Lossless original human review with decoded prior Git-byte proof in the staging security evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

@@ -477,11 +477,13 @@ function secretReviewPath(file) {
   }
   return file.split('/').every((part) => part && part !== '.' && part !== '..');
 }
-// One public immutable-directory literal in its two exact source inventories.
+// Reviewed public immutable-directory literals in their two exact source inventories.
 // Each tuple still requires its own reviewed ledger entry; no path/type wildcard.
 const reviewedInventoryPaths = new Set([
   '.github/repository-paths.json:Base64 High Entropy String:41ceb5699f64d5bfeaccc5850d0cf398a19b10c9',
   '.github/repository-intelligence/agent-context.json:Base64 High Entropy String:41ceb5699f64d5bfeaccc5850d0cf398a19b10c9',
+  '.github/repository-paths.json:Base64 High Entropy String:eb3400c0b18476eb7e38e5a430d52a263f917b89',
+  '.github/repository-intelligence/agent-context.json:Base64 High Entropy String:eb3400c0b18476eb7e38e5a430d52a263f917b89',
 ]);
 function secretReviewEntry(entry, file) {
   const checksumOnly = file === secretReviewInputs[2];

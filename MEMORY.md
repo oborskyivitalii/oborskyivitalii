@@ -24,18 +24,20 @@ Dated continuity, not live authority. Last verified: **2026-11-06**.
 
 ## Open work
 
-- Base9513 Ready CI42220631455 shard6 failed old4-versus5 Talks assertion.
-  Current correction/reviews/raw evidence: review/issue-169/2026-11-06-staging-corrections.md
-  and its evidence-branch archive. Four final independent roles found no blocking delta
-  defect; targeted tests pass. Fresh clean exact-head CI remains required.
-- Original owner staging42207436828 failed source300000ms then build10minutes;
-  artifact13498231842 retains observations. No final prepublication/security/
-  advisory report or stable promotion. Corrected dirty native full source ended
-  within186seconds,1201/1202pass; remaining lint-fixture failure was the explicit
-  dirty-checkout refusal. This failed diagnostic is not hosted/clean acceptance.
-- Security history/proof remains2026-11-06-security-maintenance.md; earlier
-  preflight evidence remains2026-11-06-r10-release-preflight.md. Preserve scopes.
-- Whole issue criteria remain open except historical Draft milestoneAC06.
+- Current source186f28c has all8 raw-head source shards, Basic, RI/owning and
+  preview smoke passed. Owner staging42227207673 completed prepublication;
+  source passed in201708ms and Python/lint/advisories/rights/package passed.
+  Security alone failed: exactly9 secret candidates; Semgrep/Bandit passed.
+  Original native artifact13505454566 retains all reports; no stable update.
+- Bounded follow-up: review/issue-169/2026-11-06-staging-security-followup.md
+  and stage-security-proof.json.gz. Preserve the prior exact inventory pair,
+  add only the current pair and individually proved ledger entries; retain all
+  negative refusals, detector/version/input authority/limits and site bytes.
+  Four final roles completed; original disclosed White-box result is retained
+  separately from its clean replacement. Current CI/native security/stage remain
+  mandatory. No unchanged failed-campaign retry.
+- Earlier stage42207436828/source timeout and all earlier security/review
+  failures remain preserved. Whole ACs stay open except historicalAC06.
 
 ## Next session
 

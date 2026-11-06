@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "2e120607ab016ed19c6143f8b5bd3687a6ea7a7b1e175a3e8656a94157f4306f",
+    "digest": "26d43add31948ee39eeb2ce21b25ce1376f10ad6488d2c3e277a58c67894762b",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -216,12 +216,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "15bc26f136398bc8dc57d76c70cc7e1476a2ad31ec5c42b878879f6da40f898e"
+        "sha256": "63c64363f0a3222410bb6e885bc8a1cbb02b7706f1a9b948804136da85fda331"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "d8bb7282871ea1909fc39fbac6df8fe37fad4c65af796c0cb43c8af1db8e4d61"
+        "sha256": "3520086f164df3bb58b1aabd00cc4d08d8aad074535eb0c09360868bbe0f37be"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -371,7 +371,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "7499933297edfbed981efe5681517bf2e80ea090212e17cad551ef92b9479a02"
+        "sha256": "369ea9de8fe56bd757d91949daa0dd1ebd373239ab88016b88d7e37c81694734"
       },
       {
         "path": "NOTICE.md",
@@ -1878,6 +1878,11 @@
         "sha256": "df266d4d62882eee16b923dc8655736ff73ee3af29279f27013b97fb939891c8"
       },
       {
+        "path": "review/issue-169/2026-11-06-staging-security-followup.md",
+        "identity_mode": "content",
+        "sha256": "2468447157b460cc29ee24d573968efb51800a8eaf1f1e7fc40e8b087797a82c"
+      },
+      {
         "path": "review/issue-169/2026-11-06-writing-discovery.md",
         "identity_mode": "content",
         "sha256": "df51a88cd2ddfc9e69600a186347542a439db555bfd47a4dc40bbde96f3ba735"
@@ -2095,7 +2100,12 @@
       {
         "path": "review/issue-169/native-reviews/code-final.md",
         "identity_mode": "content",
-        "sha256": "7d643cd15a3a80d49b3b86c6425d2e0d3eaadcecdc95932282eeefebae7761bd"
+        "sha256": "955271f90ac2642d6c8371d705a137b5c6c51bcc94b8a2d066a92cbef9c4e0c2"
+      },
+      {
+        "path": "review/issue-169/native-reviews/code-final.md.gz",
+        "identity_mode": "content",
+        "sha256": "16f0c647e5dbf52b572d75936d08fce53ff1bd5a8b3055b0ec753d19ee702dd2"
       },
       {
         "path": "review/issue-169/native-reviews/correction/archive-correction.log.gz",
@@ -2820,7 +2830,12 @@
       {
         "path": "review/issue-169/native-reviews/exploratory-predecessor.md",
         "identity_mode": "content",
-        "sha256": "0a75d41689412c7a23f73ab65c65927cbb6c553b881d38857a496fababce73b9"
+        "sha256": "e9d33a50ade2127e03c11bbdd318786f16791ed5bba81fc4db82df0edcf78ffe"
+      },
+      {
+        "path": "review/issue-169/native-reviews/exploratory-predecessor.md.gz",
+        "identity_mode": "content",
+        "sha256": "9cdc2611b3cbd68998d4a8a889d64b21f4111bb6373b7172a7c32826650c3969"
       },
       {
         "path": "review/issue-169/native-reviews/issue169.json",
@@ -2840,7 +2855,12 @@
       {
         "path": "review/issue-169/native-reviews/requirements-final.md",
         "identity_mode": "content",
-        "sha256": "5f7dcb18434ee3faf55799701086fd88722a58b5724ca1605445144a48c216bc"
+        "sha256": "e91a07fd6252e30f7efdc1ca33bc02f7598b8e5c63603f429d12e6a71830785b"
+      },
+      {
+        "path": "review/issue-169/native-reviews/requirements-final.md.gz",
+        "identity_mode": "content",
+        "sha256": "79005332e0e748a534b0b2884fa6c77e4e3752753b34540ec7c141f168bfd187"
       },
       {
         "path": "review/issue-169/native-reviews/requirements-preflight.md",
@@ -4111,6 +4131,11 @@
         "path": "review/issue-169/security/whitebox-storage-closure.md.gz",
         "identity_mode": "content",
         "sha256": "f4804ffaa3722926a31f916883f84a4e243021b0ee816eaef3cec8b55967f9fe"
+      },
+      {
+        "path": "review/issue-169/stage-security-proof.json.gz",
+        "identity_mode": "content",
+        "sha256": "5c33454b6810abf84426425b8a217c7df072949df2cc85f90c4b5d451c1c15ca"
       },
       {
         "path": "review/issue-169/writing-carrier.json",
@@ -11240,7 +11265,7 @@
       {
         "path": "tests/quality-sources.test.cjs",
         "identity_mode": "content",
-        "sha256": "dd6514717733dfcdee4217a10ee499f1203035698fcfdd91a583caf30a134172"
+        "sha256": "1b740df70248cf221857ee51fcf3daf132a9206d946d100fdb351d885f9dc092"
       },
       {
         "path": "tests/quality.test.cjs",
@@ -12175,7 +12200,7 @@
       {
         "path": "tools/quality/scanners.cjs",
         "identity_mode": "content",
-        "sha256": "d5ce0402b9abfd5f9e3d385e31991fded746d40b018cadc49099fc620d6cfde1"
+        "sha256": "3b23f919236d99a1b22f6665b4634985f9576280255a96f57de2865b74b1afba"
       },
       {
         "path": "tools/quality/scroll-browser.cjs",
@@ -12195,7 +12220,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "0b5274a317e34c2c446870bb2bc6ec1cac30905338fb2ce252b5bc0f76b7dd6e"
+        "sha256": "7335e6c06a4cf3e21902df2ed67f6476859a08bc2cfef21e0b61e0a7215f7b03"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
@@ -17139,6 +17164,17 @@
       "title": "Issue 169 — stable-staging corrections, 6 November"
     },
     {
+      "path": "review/issue-169/2026-11-06-staging-security-followup.md",
+      "kind": "file",
+      "purpose": "Issue169 native staging security failure, exact bounded tuple correction and review/delivery limits.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 169 — staging security follow-up"
+    },
+    {
       "path": "review/issue-169/2026-11-06-writing-discovery.md",
       "kind": "file",
       "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
@@ -17620,7 +17656,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Independent Code / changed-artifact review — issue169 / PR170"
+      "title": "Retained original review"
+    },
+    {
+      "path": "review/issue-169/native-reviews/code-final.md.gz",
+      "kind": "file",
+      "purpose": "Lossless original human review with decoded prior Git-byte proof in the staging security evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "code-final.md.gz"
     },
     {
       "path": "review/issue-169/native-reviews/correction/archive-correction.log.gz",
@@ -19215,7 +19262,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Independent Exploratory / Interaction QA — issue169 / PR170"
+      "title": "Retained original review"
+    },
+    {
+      "path": "review/issue-169/native-reviews/exploratory-predecessor.md.gz",
+      "kind": "file",
+      "purpose": "Lossless original human review with decoded prior Git-byte proof in the staging security evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "exploratory-predecessor.md.gz"
     },
     {
       "path": "review/issue-169/native-reviews/issue169.json",
@@ -19259,7 +19317,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Independent Requirements & Acceptance — native R3 final"
+      "title": "Retained original review"
+    },
+    {
+      "path": "review/issue-169/native-reviews/requirements-final.md.gz",
+      "kind": "file",
+      "purpose": "Lossless original human review with decoded prior Git-byte proof in the staging security evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "requirements-final.md.gz"
     },
     {
       "path": "review/issue-169/native-reviews/requirements-preflight.md",
@@ -22054,6 +22123,17 @@
         "AGENTS.md"
       ],
       "title": "whitebox-storage-closure.md.gz"
+    },
+    {
+      "path": "review/issue-169/stage-security-proof.json.gz",
+      "kind": "file",
+      "purpose": "Exact per-finding source and native producer proof for the retained nine staging secret-scanner candidates.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "stage-security-proof.json.gz"
     },
     {
       "path": "review/issue-169/writing-carrier.json",
