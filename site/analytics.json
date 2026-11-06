@@ -1,8 +1,0 @@
-{
-  "schema": 1,
-  "provider": "cloudflare",
-  "enabled": true,
-  "siteURL": "https://vitaliioborskyi.ai/",
-  "token": "b01c620f5f154a24b782fe2f970e5af8",
-  "searchConsoleVerification": null
-}
