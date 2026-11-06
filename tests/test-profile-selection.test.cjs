@@ -1896,6 +1896,19 @@ test('source scheduling uses configured worker capacity without exceeding its ce
   assert.deepEqual(fs.readdirSync(active), []);
 });
 
+test('article distribution guides select publisher, profile and reciprocal-material checks', () => {
+  for (const guide of ['guides/ARTICLE-WORKFLOW.md', 'guides/ARTICLE-MATERIALS.md']) {
+    const plan = runner.select(root, 'pr', { changedPaths: [guide] });
+    for (const file of [
+      'tests/publishing.test.cjs',
+      'tests/publishing-profile.test.cjs',
+      'tests/article-materials.test.cjs',
+    ]) {
+      assert.ok(plan.modules.includes(file), guide + ' must select ' + file);
+    }
+  }
+});
+
 test('repository-only selection omits website smoke and retains affected test failures', () => {
   const plan = runner.select(root, 'pr', { changedPaths: ['AGENTS.md'], repositoryOnly: true });
   assert.deepEqual(plan.modules, []);

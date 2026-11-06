@@ -200,6 +200,31 @@ function validateEvent(root, directory, event) {
   return artifact.inputs;
 }
 
+function requireSiteFirst(root, directory, events) {
+  const profilePath = `${directory}/profile.json`;
+  if (!fs.existsSync(path.join(root, profilePath))) return;
+  const profile = JSON.parse(decodeUtf8(readSource(root, profilePath).bytes, profilePath));
+  if (profile.distribution === undefined) return;
+  for (const event of events.filter((item) => item.platform !== 'site')) {
+    const editionPath = `${directory}/editions/${event.editionId}.json`;
+    const edition = JSON.parse(decodeUtf8(readSource(root, editionPath).bytes, editionPath));
+    const baseEdition = edition.kind === 'adaptation' ? edition.derivation.baseEdition : edition.id;
+    const site = events.find(
+      (item) =>
+        item.platform === 'site' &&
+        item.editionId === baseEdition &&
+        Date.parse(item.inspection.observedAt) <= Date.parse(event.occurredAt)
+    );
+    const host = new URL(event.url).hostname;
+    const channel = event.platform === 'linkedin' ? 'linkedin.com' : 'medium.com';
+    if (!site || (host !== channel && !host.endsWith('.' + channel))) {
+      throw new Error(
+        'Site-first distribution requires prior verified website publication and the actual platform host'
+      );
+    }
+  }
+}
+
 function publicationEvents(root, directory, editionId) {
   const eventDirectory = path.join(root, directory, 'publication-events');
   if (!fs.existsSync(eventDirectory)) {
@@ -223,6 +248,7 @@ function publicationEvents(root, directory, editionId) {
     inputs.push(relative, ...validateEvent(root, directory, event));
     events.push(event);
   }
+  requireSiteFirst(root, directory, events);
   const selected = events
     .filter((event) => event.platform === 'site' && event.editionId === editionId)
     .sort((left, right) => left.occurredAt.localeCompare(right.occurredAt));
@@ -237,6 +263,8 @@ function publicationEvents(root, directory, editionId) {
 function appendPublicationEvent(root, articleId, event) {
   const directory = `site/publications/${articleId}`;
   validateEvent(root, directory, event);
+  const previous = publicationEvents(root, directory, event.editionId);
+  requireSiteFirst(root, directory, [...previous.events, event]);
   const targetDirectory = path.join(root, directory, 'publication-events');
   fs.mkdirSync(targetDirectory, { recursive: true });
   const relative = `${directory}/publication-events/${event.id}.json`;

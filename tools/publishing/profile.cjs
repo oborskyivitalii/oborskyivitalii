@@ -3,6 +3,7 @@
 const { readSource } = require('./safety.cjs');
 const { blockDigest } = require('./semantic.cjs');
 const { plain } = require('./render.cjs');
+const net = require('node:net');
 
 const formats = ['html', 'md', 'txt', 'copy-ready'];
 const relationships = ['adaptation', 'equivalent-rendition'];
@@ -76,7 +77,69 @@ function platformSelection(profile, article, platform) {
   }
 }
 
-function characterLimits(profile, article) {
+function distributionSelection(root, article, selection) {
+  if (selection === undefined) return undefined;
+  object(selection, ['originalLabel', 'materialsLabel'], 'distribution');
+  for (const key of ['originalLabel', 'materialsLabel']) {
+    text(selection[key], 200, 'distribution ' + key);
+    if (/[\r\n]/.test(selection[key])) throw new Error('Distribution labels must be single-line');
+  }
+  const policyPath = 'site/publications/policy.json';
+  const policy = JSON.parse(utf8(readSource(root, policyPath).bytes, 'production policy'));
+  object(policy, ['schema', 'productionOrigin'], 'production policy');
+  const origin = new URL(policy.productionOrigin);
+  if (
+    policy.schema !== 1 ||
+    origin.protocol !== 'https:' ||
+    origin.origin !== policy.productionOrigin ||
+    origin.username ||
+    origin.password ||
+    origin.port ||
+    net.isIP(origin.hostname.replace(/^\[|\]$/g, '')) ||
+    !origin.hostname.includes('.') ||
+    /(?:^|\.)(?:local|internal|invalid|example|test)$/.test(origin.hostname) ||
+    /(?:staging|preview|localhost|\.pages\.dev$|\.invalid$)/i.test(origin.hostname) ||
+    !idPattern.test(article.metadata.slug) ||
+    article.metadata.slug.length > 80
+  )
+    throw new Error('Distribution requires the public production origin and bounded article slug');
+  const articleUrl = origin.origin + '/articles/' + article.metadata.slug + '.html';
+  if (article.metadata.canonical && article.metadata.canonical !== articleUrl) {
+    throw new Error('Distribution planned URL differs from the observed canonical');
+  }
+  return {
+    articleUrl,
+    materialsUrl: articleUrl + '#article-materials',
+    ...selection,
+    state:
+      article.metadata.canonical &&
+      article.events?.some(
+        (event) =>
+          event.platform === 'site' &&
+          event.editionId === article.edition?.id &&
+          event.url === article.metadata.canonical
+      )
+        ? 'site-verified'
+        : 'planned',
+  };
+}
+
+function validateLaunchDestinations(article, distribution, source) {
+  const resolved = source
+    .replaceAll('{{SITE_ARTICLE_URL}}', distribution.articleUrl)
+    .replaceAll('{{SITE_PDF_URL}}', distribution.materialsUrl);
+  // This build-time callback runs only after both facade modules have exported.
+  // Reuse the admitted compiler; substring checks cannot identify actual links.
+  const { compile } = require('./article.cjs');
+  const links = compile(resolved, article.assets).model.links;
+  for (const url of [distribution.articleUrl, distribution.materialsUrl]) {
+    if (!links.some((link) => link.url === url)) {
+      throw new Error('Site-first launch must include article and materials destinations');
+    }
+  }
+}
+
+function characterLimits(profile, article, distribution) {
   object(profile.limits, ['linkedinCharacters', 'mediumCharacters'], 'limits');
   for (const platform of platforms) {
     const name = platform + 'Characters';
@@ -95,7 +158,17 @@ function characterLimits(profile, article) {
       throw new Error('Profile character limit requires compiled ' + platform + ' text');
     }
     // These authored bounds count Unicode code points, not a claimed platform rule.
-    if (Array.from(selected.text).length > limit) {
+    const footer = distribution
+      ? '\n\n' +
+        distribution.originalLabel +
+        ': ' +
+        distribution.articleUrl +
+        '\n' +
+        distribution.materialsLabel +
+        ': ' +
+        distribution.materialsUrl
+      : '';
+    if (Array.from(selected.text + footer).length > limit) {
       throw new Error('Profile ' + platform + ' text exceeds its authored character limit');
     }
   }
@@ -417,7 +490,18 @@ function loadProfile(root, article) {
   const input = readSource(root, profilePath, { maxBytes: 100_000 });
   const profile = object(
     JSON.parse(utf8(input.bytes, 'source')),
-    ['schema', 'id', 'platforms', 'launch', 'seo', 'assets', 'limits', 'reader', 'print'],
+    [
+      'schema',
+      'id',
+      'platforms',
+      'launch',
+      'seo',
+      'assets',
+      'limits',
+      'reader',
+      'print',
+      'distribution',
+    ],
     'record'
   );
   if (profile.schema !== 1 || !idPattern.test(text(profile.id, 80, 'id'))) {
@@ -443,12 +527,20 @@ function loadProfile(root, article) {
     throw new Error('Profile launch post checksum mismatch');
   }
   text(utf8(launch.bytes, 'launch post'), 50_000, 'launch post');
-  characterLimits(profile, article);
+  const distribution = distributionSelection(root, article, profile.distribution);
+  if (distribution) {
+    validateLaunchDestinations(article, distribution, utf8(launch.bytes, 'launch post'));
+  }
+  characterLimits(profile, article, distribution);
   readerSelection(profile, article);
   printSelection(profile, article);
   object(profile.assets, assetRoles, 'assets');
   const furniture = { seo: { ...profile.seo } };
   const inputs = [profilePath, launchPath];
+  if (distribution) {
+    furniture.distribution = distribution;
+    inputs.push('site/publications/policy.json');
+  }
   for (const role of assetRoles) {
     const asset = assetSelection(root, article, profile.assets[role], role);
     if (asset) {

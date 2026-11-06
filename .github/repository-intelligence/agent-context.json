@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "966fed16eeb2f6b0c875b49abef515473eb4d9a589687909499145970a2df450",
+    "digest": "a5416468d8a388b84b60d03444878c27a9e8a07890496363c9a6b48f86b9409c",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -92,7 +92,7 @@
       {
         "path": ".github/acceptance/issue-169.json",
         "identity_mode": "content",
-        "sha256": "2e09c9c49191c1d7ec9118acd453c14ca0a45fc7bab14f278560494ff7107b70"
+        "sha256": "fcdf6622a5e6a0ba7e62fad828b82e14b2c6e8c75a96b18f97f12d1abc87025e"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -216,12 +216,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "2f4d9a5a680f18a98b47ff092da210dcc0fdceee85f7101239f0d33ac4355ebc"
+        "sha256": "43d2f107aceba9bf84a1d2170356da2d370dcf9c53cbc671aa2d610e42ef869d"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "766d0328579e4a230fe46ea60fb4f36d7cecb57d136279d7c5904dfb18a4dfaf"
+        "sha256": "b6ca836a00d0b9661803e7a4710daa932abc9cb272d431e4b2e1d3036a7ab109"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -346,7 +346,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "ad4f179ec04c7af12867229d70598a660c5ae41f3cb456cafd02aca3d12a9988"
+        "sha256": "f8f13dd686d977fc90d8e9932c388842b3beedb046810a0be3c14302a9496d01"
       },
       {
         "path": "CONTRIBUTING.md",
@@ -371,7 +371,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "c5a89af4f38562f9b38be6cb1b4682b66cea70d3c7d0f46fa234e5418fcc9fe4"
+        "sha256": "fd68377468cb72db32f9c27da95a639f6e6022082d929ccc8032123c0fccd3c0"
       },
       {
         "path": "NOTICE.md",
@@ -503,19 +503,19 @@
         "sha256": "f1d53fa07e9c2d947922eb82b5cc12b7b7bbefd62cf728e80b9cfcbde8a5ffa9"
       },
       {
-        "path": "docs/article-snapshots/2c6f525877b751f355c1b3e7c365148be777c351ad40f0005e96a3b901e7b494/the-sdlc-is-out-of-balance.html",
-        "identity_mode": "content",
-        "sha256": "cc672c241cec1161d767c983b09cdaa5505e5e86f5f74216d34f95fd226610a6"
-      },
-      {
         "path": "docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/the-sdlc-is-out-of-balance.html",
         "identity_mode": "content",
         "sha256": "4aa1ae74ff48155957e9f897b7697e1cee35e3b38d8319d0906c15da2d44fd7b"
       },
       {
+        "path": "docs/article-snapshots/eb1cc896411a5047cd09a6eed0e7725cadbf1cbfa3716c4201812fc82a4e76bb/the-sdlc-is-out-of-balance.html",
+        "identity_mode": "content",
+        "sha256": "3ed79189e26a21ffa1cb02b603b4a565f0b69257457016cd29f7f0880f80f2b8"
+      },
+      {
         "path": "docs/articles/the-sdlc-is-out-of-balance.html",
         "identity_mode": "content",
-        "sha256": "c5d123dc88c815b2b1e57105e30362577b370fa6734ddd1815b2d1b35944274d"
+        "sha256": "72473687a22753e2779b8e61c7804ea74d8415e4813d8b56c194c99d5f3b4fc2"
       },
       {
         "path": "docs/assets/favicon.svg",
@@ -540,12 +540,12 @@
       {
         "path": "docs/credits.html",
         "identity_mode": "content",
-        "sha256": "c7472c20e7d4499b29f8a11bb9788d3c7219a3c8b7b9ae0af1b839c053fe419d"
+        "sha256": "0bd5f74fa2850405082b39f687e0aeb01a7378d98e3bc382b58ad6c6698793b6"
       },
       {
         "path": "docs/index.html",
         "identity_mode": "content",
-        "sha256": "c82518e2831dc6ae6fb3a45eede2610492332d2302e69ea688cfd0a345f99016"
+        "sha256": "4a93289fe459d17abacf2d5075701b70f32af062eaa4e785767596449bf48ce6"
       },
       {
         "path": "docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg",
@@ -580,7 +580,7 @@
       {
         "path": "docs/research.html",
         "identity_mode": "content",
-        "sha256": "a0ac1febcae3a0b78b2f6545cdf9cdbd0a5d334f34066f60b9cf2ecc820250e9"
+        "sha256": "48399d97928e8fadb0cada4c9c68de8b92da9d84060da440088f797594bd854e"
       },
       {
         "path": "docs/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/archive.js",
@@ -715,7 +715,7 @@
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "d8410e068f5e32dedeb0e85dcfefc8a19b744af67903da3b15026f9d063b7ca6"
+        "sha256": "6b99f7fb43c34f92f8ea8e40e832ea80a979c233525c8e6c085a958a0c4c576c"
       },
       {
         "path": "docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2/talks.html",
@@ -723,9 +723,9 @@
         "sha256": "05054fd2a4ca2aca6cd0d05717fe332cb95390720e1089331271ca62f3c53f4c"
       },
       {
-        "path": "docs/snapshots/190a2156f05681ebd8b82830083f869edb073695f707fa15ff39611ebe1be7d3/credits.html",
+        "path": "docs/snapshots/1c121ae2e3d285ef0a4c758558a9a4679c14e16b328d24a9a6e0ab10cf5ab6dc/talks.html",
         "identity_mode": "content",
-        "sha256": "f69260418223bbec408d2d227db12a249b54d3553b61182e842fa5ff98780907"
+        "sha256": "66ed9807eae7a03c85f89feae1e3d68ccf435ea79246a4783302cdc60c3709c1"
       },
       {
         "path": "docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e/talks.html",
@@ -733,19 +733,19 @@
         "sha256": "93c88b5f9c73e559b067866cb38eb604e93013c2225a06a36f96e8f215d397b3"
       },
       {
-        "path": "docs/snapshots/50ee569b40c942c98ec61e5688114142ae3032be91d92c57a7152012411e7521/index.html",
+        "path": "docs/snapshots/2a0bcb66b1531dc8182dcacb31bdfcf14e59a9d215efd54e1b87d5882d973d9d/credits.html",
         "identity_mode": "content",
-        "sha256": "ca09af5f5f4f4aa2be7cc07dbbbdbb8e5e7c2942c3e275925d39307df19d5ec3"
+        "sha256": "7f8ecb409bf07bf275d70a9496f9c85054ead229588f152cade3907e6bbee3dc"
+      },
+      {
+        "path": "docs/snapshots/3f3f0d95495634ffa4fe94d9dcf1a4dbd7a3aa59ddfdac98feab03f17d7d8840/research.html",
+        "identity_mode": "content",
+        "sha256": "97247593312b6bc1bc0de484f9fe2515f7e63a2e4433dc1e36ad7ec7b4fad4ab"
       },
       {
         "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
         "identity_mode": "content",
         "sha256": "3dd82a25eee6f3915f0748192a6dc34bfbd214879b0ed933f116b3d47a363df7"
-      },
-      {
-        "path": "docs/snapshots/5741244054ac4ed16f8a70f20f09a29e46cd57a06fdcf649d7cb0abc1fd26c1f/research.html",
-        "identity_mode": "content",
-        "sha256": "4d355ca70eb9192fc6b002dc76fc4fa59c374008b27dfb8946162f10b7031ad8"
       },
       {
         "path": "docs/snapshots/632f4f29ebdbc51215b02592fd45a1f10a99fb8596d2dec8b3f18bc8be847f06/credits.html",
@@ -798,24 +798,24 @@
         "sha256": "55cf819e07ca22d5a0b84efe46eb5cbff97e318605e9fd8d2d89c32c28ef2e11"
       },
       {
-        "path": "docs/snapshots/bd564d74d6ac2d9a42393f3af405adac74c67a3b140d405a6859b95bda3bf7a0/writing.html",
-        "identity_mode": "content",
-        "sha256": "3c2a6fe525eee9bde2d3d06fc6e6b8b87de5be11e3783eb4b84ab47912a97bbe"
-      },
-      {
         "path": "docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920/index.html",
         "identity_mode": "content",
         "sha256": "e4bbf6e735ef6b9d3c89d7412e12a1288f2b73b9d47e3097c71419f518b29fd2"
       },
       {
-        "path": "docs/snapshots/c017db2fffe5470a977c10b2d6686b53b6fee281e98008ae9f2d4ccd159ff5c2/talks.html",
-        "identity_mode": "content",
-        "sha256": "7840c9fca780d75370af5eede6f6c8419ae6d233dd889a77c771b0619c582b15"
-      },
-      {
         "path": "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html",
         "identity_mode": "content",
         "sha256": "eef3b91329720bf60b4aaf9e08208bd9ce75790be77b21c2757638c7af7a6fb4"
+      },
+      {
+        "path": "docs/snapshots/ea894f5945827de1225db344a5edabdfb0c69a1cb34b505f45089c20e953d297/index.html",
+        "identity_mode": "content",
+        "sha256": "51ab5cc52204428cac8803a60b77cb7a852c7868ae8efd2338ef068d5f081df5"
+      },
+      {
+        "path": "docs/snapshots/fa043dbee4283744bd7e2d9ac9b7e49044dfa31ddd46f530b1cad278c3c97f67/writing.html",
+        "identity_mode": "content",
+        "sha256": "76cb680dde578b3ef5fb49a8cca6970372f8b49dfabc97356159c17bc2615ee9"
       },
       {
         "path": "docs/space.js",
@@ -830,7 +830,7 @@
       {
         "path": "docs/talks.html",
         "identity_mode": "content",
-        "sha256": "a63a01e769bdcd3cfb015194a27b6e090161ca5230c6e7bb07cfe7077910cf2e"
+        "sha256": "b70afa75451d5374cfe4e385e8e284f0ca1851d1780ccf8888e6d874e715a70b"
       },
       {
         "path": "docs/theme.js",
@@ -840,7 +840,7 @@
       {
         "path": "docs/writing.html",
         "identity_mode": "content",
-        "sha256": "9d467d8da07e7e97af4cd17fe82c9efb3fea130b539d15125dcd85277691c7c2"
+        "sha256": "af2be58707b53dcaba5062cac7ea1791c5e4fc6605bf0248385dc7966201068d"
       },
       {
         "path": "drafts/medium-profile-revision-20261001.html",
@@ -855,12 +855,12 @@
       {
         "path": "guides/ARTICLE-MATERIALS.md",
         "identity_mode": "content",
-        "sha256": "db49221305ab7c9a6ec7369a81953f6249f2c35dbd9792e3656bc6453e58e294"
+        "sha256": "1a84030b98385cc7db1770443f6a0add23d5e931664c8a4d85ef33819ded5bf6"
       },
       {
         "path": "guides/ARTICLE-WORKFLOW.md",
         "identity_mode": "content",
-        "sha256": "83272df023a2ce9ef12a77a8252e684abaf822653102b65c8b9a8e01c26af295"
+        "sha256": "ec21bfb325841f2b428ce80ec71201756f3afd8b806b0364907d424a1122fa93"
       },
       {
         "path": "guides/BROWSER-ARCHIVES.md",
@@ -890,7 +890,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "d0f75dd8c6a889bf3f4b630f3b122b9de83d62f957fe71b6f01bc8eb4498c36b"
+        "sha256": "a95c260343e6718650b3c9307a1ebc61e9ec1c0fd970e15cb020d828405335f9"
       },
       {
         "path": "guides/SITE-CONTENT-RELEASE.md",
@@ -1105,7 +1105,12 @@
       {
         "path": "review/issue-120/2026-10-22-review.md",
         "identity_mode": "content",
-        "sha256": "70ee3b02b77fa6dc918dbc2c1b9ffca455154313144fea48976b474e56f859fe"
+        "sha256": "8058d218ac15a836dc40f329233685c078c61ebb580cabcb1eba858c5bde760b"
+      },
+      {
+        "path": "review/issue-120/2026-10-22-review.md.gz",
+        "identity_mode": "content",
+        "sha256": "c23beee2a93c696de78b4b006451908ddfb04e1b03ee02543e96834407be39da"
       },
       {
         "path": "review/issue-122/2026-10-22-t01-review.md",
@@ -1210,7 +1215,12 @@
       {
         "path": "review/issue-122/2026-10-24-r3-runtime-compatibility.md",
         "identity_mode": "content",
-        "sha256": "ee80dea26b126188458cc6e4ddfc11fc6cd79731fe0adf738ca6492d4450bb2e"
+        "sha256": "8bd74b5a9ced99218eaa1885d84e07314fe33a1f0cc274d7e59fe70a7e865d07"
+      },
+      {
+        "path": "review/issue-122/2026-10-24-r3-runtime-compatibility.md.gz",
+        "identity_mode": "content",
+        "sha256": "38150cb23720ea955ec26c29cc1eb88e002eb049d4f0840276a4c3d9f12e1220"
       },
       {
         "path": "review/issue-122/2026-10-25-f5-exact-checksum-proof.json.gz",
@@ -1385,7 +1395,12 @@
       {
         "path": "review/issue-167/2026-10-31-offline-prototype.md",
         "identity_mode": "content",
-        "sha256": "1fdc1c2ba1e24e54deb93248a1b1d948b42db5e3da4a31dc9e4f8679281b8e43"
+        "sha256": "5fcf59c3ec690c81934b0044e6e823cdc523189190179fadd72710f64b53aa5e"
+      },
+      {
+        "path": "review/issue-167/2026-10-31-offline-prototype.md.gz",
+        "identity_mode": "content",
+        "sha256": "9d4e1aa4d170f0c59174ff17dd1e401cf954bce2491a787b21dee5ce3349ab60"
       },
       {
         "path": "review/issue-167/2026-10-31-reviewer-history-evidence.json",
@@ -1395,7 +1410,12 @@
       {
         "path": "review/issue-167/2026-10-31-reviewer-isolation.md",
         "identity_mode": "content",
-        "sha256": "cc33bcc3d54b6d55713e2fcef51b8741ca863b3b68c4f6b2e508f72b771419d8"
+        "sha256": "328a29b155f0e1c38f145befc5e15d4aa072c343cb12362b1e78d4a82cf1bddb"
+      },
+      {
+        "path": "review/issue-167/2026-10-31-reviewer-isolation.md.gz",
+        "identity_mode": "content",
+        "sha256": "33a81dc8dfcecfb24575dde7f17cc4e8a13cc5903422c98dcea2bd11ddc08570"
       },
       {
         "path": "review/issue-169/2026-10-31-article-plan.md",
@@ -1728,6 +1748,11 @@
         "sha256": "17a27df5ff4f5ce50707d8a9a6270ab02d88bbcd7d3b64f063314d6a1af44d2d"
       },
       {
+        "path": "review/issue-169/2026-11-06-distribution-workflow.md",
+        "identity_mode": "content",
+        "sha256": "460fc8bb505921dd8c7d56f5a82071520baa6d12a642d4b6ea70fabadc9b8f1a"
+      },
+      {
         "path": "review/issue-169/2026-11-06-r10-amendment.md",
         "identity_mode": "content",
         "sha256": "623babe66cba34c57d5c161ba3b5b98cacb647123c4c7f400f2b43a7910995a8"
@@ -1736,6 +1761,181 @@
         "path": "review/issue-169/correction-affected.log.gz",
         "identity_mode": "content",
         "sha256": "79b6aa9cf7d8b30df6e48697bb8175005be3b3782cbd11ceb024a814950574b0"
+      },
+      {
+        "path": "review/issue-169/distribution/archive-manifest.json",
+        "identity_mode": "content",
+        "sha256": "8b82933203cca6c5d21fad9bc147c44d83eb663141b9fd7c1009b979dad227b5"
+      },
+      {
+        "path": "review/issue-169/distribution/candidate-v1.json",
+        "identity_mode": "content",
+        "sha256": "8521aa73a149a1c3605e2d6e43ccc013f1df5608fd24251e2043e8a1cb418e63"
+      },
+      {
+        "path": "review/issue-169/distribution/candidate-v2.json",
+        "identity_mode": "content",
+        "sha256": "296f566b486e97c6e11395d72ae379624e667287cda49c0fee40328b528572f2"
+      },
+      {
+        "path": "review/issue-169/distribution/candidate-v3.json",
+        "identity_mode": "content",
+        "sha256": "740dba3ea75e4d9469b9dcd533bd3f840c14c344bca6685f07bc8820eaba8f24"
+      },
+      {
+        "path": "review/issue-169/distribution/candidate-v4.json",
+        "identity_mode": "content",
+        "sha256": "2753dd31967d68ca2f383223eb7cb51e08676c30d1b7fc10d30705fc43be7ec2"
+      },
+      {
+        "path": "review/issue-169/distribution/candidate-v5.json",
+        "identity_mode": "content",
+        "sha256": "8e557f88ebc451ebd7a03ed2fb7410dc335467a6a67576678ead6ceed28df30f"
+      },
+      {
+        "path": "review/issue-169/distribution/code-final.md",
+        "identity_mode": "content",
+        "sha256": "59bb55ecf01e066a86b8a75da078687e05c766fb6e4c061fe7313315dc1e16d4"
+      },
+      {
+        "path": "review/issue-169/distribution/code-first.md",
+        "identity_mode": "content",
+        "sha256": "407f9449e1c35b2f673857f593d625120db35d3d6a250cfdd08775c0aa7e9daa"
+      },
+      {
+        "path": "review/issue-169/distribution/code-storage-final.md",
+        "identity_mode": "content",
+        "sha256": "c579505ab21b090d4e8b36e0f6fd44b7faf928026ad9dccc8780f6f293089e6f"
+      },
+      {
+        "path": "review/issue-169/distribution/code-v3.md",
+        "identity_mode": "content",
+        "sha256": "172e1432ecef2d0c9125efb0f974ae591c2a07631d83434e8c3dc71d77dc12a6"
+      },
+      {
+        "path": "review/issue-169/distribution/distribution-basic-final.log.gz",
+        "identity_mode": "content",
+        "sha256": "346cabc49bbf07b9f21999d6783649c834b40714d1d810310488dbeb10d35032"
+      },
+      {
+        "path": "review/issue-169/distribution/distribution-basic-v4.log.gz",
+        "identity_mode": "content",
+        "sha256": "346cabc49bbf07b9f21999d6783649c834b40714d1d810310488dbeb10d35032"
+      },
+      {
+        "path": "review/issue-169/distribution/distribution-lint-correction.log.gz",
+        "identity_mode": "content",
+        "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+      },
+      {
+        "path": "review/issue-169/distribution/distribution-lint-final.log.gz",
+        "identity_mode": "content",
+        "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+      },
+      {
+        "path": "review/issue-169/distribution/distribution-lint-v4.log.gz",
+        "identity_mode": "content",
+        "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+      },
+      {
+        "path": "review/issue-169/distribution/distribution-lint.log.gz",
+        "identity_mode": "content",
+        "sha256": "21c71383f206715613b8f7344e6bf2c08c3aabdf5e2a1c8311ada7ba5b02bbe9"
+      },
+      {
+        "path": "review/issue-169/distribution/distribution-selector-final.log.gz",
+        "identity_mode": "content",
+        "sha256": "fe02ab4b0907c13fd92b109ced306d6e1ba80cd1c2b3b7568f29d6fc3a600185"
+      },
+      {
+        "path": "review/issue-169/distribution/distribution-source-corrected.log.gz",
+        "identity_mode": "content",
+        "sha256": "117753dad234d587156bc1e0c088c288a39b32f52ccd6a65683b7fd14553c38a"
+      },
+      {
+        "path": "review/issue-169/distribution/distribution-source-v4.log.gz",
+        "identity_mode": "content",
+        "sha256": "0cfca71c05fea534ce042d353b1c8f481c310e2f637c7e3b8fc8c4cfab0b2e21"
+      },
+      {
+        "path": "review/issue-169/distribution/distribution-tests-first.log.gz",
+        "identity_mode": "content",
+        "sha256": "e1c237eff36d9fd981b4bb2042925515f2df5e27039f1f12904d66fe4a9dc16c"
+      },
+      {
+        "path": "review/issue-169/distribution/exploratory-final.md",
+        "identity_mode": "content",
+        "sha256": "58cf07684f094d6efaec5b4d7d0aa65a12740ff764987bf308c0258671c90dc5"
+      },
+      {
+        "path": "review/issue-169/distribution/exploratory-first.md",
+        "identity_mode": "content",
+        "sha256": "2690de6112d9699504aa084379323ecde429c8e9598224571fe7ef46a91c4c0f"
+      },
+      {
+        "path": "review/issue-169/distribution/exploratory-storage-final.md",
+        "identity_mode": "content",
+        "sha256": "fb079d30635eb6c68ae774eb93809839589e2a683e50a848730333fd487fedde"
+      },
+      {
+        "path": "review/issue-169/distribution/exploratory-v3.md",
+        "identity_mode": "content",
+        "sha256": "4d14c30b6727ba3fe84f4fd0a8c7ef5d8c22e3879db7b21994d62048eb88036e"
+      },
+      {
+        "path": "review/issue-169/distribution/first-affected.log.gz",
+        "identity_mode": "content",
+        "sha256": "69b4190fc46f1a3199327aaeec2ce3bdeab805457c6d0f9cf3080bc53a736798"
+      },
+      {
+        "path": "review/issue-169/distribution/local-checks.json",
+        "identity_mode": "content",
+        "sha256": "425448eb187b59ec12a5d9c01ef3007c2fb163d66f6a91197f002235a5912f68"
+      },
+      {
+        "path": "review/issue-169/distribution/receipt-storage-archive.json",
+        "identity_mode": "content",
+        "sha256": "fb2acc6b5801880915bc1df683607029bee8e335d03cb630aca63a286d25d9e9"
+      },
+      {
+        "path": "review/issue-169/distribution/requirements-final.md",
+        "identity_mode": "content",
+        "sha256": "1540e880532aa593a4a277708f131367d96b658973894c15f2592a80a77b9b42"
+      },
+      {
+        "path": "review/issue-169/distribution/requirements-preflight.md",
+        "identity_mode": "content",
+        "sha256": "084070a443a98f6c87b211e4ef5601601568c2fd852dc075b011f37edddfbf39"
+      },
+      {
+        "path": "review/issue-169/distribution/requirements-storage-final.md",
+        "identity_mode": "content",
+        "sha256": "db6b96d6365c161738284686eb34b38ef6ad1110a6d35ac9694a8701b3a91fa9"
+      },
+      {
+        "path": "review/issue-169/distribution/requirements-v3.md",
+        "identity_mode": "content",
+        "sha256": "b9ae2d42e510b00684dbd5521e4deedc13a2ef73a473b30a95830b45f64f8713"
+      },
+      {
+        "path": "review/issue-169/distribution/whitebox-final.md",
+        "identity_mode": "content",
+        "sha256": "ec588a3a8de5bfbb524abc8fea746fdf07c076afe88129db56eafef538a370b7"
+      },
+      {
+        "path": "review/issue-169/distribution/whitebox-first.md",
+        "identity_mode": "content",
+        "sha256": "5e5e02a9fcad3796f3e7b3ef53a11b7bc3af70ee7f6bf10fe7d80a567b9694fd"
+      },
+      {
+        "path": "review/issue-169/distribution/whitebox-storage-final.md",
+        "identity_mode": "content",
+        "sha256": "b5a8f24b637f6724f9ba431c209e6d3a2ef8f32ef2ee2de0dc9f3f60305ac409"
+      },
+      {
+        "path": "review/issue-169/distribution/whitebox-v3.md",
+        "identity_mode": "content",
+        "sha256": "53ad87387ebe44e7981e715f56b520f3763e840f085a61761b49df59ec06839e"
       },
       {
         "path": "review/issue-169/failed-source-run.json.gz",
@@ -1750,7 +1950,7 @@
       {
         "path": "review/issue-169/native-check-allocation.md",
         "identity_mode": "content",
-        "sha256": "14074845f7c8b8efb6902c203fd04fbbdde9f6d9d23a46d19f803273cef156d4"
+        "sha256": "1e4470b9778a818b94fca1da37106c80b4f3f9f723b9cce7dd2c0d0e5c523a98"
       },
       {
         "path": "review/issue-169/native-reviews/author-scope.md",
@@ -7575,22 +7775,22 @@
       {
         "path": "review/site-v1-20261004-v11-credits-day.html",
         "identity_mode": "content",
-        "sha256": "268a274cd14b92d2abbb8c7eeca960745fc61446c3c16f784b755374940f4584"
+        "sha256": "d22cd9209853b1261361dffaf94a18843bf4a168d73db7a13de3731bebd60442"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-interactive.html",
         "identity_mode": "content",
-        "sha256": "e9ec4f9e2ea5d958479568cc73db909771df1fbb344a2172f20ca8278dc41065"
+        "sha256": "fdeb63cf895eee6e3c70d1f8d15a3aff7decb5a2125641a40d13ea53948998c7"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-night.html",
         "identity_mode": "content",
-        "sha256": "6d91cb7b3cce4231167a0df5a07dc195fab17c1b2ff1a208bbd506d3de41ac3d"
+        "sha256": "2b27a9983bfae973c92f5ede16552d469a378a303e1d3f906ee841b9adb2a15c"
       },
       {
         "path": "review/site-v1-20261004-v11-day.html",
         "identity_mode": "content",
-        "sha256": "3cf9065b3fbeea71348681c5fb7ba9f72997c13545a388e401638ad0334842dd"
+        "sha256": "e754c50bf6f9ae31595d1a9258d7a9fed244dbbf374f256405c2f8342ef9918d"
       },
       {
         "path": "review/site-v1-20261004-v11-index.html",
@@ -7600,57 +7800,57 @@
       {
         "path": "review/site-v1-20261004-v11-interactive.html",
         "identity_mode": "content",
-        "sha256": "9c706b320c4bb549b7d62bc8cf5037e503e766b4dee79778ca187411c7a9fcf5"
+        "sha256": "d0db7fd8fe8e472c70863228900be4ff785fa5403bbd9d76b89cbd0edec618b2"
       },
       {
         "path": "review/site-v1-20261004-v11-night.html",
         "identity_mode": "content",
-        "sha256": "ed51885a7fe65f010802579632f0896050c7f1db9b902960deb2937284b7d41d"
+        "sha256": "768ce43e0d1736f5815f1ec6a67e4ab8526dcab0352dc93fb5ed2f2ddfa42b7b"
       },
       {
         "path": "review/site-v1-20261004-v11-research-day.html",
         "identity_mode": "content",
-        "sha256": "896d152bcfd2c1fa4d706a03e2c86d891ae89bc113ad0142d7aed1e5792ccddc"
+        "sha256": "3fd9239ff492a9cfdc339e0e74db3d58a628174edb298236d59a7efaef27c4e9"
       },
       {
         "path": "review/site-v1-20261004-v11-research-interactive.html",
         "identity_mode": "content",
-        "sha256": "71fe754bdaeb17b9bb8d6a9020dbb60d31ab431ef9f3b6cf911bcf5677b9e766"
+        "sha256": "aa6ce2edc8a69e787d1c74283e859bfb5a443d0607e237321bd89b503d05d235"
       },
       {
         "path": "review/site-v1-20261004-v11-research-night.html",
         "identity_mode": "content",
-        "sha256": "05b1be50cb916162d01b34e158f4cbcac74fc6f1af43b5807bfcd79e770ca9a3"
+        "sha256": "7a411eaf80cb52601c6bb306a91790a40066a59d8f0ae6c4b323e2853b810d4d"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-day.html",
         "identity_mode": "content",
-        "sha256": "85f3b20cd003c1ace6ca3482129ba3474609f726455ea459654487fbac048461"
+        "sha256": "4a0de54dabfd0469fbe1dd907ac9320cd27cb2dc3e6eb1ab203b0ef028a0057d"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-interactive.html",
         "identity_mode": "content",
-        "sha256": "c072d0e58cd55285f8fc2fa6b8b8515e1b966014a26b78fdd3ae7fab33cc6694"
+        "sha256": "fbed023f06483fee613bfaab52bc392cab2293510eb26217ba201ef6ca597fb9"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-night.html",
         "identity_mode": "content",
-        "sha256": "b81b3252efb5b0d64dcab08966701b70199e4a1d2d7265ec701aade9173c7d16"
+        "sha256": "2ee14e9f714384f3352a940c977d7eb119bd5fa052607f1c6a978b7ad26afcaf"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-day.html",
         "identity_mode": "content",
-        "sha256": "d08ff6eb5d815bb165a4fe643a46033c01007fe6fe45615c5384b73be019997f"
+        "sha256": "a81e9c06f61417a57dc7ffcc570af83d36a366d8d01ff2b1522ae7bc4800f2cf"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-interactive.html",
         "identity_mode": "content",
-        "sha256": "c20d63f2d6e8e037390c26af01554329e2279154aa4e6e80c70152e067b6acdd"
+        "sha256": "b15479086d9bc6d89c17dcbf133a85bbca84eb59abc7c443a8c49809d2d0a0a1"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-night.html",
         "identity_mode": "content",
-        "sha256": "95a800e2e07063eba1883dacf4c2d99c2ef6bcb2ef6ff08cf7a986b43801ac25"
+        "sha256": "e9ce4ee51b6978d20d01795463f88275bc71d4039cb3cb45c6a6ea7c23dbc560"
       },
       {
         "path": "review/site-v1-offline-bundle-v10.json",
@@ -7660,7 +7860,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "c8c5c9d80b539fff3b64526ce9ce1e3c7eff6a60e44f557f0b1fb91d4a61b848"
+        "sha256": "302a7ac6dd982c35b0d0156abc12be8ba782004dee55443efe30c9a4945c91c3"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -7715,7 +7915,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "6079ab3b372713b3f7b4341f9439bb0c94be4af2523c5188e88d55841bc48e7e"
+        "sha256": "376f1de9393e628dc9371c39aa5549f20bdb254cb7e248d49a888c1036ffb93a"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -8785,7 +8985,7 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "d9e224c99c388710275ee87dfed3afa63ea6ec981bfc97249e337aea0f2b2dc9"
+        "sha256": "348e2ef42bbb56ddfaed0497e9a8f05847de6a98e21dd1afc2e95207f323e443"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/blueprint.md",
@@ -9065,7 +9265,7 @@
       {
         "path": "site/publications/sdlc-out-of-balance/profile.json",
         "identity_mode": "content",
-        "sha256": "6fbbd9cccabfa690e8bfed56952c02bbfbe66dda6f9d63986bcc192c61ab9d3d"
+        "sha256": "c12840e9e755131ba443746a3cb0810c59453c1bb52f7ba332a808ed54372ea2"
       },
       {
         "path": "site/publications/sdlc-out-of-balance/publication.json",
@@ -9655,7 +9855,7 @@
       {
         "path": "tests/article-materials.test.cjs",
         "identity_mode": "content",
-        "sha256": "86bf4960e05f0826793388747dcbd56fbe4c943b557b9cd6df388a5913538cbd"
+        "sha256": "f4bc2b36e1868fc4d8727ca4fb0d6510a719bc612ea1e5a1080b9822055cfff0"
       },
       {
         "path": "tests/article-media.test.cjs",
@@ -9985,7 +10185,7 @@
       {
         "path": "tests/publishing-profile.test.cjs",
         "identity_mode": "content",
-        "sha256": "ae31306d2cbea3ea91a30caaef01c20333a1d5d1a7ea164020b17e16f1b6850f"
+        "sha256": "60918f26bdb83b3a0cb9c31f3d8a72e6ee4acddab3f1d571889c3a4d2b2efb1c"
       },
       {
         "path": "tests/publishing-safety.test.cjs",
@@ -9995,7 +10195,7 @@
       {
         "path": "tests/publishing.test.cjs",
         "identity_mode": "content",
-        "sha256": "c8cf74de2c51dfa423e1d6a07f31dc94e744fccb6096da2d9f9acdcb172fa252"
+        "sha256": "dcf829425dd3467e597a76fa2162b77dac9b6be8861b7c7aee84f95f78ce36b8"
       },
       {
         "path": "tests/quality-sources.test.cjs",
@@ -10115,7 +10315,7 @@
       {
         "path": "tests/test-profile-selection.test.cjs",
         "identity_mode": "content",
-        "sha256": "0748cc44dc6c5d1670dff138d9bed8559c3eb943decb8cffda79c338684387d0"
+        "sha256": "9691f312f91f3c6c2a7708f852a683c620106e574792c7c57dff4b2ee2cf7d92"
       },
       {
         "path": "tests/test_browser_archives.py",
@@ -10440,7 +10640,7 @@
       {
         "path": "tools/publishing/events.cjs",
         "identity_mode": "content",
-        "sha256": "145a9391dae7ae6fc5a88469de2029663ff046eebe1a11458040d867cbdb939c"
+        "sha256": "99c77a05798734bd2a04fcda11922a27ca75a5f3259802d96087d0c9a096700d"
       },
       {
         "path": "tools/publishing/history.cjs",
@@ -10450,7 +10650,7 @@
       {
         "path": "tools/publishing/kit.cjs",
         "identity_mode": "content",
-        "sha256": "370344064b930fb0c6c801005a4152bd9f135f86ecfff1e5406490a7a80f97ec"
+        "sha256": "9fe2b69fadda0790932c0087ac0c28bb50dbe1074f8588af707402dc50370962"
       },
       {
         "path": "tools/publishing/origin.json",
@@ -10475,7 +10675,7 @@
       {
         "path": "tools/publishing/profile.cjs",
         "identity_mode": "content",
-        "sha256": "bf25017a99e51a263355aeb15634647757ea12ebd76587e467c5979a3df3ee27"
+        "sha256": "4a0d27b65bcafbc89e7f894587055fba9bbc529ba19ecaef94e5bc4a9d97a471"
       },
       {
         "path": "tools/publishing/provenance.cjs",
@@ -11015,7 +11215,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "7ead8d93deb31e33537764806cb467227f98776e7822950c91ae81d2039d8a62"
+        "sha256": "5d3bb52fc8cd46de5c3744b787a349ee86fbe41ebb488846194a40c75965beb7"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -11195,7 +11395,7 @@
       {
         "path": "tools/site/article-materials.cjs",
         "identity_mode": "content",
-        "sha256": "e599db3bb3a82a8d38741a301ee7513f4f0d4d433cb102df3abbe1a99a9f9cdd"
+        "sha256": "492e0377bea6741b57a59e87fcfd2c1ffd120371f3a13996633f66491d6622b0"
       },
       {
         "path": "tools/site/article-media.cjs",
@@ -12874,9 +13074,9 @@
       "title": "the-sdlc-is-out-of-balance.html"
     },
     {
-      "path": "docs/article-snapshots/2c6f525877b751f355c1b3e7c365148be777c351ad40f0005e96a3b901e7b494/the-sdlc-is-out-of-balance.html",
+      "path": "docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/the-sdlc-is-out-of-balance.html",
       "kind": "file",
-      "purpose": "Generated R10 article, immutable media/material or dependent route snapshot from canonical sources.",
+      "purpose": "Exact current native raw article rendition and existing immutable closure; no prior-publication claim.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -12885,9 +13085,9 @@
       "title": "the-sdlc-is-out-of-balance.html"
     },
     {
-      "path": "docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/the-sdlc-is-out-of-balance.html",
+      "path": "docs/article-snapshots/eb1cc896411a5047cd09a6eed0e7725cadbf1cbfa3716c4201812fc82a4e76bb/the-sdlc-is-out-of-balance.html",
       "kind": "file",
-      "purpose": "Exact current native raw article rendition and existing immutable closure; no prior-publication claim.",
+      "purpose": "Generated distribution-profile descendant or immutable native route snapshot; regenerate from canonical owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -13358,15 +13558,15 @@
       "title": "talks.html"
     },
     {
-      "path": "docs/snapshots/190a2156f05681ebd8b82830083f869edb073695f707fa15ff39611ebe1be7d3/credits.html",
+      "path": "docs/snapshots/1c121ae2e3d285ef0a4c758558a9a4679c14e16b328d24a9a6e0ab10cf5ab6dc/talks.html",
       "kind": "file",
-      "purpose": "Generated R9 reader/runtime snapshot or producer-dependent public route; regenerate from canonical site sources.",
+      "purpose": "Generated distribution-profile descendant or immutable native route snapshot; regenerate from canonical owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "credits.html"
+      "title": "talks.html"
     },
     {
       "path": "docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e/talks.html",
@@ -13380,15 +13580,26 @@
       "title": "talks.html"
     },
     {
-      "path": "docs/snapshots/50ee569b40c942c98ec61e5688114142ae3032be91d92c57a7152012411e7521/index.html",
+      "path": "docs/snapshots/2a0bcb66b1531dc8182dcacb31bdfcf14e59a9d215efd54e1b87d5882d973d9d/credits.html",
       "kind": "file",
-      "purpose": "Generated R9 reader/runtime snapshot or producer-dependent public route; regenerate from canonical site sources.",
+      "purpose": "Generated distribution-profile descendant or immutable native route snapshot; regenerate from canonical owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "index.html"
+      "title": "credits.html"
+    },
+    {
+      "path": "docs/snapshots/3f3f0d95495634ffa4fe94d9dcf1a4dbd7a3aa59ddfdac98feab03f17d7d8840/research.html",
+      "kind": "file",
+      "purpose": "Generated distribution-profile descendant or immutable native route snapshot; regenerate from canonical owners.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "research.html"
     },
     {
       "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
@@ -13400,17 +13611,6 @@
         "AGENTS.md"
       ],
       "title": "writing.html"
-    },
-    {
-      "path": "docs/snapshots/5741244054ac4ed16f8a70f20f09a29e46cd57a06fdcf649d7cb0abc1fd26c1f/research.html",
-      "kind": "file",
-      "purpose": "Generated R9 reader/runtime snapshot or producer-dependent public route; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "research.html"
     },
     {
       "path": "docs/snapshots/632f4f29ebdbc51215b02592fd45a1f10a99fb8596d2dec8b3f18bc8be847f06/credits.html",
@@ -13523,17 +13723,6 @@
       "title": "writing.html"
     },
     {
-      "path": "docs/snapshots/bd564d74d6ac2d9a42393f3af405adac74c67a3b140d405a6859b95bda3bf7a0/writing.html",
-      "kind": "file",
-      "purpose": "Generated R10 article, immutable media/material or dependent route snapshot from canonical sources.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "writing.html"
-    },
-    {
       "path": "docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920/index.html",
       "kind": "file",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
@@ -13545,20 +13734,31 @@
       "title": "index.html"
     },
     {
-      "path": "docs/snapshots/c017db2fffe5470a977c10b2d6686b53b6fee281e98008ae9f2d4ccd159ff5c2/talks.html",
+      "path": "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html",
       "kind": "file",
-      "purpose": "Generated R9 reader/runtime snapshot or producer-dependent public route; regenerate from canonical site sources.",
+      "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "talks.html"
+      "title": "writing.html"
     },
     {
-      "path": "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html",
+      "path": "docs/snapshots/ea894f5945827de1225db344a5edabdfb0c69a1cb34b505f45089c20e953d297/index.html",
       "kind": "file",
-      "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
+      "purpose": "Generated distribution-profile descendant or immutable native route snapshot; regenerate from canonical owners.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index.html"
+    },
+    {
+      "path": "docs/snapshots/fa043dbee4283744bd7e2d9ac9b7e49044dfa31ddd46f530b1cad278c3c97f67/writing.html",
+      "kind": "file",
+      "purpose": "Generated distribution-profile descendant or immutable native route snapshot; regenerate from canonical owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -14205,6 +14405,17 @@
       "title": "Issue 120 — 2026-10-22 independent quality-agent integration"
     },
     {
+      "path": "review/issue-120/2026-10-22-review.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-22-review.md.gz"
+    },
+    {
       "path": "review/issue-122/2026-10-22-t01-review.md",
       "kind": "file",
       "purpose": "T01 exact review-template selection correction, independent test oracles, role receipts and normal main-delivery evidence.",
@@ -14434,6 +14645,17 @@
         "AGENTS.md"
       ],
       "title": "Issue122 — 24 October 2026 exact-runtime compatibility"
+    },
+    {
+      "path": "review/issue-122/2026-10-24-r3-runtime-compatibility.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-24-r3-runtime-compatibility.md.gz"
     },
     {
       "path": "review/issue-122/2026-10-25-f5-exact-checksum-proof.json.gz",
@@ -14821,6 +15043,17 @@
       "title": "Issue 167 — 2026-10-31 offline B2 prototype"
     },
     {
+      "path": "review/issue-167/2026-10-31-offline-prototype.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-31-offline-prototype.md.gz"
+    },
+    {
       "path": "review/issue-167/2026-10-31-reviewer-history-evidence.json",
       "kind": "file",
       "purpose": "Exact bounded historical source excerpts and hashes supporting the reviewer usefulness audit.",
@@ -14841,6 +15074,17 @@
         "AGENTS.md"
       ],
       "title": "Issue 167 — 2026-10-31 reviewer isolation and prompt ownership"
+    },
+    {
+      "path": "review/issue-167/2026-10-31-reviewer-isolation.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-31-reviewer-isolation.md.gz"
     },
     {
       "path": "review/issue-169/2026-10-31-article-plan.md",
@@ -15569,6 +15813,17 @@
       "title": "Reader/history correction v2 — independent White-box QA"
     },
     {
+      "path": "review/issue-169/2026-11-06-distribution-workflow.md",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Planned-link/site-first distribution — 6 November 2026"
+    },
+    {
       "path": "review/issue-169/2026-11-06-r10-amendment.md",
       "kind": "file",
       "purpose": "Source-bound R10 review/check evidence or losslessly retained historical report; original semantics and decoded hashes preserved.",
@@ -15589,6 +15844,391 @@
         "AGENTS.md"
       ],
       "title": "correction-affected.log.gz"
+    },
+    {
+      "path": "review/issue-169/distribution/archive-manifest.json",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "archive-manifest.json"
+    },
+    {
+      "path": "review/issue-169/distribution/candidate-v1.json",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "candidate-v1.json"
+    },
+    {
+      "path": "review/issue-169/distribution/candidate-v2.json",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "candidate-v2.json"
+    },
+    {
+      "path": "review/issue-169/distribution/candidate-v3.json",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "candidate-v3.json"
+    },
+    {
+      "path": "review/issue-169/distribution/candidate-v4.json",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "candidate-v4.json"
+    },
+    {
+      "path": "review/issue-169/distribution/candidate-v5.json",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "candidate-v5.json"
+    },
+    {
+      "path": "review/issue-169/distribution/code-final.md",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Code / changed-artifact review — affected v4 delta"
+    },
+    {
+      "path": "review/issue-169/distribution/code-first.md",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Code / changed-artifact review — first judgment"
+    },
+    {
+      "path": "review/issue-169/distribution/code-storage-final.md",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Code review — final storage delta"
+    },
+    {
+      "path": "review/issue-169/distribution/code-v3.md",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Code / changed-artifact review — corrected v3"
+    },
+    {
+      "path": "review/issue-169/distribution/distribution-basic-final.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "distribution-basic-final.log.gz"
+    },
+    {
+      "path": "review/issue-169/distribution/distribution-basic-v4.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "distribution-basic-v4.log.gz"
+    },
+    {
+      "path": "review/issue-169/distribution/distribution-lint-correction.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "distribution-lint-correction.log.gz"
+    },
+    {
+      "path": "review/issue-169/distribution/distribution-lint-final.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "distribution-lint-final.log.gz"
+    },
+    {
+      "path": "review/issue-169/distribution/distribution-lint-v4.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "distribution-lint-v4.log.gz"
+    },
+    {
+      "path": "review/issue-169/distribution/distribution-lint.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "distribution-lint.log.gz"
+    },
+    {
+      "path": "review/issue-169/distribution/distribution-selector-final.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "distribution-selector-final.log.gz"
+    },
+    {
+      "path": "review/issue-169/distribution/distribution-source-corrected.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "distribution-source-corrected.log.gz"
+    },
+    {
+      "path": "review/issue-169/distribution/distribution-source-v4.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "distribution-source-v4.log.gz"
+    },
+    {
+      "path": "review/issue-169/distribution/distribution-tests-first.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "distribution-tests-first.log.gz"
+    },
+    {
+      "path": "review/issue-169/distribution/exploratory-final.md",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Exploratory / Interaction QA — v4 binding and unchanged-surface recheck"
+    },
+    {
+      "path": "review/issue-169/distribution/exploratory-first.md",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Independent first result — Exploratory / Interaction QA"
+    },
+    {
+      "path": "review/issue-169/distribution/exploratory-storage-final.md",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Exploratory / Interaction QA — v5 storage-only rebind"
+    },
+    {
+      "path": "review/issue-169/distribution/exploratory-v3.md",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Exploratory / Interaction QA — corrected v3 recheck"
+    },
+    {
+      "path": "review/issue-169/distribution/first-affected.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "first-affected.log.gz"
+    },
+    {
+      "path": "review/issue-169/distribution/local-checks.json",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "local-checks.json"
+    },
+    {
+      "path": "review/issue-169/distribution/receipt-storage-archive.json",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "receipt-storage-archive.json"
+    },
+    {
+      "path": "review/issue-169/distribution/requirements-final.md",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue169 distribution — affected Requirements & Acceptance review v4"
+    },
+    {
+      "path": "review/issue-169/distribution/requirements-preflight.md",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue169 distribution — Requirements & Acceptance preflight"
+    },
+    {
+      "path": "review/issue-169/distribution/requirements-storage-final.md",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue169 distribution — storage-only Requirements & Acceptance rebind"
+    },
+    {
+      "path": "review/issue-169/distribution/requirements-v3.md",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue169 distribution — affected Requirements & Acceptance review v3"
+    },
+    {
+      "path": "review/issue-169/distribution/whitebox-final.md",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "White-box QA — v4 final affected re-review"
+    },
+    {
+      "path": "review/issue-169/distribution/whitebox-first.md",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "White-box QA — first independent judgment"
+    },
+    {
+      "path": "review/issue-169/distribution/whitebox-storage-final.md",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "White-box QA — storage-only final binding"
+    },
+    {
+      "path": "review/issue-169/distribution/whitebox-v3.md",
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "White-box QA — v3 affected re-review"
     },
     {
       "path": "review/issue-169/failed-source-run.json.gz",
@@ -30401,7 +31041,7 @@
       "kind": "file",
       "purpose": "R10 five-page illustrated reading PDF, generated from canonical article AST and existing declared images.",
       "role": "source",
-      "owner": "guides/ARTICLE-MATERIALS.md",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -37093,9 +37733,9 @@
       ]
     },
     {
-      "path": "docs/article-snapshots/2c6f525877b751f355c1b3e7c365148be777c351ad40f0005e96a3b901e7b494",
+      "path": "docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003",
       "kind": "directory",
-      "purpose": "R10 generated rendition or source-bound editorial/export evidence.",
+      "purpose": "Exact current native raw article rendition and existing immutable closure; no prior-publication claim.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -37103,9 +37743,9 @@
       ]
     },
     {
-      "path": "docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003",
+      "path": "docs/article-snapshots/eb1cc896411a5047cd09a6eed0e7725cadbf1cbfa3716c4201812fc82a4e76bb",
       "kind": "directory",
-      "purpose": "Exact current native raw article rendition and existing immutable closure; no prior-publication claim.",
+      "purpose": "Generated route closure or issue169 distribution review evidence.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -37243,9 +37883,9 @@
       ]
     },
     {
-      "path": "docs/snapshots/190a2156f05681ebd8b82830083f869edb073695f707fa15ff39611ebe1be7d3",
+      "path": "docs/snapshots/1c121ae2e3d285ef0a4c758558a9a4679c14e16b328d24a9a6e0ab10cf5ab6dc",
       "kind": "directory",
-      "purpose": "Generated R9 reader/runtime snapshot or producer-dependent public route; regenerate from canonical site sources.",
+      "purpose": "Generated route closure or issue169 distribution review evidence.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -37263,9 +37903,19 @@
       ]
     },
     {
-      "path": "docs/snapshots/50ee569b40c942c98ec61e5688114142ae3032be91d92c57a7152012411e7521",
+      "path": "docs/snapshots/2a0bcb66b1531dc8182dcacb31bdfcf14e59a9d215efd54e1b87d5882d973d9d",
       "kind": "directory",
-      "purpose": "Generated R9 reader/runtime snapshot or producer-dependent public route; regenerate from canonical site sources.",
+      "purpose": "Generated route closure or issue169 distribution review evidence.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/3f3f0d95495634ffa4fe94d9dcf1a4dbd7a3aa59ddfdac98feab03f17d7d8840",
+      "kind": "directory",
+      "purpose": "Generated route closure or issue169 distribution review evidence.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -37276,16 +37926,6 @@
       "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347",
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/5741244054ac4ed16f8a70f20f09a29e46cd57a06fdcf649d7cb0abc1fd26c1f",
-      "kind": "directory",
-      "purpose": "Generated R9 reader/runtime snapshot or producer-dependent public route; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -37393,16 +38033,6 @@
       ]
     },
     {
-      "path": "docs/snapshots/bd564d74d6ac2d9a42393f3af405adac74c67a3b140d405a6859b95bda3bf7a0",
-      "kind": "directory",
-      "purpose": "R10 generated rendition or source-bound editorial/export evidence.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
       "path": "docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920",
       "kind": "directory",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
@@ -37413,9 +38043,9 @@
       ]
     },
     {
-      "path": "docs/snapshots/c017db2fffe5470a977c10b2d6686b53b6fee281e98008ae9f2d4ccd159ff5c2",
+      "path": "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647",
       "kind": "directory",
-      "purpose": "Generated R9 reader/runtime snapshot or producer-dependent public route; regenerate from canonical site sources.",
+      "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -37423,9 +38053,19 @@
       ]
     },
     {
-      "path": "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647",
+      "path": "docs/snapshots/ea894f5945827de1225db344a5edabdfb0c69a1cb34b505f45089c20e953d297",
       "kind": "directory",
-      "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
+      "purpose": "Generated route closure or issue169 distribution review evidence.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/fa043dbee4283744bd7e2d9ac9b7e49044dfa31ddd46f530b1cad278c3c97f67",
+      "kind": "directory",
+      "purpose": "Generated route closure or issue169 distribution review evidence.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -37626,6 +38266,16 @@
       "path": "review/issue-169",
       "kind": "directory",
       "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-169/distribution",
+      "kind": "directory",
+      "purpose": "Generated route closure or issue169 distribution review evidence.",
       "role": "history",
       "owner": "AGENTS.md",
       "instructions": [

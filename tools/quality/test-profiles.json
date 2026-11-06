@@ -1421,7 +1421,7 @@
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
       "profiles": ["issue-policy"],
-      "disposition": "owning issue41 policy only; AC01\u2013AC06 and manual gates preserved, AC07\u2013AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17\u2013AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure",
+      "disposition": "owning issue41 policy only; AC01–AC06 and manual gates preserved, AC07–AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17–AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure",
       "surviving_route": ".github/acceptance/issue-41.json",
       "inputs": [
         "tests/test_issue41_acceptance.py",
@@ -1918,7 +1918,7 @@
     {
       "path": "tests/publishing.test.cjs",
       "language": "javascript",
-      "purpose": "Bounded AST roundtrip and two declared article profiles, semantic/adaptation identities and complete candidate kits",
+      "purpose": "Bounded AST roundtrip and two declared article profiles, semantic/adaptation identities and complete candidate kits Includes planned-backlink/site-first distribution, pending-state and paired observed reciprocal-link regression coverage.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -1930,7 +1930,9 @@
         "site/publications/**",
         "site/assets/publications/**",
         "site/templates/articles/**",
-        "site/engine/article-print.css"
+        "site/engine/article-print.css",
+        "guides/ARTICLE-WORKFLOW.md",
+        "guides/ARTICLE-MATERIALS.md"
       ],
       "content": true
     },
@@ -2097,7 +2099,7 @@
     {
       "path": "tests/publishing-profile.test.cjs",
       "language": "javascript",
-      "purpose": "Distinct bounded packaging profiles, authored cover/hero/launch/SEO outputs and missing/unsafe resource negatives",
+      "purpose": "Distinct bounded packaging profiles, authored cover/hero/launch/SEO outputs and missing/unsafe resource negatives Includes planned-backlink/site-first distribution, pending-state and paired observed reciprocal-link regression coverage.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -2107,7 +2109,9 @@
         "tests/publishing-profile.test.cjs",
         "tools/publishing/**",
         "site/publications/**",
-        "site/assets/publications/**"
+        "site/assets/publications/**",
+        "guides/ARTICLE-WORKFLOW.md",
+        "guides/ARTICLE-MATERIALS.md"
       ],
       "content": true
     },
@@ -2569,7 +2573,7 @@
     {
       "path": "tests/article-materials.test.cjs",
       "language": "javascript",
-      "purpose": "Selected reviewed public files/links, immutable source/asset bindings, private leakage and reciprocal canonical behavior.",
+      "purpose": "Selected reviewed public files/links, immutable source/asset bindings, private leakage and reciprocal canonical behavior. Includes planned-backlink/site-first distribution, pending-state and paired observed reciprocal-link regression coverage.",
       "owner": "guides/ARTICLE-MATERIALS.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -2580,7 +2584,9 @@
         "tools/site/article-materials.cjs",
         "site/templates/components/article-materials.html",
         "site/publications/**/materials.json",
-        "site/assets/publications/**/materials/**"
+        "site/assets/publications/**/materials/**",
+        "guides/ARTICLE-WORKFLOW.md",
+        "guides/ARTICLE-MATERIALS.md"
       ],
       "content": true
     },

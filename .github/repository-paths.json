@@ -745,18 +745,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/2c6f525877b751f355c1b3e7c365148be777c351ad40f0005e96a3b901e7b494": {
-      "kind": "directory",
-      "purpose": "R10 generated rendition or source-bound editorial/export evidence.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/2c6f525877b751f355c1b3e7c365148be777c351ad40f0005e96a3b901e7b494/the-sdlc-is-out-of-balance.html": {
-      "kind": "file",
-      "purpose": "Generated R10 article, immutable media/material or dependent route snapshot from canonical sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003": {
       "kind": "directory",
       "purpose": "Exact current native raw article rendition and existing immutable closure; no prior-publication claim.",
@@ -766,6 +754,18 @@
     "docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/the-sdlc-is-out-of-balance.html": {
       "kind": "file",
       "purpose": "Exact current native raw article rendition and existing immutable closure; no prior-publication claim.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/eb1cc896411a5047cd09a6eed0e7725cadbf1cbfa3716c4201812fc82a4e76bb": {
+      "kind": "directory",
+      "purpose": "Generated route closure or issue169 distribution review evidence.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/eb1cc896411a5047cd09a6eed0e7725cadbf1cbfa3716c4201812fc82a4e76bb/the-sdlc-is-out-of-balance.html": {
+      "kind": "file",
+      "purpose": "Generated distribution-profile descendant or immutable native route snapshot; regenerate from canonical owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1099,15 +1099,15 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/190a2156f05681ebd8b82830083f869edb073695f707fa15ff39611ebe1be7d3": {
+    "docs/snapshots/1c121ae2e3d285ef0a4c758558a9a4679c14e16b328d24a9a6e0ab10cf5ab6dc": {
       "kind": "directory",
-      "purpose": "Generated R9 reader/runtime snapshot or producer-dependent public route; regenerate from canonical site sources.",
+      "purpose": "Generated route closure or issue169 distribution review evidence.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/190a2156f05681ebd8b82830083f869edb073695f707fa15ff39611ebe1be7d3/credits.html": {
+    "docs/snapshots/1c121ae2e3d285ef0a4c758558a9a4679c14e16b328d24a9a6e0ab10cf5ab6dc/talks.html": {
       "kind": "file",
-      "purpose": "Generated R9 reader/runtime snapshot or producer-dependent public route; regenerate from canonical site sources.",
+      "purpose": "Generated distribution-profile descendant or immutable native route snapshot; regenerate from canonical owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1123,15 +1123,27 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/50ee569b40c942c98ec61e5688114142ae3032be91d92c57a7152012411e7521": {
+    "docs/snapshots/2a0bcb66b1531dc8182dcacb31bdfcf14e59a9d215efd54e1b87d5882d973d9d": {
       "kind": "directory",
-      "purpose": "Generated R9 reader/runtime snapshot or producer-dependent public route; regenerate from canonical site sources.",
+      "purpose": "Generated route closure or issue169 distribution review evidence.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/50ee569b40c942c98ec61e5688114142ae3032be91d92c57a7152012411e7521/index.html": {
+    "docs/snapshots/2a0bcb66b1531dc8182dcacb31bdfcf14e59a9d215efd54e1b87d5882d973d9d/credits.html": {
       "kind": "file",
-      "purpose": "Generated R9 reader/runtime snapshot or producer-dependent public route; regenerate from canonical site sources.",
+      "purpose": "Generated distribution-profile descendant or immutable native route snapshot; regenerate from canonical owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/3f3f0d95495634ffa4fe94d9dcf1a4dbd7a3aa59ddfdac98feab03f17d7d8840": {
+      "kind": "directory",
+      "purpose": "Generated route closure or issue169 distribution review evidence.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/3f3f0d95495634ffa4fe94d9dcf1a4dbd7a3aa59ddfdac98feab03f17d7d8840/research.html": {
+      "kind": "file",
+      "purpose": "Generated distribution-profile descendant or immutable native route snapshot; regenerate from canonical owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1144,18 +1156,6 @@
     "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/5741244054ac4ed16f8a70f20f09a29e46cd57a06fdcf649d7cb0abc1fd26c1f": {
-      "kind": "directory",
-      "purpose": "Generated R9 reader/runtime snapshot or producer-dependent public route; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/5741244054ac4ed16f8a70f20f09a29e46cd57a06fdcf649d7cb0abc1fd26c1f/research.html": {
-      "kind": "file",
-      "purpose": "Generated R9 reader/runtime snapshot or producer-dependent public route; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1279,18 +1279,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/bd564d74d6ac2d9a42393f3af405adac74c67a3b140d405a6859b95bda3bf7a0": {
-      "kind": "directory",
-      "purpose": "R10 generated rendition or source-bound editorial/export evidence.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/bd564d74d6ac2d9a42393f3af405adac74c67a3b140d405a6859b95bda3bf7a0/writing.html": {
-      "kind": "file",
-      "purpose": "Generated R10 article, immutable media/material or dependent route snapshot from canonical sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920": {
       "kind": "directory",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
@@ -1303,18 +1291,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/c017db2fffe5470a977c10b2d6686b53b6fee281e98008ae9f2d4ccd159ff5c2": {
-      "kind": "directory",
-      "purpose": "Generated R9 reader/runtime snapshot or producer-dependent public route; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/c017db2fffe5470a977c10b2d6686b53b6fee281e98008ae9f2d4ccd159ff5c2/talks.html": {
-      "kind": "file",
-      "purpose": "Generated R9 reader/runtime snapshot or producer-dependent public route; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647": {
       "kind": "directory",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
@@ -1324,6 +1300,30 @@
     "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html": {
       "kind": "file",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/ea894f5945827de1225db344a5edabdfb0c69a1cb34b505f45089c20e953d297": {
+      "kind": "directory",
+      "purpose": "Generated route closure or issue169 distribution review evidence.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/ea894f5945827de1225db344a5edabdfb0c69a1cb34b505f45089c20e953d297/index.html": {
+      "kind": "file",
+      "purpose": "Generated distribution-profile descendant or immutable native route snapshot; regenerate from canonical owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/fa043dbee4283744bd7e2d9ac9b7e49044dfa31ddd46f530b1cad278c3c97f67": {
+      "kind": "directory",
+      "purpose": "Generated route closure or issue169 distribution review evidence.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/fa043dbee4283744bd7e2d9ac9b7e49044dfa31ddd46f530b1cad278c3c97f67/writing.html": {
+      "kind": "file",
+      "purpose": "Generated distribution-profile descendant or immutable native route snapshot; regenerate from canonical owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1765,6 +1765,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-120/2026-10-22-review.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-122": {
       "kind": "directory",
       "purpose": "Issue122 atomic delivery-lane increments, independent quality-agent reviews and source-bound acceptance evidence.",
@@ -1896,6 +1902,12 @@
       "purpose": "R3 exact-runtime bootstrap dependency, prospective byte/source freeze, independent reviews and compatibility delivery evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-122/2026-10-24-r3-runtime-compatibility.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
     },
     "review/issue-122/2026-10-25-f5-exact-checksum-proof.json.gz": {
       "kind": "file",
@@ -2125,6 +2137,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-167/2026-10-31-offline-prototype.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-167/2026-10-31-reviewer-history-evidence.json": {
       "kind": "file",
       "purpose": "Exact bounded historical source excerpts and hashes supporting the reviewer usefulness audit.",
@@ -2136,6 +2154,12 @@
       "purpose": "Source-bound reviewer isolation audit, historical usefulness, prompt extraction and actual independent execution receipts.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-167/2026-10-31-reviewer-isolation.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
     },
     "review/issue-169": {
       "kind": "directory",
@@ -2539,6 +2563,12 @@
       "role": "history",
       "owner": "AGENTS.md"
     },
+    "review/issue-169/2026-11-06-distribution-workflow.md": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-169/2026-11-06-r10-amendment.md": {
       "kind": "file",
       "purpose": "Source-bound R10 review/check evidence or losslessly retained historical report; original semantics and decoded hashes preserved.",
@@ -2550,6 +2580,222 @@
       "purpose": "Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/distribution": {
+      "kind": "directory",
+      "purpose": "Generated route closure or issue169 distribution review evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/archive-manifest.json": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/candidate-v1.json": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/candidate-v2.json": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/candidate-v3.json": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/candidate-v4.json": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/candidate-v5.json": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/code-final.md": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/code-first.md": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/code-storage-final.md": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/code-v3.md": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/distribution-basic-final.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/distribution-basic-v4.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/distribution-lint-correction.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/distribution-lint-final.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/distribution-lint-v4.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/distribution-lint.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/distribution-selector-final.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/distribution-source-corrected.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/distribution-source-v4.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/distribution-tests-first.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/exploratory-final.md": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/exploratory-first.md": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/exploratory-storage-final.md": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/exploratory-v3.md": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/first-affected.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/local-checks.json": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/receipt-storage-archive.json": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/requirements-final.md": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/requirements-preflight.md": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/requirements-storage-final.md": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/requirements-v3.md": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/whitebox-final.md": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/whitebox-first.md": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/whitebox-storage-final.md": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/whitebox-v3.md": {
+      "kind": "file",
+      "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
     },
     "review/issue-169/failed-source-run.json.gz": {
       "kind": "file",
@@ -11207,7 +11453,7 @@
       "kind": "file",
       "purpose": "R10 five-page illustrated reading PDF, generated from canonical article AST and existing declared images.",
       "role": "source",
-      "owner": "guides/ARTICLE-MATERIALS.md"
+      "owner": "guides/ARTICLE-WORKFLOW.md"
     },
     "site/assets/publications/sdlc-out-of-balance/materials/reading-r9.pdf": {
       "kind": "file",

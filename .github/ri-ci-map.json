@@ -719,7 +719,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "1cbf706da874b94867af7d5f74401a54978b48fadbe43e80a1ec30b87a309f7b",
+    "digest": "efe69bca05cd9fe4451465924afb246995f4c82d265b7901e192cde3c17b12c9",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -775,7 +775,7 @@
       },
       {
         "path": ".github/acceptance/issue-169.json",
-        "sha256": "2e09c9c49191c1d7ec9118acd453c14ca0a45fc7bab14f278560494ff7107b70"
+        "sha256": "fcdf6622a5e6a0ba7e62fad828b82e14b2c6e8c75a96b18f97f12d1abc87025e"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -867,7 +867,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "2f4d9a5a680f18a98b47ff092da210dcc0fdceee85f7101239f0d33ac4355ebc"
+        "sha256": "43d2f107aceba9bf84a1d2170356da2d370dcf9c53cbc671aa2d610e42ef869d"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -963,7 +963,7 @@
       },
       {
         "path": "AGENTS.md",
-        "sha256": "ad4f179ec04c7af12867229d70598a660c5ae41f3cb456cafd02aca3d12a9988"
+        "sha256": "f8f13dd686d977fc90d8e9932c388842b3beedb046810a0be3c14302a9496d01"
       },
       {
         "path": "CONTRIBUTING.md",
@@ -999,7 +999,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "d0f75dd8c6a889bf3f4b630f3b122b9de83d62f957fe71b6f01bc8eb4498c36b"
+        "sha256": "a95c260343e6718650b3c9307a1ebc61e9ec1c0fd970e15cb020d828405335f9"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -1023,7 +1023,7 @@
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
-        "sha256": "0748cc44dc6c5d1670dff138d9bed8559c3eb943decb8cffda79c338684387d0"
+        "sha256": "9691f312f91f3c6c2a7708f852a683c620106e574792c7c57dff4b2ee2cf7d92"
       },
       {
         "path": "tests/test_code_style.py",
@@ -1159,7 +1159,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "7ead8d93deb31e33537764806cb467227f98776e7822950c91ae81d2039d8a62"
+        "sha256": "5d3bb52fc8cd46de5c3744b787a349ee86fbe41ebb488846194a40c75965beb7"
       },
       {
         "path": "tools/repository_intelligence.py",

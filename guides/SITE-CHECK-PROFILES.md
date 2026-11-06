@@ -726,3 +726,16 @@ QA findings feed the existing test-allocation route above. Protected repository 
 The live #122 owner records current criterion acceptance. These historical semantic
 walkthroughs cannot establish current content/recovery or issue-wide delivery;
 each still requires its complete source-bound checks and external evidence.
+
+### Planned-link and site-first distribution checks
+
+Issue169 uses the existing permanent `publishing.test.cjs`,
+`publishing-profile.test.cjs`, `publishing-history.test.cjs` and
+`article-materials.test.cjs` source suites. Their registry inputs select changed
+publisher/article/material code, opted-in profiles and the canonical article
+workflow guides. Agent routing retains the existing repository navigation checks. Oracles cover actual eight-format/launch outputs, character
+bounds, pending canonical/date state, exact publication proof, site-before-platform
+records and the zero-or-two observed reciprocal pair. Initial website compilation
+has no external platform dependency. Actual website/editor/posting/reciprocal HTTP
+observations remain external gates; selected tests do not claim they occurred.
+No new CI workflow, browser matrix, release route or budget is introduced.

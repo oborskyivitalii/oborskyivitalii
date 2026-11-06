@@ -1,0 +1,20 @@
+[
+  {
+    "path": "review/issue-167/2026-10-31-reviewer-isolation.md",
+    "archive": "review/issue-167/2026-10-31-reviewer-isolation.md.gz",
+    "originalSha256": "cc33bcc3d54b6d55713e2fcef51b8741ca863b3b68c4f6b2e508f72b771419d8",
+    "archiveSha256": "33a81dc8dfcecfb24575dde7f17cc4e8a13cc5903422c98dcea2bd11ddc08570",
+    "originalBytes": 83635,
+    "archiveBytes": 25237,
+    "savedBytes": 57615
+  },
+  {
+    "path": "review/issue-167/2026-10-31-offline-prototype.md",
+    "archive": "review/issue-167/2026-10-31-offline-prototype.md.gz",
+    "originalSha256": "1fdc1c2ba1e24e54deb93248a1b1d948b42db5e3da4a31dc9e4f8679281b8e43",
+    "archiveSha256": "9d4e1aa4d170f0c59174ff17dd1e401cf954bce2491a787b21dee5ce3349ab60",
+    "originalBytes": 85576,
+    "archiveBytes": 29015,
+    "savedBytes": 55800
+  }
+]
