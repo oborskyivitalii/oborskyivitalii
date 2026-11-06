@@ -12117,7 +12117,7 @@
     },
     ".github/acceptance/issue-109.json": {
       "kind": "file",
-      "purpose": "Issue109 stable AC01–AC19 mapping for R9 architecture-before-runtime order, all-nine alignment, preserved R13 speech and separate human/event gates.",
+      "purpose": "Stable AC01-AC19 current R10 scope, retained check/gate selectors, historical source fidelity and distinct human decisions.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -12141,7 +12141,7 @@
     },
     "drafts/devcon-romania-2026/README.md": {
       "kind": "file",
-      "purpose": "DevCon Romania retained edition index, current R9 author-review package and separate event selection.",
+      "purpose": "Current R10 author-review index, immutable presentation/speech history and separate event selection.",
       "role": "draft",
       "owner": "drafts/devcon-romania-2026/README.md"
     },
@@ -13444,6 +13444,222 @@
     "review/issue-109/r14-reviewer-receipts/ri-context-recheck-passed.log": {
       "kind": "file",
       "purpose": "Passing query/context selector after catalog repair and current RI regeneration; first two failures retained separately.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "drafts/devcon-romania-2026/r10": {
+      "kind": "directory",
+      "purpose": "R10 editable presentation, synchronized speech, rendition or byte-bound retained source lineage.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r10/README.md": {
+      "kind": "file",
+      "purpose": "R10 editable presentation, synchronized speech, rendition or byte-bound retained source lineage.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r10/devcon-romania-2026-r10-speech.pdf": {
+      "kind": "file",
+      "purpose": "R10 editable presentation, synchronized speech, rendition or byte-bound retained source lineage.",
+      "role": "generated",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r10/devcon-romania-2026-r10.pdf": {
+      "kind": "file",
+      "purpose": "R10 editable presentation, synchronized speech, rendition or byte-bound retained source lineage.",
+      "role": "generated",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r10/devcon-romania-2026-r10.pptx": {
+      "kind": "file",
+      "purpose": "R10 editable presentation, synchronized speech, rendition or byte-bound retained source lineage.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r10/edition.json": {
+      "kind": "file",
+      "purpose": "R10 editable presentation, synchronized speech, rendition or byte-bound retained source lineage.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r10/sources": {
+      "kind": "directory",
+      "purpose": "R10 editable presentation, synchronized speech, rendition or byte-bound retained source lineage.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r10/sources/article-r10.md": {
+      "kind": "file",
+      "purpose": "R10 editable presentation, synchronized speech, rendition or byte-bound retained source lineage.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/r10/speaker-notes.md": {
+      "kind": "file",
+      "purpose": "R10 editable presentation, synchronized speech, rendition or byte-bound retained source lineage.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "review/issue-109/2026-11-06-r10-review.md": {
+      "kind": "file",
+      "purpose": "R10 authorized article-to-talk scope reconciliation, independent review and exact-source integration evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r10-reviewer-receipts": {
+      "kind": "directory",
+      "purpose": "R10 source-bound independent launch, first-result or artifact/source/check observation receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r10-reviewer-receipts/artifact-final.md": {
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r10-reviewer-receipts/artifact-observations.json": {
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r10-reviewer-receipts/correction-observations.json": {
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r10-reviewer-receipts/exploratory-final.md": {
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r10-reviewer-receipts/first-failed-acceptance.json.gz": {
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r10-reviewer-receipts/first-failed-ri-regressions.log.gz": {
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r10-reviewer-receipts/launches.json": {
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r10-reviewer-receipts/packet-correction.json": {
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r10-reviewer-receipts/packet-final.json": {
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r10-reviewer-receipts/packet-preflight-sources.json": {
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r10-reviewer-receipts/packet-preflight.json": {
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r10-reviewer-receipts/qr-observations.json": {
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r10-reviewer-receipts/requirements-correction-preflight.md": {
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r10-reviewer-receipts/requirements-final.md": {
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r10-reviewer-receipts/requirements-preflight.md": {
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r10-reviewer-receipts/source-verification.json": {
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r10-reviewer-receipts/whitebox-final.md": {
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r10-reviewer-receipts/artifact-correction.md": {
+      "kind": "file",
+      "purpose": "R10 source-bound preserved independent correction, original intent or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r10-reviewer-receipts/edition-final.json": {
+      "kind": "file",
+      "purpose": "R10 source-bound preserved independent correction, original intent or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r10-reviewer-receipts/exploratory-correction.md": {
+      "kind": "file",
+      "purpose": "R10 source-bound preserved independent correction, original intent or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r10-reviewer-receipts/issue109-before-integration.md": {
+      "kind": "file",
+      "purpose": "R10 source-bound preserved independent correction, original intent or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r10-reviewer-receipts/ri-ci-regressions.log.gz": {
+      "kind": "file",
+      "purpose": "R10 source-bound preserved independent correction, original intent or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r10-reviewer-receipts/ri-regressions-corrected.log.gz": {
+      "kind": "file",
+      "purpose": "R10 source-bound preserved independent correction, original intent or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r10-reviewer-receipts/whitebox-correction.md": {
+      "kind": "file",
+      "purpose": "R10 source-bound preserved independent correction, original intent or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/r10-reviewer-receipts/requirements-correction-final.md": {
+      "kind": "file",
+      "purpose": "R10 source-bound independent correction result or exact-source observation.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     }

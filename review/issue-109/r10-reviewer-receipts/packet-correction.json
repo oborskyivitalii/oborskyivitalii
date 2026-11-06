@@ -1,0 +1,119 @@
+{
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 109,
+  "pr": 110,
+  "base": "3ee7398c48bfedca4a004e50ef72d88df954c8b4",
+  "candidate_kind": "Prepared working-tree delta based on real Git HEAD; not a clean candidate commit yet.",
+  "scope": "Import and complete existing R10 nine-slide deck/speech into same Draft PR110 under authorized first-half article update. Preserve external 3-Nov R12 S06-S09 visible/spoken content, retained historical packages, six hypotheses and Agarwal values. Full native/PDF/Markdown synchronization; <=22 minutes planning only. No merge, event selection or release.",
+  "intent_source": "/workspace/scratch/992b55cffd39/owner109.md",
+  "files": [
+    {
+      "path": "/workspace/scratch/992b55cffd39/r12-input/devcon-romania-2026-r12-speech.md",
+      "sha256": "26a2c948e86b8c30c01e5d705e68705b34696862eb62c510e77083300599e269"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/r12-input/devcon-romania-2026-r12.pdf",
+      "sha256": "78c9b730780591155b15ce84e5e0487a7ee0a0d7947d895d9a762763b6f1d8be"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/r12-input/devcon-romania-2026-r12.pptx",
+      "sha256": "62078b50206fa2d5125e96af5b024c334c8f351c5459cbb1b70c8d9f338f07cd"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/.github/ACCEPTANCE.md",
+      "sha256": "6469a66a36171404ce8448d75c3c5d96dc43563c76af41d4d2367598836fcaa8"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/.github/acceptance/issue-109.json",
+      "sha256": "e2b516f08f3d8a20d3669b073fa099dd79da0503a9f9de3781614b9da9ee1b17"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/AGENTS.md",
+      "sha256": "ad4f179ec04c7af12867229d70598a660c5ae41f3cb456cafd02aca3d12a9988"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/CONTRIBUTING.md",
+      "sha256": "804fb3da9a0bc7369bbd902313224221becc6c6b775536ca943f8664bf741442"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/README.md",
+      "sha256": "6cfbf71fad0822cbd4d756afb76b2fd29cdd7b203541b098bfba040e2c24231e"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/agents/reviewers/README.md",
+      "sha256": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/agents/reviewers/code-review.md",
+      "sha256": "26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/agents/reviewers/exploratory-interaction-qa.md",
+      "sha256": "280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/agents/reviewers/requirements-acceptance.md",
+      "sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/agents/reviewers/white-box-qa.md",
+      "sha256": "832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/drafts/devcon-romania-2026/README.md",
+      "sha256": "4fe210b1b3414edb4c6b55d40681efe8ea88d6a2e1d3a55310061d8dd29c1f41"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/drafts/devcon-romania-2026/r10/README.md",
+      "sha256": "c3c21b4b2086a098a1f69299a8c6b8f668eed8330c44b6db78f7885afd1b60c0"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/drafts/devcon-romania-2026/r10/devcon-romania-2026-r10-speech.pdf",
+      "sha256": "45378d1089952387d6dfdf757b041802913cebf32cfab62e58321e5f566d1bc9"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/drafts/devcon-romania-2026/r10/devcon-romania-2026-r10.pdf",
+      "sha256": "24797112ddd150a9141f638994df393c6ea738a8e4cbdedb373028c2f5ddef1f"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/drafts/devcon-romania-2026/r10/devcon-romania-2026-r10.pptx",
+      "sha256": "31f45b07224a16e8c4be067c3a3b1579dac3311c14ad78af04798c325f81b7ef"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/drafts/devcon-romania-2026/r10/edition.json",
+      "sha256": "bd93a7e19e482f8bfa23f9fca88ee96538c33ee764a53dd79623950b34708a77"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/drafts/devcon-romania-2026/r10/sources/article-r10.md",
+      "sha256": "70386a2d2f602b5f60c93d35293a375e4e4abbc6f63a0dd888024031078b3d1f"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/drafts/devcon-romania-2026/r10/speaker-notes.md",
+      "sha256": "b72402da167075b7567a6d20b546995a03e8459ea31953ce8cda2b8363a45fca"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/guides/CODE-STYLE.md",
+      "sha256": "cdef877504055734d653af12237fc708f3e3636dd15dfc0703f71e0f6c87ee40"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/guides/PRESENTATION-VERSIONING.md",
+      "sha256": "917ec0d4323d55081a5a1c9e671f656c01b4173c4b8d8371eb24857a09fbb75e"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/review/issue-109/r10-reviewer-receipts/source-verification.json",
+      "sha256": "d39baed845f7897193608059632da92dc89f7ef70fd9347250ff2ab32203c4e4"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/tools/presentations/validate_edition.py",
+      "sha256": "4d5a1cf4c6f7ad7fde3e0a9161bdee9cf21533189f611ece1411112df9fdbf2b"
+    }
+  ],
+  "allowed": "Read supplied sources, current policy, source contracts, actual Git diff and necessary authoritative source. Independently inspect/check within bounded scope; do not read current peer results or parent scratch outputs, private conversations, or unrelated MEMORY. Do not implement, modify accepted sources/tests, write external services or recursively delegate. May create own temporary execution/renders outside checkout and one assigned review report.",
+  "limits": "Provider model/context internals unknown. Real projector/Keynote/PowerPoint Presenter View not established by PDF review. Full third-party rights and non-DevCon reuse remain separate.",
+  "phase": "Affected correction after preserved first results",
+  "corrections": [
+    "S04 PR/Jira baseline-relative per-worker-month units explicit in visible/nonspoken sources; spoken bodies unchanged.",
+    "Article raw byte identity restored: upstream blob972486f459ebbcfd6cc333977d603670a6ea82dc.",
+    "Removed only new redundant R12 copies from checkout to preserve original260MB scan bound; durable source IDs/links/hashes now in manifest; exact baseline bytes available at ../r12-input."
+  ]
+}

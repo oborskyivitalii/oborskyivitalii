@@ -1,0 +1,13 @@
+{
+  "native": [
+    {
+      "part": "ppt/media/image2.png",
+      "text": "https://vitaliioborskyi.ai/",
+      "sha256": "a41f34f3039f8b4673b0f62ecf08c315ebe0ad0f55bcec5b8b8b3544ead8c38e"
+    }
+  ],
+  "final_pdf_page9": [
+    "https://vitaliioborskyi.ai/"
+  ],
+  "exactly_one_homepage_each": true
+}

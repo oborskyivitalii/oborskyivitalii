@@ -1,54 +1,44 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-11-02**.
+Dated continuity, not live authority. Last verified: **2026-11-06**.
 
 ## Snapshot
 
-- Current task: DevCon Romania issue109, same Draft PR110, branch
-  `work/issue-109-devcon-romania-r1`. Revalidate actual remote head/checks.
-- Latest request: align the concise repo speech with deck R9; reorder blocks
-  and adjust current S07/S08 emphasis without exceeding the R13 word budget.
-- Current deck: drafts/devcon-romania-2026/r9/. Current concise speech: R14
-  alongside historical R13; 1,530 versus 1,552 spoken words. Seven blocks verbatim.
-  Immediate complete predecessor R8 is preserved at
-  9330c424b2dd66177de9e5e50db5f132b2c57001.
+- DevCon Romania issue109 / same Draft PR110, branch
+  `work/issue-109-devcon-romania-r1`; revalidate live head/checks.
+- Current R10 imports the delivered 6-Nov native/PDF/full speech package and
+  includes independently reviewed PR/Jira source-unit clarification.
+  Base before integration: `3ee7398c48bfedca4a004e50ef72d88df954c8b4`.
+- Current artifact owner: drafts/devcon-romania-2026/r10/edition.json.
+  Review: review/issue-109/2026-11-06-r10-review.md.
 
 ## Decisions
 
-- R6/R13 source-position order is 1,2,4,3,5,6,8,7,9. Ownership remains S03,
-  evidence S04, architecture/project commitment is S07 and runtime is S08.
-- AC13/AC14 follow evidence/ownership; AC17/AC18 follow runtime/architecture.
-  The earlier R9 request authorized all-nine visual polish, superseding R8's
-  two-slide-only limit. Evidence, rights, nine-slide scope and spoken bodies stay.
-- R14 speech follows R9 order; only current S07/S08 spoken wording changes.
-  R9 native/Markdown notes and historical R13 remain unchanged. Use standalone
-  R14 for current concise delivery; it does not create a new slide edition.
-- Keep Draft status and event-selected R3. Exact-package author approval,
-  rehearsal, presenting-device acceptance and public release remain separate.
+- User authorized first-half article alignment, R10 import and final review/checks.
+- R10 follows repo R9. External 3-Nov R12 is retained content lineage, not a
+  new repository edition. Historical R9/R14 and older packages are unchanged.
+- S01–S05 changed; S06–S09 visible content/pixels and speech match external R12.
+  All nine R10 spoken bodies are present in related native notes.
+- Same Draft PR; no merge, event selection or public release. Event still R3.
 
 ## Open work
 
-- Speech evidence owner: review/issue-109/2026-11-02-r14-speech-review.md.
-  Prior deck evidence: review/issue-109/2026-11-02-r9-review.md. Read actual
-  independent receipts and exact-source checks; do not infer green CI.
-- Author review of R9; timed English rehearsal within 23 minutes plus 7-minute
-  Q&A; real presenting-device/projector and QR acceptance remain pending.
-- AC10's independent non-DevCon reuse and full human/source-rights acceptance
-  remain pending. Preparing a deck does not select it for the event.
-- Prior #167/WEB-18 handoff remains in main history and its owning review;
-  this presentation task does not close it.
+- Four distinct final roles and all affected correction reviews completed.
+  RI29 and coupling22 passed; Basic/Style/RI/coupling current precommit passed.
+  Exact clean delivered-head report and source/tree identity are owned by PR110.
+  Read actual results; do not infer remote CI from these local observations.
+- Exact author acceptance, timed rehearsal, real device/projection/Presenter View,
+  full rights and independent non-DevCon reuse remain separate gates.
+- Speech 1,434 versus 1,423 (+11); <=22-minute target is unmeasured planning.
 
 ## Next session
 
-1. Read issue109, actual Draft PR110 head/checks and the R14 speech review record.
-2. Review exact R9 and aligned R14 speech with the author; preserve history.
-3. Rehearse in English and perform the real device/projection/QR check.
-4. Select an event edition only with explicit author direction, updating exact
-   path/hash/source binding together. Latest author-review R is not selection.
+1. Read live issue109/PR110 and the R10 source-bound review/check receipts.
+2. Revalidate current delivered files/head and remaining acceptance decisions.
+3. Keep history and event selection; do not infer readiness from old green runs.
 
 ## Maintenance
 
-- Keep these five sections within 120 lines; regenerate RI after source changes.
-- Preserve first failures and distinct reviewer results. Roles use explicit
-  none-fork launches; provider internals remain unknown.
-- Retain histories, ownership, test profiles and budgets; store no secrets.
+- Keep five sections and <=120 lines; regenerate RI after indexed changes.
+- Preserve actual failures, reviewer first results and exact source identities.
+- Provider model/context internals remain unknown; store no secrets.

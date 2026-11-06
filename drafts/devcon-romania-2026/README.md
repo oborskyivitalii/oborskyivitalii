@@ -1,5 +1,24 @@
 # DevCon Romania 2026 presentation editions
 
+**Current author-review edition: R10**, revised 6 November 2026.
+
+- [Editable PowerPoint](r10/devcon-romania-2026-r10.pptx)
+- [Deck PDF](r10/devcon-romania-2026-r10.pdf)
+- [Full synchronized speech](r10/speaker-notes.md) and [reading PDF](r10/devcon-romania-2026-r10-speech.pdf)
+- [R10 sources, scope and re-export](r10/README.md)
+- [Edition hashes](r10/edition.json)
+- [Current review](../../review/issue-109/2026-11-06-r10-review.md)
+
+R10 updates S01–S05 from article R10 and preserves delivered 3-Nov external R12
+S06–S09. Nine slides; 1,434 spoken words versus 1,423 (+11). Timing is unmeasured.
+Same issue109 and Draft PR110; event-selected R3 remains unchanged. Historical
+R9/R14 artifacts and the earlier index below are preserved, not current acceptance.
+
+---
+
+## Preserved index as of 2 November 2026
+
+
 **AI Changes the Delivery System and the Product Itself**  
 Vitalii Oborskyi · DevOps Stage · 4 November 2026
 

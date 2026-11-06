@@ -1,0 +1,109 @@
+{
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 109,
+  "pr": 110,
+  "base": "3ee7398c48bfedca4a004e50ef72d88df954c8b4",
+  "candidate_kind": "Prepared working-tree delta based on real Git HEAD; not a clean candidate commit yet.",
+  "scope": "Import and complete existing R10 nine-slide deck/speech into same Draft PR110 under authorized first-half article update. Preserve external 3-Nov R12 S06-S09 visible/spoken content, retained historical packages, six hypotheses and Agarwal values. Full native/PDF/Markdown synchronization; <=22 minutes planning only. No merge, event selection or release.",
+  "intent_source": "/workspace/scratch/992b55cffd39/owner109.md",
+  "files": [
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/.github/ACCEPTANCE.md",
+      "sha256": "6469a66a36171404ce8448d75c3c5d96dc43563c76af41d4d2367598836fcaa8"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/.github/acceptance/issue-109.json",
+      "sha256": "e2b516f08f3d8a20d3669b073fa099dd79da0503a9f9de3781614b9da9ee1b17"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/AGENTS.md",
+      "sha256": "ad4f179ec04c7af12867229d70598a660c5ae41f3cb456cafd02aca3d12a9988"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/CONTRIBUTING.md",
+      "sha256": "804fb3da9a0bc7369bbd902313224221becc6c6b775536ca943f8664bf741442"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/README.md",
+      "sha256": "6cfbf71fad0822cbd4d756afb76b2fd29cdd7b203541b098bfba040e2c24231e"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/agents/reviewers/README.md",
+      "sha256": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/agents/reviewers/code-review.md",
+      "sha256": "26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/agents/reviewers/exploratory-interaction-qa.md",
+      "sha256": "280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/agents/reviewers/requirements-acceptance.md",
+      "sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/agents/reviewers/white-box-qa.md",
+      "sha256": "832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/drafts/devcon-romania-2026/README.md",
+      "sha256": "4fe210b1b3414edb4c6b55d40681efe8ea88d6a2e1d3a55310061d8dd29c1f41"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/drafts/devcon-romania-2026/r10/README.md",
+      "sha256": "63d6ab2b5d322d5fb23c991ff0ec5fd304f9ad6ef65515d422a719d9281c522d"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/drafts/devcon-romania-2026/r10/devcon-romania-2026-r10-speech.pdf",
+      "sha256": "841f142320760ee2b05972568d4a64571bbe1d4c9c6b9503a03cf351fb777261"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/drafts/devcon-romania-2026/r10/devcon-romania-2026-r10.pdf",
+      "sha256": "266e98b1bb3b3282fad72a1250672dda316e6ef7ce37a40b0f89a747da418071"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/drafts/devcon-romania-2026/r10/devcon-romania-2026-r10.pptx",
+      "sha256": "6574661343e6a74c222a60504b3b1b105a5dde44c7785dc28b262f59e2a28083"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/drafts/devcon-romania-2026/r10/edition.json",
+      "sha256": "097d26254635a80c09b14cb88462b567b094c86c5cde4c0fda4a0e1632122616"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/drafts/devcon-romania-2026/r10/sources/article-r10.md",
+      "sha256": "337f21f1ef76523cc43a1631494e09eb5bc8b812c665499129895935179b03f1"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/drafts/devcon-romania-2026/r10/sources/external-2026-11-03-devcon-romania-2026-r12-speech.md",
+      "sha256": "26a2c948e86b8c30c01e5d705e68705b34696862eb62c510e77083300599e269"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/drafts/devcon-romania-2026/r10/sources/external-2026-11-03-devcon-romania-2026-r12.pdf",
+      "sha256": "78c9b730780591155b15ce84e5e0487a7ee0a0d7947d895d9a762763b6f1d8be"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/drafts/devcon-romania-2026/r10/sources/external-2026-11-03-devcon-romania-2026-r12.pptx",
+      "sha256": "62078b50206fa2d5125e96af5b024c334c8f351c5459cbb1b70c8d9f338f07cd"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/drafts/devcon-romania-2026/r10/speaker-notes.md",
+      "sha256": "4f60d228495d362839dd53c45475e2853c6b75a5d8f5294e8af56046792367b9"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/guides/CODE-STYLE.md",
+      "sha256": "cdef877504055734d653af12237fc708f3e3636dd15dfc0703f71e0f6c87ee40"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/guides/PRESENTATION-VERSIONING.md",
+      "sha256": "917ec0d4323d55081a5a1c9e671f656c01b4173c4b8d8371eb24857a09fbb75e"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/tools/presentations/validate_edition.py",
+      "sha256": "4d5a1cf4c6f7ad7fde3e0a9161bdee9cf21533189f611ece1411112df9fdbf2b"
+    }
+  ],
+  "allowed": "Read supplied sources, current policy, source contracts, actual Git diff and necessary authoritative source. Independently inspect/check within bounded scope; do not read current peer results or parent scratch outputs, private conversations, or unrelated MEMORY. Do not implement, modify accepted sources/tests, write external services or recursively delegate. May create own temporary execution/renders outside checkout and one assigned review report.",
+  "limits": "Provider model/context internals unknown. Real projector/Keynote/PowerPoint Presenter View not established by PDF review. Full third-party rights and non-DevCon reuse remain separate."
+}

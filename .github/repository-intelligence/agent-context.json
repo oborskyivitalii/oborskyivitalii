@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "fc3789e9f3780efc280e9ff12c8eeb17feae0c1f9fe320e71ef1f6fa043d4b40",
+    "digest": "8c6684ceca95309a72f59286aa88a98d33466a29f9df47b1eba4ab4d75acbc4a",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -57,7 +57,7 @@
       {
         "path": ".github/acceptance/issue-109.json",
         "identity_mode": "content",
-        "sha256": "994a5915c703bd212108d5c256de2e7beaa3dee29b9566ee5ba7ff36a4b78e82"
+        "sha256": "e2b516f08f3d8a20d3669b073fa099dd79da0503a9f9de3781614b9da9ee1b17"
       },
       {
         "path": ".github/acceptance/issue-114.json",
@@ -216,12 +216,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "448d362498e45ec788ccef9f44ec25b48c4008bbbf82a58d2fb1a42b3b8655f6"
+        "sha256": "a8002749e8f65d66ed04d0cfb0de52759f4d2907966b4e693afab7193abdc519"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "782ac79c3fd4ebf503df9f6875314041d0a1218c7c44ce2a716333c324c3a6a5"
+        "sha256": "b7286422b42214424f5aa994930cc69f0882751f33db5f42e8482e5d1670cee5"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -371,7 +371,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "507f05af9f0e64a98c44cc55a1d249143cc19edbd14d26bc889317030c327300"
+        "sha256": "8f88664ae62423b51423a1f3ca5f08f03fd253c971030d55504d852ca775e58d"
       },
       {
         "path": "NOTICE.md",
@@ -720,7 +720,7 @@
       {
         "path": "drafts/devcon-romania-2026/README.md",
         "identity_mode": "content",
-        "sha256": "20bff8c8da72420163dd8fd23980ff2f1c39f0b47e9a393030838f1f89e71200"
+        "sha256": "4fe210b1b3414edb4c6b55d40681efe8ea88d6a2e1d3a55310061d8dd29c1f41"
       },
       {
         "path": "drafts/devcon-romania-2026/devcon-romania-2026-r13-concise-stage-script.md",
@@ -746,6 +746,41 @@
         "path": "drafts/devcon-romania-2026/plan.md",
         "identity_mode": "content",
         "sha256": "cf02472107bdc5c48c2bb3a46f6c6fcd8dda23d731ad8858093e1848e4643ac9"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r10/README.md",
+        "identity_mode": "content",
+        "sha256": "c3c21b4b2086a098a1f69299a8c6b8f668eed8330c44b6db78f7885afd1b60c0"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r10/devcon-romania-2026-r10-speech.pdf",
+        "identity_mode": "content",
+        "sha256": "45378d1089952387d6dfdf757b041802913cebf32cfab62e58321e5f566d1bc9"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r10/devcon-romania-2026-r10.pdf",
+        "identity_mode": "content",
+        "sha256": "24797112ddd150a9141f638994df393c6ea738a8e4cbdedb373028c2f5ddef1f"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r10/devcon-romania-2026-r10.pptx",
+        "identity_mode": "content",
+        "sha256": "31f45b07224a16e8c4be067c3a3b1579dac3311c14ad78af04798c325f81b7ef"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r10/edition.json",
+        "identity_mode": "content",
+        "sha256": "bd93a7e19e482f8bfa23f9fca88ee96538c33ee764a53dd79623950b34708a77"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r10/sources/article-r10.md",
+        "identity_mode": "content",
+        "sha256": "70386a2d2f602b5f60c93d35293a375e4e4abbc6f63a0dd888024031078b3d1f"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r10/speaker-notes.md",
+        "identity_mode": "content",
+        "sha256": "b72402da167075b7567a6d20b546995a03e8459ea31953ce8cda2b8363a45fca"
       },
       {
         "path": "drafts/devcon-romania-2026/r2/devcon-romania-2026-r2.pdf",
@@ -1326,6 +1361,136 @@
         "path": "review/issue-109/2026-11-02-r9-review.md",
         "identity_mode": "content",
         "sha256": "d0e05775c762ae2984d1f798288e94e55b60eac7383d3846c83cf17ea7ad50b5"
+      },
+      {
+        "path": "review/issue-109/2026-11-06-r10-review.md",
+        "identity_mode": "content",
+        "sha256": "d4e85f5d4971a987e9c2bfa08ce3255effde6c763c21b66734cbb38d6b12a904"
+      },
+      {
+        "path": "review/issue-109/r10-reviewer-receipts/artifact-correction.md",
+        "identity_mode": "content",
+        "sha256": "587961acfb8018a92973a73b2af927b0daf935cdafe7cebe591af5e525d76856"
+      },
+      {
+        "path": "review/issue-109/r10-reviewer-receipts/artifact-final.md",
+        "identity_mode": "content",
+        "sha256": "6c3328dff0f4f1c4096d39094c0759a9c4dc0864985fdd47b26a6f14cea6935d"
+      },
+      {
+        "path": "review/issue-109/r10-reviewer-receipts/artifact-observations.json",
+        "identity_mode": "content",
+        "sha256": "259d333f29ae5a58e79e472268b8878e05c3ab225019d6897bf83cff24781355"
+      },
+      {
+        "path": "review/issue-109/r10-reviewer-receipts/correction-observations.json",
+        "identity_mode": "content",
+        "sha256": "236ce53895da32b70b250a513adf16cd67a02b613e37694a77b573828eec762b"
+      },
+      {
+        "path": "review/issue-109/r10-reviewer-receipts/edition-final.json",
+        "identity_mode": "content",
+        "sha256": "26fdf8c5d70a909936534260e1f6cd2efb2f573fcc51621a99a3bc9136ca0a3d"
+      },
+      {
+        "path": "review/issue-109/r10-reviewer-receipts/exploratory-correction.md",
+        "identity_mode": "content",
+        "sha256": "c2d2f3e82d319281cee1d381be73056ac7f6a493b65bf8c64d0951131ce0c09f"
+      },
+      {
+        "path": "review/issue-109/r10-reviewer-receipts/exploratory-final.md",
+        "identity_mode": "content",
+        "sha256": "589638ea1763d81dc6fb33843a4b3c27fa01481df4a01bd20e417e42e63d2f8d"
+      },
+      {
+        "path": "review/issue-109/r10-reviewer-receipts/first-failed-acceptance.json.gz",
+        "identity_mode": "content",
+        "sha256": "9521c58f2883737c441ae98a399ba0587f508cb0c403ed2d5924ed0b103d5c5c"
+      },
+      {
+        "path": "review/issue-109/r10-reviewer-receipts/first-failed-ri-regressions.log.gz",
+        "identity_mode": "content",
+        "sha256": "f81738ae536cefe9fd1b4b985648d4e4e58285f5cea0ed93d55c7b9f5cad6500"
+      },
+      {
+        "path": "review/issue-109/r10-reviewer-receipts/issue109-before-integration.md",
+        "identity_mode": "content",
+        "sha256": "c97fcc462683d3b4ef777632f0918a713f3a74dbebf86b97f1cb7d596e30571e"
+      },
+      {
+        "path": "review/issue-109/r10-reviewer-receipts/launches.json",
+        "identity_mode": "content",
+        "sha256": "60d3a7ce41665695792404c426d0362e8f5cae17d64af4305487f66251ddf6b2"
+      },
+      {
+        "path": "review/issue-109/r10-reviewer-receipts/packet-correction.json",
+        "identity_mode": "content",
+        "sha256": "ebed2dffbfe151107e6054e48c10d26d291e10ba39e39e16203c3f17a3d59837"
+      },
+      {
+        "path": "review/issue-109/r10-reviewer-receipts/packet-final.json",
+        "identity_mode": "content",
+        "sha256": "06f3fa575f5066e2ac454284a48f76f47b8aa39b4c493d17f129efb608487a1e"
+      },
+      {
+        "path": "review/issue-109/r10-reviewer-receipts/packet-preflight-sources.json",
+        "identity_mode": "content",
+        "sha256": "d9cdcc5bd50cdd1948f185a8fcb91e8aa61ce7715b39e84e04468cd09592c544"
+      },
+      {
+        "path": "review/issue-109/r10-reviewer-receipts/packet-preflight.json",
+        "identity_mode": "content",
+        "sha256": "b3079289a5cf48fea913fc60d15738b28f4fc8d3f5c1b1271f9fa7c5a00be53d"
+      },
+      {
+        "path": "review/issue-109/r10-reviewer-receipts/qr-observations.json",
+        "identity_mode": "content",
+        "sha256": "c017777f19223407f3ec6d1ee6d304ea867279d508f580a99f18010ccaf9e20d"
+      },
+      {
+        "path": "review/issue-109/r10-reviewer-receipts/requirements-correction-final.md",
+        "identity_mode": "content",
+        "sha256": "53a87e5ab86ec31c6c41599f45c5246e3272d98d6abce3aff1e66a5a916f558b"
+      },
+      {
+        "path": "review/issue-109/r10-reviewer-receipts/requirements-correction-preflight.md",
+        "identity_mode": "content",
+        "sha256": "57887532063a9579f46241dcedb03842d8cc6581ee7cf7635c19d04dfb382523"
+      },
+      {
+        "path": "review/issue-109/r10-reviewer-receipts/requirements-final.md",
+        "identity_mode": "content",
+        "sha256": "073904e6bd41d3ed557e8763da8b9a560e8a2374dd9976cf315099b500f9df82"
+      },
+      {
+        "path": "review/issue-109/r10-reviewer-receipts/requirements-preflight.md",
+        "identity_mode": "content",
+        "sha256": "52614ede543c8bbe23696381f338c22368c26d6e7b5b2274e9bb157cfc6cb74b"
+      },
+      {
+        "path": "review/issue-109/r10-reviewer-receipts/ri-ci-regressions.log.gz",
+        "identity_mode": "content",
+        "sha256": "c9bb6add08164b38d024b6824878141ede3bc24fd57307d50182fb49c3bb4e02"
+      },
+      {
+        "path": "review/issue-109/r10-reviewer-receipts/ri-regressions-corrected.log.gz",
+        "identity_mode": "content",
+        "sha256": "a5cf1736abb744abb251bcf1b552ecba6c3f3d2389e982738a1ee864840d195c"
+      },
+      {
+        "path": "review/issue-109/r10-reviewer-receipts/source-verification.json",
+        "identity_mode": "content",
+        "sha256": "d39baed845f7897193608059632da92dc89f7ef70fd9347250ff2ab32203c4e4"
+      },
+      {
+        "path": "review/issue-109/r10-reviewer-receipts/whitebox-correction.md",
+        "identity_mode": "content",
+        "sha256": "0d306ed37f525c89e9a3566afcc05152b346f6dc1cdd4ab1c0d3dcced5618100"
+      },
+      {
+        "path": "review/issue-109/r10-reviewer-receipts/whitebox-final.md",
+        "identity_mode": "content",
+        "sha256": "586e317e78de6aa1fe3b5a77e0eee39ba5aaffbde7843513bc777a40925d6159"
       },
       {
         "path": "review/issue-109/r14-input/candidate-manifest.json",
@@ -10546,7 +10711,7 @@
     {
       "path": ".github/acceptance/issue-109.json",
       "kind": "file",
-      "purpose": "Issue109 stable AC01–AC19 mapping for R9 architecture-before-runtime order, all-nine alignment, preserved R13 speech and separate human/event gates.",
+      "purpose": "Stable AC01-AC19 current R10 scope, retained check/gate selectors, historical source fidelity and distinct human decisions.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md",
       "instructions": [
@@ -12009,7 +12174,7 @@
     {
       "path": "drafts/devcon-romania-2026/README.md",
       "kind": "file",
-      "purpose": "DevCon Romania retained edition index, current R9 author-review package and separate event selection.",
+      "purpose": "Current R10 author-review index, immutable presentation/speech history and separate event selection.",
       "role": "draft",
       "owner": "drafts/devcon-romania-2026/README.md",
       "instructions": [
@@ -12071,6 +12236,83 @@
         "AGENTS.md"
       ],
       "title": "DevCon Romania — slide outline, draft 01"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r10/README.md",
+      "kind": "file",
+      "purpose": "R10 editable presentation, synchronized speech, rendition or byte-bound retained source lineage.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "DevCon Romania R10"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r10/devcon-romania-2026-r10-speech.pdf",
+      "kind": "file",
+      "purpose": "R10 editable presentation, synchronized speech, rendition or byte-bound retained source lineage.",
+      "role": "generated",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "devcon-romania-2026-r10-speech.pdf"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r10/devcon-romania-2026-r10.pdf",
+      "kind": "file",
+      "purpose": "R10 editable presentation, synchronized speech, rendition or byte-bound retained source lineage.",
+      "role": "generated",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "devcon-romania-2026-r10.pdf"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r10/devcon-romania-2026-r10.pptx",
+      "kind": "file",
+      "purpose": "R10 editable presentation, synchronized speech, rendition or byte-bound retained source lineage.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "devcon-romania-2026-r10.pptx"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r10/edition.json",
+      "kind": "file",
+      "purpose": "R10 editable presentation, synchronized speech, rendition or byte-bound retained source lineage.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "edition.json"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r10/sources/article-r10.md",
+      "kind": "file",
+      "purpose": "R10 editable presentation, synchronized speech, rendition or byte-bound retained source lineage.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "The SDLC Is Out of Balance: Beyond the AI Code Review Bottleneck"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r10/speaker-notes.md",
+      "kind": "file",
+      "purpose": "R10 editable presentation, synchronized speech, rendition or byte-bound retained source lineage.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "DevCon Romania 2026 - Stage Script R10"
     },
     {
       "path": "drafts/devcon-romania-2026/r2/devcon-romania-2026-r2.pdf",
@@ -13347,6 +13589,292 @@
         "AGENTS.md"
       ],
       "title": "Issue109 — 2 November 2026 — R9 ordering and whole-deck review"
+    },
+    {
+      "path": "review/issue-109/2026-11-06-r10-review.md",
+      "kind": "file",
+      "purpose": "R10 authorized article-to-talk scope reconciliation, independent review and exact-source integration evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue109 — 6 November 2026 R10 integration review"
+    },
+    {
+      "path": "review/issue-109/r10-reviewer-receipts/artifact-correction.md",
+      "kind": "file",
+      "purpose": "R10 source-bound preserved independent correction, original intent or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Code / Artifact affected correction review — issue109 / Draft PR110"
+    },
+    {
+      "path": "review/issue-109/r10-reviewer-receipts/artifact-final.md",
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Independent Code / Artifact review — issue109 / Draft PR110"
+    },
+    {
+      "path": "review/issue-109/r10-reviewer-receipts/artifact-observations.json",
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "artifact-observations.json"
+    },
+    {
+      "path": "review/issue-109/r10-reviewer-receipts/correction-observations.json",
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "correction-observations.json"
+    },
+    {
+      "path": "review/issue-109/r10-reviewer-receipts/edition-final.json",
+      "kind": "file",
+      "purpose": "R10 source-bound preserved independent correction, original intent or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "edition-final.json"
+    },
+    {
+      "path": "review/issue-109/r10-reviewer-receipts/exploratory-correction.md",
+      "kind": "file",
+      "purpose": "R10 source-bound preserved independent correction, original intent or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Exploratory / Interaction QA — affected correction"
+    },
+    {
+      "path": "review/issue-109/r10-reviewer-receipts/exploratory-final.md",
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Exploratory / Interaction QA — first independent result"
+    },
+    {
+      "path": "review/issue-109/r10-reviewer-receipts/first-failed-acceptance.json.gz",
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "first-failed-acceptance.json.gz"
+    },
+    {
+      "path": "review/issue-109/r10-reviewer-receipts/first-failed-ri-regressions.log.gz",
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "first-failed-ri-regressions.log.gz"
+    },
+    {
+      "path": "review/issue-109/r10-reviewer-receipts/issue109-before-integration.md",
+      "kind": "file",
+      "purpose": "R10 source-bound preserved independent correction, original intent or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue109-before-integration.md"
+    },
+    {
+      "path": "review/issue-109/r10-reviewer-receipts/launches.json",
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "launches.json"
+    },
+    {
+      "path": "review/issue-109/r10-reviewer-receipts/packet-correction.json",
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "packet-correction.json"
+    },
+    {
+      "path": "review/issue-109/r10-reviewer-receipts/packet-final.json",
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "packet-final.json"
+    },
+    {
+      "path": "review/issue-109/r10-reviewer-receipts/packet-preflight-sources.json",
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "packet-preflight-sources.json"
+    },
+    {
+      "path": "review/issue-109/r10-reviewer-receipts/packet-preflight.json",
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "packet-preflight.json"
+    },
+    {
+      "path": "review/issue-109/r10-reviewer-receipts/qr-observations.json",
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "qr-observations.json"
+    },
+    {
+      "path": "review/issue-109/r10-reviewer-receipts/requirements-correction-final.md",
+      "kind": "file",
+      "purpose": "R10 source-bound independent correction result or exact-source observation.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Requirements & Acceptance — affected correction final review"
+    },
+    {
+      "path": "review/issue-109/r10-reviewer-receipts/requirements-correction-preflight.md",
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Requirements & Acceptance — bounded correction preflight addendum"
+    },
+    {
+      "path": "review/issue-109/r10-reviewer-receipts/requirements-final.md",
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Requirements & Acceptance — final first judgment, issue109 / Draft PR110"
+    },
+    {
+      "path": "review/issue-109/r10-reviewer-receipts/requirements-preflight.md",
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Requirements & Acceptance — independent preflight"
+    },
+    {
+      "path": "review/issue-109/r10-reviewer-receipts/ri-ci-regressions.log.gz",
+      "kind": "file",
+      "purpose": "R10 source-bound preserved independent correction, original intent or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ri-ci-regressions.log.gz"
+    },
+    {
+      "path": "review/issue-109/r10-reviewer-receipts/ri-regressions-corrected.log.gz",
+      "kind": "file",
+      "purpose": "R10 source-bound preserved independent correction, original intent or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ri-regressions-corrected.log.gz"
+    },
+    {
+      "path": "review/issue-109/r10-reviewer-receipts/source-verification.json",
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "source-verification.json"
+    },
+    {
+      "path": "review/issue-109/r10-reviewer-receipts/whitebox-correction.md",
+      "kind": "file",
+      "purpose": "R10 source-bound preserved independent correction, original intent or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "White-box QA — issue109 / Draft PR110 — affected correction result"
+    },
+    {
+      "path": "review/issue-109/r10-reviewer-receipts/whitebox-final.md",
+      "kind": "file",
+      "purpose": "R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "White-box QA — issue109 / Draft PR110 — first independent result"
     },
     {
       "path": "review/issue-109/r14-input/candidate-manifest.json",
@@ -32975,6 +33503,26 @@
       ]
     },
     {
+      "path": "drafts/devcon-romania-2026/r10",
+      "kind": "directory",
+      "purpose": "R10 editable presentation, synchronized speech, rendition or byte-bound retained source lineage.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r10/sources",
+      "kind": "directory",
+      "purpose": "R10 editable presentation, synchronized speech, rendition or byte-bound retained source lineage.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "drafts/devcon-romania-2026/r2",
       "kind": "directory",
       "purpose": "DevCon R2 editable 11-screen edition, matching PDF, attached English notes and exact version/provenance metadata.",
@@ -33248,6 +33796,16 @@
       "path": "review/issue-109",
       "kind": "directory",
       "purpose": "Versioned DevCon edition preparation and exact-source review evidence under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-109/r10-reviewer-receipts",
+      "kind": "directory",
+      "purpose": "R10 source-bound independent launch, first-result or artifact/source/check observation receipt.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
