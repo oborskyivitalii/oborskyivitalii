@@ -87,6 +87,15 @@ function journey(descriptors, engine, baseURL) {
     robots: 'noindex,nofollow',
     canonical: [],
     alternates: [],
+    // Declared synthetic responses keep current controller/content fixtures valid.
+    // Only real collectors can supply browser or hosted material observations.
+    materials: (descriptors[key].downloads || []).map((file) => ({
+      href: new URL(file, baseURL.replace(/\/$/, '') + '/').href,
+      label: 'Controlled PDF fixture',
+      status: 200,
+      sha256: file.split('/')[1],
+      mime: 'application/pdf',
+    })),
     schemas: [
       {
         '@type': 'Article',

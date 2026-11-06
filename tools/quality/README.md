@@ -112,6 +112,26 @@ immutable preview URL in a separate concurrency group, without stable promotion.
 It provides pre-merge evidence for changed staging code while ordinary PR updates
 keep the small smoke profile.
 
+During release-route reconciliation, check the current generated staging and
+production packages against the exact protected controller before another stage
+attempt. Use a clean detached checkout of the verified main SHA, not candidate
+modules relabeled as controller code:
+
+```sh
+git worktree add --detach /tmp/site-controller "$CONTROLLER_SHA"
+SITE_TEST_CONTROLLER_ROOT=/tmp/site-controller SITE_TEST_CONTROLLER_SHA="$CONTROLLER_SHA" \
+  node --test --test-name-pattern='current generated editions cross the selected controller consumers' \
+  tests/reader-controller.test.cjs
+```
+
+The existing suite records controller/producer identities and tests snapshot,
+runtime, rights, route/article budgets, complete package and both production
+edition consumers independently. Any failure stops staging until its trusted
+owner is reconciled. The default current-controller case remains in permanent
+source profiles; its success does not prove a different protected controller
+can consume the package. Fixture source labels are synthetic; this read-only
+check supplies no hosted, release, rights-decision or deployment acceptance.
+
 Source checks run `local.cjs`, then `source-tests.cjs --profile staging` for
 registered permanent JavaScript not already checked in the baseline, and
 `tools/quality/toolchain/venv/bin/python tools/run_repository_tests.py` (the
@@ -186,11 +206,20 @@ are check reproductions.
 ## Full production regression
 
 The reusable workflow defaults to `validation_level: production` and `full: true`.
-Run that complete candidate validation explicitly before production admission.
+This complete diagnostic is optional under the accepted staging-based production
+policy; `site-candidate-evidence.yml` invokes it explicitly when requested.
 `profile` selects hosted origin/indexing policy, independently of coverage:
 full checks may inspect `profile: staging` on an immutable candidate, while the
-actual production origin must pass `profile: production` checks. Color remains
-staging-only. Running a full validation does not activate publication.
+actual production origin must pass its separate live production checks. The
+frozen production edition supports the approved Color rendition; its isolated
+diagnostic preview uses `profile: staging` transport policy. Running a full
+validation does not activate publication.
+
+The full 390/12/39 functional/navigation/analytics counts cover the five principal
+routes. Current reader journeys run in preview, bounded staging and production
+smoke. `performance.cjs` and `reader-performance.cjs` remain separate optional
+reader performance diagnostics; the thirty principal-route Lighthouse trials do
+not measure an article. No reader performance run is implied by a full-profile pass.
 
 Local full-suite reproductions, after installing the toolchain and preparing the
 same artifact (use the corresponding `SITE_AUDIT_TOOLS` venv interpreter for

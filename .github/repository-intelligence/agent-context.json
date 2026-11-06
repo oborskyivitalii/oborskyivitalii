@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "9316589b3f1f5d81346c7dc6fdc057835be8d26a057468108e6454b643c961fb",
+    "digest": "bd4ee825fd96d5d981e1afd12ee57ea572ef29e0b326429b393c0da6e03f4950",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -216,12 +216,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "cc246ca6dd0052eebfeeefb4868c77b15624251eee883999af9503b4f8bf7506"
+        "sha256": "5bc0a3bb33216d8b92272f11cf6b754d2bd22667e105d9f146db0fa40ab30b1c"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "e451a23866fd4c2fc1d46446753e99dbacd3ec3749f23da8cc2026fa22480ee3"
+        "sha256": "2221e988dabf872f7fe422087ffa1c3937daf3682a051d1fcb1a056ed583f71f"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -371,7 +371,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "123483ef6fbf8327b226e80ee8406a71b148df84b8af06c582065e2e54f69892"
+        "sha256": "499cd8c94b16784dff83c70eea965034cb8768bf850bfc349fed04957f02e056"
       },
       {
         "path": "NOTICE.md",
@@ -890,7 +890,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "a95c260343e6718650b3c9307a1ebc61e9ec1c0fd970e15cb020d828405335f9"
+        "sha256": "2278d49fb371ff69ad62ff134513c65784f305b800e96838264e3f2d54e54ca2"
       },
       {
         "path": "guides/SITE-CONTENT-RELEASE.md",
@@ -1545,7 +1545,12 @@
       {
         "path": "review/issue-169/2026-11-05-native-r9-code-delta-review.md",
         "identity_mode": "content",
-        "sha256": "8e62a747b8f9788b39abe28b34076e0f54efdd4285e7461f4e21afd37db21cf1"
+        "sha256": "2e282567d92d104cf8175c611640af63edade5f386c53d110f7d9df2aed3709d"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-native-r9-code-delta-review.md.gz",
+        "identity_mode": "content",
+        "sha256": "779a6d062cadcc10bc248fcb7b1acc616c1f2a20494d96e18722eab339f2cb88"
       },
       {
         "path": "review/issue-169/2026-11-05-native-r9-content-retention-requirements-preflight.md",
@@ -1555,27 +1560,52 @@
       {
         "path": "review/issue-169/2026-11-05-native-r9-content-retention-whitebox.md",
         "identity_mode": "content",
-        "sha256": "94861656e0558ff1fc29a91b698d1792b4313e308530f38fa557e7a0728e6c69"
+        "sha256": "4585e7da26c982df0576f9a5ba29f26a5b5f6e02ea9978e3ac03083493b6dc59"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-native-r9-content-retention-whitebox.md.gz",
+        "identity_mode": "content",
+        "sha256": "b71cd247a3c32dbeeb6979e5109615dd42c24614fb0b50ba3a4a88f800aebd30"
       },
       {
         "path": "review/issue-169/2026-11-05-native-r9-control-runtime-reconciliation.md",
         "identity_mode": "content",
-        "sha256": "fd314c64c942a7b47d541af46880c6bc106d874389538ee143f50cc234e3126a"
+        "sha256": "e504838869a4f9e3109d81d038a274594ab6d14f73ed248a1fec2e8436ba1f44"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-native-r9-control-runtime-reconciliation.md.gz",
+        "identity_mode": "content",
+        "sha256": "1b9f8b7c8816bd61b379f56018d2426abddb713faff69a0b416e4a16770ce76b"
       },
       {
         "path": "review/issue-169/2026-11-05-native-r9-corrected-run-whitebox.md",
         "identity_mode": "content",
-        "sha256": "8aad37c59035f4cfa95c003f01a27553e3c056163bf4d1c029f6d70704a062c1"
+        "sha256": "08b2a270cdebcac4e5a8eb3799d32d1ffa282cbd8b66d0052f6e00a7c492b4f2"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-native-r9-corrected-run-whitebox.md.gz",
+        "identity_mode": "content",
+        "sha256": "1571afe38a04352ae49539bb36c8454ff5e8ff0e8ff06342efef24bfe9ac3987"
       },
       {
         "path": "review/issue-169/2026-11-05-native-r9-cross-pr-reader-code-audit.md",
         "identity_mode": "content",
-        "sha256": "2864ad440c0370a882314b98f9bcb5d7d9734a865765d5f6f88aac5e7e2d3e12"
+        "sha256": "139b92ba23bf810ce1bf211dea0fddefed09c20f8a5ecf5f601785923947765c"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-native-r9-cross-pr-reader-code-audit.md.gz",
+        "identity_mode": "content",
+        "sha256": "c0219bee8e7da3ea18bf27d32d828cb301f28724f4d009a265edbb797310fc23"
       },
       {
         "path": "review/issue-169/2026-11-05-native-r9-diagnostic-code-review.md",
         "identity_mode": "content",
-        "sha256": "767dbed7a195fa25c51f02f77445c53194366a172c0e018e5ffd253f7a434b43"
+        "sha256": "ca20260f359ade3d272be83e6e1312046e2e3771ef19fc646a9b6373ea869b16"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-native-r9-diagnostic-code-review.md.gz",
+        "identity_mode": "content",
+        "sha256": "fc032bdbba869b220faef58cd2097a5836d3eb431a6d23eb17246361811cf6e3"
       },
       {
         "path": "review/issue-169/2026-11-05-native-r9-diagnostic-requirements-preflight.md",
@@ -1595,7 +1625,12 @@
       {
         "path": "review/issue-169/2026-11-05-native-r9-diagnostic-run-whitebox.md",
         "identity_mode": "content",
-        "sha256": "64e18f8e19c35deb6986d80302f66651499fdd71a55804b67ad58214e0f0847b"
+        "sha256": "c9982cd349e82ef7552e053c43baf3a55d998935c51ae8f1f23440ac1a348d2f"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-native-r9-diagnostic-run-whitebox.md.gz",
+        "identity_mode": "content",
+        "sha256": "c7ffd3c68840cb11afb1f209defd214c6a4bde4720b1d1773fa96f86d3750796"
       },
       {
         "path": "review/issue-169/2026-11-05-native-r9-diagnostic-whitebox.md",
@@ -1610,12 +1645,22 @@
       {
         "path": "review/issue-169/2026-11-05-native-r9-exploratory-pinned-correction.md",
         "identity_mode": "content",
-        "sha256": "033cbcd74bbfe1eba883fe04db42f79d62f4a645ef0f74993e6c105c33f58fed"
+        "sha256": "eee882ea1e48e0e36b61b9f3a6664c8d264bc47cea77996119de3215e69ed2b9"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-native-r9-exploratory-pinned-correction.md.gz",
+        "identity_mode": "content",
+        "sha256": "2bb7bbc38419c824b16c88574b9fec512932a26f0de0573de56bd222fe55eb15"
       },
       {
         "path": "review/issue-169/2026-11-05-native-r9-exploratory-pinned-first.md",
         "identity_mode": "content",
-        "sha256": "06ff75ae2e565b689d5df855b3d68f2b38582622f28bf93199ef895a691ecc25"
+        "sha256": "6ca39b452359b4d1758b76be549a700941cc75c09fac4144e38a7d1ee2a1eaf4"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-native-r9-exploratory-pinned-first.md.gz",
+        "identity_mode": "content",
+        "sha256": "62baed55fa7b0c3f296ad516465070eb6cda3b129b5c740f3aebf0106db9a1f0"
       },
       {
         "path": "review/issue-169/2026-11-05-native-r9-family-final-code-review.md",
@@ -1645,7 +1690,12 @@
       {
         "path": "review/issue-169/2026-11-05-native-r9-forward-owner-whitebox.md",
         "identity_mode": "content",
-        "sha256": "852666c88ba91ee503ee8dc7882b250b9f4595390af967da5897480d2ac618b2"
+        "sha256": "d219716bd60693ead5dc44c6f8bf0b3df26ac744c0c8264375ee9eb2a0721a80"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-native-r9-forward-owner-whitebox.md.gz",
+        "identity_mode": "content",
+        "sha256": "bec934fa2675bba2d23a4743341530dcd6877a76096c9c60e6117630b38e3913"
       },
       {
         "path": "review/issue-169/2026-11-05-native-r9-heading-diagnostic-charter.md",
@@ -1655,7 +1705,12 @@
       {
         "path": "review/issue-169/2026-11-05-native-r9-heading-forward-failure-exploratory.md",
         "identity_mode": "content",
-        "sha256": "8632c80584c7c4e42ffcad85039716de6c10eda4400b2ebd059ffdff977129a1"
+        "sha256": "19ec96dabca6231d2e40b40d8732c31fb63c03ee9396386a9e557e928b831946"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-native-r9-heading-forward-failure-exploratory.md.gz",
+        "identity_mode": "content",
+        "sha256": "e98f82c2f06b44b6270a41900e6032c8b7a22be818d22c954b5f30feafcee141"
       },
       {
         "path": "review/issue-169/2026-11-05-native-r9-heading-forward-rerun-charter.md",
@@ -1665,7 +1720,12 @@
       {
         "path": "review/issue-169/2026-11-05-native-r9-heading-forward-whitebox.md",
         "identity_mode": "content",
-        "sha256": "44785ca4198b6489035a754114ffee3e6357196db08c85daabd42ac757d8b455"
+        "sha256": "4021f6f71e787b25b5f1551926e2a7c1034924b955b4788fccb5e9e8a9e9070c"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-native-r9-heading-forward-whitebox.md.gz",
+        "identity_mode": "content",
+        "sha256": "e90da80a7726d0cacdb1ad12d45f895a9540e83dab0eb8f3deafde4fb9b728d9"
       },
       {
         "path": "review/issue-169/2026-11-05-native-r9-heading-probe-code-review.md",
@@ -1680,7 +1740,12 @@
       {
         "path": "review/issue-169/2026-11-05-native-r9-hosted-heading-exploratory.md",
         "identity_mode": "content",
-        "sha256": "f73f9855455bcebecc50a08c625595ab235fc4dd916f539f009adcbe37771c9a"
+        "sha256": "06482e19d3155c1c4c01b6f81a19fd98c4a27f62d712fda41bf53886772ba830"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-native-r9-hosted-heading-exploratory.md.gz",
+        "identity_mode": "content",
+        "sha256": "389599a4c3f505634b2d9b1e1715be4b2af2ed81c75e49e5b00dd89789de12a3"
       },
       {
         "path": "review/issue-169/2026-11-05-native-r9-hosted-heading-requirements-preflight.md",
@@ -1695,17 +1760,32 @@
       {
         "path": "review/issue-169/2026-11-05-native-r9-hosted-heading-whitebox.md",
         "identity_mode": "content",
-        "sha256": "eabf8fc9a3c7d9cb7c8de74b65062f6729173d108e1a2eb57abdecf497231620"
+        "sha256": "71fddacc7d7ca886d3b49e3f8ff8ed01b0e21b844ea802c91bf5c55ec6f88947"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-native-r9-hosted-heading-whitebox.md.gz",
+        "identity_mode": "content",
+        "sha256": "af0998a3852f2e8457d033077d9bb84f2fc7602386fa97f5d5c2567f975bac22"
       },
       {
         "path": "review/issue-169/2026-11-05-native-r9-plain-staging-family-code-review.md",
         "identity_mode": "content",
-        "sha256": "0ffd349a890990920f2bb72780789420375e564ca77e6927c79aba085b4d7a0a"
+        "sha256": "6c41af7bb1c14d6837d3879da0f69c629860a2c6a192c80be1c73c179c84e07e"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-native-r9-plain-staging-family-code-review.md.gz",
+        "identity_mode": "content",
+        "sha256": "54c02a496972b91020ba44739c45880345b44d66350644a15e8448619cbba4ef"
       },
       {
         "path": "review/issue-169/2026-11-05-native-r9-production-runtime-whitebox.md",
         "identity_mode": "content",
-        "sha256": "090703147f492b71e9f95ef309a84a091505aac9ac6b2766d927ba3101cc190d"
+        "sha256": "b17106a812fe224b26c6ea9b0fccb845f59ede019d99e3c34d09ab1a9e32360b"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-native-r9-production-runtime-whitebox.md.gz",
+        "identity_mode": "content",
+        "sha256": "9611602a47fc330a07e1b1ef7cc41658266de1daf0705fe002c2b7c23f8a2339"
       },
       {
         "path": "review/issue-169/2026-11-05-native-r9-requirements-delta.md",
@@ -1715,12 +1795,22 @@
       {
         "path": "review/issue-169/2026-11-05-native-r9-retention-fix-whitebox.md",
         "identity_mode": "content",
-        "sha256": "bac72b959038c618e20af8bc5f2398e1442395ad8376f50aa3cc56cf232cfbed"
+        "sha256": "d9ea131e5119de2cffe27ec794b3dee08964dbbd5ba7542c2d7c618cc5eca057"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-native-r9-retention-fix-whitebox.md.gz",
+        "identity_mode": "content",
+        "sha256": "8f6fe8a6964266bb2478dd7a8a4c88623f3c56b1356a84fb8e7836f0167d1cae"
       },
       {
         "path": "review/issue-169/2026-11-05-native-r9-retention-heading-code-review.md",
         "identity_mode": "content",
-        "sha256": "80e9189bf71a1d6c461cdd7d32eaa389857c7fc90a8009033b19ab01f3a956dd"
+        "sha256": "d92fb06f7a916091f7db7d7f3d3648c36d3f89be879f44dee0eb0bc757f28e55"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-native-r9-retention-heading-code-review.md.gz",
+        "identity_mode": "content",
+        "sha256": "75f06c2dd2f467cbfea50d1c815b68fcf98d033e2ee8cafcc437151678da96d6"
       },
       {
         "path": "review/issue-169/2026-11-05-native-r9-runtime-admission-requirements.md",
@@ -1740,7 +1830,12 @@
       {
         "path": "review/issue-169/2026-11-05-native-r9-whitebox-delta.md",
         "identity_mode": "content",
-        "sha256": "bff1e962f33971987e8c5ed31f61fc34d2d4daba2eb3c7e99931c7b6da4141fc"
+        "sha256": "465b3e22f3a45f252467a4d508755ef3cee28b8061bec2af00873b8b8924ee39"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-native-r9-whitebox-delta.md.gz",
+        "identity_mode": "content",
+        "sha256": "a682d4a6c62d375785b44f1c8349a750275415fa4206c33bdba1b7a49afa2d10"
       },
       {
         "path": "review/issue-169/2026-11-05-navigation-delivery-reader-whitebox-audit-v1.md",
@@ -1775,7 +1870,12 @@
       {
         "path": "review/issue-169/2026-11-05-r9-native.md",
         "identity_mode": "content",
-        "sha256": "eaebd5ed5f975ecd171144bcb9dbf4f6eefb837688f6b013e7fef07002d4cf21"
+        "sha256": "9ee3b656aa660ff83939a98592291bcfaf61a152c05ab72153b21dca4984a699"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-r9-native.md.gz",
+        "identity_mode": "content",
+        "sha256": "51b6286129c7bf0bee78eb0a4e45c323670e92d98d72970a62f35d22423f3b7d"
       },
       {
         "path": "review/issue-169/2026-11-05-r9-reader-history-admission.md",
@@ -1795,7 +1895,12 @@
       {
         "path": "review/issue-169/2026-11-05-reader-audit-correction-code-initial.md",
         "identity_mode": "content",
-        "sha256": "9f14b7d09f02aabbc5e731f87f95cd2c0f515c25ac46e43537553f74c461c76e"
+        "sha256": "9acb062ac0985c7e667b23607e111b3c78460533b386356103f3be3901ea93fa"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-reader-audit-correction-code-initial.md.gz",
+        "identity_mode": "content",
+        "sha256": "077d03a5b93202f97219baac1828aceaa66b739fcce1c1a2493bbd24803cbbd1"
       },
       {
         "path": "review/issue-169/2026-11-05-reader-audit-correction-code-v2.md",
@@ -1805,12 +1910,22 @@
       {
         "path": "review/issue-169/2026-11-05-reader-audit-correction-v2-requirements-final.md",
         "identity_mode": "content",
-        "sha256": "a2c1645f5150a5356c912882e99bce6d6793267c8bf61ef9b52086f2510bc971"
+        "sha256": "c0c9d0d167435cbae4ac2abff761a3e3a904f0068d663bdec1f47e975d087a6b"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-reader-audit-correction-v2-requirements-final.md.gz",
+        "identity_mode": "content",
+        "sha256": "162938007ab50e2bf49cc06598b00618e81ae7cb9e7c6fa994460635218d4c03"
       },
       {
         "path": "review/issue-169/2026-11-05-reader-correction-v2-exploratory-charter.md",
         "identity_mode": "content",
-        "sha256": "9c8810f55ec9eb1d9ce4046556a5afd24c4ff0f626e5fa1215ca4ec7acd1f69f"
+        "sha256": "fa7282a3c8be4207780cb89d1f4d67dc8a410d3849a5274ec6bb178323fe758a"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-reader-correction-v2-exploratory-charter.md.gz",
+        "identity_mode": "content",
+        "sha256": "599a7313e8670b2ecc81d2e93d8068e9100186757e85c49f00f449f7b1735bd1"
       },
       {
         "path": "review/issue-169/2026-11-05-reader-foundation-audit-and-corrections.md",
@@ -1840,12 +1955,22 @@
       {
         "path": "review/issue-169/2026-11-05-reader-history-correction-whitebox-v1.md",
         "identity_mode": "content",
-        "sha256": "99099c819320c2620fc941e95bde7407c0d9fdbcbd4494332c59de60726ca726"
+        "sha256": "a4433d58e36f9bbf69c5da01328e3a3aaf4c223a3a0b98ace5ec4aabc1e31070"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-reader-history-correction-whitebox-v1.md.gz",
+        "identity_mode": "content",
+        "sha256": "1398395c3a29697aa436d35ffa0c9c8491233bdbd08ae4a2efc9acf89dd6736e"
       },
       {
         "path": "review/issue-169/2026-11-05-reader-history-correction-whitebox-v2.md",
         "identity_mode": "content",
-        "sha256": "17a27df5ff4f5ce50707d8a9a6270ab02d88bbcd7d3b64f063314d6a1af44d2d"
+        "sha256": "cb888d76bad6f6fe0b47d0264bcefcff1a10800a4e2bd40d98d925bcca030ea3"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-reader-history-correction-whitebox-v2.md.gz",
+        "identity_mode": "content",
+        "sha256": "829425e0ce035c3d051dd4759f7a99ff70c65cd07bfc8984f84ccb94368e2869"
       },
       {
         "path": "review/issue-169/2026-11-06-controller-fixture-seed.md",
@@ -1886,6 +2011,11 @@
         "path": "review/issue-169/2026-11-06-staging-corrections.md",
         "identity_mode": "content",
         "sha256": "df266d4d62882eee16b923dc8655736ff73ee3af29279f27013b97fb939891c8"
+      },
+      {
+        "path": "review/issue-169/2026-11-06-staging-production-test-audit.md",
+        "identity_mode": "content",
+        "sha256": "3e09311f17d9ca0d38033b00fcc839575bbc687b6e3298c9aed30beeba11eace"
       },
       {
         "path": "review/issue-169/2026-11-06-staging-security-followup.md",
@@ -4156,6 +4286,11 @@
         "path": "review/issue-169/stage-security-proof.json.gz",
         "identity_mode": "content",
         "sha256": "5c33454b6810abf84426425b8a217c7df072949df2cc85f90c4b5d451c1c15ca"
+      },
+      {
+        "path": "review/issue-169/staging-production-test-audit-proof.tar.xz",
+        "identity_mode": "content",
+        "sha256": "5e3abb6dde101068301f1fef79f1df08f5adb6c91faf1edd51431077bc5c4913"
       },
       {
         "path": "review/issue-169/writing-carrier.json",
@@ -10920,7 +11055,7 @@
       {
         "path": "tests/article-browser-evidence.test.cjs",
         "identity_mode": "content",
-        "sha256": "e0fdd16d3f5d0e7f4ebe43347c6bcb37533968c40187206c3c4339aa7c8dd3f8"
+        "sha256": "f0c1db9918737a3f230988acd9d8a37a9c715ea8f71ffa79b1a69a10116ad99b"
       },
       {
         "path": "tests/article-budgets.test.cjs",
@@ -11095,7 +11230,7 @@
       {
         "path": "tests/fixtures/article-flight.cjs",
         "identity_mode": "content",
-        "sha256": "1654392ecbe41a5571baf54a36cf8c64f1740e8158fc41afd971043c19640149"
+        "sha256": "ad98fcbc38be3ce233110359f6ee0da754a48c599484b85a48c585d64da8ba60"
       },
       {
         "path": "tests/fixtures/catalog.cjs",
@@ -11295,7 +11430,7 @@
       {
         "path": "tests/reader-controller.test.cjs",
         "identity_mode": "content",
-        "sha256": "8c0df8dac972b1fb33ecf36ff01a49243dc0aaada8b872944f4fb43a2d7060e2"
+        "sha256": "d5d93ca70e9bf92741247c609977b916a349fbf22cd37d009f401524c853bf55"
       },
       {
         "path": "tests/reader-mode.test.cjs",
@@ -11400,7 +11535,7 @@
       {
         "path": "tests/test-profile-selection.test.cjs",
         "identity_mode": "content",
-        "sha256": "9691f312f91f3c6c2a7708f852a683c620106e574792c7c57dff4b2ee2cf7d92"
+        "sha256": "3f9f15e146a06eedbcac510fb8cb8d7714c86c7611e17cc2b6b76efa03ad2f50"
       },
       {
         "path": "tests/test_browser_archives.py",
@@ -11815,7 +11950,7 @@
       {
         "path": "tools/quality/README.md",
         "identity_mode": "content",
-        "sha256": "3dd4d6200763e9dd5a9c7850ec57a64c2e3c4edac822d4392de20aff2c3d3d6d"
+        "sha256": "75b5a8ad0889f0194f54b464bb0ab8e730474b059314e1498478905f8e909142"
       },
       {
         "path": "tools/quality/advisory-exceptions.json",
@@ -11850,7 +11985,7 @@
       {
         "path": "tools/quality/article-browser.cjs",
         "identity_mode": "content",
-        "sha256": "ddb8a9d52b8a5007e11bc71f4b07ad13685114060cdb38a9ebad74dddc5d75b3"
+        "sha256": "71d4749d11c0163ccefb6ac12f0c1954a85da2ce17523ce793f7c24cae325fb3"
       },
       {
         "path": "tools/quality/article-print.cjs",
@@ -12300,7 +12435,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "5d3bb52fc8cd46de5c3744b787a349ee86fbe41ebb488846194a40c75965beb7"
+        "sha256": "d31947f04520637bdc60f958adb4f528d98007a17a340076679b40cb9e7f1d3d"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -16455,7 +16590,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Native R9 Code delta review — 5 November 2026"
+      "title": "Preserved review"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-native-r9-code-delta-review.md.gz",
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-11-05-native-r9-code-delta-review.md.gz"
     },
     {
       "path": "review/issue-169/2026-11-05-native-r9-content-retention-requirements-preflight.md",
@@ -16477,7 +16623,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "White-box diagnosis — clean CI shard5 content-retention failure"
+      "title": "Preserved review"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-native-r9-content-retention-whitebox.md.gz",
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-11-05-native-r9-content-retention-whitebox.md.gz"
     },
     {
       "path": "review/issue-169/2026-11-05-native-r9-control-runtime-reconciliation.md",
@@ -16488,7 +16645,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "R9 control diff and observed runtime reconciliation"
+      "title": "Preserved review"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-native-r9-control-runtime-reconciliation.md.gz",
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-11-05-native-r9-control-runtime-reconciliation.md.gz"
     },
     {
       "path": "review/issue-169/2026-11-05-native-r9-corrected-run-whitebox.md",
@@ -16499,7 +16667,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "White-box actual corrected run and runtime-admission oracles"
+      "title": "Preserved review"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-native-r9-corrected-run-whitebox.md.gz",
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-11-05-native-r9-corrected-run-whitebox.md.gz"
     },
     {
       "path": "review/issue-169/2026-11-05-native-r9-cross-pr-reader-code-audit.md",
@@ -16510,7 +16689,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Reader foundation across open PRs — Code completeness audit"
+      "title": "Preserved review"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-native-r9-cross-pr-reader-code-audit.md.gz",
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-11-05-native-r9-cross-pr-reader-code-audit.md.gz"
     },
     {
       "path": "review/issue-169/2026-11-05-native-r9-diagnostic-code-review.md",
@@ -16521,7 +16711,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "R9 bounded browser diagnostic — Code review"
+      "title": "Preserved review"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-native-r9-diagnostic-code-review.md.gz",
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-11-05-native-r9-diagnostic-code-review.md.gz"
     },
     {
       "path": "review/issue-169/2026-11-05-native-r9-diagnostic-requirements-preflight.md",
@@ -16565,7 +16766,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "White-box diagnosis — actual R9 diagnostic42087148352"
+      "title": "Preserved review"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-native-r9-diagnostic-run-whitebox.md.gz",
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-11-05-native-r9-diagnostic-run-whitebox.md.gz"
     },
     {
       "path": "review/issue-169/2026-11-05-native-r9-diagnostic-whitebox.md",
@@ -16598,7 +16810,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Native R9 exploratory correction — actual pinned CI evidence"
+      "title": "Preserved review"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-native-r9-exploratory-pinned-correction.md.gz",
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-11-05-native-r9-exploratory-pinned-correction.md.gz"
     },
     {
       "path": "review/issue-169/2026-11-05-native-r9-exploratory-pinned-first.md",
@@ -16609,7 +16832,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Native R9 exploratory review — first pinned CI diagnostic"
+      "title": "Preserved review"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-native-r9-exploratory-pinned-first.md.gz",
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-11-05-native-r9-exploratory-pinned-first.md.gz"
     },
     {
       "path": "review/issue-169/2026-11-05-native-r9-family-final-code-review.md",
@@ -16675,7 +16909,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "R9 Forward archive owner correction — independent White-box QA"
+      "title": "Preserved review"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-native-r9-forward-owner-whitebox.md.gz",
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-11-05-native-r9-forward-owner-whitebox.md.gz"
     },
     {
       "path": "review/issue-169/2026-11-05-native-r9-heading-diagnostic-charter.md",
@@ -16697,7 +16942,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Heading/Forward diagnostic failure — actual exploratory diagnosis"
+      "title": "Preserved review"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-native-r9-heading-forward-failure-exploratory.md.gz",
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-11-05-native-r9-heading-forward-failure-exploratory.md.gz"
     },
     {
       "path": "review/issue-169/2026-11-05-native-r9-heading-forward-rerun-charter.md",
@@ -16719,7 +16975,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "White-box diagnosis — actual Forward departure watchdog on clean299c39"
+      "title": "Preserved review"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-native-r9-heading-forward-whitebox.md.gz",
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-11-05-native-r9-heading-forward-whitebox.md.gz"
     },
     {
       "path": "review/issue-169/2026-11-05-native-r9-heading-probe-code-review.md",
@@ -16752,7 +17019,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Hosted R9 heading-animation failure — exploratory diagnosis"
+      "title": "Preserved review"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-native-r9-hosted-heading-exploratory.md.gz",
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-11-05-native-r9-hosted-heading-exploratory.md.gz"
     },
     {
       "path": "review/issue-169/2026-11-05-native-r9-hosted-heading-requirements-preflight.md",
@@ -16785,7 +17063,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "White-box diagnosis — hosted archive heading has no actual animation frames"
+      "title": "Preserved review"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-native-r9-hosted-heading-whitebox.md.gz",
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-11-05-native-r9-hosted-heading-whitebox.md.gz"
     },
     {
       "path": "review/issue-169/2026-11-05-native-r9-plain-staging-family-code-review.md",
@@ -16796,7 +17085,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "R9 plain/staging family data — Code continuation"
+      "title": "Preserved review"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-native-r9-plain-staging-family-code-review.md.gz",
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-11-05-native-r9-plain-staging-family-code-review.md.gz"
     },
     {
       "path": "review/issue-169/2026-11-05-native-r9-production-runtime-whitebox.md",
@@ -16807,7 +17107,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "White-box — actual private production tuple and final three-row runtime delta"
+      "title": "Preserved review"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-native-r9-production-runtime-whitebox.md.gz",
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-11-05-native-r9-production-runtime-whitebox.md.gz"
     },
     {
       "path": "review/issue-169/2026-11-05-native-r9-requirements-delta.md",
@@ -16829,7 +17140,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "White-box first correction review — retention runtime dependencies and parser option"
+      "title": "Preserved review"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-native-r9-retention-fix-whitebox.md.gz",
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-11-05-native-r9-retention-fix-whitebox.md.gz"
     },
     {
       "path": "review/issue-169/2026-11-05-native-r9-retention-heading-code-review.md",
@@ -16840,7 +17162,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "R9 actual CI retention and hosted heading failures — Code review"
+      "title": "Preserved review"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-native-r9-retention-heading-code-review.md.gz",
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-11-05-native-r9-retention-heading-code-review.md.gz"
     },
     {
       "path": "review/issue-169/2026-11-05-native-r9-runtime-admission-requirements.md",
@@ -16884,7 +17217,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "White-box QA delta — empty source shards and workflow artifact namespace"
+      "title": "Preserved review"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-native-r9-whitebox-delta.md.gz",
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-11-05-native-r9-whitebox-delta.md.gz"
     },
     {
       "path": "review/issue-169/2026-11-05-navigation-delivery-reader-whitebox-audit-v1.md",
@@ -16961,7 +17305,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue169 — accepted R9 native integration"
+      "title": "Preserved review"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-r9-native.md.gz",
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-11-05-r9-native.md.gz"
     },
     {
       "path": "review/issue-169/2026-11-05-r9-reader-history-admission.md",
@@ -17005,7 +17360,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Reader audit corrections — initial Code findings"
+      "title": "Preserved review"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-reader-audit-correction-code-initial.md.gz",
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-11-05-reader-audit-correction-code-initial.md.gz"
     },
     {
       "path": "review/issue-169/2026-11-05-reader-audit-correction-code-v2.md",
@@ -17027,7 +17393,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Reader audit correction v2 — Requirements final source review"
+      "title": "Preserved review"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-reader-audit-correction-v2-requirements-final.md.gz",
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-11-05-reader-audit-correction-v2-requirements-final.md.gz"
     },
     {
       "path": "review/issue-169/2026-11-05-reader-correction-v2-exploratory-charter.md",
@@ -17038,7 +17415,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Reader correction v2 — affected exploratory charter review"
+      "title": "Preserved review"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-reader-correction-v2-exploratory-charter.md.gz",
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-11-05-reader-correction-v2-exploratory-charter.md.gz"
     },
     {
       "path": "review/issue-169/2026-11-05-reader-foundation-audit-and-corrections.md",
@@ -17104,7 +17492,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Reader/history prepared correction — White-box QA v1"
+      "title": "Preserved review"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-reader-history-correction-whitebox-v1.md.gz",
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-11-05-reader-history-correction-whitebox-v1.md.gz"
     },
     {
       "path": "review/issue-169/2026-11-05-reader-history-correction-whitebox-v2.md",
@@ -17115,7 +17514,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Reader/history correction v2 — independent White-box QA"
+      "title": "Preserved review"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-reader-history-correction-whitebox-v2.md.gz",
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-11-05-reader-history-correction-whitebox-v2.md.gz"
     },
     {
       "path": "review/issue-169/2026-11-06-controller-fixture-seed.md",
@@ -17204,6 +17614,17 @@
         "AGENTS.md"
       ],
       "title": "Issue 169 — stable-staging corrections, 6 November"
+    },
+    {
+      "path": "review/issue-169/2026-11-06-staging-production-test-audit.md",
+      "kind": "file",
+      "purpose": "Source-bound staging/production test audit evidence and exact lossless human-review retention; no deployment authority.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 169 — staging and production test reconciliation"
     },
     {
       "path": "review/issue-169/2026-11-06-staging-security-followup.md",
@@ -22198,6 +22619,17 @@
         "AGENTS.md"
       ],
       "title": "stage-security-proof.json.gz"
+    },
+    {
+      "path": "review/issue-169/staging-production-test-audit-proof.tar.xz",
+      "kind": "file",
+      "purpose": "Source-bound staging/production test audit evidence and exact lossless human-review retention; no deployment authority.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "staging-production-test-audit-proof.tar.xz"
     },
     {
       "path": "review/issue-169/writing-carrier.json",

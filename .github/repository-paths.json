@@ -16782,6 +16782,168 @@
       "purpose": "Exact fixed fixture source, packets, raw native/timing evidence identity and independent review receipts.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/staging-production-test-audit-proof.tar.xz": {
+      "kind": "file",
+      "purpose": "Source-bound staging/production test audit evidence and exact lossless human-review retention; no deployment authority.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-169/2026-11-06-staging-production-test-audit.md": {
+      "kind": "file",
+      "purpose": "Source-bound staging/production test audit evidence and exact lossless human-review retention; no deployment authority.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-whitebox-delta.md.gz": {
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-exploratory-pinned-correction.md.gz": {
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-exploratory-pinned-first.md.gz": {
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-hosted-heading-whitebox.md.gz": {
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-control-runtime-reconciliation.md.gz": {
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-corrected-run-whitebox.md.gz": {
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-retention-fix-whitebox.md.gz": {
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-heading-forward-whitebox.md.gz": {
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-169/2026-11-05-reader-history-correction-whitebox-v2.md.gz": {
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-hosted-heading-exploratory.md.gz": {
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-heading-forward-failure-exploratory.md.gz": {
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-content-retention-whitebox.md.gz": {
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-cross-pr-reader-code-audit.md.gz": {
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-production-runtime-whitebox.md.gz": {
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-169/2026-11-05-reader-correction-v2-exploratory-charter.md.gz": {
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-diagnostic-run-whitebox.md.gz": {
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-diagnostic-code-review.md.gz": {
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-169/2026-11-05-reader-audit-correction-code-initial.md.gz": {
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-169/2026-11-05-r9-native.md.gz": {
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-retention-heading-code-review.md.gz": {
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-169/2026-11-05-reader-audit-correction-v2-requirements-final.md.gz": {
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-plain-staging-family-code-review.md.gz": {
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-code-delta-review.md.gz": {
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-forward-owner-whitebox.md.gz": {
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-169/2026-11-05-reader-history-correction-whitebox-v1.md.gz": {
+      "kind": "file",
+      "purpose": "Exact lossless historical human-review bytes; original-path locator and decoded Git identity retained in current test-audit proof.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     }
   }
 }

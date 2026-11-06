@@ -4,54 +4,55 @@ Dated continuity, not live authority. Last verified: **2026-11-06**.
 
 ## Snapshot
 
-- Owner169 / PR170; main observed8cf1588; active head3c4393dc. Revalidate
-  actual head/checks/deployments. Author requests the measured throughput fix,
-  all required tests, stable staging, then STOP/show.
-- Delivered previewcd4b0f16 has DevCon completed in Other talks, past tense,
-  date4November2026; PMDay Winter stays upcoming. Writing R10 leads2026/delivery.
-  Original UI receipts: PR170 comments6684313079 and6684701185.
-- R10 manuscript, edition, PDF, figures and platform copies remain frozen.
+- Owner169 / PR170. Inspected head efe397d, main/controller8cf1588;
+  revalidate live refs/checks before further action. PR retained Draft for audit.
+- Accepted R10 manuscript/PDF/media, Writing2026/delivery and completed DevCon
+  remain frozen. No public content/runtime change in this test audit.
+- Current report: review/issue-169/2026-11-06-staging-production-test-audit.md;
+  compact proof retains all four initial/correction/final role results and failures.
 
 ## Decisions
 
-- Current increment ends after verified stable staging and tests. No merge or
-  production. Issue169 comment6685199809 records this current authorization.
-- Validate existing public notices before hosted article reconstruction; preserve
-  successful rights/media checks and all16negative cases. No cache, content,
-  runtime, scanner, profile, worker or deadline changes.
-- Site-first distribution remains: actual website proof before canonical/date/
-  events; author posts platforms, then paired observed backlinks.
+- Author requests full existing staging/production test reconciliation before
+  another stable attempt. No new stage dispatch in this audit.
+- Existing delivery boundary remains verified stable staging/tests, then STOP/show.
+  No merge/production; issue169 comment6685199809 retains that boundary.
+- Preserve source/scanner/browser/performance scenarios, workers and limits.
+  Optional full390/12/39 is five-route diagnostics, with reader performance separate.
+  Site-first distribution and author-manual platform posting remain.
 
 ## Open work
 
-- Owner stage42269129675 on3c4393dc still source timeout300s:75started,
-  73complete; build cancelled at10minutes, no stable update. Artifact13528748433.
-  Earlier e50stages42233889474/42237763419 completed56/75; all failures retained.
-- Investigation94d0ad2 records the same-source25October hardware contrast and
-  repeated media/AST cost; full raw archive5176ec9. CPU model alone is not proved.
-- Notice-order fix3c4393dc:Basic eight source shards, RI/owning and preview
-  smoke42268222794 pass. Native rights wrapper150.922s versus204.606s observed;
-  incomplete source/security campaign still fails, so this is insufficient.
-- Prepared next correction:review/issue-169/2026-11-06-controller-fixture-seed.md.
-  Controller test constructs its fixed archive once,
-  gives each case independent complete files/objects; actual validators unchanged.
-  Original30cases retained plus isolation/refusal case:31/31local39.480s versus
-  30/30baseline69.692s. Shallow-copy fault fails. General validation memo rejected.
-  Current-source independent closure/CI/native/stable remain mandatory.
-- Earlier failures remain preserved. Whole ACs stay open except historicalAC06.
+- Native owner stage42275940284 passed all prepublication guards; source1203/1203
+  in225214ms. Protected publisher8cf1588 then failed before upload on Writing
+  fallback; smoke/full/promotion skipped. Stable remains pending.
+- Added explicit pinned-controller case checks12 consumers in one run:
+  ten fail/two rights pass. Distinct drift: Writing fallback, current Color family,
+  Writing fallback transfer accounting. Reconcile trusted owners before restaging;
+  default current-current success cannot satisfy mixed-source admission.
+- Generic PDF collector/admission now checks descriptor-bound native links across
+  all5capabilities. Synthetic integration fixtures and targeted producer/oracle
+  selection updated. Four actual none-fork final roles accept frozen v4 test scope,
+  not release readiness. Exact check receipts and remaining gates are in report/proof.
+- Initial local production source failed300s:78wrappers started,77complete;
+  historical Git objects initially missing. Actual browser attempt failed before
+  launch on refused Unix socket. Both remain failed/incomplete, never waived.
+- Twenty-five unparsed historical human reports retain exact Git/gzip bytes within
+  unchanged RI bounds. Original stage failures remain; whole ACs stay open exceptAC06.
 
 ## Next session
 
-1. Revalidate PR170 source/base/CI and advance current reviewed correction through
-   complete clean checks and authenticated owner staging/full regression.
-2. Verify actual stable alias/source/article/PDF and report tests; STOP for author.
-3. Any later merge/production continues only under its applicable author decision
-   and protected identical-tree/controller/rights gates. Platform posting is manual.
+1. Revalidate live PR170/main/source/checks and current audit source-bound proof.
+2. Reconcile all3 protected-controller source contracts through the existing
+   authorized control route; no untrusted privileged checkout or compatibility shim.
+3. Run clean pinned-controller regression, fresh required source/CI and actual
+   affected reader/PDF collector; then complete owner staging/hosted gate.
+4. Verify stable alias/source/article/PDF and STOP/show. Later merge/production
+   uses separate applicable author decision and identical-tree/rights/archive gates.
 
 ## Maintenance
 
-- Five sections/120-line cap; prepared source, tested head, preview, stable and
-  production are distinct. Preserve original failures and unchanged budgets.
-- Source receipts stay with owning issue/PR. Lossless historical retention keeps
-  decoded Git identities; parsed policy/oracles remain intact. Rebuild RI/coupling
-  after indexed edits; never claim pending/skipped/wrong-source evidence passed.
+- Five sections/120-line cap; tested source, preview, stable and production differ.
+- Details stay with owning issue/PR/report; preserve failed observations and budgets.
+- Rebuild/verify RI/coupling after indexed edits. Missing/skipped/wrong-source
+  evidence never establishes completion; no secrets or private correspondence.

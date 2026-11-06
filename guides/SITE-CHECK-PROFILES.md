@@ -263,6 +263,13 @@ it alone does not block delivery when every mandatory test and site budget passe
 Worker/scanner timeouts and browser/product performance budgets remain unchanged.
 
 The runner produces `stage-functional` and `stage-performance` reports.
+The existing article journey also checks each declared native PDF link against
+its exact selected-origin/base destination, served digest, status and MIME in
+all five capability observations. Later external reciprocal links remain
+separate and are not fetched by this PDF check. The quality runbook's pinned
+controller case checks current generated staging/production artifacts before
+another stage attempt during release-route reconciliation; candidate-only
+source tests do not establish protected-controller compatibility.
 `tools/quality/staging-gate.cjs` checks exact completeness, successful build/static/
 host/staging jobs, scanner reports and source/tree/artifact/origin identities,
 then emits `staging-gate` with `fullGate: false` and `productionEligible: false`.
@@ -311,6 +318,12 @@ indexing policy (`staging` or `production`); `validation_level` selects the test
 coverage. Full production regression can inspect an immutable staging candidate
 without claiming production-origin indexing/TLS/ZAP acceptance. A production
 origin must receive its applicable live checks separately. The explicit frozen production candidate supports Color; its staging edition never qualifies as production evidence.
+
+These full counts cover the five principal routes. The current article journey
+is separately exercised by preview, bounded staging and production smoke.
+Reader Lighthouse/motion remains the explicit `performance.cjs` /
+`reader-performance.cjs` diagnostic; the full five-route matrix does not claim
+article performance coverage. This disposition adds no publication dependency.
 
 See [SITE-RELEASE-GATES](SITE-RELEASE-GATES.md) for unchanged release budgets and
 [SITE-STAGING](SITE-STAGING.md) for controller, source leases, promotion and
@@ -380,7 +393,7 @@ It was **failed**, not waived by changing test order.
 
 **1 November 2026 CI topology amendment — issue #169.**
 [`source-test-shards.cjs`](../tools/quality/source-test-shards.cjs) selects
-the *same entire* registry-derived PR/staging module inventory and divides
+the _same entire_ registry-derived PR/staging module inventory and divides
 it into eight deterministic, non-overlapping groups using observed suite
 durations. Each group executes the unchanged 300-second source runner on
 an independent GitHub job and retains native TAP, stderr, full report and

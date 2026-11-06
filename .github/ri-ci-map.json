@@ -719,7 +719,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "0507d25791cd7b32f11d4e3bc4df8643e326f87b9e6a8d59e0d008c5bb25b646",
+    "digest": "607365beeb34dcf749ab17e13e13bc5bfb971fbd05d7df1578a60d7c2b9793fe",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -867,7 +867,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "cc246ca6dd0052eebfeeefb4868c77b15624251eee883999af9503b4f8bf7506"
+        "sha256": "5bc0a3bb33216d8b92272f11cf6b754d2bd22667e105d9f146db0fa40ab30b1c"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -999,7 +999,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "a95c260343e6718650b3c9307a1ebc61e9ec1c0fd970e15cb020d828405335f9"
+        "sha256": "2278d49fb371ff69ad62ff134513c65784f305b800e96838264e3f2d54e54ca2"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -1023,7 +1023,7 @@
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
-        "sha256": "9691f312f91f3c6c2a7708f852a683c620106e574792c7c57dff4b2ee2cf7d92"
+        "sha256": "3f9f15e146a06eedbcac510fb8cb8d7714c86c7611e17cc2b6b76efa03ad2f50"
       },
       {
         "path": "tests/test_code_style.py",
@@ -1159,7 +1159,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "5d3bb52fc8cd46de5c3744b787a349ee86fbe41ebb488846194a40c75965beb7"
+        "sha256": "d31947f04520637bdc60f958adb4f528d98007a17a340076679b40cb9e7f1d3d"
       },
       {
         "path": "tools/repository_intelligence.py",

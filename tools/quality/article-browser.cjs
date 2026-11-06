@@ -119,7 +119,48 @@ async function deferredRequests(page, requested) {
   return detail;
 }
 
-async function articleHead(page, key, descriptor, descriptors, timeout) {
+function downloadLinks(head, descriptor, baseURL, observed = true) {
+  const downloads = descriptor.downloads || [];
+  assert.ok(Array.isArray(downloads) && downloads.length <= 1, 'finite declared downloads');
+  if (!downloads.length) return [];
+  const base = new URL(baseURL.replace(/\/$/, '') + '/');
+  assert.ok(Array.isArray(head.materials), 'declared download links are required');
+  return downloads.map((file) => {
+    assert.match(file, /^article-media\/[a-f0-9]{64}\/[a-z0-9][a-z0-9._-]*\.pdf$/);
+    const expected = new URL(file, base).href;
+    const links = head.materials.filter((link) => link.href === expected);
+    assert.equal(links.length, 1, 'one native link to the exact declared download');
+    const link = links[0];
+    assert.ok(typeof link.label === 'string' && link.label.trim(), 'download link label');
+    if (observed) {
+      assert.equal(link.status, 200, 'declared download response');
+      assert.equal(link.sha256, file.split('/')[1], 'declared download bytes');
+      assert.match(link.mime || '', /^application\/pdf(?:\s*;|$)/i, 'declared download MIME');
+    }
+    return link;
+  });
+}
+
+async function observeMaterials(page, head, descriptor, baseURL, key) {
+  const downloads = downloadLinks(head, descriptor, baseURL, false);
+  const selected = key === 'reader-reference:en' ? head.materials : downloads;
+  for (const link of selected) {
+    const response = await page.request.get(link.href, { maxRedirects: 0 });
+    const bytes = await response.body();
+    link.status = response.status();
+    link.sha256 = require('node:crypto').createHash('sha256').update(bytes).digest('hex');
+    link.mime = response.headers()['content-type'] || null;
+    assert.equal(link.status, 200, 'native material URL is served');
+    assert.ok(link.label, 'material has an accessible link label');
+    assert.ok(
+      new URL(link.href).pathname.includes('/article-media/' + link.sha256 + '/'),
+      'served material bytes match immutable URL'
+    );
+  }
+  downloadLinks(head, descriptor, baseURL);
+}
+
+async function articleHead(page, key, descriptor, descriptors, timeout, baseURL) {
   const head = await inspectHead(page);
   const language = key.split(':').at(-1);
   assert.equal(head.key, key, 'article metadata key');
@@ -135,19 +176,8 @@ async function articleHead(page, key, descriptor, descriptors, timeout) {
   if (key === 'reader-reference:en') {
     assert.equal(await page.locator('#article-materials').count(), 1, 'one shared materials block');
     assert.equal(head.materials.length, 1, 'one explicitly selected reference material');
-    for (const link of head.materials) {
-      const response = await page.request.get(link.href);
-      const bytes = await response.body();
-      link.status = response.status();
-      link.sha256 = require('node:crypto').createHash('sha256').update(bytes).digest('hex');
-      assert.equal(link.status, 200, 'native material URL is served');
-      assert.ok(link.label, 'material has an accessible link label');
-      assert.ok(
-        new URL(link.href).pathname.includes('/article-media/' + link.sha256 + '/'),
-        'served material bytes match immutable URL'
-      );
-    }
   }
+  await observeMaterials(page, head, descriptor, baseURL, key);
   const currentLink = page.locator('header nav a[aria-current="page"]');
   assert.equal(
     await currentLink.count(),
@@ -1519,7 +1549,7 @@ async function normalJourney(
     flights.push(await takeArticleFlight(page, 'writing', 'article:' + key, 1));
     await preserveShell(page);
     if (requestDeferral) requestDeferral.spa = await deferredRequests(page, imageRequests);
-    const head = await articleHead(page, key, descriptor, descriptors, timeout);
+    const head = await articleHead(page, key, descriptor, descriptors, timeout, baseURL);
     await captureReader(page, key);
     const reader = { inventory: await readerInventory(page), requestDeferral };
     reader.image = await imageJourney(page, reader.inventory);
@@ -1565,7 +1595,7 @@ async function normalJourney(
     flights.push(await takeArticleFlight(page, 'writing', 'article:' + key, 1));
     await preserveShell(page);
     assert.deepEqual(
-      await articleHead(page, key, descriptor, descriptors, timeout),
+      await articleHead(page, key, descriptor, descriptors, timeout, baseURL),
       head,
       'Forward restored article head'
     );
@@ -1583,7 +1613,7 @@ async function normalJourney(
     await settled(page, 'article:' + key, timeout);
     assert.equal(new URL(page.url()).hash, fragment, 'deep refresh retained anchor');
     assert.deepEqual(
-      await articleHead(page, key, descriptor, descriptors, timeout),
+      await articleHead(page, key, descriptor, descriptors, timeout, baseURL),
       head,
       'native refresh and persistent navigation agree on the complete article head'
     );
@@ -1781,7 +1811,7 @@ async function fallbackJourney(
   page.on('pageerror', (error) => errors.push(error.message));
   try {
     await page.goto(urls.alias);
-    const head = await articleHead(page, key, descriptor, descriptors, timeout);
+    const head = await articleHead(page, key, descriptor, descriptors, timeout, baseURL);
     if (mode !== 'off')
       await page.waitForFunction(
         () => {
@@ -2078,6 +2108,7 @@ function validateArticleJourney(detail, descriptors, { engine, baseURL } = {}) {
     for (const check of row.mode === 'normal' ? normalChecks : fallbackChecks)
       assert.equal(row.checks?.[check], true, 'article observation ' + check);
     assert.equal(row.head?.key, keys[0]);
+    downloadLinks(row.head, descriptors[keys[0]], baseURL);
     if (keys[0] === 'reader-reference:en') {
       assert.equal(row.head.materials?.length, 1, 'reference materials observation is required');
       for (const link of row.head.materials) {
@@ -2151,6 +2182,8 @@ function validateArticleJourney(detail, descriptors, { engine, baseURL } = {}) {
 }
 
 module.exports = {
+  downloadLinks,
+  observeMaterials,
   validateDeferredRequests,
   articleURLs,
   inspectHead,

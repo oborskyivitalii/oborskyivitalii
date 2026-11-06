@@ -297,3 +297,94 @@ test('stable verification checks article aliases, snapshots and media with exact
     /cache/i
   );
 });
+
+test('current generated editions cross the selected controller consumers', async (t) => {
+  const cp = require('node:child_process');
+  const producer = path.resolve(__dirname, '..');
+  const controller = fs.realpathSync(process.env.SITE_TEST_CONTROLLER_ROOT || producer);
+  const git = (root, args) => cp.execFileSync('git', args, { cwd: root, encoding: 'utf8' }).trim();
+  const external = Boolean(process.env.SITE_TEST_CONTROLLER_ROOT);
+  const controllerCommit = git(controller, ['rev-parse', 'HEAD']);
+  if (external) {
+    assert.match(
+      process.env.SITE_TEST_CONTROLLER_SHA || '',
+      /^[a-f0-9]{40}$/,
+      'pin controller SHA'
+    );
+    assert.equal(controllerCommit, process.env.SITE_TEST_CONTROLLER_SHA, 'wrong controller source');
+    assert.equal(git(controller, ['status', '--porcelain', '--untracked-files=all']), '');
+  }
+  t.diagnostic(
+    JSON.stringify({
+      mode: external ? 'pinned-controller' : 'current-controller',
+      controllerCommit,
+      controllerTree: git(controller, ['rev-parse', 'HEAD^{tree}']),
+      producerCommit: git(producer, ['rev-parse', 'HEAD']),
+      producerDirty: git(producer, ['status', '--porcelain']) !== '',
+      syntheticSourceLabels: true,
+      providerCalled: false,
+      productionEligible: false,
+    })
+  );
+  // Absolute imports keep the complete consumer dependency closure in its own checkout.
+  const consumer = (name) => require(path.join(controller, name));
+  const delivery = require('./fixtures/delivery.cjs');
+  const directory = delivery.temporary(t);
+  const staged = delivery.staging(directory, true);
+  const production = delivery.source(directory, 'production');
+  require('../tools/staging/color.cjs').build(production.directory);
+  production.record = require('../tools/release/edition.cjs').build(production.directory, 'color');
+  delivery.rightsInventory(production, true);
+  for (const [edition, source] of [
+    ['staging', staged],
+    ['production', production],
+  ]) {
+    assert.ok(Object.keys(source.record.components.articles).length > 0, 'current reader closure');
+    const publicDirectory = path.join(source.directory, 'public');
+    const sizes = artifact.checkSize(publicDirectory);
+    const report = JSON.parse(fs.readFileSync(path.join(source.directory, 'rights.json')));
+    fs.mkdirSync(path.join(source.directory, 'gate'));
+    fs.writeFileSync(
+      path.join(source.directory, 'gate/release-manifest.json'),
+      JSON.stringify({
+        ...source.record,
+        kind: 'pr-gate',
+        profile: 'local',
+        pass: true,
+        jobs: { build: { result: 'success' } },
+      })
+    );
+    const packaged = path.join(directory, edition + '-package');
+    const record = pkg.build(source.directory, packaged);
+    const before = artifact.manifest(publicDirectory);
+    const checks = {
+      snapshot: () => consumer('tools/site/snapshot.cjs').verify(publicDirectory, source.record),
+      runtime: () => consumer('tools/quality/color-motion-contract.cjs').select(source.record),
+      rights: () => {
+        const selected = consumer('tools/release/rights-record.cjs');
+        selected.publication(source.record, report);
+        selected.copies(publicDirectory, source.record, report);
+      },
+      sizes: () => {
+        const selected = consumer('tools/quality/artifact.cjs');
+        selected.validateRouteSizes(sizes, source.record);
+        selected.validateArticleSizes(sizes, source.record);
+      },
+      package: () => consumer('tools/staging/package.cjs').verify(packaged, record),
+      ...(edition === 'production'
+        ? {
+            edition: () =>
+              consumer('tools/release/edition.cjs').verify(source.directory, source.record),
+            frozenEdition: () =>
+              consumer('tools/release/edition-archive.cjs').verify(source.directory, source.record),
+          }
+        : {}),
+    };
+    for (const [name, check] of Object.entries(checks))
+      await t.test(edition + '/' + name, () => {
+        assert.doesNotThrow(check);
+      });
+    assert.deepEqual(artifact.manifest(publicDirectory), before, 'consumer changed current bytes');
+    assert.equal(pkg.verify(packaged, record), true, 'producer package still verifies');
+  }
+});

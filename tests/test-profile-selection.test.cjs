@@ -1909,6 +1909,30 @@ test('article distribution guides select publisher, profile and reciprocal-mater
   }
 });
 
+test('reader oracle and rendition changes select their actual integration consumers', () => {
+  for (const [source, consumers] of [
+    [
+      'tools/quality/article-browser.cjs',
+      [
+        'tests/article-browser-evidence.test.cjs',
+        'tests/release-controller.test.cjs',
+        'tests/content-delivery.test.cjs',
+      ],
+    ],
+    ['tools/staging/color.cjs', ['tests/reader-controller.test.cjs']],
+    ['tools/staging/edition.cjs', ['tests/reader-controller.test.cjs']],
+    [
+      'tests/fixtures/article-flight.cjs',
+      ['tests/release-controller.test.cjs', 'tests/content-delivery.test.cjs'],
+    ],
+  ]) {
+    const plan = runner.select(root, 'pr', { changedPaths: [source] });
+    assert.deepEqual(plan.conservativeFallback, [], 'explicit route, not unknown-source fallback');
+    for (const consumer of consumers)
+      assert.ok(plan.modules.includes(consumer), source + ' must select ' + consumer);
+  }
+});
+
 test('repository-only selection omits website smoke and retains affected test failures', () => {
   const plan = runner.select(root, 'pr', { changedPaths: ['AGENTS.md'], repositoryOnly: true });
   assert.deepEqual(plan.modules, []);

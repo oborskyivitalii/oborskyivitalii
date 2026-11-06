@@ -776,6 +776,112 @@ test('reader reference evidence requires served immutable material links in ever
   }
 });
 
+test('current article downloads require the declared served PDF in every capability observation', () => {
+  const revision = require('../docs/site-revision.json');
+  const selected = revision.articles;
+  const [name, descriptor] = Object.entries(selected)[0];
+  assert.notEqual(name, 'reader-reference:en', 'exercise the real current article');
+  assert.equal(descriptor.downloads.length, 1);
+  const file = descriptor.downloads[0];
+  const make = () => {
+    const detail = require('./fixtures/article-flight.cjs').currentJourney(
+      selected,
+      revision.engine,
+      baseURL
+    );
+    for (const row of detail.observations)
+      row.head.materials = [
+        {
+          href: baseURL + '/' + file,
+          label: 'Download PDF',
+          status: 200,
+          sha256: file.split('/')[1],
+          mime: 'application/pdf',
+        },
+        { href: 'https://www.linkedin.com/pulse/observed-edition', label: 'LinkedIn' },
+      ];
+    return detail;
+  };
+  const check = (detail) =>
+    validateArticleJourney(detail, selected, { engine: revision.engine, baseURL });
+  assert.doesNotThrow(() =>
+    check(
+      require('./fixtures/article-flight.cjs').currentJourney(selected, revision.engine, baseURL)
+    )
+  );
+  assert.doesNotThrow(() => check(make()));
+  for (const [mutate, expected] of [
+    [(head) => delete head.materials, /download links/],
+    [(head) => (head.materials = []), /exact declared download/],
+    [(head) => head.materials.push({ ...head.materials[0] }), /exact declared download/],
+    [(head) => (head.materials[0].href += '?substituted'), /exact declared download/],
+    [
+      (head) => (head.materials[0].href = head.materials[0].href.replace('/author/', '/other/')),
+      /exact declared download/,
+    ],
+    [
+      (head) => (head.materials[0].href = head.materials[0].href.replace('candidate.', 'foreign.')),
+      /exact declared download/,
+    ],
+    [
+      (head) => {
+        head.materials[0].href = baseURL + '/article-media/' + 'a'.repeat(64) + '/other.pdf';
+        head.materials[0].sha256 = 'a'.repeat(64);
+      },
+      /exact declared download/,
+    ],
+    [(head) => (head.materials[0].label = ''), /link label/],
+    [(head) => (head.materials[0].status = 404), /download response/],
+    [(head) => (head.materials[0].sha256 = '0'.repeat(64)), /download bytes/],
+    [(head) => (head.materials[0].mime = 'text/html'), /download MIME/],
+  ]) {
+    const detail = make();
+    for (const row of detail.observations) mutate(row.head);
+    assert.throws(() => check(detail), expected);
+  }
+});
+
+test('material collection requests only declared downloads and rejects changed responses', async () => {
+  const crypto = require('node:crypto');
+  const { observeMaterials } = require('../tools/quality/article-browser.cjs');
+  const bytes = Buffer.from('%PDF-1.7\ncontrolled download response\n');
+  const digest = crypto.createHash('sha256').update(bytes).digest('hex');
+  const file = 'article-media/' + digest + '/reading.pdf';
+  const descriptor = { downloads: [file] };
+  for (const response of [
+    { bytes, status: 200, mime: 'application/pdf; charset=binary', pass: true },
+    { bytes: Buffer.from('changed bytes'), status: 200, mime: 'application/pdf' },
+    { bytes, status: 404, mime: 'application/pdf' },
+    { bytes, status: 302, mime: 'application/pdf' },
+    { bytes, status: 200, mime: 'text/html' },
+  ]) {
+    const requests = [];
+    const head = {
+      materials: [
+        { href: baseURL + '/' + file, label: 'PDF' },
+        { href: 'https://medium.com/@author/observed-edition', label: 'Medium' },
+      ],
+    };
+    const page = {
+      request: {
+        get: async (url, options) => {
+          requests.push(url);
+          assert.deepEqual(options, { maxRedirects: 0 });
+          return {
+            body: async () => response.bytes,
+            status: () => response.status,
+            headers: () => ({ 'content-type': response.mime }),
+          };
+        },
+      },
+    };
+    const collect = () => observeMaterials(page, head, descriptor, baseURL, 'ordinary:en');
+    if (response.pass) await assert.doesNotReject(collect);
+    else await assert.rejects(collect);
+    assert.deepEqual(requests, [baseURL + '/' + file], 'external backlinks are not fetched');
+  }
+});
+
 test('the staging collector exercises articles only on its admitted Chromium and joins failures and cleanup', async () => {
   for (const articles of [true, false]) {
     for (const fails of articles ? [false, true] : [false]) {
