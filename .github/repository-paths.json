@@ -16758,6 +16758,18 @@
       "purpose": "Lossless original human review with decoded prior Git-byte proof in the staging security evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/2026-11-06-staging-timing-investigation.md": {
+      "kind": "file",
+      "purpose": "Issue169 staging timeout investigation, original CPU/timing evidence and causal limits.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/staging-timing-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Original timing artifact identities, CPU records, diagnostic counts and review hashes.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

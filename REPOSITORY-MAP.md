@@ -1194,6 +1194,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-169/2026-11-06-security-maintenance.md](review/issue-169/2026-11-06-security-maintenance.md) | Issue169 bounded security review and lossless historical evidence storage; read the dated owning report. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-169/2026-11-06-staging-corrections.md](review/issue-169/2026-11-06-staging-corrections.md) | Issue169 stable-staging test correction and source-bound independent execution record. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-169/2026-11-06-staging-security-followup.md](review/issue-169/2026-11-06-staging-security-followup.md) | Issue169 native staging security failure, exact bounded tuple correction and review/delivery limits. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/2026-11-06-staging-timing-investigation.md](review/issue-169/2026-11-06-staging-timing-investigation.md) | Issue169 staging timeout investigation, original CPU/timing evidence and causal limits. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/2026-11-06-writing-discovery.md](review/issue-169/2026-11-06-writing-discovery.md) | Issue169 Writing discovery correction review, source-bound receipts and original execution evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/correction-affected.log.gz](review/issue-169/correction-affected.log.gz) | Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/devcon-completed-review.tar.xz](review/issue-169/devcon-completed-review.tar.xz) | Completed DevCon event correction, source-bound independent review and retained original evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -1201,6 +1202,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-169/failed-source-run.tap.gz](review/issue-169/failed-source-run.tap.gz) | Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/native-check-allocation.md](review/issue-169/native-check-allocation.md) | Issue169 native integration review and acceptance evidence. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-169/stage-security-proof.json.gz](review/issue-169/stage-security-proof.json.gz) | Exact per-finding source and native producer proof for the retained nine staging secret-scanner candidates. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/staging-timing-proof.json.gz](review/issue-169/staging-timing-proof.json.gz) | Original timing artifact identities, CPU records, diagnostic counts and review hashes. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/writing-carrier.json](review/issue-169/writing-carrier.json) | Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/issue-169/distribution/

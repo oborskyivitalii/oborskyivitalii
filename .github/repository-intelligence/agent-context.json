@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "26d43add31948ee39eeb2ce21b25ce1376f10ad6488d2c3e277a58c67894762b",
+    "digest": "3b54158f48cb94059c161b89c0f67fdd21b08146d6e0f65a3b5173d3c8ee25b6",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -216,12 +216,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "63c64363f0a3222410bb6e885bc8a1cbb02b7706f1a9b948804136da85fda331"
+        "sha256": "1b1650f70cf11a3824bc6275164ba30569503447b85de8c462f388c72cc242a9"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "3520086f164df3bb58b1aabd00cc4d08d8aad074535eb0c09360868bbe0f37be"
+        "sha256": "64d4e9b0c9159bb1af79422fbdd36601751ece072d90414ecf2c88a9434ed186"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -1881,6 +1881,11 @@
         "path": "review/issue-169/2026-11-06-staging-security-followup.md",
         "identity_mode": "content",
         "sha256": "2468447157b460cc29ee24d573968efb51800a8eaf1f1e7fc40e8b087797a82c"
+      },
+      {
+        "path": "review/issue-169/2026-11-06-staging-timing-investigation.md",
+        "identity_mode": "content",
+        "sha256": "8c7fa269f4de59ace092f30ac31723ece18e06580d4a337d94c6f38992331eb5"
       },
       {
         "path": "review/issue-169/2026-11-06-writing-discovery.md",
@@ -4136,6 +4141,11 @@
         "path": "review/issue-169/stage-security-proof.json.gz",
         "identity_mode": "content",
         "sha256": "5c33454b6810abf84426425b8a217c7df072949df2cc85f90c4b5d451c1c15ca"
+      },
+      {
+        "path": "review/issue-169/staging-timing-proof.json.gz",
+        "identity_mode": "content",
+        "sha256": "aac0062d12f0d9cbca1e2b7fe7879ecffa1836c7b0cfbca1a517f4ffbf473cca"
       },
       {
         "path": "review/issue-169/writing-carrier.json",
@@ -17175,6 +17185,17 @@
       "title": "Issue 169 — staging security follow-up"
     },
     {
+      "path": "review/issue-169/2026-11-06-staging-timing-investigation.md",
+      "kind": "file",
+      "purpose": "Issue169 staging timeout investigation, original CPU/timing evidence and causal limits.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 169 — 6 November 2026 staging timing investigation"
+    },
+    {
       "path": "review/issue-169/2026-11-06-writing-discovery.md",
       "kind": "file",
       "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
@@ -22134,6 +22155,17 @@
         "AGENTS.md"
       ],
       "title": "stage-security-proof.json.gz"
+    },
+    {
+      "path": "review/issue-169/staging-timing-proof.json.gz",
+      "kind": "file",
+      "purpose": "Original timing artifact identities, CPU records, diagnostic counts and review hashes.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "staging-timing-proof.json.gz"
     },
     {
       "path": "review/issue-169/writing-carrier.json",
