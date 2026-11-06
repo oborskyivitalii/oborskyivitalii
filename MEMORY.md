@@ -4,6 +4,12 @@ Dated continuity, not live authority. Last verified: **2026-11-06**.
 
 ## Snapshot
 
+- Latest session: author reported Writing discovery at actual d5e915fe preview.
+  Corrected prepared source puts R10 first in2026/delivery without inventing a
+  publication date. See review/issue-169/2026-11-06-writing-discovery.md and
+  writing-discovery/ for original four-role receipts and failed/passing logs.
+  Remote observed at session start d5e915f; revalidate corrected head/preview.
+  Production remains unverified.
 - Owner #169 / PR170, current R10 production continuation authorized. Baseline fc205b17774ba703c63fdd7d142ddac178afffdd, protected main8cf15883125892710633b17133d9ee0fc4b23b92. Security-maintenance successor is based on95d3e78; resolve the live PR170head and checks before advancement.
 - R10 manuscript frozen907602667ca447f23359bfa87acc0c191f5e3b8a, SHA25670386a2d2f602b5f60c93d35293a375e4e4abbc6f63a0dd888024031078b3d1f. Five-page PDF SHA25636269db33a71781084053ae40cc41e411a0106bea5e593ef0b08414014c4ca40,869208bytes; unchanged by distribution/cache maintenance.
 - Current release-preflight evidence: review/issue-169/2026-11-06-r10-release-preflight.md and release/. Earlier R10/distribution source/reviews remain under their dated reports and r10/,distribution/. Original R9 retained.
@@ -26,6 +32,12 @@ Dated continuity, not live authority. Last verified: **2026-11-06**.
 
 ## Next session
 
+0. Finish the prepared Writing discovery correction: exact source46/46 and
+   Basic18+10 pass; Requirements/Code/White-box pass; Exploratory reproduced
+   predecessor and awaits corrected hosted URL. Refresh RI/coupling, commit/push
+   Draft preview, then actual corrected UI and original release gates. Existing
+   owner staging later stopped at10-minute prepublication budget; do not blindly
+   repeat it. No current production release exists.
 1. Revalidate actual refs/workingtree and security maintenance packet, exact per-finding evidence, reviews and remaining unknowns. Correction/review is complete in the dated security report; preserve original failures/frozen ledgers/source bytes/resource bounds. Recheck exact clean-head owning/CI evidence and proceed through actual staging.
 2. Publish reviewed exact source, freshCI then actual owner /stage. Retain complete original preflight, hosted full regression and stable promotion; source partitions alone never substitute.
 3. Real staging proof → admissionrefresh → Changeadmission onmain withPR170/exact reviewed_sha → identical-tree protectedmerge → frozenproduction candidate/rights/archive/publish → actualservedarticle/PDF/SEOproof. Existing user authorization persists.

@@ -745,15 +745,15 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/7b1e3fbe23136bd07787e2d8348f94036213d2bb9a3ef16d618ffd2cb87ba7d1": {
+    "docs/article-snapshots/60b4eb071b9f8367227354032aec04364d783b02fb8f6f8d7d3cb59a05949bcc": {
       "kind": "directory",
-      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
+      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/7b1e3fbe23136bd07787e2d8348f94036213d2bb9a3ef16d618ffd2cb87ba7d1/the-sdlc-is-out-of-balance.html": {
+    "docs/article-snapshots/60b4eb071b9f8367227354032aec04364d783b02fb8f6f8d7d3cb59a05949bcc/the-sdlc-is-out-of-balance.html": {
       "kind": "file",
-      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
+      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1099,6 +1099,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/0c50d9693cc2743d611ecf9d1a2274c5687f5d0c4f363d9d3108775c521c161c": {
+      "kind": "directory",
+      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/0c50d9693cc2743d611ecf9d1a2274c5687f5d0c4f363d9d3108775c521c161c/research.html": {
+      "kind": "file",
+      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e": {
       "kind": "directory",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
@@ -1111,27 +1123,39 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/2b7302a1f2cc9dc6fedfa5c13f4fa277e8ffab5ab68e948269b3d9d3043a98cd": {
+    "docs/snapshots/39441f2d37cdfc6b3935d76c2f897f92be741f851569e2ff46558e90b4180612": {
       "kind": "directory",
-      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
+      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/2b7302a1f2cc9dc6fedfa5c13f4fa277e8ffab5ab68e948269b3d9d3043a98cd/talks.html": {
+    "docs/snapshots/39441f2d37cdfc6b3935d76c2f897f92be741f851569e2ff46558e90b4180612/credits.html": {
       "kind": "file",
-      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
+      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/4d3d841b02637bc5445cb4a0199d7eb99416bf5dab882f323c9b9edd743bf898": {
+    "docs/snapshots/4c633b6b3889451c5a923a013cde4a5105323456d95739dc0889e1bfa868cfad": {
       "kind": "directory",
-      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
+      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/4d3d841b02637bc5445cb4a0199d7eb99416bf5dab882f323c9b9edd743bf898/research.html": {
+    "docs/snapshots/4c633b6b3889451c5a923a013cde4a5105323456d95739dc0889e1bfa868cfad/writing.html": {
       "kind": "file",
-      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
+      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/4cbd43f32c97e0320e847a70f74fb27df306a5b62c1cfd868af62bed9c333a03": {
+      "kind": "directory",
+      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/4cbd43f32c97e0320e847a70f74fb27df306a5b62c1cfd868af62bed9c333a03/talks.html": {
+      "kind": "file",
+      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1171,6 +1195,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/6ab1b9444a3d9a4fa13b2d48b5f56ffbbe6007aacd3ac53378c323061d319694": {
+      "kind": "directory",
+      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/6ab1b9444a3d9a4fa13b2d48b5f56ffbbe6007aacd3ac53378c323061d319694/index.html": {
+      "kind": "file",
+      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/7b62f25175a003a9fcc24f430e26ff321f267a8e77a28699984f86bf1dfdd3b6": {
       "kind": "directory",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
@@ -1192,18 +1228,6 @@
     "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/899daade336eb704ff1323f87e7b07eb33e3fdd207dbc0e6aaf08937746db70b": {
-      "kind": "directory",
-      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/899daade336eb704ff1323f87e7b07eb33e3fdd207dbc0e6aaf08937746db70b/credits.html": {
-      "kind": "file",
-      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1240,18 +1264,6 @@
     "docs/snapshots/95b57d8257b5ffb3f4b9924d90694110e982f7bdc9aecb6f09969d46b3a8b2e0/index.html": {
       "kind": "file",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/9c15723e5b5e0ef4e24df6376f4074c6ead4362bdc9c4e9055747e701e8a40f3": {
-      "kind": "directory",
-      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/9c15723e5b5e0ef4e24df6376f4074c6ead4362bdc9c4e9055747e701e8a40f3/index.html": {
-      "kind": "file",
-      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1312,18 +1324,6 @@
     "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html": {
       "kind": "file",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/f16c892c990ac5b965edc34a294f40ac272843d72b91fb385a2222b7e227ea5d": {
-      "kind": "directory",
-      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/f16c892c990ac5b965edc34a294f40ac272843d72b91fb385a2222b7e227ea5d/writing.html": {
-      "kind": "file",
-      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1651,6 +1651,12 @@
       "role": "history",
       "owner": "guides/SITE-ANALYTICS.md"
     },
+    "review/issue-102/2026-10-18-analytics-and-search-access.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-102/2026-10-18-provider-evidence.json": {
       "kind": "file",
       "purpose": "Sanitized bounded Cloudflare query and current Google/Windsor inventory observations.",
@@ -1729,6 +1735,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-114/2026-10-20-review.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-118": {
       "kind": "directory",
       "purpose": "Issue118 first-name editorial hotfix review and source-bound evidence.",
@@ -1746,6 +1758,12 @@
       "purpose": "Issue118 exact editorial scope, independent iteration review and delivery evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-118/2026-10-21-review.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
     },
     "review/issue-118/content-amendment.json": {
       "kind": "file",
@@ -1782,6 +1800,12 @@
       "purpose": "T01 exact review-template selection correction, independent test oracles, role receipts and normal main-delivery evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-122/2026-10-22-t01-review.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
     },
     "review/issue-122/2026-10-22-t02-review.md": {
       "kind": "file",
@@ -1843,6 +1867,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-122/2026-10-23-t04-review.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-122/2026-10-23-t04-setup-review.md": {
       "kind": "file",
       "purpose": "Approved T04-P Ubuntu setup prerequisite, separate quality-role findings and exact-source validation/delivery evidence.",
@@ -1854,6 +1884,12 @@
       "purpose": "Source-bound T05 design, independent review dispositions and explicit pending native issuer/protection proof.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-122/2026-10-23-t05-review.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
     },
     "review/issue-122/2026-10-24-control-lock-review.md": {
       "kind": "file",
@@ -1879,6 +1915,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-122/2026-10-24-fast-uri-repair.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-122/2026-10-24-r1-manual-admission.md": {
       "kind": "file",
       "purpose": "R1 bounded manual-admission requirements, four independent roles, current-source checks and native delivery evidence.",
@@ -1890,6 +1932,12 @@
       "purpose": "R2 bounded repository-lane requirements, independent reviews, source checks and protected delivery evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-122/2026-10-24-r2-repository-lane.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
     },
     "review/issue-122/2026-10-24-r3-events-migration.json": {
       "role": "history",
@@ -1933,6 +1981,12 @@
       "role": "history",
       "owner": "guides/BROWSER-ARCHIVES.md"
     },
+    "review/issue-122/2026-10-26-browser-archives.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-122/2026-10-26-browser-security-proof.json.gz": {
       "kind": "file",
       "purpose": "Inert source-bound proof of exact browser-tooling Bandit findings and public native browser checksum/NPM-integrity classifications under issue122.",
@@ -1974,6 +2028,12 @@
       "purpose": "DevCon announcement source-bound independent review, findings, QA cases and delivery status.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-126/2026-10-23-announcement-review.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
     },
     "review/issue-126/2026-10-23-production-retention-review.md": {
       "kind": "file",
@@ -2047,9 +2107,21 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-159/2026-10-28-live-diagnostics.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-159/2026-10-28-qa-isolation.md": {
       "kind": "file",
       "purpose": "B2 source-bound isolation decision, four independent reviews, test allocation and release limits.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-159/2026-10-28-qa-isolation.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
       "role": "history",
       "owner": "AGENTS.md"
     },
@@ -2083,6 +2155,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-159/2026-10-28-seo-query-research.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-159/2026-10-28-seo-scanner-proof.json.gz": {
       "kind": "file",
       "purpose": "Exact frozen/current B5 public checksum proof, preserved byte-for-byte from945; six findings preregistered by166 and57 integrated here, with no scanner bypass or rights approval.",
@@ -2098,6 +2176,12 @@
     "review/issue-159/2026-10-28-staging-verification.md": {
       "kind": "file",
       "purpose": "B2.2 exact current-artifact native/source verification, role review and frozen-head staging/admission boundaries.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-159/2026-10-28-staging-verification.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
       "role": "history",
       "owner": "AGENTS.md"
     },
@@ -2221,6 +2305,12 @@
       "role": "history",
       "owner": "AGENTS.md"
     },
+    "review/issue-169/2026-11-05-devcon-editorial-analysis.md.gz": {
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 review evidence with exact original Git identity.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-169/2026-11-05-native-r9-code-delta-review.md": {
       "kind": "file",
       "purpose": "Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence.",
@@ -2292,6 +2382,12 @@
       "purpose": "Issue169 bounded R9 diagnostic source packet, actual independent review or exact-source check/failure evidence; not runtime admission.",
       "role": "history",
       "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-diagnostic-whitebox.md.gz": {
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 review evidence with exact original Git identity.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     },
     "review/issue-169/2026-11-05-native-r9-exploratory-pinned-correction.md": {
       "kind": "file",
@@ -2388,6 +2484,12 @@
       "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
       "role": "history",
       "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-05-native-r9-hosted-heading-requirements-preflight.md.gz": {
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 review evidence with exact original Git identity.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     },
     "review/issue-169/2026-11-05-native-r9-hosted-heading-whitebox.md": {
       "kind": "file",
@@ -2587,6 +2689,18 @@
       "role": "history",
       "owner": "AGENTS.md"
     },
+    "review/issue-169/2026-11-06-security-maintenance.md": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-06-writing-discovery.md": {
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-169/correction-affected.log.gz": {
       "kind": "file",
       "purpose": "Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence.",
@@ -2772,6 +2886,12 @@
       "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
       "role": "history",
       "owner": "AGENTS.md"
+    },
+    "review/issue-169/distribution/requirements-preflight.md.gz": {
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 review evidence with exact original Git identity.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     },
     "review/issue-169/distribution/requirements-storage-final.md": {
       "kind": "file",
@@ -3985,6 +4105,12 @@
       "role": "history",
       "owner": "AGENTS.md"
     },
+    "review/issue-169/r10/requirements-preflight.md.gz": {
+      "kind": "file",
+      "purpose": "Losslessly retained original R10 requirements preflight with immutable Git byte identity.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-169/r10/ri-first.log.gz": {
       "kind": "file",
       "purpose": "Preserved first R10 RI regression failure before generated removals were staged; no failed observation is erased.",
@@ -4104,6 +4230,12 @@
       "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
       "role": "history",
       "owner": "AGENTS.md"
+    },
+    "review/issue-169/r3/reviews/requirements-r3-final.md.gz": {
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 review evidence with exact original Git identity.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     },
     "review/issue-169/r3/reviews/requirements-r3-preflight.md": {
       "kind": "file",
@@ -4987,9 +5119,525 @@
       "role": "history",
       "owner": "AGENTS.md"
     },
+    "review/issue-169/security": {
+      "kind": "directory",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/README.md": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/architecture-final.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/bandit-code-preflight.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/bandit-revalidation.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/basic-final.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/candidate-v1.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent security review receipt and preserved first finding/correction.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/candidate-v2.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 verbatim same-role correction and retained evidence accuracy finding.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/candidate-v3.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 final affected-review closure and source-bound metadata receipt; delivery gates remain separate.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/candidate-v4.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 verbatim affected closure and exact lossless metadata evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/canonical-format.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/code-correction.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 verbatim same-role correction and retained evidence accuracy finding.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/code-first.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent security review receipt and preserved first finding/correction.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/code-source-closure.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 verbatim affected closure and exact lossless metadata evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/code-storage-closure.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 verbatim affected closure and exact lossless metadata evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/code-style-final.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/coupling-final.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/coupling-tests-final.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/exploratory-correction.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 verbatim same-role correction and retained evidence accuracy finding.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/exploratory-first.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent security review receipt and preserved first finding/correction.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/exploratory-storage-closure.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 verbatim affected closure and exact lossless metadata evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/failed-bandit.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/failed-security.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/final-storage-correction.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/format-final.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/historical-storage.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/ledger-append.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/native-producers.cjs.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/native-producers.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/negative-controls-final.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/prepared-bandit-triage.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/prepared-security.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/prepared-semgrep.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/prepared-validation.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/provenance-v1-stale.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent security review receipt and preserved first finding/correction.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/provenance-v4-source-mismatch.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 verbatim affected closure and exact lossless metadata evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/provenance.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/reconciled-1016.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/requirements-closure.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 final affected-review closure and source-bound metadata receipt; delivery gates remain separate.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/requirements-correction.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 verbatim same-role correction and retained evidence accuracy finding.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/requirements-first.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent security review receipt and preserved first finding/correction.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/requirements-preflight.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/requirements-storage-closure.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 verbatim affected closure and exact lossless metadata evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/review-closure.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 final affected-review closure and source-bound metadata receipt; delivery gates remain separate.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/reviewer-executions-v2-inaccurate.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 verbatim same-role correction and retained evidence accuracy finding.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/reviewer-executions.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent security review receipt and preserved first finding/correction.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/ri-tests-final.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/secrets-code-preflight.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/secrets-preflight-appendix.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/secrets-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/source-reference-fix.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 verbatim affected closure and exact lossless metadata evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/source-reference-packet-delta.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 verbatim affected closure and exact lossless metadata evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/toolchain-verify.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/whitebox-closure.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 final affected-review closure and source-bound metadata receipt; delivery gates remain separate.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/whitebox-correction.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 verbatim same-role correction and retained evidence accuracy finding.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/whitebox-first.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent security review receipt and preserved first finding/correction.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/whitebox-source-closure.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 verbatim affected closure and exact lossless metadata evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/security/whitebox-storage-closure.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 verbatim affected closure and exact lossless metadata evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-169/writing-carrier.json": {
       "kind": "file",
       "purpose": "Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/writing-discovery": {
+      "kind": "directory",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/writing-discovery/README.md": {
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/writing-discovery/basic.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/writing-discovery/candidate.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/writing-discovery/code-first.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/writing-discovery/code-storage.md.gz": {
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 Writing discovery exact-source review and original check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/writing-discovery/coupling-tests.log.gz": {
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 Writing discovery exact-source review and original check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/writing-discovery/coupling-verify.log.gz": {
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 Writing discovery exact-source review and original check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/writing-discovery/exploratory-first.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/writing-discovery/historical-storage.json.gz": {
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 review evidence with exact original Git identity.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/writing-discovery/lint.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/writing-discovery/manifest.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/writing-discovery/packet.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/writing-discovery/requirements-binding-preflight.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/writing-discovery/requirements-final.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/writing-discovery/requirements-first.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/writing-discovery/ri-build-final.log.gz": {
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 Writing discovery exact-source review and original check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/writing-discovery/ri-build-storage-final.log.gz": {
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 Writing discovery exact-source review and original check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/writing-discovery/ri-build-storage.log.gz": {
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 Writing discovery exact-source review and original check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/writing-discovery/ri-build.log.gz": {
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 Writing discovery exact-source review and original check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/writing-discovery/ri-tests.log.gz": {
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 Writing discovery exact-source review and original check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/writing-discovery/ri-verify-storage.log.gz": {
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 Writing discovery exact-source review and original check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/writing-discovery/source-corrected.tap.gz": {
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/writing-discovery/source-final.tap.gz": {
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/writing-discovery/source-first.tap.gz": {
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/writing-discovery/style.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/writing-discovery/whitebox-first.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/writing-discovery/whitebox-storage.md.gz": {
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 Writing discovery exact-source review and original check evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -5461,6 +6109,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-31/2026-10-07-review.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-33": {
       "kind": "directory",
       "purpose": "Versioned analysis and independent review evidence for short bootstrap and root organization.",
@@ -5539,6 +6193,12 @@
       "role": "draft",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-36/2026-10-07-handoff.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-36/preview.png": {
       "kind": "file",
       "purpose": "Day/Night and narrow-width rendered proof of the SVG candidate, not an integrated scene screenshot.",
@@ -5575,17 +6235,35 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-39/2026-10-10-readiness.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-39/2026-10-15-controller-compatibility.md": {
       "kind": "file",
       "purpose": "Narrow exact-main compatibility dependency plan, unresolved final licensing tuple inputs and ordinary two-host admission/merge boundaries.",
       "role": "draft",
       "owner": "review/REVIEW-TEMPLATE.md"
     },
+    "review/issue-39/2026-10-15-controller-compatibility.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-39/2026-10-15-implementation.md": {
       "kind": "file",
       "purpose": "Issue39 production implementation evidence, provider preparation, exact checks and remaining maintainer/live release gates.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-39/2026-10-15-implementation.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
     },
     "review/issue-39/2026-10-15-license-tuples.json": {
       "kind": "file",
@@ -5605,11 +6283,23 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-39/2026-10-15-production-plan.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-39/2026-10-15-publication-licensing.md": {
       "kind": "file",
       "purpose": "Dated issue39 self-analysis and implementation evidence for mandatory per-publication stage/production licensing records; live admission remains separate.",
       "role": "history",
       "owner": "guides/SITE-RIGHTS.md"
+    },
+    "review/issue-39/2026-10-15-publication-licensing.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
     },
     "review/issue-39/2026-10-15-publication-test-review.md": {
       "kind": "file",
@@ -5628,6 +6318,12 @@
       "purpose": "Selected production dependency and closure audit for six release owners; preserved SEO/rights/analytics scope and permanent-staging evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-39/2026-10-15-release-issue-audit.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
     },
     "review/issue-39/2026-10-16-compact-controller.md": {
       "kind": "file",
@@ -5688,6 +6384,12 @@
       "purpose": "PR40 current-code readiness findings, finite remediation, exact-source checks and remaining release gates.",
       "role": "history",
       "owner": "review/REVIEW-TEMPLATE.md"
+    },
+    "review/issue-39/2026-10-16-readiness-execution.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
     },
     "review/issue-39/2026-10-16-secret-ledger-merge.json.gz": {
       "kind": "file",
@@ -5760,6 +6462,12 @@
       "purpose": "Issue39 verified PR85 protected merge/staging delivery, exact native artifacts and scoped next canonical production transaction analysis before implementation.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-39/2026-10-17-production-cutover.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
     },
     "review/issue-39/2026-10-17-production-policy.md": {
       "kind": "file",
@@ -5839,6 +6547,12 @@
       "role": "history",
       "owner": "guides/SITE-CONTENT-REVIEW.md"
     },
+    "review/issue-41/2026-10-09-sitecase-review.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-41/2026-10-09-sitecase.md": {
       "kind": "file",
       "purpose": "Dated same-issue AI-assisted delivery case analysis with actual code/history support, role/enterprise boundaries and ordered content-only execution tasks.",
@@ -5893,11 +6607,23 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-45/2026-10-07-handoff.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-45/2026-10-07-independent-review.md": {
       "kind": "file",
       "purpose": "Independent source review of issue45 formula/reading-surface repair, corrected diagnostic findings and explicit visual limits.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-45/2026-10-07-independent-review.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
     },
     "review/issue-48": {
       "kind": "directory",
@@ -5910,6 +6636,12 @@
       "purpose": "Issue48 versioned source/impact intake, narrow implementation tasks, independent review and exact-source acceptance handoff.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-48/2026-10-08-handoff.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
     },
     "review/issue-48/content-amendment.json": {
       "kind": "file",
@@ -5935,6 +6667,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-5/2026-10-12-article-source.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-5/2026-10-12-ci-followup-evidence.json.gz": {
       "kind": "file",
       "purpose": "Compressed source-qualified original native-scroll failure, corrected departure-history observation and preserved prepared-source suite/parser/Canvas timing diagnostics; historical results do not admit later source.",
@@ -5946,6 +6684,12 @@
       "purpose": "Current-source CI timeout, bounded parser/fixture scheduling corrections, native departing-focus/history failure and independent exact-source evidence disposition for issue5.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/2026-10-12-ci-followup.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
     },
     "review/issue-5/2026-10-12-color-article-reader.json.gz": {
       "kind": "file",
@@ -5989,11 +6733,23 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-5/2026-10-12-color-runtime.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-5/2026-10-12-execution.md": {
       "kind": "file",
       "purpose": "Dated issue5 implementation route, acceptance boundaries and code-style evidence plan.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/2026-10-12-execution.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
     },
     "review/issue-5/2026-10-12-image-load-regression.json.gz": {
       "kind": "file",
@@ -6007,11 +6763,23 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-5/2026-10-12-independent-ci-followup.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-5/2026-10-12-independent-implementation.md": {
       "kind": "file",
       "purpose": "Independent adversarial publisher, native reader, offline, catalog and delivery implementation review with finding dispositions.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/2026-10-12-independent-implementation.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
     },
     "review/issue-5/2026-10-12-migration-inventory.json": {
       "kind": "file",
@@ -6055,11 +6823,23 @@
       "role": "history",
       "owner": "review/issue-5/2026-10-13-content-release.md"
     },
+    "review/issue-5/2026-10-13-content-release.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-5/2026-10-13-independent-content-review.md": {
       "kind": "file",
       "purpose": "Source-bound continuation review and honest execution evidence for Writing and independent content release.",
       "role": "history",
       "owner": "review/issue-5/2026-10-13-content-release.md"
+    },
+    "review/issue-5/2026-10-13-independent-content-review.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
     },
     "review/issue-5/2026-10-13-local-source-failure.log.gz": {
       "kind": "file",
@@ -6103,11 +6883,23 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-5/2026-10-15-presentation-review.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-5/2026-10-18-release-segmentation.md": {
       "kind": "file",
       "purpose": "Article-first R10 delivery and staged independent platform/content/media release plan with source-qualified findings and acceptance dependencies.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/2026-10-18-release-segmentation.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
     },
     "review/issue-5/2026-10-18-step1-evidence.json.gz": {
       "kind": "file",
@@ -6181,6 +6973,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-5/2026-10-19-reader-flight-review.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-5/2026-10-19-reader-mode.md": {
       "kind": "file",
       "purpose": "User-authorized reusable reader architecture, independent findings/corrections and exact-source acceptance handoff.",
@@ -6229,6 +7027,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-5/2026-10-19-reader-ux-ui-review.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-5/2026-10-19-real-article-preview.md": {
       "kind": "file",
       "purpose": "Real R12 native reader preview: bounded rendition/download policy, preservation and independent review evidence.",
@@ -6241,6 +7045,12 @@
       "role": "guide",
       "owner": ".github/ACCEPTANCE.md"
     },
+    "review/issue-5/2026-10-20-controller-bootstrap.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-5/2026-10-20-controller-ledger-merge.json.gz": {
       "kind": "file",
       "purpose": "Lossless same-disposition predecessor ledger reason variants from the controller prerequisite merge; public fingerprints only.",
@@ -6252,6 +7062,12 @@
       "purpose": "Issue5 reusable reader interaction iteration, independent findings, shared ownership and bounded acceptance evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/2026-10-20-reader-interactions.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
     },
     "review/issue-5/2026-10-21-performance-evidence": {
       "kind": "directory",
@@ -6283,17 +7099,35 @@
       "role": "history",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    "review/issue-5/2026-10-21-performance-review.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-5/2026-10-21-reader-cpu.md": {
       "kind": "file",
       "purpose": "Issue5 CPU correction, independent review, exact-source checks and retained performance evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-5/2026-10-21-reader-cpu.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-5/2026-10-21-reader-loading.md": {
       "kind": "file",
       "purpose": "Issue5 selective reader image loading implementation, regression, independent review and exact-source result route.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/2026-10-21-reader-loading.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
     },
     "review/issue-5/2026-10-22-r23-continuation.md": {
       "kind": "file",
@@ -6457,6 +7291,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-54/2026-10-08-analysis.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-56": {
       "kind": "directory",
       "purpose": "Versioned R1 implementation, tool decision, parity and review evidence for issue56.",
@@ -6607,6 +7447,12 @@
       "role": "history",
       "owner": "review/REVIEW-TEMPLATE.md"
     },
+    "review/issue-61/2026-10-08-handoff.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-61/content-amendment.json": {
       "kind": "file",
       "purpose": "Exact hashed old/new PMDay article delta authorized by the maintainer; restore before immutable Issue48/41 content amendments.",
@@ -6624,6 +7470,12 @@
       "purpose": "Verified findings, invariant dispositions, task walkthroughs and five-PR overhead analysis.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-65/2026-10-09-analysis.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
     },
     "review/issue-65/2026-10-09-dispositions.json": {
       "kind": "file",
@@ -6643,6 +7495,12 @@
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
     },
+    "review/issue-65/2026-10-09-review.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-69": {
       "kind": "directory",
       "purpose": "Issue69 exact-main plan, implementation self-review and inert scoped browser/cost evidence; independent/device/delivery gates remain external.",
@@ -6655,6 +7513,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-69/2026-10-10-analysis.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-69/2026-10-10-browser-summary.json": {
       "kind": "file",
       "purpose": "Issue69 dated actual browser and paired cost observations with byte identities; raw prepared-state evidence retained.",
@@ -6666,6 +7530,12 @@
       "purpose": "Issue69 implementation and honestly labeled self-review, source correction, style/AC mapping and scoped browser/cost limits.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-10-implementation.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
+      "role": "history",
+      "owner": "AGENTS.md"
     },
     "review/issue-69/2026-10-10-local-evidence.tar.gz": {
       "kind": "file",
@@ -6714,6 +7584,12 @@
       "purpose": "Issue69 consolidation of duplicate70, original criteria transfer and honestly labeled source/lifecycle continuation review.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-11-continuation.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
+      "role": "history",
+      "owner": "AGENTS.md"
     },
     "review/issue-69/2026-10-11-css-timing-serialization.md": {
       "kind": "file",
@@ -6775,6 +7651,12 @@
       "role": "history",
       "owner": "review/REVIEW-TEMPLATE.md"
     },
+    "review/issue-69/2026-10-11-pages-controller-rebase.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-69/2026-10-11-preview-cleanup-observations.json": {
       "kind": "file",
       "purpose": "Limited exact standalone before/after fractal-room, focus/separator and Credits journey evidence; not full testing or admission.",
@@ -6798,6 +7680,12 @@
       "purpose": "Dated independent AI review of smoother framing, serial visual rows, separator paint and exact security dispositions.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-11-preview-refinement-review.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
     },
     "review/issue-69/2026-10-11-preview-refinement-summary.json": {
       "kind": "file",
@@ -6853,6 +7741,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-69/2026-10-11-sequenced-review.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-69/2026-10-11-sequenced-security-review.md": {
       "kind": "file",
       "purpose": "Dated independent AI review of exact public checksum dispositions, unchanged prior ledger/baseline and security admission limits for sequenced travel.",
@@ -6870,6 +7764,12 @@
       "purpose": "Independent current-source pacing, native geometry, lifecycle and exact public-checksum/storage review with explicit remaining visual/device gates.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-11-slower-pacing-review.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
     },
     "review/issue-69/2026-10-11-staging-security.md": {
       "kind": "file",
@@ -6895,6 +7795,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-72/2026-10-11-analysis.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-72/2026-10-11-browser-evidence.json.gz": {
       "kind": "file",
       "purpose": "Compressed immutable local staging edition and Pages smoke observations with temporary-fixture and dirty-parent source bindings.",
@@ -6912,6 +7818,12 @@
       "purpose": "Failed two-host evidence, strict motion-validator compatibility and authenticated failed-first Pages recovery preparation.",
       "role": "history",
       "owner": "review/REVIEW-TEMPLATE.md"
+    },
+    "review/issue-72/2026-10-11-pages-validator-recovery.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
     },
     "review/issue-72/2026-10-11-review.md": {
       "kind": "file",
@@ -6936,6 +7848,12 @@
       "purpose": "Issue76 source-grounded preview analysis, self-review, acceptance and exact delivery observations.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-76/2026-10-11-preview.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
+      "role": "history",
+      "owner": "AGENTS.md"
     },
     "review/issue-76/2026-10-12-admission.md": {
       "kind": "file",
@@ -11160,6 +12078,12 @@
       "purpose": "Historical report/plan/checkpoint: CAUSES.md. Retained hosted/native GTK failure localization, secret triage and staging evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/staging-readiness-20261006/CAUSES.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
     },
     "review/staging-readiness-20261006/DISPLAY.json": {
       "kind": "file",
@@ -15774,720 +16698,6 @@
       "purpose": "Protected source/artifact/controller/PR lease validation before hosted action.",
       "role": "source",
       "owner": "guides/SITE-STAGING.md"
-    },
-    "review/issue-102/2026-10-18-analytics-and-search-access.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-114/2026-10-20-review.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-118/2026-10-21-review.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-122/2026-10-22-t01-review.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-122/2026-10-23-t04-review.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-122/2026-10-23-t05-review.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-122/2026-10-24-fast-uri-repair.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-122/2026-10-24-r2-repository-lane.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-122/2026-10-26-browser-archives.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-126/2026-10-23-announcement-review.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-159/2026-10-28-seo-query-research.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-159/2026-10-28-staging-verification.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/2026-11-06-security-maintenance.md": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security": {
-      "kind": "directory",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/README.md": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/bandit-code-preflight.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/bandit-revalidation.json.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/failed-bandit.json.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/failed-security.json.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/historical-storage.json.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/ledger-append.json.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/native-producers.cjs.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/native-producers.json.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/provenance.json.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/reconciled-1016.json.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/requirements-preflight.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/secrets-code-preflight.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/secrets-preflight-appendix.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/secrets-proof.json.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-31/2026-10-07-review.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-36/2026-10-07-handoff.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-39/2026-10-15-controller-compatibility.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-39/2026-10-15-implementation.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-39/2026-10-15-production-plan.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-39/2026-10-15-publication-licensing.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-39/2026-10-15-release-issue-audit.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-39/2026-10-16-readiness-execution.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-39/2026-10-17-production-cutover.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-41/2026-10-09-sitecase-review.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-45/2026-10-07-handoff.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-45/2026-10-07-independent-review.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-48/2026-10-08-handoff.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-5/2026-10-12-ci-followup.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-5/2026-10-12-color-runtime.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-5/2026-10-12-execution.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-5/2026-10-12-independent-ci-followup.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-5/2026-10-12-independent-implementation.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-5/2026-10-13-content-release.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-5/2026-10-13-independent-content-review.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-5/2026-10-15-presentation-review.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-5/2026-10-18-release-segmentation.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-5/2026-10-19-reader-flight-review.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-5/2026-10-19-reader-ux-ui-review.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-5/2026-10-20-controller-bootstrap.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-5/2026-10-20-reader-interactions.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-5/2026-10-21-performance-review.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-5/2026-10-21-reader-cpu.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-5/2026-10-21-reader-loading.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-54/2026-10-08-analysis.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-65/2026-10-09-analysis.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-69/2026-10-10-analysis.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-69/2026-10-11-pages-controller-rebase.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-69/2026-10-11-preview-refinement-review.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-69/2026-10-11-slower-pacing-review.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-72/2026-10-11-analysis.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-72/2026-10-11-pages-validator-recovery.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/staging-readiness-20261006/CAUSES.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/architecture-final.json.gz": {
-      "kind": "file",
-      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/basic-final.log.gz": {
-      "kind": "file",
-      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/canonical-format.log.gz": {
-      "kind": "file",
-      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/code-style-final.json.gz": {
-      "kind": "file",
-      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/coupling-final.json.gz": {
-      "kind": "file",
-      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/coupling-tests-final.log.gz": {
-      "kind": "file",
-      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/format-final.json.gz": {
-      "kind": "file",
-      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/negative-controls-final.log.gz": {
-      "kind": "file",
-      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/prepared-bandit-triage.json.gz": {
-      "kind": "file",
-      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/prepared-security.json.gz": {
-      "kind": "file",
-      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/prepared-semgrep.json.gz": {
-      "kind": "file",
-      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/prepared-validation.json.gz": {
-      "kind": "file",
-      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/ri-tests-final.log.gz": {
-      "kind": "file",
-      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/toolchain-verify.json.gz": {
-      "kind": "file",
-      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/candidate-v1.json.gz": {
-      "kind": "file",
-      "purpose": "Issue169 source-bound independent security review receipt and preserved first finding/correction.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/code-first.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 source-bound independent security review receipt and preserved first finding/correction.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/exploratory-first.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 source-bound independent security review receipt and preserved first finding/correction.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/provenance-v1-stale.json.gz": {
-      "kind": "file",
-      "purpose": "Issue169 source-bound independent security review receipt and preserved first finding/correction.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/requirements-first.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 source-bound independent security review receipt and preserved first finding/correction.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/reviewer-executions.json.gz": {
-      "kind": "file",
-      "purpose": "Issue169 source-bound independent security review receipt and preserved first finding/correction.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/whitebox-first.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 source-bound independent security review receipt and preserved first finding/correction.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/candidate-v2.json.gz": {
-      "kind": "file",
-      "purpose": "Issue169 verbatim same-role correction and retained evidence accuracy finding.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/code-correction.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 verbatim same-role correction and retained evidence accuracy finding.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/exploratory-correction.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 verbatim same-role correction and retained evidence accuracy finding.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/requirements-correction.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 verbatim same-role correction and retained evidence accuracy finding.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/reviewer-executions-v2-inaccurate.json.gz": {
-      "kind": "file",
-      "purpose": "Issue169 verbatim same-role correction and retained evidence accuracy finding.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/whitebox-correction.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 verbatim same-role correction and retained evidence accuracy finding.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/candidate-v3.json.gz": {
-      "kind": "file",
-      "purpose": "Issue169 final affected-review closure and source-bound metadata receipt; delivery gates remain separate.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/requirements-closure.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 final affected-review closure and source-bound metadata receipt; delivery gates remain separate.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/review-closure.json.gz": {
-      "kind": "file",
-      "purpose": "Issue169 final affected-review closure and source-bound metadata receipt; delivery gates remain separate.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/whitebox-closure.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 final affected-review closure and source-bound metadata receipt; delivery gates remain separate.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-159/2026-10-28-live-diagnostics.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-159/2026-10-28-qa-isolation.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/final-storage-correction.json.gz": {
-      "kind": "file",
-      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-39/2026-10-10-readiness.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-5/2026-10-12-article-source.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-61/2026-10-08-handoff.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-65/2026-10-09-review.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-69/2026-10-10-implementation.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-69/2026-10-11-continuation.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-69/2026-10-11-sequenced-review.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-76/2026-10-11-preview.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/candidate-v4.json.gz": {
-      "kind": "file",
-      "purpose": "Issue169 verbatim affected closure and exact lossless metadata evidence.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/code-source-closure.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 verbatim affected closure and exact lossless metadata evidence.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/code-storage-closure.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 verbatim affected closure and exact lossless metadata evidence.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/exploratory-storage-closure.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 verbatim affected closure and exact lossless metadata evidence.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/provenance-v4-source-mismatch.json.gz": {
-      "kind": "file",
-      "purpose": "Issue169 verbatim affected closure and exact lossless metadata evidence.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/requirements-storage-closure.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 verbatim affected closure and exact lossless metadata evidence.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/source-reference-fix.json.gz": {
-      "kind": "file",
-      "purpose": "Issue169 verbatim affected closure and exact lossless metadata evidence.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/source-reference-packet-delta.json.gz": {
-      "kind": "file",
-      "purpose": "Issue169 verbatim affected closure and exact lossless metadata evidence.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/whitebox-source-closure.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 verbatim affected closure and exact lossless metadata evidence.",
-      "role": "history",
-      "owner": "AGENTS.md"
-    },
-    "review/issue-169/security/whitebox-storage-closure.md.gz": {
-      "kind": "file",
-      "purpose": "Issue169 verbatim affected closure and exact lossless metadata evidence.",
-      "role": "history",
-      "owner": "AGENTS.md"
     }
   }
 }

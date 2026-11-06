@@ -175,6 +175,35 @@ function visit(query = '', historyBlocked = false, candidate = catalog) {
     focuses: () => emitted.filter((e) => e.type === 'site:scene-focus').map((e) => e.detail.focus),
   };
 }
+test('the current SDLC row stays first through year, topic, language, tag and reset filtering', () => {
+  const page = visit('?year=2026&topic=delivery&language=en');
+  const target = page.rows[0];
+  assert.equal(target.dataset.year, '2026');
+  assert.equal(target.dataset.topic, 'delivery');
+  assert.equal(target.dataset.language, 'en');
+  assert.equal(page.shown()[0], target);
+  page.ids['archive-tag'] = {
+    value: 'all',
+    options: ['all', 'ai-delivery', 'software-economics', 'verification', 'operating-models'].map(
+      (value) => ({ value, textContent: value })
+    ),
+  };
+  target.dataset.tags = 'ai-delivery software-economics verification operating-models';
+  page.events['site:tags-ready']();
+  for (const tag of ['ai-delivery', 'software-economics', 'verification', 'operating-models']) {
+    page.change('tag', tag);
+    assert.equal(page.shown()[0], target);
+  }
+  page.change('year', '2025');
+  assert.equal(target.hidden, true);
+  page.change('year', '2026');
+  page.change('language', 'uk');
+  assert.equal(target.hidden, true);
+  page.reset();
+  assert.equal(page.shown().length, total);
+  assert.equal(page.shown()[0], target);
+});
+
 test('foreign document history preserves the outgoing archive and same-document history still refreshes', () => {
   const page = visit('?topic=delivery');
   const navigation = fs.readFileSync(path.join(root, 'site/engine/navigation.js'), 'utf8');

@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "58738edd14926384a0953c7f6467072f3fb5094809021e7b32af3c3367601193",
+    "digest": "7cecd0dcad4da2ee8b3722b0e08e124c173cba06125cf627707b05aefef3124b",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -216,12 +216,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "3a0949d3c93a9150ff323de24ddf6c62d6caaf65b1f46687dd8a65f3f3b0f390"
+        "sha256": "34f704ded2d463d454f99673d9e5aa78c2e9fdac1cfced5118183d0ef4be097e"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "5a171e1601149dea3dc75277507ad26ba6701e5a1842190f76e6697b7762e1cc"
+        "sha256": "4ca3e8bec76efa2f95127ee267928ef43e6e9fc5d346c3ef273d92990d452a41"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -371,7 +371,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "47e93ca51b728b4e2726cbb3bd4e2f34e41eea6e19e33b3b3510cfec6cdeea24"
+        "sha256": "f5e06429b901b848583534f543daeda3b2d5d5a78803b22022c2550f64463cb8"
       },
       {
         "path": "NOTICE.md",
@@ -503,9 +503,9 @@
         "sha256": "f1d53fa07e9c2d947922eb82b5cc12b7b7bbefd62cf728e80b9cfcbde8a5ffa9"
       },
       {
-        "path": "docs/article-snapshots/7b1e3fbe23136bd07787e2d8348f94036213d2bb9a3ef16d618ffd2cb87ba7d1/the-sdlc-is-out-of-balance.html",
+        "path": "docs/article-snapshots/60b4eb071b9f8367227354032aec04364d783b02fb8f6f8d7d3cb59a05949bcc/the-sdlc-is-out-of-balance.html",
         "identity_mode": "content",
-        "sha256": "2049d7e60adc0f8e1b00485322449d96399f3b349ce85f8f852573f25e545cbd"
+        "sha256": "bbf8cf9e1fd980800a1e2dad9a2d60ebc29369923353601eff43e48dc533d040"
       },
       {
         "path": "docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/the-sdlc-is-out-of-balance.html",
@@ -515,7 +515,7 @@
       {
         "path": "docs/articles/the-sdlc-is-out-of-balance.html",
         "identity_mode": "content",
-        "sha256": "3fd23f74a0c74a64efd233dcf757ead84c6fa4faf66b33dcefc8796ca7534ea0"
+        "sha256": "879917b7e7971077d711a848801412de633ce3a3a2448c7594156fc84ee55083"
       },
       {
         "path": "docs/assets/favicon.svg",
@@ -540,12 +540,12 @@
       {
         "path": "docs/credits.html",
         "identity_mode": "content",
-        "sha256": "9373b4d1a296010b34722593166c6c55fce15a82e1f27df9c694e3b123205374"
+        "sha256": "b3456a63a352fac1d0ebcb7921b2a73860eb699381970370a3c06b86cca373c2"
       },
       {
         "path": "docs/index.html",
         "identity_mode": "content",
-        "sha256": "38f697cccfa0b7547a068b1e121fd9c03be6f333ddd0b3ca251f28248460d873"
+        "sha256": "8b114375f71ad51c6c3eef07d45ff5a78a95ea99007ae89786b2cefc7e5d6d55"
       },
       {
         "path": "docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg",
@@ -580,7 +580,7 @@
       {
         "path": "docs/research.html",
         "identity_mode": "content",
-        "sha256": "fa72e3bff59fd6d9c4a1505e49306ac9bd7442b5119a23ee040be95d289c93e3"
+        "sha256": "c33efd425567fce4461863944aba6f31f2364350af82ed0c0f2c572e2960e096"
       },
       {
         "path": "docs/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/archive.js",
@@ -715,7 +715,7 @@
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "3980767d31e60262c0d77acb721f2b526daf041b68c704d555063ab2f1a2f7d1"
+        "sha256": "74a3b6e59b65b7f1b2e2eb9a11c01411d1ae44e509bac6df5f364b996bca0456"
       },
       {
         "path": "docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2/talks.html",
@@ -723,19 +723,29 @@
         "sha256": "05054fd2a4ca2aca6cd0d05717fe332cb95390720e1089331271ca62f3c53f4c"
       },
       {
+        "path": "docs/snapshots/0c50d9693cc2743d611ecf9d1a2274c5687f5d0c4f363d9d3108775c521c161c/research.html",
+        "identity_mode": "content",
+        "sha256": "978d4efebe42679ff3d6672280fad0e52abe28305ae2c0e527795e807b33155c"
+      },
+      {
         "path": "docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e/talks.html",
         "identity_mode": "content",
         "sha256": "93c88b5f9c73e559b067866cb38eb604e93013c2225a06a36f96e8f215d397b3"
       },
       {
-        "path": "docs/snapshots/2b7302a1f2cc9dc6fedfa5c13f4fa277e8ffab5ab68e948269b3d9d3043a98cd/talks.html",
+        "path": "docs/snapshots/39441f2d37cdfc6b3935d76c2f897f92be741f851569e2ff46558e90b4180612/credits.html",
         "identity_mode": "content",
-        "sha256": "0802b529e7049d9f28fdedbf65c7bc0a30086c9a267926b368616f747c7fb95c"
+        "sha256": "9f6dc4ce66bcf3a783fea12a857b9a68637869eaf778117e4591798871b5ac65"
       },
       {
-        "path": "docs/snapshots/4d3d841b02637bc5445cb4a0199d7eb99416bf5dab882f323c9b9edd743bf898/research.html",
+        "path": "docs/snapshots/4c633b6b3889451c5a923a013cde4a5105323456d95739dc0889e1bfa868cfad/writing.html",
         "identity_mode": "content",
-        "sha256": "34d8174903f29bcb8fb5bd1ac3ad338550de6f26cada9d2bc05d2c5544774274"
+        "sha256": "6b7b7aeeca99de8df80a87f20c84140c0e30b15a18cc6f77ec6b25b71ea1306a"
+      },
+      {
+        "path": "docs/snapshots/4cbd43f32c97e0320e847a70f74fb27df306a5b62c1cfd868af62bed9c333a03/talks.html",
+        "identity_mode": "content",
+        "sha256": "932c3e4495dcc0b5b4a67ecae2427fafa5c95b5040276823a4896181fd686448"
       },
       {
         "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
@@ -753,6 +763,11 @@
         "sha256": "395fd7fcc670e0b7984ed05e7395958dd9432a701f3bfc43151fb956e6d289a1"
       },
       {
+        "path": "docs/snapshots/6ab1b9444a3d9a4fa13b2d48b5f56ffbbe6007aacd3ac53378c323061d319694/index.html",
+        "identity_mode": "content",
+        "sha256": "5a909269b9dd11c740bc57b6f19ac5205422dd401d0de346248370d2de80f5c5"
+      },
+      {
         "path": "docs/snapshots/7b62f25175a003a9fcc24f430e26ff321f267a8e77a28699984f86bf1dfdd3b6/research.html",
         "identity_mode": "content",
         "sha256": "9571a5ab146a9b4059e5601795c5e39b852c1adf6dfe598cd3306a77a761e60a"
@@ -761,11 +776,6 @@
         "path": "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html",
         "identity_mode": "content",
         "sha256": "e19095652eec29ccea5cb8ba5397356e998d2b15235b06486675b0fefd151c5d"
-      },
-      {
-        "path": "docs/snapshots/899daade336eb704ff1323f87e7b07eb33e3fdd207dbc0e6aaf08937746db70b/credits.html",
-        "identity_mode": "content",
-        "sha256": "802a21cb2a86e5376fdcc54fbcbe7ea0abefbc36cc294df0853dae6e99c69792"
       },
       {
         "path": "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html",
@@ -781,11 +791,6 @@
         "path": "docs/snapshots/95b57d8257b5ffb3f4b9924d90694110e982f7bdc9aecb6f09969d46b3a8b2e0/index.html",
         "identity_mode": "content",
         "sha256": "288f85a3b0bf82d69aceda049007063a6ebcde469eb345b8ddcec53cf96bd498"
-      },
-      {
-        "path": "docs/snapshots/9c15723e5b5e0ef4e24df6376f4074c6ead4362bdc9c4e9055747e701e8a40f3/index.html",
-        "identity_mode": "content",
-        "sha256": "c1d6f64dc9397445435f72db694449112bd50f1e45925f06c6910a809571469d"
       },
       {
         "path": "docs/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700/credits.html",
@@ -813,11 +818,6 @@
         "sha256": "eef3b91329720bf60b4aaf9e08208bd9ce75790be77b21c2757638c7af7a6fb4"
       },
       {
-        "path": "docs/snapshots/f16c892c990ac5b965edc34a294f40ac272843d72b91fb385a2222b7e227ea5d/writing.html",
-        "identity_mode": "content",
-        "sha256": "b62917d9001a825672711ff50baa78ee29212f2c379e15e7a79b35bf474a6e31"
-      },
-      {
         "path": "docs/space.js",
         "identity_mode": "content",
         "sha256": "7812c824ce3dac0d5d36f40788c65ca66cc553e5a0287850a24a499a02d4eab4"
@@ -830,7 +830,7 @@
       {
         "path": "docs/talks.html",
         "identity_mode": "content",
-        "sha256": "69d0199347ed34ce9a0d1b90d09345e9d796a37c2bbe22e237d0594db4bc3ed2"
+        "sha256": "2fceb070a7a0211387e5a2fd35156e7f369884bf196f66b2c0d772d9c9f231fc"
       },
       {
         "path": "docs/theme.js",
@@ -840,7 +840,7 @@
       {
         "path": "docs/writing.html",
         "identity_mode": "content",
-        "sha256": "2c66ca237af366604d09e55124678a6817b5db1757c9bd62db1fbf7c254b46a0"
+        "sha256": "e80f275b13204d694a61022c06d640fe18d4220e0524b936824fe7846be15ee5"
       },
       {
         "path": "drafts/medium-profile-revision-20261001.html",
@@ -860,7 +860,7 @@
       {
         "path": "guides/ARTICLE-WORKFLOW.md",
         "identity_mode": "content",
-        "sha256": "ec21bfb325841f2b428ce80ec71201756f3afd8b806b0364907d424a1122fa93"
+        "sha256": "b1b8c1bf8e2320ce74ce24d9837cce2bb0b2cb0e32b28b23f9658ef79cee3579"
       },
       {
         "path": "guides/BROWSER-ARCHIVES.md",
@@ -1530,7 +1530,12 @@
       {
         "path": "review/issue-169/2026-11-05-devcon-editorial-analysis.md",
         "identity_mode": "content",
-        "sha256": "0fd812e48720bfb26b28dd6ee93c061fad6085c8bdff01c916c77bd6d355f703"
+        "sha256": "97f3669256404af1eb5e93eae9240c7f3e0cb6400cf3db8b4b9e126334176c89"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-devcon-editorial-analysis.md.gz",
+        "identity_mode": "content",
+        "sha256": "6efe22d69a0e5a229a304acef0f8fb636d0d7bd27562c18418b0882d628f8e9f"
       },
       {
         "path": "review/issue-169/2026-11-05-native-r9-code-delta-review.md",
@@ -1590,7 +1595,12 @@
       {
         "path": "review/issue-169/2026-11-05-native-r9-diagnostic-whitebox.md",
         "identity_mode": "content",
-        "sha256": "4a4041d976499633ee8200e888618e6ff8b9329fc2f5e51e0204b0e3a9e6d7a7"
+        "sha256": "18911ba98e2801c4b6004f6953cfe6f104316c71128fc351403ba0bd1148d92c"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-native-r9-diagnostic-whitebox.md.gz",
+        "identity_mode": "content",
+        "sha256": "762c8dd371053dee9704688782e8974b9660fe711c6435d623531dfd73c6c010"
       },
       {
         "path": "review/issue-169/2026-11-05-native-r9-exploratory-pinned-correction.md",
@@ -1670,7 +1680,12 @@
       {
         "path": "review/issue-169/2026-11-05-native-r9-hosted-heading-requirements-preflight.md",
         "identity_mode": "content",
-        "sha256": "b5de76c89d7c089dbfa9dc828d23605762ed5d80c0ea903157fde5a5f525483c"
+        "sha256": "33c6ed401d2dc7627d81c26917b220a6e008418f56ad43a400f3a6aac1ee4273"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-native-r9-hosted-heading-requirements-preflight.md.gz",
+        "identity_mode": "content",
+        "sha256": "731d14f8a6d83eb283293aa89c74648859a03b182e872dfa75c5053cb8f98fd2"
       },
       {
         "path": "review/issue-169/2026-11-05-native-r9-hosted-heading-whitebox.md",
@@ -1843,6 +1858,11 @@
         "sha256": "d12c17a52bb2156330e4c26032c6014b98a896b70e1eec6d51c0fe7c4eba039c"
       },
       {
+        "path": "review/issue-169/2026-11-06-writing-discovery.md",
+        "identity_mode": "content",
+        "sha256": "df51a88cd2ddfc9e69600a186347542a439db555bfd47a4dc40bbde96f3ba735"
+      },
+      {
         "path": "review/issue-169/correction-affected.log.gz",
         "identity_mode": "content",
         "sha256": "79b6aa9cf7d8b30df6e48697bb8175005be3b3782cbd11ceb024a814950574b0"
@@ -1990,7 +2010,12 @@
       {
         "path": "review/issue-169/distribution/requirements-preflight.md",
         "identity_mode": "content",
-        "sha256": "084070a443a98f6c87b211e4ef5601601568c2fd852dc075b011f37edddfbf39"
+        "sha256": "8a9d37c21ecba3653962ab54debcfd60c156f709f75b06119586fa8ae7bfbfcb"
+      },
+      {
+        "path": "review/issue-169/distribution/requirements-preflight.md.gz",
+        "identity_mode": "content",
+        "sha256": "80e5560c71114883db464dcf885f66f47f5cd98318c3912bcefb04f9fe03874c"
       },
       {
         "path": "review/issue-169/distribution/requirements-storage-final.md",
@@ -2975,7 +3000,12 @@
       {
         "path": "review/issue-169/r10/requirements-preflight.md",
         "identity_mode": "content",
-        "sha256": "56998e32138f13c0ec5bec674c82f38f5d77d8cb9d1c0a1b51b868573db202e0"
+        "sha256": "a3fbc32507a22ab8d74c29ee8cc028661c4ecb2d03b0b3b419bcafd19a501055"
+      },
+      {
+        "path": "review/issue-169/r10/requirements-preflight.md.gz",
+        "identity_mode": "content",
+        "sha256": "649e5f712308711402c800b5637820119b66f0fa8cd2f59536b5e419e7679774"
       },
       {
         "path": "review/issue-169/r10/ri-first.log.gz",
@@ -3060,7 +3090,12 @@
       {
         "path": "review/issue-169/r3/reviews/requirements-r3-final.md",
         "identity_mode": "content",
-        "sha256": "01d211e79bd6e234fd048ba5274ef24e354340357a6715acfb667efedfc37dde"
+        "sha256": "fd79919a811ecdc12a23360e1b83c1eb18e0283d7d8976c4b9b32b022d5eee6c"
+      },
+      {
+        "path": "review/issue-169/r3/reviews/requirements-r3-final.md.gz",
+        "identity_mode": "content",
+        "sha256": "4835c8738e84b4fdabd1dd8965fcc150c6a13543a50bdc27bbf7062a18f6393e"
       },
       {
         "path": "review/issue-169/r3/reviews/requirements-r3-preflight.md",
@@ -4056,6 +4091,141 @@
         "path": "review/issue-169/writing-carrier.json",
         "identity_mode": "content",
         "sha256": "281f0cd88fd249b3e18897b6e771fa8da0a16a0879a92319cab733c4d8fe1050"
+      },
+      {
+        "path": "review/issue-169/writing-discovery/README.md",
+        "identity_mode": "content",
+        "sha256": "2310007ed779c54030108c0c1d4585165ab5516cbfe8a9f01004652613416b47"
+      },
+      {
+        "path": "review/issue-169/writing-discovery/basic.log.gz",
+        "identity_mode": "content",
+        "sha256": "5ad3cf66a5dfab905667b9801e330975d42e28e33e2d9d4dc3d9889021f822df"
+      },
+      {
+        "path": "review/issue-169/writing-discovery/candidate.json.gz",
+        "identity_mode": "content",
+        "sha256": "917308071a1d50b1d935a2ad6f337ba4ebbfa8b2aa09e7edb4810b99e61b2523"
+      },
+      {
+        "path": "review/issue-169/writing-discovery/code-first.md.gz",
+        "identity_mode": "content",
+        "sha256": "8f7f8b8c123b971250a0ef06a56590af0d3fd71bd2f8d12b233726d51033ba0f"
+      },
+      {
+        "path": "review/issue-169/writing-discovery/code-storage.md.gz",
+        "identity_mode": "content",
+        "sha256": "af83edce01e4ceb9ca312c82f2cc7e5c1f261c78c3326bb2fcb106e76dba2119"
+      },
+      {
+        "path": "review/issue-169/writing-discovery/coupling-tests.log.gz",
+        "identity_mode": "content",
+        "sha256": "f738e335d9639fc61abcf1ba98f7ee4185642e01031ee5bdd5bc0e91c626e2a0"
+      },
+      {
+        "path": "review/issue-169/writing-discovery/coupling-verify.log.gz",
+        "identity_mode": "content",
+        "sha256": "8afdce2968865dc62bef709a56301e6f4cdf566a2c1c9792e2e4c2ea58811d95"
+      },
+      {
+        "path": "review/issue-169/writing-discovery/exploratory-first.md.gz",
+        "identity_mode": "content",
+        "sha256": "2a676ea73d41f4240e24e36ce91141a6216e43cf964054e54490f8bcf97b0a46"
+      },
+      {
+        "path": "review/issue-169/writing-discovery/historical-storage.json.gz",
+        "identity_mode": "content",
+        "sha256": "be8d9186bb7932f10b018cf6e42dae716e023e7bd427a95519dc71f162906126"
+      },
+      {
+        "path": "review/issue-169/writing-discovery/lint.log.gz",
+        "identity_mode": "content",
+        "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+      },
+      {
+        "path": "review/issue-169/writing-discovery/manifest.json.gz",
+        "identity_mode": "content",
+        "sha256": "1c2a3a3fbed44429aff8c1c870690172f8791c70ab25d6382f623191e0736eb4"
+      },
+      {
+        "path": "review/issue-169/writing-discovery/packet.json.gz",
+        "identity_mode": "content",
+        "sha256": "3d5dc664c5ee97ae78e6cdc6bdc64f6d1b5c48e7be07244d24cc2b40f216be49"
+      },
+      {
+        "path": "review/issue-169/writing-discovery/requirements-binding-preflight.md.gz",
+        "identity_mode": "content",
+        "sha256": "8b6b28fadef91de4cd9352fdf663a81dc3d289540dd78361d069892a5de9ed63"
+      },
+      {
+        "path": "review/issue-169/writing-discovery/requirements-final.md.gz",
+        "identity_mode": "content",
+        "sha256": "bd161278a87df841ce77c921e362f38372b731b57d280827a2fe01808981ef84"
+      },
+      {
+        "path": "review/issue-169/writing-discovery/requirements-first.md.gz",
+        "identity_mode": "content",
+        "sha256": "03ee7fd4a33735a3dfbfb7f5d13ec95282e3695e7076b2527ad2492bba94fa58"
+      },
+      {
+        "path": "review/issue-169/writing-discovery/ri-build-final.log.gz",
+        "identity_mode": "content",
+        "sha256": "86bf492bd0f1838f665bcbe563547f9db8126166c5d3e2afcdd6690a60428581"
+      },
+      {
+        "path": "review/issue-169/writing-discovery/ri-build-storage-final.log.gz",
+        "identity_mode": "content",
+        "sha256": "cad03bb17434c42aeac597d543ec8e4befe3e5148590ab3023f7bc8ed64d31fa"
+      },
+      {
+        "path": "review/issue-169/writing-discovery/ri-build-storage.log.gz",
+        "identity_mode": "content",
+        "sha256": "cad03bb17434c42aeac597d543ec8e4befe3e5148590ab3023f7bc8ed64d31fa"
+      },
+      {
+        "path": "review/issue-169/writing-discovery/ri-build.log.gz",
+        "identity_mode": "content",
+        "sha256": "86bf492bd0f1838f665bcbe563547f9db8126166c5d3e2afcdd6690a60428581"
+      },
+      {
+        "path": "review/issue-169/writing-discovery/ri-tests.log.gz",
+        "identity_mode": "content",
+        "sha256": "0ffcee40fcd690dd40c246918e76fd22918fef965ada5775be0d3f03cdccd899"
+      },
+      {
+        "path": "review/issue-169/writing-discovery/ri-verify-storage.log.gz",
+        "identity_mode": "content",
+        "sha256": "821e8014480fcf5d193f756e2030c35c2a1ee319228c78da9366b33a322bf141"
+      },
+      {
+        "path": "review/issue-169/writing-discovery/source-corrected.tap.gz",
+        "identity_mode": "content",
+        "sha256": "605b8c459ee5cc34abe0cb657c7e1c212291d6e7b5a261cffd8838c09a3fee75"
+      },
+      {
+        "path": "review/issue-169/writing-discovery/source-final.tap.gz",
+        "identity_mode": "content",
+        "sha256": "5b22e0886e36bc449da4060ee61e7a62b811661aa48c1006319e145ca4fbaf4c"
+      },
+      {
+        "path": "review/issue-169/writing-discovery/source-first.tap.gz",
+        "identity_mode": "content",
+        "sha256": "da2a81e1620a8a3df20e54073a1d05f88e88060fec8458135c1db035fd3b3bcb"
+      },
+      {
+        "path": "review/issue-169/writing-discovery/style.log.gz",
+        "identity_mode": "content",
+        "sha256": "a1d725797d885d53444a74810a15355d45509d6bac6e216f798cfc5d921505c7"
+      },
+      {
+        "path": "review/issue-169/writing-discovery/whitebox-first.md.gz",
+        "identity_mode": "content",
+        "sha256": "c3601ca3c94c3c184ec8b126f83beffcdf526ce45625aee196bd6afa256e1727"
+      },
+      {
+        "path": "review/issue-169/writing-discovery/whitebox-storage.md.gz",
+        "identity_mode": "content",
+        "sha256": "b2acfeda69f45c3b8da81c0120e04e31e393f40722ba2a722943bf9a4fe59f87"
       },
       {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -8615,22 +8785,22 @@
       {
         "path": "review/site-v1-20261004-v11-credits-day.html",
         "identity_mode": "content",
-        "sha256": "23cc0e296f86481818fc0f52d10a60e0175de69bfe0ace8c49c2d598dc3287ef"
+        "sha256": "5b6a8132129a878cbfe283c31acabd811fa908da8b21809f4cabbecd0ea59f44"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-interactive.html",
         "identity_mode": "content",
-        "sha256": "7e6c2c400f2ba4ebde54efa840b020255e54d245a7950f56a26c93a70769b88f"
+        "sha256": "1badea82b4070216ed6403ea8816fc0701de1ec698a73e3901a884c5ea997650"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-night.html",
         "identity_mode": "content",
-        "sha256": "eba50d668dd4988b2965034a05c188bb233666a63f63f10dbc88a68f852d1063"
+        "sha256": "e1edd6d58e1ec55c7e0346afae269ec3828b941b331c03d03e4c958590189a46"
       },
       {
         "path": "review/site-v1-20261004-v11-day.html",
         "identity_mode": "content",
-        "sha256": "c1c73e874ae7cdc4d0d330e046b9bad1980707be3ca4d4a3770a95f804d3bbb3"
+        "sha256": "af657c676659d1a9f7edefd6e78655fda5fea1ea6909a5375a6a79c52146a52e"
       },
       {
         "path": "review/site-v1-20261004-v11-index.html",
@@ -8640,57 +8810,57 @@
       {
         "path": "review/site-v1-20261004-v11-interactive.html",
         "identity_mode": "content",
-        "sha256": "8010f48269e235eb0b1fdc3587d9dc5975a159e5dea035d0ac3f131f9fec8491"
+        "sha256": "1aa664a950cd72bc0907ff4fd3ea3189a9ef8a1b3f35569cd4a9971881c3e5a0"
       },
       {
         "path": "review/site-v1-20261004-v11-night.html",
         "identity_mode": "content",
-        "sha256": "689ede5c7f890108240ff0ef3773e460d23335085f7ac88a2418bec222445921"
+        "sha256": "473bad658e5b3eab5a675b2d8d3185e83083efbb7142d16159e37703d9e9b30b"
       },
       {
         "path": "review/site-v1-20261004-v11-research-day.html",
         "identity_mode": "content",
-        "sha256": "e3e5b3609ed66f5d964efb5c6cd3bb36415c92166fdfa5ecba924f3b06988085"
+        "sha256": "f586d6020a171cef31da4bb0ce3b5fab6ca6e4566757f01a3b4f43f699ae4206"
       },
       {
         "path": "review/site-v1-20261004-v11-research-interactive.html",
         "identity_mode": "content",
-        "sha256": "3ff75bf89264556c256362d5155764f0ff11ee348da8372aa10158c5b05b7da0"
+        "sha256": "26ff91240768cdf6abca3b52762639b7df9250dfba11d2bcfb2dfd95396f0149"
       },
       {
         "path": "review/site-v1-20261004-v11-research-night.html",
         "identity_mode": "content",
-        "sha256": "54998c88c60aed40f690c5c95ad5b11a791e994c1f12aa5bd4c2f32e6b694768"
+        "sha256": "be6fd8d7dee6622c70d7a84116e0012c421aa9fbad1bb56ddc95c8bf3edafb6e"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-day.html",
         "identity_mode": "content",
-        "sha256": "c99c5342c23d6da37b6d3f92e02f4dadf4c8dd3b3589e8d1818dc263bb8adc5a"
+        "sha256": "d91d3426fe2560e9c57349174a13471e2fdb97e96bdcf34e77fa140bb040f0aa"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-interactive.html",
         "identity_mode": "content",
-        "sha256": "454b4c0276488d05925ea5774ac23eb9901f6d96e6e44ba422156109aa80bc92"
+        "sha256": "ecfe7184570acd8a30d30f9215971114704f9c1da74fd105e823d69b3b2fe778"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-night.html",
         "identity_mode": "content",
-        "sha256": "c0012d8612a8a20db68d10f61dd6e25d403168c7148c1f425de7459b18984eac"
+        "sha256": "968828c210833ede5fedcb84e1a0a035ee474b2ed0d6a3b5e86082f9b011c5b3"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-day.html",
         "identity_mode": "content",
-        "sha256": "34d4136ef6ac20eaa91fa2bfdafe6b43a4c83c7bdf51c76250c09c68ce3ff966"
+        "sha256": "e64605ec12849d71367e2fabf9112fc3a1460090a17701691607792f6457e11e"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-interactive.html",
         "identity_mode": "content",
-        "sha256": "41c90a56b0440cfa961f644b0e567db2629277fd0080ab8f4eab06177de2b39e"
+        "sha256": "1ad628b9467fc8c49822ffdad74ea0448cc2de59856d7557be2563bbcc9ff9ac"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-night.html",
         "identity_mode": "content",
-        "sha256": "5bff8a4457cdc911eaadd16a02e5d5e9f5a2d37984c000535dce0e05d344d6f6"
+        "sha256": "12c12bed093f7b9b28cfbc9763168a3d93d009c7ad9ec97a9979de84455f7f55"
       },
       {
         "path": "review/site-v1-offline-bundle-v10.json",
@@ -8700,7 +8870,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "221bf44e3acbdb07f258ddd072f11be5d6b0162ca9c3366839a12d2d4e06de3e"
+        "sha256": "4ef61f2d0a51dff19ca35d829efe5924f3a74b953cec55a066c9f43e1d5af812"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -8755,7 +8925,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "ff7e5e81eb1ef105c221c80cb2956e5bbbf3d17e4aad7aef013dd70fff480605"
+        "sha256": "143082aecb9ec48dd43f11b8202da6947428730e0a8f9f9a342eaa2cffc5974c"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -9570,7 +9740,7 @@
       {
         "path": "site/content/catalog.json",
         "identity_mode": "content",
-        "sha256": "ca5ad58534246c0ec225019d4b8a331261a9b5b857561c81aa28496875cb8e2e"
+        "sha256": "7a71bf2254436e2c012183cdfbd2b13c68e35f6b168de8989986814cad875909"
       },
       {
         "path": "site/content/events.json",
@@ -9830,7 +10000,7 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "31b602c30c326202afb615ae3e13a363f5e5d8bb66edc897306542997eddd47b"
+        "sha256": "44640ed40c257dfa638e108141574579f9ea9b8c978f52d0147924ef80a89944"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/blueprint.md",
@@ -10675,7 +10845,7 @@
       {
         "path": "tests/archive.test.cjs",
         "identity_mode": "content",
-        "sha256": "0da7275238c4e06304b188afab3c7f6b0817f539adff2e3f753b628006331dfb"
+        "sha256": "546137e445f799b911b8701c87242ab8c0053ed286c7f6d6d87e59367dd58666"
       },
       {
         "path": "tests/article-browser-evidence.test.cjs",
@@ -10800,7 +10970,7 @@
       {
         "path": "tests/content.test.cjs",
         "identity_mode": "content",
-        "sha256": "920f4a764d9d44d0ca61450d725561e75120efd887228975388f9c5021925e81"
+        "sha256": "090a60f373c1eae445dacfed826eb4e9537b1c1511aa9611e6f98d4e01c17475"
       },
       {
         "path": "tests/control-lock.test.cjs",
@@ -10945,7 +11115,7 @@
       {
         "path": "tests/local-catalog-relationships.test.cjs",
         "identity_mode": "content",
-        "sha256": "d7717709066db9f8330b547961d611f35c25995774117086e6a22ed80e4e210a"
+        "sha256": "92ea9789ed73567e84c38e7d53cccaff18430e0f1bfbba2c1b9e22b69820c554"
       },
       {
         "path": "tests/native-display.test.cjs",
@@ -11415,7 +11585,7 @@
       {
         "path": "tools/check_site_seo.cjs",
         "identity_mode": "content",
-        "sha256": "f9ac3f6a4b17ce99289c9574a3217b6fe6b7735c4dae1dd1ae1df22a33c1d379"
+        "sha256": "0b749ddda512fc58e0b43ac9698a2548ffd9fedcff33f1961983f9afd69bf04c"
       },
       {
         "path": "tools/compact_site_recordings.cjs",
@@ -12345,7 +12515,7 @@
       {
         "path": "tools/site/render-records.cjs",
         "identity_mode": "content",
-        "sha256": "24f1bec530b762009a6b03a1d91700e7ee5c56345a0b8d9a4a4c6f0ff561038c"
+        "sha256": "85a0478ec37ffd65778b6f10dad08d420c42559ec2faeb15786ff983e7c4006c"
       },
       {
         "path": "tools/site/retain.cjs",
@@ -12380,7 +12550,7 @@
       {
         "path": "tools/site/validate-catalog.cjs",
         "identity_mode": "content",
-        "sha256": "6a61f3af40e94c42b4240c1afb21a2a25474f2cf58381a2c40f12dea12becc6c"
+        "sha256": "4da744f7bbe52cc96be5df9c6f035bf1de8c9cb394baf8f1d2b1f8af1b6b7ef1"
       },
       {
         "path": "tools/site/variants.cjs",
@@ -13919,9 +14089,9 @@
       "title": "the-sdlc-is-out-of-balance.html"
     },
     {
-      "path": "docs/article-snapshots/7b1e3fbe23136bd07787e2d8348f94036213d2bb9a3ef16d618ffd2cb87ba7d1/the-sdlc-is-out-of-balance.html",
+      "path": "docs/article-snapshots/60b4eb071b9f8367227354032aec04364d783b02fb8f6f8d7d3cb59a05949bcc/the-sdlc-is-out-of-balance.html",
       "kind": "file",
-      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
+      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -14403,6 +14573,17 @@
       "title": "talks.html"
     },
     {
+      "path": "docs/snapshots/0c50d9693cc2743d611ecf9d1a2274c5687f5d0c4f363d9d3108775c521c161c/research.html",
+      "kind": "file",
+      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "research.html"
+    },
+    {
       "path": "docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e/talks.html",
       "kind": "file",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
@@ -14414,26 +14595,37 @@
       "title": "talks.html"
     },
     {
-      "path": "docs/snapshots/2b7302a1f2cc9dc6fedfa5c13f4fa277e8ffab5ab68e948269b3d9d3043a98cd/talks.html",
+      "path": "docs/snapshots/39441f2d37cdfc6b3935d76c2f897f92be741f851569e2ff46558e90b4180612/credits.html",
       "kind": "file",
-      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
+      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "credits.html"
+    },
+    {
+      "path": "docs/snapshots/4c633b6b3889451c5a923a013cde4a5105323456d95739dc0889e1bfa868cfad/writing.html",
+      "kind": "file",
+      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "writing.html"
+    },
+    {
+      "path": "docs/snapshots/4cbd43f32c97e0320e847a70f74fb27df306a5b62c1cfd868af62bed9c333a03/talks.html",
+      "kind": "file",
+      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
       "title": "talks.html"
-    },
-    {
-      "path": "docs/snapshots/4d3d841b02637bc5445cb4a0199d7eb99416bf5dab882f323c9b9edd743bf898/research.html",
-      "kind": "file",
-      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "research.html"
     },
     {
       "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
@@ -14469,6 +14661,17 @@
       "title": "research.html"
     },
     {
+      "path": "docs/snapshots/6ab1b9444a3d9a4fa13b2d48b5f56ffbbe6007aacd3ac53378c323061d319694/index.html",
+      "kind": "file",
+      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index.html"
+    },
+    {
       "path": "docs/snapshots/7b62f25175a003a9fcc24f430e26ff321f267a8e77a28699984f86bf1dfdd3b6/research.html",
       "kind": "file",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
@@ -14489,17 +14692,6 @@
         "AGENTS.md"
       ],
       "title": "talks.html"
-    },
-    {
-      "path": "docs/snapshots/899daade336eb704ff1323f87e7b07eb33e3fdd207dbc0e6aaf08937746db70b/credits.html",
-      "kind": "file",
-      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "credits.html"
     },
     {
       "path": "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html",
@@ -14527,17 +14719,6 @@
       "path": "docs/snapshots/95b57d8257b5ffb3f4b9924d90694110e982f7bdc9aecb6f09969d46b3a8b2e0/index.html",
       "kind": "file",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "index.html"
-    },
-    {
-      "path": "docs/snapshots/9c15723e5b5e0ef4e24df6376f4074c6ead4362bdc9c4e9055747e701e8a40f3/index.html",
-      "kind": "file",
-      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -14593,17 +14774,6 @@
       "path": "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html",
       "kind": "file",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "writing.html"
-    },
-    {
-      "path": "docs/snapshots/f16c892c990ac5b965edc34a294f40ac272843d72b91fb385a2222b7e227ea5d/writing.html",
-      "kind": "file",
-      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -16182,7 +16352,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 169 — 2026-11-05 editorial comparison with DevCon Romania"
+      "title": "Retained review report"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-devcon-editorial-analysis.md.gz",
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 review evidence with exact original Git identity.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-11-05-devcon-editorial-analysis.md.gz"
     },
     {
       "path": "review/issue-169/2026-11-05-native-r9-code-delta-review.md",
@@ -16314,7 +16495,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "White-box QA — R9 bounded browser diagnostic"
+      "title": "Retained review report"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-native-r9-diagnostic-whitebox.md.gz",
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 review evidence with exact original Git identity.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-11-05-native-r9-diagnostic-whitebox.md.gz"
     },
     {
       "path": "review/issue-169/2026-11-05-native-r9-exploratory-pinned-correction.md",
@@ -16490,7 +16682,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Hosted article heading animation — requirements preflight"
+      "title": "Retained review report"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-native-r9-hosted-heading-requirements-preflight.md.gz",
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 review evidence with exact original Git identity.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-11-05-native-r9-hosted-heading-requirements-preflight.md.gz"
     },
     {
       "path": "review/issue-169/2026-11-05-native-r9-hosted-heading-whitebox.md",
@@ -16867,6 +17070,17 @@
       "title": "R10 release — bounded security maintenance"
     },
     {
+      "path": "review/issue-169/2026-11-06-writing-discovery.md",
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Writing discovery correction — 6 November 2026"
+    },
+    {
       "path": "review/issue-169/correction-affected.log.gz",
       "kind": "file",
       "purpose": "Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence.",
@@ -17194,7 +17408,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue169 distribution — Requirements & Acceptance preflight"
+      "title": "Retained review report"
+    },
+    {
+      "path": "review/issue-169/distribution/requirements-preflight.md.gz",
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 review evidence with exact original Git identity.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "requirements-preflight.md.gz"
     },
     {
       "path": "review/issue-169/distribution/requirements-storage-final.md",
@@ -19361,7 +19586,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "R10 Requirements & Acceptance preflight — 6 November 2026"
+      "title": "Retained review report"
+    },
+    {
+      "path": "review/issue-169/r10/requirements-preflight.md.gz",
+      "kind": "file",
+      "purpose": "Losslessly retained original R10 requirements preflight with immutable Git byte identity.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "requirements-preflight.md.gz"
     },
     {
       "path": "review/issue-169/r10/ri-first.log.gz",
@@ -19548,7 +19784,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 169 — independent Requirements & Acceptance final review, R3"
+      "title": "Retained review report"
+    },
+    {
+      "path": "review/issue-169/r3/reviews/requirements-r3-final.md.gz",
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 review evidence with exact original Git identity.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "requirements-r3-final.md.gz"
     },
     {
       "path": "review/issue-169/r3/reviews/requirements-r3-preflight.md",
@@ -21738,6 +21985,303 @@
         "AGENTS.md"
       ],
       "title": "writing-carrier.json"
+    },
+    {
+      "path": "review/issue-169/writing-discovery/README.md",
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Writing discovery correction evidence"
+    },
+    {
+      "path": "review/issue-169/writing-discovery/basic.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "basic.log.gz"
+    },
+    {
+      "path": "review/issue-169/writing-discovery/candidate.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "candidate.json.gz"
+    },
+    {
+      "path": "review/issue-169/writing-discovery/code-first.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "code-first.md.gz"
+    },
+    {
+      "path": "review/issue-169/writing-discovery/code-storage.md.gz",
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 Writing discovery exact-source review and original check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "code-storage.md.gz"
+    },
+    {
+      "path": "review/issue-169/writing-discovery/coupling-tests.log.gz",
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 Writing discovery exact-source review and original check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "coupling-tests.log.gz"
+    },
+    {
+      "path": "review/issue-169/writing-discovery/coupling-verify.log.gz",
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 Writing discovery exact-source review and original check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "coupling-verify.log.gz"
+    },
+    {
+      "path": "review/issue-169/writing-discovery/exploratory-first.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "exploratory-first.md.gz"
+    },
+    {
+      "path": "review/issue-169/writing-discovery/historical-storage.json.gz",
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 review evidence with exact original Git identity.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "historical-storage.json.gz"
+    },
+    {
+      "path": "review/issue-169/writing-discovery/lint.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "lint.log.gz"
+    },
+    {
+      "path": "review/issue-169/writing-discovery/manifest.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "manifest.json.gz"
+    },
+    {
+      "path": "review/issue-169/writing-discovery/packet.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "packet.json.gz"
+    },
+    {
+      "path": "review/issue-169/writing-discovery/requirements-binding-preflight.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "requirements-binding-preflight.md.gz"
+    },
+    {
+      "path": "review/issue-169/writing-discovery/requirements-final.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "requirements-final.md.gz"
+    },
+    {
+      "path": "review/issue-169/writing-discovery/requirements-first.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "requirements-first.md.gz"
+    },
+    {
+      "path": "review/issue-169/writing-discovery/ri-build-final.log.gz",
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 Writing discovery exact-source review and original check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ri-build-final.log.gz"
+    },
+    {
+      "path": "review/issue-169/writing-discovery/ri-build-storage-final.log.gz",
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 Writing discovery exact-source review and original check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ri-build-storage-final.log.gz"
+    },
+    {
+      "path": "review/issue-169/writing-discovery/ri-build-storage.log.gz",
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 Writing discovery exact-source review and original check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ri-build-storage.log.gz"
+    },
+    {
+      "path": "review/issue-169/writing-discovery/ri-build.log.gz",
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 Writing discovery exact-source review and original check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ri-build.log.gz"
+    },
+    {
+      "path": "review/issue-169/writing-discovery/ri-tests.log.gz",
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 Writing discovery exact-source review and original check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ri-tests.log.gz"
+    },
+    {
+      "path": "review/issue-169/writing-discovery/ri-verify-storage.log.gz",
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 Writing discovery exact-source review and original check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ri-verify-storage.log.gz"
+    },
+    {
+      "path": "review/issue-169/writing-discovery/source-corrected.tap.gz",
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "source-corrected.tap.gz"
+    },
+    {
+      "path": "review/issue-169/writing-discovery/source-final.tap.gz",
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "source-final.tap.gz"
+    },
+    {
+      "path": "review/issue-169/writing-discovery/source-first.tap.gz",
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "source-first.tap.gz"
+    },
+    {
+      "path": "review/issue-169/writing-discovery/style.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "style.log.gz"
+    },
+    {
+      "path": "review/issue-169/writing-discovery/whitebox-first.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "whitebox-first.md.gz"
+    },
+    {
+      "path": "review/issue-169/writing-discovery/whitebox-storage.md.gz",
+      "kind": "file",
+      "purpose": "Losslessly retained issue169 Writing discovery exact-source review and original check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "whitebox-storage.md.gz"
     },
     {
       "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -40437,9 +40981,9 @@
       ]
     },
     {
-      "path": "docs/article-snapshots/7b1e3fbe23136bd07787e2d8348f94036213d2bb9a3ef16d618ffd2cb87ba7d1",
+      "path": "docs/article-snapshots/60b4eb071b9f8367227354032aec04364d783b02fb8f6f8d7d3cb59a05949bcc",
       "kind": "directory",
-      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
+      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -40587,6 +41131,16 @@
       ]
     },
     {
+      "path": "docs/snapshots/0c50d9693cc2743d611ecf9d1a2274c5687f5d0c4f363d9d3108775c521c161c",
+      "kind": "directory",
+      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e",
       "kind": "directory",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
@@ -40597,9 +41151,9 @@
       ]
     },
     {
-      "path": "docs/snapshots/2b7302a1f2cc9dc6fedfa5c13f4fa277e8ffab5ab68e948269b3d9d3043a98cd",
+      "path": "docs/snapshots/39441f2d37cdfc6b3935d76c2f897f92be741f851569e2ff46558e90b4180612",
       "kind": "directory",
-      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
+      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -40607,9 +41161,19 @@
       ]
     },
     {
-      "path": "docs/snapshots/4d3d841b02637bc5445cb4a0199d7eb99416bf5dab882f323c9b9edd743bf898",
+      "path": "docs/snapshots/4c633b6b3889451c5a923a013cde4a5105323456d95739dc0889e1bfa868cfad",
       "kind": "directory",
-      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
+      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/4cbd43f32c97e0320e847a70f74fb27df306a5b62c1cfd868af62bed9c333a03",
+      "kind": "directory",
+      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -40647,6 +41211,16 @@
       ]
     },
     {
+      "path": "docs/snapshots/6ab1b9444a3d9a4fa13b2d48b5f56ffbbe6007aacd3ac53378c323061d319694",
+      "kind": "directory",
+      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/snapshots/7b62f25175a003a9fcc24f430e26ff321f267a8e77a28699984f86bf1dfdd3b6",
       "kind": "directory",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
@@ -40660,16 +41234,6 @@
       "path": "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa",
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/899daade336eb704ff1323f87e7b07eb33e3fdd207dbc0e6aaf08937746db70b",
-      "kind": "directory",
-      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -40700,16 +41264,6 @@
       "path": "docs/snapshots/95b57d8257b5ffb3f4b9924d90694110e982f7bdc9aecb6f09969d46b3a8b2e0",
       "kind": "directory",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/9c15723e5b5e0ef4e24df6376f4074c6ead4362bdc9c4e9055747e701e8a40f3",
-      "kind": "directory",
-      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -40760,16 +41314,6 @@
       "path": "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647",
       "kind": "directory",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/f16c892c990ac5b965edc34a294f40ac272843d72b91fb385a2222b7e227ea5d",
-      "kind": "directory",
-      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -41132,6 +41676,16 @@
       "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
       "role": "history",
       "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-169/writing-discovery",
+      "kind": "directory",
+      "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
       "instructions": [
         "AGENTS.md"
       ]

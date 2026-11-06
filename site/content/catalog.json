@@ -847,6 +847,7 @@
         "topic": "delivery",
         "kind": "Article",
         "publisher": "Author site",
+        "archiveYear": "2026",
         "summary": "The AI code review bottleneck is a symptom of a wider SDLC imbalance. Faster reviews alone cannot prove better delivery, shared understanding, reliability or sustainable ownership."
       }
     }

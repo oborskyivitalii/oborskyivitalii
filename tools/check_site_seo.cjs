@@ -413,6 +413,37 @@ function reviewedHTMLProducerBindings(bindings, successor = htmlParserProducer) 
   return reviewed;
 }
 
+const archiveProducerSource = 'd5e915feb3ba02d7a80325664c9d1d10a2ac494e';
+const archiveProducers = Object.freeze({
+  'tools/site/render-records.cjs': Object.freeze({
+    beforeSHA256: '24f1bec530b762009a6b03a1d91700e7ee5c56345a0b8d9a4a4c6f0ff561038c',
+    afterSHA256: '85a0478ec37ffd65778b6f10dad08d420c42559ec2faeb15786ff983e7c4006c',
+  }),
+  'tools/site/validate-catalog.cjs': Object.freeze({
+    beforeSHA256: '6a61f3af40e94c42b4240c1afb21a2a25474f2cf58381a2c40f12dea12becc6c',
+    afterSHA256: '4da744f7bbe52cc96be5df9c6f035bf1de8c9cb394baf8f1d2b1f8af1b6b7ef1',
+  }),
+});
+
+function reviewedArchiveProducerBindings(bindings, successors = archiveProducers) {
+  assert.deepEqual(successors, archiveProducers, 'Exact archive producer successors');
+  const reviewed = { ...bindings };
+  for (const [file, change] of Object.entries(successors)) {
+    if (!Object.hasOwn(bindings, file)) continue;
+    assert.equal(bindings[file], change.beforeSHA256, 'Exact prior archive producer pin');
+    const before = cp.execFileSync('git', ['show', archiveProducerSource + ':' + file], {
+      cwd: root,
+    });
+    assert.equal(
+      crypto.createHash('sha256').update(before).digest('hex'),
+      change.beforeSHA256,
+      'Immutable archive producer predecessor'
+    );
+    reviewed[file] = change.afterSHA256;
+  }
+  return reviewed;
+}
+
 function reviewedProducerBindings(bindings, additions = []) {
   assert.deepEqual(Object.keys(issue159.producerChanges).sort(), issue159ProducerPaths);
   const reviewed = { ...bindings };
@@ -422,7 +453,7 @@ function reviewedProducerBindings(bindings, additions = []) {
     assert.match(change.afterSHA256, /^[a-f0-9]{64}$/, 'Reviewed successor producer SHA256');
     reviewed[file] = change.afterSHA256;
   }
-  return reviewedHTMLProducerBindings(reviewed);
+  return reviewedHTMLProducerBindings(reviewedArchiveProducerBindings(reviewed));
 }
 const positioning = JSON.parse(
   fs.readFileSync(path.join(root, 'review/issue-41/2026-10-09-positioning-amendment.json'), 'utf8')
@@ -1358,6 +1389,8 @@ function verify() {
 }
 if (require.main === module) process.stdout.write(JSON.stringify(verify(), null, 2) + '\n');
 module.exports = {
+  archiveProducers,
+  reviewedArchiveProducerBindings,
   htmlParserProducer,
   reviewedHTMLProducerBindings,
   verifyResearchCarrier,

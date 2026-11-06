@@ -83,6 +83,74 @@ function assertWritingCollection(catalog, html, collection) {
   return { rows, items };
 }
 
+test('the accepted SDLC article leads the 2026 delivery archive without an invented publication date', () => {
+  const catalog = require('../tools/site/content.cjs').catalog(path.resolve(root, '..'));
+  const html = pages.writing;
+  const { rows, items } = assertWritingCollection(catalog, html, schema(html).mainEntity);
+  const destination = 'articles/the-sdlc-is-out-of-balance.html';
+  assert.equal(items[0].item.url, destination);
+  assert.match(rows[0][0], /data-topic="delivery" data-year="2026"/);
+  assert.ok(rows[0][2].includes('href="' + destination + '"'));
+  const groupStart = html.indexOf('id="topic-delivery-2026"');
+  assert.ok(groupStart > html.indexOf('id="results-year-2026"'));
+  assert.ok(
+    html.indexOf('href="' + destination + '"', groupStart) < html.indexOf('</ol>', groupStart)
+  );
+});
+
+test('archive producer successors preserve exact predecessor pins and reject unreviewed source bytes', () => {
+  const checker = require('../tools/check_site_seo.cjs');
+  const projectRoot = path.resolve(root, '..');
+  const before = Object.fromEntries(
+    Object.entries(checker.archiveProducers).map(([file, change]) => [file, change.beforeSHA256])
+  );
+  const after = checker.reviewedArchiveProducerBindings(before);
+  for (const [file, digest] of Object.entries(after)) {
+    assert.equal(
+      digest,
+      require('node:crypto')
+        .createHash('sha256')
+        .update(fs.readFileSync(path.join(projectRoot, file)))
+        .digest('hex')
+    );
+    assert.throws(
+      () => checker.reviewedArchiveProducerBindings({ ...before, [file]: '0'.repeat(64) }),
+      /Exact prior archive producer pin/
+    );
+  }
+  for (const mutation of ['beforeSHA256', 'afterSHA256']) {
+    const changed = structuredClone(checker.archiveProducers);
+    changed['tools/site/render-records.cjs'][mutation] = '0'.repeat(64);
+    assert.throws(
+      () => checker.reviewedArchiveProducerBindings(before, changed),
+      /Exact archive producer successors/
+    );
+  }
+  assert.deepEqual(checker.reviewedArchiveProducerBindings({ unrelated: 'unchanged' }), {
+    unrelated: 'unchanged',
+  });
+  const inputs = require('../review/issue-122/2026-10-24-r3-events-migration.json').producerInputs;
+  const temporary = fs.mkdtempSync(path.join(require('node:os').tmpdir(), 'archive-producer-'));
+  try {
+    for (const file of Object.keys(inputs)) {
+      fs.mkdirSync(path.dirname(path.join(temporary, file)), { recursive: true });
+      fs.copyFileSync(path.join(projectRoot, file), path.join(temporary, file));
+    }
+    for (const file of [...Object.keys(checker.archiveProducers), 'tools/site/content.cjs']) {
+      const destination = path.join(temporary, file);
+      const bytes = fs.readFileSync(destination);
+      fs.appendFileSync(destination, '\n');
+      assert.throws(
+        () => checker.restoreEventsCatalog(pages.talks, temporary),
+        /unreviewed event producer/
+      );
+      fs.writeFileSync(destination, bytes);
+    }
+  } finally {
+    fs.rmSync(temporary, { recursive: true, force: true });
+  }
+});
+
 test('selected Home responses link to the complete Research inventory with preserved evidence', () => {
   const names = {
     index: ['Arkadiy Dobkin', 'Matthew Skelton', 'Markus Kopko'],

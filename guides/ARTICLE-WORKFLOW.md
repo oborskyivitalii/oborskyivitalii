@@ -157,6 +157,8 @@ explicit dependency direction, readable bounded adapters and exact-source checks
    publication state. Authored adaptations retain their own source/edition.
 6. Review HTML, PDF and platform candidates against source/rights. Record actual
    editorial/visual acceptance separately; checksums identify bytes only.
+   Before release, verify the article's intended Writing year/topic placement and
+   filters in ordinary HTML and the browser, even while publication is pending.
 7. Publish the website through the existing release/controller and verify the
    exact served edition before recording a canonical URL, actual date or event.
 8. The author publishes LinkedIn and Medium manually after website verification,
@@ -187,6 +189,10 @@ Keep `canonical`, actual publication dates and events pending until existing
 exact production-artifact/served-byte validation succeeds. The production edition
 already emits the stable HTML canonical; planned copy links never satisfy that
 validation or authorize a deployment. Campaign `articleUrl` remains observed-only.
+An accepted local article's catalog `presentation.archiveYear` may place it in
+the intended Writing year before that observation. It controls archive grouping
+and filtering only; it supplies no publication date, time element or event.
+Observed edition dates take precedence. Without either, the row remains undated.
 After accepted website proof, publish both platforms manually, check actual text,
 images, credits and the website backlink, and record their actual URLs/dates using
 existing source-bound publication events. Opted-in platform events must name the
