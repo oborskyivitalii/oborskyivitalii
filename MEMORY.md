@@ -4,7 +4,7 @@ Dated continuity, not live authority. Last verified: **2026-11-06**.
 
 ## Snapshot
 
-- Owner #169 / PR170, current R10 production continuation authorized. Baseline fc205b17774ba703c63fdd7d142ddac178afffdd, protected main8cf15883125892710633b17133d9ee0fc4b23b92. Retrieve exact remote successor/Draft/checks before advancement.
+- Owner #169 / PR170, current R10 production continuation authorized. Baseline fc205b17774ba703c63fdd7d142ddac178afffdd, protected main8cf15883125892710633b17133d9ee0fc4b23b92. Latest successor2353b7c82123e053b9987321be1f8fea4e6c0d1c; retrieve its format-only successor/checks before advancement.
 - R10 manuscript frozen907602667ca447f23359bfa87acc0c191f5e3b8a, SHA25670386a2d2f602b5f60c93d35293a375e4e4abbc6f63a0dd888024031078b3d1f. Five-page PDF SHA25636269db33a71781084053ae40cc41e411a0106bea5e593ef0b08414014c4ca40,869208bytes; unchanged by distribution/cache maintenance.
 - Current release-preflight evidence: review/issue-169/2026-11-06-r10-release-preflight.md and release/. Earlier R10/distribution source/reviews remain under their dated reports and r10/,distribution/. Original R9 retained.
 
@@ -27,7 +27,7 @@ Dated continuity, not live authority. Last verified: **2026-11-06**.
 ## Next session
 
 1. Revalidate exact successor refs/reviews/Draft/checks and release-preflight report. Finish final generated-closure role rebind, RI/coupling/owning and commit narrow correction; only clean current checks can advance.
-2. Current exact-head Basic/RI/owning and hosted smoke, then explicitowner /stage, complete original stagingpreflight+hostedregression and stablepromotion. Inspect failures before rerun; PRshards do not replace staging75source.
+2. 2353 exact full75source passes clean within300s; all8CIshards pass but aggregate formatting failed only ri-ci-map, and Cloudflare preview publish internalerror. Apply canonical map format after refresh, freshRI/currentCI/hosted smoke, then explicitowner /stage, complete original stagingpreflight+hostedregression and stablepromotion. Inspect failures before rerun; PRshards do not replace staging75source.
 3. Refresh eligiblePR admission after realstage, dispatch existing Changeadmission onmain withPR170 and explicit reviewed_sha for controls. Identical-tree protectedmerge, separate frozenproduction candidate/rights/archive/publish, realservedarticle/PDF/SEOproof.
 4. Record actual publication via existing owner; author postsplatforms then paired observedreciprocals. Reconcile originalAC01–AC11 and actual checkboxes; only historicalAC06 ticked until whole criteria complete.
 

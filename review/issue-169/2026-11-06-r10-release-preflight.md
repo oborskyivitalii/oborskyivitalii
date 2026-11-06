@@ -120,3 +120,26 @@ actual results before advancement.
 The final receipt additions reached the same fixed RI bound again; the fourth
 historical Markdown report supplies lossless headroom. Earlier bound/refusal logs
 remain retained locally; final generated freshness must pass before pushing.
+
+## Exact successor2353b7c observations
+
+Clean remote2353b7c / tree1f54eb1 owning automation and isolated repository-lint
+negative pass. The complete75-module staging source suite now passes with clean
+source and GIT_NO_LAZY_FETCH=1 under the unchanged300000ms native deadline;
+all pinned historical inputs are available. This local Node24.22.1 result remains
+separate from hosted Node24.19.0 acceptance and full staging.
+
+Fresh GitHub42194182236 completes all8source partitions successfully, but aggregate
+job127814451113 fails maintained formatting: only .github/ri-ci-map.json is listed.
+The metadata refresher emits valid JSON using Python indentation; its output still
+requires canonical Prettier. Format that single derived map after refresh and before
+RI, preserving parsed data/producer identity. This is a deterministic metadata
+correction, not a source-oracle or campaign reset. Source partitions remain historical
+2353b7c evidence; the next exact head still requires native current CI.
+
+Separately preview42194182355 builds successfully, then official publish job127814355713
+reports Cloudflare 'Unknown internal error occurred' while publishing. The static
+package/source guard did not fail; no application Function or new provider config is
+introduced. Retain provider failure as an infrastructure observation; one new-head
+preview after the necessary format correction can establish whether it was transient.
+Do not change public content or deployment security in response to this generic error.

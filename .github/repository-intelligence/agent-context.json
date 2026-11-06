@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "5265f38c310d18f1460c188435378d960a1f0d7dfe6cbc9f7b5745b123896ff8",
+    "digest": "4b57369955099c9553fa5a9a7ac4f8c1679a45c345b57b9cd2511acb72959171",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -221,7 +221,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "bc84d80d35ddec55b9b1da6307beb339ef70f90ecf03e183895451a90498d497"
+        "sha256": "877f6b3e32db2660a37bc396da9605af02c877a082675a5629fd05d6448973c9"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -371,7 +371,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "c53068a3d9305bb7cd4a54391c1d1ee6e3f2def62c8e8f1e137c10d5a47c65e9"
+        "sha256": "dc3be2749ae95d5211f5fd23dca2242e71c75956c2e6b252dbb6139dbbe7263a"
       },
       {
         "path": "NOTICE.md",
@@ -1765,7 +1765,7 @@
       {
         "path": "review/issue-169/2026-11-06-r10-release-preflight.md",
         "identity_mode": "content",
-        "sha256": "a959e2c8cb23abc74aab79e38cd42be5c0d301071d587c6af24c9f8fa65a1865"
+        "sha256": "ce553f545bb4c1e51c0d1390eb5c8bc617a7491ce5955c61f423cc669304e79c"
       },
       {
         "path": "review/issue-169/correction-affected.log.gz",
