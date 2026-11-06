@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "af03d721b3cfe4ce280ea83a87b03c9938ec89470293a09fad1268353d2f71a1",
+    "digest": "271f8b5090a9fe4416bff5e35cf72badab1d3d1476ad1451156dfd523da5a634",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -216,12 +216,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "590350ed6df3a6950caffded13c8781f69418891fffcb8b701f546a33a7091b8"
+        "sha256": "2c68a49fe38d5025606c9edad3ca0422534e5ad517fce7d4ef272a51b8531632"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "0c7e207c85713b9d9399eea54ecb161c806c6a75b3977ec98c76842ee074666c"
+        "sha256": "bf970186443d0bf603a1377ffe94d5f7868755dc7960d2f90a2d75166587e319"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -371,7 +371,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "76948bbf5c8d1d6f8847d050603e0916d86a0d4592d9f721d91cf337426e05bd"
+        "sha256": "e07678a9523ca2fc29d6e9307c919634dad93c1916ac17ab04e12e6b66df8fbc"
       },
       {
         "path": "NOTICE.md",
@@ -1230,7 +1230,12 @@
       {
         "path": "review/issue-169/2026-11-06-trusted-controller.md",
         "identity_mode": "content",
-        "sha256": "27cd9a6488cf0b7c58c19efa512fa2accecec401652dcc4fe2e5a0d565c6dacd"
+        "sha256": "b5a98280098ff4ff29db4758721a8b8a6421557624c7953e7f554d6614afbabc"
+      },
+      {
+        "path": "review/issue-169/trusted-controller-native-format-failure.log.gz",
+        "identity_mode": "content",
+        "sha256": "633035f8af8f15551e7f585ad29a0580cfbccfad5d4cb310907128e419db8f3a"
       },
       {
         "path": "review/issue-169/trusted-controller-reviews-and-checks.tar.xz",
@@ -12193,6 +12198,17 @@
         "AGENTS.md"
       ],
       "title": "Issue169 — trusted reader-controller correction"
+    },
+    {
+      "path": "review/issue-169/trusted-controller-native-format-failure.log.gz",
+      "kind": "file",
+      "purpose": "Actual native Basic42294299712/job128155440694 formatting refusal at d3d76f7; retained without retry or source-test acceptance claims.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "trusted-controller-native-format-failure.log.gz"
     },
     {
       "path": "review/issue-169/trusted-controller-reviews-and-checks.tar.xz",

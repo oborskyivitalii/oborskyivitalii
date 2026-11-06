@@ -38,7 +38,10 @@ Dated continuity, not live authority. Last verified: **2026-11-06**.
   main content/runtime and all guards/budgets remain preserved. Security renews
   the same48 exact findings and appends68 individually proved public checksum
   dispositions; no scanner/input/threshold/size-bound change.
-- Native checks/full staging, exact-head owner control attestation and protected
+- Native Basic42294299712 failed RI/CI map formatting at d3d76f7; local format
+  negative status was missed in a combined command. Preserve raw refusal; run
+  formatter after coupling refresh, inspect each exit and verify fresh RI.
+- Native checks/full staging, exact-head owner attestation and protected
   prerequisite merge remain required. Stable article staging is not yet updated.
 
 ## Next session

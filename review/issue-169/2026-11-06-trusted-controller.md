@@ -157,3 +157,19 @@ bundle bytes. Preserve/refetch exact native checks before readiness and full
 staging. Protected controller integration still requires normal full route and
 the owner's exact current-head `reviewed_sha` decision; no bypass or automatic
 owner attestation is supplied. PR170 merge and production remain excluded.
+
+## Native formatting refusal and correction
+
+Ready-head d3d76f7 native Basic42294299712/job128155440694 failed maintained
+formatting of `.github/ri-ci-map.json`; later source/lint/package steps were
+skipped. Its literal log is `trusted-controller-native-format-failure.log.gz`.
+The earlier local `format-final.log` also has pass:false for this file; its
+negative status was missed in a combined command ending with a passing RI/CI
+check. Earlier prose claiming format passed is corrected here; the raw failed
+report remains preserved. Source1195/1195 and other scanner results retain
+their separate scopes and do not substitute for formatting.
+
+The coupling refresher emits expanded JSON; run the pinned formatter **after**
+refresh and verify parsed-map equality, RI/CI and generated RI afterward. This
+fix changes only JSON whitespace and metadata/report receipts. Check each
+command's own exit/report before continuing; no unchanged native retry.
