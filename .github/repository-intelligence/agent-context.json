@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "4b57369955099c9553fa5a9a7ac4f8c1679a45c345b57b9cd2511acb72959171",
+    "digest": "58738edd14926384a0953c7f6467072f3fb5094809021e7b32af3c3367601193",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -216,12 +216,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "160a9453606b08bbf94419582b1940360118ad1b6663455ff801b88f0f731331"
+        "sha256": "3a0949d3c93a9150ff323de24ddf6c62d6caaf65b1f46687dd8a65f3f3b0f390"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "877f6b3e32db2660a37bc396da9605af02c877a082675a5629fd05d6448973c9"
+        "sha256": "5a171e1601149dea3dc75277507ad26ba6701e5a1842190f76e6697b7762e1cc"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -371,7 +371,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "dc3be2749ae95d5211f5fd23dca2242e71c75956c2e6b252dbb6139dbbe7263a"
+        "sha256": "47e93ca51b728b4e2726cbb3bd4e2f34e41eea6e19e33b3b3510cfec6cdeea24"
       },
       {
         "path": "NOTICE.md",
@@ -1035,7 +1035,12 @@
       {
         "path": "review/issue-102/2026-10-18-analytics-and-search-access.md",
         "identity_mode": "content",
-        "sha256": "84bd7509c0774167833a4d8b0af7ce74809795f47df05d799ba97508e36f32d3"
+        "sha256": "0f6dfc6a092593cc2b5afe73f9df36f9208eac54755b65edd8873bdd0850b717"
+      },
+      {
+        "path": "review/issue-102/2026-10-18-analytics-and-search-access.md.gz",
+        "identity_mode": "content",
+        "sha256": "d3cec36a5971fc9376ae0c178512853dc56b579d0f541abeddd4b6c0aafad5e6"
       },
       {
         "path": "review/issue-102/2026-10-18-provider-evidence.json",
@@ -1085,7 +1090,12 @@
       {
         "path": "review/issue-114/2026-10-20-review.md",
         "identity_mode": "content",
-        "sha256": "0707e0ee47a5d89ff141f87befcc2dc1722ae20f752458ebe229d86391e37c81"
+        "sha256": "b2d735015853d39ecdddddb647d0127927f5eeebd9d38df3ad148e13ad858184"
+      },
+      {
+        "path": "review/issue-114/2026-10-20-review.md.gz",
+        "identity_mode": "content",
+        "sha256": "035017081f2cd3642f399079e027926144b81fad7c4d7a7152d2279a14581736"
       },
       {
         "path": "review/issue-118/2026-10-21-public-checksum-proof.json.gz",
@@ -1095,7 +1105,12 @@
       {
         "path": "review/issue-118/2026-10-21-review.md",
         "identity_mode": "content",
-        "sha256": "8b747a100314f86cb12867275f324409a0452617ac63d586d032220a388cf7fd"
+        "sha256": "5c1eba8a284dd277b6e5bf4ed7d06aaf166d3acb91fc50e340127188dbd49617"
+      },
+      {
+        "path": "review/issue-118/2026-10-21-review.md.gz",
+        "identity_mode": "content",
+        "sha256": "ae937d814e5a7fb6ced4787380100bbca5b44676e74868adf66c3313f6a9ee1f"
       },
       {
         "path": "review/issue-118/content-amendment.json",
@@ -1115,7 +1130,12 @@
       {
         "path": "review/issue-122/2026-10-22-t01-review.md",
         "identity_mode": "content",
-        "sha256": "4d24561faa712af42c427e874e96b21ecdce33e5956097bf62863bd8add84821"
+        "sha256": "04e975e9f44b441a905e7659abce5654641d9cd2fca23d59cf068e18e53242a2"
+      },
+      {
+        "path": "review/issue-122/2026-10-22-t01-review.md.gz",
+        "identity_mode": "content",
+        "sha256": "eab7662e5f2a56af5883b005e7396770bef5ff717ec2342b690f91ec1975e0aa"
       },
       {
         "path": "review/issue-122/2026-10-22-t02-review.md",
@@ -1165,7 +1185,12 @@
       {
         "path": "review/issue-122/2026-10-23-t04-review.md",
         "identity_mode": "content",
-        "sha256": "0366ad2110d02f661c5e9a6fc3d2fee68665470feabe88c1c2d0742c97bca8cd"
+        "sha256": "6087bdea6437bf377f02b7d7eff386d3d526b7c0bdec8104214aa64d996fc39f"
+      },
+      {
+        "path": "review/issue-122/2026-10-23-t04-review.md.gz",
+        "identity_mode": "content",
+        "sha256": "2206ad648179461148490f1c0c0fe9fc7c99eb7d0d1a2fa55440964cf30685e6"
       },
       {
         "path": "review/issue-122/2026-10-23-t04-setup-review.md",
@@ -1175,7 +1200,12 @@
       {
         "path": "review/issue-122/2026-10-23-t05-review.md",
         "identity_mode": "content",
-        "sha256": "0fe90b44f16477d842a260140acddf357447b0e6cc9ff2e8c513ff197fe381c9"
+        "sha256": "e599309ed31ea32bf06945b5745ee1f21cba5ff3707a3dfeaa5d1fbf6cc03b9d"
+      },
+      {
+        "path": "review/issue-122/2026-10-23-t05-review.md.gz",
+        "identity_mode": "content",
+        "sha256": "7061af515167846a4ccead62c793690232c7a5f22ca982317f17015d9fe2a6de"
       },
       {
         "path": "review/issue-122/2026-10-24-control-lock-review.md",
@@ -1195,7 +1225,12 @@
       {
         "path": "review/issue-122/2026-10-24-fast-uri-repair.md",
         "identity_mode": "content",
-        "sha256": "bc760a0c6944ee9fde8b3dd013e55a02818f7719843bad59679db84e3306887b"
+        "sha256": "8146cf30c0d3a9d1c14cac8597ae15370cdae8b6c149a72a9d3b6029ecc99f7a"
+      },
+      {
+        "path": "review/issue-122/2026-10-24-fast-uri-repair.md.gz",
+        "identity_mode": "content",
+        "sha256": "17b9362e35e327a56bbf17870754ec43325ff905ced1f786056c2dce26489c2c"
       },
       {
         "path": "review/issue-122/2026-10-24-r1-manual-admission.md",
@@ -1205,7 +1240,12 @@
       {
         "path": "review/issue-122/2026-10-24-r2-repository-lane.md",
         "identity_mode": "content",
-        "sha256": "5da06356893ed4ac8a7177572cca5ffdd146bc4885e4b067dc4933a8f456359d"
+        "sha256": "cc1afd1cdaa265f04fc5c94b43314d1ec40bffa8de660cb31c5c04e000059579"
+      },
+      {
+        "path": "review/issue-122/2026-10-24-r2-repository-lane.md.gz",
+        "identity_mode": "content",
+        "sha256": "22a1393631168b5f14ffb673cb91a3b107edc1d3e38c1d32b1ef1918d11a923f"
       },
       {
         "path": "review/issue-122/2026-10-24-r3-events-migration.json",
@@ -1240,7 +1280,12 @@
       {
         "path": "review/issue-122/2026-10-26-browser-archives.md",
         "identity_mode": "content",
-        "sha256": "35a3a184cb56466150579d75de678f91ca0b19b6d7bef598c899acdec6514568"
+        "sha256": "7bb0c99fc1697a07bca0d7a31bf661e5fcc9079bb660a7b46539ef237015333e"
+      },
+      {
+        "path": "review/issue-122/2026-10-26-browser-archives.md.gz",
+        "identity_mode": "content",
+        "sha256": "2b7ec8ce1935a5045c645bbf929b344df57a7fa37a9a417cfbe16d4fbce189ed"
       },
       {
         "path": "review/issue-122/2026-10-26-browser-security-proof.json.gz",
@@ -1270,7 +1315,12 @@
       {
         "path": "review/issue-126/2026-10-23-announcement-review.md",
         "identity_mode": "content",
-        "sha256": "cf41ba966f9560063b1611547f4fc9279b772b95945bdf7786364032646ae88b"
+        "sha256": "c8e928d0b7f2e3e5e3babe9c9a1fcd54bf498319b0a91e9cb2ce17e27f5939c5"
+      },
+      {
+        "path": "review/issue-126/2026-10-23-announcement-review.md.gz",
+        "identity_mode": "content",
+        "sha256": "a1c63ef9e2ea9cae5fc54c8a268e66f82ad5894a421b23f5d71187d8fa072fd0"
       },
       {
         "path": "review/issue-126/2026-10-23-production-retention-review.md",
@@ -1325,12 +1375,22 @@
       {
         "path": "review/issue-159/2026-10-28-live-diagnostics.md",
         "identity_mode": "content",
-        "sha256": "c1a9ed2a2550d59f109fb80dc1ce674d452248b35336f4782a8f53a8b83cce61"
+        "sha256": "acc337efd0b1f37e350f1c0106928b924d40350079d56629de8e0208032d4895"
+      },
+      {
+        "path": "review/issue-159/2026-10-28-live-diagnostics.md.gz",
+        "identity_mode": "content",
+        "sha256": "b43ab038fa62269903dbdb75b4245f42657564bb7bca0fe7cf7af45f411313db"
       },
       {
         "path": "review/issue-159/2026-10-28-qa-isolation.md",
         "identity_mode": "content",
-        "sha256": "c25ae73e83445e0a4910ceaef31fb1d193cb0278e2a6631fae4b0b610f8a22c7"
+        "sha256": "7ed9cdf51015b6760d6b356f0aa1dffb6662e5d0874624c36d667b0fb2467897"
+      },
+      {
+        "path": "review/issue-159/2026-10-28-qa-isolation.md.gz",
+        "identity_mode": "content",
+        "sha256": "facd1895829a9dc0994e21a6a678cc6d87998e9ed2cecc2aa5636f52239c5c57"
       },
       {
         "path": "review/issue-159/2026-10-28-seo-brief-agent-control.md",
@@ -1355,7 +1415,12 @@
       {
         "path": "review/issue-159/2026-10-28-seo-query-research.md",
         "identity_mode": "content",
-        "sha256": "d85b58476bb586360bd4bb74b2a2587a42d95dfa21032c493ff1f85138eb6afc"
+        "sha256": "765abfe7a10264dd8eda319b949f8ea65603aa3a51bd5fffad286744593597fb"
+      },
+      {
+        "path": "review/issue-159/2026-10-28-seo-query-research.md.gz",
+        "identity_mode": "content",
+        "sha256": "712059752ad16a44f5edcdcdb4714ccc7d97a9d87aa78c68099b232379c4372e"
       },
       {
         "path": "review/issue-159/2026-10-28-seo-scanner-proof.json.gz",
@@ -1370,7 +1435,12 @@
       {
         "path": "review/issue-159/2026-10-28-staging-verification.md",
         "identity_mode": "content",
-        "sha256": "f9b103872399b5916de5623b1a1d6044ad4bedde9ff7bc21dd178b3956c2cc1c"
+        "sha256": "26af573121ba0c912b8526f6f5fd2c3c6d45e2cda75878600896cf1f1d1fca33"
+      },
+      {
+        "path": "review/issue-159/2026-10-28-staging-verification.md.gz",
+        "identity_mode": "content",
+        "sha256": "b60b801987555663f185028ec3a1eaa9f2836fd7778e82404b34ce43bc86f83b"
       },
       {
         "path": "review/issue-159/2026-10-29-research-carrier-checksum-proof.json.gz",
@@ -1766,6 +1836,11 @@
         "path": "review/issue-169/2026-11-06-r10-release-preflight.md",
         "identity_mode": "content",
         "sha256": "ce553f545bb4c1e51c0d1390eb5c8bc617a7491ce5955c61f423cc669304e79c"
+      },
+      {
+        "path": "review/issue-169/2026-11-06-security-maintenance.md",
+        "identity_mode": "content",
+        "sha256": "d12c17a52bb2156330e4c26032c6014b98a896b70e1eec6d51c0fe7c4eba039c"
       },
       {
         "path": "review/issue-169/correction-affected.log.gz",
@@ -3693,6 +3768,291 @@
         "sha256": "e70185034aaacb6c32946b68491c728f97fe7a556d4f06607115afb188095145"
       },
       {
+        "path": "review/issue-169/security/README.md",
+        "identity_mode": "content",
+        "sha256": "cd446f095256043268e2194197fe4ab5d6b3e0acde9a0f0d88f1469c80325107"
+      },
+      {
+        "path": "review/issue-169/security/architecture-final.json.gz",
+        "identity_mode": "content",
+        "sha256": "2cc4b38ef3aea881839e3dad88e83d919bfb9ef489918030392c5ff18a9a1c8a"
+      },
+      {
+        "path": "review/issue-169/security/bandit-code-preflight.md.gz",
+        "identity_mode": "content",
+        "sha256": "8185d2f744e31ccdcfc91c94f4df87e2d2fbf806043cc6591baf8abfd4b06bb2"
+      },
+      {
+        "path": "review/issue-169/security/bandit-revalidation.json.gz",
+        "identity_mode": "content",
+        "sha256": "8bc3bacce973d7db512657ab25aa1a887ae6c4f62ccb6235366b809b65a0678d"
+      },
+      {
+        "path": "review/issue-169/security/basic-final.log.gz",
+        "identity_mode": "content",
+        "sha256": "0fccee87b2f62a1399887619f77313338e561863d0c04f30bdf3504169de577c"
+      },
+      {
+        "path": "review/issue-169/security/candidate-v1.json.gz",
+        "identity_mode": "content",
+        "sha256": "14f9537a37399188b11178877622ef32abd28f57ad0b889c53aeb1a58c2de9ad"
+      },
+      {
+        "path": "review/issue-169/security/candidate-v2.json.gz",
+        "identity_mode": "content",
+        "sha256": "20d5756295efe432c00eb73c77cd9b694b0706b70eefb000609d6cd8a7c21cf7"
+      },
+      {
+        "path": "review/issue-169/security/candidate-v3.json.gz",
+        "identity_mode": "content",
+        "sha256": "301c9b1bdf1b952d8ec45a8429c5a670efe6edeabb5bafa1223fb4d8d166921c"
+      },
+      {
+        "path": "review/issue-169/security/candidate-v4.json.gz",
+        "identity_mode": "content",
+        "sha256": "ad0d5e7599d65272efb76cb981183e162933ef4222a50294e48c0753a8f2fcde"
+      },
+      {
+        "path": "review/issue-169/security/canonical-format.log.gz",
+        "identity_mode": "content",
+        "sha256": "fef40ac4d434d9dfc588b6a7483e5dbadbae7d59d881b365e91c6ff647548460"
+      },
+      {
+        "path": "review/issue-169/security/code-correction.md.gz",
+        "identity_mode": "content",
+        "sha256": "b5a3667c3433b47ee4745c984fc04cfc3247f1b6bb734ab547fa9ffc812a3a91"
+      },
+      {
+        "path": "review/issue-169/security/code-first.md.gz",
+        "identity_mode": "content",
+        "sha256": "b6afb07342953ab447a30007050769666938723692fc3f674939ef06b767a1d5"
+      },
+      {
+        "path": "review/issue-169/security/code-source-closure.md.gz",
+        "identity_mode": "content",
+        "sha256": "8833d11774f9dcb8a59bfa09dcf18de6d54738a5edb3eb4f2c811dc36a3a6bc5"
+      },
+      {
+        "path": "review/issue-169/security/code-storage-closure.md.gz",
+        "identity_mode": "content",
+        "sha256": "4f014bf9718c9639f1f6c4dda7a3e72a1c9fa4b514c2d7a4a140f64293891bba"
+      },
+      {
+        "path": "review/issue-169/security/code-style-final.json.gz",
+        "identity_mode": "content",
+        "sha256": "b5e0ff7adf0842bd1e0cea3c45afe3fcf91ac46815c154fed1557b8ee1b0870f"
+      },
+      {
+        "path": "review/issue-169/security/coupling-final.json.gz",
+        "identity_mode": "content",
+        "sha256": "5f6267dd1c47d405ed01ddefc6ae4084d5590c0d802085eef348b2aa259ed84a"
+      },
+      {
+        "path": "review/issue-169/security/coupling-tests-final.log.gz",
+        "identity_mode": "content",
+        "sha256": "813c0ec246fdbb2b0bcc2811ee4470ef1a364a029abaeaa18e119716384556f7"
+      },
+      {
+        "path": "review/issue-169/security/exploratory-correction.md.gz",
+        "identity_mode": "content",
+        "sha256": "79b2f1015ebef54ee678023329fb81599a44738074a1a920b4953f2fedbac9ac"
+      },
+      {
+        "path": "review/issue-169/security/exploratory-first.md.gz",
+        "identity_mode": "content",
+        "sha256": "bd62280eb994cc0fb0b7c6d935102a9a2f9b9a93f3982650248f32c13a33d0d6"
+      },
+      {
+        "path": "review/issue-169/security/exploratory-storage-closure.md.gz",
+        "identity_mode": "content",
+        "sha256": "a6380cc0d32359d246eda4167e840c0a9855c616fc4e7617e4e66640dab72191"
+      },
+      {
+        "path": "review/issue-169/security/failed-bandit.json.gz",
+        "identity_mode": "content",
+        "sha256": "2297d3ffdc6cb5c031c5d38dc8f37e45b1f1e0a408ff14435357f7293d795a61"
+      },
+      {
+        "path": "review/issue-169/security/failed-security.json.gz",
+        "identity_mode": "content",
+        "sha256": "e6d32babc52c047a130f82e5df40e58d77f217e0e81e44a859eb071461787b59"
+      },
+      {
+        "path": "review/issue-169/security/final-storage-correction.json.gz",
+        "identity_mode": "content",
+        "sha256": "accac3e3ec5a552607ead7d23657143f7d6a8ee1142929fec8f7adf6a91234df"
+      },
+      {
+        "path": "review/issue-169/security/format-final.json.gz",
+        "identity_mode": "content",
+        "sha256": "e71713b2be5b7a9e7a9c8e24dfdbecf9f6fc55b34c83d113f3933a2694cadea4"
+      },
+      {
+        "path": "review/issue-169/security/historical-storage.json.gz",
+        "identity_mode": "content",
+        "sha256": "38b76cdb38053c03436059d298f80574cda045a42f3d22bb6174a07c65cb8eba"
+      },
+      {
+        "path": "review/issue-169/security/ledger-append.json.gz",
+        "identity_mode": "content",
+        "sha256": "fdb5eb919bd0a919c4c5e1510d462dcdb3e33d188e56d5be85fe9376b2dfd8cb"
+      },
+      {
+        "path": "review/issue-169/security/native-producers.cjs.gz",
+        "identity_mode": "content",
+        "sha256": "2fb887dd6a37412d04a48b35aa80ad58c4254f14b196a52dd53b58b1f5c64293"
+      },
+      {
+        "path": "review/issue-169/security/native-producers.json.gz",
+        "identity_mode": "content",
+        "sha256": "b937691bedb4820a8a9c2b6d8f9c26661da8ebb8eb3ee7011f45ff710474e857"
+      },
+      {
+        "path": "review/issue-169/security/negative-controls-final.log.gz",
+        "identity_mode": "content",
+        "sha256": "274906db9e8d95aa113950940065e7e92d42910328dd992b1b4a7891a8fb9f99"
+      },
+      {
+        "path": "review/issue-169/security/prepared-bandit-triage.json.gz",
+        "identity_mode": "content",
+        "sha256": "e349ef30f4a808691d107730d96a0212cb2361df639315e462e7a9bdb43e9e20"
+      },
+      {
+        "path": "review/issue-169/security/prepared-security.json.gz",
+        "identity_mode": "content",
+        "sha256": "fbbfe9bf5b77b13ce76f604b33b4f0aabdc977ad1ebba4331839ec5e4f0dbca5"
+      },
+      {
+        "path": "review/issue-169/security/prepared-semgrep.json.gz",
+        "identity_mode": "content",
+        "sha256": "58e1bfa05195aa5584b01ea5ff45a3136dd0acd35924db58f458992e25216fd3"
+      },
+      {
+        "path": "review/issue-169/security/prepared-validation.json.gz",
+        "identity_mode": "content",
+        "sha256": "d6cfd399873fcce05ee66c44a6caeed43dcf6e3a0b51229e6ca00a55d045f33e"
+      },
+      {
+        "path": "review/issue-169/security/provenance-v1-stale.json.gz",
+        "identity_mode": "content",
+        "sha256": "67e06f7e6741e4a13d8408eba1262d7f6c6fbbae2121c5fea71198e83ae766eb"
+      },
+      {
+        "path": "review/issue-169/security/provenance-v4-source-mismatch.json.gz",
+        "identity_mode": "content",
+        "sha256": "f7a94dada09513d666cfb136fc31aa1f398610aa05bb932a37c8b444de31a163"
+      },
+      {
+        "path": "review/issue-169/security/provenance.json.gz",
+        "identity_mode": "content",
+        "sha256": "f5c3a5969894c881925461b176436d4d388a65277cd0447efd1c432dbda598b9"
+      },
+      {
+        "path": "review/issue-169/security/reconciled-1016.json.gz",
+        "identity_mode": "content",
+        "sha256": "1b8f547af4a4eb158dec0bb6b6a0d08106fedbfb68f55b7ed3fff506b5610b37"
+      },
+      {
+        "path": "review/issue-169/security/requirements-closure.md.gz",
+        "identity_mode": "content",
+        "sha256": "80b5f30ceb3cb414a5717560b63ffe30f82023fe729645dae24be6b4fde5ab05"
+      },
+      {
+        "path": "review/issue-169/security/requirements-correction.md.gz",
+        "identity_mode": "content",
+        "sha256": "5dcfad93b1d0c584a283768d245f2d136f9c2ee21de20b89c2c08f998cb47902"
+      },
+      {
+        "path": "review/issue-169/security/requirements-first.md.gz",
+        "identity_mode": "content",
+        "sha256": "528c7eea7649bf8e5491e19872eb6f14e301b095574e7dee553efe776d23c6f1"
+      },
+      {
+        "path": "review/issue-169/security/requirements-preflight.md.gz",
+        "identity_mode": "content",
+        "sha256": "409fd0c4bd4785297c1727ddf8a5a8b38aa3f16e5a2fc66a459c9990530b38e2"
+      },
+      {
+        "path": "review/issue-169/security/requirements-storage-closure.md.gz",
+        "identity_mode": "content",
+        "sha256": "53b07781102f9b165c664ae9dc263f02a83f68a78e2bd3617287e8fb18cbe0d9"
+      },
+      {
+        "path": "review/issue-169/security/review-closure.json.gz",
+        "identity_mode": "content",
+        "sha256": "c2b12c16c2b4190b48be11bf68881b2e2735d0b31b1e8f3d6427418904f2e345"
+      },
+      {
+        "path": "review/issue-169/security/reviewer-executions-v2-inaccurate.json.gz",
+        "identity_mode": "content",
+        "sha256": "185946e67df7bc768204974a3778364833a525f2086d658b8164cfa4c08b524a"
+      },
+      {
+        "path": "review/issue-169/security/reviewer-executions.json.gz",
+        "identity_mode": "content",
+        "sha256": "d907a137b86cca9139d22dbc83e9766bedfc94d6a5150f4c25b8c3c68f70cdeb"
+      },
+      {
+        "path": "review/issue-169/security/ri-tests-final.log.gz",
+        "identity_mode": "content",
+        "sha256": "02b9bc800de803befcc75746f9205c03327c772fab71393384262e568c45a30b"
+      },
+      {
+        "path": "review/issue-169/security/secrets-code-preflight.md.gz",
+        "identity_mode": "content",
+        "sha256": "a127b0982a3d38535488510966ccfade55892ae6f841da81e648badd7695d50b"
+      },
+      {
+        "path": "review/issue-169/security/secrets-preflight-appendix.md.gz",
+        "identity_mode": "content",
+        "sha256": "167fa1a69d811814f3b3b0ff6284864257b5f4a64ae0a78ca5fbeb292e604482"
+      },
+      {
+        "path": "review/issue-169/security/secrets-proof.json.gz",
+        "identity_mode": "content",
+        "sha256": "4535f2822cdbe037dfb4d9af369e2cf9188d3f82c6ba534aa62f7fb416142b95"
+      },
+      {
+        "path": "review/issue-169/security/source-reference-fix.json.gz",
+        "identity_mode": "content",
+        "sha256": "ebaeee88f63e901ca7cd18b2d5cb65898fd880e20b33ddf154f0115984cb0383"
+      },
+      {
+        "path": "review/issue-169/security/source-reference-packet-delta.json.gz",
+        "identity_mode": "content",
+        "sha256": "ee224e6e2ccaa9e8d55973c48bb31d1500ed278ac077676715e3ac8b6dca8129"
+      },
+      {
+        "path": "review/issue-169/security/toolchain-verify.json.gz",
+        "identity_mode": "content",
+        "sha256": "b7ed1974f22695d135cd156031937687404dad1e48826c4697c5b5b02e685721"
+      },
+      {
+        "path": "review/issue-169/security/whitebox-closure.md.gz",
+        "identity_mode": "content",
+        "sha256": "84a22b474bee56c42990b03b9a31789ca51aea5b8198df5b7f0daf85cdf53133"
+      },
+      {
+        "path": "review/issue-169/security/whitebox-correction.md.gz",
+        "identity_mode": "content",
+        "sha256": "09423b59747f7b511a589e699212293cf397e21a5b46e48d97841b0e1c686237"
+      },
+      {
+        "path": "review/issue-169/security/whitebox-first.md.gz",
+        "identity_mode": "content",
+        "sha256": "4b14414729119caa6738f62a34be968f5531f70df95d4e1d96dbbb573a6048ce"
+      },
+      {
+        "path": "review/issue-169/security/whitebox-source-closure.md.gz",
+        "identity_mode": "content",
+        "sha256": "f4fc66264fb24470a6512166dbba47d0fffb79e6bb9efc5d0bd94e5569098f13"
+      },
+      {
+        "path": "review/issue-169/security/whitebox-storage-closure.md.gz",
+        "identity_mode": "content",
+        "sha256": "f4804ffaa3722926a31f916883f84a4e243021b0ee816eaef3cec8b55967f9fe"
+      },
+      {
         "path": "review/issue-169/writing-carrier.json",
         "identity_mode": "content",
         "sha256": "281f0cd88fd249b3e18897b6e771fa8da0a16a0879a92319cab733c4d8fe1050"
@@ -4045,7 +4405,12 @@
       {
         "path": "review/issue-31/2026-10-07-review.md",
         "identity_mode": "content",
-        "sha256": "1ea2980057bd7eae48cdf4425b0d4046be305a69d803189d71254765813b6e43"
+        "sha256": "a9c1329e885a881d1ce65eda36a4025afe2ce221535499cba3e758252f2ecd1a"
+      },
+      {
+        "path": "review/issue-31/2026-10-07-review.md.gz",
+        "identity_mode": "content",
+        "sha256": "87d3f9455063b2d731eaf16dae562a9fb972904f4718f760157896934b462559"
       },
       {
         "path": "review/issue-33/2026-10-07-analysis.md",
@@ -4095,7 +4460,12 @@
       {
         "path": "review/issue-36/2026-10-07-handoff.md",
         "identity_mode": "content",
-        "sha256": "ff2563d46b004b5ca0c1dc9562010774506215e42e1c986a5d2e1eaeba3dea20"
+        "sha256": "577b7908ea995e7ba76c935cdf7f3428fada231f7caf01eed47f84584788fdb9"
+      },
+      {
+        "path": "review/issue-36/2026-10-07-handoff.md.gz",
+        "identity_mode": "content",
+        "sha256": "699cf536dad3020b112a24b80500218846783aa72ee643c48a88af868d483cc9"
       },
       {
         "path": "review/issue-36/preview.png",
@@ -4120,17 +4490,32 @@
       {
         "path": "review/issue-39/2026-10-10-readiness.md",
         "identity_mode": "content",
-        "sha256": "4998f257e5e1c7c6b78c01d1b15fd4b09cc53fce072b10b9bdd0293acb7c7261"
+        "sha256": "ae04258a19f0da8ec9ca26fabe33c6b9606511a97659512995fbf51ee06caaec"
+      },
+      {
+        "path": "review/issue-39/2026-10-10-readiness.md.gz",
+        "identity_mode": "content",
+        "sha256": "a7730efeb8a2cd0c28ef45c0e2862abd42dd055ff78080fe3c8fde38424b47b6"
       },
       {
         "path": "review/issue-39/2026-10-15-controller-compatibility.md",
         "identity_mode": "content",
-        "sha256": "72c907af5ca70b80e0725087c535fdc97946e3df67d72df9454f9e08067c2817"
+        "sha256": "165fcb21a0b0441b7fd9f4c3e24e0f56574af716fcffdedf7db88b4b9584e2b9"
+      },
+      {
+        "path": "review/issue-39/2026-10-15-controller-compatibility.md.gz",
+        "identity_mode": "content",
+        "sha256": "7eb3a02f5f9865a522282827fb1d6df5cb2fa920edb18180a146dad3ce15a6ba"
       },
       {
         "path": "review/issue-39/2026-10-15-implementation.md",
         "identity_mode": "content",
-        "sha256": "52b731cf6f88266f0a8f4c8a4b34ab19ad74ee0801a8d22be0f13aaf13e59390"
+        "sha256": "91c3ef2f157ed662c3f73d53baa7cd247fb236b8a06c899fecdceff61303028c"
+      },
+      {
+        "path": "review/issue-39/2026-10-15-implementation.md.gz",
+        "identity_mode": "content",
+        "sha256": "244bcc12c59cfdac81a3c30f46c2ecf331f1d11ae83582e303fa848a0e5491c1"
       },
       {
         "path": "review/issue-39/2026-10-15-license-tuples.json",
@@ -4145,12 +4530,22 @@
       {
         "path": "review/issue-39/2026-10-15-production-plan.md",
         "identity_mode": "content",
-        "sha256": "03b3b1877d5c449fa20c76f44ddd47faf0d5a1c59a96440312d28db801e7c835"
+        "sha256": "417c1783c0a2a4e775bb6cff2bdd1393e55dfb141fa85e14f9d9bbd9f4d497bb"
+      },
+      {
+        "path": "review/issue-39/2026-10-15-production-plan.md.gz",
+        "identity_mode": "content",
+        "sha256": "7e6169eda3c9aec3a1378fe5dbd1064bf2aca4804d656a892a143a31d6c026ab"
       },
       {
         "path": "review/issue-39/2026-10-15-publication-licensing.md",
         "identity_mode": "content",
-        "sha256": "766da6135e72d8b24db47ece25cc6aff6c17ff47b57752a177f2e8e5e7946634"
+        "sha256": "39c3f645460402b0b1da62827b1ebbfdc0028f70e0c4bb01f04bbaaf1ea7237b"
+      },
+      {
+        "path": "review/issue-39/2026-10-15-publication-licensing.md.gz",
+        "identity_mode": "content",
+        "sha256": "9b13f74953f8df7c236c8bd8f235437d126fd85bf4525fc77e25f2dd30005da5"
       },
       {
         "path": "review/issue-39/2026-10-15-publication-test-review.md",
@@ -4165,7 +4560,12 @@
       {
         "path": "review/issue-39/2026-10-15-release-issue-audit.md",
         "identity_mode": "content",
-        "sha256": "9ee33dc1b6c9cf0e7e4068467b1a42aaea1b5b581ecb7e57ce9672b9f99de4c6"
+        "sha256": "2dc607c3c204dc129516d90ce66bd319de96c15728a24173f9103aa7ae3c2020"
+      },
+      {
+        "path": "review/issue-39/2026-10-15-release-issue-audit.md.gz",
+        "identity_mode": "content",
+        "sha256": "39a08e5767c94c513ef09122ad1ecf365a26647b1f522b789016af498cf5f66b"
       },
       {
         "path": "review/issue-39/2026-10-16-compact-controller.md",
@@ -4215,7 +4615,12 @@
       {
         "path": "review/issue-39/2026-10-16-readiness-execution.md",
         "identity_mode": "content",
-        "sha256": "f96d044d3e668ddb044bab0ae1ad6b32b4b27e79e1c0a3177272c11354a2eca2"
+        "sha256": "76412d146f2707833655e766d65cd573512cd0d54248812f84242ba1851f37f2"
+      },
+      {
+        "path": "review/issue-39/2026-10-16-readiness-execution.md.gz",
+        "identity_mode": "content",
+        "sha256": "a89792440ef7eaf93b3691436340945fcc5828e8db87896aca83d86df9d456d4"
       },
       {
         "path": "review/issue-39/2026-10-16-secret-ledger-merge.json.gz",
@@ -4275,7 +4680,12 @@
       {
         "path": "review/issue-39/2026-10-17-production-cutover.md",
         "identity_mode": "content",
-        "sha256": "09ac6b6c1346d76a41bb6034516e5cf879ae237cc8a66abb24adf8a9d9788bd6"
+        "sha256": "ad3e2ab7865c66efb083747c0556dcc08e85bfe3c754244f5fc5db2e2f1ad413"
+      },
+      {
+        "path": "review/issue-39/2026-10-17-production-cutover.md.gz",
+        "identity_mode": "content",
+        "sha256": "ba9d76b2ce9c5941b96ca52ebeb422229fa56325c6bc66f267daba692e80bda8"
       },
       {
         "path": "review/issue-39/2026-10-17-production-policy.md",
@@ -4335,7 +4745,12 @@
       {
         "path": "review/issue-41/2026-10-09-sitecase-review.md",
         "identity_mode": "content",
-        "sha256": "12bcdd2fcd9577c2e829fd6024fd77fa553921c77457f179fb634a9661dd3794"
+        "sha256": "971c49af063c8d6d939386c950fad0f276eeb7929dcb2463754027bed5f220a4"
+      },
+      {
+        "path": "review/issue-41/2026-10-09-sitecase-review.md.gz",
+        "identity_mode": "content",
+        "sha256": "7960fcc87db344a707a1e768665669f307a53d948f0f4aedff8630e66261097e"
       },
       {
         "path": "review/issue-41/2026-10-09-sitecase.md",
@@ -4375,17 +4790,32 @@
       {
         "path": "review/issue-45/2026-10-07-handoff.md",
         "identity_mode": "content",
-        "sha256": "294d72ed43a3e667bd71ad3eaba0d0d7251fdd823bdb8d0efc0f4293bde3a16e"
+        "sha256": "577b7908ea995e7ba76c935cdf7f3428fada231f7caf01eed47f84584788fdb9"
+      },
+      {
+        "path": "review/issue-45/2026-10-07-handoff.md.gz",
+        "identity_mode": "content",
+        "sha256": "71962806f1157da8448c43afa6bfc5f97cbc99089528458ea52f5552f54e894d"
       },
       {
         "path": "review/issue-45/2026-10-07-independent-review.md",
         "identity_mode": "content",
-        "sha256": "f68f3f31c2e4b94aca79ceb2353cf4e0cd9702f45abb8da9abedc3eeb21a43ae"
+        "sha256": "ff3c20846718ab19077445817519e95f4df834ddece52db31014e51aa6c9b30a"
+      },
+      {
+        "path": "review/issue-45/2026-10-07-independent-review.md.gz",
+        "identity_mode": "content",
+        "sha256": "87af2f3ce3d43d7429e006a739622b9245c0bb491ca44aa7f5391e2b134e63a6"
       },
       {
         "path": "review/issue-48/2026-10-08-handoff.md",
         "identity_mode": "content",
-        "sha256": "6c22861b4addecae1119b3db47f2f3d54bd0f36342ca6bad46f75ee17f9f5f5b"
+        "sha256": "9753471fc89964e77dd3160d4905c83455a06da6bf5c949a2ccf5479946ab363"
+      },
+      {
+        "path": "review/issue-48/2026-10-08-handoff.md.gz",
+        "identity_mode": "content",
+        "sha256": "5aff1c2d337a5ccb94865d8f185970b197778abf76a4c964401ec2e6038eade9"
       },
       {
         "path": "review/issue-48/content-amendment.json",
@@ -4400,7 +4830,12 @@
       {
         "path": "review/issue-5/2026-10-12-article-source.md",
         "identity_mode": "content",
-        "sha256": "ecbdf83025d827b6647ae1de0441dd0bf81f1d819195dd3d69e0e28d9675d9aa"
+        "sha256": "ab8a78f51b4f95a63ec32fa42b4783d86d1a74920921ee9db0708f0742190274"
+      },
+      {
+        "path": "review/issue-5/2026-10-12-article-source.md.gz",
+        "identity_mode": "content",
+        "sha256": "03b593dbdd56cd9f6cf0bec2dac718a33f2f08aa94f0ea372075b25fd7e4d661"
       },
       {
         "path": "review/issue-5/2026-10-12-ci-followup-evidence.json.gz",
@@ -4410,7 +4845,12 @@
       {
         "path": "review/issue-5/2026-10-12-ci-followup.md",
         "identity_mode": "content",
-        "sha256": "af51854f5d90e955c00cf21307f1cef60f9f06fd064f81661e3910318c96efca"
+        "sha256": "7fec10c49e7700cf5f5cdb9e58c51cb58722492c4437fc7d103c0d80a3f79f80"
+      },
+      {
+        "path": "review/issue-5/2026-10-12-ci-followup.md.gz",
+        "identity_mode": "content",
+        "sha256": "cbb62227e9e160292f077629f71b07a1eaaa21f3b6d47a8ffdfc395b1a4b222e"
       },
       {
         "path": "review/issue-5/2026-10-12-color-article-reader.json.gz",
@@ -4445,12 +4885,22 @@
       {
         "path": "review/issue-5/2026-10-12-color-runtime.md",
         "identity_mode": "content",
-        "sha256": "860ccc21679f9e8380e23c9a4e24d605884ef15b23d97b860ec044e7d3f266e5"
+        "sha256": "21bca0e1941ca34eb0f39dc0893bd59f59f42a496b7cd9a8461168c61c13866c"
+      },
+      {
+        "path": "review/issue-5/2026-10-12-color-runtime.md.gz",
+        "identity_mode": "content",
+        "sha256": "aea903b0fd55390b4323e5ef85847c724dd6e0d0e1a66290a5f3f07a25dee066"
       },
       {
         "path": "review/issue-5/2026-10-12-execution.md",
         "identity_mode": "content",
-        "sha256": "ecfb4033e98881191fa64811a33fa95b0f7d05b3a7197e43eae0e6482c3a8215"
+        "sha256": "e4d0bad2c968d5bd4d2b6e7520c736c7274fb89e2745b04d9735fcd48c896494"
+      },
+      {
+        "path": "review/issue-5/2026-10-12-execution.md.gz",
+        "identity_mode": "content",
+        "sha256": "2cc1c8d36044545fea405d572804b303171bd0ad9411eb61da4df64334750225"
       },
       {
         "path": "review/issue-5/2026-10-12-image-load-regression.json.gz",
@@ -4460,12 +4910,22 @@
       {
         "path": "review/issue-5/2026-10-12-independent-ci-followup.md",
         "identity_mode": "content",
-        "sha256": "97d514e570a33f6cbf8ad38bb4d2c62e42ab669af24bb1f9accabd76dd953ff5"
+        "sha256": "5b59dcf31e4f1b29b11345d152f90d43cbfdcbdbeb8740168548fa4dbac138e0"
+      },
+      {
+        "path": "review/issue-5/2026-10-12-independent-ci-followup.md.gz",
+        "identity_mode": "content",
+        "sha256": "c2613af92f6232caebe88d7cb5f3e572aec2b1c9e2c7712854dd8ea9482fe30b"
       },
       {
         "path": "review/issue-5/2026-10-12-independent-implementation.md",
         "identity_mode": "content",
-        "sha256": "71169b1532cc89d50259fe020cfedaa70c4809482dc15455bd3ec8b9741149d1"
+        "sha256": "0a321e69e4a2ae9e4d45601c9741dd501170809e65cfab607bb8ba8770e11ba4"
+      },
+      {
+        "path": "review/issue-5/2026-10-12-independent-implementation.md.gz",
+        "identity_mode": "content",
+        "sha256": "a7f2eddd99011743fae0dd76e7cbaf07285de64866448ff59f755d049cc17a19"
       },
       {
         "path": "review/issue-5/2026-10-12-migration-inventory.json",
@@ -4500,12 +4960,22 @@
       {
         "path": "review/issue-5/2026-10-13-content-release.md",
         "identity_mode": "content",
-        "sha256": "e16ef98dc252a6dbc391c0317f43c3391053daa02c6dbf66ece34d4e3d408102"
+        "sha256": "8bb4759ad96cb87da5ca9fb4ec9b6a675e789ba6e7f30ac71e3f7c6c0a588b1c"
+      },
+      {
+        "path": "review/issue-5/2026-10-13-content-release.md.gz",
+        "identity_mode": "content",
+        "sha256": "eb174df0cfb2031bcef30c5bef8bfbc91533bf4d9af6dbbc23430cc03e01bc2d"
       },
       {
         "path": "review/issue-5/2026-10-13-independent-content-review.md",
         "identity_mode": "content",
-        "sha256": "b20649ddf332211b308ea30d2935a72d995cb3f4ed1eaa622d9f7468cccbb5dd"
+        "sha256": "8a4d061546e6628b11e4c5ce42178146fb90bb42cedb914fbcc231d094773bbb"
+      },
+      {
+        "path": "review/issue-5/2026-10-13-independent-content-review.md.gz",
+        "identity_mode": "content",
+        "sha256": "ceaaa8dd416f39e99a4fbb9c239ac8aff8e74f3a5651cfc60815a82c3751a927"
       },
       {
         "path": "review/issue-5/2026-10-13-local-source-failure.log.gz",
@@ -4540,12 +5010,22 @@
       {
         "path": "review/issue-5/2026-10-15-presentation-review.md",
         "identity_mode": "content",
-        "sha256": "4513ee9af34f5d5025afd6139dd217686c2d24391c3badfb947eab39decaf481"
+        "sha256": "718efc1e039c761924dd5e956864f78cc687fa8e80d41817de5317eda794b3cc"
+      },
+      {
+        "path": "review/issue-5/2026-10-15-presentation-review.md.gz",
+        "identity_mode": "content",
+        "sha256": "23dcefe43727c4a33fe15c2d2a3c83842ff6929483a9261cdf6814ab61597d2e"
       },
       {
         "path": "review/issue-5/2026-10-18-release-segmentation.md",
         "identity_mode": "content",
-        "sha256": "c81816c1686d630f0111f4b89cca4ee9d137d20d3c86760be83695bdcf6da285"
+        "sha256": "1bfaed595c677a292a372bbe7d03faeede9cc8488598fbe0f19931018cf7752f"
+      },
+      {
+        "path": "review/issue-5/2026-10-18-release-segmentation.md.gz",
+        "identity_mode": "content",
+        "sha256": "d01cc3576a08c43e86ab05895ce5c17d2b689e0cc447e7d9b2e041893b06b4ef"
       },
       {
         "path": "review/issue-5/2026-10-18-step1-evidence.json.gz",
@@ -4605,7 +5085,12 @@
       {
         "path": "review/issue-5/2026-10-19-reader-flight-review.md",
         "identity_mode": "content",
-        "sha256": "07e902a4a29a5c6157b3bcdddbbf3a084e680538b52f2d52d96f9cf97d54c67e"
+        "sha256": "d9bcdaea32aba93538541a6464b0590f18d50e8f65a8c051a6f61501fa3fbcf8"
+      },
+      {
+        "path": "review/issue-5/2026-10-19-reader-flight-review.md.gz",
+        "identity_mode": "content",
+        "sha256": "88d88cb3f500e1f1c751308d2ce57fe0ecff717e976f858e812ceaed0f640a95"
       },
       {
         "path": "review/issue-5/2026-10-19-reader-mode.md",
@@ -4640,7 +5125,12 @@
       {
         "path": "review/issue-5/2026-10-19-reader-ux-ui-review.md",
         "identity_mode": "content",
-        "sha256": "a6fdff28ef7e36e2b8ba903c0e3e077c5634559cc388eb63f6ef8edab1841461"
+        "sha256": "bc40ce228412f773123928f81eed6214f83a4d69688711ce9f27415b3d0a3d76"
+      },
+      {
+        "path": "review/issue-5/2026-10-19-reader-ux-ui-review.md.gz",
+        "identity_mode": "content",
+        "sha256": "86684bbc245af294148e98e8905cd50337978a267fdf43fd4ef343d24d4531cd"
       },
       {
         "path": "review/issue-5/2026-10-19-real-article-preview.md",
@@ -4650,7 +5140,12 @@
       {
         "path": "review/issue-5/2026-10-20-controller-bootstrap.md",
         "identity_mode": "content",
-        "sha256": "ec43471294a0b0726cd228a55a359232307c51cdb69f6ed726ce07169e1ce5a8"
+        "sha256": "5e2718e0bb098b9c8be799dfceb0bf976bb7b5ae1c97de178b9cccf4d77ac7e4"
+      },
+      {
+        "path": "review/issue-5/2026-10-20-controller-bootstrap.md.gz",
+        "identity_mode": "content",
+        "sha256": "3df7bf0a79367f32485dc0687d3037ca4d14fab7c6b16f9b2ed3296cd3bd0d3e"
       },
       {
         "path": "review/issue-5/2026-10-20-controller-ledger-merge.json.gz",
@@ -4660,7 +5155,12 @@
       {
         "path": "review/issue-5/2026-10-20-reader-interactions.md",
         "identity_mode": "content",
-        "sha256": "545f4f089b969e2ed7e985142fb956f5c53852acd471c335aeb54c94502d8c82"
+        "sha256": "e8f3ee69a45587aaff11da1446e181ee75127b3ec0d6f9f4059ff72bfc16cfe5"
+      },
+      {
+        "path": "review/issue-5/2026-10-20-reader-interactions.md.gz",
+        "identity_mode": "content",
+        "sha256": "d08b05fc35d763568d07b1382b297bc06efdbebccb90ed7a43c1865063733b07"
       },
       {
         "path": "review/issue-5/2026-10-21-performance-evidence/locator.json",
@@ -4680,17 +5180,32 @@
       {
         "path": "review/issue-5/2026-10-21-performance-review.md",
         "identity_mode": "content",
-        "sha256": "21ef66c9de7761fef070c278262e940e0c35a4c1762cdc7836f24fcb1bef562f"
+        "sha256": "93deb85cfa9367e80918d7e7774fc9a3ecdb71e61a41b2a330a003f9a68c7ab6"
+      },
+      {
+        "path": "review/issue-5/2026-10-21-performance-review.md.gz",
+        "identity_mode": "content",
+        "sha256": "52fbb3d25ef65429a5c09d5a28bfac3bf47f3fe2b95c2a4d90f94aeb86f6051a"
       },
       {
         "path": "review/issue-5/2026-10-21-reader-cpu.md",
         "identity_mode": "content",
-        "sha256": "d74065371d43fbe9f6c6ea8926c76b35f65495bfbe2ffc709fbb7bf8fe938956"
+        "sha256": "1d2d672f4eabf10eed81cb022b440fd2e462210e4c06255ed2d82879bd6af1cc"
+      },
+      {
+        "path": "review/issue-5/2026-10-21-reader-cpu.md.gz",
+        "identity_mode": "content",
+        "sha256": "e6dd31a4304e255187b359c3640db8b28acbfd04b1bbe7cdf96199384cffd8fb"
       },
       {
         "path": "review/issue-5/2026-10-21-reader-loading.md",
         "identity_mode": "content",
-        "sha256": "875d9f5e2e3024514f3cad00a6ed952c41c8c70ebefba6224f0aada93d0d960f"
+        "sha256": "6a0c48d21576c1011539adf2bd59debf5e69640b7b0f7486270ec09831f6d483"
+      },
+      {
+        "path": "review/issue-5/2026-10-21-reader-loading.md.gz",
+        "identity_mode": "content",
+        "sha256": "5590f5bcda9f33d1f8b5608be2ba2114cd4cacbfa8182b18bcc9c0072ed12ff5"
       },
       {
         "path": "review/issue-5/2026-10-22-r23-continuation.md",
@@ -4805,7 +5320,12 @@
       {
         "path": "review/issue-54/2026-10-08-analysis.md",
         "identity_mode": "content",
-        "sha256": "57099f51295d8e2ea0085ffde6f87db5180550e9256a1b30c818a8a63a81ba56"
+        "sha256": "491c29ad04d38d3da92b6b57cde08636c5eb8f4c423315a43b8464a6beaac61b"
+      },
+      {
+        "path": "review/issue-54/2026-10-08-analysis.md.gz",
+        "identity_mode": "content",
+        "sha256": "bdd10dd8c12fc7f53aa38012795eb0f8dbdfe1eb244071f6148905bf525bb3ec"
       },
       {
         "path": "review/issue-56/2026-10-08-handoff.md",
@@ -4915,7 +5435,12 @@
       {
         "path": "review/issue-61/2026-10-08-handoff.md",
         "identity_mode": "content",
-        "sha256": "edc754ffb0936785e444588a94043b7ea681a04d5dfad623f652bd1d5de3ef77"
+        "sha256": "9753471fc89964e77dd3160d4905c83455a06da6bf5c949a2ccf5479946ab363"
+      },
+      {
+        "path": "review/issue-61/2026-10-08-handoff.md.gz",
+        "identity_mode": "content",
+        "sha256": "63d1570a3e61e55fe276e66bc931b9dc0621cae13ed9f094b50bc54a20274ac4"
       },
       {
         "path": "review/issue-61/content-amendment.json",
@@ -4925,7 +5450,12 @@
       {
         "path": "review/issue-65/2026-10-09-analysis.md",
         "identity_mode": "content",
-        "sha256": "b6d03ccbd76ac06ebac42111ec0e60c13089f1d97cd1cc04ef690ad1b393eb26"
+        "sha256": "666772c2e46f1f297c8205046c203e728b176cfe7b9901e649fddc46a0af35cb"
+      },
+      {
+        "path": "review/issue-65/2026-10-09-analysis.md.gz",
+        "identity_mode": "content",
+        "sha256": "a2a9bf04295fce788ac1db761626cbf221016c932a480d740e74f5564cea8f9d"
       },
       {
         "path": "review/issue-65/2026-10-09-dispositions.json",
@@ -4940,12 +5470,22 @@
       {
         "path": "review/issue-65/2026-10-09-review.md",
         "identity_mode": "content",
-        "sha256": "155001616582d5be95c5648a3ccf3b2cdecb3bc691e73301117620e922d23d01"
+        "sha256": "016132d09e8e52dc1b59a3583da2d6ce39feb9a860669451e5bcc54ab8284bfd"
+      },
+      {
+        "path": "review/issue-65/2026-10-09-review.md.gz",
+        "identity_mode": "content",
+        "sha256": "70a2099a34a286a1e8bca30c08e5977c65827b7d791ebc6224d7a2c34389b7c6"
       },
       {
         "path": "review/issue-69/2026-10-10-analysis.md",
         "identity_mode": "content",
-        "sha256": "f29163df1bcae47dc1c33a85ada6c03ba252121d1d26dceb9b95af735bbb84dc"
+        "sha256": "b360e2a8514715c05819e71fa2a7834dfba95228522f259a412cef41d3983a24"
+      },
+      {
+        "path": "review/issue-69/2026-10-10-analysis.md.gz",
+        "identity_mode": "content",
+        "sha256": "85dfa72e2acfa35a2139d0b2eb54b6a70252a532812b9bf55b51091a811b8ae7"
       },
       {
         "path": "review/issue-69/2026-10-10-browser-summary.json",
@@ -4955,7 +5495,12 @@
       {
         "path": "review/issue-69/2026-10-10-implementation.md",
         "identity_mode": "content",
-        "sha256": "bd660548f671c6234d7c70c4111e5e08075dc1958c5c4450824027f203056a64"
+        "sha256": "7c65e969793f7c0bf746debc8c6021f6f6c98297e2b3e5249200ff7a55a4d49f"
+      },
+      {
+        "path": "review/issue-69/2026-10-10-implementation.md.gz",
+        "identity_mode": "content",
+        "sha256": "9bde05e6ed251fe08c0d56d2b14c75c1c43c73aa9858c3893eaa48a68de02dcd"
       },
       {
         "path": "review/issue-69/2026-10-10-local-evidence.tar.gz",
@@ -4995,7 +5540,12 @@
       {
         "path": "review/issue-69/2026-10-11-continuation.md",
         "identity_mode": "content",
-        "sha256": "5c21d27547f0ac121506d292062a96ecb6532a3a6c3a6e7f0bb019a26648c465"
+        "sha256": "3517a51836d7c75381f6d6b49c95ba93189a66e95e1dce709fd8d35ea6271e54"
+      },
+      {
+        "path": "review/issue-69/2026-10-11-continuation.md.gz",
+        "identity_mode": "content",
+        "sha256": "32a1273ff810c6372228e6066554c2e43804f3643d9ce7e13dff91a177490b83"
       },
       {
         "path": "review/issue-69/2026-10-11-css-timing-serialization.md",
@@ -5045,7 +5595,12 @@
       {
         "path": "review/issue-69/2026-10-11-pages-controller-rebase.md",
         "identity_mode": "content",
-        "sha256": "49660da2edc57dce382675ffde6c46d24267d770bb87e866cce2c5b72b794f0c"
+        "sha256": "fcc88f79e2ea257363fbb5692721e163b6be915e22e55b122d3a801b6762db63"
+      },
+      {
+        "path": "review/issue-69/2026-10-11-pages-controller-rebase.md.gz",
+        "identity_mode": "content",
+        "sha256": "f30ffd7635e0ef333e19dd5a6e71a73625542751e2162bbb1ba1144ce7932e11"
       },
       {
         "path": "review/issue-69/2026-10-11-preview-cleanup-observations.json",
@@ -5065,7 +5620,12 @@
       {
         "path": "review/issue-69/2026-10-11-preview-refinement-review.md",
         "identity_mode": "content",
-        "sha256": "08eccadba6f936720da4077e5ee951a24cf5df08f9fe7cc40295e3b70f129baf"
+        "sha256": "698d49beddd768adf01b018d64ac99e402dde455d863d4e295c225c46da3cb45"
+      },
+      {
+        "path": "review/issue-69/2026-10-11-preview-refinement-review.md.gz",
+        "identity_mode": "content",
+        "sha256": "eab758c16d801ac8555dcac6c685f5a12e5bdcc18c52fb8c5019b0fa37ec84f2"
       },
       {
         "path": "review/issue-69/2026-10-11-preview-refinement-summary.json",
@@ -5110,7 +5670,12 @@
       {
         "path": "review/issue-69/2026-10-11-sequenced-review.md",
         "identity_mode": "content",
-        "sha256": "7606beb638e7adabeecdd39efa41533d6ad2c0de52fb614c328dba3709589e8a"
+        "sha256": "f8320b616f605f14c3cff16ac1ecbfd07f1ce806e69279387eafa71bc1f13bf8"
+      },
+      {
+        "path": "review/issue-69/2026-10-11-sequenced-review.md.gz",
+        "identity_mode": "content",
+        "sha256": "551c699a44040a5b72f8d327fd3a75d813b34f1e20162fb5c0954391ec0bf8dd"
       },
       {
         "path": "review/issue-69/2026-10-11-sequenced-security-review.md",
@@ -5125,7 +5690,12 @@
       {
         "path": "review/issue-69/2026-10-11-slower-pacing-review.md",
         "identity_mode": "content",
-        "sha256": "1218003566dce9fd3687e405398de4826ee0029f518cf0658b04c2850ce8229e"
+        "sha256": "467380089f433d0af50c18afe19ad6fef6459740c501d538ac924d023a6892cd"
+      },
+      {
+        "path": "review/issue-69/2026-10-11-slower-pacing-review.md.gz",
+        "identity_mode": "content",
+        "sha256": "7a56c64a35c509fd5164764e2f8ef80540bbbe53245cefad03cdde2411bcd2fd"
       },
       {
         "path": "review/issue-69/2026-10-11-staging-security.md",
@@ -5140,7 +5710,12 @@
       {
         "path": "review/issue-72/2026-10-11-analysis.md",
         "identity_mode": "content",
-        "sha256": "6a9407096e638aaa6b3963607322cbc83f28ff9314447e4196e624eae7ea40d0"
+        "sha256": "e1f0772d78590d8d3901a4003be1c31976b76feaed7568daab2d71be27cd53ed"
+      },
+      {
+        "path": "review/issue-72/2026-10-11-analysis.md.gz",
+        "identity_mode": "content",
+        "sha256": "a852aa01b2c03ed26e5e71b7a2ddb10ab20203dfd25a1c126d1aa914f8f23d5b"
       },
       {
         "path": "review/issue-72/2026-10-11-browser-evidence.json.gz",
@@ -5155,7 +5730,12 @@
       {
         "path": "review/issue-72/2026-10-11-pages-validator-recovery.md",
         "identity_mode": "content",
-        "sha256": "cb3bf4653a8a269bb5809b6e3146b5458487b7f66a6ad8ecc9312cbea3efa243"
+        "sha256": "cc56093fd7d49fb3cdbd319b464f39364d64773e48d4427689454a9ac8c022be"
+      },
+      {
+        "path": "review/issue-72/2026-10-11-pages-validator-recovery.md.gz",
+        "identity_mode": "content",
+        "sha256": "743e1f337c5e7eda4d3d7f2c879a318ab55b2f12aac8d150eb2160ecf2ab1b5a"
       },
       {
         "path": "review/issue-72/2026-10-11-review.md",
@@ -5170,7 +5750,12 @@
       {
         "path": "review/issue-76/2026-10-11-preview.md",
         "identity_mode": "content",
-        "sha256": "6665cf19b641f84179448d2e48af3f9203eaeebeac09b4c1f62f8bd09840d39e"
+        "sha256": "1f537b7aaba5a3af2fbff4f3d25d7d99549f99d43279edce9df9f2d501f9ef31"
+      },
+      {
+        "path": "review/issue-76/2026-10-11-preview.md.gz",
+        "identity_mode": "content",
+        "sha256": "4b51258099ef7c5154bb40efec819964c69f9634907339044fe24c0d25344b3c"
       },
       {
         "path": "review/issue-76/2026-10-12-admission.md",
@@ -8490,7 +9075,12 @@
       {
         "path": "review/staging-readiness-20261006/CAUSES.md",
         "identity_mode": "content",
-        "sha256": "35086a29864712888496eba0b625f11c22689edb61d0d19c30045b32d00d6db0"
+        "sha256": "358210142836dbfe1ccd8cb8e56890ecea5be4c92174a2770cff7a2c07e6a9c9"
+      },
+      {
+        "path": "review/staging-readiness-20261006/CAUSES.md.gz",
+        "identity_mode": "content",
+        "sha256": "4adfd43bc88c9752dd7e4b43510bf48b02013af89a50eb828ffb11c340a5d930"
       },
       {
         "path": "review/staging-readiness-20261006/DISPLAY.json",
@@ -11040,7 +11630,7 @@
       {
         "path": "tools/quality/bandit-policy.json",
         "identity_mode": "content",
-        "sha256": "45a2ec82fc755c0edc93e5ec7b7314d2d970f213ad3c69a28e6d1897862feb5c"
+        "sha256": "5ebbeace9f9539fc8ad22b15fe922c97e82363351f5f2dd4571d7326948fb4a7"
       },
       {
         "path": "tools/quality/bandit-triage.cjs",
@@ -11405,12 +11995,12 @@
       {
         "path": "tools/quality/secrets-publication.json",
         "identity_mode": "content",
-        "sha256": "e3d2106a32a691670a390ed59384905230bf14019fe4929667c4683f40fb6c72"
+        "sha256": "12482735843772e7041ea8b83eaad126362b4bdf644dad1a7951edc42055e696"
       },
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "36b5ebb2cd21ed9d1c2d30a10c8d524f53fb4b751bc32a5773b9d9335935946b"
+        "sha256": "0b5274a317e34c2c446870bb2bc6ec1cac30905338fb2ce252b5bc0f76b7dd6e"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
@@ -14503,7 +15093,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 102 — 18 October 2026 analytics and search access"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-102/2026-10-18-analytics-and-search-access.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-18-analytics-and-search-access.md.gz"
     },
     {
       "path": "review/issue-102/2026-10-18-provider-evidence.json",
@@ -14613,7 +15214,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue114 — 2026-10-20 iteration review"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-114/2026-10-20-review.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-20-review.md.gz"
     },
     {
       "path": "review/issue-118/2026-10-21-public-checksum-proof.json.gz",
@@ -14635,7 +15247,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 118 — 2026-10-21 hotfix review"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-118/2026-10-21-review.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-21-review.md.gz"
     },
     {
       "path": "review/issue-118/content-amendment.json",
@@ -14679,7 +15302,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 122 — 22 October 2026 — T01 review-template selection"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-122/2026-10-22-t01-review.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-22-t01-review.md.gz"
     },
     {
       "path": "review/issue-122/2026-10-22-t02-review.md",
@@ -14789,7 +15423,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue122 — T04 planned delivery observer"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-122/2026-10-23-t04-review.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-23-t04-review.md.gz"
     },
     {
       "path": "review/issue-122/2026-10-23-t04-setup-review.md",
@@ -14811,7 +15456,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue122 — T05 admission preparation, 23 October 2026"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-122/2026-10-23-t05-review.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-23-t05-review.md.gz"
     },
     {
       "path": "review/issue-122/2026-10-24-control-lock-review.md",
@@ -14855,7 +15511,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 122 — 24 October 2026 App proof and fast-uri repair preparation"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-122/2026-10-24-fast-uri-repair.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-24-fast-uri-repair.md.gz"
     },
     {
       "path": "review/issue-122/2026-10-24-r1-manual-admission.md",
@@ -14877,7 +15544,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue122 — 2026-10-24 R2 repository delivery"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-122/2026-10-24-r2-repository-lane.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-24-r2-repository-lane.md.gz"
     },
     {
       "path": "review/issue-122/2026-10-24-r3-events-migration.json",
@@ -14954,7 +15632,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Browser supply repair — 26 October 2026"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-122/2026-10-26-browser-archives.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-26-browser-archives.md.gz"
     },
     {
       "path": "review/issue-122/2026-10-26-browser-security-proof.json.gz",
@@ -15020,7 +15709,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue126 — DevCon announcement review — 23 October 2026"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-126/2026-10-23-announcement-review.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-23-announcement-review.md.gz"
     },
     {
       "path": "review/issue-126/2026-10-23-production-retention-review.md",
@@ -15141,7 +15841,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue159 — 2026-10-28 bounded live diagnostics"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-159/2026-10-28-live-diagnostics.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-28-live-diagnostics.md.gz"
     },
     {
       "path": "review/issue-159/2026-10-28-qa-isolation.md",
@@ -15152,7 +15863,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 159 — B2 QA isolation, 28 October 2026"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-159/2026-10-28-qa-isolation.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-28-qa-isolation.md.gz"
     },
     {
       "path": "review/issue-159/2026-10-28-seo-brief-agent-control.md",
@@ -15207,7 +15929,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 159 — 2026-10-28 SEO audience and query research"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-159/2026-10-28-seo-query-research.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-28-seo-query-research.md.gz"
     },
     {
       "path": "review/issue-159/2026-10-28-seo-scanner-proof.json.gz",
@@ -15240,7 +15973,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue159 — B2.2 current-artifact and staging verification, 28 October 2026"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-159/2026-10-28-staging-verification.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-28-staging-verification.md.gz"
     },
     {
       "path": "review/issue-159/2026-10-29-research-carrier-checksum-proof.json.gz",
@@ -16110,6 +16854,17 @@
         "AGENTS.md"
       ],
       "title": "R10 production continuation and preflight repair — 6 November 2026"
+    },
+    {
+      "path": "review/issue-169/2026-11-06-security-maintenance.md",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "R10 release — bounded security maintenance"
     },
     {
       "path": "review/issue-169/correction-affected.log.gz",
@@ -20347,6 +21102,633 @@
       "title": "reviewer-executions.json"
     },
     {
+      "path": "review/issue-169/security/README.md",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Security maintenance evidence"
+    },
+    {
+      "path": "review/issue-169/security/architecture-final.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "architecture-final.json.gz"
+    },
+    {
+      "path": "review/issue-169/security/bandit-code-preflight.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "bandit-code-preflight.md.gz"
+    },
+    {
+      "path": "review/issue-169/security/bandit-revalidation.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "bandit-revalidation.json.gz"
+    },
+    {
+      "path": "review/issue-169/security/basic-final.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "basic-final.log.gz"
+    },
+    {
+      "path": "review/issue-169/security/candidate-v1.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent security review receipt and preserved first finding/correction.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "candidate-v1.json.gz"
+    },
+    {
+      "path": "review/issue-169/security/candidate-v2.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 verbatim same-role correction and retained evidence accuracy finding.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "candidate-v2.json.gz"
+    },
+    {
+      "path": "review/issue-169/security/candidate-v3.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 final affected-review closure and source-bound metadata receipt; delivery gates remain separate.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "candidate-v3.json.gz"
+    },
+    {
+      "path": "review/issue-169/security/candidate-v4.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 verbatim affected closure and exact lossless metadata evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "candidate-v4.json.gz"
+    },
+    {
+      "path": "review/issue-169/security/canonical-format.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "canonical-format.log.gz"
+    },
+    {
+      "path": "review/issue-169/security/code-correction.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 verbatim same-role correction and retained evidence accuracy finding.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "code-correction.md.gz"
+    },
+    {
+      "path": "review/issue-169/security/code-first.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent security review receipt and preserved first finding/correction.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "code-first.md.gz"
+    },
+    {
+      "path": "review/issue-169/security/code-source-closure.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 verbatim affected closure and exact lossless metadata evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "code-source-closure.md.gz"
+    },
+    {
+      "path": "review/issue-169/security/code-storage-closure.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 verbatim affected closure and exact lossless metadata evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "code-storage-closure.md.gz"
+    },
+    {
+      "path": "review/issue-169/security/code-style-final.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "code-style-final.json.gz"
+    },
+    {
+      "path": "review/issue-169/security/coupling-final.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "coupling-final.json.gz"
+    },
+    {
+      "path": "review/issue-169/security/coupling-tests-final.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "coupling-tests-final.log.gz"
+    },
+    {
+      "path": "review/issue-169/security/exploratory-correction.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 verbatim same-role correction and retained evidence accuracy finding.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "exploratory-correction.md.gz"
+    },
+    {
+      "path": "review/issue-169/security/exploratory-first.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent security review receipt and preserved first finding/correction.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "exploratory-first.md.gz"
+    },
+    {
+      "path": "review/issue-169/security/exploratory-storage-closure.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 verbatim affected closure and exact lossless metadata evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "exploratory-storage-closure.md.gz"
+    },
+    {
+      "path": "review/issue-169/security/failed-bandit.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "failed-bandit.json.gz"
+    },
+    {
+      "path": "review/issue-169/security/failed-security.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "failed-security.json.gz"
+    },
+    {
+      "path": "review/issue-169/security/final-storage-correction.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "final-storage-correction.json.gz"
+    },
+    {
+      "path": "review/issue-169/security/format-final.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "format-final.json.gz"
+    },
+    {
+      "path": "review/issue-169/security/historical-storage.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "historical-storage.json.gz"
+    },
+    {
+      "path": "review/issue-169/security/ledger-append.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ledger-append.json.gz"
+    },
+    {
+      "path": "review/issue-169/security/native-producers.cjs.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "native-producers.cjs.gz"
+    },
+    {
+      "path": "review/issue-169/security/native-producers.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "native-producers.json.gz"
+    },
+    {
+      "path": "review/issue-169/security/negative-controls-final.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "negative-controls-final.log.gz"
+    },
+    {
+      "path": "review/issue-169/security/prepared-bandit-triage.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "prepared-bandit-triage.json.gz"
+    },
+    {
+      "path": "review/issue-169/security/prepared-security.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "prepared-security.json.gz"
+    },
+    {
+      "path": "review/issue-169/security/prepared-semgrep.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "prepared-semgrep.json.gz"
+    },
+    {
+      "path": "review/issue-169/security/prepared-validation.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "prepared-validation.json.gz"
+    },
+    {
+      "path": "review/issue-169/security/provenance-v1-stale.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent security review receipt and preserved first finding/correction.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "provenance-v1-stale.json.gz"
+    },
+    {
+      "path": "review/issue-169/security/provenance-v4-source-mismatch.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 verbatim affected closure and exact lossless metadata evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "provenance-v4-source-mismatch.json.gz"
+    },
+    {
+      "path": "review/issue-169/security/provenance.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "provenance.json.gz"
+    },
+    {
+      "path": "review/issue-169/security/reconciled-1016.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reconciled-1016.json.gz"
+    },
+    {
+      "path": "review/issue-169/security/requirements-closure.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 final affected-review closure and source-bound metadata receipt; delivery gates remain separate.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "requirements-closure.md.gz"
+    },
+    {
+      "path": "review/issue-169/security/requirements-correction.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 verbatim same-role correction and retained evidence accuracy finding.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "requirements-correction.md.gz"
+    },
+    {
+      "path": "review/issue-169/security/requirements-first.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent security review receipt and preserved first finding/correction.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "requirements-first.md.gz"
+    },
+    {
+      "path": "review/issue-169/security/requirements-preflight.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "requirements-preflight.md.gz"
+    },
+    {
+      "path": "review/issue-169/security/requirements-storage-closure.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 verbatim affected closure and exact lossless metadata evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "requirements-storage-closure.md.gz"
+    },
+    {
+      "path": "review/issue-169/security/review-closure.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 final affected-review closure and source-bound metadata receipt; delivery gates remain separate.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "review-closure.json.gz"
+    },
+    {
+      "path": "review/issue-169/security/reviewer-executions-v2-inaccurate.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 verbatim same-role correction and retained evidence accuracy finding.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reviewer-executions-v2-inaccurate.json.gz"
+    },
+    {
+      "path": "review/issue-169/security/reviewer-executions.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent security review receipt and preserved first finding/correction.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reviewer-executions.json.gz"
+    },
+    {
+      "path": "review/issue-169/security/ri-tests-final.log.gz",
+      "kind": "file",
+      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ri-tests-final.log.gz"
+    },
+    {
+      "path": "review/issue-169/security/secrets-code-preflight.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "secrets-code-preflight.md.gz"
+    },
+    {
+      "path": "review/issue-169/security/secrets-preflight-appendix.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "secrets-preflight-appendix.md.gz"
+    },
+    {
+      "path": "review/issue-169/security/secrets-proof.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "secrets-proof.json.gz"
+    },
+    {
+      "path": "review/issue-169/security/source-reference-fix.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 verbatim affected closure and exact lossless metadata evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "source-reference-fix.json.gz"
+    },
+    {
+      "path": "review/issue-169/security/source-reference-packet-delta.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 verbatim affected closure and exact lossless metadata evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "source-reference-packet-delta.json.gz"
+    },
+    {
+      "path": "review/issue-169/security/toolchain-verify.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 exact-source local validation receipt; prepared observations retain their stated limits.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "toolchain-verify.json.gz"
+    },
+    {
+      "path": "review/issue-169/security/whitebox-closure.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 final affected-review closure and source-bound metadata receipt; delivery gates remain separate.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "whitebox-closure.md.gz"
+    },
+    {
+      "path": "review/issue-169/security/whitebox-correction.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 verbatim same-role correction and retained evidence accuracy finding.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "whitebox-correction.md.gz"
+    },
+    {
+      "path": "review/issue-169/security/whitebox-first.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 source-bound independent security review receipt and preserved first finding/correction.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "whitebox-first.md.gz"
+    },
+    {
+      "path": "review/issue-169/security/whitebox-source-closure.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 verbatim affected closure and exact lossless metadata evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "whitebox-source-closure.md.gz"
+    },
+    {
+      "path": "review/issue-169/security/whitebox-storage-closure.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 verbatim affected closure and exact lossless metadata evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "whitebox-storage-closure.md.gz"
+    },
+    {
       "path": "review/issue-169/writing-carrier.json",
       "kind": "file",
       "purpose": "Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence.",
@@ -21125,7 +22507,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 31 — independent acceptance and RI/CI review"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-31/2026-10-07-review.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-07-review.md.gz"
     },
     {
       "path": "review/issue-33/2026-10-07-analysis.md",
@@ -21235,7 +22628,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 36 — Writing paradigm formula: asset, execution and review"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-36/2026-10-07-handoff.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-07-handoff.md.gz"
     },
     {
       "path": "review/issue-36/preview.png",
@@ -21290,7 +22694,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 39 — 2026-10-10 production readiness"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-39/2026-10-10-readiness.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-10-readiness.md.gz"
     },
     {
       "path": "review/issue-39/2026-10-15-controller-compatibility.md",
@@ -21301,7 +22716,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 39 — narrow licensing controller compatibility preparation"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-39/2026-10-15-controller-compatibility.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-15-controller-compatibility.md.gz"
     },
     {
       "path": "review/issue-39/2026-10-15-implementation.md",
@@ -21312,7 +22738,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 39 — production preparation implementation"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-39/2026-10-15-implementation.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-15-implementation.md.gz"
     },
     {
       "path": "review/issue-39/2026-10-15-license-tuples.json",
@@ -21345,7 +22782,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 39 — 2026-10-15 current-main production plan"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-39/2026-10-15-production-plan.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-15-production-plan.md.gz"
     },
     {
       "path": "review/issue-39/2026-10-15-publication-licensing.md",
@@ -21356,7 +22804,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 39 — 15 October 2026 mandatory publication licensing"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-39/2026-10-15-publication-licensing.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-15-publication-licensing.md.gz"
     },
     {
       "path": "review/issue-39/2026-10-15-publication-test-review.md",
@@ -21389,7 +22848,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 39 — 2026-10-15 production issue audit"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-39/2026-10-15-release-issue-audit.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-15-release-issue-audit.md.gz"
     },
     {
       "path": "review/issue-39/2026-10-16-compact-controller.md",
@@ -21499,7 +22969,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 39 — 16 October 2026 readiness audit and execution"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-39/2026-10-16-readiness-execution.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-16-readiness-execution.md.gz"
     },
     {
       "path": "review/issue-39/2026-10-16-secret-ledger-merge.json.gz",
@@ -21631,7 +23112,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue39 — PR85 delivery and canonical production cutover preparation"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-39/2026-10-17-production-cutover.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-17-production-cutover.md.gz"
     },
     {
       "path": "review/issue-39/2026-10-17-production-policy.md",
@@ -21763,7 +23255,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 41 — 2026-10-09 independent site-case review"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-41/2026-10-09-sitecase-review.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-09-sitecase-review.md.gz"
     },
     {
       "path": "review/issue-41/2026-10-09-sitecase.md",
@@ -21851,7 +23354,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 45 — reading clarity and continuous ribbons"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-45/2026-10-07-handoff.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-07-handoff.md.gz"
     },
     {
       "path": "review/issue-45/2026-10-07-independent-review.md",
@@ -21862,7 +23376,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 45 independent scoped review — 2026-10-07"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-45/2026-10-07-independent-review.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-07-independent-review.md.gz"
     },
     {
       "path": "review/issue-48/2026-10-08-handoff.md",
@@ -21873,7 +23398,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 48 — 2026-10-08 handoff"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-48/2026-10-08-handoff.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-08-handoff.md.gz"
     },
     {
       "path": "review/issue-48/content-amendment.json",
@@ -21906,7 +23442,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issues #5 / #2 — 2026-10-12 PMDay article source review"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-5/2026-10-12-article-source.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-12-article-source.md.gz"
     },
     {
       "path": "review/issue-5/2026-10-12-ci-followup-evidence.json.gz",
@@ -21928,7 +23475,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 5 — current-source CI cost and offline coherence"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-5/2026-10-12-ci-followup.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-12-ci-followup.md.gz"
     },
     {
       "path": "review/issue-5/2026-10-12-color-article-reader.json.gz",
@@ -22005,7 +23563,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 5 — 2026-10-12 Color runtime review"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-5/2026-10-12-color-runtime.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-12-color-runtime.md.gz"
     },
     {
       "path": "review/issue-5/2026-10-12-execution.md",
@@ -22016,7 +23585,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 5 — 2026-10-12 execution plan and P0 evidence"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-5/2026-10-12-execution.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-12-execution.md.gz"
     },
     {
       "path": "review/issue-5/2026-10-12-image-load-regression.json.gz",
@@ -22038,7 +23618,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 5 — 2026-10-12 independent CI continuation review"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-5/2026-10-12-independent-ci-followup.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-12-independent-ci-followup.md.gz"
     },
     {
       "path": "review/issue-5/2026-10-12-independent-implementation.md",
@@ -22049,7 +23640,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 5 — 2026-10-12 independent implementation review"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-5/2026-10-12-independent-implementation.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-12-independent-implementation.md.gz"
     },
     {
       "path": "review/issue-5/2026-10-12-migration-inventory.json",
@@ -22126,7 +23728,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Writing catalog and independent content release"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-5/2026-10-13-content-release.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-13-content-release.md.gz"
     },
     {
       "path": "review/issue-5/2026-10-13-independent-content-review.md",
@@ -22137,7 +23750,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 5 — 2026-10-13 independent content-release source review"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-5/2026-10-13-independent-content-review.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-13-independent-content-review.md.gz"
     },
     {
       "path": "review/issue-5/2026-10-13-local-source-failure.log.gz",
@@ -22214,7 +23838,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "PR79 — 15 October 2026 presentation and export review"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-5/2026-10-15-presentation-review.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-15-presentation-review.md.gz"
     },
     {
       "path": "review/issue-5/2026-10-18-release-segmentation.md",
@@ -22225,7 +23860,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Article-first delivery and independent static release lanes"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-5/2026-10-18-release-segmentation.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-18-release-segmentation.md.gz"
     },
     {
       "path": "review/issue-5/2026-10-18-step1-evidence.json.gz",
@@ -22357,7 +24003,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "19 October follow-up — same-scene camera orbit"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-5/2026-10-19-reader-flight-review.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-19-reader-flight-review.md.gz"
     },
     {
       "path": "review/issue-5/2026-10-19-reader-mode.md",
@@ -22434,7 +24091,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 5 — 2026-10-19 independent reader UX/UI review"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-5/2026-10-19-reader-ux-ui-review.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-19-reader-ux-ui-review.md.gz"
     },
     {
       "path": "review/issue-5/2026-10-19-real-article-preview.md",
@@ -22456,7 +24124,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 5 — 20 October 2026 trusted-controller prerequisite"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-5/2026-10-20-controller-bootstrap.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-20-controller-bootstrap.md.gz"
     },
     {
       "path": "review/issue-5/2026-10-20-controller-ledger-merge.json.gz",
@@ -22478,7 +24157,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 5 — reusable reader interactions"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-5/2026-10-20-reader-interactions.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-20-reader-interactions.md.gz"
     },
     {
       "path": "review/issue-5/2026-10-21-performance-evidence/locator.json",
@@ -22522,7 +24212,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 5 — 2026-10-21 performance suite and findings"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-5/2026-10-21-performance-review.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-21-performance-review.md.gz"
     },
     {
       "path": "review/issue-5/2026-10-21-reader-cpu.md",
@@ -22533,7 +24234,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Reader CPU correction — 21 October 2026"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-5/2026-10-21-reader-cpu.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-21-reader-cpu.md.gz"
     },
     {
       "path": "review/issue-5/2026-10-21-reader-loading.md",
@@ -22544,7 +24256,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue5 / PR79 — selective reader image loading"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-5/2026-10-21-reader-loading.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-21-reader-loading.md.gz"
     },
     {
       "path": "review/issue-5/2026-10-22-r23-continuation.md",
@@ -22797,7 +24520,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 54 — 2026-10-08 source audit, coding standards and Sol handoff"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-54/2026-10-08-analysis.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-08-analysis.md.gz"
     },
     {
       "path": "review/issue-56/2026-10-08-handoff.md",
@@ -23039,7 +24773,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 61 — 2026-10-08 PMDay recording handoff"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-61/2026-10-08-handoff.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-08-handoff.md.gz"
     },
     {
       "path": "review/issue-61/content-amendment.json",
@@ -23061,7 +24806,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 65 — 2026-10-09 harness analysis / execution handoff"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-65/2026-10-09-analysis.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-09-analysis.md.gz"
     },
     {
       "path": "review/issue-65/2026-10-09-dispositions.json",
@@ -23094,7 +24850,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 65 — 2026-10-09 independent implementation review"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-65/2026-10-09-review.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-09-review.md.gz"
     },
     {
       "path": "review/issue-69/2026-10-10-analysis.md",
@@ -23105,7 +24872,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 69 — 2026-10-10 scroll-entry analysis and execution plan"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-69/2026-10-10-analysis.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-10-analysis.md.gz"
     },
     {
       "path": "review/issue-69/2026-10-10-browser-summary.json",
@@ -23127,7 +24905,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 69 — 2026-10-10 implementation and self-review"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-69/2026-10-10-implementation.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-10-implementation.md.gz"
     },
     {
       "path": "review/issue-69/2026-10-10-local-evidence.tar.gz",
@@ -23215,7 +25004,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 69 — 2026-10-11 consolidation and continuation review"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-69/2026-10-11-continuation.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-11-continuation.md.gz"
     },
     {
       "path": "review/issue-69/2026-10-11-css-timing-serialization.md",
@@ -23325,7 +25125,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 69 — Pages controller rebase and fresh admission"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-69/2026-10-11-pages-controller-rebase.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-11-pages-controller-rebase.md.gz"
     },
     {
       "path": "review/issue-69/2026-10-11-preview-cleanup-observations.json",
@@ -23369,7 +25180,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 69 — 2026-10-11 independent preview-refinement review"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-69/2026-10-11-preview-refinement-review.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-11-preview-refinement-review.md.gz"
     },
     {
       "path": "review/issue-69/2026-10-11-preview-refinement-summary.json",
@@ -23468,7 +25290,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 69 — 2026-10-11 independent sequenced-transition review"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-69/2026-10-11-sequenced-review.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-11-sequenced-review.md.gz"
     },
     {
       "path": "review/issue-69/2026-10-11-sequenced-security-review.md",
@@ -23501,7 +25334,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 69 — 11 October 2026 independent readable-pacing review"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-69/2026-10-11-slower-pacing-review.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-11-slower-pacing-review.md.gz"
     },
     {
       "path": "review/issue-69/2026-10-11-staging-security.md",
@@ -23534,7 +25378,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 72 — 2026-10-11 analysis and execution"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-72/2026-10-11-analysis.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-11-analysis.md.gz"
     },
     {
       "path": "review/issue-72/2026-10-11-browser-evidence.json.gz",
@@ -23567,7 +25422,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Trusted Pages motion validation and failed-first recovery"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-72/2026-10-11-pages-validator-recovery.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-11-pages-validator-recovery.md.gz"
     },
     {
       "path": "review/issue-72/2026-10-11-review.md",
@@ -23600,7 +25466,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 76 — 2026-10-11 preview analysis and self-review"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/issue-76/2026-10-11-preview.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 verbatim historical receipt storage and exact source-bound closure; fixed limits preserved.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-11-preview.md.gz"
     },
     {
       "path": "review/issue-76/2026-10-12-admission.md",
@@ -30904,7 +32781,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Причини збоїв і виправлення — 6 жовтня 2026"
+      "title": "Retained historical report"
+    },
+    {
+      "path": "review/staging-readiness-20261006/CAUSES.md.gz",
+      "kind": "file",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "CAUSES.md.gz"
     },
     {
       "path": "review/staging-readiness-20261006/DISPLAY.json",
@@ -39232,6 +41120,16 @@
       "path": "review/issue-169/release",
       "kind": "directory",
       "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-169/security",
+      "kind": "directory",
+      "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
       "role": "history",
       "owner": "AGENTS.md",
       "instructions": [

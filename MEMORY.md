@@ -4,7 +4,7 @@ Dated continuity, not live authority. Last verified: **2026-11-06**.
 
 ## Snapshot
 
-- Owner #169 / PR170, current R10 production continuation authorized. Baseline fc205b17774ba703c63fdd7d142ddac178afffdd, protected main8cf15883125892710633b17133d9ee0fc4b23b92. Latest successor2353b7c82123e053b9987321be1f8fea4e6c0d1c; retrieve its format-only successor/checks before advancement.
+- Owner #169 / PR170, current R10 production continuation authorized. Baseline fc205b17774ba703c63fdd7d142ddac178afffdd, protected main8cf15883125892710633b17133d9ee0fc4b23b92. Security-maintenance successor is based on95d3e78; resolve the live PR170head and checks before advancement.
 - R10 manuscript frozen907602667ca447f23359bfa87acc0c191f5e3b8a, SHA25670386a2d2f602b5f60c93d35293a375e4e4abbc6f63a0dd888024031078b3d1f. Five-page PDF SHA25636269db33a71781084053ae40cc41e411a0106bea5e593ef0b08414014c4ca40,869208bytes; unchanged by distribution/cache maintenance.
 - Current release-preflight evidence: review/issue-169/2026-11-06-r10-release-preflight.md and release/. Earlier R10/distribution source/reviews remain under their dated reports and r10/,distribution/. Original R9 retained.
 
@@ -16,20 +16,20 @@ Dated continuity, not live authority. Last verified: **2026-11-06**.
 
 ## Open work
 
-- Baseline fc205b1 Ready CI: all8source partitions+aggregate42189539801, navigation/RI42189539761, owning42189539740pass. Preview42189539807 published9a85e71c and actual smoke127798771445pass. Admission separately refused missingR10staging. Baseline results cannot accept modified helper successor.
-- Historical stage42119802341 b75 failed:75-module300000ms runner24completed/noaggregate; build cancelled10min during security. Raw artifact13457983011 SHA25697199b81af2f445e4d62018fa7265061d60a58a7fe2ba659d50f16cfa71b5d84 retained. Do not unchanged-retry or substitute PR sharding.
-- Prepared narrow correction caches only nativegzip lengths by fresh SHA256+rawlength in public-artifact leaf, max2048scalar entries, invalidates changed producer. Actual inventory/read/hash/refusals remain. No selection/budget/controller/runtime change. Four distinct none-fork roles passedv2, whitebox14oracle/refusal cases. Final generated-closure rebind is separate.
-- Focused10/10; warmmanifest~10ms vs164ms with exact digest. Threeheavy first72/73 failed absentlocalmediaPython; real venv/exactPillow13 fixed nativeCLI1/1. First formatter defaults restored to canonical; correctly configured lint passes. FirstBasic stale-output refusal fixed by existing build/preview/bundle regeneration, then17+10pass. Visible6pages/runtime5files/manuscript/PDF equal baseline; generated producer signatures legitimately change.
-- First prepared75source still300s timeout74completed,5setup wrappersfailed. Partial clone missed78pinnedcc115c4blobs; exactGitbatchfetch restored all. Offline pubrecords25/25pass. Fivecorrectedmodules111/112; remainingrepository-lint negative requires genuinelycleanGit before report, pending exactcommittedCI. Do not call prepared/partial evidence acceptance.
-- RI fixed250MB bound retained; prior historicalMD losslessarchives keep locatorpaths and exactdecodedGitbytes. No parsedJSON/fixture/oracle/cap changed. Local Chromium socket failure not retried; current hosted baseline browser evidence above is real.
-- Reader/template audit complete; foundation alreadymain viaPR157, noPR79transfer. Current publisher kit6b1039925ee49a8349d46ddd8539aa1ad0b6314d896f3132e58bcc98c8f6a75a supplied with plannedlinks; future observed canonical/events remain separate.
+- Actual head95d3e78, clean complete tree at the failed staging attempt. Current Basic42195182073 all8partitions+aggregate, navigation/RI42195181990, owning42195181984 and routing42195182081 pass. No merge/production; main remains as above.
+- Owner /stage42196241166 accepted exact source admission. Prepublication25/26 guards passed, native1198/1198 and Python143 passed. Security alone failed; no stage upload/browser regression/promotion. Original raw artifact13492353165 retained.
+- Semgrep0; Bandit48rawfindings, existing November3expiry plus fiveRI-validator sourcebindings/four shiftedlines; secrets1016untriaged hosted. Local1024 reconciles to1016 after fetching missing historical Git bytes; unchanged producer proves the8R3/R4fields. Current local staging digest equals hosted.
+- Bounded security maintenance follows review/issue-169/2026-11-06-security-maintenance.md. Requirements and separate Bandit/secrets preflight completed. Four actual none-fork candidate roles completed with affected same-role closure; original findings/wrappers remain. Native prepared security passes all3engines; exact-head CI/staging remains. Unknowns block; no date-only renewal, baseline rewrite, wildcard, newledger or scanner/budget/limit change.
+- PRpreview42195182329 and predecessor42194182355 buildpassed but Cloudflare internalpublication error; providerlogs say Function publishfailure although uses_functions:false. No claimed outage/rootcause/accepted currentpreview; do not unchangedretry.
+- Earlier gzip leaf correction is accepted by four separate none-fork roles. Native freshinventory/read/hash/refusal behavior,2048scalar ceiling, all workers/scenarios/budgets unchanged. Old source/setup/format failures and original R9 remain in the dated release report.
+- R10 reader/template foundation is already main viaPR157; noPR79transfer. Kit6b1039925ee49a8349d46ddd8539aa1ad0b6314d896f3132e58bcc98c8f6a75a supplied with plannedlinks. Actual canonical/publication events still require observed production.
 
 ## Next session
 
-1. Revalidate exact successor refs/reviews/Draft/checks and release-preflight report. Finish final generated-closure role rebind, RI/coupling/owning and commit narrow correction; only clean current checks can advance.
-2. 2353 exact full75source passes clean within300s; all8CIshards pass but aggregate formatting failed only ri-ci-map, and Cloudflare preview publish internalerror. Apply canonical map format after refresh, freshRI/currentCI/hosted smoke, then explicitowner /stage, complete original stagingpreflight+hostedregression and stablepromotion. Inspect failures before rerun; PRshards do not replace staging75source.
-3. Refresh eligiblePR admission after realstage, dispatch existing Changeadmission onmain withPR170 and explicit reviewed_sha for controls. Identical-tree protectedmerge, separate frozenproduction candidate/rights/archive/publish, realservedarticle/PDF/SEOproof.
-4. Record actual publication via existing owner; author postsplatforms then paired observedreciprocals. Reconcile originalAC01–AC11 and actual checkboxes; only historicalAC06 ticked until whole criteria complete.
+1. Revalidate actual refs/workingtree and security maintenance packet, exact per-finding evidence, reviews and remaining unknowns. Correction/review is complete in the dated security report; preserve original failures/frozen ledgers/source bytes/resource bounds. Recheck exact clean-head owning/CI evidence and proceed through actual staging.
+2. Publish reviewed exact source, freshCI then actual owner /stage. Retain complete original preflight, hosted full regression and stable promotion; source partitions alone never substitute.
+3. Real staging proof → admissionrefresh → Changeadmission onmain withPR170/exact reviewed_sha → identical-tree protectedmerge → frozenproduction candidate/rights/archive/publish → actualservedarticle/PDF/SEOproof. Existing user authorization persists.
+4. Record actual publication through existing owner; author postsplatforms then pairedobservedreciprocals. Only historicalAC06 is checked until all checks of each whole criterion are verified.
 
 ## Maintenance
 

@@ -719,7 +719,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "8d2ea3d4b80ffbef4bf98d03f06173438ff379c4d861a778f311cfc50ef87cba",
+    "digest": "2f1962e5380695921cc419e308822a0ecfd562ac71691a9537aa6c9433f6b3a9",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -867,7 +867,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "160a9453606b08bbf94419582b1940360118ad1b6663455ff801b88f0f731331"
+        "sha256": "3a0949d3c93a9150ff323de24ddf6c62d6caaf65b1f46687dd8a65f3f3b0f390"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -1007,7 +1007,7 @@
       },
       {
         "path": "review/issue-5/2026-10-20-controller-bootstrap.md",
-        "sha256": "ec43471294a0b0726cd228a55a359232307c51cdb69f6ed726ce07169e1ce5a8"
+        "sha256": "5e2718e0bb098b9c8be799dfceb0bf976bb7b5ae1c97de178b9cccf4d77ac7e4"
       },
       {
         "path": "tests/fixtures/staging-evidence.cjs",
