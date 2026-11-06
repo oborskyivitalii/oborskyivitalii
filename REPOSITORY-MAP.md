@@ -58,8 +58,8 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f](docs/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f) | Generated native article, immutable media or snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-snapshots](docs/article-snapshots) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684](docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684) | Current immutable generated room/article snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
+| [docs/article-snapshots/7b1e3fbe23136bd07787e2d8348f94036213d2bb9a3ef16d618ffd2cb87ba7d1](docs/article-snapshots/7b1e3fbe23136bd07787e2d8348f94036213d2bb9a3ef16d618ffd2cb87ba7d1) | Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners. | generated | [site/README.md](site/README.md) |
 | [docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003](docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003) | Exact current native raw article rendition and existing immutable closure; no prior-publication claim. | generated | [site/README.md](site/README.md) |
-| [docs/article-snapshots/eb1cc896411a5047cd09a6eed0e7725cadbf1cbfa3716c4201812fc82a4e76bb](docs/article-snapshots/eb1cc896411a5047cd09a6eed0e7725cadbf1cbfa3716c4201812fc82a4e76bb) | Generated route closure or issue169 distribution review evidence. | generated | [site/README.md](site/README.md) |
 | [docs/articles](docs/articles) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/assets](docs/assets) | Generated legacy-compatible aliases for authored portrait/icon assets. | generated | [site/README.md](site/README.md) |
 | [docs/media](docs/media) | Generated content-addressed asset editions. | generated | [site/README.md](site/README.md) |
@@ -73,25 +73,25 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62](docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots](docs/snapshots) | Generated exact-route HTML snapshots. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2](docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2) | Generated public rendition; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/1c121ae2e3d285ef0a4c758558a9a4679c14e16b328d24a9a6e0ab10cf5ab6dc](docs/snapshots/1c121ae2e3d285ef0a4c758558a9a4679c14e16b328d24a9a6e0ab10cf5ab6dc) | Generated route closure or issue169 distribution review evidence. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e](docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e) | Verified prior production immutable snapshot retained with its exact published bytes. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/2a0bcb66b1531dc8182dcacb31bdfcf14e59a9d215efd54e1b87d5882d973d9d](docs/snapshots/2a0bcb66b1531dc8182dcacb31bdfcf14e59a9d215efd54e1b87d5882d973d9d) | Generated route closure or issue169 distribution review evidence. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/3f3f0d95495634ffa4fe94d9dcf1a4dbd7a3aa59ddfdac98feab03f17d7d8840](docs/snapshots/3f3f0d95495634ffa4fe94d9dcf1a4dbd7a3aa59ddfdac98feab03f17d7d8840) | Generated route closure or issue169 distribution review evidence. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/2b7302a1f2cc9dc6fedfa5c13f4fa277e8ffab5ab68e948269b3d9d3043a98cd](docs/snapshots/2b7302a1f2cc9dc6fedfa5c13f4fa277e8ffab5ab68e948269b3d9d3043a98cd) | Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/4d3d841b02637bc5445cb4a0199d7eb99416bf5dab882f323c9b9edd743bf898](docs/snapshots/4d3d841b02637bc5445cb4a0199d7eb99416bf5dab882f323c9b9edd743bf898) | Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347](docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/632f4f29ebdbc51215b02592fd45a1f10a99fb8596d2dec8b3f18bc8be847f06](docs/snapshots/632f4f29ebdbc51215b02592fd45a1f10a99fb8596d2dec8b3f18bc8be847f06) | Verified prior production immutable snapshot retained with its exact published bytes. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed](docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed) | Generated public rendition; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/7b62f25175a003a9fcc24f430e26ff321f267a8e77a28699984f86bf1dfdd3b6](docs/snapshots/7b62f25175a003a9fcc24f430e26ff321f267a8e77a28699984f86bf1dfdd3b6) | Verified prior production immutable snapshot retained with its exact published bytes. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa](docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/899daade336eb704ff1323f87e7b07eb33e3fdd207dbc0e6aaf08937746db70b](docs/snapshots/899daade336eb704ff1323f87e7b07eb33e3fdd207dbc0e6aaf08937746db70b) | Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68](docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946](docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/95b57d8257b5ffb3f4b9924d90694110e982f7bdc9aecb6f09969d46b3a8b2e0](docs/snapshots/95b57d8257b5ffb3f4b9924d90694110e982f7bdc9aecb6f09969d46b3a8b2e0) | Verified prior production immutable snapshot retained with its exact published bytes. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/9c15723e5b5e0ef4e24df6376f4074c6ead4362bdc9c4e9055747e701e8a40f3](docs/snapshots/9c15723e5b5e0ef4e24df6376f4074c6ead4362bdc9c4e9055747e701e8a40f3) | Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700](docs/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700) | Generated public rendition; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7](docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/b57f1dcb99f70ff2df6f748de084f2793f992f438a03c798a30b891c8f9e6461](docs/snapshots/b57f1dcb99f70ff2df6f748de084f2793f992f438a03c798a30b891c8f9e6461) | Generated public rendition; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920](docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920) | Generated public rendition; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647](docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647) | Verified prior production immutable snapshot retained with its exact published bytes. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/ea894f5945827de1225db344a5edabdfb0c69a1cb34b505f45089c20e953d297](docs/snapshots/ea894f5945827de1225db344a5edabdfb0c69a1cb34b505f45089c20e953d297) | Generated route closure or issue169 distribution review evidence. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/fa043dbee4283744bd7e2d9ac9b7e49044dfa31ddd46f530b1cad278c3c97f67](docs/snapshots/fa043dbee4283744bd7e2d9ac9b7e49044dfa31ddd46f530b1cad278c3c97f67) | Generated route closure or issue169 distribution review evidence. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/f16c892c990ac5b965edc34a294f40ac272843d72b91fb385a2222b7e227ea5d](docs/snapshots/f16c892c990ac5b965edc34a294f40ac272843d72b91fb385a2222b7e227ea5d) | Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners. | generated | [site/README.md](site/README.md) |
 | [drafts](drafts) | Unpublished article/profile proposals excluded from public builds. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [guides](guides) | Maintained topic guides for repository boundaries, publication, quality and hosting; root stays an entry surface. | guide | [guides/README.md](guides/README.md) |
 | [review](review) | Dated plans, evidence, captures and renditions; current Color/export inputs are explicitly marked. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -126,6 +126,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-169/r9/masters](review/issue-169/r9/masters) | Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-169/r9/reviews](review/issue-169/r9/reviews) | Issue169 R9 accepted source, original visual masters, actual role results and source-bound check/failure evidence. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-169/r9/runtime-review](review/issue-169/r9/runtime-review) | Issue169 source-bound reader/history runtime admission evidence, exact review packets or lossless role execution receipts; not release acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/release](review/issue-169/release) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-2](review/issue-2) | Dated editorial, source and publication review evidence for the PMDay article owner. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-2/pmday-candidate-20261015](review/issue-2/pmday-candidate-20261015) | PR79 PMDay review candidate, independent findings and source-qualified export evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-2/r26-20261023](review/issue-2/r26-20261023) | Public-safe R26 native review deliverables with exact manuscript, PDF, kit and source/producer inventory. | history | [review/issue-2/2026-10-23-r26-integration.md](review/issue-2/2026-10-23-r26-integration.md) |
@@ -501,17 +502,17 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684/the-sdlc-is-out-of-balance.html](docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684/the-sdlc-is-out-of-balance.html) | Current immutable generated room/article snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
 
+## docs/article-snapshots/7b1e3fbe23136bd07787e2d8348f94036213d2bb9a3ef16d618ffd2cb87ba7d1/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/article-snapshots/7b1e3fbe23136bd07787e2d8348f94036213d2bb9a3ef16d618ffd2cb87ba7d1/the-sdlc-is-out-of-balance.html](docs/article-snapshots/7b1e3fbe23136bd07787e2d8348f94036213d2bb9a3ef16d618ffd2cb87ba7d1/the-sdlc-is-out-of-balance.html) | Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners. | generated | [site/README.md](site/README.md) |
+
 ## docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/the-sdlc-is-out-of-balance.html](docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/the-sdlc-is-out-of-balance.html) | Exact current native raw article rendition and existing immutable closure; no prior-publication claim. | generated | [site/README.md](site/README.md) |
-
-## docs/article-snapshots/eb1cc896411a5047cd09a6eed0e7725cadbf1cbfa3716c4201812fc82a4e76bb/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/article-snapshots/eb1cc896411a5047cd09a6eed0e7725cadbf1cbfa3716c4201812fc82a4e76bb/the-sdlc-is-out-of-balance.html](docs/article-snapshots/eb1cc896411a5047cd09a6eed0e7725cadbf1cbfa3716c4201812fc82a4e76bb/the-sdlc-is-out-of-balance.html) | Generated distribution-profile descendant or immutable native route snapshot; regenerate from canonical owners. | generated | [site/README.md](site/README.md) |
 
 ## docs/articles/
 
@@ -599,29 +600,23 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2/talks.html](docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2/talks.html) | Generated public rendition; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/1c121ae2e3d285ef0a4c758558a9a4679c14e16b328d24a9a6e0ab10cf5ab6dc/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/1c121ae2e3d285ef0a4c758558a9a4679c14e16b328d24a9a6e0ab10cf5ab6dc/talks.html](docs/snapshots/1c121ae2e3d285ef0a4c758558a9a4679c14e16b328d24a9a6e0ab10cf5ab6dc/talks.html) | Generated distribution-profile descendant or immutable native route snapshot; regenerate from canonical owners. | generated | [site/README.md](site/README.md) |
-
 ## docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e/talks.html](docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e/talks.html) | Verified prior production immutable snapshot retained with its exact published bytes. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/2a0bcb66b1531dc8182dcacb31bdfcf14e59a9d215efd54e1b87d5882d973d9d/
+## docs/snapshots/2b7302a1f2cc9dc6fedfa5c13f4fa277e8ffab5ab68e948269b3d9d3043a98cd/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/snapshots/2a0bcb66b1531dc8182dcacb31bdfcf14e59a9d215efd54e1b87d5882d973d9d/credits.html](docs/snapshots/2a0bcb66b1531dc8182dcacb31bdfcf14e59a9d215efd54e1b87d5882d973d9d/credits.html) | Generated distribution-profile descendant or immutable native route snapshot; regenerate from canonical owners. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/2b7302a1f2cc9dc6fedfa5c13f4fa277e8ffab5ab68e948269b3d9d3043a98cd/talks.html](docs/snapshots/2b7302a1f2cc9dc6fedfa5c13f4fa277e8ffab5ab68e948269b3d9d3043a98cd/talks.html) | Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/3f3f0d95495634ffa4fe94d9dcf1a4dbd7a3aa59ddfdac98feab03f17d7d8840/
+## docs/snapshots/4d3d841b02637bc5445cb4a0199d7eb99416bf5dab882f323c9b9edd743bf898/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/snapshots/3f3f0d95495634ffa4fe94d9dcf1a4dbd7a3aa59ddfdac98feab03f17d7d8840/research.html](docs/snapshots/3f3f0d95495634ffa4fe94d9dcf1a4dbd7a3aa59ddfdac98feab03f17d7d8840/research.html) | Generated distribution-profile descendant or immutable native route snapshot; regenerate from canonical owners. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/4d3d841b02637bc5445cb4a0199d7eb99416bf5dab882f323c9b9edd743bf898/research.html](docs/snapshots/4d3d841b02637bc5445cb4a0199d7eb99416bf5dab882f323c9b9edd743bf898/research.html) | Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners. | generated | [site/README.md](site/README.md) |
 
 ## docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/
 
@@ -653,6 +648,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html](docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
 
+## docs/snapshots/899daade336eb704ff1323f87e7b07eb33e3fdd207dbc0e6aaf08937746db70b/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/899daade336eb704ff1323f87e7b07eb33e3fdd207dbc0e6aaf08937746db70b/credits.html](docs/snapshots/899daade336eb704ff1323f87e7b07eb33e3fdd207dbc0e6aaf08937746db70b/credits.html) | Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners. | generated | [site/README.md](site/README.md) |
+
 ## docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/
 
 | Path | Purpose | Role | Owner / editing route |
@@ -670,6 +671,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [docs/snapshots/95b57d8257b5ffb3f4b9924d90694110e982f7bdc9aecb6f09969d46b3a8b2e0/index.html](docs/snapshots/95b57d8257b5ffb3f4b9924d90694110e982f7bdc9aecb6f09969d46b3a8b2e0/index.html) | Verified prior production immutable snapshot retained with its exact published bytes. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/9c15723e5b5e0ef4e24df6376f4074c6ead4362bdc9c4e9055747e701e8a40f3/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/9c15723e5b5e0ef4e24df6376f4074c6ead4362bdc9c4e9055747e701e8a40f3/index.html](docs/snapshots/9c15723e5b5e0ef4e24df6376f4074c6ead4362bdc9c4e9055747e701e8a40f3/index.html) | Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners. | generated | [site/README.md](site/README.md) |
 
 ## docs/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700/
 
@@ -701,17 +708,11 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html](docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html) | Verified prior production immutable snapshot retained with its exact published bytes. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/ea894f5945827de1225db344a5edabdfb0c69a1cb34b505f45089c20e953d297/
+## docs/snapshots/f16c892c990ac5b965edc34a294f40ac272843d72b91fb385a2222b7e227ea5d/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/snapshots/ea894f5945827de1225db344a5edabdfb0c69a1cb34b505f45089c20e953d297/index.html](docs/snapshots/ea894f5945827de1225db344a5edabdfb0c69a1cb34b505f45089c20e953d297/index.html) | Generated distribution-profile descendant or immutable native route snapshot; regenerate from canonical owners. | generated | [site/README.md](site/README.md) |
-
-## docs/snapshots/fa043dbee4283744bd7e2d9ac9b7e49044dfa31ddd46f530b1cad278c3c97f67/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/fa043dbee4283744bd7e2d9ac9b7e49044dfa31ddd46f530b1cad278c3c97f67/writing.html](docs/snapshots/fa043dbee4283744bd7e2d9ac9b7e49044dfa31ddd46f530b1cad278c3c97f67/writing.html) | Generated distribution-profile descendant or immutable native route snapshot; regenerate from canonical owners. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/f16c892c990ac5b965edc34a294f40ac272843d72b91fb385a2222b7e227ea5d/writing.html](docs/snapshots/f16c892c990ac5b965edc34a294f40ac272843d72b91fb385a2222b7e227ea5d/writing.html) | Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners. | generated | [site/README.md](site/README.md) |
 
 ## drafts/
 
@@ -1074,6 +1075,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-159/2026-10-28-seo-brief-agent-control.md](review/issue-159/2026-10-28-seo-brief-agent-control.md) | Implementation-ready agent authority/evidence/intervention brief; actual PMDay overlap and future issue11 handoff. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-159/2026-10-28-seo-brief-delivery.md](review/issue-159/2026-10-28-seo-brief-delivery.md) | Implementation-ready delivery measurement/constraint brief; actual PMDay edition overlap and future issue11 handoff. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-159/2026-10-28-seo-implementation.md](review/issue-159/2026-10-28-seo-implementation.md) | B5 Requirements preflight, source/style plan, changed-surface review and exact acceptance evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-159/2026-10-28-seo-implementation.md.gz](review/issue-159/2026-10-28-seo-implementation.md.gz) | Losslessly archived historical report; stable original locator preserves decode command and exact source identity. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-159/2026-10-28-seo-query-research.md](review/issue-159/2026-10-28-seo-query-research.md) | B4 Terra audience/query/source matrix, actual four-role correction review and bounded B5 handoff. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-159/2026-10-28-seo-scanner-proof.json.gz](review/issue-159/2026-10-28-seo-scanner-proof.json.gz) | Exact frozen/current B5 public checksum proof, preserved byte-for-byte from945; six findings preregistered by166 and57 integrated here, with no scanner bypass or rights approval. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-159/2026-10-28-stage-security-proof.json.gz](review/issue-159/2026-10-28-stage-security-proof.json.gz) | Retained failed staging security report and exact per-ID public baseline Git-commit checksum proof; single scoped false-positive correction. | history | [AGENTS.md](AGENTS.md) |
@@ -1166,6 +1168,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-169/2026-11-05-reader-history-correction-whitebox-v2.md](review/issue-169/2026-11-05-reader-history-correction-whitebox-v2.md) | Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-169/2026-11-06-distribution-workflow.md](review/issue-169/2026-11-06-distribution-workflow.md) | Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-169/2026-11-06-r10-amendment.md](review/issue-169/2026-11-06-r10-amendment.md) | Source-bound R10 review/check evidence or losslessly retained historical report; original semantics and decoded hashes preserved. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/2026-11-06-r10-release-preflight.md](review/issue-169/2026-11-06-r10-release-preflight.md) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-169/correction-affected.log.gz](review/issue-169/correction-affected.log.gz) | Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/failed-source-run.json.gz](review/issue-169/failed-source-run.json.gz) | Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/failed-source-run.tap.gz](review/issue-169/failed-source-run.tap.gz) | Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -1577,6 +1580,57 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-169/r9/runtime-review/reviewer-packet.json](review/issue-169/r9/runtime-review/reviewer-packet.json) | Issue169 source-bound reader/history runtime admission evidence, exact review packets or lossless role execution receipts; not release acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/r9/runtime-review/whitebox.md.gz](review/issue-169/r9/runtime-review/whitebox.md.gz) | Issue169 source-bound reader/history runtime admission evidence, exact review packets or lossless role execution receipts; not release acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
+## review/issue-169/release/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-169/release/cache-architecture-v2.log.gz](review/issue-169/release/cache-architecture-v2.log.gz) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-basic-corrected.log.gz](review/issue-169/release/cache-basic-corrected.log.gz) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-basic.log.gz](review/issue-169/release/cache-basic.log.gz) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-candidate-v2.json](review/issue-169/release/cache-candidate-v2.json) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-candidate-v3.json](review/issue-169/release/cache-candidate-v3.json) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-candidate.json](review/issue-169/release/cache-candidate.json) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-code-final.md](review/issue-169/release/cache-code-final.md) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-code-final.md.gz](review/issue-169/release/cache-code-final.md.gz) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-code-first.md](review/issue-169/release/cache-code-first.md) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-code-first.md.gz](review/issue-169/release/cache-code-first.md.gz) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-exploratory-final.md](review/issue-169/release/cache-exploratory-final.md) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-exploratory-final.md.gz](review/issue-169/release/cache-exploratory-final.md.gz) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-exploratory-first.md](review/issue-169/release/cache-exploratory-first.md) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-exploratory-first.md.gz](review/issue-169/release/cache-exploratory-first.md.gz) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-focused.log.gz](review/issue-169/release/cache-focused.log.gz) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-heavy.log.gz](review/issue-169/release/cache-heavy.log.gz) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-historical-corrected.log.gz](review/issue-169/release/cache-historical-corrected.log.gz) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-indexed-affected.log.gz](review/issue-169/release/cache-indexed-affected.log.gz) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-lint.log.gz](review/issue-169/release/cache-lint.log.gz) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-local-python-setup.log.gz](review/issue-169/release/cache-local-python-setup.log.gz) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-native-corrected.log.gz](review/issue-169/release/cache-native-corrected.log.gz) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-regenerated-affected.log.gz](review/issue-169/release/cache-regenerated-affected.log.gz) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-requirements-final.md](review/issue-169/release/cache-requirements-final.md) | Issue169 exact source-bound release review receipt or lossless archive with provenance. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-requirements-final.md.gz](review/issue-169/release/cache-requirements-final.md.gz) | Issue169 exact source-bound release review receipt or lossless archive with provenance. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-requirements-first.md](review/issue-169/release/cache-requirements-first.md) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-requirements-first.md.gz](review/issue-169/release/cache-requirements-first.md.gz) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-stage-source.json.gz](review/issue-169/release/cache-stage-source.json.gz) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-stage-source.stderr.gz](review/issue-169/release/cache-stage-source.stderr.gz) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-stage-source.tap.gz](review/issue-169/release/cache-stage-source.tap.gz) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-whitebox-final.md](review/issue-169/release/cache-whitebox-final.md) | Issue169 exact source-bound release review receipt or lossless archive with provenance. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-whitebox-final.md.gz](review/issue-169/release/cache-whitebox-final.md.gz) | Issue169 exact source-bound release review receipt or lossless archive with provenance. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-whitebox-first.md](review/issue-169/release/cache-whitebox-first.md) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/cache-whitebox-first.md.gz](review/issue-169/release/cache-whitebox-first.md.gz) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/code-first.md](review/issue-169/release/code-first.md) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/code-first.md.gz](review/issue-169/release/code-first.md.gz) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/historical-storage.json](review/issue-169/release/historical-storage.json) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/manifest-timing-corrected.json](review/issue-169/release/manifest-timing-corrected.json) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/manifest-timing.json](review/issue-169/release/manifest-timing.json) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/missing-historical-blobs.json](review/issue-169/release/missing-historical-blobs.json) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/native-timeout-diagnostic.log](review/issue-169/release/native-timeout-diagnostic.log) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/packet.json](review/issue-169/release/packet.json) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/receipt-storage.json](review/issue-169/release/receipt-storage.json) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/regeneration-parity.json](review/issue-169/release/regeneration-parity.json) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/requirements-first.md](review/issue-169/release/requirements-first.md) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/requirements-first.md.gz](review/issue-169/release/requirements-first.md.gz) | Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence. | history | [AGENTS.md](AGENTS.md) |
+| [review/issue-169/release/reviewer-executions.json](review/issue-169/release/reviewer-executions.json) | Actual six none-fork reviewer launch identities and four candidate-role correction receipts for R10 release preflight. | history | [AGENTS.md](AGENTS.md) |
+
 ## review/issue-2/
 
 | Path | Purpose | Role | Owner / editing route |
@@ -1728,6 +1782,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-39/2026-10-15-production-plan.md](review/issue-39/2026-10-15-production-plan.md) | Current-main production gap audit, rebased PR40 scope and ordered domain launch plan; dated evidence, not release approval. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-39/2026-10-15-publication-licensing.md](review/issue-39/2026-10-15-publication-licensing.md) | Dated issue39 self-analysis and implementation evidence for mandatory per-publication stage/production licensing records; live admission remains separate. | history | [guides/SITE-RIGHTS.md](guides/SITE-RIGHTS.md) |
 | [review/issue-39/2026-10-15-publication-test-review.md](review/issue-39/2026-10-15-publication-test-review.md) | Consolidated issue39 staging/production guard review: exact source/profile/workflow matrices, concrete repairs, independent evidence, pending native/publication limits and preserved failures. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-39/2026-10-15-publication-test-review.md.gz](review/issue-39/2026-10-15-publication-test-review.md.gz) | Losslessly archived historical report; stable original path retains decode locator and original source identity. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-39/2026-10-15-release-issue-audit.md](review/issue-39/2026-10-15-release-issue-audit.md) | Selected production dependency and closure audit for six release owners; preserved SEO/rights/analytics scope and permanent-staging evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-39/2026-10-16-compact-controller.md](review/issue-39/2026-10-16-compact-controller.md) | Finite source-only compact JSON-LD metadata identity controller prerequisite; unchanged runtime byte proof, exact rights enforcement and remaining PR40 release gates. | history | [review/REVIEW-TEMPLATE.md](review/REVIEW-TEMPLATE.md) |
 | [review/issue-39/2026-10-16-compact-tuples.json.gz](review/issue-39/2026-10-16-compact-tuples.json.gz) | Inert exact plain/staging/production compact-metadata tuple proof from cold immutable/current-source builds and independent Python JSON/SHA256 derivation; all canonical/immutable runtime bytes remain identical; no release acceptance. | history | [review/issue-39/2026-10-16-compact-controller.md](review/issue-39/2026-10-16-compact-controller.md) |
@@ -1759,6 +1814,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [review/issue-41/2026-10-07-analysis.md](review/issue-41/2026-10-07-analysis.md) | Evidence-bounded site advisory, publication, community and SEO analysis; proposed copy, ordered Sol tasks and test allocation. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-41/2026-10-07-analysis.md.gz](review/issue-41/2026-10-07-analysis.md.gz) | Losslessly archived historical report; stable original path retains decode locator and original source identity. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-41/2026-10-09-ci-followup.md](review/issue-41/2026-10-09-ci-followup.md) | Independent inspection of the bounded selected-policy dependency repair and maintained content-test fixture corrections; new CI remains separate evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-41/2026-10-09-positioning-amendment.json](review/issue-41/2026-10-09-positioning-amendment.json) | Dated issue41 practical-positioning source review or exact six-fragment content amendment, preserving historical evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-41/2026-10-09-positioning-browser.md](review/issue-41/2026-10-09-positioning-browser.md) | Current immutable positioning-preview readability and contact observations with actual desktop/mobile coverage and explicit historical browser-gate limits. | history | [guides/SITE-CONTENT-REVIEW.md](guides/SITE-CONTENT-REVIEW.md) |
@@ -1921,6 +1977,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-58/2026-10-08-final-visual-captures.json.gz](review/issue-58/2026-10-08-final-visual-captures.json.gz) | Compressed immutable raw current visual observations; source/artifact/file maps, served byte hashes and geometry bind original observed identities. | history | [review/issue-58/2026-10-08-final-visual.json](review/issue-58/2026-10-08-final-visual.json) |
 | [review/issue-58/2026-10-08-final-visual.json](review/issue-58/2026-10-08-final-visual.json) | Eight actual clean approved-main/current candidate Home/Writing Day/Night desktop/mobile visual pairs; exact pixel/semantic/HTTP identity with bounded scope. | history | [review/issue-58/2026-10-08-handoff.md](review/issue-58/2026-10-08-handoff.md) |
 | [review/issue-58/2026-10-08-handoff.md](review/issue-58/2026-10-08-handoff.md) | Shared issue58 refactor handoff: R2 phase subconditions mapped to stable AC01-AC10, source/semantic/security tasks and pending evidence. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [review/issue-58/2026-10-08-handoff.md.gz](review/issue-58/2026-10-08-handoff.md.gz) | Losslessly archived historical report; stable original path retains decode locator and original source identity. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [review/issue-58/2026-10-08-r3-r6-bandit.json](review/issue-58/2026-10-08-r3-r6-bandit.json) | Dated independently reviewed preintegration source proof; original dirty identity and bounded scope retained. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [review/issue-58/2026-10-08-r4-css.json](review/issue-58/2026-10-08-r4-css.json) | Dated R4/R5 raw phase observations preserving original source identity; final integrated acceptance remains separately bound. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [review/issue-58/2026-10-08-r5-offline.json](review/issue-58/2026-10-08-r5-offline.json) | Dated independently reviewed preintegration source proof; original dirty identity and bounded scope retained. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |

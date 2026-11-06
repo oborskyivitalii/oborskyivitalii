@@ -745,6 +745,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/article-snapshots/7b1e3fbe23136bd07787e2d8348f94036213d2bb9a3ef16d618ffd2cb87ba7d1": {
+      "kind": "directory",
+      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/7b1e3fbe23136bd07787e2d8348f94036213d2bb9a3ef16d618ffd2cb87ba7d1/the-sdlc-is-out-of-balance.html": {
+      "kind": "file",
+      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003": {
       "kind": "directory",
       "purpose": "Exact current native raw article rendition and existing immutable closure; no prior-publication claim.",
@@ -754,18 +766,6 @@
     "docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/the-sdlc-is-out-of-balance.html": {
       "kind": "file",
       "purpose": "Exact current native raw article rendition and existing immutable closure; no prior-publication claim.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/eb1cc896411a5047cd09a6eed0e7725cadbf1cbfa3716c4201812fc82a4e76bb": {
-      "kind": "directory",
-      "purpose": "Generated route closure or issue169 distribution review evidence.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/eb1cc896411a5047cd09a6eed0e7725cadbf1cbfa3716c4201812fc82a4e76bb/the-sdlc-is-out-of-balance.html": {
-      "kind": "file",
-      "purpose": "Generated distribution-profile descendant or immutable native route snapshot; regenerate from canonical owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1099,18 +1099,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/1c121ae2e3d285ef0a4c758558a9a4679c14e16b328d24a9a6e0ab10cf5ab6dc": {
-      "kind": "directory",
-      "purpose": "Generated route closure or issue169 distribution review evidence.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/1c121ae2e3d285ef0a4c758558a9a4679c14e16b328d24a9a6e0ab10cf5ab6dc/talks.html": {
-      "kind": "file",
-      "purpose": "Generated distribution-profile descendant or immutable native route snapshot; regenerate from canonical owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e": {
       "kind": "directory",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
@@ -1123,27 +1111,27 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/2a0bcb66b1531dc8182dcacb31bdfcf14e59a9d215efd54e1b87d5882d973d9d": {
+    "docs/snapshots/2b7302a1f2cc9dc6fedfa5c13f4fa277e8ffab5ab68e948269b3d9d3043a98cd": {
       "kind": "directory",
-      "purpose": "Generated route closure or issue169 distribution review evidence.",
+      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/2a0bcb66b1531dc8182dcacb31bdfcf14e59a9d215efd54e1b87d5882d973d9d/credits.html": {
+    "docs/snapshots/2b7302a1f2cc9dc6fedfa5c13f4fa277e8ffab5ab68e948269b3d9d3043a98cd/talks.html": {
       "kind": "file",
-      "purpose": "Generated distribution-profile descendant or immutable native route snapshot; regenerate from canonical owners.",
+      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/3f3f0d95495634ffa4fe94d9dcf1a4dbd7a3aa59ddfdac98feab03f17d7d8840": {
+    "docs/snapshots/4d3d841b02637bc5445cb4a0199d7eb99416bf5dab882f323c9b9edd743bf898": {
       "kind": "directory",
-      "purpose": "Generated route closure or issue169 distribution review evidence.",
+      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/3f3f0d95495634ffa4fe94d9dcf1a4dbd7a3aa59ddfdac98feab03f17d7d8840/research.html": {
+    "docs/snapshots/4d3d841b02637bc5445cb4a0199d7eb99416bf5dab882f323c9b9edd743bf898/research.html": {
       "kind": "file",
-      "purpose": "Generated distribution-profile descendant or immutable native route snapshot; regenerate from canonical owners.",
+      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1207,6 +1195,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/899daade336eb704ff1323f87e7b07eb33e3fdd207dbc0e6aaf08937746db70b": {
+      "kind": "directory",
+      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/899daade336eb704ff1323f87e7b07eb33e3fdd207dbc0e6aaf08937746db70b/credits.html": {
+      "kind": "file",
+      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -1240,6 +1240,18 @@
     "docs/snapshots/95b57d8257b5ffb3f4b9924d90694110e982f7bdc9aecb6f09969d46b3a8b2e0/index.html": {
       "kind": "file",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/9c15723e5b5e0ef4e24df6376f4074c6ead4362bdc9c4e9055747e701e8a40f3": {
+      "kind": "directory",
+      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/9c15723e5b5e0ef4e24df6376f4074c6ead4362bdc9c4e9055747e701e8a40f3/index.html": {
+      "kind": "file",
+      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1303,27 +1315,15 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/ea894f5945827de1225db344a5edabdfb0c69a1cb34b505f45089c20e953d297": {
+    "docs/snapshots/f16c892c990ac5b965edc34a294f40ac272843d72b91fb385a2222b7e227ea5d": {
       "kind": "directory",
-      "purpose": "Generated route closure or issue169 distribution review evidence.",
+      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/ea894f5945827de1225db344a5edabdfb0c69a1cb34b505f45089c20e953d297/index.html": {
+    "docs/snapshots/f16c892c990ac5b965edc34a294f40ac272843d72b91fb385a2222b7e227ea5d/writing.html": {
       "kind": "file",
-      "purpose": "Generated distribution-profile descendant or immutable native route snapshot; regenerate from canonical owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/fa043dbee4283744bd7e2d9ac9b7e49044dfa31ddd46f530b1cad278c3c97f67": {
-      "kind": "directory",
-      "purpose": "Generated route closure or issue169 distribution review evidence.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/fa043dbee4283744bd7e2d9ac9b7e49044dfa31ddd46f530b1cad278c3c97f67/writing.html": {
-      "kind": "file",
-      "purpose": "Generated distribution-profile descendant or immutable native route snapshot; regenerate from canonical owners.",
+      "purpose": "Generated public route snapshot after reviewed deterministic manifest optimization; regenerate from canonical owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -2071,6 +2071,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-159/2026-10-28-seo-implementation.md.gz": {
+      "kind": "file",
+      "purpose": "Losslessly archived historical report; stable original locator preserves decode command and exact source identity.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-159/2026-10-28-seo-query-research.md": {
       "kind": "file",
       "purpose": "B4 Terra audience/query/source matrix, actual four-role correction review and bounded B5 handoff.",
@@ -2572,6 +2578,12 @@
     "review/issue-169/2026-11-06-r10-amendment.md": {
       "kind": "file",
       "purpose": "Source-bound R10 review/check evidence or losslessly retained historical report; original semantics and decoded hashes preserved.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-06-r10-release-preflight.md": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
       "role": "history",
       "owner": "AGENTS.md"
     },
@@ -4693,6 +4705,288 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-169/release": {
+      "kind": "directory",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-architecture-v2.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-basic-corrected.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-basic.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-candidate-v2.json": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-candidate-v3.json": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-candidate.json": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-code-final.md": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-code-final.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-code-first.md": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-code-first.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-exploratory-final.md": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-exploratory-final.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-exploratory-first.md": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-exploratory-first.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-focused.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-heavy.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-historical-corrected.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-indexed-affected.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-lint.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-local-python-setup.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-native-corrected.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-regenerated-affected.log.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-requirements-final.md": {
+      "kind": "file",
+      "purpose": "Issue169 exact source-bound release review receipt or lossless archive with provenance.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-requirements-final.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact source-bound release review receipt or lossless archive with provenance.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-requirements-first.md": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-requirements-first.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-stage-source.json.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-stage-source.stderr.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-stage-source.tap.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-whitebox-final.md": {
+      "kind": "file",
+      "purpose": "Issue169 exact source-bound release review receipt or lossless archive with provenance.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-whitebox-final.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 exact source-bound release review receipt or lossless archive with provenance.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-whitebox-first.md": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/cache-whitebox-first.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/code-first.md": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/code-first.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/historical-storage.json": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/manifest-timing-corrected.json": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/manifest-timing.json": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/missing-historical-blobs.json": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/native-timeout-diagnostic.log": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/packet.json": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/receipt-storage.json": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/regeneration-parity.json": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/requirements-first.md": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/requirements-first.md.gz": {
+      "kind": "file",
+      "purpose": "Issue169 R10 release preflight failure, source-bound independent review and exact-check evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/release/reviewer-executions.json": {
+      "kind": "file",
+      "purpose": "Actual six none-fork reviewer launch identities and four candidate-role correction receipts for R10 release preflight.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-169/writing-carrier.json": {
       "kind": "file",
       "purpose": "Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence.",
@@ -5323,6 +5617,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-39/2026-10-15-publication-test-review.md.gz": {
+      "kind": "file",
+      "purpose": "Losslessly archived historical report; stable original path retains decode locator and original source identity.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-39/2026-10-15-release-issue-audit.md": {
       "kind": "file",
       "purpose": "Selected production dependency and closure audit for six release owners; preserved SEO/rights/analytics scope and permanent-staging evidence.",
@@ -5482,6 +5782,12 @@
     "review/issue-41/2026-10-07-analysis.md": {
       "kind": "file",
       "purpose": "Evidence-bounded site advisory, publication, community and SEO analysis; proposed copy, ordered Sol tasks and test allocation.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-41/2026-10-07-analysis.md.gz": {
+      "kind": "file",
+      "purpose": "Losslessly archived historical report; stable original path retains decode locator and original source identity.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -6190,6 +6496,12 @@
     "review/issue-58/2026-10-08-handoff.md": {
       "kind": "file",
       "purpose": "Shared issue58 refactor handoff: R2 phase subconditions mapped to stable AC01-AC10, source/semantic/security tasks and pending evidence.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-58/2026-10-08-handoff.md.gz": {
+      "kind": "file",
+      "purpose": "Losslessly archived historical report; stable original path retains decode locator and original source identity.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
     },

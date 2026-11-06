@@ -4,34 +4,34 @@ Dated continuity, not live authority. Last verified: **2026-11-06**.
 
 ## Snapshot
 
-- Owner #169 / PR170, Draft during R10. Protected main8cf15883125892710633b17133d9ee0fc4b23b92; distribution baseline7c292bd50a4f9a0024c397a290c1de965ceada4f. Retrieve current remote successor/checks before advancement.
-- R10 manuscript frozen907602667ca447f23359bfa87acc0c191f5e3b8a, blob972486f459ebbcfd6cc333977d603670a6ea82dc, SHA25670386a2d2f602b5f60c93d35293a375e4e4abbc6f63a0dd888024031078b3d1f. New five-page PDF SHA25636269db33a71781084053ae40cc41e411a0106bea5e593ef0b08414014c4ca40,869208bytes.
-- Current evidence:review/issue-169/2026-11-06-distribution-workflow.md and distribution/ role/manifest/check records; R10 source history in2026-11-06-r10-amendment.md. Original R9 edition/PDF and five visual inputs remain retained.
+- Owner #169 / PR170, current R10 production continuation authorized. Baseline fc205b17774ba703c63fdd7d142ddac178afffdd, protected main8cf15883125892710633b17133d9ee0fc4b23b92. Retrieve exact remote successor/Draft/checks before advancement.
+- R10 manuscript frozen907602667ca447f23359bfa87acc0c191f5e3b8a, SHA25670386a2d2f602b5f60c93d35293a375e4e4abbc6f63a0dd888024031078b3d1f. Five-page PDF SHA25636269db33a71781084053ae40cc41e411a0106bea5e593ef0b08414014c4ca40,869208bytes; unchanged by distribution/cache maintenance.
+- Current release-preflight evidence: review/issue-169/2026-11-06-r10-release-preflight.md and release/. Earlier R10/distribution source/reviews remain under their dated reports and r10/,distribution/. Original R9 retained.
 
 ## Decisions
 
-- Author directs R10: explicit no universal AI-native SDLC/single optimum; work/domain/criticality/capabilities/economics determine extensive, limited or no AI; whole-system economic/operational aim before owner/pilots. Issue169 comment6679245566.
-- Author approved planned-link/site-first distribution (issue169 comment6680160918): prepare ordinary site links now, verify website first, author posts platforms in either order, then both actual reciprocal URLs together through one materials update.
-- Prior website publication authorization remains valid. LinkedIn/Medium posting stays author-manual after actual verified website/PDF URLs. Separate long essay/PR79 and conference work stay outside scope.
-- Existing publisher/reader/material/rights owners and all page/byte/test/release limits remain. Current web/PDF JPEG and platform decoded PNG are explicitly distinguished from the original accepted hero retained in source. Direct extraction found JPEG in historical R9 too; older prose claiming original PNG in that PDF is inaccurate.
+- Author accepted current R10 and directed production. Existing website release authorization persists; no repeat approval required. LinkedIn/Medium posting stays author-manual after verified website; long essay/PR79 and conference work stay separate.
+- Stable planned URL https://vitaliioborskyi.ai/articles/the-sdlc-is-out-of-balance.html and materials anchor already appear in8platform formats/2launch files. Actual canonical/date/event needs existing served-edition proof. After actual platform content/backlinks observed, add both reviewed reciprocal URLs together via one materials-only release; never blocks initial site.
+- Existing source/rights/artifact/controller binding, all scenarios/workers/limits remain. Current web/PDF JPEG and platform PNG are distinguished from retained original hero. No source-derived receipt implies publication.
 
 ## Open work
 
-- Distribution profile/kit/event/material guards, agent routing and existing CI guide selection are prepared; final V4source54/54, Basic17+10, lint/architecture pass; selector47/47 on unchanged registry bytes. Four fresh roles completed corrections, including AST actual-link validation and deferred compiler initialization. Native/print R10 source/PDF/semantic/5visuals stay unchanged; consult owner report for final refs/RI.
-- Four actual none-fork roles inspected R10; first findings and same-role corrections are preserved. Initial stale hero credit corrected. Concurrent candidate identity is rebound through final manifest; consult final receipts.
-- Initial83source cases:62pass/21fail because partial clone lacked historical catalog blob under GIT_NO_LAZY_FETCH. Exact blob acquired; affected28/28 and complete successor83/83pass. Basic17+10pass in stated scopes. Final metadata/generation/RI checks remain exact-source records, not inherited CI.
-- Base repository249981008bytes nearly exhausted unchanged250MB RI bound. Twelve historicalMD reports now have lossless gzip plus original-path locators; decoded bytes equal base Git. Manifest records hashes/savings; no parsed JSON/fixture/test/budget changed.
-- Local Chromium failed before page creation on prohibited process-singleton socket. No R10 local desktop/mobile/no-JS browser pass. All five PDF pages visually inspected; source/link/paragraph parity verified. Hosted browser/release acceptance remains required.
-- Prior R9 rawb75 full source/navigation/owning checks and preview smoke passed; owner staging was requested before R10. They retain historical scope. Reader/template audit already complete, no PR79 transfer required; runtime bytes unchanged in R10.
+- Baseline fc205b1 Ready CI: all8source partitions+aggregate42189539801, navigation/RI42189539761, owning42189539740pass. Preview42189539807 published9a85e71c and actual smoke127798771445pass. Admission separately refused missingR10staging. Baseline results cannot accept modified helper successor.
+- Historical stage42119802341 b75 failed:75-module300000ms runner24completed/noaggregate; build cancelled10min during security. Raw artifact13457983011 SHA25697199b81af2f445e4d62018fa7265061d60a58a7fe2ba659d50f16cfa71b5d84 retained. Do not unchanged-retry or substitute PR sharding.
+- Prepared narrow correction caches only nativegzip lengths by fresh SHA256+rawlength in public-artifact leaf, max2048scalar entries, invalidates changed producer. Actual inventory/read/hash/refusals remain. No selection/budget/controller/runtime change. Four distinct none-fork roles passedv2, whitebox14oracle/refusal cases. Final generated-closure rebind is separate.
+- Focused10/10; warmmanifest~10ms vs164ms with exact digest. Threeheavy first72/73 failed absentlocalmediaPython; real venv/exactPillow13 fixed nativeCLI1/1. First formatter defaults restored to canonical; correctly configured lint passes. FirstBasic stale-output refusal fixed by existing build/preview/bundle regeneration, then17+10pass. Visible6pages/runtime5files/manuscript/PDF equal baseline; generated producer signatures legitimately change.
+- First prepared75source still300s timeout74completed,5setup wrappersfailed. Partial clone missed78pinnedcc115c4blobs; exactGitbatchfetch restored all. Offline pubrecords25/25pass. Fivecorrectedmodules111/112; remainingrepository-lint negative requires genuinelycleanGit before report, pending exactcommittedCI. Do not call prepared/partial evidence acceptance.
+- RI fixed250MB bound retained; prior historicalMD losslessarchives keep locatorpaths and exactdecodedGitbytes. No parsedJSON/fixture/oracle/cap changed. Local Chromium socket failure not retried; current hosted baseline browser evidence above is real.
+- Reader/template audit complete; foundation alreadymain viaPR157, noPR79transfer. Current publisher kit6b1039925ee49a8349d46ddd8539aa1ad0b6314d896f3132e58bcc98c8f6a75a supplied with plannedlinks; future observed canonical/events remain separate.
 
 ## Next session
 
-1. Revalidate PR170 final R10 head/Draft/checks and owner report; no old R9 green substitutes for current acceptance.
-2. Complete current exact-head CI/hosted reader/material/related observations, then owner staging and trusted control admission under existing authorization.
-3. Protected identical-tree merge, frozen production rights/archive/publish and served article/PDF/SEO verification through existing controllers.
-4. Existing distribution copies already carry planned stable site links. After verified site, record canonical/event and author posts platforms; observe both actual URLs/content/backlinks, then one paired materials-only update. Reconcile original AC01–AC11, ticking only whole completed criteria.
+1. Revalidate exact successor refs/reviews/Draft/checks and release-preflight report. Finish final generated-closure role rebind, RI/coupling/owning and commit narrow correction; only clean current checks can advance.
+2. Current exact-head Basic/RI/owning and hosted smoke, then explicitowner /stage, complete original stagingpreflight+hostedregression and stablepromotion. Inspect failures before rerun; PRshards do not replace staging75source.
+3. Refresh eligiblePR admission after realstage, dispatch existing Changeadmission onmain withPR170 and explicit reviewed_sha for controls. Identical-tree protectedmerge, separate frozenproduction candidate/rights/archive/publish, realservedarticle/PDF/SEOproof.
+4. Record actual publication via existing owner; author postsplatforms then paired observedreciprocals. Reconcile originalAC01–AC11 and actual checkboxes; only historicalAC06 ticked until whole criteria complete.
 
 ## Maintenance
 
-- Retain five sections/120-line cap, exact failures and unchanged budgets. Rebuild/verify RI and coupling after indexed changes; source-derived metadata/receipts do not imply release.
-- Draft, locally checked, reviewed, staged, merged and published are separate observations. No secrets/private correspondence/approval URLs.
+- Retain five sections/120-line cap, raw failures and unchanged budgets; rebuild/verify RI/coupling after indexedchanges. Keep source, testedtree, stagedartifact, mergedcommit and servedproduction identities separate.
+- Draft, locallychecked, reviewed, staged, merged and published are different observations. No secrets/private correspondence/approvalURLs in memory.

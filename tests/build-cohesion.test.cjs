@@ -11,6 +11,64 @@ const { renderPage } = require('../tools/site/render-page.cjs');
 const { contentLabel } = require('../tools/site/render-content.cjs');
 const { validateCatalog } = require('../tools/site/validate-catalog.cjs');
 const { fromModel } = require('../tools/site/fallback.cjs');
+function compressionProbe(directory) {
+  const zlib = require('node:zlib'),
+    module = { exports: {} },
+    control = { calls: 0, kind: null },
+    compression = {
+      gzipSync(bytes) {
+        control.calls++;
+        return zlib.gzipSync(bytes);
+      },
+    };
+  require('node:vm').runInNewContext(
+    fs.readFileSync(path.join(root, 'tools/site/public-artifact.cjs'), 'utf8'),
+    {
+      module,
+      require(id) {
+        if (id === 'node:zlib') return compression;
+        if (id !== 'node:fs') return require(id);
+        return {
+          ...fs,
+          lstatSync(file) {
+            if (!control.kind || file !== path.join(directory, 'a.txt')) return fs.lstatSync(file);
+            return {
+              isSymbolicLink: () => control.kind === 'symlink',
+              isDirectory: () => false,
+              isFile: () => false,
+            };
+          },
+        };
+      },
+    }
+  );
+  const oracle = () => {
+    const files = Object.fromEntries(
+      fs
+        .readdirSync(directory)
+        .sort()
+        .map((name) => {
+          const bytes = fs.readFileSync(path.join(directory, name));
+          return [
+            name,
+            {
+              sha256: require('node:crypto').createHash('sha256').update(bytes).digest('hex'),
+              raw: bytes.length,
+              gzip: zlib.gzipSync(bytes).length,
+            },
+          ];
+        })
+    );
+    return {
+      files,
+      artifactDigest: require('node:crypto')
+        .createHash('sha256')
+        .update(JSON.stringify(files))
+        .digest('hex'),
+    };
+  };
+  return { api: module.exports, control, compression, oracle };
+}
 function prepared(route, input, api, c) {
   return {
     route,
@@ -29,6 +87,48 @@ function prepared(route, input, api, c) {
     routeLabel: contentLabel(c, 'route.' + route.id),
   };
 }
+test('public compression reuse preserves fresh byte inventories and native gzip results', (t) => {
+  const directory = fs.mkdtempSync(path.join(require('node:os').tmpdir(), 'manifest-reuse-'));
+  t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
+  for (const name of ['a.txt', 'b.txt']) fs.writeFileSync(path.join(directory, name), 'same bytes');
+  const { api, control, compression, oracle } = compressionProbe(directory);
+  const check = () =>
+    assert.equal(JSON.stringify(api.manifest(directory)), JSON.stringify(oracle()));
+  check();
+  check();
+  assert.equal(control.calls, 1, 'identical bytes reuse compression across files and calls');
+  const old = fs.statSync(path.join(directory, 'a.txt'));
+  fs.writeFileSync(path.join(directory, 'a.txt'), 'Same bytes');
+  fs.utimesSync(path.join(directory, 'a.txt'), old.atime, old.mtime);
+  check();
+  assert.equal(control.calls, 2, 'same-size and same-mtime byte changes are read and hashed');
+  fs.renameSync(path.join(directory, 'b.txt'), path.join(directory, 'c.txt'));
+  check();
+  fs.unlinkSync(path.join(directory, 'c.txt'));
+  check();
+  for (const kind of ['symlink', 'other']) {
+    control.kind = kind;
+    assert.throws(() => api.manifest(directory), /Symlink|Non-file/);
+  }
+  control.kind = null;
+  const producer = compression.gzipSync;
+  compression.gzipSync = (bytes) => producer(bytes);
+  check();
+  assert.equal(control.calls, 3, 'a changed compression producer invalidates reused sizes');
+});
+test('public compression reuse evicts old entries without changing manifest bytes', (t) => {
+  const directory = fs.mkdtempSync(path.join(require('node:os').tmpdir(), 'manifest-eviction-'));
+  t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
+  const { api, control, oracle } = compressionProbe(directory);
+  for (let i = 0; i <= 2048; i++) {
+    fs.writeFileSync(path.join(directory, 'a.txt'), String(i));
+    assert.equal(JSON.stringify(api.manifest(directory)), JSON.stringify(oracle()));
+  }
+  assert.equal(control.calls, 2049);
+  fs.writeFileSync(path.join(directory, 'a.txt'), '0');
+  assert.equal(JSON.stringify(api.manifest(directory)), JSON.stringify(oracle()));
+  assert.equal(control.calls, 2050, 'eviction recomputes the actual native size');
+});
 test('pure route renderer receives explicit validated inputs and equals the filesystem adapter on all routes', () => {
   const { config, definitions } = builder.configuration(root),
     c = content.catalog(root),
@@ -102,7 +202,11 @@ test('pure page boundary escapes metadata and refuses missing or duplicate curre
   assert.doesNotMatch(html, /<script>bad\(\)<\/script>/);
   const link = '<a href="./">Home</a>';
   assert.throws(
-    () => renderPage({ ...values, headerHTML: values.headerHTML.replace(link, '') }),
+    () =>
+      renderPage({
+        ...values,
+        headerHTML: values.headerHTML.replace(link, ''),
+      }),
     /one current-route/
   );
   assert.throws(

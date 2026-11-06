@@ -1,0 +1,158 @@
+{
+  "original_request": "Publish the accepted current R10 article to production through existing repository release process. Website release authorized; LinkedIn/Medium author-manual later. Preserve manuscript/PDF/figures, all test scenarios, original budgets and source/rights/control/artifact binding. Owner #169 PR170.",
+  "head": "fc205b17774ba703c63fdd7d142ddac178afffdd",
+  "base": "8cf15883125892710633b17133d9ee0fc4b23b92",
+  "tree": "a605aff62e7c2ae28ce2ff3f81f06c1efa0fea7e",
+  "scope": "Prepared generated-closure successor after exact same v2 implementation. Native/runtime/manuscript/PDF parity in regeneration-parity.json; source-generation hashes updated by existing owners. Source has not been accepted as clean CI/staging.",
+  "observed_failure": {
+    "run": 42119802341,
+    "job": 127569213141,
+    "source": "b75a0a31e36be02bea15bb7a0b269d032fa3cdcb",
+    "artifact": 13457983011,
+    "local_zip": "/workspace/scratch/f4dcb060a703/R9_staging_prepublication_42119802341.zip",
+    "raw": "prepublication-source-tests-runner.json records ETIMEDOUT300000ms, incomplete75module staging run, no aggregate pass. Build cancelled after10min while security still running. Raw original reports retained."
+  },
+  "files": {
+    ".github/workflows/site-color-review.yml": {
+      "sha256": "d184fb3e54d5c3a42901f10597313e4cd4da0f5d3d51cb0f7ba3ab30a9f4dbe2"
+    },
+    "agents/reviewers/README.md": {
+      "sha256": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb"
+    },
+    "agents/reviewers/code-review.md": {
+      "sha256": "26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697"
+    },
+    "agents/reviewers/exploratory-interaction-qa.md": {
+      "sha256": "280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a"
+    },
+    "agents/reviewers/requirements-acceptance.md": {
+      "sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6"
+    },
+    "agents/reviewers/white-box-qa.md": {
+      "sha256": "832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f"
+    },
+    "docs/article-snapshots/7b1e3fbe23136bd07787e2d8348f94036213d2bb9a3ef16d618ffd2cb87ba7d1/the-sdlc-is-out-of-balance.html": {
+      "sha256": "2049d7e60adc0f8e1b00485322449d96399f3b349ce85f8f852573f25e545cbd"
+    },
+    "docs/articles/the-sdlc-is-out-of-balance.html": {
+      "sha256": "3fd23f74a0c74a64efd233dcf757ead84c6fa4faf66b33dcefc8796ca7534ea0"
+    },
+    "docs/credits.html": {
+      "sha256": "9373b4d1a296010b34722593166c6c55fce15a82e1f27df9c694e3b123205374"
+    },
+    "docs/index.html": {
+      "sha256": "38f697cccfa0b7547a068b1e121fd9c03be6f333ddd0b3ca251f28248460d873"
+    },
+    "docs/research.html": {
+      "sha256": "fa72e3bff59fd6d9c4a1505e49306ac9bd7442b5119a23ee040be95d289c93e3"
+    },
+    "docs/site-revision.json": {
+      "sha256": "3980767d31e60262c0d77acb721f2b526daf041b68c704d555063ab2f1a2f7d1"
+    },
+    "docs/snapshots/2b7302a1f2cc9dc6fedfa5c13f4fa277e8ffab5ab68e948269b3d9d3043a98cd/talks.html": {
+      "sha256": "0802b529e7049d9f28fdedbf65c7bc0a30086c9a267926b368616f747c7fb95c"
+    },
+    "docs/snapshots/4d3d841b02637bc5445cb4a0199d7eb99416bf5dab882f323c9b9edd743bf898/research.html": {
+      "sha256": "34d8174903f29bcb8fb5bd1ac3ad338550de6f26cada9d2bc05d2c5544774274"
+    },
+    "docs/snapshots/899daade336eb704ff1323f87e7b07eb33e3fdd207dbc0e6aaf08937746db70b/credits.html": {
+      "sha256": "802a21cb2a86e5376fdcc54fbcbe7ea0abefbc36cc294df0853dae6e99c69792"
+    },
+    "docs/snapshots/9c15723e5b5e0ef4e24df6376f4074c6ead4362bdc9c4e9055747e701e8a40f3/index.html": {
+      "sha256": "c1d6f64dc9397445435f72db694449112bd50f1e45925f06c6910a809571469d"
+    },
+    "docs/snapshots/f16c892c990ac5b965edc34a294f40ac272843d72b91fb385a2222b7e227ea5d/writing.html": {
+      "sha256": "b62917d9001a825672711ff50baa78ee29212f2c379e15e7a79b35bf474a6e31"
+    },
+    "docs/talks.html": {
+      "sha256": "69d0199347ed34ce9a0d1b90d09345e9d796a37c2bbe22e237d0594db4bc3ed2"
+    },
+    "docs/writing.html": {
+      "sha256": "2c66ca237af366604d09e55124678a6817b5db1757c9bd62db1fbf7c254b46a0"
+    },
+    "review/site-v1-20261004-v11-credits-day.html": {
+      "sha256": "23cc0e296f86481818fc0f52d10a60e0175de69bfe0ace8c49c2d598dc3287ef"
+    },
+    "review/site-v1-20261004-v11-credits-interactive.html": {
+      "sha256": "7e6c2c400f2ba4ebde54efa840b020255e54d245a7950f56a26c93a70769b88f"
+    },
+    "review/site-v1-20261004-v11-credits-night.html": {
+      "sha256": "eba50d668dd4988b2965034a05c188bb233666a63f63f10dbc88a68f852d1063"
+    },
+    "review/site-v1-20261004-v11-day.html": {
+      "sha256": "c1c73e874ae7cdc4d0d330e046b9bad1980707be3ca4d4a3770a95f804d3bbb3"
+    },
+    "review/site-v1-20261004-v11-interactive.html": {
+      "sha256": "8010f48269e235eb0b1fdc3587d9dc5975a159e5dea035d0ac3f131f9fec8491"
+    },
+    "review/site-v1-20261004-v11-night.html": {
+      "sha256": "689ede5c7f890108240ff0ef3773e460d23335085f7ac88a2418bec222445921"
+    },
+    "review/site-v1-20261004-v11-research-day.html": {
+      "sha256": "e3e5b3609ed66f5d964efb5c6cd3bb36415c92166fdfa5ecba924f3b06988085"
+    },
+    "review/site-v1-20261004-v11-research-interactive.html": {
+      "sha256": "3ff75bf89264556c256362d5155764f0ff11ee348da8372aa10158c5b05b7da0"
+    },
+    "review/site-v1-20261004-v11-research-night.html": {
+      "sha256": "54998c88c60aed40f690c5c95ad5b11a791e994c1f12aa5bd4c2f32e6b694768"
+    },
+    "review/site-v1-20261004-v11-talks-day.html": {
+      "sha256": "c99c5342c23d6da37b6d3f92e02f4dadf4c8dd3b3589e8d1818dc263bb8adc5a"
+    },
+    "review/site-v1-20261004-v11-talks-interactive.html": {
+      "sha256": "454b4c0276488d05925ea5774ac23eb9901f6d96e6e44ba422156109aa80bc92"
+    },
+    "review/site-v1-20261004-v11-talks-night.html": {
+      "sha256": "c0012d8612a8a20db68d10f61dd6e25d403168c7148c1f425de7459b18984eac"
+    },
+    "review/site-v1-20261004-v11-writing-day.html": {
+      "sha256": "34d4136ef6ac20eaa91fa2bfdafe6b43a4c83c7bdf51c76250c09c68ce3ff966"
+    },
+    "review/site-v1-20261004-v11-writing-interactive.html": {
+      "sha256": "41c90a56b0440cfa961f644b0e567db2629277fd0080ab8f4eab06177de2b39e"
+    },
+    "review/site-v1-20261004-v11-writing-night.html": {
+      "sha256": "5bff8a4457cdc911eaadd16a02e5d5e9f5a2d37984c000535dce0e05d344d6f6"
+    },
+    "review/site-v1-offline-bundle-v11.json": {
+      "sha256": "221bf44e3acbdb07f258ddd072f11be5d6b0162ca9c3366839a12d2d4e06de3e"
+    },
+    "review/site-v1-static-previews-v11.json": {
+      "sha256": "ff7e5e81eb1ef105c221c80cb2956e5bbbf3d17e4aad7aef013dd70fff480605"
+    },
+    "site/output-lock.json": {
+      "sha256": "31b602c30c326202afb615ae3e13a363f5e5d8bb66edc897306542997eddd47b"
+    },
+    "tests/build-cohesion.test.cjs": {
+      "sha256": "341134612f3006afe912d1ac7007a9baa47c234632612632f4b4e5f68dcdd5d6"
+    },
+    "tools/quality/local.cjs": {
+      "sha256": "ea8550ebac5b2f62147c60c8e0b70a54f6e60d20643cf190ec45c6a5d693f96d"
+    },
+    "tools/quality/prepublication-runner.cjs": {
+      "sha256": "46038e1ba99fa96975c6b9b103483e52d5273407bd56edc0d52a24456337d102"
+    },
+    "tools/quality/source-test-worker.cjs": {
+      "sha256": "415426b649d4344b17698d10aace6bab61a9c5e87cc37e31b3f56d458098a16f"
+    },
+    "tools/quality/source-tests.cjs": {
+      "sha256": "792aec87f4abb3aec8c97b4a8d33cd958a643b8f6c77aaac4c5683d45aaf5086"
+    },
+    "tools/site/public-artifact.cjs": {
+      "sha256": "2814ddf9eae981e145f9ad351227d03d628ed52fbdf9943abf7babbf99a58419"
+    }
+  },
+  "issue": "/workspace/scratch/f4dcb060a703/release-diagnosis/issue169.json",
+  "artifacts": {
+    "cache.diff": "f891976186dc66967c5e502c477286dfcf159962cfb48e68e0a40f3ecdaa7d88",
+    "cache-focused.log": "da7c51ade060a0c16b8a128a303838621316075ea88c791d6936f3a2eeafafda",
+    "manifest-timing.json": "34c490c5cb889ba1f5a6a2955d5874c199f26d505ff5668b4184b5b6a27a2f55",
+    "manifest-timing-corrected.json": "beb1b4b18cd0f231661b8caa22ed610b4d05eed404a59a83b0322bdb3635d534",
+    "cache-v2.diff": "7bfe92637bf55b37073db51683154339f1bb619523663b986cb714b535547e10",
+    "cache-lint.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "allowed": "Read sources and unchanged real tests, up to4min small independent checks; no implementation/test edits/external writes/delegation. Write only assigned report outside repo. No peer/parent-history/MEMORY reads.",
+  "format_correction": "Previous direct prettier call used defaults; current source restored canonical prettier.config.json formatting only. First lint command omitted required config and failed before linting; corrected config output is retained. No behavioral change.",
+  "report": "Report is orchestrator reconciliation; correction reviewers should inspect actual generated delta, parity JSON and own first output, not rely on peer conclusions."
+}

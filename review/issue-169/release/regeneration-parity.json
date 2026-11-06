@@ -1,0 +1,42 @@
+{
+  "base": "fc205b17774ba703c63fdd7d142ddac178afffdd",
+  "visibleTextParity": {
+    "docs/index.html": true,
+    "docs/research.html": true,
+    "docs/writing.html": true,
+    "docs/talks.html": true,
+    "docs/credits.html": true,
+    "docs/articles/the-sdlc-is-out-of-balance.html": true
+  },
+  "unchangedInputs": {
+    "docs/styles.css": {
+      "equalsBase": true,
+      "sha256": "677304b835527266f87d9f5c039fa7b321e8d296e07a133077e1f7094d9a0cc0"
+    },
+    "docs/theme.js": {
+      "equalsBase": true,
+      "sha256": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a"
+    },
+    "docs/space.js": {
+      "equalsBase": true,
+      "sha256": "7812c824ce3dac0d5d36f40788c65ca66cc553e5a0287850a24a499a02d4eab4"
+    },
+    "docs/archive.js": {
+      "equalsBase": true,
+      "sha256": "bf1b9e42356b282f3c08f7763a7a59263241c752df5dd9ee776a6b0bf86b0caa"
+    },
+    "docs/navigation.js": {
+      "equalsBase": true,
+      "sha256": "9d074333c9731e08a801e8f7ba418c645ef8c9e54d912a666912640e36e1a292"
+    },
+    "site/publications/sdlc-out-of-balance/manuscript.en.md": {
+      "equalsBase": true,
+      "sha256": "70386a2d2f602b5f60c93d35293a375e4e4abbc6f63a0dd888024031078b3d1f"
+    },
+    "site/assets/publications/sdlc-out-of-balance/materials/reading-r10.pdf": {
+      "equalsBase": true,
+      "sha256": "36269db33a71781084053ae40cc41e411a0106bea5e593ef0b08414014c4ca40"
+    }
+  },
+  "sourceIdentities": "Producer code change legitimately regenerates output signatures, aliases and snapshots; full route retained."
+}
