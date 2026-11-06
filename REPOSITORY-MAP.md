@@ -918,6 +918,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [review/issue-169/2026-11-06-trusted-controller.md](review/issue-169/2026-11-06-trusted-controller.md) | Trusted reader-controller prerequisite scope, exact-source review and check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/trusted-controller-security-proof.json.gz](review/issue-169/trusted-controller-security-proof.json.gz) | Per-location exact public checksum proof, original scanner failures and exact Bandit source comparison; independent security review separate. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/trusted-reader-producer.json](review/issue-169/trusted-reader-producer.json) | Exact protected-main predecessor and reviewed fallback consumer successor without changing accepted Research geometry/history. | history | [tools/check_site_seo.cjs](tools/check_site_seo.cjs) |
 
 ## review/issue-2/

@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "226d0b28c28fc26528bc37079e7c4568e6b060fdcb0c7f8f04bfa7173ff9d436",
+    "digest": "abdd71654aec7fe05dd796c83ddccde339cb1f6e871cb7b1d63173d874975941",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -216,12 +216,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "ba2ec0700f6864b352032bc1dc2ababbcaea202e6feff2a2f9f5de1b3f0ca12c"
+        "sha256": "f7add105254d07b47296c12f1c161512529ed4e83503905c077de09f668f1150"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "885988d0b8f6467ad2a2ad103d8a20c2b648dd1b108fef821e086ad024364bb4"
+        "sha256": "bf59dbd3484bff805c3b284b38e31e029d605e9a36ffac98cbd95935e6518c40"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -1230,7 +1230,12 @@
       {
         "path": "review/issue-169/2026-11-06-trusted-controller.md",
         "identity_mode": "content",
-        "sha256": "82676b780a1e3b8f5e4714fcb4ea9d17dfe1af1920748d88afd9688ab0ae4ca7"
+        "sha256": "0963d4f62f012fa04b41def5eb7ee1e367bffc535dd3abc0f6884907ffd0d6e3"
+      },
+      {
+        "path": "review/issue-169/trusted-controller-security-proof.json.gz",
+        "identity_mode": "content",
+        "sha256": "157625c828c655b2d5da72cc442acb17e6f9f25b4abcef6160542702e9927c02"
       },
       {
         "path": "review/issue-169/trusted-reader-producer.json",
@@ -8295,7 +8300,7 @@
       {
         "path": "tools/quality/bandit-policy.json",
         "identity_mode": "content",
-        "sha256": "45a2ec82fc755c0edc93e5ec7b7314d2d970f213ad3c69a28e6d1897862feb5c"
+        "sha256": "6bfcd8f9a99936bb60ecc6bbf6baf38dfaed8e0f739223891dc23558db754c22"
       },
       {
         "path": "tools/quality/bandit-triage.cjs",
@@ -8665,7 +8670,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "b6854593b2e419c7fa3f49287902891b7394b9a16910eaad357f42657648e885"
+        "sha256": "090fcb6ab6d5ff6f19c523939f045dc562eb3ac67b347bc9c73e1b27c9b0c4ea"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
@@ -12183,6 +12188,17 @@
         "AGENTS.md"
       ],
       "title": "Issue169 — trusted reader-controller correction"
+    },
+    {
+      "path": "review/issue-169/trusted-controller-security-proof.json.gz",
+      "kind": "file",
+      "purpose": "Per-location exact public checksum proof, original scanner failures and exact Bandit source comparison; independent security review separate.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "trusted-controller-security-proof.json.gz"
     },
     {
       "path": "review/issue-169/trusted-reader-producer.json",

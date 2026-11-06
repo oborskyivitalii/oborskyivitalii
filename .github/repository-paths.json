@@ -1831,6 +1831,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-169/trusted-controller-security-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Per-location exact public checksum proof, original scanner failures and exact Bandit source comparison; independent security review separate.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-169/trusted-reader-producer.json": {
       "kind": "file",
       "purpose": "Exact protected-main predecessor and reviewed fallback consumer successor without changing accepted Research geometry/history.",

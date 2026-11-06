@@ -99,3 +99,31 @@ forged/missing/extra lineage and altered historical/current producer bytes are
 refused. The original issue159 record is unchanged. Maintained preview/bundle
 checks pass after regeneration. Full corrected campaign and affected independent
 reviews remain pending; first failed campaign remains preserved.
+
+## Corrected source and actual security observations
+
+Clean preparedce33544/tree4f7541e2 passed **1195/1195** permanent production
+source cases with the original300000ms child limit, no cancel/skip/TODO. This
+is local exact-source evidence, not native/hosted acceptance. Its API-uploaded
+tree is identical at remote81b4540; commit identities differ and are not
+substituted in raw receipts.
+
+Actual security scan on that prepared source: Semgrep passed; Bandit refused
+expired3November review entries; secrets refused68 exact public hash findings.
+The complete48 Bandit source/line/rule/severity/confidence bindings still match;
+a past-date diagnostic establishes only that comparison, not current admission.
+Raw B102 severities remain MEDIUM; none are reclassified or hidden. Proposed
+renewal is30days with the same findings and immediate source/line invalidation.
+All68 hash candidates are individually proved against their actual source line:
+62 belong to unchanged same-path publication runtime/fixture source, six to
+recomputed main Git/fallback-before/current-fallback values. Per-location proof
+is in `trusted-controller-security-proof.json.gz`; all1722 prior checksum rows
+and the other three ledgers remain unchanged. Proposed exact additions require
+independent security/correction review. No scanner rule or size limit changes.
+
+The first affected82-case standalone suite was81pass/1fail while security review
+data was dirty. The repository-lint fixture requires a clean Git source before
+its report-writing branch; direct bounded invocation confirms the dirty-source
+refusal before scanner execution. Preserve that result; commit the prepared
+review data and rerun this one prerequisite-sensitive case on clean source.
+No scanner or test is changed for this environment refusal.
