@@ -104,6 +104,52 @@ function fixture(t) {
   return { directory, input, publicDir, put, source, revision, article, image, download };
 }
 
+test('frozen production archives verify native article inventory and indexed metadata', (t) => {
+  const f = fixture(t);
+  const production = require('../tools/release/edition.cjs');
+  const archived = require('../tools/release/edition-archive.cjs');
+  const record = production.build(f.input);
+  assert.equal(archived.verify(f.input, record).file, production.social.file);
+  const mutate = (change) => {
+    const original = new Map();
+    const put = (name, transform) => {
+      const file = path.join(f.publicDir, name);
+      const bytes = fs.readFileSync(file);
+      original.set(file, bytes);
+      fs.writeFileSync(file, transform(bytes.toString()));
+    };
+    const changed = structuredClone(record);
+    change(put, changed);
+    Object.assign(changed, artifact.manifest(f.publicDir));
+    assert.throws(() => archived.verify(f.input, changed));
+    for (const [file, bytes] of original) fs.writeFileSync(file, bytes);
+    assert.equal(archived.verify(f.input, record).file, production.social.file);
+  };
+  mutate((put) =>
+    put('sitemap.xml', (html) => html.replace(/<url><loc>[^<]*\/articles\/[^<]+<\/loc><\/url>/, ''))
+  );
+  mutate((_, changed) => (changed.components.articles = {}));
+  mutate((_, changed) => (changed.components.articles['probe:en'].candidate = true));
+  mutate((put) =>
+    put('articles/probe.html', (html) =>
+      html.replace('content="index,follow"', 'content="noindex,follow"')
+    )
+  );
+  mutate((put) =>
+    put('articles/probe.html', (html) =>
+      html.replace(
+        'rel="canonical" href="https://vitaliioborskyi.ai/articles/probe.html"',
+        'rel="canonical" href="https://vitaliioborskyi.ai/writing.html"'
+      )
+    )
+  );
+  mutate((put) =>
+    put('articles/probe.html', (html) =>
+      html.replace('property="og:image"', 'property="og:missing"')
+    )
+  );
+});
+
 test('new article closure is validated while legacy principal documents retain their bytes', (t) => {
   const f = fixture(t);
   assert.deepEqual(snapshot.verify(f.publicDir, f.source), f.revision);

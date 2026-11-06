@@ -183,6 +183,7 @@ test('fresh SEO CLI accepts current authored Home text and refuses stale approve
   for (const file of [
     'tools/check_site_seo.cjs',
     'review/issue-122/2026-10-27-home-content-frame.json',
+    'review/issue-169/trusted-reader-producer.json',
   ])
     fs.copyFileSync(path.join(root, file), path.join(directory, file));
   const owner = path.join(directory, 'site/content/pages/index/about.json');

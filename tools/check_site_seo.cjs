@@ -148,7 +148,11 @@ function createHTMLNormalizer(parser = helperContracts) {
   return Object.freeze({
     normalizeHTML,
     normalizeMany,
-    cacheStats: () => Object.freeze({ entries: normalizedHTML.size, bytes: normalizedHTMLBytes }),
+    cacheStats: () =>
+      Object.freeze({
+        entries: normalizedHTML.size,
+        bytes: normalizedHTMLBytes,
+      }),
   });
 }
 const { normalizeHTML, normalizeMany } = createHTMLNormalizer();
@@ -296,20 +300,70 @@ function verifyWritingCarrier(projectRoot = root, record = writingCarrier) {
       'Writing carrier reconstruction'
     );
   }
-  return { route: 'writing', resource: resource.name, acceptedSvgSHA256: record.acceptedSvgSHA256 };
+  return {
+    route: 'writing',
+    resource: resource.name,
+    acceptedSvgSHA256: record.acceptedSvgSHA256,
+  };
+}
+
+const readerConsumer = JSON.parse(
+  fs.readFileSync(path.join(root, 'review/issue-169/trusted-reader-producer.json'), 'utf8')
+);
+
+function verifyReaderConsumer(record) {
+  assert.deepEqual(Object.keys(record).sort(), [
+    'issue',
+    'predecessorSource',
+    'producerChanges',
+    'schema',
+  ]);
+  assert.equal(record.schema, 1, 'reader consumer schema');
+  assert.equal(record.issue, 169, 'reader consumer owner');
+  assert.equal(record.predecessorSource, '8cf15883125892710633b17133d9ee0fc4b23b92');
+  assert.deepEqual(Object.keys(record.producerChanges), ['tools/site/fallback.cjs']);
+  const change = record.producerChanges['tools/site/fallback.cjs'];
+  assert.deepEqual(Object.keys(change).sort(), ['afterSHA256', 'beforeSHA256']);
+  assert.equal(
+    change.beforeSHA256,
+    '66822a96b98fa151762dd72e601299c63b4ff57249a7d7134ee55d8ca03969c9'
+  );
+  assert.equal(
+    change.afterSHA256,
+    '0060c45f858b1669a1ab830c0de6ab4ba8a69d0f8589502bd4f17f8e545161d9'
+  );
+  return change;
 }
 
 function verifyResearchCarrier(
   projectRoot = root,
   record = issue159.researchCarrier,
-  successor = writingCarrier
+  successor = readerConsumer
 ) {
+  const change = verifyReaderConsumer(successor);
   assert.equal(record?.schema, 1, 'Research carrier record');
   assert.equal(record.acceptedSource, '6b0248f9fc667d968140fa034278490f22c1480d');
   assert.equal(record.predecessorBaseline, '2072b76e5e970db72122a0fd38fcb25da9a5bd46');
   assert.match(record.acceptedSvgSHA256, /^[a-f0-9]{64}$/);
   assert.deepEqual(Object.keys(record.producerChanges).sort(), researchCarrierInputs);
   for (const [name, binding] of Object.entries(record.producerChanges)) {
+    if (name === 'tools/site/fallback.cjs') {
+      assert.equal(binding.afterSHA256, change.beforeSHA256, 'reader consumer historical binding');
+      const predecessor = cp.execFileSync(
+        'git',
+        ['show', successor.predecessorSource + ':' + name],
+        { cwd: root }
+      );
+      assert.equal(
+        crypto.createHash('sha256').update(predecessor).digest('hex'),
+        change.beforeSHA256
+      );
+      assert.equal(
+        carrierProducer(name, binding, writingCarrier),
+        change.afterSHA256,
+        'Writing and reader consumer successor differ'
+      );
+    }
     assert.match(binding.beforeSHA256, /^[a-f0-9]{64}$/);
     const previous = cp.execFileSync('git', ['show', record.predecessorBaseline + ':' + name], {
       cwd: root,
@@ -321,7 +375,7 @@ function verifyResearchCarrier(
     );
     assert.equal(
       crypto.createHash('sha256').update(homeSourceFile(projectRoot, name)).digest('hex'),
-      carrierProducer(name, binding, successor),
+      carrierProducer(name, binding, writingCarrier),
       'Research carrier producer bytes: ' + name
     );
   }

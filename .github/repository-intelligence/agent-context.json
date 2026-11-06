@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "bd4ee825fd96d5d981e1afd12ee57ea572ef29e0b326429b393c0da6e03f4950",
+    "digest": "c8d94e4e146b3ae33cee90eb4661fca2701d5d59073cdc715dc4247898a0667d",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -216,12 +216,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "5bc0a3bb33216d8b92272f11cf6b754d2bd22667e105d9f146db0fa40ab30b1c"
+        "sha256": "99ab3ca7bdcc0ea6d298d19d901d2ca0665859d3360608757c913a26f3c7c9be"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "2221e988dabf872f7fe422087ffa1c3937daf3682a051d1fcb1a056ed583f71f"
+        "sha256": "0e0a1d459aae8e4f5ee8064086be4cf5ab0a922379f7998c6245bc711dceb92b"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -371,7 +371,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "499cd8c94b16784dff83c70eea965034cb8768bf850bfc349fed04957f02e056"
+        "sha256": "0c0c8a67ae1a15daf50c484829d6e1f9f3ad91e5dee7db6ce3af029038ffb056"
       },
       {
         "path": "NOTICE.md",
@@ -1988,6 +1988,11 @@
         "sha256": "460fc8bb505921dd8c7d56f5a82071520baa6d12a642d4b6ea70fabadc9b8f1a"
       },
       {
+        "path": "review/issue-169/2026-11-06-main-controller-integration.md",
+        "identity_mode": "content",
+        "sha256": "7bec97284c9c9a755890435c656c5e1c173c4980549fa2fdc996b06ba72f1fc0"
+      },
+      {
         "path": "review/issue-169/2026-11-06-notice-preflight-order.md",
         "identity_mode": "content",
         "sha256": "62d449b66b015b23b8be1dfca65a732855b25cabbe7c317583c47e3f844c0c9e"
@@ -2021,6 +2026,11 @@
         "path": "review/issue-169/2026-11-06-staging-security-followup.md",
         "identity_mode": "content",
         "sha256": "2468447157b460cc29ee24d573968efb51800a8eaf1f1e7fc40e8b087797a82c"
+      },
+      {
+        "path": "review/issue-169/2026-11-06-trusted-controller.md",
+        "identity_mode": "content",
+        "sha256": "c54939fe5e170ea020d2d8a9a2b4d687019a88b1b61dfc00e8bd8e873ac243c5"
       },
       {
         "path": "review/issue-169/2026-11-06-writing-discovery.md",
@@ -2231,6 +2241,16 @@
         "path": "review/issue-169/failed-source-run.tap.gz",
         "identity_mode": "content",
         "sha256": "3d255259780a6c4729c55032a13f731a053a6cc79164cbbf8dd9dc1092c680e2"
+      },
+      {
+        "path": "review/issue-169/main-integration-archive-proof.json.gz",
+        "identity_mode": "content",
+        "sha256": "97b298f5b2fe26ff097a743e915dbd11d0c0efd567df5dbc9b671c766beb2eee"
+      },
+      {
+        "path": "review/issue-169/main-integration-reviews-and-checks.tar.xz",
+        "identity_mode": "content",
+        "sha256": "bbebb26311e5b271e731987e4d13e5c66453b77cd67dbcff83510c150ec9702f"
       },
       {
         "path": "review/issue-169/native-check-allocation.md",
@@ -4293,6 +4313,26 @@
         "sha256": "5e3abb6dde101068301f1fef79f1df08f5adb6c91faf1edd51431077bc5c4913"
       },
       {
+        "path": "review/issue-169/trusted-controller-native-format-failure.log.gz",
+        "identity_mode": "content",
+        "sha256": "633035f8af8f15551e7f585ad29a0580cfbccfad5d4cb310907128e419db8f3a"
+      },
+      {
+        "path": "review/issue-169/trusted-controller-reviews-and-checks.tar.xz",
+        "identity_mode": "content",
+        "sha256": "68486324a5bd412c0c5ea2c00891258d2783044bfc3b02940b560fba4c380d3d"
+      },
+      {
+        "path": "review/issue-169/trusted-controller-security-proof.json.gz",
+        "identity_mode": "content",
+        "sha256": "157625c828c655b2d5da72cc442acb17e6f9f25b4abcef6160542702e9927c02"
+      },
+      {
+        "path": "review/issue-169/trusted-reader-producer.json",
+        "identity_mode": "content",
+        "sha256": "a2bc51ee25559008e7526e8c92925e33c9e9750d11d8483591e43b9a3a673042"
+      },
+      {
         "path": "review/issue-169/writing-carrier.json",
         "identity_mode": "content",
         "sha256": "281f0cd88fd249b3e18897b6e771fa8da0a16a0879a92319cab733c4d8fe1050"
@@ -4431,6 +4471,11 @@
         "path": "review/issue-169/writing-discovery/whitebox-storage.md.gz",
         "identity_mode": "content",
         "sha256": "b2acfeda69f45c3b8da81c0120e04e31e393f40722ba2a722943bf9a4fe59f87"
+      },
+      {
+        "path": "review/issue-169/writing-forms-reviews-and-checks.tar.xz",
+        "identity_mode": "content",
+        "sha256": "bf24c1792b2e0b25243c318e30859f5b48a9d11869980782100857da7604ceb4"
       },
       {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -8120,7 +8165,12 @@
       {
         "path": "review/site-v1-20261002-v6-index.html",
         "identity_mode": "content",
-        "sha256": "10a9fdbea57b561825b2200e86eef2cf7db339969d716c17d44469c959a22ce3"
+        "sha256": "07dd2c6293900807e51373fc4001c827a71cfab3a1eb35a75f498e62ac93b986"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-index.html.gz",
+        "identity_mode": "content",
+        "sha256": "77831142ac21079ff4045678e62f6a2c87d8d59fef33b71d2f89b50afb1fc76a"
       },
       {
         "path": "review/site-v1-20261002-v6-interactive.html",
@@ -9185,7 +9235,12 @@
       {
         "path": "review/site-visual-proposal-20261002.html",
         "identity_mode": "content",
-        "sha256": "1edeec65628118060cc2e0184d54a7b64752c3aa2c2cbbcb0941ae6315690a54"
+        "sha256": "88efc337f30eaa2de10db7ec75e4d2ad8fb9129077175316abf46c0c8c5aafd6"
+      },
+      {
+        "path": "review/site-visual-proposal-20261002.html.gz",
+        "identity_mode": "content",
+        "sha256": "0a0d1b0dbd2955f1ba8a51a0136bec2d8cd8a2c2983bb17f034c7699a1523d39"
       },
       {
         "path": "review/site-visual-proposal-20261002.json",
@@ -11170,7 +11225,7 @@
       {
         "path": "tests/content-rendering.test.cjs",
         "identity_mode": "content",
-        "sha256": "3ab51582569e7a0328e35f2cbad061f8d37f50c5b98cbf2677c2a1797032d907"
+        "sha256": "27b7b13201d85c00af881eed58c205fd7912ce3834d0d44563f0ccd6b9f46ce2"
       },
       {
         "path": "tests/content.test.cjs",
@@ -11225,7 +11280,7 @@
       {
         "path": "tests/executive.test.cjs",
         "identity_mode": "content",
-        "sha256": "c18330ac44e16ca7026dd0d7aa1d6341122bf534cc257b99b8acffd5581867b6"
+        "sha256": "3be20bc027883f23b394b420ddbdbe23cebc32bf57bf5b70715a18ca98e63202"
       },
       {
         "path": "tests/fixtures/article-flight.cjs",
@@ -11430,7 +11485,7 @@
       {
         "path": "tests/reader-controller.test.cjs",
         "identity_mode": "content",
-        "sha256": "d5d93ca70e9bf92741247c609977b916a349fbf22cd37d009f401524c853bf55"
+        "sha256": "fa40a37cc2ac00659490b4b5c9f95c958077ea790c4629ec536ec2c9c2892c17"
       },
       {
         "path": "tests/reader-mode.test.cjs",
@@ -11490,7 +11545,7 @@
       {
         "path": "tests/site-engine.test.cjs",
         "identity_mode": "content",
-        "sha256": "01dfd51bf53cd71d60337d1e89baa1ecec75ae92ef2228e02e546e36ed3e689a"
+        "sha256": "276b8cbd10a43209b8fd7b9d9c136b9d5f85493a680417755af85b6640d6abef"
       },
       {
         "path": "tests/site-face-preparation.test.cjs",
@@ -11790,7 +11845,7 @@
       {
         "path": "tools/check_site_seo.cjs",
         "identity_mode": "content",
-        "sha256": "0b749ddda512fc58e0b43ac9698a2548ffd9fedcff33f1961983f9afd69bf04c"
+        "sha256": "ddbc2df7c08b126a7905cba82bc06efc7692e61899c7e174d559650dba6def3b"
       },
       {
         "path": "tools/compact_site_recordings.cjs",
@@ -12375,7 +12430,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "7335e6c06a4cf3e21902df2ed67f6476859a08bc2cfef21e0b61e0a7215f7b03"
+        "sha256": "19838e7f79678b14b7d0fb70e9ab58db15cb4d938991f7fa71a6588baefaa36f"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
@@ -12435,7 +12490,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "d31947f04520637bdc60f958adb4f528d98007a17a340076679b40cb9e7f1d3d"
+        "sha256": "23120dc24a3ec2b1e0e226bdacbed648bf52ef7b320a072a3c57372e43d5d076"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -17561,6 +17616,17 @@
       "title": "Planned-link/site-first distribution — 6 November 2026"
     },
     {
+      "path": "review/issue-169/2026-11-06-main-controller-integration.md",
+      "kind": "file",
+      "purpose": "Issue169 source-bound main/controller integration, conflict dispositions, independent review and actual stable-staging evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue169 — publication integration after trusted-controller delivery"
+    },
+    {
       "path": "review/issue-169/2026-11-06-notice-preflight-order.md",
       "kind": "file",
       "purpose": "Issue169 measured notice-order correction, source/review invariants and remaining staging gates.",
@@ -17636,6 +17702,17 @@
         "AGENTS.md"
       ],
       "title": "Issue 169 — staging security follow-up"
+    },
+    {
+      "path": "review/issue-169/2026-11-06-trusted-controller.md",
+      "kind": "file",
+      "purpose": "Trusted reader-controller prerequisite scope, exact-source review and check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue169 — trusted reader-controller correction"
     },
     {
       "path": "review/issue-169/2026-11-06-writing-discovery.md",
@@ -18098,6 +18175,28 @@
         "AGENTS.md"
       ],
       "title": "failed-source-run.tap.gz"
+    },
+    {
+      "path": "review/issue-169/main-integration-archive-proof.json.gz",
+      "kind": "file",
+      "purpose": "Issue169 exact original Git/blob, lossless gzip and original-path historical preview archival proof.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "main-integration-archive-proof.json.gz"
+    },
+    {
+      "path": "review/issue-169/main-integration-reviews-and-checks.tar.xz",
+      "kind": "file",
+      "purpose": "Issue169 literal none-fork integration review outputs, source-bound successful/failed raw checks and exact ledger reason variants.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "main-integration-reviews-and-checks.tar.xz"
     },
     {
       "path": "review/issue-169/native-check-allocation.md",
@@ -22632,6 +22731,50 @@
       "title": "staging-production-test-audit-proof.tar.xz"
     },
     {
+      "path": "review/issue-169/trusted-controller-native-format-failure.log.gz",
+      "kind": "file",
+      "purpose": "Actual native Basic42294299712/job128155440694 formatting refusal at d3d76f7; retained without retry or source-test acceptance claims.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "trusted-controller-native-format-failure.log.gz"
+    },
+    {
+      "path": "review/issue-169/trusted-controller-reviews-and-checks.tar.xz",
+      "kind": "file",
+      "purpose": "Literal independent reviewer receipts/results and exact raw local source/security/check evidence, retaining first failures; hosted acceptance separate.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "trusted-controller-reviews-and-checks.tar.xz"
+    },
+    {
+      "path": "review/issue-169/trusted-controller-security-proof.json.gz",
+      "kind": "file",
+      "purpose": "Per-location exact public checksum proof, original scanner failures and exact Bandit source comparison; independent security review separate.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "trusted-controller-security-proof.json.gz"
+    },
+    {
+      "path": "review/issue-169/trusted-reader-producer.json",
+      "kind": "file",
+      "purpose": "Exact protected-main predecessor and reviewed fallback consumer successor without changing accepted Research geometry/history.",
+      "role": "history",
+      "owner": "tools/check_site_seo.cjs",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "trusted-reader-producer.json"
+    },
+    {
       "path": "review/issue-169/writing-carrier.json",
       "kind": "file",
       "purpose": "Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence.",
@@ -22938,6 +23081,17 @@
         "AGENTS.md"
       ],
       "title": "whitebox-storage.md.gz"
+    },
+    {
+      "path": "review/issue-169/writing-forms-reviews-and-checks.tar.xz",
+      "kind": "file",
+      "purpose": "Fresh four-role one-test correction receipts, actual main/native producer count-once and refusal checks, preserved failed setup and whole affected modules.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "writing-forms-reviews-and-checks.tar.xz"
     },
     {
       "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -31049,13 +31203,24 @@
     {
       "path": "review/site-v1-20261002-v6-index.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v6-index.html. Dated site v1 20261002 v6 index.html iteration material.",
+      "purpose": "Original-path locator for a losslessly gzip-retained historical HTML preview; decompress the adjacent archive to inspect exact original bytes.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
         "AGENTS.md"
       ],
       "title": "site-v1-20261002-v6-index.html"
+    },
+    {
+      "path": "review/site-v1-20261002-v6-index.html.gz",
+      "kind": "file",
+      "purpose": "Lossless exact Git-identical original historical HTML preview; decode gzip before inspection. Not active source or a current preview.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "site-v1-20261002-v6-index.html.gz"
     },
     {
       "path": "review/site-v1-20261002-v6-interactive.html",
@@ -33392,13 +33557,24 @@
     {
       "path": "review/site-visual-proposal-20261002.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-visual-proposal-20261002.html. Dated site visual proposal 20261002.html iteration material.",
+      "purpose": "Original-path locator for a losslessly gzip-retained historical HTML preview; decompress the adjacent archive to inspect exact original bytes.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
         "AGENTS.md"
       ],
       "title": "site-visual-proposal-20261002.html"
+    },
+    {
+      "path": "review/site-visual-proposal-20261002.html.gz",
+      "kind": "file",
+      "purpose": "Lossless exact Git-identical original historical HTML preview; decode gzip before inspection. Not active source or a current preview.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "site-visual-proposal-20261002.html.gz"
     },
     {
       "path": "review/site-visual-proposal-20261002.json",

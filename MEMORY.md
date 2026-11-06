@@ -4,55 +4,45 @@ Dated continuity, not live authority. Last verified: **2026-11-06**.
 
 ## Snapshot
 
-- Owner169 / PR170. Inspected head efe397d, main/controller8cf1588;
-  revalidate live refs/checks before further action. PR retained Draft for audit.
-- Accepted R10 manuscript/PDF/media, Writing2026/delivery and completed DevCon
-  remain frozen. No public content/runtime change in this test audit.
-- Current report: review/issue-169/2026-11-06-staging-production-test-audit.md;
-  compact proof retains all four initial/correction/final role results and failures.
+- Owner169 / publication PR170; prior head5586827, accepted R10.
+- Controller PR173 d06640c passed native source, owner stage42297000252/1
+  and dedicated App42306730255. Author explicitly accepted that exact head.
+- Protected normal merge312fbe4347eda332aa8ade885b07c98beadd6da5 is current main;
+  revalidate live refs. Publication integration is in preparation, not yet staged.
+- Integration owner: review/issue-169/2026-11-06-main-controller-integration.md.
 
 ## Decisions
 
-- Author requests full existing staging/production test reconciliation before
-  another stable attempt. No new stage dispatch in this audit.
-- Existing delivery boundary remains verified stable staging/tests, then STOP/show.
-  No merge/production; issue169 comment6685199809 retains that boundary.
-- Preserve source/scanner/browser/performance scenarios, workers and limits.
-  Optional full390/12/39 is five-route diagnostics, with reader performance separate.
-  Site-first distribution and author-manual platform posting remain.
+- Author requests controller integration, refresh PR170, complete actual stable
+  staging and article/PDF checks, then STOP/show. No PR170 merge or production.
+- Preserve R10 manuscript/PDF/figures, Writing2026/delivery, completed DevCon
+  and planned-link site-first distribution; later platform posting is manual.
+- No scanner, source/browser/performance budget, worker or gate relaxation.
+- Requirements preflight completed before integration; all four final distinct
+  independent roles and current source/native/hosted evidence remain required.
 
 ## Open work
 
-- Native owner stage42275940284 passed all prepublication guards; source1203/1203
-  in225214ms. Protected publisher8cf1588 then failed before upload on Writing
-  fallback; smoke/full/promotion skipped. Stable remains pending.
-- Added explicit pinned-controller case checks12 consumers in one run:
-  ten fail/two rights pass. Distinct drift: Writing fallback, current Color family,
-  Writing fallback transfer accounting. Reconcile trusted owners before restaging;
-  default current-current success cannot satisfy mixed-source admission.
-- Generic PDF collector/admission now checks descriptor-bound native links across
-  all5capabilities. Synthetic integration fixtures and targeted producer/oracle
-  selection updated. Four actual none-fork final roles accept frozen v4 test scope,
-  not release readiness. Exact check receipts and remaining gates are in report/proof.
-- Initial local production source failed300s:78wrappers started,77complete;
-  historical Git objects initially missing. Actual browser attempt failed before
-  launch on refused Unix socket. Both remain failed/incomplete, never waived.
-- Twenty-five unparsed historical human reports retain exact Git/gzip bytes within
-  unchanged RI bounds. Original stage failures remain; whole ACs stay open exceptAC06.
+- Resolve divergent Research/Writing provenance controls, ledger/profile/catalog
+  metadata; regenerate public/previews/bundle/RI from canonical authored owners.
+- Clean ed18 integration source1249/1249 in187498ms; Basic, all scanners,
+  RI29/29, coupling23/23, root15/15 and owning automated scope pass.
+- Four final distinct none-fork roles completed without blockers; literal proof
+  is main-integration-reviews-and-checks.tar.xz under review/issue-169.
+- Complete fresh Basic/RI/owning admission and normal full owner staging PR170.
+- Verify stable alias/source, R10 reader, PDF digest/MIME/pages and interactions.
+- Keep every failed historical observation and actual source attribution.
+- Whole AC01–11 remain pending except historical Draft milestoneAC06.
 
 ## Next session
 
-1. Revalidate live PR170/main/source/checks and current audit source-bound proof.
-2. Reconcile all3 protected-controller source contracts through the existing
-   authorized control route; no untrusted privileged checkout or compatibility shim.
-3. Run clean pinned-controller regression, fresh required source/CI and actual
-   affected reader/PDF collector; then complete owner staging/hosted gate.
-4. Verify stable alias/source/article/PDF and STOP/show. Later merge/production
-   uses separate applicable author decision and identical-tree/rights/archive gates.
+1. Revalidate PR170/main/checks and the integration report; continue current work.
+2. Finish source-bound independent integration reviews and actual required checks.
+3. Run owner staging only after fresh current-head source admission passes.
+4. Inspect stable article/PDF, report exact source/run/limits and STOP/show.
 
 ## Maintenance
 
-- Five sections/120-line cap; tested source, preview, stable and production differ.
-- Details stay with owning issue/PR/report; preserve failed observations and budgets.
-- Rebuild/verify RI/coupling after indexed edits. Missing/skipped/wrong-source
-  evidence never establishes completion; no secrets or private correspondence.
+- Five sections/120-line cap; detailed receipts remain with owning issue/PR.
+- Rebuild/verify RI/coupling after indexed edits; formatting follows coupling.
+- No secrets/private correspondence; missing or stale evidence never means pass.
