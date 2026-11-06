@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "event_slug": "devcon-romania-2026",
+  "edition": "DevCon Romania 2026 R10",
+  "revision": "R10",
+  "status": "author-review-draft",
+  "author": "Vitalii Oborskyi",
+  "language": "en",
+  "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/109",
+  "pull_request": "https://github.com/oborskyivitalii/oborskyivitalii/pull/110",
+  "versioning_contract": "guides/PRESENTATION-VERSIONING.md",
+  "repository_predecessor": {
+    "revision": "R9",
+    "commit": "3ee7398c48bfedca4a004e50ef72d88df954c8b4",
+    "manifest": "drafts/devcon-romania-2026/r9/edition.json"
+  },
+  "consolidated_scratch_aliases": [
+    "6-Nov article-aligned R10; proposed R15 withdrawn before retention"
+  ],
+  "source_pins": {
+    "pmday": {
+      "repository": "UncertaintyArchitectureGroup/uncertainty-architecture",
+      "commit": "22639d311d5fb46a23f3d5cdd819800dbe1169d9"
+    },
+    "article_r38": {
+      "repository": "oborskyivitalii/oborskyivitalii",
+      "pull_request": 79,
+      "commit": "b128ad27b23bc9d14a62b495c5c18b7ae537ab65",
+      "path": "site/publications/pmday-ai-both-sides/manuscript.en.md"
+    },
+    "article_r10": {
+      "repository": "oborskyivitalii/oborskyivitalii",
+      "commit": "fc205b17774ba703c63fdd7d142ddac178afffdd",
+      "path": "site/publications/sdlc-out-of-balance/manuscript.en.md",
+      "retained": {
+        "path": "drafts/devcon-romania-2026/r10/sources/article-r10.md",
+        "bytes": 17516,
+        "sha256": "70386a2d2f602b5f60c93d35293a375e4e4abbc6f63a0dd888024031078b3d1f"
+      },
+      "git_blob_sha": "972486f459ebbcfd6cc333977d603670a6ea82dc"
+    }
+  },
+  "external_baseline": {
+    "label": "delivered 3 November 2026 external R12",
+    "note": "External source lineage; not a retained repository R12 edition and not the 29-Oct R12 concise script.",
+    "artifacts": [
+      {
+        "bytes": 14964,
+        "sha256": "26a2c948e86b8c30c01e5d705e68705b34696862eb62c510e77083300599e269",
+        "file_name": "devcon-romania-2026-r12-speech.md",
+        "library_file_id": "libfile_d4ebe5850f08819188290299aedf5d0e",
+        "library_url": "https://chatgpt.com/library?file_id=libfile_d4ebe5850f08819188290299aedf5d0e&account_id=personal",
+        "note": "Existing durable source; exact bytes inspected locally. Not duplicated in this Git package."
+      },
+      {
+        "bytes": 952478,
+        "sha256": "78c9b730780591155b15ce84e5e0487a7ee0a0d7947d895d9a762763b6f1d8be",
+        "file_name": "devcon-romania-2026-r12.pdf",
+        "library_file_id": "libfile_7da84a307c108191914914c823125ff0",
+        "library_url": "https://chatgpt.com/library?file_id=libfile_7da84a307c108191914914c823125ff0&account_id=personal",
+        "note": "Existing durable source; exact bytes inspected locally. Not duplicated in this Git package."
+      },
+      {
+        "bytes": 1431000,
+        "sha256": "62078b50206fa2d5125e96af5b024c334c8f351c5459cbb1b70c8d9f338f07cd",
+        "file_name": "devcon-romania-2026-r12.pptx",
+        "library_file_id": "libfile_eaffed5af48c8191a777c95a1e5755f4",
+        "library_url": "https://chatgpt.com/library?file_id=libfile_eaffed5af48c8191a777c95a1e5755f4&account_id=personal",
+        "note": "Existing durable source; exact bytes inspected locally. Not duplicated in this Git package."
+      }
+    ]
+  },
+  "slide_count": 9,
+  "notes_count": 9,
+  "pdf_page_count": 9,
+  "speech_pdf_page_count": 10,
+  "slide_size_emu": {
+    "cx": 12192000,
+    "cy": 6858000
+  },
+  "artifacts": {
+    "pptx": {
+      "path": "drafts/devcon-romania-2026/r10/devcon-romania-2026-r10.pptx",
+      "bytes": 1431513,
+      "sha256": "31f45b07224a16e8c4be067c3a3b1579dac3311c14ad78af04798c325f81b7ef"
+    },
+    "pdf": {
+      "path": "drafts/devcon-romania-2026/r10/devcon-romania-2026-r10.pdf",
+      "bytes": 942907,
+      "sha256": "24797112ddd150a9141f638994df393c6ea738a8e4cbdedb373028c2f5ddef1f"
+    },
+    "notes": {
+      "path": "drafts/devcon-romania-2026/r10/speaker-notes.md",
+      "bytes": 18073,
+      "sha256": "b72402da167075b7567a6d20b546995a03e8459ea31953ce8cda2b8363a45fca"
+    },
+    "speech_pdf": {
+      "path": "drafts/devcon-romania-2026/r10/devcon-romania-2026-r10-speech.pdf",
+      "bytes": 88021,
+      "sha256": "45378d1089952387d6dfdf757b041802913cebf32cfab62e58321e5f566d1bc9"
+    }
+  },
+  "source_positions_in_delivery_order": [
+    1,
+    2,
+    4,
+    3,
+    5,
+    6,
+    8,
+    7,
+    9
+  ],
+  "scope": {
+    "changed_visible_and_spoken_slides": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "frozen_to_external_r12_visible_and_spoken_slides": [
+      6,
+      7,
+      8,
+      9
+    ],
+    "native_notes": "All nine R10 speech bodies in actual associated notes; stage cues and references are explicitly not spoken. Notes wrappers/references are synchronized, not byte-frozen.",
+    "history": "All pre-existing retained edition and speech files preserved."
+  },
+  "timing": {
+    "talk_maximum": "22:00",
+    "qa_target": "8:00",
+    "total_slot": "30:00",
+    "spoken_words": 1434,
+    "external_r12_spoken_words": 1423,
+    "delta_words": 11,
+    "method": "Whitespace tokens in nine spoken bodies only; cues, titles and references excluded.",
+    "status": "Planning arithmetic only; measured rehearsal pending."
+  },
+  "qr_target": "https://vitaliioborskyi.ai/",
+  "event_selection": {
+    "selected_revision": "R3",
+    "status": "Unchanged; R10 import does not select or release an event edition."
+  },
+  "acceptance": {
+    "author": "Edit/import authorization received; exact-package final acceptance is separate.",
+    "independent_review": "Source-bound final four-role results owned by the review record.",
+    "repository_checks": "Exact-source results owned by the review record and PR110.",
+    "timed_rehearsal": "pending",
+    "presenting_device": "pending",
+    "conference_final": false
+  },
+  "review_record": "review/issue-109/2026-11-06-r10-review.md",
+  "original_import_candidate": {
+    "note": "Original externally retained R10 before source-unit review correction; previous version remains immutable. Canonical first repository R10 is the corrected candidate.",
+    "artifacts": {
+      "pptx": {
+        "file_name": "DevCon_Romania_2026-11-06_R10.pptx",
+        "library_file_id": "libfile_fde3_f-aab157097f988191afc3ba7f496f1d61_db682e41b9b48191a0777c20636bbf33",
+        "version_id": "0",
+        "bytes": 1431444,
+        "sha256": "6574661343e6a74c222a60504b3b1b105a5dde44c7785dc28b262f59e2a28083"
+      },
+      "pdf": {
+        "file_name": "DevCon_Romania_2026-11-06_R10.pdf",
+        "library_file_id": "libfile_fde3_f-f1845248353c81919fc1b5e585f555f9_db682e41b9b48191a0777c20636bbf33",
+        "version_id": "0",
+        "bytes": 967986,
+        "sha256": "266e98b1bb3b3282fad72a1250672dda316e6ef7ce37a40b0f89a747da418071"
+      },
+      "notes": {
+        "file_name": "DevCon_Romania_2026-11-06_R10_Speech.md",
+        "library_file_id": "libfile_fde3_f-f0967bb07920819186fac2f2157c4fe7_db682e41b9b48191a0777c20636bbf33",
+        "version_id": "0",
+        "bytes": 17908,
+        "sha256": "4f60d228495d362839dd53c45475e2853c6b75a5d8f5294e8af56046792367b9"
+      },
+      "speech_pdf": {
+        "file_name": "DevCon_Romania_2026-11-06_R10_Speech.pdf",
+        "library_file_id": "libfile_fde3_f-7ae05e8e83888191adc583ccd122f239_db682e41b9b48191a0777c20636bbf33",
+        "version_id": "0",
+        "bytes": 88546,
+        "sha256": "841f142320760ee2b05972568d4a64571bbe1d4c9c6b9503a03cf351fb777261"
+      }
+    }
+  },
+  "correction": "Code F1: restore PR/Jira per-worker-month baseline-relative units in S04 caption and nonspoken native/Markdown/PDF sources. Spoken bodies, values, frozen S06-S09 and history unchanged; affected independent review required."
+}

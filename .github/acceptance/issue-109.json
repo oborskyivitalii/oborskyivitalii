@@ -1,0 +1,318 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 109,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/109",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Deliver exactly nine editable English R10 slides with the official title, one final homepage QR and nine attached notes synchronized to the full R10 speech. Delivery order is opening, delivery system, ownership, evidence, responses, runtime judgment, control feasibility, operation, closing. Compare spoken words with the delivered 3-Nov R12; <=22 minutes is a planning target, separate from measured rehearsal.",
+      "automated_scope": "Actual artifact/source and nonautomated decisions are assessed through the retained named gates; counts/keywords do not establish semantic acceptance. Dated 2026-11-06 R10 amendment: author authorized article-aligned S01-S05 changes and complete native/PDF/speech synchronization using delivered 3-Nov external R12; S06-S09 visible/spoken content frozen. Repository numbering R10 follows R9; external R12 is source lineage, not a new repository edition. Prior R9/R14 exact-wording constraints remain historical at commit 3ee7398c48bfedca4a004e50ef72d88df954c8b4, not current acceptance. All IDs, selectors, underlying evidence/rights/control safeguards and human gates remain. Scope reconciliation: review/issue-109/2026-11-06-r10-review.md.",
+      "checks": [],
+      "gates": [
+        "ARTIFACT-REVIEW"
+      ]
+    },
+    {
+      "id": "AC02",
+      "intent": "Preserve every retained repository edition and R13/R14 speech byte. Use the delivered 3-Nov external R12 as the content baseline; target visible/spoken S01-S05 and preserve S06-S09 visible native content and speech verbatim. Preserve media, relationships, evidence qualifications, provenance and rights; update notes wrappers/references for complete R10 synchronization.",
+      "automated_scope": "Actual artifact/source and nonautomated decisions are assessed through the retained named gates; counts/keywords do not establish semantic acceptance. Dated 2026-11-06 R10 amendment: author authorized article-aligned S01-S05 changes and complete native/PDF/speech synchronization using delivered 3-Nov external R12; S06-S09 visible/spoken content frozen. Repository numbering R10 follows R9; external R12 is source lineage, not a new repository edition. Prior R9/R14 exact-wording constraints remain historical at commit 3ee7398c48bfedca4a004e50ef72d88df954c8b4, not current acceptance. All IDs, selectors, underlying evidence/rights/control safeguards and human gates remain. Scope reconciliation: review/issue-109/2026-11-06-r10-review.md.",
+      "checks": [],
+      "gates": [
+        "SOURCE-RIGHTS-REVIEW",
+        "ARTIFACT-REVIEW"
+      ]
+    },
+    {
+      "id": "AC03",
+      "intent": "Independently inspect all nine actual final native/PDF renders, the visible argument, sources, readability, notes and talk economy. Obtain all four distinct source-bound quality-role results; no hidden notes-only lecture or inherited verdict establishes completion.",
+      "automated_scope": "Actual artifact/source and nonautomated decisions are assessed through the retained named gates; counts/keywords do not establish semantic acceptance. Dated 2026-11-06 R10 amendment: author authorized article-aligned S01-S05 changes and complete native/PDF/speech synchronization using delivered 3-Nov external R12; S06-S09 visible/spoken content frozen. Repository numbering R10 follows R9; external R12 is source lineage, not a new repository edition. Prior R9/R14 exact-wording constraints remain historical at commit 3ee7398c48bfedca4a004e50ef72d88df954c8b4, not current acceptance. All IDs, selectors, underlying evidence/rights/control safeguards and human gates remain. Scope reconciliation: review/issue-109/2026-11-06-r10-review.md.",
+      "checks": [],
+      "gates": [
+        "REQUIREMENTS-REVIEW",
+        "CODE-ARTIFACT-REVIEW",
+        "WHITEBOX-QA",
+        "EXPLORATORY-QA"
+      ]
+    },
+    {
+      "id": "AC04",
+      "intent": "Commit the complete R10 editable PPTX, matching exported PDF, full speech Markdown/reading PDF, edition manifest, byte-bound external R12/article provenance and current index in the existing Draft PR110 under issue109. Preserve all prior editions.",
+      "automated_scope": "Actual artifact/source and nonautomated decisions are assessed through the retained named gates; counts/keywords do not establish semantic acceptance. Dated 2026-11-06 R10 amendment: author authorized article-aligned S01-S05 changes and complete native/PDF/speech synchronization using delivered 3-Nov external R12; S06-S09 visible/spoken content frozen. Repository numbering R10 follows R9; external R12 is source lineage, not a new repository edition. Prior R9/R14 exact-wording constraints remain historical at commit 3ee7398c48bfedca4a004e50ef72d88df954c8b4, not current acceptance. All IDs, selectors, underlying evidence/rights/control safeguards and human gates remain. Scope reconciliation: review/issue-109/2026-11-06-r10-review.md.",
+      "checks": [],
+      "gates": [
+        "DELIVERY-LINKAGE",
+        "GENERATION-PROOF"
+      ]
+    },
+    {
+      "id": "AC05",
+      "intent": "Reconcile stable AC01-AC19 to the authorized R10 scope; maintain complete catalog, fresh RI/coupling, exact-source checks, independent reviews and issue/PR handoff. Apply CS01/02/04/05/08/09/10 to touched metadata/configuration; retain existing check selectors and human gates.",
+      "automated_scope": "Retained bounded repository checks establish only their named automated scope. Dated 2026-11-06 R10 amendment: author authorized article-aligned S01-S05 changes and complete native/PDF/speech synchronization using delivered 3-Nov external R12; S06-S09 visible/spoken content frozen. Repository numbering R10 follows R9; external R12 is source lineage, not a new repository edition. Prior R9/R14 exact-wording constraints remain historical at commit 3ee7398c48bfedca4a004e50ef72d88df954c8b4, not current acceptance. All IDs, selectors, underlying evidence/rights/control safeguards and human gates remain. Scope reconciliation: review/issue-109/2026-11-06-r10-review.md.",
+      "checks": [
+        "BASIC",
+        "STYLE",
+        "CURRENT-RI",
+        "RI-CI"
+      ],
+      "gates": [
+        "HANDOFF-REVIEW",
+        "REQUIREMENTS-REVIEW",
+        "CODE-ARTIFACT-REVIEW",
+        "WHITEBOX-QA",
+        "EXPLORATORY-QA"
+      ]
+    },
+    {
+      "id": "AC06",
+      "intent": "Obtain author acceptance of the exact complete R10 package, measured English rehearsal within the thirty-minute slot and real presenting-device/projection/notes acceptance before a conference-final designation. Editing/import authorization does not establish those observations.",
+      "automated_scope": "Actual artifact/source and nonautomated decisions are assessed through the retained named gates; counts/keywords do not establish semantic acceptance. Dated 2026-11-06 R10 amendment: author authorized article-aligned S01-S05 changes and complete native/PDF/speech synchronization using delivered 3-Nov external R12; S06-S09 visible/spoken content frozen. Repository numbering R10 follows R9; external R12 is source lineage, not a new repository edition. Prior R9/R14 exact-wording constraints remain historical at commit 3ee7398c48bfedca4a004e50ef72d88df954c8b4, not current acceptance. All IDs, selectors, underlying evidence/rights/control safeguards and human gates remain. Scope reconciliation: review/issue-109/2026-11-06-r10-review.md.",
+      "checks": [],
+      "gates": [
+        "AUTHOR-ACCEPTANCE"
+      ]
+    },
+    {
+      "id": "AC07",
+      "intent": "Retain one final QR that decodes to https://vitaliioborskyi.ai/ from both native asset and final PDF render, with the matching readable URL. Physical projection remains a separate author/device gate.",
+      "automated_scope": "Actual artifact/source and nonautomated decisions are assessed through the retained named gates; counts/keywords do not establish semantic acceptance. Dated 2026-11-06 R10 amendment: author authorized article-aligned S01-S05 changes and complete native/PDF/speech synchronization using delivered 3-Nov external R12; S06-S09 visible/spoken content frozen. Repository numbering R10 follows R9; external R12 is source lineage, not a new repository edition. Prior R9/R14 exact-wording constraints remain historical at commit 3ee7398c48bfedca4a004e50ef72d88df954c8b4, not current acceptance. All IDs, selectors, underlying evidence/rights/control safeguards and human gates remain. Scope reconciliation: review/issue-109/2026-11-06-r10-review.md.",
+      "checks": [],
+      "gates": [
+        "QR-REVIEW"
+      ]
+    },
+    {
+      "id": "AC08",
+      "intent": "After deliberate exact-edition selection, bind the event and campaign plan to the selected PDF path, SHA256 and source credit through the existing event contract. A newer review draft does not silently change event selection or publication.",
+      "automated_scope": "Actual artifact/source and nonautomated decisions are assessed through the retained named gates; counts/keywords do not establish semantic acceptance. Dated 2026-11-06 R10 amendment: author authorized article-aligned S01-S05 changes and complete native/PDF/speech synchronization using delivered 3-Nov external R12; S06-S09 visible/spoken content frozen. Repository numbering R10 follows R9; external R12 is source lineage, not a new repository edition. Prior R9/R14 exact-wording constraints remain historical at commit 3ee7398c48bfedca4a004e50ef72d88df954c8b4, not current acceptance. All IDs, selectors, underlying evidence/rights/control safeguards and human gates remain. Scope reconciliation: review/issue-109/2026-11-06-r10-review.md.",
+      "checks": [],
+      "gates": [
+        "VERSION-EVENT-BINDING"
+      ]
+    },
+    {
+      "id": "AC09",
+      "intent": "Document and apply a minimal reusable native-source/approved-slide/notes workflow producing editable PPTX and matching PDF with provenance, edition identity and hashes, using the existing presentation contract and validator.",
+      "automated_scope": "Actual artifact/source and nonautomated decisions are assessed through the retained named gates; counts/keywords do not establish semantic acceptance. Dated 2026-11-06 R10 amendment: author authorized article-aligned S01-S05 changes and complete native/PDF/speech synchronization using delivered 3-Nov external R12; S06-S09 visible/spoken content frozen. Repository numbering R10 follows R9; external R12 is source lineage, not a new repository edition. Prior R9/R14 exact-wording constraints remain historical at commit 3ee7398c48bfedca4a004e50ef72d88df954c8b4, not current acceptance. All IDs, selectors, underlying evidence/rights/control safeguards and human gates remain. Scope reconciliation: review/issue-109/2026-11-06-r10-review.md.",
+      "checks": [],
+      "gates": [
+        "GENERATION-PROOF"
+      ]
+    },
+    {
+      "id": "AC10",
+      "intent": "Record one controlled regeneration/re-export and a minimal independent reuse example with native/PDF/notes/QR/manifest checks, without expanding into a performance or hosted test programme.",
+      "automated_scope": "Actual artifact/source and nonautomated decisions are assessed through the retained named gates; counts/keywords do not establish semantic acceptance. Dated 2026-11-06 R10 amendment: author authorized article-aligned S01-S05 changes and complete native/PDF/speech synchronization using delivered 3-Nov external R12; S06-S09 visible/spoken content frozen. Repository numbering R10 follows R9; external R12 is source lineage, not a new repository edition. Prior R9/R14 exact-wording constraints remain historical at commit 3ee7398c48bfedca4a004e50ef72d88df954c8b4, not current acceptance. All IDs, selectors, underlying evidence/rights/control safeguards and human gates remain. Scope reconciliation: review/issue-109/2026-11-06-r10-review.md.",
+      "checks": [],
+      "gates": [
+        "REUSE-PROOF"
+      ]
+    },
+    {
+      "id": "AC11",
+      "intent": "S01: preserve the official title, authentic two-sided artwork and problem-framing cycle; state industry-level SDLC imbalance as the author diagnosis requiring organizational rebalancing and delegated runtime judgment as the second engineering problem. Qualify shared-context teams and low-risk delegation; synchronize R10 narration.",
+      "automated_scope": "Actual artifact/source and nonautomated decisions are assessed through the retained named gates; counts/keywords do not establish semantic acceptance. Dated 2026-11-06 R10 amendment: author authorized article-aligned S01-S05 changes and complete native/PDF/speech synchronization using delivered 3-Nov external R12; S06-S09 visible/spoken content frozen. Repository numbering R10 follows R9; external R12 is source lineage, not a new repository edition. Prior R9/R14 exact-wording constraints remain historical at commit 3ee7398c48bfedca4a004e50ef72d88df954c8b4, not current acceptance. All IDs, selectors, underlying evidence/rights/control safeguards and human gates remain. Scope reconciliation: review/issue-109/2026-11-06-r10-review.md.",
+      "checks": [],
+      "gates": [
+        "SLIDE-01-ACCEPTANCE",
+        "ARTIFACT-REVIEW",
+        "EXPLORATORY-QA"
+      ]
+    },
+    {
+      "id": "AC12",
+      "intent": "S02: retain the hypothetical comparable-change 8-to-100 fixed-downstream illustration and all-admitted assumption, +92 waiting work per month, discard/admission distinction and WIP limit. Explain that automating review can move the constraint; useful demand and user adoption also constrain value. Synchronize R10 narration.",
+      "automated_scope": "Actual artifact/source and nonautomated decisions are assessed through the retained named gates; counts/keywords do not establish semantic acceptance. Dated 2026-11-06 R10 amendment: author authorized article-aligned S01-S05 changes and complete native/PDF/speech synchronization using delivered 3-Nov external R12; S06-S09 visible/spoken content frozen. Repository numbering R10 follows R9; external R12 is source lineage, not a new repository edition. Prior R9/R14 exact-wording constraints remain historical at commit 3ee7398c48bfedca4a004e50ef72d88df954c8b4, not current acceptance. All IDs, selectors, underlying evidence/rights/control safeguards and human gates remain. Scope reconciliation: review/issue-109/2026-11-06-r10-review.md.",
+      "checks": [],
+      "gates": [
+        "SLIDE-02-ACCEPTANCE",
+        "ARTIFACT-REVIEW",
+        "EXPLORATORY-QA"
+      ]
+    },
+    {
+      "id": "AC13",
+      "intent": "S04 (stable evidence AC13): retain qualified NBER, DORA, GitClear and Agarwal quantities/units/method caveats; update Chen-Stratton to the 1-Nov-2026 revision (655 firms, opened PRs +35.7%, Jira issues resolved +13.7% borderline significant, review submission-to-approval elapsed time +56.1%). No active-reviewer-hours, direct customer-value, common-funnel, causal-ROI or measured industry-prevalence claim; no on-screen METR.",
+      "automated_scope": "Actual artifact/source and nonautomated decisions are assessed through the retained named gates; counts/keywords do not establish semantic acceptance. Dated 2026-11-06 R10 amendment: author authorized article-aligned S01-S05 changes and complete native/PDF/speech synchronization using delivered 3-Nov external R12; S06-S09 visible/spoken content frozen. Repository numbering R10 follows R9; external R12 is source lineage, not a new repository edition. Prior R9/R14 exact-wording constraints remain historical at commit 3ee7398c48bfedca4a004e50ef72d88df954c8b4, not current acceptance. All IDs, selectors, underlying evidence/rights/control safeguards and human gates remain. Scope reconciliation: review/issue-109/2026-11-06-r10-review.md.",
+      "checks": [],
+      "gates": [
+        "SLIDE-03-ACCEPTANCE",
+        "ARTIFACT-REVIEW",
+        "EXPLORATORY-QA"
+      ]
+    },
+    {
+      "id": "AC14",
+      "intent": "S03 (stable ownership AC14): retain the narrow/systemic review comparison, all five ownership functions, illustrative comprehension-gap and lifecycle charts, What if not? questions, experiment caveats and dark style. Distinguish verification from learning for competent ownership; assigned accountability alone does not supply competence. Protect flow and learning with synchronized R10 speech.",
+      "automated_scope": "Actual artifact/source and nonautomated decisions are assessed through the retained named gates; counts/keywords do not establish semantic acceptance. Dated 2026-11-06 R10 amendment: author authorized article-aligned S01-S05 changes and complete native/PDF/speech synchronization using delivered 3-Nov external R12; S06-S09 visible/spoken content frozen. Repository numbering R10 follows R9; external R12 is source lineage, not a new repository edition. Prior R9/R14 exact-wording constraints remain historical at commit 3ee7398c48bfedca4a004e50ef72d88df954c8b4, not current acceptance. All IDs, selectors, underlying evidence/rights/control safeguards and human gates remain. Scope reconciliation: review/issue-109/2026-11-06-r10-review.md.",
+      "checks": [],
+      "gates": [
+        "SLIDE-04-ACCEPTANCE",
+        "ARTIFACT-REVIEW",
+        "EXPLORATORY-QA"
+      ]
+    },
+    {
+      "id": "AC15",
+      "intent": "S05: retain all six contextual countermeasure hypotheses and their speed/full-cost, quality and knowledge/ownership tradeoffs. Add context-specific extensive/limited/no-AI choices; an owner with authority, budget and cross-functional support; bounded pilot baseline, useful outcomes, total cost, workload/stop conditions; safe recovery drill by another engineer using ordinary resources, business-defined time and equivalent scenarios. A passed drill supports only tested scope.",
+      "automated_scope": "Actual artifact/source and nonautomated decisions are assessed through the retained named gates; counts/keywords do not establish semantic acceptance. Dated 2026-11-06 R10 amendment: author authorized article-aligned S01-S05 changes and complete native/PDF/speech synchronization using delivered 3-Nov external R12; S06-S09 visible/spoken content frozen. Repository numbering R10 follows R9; external R12 is source lineage, not a new repository edition. Prior R9/R14 exact-wording constraints remain historical at commit 3ee7398c48bfedca4a004e50ef72d88df954c8b4, not current acceptance. All IDs, selectors, underlying evidence/rights/control safeguards and human gates remain. Scope reconciliation: review/issue-109/2026-11-06-r10-review.md.",
+      "checks": [],
+      "gates": [
+        "SLIDE-05-ACCEPTANCE",
+        "ARTIFACT-REVIEW",
+        "EXPLORATORY-QA"
+      ]
+    },
+    {
+      "id": "AC16",
+      "intent": "S06: preserve the exact delivered 3-Nov R12 visible content and spoken body: HOW-to-WHAT pivot, explicit rules versus conditional runtime judgment, changed requirements, bugs/tests, DoR/DoD and bounded authority. The dated R10 amendment supersedes the old account-recovery-example wording with the frozen R12 treatment; its recovery-plan safety example remains in S08 and earlier editions remain immutable.",
+      "automated_scope": "Actual artifact/source and nonautomated decisions are assessed through the retained named gates; counts/keywords do not establish semantic acceptance. Dated 2026-11-06 R10 amendment: author authorized article-aligned S01-S05 changes and complete native/PDF/speech synchronization using delivered 3-Nov external R12; S06-S09 visible/spoken content frozen. Repository numbering R10 follows R9; external R12 is source lineage, not a new repository edition. Prior R9/R14 exact-wording constraints remain historical at commit 3ee7398c48bfedca4a004e50ef72d88df954c8b4, not current acceptance. All IDs, selectors, underlying evidence/rights/control safeguards and human gates remain. Scope reconciliation: review/issue-109/2026-11-06-r10-review.md.",
+      "checks": [],
+      "gates": [
+        "SLIDE-06-ACCEPTANCE",
+        "ARTIFACT-REVIEW",
+        "EXPLORATORY-QA"
+      ]
+    },
+    {
+      "id": "AC17",
+      "intent": "S08: preserve exact delivered 3-Nov R12 visible content and speech, including two separate illustrative 200-case samples, 196/3/1 forbidden-outcome veto, pre-release block, runtime stop/safe fallback, behavior/control observation and qualified human expertise, coverage, workload, response time and fatigue. Preserve inherited operating/control reference qualifications without claiming online status proves capacity.",
+      "automated_scope": "Actual artifact/source and nonautomated decisions are assessed through the retained named gates; counts/keywords do not establish semantic acceptance. Dated 2026-11-06 R10 amendment: author authorized article-aligned S01-S05 changes and complete native/PDF/speech synchronization using delivered 3-Nov external R12; S06-S09 visible/spoken content frozen. Repository numbering R10 follows R9; external R12 is source lineage, not a new repository edition. Prior R9/R14 exact-wording constraints remain historical at commit 3ee7398c48bfedca4a004e50ef72d88df954c8b4, not current acceptance. All IDs, selectors, underlying evidence/rights/control safeguards and human gates remain. Scope reconciliation: review/issue-109/2026-11-06-r10-review.md.",
+      "checks": [],
+      "gates": [
+        "SLIDE-07-ACCEPTANCE",
+        "ARTIFACT-REVIEW",
+        "EXPLORATORY-QA"
+      ]
+    },
+    {
+      "id": "AC18",
+      "intent": "S07: preserve exact delivered 3-Nov R12 visible content and speech: sensors/controller/actuators/controlled-system loop, outcome feedback, enforced action constraints, conditional human architectural dependency, full expertise/operating cost and feasibility before commitment. A demo provides bounded evidence; research, narrowed delegation or stopping may be necessary. Preserve inherited control qualifications.",
+      "automated_scope": "Actual artifact/source and nonautomated decisions are assessed through the retained named gates; counts/keywords do not establish semantic acceptance. Dated 2026-11-06 R10 amendment: author authorized article-aligned S01-S05 changes and complete native/PDF/speech synchronization using delivered 3-Nov external R12; S06-S09 visible/spoken content frozen. Repository numbering R10 follows R9; external R12 is source lineage, not a new repository edition. Prior R9/R14 exact-wording constraints remain historical at commit 3ee7398c48bfedca4a004e50ef72d88df954c8b4, not current acceptance. All IDs, selectors, underlying evidence/rights/control safeguards and human gates remain. Scope reconciliation: review/issue-109/2026-11-06-r10-review.md.",
+      "checks": [],
+      "gates": [
+        "SLIDE-08-ACCEPTANCE",
+        "ARTIFACT-REVIEW",
+        "EXPLORATORY-QA"
+      ]
+    },
+    {
+      "id": "AC19",
+      "intent": "S09: preserve exact delivered 3-Nov R12 visible content and speech, one closing slide, both research identities/links, HOW/WHAT and role actions, sound-engineering/recovery conclusion and one homepage QR.",
+      "automated_scope": "Actual artifact/source and nonautomated decisions are assessed through the retained named gates; counts/keywords do not establish semantic acceptance. Dated 2026-11-06 R10 amendment: author authorized article-aligned S01-S05 changes and complete native/PDF/speech synchronization using delivered 3-Nov external R12; S06-S09 visible/spoken content frozen. Repository numbering R10 follows R9; external R12 is source lineage, not a new repository edition. Prior R9/R14 exact-wording constraints remain historical at commit 3ee7398c48bfedca4a004e50ef72d88df954c8b4, not current acceptance. All IDs, selectors, underlying evidence/rights/control safeguards and human gates remain. Scope reconciliation: review/issue-109/2026-11-06-r10-review.md.",
+      "checks": [],
+      "gates": [
+        "SLIDE-09-ACCEPTANCE",
+        "ARTIFACT-REVIEW",
+        "EXPLORATORY-QA"
+      ]
+    }
+  ],
+  "checks": {
+    "BASIC": {
+      "kind": "node-basic"
+    },
+    "STYLE": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "CURRENT-RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    }
+  },
+  "gates": {
+    "ARTIFACT-REVIEW": {
+      "kind": "human",
+      "description": "Inspect exact R10 native/PDF/speech/notes and all-nine-slide correspondence against the frozen 3-Nov external R12 and article R10. Counts/export alone do not prove visual, empirical, rights or author acceptance."
+    },
+    "SOURCE-RIGHTS-REVIEW": {
+      "kind": "human",
+      "description": "Trace R10 through byte-bound external R12 and retained repository/PMDay history; inspect exact article R10 and primary November Chen-Stratton revision with version/hash/page references. Preserve media/licensing, sample/endpoint/unit qualifications and author-synthesis boundaries. Full source/rights acceptance remains distinct."
+    },
+    "REQUIREMENTS-REVIEW": {
+      "kind": "human",
+      "description": "Completed distinct nonauthor Requirements & Acceptance execution on original intent/current ACs and the final candidate, with actual isolation launch, prompt/packet/source identities and first-result receipt."
+    },
+    "CODE-ARTIFACT-REVIEW": {
+      "kind": "human",
+      "description": "Completed distinct nonauthor Code/changed-artifact execution inspecting actual helper/native sources and diff, dependency preservation, readability, relevant CS rules and check implementation. Do not substitute the implementer review."
+    },
+    "WHITEBOX-QA": {
+      "kind": "human",
+      "description": "Completed distinct nonauthor White-box QA execution with structural risks, independent oracles, bounded actual checks and exact source/results; distinguish inspection from execution and uncovered scope."
+    },
+    "EXPLORATORY-QA": {
+      "kind": "human",
+      "description": "Completed distinct nonauthor Exploratory/Interaction QA execution on actual presentation/PDF viewing surfaces, independent charter, all-nine-slide observations and honest device/physical limits."
+    },
+    "DELIVERY-LINKAGE": {
+      "kind": "human",
+      "description": "Observe actual complete R10 artifact/source files and hashes in an issue109-linked commit on the same Draft PR110, preserving prior-edition bytes. Repository delivery is distinct from merge, event selection and public release."
+    },
+    "HANDOFF-REVIEW": {
+      "kind": "human",
+      "description": "Reconcile current AC01-AC19, relevant CS rules, catalog/RI/CI and actual issue checkboxes. Attach exact-source results and four independent completed roles with actual none-fork launch/packet/prompt receipts. Historical or Draft-skipped CI is not a pass."
+    },
+    "AUTHOR-ACCEPTANCE": {
+      "kind": "human",
+      "description": "Record exact complete R10 author acceptance, measured rehearsal and real presenting-device/projection/notes observations separately. Existing edit/import approval authorizes this work; no repeated approval is required to implement it. No unobserved final/device/timing acceptance is inferred."
+    },
+    "QR-REVIEW": {
+      "kind": "human",
+      "description": "Decode the one final homepage QR from native and final PDF raster to exactly https://vitaliioborskyi.ai/, inspect the readable URL and preserve actual decoded-image/source identities. Projector distance remains AC06."
+    },
+    "VERSION-EVENT-BINDING": {
+      "kind": "human",
+      "description": "Keep the existing R3 event selection until explicit exact-package selection. Then verify event deck path/hash/credit and plan source hashes with the existing event adapter. No silent selection, merge or public release."
+    },
+    "GENERATION-PROOF": {
+      "kind": "human",
+      "description": "Record exact imported R10 and external R12 sources, preserved native editability/media/relationships, delivery-order notes synchronization, controlled LibreOffice re-export and matching final PDF pages/links. Existing edition validator checks hashes/counts; source/content/human gates remain distinct."
+    },
+    "REUSE-PROOF": {
+      "kind": "human",
+      "description": "Inspect source-bound controlled re-export/regeneration and a bounded independent non-DevCon example using the same minimal mechanism. Preserve genuine unavailable/partial evidence as pending; do not invent a generic-engine or performance requirement."
+    },
+    "SLIDE-01-ACCEPTANCE": {
+      "kind": "human",
+      "description": "Historical source-content gate S01; current R10 delivery S01. Inspect exact editable content, corresponding R10 speech/native notes, source qualifications and final render. S01-S05 follow authorized article R10 treatment; S06-S09 remain frozen to delivered 3-Nov external R12. Exact-package author acceptance remains separate from edit/import approval. Prior-edition verdicts do not establish current acceptance."
+    },
+    "SLIDE-02-ACCEPTANCE": {
+      "kind": "human",
+      "description": "Historical source-content gate S02; current R10 delivery S02. Inspect exact editable content, corresponding R10 speech/native notes, source qualifications and final render. S01-S05 follow authorized article R10 treatment; S06-S09 remain frozen to delivered 3-Nov external R12. Exact-package author acceptance remains separate from edit/import approval. Prior-edition verdicts do not establish current acceptance."
+    },
+    "SLIDE-03-ACCEPTANCE": {
+      "kind": "human",
+      "description": "Historical source-content gate S03; current R10 delivery S04. Inspect exact editable content, corresponding R10 speech/native notes, source qualifications and final render. S01-S05 follow authorized article R10 treatment; S06-S09 remain frozen to delivered 3-Nov external R12. Exact-package author acceptance remains separate from edit/import approval. Prior-edition verdicts do not establish current acceptance."
+    },
+    "SLIDE-04-ACCEPTANCE": {
+      "kind": "human",
+      "description": "Historical source-content gate S04; current R10 delivery S03. Inspect exact editable content, corresponding R10 speech/native notes, source qualifications and final render. S01-S05 follow authorized article R10 treatment; S06-S09 remain frozen to delivered 3-Nov external R12. Exact-package author acceptance remains separate from edit/import approval. Prior-edition verdicts do not establish current acceptance."
+    },
+    "SLIDE-05-ACCEPTANCE": {
+      "kind": "human",
+      "description": "Historical source-content gate S05; current R10 delivery S05. Inspect exact editable content, corresponding R10 speech/native notes, source qualifications and final render. S01-S05 follow authorized article R10 treatment; S06-S09 remain frozen to delivered 3-Nov external R12. Exact-package author acceptance remains separate from edit/import approval. Prior-edition verdicts do not establish current acceptance."
+    },
+    "SLIDE-06-ACCEPTANCE": {
+      "kind": "human",
+      "description": "Historical source-content gate S06; current R10 delivery S06. Inspect exact editable content, corresponding R10 speech/native notes, source qualifications and final render. S01-S05 follow authorized article R10 treatment; S06-S09 remain frozen to delivered 3-Nov external R12. Exact-package author acceptance remains separate from edit/import approval. Prior-edition verdicts do not establish current acceptance."
+    },
+    "SLIDE-07-ACCEPTANCE": {
+      "kind": "human",
+      "description": "Historical source-content gate S07; current R10 delivery S08. Inspect exact editable content, corresponding R10 speech/native notes, source qualifications and final render. S01-S05 follow authorized article R10 treatment; S06-S09 remain frozen to delivered 3-Nov external R12. Exact-package author acceptance remains separate from edit/import approval. Prior-edition verdicts do not establish current acceptance."
+    },
+    "SLIDE-08-ACCEPTANCE": {
+      "kind": "human",
+      "description": "Historical source-content gate S08; current R10 delivery S07. Inspect exact editable content, corresponding R10 speech/native notes, source qualifications and final render. S01-S05 follow authorized article R10 treatment; S06-S09 remain frozen to delivered 3-Nov external R12. Exact-package author acceptance remains separate from edit/import approval. Prior-edition verdicts do not establish current acceptance."
+    },
+    "SLIDE-09-ACCEPTANCE": {
+      "kind": "human",
+      "description": "Historical source-content gate S09; current R10 delivery S09. Inspect exact editable content, corresponding R10 speech/native notes, source qualifications and final render. S01-S05 follow authorized article R10 treatment; S06-S09 remain frozen to delivered 3-Nov external R12. Exact-package author acceptance remains separate from edit/import approval. Prior-edition verdicts do not establish current acceptance."
+    }
+  }
+}

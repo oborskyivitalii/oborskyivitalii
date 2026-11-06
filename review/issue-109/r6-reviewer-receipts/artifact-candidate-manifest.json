@@ -1,0 +1,212 @@
+{
+  "kind": "prepared-artifact-subset-not-clean-git",
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 109,
+  "pull_request": 110,
+  "old_pr_head": "327ec57d9c4b7539d83631204b91bdc36545c862",
+  "main_base": "8cf15883125892710633b17133d9ee0fc4b23b92",
+  "scope": "Full R6 PPTX/PDF/native notes, exact approved slide4 integration, bounded native slide helper and retained reproducible inputs. Package index/edition manifest and generated metadata are being completed separately and are excluded from this prepared subset. No release/merge/event selection is claimed.",
+  "unavailable_surfaces": [
+    "PowerPoint on a physical presenting device",
+    "timed human rehearsal",
+    "full-deck author acceptance",
+    "hosted CI for not-yet-pushed source"
+  ],
+  "files": [
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-build/baseline-export.json",
+      "bytes": 861,
+      "sha256": "8af792d01cb5ff1387fc9fdc024af7ab14b43d1e99d1961062979b9423500f62"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-build/build-receipt.json",
+      "bytes": 35340,
+      "sha256": "7badc42e7d05facd104041fd4d8912f9ee545fba62ec8834fe61e2215a15721e"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-build/donor-export.json",
+      "bytes": 691,
+      "sha256": "07318e8083cecf483b4883a4df0aa8ebf7e69149482ad29f9623e021d97f8c60"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-build/final-export.json",
+      "bytes": 758,
+      "sha256": "a430247c644882302865e99a2ce36767f50d4cef9b7bd6952d6cc5d5d84e7a78"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-build/finalization.validation.json",
+      "bytes": 3600,
+      "sha256": "a4b1931889168de1725baaa457e231b7efb95b31fd844dd076708a6f3993c6d9"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-build/helper-checks.json",
+      "bytes": 664,
+      "sha256": "f79f2323c57b8fb72a3b6ebc85ef42e520860a35927c6b03d0113f3cf3ba034a"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-build/integration.stdout.json",
+      "bytes": 812,
+      "sha256": "3db6fe71ed9a47307b51074c9921368b3b93daae9e5d62fd9df01cef01966e2a"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-build/r6-contact-sheet.png",
+      "bytes": 1214264,
+      "sha256": "5cf1e34ddb6ac2c10cb715a0870b876947ebfdf0593c73deffb5d42e7f4b3a48"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-build/renders-final/slide-01.png",
+      "bytes": 716045,
+      "sha256": "009283337e09c12335017300d470a5f3f60e0310690bf61be6f029be7c28d63f"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-build/renders-final/slide-02.png",
+      "bytes": 115154,
+      "sha256": "c2a46550cca0d3f5482ae12a7d16ecaa95c638ee754f5e56418e551878365d83"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-build/renders-final/slide-03.png",
+      "bytes": 201769,
+      "sha256": "cd9edd8981c19a87f51504f1b6389dcbb9edfb5459182ede4e061cad391eae8c"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-build/renders-final/slide-04.png",
+      "bytes": 234794,
+      "sha256": "9d43d329bb5155378567d675be511914c228915c8b39e51a73ee91ecac82f7bb"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-build/renders-final/slide-05.png",
+      "bytes": 198315,
+      "sha256": "5a51788055a60a622671bd7da3a29530a8e0cc70473e354bd83d13e1dbdaaf8f"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-build/renders-final/slide-06.png",
+      "bytes": 167365,
+      "sha256": "00d46b79707de06d6bac7e35038f1a7070abe9b055515cc2217bc4cbf526b328"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-build/renders-final/slide-07.png",
+      "bytes": 168321,
+      "sha256": "d8bd372ec0a333e1b06415d3f9a8c93a419a8031218182c2635dcbf7dbd578fd"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-build/renders-final/slide-08.png",
+      "bytes": 177110,
+      "sha256": "028000cb652d28b76a433b06688baacb86f4acf44566807bc50caa0f2d236e96"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-build/renders-final/slide-09.png",
+      "bytes": 172242,
+      "sha256": "04a8440e23ccdfbb6325466b7a2d0ee5952ad867702eeedb21e73aa0f3ebb8c0"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-repo/.github/ACCEPTANCE.md",
+      "bytes": 9960,
+      "sha256": "6469a66a36171404ce8448d75c3c5d96dc43563c76af41d4d2367598836fcaa8"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-repo/.github/acceptance/issue-109.json",
+      "bytes": 29606,
+      "sha256": "4b9c2a1fb5e92548c43a0636e23e7030840aed36dbc42730f85fee57dd5bb422"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-repo/AGENTS.md",
+      "bytes": 6747,
+      "sha256": "ad4f179ec04c7af12867229d70598a660c5ae41f3cb456cafd02aca3d12a9988"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-repo/CONTRIBUTING.md",
+      "bytes": 19704,
+      "sha256": "804fb3da9a0bc7369bbd902313224221becc6c6b775536ca943f8664bf741442"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-repo/agents/reviewers/README.md",
+      "bytes": 6964,
+      "sha256": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-repo/agents/reviewers/code-review.md",
+      "bytes": 2663,
+      "sha256": "26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-repo/agents/reviewers/exploratory-interaction-qa.md",
+      "bytes": 2850,
+      "sha256": "280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-repo/agents/reviewers/white-box-qa.md",
+      "bytes": 3266,
+      "sha256": "832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/devcon-romania-2026-r6.pdf",
+      "bytes": 1114513,
+      "sha256": "2a8d7a63764b014dfc0fdbdf65562296d744f6c527ef1319a2f034465db9fa05"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/devcon-romania-2026-r6.pptx",
+      "bytes": 1422899,
+      "sha256": "fa461eadcf41cd314b6861be6968824545719254e5430f6de705a2071f8cbd94"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/sources/README.md",
+      "bytes": 1807,
+      "sha256": "358420915ba0dcf7269b016615577b516e03aad04dbedfa074e3a38c728cd0c8"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/sources/approved-slide-04-native.pptx",
+      "bytes": 44767,
+      "sha256": "1741f44748706fae660f442636470c48223f721af567c83315c89e56a52d1c4c"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/sources/approved-slide-04-preview.png",
+      "bytes": 481796,
+      "sha256": "c3ba556b7e28cf38e6d87375af070885aceeb9cb79fc260a9834a573230c3259"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/sources/provenance.json",
+      "bytes": 1295,
+      "sha256": "a9ae8b0c28ef8c6d1eeacec022655da1a722e4f7c2a4bcb71e45885a55854908"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/sources/scratch-r13-native-full-deck.pptx",
+      "bytes": 1395078,
+      "sha256": "6e62b5b83c55fa09e63cf25806bdcf4472ffe313e89b85d1f26d1484c777ebbf"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/speaker-notes.md",
+      "bytes": 35106,
+      "sha256": "3772174bc7e27eb32339a43541cc17191c898bac710ec994ae9c8c30f1d86976"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-repo/guides/PRESENTATION-VERSIONING.md",
+      "bytes": 3127,
+      "sha256": "917ec0d4323d55081a5a1c9e671f656c01b4173c4b8d8371eb24857a09fbb75e"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-repo/tools/presentations/integrate_native_slide.py",
+      "bytes": 11118,
+      "sha256": "3cae90c8b59665883c887f6df45459972b047e07387ea88baa2c6573e6fefe02"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-repo/tools/presentations/validate_edition.py",
+      "bytes": 4960,
+      "sha256": "4d5a1cf4c6f7ad7fde3e0a9161bdee9cf21533189f611ece1411112df9fdbf2b"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-review-inputs/artifact-candidate.diff",
+      "bytes": 11705,
+      "sha256": "b03b99daf5b8019e050f374a31ed7869d65d4a3962c62a59d9582936175ab3df"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-review-inputs/issue-109.md",
+      "bytes": 69386,
+      "sha256": "298caeaea01efa7b07d97fc7a05c61ec78dc3925e4dbbfef8b8aac2da3307b9e"
+    },
+    {
+      "path": "/workspace/scratch/d8b65f68acc8/devcon-review-inputs/request.md",
+      "bytes": 2817,
+      "sha256": "bcfb31ce2b64043f2af5b45f4dbc810fa0b1004cbd7820e053da515e29f76e21"
+    }
+  ]
+}

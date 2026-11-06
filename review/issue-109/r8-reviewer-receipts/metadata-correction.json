@@ -1,0 +1,18 @@
+{
+  "changes": [
+    {
+      "path": "drafts/devcon-romania-2026/r8/edition.json",
+      "before_sha256": "4980f6201f319ec709197eb83abf5b56bb4872ba78d43d9e61784757398e492b",
+      "after_sha256": "b74de7f91e7ac8c5ed62187a1f9c07b25a147d1f29f229d94e170e43c41b756b",
+      "field": "pdf_export.method",
+      "before": "LibreOffice Impress impress_pdf_Export from the exact final R7 PPTX",
+      "after": "LibreOffice Impress impress_pdf_Export from the exact final R8 PPTX"
+    }
+  ],
+  "original_manifest_snapshot": "review/issue-109/r8-reviewer-receipts/edition-before-provenance-correction.json",
+  "binary_and_notes_unchanged": true,
+  "all_other_initial_packet_identities_unchanged": true,
+  "final_packet_sha256": "f92fd8c31460cbddb1ce1ea322f63483f353b5a35c3aa92c2040f9c8c483375e",
+  "normalized_pdf_links_equal": true,
+  "raw_proof_explanation": "proof.json links_retained compares full PyMuPDF objects including xref. URI+rectangle comparisons are equal on all pages; xref numbering is not a user-visible link change."
+}

@@ -1,0 +1,62 @@
+{
+  "kind": "conversation-native-inputs",
+  "repository_edition": "R6",
+  "scratch_full_deck_label": "R13",
+  "note": "R13 is a scratch/native speech revision, not a repository R13 edition. The standalone input remains untouched.",
+  "files": [
+    {
+      "path": "drafts/devcon-romania-2026/r6/sources/scratch-r13-native-full-deck.pptx",
+      "original_path": "/workspace/scratch/d8b65f68acc8/slide4-reference/\u0410\u0432\u0442\u043e\u0440\u0441\u044c\u043a\u0438\u0439 \u0441\u0430\u0439\u0442/devcon-romania-2026-r13-final.pptx",
+      "sha256": "6e62b5b83c55fa09e63cf25806bdcf4472ffe313e89b85d1f26d1484c777ebbf",
+      "bytes": 1395078
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r6/sources/approved-slide-04-native.pptx",
+      "original_path": "/workspace/scratch/d8b65f68acc8/slide4-preview/systemic-first/devcon-slide-04-preview.pptx",
+      "sha256": "1741f44748706fae660f442636470c48223f721af567c83315c89e56a52d1c4c",
+      "bytes": 44767
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r6/sources/approved-slide-04-preview.png",
+      "original_path": "/workspace/scratch/d8b65f68acc8/slide4-preview/systemic-first/devcon-slide-04-preview.png",
+      "sha256": "c3ba556b7e28cf38e6d87375af070885aceeb9cb79fc260a9834a573230c3259",
+      "bytes": 481796
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r6/sources/slide-05-spacing-donor-full-package.pptx",
+      "derived_from": "drafts/devcon-romania-2026/r6/sources/scratch-r13-native-full-deck.pptx",
+      "sha256": "0bd149ed530046326e25111d7911dd15aea48ae830d19832c259ef5b199f437d",
+      "bytes": 1395111,
+      "recipe": "drafts/devcon-romania-2026/r6/sources/slide-05-spacing-recipe.json",
+      "role": "Full-package native slide5 spacing donor, not an edition"
+    }
+  ],
+  "bounded_layout_correction": {
+    "purpose": "Bounded R6 slide5 spacing correction; native input donor, not a repository edition",
+    "source_sha256": "6e62b5b83c55fa09e63cf25806bdcf4472ffe313e89b85d1f26d1484c777ebbf",
+    "donor_sha256": "0bd149ed530046326e25111d7911dd15aea48ae830d19832c259ef5b199f437d",
+    "part": "ppt/slides/slide5.xml",
+    "source_part_sha256": "5317c5b5ae067a49e997f275ebf56ede931a609fbc4146715991891e5b756e32",
+    "output_part_sha256": "55329aaac36bd9e1648104cebb074f9997845b45bcaa9ec020bf58df676b3238",
+    "shape_id": 30,
+    "shape_name": "Scope Disposable implementation",
+    "text_verbatim": "Regenerate isolated, bounded features.",
+    "before_emu": {
+      "x": 4599432,
+      "y": 4069079,
+      "cx": 3054096,
+      "cy": 338328
+    },
+    "after_emu": {
+      "x": 4599432,
+      "y": 4196079,
+      "cx": 3054096,
+      "cy": 338328
+    },
+    "delta_y_pt": 10,
+    "other_shape_properties_unchanged": true,
+    "all_other_57_package_parts_unchanged": true,
+    "reason": "Separate body text from the two-line heading while retaining space above the question. Original PDF text extents overlapped by5.355988pt; no missing wording or proven ink collision.",
+    "scope_authorization": "review/issue-109/r6-reviewer-receipts/requirements-layout-addendum.md"
+  }
+}

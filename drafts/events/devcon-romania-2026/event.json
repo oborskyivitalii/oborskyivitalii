@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "id": "devcon-romania-2026",
+  "revision": 2,
+  "name": "DevCon Romania",
+  "date": "2026-11-04",
+  "timezone": "Europe/Bucharest",
+  "format": "in-person",
+  "organizer": "Catalyst Solutions",
+  "speaker": "Vitalii Oborskyi",
+  "session": {
+    "title": "AI Changes the Delivery System and the Product Itself",
+    "time": "12:30",
+    "language": "en",
+    "track": "DevOps Stage"
+  },
+  "destinations": [
+    {
+      "id": "programme",
+      "kind": "programme",
+      "url": "https://www.dev-con.ro/agenda/12-devops-con",
+      "evidence": {
+        "path": "sources/organizer.md",
+        "sha256": "d5b7b31a1464751bf170186801dc8a4e35ef1c9b48585dc1f42ca34cb6d80d7d",
+        "observedAt": "2026-10-19T13:16:38Z"
+      }
+    }
+  ],
+  "deck": {
+    "path": "drafts/devcon-romania-2026/r3/devcon-romania-2026-r3.pdf",
+    "sha256": "1464372a8af005c95f183d4673c1cdd91dfe57c7ebea3a2f26d32ccb59eaef20",
+    "credit": "Vitalii Oborskyi. DevCon Romania 2026 R3, adapted from PMDay v35. Author-owned text CC BY 4.0; artwork and third-party material retain their recorded terms."
+  },
+  "evidence": {
+    "path": "sources/organizer.md",
+    "sha256": "d5b7b31a1464751bf170186801dc8a4e35ef1c9b48585dc1f42ca34cb6d80d7d",
+    "observedAt": "2026-10-19T13:16:38Z"
+  }
+}

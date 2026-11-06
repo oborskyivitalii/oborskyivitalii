@@ -1,0 +1,33 @@
+.....................EE......
+======================================================================
+ERROR: test_quality_agent_queries_and_context_route_to_existing_checks (test_repository_intelligence.NavigationSafetyTests.test_quality_agent_queries_and_context_route_to_existing_checks)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/d8b65f68acc8/devcon-repo/tests/test_repository_intelligence.py", line 433, in test_quality_agent_queries_and_context_route_to_existing_checks
+    surface = ri.build(REPO, config)
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/d8b65f68acc8/devcon-repo/tools/repository_intelligence.py", line 353, in build
+    records, texts = scan(root, [config["output"], config["map_output"]])
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/d8b65f68acc8/devcon-repo/tools/repository_intelligence.py", line 168, in scan
+    raise ValueError(f"RI content hash bound exceeded at {relative}")
+ValueError: RI content hash bound exceeded at tools/quality/secrets-reviewed.json
+
+======================================================================
+ERROR: test_real_adapter_owners_and_cross_repo_isolation (test_repository_intelligence.NavigationSafetyTests.test_real_adapter_owners_and_cross_repo_isolation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/d8b65f68acc8/devcon-repo/tests/test_repository_intelligence.py", line 412, in test_real_adapter_owners_and_cross_repo_isolation
+    surface = ri.build(REPO, path.relative_to(REPO).as_posix())
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/d8b65f68acc8/devcon-repo/tools/repository_intelligence.py", line 353, in build
+    records, texts = scan(root, [config["output"], config["map_output"]])
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/d8b65f68acc8/devcon-repo/tools/repository_intelligence.py", line 168, in scan
+    raise ValueError(f"RI content hash bound exceeded at {relative}")
+ValueError: RI content hash bound exceeded at tools/quality/secrets-reviewed.json
+
+----------------------------------------------------------------------
+Ran 29 tests in 1.381s
+
+FAILED (errors=2)

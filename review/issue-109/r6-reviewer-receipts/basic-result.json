@@ -1,0 +1,11 @@
+{
+  "command": [
+    "node",
+    "tools/quality/local.cjs"
+  ],
+  "exit_code": 0,
+  "seconds": 1.787,
+  "prior_sandbox_attempt": "spawnSync node EPERM; no test result; same command retried with supported escalation",
+  "stdout_log": "basic.stdout.log",
+  "stderr_log": "basic.stderr.log"
+}

@@ -1,0 +1,49 @@
+{
+  "source_url": "https://fion.ac/jellyfish.pdf",
+  "revision": "1 November 2026",
+  "retrieved_utc": "2026-11-06",
+  "sha256": "dcb4393f9c4d2461c5e86f470af808dd1291b66614c55d078610ce663dbb23cb",
+  "pages": 120,
+  "pdf_pages_containing_endpoint": {
+    "655": [
+      1,
+      3,
+      9,
+      62,
+      63,
+      65
+    ],
+    "35.7": [
+      4,
+      30,
+      47
+    ],
+    "13.7": [
+      4,
+      6,
+      34,
+      43,
+      44,
+      47
+    ],
+    "56.1": [
+      5,
+      37,
+      47
+    ]
+  },
+  "interpretation": "655 firms; agent adoption estimates: opened PRs +35.7%, resolved Jira issues +13.7% borderline significant, submission-to-approval elapsed time +56.1%. Elapsed time includes waiting, not active reviewer hours. Counts do not directly measure customer value; identification assumptions apply.",
+  "article": {
+    "repository": "oborskyivitalii/oborskyivitalii",
+    "commit": "fc205b17774ba703c63fdd7d142ddac178afffdd",
+    "path": "site/publications/sdlc-out-of-balance/manuscript.en.md",
+    "retained": {
+      "path": "drafts/devcon-romania-2026/r10/sources/article-r10.md",
+      "bytes": 17516,
+      "sha256": "70386a2d2f602b5f60c93d35293a375e4e4abbc6f63a0dd888024031078b3d1f"
+    },
+    "git_blob_sha": "972486f459ebbcfd6cc333977d603670a6ea82dc"
+  },
+  "normalization": "Corrected one extra terminal LF introduced while saving the fetched text; retained source now exactly matches immutable upstream blob.",
+  "paper_source_ambiguity": "Introduction PDF p5 says submission-to-approval; results PDF p37 uses submission-to-merge wording. Candidate explicitly follows the introduction endpoint. Introduction p4 calls issue effect borderline significant; results p34 says marginally insignificant. Preserve the borderline caveat, not an unqualified significant result."
+}

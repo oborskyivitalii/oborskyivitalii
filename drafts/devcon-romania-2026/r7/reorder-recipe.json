@@ -1,0 +1,17 @@
+{
+  "schema": "native-slide-reorder.v1",
+  "source_sha256": "b3269196b0eac9dde5fd58706e16a6e84cff4bc2b3e3b368a634087b1cc5eef9",
+  "source_positions_in_delivery_order": [1, 2, 4, 3, 5, 6, 7, 8, 9],
+  "source_slide_parts": [
+    "ppt/slides/slide1.xml",
+    "ppt/slides/slide2.xml",
+    "ppt/slides/slide3.xml",
+    "ppt/slides/slide4.xml",
+    "ppt/slides/slide5.xml",
+    "ppt/slides/slide6.xml",
+    "ppt/slides/slide7.xml",
+    "ppt/slides/slide8.xml",
+    "ppt/slides/slide9.xml"
+  ],
+  "footer_shape_ids_by_source_position": { "3": 56, "4": 36 }
+}

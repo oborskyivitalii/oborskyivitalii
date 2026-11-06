@@ -1,0 +1,148 @@
+{
+  "base": "6bd9e990251a6211f56ce6ba424960fe24879a71",
+  "assurance": "Requested fork_turns none; all four spawn calls returned the named task handle. No model or effort override requested. Provider model/context/memory internals unavailable. Shared-filesystem reading restrictions, not OS isolation. No peer verdicts supplied before first judgments.",
+  "executions": [
+    {
+      "role": "Requirements & Acceptance",
+      "agent": "/root/r14_requirements",
+      "phase": "first",
+      "requested": {
+        "fork_turns": "none",
+        "model_override": null,
+        "reasoning_effort_override": null
+      },
+      "accepted_task_handle": "/root/r14_requirements",
+      "common_contract": {
+        "path": "agents/reviewers/README.md",
+        "sha256": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb"
+      },
+      "role_prompt": {
+        "path": "agents/reviewers/requirements-acceptance.md",
+        "sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6"
+      },
+      "packet": {
+        "path": "review/issue-109/r14-input/preflight-manifest.json",
+        "sha256": "5a51538e7795d95e66c45bc0c30d146446e8f1590922ac09b3d9ede51f2d754e"
+      },
+      "first_result": {
+        "path": "review/issue-109/r14-reviewer-receipts/requirements-preflight.md",
+        "status": "complete",
+        "sha256": "a8413afbb830e10b310c8c1add2d82d56acf35d30e7642e4605a2fa72579ee67"
+      }
+    },
+    {
+      "role": "White-box QA",
+      "agent": "/root/r14_whitebox",
+      "phase": "first",
+      "requested": {
+        "fork_turns": "none",
+        "model_override": null,
+        "reasoning_effort_override": null
+      },
+      "accepted_task_handle": "/root/r14_whitebox",
+      "common_contract": {
+        "path": "agents/reviewers/README.md",
+        "sha256": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb"
+      },
+      "role_prompt": {
+        "path": "agents/reviewers/white-box-qa.md",
+        "sha256": "832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f"
+      },
+      "packet": {
+        "path": "review/issue-109/r14-input/preflight-manifest.json",
+        "sha256": "5a51538e7795d95e66c45bc0c30d146446e8f1590922ac09b3d9ede51f2d754e"
+      },
+      "first_result": {
+        "path": "review/issue-109/r14-reviewer-receipts/whitebox-baseline.md",
+        "status": "complete",
+        "sha256": "8872376580c0a524d6cff09e5f49d0be1ccd19a1d50df2e8c10e02e3eef60034"
+      }
+    },
+    {
+      "role": "Exploratory / Interaction QA",
+      "agent": "/root/r14_exploratory",
+      "phase": "first",
+      "requested": {
+        "fork_turns": "none",
+        "model_override": null,
+        "reasoning_effort_override": null
+      },
+      "accepted_task_handle": "/root/r14_exploratory",
+      "common_contract": {
+        "path": "agents/reviewers/README.md",
+        "sha256": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb"
+      },
+      "role_prompt": {
+        "path": "agents/reviewers/exploratory-interaction-qa.md",
+        "sha256": "280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a"
+      },
+      "packet": {
+        "path": "review/issue-109/r14-input/candidate-manifest.json",
+        "sha256": "56f4b69d2566cb2a7fc12925a4247a0d2e3b755f4feb13b1ce62759164ce2abb"
+      },
+      "first_result": {
+        "path": "review/issue-109/r14-reviewer-receipts/exploratory-first.md",
+        "status": "complete",
+        "sha256": "7d45e1bdfd8b98e62e36236b5b2144f74723a14fe7fcb9c5ec995add3ba24ea9"
+      }
+    },
+    {
+      "role": "Code / changed artifact",
+      "agent": "/root/r14_code",
+      "phase": "first",
+      "requested": {
+        "fork_turns": "none",
+        "model_override": null,
+        "reasoning_effort_override": null
+      },
+      "accepted_task_handle": "/root/r14_code",
+      "common_contract": {
+        "path": "agents/reviewers/README.md",
+        "sha256": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb"
+      },
+      "role_prompt": {
+        "path": "agents/reviewers/code-review.md",
+        "sha256": "26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697"
+      },
+      "packet": {
+        "path": "review/issue-109/r14-input/metadata-candidate-manifest.json",
+        "sha256": "4c37cb969affc65d4b3875abef6e2c3514b932fb7798edd5bec65c4f6a814744"
+      },
+      "first_result": {
+        "path": "review/issue-109/r14-reviewer-receipts/code-first.md",
+        "status": "complete",
+        "sha256": "580c41f59e67ee9ec21880e761d41defb84662aeca7fbeefea00999dbf205902"
+      }
+    },
+    {
+      "role_continuation": "/root/r14_requirements",
+      "phase": "final-candidate continuation",
+      "fresh_context": false,
+      "exposure": "Own earlier findings plus neutral current source; no current peer results.",
+      "packet_path": "review/issue-109/r14-input/candidate-manifest.json",
+      "result": "requirements-final-first.md",
+      "status": "complete",
+      "result_sha256": "dcc4ca34d5599001aa312f4def6b8fdd0b0083d89eaf18ee2e6f009ec7e7890e"
+    },
+    {
+      "role_continuation": "/root/r14_whitebox",
+      "phase": "final-candidate continuation",
+      "fresh_context": false,
+      "exposure": "Own earlier findings plus neutral current source; no current peer results.",
+      "packet_path": "review/issue-109/r14-input/candidate-manifest.json",
+      "result": "whitebox-final-first.md",
+      "status": "complete",
+      "result_sha256": "9189dec5ee1e99fbd390e11263e3699c867159748ef8abf93915e3386ca7120e"
+    },
+    {
+      "role_continuation": "/root/r14_requirements",
+      "phase": "metadata correction continuation",
+      "fresh_context": false,
+      "exposure": "Own earlier findings plus neutral current source; no current peer results.",
+      "packet_path": "review/issue-109/r14-input/metadata-candidate-manifest.json",
+      "result": "requirements-metadata-correction.md",
+      "status": "complete",
+      "result_sha256": "3f814745309cd8da87fffb9d208d6fb2fd8e535d88dc5fb04d35a22d80668d44"
+    }
+  ]
+}

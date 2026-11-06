@@ -1,0 +1,253 @@
+{
+  "inputs": {
+    "DevCon_Romania_2026-11-06_R10_Speech.md": {
+      "bytes": 17908,
+      "sha256": "4f60d228495d362839dd53c45475e2853c6b75a5d8f5294e8af56046792367b9"
+    },
+    "DevCon_Romania_2026-11-06_R10.pptx": {
+      "bytes": 1431444,
+      "sha256": "6574661343e6a74c222a60504b3b1b105a5dde44c7785dc28b262f59e2a28083"
+    },
+    "DevCon_Romania_2026-11-06_R10.pdf": {
+      "bytes": 967986,
+      "sha256": "266e98b1bb3b3282fad72a1250672dda316e6ef7ce37a40b0f89a747da418071"
+    },
+    "DevCon_Romania_2026-11-06_R10_Speech.pdf": {
+      "bytes": 88546,
+      "sha256": "841f142320760ee2b05972568d4a64571bbe1d4c9c6b9503a03cf351fb777261"
+    },
+    "devcon-romania-2026-r12.pdf": {
+      "bytes": 952478,
+      "sha256": "78c9b730780591155b15ce84e5e0487a7ee0a0d7947d895d9a762763b6f1d8be"
+    },
+    "devcon-romania-2026-r12.pptx": {
+      "bytes": 1431000,
+      "sha256": "62078b50206fa2d5125e96af5b024c334c8f351c5459cbb1b70c8d9f338f07cd"
+    },
+    "devcon-romania-2026-r12-speech.md": {
+      "bytes": 14964,
+      "sha256": "26a2c948e86b8c30c01e5d705e68705b34696862eb62c510e77083300599e269"
+    }
+  },
+  "slides": [
+    {
+      "slide": 1,
+      "slide_xml_identical_to_r12": false,
+      "notes_xml_identical_to_r12": false,
+      "spoken_identical_to_r12": false,
+      "spoken_words": 132,
+      "spoken_present_in_native_notes": true,
+      "visible_excerpt": "01 AI Changes the Delivery System and the Product Itself PROBLEM  \u2192  HYPOTHESIS  \u2192  BUILD  \u2192  VERIFY  \u2192  REFRAME HOW WE BUILD My diagnosis: the SDLC is out of b",
+      "native_note_excerpt": "R10 STAGE SCRIPT | SLIDE 01 | Two problems\nSTAGE CUES - NOT SPOKEN\n- Two changes: delivery system and runtime judgment\n- Present diagnosis, with organisational rebalancing\n- Small "
+    },
+    {
+      "slide": 2,
+      "slide_xml_identical_to_r12": false,
+      "notes_xml_identical_to_r12": false,
+      "spoken_identical_to_r12": false,
+      "spoken_words": 177,
+      "spoken_present_in_native_notes": true,
+      "visible_excerpt": "Constraints Across the Delivery System 02 Review automation can move the constraint to testing or integration. Intent Design Code Review Test Integrate Deploy O",
+      "native_note_excerpt": "R10 STAGE SCRIPT | SLIDE 02 | The whole delivery system\nSTAGE CUES - NOT SPOKEN\n- Illustrative comparable changes per month: 8, 100, +92\n- Generation differs from admission; drafts"
+    },
+    {
+      "slide": 3,
+      "slide_xml_identical_to_r12": false,
+      "notes_xml_identical_to_r12": false,
+      "spoken_identical_to_r12": false,
+      "spoken_words": 127,
+      "spoken_present_in_native_notes": false,
+      "visible_excerpt": "What Are We Actually Measuring? Activity, delivery, stability and maintainability can move differently. ACTIVITY  \u00b7  RELEASES  \u00b7  MARKETPLACE SIGNALS NBER \u00b7 DIF",
+      "native_note_excerpt": "R10 STAGE SCRIPT | SLIDE 04 | The evidence\nSTAGE CUES - NOT SPOKEN\n- Different samples and methods; no common measured pipeline\n- November Chen\u2013Stratton: 655 firms and corrected en"
+    },
+    {
+      "slide": 4,
+      "slide_xml_identical_to_r12": false,
+      "notes_xml_identical_to_r12": false,
+      "spoken_identical_to_r12": false,
+      "spoken_words": 117,
+      "spoken_present_in_native_notes": false,
+      "visible_excerpt": "The Comprehension Gap Limits Responsible Ownership Zoom in: CODE GENERATION  \u2194  REVIEW WHAT IF NOT? Generation capacity (changes/month) Team understanding capac",
+      "native_note_excerpt": "R10 STAGE SCRIPT | SLIDE 03 | Review and ownership\nSTAGE CUES - NOT SPOKEN\n- Two functions: verification evidence and shared learning\n- Accountability alone does not create operati"
+    },
+    {
+      "slide": 5,
+      "slide_xml_identical_to_r12": false,
+      "notes_xml_identical_to_r12": false,
+      "spoken_identical_to_r12": false,
+      "spoken_words": 233,
+      "spoken_present_in_native_notes": true,
+      "visible_excerpt": "A Viable Operating Model for This Context Six hypotheses. Evidence decides where each is useful. 05 SPEED & FULL COST DELIVERY & PRODUCT QUALITY KNOWLEDGE & OWN",
+      "native_note_excerpt": "R10 STAGE SCRIPT | SLIDE 05 | Finding a new balance\nSTAGE CUES - NOT SPOKEN\n- Extensive delegation, limited assistance or no AI\n- Owner needs authority, budget and cross-functional"
+    },
+    {
+      "slide": 6,
+      "slide_xml_identical_to_r12": true,
+      "notes_xml_identical_to_r12": false,
+      "spoken_identical_to_r12": true,
+      "spoken_words": 174,
+      "spoken_present_in_native_notes": true,
+      "visible_excerpt": "ACT II  /  WHAT WE BUILD When Model Judgment Enters Runtime We implement the decision rules. The model constructs the solution at runtime. EXPLICIT RULES  /  SI",
+      "native_note_excerpt": "R10 STAGE SCRIPT | SLIDE 06 | Decisions inside the product\nSTAGE CUES - NOT SPOKEN\n- Explicit rules versus runtime model judgment\n- Representative cases and repeated trials\n- Readi"
+    },
+    {
+      "slide": 7,
+      "slide_xml_identical_to_r12": true,
+      "notes_xml_identical_to_r12": false,
+      "spoken_identical_to_r12": true,
+      "spoken_words": 183,
+      "spoken_present_in_native_notes": false,
+      "visible_excerpt": "ACT II / EVALUATION AND OPERATION Service Health and Decision Quality A completed request can still contain an unsafe solution. TWO ILLUSTRATIVE SAMPLES / 200 C",
+      "native_note_excerpt": "R10 STAGE SCRIPT | SLIDE 08 | Service health and decision quality\nSTAGE CUES - NOT SPOKEN\n- Two separate hypothetical samples of 200\n- Request success differs from safe solution qu"
+    },
+    {
+      "slide": 8,
+      "slide_xml_identical_to_r12": true,
+      "notes_xml_identical_to_r12": false,
+      "spoken_identical_to_r12": true,
+      "spoken_words": 192,
+      "spoken_present_in_native_notes": false,
+      "visible_excerpt": "ACT II / ARCHITECTURE AND PROJECT COMMITMENT Control Feasibility Before Delivery Business scope and delegated authority define the control problem. 07 A WORKING",
+      "native_note_excerpt": "R10 STAGE SCRIPT | SLIDE 07 | Control feasibility before delivery\nSTAGE CUES - NOT SPOKEN\n- A demo leaves many paths untested\n- Complete control loop before production commitment\n-"
+    },
+    {
+      "slide": 9,
+      "slide_xml_identical_to_r12": true,
+      "notes_xml_identical_to_r12": false,
+      "spoken_identical_to_r12": true,
+      "spoken_words": 99,
+      "spoken_present_in_native_notes": true,
+      "visible_excerpt": "CLOSING   /   TWO SHIFTS \u00b7 TWO OPEN RESEARCH DIRECTIONS AI Changes Both Sides. The Engineering Must Follow. Build the future we believe in, with sound engineeri",
+      "native_note_excerpt": "R10 STAGE SCRIPT | SLIDE 09 | Closing\nSTAGE CUES - NOT SPOKEN\n- Two research directions and their systems lenses\n- One homepage QR for articles and contact\n- Sound engineering incl"
+    }
+  ],
+  "spoken_words": {
+    "r10": 1434,
+    "r12": 1423
+  },
+  "pdf": {
+    "DevCon_Romania_2026-11-06_R10.pdf": {
+      "pages": 9,
+      "links": 3,
+      "text_chars": 9399
+    },
+    "DevCon_Romania_2026-11-06_R10_Speech.pdf": {
+      "pages": 10,
+      "links": 10,
+      "text_chars": 16557
+    }
+  },
+  "initial_ordinal_comparison_limit": "The initial raw XML-suffix comparison is not presentation order. Use relationship-derived delivery order below; apparent notes mismatches at 3/4/7/8 were an analysis-mapping error, not an artifact defect.",
+  "delivery_order_notes": [
+    {
+      "delivery": 1,
+      "part": "ppt/slides/slide1.xml",
+      "notes": "ppt/notesSlides/notesSlide1.xml",
+      "spoken_present": true
+    },
+    {
+      "delivery": 2,
+      "part": "ppt/slides/slide2.xml",
+      "notes": "ppt/notesSlides/notesSlide2.xml",
+      "spoken_present": true
+    },
+    {
+      "delivery": 3,
+      "part": "ppt/slides/slide4.xml",
+      "notes": "ppt/notesSlides/notesSlide4.xml",
+      "spoken_present": true
+    },
+    {
+      "delivery": 4,
+      "part": "ppt/slides/slide3.xml",
+      "notes": "ppt/notesSlides/notesSlide3.xml",
+      "spoken_present": true
+    },
+    {
+      "delivery": 5,
+      "part": "ppt/slides/slide5.xml",
+      "notes": "ppt/notesSlides/notesSlide5.xml",
+      "spoken_present": true
+    },
+    {
+      "delivery": 6,
+      "part": "ppt/slides/slide6.xml",
+      "notes": "ppt/notesSlides/notesSlide6.xml",
+      "spoken_present": true
+    },
+    {
+      "delivery": 7,
+      "part": "ppt/slides/slide8.xml",
+      "notes": "ppt/notesSlides/notesSlide8.xml",
+      "spoken_present": true
+    },
+    {
+      "delivery": 8,
+      "part": "ppt/slides/slide7.xml",
+      "notes": "ppt/notesSlides/notesSlide7.xml",
+      "spoken_present": true
+    },
+    {
+      "delivery": 9,
+      "part": "ppt/slides/slide9.xml",
+      "notes": "ppt/notesSlides/notesSlide9.xml",
+      "spoken_present": true
+    }
+  ],
+  "pdf_comparison": {
+    "1": {
+      "reexport_text_equal": true,
+      "reexport_pixels_equal": true,
+      "pixels_equal_to_r12": false,
+      "links_equal_to_reexport": true
+    },
+    "2": {
+      "reexport_text_equal": true,
+      "reexport_pixels_equal": true,
+      "pixels_equal_to_r12": false,
+      "links_equal_to_reexport": true
+    },
+    "3": {
+      "reexport_text_equal": true,
+      "reexport_pixels_equal": true,
+      "pixels_equal_to_r12": false,
+      "links_equal_to_reexport": true
+    },
+    "4": {
+      "reexport_text_equal": true,
+      "reexport_pixels_equal": true,
+      "pixels_equal_to_r12": false,
+      "links_equal_to_reexport": true
+    },
+    "5": {
+      "reexport_text_equal": true,
+      "reexport_pixels_equal": true,
+      "pixels_equal_to_r12": false,
+      "links_equal_to_reexport": true
+    },
+    "6": {
+      "reexport_text_equal": true,
+      "reexport_pixels_equal": true,
+      "pixels_equal_to_r12": true,
+      "links_equal_to_reexport": true
+    },
+    "7": {
+      "reexport_text_equal": true,
+      "reexport_pixels_equal": true,
+      "pixels_equal_to_r12": true,
+      "links_equal_to_reexport": true
+    },
+    "8": {
+      "reexport_text_equal": true,
+      "reexport_pixels_equal": true,
+      "pixels_equal_to_r12": true,
+      "links_equal_to_reexport": true
+    },
+    "9": {
+      "reexport_text_equal": true,
+      "reexport_pixels_equal": true,
+      "pixels_equal_to_r12": true,
+      "links_equal_to_reexport": true
+    }
+  }
+}

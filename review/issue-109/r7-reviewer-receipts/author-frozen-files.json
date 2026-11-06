@@ -1,0 +1,26 @@
+{
+  "tools/presentations/reorder_native_slides.py": {
+    "bytes": 7491,
+    "sha256": "9423597518bee6ea2fcbb8e5c57b7e0d997f4612901c929a8597c7e8e4ae9225"
+  },
+  "drafts/devcon-romania-2026/r7/README.md": {
+    "bytes": 4720,
+    "sha256": "8ba807249815ffd5ce36363c9a2dbfd118cbd1135da95ad72b8c72bf46b7b18d"
+  },
+  "drafts/devcon-romania-2026/r7/devcon-romania-2026-r7.pptx": {
+    "bytes": 1422905,
+    "sha256": "ec8478a8c55d7db17a922e761a137759cb4c2de86b135f9153b709f76c7a9b29"
+  },
+  "drafts/devcon-romania-2026/r7/devcon-romania-2026-r7.pdf": {
+    "bytes": 1114624,
+    "sha256": "7056f7423652563aaeafe722a22ab6b139e77c4e630710dd90eaf02aa59d8517"
+  },
+  "drafts/devcon-romania-2026/r7/reorder-recipe.json": {
+    "bytes": 552,
+    "sha256": "116e85de2938628b0828535fba3f4b2cb016e36280a7069db4d290e5be847a03"
+  },
+  "drafts/devcon-romania-2026/r7/speaker-notes.md": {
+    "bytes": 35191,
+    "sha256": "0d98a801a8f1af30ecf1716c37bff8a819cc19cb31eea4fd876f409560373945"
+  }
+}

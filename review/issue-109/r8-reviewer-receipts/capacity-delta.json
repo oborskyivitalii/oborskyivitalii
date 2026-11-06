@@ -1,0 +1,34 @@
+{
+  "reason": "Retain the authorized full R8 package and immutable historical editions in complete RI coverage",
+  "measured_pre_fix": {
+    "hash_files": 1930,
+    "hash_bytes": 252761955,
+    "cap_bytes": 250000000,
+    "over_by": 2761955
+  },
+  "change": {
+    "MAX_HASH_TOTAL_BYTES": [
+      250000000,
+      260000000
+    ]
+  },
+  "unchanged_limits": [
+    "MAX_FILES=5000",
+    "MAX_FILE_BYTES=2000000",
+    "MAX_TOTAL_BYTES=50000000",
+    "MAX_HASH_FILE_BYTES=32000000"
+  ],
+  "all_inputs_retained": true,
+  "exclusion_changes": false,
+  "artifact_changes": false,
+  "source_files": [
+    {
+      "path": "tools/repository_intelligence.py",
+      "sha256": "9be024a28215c5852bb26893fc5696dc6543d7056f37c40500e796519178d821"
+    },
+    {
+      "path": ".github/REPOSITORY-INTELLIGENCE.md",
+      "sha256": "29a6dc08787505c268b5b6e759d5e95949872f740a7ae8dd370d3fb7b7f74e43"
+    }
+  ]
+}

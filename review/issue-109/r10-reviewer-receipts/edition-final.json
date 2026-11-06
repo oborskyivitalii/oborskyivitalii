@@ -1,0 +1,23 @@
+{
+  "ok": true,
+  "edition": "R10",
+  "path": "/workspace/scratch/992b55cffd39/repo/drafts/devcon-romania-2026/r10",
+  "observed": {
+    "pptx": {
+      "bytes": 1431513,
+      "sha256": "31f45b07224a16e8c4be067c3a3b1579dac3311c14ad78af04798c325f81b7ef"
+    },
+    "pdf": {
+      "bytes": 942907,
+      "sha256": "24797112ddd150a9141f638994df393c6ea738a8e4cbdedb373028c2f5ddef1f"
+    },
+    "notes": {
+      "bytes": 18073,
+      "sha256": "b72402da167075b7567a6d20b546995a03e8459ea31953ce8cda2b8363a45fca"
+    },
+    "pptx_slide_count": 9,
+    "pptx_notes_count": 9,
+    "pdf_page_count": 9
+  },
+  "errors": []
+}

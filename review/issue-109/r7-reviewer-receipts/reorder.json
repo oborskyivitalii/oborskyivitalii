@@ -1,0 +1,25 @@
+{
+  "source_sha256": "b3269196b0eac9dde5fd58706e16a6e84cff4bc2b3e3b368a634087b1cc5eef9",
+  "output_sha256": "ec8478a8c55d7db17a922e761a137759cb4c2de86b135f9153b709f76c7a9b29",
+  "source_positions_in_delivery_order": [
+    1,
+    2,
+    4,
+    3,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "changed_parts": [
+    "ppt/presentation.xml",
+    "ppt/slides/slide3.xml",
+    "ppt/notesSlides/notesSlide3.xml",
+    "ppt/slides/slide4.xml",
+    "ppt/notesSlides/notesSlide4.xml"
+  ],
+  "unchanged_part_count": 53,
+  "relationship_part_count": 23,
+  "all_relationship_parts_unchanged": true
+}

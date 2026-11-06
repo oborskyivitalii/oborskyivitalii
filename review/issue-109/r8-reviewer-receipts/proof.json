@@ -1,0 +1,118 @@
+{
+  "source_commit": "1044c6ee6effc3580ec735ead4f4f7f9ea26a069",
+  "source": {
+    "path": "drafts/devcon-romania-2026/r7/devcon-romania-2026-r7.pptx",
+    "bytes": 1422905,
+    "sha256": "ec8478a8c55d7db17a922e761a137759cb4c2de86b135f9153b709f76c7a9b29"
+  },
+  "artifacts": {
+    "pptx": {
+      "path": "drafts/devcon-romania-2026/r8/devcon-romania-2026-r8.pptx",
+      "bytes": 1426852,
+      "sha256": "ee370d10570f43b4ff09d262927428af6a5ee4cd5c7823268fcd2422813cc3fe"
+    },
+    "pdf": {
+      "path": "drafts/devcon-romania-2026/r8/devcon-romania-2026-r8.pdf",
+      "bytes": 1114376,
+      "sha256": "d8511c35d69e1b79886670901db794ecc66679f4cb0da46d3350fea7f33c4f7f"
+    },
+    "notes": {
+      "path": "drafts/devcon-romania-2026/r8/speaker-notes.md",
+      "bytes": 36919,
+      "sha256": "192dab4a1c2e61508db53fd00cd8b019bdefc9b9d47c68b132c66a08ec9eaa17"
+    }
+  },
+  "slide_count": 9,
+  "notes_count": 9,
+  "pdf_pages": 9,
+  "changed_parts": [
+    "ppt/slides/slide7.xml",
+    "ppt/notesSlides/notesSlide7.xml",
+    "ppt/slides/slide8.xml",
+    "ppt/notesSlides/notesSlide8.xml"
+  ],
+  "unchanged_parts": 54,
+  "relationships_unchanged": 23,
+  "source_note_prefix_preserved": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "pages": [
+    {
+      "page": 1,
+      "unchanged_pixels": true,
+      "width": 1921,
+      "height": 1080,
+      "links_retained": true
+    },
+    {
+      "page": 2,
+      "unchanged_pixels": true,
+      "width": 1921,
+      "height": 1080,
+      "links_retained": true
+    },
+    {
+      "page": 3,
+      "unchanged_pixels": true,
+      "width": 1921,
+      "height": 1080,
+      "links_retained": true
+    },
+    {
+      "page": 4,
+      "unchanged_pixels": true,
+      "width": 1921,
+      "height": 1080,
+      "links_retained": true
+    },
+    {
+      "page": 5,
+      "unchanged_pixels": true,
+      "width": 1921,
+      "height": 1080,
+      "links_retained": true
+    },
+    {
+      "page": 6,
+      "unchanged_pixels": true,
+      "width": 1921,
+      "height": 1080,
+      "links_retained": true
+    },
+    {
+      "page": 7,
+      "unchanged_pixels": false,
+      "width": 1921,
+      "height": 1080,
+      "links_retained": true
+    },
+    {
+      "page": 8,
+      "unchanged_pixels": false,
+      "width": 1921,
+      "height": 1080,
+      "links_retained": true
+    },
+    {
+      "page": 9,
+      "unchanged_pixels": true,
+      "width": 1921,
+      "height": 1080,
+      "links_retained": false
+    }
+  ],
+  "qr": [
+    "https://vitaliioborskyi.ai/"
+  ],
+  "finalization": "Artifact Tool import, integrity, geometry and Arial policy passed with zero findings/warnings",
+  "diagnosis": "Initial S08 donor contained three invalid algn=c values. Targeted importer diagnosed TextAlignmentTypeValues; fixed to legal ctr. Exact corrected native package passes finalization.",
+  "native_PowerPoint_UI_observed": false
+}

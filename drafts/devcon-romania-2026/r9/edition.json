@@ -1,0 +1,275 @@
+{
+  "schema_version": 1,
+  "event_slug": "devcon-romania-2026",
+  "author": "Vitalii Oborskyi",
+  "language": "en",
+  "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/109",
+  "pull_request": "https://github.com/oborskyivitalii/oborskyivitalii/pull/110",
+  "versioning_contract": "guides/PRESENTATION-VERSIONING.md",
+  "slide_count": 9,
+  "notes_count": 9,
+  "pdf_page_count": 9,
+  "slide_size_emu": {
+    "cx": 12192000,
+    "cy": 6858000
+  },
+  "source_pins": {
+    "pmday": {
+      "repository": "UncertaintyArchitectureGroup/uncertainty-architecture",
+      "commit": "22639d311d5fb46a23f3d5cdd819800dbe1169d9"
+    },
+    "article_r38": {
+      "repository": "oborskyivitalii/oborskyivitalii",
+      "pull_request": 79,
+      "commit": "b128ad27b23bc9d14a62b495c5c18b7ae537ab65",
+      "path": "site/publications/pmday-ai-both-sides/manuscript.en.md"
+    }
+  },
+  "inherited_approved_native_inputs": {
+    "full_deck": {
+      "path": "drafts/devcon-romania-2026/r6/sources/scratch-r13-native-full-deck.pptx",
+      "bytes": 1395078,
+      "sha256": "6e62b5b83c55fa09e63cf25806bdcf4472ffe313e89b85d1f26d1484c777ebbf"
+    },
+    "slide_04": {
+      "path": "drafts/devcon-romania-2026/r6/sources/approved-slide-04-native.pptx",
+      "bytes": 44767,
+      "sha256": "1741f44748706fae660f442636470c48223f721af567c83315c89e56a52d1c4c"
+    },
+    "visual_reference": {
+      "path": "drafts/devcon-romania-2026/r6/sources/approved-slide-04-preview.png",
+      "bytes": 481796,
+      "sha256": "c3ba556b7e28cf38e6d87375af070885aceeb9cb79fc260a9834a573230c3259"
+    },
+    "reviewed_slide_05_layout_donor": {
+      "path": "drafts/devcon-romania-2026/r6/sources/slide-05-spacing-donor-full-package.pptx",
+      "bytes": 1395111,
+      "sha256": "0bd149ed530046326e25111d7911dd15aea48ae830d19832c259ef5b199f437d"
+    }
+  },
+  "edition": "DevCon Romania 2026 R9",
+  "revision": "R9",
+  "status": "author-review-draft",
+  "repository_predecessor": {
+    "revision": "R8",
+    "commit": "9330c424b2dd66177de9e5e50db5f132b2c57001",
+    "manifest": "drafts/devcon-romania-2026/r8/edition.json",
+    "status": "complete retained edition"
+  },
+  "working_lineage": {
+    "native_speech_revision": "R13",
+    "stage_script": {
+      "path": "drafts/devcon-romania-2026/devcon-romania-2026-r13-concise-stage-script.md",
+      "bytes": 18219,
+      "sha256": "8b00bb3e6f25884fdcb024bb01fae5a80ba9ca0903e6682a7796477a2380bb84"
+    },
+    "note": "All nine spoken bodies preserved. Delivery labels and reference navigation follow architecture-before-runtime order. Historical R8 addenda remain attached."
+  },
+  "timing": {
+    "talk_maximum": "23:00",
+    "qa_target": "7:00",
+    "total_slot": "30:00",
+    "status": "Planning envelope only; timed English rehearsal pending. Inherited reference-note estimates are historical."
+  },
+  "artifacts": {
+    "pptx": {
+      "path": "drafts/devcon-romania-2026/r9/devcon-romania-2026-r9.pptx",
+      "bytes": 1426339,
+      "sha256": "32e95f4382ba3913640a9229de4853f5cdbcafa55375c194e733a0826767f1a1"
+    },
+    "pdf": {
+      "path": "drafts/devcon-romania-2026/r9/devcon-romania-2026-r9.pdf",
+      "bytes": 898057,
+      "sha256": "52b97b711e8d1934833db0ce6aa0f21aa7b5a8406522393a8ee39ea7815b9277"
+    },
+    "notes": {
+      "path": "drafts/devcon-romania-2026/r9/speaker-notes.md",
+      "bytes": 37138,
+      "sha256": "eadb088b9121685023c3f96e346ae6d215170b90f89803310b8a2455c9828db2"
+    }
+  },
+  "native_input": {
+    "path": "drafts/devcon-romania-2026/r8/devcon-romania-2026-r8.pptx",
+    "bytes": 1426852,
+    "sha256": "ee370d10570f43b4ff09d262927428af6a5ee4cd5c7823268fcd2422813cc3fe"
+  },
+  "source_positions_in_delivery_order": [
+    1,
+    2,
+    4,
+    3,
+    5,
+    6,
+    8,
+    7,
+    9
+  ],
+  "r8_positions_in_delivery_order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    8,
+    7,
+    9
+  ],
+  "slides": [
+    {
+      "slide": 1,
+      "r6_source_position": 1,
+      "r13_source_section": 1,
+      "title": "AI Changes the Delivery System and the Product Itself"
+    },
+    {
+      "slide": 2,
+      "r6_source_position": 2,
+      "r13_source_section": 2,
+      "title": "We Accelerated a Step. Not the System."
+    },
+    {
+      "slide": 3,
+      "r6_source_position": 4,
+      "r13_source_section": 4,
+      "title": "The Comprehension Gap Is an Ownership Risk"
+    },
+    {
+      "slide": 4,
+      "r6_source_position": 3,
+      "r13_source_section": 3,
+      "title": "What Are We Actually Measuring?"
+    },
+    {
+      "slide": 5,
+      "r6_source_position": 5,
+      "r13_source_section": 5,
+      "title": "Rebalancing a Node Affects More Than Flow"
+    },
+    {
+      "slide": 6,
+      "r6_source_position": 6,
+      "r13_source_section": 6,
+      "title": "When Model Judgment Enters Runtime"
+    },
+    {
+      "slide": 7,
+      "r6_source_position": 8,
+      "r13_source_section": 8,
+      "title": "The Product Includes Its Control System"
+    },
+    {
+      "slide": 8,
+      "r6_source_position": 7,
+      "r13_source_section": 7,
+      "title": "Validation Continues During Operation"
+    },
+    {
+      "slide": 9,
+      "r6_source_position": 9,
+      "r13_source_section": 9,
+      "title": "AI Changes Both Sides. The Engineering Must Follow."
+    }
+  ],
+  "integration": {
+    "helpers": [
+      "tools/presentations/integrate_native_slide.py",
+      "tools/presentations/reorder_native_slides.py"
+    ],
+    "native_source_parts": [
+      {
+        "path": "drafts/devcon-romania-2026/r9/sources/ppt/notesSlides/notesSlide7.xml",
+        "bytes": 8987,
+        "sha256": "4128993f2cee55bf522049c0e4cdeda7766e31da9be7599022585d3e4f118855"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r9/sources/ppt/notesSlides/notesSlide8.xml",
+        "bytes": 12148,
+        "sha256": "fc3038b89096a004d3e17f064c99e6c49ce35e1aaf6263311cd518dda7ebf30c"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r9/sources/ppt/notesSlides/notesSlide9.xml",
+        "bytes": 9569,
+        "sha256": "98c1ce2947a728fbf7165986ea28810152f1088f0b11e85615db2bb644412509"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r9/sources/ppt/presentation.xml",
+        "bytes": 1685,
+        "sha256": "942fa5bc24bcdb954e6ce4b50c35fd9812c03fbbc2c86e46e3f5c50e490d115d"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r9/sources/ppt/slides/slide1.xml",
+        "bytes": 22419,
+        "sha256": "623e4b2ca7912395012e049181cd7c2bba7f664eb59890955be87f5e42915093"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r9/sources/ppt/slides/slide2.xml",
+        "bytes": 99877,
+        "sha256": "52508547f2e6d74745d729176d07ac02824a98f4fd78ea91f03a13cd9af71f5f"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r9/sources/ppt/slides/slide3.xml",
+        "bytes": 85718,
+        "sha256": "72ba1149913f02f934695b8808e40ed738e30351f869066e8a1b3ef07ebe13de"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r9/sources/ppt/slides/slide4.xml",
+        "bytes": 292819,
+        "sha256": "b6b32a3d74d0b7eb29d42a64f1a2d5eef48e645fe8e0f80ac3fd3a9dec7c70a6"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r9/sources/ppt/slides/slide5.xml",
+        "bytes": 134232,
+        "sha256": "8b71ad6150c7b7719a03397544e94e041d8cc3d3e868d636c6542eaaf0dd4251"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r9/sources/ppt/slides/slide6.xml",
+        "bytes": 103173,
+        "sha256": "d92f007fe46339fd1837f42537c45f2df76b3a9be484ce7c38b083422014f7a3"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r9/sources/ppt/slides/slide7.xml",
+        "bytes": 147688,
+        "sha256": "22e5f614489467bd0371d3f92b74cb2d1cfa102c26d7b1faf4a90549aeb21d37"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r9/sources/ppt/slides/slide8.xml",
+        "bytes": 134355,
+        "sha256": "9d78929a56190885b928f52b59c8a2c91729d5207bf3e396e21f037ab2650a21"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r9/sources/ppt/slides/slide9.xml",
+        "bytes": 71247,
+        "sha256": "bfdb9eb6320b212969cf1e79a525fe624f3e4796e5ec99d3d4da5a01a0e2aa9b"
+      }
+    ],
+    "relationship_parts_unchanged": 23,
+    "media_parts_unchanged": 2,
+    "spoken_bodies_preserved": 9,
+    "note_updates": "Delivery numbers, runtime addendum subject label, architecture-to-runtime transition and closing slide reference mapping only."
+  },
+  "acceptance_mapping": {
+    "AC13": "Qualified evidence at S04",
+    "AC14": "Ownership at S03",
+    "AC17": "Runtime validation and intervention at S08",
+    "AC18": "Control architecture and project commitment at S07"
+  },
+  "qr_target": "https://vitaliioborskyi.ai/",
+  "event_selection": {
+    "selected_revision": "R3",
+    "status": "R9 is prepared for author review; no event selection change."
+  },
+  "acceptance": {
+    "author": "Requested changes implemented; exact R9 review pending",
+    "independent_review": "Current source-bound receipts recorded in review/issue-109/2026-11-02-r9-review.md",
+    "repository_checks": "Current results recorded in R9 review and Draft PR110",
+    "timed_rehearsal": "pending",
+    "presenting_device": "pending",
+    "conference_final": false
+  },
+  "delivery_status": {
+    "repository_text_package": "included",
+    "repository_binary_artifacts": "Included; earlier editions immutable."
+  },
+  "review_record": "review/issue-109/2026-11-02-r9-review.md"
+}

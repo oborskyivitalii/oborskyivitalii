@@ -1,0 +1,22 @@
+{
+  "diagnosis": "Initial case 12 altered ppt/theme/theme1.xml, an unreferenced donor part. That part is not imported and did not affect the output. It did not exercise the intended linked shared-theme check. Retained initial evidence; targeted follow-up modifies the linked ppt/slideMasters/theme/theme2.xml.",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "/workspace/scratch/d8b65f68acc8/devcon-repo/tools/presentations/integrate_native_slide.py",
+    "--source",
+    "/workspace/scratch/d8b65f68acc8/devcon-repo/drafts/devcon-romania-2026/r6/sources/scratch-r13-native-full-deck.pptx",
+    "--donor",
+    "/workspace/scratch/d8b65f68acc8/r6-whitebox-scratch/theme-linked.pptx",
+    "--slide",
+    "4",
+    "--donor-slide",
+    "1",
+    "--output",
+    "/workspace/scratch/d8b65f68acc8/r6-whitebox-scratch/theme-linked-output.pptx"
+  ],
+  "exit": 1,
+  "stdout": "",
+  "stderr": "Native slide integration refused: Shared part differs: ppt/slideMasters/theme/theme2.xml\n",
+  "output_absent": true,
+  "passed": true
+}

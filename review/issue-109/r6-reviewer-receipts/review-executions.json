@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "orchestrator": "/root",
+  "owner": "issue109 / Draft PR110",
+  "common_prompt_sha256": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb",
+  "provider_model_and_context_internals": "unknown; no OS isolation or provider attestation claimed",
+  "executions": [
+    {
+      "role": "Requirements & Acceptance",
+      "accepted_task_handle": "/root/devcon_requirements_preflight",
+      "first_launch": {
+        "tool": "collaboration.spawn_agent",
+        "fork_turns": "none",
+        "model_override": "omitted",
+        "reasoning_effort_override": "omitted",
+        "accepted_response_task_name": "/root/devcon_requirements_preflight"
+      },
+      "role_prompt": "agents/reviewers/requirements-acceptance.md",
+      "role_prompt_sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6",
+      "first_output": "requirements-preflight.md",
+      "first_output_sha256": "7f6152ffbce2333e5e2c76e5bc0f093db8702813f2d25adb73fa458ba5b15cf2",
+      "corrections": "collaboration.followup_task continuation on same role; first results preserved; not a new fresh-isolation claim",
+      "final_output": "requirements-final.md",
+      "final_output_sha256": "9ce0e384869ce9515c8647b9f3f4e38732feb394acaf5076fb483f7ae4fae31d"
+    },
+    {
+      "role": "Code / Artifact",
+      "accepted_task_handle": "/root/r6_artifact_review",
+      "first_launch": {
+        "tool": "collaboration.spawn_agent",
+        "fork_turns": "none",
+        "model_override": "omitted",
+        "reasoning_effort_override": "omitted",
+        "accepted_response_task_name": "/root/r6_artifact_review"
+      },
+      "role_prompt": "agents/reviewers/code-review.md",
+      "role_prompt_sha256": "26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697",
+      "first_output": "code-artifact-first.md",
+      "first_output_sha256": "fbe2733867e2deb1a35f9390ff88c178582824d5bf0b8c5685d3fc82342df96d",
+      "corrections": "collaboration.followup_task continuation on same role; first results preserved; not a new fresh-isolation claim",
+      "final_output": "code-pointer-closure.md",
+      "final_output_sha256": "cedae59b5f0b063f3c6949c60909300d10f213c6242907071be0662836128e77"
+    },
+    {
+      "role": "White-box QA",
+      "accepted_task_handle": "/root/r6_whitebox_review",
+      "first_launch": {
+        "tool": "collaboration.spawn_agent",
+        "fork_turns": "none",
+        "model_override": "omitted",
+        "reasoning_effort_override": "omitted",
+        "accepted_response_task_name": "/root/r6_whitebox_review"
+      },
+      "role_prompt": "agents/reviewers/white-box-qa.md",
+      "role_prompt_sha256": "832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f",
+      "first_output": "whitebox-first.md",
+      "first_output_sha256": "b47343803b6a73e08335917b62a29457818afafe344ed03e0e64f99ff84db44f",
+      "corrections": "collaboration.followup_task continuation on same role; first results preserved; not a new fresh-isolation claim",
+      "final_output": "whitebox-correction.md",
+      "final_output_sha256": "cfe1762ac526da1813a06be395220b73c3a6fb1f8dfa12ce3258e573d914ed1b"
+    },
+    {
+      "role": "Exploratory / Interaction QA",
+      "accepted_task_handle": "/root/r6_exploratory_review",
+      "first_launch": {
+        "tool": "collaboration.spawn_agent",
+        "fork_turns": "none",
+        "model_override": "omitted",
+        "reasoning_effort_override": "omitted",
+        "accepted_response_task_name": "/root/r6_exploratory_review"
+      },
+      "role_prompt": "agents/reviewers/exploratory-interaction-qa.md",
+      "role_prompt_sha256": "280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a",
+      "first_output": "exploratory-first.md",
+      "first_output_sha256": "af8d22e5b2b38092a15c9eaf6fa1183022d16ee9b80152aa4797c19881b908de",
+      "corrections": "collaboration.followup_task continuation on same role; first results preserved; not a new fresh-isolation claim",
+      "final_output": "exploratory-correction.md",
+      "final_output_sha256": "8acc7977952eadc69edb2a3ec3d1ee799a93b16d1af9c3fca80c87ec7aa61296"
+    }
+  ],
+  "packets": {
+    "requirements_preflight": "7e3212227e18eb052355f2a831f7c75519ca1d55b52704c110af7d2e22ab22c1",
+    "artifact_first": "c71edff082b7d03bf6df0164991931341ec9e4f17d6c2c5c8831003a074254b9",
+    "neutral_supplement": "9c5cd97fc8959e3c9110178c5813ecefa36ccff645119ef2789ea1fbda9f2687",
+    "corrected_candidate": "c2db4a3e6089e62f321b98880579d19f93c4c0538462103187e4da063b4f05f6",
+    "metadata_pointer_delta": "c57f7d90806fdb4be158f667fd0c27632fcd4e93c6e1cdf408acd455d40f21c7"
+  }
+}

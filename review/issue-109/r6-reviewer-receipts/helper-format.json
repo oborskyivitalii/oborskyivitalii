@@ -1,0 +1,9 @@
+{
+  "command": "ruff 0.16.10 format --config tools/quality/ruff-format.toml tools/presentations/integrate_native_slide.py",
+  "exit_code": 0,
+  "stdout": "1 file reformatted\n",
+  "stderr": "",
+  "before_sha256": "3cae90c8b59665883c887f6df45459972b047e07387ea88baa2c6573e6fefe02",
+  "after_sha256": "5756a926f4caa409fc7c3d36b78e3f2d8600efce1fb353d6238cc43d4b24f317",
+  "ast_identical": true
+}

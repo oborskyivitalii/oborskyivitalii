@@ -1,0 +1,103 @@
+{
+  "executions": [
+    {
+      "role": "Requirements & Acceptance",
+      "task_name": "/root/requirements_preflight",
+      "phase": "preflight",
+      "requested": {
+        "fork_turns": "none"
+      },
+      "accepted_response": {
+        "task_name": "/root/requirements_preflight"
+      },
+      "provider_model_context_internals": "unknown"
+    },
+    {
+      "role": "Requirements & Acceptance",
+      "task_name": "/root/requirements_final",
+      "phase": "final",
+      "requested": {
+        "fork_turns": "none"
+      },
+      "accepted_response": {
+        "task_name": "/root/requirements_final"
+      },
+      "provider_model_context_internals": "unknown"
+    },
+    {
+      "role": "Code / changed artifact",
+      "task_name": "/root/artifact_review",
+      "phase": "final",
+      "requested": {
+        "fork_turns": "none"
+      },
+      "accepted_response": {
+        "task_name": "/root/artifact_review"
+      },
+      "provider_model_context_internals": "unknown"
+    },
+    {
+      "role": "White-box QA",
+      "task_name": "/root/whitebox_qa",
+      "phase": "final",
+      "requested": {
+        "fork_turns": "none"
+      },
+      "accepted_response": {
+        "task_name": "/root/whitebox_qa"
+      },
+      "provider_model_context_internals": "unknown"
+    },
+    {
+      "role": "Exploratory / Interaction QA",
+      "task_name": "/root/exploratory_qa",
+      "phase": "final",
+      "requested": {
+        "fork_turns": "none"
+      },
+      "accepted_response": {
+        "task_name": "/root/exploratory_qa"
+      },
+      "provider_model_context_internals": "unknown"
+    }
+  ],
+  "common_prompt": {
+    "path": "agents/reviewers/README.md",
+    "sha256": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb"
+  },
+  "packet_final_sha256": "06f3fa575f5066e2ac454284a48f76f47b8aa39b4c493d17f129efb608487a1e",
+  "correction_executions": [
+    {
+      "task_name": "/root/requirements_final",
+      "operation": "collaboration.followup_task",
+      "phase": "source-bound affected correction",
+      "fork_context": "Continuation of own prior role; not a fresh first judgment.",
+      "packet_sha256": "ebed2dffbfe151107e6054e48c10d26d291e10ba39e39e16203c3f17a3d59837",
+      "result": "requirements-correction-final.md"
+    },
+    {
+      "task_name": "/root/artifact_review",
+      "operation": "collaboration.followup_task",
+      "phase": "source-bound affected correction",
+      "fork_context": "Continuation of own prior role; not a fresh first judgment.",
+      "packet_sha256": "ebed2dffbfe151107e6054e48c10d26d291e10ba39e39e16203c3f17a3d59837",
+      "result": "artifact-correction.md"
+    },
+    {
+      "task_name": "/root/whitebox_qa",
+      "operation": "collaboration.followup_task",
+      "phase": "source-bound affected correction",
+      "fork_context": "Continuation of own prior role; not a fresh first judgment.",
+      "packet_sha256": "ebed2dffbfe151107e6054e48c10d26d291e10ba39e39e16203c3f17a3d59837",
+      "result": "whitebox-correction.md"
+    },
+    {
+      "task_name": "/root/exploratory_qa",
+      "operation": "collaboration.followup_task",
+      "phase": "source-bound affected correction",
+      "fork_context": "Continuation of own prior role; not a fresh first judgment.",
+      "packet_sha256": "ebed2dffbfe151107e6054e48c10d26d291e10ba39e39e16203c3f17a3d59837",
+      "result": "exploratory-correction.md"
+    }
+  ]
+}

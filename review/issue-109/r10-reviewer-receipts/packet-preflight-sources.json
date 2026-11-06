@@ -1,0 +1,72 @@
+{
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "base": "3ee7398c48bfedca4a004e50ef72d88df954c8b4",
+  "pr": 110,
+  "issue": 109,
+  "original_request": "На підставі останньої версії статті про поломаний SDLC оновити деку та спіч для Румунії, першу половину слайдів, правками за останні 2–3 дні. Після аналізу користувач схвалив нову версію. Поточне доручення: внести вже створену R10 у той самий PR110, звірити деку, спіч і нотатки, завершити незалежні рев’ю й перевірки.",
+  "scope": "Nine slides; targeted S01-S05 update based on article R10, retain six hypotheses and Agarwal numbers, S06-S09 from delivered 3-Nov external R12 unchanged; exact native/Markdown/PDF synchronization. R10 canonical repo edition follows R9. No merge, event selection or public release. Preserve prior editions. Actual timing unmeasured; compare word counts against 1423 baseline.",
+  "files": [
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/AGENTS.md",
+      "sha256": "ad4f179ec04c7af12867229d70598a660c5ae41f3cb456cafd02aca3d12a9988"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/CONTRIBUTING.md",
+      "sha256": "804fb3da9a0bc7369bbd902313224221becc6c6b775536ca943f8664bf741442"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/agents/reviewers/README.md",
+      "sha256": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/agents/reviewers/requirements-acceptance.md",
+      "sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/.github/acceptance/issue-109.json",
+      "sha256": "994a5915c703bd212108d5c256de2e7beaa3dee29b9566ee5ba7ff36a4b78e82"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/repo/guides/PRESENTATION-VERSIONING.md",
+      "sha256": "917ec0d4323d55081a5a1c9e671f656c01b4173c4b8d8371eb24857a09fbb75e"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/owner109.md",
+      "sha256": "c97fcc462683d3b4ef777632f0918a713f3a74dbebf86b97f1cb7d596e30571e"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/r10-input/DevCon_Romania_2026-11-06_R10_Speech.md",
+      "sha256": "4f60d228495d362839dd53c45475e2853c6b75a5d8f5294e8af56046792367b9"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/r10-input/DevCon_Romania_2026-11-06_R10.pptx",
+      "sha256": "6574661343e6a74c222a60504b3b1b105a5dde44c7785dc28b262f59e2a28083"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/r10-input/DevCon_Romania_2026-11-06_R10.pdf",
+      "sha256": "266e98b1bb3b3282fad72a1250672dda316e6ef7ce37a40b0f89a747da418071"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/r10-input/DevCon_Romania_2026-11-06_R10_Speech.pdf",
+      "sha256": "841f142320760ee2b05972568d4a64571bbe1d4c9c6b9503a03cf351fb777261"
+    }
+  ],
+  "additional_files": [
+    {
+      "path": "/workspace/scratch/992b55cffd39/r12-input/devcon-romania-2026-r12.pdf",
+      "sha256": "78c9b730780591155b15ce84e5e0487a7ee0a0d7947d895d9a762763b6f1d8be"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/r12-input/devcon-romania-2026-r12.pptx",
+      "sha256": "62078b50206fa2d5125e96af5b024c334c8f351c5459cbb1b70c8d9f338f07cd"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/r12-input/devcon-romania-2026-r12-speech.md",
+      "sha256": "26a2c948e86b8c30c01e5d705e68705b34696862eb62c510e77083300599e269"
+    },
+    {
+      "path": "/workspace/scratch/992b55cffd39/article-r10.md",
+      "sha256": "337f21f1ef76523cc43a1631494e09eb5bc8b812c665499129895935179b03f1"
+    }
+  ]
+}

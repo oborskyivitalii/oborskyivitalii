@@ -1,0 +1,36 @@
+{
+  "negative_checks": [
+    {
+      "case": "wrong_sha",
+      "rejected": true,
+      "reason": "Source SHA-256 mismatch",
+      "no_output_written_or_changed": true
+    },
+    {
+      "case": "duplicate_order",
+      "rejected": true,
+      "reason": "Order must be a complete one-based permutation",
+      "no_output_written_or_changed": true
+    },
+    {
+      "case": "wrong_source_order",
+      "rejected": true,
+      "reason": "Source slide order mismatch",
+      "no_output_written_or_changed": true
+    },
+    {
+      "case": "wrong_footer_id",
+      "rejected": true,
+      "reason": "Footer shape 36 has unexpected text",
+      "no_output_written_or_changed": true
+    },
+    {
+      "case": "existing_output",
+      "rejected": true,
+      "reason": "Output already exists",
+      "no_output_written_or_changed": true
+    }
+  ],
+  "native_reproduction_byte_exact": true,
+  "reproduced_sha256": "ec8478a8c55d7db17a922e761a137759cb4c2de86b135f9153b709f76c7a9b29"
+}

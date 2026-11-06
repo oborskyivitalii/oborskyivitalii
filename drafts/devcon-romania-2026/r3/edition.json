@@ -1,0 +1,300 @@
+{
+  "edition": "DevCon Romania 2026 R3",
+  "status": "author-review-draft",
+  "author": "Vitalii Oborskyi",
+  "language": "en",
+  "slide_count": 9,
+  "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/109",
+  "pull_request": "https://github.com/oborskyivitalii/oborskyivitalii/pull/110",
+  "event": {
+    "slug": "devcon-romania-2026",
+    "path": "drafts/events/devcon-romania-2026/event.json",
+    "selection": "Current preparation draft; exact PDF selected by path and SHA256"
+  },
+  "predecessor": {
+    "edition": "DevCon Romania 2026 R2",
+    "commit": "a2aac3e395c190dc31a3974d83d5da065d12c304",
+    "manifest": "drafts/devcon-romania-2026/r2/edition.json",
+    "manifest_sha256": "260907a4b6a58903330dbcf5abda96bc0d03112951adff39c4b2e2b363fafb1e",
+    "preserved_r1_and_r2_files": {
+      "DevCon-Romania-2026-R1.pptx": {
+        "sha256": "21db89dd1f5c60eefd44bd32ae533e7e17c164ad7a4cacdc8862ae7b36da935f",
+        "bytes": 1402885
+      },
+      "DevCon-Romania-2026-R1.pdf": {
+        "sha256": "818a9dec0422b225c775ad9f61586bcd051835479fbcc5b0d4acde21f99fcae2",
+        "bytes": 646315
+      },
+      "speaker-notes.md": {
+        "sha256": "3bc6263a246483a5f154087f2bee37402776cb70c453be7206e6e3b3c8310b1c",
+        "bytes": 21127
+      },
+      "edition.json": {
+        "sha256": "dcd729c38e9ec1a8b0d3027e73f0c8ff42c2536962d6482056f1d48754a50302",
+        "bytes": 8802
+      },
+      "r2/devcon-romania-2026-r2.pptx": {
+        "sha256": "5bbbeed92976fe526e30e5a526ba3098cc7059c524225f5921e1730e960a21a9",
+        "bytes": 1392015
+      },
+      "r2/devcon-romania-2026-r2.pdf": {
+        "sha256": "3db8521f94cb58cd54f877b9c7b17c9587430e978f0606de8723807627f9ce08",
+        "bytes": 640286
+      },
+      "r2/speaker-notes.md": {
+        "sha256": "d3ddb1efad0919c0ba193eb9da1aedc8acf90216107495baec82bed2c7477e58",
+        "bytes": 22938
+      },
+      "r2/edition.json": {
+        "sha256": "260907a4b6a58903330dbcf5abda96bc0d03112951adff39c4b2e2b363fafb1e",
+        "bytes": 107508
+      }
+    }
+  },
+  "plan": {
+    "path": "drafts/devcon-romania-2026/plan.md",
+    "sha256": "792954ee56dee7fca53f5c61767ee21b6b60f7a91635494fd179970aef1feac7",
+    "bytes": 40303,
+    "amendment": "2026-10-19 R3: nine total slides, 3–5-sentence core, reduced explanatory scope and unmeasured timing allowance"
+  },
+  "speaking_minutes": 20,
+  "qa_minutes": 7,
+  "reserve_minutes": 3,
+  "core_word_count": 554,
+  "core_words_before_qr": 519,
+  "core_sentence_count": 42,
+  "word_count_method": "[A-Za-z0-9]+(?:[’'-][A-Za-z0-9]+)* on each exact cue paragraph; headings and source references excluded",
+  "timing_status": "Editorial explanation allowances, not durations inferred from sentence count or a measured rehearsal. Literal reading of the short core is much shorter.",
+  "source": {
+    "repository": "UncertaintyArchitectureGroup/uncertainty-architecture",
+    "commit": "22639d311d5fb46a23f3d5cdd819800dbe1169d9",
+    "pptx": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/assets/presentations/pmday-2026/ai-changes-both-sides.pptx",
+    "sha256": "d40acf0d3e716eb1324acb3ff1b21a6b43d0225687b84984a818a9518f098ecc",
+    "content": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/assets/presentations/pmday-2026/README.md",
+    "evidence": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/assets/presentations/pmday-2026/EVIDENCE.md",
+    "artwork_provenance": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/assets/presentations/pmday-2026/artwork/PROVENANCE.md"
+  },
+  "slide_size_emu": {
+    "cx": 12192000,
+    "cy": 6858000
+  },
+  "slides": [
+    {
+      "slide": 1,
+      "title": "AI Changes the Delivery System and the Product Itself",
+      "r2_slide": 1,
+      "pmday_slide": 1,
+      "speaker_core": "AI can now take on parts of interpretation and judgment. We use that capability while building software, and increasingly inside the products themselves. In both cases, the surrounding system has to adapt. My question is what happens when the capacity to generate or decide grows faster than our capacity to understand, verify and recover.",
+      "sentences": 4,
+      "words": 54,
+      "explanation_allowance_minutes": 1,
+      "planned_window": "00:00–01:00",
+      "sources": [
+        "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/assets/presentations/pmday-2026/README.md",
+        "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/assets/presentations/pmday-2026/artwork/PROVENANCE.md"
+      ],
+      "adaptation": "Reuse paired artwork and visible delivery/runtime judgment framing unchanged."
+    },
+    {
+      "slide": 2,
+      "title": "We Accelerated a Step. Not the System.",
+      "r2_slide": 2,
+      "pmday_slide": 3,
+      "speaker_core": "Imagine that a team can write, review and integrate eight comparable changes a week. AI raises generation to one hundred, while review and integration stay at eight. In this deliberately simple example, ninety-two changes join the queue each week. We accelerated one stage and exposed the downstream constraints. The effect on delivery depends on the capacity of the whole system.",
+      "sentences": 5,
+      "words": 60,
+      "explanation_allowance_minutes": 2.5,
+      "planned_window": "01:00–03:30",
+      "sources": [
+        "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/assets/presentations/pmday-2026/README.md"
+      ],
+      "adaptation": "Reuse one complete illustrative delivery bottleneck. Short notes explain only its fixed-capacity mechanism."
+    },
+    {
+      "slide": 3,
+      "title": "The Evidence Is Already Messy",
+      "r2_slide": 3,
+      "pmday_slide": 4,
+      "speaker_core": "These studies measure different things, so their numbers do not form one productivity score. The NBER estimates show much larger increases in changed code than in releases. DORA reports perceived productivity gains alongside an association between AI adoption and delivery instability. The other reports add signals about perceived work value and changes in code structure. Together, they motivate a question about system balance, without proving one universal effect.",
+      "sentences": 5,
+      "words": 68,
+      "explanation_allowance_minutes": 4,
+      "planned_window": "03:30–07:30",
+      "sources": [
+        "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/assets/presentations/pmday-2026/README.md",
+        "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/assets/presentations/pmday-2026/EVIDENCE.md",
+        "https://www.nber.org/papers/w35275",
+        "https://dora.dev/research/2025/dora-report/",
+        "https://gitclear-public.s3.us-west-2.amazonaws.com/GitClear-AI-Copilot-Code-Quality-2025.pdf",
+        "https://www.gitclear.com/blog/annual_ai_code_quality_research_2026_diff_digest_git_ai_diff_viewer",
+        "https://metr.org/blog/2026-05-11-ai-usage-survey/",
+        "https://arxiv.org/html/2601.13597v2"
+      ],
+      "adaptation": "Preserve every report, label, table and methodological qualification. Narration uses two qualified anchors."
+    },
+    {
+      "slide": 4,
+      "title": "The New Scarcity Is Human Comprehension",
+      "r2_slide": 4,
+      "pmday_slide": 5,
+      "speaker_core": "Faster change becomes a problem when understanding cannot keep pace. A team may ship working code and still lack the expertise needed to explain a failure or restore service. The gap on this slide is a hypothesis we should test in our own systems. AI can help build that understanding, but we need evidence that the capability exists when required. Responsibility becomes operational only when people have sufficient context, authority and time to act.",
+      "sentences": 5,
+      "words": 74,
+      "explanation_allowance_minutes": 2,
+      "planned_window": "07:30–09:30",
+      "sources": [
+        "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/assets/presentations/pmday-2026/README.md"
+      ],
+      "adaptation": "Reuse one comprehension/recovery hypothesis. Remove the extended incident and unfamiliar-language anecdotes from narration."
+    },
+    {
+      "slide": 5,
+      "title": "We Are Searching for a New SDLC Equilibrium",
+      "r2_slide": 5,
+      "pmday_slide": 7,
+      "speaker_core": "That is why I think we are searching for a new SDLC equilibrium. The bottleneck will differ between teams, and it can move as capabilities change. Each proposed operating model makes assumptions about what can be delegated and how the remaining work gets done. We should treat those assumptions as hypotheses, with evidence that could support or overturn them. A useful approach in one setting does not establish a final recipe for every system.",
+      "sentences": 5,
+      "words": 74,
+      "explanation_allowance_minutes": 2,
+      "planned_window": "09:30–11:30",
+      "sources": [
+        "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/assets/presentations/pmday-2026/README.md"
+      ],
+      "adaptation": "Retain the search for a new equilibrium and contextual operating-model hypotheses. No tool catalogue."
+    },
+    {
+      "slide": 6,
+      "title": "When Software Starts Thinking",
+      "r2_slide": 6,
+      "pmday_slide": 9,
+      "speaker_core": "Now put model judgment inside the product itself. An IT assistant may decide whether to answer an access request, ask for clarification or escalate. I call it a Thinking System when consequential runtime responsibility depends partly on model judgment. We must define its permitted responsibility and evaluate whether its behaviour stays within that boundary. For example, helpful recovery advice cannot compensate for disclosing information the user is not allowed to see.",
+      "sentences": 5,
+      "words": 71,
+      "explanation_allowance_minutes": 3,
+      "planned_window": "11:30–14:30",
+      "sources": [
+        "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/assets/presentations/pmday-2026/README.md"
+      ],
+      "adaptation": "Retain one runtime-responsibility example and acceptable/prohibited behavior. No evaluation chart or release lesson."
+    },
+    {
+      "slide": 7,
+      "title": "Delegation Changes the Sociotechnical System",
+      "r2_slide": 9,
+      "pmday_slide": 13,
+      "speaker_core": "Both shifts redistribute cognitive work across a sociotechnical system of people, processes and technology. During delivery, someone needs enough understanding to challenge changes and recover the service. During operation, someone needs evidence about behaviour and the authority to change what the product may do. Both depend on expertise and available time, supported by working feedback. Putting a human on a diagram achieves little if that person cannot act when the system needs them.",
+      "sentences": 5,
+      "words": 73,
+      "explanation_allowance_minutes": 3,
+      "planned_window": "14:30–17:30",
+      "sources": [
+        "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/assets/presentations/pmday-2026/README.md"
+      ],
+      "adaptation": "Reuse the three-row HOW/WHAT table; retitle as sociotechnical synthesis with evidence, authority and human capability."
+    },
+    {
+      "slide": 8,
+      "title": "Engineering Rigor Moves — It Doesn’t Disappear",
+      "r2_slide": 10,
+      "pmday_slide": 14,
+      "speaker_core": "As we search for a new balance, I would ask four questions. Which imbalance does this approach address? By what mechanism should it improve the whole system? What evidence would demonstrate that improvement? What would make us revise the hypothesis or change what we delegate?",
+      "sentences": 5,
+      "words": 45,
+      "explanation_allowance_minutes": 2,
+      "planned_window": "17:30–19:30",
+      "sources": [
+        "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/assets/presentations/pmday-2026/README.md"
+      ],
+      "adaptation": "Reuse the four native question objects at larger size; remove the laboratory workflow and feedback diagram."
+    },
+    {
+      "slide": 9,
+      "title": "Continue the Conversation",
+      "r2_slide": 11,
+      "pmday_slide": 15,
+      "speaker_core": "Thank you for joining me. The QR code takes you to my website, where you can find my research, articles and talks. I would like to hear where your own team feels the balance shifting.",
+      "sentences": 3,
+      "words": 35,
+      "explanation_allowance_minutes": 0.5,
+      "planned_window": "19:30–20:00",
+      "sources": [
+        "https://vitaliioborskyi.ai/"
+      ],
+      "adaptation": "Retain the one homepage QR and visible address; change only the screen number."
+    }
+  ],
+  "omitted_r2_screens": [
+    {
+      "slide": 7,
+      "title": "Evidence Changes the Release Decision",
+      "scope_removed": "196/3/1 evaluation, sampling, release-readiness and optional statistical lesson"
+    },
+    {
+      "slide": 8,
+      "title": "Control Is a Sociotechnical Capability",
+      "scope_removed": "Semantic validation, permissions and detailed control-loop architecture"
+    }
+  ],
+  "reuse": {
+    "retained_primary_r2_slides": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      9,
+      10,
+      11
+    ],
+    "retained_primary_pmday_slides": [
+      1,
+      3,
+      4,
+      5,
+      7,
+      9,
+      13,
+      14,
+      15
+    ],
+    "native_table_owner_slides": [
+      3,
+      7
+    ],
+    "native_chart_owner_slides": [],
+    "evidence_content_and_layout_preserved": true,
+    "r2_slides_1_to_6_xml_identical": true,
+    "original_media_theme_masters_layouts_byte_identical": true,
+    "new_visual_assets": []
+  },
+  "website_qr": {
+    "payload": "https://vitaliioborskyi.ai/",
+    "visible_url": "vitaliioborskyi.ai",
+    "native_slide": 9,
+    "size_inches": 3.25,
+    "error_correction": "Q",
+    "quiet_zone_modules": 4,
+    "verified_from_final_pdf_render": true,
+    "pixel_verification_scope": "One QR decoded from complete final-slide render; not a projector-distance guarantee."
+  },
+  "derivation": "Native R2 source-object reduction on a separate copy, nine matching concise note cores, final PPTX validation and PDF export. No new presentation engine.",
+  "rights": {
+    "author_owned_text": "CC BY 4.0 under repository content scope",
+    "upstream_terms": "Retained; see pinned source and repository LICENSING.md. Third-party sources, personal identity and generated cover provenance retain their separate boundaries."
+  },
+  "artifacts": {
+    "devcon-romania-2026-r3.pptx": {
+      "sha256": "ba7a4099a22fc62644abdce9985e1747d4113abdbe5622905969a93b7e90ff1d",
+      "bytes": 1369030
+    },
+    "devcon-romania-2026-r3.pdf": {
+      "sha256": "1464372a8af005c95f183d4673c1cdd91dfe57c7ebea3a2f26d32ccb59eaef20",
+      "bytes": 547725
+    },
+    "speaker-notes.md": {
+      "sha256": "e39177eb4b32a71c40dc46181237b09224b61588d162fb875c007b06a5212ddd",
+      "bytes": 6003
+    }
+  }
+}

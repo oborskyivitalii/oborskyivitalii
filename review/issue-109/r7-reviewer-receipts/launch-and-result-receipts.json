@@ -1,0 +1,130 @@
+{
+  "date": "2026-11-02",
+  "orchestrator": "/root",
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "base_commit": "75ca39219685dc279ec8301ed7602d4769201b3f",
+  "common_prompt_sha256": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb",
+  "preflight": {
+    "agent": "/root/r7_requirements",
+    "initial_launch_requested": {
+      "fork_turns": "none",
+      "model": "omitted",
+      "reasoning_effort": "omitted"
+    },
+    "accepted_tool_response": {
+      "task_name": "/root/r7_requirements"
+    },
+    "packet_sha256": "090afb08d2bbd0cfce886ea99e00ae634772b8da71d246fc336dc24563d3e758",
+    "result": "review/issue-109/r7-reviewer-receipts/requirements-preflight.md",
+    "result_sha256": "276b0c42f92abff722b9f18e9a65cba7d7c0f0b0b6bde4fe6d0ec0390d152572",
+    "result_preserved_before_implementation": true
+  },
+  "executions": [
+    {
+      "task_handle": "/root/r7_requirements",
+      "role_prompt": "agents/reviewers/requirements-acceptance.md",
+      "role_prompt_sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6",
+      "phase": "continuation",
+      "initial_launch": {
+        "tool": "collaboration.spawn_agent",
+        "requested": {
+          "fork_turns": "none",
+          "model": "omitted",
+          "reasoning_effort": "omitted"
+        },
+        "accepted_tool_response": {
+          "task_name": "/root/r7_requirements"
+        }
+      },
+      "continuation_tool": "collaboration.followup_task",
+      "packet": "review/issue-109/r7-reviewer-receipts/final-candidate-packet.json",
+      "packet_sha256": "5d5d4d4e48626c67b8c6efff066309c61b590bf20c8c9d019db3eaae936abc92",
+      "result": "review/issue-109/r7-reviewer-receipts/requirements-final.md",
+      "result_sha256": "cd99ce20f5ca4187965c3a04fdce9527918e0fb1aeff26844223e7a611e69088",
+      "verdict": "PASS for bounded R7 delta; role-specific limits and findings retained in own result",
+      "provider_observed": "Provider model/context/memory internals unknown; no attestation of OS-level isolation",
+      "peer_exposure": "No peer verdict supplied before first independent judgment; Requirements continuation retained its own preflight only."
+    },
+    {
+      "task_handle": "/root/r7_code_review",
+      "role_prompt": "agents/reviewers/code-review.md",
+      "role_prompt_sha256": "26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697",
+      "phase": "first",
+      "initial_launch": {
+        "tool": "collaboration.spawn_agent",
+        "requested": {
+          "fork_turns": "none",
+          "model": "omitted",
+          "reasoning_effort": "omitted"
+        },
+        "accepted_tool_response": {
+          "task_name": "/root/r7_code_review"
+        }
+      },
+      "continuation_tool": null,
+      "packet": "review/issue-109/r7-reviewer-receipts/final-candidate-packet.json",
+      "packet_sha256": "5d5d4d4e48626c67b8c6efff066309c61b590bf20c8c9d019db3eaae936abc92",
+      "result": "review/issue-109/r7-reviewer-receipts/code-first.md",
+      "result_sha256": "1a7fc31c139d7d88f763959f8b9770aab567698c640949bebb31ed3d6daf2516",
+      "verdict": "PASS for bounded R7 delta; role-specific limits and findings retained in own result",
+      "provider_observed": "Provider model/context/memory internals unknown; no attestation of OS-level isolation",
+      "peer_exposure": "No peer verdict supplied before first independent judgment; Requirements continuation retained its own preflight only."
+    },
+    {
+      "task_handle": "/root/r7_whitebox",
+      "role_prompt": "agents/reviewers/white-box-qa.md",
+      "role_prompt_sha256": "832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f",
+      "phase": "first",
+      "initial_launch": {
+        "tool": "collaboration.spawn_agent",
+        "requested": {
+          "fork_turns": "none",
+          "model": "omitted",
+          "reasoning_effort": "omitted"
+        },
+        "accepted_tool_response": {
+          "task_name": "/root/r7_whitebox"
+        }
+      },
+      "continuation_tool": null,
+      "packet": "review/issue-109/r7-reviewer-receipts/final-candidate-packet.json",
+      "packet_sha256": "5d5d4d4e48626c67b8c6efff066309c61b590bf20c8c9d019db3eaae936abc92",
+      "result": "review/issue-109/r7-reviewer-receipts/whitebox-first.md",
+      "result_sha256": "5cd4448737ed2dc13389520fccc38dd23f8c4eb40a69cabe5cb7ddcb5237074d",
+      "verdict": "PASS for bounded R7 delta; role-specific limits and findings retained in own result",
+      "provider_observed": "Provider model/context/memory internals unknown; no attestation of OS-level isolation",
+      "peer_exposure": "No peer verdict supplied before first independent judgment; Requirements continuation retained its own preflight only."
+    },
+    {
+      "task_handle": "/root/r7_exploratory",
+      "role_prompt": "agents/reviewers/exploratory-interaction-qa.md",
+      "role_prompt_sha256": "280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a",
+      "phase": "first",
+      "initial_launch": {
+        "tool": "collaboration.spawn_agent",
+        "requested": {
+          "fork_turns": "none",
+          "model": "omitted",
+          "reasoning_effort": "omitted"
+        },
+        "accepted_tool_response": {
+          "task_name": "/root/r7_exploratory"
+        }
+      },
+      "continuation_tool": null,
+      "packet": "review/issue-109/r7-reviewer-receipts/final-candidate-packet.json",
+      "packet_sha256": "5d5d4d4e48626c67b8c6efff066309c61b590bf20c8c9d019db3eaae936abc92",
+      "result": "review/issue-109/r7-reviewer-receipts/exploratory-first.md",
+      "result_sha256": "c59b4b826a200e85ef79075e05b4d6b86de0b981004c6ca8f42920604384b539",
+      "verdict": "PASS for bounded R7 delta; role-specific limits and findings retained in own result",
+      "provider_observed": "Provider model/context/memory internals unknown; no attestation of OS-level isolation",
+      "peer_exposure": "No peer verdict supplied before first independent judgment; Requirements continuation retained its own preflight only."
+    }
+  ],
+  "postreview_source_confirmation": {
+    "packet_entries": 33,
+    "sha256_mismatches": [],
+    "method": "Root recalculated all listed byte sizes/SHA256 after every role completed; no reviewed authored source changed."
+  },
+  "reconciliation": "RA01/RA02 resolved; RA03 nonspoken continuity retained/disclosed. Exploratory E1 tonal transition and E2 inherited density remain author rehearsal/device considerations; no blocking reorder defect. All first judgments preserved verbatim."
+}

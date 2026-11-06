@@ -1,0 +1,72 @@
+from pathlib import Path
+import hashlib,json,re,sys,zipfile,xml.etree.ElementTree as ET
+import fitz,numpy as np
+from PIL import Image
+sys.path.insert(0,'/tmp/devcon-r6-qr')
+import zxingcpp
+B=Path('/workspace/scratch/d8b65f68acc8'); R=B/'devcon-repo'; E=R/'drafts/devcon-romania-2026'; D=B/'devcon-r7/build'; O=E/'r7'
+order=[1,2,4,3,5,6,7,8,9]
+P='http://schemas.openxmlformats.org/presentationml/2006/main'; A='http://schemas.openxmlformats.org/drawingml/2006/main'; REL='http://schemas.openxmlformats.org/officeDocument/2006/relationships'; PK='http://schemas.openxmlformats.org/package/2006/relationships'
+boundary='==== REFERENCE NOTES AND SOURCES (NOT STAGE SCRIPT) ===='
+def sha(data):return hashlib.sha256(data).hexdigest()
+def identity(p):return {'path':str(p),'bytes':p.stat().st_size,'sha256':sha(p.read_bytes())}
+def load(p):
+ with zipfile.ZipFile(p) as z:return {n:z.read(n) for n in z.namelist()}
+def note(b):return '\n'.join(''.join(p.itertext()) for p in ET.fromstring(b).iter('{'+A+'}p'))
+src=load(E/'r6/devcon-romania-2026-r6.pptx'); dst=load(O/'devcon-romania-2026-r7.pptx')
+assert list(src)==list(dst)
+changed=[n for n in src if src[n]!=dst[n]]
+assert set(changed)=={'ppt/presentation.xml','ppt/slides/slide3.xml','ppt/slides/slide4.xml','ppt/notesSlides/notesSlide3.xml','ppt/notesSlides/notesSlide4.xml'}
+assert len(src)==58
+rels=[n for n in src if n.endswith('.rels')]
+assert len(rels)==23 and all(src[n]==dst[n] for n in rels)
+relmap={x.get('Id'):x.get('Target') for x in ET.fromstring(dst['ppt/_rels/presentation.xml.rels'])}
+actual=[int(re.search(r'slide(\d+)\.xml$',relmap[x.get('{'+REL+'}id')]).group(1)) for x in ET.fromstring(dst['ppt/presentation.xml']).find('{'+P+'}sldIdLst')]
+assert actual==order
+sections=['# DevCon Romania 2026 — R7 speaker notes','','This is a transcription of the nine native notes in the R7 presentation. R13 identifies the source speech revision; SLIDE labels identify current delivery positions. All spoken wording and nonspoken reference text are preserved. Source R6/R13 positions in delivery order are 1, 2, 4, 3, 5, 6, 7, 8, 9. The ownership section is now slide 03; the evidence section is now slide 04.','']
+comparisons=[]
+for new,old in enumerate(order,1):
+ part=f'ppt/notesSlides/notesSlide{old}.xml'; original=note(src[part]); current=note(dst[part]); stage,refs=current.split(boundary,1); original_stage,original_refs=original.split(boundary,1)
+ assert stage.split('\n',1)[1]==original_stage.split('\n',1)[1]
+ assert refs==original_refs
+ assert stage.startswith(f'R13 STAGE SCRIPT | SLIDE {new:02d} |')
+ slide_rel=ET.fromstring(dst[f'ppt/slides/_rels/slide{old}.xml.rels'])
+ assert any(x.get('Type').endswith('/notesSlide') and x.get('Target').endswith(f'notesSlide{old}.xml') for x in slide_rel)
+ title=stage.splitlines()[1]
+ sections += [f'## Slide {new:02d} — {title}','','### Stage script','',stage.rstrip('\n'),'','### References and qualifications — not stage script','',boundary+refs.rstrip('\n'),'']
+ comparisons.append({'delivery_position':new,'source_position':old,'spoken_words_exact':True,'references_exact':True,'native_note_association_correct':True})
+notes='\n'.join(sections)
+if '--notes' in sys.argv:
+ (O/'speaker-notes.md').write_text(notes);sys.exit(0)
+assert (O/'speaker-notes.md').read_text()==notes
+rendered={}; pages={}; links={}; qr=[]
+for edition in ('r6','r7'):
+ folder=D/f'renders-{edition}';folder.mkdir(exist_ok=True)
+ with fitz.open(E/edition/f'devcon-romania-2026-{edition}.pdf') as doc:
+  assert len(doc)==9
+  rendered[edition]=[];pages[edition]=[];links[edition]=[]
+  for i,page in enumerate(doc):
+   pix=page.get_pixmap(matrix=fitz.Matrix(2,2),alpha=False);pix.save(folder/f'slide-{i+1:02d}.png')
+   rendered[edition].append(np.frombuffer(pix.samples,dtype=np.uint8).reshape(pix.height,pix.width,3).copy())
+   pages[edition].append(page.get_text())
+   links[edition].append([{k:v for k,v in x.items() if k in ('kind','uri','from','page','to')} for x in page.get_links()])
+  for barcode in zxingcpp.read_barcodes(Image.open(folder/'slide-09.png')):
+   qr.append({'edition':edition,'text':barcode.text,'format':str(barcode.format)})
+visual=[]
+for new,old in enumerate(order,1):
+ a=rendered['r6'][old-1];b=rendered['r7'][new-1];assert a.shape==b.shape
+ mask=np.any(a!=b,axis=2);ys,xs=np.where(mask);box=None if len(xs)==0 else [int(xs.min()),int(ys.min()),int(xs.max()+1),int(ys.max()+1)]
+ if new==old:assert not mask.any() and pages['r6'][old-1]==pages['r7'][new-1]
+ else:
+  # Both source footer shapes lie within x=880..913, y=514..534 PDF points.
+  allowed=mask.copy();allowed[1028:1068,1760:1826]=False;assert not allowed.any(),box
+  assert pages['r6'][old-1].replace(f'\n{old:02d}\n',f'\n{new:02d}\n')==pages['r7'][new-1]
+ assert links['r6'][old-1]==links['r7'][new-1]
+ visual.append({'delivery_position':new,'source_position':old,'different_pixels':int(mask.sum()),'difference_bbox_pixels':box,'pixels_exact_except_number':True,'text_exact_except_number':True,'links_exact':True})
+assert [x['text'] for x in qr if x['edition']=='r6']==[x['text'] for x in qr if x['edition']=='r7']!=[]
+assert (D/'candidate.pptx').read_bytes()==(O/'devcon-romania-2026-r7.pptx').read_bytes()
+assert sha((E/'r6/devcon-romania-2026-r6.pptx').read_bytes())=='b3269196b0eac9dde5fd58706e16a6e84cff4bc2b3e3b368a634087b1cc5eef9'
+assert sha((E/'r6/devcon-romania-2026-r6.pdf').read_bytes())=='8d070574648dbc640b30e4fb4e996ee9992664c332b762297b13bf5b8532fa20'
+assert sha((E/'devcon-romania-2026-r13-concise-stage-script.md').read_bytes())=='8b00bb3e6f25884fdcb024bb01fae5a80ba9ca0903e6682a7796477a2380bb84'
+proof={'schema':'devcon-r7-native-reorder.v1','outputs':{p.name:identity(p) for p in (O/'devcon-romania-2026-r7.pptx',O/'devcon-romania-2026-r7.pdf',O/'speaker-notes.md')},'source_positions_in_delivery_order':actual,'counts':{'slides':9,'notes':9,'pdf_pages':9,'package_parts':58,'relationship_parts':23},'changed_parts':changed,'unchanged_payload_count':53,'all_relationship_parts_unchanged':True,'candidate_unchanged_by_finalizer':True,'notes':comparisons,'renders':visual,'qr':qr,'r6_and_standalone_r13_immutable':True,'part_inventory':[{'part':n,'source_sha256':sha(src[n]),'output_sha256':sha(dst[n])} for n in src]}
+(D/'proof.json').write_text(json.dumps(proof,indent=2)+'\n');print(json.dumps({k:v for k,v in proof.items() if k not in ('part_inventory','notes')},indent=2))

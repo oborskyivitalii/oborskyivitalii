@@ -1,65 +1,44 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-31**.
+Dated continuity, not live authority. Last verified: **2026-11-06**.
 
 ## Snapshot
 
-- WEB-18/#167, coordinator VIT-22, same Draft PR168.
-- Security-correction baseline8c0087b99f4bd77886b2f174ff30d12f67855cee,
-  treef9055428997b0f40af098f6862c30883b1e99ac8; revalidate live head.
-- Full1810-file snapshot verified against all Git blobs/tree (1809 index paths
-  plus native integration report on disk).
-  Original local Git history/HEAD unavailable; no synthetic HEAD accepted.
-- Baseline Basic41194698327, navigation41194698305 and owning41194698347
-  passed automated scope. Full stage41195104012/job124519732378 then failed
-  security/advisories before upload; first failures/artifacts retained.
+- DevCon Romania issue109 / same Draft PR110, branch
+  `work/issue-109-devcon-romania-r1`; revalidate live head/checks.
+- Current R10 imports the delivered 6-Nov native/PDF/full speech package and
+  includes independently reviewed PR/Jira source-unit clarification.
+  Base before integration: `3ee7398c48bfedca4a004e50ef72d88df954c8b4`.
+- Current artifact owner: drafts/devcon-romania-2026/r10/edition.json.
+  Review: review/issue-109/2026-11-06-r10-review.md.
 
 ## Decisions
 
-- Current continuation covers bounded native RI/CI integration under #167.
-  Prompt family is watched/mapped; real generated RI/coupling refreshed.
-  Existing reducer still returns only data/proposals, with no dispatcher.
-- Linear remains intent/coordination owner; manual session ingress. Preferred
-  Sol/medium author request is not provider identity attestation.
-- Keep substantive delivery Draft. No merge, deploy, public release, paid API,
-  native Linear dispatch, new infrastructure or B3–B7 start.
-- Follow CONTRIBUTING four distinct nonauthor roles and diagnosis-before-retry.
-- Fresh reviewers use explicit none-fork and source/prompt/packet receipts via
-  agents/reviewers/README.md; historical reviewer fork modes remain unknown.
-  Whole WEB-AC01–12 and B1/B2/M1 remain open.
+- User authorized first-half article alignment, R10 import and final review/checks.
+- R10 follows repo R9. External 3-Nov R12 is retained content lineage, not a
+  new repository edition. Historical R9/R14 and older packages are unchanged.
+- S01–S05 changed; S06–S09 visible content/pixels and speech match external R12.
+  All nine R10 spoken bodies are present in related native notes.
+- Same Draft PR; no merge, event selection or public release. Event still R3.
 
 ## Open work
 
-- Current evidence/handoff owner:
-  review/issue-167/2026-10-31-offline-prototype.md; reviewer audit and pending
-  runtime isolation gate: review/issue-167/2026-10-31-reviewer-isolation.md;
-  native correction: review/issue-167/2026-10-31-native-integration.md.
-- Bounded security repair proposes five existing Bandit source/line refreshes,
-  exact70 initial checksum dispositions (62 recomputed,2 fixture keys,6 qualified
-  historical receipts) plus1 fresh Bandit checksum; independent review pending.
-- Exact minimatch11.0.1 override produced real lock/install and clean audit.
-  Actual consumer modes pass;210 broader partial-match differences retained.
-  Local scanner/selector regression80cases:77pass/3history-dependent failures.
-  Native changed-head checks and full staging/admission remain mandatory.
-- Real human/provider provenance, dispatcher, cancellation, crash recovery,
-  native status/sync/notice and served artifact verification remain unproved.
-- Previous #159 handoff is retained at the pinned base MEMORY.md history;
-  its 29 October refs/failures are historical, not current task authority.
+- Four distinct final roles and all affected correction reviews completed.
+  RI29 and coupling22 passed; Basic/Style/RI/coupling current precommit passed.
+  Exact clean delivered-head report and source/tree identity are owned by PR110.
+  Read actual results; do not infer remote CI from these local observations.
+- Exact author acceptance, timed rehearsal, real device/projection/Presenter View,
+  full rights and independent non-DevCon reuse remain separate gates.
+- Speech 1,434 versus 1,423 (+11); <=22-minute target is unmeasured planning.
 
 ## Next session
 
-1. Read current #167/WEB-18, actual Draft PR head/diff/checks and this review.
-2. Revalidate exact delivered head and real native Actions results. Complete
-   source is available; local frozen Git-history objects are still absent.
-3. Complete final four-role security review, exact final scan and native checks; use
-   retained failures and exact command/source receipts, never a synthetic HEAD.
-4. Reconcile P01–P06 subsets without closing original whole-pilot criteria.
-5. B3–B7 need their exact scope/guards; offline proposals do not launch them.
+1. Read live issue109/PR110 and the R10 source-bound review/check receipts.
+2. Revalidate current delivered files/head and remaining acceptance decisions.
+3. Keep history and event selection; do not infer readiness from old green runs.
 
 ## Maintenance
 
-- Keep this five-section handoff within 120 lines. Real generated RI/coupling
-  must stay fresh after this edit; source-bound receipts retain exact results.
-  Style guard needs missing frozen Git baseline; native checks remain pending.
-- Keep original failures, owners, source identities, test profiles and budgets.
-- Store no private execution/approval URLs or secrets in repository/Linear.
+- Keep five sections and <=120 lines; regenerate RI after indexed changes.
+- Preserve actual failures, reviewer first results and exact source identities.
+- Provider model/context internals remain unknown; store no secrets.

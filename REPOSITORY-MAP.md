@@ -73,7 +73,26 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920](docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920) | Generated public rendition; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/ce77cccb11c8c1463a9d6f5c3f46748ef62433b370a580d4693e433fa560eef7](docs/snapshots/ce77cccb11c8c1463a9d6f5c3f46748ef62433b370a580d4693e433fa560eef7) | Current immutable generated room snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647](docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647) | Verified prior production immutable snapshot retained with its exact published bytes. | generated | [site/README.md](site/README.md) |
-| [drafts](drafts) | Unpublished article/profile proposals excluded from public builds. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [drafts](drafts) | Unpublished article/profile proposals, presentation editions and event campaign records excluded from public builds. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [drafts/devcon-romania-2026](drafts/devcon-romania-2026) | Versioned review-only English DevCon Romania editions derived from pinned PMDay v35 native components under issue109. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r10](drafts/devcon-romania-2026/r10) | R10 editable presentation, synchronized speech, rendition or byte-bound retained source lineage. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r10/sources](drafts/devcon-romania-2026/r10/sources) | R10 editable presentation, synchronized speech, rendition or byte-bound retained source lineage. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r2](drafts/devcon-romania-2026/r2) | DevCon R2 editable 11-screen edition, matching PDF, attached English notes and exact version/provenance metadata. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r3](drafts/devcon-romania-2026/r3) | DevCon R3 nine-slide review edition with matching PDF, attached 3-5-sentence English cue cards and exact version/provenance metadata. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r5](drafts/devcon-romania-2026/r5) | Retained DevCon presentation edition source, identity or native review artifact under issue109. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r6](drafts/devcon-romania-2026/r6) | Retained DevCon presentation edition source, identity or native review artifact under issue109. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r6/sources](drafts/devcon-romania-2026/r6/sources) | Retained DevCon presentation edition source, identity or native review artifact under issue109. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r7](drafts/devcon-romania-2026/r7) | R7 native reorder package: retained R6 source-position order, matching artifacts, notes and reproducible provenance. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r8](drafts/devcon-romania-2026/r8) | R8 native presentation, matching rendition, preserved notes with delivery addenda or exact edited native source parts. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r8/sources](drafts/devcon-romania-2026/r8/sources) | R8 native presentation, matching rendition, preserved notes with delivery addenda or exact edited native source parts. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r9](drafts/devcon-romania-2026/r9) | R9 presentation, matching rendition, synchronized notes or exact native source payload. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r9/sources](drafts/devcon-romania-2026/r9/sources) | R9 presentation, matching rendition, synchronized notes or exact native source payload. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r9/sources/ppt](drafts/devcon-romania-2026/r9/sources/ppt) | R9 presentation, matching rendition, synchronized notes or exact native source payload. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r9/sources/ppt/notesSlides](drafts/devcon-romania-2026/r9/sources/ppt/notesSlides) | R9 presentation, matching rendition, synchronized notes or exact native source payload. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r9/sources/ppt/slides](drafts/devcon-romania-2026/r9/sources/ppt/slides) | R9 presentation, matching rendition, synchronized notes or exact native source payload. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/events](drafts/events) | Unpublished event sources and campaign plans prepared for the separately owned event distribution adapter. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [drafts/events/devcon-romania-2026](drafts/events/devcon-romania-2026) | Issue109 DevCon event source, campaign plan, brief and organizer evidence selecting the exact current R3 PDF while prior deck editions remain preserved. | draft | [drafts/events/devcon-romania-2026/event.json](drafts/events/devcon-romania-2026/event.json) |
+| [drafts/events/devcon-romania-2026/sources](drafts/events/devcon-romania-2026/sources) | Bounded organizer observations used as evidence by the draft DevCon event source. | draft | [drafts/events/devcon-romania-2026/event.json](drafts/events/devcon-romania-2026/event.json) |
 | [guides](guides) | Maintained topic guides for repository boundaries, publication, quality and hosting; root stays an entry surface. | guide | [guides/README.md](guides/README.md) |
 | [review](review) | Dated plans, evidence, captures and renditions; current Color/export inputs are explicitly marked. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/assets](review/assets) | Historical visual concept/portrait assets. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -85,6 +104,15 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-102](review/issue-102) | Dated issue102 analytics source and provider/access evidence. | history | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
 | [review/issue-106](review/issue-106) | Public article material declarations, technical fixture evidence or owning implementation review. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-108](review/issue-108) | Issue108 exact PMDay event content amendment and source/delivery self-review. | history | [site/README.md](site/README.md) |
+| [review/issue-109](review/issue-109) | Versioned DevCon edition preparation and exact-source review evidence under issue109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r10-reviewer-receipts](review/issue-109/r10-reviewer-receipts) | R10 source-bound independent launch, first-result or artifact/source/check observation receipt. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r14-input](review/issue-109/r14-input) | R14 speech alignment request, source pins, exact review receipt or bounded evidence owner. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r14-reviewer-receipts](review/issue-109/r14-reviewer-receipts) | R14 speech alignment request, source pins, exact review receipt or bounded evidence owner. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r6-reviewer-receipts](review/issue-109/r6-reviewer-receipts) | Source-bound R6 presentation build or independent review evidence under issue109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r7-reviewer-receipts](review/issue-109/r7-reviewer-receipts) | Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r8-reviewer-receipts](review/issue-109/r8-reviewer-receipts) | Source-bound R8 content/control review, native verification or independent launch/result evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r9-input](review/issue-109/r9-input) | R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r9-reviewer-receipts](review/issue-109/r9-reviewer-receipts) | R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-114](review/issue-114) | Issue114 independent iteration-review rule implementation and source-bound review evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-118](review/issue-118) | Issue118 first-name editorial hotfix review and source-bound evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-120](review/issue-120) | Issue120 independent quality-agent integration, role receipts and source-bound acceptance evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -233,6 +261,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tools](tools) | Repository navigation, public generation and offline review/export entry points. | source | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [tools/orchestration](tools/orchestration) | Fixture-only offline WEB orchestration computations; no external effect adapters. | source | [guides/WEB-ORCHESTRATION.md](guides/WEB-ORCHESTRATION.md) |
 | [tools/pages](tools/pages) | Issue72 source-bound staging and Pages delivery controller. | validator | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
+| [tools/presentations](tools/presentations) | Bounded presentation edition identity and native slide integration tooling. | source | [guides/PRESENTATION-VERSIONING.md](guides/PRESENTATION-VERSIONING.md) |
 | [tools/publishing](tools/publishing) | Isolated build-time article AST, source/provenance, profile, kit, history and print adapters. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [tools/publishing/toolchain](tools/publishing/toolchain) | Exact locked build-time publisher/parser/print toolchain and transitive license inventory. | configuration | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [tools/quality](tools/quality) | Maintained source, security, browser, hosted-origin, performance and release checks. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
@@ -267,6 +296,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [.github/acceptance/issue-102.json](.github/acceptance/issue-102.json) | Issue102 analytics AC policy: bounded source checks and explicit browser/live gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-108.json](.github/acceptance/issue-108.json) | Issue108 stable AC mapping for current PMDay facts, naming and standard delivery; human gates remain separate. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/acceptance/issue-109.json](.github/acceptance/issue-109.json) | Stable AC01-AC19 current R10 scope, retained check/gate selectors, historical source fidelity and distinct human decisions. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-114.json](.github/acceptance/issue-114.json) | Issue114 bounded check mapping and separate per-iteration independent review, live linkage and merge gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-118.json](.github/acceptance/issue-118.json) | Issue118 bounded editorial hotfix acceptance and explicit delivery gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-120.json](.github/acceptance/issue-120.json) | Issue120 requirements, code-review and QA protocol acceptance: real routing checks with separate independent-role and delivery gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
@@ -548,6 +578,165 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [drafts/medium-profile-revision-20261001.html](drafts/medium-profile-revision-20261001.html) | Unpublished proposed content: medium-profile-revision-20261001.html; excluded from current public builds. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [drafts/pmday-article-draft.en.md](drafts/pmday-article-draft.en.md) | First real English PMDay editorial draft: author arc, title choices, chapters, proposed figures, bounded evidence and sources; excluded from public output. | draft | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 
+## drafts/devcon-romania-2026/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [drafts/devcon-romania-2026/DevCon-Romania-2026-R1.pdf](drafts/devcon-romania-2026/DevCon-Romania-2026-R1.pdf) | Derived PDF review rendition of the issue109 editable DevCon R1 deck; not a public or final conference edition. | generated | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/DevCon-Romania-2026-R1.pptx](drafts/devcon-romania-2026/DevCon-Romania-2026-R1.pptx) | Authored editable 13-slide English DevCon R1 edition reusing selected PMDay v35 native slides and attached notes. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) | Current R10 author-review index, immutable presentation/speech history and separate event selection. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/devcon-romania-2026-r13-concise-stage-script.md](drafts/devcon-romania-2026/devcon-romania-2026-r13-concise-stage-script.md) | Retained DevCon presentation edition source, identity or native review artifact under issue109. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/devcon-romania-2026-r14-concise-stage-script.md](drafts/devcon-romania-2026/devcon-romania-2026-r14-concise-stage-script.md) | Concise speech R14 aligned to unchanged deck R9, or its generated reading PDF. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/devcon-romania-2026-r14-concise-stage-script.pdf](drafts/devcon-romania-2026/devcon-romania-2026-r14-concise-stage-script.pdf) | Concise speech R14 aligned to unchanged deck R9, or its generated reading PDF. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/edition.json](drafts/devcon-romania-2026/edition.json) | DevCon R1 artifact identities, pinned upstream source, selected-slide mapping and explicit derivative provenance. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/plan.md](drafts/devcon-romania-2026/plan.md) | Historical DevCon outline with dated R8 slide3/4 reorder scope and earlier R6 integration amendment. Includes requested S07 human monitoring and S08 control/business-case clarity. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/speaker-notes.md](drafts/devcon-romania-2026/speaker-notes.md) | English speaking notes and per-slide timing for the 23-minute DevCon R1 talk with separate questions and reserve. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+
+## drafts/devcon-romania-2026/r10/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [drafts/devcon-romania-2026/r10/README.md](drafts/devcon-romania-2026/r10/README.md) | R10 editable presentation, synchronized speech, rendition or byte-bound retained source lineage. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r10/devcon-romania-2026-r10-speech.pdf](drafts/devcon-romania-2026/r10/devcon-romania-2026-r10-speech.pdf) | R10 editable presentation, synchronized speech, rendition or byte-bound retained source lineage. | generated | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r10/devcon-romania-2026-r10.pdf](drafts/devcon-romania-2026/r10/devcon-romania-2026-r10.pdf) | R10 editable presentation, synchronized speech, rendition or byte-bound retained source lineage. | generated | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r10/devcon-romania-2026-r10.pptx](drafts/devcon-romania-2026/r10/devcon-romania-2026-r10.pptx) | R10 editable presentation, synchronized speech, rendition or byte-bound retained source lineage. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r10/edition.json](drafts/devcon-romania-2026/r10/edition.json) | R10 editable presentation, synchronized speech, rendition or byte-bound retained source lineage. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r10/speaker-notes.md](drafts/devcon-romania-2026/r10/speaker-notes.md) | R10 editable presentation, synchronized speech, rendition or byte-bound retained source lineage. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+
+## drafts/devcon-romania-2026/r10/sources/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [drafts/devcon-romania-2026/r10/sources/article-r10.md](drafts/devcon-romania-2026/r10/sources/article-r10.md) | R10 editable presentation, synchronized speech, rendition or byte-bound retained source lineage. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+
+## drafts/devcon-romania-2026/r2/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [drafts/devcon-romania-2026/r2/devcon-romania-2026-r2.pdf](drafts/devcon-romania-2026/r2/devcon-romania-2026-r2.pdf) | Preserved derived PDF of the DevCon R2 native deck and prior draft event selection; distinct from the current R3 selection and final conference acceptance. | generated | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r2/devcon-romania-2026-r2.pptx](drafts/devcon-romania-2026/r2/devcon-romania-2026-r2.pptx) | Authored editable 11-screen English DevCon R2 deck adapting PMDay native components to the agreed visual plan and homepage QR amendment. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r2/edition.json](drafts/devcon-romania-2026/r2/edition.json) | DevCon R2 artifact hashes, immutable R1/source identities, native-component and visible-change mapping, provenance and version/event binding. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r2/speaker-notes.md](drafts/devcon-romania-2026/r2/speaker-notes.md) | English spoken script and per-screen timing for the 11-screen DevCon R2 edition with 23 minutes speaking, 5 minutes Q&A and 2 minutes reserve. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+
+## drafts/devcon-romania-2026/r3/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [drafts/devcon-romania-2026/r3/devcon-romania-2026-r3.pdf](drafts/devcon-romania-2026/r3/devcon-romania-2026-r3.pdf) | Derived PDF review rendition of the native R3 deck, selected by the draft event through exact path and hash; author timing/device acceptance remains pending. | generated | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r3/devcon-romania-2026-r3.pptx](drafts/devcon-romania-2026/r3/devcon-romania-2026-r3.pptx) | Authored editable nine-slide DevCon R3 presentation: compressed SDLC/delegation argument, full reports slide, sociotechnical synthesis, four questions and homepage QR. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r3/edition.json](drafts/devcon-romania-2026/r3/edition.json) | DevCon R3 artifact and cue-card identities, preserved R1/R2 predecessors, pinned PMDay source, retained/removed slide mapping and provisional timing limits. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r3/speaker-notes.md](drafts/devcon-romania-2026/r3/speaker-notes.md) | Nine English cue cards of 3-5 sentences each, synchronized with R3 notes; 20+7+3 is a provisional presentation/Q&A/reserve budget, not a verbatim-script duration. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+
+## drafts/devcon-romania-2026/r5/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [drafts/devcon-romania-2026/r5/edition.json](drafts/devcon-romania-2026/r5/edition.json) | Historical R5 manifest retained unchanged; its declared PPTX/PDF were never committed and are not replaced by R6 bytes. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r5/speaker-notes.md](drafts/devcon-romania-2026/r5/speaker-notes.md) | Retained DevCon presentation edition source, identity or native review artifact under issue109. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+
+## drafts/devcon-romania-2026/r6/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [drafts/devcon-romania-2026/r6/devcon-romania-2026-r6.pdf](drafts/devcon-romania-2026/r6/devcon-romania-2026-r6.pdf) | Retained DevCon presentation edition source, identity or native review artifact under issue109. | generated | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r6/devcon-romania-2026-r6.pptx](drafts/devcon-romania-2026/r6/devcon-romania-2026-r6.pptx) | Retained DevCon presentation edition source, identity or native review artifact under issue109. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r6/edition.json](drafts/devcon-romania-2026/r6/edition.json) | Retained DevCon presentation edition source, identity or native review artifact under issue109. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r6/speaker-notes.md](drafts/devcon-romania-2026/r6/speaker-notes.md) | Retained DevCon presentation edition source, identity or native review artifact under issue109. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+
+## drafts/devcon-romania-2026/r6/sources/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [drafts/devcon-romania-2026/r6/sources/README.md](drafts/devcon-romania-2026/r6/sources/README.md) | Retained DevCon presentation edition source, identity or native review artifact under issue109. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r6/sources/approved-slide-04-native.pptx](drafts/devcon-romania-2026/r6/sources/approved-slide-04-native.pptx) | Exact author-approved native systemic-first slide4 donor, retaining original local comprehension gap and lifecycle illustration. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r6/sources/approved-slide-04-preview.png](drafts/devcon-romania-2026/r6/sources/approved-slide-04-preview.png) | Retained DevCon presentation edition source, identity or native review artifact under issue109. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r6/sources/provenance.json](drafts/devcon-romania-2026/r6/sources/provenance.json) | Retained DevCon presentation edition source, identity or native review artifact under issue109. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r6/sources/scratch-r13-native-full-deck.pptx](drafts/devcon-romania-2026/r6/sources/scratch-r13-native-full-deck.pptx) | Exact retained nine-slide R13 speech-revision working input for reproducible R6 native integration; not a repository R13 edition. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r6/sources/slide-05-spacing-donor-full-package.pptx](drafts/devcon-romania-2026/r6/sources/slide-05-spacing-donor-full-package.pptx) | Native R6 input or exact one-coordinate S05 spacing recipe for reproducible full-deck review correction. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r6/sources/slide-05-spacing-recipe.json](drafts/devcon-romania-2026/r6/sources/slide-05-spacing-recipe.json) | Native R6 input or exact one-coordinate S05 spacing recipe for reproducible full-deck review correction. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+
+## drafts/devcon-romania-2026/r7/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [drafts/devcon-romania-2026/r7/README.md](drafts/devcon-romania-2026/r7/README.md) | R7 native reorder package: retained R6 source-position order, matching artifacts, notes and reproducible provenance. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r7/devcon-romania-2026-r7.pdf](drafts/devcon-romania-2026/r7/devcon-romania-2026-r7.pdf) | R7 native reorder package: retained R6 source-position order, matching artifacts, notes and reproducible provenance. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r7/devcon-romania-2026-r7.pptx](drafts/devcon-romania-2026/r7/devcon-romania-2026-r7.pptx) | R7 native reorder package: retained R6 source-position order, matching artifacts, notes and reproducible provenance. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r7/edition.json](drafts/devcon-romania-2026/r7/edition.json) | R7 native reorder package: retained R6 source-position order, matching artifacts, notes and reproducible provenance. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r7/reorder-recipe.json](drafts/devcon-romania-2026/r7/reorder-recipe.json) | R7 native reorder package: retained R6 source-position order, matching artifacts, notes and reproducible provenance. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r7/speaker-notes.md](drafts/devcon-romania-2026/r7/speaker-notes.md) | R7 native reorder package: retained R6 source-position order, matching artifacts, notes and reproducible provenance. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+
+## drafts/devcon-romania-2026/r8/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [drafts/devcon-romania-2026/r8/README.md](drafts/devcon-romania-2026/r8/README.md) | R8 native presentation, matching rendition, preserved notes with delivery addenda or exact edited native source parts. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r8/devcon-romania-2026-r8.pdf](drafts/devcon-romania-2026/r8/devcon-romania-2026-r8.pdf) | R8 native presentation, matching rendition, preserved notes with delivery addenda or exact edited native source parts. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r8/devcon-romania-2026-r8.pptx](drafts/devcon-romania-2026/r8/devcon-romania-2026-r8.pptx) | R8 native presentation, matching rendition, preserved notes with delivery addenda or exact edited native source parts. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r8/edition.json](drafts/devcon-romania-2026/r8/edition.json) | R8 native presentation, matching rendition, preserved notes with delivery addenda or exact edited native source parts. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r8/speaker-notes.md](drafts/devcon-romania-2026/r8/speaker-notes.md) | R8 native presentation, matching rendition, preserved notes with delivery addenda or exact edited native source parts. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+
+## drafts/devcon-romania-2026/r8/sources/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [drafts/devcon-romania-2026/r8/sources/notesSlide7.xml](drafts/devcon-romania-2026/r8/sources/notesSlide7.xml) | R8 native presentation, matching rendition, preserved notes with delivery addenda or exact edited native source parts. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r8/sources/notesSlide8.xml](drafts/devcon-romania-2026/r8/sources/notesSlide8.xml) | R8 native presentation, matching rendition, preserved notes with delivery addenda or exact edited native source parts. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r8/sources/slide7.xml](drafts/devcon-romania-2026/r8/sources/slide7.xml) | R8 native presentation, matching rendition, preserved notes with delivery addenda or exact edited native source parts. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r8/sources/slide8.xml](drafts/devcon-romania-2026/r8/sources/slide8.xml) | R8 native presentation, matching rendition, preserved notes with delivery addenda or exact edited native source parts. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+
+## drafts/devcon-romania-2026/r9/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [drafts/devcon-romania-2026/r9/README.md](drafts/devcon-romania-2026/r9/README.md) | R9 presentation, matching rendition, synchronized notes or exact native source payload. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r9/devcon-romania-2026-r9.pdf](drafts/devcon-romania-2026/r9/devcon-romania-2026-r9.pdf) | R9 presentation, matching rendition, synchronized notes or exact native source payload. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r9/devcon-romania-2026-r9.pptx](drafts/devcon-romania-2026/r9/devcon-romania-2026-r9.pptx) | R9 presentation, matching rendition, synchronized notes or exact native source payload. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r9/edition.json](drafts/devcon-romania-2026/r9/edition.json) | R9 presentation, matching rendition, synchronized notes or exact native source payload. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r9/speaker-notes.md](drafts/devcon-romania-2026/r9/speaker-notes.md) | R9 presentation, matching rendition, synchronized notes or exact native source payload. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+
+## drafts/devcon-romania-2026/r9/sources/ppt/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [drafts/devcon-romania-2026/r9/sources/ppt/presentation.xml](drafts/devcon-romania-2026/r9/sources/ppt/presentation.xml) | R9 presentation, matching rendition, synchronized notes or exact native source payload. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+
+## drafts/devcon-romania-2026/r9/sources/ppt/notesSlides/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [drafts/devcon-romania-2026/r9/sources/ppt/notesSlides/notesSlide7.xml](drafts/devcon-romania-2026/r9/sources/ppt/notesSlides/notesSlide7.xml) | R9 presentation, matching rendition, synchronized notes or exact native source payload. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r9/sources/ppt/notesSlides/notesSlide8.xml](drafts/devcon-romania-2026/r9/sources/ppt/notesSlides/notesSlide8.xml) | R9 presentation, matching rendition, synchronized notes or exact native source payload. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r9/sources/ppt/notesSlides/notesSlide9.xml](drafts/devcon-romania-2026/r9/sources/ppt/notesSlides/notesSlide9.xml) | R9 presentation, matching rendition, synchronized notes or exact native source payload. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+
+## drafts/devcon-romania-2026/r9/sources/ppt/slides/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [drafts/devcon-romania-2026/r9/sources/ppt/slides/slide1.xml](drafts/devcon-romania-2026/r9/sources/ppt/slides/slide1.xml) | R9 presentation, matching rendition, synchronized notes or exact native source payload. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r9/sources/ppt/slides/slide2.xml](drafts/devcon-romania-2026/r9/sources/ppt/slides/slide2.xml) | R9 presentation, matching rendition, synchronized notes or exact native source payload. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r9/sources/ppt/slides/slide3.xml](drafts/devcon-romania-2026/r9/sources/ppt/slides/slide3.xml) | R9 presentation, matching rendition, synchronized notes or exact native source payload. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r9/sources/ppt/slides/slide4.xml](drafts/devcon-romania-2026/r9/sources/ppt/slides/slide4.xml) | R9 presentation, matching rendition, synchronized notes or exact native source payload. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r9/sources/ppt/slides/slide5.xml](drafts/devcon-romania-2026/r9/sources/ppt/slides/slide5.xml) | R9 presentation, matching rendition, synchronized notes or exact native source payload. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r9/sources/ppt/slides/slide6.xml](drafts/devcon-romania-2026/r9/sources/ppt/slides/slide6.xml) | R9 presentation, matching rendition, synchronized notes or exact native source payload. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r9/sources/ppt/slides/slide7.xml](drafts/devcon-romania-2026/r9/sources/ppt/slides/slide7.xml) | R9 presentation, matching rendition, synchronized notes or exact native source payload. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r9/sources/ppt/slides/slide8.xml](drafts/devcon-romania-2026/r9/sources/ppt/slides/slide8.xml) | R9 presentation, matching rendition, synchronized notes or exact native source payload. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r9/sources/ppt/slides/slide9.xml](drafts/devcon-romania-2026/r9/sources/ppt/slides/slide9.xml) | R9 presentation, matching rendition, synchronized notes or exact native source payload. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+
+## drafts/events/devcon-romania-2026/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [drafts/events/devcon-romania-2026/brief.en.md](drafts/events/devcon-romania-2026/brief.en.md) | English DevCon campaign brief defining audience, scope, destinations and pending editorial decisions without asserting publication. | draft | [drafts/events/devcon-romania-2026/plan.json](drafts/events/devcon-romania-2026/plan.json) |
+| [drafts/events/devcon-romania-2026/event.json](drafts/events/devcon-romania-2026/event.json) | Strict schema1 DevCon event source with organizer evidence and exact lowercase current R3 PDF path, SHA256 and source credit for the pinned PR107 adapter. | draft | [drafts/events/devcon-romania-2026/event.json](drafts/events/devcon-romania-2026/event.json) |
+| [drafts/events/devcon-romania-2026/plan.json](drafts/events/devcon-romania-2026/plan.json) | Strict schema2 draft DevCon campaign plan with pieces, event/brief hash bindings and explicit unapproved states. | draft | [drafts/events/devcon-romania-2026/plan.json](drafts/events/devcon-romania-2026/plan.json) |
+
+## drafts/events/devcon-romania-2026/sources/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [drafts/events/devcon-romania-2026/sources/organizer.md](drafts/events/devcon-romania-2026/sources/organizer.md) | Dated public organizer evidence for DevCon event identity and destinations, retaining observation limits. | draft | [drafts/events/devcon-romania-2026/event.json](drafts/events/devcon-romania-2026/event.json) |
+
 ## guides/
 
 | Path | Purpose | Role | Owner / editing route |
@@ -556,6 +745,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) | Canonical site-owned article authoring, semantic editions, candidate exports, observed publication and upstream upgrade workflow. | guide | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [guides/BROWSER-ARCHIVES.md](guides/BROWSER-ARCHIVES.md) | Browser archive preparation, exact pins, consumer cold-ordering and90day refresh operation. | guide | [guides/BROWSER-ARCHIVES.md](guides/BROWSER-ARCHIVES.md) |
 | [guides/CODE-STYLE.md](guides/CODE-STYLE.md) | Mandatory agent coding, content/template/CSS boundaries, performance and verification standards. | guide | [guides/CODE-STYLE.md](guides/CODE-STYLE.md) |
+| [guides/PRESENTATION-VERSIONING.md](guides/PRESENTATION-VERSIONING.md) | Monotonic retained presentation edition identity, immutable history and explicit event selection. | guide | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [guides/README.md](guides/README.md) | Topic guide index with one current owner for each concern; live issue status is retrieved separately. | guide | [guides/README.md](guides/README.md) |
 | [guides/REPOSITORIES.md](guides/REPOSITORIES.md) | Canonical boundaries and coordinated work routes across site, UA and Subprime. | guide | [guides/REPOSITORIES.md](guides/REPOSITORIES.md) |
 | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) | Disabled-by-default production analytics adapter contract and measurement limitations. | guide | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
@@ -819,6 +1009,201 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-108/2026-10-19-public-checksum-proof.json.gz](review/issue-108/2026-10-19-public-checksum-proof.json.gz) | Issue108 exact per-finding public generated/content checksum and source-commit proof from actual failed staging; preserves scanner coverage and predecessor ledger. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [review/issue-108/2026-10-19-site-delivery.md](review/issue-108/2026-10-19-site-delivery.md) | Issue108 exact PMDay event content amendment and source/delivery self-review. | history | [site/README.md](site/README.md) |
 | [review/issue-108/content-amendment.json](review/issue-108/content-amendment.json) | Issue108 exact PMDay event content amendment and source/delivery self-review. | history | [site/README.md](site/README.md) |
+
+## review/issue-109/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-109/2026-10-19-r2-review.md](review/issue-109/2026-10-19-r2-review.md) | Issue109 R2 correction review: eight missed R1 visual mismatches, agreed-plan/render acceptance, QR/version/event bindings and exact-source evidence with pending gates. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/2026-10-19-r3-review.md](review/issue-109/2026-10-19-r3-review.md) | Issue109 R3 timing/compression review: nine total slides, concise cue cards, retained reports, removed lessons, exact artifacts/history/event binding and pending author rehearsal. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/2026-10-19-review.md](review/issue-109/2026-10-19-review.md) | Issue109 derivative-source decisions, artifact and independent-review evidence, CS/AC mapping and remaining author/device acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/2026-11-02-r14-speech-review.md](review/issue-109/2026-11-02-r14-speech-review.md) | R14 speech alignment request, source pins, exact review receipt or bounded evidence owner. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/2026-11-02-r6-review.md](review/issue-109/2026-11-02-r6-review.md) | Source-bound R6 presentation build or independent review evidence under issue109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/2026-11-02-r7-review.md](review/issue-109/2026-11-02-r7-review.md) | Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/2026-11-02-r8-review.md](review/issue-109/2026-11-02-r8-review.md) | Source-bound R8 content/control review, native verification or independent launch/result evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/2026-11-02-r9-review.md](review/issue-109/2026-11-02-r9-review.md) | R9 ordering, whole-deck review, exact artifact evidence, independent roles and pending human acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/2026-11-06-r10-review.md](review/issue-109/2026-11-06-r10-review.md) | R10 authorized article-to-talk scope reconciliation, independent review and exact-source integration evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+
+## review/issue-109/r10-reviewer-receipts/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-109/r10-reviewer-receipts/artifact-correction.md](review/issue-109/r10-reviewer-receipts/artifact-correction.md) | R10 source-bound preserved independent correction, original intent or bounded check receipt. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r10-reviewer-receipts/artifact-final.md](review/issue-109/r10-reviewer-receipts/artifact-final.md) | R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r10-reviewer-receipts/artifact-observations.json](review/issue-109/r10-reviewer-receipts/artifact-observations.json) | R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r10-reviewer-receipts/correction-observations.json](review/issue-109/r10-reviewer-receipts/correction-observations.json) | R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r10-reviewer-receipts/edition-final.json](review/issue-109/r10-reviewer-receipts/edition-final.json) | R10 source-bound preserved independent correction, original intent or bounded check receipt. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r10-reviewer-receipts/exploratory-correction.md](review/issue-109/r10-reviewer-receipts/exploratory-correction.md) | R10 source-bound preserved independent correction, original intent or bounded check receipt. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r10-reviewer-receipts/exploratory-final.md](review/issue-109/r10-reviewer-receipts/exploratory-final.md) | R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r10-reviewer-receipts/first-failed-acceptance.json.gz](review/issue-109/r10-reviewer-receipts/first-failed-acceptance.json.gz) | R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r10-reviewer-receipts/first-failed-ri-regressions.log.gz](review/issue-109/r10-reviewer-receipts/first-failed-ri-regressions.log.gz) | R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r10-reviewer-receipts/issue109-before-integration.md](review/issue-109/r10-reviewer-receipts/issue109-before-integration.md) | R10 source-bound preserved independent correction, original intent or bounded check receipt. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r10-reviewer-receipts/launches.json](review/issue-109/r10-reviewer-receipts/launches.json) | R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r10-reviewer-receipts/packet-correction.json](review/issue-109/r10-reviewer-receipts/packet-correction.json) | R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r10-reviewer-receipts/packet-final.json](review/issue-109/r10-reviewer-receipts/packet-final.json) | R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r10-reviewer-receipts/packet-preflight-sources.json](review/issue-109/r10-reviewer-receipts/packet-preflight-sources.json) | R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r10-reviewer-receipts/packet-preflight.json](review/issue-109/r10-reviewer-receipts/packet-preflight.json) | R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r10-reviewer-receipts/qr-observations.json](review/issue-109/r10-reviewer-receipts/qr-observations.json) | R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r10-reviewer-receipts/requirements-correction-final.md](review/issue-109/r10-reviewer-receipts/requirements-correction-final.md) | R10 source-bound independent correction result or exact-source observation. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r10-reviewer-receipts/requirements-correction-preflight.md](review/issue-109/r10-reviewer-receipts/requirements-correction-preflight.md) | R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r10-reviewer-receipts/requirements-final.md](review/issue-109/r10-reviewer-receipts/requirements-final.md) | R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r10-reviewer-receipts/requirements-preflight.md](review/issue-109/r10-reviewer-receipts/requirements-preflight.md) | R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r10-reviewer-receipts/ri-ci-regressions.log.gz](review/issue-109/r10-reviewer-receipts/ri-ci-regressions.log.gz) | R10 source-bound preserved independent correction, original intent or bounded check receipt. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r10-reviewer-receipts/ri-regressions-corrected.log.gz](review/issue-109/r10-reviewer-receipts/ri-regressions-corrected.log.gz) | R10 source-bound preserved independent correction, original intent or bounded check receipt. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r10-reviewer-receipts/source-verification.json](review/issue-109/r10-reviewer-receipts/source-verification.json) | R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r10-reviewer-receipts/whitebox-correction.md](review/issue-109/r10-reviewer-receipts/whitebox-correction.md) | R10 source-bound preserved independent correction, original intent or bounded check receipt. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r10-reviewer-receipts/whitebox-final.md](review/issue-109/r10-reviewer-receipts/whitebox-final.md) | R10 source-bound independent review, preserved failure, corrected candidate packet or bounded check receipt. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+
+## review/issue-109/r14-input/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-109/r14-input/candidate-manifest.json](review/issue-109/r14-input/candidate-manifest.json) | R14 speech alignment request, source pins, exact review receipt or bounded evidence owner. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r14-input/candidate.diff](review/issue-109/r14-input/candidate.diff) | R14 speech alignment request, source pins, exact review receipt or bounded evidence owner. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r14-input/issue109-before-r14.md](review/issue-109/r14-input/issue109-before-r14.md) | R14 speech alignment request, source pins, exact review receipt or bounded evidence owner. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r14-input/metadata-candidate-manifest.json](review/issue-109/r14-input/metadata-candidate-manifest.json) | R14 speech alignment request, source pins, exact review receipt or bounded evidence owner. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r14-input/metadata-candidate.diff](review/issue-109/r14-input/metadata-candidate.diff) | R14 speech alignment request, source pins, exact review receipt or bounded evidence owner. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r14-input/pr110-before-r14.md](review/issue-109/r14-input/pr110-before-r14.md) | R14 speech alignment request, source pins, exact review receipt or bounded evidence owner. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r14-input/preflight-manifest.json](review/issue-109/r14-input/preflight-manifest.json) | R14 speech alignment request, source pins, exact review receipt or bounded evidence owner. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r14-input/request.md](review/issue-109/r14-input/request.md) | R14 speech alignment request, source pins, exact review receipt or bounded evidence owner. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+
+## review/issue-109/r14-reviewer-receipts/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-109/r14-reviewer-receipts/code-first.md](review/issue-109/r14-reviewer-receipts/code-first.md) | R14 source-bound reviewer receipt or retained exact repository-check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r14-reviewer-receipts/exploratory-first.md](review/issue-109/r14-reviewer-receipts/exploratory-first.md) | R14 source-bound reviewer receipt or retained exact repository-check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r14-reviewer-receipts/launch-and-results.json](review/issue-109/r14-reviewer-receipts/launch-and-results.json) | R14 source-bound reviewer receipt or retained exact repository-check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r14-reviewer-receipts/requirements-final-first.md](review/issue-109/r14-reviewer-receipts/requirements-final-first.md) | R14 source-bound reviewer receipt or retained exact repository-check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r14-reviewer-receipts/requirements-metadata-correction.md](review/issue-109/r14-reviewer-receipts/requirements-metadata-correction.md) | R14 source-bound reviewer receipt or retained exact repository-check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r14-reviewer-receipts/requirements-preflight.md](review/issue-109/r14-reviewer-receipts/requirements-preflight.md) | R14 source-bound reviewer receipt or retained exact repository-check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r14-reviewer-receipts/ri-context-recheck-passed.log](review/issue-109/r14-reviewer-receipts/ri-context-recheck-passed.log) | Passing query/context selector after catalog repair and current RI regeneration; first two failures retained separately. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r14-reviewer-receipts/ri-log-diagnosis.json](review/issue-109/r14-reviewer-receipts/ri-log-diagnosis.json) | R14 source-bound reviewer receipt or retained exact repository-check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r14-reviewer-receipts/ri-recheck.log](review/issue-109/r14-reviewer-receipts/ri-recheck.log) | Retained R14 repository-check failure or bounded corrective evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r14-reviewer-receipts/ri-regressions-precommit.log](review/issue-109/r14-reviewer-receipts/ri-regressions-precommit.log) | R14 source-bound reviewer receipt or retained exact repository-check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r14-reviewer-receipts/whitebox-baseline.md](review/issue-109/r14-reviewer-receipts/whitebox-baseline.md) | R14 source-bound reviewer receipt or retained exact repository-check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r14-reviewer-receipts/whitebox-final-first.md](review/issue-109/r14-reviewer-receipts/whitebox-final-first.md) | R14 source-bound reviewer receipt or retained exact repository-check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r14-reviewer-receipts/word-count-and-order.json](review/issue-109/r14-reviewer-receipts/word-count-and-order.json) | R14 source-bound reviewer receipt or retained exact repository-check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+
+## review/issue-109/r6-reviewer-receipts/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-109/r6-reviewer-receipts/artifact-candidate-manifest-v2.json](review/issue-109/r6-reviewer-receipts/artifact-candidate-manifest-v2.json) | Retained exact-source R6 review execution, first/correction judgment, primary request or bounded verification evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r6-reviewer-receipts/artifact-candidate-manifest.json](review/issue-109/r6-reviewer-receipts/artifact-candidate-manifest.json) | Retained exact-source R6 review execution, first/correction judgment, primary request or bounded verification evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r6-reviewer-receipts/basic-result.json](review/issue-109/r6-reviewer-receipts/basic-result.json) | Retained exact-source R6 review execution, first/correction judgment, primary request or bounded verification evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r6-reviewer-receipts/basic.stderr.log](review/issue-109/r6-reviewer-receipts/basic.stderr.log) | Retained exact-source R6 review execution, first/correction judgment, primary request or bounded verification evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r6-reviewer-receipts/basic.stdout.log](review/issue-109/r6-reviewer-receipts/basic.stdout.log) | Retained exact-source R6 review execution, first/correction judgment, primary request or bounded verification evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r6-reviewer-receipts/code-artifact-correction.md](review/issue-109/r6-reviewer-receipts/code-artifact-correction.md) | Retained exact-source R6 review execution, first/correction judgment, primary request or bounded verification evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r6-reviewer-receipts/code-artifact-first.md](review/issue-109/r6-reviewer-receipts/code-artifact-first.md) | Retained exact-source R6 review execution, first/correction judgment, primary request or bounded verification evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r6-reviewer-receipts/code-pointer-closure.md](review/issue-109/r6-reviewer-receipts/code-pointer-closure.md) | Retained exact-source R6 review execution, first/correction judgment, primary request or bounded verification evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r6-reviewer-receipts/exploratory-correction.md](review/issue-109/r6-reviewer-receipts/exploratory-correction.md) | Retained exact-source R6 review execution, first/correction judgment, primary request or bounded verification evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r6-reviewer-receipts/exploratory-first.md](review/issue-109/r6-reviewer-receipts/exploratory-first.md) | Retained exact-source R6 review execution, first/correction judgment, primary request or bounded verification evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r6-reviewer-receipts/final-candidate-manifest.json](review/issue-109/r6-reviewer-receipts/final-candidate-manifest.json) | Retained exact-source R6 review execution, first/correction judgment, primary request or bounded verification evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r6-reviewer-receipts/helper-format.json](review/issue-109/r6-reviewer-receipts/helper-format.json) | Retained exact-source R6 review execution, first/correction judgment, primary request or bounded verification evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r6-reviewer-receipts/metadata-pointer-correction.json](review/issue-109/r6-reviewer-receipts/metadata-pointer-correction.json) | Retained exact-source R6 review execution, first/correction judgment, primary request or bounded verification evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r6-reviewer-receipts/native-build-first.json](review/issue-109/r6-reviewer-receipts/native-build-first.json) | Retained exact-source R6 review execution, first/correction judgment, primary request or bounded verification evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r6-reviewer-receipts/native-build.json](review/issue-109/r6-reviewer-receipts/native-build.json) | Source-bound R6 presentation build or independent review evidence under issue109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r6-reviewer-receipts/native-finalization-first.json](review/issue-109/r6-reviewer-receipts/native-finalization-first.json) | Retained exact-source R6 review execution, first/correction judgment, primary request or bounded verification evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r6-reviewer-receipts/native-finalization.json](review/issue-109/r6-reviewer-receipts/native-finalization.json) | Source-bound R6 presentation build or independent review evidence under issue109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r6-reviewer-receipts/preflight-manifest.json](review/issue-109/r6-reviewer-receipts/preflight-manifest.json) | Retained exact-source R6 review execution, first/correction judgment, primary request or bounded verification evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r6-reviewer-receipts/qr-check.json](review/issue-109/r6-reviewer-receipts/qr-check.json) | Source-bound R6 presentation build or independent review evidence under issue109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r6-reviewer-receipts/request.md](review/issue-109/r6-reviewer-receipts/request.md) | Retained exact-source R6 review execution, first/correction judgment, primary request or bounded verification evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r6-reviewer-receipts/requirements-final.md](review/issue-109/r6-reviewer-receipts/requirements-final.md) | Retained exact-source R6 review execution, first/correction judgment, primary request or bounded verification evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r6-reviewer-receipts/requirements-layout-addendum.md](review/issue-109/r6-reviewer-receipts/requirements-layout-addendum.md) | Retained exact-source R6 review execution, first/correction judgment, primary request or bounded verification evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r6-reviewer-receipts/requirements-preflight.md](review/issue-109/r6-reviewer-receipts/requirements-preflight.md) | Source-bound R6 presentation build or independent review evidence under issue109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r6-reviewer-receipts/review-executions.json](review/issue-109/r6-reviewer-receipts/review-executions.json) | Retained exact-source R6 review execution, first/correction judgment, primary request or bounded verification evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r6-reviewer-receipts/whitebox-correction-results.json](review/issue-109/r6-reviewer-receipts/whitebox-correction-results.json) | Retained exact-source R6 review execution, first/correction judgment, primary request or bounded verification evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r6-reviewer-receipts/whitebox-correction.md](review/issue-109/r6-reviewer-receipts/whitebox-correction.md) | Retained exact-source R6 review execution, first/correction judgment, primary request or bounded verification evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r6-reviewer-receipts/whitebox-first-results.json](review/issue-109/r6-reviewer-receipts/whitebox-first-results.json) | Retained exact-source R6 review execution, first/correction judgment, primary request or bounded verification evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r6-reviewer-receipts/whitebox-first.md](review/issue-109/r6-reviewer-receipts/whitebox-first.md) | Retained exact-source R6 review execution, first/correction judgment, primary request or bounded verification evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r6-reviewer-receipts/whitebox-fixture-diagnostic.json](review/issue-109/r6-reviewer-receipts/whitebox-fixture-diagnostic.json) | Retained exact-source R6 review execution, first/correction judgment, primary request or bounded verification evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+
+## review/issue-109/r7-reviewer-receipts/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-109/r7-reviewer-receipts/author-frozen-files.json](review/issue-109/r7-reviewer-receipts/author-frozen-files.json) | Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r7-reviewer-receipts/code-first.md](review/issue-109/r7-reviewer-receipts/code-first.md) | Retained exact-source R7 independent role first/continuation judgment and launch/result evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r7-reviewer-receipts/exploratory-first.md](review/issue-109/r7-reviewer-receipts/exploratory-first.md) | Retained exact-source R7 independent role first/continuation judgment and launch/result evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r7-reviewer-receipts/final-candidate-packet.json](review/issue-109/r7-reviewer-receipts/final-candidate-packet.json) | Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r7-reviewer-receipts/finalization-source.mjs.txt](review/issue-109/r7-reviewer-receipts/finalization-source.mjs.txt) | Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r7-reviewer-receipts/finalization.validation.json](review/issue-109/r7-reviewer-receipts/finalization.validation.json) | Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r7-reviewer-receipts/helper-checks.json](review/issue-109/r7-reviewer-receipts/helper-checks.json) | Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r7-reviewer-receipts/launch-and-result-receipts.json](review/issue-109/r7-reviewer-receipts/launch-and-result-receipts.json) | Retained exact-source R7 independent role first/continuation judgment and launch/result evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r7-reviewer-receipts/pdf-export.stderr.log](review/issue-109/r7-reviewer-receipts/pdf-export.stderr.log) | Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r7-reviewer-receipts/pdf-export.stdout.log](review/issue-109/r7-reviewer-receipts/pdf-export.stdout.log) | Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r7-reviewer-receipts/preflight-packet.json](review/issue-109/r7-reviewer-receipts/preflight-packet.json) | Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r7-reviewer-receipts/prepared-source.diff.txt](review/issue-109/r7-reviewer-receipts/prepared-source.diff.txt) | Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r7-reviewer-receipts/proof.json](review/issue-109/r7-reviewer-receipts/proof.json) | Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r7-reviewer-receipts/reorder.json](review/issue-109/r7-reviewer-receipts/reorder.json) | Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r7-reviewer-receipts/request.md](review/issue-109/r7-reviewer-receipts/request.md) | Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r7-reviewer-receipts/requirements-final.md](review/issue-109/r7-reviewer-receipts/requirements-final.md) | Retained exact-source R7 independent role first/continuation judgment and launch/result evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r7-reviewer-receipts/requirements-preflight.md](review/issue-109/r7-reviewer-receipts/requirements-preflight.md) | Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r7-reviewer-receipts/verification-source.py.txt](review/issue-109/r7-reviewer-receipts/verification-source.py.txt) | Source-bound R7 reorder review, exact native/export observations or independent role receipt under issue109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r7-reviewer-receipts/whitebox-first.md](review/issue-109/r7-reviewer-receipts/whitebox-first.md) | Retained exact-source R7 independent role first/continuation judgment and launch/result evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+
+## review/issue-109/r8-reviewer-receipts/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-109/r8-reviewer-receipts/candidate-final-packet.json](review/issue-109/r8-reviewer-receipts/candidate-final-packet.json) | Source-bound R8 content/control review, native verification or independent launch/result evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r8-reviewer-receipts/candidate-packet.json](review/issue-109/r8-reviewer-receipts/candidate-packet.json) | Source-bound R8 content/control review, native verification or independent launch/result evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r8-reviewer-receipts/capacity-delta.json](review/issue-109/r8-reviewer-receipts/capacity-delta.json) | Retained source-bound R8 review, diagnostic or bounded capacity-maintenance evidence for issue 109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r8-reviewer-receipts/capacity-preflight.md](review/issue-109/r8-reviewer-receipts/capacity-preflight.md) | Retained source-bound R8 review, diagnostic or bounded capacity-maintenance evidence for issue 109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r8-reviewer-receipts/code-capacity.md](review/issue-109/r8-reviewer-receipts/code-capacity.md) | Retained source-bound R8 review, diagnostic or bounded capacity-maintenance evidence for issue 109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r8-reviewer-receipts/code-correction.md](review/issue-109/r8-reviewer-receipts/code-correction.md) | Source-bound R8 content/control review, native verification or independent launch/result evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r8-reviewer-receipts/code-first.md](review/issue-109/r8-reviewer-receipts/code-first.md) | Source-bound R8 content/control review, native verification or independent launch/result evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r8-reviewer-receipts/edition-before-provenance-correction.json](review/issue-109/r8-reviewer-receipts/edition-before-provenance-correction.json) | Source-bound R8 content/control review, native verification or independent launch/result evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r8-reviewer-receipts/exploratory-capacity.md](review/issue-109/r8-reviewer-receipts/exploratory-capacity.md) | Retained source-bound R8 review, diagnostic or bounded capacity-maintenance evidence for issue 109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r8-reviewer-receipts/exploratory-first.md](review/issue-109/r8-reviewer-receipts/exploratory-first.md) | Source-bound R8 content/control review, native verification or independent launch/result evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r8-reviewer-receipts/finalization.validation.json](review/issue-109/r8-reviewer-receipts/finalization.validation.json) | Source-bound R8 content/control review, native verification or independent launch/result evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r8-reviewer-receipts/first-import-diagnostic.log](review/issue-109/r8-reviewer-receipts/first-import-diagnostic.log) | Source-bound R8 content/control review, native verification or independent launch/result evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r8-reviewer-receipts/launch-and-result-receipts.json](review/issue-109/r8-reviewer-receipts/launch-and-result-receipts.json) | Source-bound R8 content/control review, native verification or independent launch/result evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r8-reviewer-receipts/metadata-correction.json](review/issue-109/r8-reviewer-receipts/metadata-correction.json) | Source-bound R8 content/control review, native verification or independent launch/result evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r8-reviewer-receipts/proof.json](review/issue-109/r8-reviewer-receipts/proof.json) | Source-bound R8 content/control review, native verification or independent launch/result evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r8-reviewer-receipts/request.md](review/issue-109/r8-reviewer-receipts/request.md) | Source-bound R8 content/control review, native verification or independent launch/result evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r8-reviewer-receipts/requirements-capacity-final.md](review/issue-109/r8-reviewer-receipts/requirements-capacity-final.md) | Retained source-bound R8 review, diagnostic or bounded capacity-maintenance evidence for issue 109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r8-reviewer-receipts/requirements-final.md](review/issue-109/r8-reviewer-receipts/requirements-final.md) | Source-bound R8 content/control review, native verification or independent launch/result evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r8-reviewer-receipts/requirements-preflight.md](review/issue-109/r8-reviewer-receipts/requirements-preflight.md) | Source-bound R8 content/control review, native verification or independent launch/result evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r8-reviewer-receipts/ri-regressions-after-capacity.log](review/issue-109/r8-reviewer-receipts/ri-regressions-after-capacity.log) | Retained source-bound R8 review, diagnostic or bounded capacity-maintenance evidence for issue 109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r8-reviewer-receipts/ri-regressions-before-capacity.log](review/issue-109/r8-reviewer-receipts/ri-regressions-before-capacity.log) | Retained source-bound R8 review, diagnostic or bounded capacity-maintenance evidence for issue 109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r8-reviewer-receipts/ri-regressions-before-regeneration.log](review/issue-109/r8-reviewer-receipts/ri-regressions-before-regeneration.log) | Retained source-bound R8 review, diagnostic or bounded capacity-maintenance evidence for issue 109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r8-reviewer-receipts/whitebox-capacity.md](review/issue-109/r8-reviewer-receipts/whitebox-capacity.md) | Retained source-bound R8 review, diagnostic or bounded capacity-maintenance evidence for issue 109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r8-reviewer-receipts/whitebox-correction.md](review/issue-109/r8-reviewer-receipts/whitebox-correction.md) | Source-bound R8 content/control review, native verification or independent launch/result evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r8-reviewer-receipts/whitebox-first.md](review/issue-109/r8-reviewer-receipts/whitebox-first.md) | Source-bound R8 content/control review, native verification or independent launch/result evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+
+## review/issue-109/r9-input/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-109/r9-input/candidate-package-manifest.json](review/issue-109/r9-input/candidate-package-manifest.json) | R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r9-input/candidate-visual-manifest.json](review/issue-109/r9-input/candidate-visual-manifest.json) | R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r9-input/code-candidate-manifest.json](review/issue-109/r9-input/code-candidate-manifest.json) | R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r9-input/issue-109-snapshot.md](review/issue-109/r9-input/issue-109-snapshot.md) | R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r9-input/issue109-before-r9.md](review/issue-109/r9-input/issue109-before-r9.md) | R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r9-input/pr110-before-r9.md](review/issue-109/r9-input/pr110-before-r9.md) | R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r9-input/preflight-manifest.json](review/issue-109/r9-input/preflight-manifest.json) | R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r9-input/request.md](review/issue-109/r9-input/request.md) | R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+
+## review/issue-109/r9-reviewer-receipts/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-109/r9-reviewer-receipts/acceptance-first-clean-head.json](review/issue-109/r9-reviewer-receipts/acceptance-first-clean-head.json) | Preserved first R9 clean-head acceptance report including diagnosed stale RI/CI source identity. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r9-reviewer-receipts/assembly.json](review/issue-109/r9-reviewer-receipts/assembly.json) | R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r9-reviewer-receipts/code-first.md](review/issue-109/r9-reviewer-receipts/code-first.md) | R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r9-reviewer-receipts/code-metadata-correction.md](review/issue-109/r9-reviewer-receipts/code-metadata-correction.md) | R9 bounded independent correction receipt or actual precommit navigation regression result. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r9-reviewer-receipts/launch-and-results.json](review/issue-109/r9-reviewer-receipts/launch-and-results.json) | R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r9-reviewer-receipts/native-finalization.json](review/issue-109/r9-reviewer-receipts/native-finalization.json) | R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r9-reviewer-receipts/notes-preservation.json](review/issue-109/r9-reviewer-receipts/notes-preservation.json) | R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r9-reviewer-receipts/requirements-final-first.md](review/issue-109/r9-reviewer-receipts/requirements-final-first.md) | R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r9-reviewer-receipts/requirements-preflight.md](review/issue-109/r9-reviewer-receipts/requirements-preflight.md) | R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r9-reviewer-receipts/ri-regressions-precommit.log](review/issue-109/r9-reviewer-receipts/ri-regressions-precommit.log) | R9 bounded independent correction receipt or actual precommit navigation regression result. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r9-reviewer-receipts/visual-baseline.md](review/issue-109/r9-reviewer-receipts/visual-baseline.md) | R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r9-reviewer-receipts/visual-final-first.md](review/issue-109/r9-reviewer-receipts/visual-final-first.md) | R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r9-reviewer-receipts/whitebox-baseline.md](review/issue-109/r9-reviewer-receipts/whitebox-baseline.md) | R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-109/r9-reviewer-receipts/whitebox-final-first.md](review/issue-109/r9-reviewer-receipts/whitebox-final-first.md) | R9 source-bound request, isolated reviewer receipt, native validation or historical owner snapshot. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/issue-114/
 
@@ -2792,6 +3177,14 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tools/pages/migration.cjs](tools/pages/migration.cjs) | Finite authenticated Pages prefix-to-canonical migration and exact frozen-package/settings recovery controller. | validator | [guides/SITE-PRODUCTION.md](guides/SITE-PRODUCTION.md) |
 | [tools/pages/package.cjs](tools/pages/package.cjs) | Issue72 source-bound staging and Pages delivery controller. | validator | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tools/pages/unpack.py](tools/pages/unpack.py) | Digest-bound and bounded native Actions ZIP extraction rejecting traversal, symlinks and unsupported archive entries. | validator | [guides/SITE-PRODUCTION.md](guides/SITE-PRODUCTION.md) |
+
+## tools/presentations/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [tools/presentations/integrate_native_slide.py](tools/presentations/integrate_native_slide.py) | Dependency-bounded native OOXML slide and notes integration preserving unrelated package payloads and original spoken notes. | source | [guides/PRESENTATION-VERSIONING.md](guides/PRESENTATION-VERSIONING.md) |
+| [tools/presentations/reorder_native_slides.py](tools/presentations/reorder_native_slides.py) | Bounded native PPTX reorder with pinned source, explicit permutation and synchronized footer/note labels. | source | [guides/PRESENTATION-VERSIONING.md](guides/PRESENTATION-VERSIONING.md) |
+| [tools/presentations/validate_edition.py](tools/presentations/validate_edition.py) | Bounded presentation edition identity and native slide integration tooling. | validator | [guides/PRESENTATION-VERSIONING.md](guides/PRESENTATION-VERSIONING.md) |
 
 ## tools/publishing/
 
