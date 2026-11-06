@@ -117,8 +117,11 @@ function validateRouteSizes(sizes, record) {
     const resources = declared === undefined ? [] : declared;
     assert.ok(Array.isArray(resources) && resources.length <= 1, 'finite route resources');
     if (resources.length) {
-      assert.equal(row.route, 'research', 'unsupported route size resource');
-      assert.match(resources[0], /^article-media\/[a-f0-9]{64}\/research-fallback\.svg$/);
+      assert.ok(['research', 'writing'].includes(row.route), 'unsupported route size resource');
+      assert.match(
+        resources[0],
+        new RegExp('^article-media/[a-f0-9]{64}/' + row.route + '-fallback\\.svg$')
+      );
       assert.equal(
         record.files[resources[0]]?.sha256,
         resources[0].split('/')[1],

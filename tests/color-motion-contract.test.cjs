@@ -26,6 +26,37 @@ function manifest(id) {
       value.files[file] = { raw: 5000, gzip: 1000, sha256 };
   return value;
 }
+test('observed runtime families retain exact editions and mixed-byte refusals', () => {
+  for (const [file, family] of [
+    ['r9-footer-runtime', 'issue169-footer-routes'],
+    ['r9-reader-history-runtime', 'issue169-reader-history'],
+  ]) {
+    const observed = require('./fixtures/' + file + '.json');
+    for (const row of observed.runtimes) {
+      const actual = row.manifest;
+      assert.equal(motion.select(actual).id, family + '-' + row.edition);
+      assert.equal(motion.publicationRequired(actual, actual.components), true);
+      const base = structuredClone(actual);
+      base.variant.baseEngine = '0'.repeat(64);
+      base.components.variant.baseEngine = '0'.repeat(64);
+      assert.throws(() => motion.select(base), /identity/);
+      const edition = structuredClone(actual);
+      edition.edition =
+        row.edition === 'plain' ? { id: 'staging', indexable: false, analytics: false } : undefined;
+      assert.throws(() => motion.select(edition), /edition differs/);
+      for (const name of Object.keys(actual.files)) {
+        const changed = structuredClone(actual);
+        changed.files[name].sha256 = '0'.repeat(64);
+        assert.throws(() => motion.select(changed), /Color bytes/);
+      }
+      const mixed = structuredClone(actual);
+      mixed.files['navigation.js'].sha256 = motion.reviewedRuntime(
+        'issue169-native-tags-plain'
+      ).files['navigation.js'];
+      assert.throws(() => motion.select(mixed), /Color bytes/);
+    }
+  }
+});
 test('producer refactoring preserves client compatibility while runtime bytes and document hooks stay bound', () => {
   const fs = require('node:fs'),
     os = require('node:os'),

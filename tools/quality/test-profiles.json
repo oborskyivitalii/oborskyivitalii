@@ -611,7 +611,8 @@
         "tools/site/legal.cjs",
         "docs/styles.css",
         "review/issue-126/content-amendment.json",
-        "review/issue-159/content-amendment.json"
+        "review/issue-159/content-amendment.json",
+        "review/issue-169/trusted-reader-producer.json"
       ]
     },
     {
@@ -1624,7 +1625,9 @@
         "tools/site/**",
         "site/content/**",
         "site/templates/**",
-        "tests/fixtures/catalog.cjs"
+        "tests/fixtures/catalog.cjs",
+        "review/issue-169/trusted-reader-producer.json",
+        "tools/check_site_seo.cjs"
       ],
       "content": true
     },
@@ -1850,7 +1853,9 @@
         ".github/workflows/site-release-candidate.yml",
         "tools/quality/edge-input.cjs",
         "tools/quality/block-observation.cjs",
-        "tools/site/runtime-compatibility.cjs"
+        "tools/site/runtime-compatibility.cjs",
+        "tests/fixtures/r9-footer-runtime.json",
+        "tests/fixtures/r9-reader-history-runtime.json"
       ]
     },
     {
@@ -2656,7 +2661,9 @@
         "tools/release/rights-record.cjs",
         "docs/**",
         "tools/site/snapshot.cjs",
-        "site/engine/article-tags.cjs"
+        "site/engine/article-tags.cjs",
+        "tools/release/edition.cjs",
+        "tools/release/edition-archive.cjs"
       ]
     },
     {
