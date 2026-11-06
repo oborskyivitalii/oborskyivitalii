@@ -29,6 +29,25 @@ test('Research carrier reconstructs the accepted scene and rejects unknown produ
     fs.writeFileSync(file, before);
   }
   const root = path.resolve(__dirname, '..');
+  const successor = require('../review/issue-169/trusted-reader-producer.json');
+  for (const mutate of [
+    (record) => delete record.producerChanges,
+    (record) => (record.producerChanges = {}),
+    (record) =>
+      (record.producerChanges['tools/site/build.cjs'] =
+        record.producerChanges['tools/site/fallback.cjs']),
+    (record) => (record.predecessorSource = '0'.repeat(40)),
+    (record) => (record.producerChanges['tools/site/fallback.cjs'].beforeSHA256 = '0'.repeat(64)),
+    (record) => (record.producerChanges['tools/site/fallback.cjs'].afterSHA256 = '0'.repeat(64)),
+    (record) => (record.producerChanges['tools/site/fallback.cjs'].unreviewed = true),
+  ]) {
+    const changed = structuredClone(successor);
+    mutate(changed);
+    assert.throws(() => seo.verifyResearchCarrier(root, record, changed));
+  }
+  const changedAccepted = structuredClone(record);
+  changedAccepted.producerChanges['tools/site/fallback.cjs'].afterSHA256 = '0'.repeat(64);
+  assert.throws(() => seo.verifyResearchCarrier(root, changedAccepted), /historical binding/);
   const changedPredecessor = structuredClone(record);
   changedPredecessor.producerChanges[Object.keys(record.producerChanges)[0]].beforeSHA256 =
     '0'.repeat(64);

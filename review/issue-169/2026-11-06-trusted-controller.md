@@ -67,3 +67,35 @@ Node24.19. Main's five principal HTML files differ only in generated digests;
 all five ordinary runtime JS/CSS files remain exact. The refreshed public output
 contains no newly selected article. Raw first and corrected results are retained
 separately; provider/hosted gates have not run.
+
+## Complete-source failure and bounded correction plan
+
+Clean prepared19e75f6/treeb44bc1c, pinned Node24.19, permanent production source
+profile: **1195 total /1191 pass /4 fail /0 cancel/skip/TODO**, child exit1,
+original300000ms limit. Raw JSON/TAP/stderr/log retained independently. Three
+failures are one strict Research producer-pin mismatch: original issue159
+`fallback.cjs`66822a96… versus the new exact reviewed consumer0060c45f…. The
+fourth is stale maintained offline preview/site-route metadata, exposed by
+the scanner-control fixture's unchanged generated-checksum prerequisite.
+
+Do not modify the accepted historical issue159 proof or relax its geometry,
+resource, predecessor or unknown-producer refusals. Authenticate only the exact
+current fallback successor against protected-main8cf1588 and add mutation
+coverage. This adjusts active source reconciliation, not historical acceptance.
+Regenerate maintained previews/bundle from the refreshed main output, preserve
+scanner rules/ledgers and old dispositions, and prove any new actual generated
+checksum findings before adding exact dispositions. Then run the affected
+source cases before a new complete exact-source campaign. No unchanged rerun.
+
+Four independent first judgments on19e75f6 are preserved. Requirements and Code
+block advancement on these source failures. Bounded White-box/Exploratory
+checks found no further consumer defect; they do not supply full source or
+hosted acceptance. Complete current R10 pinned consumer test passed13/13
+(parent plus12subcases); real retained package42275940284 verifies locally.
+
+The four failed cases now pass **4/4** on the corrected prepared source. The
+active verifier authenticates one exact fallback successor against main8cf1588;
+forged/missing/extra lineage and altered historical/current producer bytes are
+refused. The original issue159 record is unchanged. Maintained preview/bundle
+checks pass after regeneration. Full corrected campaign and affected independent
+reviews remain pending; first failed campaign remains preserved.

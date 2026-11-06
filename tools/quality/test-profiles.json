@@ -611,7 +611,8 @@
         "tools/site/legal.cjs",
         "docs/styles.css",
         "review/issue-126/content-amendment.json",
-        "review/issue-159/content-amendment.json"
+        "review/issue-159/content-amendment.json",
+        "review/issue-169/trusted-reader-producer.json"
       ]
     },
     {
@@ -1624,7 +1625,9 @@
         "tools/site/**",
         "site/content/**",
         "site/templates/**",
-        "tests/fixtures/catalog.cjs"
+        "tests/fixtures/catalog.cjs",
+        "review/issue-169/trusted-reader-producer.json",
+        "tools/check_site_seo.cjs"
       ],
       "content": true
     },

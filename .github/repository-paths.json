@@ -1831,6 +1831,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-169/trusted-reader-producer.json": {
+      "kind": "file",
+      "purpose": "Exact protected-main predecessor and reviewed fallback consumer successor without changing accepted Research geometry/history.",
+      "role": "history",
+      "owner": "tools/check_site_seo.cjs"
+    },
     "review/issue-2": {
       "kind": "directory",
       "purpose": "Dated editorial, source and publication review evidence for the PMDay article owner.",
