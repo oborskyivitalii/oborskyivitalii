@@ -2,7 +2,7 @@
 
 *Why automating the next bottleneck is an incomplete strategy for business return.*
 
-Vitalii Oborskyi · 5 November 2026 · R9 author-review edition · [vitaliioborskyi.ai](https://vitaliioborskyi.ai/)
+Vitalii Oborskyi · 6 November 2026 · R10 author-review edition · [vitaliioborskyi.ai](https://vitaliioborskyi.ai/)
 
 ![An accelerated coding stage tilts the delivery chain while people support the downstream work.](asset:hero)
 
@@ -88,9 +88,13 @@ Now take living documentation: a model generates an explanation from the code. W
 
 Smaller batches, WIP limits, specification-driven work and bounded disposable implementations may help in other parts of the system. They also have conditions and costs. We should test where they help, what they displace and which necessary functions they leave unresolved.
 
-This suggests context-specific operating models rather than one universal AI-native SDLC. Domain, legacy dependencies, team structure, criticality and cost change the appropriate degree of delegation. A small team sharing roles may coordinate directly; an enterprise may need changes across several teams and business functions. Agent scope can differ by activity, including activities where delegation adds little value.
+This suggests that we are unlikely to arrive at one universal AI-native SDLC or a single optimal balance. Instead, organisations will need a range of context-specific operating models, each with a different degree of delegation to AI. The appropriate model depends on the work, domain, criticality, organisational capabilities and economics. In some situations, extensive delegation may be justified; in others, limited assistance may be preferable. And sometimes, the sound engineering decision may be not to use AI at all.
+
+A small team sharing roles may coordinate directly; an enterprise may need changes across several teams and business functions. Agent scope can also differ by activity.
 
 A large enterprise cannot assume it will rebalance itself within the investment horizon. Teams, vendors and legacy dependencies need coordinated change. If adjustment takes years or decades, the organisation keeps paying for tools, waiting work, rework and missed opportunities. Eventual adaptation does not erase those accumulated costs.
+
+The aim is an economically and operationally justified configuration of the whole delivery system, rather than maximum AI use.
 
 Someone must own that rebalancing. Give an accountable owner the authority, budget and cross-functional support to change the system, then define a bounded pilot with a baseline, comparable work, success criteria and stop conditions.
 
@@ -130,5 +134,5 @@ This article develops the delivery-system argument from my DevCon Romania talk, 
 
 [Website and research](https://vitaliioborskyi.ai/) · [LinkedIn](https://www.linkedin.com/in/vitaliioborskyi/)
 
-© 2026 Vitalii Oborskyi. R9 author-review edition. Original text and diagrams: CC BY 4.0. AI-assisted hero illustration; third-party sources retain their rights.
+© 2026 Vitalii Oborskyi. R10 author-review edition. Original text and diagrams: CC BY 4.0. AI-assisted hero illustration; third-party sources retain their rights.
 
