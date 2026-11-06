@@ -803,6 +803,8 @@ test('publication comment and inert-template wrappers cannot hide otherwise exac
     artifact.entries(publicDirectory).map((file) => [file.path, file.bytes])
   );
   const authored = legal.compile(root).html.trim();
+  const media = require('../tools/site/article-media.cjs');
+  const render = t.mock.method(media, 'render');
   for (const wrap of [
     (html) => '<!--' + html + '-->',
     (html) => '<template>' + html + '</template>',
@@ -842,11 +844,27 @@ test('publication comment and inert-template wrappers cannot hide otherwise exac
       report.files[name].sha256 = record.files[name].sha256;
     rehash(report);
     assert.equal(frozen.publication(record, report), true);
-    assert.throws(() => rights.compile(publicDirectory, record));
+    assert.throws(
+      () => rights.compile(publicDirectory, record),
+      /public (?:Credits notice differs|full legal notices differ)|ambiguous (?:self-closing HTML legal notice context|legal notice attribute syntax)/
+    );
+    assert.equal(render.mock.callCount(), 0, 'invalid notices must precede hosted reconstruction');
     assert.throws(() => frozen.verify(publicDirectory, record, report, report.inventoryDigest));
     for (const [name, bytes] of Object.entries(originals))
       fs.writeFileSync(path.join(publicDirectory, name), bytes);
   }
+  const restored = rights.compile(publicDirectory, source.record);
+  assert.deepEqual(restored.publicNotices, originalReport.publicNotices);
+  assert.deepEqual(restored.materials.hostedEditions, originalReport.materials.hostedEditions);
+  assert.ok(render.mock.callCount() > 0, 'valid notices still require hosted reconstruction');
+  const mediaFailure = new Error('injected hosted media failure');
+  render.mock.mockImplementation(() => {
+    throw mediaFailure;
+  });
+  assert.throws(
+    () => rights.compile(publicDirectory, source.record),
+    (error) => error === mediaFailure
+  );
 });
 
 test('publication notice markup rejects incomplete ambiguous and unbounded contexts', () => {

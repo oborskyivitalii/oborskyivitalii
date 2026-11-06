@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "26d43add31948ee39eeb2ce21b25ce1376f10ad6488d2c3e277a58c67894762b",
+    "digest": "06e05ceea16d66af3386eeef3d7c6560a2ce48f579b25e97dc8d9c5f5c90947e",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -216,12 +216,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "63c64363f0a3222410bb6e885bc8a1cbb02b7706f1a9b948804136da85fda331"
+        "sha256": "5f1f4fe1aa3b2d4536be8c0c57a943b096d10538053c63f23262ea86fd159b77"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "3520086f164df3bb58b1aabd00cc4d08d8aad074535eb0c09360868bbe0f37be"
+        "sha256": "32df2d7c84414a6e6ede4a70ba88fe94a61e94a5abe97baf5f9e055238105397"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -371,7 +371,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "369ea9de8fe56bd757d91949daa0dd1ebd373239ab88016b88d7e37c81694734"
+        "sha256": "60eec63ac01a5cd9b02671de82805a8e612364d0720144ca4d61c5aa0c1328cd"
       },
       {
         "path": "NOTICE.md",
@@ -1858,6 +1858,11 @@
         "sha256": "460fc8bb505921dd8c7d56f5a82071520baa6d12a642d4b6ea70fabadc9b8f1a"
       },
       {
+        "path": "review/issue-169/2026-11-06-notice-preflight-order.md",
+        "identity_mode": "content",
+        "sha256": "62d449b66b015b23b8be1dfca65a732855b25cabbe7c317583c47e3f844c0c9e"
+      },
+      {
         "path": "review/issue-169/2026-11-06-r10-amendment.md",
         "identity_mode": "content",
         "sha256": "623babe66cba34c57d5c161ba3b5b98cacb647123c4c7f400f2b43a7910995a8"
@@ -2891,6 +2896,11 @@
         "path": "review/issue-169/native-reviews/whitebox-final.md.gz",
         "identity_mode": "content",
         "sha256": "64a9aceec65f7f558387fd62dcec3e0eb1f04ccaf1d155fe12ff9c80fba73261"
+      },
+      {
+        "path": "review/issue-169/notice-preflight-proof.json.gz",
+        "identity_mode": "content",
+        "sha256": "f326d73845cad4bff866afa0bae631795d37f16762046dc083ca235ecf4f342c"
       },
       {
         "path": "review/issue-169/r1/README.md",
@@ -11300,7 +11310,7 @@
       {
         "path": "tests/release-rights.test.cjs",
         "identity_mode": "content",
-        "sha256": "d9ed3d9463564e61a4e0a435618fcf5565b2165d7a78a9ab3e49d62083c7ec81"
+        "sha256": "1dd519a2cb41c55e720e5c13dcf72c5c8afee96ab486a6bec5e635f145d86517"
       },
       {
         "path": "tests/renderer.test.cjs",
@@ -12430,7 +12440,7 @@
       {
         "path": "tools/release/rights.cjs",
         "identity_mode": "content",
-        "sha256": "1730fb1090799cdb81ece8af66102c73bb90732de4d99e8d19734f213757ceb6"
+        "sha256": "07a3801b5b7bec3e19d12005a0011b3591b63db08e1bfd6f2f4b5b9c77d2d8a3"
       },
       {
         "path": "tools/release/staging-policy.cjs",
@@ -17120,6 +17130,17 @@
       "title": "Planned-link/site-first distribution — 6 November 2026"
     },
     {
+      "path": "review/issue-169/2026-11-06-notice-preflight-order.md",
+      "kind": "file",
+      "purpose": "Issue169 measured notice-order correction, source/review invariants and remaining staging gates.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue169 — 6 November2026 notice validation order"
+    },
+    {
       "path": "review/issue-169/2026-11-06-r10-amendment.md",
       "kind": "file",
       "purpose": "Source-bound R10 review/check evidence or losslessly retained historical report; original semantics and decoded hashes preserved.",
@@ -19395,6 +19416,17 @@
         "AGENTS.md"
       ],
       "title": "whitebox-final.md.gz"
+    },
+    {
+      "path": "review/issue-169/notice-preflight-proof.json.gz",
+      "kind": "file",
+      "purpose": "Exact correction packets, raw evidence identity, measured subprocess counts and reviewer receipts.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "notice-preflight-proof.json.gz"
     },
     {
       "path": "review/issue-169/r1/README.md",

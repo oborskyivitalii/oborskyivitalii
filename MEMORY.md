@@ -4,9 +4,9 @@ Dated continuity, not live authority. Last verified: **2026-11-06**.
 
 ## Snapshot
 
-- Owner #169 / PR170; main observed8cf1588, correction base9513dbe. Revalidate
-  actual head/checks/deployments. Author accepted Writing/DevCon preview and
-  now requests all required tests, stable staging, then STOP/show.
+- Owner169 / PR170; main observed8cf1588, correction basee50c63de. Revalidate
+  actual head/checks/deployments. Author requests the measured notice-order fix,
+  all required tests, stable staging, then STOP/show.
 - Delivered previewcd4b0f16 has DevCon completed in Other talks, past tense,
   date4November2026; PMDay Winter stays upcoming. Writing R10 leads2026/delivery.
   Original UI receipts: PR170 comments6684313079 and6684701185.
@@ -16,28 +16,23 @@ Dated continuity, not live authority. Last verified: **2026-11-06**.
 
 - Current increment ends after verified stable staging and tests. No merge or
   production. Issue169 comment6685199809 records this current authorization.
-- Correct stale historical Talks test inputs without losing original negative
-  targets; hoist only the unchanged rights comparison's repeated snapshot work.
-  No content/runtime/profile/worker/deadline changes.
+- Validate existing public notices before hosted article reconstruction; preserve
+  successful rights/media checks and all16negative cases. No cache, content,
+  runtime, scanner, profile, worker or deadline changes.
 - Site-first distribution remains: actual website proof before canonical/date/
   events; author posts platforms, then paired observed backlinks.
 
 ## Open work
 
-- Current source186f28c has all8 raw-head source shards, Basic, RI/owning and
-  preview smoke passed. Owner staging42227207673 completed prepublication;
-  source passed in201708ms and Python/lint/advisories/rights/package passed.
-  Security alone failed: exactly9 secret candidates; Semgrep/Bandit passed.
-  Original native artifact13505454566 retains all reports; no stable update.
-- Bounded follow-up: review/issue-169/2026-11-06-staging-security-followup.md
-  and stage-security-proof.json.gz. Preserve the prior exact inventory pair,
-  add only the current pair and individually proved ledger entries; retain all
-  negative refusals, detector/version/input authority/limits and site bytes.
-  Four final roles completed; original disclosed White-box result is retained
-  separately from its clean replacement. Current CI/native security/stage remain
-  mandatory. No unchanged failed-campaign retry.
-- Earlier stage42207436828/source timeout and all earlier security/review
-  failures remain preserved. Whole ACs stay open except historicalAC06.
+- Latest staged basee50c63de:42233889474 and42237763419 both source timeout300s,
+  56/75modules complete; no stable update. Original artifacts remain retained.
+- Investigation94d0ad2 records the same-source25October hardware contrast and
+  repeated media/AST cost; full raw archive5176ec9. CPU model alone is not proved.
+- Prepared correction:review/issue-169/2026-11-06-notice-preflight-order.md.
+  Original case1/1 now3.674s local versus30.674s; media calls17→1. Strengthened
+  case passes and rejects old order; component53/53 and Basic18+10 pass locally.
+  Current clean CI/native security/complete staging remain mandatory.
+- Earlier failures remain preserved. Whole ACs stay open except historicalAC06.
 
 ## Next session
 

@@ -395,6 +395,7 @@ function compile(publicDirectory, record, options = {}) {
     assert.match(record[key], /^[a-f0-9]{40}$/);
   const manifest = jsonSource(sourceRoot, manifestPath);
   const { provenance, notices } = validateManifest(sourceRoot, manifest);
+  const noticeFiles = publicNotices(publicDirectory, sourceRoot, record);
   const hosted = hostedInventory(publicDirectory, sourceRoot, record, manifest);
   const generatedFiles = { ...hosted.files, ...roomInventory(publicDirectory, sourceRoot, record) };
   const files = {};
@@ -469,7 +470,7 @@ function compile(publicDirectory, record, options = {}) {
     provenance,
     notices,
     legalCopies: legal.compile(sourceRoot).files,
-    publicNotices: publicNotices(publicDirectory, sourceRoot, record),
+    publicNotices: noticeFiles,
     linkedPublications,
     materials: {
       scope: hosted.editions.length ? 'exact-hosted-editions' : 'linked-metadata-only',

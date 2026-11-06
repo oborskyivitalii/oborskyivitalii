@@ -16758,6 +16758,18 @@
       "purpose": "Lossless original human review with decoded prior Git-byte proof in the staging security evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/2026-11-06-notice-preflight-order.md": {
+      "kind": "file",
+      "purpose": "Issue169 measured notice-order correction, source/review invariants and remaining staging gates.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/notice-preflight-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Exact correction packets, raw evidence identity, measured subprocess counts and reviewer receipts.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }
