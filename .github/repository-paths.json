@@ -16770,6 +16770,18 @@
       "purpose": "Exact correction packets, raw evidence identity, measured subprocess counts and reviewer receipts.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/2026-11-06-controller-fixture-seed.md": {
+      "kind": "file",
+      "purpose": "Issue169 fixed controller input preparation, native timeout evidence, measured savings and remaining staging gates.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/controller-fixture-seed-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Exact fixed fixture source, packets, raw native/timing evidence identity and independent review receipts.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }
