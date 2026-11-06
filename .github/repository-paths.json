@@ -1123,6 +1123,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/2ad4040444469ec0a6704c947b68d0f7430a0b7bbf5e9ef1f994e366060fe89f": {
+      "kind": "directory",
+      "purpose": "Generated completed DevCon Talks rendition and immutable route closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/2ad4040444469ec0a6704c947b68d0f7430a0b7bbf5e9ef1f994e366060fe89f/talks.html": {
+      "kind": "file",
+      "purpose": "Generated completed DevCon Talks rendition and immutable route closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/39441f2d37cdfc6b3935d76c2f897f92be741f851569e2ff46558e90b4180612": {
       "kind": "directory",
       "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
@@ -1142,18 +1154,6 @@
       "owner": "site/README.md"
     },
     "docs/snapshots/4c633b6b3889451c5a923a013cde4a5105323456d95739dc0889e1bfa868cfad/writing.html": {
-      "kind": "file",
-      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/4cbd43f32c97e0320e847a70f74fb27df306a5b62c1cfd868af62bed9c333a03": {
-      "kind": "directory",
-      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/4cbd43f32c97e0320e847a70f74fb27df306a5b62c1cfd868af62bed9c333a03/talks.html": {
       "kind": "file",
       "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
       "role": "generated",
@@ -2293,6 +2293,12 @@
       "role": "history",
       "owner": "AGENTS.md"
     },
+    "review/issue-169/2026-10-31-native-publication.md.gz": {
+      "kind": "file",
+      "purpose": "Completed DevCon event correction, source-bound independent review and retained original evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-169/2026-10-31-r3-illustrated-review.md": {
       "kind": "file",
       "purpose": "Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated.",
@@ -2671,6 +2677,12 @@
       "role": "history",
       "owner": "AGENTS.md"
     },
+    "review/issue-169/2026-11-06-devcon-completed.md": {
+      "kind": "file",
+      "purpose": "Completed DevCon event correction, source-bound independent review and retained original evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-169/2026-11-06-distribution-workflow.md": {
       "kind": "file",
       "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
@@ -2704,6 +2716,12 @@
     "review/issue-169/correction-affected.log.gz": {
       "kind": "file",
       "purpose": "Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/devcon-completed-review.tar.xz": {
+      "kind": "file",
+      "purpose": "Completed DevCon event correction, source-bound independent review and retained original evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },

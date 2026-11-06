@@ -19,7 +19,7 @@
     "vitalii-oborskyi-cutout.webp",
     "writing-paradigm.svg"
   ],
-  "content": "6034fe285b356fb54c0e07d8113bbde146556dc5ad927a4f563d9c084ecb4e61",
+  "content": "d4a147f8dcfc71e80e8c3c621be038c120b9fd8490e497f1b3efaec1555882ff",
   "routes": {
     "index": {
       "version": "6ab1b9444a3d9a4fa13b2d48b5f56ffbbe6007aacd3ac53378c323061d319694",
@@ -43,9 +43,9 @@
       ]
     },
     "talks": {
-      "version": "4cbd43f32c97e0320e847a70f74fb27df306a5b62c1cfd868af62bed9c333a03",
-      "url": "snapshots/4cbd43f32c97e0320e847a70f74fb27df306a5b62c1cfd868af62bed9c333a03/talks.html",
-      "sha256": "932c3e4495dcc0b5b4a67ecae2427fafa5c95b5040276823a4896181fd686448"
+      "version": "2ad4040444469ec0a6704c947b68d0f7430a0b7bbf5e9ef1f994e366060fe89f",
+      "url": "snapshots/2ad4040444469ec0a6704c947b68d0f7430a0b7bbf5e9ef1f994e366060fe89f/talks.html",
+      "sha256": "3604d9cdf9b16c3496e7597c4a28e41989279bb50ab34de587c892a451922e67"
     },
     "credits": {
       "version": "39441f2d37cdfc6b3935d76c2f897f92be741f851569e2ff46558e90b4180612",

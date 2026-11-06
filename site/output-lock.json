@@ -118,7 +118,7 @@
       "snapshotSHA": "6b7b7aeeca99de8df80a87f20c84140c0e30b15a18cc6f77ec6b25b71ea1306a"
     },
     "talks": {
-      "version": "4cbd43f32c97e0320e847a70f74fb27df306a5b62c1cfd868af62bed9c333a03",
+      "version": "2ad4040444469ec0a6704c947b68d0f7430a0b7bbf5e9ef1f994e366060fe89f",
       "url": "talks.html",
       "inputs": [
         "site/content/events.json",
@@ -131,7 +131,7 @@
         "site/templates/pages/talks/talks.html"
       ],
       "records": [],
-      "snapshotSHA": "932c3e4495dcc0b5b4a67ecae2427fafa5c95b5040276823a4896181fd686448"
+      "snapshotSHA": "3604d9cdf9b16c3496e7597c4a28e41989279bb50ab34de587c892a451922e67"
     },
     "credits": {
       "version": "39441f2d37cdfc6b3935d76c2f897f92be741f851569e2ff46558e90b4180612",
@@ -205,8 +205,8 @@
     "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg": "2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16",
     "writing.html": "e80f275b13204d694a61022c06d640fe18d4220e0524b936824fe7846be15ee5",
     "snapshots/4c633b6b3889451c5a923a013cde4a5105323456d95739dc0889e1bfa868cfad/writing.html": "6b7b7aeeca99de8df80a87f20c84140c0e30b15a18cc6f77ec6b25b71ea1306a",
-    "talks.html": "2fceb070a7a0211387e5a2fd35156e7f369884bf196f66b2c0d772d9c9f231fc",
-    "snapshots/4cbd43f32c97e0320e847a70f74fb27df306a5b62c1cfd868af62bed9c333a03/talks.html": "932c3e4495dcc0b5b4a67ecae2427fafa5c95b5040276823a4896181fd686448",
+    "talks.html": "5f04c894234158fe0bf9fba18489921669df26d51a98ddb54b2c12f25fdbdfc6",
+    "snapshots/2ad4040444469ec0a6704c947b68d0f7430a0b7bbf5e9ef1f994e366060fe89f/talks.html": "3604d9cdf9b16c3496e7597c4a28e41989279bb50ab34de587c892a451922e67",
     "credits.html": "b3456a63a352fac1d0ebcb7921b2a73860eb699381970370a3c06b86cca373c2",
     "snapshots/39441f2d37cdfc6b3935d76c2f897f92be741f851569e2ff46558e90b4180612/credits.html": "9f6dc4ce66bcf3a783fea12a857b9a68637869eaf778117e4591798871b5ac65",
     "articles/the-sdlc-is-out-of-balance.html": "879917b7e7971077d711a848801412de633ce3a3a2448c7594156fc84ee55083",
@@ -281,6 +281,6 @@
     "runtime/c36b28140796f556d7f6019efa223c5164e7ca55e880e1e6a64bb596283430da/archive.js": "f7da9f6646746ec1415a5fbfc9ac7505913b0bc8a7e6551f213997bc6d381146",
     "runtime/c36b28140796f556d7f6019efa223c5164e7ca55e880e1e6a64bb596283430da/navigation.js": "eac2248fde312e2ccb85b46c0b0b2586be1b417031d2045b04a3f972c157baa1",
     "article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/the-sdlc-is-out-of-balance.html": "4aa1ae74ff48155957e9f897b7697e1cee35e3b38d8319d0906c15da2d44fd7b",
-    "site-revision.json": "74a3b6e59b65b7f1b2e2eb9a11c01411d1ae44e509bac6df5f364b996bca0456"
+    "site-revision.json": "e5d07e10b7e3530cbb548b8afa5dc224d58bfffbb4b8d13b6ce6bc145806362e"
   }
 }

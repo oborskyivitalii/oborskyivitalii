@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "7cecd0dcad4da2ee8b3722b0e08e124c173cba06125cf627707b05aefef3124b",
+    "digest": "d9bd21b5f18e2ff6ef57c0002271cb7a74a136e2cc8867f38affeb0caeff7f8d",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -216,12 +216,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "34f704ded2d463d454f99673d9e5aa78c2e9fdac1cfced5118183d0ef4be097e"
+        "sha256": "c70fcce8751c1ce6448d66dfe945c0b10545d7680b03b3d7f1358574f24307aa"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "4ca3e8bec76efa2f95127ee267928ef43e6e9fc5d346c3ef273d92990d452a41"
+        "sha256": "ef81c96aee04a7c5bb18396c99e6dc65a2a5781ca1e3424770a41faf4e5375b0"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -371,7 +371,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "f5e06429b901b848583534f543daeda3b2d5d5a78803b22022c2550f64463cb8"
+        "sha256": "967a8117b8129a8dffc0bc4a8530941a9c5c619259cecc46e59ed5b05fcfc51b"
       },
       {
         "path": "NOTICE.md",
@@ -715,7 +715,7 @@
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "74a3b6e59b65b7f1b2e2eb9a11c01411d1ae44e509bac6df5f364b996bca0456"
+        "sha256": "e5d07e10b7e3530cbb548b8afa5dc224d58bfffbb4b8d13b6ce6bc145806362e"
       },
       {
         "path": "docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2/talks.html",
@@ -733,6 +733,11 @@
         "sha256": "93c88b5f9c73e559b067866cb38eb604e93013c2225a06a36f96e8f215d397b3"
       },
       {
+        "path": "docs/snapshots/2ad4040444469ec0a6704c947b68d0f7430a0b7bbf5e9ef1f994e366060fe89f/talks.html",
+        "identity_mode": "content",
+        "sha256": "3604d9cdf9b16c3496e7597c4a28e41989279bb50ab34de587c892a451922e67"
+      },
+      {
         "path": "docs/snapshots/39441f2d37cdfc6b3935d76c2f897f92be741f851569e2ff46558e90b4180612/credits.html",
         "identity_mode": "content",
         "sha256": "9f6dc4ce66bcf3a783fea12a857b9a68637869eaf778117e4591798871b5ac65"
@@ -741,11 +746,6 @@
         "path": "docs/snapshots/4c633b6b3889451c5a923a013cde4a5105323456d95739dc0889e1bfa868cfad/writing.html",
         "identity_mode": "content",
         "sha256": "6b7b7aeeca99de8df80a87f20c84140c0e30b15a18cc6f77ec6b25b71ea1306a"
-      },
-      {
-        "path": "docs/snapshots/4cbd43f32c97e0320e847a70f74fb27df306a5b62c1cfd868af62bed9c333a03/talks.html",
-        "identity_mode": "content",
-        "sha256": "932c3e4495dcc0b5b4a67ecae2427fafa5c95b5040276823a4896181fd686448"
       },
       {
         "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
@@ -830,7 +830,7 @@
       {
         "path": "docs/talks.html",
         "identity_mode": "content",
-        "sha256": "2fceb070a7a0211387e5a2fd35156e7f369884bf196f66b2c0d772d9c9f231fc"
+        "sha256": "5f04c894234158fe0bf9fba18489921669df26d51a98ddb54b2c12f25fdbdfc6"
       },
       {
         "path": "docs/theme.js",
@@ -1520,7 +1520,12 @@
       {
         "path": "review/issue-169/2026-10-31-native-publication.md",
         "identity_mode": "content",
-        "sha256": "6dd429fdb82d4efe9c122211a591ace01ae20b2498f83d92e1604f6bc4d9ec5d"
+        "sha256": "56e358498a19cc1a7c551bccaf5b88c37156c8587d5535fd71d395865998be15"
+      },
+      {
+        "path": "review/issue-169/2026-10-31-native-publication.md.gz",
+        "identity_mode": "content",
+        "sha256": "970813790e5c5fe9a74a1a8d43e29a6a2c2de3e80fb69e4983b0e081f5d25eb0"
       },
       {
         "path": "review/issue-169/2026-10-31-r3-illustrated-review.md",
@@ -1838,6 +1843,11 @@
         "sha256": "17a27df5ff4f5ce50707d8a9a6270ab02d88bbcd7d3b64f063314d6a1af44d2d"
       },
       {
+        "path": "review/issue-169/2026-11-06-devcon-completed.md",
+        "identity_mode": "content",
+        "sha256": "11de6e329eb4c6e291c569c3b126ce876b0f2219109aed73aa4bf476eb9d7ec8"
+      },
+      {
         "path": "review/issue-169/2026-11-06-distribution-workflow.md",
         "identity_mode": "content",
         "sha256": "460fc8bb505921dd8c7d56f5a82071520baa6d12a642d4b6ea70fabadc9b8f1a"
@@ -1866,6 +1876,11 @@
         "path": "review/issue-169/correction-affected.log.gz",
         "identity_mode": "content",
         "sha256": "79b6aa9cf7d8b30df6e48697bb8175005be3b3782cbd11ceb024a814950574b0"
+      },
+      {
+        "path": "review/issue-169/devcon-completed-review.tar.xz",
+        "identity_mode": "content",
+        "sha256": "6be6fd1edfe3597489cdec4e8c0c5fcad21dded174331e8eeb94d47675b5fa46"
       },
       {
         "path": "review/issue-169/distribution/archive-manifest.json",
@@ -8790,7 +8805,7 @@
       {
         "path": "review/site-v1-20261004-v11-credits-interactive.html",
         "identity_mode": "content",
-        "sha256": "1badea82b4070216ed6403ea8816fc0701de1ec698a73e3901a884c5ea997650"
+        "sha256": "8edb45563d28aec361615f1caca36ffcf259acaa288fef86f5efaff20c8b8616"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-night.html",
@@ -8810,7 +8825,7 @@
       {
         "path": "review/site-v1-20261004-v11-interactive.html",
         "identity_mode": "content",
-        "sha256": "1aa664a950cd72bc0907ff4fd3ea3189a9ef8a1b3f35569cd4a9971881c3e5a0"
+        "sha256": "c3e9e1049c58915702c9720b52c8791107d5d087fe1095d03c3f49069c3b307c"
       },
       {
         "path": "review/site-v1-20261004-v11-night.html",
@@ -8825,7 +8840,7 @@
       {
         "path": "review/site-v1-20261004-v11-research-interactive.html",
         "identity_mode": "content",
-        "sha256": "26ff91240768cdf6abca3b52762639b7df9250dfba11d2bcfb2dfd95396f0149"
+        "sha256": "156da94bfdbf15f5189e2bff3a79eef7fa3df22f547fe5e7bd0d950e67278136"
       },
       {
         "path": "review/site-v1-20261004-v11-research-night.html",
@@ -8835,17 +8850,17 @@
       {
         "path": "review/site-v1-20261004-v11-talks-day.html",
         "identity_mode": "content",
-        "sha256": "d91d3426fe2560e9c57349174a13471e2fdb97e96bdcf34e77fa140bb040f0aa"
+        "sha256": "662896ee7fa4e2eb99dbdcab001e12e2ae558e2aac92f6bf8eb95e33bbfe9e89"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-interactive.html",
         "identity_mode": "content",
-        "sha256": "ecfe7184570acd8a30d30f9215971114704f9c1da74fd105e823d69b3b2fe778"
+        "sha256": "73ff40dc4912ac2241138281fa684f53999e6f8fe30693ca35a9bbddf52bb405"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-night.html",
         "identity_mode": "content",
-        "sha256": "968828c210833ede5fedcb84e1a0a035ee474b2ed0d6a3b5e86082f9b011c5b3"
+        "sha256": "ab3614715da20806b4aca62ee576978009af6cad6b5f9a0604ab953f7afdcf95"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-day.html",
@@ -8855,7 +8870,7 @@
       {
         "path": "review/site-v1-20261004-v11-writing-interactive.html",
         "identity_mode": "content",
-        "sha256": "1ad628b9467fc8c49822ffdad74ea0448cc2de59856d7557be2563bbcc9ff9ac"
+        "sha256": "0de82a7d3f031069ca9b01037594f9256e126e34020004b86db60612ef27f2c4"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-night.html",
@@ -8870,7 +8885,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "4ef61f2d0a51dff19ca35d829efe5924f3a74b953cec55a066c9f43e1d5af812"
+        "sha256": "36872cd19f47832a33960e8a33c54659f9006de5c7972517735a8c056a1bacf2"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -8925,7 +8940,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "143082aecb9ec48dd43f11b8202da6947428730e0a8f9f9a342eaa2cffc5974c"
+        "sha256": "caa5cf26fd751783fe62957ebdb797227900281cf222d760731d7ca2b0d1ed5e"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -9745,7 +9760,7 @@
       {
         "path": "site/content/events.json",
         "identity_mode": "content",
-        "sha256": "bddbbbfdc96b40afda194f11ecf0739be855892d6e2d495397caf6e4bba1710c"
+        "sha256": "6c584ae43e52a1e8cc25151a792bd5d274f2f99126f7593b098bf346ac2cb96a"
       },
       {
         "path": "site/content/pages/credits/main.json",
@@ -9850,7 +9865,7 @@
       {
         "path": "site/content/pages/talks/metadata.json",
         "identity_mode": "content",
-        "sha256": "b817b7ffdc7219e4a745a9f0de4b11a4532aeeb315d61487a0ef0937d151baed"
+        "sha256": "2d6a64e397594a81eb04fafe9f807617ae7479e3f9291b2093032994e1b7b3b5"
       },
       {
         "path": "site/content/pages/talks/talks.json",
@@ -10000,7 +10015,7 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "44640ed40c257dfa638e108141574579f9ea9b8c978f52d0147924ef80a89944"
+        "sha256": "f68e891f21097e2066f5c7f9e9187a675084b4ff8a5ac9222a884381e868aeab"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/blueprint.md",
@@ -10970,7 +10985,7 @@
       {
         "path": "tests/content.test.cjs",
         "identity_mode": "content",
-        "sha256": "090a60f373c1eae445dacfed826eb4e9537b1c1511aa9611e6f98d4e01c17475"
+        "sha256": "72fbdfa1baf6cc9c2ef6d237ccbb42778bee06b51ddb8651a0c66271ae7d8203"
       },
       {
         "path": "tests/control-lock.test.cjs",
@@ -14595,6 +14610,17 @@
       "title": "talks.html"
     },
     {
+      "path": "docs/snapshots/2ad4040444469ec0a6704c947b68d0f7430a0b7bbf5e9ef1f994e366060fe89f/talks.html",
+      "kind": "file",
+      "purpose": "Generated completed DevCon Talks rendition and immutable route closure.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "talks.html"
+    },
+    {
       "path": "docs/snapshots/39441f2d37cdfc6b3935d76c2f897f92be741f851569e2ff46558e90b4180612/credits.html",
       "kind": "file",
       "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
@@ -14615,17 +14641,6 @@
         "AGENTS.md"
       ],
       "title": "writing.html"
-    },
-    {
-      "path": "docs/snapshots/4cbd43f32c97e0320e847a70f74fb27df306a5b62c1cfd868af62bed9c333a03/talks.html",
-      "kind": "file",
-      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "talks.html"
     },
     {
       "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
@@ -16330,7 +16345,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Accepted R3 native publication"
+      "title": "Retained publication review"
+    },
+    {
+      "path": "review/issue-169/2026-10-31-native-publication.md.gz",
+      "kind": "file",
+      "purpose": "Completed DevCon event correction, source-bound independent review and retained original evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-31-native-publication.md.gz"
     },
     {
       "path": "review/issue-169/2026-10-31-r3-illustrated-review.md",
@@ -17026,6 +17052,17 @@
       "title": "Reader/history correction v2 — independent White-box QA"
     },
     {
+      "path": "review/issue-169/2026-11-06-devcon-completed.md",
+      "kind": "file",
+      "purpose": "Completed DevCon event correction, source-bound independent review and retained original evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Completed DevCon event — 6 November 2026"
+    },
+    {
       "path": "review/issue-169/2026-11-06-distribution-workflow.md",
       "kind": "file",
       "purpose": "Issue169 planned-link/site-first workflow source-bound review/check receipt or losslessly retained historical evidence.",
@@ -17090,6 +17127,17 @@
         "AGENTS.md"
       ],
       "title": "correction-affected.log.gz"
+    },
+    {
+      "path": "review/issue-169/devcon-completed-review.tar.xz",
+      "kind": "file",
+      "purpose": "Completed DevCon event correction, source-bound independent review and retained original evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "devcon-completed-review.tar.xz"
     },
     {
       "path": "review/issue-169/distribution/archive-manifest.json",
@@ -41151,6 +41199,16 @@
       ]
     },
     {
+      "path": "docs/snapshots/2ad4040444469ec0a6704c947b68d0f7430a0b7bbf5e9ef1f994e366060fe89f",
+      "kind": "directory",
+      "purpose": "Generated completed DevCon Talks rendition and immutable route closure.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/snapshots/39441f2d37cdfc6b3935d76c2f897f92be741f851569e2ff46558e90b4180612",
       "kind": "directory",
       "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
@@ -41162,16 +41220,6 @@
     },
     {
       "path": "docs/snapshots/4c633b6b3889451c5a923a013cde4a5105323456d95739dc0889e1bfa868cfad",
-      "kind": "directory",
-      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/4cbd43f32c97e0320e847a70f74fb27df306a5b62c1cfd868af62bed9c333a03",
       "kind": "directory",
       "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
       "role": "generated",

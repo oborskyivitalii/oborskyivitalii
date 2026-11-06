@@ -722,7 +722,7 @@ test('Talks follows canonical events while retaining the frozen provenance of it
   const description = require('../site/content/pages/talks/metadata.json').description;
   assert.equal(
     description,
-    'Upcoming DevCon Romania 2026 and UA Online PMDay 2027 Winter, plus recordings and workshops on AI architecture and software delivery.'
+    'Upcoming UA Online PMDay 2027 Winter and the UA Online PMDay 2026 Autumn recording, plus talks and workshops on AI architecture and software delivery.'
   );
   for (const tag of [
     '<meta name="description"',
@@ -1144,7 +1144,7 @@ test('PMDay upcoming and Autumn naming preserve confirmed facts and existing pre
   }
 });
 
-test('DevCon announcement preserves previous events and rejects changed public facts', () => {
+test('completed DevCon talk belongs with past events and preserves previous public facts', () => {
   const { restore } = require('../tools/check_site_seo.cjs');
   const cp = require('node:child_process');
   const record = require('../review/issue-126/content-amendment.json');
@@ -1157,16 +1157,28 @@ test('DevCon announcement preserves previous events and rejects changed public f
   const html = pages.talks;
   const cards = talkRows(html);
   assert.equal(cards.length, 6);
-  const card = cards[0][0];
+  const card = cards.find((row) => row[0].includes('id="devcon-romania-2026"'))?.[0];
+  assert.ok(card);
   assert.match(card, /id="devcon-romania-2026"/);
   assert.match(card, /DevCon Romania 2026 · DevOps Con/);
-  assert.match(card, /datetime="2026-11-04T12:30:00\+02:00">4 November 2026/);
-  assert.match(card, /12:30–13:00 · Bucharest time/);
+  assert.match(card, /datetime="2026-11-04">4 November 2026/);
+  assert.match(card, /Conference talk · Bucharest, Romania/);
+  assert.match(card, /I spoke in Bucharest/);
   assert.match(card, /AI Changes the Delivery System and the Product Itself/);
   assert.match(card, /href="https:\/\/www.dev-con.ro\/agenda\/12-devops-con"/);
-  assert.doesNotMatch(card, /slides|recording|Hotel Caro/i);
+  assert.doesNotMatch(
+    card,
+    /Upcoming|I’ll be speaking|The talk asks|12:30|13:00|slides|recording|Hotel Caro/i
+  );
+  assert.ok(html.indexOf(card) > html.indexOf('id="other-talks"'));
+  const upcoming = html.slice(
+    html.indexOf('id="upcoming-talks"'),
+    html.indexOf('id="ukrainian-talks"')
+  );
+  assert.doesNotMatch(upcoming, /devcon-romania-2026/);
+  assert.match(upcoming, /pmday-winter-2027/);
   assert.deepEqual(
-    cards.slice(1),
+    cards.filter((row) => row[0] !== card),
     talkRows(baseline),
     'every previous event remains exact and ordered'
   );
@@ -1182,8 +1194,8 @@ test('DevCon announcement preserves previous events and rejects changed public f
   );
   assert.doesNotThrow(() => restore(html, 'talks'));
   for (const [from, to] of [
-    ['2026-11-04T12:30:00+02:00', '2026-11-05T12:30:00+02:00'],
-    ['12:30–13:00 · Bucharest time', '12:30–13:00 · Warsaw time'],
+    ['2026-11-04', '2026-11-05'],
+    ['I spoke in Bucharest', 'I will speak in Bucharest'],
     ['https://www.dev-con.ro/agenda/12-devops-con', 'https://example.com/agenda'],
     [card, card.replace('</article>', '<a href="draft.pdf">Slides</a></article>')],
   ]) {
