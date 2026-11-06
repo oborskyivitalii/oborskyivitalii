@@ -1,32 +1,5 @@
-# Vitalii Oborskyi — author site and publication platform
+# Issue169 immutable diagnostic evidence
 
-This repository develops Vitalii Oborskyi’s personal website and publication
-platform: research, articles, talks and source-linked public work. The interface
-is English; English and Ukrainian publication editions are labeled separately.
+Artifact-only evidence branch for the 6 November2026 staging timing investigation. Source candidate e50c63de071de6837cf9b6405569bb9a68afd5da remains separate and unchanged. This branch is not a website, executable checkout, admission source or release candidate. The archive retains original selected native report bytes, hardware metadata, local single-case diagnostics, source packet and independent reviewer receipts. SHA256 ce19366542316449e94f2fc499dad49249bbd0eccd13578a1efe6e94e2f62ede;239088bytes.
 
-I write about AI-assisted software delivery and how to design, evaluate and
-control systems that use probabilistic model judgment:
-
-- [Uncertainty Architecture](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture) — architecture and operational responsibility for systems using model judgment.
-- [The Subprime Code Crisis](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis) — evidence about AI-assisted software delivery.
-
-Research meaning and evidence stay in their canonical repositories; this site
-owns personal publication editions and distribution. [Repository ownership](guides/REPOSITORIES.md)
-and [publication priorities](guides/SITE-ROADMAP.md) describe those boundaries.
-
-Original engineering, including the website's CSS, templates and rendering code,
-uses [Apache-2.0](LICENSE-CODE.md). Original editorial text and non-brand diagrams
-use [CC BY 4.0](LICENSE-CONTENT.md). Portraits, personal branding, attributed
-third-party material and separately licensed editions have their own boundaries.
-Read the [licensing map](LICENSING.md) and [notices](NOTICE.md) before reuse;
-UA and Subprime retain their own licenses.
-
-Edit authored content, templates, engine and assets in [site/](site/README.md).
-[docs/](docs/index.html) is generated public output. Internal contracts and
-runbooks are in [guides/](guides/README.md); dated evidence is in [review/](review/).
-
-Start with [AGENTS.md](AGENTS.md) and [CONTRIBUTING.md](CONTRIBUTING.md).
-The generated [repository map](REPOSITORY-MAP.md) describes every area/file and
-its editing owner. [MEMORY.md](MEMORY.md) is a dated handoff requiring live
-revalidation; current work and acceptance are in [GitHub Issues](https://github.com/oborskyivitalii/oborskyivitalii/issues).
-[PROJECT-BOOTSTRAP.md](PROJECT-BOOTSTRAP.md) is the short ChatGPT entry point.
+Refs #169
