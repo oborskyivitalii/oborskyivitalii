@@ -55,10 +55,9 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/snapshots](docs/snapshots) | Generated exact-route HTML snapshots. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2](docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2) | Generated public rendition; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e](docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e) | Verified prior production immutable snapshot retained with its exact published bytes. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/30c4d9b1e7e9be6bbc81063f34938f52501644c9b48c73173433251664a3e9b5](docs/snapshots/30c4d9b1e7e9be6bbc81063f34938f52501644c9b48c73173433251664a3e9b5) | Current immutable generated room snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/4b8747ffc22ce0e753070c3a865aade7bf523feff3bda0167b592025e2c4248e](docs/snapshots/4b8747ffc22ce0e753070c3a865aade7bf523feff3bda0167b592025e2c4248e) | Current immutable generated room snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/52bd0a0fe2c3f92a59d0e44930ab780b1b8cae0bd0466c11f59b33d44a2d15d3](docs/snapshots/52bd0a0fe2c3f92a59d0e44930ab780b1b8cae0bd0466c11f59b33d44a2d15d3) | Current immutable generated room snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/34f5f44ab13bb70a90782608dc07443517489fe00966cb4648b263e5ca1dcd2c](docs/snapshots/34f5f44ab13bb70a90782608dc07443517489fe00966cb4648b263e5ca1dcd2c) | Current immutable generated room snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347](docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/5faad090c9328b8b6a6a6c27520191cec171e359aef25c4b399fe45117042aa2](docs/snapshots/5faad090c9328b8b6a6a6c27520191cec171e359aef25c4b399fe45117042aa2) | Current immutable generated room snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/632f4f29ebdbc51215b02592fd45a1f10a99fb8596d2dec8b3f18bc8be847f06](docs/snapshots/632f4f29ebdbc51215b02592fd45a1f10a99fb8596d2dec8b3f18bc8be847f06) | Verified prior production immutable snapshot retained with its exact published bytes. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed](docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed) | Generated public rendition; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/7b62f25175a003a9fcc24f430e26ff321f267a8e77a28699984f86bf1dfdd3b6](docs/snapshots/7b62f25175a003a9fcc24f430e26ff321f267a8e77a28699984f86bf1dfdd3b6) | Verified prior production immutable snapshot retained with its exact published bytes. | generated | [site/README.md](site/README.md) |
@@ -67,12 +66,13 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946](docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/95b57d8257b5ffb3f4b9924d90694110e982f7bdc9aecb6f09969d46b3a8b2e0](docs/snapshots/95b57d8257b5ffb3f4b9924d90694110e982f7bdc9aecb6f09969d46b3a8b2e0) | Verified prior production immutable snapshot retained with its exact published bytes. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700](docs/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700) | Generated public rendition; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/a8906fc60c042e9b98de446cd34fa1b1457489bda9011b70628eba1ca148735d](docs/snapshots/a8906fc60c042e9b98de446cd34fa1b1457489bda9011b70628eba1ca148735d) | Current immutable generated room snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/a8ee087114934048e7078ebb02c9a10693138dc832a5bfc7ed0852d2bbdace86](docs/snapshots/a8ee087114934048e7078ebb02c9a10693138dc832a5bfc7ed0852d2bbdace86) | Current immutable generated room snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7](docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/b57f1dcb99f70ff2df6f748de084f2793f992f438a03c798a30b891c8f9e6461](docs/snapshots/b57f1dcb99f70ff2df6f748de084f2793f992f438a03c798a30b891c8f9e6461) | Generated public rendition; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920](docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920) | Generated public rendition; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/ce77cccb11c8c1463a9d6f5c3f46748ef62433b370a580d4693e433fa560eef7](docs/snapshots/ce77cccb11c8c1463a9d6f5c3f46748ef62433b370a580d4693e433fa560eef7) | Current immutable generated room snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/c71dcd1d457c290c365f41cc0b0339d4eb019b3f204f1af83955b230a665a809](docs/snapshots/c71dcd1d457c290c365f41cc0b0339d4eb019b3f204f1af83955b230a665a809) | Current immutable generated room snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647](docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647) | Verified prior production immutable snapshot retained with its exact published bytes. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/d931158cd79985bbbd9b8a1c21fb7a05ccafd664b793d9c20fdf8c8e9fa49d6b](docs/snapshots/d931158cd79985bbbd9b8a1c21fb7a05ccafd664b793d9c20fdf8c8e9fa49d6b) | Current immutable generated room snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
 | [drafts](drafts) | Unpublished article/profile proposals excluded from public builds. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [guides](guides) | Maintained topic guides for repository boundaries, publication, quality and hosting; root stays an entry surface. | guide | [guides/README.md](guides/README.md) |
 | [review](review) | Dated plans, evidence, captures and renditions; current Color/export inputs are explicitly marked. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -92,6 +92,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-126](review/issue-126) | DevCon announcement source and review evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-159](review/issue-159) | Issue159 analytics delivery, audience/query research and exact existing-page SEO/brief implementation evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-167](review/issue-167) | Dated WEB orchestration review/evidence; not executable source or current authority. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169](review/issue-169) | Issue169 article planning, R1–R3 source and exact illustrated draft/review evidence; native publication remains separately gated. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-2](review/issue-2) | Dated editorial, source and publication review evidence for the PMDay article owner. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-2/pmday-candidate-20261015](review/issue-2/pmday-candidate-20261015) | PR79 PMDay review candidate, independent findings and source-qualified export evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-2/r26-20261023](review/issue-2/r26-20261023) | Public-safe R26 native review deliverables with exact manuscript, PDF, kit and source/producer inventory. | history | [review/issue-2/2026-10-23-r26-integration.md](review/issue-2/2026-10-23-r26-integration.md) |
@@ -274,6 +275,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.github/acceptance/issue-126.json](.github/acceptance/issue-126.json) | Issue126 observable announcement acceptance with separate independent, hosted and release gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-159.json](.github/acceptance/issue-159.json) | Issue159 unified analytics-first and later SEO criteria with bounded invariant checks and explicit provider/human/release gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-167.json](.github/acceptance/issue-167.json) | Whole WEB-AC01–12 numeric aliases, bounded existing checks and explicit prototype/native/human/delivery gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/acceptance/issue-169.json](.github/acceptance/issue-169.json) | Issue169 AC01–AC11 mapping to existing checks and explicit actual editorial/review/copy/publication gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-31.json](.github/acceptance/issue-31.json) | Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-33.json](.github/acceptance/issue-33.json) | Bootstrap/root optimization AC01–AC06 mapped to source-bound assertions and separate review, merge and linkage gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-35.json](.github/acceptance/issue-35.json) | Test optimization AC01–AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
@@ -433,29 +435,23 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e/talks.html](docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e/talks.html) | Verified prior production immutable snapshot retained with its exact published bytes. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/30c4d9b1e7e9be6bbc81063f34938f52501644c9b48c73173433251664a3e9b5/
+## docs/snapshots/34f5f44ab13bb70a90782608dc07443517489fe00966cb4648b263e5ca1dcd2c/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/snapshots/30c4d9b1e7e9be6bbc81063f34938f52501644c9b48c73173433251664a3e9b5/research.html](docs/snapshots/30c4d9b1e7e9be6bbc81063f34938f52501644c9b48c73173433251664a3e9b5/research.html) | Current immutable generated room snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
-
-## docs/snapshots/4b8747ffc22ce0e753070c3a865aade7bf523feff3bda0167b592025e2c4248e/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/4b8747ffc22ce0e753070c3a865aade7bf523feff3bda0167b592025e2c4248e/index.html](docs/snapshots/4b8747ffc22ce0e753070c3a865aade7bf523feff3bda0167b592025e2c4248e/index.html) | Current immutable generated room snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
-
-## docs/snapshots/52bd0a0fe2c3f92a59d0e44930ab780b1b8cae0bd0466c11f59b33d44a2d15d3/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/52bd0a0fe2c3f92a59d0e44930ab780b1b8cae0bd0466c11f59b33d44a2d15d3/talks.html](docs/snapshots/52bd0a0fe2c3f92a59d0e44930ab780b1b8cae0bd0466c11f59b33d44a2d15d3/talks.html) | Current immutable generated room snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/34f5f44ab13bb70a90782608dc07443517489fe00966cb4648b263e5ca1dcd2c/research.html](docs/snapshots/34f5f44ab13bb70a90782608dc07443517489fe00966cb4648b263e5ca1dcd2c/research.html) | Current immutable generated room snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
 
 ## docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html](docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/5faad090c9328b8b6a6a6c27520191cec171e359aef25c4b399fe45117042aa2/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/5faad090c9328b8b6a6a6c27520191cec171e359aef25c4b399fe45117042aa2/index.html](docs/snapshots/5faad090c9328b8b6a6a6c27520191cec171e359aef25c4b399fe45117042aa2/index.html) | Current immutable generated room snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
 
 ## docs/snapshots/632f4f29ebdbc51215b02592fd45a1f10a99fb8596d2dec8b3f18bc8be847f06/
 
@@ -505,11 +501,11 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [docs/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700/credits.html](docs/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700/credits.html) | Generated public rendition; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/a8906fc60c042e9b98de446cd34fa1b1457489bda9011b70628eba1ca148735d/
+## docs/snapshots/a8ee087114934048e7078ebb02c9a10693138dc832a5bfc7ed0852d2bbdace86/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/snapshots/a8906fc60c042e9b98de446cd34fa1b1457489bda9011b70628eba1ca148735d/credits.html](docs/snapshots/a8906fc60c042e9b98de446cd34fa1b1457489bda9011b70628eba1ca148735d/credits.html) | Current immutable generated room snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/a8ee087114934048e7078ebb02c9a10693138dc832a5bfc7ed0852d2bbdace86/credits.html](docs/snapshots/a8ee087114934048e7078ebb02c9a10693138dc832a5bfc7ed0852d2bbdace86/credits.html) | Current immutable generated room snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
 
 ## docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/
 
@@ -529,17 +525,23 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920/index.html](docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920/index.html) | Generated public rendition; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/ce77cccb11c8c1463a9d6f5c3f46748ef62433b370a580d4693e433fa560eef7/
+## docs/snapshots/c71dcd1d457c290c365f41cc0b0339d4eb019b3f204f1af83955b230a665a809/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/snapshots/ce77cccb11c8c1463a9d6f5c3f46748ef62433b370a580d4693e433fa560eef7/writing.html](docs/snapshots/ce77cccb11c8c1463a9d6f5c3f46748ef62433b370a580d4693e433fa560eef7/writing.html) | Current immutable generated room snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/c71dcd1d457c290c365f41cc0b0339d4eb019b3f204f1af83955b230a665a809/talks.html](docs/snapshots/c71dcd1d457c290c365f41cc0b0339d4eb019b3f204f1af83955b230a665a809/talks.html) | Current immutable generated room snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
 
 ## docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html](docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html) | Verified prior production immutable snapshot retained with its exact published bytes. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/d931158cd79985bbbd9b8a1c21fb7a05ccafd664b793d9c20fdf8c8e9fa49d6b/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/d931158cd79985bbbd9b8a1c21fb7a05ccafd664b793d9c20fdf8c8e9fa49d6b/writing.html](docs/snapshots/d931158cd79985bbbd9b8a1c21fb7a05ccafd664b793d9c20fdf8c8e9fa49d6b/writing.html) | Current immutable generated room snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
 
 ## drafts/
 
@@ -910,6 +912,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-167/2026-10-31-offline-prototype.md](review/issue-167/2026-10-31-offline-prototype.md) | Source-bound offline prototype scope, independent review results, retained accounting and pending native gates. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-167/2026-10-31-reviewer-history-evidence.json](review/issue-167/2026-10-31-reviewer-history-evidence.json) | Exact bounded historical source excerpts and hashes supporting the reviewer usefulness audit. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-167/2026-10-31-reviewer-isolation.md](review/issue-167/2026-10-31-reviewer-isolation.md) | Source-bound reviewer isolation audit, historical usefulness, prompt extraction and actual independent execution receipts. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+
+## review/issue-169/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-169/2026-11-06-trusted-controller.md](review/issue-169/2026-11-06-trusted-controller.md) | Trusted reader-controller prerequisite scope, exact-source review and check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/issue-2/
 
@@ -2751,6 +2759,8 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/fixtures/orchestration-accept-only.json](tests/fixtures/orchestration-accept-only.json) | Synthetic accept-only input with zero permitted dispatch proposals. | test | [guides/WEB-ORCHESTRATION.md](guides/WEB-ORCHESTRATION.md) |
 | [tests/fixtures/orchestration-start.json](tests/fixtures/orchestration-start.json) | Synthetic combined accept/start input; proposed queue only, no actual execution. | test | [guides/WEB-ORCHESTRATION.md](guides/WEB-ORCHESTRATION.md) |
 | [tests/fixtures/publication-records.cjs](tests/fixtures/publication-records.cjs) | Explicit synthetic licensed runtime and bounded legal-copy fixtures for consumer failures; never actual edition rights acceptance. | test | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
+| [tests/fixtures/r9-footer-runtime.json](tests/fixtures/r9-footer-runtime.json) | Fixed runtime projection from actual R9 CI and honest private guarded production derivation; no release acceptance. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/fixtures/r9-reader-history-runtime.json](tests/fixtures/r9-reader-history-runtime.json) | Exact source-bound R9 reader/history plain, staging and guarded private production runtime observations; controlled compatibility fixture, not release admission. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/fixtures/reader-staging-gate.json.gz](tests/fixtures/reader-staging-gate.json.gz) | Frozen 1d2d195 staging-regression report for validator tests only; not fresh admission evidence. | test | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tests/fixtures/reader-staging-package.json.gz](tests/fixtures/reader-staging-package.json.gz) | Frozen e24168e real reader package metadata for runtime/rights tests only; not live approval. | test | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tests/fixtures/staging-evidence.cjs](tests/fixtures/staging-evidence.cjs) | Honest controlled manifest/report fixtures shared by stage matrix/gate/consumer negative tests. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |

@@ -59,6 +59,91 @@ const aliases = [
   'assets/vitalii-oborskyi.jpg',
   'assets/vitalii-oborskyi-cutout.webp',
 ];
+test('Writing resources retain exact geometry, finite closure and complete transfer admission', () => {
+  const fallback = require('../tools/site/fallback.cjs');
+  const canonical = fallback.fromModel(b.model(root, b.configuration(root).definitions), 'writing');
+  const resource = fallback.routeResource(canonical, 'writing');
+  const read = (name) => {
+    assert.equal(name, resource.name);
+    return resource.bytes;
+  };
+  for (const prefix of ['', '../../']) {
+    const svg = resource.html.replace('href="', 'href="' + prefix);
+    assert.equal(
+      fallback.resolveRouteResource(svg, 'writing', [resource.name], read, prefix).html,
+      canonical
+    );
+    for (const [route, assets, depth, reader] of [
+      ['index', [resource.name], prefix, read],
+      ['research', [resource.name], prefix, read],
+      ['writing', [], prefix, read],
+      ['writing', [resource.name, resource.name], prefix, read],
+      ['writing', [resource.name], '../', read],
+      ['writing', [resource.name], prefix, () => Buffer.concat([resource.bytes, Buffer.from('x')])],
+    ])
+      assert.throws(() => fallback.resolveRouteResource(svg, route, assets, reader, depth));
+    assert.throws(() =>
+      fallback.resolveRouteResource(
+        svg.replace('#writing-fallback', '#other'),
+        'writing',
+        [resource.name],
+        read,
+        prefix
+      )
+    );
+  }
+  for (const unsafe of [
+    '<script></script>',
+    '<path onload="run()"/>',
+    '<use href="https://x/"/>',
+  ]) {
+    const resource = fallback.routeResource(
+      '<svg class="space-fallback" data-motif="writing">' + unsafe + '</svg>',
+      'writing'
+    );
+    assert.throws(() =>
+      fallback.resolveRouteResource(resource.html, 'writing', [resource.name], () => resource.bytes)
+    );
+  }
+  // Controlled transfer record uses actual gzip lengths; it is not a hosted observation.
+  const sizes = artifact.checkSize(path.join(root, 'docs'));
+  const record = artifact.manifest(path.join(root, 'docs'));
+  record.components = JSON.parse(fs.readFileSync(path.join(root, 'docs/site-revision.json')));
+  const row = sizes.rows.find((item) => item.route === 'writing');
+  assert.equal(record.components.routes.writing.assets, undefined);
+  const gzip = require('node:zlib').gzipSync(resource.bytes).length;
+  record.files[resource.name] = {
+    raw: resource.bytes.length,
+    gzip,
+    sha256: b.sha(resource.bytes),
+  };
+  record.components.routes.writing.assets = [resource.name];
+  row.assets = [
+    'styles.css',
+    'theme.js',
+    'space.js',
+    'archive.js',
+    'navigation.js',
+    'assets/favicon.svg',
+    ...(record.files['publication-index.json'] ? ['publication-index.json'] : []),
+    resource.name,
+  ];
+  row.fallbackResource = resource.name;
+  row.totalGzipBytes += gzip;
+  assert.doesNotThrow(() => artifact.validateRouteSizes(sizes, record));
+  for (const mutate of [
+    (sizes) => (sizes.rows.find((row) => row.route === 'writing').totalGzipBytes -= gzip),
+    (sizes) => sizes.rows.find((row) => row.route === 'writing').assets.pop(),
+    (sizes) => delete sizes.rows.find((row) => row.route === 'writing').fallbackResource,
+    (_, record) => (record.files[resource.name].sha256 = '0'.repeat(64)),
+    (_, record) => (record.components.routes.index.assets = [resource.name]),
+  ]) {
+    const changedSizes = structuredClone(sizes),
+      changedRecord = structuredClone(record);
+    mutate(changedSizes, changedRecord);
+    assert.throws(() => artifact.validateRouteSizes(changedSizes, changedRecord));
+  }
+});
 test('Research shares exact passive vectors while declaring and budgeting the complete resource', (t) => {
   const dir = fixture(t);
   run(dir);
@@ -124,7 +209,7 @@ test('Research shares exact passive vectors while declaring and budgeting the co
     );
     assert.throws(
       () => fallback.resolveRouteResource(svg, 'writing', descriptor.assets, read),
-      /Unsupported/
+      /closure/
     );
     assert.throws(
       () => fallback.resolveRouteResource(svg, 'research', [name, name], read),

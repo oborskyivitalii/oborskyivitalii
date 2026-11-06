@@ -189,7 +189,7 @@ function articleResource(svg) {
 }
 
 function routeResource(svg, route) {
-  if (route !== 'research') throw Error('Unsupported room fallback resource');
+  if (!['research', 'writing'].includes(route)) throw Error('Unsupported room fallback resource');
   return resource(svg, route);
 }
 
@@ -263,7 +263,7 @@ function resolveRouteResource(svg, route, assets = [], read, prefix = '') {
     if (/<use\b/i.test(svg)) throw Error('Undeclared room fallback resource');
     return null;
   }
-  if (route !== 'research') throw Error('Unsupported room fallback resource');
+  if (!['research', 'writing'].includes(route)) throw Error('Unsupported room fallback resource');
   if (!['', '../../'].includes(prefix)) throw Error('Unsupported room fallback depth');
   const inner = svg.slice(svg.indexOf('>') + 1, -6);
   const escapedPrefix = prefix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -271,7 +271,7 @@ function resolveRouteResource(svg, route, assets = [], read, prefix = '') {
     new RegExp(
       '^<use href="' +
         escapedPrefix +
-        '(article-media/[a-f0-9]{64}/research-fallback\\.svg)#research-fallback"></use>$'
+        `(article-media/[a-f0-9]{64}/${route}-fallback\\.svg)#${route}-fallback"></use>$`
     )
   );
   if (!match || assets[0] !== match[1]) throw Error('Room fallback resource closure differs');

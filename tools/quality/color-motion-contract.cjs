@@ -857,6 +857,53 @@ families.issue159ReadingPaths = {
   staging: '3f94169c7d487c7d198c69c9a8b9d0dbd6e54bcbbd2fbdc1ab6abfaba3721897',
   production: 'e1464b7e62dbe36fc425b37f1ba9a81a8342c8e0899dd2a0ddd8b1e66ffc2a90',
 };
+// Issue169 adds a native article sitemap entry. The production edition identity
+// changes; every runtime byte and behavior remains in the reviewed Issue159 family.
+// Plain/staging identities retain their original unique lookups.
+families.issue169Sdlc = {
+  ...families.issue159ReadingPaths,
+  id: 'issue169-sdlc',
+  plain: null,
+  staging: null,
+  production: '40d23525f7ebc10af989936ebfe1382106f11936ed667557d6c3380c9e27da62',
+};
+// Native snapshot links retain their frozen destination while tag lookup uses
+// the canonical publication identity. Navigation also verifies the existing JPEG
+// rendition with the same finite asset inventory, MIME, size and hash checks.
+families.issue169NativeTags = {
+  ...families.issue159ReadingPaths,
+  id: 'issue169-native-tags',
+  baseEngine: 'c36b28140796f556d7f6019efa223c5164e7ca55e880e1e6a64bb596283430da',
+  archive: 'f7da9f6646746ec1415a5fbfc9ac7505913b0bc8a7e6551f213997bc6d381146',
+  navigation: '94ca7a7d3c1d19d839e44f56cd4a1d533f126fc389d6cd3d62f7d8a31aa4d2ef',
+  plain: '1f5551456a0f0a2c61e05b8ebf1fbc6eb4b9b791b1058be502def1f2eea6f35a',
+  staging: 'be64c404fc3f61f787c8cca528d84662dd19411eb6f4d498560ce5ceec4df8c9',
+  production: '0af8ae2b7a0d5db0d3bb2369806bf3b2283253996dfd1fd312c118e4867278cd',
+};
+// Source-bound R9 reader/footer observations: run42090631531, exact e92de9bb.
+// Production identity was observed separately through the normal guarded edition adapter.
+families.issue169FooterRoutes = {
+  ...families.issue169NativeTags,
+  id: 'issue169-footer-routes',
+  baseEngine: '72702f750f37e9cc6678b2d1181da57aa8c121293ebf70c9deae4e7aec568237',
+  space: '9c12d83a6a738d80847819a7fff061910302512905f21426d0dcef876b974fec',
+  navigation: 'd2cacfa7c564f5216bcc5b1beaff6131410ee651fd9b5e68f4ef5a5cbf68def0',
+  plain: '9cecac55d9bfe19edb42bbfb2df7edc59bde76598e49e2dc896fd73f376077d5',
+  staging: '1fce9ff8d1acbf867828680a0a68fa386ed8571a4828442ab9167227bffb42e0',
+  production: '3364305b3dd69355813459c48ec671ea995f3db88d4d0f5b17c22cda052a4a23',
+};
+// Exact reader/history observations at223456b, native run42112795903.
+// Production identity comes from its separate normal guarded private derivation.
+families.issue169ReaderHistory = {
+  ...families.issue169FooterRoutes,
+  id: 'issue169-reader-history',
+  baseEngine: '68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c',
+  archive: 'bf1b9e42356b282f3c08f7763a7a59263241c752df5dd9ee776a6b0bf86b0caa',
+  navigation: '0c447ce8a4a8a02835753d144939e14842bd407f735273e8820cf1ff9121cb3e',
+  plain: 'b6f3a98b4b0fb438ec1747952f050baa4b016fb4f6d942b8b364e37638af2768',
+  staging: 'ace81eb56ccb8fca35099e960d684ca90aa855733c7a8e9dfe35eab66da84f78',
+  production: 'c8c444e30127b60e1dac052ab6a2b53d3ff48f40efc68d526cc7c71f17151ebb',
+};
 // Expand only explicitly reviewed editions; an absent edition is never admitted.
 const runtimes = Object.entries(families).flatMap(([family, value]) =>
   ['plain', 'staging', 'production']
