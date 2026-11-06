@@ -17010,6 +17010,18 @@
       "purpose": "Protected source/artifact/controller/PR lease validation before hosted action.",
       "role": "source",
       "owner": "guides/SITE-STAGING.md"
+    },
+    "review/issue-169/2026-11-06-staging-source-tail.md": {
+      "kind": "file",
+      "purpose": "Issue169 native source timeout diagnosis, measured scheduling and HTML startup correction with preserved budgets and pending stable-stage evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/timing-correction-reviews.tar.xz": {
+      "kind": "file",
+      "purpose": "Literal source-bound issue169 timing correction independent reviews, none-fork launch receipts, prepared manifests and metadata reconciliation.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

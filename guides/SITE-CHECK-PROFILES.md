@@ -47,9 +47,11 @@ repeating Basic source tests. The required Basic check remains independent.
 Selected Node source files execute in isolated processes using the available CPU
 allocation, capped at four file workers;
 tests within a file retain their serial default. The stable sorted selection is
-reported separately from execution order: selected Space and executive suites
-start first, then the remaining selected files. This overlaps measured expensive
-work rather than leaving Space at the end of CLI discovery. Every selected case,
+reported separately from execution order: selected files follow descending
+observed file durations from owner staging42309808371/1. The unfinished profile
+suite uses twice its separate pinned-Node measurement; unknown future files follow
+by path. This reduces the measured queue tail without promising a deadline pass.
+Every selected case,
 the 300-second process limit, 16MiB output bound, clean-source checks and complete
 zero-skip accounting remain. Reports retain the worker limit, execution order and
 observed host parallelism; timing is evidence for that run, not a speed guarantee.

@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "c8d94e4e146b3ae33cee90eb4661fca2701d5d59073cdc715dc4247898a0667d",
+    "digest": "d7875692af7361895f2fe7d040b81da27ed2408dbce4a74364711980fbc98dab",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -216,12 +216,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "99ab3ca7bdcc0ea6d298d19d901d2ca0665859d3360608757c913a26f3c7c9be"
+        "sha256": "a34be54e56ce02dcb41c25ffbb1220393bce1efc6be6e6e67c00080518a0c993"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "0e0a1d459aae8e4f5ee8064086be4cf5ab0a922379f7998c6245bc711dceb92b"
+        "sha256": "be84985fcd4b7f560306d18e1d04f3fa3200fd25194674d7292b2c097060f040"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -371,7 +371,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "0c0c8a67ae1a15daf50c484829d6e1f9f3ad91e5dee7db6ce3af029038ffb056"
+        "sha256": "0732fe61afba48ae76fe9a20ee836f99051de385e14b9c216547d10814bc4c7d"
       },
       {
         "path": "NOTICE.md",
@@ -890,7 +890,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "2278d49fb371ff69ad62ff134513c65784f305b800e96838264e3f2d54e54ca2"
+        "sha256": "e9be206f66d380ec310b8c3c883f6536950f036ffd65940ad36f9d9d4773c3c6"
       },
       {
         "path": "guides/SITE-CONTENT-RELEASE.md",
@@ -2026,6 +2026,11 @@
         "path": "review/issue-169/2026-11-06-staging-security-followup.md",
         "identity_mode": "content",
         "sha256": "2468447157b460cc29ee24d573968efb51800a8eaf1f1e7fc40e8b087797a82c"
+      },
+      {
+        "path": "review/issue-169/2026-11-06-staging-source-tail.md",
+        "identity_mode": "content",
+        "sha256": "9f74647b4f777db69f53abc4b1e3a3787c78bbb62d877304ba51a2f9b168cc0a"
       },
       {
         "path": "review/issue-169/2026-11-06-trusted-controller.md",
@@ -4311,6 +4316,11 @@
         "path": "review/issue-169/staging-production-test-audit-proof.tar.xz",
         "identity_mode": "content",
         "sha256": "5e3abb6dde101068301f1fef79f1df08f5adb6c91faf1edd51431077bc5c4913"
+      },
+      {
+        "path": "review/issue-169/timing-correction-reviews.tar.xz",
+        "identity_mode": "content",
+        "sha256": "37dd649c0fe886cb6b51a976c6353717057bb38c0f5126b0a4182453a7530d4b"
       },
       {
         "path": "review/issue-169/trusted-controller-native-format-failure.log.gz",
@@ -11350,7 +11360,7 @@
       {
         "path": "tests/format-parity.test.cjs",
         "identity_mode": "content",
-        "sha256": "3127fc95fdbbef370acb77d0a18bb4fd1527f3ab5c0d8971b364b2c68552f2f9"
+        "sha256": "6e866b4a7310113f952e913a7cf25175770cfb75d453e741277111c57b1aaa05"
       },
       {
         "path": "tests/format.test.cjs",
@@ -11590,7 +11600,7 @@
       {
         "path": "tests/test-profile-selection.test.cjs",
         "identity_mode": "content",
-        "sha256": "3f9f15e146a06eedbcac510fb8cb8d7714c86c7611e17cc2b6b76efa03ad2f50"
+        "sha256": "7ab773d812c458eabdc2bc971fca185a5d7e3094fa7d9bd143bde07303faa894"
       },
       {
         "path": "tests/test_browser_archives.py",
@@ -12265,7 +12275,7 @@
       {
         "path": "tools/quality/format-parity.cjs",
         "identity_mode": "content",
-        "sha256": "385c1e24982638b87a9bf50d5b83e472865d2c7fec4f6931146e200ffd640004"
+        "sha256": "ca3622547e5e65cd7b7ebb5d7e1283e47833a83c7b8dcf14ac9010c3fbd4804e"
       },
       {
         "path": "tools/quality/format-parity.py",
@@ -12460,7 +12470,7 @@
       {
         "path": "tools/quality/source-test-worker.cjs",
         "identity_mode": "content",
-        "sha256": "415426b649d4344b17698d10aace6bab61a9c5e87cc37e31b3f56d458098a16f"
+        "sha256": "490e22564920e7c7847ef5b581a9740e53e0f9b167c0214a9769a85bb32954fe"
       },
       {
         "path": "tools/quality/source-tests.cjs",
@@ -17704,6 +17714,17 @@
       "title": "Issue 169 — staging security follow-up"
     },
     {
+      "path": "review/issue-169/2026-11-06-staging-source-tail.md",
+      "kind": "file",
+      "purpose": "Issue169 native source timeout diagnosis, measured scheduling and HTML startup correction with preserved budgets and pending stable-stage evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue169 — native source tail and HTML startup"
+    },
+    {
       "path": "review/issue-169/2026-11-06-trusted-controller.md",
       "kind": "file",
       "purpose": "Trusted reader-controller prerequisite scope, exact-source review and check evidence.",
@@ -22729,6 +22750,17 @@
         "AGENTS.md"
       ],
       "title": "staging-production-test-audit-proof.tar.xz"
+    },
+    {
+      "path": "review/issue-169/timing-correction-reviews.tar.xz",
+      "kind": "file",
+      "purpose": "Literal source-bound issue169 timing correction independent reviews, none-fork launch receipts, prepared manifests and metadata reconciliation.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "timing-correction-reviews.tar.xz"
     },
     {
       "path": "review/issue-169/trusted-controller-native-format-failure.log.gz",

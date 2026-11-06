@@ -8,7 +8,8 @@ Dated continuity, not live authority. Last verified: **2026-11-06**.
 - Controller PR173 d06640c passed native source, owner stage42297000252/1
   and dedicated App42306730255. Author explicitly accepted that exact head.
 - Protected normal merge312fbe4347eda332aa8ade885b07c98beadd6da5 is current main;
-  revalidate live refs. Publication integration is in preparation, not yet staged.
+  revalidate live refs. Publication integration53102d7 passed native Basic/navigation/owning and preview;
+  owner staging42309808371/1 failed source300s before upload. Stable not updated.
 - Integration owner: review/issue-169/2026-11-06-main-controller-integration.md.
 
 ## Decisions
@@ -23,13 +24,14 @@ Dated continuity, not live authority. Last verified: **2026-11-06**.
 
 ## Open work
 
-- Resolve divergent Research/Writing provenance controls, ledger/profile/catalog
-  metadata; regenerate public/previews/bundle/RI from canonical authored owners.
-- Clean ed18 integration source1249/1249 in187498ms; Basic, all scanners,
-  RI29/29, coupling23/23, root15/15 and owning automated scope pass.
-- Four final distinct none-fork roles completed without blockers; literal proof
-  is main-integration-reviews-and-checks.tar.xz under review/issue-169.
-- Complete fresh Basic/RI/owning admission and normal full owner staging PR170.
+- Controller integration complete; R10/site/docs preserved. Full native preview
+  reader/PDF/tag smoke passed; native source75modules timed out with74complete.
+- Source tail and HTML startup correction prepared; report
+  review/issue-169/2026-11-06-staging-source-tail.md owns diagnosis/results.
+- Measured descending scheduling and HTML-only same-parser Python -S; no budget,
+  case, scanner or worker relaxation. Four actual correction reviews required.
+- Run clean full source and required security/RI/owning, fresh native CI, then
+  owner staging. Earlier Basic/preview pass does not accept complete staging.
 - Verify stable alias/source, R10 reader, PDF digest/MIME/pages and interactions.
 - Keep every failed historical observation and actual source attribution.
 - Whole AC01–11 remain pending except historical Draft milestoneAC06.
