@@ -7,8 +7,8 @@ Dated continuity, not live authority. Last verified: **2026-11-06**.
 - Owning issue169; publication remains Draft PR170, producer
   `558682775b9798a961f91a86673000a0b13e34d9` at session start.
 - Protected main `8cf15883125892710633b17133d9ee0fc4b23b92`.
-- This main-based prerequisite branch updates trusted reader consumers only;
-  check live refs/PR/checks before any further action.
+- Prerequisite PR173 updates trusted consumers/source reconciliation; reviewed
+  remote408f881/treee376c1c1. Check live refs/head and receipt-only delta before action.
 - Previous owner stage42275940284 passed prepublication, then protected publish
   rejected the Writing fallback before upload. Stable staging was not updated.
 
@@ -29,13 +29,17 @@ Dated continuity, not live authority. Last verified: **2026-11-06**.
 
 - Scope and exact check/review mapping:
   review/issue-169/2026-11-06-trusted-controller.md.
-- Three bounded consumer modules passed66/66 after correcting documented test
-  return/error expectations and regenerating stale output. First logs retained.
-- Complete independent reviews, exact-source Basic/source/style/RI/owning checks;
-  actual trusted integration, owner exact-head control attestation and protected
-  merge remain required before PR170 can stage with the new consumers.
-- Earlier PR170 audit passed1247/1247 source tests on pinned Node24.19; that result
-  describes PR1705586827, not this prerequisite or actual hosted acceptance.
+- Final reviewed408f881 passed78modules/1195cases; R10 producer5586827 crossed
+  the separately pinned controller12subcases+parent13/13; no skipped cases.
+- Four fresh none-fork roles completed without a blocking source finding. Raw
+  first failures/corrections/receipts: trusted-controller-reviews-and-checks.tar.xz
+  in the same issue review directory; provider internals/hosted UI unobserved.
+- Actual Basic/lint/security/advisories/RI/style/owning automated scope passed;
+  main content/runtime and all guards/budgets remain preserved. Security renews
+  the same48 exact findings and appends68 individually proved public checksum
+  dispositions; no scanner/input/threshold/size-bound change.
+- Native checks/full staging, exact-head owner control attestation and protected
+  prerequisite merge remain required. Stable article staging is not yet updated.
 
 ## Next session
 

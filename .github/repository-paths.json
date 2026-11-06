@@ -1831,6 +1831,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-169/trusted-controller-reviews-and-checks.tar.xz": {
+      "kind": "file",
+      "purpose": "Literal independent reviewer receipts/results and exact raw local source/security/check evidence, retaining first failures; hosted acceptance separate.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-169/trusted-controller-security-proof.json.gz": {
       "kind": "file",
       "purpose": "Per-location exact public checksum proof, original scanner failures and exact Bandit source comparison; independent security review separate.",

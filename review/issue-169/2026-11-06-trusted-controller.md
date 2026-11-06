@@ -127,3 +127,33 @@ its report-writing branch; direct bounded invocation confirms the dirty-source
 refusal before scanner execution. Preserve that result; commit the prepared
 review data and rerun this one prerequisite-sensitive case on clean source.
 No scanner or test is changed for this environment refusal.
+
+## Final reviewed implementation and completed local checks
+
+Remote408f881/treee376c1c1 was clean before/after the current-source **78-module,
+1195/1195 production source** run; no failed/cancelled/skipped/TODO case and
+original300000ms/16MiB child limits. Current R10 producer5586827 crossed the
+pinned controller's12consumer subcases plus parent13/13; public bytes remained
+unchanged, synthetic source labels/providerCalled:false/productionEligible:false
+are explicit. This demonstrates compatibility, not hosted or release acceptance.
+
+All four distinct fresh reviewers completed on those exact source bytes: Code,
+Requirements, White-box and Exploratory found no blocking source defect. Actual
+launch requests used explicit `fork_turns:none`, no model override. Accepted
+task handles, prompt/packet/source hashes, first failed judgments and corrected
+results are preserved in `trusted-controller-reviews-and-checks.tar.xz` with
+raw checks. Provider model/history-injection internals remain unobserved.
+
+Basic passed; actual lint (ESLint/Stylelint/Ruff), security (Semgrep/Bandit/secrets)
+and advisories (quality npm/publication npm/pip) passed. Security's prepared
+source identity isace8209 with the exact mirrored e376 tree; it is not relabelled
+as another commit. RI29/29, RI/CI22/22, format/style/architecture and owning
+automated scope passed; all actual human/delivery gates remain separate. The
+clean-source repository-lint fixture passed1/1 after its dirty diagnostic.
+
+This final receipt/memory/catalog refresh changes no reviewed executable, test,
+security-disposition, content, runtime, generated public document, preview or
+bundle bytes. Preserve/refetch exact native checks before readiness and full
+staging. Protected controller integration still requires normal full route and
+the owner's exact current-head `reviewed_sha` decision; no bypass or automatic
+owner attestation is supplied. PR170 merge and production remain excluded.

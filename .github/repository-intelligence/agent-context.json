@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "abdd71654aec7fe05dd796c83ddccde339cb1f6e871cb7b1d63173d874975941",
+    "digest": "af03d721b3cfe4ce280ea83a87b03c9938ec89470293a09fad1268353d2f71a1",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -216,12 +216,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "f7add105254d07b47296c12f1c161512529ed4e83503905c077de09f668f1150"
+        "sha256": "590350ed6df3a6950caffded13c8781f69418891fffcb8b701f546a33a7091b8"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "bf59dbd3484bff805c3b284b38e31e029d605e9a36ffac98cbd95935e6518c40"
+        "sha256": "0c7e207c85713b9d9399eea54ecb161c806c6a75b3977ec98c76842ee074666c"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -371,7 +371,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "53a92efabe5554ca0c67b6533a6eb3733f0338e23ee8def76811bb1a59b91fae"
+        "sha256": "76948bbf5c8d1d6f8847d050603e0916d86a0d4592d9f721d91cf337426e05bd"
       },
       {
         "path": "NOTICE.md",
@@ -1230,7 +1230,12 @@
       {
         "path": "review/issue-169/2026-11-06-trusted-controller.md",
         "identity_mode": "content",
-        "sha256": "0963d4f62f012fa04b41def5eb7ee1e367bffc535dd3abc0f6884907ffd0d6e3"
+        "sha256": "27cd9a6488cf0b7c58c19efa512fa2accecec401652dcc4fe2e5a0d565c6dacd"
+      },
+      {
+        "path": "review/issue-169/trusted-controller-reviews-and-checks.tar.xz",
+        "identity_mode": "content",
+        "sha256": "68486324a5bd412c0c5ea2c00891258d2783044bfc3b02940b560fba4c380d3d"
       },
       {
         "path": "review/issue-169/trusted-controller-security-proof.json.gz",
@@ -12188,6 +12193,17 @@
         "AGENTS.md"
       ],
       "title": "Issue169 — trusted reader-controller correction"
+    },
+    {
+      "path": "review/issue-169/trusted-controller-reviews-and-checks.tar.xz",
+      "kind": "file",
+      "purpose": "Literal independent reviewer receipts/results and exact raw local source/security/check evidence, retaining first failures; hosted acceptance separate.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "trusted-controller-reviews-and-checks.tar.xz"
     },
     {
       "path": "review/issue-169/trusted-controller-security-proof.json.gz",
