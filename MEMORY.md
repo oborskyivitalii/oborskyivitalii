@@ -41,8 +41,13 @@ Dated continuity, not live authority. Last verified: **2026-11-06**.
 - Native Basic42294299712 failed RI/CI map formatting at d3d76f7; local format
   negative status was missed in a combined command. Preserve raw refusal; run
   formatter after coupling refresh, inspect each exit and verify fresh RI.
-- Native checks/full staging, exact-head owner attestation and protected
-  prerequisite merge remain required. Stable article staging is not yet updated.
+- Formatting corrected: native8f330c3 Basic/navigation/owning passed. Separate
+  edited-event admission lacks actual owner staging proof, with build skipped.
+- A new Writing test setup assumed absent resource; corrected for actual main
+  and PR170 existing-resource forms with exact count-once arithmetic. Four
+  fresh roles and affected69/69 passed; raw cases/receipts in writing-forms archive.
+- New-head native checks/full staging, owner exact-head attestation and protected
+  merge remain required. Stable article staging is not yet updated.
 
 ## Next session
 

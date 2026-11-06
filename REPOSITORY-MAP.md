@@ -922,6 +922,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-169/trusted-controller-reviews-and-checks.tar.xz](review/issue-169/trusted-controller-reviews-and-checks.tar.xz) | Literal independent reviewer receipts/results and exact raw local source/security/check evidence, retaining first failures; hosted acceptance separate. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/trusted-controller-security-proof.json.gz](review/issue-169/trusted-controller-security-proof.json.gz) | Per-location exact public checksum proof, original scanner failures and exact Bandit source comparison; independent security review separate. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/trusted-reader-producer.json](review/issue-169/trusted-reader-producer.json) | Exact protected-main predecessor and reviewed fallback consumer successor without changing accepted Research geometry/history. | history | [tools/check_site_seo.cjs](tools/check_site_seo.cjs) |
+| [review/issue-169/writing-forms-reviews-and-checks.tar.xz](review/issue-169/writing-forms-reviews-and-checks.tar.xz) | Fresh four-role one-test correction receipts, actual main/native producer count-once and refusal checks, preserved failed setup and whole affected modules. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/issue-2/
 

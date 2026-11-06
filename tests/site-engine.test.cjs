@@ -110,26 +110,33 @@ test('Writing resources retain exact geometry, finite closure and complete trans
   const record = artifact.manifest(path.join(root, 'docs'));
   record.components = JSON.parse(fs.readFileSync(path.join(root, 'docs/site-revision.json')));
   const row = sizes.rows.find((item) => item.route === 'writing');
-  assert.equal(record.components.routes.writing.assets, undefined);
   const gzip = require('node:zlib').gzipSync(resource.bytes).length;
-  record.files[resource.name] = {
+  const resourceRecord = {
     raw: resource.bytes.length,
     gzip,
     sha256: b.sha(resource.bytes),
   };
-  record.components.routes.writing.assets = [resource.name];
-  row.assets = [
-    'styles.css',
-    'theme.js',
-    'space.js',
-    'archive.js',
-    'navigation.js',
-    'assets/favicon.svg',
-    ...(record.files['publication-index.json'] ? ['publication-index.json'] : []),
-    resource.name,
-  ];
-  row.fallbackResource = resource.name;
-  row.totalGzipBytes += gzip;
+  const resources = record.components.routes.writing.assets ?? [];
+  if (resources.length) {
+    assert.deepEqual(resources, [resource.name]);
+    assert.deepEqual(record.files[resource.name], resourceRecord);
+    assert.equal(row.fallbackResource, resource.name);
+  } else {
+    record.files[resource.name] = resourceRecord;
+    record.components.routes.writing.assets = [resource.name];
+    row.assets = [
+      'styles.css',
+      'theme.js',
+      'space.js',
+      'archive.js',
+      'navigation.js',
+      'assets/favicon.svg',
+      ...(record.files['publication-index.json'] ? ['publication-index.json'] : []),
+      resource.name,
+    ];
+    row.fallbackResource = resource.name;
+    row.totalGzipBytes += gzip;
+  }
   assert.doesNotThrow(() => artifact.validateRouteSizes(sizes, record));
   for (const mutate of [
     (sizes) => (sizes.rows.find((row) => row.route === 'writing').totalGzipBytes -= gzip),

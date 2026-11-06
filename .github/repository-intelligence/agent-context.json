@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "271f8b5090a9fe4416bff5e35cf72badab1d3d1476ad1451156dfd523da5a634",
+    "digest": "6a826c93538437973300119ea2159efe61c0994390b2b4cbf470657250baca63",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -216,12 +216,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "2c68a49fe38d5025606c9edad3ca0422534e5ad517fce7d4ef272a51b8531632"
+        "sha256": "a142887fe80eb9724fd54b19d17d7e6c0c56cf7ce161f12e470f52bda0372ab0"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "bf970186443d0bf603a1377ffe94d5f7868755dc7960d2f90a2d75166587e319"
+        "sha256": "dfd99adeac9b8f691f5573f492aca513247018a5a22513d8e86e9946f56850c3"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -371,7 +371,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "e07678a9523ca2fc29d6e9307c919634dad93c1916ac17ab04e12e6b66df8fbc"
+        "sha256": "d936be297471740edb4fd2ef4a2b456319038ad00906230e5a8c68281a2e2c8e"
       },
       {
         "path": "NOTICE.md",
@@ -1230,7 +1230,7 @@
       {
         "path": "review/issue-169/2026-11-06-trusted-controller.md",
         "identity_mode": "content",
-        "sha256": "b5a98280098ff4ff29db4758721a8b8a6421557624c7953e7f554d6614afbabc"
+        "sha256": "c54939fe5e170ea020d2d8a9a2b4d687019a88b1b61dfc00e8bd8e873ac243c5"
       },
       {
         "path": "review/issue-169/trusted-controller-native-format-failure.log.gz",
@@ -1251,6 +1251,11 @@
         "path": "review/issue-169/trusted-reader-producer.json",
         "identity_mode": "content",
         "sha256": "a2bc51ee25559008e7526e8c92925e33c9e9750d11d8483591e43b9a3a673042"
+      },
+      {
+        "path": "review/issue-169/writing-forms-reviews-and-checks.tar.xz",
+        "identity_mode": "content",
+        "sha256": "bf24c1792b2e0b25243c318e30859f5b48a9d11869980782100857da7604ceb4"
       },
       {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -7795,7 +7800,7 @@
       {
         "path": "tests/site-engine.test.cjs",
         "identity_mode": "content",
-        "sha256": "c8a1f71d01df07f9a09b3fa992630e620e5a53f1823d9ea31f5fb737601e01dc"
+        "sha256": "d33a0577d09deb4a9fc968a07373e61d27c22ef1585713825270cfd277afccb6"
       },
       {
         "path": "tests/site-face-preparation.test.cjs",
@@ -12242,6 +12247,17 @@
         "AGENTS.md"
       ],
       "title": "trusted-reader-producer.json"
+    },
+    {
+      "path": "review/issue-169/writing-forms-reviews-and-checks.tar.xz",
+      "kind": "file",
+      "purpose": "Fresh four-role one-test correction receipts, actual main/native producer count-once and refusal checks, preserved failed setup and whole affected modules.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "writing-forms-reviews-and-checks.tar.xz"
     },
     {
       "path": "review/issue-2/2026-10-15-editorial-draft.md",

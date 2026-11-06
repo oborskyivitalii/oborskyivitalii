@@ -173,3 +173,27 @@ The coupling refresher emits expanded JSON; run the pinned formatter **after**
 refresh and verify parsed-map equality, RI/CI and generated RI afterward. This
 fix changes only JSON whitespace and metadata/report receipts. Check each
 command's own exit/report before continuing; no unchanged native retry.
+
+## Both actual Writing producer forms
+
+Native8f330c3 Basic42294884266, navigation42294884074 and owning checks passed
+after the formatting correction. Edited-event admission42294946792 separately
+refused `missing staging admission`; build/upload were skipped because no owner
+full staging proof yet exists. This is a pending delivery gate, not a browser or
+producer test result; no unchanged retry is used.
+
+Before moving either branch to staging, replaying the exact new Writing test
+against actual PR170 producer5586827 found its setup assumed an absent external
+resource. PR170 already declares/counts that resource. Correct only the test
+setup: authenticate/preserve an existing exact resource and its transfer; add
+the controlled resource once only for the absent main form. All five refusal
+mutations, budgets and runtime validators remain unchanged. Both actual forms
+pass, with independently checked transfer increments17285bytes for main and
+0for PR170; the previously false-failing case is retained.
+
+Four new distinct fresh none-fork roles completed on the prepared one-test delta
+without blocking findings. Source packets, literal execution receipts, first
+failure, both-form passes and affected whole modules **69/69** are preserved in
+`writing-forms-reviews-and-checks.tar.xz`. This establishes bounded source/test
+compatibility; it is not native full staging, owner attestation or integration.
+The new current head still needs its own native checks/full route.
