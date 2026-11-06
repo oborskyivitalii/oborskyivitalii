@@ -990,10 +990,7 @@ test('Talks reconciliation rejects missing events, substituted sources and inven
         '<a href="https://example.com/recording">Watch recording / slides</a></article>'
       ),
     ],
-    [
-      descriptions[0][0],
-      '<meta name="description" content="including invented events">',
-    ],
+    [descriptions[0][0], '<meta name="description" content="including invented events">'],
     [recordingUrl, 'https://youtu.be/OtherVideo'],
     [cards[0], cards[0].replace(/<a class="text-link"[^>]+>Watch the recording[\s\S]*?<\/a>/, '')],
     ['AI Changes the Delivery System and the Product Itself', 'AI Proves Delivery Success'],

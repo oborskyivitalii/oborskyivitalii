@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "db8b907aebeed71db55c64f98b4e15556a7cfaccd144a13e2cbbc0704d5c766a",
+    "digest": "2e120607ab016ed19c6143f8b5bd3687a6ea7a7b1e175a3e8656a94157f4306f",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -221,7 +221,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "04e0e452b665911b5e0fac4e06d30fe800fbef15be2133a4a312e16659b8e5ee"
+        "sha256": "d8bb7282871ea1909fc39fbac6df8fe37fad4c65af796c0cb43c8af1db8e4d61"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -11045,7 +11045,7 @@
       {
         "path": "tests/executive.test.cjs",
         "identity_mode": "content",
-        "sha256": "b235b4cc435e55a34494b35af10167e2cfb910a9b93affc294140083371cf746"
+        "sha256": "c18330ac44e16ca7026dd0d7aa1d6341122bf534cc257b99b8acffd5581867b6"
       },
       {
         "path": "tests/fixtures/article-flight.cjs",
