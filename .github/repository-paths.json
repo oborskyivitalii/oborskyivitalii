@@ -2539,6 +2539,12 @@
       "role": "history",
       "owner": "AGENTS.md"
     },
+    "review/issue-169/2026-11-05-native-r9-runtime-admission-requirements.md.gz": {
+      "kind": "file",
+      "purpose": "Lossless historical requirements review; decoded bytes equal immutable Git9513dbe, with the original-path locator preserved.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
     "review/issue-169/2026-11-05-native-r9-runtime-data-whitebox.md": {
       "kind": "file",
       "purpose": "Issue169 exact-source R9 runtime evidence, actual failure/result or independent continuation review.",
@@ -2704,6 +2710,12 @@
     "review/issue-169/2026-11-06-security-maintenance.md": {
       "kind": "file",
       "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-06-staging-corrections.md": {
+      "kind": "file",
+      "purpose": "Issue169 stable-staging test correction and source-bound independent execution record.",
       "role": "history",
       "owner": "AGENTS.md"
     },

@@ -178,18 +178,19 @@ test('rights inventory covers actual current and retained bytes without granting
   )[1];
   assert.deepEqual(retainedRuntime.bases, ['retained-edition']);
   assert.deepEqual(Object.keys(report.files), Object.keys(source.record().files));
+  const revision = require('../tools/site/snapshot.cjs').verify(
+    source.publicDirectory,
+    source.record()
+  );
+  const currentRouteAssets = new Set(
+    Object.values(revision.routes).flatMap((route) => route.assets || [])
+  );
   assert.deepEqual(
     Object.keys(report.files)
       .filter((name) => report.files[name].retained)
       .sort(),
     Object.keys(source.manifest.retained)
-      .filter(
-        (name) =>
-          !Object.values(
-            require('../tools/site/snapshot.cjs').verify(source.publicDirectory, source.record())
-              .routes
-          ).some((route) => (route.assets || []).includes(name))
-      )
+      .filter((name) => !currentRouteAssets.has(name))
       .sort()
   );
   assert.equal(Object.keys(report.linkedPublications).length, 29);

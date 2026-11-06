@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "d9bd21b5f18e2ff6ef57c0002271cb7a74a136e2cc8867f38affeb0caeff7f8d",
+    "digest": "db8b907aebeed71db55c64f98b4e15556a7cfaccd144a13e2cbbc0704d5c766a",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -216,12 +216,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "c70fcce8751c1ce6448d66dfe945c0b10545d7680b03b3d7f1358574f24307aa"
+        "sha256": "15bc26f136398bc8dc57d76c70cc7e1476a2ad31ec5c42b878879f6da40f898e"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "ef81c96aee04a7c5bb18396c99e6dc65a2a5781ca1e3424770a41faf4e5375b0"
+        "sha256": "04e0e452b665911b5e0fac4e06d30fe800fbef15be2133a4a312e16659b8e5ee"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -371,7 +371,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "967a8117b8129a8dffc0bc4a8530941a9c5c619259cecc46e59ed5b05fcfc51b"
+        "sha256": "7499933297edfbed981efe5681517bf2e80ea090212e17cad551ef92b9479a02"
       },
       {
         "path": "NOTICE.md",
@@ -1725,7 +1725,12 @@
       {
         "path": "review/issue-169/2026-11-05-native-r9-runtime-admission-requirements.md",
         "identity_mode": "content",
-        "sha256": "0feddc7c825a4f10b4ac238930942113c277b800d0114b7f5e81a458a2415d3f"
+        "sha256": "934dddee226a0b7c318f55af0c7a2cad6a4ae5a93430c5271e49374d9dbb5441"
+      },
+      {
+        "path": "review/issue-169/2026-11-05-native-r9-runtime-admission-requirements.md.gz",
+        "identity_mode": "content",
+        "sha256": "a534123e55a089d11bf9947336cc72e65db48a6e9e73a990f4eb8e70402bc69b"
       },
       {
         "path": "review/issue-169/2026-11-05-native-r9-runtime-data-whitebox.md",
@@ -1866,6 +1871,11 @@
         "path": "review/issue-169/2026-11-06-security-maintenance.md",
         "identity_mode": "content",
         "sha256": "d12c17a52bb2156330e4c26032c6014b98a896b70e1eec6d51c0fe7c4eba039c"
+      },
+      {
+        "path": "review/issue-169/2026-11-06-staging-corrections.md",
+        "identity_mode": "content",
+        "sha256": "df266d4d62882eee16b923dc8655736ff73ee3af29279f27013b97fb939891c8"
       },
       {
         "path": "review/issue-169/2026-11-06-writing-discovery.md",
@@ -11035,7 +11045,7 @@
       {
         "path": "tests/executive.test.cjs",
         "identity_mode": "content",
-        "sha256": "74d6d95dbd01dd19f008ae440d3469034196345beda9d504538c502e13010319"
+        "sha256": "b235b4cc435e55a34494b35af10167e2cfb910a9b93affc294140083371cf746"
       },
       {
         "path": "tests/fixtures/article-flight.cjs",
@@ -11265,7 +11275,7 @@
       {
         "path": "tests/release-rights.test.cjs",
         "identity_mode": "content",
-        "sha256": "36e20d4a7b9b9b6757178070fcadf2b3cd38ec97da0a22640a96d13175983b28"
+        "sha256": "d9ed3d9463564e61a4e0a435618fcf5565b2165d7a78a9ab3e49d62083c7ec81"
       },
       {
         "path": "tests/renderer.test.cjs",
@@ -16796,7 +16806,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Corrected R9 runtime — observed behavior and exact-family preflight"
+      "title": "Retained requirements review"
+    },
+    {
+      "path": "review/issue-169/2026-11-05-native-r9-runtime-admission-requirements.md.gz",
+      "kind": "file",
+      "purpose": "Lossless historical requirements review; decoded bytes equal immutable Git9513dbe, with the original-path locator preserved.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-11-05-native-r9-runtime-admission-requirements.md.gz"
     },
     {
       "path": "review/issue-169/2026-11-05-native-r9-runtime-data-whitebox.md",
@@ -17105,6 +17126,17 @@
         "AGENTS.md"
       ],
       "title": "R10 release — bounded security maintenance"
+    },
+    {
+      "path": "review/issue-169/2026-11-06-staging-corrections.md",
+      "kind": "file",
+      "purpose": "Issue169 stable-staging test correction and source-bound independent execution record.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 169 — stable-staging corrections, 6 November"
     },
     {
       "path": "review/issue-169/2026-11-06-writing-discovery.md",

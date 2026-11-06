@@ -952,11 +952,23 @@ test('Talks reconciliation rejects missing events, substituted sources and inven
   );
   const html = readHTML(path.join(__dirname, '../docs/talks.html'));
   const preserved = restore(html, 'talks');
-  const cards = [...html.matchAll(/<article class="publication"[\s\S]*?<\/article>/g)]
+  const completedCards = [...html.matchAll(/<article class="publication"[\s\S]*?<\/article>/g)]
     .map((row) => row[0])
     .filter((card) => !card.includes('<span>Upcoming</span>'));
-  assert.equal(cards.length, 4, 'the four retained historical event cards');
+  assert.equal(completedCards.length, 5, 'four historical events and the completed DevCon talk');
   const recordingUrl = 'https://youtu.be/xSgWjuGqC9I?is=Rf9XOk8qrTw8I9aE';
+  const cards = [
+    recordingUrl,
+    'id="corning"',
+    'activity-7477275989761384448-k8J9',
+    'https://www.youtube.com/watch?v=1MPsDi3wuF4',
+  ].map((identity) => {
+    const matches = completedCards.filter((card) => card.includes(identity));
+    assert.equal(matches.length, 1, 'one retained historical event: ' + identity);
+    return matches[0];
+  });
+  const descriptions = [...html.matchAll(/<meta name="description"[^>]*>/g)];
+  assert.equal(descriptions.length, 1, 'one current Talks description');
   const mutations = [
     [cards[3], ''],
     [cards[1], ''],
@@ -979,9 +991,7 @@ test('Talks reconciliation rejects missing events, substituted sources and inven
       ),
     ],
     [
-      require('../review/issue-126/content-amendment.json').changes.find(
-        (change) => change.id === 'name="description"'
-      ).after,
+      descriptions[0][0],
       '<meta name="description" content="including invented events">',
     ],
     [recordingUrl, 'https://youtu.be/OtherVideo'],
