@@ -1016,7 +1016,10 @@ test('the staging collector exercises articles only on its admitted Chromium and
             error: 'controlled article collection failure',
           },
         ]);
-        assert.throws(() => stage.validateFunctional(report, manifest), /require actual browser/);
+        assert.throws(
+          () => stage.validateFunctional(report, manifest),
+          /controlled article collection failure/
+        );
       } else {
         assert.deepEqual(detail.startupFailures, []);
         assert.equal(

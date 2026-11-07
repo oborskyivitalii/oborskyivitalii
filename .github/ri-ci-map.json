@@ -715,7 +715,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "cbfffdc034e7d21cdb01e045d21a52b4e51e1836e3f577f66d7ff5e023488c2d",
+    "digest": "730ca8f2aff17e83865d6f5dfab7f0f6b23fe5e241c424de693d411e958a731d",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -731,7 +731,7 @@
       },
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
-        "sha256": "cca61bab2ab0866641953f623698cc4628db3ebad7120b4b8fad205a3a354cca"
+        "sha256": "03bd620c57da46f8c8152975d34145587c2cacd71ac544242c00540eece00bcc"
       },
       {
         "path": ".github/acceptance/issue-102.json",
@@ -771,7 +771,7 @@
       },
       {
         "path": ".github/acceptance/issue-169.json",
-        "sha256": "8792a5dfca5eefebbdd1ab2f65a641179c6a87253d4906028f0b3cb7f3532471"
+        "sha256": "1cd945f002e7c995538737f63dabe1b4d82e0735cf96382760c565aac430957f"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -863,7 +863,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "a142887fe80eb9724fd54b19d17d7e6c0c56cf7ce161f12e470f52bda0372ab0"
+        "sha256": "90f224166d11fd767319f01b2283f923c1fbccec8f47512d6945473381a8f00d"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -907,11 +907,11 @@
       },
       {
         "path": ".github/workflows/site-checks.yml",
-        "sha256": "6ec06f40b53f23631a282adbcd38d42e6637b74e244851adb95dbfdebb523dcd"
+        "sha256": "2637b983517f1ef86fd5bab74994b7e44bca27d133e4f13c59d6ee23d2bd5198"
       },
       {
         "path": ".github/workflows/site-color-review.yml",
-        "sha256": "d184fb3e54d5c3a42901f10597313e4cd4da0f5d3d51cb0f7ba3ab30a9f4dbe2"
+        "sha256": "fc5861456ad5240f1179a68c127593265bc883bac0adebb65cc016d9bcdd76bc"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -939,7 +939,7 @@
       },
       {
         "path": ".github/workflows/site-release-checks.yml",
-        "sha256": "143e605b47f9e9d4729062fb9701e69941c69580eefc64f67fb92fb98a7b9332"
+        "sha256": "f05ce4a8fbc8bb93f540726d35b9acba344ec0dcb5a3c1b8dcb2ae58014a077d"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -995,7 +995,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "4d04212f1f3f7810ed9cc43695a57fb18c1bb3e3ed15249d2839e7dd80566258"
+        "sha256": "cf9e9278fef706632824441f17e0c85f0694996868d22b3bdfec8180bec82118"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -1015,11 +1015,11 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "2d5a169ffd9321667c33a3d21d37650cf0917eca889a5ac6c807bd38b9d3601c"
+        "sha256": "b269190e6e37043331466bd3508cedadb68d42042e67ad08a071b0a8f2a6ad16"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
-        "sha256": "08e0ac9bce886f3d58923d43f8c1563144e17b8cd02f96bca16b12fa08fed1af"
+        "sha256": "ac74d0142245f53264924557febfbaf8d8c7698e35eeac4c2469e5211b7cead5"
       },
       {
         "path": "tests/test_code_style.py",
@@ -1143,7 +1143,7 @@
       },
       {
         "path": "tools/quality/source-tests.cjs",
-        "sha256": "792aec87f4abb3aec8c97b4a8d33cd958a643b8f6c77aaac4c5683d45aaf5086"
+        "sha256": "d9a870982b7ec3698696ce2192c0cfc25ae156785f9ab7cfaa3507c0fd2338cf"
       },
       {
         "path": "tools/quality/staging-gate.cjs",
@@ -1151,11 +1151,11 @@
       },
       {
         "path": "tools/quality/staging-regression.cjs",
-        "sha256": "c33d08aecec46f22e8d1f86b62ba9f6f1bc2477d7219c27a6a654d77daa1237a"
+        "sha256": "2b4d7c56272eedc9a8cc9cc1a81df17ad58ee1bea2c136ca4c143f8533801497"
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "4387ea733880c0942f576a9d062f27c022d7527addc91cd798279bbd24943262"
+        "sha256": "4087b6a435796d14ae5e20db29744557e92e5cf37798e533dc873a067dd943b9"
       },
       {
         "path": "tools/repository_intelligence.py",

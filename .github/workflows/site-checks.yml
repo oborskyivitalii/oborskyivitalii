@@ -16,7 +16,7 @@ jobs:
     name: ${{ github.event_name == 'pull_request' && github.event.pull_request.draft && 'Prototype source admission deferred' || 'checks' }}
     if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 20
     outputs:
       artifact_id: ${{ steps.public.outputs.artifact-id }}
       artifact_upload_digest: ${{ steps.public.outputs.artifact-digest }}
@@ -53,6 +53,7 @@ jobs:
             : { repositoryOnly: false, reason: 'Existing full route / enabling bootstrap' };
           fs.writeFileSync(path.join(process.env.RUNNER_TEMP, 'delivery-selection.json'), JSON.stringify(plan, null, 2) + '\n');
           fs.appendFileSync(process.env.GITHUB_OUTPUT, 'repository_only=' + plan.repositoryOnly + '\n');
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, 'technical_repository=' + (plan.technicalRepository === true) + '\n');
           fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, plan.repositoryOnly
             ? 'Repository-only: formatting, lint, affected source, RI and owning checks. Website build/package/preview/staging/publication are inapplicable.\n'
             : 'Conservative full source and website route.\n');
@@ -69,6 +70,22 @@ jobs:
           python3 -m venv tools/quality/toolchain/venv
           tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps ruff==0.16.10 PyYAML==6.0.3 packaging==26.3
           tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps "$(python3 tools/publishing/web-media.py --requirement)"
+      - name: Install the full locked security toolchain for technical repository work
+        if: steps.selection.outputs.technical_repository == 'true'
+        run: |
+          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps -r tools/quality/toolchain/requirements.txt
+          tools/quality/toolchain/venv/bin/python tools/quality/python_toolchain.py
+      - name: Preserve enduring Python coverage for technical repository work
+        if: steps.selection.outputs.technical_repository == 'true'
+        run: tools/quality/toolchain/venv/bin/python tools/run_repository_tests.py
+      - name: Retain source security and advisory gates without website packaging
+        if: steps.selection.outputs.technical_repository == 'true'
+        env:
+          SITE_REPOSITORY_ONLY: 'true'
+          SITE_REPORT_DIR: quality-reports
+        run: |
+          node tools/quality/scanners.cjs security
+          node tools/quality/scanners.cjs advisories
       - name: Check maintained formatting
         run: node tools/quality/format.cjs --check
       - name: Check authored dependency and ownership boundaries

@@ -12174,6 +12174,60 @@
       "purpose": "Protected source/artifact/controller/PR lease validation before hosted action.",
       "role": "source",
       "owner": "guides/SITE-STAGING.md"
+    },
+    ".github/actions/publication-media": {
+      "kind": "directory",
+      "purpose": "Canonical browser-fixture Python/Pillow setup shared by staging and production functional jobs.",
+      "role": "configuration",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    ".github/actions/publication-media/action.yml": {
+      "kind": "file",
+      "purpose": "Bind the selected Python interpreter, install the canonical Pillow pin and verify its WebP backend before source-fixture collection.",
+      "role": "configuration",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-169/2026-11-07-source-timeouts.md": {
+      "kind": "file",
+      "purpose": "Author-approved source and enclosing CI timeout amendment, preserved failure diagnosis, review and exact-source acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/source-timeout-reviews-and-checks.tar.xz": {
+      "kind": "file",
+      "purpose": "Literal independent timeout reviews, source manifests and actual check streams; original failures retained separately.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/2026-11-07-browser-media-controller.md": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source missing browser media dependency diagnosis, all-platform controller correction, independent review and acceptance route.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/browser-media-reviews-and-checks.tar.xz": {
+      "kind": "file",
+      "purpose": "Literal source-bound issue169 browser-media preflight and four-role first/correction reviews, original failures and corrected local checks.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/2026-11-07-technical-route.md": {
+      "kind": "file",
+      "purpose": "Technical repository route scope, stable TR01–TR08 checks, independent review and source-bound delivery evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/technical-route-requirements-first.md": {
+      "kind": "file",
+      "purpose": "Literal independent requirements preflight and bounded technical route scope treatment; historical review evidence, not current authority.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/technical-route-reviews-and-checks.tar.xz": {
+      "kind": "file",
+      "purpose": "Literal technical-route reviewer launches/results/corrections, public checksum proofs and original successful/failed source check reports; each retains actual source identity.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

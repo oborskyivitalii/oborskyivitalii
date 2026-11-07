@@ -460,7 +460,12 @@ function buildFixture(dir, sourceRoot = root) {
     });
   }
   if (fs.existsSync(path.join(sourceRoot, 'tools/publishing'))) {
-    inputs.push('tools/publishing', 'tools/quality/artifact.cjs', 'tools/quality/budgets.json');
+    inputs.push(
+      'tools/publishing',
+      'tools/quality/artifact.cjs',
+      'tools/quality/budgets.json',
+      'tools/quality/toolchain/requirements.txt'
+    );
   }
   for (const name of inputs) {
     fs.mkdirSync(path.dirname(path.join(dir, name)), { recursive: true });

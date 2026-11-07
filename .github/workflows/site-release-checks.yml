@@ -149,7 +149,7 @@ env:
 jobs:
   build:
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 20
     outputs:
       artifact_id: ${{ inputs.public_artifact_id || steps.upload.outputs.artifact-id }}
       artifact_upload_digest: ${{ inputs.public_upload_digest || steps.upload.outputs.artifact-digest }}
@@ -404,6 +404,8 @@ jobs:
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
           npm ci --prefix tools/publishing/toolchain --ignore-scripts
+      - name: Prepare canonical publication media for source fixtures
+        uses: ./.github/actions/publication-media
       - name: Install Ubuntu engine dependencies without prior launch
         timeout-minutes: 5
         run: tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium firefox webkit
@@ -465,6 +467,8 @@ jobs:
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
           npm ci --prefix tools/publishing/toolchain --ignore-scripts
+      - name: Prepare canonical publication media for source fixtures
+        uses: ./.github/actions/publication-media
       - name: Restore verified pinned browsers without prior launch
         uses: ./.github/actions/browser-archive
         with:
@@ -602,6 +606,8 @@ jobs:
           npm ci --prefix tools/quality/toolchain --ignore-scripts
           npm ci --prefix tools/publishing/toolchain --ignore-scripts
           tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium firefox
+      - name: Prepare canonical publication media for source fixtures
+        uses: ./.github/actions/publication-media
       - name: Restore verified pinned browsers without prior launch
         uses: ./.github/actions/browser-archive
         with:

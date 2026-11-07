@@ -179,13 +179,38 @@ A green evaluation workflow is not a green admission check.
 | Complete explicitly owned rules/review/RI metadata only | Basic formatting/lint/architecture and affected source tests; existing navigation/RI and owning acceptance. No website build/package/preview/staging/alias/publisher work. After these checks, dispatch the PR number once. |
 | Compatible authored content/media with an authenticated accepted baseline | Current content source/RI/owning checks, exact generation reconstruction and `compatible-content-v1` gate with current scanners, hosted bytes and affected content-browser observations. Owner `/stage` permits stable staging; `staging-regression` records isolated evidence only. |
 | Website, incompatible content, mixed, unknown or unsupported impact | Conservative full route. Finish Basic/RI/owning checks and full owner staging, then refresh PR admission and dispatch. Missing history or incompatible policy/platform records cannot inherit an earlier content gate. |
-| Executable tools/tests, workflows/actions/acceptance or declared controls | Same full route, plus explicit review of the complete diff and **reviewed_sha** equal to the full current head. A missing/wrong/old SHA refuses. It cannot waive any failed/missing full obligation or grant the repository exemption. |
+| Executable tools/tests, workflows/actions/acceptance or declared controls outside the bounded technical class below | Same full route, plus explicit review of the complete diff and **reviewed_sha** equal to the full current head. A missing/wrong/old SHA refuses. It cannot waive any failed/missing full obligation or grant the repository exemption. |
+
+The issue169 technical extension separates executable trust from hosted dependency.
+After its old-main bootstrap integration, `technicalRepository: true` selects
+repository work for regular100644 test additions/modifications, additive-only test
+registry rows and exactly `tools/repository_intelligence.py`,
+`tools/check_code_style.py`, `tools/check_ri_ci.py`. Both registry endpoints are
+parsed; every existing row and every other field must remain equal. Added rows
+must describe newly added regular tests; full source inventory validation still
+runs. Numeric task snapshots stay owning-policy-only. Test deletions/renames,
+mode/type changes, site/publication/rights/unknown/mixed input, source runner/
+worker/selector or registry policy edits, locks/scanner policy, workflows/actions
+and admission/issuer/classifier remain full. This enabling PR is not exempt.
+
+Technical work retains control=true and exact reviewed_sha. Existing source CI
+runs affected Node plus enduring Python, format/architecture/lint and source-bound
+security/advisories with the full locked toolchain; navigation/RI/coupling and
+owning acceptance remain required. Website work is explicitly inapplicable,
+never passed. A failed/missing source workflow still refuses App admission.
+The broader observation report retains its conservative full/control proposal;
+the protected selection's explicit technical disposition alone narrows hosted work.
+Actual native activation is separately recorded under issue169 TR03/08.
+
+RI/CI checksum-only refreshes may accompany eligible technical work only through
+the existing riIdentityCompatible check: all map semantics and identity input paths
+remain equal. Mapping/selection changes remain full; navigation verifies new hashes.
+
 
 The protected-base classifier, not a candidate wrapper/catalog label, chooses
 eligibility. Both raw Git endpoints and all modes are inspected; moves retain
-both sides. Exact rights/public inputs still select website work. An RI executable
-is a control even when its purpose is repository-only; its actual failing checks
-block. The broader observation report remains advisory and preserves its full
+both sides. Exact rights/public inputs still select website work. An RI executable remains a control; eligible technical maintenance can omit hosted
+work only under the bounded disposition above, and its actual failing checks block. The broader observation report remains advisory and preserves its full
 planned baseline; the trusted selection report records actual conditional work.
 
 Control attestation is the maintainer's explicit trust decision on the exact
@@ -394,7 +419,11 @@ jobs and promotes only their matching `staging-gate`, whose `fullGate` and
 `productionEligible` remain false. The operational end-to-end CI target is at
 most 15 minutes; measure the actual total and report queue/setup/execution
 separately. Exceeding that target alone is optimization feedback when every
-mandatory test and site budget passes; all hard timeouts remain unchanged.
+mandatory test and site budget passes. The7November issue169 owner amendment
+raises only the shared source-test allowance from5to10minutes and its enclosing
+PR-source, staging-build and reusable release-build jobs from10to20minutes.
+The30-second source-reporting grace, scanner limits and all site/browser/performance
+budgets remain unchanged.
 
 For an optional full candidate diagnostic, `validation_level: production`
 and `full: true` select the complete regression; production is the reusable

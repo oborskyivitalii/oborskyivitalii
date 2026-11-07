@@ -1,66 +1,56 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-11-06**.
+Dated continuity, not live authority. Last verified: **2026-11-07**.
 
 ## Snapshot
 
-- Owning issue169; publication remains Draft PR170, producer
-  `558682775b9798a961f91a86673000a0b13e34d9` at session start.
-- Protected main `8cf15883125892710633b17133d9ee0fc4b23b92`.
-- Prerequisite PR173 updates trusted consumers/source reconciliation; reviewed
-  remote408f881/treee376c1c1. Check live refs/head and receipt-only delta before action.
-- Previous owner stage42275940284 passed prepublication, then protected publish
-  rejected the Writing fallback before upload. Stable staging was not updated.
+- Owning issue169; publication PR170 at1e770f3fb74e84ffa2c95bcf42a3a55530203b5d.
+- Protected main312fbe4347eda332aa8ade885b07c98beadd6da5; PR173 merged.
+- PR174 starting183fbbee2f49736d08d1b82409692848a7a718fe has media and timeout
+  corrections; this continuation prepares its technical-route extension.
+- Read live refs/checks before any integration/staging; historical550c7f stage
+  acceptance is not acceptance of183fbbee or this new candidate.
 
 ## Decisions
 
-- User authorized fixing the controller incompatibilities, then verified full
-  stable staging and STOP/show. No PR170 merge or production publication.
-- Preserve R10 article/PDF/media and all source/security/browser/rights budgets.
-  Do not add compatibility shims, untrusted privileged checkout or bypass gates.
-- Four consumer owners: fallback, size admission, exact reviewed Color families,
-  frozen production archive article metadata/sitemap verification.
-- Candidate producer-only retention/build changes stay on PR170; prove the
-  complete trusted consumer closure using the pinned-controller test there.
-- The producer hash refreshes generated document identities; main's authored
-  content/engine and ordinary runtime bytes stay unchanged.
+- Author requested implementing technical repository delivery without unnecessary
+  full website staging; stable TR01–TR08 scope appended to issue169 AC05/AC11.
+- Bounded class: regular test A/M, monotonic new-test registry rows, exact RI/style/
+  coupling Python owners. Control and exact-head reviewed_sha remain mandatory.
+- Selection/runner/worker/admission/issuer, workflows/actions/locks/scanner policy,
+  deletion/rename/type/mode, site/rights/unknown/mixed inputs remain full-route.
+- PR174 changes the route itself and uses old-main full bootstrap before activation.
+- No PR170 merge/production; endpoint remains verified stable reader/PDF STOP/show.
 
 ## Open work
 
-- Scope and exact check/review mapping:
-  review/issue-169/2026-11-06-trusted-controller.md.
-- Final reviewed408f881 passed78modules/1195cases; R10 producer5586827 crossed
-  the separately pinned controller12subcases+parent13/13; no skipped cases.
-- Four fresh none-fork roles completed without a blocking source finding. Raw
-  first failures/corrections/receipts: trusted-controller-reviews-and-checks.tar.xz
-  in the same issue review directory; provider internals/hosted UI unobserved.
-- Actual Basic/lint/security/advisories/RI/style/owning automated scope passed;
-  main content/runtime and all guards/budgets remain preserved. Security renews
-  the same48 exact findings and appends68 individually proved public checksum
-  dispositions; no scanner/input/threshold/size-bound change.
-- Native Basic42294299712 failed RI/CI map formatting at d3d76f7; local format
-  negative status was missed in a combined command. Preserve raw refusal; run
-  formatter after coupling refresh, inspect each exit and verify fresh RI.
-- Formatting corrected: native8f330c3 Basic/navigation/owning passed. Separate
-  edited-event admission lacks actual owner staging proof, with build skipped.
-- A new Writing test setup assumed absent resource; corrected for actual main
-  and PR170 existing-resource forms with exact count-once arithmetic. Four
-  fresh roles and affected69/69 passed; raw cases/receipts in writing-forms archive.
-- New-head native checks/full staging, owner exact-head attestation and protected
-  merge remain required. Stable article staging is not yet updated.
+- Current owner: review/issue-169/2026-11-07-technical-route.md; preflight literal
+  technical-route-requirements-first.md. Four final roles and own corrections completed; native current-head CI pending.
+- Prepared d720aa77 targeted delivery67/67, scanner40/40, enduringPython142/142,
+  RI/coupling and style passed in recorded scopes. No native final-head claims.
+- Format refused coupling-refresh JSON; correct formatting after refresh/rebuild.
+  Architecture refused local dependency symlinks; ordinary same-byte directories
+  corrected setup and architecture passed. Retain both original failures.
+- Technical source CI retains security/advisories and enduring Python without
+  website package. Full source6430a8f1214/1214; security/lint/owning f80pass;
+  advisories6430pass. All scopes/raw failures and literal roles are in the owner
+  archive. Ledger formattingbd391526passed; native/bootstrap still pending.
+- Original R10 timeout42321844610/artifact13553633597 and missing-Pillow failure
+  remain retained in existing source-timeout/media records. Source600s,
+  wrapper630s, enclosing20min and other original budgets remain unchanged.
 
 ## Next session
 
-1. Revalidate issue169, both PRs/refs and selected native runs; use current owners.
-2. Complete prerequisite review/checks/admission through the existing full route.
-3. After actual main integration refresh PR170, run pinned consumer compatibility
-   and required current-source checks, then the full owner staging route.
-4. Verify stable alias and exact article/PDF bytes; stop and show the user.
-   Keep whole issue acceptance and production pending.
+1. Revalidate issue169, PR174/170 and protected main.
+2. Finish source-bound review/checks/native old-main bootstrap for PR174.
+3. Obtain exact-head maintainer trust only after concrete evidence, then protected
+   integration; actual future technical maintenance proves operational activation.
+4. Refresh PR170 from trusted main; full owner stable stage, verify reader/PDF,
+   STOP/show. Whole article ACs and new live gates remain pending until observed.
 
 ## Maintenance
 
-- Keep this five-section handoff within120lines; refresh RI after edits.
-- Pin Node24.19; host24.22 has an observed guard-limit fixture deadlock. Preserve
-  failed source runs and diagnosis; do not change deadlines or rerun unchanged.
-- No secrets/private execution URLs or correspondence in repository memory.
+- Five-section handoff within120lines; rebuild RI after changes.
+- Pinned Node24.19.0; host24.22 has retained guard-limit fixture issue.
+- Preserve failed/partial source evidence; no unchanged campaign retries.
+- No secrets/private execution URLs/correspondence in repository memory.

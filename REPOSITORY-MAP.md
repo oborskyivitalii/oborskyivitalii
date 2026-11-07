@@ -37,6 +37,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.github/acceptance](.github/acceptance) | Owning-issue acceptance policies with stable criterion IDs and executable check mappings. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/actions](.github/actions) | Shared reviewed CI setup actions with bounded source and artifact trust. | configuration | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [.github/actions/browser-archive](.github/actions/browser-archive) | Pinned browser supply action; integrity checks without prior browser launch. | configuration | [guides/BROWSER-ARCHIVES.md](guides/BROWSER-ARCHIVES.md) |
+| [.github/actions/publication-media](.github/actions/publication-media) | Canonical browser-fixture Python/Pillow setup shared by staging and production functional jobs. | configuration | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [.github/repository-intelligence](.github/repository-intelligence) | Generated machine navigation view with exact source identity. | generated | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [.github/workflows](.github/workflows) | Pinned CI workflows for navigation, site checks, hosted staging and manual diagnostics. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [agents](agents) | Repository agent role prompts and shared launch contracts; not installed skills. | guide | [agents/reviewers/README.md](agents/reviewers/README.md) |
@@ -300,6 +301,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [.github/actions/browser-archive/action.yml](.github/actions/browser-archive/action.yml) | Shared exact native browser archive restore and retained preparation-failure report. | configuration | [guides/BROWSER-ARCHIVES.md](guides/BROWSER-ARCHIVES.md) |
+
+## .github/actions/publication-media/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [.github/actions/publication-media/action.yml](.github/actions/publication-media/action.yml) | Bind the selected Python interpreter, install the canonical Pillow pin and verify its WebP backend before source-fixture collection. | configuration | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 
 ## .github/repository-intelligence/
 
@@ -918,6 +925,13 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [review/issue-169/2026-11-06-trusted-controller.md](review/issue-169/2026-11-06-trusted-controller.md) | Trusted reader-controller prerequisite scope, exact-source review and check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/2026-11-07-browser-media-controller.md](review/issue-169/2026-11-07-browser-media-controller.md) | Issue169 exact-source missing browser media dependency diagnosis, all-platform controller correction, independent review and acceptance route. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/2026-11-07-source-timeouts.md](review/issue-169/2026-11-07-source-timeouts.md) | Author-approved source and enclosing CI timeout amendment, preserved failure diagnosis, review and exact-source acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/2026-11-07-technical-route.md](review/issue-169/2026-11-07-technical-route.md) | Technical repository route scope, stable TR01–TR08 checks, independent review and source-bound delivery evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/browser-media-reviews-and-checks.tar.xz](review/issue-169/browser-media-reviews-and-checks.tar.xz) | Literal source-bound issue169 browser-media preflight and four-role first/correction reviews, original failures and corrected local checks. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/source-timeout-reviews-and-checks.tar.xz](review/issue-169/source-timeout-reviews-and-checks.tar.xz) | Literal independent timeout reviews, source manifests and actual check streams; original failures retained separately. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/technical-route-requirements-first.md](review/issue-169/technical-route-requirements-first.md) | Literal independent requirements preflight and bounded technical route scope treatment; historical review evidence, not current authority. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/technical-route-reviews-and-checks.tar.xz](review/issue-169/technical-route-reviews-and-checks.tar.xz) | Literal technical-route reviewer launches/results/corrections, public checksum proofs and original successful/failed source check reports; each retains actual source identity. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/trusted-controller-native-format-failure.log.gz](review/issue-169/trusted-controller-native-format-failure.log.gz) | Actual native Basic42294299712/job128155440694 formatting refusal at d3d76f7; retained without retry or source-test acceptance claims. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/trusted-controller-reviews-and-checks.tar.xz](review/issue-169/trusted-controller-reviews-and-checks.tar.xz) | Literal independent reviewer receipts/results and exact raw local source/security/check evidence, retaining first failures; hosted acceptance separate. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/trusted-controller-security-proof.json.gz](review/issue-169/trusted-controller-security-proof.json.gz) | Per-location exact public checksum proof, original scanner failures and exact Bandit source comparison; independent security review separate. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |

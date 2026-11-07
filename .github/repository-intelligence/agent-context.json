@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "6a826c93538437973300119ea2159efe61c0994390b2b4cbf470657250baca63",
+    "digest": "d746be04d87e3967fb75d00a1709ac7ad49ea77dab0aea02eab7f2a38099b509",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -42,7 +42,7 @@
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
         "identity_mode": "content",
-        "sha256": "cca61bab2ab0866641953f623698cc4628db3ebad7120b4b8fad205a3a354cca"
+        "sha256": "03bd620c57da46f8c8152975d34145587c2cacd71ac544242c00540eece00bcc"
       },
       {
         "path": ".github/acceptance/issue-102.json",
@@ -92,7 +92,7 @@
       {
         "path": ".github/acceptance/issue-169.json",
         "identity_mode": "content",
-        "sha256": "8792a5dfca5eefebbdd1ab2f65a641179c6a87253d4906028f0b3cb7f3532471"
+        "sha256": "1cd945f002e7c995538737f63dabe1b4d82e0735cf96382760c565aac430957f"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -190,6 +190,11 @@
         "sha256": "c8654276397cdb7d6396a33e8dd2fade5c3d838690c39b38346d1e76dd68703e"
       },
       {
+        "path": ".github/actions/publication-media/action.yml",
+        "identity_mode": "content",
+        "sha256": "cc2477b02dd5f684e398f87cfb51fd11f3ffcc4be223a31bcc11a70b86208873"
+      },
+      {
         "path": ".github/code-style.json",
         "identity_mode": "content",
         "sha256": "7f275850381b10adcc9cce83ecc8969fbbdd0d267ac565141c5bfef11fd4a7fc"
@@ -216,12 +221,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "a142887fe80eb9724fd54b19d17d7e6c0c56cf7ce161f12e470f52bda0372ab0"
+        "sha256": "90f224166d11fd767319f01b2283f923c1fbccec8f47512d6945473381a8f00d"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "dfd99adeac9b8f691f5573f492aca513247018a5a22513d8e86e9946f56850c3"
+        "sha256": "8c69ce4fc63e5b7fe3642bc02fec143a308a158e6f05ef6a60e64edb3eac990a"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -276,12 +281,12 @@
       {
         "path": ".github/workflows/site-checks.yml",
         "identity_mode": "content",
-        "sha256": "6ec06f40b53f23631a282adbcd38d42e6637b74e244851adb95dbfdebb523dcd"
+        "sha256": "2637b983517f1ef86fd5bab74994b7e44bca27d133e4f13c59d6ee23d2bd5198"
       },
       {
         "path": ".github/workflows/site-color-review.yml",
         "identity_mode": "content",
-        "sha256": "d184fb3e54d5c3a42901f10597313e4cd4da0f5d3d51cb0f7ba3ab30a9f4dbe2"
+        "sha256": "fc5861456ad5240f1179a68c127593265bc883bac0adebb65cc016d9bcdd76bc"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -316,7 +321,7 @@
       {
         "path": ".github/workflows/site-release-checks.yml",
         "identity_mode": "content",
-        "sha256": "143e605b47f9e9d4729062fb9701e69941c69580eefc64f67fb92fb98a7b9332"
+        "sha256": "f05ce4a8fbc8bb93f540726d35b9acba344ec0dcb5a3c1b8dcb2ae58014a077d"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -371,7 +376,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "d936be297471740edb4fd2ef4a2b456319038ad00906230e5a8c68281a2e2c8e"
+        "sha256": "b2b71a53d16009ea8e2ceea292935b99a57a9b70cbd97c837e47665b028dcd40"
       },
       {
         "path": "NOTICE.md",
@@ -755,7 +760,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "4d04212f1f3f7810ed9cc43695a57fb18c1bb3e3ed15249d2839e7dd80566258"
+        "sha256": "cf9e9278fef706632824441f17e0c85f0694996868d22b3bdfec8180bec82118"
       },
       {
         "path": "guides/SITE-CONTENT-RELEASE.md",
@@ -805,7 +810,7 @@
       {
         "path": "guides/SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "44c37986027125585e54787337da6debdd014b0b5b70c87518f92ed74d62f63a"
+        "sha256": "2537cc62310d19b7cf2d314a7808575e1aef371de2d37bc5afb3b089f10b66ed"
       },
       {
         "path": "guides/WEB-ORCHESTRATION.md",
@@ -1231,6 +1236,41 @@
         "path": "review/issue-169/2026-11-06-trusted-controller.md",
         "identity_mode": "content",
         "sha256": "c54939fe5e170ea020d2d8a9a2b4d687019a88b1b61dfc00e8bd8e873ac243c5"
+      },
+      {
+        "path": "review/issue-169/2026-11-07-browser-media-controller.md",
+        "identity_mode": "content",
+        "sha256": "8c910101633ab61c292f89189a4f7ee12dca8abb3ceec8951f0de5062f7a52d3"
+      },
+      {
+        "path": "review/issue-169/2026-11-07-source-timeouts.md",
+        "identity_mode": "content",
+        "sha256": "478c7c4b5a33d9793592526487758673c164b296dc7b45f7985c1df853dcd080"
+      },
+      {
+        "path": "review/issue-169/2026-11-07-technical-route.md",
+        "identity_mode": "content",
+        "sha256": "c359d4deae52628b83660a7927dd97011c770aaf2d354fa5c234c7f391d60c91"
+      },
+      {
+        "path": "review/issue-169/browser-media-reviews-and-checks.tar.xz",
+        "identity_mode": "content",
+        "sha256": "75d4eef6fed35353f940cb98ac8c218c70a6c53dfbbbfd716bcbc71eddd2d189"
+      },
+      {
+        "path": "review/issue-169/source-timeout-reviews-and-checks.tar.xz",
+        "identity_mode": "content",
+        "sha256": "c1e144678a8f55bd6e1ab0d80c4192eca46615631f9d4237f12cbb9afd91e95d"
+      },
+      {
+        "path": "review/issue-169/technical-route-requirements-first.md",
+        "identity_mode": "content",
+        "sha256": "49c1fcf522ede36f834811663852b46d287c61d26aece8894f811a08bace4902"
+      },
+      {
+        "path": "review/issue-169/technical-route-reviews-and-checks.tar.xz",
+        "identity_mode": "content",
+        "sha256": "9d5893bbe448eb766c383f0af226c96effd28f50a003512089f8ce22972bba56"
       },
       {
         "path": "review/issue-169/trusted-controller-native-format-failure.log.gz",
@@ -7355,7 +7395,7 @@
       {
         "path": "tests/analytics.test.cjs",
         "identity_mode": "content",
-        "sha256": "6a719a3d780ad376bde0fff83c440a81bff377c0ccbd42641ed78e14ec60da69"
+        "sha256": "a0566da02c26ef39f44eaaa0b36939c3eb0beaf1498e464ab5283df357420ab7"
       },
       {
         "path": "tests/architecture.test.cjs",
@@ -7370,7 +7410,7 @@
       {
         "path": "tests/article-browser-evidence.test.cjs",
         "identity_mode": "content",
-        "sha256": "e315cebd3d4647d6095f6c81bb9a85b2e2ecd3c967b8c9af09840ca7827e47ba"
+        "sha256": "666c3e9b5cc911d35e657aa5a9ac4ca0abdcc24ab342b76f03bbe985f1471c8b"
       },
       {
         "path": "tests/article-budgets.test.cjs",
@@ -7505,12 +7545,12 @@
       {
         "path": "tests/delivery-admission.test.cjs",
         "identity_mode": "content",
-        "sha256": "c39ae8ac7b8d2fc7a75b0d30957b622cccbddf8e1a3a9fdd1508e47699728081"
+        "sha256": "9cf8d520ad1127ee625a040d3c37fd3a2875f99e641a66a0df97fbbec6d5468e"
       },
       {
         "path": "tests/delivery-observation.test.cjs",
         "identity_mode": "content",
-        "sha256": "1377cb11b4ba6724fda9c3445ddcbcf94ad7e906234286311a5fd1d9a8d1aba5"
+        "sha256": "727fae8b51c2ed14882db4f1b79e1bac49aa97e23c9cb12913a9669aaae08789"
       },
       {
         "path": "tests/edition-retention.test.cjs",
@@ -7680,7 +7720,7 @@
       {
         "path": "tests/prepublication-reuse.test.cjs",
         "identity_mode": "content",
-        "sha256": "c0c3f9ca58ef38963b35d3c66087d3453dc17d454967fabea802e166f08b6842"
+        "sha256": "4373bf79fbe598cf757c0c0acacfbee33f0471c541cc2b91fb66de3290cee2df"
       },
       {
         "path": "tests/preview-smoke.test.cjs",
@@ -7700,7 +7740,7 @@
       {
         "path": "tests/publication-records.test.cjs",
         "identity_mode": "content",
-        "sha256": "c8ec850da9ecd6c735a9c5b911f36a2e2a938702bbf7ecd3c610a10758cc7beb"
+        "sha256": "2b01019eceb40b56e5133a97c509977833aed8a7b0f835b6d4e05c54a7172105"
       },
       {
         "path": "tests/publishing-history.test.cjs",
@@ -7730,12 +7770,12 @@
       {
         "path": "tests/quality-sources.test.cjs",
         "identity_mode": "content",
-        "sha256": "01840204fc5eb119e169588eab04dc4dddebdc9b5ba957bc8625e3165cdc2928"
+        "sha256": "6ba390f45773df49dd2c1ab3a4a75d9cdccd0920bc01cdf3c76a14f0dd6d9447"
       },
       {
         "path": "tests/quality.test.cjs",
         "identity_mode": "content",
-        "sha256": "aa5b35afef5c24324ee1448c63878496d9a0a6f123354a4f64f5d5c3ea7ad80f"
+        "sha256": "c0a448bced75e254bd4cd49e14850298a05a5bdbc765af655f8cca16b39772b4"
       },
       {
         "path": "tests/reader-controller.test.cjs",
@@ -7825,7 +7865,7 @@
       {
         "path": "tests/staging-regression.test.cjs",
         "identity_mode": "content",
-        "sha256": "2d5a169ffd9321667c33a3d21d37650cf0917eca889a5ac6c807bd38b9d3601c"
+        "sha256": "b269190e6e37043331466bd3508cedadb68d42042e67ad08a071b0a8f2a6ad16"
       },
       {
         "path": "tests/staging-reporting.test.cjs",
@@ -7845,7 +7885,7 @@
       {
         "path": "tests/test-profile-selection.test.cjs",
         "identity_mode": "content",
-        "sha256": "08e0ac9bce886f3d58923d43f8c1563144e17b8cd02f96bca16b12fa08fed1af"
+        "sha256": "ac74d0142245f53264924557febfbaf8d8c7698e35eeac4c2469e5211b7cead5"
       },
       {
         "path": "tests/test_browser_archives.py",
@@ -8260,7 +8300,7 @@
       {
         "path": "tools/quality/README.md",
         "identity_mode": "content",
-        "sha256": "3dd4d6200763e9dd5a9c7850ec57a64c2e3c4edac822d4392de20aff2c3d3d6d"
+        "sha256": "104105ed0384a7a1846e355bf1ee1991fac146383d8c052667507eb206e90da9"
       },
       {
         "path": "tools/quality/advisory-exceptions.json",
@@ -8270,7 +8310,7 @@
       {
         "path": "tools/quality/analytics-browser.cjs",
         "identity_mode": "content",
-        "sha256": "4747160b95b9c762a2b50ae20bc395dd1f7f2f293ffd9ea2c6b3d4a003714604"
+        "sha256": "ce24cb33ce805ab4c3dc987289b9eebb5f23b4483b79b2fe2872dea7d6bcdcd0"
       },
       {
         "path": "tools/quality/analytics-isolation.cjs",
@@ -8450,7 +8490,7 @@
       {
         "path": "tools/quality/delivery-admission.cjs",
         "identity_mode": "content",
-        "sha256": "63c2192a0653050e63137368ff7dcfd24ca12429a0136d4a04034b4a40c1cbfb"
+        "sha256": "2394bf4830590602ca53f8c32adaa206f40a5e267943664e5afd843c0459e316"
       },
       {
         "path": "tools/quality/delivery-git.cjs",
@@ -8465,12 +8505,12 @@
       {
         "path": "tools/quality/delivery-observation.cjs",
         "identity_mode": "content",
-        "sha256": "5446845544e8109f7ce3f99ef95e1660722ca378a180d67fb2083340dfa62d63"
+        "sha256": "9bb43a511a87f3ce3b14388b76c11d0e1d2b27265720732a92a21c7200d3f6ba"
       },
       {
         "path": "tools/quality/delivery-routing.cjs",
         "identity_mode": "content",
-        "sha256": "87895a82bd35e2396e68915fd202c6a989c1c14c37dced34f1a3d5f692e2e21d"
+        "sha256": "8fa772ba0837d7f8acf4a7df5b54615778e0107da01de43a389c3344269bcaa9"
       },
       {
         "path": "tools/quality/deploy-pages.example.yml",
@@ -8665,7 +8705,7 @@
       {
         "path": "tools/quality/scanners.cjs",
         "identity_mode": "content",
-        "sha256": "7c92709c202a178914e248e8a4b7bfb50c912a589558bdb5d0d75a640ae376f8"
+        "sha256": "c044ed2a6f6e89015a63b51b6db5b870d8fc0b86e65d2d320ff02a23daeed40f"
       },
       {
         "path": "tools/quality/scroll-browser.cjs",
@@ -8685,7 +8725,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "090fcb6ab6d5ff6f19c523939f045dc562eb3ac67b347bc9c73e1b27c9b0c4ea"
+        "sha256": "68b7d022ca716c3b4ee8c7a043cc2ebd0535b94f7bf134f3007ba96d5ed40005"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
@@ -8715,7 +8755,7 @@
       {
         "path": "tools/quality/source-tests.cjs",
         "identity_mode": "content",
-        "sha256": "792aec87f4abb3aec8c97b4a8d33cd958a643b8f6c77aaac4c5683d45aaf5086"
+        "sha256": "d9a870982b7ec3698696ce2192c0cfc25ae156785f9ab7cfaa3507c0fd2338cf"
       },
       {
         "path": "tools/quality/staging-gate.cjs",
@@ -8725,7 +8765,7 @@
       {
         "path": "tools/quality/staging-regression.cjs",
         "identity_mode": "content",
-        "sha256": "c33d08aecec46f22e8d1f86b62ba9f6f1bc2477d7219c27a6a654d77daa1237a"
+        "sha256": "2b4d7c56272eedc9a8cc9cc1a81df17ad58ee1bea2c136ca4c143f8533801497"
       },
       {
         "path": "tools/quality/stylelint.cjs",
@@ -8740,7 +8780,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "4387ea733880c0942f576a9d062f27c022d7527addc91cd798279bbd24943262"
+        "sha256": "4087b6a435796d14ae5e20db29744557e92e5cf37798e533dc873a067dd943b9"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -9900,6 +9940,17 @@
       "purpose": "Shared exact native browser archive restore and retained preparation-failure report.",
       "role": "configuration",
       "owner": "guides/BROWSER-ARCHIVES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "action.yml"
+    },
+    {
+      "path": ".github/actions/publication-media/action.yml",
+      "kind": "file",
+      "purpose": "Bind the selected Python interpreter, install the canonical Pillow pin and verify its WebP backend before source-fixture collection.",
+      "role": "configuration",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -12203,6 +12254,83 @@
         "AGENTS.md"
       ],
       "title": "Issue169 — trusted reader-controller correction"
+    },
+    {
+      "path": "review/issue-169/2026-11-07-browser-media-controller.md",
+      "kind": "file",
+      "purpose": "Issue169 exact-source missing browser media dependency diagnosis, all-platform controller correction, independent review and acceptance route.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue169 — browser fixture media controller"
+    },
+    {
+      "path": "review/issue-169/2026-11-07-source-timeouts.md",
+      "kind": "file",
+      "purpose": "Author-approved source and enclosing CI timeout amendment, preserved failure diagnosis, review and exact-source acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue169 — approved source execution allowances"
+    },
+    {
+      "path": "review/issue-169/2026-11-07-technical-route.md",
+      "kind": "file",
+      "purpose": "Technical repository route scope, stable TR01–TR08 checks, independent review and source-bound delivery evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Technical repository delivery — issue169 / PR174"
+    },
+    {
+      "path": "review/issue-169/browser-media-reviews-and-checks.tar.xz",
+      "kind": "file",
+      "purpose": "Literal source-bound issue169 browser-media preflight and four-role first/correction reviews, original failures and corrected local checks.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "browser-media-reviews-and-checks.tar.xz"
+    },
+    {
+      "path": "review/issue-169/source-timeout-reviews-and-checks.tar.xz",
+      "kind": "file",
+      "purpose": "Literal independent timeout reviews, source manifests and actual check streams; original failures retained separately.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "source-timeout-reviews-and-checks.tar.xz"
+    },
+    {
+      "path": "review/issue-169/technical-route-requirements-first.md",
+      "kind": "file",
+      "purpose": "Literal independent requirements preflight and bounded technical route scope treatment; historical review evidence, not current authority.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Requirements & Acceptance — independent first preflight"
+    },
+    {
+      "path": "review/issue-169/technical-route-reviews-and-checks.tar.xz",
+      "kind": "file",
+      "purpose": "Literal technical-route reviewer launches/results/corrections, public checksum proofs and original successful/failed source check reports; each retains actual source identity.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "technical-route-reviews-and-checks.tar.xz"
     },
     {
       "path": "review/issue-169/trusted-controller-native-format-failure.log.gz",
@@ -29598,6 +29726,16 @@
       "purpose": "Pinned browser supply action; integrity checks without prior browser launch.",
       "role": "configuration",
       "owner": "guides/BROWSER-ARCHIVES.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".github/actions/publication-media",
+      "kind": "directory",
+      "purpose": "Canonical browser-fixture Python/Pillow setup shared by staging and production functional jobs.",
+      "role": "configuration",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ]

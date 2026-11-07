@@ -202,7 +202,7 @@ jobs:
       needs.target.outputs.repository_only != 'true' &&
       (needs.target.outputs.mode == 'preview' || needs.begin-admission.result == 'success')
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 20
     outputs:
       prepublication_artifact: ${{ steps.prepublication.outputs.artifact-id }}
       prepublication_upload_digest: ${{ steps.prepublication.outputs.artifact-digest }}
