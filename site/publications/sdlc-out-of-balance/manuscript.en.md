@@ -2,7 +2,7 @@
 
 *Why automating the next bottleneck is an incomplete strategy for business return.*
 
-Vitalii Oborskyi · 6 November 2026 · R10 author-review edition · [vitaliioborskyi.ai](https://vitaliioborskyi.ai/)
+Vitalii Oborskyi · 7 November 2026 · R11 author-review edition · [vitaliioborskyi.ai](https://vitaliioborskyi.ai/)
 
 ![An accelerated coding stage tilts the delivery chain while people support the downstream work.](asset:hero)
 
@@ -32,7 +32,7 @@ Suppose we automate review successfully. If testing or integration still handles
 
 Now suppose we solve that too. Review, testing, deployment and operations can all handle 100. Have we secured the business return?
 
-Product, business, sales and marketing must discover and validate enough useful work to justify that capacity. This can require changes outside engineering: how opportunities are identified, decisions are made and results are evaluated. Producing features to keep a faster pipeline occupied would reverse the purpose of delivery.
+**Only if the additional capacity serves an explicit business objective.** If the business needs the same valuable outcomes at lower cost, it need not fill the faster pipeline. It may reduce capacity or redirect it toward reliability, quality and maintenance. If the objective is to deliver more useful change, product, business, sales and marketing must discover and validate enough worthwhile work to justify that capacity. This may require changing how opportunities are identified, decisions are made and results evaluated. Producing features merely to keep the pipeline occupied would reverse the purpose of delivery.
 
 Suppose there is enough useful work. Users still need time to discover features, learn them and change their habits. More releases do not automatically increase their capacity to absorb change. Even useful functionality can overwhelm people when adopting it requires too much adjustment.
 
@@ -94,7 +94,11 @@ A small team sharing roles may coordinate directly; an enterprise may need chang
 
 A large enterprise cannot assume it will rebalance itself within the investment horizon. Teams, vendors and legacy dependencies need coordinated change. If adjustment takes years or decades, the organisation keeps paying for tools, waiting work, rework and missed opportunities. Eventual adaptation does not erase those accumulated costs.
 
-The aim is an economically and operationally justified configuration of the whole delivery system, rather than maximum AI use.
+The objective matters as much as the configuration. For a mature product with stable demand, delivering the same required outcomes at lower total cost can be a rational AI-adoption strategy. Another organisation may prioritise faster experimentation, higher product value or capabilities that were previously too expensive to provide. These are different business hypotheses, not stages on a universal path to progress; each may require a different balance of capacity, controls and delegation.
+
+But cheaper coding or a smaller engineering team is not, by itself, proof of a cheaper delivery system. A cost-reduction strategy needs evidence that **total cost of ownership falls over the relevant horizon** while the agreed business outcomes, reliability, maintainability and recovery capability remain acceptable. Tool costs, additional verification, operational workload, incidents, complexity and the cost of future changes belong in that assessment. Reducing headcount may be justified; so may redeploying capacity. Neither conclusion follows from local throughput alone.
+
+The aim is an economically and operationally justified configuration of the whole delivery system, rather than maximum AI use or maximum delivery speed.
 
 Someone must own that rebalancing. Give an accountable owner the authority, budget and cross-functional support to change the system, then define a bounded pilot with a baseline, comparable work, success criteria and stop conditions.
 
@@ -104,7 +108,7 @@ Include a recovery drill in a safe test environment. An engineer who did not aut
 
 If extensive pilots are unaffordable, narrow the scope. Listen to the team, especially the sceptics. Their concerns may reveal costs that productivity dashboards miss. Examine those observations alongside the benefits; dismissing them as resistance can hide the problems the pilot needs to detect.
 
-Success means more useful change at acceptable total cost, with the team still able to explain, maintain and recover what it ships. Keep interventions that achieve that result. Change or stop those that merely move the cost.
+Success may mean the same useful outcomes at lower total cost, more value from the same resources, or a newly viable capability. In each case, the operating model must meet its agreed quality, workload and recovery constraints, with people still able to explain, maintain and recover what they own. Keep interventions that achieve the chosen result. Change or stop those that merely move the cost.
 
 **Who owns that end-to-end result, and has the means to rebalance it?**
 
@@ -134,5 +138,5 @@ This article develops the delivery-system argument from my DevCon Romania talk, 
 
 [Website and research](https://vitaliioborskyi.ai/) · [LinkedIn](https://www.linkedin.com/in/vitaliioborskyi/)
 
-© 2026 Vitalii Oborskyi. R10 author-review edition. Original text and diagrams: CC BY 4.0. AI-assisted hero illustration; third-party sources retain their rights.
+© 2026 Vitalii Oborskyi. R11 author-review edition. Original text and diagrams: CC BY 4.0. AI-assisted hero illustration; third-party sources retain their rights.
 
