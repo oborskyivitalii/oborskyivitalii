@@ -767,6 +767,8 @@ test('real Git collection keeps candidate bytes as data and rejects an otherwise
       'throw new Error("candidate code must never execute");\n'
     );
     fs.writeFileSync(path.join(root, 'README.md'), 'before\n');
+    fs.mkdirSync(path.join(root, 'tests'));
+    fs.writeFileSync(path.join(root, 'tests/delivery-observation.test.cjs'), 'before\n');
     git('add', '.');
     git('commit', '-qm', 'base');
     const main = git('rev-parse', 'HEAD');
@@ -873,6 +875,32 @@ test('real Git collection keeps candidate bytes as data and rejects an otherwise
         .filter((row) => row.category === 'hosted')
         .every((row) => row.required === false)
     );
+    git('checkout', '-q', head);
+    fs.writeFileSync(path.join(root, 'tests/delivery-observation.test.cjs'), 'after\n');
+    git('add', '.');
+    git('commit', '-qm', 'technical test maintenance');
+    const technicalHead = git('rev-parse', 'HEAD');
+    pr.head.sha = technicalHead;
+    git('checkout', '-q', main);
+    const unreviewed = await admission.collect(github, context, 122, root);
+    assert.deepEqual(unreviewed.blockers, ['review-exact-control-head']);
+    assert.match(unreviewed.nextAction, /Website staging is inapplicable/);
+    context.eventName = 'workflow_dispatch';
+    context.actor = 'oborskyivitalii';
+    context.payload = { inputs: { reviewed_sha: head } };
+    assert.equal((await admission.collect(github, context, 122, root)).state, 'blocked');
+    context.payload.inputs.reviewed_sha = technicalHead;
+    const technical = await admission.collect(github, context, 122, root);
+    assert.equal(technical.state, 'eligible-snapshot');
+    assert.equal(technical.selection.technicalRepository, true);
+    assert.equal(technical.lane, 'repository');
+    assert.equal(technical.evidence.length, 3, 'no hosted workflow or staging API is required');
+    failedSource = true;
+    await assert.rejects(admission.collect(github, context, 122, root), /required workflow failed/);
+    failedSource = false;
+    pr.head.sha = head;
+    context.eventName = 'workflow_run';
+    delete context.payload;
     failedSource = true;
     await assert.rejects(admission.collect(github, context, 122, root), /required workflow failed/);
     failedSource = false;
@@ -891,6 +919,7 @@ test('real Git collection keeps candidate bytes as data and rejects an otherwise
     const blocked = await admission.collect(github, context, 122, root);
     assert.equal(blocked.state, 'blocked');
     assert.deepEqual(blocked.blockers, ['review-exact-control-head']);
+    assert.match(blocked.nextAction, /Full checks and staging are still required/);
     assert.deepEqual(blocked.policy.changed, ['tools/wrapper.cjs']);
     context.eventName = 'workflow_dispatch';
     context.actor = 'oborskyivitalii';

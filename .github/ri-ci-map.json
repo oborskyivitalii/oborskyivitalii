@@ -715,7 +715,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "9dfb485c1d1724a9ad1645e2b342ec4501a595acf110b4244af75607e39da9a4",
+    "digest": "730ca8f2aff17e83865d6f5dfab7f0f6b23fe5e241c424de693d411e958a731d",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -731,7 +731,7 @@
       },
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
-        "sha256": "cca61bab2ab0866641953f623698cc4628db3ebad7120b4b8fad205a3a354cca"
+        "sha256": "03bd620c57da46f8c8152975d34145587c2cacd71ac544242c00540eece00bcc"
       },
       {
         "path": ".github/acceptance/issue-102.json",
@@ -771,7 +771,7 @@
       },
       {
         "path": ".github/acceptance/issue-169.json",
-        "sha256": "8792a5dfca5eefebbdd1ab2f65a641179c6a87253d4906028f0b3cb7f3532471"
+        "sha256": "1cd945f002e7c995538737f63dabe1b4d82e0735cf96382760c565aac430957f"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -863,7 +863,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "2ad3399d662306806f8d5b51418aabdccf2565f4bb6c13795b8271ae08e97f4d"
+        "sha256": "90f224166d11fd767319f01b2283f923c1fbccec8f47512d6945473381a8f00d"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -907,7 +907,7 @@
       },
       {
         "path": ".github/workflows/site-checks.yml",
-        "sha256": "9e5167051fe15c71224ff51ae8e453caf078538ab6d9666541f0e794c62fdbff"
+        "sha256": "2637b983517f1ef86fd5bab74994b7e44bca27d133e4f13c59d6ee23d2bd5198"
       },
       {
         "path": ".github/workflows/site-color-review.yml",
@@ -995,7 +995,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "e60dd82f5d3090398a51be5b3181fa3d81737947f8a73e5e4867755d88cf8aee"
+        "sha256": "cf9e9278fef706632824441f17e0c85f0694996868d22b3bdfec8180bec82118"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",

@@ -186,6 +186,9 @@ function selection(root, base, head) {
   const sources = { base: baseline, candidate: inputs(root, head), policy: baseline };
   const result = routing.analyze(records, sources, base, head, true);
   const content = routing.contentSelection(records, sources);
+  const technical = routing.technicalSelection(records, sources);
+  if (technical.eligible)
+    routing.repositoryObligations(result.obligations, result.analysis.reasons, base, head, true);
   return {
     base: before,
     candidate,
@@ -193,10 +196,12 @@ function selection(root, base, head) {
     ...result,
     content,
     contentOnly: content.eligible,
+    technical,
+    technicalRepository: technical.eligible,
     repositoryOnly:
       result.analysis.status === 'complete' &&
-      result.analysis.control === false &&
-      result.analysis.proposedLane === 'repository',
+      (technical.eligible ||
+        (result.analysis.control === false && result.analysis.proposedLane === 'repository')),
   };
 }
 function initialReport() {

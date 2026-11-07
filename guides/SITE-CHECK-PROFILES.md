@@ -479,7 +479,8 @@ Markdown extension or RI catalog role. Catalog/generated files cannot redefine
 their own authority. The existing `known_non_node_paths` suppresses only unknown
 Node fallback; directly affected suites and separate Python routes still apply.
 
-The full website/control route retains **B + R + O + H** below. Trusted R2 repository
+The full website/control route outside the bounded technical disposition retains
+**B + R + O + H** below. Trusted R2 repository
 selection uses the explicit website inapplicability described below; trusted content
 selection uses the existing content profile and accepted-platform proof. An advisory
 proposal cannot remove an obligation. Test sets come from the current registry and actual commands,
@@ -673,9 +674,25 @@ must not label skipped website work as passed. The source selector's
 `--repository-only` records no delegated website smoke; it still executes any
 actually affected Node modules and propagates their failures.
 
-All executable `tools/`/`tests/`, workflows/actions/acceptance and declared controls
-retain the conservative full route. In particular D03's repository purpose is
-not a cheap exemption for its executable. Mixed/unknown/rights/public inputs
+Executable trust and hosted dependency are separate in the issue169 technical
+extension. The protected selector can set `technicalRepository: true` for regular
+100644 test additions/modifications, monotonic new-test registry rows and exactly
+`tools/repository_intelligence.py`, `tools/check_code_style.py`, `tools/check_ri_ci.py`.
+Every existing registry row and every other policy field stays equal; added rows
+must identify newly added tests. Full source validation/affected Node and enduring
+Python run, plus source-bound locked security/advisories, lint/style/RI/owning.
+Tests remain executable controls requiring the exact reviewed_sha; source selection
+code is unchanged in an eligible future delta. Numeric task snapshots, test
+removal/rename/mode/type, selection/worker/runner/registry-policy edits,
+workflows/actions/admission/classifier/issuer, locks and scanner policy stay full.
+This enabling PR uses the old-main full route before any operational activation.
+The advisory D09 proposal remains conservative; only protected selection's explicit
+complete technical disposition can omit hosted obligations.
+
+RI/CI checksum-only refreshes may accompany eligible technical work only through
+the existing riIdentityCompatible check: all map semantics and identity input paths
+remain equal. Mapping/selection changes remain full; navigation verifies new hashes.
+ Mixed/unknown/rights/public inputs
 retain full obligations. See [activation, exact-SHA control review and protected
 recovery](SITE-STAGING.md#trusted-change-admission-and-repository-delivery).
 The delivered R3/#5 integration uses accepted-platform/history reuse and the
