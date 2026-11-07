@@ -17220,6 +17220,12 @@
       "purpose": "Literal R11 accepted-state preflight, source/history byte proof, independent reviews and current checks; final native observations remain separately source-bound.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/r11-stable-oracle-evidence.tar.xz": {
+      "kind": "file",
+      "purpose": "Preserved Draft preview oracle failure, independent correction and current pre-advancement test-impact audit/review/check evidence; native and hosted gates remain separate.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

@@ -4,7 +4,7 @@ Dated continuity, not live authority. Last verified: **2026-11-07**.
 
 ## Snapshot
 
-- Owner169 / Draft publication PR170; author source9fe9b70 is R11.
+- Owner169 / publication PR170; author source9fe9b70 is R11.
 - Protected main096ed26 includes accepted PR174 technical delivery/media fix.
 - Preview56f4 passed native build/publish/HTTP and bounded hosted desktop review.
 - Author accepted exact R11/PDF and requested full stable staging; no merge/production.
@@ -24,12 +24,16 @@ Dated continuity, not live authority. Last verified: **2026-11-07**.
 ## Open work
 
 - Current allocation: review/issue-169/2026-11-07-r11-stable-staging.md.
-- Previous preview/raw/independent receipts remain source-bound; no old pass relabel.
-- Accepted-state preparation a194: Basic28/28, targeted122/122, lint/security/
-  advisories/style/format/RI/owning automated checks pass; four roles completed.
-- Final receipt/tree needs actual native Ready/full stable delivery proof.
-- Local browser UnixsocketEPERM; shared cloud Chrome can inspect HTTPS deployment.
-- Full hosted narrow/no-JS/settled-history and exact PDF checks remain required.
+- Native e75:7source shards pass;1fails obsolete79-only preview oracle.
+- Failure42362774132 retained; no stage. PRDraft during correction.
+- Localc8 corrected13/13; new protocol requires complete test-impact audit
+  before Ready/new workflow stage/promotion/handoff with independent oracles.
+- Main-to-candidate source/stage/production routes audited; historical/negative
+  PR79cases retained. Worker deadline comment corrected; executable unchanged.
+- Affected route60/60 and Basic28/28 pass locally; format found only derived
+  ri-ci-map formatting/catalog registration, corrected before native.
+- Four final roles completed without blockers; RI29/style15/coupling23 pass.
+- Required final native and full owner stage remain; stable reader/PDF not observed.
 - Original whole article ACs stay open except historicalAC06.
 
 ## Next session

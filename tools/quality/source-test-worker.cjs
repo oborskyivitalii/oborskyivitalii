@@ -11,7 +11,7 @@ const assert = require('node:assert/strict'),
 // Profile selection was unfinished after its late 290-second start; its position
 // uses twice its separately measured pinned-Node duration. This is scheduling,
 // not selection or a timing guarantee: all modules retain four isolated workers
-// and the original 300-second deadline. Unknown future files follow by path.
+// and the current source-profile deadline. Unknown future files follow by path.
 const priority = [
   'tests/release-rights.test.cjs',
   'tests/executive.test.cjs',

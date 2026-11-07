@@ -28,6 +28,29 @@ selection and the existing admission/publisher own actual delivery.
 | Optional production regression | Manual dispatch when needed                                                                                       | Complete unchanged source/scanner/advisory/browser/native/Color/accessibility/failure/Lighthouse/CPU/soak/capture matrix and bounded passive ZAP. Its status never blocks publication.                                                                                                                                                                                                                               |
 | Diagnostics                    | Manual dispatch or a relevant changed-path selection                                                              | Historical export/configuration probes and experimental comparison suites. Preserve useful fault coverage; dated edition assertions do not run as every candidate's universal regression.                                                                                                                                                                                                                            |
 
+## Test-impact review before advancement
+
+Follow the [common pre-advancement protocol](../CONTRIBUTING.md#review-test-impact-before-advancing)
+for every change. Use the complete current PR/base diff and this registry, not
+only the last fix or failing module. Record the allocation in the existing
+owning issue review before requesting the next stage:
+
+| Affected concern | Required allocation |
+| --- | --- |
+| Behavior and dependencies | Accepted intent/AC and independent expected outcome; changed producers, consumers, both rename/deletion endpoints and fixture/environment requirements. |
+| Source checks | Registry inputs, baseline/additional suites, targeted PR selection, permanent staging/production membership and owning-policy checks. |
+| Hosted and release checks | Applicable preview, full/content staging, article/PDF/media journeys, production admission and post-deployment smoke; keep optional diagnostics distinct. |
+| Test disposition | Update, add, retain unchanged, retain historical/diagnostic, or remove obsolete coverage with its reason, surviving owner/route and acceptance effect. No change is valid when the existing oracle remains correct. |
+| Verification and freshness | Cheap affected result, exact source/contract identity, reusable unchanged evidence, remaining native/hosted/manual gates and retained failures. Refresh affected rows before advancement after relevant changes. |
+
+A PR number, edition/hash, workflow expression or old fixture in a test needs
+inspection, not automatic replacement. Keep intentional historical evidence and
+negative cases. Compare expectations to the accepted contract before changing
+assertions; code and tests agreeing alone cannot establish correctness. Required
+updates and blocker dispositions must be complete before a new expensive stage.
+Use the existing [QA allocation](#qa-findings-to-github-actions) and four-role
+review; do not add another full matrix, pipeline, or documentation-keyword test.
+
 ## PR feedback
 
 Default local command: `node tools/quality/local.cjs`. It needs no browser

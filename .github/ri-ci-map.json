@@ -719,7 +719,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "3f889848bf25bf9bc12b4d55ffa548df6d513f12219542d5ba48e0772dda8aeb",
+    "digest": "a7e2bbe2d89a2965e3f1f676183349e73a9c5fe731f4fe20ea9a05e438511218",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -867,7 +867,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "652afca9c2b65acf3acc248e67c51644e4581dd15d29bf2d94f81a96e48cc001"
+        "sha256": "909ddcdd67978737577a310390ec6a566d49bc0846e43d9d019d03f47e507be8"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -963,11 +963,11 @@
       },
       {
         "path": "AGENTS.md",
-        "sha256": "f8f13dd686d977fc90d8e9932c388842b3beedb046810a0be3c14302a9496d01"
+        "sha256": "31ef44be1936809de5690da0b505fba5cf600f62e9a33d34b9d90e806387ae4a"
       },
       {
         "path": "CONTRIBUTING.md",
-        "sha256": "804fb3da9a0bc7369bbd902313224221becc6c6b775536ca943f8664bf741442"
+        "sha256": "a175f65e207b653b323f81a7543bea5a80f1f49b8ab6c9666c63656727667f65"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -999,7 +999,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "16ce1ba2c96f4caa2c602c3478cd7d8b228bf0b65528c7ffc828b14d4a580d40"
+        "sha256": "aea03f28069a9bc114800bd7d7e60af7bfc1411a4abc83e7b5d6b86b6bb57b57"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",

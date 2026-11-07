@@ -41,3 +41,111 @@ Four actual distinct none-fork roles completed preflight/final or first reviews 
 All literal roles, actual launch parameters/handles, current byte manifest and raw initial/corrected scanner/targeted/owning observations are retained in r11-stable-staging-evidence.tar.xz. Initial stale-policy/symlink/preview diagnostic failures are not overwritten. Review-only checksum-proof extraction originally lacked the canonical rights-notice binding; its assertion correctly rejected that value. The completed proof now independently recomputes that native typed binding too, before any exact ledger admission. No product/source/scanner guard was relaxed for an oracle error.
 
 Final receipt/MEMORY/derived RI refresh preserves every reviewed executable/test/article/profile/PDF/image/catalog/rights/ledger-policy and public output byte. Local results remain attributed to cleana194; any API-recreated final head must match its prepared complete tree and receive its own actual native source/RI/owning/host/stage observations. No old/local pass supplies final-head admission. Next: native Ready → real latest admission pass → one owner /stage → full stable verification andSTOP. Current actual native/host outcomes are pending until observed in the owning live PR/issue.
+
+## Native Ready failure and bounded oracle correction
+
+Remote e75cbf0c/tree2e6ac085: native Ready source42362774132/1 completed seven successful shards; shard2 job128374437256 failed exactly one prototype-admission.test.cjs:352 assertion. It expected Draft79-only SITE_ARTICLE_PREVIEW, while the previously reviewed workflow has Draft&&(79||170). Raw failure/artifact13570825121 is preserved; complete source aggregation failed and no /stage was requested. Navigation42362774060 and owning42362774049 passed only that exact e75 source. Superseded Draft preview42362728000 was cancelled, not a hosted pass. Ready preview42362774561 may supply separate exact e75 browser observations; it does not repair source failure.
+
+Requirements continuation independently inspected actual source/history before correction. Change only the permanent test name/expected expression and ten bounded string-valued true/false cases using the exact asserted workflow expression in a100ms isolated Node vm. Finite Draft79/170 permits and unrelated/missing/empty PR plus nonprototype exclusions are explicit. Separate PR79-only Draft browser-smoke step conditions and actual workflow/admission code stay unchanged. No runtime, source/browser/security budget, scanner, image, article/PDF or release-gate changes. CS01/04/05/08/09/10: canonical test owner, existing permanent source route, focused readable function, affected check and independent reviews.
+
+Local corrected prototype/admission module13/13 passed with zero fail/cancel/skip/TODO on the prepared test bytes. Full latest current-head Ready source/navigation/owning remains required before owner full stage. Preserve all original failed evidence rather than an unchanged rerun. Scoped correction evidence is retained separately from the original stable-preparation archive; final four-role/current checks are recorded in the owning live PR before Ready.
+
+## 7 November — mandatory test-impact review before advancement
+
+The author requested continuing issue169 and reviewing/updating all affected tests
+before each workflow advancement, rather than discovering obsolete expectations
+through repeated staging attempts. This is an AC05/11 subcondition, TP01–TP04:
+complete current-base impact allocation; correct independent PR79/170 oracle;
+mandatory repeatable pre-advancement protocol with justified unchanged tests;
+current checks/reviews followed by full stable staging, reader/PDF inspection and
+STOP. No PR170 merge, production or platform posting is authorized here.
+
+Verified main096ed26abb018a52864d9f6fcea91e62731857d6 and remote publication
+e75cbf0c2d5ae8f62c4444ff5fac1c8add0070d9 before editing. Prepared correction
+c8e0c3713b4e0eaf046efda0c10d6351ca11ff8a was present locally, not remotely.
+Independent Requirements first preflight /root/test_preflight_requirements,
+explicit fork_turns none, inspected primary issue/PR snapshots, actual owners,
+complete-delta requirement and prepared correction before dependent protocol edits.
+Packet5dd77066162f532d3fbbc8aeffef4410b311daeb8f23f1e2cea6b8476305da13.
+No blocking preflight finding; completed review/native/live acceptance stayed open.
+Shared filesystem/platform context is not provider isolation attestation.
+
+### Current allocation and dispositions
+
+The audited main-to-c8 candidate has1009changed paths:810review/history,
+42generated public,64site,45tests,34tools,7.github and7root/guide owners.
+Inspection includes base-side dependencies and complete PR changes, not just the
+last failed assertion. Exact selectors and per-module inclusion reasons are
+retained in the evidence archive; plans establish selection, not executed passes.
+
+| Changed concern / independent contract | Source and execution allocation | Disposition |
+| --- | --- | --- |
+| Draft editorial selection and Ready admission | prototype-admission/review-flow; exact existing workflow Draft&&(79or170), Ready/deferred/latest-source/owner/attempt refusals | Correct only obsolete79-only article expression;10bounded positive/negative truth cases. Keep PR79-only Draft browser smoke, content fixture and old article print diagnostics. |
+| Accepted R11/catalog/tags/events/DevCon and materials | publisher/profile/history, article-materials/tags/content/site-articles/publication-records/rights; existing mandatory content and permanent profile routes | Reuse current accepted source/semantic/PDF/material descriptors; no fixed R10/R11 expectation found in routine executable tests. Preserve older edition proofs and refusal URLs as historical/negative inputs. |
+| Reader/navigation/archive/flight and generated closure | navigation/reader-controller/reader-mode/scroll-entry/site-engine/archive/Color, article-delivery/offline/media/budgets, build-cohesion/format-parity | Existing changed-source tests and manifest-derived current article/PDF oracles remain; actual hosted normal/narrow/no-JS/history/media/PDF observations still required. |
+| Packages, protected producer/consumer and staging reports | staging/reporting/regression, release-controller/archive/rights, current-artifact trusted-main integration and report negatives | Existing source/public/package/HTTP/attempt binding remains. Missing/substituted PDF URL/bytes/MIME, fallback resources and media prerequisites remain tested; no gate waiver. |
+| Source sharding, selection, browser environment and scanners | quality-sources/test-profile-selection, browser archive and RI/CI tests; publication-media in all3isolated browser consumers | Current600000ms bound, cap4, complete8shards and retained failures unchanged. One obsolete300-second worker comment is corrected without executable change. Exact scanner policies remain. |
+| Staging and production | Current registry selects75additional JS plus3Basic for stage;78JS for production. Full PR selects80additional JS, including5changed-path diagnostics. Permanent registry has78JS/10Python;18diagnostics/21task snapshots remain separate | Full platform route required for this mixed PR. Source/RI/owning/security/host/stage-functional/performance/gate/promotion/admission/receipt remain. Production authenticates exact successful stage and merged tree; no new production matrix or publication in this task. |
+| Enduring workflow instructions | CONTRIBUTING common pre-advancement owner; AGENTS router; SITE-CHECK-PROFILES allocation | Require audit before Ready/new stage/promotion/handoff, refresh affected rows for relevant changes, permit justified unchanged tests, independently establish intended oracle before edits. Existing four roles; no extra pipeline or keyword tests. |
+
+Literal inspection covers current tests, quality/staging/release sources and
+workflows for PR79/170, R10/R11, timeout and media setup assumptions. Checksums,
+pinned dependency hashes, old rights evidence and intentional PR79diagnostics
+are retained; blanket replacement would damage their meaning. Current first
+manifest article is the accepted SDLC edition; browser/PDF expectations derive
+from current descriptors. Current complete source plans and literal inventory
+are retained. This review reduces foreseeable stale-contract failures; it cannot
+prove absence of every defect or substitute for execution.
+
+Applicable style AC05 subcondition: CS01/04 canonical test/protocol owners;
+CS05 focused readable test/comment; CS08 positive/refusal coverage and existing
+routes; CS09bounded guard; CS10source-bound review/check evidence. Public runtime,
+article/PDF/assets, workflows, limits, security/rights policy and release gates
+remain byte-identical to the already accepted preparation.
+
+Local targeted source execution and final four-role results are appended below
+when observed. No current final-head native or stable pass is claimed by this
+allocation. Original42362774132failure remains failed. Next: affected cheap
+checks/reviews → current native Ready admission → one full owner stage → actual
+stable reader/PDF inspection → STOP/show.
+
+### Completed bounded checks and independent reviews
+
+All four distinct nonauthor roles completed against final packet
+215dfe2cf800b2d02eac45d02efd9a46bd9ca7671e183acccebd6bc7efdba15c:
+/root/test_preflight_requirements (first preflight and final),
+/root/test_impact_code, /root/test_route_whitebox (first/final) and
+/root/test_impact_exploratory. Actual spawn requests explicitly used fork_turns
+none; accepted handles and literal first/final results are preserved. No model or
+effort override. No remaining blocking finding in this bounded iteration.
+Requirements/Code/QA final judgments preserve TP04native and actual hosted gates.
+Exploratory disclosed tracked candidate MEMORY exposure; it treated its claims
+as review subjects, independently checked primary sources and did not use its
+reported passes as evidence. Provider model/context internals remain unknown.
+
+Own affected admission/review-flow/staging/reporting source60/60 and Basic28/28
+passed. Independent White-box executed203/203targeted cases and Code58/58;
+these overlap and are not a combined unique total. Code independently verified
+80/75/78PR/stage/production selection. Local Node24.22.1 differs from pinned
+native24.19, so none of these supplies native full admission. Style guard,
+style regressions15/15, RI29/29, coupling23/23, canonical formatting and
+119-source architecture guard pass after the documented corrections.
+
+Cheap preflight also caught inherited localc8metadata defects: its oracle evidence
+archive lacked a catalog entry and its coupling JSON was unformatted. Register
+that exact archive as history/CONTRIBUTING-owned, regenerate RI/coupling, format
+with the canonical config. Code inspected the exact catalog delta. Initial RI
+and style-query failures remain in the archive, followed by fresh verification.
+Incorrect early CLI paths/omitted--config and a symlinked local dependency cache
+were local invocation/setup failures, not product defects; they are retained.
+The cache was made regular with identical installed package bytes; source guard
+and its constraints were not changed. Final RI is fresh. Whole-file Python
+coupling semantics changed only through its computed reviewed-source identity.
+
+Final receipt/archival/MEMORY/derived-index changes preserve every reviewed
+protocol/test/comment and all unchanged public/controller/scanner-policy bytes.
+Exact literal reviews, launch receipt, primary source/selector plans, first
+failed native log and local failed/corrected results are retained together in
+r11-stable-oracle-evidence.tar.xz. Native final-head checks and actual full stable
+reader/PDF verification remain required. No failed run is relabeled, no issue
+checkbox is closed from this preparation, and no PR170merge/production occurs.

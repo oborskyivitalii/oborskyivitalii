@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "d98ffb813fb7243502cc9ae61579a30e732f4567b79c2e2a41e141d0cbb371c3",
+    "digest": "ec6315925dc8ba048e86577a014cf0d1cd8ce68e92eed7dab58ea235d5c4fecf",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -221,12 +221,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "652afca9c2b65acf3acc248e67c51644e4581dd15d29bf2d94f81a96e48cc001"
+        "sha256": "909ddcdd67978737577a310390ec6a566d49bc0846e43d9d019d03f47e507be8"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "fdc19ba09f924a398411d9a9b322981a2ad5434febce205e08baec157f1873a3"
+        "sha256": "e944b14d3bd2b5d0df8bc5ee273b1fc73d21ca619b9b3de89e0d01b5783713f8"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -351,12 +351,12 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "f8f13dd686d977fc90d8e9932c388842b3beedb046810a0be3c14302a9496d01"
+        "sha256": "31ef44be1936809de5690da0b505fba5cf600f62e9a33d34b9d90e806387ae4a"
       },
       {
         "path": "CONTRIBUTING.md",
         "identity_mode": "content",
-        "sha256": "804fb3da9a0bc7369bbd902313224221becc6c6b775536ca943f8664bf741442"
+        "sha256": "a175f65e207b653b323f81a7543bea5a80f1f49b8ab6c9666c63656727667f65"
       },
       {
         "path": "LICENSE-CODE.md",
@@ -376,7 +376,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "b90c6b39098e30a2d15d15405a6d8ef1295649878475586cb8e6e2f3cf42b4dd"
+        "sha256": "656ada285d644d39ad6e6c22cd4aaa14ba9ae6f5fa6e3ba17e3f3cca38d8e4b2"
       },
       {
         "path": "NOTICE.md",
@@ -895,7 +895,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "16ce1ba2c96f4caa2c602c3478cd7d8b228bf0b65528c7ffc828b14d4a580d40"
+        "sha256": "aea03f28069a9bc114800bd7d7e60af7bfc1411a4abc83e7b5d6b86b6bb57b57"
       },
       {
         "path": "guides/SITE-CONTENT-RELEASE.md",
@@ -2065,7 +2065,7 @@
       {
         "path": "review/issue-169/2026-11-07-r11-stable-staging.md",
         "identity_mode": "content",
-        "sha256": "263af6d34974265ddb46d97843551f1b0b984cd3f0320268df26f2cf7242ce8a"
+        "sha256": "f9b100b4ddd5609200e2fcacf6995b2b0c1f84b9cecdc7a883be444f02d77f3a"
       },
       {
         "path": "review/issue-169/2026-11-07-source-timeouts.md",
@@ -3301,6 +3301,11 @@
         "path": "review/issue-169/r11-review-kit-and-evidence.tar.xz",
         "identity_mode": "content",
         "sha256": "a230f9c29dfc8040225b10b2e11b5fe06ad00dc24bda8a55c0fc0daa6e7a1efb"
+      },
+      {
+        "path": "review/issue-169/r11-stable-oracle-evidence.tar.xz",
+        "identity_mode": "content",
+        "sha256": "4f5bc4fc33efd59773dd141a83235839285f37be029304ce32f2fa26d48231a3"
       },
       {
         "path": "review/issue-169/r11-stable-staging-evidence.tar.xz",
@@ -11610,7 +11615,7 @@
       {
         "path": "tests/prototype-admission.test.cjs",
         "identity_mode": "content",
-        "sha256": "79e91f505cc7c46b57baf122b3e6c7c3721e375783ece5e6d446d3c0d6bedd14"
+        "sha256": "3b6cd86a1eeb7397496a2cbe5de5282314411ab5c750d09f25945e4f5129dcfa"
       },
       {
         "path": "tests/publication-records.test.cjs",
@@ -12630,7 +12635,7 @@
       {
         "path": "tools/quality/source-test-worker.cjs",
         "identity_mode": "content",
-        "sha256": "490e22564920e7c7847ef5b581a9740e53e0f9b167c0214a9769a85bb32954fe"
+        "sha256": "b6d4b3909a564905bc4ab5a4ff626107ab5e4922c55008cd97da9c23bf81b9f5"
       },
       {
         "path": "tools/quality/source-tests.cjs",
@@ -20677,6 +20682,17 @@
         "AGENTS.md"
       ],
       "title": "r11-review-kit-and-evidence.tar.xz"
+    },
+    {
+      "path": "review/issue-169/r11-stable-oracle-evidence.tar.xz",
+      "kind": "file",
+      "purpose": "Preserved Draft preview oracle failure, independent correction and current pre-advancement test-impact audit/review/check evidence; native and hosted gates remain separate.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "r11-stable-oracle-evidence.tar.xz"
     },
     {
       "path": "review/issue-169/r11-stable-staging-evidence.tar.xz",
