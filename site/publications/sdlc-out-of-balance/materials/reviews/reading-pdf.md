@@ -1,0 +1,9 @@
+# R4 reading PDF — exact material review
+
+Owner: issue #169 / PR #170. Selected edition: sdlc-out-of-balance-en-r4-20261101. Source manuscript SHA256: 888dcbb81866b06d5f7729b3eca348fe488563bda60651368ee03851e0acabc2. Semantic edition SHA256: 40608f5e4b09b2ad7f12c0516d13f64e80a86971745c5ef74e69d6060a80c574.
+
+The selected source file `site/assets/publications/sdlc-out-of-balance/materials/reading.pdf` was imported unchanged from the verified original R4 exploratory archive at https://github.com/oborskyivitalii/oborskyivitalii/pull/170#issuecomment-6556455069. Archive SHA256 dfb2253bfe1e9667ca1fa5f864b91bfe919cfd02994ed522e8ef1d4111f7b2d5. Exact PDF SHA256 be35778ef93948ca7e809b7917faf1771d11e670e327a0dfc49d95ab4cfc2d98; 947,158 bytes; five pages. The import action independently verified archive and selected file hashes and required the PDF header. Six existing author-selected illustrations remain in the R4 article and print review.
+
+This is the **five-page reviewed R4 rendition** recorded in the earlier archive. It is not byte-identical to the later separately exported four-page ChatGPT review PDF. Do not claim those two print layouts are identical. R4 source additions include first-party Anthropic, Microsoft, GitHub, OpenAI and DORA context and a narrower systemic counterargument to review-only diagnosis. These are source-linked claims, not reproduced third-party graphics.
+
+The author has explicitly authorized publishing R4 to the site; original text, selected hero and non-brand diagrams retain their recorded authorship/CC BY 4.0 scope, and linked research retains its own terms. This review records the chosen immutable material and its evidence, not a new independent physical-device observation, permission to post on external platforms, staging approval or production release. All current-source publisher, rights, browser, merge and live gates remain necessary.

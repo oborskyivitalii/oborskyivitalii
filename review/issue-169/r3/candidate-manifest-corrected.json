@@ -1,0 +1,341 @@
+{
+  "schema": 1,
+  "phase": "corrected R3 author-review artifacts; not native/publication acceptance",
+  "digestMethod": "SHA256 of UTF-8 json.dumps(files, sort_keys=True, separators=(comma,colon))",
+  "files": [
+    {
+      "path": "COPY-INSTRUCTIONS.md",
+      "bytes": 2119,
+      "sha256": "f83188102d74c92a6d47d9f60409b2e5df595ac02abc4a6dc8accab793cd0cbc"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2246,
+      "sha256": "1f025cd3eaf95c9cf021a8bc68809f1cd3c882a2ee64758c8429da6be6c0fd88"
+    },
+    {
+      "path": "The_SDLC_Is_Out_of_Balance_R3.pdf",
+      "bytes": 1981992,
+      "sha256": "70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c"
+    },
+    {
+      "path": "article.review.html",
+      "bytes": 17031,
+      "sha256": "08abd7e25e70ec0e65dd4dbcb63ec3d2bccc88fd17bfde69c0ca0d89ac938ab6"
+    },
+    {
+      "path": "article.review.md",
+      "bytes": 12324,
+      "sha256": "988a44c9ee508cbb881f17b413bedc616db55a859efb649c0b285ab227919204"
+    },
+    {
+      "path": "author-scope.md",
+      "bytes": 1311,
+      "sha256": "7eed4fb02b4eaf834586b2053eac88b9cef74b9e892e0ddf18798c35f0008eb9"
+    },
+    {
+      "path": "build_review.py",
+      "bytes": 13216,
+      "sha256": "9c6fa7206b0cde1d5dceaa6931c163e1f6d4f39bee7a4e759b5cb4931af8fe3d"
+    },
+    {
+      "path": "delivery/ALT-TEXT-AND-CAPTIONS.md",
+      "bytes": 3117,
+      "sha256": "04f121ebeab9fd5d65640ab33e1b0a0c6097790e2b08098c6716f85daf3fb49d"
+    },
+    {
+      "path": "delivery/COPY-INSTRUCTIONS.md",
+      "bytes": 2119,
+      "sha256": "f83188102d74c92a6d47d9f60409b2e5df595ac02abc4a6dc8accab793cd0cbc"
+    },
+    {
+      "path": "delivery/The_SDLC_Is_Out_of_Balance_R3.html",
+      "bytes": 2817039,
+      "sha256": "18ccf54eeca0c9867cbad2e86146363138353228d207f91038b16816b6c3da94"
+    },
+    {
+      "path": "delivery/The_SDLC_Is_Out_of_Balance_R3.md",
+      "bytes": 12324,
+      "sha256": "988a44c9ee508cbb881f17b413bedc616db55a859efb649c0b285ab227919204"
+    },
+    {
+      "path": "delivery/The_SDLC_Is_Out_of_Balance_R3.pdf",
+      "bytes": 1981992,
+      "sha256": "70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c"
+    },
+    {
+      "path": "delivery/images/asymmetry.png",
+      "bytes": 176663,
+      "sha256": "638a68bb36912fdd7dbff45235d79994912ff38cd5fda902db51db4695bbe06d"
+    },
+    {
+      "path": "delivery/images/hero.png",
+      "bytes": 995621,
+      "sha256": "a43b9c72ed8f3560ae7c6e967730548be2f977fb0d1973b083dead16c633adf5"
+    },
+    {
+      "path": "delivery/images/imbalance-loop.png",
+      "bytes": 212773,
+      "sha256": "da05a299cc23463c0c8e607b1d11d80708b5a8d825fd9ed24e8207d8fef49857"
+    },
+    {
+      "path": "delivery/images/review-functions.png",
+      "bytes": 221665,
+      "sha256": "a87289a6cf6067c10fbe0663f732842a08335c6901c99917524e2c3d5ef963c6"
+    },
+    {
+      "path": "delivery/images/systemic-response.png",
+      "bytes": 168639,
+      "sha256": "5184c829d2e47cfd8deb933c3774b70787861ad1e107919c6fbb616ab182a0f2"
+    },
+    {
+      "path": "delivery/images/workstream-system.png",
+      "bytes": 240577,
+      "sha256": "ed2182751692a92b262ef7c806227583761d7b23099e1cd910a73e9509a85abf"
+    },
+    {
+      "path": "delivery/linkedin-article-R3.md",
+      "bytes": 12324,
+      "sha256": "988a44c9ee508cbb881f17b413bedc616db55a859efb649c0b285ab227919204"
+    },
+    {
+      "path": "delivery/linkedin-copy-ready-R3.html",
+      "bytes": 2701825,
+      "sha256": "7922977486ef9b4f2474e3762b1dc176e941f203a4d1aea8dd234009e038bd2c"
+    },
+    {
+      "path": "delivery/medium-article-R3.md",
+      "bytes": 12324,
+      "sha256": "988a44c9ee508cbb881f17b413bedc616db55a859efb649c0b285ab227919204"
+    },
+    {
+      "path": "delivery/medium-copy-ready-R3.html",
+      "bytes": 2701825,
+      "sha256": "7922977486ef9b4f2474e3762b1dc176e941f203a4d1aea8dd234009e038bd2c"
+    },
+    {
+      "path": "figures.json",
+      "bytes": 3104,
+      "sha256": "4c9b93e21759334a9225249c305a68a5f30d1af6057a845b14886da598630df0"
+    },
+    {
+      "path": "fonts/LATO-OFL-LICENSE.txt",
+      "bytes": 6074,
+      "sha256": "9648253641ec1d1f8ba2fbe8997909f7bfc48cc38537946f6272321788465b84"
+    },
+    {
+      "path": "fonts/LIBERATION-OFL-LICENSE.txt",
+      "bytes": 4415,
+      "sha256": "4a44de1b1ad61ccf343eadfd95ac82f71d96978191c971498695183e1673f961"
+    },
+    {
+      "path": "fonts/Lato-Bold.ttf",
+      "bytes": 21608,
+      "sha256": "b0d0db89bd2f7761e5bfca7642b0ab82d4ac8efd2c5ad462e1672d3cca83ffd7"
+    },
+    {
+      "path": "fonts/Lato-Italic.ttf",
+      "bytes": 10828,
+      "sha256": "58eb8f4cdda9d6862f04eea0f576eb0c21aebd4e224f8444116b2d541e31b9d2"
+    },
+    {
+      "path": "fonts/Lato.ttf",
+      "bytes": 24692,
+      "sha256": "23075358db9539fba8a37cf2676316950e895598c9c162fd1e918e91a575e40e"
+    },
+    {
+      "path": "fonts/Liberation-Serif-Bold.ttf",
+      "bytes": 4984,
+      "sha256": "4acbdfbf40eeef4028fedf3bc068ed5365a4e89c5320b70fc3984f081a15cf73"
+    },
+    {
+      "path": "fonts/Liberation-Serif.ttf",
+      "bytes": 3708,
+      "sha256": "d144d98949793c6744b4390e30103fdfbbacc966b214f4a449496e528de43029"
+    },
+    {
+      "path": "fonts/fontsource-lato-5.3.0.tgz",
+      "bytes": 490999,
+      "sha256": "50db251f16e9a6c35fe0177b4692b7ec78478b9734c9272d980a75343638aa5c"
+    },
+    {
+      "path": "fonts/lato-latin-400-italic.woff2",
+      "bytes": 24408,
+      "sha256": "bca1d88ada544d9c80872d4da27133fab6d347361fa26e932b47ec9559088fd0"
+    },
+    {
+      "path": "fonts/lato-latin-400-normal.woff2",
+      "bytes": 23580,
+      "sha256": "918b7dc3e2e2d015c16ce08b57bcb64d2253bafc1707658f361e72865498e537"
+    },
+    {
+      "path": "fonts/lato-latin-700-normal.woff2",
+      "bytes": 23040,
+      "sha256": "c447dd7677b419db7b21dbdfc6277c7816a913ffda76fd2e52702df538de0e49"
+    },
+    {
+      "path": "illustrations.py",
+      "bytes": 10612,
+      "sha256": "ed60142ae857b88033b5e8d0ccc3761d93bab86d6f32ef76027154e7e91f61c4"
+    },
+    {
+      "path": "images/asymmetry.png",
+      "bytes": 176663,
+      "sha256": "638a68bb36912fdd7dbff45235d79994912ff38cd5fda902db51db4695bbe06d"
+    },
+    {
+      "path": "images/asymmetry.svg",
+      "bytes": 105421,
+      "sha256": "26529b98ad2ad97f86e61011bf44d62f77732f2cc296fe01137fec3a7a29f88e"
+    },
+    {
+      "path": "images/cover-linkedin.jpg",
+      "bytes": 280458,
+      "sha256": "59b081771966dad2f7564c2998fbccf9fccecfb99488d55e2a512287e2e10bf4"
+    },
+    {
+      "path": "images/cover-og.jpg",
+      "bytes": 180447,
+      "sha256": "32dc634db7fcaa99ce8d1b0682e5397a0595ff30a18a127d0e5e5cde0aec3595"
+    },
+    {
+      "path": "images/hero.png",
+      "bytes": 995621,
+      "sha256": "a43b9c72ed8f3560ae7c6e967730548be2f977fb0d1973b083dead16c633adf5"
+    },
+    {
+      "path": "images/imbalance-loop.png",
+      "bytes": 212773,
+      "sha256": "da05a299cc23463c0c8e607b1d11d80708b5a8d825fd9ed24e8207d8fef49857"
+    },
+    {
+      "path": "images/imbalance-loop.svg",
+      "bytes": 86174,
+      "sha256": "741ce47215cc78c8272338941842037b3b22f5d2f5d24dc7cd7c79928b643217"
+    },
+    {
+      "path": "images/review-functions.png",
+      "bytes": 221665,
+      "sha256": "a87289a6cf6067c10fbe0663f732842a08335c6901c99917524e2c3d5ef963c6"
+    },
+    {
+      "path": "images/review-functions.svg",
+      "bytes": 104570,
+      "sha256": "5dcb7894e395e6c8a855ef34157f9cdd1505ca11adf01eda35e9b827777a5d00"
+    },
+    {
+      "path": "images/systemic-response.png",
+      "bytes": 168639,
+      "sha256": "5184c829d2e47cfd8deb933c3774b70787861ad1e107919c6fbb616ab182a0f2"
+    },
+    {
+      "path": "images/systemic-response.svg",
+      "bytes": 82408,
+      "sha256": "c97f25186141f36aec2dfbc871939fc2c13abe792936df0fe64c60b436b1cbb3"
+    },
+    {
+      "path": "images/workstream-system.png",
+      "bytes": 240577,
+      "sha256": "ed2182751692a92b262ef7c806227583761d7b23099e1cd910a73e9509a85abf"
+    },
+    {
+      "path": "images/workstream-system.svg",
+      "bytes": 112468,
+      "sha256": "13a34bea0880d724b51651b7f15d843387792a93b8d5fcb51c2d94d5b7843f61"
+    },
+    {
+      "path": "inputs/r2/images/cover-linkedin.jpg",
+      "bytes": 280458,
+      "sha256": "59b081771966dad2f7564c2998fbccf9fccecfb99488d55e2a512287e2e10bf4"
+    },
+    {
+      "path": "inputs/r2/images/cover-og.jpg",
+      "bytes": 180447,
+      "sha256": "32dc634db7fcaa99ce8d1b0682e5397a0595ff30a18a127d0e5e5cde0aec3595"
+    },
+    {
+      "path": "inputs/r2/images/hero.png",
+      "bytes": 995621,
+      "sha256": "a43b9c72ed8f3560ae7c6e967730548be2f977fb0d1973b083dead16c633adf5"
+    },
+    {
+      "path": "inputs/r2/manuscript.en.md",
+      "bytes": 10976,
+      "sha256": "2f2e086c913c2ceaa1162c3912b6c72c32e4a5837add30f92ed2e20039802e4d"
+    },
+    {
+      "path": "manuscript.en.md",
+      "bytes": 12294,
+      "sha256": "ec4c21d3864c9e3890fa0cacb7fea9dcadae42828a554f977b7eafcb7ab95baa"
+    },
+    {
+      "path": "package_review.py",
+      "bytes": 7724,
+      "sha256": "c2d2b381afa6a0217f50100815018940a789a436b2aad9ca8665871d0a9dea08"
+    },
+    {
+      "path": "platforms/linkedin-article.en.md",
+      "bytes": 12342,
+      "sha256": "91bed26d1efa434276df5917edf02f0ddd6022f996596650f6ed8637e26e318f"
+    },
+    {
+      "path": "platforms/linkedin-copy-ready.html",
+      "bytes": 13926,
+      "sha256": "f6a3191170b3ba95d38e75e908273817d74f399cbf1848f53efcec69c42fe332"
+    },
+    {
+      "path": "platforms/medium-article.en.md",
+      "bytes": 12342,
+      "sha256": "91bed26d1efa434276df5917edf02f0ddd6022f996596650f6ed8637e26e318f"
+    },
+    {
+      "path": "platforms/medium-copy-ready.html",
+      "bytes": 13926,
+      "sha256": "f6a3191170b3ba95d38e75e908273817d74f399cbf1848f53efcec69c42fe332"
+    },
+    {
+      "path": "review/checks.json",
+      "bytes": 907,
+      "sha256": "65a599f89deccc75379e11358a3288151fb4a3a28610000dffcd94001d7c8275"
+    },
+    {
+      "path": "review/figures-montage.jpg",
+      "bytes": 279342,
+      "sha256": "4e7da0b20ca1851a33069de503345d8bae617a6b27e85ce5625ce876a9fb4b21"
+    },
+    {
+      "path": "review/page-1.png",
+      "bytes": 283158,
+      "sha256": "d228a76bbc5115d66f0ab3afe7a894c60423bdf90e466a963ccbc44e22ffc816"
+    },
+    {
+      "path": "review/page-2.png",
+      "bytes": 143571,
+      "sha256": "059f791c744ab95d6a1b7abf80e7d5a66e66e97c2b47d270ea695366111911fd"
+    },
+    {
+      "path": "review/page-3.png",
+      "bytes": 155523,
+      "sha256": "7d58aac9ecb15b4ba97ec9558d5b637b231676c53a2240f4face68631b44c377"
+    },
+    {
+      "path": "review/page-4.png",
+      "bytes": 180558,
+      "sha256": "1f3caddfe0b9c611a4fa34e48c6a7fdd8a1f110161da6fd216a2b850b88d22c6"
+    },
+    {
+      "path": "review/page-5.png",
+      "bytes": 166771,
+      "sha256": "8c42ca379bd6e6412b34d8cf9ece5314d185c986a87400ea68cfdfdca70c09e3"
+    },
+    {
+      "path": "review/pages-montage.jpg",
+      "bytes": 373427,
+      "sha256": "4e47dd7cce9cf9ce07022ff5df673b5117605690a8e4b7aaf90f867b6a6ff7cc"
+    }
+  ],
+  "externalDependencies": [
+    "Installed package versions in review/checks.json; Matplotlib DejaVu Sans font bundle. Print bytes are not claimed reproducible."
+  ],
+  "packetSha256": "74e4d506e370f712e17ececb5593a093acb99abdcc3c1800a0cbe80809d47630"
+}

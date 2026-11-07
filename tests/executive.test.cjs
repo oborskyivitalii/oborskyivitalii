@@ -15,6 +15,32 @@ function issue159CopyFixture(t, names) {
   }
   return directory;
 }
+
+test('Writing carrier proof rejects altered source, geometry and resource bindings', () => {
+  const { verifyWritingCarrier } = require('../tools/check_site_seo.cjs');
+  const original = require('../review/issue-169/writing-carrier.json');
+  assert.doesNotThrow(() => verifyWritingCarrier());
+  for (const mutate of [
+    (record) => (record.schema = 999),
+    (record) => (record.issue = 0),
+    (record) => (record.producerChanges = {}),
+    (record) => delete record.producerChanges['tools/site/fallback.cjs'],
+    (record) => delete record.producerChanges['tools/site/offline.cjs'],
+    (record) => delete record.producerChanges['tools/build_site_previews.cjs'],
+    (record) => (record.predecessorSource = '0'.repeat(40)),
+    (record) => (record.producerChanges['tools/site/build.cjs'].beforeSHA256 = '0'.repeat(64)),
+    (record) => (record.producerChanges['tools/site/build.cjs'].afterSHA256 = '0'.repeat(64)),
+    (record) => (record.acceptedSvgSHA256 = '0'.repeat(64)),
+    (record) =>
+      (record.resource = record.resource.replace('writing-fallback', 'research-fallback')),
+  ]) {
+    const changed = structuredClone(original);
+    mutate(changed);
+    assert.throws(() =>
+      verifyWritingCarrier(require('node:path').resolve(__dirname, '..'), changed)
+    );
+  }
+});
 test('Research carrier reconstructs the accepted scene and rejects unknown producer or geometry identities', (t) => {
   const path = require('node:path');
   const seo = require('../tools/check_site_seo.cjs');
@@ -244,6 +270,96 @@ test('issue159 successor producer pins retain their prior inventory and reject c
   const added = path.join(directory, 'site/templates/components/archive-reading-link.html');
   fs.unlinkSync(added);
   assert.throws(() => seo.verifyWritingProducers(directory), /ENOENT/);
+});
+test('HTML parser successor preserves exact predecessor pins, current bytes and default parsing', (t) => {
+  const path = require('node:path');
+  const cp = require('node:child_process');
+  const vm = require('node:vm');
+  const crypto = require('node:crypto');
+  const seo = require('../tools/check_site_seo.cjs');
+  const record = seo.htmlParserProducer;
+  const predecessor = cp.execFileSync(
+    'git',
+    ['show', record.predecessorSource + ':' + record.path],
+    { cwd: path.resolve(__dirname, '..'), encoding: 'utf8' }
+  );
+  const current = fs.readFileSync(path.join(__dirname, '..', record.path), 'utf8');
+  const digest = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
+  assert.equal(digest(predecessor), record.beforeSHA256);
+  assert.equal(digest(current), record.afterSHA256);
+  const prior = { [record.path]: record.beforeSHA256, unrelated: 'f'.repeat(64) };
+  const next = seo.reviewedHTMLProducerBindings(prior);
+  assert.deepEqual(next, { ...prior, [record.path]: record.afterSHA256 });
+  assert.equal(prior[record.path], record.beforeSHA256, 'historical input is immutable');
+  assert.throws(
+    () => seo.reviewedHTMLProducerBindings({ [record.path]: record.afterSHA256 }),
+    /Exact prior HTML producer pin/
+  );
+  for (const mutate of [
+    (r) => (r.issue = 0),
+    (r) => (r.predecessorSource = '0'.repeat(40)),
+    (r) => (r.path = 'tools/site/unknown.cjs'),
+    (r) => (r.beforeSHA256 = '0'.repeat(64)),
+    (r) => (r.afterSHA256 = '0'.repeat(64)),
+    (r) => (r.extra = true),
+    (r) => delete r.path,
+  ]) {
+    const changed = structuredClone(record);
+    mutate(changed);
+    assert.throws(() => seo.reviewedHTMLProducerBindings(prior, changed), /Exact HTML/);
+  }
+  const oldModule = { exports: {} };
+  vm.runInNewContext(predecessor, { module: oldModule });
+  const parser = require('../tools/site/html.cjs');
+  const files = cp
+    .execFileSync('git', ['ls-files', 'docs/*.html', 'docs/**/*.html'], {
+      cwd: path.resolve(__dirname, '..'),
+      encoding: 'utf8',
+    })
+    .trim()
+    .split('\n')
+    .filter(Boolean);
+  const inert =
+    '<!-- <script src="comment.js"></script> -->' +
+    '<template><script src="template.js"></script></template>' +
+    '<script src="live.js">const text = "<img src=\'inert.jpg\'>";</script>' +
+    '<main title="a > b"><p>Text</p></main>';
+  for (const html of [
+    ...files.map((name) => fs.readFileSync(path.join(__dirname, '..', name), 'utf8')),
+    inert,
+  ]) {
+    const expected = JSON.stringify(oldModule.exports.documentElements(html));
+    assert.equal(JSON.stringify(parser.documentElements(html)), expected);
+    assert.equal(
+      JSON.stringify(parser.documentElements(html, { includeScriptSources: false })),
+      expected
+    );
+  }
+  assert.deepEqual(
+    parser
+      .documentElements(inert, { includeScriptSources: true })
+      .filter((element) => element.tag === 'script')
+      .map((element) => element.attributes.src),
+    ['live.js']
+  );
+  const writing = require('../review/issue-5/writing-catalog-amendment.json');
+  const home = require('../review/issue-122/2026-10-27-home-content-frame.json');
+  const names = [
+    ...new Set([
+      ...Object.keys(writing.producerInputs),
+      ...Object.keys(home.producerInputs),
+      'site/templates/components/archive-reading-link.html',
+    ]),
+  ];
+  const directory = issue159CopyFixture(t, names);
+  assert.doesNotThrow(() => seo.verifyHomeProducers(directory));
+  assert.doesNotThrow(() => seo.verifyWritingProducers(directory));
+  const target = path.join(directory, record.path);
+  for (const bytes of [predecessor, current + '\n// unreviewed parser\n']) {
+    fs.writeFileSync(target, bytes);
+    assert.throws(() => seo.verifyHomeProducers(directory), /Home producer changed/);
+    assert.throws(() => seo.verifyWritingProducers(directory), /Writing producer changed/);
+  }
 });
 test('issue159 CSS refuses relocation of the same exact reviewed block', (t) => {
   const path = require('node:path');
@@ -855,11 +971,23 @@ test('Talks reconciliation rejects missing events, substituted sources and inven
   );
   const html = readHTML(path.join(__dirname, '../docs/talks.html'));
   const preserved = restore(html, 'talks');
-  const cards = [...html.matchAll(/<article class="publication"[\s\S]*?<\/article>/g)]
+  const completedCards = [...html.matchAll(/<article class="publication"[\s\S]*?<\/article>/g)]
     .map((row) => row[0])
     .filter((card) => !card.includes('<span>Upcoming</span>'));
-  assert.equal(cards.length, 4, 'the four retained historical event cards');
+  assert.equal(completedCards.length, 5, 'four historical events and the completed DevCon talk');
   const recordingUrl = 'https://youtu.be/xSgWjuGqC9I?is=Rf9XOk8qrTw8I9aE';
+  const cards = [
+    recordingUrl,
+    'id="corning"',
+    'activity-7477275989761384448-k8J9',
+    'https://www.youtube.com/watch?v=1MPsDi3wuF4',
+  ].map((identity) => {
+    const matches = completedCards.filter((card) => card.includes(identity));
+    assert.equal(matches.length, 1, 'one retained historical event: ' + identity);
+    return matches[0];
+  });
+  const descriptions = [...html.matchAll(/<meta name="description"[^>]*>/g)];
+  assert.equal(descriptions.length, 1, 'one current Talks description');
   const mutations = [
     [cards[3], ''],
     [cards[1], ''],
@@ -881,12 +1009,7 @@ test('Talks reconciliation rejects missing events, substituted sources and inven
         '<a href="https://example.com/recording">Watch recording / slides</a></article>'
       ),
     ],
-    [
-      require('../review/issue-126/content-amendment.json').changes.find(
-        (change) => change.id === 'name="description"'
-      ).after,
-      '<meta name="description" content="including invented events">',
-    ],
+    [descriptions[0][0], '<meta name="description" content="including invented events">'],
     [recordingUrl, 'https://youtu.be/OtherVideo'],
     [cards[0], cards[0].replace(/<a class="text-link"[^>]+>Watch the recording[\s\S]*?<\/a>/, '')],
     ['AI Changes the Delivery System and the Product Itself', 'AI Proves Delivery Success'],
@@ -995,7 +1118,11 @@ test('practical positioning allowances reject unsupported claims, status and con
     ['talks', 'Invited speaker at Corning’s', 'Consulting partner of Corning’s'],
     ['talks', 'internal technical AI workshop', 'validated enterprise AI deployment'],
     ['talks', 'index.html#contact', 'https://unapproved.example/book'],
-    ['writing', '29 articles</p>', '27 articles</p>'],
+    [
+      'writing',
+      `${Object.keys(require('../site/content/catalog.json').records).length} articles</p>`,
+      '0 articles</p>',
+    ],
     ['index', 'credits.html#built-with-ai', 'credits.html#missing-case'],
     ['credits', 'I direct its architecture', 'AI autonomously directs its architecture'],
     [

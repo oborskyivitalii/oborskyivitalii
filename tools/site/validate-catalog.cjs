@@ -173,13 +173,17 @@ function validateLocalEdition(edition, record, primary) {
   validateLocalEventReferences(edition, !translation);
   validateBodyEquivalence(edition);
 }
+function archiveYear(record) {
+  const date = record.edition.datePublished || record.edition.dateModified;
+  return date ? date.slice(0, 4) : record.presentation.archiveYear || 'undated';
+}
+
 function writingEntries(c) {
   const topics = c.archive.topics;
   return c.structuredOrder
     .map(({ record: id }, order) => {
       const record = c.records[id];
-      const date = record.edition.datePublished || record.edition.dateModified;
-      return { id, record, year: date ? date.slice(0, 4) : 'undated', order };
+      return { id, record, year: archiveYear(record), order };
     })
     .sort((left, right) => {
       if (left.year !== right.year) {
@@ -432,6 +436,13 @@ function validatePresentation(c, id, record) {
       (typeof record.presentation.summary !== 'string' || !record.presentation.summary.trim()))
   )
     throw Error('Invalid structured publication presentation ' + id);
+  if (
+    Object.hasOwn(record.presentation, 'archiveYear') &&
+    (record.kind !== 'local-article' ||
+      typeof record.presentation.archiveYear !== 'string' ||
+      !/^[1-9]\d{3}$/.test(record.presentation.archiveYear))
+  )
+    throw Error('Invalid local archive year ' + id);
 }
 
 function validateCatalog(c) {
@@ -607,6 +618,7 @@ function validateLocalCatalog(c, resolveArticle) {
 module.exports = {
   validateCatalog,
   validateLocalCatalog,
+  archiveYear,
   writingEntries,
   catalogCounts,
   editionURL,

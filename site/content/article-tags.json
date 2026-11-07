@@ -72,6 +72,7 @@
   "articles": {
     "reader-reference": ["architecture", "verification"],
     "pmday-two-shifts": ["ai-delivery", "verification"],
-    "pmday-ai-both-sides": ["ai-delivery", "software-economics", "human-ai", "verification"]
+    "pmday-ai-both-sides": ["ai-delivery", "software-economics", "human-ai", "verification"],
+    "sdlc-out-of-balance": ["ai-delivery", "software-economics", "verification", "operating-models"]
   }
 }

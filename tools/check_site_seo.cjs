@@ -148,7 +148,11 @@ function createHTMLNormalizer(parser = helperContracts) {
   return Object.freeze({
     normalizeHTML,
     normalizeMany,
-    cacheStats: () => Object.freeze({ entries: normalizedHTML.size, bytes: normalizedHTMLBytes }),
+    cacheStats: () =>
+      Object.freeze({
+        entries: normalizedHTML.size,
+        bytes: normalizedHTMLBytes,
+      }),
   });
 }
 const { normalizeHTML, normalizeMany } = createHTMLNormalizer();
@@ -212,6 +216,97 @@ const researchCarrierInputs = [
   'tools/site/offline.cjs',
   'tools/site/snapshot.cjs',
 ];
+const writingCarrier = JSON.parse(
+  fs.readFileSync(path.join(root, 'review/issue-169/writing-carrier.json'), 'utf8')
+);
+
+function verifyCarrierRecord(successor) {
+  assert.equal(successor.schema, 1, 'Writing carrier schema');
+  assert.equal(successor.issue, 169, 'Writing carrier owner');
+  assert.equal(successor.predecessorSource, 'bd70996a386665e14f87440653e3a107fed15e43');
+  assert.deepEqual(Object.keys(successor.producerChanges).sort(), [
+    'tools/build_site_previews.cjs',
+    'tools/site/build.cjs',
+    'tools/site/fallback.cjs',
+    'tools/site/offline.cjs',
+  ]);
+}
+
+function carrierProducer(name, binding, successor) {
+  verifyCarrierRecord(successor);
+  const change = successor.producerChanges[name];
+  if (!change) return binding.afterSHA256;
+  assert.equal(change.beforeSHA256, binding.afterSHA256, 'Writing carrier predecessor producer');
+  const before = cp.execFileSync('git', ['show', successor.predecessorSource + ':' + name], {
+    cwd: root,
+  });
+  assert.equal(crypto.createHash('sha256').update(before).digest('hex'), change.beforeSHA256);
+  assert.match(change.afterSHA256, /^[a-f0-9]{64}$/);
+  return change.afterSHA256;
+}
+
+function verifyWritingCarrier(projectRoot = root, record = writingCarrier) {
+  verifyCarrierRecord(record);
+  for (const name of Object.keys(record.producerChanges)) {
+    assert.equal(
+      crypto.createHash('sha256').update(homeSourceFile(projectRoot, name)).digest('hex'),
+      carrierProducer(name, issue159.researchCarrier.producerChanges[name], record),
+      'Writing carrier producer bytes'
+    );
+  }
+  const previous = cp.execFileSync(
+    'git',
+    ['show', record.predecessorSource + ':docs/writing.html'],
+    {
+      cwd: root,
+      encoding: 'utf8',
+    }
+  );
+  const svg = previous.match(/<svg class="space-fallback"[\s\S]*?<\/svg>/)?.[0];
+  assert.ok(svg, 'Writing predecessor geometry');
+  assert.equal(crypto.createHash('sha256').update(svg).digest('hex'), record.acceptedSvgSHA256);
+  const builder = require('./site/build.cjs');
+  const fallback = require('./site/fallback.cjs');
+  assert.equal(
+    fallback.fromModel(
+      builder.model(projectRoot, builder.configuration(projectRoot).definitions),
+      'writing'
+    ),
+    svg,
+    'Writing geometry is unchanged'
+  );
+  const resource = fallback.routeResource(svg, 'writing');
+  assert.equal(resource.name, record.resource, 'Writing carrier identity');
+  assert.deepEqual(fs.readFileSync(path.join(projectRoot, 'docs', resource.name)), resource.bytes);
+  const revision = JSON.parse(fs.readFileSync(path.join(projectRoot, 'docs/site-revision.json')));
+  const route = revision.routes.writing;
+  assert.deepEqual(route.assets, [resource.name]);
+  for (const [name, prefix] of [
+    ['writing.html', ''],
+    [route.url, '../../'],
+  ]) {
+    const html = fs.readFileSync(path.join(projectRoot, 'docs', name), 'utf8');
+    const actual = html.match(/<svg class="space-fallback"[\s\S]*?<\/svg>/)?.[0];
+    assert.ok(actual, 'Writing carrier SVG');
+    assert.equal(
+      fallback.resolveRouteResource(
+        actual,
+        'writing',
+        route.assets,
+        (file) => fs.readFileSync(path.join(projectRoot, 'docs', file)),
+        prefix
+      ).html,
+      svg,
+      'Writing carrier reconstruction'
+    );
+  }
+  return {
+    route: 'writing',
+    resource: resource.name,
+    acceptedSvgSHA256: record.acceptedSvgSHA256,
+  };
+}
+
 const readerConsumer = JSON.parse(
   fs.readFileSync(path.join(root, 'review/issue-169/trusted-reader-producer.json'), 'utf8')
 );
@@ -245,8 +340,6 @@ function verifyResearchCarrier(
   record = issue159.researchCarrier,
   successor = readerConsumer
 ) {
-  // Preserve the historical Research record and authenticate only this reviewed
-  // consumer successor. Current producer changes cannot rewrite accepted history.
   const change = verifyReaderConsumer(successor);
   assert.equal(record?.schema, 1, 'Research carrier record');
   assert.equal(record.acceptedSource, '6b0248f9fc667d968140fa034278490f22c1480d');
@@ -254,21 +347,22 @@ function verifyResearchCarrier(
   assert.match(record.acceptedSvgSHA256, /^[a-f0-9]{64}$/);
   assert.deepEqual(Object.keys(record.producerChanges).sort(), researchCarrierInputs);
   for (const [name, binding] of Object.entries(record.producerChanges)) {
-    let currentSHA256 = binding.afterSHA256;
     if (name === 'tools/site/fallback.cjs') {
       assert.equal(binding.afterSHA256, change.beforeSHA256, 'reader consumer historical binding');
       const predecessor = cp.execFileSync(
         'git',
         ['show', successor.predecessorSource + ':' + name],
-        {
-          cwd: root,
-        }
+        { cwd: root }
       );
       assert.equal(
         crypto.createHash('sha256').update(predecessor).digest('hex'),
         change.beforeSHA256
       );
-      currentSHA256 = change.afterSHA256;
+      assert.equal(
+        carrierProducer(name, binding, writingCarrier),
+        change.afterSHA256,
+        'Writing and reader consumer successor differ'
+      );
     }
     assert.match(binding.beforeSHA256, /^[a-f0-9]{64}$/);
     const previous = cp.execFileSync('git', ['show', record.predecessorBaseline + ':' + name], {
@@ -281,7 +375,7 @@ function verifyResearchCarrier(
     );
     assert.equal(
       crypto.createHash('sha256').update(homeSourceFile(projectRoot, name)).digest('hex'),
-      currentSHA256,
+      carrierProducer(name, binding, writingCarrier),
       'Research carrier producer bytes: ' + name
     );
   }
@@ -344,6 +438,66 @@ function verifyResearchCarrier(
   };
 }
 
+const htmlParserProducer = Object.freeze({
+  issue: 169,
+  predecessorSource: '8cf15883125892710633b17133d9ee0fc4b23b92',
+  path: 'tools/site/html.cjs',
+  beforeSHA256: '202dd77650a535440dde742cc5aa2278057938c6430b941af097e5e6cbb547a8',
+  afterSHA256: '386b6503b6166646e49895e6cd8af8d84b3596accc979731590dd1dc382d3c3b',
+});
+
+function reviewedHTMLProducerBindings(bindings, successor = htmlParserProducer) {
+  assert.deepEqual(successor, htmlParserProducer, 'Exact HTML producer successor');
+  const reviewed = { ...bindings };
+  if (!Object.hasOwn(bindings, successor.path)) return reviewed;
+  assert.equal(bindings[successor.path], successor.beforeSHA256, 'Exact prior HTML producer pin');
+  const before = cp.execFileSync(
+    'git',
+    ['show', successor.predecessorSource + ':' + successor.path],
+    { cwd: root }
+  );
+  assert.equal(
+    crypto.createHash('sha256').update(before).digest('hex'),
+    successor.beforeSHA256,
+    'Immutable HTML producer predecessor'
+  );
+  // Only retention opts into live script sources. Historical producer frames
+  // keep their original pins; each owner still verifies the complete current file.
+  reviewed[successor.path] = successor.afterSHA256;
+  return reviewed;
+}
+
+const archiveProducerSource = 'd5e915feb3ba02d7a80325664c9d1d10a2ac494e';
+const archiveProducers = Object.freeze({
+  'tools/site/render-records.cjs': Object.freeze({
+    beforeSHA256: '24f1bec530b762009a6b03a1d91700e7ee5c56345a0b8d9a4a4c6f0ff561038c',
+    afterSHA256: '85a0478ec37ffd65778b6f10dad08d420c42559ec2faeb15786ff983e7c4006c',
+  }),
+  'tools/site/validate-catalog.cjs': Object.freeze({
+    beforeSHA256: '6a61f3af40e94c42b4240c1afb21a2a25474f2cf58381a2c40f12dea12becc6c',
+    afterSHA256: '4da744f7bbe52cc96be5df9c6f035bf1de8c9cb394baf8f1d2b1f8af1b6b7ef1',
+  }),
+});
+
+function reviewedArchiveProducerBindings(bindings, successors = archiveProducers) {
+  assert.deepEqual(successors, archiveProducers, 'Exact archive producer successors');
+  const reviewed = { ...bindings };
+  for (const [file, change] of Object.entries(successors)) {
+    if (!Object.hasOwn(bindings, file)) continue;
+    assert.equal(bindings[file], change.beforeSHA256, 'Exact prior archive producer pin');
+    const before = cp.execFileSync('git', ['show', archiveProducerSource + ':' + file], {
+      cwd: root,
+    });
+    assert.equal(
+      crypto.createHash('sha256').update(before).digest('hex'),
+      change.beforeSHA256,
+      'Immutable archive producer predecessor'
+    );
+    reviewed[file] = change.afterSHA256;
+  }
+  return reviewed;
+}
+
 function reviewedProducerBindings(bindings, additions = []) {
   assert.deepEqual(Object.keys(issue159.producerChanges).sort(), issue159ProducerPaths);
   const reviewed = { ...bindings };
@@ -353,7 +507,7 @@ function reviewedProducerBindings(bindings, additions = []) {
     assert.match(change.afterSHA256, /^[a-f0-9]{64}$/, 'Reviewed successor producer SHA256');
     reviewed[file] = change.afterSHA256;
   }
-  return reviewed;
+  return reviewedHTMLProducerBindings(reviewedArchiveProducerBindings(reviewed));
 }
 const positioning = JSON.parse(
   fs.readFileSync(path.join(root, 'review/issue-41/2026-10-09-positioning-amendment.json'), 'utf8')
@@ -1201,6 +1355,7 @@ function restore(html, page) {
 }
 function verify() {
   const researchCarrier = verifyResearchCarrier();
+  verifyWritingCarrier();
   const rows = [];
   verifyApprovedLicensingCSS();
   for (const page of ['index', 'research', 'writing', 'talks', 'credits']) {
@@ -1288,7 +1443,12 @@ function verify() {
 }
 if (require.main === module) process.stdout.write(JSON.stringify(verify(), null, 2) + '\n');
 module.exports = {
+  archiveProducers,
+  reviewedArchiveProducerBindings,
+  htmlParserProducer,
+  reviewedHTMLProducerBindings,
   verifyResearchCarrier,
+  verifyWritingCarrier,
   createHTMLNormalizer,
   verify,
   restore,

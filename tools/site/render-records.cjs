@@ -2,7 +2,7 @@
 
 const { contentLabel } = require('./render-content.cjs');
 const { escapeText, escapeAttribute } = require('./html.cjs');
-const { validateDate } = require('./validate-catalog.cjs');
+const { validateDate, archiveYear } = require('./validate-catalog.cjs');
 
 function dateLabel(value, catalog, septemberStyle = 'Sep') {
   if (!['Sep', 'Sept'].includes(septemberStyle)) throw Error('Invalid date presentation');
@@ -56,7 +56,7 @@ function publication(templates, record, variant, catalog, linked) {
     LANGUAGE: language,
     ARCHIVE_ATTRIBUTES:
       variant === 'archive'
-        ? `data-topic="${record.presentation.topic}" data-year="${date ? date.slice(0, 4) : 'undated'}"`
+        ? `data-topic="${record.presentation.topic}" data-year="${archiveYear(record)}"`
         : '',
     DATE: date || '',
     DATE_LABEL: date

@@ -92,7 +92,14 @@ function decoratePublic(dir) {
       },
     ])
   );
-  const retained = retention.capture(dir, base, { preserveActive: true });
+  // An article's replaced base snapshot was not a retained publication. But an
+  // older approved snapshot can still depend on the exact active base runtime.
+  // Capture keeps exact frozen declarations and immutable dependencies of surviving
+  // immutable documents; it does not retain every replaced active page.
+  const declared = retention.declaration(
+    JSON.parse(fs.readFileSync(path.join(__dirname, '../../site/retained/manifest.json')))
+  );
+  const retained = retention.capture(dir, base, { declared });
   fs.rmSync(path.join(dir, 'runtime'), { recursive: true });
   fs.rmSync(path.join(dir, 'snapshots'), { recursive: true });
   fs.rmSync(path.join(dir, 'article-snapshots'), { recursive: true, force: true });

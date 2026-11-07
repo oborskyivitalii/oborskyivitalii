@@ -10,13 +10,15 @@ function fixture(t) {
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'article-byte-budgets-'));
   t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
   fs.cpSync(path.join(__dirname, '../docs'), directory, { recursive: true });
+  // This fixture supplies its own sole article descriptor and alias inventory.
+  fs.rmSync(path.join(directory, 'articles'), { recursive: true, force: true });
   const html =
     '<!doctype html><html><body><svg class="space-fallback"><path/></svg><h1>Reader</h1></body></html>';
   for (const route of ['index', 'research', 'writing', 'talks', 'credits']) {
     fs.writeFileSync(path.join(directory, route + '.html'), html);
   }
   const alias = 'articles/bounded-reader.html';
-  fs.mkdirSync(path.join(directory, 'articles'));
+  fs.mkdirSync(path.join(directory, 'articles'), { recursive: true });
   fs.writeFileSync(path.join(directory, alias), html);
   const descriptor = { alias, assets: [] };
   fs.writeFileSync(

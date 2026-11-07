@@ -351,6 +351,48 @@ test('authored legal and edition changes directly select publication record cove
     assert.deepEqual(plan.conservativeFallback, [], changed + ' has direct declared ownership');
   }
 });
+test('reader and delivery owner changes select their directly consuming assertions without unknown fallback', () => {
+  const historical = new Set(
+    runner
+      .loadRegistry(root)
+      .tests.filter((row) => row.lifecycle === 'task-snapshot')
+      .map((row) => row.path)
+  );
+  for (const [owner, consumer] of [
+    ['tools/site/html.cjs', 'reader-mode'],
+    ['tools/site/articles.cjs', 'reader-mode'],
+    ['site/templates/components/reader-tools.html', 'reader-mode'],
+    ['site/engine/navigation.js', 'reader-mode'],
+    ['tools/quality/color-motion-contract.cjs', 'article-browser-evidence'],
+    ['tools/site/html.cjs', 'color-motion-contract'],
+    ['tools/release/edition.cjs', 'pages-delivery'],
+    ['tools/staging/color.cjs', 'site-engine'],
+    ['tools/check_site_seo.cjs', 'content-rendering'],
+    ['tools/check_site_seo.cjs', 'content'],
+    ['tools/site/articles.cjs', 'release-controller'],
+    ['tests/fixtures/reader-resource-links.json', 'navigation'],
+    ['tests/fixtures/r9-reader-history-runtime.json', 'color-motion-contract'],
+  ]) {
+    const selected = runner.select(root, 'pr', { changedPaths: [owner] });
+    assert.ok(
+      selected.modules.includes('tests/' + consumer + '.test.cjs'),
+      owner + ' → ' + consumer
+    );
+    assert.deepEqual(
+      selected.conservativeFallback,
+      [],
+      'explicit owner mapping, not broad fallback'
+    );
+    assert.ok(
+      selected.modules.every((file) => !historical.has(file)),
+      'current owner changes do not select historical task snapshots'
+    );
+  }
+  const unrelated = runner.select(root, 'pr', { changedPaths: ['site/engine/theme.js'] });
+  assert.ok(!unrelated.modules.includes('tests/reader-mode.test.cjs'));
+  assert.deepEqual(unrelated.conservativeFallback, []);
+});
+
 test('unknown changed source conservatively selects every permanent JS and never promotes historical snapshots', () => {
   const plan = runner.select(root, 'pr', { changedPaths: ['new-engine-extension.js'] });
   assert.deepEqual(plan.conservativeFallback, ['new-engine-extension.js']);
@@ -972,6 +1014,156 @@ test('selected execution keeps real process failure and accounting evidence with
   );
 });
 
+test('required Basic source admission cannot skip an incomplete shard matrix', () => {
+  const workflow = fs.readFileSync(path.join(root, '.github/workflows/site-checks.yml'), 'utf8');
+  assert.match(workflow, /source_shards:/);
+  assert.match(workflow, /shard: \[0, 1, 2, 3, 4, 5, 6, 7\]/);
+  assert.match(workflow, /needs: source_shards/);
+  assert.match(workflow, /always\(\) &&/);
+  assert.match(workflow, /needs\.source_shards\.result/);
+  assert.match(workflow, /source-test-shards\.cjs run --profile pr/);
+  assert.match(workflow, /source-test-shards\.cjs aggregate --profile pr/);
+  assert.match(workflow, /site-source-shard-/);
+  assert.match(workflow, /merge-multiple: false/);
+});
+
+test('bounded source shard identities cover every selected module once and reject substitution', () => {
+  const shards = require('../tools/quality/source-test-shards.cjs');
+  const files = [
+    'tests/release-rights.test.cjs',
+    'tests/release-controller.test.cjs',
+    'tests/pages-delivery.test.cjs',
+    'tests/pages-migration.test.cjs',
+    'tests/publication-records.test.cjs',
+    'tests/space.test.cjs',
+    'tests/executive.test.cjs',
+    'tests/staging.test.cjs',
+    'tests/site-engine.test.cjs',
+    'tests/article-media.test.cjs',
+    'tests/article-browser-evidence.test.cjs',
+  ].sort();
+  const groups = shards.split(files);
+  assert.equal(groups.length, 8);
+  assert.deepEqual(groups.flat().sort(), files);
+  assert.deepEqual(shards.split(files), groups, 'fixed source partition is repeatable');
+  assert.equal(shards.exactGroups(files, groups), true);
+  assert.throws(() => shards.split([...files, files[0]].sort()), /duplicate module/);
+  assert.throws(() => shards.exactGroups(files, groups.slice(1)), /eight/);
+  const corrupt = groups.map((group) => [...group]);
+  const index = corrupt.findIndex((group) => group.length);
+  corrupt[index].pop();
+  assert.throws(() => shards.exactGroups(files, corrupt), /shard identity|coverage/);
+
+  const identity = { sourceCommit: '1'.repeat(40), sourceTree: '2'.repeat(40), sourceDirty: false };
+  const plan = { profile: 'pr', modules: files };
+  const tap =
+    'TAP version 13\n# Subtest: witnessed leaf test\nok 1 - witnessed leaf test\n' +
+    '# tests 1\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n';
+  const receipts = groups.map((modules, i) => {
+    const active = modules.length > 0;
+    const output = active ? tap : '';
+    const report = {
+      schema: 1,
+      kind: 'source-tests',
+      profile: 'pr',
+      modules,
+      cleanSourceRequired: true,
+      status: active ? 'passed' : 'not-applicable',
+      pass: active ? true : null,
+      source: identity,
+      sourceAfter: identity,
+      ...(active
+        ? {
+            execution: {
+              status: 0,
+              signal: null,
+              error: null,
+              timeoutMs: 600000,
+              stdoutBytes: Buffer.byteLength(output),
+              stderrBytes: 0,
+            },
+          }
+        : {}),
+      result: active ? { total: 1, passed: 1, failed: 0, cancelled: 0, skipped: 0, todo: 0 } : {},
+    };
+    return {
+      report,
+      tap: output,
+      stderr: '',
+      meta: shards.packet(plan, i, identity, report, output, ''),
+    };
+  });
+  const result = shards.verify(root, plan, receipts, identity);
+  assert.equal(result.pass, true);
+  assert.equal(result.total, groups.filter((g) => g.length).length);
+  assert.equal(result.modules.length, files.length);
+  const changed = structuredClone(receipts);
+  changed[0].report.execution.status = 1;
+  assert.throws(
+    () => shards.verify(root, plan, changed, identity),
+    /reportSha256|not pass|deep|status/
+  );
+  changed[0].meta = shards.packet(plan, 0, identity, changed[0].report, changed[0].tap, '');
+  assert.throws(() => shards.verify(root, plan, changed, identity), /1 !== 0/);
+  const drifted = structuredClone(receipts);
+  drifted[0].report.sourceAfter = { ...identity, sourceTree: '3'.repeat(40) };
+  drifted[0].meta = shards.packet(plan, 0, identity, drifted[0].report, drifted[0].tap, '');
+  assert.throws(() => shards.verify(root, plan, drifted, identity), /source changed/);
+  const incomplete = structuredClone(receipts);
+  incomplete[0].tap = '';
+  assert.throws(() => shards.verify(root, plan, incomplete, identity), /tapSha256/);
+  assert.throws(
+    () => shards.verify(root, plan, receipts.slice(0, 7), identity),
+    /shard receipt count/
+  );
+});
+
+test('empty PR shard selection stays inapplicable and rejects coherently rehashed process errors', () => {
+  const shards = require('../tools/quality/source-test-shards.cjs');
+  const identity = { sourceCommit: '1'.repeat(40), sourceTree: '2'.repeat(40), sourceDirty: false };
+  const plan = { profile: 'pr', modules: [] };
+  const receipts = Array.from({ length: 8 }, (_, index) => {
+    const report = {
+      schema: 1,
+      kind: 'source-tests',
+      profile: 'pr',
+      modules: [],
+      cleanSourceRequired: true,
+      status: 'not-applicable',
+      pass: null,
+      source: identity,
+      sourceAfter: identity,
+      result: { total: 0, passed: 0 },
+    };
+    return {
+      report,
+      tap: '',
+      stderr: '',
+      meta: shards.packet(plan, index, identity, report, '', ''),
+    };
+  });
+  const result = shards.verify(root, plan, receipts, identity);
+  assert.equal(result.status, 'not-applicable');
+  assert.equal(result.pass, null);
+  assert.equal(result.total, 0);
+  assert.equal(result.shards.length, 8);
+  assert.throws(() => shards.verify(root, plan, receipts.slice(1), identity), /receipt count/);
+  for (const name of ['total', 'passed', 'failed', 'cancelled', 'skipped', 'todo']) {
+    const inconsistent = structuredClone(receipts);
+    inconsistent[0].report.result[name] = 99;
+    inconsistent[0].meta = shards.packet(plan, 0, identity, inconsistent[0].report, '', '');
+    assert.throws(() => shards.verify(root, plan, inconsistent, identity), /empty shard result/);
+  }
+  const changed = structuredClone(receipts);
+  changed[0].stderr = 'process setup failed';
+  changed[0].meta = shards.packet(plan, 0, identity, changed[0].report, '', changed[0].stderr);
+  assert.throws(() => shards.verify(root, plan, changed, identity), /process errors/);
+  changed[0].stderr = '';
+  changed[0].report.execution = { status: 1 };
+  changed[0].meta = shards.packet(plan, 0, identity, changed[0].report, '', '');
+  assert.throws(() => shards.verify(root, plan, changed, identity));
+});
+
 test('source scheduling starts expensive files early with isolated processes and preserves failure accounting', (t) => {
   const f = fixture(t),
     files = [
@@ -1013,9 +1205,9 @@ test('source scheduling starts expensive files early with isolated processes and
   );
   assert.equal(child.status, 0, child.stderr || child.stdout);
   assert.deepEqual(fs.readFileSync(log, 'utf8').trim().split('\n'), [
-    'tests/space.test.cjs',
-    'tests/executive.test.cjs',
     'tests/release-rights.test.cjs',
+    'tests/executive.test.cjs',
+    'tests/space.test.cjs',
     'tests/release-controller.test.cjs',
     'tests/pages-migration.test.cjs',
     'tests/staging.test.cjs',
@@ -1482,6 +1674,12 @@ test('source scheduling starts measured long files early without losing selected
   const f = fixture(t);
   const files = [
     'tests/ordinary-z.test.cjs',
+    'tests/test-profile-selection.test.cjs',
+    'tests/article-media.test.cjs',
+    'tests/publication-records.test.cjs',
+    'tests/release-rights.test.cjs',
+    'tests/executive.test.cjs',
+    'tests/space.test.cjs',
     'tests/site-articles.test.cjs',
     'tests/quality-sources.test.cjs',
     'tests/publishing.test.cjs',
@@ -1518,9 +1716,15 @@ test('source scheduling starts measured long files early without losing selected
   });
   assert.equal(child.status, 0, child.stderr || child.stdout);
   assert.deepEqual(fs.readFileSync(log, 'utf8').trim().split('\n').map(JSON.parse), [
+    'tests/release-rights.test.cjs',
+    'tests/executive.test.cjs',
+    'tests/space.test.cjs',
+    'tests/publication-records.test.cjs',
     'tests/publishing.test.cjs',
-    'tests/quality-sources.test.cjs',
     'tests/site-articles.test.cjs',
+    'tests/quality-sources.test.cjs',
+    'tests/article-media.test.cjs',
+    'tests/test-profile-selection.test.cjs',
     'tests/ordinary-a.test.cjs',
     'tests/ordinary-z.test.cjs',
   ]);
@@ -1692,6 +1896,43 @@ test('source scheduling uses configured worker capacity without exceeding its ce
     files.length
   );
   assert.deepEqual(fs.readdirSync(active), []);
+});
+
+test('article distribution guides select publisher, profile and reciprocal-material checks', () => {
+  for (const guide of ['guides/ARTICLE-WORKFLOW.md', 'guides/ARTICLE-MATERIALS.md']) {
+    const plan = runner.select(root, 'pr', { changedPaths: [guide] });
+    for (const file of [
+      'tests/publishing.test.cjs',
+      'tests/publishing-profile.test.cjs',
+      'tests/article-materials.test.cjs',
+    ]) {
+      assert.ok(plan.modules.includes(file), guide + ' must select ' + file);
+    }
+  }
+});
+
+test('reader oracle and rendition changes select their actual integration consumers', () => {
+  for (const [source, consumers] of [
+    [
+      'tools/quality/article-browser.cjs',
+      [
+        'tests/article-browser-evidence.test.cjs',
+        'tests/release-controller.test.cjs',
+        'tests/content-delivery.test.cjs',
+      ],
+    ],
+    ['tools/staging/color.cjs', ['tests/reader-controller.test.cjs']],
+    ['tools/staging/edition.cjs', ['tests/reader-controller.test.cjs']],
+    [
+      'tests/fixtures/article-flight.cjs',
+      ['tests/release-controller.test.cjs', 'tests/content-delivery.test.cjs'],
+    ],
+  ]) {
+    const plan = runner.select(root, 'pr', { changedPaths: [source] });
+    assert.deepEqual(plan.conservativeFallback, [], 'explicit route, not unknown-source fallback');
+    for (const consumer of consumers)
+      assert.ok(plan.modules.includes(consumer), source + ' must select ' + consumer);
+  }
 });
 
 test('repository-only selection omits website smoke and retains affected test failures', () => {

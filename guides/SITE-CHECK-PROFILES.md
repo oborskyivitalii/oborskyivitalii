@@ -28,6 +28,29 @@ selection and the existing admission/publisher own actual delivery.
 | Optional production regression | Manual dispatch when needed                                                                                       | Complete unchanged source/scanner/advisory/browser/native/Color/accessibility/failure/Lighthouse/CPU/soak/capture matrix and bounded passive ZAP. Its status never blocks publication.                                                                                                                                                                                                                               |
 | Diagnostics                    | Manual dispatch or a relevant changed-path selection                                                              | Historical export/configuration probes and experimental comparison suites. Preserve useful fault coverage; dated edition assertions do not run as every candidate's universal regression.                                                                                                                                                                                                                            |
 
+## Test-impact review before advancement
+
+Follow the [common pre-advancement protocol](../CONTRIBUTING.md#review-test-impact-before-advancing)
+for every change. Use the complete current PR/base diff and this registry, not
+only the last fix or failing module. Record the allocation in the existing
+owning issue review before requesting the next stage:
+
+| Affected concern | Required allocation |
+| --- | --- |
+| Behavior and dependencies | Accepted intent/AC and independent expected outcome; changed producers, consumers, both rename/deletion endpoints and fixture/environment requirements. |
+| Source checks | Registry inputs, baseline/additional suites, targeted PR selection, permanent staging/production membership and owning-policy checks. |
+| Hosted and release checks | Applicable preview, full/content staging, article/PDF/media journeys, production admission and post-deployment smoke; keep optional diagnostics distinct. |
+| Test disposition | Update, add, retain unchanged, retain historical/diagnostic, or remove obsolete coverage with its reason, surviving owner/route and acceptance effect. No change is valid when the existing oracle remains correct. |
+| Verification and freshness | Cheap affected result, exact source/contract identity, reusable unchanged evidence, remaining native/hosted/manual gates and retained failures. Refresh affected rows before advancement after relevant changes. |
+
+A PR number, edition/hash, workflow expression or old fixture in a test needs
+inspection, not automatic replacement. Keep intentional historical evidence and
+negative cases. Compare expectations to the accepted contract before changing
+assertions; code and tests agreeing alone cannot establish correctness. Required
+updates and blocker dispositions must be complete before a new expensive stage.
+Use the existing [QA allocation](#qa-findings-to-github-actions) and four-role
+review; do not add another full matrix, pipeline, or documentation-keyword test.
+
 ## PR feedback
 
 Default local command: `node tools/quality/local.cjs`. It needs no browser
@@ -47,9 +70,11 @@ repeating Basic source tests. The required Basic check remains independent.
 Selected Node source files execute in isolated processes using the available CPU
 allocation, capped at four file workers;
 tests within a file retain their serial default. The stable sorted selection is
-reported separately from execution order: selected Space and executive suites
-start first, then the remaining selected files. This overlaps measured expensive
-work rather than leaving Space at the end of CLI discovery. Every selected case,
+reported separately from execution order: selected files follow descending
+observed file durations from owner staging42309808371/1. The unfinished profile
+suite uses twice its separate pinned-Node measurement; unknown future files follow
+by path. This reduces the measured queue tail without promising a deadline pass.
+Every selected case,
 the 600-second process limit, 16MiB output bound, clean-source checks and complete
 zero-skip accounting remain. Reports retain the worker limit, execution order and
 observed host parallelism; timing is evidence for that run, not a speed guarantee.
@@ -263,6 +288,13 @@ it alone does not block delivery when every mandatory test and site budget passe
 Worker/scanner timeouts and browser/product performance budgets remain unchanged.
 
 The runner produces `stage-functional` and `stage-performance` reports.
+The existing article journey also checks each declared native PDF link against
+its exact selected-origin/base destination, served digest, status and MIME in
+all five capability observations. Later external reciprocal links remain
+separate and are not fetched by this PDF check. The quality runbook's pinned
+controller case checks current generated staging/production artifacts before
+another stage attempt during release-route reconciliation; candidate-only
+source tests do not establish protected-controller compatibility.
 `tools/quality/staging-gate.cjs` checks exact completeness, successful build/static/
 host/staging jobs, scanner reports and source/tree/artifact/origin identities,
 then emits `staging-gate` with `fullGate: false` and `productionEligible: false`.
@@ -311,6 +343,12 @@ indexing policy (`staging` or `production`); `validation_level` selects the test
 coverage. Full production regression can inspect an immutable staging candidate
 without claiming production-origin indexing/TLS/ZAP acceptance. A production
 origin must receive its applicable live checks separately. The explicit frozen production candidate supports Color; its staging edition never qualifies as production evidence.
+
+These full counts cover the five principal routes. The current article journey
+is separately exercised by preview, bounded staging and production smoke.
+Reader Lighthouse/motion remains the explicit `performance.cjs` /
+`reader-performance.cjs` diagnostic; the full five-route matrix does not claim
+article performance coverage. This disposition adds no publication dependency.
 
 See [SITE-RELEASE-GATES](SITE-RELEASE-GATES.md) for unchanged release budgets and
 [SITE-STAGING](SITE-STAGING.md) for controller, source leases, promotion and
@@ -371,29 +409,43 @@ Historical issue-specific policies remain source-pinned evidence; the current
 issue selects its own policy. Manual diagnostic workflows stay manual and are
 not counted as an automatic speed improvement.
 
-The source runner delegates execution to
-[`source-test-worker.cjs`](../tools/quality/source-test-worker.cjs). It starts
-the measured long `space`, `executive`, `article-media` and `release-rights` modules first,
-followed by measured `release-controller`, `pages-migration`, `site-engine`,
-`pages-delivery`, `publication-records` and `staging` modules, then
-the remaining selected files lexically, retaining the same selected set, Node
-process isolation, a maximum of four workers, native TAP and strict accounting.
-All selected modules, including Space, enter one worker invocation. The complete
-source execution retains one600-second deadline and one16MiB output bound;
-process isolation and priority ordering do not create additional source budgets.
-Every selected module requires complete zero-skip accounting. Retain the original
-single-process stdout/stderr, actual argv/status and source identities even when
-execution, accounting or source stability fails. Content-only plans use that same
-single-process evidence contract. The prepublication wrapper is630seconds:
-one600-second source execution plus30seconds for reporting, independent of the
-selected module count. Scanner180-second bounds and reporting grace remain unchanged. The7November
-issue169 owner amendment raises the shared source limit from300to600seconds and
-the enclosing PR-source, staging-build and reusable release-build jobs from10to20minutes.
-It preserves every selected case and all website/browser/performance budgets.
-The[25October #122 amendment](https://github.com/oborskyivitalii/oborskyivitalii/issues/122#issuecomment-6403603405) changes only this source deadline from180to300seconds
-after retained hardware-associated timeouts; it adds no CPU filter or retry policy.
-SIGTERM/SIGINT
-abort the owned runner and reap its children before timeout evidence is retained.
+The source runner still uses
+[`source-test-worker.cjs`](../tools/quality/source-test-worker.cjs) with a
+maximum of four isolated workers, original native TAP, 16 MiB output bound,
+strict accounting and 600-second process deadline. The original 1 November
+81-module single-runner execution completed only nine modules in 300 seconds.
+It was **failed**, not waived by changing test order.
+
+**1 November 2026 CI topology amendment — issue #169.**
+[`source-test-shards.cjs`](../tools/quality/source-test-shards.cjs) selects
+the _same entire_ registry-derived PR/staging module inventory and divides
+it into eight deterministic, non-overlapping groups using observed suite
+durations. Each group executes the unchanged 600-second source runner on
+an independent GitHub job and retains native TAP, stderr, full report and
+exact source/tree identity. This intentionally increases parallel runner
+capacity; it does not claim an unchanged aggregate CPU budget.
+
+The required Basic `checks` job is `always()`-eligible when the source
+matrix fails and must itself fail before any other checks if the source
+matrix was missing, skipped, cancelled or unsuccessful. On successful
+matrix execution, the aggregator requires **all eight** same-run/attempt
+artifacts, recomputes the complete selected module list from the exact
+protected base and candidate, rejects duplicate/missing/extra members,
+changed source identities, altered reports, nonzero child status,
+incomplete native TAP, empty selected suites, failures, cancellation,
+skips and TODOs. A shard with zero assigned modules may be explicitly
+inapplicable, never silently stand in for a required module.
+
+The previous content-only source-admitted reuse route retains its
+own strict source/raw accounting and remains conditional on its exact
+trusted baseline. The unchanged Basic formatter, architecture, lint,
+generated-output, rights, hosted, staging and production gates remain
+separate; **passing shards do not authorize deployment**. The normal
+one-process runner still serves targeted diagnostics and preserves
+the 600-second limit. Explicitly review the changed CI security and
+coverage boundary with independent code/white-box reviewers before
+marking Ready, staging, merging or releasing. No single reviewer
+or source plan may fabricate successful raw runner evidence.
 
 At every issue's completion, review its tests against PR smoke, bounded staging
 and full production coverage. Record additions, merged duplicate assertions,
@@ -730,6 +782,19 @@ The live #122 owner records current criterion acceptance. These historical seman
 walkthroughs cannot establish current content/recovery or issue-wide delivery;
 each still requires its complete source-bound checks and external evidence.
 
+### Planned-link and site-first distribution checks
+
+Issue169 uses the existing permanent `publishing.test.cjs`,
+`publishing-profile.test.cjs`, `publishing-history.test.cjs` and
+`article-materials.test.cjs` source suites. Their registry inputs select changed
+publisher/article/material code, opted-in profiles and the canonical article
+workflow guides. Agent routing retains the existing repository navigation checks. Oracles cover actual eight-format/launch outputs, character
+bounds, pending canonical/date state, exact publication proof, site-before-platform
+records and the zero-or-two observed reciprocal pair. Initial website compilation
+has no external platform dependency. Actual website/editor/posting/reciprocal HTTP
+observations remain external gates; selected tests do not claim they occurred.
+No new CI workflow, browser matrix, release route or budget is introduced.
+
 ## Browser fixture media dependencies
 
 The staging browser job and production Linux/Windows/macOS functional jobs build
@@ -746,3 +811,7 @@ fresh process with the selected interpreter. Missing Pillow and a missing pin
 remain errors. Functional collection diagnostics retain the primary error before
 secondary missing-article evidence; no article case or acceptance check is waived.
 Existing staging/production cases, profile boundaries and budgets remain unchanged.
+
+## 7 November R11 preview integration — issue #169
+
+Protected main096ed26 supplies the accepted600-second source deadline and20-minute enclosing jobs. The publication branch retains its complete eight-way PR source partition/strict aggregation; technical repository selection still runs all enduring Python/security/advisory gates from main. Prior300-second failures remain historical evidence; no browser/performance budget changed. This Draft R11 iteration stops at preview, with author acceptance and all later source/stable gates pending.

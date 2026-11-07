@@ -187,6 +187,65 @@ test('historical edition verification survives changed or absent authored portra
     JSON.stringify({ file: 'a-future-image.jpg', alt: 'A future description' })
   );
   assert.deepEqual(historical.verify(source.directory, source.record), social);
+  const articles = require('../tools/site/snapshot.cjs').verify(
+    path.join(source.directory, 'public'),
+    source.record
+  ).articles;
+  assert.ok(
+    Object.keys(articles).length > 0,
+    'actual accepted article participates in historical verification'
+  );
+  assert.throws(
+    () =>
+      historical.verify(source.directory, {
+        ...source.record,
+        components: { ...source.record.components, articles: {} },
+      }),
+    /archived article inventory differs/
+  );
+  const sitemap = path.join(source.directory, 'public/sitemap.xml');
+  const sitemapBytes = fs.readFileSync(sitemap, 'utf8');
+  const article = articles[Object.keys(articles).sort()[0]];
+  const articleURL = 'https://vitaliioborskyi.ai/' + article.alias;
+  assert.ok(sitemapBytes.includes('<url><loc>' + articleURL + '</loc></url>'));
+  for (const changed of [
+    sitemapBytes.replace('<url><loc>' + articleURL + '</loc></url>', ''),
+    sitemapBytes.replace(
+      '</urlset>',
+      '<url><loc>https://foreign.invalid/extra.html</loc></url></urlset>'
+    ),
+    sitemapBytes.replace(articleURL, 'https://foreign.invalid/' + article.alias),
+  ]) {
+    fs.writeFileSync(sitemap, changed);
+    const record = {
+      ...source.record,
+      ...artifact.manifest(path.join(source.directory, 'public')),
+    };
+    assert.throws(
+      () => historical.verify(source.directory, record),
+      /archived sitemap routes differ/
+    );
+  }
+  fs.writeFileSync(sitemap, sitemapBytes);
+  const articleFile = path.join(source.directory, 'public', article.alias);
+  const articleHTML = fs.readFileSync(articleFile, 'utf8');
+  fs.writeFileSync(
+    articleFile,
+    articleHTML.replace(
+      '<link rel="canonical" href="' + articleURL + '">',
+      '<link rel="canonical" href="https://foreign.invalid/article.html">'
+    )
+  );
+  const wrongCanonical = {
+    ...source.record,
+    ...artifact.manifest(path.join(source.directory, 'public')),
+  };
+  assert.throws(
+    () => historical.verify(source.directory, wrongCanonical),
+    /archived article canonical differs/
+  );
+  fs.writeFileSync(articleFile, articleHTML);
+  assert.deepEqual(historical.verify(source.directory, source.record), social);
   const index = path.join(source.directory, 'public/index.html');
   const original = fs.readFileSync(index, 'utf8');
   fs.writeFileSync(

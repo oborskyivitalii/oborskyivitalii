@@ -191,6 +191,62 @@ async function withFixture(callback) {
   }
 }
 
+test('planned site links reach all eight platform formats and launch without claiming publication', async () => {
+  await withFixture(async (root) => {
+    const { directory, edition } = fixture(root, 'reserved-article');
+    const expected = 'https://vitaliioborskyi.ai/articles/reserved-article.html';
+    const profile = JSON.parse(fs.readFileSync(path.join(root, directory, 'profile.json')));
+    const launch = 'Read: {{SITE_ARTICLE_URL}}\nPDF: {{SITE_PDF_URL}}\n';
+    write(root, `${directory}/launch-post.en.md`, launch);
+    profile.launch.sha256 = hash(launch);
+    profile.distribution = { originalLabel: 'Original article', materialsLabel: 'PDF and updates' };
+    json(root, `${directory}/profile.json`, profile);
+    const source = fs.readFileSync(path.join(root, directory, 'manuscript.en.md'));
+    const result = await renderKit(root, 'reserved-article');
+    const verified = await verifyKit(result.directory);
+    assert.equal(verified.distribution.articleUrl, expected);
+    assert.equal(verified.distribution.materialsUrl, expected + '#article-materials');
+    assert.equal(verified.distribution.state, 'planned');
+    assert.equal(verified.canonical, null);
+    for (const platform of ['linkedin', 'medium']) {
+      for (const suffix of ['.html', '.md', '.txt', '-copy-ready.html']) {
+        const output = fs.readFileSync(path.join(result.directory, platform + suffix), 'utf8');
+        assert.ok(output.includes(expected), platform + suffix);
+        assert.ok(output.includes(expected + '#article-materials'), platform + suffix);
+        assert.ok(output.includes('Original article'), platform + suffix);
+        if (suffix.endsWith('html')) assert.ok(output.includes(`href="${expected}"`));
+      }
+    }
+    for (const name of ['launch-post.md', 'launch-post.txt']) {
+      const output = fs.readFileSync(path.join(result.directory, name), 'utf8');
+      assert.ok(output.includes(expected));
+      assert.ok(output.includes(expected + '#article-materials'));
+      assert.doesNotMatch(output, /\{\{SITE_/);
+      assert.ok(!output.includes(expected + ' (' + expected + ')'));
+    }
+    assert.ok(fs.readFileSync(path.join(result.directory, 'article.md')).equals(source));
+    assert.ok(
+      !fs.readFileSync(path.join(result.directory, 'print.html'), 'utf8').includes(expected)
+    );
+    const article = loadArticle(root, 'reserved-article');
+    assert.equal(article.metadata.canonical, null);
+    assert.equal(article.metadata.published, null);
+    assert.equal(article.metadata.modified, null);
+    assert.deepEqual(article.events, []);
+    assert.equal(article.edition.semanticSha256, edition.semanticSha256);
+    assert.ok(!fs.existsSync(path.join(root, directory, 'publication-events')));
+    assert.ok(article.inputs.includes('site/publications/policy.json'));
+    const literalLaunch = 'Read: ' + expected + '\nPDF: ' + expected + '#article-materials\n';
+    write(root, `${directory}/launch-post.en.md`, literalLaunch);
+    profile.launch.sha256 = hash(literalLaunch);
+    json(root, `${directory}/profile.json`, profile);
+    const literalKit = await renderKit(root, 'reserved-article');
+    const literalText = fs.readFileSync(path.join(literalKit.directory, 'launch-post.txt'), 'utf8');
+    assert.ok(!literalText.includes(expected + ' (' + expected + ')'));
+    assert.ok(literalText.includes(expected + '#article-materials'));
+  });
+});
+
 test('bounded GFM AST preserves escaped pipes, code fences and heading source links', () => {
   const markdown =
     'Рішення `AI` [source][r]\n========================\n\n' +
@@ -916,6 +972,12 @@ test('canonical and actual dates require an exact committed artifact and product
     const { directory, metadata, edition } = fixture(root, 'event-profile', {
       figure: false,
     });
+    const profile = JSON.parse(fs.readFileSync(path.join(root, directory, 'profile.json')));
+    const launch = 'Read {{SITE_ARTICLE_URL}}\nPDF {{SITE_PDF_URL}}\n';
+    write(root, `${directory}/launch-post.en.md`, launch);
+    profile.launch.sha256 = hash(launch);
+    profile.distribution = { originalLabel: 'Original', materialsLabel: 'PDF' };
+    json(root, `${directory}/profile.json`, profile);
     const git = (args) => execFileSync('git', args, { cwd: root, encoding: 'utf8' }).trim();
     git(['init', '-q']);
     git(['config', 'user.email', 'tests@example.com']);
@@ -1032,8 +1094,68 @@ test('canonical and actual dates require an exact committed artifact and product
         }),
       /Observed document digest/
     );
+    const kit = await renderKit(root, 'event-profile');
+    const platformEvent = (platform, occurredAt = '2026-10-12T00:02:00Z') => {
+      const documentPath = platform + '.txt';
+      const output = kit.manifest.outputs.find((item) => item.path === documentPath);
+      const manifestPath = path.relative(root, path.join(kit.directory, 'manifest.json'));
+      const destination =
+        platform === 'medium'
+          ? 'https://medium.com/@author/article'
+          : 'https://www.linkedin.com/pulse/article';
+      return {
+        schema: 1,
+        id: platform + '-observed',
+        articleId: 'event-profile',
+        kind: 'publication',
+        platform,
+        url: destination,
+        occurredAt,
+        editionId: 'first-edition',
+        artifact: {
+          kind: 'distribution-kit',
+          id: kit.manifest.artifactId,
+          manifestPath,
+          manifestSha256: hash(fs.readFileSync(path.join(root, manifestPath))),
+          documentPath,
+        },
+        inspection: {
+          kind: 'platform-published',
+          url: destination,
+          observedAt: '2026-10-12T00:03:00Z',
+          httpStatus: 200,
+          documentSha256: output.sha256,
+          evidence: ['https://author.example/platform-observation'],
+        },
+      };
+    };
+    assert.throws(
+      () => appendPublicationEvent(root, 'event-profile', platformEvent('medium')),
+      /prior verified website/
+    );
+    assert.ok(
+      !fs.existsSync(path.join(root, directory, 'publication-events/medium-observed.json'))
+    );
+    json(root, `${directory}/publication-events/medium-observed.json`, platformEvent('medium'));
+    assert.throws(() => loadArticle(root, 'event-profile'), /prior verified website/);
+    fs.rmSync(path.join(root, directory, 'publication-events/medium-observed.json'));
     appendPublicationEvent(root, 'event-profile', event);
     assert.throws(() => appendPublicationEvent(root, 'event-profile', event), /EEXIST/);
+    assert.throws(
+      () =>
+        appendPublicationEvent(
+          root,
+          'event-profile',
+          platformEvent('medium', '2026-10-12T00:00:30Z')
+        ),
+      /prior verified website/
+    );
+    const wrongHost = platformEvent('linkedin');
+    wrongHost.url = wrongHost.inspection.url = 'https://example.com/not-linkedin';
+    assert.throws(() => appendPublicationEvent(root, 'event-profile', wrongHost), /platform host/);
+    for (const platform of ['medium', 'linkedin']) {
+      appendPublicationEvent(root, 'event-profile', platformEvent(platform));
+    }
     json(root, `${directory}/publication.json`, {
       ...accepted,
       canonical: url,

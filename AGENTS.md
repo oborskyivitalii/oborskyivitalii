@@ -35,6 +35,7 @@ Enduring rules and task routing. Issues own intent; PRs own execution;
 6. For PR work inspect the complete diff, base/head, commits, feedback, unresolved
    review, checks and Draft state. Continue work already authorized by the user.
 7. Edit authored owners; regenerate `docs/`, output locks and dependent previews.
+   Article distribution follows the [planned-link/site-first sequence](guides/ARTICLE-WORKFLOW.md#site-first-distribution).
    Generated output is never an editing source. Preserve provenance and edition rights.
    Follow repository ownership: site copies, recognition, RI and green CI cannot
    establish scientific acceptance, authorship, validation or institutional endorsement.
@@ -53,7 +54,8 @@ Enduring rules and task routing. Issues own intent; PRs own execution;
     `review/issue-N/YYYY-MM-DD-kind.md`, using [REVIEW-TEMPLATE](review/REVIEW-TEMPLATE.md).
     Give the issue a dated anchor, short outcome and exact file/section link;
     continue model changes on that same route. History never authorizes new work.
-11. Run the trusted lane's Basic and applicable mapped checks. Repository-only
+11. Before Ready or workflow advancement, complete the [test-impact review](CONTRIBUTING.md#review-test-impact-before-advancing).
+    Run the trusted lane's Basic and applicable mapped checks. Repository-only
     delivery omits website Basic/package work; other changes retain
     `node tools/quality/local.cjs`. After indexed
     path/source or memory changes run RI `build` and `verify`; RI/flow changes also

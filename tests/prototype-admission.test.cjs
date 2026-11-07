@@ -2,6 +2,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
+const vm = require('node:vm');
 const flow = require('../tools/staging/review-flow.cjs');
 const admission = require('../tools/staging/admission.cjs');
 const source = 'a'.repeat(40),
@@ -324,7 +325,7 @@ test('actual merge identity requires the complete tested tree and the real lates
   }
 });
 
-test('Draft jobs cannot impersonate admission; issue5 real-article preview alone opts into bounded browser smoke', () => {
+test('Draft admission stays deferred; article selection allows PR79/170 while bounded Draft smoke stays PR79-only', () => {
   for (const [file, deferred] of [
     ['site-checks.yml', 'Prototype source admission deferred'],
     ['navigation.yml', 'Prototype RI admission deferred'],
@@ -351,8 +352,26 @@ test('Draft jobs cannot impersonate admission; issue5 real-article preview alone
   assert.equal(articlePreview.length, 1);
   assert.equal(
     articlePreview[0][1],
-    "${{ needs.target.outputs.prototype == 'true' && needs.target.outputs.number == '79' && 'true' || 'false' }}"
+    "${{ needs.target.outputs.prototype == 'true' && (needs.target.outputs.number == '79' || needs.target.outputs.number == '170') && 'true' || 'false' }}"
   );
+  const selection = new vm.Script(articlePreview[0][1].slice(3, -2));
+  for (const prototype of ['true', 'false']) {
+    for (const [number, selected] of [
+      ['79', true],
+      ['170', true],
+      ['73', false],
+      ['', false],
+      [undefined, false],
+    ]) {
+      assert.equal(
+        selection.runInNewContext(
+          { needs: { target: { outputs: { prototype, number } } } },
+          { timeout: 100 }
+        ),
+        prototype === 'true' && selected ? 'true' : 'false'
+      );
+    }
+  }
   assert.doesNotMatch(
     yaml,
     /SITE_PAGES_STAGING_ENABLED|PAGES_RESULT|PAGES_ENABLED|needs\.pages|mirror-recovery|site-pages\.yml/

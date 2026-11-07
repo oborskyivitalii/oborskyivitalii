@@ -1,0 +1,158 @@
+{
+  "kind": "Prepared correction subset; dirty worktree, generated/RI outputs still to refresh, NOT clean native candidate",
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "base": "bd70996a386665e14f87440653e3a107fed15e43",
+  "localHead": "2d51128e6879be9170962a5d9c04b532f1f45d2a",
+  "intent": {
+    "path": "/workspace/scratch/dbe331636386/native-r3-evidence/correction-intent.md",
+    "sha256": "0f6d28ba8675f73ce9806795ca8716a941cb8c7b72b39c007d6271e66153c2d1"
+  },
+  "diff": {
+    "path": "/workspace/scratch/dbe331636386/native-r3-evidence/correction-review.diff",
+    "sha256": "5e115ec2a0d2867028d9a7d5f9d827b3d8fa650f4e9edb7012ea247b7038daa7"
+  },
+  "files": [
+    {
+      "path": "agents/reviewers/README.md",
+      "bytes": 6964,
+      "sha256": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb"
+    },
+    {
+      "path": "agents/reviewers/code-review.md",
+      "bytes": 2663,
+      "sha256": "26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697"
+    },
+    {
+      "path": "agents/reviewers/exploratory-interaction-qa.md",
+      "bytes": 2850,
+      "sha256": "280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a"
+    },
+    {
+      "path": "agents/reviewers/requirements-acceptance.md",
+      "bytes": 3268,
+      "sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6"
+    },
+    {
+      "path": "agents/reviewers/white-box-qa.md",
+      "bytes": 3266,
+      "sha256": "832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f"
+    },
+    {
+      "path": "review/issue-169/writing-carrier.json",
+      "bytes": 1051,
+      "sha256": "067834aa78ff870989e095b7dc8f79973cda0e9289621bd6d1c81500a4dd6de7"
+    },
+    {
+      "path": "site/README.md",
+      "bytes": 42166,
+      "sha256": "6696e8f54d09d314ad1b0dda5249dffbcd1a1a6e80c62316ec5d2dabe7e50436"
+    },
+    {
+      "path": "tests/article-browser-evidence.test.cjs",
+      "bytes": 32814,
+      "sha256": "4fb8e83b9d3ec2bdf6938a12d65511adbdddcdcbbb580a256eb1edf78fd24bcd"
+    },
+    {
+      "path": "tests/article-delivery.test.cjs",
+      "bytes": 15201,
+      "sha256": "ca61f4dc6a22274c4ad2189e1ce9243d871b0b6d60c9f52a6397bdc1d7b2b116"
+    },
+    {
+      "path": "tests/content-delivery.test.cjs",
+      "bytes": 16215,
+      "sha256": "71e0fc15d30997c89bee853a87d186aa30b3755c89759d16f487cbb8ceb8a042"
+    },
+    {
+      "path": "tests/content.test.cjs",
+      "bytes": 48249,
+      "sha256": "920f4a764d9d44d0ca61450d725561e75120efd887228975388f9c5021925e81"
+    },
+    {
+      "path": "tests/executive.test.cjs",
+      "bytes": 71046,
+      "sha256": "1353916fb0e096be47619e2ce202843e7aea03fdf56c7f720832bac1b15b8ae6"
+    },
+    {
+      "path": "tests/fixtures/article-flight.cjs",
+      "bytes": 10528,
+      "sha256": "1654392ecbe41a5571baf54a36cf8c64f1740e8158fc41afd971043c19640149"
+    },
+    {
+      "path": "tests/fixtures/delivery.cjs",
+      "bytes": 7984,
+      "sha256": "4bf3c43e42c63d5006d209d7c85acaceb86ad62b457e36c29882d71056b66adf"
+    },
+    {
+      "path": "tests/preview.test.cjs",
+      "bytes": 12579,
+      "sha256": "aaf17489d6f448ea694227a3fac22237002f15f857ef1024543b6878ddf109ff"
+    },
+    {
+      "path": "tests/reader-controller.test.cjs",
+      "bytes": 11990,
+      "sha256": "8c0df8dac972b1fb33ecf36ff01a49243dc0aaada8b872944f4fb43a2d7060e2"
+    },
+    {
+      "path": "tests/release-rights.test.cjs",
+      "bytes": 43031,
+      "sha256": "fcbf5d852890affd52bb857beeb69460351a5d275c424967108b4d839040b8e0"
+    },
+    {
+      "path": "tests/review-flow.test.cjs",
+      "bytes": 48630,
+      "sha256": "f9298acad79cd89b03576afcdf5c175ca179914e7f57f2051e4fdd9121a7dab1"
+    },
+    {
+      "path": "tests/site-engine.test.cjs",
+      "bytes": 47283,
+      "sha256": "01dfd51bf53cd71d60337d1e89baa1ecec75ae92ef2228e02e546e36ed3e689a"
+    },
+    {
+      "path": "tests/staging-reporting.test.cjs",
+      "bytes": 11495,
+      "sha256": "54aa4eec72d51a6b2dcc9646941bf5761d8e7c9530d5ae6528c3aa9a924fb457"
+    },
+    {
+      "path": "tools/check_site_seo.cjs",
+      "bytes": 56084,
+      "sha256": "da29d3ac6d58d591f5d18af566437af528d19772ace1a67f567ddacd3b08e67d"
+    },
+    {
+      "path": "tools/quality/artifact.cjs",
+      "bytes": 22845,
+      "sha256": "3dab8113e50df470c14a7f0e59d9a6ecae8b13ef799a8383b43538be37f9fc29"
+    },
+    {
+      "path": "tools/quality/content-fixture.cjs",
+      "bytes": 11699,
+      "sha256": "739bae6881332997fd47ab011ffabb438c503c7a2a1c144a8a76acf561dc34c8"
+    },
+    {
+      "path": "tools/quality/test-profiles.json",
+      "bytes": 131624,
+      "sha256": "8f5f6711647a0b7ae80781e34b1ad29a58897db90cbe171af5e3cde17b76490d"
+    },
+    {
+      "path": "tools/release/rights.cjs",
+      "bytes": 22714,
+      "sha256": "183b055ca9dc0eaec9ac849eee5a4fec1b991404356750d2f0c132e117648571"
+    },
+    {
+      "path": "tools/site/build.cjs",
+      "bytes": 34551,
+      "sha256": "3d9b80f989008ae487cccf4b38aea630bd4ddf62782a971e7e62142c9fbbc869"
+    },
+    {
+      "path": "tools/site/fallback.cjs",
+      "bytes": 11723,
+      "sha256": "0060c45f858b1669a1ab830c0de6ab4ba8a69d0f8589502bd4f17f8e545161d9"
+    }
+  ],
+  "rawEvidence": [
+    "pr-source-local-current.json",
+    "pr-source-local-current.tap",
+    "pr-source-local-current.stderr",
+    "correction-fourth.log"
+  ],
+  "bound": "Only permitted source/primary evidence; no current peer conclusions, native-reviews, parent notes or MEMORY. No source mutations, external writes or delegation. Read mandatory instructions and necessary authoritative owners. Role output only."
+}

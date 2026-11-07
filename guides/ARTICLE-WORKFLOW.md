@@ -152,19 +152,64 @@ explicit dependency direction, readable bounded adapters and exact-source checks
    Use `asset:<id>` Markdown image links to declared images, with matching alt text.
 4. Freeze substantive source into a content edition. A review can retain null
    commit/blob; accepted content requires exact committed source provenance.
-5. Generate one complete kit into staging, verify all bytes and install the whole
-   directory. An authored LinkedIn adaptation has its own source and edition with
-   an explicit relationship to the full article; formatting profiles add no prose.
-6. Review HTML, article PDF and platform candidates against the source/deck/rights.
-   Record human acceptance separately. A generated checksum proves bytes only.
-7. Publish site-first only through the existing release decision/controller. Set
-   a usable canonical URL after actual served-page acceptance. Until then kits
-   say canonical pending. Medium copy instructions require manual image upload;
-   inspect the actual published text, figures and canonical afterward.
-8. Append publication/correction events with actual URL/date and observed evidence.
-   Preserve every prior edition/artifact. Substantive revisions create new editions.
-   Classify feedback as editorial, conceptual, provenance or empirical; route
-   material research feedback upstream before changing its publication adaptation.
+5. Follow [site-first distribution](#site-first-distribution): prepare the stable
+   destination and complete platform/launch exports now, preserving pending
+   publication state. Authored adaptations retain their own source/edition.
+6. Review HTML, PDF and platform candidates against source/rights. Record actual
+   editorial/visual acceptance separately; checksums identify bytes only.
+   Before release, verify the article's intended Writing year/topic placement and
+   filters in ordinary HTML and the browser, even while publication is pending.
+7. Publish the website through the existing release/controller and verify the
+   exact served edition before recording a canonical URL, actual date or event.
+8. The author publishes LinkedIn and Medium manually after website verification,
+   in either order. Observe both actual article URLs/content and website backlinks,
+   then add both reciprocal materials together in one content-only website update.
+   Preserve prior editions/artifacts; substantive changes need new editions.
+
+### Site-first distribution
+
+For new site-first publications, declare `profile.distribution` with authored
+single-line `originalLabel` and `materialsLabel`. The publisher derives the stable
+article destination from `site/publications/policy.json` and `publication.slug`:
+`productionOrigin/articles/<slug>.html`. Keep that slug stable once copies are
+shared. A later address change requires an explicit redirect/continuity decision.
+No parallel URL registry or placeholder public page is needed. Historical profiles
+without this opt-in preserve their earlier packaging contract.
+
+The ordinary planned backlink and stable `#article-materials` destination are
+added as labelled distribution furniture to all selected HTML, Markdown, TXT
+and copy-ready formats. They are outside manuscript/print/semantic content and
+count toward the authored platform character limits. Launch source must include
+`{{SITE_ARTICLE_URL}}` and `{{SITE_PDF_URL}}` or those exact destinations; generated
+launch MD/TXT resolves the tokens. Source hashes retain the authored launch;
+manifest distribution data records the planned destination/state. Rendered copy
+is preparation, not a statement that the page is already live.
+
+Keep `canonical`, actual publication dates and events pending until existing
+exact production-artifact/served-byte validation succeeds. The production edition
+already emits the stable HTML canonical; planned copy links never satisfy that
+validation or authorize a deployment. Campaign `articleUrl` remains observed-only.
+An accepted local article's catalog `presentation.archiveYear` may place it in
+the intended Writing year before that observation. It controls archive grouping
+and filtering only; it supplies no publication date, time element or event.
+Observed edition dates take precedence. Without either, the row remains undated.
+After accepted website proof, publish both platforms manually, check actual text,
+images, credits and the website backlink, and record their actual URLs/dates using
+existing source-bound publication events. Opted-in platform events must name the
+real platform host and follow website inspection for the corresponding base
+edition. CI cannot operate or prove the author's native-editor actions.
+
+Hold reciprocal items private/unapproved while collecting observations. The
+opted-in materials block admits either no platform pair (initial website release)
+or both reviewed LinkedIn/Medium links together, each bound to an actual matching
+platform-edition event and pinned observation. Add the pair through one existing
+content release; no manuscript/PDF change or new content edition follows from
+links alone. The later platform dependency never blocks initial website release.
+
+Existing permanent publisher/profile/material/history suites enforce preparation,
+pending-state separation, malformed/stale proof refusals and pair admission. They
+run through the existing registered PR-targeted/staging/production source routes;
+no second workflow/controller, native posting bot or new browser matrix is added.
 
 Events name a content edition and typed immutable artifact reference with manifest
 and document hashes. A site event binds the coherent production site artifact and

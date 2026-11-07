@@ -7,6 +7,7 @@ const {
   validateCatalog,
   validateLocalCatalog,
   catalogCounts,
+  writingEntries,
 } = require('../tools/site/validate-catalog.cjs');
 const { publication } = require('../tools/site/render-records.cjs');
 const { loadComponents, routeInput } = require('../tools/site/content.cjs');
@@ -236,6 +237,65 @@ test('local catalog supports three distinct pinned relationships and undated acc
     1
   );
   assert.throws(() => validateLocalCatalog(input.catalog), /selected article source models/);
+});
+
+test('local archive classification preserves pending dates and yields to observed edition dates', () => {
+  const input = fixture();
+  input.original.presentation.archiveYear = '2026';
+  input.original.presentation.topic = 'delivery';
+  input.catalog.structuredOrder = [
+    { record: 'publication-97' },
+    ...input.catalog.structuredOrder.filter(({ record }) => record !== 'publication-97'),
+  ];
+  assert.equal(verify(input), input.catalog);
+  const route = require('../site/routes.json').routes.find((entry) => entry.id === 'writing');
+  const writing = routeInput(root, route, input.catalog);
+  const entries = writingEntries(input.catalog);
+  assert.equal(entries[0].id, 'publication-97');
+  assert.equal(entries[0].year, '2026');
+  const row = publication(loadComponents(root), input.original, 'archive', input.catalog, true);
+  assert.match(row, /data-topic="delivery" data-year="2026"/);
+  assert.doesNotMatch(row, /<time/);
+  const item = writing.schema.mainEntity.itemListElement[0].item;
+  assert.equal(item.datePublished, undefined);
+  assert.equal(item.dateModified, undefined);
+  assert.equal(item.publicationEvent, undefined);
+  assert.equal(item.archiveYear, undefined);
+
+  for (const year of ['2025', '2027']) {
+    input.original.edition.datePublished = year + '-10-01';
+    input.original.edition.publicationEvent = 'site-first';
+    input.articles['local-original'].events.find(({ id }) => id === 'site-first').occurredAt =
+      year + '-10-01T10:00:00Z';
+    assert.equal(verify(input), input.catalog);
+    assert.equal(
+      writingEntries(input.catalog).find(({ id }) => id === 'publication-97').year,
+      year
+    );
+    const dated = publication(loadComponents(root), input.original, 'archive', input.catalog, true);
+    assert.ok(dated.includes('data-year="' + year + '"'));
+    assert.ok(dated.includes('<time datetime="' + year + '-10-01"'));
+  }
+});
+
+test('archive classification rejects malformed or external overrides and preserves undated fallback', () => {
+  for (const value of [null, 2026, '', '026', '0000', '2026-11-06', '2026 ', [], {}]) {
+    const input = fixture();
+    input.original.presentation.archiveYear = value;
+    assert.throws(() => verify(input), /Invalid local archive year/);
+  }
+  for (const kind of [undefined, 'external-publication']) {
+    const catalog = structuredClone(legacy);
+    const record = catalog.records['publication-01'];
+    if (kind !== undefined) record.kind = kind;
+    record.presentation.archiveYear = '2026';
+    assert.throws(() => validateCatalog(catalog), /Invalid local archive year/);
+  }
+  const input = fixture();
+  assert.equal(
+    writingEntries(input.catalog).find(({ id }) => id === 'publication-97').year,
+    'undated'
+  );
 });
 
 test('local source references reject missing pins, stale sources and alternate platform inference', () => {

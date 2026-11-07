@@ -687,7 +687,7 @@ function verifyContentBaseline(output, previous, trusted, components, versioned)
 }
 
 function emitRouteFallback({ root, definitions, route, contentOnly, output, put, api }) {
-  if (route.id !== 'research') return { api };
+  if (!['research', 'writing'].includes(route.id)) return { api };
   if (!contentOnly) api ??= model(root, definitions);
   const resource = require('./fallback.cjs').routeResource(
     contentOnly ? baselineFallback(output, route.id) : fallback(api, route.id),

@@ -135,7 +135,7 @@ function renderInteractive(
   payloads,
   environment = offline.context()
 ) {
-  source = offline.inlineFallback(source, environment, page);
+  source = offline.inlineFallback(source, environment, environment.articleKey ? null : page);
   source = offline.documents(
     offline.articleLinks(sourceForPreview(source), environment),
     environment

@@ -127,6 +127,8 @@ function prepare({ sourceRoot = root, temporaryRoot = os.tmpdir() } = {}) {
         stdio: ['ignore', 'pipe', 'pipe'],
       }
     );
+    // Preserve committed edition history when a fixture later commits one new source.
+    cp.execFileSync('git', ['read-tree', 'HEAD'], { cwd: directory });
     for (const source of [
       'site',
       'tools/site',

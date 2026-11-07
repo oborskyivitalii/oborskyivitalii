@@ -51,4 +51,33 @@ function assignTags(root, kind, id, values = ['verification']) {
   fs.writeFileSync(file, JSON.stringify(data, null, 2) + '\n');
 }
 
-module.exports = { legacySource, legacyCatalog, nextRecordId, nextYear, assignTags };
+function isolatePublicationCatalog(root, sourceRoot) {
+  const fs = require('node:fs'),
+    path = require('node:path');
+  // Synthetic codec/tag cases own their catalog and matching rights source oracle.
+  const rights = JSON.parse(fs.readFileSync(path.join(sourceRoot, 'site/rights.json')));
+  const supporting = new Set([
+    ...Object.values(rights.bases).flatMap((basis) => basis.provenance),
+    ...rights.notices.map((notice) => notice.path),
+    'tools/release/edition.cjs',
+  ]);
+  for (const relative of supporting) {
+    const destination = path.join(root, relative);
+    if (fs.existsSync(destination)) continue;
+    fs.mkdirSync(path.dirname(destination), { recursive: true });
+    fs.copyFileSync(path.join(sourceRoot, relative), destination);
+  }
+  fs.writeFileSync(
+    path.join(root, 'site/content/catalog.json'),
+    JSON.stringify(legacyCatalog(sourceRoot), null, 2) + '\n'
+  );
+}
+
+module.exports = {
+  legacySource,
+  legacyCatalog,
+  nextRecordId,
+  nextYear,
+  assignTags,
+  isolatePublicationCatalog,
+};

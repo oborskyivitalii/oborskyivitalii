@@ -1,0 +1,30 @@
+{
+  "original_request": "Publish the accepted current R10 article to production through existing repository release process. Website release authorized; LinkedIn/Medium author-manual later. Preserve manuscript/PDF/figures, all test scenarios, original budgets and source/rights/control/artifact binding. Owner #169 PR170.",
+  "head": "fc205b17774ba703c63fdd7d142ddac178afffdd",
+  "base": "8cf15883125892710633b17133d9ee0fc4b23b92",
+  "tree": "a605aff62e7c2ae28ce2ff3f81f06c1efa0fea7e",
+  "scope": "Read-only preimplementation diagnosis/review of historical source/preflight failure before any next staging attempt; no implementation authorized to reviewer.",
+  "observed_failure": {
+    "run": 42119802341,
+    "job": 127569213141,
+    "source": "b75a0a31e36be02bea15bb7a0b269d032fa3cdcb",
+    "artifact": 13457983011,
+    "local_zip": "/workspace/scratch/f4dcb060a703/R9_staging_prepublication_42119802341.zip",
+    "raw": "prepublication-source-tests-runner.json records ETIMEDOUT300000ms, incomplete75module staging run, no aggregate pass. Build cancelled after10min while security still running. Raw original reports retained."
+  },
+  "files": {
+    "agents/reviewers/README.md": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb",
+    "agents/reviewers/requirements-acceptance.md": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6",
+    "agents/reviewers/code-review.md": "26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697",
+    "agents/reviewers/white-box-qa.md": "832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f",
+    "agents/reviewers/exploratory-interaction-qa.md": "280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a",
+    "tools/quality/local.cjs": "ea8550ebac5b2f62147c60c8e0b70a54f6e60d20643cf190ec45c6a5d693f96d",
+    "tools/quality/source-tests.cjs": "792aec87f4abb3aec8c97b4a8d33cd958a643b8f6c77aaac4c5683d45aaf5086",
+    "tools/quality/source-test-worker.cjs": "415426b649d4344b17698d10aace6bab61a9c5e87cc37e31b3f56d458098a16f",
+    "tools/quality/source-test-shards.cjs": "d22729bb252d0aac71f05dcd313beda4534babb93a7f2a8869894cf59b38969c",
+    ".github/workflows/site-color-review.yml": "d184fb3e54d5c3a42901f10597313e4cd4da0f5d3d51cb0f7ba3ab30a9f4dbe2",
+    "guides/SITE-STAGING.md": "44c37986027125585e54787337da6debdd014b0b5b70c87518f92ed74d62f63a",
+    "guides/SITE-CHECK-PROFILES.md": "a95c260343e6718650b3c9307a1ebc61e9ec1c0fd970e15cb020d828405335f9"
+  },
+  "issue": "/workspace/scratch/f4dcb060a703/release-diagnosis/issue169.json"
+}

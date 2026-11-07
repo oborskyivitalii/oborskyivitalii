@@ -1,0 +1,107 @@
+{
+  "schema": 1,
+  "owner": 169,
+  "pr": 170,
+  "baseCommit": "9b68b8c7238833a1bff22f11563a383b011d8da7",
+  "baseTree": "01bb708b14482adde2b9653f2a765b0e7458073a",
+  "state": "prepared dirty source correction; no clean successor or new native CI pass",
+  "intent": "Preserve existing source-bound Home/Writing/Talks exact reconstruction and frozen producer histories while admitting the specifically reviewed opt-in HTML parser change already in the observed application. No public content/runtime change or broader producer whitelist.",
+  "files": {
+    "docs/site-revision.json": {
+      "sha256": "7eb8e8002a7209f6841bcd8aeda91bfa57565bd5ed750b500611edc8605a1892",
+      "bytes": 4154
+    },
+    "review/issue-122/2026-10-24-r3-events-migration.json": {
+      "sha256": "3d5031a4ca8f256994dbafbf0e393ac0af900144dab4f74a4c67f0d2e4a03949",
+      "bytes": 7931
+    },
+    "review/issue-122/2026-10-27-home-content-frame.json": {
+      "sha256": "596ae540b00d671e830575794764c131dea63de286bfb26026e20766f03b2680",
+      "bytes": 19444
+    },
+    "review/issue-159/content-amendment.json": {
+      "sha256": "8d6e8736f11089ab76ca9a494c988be68516d3c7e54cee3afab20131d2e5bf4c",
+      "bytes": 38302
+    },
+    "review/issue-169/r9/reader-runtime-probe.cjs": {
+      "sha256": "09e995a1726da63b7eeea7778f12a1af93a68f79798c35f6b1b36c98975984d9",
+      "bytes": 54857
+    },
+    "review/issue-5/writing-catalog-amendment.json": {
+      "sha256": "21cd08f6ea628042d168dde09ed0b96a88860db674694fb57e47e42cdbc1e653",
+      "bytes": 101126
+    },
+    "site/engine/archive.js": {
+      "sha256": "0c1300428b3088c1fb4f6ba86461f228efabd3175100c7c1219df13631a1ccd3",
+      "bytes": 7715
+    },
+    "site/engine/navigation.js": {
+      "sha256": "ed6ac4f157336196c96974bbdb461ec623115d473801cfbc136b54e460beebcd",
+      "bytes": 51733
+    },
+    "site/engine/scroll-entry.cjs": {
+      "sha256": "c3a51a1148da710c2fd0add270cb8615bac6a5dd71a3430db5c6e5f32b83252e",
+      "bytes": 47540
+    },
+    "site/output-lock.json": {
+      "sha256": "a8f7c9081b2bd798a88cf8fbe22f1f07d8a88d82a25650a2e4ae8f0afc9af104",
+      "bytes": 21681
+    },
+    "tests/content-rendering.test.cjs": {
+      "sha256": "3ab51582569e7a0328e35f2cbad061f8d37f50c5b98cbf2677c2a1797032d907",
+      "bytes": 30370
+    },
+    "tests/events.test.cjs": {
+      "sha256": "e8c30b9c43afe30383d7a47c64bfc624f3c9b7c0514b275f6dc79ee47f9ba8c9",
+      "bytes": 5484
+    },
+    "tests/executive.test.cjs": {
+      "sha256": "74d6d95dbd01dd19f008ae440d3469034196345beda9d504538c502e13010319",
+      "bytes": 75261
+    },
+    "tests/site-engine.test.cjs": {
+      "sha256": "01dfd51bf53cd71d60337d1e89baa1ecec75ae92ef2228e02e546e36ed3e689a",
+      "bytes": 47283
+    },
+    "tools/check_site_seo.cjs": {
+      "sha256": "f9ac3f6a4b17ce99289c9574a3217b6fe6b7735c4dae1dd1ae1df22a33c1d379",
+      "bytes": 57559
+    },
+    "tools/quality/article-browser.cjs": {
+      "sha256": "ddb8a9d52b8a5007e11bc71f4b07ad13685114060cdb38a9ebad74dddc5d75b3",
+      "bytes": 85573
+    },
+    "tools/site/html.cjs": {
+      "sha256": "386b6503b6166646e49895e6cd8af8d84b3596accc979731590dd1dc382d3c3b",
+      "bytes": 6446
+    }
+  },
+  "nativeFailures": {
+    "run": 42115619567,
+    "completeShards": {
+      "successful": [
+        0,
+        1,
+        3,
+        4,
+        5
+      ],
+      "failed": [
+        2,
+        6,
+        7
+      ]
+    },
+    "logs": {
+      "/workspace/scratch/5ba265a57f36/source-shard-2-failure.log": "40563d55238a6b9d293f14461dbc71b7b98d5a3f1949f59fa3eede01406008e3",
+      "/workspace/scratch/5ba265a57f36/source-shard-6-failure.log": "bbcbe6fbbe742853d76758a46db8886aa473004a45f2798f86b67b16a621042a",
+      "/workspace/scratch/5ba265a57f36/source-shard-7-failure.log": "0634fd626434fc857075c51669b1898b4974c16a7729085221fa48c09400822d"
+    }
+  },
+  "checks": {
+    "current": "/workspace/scratch/5ba265a57f36/html-successor-tests.log",
+    "state": "running when packet created, do not infer final pass",
+    "buildCheck": "/workspace/scratch/5ba265a57f36/html-successor-build-check.log"
+  },
+  "instructions": "Same canonical role/common prompts as first launch. Do not read peer verdicts. Inspect actual diff and source/semantic parity/negative controls. No implementation/test edits, external writes or delegation. Write only own existing report append. New scoped correction requires own review, not reusing peer majority."
+}

@@ -27,7 +27,7 @@ test('selected journeys compare actual base runtime and Color identities without
     components: { ...components, variant, engine: variant.fingerprint },
   };
   const reviewed = require('../tools/quality/color-motion-contract.cjs').reviewedRuntime(
-    'issue159-reading-paths-plain'
+    'issue169-reader-history-plain'
   );
   assert.deepEqual(variant, reviewed.variant, 'fixture uses the reviewed authored runtime');
   for (const [name, sha256] of Object.entries(reviewed.files))

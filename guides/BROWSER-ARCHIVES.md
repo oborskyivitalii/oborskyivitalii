@@ -69,13 +69,13 @@ Nested checkouts use the action at their actual checkout path and pass
 names include a unique receipt suffix, so parallel cells with the same job ID
 retain their own evidence.
 
-| Existing workflow | Preserved browser consumers |
+| Existing workflow | Declared browser consumers |
 | --- | --- |
 | site-release-checks | Linux C/F/W; Windows C/F and macOS W; performance C; captures C; staging C/F |
 | site-staging | deploy C; promote C |
 | site-production; site-pages-migration | publication navigation C |
 | site-color-review | conditional hosted smoke C |
-| site-navigation-probe | Windows Firefox |
+| site-navigation-probe | Issue169 bounded R9 Ubuntu Chromium diagnostic |
 | site-browser-gate-probe | C/F/W |
 | site-cause-probe | three Chromium jobs; three-engine diagnosis |
 | site-cause-fix-probe | three WebKit jobs; Chromium research pair |
@@ -86,6 +86,15 @@ C/F/W mean Chromium, Firefox and WebKit. These are27 existing download-step
 declarations across12 workflows; matrix declarations retain their original
 platform expansion. The permanent archive suite guards the complete mapping,
 selection, read permissions and failure propagation with negative cases.
+
+For issue169, the explicit manual navigation probe now observes the unadmitted
+R9 Color runtime on Ubuntu Chromium, replacing its older Windows Firefox
+diagnostic. The coherent workflow/script/candidate commit is checked before
+execution; actual reader and repeated footer animation observations remain
+`fullGate:false`. Historical Windows results retain their original source and
+meaning. This change does not substitute Chromium for any required Firefox,
+native-platform, hosted, staging or production gate. The existing ten-minute
+job limit, pinned archive action and read-only permissions remain.
 
 **Consumers never launch a browser.** Cold/performance/GTK jobs retain their
 no-prior-launch contract. Their actual tests perform the first launch exactly

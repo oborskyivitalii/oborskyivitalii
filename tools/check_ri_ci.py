@@ -116,7 +116,58 @@ def control_paths(root):
     return sorted(paths - DERIVED)
 
 
-def workflow_commands(root, path, job, event_scope="all-pr"):
+def source_shards_reachability(jobs, path, job):
+    """Reviewed, narrow Basic adapter: all eight shards must finish before checks.
+
+    This only proves static control-flow reachability and a fail-closed first
+    step. It does not declare the remote jobs passed or waive their raw reports.
+    """
+    if (path, job) != (".github/workflows/site-checks.yml", "checks"):
+        raise ValueError("Source-shard reachability adapter only owns Basic checks")
+    upstream = jobs.get("source_shards")
+    downstream = jobs.get("checks")
+    if not upstream or not downstream:
+        raise ValueError("Source-shard reachability missing required job")
+    required_upstream = [
+        "    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false",
+        "    runs-on: ubuntu-24.04",
+        "    timeout-minutes: 20",
+        "      fail-fast: false",
+        "        shard: [0, 1, 2, 3, 4, 5, 6, 7]",
+        "          ref: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}",
+        "          persist-credentials: false",
+        "          SOURCE_EVENT: ${{ github.event_name }}",
+        "            node tools/quality/source-test-shards.cjs run --profile pr --base \"$SITE_BASE_SHA\" --head \"$SITE_CANDIDATE_SHA\" --index \"${{ matrix.shard }}\" --output \"quality-reports/shard-${{ matrix.shard }}\"",
+        "            node tools/quality/source-test-shards.cjs run --profile staging --head \"$SITE_CANDIDATE_SHA\" --index \"${{ matrix.shard }}\" --output \"quality-reports/shard-${{ matrix.shard }}\"",
+        "        if: always()",
+        "          name: site-source-shard-${{ github.run_id }}-${{ github.run_attempt }}-${{ matrix.shard }}",
+        "          if-no-files-found: error",
+    ]
+    for line in required_upstream:
+        if upstream.count(line) != 1:
+            raise ValueError("Source-shard reachability missing or altered: " + line.strip())
+    if any(re.match(r"    (?:needs|continue-on-error|defaults):", line) for line in upstream):
+        raise ValueError("Source-shard upstream dependencies/optional jobs are forbidden")
+    if any(re.match(r"\s+continue-on-error:", line) for line in upstream):
+        raise ValueError("Source-shard upstream may not ignore step failures")
+    if [line for line in downstream if re.match(r"    needs:", line)] != [
+        "    needs: source_shards"
+    ]:
+        raise ValueError("Basic source-shard needs are not exact")
+    steps = []
+    for line in downstream:
+        if re.match(r"      - ", line):
+            steps.append([line])
+        elif steps:
+            steps[-1].append(line)
+    if not steps or steps[0] != [
+        "      - name: Reject incomplete, skipped, failed or cancelled source matrix",
+        '        run: test "${{ needs.source_shards.result }}" = "success"',
+    ]:
+        raise ValueError("Basic source-shard dependency must be the first fail-closed step")
+
+
+def workflow_commands(root, path, job, event_scope="all-pr", reachability_adapter=None):
     """Read the narrow YAML execution shape used by these mapped workflows.
 
     Commands must be unconditional within the declared event scope. The sole
@@ -208,13 +259,21 @@ def workflow_commands(root, path, job, event_scope="all-pr"):
     if job not in jobs:
         raise ValueError("Missing mapped workflow job: " + path + ":" + job)
     body = jobs[job]
-    if any(re.match(r"    needs:", line) for line in body):
+    if reachability_adapter is not None:
+        if reachability_adapter != "source-shards-v1" or event_scope != "ready-pr":
+            raise ValueError("Unknown or wrong-scope RI/CI reachability adapter")
+        source_shards_reachability(jobs, path, job)
+    elif any(re.match(r"    needs:", line) for line in body):
         raise ValueError(
             "Mapped job dependencies require a reviewed reachability adapter: " + path + ":" + job
         )
     conditions = [line for line in body if re.match(r"    if:", line)]
     if event_scope == "ready-pr":
-        guard = "    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false"
+        guard = (
+            "    if: ${{ always() && (github.event_name != 'pull_request' || github.event.pull_request.draft == false) }}"
+            if reachability_adapter == "source-shards-v1"
+            else "    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false"
+        )
         if conditions != [guard] or "ready_for_review" not in types:
             raise ValueError(
                 "Ready-PR reachability requires exact Draft guard and ready event: " + path
@@ -358,7 +417,11 @@ def validate_definition(root, data):
         raise ValueError("Unused mapped checks: " + ", ".join(sorted(set(checks) - used)))
     for check in checks.values():
         if check["argv"] not in workflow_commands(
-            root, check["workflow"], check["job"], check.get("event_scope", "all-pr")
+            root,
+            check["workflow"],
+            check["job"],
+            check.get("event_scope", "all-pr"),
+            check.get("reachability_adapter"),
         ):
             raise ValueError("Mapped check is not invoked unconditionally: " + check["id"])
         resolve_tests(root, check)

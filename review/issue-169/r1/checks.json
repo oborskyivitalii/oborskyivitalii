@@ -1,0 +1,37 @@
+{
+  "scope": "local author-review kit only; binaries delivered in conversation ZIP",
+  "sourceSha256": "a4a5975ffe2f3312b39d451f4594321d40270bfcc76b3aa98a2507a9e91bfe11",
+  "pdfSha256": "b5c65ff00fa9638fe0fe48d5943d5b1c496c0d2cda97cda660c4fc941f14b608",
+  "pages": 5,
+  "visible_words": 1650,
+  "source_urls": 12,
+  "pdf_link_annotations": 26,
+  "missing_pdf_urls": [],
+  "checks": {
+    "page_count_3_to_5": true,
+    "total_visible_words_under_1900": true,
+    "single_title": true,
+    "six_body_sections": true,
+    "three_declared_figures": true,
+    "figure_files_exist": true,
+    "all_manuscript_urls_in_pdf": true,
+    "author_footer_and_site": true,
+    "references_and_related_work": true,
+    "launch_has_two_explicit_pending_urls": true,
+    "not_a_live_release": true,
+    "svg_xml_parses": true,
+    "linkedin_source_parity": true,
+    "medium_source_parity": true,
+    "no_text_outside_pages": true
+  },
+  "all_pass": true,
+  "not_executed": [
+    "native repository publisher",
+    "RI build/verify",
+    "repository CI",
+    "four independent quality reviewers",
+    "live site related-reading component",
+    "real LinkedIn/Medium editor previews",
+    "publication acceptance"
+  ]
+}

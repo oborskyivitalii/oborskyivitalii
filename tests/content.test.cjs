@@ -83,6 +83,74 @@ function assertWritingCollection(catalog, html, collection) {
   return { rows, items };
 }
 
+test('the accepted SDLC article leads the 2026 delivery archive without an invented publication date', () => {
+  const catalog = require('../tools/site/content.cjs').catalog(path.resolve(root, '..'));
+  const html = pages.writing;
+  const { rows, items } = assertWritingCollection(catalog, html, schema(html).mainEntity);
+  const destination = 'articles/the-sdlc-is-out-of-balance.html';
+  assert.equal(items[0].item.url, destination);
+  assert.match(rows[0][0], /data-topic="delivery" data-year="2026"/);
+  assert.ok(rows[0][2].includes('href="' + destination + '"'));
+  const groupStart = html.indexOf('id="topic-delivery-2026"');
+  assert.ok(groupStart > html.indexOf('id="results-year-2026"'));
+  assert.ok(
+    html.indexOf('href="' + destination + '"', groupStart) < html.indexOf('</ol>', groupStart)
+  );
+});
+
+test('archive producer successors preserve exact predecessor pins and reject unreviewed source bytes', () => {
+  const checker = require('../tools/check_site_seo.cjs');
+  const projectRoot = path.resolve(root, '..');
+  const before = Object.fromEntries(
+    Object.entries(checker.archiveProducers).map(([file, change]) => [file, change.beforeSHA256])
+  );
+  const after = checker.reviewedArchiveProducerBindings(before);
+  for (const [file, digest] of Object.entries(after)) {
+    assert.equal(
+      digest,
+      require('node:crypto')
+        .createHash('sha256')
+        .update(fs.readFileSync(path.join(projectRoot, file)))
+        .digest('hex')
+    );
+    assert.throws(
+      () => checker.reviewedArchiveProducerBindings({ ...before, [file]: '0'.repeat(64) }),
+      /Exact prior archive producer pin/
+    );
+  }
+  for (const mutation of ['beforeSHA256', 'afterSHA256']) {
+    const changed = structuredClone(checker.archiveProducers);
+    changed['tools/site/render-records.cjs'][mutation] = '0'.repeat(64);
+    assert.throws(
+      () => checker.reviewedArchiveProducerBindings(before, changed),
+      /Exact archive producer successors/
+    );
+  }
+  assert.deepEqual(checker.reviewedArchiveProducerBindings({ unrelated: 'unchanged' }), {
+    unrelated: 'unchanged',
+  });
+  const inputs = require('../review/issue-122/2026-10-24-r3-events-migration.json').producerInputs;
+  const temporary = fs.mkdtempSync(path.join(require('node:os').tmpdir(), 'archive-producer-'));
+  try {
+    for (const file of Object.keys(inputs)) {
+      fs.mkdirSync(path.dirname(path.join(temporary, file)), { recursive: true });
+      fs.copyFileSync(path.join(projectRoot, file), path.join(temporary, file));
+    }
+    for (const file of [...Object.keys(checker.archiveProducers), 'tools/site/content.cjs']) {
+      const destination = path.join(temporary, file);
+      const bytes = fs.readFileSync(destination);
+      fs.appendFileSync(destination, '\n');
+      assert.throws(
+        () => checker.restoreEventsCatalog(pages.talks, temporary),
+        /unreviewed event producer/
+      );
+      fs.writeFileSync(destination, bytes);
+    }
+  } finally {
+    fs.rmSync(temporary, { recursive: true, force: true });
+  }
+});
+
 test('selected Home responses link to the complete Research inventory with preserved evidence', () => {
   const names = {
     index: ['Arkadiy Dobkin', 'Matthew Skelton', 'Markus Kopko'],
@@ -654,7 +722,7 @@ test('Talks follows canonical events while retaining the frozen provenance of it
   const description = require('../site/content/pages/talks/metadata.json').description;
   assert.equal(
     description,
-    'Upcoming DevCon Romania 2026 and UA Online PMDay 2027 Winter, plus recordings and workshops on AI architecture and software delivery.'
+    'Upcoming UA Online PMDay 2027 Winter and the UA Online PMDay 2026 Autumn recording, plus talks and workshops on AI architecture and software delivery.'
   );
   for (const tag of [
     '<meta name="description"',
@@ -875,12 +943,28 @@ test('page IDs, ARIA targets, local resources and fragments resolve without draf
   const readResource = (target) => fs.readFileSync(path.join(root, target));
   const resources = assertLocalPageReferences(pages, revision, readResource);
   if (resources.length) {
-    assert.equal(resources.length, 1, 'one active Research resource');
-    assert.deepEqual(resources, revision.routes.research.assets);
-    const [namespace, digest, filename] = resources[0].split('/');
-    assert.equal(namespace, 'article-media');
-    assert.deepEqual(fs.readdirSync(path.join(root, namespace)), [digest]);
-    assert.deepEqual(fs.readdirSync(path.join(root, namespace, digest)), [filename]);
+    assert.deepEqual(
+      resources.sort(),
+      Object.values(revision.routes)
+        .flatMap((route) => route.assets || [])
+        .sort(),
+      'complete declared room resource set'
+    );
+    const retained = require('../site/retained/manifest.json').files;
+    const expectedMedia = [
+      ...new Set([
+        ...resources,
+        ...Object.values(revision.articles || {}).flatMap((article) => article.assets),
+        ...Object.keys(retained).filter((name) => name.startsWith('article-media/')),
+      ]),
+    ].sort();
+    assert.deepEqual(
+      require('../tools/quality/artifact.cjs')
+        .entries(path.join(root, 'article-media'))
+        .map((entry) => 'article-media/' + entry.path)
+        .sort(),
+      expectedMedia
+    );
     assert.throws(
       () =>
         assertLocalPageReferences(
@@ -922,7 +1006,10 @@ test('page IDs, ARIA targets, local resources and fragments resolve without draf
     'talks.html',
     'theme.js',
     'writing.html',
-  ].concat(resources.length ? ['article-media'] : []);
+  ].concat(
+    resources.length ? ['article-media'] : [],
+    Object.keys(revision.articles || {}).length ? ['articles', 'article-snapshots'] : []
+  );
   assert.deepEqual(fs.readdirSync(root).sort(), expected.sort());
   const { mediaFiles } = require('../tools/site/snapshot.cjs');
   assert.deepEqual(
@@ -1057,7 +1144,7 @@ test('PMDay upcoming and Autumn naming preserve confirmed facts and existing pre
   }
 });
 
-test('DevCon announcement preserves previous events and rejects changed public facts', () => {
+test('completed DevCon talk belongs with past events and preserves previous public facts', () => {
   const { restore } = require('../tools/check_site_seo.cjs');
   const cp = require('node:child_process');
   const record = require('../review/issue-126/content-amendment.json');
@@ -1070,16 +1157,28 @@ test('DevCon announcement preserves previous events and rejects changed public f
   const html = pages.talks;
   const cards = talkRows(html);
   assert.equal(cards.length, 6);
-  const card = cards[0][0];
+  const card = cards.find((row) => row[0].includes('id="devcon-romania-2026"'))?.[0];
+  assert.ok(card);
   assert.match(card, /id="devcon-romania-2026"/);
   assert.match(card, /DevCon Romania 2026 · DevOps Con/);
-  assert.match(card, /datetime="2026-11-04T12:30:00\+02:00">4 November 2026/);
-  assert.match(card, /12:30–13:00 · Bucharest time/);
+  assert.match(card, /datetime="2026-11-04">4 November 2026/);
+  assert.match(card, /Conference talk · Bucharest, Romania/);
+  assert.match(card, /I spoke in Bucharest/);
   assert.match(card, /AI Changes the Delivery System and the Product Itself/);
   assert.match(card, /href="https:\/\/www.dev-con.ro\/agenda\/12-devops-con"/);
-  assert.doesNotMatch(card, /slides|recording|Hotel Caro/i);
+  assert.doesNotMatch(
+    card,
+    /Upcoming|I’ll be speaking|The talk asks|12:30|13:00|slides|recording|Hotel Caro/i
+  );
+  assert.ok(html.indexOf(card) > html.indexOf('id="other-talks"'));
+  const upcoming = html.slice(
+    html.indexOf('id="upcoming-talks"'),
+    html.indexOf('id="ukrainian-talks"')
+  );
+  assert.doesNotMatch(upcoming, /devcon-romania-2026/);
+  assert.match(upcoming, /pmday-winter-2027/);
   assert.deepEqual(
-    cards.slice(1),
+    cards.filter((row) => row[0] !== card),
     talkRows(baseline),
     'every previous event remains exact and ordered'
   );
@@ -1095,8 +1194,8 @@ test('DevCon announcement preserves previous events and rejects changed public f
   );
   assert.doesNotThrow(() => restore(html, 'talks'));
   for (const [from, to] of [
-    ['2026-11-04T12:30:00+02:00', '2026-11-05T12:30:00+02:00'],
-    ['12:30–13:00 · Bucharest time', '12:30–13:00 · Warsaw time'],
+    ['2026-11-04', '2026-11-05'],
+    ['I spoke in Bucharest', 'I will speak in Bucharest'],
     ['https://www.dev-con.ro/agenda/12-devops-con', 'https://example.com/agenda'],
     [card, card.replace('</article>', '<a href="draft.pdf">Slides</a></article>')],
   ]) {

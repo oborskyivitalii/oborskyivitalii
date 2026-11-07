@@ -20,7 +20,7 @@ function rehash(report) {
   report.inventoryDigest = artifact.digest(JSON.stringify(body));
 }
 
-function fixture(t) {
+function fixture(t, { nativeCurrentArticle = false } = {}) {
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'release-rights-'));
   t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
   const publicDirectory = path.join(directory, 'public');
@@ -48,6 +48,24 @@ function fixture(t) {
       recursive: true,
     });
   }
+  if (nativeCurrentArticle) {
+    // The current R4 lossless renderer reads these two immutable toolchain
+    // declarations from its explicit source root, not the installed interpreter.
+    // Copy only the source inputs: never install a new dependency or weaken checks.
+    for (const name of ['tools/quality/toolchain/requirements.txt', 'tools/quality/budgets.json']) {
+      const target = path.join(sourceRoot, name);
+      fs.mkdirSync(path.dirname(target), { recursive: true });
+      fs.copyFileSync(path.join(root, name), target);
+      assert.deepEqual(fs.readFileSync(target), fs.readFileSync(path.join(root, name)));
+    }
+    // The current accepted article pins an earlier immutable source commit.
+    // Resolve only those original Git objects through a local alternate object
+    // store, so this fixture can exercise the real reviewed Color tuple.
+    cp.execFileSync('git', ['init', '-q'], { cwd: sourceRoot });
+    const alternates = path.join(sourceRoot, '.git/objects/info/alternates');
+    fs.mkdirSync(path.dirname(alternates), { recursive: true });
+    fs.writeFileSync(alternates, path.join(root, '.git/objects') + '\n');
+  } else require('./fixtures/catalog.cjs').isolatePublicationCatalog(sourceRoot, root);
   builder.build({ root: sourceRoot, output: publicDirectory, all: true });
   const record = () => ({
     sourceCommit: 'a'.repeat(40),
@@ -160,11 +178,20 @@ test('rights inventory covers actual current and retained bytes without granting
   )[1];
   assert.deepEqual(retainedRuntime.bases, ['retained-edition']);
   assert.deepEqual(Object.keys(report.files), Object.keys(source.record().files));
+  const revision = require('../tools/site/snapshot.cjs').verify(
+    source.publicDirectory,
+    source.record()
+  );
+  const currentRouteAssets = new Set(
+    Object.values(revision.routes).flatMap((route) => route.assets || [])
+  );
   assert.deepEqual(
     Object.keys(report.files)
       .filter((name) => report.files[name].retained)
       .sort(),
-    Object.keys(source.manifest.retained).sort()
+    Object.keys(source.manifest.retained)
+      .filter((name) => !currentRouteAssets.has(name))
+      .sort()
   );
   assert.equal(Object.keys(report.linkedPublications).length, 29);
   assert.equal(Object.keys(report.linkedDiscussions).length, 3);
@@ -438,14 +465,49 @@ test('publication records bind staging and production editions without granting 
     const report = rights.readPublication(source.directory, source.record);
     assert.equal(rights.publication(source.record, report), true);
     assert.equal(report.approvalPass, false);
-    assert.equal(report.materials.hostedEditions.length, 0);
-    assert.equal(report.materials.linkedEditionCount, 46);
-    assert.equal(Object.keys(report.linkedPublications).length, 29);
+    const catalog = require('../site/content/catalog.json');
+    assert.equal(
+      report.materials.hostedEditions.length,
+      Object.values(catalog.records).filter((record) => record.kind === 'local-article').length
+    );
+    assert.equal(
+      report.materials.linkedEditionCount,
+      Object.values(catalog.records).reduce(
+        (total, record) => total + 1 + record.editions.length,
+        0
+      )
+    );
+    assert.equal(
+      Object.keys(report.linkedPublications).length,
+      Object.keys(catalog.records).length
+    );
     const retained = JSON.parse(
       fs.readFileSync(path.join(source.directory + '-rights-source', 'site/retained/manifest.json'))
     );
+    const current = require('../tools/site/snapshot.cjs').verify(
+      path.join(source.directory, 'public'),
+      source.record
+    );
+    const activeResources = new Set([
+      ...Object.values(current.articles || {}).flatMap((article) => [
+        article.alias,
+        article.url,
+        ...article.assets,
+      ]),
+      ...Object.values(current.routes).flatMap((route) => route.assets || []),
+    ]);
+    for (const name of activeResources) {
+      assert.ok(report.files[name], 'active source-validated resource remains public');
+      assert.equal(
+        report.files[name].retained,
+        false,
+        'active resource keeps current-source classification'
+      );
+    }
     const expectedRetained = Object.keys(retained.files).filter(
-      (name) => source.record.edition.id !== 'staging' || name.startsWith('media/')
+      (name) =>
+        !activeResources.has(name) &&
+        (source.record.edition.id !== 'staging' || /^(?:media|article-media)\//.test(name))
     );
     assert.deepEqual(
       Object.keys(report.files)
@@ -741,6 +803,8 @@ test('publication comment and inert-template wrappers cannot hide otherwise exac
     artifact.entries(publicDirectory).map((file) => [file.path, file.bytes])
   );
   const authored = legal.compile(root).html.trim();
+  const media = require('../tools/site/article-media.cjs');
+  const render = t.mock.method(media, 'render');
   for (const wrap of [
     (html) => '<!--' + html + '-->',
     (html) => '<template>' + html + '</template>',
@@ -780,11 +844,27 @@ test('publication comment and inert-template wrappers cannot hide otherwise exac
       report.files[name].sha256 = record.files[name].sha256;
     rehash(report);
     assert.equal(frozen.publication(record, report), true);
-    assert.throws(() => rights.compile(publicDirectory, record));
+    assert.throws(
+      () => rights.compile(publicDirectory, record),
+      /public (?:Credits notice differs|full legal notices differ)|ambiguous (?:self-closing HTML legal notice context|legal notice attribute syntax)/
+    );
+    assert.equal(render.mock.callCount(), 0, 'invalid notices must precede hosted reconstruction');
     assert.throws(() => frozen.verify(publicDirectory, record, report, report.inventoryDigest));
     for (const [name, bytes] of Object.entries(originals))
       fs.writeFileSync(path.join(publicDirectory, name), bytes);
   }
+  const restored = rights.compile(publicDirectory, source.record);
+  assert.deepEqual(restored.publicNotices, originalReport.publicNotices);
+  assert.deepEqual(restored.materials.hostedEditions, originalReport.materials.hostedEditions);
+  assert.ok(render.mock.callCount() > 0, 'valid notices still require hosted reconstruction');
+  const mediaFailure = new Error('injected hosted media failure');
+  render.mock.mockImplementation(() => {
+    throw mediaFailure;
+  });
+  assert.throws(
+    () => rights.compile(publicDirectory, source.record),
+    (error) => error === mediaFailure
+  );
 });
 
 test('publication notice markup rejects incomplete ambiguous and unbounded contexts', () => {
@@ -808,7 +888,7 @@ test('publication notice markup rejects incomplete ambiguous and unbounded conte
 
 test('publication actual edition and package CLIs freeze exact sidecars before any upload', (t) => {
   const pkg = require('../tools/staging/package.cjs');
-  const source = fixture(t);
+  const source = fixture(t, { nativeCurrentArticle: true });
   const checkout = source.sourceRoot;
   for (const name of [
     'tools/staging/edition.cjs',
@@ -830,7 +910,13 @@ test('publication actual edition and package CLIs freeze exact sidecars before a
   fs.writeFileSync(path.join(checkout, '.gitignore'), '.site-cache/\n.fixture-output/\n');
   // This CLI fixture exercises principal-page rights in both editions.
   // Hosted article rights are exercised separately above.
-  const environment = { ...process.env, SITE_ARTICLE_PREVIEW: 'false' };
+  const environment = {
+    ...process.env,
+    SITE_ARTICLE_PREVIEW: 'false',
+    // The synthetic checkout has no installed media venv of its own. Its real
+    // R4 article must use the exact Pillow toolchain installed by source CI.
+    SITE_MEDIA_PYTHON: path.join(root, 'tools/quality/toolchain/venv/bin/python'),
+  };
   for (const key of [
     'SITE_CANDIDATE_SHA',
     'SITE_EXPECTED_PUBLIC_DIGEST',

@@ -94,6 +94,33 @@ Draft, implemented, merged, reviewed, staged, published and deployed remain sepa
 Green CI/issue closure cannot change scientific/source-verification state. Merge,
 production activation, domain/DNS and public release retain their maintainer decisions.
 
+### Review test impact before advancing
+
+Before marking Ready, requesting a new workflow stage, promoting or handing off
+an implementation, review the complete current PR delta against its verified
+base and the intended behavior. Follow the [test-impact allocation](guides/SITE-CHECK-PROFILES.md#test-impact-review-before-advancement).
+Do this before expensive execution, rather than discovering stale expectations
+one failed campaign at a time. Automatic PR feedback may already be running;
+it does not replace this review or authorize advancement.
+
+Record the base/head (or prepared byte manifest), affected behavior and dependency
+owners, applicable source/hosted/staging/production-admission checks, independent
+contract/oracle and each test disposition in the existing owning review artifact.
+Inspect both endpoints of deletions/renames and producer/consumer, fixture,
+selection, environment and evidence-format changes. Retain justified unchanged
+checks, historical fixtures and diagnostics with their reasons. Update obsolete
+expectations and missing coverage against accepted intent before advancing;
+never rewrite tests merely to match implementation or weaken refusal cases,
+budgets, scanners or release gates. Resolve ambiguous intended behavior first.
+
+Run the cheap affected checks before expensive staging, then retain all required
+current-source native and hosted gates. Missing required updates or unresolved
+blocking findings stop advancement. Refresh affected allocations when base/head,
+behavior, dependencies, oracle or selection changes; verify unchanged evidence
+identities instead of repeating an unaffected audit. Keep failed results and
+actual execution separate from plans and review. This is part of the existing
+four-role protocol, not another pipeline or a mandatory new test for every edit.
+
 ### Diagnose failures before changing or rerunning
 
 Apply this flow after any failed test, check or campaign, including infrastructure

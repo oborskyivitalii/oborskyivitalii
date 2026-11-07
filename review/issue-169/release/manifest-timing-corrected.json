@@ -1,0 +1,20 @@
+[
+  {
+    "iteration": 0,
+    "elapsedMs": 155.707414,
+    "files": 85,
+    "digest": "7d2a147be45c737c79f1dc35be5addd010b72406ff75efc83bb2bc3a0a334a48"
+  },
+  {
+    "iteration": 1,
+    "elapsedMs": 9.732951999999983,
+    "files": 85,
+    "digest": "7d2a147be45c737c79f1dc35be5addd010b72406ff75efc83bb2bc3a0a334a48"
+  },
+  {
+    "iteration": 2,
+    "elapsedMs": 9.418512000000021,
+    "files": 85,
+    "digest": "7d2a147be45c737c79f1dc35be5addd010b72406ff75efc83bb2bc3a0a334a48"
+  }
+]
