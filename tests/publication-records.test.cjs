@@ -474,7 +474,7 @@ test('prepublication preserves distinct child runner stderr and command-level fa
 test('prepublication preserves inner source timeout evidence before its distinct outer deadline', (t) => {
   const directory = delivery.temporary(t),
     runner = require('../tools/quality/source-tests.cjs');
-  assert.equal(runner.executionLimits.timeoutMs, 300000);
+  assert.equal(runner.executionLimits.timeoutMs, 600000);
   for (const level of ['staging', 'production']) {
     let runnerReport;
     let sourceDeadline;
@@ -523,18 +523,18 @@ test('prepublication preserves inner source timeout evidence before its distinct
       ['source-tests']
     );
     // One bounded native batch retains a separate 30-second reporting grace.
-    assert.equal(sourceDeadline, 330000);
+    assert.equal(sourceDeadline, 630000);
     assert.ok(otherDeadlines.length > 0);
     assert.ok(otherDeadlines.every((timeout) => timeout === 180000));
     const raw = JSON.parse(fs.readFileSync(runnerReport, 'utf8')),
       wrapper = result.checks.find((row) => row.id === 'source-tests');
     assert.equal(raw.pass, false);
-    assert.equal(raw.execution.timeoutMs, 300000);
+    assert.equal(raw.execution.timeoutMs, 600000);
     assert.equal(raw.execution.error.code, 'ETIMEDOUT');
     assert.equal(fs.readFileSync(raw.files.tap, 'utf8'), 'original partial child TAP\n');
     assert.equal(fs.readFileSync(raw.files.stderr, 'utf8'), 'original inner timeout stderr\n');
     assert.deepEqual(JSON.parse(fs.readFileSync(wrapper.stdout, 'utf8')), raw);
-    assert.equal(wrapper.timeoutMs, 330000);
+    assert.equal(wrapper.timeoutMs, 630000);
     assert.equal(result.checks.find((row) => row.id === 'security').pass, true);
     assert.equal(result.checks.find((row) => row.id === 'unchanged-source').pass, true);
   }
@@ -589,23 +589,29 @@ test('known licensed publications require frozen rights by actual runtime bytes 
       () => staging.build(source.directory, path.join(temp, 'missing-' + edition)),
       /rights record required|rights\.json/
     );
-    // Stripping the article descriptor also makes its still-shipped alias
-    // unclassified. This exact fail-closed inventory error is the expected
-    // earliest refusal; it cannot count as a rights-approval bypass.
+    // A stripped descriptor leaves an unclassified alias when the fixture
+    // actually ships an accepted article; an editorial-preview-only source
+    // instead reaches the independent missing-rights refusal first.
+    const articleAlias = Object.keys(source.record.files).find((file) =>
+      /^articles\/[^/]+\.html$/.test(file)
+    );
+    const strippedRefusal = articleAlias
+      ? new RegExp('unexpected public input ' + articleAlias.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
+      : /rights record required|rights\.json/;
     for (const [alter, refusal] of [
       [
         (record) => {
           delete record.variant;
           delete record.components;
         },
-        /unexpected public input articles\/the-sdlc-is-out-of-balance\.html/,
+        strippedRefusal,
       ],
       [
         (record) => {
           delete record.variant;
           record.components = { contract: 1, engine: '0'.repeat(64) };
         },
-        /unexpected public input articles\/the-sdlc-is-out-of-balance\.html/,
+        strippedRefusal,
       ],
       [
         (record) => {

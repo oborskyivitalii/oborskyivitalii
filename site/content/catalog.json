@@ -826,36 +826,9 @@
         "kind": "Essay",
         "publisher": "LinkedIn"
       }
-    },
-    "publication-30": {
-      "kind": "local-article",
-      "article": "sdlc-out-of-balance",
-      "edition": {
-        "@type": "Article",
-        "name": "The SDLC Is Out of Balance: Beyond the AI Code Review Bottleneck",
-        "url": "articles/the-sdlc-is-out-of-balance.html",
-        "inLanguage": "en",
-        "author": {
-          "@type": "Person",
-          "name": "Vitalii Oborskyi",
-          "url": "https://vitaliioborskyi.ai/"
-        }
-      },
-      "editions": [],
-      "discussions": [],
-      "presentation": {
-        "topic": "delivery",
-        "kind": "Article",
-        "publisher": "Author site",
-        "archiveYear": "2026",
-        "summary": "The AI code review bottleneck is a symptom of a wider SDLC imbalance. Faster reviews alone cannot prove better delivery, shared understanding, reliability or sustainable ownership."
-      }
     }
   },
   "structuredOrder": [
-    {
-      "record": "publication-30"
-    },
     {
       "record": "publication-01"
     },

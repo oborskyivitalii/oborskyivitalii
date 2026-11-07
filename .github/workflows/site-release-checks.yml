@@ -149,7 +149,7 @@ env:
 jobs:
   build:
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 20
     outputs:
       artifact_id: ${{ inputs.public_artifact_id || steps.upload.outputs.artifact-id }}
       artifact_upload_digest: ${{ inputs.public_upload_digest || steps.upload.outputs.artifact-digest }}

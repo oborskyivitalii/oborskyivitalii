@@ -425,7 +425,9 @@ async function collect(github, context, number, root = path.resolve(__dirname, '
     result.nextAction =
       'Review the control diff, then dispatch this PR with reviewed_sha=' +
       pr.head.sha +
-      '. Full checks and staging are still required.';
+      (selection.repositoryOnly
+        ? '. Source, security, RI and owning checks remain required. Website staging is inapplicable.'
+        : '. Full checks and staging are still required.');
   }
   if (git.invoke(root, ['merge-base', '--is-ancestor', context.sha, pr.head.sha]).status !== 0) {
     result.blockers.push('update-from-current-main');

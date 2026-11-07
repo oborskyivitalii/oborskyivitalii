@@ -52,7 +52,7 @@ observed file durations from owner staging42309808371/1. The unfinished profile
 suite uses twice its separate pinned-Node measurement; unknown future files follow
 by path. This reduces the measured queue tail without promising a deadline pass.
 Every selected case,
-the 300-second process limit, 16MiB output bound, clean-source checks and complete
+the 600-second process limit, 16MiB output bound, clean-source checks and complete
 zero-skip accounting remain. Reports retain the worker limit, execution order and
 observed host parallelism; timing is evidence for that run, not a speed guarantee.
 After visual approval mark the PR ready; deferred source/RI jobs use distinct
@@ -389,7 +389,7 @@ not counted as an automatic speed improvement.
 The source runner still uses
 [`source-test-worker.cjs`](../tools/quality/source-test-worker.cjs) with a
 maximum of four isolated workers, original native TAP, 16 MiB output bound,
-strict accounting and 300-second process deadline. The original 1 November
+strict accounting and 600-second process deadline. The original 1 November
 81-module single-runner execution completed only nine modules in 300 seconds.
 It was **failed**, not waived by changing test order.
 
@@ -397,7 +397,7 @@ It was **failed**, not waived by changing test order.
 [`source-test-shards.cjs`](../tools/quality/source-test-shards.cjs) selects
 the _same entire_ registry-derived PR/staging module inventory and divides
 it into eight deterministic, non-overlapping groups using observed suite
-durations. Each group executes the unchanged 300-second source runner on
+durations. Each group executes the unchanged 600-second source runner on
 an independent GitHub job and retains native TAP, stderr, full report and
 exact source/tree identity. This intentionally increases parallel runner
 capacity; it does not claim an unchanged aggregate CPU budget.
@@ -419,7 +419,7 @@ trusted baseline. The unchanged Basic formatter, architecture, lint,
 generated-output, rights, hosted, staging and production gates remain
 separate; **passing shards do not authorize deployment**. The normal
 one-process runner still serves targeted diagnostics and preserves
-the 300-second limit. Explicitly review the changed CI security and
+the 600-second limit. Explicitly review the changed CI security and
 coverage boundary with independent code/white-box reviewers before
 marking Ready, staging, merging or releasing. No single reviewer
 or source plan may fabricate successful raw runner evidence.
@@ -508,7 +508,8 @@ Markdown extension or RI catalog role. Catalog/generated files cannot redefine
 their own authority. The existing `known_non_node_paths` suppresses only unknown
 Node fallback; directly affected suites and separate Python routes still apply.
 
-The full website/control route retains **B + R + O + H** below. Trusted R2 repository
+The full website/control route outside the bounded technical disposition retains
+**B + R + O + H** below. Trusted R2 repository
 selection uses the explicit website inapplicability described below; trusted content
 selection uses the existing content profile and accepted-platform proof. An advisory
 proposal cannot remove an obligation. Test sets come from the current registry and actual commands,
@@ -702,9 +703,25 @@ must not label skipped website work as passed. The source selector's
 `--repository-only` records no delegated website smoke; it still executes any
 actually affected Node modules and propagates their failures.
 
-All executable `tools/`/`tests/`, workflows/actions/acceptance and declared controls
-retain the conservative full route. In particular D03's repository purpose is
-not a cheap exemption for its executable. Mixed/unknown/rights/public inputs
+Executable trust and hosted dependency are separate in the issue169 technical
+extension. The protected selector can set `technicalRepository: true` for regular
+100644 test additions/modifications, monotonic new-test registry rows and exactly
+`tools/repository_intelligence.py`, `tools/check_code_style.py`, `tools/check_ri_ci.py`.
+Every existing registry row and every other policy field stays equal; added rows
+must identify newly added tests. Full source validation/affected Node and enduring
+Python run, plus source-bound locked security/advisories, lint/style/RI/owning.
+Tests remain executable controls requiring the exact reviewed_sha; source selection
+code is unchanged in an eligible future delta. Numeric task snapshots, test
+removal/rename/mode/type, selection/worker/runner/registry-policy edits,
+workflows/actions/admission/classifier/issuer, locks and scanner policy stay full.
+This enabling PR uses the old-main full route before any operational activation.
+The advisory D09 proposal remains conservative; only protected selection's explicit
+complete technical disposition can omit hosted obligations.
+
+RI/CI checksum-only refreshes may accompany eligible technical work only through
+the existing riIdentityCompatible check: all map semantics and identity input paths
+remain equal. Mapping/selection changes remain full; navigation verifies new hashes.
+ Mixed/unknown/rights/public inputs
 retain full obligations. See [activation, exact-SHA control review and protected
 recovery](SITE-STAGING.md#trusted-change-admission-and-repository-delivery).
 The delivered R3/#5 integration uses accepted-platform/history reuse and the
@@ -771,3 +788,7 @@ fresh process with the selected interpreter. Missing Pillow and a missing pin
 remain errors. Functional collection diagnostics retain the primary error before
 secondary missing-article evidence; no article case or acceptance check is waived.
 Existing staging/production cases, profile boundaries and budgets remain unchanged.
+
+## 7 November R11 preview integration — issue #169
+
+Protected main096ed26 supplies the accepted600-second source deadline and20-minute enclosing jobs. The publication branch retains its complete eight-way PR source partition/strict aggregation; technical repository selection still runs all enduring Python/security/advisory gates from main. Prior300-second failures remain historical evidence; no browser/performance budget changed. This Draft R11 iteration stops at preview, with author acceptance and all later source/stable gates pending.

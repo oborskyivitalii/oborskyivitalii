@@ -1078,7 +1078,7 @@ test('bounded source shard identities cover every selected module once and rejec
               status: 0,
               signal: null,
               error: null,
-              timeoutMs: 300000,
+              timeoutMs: 600000,
               stdoutBytes: Buffer.byteLength(output),
               stderrBytes: 0,
             },
@@ -1524,7 +1524,7 @@ test('explicit source reporting retains actual failed process streams and source
   assert.ok(raw.length > 8000);
   assert.match(raw, /original process failure/);
   assert.equal(report.execution.stdoutBytes, Buffer.byteLength(raw));
-  assert.equal(report.execution.timeoutMs, 300000);
+  assert.equal(report.execution.timeoutMs, 600000);
   assert.equal(report.execution.maxBufferBytes, 16 * 1024 * 1024);
   assert.deepEqual(report.observedAccounting.fail, [1]);
 });
@@ -1630,7 +1630,7 @@ test('one source execution retains every selected native case and rejects unavai
   assert.deepEqual(result.modules, plan.modules, 'original selected inventory stays intact');
   assert.equal(report.executions, undefined, 'one source process owns the aggregate budget');
   assert.equal(report.execution.status, 0);
-  assert.equal(report.execution.timeoutMs, 300000);
+  assert.equal(report.execution.timeoutMs, 600000);
   assert.equal(report.execution.maxBufferBytes, 16 * 1024 * 1024);
   const raw = fs.readFileSync(report.files.tap);
   assert.equal(

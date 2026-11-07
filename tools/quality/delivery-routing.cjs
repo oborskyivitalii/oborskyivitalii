@@ -511,8 +511,9 @@ function appendSide(context, record, side, sources) {
     );
   for (const item of rules) appendRule(context, item, record, file, side, sources);
 }
-function repositoryObligations(obligations, reasons, base, candidate) {
+function repositoryObligations(obligations, reasons, base, candidate, technical = false) {
   const inapplicable = new Set(['H-PREVIEW', 'H', 'H-PREFLIGHT', 'H-SOURCE', 'R-PYTHON']);
+  if (technical) inapplicable.delete('R-PYTHON');
   for (const row of obligations) {
     if (inapplicable.has(row.id)) {
       row.required = false;
@@ -533,9 +534,96 @@ function repositoryObligations(obligations, reasons, base, candidate) {
       ];
     if (row.id === 'ADMISSION')
       row.workflow = { path: '.github/workflows/change-admission.yml', job: 'issuer' };
+    if (technical && row.id === 'R-PYTHON')
+      row.workflow = { path: '.github/workflows/site-checks.yml', job: 'checks' };
   }
   reasons[0].detail =
     'Repository source/style/RI/owning checks, trusted App and four roles; website work is inapplicable.';
+  if (technical)
+    for (const kind of ['security', 'advisories']) {
+      const row = newObligation(
+        'B-' + kind.toUpperCase(),
+        'source',
+        'tools/quality/scanners.cjs',
+        ['node', 'tools/quality/scanners.cjs', kind],
+        { path: '.github/workflows/site-checks.yml', job: 'checks' }
+      );
+      row.triggerReasonIds.push(reasons[0].id);
+      reasons[0].obligationIds.push(row.id);
+      obligations.push(row);
+    }
+}
+// A technical exemption is a dependency disposition, never executable trust.
+// Selection/admission/publisher code and their workflow definitions stay full-route.
+function technicalSelection(records, sources) {
+  const repositoryTools = new Set([
+    'tools/repository_intelligence.py',
+    'tools/check_code_style.py',
+    'tools/check_ri_ci.py',
+  ]);
+  const before = sources.base.registry;
+  const after = sources.candidate.registry;
+  const { tests: previousTests, ...previousPolicy } = before;
+  const { tests: currentTests, ...currentPolicy } = after;
+  const currentRows = new Map(currentTests.map((row) => [row.path, row]));
+  const previousRows = new Map(previousTests.map((row) => [row.path, row]));
+  const additions = currentTests.filter((row) => !previousRows.has(row.path));
+  const additiveRegistry =
+    isDeepStrictEqual(previousPolicy, currentPolicy) &&
+    previousTests.every((row) => isDeepStrictEqual(row, currentRows.get(row.path))) &&
+    additions.every(
+      (row) =>
+        row.lifecycle !== 'task-snapshot' &&
+        records.some(
+          (record) =>
+            record.status === 'A' && record.newPath === row.path && record.newMode === '100644'
+        )
+    );
+  const technical = [],
+    rejected = [];
+  for (const record of records) {
+    const file = record.newPath;
+    if (
+      [record.oldMode, record.newMode].filter(Boolean).some((mode) => mode !== '100644') ||
+      (record.oldMode && record.newMode && record.oldMode !== record.newMode)
+    ) {
+      rejected.push(file || record.oldPath);
+      continue;
+    }
+    const ordinary = ['base', 'candidate'].every((side) => {
+      const name = record[side === 'base' ? 'oldPath' : 'newPath'];
+      if (!name) return true;
+      const rules = classify(name, sources[side].rights, sources[side].contentPaths);
+      return rules.every((row) => row.impact === 'repository' && row.control === false);
+    });
+    if (ordinary) continue;
+    const supported =
+      ['A', 'M'].includes(record.status) &&
+      record.newMode === '100644' &&
+      (record.status === 'A' || record.oldMode === record.newMode) &&
+      !sources.base.rights.has(file) &&
+      !sources.candidate.rights.has(file) &&
+      (repositoryTools.has(file) ||
+        (file === '.github/ri-ci-map.json' &&
+          sources.base.ciIdentity &&
+          sources.candidate.ciIdentity &&
+          riIdentityCompatible(sources.base.ciIdentity, sources.candidate.ciIdentity)) ||
+        (file?.startsWith('tests/') &&
+          (!/(?:\.test\.cjs|\/test_[^/]+\.py)$/.test(file) || currentRows.has(file)) &&
+          ![previousRows.get(file), currentRows.get(file)].some(
+            (row) => row?.lifecycle === 'task-snapshot'
+          ) &&
+          !/^tests\/(?:.*\/)?test_issue\d+_acceptance\.py$/.test(file)) ||
+        (file === registryPath && additiveRegistry));
+    (supported ? technical : rejected).push(file || record.oldPath);
+  }
+  return {
+    eligible: technical.length > 0 && rejected.length === 0 && additiveRegistry,
+    technical,
+    rejected,
+    additiveRegistry,
+    controlReviewRequired: true,
+  };
 }
 function riIdentityCompatible(before, after) {
   const { reviewed_source_identity: previousIdentity, ...previousPolicy } = before;
@@ -655,5 +743,7 @@ module.exports = {
   validateRegistry,
   analyze,
   contentSelection,
+  technicalSelection,
+  repositoryObligations,
   riIdentityCompatible,
 };

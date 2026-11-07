@@ -175,8 +175,32 @@ function visit(query = '', historyBlocked = false, candidate = catalog) {
     focuses: () => emitted.filter((e) => e.type === 'site:scene-focus').map((e) => e.detail.focus),
   };
 }
-test('the current SDLC row stays first through year, topic, language, tag and reset filtering', () => {
-  const page = visit('?year=2026&topic=delivery&language=en');
+test('an undated local article keeps its authored year and first position through filters', () => {
+  // Exercise archive behavior with an explicit eligible fixture. Draft editorial
+  // selection must not manufacture an accepted row in the live catalog.
+  const candidate = structuredClone(catalog);
+  const recordId = nextRecordId(candidate);
+  candidate.records[recordId] = {
+    kind: 'local-article',
+    article: 'sdlc-out-of-balance',
+    edition: {
+      '@type': 'Article',
+      name: 'Archive placement fixture',
+      url: 'articles/archive-placement-fixture.html',
+      inLanguage: 'en',
+      author: { '@type': 'Person', name: 'Fixture author' },
+    },
+    editions: [],
+    discussions: [],
+    presentation: {
+      topic: 'delivery',
+      kind: 'Article',
+      publisher: 'Author site',
+      archiveYear: '2026',
+    },
+  };
+  candidate.structuredOrder.unshift({ record: recordId });
+  const page = visit('?year=2026&topic=delivery&language=en', false, candidate);
   const target = page.rows[0];
   assert.equal(target.dataset.year, '2026');
   assert.equal(target.dataset.topic, 'delivery');
@@ -200,7 +224,7 @@ test('the current SDLC row stays first through year, topic, language, tag and re
   page.change('language', 'uk');
   assert.equal(target.hidden, true);
   page.reset();
-  assert.equal(page.shown().length, total);
+  assert.equal(page.shown().length, total + 1);
   assert.equal(page.shown()[0], target);
 });
 

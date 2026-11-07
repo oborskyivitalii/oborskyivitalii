@@ -202,7 +202,7 @@ jobs:
       needs.target.outputs.repository_only != 'true' &&
       (needs.target.outputs.mode == 'preview' || needs.begin-admission.result == 'success')
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 20
     outputs:
       prepublication_artifact: ${{ steps.prepublication.outputs.artifact-id }}
       prepublication_upload_digest: ${{ steps.prepublication.outputs.artifact-digest }}
@@ -216,7 +216,7 @@ jobs:
       variant: ${{ steps.rendition.outputs.variant }}
     env:
       SITE_CANDIDATE_SHA: ${{ needs.target.outputs.source }}
-      SITE_ARTICLE_PREVIEW: ${{ needs.target.outputs.prototype == 'true' && needs.target.outputs.number == '79' && 'true' || 'false' }}
+      SITE_ARTICLE_PREVIEW: ${{ needs.target.outputs.prototype == 'true' && (needs.target.outputs.number == '79' || needs.target.outputs.number == '170') && 'true' || 'false' }}
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:

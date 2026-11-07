@@ -47,21 +47,15 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618](docs/article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618) | Digest-addressed passive Research fallback vectors generated from the canonical authored scene; no article publication. | generated | [site/README.md](site/README.md) |
 | [docs/article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292](docs/article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16](docs/article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
-| [docs/article-media/36269db33a71781084053ae40cc41e411a0106bea5e593ef0b08414014c4ca40](docs/article-media/36269db33a71781084053ae40cc41e411a0106bea5e593ef0b08414014c4ca40) | R10 generated rendition or source-bound editorial/export evidence. | generated | [site/README.md](site/README.md) |
 | [docs/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3](docs/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c](docs/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-media/79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6](docs/article-media/79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f](docs/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1](docs/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
-| [docs/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a](docs/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a) | Generated R9 native article, digest media/material or dependent route snapshot. | generated | [site/README.md](site/README.md) |
-| [docs/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551](docs/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551) | Generated R9 native article, digest media/material or dependent route snapshot. | generated | [site/README.md](site/README.md) |
-| [docs/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7](docs/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7) | Generated R9 native article, digest media/material or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f](docs/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f) | Generated native article, immutable media or snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-snapshots](docs/article-snapshots) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684](docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684) | Current immutable generated room/article snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
-| [docs/article-snapshots/60b4eb071b9f8367227354032aec04364d783b02fb8f6f8d7d3cb59a05949bcc](docs/article-snapshots/60b4eb071b9f8367227354032aec04364d783b02fb8f6f8d7d3cb59a05949bcc) | Generated R10 Writing archive classification and dependent immutable route closure. | generated | [site/README.md](site/README.md) |
 | [docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003](docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003) | Exact current native raw article rendition and existing immutable closure; no prior-publication claim. | generated | [site/README.md](site/README.md) |
-| [docs/articles](docs/articles) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/assets](docs/assets) | Generated legacy-compatible aliases for authored portrait/icon assets. | generated | [site/README.md](site/README.md) |
 | [docs/media](docs/media) | Generated content-addressed asset editions. | generated | [site/README.md](site/README.md) |
 | [docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc](docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc) | Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
@@ -78,7 +72,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e](docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e) | Verified prior production immutable snapshot retained with its exact published bytes. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/2ad4040444469ec0a6704c947b68d0f7430a0b7bbf5e9ef1f994e366060fe89f](docs/snapshots/2ad4040444469ec0a6704c947b68d0f7430a0b7bbf5e9ef1f994e366060fe89f) | Generated completed DevCon Talks rendition and immutable route closure. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/39441f2d37cdfc6b3935d76c2f897f92be741f851569e2ff46558e90b4180612](docs/snapshots/39441f2d37cdfc6b3935d76c2f897f92be741f851569e2ff46558e90b4180612) | Generated R10 Writing archive classification and dependent immutable route closure. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/4c633b6b3889451c5a923a013cde4a5105323456d95739dc0889e1bfa868cfad](docs/snapshots/4c633b6b3889451c5a923a013cde4a5105323456d95739dc0889e1bfa868cfad) | Generated R10 Writing archive classification and dependent immutable route closure. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/499e5b70f26ab25766c33a89bf3ee2fbb46dd6894fae461978a7df0d30579671](docs/snapshots/499e5b70f26ab25766c33a89bf3ee2fbb46dd6894fae461978a7df0d30579671) | Generated public output/snapshot from canonical site owners; regenerate instead of editing. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347](docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/632f4f29ebdbc51215b02592fd45a1f10a99fb8596d2dec8b3f18bc8be847f06](docs/snapshots/632f4f29ebdbc51215b02592fd45a1f10a99fb8596d2dec8b3f18bc8be847f06) | Verified prior production immutable snapshot retained with its exact published bytes. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed](docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed) | Generated public rendition; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
@@ -444,12 +438,6 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [docs/article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg](docs/article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 
-## docs/article-media/36269db33a71781084053ae40cc41e411a0106bea5e593ef0b08414014c4ca40/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/article-media/36269db33a71781084053ae40cc41e411a0106bea5e593ef0b08414014c4ca40/reading-r10.pdf](docs/article-media/36269db33a71781084053ae40cc41e411a0106bea5e593ef0b08414014c4ca40/reading-r10.pdf) | Generated R10 article, immutable media/material or dependent route snapshot from canonical sources. | generated | [site/README.md](site/README.md) |
-
 ## docs/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3/
 
 | Path | Purpose | Role | Owner / editing route |
@@ -472,7 +460,6 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry-r9.webp](docs/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry-r9.webp) | Generated R9 native article, digest media/material or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry.webp](docs/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry.webp) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 
 ## docs/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1/
@@ -480,24 +467,6 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [docs/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1/workstream-system.webp](docs/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1/workstream-system.webp) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
-
-## docs/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a/review-learning-r7.webp](docs/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a/review-learning-r7.webp) | Generated R9 native article, digest media/material or dependent route snapshot. | generated | [site/README.md](site/README.md) |
-
-## docs/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551/comprehension-gap-r7.webp](docs/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551/comprehension-gap-r7.webp) | Generated R9 native article, digest media/material or dependent route snapshot. | generated | [site/README.md](site/README.md) |
-
-## docs/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7/delivery-capacity-r6.webp](docs/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7/delivery-capacity-r6.webp) | Generated R9 native article, digest media/material or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 
 ## docs/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f/
 
@@ -511,23 +480,11 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684/the-sdlc-is-out-of-balance.html](docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684/the-sdlc-is-out-of-balance.html) | Current immutable generated room/article snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
 
-## docs/article-snapshots/60b4eb071b9f8367227354032aec04364d783b02fb8f6f8d7d3cb59a05949bcc/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/article-snapshots/60b4eb071b9f8367227354032aec04364d783b02fb8f6f8d7d3cb59a05949bcc/the-sdlc-is-out-of-balance.html](docs/article-snapshots/60b4eb071b9f8367227354032aec04364d783b02fb8f6f8d7d3cb59a05949bcc/the-sdlc-is-out-of-balance.html) | Generated R10 Writing archive classification and dependent immutable route closure. | generated | [site/README.md](site/README.md) |
-
 ## docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/the-sdlc-is-out-of-balance.html](docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/the-sdlc-is-out-of-balance.html) | Exact current native raw article rendition and existing immutable closure; no prior-publication claim. | generated | [site/README.md](site/README.md) |
-
-## docs/articles/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/articles/the-sdlc-is-out-of-balance.html](docs/articles/the-sdlc-is-out-of-balance.html) | Current accepted R9 native article rendition. | generated | [site/README.md](site/README.md) |
 
 ## docs/assets/
 
@@ -633,11 +590,11 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [docs/snapshots/39441f2d37cdfc6b3935d76c2f897f92be741f851569e2ff46558e90b4180612/credits.html](docs/snapshots/39441f2d37cdfc6b3935d76c2f897f92be741f851569e2ff46558e90b4180612/credits.html) | Generated R10 Writing archive classification and dependent immutable route closure. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/4c633b6b3889451c5a923a013cde4a5105323456d95739dc0889e1bfa868cfad/
+## docs/snapshots/499e5b70f26ab25766c33a89bf3ee2fbb46dd6894fae461978a7df0d30579671/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/snapshots/4c633b6b3889451c5a923a013cde4a5105323456d95739dc0889e1bfa868cfad/writing.html](docs/snapshots/4c633b6b3889451c5a923a013cde4a5105323456d95739dc0889e1bfa868cfad/writing.html) | Generated R10 Writing archive classification and dependent immutable route closure. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/499e5b70f26ab25766c33a89bf3ee2fbb46dd6894fae461978a7df0d30579671/writing.html](docs/snapshots/499e5b70f26ab25766c33a89bf3ee2fbb46dd6894fae461978a7df0d30579671/writing.html) | Generated public output/snapshot from canonical site owners; regenerate instead of editing. | generated | [site/README.md](site/README.md) |
 
 ## docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/
 
@@ -849,8 +806,10 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/site-v1-20261002-v7-index.html.gz](review/site-v1-20261002-v7-index.html.gz) | Losslessly retained historical preview; original-path locator and original decoded byte identity preserved. | history | [AGENTS.md](AGENTS.md) |
 | [review/site-v1-20261002-v7-interactive.html](review/site-v1-20261002-v7-interactive.html) | Historical reference/preview HTML: site-v1-20261002-v7-interactive.html. Dated site v1 20261002 v7 interactive.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261002-v7-night.html](review/site-v1-20261002-v7-night.html) | Historical reference/preview HTML: site-v1-20261002-v7-night.html. Dated site v1 20261002 v7 night.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
-| [review/site-v1-20261002-v7-research-day.html](review/site-v1-20261002-v7-research-day.html) | Historical reference/preview HTML: site-v1-20261002-v7-research-day.html. Dated site v1 20261002 v7 research day.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
-| [review/site-v1-20261002-v7-research-interactive.html](review/site-v1-20261002-v7-research-interactive.html) | Historical reference/preview HTML: site-v1-20261002-v7-research-interactive.html. Dated site v1 20261002 v7 research interactive.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/site-v1-20261002-v7-research-day.html](review/site-v1-20261002-v7-research-day.html) | Original-path locator to byte-exact historical v7 Research day preview in sibling gzip. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/site-v1-20261002-v7-research-day.html.gz](review/site-v1-20261002-v7-research-day.html.gz) | Byte-exact gzip-retained historical v7 Research day preview; original locator retains decode and digest. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/site-v1-20261002-v7-research-interactive.html](review/site-v1-20261002-v7-research-interactive.html) | Original-path locator to exact gzip-retained historical v7 Research preview; decode to inspect original bytes. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/site-v1-20261002-v7-research-interactive.html.gz](review/site-v1-20261002-v7-research-interactive.html.gz) | Lossless exact historical v7 Research preview; original path retains its decode command and SHA256 locator. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261002-v7-research-night.html](review/site-v1-20261002-v7-research-night.html) | Historical reference/preview HTML: site-v1-20261002-v7-research-night.html. Dated site v1 20261002 v7 research night.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261002-v7-talks-day.html](review/site-v1-20261002-v7-talks-day.html) | Historical reference/preview HTML: site-v1-20261002-v7-talks-day.html. Dated site v1 20261002 v7 talks day.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261002-v7-talks-interactive.html](review/site-v1-20261002-v7-talks-interactive.html) | Historical reference/preview HTML: site-v1-20261002-v7-talks-interactive.html. Dated site v1 20261002 v7 talks interactive.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -1239,6 +1198,9 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-169/2026-11-06-writing-discovery.md](review/issue-169/2026-11-06-writing-discovery.md) | Issue169 Writing discovery correction review, source-bound receipts and original execution evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/2026-11-07-browser-media-controller.md](review/issue-169/2026-11-07-browser-media-controller.md) | Issue169 exact-source missing browser media dependency diagnosis, all-platform controller correction, independent review and acceptance route. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/2026-11-07-media-controller-integration.md](review/issue-169/2026-11-07-media-controller-integration.md) | Issue169 proposed media controller integration into unchanged R10, lossless history storage, independent checks and diagnostic-only staging boundary. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/2026-11-07-r11-preview.md](review/issue-169/2026-11-07-r11-preview.md) | Issue169 R11 Draft-preview source, pending editorial state, integration decisions and exact review/check/delivery evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/2026-11-07-source-timeouts.md](review/issue-169/2026-11-07-source-timeouts.md) | Author-approved source and enclosing CI timeout amendment, preserved failure diagnosis, review and exact-source acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/2026-11-07-technical-route.md](review/issue-169/2026-11-07-technical-route.md) | Technical repository route scope, stable TR01–TR08 checks, independent review and source-bound delivery evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/browser-media-reviews-and-checks.tar.xz](review/issue-169/browser-media-reviews-and-checks.tar.xz) | Literal source-bound issue169 browser-media preflight and four-role first/correction reviews, original failures and corrected local checks. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/controller-fixture-seed-proof.json.gz](review/issue-169/controller-fixture-seed-proof.json.gz) | Exact fixed fixture source, packets, raw native/timing evidence identity and independent review receipts. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/correction-affected.log.gz](review/issue-169/correction-affected.log.gz) | Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -1250,8 +1212,13 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-169/media-r10-integration-reviews-and-checks.tar.xz](review/issue-169/media-r10-integration-reviews-and-checks.tar.xz) | Literal issue169 R10 media integration reviewer launch/results, exposure replacement chronology, exact local checks and original preparation errors. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/native-check-allocation.md](review/issue-169/native-check-allocation.md) | Issue169 native integration review and acceptance evidence. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-169/notice-preflight-proof.json.gz](review/issue-169/notice-preflight-proof.json.gz) | Exact correction packets, raw evidence identity, measured subprocess counts and reviewer receipts. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/r11-preview-evidence.tar.xz](review/issue-169/r11-preview-evidence.tar.xz) | R11 integrated Draft-preview manifest, literal independent role receipts, checks and both-parent integration evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/r11-review-kit-and-evidence.tar.xz](review/issue-169/r11-review-kit-and-evidence.tar.xz) | Exact R11 native distribution kit/PDF, original failed layout/oracle observations and literal prior independent reviews/launch receipts. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/source-timeout-reviews-and-checks.tar.xz](review/issue-169/source-timeout-reviews-and-checks.tar.xz) | Literal independent timeout reviews, source manifests and actual check streams; original failures retained separately. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/stage-security-proof.json.gz](review/issue-169/stage-security-proof.json.gz) | Exact per-finding source and native producer proof for the retained nine staging secret-scanner candidates. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/staging-production-test-audit-proof.tar.xz](review/issue-169/staging-production-test-audit-proof.tar.xz) | Source-bound staging/production test audit evidence and exact lossless human-review retention; no deployment authority. | history | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [review/issue-169/technical-route-requirements-first.md](review/issue-169/technical-route-requirements-first.md) | Literal independent requirements preflight and bounded technical route scope treatment; historical review evidence, not current authority. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/technical-route-reviews-and-checks.tar.xz](review/issue-169/technical-route-reviews-and-checks.tar.xz) | Literal technical-route reviewer launches/results/corrections, public checksum proofs and original successful/failed source check reports; each retains actual source identity. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/timing-correction-reviews.tar.xz](review/issue-169/timing-correction-reviews.tar.xz) | Literal source-bound issue169 timing correction independent reviews, none-fork launch receipts, prepared manifests and metadata reconciliation. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/trusted-controller-native-format-failure.log.gz](review/issue-169/trusted-controller-native-format-failure.log.gz) | Actual native Basic42294299712/job128155440694 formatting refusal at d3d76f7; retained without retry or source-test acceptance claims. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/trusted-controller-reviews-and-checks.tar.xz](review/issue-169/trusted-controller-reviews-and-checks.tar.xz) | Literal independent reviewer receipts/results and exact raw local source/security/check evidence, retaining first failures; hosted acceptance separate. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -3156,6 +3123,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [site/assets/publications/sdlc-out-of-balance/materials/reading-r10.pdf](site/assets/publications/sdlc-out-of-balance/materials/reading-r10.pdf) | R10 five-page illustrated reading PDF, generated from canonical article AST and existing declared images. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
+| [site/assets/publications/sdlc-out-of-balance/materials/reading-r11.pdf](site/assets/publications/sdlc-out-of-balance/materials/reading-r11.pdf) | Pending five-page R11 reading PDF; exact author approval remains separate. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/assets/publications/sdlc-out-of-balance/materials/reading-r9.pdf](site/assets/publications/sdlc-out-of-balance/materials/reading-r9.pdf) | Accepted R9 source, edition, five-visual asset or exact PDF review evidence through existing publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/assets/publications/sdlc-out-of-balance/materials/reading.pdf](site/assets/publications/sdlc-out-of-balance/materials/reading.pdf) | Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 
@@ -3367,6 +3335,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r10-20261106.json](site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r10-20261106.json) | R10 source-bound content edition or matching material-review provenance. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
+| [site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r11-20261107.json](site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r11-20261107.json) | Immutable committed R11 source/semantic edition identity; no publication observation. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r3-20261031.json](site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r3-20261031.json) | Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r4-20261101.json](site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r4-20261101.json) | Historical frozen R4 native article edition, retained with original R3 history. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r9-20261105.json](site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r9-20261105.json) | Accepted R9 source, edition, five-visual asset or exact PDF review evidence through existing publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
@@ -3376,6 +3345,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [site/publications/sdlc-out-of-balance/materials/reviews/reading-pdf-r10.md](site/publications/sdlc-out-of-balance/materials/reviews/reading-pdf-r10.md) | R10 source-bound content edition or matching material-review provenance. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
+| [site/publications/sdlc-out-of-balance/materials/reviews/reading-pdf-r11.md](site/publications/sdlc-out-of-balance/materials/reviews/reading-pdf-r11.md) | R11 implementer PDF inspection and explicit pending author/material approval. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/publications/sdlc-out-of-balance/materials/reviews/reading-pdf-r9.md](site/publications/sdlc-out-of-balance/materials/reviews/reading-pdf-r9.md) | Accepted R9 source, edition, five-visual asset or exact PDF review evidence through existing publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/publications/sdlc-out-of-balance/materials/reviews/reading-pdf.md](site/publications/sdlc-out-of-balance/materials/reviews/reading-pdf.md) | Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 

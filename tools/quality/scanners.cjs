@@ -1095,16 +1095,15 @@ function advisories() {
     publicationLockSha256: result.values.publicationNpm.lockSha256,
   };
 }
-function repositoryLint() {
+function repositoryScan(kind) {
+  assert.ok(['lint', 'security', 'advisories'].includes(kind), 'Unknown repository scanner stage');
   const git = require('./delivery-git.cjs'),
     common = require('./common.cjs');
   const commit = git.text(git.git(root, ['rev-parse', 'HEAD'])).trim();
   const source = git.resolve(root, commit);
-  git.clean(root, commit);
-  if (process.env.SITE_CANDIDATE_SHA) assert.equal(commit, process.env.SITE_CANDIDATE_SHA);
   const report = {
     schema: 1,
-    kind: 'repository-source-lint',
+    kind: 'repository-source-' + kind,
     pass: false,
     sourceCommit: commit,
     sourceTree: source.tree,
@@ -1113,20 +1112,22 @@ function repositoryLint() {
     environment: common.environment(),
   };
   try {
-    report.detail = lint();
+    git.clean(root, commit);
+    if (process.env.SITE_CANDIDATE_SHA) assert.equal(commit, process.env.SITE_CANDIDATE_SHA);
+    report.detail = kind === 'lint' ? lint() : kind === 'security' ? security() : advisories();
     git.clean(root, commit);
     report.pass = true;
-    common.save('repository-lint', report);
+    common.save('repository-' + kind, report);
     return report;
   } catch (error) {
     report.error = error.message;
     if (error.detail) report.detail = error.detail;
-    common.save('repository-lint', report);
+    common.save('repository-' + kind, report);
     throw error;
   }
 }
 function main(kind = process.argv[2]) {
-  if (kind === 'lint' && process.env.SITE_REPOSITORY_ONLY === 'true') return repositoryLint();
+  if (process.env.SITE_REPOSITORY_ONLY === 'true') return repositoryScan(kind);
   try {
     const identity = require('./common.cjs').identity();
     for (const key of ['sourceCommit', 'sourceTree', 'candidateCommit'])

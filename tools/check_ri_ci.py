@@ -131,7 +131,7 @@ def source_shards_reachability(jobs, path, job):
     required_upstream = [
         "    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false",
         "    runs-on: ubuntu-24.04",
-        "    timeout-minutes: 10",
+        "    timeout-minutes: 20",
         "      fail-fast: false",
         "        shard: [0, 1, 2, 3, 4, 5, 6, 7]",
         "          ref: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}",

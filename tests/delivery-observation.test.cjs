@@ -129,6 +129,121 @@ const cases = [
   ['tools/quality/artifact.cjs', 'website', true, 'D09'],
   ['review/REVIEW-TEMPLATE-nearby.txt', 'website', null, 'D10'],
 ];
+function technicalFixture(t, change, prepare = () => {}) {
+  const file = 'tests/delivery-observation.test.cjs';
+  return fixture(
+    t,
+    (directory) => {
+      write(directory, file, 'before\n');
+      prepare(directory);
+    },
+    (directory) => {
+      write(directory, file, 'after\n');
+      change(directory);
+    }
+  );
+}
+function selectedFixture(f) {
+  return observer.selection(f.directory, f.base, f.head);
+}
+test('technical test maintenance omits hosted work and retains executable trust and Python', (t) => {
+  const f = technicalFixture(t, (directory) => write(directory, 'MEMORY.md', 'dated handoff\n'));
+  const plan = selectedFixture(f);
+  assert.equal(plan.repositoryOnly, true);
+  assert.equal(plan.technicalRepository, true);
+  assert.equal(plan.analysis.control, true);
+  assert.equal(plan.technical.controlReviewRequired, true);
+  assert.ok(
+    plan.obligations.filter((row) => row.category === 'hosted').every((row) => !row.required)
+  );
+  assert.equal(plan.obligations.find((row) => row.id === 'R-PYTHON').required, true);
+  assert.ok(plan.obligations.some((row) => row.id.startsWith('SOURCE:tests/delivery-observation')));
+});
+for (const file of [
+  'tools/repository_intelligence.py',
+  'tools/check_code_style.py',
+  'tools/check_ri_ci.py',
+])
+  test('exact repository check owner has technical eligibility: ' + file, (t) => {
+    const f = technicalFixture(t, (directory) => write(directory, file, 'changed\n'));
+    assert.equal(selectedFixture(f).technicalRepository, true);
+  });
+for (const file of [
+  'site/engine/new.cjs',
+  'docs/writing.html',
+  'tools/quality/source-tests.cjs',
+  'tools/quality/delivery-admission.cjs',
+  '.github/workflows/site-checks.yml',
+  '.github/actions/publication-media/action.yml',
+  'tools/quality/toolchain/package-lock.json',
+  'unknown.txt',
+])
+  test('technical maintenance retains full work with excluded input: ' + file, (t) => {
+    const f = technicalFixture(t, (directory) => write(directory, file, 'changed\n'));
+    assert.equal(selectedFixture(f).repositoryOnly, false);
+  });
+test('technical registry additions preserve every previous row and policy field', (t) => {
+  const added = 'tests/technical-added.test.cjs';
+  const f = technicalFixture(t, (directory) => {
+    write(directory, added, 'new test\n');
+    const file = path.join(directory, 'tools/quality/test-profiles.json');
+    const registry = JSON.parse(fs.readFileSync(file));
+    registry.tests.push({
+      ...registry.tests.find((row) => row.path === 'tests/delivery-observation.test.cjs'),
+      path: added,
+      inputs: [added],
+    });
+    fs.writeFileSync(file, JSON.stringify(registry));
+  });
+  const plan = selectedFixture(f);
+  assert.equal(plan.repositoryOnly, true);
+  assert.equal(plan.technical.additiveRegistry, true);
+  for (const mutate of [
+    (registry) => registry.tests.pop(),
+    (registry) => registry.tests[0].inputs.push('changed-policy'),
+    (registry) => registry.source_profiles.pr.shared_inputs.pop(),
+    (registry) => registry.tests.push({ ...registry.tests[0] }),
+  ]) {
+    const file = path.join(f.directory, 'tools/quality/test-profiles.json');
+    const registry = JSON.parse(
+      git(f.directory, 'show', f.base + ':tools/quality/test-profiles.json')
+    );
+    mutate(registry);
+    fs.writeFileSync(file, JSON.stringify(registry));
+    const head = commit(f.directory);
+    try {
+      assert.equal(observer.selection(f.directory, f.base, head).repositoryOnly, false);
+    } catch (error) {
+      assert.match(error.message, /duplicate registry test/);
+    }
+  }
+});
+test('deleted, renamed, mode-changed and provenance test inputs cannot select technical work', (t) => {
+  for (const kind of ['delete', 'rename', 'mode', 'symlink', 'rights', 'unmapped']) {
+    const f = technicalFixture(
+      t,
+      (directory) => {
+        const file = path.join(directory, 'tests/delivery-observation.test.cjs');
+        if (kind === 'delete') fs.unlinkSync(file);
+        if (kind === 'rename') fs.renameSync(file, path.join(directory, 'tests/renamed.test.cjs'));
+        if (kind === 'mode') fs.chmodSync(file, 0o755);
+        if (kind === 'symlink') {
+          fs.unlinkSync(file);
+          fs.symlinkSync('../AGENTS.md', file);
+        }
+        if (kind === 'unmapped') write(directory, 'tests/unmapped.test.cjs');
+      },
+      (directory) => {
+        if (kind !== 'rights') return;
+        const file = path.join(directory, 'site/rights.json');
+        const rights = JSON.parse(fs.readFileSync(file));
+        Object.values(rights.bases)[0].provenance.push('tests/delivery-observation.test.cjs');
+        fs.writeFileSync(file, JSON.stringify(rights));
+      }
+    );
+    assert.equal(selectedFixture(f).repositoryOnly, false, kind);
+  }
+});
 for (const [file, lane, control, rule] of cases)
   test('real Git owner: ' + file, (t) => {
     const f = fixture(t, null, (directory) => write(directory, file, 'new fixture\n'));
