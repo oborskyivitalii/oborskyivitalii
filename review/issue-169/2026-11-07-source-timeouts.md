@@ -93,3 +93,22 @@ ETIMEDOUT/overflow/cancellation/report retention without waiting600seconds.
 No new routine test or selector entry was added: the three affected modules keep
 their existing PR/staging/production assignments, with no duplicate or retired case.
 Fresh clean committed/native source, RI and full controller staging still required.
+
+## Clean source observations before final receipt metadata
+
+Clean local017d755be91135215b198d866996874ae87a1e82,
+tree9bead9295a11af60ee55bad005670f178d574afc passed1198/1198source cases
+across78modules in125695ms, zero failed/cancelled/skipped/TODO. Raw source report,
+TAP and stderr are retained. Node24.19.0;600000ms execution and16MiB output bound.
+Source before/after both clean and identical. GitHub38ad49d3ec488b8c8dea14f9c9f4ef0c857a886d
+has that identical complete tree; all17 uploaded blob SHAs and the resulting tree
+were verified. Local Git push had no credentials; the connected GitHub API supplied
+this ordinary source update without any credential or protection change.
+
+Maintained Python142/142 passed in36.917s; separate RI29/29 and RI-CI22/22 passed.
+Owning automated scope passed on clean017d755b, explicitly ready_for_issue_closure=false.
+RI build/verify, coupling, Basic, style, format, architecture and focused lint passed.
+The raw checks precede this literal receipt/archive and deterministic RI refresh;
+all independently reviewed executable/workflow/test/guide bytes remain unchanged.
+Native current-head admission and actual full owner staging remain pending.
+Author scope anchor: issue169 comment6703430384. Whole AC checkboxes unchanged.

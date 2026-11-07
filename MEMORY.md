@@ -34,8 +34,11 @@ Dated continuity, not live authority. Last verified: **2026-11-07**.
   functional failed missing Pillow. PR174 fixes canonical browser media setup.
 - Timeout amendment uses600000ms source, derived630000ms wrapper and20-minute
   enclosing PR Basic/staging/reusable release-build jobs. Other limits unchanged.
-- Actual current-source independent roles/checks/native/full staging remain
-  recorded in the report; do not infer passes from this handoff.
+- Four actual independent roles completed without blockers. Clean local017d755b
+  passed1198/1198source cases/78modules in125695ms; Python142/142, RI29/29,
+  RI-CI22/22, Basic/style/format/architecture/lint and owning automated scope passed.
+- Complete tree9bead929 matches remote38ad49d3. Later literal receipts/RI retain
+  reviewed executable bytes; final native/full staging still required.
 
 ## Next session
 

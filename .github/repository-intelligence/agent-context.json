@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "e3e996544944743f7cb5b6763733c7fb40c69c49b50620ebbd3750ee9b66b54c",
+    "digest": "f67fe6fb419d67384fdc64d7de832275ab09316ddfc493bf09130a22832565ac",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -376,7 +376,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "3d072be0b0445c7b982938171fadf2c4dcf069fd367758038b3bd46581e247df"
+        "sha256": "6db9f3c1635288bd4f3eb64eb87ef7a0dfad496f3077b86583799485ec6c8693"
       },
       {
         "path": "NOTICE.md",
@@ -1245,7 +1245,7 @@
       {
         "path": "review/issue-169/2026-11-07-source-timeouts.md",
         "identity_mode": "content",
-        "sha256": "06dd1172e601c3a8d6920dd322becc7e8ac9e23ed458cfa28bf30dbacece50fd"
+        "sha256": "478c7c4b5a33d9793592526487758673c164b296dc7b45f7985c1df853dcd080"
       },
       {
         "path": "review/issue-169/browser-media-reviews-and-checks.tar.xz",
@@ -1255,7 +1255,7 @@
       {
         "path": "review/issue-169/source-timeout-reviews-and-checks.tar.xz",
         "identity_mode": "content",
-        "sha256": "70d59e791d4739d5b26efd94d2b570d904187d9838c769a17b3c4c34b16d9b54"
+        "sha256": "c1e144678a8f55bd6e1ab0d80c4192eca46615631f9d4237f12cbb9afd91e95d"
       },
       {
         "path": "review/issue-169/trusted-controller-native-format-failure.log.gz",
