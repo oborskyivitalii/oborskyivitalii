@@ -17226,6 +17226,18 @@
       "purpose": "Preserved Draft preview oracle failure, independent correction and current pre-advancement test-impact audit/review/check evidence; native and hosted gates remain separate.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/2026-11-07-production-bootstrap.md": {
+      "kind": "file",
+      "purpose": "Dated issue169 production bootstrap failure diagnosis, consumer/test allocation, source-bound independent review and execution limits.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/production-bootstrap-evidence.tar.xz": {
+      "kind": "file",
+      "purpose": "Verbatim issue169 production bootstrap packets, independent review receipts, retained failures and bounded execution evidence; inactive history.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

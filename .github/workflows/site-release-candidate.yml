@@ -68,6 +68,10 @@ jobs:
           python3 tools/pages/unpack.py quality-reports/staging/public.zip quality-reports/staging/public "$STAGE_PUBLIC_DIGEST"
           gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$STAGE_GATE_ID/zip" > quality-reports/staging/gate.zip
           python3 tools/pages/unpack.py quality-reports/staging/gate.zip quality-reports/staging/gate "$STAGE_GATE_DIGEST"
+      - name: Install the locked publisher before source-bound article verification
+        run: npm ci --prefix tools/publishing/toolchain --ignore-scripts
+      - name: Prepare canonical publication media before source-bound article verification
+        uses: ./.github/actions/publication-media
       - name: Freeze the production edition from the accepted identical source tree
         run: |
           node tools/quality/artifact.cjs build quality-artifact --accepted-generation quality-reports/staging/public

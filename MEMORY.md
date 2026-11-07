@@ -4,49 +4,45 @@ Dated continuity, not live authority. Last verified: **2026-11-07**.
 
 ## Snapshot
 
-- Owner169 / publication PR170; author source9fe9b70 is R11.
-- Protected main096ed26 includes accepted PR174 technical delivery/media fix.
-- Preview56f4 passed native build/publish/HTTP and bounded hosted desktop review.
-- Author accepted exact R11/PDF and requested full stable staging; no merge/production.
-- R11 PDF is five pages with five images/four numbered captions and17URLs.
-- Exact R11 author/PDF decision: issue169 comment6705211415; R10 retained.
+- Owner169; article R11 PR170 merged8e0aa848/tree3fae0a82 after author production instruction.
+- Accepted staged2c44923b has the identical tree; full stage42364626807 passed.
+- Reader/PDF visually observed stable; issue comment6705926173 holds exact proof.
+- Production remains1f814f59; live release prod-2026-10-29.1.
+- Candidate42381347247/1 failed build step6 missing publisher dependencies before upload/live.
 
 ## Decisions
 
-- Restore accepted article/catalog/PDF binding for the exact displayed R11 bytes.
-- Publication30 remains first2026/delivery/Article/Author site; preserve tags.
-- R11 leaves editorial-preview selection; existing pmday candidate is unchanged.
-- Keep source/semantic/PDF/images exact; canonical/dates/events stay pending.
-- Use current-main normal Ready/full stable route and STOP at verified reader/PDF.
-- Main600-second source/20-minute jobs and all source/browser/scanner gates remain.
-- No PR170merge, production or platform posting in this continuation.
+- User explicitly requested production after accepting exact R11/stable/PDF.
+- Preserve R11 source/semantic/PDF, rights, pins, budgets and protected gates.
+- Correct only evidenced candidate parser/media bootstrap under the same owner169.
+- Workflow/action changes are full/control; technical test-only exemption does not apply.
+- New exact-head maintainer trust remains separate from accepted old2c source.
+- Do not post on LinkedIn/Medium; site-first distribution remains applicable.
 
 ## Open work
 
-- Current allocation: review/issue-169/2026-11-07-r11-stable-staging.md.
-- Native e75:7source shards pass;1fails obsolete79-only preview oracle.
-- Failure42362774132 retained; no stage. PRDraft during correction.
-- Localc8 corrected13/13; new protocol requires complete test-impact audit
-  before Ready/new workflow stage/promotion/handoff with independent oracles.
-- Main-to-candidate source/stage/production routes audited; historical/negative
-  PR79cases retained. Worker deadline comment corrected; executable unchanged.
-- Affected route60/60 and Basic28/28 pass locally; format found only derived
-  ri-ci-map formatting/catalog registration, corrected before native.
-- Four final roles completed without blockers; RI29/style15/coupling23 pass.
-- Required final native and full owner stage remain; stable reader/PDF not observed.
-- Original whole article ACs stay open except historicalAC06.
+- Active work/issue169-production-publisher-bootstrap based main8e0aa848.
+- Four-line workflow setup and existing quality regression; no public source edits.
+- Complete sibling production consumer audit: only candidate build needs setup.
+- Four clean-context roles complete without blockers; literal first/final results retained.
+- Quality22/22 and Basic28/28, style/architecture pass on prepared source.
+- Isolated8e consumer with authenticated stage succeeded edition/rights/package;
+  explicit cached parser and local Node24.22.1 mean native fresh install remains pending.
+- Owner report review/issue-169/2026-11-07-production-bootstrap.md preserves limits/failure.
+- Final format/RI pass; RI29/style15/coupling23 pass. Clean owning, native/full/control remain.
+- No successful frozen candidate/archive/production publication yet; original AC06 only checked.
 
 ## Next session
 
-1. Verify current main/PR170 source, pending checks and primary author decision.
-2. Read current source-bound local receipts; do not relabel them as final native.
-3. Mark Ready only after review; wait for actual successful latest admission.
-4. Run owner full stage; verify stable source/R11/PDF and STOP/show.
-5. No PR170merge/production/platform posting from this continuation.
+1. Revalidate main/production, active fix PR/ref and actual source checks.
+2. Finish exact-source metadata/checks and review receipt; create/advance the small fix PR.
+3. Full owner stage, then exact-head controller trust and protected normal merge.
+4. Successful frozen candidate for merged fix tree; production authorization/archive/live smoke.
+5. Observe live canonical reader and actual PDF, record exact release proof; keep open ACs honest.
 
 ## Maintenance
 
-- Five sections/120lines; detailed logs/evidence belong to owner169 review/PR.
-- Pin Node24.19; preserve source cases/current budgets and retained failures.
+- Five sections/120lines; detailed logs belong to owner169 report/PR.
+- Native Node24.19 and canonical Python/Pillow/WebP; retain failures/budgets.
 - Regenerate/verify RI and coupling after indexed changes; format touched data.
 - No secrets/private execution URLs or correspondence in memory.
