@@ -4,55 +4,51 @@ Dated continuity, not live authority. Last verified: **2026-11-07**.
 
 ## Snapshot
 
-- Owner169; publication Draft PR170 at ec35807bec4a233cf7e80eb39f455c1f6b19434a.
-- Protected main312fbe4347eda332aa8ade885b07c98beadd6da5 includes merged PR173.
-- Native source timeout fixed on publication: all26prepublication guards pass;
-  staging source1222/1222 in233.226s plus28Basic. Performance/HTTP/static pass.
-- Owner staging42314101070/1 failed functional preparation: browser job lacks
-  Pillow; zeroanalytics/no article evidence. Stable alias not promoted.
-- Proposed controller PR174 head550c7f242b88870796f3920332e620ff4e4ca795
-  is integrated into Draft PR170 only for isolated R10 staging-regression evidence.
-  Main312 remains unchanged; this does not promote stable or accept the controller.
+- Owner169; endpoint verified stable R10 staging then STOP/show.
+- Main312fbe4347eda332aa8ade885b07c98beadd6da5 unchanged; PR173 accepted/merged earlier.
+- Controller PR174550c7f242b88870796f3920332e620ff4e4ca795 is ready, unmerged.
+  Native Basic/navigation/owning and full owner staging42321367651/1PASS.
+  All26prepublication guards, source1172/1172 plus26Basic, functional/performance,
+  final gate/promotion/admission/receipt pass on exact550/tree6ec62423.
+- Publication Draft PR1701e770f3fb74e84ffa2c95bcf42a3a55530203b5d/tree22361753.
+  Native Basic8shards/navigation/owning pass; isolated diagnostic42321844610/1
+  source300s ETIMEDOUT,34/75modules complete, partial665TAP without accounting.
+  Later build cancelled while security active. Actual R10 stable acceptance pending.
 
 ## Decisions
 
-- User endpoint remains verified stable R10 staging then STOP/show.
-  No PR170 merge or production activation; preserve accepted R10/site/docs bytes.
-- All fixture-consuming browser jobs need the canonical media interpreter/pin;
-  isolated build/static tools cannot satisfy another job. No budget/gate waiver.
-- Preserve raw failed reports and primary collection errors; do not retry the
-  unchanged failed campaign. Original native archive13550403408 retains failure.
-- Prior author acceptance was PR173d06640cb. New control head needs its own
-  maintainer-reviewed_sha; no implementer or prior attestation substitutes.
+- New174 executable controller needs its own maintainer exact-head reviewed_sha;
+  prior173 approval cannot accept550. No issuer dispatch or174merge performed.
+- No PR170 merge/production; preserve accepted R10/site/docs/PDF/media.
+- No case/worker/deadline/scanner/gate relaxation or unchanged failed rerun.
+- A completed controller staging does not establish full R10 or native Windows/macOS.
 
 ## Open work
 
-- Current diagnosis/check mapping:
-  review/issue-169/2026-11-07-browser-media-controller.md.
-- Shared media setup covers staging and production Linux/Windows/macOS, binds
-  actual Python, reads the canonical Pillow pin and verifies owner codec/version.
-- Copied fixture needs canonical requirements declaration, never copied venv;
-  actual selected R10 rebuild/media/download parity passes in a fresh process.
-- Targeted corrected60/60pass, including missing-Pillow/missing-pin refusals.
-- Four roles completed first/correction reviews without blockers; clean local6833004
-  source1198/1198, Basic/style/format/architecture/RI/coupling/scanners pass.
-- Literal reviews/raw first failures/corrected checks are in browser-media archive.
-  Native final head/full controller staging and exact-head maintainer trust remain open.
-- Proposed R10 integration local9588 source1253/1253, Basic/RI/owning/scanners
-  and four accepted independent roles pass; native diagnostic is pending.
-- Refresh publication after protected controller integration, run full current
-  R10 staging, verify stable alias/reader/PDF and STOP. Whole ACs stay open exceptAC06.
+- Literal native/source-cost checkpoint:
+  review/issue-169/2026-11-07-media-native-checkpoint.md and native-media-proof.tar.xz.
+- Four independent controller roles and four accepted integration roles completed;
+  initial integration packet exposure/replacement chronology retained.
+- Clean local integrated1253/1253 and scanners pass, but full native source failed.
+- Bounded actual rights CLI profiling retains real positive/negative operations;
+ 77s native case. Media encoders/AST child work observed; no source-cost fix chosen.
+- Proposed faster copier measured slower/similar and rejected; no implementation.
+- Source-cost preflight permits only measured pristine setup reuse with independent
+  mutable files; retain actual rights.compile/CLI/refusal checks. All original failures retained.
+- Issue whole ACs remain open except historicalAC06.
 
 ## Next session
 
-1. Verify live main, both candidate refs/PRs, runs and source-bound report.
-2. Complete correction reviews/checks and concrete controller acceptance route.
-3. Integrate accepted controller through protections; refresh PR170 and staging.
-4. Inspect actual stable R10/PDF, report exact source/run/limits and STOP/show.
+1. Read current refs/issues/PR/checks; this evidence branch is not a delivery candidate.
+2. Obtain exact174decision, invoke existing main-owned issuer, merge via protections.
+3. Resolve publication source cost within300s/cap4, affected review/current checks;
+   metadata-only changes never reset failed campaign eligibility.
+4. Refresh publication with protected main; normal full owner R10 staging,
+   stable reader/PDF checks, then STOP/show.
 
 ## Maintenance
 
-- Five sections/120lines; detail/raw evidence belongs to owning169 review/PR.
-- Pin Node24.19; preserve all cases/budgets and no unchanged failed reruns.
-- Regenerate/verify RI and coupling after indexed changes; format after refresh.
-- No secrets/private execution URLs or correspondence in memory.
+- Five sections/120lines; detailed raw evidence stays in owning169 report/archive.
+- Pin Node24.19; provider internals unknown, no OS isolation claim for reviewers.
+- Rebuild/verify RI/coupling on delivery candidates after indexed changes.
+- No secrets/private correspondence in memory.
