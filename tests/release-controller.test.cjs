@@ -2,6 +2,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
+const os = require('node:os');
 const path = require('node:path');
 const cp = require('node:child_process');
 const fixture = require('./fixtures/delivery.cjs');
@@ -20,8 +21,17 @@ const context = {
   runId: 900,
 };
 
-function releaseFixture(t) {
-  const temp = fixture.temporary(t);
+let releaseSeedRoot;
+let releaseSeed;
+test.before(() => {
+  releaseSeedRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'release-controller-seed-'));
+  releaseSeed = prepareReleaseFixture(releaseSeedRoot);
+});
+test.after(() => {
+  if (releaseSeedRoot) fs.rmSync(releaseSeedRoot, { recursive: true, force: true });
+});
+
+function prepareReleaseFixture(temp) {
   const source = fixture.source(temp, 'production');
   source.record = edition.build(source.directory);
   const rights = fixture.rightsInventory(source, true);
@@ -64,6 +74,20 @@ function releaseFixture(t) {
   return { temp, directory, source, proof, record, rights };
 }
 
+function releaseFixture(t) {
+  // These cases consume fixed archive data; their actual validators run below.
+  // Copy the complete seed, including its Git source, before any case mutation.
+  const temp = fixture.temporary(t);
+  fs.cpSync(releaseSeed.temp, temp, { recursive: true });
+  const result = structuredClone(releaseSeed);
+  const relocate = (directory) => path.join(temp, path.relative(releaseSeed.temp, directory));
+  result.temp = temp;
+  result.directory = relocate(releaseSeed.directory);
+  result.source.directory = relocate(releaseSeed.source.directory);
+  result.rights.sourceRoot = relocate(releaseSeed.rights.sourceRoot);
+  return result;
+}
+
 function live(record) {
   return {
     pass: true,
@@ -77,6 +101,52 @@ function live(record) {
     retained: true,
   };
 }
+
+test('fixed release fixture copies preserve all bytes and isolate file and object mutations', (t) => {
+  const first = releaseFixture(t);
+  const second = releaseFixture(t);
+  const inventory = (directory) =>
+    artifact.entries(directory).map(({ path: name, bytes }) => [name, artifact.digest(bytes)]);
+  const original = inventory(releaseSeed.temp);
+  const originalData = structuredClone(releaseSeed);
+  assert.deepEqual(inventory(first.temp), original);
+  assert.deepEqual(inventory(second.temp), original);
+  for (const source of [first, second]) {
+    assert.ok(!JSON.stringify(source).includes(releaseSeed.temp), 'case paths must leave the seed');
+    for (const { path: name } of artifact.entries(source.temp))
+      assert.equal(
+        fs.lstatSync(path.join(source.temp, name)).nlink,
+        1,
+        'independent regular files'
+      );
+  }
+  const rights = require('../tools/release/rights.cjs');
+  const reportFile = path.join(first.source.directory, 'rights.json');
+  const report = JSON.parse(fs.readFileSync(reportFile));
+  report.policy.status = 'corrupted fixture';
+  fs.writeFileSync(reportFile, JSON.stringify(report));
+  assert.throws(
+    () => rights.readPublication(first.source.directory, first.source.record, 'production'),
+    /archived rights report changed/
+  );
+  first.proof.external.rights.pass = false;
+  first.rights.report.policy.status = 'mutated object';
+  first.source.record.sourceTree = 'f'.repeat(40);
+  assert.deepEqual(second.proof, originalData.proof);
+  assert.deepEqual(second.rights.report, originalData.rights.report);
+  assert.deepEqual(second.source.record, originalData.source.record);
+  assert.deepEqual(releaseSeed.proof, originalData.proof);
+  assert.deepEqual(releaseSeed.rights.report, originalData.rights.report);
+  assert.deepEqual(releaseSeed.source.record, originalData.source.record);
+  assert.deepEqual(inventory(second.temp), original);
+  assert.deepEqual(inventory(releaseSeed.temp), original);
+  assert.equal(edition.verify(second.source.directory, second.source.record), true);
+  assert.equal(
+    rights.readPublication(second.source.directory, second.source.record, 'production')
+      .inventoryDigest,
+    second.rights.report.inventoryDigest
+  );
+});
 
 test('production draft archive writes wait for complete local Pages and licensing verification', (t) => {
   const f = releaseFixture(t);
@@ -510,7 +580,14 @@ test('explicit production Color preserves approved runtime and rejects a differe
   assert.equal(edition.verify(source.directory, source.record), true);
   assert.equal(
     require('../tools/quality/color-motion-contract.cjs').select(source.record).id,
-    'issue159-reading-paths-production'
+    'issue169-reader-history-production'
+  );
+  assert.equal(
+    require('../tools/quality/color-motion-contract.cjs').reviewedRuntime(
+      'issue159-reading-paths-production'
+    ).variant.fingerprint,
+    'e1464b7e62dbe36fc425b37f1ba9a81a8342c8e0899dd2a0ddd8b1e66ffc2a90',
+    'previous production identity remains exact'
   );
   assert.notEqual(source.record.variant.fingerprint, color.variant.fingerprint);
   for (const name of require('../tools/site/snapshot.cjs').runtimeFiles)
@@ -1370,8 +1447,33 @@ async function stagedProductionFixture(t, { content = false } = {}) {
     controlled.performanceReport(manifest),
     controlled.colorReport(manifest),
   ];
+  // Controlled validator inputs follow actual selected documents; no browser ran.
+  input.reports.find((row) => row.kind === 'stage-functional').articles = Object.keys(
+    manifest.components.articles || {}
+  ).length
+    ? require('./fixtures/article-flight.cjs').currentJourney(
+        manifest.components.articles,
+        manifest.components.engine,
+        input.hostedURL
+      )
+    : undefined;
   if (content) {
-    controlled.contentFixture(input);
+    const media = require('../tools/site/articles.cjs')
+      .select(path.resolve(__dirname, '..'), [], require('../site/content/catalog.json'))
+      .flatMap((article) => article.assets)
+      .filter((asset) => /^image\//.test(asset.mime))
+      .map((asset) => ({
+        file: asset.url,
+        status: 200,
+        pass: true,
+        sha256: manifest.files[asset.url].sha256,
+        width: asset.width,
+        height: asset.height,
+      }));
+    controlled.contentFixture(input, {
+      articles: structuredClone(manifest.components.articles || {}),
+      media,
+    });
     source.record.contentRelease = structuredClone(manifest.contentRelease);
     fs.writeFileSync(path.join(source.directory, 'artifact.json'), JSON.stringify(source.record));
     fs.writeFileSync(path.join(tested.directory, 'artifact.json'), JSON.stringify(manifest));

@@ -229,6 +229,21 @@ async function writePlatform(root, staging, article, platform, assets, printTemp
       : article.profile,
   };
   const layout = printLayout(selectedArticle, rendition, assets, true);
+  const distribution = article.furniture.distribution;
+  const links = distribution
+    ? [
+        [distribution.originalLabel, distribution.articleUrl],
+        [distribution.materialsLabel, distribution.materialsUrl],
+      ]
+    : [];
+  if (links.length) {
+    layout.body +=
+      '\n<p>' +
+      links
+        .map(([label, url]) => `<a href="${escapeHtml(url)}">${escapeHtml(label)}</a>`)
+        .join(' · ') +
+      '</p>\n';
+  }
   const formats = article.profile.platforms[platform].formats;
   if (formats.includes('html')) {
     await fs.writeFile(
@@ -237,10 +252,20 @@ async function writePlatform(root, staging, article, platform, assets, printTemp
     );
   }
   if (formats.includes('md')) {
-    await fs.writeFile(path.join(staging, `${platform}.md`), rendition.markdown);
+    const footer = links
+      .map(([label, url]) => `[${label.replace(/[\\[\]*_<>]/g, '\\$&')}](${url})`)
+      .join(' · ');
+    await fs.writeFile(
+      path.join(staging, `${platform}.md`),
+      rendition.markdown + (footer ? '\n' + footer + '\n' : '')
+    );
   }
   if (formats.includes('txt')) {
-    await fs.writeFile(path.join(staging, `${platform}.txt`), rendition.text);
+    const footer = links.map(([label, url]) => label + ': ' + url).join('\n');
+    await fs.writeFile(
+      path.join(staging, `${platform}.txt`),
+      rendition.text + (footer ? '\n\n' + footer : '')
+    );
   }
   let embeddedBody = layout.body;
   for (const asset of assets) {
@@ -280,6 +305,7 @@ async function writePlatform(root, staging, article, platform, assets, printTemp
       'GFM tables to labeled row sections',
       'heading link fallback',
       'declared figure captions and credits',
+      ...(distribution ? ['authored distribution labels with a planned production backlink'] : []),
     ],
     omissions: [],
   });
@@ -293,6 +319,35 @@ function mediumUploadAssets(article, assets) {
   const figures = article.adaptations.medium?.model.figures || article.model.figures;
   const posterId = article.presentation.poster.id;
   return figures.includes(posterId) ? assets : assets.filter((asset) => asset.id !== posterId);
+}
+
+function launchCopies(article, assets) {
+  const source = decodeUtf8(article.launch.bytes, article.launch.path);
+  const distribution = article.furniture.distribution;
+  const resolve = (text) =>
+    distribution
+      ? text
+          .replaceAll('{{SITE_ARTICLE_URL}}', distribution.articleUrl)
+          .replaceAll('{{SITE_PDF_URL}}', distribution.materialsUrl)
+      : text;
+  // Resolve after plain-text rendering so URL tokens do not become duplicate autolinks.
+  let text = resolve(compile(source, assets).text);
+  if (distribution) {
+    for (const url of [distribution.articleUrl, distribution.materialsUrl]) {
+      text = text.replaceAll(url + ' (' + url + ')', url);
+    }
+  }
+  return { markdown: resolve(source), text };
+}
+
+function distributionInstructions(distribution) {
+  if (!distribution) return [];
+  return [
+    `Planned article destination: ${distribution.articleUrl}`,
+    'A planned link is preparation, not proof of publication. Keep external posting pending until the live site edition is accepted.',
+    'Publish LinkedIn and Medium manually after that check, in either order. Verify both actual articles and their website backlinks; add their approved reciprocal links together in one website materials update.',
+    'The later reciprocal pair does not block initial website publication. Upload selected images manually as needed; native-editor transfers still require inspection.',
+  ];
 }
 
 async function renderKit(
@@ -428,11 +483,10 @@ async function renderKit(
       path.join(staging, 'seo.json'),
       JSON.stringify(article.furniture.seo, null, 2) + '\n'
     );
-    await fs.writeFile(path.join(staging, 'launch-post.md'), article.launch.bytes);
-    await fs.writeFile(
-      path.join(staging, 'launch-post.txt'),
-      compile(decodeUtf8(article.launch.bytes, article.launch.path), assets).text
-    );
+    const distribution = article.furniture.distribution;
+    const launch = launchCopies(article, assets);
+    await fs.writeFile(path.join(staging, 'launch-post.md'), launch.markdown);
+    await fs.writeFile(path.join(staging, 'launch-post.txt'), launch.text);
     const observedCanonical = article.events.some(
       (event) =>
         event.platform === 'site' &&
@@ -449,6 +503,7 @@ async function renderKit(
       `Full content edition: ${article.edition.id}`,
       `Source provenance: ${article.source.state}`,
       `Canonical: ${canonical}`,
+      ...distributionInstructions(distribution),
       '',
       'For full-article reading, open review.md in a GFM viewer and keep images/ beside it.',
       'This rendition preserves tables, resolves local figures and retains captions/credits.',
@@ -542,6 +597,7 @@ async function renderKit(
       generatedAt,
       selection: article.metadata.status,
       canonical: article.metadata.canonical,
+      ...(distribution ? { distribution } : {}),
       producer: {
         inputs: producerInputs,
         node: process.version,

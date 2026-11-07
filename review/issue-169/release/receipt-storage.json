@@ -1,0 +1,82 @@
+[
+  {
+    "path": "review/issue-169/release/cache-code-final.md",
+    "archive": "review/issue-169/release/cache-code-final.md.gz",
+    "decodedSHA256": "b051c800ae2f209fd0e8d699e1270fd1971c0ddcf8017dfc24b72ef39d9064b6",
+    "decodedBytes": 6899,
+    "archiveSHA256": "3c61afa094443d6fb2078aa492cd94de200c1f6a99b2a9e945ab4a3f29f37e18",
+    "archiveBytes": 3443
+  },
+  {
+    "path": "review/issue-169/release/cache-code-first.md",
+    "archive": "review/issue-169/release/cache-code-first.md.gz",
+    "decodedSHA256": "4c74610772cc6a3f05e27b174535d3a92cfffc161b3d5b3427fa285f51319f96",
+    "decodedBytes": 7290,
+    "archiveSHA256": "119ea0cabc6afa53ea1fc204f2792d1918a2c526d919042d0ac017cad76eea14",
+    "archiveBytes": 3704
+  },
+  {
+    "path": "review/issue-169/release/cache-exploratory-final.md",
+    "archive": "review/issue-169/release/cache-exploratory-final.md.gz",
+    "decodedSHA256": "0e43822a08f4187d955ecf147c0359153da4e0dbb498d615e17f27c66e6e515c",
+    "decodedBytes": 10105,
+    "archiveSHA256": "0edcfd2a3f8675235f4a4e852c934c75abe71fa9847c85fe6150c77c020a9dbe",
+    "archiveBytes": 4567
+  },
+  {
+    "path": "review/issue-169/release/cache-exploratory-first.md",
+    "archive": "review/issue-169/release/cache-exploratory-first.md.gz",
+    "decodedSHA256": "6e702134cdf464d6f8543ad4d1ee5011eee2e68f1f0eba7c7f98f57d1012cc5b",
+    "decodedBytes": 10018,
+    "archiveSHA256": "7dfe577c3b108887116777f527ed2f18e957d88b8a80f2a0f332857037c20f86",
+    "archiveBytes": 4685
+  },
+  {
+    "path": "review/issue-169/release/cache-requirements-first.md",
+    "archive": "review/issue-169/release/cache-requirements-first.md.gz",
+    "decodedSHA256": "ec48e2f5935f01b4c4a2f79526bd871ebe5bb7171e81a6db018be7b297af98f4",
+    "decodedBytes": 11302,
+    "archiveSHA256": "2da68eff7baabc501eace319d15ed7bd3c34d54fc78ad9ec455dd8335caf8fc7",
+    "archiveBytes": 5211
+  },
+  {
+    "path": "review/issue-169/release/cache-whitebox-first.md",
+    "archive": "review/issue-169/release/cache-whitebox-first.md.gz",
+    "decodedSHA256": "7d317769d545da3fc50e26509e8e79822646ec00d008a424c02c589c8ac3af23",
+    "decodedBytes": 9448,
+    "archiveSHA256": "dd6f9d5ac4dea8856efae09d56748d2604d3ec66ff35e22034dd2457dee5d861",
+    "archiveBytes": 4403
+  },
+  {
+    "path": "review/issue-169/release/code-first.md",
+    "archive": "review/issue-169/release/code-first.md.gz",
+    "decodedSHA256": "9e822ff2ebbc4a829979bfe37cb936f5a309110469cffc4e03c6f47b9d52c464",
+    "decodedBytes": 9731,
+    "archiveSHA256": "a4c67a1755b62e9f86812fcf1d1f769f1fa50ddba569c6ac9ef707eeb045b530",
+    "archiveBytes": 4789
+  },
+  {
+    "path": "review/issue-169/release/requirements-first.md",
+    "archive": "review/issue-169/release/requirements-first.md.gz",
+    "decodedSHA256": "1e8432dec80380ae95638ab9e923af10a5c330d682d99c644be1b38f3430a7dd",
+    "decodedBytes": 17292,
+    "archiveSHA256": "bcf4f1e222569748c7aace9bd2b44fa3bf80a0c720d13e80cc0f59960724bcf7",
+    "archiveBytes": 7941
+  },
+  {
+    "path": "review/issue-169/release/cache-whitebox-final.md",
+    "archive": "review/issue-169/release/cache-whitebox-final.md.gz",
+    "decodedSHA256": "4a332fb57c7b0776852ed4c093c96d2d96604eb8ca66c46a21be4b39f265385b",
+    "decodedBytes": 9455,
+    "archiveSHA256": "9c2c2fd3279dfad9c721d98ff497666a06b1bbd8b408fb6fa81236805e3111a4",
+    "archiveBytes": 4510
+  },
+  {
+    "path": "review/issue-169/release/cache-requirements-final.md",
+    "archive": "review/issue-169/release/cache-requirements-final.md.gz",
+    "decodedSHA256": "cae55eeeb2b454ea3858882827f2b9c74f668b3580bcc81a5f82cc0e724f3b34",
+    "decodedBytes": 11679,
+    "archiveSHA256": "9a8f88541d7546c611defc89844597f1fbfb70c2f69ef2974d6fddbf345f6134",
+    "archiveBytes": 5336
+  }
+]

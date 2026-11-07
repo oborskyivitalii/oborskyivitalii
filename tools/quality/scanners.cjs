@@ -477,6 +477,14 @@ function secretReviewPath(file) {
   }
   return file.split('/').every((part) => part && part !== '.' && part !== '..');
 }
+// Reviewed public immutable-directory literals in their two exact source inventories.
+// Each tuple still requires its own reviewed ledger entry; no path/type wildcard.
+const reviewedInventoryPaths = new Set([
+  '.github/repository-paths.json:Base64 High Entropy String:41ceb5699f64d5bfeaccc5850d0cf398a19b10c9',
+  '.github/repository-intelligence/agent-context.json:Base64 High Entropy String:41ceb5699f64d5bfeaccc5850d0cf398a19b10c9',
+  '.github/repository-paths.json:Base64 High Entropy String:eb3400c0b18476eb7e38e5a430d52a263f917b89',
+  '.github/repository-intelligence/agent-context.json:Base64 High Entropy String:eb3400c0b18476eb7e38e5a430d52a263f917b89',
+]);
 function secretReviewEntry(entry, file) {
   const checksumOnly = file === secretReviewInputs[2];
   const rules = checksumOnly
@@ -487,6 +495,8 @@ function secretReviewEntry(entry, file) {
   if (file === secretReviewInputs[3] && entry?.path === 'tools/publishing/toolchain/licenses.json')
     rules.push('Base64 High Entropy String');
   if (file === secretReviewInputs[2] && entry?.path === 'tools/quality/browser-archives.json')
+    rules.push('Base64 High Entropy String');
+  if (file === secretReviewInputs[2] && reviewedInventoryPaths.has(entry?.id))
     rules.push('Base64 High Entropy String');
   if (
     !entry ||
@@ -656,14 +666,16 @@ function reviewedSecretFinding(
   publicationIntegrities = new Set(),
   browserIntegrities = new Set()
 ) {
-  const reviewedValue = reviewed.has([file, finding.type, finding.hashed_secret].join(':'));
+  const key = [file, finding.type, finding.hashed_secret].join(':');
+  const reviewedValue = reviewed.has(key);
   if (finding.type !== 'Base64 High Entropy String') return reviewedValue;
   return (
     reviewedValue &&
     ((file === 'tools/publishing/toolchain/licenses.json' &&
       publicationIntegrities.has(finding.hashed_secret)) ||
       (file === 'tools/quality/browser-archives.json' &&
-        browserIntegrities.has(finding.hashed_secret)))
+        browserIntegrities.has(finding.hashed_secret)) ||
+      reviewedInventoryPaths.has(key))
   );
 }
 function lint() {

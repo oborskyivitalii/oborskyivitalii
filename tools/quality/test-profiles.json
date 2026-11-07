@@ -49,10 +49,12 @@
         "tools/quality/budgets.json",
         "tools/quality/source-tests.cjs",
         "tools/quality/source-test-worker.cjs",
+        "tools/quality/source-test-shards.cjs",
         "tools/quality/test-profiles.json",
         "tools/site/build.cjs",
         "tools/site/snapshot.cjs",
         "tools/site/evidence-policy.cjs",
+        ".github/workflows/site-checks.yml",
         ".github/workflows/site-release-checks.yml",
         "tools/site/edition.cjs"
       ]
@@ -373,6 +375,7 @@
         "NOTICE.md",
         "tools/site/legal.cjs",
         "tools/quality/analytics-isolation.cjs",
+        "tests/fixtures/catalog.cjs",
         "tools/publishing/web-media.py",
         "tools/quality/toolchain/requirements.txt"
       ]
@@ -392,7 +395,8 @@
         "site/templates/**",
         "tests/fixtures/catalog.cjs",
         "site/engine/article-tags.cjs",
-        "site/content/article-tags.json"
+        "site/content/article-tags.json",
+        "site/engine/navigation.js"
       ],
       "content": true
     },
@@ -545,7 +549,8 @@
         "tools/site/analytics.cjs",
         "site/routes.json",
         "tools/quality/artifact.cjs",
-        "review/issue-126/content-amendment.json"
+        "review/issue-126/content-amendment.json",
+        "tools/check_site_seo.cjs"
       ],
       "content": true
     },
@@ -590,6 +595,7 @@
       "disposition": "retain enduring edition/semantic failure checks; issue41 positioning removes stale visible unknown-language assertions, adds catalog-count mutation coverage and exact successor amendment negatives; no new browser/performance suite; same-issue sitecase layers exact About/Credits restoration and extends existing claim/evidence-link negatives rather than adding a new suite; #7/#39 reverses only the exact approved Credits legal fragments/full texts and three wrapping declarations, retaining historical baseline and all unrelated source/SEO negatives",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
+        "review/issue-169/writing-carrier.json",
         "tests/executive.test.cjs",
         "tools/check_site_seo.cjs",
         "tools/quality/format-parity.py",
@@ -734,7 +740,15 @@
       "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
-      "inputs": ["tests/navigation.test.cjs", "site/engine/**", "site/scenes/**", "site/site.json"]
+      "inputs": [
+        "tests/navigation.test.cjs",
+        "site/engine/**",
+        "site/scenes/**",
+        "site/site.json",
+        "site/effects/flight.cjs",
+        "site/engine/archive.js",
+        "tests/fixtures/reader-resource-links.json"
+      ]
     },
     {
       "path": "tests/preview-smoke.test.cjs",
@@ -983,7 +997,9 @@
         "NOTICE.md",
         "tools/site/legal.cjs",
         "site/engine/styles.css",
-        "docs/styles.css"
+        "docs/styles.css",
+        "tests/fixtures/catalog.cjs",
+        "tools/staging/color.cjs"
       ]
     },
     {
@@ -1152,7 +1168,8 @@
         "tools/quality/source-tests.cjs",
         "tools/quality/test-profiles.json",
         "tools/quality/local.cjs",
-        "tools/quality/source-test-worker.cjs"
+        "tools/quality/source-test-worker.cjs",
+        "tools/quality/source-test-shards.cjs"
       ]
     },
     {
@@ -1596,7 +1613,8 @@
         "LICENSE-CODE.md",
         "LICENSE-CONTENT.md",
         "NOTICE.md",
-        "tools/site/legal.cjs"
+        "tools/site/legal.cjs",
+        "tests/fixtures/catalog.cjs"
       ]
     },
     {
@@ -1747,7 +1765,8 @@
         "tools/release/rights-record.cjs",
         "tools/release/rights.cjs",
         "site/rights.json",
-        "tools/quality/serve.cjs"
+        "tools/quality/serve.cjs",
+        "tools/release/edition.cjs"
       ]
     },
     {
@@ -1788,12 +1807,14 @@
       "disposition": "extend existing permanent behavior with staged-source admission and wrong-source/tree/attempt/report/edition/artifact negatives; preserve historical full verification and compensation; no new suite or staging case removal",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
+        "tests/fixtures/article-flight.cjs",
         "tests/release-controller.test.cjs",
         "tools/release/**",
         "tools/pages/**",
         "tools/site/edition.cjs",
         "tools/site/snapshot.cjs",
         "tools/quality/hosted.cjs",
+        "tools/quality/article-browser.cjs",
         "tests/fixtures/delivery.cjs",
         ".github/workflows/site-production.yml",
         ".github/workflows/site-release-candidate.yml",
@@ -1812,7 +1833,8 @@
         "site/templates/components/legal-notices.html",
         "tools/staging/admission.cjs",
         "tools/quality/staging-gate.cjs",
-        "tests/fixtures/staging-evidence.cjs"
+        "tests/fixtures/staging-evidence.cjs",
+        "tools/site/articles.cjs"
       ]
     },
     {
@@ -1860,6 +1882,7 @@
         "tools/quality/block-observation.cjs",
         "tools/site/runtime-compatibility.cjs",
         "tests/fixtures/r9-footer-runtime.json",
+        "tools/site/html.cjs",
         "tests/fixtures/r9-reader-history-runtime.json"
       ]
     },
@@ -1903,7 +1926,7 @@
     {
       "path": "tests/publishing.test.cjs",
       "language": "javascript",
-      "purpose": "Bounded AST roundtrip and two declared article profiles, semantic/adaptation identities and complete candidate kits",
+      "purpose": "Bounded AST roundtrip and two declared article profiles, semantic/adaptation identities and complete candidate kits Includes planned-backlink/site-first distribution, pending-state and paired observed reciprocal-link regression coverage.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -1915,7 +1938,9 @@
         "site/publications/**",
         "site/assets/publications/**",
         "site/templates/articles/**",
-        "site/engine/article-print.css"
+        "site/engine/article-print.css",
+        "guides/ARTICLE-WORKFLOW.md",
+        "guides/ARTICLE-MATERIALS.md"
       ],
       "content": true
     },
@@ -1983,7 +2008,8 @@
         "site/engine/navigation.js",
         "site/engine/scroll-entry.cjs",
         "site/engine/reading-surfaces.css",
-        "site/templates/**"
+        "site/templates/**",
+        "tests/fixtures/catalog.cjs"
       ],
       "content": true
     },
@@ -2081,7 +2107,7 @@
     {
       "path": "tests/publishing-profile.test.cjs",
       "language": "javascript",
-      "purpose": "Distinct bounded packaging profiles, authored cover/hero/launch/SEO outputs and missing/unsafe resource negatives",
+      "purpose": "Distinct bounded packaging profiles, authored cover/hero/launch/SEO outputs and missing/unsafe resource negatives Includes planned-backlink/site-first distribution, pending-state and paired observed reciprocal-link regression coverage.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -2091,7 +2117,9 @@
         "tests/publishing-profile.test.cjs",
         "tools/publishing/**",
         "site/publications/**",
-        "site/assets/publications/**"
+        "site/assets/publications/**",
+        "guides/ARTICLE-WORKFLOW.md",
+        "guides/ARTICLE-MATERIALS.md"
       ],
       "content": true
     },
@@ -2114,7 +2142,8 @@
         "tools/site/articles.cjs",
         "site/engine/navigation.js",
         "site/publications/**",
-        "site/templates/**"
+        "site/templates/**",
+        "tests/fixtures/catalog.cjs"
       ]
     },
     {
@@ -2143,7 +2172,7 @@
     {
       "path": "tests/article-browser-evidence.test.cjs",
       "language": "javascript",
-      "purpose": "Mandatory conditional native article identity/evidence negatives and bounded history diagnostics; primitive activation capture precedes geometry/layout reads that can change the captured departure state; raw successful-paint identity/depth/direction/stage/full-pose negatives and optional related-reading admission",
+      "purpose": "Mandatory conditional native article identity/evidence, descriptor-bound PDF link/response negatives and bounded history diagnostics; primitive activation precedes layout reads; successful-paint identity/depth/direction/stage/full-pose and related-reading admission",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -2157,7 +2186,9 @@
         "tools/quality/staging-gate.cjs",
         "tools/quality/validate.cjs",
         "tests/fixtures/staging-evidence.cjs",
-        "tests/fixtures/article-flight.cjs"
+        "tests/fixtures/article-flight.cjs",
+        "tools/quality/color-motion-contract.cjs",
+        "docs/site-revision.json"
       ]
     },
     {
@@ -2182,7 +2213,8 @@
         "site/assets/publications/**",
         "site/templates/**",
         "site/engine/navigation.js",
-        "site/article-template-preview.json"
+        "site/article-template-preview.json",
+        "tests/fixtures/catalog.cjs"
       ]
     },
     {
@@ -2226,7 +2258,11 @@
         "site/publications/**",
         "site/templates/**",
         "tools/site/public-artifact.cjs",
-        "tools/quality/content-fixture.cjs"
+        "tools/quality/content-fixture.cjs",
+        "tests/fixtures/catalog.cjs",
+        "tools/staging/color.cjs",
+        "tools/site/edition-retention.cjs",
+        "tools/site/html.cjs"
       ],
       "content": true
     },
@@ -2361,7 +2397,8 @@
         "LICENSE-CONTENT.md",
         "NOTICE.md",
         "tools/site/legal.cjs",
-        "site/templates/components/legal-notices.html"
+        "site/templates/components/legal-notices.html",
+        "tools/site/html.cjs"
       ]
     },
     {
@@ -2431,7 +2468,8 @@
         "tools/staging/color.cjs",
         "tools/quality/budgets.json",
         "tools/quality/common.cjs",
-        "tools/quality/color-motion-contract.cjs"
+        "tools/quality/color-motion-contract.cjs",
+        "tests/fixtures/catalog.cjs"
       ]
     },
     {
@@ -2514,7 +2552,8 @@
         "site/publications/**",
         "site/assets/publications/**",
         "site/templates/**",
-        "site/engine/navigation.js"
+        "site/engine/navigation.js",
+        "tests/fixtures/catalog.cjs"
       ],
       "content": true
     },
@@ -2535,14 +2574,15 @@
         "tools/site/**",
         "tools/quality/article-tags-browser.cjs",
         "tools/quality/local-browser.cjs",
-        "tools/release/rights.cjs"
+        "tools/release/rights.cjs",
+        "tests/fixtures/catalog.cjs"
       ],
       "content": true
     },
     {
       "path": "tests/article-materials.test.cjs",
       "language": "javascript",
-      "purpose": "Selected reviewed public files/links, immutable source/asset bindings, private leakage and reciprocal canonical behavior.",
+      "purpose": "Selected reviewed public files/links, immutable source/asset bindings, private leakage and reciprocal canonical behavior. Includes planned-backlink/site-first distribution, pending-state and paired observed reciprocal-link regression coverage.",
       "owner": "guides/ARTICLE-MATERIALS.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -2553,7 +2593,9 @@
         "tools/site/article-materials.cjs",
         "site/templates/components/article-materials.html",
         "site/publications/**/materials.json",
-        "site/assets/publications/**/materials/**"
+        "site/assets/publications/**/materials/**",
+        "guides/ARTICLE-WORKFLOW.md",
+        "guides/ARTICLE-MATERIALS.md"
       ],
       "content": true
     },
@@ -2596,10 +2638,12 @@
         "tests/fixtures/staging-evidence.cjs",
         "tools/quality/content-browser.cjs",
         "tools/quality/content-fixture.cjs",
+        "tools/quality/article-browser.cjs",
         ".github/workflows/site-color-review.yml",
         ".github/workflows/site-release-checks.yml",
         ".github/workflows/site-release-candidate.yml",
-        ".github/workflows/site-production.yml"
+        ".github/workflows/site-production.yml",
+        "tests/fixtures/article-flight.cjs"
       ],
       "content": true
     },
@@ -2634,29 +2678,35 @@
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/reader-mode.test.cjs",
+        "site/engine/navigation.js",
         "tools/site/reader.cjs",
         "tools/publishing/**",
         "site/engine/reader.cjs",
         "site/engine/reader.css",
         "site/engine/reading-surfaces.css",
         "site/templates/pages/article.html",
-        "site/templates/components/reader-contents.html"
+        "site/templates/components/reader-contents.html",
+        "tools/site/html.cjs",
+        "tools/site/articles.cjs",
+        "site/templates/components/reader-tools.html"
       ],
       "content": true
     },
     {
       "path": "tests/reader-controller.test.cjs",
       "language": "javascript",
-      "purpose": "Complete article packages and frozen real runtime/rights/receipt contracts reject corrupt closure, unsafe index, false budgets, weak source/job/coverage and stable HTTP body/MIME/cache drift.",
+      "purpose": "Current staging/production packages exercise independently pinned controller snapshot/runtime/rights/size/edition consumers; retained real receipts, corrupt closure, unsafe index, false budgets, weak jobs and stable HTTP body/MIME/cache drift remain covered.",
       "owner": "guides/SITE-STAGING.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
-      "disposition": "Retain canonical controller behavior and adversarial negatives; finite prerequisite adapters and old-main build bridge retired. Frozen receipts never grant live admission.",
+      "disposition": "Retain canonical and historical negatives; run the explicit pinned-controller case before staging during route reconciliation. Default current-controller success is not cross-revision proof. No old-main bridge or receipt grants live admission.",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/reader-controller.test.cjs",
         "tests/fixtures/reader-staging-gate.json.gz",
         "tests/fixtures/reader-staging-package.json.gz",
+        "tools/staging/color.cjs",
+        "tools/staging/edition.cjs",
         "tools/staging/package.cjs",
         "tools/staging/review-flow.cjs",
         "tools/quality/artifact.cjs",
@@ -2664,11 +2714,14 @@
         "tools/quality/staging-gate.cjs",
         "tools/quality/serve.cjs",
         "tools/release/rights-record.cjs",
-        "docs/**",
-        "tools/site/snapshot.cjs",
-        "site/engine/article-tags.cjs",
+        "tools/release/rights.cjs",
         "tools/release/edition.cjs",
-        "tools/release/edition-archive.cjs"
+        "tools/release/edition-archive.cjs",
+        "tests/fixtures/delivery.cjs",
+        "docs/**",
+        "tools/site/fallback.cjs",
+        "tools/site/snapshot.cjs",
+        "site/engine/article-tags.cjs"
       ]
     },
     {

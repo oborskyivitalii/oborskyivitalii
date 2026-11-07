@@ -589,30 +589,45 @@ test('known licensed publications require frozen rights by actual runtime bytes 
       () => staging.build(source.directory, path.join(temp, 'missing-' + edition)),
       /rights record required|rights\.json/
     );
-    for (const alter of [
-      (record) => {
-        delete record.variant;
-        delete record.components;
-      },
-      (record) => {
-        delete record.variant;
-        record.components = { contract: 1, engine: '0'.repeat(64) };
-      },
-      (record) => {
-        record.variant = {
-          id: 'base',
-          contract: 1,
-          fingerprint: '0'.repeat(64),
-        };
-      },
+    // A stripped descriptor leaves an unclassified alias when the fixture
+    // actually ships an accepted article; an editorial-preview-only source
+    // instead reaches the independent missing-rights refusal first.
+    const articleAlias = Object.keys(source.record.files).find((file) =>
+      /^articles\/[^/]+\.html$/.test(file)
+    );
+    const strippedRefusal = articleAlias
+      ? new RegExp('unexpected public input ' + articleAlias.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
+      : /rights record required|rights\.json/;
+    for (const [alter, refusal] of [
+      [
+        (record) => {
+          delete record.variant;
+          delete record.components;
+        },
+        strippedRefusal,
+      ],
+      [
+        (record) => {
+          delete record.variant;
+          record.components = { contract: 1, engine: '0'.repeat(64) };
+        },
+        strippedRefusal,
+      ],
+      [
+        (record) => {
+          record.variant = {
+            id: 'base',
+            contract: 1,
+            fingerprint: '0'.repeat(64),
+          };
+        },
+        /rights record required|rights\.json|conflicting tested runtime identity/,
+      ],
     ]) {
       const record = structuredClone(source.record);
       alter(record);
       fs.writeFileSync(path.join(source.directory, 'artifact.json'), JSON.stringify(record));
-      assert.throws(
-        () => staging.build(source.directory, path.join(temp, 'opt-out')),
-        /rights record required|rights\.json|conflicting tested runtime identity/
-      );
+      assert.throws(() => staging.build(source.directory, path.join(temp, 'opt-out')), refusal);
     }
   }
 });
@@ -657,14 +672,23 @@ test('rehashed public revision metadata cannot relabel exact licensed runtime by
         path.join(publicDirectory, 'runtime', old),
         path.join(publicDirectory, 'runtime', revision.engine)
       );
-      for (const name of Object.keys(source.record.files).filter((name) =>
-        name.endsWith('.html')
-      )) {
+      // Mutate only the selected, current documents. Historical immutable HTML
+      // cannot be rehashed into the synthetic variant; its bytes remain frozen.
+      const currentDocuments = [
+        ...Object.entries(revision.routes).flatMap(([id, route]) => [id + '.html', route.url]),
+        ...Object.values(revision.articles || {}).flatMap((article) => [
+          article.alias,
+          article.url,
+        ]),
+      ];
+      for (const name of currentDocuments) {
         const file = path.join(publicDirectory, name);
         fs.writeFileSync(file, fs.readFileSync(file, 'utf8').replaceAll(old, revision.engine));
       }
       for (const route of Object.values(revision.routes))
         route.sha256 = artifact.digest(fs.readFileSync(path.join(publicDirectory, route.url)));
+      for (const article of Object.values(revision.articles || {}))
+        article.sha256 = artifact.digest(fs.readFileSync(path.join(publicDirectory, article.url)));
     }
     revision.variant = { id: 'base', contract: 1, fingerprint: revision.engine };
     fs.writeFileSync(path.join(publicDirectory, 'site-revision.json'), JSON.stringify(revision));

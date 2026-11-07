@@ -71,7 +71,8 @@
         "LICENSING.md",
         "LICENSE-CONTENT.md",
         "NOTICE.md",
-        "guides/SITE-SOURCE-AUDIT.md"
+        "guides/SITE-SOURCE-AUDIT.md",
+        "site/publications/sdlc-out-of-balance/PROVENANCE.md"
       ],
       "scope": "Original website editorial text and new original author-owned hosted article text unless an edition states otherwise. No retrospective blanket grant for externally linked publications or third-party quotations."
     },
@@ -82,7 +83,8 @@
         "LICENSING.md",
         "LICENSE-CONTENT.md",
         "site/assets/writing-paradigm.svg",
-        "guides/SITE-SOURCE-AUDIT.md"
+        "guides/SITE-SOURCE-AUDIT.md",
+        "site/publications/sdlc-out-of-balance/PROVENANCE.md"
       ],
       "scope": "Original non-brand diagram artwork, including writing-paradigm.svg. Rendering implementation remains original code; identity artwork is excluded."
     },
@@ -299,6 +301,70 @@
     "writing-paradigm.svg": {
       "sha256": "02def4e19d34b76462f5e74bbe916323ff56a50d3e97a02834b3adf92723b31f",
       "bases": ["original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/hero.png": {
+      "sha256": "a43b9c72ed8f3560ae7c6e967730548be2f977fb0d1973b083dead16c633adf5",
+      "bases": ["original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/asymmetry.png": {
+      "sha256": "638a68bb36912fdd7dbff45235d79994912ff38cd5fda902db51db4695bbe06d",
+      "bases": ["original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/imbalance-loop.png": {
+      "sha256": "da05a299cc23463c0c8e607b1d11d80708b5a8d825fd9ed24e8207d8fef49857",
+      "bases": ["original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/review-functions.png": {
+      "sha256": "a87289a6cf6067c10fbe0663f732842a08335c6901c99917524e2c3d5ef963c6",
+      "bases": ["original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/systemic-response.png": {
+      "sha256": "5184c829d2e47cfd8deb933c3774b70787861ad1e107919c6fbb616ab182a0f2",
+      "bases": ["original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/workstream-system.png": {
+      "sha256": "ed2182751692a92b262ef7c806227583761d7b23099e1cd910a73e9509a85abf",
+      "bases": ["original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/materials/reading.pdf": {
+      "sha256": "be35778ef93948ca7e809b7917faf1771d11e670e327a0dfc49d95ab4cfc2d98",
+      "bases": ["original-text", "original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/hero-web.png": {
+      "sha256": "3fb21ca8f7aae0ebe85f9da0cc5aaf5e124deb916d9fc625d3a46e4dfd33293f",
+      "bases": ["original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/hero-web.jpg": {
+      "sha256": "fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f",
+      "bases": ["original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/delivery-capacity-r6.png": {
+      "sha256": "327adbaf3721383619fd5b67de49a5792cf0470d298c4d43080570f9a79ad5d5",
+      "bases": ["original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/review-learning-r7.png": {
+      "sha256": "372ca25f635dbcc8440381a4e35027806f6b61168e9a27c1723f688741bf1c43",
+      "bases": ["original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/comprehension-gap-r7.png": {
+      "sha256": "338acabde7cd23ce93534c23a0bce2e71978a69c246feade8d779850af8c61b1",
+      "bases": ["original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/asymmetry-r9.png": {
+      "sha256": "65741f7bf96495d834a4163e4122b2c03d0b5e0e966048679bf144d4925a7249",
+      "bases": ["original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/materials/reading-r9.pdf": {
+      "sha256": "75e052d6a5c386ae79cb1a51d59cdf42e53d3a7279bf0db31c227ee145bb18b4",
+      "bases": ["original-text", "original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/materials/reading-r10.pdf": {
+      "sha256": "36269db33a71781084053ae40cc41e411a0106bea5e593ef0b08414014c4ca40",
+      "bases": ["original-text", "original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/materials/reading-r11.pdf": {
+      "sha256": "568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58",
+      "bases": ["original-text", "original-diagram"]
     }
   },
   "retained": {
@@ -421,6 +487,86 @@
     "snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html": {
       "sha256": "eef3b91329720bf60b4aaf9e08208bd9ce75790be77b21c2757638c7af7a6fb4",
       "bases": ["retained-edition", "linked-metadata", "advisor-consent"]
+    },
+    "article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292/systemic-response.webp": {
+      "sha256": "1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292",
+      "bases": ["original-diagram"]
+    },
+    "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg": {
+      "sha256": "2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16",
+      "bases": ["original-code", "original-diagram"]
+    },
+    "article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3/imbalance-loop.webp": {
+      "sha256": "45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3",
+      "bases": ["original-diagram"]
+    },
+    "article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c/reading.pdf": {
+      "sha256": "70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c",
+      "bases": ["original-text", "original-diagram"]
+    },
+    "article-media/79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6/review-functions.webp": {
+      "sha256": "79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6",
+      "bases": ["original-diagram"]
+    },
+    "article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry.webp": {
+      "sha256": "8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f",
+      "bases": ["original-diagram"]
+    },
+    "article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1/workstream-system.webp": {
+      "sha256": "8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1",
+      "bases": ["original-diagram"]
+    },
+    "article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f/hero-web.jpg": {
+      "sha256": "fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f",
+      "bases": ["original-diagram"]
+    },
+    "runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/archive.js": {
+      "sha256": "24691f49c8c0b458958de6422396af4a6ea73f2d6bffa610e4f0ca788b04f383",
+      "bases": ["original-code"]
+    },
+    "runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/navigation.js": {
+      "sha256": "078b790a9b374b44bb4c26f09f0161cfcbe0c0edf5c369d9e4606aa6487d08bb",
+      "bases": ["original-code"]
+    },
+    "runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/space.js": {
+      "sha256": "7812c824ce3dac0d5d36f40788c65ca66cc553e5a0287850a24a499a02d4eab4",
+      "bases": ["original-code"]
+    },
+    "runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/styles.css": {
+      "sha256": "677304b835527266f87d9f5c039fa7b321e8d296e07a133077e1f7094d9a0cc0",
+      "bases": ["original-code"]
+    },
+    "runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/theme.js": {
+      "sha256": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a",
+      "bases": ["original-code"]
+    },
+    "article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684/the-sdlc-is-out-of-balance.html": {
+      "sha256": "f1d53fa07e9c2d947922eb82b5cc12b7b7bbefd62cf728e80b9cfcbde8a5ffa9",
+      "bases": ["original-code", "original-text", "article-review-input"]
+    },
+    "runtime/c36b28140796f556d7f6019efa223c5164e7ca55e880e1e6a64bb596283430da/styles.css": {
+      "sha256": "677304b835527266f87d9f5c039fa7b321e8d296e07a133077e1f7094d9a0cc0",
+      "bases": ["original-code"]
+    },
+    "runtime/c36b28140796f556d7f6019efa223c5164e7ca55e880e1e6a64bb596283430da/theme.js": {
+      "sha256": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a",
+      "bases": ["original-code"]
+    },
+    "runtime/c36b28140796f556d7f6019efa223c5164e7ca55e880e1e6a64bb596283430da/space.js": {
+      "sha256": "7812c824ce3dac0d5d36f40788c65ca66cc553e5a0287850a24a499a02d4eab4",
+      "bases": ["original-code"]
+    },
+    "runtime/c36b28140796f556d7f6019efa223c5164e7ca55e880e1e6a64bb596283430da/archive.js": {
+      "sha256": "f7da9f6646746ec1415a5fbfc9ac7505913b0bc8a7e6551f213997bc6d381146",
+      "bases": ["original-code"]
+    },
+    "runtime/c36b28140796f556d7f6019efa223c5164e7ca55e880e1e6a64bb596283430da/navigation.js": {
+      "sha256": "eac2248fde312e2ccb85b46c0b0b2586be1b417031d2045b04a3f972c157baa1",
+      "bases": ["original-code"]
+    },
+    "article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/the-sdlc-is-out-of-balance.html": {
+      "sha256": "4aa1ae74ff48155957e9f897b7697e1cee35e3b38d8319d0906c15da2d44fd7b",
+      "bases": ["original-code", "original-text", "article-review-input"]
     }
   },
   "notices": [

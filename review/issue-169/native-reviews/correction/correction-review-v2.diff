@@ -1,0 +1,1485 @@
+diff --git a/review/issue-169/writing-carrier.json b/review/issue-169/writing-carrier.json
+new file mode 100644
+index 0000000..b220844
+--- /dev/null
++++ b/review/issue-169/writing-carrier.json
+@@ -0,0 +1,19 @@
++{
++  "schema": 1,
++  "issue": 169,
++  "date": "2026-10-31",
++  "predecessorSource": "bd70996a386665e14f87440653e3a107fed15e43",
++  "scope": "Reuse the existing passive immutable Writing SVG carrier for the Writing room without changing geometry, content, runtime or quality budgets. Author accepted article production; independent implementation/hosted/release checks remain separate.",
++  "acceptedSvgSHA256": "943eaad6a4a49f83671d25ae9f9d766e80196f8b25b5aa68173715be5e955874",
++  "resource": "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg",
++  "producerChanges": {
++    "tools/site/build.cjs": {
++      "beforeSHA256": "fce23e9a21e641e829b07e48029ecbbf3b754904376b1fdda4146e7d09c66bde",
++      "afterSHA256": "3d9b80f989008ae487cccf4b38aea630bd4ddf62782a971e7e62142c9fbbc869"
++    },
++    "tools/site/fallback.cjs": {
++      "beforeSHA256": "66822a96b98fa151762dd72e601299c63b4ff57249a7d7134ee55d8ca03969c9",
++      "afterSHA256": "0060c45f858b1669a1ab830c0de6ab4ba8a69d0f8589502bd4f17f8e545161d9"
++    }
++  }
++}
+diff --git a/site/README.md b/site/README.md
+index a14780f..32610ed 100644
+--- a/site/README.md
++++ b/site/README.md
+@@ -308,7 +308,7 @@ Principal-section trips retain corridor travel. One lifecycle owns timing,
+ interruption, the original orbit-return anchor and motion/native fallbacks.
+ The supported axis/pivot and enclosing radius are validated with the scene inputs.
+ 
+-Article documents reference the canonical Writing fallback through one generated,
++The Writing room and article documents reference the canonical Writing fallback through one generated,
+ content-addressed `article-media/<sha256>/writing-fallback.svg` group. The scene
+ geometry and theme paint remain single-owned. Size reports include this resource
+ and its instantiated SVG nodes. Standalone exports verify and inline its passive
+diff --git a/tests/article-browser-evidence.test.cjs b/tests/article-browser-evidence.test.cjs
+index a2b7e7a..f37cf61 100644
+--- a/tests/article-browser-evidence.test.cjs
++++ b/tests/article-browser-evidence.test.cjs
+@@ -23,220 +23,11 @@ const baseURL = 'https://candidate.example.invalid/author';
+ const { flight } = require('./fixtures/article-flight.cjs');
+ 
+ function observed() {
+-  const normal = Object.fromEntries(
+-    [
+-      'metadataTransition',
+-      'filtersBackForward',
+-      'focusAndScrollHistory',
+-      'persistentCanvas',
+-      'nativeAnchors',
+-      'deepRefresh',
+-      'readingBlocks',
+-      'routeDeparture',
+-      'rapidCancellation',
+-      'assetsDecoded',
+-    ].map((name) => [name, true])
+-  );
+-  const head = {
+-    key,
+-    lang: 'en',
+-    routeVersion: descriptors[key].version,
+-    engine,
+-    title: 'Controlled article fixture',
+-    description: 'This fixture validates evidence; it is not a browser observation.',
+-    author: 'Fixture author',
+-    robots: 'noindex,nofollow',
+-    canonical: [],
+-    alternates: [],
+-    schemas: [
+-      {
+-        '@type': 'Article',
+-        headline: 'Controlled article fixture',
+-        author: { '@type': 'Person', name: 'Fixture author' },
+-        inLanguage: 'en',
+-      },
+-    ],
+-  };
+-  return {
+-    kind: 'bounded-article-journey',
+-    browser: 'Controlled validator fixture; not a browser observation',
+-    documents: [key],
+-    availableDocuments: [key],
+-    observations: [
+-      ...[1440, 390].map((width) => ({
+-        key,
+-        width,
+-        mode: 'normal',
+-        relatedDeparture: { present: false, departed: false },
+-        nativeHistory: [
+-          flight('writing', 'article:' + key, -1),
+-          flight('article:' + key, 'writing', 1),
+-        ],
+-        flights: [
+-          flight('writing', 'article:' + key, 1),
+-          flight('article:' + key, 'writing', -1),
+-          flight('writing', 'article:' + key, 1),
+-          flight('article:' + key, 'research', -1),
+-          ...['index', 'writing', 'talks', 'credits'].map((to) =>
+-            flight('article:' + key, to, ['index', 'writing'].includes(to) ? -1 : 1)
+-          ),
+-        ],
+-        head: structuredClone(head),
+-        reading: {
+-          entered: ['first-section'],
+-          departed: ['first-section'],
+-          maxEntering: 1,
+-          maxRoute: 1,
+-        },
+-        checks: { ...normal, basePath: '/author/' },
+-      })),
+-      ...['off', 'no-canvas', 'no-js'].map((mode) => ({
+-        key,
+-        width: 390,
+-        mode,
+-        head: structuredClone(head),
+-        checks: {
+-          nativeReading: true,
+-          anchors: true,
+-          writingLink: true,
+-          singleCanvas: true,
+-          ...(mode === 'off' ? { reducedMotion: true } : {}),
+-          basePath: '/author/',
+-        },
+-      })),
+-    ],
+-  };
++  return require('./fixtures/article-flight.cjs').journey(descriptors, engine, baseURL);
+ }
+ 
+ function readerObserved(mode) {
+-  const before = {
+-    url: 'https://candidate.example.invalid/author/article.html',
+-    scroll: 600,
+-  };
+-  const rect = {
+-    top: 24,
+-    bottom: 700,
+-    left: 16,
+-    right: 374,
+-    width: 358,
+-    height: 676,
+-  };
+-  const opened = {
+-    ...before,
+-    open: true,
+-    focusInside: true,
+-    focusRestored: false,
+-    viewport: { width: 390, height: 844 },
+-    bounds: rect,
+-    close: {
+-      top: 44,
+-      bottom: 88,
+-      left: 270,
+-      right: 354,
+-      width: 84,
+-      height: 44,
+-    },
+-    image: {
+-      src: 'https://candidate.example.invalid/author/image.webp',
+-      alt: 'Synthetic grid',
+-      width: 310,
+-      naturalWidth: 640,
+-    },
+-    original: 'https://candidate.example.invalid/author/image.webp',
+-    stage: { width: 310, overflow: 'auto' },
+-    pressed: 'false',
+-    zoomed: false,
+-  };
+-  const closed = {
+-    ...opened,
+-    open: false,
+-    focusInside: false,
+-    focusRestored: true,
+-    image: null,
+-  };
+-  const fragment = (hash) => ({
+-    hash,
+-    top: 190,
+-    bottom: 220,
+-    height: 844,
+-    occlusion: 170,
+-    appendixOpen: true,
+-    dialogs: 0,
+-  });
+-  return {
+-    inventory: {
+-      headings: ['inspecting-a-figure'],
+-      topics: [{ href: '#inspecting-a-figure', label: 'Inspecting a figure' }],
+-      images: [
+-        {
+-          src: opened.image.src,
+-          href: opened.image.src,
+-          alt: opened.image.alt,
+-        },
+-      ],
+-      citations: [{ id: 'reader-cite-1-1', href: '#reader-note-1', target: true }],
+-    },
+-    image:
+-      mode === 'no-js'
+-        ? null
+-        : {
+-            before,
+-            opened,
+-            zoomed: {
+-              ...opened,
+-              pressed: 'true',
+-              zoomed: true,
+-              image: { ...opened.image, width: 640 },
+-            },
+-            escape: closed,
+-            close: closed,
+-          },
+-    source: {
+-      expected: 'Format reference',
+-      ...(mode === 'no-js'
+-        ? { native: fragment('#reader-note-1') }
+-        : {
+-            before,
+-            opened: {
+-              ...opened,
+-              image: null,
+-              text: 'Format reference',
+-              full: '#reader-note-1',
+-              duplicateIds: 0,
+-              returns: 0,
+-            },
+-            escape: closed,
+-            full: fragment('#reader-note-1'),
+-          }),
+-      returned: fragment('#reader-cite-1-1'),
+-    },
+-    topic: {
+-      ...fragment('#inspecting-a-figure'),
+-      menu: {
+-        before: {
+-          top: 90,
+-          bottom: 142,
+-          scroll: 900,
+-          scrollPaddingTop: 80,
+-          summary: { top: 90, bottom: 142 },
+-        },
+-        opened: { top: 90, bottom: 500, scroll: 900 },
+-      },
+-    },
+-    ...(mode === 'no-js' ? { native: { count: 2, hidden: true } } : {}),
+-    ...(mode === 'normal'
+-      ? {
+-          cleanup: {
+-            opened: true,
+-            open: false,
+-            images: 0,
+-            connected: false,
+-            live: 0,
+-            overflow: 'auto',
+-          },
+-        }
+-      : {}),
+-  };
++  return require('./fixtures/article-flight.cjs').readerObserved(mode);
+ }
+ 
+ test('reader interaction evidence covers native fallbacks and measured dialog usability', () => {
+@@ -529,81 +320,8 @@ test('reader-block evidence is required for every current identity while histori
+       (edition) => motion.reviewedRuntime(family + '-' + edition).variant
+     )
+   );
+-  const make = (selectedEngine) => {
+-    const detail = observed();
+-    for (const row of detail.observations) {
+-      row.head.engine = selectedEngine;
+-      if (motion.readerInteractionsRequired(selectedEngine)) row.reader = readerObserved(row.mode);
+-      if (row.mode !== 'normal') continue;
+-      if (motion.readerDeferredMediaRequired(selectedEngine))
+-        row.reader.requestDeferral = Object.fromEntries(
+-          ['native', 'back', 'spa'].map((phase) => [
+-            phase,
+-            {
+-              kind: 'reader-deferred-image-requests',
+-              margin: 6000,
+-              viewportHeight: 844,
+-              images: row.reader.inventory.images.map((image) => ({
+-                url: image.src,
+-                top: 14000,
+-                loading: 'lazy',
+-              })),
+-              requested: [],
+-            },
+-          ])
+-        );
+-      row.reading.entered = [];
+-      row.reading.maxEntering = 0;
+-      for (const item of [...row.flights, ...row.nativeHistory])
+-        item.blocks = ['departure', 'arrival'].map((stage) => {
+-          const departure = stage === 'departure';
+-          const source = departure ? item.from : item.to;
+-          const other = departure ? item.to : item.from;
+-          const sign =
+-            source.startsWith('article:') && !other.startsWith('article:') ? 1 : item.direction;
+-          return {
+-            stage,
+-            direction: sign > 0 ? 'forward' : 'backward',
+-            navigationId: item.events[0].navigationId,
+-            rows: 1,
+-            plannedDurationMs: 1000,
+-            rowDurationMs: 1000,
+-            completedBy: 'animationend',
+-            paper:
+-              motion.readerPaperRequired(selectedEngine) && source.startsWith('article:')
+-                ? {
+-                    top: 0,
+-                    width: 800,
+-                    height: 900,
+-                    viewport: 900,
+-                    distance: (departure ? -1 : 1) * 932,
+-                    duration: 1000,
+-                    delay: 0,
+-                    nativeBackground: 'rgba(0, 0, 0, 0)',
+-                    background: 'rgb(248, 247, 243)',
+-                    frames: [{ computedOffset: 0 }, { computedOffset: 1 }],
+-                  }
+-                : null,
+-            units: [
+-              {
+-                tag: 'P',
+-                layer:
+-                  motion.readerWholeBlocksRequired(selectedEngine) && source.startsWith('article:')
+-                    ? 'self'
+-                    : 'children',
+-                childAnimations: 0,
+-                classes: '',
+-                distance: (departure ? -sign : sign) * 600,
+-                row: 0,
+-                state: departure ? 'departing' : 'arriving',
+-                frames: [{ computedOffset: 0 }, { computedOffset: 1 }],
+-              },
+-            ],
+-          };
+-        });
+-    }
+-    return detail;
+-  };
++  const make = (selectedEngine) =>
++    require('./fixtures/article-flight.cjs').currentJourney(descriptors, selectedEngine, baseURL);
+   for (const current of new Set(
+     identities.flatMap((item) => [item.baseEngine, item.fingerprint])
+   )) {
+diff --git a/tests/article-delivery.test.cjs b/tests/article-delivery.test.cjs
+index ebaa85b..3346be7 100644
+--- a/tests/article-delivery.test.cjs
++++ b/tests/article-delivery.test.cjs
+@@ -79,6 +79,7 @@ function mime(file) {
+     '.webp': 'image/webp',
+     '.jpg': 'image/jpeg',
+     '.png': 'image/png',
++    '.pdf': 'application/pdf',
+   };
+   return types[path.extname(file)] || 'application/octet-stream';
+ }
+@@ -111,7 +112,10 @@ function transport(directory, prefix = '/', wrongPNG = false, cloudflare = false
+ test('article delivery includes a finite separate inventory, immutable document and exact PNG bytes', (t) => {
+   const { publicDir, record, article } = fixture(t);
+   assert.deepEqual(Object.keys(record.components.routes), snapshot.routes);
+-  assert.deepEqual(Object.keys(record.components.articles), [key]);
++  const accepted = Object.values(require('../site/content/catalog.json').records)
++    .filter((row) => row.kind === 'local-article')
++    .map((row) => row.article + ':' + row.edition.inLanguage);
++  assert.deepEqual(Object.keys(record.components.articles).sort(), [...accepted, key].sort());
+   assert.equal(record.components.preview, true);
+   assert.equal(snapshot.immutable(article.alias), false);
+   assert.equal(snapshot.immutable(article.url), true);
+@@ -125,16 +129,23 @@ test('article delivery includes a finite separate inventory, immutable document
+ });
+ 
+ test('article fallback preserves exact scene geometry and its resources remain budgeted', (t) => {
+-  const { publicDir, article } = fixture(t);
++  const { publicDir, article, record } = fixture(t);
+   const fallback = require('../tools/site/fallback.cjs');
+   const writing = fs.readFileSync(path.join(publicDir, 'writing.html'), 'utf8');
+   const svg = writing.match(/<svg class="space-fallback"[\s\S]*?<\/svg>/)[0];
+-  const resource = fallback.articleResource(svg);
++  const resolved = fallback.resolveRouteResource(
++    svg,
++    'writing',
++    record.components.routes.writing.assets,
++    (name) => fs.readFileSync(path.join(publicDir, name))
++  );
++  const inline = resolved?.html || svg;
++  const resource = fallback.articleResource(inline);
+   assert.ok(article.assets.includes(resource.name));
+   assert.deepEqual(fs.readFileSync(path.join(publicDir, resource.name)), resource.bytes);
+   assert.equal(
+     fallback.resourceContent(resource.name, resource.bytes),
+-    svg.slice(svg.indexOf('>') + 1, -6)
++    inline.slice(inline.indexOf('>') + 1, -6)
+   );
+   const html = fs.readFileSync(path.join(publicDir, article.alias), 'utf8');
+   assert.match(
+@@ -277,7 +288,10 @@ test('staging package admits article inventory and enforces immutable PNG/HTML c
+     ...artifact.manifest(retainedPublic),
+   };
+   retainedSource.components = snapshot.verify(retainedPublic, retainedSource);
+-  assert.equal(Object.keys(retainedSource.components.articles || {}).length, 0);
++  assert.deepEqual(
++    Object.keys(retainedSource.components.articles || {}).sort(),
++    Object.keys(require('../docs/site-revision.json').articles || {}).sort()
++  );
+   assert.equal(snapshot.immutable(retainedPDF), true);
+   fs.writeFileSync(path.join(retainedInput, 'artifact.json'), JSON.stringify(retainedSource));
+   fs.mkdirSync(path.join(retainedInput, 'gate'));
+@@ -315,7 +329,7 @@ test('Pages article documents and PNGs stay inside a project/staging base with n
+   const record = pages.build(directory, output, null, null, null, '/project/');
+   const base = 'https://author.invalid/project';
+   const result = await pagesHTTP.check(output, base, transport(output, '/project/'));
+-  assert.equal(result.articleDocuments, 1);
++  assert.equal(result.articleDocuments, Object.keys(stage.components.articles).length);
+   assert.equal(result.articleDeepLinks, true);
+   assert.deepEqual(pages.subtree(record.files, 'staging/'), stage.files);
+   const urls = articleURLs(base + '/staging/', stage.components.articles[key]);
+diff --git a/tests/content-delivery.test.cjs b/tests/content-delivery.test.cjs
+index 5263de3..0fb6906 100644
+--- a/tests/content-delivery.test.cjs
++++ b/tests/content-delivery.test.cjs
+@@ -210,7 +210,26 @@ test('distinct content gate inherits accepted platform and requires every affect
+           url: f.hostedURL + '/' + file,
+           mime: require('../tools/quality/serve.cjs').canonicalType(file),
+         }));
+-    if (report.kind === 'content-functional')
++    if (report.kind === 'content-functional') {
++      report.articles = require('./fixtures/article-flight.cjs').currentJourney(
++        f.manifest.components.articles || {},
++        f.manifest.components.engine,
++        f.hostedURL
++      );
++      // Controlled fixture records match the actual selected media inventory;
++      // these are not claimed browser observations.
++      report.media = require('../tools/site/articles.cjs')
++        .select(root, [], require('../tools/site/build.cjs').catalog(root))
++        .flatMap((article) => article.assets)
++        .filter((asset) => /^image\//.test(asset.mime))
++        .map((asset) => ({
++          file: asset.url,
++          status: 200,
++          pass: true,
++          sha256: f.manifest.files[asset.url].sha256,
++          width: asset.width,
++          height: asset.height,
++        }));
+       for (const row of report.rows) {
+         row.sha256 = f.manifest.files[row.file].sha256;
+         if (
+@@ -220,6 +239,7 @@ test('distinct content gate inherits accepted platform and requires every affect
+         )
+           row.tagFilter = true;
+       }
++    }
+   }
+   const write = (file, data) => fs.writeFileSync(path.join(directory, file), JSON.stringify(data));
+   write('artifact.json', f.manifest);
+diff --git a/tests/content.test.cjs b/tests/content.test.cjs
+index bffb012..77ea124 100644
+--- a/tests/content.test.cjs
++++ b/tests/content.test.cjs
+@@ -875,12 +875,28 @@ test('page IDs, ARIA targets, local resources and fragments resolve without draf
+   const readResource = (target) => fs.readFileSync(path.join(root, target));
+   const resources = assertLocalPageReferences(pages, revision, readResource);
+   if (resources.length) {
+-    assert.equal(resources.length, 1, 'one active Research resource');
+-    assert.deepEqual(resources, revision.routes.research.assets);
+-    const [namespace, digest, filename] = resources[0].split('/');
+-    assert.equal(namespace, 'article-media');
+-    assert.deepEqual(fs.readdirSync(path.join(root, namespace)), [digest]);
+-    assert.deepEqual(fs.readdirSync(path.join(root, namespace, digest)), [filename]);
++    assert.deepEqual(
++      resources.sort(),
++      Object.values(revision.routes)
++        .flatMap((route) => route.assets || [])
++        .sort(),
++      'complete declared room resource set'
++    );
++    const retained = require('../site/retained/manifest.json').files;
++    const expectedMedia = [
++      ...new Set([
++        ...resources,
++        ...Object.values(revision.articles || {}).flatMap((article) => article.assets),
++        ...Object.keys(retained).filter((name) => name.startsWith('article-media/')),
++      ]),
++    ].sort();
++    assert.deepEqual(
++      require('../tools/quality/artifact.cjs')
++        .entries(path.join(root, 'article-media'))
++        .map((entry) => 'article-media/' + entry.path)
++        .sort(),
++      expectedMedia
++    );
+     assert.throws(
+       () =>
+         assertLocalPageReferences(
+@@ -922,7 +938,10 @@ test('page IDs, ARIA targets, local resources and fragments resolve without draf
+     'talks.html',
+     'theme.js',
+     'writing.html',
+-  ].concat(resources.length ? ['article-media'] : []);
++  ].concat(
++    resources.length ? ['article-media'] : [],
++    Object.keys(revision.articles || {}).length ? ['articles', 'article-snapshots'] : []
++  );
+   assert.deepEqual(fs.readdirSync(root).sort(), expected.sort());
+   const { mediaFiles } = require('../tools/site/snapshot.cjs');
+   assert.deepEqual(
+diff --git a/tests/executive.test.cjs b/tests/executive.test.cjs
+index 083c1ce..32944b6 100644
+--- a/tests/executive.test.cjs
++++ b/tests/executive.test.cjs
+@@ -15,6 +15,30 @@ function issue159CopyFixture(t, names) {
+   }
+   return directory;
+ }
++
++test('Writing carrier proof rejects altered source, geometry and resource bindings', () => {
++  const { verifyWritingCarrier } = require('../tools/check_site_seo.cjs');
++  const original = require('../review/issue-169/writing-carrier.json');
++  assert.doesNotThrow(() => verifyWritingCarrier());
++  for (const mutate of [
++    (record) => (record.schema = 999),
++    (record) => (record.issue = 0),
++    (record) => (record.producerChanges = {}),
++    (record) => delete record.producerChanges['tools/site/fallback.cjs'],
++    (record) => (record.predecessorSource = '0'.repeat(40)),
++    (record) => (record.producerChanges['tools/site/build.cjs'].beforeSHA256 = '0'.repeat(64)),
++    (record) => (record.producerChanges['tools/site/build.cjs'].afterSHA256 = '0'.repeat(64)),
++    (record) => (record.acceptedSvgSHA256 = '0'.repeat(64)),
++    (record) =>
++      (record.resource = record.resource.replace('writing-fallback', 'research-fallback')),
++  ]) {
++    const changed = structuredClone(original);
++    mutate(changed);
++    assert.throws(() =>
++      verifyWritingCarrier(require('node:path').resolve(__dirname, '..'), changed)
++    );
++  }
++});
+ test('Research carrier reconstructs the accepted scene and rejects unknown producer or geometry identities', (t) => {
+   const path = require('node:path');
+   const seo = require('../tools/check_site_seo.cjs');
+@@ -976,7 +1000,11 @@ test('practical positioning allowances reject unsupported claims, status and con
+     ['talks', 'Invited speaker at Corning’s', 'Consulting partner of Corning’s'],
+     ['talks', 'internal technical AI workshop', 'validated enterprise AI deployment'],
+     ['talks', 'index.html#contact', 'https://unapproved.example/book'],
+-    ['writing', '29 articles</p>', '27 articles</p>'],
++    [
++      'writing',
++      `${Object.keys(require('../site/content/catalog.json').records).length} articles</p>`,
++      '0 articles</p>',
++    ],
+     ['index', 'credits.html#built-with-ai', 'credits.html#missing-case'],
+     ['credits', 'I direct its architecture', 'AI autonomously directs its architecture'],
+     [
+diff --git a/tests/fixtures/article-flight.cjs b/tests/fixtures/article-flight.cjs
+index 9c1f6ea..37bef46 100644
+--- a/tests/fixtures/article-flight.cjs
++++ b/tests/fixtures/article-flight.cjs
+@@ -56,4 +56,304 @@ function flight(from, to, direction) {
+   };
+ }
+ 
+-module.exports = { flight };
++function journey(descriptors, engine, baseURL) {
++  const keys = Object.keys(descriptors);
++  if (!keys.length) return undefined;
++  const key = keys[0];
++  const lang = key.split(':').at(-1);
++  const basePath = new URL(baseURL.replace(/\/$/, '') + '/').pathname;
++  const normal = Object.fromEntries(
++    [
++      'metadataTransition',
++      'filtersBackForward',
++      'focusAndScrollHistory',
++      'persistentCanvas',
++      'nativeAnchors',
++      'deepRefresh',
++      'readingBlocks',
++      'routeDeparture',
++      'rapidCancellation',
++      'assetsDecoded',
++    ].map((name) => [name, true])
++  );
++  const head = {
++    key,
++    lang,
++    routeVersion: descriptors[key].version,
++    engine,
++    title: 'Controlled article fixture',
++    description: 'This fixture validates evidence; it is not a browser observation.',
++    author: 'Fixture author',
++    robots: 'noindex,nofollow',
++    canonical: [],
++    alternates: [],
++    schemas: [
++      {
++        '@type': 'Article',
++        headline: 'Controlled article fixture',
++        author: { '@type': 'Person', name: 'Fixture author' },
++        inLanguage: lang,
++      },
++    ],
++  };
++  return {
++    kind: 'bounded-article-journey',
++    browser: 'Controlled validator fixture; not a browser observation',
++    documents: [key],
++    availableDocuments: keys,
++    observations: [
++      ...[1440, 390].map((width) => ({
++        key,
++        width,
++        mode: 'normal',
++        relatedDeparture: { present: false, departed: false },
++        nativeHistory: [
++          flight('writing', 'article:' + key, -1),
++          flight('article:' + key, 'writing', 1),
++        ],
++        flights: [
++          flight('writing', 'article:' + key, 1),
++          flight('article:' + key, 'writing', -1),
++          flight('writing', 'article:' + key, 1),
++          flight('article:' + key, 'research', -1),
++          ...['index', 'writing', 'talks', 'credits'].map((to) =>
++            flight('article:' + key, to, ['index', 'writing'].includes(to) ? -1 : 1)
++          ),
++        ],
++        head: structuredClone(head),
++        reading: {
++          entered: ['first-section'],
++          departed: ['first-section'],
++          maxEntering: 1,
++          maxRoute: 1,
++        },
++        checks: { ...normal, basePath },
++      })),
++      ...['off', 'no-canvas', 'no-js'].map((mode) => ({
++        key,
++        width: 390,
++        mode,
++        head: structuredClone(head),
++        checks: {
++          nativeReading: true,
++          anchors: true,
++          writingLink: true,
++          singleCanvas: true,
++          ...(mode === 'off' ? { reducedMotion: true } : {}),
++          basePath,
++        },
++      })),
++    ],
++  };
++}
++
++function readerObserved(mode) {
++  const before = {
++    url: 'https://candidate.example.invalid/author/article.html',
++    scroll: 600,
++  };
++  const rect = {
++    top: 24,
++    bottom: 700,
++    left: 16,
++    right: 374,
++    width: 358,
++    height: 676,
++  };
++  const opened = {
++    ...before,
++    open: true,
++    focusInside: true,
++    focusRestored: false,
++    viewport: { width: 390, height: 844 },
++    bounds: rect,
++    close: {
++      top: 44,
++      bottom: 88,
++      left: 270,
++      right: 354,
++      width: 84,
++      height: 44,
++    },
++    image: {
++      src: 'https://candidate.example.invalid/author/image.webp',
++      alt: 'Synthetic grid',
++      width: 310,
++      naturalWidth: 640,
++    },
++    original: 'https://candidate.example.invalid/author/image.webp',
++    stage: { width: 310, overflow: 'auto' },
++    pressed: 'false',
++    zoomed: false,
++  };
++  const closed = {
++    ...opened,
++    open: false,
++    focusInside: false,
++    focusRestored: true,
++    image: null,
++  };
++  const fragment = (hash) => ({
++    hash,
++    top: 190,
++    bottom: 220,
++    height: 844,
++    occlusion: 170,
++    appendixOpen: true,
++    dialogs: 0,
++  });
++  return {
++    inventory: {
++      headings: ['inspecting-a-figure'],
++      topics: [{ href: '#inspecting-a-figure', label: 'Inspecting a figure' }],
++      images: [
++        {
++          src: opened.image.src,
++          href: opened.image.src,
++          alt: opened.image.alt,
++        },
++      ],
++      citations: [{ id: 'reader-cite-1-1', href: '#reader-note-1', target: true }],
++    },
++    image:
++      mode === 'no-js'
++        ? null
++        : {
++            before,
++            opened,
++            zoomed: {
++              ...opened,
++              pressed: 'true',
++              zoomed: true,
++              image: { ...opened.image, width: 640 },
++            },
++            escape: closed,
++            close: closed,
++          },
++    source: {
++      expected: 'Format reference',
++      ...(mode === 'no-js'
++        ? { native: fragment('#reader-note-1') }
++        : {
++            before,
++            opened: {
++              ...opened,
++              image: null,
++              text: 'Format reference',
++              full: '#reader-note-1',
++              duplicateIds: 0,
++              returns: 0,
++            },
++            escape: closed,
++            full: fragment('#reader-note-1'),
++          }),
++      returned: fragment('#reader-cite-1-1'),
++    },
++    topic: {
++      ...fragment('#inspecting-a-figure'),
++      menu: {
++        before: {
++          top: 90,
++          bottom: 142,
++          scroll: 900,
++          scrollPaddingTop: 80,
++          summary: { top: 90, bottom: 142 },
++        },
++        opened: { top: 90, bottom: 500, scroll: 900 },
++      },
++    },
++    ...(mode === 'no-js' ? { native: { count: 2, hidden: true } } : {}),
++    ...(mode === 'normal'
++      ? {
++          cleanup: {
++            opened: true,
++            open: false,
++            images: 0,
++            connected: false,
++            live: 0,
++            overflow: 'auto',
++          },
++        }
++      : {}),
++  };
++}
++
++function currentJourney(descriptors, selectedEngine, baseURL) {
++  const motion = require('../../tools/quality/color-motion-contract.cjs');
++  const detail = journey(descriptors, selectedEngine, baseURL);
++  if (!detail) return detail;
++  for (const row of detail.observations) {
++    row.head.engine = selectedEngine;
++    if (motion.readerInteractionsRequired(selectedEngine)) row.reader = readerObserved(row.mode);
++    if (row.mode !== 'normal') continue;
++    if (motion.readerDeferredMediaRequired(selectedEngine))
++      row.reader.requestDeferral = Object.fromEntries(
++        ['native', 'back', 'spa'].map((phase) => [
++          phase,
++          {
++            kind: 'reader-deferred-image-requests',
++            margin: 6000,
++            viewportHeight: 844,
++            images: row.reader.inventory.images.map((image) => ({
++              url: image.src,
++              top: 14000,
++              loading: 'lazy',
++            })),
++            requested: [],
++          },
++        ])
++      );
++    row.reading.entered = [];
++    row.reading.maxEntering = 0;
++    for (const item of [...row.flights, ...row.nativeHistory])
++      item.blocks = ['departure', 'arrival'].map((stage) => {
++        const departure = stage === 'departure';
++        const source = departure ? item.from : item.to;
++        const other = departure ? item.to : item.from;
++        const sign =
++          source.startsWith('article:') && !other.startsWith('article:') ? 1 : item.direction;
++        return {
++          stage,
++          direction: sign > 0 ? 'forward' : 'backward',
++          navigationId: item.events[0].navigationId,
++          rows: 1,
++          plannedDurationMs: 1000,
++          rowDurationMs: 1000,
++          completedBy: 'animationend',
++          paper:
++            motion.readerPaperRequired(selectedEngine) && source.startsWith('article:')
++              ? {
++                  top: 0,
++                  width: 800,
++                  height: 900,
++                  viewport: 900,
++                  distance: (departure ? -1 : 1) * 932,
++                  duration: 1000,
++                  delay: 0,
++                  nativeBackground: 'rgba(0, 0, 0, 0)',
++                  background: 'rgb(248, 247, 243)',
++                  frames: [{ computedOffset: 0 }, { computedOffset: 1 }],
++                }
++              : null,
++          units: [
++            {
++              tag: 'P',
++              layer:
++                motion.readerWholeBlocksRequired(selectedEngine) && source.startsWith('article:')
++                  ? 'self'
++                  : 'children',
++              childAnimations: 0,
++              classes: '',
++              distance: (departure ? -sign : sign) * 600,
++              row: 0,
++              state: departure ? 'departing' : 'arriving',
++              frames: [{ computedOffset: 0 }, { computedOffset: 1 }],
++            },
++          ],
++        };
++      });
++  }
++  return detail;
++}
++
++module.exports = { flight, journey, currentJourney, readerObserved };
+diff --git a/tests/fixtures/delivery.cjs b/tests/fixtures/delivery.cjs
+index 4f6b7d6..a6506e0 100644
+--- a/tests/fixtures/delivery.cjs
++++ b/tests/fixtures/delivery.cjs
+@@ -139,6 +139,16 @@ function response(url, bytes, status = 200) {
+ }
+ function rightsInventory(source, confirmed = false) {
+   const sourceRoot = source.directory + '-rights-source';
++  if (!fs.existsSync(path.join(sourceRoot, '.git'))) {
++    require('node:child_process').execFileSync('git', [
++      'clone',
++      '--shared',
++      '--no-checkout',
++      '--quiet',
++      path.resolve(__dirname, '../..'),
++      sourceRoot,
++    ]);
++  }
+   for (const name of [
+     'site',
+     'README.md',
+diff --git a/tests/preview.test.cjs b/tests/preview.test.cjs
+index 5f7f9bb..ae24d45 100644
+--- a/tests/preview.test.cjs
++++ b/tests/preview.test.cjs
+@@ -70,9 +70,24 @@ test('ten fixed-theme copies preserve actual main content, CSS and external sour
+         `src="data:image/webp;base64,${portrait.toString('base64')}"`,
+         'src="assets/vitalii-oborskyi-cutout.webp"'
+       );
++      const pending = new Set(
++        Object.values(require('../docs/site-revision.json').articles || {})
++          .filter(
++            (article) =>
++              require('../site/publications/' + article.articleId + '/publication.json')
++                .canonical === null
++          )
++          .flatMap((article) => [article.alias, article.url])
++      );
++      const hostedLinks = (text) =>
++        text.replace(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g, (original, href, label) =>
++          pending.has(href)
++            ? `<span class="hosted-edition">${label} <span>(hosted edition)</span></span>`
++            : original
++        );
+       assert.equal(
+         restored,
+-        main(sourceForPreview(source))
++        hostedLinks(main(sourceForPreview(source)))
+           .replace(/href="index\.html(?=["?#])/g, 'href="./')
+           .replace(/<form[\t\n\f\r ]+id="archive-filters"[\s\S]*?<\/form[\t\n\f\r ]*>/, '')
+       );
+@@ -81,7 +96,7 @@ test('ten fixed-theme copies preserve actual main content, CSS and external sour
+       const external = (text) =>
+         [...text.matchAll(/href="(https:\/\/[^"]+)"/g)].map((match) => match[1]);
+       assert.deepEqual(external(html), external(source));
+-      const count = [...html.matchAll(/class="publication-title"/g)].length;
++      const count = [...html.matchAll(/class="(?:publication-title|hosted-edition)"/g)].length;
+       assert.equal(count, page === 'index' ? 5 : page === 'writing' ? primaryCount : 0);
+     }
+   }
+@@ -138,10 +153,15 @@ test("fixed and interactive rewriters retain query/hash intent, including the of
+ 
+ test('manifest records exact inputs/outputs and unknown source shapes fail visibly', () => {
+   const manifest = JSON.parse(files['review/site-v1-static-previews-v11.json']);
+-  const resource = JSON.parse(fs.readFileSync(path.join(root, 'docs/site-revision.json'))).routes
+-    .research.assets?.[0];
+-  assert.equal(Object.keys(manifest.sources).length, 13 + (resource ? 1 : 0));
+-  if (resource)
++  const resources = [
++    ...new Set(
++      Object.values(
++        JSON.parse(fs.readFileSync(path.join(root, 'docs/site-revision.json'))).routes
++      ).flatMap((route) => route.assets || [])
++    ),
++  ];
++  assert.equal(Object.keys(manifest.sources).length, 13 + resources.length);
++  for (const resource of resources)
+     assert.equal(
+       manifest.sources['docs/' + resource],
+       digest(fs.readFileSync(path.join(root, 'docs', resource)))
+diff --git a/tests/reader-controller.test.cjs b/tests/reader-controller.test.cjs
+index af3b3f6..d722132 100644
+--- a/tests/reader-controller.test.cjs
++++ b/tests/reader-controller.test.cjs
+@@ -52,7 +52,7 @@ function fixture(t) {
+     contentEdition: 'fixture',
+     sourceSha256: artifact.digest('controlled manuscript'),
+     semanticSha256: artifact.digest('controlled semantic edition'),
+-    assets: [image, download],
++    assets: [...(revision.routes.writing.assets || []), image, download],
+     downloads: [download],
+     version,
+   };
+@@ -77,7 +77,7 @@ function fixture(t) {
+   article.sha256 = artifact.digest(immutableHtml);
+   put(article.alias, html);
+   put(article.url, immutableHtml);
+-  revision.articles = { 'probe:en': article };
++  revision.articles = { ...revision.articles, 'probe:en': article };
+   put('site-revision.json', JSON.stringify(revision));
+   const source = {
+     schema: 1,
+@@ -109,8 +109,8 @@ test('new article closure is validated while legacy principal documents retain t
+   assert.deepEqual(snapshot.verify(f.publicDir, f.source), f.revision);
+   assert.equal(artifact.verify(f.publicDir, f.source), true);
+   const size = artifact.checkSize(f.publicDir);
+-  assert.equal(size.articleRows.length, 1);
+-  assert.deepEqual(size.articleRows[0].downloads, [f.download]);
++  assert.equal(size.articleRows.length, Object.keys(f.revision.articles).length);
++  assert.deepEqual(size.articleRows.find((row) => row.key === 'probe:en').downloads, [f.download]);
+   assert.equal(artifact.validateArticleSizes(size, f.source), true);
+   for (const route of snapshot.routes)
+     assert.deepEqual(
+diff --git a/tests/release-rights.test.cjs b/tests/release-rights.test.cjs
+index 8273476..2d25a18 100644
+--- a/tests/release-rights.test.cjs
++++ b/tests/release-rights.test.cjs
+@@ -48,6 +48,7 @@ function fixture(t) {
+       recursive: true,
+     });
+   }
++  require('./fixtures/catalog.cjs').isolatePublicationCatalog(sourceRoot, root);
+   builder.build({ root: sourceRoot, output: publicDirectory, all: true });
+   const record = () => ({
+     sourceCommit: 'a'.repeat(40),
+@@ -438,9 +439,22 @@ test('publication records bind staging and production editions without granting
+     const report = rights.readPublication(source.directory, source.record);
+     assert.equal(rights.publication(source.record, report), true);
+     assert.equal(report.approvalPass, false);
+-    assert.equal(report.materials.hostedEditions.length, 0);
+-    assert.equal(report.materials.linkedEditionCount, 46);
+-    assert.equal(Object.keys(report.linkedPublications).length, 29);
++    const catalog = require('../site/content/catalog.json');
++    assert.equal(
++      report.materials.hostedEditions.length,
++      Object.values(catalog.records).filter((record) => record.kind === 'local-article').length
++    );
++    assert.equal(
++      report.materials.linkedEditionCount,
++      Object.values(catalog.records).reduce(
++        (total, record) => total + 1 + record.editions.length,
++        0
++      )
++    );
++    assert.equal(
++      Object.keys(report.linkedPublications).length,
++      Object.keys(catalog.records).length
++    );
+     const retained = JSON.parse(
+       fs.readFileSync(path.join(source.directory + '-rights-source', 'site/retained/manifest.json'))
+     );
+diff --git a/tests/review-flow.test.cjs b/tests/review-flow.test.cjs
+index 0137548..b38fad5 100644
+--- a/tests/review-flow.test.cjs
++++ b/tests/review-flow.test.cjs
+@@ -485,18 +485,25 @@ function fetchFixture(f, mutation) {
+ function principalHttpFiles(record) {
+   const runtime = 'runtime/' + record.source.components.engine + '/';
+   return [
+-    'index.html',
+-    'research.html',
+-    'writing.html',
+-    'talks.html',
+-    'credits.html',
+-    'site-revision.json',
+-    '_staging/revision.json',
+-    runtime + 'space.js',
+-    runtime + 'navigation.js',
+-    runtime + 'styles.css',
+-    ...(record.source.files['publication-index.json'] ? ['publication-index.json'] : []),
+-    ...(record.source.components.routes?.research?.assets ?? []),
++    ...new Set([
++      'index.html',
++      'research.html',
++      'writing.html',
++      'talks.html',
++      'credits.html',
++      'site-revision.json',
++      '_staging/revision.json',
++      runtime + 'space.js',
++      runtime + 'navigation.js',
++      runtime + 'styles.css',
++      ...(record.source.files['publication-index.json'] ? ['publication-index.json'] : []),
++      ...Object.values(record.source.components.routes || {}).flatMap(
++        (route) => route.assets || []
++      ),
++      ...Object.keys(record.source.files).filter((name) =>
++        /^(?:articles|article-snapshots|article-media)\//.test(name)
++      ),
++    ]),
+   ].sort();
+ }
+ test('fast hosted smoke binds all five routes, both revisions and actual base runtime hashes', async () => {
+diff --git a/tests/site-engine.test.cjs b/tests/site-engine.test.cjs
+index 68db3af..397ff3c 100644
+--- a/tests/site-engine.test.cjs
++++ b/tests/site-engine.test.cjs
+@@ -124,14 +124,14 @@ test('Research shares exact passive vectors while declaring and budgeting the co
+     );
+     assert.throws(
+       () => fallback.resolveRouteResource(svg, 'writing', descriptor.assets, read),
+-      /Unsupported/
++      /closure/
+     );
+     assert.throws(
+       () => fallback.resolveRouteResource(svg, 'research', [name, name], read),
+       /Finite/
+     );
+   }
+-  for (const id of ['index', 'writing', 'talks', 'credits']) {
++  for (const id of ['index', 'talks', 'credits']) {
+     assert.equal(revision.routes[id].assets, undefined);
+     assert.equal(
+       read(id + '.html')
+@@ -189,6 +189,61 @@ test('Research shares exact passive vectors while declaring and budgeting the co
+   );
+ });
+ 
++test('Writing carrier preserves geometry, full transfer and production HTML headroom', (t) => {
++  const dir = fixture(t);
++  run(dir);
++  const output = path.join(dir, 'docs');
++  const read = (name) => fs.readFileSync(path.join(output, name));
++  const fallback = require('../tools/site/fallback.cjs');
++  const revision = snapshot.verify(output, artifact.manifest(output));
++  const descriptor = revision.routes.writing;
++  assert.equal(descriptor.assets.length, 1);
++  const name = descriptor.assets[0];
++  const canonical = fallback.fromModel(b.model(dir, b.configuration(dir).definitions), 'writing');
++  for (const document of ['writing.html', descriptor.url]) {
++    const svg = read(document)
++      .toString()
++      .match(/<svg class="space-fallback"[\s\S]*?<\/svg>/)[0];
++    const prefix = document === 'writing.html' ? '' : '../../';
++    assert.equal(
++      fallback.resolveRouteResource(svg, 'writing', descriptor.assets, read, prefix).html,
++      canonical
++    );
++    assert.throws(() => fallback.resolveRouteResource(svg, 'writing', [], read), /Undeclared/);
++    assert.throws(
++      () => fallback.resolveRouteResource(svg, 'index', descriptor.assets, read),
++      /Unsupported/
++    );
++    assert.throws(
++      () => fallback.resolveRouteResource(svg, 'research', descriptor.assets, read),
++      /closure/
++    );
++    assert.throws(
++      () =>
++        fallback.resolveRouteResource(
++          svg,
++          'writing',
++          descriptor.assets,
++          (file) => Buffer.concat([read(file), Buffer.from('x')]),
++          prefix
++        ),
++      /identity/
++    );
++  }
++  const sizes = artifact.checkSize(output);
++  const row = sizes.rows.find((item) => item.route === 'writing');
++  assert.equal(row.fallbackResource, name);
++  assert.equal(row.svgNodes, (canonical.match(/<[a-z][\w-]*(?:\s|>)/gi) || []).length + 2);
++  const record = { ...artifact.manifest(output), components: revision };
++  assert.doesNotThrow(() => artifact.validateRouteSizes(sizes, record));
++  const forged = structuredClone(sizes);
++  forged.rows.find((item) => item.route === 'writing').totalGzipBytes -= sizes.files[name].gzip;
++  assert.throws(() => artifact.validateRouteSizes(forged, record), /transfer/);
++  const actual = fs.readFileSync(path.join(root, 'docs/writing.html'), 'utf8');
++  const production = require('../tools/release/edition.cjs').render(actual, 'writing');
++  assert.ok(Buffer.byteLength(production) <= require('../tools/quality/budgets.json').htmlRawBytes);
++});
++
+ test('generated tag endings preserve raw elements, quoted values and unquoted separators', () => {
+   const opaque =
+     '<script>const x="</span \\n>";</script><style>.x::after{content:"<span >"}</style><!-- <span > -->';
+diff --git a/tests/staging-reporting.test.cjs b/tests/staging-reporting.test.cjs
+index f55021c..ffbfe31 100644
+--- a/tests/staging-reporting.test.cjs
++++ b/tests/staging-reporting.test.cjs
+@@ -42,6 +42,11 @@ function fixture() {
+       jobs: { build: { result: 'success' } },
+       githubArtifact: { id: '123', uploadDigest: publicUpload },
+     };
++  source.components = require('../tools/site/snapshot.cjs').verify(
++    path.join(input, 'public'),
++    source
++  );
++  gate.components = source.components;
+   save('input/artifact.json', source);
+   save('input/gate/release-manifest.json', gate);
+   const record = pkg.build(input, out),
+diff --git a/tools/check_site_seo.cjs b/tools/check_site_seo.cjs
+index b7af2f5..dc8a447 100644
+--- a/tools/check_site_seo.cjs
++++ b/tools/check_site_seo.cjs
+@@ -212,8 +212,96 @@ const researchCarrierInputs = [
+   'tools/site/offline.cjs',
+   'tools/site/snapshot.cjs',
+ ];
++const writingCarrier = JSON.parse(
++  fs.readFileSync(path.join(root, 'review/issue-169/writing-carrier.json'), 'utf8')
++);
++
++function verifyCarrierRecord(successor) {
++  assert.equal(successor.schema, 1, 'Writing carrier schema');
++  assert.equal(successor.issue, 169, 'Writing carrier owner');
++  assert.equal(successor.predecessorSource, 'bd70996a386665e14f87440653e3a107fed15e43');
++  assert.deepEqual(Object.keys(successor.producerChanges).sort(), [
++    'tools/site/build.cjs',
++    'tools/site/fallback.cjs',
++  ]);
++}
++
++function carrierProducer(name, binding, successor) {
++  verifyCarrierRecord(successor);
++  const change = successor.producerChanges[name];
++  if (!change) return binding.afterSHA256;
++  assert.equal(change.beforeSHA256, binding.afterSHA256, 'Writing carrier predecessor producer');
++  const before = cp.execFileSync('git', ['show', successor.predecessorSource + ':' + name], {
++    cwd: root,
++  });
++  assert.equal(crypto.createHash('sha256').update(before).digest('hex'), change.beforeSHA256);
++  assert.match(change.afterSHA256, /^[a-f0-9]{64}$/);
++  return change.afterSHA256;
++}
++
++function verifyWritingCarrier(projectRoot = root, record = writingCarrier) {
++  verifyCarrierRecord(record);
++  for (const name of Object.keys(record.producerChanges)) {
++    assert.equal(
++      crypto.createHash('sha256').update(homeSourceFile(projectRoot, name)).digest('hex'),
++      carrierProducer(name, issue159.researchCarrier.producerChanges[name], record),
++      'Writing carrier producer bytes'
++    );
++  }
++  const previous = cp.execFileSync(
++    'git',
++    ['show', record.predecessorSource + ':docs/writing.html'],
++    {
++      cwd: root,
++      encoding: 'utf8',
++    }
++  );
++  const svg = previous.match(/<svg class="space-fallback"[\s\S]*?<\/svg>/)?.[0];
++  assert.ok(svg, 'Writing predecessor geometry');
++  assert.equal(crypto.createHash('sha256').update(svg).digest('hex'), record.acceptedSvgSHA256);
++  const builder = require('./site/build.cjs');
++  const fallback = require('./site/fallback.cjs');
++  assert.equal(
++    fallback.fromModel(
++      builder.model(projectRoot, builder.configuration(projectRoot).definitions),
++      'writing'
++    ),
++    svg,
++    'Writing geometry is unchanged'
++  );
++  const resource = fallback.routeResource(svg, 'writing');
++  assert.equal(resource.name, record.resource, 'Writing carrier identity');
++  assert.deepEqual(fs.readFileSync(path.join(projectRoot, 'docs', resource.name)), resource.bytes);
++  const revision = JSON.parse(fs.readFileSync(path.join(projectRoot, 'docs/site-revision.json')));
++  const route = revision.routes.writing;
++  assert.deepEqual(route.assets, [resource.name]);
++  for (const [name, prefix] of [
++    ['writing.html', ''],
++    [route.url, '../../'],
++  ]) {
++    const html = fs.readFileSync(path.join(projectRoot, 'docs', name), 'utf8');
++    const actual = html.match(/<svg class="space-fallback"[\s\S]*?<\/svg>/)?.[0];
++    assert.ok(actual, 'Writing carrier SVG');
++    assert.equal(
++      fallback.resolveRouteResource(
++        actual,
++        'writing',
++        route.assets,
++        (file) => fs.readFileSync(path.join(projectRoot, 'docs', file)),
++        prefix
++      ).html,
++      svg,
++      'Writing carrier reconstruction'
++    );
++  }
++  return { route: 'writing', resource: resource.name, acceptedSvgSHA256: record.acceptedSvgSHA256 };
++}
+ 
+-function verifyResearchCarrier(projectRoot = root, record = issue159.researchCarrier) {
++function verifyResearchCarrier(
++  projectRoot = root,
++  record = issue159.researchCarrier,
++  successor = writingCarrier
++) {
+   assert.equal(record?.schema, 1, 'Research carrier record');
+   assert.equal(record.acceptedSource, '6b0248f9fc667d968140fa034278490f22c1480d');
+   assert.equal(record.predecessorBaseline, '2072b76e5e970db72122a0fd38fcb25da9a5bd46');
+@@ -231,7 +319,7 @@ function verifyResearchCarrier(projectRoot = root, record = issue159.researchCar
+     );
+     assert.equal(
+       crypto.createHash('sha256').update(homeSourceFile(projectRoot, name)).digest('hex'),
+-      binding.afterSHA256,
++      carrierProducer(name, binding, successor),
+       'Research carrier producer bytes: ' + name
+     );
+   }
+@@ -1151,6 +1239,7 @@ function restore(html, page) {
+ }
+ function verify() {
+   const researchCarrier = verifyResearchCarrier();
++  verifyWritingCarrier();
+   const rows = [];
+   verifyApprovedLicensingCSS();
+   for (const page of ['index', 'research', 'writing', 'talks', 'credits']) {
+@@ -1239,6 +1328,7 @@ function verify() {
+ if (require.main === module) process.stdout.write(JSON.stringify(verify(), null, 2) + '\n');
+ module.exports = {
+   verifyResearchCarrier,
++  verifyWritingCarrier,
+   createHTMLNormalizer,
+   verify,
+   restore,
+diff --git a/tools/quality/artifact.cjs b/tools/quality/artifact.cjs
+index 20684b9..c326513 100644
+--- a/tools/quality/artifact.cjs
++++ b/tools/quality/artifact.cjs
+@@ -117,8 +117,11 @@ function validateRouteSizes(sizes, record) {
+     const resources = declared === undefined ? [] : declared;
+     assert.ok(Array.isArray(resources) && resources.length <= 1, 'finite route resources');
+     if (resources.length) {
+-      assert.equal(row.route, 'research', 'unsupported route size resource');
+-      assert.match(resources[0], /^article-media\/[a-f0-9]{64}\/research-fallback\.svg$/);
++      assert.ok(['research', 'writing'].includes(row.route), 'unsupported route size resource');
++      assert.match(
++        resources[0],
++        new RegExp('^article-media/[a-f0-9]{64}/' + row.route + '-fallback\\.svg$')
++      );
+       assert.equal(
+         record.files[resources[0]]?.sha256,
+         resources[0].split('/')[1],
+diff --git a/tools/quality/content-fixture.cjs b/tools/quality/content-fixture.cjs
+index 74d9fe8..8d7f11a 100644
+--- a/tools/quality/content-fixture.cjs
++++ b/tools/quality/content-fixture.cjs
+@@ -127,6 +127,8 @@ function prepare({ sourceRoot = root, temporaryRoot = os.tmpdir() } = {}) {
+         stdio: ['ignore', 'pipe', 'pipe'],
+       }
+     );
++    // Preserve committed edition history when a fixture later commits one new source.
++    cp.execFileSync('git', ['read-tree', 'HEAD'], { cwd: directory });
+     for (const source of [
+       'site',
+       'tools/site',
+diff --git a/tools/quality/test-profiles.json b/tools/quality/test-profiles.json
+index 04fcbdc..4d21f12 100644
+--- a/tools/quality/test-profiles.json
++++ b/tools/quality/test-profiles.json
+@@ -372,7 +372,8 @@
+         "LICENSE-CONTENT.md",
+         "NOTICE.md",
+         "tools/site/legal.cjs",
+-        "tools/quality/analytics-isolation.cjs"
++        "tools/quality/analytics-isolation.cjs",
++        "tests/fixtures/catalog.cjs"
+       ]
+     },
+     {
+@@ -588,6 +589,7 @@
+       "disposition": "retain enduring edition/semantic failure checks; issue41 positioning removes stale visible unknown-language assertions, adds catalog-count mutation coverage and exact successor amendment negatives; no new browser/performance suite; same-issue sitecase layers exact About/Credits restoration and extends existing claim/evidence-link negatives rather than adding a new suite; #7/#39 reverses only the exact approved Credits legal fragments/full texts and three wrapping declarations, retaining historical baseline and all unrelated source/SEO negatives",
+       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+       "inputs": [
++        "review/issue-169/writing-carrier.json",
+         "tests/executive.test.cjs",
+         "tools/check_site_seo.cjs",
+         "tools/quality/format-parity.py",
+@@ -977,7 +979,8 @@
+         "NOTICE.md",
+         "tools/site/legal.cjs",
+         "site/engine/styles.css",
+-        "docs/styles.css"
++        "docs/styles.css",
++        "tests/fixtures/catalog.cjs"
+       ]
+     },
+     {
+@@ -1590,7 +1593,8 @@
+         "LICENSE-CODE.md",
+         "LICENSE-CONTENT.md",
+         "NOTICE.md",
+-        "tools/site/legal.cjs"
++        "tools/site/legal.cjs",
++        "tests/fixtures/catalog.cjs"
+       ]
+     },
+     {
+@@ -1973,7 +1977,8 @@
+         "site/engine/navigation.js",
+         "site/engine/scroll-entry.cjs",
+         "site/engine/reading-surfaces.css",
+-        "site/templates/**"
++        "site/templates/**",
++        "tests/fixtures/catalog.cjs"
+       ],
+       "content": true
+     },
+@@ -2104,7 +2109,8 @@
+         "tools/site/articles.cjs",
+         "site/engine/navigation.js",
+         "site/publications/**",
+-        "site/templates/**"
++        "site/templates/**",
++        "tests/fixtures/catalog.cjs"
+       ]
+     },
+     {
+@@ -2172,7 +2178,8 @@
+         "site/assets/publications/**",
+         "site/templates/**",
+         "site/engine/navigation.js",
+-        "site/article-template-preview.json"
++        "site/article-template-preview.json",
++        "tests/fixtures/catalog.cjs"
+       ]
+     },
+     {
+@@ -2216,7 +2223,8 @@
+         "site/publications/**",
+         "site/templates/**",
+         "tools/site/public-artifact.cjs",
+-        "tools/quality/content-fixture.cjs"
++        "tools/quality/content-fixture.cjs",
++        "tests/fixtures/catalog.cjs"
+       ],
+       "content": true
+     },
+@@ -2421,7 +2429,8 @@
+         "tools/staging/color.cjs",
+         "tools/quality/budgets.json",
+         "tools/quality/common.cjs",
+-        "tools/quality/color-motion-contract.cjs"
++        "tools/quality/color-motion-contract.cjs",
++        "tests/fixtures/catalog.cjs"
+       ]
+     },
+     {
+@@ -2591,7 +2600,8 @@
+         ".github/workflows/site-color-review.yml",
+         ".github/workflows/site-release-checks.yml",
+         ".github/workflows/site-release-candidate.yml",
+-        ".github/workflows/site-production.yml"
++        ".github/workflows/site-production.yml",
++        "tests/fixtures/article-flight.cjs"
+       ],
+       "content": true
+     },
+diff --git a/tools/release/rights.cjs b/tools/release/rights.cjs
+index 11e7576..ab70e70 100644
+--- a/tools/release/rights.cjs
++++ b/tools/release/rights.cjs
+@@ -302,7 +302,13 @@ function hostedInventory(publicDirectory, sourceRoot, record, manifest) {
+     const svg = readSource(publicDirectory, 'writing.html')
+       .toString()
+       .match(/<svg class="space-fallback"[\s\S]*?<\/svg>/)?.[0];
+-    const fallback = require('../site/fallback.cjs').articleResource(svg || '');
++    const renderer = require('../site/fallback.cjs');
++    const writing =
++      record.components?.routes?.writing || snapshot.verify(publicDirectory, record).routes.writing;
++    const resolved = renderer.resolveRouteResource(svg || '', 'writing', writing.assets, (name) =>
++      readSource(publicDirectory, name)
++    );
++    const fallback = renderer.articleResource(resolved?.html || svg || '');
+     assert.deepEqual(
+       readSource(publicDirectory, fallback.name),
+       fallback.bytes,
+diff --git a/tools/site/build.cjs b/tools/site/build.cjs
+index 8f1a308..6f0ebbe 100644
+--- a/tools/site/build.cjs
++++ b/tools/site/build.cjs
+@@ -687,7 +687,7 @@ function verifyContentBaseline(output, previous, trusted, components, versioned)
+ }
+ 
+ function emitRouteFallback({ root, definitions, route, contentOnly, output, put, api }) {
+-  if (route.id !== 'research') return { api };
++  if (!['research', 'writing'].includes(route.id)) return { api };
+   if (!contentOnly) api ??= model(root, definitions);
+   const resource = require('./fallback.cjs').routeResource(
+     contentOnly ? baselineFallback(output, route.id) : fallback(api, route.id),
+diff --git a/tools/site/fallback.cjs b/tools/site/fallback.cjs
+index eb8ef82..f9125cd 100644
+--- a/tools/site/fallback.cjs
++++ b/tools/site/fallback.cjs
+@@ -189,7 +189,7 @@ function articleResource(svg) {
+ }
+ 
+ function routeResource(svg, route) {
+-  if (route !== 'research') throw Error('Unsupported room fallback resource');
++  if (!['research', 'writing'].includes(route)) throw Error('Unsupported room fallback resource');
+   return resource(svg, route);
+ }
+ 
+@@ -263,7 +263,7 @@ function resolveRouteResource(svg, route, assets = [], read, prefix = '') {
+     if (/<use\b/i.test(svg)) throw Error('Undeclared room fallback resource');
+     return null;
+   }
+-  if (route !== 'research') throw Error('Unsupported room fallback resource');
++  if (!['research', 'writing'].includes(route)) throw Error('Unsupported room fallback resource');
+   if (!['', '../../'].includes(prefix)) throw Error('Unsupported room fallback depth');
+   const inner = svg.slice(svg.indexOf('>') + 1, -6);
+   const escapedPrefix = prefix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+@@ -271,7 +271,7 @@ function resolveRouteResource(svg, route, assets = [], read, prefix = '') {
+     new RegExp(
+       '^<use href="' +
+         escapedPrefix +
+-        '(article-media/[a-f0-9]{64}/research-fallback\\.svg)#research-fallback"></use>$'
++        `(article-media/[a-f0-9]{64}/${route}-fallback\\.svg)#${route}-fallback"></use>$`
+     )
+   );
+   if (!match || assets[0] !== match[1]) throw Error('Room fallback resource closure differs');

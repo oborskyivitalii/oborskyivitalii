@@ -139,6 +139,16 @@ function response(url, bytes, status = 200) {
 }
 function rightsInventory(source, confirmed = false) {
   const sourceRoot = source.directory + '-rights-source';
+  if (!fs.existsSync(path.join(sourceRoot, '.git'))) {
+    require('node:child_process').execFileSync('git', [
+      'clone',
+      '--shared',
+      '--no-checkout',
+      '--quiet',
+      path.resolve(__dirname, '../..'),
+      sourceRoot,
+    ]);
+  }
   for (const name of [
     'site',
     'README.md',

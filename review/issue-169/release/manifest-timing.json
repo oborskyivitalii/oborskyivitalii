@@ -1,0 +1,26 @@
+{
+  "diagnostic": "Repeat unchanged public manifest to attribute gzip CPU; no source/test changes or campaign rerun",
+  "head": "fc205b17774ba703c63fdd7d142ddac178afffdd",
+  "rows": [
+    {
+      "iteration": 0,
+      "elapsedMs": 168.834559,
+      "files": 85,
+      "digest": "7d2a147be45c737c79f1dc35be5addd010b72406ff75efc83bb2bc3a0a334a48"
+    },
+    {
+      "iteration": 1,
+      "elapsedMs": 164.18314900000001,
+      "files": 85,
+      "digest": "7d2a147be45c737c79f1dc35be5addd010b72406ff75efc83bb2bc3a0a334a48"
+    },
+    {
+      "iteration": 2,
+      "elapsedMs": 176.05838699999998,
+      "files": 85,
+      "digest": "7d2a147be45c737c79f1dc35be5addd010b72406ff75efc83bb2bc3a0a334a48"
+    }
+  ],
+  "gzipCalls": 255,
+  "gzipElapsedMs": 472.6064560000006
+}

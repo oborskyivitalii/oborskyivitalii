@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "articleId": "sdlc-out-of-balance",
+  "source": {
+    "editionId": "sdlc-out-of-balance-en-r11-20261107",
+    "semanticSha256": "1b46ff4224dfa8c7eb691bb8763704c54078c7b27c654258ee01988061162972"
+  },
+  "items": [
+    {
+      "id": "reading-pdf-r11",
+      "kind": "pdf",
+      "label": "Download the illustrated PDF",
+      "description": "Complete five-page R11 reading edition with five illustrations and source links.",
+      "credit": "Vitalii Oborskyi. Original text and non-brand illustrations: CC BY 4.0. Embedded fonts and third-party sources retain their own terms.",
+      "visibility": "public",
+      "target": {
+        "kind": "file",
+        "path": "materials/reading-r11.pdf",
+        "sha256": "568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58",
+        "mime": "application/pdf"
+      },
+      "approval": {
+        "bindingSha256": "7b356b9ae34d76da2c631e4c917957894f7ff4664cc1d7ecd2398926183ca5b7",
+        "reviewedAt": "2026-11-07T09:49:29Z",
+        "evidence": {
+          "path": "materials/reviews/reading-pdf-r11.md",
+          "sha256": "dee071eb94cad89de5583e21c15d7e5384d1aad992aaf12907b3e9edcabcc4f6"
+        }
+      }
+    }
+  ]
+}

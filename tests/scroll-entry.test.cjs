@@ -807,6 +807,63 @@ test('route blocks leave in page order and remain held until the destination is 
   }
 });
 
+test('text-only scroll-continue footer uses the actual box as its route animation layer', async () => {
+  for (const direction of [1, -1]) {
+    const h = harness({ count: 2, footerCount: 1 });
+    const link = h.footerElements[0];
+    const text = { nodeType: 3, textContent: 'Keep scrolling for Talks' };
+    link.top = 350;
+    link.childNodes = [text];
+    link.matches = (selector) =>
+      selector.split(',').includes('a') || selector === '.scroll-continue';
+    const departure = h.controller.depart(direction);
+    assert.equal(link.attributes.get('data-route-block'), 'departing');
+    assert.equal(link.attributes.get('data-route-layer'), 'self');
+    assert.deepEqual(link.childNodes, [text], 'footer link retains its native text');
+    assert.equal(link.children.length, 0, 'route does not depend on an optional ink child');
+    assert.ok(Number.isFinite(Number.parseFloat(link.styles.get('--route-block-distance'))));
+    h.controller.cancelRoute();
+    assert.equal((await departure).cancelled, true);
+    assert.equal(link.attributes.get('data-route-block'), undefined);
+    assert.equal(link.attributes.get('data-route-layer'), undefined);
+    assert.equal(h.tasks.size, 0);
+  }
+});
+
+test('archive text refresh replaces a detached ink layer on the next route wave', async () => {
+  for (const direction of [1, -1]) {
+    const h = harness({ count: 1 });
+    const heading = h.elements[0];
+    heading.matches = (selector) => selector.split(',').includes('h2');
+    heading.childNodes = [{ nodeType: 3, textContent: 'All writing' }];
+    const first = h.controller.depart(direction);
+    const priorInk = heading.children[0];
+    assert.equal(priorInk.parentElement, heading);
+    h.controller.cancelRoute();
+    await first;
+    // archive.refresh sets textContent, removing its prior children.
+    const refreshed = { nodeType: 3, textContent: 'Research · All years · English' };
+    priorInk.parentElement = null;
+    heading.children = [];
+    heading.childNodes = [refreshed];
+    const second = h.controller.depart(direction);
+    assert.equal(heading.children.length, 1, 'refreshed heading has one real movable child');
+    const currentInk = heading.children[0];
+    assert.notEqual(currentInk, priorInk, 'a detached cached layer cannot suppress wrapping');
+    assert.equal(currentInk.parentElement, heading);
+    assert.equal(currentInk.attributes.get('data-scroll-ink'), '');
+    assert.equal(currentInk.children[0], refreshed, 'current text remains intact');
+    h.controller.cancelRoute();
+    await second;
+    const third = h.controller.depart(direction);
+    assert.equal(heading.children[0], currentInk, 'a still-owned layer is reused without nesting');
+    assert.equal(heading.children.length, 1);
+    h.controller.cancelRoute();
+    await third;
+    assert.equal(h.tasks.size, 0);
+  }
+});
+
 test('bare deep headings receive a movable ink layer without losing their text', async () => {
   for (const tag of ['h4', 'h5', 'h6']) {
     const h = harness({ count: 1 });

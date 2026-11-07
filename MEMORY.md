@@ -4,53 +4,49 @@ Dated continuity, not live authority. Last verified: **2026-11-07**.
 
 ## Snapshot
 
-- Owning issue169; publication PR170 at1e770f3fb74e84ffa2c95bcf42a3a55530203b5d.
-- Protected main312fbe4347eda332aa8ade885b07c98beadd6da5; PR173 merged.
-- PR174 starting183fbbee2f49736d08d1b82409692848a7a718fe has media and timeout
-  corrections; this continuation prepares its technical-route extension.
-- Read live refs/checks before any integration/staging; historical550c7f stage
-  acceptance is not acceptance of183fbbee or this new candidate.
+- Owner169 / publication PR170; author source9fe9b70 is R11.
+- Protected main096ed26 includes accepted PR174 technical delivery/media fix.
+- Preview56f4 passed native build/publish/HTTP and bounded hosted desktop review.
+- Author accepted exact R11/PDF and requested full stable staging; no merge/production.
+- R11 PDF is five pages with five images/four numbered captions and17URLs.
+- Exact R11 author/PDF decision: issue169 comment6705211415; R10 retained.
 
 ## Decisions
 
-- Author requested implementing technical repository delivery without unnecessary
-  full website staging; stable TR01–TR08 scope appended to issue169 AC05/AC11.
-- Bounded class: regular test A/M, monotonic new-test registry rows, exact RI/style/
-  coupling Python owners. Control and exact-head reviewed_sha remain mandatory.
-- Selection/runner/worker/admission/issuer, workflows/actions/locks/scanner policy,
-  deletion/rename/type/mode, site/rights/unknown/mixed inputs remain full-route.
-- PR174 changes the route itself and uses old-main full bootstrap before activation.
-- No PR170 merge/production; endpoint remains verified stable reader/PDF STOP/show.
+- Restore accepted article/catalog/PDF binding for the exact displayed R11 bytes.
+- Publication30 remains first2026/delivery/Article/Author site; preserve tags.
+- R11 leaves editorial-preview selection; existing pmday candidate is unchanged.
+- Keep source/semantic/PDF/images exact; canonical/dates/events stay pending.
+- Use current-main normal Ready/full stable route and STOP at verified reader/PDF.
+- Main600-second source/20-minute jobs and all source/browser/scanner gates remain.
+- No PR170merge, production or platform posting in this continuation.
 
 ## Open work
 
-- Current owner: review/issue-169/2026-11-07-technical-route.md; preflight literal
-  technical-route-requirements-first.md. Four final roles and own corrections completed; native current-head CI pending.
-- Prepared d720aa77 targeted delivery67/67, scanner40/40, enduringPython142/142,
-  RI/coupling and style passed in recorded scopes. No native final-head claims.
-- Format refused coupling-refresh JSON; correct formatting after refresh/rebuild.
-  Architecture refused local dependency symlinks; ordinary same-byte directories
-  corrected setup and architecture passed. Retain both original failures.
-- Technical source CI retains security/advisories and enduring Python without
-  website package. Full source6430a8f1214/1214; security/lint/owning f80pass;
-  advisories6430pass. All scopes/raw failures and literal roles are in the owner
-  archive. Ledger formattingbd391526passed; native/bootstrap still pending.
-- Original R10 timeout42321844610/artifact13553633597 and missing-Pillow failure
-  remain retained in existing source-timeout/media records. Source600s,
-  wrapper630s, enclosing20min and other original budgets remain unchanged.
+- Current allocation: review/issue-169/2026-11-07-r11-stable-staging.md.
+- Native e75:7source shards pass;1fails obsolete79-only preview oracle.
+- Failure42362774132 retained; no stage. PRDraft during correction.
+- Localc8 corrected13/13; new protocol requires complete test-impact audit
+  before Ready/new workflow stage/promotion/handoff with independent oracles.
+- Main-to-candidate source/stage/production routes audited; historical/negative
+  PR79cases retained. Worker deadline comment corrected; executable unchanged.
+- Affected route60/60 and Basic28/28 pass locally; format found only derived
+  ri-ci-map formatting/catalog registration, corrected before native.
+- Four final roles completed without blockers; RI29/style15/coupling23 pass.
+- Required final native and full owner stage remain; stable reader/PDF not observed.
+- Original whole article ACs stay open except historicalAC06.
 
 ## Next session
 
-1. Revalidate issue169, PR174/170 and protected main.
-2. Finish source-bound review/checks/native old-main bootstrap for PR174.
-3. Obtain exact-head maintainer trust only after concrete evidence, then protected
-   integration; actual future technical maintenance proves operational activation.
-4. Refresh PR170 from trusted main; full owner stable stage, verify reader/PDF,
-   STOP/show. Whole article ACs and new live gates remain pending until observed.
+1. Verify current main/PR170 source, pending checks and primary author decision.
+2. Read current source-bound local receipts; do not relabel them as final native.
+3. Mark Ready only after review; wait for actual successful latest admission.
+4. Run owner full stage; verify stable source/R11/PDF and STOP/show.
+5. No PR170merge/production/platform posting from this continuation.
 
 ## Maintenance
 
-- Five-section handoff within120lines; rebuild RI after changes.
-- Pinned Node24.19.0; host24.22 has retained guard-limit fixture issue.
-- Preserve failed/partial source evidence; no unchanged campaign retries.
-- No secrets/private execution URLs/correspondence in repository memory.
+- Five sections/120lines; detailed logs/evidence belong to owner169 review/PR.
+- Pin Node24.19; preserve source cases/current budgets and retained failures.
+- Regenerate/verify RI and coupling after indexed changes; format touched data.
+- No secrets/private execution URLs or correspondence in memory.

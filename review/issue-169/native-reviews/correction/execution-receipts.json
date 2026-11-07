@@ -1,0 +1,123 @@
+{
+  "schema": 1,
+  "issue": 169,
+  "pr": 170,
+  "base": "bd70996a386665e14f87440653e3a107fed15e43",
+  "roles": [
+    {
+      "role": "Requirements & Acceptance",
+      "agent": "/root/correction_requirements_clean",
+      "launch": {
+        "tool": "collaboration.spawn_agent",
+        "requested": {
+          "fork_turns": "none",
+          "model": "omitted/inherited",
+          "reasoning_effort": "omitted/inherited"
+        },
+        "acceptedResponse": {
+          "task_name": "/root/correction_requirements_clean"
+        }
+      },
+      "commonPromptSHA256": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb",
+      "rolePromptSHA256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6",
+      "packet": "correction-packet-v2.json",
+      "result": {
+        "path": "correction-requirements-clean.md",
+        "sha256": "d9097a3e03794475be7c3d1b87ab550b5397381ee4badd8cd1355f63a827967f"
+      },
+      "state": "completed source/data correction review; current CI/hosted/release remain separate",
+      "ledgerReview": "requirements-ledger-review.md.gz"
+    },
+    {
+      "role": "Code / changed artifact",
+      "agent": "/root/correction_code_clean",
+      "launch": {
+        "tool": "collaboration.spawn_agent",
+        "requested": {
+          "fork_turns": "none",
+          "model": "omitted/inherited",
+          "reasoning_effort": "omitted/inherited"
+        },
+        "acceptedResponse": {
+          "task_name": "/root/correction_code_clean"
+        }
+      },
+      "commonPromptSHA256": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb",
+      "rolePromptSHA256": "26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697",
+      "packet": "correction-packet-v2.json",
+      "result": {
+        "path": "correction-code-clean.md",
+        "sha256": "65cdd64a4e45ce35c9d04f6b462f7ab4251d48c62251dd1f9d1bb5ebba9d1990"
+      },
+      "state": "completed source/data correction review; current CI/hosted/release remain separate",
+      "ledgerReview": "code-ledger-review.md.gz"
+    },
+    {
+      "role": "White-box QA",
+      "agent": "/root/correction_whitebox",
+      "launch": {
+        "tool": "collaboration.spawn_agent",
+        "requested": {
+          "fork_turns": "none",
+          "model": "omitted/inherited",
+          "reasoning_effort": "omitted/inherited"
+        },
+        "acceptedResponse": {
+          "task_name": "/root/correction_whitebox"
+        }
+      },
+      "commonPromptSHA256": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb",
+      "rolePromptSHA256": "832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f",
+      "packet": "correction-packet.json",
+      "result": {
+        "path": "correction-whitebox-delta.md",
+        "sha256": "c4b4cb0de00510866a5ee8a65610455448133653c3f3acc7a1065b478900e6ff"
+      },
+      "state": "completed source/data correction review; current CI/hosted/release remain separate",
+      "laterResults": [
+        "correction-whitebox-controller.md",
+        "correction-whitebox-v3.md",
+        "correction-whitebox-final-delta.md",
+        "correction-whitebox-data-cleanup.md",
+        "correction-whitebox-scanner-guard.md"
+      ],
+      "ledgerReview": "whitebox-ledger-review.md.gz"
+    },
+    {
+      "role": "Exploratory / Interaction QA",
+      "agent": "/root/correction_exploratory",
+      "launch": {
+        "tool": "collaboration.spawn_agent",
+        "requested": {
+          "fork_turns": "none",
+          "model": "omitted/inherited",
+          "reasoning_effort": "omitted/inherited"
+        },
+        "acceptedResponse": {
+          "task_name": "/root/correction_exploratory"
+        }
+      },
+      "commonPromptSHA256": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb",
+      "rolePromptSHA256": "280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a",
+      "packet": "correction-packet.json",
+      "result": {
+        "path": "correction-exploratory.md",
+        "sha256": "bbf6a34f8c580441adbf3f5f40b4eae7e0e9b326e2ff822e45df2f874e3b3433"
+      },
+      "state": "hosted correction pending"
+    }
+  ],
+  "replacements": [
+    {
+      "agent": "/root/correction_requirements",
+      "result": "correction-requirements.md",
+      "reason": "Historical predecessor peer-summary exposure; preparation only, replaced for first acceptance judgment."
+    },
+    {
+      "agent": "/root/correction_code",
+      "result": "correction-code.md",
+      "reason": "Historical predecessor peer-summary exposure; preparation only, replaced for first acceptance judgment."
+    }
+  ],
+  "assurance": "Requested explicit no-conversation-inheritance accepted by collaboration tool. Shared instructions/filesystem remain. Provider model/context internals unknown; no independent OS sandbox or model attestation claimed."
+}

@@ -485,18 +485,25 @@ function fetchFixture(f, mutation) {
 function principalHttpFiles(record) {
   const runtime = 'runtime/' + record.source.components.engine + '/';
   return [
-    'index.html',
-    'research.html',
-    'writing.html',
-    'talks.html',
-    'credits.html',
-    'site-revision.json',
-    '_staging/revision.json',
-    runtime + 'space.js',
-    runtime + 'navigation.js',
-    runtime + 'styles.css',
-    ...(record.source.files['publication-index.json'] ? ['publication-index.json'] : []),
-    ...(record.source.components.routes?.research?.assets ?? []),
+    ...new Set([
+      'index.html',
+      'research.html',
+      'writing.html',
+      'talks.html',
+      'credits.html',
+      'site-revision.json',
+      '_staging/revision.json',
+      runtime + 'space.js',
+      runtime + 'navigation.js',
+      runtime + 'styles.css',
+      ...(record.source.files['publication-index.json'] ? ['publication-index.json'] : []),
+      ...Object.values(record.source.components.routes || {}).flatMap(
+        (route) => route.assets || []
+      ),
+      ...Object.keys(record.source.files).filter((name) =>
+        /^(?:articles|article-snapshots|article-media)\//.test(name)
+      ),
+    ]),
   ].sort();
 }
 test('fast hosted smoke binds all five routes, both revisions and actual base runtime hashes', async () => {

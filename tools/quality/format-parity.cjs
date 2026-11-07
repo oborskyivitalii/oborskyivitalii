@@ -153,7 +153,13 @@ function helperContracts(requests) {
     tools,
     process.platform === 'win32' ? 'venv/Scripts/python.exe' : 'venv/bin/python'
   );
-  const result = cp.spawnSync(python, [helper], {
+  // HTML uses only Python's standard library. Avoid site-package startup for
+  // that finite request kind; YAML/mixed and empty calls retain normal startup.
+  const htmlOnly =
+    Array.isArray(requests) &&
+    requests.length > 0 &&
+    requests.every((row) => row?.language === 'html');
+  const result = cp.spawnSync(python, htmlOnly ? ['-S', helper] : [helper], {
     input: JSON.stringify(requests),
     encoding: 'utf8',
     maxBuffer: 64 * 1024 * 1024,

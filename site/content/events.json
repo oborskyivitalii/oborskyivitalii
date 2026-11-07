@@ -6,41 +6,6 @@
       "title": "Upcoming conferences",
       "events": [
         {
-          "id": "devcon-romania-2026",
-          "anchor": "devcon-romania-2026",
-          "language": null,
-          "title": "AI Changes the Delivery System and the Product Itself",
-          "description": "I’ll be speaking in Bucharest about two connected engineering shifts: AI can generate code faster than teams can understand, review and integrate it; and AI inside a product makes runtime judgment, human authority, fallback and recovery part of the design. The talk asks how we preserve engineering rigor across both.",
-          "metadata": [
-            {
-              "kind": "text",
-              "text": "Upcoming"
-            },
-            {
-              "kind": "text",
-              "text": "DevCon Romania 2026 · DevOps Con"
-            },
-            {
-              "kind": "date",
-              "prefix": "",
-              "date": "2026-11-04T12:30:00+02:00",
-              "text": "4 November 2026"
-            },
-            {
-              "kind": "text",
-              "text": "12:30–13:00 · Bucharest time"
-            }
-          ],
-          "links": [
-            {
-              "label": "Session & programme ",
-              "url": "https://www.dev-con.ro/agenda/12-devops-con",
-              "primary": true,
-              "arrow": true
-            }
-          ]
-        },
-        {
           "id": "pmday-winter-2027",
           "anchor": "pmday-winter-2027",
           "language": null,
@@ -127,6 +92,37 @@
       "id": "other-talks",
       "title": "Other talks & workshops",
       "events": [
+        {
+          "id": "devcon-romania-2026",
+          "anchor": "devcon-romania-2026",
+          "language": null,
+          "title": "AI Changes the Delivery System and the Product Itself",
+          "description": "I spoke in Bucharest about two connected engineering shifts: AI can generate code faster than teams can understand, review and integrate it; and AI inside a product makes runtime judgment, human authority, fallback and recovery part of the design. The talk explored how to preserve engineering rigor across both.",
+          "metadata": [
+            {
+              "kind": "text",
+              "text": "Conference talk · Bucharest, Romania"
+            },
+            {
+              "kind": "text",
+              "text": "DevCon Romania 2026 · DevOps Con"
+            },
+            {
+              "kind": "date",
+              "prefix": "",
+              "date": "2026-11-04",
+              "text": "4 November 2026"
+            }
+          ],
+          "links": [
+            {
+              "label": "Conference programme ",
+              "url": "https://www.dev-con.ro/agenda/12-devops-con",
+              "primary": true,
+              "arrow": true
+            }
+          ]
+        },
         {
           "id": "corning",
           "anchor": "corning",

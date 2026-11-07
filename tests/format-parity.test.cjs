@@ -12,6 +12,50 @@ const equal = (file, before, after) => assert.equal(compareSources(file, before,
 const different = (file, before, after) =>
   assert.equal(compareSources(file, before, after).pass, false);
 
+test('HTML startup isolation preserves actual primary parser contracts and refusals', () => {
+  const root = path.resolve(__dirname, '..');
+  const tools = path.resolve(
+    process.env.SITE_AUDIT_TOOLS || path.join(root, 'tools/quality/toolchain')
+  );
+  const python = path.join(
+    tools,
+    process.platform === 'win32' ? 'venv/Scripts/python.exe' : 'venv/bin/python'
+  );
+  const helper = path.join(root, 'tools/quality/format-parity.py');
+  const { helperContracts } = require('../tools/quality/format-parity.cjs');
+  const sources = [
+    '<!doctype html><!-- exact --><p title="A &amp; B">Left <em>middle</em> right.</p>',
+    '<script>const value = "<img>";</script><style>p > em { color: red; }</style>',
+    '<svg><text>Left <tspan>middle</tspan> right</text></svg>',
+  ];
+  const ordinary = (requests) => {
+    const result = cp.spawnSync(python, [helper], {
+      input: JSON.stringify(requests),
+      encoding: 'utf8',
+    });
+    assert.equal(result.status, 0, result.stderr);
+    assert.equal(result.stderr, '');
+    return JSON.parse(result.stdout);
+  };
+  for (const requests of [
+    sources.map((source) => ({ language: 'html', source })),
+    [
+      { language: 'yaml', source: 'key: [one, two]\n' },
+      { language: 'html', source: sources[0] },
+    ],
+    [],
+  ]) {
+    assert.deepEqual(
+      helperContracts(requests),
+      ordinary(requests).map((row) => row.contract)
+    );
+  }
+  const invalid = [{ language: 'html', source: '<p id="one" id="two">duplicate</p>' }];
+  const [refusal] = ordinary(invalid);
+  assert.equal(refusal.error, 'ValueError: Duplicate HTML attribute');
+  assert.throws(() => helperContracts(invalid), { message: refusal.error });
+});
+
 test('primary parser diagnostics retain exact types and messages before and after YAML requests', () => {
   const root = path.resolve(__dirname, '..');
   const tools = path.resolve(

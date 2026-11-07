@@ -175,6 +175,130 @@ function visit(query = '', historyBlocked = false, candidate = catalog) {
     focuses: () => emitted.filter((e) => e.type === 'site:scene-focus').map((e) => e.detail.focus),
   };
 }
+test('an undated local article keeps its authored year and first position through filters', () => {
+  // Exercise archive behavior with an explicit eligible fixture. Draft editorial
+  // selection must not manufacture an accepted row in the live catalog.
+  const candidate = structuredClone(catalog);
+  const recordId = nextRecordId(candidate);
+  candidate.records[recordId] = {
+    kind: 'local-article',
+    article: 'sdlc-out-of-balance',
+    edition: {
+      '@type': 'Article',
+      name: 'Archive placement fixture',
+      url: 'articles/archive-placement-fixture.html',
+      inLanguage: 'en',
+      author: { '@type': 'Person', name: 'Fixture author' },
+    },
+    editions: [],
+    discussions: [],
+    presentation: {
+      topic: 'delivery',
+      kind: 'Article',
+      publisher: 'Author site',
+      archiveYear: '2026',
+    },
+  };
+  candidate.structuredOrder.unshift({ record: recordId });
+  const page = visit('?year=2026&topic=delivery&language=en', false, candidate);
+  const target = page.rows[0];
+  assert.equal(target.dataset.year, '2026');
+  assert.equal(target.dataset.topic, 'delivery');
+  assert.equal(target.dataset.language, 'en');
+  assert.equal(page.shown()[0], target);
+  page.ids['archive-tag'] = {
+    value: 'all',
+    options: ['all', 'ai-delivery', 'software-economics', 'verification', 'operating-models'].map(
+      (value) => ({ value, textContent: value })
+    ),
+  };
+  target.dataset.tags = 'ai-delivery software-economics verification operating-models';
+  page.events['site:tags-ready']();
+  for (const tag of ['ai-delivery', 'software-economics', 'verification', 'operating-models']) {
+    page.change('tag', tag);
+    assert.equal(page.shown()[0], target);
+  }
+  page.change('year', '2025');
+  assert.equal(target.hidden, true);
+  page.change('year', '2026');
+  page.change('language', 'uk');
+  assert.equal(target.hidden, true);
+  page.reset();
+  assert.equal(page.shown().length, total + 1);
+  assert.equal(page.shown()[0], target);
+});
+
+test('foreign document history preserves the outgoing archive and same-document history still refreshes', () => {
+  const page = visit('?topic=delivery');
+  const navigation = fs.readFileSync(path.join(root, 'site/engine/navigation.js'), 'utf8');
+  const routes = navigation.slice(
+    navigation.indexOf('  function routeFor('),
+    navigation.indexOf('  function address(')
+  );
+  page.window.SiteNavigation = vm.runInNewContext(
+    '(() => {' + routes + '; return { addressPage }; })()',
+    {
+      URL,
+      window: page.window,
+      entry: new URL(page.window.location),
+      directory: new URL('https://example.test/'),
+      initialPage: 'writing',
+      embedded: null,
+      routes: ['index', 'research', 'writing', 'talks', 'credits'],
+      articles: {
+        'example:en': {
+          url: 'articles/example.html',
+          snapshot: `article-snapshots/${'a'.repeat(64)}/example.html`,
+        },
+      },
+    }
+  );
+  const shown = page.shown();
+  const textOwners = ['archive-heading', 'archive-count'].map((id) => {
+    const owner = page.ids[id];
+    let text = owner.textContent;
+    const ink = { parentElement: owner, textContent: text };
+    owner.children = [ink];
+    Object.defineProperty(owner, 'textContent', {
+      get: () => text,
+      set(value) {
+        for (const child of owner.children) child.parentElement = null;
+        owner.children = [];
+        text = value;
+      },
+    });
+    return { owner, ink, text };
+  });
+  const topic = page.ids['topic-delivery'];
+  assert.equal(topic.hidden, false);
+  page.window.location = new URL('https://example.test/articles/example.html');
+  page.events.popstate();
+  assert.equal(topic.hidden, false, 'outgoing topic visibility cannot change from an article URL');
+  assert.deepEqual(page.shown(), shown);
+  for (const { owner, ink, text } of textOwners) {
+    assert.equal(owner.textContent, text);
+    assert.deepEqual(owner.children, [ink], 'outgoing text keeps its live animation child');
+    assert.equal(ink.parentElement, owner);
+  }
+  page.window.location = new URL('https://example.test/unknown.html#topic-delivery');
+  page.events.hashchange();
+  assert.equal(topic.hidden, false, 'an unresolved address does not own this archive');
+  const other = page.ids['archive-topic'].options.find(
+    (option) => !['all', 'delivery'].includes(option.value)
+  );
+  assert.ok(other);
+  page.window.location = new URL('https://example.test/writing.html?topic=' + other.value);
+  page.events.popstate();
+  assert.equal(page.ids['archive-topic'].value, other.value);
+  assert.equal(page.ids['topic-' + other.value].hidden, false);
+  assert.equal(topic.hidden, true);
+  assert.ok(page.ids['archive-heading'].textContent.includes(other.textContent));
+  assert.ok(
+    textOwners.every(({ ink }) => ink.parentElement === null),
+    'a valid archive refresh still replaces its text'
+  );
+});
+
 test('intersected filters and empty state are useful; Reset restores the fixed complete catalog', () => {
   const page = visit();
   assert.equal(page.shown().length, total);

@@ -255,6 +255,8 @@ module.exports = function () {
   function wrapInk(element, record) {
     // Inline text needs one movable layer; publication/grid children stay intact.
     if (!element.matches('p,h1,h2,h3,h4,h5,h6,a')) return;
+    // Archive refresh replaces textContent while the owning element is reused.
+    if (record.ink?.parentElement === element) return;
     const ink = document.createElement('span');
     ink.setAttribute('data-scroll-ink', '');
     ink.append(...element.childNodes);
@@ -695,8 +697,11 @@ module.exports = function () {
     const upward = state === 'departing' ? travelDirection > 0 : travelDirection < 0;
     for (const { element } of measured) clearRouteUnit(element);
     const wholeBlocks = root.matches('.article-reader');
-    for (const { element, record } of selected)
-      if (!wholeBlocks && !record.ink) wrapInk(element, record);
+    // This footer control has bare inline text and can retain a stale ink-node
+    // identity after a prior route. Animate its actual box, not an optional
+    // child whose CSS animation may never start on a subsequent navigation.
+    const movesAsBox = (element) => wholeBlocks || element.matches('.scroll-continue');
+    for (const { element, record } of selected) if (!movesAsBox(element)) wrapInk(element, record);
     attachSeparators(measured.separators, 'route');
     prepareRoutePaper(measured.paper, timing, upward, state);
     for (const [index, row] of rows.entries()) {
@@ -708,7 +713,7 @@ module.exports = function () {
       for (const { element } of row.units) {
         // Reader components own their background, borders and native markers.
         // Move the complete box once instead of leaving shell paint behind.
-        if (wholeBlocks) element.setAttribute('data-route-layer', 'self');
+        if (movesAsBox(element)) element.setAttribute('data-route-layer', 'self');
         const order = travelDirection > 0 ? index : rows.length - 1 - index;
         element.style.setProperty('--route-block-distance', `${Math.round(distance)}px`);
         element.style.setProperty('--route-block-delay', `${order * timing.rowStepMs}ms`);
@@ -860,7 +865,7 @@ module.exports = function () {
       return;
     }
     record.done = false;
-    if (!record.ink) wrapInk(element, record);
+    wrapInk(element, record);
     attachSeparators(borders, 'reading', element);
     element.setAttribute('data-scroll-entry', 'waiting');
   }
@@ -1055,7 +1060,7 @@ module.exports = function () {
     suspend();
     for (const remove of listeners.splice(0)) remove();
     for (const [element, record] of knownRecords) {
-      if (record.ink) record.ink.replaceWith(...record.ink.childNodes);
+      if (record.ink?.parentElement === element) record.ink.replaceWith(...record.ink.childNodes);
       clearState(element);
     }
     records.clear();

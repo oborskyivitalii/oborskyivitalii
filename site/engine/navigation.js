@@ -46,6 +46,8 @@
     ? 'article:' + document.body.dataset.article
     : document.body.dataset.page;
   let pinned = null;
+  const readingEntries = new Map();
+  let readingAddress = window.location.href;
   let page = initialPage,
     historyIndex = Number.isSafeInteger(history.state?.site?.index) ? history.state.site.index : 0,
     serial = 0,
@@ -297,13 +299,18 @@
       })
     );
     if (article) return 'article:' + article[0];
+    // Only the original validated document may use a principal snapshot URL;
+    // other immutable paths do not become new router destinations.
     return (
       routes.find((name) =>
         [name, name + '.html', ...(name === 'index' ? ['./'] : [])].some(
           (file) => new URL(file, directory).pathname === url.pathname
         )
-      ) || null
+      ) || (url.pathname === entry.pathname ? initialPage : null)
     );
+  }
+  function addressPage() {
+    return routeFor(new URL(window.location.href));
   }
   function address(url, next) {
     if (!embedded) {
@@ -319,6 +326,13 @@
     result.searchParams.set('view', next);
     return result;
   }
+  function routeHref(next) {
+    if (!routes.includes(next)) return null;
+    return address(
+      new URL(embedded?.files[next] || (next === 'index' ? './' : next + '.html'), directory),
+      next
+    ).href;
+  }
   // The scroll/flight itinerary follows the header; utility links stay accessible.
   const primaryRoutes = Object.freeze(
     [...document.querySelectorAll('.site-header nav a[href]')]
@@ -326,29 +340,63 @@
       .filter((route, index, list) => route && list.indexOf(route) === index)
   );
   function save(fallbackFocus = null) {
-    if (departureUnavailable() || routeFor(new URL(window.location.href)) !== page) return;
+    if (
+      departureUnavailable() ||
+      content.querySelector('main')?.getAttribute('data-route-blocks') === 'arriving' ||
+      routeFor(new URL(window.location.href)) !== page
+    )
+      return;
     try {
       history.replaceState(
         {
           ...history.state,
-          site: {
-            page,
-            index: historyIndex,
-            scroll: [window.scrollX, window.scrollY],
-            ...(window.SiteReader?.snapshot?.() ? { reader: window.SiteReader.snapshot() } : {}),
-            focus:
-              document.activeElement?.id ||
-              document.activeElement?.getAttribute?.('href') ||
-              fallbackFocus ||
-              null,
-          },
+          site: readingSnapshot(fallbackFocus),
         },
         '',
         window.location.href
       );
+      readingAddress = window.location.href;
+      readingEntries.delete(historyIndex);
     } catch {
       /* Native navigation still works. */
     }
+  }
+  function readingSnapshot(fallbackFocus = null) {
+    const reader = window.SiteReader?.snapshot?.();
+    return {
+      page,
+      index: historyIndex,
+      scroll: [window.scrollX, window.scrollY],
+      ...(reader ? { reader } : {}),
+      focus:
+        document.activeElement?.id ||
+        document.activeElement?.getAttribute?.('href') ||
+        fallbackFocus ||
+        null,
+    };
+  }
+  function rememberReadingDeparture(event) {
+    // popstate has already selected the incoming entry. Capture the still-mounted
+    // document without writing its position into that incoming history.state.
+    if (
+      request ||
+      departureUnavailable() ||
+      !Number.isSafeInteger(event.state?.site?.index) ||
+      event.state.site.index === historyIndex ||
+      !routeFor(new URL(window.location.href))
+    )
+      return;
+    readingEntries.delete(historyIndex);
+    readingEntries.set(historyIndex, { url: readingAddress, site: readingSnapshot() });
+    // Recent uncommitted entries supplement serialized browser history. Older
+    // entries retain their ordinary persisted-state fallback.
+    if (readingEntries.size > 128) readingEntries.delete(readingEntries.keys().next().value);
+  }
+  function readingState(state = history.state?.site) {
+    const recent = readingEntries.get(state?.index);
+    return recent && recent.site.page === state?.page && recent.url === window.location.href
+      ? recent.site
+      : state;
   }
   function departureUnavailable() {
     return (
@@ -377,6 +425,7 @@
   }
   function push(url) {
     save();
+    pruneForwardReading();
     history.pushState(
       {
         site: {
@@ -388,6 +437,11 @@
       '',
       url
     );
+    readingAddress = window.location.href;
+  }
+  function pruneForwardReading() {
+    for (const index of readingEntries.keys())
+      if (index > historyIndex) readingEntries.delete(index);
   }
   function revisionValid(revision) {
     if (
@@ -508,10 +562,14 @@
             ? 'application/pdf'
             : name.endsWith('.webp')
               ? 'image/webp'
-              : 'image/png';
+              : /\.jpe?g$/.test(name)
+                ? 'image/jpeg'
+                : 'image/png';
           const prefix = 'data:' + mime + ';base64,';
           if (
-            !/^article-media\/[a-f0-9]{64}\/[a-z0-9][a-z0-9._-]*\.(?:png|webp|pdf)$/.test(name) ||
+            !/^article-media\/[a-f0-9]{64}\/[a-z0-9][a-z0-9._-]*\.(?:png|webp|jpe?g|pdf)$/.test(
+              name
+            ) ||
             asset.mime !== mime ||
             asset.sha256 !== name.split('/')[1] ||
             !Number.isSafeInteger(asset.bytes) ||
@@ -980,7 +1038,7 @@
     // Apply filters before the native scroll/style flush, so Writing does not
     // lay out the complete archive and immediately lay it out a second time.
     window.SiteArchive?.mount();
-    window.SiteReader?.mount({ state: history.state?.site?.reader });
+    window.SiteReader?.mount({ state: readingState()?.reader });
     span('mount-archive');
     if (position === 'end') mountEndpoint();
     if (position === 'end')
@@ -1038,7 +1096,7 @@
     };
   }
   function restoreReadingFocus(pop) {
-    const savedFocus = pop ? history.state?.site?.focus : null;
+    const savedFocus = pop ? readingState()?.focus : null;
     const focused = savedFocus
       ? document.getElementById(savedFocus) ||
         [...content.querySelectorAll('a[href]')].find(
@@ -1112,6 +1170,7 @@
         () => {
           const start = window.SiteEngineStages ? performance.now() : 0;
           if (!pop && !initial && destination.href !== window.location.href) {
+            pruneForwardReading();
             history.pushState(
               { site: { page: next, index: ++historyIndex, scroll: [0, 0] } },
               '',
@@ -1124,6 +1183,7 @@
               destination
             );
           else if (pop && targetIndex !== null) historyIndex = targetIndex;
+          readingAddress = window.location.href;
           if (start) {
             const time = performance.now();
             window.SiteEngineProbe?.({
@@ -1135,7 +1195,13 @@
               page: next,
             });
           }
-          mount(prepared, destination, position, blocks ? arrivalDirection : null, own);
+          mount(
+            prepared,
+            new URL(window.location.href),
+            position,
+            blocks ? arrivalDirection : null,
+            own
+          );
         },
         own,
         null,
@@ -1240,18 +1306,23 @@
     event.preventDefault();
     navigate(url);
   });
+  // Capture before archive/filter listeners mutate the outgoing document, while
+  // the ordinary restoration listener keeps its existing ordering afterward.
+  window.addEventListener('popstate', rememberReadingDeparture, true);
   window.addEventListener('popstate', (event) => {
     const url = new URL(window.location.href),
-      next = routeFor(url);
+      next = routeFor(url),
+      state = readingState(event.state?.site);
     if (next && (next !== page || request))
-      navigate(url, { pop: true, position: event.state?.site?.scroll || null });
+      return navigate(url, { pop: true, position: state?.scroll || null });
     else {
       if (Number.isSafeInteger(event.state?.site?.index)) historyIndex = event.state.site.index;
       ++serial;
       if (interrupt()) window.SiteScene?.navigate(page, motionAllowed());
-      window.SiteReader?.restore(event.state?.site?.reader);
-      if (event.state?.site?.scroll)
-        restoreScroll(event.state.site.scroll[0], event.state.site.scroll[1]);
+      window.SiteReader?.restore(state?.reader);
+      if (state?.scroll) restoreScroll(state.scroll[0], state.scroll[1]);
+      if (next && state?.page === next) restoreReadingFocus(true);
+      readingAddress = window.location.href;
       scrollEntry?.resume();
     }
   });
@@ -1297,6 +1368,8 @@
   window.SiteNavigation = {
     push,
     primaryRoutes,
+    href: routeHref,
+    addressPage,
     reconcileEndpoint,
     contentFlight(value) {
       const enabled = presentation?.contentFlight?.(value) ?? true;
@@ -1312,10 +1385,7 @@
         transition
       )
         return false;
-      navigate(
-        new URL(embedded?.files[next] || (next === 'index' ? './' : next + '.html'), directory),
-        { position: atEnd ? 'end' : null, input }
-      );
+      navigate(new URL(routeHref(next)), { position: atEnd ? 'end' : null, input });
       return true;
     },
   };

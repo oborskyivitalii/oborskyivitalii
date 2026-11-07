@@ -96,7 +96,7 @@ function elementAttributes(source) {
   return attributes;
 }
 
-function documentElements(html) {
+function documentElements(html, { includeScriptSources = false } = {}) {
   // A bounded view of canonical generated markup, shared with output compaction.
   // Raw text, comments and inert template contents cannot supply document hooks.
   const elements = [];
@@ -111,8 +111,12 @@ function documentElements(html) {
       templateDepth -= 1;
       if (templateDepth < 0) throw Error('Unbalanced document template');
     }
-    const tag = token.match(/^<([a-z][\w:-]*)((?:[ \t\r\n\f][\s\S]*)?)>$/i);
-    if (templateDepth || !tag || inertMarkup.test(token)) continue;
+    const scriptSource = includeScriptSources && /^<script\b/i.test(token);
+    const opening = scriptSource
+      ? token.match(/^<script\b(?:[^>"']|"[^"]*"|'[^']*')*>/i)[0]
+      : token;
+    const tag = opening.match(/^<([a-z][\w:-]*)((?:[ \t\r\n\f][\s\S]*)?)>$/i);
+    if (templateDepth || !tag || (inertMarkup.test(token) && !scriptSource)) continue;
     elements.push({ tag: tag[1].toLowerCase(), attributes: elementAttributes(tag[2]) });
   }
   if (html.slice(end).includes('<')) throw Error('Noncanonical document markup');

@@ -23,220 +23,11 @@ const baseURL = 'https://candidate.example.invalid/author';
 const { flight } = require('./fixtures/article-flight.cjs');
 
 function observed() {
-  const normal = Object.fromEntries(
-    [
-      'metadataTransition',
-      'filtersBackForward',
-      'focusAndScrollHistory',
-      'persistentCanvas',
-      'nativeAnchors',
-      'deepRefresh',
-      'readingBlocks',
-      'routeDeparture',
-      'rapidCancellation',
-      'assetsDecoded',
-    ].map((name) => [name, true])
-  );
-  const head = {
-    key,
-    lang: 'en',
-    routeVersion: descriptors[key].version,
-    engine,
-    title: 'Controlled article fixture',
-    description: 'This fixture validates evidence; it is not a browser observation.',
-    author: 'Fixture author',
-    robots: 'noindex,nofollow',
-    canonical: [],
-    alternates: [],
-    schemas: [
-      {
-        '@type': 'Article',
-        headline: 'Controlled article fixture',
-        author: { '@type': 'Person', name: 'Fixture author' },
-        inLanguage: 'en',
-      },
-    ],
-  };
-  return {
-    kind: 'bounded-article-journey',
-    browser: 'Controlled validator fixture; not a browser observation',
-    documents: [key],
-    availableDocuments: [key],
-    observations: [
-      ...[1440, 390].map((width) => ({
-        key,
-        width,
-        mode: 'normal',
-        relatedDeparture: { present: false, departed: false },
-        nativeHistory: [
-          flight('writing', 'article:' + key, -1),
-          flight('article:' + key, 'writing', 1),
-        ],
-        flights: [
-          flight('writing', 'article:' + key, 1),
-          flight('article:' + key, 'writing', -1),
-          flight('writing', 'article:' + key, 1),
-          flight('article:' + key, 'research', -1),
-          ...['index', 'writing', 'talks', 'credits'].map((to) =>
-            flight('article:' + key, to, ['index', 'writing'].includes(to) ? -1 : 1)
-          ),
-        ],
-        head: structuredClone(head),
-        reading: {
-          entered: ['first-section'],
-          departed: ['first-section'],
-          maxEntering: 1,
-          maxRoute: 1,
-        },
-        checks: { ...normal, basePath: '/author/' },
-      })),
-      ...['off', 'no-canvas', 'no-js'].map((mode) => ({
-        key,
-        width: 390,
-        mode,
-        head: structuredClone(head),
-        checks: {
-          nativeReading: true,
-          anchors: true,
-          writingLink: true,
-          singleCanvas: true,
-          ...(mode === 'off' ? { reducedMotion: true } : {}),
-          basePath: '/author/',
-        },
-      })),
-    ],
-  };
+  return require('./fixtures/article-flight.cjs').journey(descriptors, engine, baseURL);
 }
 
 function readerObserved(mode) {
-  const before = {
-    url: 'https://candidate.example.invalid/author/article.html',
-    scroll: 600,
-  };
-  const rect = {
-    top: 24,
-    bottom: 700,
-    left: 16,
-    right: 374,
-    width: 358,
-    height: 676,
-  };
-  const opened = {
-    ...before,
-    open: true,
-    focusInside: true,
-    focusRestored: false,
-    viewport: { width: 390, height: 844 },
-    bounds: rect,
-    close: {
-      top: 44,
-      bottom: 88,
-      left: 270,
-      right: 354,
-      width: 84,
-      height: 44,
-    },
-    image: {
-      src: 'https://candidate.example.invalid/author/image.webp',
-      alt: 'Synthetic grid',
-      width: 310,
-      naturalWidth: 640,
-    },
-    original: 'https://candidate.example.invalid/author/image.webp',
-    stage: { width: 310, overflow: 'auto' },
-    pressed: 'false',
-    zoomed: false,
-  };
-  const closed = {
-    ...opened,
-    open: false,
-    focusInside: false,
-    focusRestored: true,
-    image: null,
-  };
-  const fragment = (hash) => ({
-    hash,
-    top: 190,
-    bottom: 220,
-    height: 844,
-    occlusion: 170,
-    appendixOpen: true,
-    dialogs: 0,
-  });
-  return {
-    inventory: {
-      headings: ['inspecting-a-figure'],
-      topics: [{ href: '#inspecting-a-figure', label: 'Inspecting a figure' }],
-      images: [
-        {
-          src: opened.image.src,
-          href: opened.image.src,
-          alt: opened.image.alt,
-        },
-      ],
-      citations: [{ id: 'reader-cite-1-1', href: '#reader-note-1', target: true }],
-    },
-    image:
-      mode === 'no-js'
-        ? null
-        : {
-            before,
-            opened,
-            zoomed: {
-              ...opened,
-              pressed: 'true',
-              zoomed: true,
-              image: { ...opened.image, width: 640 },
-            },
-            escape: closed,
-            close: closed,
-          },
-    source: {
-      expected: 'Format reference',
-      ...(mode === 'no-js'
-        ? { native: fragment('#reader-note-1') }
-        : {
-            before,
-            opened: {
-              ...opened,
-              image: null,
-              text: 'Format reference',
-              full: '#reader-note-1',
-              duplicateIds: 0,
-              returns: 0,
-            },
-            escape: closed,
-            full: fragment('#reader-note-1'),
-          }),
-      returned: fragment('#reader-cite-1-1'),
-    },
-    topic: {
-      ...fragment('#inspecting-a-figure'),
-      menu: {
-        before: {
-          top: 90,
-          bottom: 142,
-          scroll: 900,
-          scrollPaddingTop: 80,
-          summary: { top: 90, bottom: 142 },
-        },
-        opened: { top: 90, bottom: 500, scroll: 900 },
-      },
-    },
-    ...(mode === 'no-js' ? { native: { count: 2, hidden: true } } : {}),
-    ...(mode === 'normal'
-      ? {
-          cleanup: {
-            opened: true,
-            open: false,
-            images: 0,
-            connected: false,
-            live: 0,
-            overflow: 'auto',
-          },
-        }
-      : {}),
-  };
+  return require('./fixtures/article-flight.cjs').readerObserved(mode);
 }
 
 test('reader interaction evidence covers native fallbacks and measured dialog usability', () => {
@@ -524,86 +315,16 @@ test('reader-block evidence is required for every current identity while histori
     'issue5-review-paths',
     'issue5-review-print',
     'issue5-review-markdown',
+    'issue169-native-tags',
+    'issue169-footer-routes',
+    'issue169-reader-history',
   ].flatMap((family) =>
     ['plain', 'staging', 'production'].map(
       (edition) => motion.reviewedRuntime(family + '-' + edition).variant
     )
   );
-  const make = (selectedEngine) => {
-    const detail = observed();
-    for (const row of detail.observations) {
-      row.head.engine = selectedEngine;
-      if (motion.readerInteractionsRequired(selectedEngine)) row.reader = readerObserved(row.mode);
-      if (row.mode !== 'normal') continue;
-      if (motion.readerDeferredMediaRequired(selectedEngine))
-        row.reader.requestDeferral = Object.fromEntries(
-          ['native', 'back', 'spa'].map((phase) => [
-            phase,
-            {
-              kind: 'reader-deferred-image-requests',
-              margin: 6000,
-              viewportHeight: 844,
-              images: row.reader.inventory.images.map((image) => ({
-                url: image.src,
-                top: 14000,
-                loading: 'lazy',
-              })),
-              requested: [],
-            },
-          ])
-        );
-      row.reading.entered = [];
-      row.reading.maxEntering = 0;
-      for (const item of [...row.flights, ...row.nativeHistory])
-        item.blocks = ['departure', 'arrival'].map((stage) => {
-          const departure = stage === 'departure';
-          const source = departure ? item.from : item.to;
-          const other = departure ? item.to : item.from;
-          const sign =
-            source.startsWith('article:') && !other.startsWith('article:') ? 1 : item.direction;
-          return {
-            stage,
-            direction: sign > 0 ? 'forward' : 'backward',
-            navigationId: item.events[0].navigationId,
-            rows: 1,
-            plannedDurationMs: 1000,
-            rowDurationMs: 1000,
-            completedBy: 'animationend',
-            paper:
-              motion.readerPaperRequired(selectedEngine) && source.startsWith('article:')
-                ? {
-                    top: 0,
-                    width: 800,
-                    height: 900,
-                    viewport: 900,
-                    distance: (departure ? -1 : 1) * 932,
-                    duration: 1000,
-                    delay: 0,
-                    nativeBackground: 'rgba(0, 0, 0, 0)',
-                    background: 'rgb(248, 247, 243)',
-                    frames: [{ computedOffset: 0 }, { computedOffset: 1 }],
-                  }
-                : null,
-            units: [
-              {
-                tag: 'P',
-                layer:
-                  motion.readerWholeBlocksRequired(selectedEngine) && source.startsWith('article:')
-                    ? 'self'
-                    : 'children',
-                childAnimations: 0,
-                classes: '',
-                distance: (departure ? -sign : sign) * 600,
-                row: 0,
-                state: departure ? 'departing' : 'arriving',
-                frames: [{ computedOffset: 0 }, { computedOffset: 1 }],
-              },
-            ],
-          };
-        });
-    }
-    return detail;
-  };
+  const make = (selectedEngine) =>
+    require('./fixtures/article-flight.cjs').currentJourney(descriptors, selectedEngine, baseURL);
   for (const current of new Set(
     identities.flatMap((item) => [item.baseEngine, item.fingerprint])
   )) {
@@ -748,6 +469,36 @@ test('reader-block evidence is required for every current identity while histori
   );
 });
 
+test('current route phases refuse watchdog, cancellation and absent completion on either history direction', () => {
+  const motion = require('../tools/quality/color-motion-contract.cjs');
+  const current = motion.reviewedRuntime('issue169-reader-history-staging').variant.fingerprint;
+  const make = () =>
+    require('./fixtures/article-flight.cjs').currentJourney(descriptors, current, baseURL);
+  assert.deepEqual(validateArticleJourney(make(), descriptors, { engine: current, baseURL }), {
+    documents: 1,
+    observations: 5,
+  });
+  for (const inventory of ['flights', 'nativeHistory']) {
+    const records = make().observations[0][inventory];
+    for (let leg = 0; leg < records.length; leg++) {
+      for (let phase = 0; phase < 2; phase++) {
+        for (const completion of ['watchdog', 'cancelled', null, undefined]) {
+          const invalid = make();
+          const block = invalid.observations[0][inventory][leg].blocks[phase];
+          if (completion === undefined) delete block.completedBy;
+          else block.completedBy = completion;
+          assert.throws(
+            () => validateArticleJourney(invalid, descriptors, { engine: current, baseURL }),
+            /current route phases complete through native CSS events/,
+            `${inventory} leg ${leg} phase ${phase} must refuse ${completion}`
+          );
+        }
+      }
+    }
+  }
+  assert.doesNotThrow(() => validateArticleJourney(observed(), descriptors, { engine, baseURL }));
+});
+
 test('block diagnostics omit empty shells, collect later child animations and retain bare painted text', () => {
   const vm = require('node:vm');
   const frames = [{ computedOffset: 0 }, { computedOffset: 1 }];
@@ -768,14 +519,35 @@ test('block diagnostics omit empty shells, collect later child animations and re
   });
   const animated = () => node({ animations: [{ effect: { getKeyframes: () => frames } }] });
   const empty = node({ height: 0 });
+  const delayed = animated();
+  const originalAnimations = delayed.getAnimations;
+  let animationSamples = 0;
+  delayed.getAnimations = () => (++animationSamples === 1 ? [] : originalAnimations());
   const hiddenFirst = node({
-    children: [node({ width: 0, height: 0 }), animated()],
+    children: [node({ width: 0, height: 0 }), delayed],
   });
   const childOnly = node({ height: 0, children: [animated()] });
   const units = [empty, hiddenFirst, childOnly];
+  const scheduled = [];
+  const paint = () => {
+    let frames = 0;
+    while (scheduled.length) {
+      assert.ok(++frames <= 5, 'CSS diagnostic sampling must remain within five frames');
+      const callbacks = scheduled.splice(0);
+      callbacks.forEach((callback) => callback());
+    }
+    assert.ok(frames >= 2, 'paint frame must be scheduled for CSS observation');
+  };
+  const listeners = {};
   const scope = {
-    window: {},
-    document: { querySelectorAll: () => units, querySelector: () => null },
+    window: { requestAnimationFrame: (callback) => scheduled.push(callback) },
+    document: {
+      querySelectorAll: () => units,
+      querySelector: () => null,
+      addEventListener: (kind, callback) => {
+        listeners[kind] = callback;
+      },
+    },
     structuredClone,
   };
   vm.runInNewContext('(' + installArticleFlightDiagnostics.toString() + ')();', scope);
@@ -788,6 +560,8 @@ test('block diagnostics omit empty shells, collect later child animations and re
     plannedDurationMs: 1000,
   };
   scope.window.SiteEngineProbe(phase);
+  assert.equal(scope.window.__articleBlockEvents[0].units.length, 0, 'do not read unpainted CSS');
+  paint();
   const recorded = JSON.parse(JSON.stringify(scope.window.__articleBlockEvents[0]));
   assert.equal(recorded.units.length, 2, 'zero-area placeholder has no painted motion to prove');
   assert.deepEqual(
@@ -807,16 +581,40 @@ test('block diagnostics omit empty shells, collect later child animations and re
   validateArticleBlocks(observedFlight);
   units.push(node({ tag: 'H4' }));
   scope.window.SiteEngineProbe(phase);
+  paint();
   observedFlight.blocks[0] = JSON.parse(JSON.stringify(scope.window.__articleBlockEvents[1]));
   const bare = observedFlight.blocks[0].units.at(-1);
   assert.equal(bare.tag, 'H4', 'positive-area bare text must remain in the diagnostic inventory');
   assert.deepEqual(bare.frames, []);
   assert.throws(() => validateArticleBlocks(observedFlight), /actual common CSS animation/);
+  // A late real animationstart must repair the sampled evidence, but a
+  // cancellation must revoke it. Frames can only come from the DOM animation.
+  const actualBare = units.at(-1);
+  const lateInk = node();
+  lateInk.closest = () => actualBare;
+  actualBare.children.push(lateInk);
+  lateInk.getAnimations = () => [
+    { animationName: 'route-block-depart', effect: { getKeyframes: () => frames } },
+  ];
+  listeners.animationstart({ target: lateInk, animationName: 'route-block-depart' });
+  const witnessed = scope.window.__articleBlockEvents[1].units.at(-1);
+  assert.deepEqual(
+    JSON.parse(JSON.stringify(witnessed.frames)),
+    frames,
+    'actual CSS event restores late keyframes'
+  );
+  lateInk.getAnimations = () => [];
+  listeners.animationcancel({ target: lateInk, animationName: 'route-block-depart' });
+  assert.deepEqual(
+    JSON.parse(JSON.stringify(scope.window.__articleBlockEvents[1].units.at(-1).frames)),
+    []
+  );
   const component = animated();
   component.dataset.routeLayer = 'self';
   component.children.push(node());
   units.splice(0, units.length, component);
   scope.window.SiteEngineProbe(phase);
+  paint();
   const whole = JSON.parse(JSON.stringify(scope.window.__articleBlockEvents[2].units[0]));
   assert.equal(whole.layer, 'self');
   assert.deepEqual(whole.frames, frames, 'the actual component box owns its CSS animation');
@@ -842,8 +640,13 @@ test('block diagnostics omit empty shells, collect later child animations and re
     backgroundColor: pseudo ? 'rgb(248, 247, 243)' : 'rgba(0, 0, 0, 0)',
   });
   scope.window.SiteEngineProbe(phase);
-  const paint = JSON.parse(JSON.stringify(scope.window.__articleBlockEvents[3].paper));
-  assert.deepEqual(paint.frames, frames, 'paper evidence excludes descendant pseudo-elements');
+  paint();
+  const paperEvidence = JSON.parse(JSON.stringify(scope.window.__articleBlockEvents[3].paper));
+  assert.deepEqual(
+    paperEvidence.frames,
+    frames,
+    'paper evidence excludes descendant pseudo-elements'
+  );
   scope.window.SiteEngineProbe({ ...phase, stage: 'holding', completedBy: 'animationend' });
   assert.equal(scope.window.__articleBlockEvents[3].completedBy, 'animationend');
 });
@@ -970,6 +773,112 @@ test('reader reference evidence requires served immutable material links in ever
     const detail = make();
     mutate(detail);
     assert.throws(() => validateArticleJourney(detail, selected));
+  }
+});
+
+test('current article downloads require the declared served PDF in every capability observation', () => {
+  const revision = require('../docs/site-revision.json');
+  const selected = revision.articles;
+  const [name, descriptor] = Object.entries(selected)[0];
+  assert.notEqual(name, 'reader-reference:en', 'exercise the real current article');
+  assert.equal(descriptor.downloads.length, 1);
+  const file = descriptor.downloads[0];
+  const make = () => {
+    const detail = require('./fixtures/article-flight.cjs').currentJourney(
+      selected,
+      revision.engine,
+      baseURL
+    );
+    for (const row of detail.observations)
+      row.head.materials = [
+        {
+          href: baseURL + '/' + file,
+          label: 'Download PDF',
+          status: 200,
+          sha256: file.split('/')[1],
+          mime: 'application/pdf',
+        },
+        { href: 'https://www.linkedin.com/pulse/observed-edition', label: 'LinkedIn' },
+      ];
+    return detail;
+  };
+  const check = (detail) =>
+    validateArticleJourney(detail, selected, { engine: revision.engine, baseURL });
+  assert.doesNotThrow(() =>
+    check(
+      require('./fixtures/article-flight.cjs').currentJourney(selected, revision.engine, baseURL)
+    )
+  );
+  assert.doesNotThrow(() => check(make()));
+  for (const [mutate, expected] of [
+    [(head) => delete head.materials, /download links/],
+    [(head) => (head.materials = []), /exact declared download/],
+    [(head) => head.materials.push({ ...head.materials[0] }), /exact declared download/],
+    [(head) => (head.materials[0].href += '?substituted'), /exact declared download/],
+    [
+      (head) => (head.materials[0].href = head.materials[0].href.replace('/author/', '/other/')),
+      /exact declared download/,
+    ],
+    [
+      (head) => (head.materials[0].href = head.materials[0].href.replace('candidate.', 'foreign.')),
+      /exact declared download/,
+    ],
+    [
+      (head) => {
+        head.materials[0].href = baseURL + '/article-media/' + 'a'.repeat(64) + '/other.pdf';
+        head.materials[0].sha256 = 'a'.repeat(64);
+      },
+      /exact declared download/,
+    ],
+    [(head) => (head.materials[0].label = ''), /link label/],
+    [(head) => (head.materials[0].status = 404), /download response/],
+    [(head) => (head.materials[0].sha256 = '0'.repeat(64)), /download bytes/],
+    [(head) => (head.materials[0].mime = 'text/html'), /download MIME/],
+  ]) {
+    const detail = make();
+    for (const row of detail.observations) mutate(row.head);
+    assert.throws(() => check(detail), expected);
+  }
+});
+
+test('material collection requests only declared downloads and rejects changed responses', async () => {
+  const crypto = require('node:crypto');
+  const { observeMaterials } = require('../tools/quality/article-browser.cjs');
+  const bytes = Buffer.from('%PDF-1.7\ncontrolled download response\n');
+  const digest = crypto.createHash('sha256').update(bytes).digest('hex');
+  const file = 'article-media/' + digest + '/reading.pdf';
+  const descriptor = { downloads: [file] };
+  for (const response of [
+    { bytes, status: 200, mime: 'application/pdf; charset=binary', pass: true },
+    { bytes: Buffer.from('changed bytes'), status: 200, mime: 'application/pdf' },
+    { bytes, status: 404, mime: 'application/pdf' },
+    { bytes, status: 302, mime: 'application/pdf' },
+    { bytes, status: 200, mime: 'text/html' },
+  ]) {
+    const requests = [];
+    const head = {
+      materials: [
+        { href: baseURL + '/' + file, label: 'PDF' },
+        { href: 'https://medium.com/@author/observed-edition', label: 'Medium' },
+      ],
+    };
+    const page = {
+      request: {
+        get: async (url, options) => {
+          requests.push(url);
+          assert.deepEqual(options, { maxRedirects: 0 });
+          return {
+            body: async () => response.bytes,
+            status: () => response.status,
+            headers: () => ({ 'content-type': response.mime }),
+          };
+        },
+      },
+    };
+    const collect = () => observeMaterials(page, head, descriptor, baseURL, 'ordinary:en');
+    if (response.pass) await assert.doesNotReject(collect);
+    else await assert.rejects(collect);
+    assert.deepEqual(requests, [baseURL + '/' + file], 'external backlinks are not fetched');
   }
 });
 

@@ -224,7 +224,7 @@ function assets(environment) {
         const fallback = /^article-media\/[a-f0-9]{64}\/writing-fallback\.svg$/.test(name);
         if (
           !fallback &&
-          !/^article-media\/[a-f0-9]{64}\/[a-z0-9][a-z0-9._-]*\.(?:png|webp|pdf)$/.test(name)
+          !/^article-media\/[a-f0-9]{64}\/[a-z0-9][a-z0-9._-]*\.(?:png|webp|jpe?g|pdf)$/.test(name)
         )
           throw Error('Unsupported standalone article resource');
         const bytes = fs.readFileSync(path.join(environment.publicDirectory, name));
@@ -240,7 +240,9 @@ function assets(environment) {
               ? 'application/pdf'
               : name.endsWith('.webp')
                 ? 'image/webp'
-                : 'image/png',
+                : /\.jpe?g$/.test(name)
+                  ? 'image/jpeg'
+                  : 'image/png',
             sha256,
             bytes: bytes.length,
           },

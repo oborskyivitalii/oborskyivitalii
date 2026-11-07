@@ -27,8 +27,77 @@ function fixture(t) {
     fs.mkdirSync(path.dirname(path.join(root, relative)), { recursive: true });
     fs.cpSync(path.join(repo, relative), path.join(root, relative), { recursive: true });
   }
+  require('./fixtures/catalog.cjs').isolatePublicationCatalog(root, repo);
   return root;
 }
+
+test('mounted immutable article links keep canonical tags within the exact project root', async () => {
+  class Element {
+    constructor() {
+      this.children = [];
+    }
+    append(child) {
+      child.parent = this;
+      this.children.push(child);
+    }
+    remove() {
+      this.parent.children = this.parent.children.filter((child) => child !== this);
+    }
+    setAttribute() {}
+    addEventListener() {}
+    removeEventListener() {}
+  }
+  const data = index();
+  const native = data.articles.find((article) => article.id === 'publication-30');
+  const revision = JSON.parse(fs.readFileSync(path.join(repo, 'docs/site-revision.json')));
+  const snapshot = revision.articles['sdlc-out-of-balance:en'].url;
+  for (const prefix of ['/', '/author-site/']) {
+    const root = new URL(prefix, 'https://example.com');
+    const immutable = new URL(snapshot, root).href;
+    for (const [href, expected] of [
+      [new URL(native.url, root).href, native.tags],
+      [immutable, native.tags],
+      [data.articles[0].url, data.articles[0].tags],
+      [immutable.replace('example.com', 'other.example'), null],
+      [immutable.replace(prefix + 'article-snapshots/', '/outside/article-snapshots/'), null],
+      [immutable.replace(/article-snapshots\/[a-f0-9]{64}/, 'article-snapshots/unknown'), null],
+      [immutable + '?unindexed=1', null],
+      [immutable + '#unindexed', null],
+    ]) {
+      const anchor = { href, parentElement: new Element() };
+      const card = { dataset: {}, querySelector: () => anchor };
+      const document = {
+        body: { dataset: {} },
+        querySelectorAll: () => [card],
+        querySelector: () => null,
+        getElementById: () => null,
+        createElement: () => new Element(),
+      };
+      let ready;
+      const completed = new Promise((resolve) => {
+        ready = resolve;
+      });
+      const window = {
+        location: { origin: root.origin },
+        setTimeout,
+        clearTimeout,
+        dispatchEvent: ready,
+        CustomEvent: class {},
+        fetch: async () =>
+          new Response(JSON.stringify(data), {
+            headers: { 'content-type': 'application/json' },
+          }),
+      };
+      const stop = require('../site/engine/article-tags.cjs')().mount({ document, window, root });
+      await completed;
+      assert.equal(document.body.dataset.tagsState, 'ready');
+      assert.equal(card.dataset.tags, expected?.join(' '));
+      assert.equal(anchor.href, href, 'tag lookup must preserve the pinned navigation destination');
+      stop();
+      assert.equal(card.dataset.tags, undefined);
+    }
+  }
+});
 
 test('validated tab snapshot hydrates history synchronously while every mount refreshes current tags', async () => {
   const component = require('../site/engine/article-tags.cjs')();
@@ -278,7 +347,7 @@ test('tag-only content generation changes the index while old HTML, readers and 
   };
   record.components = require('../tools/site/snapshot.cjs').verify(output, record);
   assert.throws(
-    () => require('../tools/release/rights.cjs').compile(output, record, { sourceRoot: repo }),
+    () => require('../tools/release/rights.cjs').compile(output, record, { sourceRoot: root }),
     /published tag index differs from canonical source/
   );
   fs.writeFileSync(path.join(output, 'publication-index.json'), saved['publication-index.json']);

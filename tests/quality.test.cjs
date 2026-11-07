@@ -301,6 +301,28 @@ test('complete source-bound PR evidence passes; missing and controlled failures 
     path = require('node:path');
   const root = path.resolve(__dirname, '..');
   assert.equal(workflow.check(root).unique, true);
+  const shardNames =
+    '  shard: [0, 1, 2, 3, 4, 5, 6, 7]\n    name: site-source-shard-${{ github.run_id }}-${{ github.run_attempt }}-${{ matrix.shard }}\n';
+  const expanded = workflow.names(shardNames, { run: 123, attempt: 1, profile: 'basic' });
+  assert.equal(expanded.length, 8);
+  assert.equal(new Set(expanded).size, 8);
+  assert.equal(expanded[7], 'site-source-shard-123-1-7');
+  assert.throws(
+    () => workflow.names(shardNames.replace('6, 7', '6, 6'), { run: 123, attempt: 1 }),
+    /bounded artifact shard/
+  );
+  assert.throws(
+    () => workflow.names(shardNames.replace('6, 7', '6, 8'), { run: 123, attempt: 1 }),
+    /bounded artifact shard/
+  );
+  assert.throws(
+    () =>
+      workflow.names(shardNames.replace('matrix.shard', 'matrix.unreviewed'), {
+        run: 123,
+        attempt: 1,
+      }),
+    /unknown artifact discriminator/
+  );
   const sources = Object.fromEntries(
     ['site-checks', 'site-release-checks'].map((id) => [
       id,

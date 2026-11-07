@@ -252,6 +252,41 @@ function target(root, directory, item, article) {
   return { href: url.href, assets: [], inputs: [proof.path] };
 }
 
+function validateReciprocalPair(article, publicItems) {
+  if (article.profile?.distribution === undefined) return;
+  const reciprocal = publicItems.filter((item) => ['linkedin', 'medium'].includes(item.kind));
+  if (reciprocal.length) {
+    if (!['linkedin', 'medium'].every((kind) => reciprocal.some((item) => item.kind === kind))) {
+      throw Error('Site-first reciprocal materials must add LinkedIn and Medium together');
+    }
+    if (
+      !article.metadata.canonical ||
+      !article.events?.some(
+        (event) =>
+          event.platform === 'site' &&
+          event.editionId === article.edition.id &&
+          event.url === article.metadata.canonical
+      )
+    ) {
+      throw Error('Reciprocal materials require verified website publication first');
+    }
+    for (const item of reciprocal) {
+      const editionId = article.adaptations?.[item.kind]?.edition.id || article.edition.id;
+      if (
+        !article.events.some(
+          (event) =>
+            event.platform === item.kind &&
+            event.editionId === editionId &&
+            event.url === item.target.url &&
+            Date.parse(event.inspection.observedAt) <= Date.parse(item.target.observedAt)
+        )
+      ) {
+        throw Error('Reciprocal material must match an observed platform publication');
+      }
+    }
+  }
+}
+
 function load(root, article) {
   const articleId = article.metadata.id;
   if (typeof articleId !== 'string' || !idPattern.test(articleId))
@@ -325,6 +360,7 @@ function load(root, article) {
         `<p>${escapeText(item.description)}</p><p>${escapeText(item.credit)}</p></li>`
     );
   }
+  validateReciprocalPair(article, publicItems);
   if (!rows.length) return { html: '', assets: [], inputs, declaration: file };
   if (article.sections.some((section) => section.id === 'article-materials')) {
     throw Error('Article materials section id conflicts with authored content');

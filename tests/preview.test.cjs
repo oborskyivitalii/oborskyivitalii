@@ -70,9 +70,24 @@ test('ten fixed-theme copies preserve actual main content, CSS and external sour
         `src="data:image/webp;base64,${portrait.toString('base64')}"`,
         'src="assets/vitalii-oborskyi-cutout.webp"'
       );
+      const pending = new Set(
+        Object.values(require('../docs/site-revision.json').articles || {})
+          .filter(
+            (article) =>
+              require('../site/publications/' + article.articleId + '/publication.json')
+                .canonical === null
+          )
+          .flatMap((article) => [article.alias, article.url])
+      );
+      const hostedLinks = (text) =>
+        text.replace(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g, (original, href, label) =>
+          pending.has(href)
+            ? `<span class="hosted-edition">${label} <span>(hosted edition)</span></span>`
+            : original
+        );
       assert.equal(
         restored,
-        main(sourceForPreview(source))
+        hostedLinks(main(sourceForPreview(source)))
           .replace(/href="index\.html(?=["?#])/g, 'href="./')
           .replace(/<form[\t\n\f\r ]+id="archive-filters"[\s\S]*?<\/form[\t\n\f\r ]*>/, '')
       );
@@ -81,7 +96,7 @@ test('ten fixed-theme copies preserve actual main content, CSS and external sour
       const external = (text) =>
         [...text.matchAll(/href="(https:\/\/[^"]+)"/g)].map((match) => match[1]);
       assert.deepEqual(external(html), external(source));
-      const count = [...html.matchAll(/class="publication-title"/g)].length;
+      const count = [...html.matchAll(/class="(?:publication-title|hosted-edition)"/g)].length;
       assert.equal(count, page === 'index' ? 5 : page === 'writing' ? primaryCount : 0);
     }
   }
@@ -138,10 +153,15 @@ test("fixed and interactive rewriters retain query/hash intent, including the of
 
 test('manifest records exact inputs/outputs and unknown source shapes fail visibly', () => {
   const manifest = JSON.parse(files['review/site-v1-static-previews-v11.json']);
-  const resource = JSON.parse(fs.readFileSync(path.join(root, 'docs/site-revision.json'))).routes
-    .research.assets?.[0];
-  assert.equal(Object.keys(manifest.sources).length, 13 + (resource ? 1 : 0));
-  if (resource)
+  const resources = [
+    ...new Set(
+      Object.values(
+        JSON.parse(fs.readFileSync(path.join(root, 'docs/site-revision.json'))).routes
+      ).flatMap((route) => route.assets || [])
+    ),
+  ];
+  assert.equal(Object.keys(manifest.sources).length, 13 + resources.length);
+  for (const resource of resources)
     assert.equal(
       manifest.sources['docs/' + resource],
       digest(fs.readFileSync(path.join(root, 'docs', resource)))

@@ -91,6 +91,86 @@ async function fixture(
   return { root, article, profile, launch, launchPath, assetPath };
 }
 
+test('site-first profile counts link furniture and rejects unsafe origins, labels and missing launch links', async (t) => {
+  const { root, article, profile, launchPath } = await fixture(t);
+  article.metadata.slug = 'illustrated-profile';
+  const launch = 'Read {{SITE_ARTICLE_URL}}\nPDF {{SITE_PDF_URL}}\n';
+  write(root, launchPath, launch);
+  profile.launch.sha256 = hash(launch);
+  profile.limits = {};
+  profile.distribution = { originalLabel: 'Original', materialsLabel: 'PDF' };
+  const policyPath = 'site/publications/policy.json';
+  const policy = { schema: 1, productionOrigin: 'https://vitaliioborskyi.ai' };
+  write(root, policyPath, JSON.stringify(policy));
+  saveProfile(root, article.metadata.id, profile);
+  const selected = loadProfile(root, article);
+  assert.equal(
+    selected.furniture.distribution.articleUrl,
+    'https://vitaliioborskyi.ai/articles/illustrated-profile.html'
+  );
+  assert.equal(selected.furniture.distribution.state, 'planned');
+  assert.ok(selected.inputs.includes(policyPath));
+  profile.limits.linkedinCharacters = Array.from(article.adaptations.linkedin.text).length + 1;
+  saveProfile(root, article.metadata.id, profile);
+  assert.throws(() => loadProfile(root, article), /character limit/);
+  profile.limits = {};
+  for (const label of ['', 'x'.repeat(201), 'Original\nInjected']) {
+    profile.distribution.originalLabel = label;
+    saveProfile(root, article.metadata.id, profile);
+    assert.throws(() => loadProfile(root, article), /distribution|labels/i);
+  }
+  profile.distribution.originalLabel = 'Original';
+  saveProfile(root, article.metadata.id, profile);
+  for (const origin of [
+    'http://vitaliioborskyi.ai',
+    'https://user:pass@example.org',
+    'https://preview.example.org',
+    'https://127.0.0.1',
+    'https://publisher.internal',
+    'https://publisher.local',
+    'https://publisher.test',
+    'https://publisher',
+    'https://vitaliioborskyi.ai/path',
+  ]) {
+    write(root, policyPath, JSON.stringify({ ...policy, productionOrigin: origin }));
+    assert.throws(() => loadProfile(root, article), /public production origin/);
+  }
+  write(root, policyPath, JSON.stringify(policy));
+  article.metadata.canonical = 'https://vitaliioborskyi.ai/articles/different.html';
+  assert.throws(() => loadProfile(root, article), /planned URL differs/);
+  article.metadata.canonical = null;
+  const articleUrl = 'https://vitaliioborskyi.ai/articles/illustrated-profile.html';
+  for (const source of [
+    'PDF: ' + articleUrl + '#article-materials',
+    '[Article](https://redirect.example.org/?next=(' +
+      articleUrl +
+      '))\n[PDF](' +
+      articleUrl +
+      '#article-materials)',
+    'Read https://redirect.example.org/?next={{SITE_ARTICLE_URL}}\nPDF: {{SITE_PDF_URL}}',
+    '```text\n{{SITE_ARTICLE_URL}}\n```\nPDF: {{SITE_PDF_URL}}',
+    'Read https://redirect.example.org/?next=' +
+      articleUrl +
+      '\nPDF: ' +
+      articleUrl +
+      '#article-materials',
+  ]) {
+    write(root, launchPath, source);
+    profile.launch.sha256 = hash(source);
+    saveProfile(root, article.metadata.id, profile);
+    assert.throws(() => loadProfile(root, article), /must include article and materials/);
+  }
+  const literal = '[Original](' + articleUrl + ')\n[PDF](' + articleUrl + '#article-materials)';
+  write(root, launchPath, literal);
+  profile.launch.sha256 = hash(literal);
+  saveProfile(root, article.metadata.id, profile);
+  assert.equal(loadProfile(root, article).furniture.distribution.articleUrl, articleUrl);
+  write(root, launchPath, 'Missing article destinations.');
+  profile.launch.sha256 = hash('Missing article destinations.');
+  saveProfile(root, article.metadata.id, profile);
+  assert.throws(() => loadProfile(root, article), /must include article and materials/);
+});
+
 test('distinct illustrated adaptation and plain full-text profiles preserve authored selections', async (t) => {
   const illustrated = await fixture(t);
   const plain = await fixture(t, { id: 'plain-profile', illustrated: false, adaptation: false });

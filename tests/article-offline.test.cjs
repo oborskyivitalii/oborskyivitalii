@@ -18,6 +18,65 @@ const pixel = Buffer.from(
 );
 let prepared;
 
+test('standalone JPEG assets retain exact native bytes and MIME and reject changed content', (t) => {
+  const offline = require('../tools/site/offline.cjs');
+  const artifact = require('../tools/quality/artifact.cjs');
+  const bytes = fs.readFileSync(
+    path.join(repo, 'site/assets/publications/sdlc-out-of-balance/hero-web.jpg')
+  );
+  const resource = 'article-media/' + artifact.digest(bytes) + '/hero-web.jpg';
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'offline-jpeg-'));
+  t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
+  write(directory, resource, bytes);
+  const environment = {
+    publicDirectory: directory,
+    articleKey: 'native',
+    revision: { articles: { native: { assets: [resource] } } },
+  };
+  assert.deepEqual(offline.assets(environment)[resource], {
+    mime: 'image/jpeg',
+    sha256: artifact.digest(bytes),
+    bytes: bytes.length,
+  });
+  fs.appendFileSync(path.join(directory, resource), 'changed');
+  assert.throws(() => offline.assets(environment), /asset bytes differ/);
+});
+
+test('offline browser verifies native JPEG bytes and rejects MIME and payload substitutions', async () => {
+  const bytes = fs.readFileSync(
+    path.join(repo, 'site/assets/publications/sdlc-out-of-balance/hero-web.jpg')
+  );
+  const sha256 = require('../tools/quality/artifact.cjs').digest(bytes);
+  const name = 'article-media/' + sha256 + '/hero-web.jpg';
+  const asset = { mime: 'image/jpeg', sha256, bytes: bytes.length };
+  const value = 'data:image/jpeg;base64,' + bytes.toString('base64');
+  const source = fs.readFileSync(path.join(repo, 'site/engine/navigation.js'), 'utf8');
+  const start = source.indexOf('  async function verifyEmbeddedAssets()');
+  const end = source.indexOf('  function hydrateEmbeddedImages(', start);
+  const verify = async (metadata, dataURL) => {
+    const context = {
+      embedded: { assets: { [name]: metadata } },
+      embeddedAssetURLs: new Map([[name, dataURL]]),
+      embeddedAssetsReady: null,
+      window: { atob, crypto: require('node:crypto').webcrypto },
+    };
+    vm.createContext(context);
+    vm.runInContext(
+      source.slice(start, end) + '\nglobalThis.verify=verifyEmbeddedAssets;',
+      context
+    );
+    await context.verify();
+  };
+  await verify(asset, value);
+  await assert.rejects(verify({ ...asset, mime: 'image/png' }, value), /Invalid embedded/);
+  const changed = Buffer.from(bytes);
+  changed[changed.length - 1] ^= 1;
+  await assert.rejects(
+    verify(asset, 'data:image/jpeg;base64,' + changed.toString('base64')),
+    /asset bytes changed/
+  );
+});
+
 for (const [file, dataURL, selector] of [
   ['carousel.pdf', 'data:application/pdf;base64,JVBERg==', '#article-materials a[href]'],
   ['pixel.png', 'data:image/png;base64,' + pixel.toString('base64'), '.reader-image-open[href]'],

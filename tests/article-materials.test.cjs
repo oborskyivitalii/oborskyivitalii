@@ -190,6 +190,78 @@ test('only observed safe external publications render and HTML is escaped', (t) 
   assert.throws(f.load, /timestamp/i);
 });
 
+test('site-first reciprocal pair waits for website and both exact platform observations', (t) => {
+  const f = fixture(t);
+  f.article.profile = { distribution: { originalLabel: 'Original', materialsLabel: 'PDF' } };
+  f.article.events = [];
+  f.approve();
+  const initial = f.load().html;
+  const pair = ['linkedin', 'medium'].map((kind) => ({
+    id: kind + '-edition',
+    kind,
+    label: kind,
+    description: 'Same article on ' + kind,
+    credit: 'Author',
+    visibility: 'private',
+    approval: null,
+    target: {
+      kind: 'external',
+      url:
+        kind === 'linkedin'
+          ? 'https://www.linkedin.com/pulse/actual-article'
+          : 'https://medium.com/@author/actual-article',
+      observedAt: '2026-10-19T10:00:00Z',
+      evidence: f.write(
+        'materials/observations/' + kind + '-edition.md',
+        Buffer.from('Observed actual article text and original website backlink.')
+      ),
+    },
+  }));
+  f.declaration.items.push(...pair);
+  assert.equal(f.load().html, initial, 'pending pair does not block initial website');
+  pair[0].visibility = 'public';
+  f.approve(1);
+  assert.throws(f.load, /add LinkedIn and Medium together/);
+  pair[1].visibility = 'public';
+  f.approve(2);
+  assert.throws(f.load, /verified website publication first/);
+  f.article.events.push({
+    platform: 'site',
+    editionId: f.article.edition.id,
+    url: f.article.metadata.canonical,
+  });
+  assert.throws(f.load, /observed platform publication/);
+  for (const item of pair)
+    f.article.events.push({
+      platform: item.kind,
+      editionId: f.article.edition.id,
+      url: item.target.url,
+      inspection: { observedAt: '2026-10-19T09:00:00Z' },
+    });
+  const complete = f.load().html;
+  for (const item of pair) assert.ok(complete.includes(item.target.url));
+  for (const change of [
+    (event) => {
+      event.url = 'https://medium.com/@author/different';
+    },
+    (event) => {
+      event.editionId = 'old-edition';
+    },
+    (event) => {
+      event.inspection.observedAt = '2026-10-19T11:00:00Z';
+    },
+  ]) {
+    const original = structuredClone(f.article.events[2]);
+    change(f.article.events[2]);
+    assert.throws(f.load, /observed platform publication/);
+    f.article.events[2] = original;
+  }
+  f.article.adaptations = { linkedin: { edition: { id: 'linkedin-adapted' } } };
+  assert.throws(f.load, /observed platform publication/);
+  f.article.events[1].editionId = 'linkedin-adapted';
+  assert.equal(f.load().html, complete);
+});
+
 test('working campaign files, traversal, symlinks, wrong MIME and oversized files reject', (t) => {
   for (const candidate of ['campaign/posts/launch.en.md', '../secret.pdf', '/tmp/source.pdf']) {
     const f = fixture(t);

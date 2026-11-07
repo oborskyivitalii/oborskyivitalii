@@ -1,0 +1,39 @@
+{
+  "kind": "local-prepared-distribution-checks",
+  "base": "7c292bd50a4f9a0024c397a290c1de965ceada4f",
+  "sourceDirty": true,
+  "candidateManifestSha256": "2753dd31967d68ca2f383223eb7cb51e08676c30d1b7fc10d30705fc43be7ec2",
+  "checks": [
+    {
+      "name": "publisher-profile-history-material",
+      "command": "node --test tests/publishing.test.cjs tests/publishing-profile.test.cjs tests/publishing-history.test.cjs tests/article-materials.test.cjs",
+      "exitCode": 0,
+      "tests": 54,
+      "passed": 54,
+      "failed": 0,
+      "skipped": 0,
+      "rawLog": "distribution-source-v4.log.gz"
+    },
+    {
+      "name": "changed-file-eslint",
+      "exitCode": 0,
+      "warnings": 0,
+      "rawLog": "distribution-lint-v4.log.gz"
+    },
+    {
+      "name": "Basic",
+      "exitCode": 0,
+      "focusedTests": 17,
+      "colorTests": 10,
+      "rawLog": "distribution-basic-v4.log.gz"
+    },
+    {
+      "name": "selector-correction",
+      "exitCode": 0,
+      "tests": 47,
+      "passed": 47,
+      "rawLog": "distribution-selector-final.log.gz",
+      "scope": "same registry/selector bytes as final; earlier metadata state, final freshness separate"
+    }
+  ]
+}

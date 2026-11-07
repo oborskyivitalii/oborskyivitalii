@@ -119,7 +119,48 @@ async function deferredRequests(page, requested) {
   return detail;
 }
 
-async function articleHead(page, key, descriptor, descriptors, timeout) {
+function downloadLinks(head, descriptor, baseURL, observed = true) {
+  const downloads = descriptor.downloads || [];
+  assert.ok(Array.isArray(downloads) && downloads.length <= 1, 'finite declared downloads');
+  if (!downloads.length) return [];
+  const base = new URL(baseURL.replace(/\/$/, '') + '/');
+  assert.ok(Array.isArray(head.materials), 'declared download links are required');
+  return downloads.map((file) => {
+    assert.match(file, /^article-media\/[a-f0-9]{64}\/[a-z0-9][a-z0-9._-]*\.pdf$/);
+    const expected = new URL(file, base).href;
+    const links = head.materials.filter((link) => link.href === expected);
+    assert.equal(links.length, 1, 'one native link to the exact declared download');
+    const link = links[0];
+    assert.ok(typeof link.label === 'string' && link.label.trim(), 'download link label');
+    if (observed) {
+      assert.equal(link.status, 200, 'declared download response');
+      assert.equal(link.sha256, file.split('/')[1], 'declared download bytes');
+      assert.match(link.mime || '', /^application\/pdf(?:\s*;|$)/i, 'declared download MIME');
+    }
+    return link;
+  });
+}
+
+async function observeMaterials(page, head, descriptor, baseURL, key) {
+  const downloads = downloadLinks(head, descriptor, baseURL, false);
+  const selected = key === 'reader-reference:en' ? head.materials : downloads;
+  for (const link of selected) {
+    const response = await page.request.get(link.href, { maxRedirects: 0 });
+    const bytes = await response.body();
+    link.status = response.status();
+    link.sha256 = require('node:crypto').createHash('sha256').update(bytes).digest('hex');
+    link.mime = response.headers()['content-type'] || null;
+    assert.equal(link.status, 200, 'native material URL is served');
+    assert.ok(link.label, 'material has an accessible link label');
+    assert.ok(
+      new URL(link.href).pathname.includes('/article-media/' + link.sha256 + '/'),
+      'served material bytes match immutable URL'
+    );
+  }
+  downloadLinks(head, descriptor, baseURL);
+}
+
+async function articleHead(page, key, descriptor, descriptors, timeout, baseURL) {
   const head = await inspectHead(page);
   const language = key.split(':').at(-1);
   assert.equal(head.key, key, 'article metadata key');
@@ -135,19 +176,8 @@ async function articleHead(page, key, descriptor, descriptors, timeout) {
   if (key === 'reader-reference:en') {
     assert.equal(await page.locator('#article-materials').count(), 1, 'one shared materials block');
     assert.equal(head.materials.length, 1, 'one explicitly selected reference material');
-    for (const link of head.materials) {
-      const response = await page.request.get(link.href);
-      const bytes = await response.body();
-      link.status = response.status();
-      link.sha256 = require('node:crypto').createHash('sha256').update(bytes).digest('hex');
-      assert.equal(link.status, 200, 'native material URL is served');
-      assert.ok(link.label, 'material has an accessible link label');
-      assert.ok(
-        new URL(link.href).pathname.includes('/article-media/' + link.sha256 + '/'),
-        'served material bytes match immutable URL'
-      );
-    }
   }
+  await observeMaterials(page, head, descriptor, baseURL, key);
   const currentLink = page.locator('header nav a[aria-current="page"]');
   assert.equal(
     await currentLink.count(),
@@ -831,7 +861,7 @@ function installArticleHistoryDiagnostics(anchor, scope = window) {
     height: document.documentElement.scrollHeight,
     maxScroll: Math.max(0, document.documentElement.scrollHeight - scope.innerHeight),
     viewportHeight: scope.innerHeight,
-    focus: document.activeElement?.id || null,
+    focus: document.activeElement?.id || document.activeElement?.getAttribute?.('href') || null,
     page: document.body.dataset.page,
     article: document.body.dataset.article || null,
     inert: content.inert,
@@ -839,7 +869,7 @@ function installArticleHistoryDiagnostics(anchor, scope = window) {
     history: scope.structuredClone(scope.history.state?.site || null),
     saved: scope.structuredClone(saved),
     main: box('main'),
-    articleList: box('.article-list'),
+    articleList: box('.publication-list'),
     footer: box('#site-content footer'),
     waiting: document.querySelectorAll('[data-scroll-entry="waiting"]').length,
     entering: document.querySelectorAll('[data-scroll-entry="entering"]').length,
@@ -857,7 +887,7 @@ function installArticleHistoryDiagnostics(anchor, scope = window) {
     phase = 'departure';
     scope.__articleArchiveDeparture = {
       scroll: scope.scrollY,
-      focus: document.activeElement?.id,
+      focus: document.activeElement?.id || document.activeElement?.getAttribute?.('href') || null,
     };
     // Capture primitives before the navigation owner cancels native smooth scroll.
     // Geometry reads here could advance the viewport before that boundary.
@@ -933,7 +963,10 @@ function articleHistoryCheckpoint(scope = window) {
     url: scope.location.href,
     departure: scope.__articleArchiveDeparture,
     history: scope.structuredClone(scope.history.state?.site || null),
-    focus: scope.document.activeElement?.id,
+    focus:
+      scope.document.activeElement?.id ||
+      scope.document.activeElement?.getAttribute?.('href') ||
+      null,
     scroll: scope.scrollY,
     busy: scope.document.querySelector('#site-content')?.hasAttribute('aria-busy'),
     historyDiagnostics: scope.__articleHistoryDiagnostics,
@@ -988,6 +1021,45 @@ function installArticleFlightDiagnostics() {
   window.__articleFlightEvents = [];
   window.__articleBlockEvents = [];
   let active = null;
+  let currentBlock = null;
+  let witnessed = new WeakMap();
+  // Capture real native animationstart keyframes even when a busy browser
+  // misses the brief CSSAnimation in its frame-by-frame snapshot.
+  function witness(event, cancelled = false) {
+    if (!['route-block-depart', 'route-block-arrive'].includes(event.animationName)) return;
+    if (event.pseudoElement) return;
+    const element = event.target;
+    const owner = element.closest?.('[data-route-block]');
+    const state = owner?.dataset.routeBlock;
+    const stage = state === 'departing' ? 'departure' : state === 'arriving' ? 'arrival' : null;
+    if (!stage || !currentBlock || currentBlock.stage !== stage) return;
+    const expected = stage === 'departure' ? 'route-block-depart' : 'route-block-arrive';
+    if (event.animationName !== expected) return;
+    if (cancelled) witnessed.delete(element);
+    else {
+      const frames = element
+        .getAnimations()
+        .filter((animation) => animation.animationName === expected)
+        .flatMap((animation) => animation.effect?.getKeyframes() || []);
+      if (frames.length >= 2) witnessed.set(element, { state, frames });
+    }
+    currentBlock.units = [...document.querySelectorAll('[data-route-block]')]
+      .map(blockUnit)
+      .filter(Boolean);
+  }
+  document.addEventListener('animationstart', (event) => witness(event), true);
+  document.addEventListener('animationcancel', (event) => witness(event, true), true);
+  function layerFrames(element) {
+    const frames = element
+      .getAnimations()
+      .flatMap((animation) => animation.effect?.getKeyframes() || []);
+    if (frames.length >= 2) return frames;
+    const snapshot = witnessed.get(element);
+    return snapshot &&
+      snapshot.state === element.closest?.('[data-route-block]')?.dataset.routeBlock
+      ? snapshot.frames
+      : frames;
+  }
   function blockUnit(element) {
     const children = [...element.children];
     const hasArea = [element, ...children].some((node) => {
@@ -1011,9 +1083,7 @@ function installArticleFlightDiagnostics() {
               ['route-block-depart', 'route-block-arrive'].includes(animation.animationName)
             ).length
         : 0,
-      frames: layers.flatMap((child) =>
-        child.getAnimations().flatMap((animation) => animation.effect?.getKeyframes() || [])
-      ),
+      frames: layers.flatMap(layerFrames),
     };
   }
   function paperUnit() {
@@ -1045,10 +1115,39 @@ function installArticleFlightDiagnostics() {
       throw Error('article flight evidence overflow');
     if (event.kind === 'route-block' && ['departure', 'arrival'].includes(event.stage)) {
       if (window.__articleBlockEvents.length >= 40) throw Error('article block evidence overflow');
-      window.__articleBlockEvents.push({
-        ...structuredClone(event),
-        units: [...document.querySelectorAll('[data-route-block]')].map(blockUnit).filter(Boolean),
-        paper: paperUnit(),
+      const record = { ...structuredClone(event), units: [], paper: null };
+      witnessed = new WeakMap();
+      currentBlock = record;
+      window.__articleBlockEvents.push(record);
+      // A CSS animation can be queued after the first painted frame under
+      // contention. Preserve actual animation keyframes observed on the same
+      // DOM element across at most five frames, within the unchanged 1s wave.
+      // Never fabricate frames or treat an absent animation as a pass.
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          const seen = new Map();
+          function capture(remainingFrames) {
+            for (const element of document.querySelectorAll('[data-route-block]')) {
+              const next = blockUnit(element);
+              const previous = seen.get(element);
+              if (!seen.has(element) || (!previous && next)) seen.set(element, next);
+              else if (previous && next && next.frames.length > previous.frames.length)
+                previous.frames = next.frames;
+            }
+            record.units = [...seen.values()].filter(Boolean);
+            const paper = paperUnit();
+            if (!record.paper || (paper && paper.frames.length > record.paper.frames.length))
+              record.paper = paper;
+            if (
+              !remainingFrames ||
+              (record.units.every((unit) => unit.frames.length >= 2) &&
+                (!record.paper || record.paper.frames.length >= 2))
+            )
+              return;
+            window.requestAnimationFrame(() => capture(remainingFrames - 1));
+          }
+          capture(3);
+        });
       });
     }
     if (
@@ -1202,7 +1301,15 @@ function validateArticleBlockUnit(unit, { departure, sign, rows, wholeReader }) 
   assert.equal(unit.state, departure ? 'departing' : 'arriving');
   assert.ok(
     Array.isArray(unit.frames) && unit.frames.length >= 2,
-    'actual common CSS animation exists'
+    'actual common CSS animation exists: ' +
+      JSON.stringify({
+        tag: unit.tag,
+        classes: unit.classes,
+        layer: unit.layer,
+        state: unit.state,
+        row: unit.row,
+        frameCount: unit.frames?.length ?? null,
+      })
   );
   assert.equal(typeof unit.classes, 'string');
   assert.ok(!/\breader-(chapter|introduction)\b/.test(unit.classes), 'readable leaf unit');
@@ -1225,6 +1332,12 @@ function validateArticleBlocks({ blocks, events, from, to, direction }, engine =
     assert.equal(block.navigationId, events[0].navigationId);
     assert.ok(Number.isInteger(block.rows) && block.rows > 0 && block.rows <= 24);
     assert.equal(block.plannedDurationMs, 1000);
+    if (require('./color-motion-contract.cjs').readerPaperRequired(engine))
+      assert.equal(
+        block.completedBy,
+        'animationend',
+        'current route phases complete through native CSS events'
+      );
     if (
       source.startsWith('article:') &&
       require('./color-motion-contract.cjs').readerPaperRequired(engine)
@@ -1279,11 +1392,6 @@ function validateArticlePaper(block, departure) {
     'the moving paper is painted'
   );
   assert.ok(Array.isArray(paper.frames) && paper.frames.length >= 2, 'actual paper CSS frames');
-  assert.equal(
-    block.completedBy,
-    'animationend',
-    'paper and content complete through native CSS events'
-  );
 }
 
 function articleBlocksRequired(engine) {
@@ -1382,7 +1490,7 @@ async function normalJourney(
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));
   try {
-    const writingURL = urls.writing + '?topic=systems&language=' + key.split(':').at(-1);
+    const writingURL = urls.writing + '?language=' + key.split(':').at(-1);
     await page.goto(writingURL);
     await settled(page, 'writing', timeout);
     const engine = await page.locator('meta[name="site-engine"]').getAttribute('content');
@@ -1401,22 +1509,36 @@ async function normalJourney(
       { timeout }
     );
     const writingHead = await inspectHead(page);
-    const archive = {
-      topic: await page.locator('#archive-topic').inputValue(),
-      language: await page.locator('#archive-language').inputValue(),
-      year: await page.locator('#archive-year').inputValue(),
-      search: new URL(page.url()).search,
-    };
     await page.evaluate(() => {
       window.__articleShell = {
         header: document.querySelector('header'),
         canvas: document.querySelector('canvas'),
       };
     });
-    const articleLink = page.locator('.article-list a[href="' + descriptor.alias + '"]');
+    const articleLink = page.locator(
+      '.publication-list a.publication-title[href="' + descriptor.alias + '"]'
+    );
     assert.equal(await articleLink.count(), 1, 'Writing lists the admitted article');
+    const articleTopic = await articleLink.evaluate(
+      (link) => link.closest('li.publication')?.dataset.topic || null
+    );
+    assert.match(articleTopic, /^[a-z][a-z0-9-]*$/, 'admitted article has a catalog topic');
+    await page.locator('#archive-topic').selectOption(articleTopic);
+    assert.equal(
+      await articleLink.isVisible(),
+      true,
+      'article stays visible under its own topic filter'
+    );
+    const archive = {
+      topic: await page.locator('#archive-topic').inputValue(),
+      language: await page.locator('#archive-language').inputValue(),
+      year: await page.locator('#archive-year').inputValue(),
+      search: new URL(page.url()).search,
+    };
+    assert.equal(archive.topic, articleTopic, 'archive selected the admitted article topic');
     await articleLink.scrollIntoViewIfNeeded();
-    const archiveFocus = await articleLink.getAttribute('id');
+    const archiveFocus =
+      (await articleLink.getAttribute('id')) || (await articleLink.getAttribute('href'));
     assert.ok(archiveFocus, 'article link has a stable history focus identity');
     await articleLink.evaluate(installArticleHistoryDiagnostics);
     await articleLink.click();
@@ -1427,7 +1549,7 @@ async function normalJourney(
     flights.push(await takeArticleFlight(page, 'writing', 'article:' + key, 1));
     await preserveShell(page);
     if (requestDeferral) requestDeferral.spa = await deferredRequests(page, imageRequests);
-    const head = await articleHead(page, key, descriptor, descriptors, timeout);
+    const head = await articleHead(page, key, descriptor, descriptors, timeout, baseURL);
     await captureReader(page, key);
     const reader = { inventory: await readerInventory(page), requestDeferral };
     reader.image = await imageJourney(page, reader.inventory);
@@ -1458,7 +1580,8 @@ async function normalJourney(
     assert.equal(new URL(page.url()).search, archive.search, 'Back restored archive query');
     await page.waitForFunction(
       (expected) =>
-        document.activeElement?.id === expected.focus && Math.abs(scrollY - expected.scroll) <= 2,
+        (document.activeElement?.id || document.activeElement?.getAttribute?.('href')) ===
+          expected.focus && Math.abs(scrollY - expected.scroll) <= 2,
       { focus: archiveFocus, scroll: archiveScroll },
       { polling: 50, timeout: 2000 }
     );
@@ -1472,7 +1595,7 @@ async function normalJourney(
     flights.push(await takeArticleFlight(page, 'writing', 'article:' + key, 1));
     await preserveShell(page);
     assert.deepEqual(
-      await articleHead(page, key, descriptor, descriptors, timeout),
+      await articleHead(page, key, descriptor, descriptors, timeout, baseURL),
       head,
       'Forward restored article head'
     );
@@ -1490,7 +1613,7 @@ async function normalJourney(
     await settled(page, 'article:' + key, timeout);
     assert.equal(new URL(page.url()).hash, fragment, 'deep refresh retained anchor');
     assert.deepEqual(
-      await articleHead(page, key, descriptor, descriptors, timeout),
+      await articleHead(page, key, descriptor, descriptors, timeout, baseURL),
       head,
       'native refresh and persistent navigation agree on the complete article head'
     );
@@ -1688,7 +1811,7 @@ async function fallbackJourney(
   page.on('pageerror', (error) => errors.push(error.message));
   try {
     await page.goto(urls.alias);
-    const head = await articleHead(page, key, descriptor, descriptors, timeout);
+    const head = await articleHead(page, key, descriptor, descriptors, timeout, baseURL);
     if (mode !== 'off')
       await page.waitForFunction(
         () => {
@@ -1985,6 +2108,7 @@ function validateArticleJourney(detail, descriptors, { engine, baseURL } = {}) {
     for (const check of row.mode === 'normal' ? normalChecks : fallbackChecks)
       assert.equal(row.checks?.[check], true, 'article observation ' + check);
     assert.equal(row.head?.key, keys[0]);
+    downloadLinks(row.head, descriptors[keys[0]], baseURL);
     if (keys[0] === 'reader-reference:en') {
       assert.equal(row.head.materials?.length, 1, 'reference materials observation is required');
       for (const link of row.head.materials) {
@@ -2058,6 +2182,8 @@ function validateArticleJourney(detail, descriptors, { engine, baseURL } = {}) {
 }
 
 module.exports = {
+  downloadLinks,
+  observeMaterials,
   validateDeferredRequests,
   articleURLs,
   inspectHead,

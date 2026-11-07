@@ -1,0 +1,90 @@
+from pathlib import Path
+import json
+from xml.sax.saxutils import escape, quoteattr
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.lib import colors
+from reportlab.lib.styles import ParagraphStyle
+from reportlab.lib.pagesizes import A4
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Image, Spacer, KeepTogether
+
+ROOT = Path('/workspace/scratch/f4dcb060a703/repo')
+OUT = Path('/workspace/scratch/f4dcb060a703/R10')
+OUT.mkdir(exist_ok=True)
+meta = json.loads((ROOT / 'site/publications/sdlc-out-of-balance/publication.json').read_text())
+tree = json.loads(Path('/workspace/scratch/f4dcb060a703/r10-model.json').read_text())
+assets = {a['id']: a for a in meta['assets']}
+fontdir = Path('/usr/share/fonts/truetype/dejavu')
+for name, file in [('Body', 'DejaVuSans.ttf'), ('Bold', 'DejaVuSans-Bold.ttf'), ('Italic', 'DejaVuSans-Oblique.ttf'), ('BoldItalic', 'DejaVuSans-BoldOblique.ttf')]:
+    pdfmetrics.registerFont(TTFont(name, str(fontdir / file)))
+pdfmetrics.registerFontFamily('Body', normal='Body', bold='Bold', italic='Italic', boldItalic='BoldItalic')
+styles = {
+    'body': ParagraphStyle('body', fontName='Body', fontSize=10.2, leading=13.6, spaceAfter=2.5, allowWidows=0, allowOrphans=0, textColor=colors.HexColor('#172d3c')),
+    'h1': ParagraphStyle('h1', fontName='Bold', fontSize=22, leading=26, spaceAfter=7, textColor=colors.HexColor('#102f45'), keepWithNext=True),
+    'h2': ParagraphStyle('h2', fontName='Bold', fontSize=15, leading=19, spaceBefore=8, spaceAfter=5, textColor=colors.HexColor('#102f45'), keepWithNext=True),
+    'subtitle': ParagraphStyle('subtitle', fontName='Italic', fontSize=10.2, leading=14, spaceAfter=6),
+    'byline': ParagraphStyle('byline', fontName='Body', fontSize=8.6, leading=12, spaceAfter=8),
+    'caption': ParagraphStyle('caption', fontName='Italic', fontSize=8, leading=10.2, spaceAfter=5, textColor=colors.HexColor('#526574')),
+    'reference': ParagraphStyle('reference', fontName='Body', fontSize=9.1, leading=11.8, spaceAfter=3),
+}
+
+def inline(node):
+    kind = node['type']
+    if kind == 'text':
+        return escape(node['value'])
+    content = ''.join(inline(c) for c in node.get('children', []))
+    if kind == 'strong':
+        return '<b>' + content + '</b>'
+    if kind == 'emphasis':
+        return '<i>' + content + '</i>'
+    if kind == 'link':
+        return '<link href=' + quoteattr(node['url']) + ' color="#096887">' + content + '</link>'
+    if kind == 'inlineCode':
+        return escape(node['value'])
+    if kind == 'break':
+        return '<br/>'
+    if kind in ('paragraph', 'listItem'):
+        return content
+    raise ValueError('Unsupported inline AST node: ' + kind)
+
+def footer(canvas, doc):
+    canvas.saveState()
+    canvas.setFont('Body', 8)
+    canvas.setFillColor(colors.HexColor('#526574'))
+    canvas.drawString(44, 29, 'vitaliioborskyi.ai · The SDLC Is Out of Balance · R10 review')
+    canvas.drawRightString(A4[0] - 44, 29, str(doc.page))
+    canvas.restoreState()
+
+story = []
+references = False
+for index, node in enumerate(tree['children']):
+    kind = node['type']
+    if kind == 'heading':
+        references = node.get('id') == 'references-and-related-work'
+        story.append(Paragraph(''.join(inline(c) for c in node['children']), styles['h1' if node['depth'] == 1 else 'h2']))
+    elif kind == 'paragraph' and len(node['children']) == 1 and node['children'][0]['type'] == 'image':
+        asset = assets[node['children'][0]['assetId']]
+        source = ROOT / asset['path']
+        if asset['id'] == 'hero':
+            source = ROOT / 'site/assets/publications/sdlc-out-of-balance/hero-web.jpg'
+        width = 260 if asset['id'] == 'hero' else A4[0] - 88
+        height = width * asset['height'] / asset['width']
+        image = Image(str(source), width=width, height=height)
+        group = [Spacer(1, 3), image]
+        if asset['id'] != 'hero':
+            group.extend([Spacer(1, 4), Paragraph(escape(asset['caption']), styles['caption'])])
+        else:
+            group.append(Spacer(1, 8))
+        story.append(KeepTogether(group))
+    elif kind == 'paragraph':
+        style = 'subtitle' if index == 1 else 'byline' if index == 2 else 'body'
+        story.append(Paragraph(inline(node), styles[style]))
+    elif kind == 'list':
+        for number, item in enumerate(node['children'], start=node.get('start') or 1):
+            story.append(Paragraph(str(number) + '. ' + inline(item), styles['reference']))
+    else:
+        raise ValueError('Unsupported block AST node: ' + kind)
+
+doc = SimpleDocTemplate(str(OUT / 'The_SDLC_Is_Out_of_Balance_R10.pdf'), pagesize=A4, rightMargin=38, leftMargin=38, topMargin=32, bottomMargin=38, title=meta['title'], author='Vitalii Oborskyi', subject='R10 author-review edition; 6 November 2026')
+doc.build(story, onFirstPage=footer, onLaterPages=footer)
+print(OUT / 'The_SDLC_Is_Out_of_Balance_R10.pdf')

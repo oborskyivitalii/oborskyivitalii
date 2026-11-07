@@ -108,3 +108,21 @@ The reader's existing article suite verifies actual compilation, immutable asset
 closure and unchanged public bytes after working-campaign edits. Synthetic review
 fixtures establish behavior only; author/mobile/rights/production gates remain
 separate and the real PMDay campaign is not published by this feature.
+
+## Site-first reciprocal pair
+
+For articles opting into `profile.distribution`, follow the canonical
+[site-first sequence](ARTICLE-WORKFLOW.md#site-first-distribution). Initial website
+publication needs no LinkedIn/Medium item. Stage prospective external records as
+private or unapproved; these do not affect public output. After verified website
+publication, the author posts both platforms manually and records actual article
+URLs, inspected content and the original-site backlink. Only then publish both
+reviewed reciprocal records together in one materials-only content update.
+
+A selected pair requires the observed site canonical and a matching source-bound
+platform event for each selected URL/edition, with observation after that event's
+inspection. Missing half-pairs, unobserved site state, stale/wrong platform edition,
+wrong URLs and insufficient existing evidence bindings reject compilation. The
+ordinary planned original-site link in distribution copies is separate from the
+observed-only campaign `articleUrl` above. Text/PDF/semantic edition stay unchanged
+for this link-only addition; all existing review/rights/content-release gates remain.

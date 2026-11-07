@@ -1,0 +1,13 @@
+{
+  node: 'v24.22.1',
+  executable: '/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node',
+  nodeOptions: null
+}
+{
+  elapsed: 509,
+  code: null,
+  signal: 'SIGTERM',
+  out: 'partial',
+  err: ''
+}
+{ settledAfter1500: true, elapsed: 1506 }

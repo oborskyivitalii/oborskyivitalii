@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "kind": "prepared-runtime-admission-input",
+  "baseCommit": "e92de9bb5e3e4bcd80c4207457732808d2d67015",
+  "baseTree": "626278d38d4d0592663646ae0eeb0b7b68e3eed3",
+  "sourceDirty": true,
+  "meaning": "Prepared exact authored-source bytes for affected independent continuation review; not clean CI or final committed-source attestation.",
+  "files": {
+    "tools/quality/color-motion-contract.cjs": "26de4b368dce8b2f057c5d7ba472e0a8e013733831b753c33b3e750f5949137a",
+    "tools/site/runtime-compatibility.cjs": "3efd9ba45d1dfcf5701be79b898feb0eed45ed9b7d95dd0ffce05cde854c2c39",
+    "tools/quality/test-profiles.json": "b1843136683e805079f50cc92610ce4cd4fb342c94463e3787fadfb2e55d8ece",
+    "tests/color-motion-contract.test.cjs": "f8de24044530c67caf18bdde398e9e80e1280acbe238a0e03fc5b793ececdd9f",
+    "tests/fixtures/r9-footer-runtime.json": "a210bb9c7355f91f6c3ca4ab0e6e50b8c2b86d2387ef065ce35d964e02b27b92",
+    "tests/fixtures/publication-records.cjs": "9184a02b5798c439937e7cc40dfd7d73c880798836a2cf095cbe6e1f45bc0416",
+    "tests/release-controller.test.cjs": "84aee13b8fd48e185096debe7aabef599bf395005e4616a9f28c4be82214a07d",
+    "tests/staging-regression.test.cjs": "8bac4170c1ca44776e8a96cc20cb493dd9de9810ff1364423a27124876ff35b2",
+    "site/engine/navigation.js": "4cfcea740368dfcf9b19f189ccedd93b676df0383f7e29bed1c801b10dc82d24",
+    "site/effects/flight.cjs": "3d05d1f26c3f6c791f2ef8777cb523af17ee5b4d7b502020c01d3c61c86bcb47",
+    "site/output-lock.json": "fda97f22ac83388bdc78aaaa69beddb9266bd4a91bd01bc97d3cac657093ef71",
+    "review/issue-169/r9/reader-runtime-probe.cjs": "80b1d00181ae4cc3fd7ce66346be39170247ca38ffa87a455206668a52e1cb7d"
+  }
+}

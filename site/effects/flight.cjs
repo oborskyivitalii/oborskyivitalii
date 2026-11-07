@@ -98,6 +98,7 @@ function installEndScroll(gateFactory, isEnd, isStart) {
       !content ||
       !controls ||
       !window.SiteNavigation?.go ||
+      !window.SiteNavigation?.href ||
       document.getElementById('end-scroll')
     )
       return;
@@ -161,7 +162,7 @@ function installEndScroll(gateFactory, isEnd, isStart) {
         hint.className = 'scroll-continue';
         footer.append(hint);
       }
-      hint.href = '?view=' + route;
+      hint.href = window.SiteNavigation.href(route);
       hint.textContent = 'Keep scrolling for ' + names[routes.indexOf(route)] + ' ↓';
       hint.hidden = !enabled;
     }
