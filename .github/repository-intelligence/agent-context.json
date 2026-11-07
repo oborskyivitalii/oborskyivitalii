@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "d7875692af7361895f2fe7d040b81da27ed2408dbce4a74364711980fbc98dab",
+    "digest": "93925ba1c53a41125a46c0dbf2968c7409715ac0973d516a4138c9fe62f10a97",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -190,6 +190,11 @@
         "sha256": "c8654276397cdb7d6396a33e8dd2fade5c3d838690c39b38346d1e76dd68703e"
       },
       {
+        "path": ".github/actions/publication-media/action.yml",
+        "identity_mode": "content",
+        "sha256": "cc2477b02dd5f684e398f87cfb51fd11f3ffcc4be223a31bcc11a70b86208873"
+      },
+      {
         "path": ".github/code-style.json",
         "identity_mode": "content",
         "sha256": "7f275850381b10adcc9cce83ecc8969fbbdd0d267ac565141c5bfef11fd4a7fc"
@@ -216,12 +221,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "a34be54e56ce02dcb41c25ffbb1220393bce1efc6be6e6e67c00080518a0c993"
+        "sha256": "c93360ef3de657924e6e034be177d7f3e76b24aff3e8e6f18b943d77cc97b473"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "be84985fcd4b7f560306d18e1d04f3fa3200fd25194674d7292b2c097060f040"
+        "sha256": "05ff9e571d1b2877d84d671a40397609cf53272ca7887a405b606c086045669d"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -316,7 +321,7 @@
       {
         "path": ".github/workflows/site-release-checks.yml",
         "identity_mode": "content",
-        "sha256": "143e605b47f9e9d4729062fb9701e69941c69580eefc64f67fb92fb98a7b9332"
+        "sha256": "0f35df2fde69e851e05518db0dc46d70fb91216a7ba9cdddcabe35b1e9675d4d"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -371,7 +376,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "0732fe61afba48ae76fe9a20ee836f99051de385e14b9c216547d10814bc4c7d"
+        "sha256": "addbfd50ff2d9b9ae2501d4e04a779c507640a22c75c926e06b4b9c3c6667e92"
       },
       {
         "path": "NOTICE.md",
@@ -890,7 +895,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "e9be206f66d380ec310b8c3c883f6536950f036ffd65940ad36f9d9d4773c3c6"
+        "sha256": "6b33523ae9fd47410c82b5101ea5a67f78e6b731febf83d01769f8714ab8760a"
       },
       {
         "path": "guides/SITE-CONTENT-RELEASE.md",
@@ -2043,6 +2048,21 @@
         "sha256": "df51a88cd2ddfc9e69600a186347542a439db555bfd47a4dc40bbde96f3ba735"
       },
       {
+        "path": "review/issue-169/2026-11-07-browser-media-controller.md",
+        "identity_mode": "content",
+        "sha256": "8c910101633ab61c292f89189a4f7ee12dca8abb3ceec8951f0de5062f7a52d3"
+      },
+      {
+        "path": "review/issue-169/2026-11-07-media-controller-integration.md",
+        "identity_mode": "content",
+        "sha256": "8439bc0b737c1198c672ed1b65f13b4c0827eaf69200da852995454c5d675c3f"
+      },
+      {
+        "path": "review/issue-169/browser-media-reviews-and-checks.tar.xz",
+        "identity_mode": "content",
+        "sha256": "75d4eef6fed35353f940cb98ac8c218c70a6c53dfbbbfd716bcbc71eddd2d189"
+      },
+      {
         "path": "review/issue-169/controller-fixture-seed-proof.json.gz",
         "identity_mode": "content",
         "sha256": "e699e57c863ad4679a620a0ba923f0fee5479cb49fd64e5ac41006fea849288d"
@@ -2256,6 +2276,11 @@
         "path": "review/issue-169/main-integration-reviews-and-checks.tar.xz",
         "identity_mode": "content",
         "sha256": "bbebb26311e5b271e731987e4d13e5c66453b77cd67dbcff83510c150ec9702f"
+      },
+      {
+        "path": "review/issue-169/media-r10-integration-reviews-and-checks.tar.xz",
+        "identity_mode": "content",
+        "sha256": "7f53842bc39b42c799238f2073e9f6d6bbd4aee8071f778cb041151ced5e55db"
       },
       {
         "path": "review/issue-169/native-check-allocation.md",
@@ -7815,7 +7840,12 @@
       {
         "path": "review/site-v1-20261002-v5-index.html",
         "identity_mode": "content",
-        "sha256": "f090b1dd11fc6bcb01c8bc95e9c4f0a04ddbfaaaf3d5c661e01b33522524f62e"
+        "sha256": "8ba39f2733fa25c6165878fe3035beb814dd322a867b8c661dd87340a424fa12"
+      },
+      {
+        "path": "review/site-v1-20261002-v5-index.html.gz",
+        "identity_mode": "content",
+        "sha256": "36ec3efc7d878f15b9ac97f8ede0e55697e17ea8e13fc18b69fa0d0a11c9a85a"
       },
       {
         "path": "review/site-v1-20261002-v5-interactive.html",
@@ -8540,7 +8570,12 @@
       {
         "path": "review/site-v1-20261002-v7-index.html",
         "identity_mode": "content",
-        "sha256": "b275a449e2cc45d72481bea09e0a4a47be96d1beff506ccdc2008d99eaceff2e"
+        "sha256": "e911aca08dabe448aed0891c95c91ae4361fee91cc8111c14f789612e7214ecd"
+      },
+      {
+        "path": "review/site-v1-20261002-v7-index.html.gz",
+        "identity_mode": "content",
+        "sha256": "e32cbb57917230742a8999210c7130f2bd886fe0618c1a6e040d2df0268a6f34"
       },
       {
         "path": "review/site-v1-20261002-v7-interactive.html",
@@ -11105,7 +11140,7 @@
       {
         "path": "tests/analytics.test.cjs",
         "identity_mode": "content",
-        "sha256": "6a719a3d780ad376bde0fff83c440a81bff377c0ccbd42641ed78e14ec60da69"
+        "sha256": "a0566da02c26ef39f44eaaa0b36939c3eb0beaf1498e464ab5283df357420ab7"
       },
       {
         "path": "tests/architecture.test.cjs",
@@ -11120,7 +11155,7 @@
       {
         "path": "tests/article-browser-evidence.test.cjs",
         "identity_mode": "content",
-        "sha256": "f0c1db9918737a3f230988acd9d8a37a9c715ea8f71ffa79b1a69a10116ad99b"
+        "sha256": "eb32a7d67a207f2900dddb42bc6aeeb6ecd7c6cb2259f00553609958870383d9"
       },
       {
         "path": "tests/article-budgets.test.cjs",
@@ -11490,7 +11525,7 @@
       {
         "path": "tests/quality.test.cjs",
         "identity_mode": "content",
-        "sha256": "8516b6a52016b988ec9df4b86bd872db77b41725512a7b4c4886aaf92c4b67e9"
+        "sha256": "06146986d90699798816dd2d6264e4856b977564101ac8fd71268cd094e8ef99"
       },
       {
         "path": "tests/reader-controller.test.cjs",
@@ -11580,7 +11615,7 @@
       {
         "path": "tests/staging-regression.test.cjs",
         "identity_mode": "content",
-        "sha256": "470e74b215c67516914188e87a71e8c377871610bbc76af731ef716a5545443a"
+        "sha256": "15f686c80cbf3f12ad2b09857fdd977ced513b32eb718175fc4edd5f4baaefb2"
       },
       {
         "path": "tests/staging-reporting.test.cjs",
@@ -12025,7 +12060,7 @@
       {
         "path": "tools/quality/analytics-browser.cjs",
         "identity_mode": "content",
-        "sha256": "4747160b95b9c762a2b50ae20bc395dd1f7f2f293ffd9ea2c6b3d4a003714604"
+        "sha256": "ce24cb33ce805ab4c3dc987289b9eebb5f23b4483b79b2fe2872dea7d6bcdcd0"
       },
       {
         "path": "tools/quality/analytics-isolation.cjs",
@@ -12485,7 +12520,7 @@
       {
         "path": "tools/quality/staging-regression.cjs",
         "identity_mode": "content",
-        "sha256": "c33d08aecec46f22e8d1f86b62ba9f6f1bc2477d7219c27a6a654d77daa1237a"
+        "sha256": "2b4d7c56272eedc9a8cc9cc1a81df17ad58ee1bea2c136ca4c143f8533801497"
       },
       {
         "path": "tools/quality/stylelint.cjs",
@@ -12500,7 +12535,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "23120dc24a3ec2b1e0e226bdacbed648bf52ef7b320a072a3c57372e43d5d076"
+        "sha256": "583d1dd469fc12adc2cf66628a6486e9d11e5eaa0d3e170b5fdf4fbf63085a36"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -13660,6 +13695,17 @@
       "purpose": "Shared exact native browser archive restore and retained preparation-failure report.",
       "role": "configuration",
       "owner": "guides/BROWSER-ARCHIVES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "action.yml"
+    },
+    {
+      "path": ".github/actions/publication-media/action.yml",
+      "kind": "file",
+      "purpose": "Bind the selected Python interpreter, install the canonical Pillow pin and verify its WebP backend before source-fixture collection.",
+      "role": "configuration",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -17747,6 +17793,39 @@
       "title": "Writing discovery correction — 6 November 2026"
     },
     {
+      "path": "review/issue-169/2026-11-07-browser-media-controller.md",
+      "kind": "file",
+      "purpose": "Issue169 exact-source missing browser media dependency diagnosis, all-platform controller correction, independent review and acceptance route.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue169 — browser fixture media controller"
+    },
+    {
+      "path": "review/issue-169/2026-11-07-media-controller-integration.md",
+      "kind": "file",
+      "purpose": "Issue169 proposed media controller integration into unchanged R10, lossless history storage, independent checks and diagnostic-only staging boundary.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue169 — proposed media controller in the R10 diagnostic candidate"
+    },
+    {
+      "path": "review/issue-169/browser-media-reviews-and-checks.tar.xz",
+      "kind": "file",
+      "purpose": "Literal source-bound issue169 browser-media preflight and four-role first/correction reviews, original failures and corrected local checks.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "browser-media-reviews-and-checks.tar.xz"
+    },
+    {
       "path": "review/issue-169/controller-fixture-seed-proof.json.gz",
       "kind": "file",
       "purpose": "Exact fixed fixture source, packets, raw native/timing evidence identity and independent review receipts.",
@@ -18218,6 +18297,17 @@
         "AGENTS.md"
       ],
       "title": "main-integration-reviews-and-checks.tar.xz"
+    },
+    {
+      "path": "review/issue-169/media-r10-integration-reviews-and-checks.tar.xz",
+      "kind": "file",
+      "purpose": "Literal issue169 R10 media integration reviewer launch/results, exposure replacement chronology, exact local checks and original preparation errors.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "media-r10-integration-reviews-and-checks.tar.xz"
     },
     {
       "path": "review/issue-169/native-check-allocation.md",
@@ -30452,6 +30542,17 @@
       "title": "site-v1-20261002-v5-index.html"
     },
     {
+      "path": "review/site-v1-20261002-v5-index.html.gz",
+      "kind": "file",
+      "purpose": "Losslessly retained historical preview; original-path locator and original decoded byte identity preserved.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "site-v1-20261002-v5-index.html.gz"
+    },
+    {
       "path": "review/site-v1-20261002-v5-interactive.html",
       "kind": "file",
       "purpose": "Historical reference/preview HTML: site-v1-20261002-v5-interactive.html. Dated site v1 20261002 v5 interactive.html iteration material.",
@@ -32045,6 +32146,17 @@
         "AGENTS.md"
       ],
       "title": "site-v1-20261002-v7-index.html"
+    },
+    {
+      "path": "review/site-v1-20261002-v7-index.html.gz",
+      "kind": "file",
+      "purpose": "Losslessly retained historical preview; original-path locator and original decoded byte identity preserved.",
+      "role": "history",
+      "owner": "AGENTS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "site-v1-20261002-v7-index.html.gz"
     },
     {
       "path": "review/site-v1-20261002-v7-interactive.html",
@@ -41630,6 +41742,16 @@
       "purpose": "Pinned browser supply action; integrity checks without prior browser launch.",
       "role": "configuration",
       "owner": "guides/BROWSER-ARCHIVES.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".github/actions/publication-media",
+      "kind": "directory",
+      "purpose": "Canonical browser-fixture Python/Pillow setup shared by staging and production functional jobs.",
+      "role": "configuration",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ]

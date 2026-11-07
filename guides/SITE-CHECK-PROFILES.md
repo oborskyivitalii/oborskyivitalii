@@ -754,3 +754,20 @@ records and the zero-or-two observed reciprocal pair. Initial website compilatio
 has no external platform dependency. Actual website/editor/posting/reciprocal HTTP
 observations remain external gates; selected tests do not claim they occurred.
 No new CI workflow, browser matrix, release route or budget is introduced.
+
+## Browser fixture media dependencies
+
+The staging browser job and production Linux/Windows/macOS functional jobs build
+the actual analytics source fixture. Each job prepares
+[canonical publication media](../.github/actions/publication-media/action.yml)
+before collection. The action binds the setup interpreter explicitly through
+`SITE_MEDIA_PYTHON`, obtains Pillow from `web-media.py --requirement`, and verifies
+Pillow/WebP against that same owner before exporting the interpreter. Source or
+static jobs' installations cannot satisfy a separate browser job.
+
+The isolated fixture quality-toolchain copy contains the canonical requirements
+declaration, with no installed quality venv or audit Node packages. Its copied media producer must work in a
+fresh process with the selected interpreter. Missing Pillow and a missing pin
+remain errors. Functional collection diagnostics retain the primary error before
+secondary missing-article evidence; no article case or acceptance check is waived.
+Existing staging/production cases, profile boundaries and budgets remain unchanged.

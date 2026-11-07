@@ -375,7 +375,9 @@
         "NOTICE.md",
         "tools/site/legal.cjs",
         "tools/quality/analytics-isolation.cjs",
-        "tests/fixtures/catalog.cjs"
+        "tests/fixtures/catalog.cjs",
+        "tools/publishing/web-media.py",
+        "tools/quality/toolchain/requirements.txt"
       ]
     },
     {
@@ -882,7 +884,10 @@
         "tools/quality/serve.cjs",
         "tools/capture_site_review.cjs",
         "tools/quality/edge-input.cjs",
-        "tools/quality/block-observation.cjs"
+        "tools/quality/block-observation.cjs",
+        "tools/publishing/web-media.py",
+        "tools/quality/toolchain/requirements.txt",
+        ".github/actions/publication-media/**"
       ]
     },
     {

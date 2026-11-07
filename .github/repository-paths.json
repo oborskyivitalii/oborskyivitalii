@@ -17022,6 +17022,54 @@
       "purpose": "Literal source-bound issue169 timing correction independent reviews, none-fork launch receipts, prepared manifests and metadata reconciliation.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    ".github/actions/publication-media": {
+      "kind": "directory",
+      "purpose": "Canonical browser-fixture Python/Pillow setup shared by staging and production functional jobs.",
+      "role": "configuration",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    ".github/actions/publication-media/action.yml": {
+      "kind": "file",
+      "purpose": "Bind the selected Python interpreter, install the canonical Pillow pin and verify its WebP backend before source-fixture collection.",
+      "role": "configuration",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-169/2026-11-07-browser-media-controller.md": {
+      "kind": "file",
+      "purpose": "Issue169 exact-source missing browser media dependency diagnosis, all-platform controller correction, independent review and acceptance route.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/browser-media-reviews-and-checks.tar.xz": {
+      "kind": "file",
+      "purpose": "Literal source-bound issue169 browser-media preflight and four-role first/correction reviews, original failures and corrected local checks.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/site-v1-20261002-v5-index.html.gz": {
+      "kind": "file",
+      "purpose": "Losslessly retained historical preview; original-path locator and original decoded byte identity preserved.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/site-v1-20261002-v7-index.html.gz": {
+      "kind": "file",
+      "purpose": "Losslessly retained historical preview; original-path locator and original decoded byte identity preserved.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-169/2026-11-07-media-controller-integration.md": {
+      "kind": "file",
+      "purpose": "Issue169 proposed media controller integration into unchanged R10, lossless history storage, independent checks and diagnostic-only staging boundary.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/media-r10-integration-reviews-and-checks.tar.xz": {
+      "kind": "file",
+      "purpose": "Literal issue169 R10 media integration reviewer launch/results, exposure replacement chronology, exact local checks and original preparation errors.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

@@ -37,6 +37,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.github/acceptance](.github/acceptance) | Owning-issue acceptance policies with stable criterion IDs and executable check mappings. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/actions](.github/actions) | Shared reviewed CI setup actions with bounded source and artifact trust. | configuration | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [.github/actions/browser-archive](.github/actions/browser-archive) | Pinned browser supply action; integrity checks without prior browser launch. | configuration | [guides/BROWSER-ARCHIVES.md](guides/BROWSER-ARCHIVES.md) |
+| [.github/actions/publication-media](.github/actions/publication-media) | Canonical browser-fixture Python/Pillow setup shared by staging and production functional jobs. | configuration | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [.github/repository-intelligence](.github/repository-intelligence) | Generated machine navigation view with exact source identity. | generated | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [.github/workflows](.github/workflows) | Pinned CI workflows for navigation, site checks, hosted staging and manual diagnostics. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [agents](agents) | Repository agent role prompts and shared launch contracts; not installed skills. | guide | [agents/reviewers/README.md](agents/reviewers/README.md) |
@@ -356,6 +357,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [.github/actions/browser-archive/action.yml](.github/actions/browser-archive/action.yml) | Shared exact native browser archive restore and retained preparation-failure report. | configuration | [guides/BROWSER-ARCHIVES.md](guides/BROWSER-ARCHIVES.md) |
+
+## .github/actions/publication-media/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [.github/actions/publication-media/action.yml](.github/actions/publication-media/action.yml) | Bind the selected Python interpreter, install the canonical Pillow pin and verify its WebP backend before source-fixture collection. | configuration | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 
 ## .github/repository-intelligence/
 
@@ -803,6 +810,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/site-v1-20261002-v5-credits-night.html](review/site-v1-20261002-v5-credits-night.html) | Historical reference/preview HTML: site-v1-20261002-v5-credits-night.html. Dated site v1 20261002 v5 credits night.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261002-v5-day.html](review/site-v1-20261002-v5-day.html) | Historical reference/preview HTML: site-v1-20261002-v5-day.html. Dated site v1 20261002 v5 day.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261002-v5-index.html](review/site-v1-20261002-v5-index.html) | Historical reference/preview HTML: site-v1-20261002-v5-index.html. Dated site v1 20261002 v5 index.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/site-v1-20261002-v5-index.html.gz](review/site-v1-20261002-v5-index.html.gz) | Losslessly retained historical preview; original-path locator and original decoded byte identity preserved. | history | [AGENTS.md](AGENTS.md) |
 | [review/site-v1-20261002-v5-interactive.html](review/site-v1-20261002-v5-interactive.html) | Historical reference/preview HTML: site-v1-20261002-v5-interactive.html. Dated site v1 20261002 v5 interactive.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261002-v5-night.html](review/site-v1-20261002-v5-night.html) | Historical reference/preview HTML: site-v1-20261002-v5-night.html. Dated site v1 20261002 v5 night.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261002-v5-research-day.html](review/site-v1-20261002-v5-research-day.html) | Historical reference/preview HTML: site-v1-20261002-v5-research-day.html. Dated site v1 20261002 v5 research day.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -838,6 +846,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/site-v1-20261002-v7-credits-night.html](review/site-v1-20261002-v7-credits-night.html) | Historical reference/preview HTML: site-v1-20261002-v7-credits-night.html. Dated site v1 20261002 v7 credits night.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261002-v7-day.html](review/site-v1-20261002-v7-day.html) | Historical reference/preview HTML: site-v1-20261002-v7-day.html. Dated site v1 20261002 v7 day.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261002-v7-index.html](review/site-v1-20261002-v7-index.html) | Historical reference/preview HTML: site-v1-20261002-v7-index.html. Dated site v1 20261002 v7 index.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/site-v1-20261002-v7-index.html.gz](review/site-v1-20261002-v7-index.html.gz) | Losslessly retained historical preview; original-path locator and original decoded byte identity preserved. | history | [AGENTS.md](AGENTS.md) |
 | [review/site-v1-20261002-v7-interactive.html](review/site-v1-20261002-v7-interactive.html) | Historical reference/preview HTML: site-v1-20261002-v7-interactive.html. Dated site v1 20261002 v7 interactive.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261002-v7-night.html](review/site-v1-20261002-v7-night.html) | Historical reference/preview HTML: site-v1-20261002-v7-night.html. Dated site v1 20261002 v7 night.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261002-v7-research-day.html](review/site-v1-20261002-v7-research-day.html) | Historical reference/preview HTML: site-v1-20261002-v7-research-day.html. Dated site v1 20261002 v7 research day.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -1228,6 +1237,9 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-169/2026-11-06-staging-source-tail.md](review/issue-169/2026-11-06-staging-source-tail.md) | Issue169 native source timeout diagnosis, measured scheduling and HTML startup correction with preserved budgets and pending stable-stage evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/2026-11-06-trusted-controller.md](review/issue-169/2026-11-06-trusted-controller.md) | Trusted reader-controller prerequisite scope, exact-source review and check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/2026-11-06-writing-discovery.md](review/issue-169/2026-11-06-writing-discovery.md) | Issue169 Writing discovery correction review, source-bound receipts and original execution evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/2026-11-07-browser-media-controller.md](review/issue-169/2026-11-07-browser-media-controller.md) | Issue169 exact-source missing browser media dependency diagnosis, all-platform controller correction, independent review and acceptance route. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/2026-11-07-media-controller-integration.md](review/issue-169/2026-11-07-media-controller-integration.md) | Issue169 proposed media controller integration into unchanged R10, lossless history storage, independent checks and diagnostic-only staging boundary. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/browser-media-reviews-and-checks.tar.xz](review/issue-169/browser-media-reviews-and-checks.tar.xz) | Literal source-bound issue169 browser-media preflight and four-role first/correction reviews, original failures and corrected local checks. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/controller-fixture-seed-proof.json.gz](review/issue-169/controller-fixture-seed-proof.json.gz) | Exact fixed fixture source, packets, raw native/timing evidence identity and independent review receipts. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/correction-affected.log.gz](review/issue-169/correction-affected.log.gz) | Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/devcon-completed-review.tar.xz](review/issue-169/devcon-completed-review.tar.xz) | Completed DevCon event correction, source-bound independent review and retained original evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -1235,6 +1247,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-169/failed-source-run.tap.gz](review/issue-169/failed-source-run.tap.gz) | Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/main-integration-archive-proof.json.gz](review/issue-169/main-integration-archive-proof.json.gz) | Issue169 exact original Git/blob, lossless gzip and original-path historical preview archival proof. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/main-integration-reviews-and-checks.tar.xz](review/issue-169/main-integration-reviews-and-checks.tar.xz) | Issue169 literal none-fork integration review outputs, source-bound successful/failed raw checks and exact ledger reason variants. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/media-r10-integration-reviews-and-checks.tar.xz](review/issue-169/media-r10-integration-reviews-and-checks.tar.xz) | Literal issue169 R10 media integration reviewer launch/results, exposure replacement chronology, exact local checks and original preparation errors. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/native-check-allocation.md](review/issue-169/native-check-allocation.md) | Issue169 native integration review and acceptance evidence. | history | [AGENTS.md](AGENTS.md) |
 | [review/issue-169/notice-preflight-proof.json.gz](review/issue-169/notice-preflight-proof.json.gz) | Exact correction packets, raw evidence identity, measured subprocess counts and reviewer receipts. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/stage-security-proof.json.gz](review/issue-169/stage-security-proof.json.gz) | Exact per-finding source and native producer proof for the retained nine staging secret-scanner candidates. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |

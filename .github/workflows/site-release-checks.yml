@@ -404,6 +404,8 @@ jobs:
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
           npm ci --prefix tools/publishing/toolchain --ignore-scripts
+      - name: Prepare canonical publication media for source fixtures
+        uses: ./.github/actions/publication-media
       - name: Install Ubuntu engine dependencies without prior launch
         timeout-minutes: 5
         run: tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium firefox webkit
@@ -465,6 +467,8 @@ jobs:
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
           npm ci --prefix tools/publishing/toolchain --ignore-scripts
+      - name: Prepare canonical publication media for source fixtures
+        uses: ./.github/actions/publication-media
       - name: Restore verified pinned browsers without prior launch
         uses: ./.github/actions/browser-archive
         with:
@@ -602,6 +606,8 @@ jobs:
           npm ci --prefix tools/quality/toolchain --ignore-scripts
           npm ci --prefix tools/publishing/toolchain --ignore-scripts
           tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium firefox
+      - name: Prepare canonical publication media for source fixtures
+        uses: ./.github/actions/publication-media
       - name: Restore verified pinned browsers without prior launch
         uses: ./.github/actions/browser-archive
         with:

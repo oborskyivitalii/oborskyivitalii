@@ -3,6 +3,15 @@ const test = require('node:test'),
   assert = require('node:assert/strict');
 const stage = require('../tools/quality/staging-regression.cjs'),
   fixture = require('./fixtures/staging-evidence.cjs');
+test('functional collection failures remain visible before secondary missing article evidence', () => {
+  const manifest = fixture.manifest();
+  manifest.components.articles = { 'selected:en': {} };
+  const report = fixture.functional();
+  report.startupFailures = [{ engine: 'chromium', error: "No module named 'PIL'" }];
+  assert.throws(() => stage.validateFunctional(report, manifest), /No module named 'PIL'/);
+  report.startupFailures = [];
+  assert.throws(() => stage.validateFunctional(report, manifest), /selected articles require/);
+});
 test('selected journeys compare actual base runtime and Color identities without replacing descriptor hashes', () => {
   const fs = require('node:fs'),
     path = require('node:path'),
