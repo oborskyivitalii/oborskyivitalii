@@ -6267,13 +6267,13 @@
     },
     "review/site-v1-20261002-v6-research-interactive.html": {
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v6-research-interactive.html. Dated site v1 20261002 v6 research interactive.html iteration material.",
+      "purpose": "Old-path locator for exact gzip-retained historical v6/v7 preview; no maintained current producer dependency.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
     "review/site-v1-20261002-v6-research-night.html": {
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v6-research-night.html. Dated site v1 20261002 v6 research night.html iteration material.",
+      "purpose": "Old-path locator for exact gzip-retained historical v6/v7 preview; no maintained current producer dependency.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -6297,19 +6297,19 @@
     },
     "review/site-v1-20261002-v6-writing-day.html": {
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v6-writing-day.html. Dated site v1 20261002 v6 writing day.html iteration material.",
+      "purpose": "Old-path locator for exact gzip-retained historical v6/v7 preview; no maintained current producer dependency.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
     "review/site-v1-20261002-v6-writing-interactive.html": {
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v6-writing-interactive.html. Dated site v1 20261002 v6 writing interactive.html iteration material.",
+      "purpose": "Old-path locator for exact gzip-retained historical v6/v7 preview; no maintained current producer dependency.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
     "review/site-v1-20261002-v6-writing-night.html": {
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v6-writing-night.html. Dated site v1 20261002 v6 writing night.html iteration material.",
+      "purpose": "Old-path locator for exact gzip-retained historical v6/v7 preview; no maintained current producer dependency.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -6687,7 +6687,7 @@
     },
     "review/site-v1-20261002-v7-interactive.html": {
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v7-interactive.html. Dated site v1 20261002 v7 interactive.html iteration material.",
+      "purpose": "Old-path locator for exact gzip-retained historical v6/v7 preview; no maintained current producer dependency.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -6711,25 +6711,25 @@
     },
     "review/site-v1-20261002-v7-research-night.html": {
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v7-research-night.html. Dated site v1 20261002 v7 research night.html iteration material.",
+      "purpose": "Old-path locator for exact gzip-retained historical v6/v7 preview; no maintained current producer dependency.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
     "review/site-v1-20261002-v7-talks-day.html": {
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v7-talks-day.html. Dated site v1 20261002 v7 talks day.html iteration material.",
+      "purpose": "Old-path locator for exact gzip-retained historical v6/v7 preview; no maintained current producer dependency.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
     "review/site-v1-20261002-v7-talks-interactive.html": {
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v7-talks-interactive.html. Dated site v1 20261002 v7 talks interactive.html iteration material.",
+      "purpose": "Old-path locator for exact gzip-retained historical v6/v7 preview; no maintained current producer dependency.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
     "review/site-v1-20261002-v7-talks-night.html": {
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v7-talks-night.html. Dated site v1 20261002 v7 talks night.html iteration material.",
+      "purpose": "Old-path locator for exact gzip-retained historical v6/v7 preview; no maintained current producer dependency.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -17053,21 +17053,171 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
-    "docs/snapshots/499e5b70f26ab25766c33a89bf3ee2fbb46dd6894fae461978a7df0d30579671": {
-      "kind": "directory",
-      "purpose": "Generated public output/snapshot from canonical site owners; regenerate instead of editing.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/499e5b70f26ab25766c33a89bf3ee2fbb46dd6894fae461978a7df0d30579671/writing.html": {
-      "kind": "file",
-      "purpose": "Generated public output/snapshot from canonical site owners; regenerate instead of editing.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "review/site-v1-20261002-v7-research-day.html.gz": {
       "kind": "file",
       "purpose": "Byte-exact gzip-retained historical v7 Research day preview; original locator retains decode and digest.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/2026-11-07-r11-stable-staging.md": {
+      "kind": "file",
+      "purpose": "Issue169 exact R11 author acceptance, native catalog/PDF restoration, current full-route audit/review/check/stable delivery evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/site-v1-20261002-v7-research-night.html.gz": {
+      "kind": "file",
+      "purpose": "Lossless original historical v6/v7 preview; old-path locator retains decode instruction and exact original digest.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/site-v1-20261002-v6-writing-interactive.html.gz": {
+      "kind": "file",
+      "purpose": "Lossless original historical v6/v7 preview; old-path locator retains decode instruction and exact original digest.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/site-v1-20261002-v6-writing-night.html.gz": {
+      "kind": "file",
+      "purpose": "Lossless original historical v6/v7 preview; old-path locator retains decode instruction and exact original digest.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/site-v1-20261002-v6-writing-day.html.gz": {
+      "kind": "file",
+      "purpose": "Lossless original historical v6/v7 preview; old-path locator retains decode instruction and exact original digest.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/site-v1-20261002-v7-talks-interactive.html.gz": {
+      "kind": "file",
+      "purpose": "Lossless original historical v6/v7 preview; old-path locator retains decode instruction and exact original digest.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/site-v1-20261002-v7-interactive.html.gz": {
+      "kind": "file",
+      "purpose": "Lossless original historical v6/v7 preview; old-path locator retains decode instruction and exact original digest.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/site-v1-20261002-v6-research-interactive.html.gz": {
+      "kind": "file",
+      "purpose": "Lossless original historical v6/v7 preview; old-path locator retains decode instruction and exact original digest.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/site-v1-20261002-v7-talks-night.html.gz": {
+      "kind": "file",
+      "purpose": "Lossless original historical v6/v7 preview; old-path locator retains decode instruction and exact original digest.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/site-v1-20261002-v7-talks-day.html.gz": {
+      "kind": "file",
+      "purpose": "Lossless original historical v6/v7 preview; old-path locator retains decode instruction and exact original digest.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/site-v1-20261002-v6-research-night.html.gz": {
+      "kind": "file",
+      "purpose": "Lossless original historical v6/v7 preview; old-path locator retains decode instruction and exact original digest.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "docs/articles": {
+      "kind": "directory",
+      "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7": {
+      "kind": "directory",
+      "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a": {
+      "kind": "directory",
+      "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551": {
+      "kind": "directory",
+      "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58": {
+      "kind": "directory",
+      "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/afa8065a11e322fbafaade70a33a7cfb062acb86e416bc5b00a9f731bf7b71cb": {
+      "kind": "directory",
+      "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/articles/the-sdlc-is-out-of-balance.html": {
+      "kind": "file",
+      "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/1fc6211884e010f7ae239f68a610a8ed6984e39623fabf927ddf4dc3ed02218f": {
+      "kind": "directory",
+      "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7/delivery-capacity-r6.webp": {
+      "kind": "file",
+      "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a/review-learning-r7.webp": {
+      "kind": "file",
+      "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551/comprehension-gap-r7.webp": {
+      "kind": "file",
+      "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58/reading-r11.pdf": {
+      "kind": "file",
+      "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry-r9.webp": {
+      "kind": "file",
+      "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/afa8065a11e322fbafaade70a33a7cfb062acb86e416bc5b00a9f731bf7b71cb/the-sdlc-is-out-of-balance.html": {
+      "kind": "file",
+      "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/1fc6211884e010f7ae239f68a610a8ed6984e39623fabf927ddf4dc3ed02218f/writing.html": {
+      "kind": "file",
+      "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "review/issue-169/r11-stable-staging-evidence.tar.xz": {
+      "kind": "file",
+      "purpose": "Literal R11 accepted-state preflight, source/history byte proof, independent reviews and current checks; final native observations remain separately source-bound.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     }

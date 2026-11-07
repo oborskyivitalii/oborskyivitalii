@@ -40,3 +40,7 @@ Issue169 comment6680160918, same PR170 and original AC IDs. AC04/09: derive stab
 ## 7 November — R11 Draft preview scope
 
 Committed manuscript9fe9b70 supersedes R10 only as the current author-review source. Current owning editorial gate remains pending exact regenerated R11 reader/PDF acceptance. Existing explicit Draft preview may show R11 before that decision; review status/null PDF approval and original wholeACs remain. Restore the intended2026/delivery/Article catalog row only after exact author acceptance. Existing full source/staging/site-first gates remain; this preview is no wholeAC or release pass. See2026-11-07-r11-preview.md for source/profile-bound/integration/check allocation. No new test suite or browser matrix; use existing publisher/profile/materials/preview tests and bounded native desktop/mobile/no-JS observations.
+
+## 7 November — accepted R11 stable continuation
+
+Author decision issue169 comment6705211415 supersedes the preceding pending-approval state for exact displayed R11 source/PDF at56f4bf90. Restore publication30's2026/delivery/Article/Author site placement and computed reviewed PDF binding without changing article/semantic/PDF/image bytes. Actual full Ready/source/RI/owning/scanner/host/browser/performance/final-stage/promotion and served reader/PDF observations remain required. Stop at verified stable staging; no PR170 merge/production. Current audit/source/review/result allocation:2026-11-07-r11-stable-staging.md. Historical preview/failures and original wholeAC gates remain.

@@ -48,14 +48,20 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292](docs/article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16](docs/article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3](docs/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
+| [docs/article-media/568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58](docs/article-media/568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58) | Generated current article/material/route closure; regenerate from canonical site owners. | generated | [site/README.md](site/README.md) |
 | [docs/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c](docs/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-media/79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6](docs/article-media/79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f](docs/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1](docs/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
+| [docs/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a](docs/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a) | Generated current article/material/route closure; regenerate from canonical site owners. | generated | [site/README.md](site/README.md) |
+| [docs/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551](docs/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551) | Generated current article/material/route closure; regenerate from canonical site owners. | generated | [site/README.md](site/README.md) |
+| [docs/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7](docs/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7) | Generated current article/material/route closure; regenerate from canonical site owners. | generated | [site/README.md](site/README.md) |
 | [docs/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f](docs/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f) | Generated native article, immutable media or snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-snapshots](docs/article-snapshots) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684](docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684) | Current immutable generated room/article snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
+| [docs/article-snapshots/afa8065a11e322fbafaade70a33a7cfb062acb86e416bc5b00a9f731bf7b71cb](docs/article-snapshots/afa8065a11e322fbafaade70a33a7cfb062acb86e416bc5b00a9f731bf7b71cb) | Generated current article/material/route closure; regenerate from canonical site owners. | generated | [site/README.md](site/README.md) |
 | [docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003](docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003) | Exact current native raw article rendition and existing immutable closure; no prior-publication claim. | generated | [site/README.md](site/README.md) |
+| [docs/articles](docs/articles) | Generated current article/material/route closure; regenerate from canonical site owners. | generated | [site/README.md](site/README.md) |
 | [docs/assets](docs/assets) | Generated legacy-compatible aliases for authored portrait/icon assets. | generated | [site/README.md](site/README.md) |
 | [docs/media](docs/media) | Generated content-addressed asset editions. | generated | [site/README.md](site/README.md) |
 | [docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc](docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc) | Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
@@ -69,10 +75,10 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/snapshots](docs/snapshots) | Generated exact-route HTML snapshots. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2](docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2) | Generated public rendition; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/0c50d9693cc2743d611ecf9d1a2274c5687f5d0c4f363d9d3108775c521c161c](docs/snapshots/0c50d9693cc2743d611ecf9d1a2274c5687f5d0c4f363d9d3108775c521c161c) | Generated R10 Writing archive classification and dependent immutable route closure. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/1fc6211884e010f7ae239f68a610a8ed6984e39623fabf927ddf4dc3ed02218f](docs/snapshots/1fc6211884e010f7ae239f68a610a8ed6984e39623fabf927ddf4dc3ed02218f) | Generated current article/material/route closure; regenerate from canonical site owners. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e](docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e) | Verified prior production immutable snapshot retained with its exact published bytes. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/2ad4040444469ec0a6704c947b68d0f7430a0b7bbf5e9ef1f994e366060fe89f](docs/snapshots/2ad4040444469ec0a6704c947b68d0f7430a0b7bbf5e9ef1f994e366060fe89f) | Generated completed DevCon Talks rendition and immutable route closure. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/39441f2d37cdfc6b3935d76c2f897f92be741f851569e2ff46558e90b4180612](docs/snapshots/39441f2d37cdfc6b3935d76c2f897f92be741f851569e2ff46558e90b4180612) | Generated R10 Writing archive classification and dependent immutable route closure. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/499e5b70f26ab25766c33a89bf3ee2fbb46dd6894fae461978a7df0d30579671](docs/snapshots/499e5b70f26ab25766c33a89bf3ee2fbb46dd6894fae461978a7df0d30579671) | Generated public output/snapshot from canonical site owners; regenerate instead of editing. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347](docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/632f4f29ebdbc51215b02592fd45a1f10a99fb8596d2dec8b3f18bc8be847f06](docs/snapshots/632f4f29ebdbc51215b02592fd45a1f10a99fb8596d2dec8b3f18bc8be847f06) | Verified prior production immutable snapshot retained with its exact published bytes. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed](docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed) | Generated public rendition; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
@@ -444,6 +450,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [docs/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3/imbalance-loop.webp](docs/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3/imbalance-loop.webp) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 
+## docs/article-media/568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/article-media/568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58/reading-r11.pdf](docs/article-media/568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58/reading-r11.pdf) | Generated current article/material/route closure; regenerate from canonical site owners. | generated | [site/README.md](site/README.md) |
+
 ## docs/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c/
 
 | Path | Purpose | Role | Owner / editing route |
@@ -460,6 +472,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
+| [docs/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry-r9.webp](docs/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry-r9.webp) | Generated current article/material/route closure; regenerate from canonical site owners. | generated | [site/README.md](site/README.md) |
 | [docs/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry.webp](docs/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry.webp) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 
 ## docs/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1/
@@ -467,6 +480,24 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [docs/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1/workstream-system.webp](docs/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1/workstream-system.webp) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
+
+## docs/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a/review-learning-r7.webp](docs/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a/review-learning-r7.webp) | Generated current article/material/route closure; regenerate from canonical site owners. | generated | [site/README.md](site/README.md) |
+
+## docs/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551/comprehension-gap-r7.webp](docs/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551/comprehension-gap-r7.webp) | Generated current article/material/route closure; regenerate from canonical site owners. | generated | [site/README.md](site/README.md) |
+
+## docs/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7/delivery-capacity-r6.webp](docs/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7/delivery-capacity-r6.webp) | Generated current article/material/route closure; regenerate from canonical site owners. | generated | [site/README.md](site/README.md) |
 
 ## docs/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f/
 
@@ -480,11 +511,23 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684/the-sdlc-is-out-of-balance.html](docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684/the-sdlc-is-out-of-balance.html) | Current immutable generated room/article snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
 
+## docs/article-snapshots/afa8065a11e322fbafaade70a33a7cfb062acb86e416bc5b00a9f731bf7b71cb/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/article-snapshots/afa8065a11e322fbafaade70a33a7cfb062acb86e416bc5b00a9f731bf7b71cb/the-sdlc-is-out-of-balance.html](docs/article-snapshots/afa8065a11e322fbafaade70a33a7cfb062acb86e416bc5b00a9f731bf7b71cb/the-sdlc-is-out-of-balance.html) | Generated current article/material/route closure; regenerate from canonical site owners. | generated | [site/README.md](site/README.md) |
+
 ## docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/the-sdlc-is-out-of-balance.html](docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/the-sdlc-is-out-of-balance.html) | Exact current native raw article rendition and existing immutable closure; no prior-publication claim. | generated | [site/README.md](site/README.md) |
+
+## docs/articles/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/articles/the-sdlc-is-out-of-balance.html](docs/articles/the-sdlc-is-out-of-balance.html) | Generated current article/material/route closure; regenerate from canonical site owners. | generated | [site/README.md](site/README.md) |
 
 ## docs/assets/
 
@@ -572,6 +615,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [docs/snapshots/0c50d9693cc2743d611ecf9d1a2274c5687f5d0c4f363d9d3108775c521c161c/research.html](docs/snapshots/0c50d9693cc2743d611ecf9d1a2274c5687f5d0c4f363d9d3108775c521c161c/research.html) | Generated R10 Writing archive classification and dependent immutable route closure. | generated | [site/README.md](site/README.md) |
 
+## docs/snapshots/1fc6211884e010f7ae239f68a610a8ed6984e39623fabf927ddf4dc3ed02218f/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/1fc6211884e010f7ae239f68a610a8ed6984e39623fabf927ddf4dc3ed02218f/writing.html](docs/snapshots/1fc6211884e010f7ae239f68a610a8ed6984e39623fabf927ddf4dc3ed02218f/writing.html) | Generated current article/material/route closure; regenerate from canonical site owners. | generated | [site/README.md](site/README.md) |
+
 ## docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e/
 
 | Path | Purpose | Role | Owner / editing route |
@@ -589,12 +638,6 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [docs/snapshots/39441f2d37cdfc6b3935d76c2f897f92be741f851569e2ff46558e90b4180612/credits.html](docs/snapshots/39441f2d37cdfc6b3935d76c2f897f92be741f851569e2ff46558e90b4180612/credits.html) | Generated R10 Writing archive classification and dependent immutable route closure. | generated | [site/README.md](site/README.md) |
-
-## docs/snapshots/499e5b70f26ab25766c33a89bf3ee2fbb46dd6894fae461978a7df0d30579671/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/499e5b70f26ab25766c33a89bf3ee2fbb46dd6894fae461978a7df0d30579671/writing.html](docs/snapshots/499e5b70f26ab25766c33a89bf3ee2fbb46dd6894fae461978a7df0d30579671/writing.html) | Generated public output/snapshot from canonical site owners; regenerate instead of editing. | generated | [site/README.md](site/README.md) |
 
 ## docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/
 
@@ -789,14 +832,19 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/site-v1-20261002-v6-interactive.html](review/site-v1-20261002-v6-interactive.html) | Historical reference/preview HTML: site-v1-20261002-v6-interactive.html. Dated site v1 20261002 v6 interactive.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261002-v6-night.html](review/site-v1-20261002-v6-night.html) | Historical reference/preview HTML: site-v1-20261002-v6-night.html. Dated site v1 20261002 v6 night.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261002-v6-research-day.html](review/site-v1-20261002-v6-research-day.html) | Historical reference/preview HTML: site-v1-20261002-v6-research-day.html. Dated site v1 20261002 v6 research day.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
-| [review/site-v1-20261002-v6-research-interactive.html](review/site-v1-20261002-v6-research-interactive.html) | Historical reference/preview HTML: site-v1-20261002-v6-research-interactive.html. Dated site v1 20261002 v6 research interactive.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
-| [review/site-v1-20261002-v6-research-night.html](review/site-v1-20261002-v6-research-night.html) | Historical reference/preview HTML: site-v1-20261002-v6-research-night.html. Dated site v1 20261002 v6 research night.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/site-v1-20261002-v6-research-interactive.html](review/site-v1-20261002-v6-research-interactive.html) | Old-path locator for exact gzip-retained historical v6/v7 preview; no maintained current producer dependency. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/site-v1-20261002-v6-research-interactive.html.gz](review/site-v1-20261002-v6-research-interactive.html.gz) | Lossless original historical v6/v7 preview; old-path locator retains decode instruction and exact original digest. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/site-v1-20261002-v6-research-night.html](review/site-v1-20261002-v6-research-night.html) | Old-path locator for exact gzip-retained historical v6/v7 preview; no maintained current producer dependency. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/site-v1-20261002-v6-research-night.html.gz](review/site-v1-20261002-v6-research-night.html.gz) | Lossless original historical v6/v7 preview; old-path locator retains decode instruction and exact original digest. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261002-v6-talks-day.html](review/site-v1-20261002-v6-talks-day.html) | Historical reference/preview HTML: site-v1-20261002-v6-talks-day.html. Dated site v1 20261002 v6 talks day.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261002-v6-talks-interactive.html](review/site-v1-20261002-v6-talks-interactive.html) | Historical reference/preview HTML: site-v1-20261002-v6-talks-interactive.html. Dated site v1 20261002 v6 talks interactive.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261002-v6-talks-night.html](review/site-v1-20261002-v6-talks-night.html) | Historical reference/preview HTML: site-v1-20261002-v6-talks-night.html. Dated site v1 20261002 v6 talks night.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
-| [review/site-v1-20261002-v6-writing-day.html](review/site-v1-20261002-v6-writing-day.html) | Historical reference/preview HTML: site-v1-20261002-v6-writing-day.html. Dated site v1 20261002 v6 writing day.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
-| [review/site-v1-20261002-v6-writing-interactive.html](review/site-v1-20261002-v6-writing-interactive.html) | Historical reference/preview HTML: site-v1-20261002-v6-writing-interactive.html. Dated site v1 20261002 v6 writing interactive.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
-| [review/site-v1-20261002-v6-writing-night.html](review/site-v1-20261002-v6-writing-night.html) | Historical reference/preview HTML: site-v1-20261002-v6-writing-night.html. Dated site v1 20261002 v6 writing night.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/site-v1-20261002-v6-writing-day.html](review/site-v1-20261002-v6-writing-day.html) | Old-path locator for exact gzip-retained historical v6/v7 preview; no maintained current producer dependency. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/site-v1-20261002-v6-writing-day.html.gz](review/site-v1-20261002-v6-writing-day.html.gz) | Lossless original historical v6/v7 preview; old-path locator retains decode instruction and exact original digest. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/site-v1-20261002-v6-writing-interactive.html](review/site-v1-20261002-v6-writing-interactive.html) | Old-path locator for exact gzip-retained historical v6/v7 preview; no maintained current producer dependency. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/site-v1-20261002-v6-writing-interactive.html.gz](review/site-v1-20261002-v6-writing-interactive.html.gz) | Lossless original historical v6/v7 preview; old-path locator retains decode instruction and exact original digest. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/site-v1-20261002-v6-writing-night.html](review/site-v1-20261002-v6-writing-night.html) | Old-path locator for exact gzip-retained historical v6/v7 preview; no maintained current producer dependency. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/site-v1-20261002-v6-writing-night.html.gz](review/site-v1-20261002-v6-writing-night.html.gz) | Lossless original historical v6/v7 preview; old-path locator retains decode instruction and exact original digest. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261002-v6.zip](review/site-v1-20261002-v6.zip) | Historical offline bundle: site-v1-20261002-v6.zip. Dated site v1 20261002 v6.zip iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261002-v7-credits-day.html](review/site-v1-20261002-v7-credits-day.html) | Historical reference/preview HTML: site-v1-20261002-v7-credits-day.html. Dated site v1 20261002 v7 credits day.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261002-v7-credits-interactive.html](review/site-v1-20261002-v7-credits-interactive.html) | Historical reference/preview HTML: site-v1-20261002-v7-credits-interactive.html. Dated site v1 20261002 v7 credits interactive.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -804,16 +852,21 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/site-v1-20261002-v7-day.html](review/site-v1-20261002-v7-day.html) | Historical reference/preview HTML: site-v1-20261002-v7-day.html. Dated site v1 20261002 v7 day.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261002-v7-index.html](review/site-v1-20261002-v7-index.html) | Historical reference/preview HTML: site-v1-20261002-v7-index.html. Dated site v1 20261002 v7 index.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261002-v7-index.html.gz](review/site-v1-20261002-v7-index.html.gz) | Losslessly retained historical preview; original-path locator and original decoded byte identity preserved. | history | [AGENTS.md](AGENTS.md) |
-| [review/site-v1-20261002-v7-interactive.html](review/site-v1-20261002-v7-interactive.html) | Historical reference/preview HTML: site-v1-20261002-v7-interactive.html. Dated site v1 20261002 v7 interactive.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/site-v1-20261002-v7-interactive.html](review/site-v1-20261002-v7-interactive.html) | Old-path locator for exact gzip-retained historical v6/v7 preview; no maintained current producer dependency. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/site-v1-20261002-v7-interactive.html.gz](review/site-v1-20261002-v7-interactive.html.gz) | Lossless original historical v6/v7 preview; old-path locator retains decode instruction and exact original digest. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261002-v7-night.html](review/site-v1-20261002-v7-night.html) | Historical reference/preview HTML: site-v1-20261002-v7-night.html. Dated site v1 20261002 v7 night.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261002-v7-research-day.html](review/site-v1-20261002-v7-research-day.html) | Original-path locator to byte-exact historical v7 Research day preview in sibling gzip. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261002-v7-research-day.html.gz](review/site-v1-20261002-v7-research-day.html.gz) | Byte-exact gzip-retained historical v7 Research day preview; original locator retains decode and digest. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261002-v7-research-interactive.html](review/site-v1-20261002-v7-research-interactive.html) | Original-path locator to exact gzip-retained historical v7 Research preview; decode to inspect original bytes. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261002-v7-research-interactive.html.gz](review/site-v1-20261002-v7-research-interactive.html.gz) | Lossless exact historical v7 Research preview; original path retains its decode command and SHA256 locator. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
-| [review/site-v1-20261002-v7-research-night.html](review/site-v1-20261002-v7-research-night.html) | Historical reference/preview HTML: site-v1-20261002-v7-research-night.html. Dated site v1 20261002 v7 research night.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
-| [review/site-v1-20261002-v7-talks-day.html](review/site-v1-20261002-v7-talks-day.html) | Historical reference/preview HTML: site-v1-20261002-v7-talks-day.html. Dated site v1 20261002 v7 talks day.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
-| [review/site-v1-20261002-v7-talks-interactive.html](review/site-v1-20261002-v7-talks-interactive.html) | Historical reference/preview HTML: site-v1-20261002-v7-talks-interactive.html. Dated site v1 20261002 v7 talks interactive.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
-| [review/site-v1-20261002-v7-talks-night.html](review/site-v1-20261002-v7-talks-night.html) | Historical reference/preview HTML: site-v1-20261002-v7-talks-night.html. Dated site v1 20261002 v7 talks night.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/site-v1-20261002-v7-research-night.html](review/site-v1-20261002-v7-research-night.html) | Old-path locator for exact gzip-retained historical v6/v7 preview; no maintained current producer dependency. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/site-v1-20261002-v7-research-night.html.gz](review/site-v1-20261002-v7-research-night.html.gz) | Lossless original historical v6/v7 preview; old-path locator retains decode instruction and exact original digest. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/site-v1-20261002-v7-talks-day.html](review/site-v1-20261002-v7-talks-day.html) | Old-path locator for exact gzip-retained historical v6/v7 preview; no maintained current producer dependency. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/site-v1-20261002-v7-talks-day.html.gz](review/site-v1-20261002-v7-talks-day.html.gz) | Lossless original historical v6/v7 preview; old-path locator retains decode instruction and exact original digest. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/site-v1-20261002-v7-talks-interactive.html](review/site-v1-20261002-v7-talks-interactive.html) | Old-path locator for exact gzip-retained historical v6/v7 preview; no maintained current producer dependency. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/site-v1-20261002-v7-talks-interactive.html.gz](review/site-v1-20261002-v7-talks-interactive.html.gz) | Lossless original historical v6/v7 preview; old-path locator retains decode instruction and exact original digest. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/site-v1-20261002-v7-talks-night.html](review/site-v1-20261002-v7-talks-night.html) | Old-path locator for exact gzip-retained historical v6/v7 preview; no maintained current producer dependency. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/site-v1-20261002-v7-talks-night.html.gz](review/site-v1-20261002-v7-talks-night.html.gz) | Lossless original historical v6/v7 preview; old-path locator retains decode instruction and exact original digest. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261002-v7-writing-day.html](review/site-v1-20261002-v7-writing-day.html) | Historical reference/preview HTML: site-v1-20261002-v7-writing-day.html. Dated site v1 20261002 v7 writing day.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261002-v7-writing-interactive.html](review/site-v1-20261002-v7-writing-interactive.html) | Historical reference/preview HTML: site-v1-20261002-v7-writing-interactive.html. Dated site v1 20261002 v7 writing interactive.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261002-v7-writing-night.html](review/site-v1-20261002-v7-writing-night.html) | Historical reference/preview HTML: site-v1-20261002-v7-writing-night.html. Dated site v1 20261002 v7 writing night.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -1199,6 +1252,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-169/2026-11-07-browser-media-controller.md](review/issue-169/2026-11-07-browser-media-controller.md) | Issue169 exact-source missing browser media dependency diagnosis, all-platform controller correction, independent review and acceptance route. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/2026-11-07-media-controller-integration.md](review/issue-169/2026-11-07-media-controller-integration.md) | Issue169 proposed media controller integration into unchanged R10, lossless history storage, independent checks and diagnostic-only staging boundary. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/2026-11-07-r11-preview.md](review/issue-169/2026-11-07-r11-preview.md) | Issue169 R11 Draft-preview source, pending editorial state, integration decisions and exact review/check/delivery evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/2026-11-07-r11-stable-staging.md](review/issue-169/2026-11-07-r11-stable-staging.md) | Issue169 exact R11 author acceptance, native catalog/PDF restoration, current full-route audit/review/check/stable delivery evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/2026-11-07-source-timeouts.md](review/issue-169/2026-11-07-source-timeouts.md) | Author-approved source and enclosing CI timeout amendment, preserved failure diagnosis, review and exact-source acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/2026-11-07-technical-route.md](review/issue-169/2026-11-07-technical-route.md) | Technical repository route scope, stable TR01–TR08 checks, independent review and source-bound delivery evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/browser-media-reviews-and-checks.tar.xz](review/issue-169/browser-media-reviews-and-checks.tar.xz) | Literal source-bound issue169 browser-media preflight and four-role first/correction reviews, original failures and corrected local checks. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -1214,6 +1268,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-169/notice-preflight-proof.json.gz](review/issue-169/notice-preflight-proof.json.gz) | Exact correction packets, raw evidence identity, measured subprocess counts and reviewer receipts. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/r11-preview-evidence.tar.xz](review/issue-169/r11-preview-evidence.tar.xz) | R11 integrated Draft-preview manifest, literal independent role receipts, checks and both-parent integration evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/r11-review-kit-and-evidence.tar.xz](review/issue-169/r11-review-kit-and-evidence.tar.xz) | Exact R11 native distribution kit/PDF, original failed layout/oracle observations and literal prior independent reviews/launch receipts. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/r11-stable-staging-evidence.tar.xz](review/issue-169/r11-stable-staging-evidence.tar.xz) | Literal R11 accepted-state preflight, source/history byte proof, independent reviews and current checks; final native observations remain separately source-bound. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/source-timeout-reviews-and-checks.tar.xz](review/issue-169/source-timeout-reviews-and-checks.tar.xz) | Literal independent timeout reviews, source manifests and actual check streams; original failures retained separately. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/stage-security-proof.json.gz](review/issue-169/stage-security-proof.json.gz) | Exact per-finding source and native producer proof for the retained nine staging secret-scanner candidates. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/staging-production-test-audit-proof.tar.xz](review/issue-169/staging-production-test-audit-proof.tar.xz) | Source-bound staging/production test audit evidence and exact lossless human-review retention; no deployment authority. | history | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |

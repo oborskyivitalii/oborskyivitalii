@@ -99,7 +99,7 @@
   "gates": {
     "EDITORIAL": {
       "kind": "human",
-      "description": "Historical R10 author acceptance is retained. Current R11 source9fe9b70 and regenerated reader/PDF/platform kit require exact author editorial/visual acceptance before Ready/stable staging. Draft preview preparation is authorized; it is not acceptance. Platform-native transfer/posting remains author-manual after verified website publication; no repeated prior R10 permission is required."
+      "description": "Exact displayed R11 reader/PDF at56f4bf90 accepted by the author on7November2026, recorded in issue169 comment6705211415; accepted native catalog/material restoration and normal full stable staging are authorized. Preserve source/PDF/figures and historical R10. Platform-native transfer/posting remains author-manual after verified website production; acceptance is not a waiver of source/hosted/stable gates or PR170 merge/production permission."
     },
     "EVIDENCE": {
       "kind": "human",
