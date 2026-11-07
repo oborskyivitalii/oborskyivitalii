@@ -394,7 +394,11 @@ jobs and promotes only their matching `staging-gate`, whose `fullGate` and
 `productionEligible` remain false. The operational end-to-end CI target is at
 most 15 minutes; measure the actual total and report queue/setup/execution
 separately. Exceeding that target alone is optimization feedback when every
-mandatory test and site budget passes; all hard timeouts remain unchanged.
+mandatory test and site budget passes. The7November issue169 owner amendment
+raises only the shared source-test allowance from5to10minutes and its enclosing
+PR-source, staging-build and reusable release-build jobs from10to20minutes.
+The30-second source-reporting grace, scanner limits and all site/browser/performance
+budgets remain unchanged.
 
 For an optional full candidate diagnostic, `validation_level: production`
 and `full: true` select the complete regression; production is the reusable

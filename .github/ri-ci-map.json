@@ -715,7 +715,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "4735828bb9f4c92075985e8a83068278aa6be147f7860bc1285e69ec7993a518",
+    "digest": "9dfb485c1d1724a9ad1645e2b342ec4501a595acf110b4244af75607e39da9a4",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -863,7 +863,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "f7ca400e089a065eb32c5a3cb93e201ae9da7deddcfb0415e21e1fb7ad53d5c4"
+        "sha256": "2ad3399d662306806f8d5b51418aabdccf2565f4bb6c13795b8271ae08e97f4d"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -907,11 +907,11 @@
       },
       {
         "path": ".github/workflows/site-checks.yml",
-        "sha256": "6ec06f40b53f23631a282adbcd38d42e6637b74e244851adb95dbfdebb523dcd"
+        "sha256": "9e5167051fe15c71224ff51ae8e453caf078538ab6d9666541f0e794c62fdbff"
       },
       {
         "path": ".github/workflows/site-color-review.yml",
-        "sha256": "d184fb3e54d5c3a42901f10597313e4cd4da0f5d3d51cb0f7ba3ab30a9f4dbe2"
+        "sha256": "fc5861456ad5240f1179a68c127593265bc883bac0adebb65cc016d9bcdd76bc"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -939,7 +939,7 @@
       },
       {
         "path": ".github/workflows/site-release-checks.yml",
-        "sha256": "0f35df2fde69e851e05518db0dc46d70fb91216a7ba9cdddcabe35b1e9675d4d"
+        "sha256": "f05ce4a8fbc8bb93f540726d35b9acba344ec0dcb5a3c1b8dcb2ae58014a077d"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -995,7 +995,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "8aaec290895f365599e9d5f8cdc2b513a1334c2aae572cd3da8fc55f6ae3699e"
+        "sha256": "e60dd82f5d3090398a51be5b3181fa3d81737947f8a73e5e4867755d88cf8aee"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -1019,7 +1019,7 @@
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
-        "sha256": "08e0ac9bce886f3d58923d43f8c1563144e17b8cd02f96bca16b12fa08fed1af"
+        "sha256": "ac74d0142245f53264924557febfbaf8d8c7698e35eeac4c2469e5211b7cead5"
       },
       {
         "path": "tests/test_code_style.py",
@@ -1143,7 +1143,7 @@
       },
       {
         "path": "tools/quality/source-tests.cjs",
-        "sha256": "792aec87f4abb3aec8c97b4a8d33cd958a643b8f6c77aaac4c5683d45aaf5086"
+        "sha256": "d9a870982b7ec3698696ce2192c0cfc25ae156785f9ab7cfaa3507c0fd2338cf"
       },
       {
         "path": "tools/quality/staging-gate.cjs",

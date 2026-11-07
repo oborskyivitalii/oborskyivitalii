@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "cf91c9a4f32ee962b5c88e851f4e12e019f5f2bd5186d236e3f3babda8b62da0",
+    "digest": "e3e996544944743f7cb5b6763733c7fb40c69c49b50620ebbd3750ee9b66b54c",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -221,12 +221,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "f7ca400e089a065eb32c5a3cb93e201ae9da7deddcfb0415e21e1fb7ad53d5c4"
+        "sha256": "2ad3399d662306806f8d5b51418aabdccf2565f4bb6c13795b8271ae08e97f4d"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "561c9c81b750c9e8e535421ba02d04ad178ba36b44005553b06784f87bc83075"
+        "sha256": "acb6c98859e1230b4ee5e4a8aaf7e022ac598d99d893f3d5da9d4989fad985ba"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -281,12 +281,12 @@
       {
         "path": ".github/workflows/site-checks.yml",
         "identity_mode": "content",
-        "sha256": "6ec06f40b53f23631a282adbcd38d42e6637b74e244851adb95dbfdebb523dcd"
+        "sha256": "9e5167051fe15c71224ff51ae8e453caf078538ab6d9666541f0e794c62fdbff"
       },
       {
         "path": ".github/workflows/site-color-review.yml",
         "identity_mode": "content",
-        "sha256": "d184fb3e54d5c3a42901f10597313e4cd4da0f5d3d51cb0f7ba3ab30a9f4dbe2"
+        "sha256": "fc5861456ad5240f1179a68c127593265bc883bac0adebb65cc016d9bcdd76bc"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -321,7 +321,7 @@
       {
         "path": ".github/workflows/site-release-checks.yml",
         "identity_mode": "content",
-        "sha256": "0f35df2fde69e851e05518db0dc46d70fb91216a7ba9cdddcabe35b1e9675d4d"
+        "sha256": "f05ce4a8fbc8bb93f540726d35b9acba344ec0dcb5a3c1b8dcb2ae58014a077d"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -376,7 +376,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "fa4dcfba7d68e737f3224ac75d2563c9aff2a075f70291dea919822395bcf47e"
+        "sha256": "3d072be0b0445c7b982938171fadf2c4dcf069fd367758038b3bd46581e247df"
       },
       {
         "path": "NOTICE.md",
@@ -760,7 +760,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "8aaec290895f365599e9d5f8cdc2b513a1334c2aae572cd3da8fc55f6ae3699e"
+        "sha256": "e60dd82f5d3090398a51be5b3181fa3d81737947f8a73e5e4867755d88cf8aee"
       },
       {
         "path": "guides/SITE-CONTENT-RELEASE.md",
@@ -810,7 +810,7 @@
       {
         "path": "guides/SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "44c37986027125585e54787337da6debdd014b0b5b70c87518f92ed74d62f63a"
+        "sha256": "3d03824d99b3387cd0561486d0ef65f03283cfa1ae3b761f84fd9ebb1a896758"
       },
       {
         "path": "guides/WEB-ORCHESTRATION.md",
@@ -1243,9 +1243,19 @@
         "sha256": "8c910101633ab61c292f89189a4f7ee12dca8abb3ceec8951f0de5062f7a52d3"
       },
       {
+        "path": "review/issue-169/2026-11-07-source-timeouts.md",
+        "identity_mode": "content",
+        "sha256": "06dd1172e601c3a8d6920dd322becc7e8ac9e23ed458cfa28bf30dbacece50fd"
+      },
+      {
         "path": "review/issue-169/browser-media-reviews-and-checks.tar.xz",
         "identity_mode": "content",
         "sha256": "75d4eef6fed35353f940cb98ac8c218c70a6c53dfbbbfd716bcbc71eddd2d189"
+      },
+      {
+        "path": "review/issue-169/source-timeout-reviews-and-checks.tar.xz",
+        "identity_mode": "content",
+        "sha256": "70d59e791d4739d5b26efd94d2b570d904187d9838c769a17b3c4c34b16d9b54"
       },
       {
         "path": "review/issue-169/trusted-controller-native-format-failure.log.gz",
@@ -7695,7 +7705,7 @@
       {
         "path": "tests/prepublication-reuse.test.cjs",
         "identity_mode": "content",
-        "sha256": "c0c3f9ca58ef38963b35d3c66087d3453dc17d454967fabea802e166f08b6842"
+        "sha256": "4373bf79fbe598cf757c0c0acacfbee33f0471c541cc2b91fb66de3290cee2df"
       },
       {
         "path": "tests/preview-smoke.test.cjs",
@@ -7715,7 +7725,7 @@
       {
         "path": "tests/publication-records.test.cjs",
         "identity_mode": "content",
-        "sha256": "c8ec850da9ecd6c735a9c5b911f36a2e2a938702bbf7ecd3c610a10758cc7beb"
+        "sha256": "2b01019eceb40b56e5133a97c509977833aed8a7b0f835b6d4e05c54a7172105"
       },
       {
         "path": "tests/publishing-history.test.cjs",
@@ -7860,7 +7870,7 @@
       {
         "path": "tests/test-profile-selection.test.cjs",
         "identity_mode": "content",
-        "sha256": "08e0ac9bce886f3d58923d43f8c1563144e17b8cd02f96bca16b12fa08fed1af"
+        "sha256": "ac74d0142245f53264924557febfbaf8d8c7698e35eeac4c2469e5211b7cead5"
       },
       {
         "path": "tests/test_browser_archives.py",
@@ -8275,7 +8285,7 @@
       {
         "path": "tools/quality/README.md",
         "identity_mode": "content",
-        "sha256": "3dd4d6200763e9dd5a9c7850ec57a64c2e3c4edac822d4392de20aff2c3d3d6d"
+        "sha256": "104105ed0384a7a1846e355bf1ee1991fac146383d8c052667507eb206e90da9"
       },
       {
         "path": "tools/quality/advisory-exceptions.json",
@@ -8730,7 +8740,7 @@
       {
         "path": "tools/quality/source-tests.cjs",
         "identity_mode": "content",
-        "sha256": "792aec87f4abb3aec8c97b4a8d33cd958a643b8f6c77aaac4c5683d45aaf5086"
+        "sha256": "d9a870982b7ec3698696ce2192c0cfc25ae156785f9ab7cfaa3507c0fd2338cf"
       },
       {
         "path": "tools/quality/staging-gate.cjs",
@@ -12242,6 +12252,17 @@
       "title": "Issue169 — browser fixture media controller"
     },
     {
+      "path": "review/issue-169/2026-11-07-source-timeouts.md",
+      "kind": "file",
+      "purpose": "Author-approved source and enclosing CI timeout amendment, preserved failure diagnosis, review and exact-source acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue169 — approved source execution allowances"
+    },
+    {
       "path": "review/issue-169/browser-media-reviews-and-checks.tar.xz",
       "kind": "file",
       "purpose": "Literal source-bound issue169 browser-media preflight and four-role first/correction reviews, original failures and corrected local checks.",
@@ -12251,6 +12272,17 @@
         "AGENTS.md"
       ],
       "title": "browser-media-reviews-and-checks.tar.xz"
+    },
+    {
+      "path": "review/issue-169/source-timeout-reviews-and-checks.tar.xz",
+      "kind": "file",
+      "purpose": "Literal independent timeout reviews, source manifests and actual check streams; original failures retained separately.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "source-timeout-reviews-and-checks.tar.xz"
     },
     {
       "path": "review/issue-169/trusted-controller-native-format-failure.log.gz",

@@ -16,7 +16,7 @@ jobs:
     name: ${{ github.event_name == 'pull_request' && github.event.pull_request.draft && 'Prototype source admission deferred' || 'checks' }}
     if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 20
     outputs:
       artifact_id: ${{ steps.public.outputs.artifact-id }}
       artifact_upload_digest: ${{ steps.public.outputs.artifact-digest }}

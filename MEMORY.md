@@ -4,52 +4,50 @@ Dated continuity, not live authority. Last verified: **2026-11-07**.
 
 ## Snapshot
 
-- Owner169; publication Draft PR170 at ec35807bec4a233cf7e80eb39f455c1f6b19434a.
-- Protected main312fbe4347eda332aa8ade885b07c98beadd6da5 includes merged PR173.
-- Native source timeout fixed on publication: all26prepublication guards pass;
-  staging source1222/1222 in233.226s plus28Basic. Performance/HTTP/static pass.
-- Owner staging42314101070/1 failed functional preparation: browser job lacks
-  Pillow; zeroanalytics/no article evidence. Stable alias not promoted.
-- Controller correction based on312fbe4 is preparing on
-  work/issue-169-browser-media-controller; inspect live owner/PR for final head.
+- Owning issue169, publication Draft PR170 at1e770f3fb74e84ffa2c95bcf42a3a55530203b5d.
+- Protected main312fbe4347eda332aa8ade885b07c98beadd6da5; PR173 merged.
+- Controller PR174 original head550c7f242b88870796f3920332e620ff4e4ca795.
+  Native Basic/navigation/owning and full owner staging42321367651 passed.
+- This continuation prepares the author-approved timeout amendment on PR174.
+  Revalidate final remote refs/checks before integration or staging.
 
 ## Decisions
 
-- User endpoint remains verified stable R10 staging then STOP/show.
-  No PR170 merge or production activation; preserve accepted R10/site/docs bytes.
-- All fixture-consuming browser jobs need the canonical media interpreter/pin;
-  isolated build/static tools cannot satisfy another job. No budget/gate waiver.
-- Preserve raw failed reports and primary collection errors; do not retry the
-  unchanged failed campaign. Original native archive13550403408 retains failure.
-- Prior author acceptance was PR173d06640cb. New control head needs its own
-  maintainer-reviewed_sha; no implementer or prior attestation substitutes.
+- On7November user instructed proceeding with source5to10minutes and enclosing
+  build10to20minutes, then continue to full R10 stable staging and STOP/show.
+- Scope covers shared source runner and actual PR Basic/staging/release-build
+  callers. Keep30-second reporting grace,16MiB output,4workers, all cases,
+  scanner limits and all site/browser/performance thresholds.
+- Preserve R10/site/docs/PDF/media; PR171 is unrelated and not a dependency.
+- A newly produced controller head still needs the exact reviewed_sha maintainer
+  trust decision under SITE-STAGING before protected integration.
+- No PR170 merge, production publication, issue closure or gate bypass.
 
 ## Open work
 
-- Current diagnosis/check mapping:
-  review/issue-169/2026-11-07-browser-media-controller.md.
-- Shared media setup covers staging and production Linux/Windows/macOS, binds
-  actual Python, reads the canonical Pillow pin and verifies owner codec/version.
-- Copied fixture needs canonical requirements declaration, never copied venv;
-  actual selected R10 rebuild/media/download parity passes in a fresh process.
-- Targeted corrected60/60pass, including missing-Pillow/missing-pin refusals.
-- Four roles completed first/correction reviews without blockers; clean local6833004
-  source1198/1198, Basic/style/format/architecture/RI/coupling/scanners pass.
-- Literal reviews/raw first failures/corrected checks are in browser-media archive.
-  Native final head/full controller staging and exact-head maintainer trust remain open.
-- Refresh publication after protected controller integration, run full current
-  R10 staging, verify stable alias/reader/PDF and STOP. Whole ACs stay open exceptAC06.
+- Owner diagnosis/scope/check map:
+  review/issue-169/2026-11-07-source-timeouts.md.
+- Original failed R10 diagnostic42321844610/1 hit300000ms with34/75modules
+  complete;10-minute build later cancelled during security. Raw artifact13553633597
+  and source-bound checkpoint62d27adb remain preserved.
+- Prior ec35807 native source1222/1222 completed233225.836ms, then hosted
+  functional failed missing Pillow. PR174 fixes canonical browser media setup.
+- Timeout amendment uses600000ms source, derived630000ms wrapper and20-minute
+  enclosing PR Basic/staging/reusable release-build jobs. Other limits unchanged.
+- Actual current-source independent roles/checks/native/full staging remain
+  recorded in the report; do not infer passes from this handoff.
 
 ## Next session
 
-1. Verify live main, both candidate refs/PRs, runs and source-bound report.
-2. Complete correction reviews/checks and concrete controller acceptance route.
-3. Integrate accepted controller through protections; refresh PR170 and staging.
-4. Inspect actual stable R10/PDF, report exact source/run/limits and STOP/show.
+1. Revalidate live issue169, PR174/170, main and final candidate checks.
+2. Finish exact-source review/checks/full prerequisite staging; obtain only
+   the genuinely missing exact-head controller trust decision, then protected merge.
+3. Refresh PR170 from trusted main and pass current native/full owner staging.
+4. Verify stable R10 reader/PDF and STOP/show. Keep whole ACs pending until verified.
 
 ## Maintenance
 
-- Five sections/120lines; detail/raw evidence belongs to owning169 review/PR.
-- Pin Node24.19; preserve all cases/budgets and no unchanged failed reruns.
-- Regenerate/verify RI and coupling after indexed changes; format after refresh.
-- No secrets/private execution URLs or correspondence in memory.
+- Keep this five-section handoff within120lines and rebuild RI after changes.
+- Use pinned Node24.19.0; host24.22 has a retained guard-limit fixture issue.
+- Do not retry unchanged failed campaigns. Preserve raw failures and diagnose.
+- No secrets, private execution URLs or correspondence in repository memory.
