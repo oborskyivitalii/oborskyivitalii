@@ -1,0 +1,35 @@
+name: Canonical publication media
+description: Install and bind the declared media interpreter before browser fixtures build articles.
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+      id: interpreter
+      with:
+        python-version: 3.12.14
+    - name: Install and verify the canonical Pillow and WebP toolchain
+      shell: bash
+      env:
+        SITE_MEDIA_PYTHON: ${{ steps.interpreter.outputs.python-path }}
+      run: |
+        node - <<'JS'
+        const cp = require('node:child_process');
+        const fs = require('node:fs');
+        const python = process.env.SITE_MEDIA_PYTHON;
+        const requirement = cp.execFileSync(python, [
+          'tools/publishing/web-media.py', '--requirement',
+        ], { encoding: 'utf8' }).trim();
+        cp.execFileSync(python, [
+          '-m', 'pip', 'install', '--disable-pip-version-check', '--no-deps', requirement,
+        ], { stdio: 'inherit' });
+        const verification = [
+          'import runpy, PIL',
+          'from PIL import features',
+          'owner = runpy.run_path("tools/publishing/web-media.py")',
+          'assert PIL.__version__ == owner["requirement"]().split("==")[1]',
+          'assert features.version("webp") == owner["WEBP_VERSION"]',
+          'print("Publication media:", PIL.__version__, features.version("webp"))',
+        ].join('\n');
+        cp.execFileSync(python, ['-c', verification], { stdio: 'inherit' });
+        fs.appendFileSync(process.env.GITHUB_ENV, 'SITE_MEDIA_PYTHON=' + python + '\n');
+        JS

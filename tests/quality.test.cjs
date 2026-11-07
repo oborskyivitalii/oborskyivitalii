@@ -1172,6 +1172,79 @@ test('workflow selects full Linux Chromium/Firefox and macOS WebKit while preser
     /name: Native Windows smoke matrix\n {8}if: matrix\.platform == 'win32'\n {8}run: \|\n {10}node tools\/quality\/artifact\.cjs verify quality-artifact\/public quality-artifact\/artifact\.json\n {10}node tools\/quality\/functional\.cjs --smoke\n/
   );
 });
+test('every fixture-building browser job prepares the same canonical media interpreter', () => {
+  const fs = require('node:fs'),
+    path = require('node:path'),
+    vm = require('node:vm'),
+    yaml = require('../tools/quality/common.cjs').toolRequire('yaml');
+  const workflow = yaml.parse(
+    fs.readFileSync(path.join(__dirname, '../.github/workflows/site-release-checks.yml'), 'utf8')
+  );
+  for (const name of ['staging', 'linux', 'native']) {
+    const steps = workflow.jobs[name].steps;
+    const setup = steps.findIndex((step) => step.uses === './.github/actions/publication-media');
+    assert.ok(setup >= 0, name + ' must prepare its own media dependencies');
+    assert.equal(
+      steps[setup].if,
+      undefined,
+      'preparation cannot depend on an unrelated fixture flag'
+    );
+    for (const [index, step] of steps.entries())
+      if (/node tools\/quality\/(?:functional|staging-regression)\.cjs/.test(step.run || ''))
+        assert.ok(setup < index, name + ' must prepare dependencies before fixture collection');
+  }
+  const action = yaml.parse(
+    fs.readFileSync(path.join(__dirname, '../.github/actions/publication-media/action.yml'), 'utf8')
+  );
+  const interpreter = action.runs.steps.find((step) => step.id === 'interpreter');
+  assert.equal(interpreter.uses, 'actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1');
+  assert.equal(interpreter.with['python-version'], '3.12.14');
+  const install = action.runs.steps.find((step) => step.run);
+  assert.equal(install.env.SITE_MEDIA_PYTHON, '${{ steps.interpreter.outputs.python-path }}');
+  const script = install.run.match(/^node - <<'JS'\n([\s\S]*?)\nJS\n?$/)[1];
+  const requirement = fs
+    .readFileSync(path.join(__dirname, '../tools/quality/toolchain/requirements.txt'), 'utf8')
+    .match(/^pillow==[0-9.]+$/m)[0];
+  for (const python of ['/runner path/python', 'C:\\runner path\\python.exe']) {
+    for (const failAt of [0, 2, 3]) {
+      const calls = [],
+        exports = [];
+      const sandbox = {
+        process: { env: { SITE_MEDIA_PYTHON: python, GITHUB_ENV: 'controlled-env' } },
+        require(name) {
+          if (name === 'node:child_process')
+            return {
+              execFileSync(executable, args) {
+                calls.push({ executable, args: Array.from(args) });
+                if (calls.length === failAt) throw Error('controlled media setup failure');
+                return calls.length === 1 ? requirement + '\n' : undefined;
+              },
+            };
+          assert.equal(name, 'node:fs');
+          return { appendFileSync: (...args) => exports.push(args) };
+        },
+      };
+      if (failAt)
+        assert.throws(() => vm.runInNewContext(script, sandbox), /controlled media setup failure/);
+      else vm.runInNewContext(script, sandbox);
+      assert.ok(calls.every((call) => call.executable === python));
+      assert.deepEqual(calls[0].args, ['tools/publishing/web-media.py', '--requirement']);
+      assert.deepEqual(calls[1].args, [
+        '-m',
+        'pip',
+        'install',
+        '--disable-pip-version-check',
+        '--no-deps',
+        requirement,
+      ]);
+      if (!failAt) assert.equal(calls[2].args[0], '-c', 'verify the installed interpreter');
+      assert.deepEqual(
+        exports,
+        failAt ? [] : [['controlled-env', 'SITE_MEDIA_PYTHON=' + python + '\n']]
+      );
+    }
+  }
+});
 test('full hosted evidence cannot use local measurements, a missing file or another source edition', () => {
   const make = (color = false) => {
     const x = color ? colorFixture() : fullFixture();

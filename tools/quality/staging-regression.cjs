@@ -285,12 +285,12 @@ function validateAnalytics(row) {
 }
 function validateFunctional(report, manifest) {
   stageReport(report, 'stage-functional');
+  assert.deepEqual(report.startupFailures, [], 'browser startup or collection failed');
   const articleEvidence = require('./article-browser.cjs').validateArticleJourney(
     report.articles,
     manifest.components?.articles || {},
     { engine: manifest.components?.engine, baseURL: report.target }
   );
-  assert.deepEqual(report.startupFailures, [], 'browser startup or collection failed');
   assert.deepEqual(report.selection, contract());
   exactRows(
     report.browsers,

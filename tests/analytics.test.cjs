@@ -433,7 +433,15 @@ test('analytics browser cold preparation owns the complete five-route offline de
         preparedDirectory,
         'cold collector retains an isolated explicit Git root'
       );
-      assert.equal(fs.existsSync(path.join(preparedDirectory, 'tools/quality/toolchain')), false);
+      assert.deepEqual(
+        fs.readdirSync(path.join(preparedDirectory, 'tools/quality/toolchain')),
+        ['requirements.txt'],
+        'copy the canonical source pin without installed Python or Node environments'
+      );
+      assert.deepEqual(
+        fs.readFileSync(path.join(preparedDirectory, 'tools/quality/toolchain/requirements.txt')),
+        fs.readFileSync(path.join(root, 'tools/quality/toolchain/requirements.txt'))
+      );
       assert.match(
         fs.readFileSync(path.join(preparedDirectory, 'docs/index.html'), 'utf8'),
         /data-site-analytics/
@@ -534,6 +542,76 @@ test('actual analytics browser fixture builds its real hosted and offline produc
   }
 });
 
+test('copied analytics media producer needs its declared pin and actual selected interpreter', (t) => {
+  const parent = fs.mkdtempSync(path.join(os.tmpdir(), 'analytics-media-closure-'));
+  t.after(() => fs.rmSync(parent, { recursive: true, force: true }));
+  const directory = path.join(parent, 'source');
+  require('../tools/quality/analytics-browser.cjs').buildFixture(directory);
+  const pin = 'tools/quality/toolchain/requirements.txt';
+  const bytes = fs.readFileSync(path.join(root, pin));
+  assert.deepEqual(fs.readFileSync(path.join(directory, pin)), bytes);
+  const asset = require('../tools/publishing/article.cjs').loadArticle(root, 'reader-reference')
+    .assets[0];
+  const input = JSON.stringify({
+    path: asset.path,
+    digest: asset.digest,
+    width: asset.width,
+    height: asset.height,
+    bytes: asset.bytes.toString('base64'),
+  });
+  const script = `
+    const fs = require('node:fs');
+    const asset = JSON.parse(fs.readFileSync(0, 'utf8'));
+    asset.bytes = Buffer.from(asset.bytes, 'base64');
+    const [output] = require(process.argv[1]).encode([asset]);
+    process.stdout.write(JSON.stringify({
+      sourceDigest: output.sourceDigest, mime: output.mime,
+      width: output.width, height: output.height, pillow: output.rendition.pillow,
+    }));
+  `;
+  const python =
+    process.env.SITE_MEDIA_PYTHON ||
+    path.join(
+      root,
+      'tools/quality/toolchain/venv',
+      process.platform === 'win32' ? 'Scripts/python.exe' : 'bin/python'
+    );
+  const run = (selectedPython) => {
+    const env = { ...process.env, SITE_MEDIA_PYTHON: selectedPython };
+    delete env.PYTHONPATH;
+    delete env.PYTHONHOME;
+    return cp.spawnSync(
+      process.execPath,
+      ['-e', script, path.join(directory, 'tools/site/article-media.cjs')],
+      { input, encoding: 'utf8', env, timeout: 15000 }
+    );
+  };
+  const empty = path.join(parent, 'empty-python');
+  cp.execFileSync(python, ['-m', 'venv', '--without-pip', empty]);
+  const absent = run(
+    path.join(empty, process.platform === 'win32' ? 'Scripts/python.exe' : 'bin/python')
+  );
+  assert.notEqual(absent.status, 0);
+  assert.match(absent.stderr, /No module named ['"]PIL/);
+  const available = run(python);
+  assert.equal(available.status, 0, available.stderr);
+  assert.deepEqual(JSON.parse(available.stdout), {
+    sourceDigest: asset.digest,
+    mime: 'image/webp',
+    width: asset.width,
+    height: asset.height,
+    pillow: bytes.toString().match(/^pillow==([0-9.]+)$/m)[1],
+  });
+  fs.rmSync(path.join(directory, pin));
+  try {
+    const missing = run(python);
+    assert.notEqual(missing.status, 0);
+    assert.match(missing.stderr, /requirements\.txt/);
+  } finally {
+    fs.writeFileSync(path.join(directory, pin), bytes);
+  }
+  assert.equal(run(python).status, 0, 'a fresh copied producer recovers after pin restoration');
+});
 test('actual analytics browser fixture refuses a declared legal owner that is missing or a symlink', (t) => {
   const fixture = require('../tools/quality/analytics-browser.cjs');
   const parent = fs.mkdtempSync(path.join(os.tmpdir(), 'analytics-missing-legal-'));
