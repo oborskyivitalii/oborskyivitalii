@@ -1194,26 +1194,79 @@ test('workflow selects full Linux Chromium/Firefox and macOS WebKit while preser
     /name: Native Windows smoke matrix\n {8}if: matrix\.platform == 'win32'\n {8}run: \|\n {10}node tools\/quality\/artifact\.cjs verify quality-artifact\/public quality-artifact\/artifact\.json\n {10}node tools\/quality\/functional\.cjs --smoke\n/
   );
 });
-test('every fixture-building browser job prepares the same canonical media interpreter', () => {
+test('every article-compiling job prepares its own locked parser and canonical media', () => {
   const fs = require('node:fs'),
     path = require('node:path'),
     vm = require('node:vm'),
     yaml = require('../tools/quality/common.cjs').toolRequire('yaml');
-  const workflow = yaml.parse(
-    fs.readFileSync(path.join(__dirname, '../.github/workflows/site-release-checks.yml'), 'utf8')
-  );
-  for (const name of ['staging', 'linux', 'native']) {
-    const steps = workflow.jobs[name].steps;
-    const setup = steps.findIndex((step) => step.uses === './.github/actions/publication-media');
-    assert.ok(setup >= 0, name + ' must prepare its own media dependencies');
-    assert.equal(
-      steps[setup].if,
-      undefined,
-      'preparation cannot depend on an unrelated fixture flag'
+  function prepared(steps, consumer) {
+    const media = steps.findIndex((step) => step.uses === './.github/actions/publication-media');
+    const parser = steps.findIndex((step) =>
+      (step.run || '')
+        .split('\n')
+        .some(
+          (line) => line.trim() === 'npm ci --prefix tools/publishing/toolchain --ignore-scripts'
+        )
     );
-    for (const [index, step] of steps.entries())
-      if (/node tools\/quality\/(?:functional|staging-regression)\.cjs/.test(step.run || ''))
-        assert.ok(setup < index, name + ' must prepare dependencies before fixture collection');
+    const consumers = steps.flatMap((step, index) =>
+      consumer.test(step.run || '') ? [index] : []
+    );
+    assert.ok(consumers.length > 0, 'article consumer must remain covered');
+    for (const [name, setup] of [
+      ['media', media],
+      ['parser', parser],
+    ]) {
+      assert.ok(setup >= 0, name + ' must be prepared in the consuming job');
+      assert.equal(steps[setup].if, undefined, name + ' setup cannot be conditional');
+      assert.equal(steps[setup]['continue-on-error'], undefined, name + ' setup must fail closed');
+      assert.ok(
+        consumers.every((index) => setup < index),
+        name + ' setup must precede consumption'
+      );
+    }
+  }
+  for (const [file, names, consumer] of [
+    [
+      'site-release-checks.yml',
+      ['staging', 'linux', 'native'],
+      /node tools\/quality\/(?:functional|staging-regression)\.cjs/,
+    ],
+    [
+      'site-release-candidate.yml',
+      ['build'],
+      /node tools\/(?:release\/(?:edition|rights)\.cjs build|staging\/package\.cjs build)/,
+    ],
+  ]) {
+    const workflow = yaml.parse(
+      fs.readFileSync(path.join(__dirname, '../.github/workflows', file), 'utf8')
+    );
+    for (const name of names) {
+      const steps = workflow.jobs[name].steps;
+      prepared(steps, consumer);
+      for (const setup of [
+        steps.findIndex((step) => step.uses === './.github/actions/publication-media'),
+        steps.findIndex((step) =>
+          (step.run || '').includes('npm ci --prefix tools/publishing/toolchain')
+        ),
+      ]) {
+        assert.throws(
+          () =>
+            prepared(
+              steps.filter((_, index) => index !== setup),
+              consumer
+            ),
+          /must be prepared/
+        );
+        const late = steps.filter((_, index) => index !== setup).concat(steps[setup]);
+        assert.throws(() => prepared(late, consumer), /must precede/);
+        for (const change of [{ if: 'false' }, { 'continue-on-error': true }]) {
+          const optional = steps.map((step, index) =>
+            index === setup ? { ...step, ...change } : step
+          );
+          assert.throws(() => prepared(optional, consumer), /cannot be conditional|fail closed/);
+        }
+      }
+    }
   }
   const action = yaml.parse(
     fs.readFileSync(path.join(__dirname, '../.github/actions/publication-media/action.yml'), 'utf8')

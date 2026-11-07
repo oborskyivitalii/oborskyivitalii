@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "ec6315925dc8ba048e86577a014cf0d1cd8ce68e92eed7dab58ea235d5c4fecf",
+    "digest": "729849ef2c3f16a0bead0e671ae1d19539b7da9477656a107a503ffb6a97ecd5",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -221,12 +221,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "909ddcdd67978737577a310390ec6a566d49bc0846e43d9d019d03f47e507be8"
+        "sha256": "0713bf29b73d6f7259b835e307e836a41451d466b9a8350e681e284f90591082"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "e944b14d3bd2b5d0df8bc5ee273b1fc73d21ca619b9b3de89e0d01b5783713f8"
+        "sha256": "0b420615662fa30e7184c6d9007bb6ea0e3ae3ba6869b0ad40165b7634974950"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -316,7 +316,7 @@
       {
         "path": ".github/workflows/site-release-candidate.yml",
         "identity_mode": "content",
-        "sha256": "af1f221c8fb67e1c065fd5ad352d448ef434adae5fff9f8b9dcbf9d1d761f2dc"
+        "sha256": "fd994835d43df8453ce9168b7654b63ad0903eed1ad40d7999bff70f02e0773a"
       },
       {
         "path": ".github/workflows/site-release-checks.yml",
@@ -376,7 +376,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "656ada285d644d39ad6e6c22cd4aaa14ba9ae6f5fa6e3ba17e3f3cca38d8e4b2"
+        "sha256": "16f7b3e1f2d2c32c4d0d0998bc49bb5ab6bf6d8fce4aadc66674a5e0661548c6"
       },
       {
         "path": "NOTICE.md",
@@ -2058,6 +2058,11 @@
         "sha256": "8439bc0b737c1198c672ed1b65f13b4c0827eaf69200da852995454c5d675c3f"
       },
       {
+        "path": "review/issue-169/2026-11-07-production-bootstrap.md",
+        "identity_mode": "content",
+        "sha256": "53706a786af4e1d8eae8374dbfcd4827634c7f5ab4588bcd3b3d488c0d42ce69"
+      },
+      {
         "path": "review/issue-169/2026-11-07-r11-preview.md",
         "identity_mode": "content",
         "sha256": "49859fafb031afab88c63879e4e596177a52552837b9d86c654e6e25a3151dde"
@@ -3111,6 +3116,11 @@
         "path": "review/issue-169/notice-preflight-proof.json.gz",
         "identity_mode": "content",
         "sha256": "f326d73845cad4bff866afa0bae631795d37f16762046dc083ca235ecf4f342c"
+      },
+      {
+        "path": "review/issue-169/production-bootstrap-evidence.tar.xz",
+        "identity_mode": "content",
+        "sha256": "bfcf575a7ce665cd3e6cba03f9ddd2a7ac6446b5323f4a4f1d44a6dbe119db93"
       },
       {
         "path": "review/issue-169/r1/README.md",
@@ -11655,7 +11665,7 @@
       {
         "path": "tests/quality.test.cjs",
         "identity_mode": "content",
-        "sha256": "06146986d90699798816dd2d6264e4856b977564101ac8fd71268cd094e8ef99"
+        "sha256": "3b2354926234793140efa50e5b687c273922deb2940964d5808e2f381672f777"
       },
       {
         "path": "tests/reader-controller.test.cjs",
@@ -17945,6 +17955,17 @@
       "title": "Issue169 — proposed media controller in the R10 diagnostic candidate"
     },
     {
+      "path": "review/issue-169/2026-11-07-production-bootstrap.md",
+      "kind": "file",
+      "purpose": "Dated issue169 production bootstrap failure diagnosis, consumer/test allocation, source-bound independent review and execution limits.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Production publisher bootstrap correction"
+    },
+    {
       "path": "review/issue-169/2026-11-07-r11-preview.md",
       "kind": "file",
       "purpose": "Issue169 R11 Draft-preview source, pending editorial state, integration decisions and exact review/check/delivery evidence.",
@@ -20264,6 +20285,17 @@
         "AGENTS.md"
       ],
       "title": "notice-preflight-proof.json.gz"
+    },
+    {
+      "path": "review/issue-169/production-bootstrap-evidence.tar.xz",
+      "kind": "file",
+      "purpose": "Verbatim issue169 production bootstrap packets, independent review receipts, retained failures and bounded execution evidence; inactive history.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "production-bootstrap-evidence.tar.xz"
     },
     {
       "path": "review/issue-169/r1/README.md",
