@@ -269,6 +269,15 @@ function runtimePayloads(root, definitions, contentOnly = false) {
   };
 }
 
+function analyticsURLs(config, c) {
+  return [
+    ...config.routes.map((route) => route.url),
+    ...Object.values(c.records)
+      .filter((record) => record.kind === 'local-article')
+      .map((record) => record.edition.url),
+  ];
+}
+
 function fingerprints(root, config, c = catalog(root), { payloads, baseline } = {}) {
   const producers = files(path.join(root, 'tools/site'))
     .map((x) => 'tools/site/' + x)
@@ -340,12 +349,13 @@ function fingerprints(root, config, c = catalog(root), { payloads, baseline } = 
       )
     ),
     analytics: sha(
-      json(
-        fileDigests(root, [
+      json({
+        sources: fileDigests(root, [
           'site/analytics.json',
           ...files(path.join(root, 'site/integrations')).map((x) => 'site/integrations/' + x),
-        ])
-      )
+        ]),
+        routes: analyticsURLs(config, c),
+      })
     ),
     routes: sha(json(config)),
   };
@@ -826,10 +836,7 @@ function build({
     selectedArticles.find((article) => article.metadata.id === id && !article.candidate)
   );
   prepareArticles(root, selectedArticles, components, versioned, candidateArticles.length > 0);
-  const measurement = require('./analytics.cjs').compile(
-    root,
-    config.routes.map((route) => route.url)
-  );
+  const measurement = require('./analytics.cjs').compile(root, analyticsURLs(config, c));
   if (contentOnly) verifyContentBaseline(output, previous, trusted, components, versioned);
   const parent = path.dirname(output);
   fs.mkdirSync(parent, { recursive: true });

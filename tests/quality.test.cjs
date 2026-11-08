@@ -178,6 +178,10 @@ function fixture() {
       externalRequests: [],
       entryForms: s.mode === 'enabled' ? ['canonical', 'extensionless'] : undefined,
       entryRoutes: s.mode === 'enabled' ? analytics.entryRoutes(s.entry) : undefined,
+      articleEntries:
+        s.mode === 'enabled' && s.entry === 'writing'
+          ? analytics.expectedArticleEntries()
+          : undefined,
       checks: Object.fromEntries(analytics.checks.map((key) => [key, true])),
       readyWhileSDKPending: s.mode === 'delayed' ? true : 'not applicable',
       vendorRequests: ['staging', 'offline'].includes(s.mode)
@@ -250,6 +254,18 @@ test('complete source-bound PR evidence passes; missing and controlled failures 
     (x) => (x.reports[3].analytics[0].entryForms = ['canonical', 'canonical']),
     (x) => delete x.reports[3].analytics[0].entryRoutes,
     (x) => x.reports[3].analytics.find((row) => row.entry === 'writing').entryRoutes.pop(),
+    (x) => delete x.reports[3].analytics.find((row) => row.entry === 'writing').articleEntries,
+    (x) =>
+      x.reports[3].analytics
+        .find((row) => row.entry === 'writing')
+        .articleEntries[0].observations.pop(),
+    (x) =>
+      x.reports[3].analytics.find((row) => row.entry === 'writing').articleEntries[0]
+        .observations[0].sdkRequests++,
+    (x) =>
+      (x.reports[3].analytics.find(
+        (row) => row.entry === 'writing'
+      ).articleEntries[0].observations[0].articleKey = 'wrong:en'),
     (x) => x.reports[3].analytics[0].vendorRequests.push('https://unexpected.example.com/'),
     (x) =>
       x.reports[3].analytics

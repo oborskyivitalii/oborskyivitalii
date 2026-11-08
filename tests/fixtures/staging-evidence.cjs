@@ -204,6 +204,10 @@ function analyticsRow(selected) {
     externalRequests: [],
     entryForms: selected.mode === 'enabled' ? ['canonical', 'extensionless'] : undefined,
     entryRoutes: selected.mode === 'enabled' ? analytics.entryRoutes(selected.entry) : undefined,
+    articleEntries:
+      selected.mode === 'enabled' && selected.entry === 'writing'
+        ? analytics.expectedArticleEntries()
+        : undefined,
     checks: Object.fromEntries(analytics.checks.map((key) => [key, true])),
     readyWhileSDKPending: selected.mode === 'delayed' ? true : 'not applicable',
     vendorRequests: ['offline', 'staging'].includes(selected.mode)

@@ -168,7 +168,9 @@
         "review/issue-159/2026-10-29-runtime-preregistration.md",
         ".github/acceptance/issue-167.json",
         "review/issue-167/2026-10-31-offline-prototype.md",
-        ".github/acceptance/issue-169.json"
+        ".github/acceptance/issue-169.json",
+        ".github/acceptance/issue-177.json",
+        "tests/test_issue177_acceptance.py"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -719,7 +721,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "6656026e448d1af4d09df2d0fc2edd22d1fc7044571f2c56fa7775f5aee6ea36",
+    "digest": "206a1d8f8af5ae0c882d0b1c07b99b18a95707c4f41c15a9d595f1318a061da7",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -776,6 +778,10 @@
       {
         "path": ".github/acceptance/issue-169.json",
         "sha256": "f8c3a531254401b9884a0b23b80fe4bfb0c2bc1c264b83a74eadbf15fb60a581"
+      },
+      {
+        "path": ".github/acceptance/issue-177.json",
+        "sha256": "023dce21eadb8a151a7b67365994b9c04d0da5142439a0485e6465e3e2c958c0"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -867,7 +873,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "7829c6d71cedfbbe93eb846ba3ddbf0ba3b30ccc2679f922522e68cd957f3eaf"
+        "sha256": "ce0f83a3e572f11b15bf1a7c08ee7ae04e30ec2097d839f0c6f990f04dd2ccb1"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -887,7 +893,7 @@
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
-        "sha256": "61d0f22ee010b13f4a65b451ad577b6731b58c7b20564d3938b0694fc2142e70"
+        "sha256": "8cda02df7a383484b4d6cea3b9e6b53cf1b574dabd348057bd74a689420894c0"
       },
       {
         "path": ".github/workflows/navigation.yml",
@@ -1011,7 +1017,7 @@
       },
       {
         "path": "tests/fixtures/staging-evidence.cjs",
-        "sha256": "614fd3334fbbcf72b11fd033b1668065e82d205b028a731a0885eee9ee42e174"
+        "sha256": "b3a5f1dadb937d01bb22d727c51a758aa8e1e40f9e137e30804c60f7379da235"
       },
       {
         "path": "tests/staging-gate.test.cjs",
@@ -1019,7 +1025,7 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "15f686c80cbf3f12ad2b09857fdd977ced513b32eb718175fc4edd5f4baaefb2"
+        "sha256": "51535cf872bd9ceb6f057ee9013efb42ce4b08e4be2f65315e659258fe448ca1"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
@@ -1044,6 +1050,10 @@
       {
         "path": "tests/test_issue159_acceptance.py",
         "sha256": "9769545b3c325a7bedb6b370db43a13fd350f1f987fe8f4dfff52fe8f04ab4d3"
+      },
+      {
+        "path": "tests/test_issue177_acceptance.py",
+        "sha256": "4d069474849d2886d3d40b0778a3bcf201272b994aff256b530aec4a618c99f6"
       },
       {
         "path": "tests/test_issue31_acceptance.py",
@@ -1159,7 +1169,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "583d1dd469fc12adc2cf66628a6486e9d11e5eaa0d3e170b5fdf4fbf63085a36"
+        "sha256": "d3328c3823f4795b80a6a55aca637f7f54f6ef9d0c1b9bb3b61d3c01f0b63b6e"
       },
       {
         "path": "tools/repository_intelligence.py",

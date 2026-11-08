@@ -232,6 +232,131 @@ function accept(root, record) {
   json(root, 'site/content/catalog.json', catalog);
 }
 
+function analyticsLoader(root, directory = 'docs') {
+  const page = html(root, 'writing.html', directory);
+  const loader = page.match(/data-site-analytics="cloudflare" src="([^"]+)"/);
+  assert.ok(loader, 'enabled source emits its shared analytics loader');
+  return fs.readFileSync(path.join(root, directory, loader[1]), 'utf8');
+}
+
+function sdkCount(bytes, pathname, origin = 'https://analytics.example.com') {
+  const elements = [];
+  const document = {
+    getElementById: (id) => elements.find((element) => element.id === id),
+    createElement: () => ({ setAttribute() {}, addEventListener() {} }),
+    body: { appendChild: (element) => elements.push(element) },
+  };
+  const context = vm.createContext({
+    document,
+    location: new URL(pathname + '?entry=direct#article', origin),
+  });
+  vm.runInContext(bytes, context);
+  vm.runInContext(bytes, context);
+  return elements.length;
+}
+
+test('compiled analytics admits only catalog-published articles and their declared aliases', (t) => {
+  const root = fixture(t, { cold: true });
+  json(root, 'site/analytics.json', {
+    schema: 1,
+    provider: 'cloudflare',
+    enabled: true,
+    siteURL: 'https://analytics.example.com/author/',
+    token: 'a'.repeat(32),
+    searchConsoleVerification: null,
+  });
+  const record = publication(root);
+  accept(root, record);
+  const draft = publication(root, 'draft-profile');
+  const result = preview(root, [record.metadata.id, draft.metadata.id]);
+  const bytes = analyticsLoader(root, 'candidate');
+  for (const pathname of [
+    '/author/articles/reader-profile.html',
+    '/author/articles/reader-profile',
+  ]) {
+    assert.equal(sdkCount(bytes, pathname), 1, pathname);
+    assert.equal(sdkCount(bytes, pathname, 'https://staging.example.com'), 0, pathname);
+  }
+  for (const pathname of [
+    '/articles/reader-profile.html',
+    '/author/articles/reader-profile/',
+    '/author/articles/unknown.html',
+    '/author/articles/draft-profile.html',
+    '/author/articles/reader-reference.html',
+    '/author/' + result.articles['reader-profile:en'].snapshot,
+  ]) {
+    assert.equal(sdkCount(bytes, pathname), 0, pathname);
+  }
+  const catalog = JSON.parse(fs.readFileSync(path.join(root, 'site/content/catalog.json')));
+  delete catalog.records['publication-99'];
+  catalog.structuredOrder = catalog.structuredOrder.filter(
+    (entry) => entry.record !== 'publication-99'
+  );
+  json(root, 'site/content/catalog.json', catalog);
+  const unlisted = preview(root, [record.metadata.id, draft.metadata.id]);
+  assert.equal(unlisted.articles['reader-profile:en'].candidate, false, 'accepted preview source');
+  for (const key of ['reader-profile:en', 'draft-profile:en']) {
+    assert.notEqual(result.articles[key].version, unlisted.articles[key].version, key);
+  }
+  assert.equal(sdkCount(analyticsLoader(root, 'candidate'), '/author/articles/reader-profile'), 0);
+});
+
+test('public article admission and removal invalidate shared loaders with cold/incremental equality', (t) => {
+  const root = fixture(t, { cold: true });
+  const record = publication(root);
+  const before = build.build({ root });
+  const oldLoader = analyticsLoader(root);
+  accept(root, record);
+  assert.throws(
+    () => build.build({ root, contentOnly: true }),
+    /Content release requires a verified matching platform baseline/,
+    'public route admission requires a full generation, before loader assets are read'
+  );
+  const admitted = build.build({ root });
+  assert.deepEqual(
+    build.build({ root, all: true }).files,
+    admitted.files,
+    'admitted-route cold build'
+  );
+  assert.equal(
+    sdkCount(oldLoader, '/articles/reader-profile.html', 'https://vitaliioborskyi.ai'),
+    0
+  );
+  assert.equal(
+    sdkCount(analyticsLoader(root), '/articles/reader-profile.html', 'https://vitaliioborskyi.ai'),
+    1
+  );
+  assert.deepEqual(admitted.built, snapshot.routes);
+  for (const route of snapshot.routes) {
+    assert.notEqual(before.routes[route].version, admitted.routes[route].version, route);
+  }
+  const catalog = JSON.parse(fs.readFileSync(path.join(root, 'site/content/catalog.json')));
+  delete catalog.records['publication-99'];
+  catalog.structuredOrder = catalog.structuredOrder.filter(
+    (entry) => entry.record !== 'publication-99'
+  );
+  json(root, 'site/content/catalog.json', catalog);
+  assert.throws(
+    () => build.build({ root, contentOnly: true }),
+    /Content release requires a verified matching platform baseline/,
+    'public route removal also requires a full generation'
+  );
+  const removed = build.build({ root });
+  assert.equal(
+    sdkCount(analyticsLoader(root), '/articles/reader-profile.html', 'https://vitaliioborskyi.ai'),
+    0
+  );
+  assert.deepEqual(removed.built, snapshot.routes);
+  for (const route of snapshot.routes) {
+    assert.equal(removed.routes[route].version, before.routes[route].version, route);
+  }
+  const cold = build.build({ root, all: true });
+  assert.deepEqual(cold.files, removed.files, 'removed-route generation matches a cold build');
+  for (const name of ['theme.js', 'space.js', 'archive.js', 'navigation.js', 'styles.css']) {
+    assert.equal(admitted.files[name], before.files[name], 'engine bytes stay unchanged: ' + name);
+  }
+});
+
 test('selected public materials enter native article/resource closure; campaign drafts stay private', (t) => {
   const root = fixture(t);
   const record = publication(root);

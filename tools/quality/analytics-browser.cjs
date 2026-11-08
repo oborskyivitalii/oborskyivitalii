@@ -10,9 +10,15 @@ const { root } = require('./common.cjs'),
   { routes } = require('../site/snapshot.cjs');
 const qaIsolation = require('./analytics-isolation.cjs');
 const model = 'enabled source fixture; vendor stubbed';
-const primaryCount = require('../site/validate-catalog.cjs').writingEntries(
-  require('../site/content.cjs').catalog(root)
-).length;
+const catalog = require('../site/content.cjs').catalog(root);
+const primaryCount = require('../site/validate-catalog.cjs').writingEntries(catalog).length;
+const nativeArticles = Object.values(catalog.records)
+  .filter((record) => record.kind === 'local-article')
+  .map((record) => ({
+    key: record.article + ':' + record.edition.inLanguage,
+    route: record.edition.url,
+    title: record.edition.name,
+  }));
 const settings = {
   schema: 1,
   provider: 'cloudflare',
@@ -216,6 +222,84 @@ async function vendorState(page, mode) {
     ['blocked', 'delayed'].includes(mode) ? 0 : 1
   );
 }
+function expectedArticleEntries() {
+  assert.ok(
+    nativeArticles.length > 0 && nativeArticles.length <= 50,
+    'finite public articles required'
+  );
+  return nativeArticles.map((article) => ({
+    ...article,
+    observations: [
+      'canonical',
+      'reload',
+      'extensionless',
+      'writing',
+      'internal',
+      'back',
+      'forward',
+    ].map((phase) => ({
+      phase,
+      articleKey: ['writing', 'back'].includes(phase) ? null : article.key,
+      ...(['writing', 'back'].includes(phase) ? {} : { title: article.title }),
+      sdkRequests: phase === 'reload' ? 2 : 1,
+      sdkElements: 1,
+    })),
+  }));
+}
+async function articleEntryJourney(page, prefix, vendor, descriptors) {
+  const entries = [];
+  for (const article of nativeArticles) {
+    const observations = [];
+    const observe = async (phase, key = article.key) => {
+      await page.waitForFunction(
+        (key) =>
+          document.body.dataset.page === 'writing' &&
+          (document.body.dataset.article || null) === key &&
+          !document.querySelector('#site-content').hasAttribute('aria-busy'),
+        key,
+        { polling: 40, timeout: 6000 }
+      );
+      await vendorState(page, 'enabled');
+      observations.push({
+        phase,
+        articleKey: await page.evaluate(() => document.body.dataset.article || null),
+        ...(key ? { title: await page.locator('h1').innerText() } : {}),
+        sdkRequests: vendor.length,
+        sdkElements: await page.locator('#site-cloudflare-beacon').count(),
+      });
+    };
+    vendor.length = 0;
+    await page.goto(prefix + article.route + '?entry=direct#content', {
+      waitUntil: 'domcontentloaded',
+    });
+    await observe('canonical');
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await observe('reload');
+    vendor.length = 0;
+    await page.goto(prefix + article.route.slice(0, -5) + '?entry=alias#content', {
+      waitUntil: 'domcontentloaded',
+    });
+    await observe('extensionless');
+    await page.locator('.reader-back').evaluate((element) => element.click());
+    await observe('writing', null);
+    const descriptor = descriptors[article.key];
+    assert.equal(descriptor?.alias, article.route, 'article registry matches the public catalog');
+    assert.match(descriptor.url, /^article-snapshots\/[a-f0-9]{64}\/[a-z][a-z0-9-]*\.html$/);
+    const link = page.locator(
+      `a.publication-title[href="${article.route}"],a.publication-title[href="${descriptor.url}"]`
+    );
+    assert.equal(await link.count(), 1, 'Writing lists the exact admitted article');
+    await link.evaluate((element) => element.click());
+    await observe('internal');
+    await page.goBack({ waitUntil: 'domcontentloaded' });
+    await observe('back', null);
+    await page.goForward({ waitUntil: 'domcontentloaded' });
+    await observe('forward');
+    entries.push({ ...article, observations });
+  }
+  assert.deepEqual(entries, expectedArticleEntries(), 'compiled article entry/history evidence');
+  return entries;
+}
 async function scenario(browser, dir, producer, s) {
   const ctx = await browser.newContext({
       viewport: { width: 390, height: 844 },
@@ -260,7 +344,11 @@ async function scenario(browser, dir, producer, s) {
       }
     } else if (url.href.startsWith(prefix)) {
       const name = decodeURIComponent(url.pathname.slice('/author/'.length)) || 'index.html',
-        filename = routes.includes(name) ? name + '.html' : name,
+        filename =
+          routes.includes(name) ||
+          nativeArticles.some((article) => article.route.slice(0, -5) === name)
+            ? name + '.html'
+            : name,
         target = path.join(dir, 'docs', filename);
       assert.ok(!name.includes('..'), 'finite fixture path');
       if (!fs.existsSync(target)) {
@@ -313,6 +401,16 @@ async function scenario(browser, dir, producer, s) {
       }
       result.entryForms = ['canonical', 'extensionless'];
       result.entryRoutes = entryRoutes(s.entry);
+      if (s.entry === 'writing') {
+        const descriptors = JSON.parse(
+          fs.readFileSync(path.join(dir, 'docs/site-revision.json'))
+        ).articles;
+        result.articleEntries = await articleEntryJourney(page, prefix, vendor, descriptors);
+        vendor.length = 0;
+        await page.goto(prefix + 'writing.html', { waitUntil: 'domcontentloaded' });
+        await ready(page, 'writing');
+        await vendorState(page, 'enabled');
+      }
     }
     await page.evaluate(() => {
       window.__analyticsShell = {
@@ -417,6 +515,11 @@ function validateEntryForms(row) {
     row.mode === 'enabled' ? entryRoutes(row.entry) : undefined,
     'missing or invalid analytics entry-route evidence'
   );
+  assert.deepEqual(
+    row.articleEntries,
+    row.mode === 'enabled' && row.entry === 'writing' ? expectedArticleEntries() : undefined,
+    'missing or invalid compiled article analytics evidence'
+  );
 }
 function fixtureInputs(sourceRoot = root) {
   const inputs = [
@@ -504,6 +607,7 @@ module.exports = {
   cases,
   selectedCases,
   validateEntryForms,
+  expectedArticleEntries,
   entryRoutes,
   checks,
   modes,

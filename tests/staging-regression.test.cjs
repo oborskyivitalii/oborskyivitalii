@@ -257,6 +257,17 @@ test('selected browser regression requires all route observations, navigation, f
     (r) => (r.analytics[0].entryForms = ['canonical', 'canonical']),
     (r) => delete r.analytics[0].entryRoutes,
     (r) => r.analytics.find((row) => row.entry === 'writing').entryRoutes.pop(),
+    (r) => delete r.analytics.find((row) => row.entry === 'writing').articleEntries,
+    (r) =>
+      (r.analytics.find(
+        (row) => row.entry === 'writing'
+      ).articleEntries[0].observations[0].sdkRequests = 0.5),
+    (r) =>
+      r.analytics.find((row) => row.entry === 'writing').articleEntries[0].observations[0]
+        .sdkElements++,
+    (r) =>
+      (r.analytics.find((row) => row.entry === 'writing').articleEntries[0].observations[0].title =
+        'wrong title'),
     (r) => (r.analytics[0] = structuredClone(r.analytics[1])),
     (r) => (r.analytics[0].checks.originIsolation = false),
     (r) =>

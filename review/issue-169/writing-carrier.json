@@ -13,7 +13,7 @@
     },
     "tools/site/build.cjs": {
       "beforeSHA256": "fce23e9a21e641e829b07e48029ecbbf3b754904376b1fdda4146e7d09c66bde",
-      "afterSHA256": "3d9b80f989008ae487cccf4b38aea630bd4ddf62782a971e7e62142c9fbbc869"
+      "afterSHA256": "ee69b9950ed0982a69344c5b92f6988b293362112817d8a2fc504ebfe101adee"
     },
     "tools/site/fallback.cjs": {
       "beforeSHA256": "66822a96b98fa151762dd72e601299c63b4ff57249a7d7134ee55d8ca03969c9",
