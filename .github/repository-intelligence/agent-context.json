@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "a46f419424c82b4fc890923baa4a9385f8696db6c2698076df88e520e8b4f31f",
+    "digest": "eb5ea31d50964413590a212f1fb342e9f6fd4d4b41e55afe1ef0ccca3a2d09f9",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -226,12 +226,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "40791971bfd2a81230f521bf3f5f0197b58b80810810631367b6f41c99ba2f18"
+        "sha256": "ce0f83a3e572f11b15bf1a7c08ee7ae04e30ec2097d839f0c6f990f04dd2ccb1"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "59565ff6d873cf2e8c3fc0335aa26d98d5ef956addbc8dba5077e544d6a79692"
+        "sha256": "40d10a40217df553ad85e131fcbd753a4b4d6599c073f563e120937b72e4d8bb"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -4600,7 +4600,7 @@
       {
         "path": "review/issue-177/2026-11-08-ci-browser.md",
         "identity_mode": "content",
-        "sha256": "ff8557e181b3d44b8d8a383deef3987b6387f39471327366b6cd3bf510c4c1dd"
+        "sha256": "f9ea142cdbbc3d0440ea244f342686d60f95e68a0f687247edc78a0a160ca857"
       },
       {
         "path": "review/issue-177/2026-11-08-ci-code-scanner-correction.md",
@@ -4608,19 +4608,24 @@
         "sha256": "4bd15fb6459d7fa904c968624257846384b87df3ef12a66e09d69ae2e422812e"
       },
       {
+        "path": "review/issue-177/2026-11-08-ci-code-selector-correction.md",
+        "identity_mode": "content",
+        "sha256": "87981b1129f99c8ce4afe6a21b5a8db2ac1aa9c3561c3f4b49e77693b268c991"
+      },
+      {
         "path": "review/issue-177/2026-11-08-ci-code.md",
         "identity_mode": "content",
         "sha256": "d0841ddaf41d6addb2e71a773cc2ef4f0aed66c25496548daad66820235ac933"
       },
       {
+        "path": "review/issue-177/2026-11-08-ci-exploratory-actual.md",
+        "identity_mode": "content",
+        "sha256": "492c44019234d09b65189ebd9242caa432edb9c80022e9c4a2466d01242f90dc"
+      },
+      {
         "path": "review/issue-177/2026-11-08-ci-exploratory-pre.md",
         "identity_mode": "content",
         "sha256": "841ef5db44d6e73e7cf07283a34dff6c7cccc264295e4492e44f186d942751c1"
-      },
-      {
-        "path": "review/issue-177/2026-11-08-ci-local-diagnostics.json.gz",
-        "identity_mode": "content",
-        "sha256": "b6841f03f1f8a78e69194f6c613184c9d6602724bc1e5a9f3fe3a7cd81f53cf2"
       },
       {
         "path": "review/issue-177/2026-11-08-ci-requirements-final.md",
@@ -4633,14 +4638,29 @@
         "sha256": "91b7edac87b8c23a8ff16c3deafcafc26031d00c2f7505db4b6985d06616ac55"
       },
       {
+        "path": "review/issue-177/2026-11-08-ci-requirements-selector-correction.md",
+        "identity_mode": "content",
+        "sha256": "1e4c71cb57d9d973dde9884abd33d02c9d4655331da6e7578efe6fcb96593890"
+      },
+      {
         "path": "review/issue-177/2026-11-08-ci-scanner-proof.json.gz",
         "identity_mode": "content",
         "sha256": "9a613ab883f8ac7a559aab1254b7fe8632a9279b8e097436ae8e4a126bb2e047"
       },
       {
+        "path": "review/issue-177/2026-11-08-ci-selector-diagnosis.md",
+        "identity_mode": "content",
+        "sha256": "b0717e87505f9846cf775500249f9cdba896f7e6610581168520f8303795650e"
+      },
+      {
         "path": "review/issue-177/2026-11-08-ci-whitebox-scanner-correction.md",
         "identity_mode": "content",
         "sha256": "43a525cf9f51e20abfa22f804a606bca8919c23ce172ceeefdcc2f2e3caec833"
+      },
+      {
+        "path": "review/issue-177/2026-11-08-ci-whitebox-selector-correction.md",
+        "identity_mode": "content",
+        "sha256": "60ffba160086bf03f63fbaea0520517cc2f5b57bdbec313d228a7dcf4ea5d95f"
       },
       {
         "path": "review/issue-177/2026-11-08-ci-whitebox.md",
@@ -12330,7 +12350,7 @@
       {
         "path": "tools/quality/analytics-browser.cjs",
         "identity_mode": "content",
-        "sha256": "51a9ba1cc17ce468acad62c2cfbe216b01cb47ca0049887d3748b005c88c133b"
+        "sha256": "9616632ec74ceabe805cf0d9214cd33bc9774c2db6e6fff1721c1a7652ea8907"
       },
       {
         "path": "tools/quality/analytics-isolation.cjs",
@@ -23695,6 +23715,17 @@
       "title": "Issue177 — focused Code correction review"
     },
     {
+      "path": "review/issue-177/2026-11-08-ci-code-selector-correction.md",
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue177 — focused selector correction review"
+    },
+    {
       "path": "review/issue-177/2026-11-08-ci-code.md",
       "kind": "file",
       "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
@@ -23706,6 +23737,17 @@
       "title": "Issue177 CI/browser checkpoint — independent Code Review"
     },
     {
+      "path": "review/issue-177/2026-11-08-ci-exploratory-actual.md",
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue177 Exploratory / Interaction QA — actual public preview observation"
+    },
+    {
       "path": "review/issue-177/2026-11-08-ci-exploratory-pre.md",
       "kind": "file",
       "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
@@ -23715,17 +23757,6 @@
         "AGENTS.md"
       ],
       "title": "Issue177 independent Exploratory / Interaction QA — pre-CI"
-    },
-    {
-      "path": "review/issue-177/2026-11-08-ci-local-diagnostics.json.gz",
-      "kind": "file",
-      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "2026-11-08-ci-local-diagnostics.json.gz"
     },
     {
       "path": "review/issue-177/2026-11-08-ci-requirements-final.md",
@@ -23750,6 +23781,17 @@
       "title": "Issue177 browser/CI checkpoint — independent Requirements & Acceptance preflight"
     },
     {
+      "path": "review/issue-177/2026-11-08-ci-requirements-selector-correction.md",
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue177 selector correction — Requirements & Acceptance continuation"
+    },
+    {
       "path": "review/issue-177/2026-11-08-ci-scanner-proof.json.gz",
       "kind": "file",
       "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
@@ -23761,6 +23803,17 @@
       "title": "2026-11-08-ci-scanner-proof.json.gz"
     },
     {
+      "path": "review/issue-177/2026-11-08-ci-selector-diagnosis.md",
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue177 — source diagnosis of internal-entry selector"
+    },
+    {
       "path": "review/issue-177/2026-11-08-ci-whitebox-scanner-correction.md",
       "kind": "file",
       "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
@@ -23770,6 +23823,17 @@
         "AGENTS.md"
       ],
       "title": "Issue177 focused scanner/bundle correction — White-box QA continuation"
+    },
+    {
+      "path": "review/issue-177/2026-11-08-ci-whitebox-selector-correction.md",
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue177 selector correction — focused White-box QA continuation"
     },
     {
       "path": "review/issue-177/2026-11-08-ci-whitebox.md",

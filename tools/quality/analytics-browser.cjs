@@ -246,7 +246,7 @@ function expectedArticleEntries() {
     })),
   }));
 }
-async function articleEntryJourney(page, prefix, vendor) {
+async function articleEntryJourney(page, prefix, vendor, descriptors) {
   const entries = [];
   for (const article of nativeArticles) {
     const observations = [];
@@ -282,10 +282,14 @@ async function articleEntryJourney(page, prefix, vendor) {
     await observe('extensionless');
     await page.locator('.reader-back').evaluate((element) => element.click());
     await observe('writing', null);
-    await page
-      .locator(`a[href="${article.route}"]`)
-      .first()
-      .evaluate((element) => element.click());
+    const descriptor = descriptors[article.key];
+    assert.equal(descriptor?.alias, article.route, 'article registry matches the public catalog');
+    assert.match(descriptor.url, /^article-snapshots\/[a-f0-9]{64}\/[a-z][a-z0-9-]*\.html$/);
+    const link = page.locator(
+      `a.publication-title[href="${article.route}"],a.publication-title[href="${descriptor.url}"]`
+    );
+    assert.equal(await link.count(), 1, 'Writing lists the exact admitted article');
+    await link.evaluate((element) => element.click());
     await observe('internal');
     await page.goBack({ waitUntil: 'domcontentloaded' });
     await observe('back', null);
@@ -398,7 +402,10 @@ async function scenario(browser, dir, producer, s) {
       result.entryForms = ['canonical', 'extensionless'];
       result.entryRoutes = entryRoutes(s.entry);
       if (s.entry === 'writing') {
-        result.articleEntries = await articleEntryJourney(page, prefix, vendor);
+        const descriptors = JSON.parse(
+          fs.readFileSync(path.join(dir, 'docs/site-revision.json'))
+        ).articles;
+        result.articleEntries = await articleEntryJourney(page, prefix, vendor, descriptors);
         vendor.length = 0;
         await page.goto(prefix + 'writing.html', { waitUntil: 'domcontentloaded' });
         await ready(page, 'writing');

@@ -17377,12 +17377,6 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
-    "review/issue-177/2026-11-08-ci-local-diagnostics.json.gz": {
-      "kind": "file",
-      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
     "review/issue-177/2026-11-08-ci-requirements-final.md": {
       "kind": "file",
       "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
@@ -17402,6 +17396,36 @@
       "owner": "CONTRIBUTING.md"
     },
     "review/issue-177/2026-11-08-ci-whitebox.md": {
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-177/2026-11-08-ci-code-selector-correction.md": {
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-177/2026-11-08-ci-requirements-selector-correction.md": {
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-177/2026-11-08-ci-selector-diagnosis.md": {
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-177/2026-11-08-ci-whitebox-selector-correction.md": {
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-177/2026-11-08-ci-exploratory-actual.md": {
       "kind": "file",
       "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
       "role": "history",

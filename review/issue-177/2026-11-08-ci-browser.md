@@ -113,3 +113,51 @@ No workflow, matrix cardinality, publication source or product runtime bytes
 were changed in this checkpoint. CI receipts must be bound to the final remote
 source/tree/immutable preview before any browser completion claim. Stop/report
 when observations are collected; stable staging and production remain excluded.
+
+## Preserved first CI attempt and selector correction
+
+Run42510243025/1, source042a2eac, was deliberately cancelled before candidate
+upload after a source-supported selector defect was found. The owner-authorized
+GitHub UI confirmed Cancelled, total4m16s; retained prepublication artifact
+13628993341 SHA256adda69daa27a03ccb5f906be38e5b19d3956ce36230ff293f4469e3b6d9459e9.
+It supplies no completed browser result or full guard pass.
+
+Article-first navigation has no cached Writing document; returning fetches its
+pinned immutable snapshot. The router preserves its article-snapshot href until
+activation, so the new canonical-only selector could miss. Independent Code
+review reproduced the source path and acknowledged its earlier missed integration.
+The test correction accepts only the public catalog alias OR its exact emitted
+article descriptor snapshot, asserts one admitted publication link and then
+observes the same actual article identity/heading/SDK invariants. It neither
+changes product navigation nor relaxes evidence. Preserve the first verdict and
+source diagnosis. Re-review this correction before a new source-bound campaign;
+do not rerun the unchanged cancelled candidate or reuse its partial results.
+
+Selector correction was independently rechecked by Requirements, Code and
+White-box against both actual native and immutable Writing documents. All report
+oracles and row counts remain unchanged; targeted native68/68 and JS lint pass.
+The exploratory role separately observes the unchanged product UI in the existing
+042 prototype; those observations cannot supply new-source CI SDK fixture timing
+or telemetry proof. Final browser result still requires the corrected candidate.
+GitHub cancellation is retained as cancelled, not relabeled as a test failure,
+pass or successful rerun. A new evidence-only owner label event will target the
+changed source after exact tree upload and review receipt generation.
+
+Actual cloud-UI exploration of the unchanged042 prototype is retained separately:
+entry/alias/reload and eventual native/snapshot navigation were observed; Forward
+restored identity/title but remained busy at the bounded stop. Timeouts and slow
+transitions remain a diagnostic with unresolved cause, not a timing or BROWSER
+pass. No product change is inferred from CUA-tool timing. Staging had zero SDK
+DOM elements; enabled collector semantics still require the actual CI fixtures.
+
+## Preserved archive location and unchanged RI bound
+
+Adding the later review receipts crossed the existing RI total-content hash
+bound. The bound was not raised. Retired only the duplicate262751-byte local
+prepared-diagnostic bundle from the active tree; its byte-identical immutable
+original remains at [the source042 archive](https://github.com/oborskyivitalii/oborskyivitalii/blob/042a2eacd39b8ce6a6d780e2276182e60c3b2d3d/review/issue-177/2026-11-08-ci-local-diagnostics.json.gz).
+The original Git object was compared byte-for-byte before retirement; no historic
+commit, test failure, scanner proof or source evidence was erased. Current source
+reports point to that original. Preserve the first RI refusal rather than
+claiming the interrupted generation was fresh; rebuild/verify the corrected
+catalog and views under the unchanged bound before CI.
