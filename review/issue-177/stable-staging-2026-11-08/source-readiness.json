@@ -1,0 +1,222 @@
+{
+  "run": 42512852807,
+  "attempt": 1,
+  "artifact": 13630416888,
+  "zipSha256": "c29357e8c8ab4684af5195367705b1a7dcdd6861e1016ac938e67d6dabe2ea0a",
+  "source": "58d89a5b71b41ea995e4b327d07b4052d309ccfa",
+  "tree": "4f52b4a6162fb548d0d4d7446e7d6063d486fb77",
+  "sourceDirty": false,
+  "checks": [
+    {
+      "id": "clean-source",
+      "pass": true,
+      "status": "passed",
+      "exitCode": null,
+      "elapsedMs": null
+    },
+    {
+      "id": "basic",
+      "pass": true,
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedMs": 2562
+    },
+    {
+      "id": "source-tests",
+      "pass": true,
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedMs": 221732
+    },
+    {
+      "id": "python-tests",
+      "pass": true,
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedMs": 58969
+    },
+    {
+      "id": "code-style",
+      "pass": true,
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedMs": 129
+    },
+    {
+      "id": "ri",
+      "pass": true,
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedMs": 3262
+    },
+    {
+      "id": "ri-ci",
+      "pass": true,
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedMs": 183
+    },
+    {
+      "id": "format",
+      "pass": true,
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedMs": 5649
+    },
+    {
+      "id": "architecture",
+      "pass": true,
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedMs": 777
+    },
+    {
+      "id": "generated",
+      "pass": true,
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedMs": 1548
+    },
+    {
+      "id": "seo",
+      "pass": true,
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedMs": 4129
+    },
+    {
+      "id": "fallbacks",
+      "pass": true,
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedMs": 191
+    },
+    {
+      "id": "previews",
+      "pass": true,
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedMs": 447
+    },
+    {
+      "id": "bundle",
+      "pass": true,
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedMs": 525
+    },
+    {
+      "id": "artifact",
+      "pass": true,
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedMs": 141
+    },
+    {
+      "id": "artifact-source",
+      "pass": true,
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedMs": 28
+    },
+    {
+      "id": "sizes",
+      "pass": true,
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedMs": 134
+    },
+    {
+      "id": "edition-rights",
+      "pass": true,
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedMs": 1721
+    },
+    {
+      "id": "lint",
+      "pass": true,
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedMs": 8719
+    },
+    {
+      "id": "security",
+      "pass": true,
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedMs": 86778
+    },
+    {
+      "id": "advisories",
+      "pass": true,
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedMs": 3030
+    },
+    {
+      "id": "selftest",
+      "pass": true,
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedMs": 1704
+    },
+    {
+      "id": "package-proof",
+      "pass": true,
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedMs": 1674
+    },
+    {
+      "id": "package",
+      "pass": true,
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedMs": 1659
+    },
+    {
+      "id": "artifact-unchanged",
+      "pass": true,
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedMs": 139
+    },
+    {
+      "id": "unchanged-source",
+      "pass": true,
+      "status": "passed",
+      "exitCode": null,
+      "elapsedMs": null
+    }
+  ],
+  "pass": true,
+  "nativeAccounting": {
+    "tests": [
+      1245
+    ],
+    "pass": [
+      1245
+    ],
+    "fail": [
+      0
+    ],
+    "cancelled": [
+      0
+    ],
+    "skipped": [
+      0
+    ],
+    "todo": [
+      0
+    ]
+  },
+  "reviewFiles": {
+    "stage-review-packet.md": "d2447f643ce7fb5d6f62326b2c930e11f78da74e7975bb62948ae27c7f0d5e62",
+    "stage177-launch-receipts.json": "6d549fb013e7a78ccd76688d9f4e8e157be7b7cf5007bc84cb7faa854a6c2167",
+    "stage177-requirements.md": "644199111689fa8a0e4ee4291a26b0642b30bf0752780f64bbeed5344380d51b",
+    "stage177-code.md": "64616706ddf4dd6d76326d4e9b68766e66a18379ba0a5515fdabb9c9036692d2",
+    "stage177-whitebox.md": "407eaf4b927abcb97a4e870e898e6fe3badd87174f53d7ff07843b156238ac68",
+    "stage177-exploratory.md": "6b7e8de092f57f849c45a0f4020d9cac11e3f6d2a9a9cf07277ae926dd5204ee"
+  }
+}

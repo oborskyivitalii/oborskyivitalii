@@ -1,0 +1,47 @@
+# Independent Code review — first result
+
+Date: 2026-11-08. Reviewer: `/root/stage177_code`, distinct nonauthor Code / changed-artifact role. Owner: issue177 / Draft PR178. This evaluates analytics-only stable-staging readiness, not completion of the original issue.
+
+## Verdict
+
+**No blocking code finding in inspected source. Conditional readiness for the existing stable-staging route; stable staging has not passed or been promoted on the evidence observed here.** Required current-source source admission, other independent roles, completed staging/browser evidence and controller acceptance remain separate dependencies. This review supplies neither merge nor production approval. AC01–AC09 remain broader than this checkpoint, particularly live collector behavior, SEO/discovery/search and the owner-only Medium action.
+
+## Identity and independence
+
+- Repository: `/workspace/scratch/538c6c66c100/repo`; native Git checkout, clean at first inspection; HEAD `58d89a5b71b41ea995e4b327d07b4052d309ccfa`.
+- Full base/candidate range: `fdfc8cb67a6f78996932d9688c563c53c21387f2...58d89a5b71b41ea995e4b327d07b4052d309ccfa`; candidate tree `4f52b4a6162fb548d0d4d7446e7d6063d486fb77`.
+- Packet `/workspace/scratch/e4946ebfb0ba/stage-review-packet.md`, actual SHA256 `d2447f643ce7fb5d6f62326b2c930e11f78da74e7975bb62948ae27c7f0d5e62`.
+- Common prompt `agents/reviewers/README.md`, actual SHA256 `2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb`.
+- Role prompt `agents/reviewers/code-review.md`, actual SHA256 `26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697`.
+- Requested isolation: distinct nonauthor first judgment without author conversation or peer verdicts. Accepted observation: this execution received the source packet/task and independently inspected repository owners and raw GitHub job data; no peer verdict files or unrelated MEMORY/history were opened. Actual spawn request/acceptance receipt belongs to the orchestrator and is not independently observable from inside this reviewer execution. Provider model/context/memory internals are **unknown**, not attested clean. Shared filesystem is not an OS isolation boundary.
+- No implementation, test changes, delegation or external writes. Only this assigned result is authored. First verdict preserved before reconciliation.
+
+## Inspected scope and reasoning
+
+Read root AGENTS, README, CONTRIBUTING, acceptance policy, relevant CODE-STYLE, source, analytics, profile and staging contracts. Inspected all76 changed-path inventory entries and actual substantive source/test/config deltas across the full range; reviewer verdict artifacts and MEMORY were excluded by the packet. Generated HTML/snapshot and preview deltas were checked against their base counterparts using revision/hash mappings, not treated as authored authorities. RI/catalog and acceptance mappings were inspected as routing/identity metadata, not independent acceptance.
+
+- `tools/site/build.cjs:272–278,349–359,825–840`: one route projection extends the existing compiler and analytics fingerprint from validated `local-article` catalog records. Existing catalog validation bounds inventory and local URL syntax; selected accepted publisher models are checked through `validateLocalCatalog` before emission. Draft, unlisted, reference/technical and immutable-snapshot URLs do not become admitted merely through accepted metadata or preview selection. No `/articles/*` wildcard or second runtime owner is introduced.
+- Existing `site/integrations/cloudflare.cjs` and `tools/site/analytics.cjs` preserve exact HTTPS origin/project-path and literal pathname admission, supported extensionless forms, single SDK element, query/fragment neutrality and fail-open load/error behavior. No runtime, vendor, token, theme, editorial or SEO feature change was found.
+- Shared analytics fingerprint changes propagate into principal and article document versions. Targeted admission/removal tests assert full-generation refusal for content-only attempts, stale-loader refusal, cold/incremental equality, all principal document invalidation and unchanged engine bytes. These exercise an observable behavior boundary rather than only matching implementation text.
+- `tools/quality/analytics-browser.cjs:225–301,401–414,515–523`: actual browser producer observes canonical, reload, extensionless, Writing, internal, back and forward states using compiled fixture bytes; it asserts article identity/title, SDK request count per document/reload and one SDK element. Descriptor-aware selector supports both canonical links and immutable article targets. The expected record is shared with report fixtures, while the producer itself observes browser state; mutations in quality/staging tests reject missing/altered records. SDK count is explicitly not exactly-once pageview or collector proof.
+- Existing collector-abort isolation, service-worker block, fake-token vendor fixture, ordinary-reader contrast, staging-origin suppression and offline stripping remain present and unchanged. Native analytics tests exercise failure and isolation boundaries. Actual provider-generated pageview/history/query semantics and collector receipts remain future production gates, consistent with staging suppression.
+- Test allocation retains permanent analytics/site-article suites and mapped hosted/staging consumers; new issue-policy wrapper checks complete nonzero zero-skip accounting. No blanket suite exclusion, reduced budget or scanner implementation weakening was found.
+- `tools/quality/secrets-publication.json`: original3632 exact rows are preserved byte-equivalent as parsed records, with eight exact path/type/SHA1 additions. Six proof values independently matched their recorded SHA1 and corresponding file contents; retained HTTP bodies independently reproduced their recorded SHA256. Carrier checksum independently matches current `tools/site/build.cjs` SHA256 `ee69b9950ed0982a69344c5b92f6988b293362112817d8a2fc504ebfe101adee`. The loader addition carries the unchanged public browser identifier. No broad scanner allowance was added.
+- Generated principal pages and six current snapshots match base content after only declared route/loader/version identity substitutions. Static offline preview pages likewise preserve content; interactive preview JSON changes were inspected as revision versions, offline snapshot checksums and nested page route identifiers. Authored publication content is unchanged.
+- CS01/02/04 ownership/dependency boundaries and CS05 readability are appropriate for the focused changes. CS03/06/07 introduce no new CSS, lifecycle loop or hot-path work. CS08–10 keep meaningful negative cases, exact evidence and external review obligations. Guard success below is only its bounded subset; this judgment also considered ownership, serialization, cache coherence and tests outside it.
+
+## Actual checks and live observations
+
+1. `node --test tests/site-articles.test.cjs tests/analytics.test.cjs`: **34/34 pass**, zero fail/cancel/skip/todo, approximately14.8s. These are source/VM/fixture checks, not actual browser interaction. The printed controlled cold-preparation boundary explicitly ran no browser.
+2. `python3 tools/check_code_style.py`: **pass**,156 scanned files, zero legacy occurrences; bounded HTML/CSS/import/catalog scope only.
+3. Read-only proof recomputation: six public fingerprint path/SHA1 bindings, three retained HTTP-body SHA256 identities, preserved ledger prefix and carrier/build checksum all matched.
+4. Fresh GitHub `fetch_workflow_run_jobs` for run42512852807: build128829600849, publish128831596642, reused stage-evidence/build128831745801, host128831902577 and static128831902668 completed successfully. Staging/browser job128831902573 was **in_progress**, conclusionnull, on both observations. Promotion128831748209 and merge admission128831747915 were skipped. These are distinct statuses; skips and pending are not pass.
+5. Fresh actual build-job logs bind source/candidate `58d89a5b71b41ea995e4b327d07b4052d309ccfa`, tree `4f52b4a6162fb548d0d4d7446e7d6063d486fb77`, `sourceDirty:false`, run42512852807 attempt1. The logs identify successful prepublication staging-package preparation. I did not infer the full campaign passed from that job.
+
+## Findings, limits and treatment
+
+**Blockers found in inspected code: none. Nonblocking code change requests: none.** Risks explicitly challenged were wildcard/publication-state leakage, stale shared loaders after route changes, content-only lane misuse, duplicate SDKs, snapshot/canonical selector mismatch, QA contamination, mock evidence overclaiming, scanner bypass and generated-output drift.
+
+**Remaining evidence dependency, AC07:** wait for actual exact-source staging/browser completion and existing aggregate/controller admission, then inspect final conclusions and artifact identity before any stable promotion. A successful build/host/static subset is insufficient. The wider release/source review and launch-receipt gates remain owned by their existing workflows/orchestrator.
+
+Limits: no local browser campaign or live vendor collector request was launched; no source admission/production approval is implied. Current/prior reviewer conclusions were not reviewed. Broader article metadata, discovery and Medium canonical work remain outside this staging candidate and open. This is a bounded first independent Code judgment, not a full issue-acceptance verdict.

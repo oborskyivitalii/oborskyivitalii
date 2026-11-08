@@ -1,0 +1,85 @@
+{
+  "date": "2026-11-08",
+  "candidate": "58d89a5b71b41ea995e4b327d07b4052d309ccfa",
+  "tree": "4f52b4a6162fb548d0d4d7446e7d6063d486fb77",
+  "packetSha256": "d2447f643ce7fb5d6f62326b2c930e11f78da74e7975bb62948ae27c7f0d5e62",
+  "commonSha256": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb",
+  "launches": [
+    {
+      "role": "requirements",
+      "tool": "collaboration.spawn_agent",
+      "requested": {
+        "task_name": "stage177_requirements",
+        "fork_turns": "none",
+        "model": "omitted; inherited default",
+        "reasoning_effort": "omitted; inherited default"
+      },
+      "acceptedResponse": {
+        "task_name": "/root/stage177_requirements"
+      },
+      "providerObserved": {
+        "model": "unknown",
+        "contextInternals": "unknown",
+        "memoryInjection": "unknown"
+      },
+      "readBoundary": "Only assigned packet/common/role/necessary source and raw evidence; no author conversation or peer verdicts before first result; shared tools/filesystem are not an OS sandbox"
+    },
+    {
+      "role": "code",
+      "tool": "collaboration.spawn_agent",
+      "requested": {
+        "task_name": "stage177_code",
+        "fork_turns": "none",
+        "model": "omitted; inherited default",
+        "reasoning_effort": "omitted; inherited default"
+      },
+      "acceptedResponse": {
+        "task_name": "/root/stage177_code"
+      },
+      "providerObserved": {
+        "model": "unknown",
+        "contextInternals": "unknown",
+        "memoryInjection": "unknown"
+      },
+      "readBoundary": "Only assigned packet/common/role/necessary source and raw evidence; no author conversation or peer verdicts before first result; shared tools/filesystem are not an OS sandbox"
+    },
+    {
+      "role": "whitebox",
+      "tool": "collaboration.spawn_agent",
+      "requested": {
+        "task_name": "stage177_whitebox",
+        "fork_turns": "none",
+        "model": "omitted; inherited default",
+        "reasoning_effort": "omitted; inherited default"
+      },
+      "acceptedResponse": {
+        "task_name": "/root/stage177_whitebox"
+      },
+      "providerObserved": {
+        "model": "unknown",
+        "contextInternals": "unknown",
+        "memoryInjection": "unknown"
+      },
+      "readBoundary": "Only assigned packet/common/role/necessary source and raw evidence; no author conversation or peer verdicts before first result; shared tools/filesystem are not an OS sandbox"
+    },
+    {
+      "role": "exploratory",
+      "tool": "collaboration.spawn_agent",
+      "requested": {
+        "task_name": "stage177_exploratory",
+        "fork_turns": "none",
+        "model": "omitted; inherited default",
+        "reasoning_effort": "omitted; inherited default"
+      },
+      "acceptedResponse": {
+        "task_name": "/root/stage177_exploratory"
+      },
+      "providerObserved": {
+        "model": "unknown",
+        "contextInternals": "unknown",
+        "memoryInjection": "unknown"
+      },
+      "readBoundary": "Only assigned packet/common/role/necessary source and raw evidence; no author conversation or peer verdicts before first result; shared tools/filesystem are not an OS sandbox"
+    }
+  ]
+}
