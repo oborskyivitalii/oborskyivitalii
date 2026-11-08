@@ -161,3 +161,46 @@ commit, test failure, scanner proof or source evidence was erased. Current sourc
 reports point to that original. Preserve the first RI refusal rather than
 claiming the interrupted generation was fresh; rebuild/verify the corrected
 catalog and views under the unchanged bound before CI.
+
+## CI42511286540 prepublication diagnosis and bounded correction
+
+Exact failed source06ffa6fcfc1cfa5fa1030e5d077d5d314e324d07, tree8193b1fab23a9af8f4bc6e651a1c1cf45048fa99.
+[Failed run](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/42511286540),
+[raw artifact13629088876](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/42511286540/artifacts/13629088876),
+ZIP SHA256c947064943218de8c0ec37577c2c4840b500e5088a2bc30e433f896df4ba6fc9 verified before extraction.
+Source tests1245 total/1240 pass/5 fail/0 cancelled/skipped/todo. No timeout.
+Prepublication failed source-tests, format and SEO; other guards including security passed.
+Browser/publish stages were skipped. This remains a failure, never browser proof.
+
+Four source failures (executive Writing/Research/frozen SEO and content-rendering fresh SEO CLI)
+and standalone SEO share the active Writing carrier's stale build.cjs after pin.
+Current producer ee69b9950ed0982a69344c5b92f6988b293362112817d8a2fc504ebfe101adee replaces
+3d9b80f989008ae487cccf4b38aea630bd4ddf62782a971e7e62142c9fbbc869 after the reviewed
+analytics-only delta. The [immutable old active record](https://github.com/oborskyivitalii/oborskyivitalii/blob/06ffa6fcfc1cfa5fa1030e5d077d5d314e324d07/review/issue-169/writing-carrier.json)
+retains prior evidence. Refresh only this afterSHA256 in the existing canonical successor owner;
+beforeSHA256, historical predecessor, accepted SVG/resource and all other producer pins remain exact.
+Code reviewer independently reconstructed current Writing and Research geometry against their fixed
+historical source: Writing943eaad6a4a49f83671d25ae9f9d766e80196f8b25b5aa68173715be5e955874;
+Researchafd670d4651035dce324acb94b6efb83b7b7e0372d978a4f5a961f0eb86d7341.
+Their carrier paths/bytes and alias+immutable HTML reconstructions remained identical.
+No SEO feature, editorial metadata, rights, geometry or assertion changed.
+
+The fifth test compiled expected analytics from principal pages only. Independently derive its
+expected route inventory from principal URLs plus validated public local-article catalog records;
+retain all exact byte/digest/script-count/script-attribute/empty-inline/schema checks. No emitted
+hash accepted as an oracle and no call into private analyticsURLs helper. White-box diagnostic
+reproduced actual1c34e640 loader from the corrected input. Format-only .github/ri-ci-map.json:
+parsed values verified identical before/after; no route, threshold, scanner or budget change.
+
+Requirements /root/issue177_ci_requirements reviewed raw failure before correction; approved
+this bounded plan and explicit immutable old-record evidence. Code /root/issue177_ci_code and
+White-box /root/issue177_ci_whitebox independently diagnosed the exact five failures and
+preservation invariants. These are correction/delta executions of their original clean-context
+roles, not new isolated first judgments; final source re-review and browser evidence remain pending.
+Local first SEO CLI retry lacked the ignored parser interpreter; configured the local ignored
+interpreter only, then the full unchanged SEO verifier passed. This is local setup, not source weakening.
+
+Dirty prepared correction: full format check passed; affected native selection63 total/62 pass/1 fail.
+The single remaining fresh CLI fixture git-clones HEAD, which still contained the old carrier pin;
+it overlays checker/Home-frame/reader pin but not the dirty carrier. Preserve this refused diagnostic.
+Commit the already reviewed correction, then rerun exact-source checks; no fixture weakening.

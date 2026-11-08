@@ -492,10 +492,12 @@ test('English UI has distinct useful metadata and non-executable accurate page s
   const titles = [],
     analytics = require('../tools/site/analytics.cjs'),
     config = analytics.validate(require('../site/analytics.json')),
-    measurement = analytics.compile(
-      path.join(root, '..'),
-      require('../site/routes.json').routes.map((route) => route.url)
-    ),
+    measurement = analytics.compile(path.join(root, '..'), [
+      ...require('../site/routes.json').routes.map((route) => route.url),
+      ...Object.values(require('../tools/site/build.cjs').catalog(path.join(root, '..')).records)
+        .filter((record) => record.kind === 'local-article')
+        .map((record) => record.edition.url),
+    ]),
     loaders = Object.entries(measurement.assets),
     revision = require('../docs/site-revision.json');
   assert.equal(loaders.length, config.enabled ? 1 : 0, 'exact optional analytics loader');

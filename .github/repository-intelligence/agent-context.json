@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "eb5ea31d50964413590a212f1fb342e9f6fd4d4b41e55afe1ef0ccca3a2d09f9",
+    "digest": "1b1a30bd87f70fb3acac7aff60b9ec2cd548b02cabbd9de73e9f0086001a858c",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -231,7 +231,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "40d10a40217df553ad85e131fcbd753a4b4d6599c073f563e120937b72e4d8bb"
+        "sha256": "399d6840ea74349f497af57469e80cd3fbfc51736a00ed10cc0ab0cc914ebac5"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -381,7 +381,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "77d02fe35f070e577be0a57bb8c37366bf09d0235087bdf41997f4323956dd13"
+        "sha256": "358860fa7da63a91d17fca661e87712a44c1f57852945d3ebecada7c9e05a280"
       },
       {
         "path": "NOTICE.md",
@@ -4450,7 +4450,7 @@
       {
         "path": "review/issue-169/writing-carrier.json",
         "identity_mode": "content",
-        "sha256": "281f0cd88fd249b3e18897b6e771fa8da0a16a0879a92319cab733c4d8fe1050"
+        "sha256": "6947f1e78eb6e5797cd2b2d5d176786c2d6f9b7acb2c628a856def7ce2602a5a"
       },
       {
         "path": "review/issue-169/writing-discovery/README.md",
@@ -4600,7 +4600,7 @@
       {
         "path": "review/issue-177/2026-11-08-ci-browser.md",
         "identity_mode": "content",
-        "sha256": "f9ea142cdbbc3d0440ea244f342686d60f95e68a0f687247edc78a0a160ca857"
+        "sha256": "af0519ad70f242a562d04bea8f31df5a94f66ce019870ee5cde5f900345777f4"
       },
       {
         "path": "review/issue-177/2026-11-08-ci-code-scanner-correction.md",
@@ -11560,7 +11560,7 @@
       {
         "path": "tests/content.test.cjs",
         "identity_mode": "content",
-        "sha256": "98571934c63fdbcc3ca75f05bae6fc256f414a38d4bba3cc00606cb9265eba63"
+        "sha256": "0f9fbed2efdabbd3546865f4444c29245245c8ca6ce38e06c9ed772bb935c2cf"
       },
       {
         "path": "tests/control-lock.test.cjs",

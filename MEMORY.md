@@ -21,8 +21,9 @@ Dated continuity, not live authority. Last verified: **2026-11-08**.
 
 - Candidate producer admits public catalog articles and binds loader identity into document versions.
 - Source report: review/issue-177/2026-11-08-article-analytics.md.
-- Previous source correction reviews passed; local Chromium is blocked. Next CI/browser test update in progress.
-- Final six-suite native selection133/133 pass; Basic, style and RI checks pass.
+- CI42511286540 at06ffa6fc failed prepublication: 5/1245 source failures, carrier/oracle drift; format RI map.
+- Bounded carrier-pin/oracle/format correction reviewed; no feature/scope change. Exact-source recheck next.
+- Earlier133/133 scoped source checks passed; current full browser gate is still pending, not green.
 - Initial missing-interpreter and stale-output failures are retained in the report.
 - Real SDK-generated pageviews and aggregate collector receipt remain unobserved for the correction.
 
