@@ -469,7 +469,7 @@ function validatePlatformLinks(record, urls) {
       !Object.hasOwn(hosts, link.platform) ||
       !hosts[link.platform]?.some((domain) => host === domain || host.endsWith('.' + domain)) ||
       parsed.port ||
-      /[\u0000-\u0020\u007f]/.test(link.url) ||
+      [...link.url].some((char) => char.charCodeAt(0) < 32 || char.charCodeAt(0) === 127) ||
       platforms.has(link.platform) ||
       urls.has(url)
     )

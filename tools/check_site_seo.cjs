@@ -475,7 +475,7 @@ const archiveProducers = Object.freeze({
   }),
   'tools/site/validate-catalog.cjs': Object.freeze({
     beforeSHA256: '6a61f3af40e94c42b4240c1afb21a2a25474f2cf58381a2c40f12dea12becc6c',
-    afterSHA256: '18595ccb09eabc9ec10260af383714611886be35cbf3adf0dbf4eeab616fe679',
+    afterSHA256: '79554634afc34ac491249624ffd8a5dc7b4db54a8f38703e2737655d180baa22',
   }),
 });
 

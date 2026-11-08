@@ -64,4 +64,39 @@ static comparison matched, but Chromium launch was blocked by the local socket
 policy before any page and file-protocol CUA was denied. Runtime layout must be
 inspected on the authorized hosted PR preview, not claimed locally.
 
+### Current source review and metadata reconciliation
+
+Reviewed prepared correction b31a78a/tree14a396fa has three completed independent
+role corrections: Requirements RQ01 resolved (focused2/2), Code P2 resolved
+(focused3/3 plus original coercion exploit refused), White-box PASS (focused3/3,
+additional malformed-platform partitions and identical principal main content).
+Their initial judgments and correction results remain separately retained in
+this session. These are continuations of explicit none-fork first reviews;
+provider internals are unknown. Exploratory static comparison is complete but
+runtime acceptance awaits actual hosted PR176 preview. Root/source summaries
+cannot supply that independent browser observation.
+
+Current local Basic passed28/28 and formatting/style/architecture passed on the
+corrected source. RI build/verify passed. Owning acceptance exposed stale RI/CI
+reviewed_source_identity after the catalog allocation changed; its failing result
+is retained, with AC05 failed and manual gates open. Refreshing only that derived
+identity preserves the exact map layers/checks/routes. The full local source run
+on that superseded mapping was stopped (exit130), not passed; final native CI
+will execute the current map/source. No unchanged failed campaign is rerun.
+
+The GitHub connector reconstructed complete remote tree14a396fa, byte-identical
+to the reviewed local prepared candidate, at ccc82a3a / DraftPR176. Direct CLI
+push lacked credentials; no authentication/protection change was made.
+
 No merge, stable promotion or production publication is claimed by this prepared report.
+
+### Lint correction and protected metadata
+
+The artifact-bound complete lint run identified ESLint no-control-regex in the
+new validator. Its actual unsafe-character behavior is preserved with an explicit
+character-code predicate, using the existing source style and no suppression.
+Focused changed-source ESLint passes. The producer pin and outputs regenerate.
+The refreshed RI/CI map differs only in reviewed_source_identity; all layers,
+checks and policy definitions are byte-equivalent as JSON. Its first post-refresh
+format warning was resolved with the repository's pinned formatter. All failed
+setup/check observations remain retained, with no weakened test or budget.
