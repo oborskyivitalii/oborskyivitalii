@@ -1,0 +1,1494 @@
+{
+  "source": "935d74e2e372965690e0a691393d98b75020122a",
+  "tree": "721eabb59e2814f03d328a4665a9b5cdcb067651",
+  "main": "fdfc8cb67a6f78996932d9688c563c53c21387f2",
+  "run": {
+    "id": 42515940915,
+    "status": "completed",
+    "conclusion": "success",
+    "created": "2026-11-08T19:37:18Z",
+    "started": "2026-11-08T19:37:18Z",
+    "updated": "2026-11-08T20:02:22Z"
+  },
+  "jobs": [
+    {
+      "id": 128838857511,
+      "name": "target",
+      "status": "completed",
+      "conclusion": "success",
+      "started": "2026-11-08T19:37:21Z",
+      "completed": "2026-11-08T19:37:40Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:37:22Z",
+          "completed": "2026-11-08T19:37:23Z"
+        },
+        {
+          "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:37:23Z",
+          "completed": "2026-11-08T19:37:36Z"
+        },
+        {
+          "name": "Run actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:37:36Z",
+          "completed": "2026-11-08T19:37:37Z"
+        },
+        {
+          "name": "Retain the staging target before candidate work",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:37:37Z",
+          "completed": "2026-11-08T19:37:38Z"
+        },
+        {
+          "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:37:38Z",
+          "completed": "2026-11-08T19:37:38Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:37:38Z",
+          "completed": "2026-11-08T19:37:38Z"
+        }
+      ]
+    },
+    {
+      "id": 128838858850,
+      "name": "github.event_name != 'pull_request' && 'PR staging admission not applicable' || github.event.pull_request.draft && 'Prototype staging admission deferred' || github.event.action == 'labeled' && 'PR staging admission refresh not requested' || 'Staging admission'",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started": "2026-11-08T19:37:19Z",
+      "completed": "2026-11-08T19:37:19Z",
+      "steps": []
+    },
+    {
+      "id": 128838950208,
+      "name": "begin-admission",
+      "status": "completed",
+      "conclusion": "success",
+      "started": "2026-11-08T19:37:43Z",
+      "completed": "2026-11-08T19:37:57Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:37:44Z",
+          "completed": "2026-11-08T19:37:44Z"
+        },
+        {
+          "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:37:44Z",
+          "completed": "2026-11-08T19:37:51Z"
+        },
+        {
+          "name": "Run actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:37:51Z",
+          "completed": "2026-11-08T19:37:54Z"
+        },
+        {
+          "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:37:54Z",
+          "completed": "2026-11-08T19:37:54Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:37:54Z",
+          "completed": "2026-11-08T19:37:55Z"
+        }
+      ]
+    },
+    {
+      "id": 128839023414,
+      "name": "build",
+      "status": "completed",
+      "conclusion": "success",
+      "started": "2026-11-08T19:38:00Z",
+      "completed": "2026-11-08T19:48:35Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:38:00Z",
+          "completed": "2026-11-08T19:38:02Z"
+        },
+        {
+          "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:38:02Z",
+          "completed": "2026-11-08T19:38:16Z"
+        },
+        {
+          "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:38:16Z",
+          "completed": "2026-11-08T19:38:21Z"
+        },
+        {
+          "name": "Authenticate the exact checked-out candidate",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:38:21Z",
+          "completed": "2026-11-08T19:38:21Z"
+        },
+        {
+          "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:38:21Z",
+          "completed": "2026-11-08T19:38:28Z"
+        },
+        {
+          "name": "Install locked prepublication tools for an explicit staging attempt",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:38:28Z",
+          "completed": "2026-11-08T19:38:57Z"
+        },
+        {
+          "name": "Install declared locked publication tools when available",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:38:57Z",
+          "completed": "2026-11-08T19:38:58Z"
+        },
+        {
+          "name": "Select a trusted earlier generation for authored content updates",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:38:58Z",
+          "completed": "2026-11-08T19:38:59Z"
+        },
+        {
+          "name": "Install locked content-source tools for an ordinary preview",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started": "2026-11-08T19:38:59Z",
+          "completed": "2026-11-08T19:38:59Z"
+        },
+        {
+          "name": "Targeted controller checks and one immutable public build",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:38:59Z",
+          "completed": "2026-11-08T19:39:07Z"
+        },
+        {
+          "name": "Select the supported source rendition and bind its visual identity",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:39:07Z",
+          "completed": "2026-11-08T19:39:10Z"
+        },
+        {
+          "name": "Complete host-independent staging guards before candidate upload",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:39:10Z",
+          "completed": "2026-11-08T19:48:22Z"
+        },
+        {
+          "name": "Retain all prepublication observations even when a guard fails",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:48:22Z",
+          "completed": "2026-11-08T19:48:24Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:48:24Z",
+          "completed": "2026-11-08T19:48:26Z"
+        },
+        {
+          "name": "Bind the build record and add hosting policy",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:48:26Z",
+          "completed": "2026-11-08T19:48:31Z"
+        },
+        {
+          "name": "Run node - <<'JS'",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:48:31Z",
+          "completed": "2026-11-08T19:48:31Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:48:31Z",
+          "completed": "2026-11-08T19:48:32Z"
+        },
+        {
+          "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:48:32Z",
+          "completed": "2026-11-08T19:48:32Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:48:32Z",
+          "completed": "2026-11-08T19:48:33Z"
+        },
+        {
+          "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:48:33Z",
+          "completed": "2026-11-08T19:48:33Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:48:33Z",
+          "completed": "2026-11-08T19:48:33Z"
+        }
+      ]
+    },
+    {
+      "id": 128841751889,
+      "name": "publish",
+      "status": "completed",
+      "conclusion": "success",
+      "started": "2026-11-08T19:48:39Z",
+      "completed": "2026-11-08T19:49:07Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:48:40Z",
+          "completed": "2026-11-08T19:48:41Z"
+        },
+        {
+          "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:48:41Z",
+          "completed": "2026-11-08T19:48:46Z"
+        },
+        {
+          "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:48:46Z",
+          "completed": "2026-11-08T19:48:50Z"
+        },
+        {
+          "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:48:50Z",
+          "completed": "2026-11-08T19:48:50Z"
+        },
+        {
+          "name": "Verify package and configured project",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:48:50Z",
+          "completed": "2026-11-08T19:48:51Z"
+        },
+        {
+          "name": "Reject a moved PR or staging controller before deployment",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:48:51Z",
+          "completed": "2026-11-08T19:48:52Z"
+        },
+        {
+          "name": "Run cloudflare/wrangler-action@953926a2e2182532811c01a25e53647d93bf07c0",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:48:52Z",
+          "completed": "2026-11-08T19:49:06Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:49:06Z",
+          "completed": "2026-11-08T19:49:06Z"
+        },
+        {
+          "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:49:06Z",
+          "completed": "2026-11-08T19:49:06Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:49:06Z",
+          "completed": "2026-11-08T19:49:06Z"
+        }
+      ]
+    },
+    {
+      "id": 128841888407,
+      "name": "published-comment",
+      "status": "completed",
+      "conclusion": "success",
+      "started": "2026-11-08T19:49:10Z",
+      "completed": "2026-11-08T19:49:20Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:49:10Z",
+          "completed": "2026-11-08T19:49:11Z"
+        },
+        {
+          "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:49:11Z",
+          "completed": "2026-11-08T19:49:16Z"
+        },
+        {
+          "name": "Run actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:49:16Z",
+          "completed": "2026-11-08T19:49:18Z"
+        },
+        {
+          "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:49:18Z",
+          "completed": "2026-11-08T19:49:18Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:49:18Z",
+          "completed": "2026-11-08T19:49:18Z"
+        }
+      ]
+    },
+    {
+      "id": 128841888909,
+      "name": "full / build",
+      "status": "completed",
+      "conclusion": "success",
+      "started": "2026-11-08T19:49:10Z",
+      "completed": "2026-11-08T19:49:45Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:49:11Z",
+          "completed": "2026-11-08T19:49:13Z"
+        },
+        {
+          "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:49:13Z",
+          "completed": "2026-11-08T19:49:27Z"
+        },
+        {
+          "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:49:27Z",
+          "completed": "2026-11-08T19:49:31Z"
+        },
+        {
+          "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:49:31Z",
+          "completed": "2026-11-08T19:49:38Z"
+        },
+        {
+          "name": "Authenticate the prepublication request and exact checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:49:38Z",
+          "completed": "2026-11-08T19:49:38Z"
+        },
+        {
+          "name": "Install locked maintained-source check dependencies",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started": "2026-11-08T19:49:38Z",
+          "completed": "2026-11-08T19:49:38Z"
+        },
+        {
+          "name": "Package public files once and enforce budgets",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started": "2026-11-08T19:49:38Z",
+          "completed": "2026-11-08T19:49:38Z"
+        },
+        {
+          "name": "Build the explicit Color rendition",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started": "2026-11-08T19:49:38Z",
+          "completed": "2026-11-08T19:49:38Z"
+        },
+        {
+          "name": "Freeze the selected publication edition before prepublication guards",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started": "2026-11-08T19:49:38Z",
+          "completed": "2026-11-08T19:49:38Z"
+        },
+        {
+          "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:49:38Z",
+          "completed": "2026-11-08T19:49:40Z"
+        },
+        {
+          "name": "Verify reused bytes and exact source identity",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:49:40Z",
+          "completed": "2026-11-08T19:49:40Z"
+        },
+        {
+          "name": "Authenticate the same-run staging preflight artifact",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:49:40Z",
+          "completed": "2026-11-08T19:49:40Z"
+        },
+        {
+          "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:49:40Z",
+          "completed": "2026-11-08T19:49:41Z"
+        },
+        {
+          "name": "Verify every retained preflight guard and original report byte",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:49:41Z",
+          "completed": "2026-11-08T19:49:41Z"
+        },
+        {
+          "name": "Complete host-independent guards before candidate upload or hosted jobs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started": "2026-11-08T19:49:41Z",
+          "completed": "2026-11-08T19:49:41Z"
+        },
+        {
+          "name": "Retain all prepublication observations even when a guard fails",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started": "2026-11-08T19:49:41Z",
+          "completed": "2026-11-08T19:49:41Z"
+        },
+        {
+          "name": "Retain preflight verification diagnostics without replacing the producer",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:49:41Z",
+          "completed": "2026-11-08T19:49:42Z"
+        },
+        {
+          "name": "Run node -e \"require('node:fs').appendFileSync(process.env.GITHUB_OUTPUT,'digest='+require('./quality-artifact/artifact.json').artifactDigest+'\\n')\"",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:49:42Z",
+          "completed": "2026-11-08T19:49:42Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started": "2026-11-08T19:49:42Z",
+          "completed": "2026-11-08T19:49:42Z"
+        },
+        {
+          "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:49:42Z",
+          "completed": "2026-11-08T19:49:43Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:49:43Z",
+          "completed": "2026-11-08T19:49:43Z"
+        },
+        {
+          "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:49:43Z",
+          "completed": "2026-11-08T19:49:43Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:49:43Z",
+          "completed": "2026-11-08T19:49:43Z"
+        }
+      ]
+    },
+    {
+      "id": 128841889472,
+      "name": "smoke",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started": "2026-11-08T19:49:08Z",
+      "completed": "2026-11-08T19:49:07Z",
+      "steps": []
+    },
+    {
+      "id": 128841890015,
+      "name": "stage-evidence",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started": "2026-11-08T19:49:08Z",
+      "completed": "2026-11-08T19:49:07Z",
+      "steps": []
+    },
+    {
+      "id": 128842046325,
+      "name": "full / static",
+      "status": "completed",
+      "conclusion": "success",
+      "started": "2026-11-08T19:49:48Z",
+      "completed": "2026-11-08T19:50:21Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:49:49Z",
+          "completed": "2026-11-08T19:49:51Z"
+        },
+        {
+          "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:49:51Z",
+          "completed": "2026-11-08T19:50:08Z"
+        },
+        {
+          "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:50:08Z",
+          "completed": "2026-11-08T19:50:13Z"
+        },
+        {
+          "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started": "2026-11-08T19:50:13Z",
+          "completed": "2026-11-08T19:50:13Z"
+        },
+        {
+          "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:50:13Z",
+          "completed": "2026-11-08T19:50:15Z"
+        },
+        {
+          "name": "Authenticate the original same-attempt staging preflight",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:50:15Z",
+          "completed": "2026-11-08T19:50:15Z"
+        },
+        {
+          "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:50:15Z",
+          "completed": "2026-11-08T19:50:16Z"
+        },
+        {
+          "name": "Revalidate and retain original staging scanner reports",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:50:16Z",
+          "completed": "2026-11-08T19:50:17Z"
+        },
+        {
+          "name": "Install locked tools",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started": "2026-11-08T19:50:17Z",
+          "completed": "2026-11-08T19:50:17Z"
+        },
+        {
+          "name": "Verify artifact and scanner fixtures",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started": "2026-11-08T19:50:17Z",
+          "completed": "2026-11-08T19:50:17Z"
+        },
+        {
+          "name": "Lint source",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started": "2026-11-08T19:50:17Z",
+          "completed": "2026-11-08T19:50:17Z"
+        },
+        {
+          "name": "Security scans",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started": "2026-11-08T19:50:17Z",
+          "completed": "2026-11-08T19:50:17Z"
+        },
+        {
+          "name": "Dependency advisories",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started": "2026-11-08T19:50:17Z",
+          "completed": "2026-11-08T19:50:17Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:50:17Z",
+          "completed": "2026-11-08T19:50:18Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:50:18Z",
+          "completed": "2026-11-08T19:50:18Z"
+        },
+        {
+          "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:50:18Z",
+          "completed": "2026-11-08T19:50:18Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:50:18Z",
+          "completed": "2026-11-08T19:50:18Z"
+        }
+      ]
+    },
+    {
+      "id": 128842046332,
+      "name": "full / host",
+      "status": "completed",
+      "conclusion": "success",
+      "started": "2026-11-08T19:49:48Z",
+      "completed": "2026-11-08T19:50:12Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:49:49Z",
+          "completed": "2026-11-08T19:49:51Z"
+        },
+        {
+          "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:49:51Z",
+          "completed": "2026-11-08T19:49:56Z"
+        },
+        {
+          "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:49:56Z",
+          "completed": "2026-11-08T19:50:01Z"
+        },
+        {
+          "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:50:01Z",
+          "completed": "2026-11-08T19:50:03Z"
+        },
+        {
+          "name": "Verify HTTPS, MIME, redirects, 404 and every served source byte",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:50:03Z",
+          "completed": "2026-11-08T19:50:08Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:50:08Z",
+          "completed": "2026-11-08T19:50:09Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:50:09Z",
+          "completed": "2026-11-08T19:50:10Z"
+        },
+        {
+          "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:50:10Z",
+          "completed": "2026-11-08T19:50:10Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:50:10Z",
+          "completed": "2026-11-08T19:50:10Z"
+        }
+      ]
+    },
+    {
+      "id": 128842046354,
+      "name": "full / staging",
+      "status": "completed",
+      "conclusion": "success",
+      "started": "2026-11-08T19:49:48Z",
+      "completed": "2026-11-08T19:59:46Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:49:49Z",
+          "completed": "2026-11-08T19:49:50Z"
+        },
+        {
+          "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:49:50Z",
+          "completed": "2026-11-08T19:50:04Z"
+        },
+        {
+          "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:50:04Z",
+          "completed": "2026-11-08T19:50:08Z"
+        },
+        {
+          "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:50:08Z",
+          "completed": "2026-11-08T19:50:10Z"
+        },
+        {
+          "name": "Prepare bounded Ubuntu downloads",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:50:10Z",
+          "completed": "2026-11-08T19:50:10Z"
+        },
+        {
+          "name": "Install locked bounded staging browser tools",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:50:10Z",
+          "completed": "2026-11-08T19:50:39Z"
+        },
+        {
+          "name": "Prepare canonical publication media for source fixtures",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:50:39Z",
+          "completed": "2026-11-08T19:50:46Z"
+        },
+        {
+          "name": "Restore verified pinned browsers without prior launch",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:50:46Z",
+          "completed": "2026-11-08T19:51:08Z"
+        },
+        {
+          "name": "Verify the unchanged package and run representative browser and performance regression",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:51:08Z",
+          "completed": "2026-11-08T19:59:40Z"
+        },
+        {
+          "name": "Exercise genuine content release on an isolated local fixture",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started": "2026-11-08T19:59:40Z",
+          "completed": "2026-11-08T19:59:40Z"
+        },
+        {
+          "name": "Export and verify the article PDF with locked managed Chromium",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started": "2026-11-08T19:59:40Z",
+          "completed": "2026-11-08T19:59:40Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started": "2026-11-08T19:59:40Z",
+          "completed": "2026-11-08T19:59:40Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started": "2026-11-08T19:59:40Z",
+          "completed": "2026-11-08T19:59:40Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:59:40Z",
+          "completed": "2026-11-08T19:59:42Z"
+        },
+        {
+          "name": "Post Restore verified pinned browsers without prior launch",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:59:42Z",
+          "completed": "2026-11-08T19:59:42Z"
+        },
+        {
+          "name": "Post Prepare canonical publication media for source fixtures",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:59:42Z",
+          "completed": "2026-11-08T19:59:42Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:59:42Z",
+          "completed": "2026-11-08T19:59:42Z"
+        },
+        {
+          "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:59:42Z",
+          "completed": "2026-11-08T19:59:43Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:59:43Z",
+          "completed": "2026-11-08T19:59:43Z"
+        }
+      ]
+    },
+    {
+      "id": 128842046978,
+      "name": "full / Native ${{ matrix.platform }}",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started": "2026-11-08T19:49:46Z",
+      "completed": "2026-11-08T19:49:45Z",
+      "steps": []
+    },
+    {
+      "id": 128842047454,
+      "name": "full / linux",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started": "2026-11-08T19:49:46Z",
+      "completed": "2026-11-08T19:49:45Z",
+      "steps": []
+    },
+    {
+      "id": 128842047759,
+      "name": "full / performance",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started": "2026-11-08T19:49:46Z",
+      "completed": "2026-11-08T19:49:45Z",
+      "steps": []
+    },
+    {
+      "id": 128842048008,
+      "name": "full / captures",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started": "2026-11-08T19:49:46Z",
+      "completed": "2026-11-08T19:49:45Z",
+      "steps": []
+    },
+    {
+      "id": 128844531126,
+      "name": "full / gate",
+      "status": "completed",
+      "conclusion": "success",
+      "started": "2026-11-08T19:59:48Z",
+      "completed": "2026-11-08T20:00:07Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:59:49Z",
+          "completed": "2026-11-08T19:59:50Z"
+        },
+        {
+          "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:59:50Z",
+          "completed": "2026-11-08T19:59:56Z"
+        },
+        {
+          "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T19:59:56Z",
+          "completed": "2026-11-08T20:00:01Z"
+        },
+        {
+          "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:00:01Z",
+          "completed": "2026-11-08T20:00:02Z"
+        },
+        {
+          "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:00:02Z",
+          "completed": "2026-11-08T20:00:03Z"
+        },
+        {
+          "name": "Validate external evidence identifiers",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started": "2026-11-08T20:00:03Z",
+          "completed": "2026-11-08T20:00:03Z"
+        },
+        {
+          "name": "Download immutable external review/device evidence",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started": "2026-11-08T20:00:03Z",
+          "completed": "2026-11-08T20:00:03Z"
+        },
+        {
+          "name": "Validate completeness, source identity and mandatory results",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:00:03Z",
+          "completed": "2026-11-08T20:00:03Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:00:03Z",
+          "completed": "2026-11-08T20:00:05Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:00:05Z",
+          "completed": "2026-11-08T20:00:05Z"
+        },
+        {
+          "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:00:05Z",
+          "completed": "2026-11-08T20:00:05Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:00:05Z",
+          "completed": "2026-11-08T20:00:05Z"
+        }
+      ]
+    },
+    {
+      "id": 128844618643,
+      "name": "promote",
+      "status": "completed",
+      "conclusion": "success",
+      "started": "2026-11-08T20:00:11Z",
+      "completed": "2026-11-08T20:01:30Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:00:12Z",
+          "completed": "2026-11-08T20:00:14Z"
+        },
+        {
+          "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:00:14Z",
+          "completed": "2026-11-08T20:00:21Z"
+        },
+        {
+          "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:00:21Z",
+          "completed": "2026-11-08T20:00:25Z"
+        },
+        {
+          "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:00:25Z",
+          "completed": "2026-11-08T20:00:27Z"
+        },
+        {
+          "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:00:27Z",
+          "completed": "2026-11-08T20:00:29Z"
+        },
+        {
+          "name": "Verify the bounded staging gate for these exact bytes",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:00:29Z",
+          "completed": "2026-11-08T20:00:29Z"
+        },
+        {
+          "name": "Locate the last successful CI staging recovery automatically",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:00:29Z",
+          "completed": "2026-11-08T20:01:01Z"
+        },
+        {
+          "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:01:01Z",
+          "completed": "2026-11-08T20:01:02Z"
+        },
+        {
+          "name": "Run actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:01:02Z",
+          "completed": "2026-11-08T20:01:02Z"
+        },
+        {
+          "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:01:02Z",
+          "completed": "2026-11-08T20:01:04Z"
+        },
+        {
+          "name": "Verify retained recovery and the currently served stable revision",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:01:04Z",
+          "completed": "2026-11-08T20:01:05Z"
+        },
+        {
+          "name": "Recheck PR and protected main immediately before promotion",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:01:05Z",
+          "completed": "2026-11-08T20:01:08Z"
+        },
+        {
+          "name": "Promote the same tested package to the staging branch alias",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:01:08Z",
+          "completed": "2026-11-08T20:01:22Z"
+        },
+        {
+          "name": "Run node tools/staging/review-flow.cjs http-ready staging-package \"$REVIEW_STABLE\" staging-reports/stable-http.json",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:01:22Z",
+          "completed": "2026-11-08T20:01:23Z"
+        },
+        {
+          "name": "Restore the previous successful staging package through CI",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started": "2026-11-08T20:01:23Z",
+          "completed": "2026-11-08T20:01:23Z"
+        },
+        {
+          "name": "Run node tools/staging/review-flow.cjs http-ready staging-rollback \"$REVIEW_STABLE\" staging-reports/rollback-http.json",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started": "2026-11-08T20:01:23Z",
+          "completed": "2026-11-08T20:01:23Z"
+        },
+        {
+          "name": "Run node - <<'JS'",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:01:23Z",
+          "completed": "2026-11-08T20:01:23Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:01:23Z",
+          "completed": "2026-11-08T20:01:25Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:01:25Z",
+          "completed": "2026-11-08T20:01:26Z"
+        },
+        {
+          "name": "Keep failed promotion or recovery red",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started": "2026-11-08T20:01:26Z",
+          "completed": "2026-11-08T20:01:26Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:01:26Z",
+          "completed": "2026-11-08T20:01:26Z"
+        },
+        {
+          "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:01:26Z",
+          "completed": "2026-11-08T20:01:26Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:01:26Z",
+          "completed": "2026-11-08T20:01:27Z"
+        }
+      ]
+    },
+    {
+      "id": 128844998630,
+      "name": "merge-admission",
+      "status": "completed",
+      "conclusion": "success",
+      "started": "2026-11-08T20:01:33Z",
+      "completed": "2026-11-08T20:01:47Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:01:34Z",
+          "completed": "2026-11-08T20:01:35Z"
+        },
+        {
+          "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:01:35Z",
+          "completed": "2026-11-08T20:01:40Z"
+        },
+        {
+          "name": "Run actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:01:40Z",
+          "completed": "2026-11-08T20:01:45Z"
+        },
+        {
+          "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:01:45Z",
+          "completed": "2026-11-08T20:01:45Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:01:45Z",
+          "completed": "2026-11-08T20:01:45Z"
+        }
+      ]
+    },
+    {
+      "id": 128845080146,
+      "name": "status-comment",
+      "status": "completed",
+      "conclusion": "success",
+      "started": "2026-11-08T20:01:50Z",
+      "completed": "2026-11-08T20:01:59Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:01:50Z",
+          "completed": "2026-11-08T20:01:51Z"
+        },
+        {
+          "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:01:51Z",
+          "completed": "2026-11-08T20:01:56Z"
+        },
+        {
+          "name": "Run actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:01:56Z",
+          "completed": "2026-11-08T20:01:58Z"
+        },
+        {
+          "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:01:58Z",
+          "completed": "2026-11-08T20:01:58Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:01:58Z",
+          "completed": "2026-11-08T20:01:58Z"
+        }
+      ]
+    },
+    {
+      "id": 128845132750,
+      "name": "change-admission-receipt",
+      "status": "completed",
+      "conclusion": "success",
+      "started": "2026-11-08T20:02:02Z",
+      "completed": "2026-11-08T20:02:21Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:02:03Z",
+          "completed": "2026-11-08T20:02:05Z"
+        },
+        {
+          "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:02:05Z",
+          "completed": "2026-11-08T20:02:11Z"
+        },
+        {
+          "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:02:11Z",
+          "completed": "2026-11-08T20:02:16Z"
+        },
+        {
+          "name": "Produce staging identity without executing candidate code",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:02:16Z",
+          "completed": "2026-11-08T20:02:17Z"
+        },
+        {
+          "name": "Retain independently produced staging identity",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:02:17Z",
+          "completed": "2026-11-08T20:02:18Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:02:18Z",
+          "completed": "2026-11-08T20:02:18Z"
+        },
+        {
+          "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:02:18Z",
+          "completed": "2026-11-08T20:02:18Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started": "2026-11-08T20:02:18Z",
+          "completed": "2026-11-08T20:02:18Z"
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 13632475666,
+      "name": "change-stage-178-935d74e2e372965690e0a691393d98b75020122a-fdfc8cb67a6f78996932d9688c563c53c21387f2-42515940915-1",
+      "digest": "sha256:cbb70b0c00e0af5b9cce89dbacaa4babbb4e01c585bd63203365bed7a20e7828",
+      "size": 403
+    },
+    {
+      "id": 13632355674,
+      "name": "site-staging-recovery-42515940915-1",
+      "digest": "sha256:39f0a5bbd458cc34b3468c6687ea3a96c6df10e68b604c4c665d03733f455d0d",
+      "size": 532
+    },
+    {
+      "id": 13631952111,
+      "name": "site-reports-staging-staging-42515940915-1",
+      "digest": "sha256:846afa1c9412356ee1fe1c359c40b584f7139f85942d6a489bb14d3cf4bbc957",
+      "size": 7099645
+    },
+    {
+      "id": 13631896743,
+      "name": "site-prepublication-staging-42515940915-1",
+      "digest": "sha256:0ceb9f0b837b46cbcbf8d4bbe11f14e684b865db1992bb4286ce5b5f8ca8c640",
+      "size": 388679
+    },
+    {
+      "id": 13631812137,
+      "name": "site-public-review-42515940915-1",
+      "digest": "sha256:5de29805b396531c6c293dd9bd54a53e34fd1643216bd8759e7031586c78401a",
+      "size": 8835375
+    },
+    {
+      "id": 13631805486,
+      "name": "change-stage-target-178-935d74e2e372965690e0a691393d98b75020122a-fdfc8cb67a6f78996932d9688c563c53c21387f2-42515940915-1",
+      "digest": "sha256:7b8601d2d6ddcf70f614c976ffed1a8d5f7ed37f7adf379ea0be61f73aa8b866",
+      "size": 274
+    },
+    {
+      "id": 13631682977,
+      "name": "browser-setup-staging-Linux-X64-42515940915-1-de0db0a6-ca14-466e-97f3-7303a6a428d5",
+      "digest": "sha256:c703a35f22db07f569ee8ae4c7532384b1fb126a206321630d0abfe84b78cb77",
+      "size": 426
+    },
+    {
+      "id": 13631669355,
+      "name": "site-gate-full-staging-42515940915-1",
+      "digest": "sha256:1a5b5a2d3c0106449fa1228fb339b46a9fa510fea68aaad00f34df84cbfcedda",
+      "size": 4968
+    },
+    {
+      "id": 13631647937,
+      "name": "site-prepublication-verified-staging-42515940915-1",
+      "digest": "sha256:3c2843472d7b8e0eeb3ec58eb38e52b233bb46c854d224e39aebaa8b54a931fb",
+      "size": 11484
+    },
+    {
+      "id": 13631373930,
+      "name": "site-staging-promotion-42515940915-1",
+      "digest": "sha256:38675ef3a0de70f0ba0f1d438249e5a6f6b921ac9415a4b98216b73d58f7c9f0",
+      "size": 9819
+    },
+    {
+      "id": 13631309128,
+      "name": "site-review-package-42515940915-1",
+      "digest": "sha256:520dee143f988932ad8192282729421810665aeb8ad6e82df86e8e0f55c0e3ed",
+      "size": 4125240
+    },
+    {
+      "id": 13631269823,
+      "name": "site-reports-host-staging-42515940915-1",
+      "digest": "sha256:781d51477167a8e114eddcf9dba37dde0c1d9b403262f3f2de46f7aa4136b066",
+      "size": 3373
+    },
+    {
+      "id": 13631193414,
+      "name": "site-reports-static-staging-42515940915-1",
+      "digest": "sha256:e98478fdd1f7f3eb60570a18daec3aeb6aa3096c9254f9cd3acb35a8ae87d965",
+      "size": 11484
+    }
+  ],
+  "browserObserved": {
+    "articleURL": "https://staging.oborskyi-author-ci-staging.pages.dev/articles/the-sdlc-is-out-of-balance",
+    "writingURL": "https://staging.oborskyi-author-ci-staging.pages.dev/writing",
+    "badge": "STAGING · 935d74e2",
+    "articleKey": "sdlc-out-of-balance:en",
+    "busy": null,
+    "robots": "noindex,nofollow",
+    "analyticsScripts": [],
+    "writingArticleHref": "https://staging.oborskyi-author-ci-staging.pages.dev/articles/the-sdlc-is-out-of-balance.html",
+    "writingMediumHref": "https://aiadvances.org/the-sdlc-is-out-of-balance-beyond-the-ai-code-review-bottleneck-ca64e0b10b99",
+    "limits": "DOM/AX and screenshot observations, not a zero-request network trace or physical-device test"
+  },
+  "refs": {
+    "main": "fdfc8cb67a6f78996932d9688c563c53c21387f2",
+    "production": "fdfc8cb67a6f78996932d9688c563c53c21387f2",
+    "pr": 178,
+    "open": true,
+    "draft": false,
+    "merged": false
+  }
+}
