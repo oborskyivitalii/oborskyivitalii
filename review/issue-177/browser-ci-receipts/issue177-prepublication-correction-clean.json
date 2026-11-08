@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "kind": "source-tests",
+  "profile": "issue177-prepublication-correction",
+  "modules": [
+    "tests/content.test.cjs",
+    "tests/executive.test.cjs",
+    "tests/content-rendering.test.cjs"
+  ],
+  "cleanSourceRequired": true,
+  "status": "passed",
+  "pass": true,
+  "files": {
+    "json": "/tmp/issue177-prepublication-correction-clean.json",
+    "tap": "/tmp/issue177-prepublication-correction-clean.tap",
+    "stderr": "/tmp/issue177-prepublication-correction-clean.stderr"
+  },
+  "source": {
+    "sourceCommit": "6c149f1d487d305bf1e2e91fa1061ba32b17dffe",
+    "sourceTree": "ad8b1033b4ac9dbe8f94502fd53eb4a1be580a9a",
+    "sourceDirty": false
+  },
+  "execution": {
+    "argv": [
+      "/workspace/scratch/538c6c66c100/repo/tools/quality/source-test-worker.cjs",
+      "tests/content.test.cjs",
+      "tests/executive.test.cjs",
+      "tests/content-rendering.test.cjs"
+    ],
+    "status": 0,
+    "signal": null,
+    "error": null,
+    "timeoutMs": 600000,
+    "maxBufferBytes": 16777216,
+    "stdoutBytes": 15933,
+    "stderrBytes": 906
+  },
+  "observedAccounting": {
+    "tests": [
+      63
+    ],
+    "pass": [
+      63
+    ],
+    "fail": [
+      0
+    ],
+    "cancelled": [
+      0
+    ],
+    "skipped": [
+      0
+    ],
+    "todo": [
+      0
+    ]
+  },
+  "sourceAfter": {
+    "sourceCommit": "6c149f1d487d305bf1e2e91fa1061ba32b17dffe",
+    "sourceTree": "ad8b1033b4ac9dbe8f94502fd53eb4a1be580a9a",
+    "sourceDirty": false
+  },
+  "result": {
+    "profile": "issue177-prepublication-correction",
+    "modules": [
+      "tests/content.test.cjs",
+      "tests/executive.test.cjs",
+      "tests/content-rendering.test.cjs"
+    ],
+    "status": "passed",
+    "pass": true,
+    "total": 63,
+    "passed": 63,
+    "failed": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "elapsedMs": 48484,
+    "argv": [
+      "/workspace/scratch/538c6c66c100/repo/tools/quality/source-test-worker.cjs",
+      "tests/content.test.cjs",
+      "tests/executive.test.cjs",
+      "tests/content-rendering.test.cjs"
+    ]
+  }
+}

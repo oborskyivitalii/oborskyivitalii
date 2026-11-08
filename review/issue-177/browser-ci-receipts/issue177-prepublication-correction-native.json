@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "kind": "source-tests",
+  "profile": "issue177-prepublication-correction",
+  "modules": [
+    "tests/content.test.cjs",
+    "tests/executive.test.cjs",
+    "tests/content-rendering.test.cjs"
+  ],
+  "cleanSourceRequired": false,
+  "status": "failed",
+  "pass": false,
+  "files": {
+    "json": "/tmp/issue177-prepublication-correction-native.json",
+    "tap": "/tmp/issue177-prepublication-correction-native.tap",
+    "stderr": "/tmp/issue177-prepublication-correction-native.stderr"
+  },
+  "source": {
+    "sourceCommit": "06ffa6fcfc1cfa5fa1030e5d077d5d314e324d07",
+    "sourceTree": "8193b1fab23a9af8f4bc6e651a1c1cf45048fa99",
+    "sourceDirty": true
+  },
+  "execution": {
+    "argv": [
+      "/workspace/scratch/538c6c66c100/repo/tools/quality/source-test-worker.cjs",
+      "tests/content.test.cjs",
+      "tests/executive.test.cjs",
+      "tests/content-rendering.test.cjs"
+    ],
+    "status": 1,
+    "signal": null,
+    "error": null,
+    "timeoutMs": 600000,
+    "maxBufferBytes": 16777216,
+    "stdoutBytes": 18750,
+    "stderrBytes": 906
+  },
+  "observedAccounting": {
+    "tests": [
+      63
+    ],
+    "pass": [
+      62
+    ],
+    "fail": [
+      1
+    ],
+    "cancelled": [
+      0
+    ],
+    "skipped": [
+      0
+    ],
+    "todo": [
+      0
+    ]
+  },
+  "sourceAfter": {
+    "sourceCommit": "06ffa6fcfc1cfa5fa1030e5d077d5d314e324d07",
+    "sourceTree": "8193b1fab23a9af8f4bc6e651a1c1cf45048fa99",
+    "sourceDirty": true
+  },
+  "error": {
+    "name": "AssertionError",
+    "message": "selected source test process failed: {\"kind\":\"source-test-timing\",\"event\":\"capacity\",\"node\":\"v24.22.1\",\"availableParallelism\":9,\"configuredParallelism\":9,\"concurrency\":4,\"files\":3}\n{\"kind\":\"source-test-timing\",\"event\":\"dequeue\",\"file\":\"tests/executive.test.cjs\",\"elapsedMs\":4}\n{\"kind\":\"source-test-timing\",\"event\":\"dequeue\",\"file\":\"tests/content-rendering.test.cjs\",\"elapsedMs\":8}\n{\"kind\":\"source-test-timing\",\"event\":\"dequeue\",\"file\":\"tests/content.test.cjs\",\"elapsedMs\":9}\n{\"kind\":\"source-test-timing\",\"event\":\"complete\",\"file\":\"tests/content-rendering.test.cjs\",\"elapsedMs\":3234,\"wrapperDurationMs\":3226.050442,\"wrapperPassed\":false}\n{\"kind\":\"source-test-timing\",\"event\":\"complete\",\"file\":\"tests/content.test.cjs\",\"elapsedMs\":4156,\"wrapperDurationMs\":4146.446752,\"wrapperPassed\":true}\n{\"kind\":\"source-test-timing\",\"event\":\"complete\",\"file\":\"tests/executive.test.cjs\",\"elapsedMs\":47225,\"wrapperDurationMs\":47220.618047,\"wrapperPassed\":true}\n\n# Subtest: fresh SEO CLI accepts current authored Home text and refuses stale approved body bytes\nnot ok 36 - fresh SEO CLI accepts current authored Home text and refuses stale approved body bytes\n  ---\n  duration_ms: 819.148404\n  type: 'test'\n  location: '/workspace/scratch/538c6c66c100/repo/tests/content-rendering.test.cjs:174:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    node:assert:152\n      throw new AssertionError(obj);\n      ^\n    \n    AssertionError [ERR_ASSERTION]: Research carrier producer bytes: tools/site/build.cjs\n    + actual - expected\n    \n    + 'ee69b9950ed0982a69344c5b92f6988b293362112817d8a2fc504ebfe101adee'\n    - '3d9b80f989008ae487cccf4b38aea630bd4ddf62782a971e7e62142c9fbbc869'\n    \n        at verifyResearchCarrier (/tmp/home-seo-cli-a2q9p5/tools/check_site_seo.cjs:376:12)\n        at verify (/tmp/home-seo-cli-a2q9p5/tools/check_site_seo.cjs:1357:27)\n        at Object.<anonymous> (/tmp/home-seo-cli-a2q9p5/tools/check_site_seo.cjs:1444:66)\n        at Module._compile (node:internal/modules/cjs/loader:1929:14)\n        at Object..js (node:internal/modules/cjs/loader:2060:10)\n        at Module.load (node:internal/modules/cjs/loader:1651:32)\n        at Module._load (node:internal/modules/cjs/loader:1443:12)\n        at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\n        at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n        at node:internal/main/run_main_module:33:47 {\n      generatedMessage: false,\n      code: 'ERR_ASSERTION',\n      actual: 'ee69b9950ed0982a69344c5b92f6988b293362112817d8a2fc504ebfe101adee',\n      expected: '3d9b80f989008ae487cccf4b38aea630bd4ddf62782a971e7e62142c9fbbc869',\n      operator: 'strictEqual',\n      diff: 'simple'\n    }\n    \n    Node.js v24.22.1\n    \n    \n    1 !== 0\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: 0\n  actual: 1\n  operator: 'strictEqual'\n  stack: |-\n    verifyResearchCarrier (/tmp/home-seo-cli-a2q9p5/tools/check_site_seo.cjs:376:12)\n    verify (/tmp/home-seo-cli-a2q9p5/tools/check_site_seo.cjs:1357:27)\n    Object.<anonymous> (/tmp/home-seo-cli-a2q9p5/tools/check_site_seo.cjs:1444:66)\n    Module._compile (node:internal/modules/cjs/loader:1929:14)\n    Object..js (node:internal/modules/cjs/loader:2060:10)\n    Module.load (node:internal/modules/cjs/loader:1651:32)\n    Module._load (node:internal/modules/cjs/loader:1443:12)\n    wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\n    Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    node:internal/main/run_main_module:33:47 {\n    TestContext.<anonymous> (/workspace/scratch/538c6c66c100/repo/tests/content-rendering.test.cjs:214:10)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1402:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:974:18)\n    Test.postRun (node:internal/test_runner/test:1542:19)\n    Test.run (node:internal/test_runner/test:1467:12)\n    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)\n  ...\n\n1\n\n1 !== 0\n"
+  }
+}

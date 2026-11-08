@@ -1,0 +1,447 @@
+TAP version 13
+# Subtest: Writing carrier proof rejects altered source, geometry and resource bindings
+ok 1 - Writing carrier proof rejects altered source, geometry and resource bindings
+  ---
+  duration_ms: 149.479648
+  type: 'test'
+  ...
+# Subtest: Research carrier reconstructs the accepted scene and rejects unknown producer or geometry identities
+ok 2 - Research carrier reconstructs the accepted scene and rejects unknown producer or geometry identities
+  ---
+  duration_ms: 318.731344
+  type: 'test'
+  ...
+# Subtest: issue159 reading paths reject invalid inventories, references and ambiguous context
+ok 3 - issue159 reading paths reject invalid inventories, references and ambiguous context
+  ---
+  duration_ms: 24.184993
+  type: 'test'
+  ...
+# Subtest: issue159 reading recommendations derive escaped editions without becoming archive records
+ok 4 - issue159 reading recommendations derive escaped editions without becoming archive records
+  ---
+  duration_ms: 48.273621
+  type: 'test'
+  ...
+# Subtest: issue159 exact copy reversal retains immutable predecessors and unrelated drift
+ok 5 - issue159 exact copy reversal retains immutable predecessors and unrelated drift
+  ---
+  duration_ms: 1980.238276
+  type: 'test'
+  ...
+# Subtest: issue159 successor producer pins retain their prior inventory and reject changed current bytes
+ok 6 - issue159 successor producer pins retain their prior inventory and reject changed current bytes
+  ---
+  duration_ms: 77.57616
+  type: 'test'
+  ...
+# Subtest: HTML parser successor preserves exact predecessor pins, current bytes and default parsing
+ok 7 - HTML parser successor preserves exact predecessor pins, current bytes and default parsing
+  ---
+  duration_ms: 145.502639
+  type: 'test'
+  ...
+# Subtest: issue159 CSS refuses relocation of the same exact reviewed block
+ok 8 - issue159 CSS refuses relocation of the same exact reviewed block
+  ---
+  duration_ms: 25.596136
+  type: 'test'
+  ...
+# Subtest: normalization cache keeps recent exact inputs within entry and UTF-8 bounds without caching failures
+ok 9 - normalization cache keeps recent exact inputs within entry and UTF-8 bounds without caching failures
+  ---
+  duration_ms: 5.840603
+  type: 'test'
+  ...
+# Subtest: HTML batch normalization preserves order and bounds original UTF-8 requests before deduplication
+ok 10 - HTML batch normalization preserves order and bounds original UTF-8 requests before deduplication
+  ---
+  duration_ms: 3.10474
+  type: 'test'
+  ...
+# Subtest: HTML batch normalization never caches partial or malformed parser coverage
+ok 11 - HTML batch normalization never caches partial or malformed parser coverage
+  ---
+  duration_ms: 0.527351
+  type: 'test'
+  ...
+# Subtest: batched primary HTML contracts equal separate parsing and retain raw script/style and inline bytes
+ok 12 - batched primary HTML contracts equal separate parsing and retain raw script/style and inline bytes
+  ---
+  duration_ms: 110.954156
+  type: 'test'
+  ...
+# Subtest: SEO restores only exact compact metadata spelling while retaining all values and key order
+ok 13 - SEO restores only exact compact metadata spelling while retaining all values and key order
+  ---
+  duration_ms: 1.090035
+  type: 'test'
+  ...
+# Subtest: HTML reconciliation accepts source spelling changes while preserving inline separators, attributes and raw bytes
+ok 14 - HTML reconciliation accepts source spelling changes while preserving inline separators, attributes and raw bytes
+  ---
+  duration_ms: 156.345944
+  type: 'test'
+  ...
+# Subtest: executive hierarchy preserves the frozen SEO, editions, sources and all unrelated copy
+ok 15 - executive hierarchy preserves the frozen SEO, editions, sources and all unrelated copy
+  ---
+  duration_ms: 4239.436669
+  type: 'test'
+  ...
+# Subtest: article producer metadata reconciliation reverses only exact approved compact JSON-LD bytes
+ok 16 - article producer metadata reconciliation reverses only exact approved compact JSON-LD bytes
+  ---
+  duration_ms: 5845.796844
+  type: 'test'
+  ...
+# Subtest: article metadata reconciliation rejects missing, duplicate and relocated owners and preserves unrelated tags
+ok 17 - article metadata reconciliation rejects missing, duplicate and relocated owners and preserves unrelated tags
+  ---
+  duration_ms: 2102.133043
+  type: 'test'
+  ...
+# Subtest: Research fallback reconciliation admits only the four exact section-link separators
+ok 18 - Research fallback reconciliation admits only the four exact section-link separators
+  ---
+  duration_ms: 66.980179
+  type: 'test'
+  ...
+# Subtest: critical media reconciliation admits only exact Home head ownership, bytes and original order
+ok 19 - critical media reconciliation admits only exact Home head ownership, bytes and original order
+  ---
+  duration_ms: 2669.959401
+  type: 'test'
+  ...
+# Subtest: R3/R4 reconciliation reverses only exact portrait ownership and inert original archive labels
+ok 20 - R3/R4 reconciliation reverses only exact portrait ownership and inert original archive labels
+  ---
+  duration_ms: 228.717369
+  type: 'test'
+  ...
+# Subtest: SEO reconciliation retains unsupported effects identity and semantic metadata changes
+ok 21 - SEO reconciliation retains unsupported effects identity and semantic metadata changes
+  ---
+  duration_ms: 2112.811527
+  type: 'test'
+  ...
+# Subtest: approved contact and decorative title reconciliation retain changed destinations and copy
+ok 22 - approved contact and decorative title reconciliation retain changed destinations and copy
+  ---
+  duration_ms: 8642.80532
+  type: 'test'
+  ...
+# Subtest: response reconciliation rejects missing people, sources and stronger participation claims
+ok 23 - response reconciliation rejects missing people, sources and stronger participation claims
+  ---
+  duration_ms: 6031.163908
+  type: 'test'
+  ...
+# Subtest: issue48 amendment reverses only declared theory and Matthew changes
+ok 24 - issue48 amendment reverses only declared theory and Matthew changes
+  ---
+  duration_ms: 3371.972669
+  type: 'test'
+  ...
+# Subtest: Talks reconciliation rejects missing events, substituted sources and invented dates or resources
+ok 25 - Talks reconciliation rejects missing events, substituted sources and invented dates or resources
+  ---
+  duration_ms: 2426.279847
+  type: 'test'
+  ...
+# Subtest: practical positioning allowances reject unsupported claims, status and contact changes
+ok 26 - practical positioning allowances reject unsupported claims, status and contact changes
+  ---
+  duration_ms: 5299.641172
+  type: 'test'
+  ...
+# Subtest: selected licensing reverses only exact Credits fragments and complete inline owners
+ok 27 - selected licensing reverses only exact Credits fragments and complete inline owners
+  ---
+  duration_ms: 715.857223
+  type: 'test'
+  ...
+# Subtest: legal wrapping admits exactly three declarations and preserves every other CSS byte
+ok 28 - legal wrapping admits exactly three declarations and preserves every other CSS byte
+  ---
+  duration_ms: 32.423686
+  type: 'test'
+  ...
+# Subtest: Day/Night semantic text and CTA pairs exceed normal-text contrast with no independent atmosphere clock
+ok 29 - Day/Night semantic text and CTA pairs exceed normal-text contrast with no independent atmosphere clock
+  ---
+  duration_ms: 1.004328
+  type: 'test'
+  ...
+# Subtest: reading surfaces have one shared CSS authority across base and Color renditions
+ok 30 - reading surfaces have one shared CSS authority across base and Color renditions
+  ---
+  duration_ms: 58.226023
+  type: 'test'
+  ...
+# Subtest: first-name amendment reverses exactly three authorised prose fragments
+ok 31 - first-name amendment reverses exactly three authorised prose fragments
+  ---
+  duration_ms: 200.625056
+  type: 'test'
+  ...
+# Subtest: Home SEO proves every declared prose block, section navigation and featured catalog against current source
+ok 32 - Home SEO proves every declared prose block, section navigation and featured catalog against current source
+  ---
+  duration_ms: 445.795447
+  type: 'test'
+  ...
+# Subtest: Home SEO refuses stale approved output, altered copy or links and incomplete or extra body regions
+ok 33 - Home SEO refuses stale approved output, altered copy or links and incomplete or extra body regions
+  ---
+  duration_ms: 326.389195
+  type: 'test'
+  ...
+# Subtest: Home SEO binds source templates, complete producer pins and the immutable approved frame
+ok 34 - Home SEO binds source templates, complete producer pins and the immutable approved frame
+  ---
+  duration_ms: 67.706828
+  type: 'test'
+  ...
+# Subtest: Home data cannot activate unreviewed discussion templates through prose or catalog labels
+ok 35 - Home data cannot activate unreviewed discussion templates through prose or catalog labels
+  ---
+  duration_ms: 35.277427
+  type: 'test'
+  ...
+# Subtest: fresh SEO CLI accepts current authored Home text and refuses stale approved body bytes
+not ok 36 - fresh SEO CLI accepts current authored Home text and refuses stale approved body bytes
+  ---
+  duration_ms: 819.148404
+  type: 'test'
+  location: '/workspace/scratch/538c6c66c100/repo/tests/content-rendering.test.cjs:174:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    node:assert:152
+      throw new AssertionError(obj);
+      ^
+    
+    AssertionError [ERR_ASSERTION]: Research carrier producer bytes: tools/site/build.cjs
+    + actual - expected
+    
+    + 'ee69b9950ed0982a69344c5b92f6988b293362112817d8a2fc504ebfe101adee'
+    - '3d9b80f989008ae487cccf4b38aea630bd4ddf62782a971e7e62142c9fbbc869'
+    
+        at verifyResearchCarrier (/tmp/home-seo-cli-a2q9p5/tools/check_site_seo.cjs:376:12)
+        at verify (/tmp/home-seo-cli-a2q9p5/tools/check_site_seo.cjs:1357:27)
+        at Object.<anonymous> (/tmp/home-seo-cli-a2q9p5/tools/check_site_seo.cjs:1444:66)
+        at Module._compile (node:internal/modules/cjs/loader:1929:14)
+        at Object..js (node:internal/modules/cjs/loader:2060:10)
+        at Module.load (node:internal/modules/cjs/loader:1651:32)
+        at Module._load (node:internal/modules/cjs/loader:1443:12)
+        at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+        at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+        at node:internal/main/run_main_module:33:47 {
+      generatedMessage: false,
+      code: 'ERR_ASSERTION',
+      actual: 'ee69b9950ed0982a69344c5b92f6988b293362112817d8a2fc504ebfe101adee',
+      expected: '3d9b80f989008ae487cccf4b38aea630bd4ddf62782a971e7e62142c9fbbc869',
+      operator: 'strictEqual',
+      diff: 'simple'
+    }
+    
+    Node.js v24.22.1
+    
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    verifyResearchCarrier (/tmp/home-seo-cli-a2q9p5/tools/check_site_seo.cjs:376:12)
+    verify (/tmp/home-seo-cli-a2q9p5/tools/check_site_seo.cjs:1357:27)
+    Object.<anonymous> (/tmp/home-seo-cli-a2q9p5/tools/check_site_seo.cjs:1444:66)
+    Module._compile (node:internal/modules/cjs/loader:1929:14)
+    Object..js (node:internal/modules/cjs/loader:2060:10)
+    Module.load (node:internal/modules/cjs/loader:1651:32)
+    Module._load (node:internal/modules/cjs/loader:1443:12)
+    wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    node:internal/main/run_main_module:33:47 {
+    TestContext.<anonymous> (/workspace/scratch/538c6c66c100/repo/tests/content-rendering.test.cjs:214:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: compact page metadata preserves structured values and cannot close its script container
+ok 37 - compact page metadata preserves structured values and cannot close its script container
+  ---
+  duration_ms: 2.292567
+  type: 'test'
+  ...
+# Subtest: bounded prose and attribute contexts escape values without an HTML or expression channel
+ok 38 - bounded prose and attribute contexts escape values without an HTML or expression channel
+  ---
+  duration_ms: 0.776381
+  type: 'test'
+  ...
+# Subtest: missing, duplicate, unused and cross-context slots fail before rendering
+ok 39 - missing, duplicate, unused and cross-context slots fail before rendering
+  ---
+  duration_ms: 0.905612
+  type: 'test'
+  ...
+# Subtest: URL contexts reject executable, credential, traversal, control and mail-header input
+ok 40 - URL contexts reject executable, credential, traversal, control and mail-header input
+  ---
+  duration_ms: 0.841277
+  type: 'test'
+  ...
+# Subtest: data-owned calendar and edition labels cannot create a raw HTML channel
+ok 41 - data-owned calendar and edition labels cannot create a raw HTML channel
+  ---
+  duration_ms: 0.874756
+  type: 'test'
+  ...
+# Subtest: the catalog rejects competing raw layouts, missing presentation, duplicate identities and invalid label schemas
+ok 42 - the catalog rejects competing raw layouts, missing presentation, duplicate identities and invalid label schemas
+  ---
+  duration_ms: 15.745448
+  type: 'test'
+  ...
+# Subtest: page documents reject unknown schema, executable fields, missing templates and repeated or unknown block/record references
+ok 43 - page documents reject unknown schema, executable fields, missing templates and repeated or unknown block/record references
+  ---
+  duration_ms: 21.429089
+  type: 'test'
+  ...
+# Subtest: catalog additions and removals update rows, year controls, counts and JSON-LD together
+ok 44 - catalog additions and removals update rows, year controls, counts and JSON-LD together
+  ---
+  duration_ms: 22.269088
+  type: 'test'
+  ...
+# Subtest: Writing SEO reconciliation accepts generated catalog changes and rejects output drift
+ok 45 - Writing SEO reconciliation accepts generated catalog changes and rejects output drift
+  ---
+  duration_ms: 1337.531473
+  type: 'test'
+  ...
+# Subtest: Writing generated-view normalization cannot approve changed renderer or component sources
+ok 46 - Writing generated-view normalization cannot approve changed renderer or component sources
+  ---
+  duration_ms: 42.179128
+  type: 'test'
+  ...
+# Subtest: the accepted SDLC article leads the 2026 delivery archive without an invented publication date
+ok 47 - the accepted SDLC article leads the 2026 delivery archive without an invented publication date
+  ---
+  duration_ms: 9.188504
+  type: 'test'
+  ...
+# Subtest: neutral platform links stay in the original Writing row without inventing edition metadata
+ok 48 - neutral platform links stay in the original Writing row without inventing edition metadata
+  ---
+  duration_ms: 86.605243
+  type: 'test'
+  ...
+# Subtest: local platform links reject unsafe channels, duplicate destinations and unproved metadata
+ok 49 - local platform links reject unsafe channels, duplicate destinations and unproved metadata
+  ---
+  duration_ms: 11.456764
+  type: 'test'
+  ...
+# Subtest: archive producer successors preserve exact predecessor pins and reject unreviewed source bytes
+ok 50 - archive producer successors preserve exact predecessor pins and reject unreviewed source bytes
+  ---
+  duration_ms: 40.885826
+  type: 'test'
+  ...
+# Subtest: selected Home responses link to the complete Research inventory with preserved evidence
+ok 51 - selected Home responses link to the complete Research inventory with preserved evidence
+  ---
+  duration_ms: 124.896691
+  type: 'test'
+  ...
+# Subtest: canonical topic-first public records preserve bounded copy, source bylines and separate provenance
+ok 52 - canonical topic-first public records preserve bounded copy, source bylines and separate provenance
+  ---
+  duration_ms: 54.169447
+  type: 'test'
+  ...
+# Subtest: research theories retain project alignment and explicit association on narrow layouts
+ok 53 - research theories retain project alignment and explicit association on narrow layouts
+  ---
+  duration_ms: 1.125388
+  type: 'test'
+  ...
+# Subtest: English UI has distinct useful metadata and non-executable accurate page schemas
+ok 54 - English UI has distinct useful metadata and non-executable accurate page schemas
+  ---
+  duration_ms: 12.319468
+  type: 'test'
+  ...
+# Subtest: language-labelled editions match article schema and retain the original primary identities
+ok 55 - language-labelled editions match article schema and retain the original primary identities
+  ---
+  duration_ms: 1.410379
+  type: 'test'
+  ...
+# Subtest: portrait is a real sized local asset and unverified talk languages are omitted
+ok 56 - portrait is a real sized local asset and unverified talk languages are omitted
+  ---
+  duration_ms: 0.651215
+  type: 'test'
+  ...
+# Subtest: Talks follows canonical events while retaining the frozen provenance of its migrated collection
+ok 57 - Talks follows canonical events while retaining the frozen provenance of its migrated collection
+  ---
+  duration_ms: 196.350116
+  type: 'test'
+  ...
+# Subtest: Writing counts the rendered article collection and keeps alternate platforms inside their row
+ok 58 - Writing counts the rendered article collection and keeps alternate platforms inside their row
+  ---
+  duration_ms: 78.048842
+  type: 'test'
+  ...
+# Subtest: the ordinary Writing collection accepts undated multi-author local editions and escaped query URLs
+ok 59 - the ordinary Writing collection accepts undated multi-author local editions and escaped query URLs
+  ---
+  duration_ms: 1654.806711
+  type: 'test'
+  ...
+# Subtest: page IDs, ARIA targets, local resources and fragments resolve without draft leakage
+ok 60 - page IDs, ARIA targets, local resources and fragments resolve without draft leakage
+  ---
+  duration_ms: 9.285287
+  type: 'test'
+  ...
+# Subtest: Home provides the agreed reader path, precise public actions and a real contact alternative
+ok 61 - Home provides the agreed reader path, precise public actions and a real contact alternative
+  ---
+  duration_ms: 1.153669
+  type: 'test'
+  ...
+# Subtest: PMDay upcoming and Autumn naming preserve confirmed facts and existing presentation
+ok 62 - PMDay upcoming and Autumn naming preserve confirmed facts and existing presentation
+  ---
+  duration_ms: 761.024619
+  type: 'test'
+  ...
+# Subtest: completed DevCon talk belongs with past events and preserves previous public facts
+ok 63 - completed DevCon talk belongs with past events and preserves previous public facts
+  ---
+  duration_ms: 850.858679
+  type: 'test'
+  ...
+1..63
+# tests 63
+# suites 0
+# pass 62
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 47225.550885
