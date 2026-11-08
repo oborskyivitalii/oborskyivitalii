@@ -16,6 +16,13 @@ remain distinct authored records unless an explicit relationship says otherwise.
 The same collection drives year/topic groups, controls, ItemList and count. No
 separate year-template insertion is needed for a new article or year.
 
+A local record may also declare up to two neutral `platformLinks` with `platform`
+and `url`: Medium (including the observed AI Advances custom domain) or LinkedIn.
+These ordinary outbound links do not declare a content edition, publication date,
+body equivalence or canonical URL, and do not change edition counts or ItemList.
+Formal `editions`, publication events and reciprocal reader materials keep their
+existing independent evidence requirements.
+
 An accepted local article can belong to this collection with a validated local
 edition target. An accepted but unpublished local edition does not acquire an
 invented date; the undated group remains explicit. Draft candidates are selected

@@ -48,6 +48,21 @@ function editionLinks(templates, record, catalog) {
     .join('');
 }
 
+function platformLinks(templates, record) {
+  return (record.platformLinks || [])
+    .map((link) =>
+      component(templates, 'edition-link', {
+        URL: escapeAttribute(link.url),
+        TITLE: escapeAttribute(record.edition.name),
+        PLATFORM: escapeText(link.platform),
+        LABEL: '',
+        DATE: '',
+        EDITED: '',
+      })
+    )
+    .join('');
+}
+
 function publication(templates, record, variant, catalog, linked) {
   const language = record.edition.inLanguage;
   const date = record.edition.datePublished || record.edition.dateModified;
@@ -79,7 +94,10 @@ function publication(templates, record, variant, catalog, linked) {
             TITLE: title,
           })
         : title,
-    EDITION_LINKS: linked || record.homeEditionLink ? editionLinks(templates, record, catalog) : '',
+    EDITION_LINKS:
+      linked || record.homeEditionLink
+        ? editionLinks(templates, record, catalog) + platformLinks(templates, record)
+        : '',
     DISCUSSION_LINKS: linked
       ? record.discussions
           .map((id) =>

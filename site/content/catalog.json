@@ -830,6 +830,12 @@
     "publication-30": {
       "kind": "local-article",
       "article": "sdlc-out-of-balance",
+      "platformLinks": [
+        {
+          "platform": "Medium",
+          "url": "https://aiadvances.org/the-sdlc-is-out-of-balance-beyond-the-ai-code-review-bottleneck-ca64e0b10b99"
+        }
+      ],
       "edition": {
         "@type": "Article",
         "name": "The SDLC Is Out of Balance: Beyond the AI Code Review Bottleneck",

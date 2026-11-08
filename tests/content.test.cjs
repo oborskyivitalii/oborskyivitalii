@@ -98,6 +98,74 @@ test('the accepted SDLC article leads the 2026 delivery archive without an inven
   );
 });
 
+test('neutral platform links stay in the original Writing row without inventing edition metadata', () => {
+  const projectRoot = path.resolve(root, '..');
+  const content = require('../tools/site/content.cjs');
+  const { catalogCounts } = require('../tools/site/validate-catalog.cjs');
+  const catalog = content.catalog(projectRoot);
+  const record = catalog.records['publication-30'];
+  const link = record.platformLinks[0];
+  const row = articleRows(pages.writing).find((item) =>
+    item[2].includes('href="' + record.edition.url + '"')
+  );
+  assert.ok(row);
+  assert.ok(row[2].includes('href="' + link.url + '"'));
+  assert.match(row[2], />Medium<\/a>/);
+  assert.equal(record.editions.length, 0);
+  assert.equal(record.edition.datePublished, undefined);
+  assert.doesNotMatch(row[2], /equivalent rendition/);
+  const without = structuredClone(catalog);
+  delete without.records['publication-30'].platformLinks;
+  assert.deepEqual(catalogCounts(catalog), catalogCounts(without));
+  const route = require('../site/routes.json').routes.find((entry) => entry.id === 'writing');
+  const baseline = normalizeHTML(content.routeInput(projectRoot, route, without).main);
+  const candidate = normalizeHTML(content.routeInput(projectRoot, route, catalog).main);
+  const extra = row[2].match(/<p class="edition-link">[\s\S]*?Medium<\/a><\/p>/)[0];
+  assert.equal(candidate.replace(extra, ''), baseline);
+});
+
+test('local platform links reject unsafe channels, duplicate destinations and unproved metadata', () => {
+  const { validateCatalog } = require('../tools/site/validate-catalog.cjs');
+  const original = JSON.parse(
+    fs.readFileSync(path.resolve(root, '../site/content/catalog.json'), 'utf8')
+  );
+  const valid = original.records['publication-30'].platformLinks[0];
+  const invalid = [
+    [{ ...valid, url: 'javascript:alert(1)' }],
+    [{ ...valid, url: 'http://aiadvances.org/article' }],
+    [{ ...valid, url: 'https://user:secret@aiadvances.org/article' }],
+    [{ ...valid, url: 'https://aiadvances.org.evil.test/article' }],
+    [{ ...valid, url: 'https://aiadvances.org:444/article' }],
+    [{ ...valid, url: 'https://aiadvances.org/' + 'a'.repeat(2500) }],
+    [{ ...valid, url: 'https://aiadvances.org/ar\u0000ticle' }],
+    [{ ...valid, url: 'https://aiadvances.org/article\n' }],
+    [{ ...valid, platform: 'LinkedIn' }],
+    [{ ...valid, platform: 'Unknown' }],
+    [{ ...valid, platform: ['Medium'] }],
+    [{ ...valid, platform: { name: 'Medium' } }],
+    [{ ...valid, datePublished: '2026-11-08' }],
+    [{ ...valid, bodyEquivalenceVerified: true }],
+    [valid, valid],
+    [valid, valid, valid],
+  ];
+  for (const links of invalid) {
+    const candidate = structuredClone(original);
+    candidate.records['publication-30'].platformLinks = links;
+    assert.throws(() => validateCatalog(candidate));
+  }
+  const external = structuredClone(original);
+  external.records['publication-01'].platformLinks = [valid];
+  assert.throws(() => validateCatalog(external), /Invalid local platform link inventory/);
+  const duplicate = structuredClone(original);
+  duplicate.records['publication-30'].platformLinks = [
+    {
+      platform: 'Medium',
+      url: duplicate.records['publication-02'].edition.url,
+    },
+  ];
+  assert.throws(() => validateCatalog(duplicate), /duplicate local platform link/);
+});
+
 test('archive producer successors preserve exact predecessor pins and reject unreviewed source bytes', () => {
   const checker = require('../tools/check_site_seo.cjs');
   const projectRoot = path.resolve(root, '..');
