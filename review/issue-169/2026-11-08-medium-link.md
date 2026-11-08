@@ -111,3 +111,31 @@ existing reviewed-checksum ledger. All predecessor rows/order/reasons, other
 ledger metadata, scanner rules/thresholds/inputs and budgets remain unchanged.
 Affected independent per-row review and actual security execution remain required.
 No native or hosted campaign was launched merely to discover these findings.
+
+### First full staging failure and bounded correction
+
+User now requests verified stable staging first, then stop (issue169 comment6721899708).
+PR176 native source04bac66abb63eba6b3d8ec422bdd5f479dbd57d7/tree715d1ebb had
+Basic/source1243/1243, RI and owning success. Owner staging42483131972/1 failed
+security before upload; all other prepublication guards passed, including source
+tests (199380ms). No site promotion or production change occurred.
+
+Original artifact13618791331 ZIP SHA256
+34bfc22844b0405386bb8a623af489d107074f3763ca4c3f9a2a0a6f52958e1b;
+raw detect-secrets SHA2567803ae74fc65defa686d0f9e47ecac8c71e5a5c72edb5fd4511821b89b954184.
+The security receipt reports exactly three untriaged candidates. Code and White-box
+independently reproduced the two snapshot rights/material bindings and the literal
+synthetic password detector identity, and verified the fixture is rejected.
+
+Append exactly two snapshot path/type/SHA1 checksum dispositions and one synthetic
+BasicAuth fixture disposition to the existing publication companion. All prior
+rows/metadata remain identical, the test fixture remains, and scanner rules,
+inputs, thresholds, profiles, timeouts and budgets remain unchanged. No generic
+rights/material/credential allowance. The sixteen historical local-proof
+discrepancies are diagnostic only and receive no ledger entries.
+
+Test impact: website code, all85 generated docs, catalog, tests and browser behavior
+are byte-identical to the prior reviewed candidate. Recheck complete detector input
+and actual unchanged admission, synthetic unknown refusal, ledger prefixes,
+formatting, RI/coupling and owning automation before current-source native staging.
+Preserve this failure and retry only after the evidenced correction and reviews.

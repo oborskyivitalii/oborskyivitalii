@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "08cb7979771523ade0aebcd5c063bb06bc811032dfc42c99e2f0daddca432d65",
+    "digest": "428b6f7ee223f4b5f72078be790a39517d4a74616e17a08edfb51548d206b0b2",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -376,7 +376,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "2b14007e8a6a98906d70a01bf74bc63f16d43a1ba038b7085dd97b1fc15d71a3"
+        "sha256": "84e7e503db5541468f2755fbcb87f5c01efbdd800a0774f77171fc52928e4b02"
       },
       {
         "path": "NOTICE.md",
@@ -2085,7 +2085,7 @@
       {
         "path": "review/issue-169/2026-11-08-medium-link.md",
         "identity_mode": "content",
-        "sha256": "b355f52dc22166e120ba4a33d5808da2e1670dc300a7b8abffaf1bde1618f688"
+        "sha256": "26fd80de176641f4bc15f4db6661db05466ec1334d68d995c3247e618ca0d3a0"
       },
       {
         "path": "review/issue-169/browser-media-reviews-and-checks.tar.xz",
@@ -12615,12 +12615,12 @@
       {
         "path": "tools/quality/secrets-publication.json",
         "identity_mode": "content",
-        "sha256": "12482735843772e7041ea8b83eaad126362b4bdf644dad1a7951edc42055e696"
+        "sha256": "9430a6e19dc19114682b02a077d56c2b7c3a35b1a6855a21e207c7dff07e5ea0"
       },
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "ad639efd68fa5841c4ce6468dad8a926180402ec23dad389ee8bdbd3f598b40a"
+        "sha256": "0f94eb388ffabd06abcec8b32b06444448b938425dfca1aed1dc240f3779b792"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",

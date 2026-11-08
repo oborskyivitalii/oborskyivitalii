@@ -19,20 +19,23 @@ Dated continuity, not live authority. Last verified: **2026-11-08**.
 
 ## Open work
 
-- Branch work/issue169-medium-link-20261108 based c0d8e831; no new PR yet.
+- PR176, branch work/issue169-medium-link-20261108; unmerged, based c0d8e831.
 - Report review/issue-169/2026-11-08-medium-link.md owns intent, test impact and evidence.
 - Requirements preflight completed by distinct none-fork agent before implementation.
 - Five existing Todoist campaign tasks updated with Medium URL; dates/priorities preserved.
 - No standalone open Medium-publication task found. No LinkedIn posting performed.
-- Focused content tests and Basic passed in prepared working tree; four-role final review/native CI/staging/release pending.
+- Four independent roles passed; native source1243/1243, Basic, RI and owning checks passed on04bac66a.
+- First full staging42483131972 failed only security: three exact false positives before upload.
+- Two snapshot bindings and one synthetic rejection fixture independently proved; exact ledger correction prepared.
+- User limits this phase to verified stable staging, then stop; no merge or production activation.
 
 ## Next session
 
-1. Revalidate source/ref and review report; complete four source-bound independent roles.
-2. Verify current-source mapped checks, RI/CI and source hygiene; create small owner169 PR.
-3. Normal applicable owner staging, protected merge, frozen candidate and authorized production release.
-4. Observe actual production Writing card with original + exact Medium URL; retain release evidence.
-5. Reconcile only completed acceptance; umbrella article/platform gates remain independently open.
+1. Revalidate PR176 source/ref and retained first-stage failure evidence.
+2. Verify bounded ledger correction, refreshed RI and affected independent reviews.
+3. Require current-head Basic/RI/owning checks, then normal owner /stage.
+4. Verify full staging and actual stable Writing card with original + exact Medium URL.
+5. Stop and report stable URL; reconcile only completed acceptance, no production step.
 
 ## Maintenance
 
