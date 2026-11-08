@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "1b1a30bd87f70fb3acac7aff60b9ec2cd548b02cabbd9de73e9f0086001a858c",
+    "digest": "a3eac23e0f1554ef19068823da8408d48026ec85da89d0a9488ce4c6fb99dbc9",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -4600,7 +4600,7 @@
       {
         "path": "review/issue-177/2026-11-08-ci-browser.md",
         "identity_mode": "content",
-        "sha256": "af0519ad70f242a562d04bea8f31df5a94f66ce019870ee5cde5f900345777f4"
+        "sha256": "430badc189e223c254ae714eb0fc20bcd722e400f47ae4002843ae5f8ff8b095"
       },
       {
         "path": "review/issue-177/2026-11-08-ci-code-scanner-correction.md",
@@ -12760,7 +12760,7 @@
       {
         "path": "tools/quality/secrets-publication.json",
         "identity_mode": "content",
-        "sha256": "ace921f2d6fadd665df7d7fdc7793928113889f9e9cf35fb235c48901e4b1b7a"
+        "sha256": "441091c2519efb555069cf74bde167bd6517080ae54d1d8d671201511e430007"
       },
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",

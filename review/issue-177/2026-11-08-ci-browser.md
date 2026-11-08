@@ -204,3 +204,11 @@ Dirty prepared correction: full format check passed; affected native selection63
 The single remaining fresh CLI fixture git-clones HEAD, which still contained the old carrier pin;
 it overlays checker/Home-frame/reader pin but not the dirty carrier. Preserve this refused diagnostic.
 Commit the already reviewed correction, then rerun exact-source checks; no fixture weakening.
+
+Committed correction treead8b1033 passed the clean three-suite selection63/63 and owning policy5/5
+at source15a0135, sourceDirty:false; full source formatting also passed. Pre-CI changed-file secret
+scan identified one new Hex High Entropy false positive at writing-carrier.json line16: the exact
+public producer checksum. Code/White-box independently reproduced SHA256(build.cjs) and SHA1
+of that field. Append one exact path/type/SHA1 ledger row preserving every previous finding;
+no scanner/input/threshold change. This receipt-only delta requires refreshed exact-source checks
+before the new campaign; browser acceptance remains pending.
