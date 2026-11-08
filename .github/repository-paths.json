@@ -17173,77 +17173,179 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
-    "docs/article-snapshots/5a9909311d6636deb6a938eb795ed11756f933f3eb4275c506b21f6d132d8b77/the-sdlc-is-out-of-balance.html": {
+    ".github/acceptance/issue-177.json": {
       "kind": "file",
-      "purpose": "Generated current website document from canonical authored owners.",
-      "role": "generated",
-      "owner": "site/README.md"
+      "purpose": "Issue177 AC01-AC09 mapping with bounded analytics source checks and explicit pending live, SEO, owner and release gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
     },
-    "docs/article-snapshots/5a9909311d6636deb6a938eb795ed11756f933f3eb4275c506b21f6d132d8b77": {
+    "docs/runtime/1c34e64047482a214a50a115582adb08988fe8721f5ee651bd8a231a300e2cf7": {
       "kind": "directory",
-      "purpose": "Generated current website snapshot from canonical authored owners.",
+      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/0707ca7597e096d770369af9f02a0c9f0a3ab037537462556ebd8b153e1dc122/talks.html": {
+    "docs/runtime/1c34e64047482a214a50a115582adb08988fe8721f5ee651bd8a231a300e2cf7/analytics.js": {
       "kind": "file",
-      "purpose": "Generated current website document from canonical authored owners.",
+      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/0707ca7597e096d770369af9f02a0c9f0a3ab037537462556ebd8b153e1dc122": {
+    "review/issue-177": {
       "kind": "directory",
-      "purpose": "Generated current website snapshot from canonical authored owners.",
-      "role": "generated",
-      "owner": "site/README.md"
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     },
-    "docs/snapshots/260cdec7fb4d5039053c7481ff77fd54ebc160e9832e28386e59480563b83ffe/writing.html": {
+    "review/issue-177/2026-11-08-article-analytics.md": {
       "kind": "file",
-      "purpose": "Generated current website document from canonical authored owners.",
-      "role": "generated",
-      "owner": "site/README.md"
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     },
-    "docs/snapshots/260cdec7fb4d5039053c7481ff77fd54ebc160e9832e28386e59480563b83ffe": {
-      "kind": "directory",
-      "purpose": "Generated current website snapshot from canonical authored owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/3ab4ba721049093f68784ab92bafe088b6f61905fc7a92f72941b8e910ffd565/index.html": {
+    "review/issue-177/2026-11-08-live-before.json": {
       "kind": "file",
-      "purpose": "Generated current website document from canonical authored owners.",
-      "role": "generated",
-      "owner": "site/README.md"
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     },
-    "docs/snapshots/3ab4ba721049093f68784ab92bafe088b6f61905fc7a92f72941b8e910ffd565": {
-      "kind": "directory",
-      "purpose": "Generated current website snapshot from canonical authored owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/8eff6f4535384ffb7d13d55f8d06464ee7651f653674850be9132baa79d9ab37/research.html": {
+    "review/issue-177/2026-11-08-requirements-preflight.md": {
       "kind": "file",
-      "purpose": "Generated current website document from canonical authored owners.",
-      "role": "generated",
-      "owner": "site/README.md"
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     },
-    "docs/snapshots/8eff6f4535384ffb7d13d55f8d06464ee7651f653674850be9132baa79d9ab37": {
-      "kind": "directory",
-      "purpose": "Generated current website snapshot from canonical authored owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/df9b532bcb56ac3cd85f0fc53ca141da36e9f47b4e821d8638254c23c2301b2e/credits.html": {
+    "tests/test_issue177_acceptance.py": {
       "kind": "file",
-      "purpose": "Generated current website document from canonical authored owners.",
+      "purpose": "Issue177 native analytics/article/QA-isolation contract execution and complete-accounting wrapper.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "docs/article-snapshots/eb562d4358d09877a0c0e0e0382bf3d865814e8e914a6279a21f20454c190a29": {
+      "kind": "directory",
+      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/df9b532bcb56ac3cd85f0fc53ca141da36e9f47b4e821d8638254c23c2301b2e": {
-      "kind": "directory",
-      "purpose": "Generated current website snapshot from canonical authored owners.",
+    "docs/article-snapshots/eb562d4358d09877a0c0e0e0382bf3d865814e8e914a6279a21f20454c190a29/the-sdlc-is-out-of-balance.html": {
+      "kind": "file",
+      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
+    },
+    "docs/snapshots/633f64ce3bf0136a0e464731dcfd7992d9f46fbe98f853f2e48491d9f3609c2c": {
+      "kind": "directory",
+      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/633f64ce3bf0136a0e464731dcfd7992d9f46fbe98f853f2e48491d9f3609c2c/research.html": {
+      "kind": "file",
+      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/8f12003dd20b05edbc3c0056d4c1414e103505793cbac1f35df89f38023e456d": {
+      "kind": "directory",
+      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/8f12003dd20b05edbc3c0056d4c1414e103505793cbac1f35df89f38023e456d/credits.html": {
+      "kind": "file",
+      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/9f8e7ef3e7a92aa330e6543f026f703a0c705483eee8b0c39420620e005ec390": {
+      "kind": "directory",
+      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/9f8e7ef3e7a92aa330e6543f026f703a0c705483eee8b0c39420620e005ec390/talks.html": {
+      "kind": "file",
+      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/f5dfa9db166b4dc82ff203692150adb478d6688a6d590d56c21e09ffb0081e11": {
+      "kind": "directory",
+      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/f5dfa9db166b4dc82ff203692150adb478d6688a6d590d56c21e09ffb0081e11/writing.html": {
+      "kind": "file",
+      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/f6eb0ea25f11ae5e305694a02c4c05d36e2915864b8ef94342226ae2741bdfbc": {
+      "kind": "directory",
+      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/f6eb0ea25f11ae5e305694a02c4c05d36e2915864b8ef94342226ae2741bdfbc/index.html": {
+      "kind": "file",
+      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "review/issue-177/2026-11-08-code-first.md": {
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-177/2026-11-08-diagnostics.json.gz": {
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-177/2026-11-08-exploratory-blocked.md": {
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-177/2026-11-08-requirements-first-candidate.md": {
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-177/2026-11-08-whitebox-first.md": {
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-177/2026-11-08-code-correction.md": {
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-177/2026-11-08-exploratory-correction.md": {
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-177/2026-11-08-requirements-correction.md": {
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-177/2026-11-08-whitebox-correction.md": {
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

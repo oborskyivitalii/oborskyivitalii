@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "428b6f7ee223f4b5f72078be790a39517d4a74616e17a08edfb51548d206b0b2",
+    "digest": "75b9c7dc7ab0918506a6a5dbcc35d21513ce709b2fa430abae17888cae8b711b",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -93,6 +93,11 @@
         "path": ".github/acceptance/issue-169.json",
         "identity_mode": "content",
         "sha256": "f8c3a531254401b9884a0b23b80fe4bfb0c2bc1c264b83a74eadbf15fb60a581"
+      },
+      {
+        "path": ".github/acceptance/issue-177.json",
+        "identity_mode": "content",
+        "sha256": "d46a129e3eccca6125758a72a588e8064334e200a309415be5adac7c9f6caf18"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -221,12 +226,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "7829c6d71cedfbbe93eb846ba3ddbf0ba3b30ccc2679f922522e68cd957f3eaf"
+        "sha256": "3e492efe8878ddfa417db21634be4544e6965664b3f2b1da97f048236ec306ce"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "1a1ef573e974262263f501f45512593da8cde5e2762f39e7f531d37669d6b62a"
+        "sha256": "f0fe4a8e95d77288843c6cfffd381098aae95de5328a4b478c82e0e3bad30125"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -376,7 +381,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "84e7e503db5541468f2755fbcb87f5c01efbdd800a0774f77171fc52928e4b02"
+        "sha256": "ad0bfea8368e0ed6bacf961f9e7e670124131cd247bf8e2b2bcab1cea3599b4a"
       },
       {
         "path": "NOTICE.md",
@@ -508,19 +513,19 @@
         "sha256": "f1d53fa07e9c2d947922eb82b5cc12b7b7bbefd62cf728e80b9cfcbde8a5ffa9"
       },
       {
-        "path": "docs/article-snapshots/5a9909311d6636deb6a938eb795ed11756f933f3eb4275c506b21f6d132d8b77/the-sdlc-is-out-of-balance.html",
-        "identity_mode": "content",
-        "sha256": "fe7b1229ed799df46ec2a063518d79298570cb44916ccce2c2f62d0cece33e9c"
-      },
-      {
         "path": "docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/the-sdlc-is-out-of-balance.html",
         "identity_mode": "content",
         "sha256": "4aa1ae74ff48155957e9f897b7697e1cee35e3b38d8319d0906c15da2d44fd7b"
       },
       {
+        "path": "docs/article-snapshots/eb562d4358d09877a0c0e0e0382bf3d865814e8e914a6279a21f20454c190a29/the-sdlc-is-out-of-balance.html",
+        "identity_mode": "content",
+        "sha256": "bc6faf086352ddb797b692abff6a49256864f496768308fedb548f1663964340"
+      },
+      {
         "path": "docs/articles/the-sdlc-is-out-of-balance.html",
         "identity_mode": "content",
-        "sha256": "0cf611280adc5d97fc33aa8af07499a2c0925fcaec5c72e5494db34f5b6fa0dc"
+        "sha256": "d5e629f29e689c1a412cbdf6892ec9687409d6d582b48df78b779cc1fcb6c61a"
       },
       {
         "path": "docs/assets/favicon.svg",
@@ -545,12 +550,12 @@
       {
         "path": "docs/credits.html",
         "identity_mode": "content",
-        "sha256": "9962041ea75dd1af94f8d8241eccc22eed73ad2822810bc6a282a2b6545f8b57"
+        "sha256": "468812262c755cf9475d1071d820f8e6acded5fbdb6c3c3c8f1ab1f6ef154f98"
       },
       {
         "path": "docs/index.html",
         "identity_mode": "content",
-        "sha256": "037c5a9b9ea6565bf79b24003613d6d4b18dc77a057a8015d0effe44adcb1c7a"
+        "sha256": "c0d464c6382ed26d55e67fc3e8c35ef76615f3e42a53438ceb9575c39e483be8"
       },
       {
         "path": "docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg",
@@ -585,7 +590,12 @@
       {
         "path": "docs/research.html",
         "identity_mode": "content",
-        "sha256": "fe5d7714d22b0e50426f97967c5e5992833ccb6cc3c376e909b18853dae26000"
+        "sha256": "ff334c68dcbdfd2aa75985f1263eb18552dc05f60a142388f1ebc6b53584f7cf"
+      },
+      {
+        "path": "docs/runtime/1c34e64047482a214a50a115582adb08988fe8721f5ee651bd8a231a300e2cf7/analytics.js",
+        "identity_mode": "content",
+        "sha256": "1c34e64047482a214a50a115582adb08988fe8721f5ee651bd8a231a300e2cf7"
       },
       {
         "path": "docs/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/archive.js",
@@ -720,12 +730,7 @@
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "b9bdf94e0d4ad2321c27b41c712e74ee573be57dbb2ab5e6a760d55002f95675"
-      },
-      {
-        "path": "docs/snapshots/0707ca7597e096d770369af9f02a0c9f0a3ab037537462556ebd8b153e1dc122/talks.html",
-        "identity_mode": "content",
-        "sha256": "9a9700dcd41d15009aec673015b4d4cda0ff8d13c1bf7b27955fcff499690eb1"
+        "sha256": "a45c316ee1546da5807c9d4e822e50f48a1a3b31311acc355b67302d15ea51f1"
       },
       {
         "path": "docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2/talks.html",
@@ -738,16 +743,6 @@
         "sha256": "93c88b5f9c73e559b067866cb38eb604e93013c2225a06a36f96e8f215d397b3"
       },
       {
-        "path": "docs/snapshots/260cdec7fb4d5039053c7481ff77fd54ebc160e9832e28386e59480563b83ffe/writing.html",
-        "identity_mode": "content",
-        "sha256": "03f8d0f32d0895099e8dbd1972367775b2ffbf44dc3418531f60f837f4176134"
-      },
-      {
-        "path": "docs/snapshots/3ab4ba721049093f68784ab92bafe088b6f61905fc7a92f72941b8e910ffd565/index.html",
-        "identity_mode": "content",
-        "sha256": "0b2484e21fb77b84f9fbde593bf35243ec35d594d6829cf7203afb57580a5def"
-      },
-      {
         "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
         "identity_mode": "content",
         "sha256": "3dd82a25eee6f3915f0748192a6dc34bfbd214879b0ed933f116b3d47a363df7"
@@ -756,6 +751,11 @@
         "path": "docs/snapshots/632f4f29ebdbc51215b02592fd45a1f10a99fb8596d2dec8b3f18bc8be847f06/credits.html",
         "identity_mode": "content",
         "sha256": "f6b20241842beb0bcc0b649bfb4443d8f446fc4d3dcfd65684b3b6facafca4e2"
+      },
+      {
+        "path": "docs/snapshots/633f64ce3bf0136a0e464731dcfd7992d9f46fbe98f853f2e48491d9f3609c2c/research.html",
+        "identity_mode": "content",
+        "sha256": "b457ca1b4b44bd7f080c5ad7c4b5b350ffd7354ae114803a81527a6754adde1b"
       },
       {
         "path": "docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed/research.html",
@@ -778,9 +778,9 @@
         "sha256": "4284e646405e3c2dc1288fd3e222e15b8564e44cbaeca8be0b0b01927a248736"
       },
       {
-        "path": "docs/snapshots/8eff6f4535384ffb7d13d55f8d06464ee7651f653674850be9132baa79d9ab37/research.html",
+        "path": "docs/snapshots/8f12003dd20b05edbc3c0056d4c1414e103505793cbac1f35df89f38023e456d/credits.html",
         "identity_mode": "content",
-        "sha256": "8003a89bab2e4102a5cb153021fe2123557a11110ca41464be9f38434afb802f"
+        "sha256": "3c54a540614ffd57d891636def0aa0bf6fc70e6b9ea033cbd6b9af600b739c1e"
       },
       {
         "path": "docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html",
@@ -791,6 +791,11 @@
         "path": "docs/snapshots/95b57d8257b5ffb3f4b9924d90694110e982f7bdc9aecb6f09969d46b3a8b2e0/index.html",
         "identity_mode": "content",
         "sha256": "288f85a3b0bf82d69aceda049007063a6ebcde469eb345b8ddcec53cf96bd498"
+      },
+      {
+        "path": "docs/snapshots/9f8e7ef3e7a92aa330e6543f026f703a0c705483eee8b0c39420620e005ec390/talks.html",
+        "identity_mode": "content",
+        "sha256": "ba3c1a8dd8e5a5d13ae3f68f35913bcd633336011685415a90415b07f6116b37"
       },
       {
         "path": "docs/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700/credits.html",
@@ -818,9 +823,14 @@
         "sha256": "eef3b91329720bf60b4aaf9e08208bd9ce75790be77b21c2757638c7af7a6fb4"
       },
       {
-        "path": "docs/snapshots/df9b532bcb56ac3cd85f0fc53ca141da36e9f47b4e821d8638254c23c2301b2e/credits.html",
+        "path": "docs/snapshots/f5dfa9db166b4dc82ff203692150adb478d6688a6d590d56c21e09ffb0081e11/writing.html",
         "identity_mode": "content",
-        "sha256": "002a9398e181d1bd743973a5e5d47d53ce60c0d492b523f623f8f5bf96b4a81e"
+        "sha256": "2d3e5115eaa2ca19702df634562cf163ee01959dc9731d1ae0bb45f8a3f79977"
+      },
+      {
+        "path": "docs/snapshots/f6eb0ea25f11ae5e305694a02c4c05d36e2915864b8ef94342226ae2741bdfbc/index.html",
+        "identity_mode": "content",
+        "sha256": "0965ac93b36ea6eed09e5125ef9ffe22e734ccce6431a0d71d552d413c8847d7"
       },
       {
         "path": "docs/space.js",
@@ -835,7 +845,7 @@
       {
         "path": "docs/talks.html",
         "identity_mode": "content",
-        "sha256": "1f911b8dc035159751ef684f5d77b079cf692ed300a681821e353f268d3d9599"
+        "sha256": "cda584685166b04231506a923dafdc3fbdd9c058b1d42eb6f8872c51d79a45d6"
       },
       {
         "path": "docs/theme.js",
@@ -845,7 +855,7 @@
       {
         "path": "docs/writing.html",
         "identity_mode": "content",
-        "sha256": "90893cee66037afeff64f4da1b3f1fff7851d4c856f94dbb9ef1ec1ee166057d"
+        "sha256": "d5840ed5d97e13d43b2332198f207d633998e47b3d8501f28e000da14e477e2b"
       },
       {
         "path": "drafts/medium-profile-revision-20261001.html",
@@ -890,7 +900,7 @@
       {
         "path": "guides/SITE-ANALYTICS.md",
         "identity_mode": "content",
-        "sha256": "bfece46ffaffdd42ba18df6785490a6e09133d50823b8bc19ade58505c412c07"
+        "sha256": "933f477f33bdeccb54f351a4303b9c0feaf967867b91fc9965dc4d570972ebb2"
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
@@ -4581,6 +4591,66 @@
         "path": "review/issue-169/writing-forms-reviews-and-checks.tar.xz",
         "identity_mode": "content",
         "sha256": "bf24c1792b2e0b25243c318e30859f5b48a9d11869980782100857da7604ceb4"
+      },
+      {
+        "path": "review/issue-177/2026-11-08-article-analytics.md",
+        "identity_mode": "content",
+        "sha256": "ad8d265b3466400da0ca964b5abca3ef26f039d377172440bd8493aca984c671"
+      },
+      {
+        "path": "review/issue-177/2026-11-08-code-correction.md",
+        "identity_mode": "content",
+        "sha256": "8c9523e70a92dfb78468fea8efe1e27b6dbe66f138607dfa42d5422c0830cc13"
+      },
+      {
+        "path": "review/issue-177/2026-11-08-code-first.md",
+        "identity_mode": "content",
+        "sha256": "3b6e5719ddaf1c164923c1a70e2819db9e106d011381f027c4b3b656014169d3"
+      },
+      {
+        "path": "review/issue-177/2026-11-08-diagnostics.json.gz",
+        "identity_mode": "content",
+        "sha256": "5c371798412116eea7d197e809196661001ed587fc97c27105a93087604e360e"
+      },
+      {
+        "path": "review/issue-177/2026-11-08-exploratory-blocked.md",
+        "identity_mode": "content",
+        "sha256": "fc1368390498922407cb9b64d7da185d1f82be60f34b172f62c507ad98f854ae"
+      },
+      {
+        "path": "review/issue-177/2026-11-08-exploratory-correction.md",
+        "identity_mode": "content",
+        "sha256": "fc8e5876df5660d67021754525da3411a8f78c292a558b9199a7496af42154e9"
+      },
+      {
+        "path": "review/issue-177/2026-11-08-live-before.json",
+        "identity_mode": "content",
+        "sha256": "848ad364c139f3d9c7d9e926b504278cb4d79f29ce24c0c4f70ddbe5f847d5bd"
+      },
+      {
+        "path": "review/issue-177/2026-11-08-requirements-correction.md",
+        "identity_mode": "content",
+        "sha256": "a7842be1ffcf2406bf333440fd776b9756f350dbb19df71bb753f5e343ad1b0e"
+      },
+      {
+        "path": "review/issue-177/2026-11-08-requirements-first-candidate.md",
+        "identity_mode": "content",
+        "sha256": "b5c63bfbc8a2ca83caec8753b68cb624f6c322c13fe490c1ebe86aa14fd8a1d1"
+      },
+      {
+        "path": "review/issue-177/2026-11-08-requirements-preflight.md",
+        "identity_mode": "content",
+        "sha256": "848682b570a0410f81da5c33567aa50bed80256f97ce1b745bfc76bbe9866062"
+      },
+      {
+        "path": "review/issue-177/2026-11-08-whitebox-correction.md",
+        "identity_mode": "content",
+        "sha256": "07b9eb9abbb2e924cc082643b295c199f95f86406d6f015ec1ea20a09e59b2f5"
+      },
+      {
+        "path": "review/issue-177/2026-11-08-whitebox-first.md",
+        "identity_mode": "content",
+        "sha256": "ae087247f024190c5ebb29853ace29f87a203ebb2b9e951235c6e205ec9b91ec"
       },
       {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -9215,22 +9285,22 @@
       {
         "path": "review/site-v1-20261004-v11-credits-day.html",
         "identity_mode": "content",
-        "sha256": "fb52d277d15d3da2cf6433ba8459fa46ea6db2a7e1426e57f91735efa3b1c800"
+        "sha256": "0314945cf9022b7fdc659b16a24018f630e0f351cf90ac1c3b10e4f60541e5df"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-interactive.html",
         "identity_mode": "content",
-        "sha256": "baaabdbdf67bd0bce947bfb4a8b8d35717e0cd65c1330952f9383fef7585c9f5"
+        "sha256": "fd9d513fc144369fa57db1bc7bfc372d360ae964ee77bf9ab66115280fa8dfec"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-night.html",
         "identity_mode": "content",
-        "sha256": "dca919545873d06e0a63f845e0a3d89740def1a38164c5716c7c0154f409f20b"
+        "sha256": "6032f9b7aeb7558ee01edcd5bf157451302c82e053c9cb4372867433eb94d215"
       },
       {
         "path": "review/site-v1-20261004-v11-day.html",
         "identity_mode": "content",
-        "sha256": "2d1813a2050f7b9e8670475e6489a2cbf86012fb7970fd64a00f6eae45c2cfc1"
+        "sha256": "d836eaf513bd1840d83aec910719b403f949dfcac5748218446fe40c2d361639"
       },
       {
         "path": "review/site-v1-20261004-v11-index.html",
@@ -9240,57 +9310,57 @@
       {
         "path": "review/site-v1-20261004-v11-interactive.html",
         "identity_mode": "content",
-        "sha256": "e98fca9165456d255ac750bbc5af36ccb650dbedfebd57bd93df2cec7e145944"
+        "sha256": "d2a0f1bcf83a89145425e0b5d7c392fbcd306ad138a141838eedc462b03ffab1"
       },
       {
         "path": "review/site-v1-20261004-v11-night.html",
         "identity_mode": "content",
-        "sha256": "c1d6c33b47f6ea3534e0f200ccdd3f16c47a9103965f22a79d2215a6f0547ca8"
+        "sha256": "28cc7e7bfa9986ba9ac1f86cab8cb7f2be588149b6c96420386f4c125e4375c5"
       },
       {
         "path": "review/site-v1-20261004-v11-research-day.html",
         "identity_mode": "content",
-        "sha256": "bb1b162e3f843aa421f1dfec487e4eaedad850fe65669258d80b0ca58fa4e386"
+        "sha256": "1a4c6e0031b11d412658933b7d0b08849ff958d0f8cab14d8f3a5502cf1961d8"
       },
       {
         "path": "review/site-v1-20261004-v11-research-interactive.html",
         "identity_mode": "content",
-        "sha256": "2a226d89e8606f4be2ac658230f54a266fab2de682e892e93be3ea29f6226461"
+        "sha256": "6a0726573ae393c39a15670083f7e656bc20eeba326aa1d52f5446fc1f582096"
       },
       {
         "path": "review/site-v1-20261004-v11-research-night.html",
         "identity_mode": "content",
-        "sha256": "25f294b42284214f050636258824b576be93a72a03b13eb720ec4486f4daeeba"
+        "sha256": "9eb16099b854ace1f068e4e27fac1ee2db623a2cbd67a80075ec77e0d76e679f"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-day.html",
         "identity_mode": "content",
-        "sha256": "027e09fe7ca29197673f63f0d7da20bc0bb592161c55e9c33c8dd133ba11344f"
+        "sha256": "b9a855500b2e64768d812e11fab928c6d660042331373325f22f9aa7a989f9b4"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-interactive.html",
         "identity_mode": "content",
-        "sha256": "7eae743b9c7d77e06953efacb14b2306c42d0f84dd6af43797be432d3a362985"
+        "sha256": "12e31ee0d1da42bade1a10873196d6ea9843b99eede3f2cd82f23781a7550bd1"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-night.html",
         "identity_mode": "content",
-        "sha256": "2f4726ccbf9ecd40d84d05b0b55dce58ad0e60765898b08598c43dfc08f2f33a"
+        "sha256": "c0fba286728705ef61d77f41013f082aaf9310de1b1ca25c0f2229b0dd3c9c33"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-day.html",
         "identity_mode": "content",
-        "sha256": "aded51990e022faa916fb5969c43ea9125631cfa370f41018f4617e1f610dac1"
+        "sha256": "d177b11f10ffb4bd136d1aa06f4a5e4fdcdb8fcf15de7adb02ad8ad3d9da35e7"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-interactive.html",
         "identity_mode": "content",
-        "sha256": "af5d990b4fffa5158ad6bfbd574cb5329d70e29d71da16a8810c3047f1152554"
+        "sha256": "ba9c3bf42964721a1c0d072c798d6f1d4b54055a613d1520b374f807f3a57a30"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-night.html",
         "identity_mode": "content",
-        "sha256": "fc81911d3c6739ca000451019f23609ecd7af3c6c9dd228b6664413d764fe514"
+        "sha256": "2af8a58381aaf363cb087c9637b143d436533bccf67944185f80a5f576220760"
       },
       {
         "path": "review/site-v1-offline-bundle-v10.json",
@@ -9355,7 +9425,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "50d027bd48f5877ca1ca1a382b30dab7e318037bc8c79af25b4df10d28a98ecc"
+        "sha256": "ae81ec5d87156dc8de5ff673898c9f48c86741b78f678856d92c74baadad1890"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -10440,7 +10510,7 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "84190a83319d494597ae01ed922f25afeb7a1f0ad17cb41b8d2a7344533a6f6e"
+        "sha256": "d068d1ec96b8031baca1ddecef7fb61a7dfff7b7d78fdeccc8bb99225ab8e8f3"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/blueprint.md",
@@ -11730,7 +11800,7 @@
       {
         "path": "tests/site-articles.test.cjs",
         "identity_mode": "content",
-        "sha256": "4033d35336e8c0f59dd68380ed3c4baddf1508e9b42932a38dc1336f85346425"
+        "sha256": "7b885d9f24a25fe350272caff32fd4942421fa4f7a3fa69db4c84f9b172608d4"
       },
       {
         "path": "tests/site-engine.test.cjs",
@@ -11811,6 +11881,11 @@
         "path": "tests/test_issue159_acceptance.py",
         "identity_mode": "content",
         "sha256": "9769545b3c325a7bedb6b370db43a13fd350f1f987fe8f4dfff52fe8f04ab4d3"
+      },
+      {
+        "path": "tests/test_issue177_acceptance.py",
+        "identity_mode": "content",
+        "sha256": "b35d84d08a03f7de8e74cc1ef508daaf2f9dd05cc4705a7d62430134a1dd5282"
       },
       {
         "path": "tests/test_issue31_acceptance.py",
@@ -12680,7 +12755,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "583d1dd469fc12adc2cf66628a6486e9d11e5eaa0d3e170b5fdf4fbf63085a36"
+        "sha256": "a498d13641dd0581ca60e0ff15a3dfcecbc5feaa197c76a78e3955e0057d3e5b"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -12880,7 +12955,7 @@
       {
         "path": "tools/site/build.cjs",
         "identity_mode": "content",
-        "sha256": "3d9b80f989008ae487cccf4b38aea630bd4ddf62782a971e7e62142c9fbbc869"
+        "sha256": "ee69b9950ed0982a69344c5b92f6988b293362112817d8a2fc504ebfe101adee"
       },
       {
         "path": "tools/site/content-release.cjs",
@@ -13635,6 +13710,17 @@
         "AGENTS.md"
       ],
       "title": "issue-169.json"
+    },
+    {
+      "path": ".github/acceptance/issue-177.json",
+      "kind": "file",
+      "purpose": "Issue177 AC01-AC09 mapping with bounded analytics source checks and explicit pending live, SEO, owner and release gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-177.json"
     },
     {
       "path": ".github/acceptance/issue-31.json",
@@ -14550,9 +14636,9 @@
       "title": "the-sdlc-is-out-of-balance.html"
     },
     {
-      "path": "docs/article-snapshots/5a9909311d6636deb6a938eb795ed11756f933f3eb4275c506b21f6d132d8b77/the-sdlc-is-out-of-balance.html",
+      "path": "docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/the-sdlc-is-out-of-balance.html",
       "kind": "file",
-      "purpose": "Generated current website document from canonical authored owners.",
+      "purpose": "Exact current native raw article rendition and existing immutable closure; no prior-publication claim.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -14561,9 +14647,9 @@
       "title": "the-sdlc-is-out-of-balance.html"
     },
     {
-      "path": "docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/the-sdlc-is-out-of-balance.html",
+      "path": "docs/article-snapshots/eb562d4358d09877a0c0e0e0382bf3d865814e8e914a6279a21f20454c190a29/the-sdlc-is-out-of-balance.html",
       "kind": "file",
-      "purpose": "Exact current native raw article rendition and existing immutable closure; no prior-publication claim.",
+      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -14724,6 +14810,17 @@
         "AGENTS.md"
       ],
       "title": "research.html"
+    },
+    {
+      "path": "docs/runtime/1c34e64047482a214a50a115582adb08988fe8721f5ee651bd8a231a300e2cf7/analytics.js",
+      "kind": "file",
+      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "analytics.js"
     },
     {
       "path": "docs/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/archive.js",
@@ -15023,17 +15120,6 @@
       "title": "site-revision.json"
     },
     {
-      "path": "docs/snapshots/0707ca7597e096d770369af9f02a0c9f0a3ab037537462556ebd8b153e1dc122/talks.html",
-      "kind": "file",
-      "purpose": "Generated current website document from canonical authored owners.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "talks.html"
-    },
-    {
       "path": "docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2/talks.html",
       "kind": "file",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
@@ -15056,28 +15142,6 @@
       "title": "talks.html"
     },
     {
-      "path": "docs/snapshots/260cdec7fb4d5039053c7481ff77fd54ebc160e9832e28386e59480563b83ffe/writing.html",
-      "kind": "file",
-      "purpose": "Generated current website document from canonical authored owners.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "writing.html"
-    },
-    {
-      "path": "docs/snapshots/3ab4ba721049093f68784ab92bafe088b6f61905fc7a92f72941b8e910ffd565/index.html",
-      "kind": "file",
-      "purpose": "Generated current website document from canonical authored owners.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "index.html"
-    },
-    {
       "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
@@ -15098,6 +15162,17 @@
         "AGENTS.md"
       ],
       "title": "credits.html"
+    },
+    {
+      "path": "docs/snapshots/633f64ce3bf0136a0e464731dcfd7992d9f46fbe98f853f2e48491d9f3609c2c/research.html",
+      "kind": "file",
+      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "research.html"
     },
     {
       "path": "docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed/research.html",
@@ -15144,15 +15219,15 @@
       "title": "credits.html"
     },
     {
-      "path": "docs/snapshots/8eff6f4535384ffb7d13d55f8d06464ee7651f653674850be9132baa79d9ab37/research.html",
+      "path": "docs/snapshots/8f12003dd20b05edbc3c0056d4c1414e103505793cbac1f35df89f38023e456d/credits.html",
       "kind": "file",
-      "purpose": "Generated current website document from canonical authored owners.",
+      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "research.html"
+      "title": "credits.html"
     },
     {
       "path": "docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html",
@@ -15175,6 +15250,17 @@
         "AGENTS.md"
       ],
       "title": "index.html"
+    },
+    {
+      "path": "docs/snapshots/9f8e7ef3e7a92aa330e6543f026f703a0c705483eee8b0c39420620e005ec390/talks.html",
+      "kind": "file",
+      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "talks.html"
     },
     {
       "path": "docs/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700/credits.html",
@@ -15232,15 +15318,26 @@
       "title": "writing.html"
     },
     {
-      "path": "docs/snapshots/df9b532bcb56ac3cd85f0fc53ca141da36e9f47b4e821d8638254c23c2301b2e/credits.html",
+      "path": "docs/snapshots/f5dfa9db166b4dc82ff203692150adb478d6688a6d590d56c21e09ffb0081e11/writing.html",
       "kind": "file",
-      "purpose": "Generated current website document from canonical authored owners.",
+      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "credits.html"
+      "title": "writing.html"
+    },
+    {
+      "path": "docs/snapshots/f6eb0ea25f11ae5e305694a02c4c05d36e2915864b8ef94342226ae2741bdfbc/index.html",
+      "kind": "file",
+      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index.html"
     },
     {
       "path": "docs/space.js",
@@ -23513,6 +23610,138 @@
         "AGENTS.md"
       ],
       "title": "writing-forms-reviews-and-checks.tar.xz"
+    },
+    {
+      "path": "review/issue-177/2026-11-08-article-analytics.md",
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 177 — 2026-11-08 article analytics checkpoint"
+    },
+    {
+      "path": "review/issue-177/2026-11-08-code-correction.md",
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue177 — Code / Artifact correction review"
+    },
+    {
+      "path": "review/issue-177/2026-11-08-code-first.md",
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue177 — independent Code / Artifact first review"
+    },
+    {
+      "path": "review/issue-177/2026-11-08-diagnostics.json.gz",
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-11-08-diagnostics.json.gz"
+    },
+    {
+      "path": "review/issue-177/2026-11-08-exploratory-blocked.md",
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 177 — independent Exploratory / Interaction QA, first result"
+    },
+    {
+      "path": "review/issue-177/2026-11-08-exploratory-correction.md",
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 177 — exploratory source correction receipt"
+    },
+    {
+      "path": "review/issue-177/2026-11-08-live-before.json",
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-11-08-live-before.json"
+    },
+    {
+      "path": "review/issue-177/2026-11-08-requirements-correction.md",
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 177 — Requirements & Acceptance correction re-review"
+    },
+    {
+      "path": "review/issue-177/2026-11-08-requirements-first-candidate.md",
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 177 — Requirements & Acceptance final candidate review"
+    },
+    {
+      "path": "review/issue-177/2026-11-08-requirements-preflight.md",
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 177 — independent Requirements & Acceptance preflight"
+    },
+    {
+      "path": "review/issue-177/2026-11-08-whitebox-correction.md",
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "White-box QA correction re-review — issue177"
+    },
+    {
+      "path": "review/issue-177/2026-11-08-whitebox-first.md",
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "White-box QA — first independent judgment, issue177"
     },
     {
       "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -39421,6 +39650,17 @@
       "title": "test_issue159_acceptance.py"
     },
     {
+      "path": "tests/test_issue177_acceptance.py",
+      "kind": "file",
+      "purpose": "Issue177 native analytics/article/QA-isolation contract execution and complete-accounting wrapper.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "test_issue177_acceptance.py"
+    },
+    {
       "path": "tests/test_issue31_acceptance.py",
       "kind": "file",
       "purpose": "Issue 31 observable acceptance checks for RI provenance, inventory, memory, workflow, unchanged site and bootstrap.",
@@ -42431,9 +42671,9 @@
       ]
     },
     {
-      "path": "docs/article-snapshots/5a9909311d6636deb6a938eb795ed11756f933f3eb4275c506b21f6d132d8b77",
+      "path": "docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003",
       "kind": "directory",
-      "purpose": "Generated current website snapshot from canonical authored owners.",
+      "purpose": "Exact current native raw article rendition and existing immutable closure; no prior-publication claim.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -42441,9 +42681,9 @@
       ]
     },
     {
-      "path": "docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003",
+      "path": "docs/article-snapshots/eb562d4358d09877a0c0e0e0382bf3d865814e8e914a6279a21f20454c190a29",
       "kind": "directory",
-      "purpose": "Exact current native raw article rendition and existing immutable closure; no prior-publication claim.",
+      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -42494,6 +42734,16 @@
       "path": "docs/runtime",
       "kind": "directory",
       "purpose": "Generated content-addressed browser runtime editions.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/runtime/1c34e64047482a214a50a115582adb08988fe8721f5ee651bd8a231a300e2cf7",
+      "kind": "directory",
+      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -42571,16 +42821,6 @@
       ]
     },
     {
-      "path": "docs/snapshots/0707ca7597e096d770369af9f02a0c9f0a3ab037537462556ebd8b153e1dc122",
-      "kind": "directory",
-      "purpose": "Generated current website snapshot from canonical authored owners.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
       "path": "docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2",
       "kind": "directory",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
@@ -42601,26 +42841,6 @@
       ]
     },
     {
-      "path": "docs/snapshots/260cdec7fb4d5039053c7481ff77fd54ebc160e9832e28386e59480563b83ffe",
-      "kind": "directory",
-      "purpose": "Generated current website snapshot from canonical authored owners.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/3ab4ba721049093f68784ab92bafe088b6f61905fc7a92f72941b8e910ffd565",
-      "kind": "directory",
-      "purpose": "Generated current website snapshot from canonical authored owners.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
       "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347",
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -42634,6 +42854,16 @@
       "path": "docs/snapshots/632f4f29ebdbc51215b02592fd45a1f10a99fb8596d2dec8b3f18bc8be847f06",
       "kind": "directory",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/633f64ce3bf0136a0e464731dcfd7992d9f46fbe98f853f2e48491d9f3609c2c",
+      "kind": "directory",
+      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -42681,9 +42911,9 @@
       ]
     },
     {
-      "path": "docs/snapshots/8eff6f4535384ffb7d13d55f8d06464ee7651f653674850be9132baa79d9ab37",
+      "path": "docs/snapshots/8f12003dd20b05edbc3c0056d4c1414e103505793cbac1f35df89f38023e456d",
       "kind": "directory",
-      "purpose": "Generated current website snapshot from canonical authored owners.",
+      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -42704,6 +42934,16 @@
       "path": "docs/snapshots/95b57d8257b5ffb3f4b9924d90694110e982f7bdc9aecb6f09969d46b3a8b2e0",
       "kind": "directory",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/9f8e7ef3e7a92aa330e6543f026f703a0c705483eee8b0c39420620e005ec390",
+      "kind": "directory",
+      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -42761,9 +43001,19 @@
       ]
     },
     {
-      "path": "docs/snapshots/df9b532bcb56ac3cd85f0fc53ca141da36e9f47b4e821d8638254c23c2301b2e",
+      "path": "docs/snapshots/f5dfa9db166b4dc82ff203692150adb478d6688a6d590d56c21e09ffb0081e11",
       "kind": "directory",
-      "purpose": "Generated current website snapshot from canonical authored owners.",
+      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/f6eb0ea25f11ae5e305694a02c4c05d36e2915864b8ef94342226ae2741bdfbc",
+      "kind": "directory",
+      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -43134,6 +43384,16 @@
       "path": "review/issue-169/writing-discovery",
       "kind": "directory",
       "purpose": "Issue169 Writing discovery correction review, source-bound receipts and original execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-177",
+      "kind": "directory",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [

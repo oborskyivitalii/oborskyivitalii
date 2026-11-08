@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 177,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/177",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Audit article route ownership and test impact before full gates.",
+      "automated_scope": "ANALYTICS exercises public catalog admission, refusal cases and changing-loader identity; the dated audit and affected test allocation require review.",
+      "checks": ["ANALYTICS", "RI"],
+      "gates": ["REVIEW"]
+    },
+    {
+      "id": "AC02",
+      "intent": "Measure direct and supported internal article entries with one SDK.",
+      "automated_scope": "ANALYTICS checks the actual compiled producer loader, canonical/alias admission, shared document invalidation and one SDK element; it does not establish vendor-generated pageviews or collector receipt.",
+      "checks": ["ANALYTICS"],
+      "gates": ["LIVE", "BROWSER"]
+    },
+    {
+      "id": "AC03",
+      "intent": "Preserve bounded analytics and QA isolation.",
+      "automated_scope": "ANALYTICS exercises origin/project, draft/unlisted/unknown/snapshot refusals, blocked SDK, offline stripping and context-isolation failure/ordinary contrasts; actual browser and live isolation scope remain separate.",
+      "checks": ["ANALYTICS"],
+      "gates": ["BROWSER", "LIVE"]
+    },
+    {
+      "id": "AC04",
+      "intent": "Complete truthful site-original SEO and author metadata.",
+      "automated_scope": "BASIC checks current generated output and syntax only; SEO implementation and semantic/live metadata verification are outside the analytics checkpoint and remain pending.",
+      "checks": ["BASIC"],
+      "gates": ["SEO"]
+    },
+    {
+      "id": "AC05",
+      "intent": "Complete contextual discovery and Medium edition links.",
+      "automated_scope": "BASIC checks general output coherence only; new discovery links and desktop/mobile/no-JS acceptance are outside this checkpoint.",
+      "checks": ["BASIC"],
+      "gates": ["DISCOVERY"]
+    },
+    {
+      "id": "AC06",
+      "intent": "Verify existing search infrastructure and article inclusion.",
+      "automated_scope": "BASIC verifies generated artifact coherence only, not live sitemap, canonical coverage, indexing or provider inspection.",
+      "checks": ["BASIC"],
+      "gates": ["SEARCH"]
+    },
+    {
+      "id": "AC07",
+      "intent": "Run exact-source checks, independent reviews and authorized release gates with source architecture/style.",
+      "automated_scope": "BASIC, STYLE, RI and RI-CI check their bounded source/output/guard scopes. Four-role semantic review, CS01-CS10 outside the guard, hosted preview/staging and separately authorized production remain external gates.",
+      "checks": ["BASIC", "STYLE", "RI", "RI-CI"],
+      "gates": ["REVIEW", "BROWSER", "RELEASE"]
+    },
+    {
+      "id": "AC08",
+      "intent": "Record honest fixed-window analytics before/after evidence.",
+      "automated_scope": "ANALYTICS preserves collection guard behavior only; sampled reporting, provider counts, retrieval windows and contamination interpretation require dated evidence and remain pending.",
+      "checks": ["ANALYTICS"],
+      "gates": ["BASELINE"]
+    },
+    {
+      "id": "AC09",
+      "intent": "Remind owner after production and retain owner-only Medium canonical disposition.",
+      "automated_scope": "BASIC establishes no Medium action. Final post-production reminder and explicit owner result are unautomated and remain pending.",
+      "checks": ["BASIC"],
+      "gates": ["MEDIUM", "RELEASE"]
+    }
+  ],
+  "checks": {
+    "ANALYTICS": {
+      "kind": "unittest",
+      "test": "test_issue177_acceptance.Issue177AcceptanceTests.test_article_analytics_contracts"
+    },
+    "BASIC": {
+      "kind": "node-basic"
+    },
+    "STYLE": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    }
+  },
+  "gates": {
+    "REVIEW": {
+      "kind": "human",
+      "description": "Four distinct nonauthor requirements, code, white-box and exploratory executions on the exact candidate; review test impact and applicable CS01-CS10 beyond the guard."
+    },
+    "BROWSER": {
+      "kind": "human",
+      "description": "Actual compiled article canonical/alias/reload and internal/history journeys, blocked/staging/offline behavior and existing QA isolation contrast on the exact candidate; provider counts are not stub observations."
+    },
+    "LIVE": {
+      "kind": "human",
+      "description": "After separately authorized deployment, verify actual served loader/article identities and SDK-generated route/history/reload/query/fragment behavior separately from aggregate provider receipt; never infer exactly-once collection from SDK count."
+    },
+    "SEO": {
+      "kind": "human",
+      "description": "Pending original AC04 implementation and authoritative truthful metadata plus actual production verification; no SEO completion in this checkpoint."
+    },
+    "DISCOVERY": {
+      "kind": "human",
+      "description": "Pending original AC05 links and desktop/mobile/no-JS checks; no new discovery implementation in this checkpoint."
+    },
+    "SEARCH": {
+      "kind": "human",
+      "description": "Pending existing robots/sitemap/article canonical coverage and dated Search Console result or explicit unavailable disposition under issue8."
+    },
+    "RELEASE": {
+      "kind": "human",
+      "description": "Exact-source preview, maintainer review, authorized full stable staging and separate owner-authorized production/live verification. Current checkpoint stops before promotion, merge or deployment."
+    },
+    "BASELINE": {
+      "kind": "human",
+      "description": "Fixed equal-window raw/provider reporting with dates, samples, QA limitations and missing referrers; prior article totals incomplete, no causal uplift claim."
+    },
+    "MEDIUM": {
+      "kind": "human",
+      "description": "After verified production, explicitly remind maintainer; owner personally records DONE/UNAVAILABLE/DECIDED NOT TO SET for this article's canonical. Agent cannot supply it."
+    }
+  }
+}

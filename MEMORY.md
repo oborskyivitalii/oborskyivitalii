@@ -4,42 +4,38 @@ Dated continuity, not live authority. Last verified: **2026-11-08**.
 
 ## Snapshot
 
-- Owning issue169; R11 article PR170 and publisher175 are merged.
-- Live main and production c0d8e831d7be8eb63dea62836b61078b7196381e; release prod-2026-11-07.1.
-- Author reports Medium publication at AI Advances and requests its additional Writing-card link in production.
-- Native browser observed exact article title/byline, five figures and original-site backlink.
+- Owning issue177 / Linear WEB-21, In Progress; branch work/issue177-article-analytics-20261108.
+- Verified main and production refs fdfc8cb67a6f78996932d9688c563c53c21387f2; PR176 merged.
+- HTTP article/loader receipt is in review/issue-177/2026-11-08-live-before.json.
+- Live loader omits the article route; direct entry cannot start the SDK.
 
 ## Decisions
 
-- Continue owner169; preserve R11 manuscript/edition/profile/PDF/media/canonical.
-- Add exact author-supplied Medium URL now; no LinkedIn publication URL exists.
-- Neutral catalog platformLinks do not assert dates, content equivalence or observed edition records.
-- Existing edition/event/material guards and protected release gates remain unchanged.
-- Necessary validator/renderer change is T1/full website work, not content-only reuse.
+- User withdrew theme work: Poland had not reached the clock's19:00 boundary.
+- Current checkpoint: article analytics only, then STOP AND REPORT.
+- No SEO implementation, staging promotion, merge or production in this checkpoint.
+- Preserve original issue177 AC01-AC09; final Medium canonical remains owner-only after production.
+- One validated public catalog admits article routes; no wildcard or manual pageviews.
 
 ## Open work
 
-- PR176, branch work/issue169-medium-link-20261108; unmerged, based c0d8e831.
-- Report review/issue-169/2026-11-08-medium-link.md owns intent, test impact and evidence.
-- Requirements preflight completed by distinct none-fork agent before implementation.
-- Five existing Todoist campaign tasks updated with Medium URL; dates/priorities preserved.
-- No standalone open Medium-publication task found. No LinkedIn posting performed.
-- Four independent roles passed; native source1243/1243, Basic, RI and owning checks passed on04bac66a.
-- First full staging42483131972 failed only security: three exact false positives before upload.
-- Two snapshot bindings and one synthetic rejection fixture independently proved; exact ledger correction prepared.
-- User limits this phase to verified stable staging, then stop; no merge or production activation.
+- Candidate producer admits public catalog articles and binds loader identity into document versions.
+- Source report: review/issue-177/2026-11-08-article-analytics.md.
+- Requirements/code/white-box correction reviews found no blockers; exploratory browser is blocked.
+- Final six-suite native selection133/133 pass; Basic, style and RI checks pass.
+- Initial missing-interpreter and stale-output failures are retained in the report.
+- Real SDK-generated pageviews and aggregate collector receipt remain unobserved for the correction.
 
 ## Next session
 
-1. Revalidate PR176 source/ref and retained first-stage failure evidence.
-2. Verify bounded ledger correction, refreshed RI and affected independent reviews.
-3. Require current-head Basic/RI/owning checks, then normal owner /stage.
-4. Verify full staging and actual stable Writing card with original + exact Medium URL.
-5. Stop and report stable URL; reconcile only completed acceptance, no production step.
+1. Revalidate current issue/PR/ref and the report's completed checkpoint before new work.
+2. Read final issue/PR receipts for exact-clean policy and Draft PR identity; do not assume deployment.
+3. Stop/report; do not advance beyond the user's analytics checkpoint without new steering.
+4. Later issue phases retain original SEO, full staging, production and owner Medium gates.
 
 ## Maintenance
 
-- Five sections/120lines; detailed evidence belongs to owner169 report/PR.
-- Exact Medium URL is authored in site/content/catalog.json; no parallel runtime registry.
-- Rebuild/verify RI after indexed source/memory changes; preserve failures and budgets.
-- Never place secrets/private correspondence in memory.
+- Five sections/120lines; issue177 report/PR owns detailed evidence and failures.
+- Rebuild and verify RI after indexed source, catalog or memory edits.
+- Keep actual collector receipt separate from VM/vendor-stub SDK admission.
+- Never store secrets or private correspondence in memory.

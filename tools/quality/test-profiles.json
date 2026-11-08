@@ -2918,6 +2918,25 @@
         "tests/fixtures/orchestration*.json",
         "guides/WEB-ORCHESTRATION.md"
       ]
+    },
+    {
+      "path": "tests/test_issue177_acceptance.py",
+      "language": "python",
+      "purpose": "Issue177 executes existing analytics, native article admission/cache invalidation and QA-isolation contracts with complete native accounting; no provider or release claim.",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": ["issue-policy"],
+      "disposition": "Issue177 only; permanent analytics, site-articles and preview-smoke suites retain existing source and hosted routes.",
+      "surviving_route": ".github/acceptance/issue-177.json",
+      "inputs": [
+        "tests/test_issue177_acceptance.py",
+        ".github/acceptance/issue-177.json",
+        "tests/analytics.test.cjs",
+        "tests/site-articles.test.cjs",
+        "tests/preview-smoke.test.cjs",
+        "tools/site/build.cjs",
+        "tools/quality/analytics-browser.cjs"
+      ]
     }
   ]
 }

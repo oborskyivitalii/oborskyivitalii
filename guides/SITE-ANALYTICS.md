@@ -85,6 +85,19 @@ or emit a second manual page view. Persistent route changes keep one SDK instanc
 a native reload starts a fresh document. SDK load success is not proof of a
 reported visit. Blocked loading causes no retry loop or dependency on rendering.
 
+The shared loader also admits finite native article URLs from the validated
+`local-article` publication catalog. Accepted metadata alone is insufficient:
+explicit preview-only, draft and technical articles do not enter this public list.
+Canonical `.html` URLs and their declared extensionless aliases share the existing
+origin/project guard; immutable article snapshots and trailing-slash variants are
+excluded. The finite public route list participates in the existing analytics
+component fingerprint and thereby in principal and article document versions.
+Public admission/removal or slug changes require full generation and verification;
+the existing content-only platform guard rejects them before reading loader assets.
+Ordinary article text edits with the same admitted paths retain their existing lane.
+`tests/site-articles.test.cjs` checks this producer boundary and cold/incremental
+equality. These are SDK-admission checks, not proof of received pageviews.
+
 All fifteen standalone review exports remove both the loader and verification
 tag, including embedded route payloads. The ordinary `site/` entries in an offline
 ZIP retain exact public bytes; their file-URL guard prevents a vendor request.
