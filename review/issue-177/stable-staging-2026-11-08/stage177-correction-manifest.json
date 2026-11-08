@@ -1,0 +1,8 @@
+{
+  ".github/acceptance/issue-177.json": "023dce21eadb8a151a7b67365994b9c04d0da5142439a0485e6465e3e2c958c0",
+  ".github/repository-intelligence/agent-context.json": "3631971ce23d2aaecdeef558abfcd34177bb03e54567140c87b8176ee60b5a56",
+  ".github/ri-ci-map.json": "daa0bb60e4c63c0d3656ad5bdd6aebb8aba62c61b0afc883b025379285d554eb",
+  ".github/workflows/issue-acceptance.yml": "8cda02df7a383484b4d6cea3b9e6b53cf1b574dabd348057bd74a689420894c0",
+  "MEMORY.md": "89b5c251b16623be082a46484af1dbd5e175d24dd15aad7775bf24baa0cb43ff",
+  "review/issue-177/2026-11-08-ci-browser.md": "c99787b94a0b43e161666c0b5a74f9112b35a3b782cefa77fd3abd7bf93c3d45"
+}
