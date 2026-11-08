@@ -471,11 +471,11 @@ const archiveProducerSource = 'd5e915feb3ba02d7a80325664c9d1d10a2ac494e';
 const archiveProducers = Object.freeze({
   'tools/site/render-records.cjs': Object.freeze({
     beforeSHA256: '24f1bec530b762009a6b03a1d91700e7ee5c56345a0b8d9a4a4c6f0ff561038c',
-    afterSHA256: '85a0478ec37ffd65778b6f10dad08d420c42559ec2faeb15786ff983e7c4006c',
+    afterSHA256: '49528a2a5fe8d22eac7612e746cc4c20e99a7ebc4d9eb82bb84f9293543f2857',
   }),
   'tools/site/validate-catalog.cjs': Object.freeze({
     beforeSHA256: '6a61f3af40e94c42b4240c1afb21a2a25474f2cf58381a2c40f12dea12becc6c',
-    afterSHA256: '4da744f7bbe52cc96be5df9c6f035bf1de8c9cb394baf8f1d2b1f8af1b6b7ef1',
+    afterSHA256: '79554634afc34ac491249624ffd8a5dc7b4db54a8f38703e2737655d180baa22',
   }),
 });
 

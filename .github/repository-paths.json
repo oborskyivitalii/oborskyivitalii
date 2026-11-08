@@ -12367,54 +12367,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/0c50d9693cc2743d611ecf9d1a2274c5687f5d0c4f363d9d3108775c521c161c": {
-      "kind": "directory",
-      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/0c50d9693cc2743d611ecf9d1a2274c5687f5d0c4f363d9d3108775c521c161c/research.html": {
-      "kind": "file",
-      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/2ad4040444469ec0a6704c947b68d0f7430a0b7bbf5e9ef1f994e366060fe89f": {
-      "kind": "directory",
-      "purpose": "Generated completed DevCon Talks rendition and immutable route closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/2ad4040444469ec0a6704c947b68d0f7430a0b7bbf5e9ef1f994e366060fe89f/talks.html": {
-      "kind": "file",
-      "purpose": "Generated completed DevCon Talks rendition and immutable route closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/39441f2d37cdfc6b3935d76c2f897f92be741f851569e2ff46558e90b4180612": {
-      "kind": "directory",
-      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/39441f2d37cdfc6b3935d76c2f897f92be741f851569e2ff46558e90b4180612/credits.html": {
-      "kind": "file",
-      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/6ab1b9444a3d9a4fa13b2d48b5f56ffbbe6007aacd3ac53378c323061d319694": {
-      "kind": "directory",
-      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/6ab1b9444a3d9a4fa13b2d48b5f56ffbbe6007aacd3ac53378c323061d319694/index.html": {
-      "kind": "file",
-      "purpose": "Generated R10 Writing archive classification and dependent immutable route closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "review/issue-102/2026-10-18-analytics-and-search-access.md.gz": {
       "kind": "file",
       "purpose": "Issue169 bounded security review and lossless historical evidence storage; read the dated owning report.",
@@ -17155,20 +17107,8 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/afa8065a11e322fbafaade70a33a7cfb062acb86e416bc5b00a9f731bf7b71cb": {
-      "kind": "directory",
-      "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/articles/the-sdlc-is-out-of-balance.html": {
       "kind": "file",
-      "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/1fc6211884e010f7ae239f68a610a8ed6984e39623fabf927ddf4dc3ed02218f": {
-      "kind": "directory",
       "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
@@ -17203,18 +17143,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/afa8065a11e322fbafaade70a33a7cfb062acb86e416bc5b00a9f731bf7b71cb/the-sdlc-is-out-of-balance.html": {
-      "kind": "file",
-      "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/1fc6211884e010f7ae239f68a610a8ed6984e39623fabf927ddf4dc3ed02218f/writing.html": {
-      "kind": "file",
-      "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "review/issue-169/r11-stable-staging-evidence.tar.xz": {
       "kind": "file",
       "purpose": "Literal R11 accepted-state preflight, source/history byte proof, independent reviews and current checks; final native observations remain separately source-bound.",
@@ -17238,6 +17166,84 @@
       "purpose": "Verbatim issue169 production bootstrap packets, independent review receipts, retained failures and bounded execution evidence; inactive history.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/2026-11-08-medium-link.md": {
+      "kind": "file",
+      "purpose": "Dated issue169 Medium link intent, neutral catalog link contract, test-impact allocation, independent review and delivery observations.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "docs/article-snapshots/5a9909311d6636deb6a938eb795ed11756f933f3eb4275c506b21f6d132d8b77/the-sdlc-is-out-of-balance.html": {
+      "kind": "file",
+      "purpose": "Generated current website document from canonical authored owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/5a9909311d6636deb6a938eb795ed11756f933f3eb4275c506b21f6d132d8b77": {
+      "kind": "directory",
+      "purpose": "Generated current website snapshot from canonical authored owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/0707ca7597e096d770369af9f02a0c9f0a3ab037537462556ebd8b153e1dc122/talks.html": {
+      "kind": "file",
+      "purpose": "Generated current website document from canonical authored owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/0707ca7597e096d770369af9f02a0c9f0a3ab037537462556ebd8b153e1dc122": {
+      "kind": "directory",
+      "purpose": "Generated current website snapshot from canonical authored owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/260cdec7fb4d5039053c7481ff77fd54ebc160e9832e28386e59480563b83ffe/writing.html": {
+      "kind": "file",
+      "purpose": "Generated current website document from canonical authored owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/260cdec7fb4d5039053c7481ff77fd54ebc160e9832e28386e59480563b83ffe": {
+      "kind": "directory",
+      "purpose": "Generated current website snapshot from canonical authored owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/3ab4ba721049093f68784ab92bafe088b6f61905fc7a92f72941b8e910ffd565/index.html": {
+      "kind": "file",
+      "purpose": "Generated current website document from canonical authored owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/3ab4ba721049093f68784ab92bafe088b6f61905fc7a92f72941b8e910ffd565": {
+      "kind": "directory",
+      "purpose": "Generated current website snapshot from canonical authored owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/8eff6f4535384ffb7d13d55f8d06464ee7651f653674850be9132baa79d9ab37/research.html": {
+      "kind": "file",
+      "purpose": "Generated current website document from canonical authored owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/8eff6f4535384ffb7d13d55f8d06464ee7651f653674850be9132baa79d9ab37": {
+      "kind": "directory",
+      "purpose": "Generated current website snapshot from canonical authored owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/df9b532bcb56ac3cd85f0fc53ca141da36e9f47b4e821d8638254c23c2301b2e/credits.html": {
+      "kind": "file",
+      "purpose": "Generated current website document from canonical authored owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/df9b532bcb56ac3cd85f0fc53ca141da36e9f47b4e821d8638254c23c2301b2e": {
+      "kind": "directory",
+      "purpose": "Generated current website snapshot from canonical authored owners.",
+      "role": "generated",
+      "owner": "site/README.md"
     }
   }
 }

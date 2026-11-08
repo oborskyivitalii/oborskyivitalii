@@ -445,6 +445,40 @@ function validatePresentation(c, id, record) {
     throw Error('Invalid local archive year ' + id);
 }
 
+function validatePlatformLinks(record, urls) {
+  if (record.platformLinks === undefined) return;
+  if (
+    record.kind !== 'local-article' ||
+    !Array.isArray(record.platformLinks) ||
+    record.platformLinks.length > 2
+  )
+    throw Error('Invalid local platform link inventory');
+  const platforms = new Set();
+  const hosts = {
+    Medium: ['medium.com', 'aiadvances.org'],
+    LinkedIn: ['linkedin.com'],
+  };
+  for (const link of record.platformLinks) {
+    localFields(link, ['platform', 'url'], 'platform link');
+    if (typeof link.platform !== 'string' || typeof link.url !== 'string' || link.url.length > 2500)
+      throw Error('Invalid local platform link URL');
+    const url = editionURL(link.url);
+    const parsed = new URL(url);
+    const host = parsed.hostname;
+    if (
+      !Object.hasOwn(hosts, link.platform) ||
+      !hosts[link.platform]?.some((domain) => host === domain || host.endsWith('.' + domain)) ||
+      parsed.port ||
+      [...link.url].some((char) => char.charCodeAt(0) < 32 || char.charCodeAt(0) === 127) ||
+      platforms.has(link.platform) ||
+      urls.has(url)
+    )
+      throw Error('Invalid or duplicate local platform link');
+    platforms.add(link.platform);
+    urls.add(url);
+  }
+}
+
 function validateCatalog(c) {
   const ids = Object.keys(c.records || {});
   if (
@@ -478,6 +512,7 @@ function validateCatalog(c) {
       validateEditionInventory(c, id, record, edition, local, urls, recordURLs);
       validateEditionRelationship(c, record, edition, local);
     }
+    validatePlatformLinks(record, urls);
     validatePresentation(c, id, record);
   }
   validateCatalogOrder(c);
