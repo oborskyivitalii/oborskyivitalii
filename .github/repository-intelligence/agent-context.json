@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "01918f2460f71520ce616467c2de76632178410fe431d91643546b747b06f826",
+    "digest": "08cb7979771523ade0aebcd5c063bb06bc811032dfc42c99e2f0daddca432d65",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -2085,7 +2085,7 @@
       {
         "path": "review/issue-169/2026-11-08-medium-link.md",
         "identity_mode": "content",
-        "sha256": "b11e157833e1598db4f46b9661665992936e217b69ee0fd1477dd0dd11eed0e3"
+        "sha256": "b355f52dc22166e120ba4a33d5808da2e1670dc300a7b8abffaf1bde1618f688"
       },
       {
         "path": "review/issue-169/browser-media-reviews-and-checks.tar.xz",
@@ -12620,7 +12620,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "51f29de8e4bae24c60f316678b0471d9526debfa1f772b57ea5570afe1ae7bfa"
+        "sha256": "ad639efd68fa5841c4ce6468dad8a926180402ec23dad389ee8bdbd3f598b40a"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",

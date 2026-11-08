@@ -100,3 +100,14 @@ The refreshed RI/CI map differs only in reviewed_source_identity; all layers,
 checks and policy definitions are byte-equivalent as JSON. Its first post-refresh
 format warning was resolved with the repository's pinned formatter. All failed
 setup/check observations remain retained, with no weakened test or budget.
+
+### Pre-staging source security reconciliation
+
+The scoped detector found exactly two new candidates, both public successor
+SHA256 values in check_site_seo.cjs. Each detector SHA1 identity was matched to
+the exact literal and independently recomputed source bytes of render-records.cjs
+or validate-catalog.cjs. Append only these two exact false-positive rows to the
+existing reviewed-checksum ledger. All predecessor rows/order/reasons, other
+ledger metadata, scanner rules/thresholds/inputs and budgets remain unchanged.
+Affected independent per-row review and actual security execution remain required.
+No native or hosted campaign was launched merely to discover these findings.
