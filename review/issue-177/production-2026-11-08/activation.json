@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "kind": "verified-production-publication",
+  "tag": "prod-2026-11-08.2",
+  "packageDigest": "495e05906eaedad7d1ee87c7087524a2f9ffba29e4789da1c23997a68775fec0",
+  "productionDeploymentId": 7642084152,
+  "runId": 42525094251,
+  "attempt": "1",
+  "controller": "fe7baab277a8b90de330a1cec738b7085faf7223",
+  "observationsDigest": "2b47c890e53a27cb39e668f478bc35e3c8f5c945eac8e41aa24f8130eace36cc",
+  "observation": {
+    "pass": true,
+    "sourceCommit": "fe7baab277a8b90de330a1cec738b7085faf7223",
+    "publicDigest": "bcb9804d9b636f8048c5baac1270ef6cd1c7af3bdab830d3365cf15797b05882",
+    "deploymentURL": "https://vitaliioborskyi.ai/",
+    "pages": true,
+    "productionPolicy": true,
+    "browser": true,
+    "smokePolicy": "production-smoke-v1",
+    "retained": true
+  }
+}

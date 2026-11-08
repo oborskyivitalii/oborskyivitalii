@@ -1,0 +1,19 @@
+{
+  "observedAt": "2026-11-08T21:33:43.129Z",
+  "url": "https://vitaliioborskyi.ai/articles/the-sdlc-is-out-of-balance.html",
+  "busy": null,
+  "canonical": "https://vitaliioborskyi.ai/articles/the-sdlc-is-out-of-balance.html",
+  "loaderCount": 1,
+  "page": "writing",
+  "path": "/articles/the-sdlc-is-out-of-balance.html",
+  "robots": "index,follow",
+  "sdk": [
+    {
+      "src": "https://static.cloudflareinsights.com/beacon.min.js",
+      "status": "loaded"
+    }
+  ],
+  "stagingBadge": false,
+  "title": "The SDLC Is Out of Balance: Beyond the AI Code Review Bottleneck — Vitalii Oborskyi",
+  "limitation": "DOM confirms one real SDK loaded, not exactly-once pageview delivery or aggregate provider receipt."
+}

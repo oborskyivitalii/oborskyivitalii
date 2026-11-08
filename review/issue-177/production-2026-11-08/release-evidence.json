@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "kind": "release-evidence",
+  "pass": true,
+  "sourceCommit": "fe7baab277a8b90de330a1cec738b7085faf7223",
+  "sourceTree": "721eabb59e2814f03d328a4665a9b5cdcb067651",
+  "candidateCommit": "fe7baab277a8b90de330a1cec738b7085faf7223",
+  "artifactDigest": "bcb9804d9b636f8048c5baac1270ef6cd1c7af3bdab830d3365cf15797b05882",
+  "variant": {
+    "id": "color",
+    "contract": 1,
+    "fingerprint": "c8c444e30127b60e1dac052ab6a2b53d3ff48f40efc68d526cc7c71f17151ebb",
+    "baseEngine": "68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c",
+    "effects": [
+      "travel"
+    ]
+  },
+  "rights": {
+    "pass": true,
+    "reviewer": "Vitalii Oborskyi — repository owner",
+    "record": "Maintainer approved unchanged analytics candidate after verified stable staging and explicitly authorized production: Все ок, іди в прод (2026-11-08). Authorization recorded at https://github.com/oborskyivitalii/oborskyivitalii/issues/177#issuecomment-6727231817 . Existing content, licensing, portrait and advisory consents are preserved; no new editorial or third-party material is introduced. Frozen production candidate42524884283/1 derives from approved tree721eabb59e2814f03d328a4665a9b5cdcb067651.",
+    "inventoryDigest": "acb0f2ec8a6e9e7235abe0161a3ac87fdc99db4853ea7d432c2e6fe0c05b145d"
+  }
+}
