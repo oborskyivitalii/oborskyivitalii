@@ -14,6 +14,9 @@ class Issue177AcceptanceTests(unittest.TestCase):
             "tests/analytics.test.cjs",
             "tests/site-articles.test.cjs",
             "tests/preview-smoke.test.cjs",
+            "tests/quality.test.cjs",
+            "tests/staging-regression.test.cjs",
+            "tests/staging-gate.test.cjs",
         ]
         script = """
 const runner = require('./tools/quality/source-tests.cjs');

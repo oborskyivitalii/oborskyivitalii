@@ -345,7 +345,7 @@
     {
       "path": "tests/analytics.test.cjs",
       "language": "javascript",
-      "purpose": "Optional exact-origin analytics composition/runtime isolation and the actual hosted/offline analytics-browser fixture producer with strict declared legal-owner closure and missing/symlink negatives.",
+      "purpose": "Optional exact-origin analytics composition/runtime isolation and compiled native-article canonical/alias/reload/history browser evidence with strict full/staging report admission and isolated fixture ownership.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -2935,7 +2935,11 @@
         "tests/site-articles.test.cjs",
         "tests/preview-smoke.test.cjs",
         "tools/site/build.cjs",
-        "tools/quality/analytics-browser.cjs"
+        "tools/quality/analytics-browser.cjs",
+        "tests/quality.test.cjs",
+        "tests/staging-regression.test.cjs",
+        "tests/staging-gate.test.cjs",
+        "tests/fixtures/staging-evidence.cjs"
       ]
     }
   ]

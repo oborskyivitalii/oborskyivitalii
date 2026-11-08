@@ -17346,6 +17346,66 @@
       "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-177/2026-11-08-ci-browser.md": {
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-177/2026-11-08-ci-requirements-preflight.md": {
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-177/2026-11-08-ci-code-scanner-correction.md": {
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-177/2026-11-08-ci-code.md": {
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-177/2026-11-08-ci-exploratory-pre.md": {
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-177/2026-11-08-ci-local-diagnostics.json.gz": {
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-177/2026-11-08-ci-requirements-final.md": {
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-177/2026-11-08-ci-scanner-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-177/2026-11-08-ci-whitebox-scanner-correction.md": {
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-177/2026-11-08-ci-whitebox.md": {
+      "kind": "file",
+      "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

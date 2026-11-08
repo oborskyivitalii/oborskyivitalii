@@ -12,7 +12,7 @@ Dated continuity, not live authority. Last verified: **2026-11-08**.
 ## Decisions
 
 - User withdrew theme work: Poland had not reached the clock's19:00 boundary.
-- Current checkpoint: article analytics only, then STOP AND REPORT.
+- Current authorized checkpoint: browser checks in existing CI + exact PR178 preview, then STOP/REPORT.
 - No SEO implementation, staging promotion, merge or production in this checkpoint.
 - Preserve original issue177 AC01-AC09; final Medium canonical remains owner-only after production.
 - One validated public catalog admits article routes; no wildcard or manual pageviews.
@@ -21,7 +21,7 @@ Dated continuity, not live authority. Last verified: **2026-11-08**.
 
 - Candidate producer admits public catalog articles and binds loader identity into document versions.
 - Source report: review/issue-177/2026-11-08-article-analytics.md.
-- Requirements/code/white-box correction reviews found no blockers; exploratory browser is blocked.
+- Previous source correction reviews passed; local Chromium is blocked. Next CI/browser test update in progress.
 - Final six-suite native selection133/133 pass; Basic, style and RI checks pass.
 - Initial missing-interpreter and stale-output failures are retained in the report.
 - Real SDK-generated pageviews and aggregate collector receipt remain unobserved for the correction.
