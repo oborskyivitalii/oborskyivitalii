@@ -212,3 +212,30 @@ public producer checksum. Code/White-box independently reproduced SHA256(build.c
 of that field. Append one exact path/type/SHA1 ledger row preserving every previous finding;
 no scanner/input/threshold change. This receipt-only delta requires refreshed exact-source checks
 before the new campaign; browser acceptance remains pending.
+
+## Owner-authorized stable staging and source-admission setup correction
+
+The owner now requests stable staging, then stop/report; no merge/production/SEO/theme/Medium work.
+Four independent stage-readiness results and launch receipts are preserved separately at
+[evidence7833c5c3](https://github.com/oborskyivitalii/oborskyivitalii/tree/7833c5c36b76c850e6f33dd9fe55792d49e0071e/review/issue-177/stable-staging-2026-11-08).
+Exact58d89a5b CI42512852807 prepublication passed26checks/native1245/1245 with zero skips/cancellations;
+browser remains separately pending. Ready source admission42514298606/1 failed ANALYTICS/BASIC:
+all toolchain installers skipped because their policy predicates omitted177. RI/RI-CI/STYLE passed.
+Raw artifact13630896846 ZIP SHA256c84ef7029e52079495502c8ccaa33400da96a121759f883f900dfb19f05101e9
+was digest-verified; retain the first failure and do not rerun it unchanged.
+
+Requirements independently approved the bounded prerequisite repair before implementation.
+Code and White-box separately traced the entire dependency closure: publisher unified/remark,
+quality yaml, existing Python venv and canonical Pillow/WebP are required. Add177 to those existing
+quality/Python/combined publisher-media install predicates, with pinned Python3.12.14 before venv.
+No browser download, test/oracle/budget/scanner change. Update only the stale policy checkpoint
+sentence to reflect the owner's stable-stage authorization; all original AC obligations remain.
+The workflow/policy are controls, so retain full source/staging admission and exact source leases.
+Source-checkpoint and correction reviews must bind the final new candidate before /stage.
+
+Old-source42512852807 completed SUCCESS; digest-verified browser artifact13631205432
+SHA256cdacf25d3d7c97cc2d5229995d76e68c39201caf4958a08bfc2422272e905c41 contains passing
+native canonical/reload/alias/Writing/internal/Back/Forward article observations and seven analytics
+rows, including blocked/delayed/staging/offline. Gate artifact13630397626 passes, fullGate:false,
+productionEligible:false. Stable alias was not promoted. This remains exact58d89a5b evidence;
+do not relabel it as the later workflow-correction source or real provider pageview receipt.

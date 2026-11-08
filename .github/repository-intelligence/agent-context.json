@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "a3eac23e0f1554ef19068823da8408d48026ec85da89d0a9488ce4c6fb99dbc9",
+    "digest": "467fc3d60ac73751858d0682f66a5a64ec3f8be008c5e0010c7e504d80b906ee",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -97,7 +97,7 @@
       {
         "path": ".github/acceptance/issue-177.json",
         "identity_mode": "content",
-        "sha256": "d46a129e3eccca6125758a72a588e8064334e200a309415be5adac7c9f6caf18"
+        "sha256": "023dce21eadb8a151a7b67365994b9c04d0da5142439a0485e6465e3e2c958c0"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -231,7 +231,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "399d6840ea74349f497af57469e80cd3fbfc51736a00ed10cc0ab0cc914ebac5"
+        "sha256": "daa0bb60e4c63c0d3656ad5bdd6aebb8aba62c61b0afc883b025379285d554eb"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -256,7 +256,7 @@
       {
         "path": ".github/workflows/issue-acceptance.yml",
         "identity_mode": "content",
-        "sha256": "61d0f22ee010b13f4a65b451ad577b6731b58c7b20564d3938b0694fc2142e70"
+        "sha256": "8cda02df7a383484b4d6cea3b9e6b53cf1b574dabd348057bd74a689420894c0"
       },
       {
         "path": ".github/workflows/navigation.yml",
@@ -381,7 +381,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "358860fa7da63a91d17fca661e87712a44c1f57852945d3ebecada7c9e05a280"
+        "sha256": "89b5c251b16623be082a46484af1dbd5e175d24dd15aad7775bf24baa0cb43ff"
       },
       {
         "path": "NOTICE.md",
@@ -4600,7 +4600,7 @@
       {
         "path": "review/issue-177/2026-11-08-ci-browser.md",
         "identity_mode": "content",
-        "sha256": "430badc189e223c254ae714eb0fc20bcd722e400f47ae4002843ae5f8ff8b095"
+        "sha256": "c99787b94a0b43e161666c0b5a74f9112b35a3b782cefa77fd3abd7bf93c3d45"
       },
       {
         "path": "review/issue-177/2026-11-08-ci-code-scanner-correction.md",

@@ -12,8 +12,8 @@ Dated continuity, not live authority. Last verified: **2026-11-08**.
 ## Decisions
 
 - User withdrew theme work: Poland had not reached the clock's19:00 boundary.
-- Current authorized checkpoint: browser checks in existing CI + exact PR178 preview, then STOP/REPORT.
-- No SEO implementation, staging promotion, merge or production in this checkpoint.
+- User now authorizes stable staging for the analytics candidate, then STOP/REPORT.
+- No SEO implementation, merge or production in this checkpoint.
 - Preserve original issue177 AC01-AC09; final Medium canonical remains owner-only after production.
 - One validated public catalog admits article routes; no wildcard or manual pageviews.
 
@@ -21,18 +21,19 @@ Dated continuity, not live authority. Last verified: **2026-11-08**.
 
 - Candidate producer admits public catalog articles and binds loader identity into document versions.
 - Source report: review/issue-177/2026-11-08-article-analytics.md.
-- CI42511286540 at06ffa6fc failed prepublication: 5/1245 source failures, carrier/oracle drift; format RI map.
-- Bounded carrier-pin/oracle/format correction reviewed; no feature/scope change. Exact-source recheck next.
-- Earlier133/133 scoped source checks passed; current full browser gate is still pending, not green.
+- CI42512852807 at58d89a5b passed26 prepublication checks/native1245/1245 and bounded browser staging evidence.
+- Ready acceptance42514298606 failed: issue177 omitted from toolchain install predicates; raw artifact13630896846 retained.
+- Bounded correction adds existing locked quality/Python/publisher/media setup; tests and budgets unchanged.
+- Four stage-readiness role receipts preserved at evidence commit7833c5c3; correction reviews remain required.
 - Initial missing-interpreter and stale-output failures are retained in the report.
 - Real SDK-generated pageviews and aggregate collector receipt remain unobserved for the correction.
 
 ## Next session
 
 1. Revalidate current issue/PR/ref and the report's completed checkpoint before new work.
-2. Read final issue/PR receipts for exact-clean policy and Draft PR identity; do not assume deployment.
-3. Stop/report; do not advance beyond the user's analytics checkpoint without new steering.
-4. Later issue phases retain original SEO, full staging, production and owner Medium gates.
+2. Verify corrected exact-head policy, Basic/navigation/owning CI and independent correction reviews.
+3. Use existing owner /stage route only after source admission; verify matching gate and stable alias, then stop/report.
+4. Keep original SEO/discovery/search, production/live and owner Medium gates open.
 
 ## Maintenance
 

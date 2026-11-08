@@ -116,7 +116,7 @@
     },
     "RELEASE": {
       "kind": "human",
-      "description": "Exact-source preview, maintainer review, authorized full stable staging and separate owner-authorized production/live verification. Current checkpoint stops before promotion, merge or deployment."
+      "description": "Exact-source preview, maintainer review, authorized full stable staging and separate owner-authorized production/live verification. Current owner-authorized checkpoint permits stable staging, then stop; merge and production require separate authorization."
     },
     "BASELINE": {
       "kind": "human",
