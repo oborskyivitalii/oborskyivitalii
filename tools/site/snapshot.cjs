@@ -127,6 +127,11 @@ function verifyRoomFallbacks({ read, files, id, route, html }) {
   }
 }
 
+function validateArticleSocialImage(article) {
+  if (article.socialImage)
+    require('./social-image.cjs').validate(article.socialImage, article.assets);
+}
+
 function verify(dir, record) {
   const files = record.files;
   const read = (name) => fs.readFileSync(path.join(dir, name));
@@ -148,8 +153,7 @@ function verify(dir, record) {
       Array.isArray(article.assets) && article.assets.length <= 50,
       'finite article assets'
     );
-    if (article.socialImage)
-      require('./social-image.cjs').validate(article.socialImage, article.assets);
+    validateArticleSocialImage(article);
     assert.ok(
       article.candidate !== true || revision.preview === true,
       'candidate in public revision'

@@ -5,11 +5,11 @@
   "producerChanges": {
     "tools/site/build.cjs": {
       "beforeSHA256": "ee69b9950ed0982a69344c5b92f6988b293362112817d8a2fc504ebfe101adee",
-      "afterSHA256": "4689a28e56fdadce3200cf6e8c328bcabde284dbda4da5074c3fc4b5a05a59cc"
+      "afterSHA256": "5e8f0dc13bd616db837fdb65c52c5fedf6ad27dff7efb661ed8c0bbdd283c258"
     },
     "tools/site/snapshot.cjs": {
       "beforeSHA256": "eae15e6734b64ebc015d56e34ebc0a3118ae21f3e1fb340df89075cb1df206f4",
-      "afterSHA256": "13912241d820b8cb7c8b0af675c1506acb03c2736b8626fc1f532cd09638ea43"
+      "afterSHA256": "834a7b7da511051d5f0e0bf6efb264120534ce7acc3e449c641a62169736f04f"
     }
   }
 }

@@ -241,7 +241,7 @@ function socialCarrierProducer(name, expected, projectRoot = root, record = soci
   }
   assert.equal(
     crypto.createHash('sha256').update(JSON.stringify(record)).digest('hex'),
-    '361947835642602b4a5282ed591d24d29628195566d9baab52dbe3e2545545eb',
+    'b2cd8945436ace3bcf7d1f16f7a517c69093c5375b6c76e2b2ddc5e1903435fd',
     'Social carrier approved record'
   );
   const change = record.producerChanges[name];
