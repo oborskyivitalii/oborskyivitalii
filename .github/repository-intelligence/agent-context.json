@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "8d3cf58ebae1b618d870d122192d6fb5eadf3adf78344d07eee1c2fb7f4d98b3",
+    "digest": "5536a72f98aab2cd7e8ebc0de11f5cc8ef7a672e6f9e60b30140fd0628f1e21e",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -236,7 +236,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "62f17530ea57be30aadc6bc798735c441a8339eb47d7903bfc10fb545b1787df"
+        "sha256": "a34a52dafe64851a059f048c1b76919cc7bc8ac13627520274a0d3bf932416fc"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -326,7 +326,7 @@
       {
         "path": ".github/workflows/site-release-candidate.yml",
         "identity_mode": "content",
-        "sha256": "fd994835d43df8453ce9168b7654b63ad0903eed1ad40d7999bff70f02e0773a"
+        "sha256": "cd8e609f949aeb0ee1f55e968251191812803319cc342d2db5d9e76c8f817241"
       },
       {
         "path": ".github/workflows/site-release-checks.yml",
@@ -386,7 +386,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "dfcfd68752d28acb0da430be5cf8610e0c4c7d1e287f359b54b4d926d105d77a"
+        "sha256": "424756098fbb11a45542edcef2daee4d0d928b2a974405213d8984357a1be66a"
       },
       {
         "path": "NOTICE.md",
@@ -4735,7 +4735,7 @@
       {
         "path": "review/issue-179/2026-11-09-review.json.gz",
         "identity_mode": "content",
-        "sha256": "7aed0e6a2de8cb00da66098a0aea1c738548b1b6b1fdd0ba35a7e488f1e6d546"
+        "sha256": "47db6515a7d6773de962494e0811fc5baa9a077017218beda68f08c64aaffb94"
       },
       {
         "path": "review/issue-179/seo-producers.json",
@@ -11855,7 +11855,7 @@
       {
         "path": "tests/release-controller.test.cjs",
         "identity_mode": "content",
-        "sha256": "e1d229f3be26c8986f4ac7229823d96c4eedd2bbd84a3e7051ab582a7b39e6be"
+        "sha256": "d21c7cdd38a36fcfd067ce4e51b802e215978a1d8712318b694b779fc68ffbca"
       },
       {
         "path": "tests/release-rights.test.cjs",
