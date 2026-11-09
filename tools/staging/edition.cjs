@@ -28,20 +28,18 @@ function render(html, base, identity, source) {
   );
 }
 
-function shareMetadata(html, id, articles, origin) {
+function shareMetadata(id, articles, origin) {
   const imageMetadata = require('../site/social-image.cjs').metadata;
   const fallback = require('../../site/content/production-social.json');
   const article = id.startsWith('article:') ? articles[id.slice(8)] : null;
   const alias = article ? article.alias : id === 'index' ? '' : id + '.html';
-  assert.doesNotMatch(html, /property="og:(?:image|url)"|name="twitter:image"/);
-  return html.replace(
-    '</head>',
+  return (
     imageMetadata(article?.socialImage || fallback, origin) +
-      '<meta property="og:url" content="' +
-      origin +
-      '/' +
-      alias +
-      '">\n</head>'
+    '<meta property="og:url" content="' +
+    origin +
+    '/' +
+    alias +
+    '">\n'
   );
 }
 
@@ -60,17 +58,20 @@ function build(directory, { socialOrigin } = {}) {
       'social preview requires an explicit PR Pages origin'
     );
     const record = JSON.parse(fs.readFileSync(path.join(directory, 'artifact.json')));
-    const ordinary = descriptor.render;
-    descriptor.inputs.socialPreview = {
-      origin: socialOrigin,
-      producer: shareMetadata.toString(),
-      metadata: require('../site/social-image.cjs').metadata.toString(),
-      fallback: require('../../site/content/production-social.json'),
-    };
-    descriptor.render = (html, id, source) =>
-      shareMetadata(ordinary(html, id, source), id, record.components.articles || {}, socialOrigin);
+    const articles = record.components.articles || {};
+    descriptor.headMetadata = Object.fromEntries(
+      [
+        ...Object.keys(record.components.routes),
+        ...Object.keys(articles).map((id) => 'article:' + id),
+      ].map((id) => [id, shareMetadata(id, articles, socialOrigin)])
+    );
   }
-  return edition.build(directory, descriptor);
+  const result = edition.build(directory, descriptor);
+  if (socialOrigin !== undefined) {
+    result.socialPreviewOrigin = socialOrigin;
+    fs.writeFileSync(path.join(directory, 'artifact.json'), JSON.stringify(result, null, 2) + '\n');
+  }
+  return result;
 }
 
 if (require.main === module) {

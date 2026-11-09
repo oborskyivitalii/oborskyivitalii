@@ -5,7 +5,7 @@ Dated continuity, not live authority. Last verified: **2026-11-09**.
 ## Snapshot
 
 - Main/production fe7baab277a8b90de330a1cec738b7085faf7223; analytics PR178 merged.
-- Active issue179 / Draft PR180, last published head83e3162cb4516620e7c6c167d859c0cebbddbb8d.
+- Active issue179 / Draft PR180, head1478f879d4f7362598bc81fd1af59008012aca0a (preview build failed).
 - Prior exact preview e0f57478 passed build/HTTP42615832781, but has no og:image/og:url.
 - User supplied actual LinkedIn Cannot display preview screenshot for that URL.
 
@@ -21,7 +21,9 @@ Dated continuity, not live authority. Last verified: **2026-11-09**.
 
 - Reversible correction adds explicit PR-origin tags; original AC01-AC06 remain unchanged.
 - Requirements preflight permitted bounded correction; final four roles remain required on its new source.
-- Article delivery16cases pass; captured exact ordinary staging output remains byte-identical without the option.
+- CI42618060025 stopped new preview at unreviewed runtime identity; its bytes were never published.
+- Correction binds social bytes to document versions, preserving reviewed runtime identity; delivery17cases pass.
+- Ordinary staging without the option remains byte-identical to the captured prechange package.
 - Detailed first/correction/integration review history is in review/issue-179/2026-11-09-review.json.gz.
 - Actual production/live and LinkedIn Post Inspector gates remain deferred.
 

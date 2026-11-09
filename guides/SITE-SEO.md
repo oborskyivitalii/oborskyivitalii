@@ -18,6 +18,8 @@ Ordinary staging retains its existing metadata policy. PR previews explicitly
 select absolute social image/article URLs on their own PR alias before artifact
 hashing, while retaining noindex/nofollow and analytics isolation. This permits
 checking a share card before promotion; it does not publish the production URL.
+The exact metadata bytes bind each document version; unchanged motion/runtime
+bytes retain their reviewed runtime identity across PR origins.
 Inspect the prepared image there, and test the production edition separately. Actual
 LinkedIn cache refresh/preview and production publication remain external gates
 in issue179; generated tags do not establish the platform's observed preview.

@@ -224,7 +224,9 @@ test('staging derives labelled article snapshots and removes prior unlabelled HT
 test('PR social metadata binds each cover and alias before hashing while retaining isolation', (t) => {
   const { directory, publicDir } = fixture(t);
   const origin = 'https://pr-180.oborskyi-author-ci-staging.pages.dev';
+  require('../tools/staging/color.cjs').build(directory);
   const stage = stageEdition.build(directory, { socialOrigin: origin });
+  require('../tools/quality/color-motion-contract.cjs').select(stage);
   const images = new Set();
   for (const article of Object.values(stage.components.articles)) {
     images.add(article.socialImage.file);
@@ -249,6 +251,22 @@ test('PR social metadata binds each cover and alias before hashing while retaini
   assert.ok(home.includes('property="og:url" content="' + origin + '/"'));
   pages.checkStaging(directory, stage);
   artifact.verify(publicDir, stage);
+});
+
+test('different PR metadata changes immutable document identities while retaining the reviewed runtime', (t) => {
+  const a = fixture(t),
+    b = fixture(t);
+  for (const item of [a, b]) require('../tools/staging/color.cjs').build(item.directory);
+  const first = stageEdition.build(a.directory, {
+    socialOrigin: 'https://pr-180.oborskyi-author-ci-staging.pages.dev',
+  });
+  const second = stageEdition.build(b.directory, {
+    socialOrigin: 'https://pr-181.oborskyi-author-ci-staging.pages.dev',
+  });
+  assert.equal(first.components.engine, second.components.engine);
+  assert.notEqual(first.components.routes.index.version, second.components.routes.index.version);
+  assert.notEqual(first.components.articles[key].version, second.components.articles[key].version);
+  assert.notEqual(first.artifactDigest, second.artifactDigest);
 });
 
 test('PR social metadata rejects non-PR or non-origin destinations', (t) => {

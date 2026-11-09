@@ -35,7 +35,11 @@ function contentBaselineFor(directory, record) {
 function applyDeliveryLayers(directory, record, content, candidates) {
   if (record.components.variant?.id === 'color') require('../staging/color.cjs').build(directory);
   const edition = record.edition?.id;
-  if (edition === 'staging') require('../staging/edition.cjs').build(directory);
+  if (edition === 'staging')
+    require('../staging/edition.cjs').build(
+      directory,
+      record.socialPreviewOrigin === undefined ? {} : { socialOrigin: record.socialPreviewOrigin }
+    );
   else if (edition === 'production' && content && !candidates.length)
     require('../release/edition.cjs').build(directory, record.components.variant?.id || 'base');
   else if (edition) throw Error('Article candidates cannot use a production edition');
