@@ -1895,7 +1895,6 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [review/issue-179/2026-11-09-implementation.md](review/issue-179/2026-11-09-implementation.md) | Issue179 source-bound social preview intent, requirements and implementation/test-impact evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-179/2026-11-09-intent.json](review/issue-179/2026-11-09-intent.json) | Issue179 source-bound social preview intent, requirements and implementation/test-impact evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-179/2026-11-09-requirements-first.md](review/issue-179/2026-11-09-requirements-first.md) | Issue179 source-bound social preview intent, requirements and implementation/test-impact evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-179/2026-11-09-requirements-packet.json](review/issue-179/2026-11-09-requirements-packet.json) | Issue179 source-bound social preview intent, requirements and implementation/test-impact evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |

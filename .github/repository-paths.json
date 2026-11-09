@@ -17383,12 +17383,6 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
-    "review/issue-179/2026-11-09-implementation.md": {
-      "kind": "file",
-      "purpose": "Issue179 source-bound social preview intent, requirements and implementation/test-impact evidence.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
     "review/issue-179/2026-11-09-intent.json": {
       "kind": "file",
       "purpose": "Issue179 source-bound social preview intent, requirements and implementation/test-impact evidence.",

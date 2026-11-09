@@ -723,7 +723,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "5e000d2c5a067f3d380e59422a7fec98009c9b07762837ca9473725f89f786a2",
+    "digest": "29f9ab1e4e240c646b9bc409ed942ab1aafc5ad23a190a53fe9a5d01fbbfc50c",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -879,7 +879,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "22f3c35f945c38c64a21337006cdd61ef67254c3bcdf188a47c96f22cb355a77"
+        "sha256": "245467bfc37ac776398936506bd5b8830f8faa948c9df0fbe9272a51dc2f4a43"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -927,7 +927,7 @@
       },
       {
         "path": ".github/workflows/site-color-review.yml",
-        "sha256": "5d7c93ebc901204a26418e32003c7f8869b5ed7c153a3acbb32ca66deaf45e3e"
+        "sha256": "cd88b936882b11787313b5c7c11a03a82259e689cf940810f8e2d64da62bb5cd"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",

@@ -28,19 +28,55 @@ function render(html, base, identity, source) {
   );
 }
 
-function build(directory) {
-  return edition.build(directory, {
+function shareMetadata(html, id, articles, origin) {
+  const imageMetadata = require('../site/social-image.cjs').metadata;
+  const fallback = require('../../site/content/production-social.json');
+  const article = id.startsWith('article:') ? articles[id.slice(8)] : null;
+  const alias = article ? article.alias : id === 'index' ? '' : id + '.html';
+  assert.doesNotMatch(html, /property="og:(?:image|url)"|name="twitter:image"/);
+  return html.replace(
+    '</head>',
+    imageMetadata(article?.socialImage || fallback, origin) +
+      '<meta property="og:url" content="' +
+      origin +
+      '/' +
+      alias +
+      '">\n</head>'
+  );
+}
+
+function build(directory, { socialOrigin } = {}) {
+  const descriptor = {
     edition: { id: 'staging', indexable: false, analytics: false },
     css: fs.readFileSync(path.join(__dirname, '../../site/effects/environment.css'), 'utf8'),
     inputs: { producer: render.toString() },
     render: (html, _id, source) =>
       render(html, { engine: '', routes: {} }, { engine: '', versions: {} }, source),
-  });
+  };
+  if (socialOrigin !== undefined) {
+    assert.match(
+      socialOrigin,
+      /^https:\/\/pr-[1-9][0-9]*\.[a-z0-9][a-z0-9-]{0,57}[a-z0-9]\.pages\.dev$/,
+      'social preview requires an explicit PR Pages origin'
+    );
+    const record = JSON.parse(fs.readFileSync(path.join(directory, 'artifact.json')));
+    const ordinary = descriptor.render;
+    descriptor.inputs.socialPreview = {
+      origin: socialOrigin,
+      producer: shareMetadata.toString(),
+      metadata: require('../site/social-image.cjs').metadata.toString(),
+      fallback: require('../../site/content/production-social.json'),
+    };
+    descriptor.render = (html, id, source) =>
+      shareMetadata(ordinary(html, id, source), id, record.components.articles || {}, socialOrigin);
+  }
+  return edition.build(directory, descriptor);
 }
 
 if (require.main === module) {
   const directory = path.resolve(process.argv[2]);
-  const record = build(directory);
+  const origin = process.env.SITE_PR_SOCIAL_ORIGIN;
+  const record = build(directory, origin ? { socialOrigin: origin } : {});
   // The protected-main workflow uploads this entire directory immediately
   // after invoking this candidate entrypoint. Freeze notices before that upload.
   require('../release/rights.cjs').write(directory, { requireCheckout: true });

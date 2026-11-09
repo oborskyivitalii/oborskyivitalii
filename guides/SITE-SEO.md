@@ -14,8 +14,11 @@ Production emits that descriptor's absolute Open Graph/Twitter metadata. Princip
 pages and explicitly coverless articles retain the existing portrait fallback,
 which is an exception to the new article-rendition dimensions. Historical frozen
 releases without article social descriptors keep their original metadata policy.
-PR staging previews retain noindex and their existing metadata policy: inspect
-the prepared image there, and test the production edition separately. Actual
+Ordinary staging retains its existing metadata policy. PR previews explicitly
+select absolute social image/article URLs on their own PR alias before artifact
+hashing, while retaining noindex/nofollow and analytics isolation. This permits
+checking a share card before promotion; it does not publish the production URL.
+Inspect the prepared image there, and test the production edition separately. Actual
 LinkedIn cache refresh/preview and production publication remain external gates
 in issue179; generated tags do not establish the platform's observed preview.
 

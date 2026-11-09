@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "f7463cc6be5d1d6b17e921c918f50cd3b802409e62306bf95917989e248831f8",
+    "digest": "7f66ba14c341dc6d8e1819f4c550f58802a4897c90a0d271a8543a7def058390",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -231,12 +231,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "22f3c35f945c38c64a21337006cdd61ef67254c3bcdf188a47c96f22cb355a77"
+        "sha256": "245467bfc37ac776398936506bd5b8830f8faa948c9df0fbe9272a51dc2f4a43"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "3cb78cee8637c308b2683e620e7c97e22ad6d19ff5712473cef53372ee7e101c"
+        "sha256": "5ad6cc94766e551c1da1cd76c29a17fb9d5a2deaeeba782c377d00feecb1127e"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -296,7 +296,7 @@
       {
         "path": ".github/workflows/site-color-review.yml",
         "identity_mode": "content",
-        "sha256": "5d7c93ebc901204a26418e32003c7f8869b5ed7c153a3acbb32ca66deaf45e3e"
+        "sha256": "cd88b936882b11787313b5c7c11a03a82259e689cf940810f8e2d64da62bb5cd"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -386,7 +386,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "fcf620043389b3607282daf592ecda6ef5892698c81e943fc63b910923e78b47"
+        "sha256": "587f9715563d156dad62573359c818c069e8c4607cf4d2489a41de840ac9b656"
       },
       {
         "path": "NOTICE.md",
@@ -955,7 +955,7 @@
       {
         "path": "guides/SITE-SEO.md",
         "identity_mode": "content",
-        "sha256": "6181ccd66eb543a25493818b8733069f6098c329d9871f05a5c2f134e98b1c49"
+        "sha256": "53b57b73f8435f5f11694cd2635988086101dacf4cc78f327f8a2d70e7b5ac0d"
       },
       {
         "path": "guides/SITE-SOURCE-AUDIT.md",
@@ -4733,11 +4733,6 @@
         "sha256": "ae087247f024190c5ebb29853ace29f87a203ebb2b9e951235c6e205ec9b91ec"
       },
       {
-        "path": "review/issue-179/2026-11-09-implementation.md",
-        "identity_mode": "content",
-        "sha256": "7ec1c45851dc9c145daba5a26ec511b65336e9ed251cfd18a5f2a0afdf54c9da"
-      },
-      {
         "path": "review/issue-179/2026-11-09-intent.json",
         "identity_mode": "content",
         "sha256": "2c3ff32a94df5c099de19ad31245415b252c5eb4496557cd28e663063d1f57ae"
@@ -4755,7 +4750,7 @@
       {
         "path": "review/issue-179/2026-11-09-review.json.gz",
         "identity_mode": "content",
-        "sha256": "2b3040c8875f1e8fa3330f161a4e6ab4c43b1892a1612b913650ccd57e71ebd7"
+        "sha256": "0836e05f9008544644fbdc1fc546976383aec6bf83c9dedf246738ab84cea60b"
       },
       {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -11490,7 +11485,7 @@
       {
         "path": "tests/article-delivery.test.cjs",
         "identity_mode": "content",
-        "sha256": "374fdb661e358f64e0d6c2717dda09ee84dd1a88041b14450904e52fa156b88b"
+        "sha256": "3d65689a8d5dd1fd3b633010f19d952bed6e98eb466e9d6b7e634c181a4f2f76"
       },
       {
         "path": "tests/article-materials.test.cjs",
@@ -13210,7 +13205,7 @@
       {
         "path": "tools/staging/edition.cjs",
         "identity_mode": "content",
-        "sha256": "7ac281d26481bfc7b8f831b6affdd51d880c1b3307ce9b78df5d2758d42fb942"
+        "sha256": "2b43824bf7a6b1836a8db3ebd196f1a9265b5379ed6839429a09679b297c0ace"
       },
       {
         "path": "tools/staging/hosted.cjs",
@@ -24033,17 +24028,6 @@
         "AGENTS.md"
       ],
       "title": "White-box QA — first independent judgment, issue177"
-    },
-    {
-      "path": "review/issue-179/2026-11-09-implementation.md",
-      "kind": "file",
-      "purpose": "Issue179 source-bound social preview intent, requirements and implementation/test-impact evidence.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "Issue179 — article cover link previews"
     },
     {
       "path": "review/issue-179/2026-11-09-intent.json",
