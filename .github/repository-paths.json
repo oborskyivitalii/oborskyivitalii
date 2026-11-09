@@ -17389,18 +17389,6 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
-    "review/issue-179/2026-11-09-requirements-first.md": {
-      "kind": "file",
-      "purpose": "Issue179 source-bound social preview intent, requirements and implementation/test-impact evidence.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/issue-179/2026-11-09-requirements-packet.json": {
-      "kind": "file",
-      "purpose": "Issue179 source-bound social preview intent, requirements and implementation/test-impact evidence.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
     "tests/test_issue179_acceptance.py": {
       "kind": "file",
       "purpose": "Issue179 bounded article-social source contracts and complete native test accounting.",
@@ -17490,6 +17478,12 @@
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
+    },
+    "review/issue-179/seo-producers.json": {
+      "kind": "file",
+      "purpose": "Exact issue179 social-image producer successors preserving historical Writing and Research carrier proofs.",
+      "role": "configuration",
+      "owner": "guides/SITE-SEO.md"
     }
   }
 }

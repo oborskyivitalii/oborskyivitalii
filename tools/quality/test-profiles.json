@@ -596,6 +596,7 @@
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "review/issue-169/writing-carrier.json",
+        "review/issue-179/seo-producers.json",
         "tests/executive.test.cjs",
         "tools/check_site_seo.cjs",
         "tools/quality/format-parity.py",
@@ -1650,6 +1651,7 @@
         "site/templates/**",
         "tests/fixtures/catalog.cjs",
         "review/issue-169/trusted-reader-producer.json",
+        "review/issue-179/seo-producers.json",
         "tools/check_site_seo.cjs"
       ],
       "content": true

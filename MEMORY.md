@@ -4,39 +4,34 @@ Dated continuity, not live authority. Last verified: **2026-11-09**.
 
 ## Snapshot
 
-- Main/production fe7baab277a8b90de330a1cec738b7085faf7223; analytics PR178 merged.
-- Active issue179 / Draft PR180, head1478f879d4f7362598bc81fd1af59008012aca0a (preview build failed).
-- Prior exact preview e0f57478 passed build/HTTP42615832781, but has no og:image/og:url.
-- User supplied actual LinkedIn Cannot display preview screenshot for that URL.
+- Main/production fe7baab277a8b90de330a1cec738b7085faf7223.
+- Issue179 / Draft PR180, head68ae465f03d9a48595d38e5cbe27b163c34a9abe.
+- Corrected preview7dfad7e6 passed HTTP33 rows and browser inspection.
+- Ready42623813620 found two stale SEO producer pins; source fix in progress.
 
 ## Decisions
 
-- Continue same issue/PR through corrected PR preview, then STOP/report.
-- No stable promotion, merge, production or social post/account edits authorized.
-- Article covers derive padded1200x630 JPEGs; original reader/print and portrait fallback retained.
-- Optional PR-host social metadata is bound before hashing; noindex/nofollow and analytics isolation stay.
-- Actual LinkedIn card is unverified; missing required tags is a defect, not proof of the only cause.
+- Owner approved stable staging, then STOP/report. No merge or production approval.
+- Covers use padded1200x630 JPEGs; reader/print and portrait fallback retained.
+- Optional PR-origin tags bind document versions, preserving reviewed runtime bytes.
+- Actual LinkedIn card remains unverified; production/Inspector gate stays open.
 
 ## Open work
 
-- Reversible correction adds explicit PR-origin tags; original AC01-AC06 remain unchanged.
-- Requirements preflight permitted bounded correction; final four roles remain required on its new source.
-- CI42618060025 stopped new preview at unreviewed runtime identity; its bytes were never published.
-- Correction binds social bytes to document versions, preserving reviewed runtime identity; delivery17cases pass.
-- Ordinary staging without the option remains byte-identical to the captured prechange package.
-- Detailed first/correction/integration review history is in review/issue-179/2026-11-09-review.json.gz.
-- Actual production/live and LinkedIn Post Inspector gates remain deferred.
+- Exact two-file producer successor preserves issue159/169 historical proofs.
+- Protected-main staging consumers accepted head68 snapshot/runtime/rights/package.
+- Four final independent reviews and current-source Ready checks precede /stage.
+- Original AC01-AC06 remain; never infer real LinkedIn success from tags alone.
 
 ## Next session
 
-1. Revalidate GitHub refs, PR180 head/checks and issue179's latest decisions.
-2. Finish correction checks and independent review, update the same Draft PR.
-3. Verify new hosted HTML/image/noindex and provide a fresh exact URL for LinkedIn retry.
-4. Never claim a LinkedIn card from source tags or HTTP identity alone.
+1. Revalidate live refs, issue179 and PR180 checks before advancing.
+2. Finish SEO successor checks/review, publish same PR, then owner /stage.
+3. Verify stable workflow and alias; stop before merge/production.
 
 ## Maintenance
 
-- Five sections/120lines; issue/PR and versioned review receipts own detailed evidence.
-- Rebuild/verify RI after indexed source, catalog or memory edits; preserve current budgets.
-- Keep prior issue177 closure and production receipts separate from issue179 acceptance.
-- Never store secrets or private correspondence in memory.
+- Five sections/120lines; issue/PR and immutable review receipts own full evidence.
+- Earlier verbatim reviews: review/issue-179/2026-11-09-review.json.gz.
+- Head68 receipts: evidence/issue179-pr180-preview-admission-20261109 at b102d343.
+- Rebuild/verify RI after indexed edits; preserve bounds and historical ledgers.

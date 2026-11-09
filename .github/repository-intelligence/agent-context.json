@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "e9cc69a90afa14bd856fccafc9564168fe766d4f92adf2a413f250d050431bb1",
+    "digest": "754e9908f3430b91b605ff4d8d93af3528cf8f4815589066683fb6de6de084ea",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -231,12 +231,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "6acb34f168d245c5618a735f121f7c03a5c1dbf7cc9dc273751d26ab9e8dbeed"
+        "sha256": "3d895f9a5b0d99ce2cf3f97e98a0af6e3d75b04e8b94b1790141e8147eb1caec"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "6731134cf023a9cbaa2421edb14676f7d62e2e318feb7a6eb4bc7468f828132f"
+        "sha256": "cd1820b5c295e62ec824d4b12b14811ba74e8f91d53ba66caa7b67084d57042d"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -386,7 +386,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "f153d19d9d930d02a82cba9cdafabcb65f0d1ff39e6990d1fba207862c703779"
+        "sha256": "c296374e2836329f9f78cbffcea2dccc222e1b4d658d0fe4856690f8e7c4c8d9"
       },
       {
         "path": "NOTICE.md",
@@ -4738,19 +4738,14 @@
         "sha256": "2c3ff32a94df5c099de19ad31245415b252c5eb4496557cd28e663063d1f57ae"
       },
       {
-        "path": "review/issue-179/2026-11-09-requirements-first.md",
-        "identity_mode": "content",
-        "sha256": "bf95399da32b203d8ef3ccae5efdd600b32418026d83632b0694867fa1d8c611"
-      },
-      {
-        "path": "review/issue-179/2026-11-09-requirements-packet.json",
-        "identity_mode": "content",
-        "sha256": "684dacd04b9f06db11da1ed97edbd1ffd7c7d1ffac44cd402247d70bbc922535"
-      },
-      {
         "path": "review/issue-179/2026-11-09-review.json.gz",
         "identity_mode": "content",
-        "sha256": "0836e05f9008544644fbdc1fc546976383aec6bf83c9dedf246738ab84cea60b"
+        "sha256": "12eba198e1d89551b86691fc94aa43cf2cbf6520c430e2bcd9d59058bcfbfb0b"
+      },
+      {
+        "path": "review/issue-179/seo-producers.json",
+        "identity_mode": "content",
+        "sha256": "73d14b41b5344b28bdede1a062f0cc2835a4db403ad7c6e78c367e202237d111"
       },
       {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -9385,22 +9380,22 @@
       {
         "path": "review/site-v1-20261004-v11-credits-day.html",
         "identity_mode": "content",
-        "sha256": "0314945cf9022b7fdc659b16a24018f630e0f351cf90ac1c3b10e4f60541e5df"
+        "sha256": "7beaff79056341fee29e03432d501ea7bb81da9ae3b97b902d37201320fcce63"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-interactive.html",
         "identity_mode": "content",
-        "sha256": "fd9d513fc144369fa57db1bc7bfc372d360ae964ee77bf9ab66115280fa8dfec"
+        "sha256": "f43a074af8acf7b9b93cf49899e3a4d05a914e8aa7aab879dd53e669804b8805"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-night.html",
         "identity_mode": "content",
-        "sha256": "6032f9b7aeb7558ee01edcd5bf157451302c82e053c9cb4372867433eb94d215"
+        "sha256": "0472b6988a29c1c147fa3df3887003c891698c8d5b5500ba9a87cc351d7e38df"
       },
       {
         "path": "review/site-v1-20261004-v11-day.html",
         "identity_mode": "content",
-        "sha256": "d836eaf513bd1840d83aec910719b403f949dfcac5748218446fe40c2d361639"
+        "sha256": "08e1f6fbc9cc44f89bb499383c3d73af25716b268fac3ab916f0d279810b9921"
       },
       {
         "path": "review/site-v1-20261004-v11-index.html",
@@ -9410,57 +9405,57 @@
       {
         "path": "review/site-v1-20261004-v11-interactive.html",
         "identity_mode": "content",
-        "sha256": "d2a0f1bcf83a89145425e0b5d7c392fbcd306ad138a141838eedc462b03ffab1"
+        "sha256": "fc31758865342eb2b3691a00923555af44a97e53cab10ee6b1633775de90e95d"
       },
       {
         "path": "review/site-v1-20261004-v11-night.html",
         "identity_mode": "content",
-        "sha256": "28cc7e7bfa9986ba9ac1f86cab8cb7f2be588149b6c96420386f4c125e4375c5"
+        "sha256": "517df0340af434e8bd67a8625c97a1687a2d9656b106d5155d52cf9bf87a73f8"
       },
       {
         "path": "review/site-v1-20261004-v11-research-day.html",
         "identity_mode": "content",
-        "sha256": "1a4c6e0031b11d412658933b7d0b08849ff958d0f8cab14d8f3a5502cf1961d8"
+        "sha256": "57e792ce6b7c0a20e308f6796d3eae4c19794b8e78c6a385c3fbdd1d7ac71129"
       },
       {
         "path": "review/site-v1-20261004-v11-research-interactive.html",
         "identity_mode": "content",
-        "sha256": "6a0726573ae393c39a15670083f7e656bc20eeba326aa1d52f5446fc1f582096"
+        "sha256": "80abcf598e4dd550c5ba10e1acb4ad1947c9ec65be8937abf318402be720c2ac"
       },
       {
         "path": "review/site-v1-20261004-v11-research-night.html",
         "identity_mode": "content",
-        "sha256": "9eb16099b854ace1f068e4e27fac1ee2db623a2cbd67a80075ec77e0d76e679f"
+        "sha256": "daa38723c47647006cd67b839ae811d690cb58cd0ba13dfbe9e6fc72ddd546dd"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-day.html",
         "identity_mode": "content",
-        "sha256": "b9a855500b2e64768d812e11fab928c6d660042331373325f22f9aa7a989f9b4"
+        "sha256": "03875d02c6314c27f6c7fff3f348c496b619dedd67fa59d0efe76f195f72fe67"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-interactive.html",
         "identity_mode": "content",
-        "sha256": "12e31ee0d1da42bade1a10873196d6ea9843b99eede3f2cd82f23781a7550bd1"
+        "sha256": "47e86929a106251975564289bb832bb3e97bc2d49c2c7f5ea91966ccb756738d"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-night.html",
         "identity_mode": "content",
-        "sha256": "c0fba286728705ef61d77f41013f082aaf9310de1b1ca25c0f2229b0dd3c9c33"
+        "sha256": "f538f6b7a06d401d5d219f6baa5730aea605e4714cd66cef300ce69c9462124f"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-day.html",
         "identity_mode": "content",
-        "sha256": "d177b11f10ffb4bd136d1aa06f4a5e4fdcdb8fcf15de7adb02ad8ad3d9da35e7"
+        "sha256": "3b3017f4c1ac64826a776305bb1eb654381e19d1c99b0b465fea2f4787a6ca4a"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-interactive.html",
         "identity_mode": "content",
-        "sha256": "ba9c3bf42964721a1c0d072c798d6f1d4b54055a613d1520b374f807f3a57a30"
+        "sha256": "11bfae0f866297cba15b759493bf71e17de19424a32b07fed3320a2a4d0c5a88"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-night.html",
         "identity_mode": "content",
-        "sha256": "2af8a58381aaf363cb087c9637b143d436533bccf67944185f80a5f576220760"
+        "sha256": "e7eec265dc49cbe80d73b61dbedb8c276a376886ac16e8e7940228a44e5aa30d"
       },
       {
         "path": "review/site-v1-offline-bundle-v10.json",
@@ -9470,7 +9465,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "333d80a953ca9e32d38ac9905310a6b649fbfc401215922efbebd5cdaef8faba"
+        "sha256": "481ac5db50dc6c9a198e8a793179c34fe773f8d03698badeba7a6586ccbed8dd"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -9525,7 +9520,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "ae81ec5d87156dc8de5ff673898c9f48c86741b78f678856d92c74baadad1890"
+        "sha256": "061512d00a11d57d479c475c31f87dbc3e14f17c7e1e24ce6d9b9c28bb79be29"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -11585,7 +11580,7 @@
       {
         "path": "tests/content-rendering.test.cjs",
         "identity_mode": "content",
-        "sha256": "27b7b13201d85c00af881eed58c205fd7912ce3834d0d44563f0ccd6b9f46ce2"
+        "sha256": "453b75d08267c6b291193ea4a22b1f14444bbc23465f687e8a4a1ef062bd5655"
       },
       {
         "path": "tests/content.test.cjs",
@@ -11640,7 +11635,7 @@
       {
         "path": "tests/executive.test.cjs",
         "identity_mode": "content",
-        "sha256": "3be20bc027883f23b394b420ddbdbe23cebc32bf57bf5b70715a18ca98e63202"
+        "sha256": "3ebdab7c0f38c0b7b1392feedfb713a4cbe460e1feaa1c858f3e2cf4cbac4bd2"
       },
       {
         "path": "tests/fixtures/article-flight.cjs",
@@ -12215,7 +12210,7 @@
       {
         "path": "tools/check_site_seo.cjs",
         "identity_mode": "content",
-        "sha256": "526971c6c904e9b85ad1ec90b1948a68292fac034cc48b0d262906a6b42a1e4e"
+        "sha256": "103ac2d43914c4326da38dbdb913945708a3cc082cdd749fd647cf43d0bece4d"
       },
       {
         "path": "tools/compact_site_recordings.cjs",
@@ -12800,7 +12795,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "0f94eb388ffabd06abcec8b32b06444448b938425dfca1aed1dc240f3779b792"
+        "sha256": "360055b82ddeecbf128c0bc996b1b47cbec7d53b809ec1c5842cd61db591e6a3"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
@@ -12860,7 +12855,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "301b3255005653d7a797b5475c4e67a479d98682be594631eb5c3c32117c2fdc"
+        "sha256": "0e9100b90003dc304cd4fb51f726bf8dcbf795249f5733f1c7cae2dbd5078888"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -24041,28 +24036,6 @@
       "title": "2026-11-09-intent.json"
     },
     {
-      "path": "review/issue-179/2026-11-09-requirements-first.md",
-      "kind": "file",
-      "purpose": "Issue179 source-bound social preview intent, requirements and implementation/test-impact evidence.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "Issue179 — independent Requirements & Acceptance first preflight"
-    },
-    {
-      "path": "review/issue-179/2026-11-09-requirements-packet.json",
-      "kind": "file",
-      "purpose": "Issue179 source-bound social preview intent, requirements and implementation/test-impact evidence.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "2026-11-09-requirements-packet.json"
-    },
-    {
       "path": "review/issue-179/2026-11-09-review.json.gz",
       "kind": "file",
       "purpose": "Issue179 verbatim independent first review receipts, exact source checks and correction treatments. Gzip preserves raw JSON byte content.",
@@ -24072,6 +24045,17 @@
         "AGENTS.md"
       ],
       "title": "2026-11-09-review.json.gz"
+    },
+    {
+      "path": "review/issue-179/seo-producers.json",
+      "kind": "file",
+      "purpose": "Exact issue179 social-image producer successors preserving historical Writing and Research carrier proofs.",
+      "role": "configuration",
+      "owner": "guides/SITE-SEO.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "seo-producers.json"
     },
     {
       "path": "review/issue-2/2026-10-15-editorial-draft.md",

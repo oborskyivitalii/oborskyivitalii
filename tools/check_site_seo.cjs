@@ -219,6 +219,45 @@ const researchCarrierInputs = [
 const writingCarrier = JSON.parse(
   fs.readFileSync(path.join(root, 'review/issue-169/writing-carrier.json'), 'utf8')
 );
+const socialProducers = require('../review/issue-179/seo-producers.json');
+
+function socialCarrierProducer(name, expected, projectRoot = root, record = socialProducers) {
+  assert.deepEqual(Object.keys(record).sort(), [
+    'issue',
+    'predecessorSource',
+    'producerChanges',
+    'schema',
+  ]);
+  assert.equal(record.schema, 1);
+  assert.equal(record.issue, 179);
+  assert.equal(record.predecessorSource, 'fe7baab277a8b90de330a1cec738b7085faf7223');
+  assert.deepEqual(Object.keys(record.producerChanges).sort(), [
+    'tools/site/build.cjs',
+    'tools/site/snapshot.cjs',
+  ]);
+  for (const change of Object.values(record.producerChanges)) {
+    assert.deepEqual(Object.keys(change).sort(), ['afterSHA256', 'beforeSHA256']);
+    for (const value of Object.values(change)) assert.match(value, /^[a-f0-9]{64}$/);
+  }
+  assert.equal(
+    crypto.createHash('sha256').update(JSON.stringify(record)).digest('hex'),
+    '361947835642602b4a5282ed591d24d29628195566d9baab52dbe3e2545545eb',
+    'Social carrier approved record'
+  );
+  const change = record.producerChanges[name];
+  if (!change) return expected;
+  assert.equal(change.beforeSHA256, expected, 'Social carrier predecessor pin');
+  const before = cp.execFileSync('git', ['show', record.predecessorSource + ':' + name], {
+    cwd: root,
+  });
+  assert.equal(crypto.createHash('sha256').update(before).digest('hex'), change.beforeSHA256);
+  assert.equal(
+    crypto.createHash('sha256').update(homeSourceFile(projectRoot, name)).digest('hex'),
+    change.afterSHA256,
+    'Social carrier producer bytes'
+  );
+  return change.afterSHA256;
+}
 
 function verifyCarrierRecord(successor) {
   assert.equal(successor.schema, 1, 'Writing carrier schema');
@@ -235,14 +274,14 @@ function verifyCarrierRecord(successor) {
 function carrierProducer(name, binding, successor) {
   verifyCarrierRecord(successor);
   const change = successor.producerChanges[name];
-  if (!change) return binding.afterSHA256;
+  if (!change) return socialCarrierProducer(name, binding.afterSHA256);
   assert.equal(change.beforeSHA256, binding.afterSHA256, 'Writing carrier predecessor producer');
   const before = cp.execFileSync('git', ['show', successor.predecessorSource + ':' + name], {
     cwd: root,
   });
   assert.equal(crypto.createHash('sha256').update(before).digest('hex'), change.beforeSHA256);
   assert.match(change.afterSHA256, /^[a-f0-9]{64}$/);
-  return change.afterSHA256;
+  return socialCarrierProducer(name, change.afterSHA256);
 }
 
 function verifyWritingCarrier(projectRoot = root, record = writingCarrier) {
@@ -1443,6 +1482,7 @@ function verify() {
 }
 if (require.main === module) process.stdout.write(JSON.stringify(verify(), null, 2) + '\n');
 module.exports = {
+  socialCarrierProducer,
   archiveProducers,
   reviewedArchiveProducerBindings,
   htmlParserProducer,

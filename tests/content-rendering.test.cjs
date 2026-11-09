@@ -182,6 +182,7 @@ test('fresh SEO CLI accepts current authored Home text and refuses stale approve
   cp.execFileSync('git', ['clone', '--shared', '--quiet', root, directory]);
   for (const file of [
     'tools/check_site_seo.cjs',
+    'review/issue-179/seo-producers.json',
     'review/issue-122/2026-10-27-home-content-frame.json',
     'review/issue-169/trusted-reader-producer.json',
   ])
@@ -566,7 +567,9 @@ test('Writing SEO reconciliation accepts generated catalog changes and rejects o
   const original = content.catalog(root);
   const render = (catalog) => content.routeInput(root, route, catalog);
   const before = render(original);
-  const restored = seo.restoreWritingCatalog(before.main, { catalog: original });
+  const restored = seo.restoreWritingCatalog(before.main, {
+    catalog: original,
+  });
   const changed = structuredClone(original);
   const id = nextRecordId(changed);
   const year = nextYear(changed);

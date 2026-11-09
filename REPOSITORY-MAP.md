@@ -1896,9 +1896,8 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [review/issue-179/2026-11-09-intent.json](review/issue-179/2026-11-09-intent.json) | Issue179 source-bound social preview intent, requirements and implementation/test-impact evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
-| [review/issue-179/2026-11-09-requirements-first.md](review/issue-179/2026-11-09-requirements-first.md) | Issue179 source-bound social preview intent, requirements and implementation/test-impact evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
-| [review/issue-179/2026-11-09-requirements-packet.json](review/issue-179/2026-11-09-requirements-packet.json) | Issue179 source-bound social preview intent, requirements and implementation/test-impact evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-179/2026-11-09-review.json.gz](review/issue-179/2026-11-09-review.json.gz) | Issue179 verbatim independent first review receipts, exact source checks and correction treatments. Gzip preserves raw JSON byte content. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-179/seo-producers.json](review/issue-179/seo-producers.json) | Exact issue179 social-image producer successors preserving historical Writing and Research carrier proofs. | configuration | [guides/SITE-SEO.md](guides/SITE-SEO.md) |
 
 ## review/issue-2/
 
