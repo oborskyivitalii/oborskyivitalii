@@ -119,7 +119,7 @@ test('article delivery includes a finite separate inventory, immutable document 
   assert.equal(record.components.preview, true);
   assert.equal(snapshot.immutable(article.alias), false);
   assert.equal(snapshot.immutable(article.url), true);
-  assert.equal(article.assets.length, 2);
+  assert.equal(article.assets.length, 3);
   for (const file of article.assets) {
     assert.equal(snapshot.immutable(file), true);
     assert.equal(artifact.digest(fs.readFileSync(path.join(publicDir, file))), file.split('/')[1]);

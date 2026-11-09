@@ -23,32 +23,8 @@ assert.equal(social.type, 'image/jpeg');
 assert.equal(social.width, 960);
 assert.equal(social.height, 887);
 assert.ok(typeof social.alt === 'string' && /^[A-Za-z0-9 ,.-]+$/.test(social.alt));
-const socialMetadata =
-  '<meta property="og:image" content="' +
-  origin +
-  '/' +
-  social.file +
-  '">\n' +
-  '<meta property="og:image:type" content="' +
-  social.type +
-  '">\n' +
-  '<meta property="og:image:width" content="' +
-  social.width +
-  '">\n' +
-  '<meta property="og:image:height" content="' +
-  social.height +
-  '">\n' +
-  '<meta property="og:image:alt" content="' +
-  social.alt +
-  '">\n' +
-  '<meta name="twitter:image" content="' +
-  origin +
-  '/' +
-  social.file +
-  '">\n' +
-  '<meta name="twitter:image:alt" content="' +
-  social.alt +
-  '">\n';
+const { metadata: imageMetadata } = require('../site/social-image.cjs');
+const socialMetadata = imageMetadata(social, origin);
 const notFound =
   '<!doctype html><html lang="en"><meta charset="utf-8">' +
   '<meta name="viewport" content="width=device-width,initial-scale=1">' +
@@ -100,7 +76,10 @@ function render(html, id, articles = {}) {
       '<meta property="og:url" content="' +
       canonical +
       '">\n' +
-      socialMetadata +
+      imageMetadata(
+        id.startsWith('article:') ? articles[id.slice(8)]?.socialImage || social : social,
+        origin
+      ) +
       '</head>'
   );
 }
@@ -130,7 +109,11 @@ function build(directory, variant = 'base') {
 }
 
 function verify(directory, record) {
-  assert.deepEqual(record.edition, { id: 'production', indexable: true, origin });
+  assert.deepEqual(record.edition, {
+    id: 'production',
+    indexable: true,
+    origin,
+  });
   const variant = record.components.variant?.id || 'base';
   assert.ok(['base', 'color'].includes(variant), 'unsupported production rendition');
   if (variant === 'color') motion.select(record);
@@ -170,10 +153,15 @@ function verify(directory, record) {
     for (const file of [article.alias, article.url]) {
       const html = fs.readFileSync(path.join(directory, 'public', file), 'utf8');
       assert.match(html, /name="robots" content="index,follow"/);
+      assert.ok(
+        html.includes(imageMetadata(article.socialImage || social, origin)),
+        'missing article social image metadata'
+      );
       assert.ok(html.includes('<link rel="canonical" href="' + canonical + '">'));
       assert.doesNotMatch(html, /class="site-environment"|name="robots" content="noindex/);
     }
   }
+  require('./edition-archive.cjs').verify(directory, record);
   return true;
 }
 

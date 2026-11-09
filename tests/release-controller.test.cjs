@@ -710,6 +710,51 @@ test('production social metadata binds all five routes to the shipped JPEG and r
   assert.throws(() => edition.verify(source.directory, source.record), /social image/);
 });
 
+test('article production metadata binds the selected cover, aliases and frozen inventory', (t) => {
+  const source = fixture.source(fixture.temporary(t), 'article-social');
+  const revisionFile = path.join(source.directory, 'public', 'site-revision.json');
+  const revision = JSON.parse(fs.readFileSync(revisionFile));
+  const longAlt = 'Cover ' + '"'.repeat(994);
+  revision.articles['sdlc-out-of-balance:en'].socialImage.alt = longAlt;
+  fs.writeFileSync(revisionFile, JSON.stringify(revision));
+  source.record.components.articles = revision.articles;
+  Object.assign(source.record, artifact.manifest(path.join(source.directory, 'public')));
+  fs.writeFileSync(path.join(source.directory, 'artifact.json'), JSON.stringify(source.record));
+  source.record = edition.build(source.directory);
+  const article = source.record.components.articles['sdlc-out-of-balance:en'];
+  const image = article.socialImage;
+  assert.notEqual(image.file, edition.social.file);
+  assert.equal(image.alt, longAlt);
+  const archived = require('../tools/release/edition-archive.cjs').verify(
+    source.directory,
+    source.record
+  );
+  assert.ok(archived.images.some((item) => item.file === image.file));
+  for (const name of [article.alias, article.url]) {
+    const file = path.join(source.directory, 'public', name);
+    const html = fs.readFileSync(file, 'utf8');
+    assert.ok(
+      html.includes('property="og:image" content="' + edition.origin + '/' + image.file + '"')
+    );
+    assert.ok(html.includes('property="og:image:width" content="1200"'));
+    assert.ok(html.includes('property="og:image:height" content="630"'));
+    fs.writeFileSync(file, html.replace(image.file, edition.social.file));
+    assert.throws(() => edition.verify(source.directory, source.record), /social image metadata/);
+    fs.writeFileSync(file, html);
+  }
+  const imageFile = path.join(source.directory, 'public', image.file);
+  const bytes = fs.readFileSync(imageFile);
+  fs.writeFileSync(imageFile, bytes.subarray(0, 100));
+  const changed = {
+    ...source.record,
+    ...artifact.manifest(path.join(source.directory, 'public')),
+  };
+  assert.throws(
+    () => require('../tools/release/edition-archive.cjs').verify(source.directory, changed),
+    /digest/
+  );
+});
+
 test('live production social metadata requires the exact reachable JPEG with its declared HTTP MIME', async (t) => {
   const temp = fixture.temporary(t),
     source = fixture.source(temp, 'live-social');

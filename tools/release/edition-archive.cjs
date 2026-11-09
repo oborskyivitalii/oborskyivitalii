@@ -55,21 +55,27 @@ function jpegDimensions(bytes) {
   throw Error('missing archived JPEG dimensions');
 }
 
-function socialDescriptor(tags, record, read) {
+function socialDescriptor(tags, record, read, articleImage = null) {
   const url = new URL(tags['og:image']);
   assert.equal(url.origin, origin, 'archived social image has a foreign origin');
   assert.equal(url.search + url.hash, '');
   const file = url.pathname.slice(1);
-  assert.match(file, /^assets\/[a-z0-9.-]+$/, 'invalid archived social image path');
+  if (articleImage) assert.equal(file, articleImage.file, 'archived article social image path');
+  else assert.match(file, /^assets\/[a-z0-9.-]+$/, 'invalid archived social image path');
   assert.ok(Object.hasOwn(record.files, file), 'missing archived social image');
   assert.equal(tags['twitter:image'], tags['og:image']);
   assert.equal(tags['og:image:type'], 'image/jpeg');
   assert.ok(
-    tags['og:image:alt'] && tags['og:image:alt'].length <= 500,
+    tags['og:image:alt'] && tags['og:image:alt'].length <= (articleImage ? 6000 : 500),
     'missing archived social image alt'
   );
   assert.equal(tags['twitter:image:alt'], tags['og:image:alt']);
-  const dimensions = jpegDimensions(read(file));
+  const bytes = read(file);
+  if (articleImage) {
+    assert.equal(artifact.digest(bytes), file.split('/')[1], 'archived social image digest');
+    assert.ok(bytes.length <= 2000000, 'archived social image byte budget');
+  }
+  const dimensions = jpegDimensions(bytes);
   for (const key of ['width', 'height']) {
     assert.ok(dimensions[key] > 0 && dimensions[key] <= 8192, 'invalid archived social image size');
     assert.equal(
@@ -78,11 +84,20 @@ function socialDescriptor(tags, record, read) {
       'archived social image dimensions differ'
     );
   }
-  return { file, type: tags['og:image:type'], ...dimensions, alt: tags['og:image:alt'] };
+  return {
+    file,
+    type: tags['og:image:type'],
+    ...dimensions,
+    alt: tags['og:image:alt'],
+  };
 }
 
 function verify(directory, record) {
-  assert.deepEqual(record.edition, { id: 'production', indexable: true, origin });
+  assert.deepEqual(record.edition, {
+    id: 'production',
+    indexable: true,
+    origin,
+  });
   assert.ok(['base', 'color'].includes(record.components.variant?.id || 'base'));
   const publicDirectory = path.join(directory, 'public');
   artifact.verify(publicDirectory, record, record.artifactDigest);
@@ -103,6 +118,7 @@ function verify(directory, record) {
   const read = (name) => fs.readFileSync(path.join(publicDirectory, name));
   const tags = socialTags(read('index.html').toString());
   const social = socialDescriptor(tags, record, read);
+  const images = [social];
   for (const id of snapshot.routes) {
     for (const file of [id + '.html', record.components.routes[id].url]) {
       const html = read(file).toString();
@@ -114,6 +130,9 @@ function verify(directory, record) {
   }
   for (const [key, article] of Object.entries(articles)) {
     const canonical = origin + '/' + article.alias;
+    const expected = article.socialImage;
+    if (expected) require('../site/social-image.cjs').validate(expected, article.assets);
+    let observed;
     for (const file of [article.alias, article.url]) {
       const html = read(file).toString();
       assert.match(html, /name="robots" content="index,follow"/);
@@ -121,9 +140,18 @@ function verify(directory, record) {
         html.includes('<link rel="canonical" href="' + canonical + '">'),
         'archived article canonical differs: ' + key
       );
-      assert.deepEqual(socialTags(html), tags, 'archived article social metadata differs');
+      const articleTags = socialTags(html);
+      assert.deepEqual(
+        articleTags,
+        expected
+          ? socialTags(require('../site/social-image.cjs').metadata(expected, origin))
+          : tags,
+        'archived article social metadata differs'
+      );
+      if (expected) observed = socialDescriptor(articleTags, record, read, expected);
       assert.doesNotMatch(html, /class="site-environment"|name="robots" content="noindex/);
     }
+    if (observed) images.push(observed);
   }
   const robots = read('robots.txt').toString();
   assert.match(robots, /^User-agent: \*$/m);
@@ -143,7 +171,7 @@ function verify(directory, record) {
   const notFound = read('404.html').toString();
   assert.match(notFound, /name="robots" content="noindex,nofollow"/);
   assert.ok(notFound.includes('href="/"'), 'archived 404 has no home route');
-  return social;
+  return { ...social, images };
 }
 
 module.exports = { origin, routeURL, verify };

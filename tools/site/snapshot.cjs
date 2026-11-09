@@ -148,6 +148,8 @@ function verify(dir, record) {
       Array.isArray(article.assets) && article.assets.length <= 50,
       'finite article assets'
     );
+    if (article.socialImage)
+      require('./social-image.cjs').validate(article.socialImage, article.assets);
     assert.ok(
       article.candidate !== true || revision.preview === true,
       'candidate in public revision'

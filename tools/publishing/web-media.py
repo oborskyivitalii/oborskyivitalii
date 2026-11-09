@@ -28,14 +28,20 @@ def digest(value):
 
 def encode(request):
     import PIL
-    from PIL import Image, features
+    from PIL import Image, ImageOps, features
 
     if PIL.__version__ != requirement().split("==")[1]:
         raise ValueError("Pillow differs from the canonical toolchain pin")
     if features.version("webp") != WEBP_VERSION:
         raise ValueError("Unsupported lossless WebP codec version")
-    if set(request) != {"schema", "images"} or request["schema"] != 1:
+    if (
+        set(request) not in ({"schema", "images"}, {"schema", "images", "social"})
+        or request["schema"] != 1
+    ):
         raise ValueError("Unknown web-media request")
+    social = request.get("social", False)
+    if "social" in request and social is not True:
+        raise ValueError("Invalid social rendition selection")
     images = request["images"]
     if not isinstance(images, list) or not 1 <= len(images) <= 50:
         raise ValueError("Finite web-media image inventory required")
@@ -86,7 +92,16 @@ def encode(request):
                 raise ValueError("Non-ICC PNG color metadata requires explicit preparation")
             rgba = source.convert("RGBA")
             original_pixels = rgba.tobytes()
-            if "equivalentJpeg" not in item:
+            if social:
+                fitted = ImageOps.contain(rgba, (1200, 630), Image.Resampling.LANCZOS)
+                canvas = Image.new("RGB", (1200, 630), "white")
+                canvas.paste(
+                    fitted, ((1200 - fitted.width) // 2, (630 - fitted.height) // 2), fitted
+                )
+                output = io.BytesIO()
+                canvas.save(output, format="JPEG", quality=90, subsampling=0, icc_profile=icc)
+                encoded = output.getvalue()
+            elif "equivalentJpeg" not in item:
                 output = io.BytesIO()
                 rgba.save(
                     output,
@@ -98,7 +113,7 @@ def encode(request):
                     icc_profile=icc,
                 )
                 encoded = output.getvalue()
-        if "equivalentJpeg" in item:
+        if "equivalentJpeg" in item and not social:
             equivalent = item["equivalentJpeg"]
             if not isinstance(equivalent, dict) or set(equivalent) != {
                 "sha256",
@@ -115,21 +130,25 @@ def encode(request):
         if len(encoded) > budget:
             raise ValueError("Web rendition exceeds the existing asset budget")
         with Image.open(io.BytesIO(encoded)) as decoded:
-            if (
-                decoded.size != (width, height)
-                or decoded.convert("RGBA").tobytes() != original_pixels
+            if decoded.size != ((1200, 630) if social else (width, height)) or (
+                not social and decoded.convert("RGBA").tobytes() != original_pixels
             ):
                 raise ValueError("Lossless rendition changed RGBA pixels")
             if decoded.info.get("icc_profile", b"") != icc:
                 raise ValueError("Lossless rendition changed the color profile")
+            output_pixels = decoded.convert("RGBA").tobytes()
         results.append(
             {
                 "sourceSha256": item["sha256"],
-                "kind": "equivalent-jpeg" if "equivalentJpeg" in item else "webp-lossless",
+                "kind": "social-jpeg"
+                if social
+                else "equivalent-jpeg"
+                if "equivalentJpeg" in item
+                else "webp-lossless",
                 "sha256": digest(encoded),
-                "width": width,
-                "height": height,
-                "pixelSha256": digest(original_pixels),
+                "width": 1200 if social else width,
+                "height": 630 if social else height,
+                "pixelSha256": digest(output_pixels),
                 "iccSha256": digest(icc),
                 "base64": base64.b64encode(encoded).decode("ascii"),
             }

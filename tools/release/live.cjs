@@ -11,9 +11,11 @@ async function check(directory, record, fetcher = fetch) {
   const social = edition.verify(directory, record.public);
   artifact.verify(path.join(directory, 'public'), record.public, record.publicDigest);
   const observation = await hosted.verify(edition.origin, 'production', record.public, fetcher);
-  const image = observation.rows.find((row) => row.file === social.file);
-  assert.ok(image, 'missing live production social image');
-  assert.match(image.mime, /^image\/jpeg(?:\s*;|$)/i, 'incorrect live social image MIME');
+  for (const descriptor of social.images) {
+    const image = observation.rows.find((row) => row.file === descriptor.file);
+    assert.ok(image, 'missing live production social image');
+    assert.match(image.mime, /^image\/jpeg(?:\s*;|$)/i, 'incorrect live social image MIME');
+  }
   for (const id of require('../site/snapshot.cjs').routes) {
     const result = await pages.request(edition.routeURL(id), edition.origin, fetcher);
     assert.equal(result.response.status, 200);

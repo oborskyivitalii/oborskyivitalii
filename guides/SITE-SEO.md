@@ -6,6 +6,19 @@ belong to the owning issues and [MEMORY](../MEMORY.md), not an old session hando
 
 ## Current canonical content reconciliation
 
+Issue179 prepares per-article link previews. The hosted producer derives a
+separate1200×630 padded JPEG from the validated profile's declared cover; reader,
+print and original artwork remain unchanged. The rendition is content-addressed
+and included in the article's source/rights/resource closure and existing budgets.
+Production emits that descriptor's absolute Open Graph/Twitter metadata. Principal
+pages and explicitly coverless articles retain the existing portrait fallback,
+which is an exception to the new article-rendition dimensions. Historical frozen
+releases without article social descriptors keep their original metadata policy.
+PR staging previews retain noindex and their existing metadata policy: inspect
+the prepared image there, and test the production edition separately. Actual
+LinkedIn cache refresh/preview and production publication remain external gates
+in issue179; generated tags do not establish the platform's observed preview.
+
 The executable SEO checker proves current Home body, Writing catalog and Talks
 event output against validated authored sources before applying the unchanged
 historical amendments. Home has a finite seven-block/main-navigation frame with
