@@ -661,6 +661,117 @@ test('explicit production Color preserves approved runtime and rejects a differe
   assert.deepEqual(JSON.parse(summary.slice(summary.indexOf('{'))), expectedInputs);
 });
 
+test('candidate publication verifies the raw edition and hosting envelope against their distinct inventories', (t) => {
+  const temp = fixture.temporary(t);
+  const source = fixture.production(temp, 'quality-artifact');
+  const wrapper = path.join(temp, 'staging-package');
+  const staging = require('../tools/staging/package.cjs');
+  const expected = {
+    sourceCommit: source.record.sourceCommit,
+    publicDigest: source.record.artifactDigest,
+    artifactId: '41',
+    uploadDigest: 'sha256:' + 'c'.repeat(64),
+  };
+  const gate = {
+    ...source.record,
+    kind: 'pr-gate',
+    profile: 'local',
+    pass: true,
+    jobs: { build: { result: 'success' } },
+    githubArtifact: {
+      id: expected.artifactId,
+      uploadDigest: expected.uploadDigest,
+    },
+  };
+  fs.mkdirSync(path.join(source.directory, 'gate'));
+  fs.writeFileSync(path.join(source.directory, 'gate/release-manifest.json'), JSON.stringify(gate));
+  const record = staging.build(source.directory, wrapper, expected, {
+    hostPolicy: staging.hostPolicies.snapshotProxy,
+  });
+  assert.notEqual(record.packageDigest, source.record.artifactDigest);
+  assert.throws(() => edition.verify(wrapper, record.source), /Public digest differs/);
+  const workflow = fs.readFileSync(
+    path.join(__dirname, '../.github/workflows/site-release-candidate.yml'),
+    'utf8'
+  );
+  const publicationJob = workflow.slice(
+    workflow.indexOf('  publish:'),
+    workflow.indexOf('  http:')
+  );
+  assert.match(
+    publicationJob,
+    /artifact-ids: \$\{\{ needs\.build\.outputs\.public_id \}\}\n {10}path: quality-artifact/
+  );
+  const recheck = workflow
+    .slice(
+      workflow.indexOf('      - name: Recheck controller, frozen bytes and preview-only project')
+    )
+    .match(/ {10}script: \|\n((?: {12}[^\n]*\n)+)/)[1]
+    .replace(/^ {12}/gm, '');
+  const script = `
+    const root = process.argv[1];
+    const boundRequire = require('node:module').createRequire(root + '/candidate-recheck.cjs');
+    const context = ${JSON.stringify({ ...context, sha: expected.sourceCommit })};
+    const github = { rest: { repos: { getBranch: async () => ({
+      data: { protected: true, commit: { sha: context.sha } }
+    }) } } };
+    (async function(require) { ${recheck} })(boundRequire)
+      .catch(error => { console.error(error); process.exitCode = 1; });
+  `;
+  const run = (overrides = {}) =>
+    cp.spawnSync(process.execPath, ['-e', script, path.resolve(__dirname, '..')], {
+      cwd: temp,
+      encoding: 'utf8',
+      timeout: 30000,
+      env: {
+        ...process.env,
+        SITE_CANDIDATE_SHA: expected.sourceCommit,
+        SITE_EXPECTED_PUBLIC_DIGEST: expected.publicDigest,
+        SITE_ARTIFACT_ID: expected.artifactId,
+        SITE_UPLOAD_DIGEST: expected.uploadDigest,
+        REVIEW_ACCOUNT: 'a'.repeat(32),
+        REVIEW_PROJECT: 'oborskyi-author-ci-staging',
+        REVIEW_TOKEN_READY: 'true',
+        ...overrides,
+      },
+    });
+  let result = run();
+  assert.equal(result.status, 0, result.stdout + result.stderr);
+  for (const overrides of [
+    { SITE_CANDIDATE_SHA: 'f'.repeat(40) },
+    { SITE_EXPECTED_PUBLIC_DIGEST: 'f'.repeat(64) },
+    { SITE_ARTIFACT_ID: '42' },
+    { SITE_UPLOAD_DIGEST: 'sha256:' + 'f'.repeat(64) },
+  ])
+    assert.notEqual(run(overrides).status, 0, 'substituted build identity must fail');
+  for (const [directory, file] of [
+    [source.directory, 'index.html'],
+    [source.directory, edition.social.file],
+    [wrapper, 'index.html'],
+    [wrapper, '_headers'],
+    [wrapper, '_redirects'],
+  ]) {
+    const name = path.join(directory, 'public', file);
+    const original = fs.readFileSync(name);
+    fs.appendFileSync(name, 'changed');
+    assert.notEqual(run().status, 0, 'changed raw or hosting bytes must fail: ' + file);
+    fs.writeFileSync(name, original);
+  }
+  for (const directory of [source.directory, wrapper]) {
+    const extra = path.join(directory, 'public/unrecorded.txt');
+    fs.writeFileSync(extra, 'unrecorded');
+    assert.notEqual(run().status, 0, 'unrecorded raw or hosting file must fail');
+    fs.rmSync(extra);
+  }
+  const headers = path.join(wrapper, 'public/_headers');
+  const originalHeaders = fs.readFileSync(headers);
+  fs.rmSync(headers);
+  assert.notEqual(run().status, 0, 'missing hosting policy must fail');
+  fs.writeFileSync(headers, originalHeaders);
+  result = run();
+  assert.equal(result.status, 0, result.stdout + result.stderr);
+});
+
 test('production social metadata binds all five routes to the shipped JPEG and rejects omissions or changed bytes', (t) => {
   const temp = fixture.temporary(t),
     source = fixture.source(temp, 'production-social');

@@ -135,6 +135,10 @@ jobs:
         with:
           artifact-ids: ${{ needs.build.outputs.package_id }}
           path: staging-package
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          artifact-ids: ${{ needs.build.outputs.public_id }}
+          path: quality-artifact
       - name: Recheck controller, frozen bytes and preview-only project
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         env:
@@ -148,7 +152,7 @@ jobs:
             flow.configuration(process.env.REVIEW_ACCOUNT,process.env.REVIEW_PROJECT,process.env.REVIEW_TOKEN_READY==='true');
             const record=JSON.parse(require('node:fs').readFileSync('staging-package/staging-package.json'));
             require('./tools/staging/package.cjs').verify('staging-package',record,require('./tools/staging/package.cjs').expectedEnvironment());
-            require('./tools/release/edition.cjs').verify('staging-package',record.source);
+            require('./tools/release/edition.cjs').verify('quality-artifact',record.source);
       - id: deploy
         uses: cloudflare/wrangler-action@953926a2e2182532811c01a25e53647d93bf07c0
         with:

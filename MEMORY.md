@@ -4,34 +4,34 @@ Dated continuity, not live authority. Last verified: **2026-11-09**.
 
 ## Snapshot
 
-- Main/production fe7baab277a8b90de330a1cec738b7085faf7223.
-- Active issue179 / PR180. Resolve current head, checks and stable receipts in its owning thread.
-- Preparation baseline d8671c73 passed all8 source shards, navigation and owning acceptance.
-- Ready lint found emitArticles complexity27/25; correction extracts the shared optional descriptor.
+- Owning issue179. PR180 merged as a00c47b9; production still fe7baab2.
+- Original article-cover source passed stable42631791036/1 and protected merge.
+- Production candidate42636883425/1 built but refused its hosting-wrapper/raw-edition mismatch before upload.
+- Current branch prepares the bounded candidate-publisher correction; resolve its live PR/ref in issue179.
 
 ## Decisions
 
-- Owner approved stable staging, then STOP/report. No merge or production approval.
-- Covers use padded1200x630 JPEGs; reader/print and portrait fallback retained.
-- PR-origin tags bind document versions, preserving reviewed runtime bytes.
-- Actual LinkedIn card remains unverified; production/Inspector gate stays open.
+- Owner authorized production completion after the stable report; issue179 comment6742719173.
+- Keep the strict raw edition/archive guard and separate exact hosting-package guard.
+- Retrieve authenticated raw candidate for edition checks; hosting wrapper remains separately verified.
+- Original AC01-AC06 and all budgets stay intact; actual LinkedIn result remains external.
 
 ## Open work
 
-- Keep exact producer successors, history, scanners and original budgets intact.
-- Helper extraction retains content/resource bytes; required producer identity changes regenerate snapshots.
-- Earlier completed reviews/raw checks are immutable evidence, never admission of another source.
-- Original AC01-AC06 retain their external gates; tags alone do not prove LinkedIn.
+- New regression executes the actual publish recheck with valid and corrupted raw/wrapper fixtures.
+- Requirements preflight and first failed producer remain in the existing issue179 review archive.
+- Workflow changes retain the full/control route; do not claim technical repository exemption.
+- No production activation occurred; current live article still uses portrait metadata.
 
 ## Next session
 
-1. Verify latest refs and actual source/tree/run/attempt in issue179 and PR180.
-2. If stable is pending, finish current-source checks/review and existing owner /stage route.
-3. If stable passed, stop for the owner's separate production decision.
+1. Resolve live refs/PR/checks and productionPublisherCorrection in the existing review archive.
+2. Finish current-source review/checks and ordinary stable before protected repair merge.
+3. Run corrected current-main candidate, exact rights/archive publication and live/LinkedIn checks.
 
 ## Maintenance
 
-- Five sections/120lines; issue/PR and immutable review receipts own full evidence.
-- Original requirements and reviews: review/issue-179/2026-11-09-review.json.gz.
-- Additional receipts use evidence/issue179-pr180-preview-admission-20261109, never deployment.
-- Rebuild/verify RI after indexed edits; preserve bounds and historical ledgers.
+- Five sections/120lines; issue179 and its linked PR/evidence own actual delivery status.
+- Review owner: review/issue-179/2026-11-09-review.json.gz.
+- Original successful stage and failed production candidate remain separate historical evidence.
+- Rebuild/verify RI after indexed edits; preserve history and checksum/scanner boundaries.

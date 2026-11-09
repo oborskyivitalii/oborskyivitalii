@@ -723,7 +723,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "6035613506d0ceea3bb72d722003c0076b25e90748a6784b5c38a867acefe1b6",
+    "digest": "b7083647777d4c412e6e12336caec889f299dad81f8853345fa5f93f6ff1270d",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -951,7 +951,7 @@
       },
       {
         "path": ".github/workflows/site-release-candidate.yml",
-        "sha256": "fd994835d43df8453ce9168b7654b63ad0903eed1ad40d7999bff70f02e0773a"
+        "sha256": "cd8e609f949aeb0ee1f55e968251191812803319cc342d2db5d9e76c8f817241"
       },
       {
         "path": ".github/workflows/site-release-checks.yml",
