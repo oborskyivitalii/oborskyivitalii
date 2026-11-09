@@ -58,6 +58,12 @@ function build(directory, descriptor) {
       inputs: descriptor.inputs,
     })
   );
+  const metadata = descriptor.headMetadata;
+  if (metadata) {
+    assert.deepEqual(Object.keys(metadata).sort(), Object.keys(documents).sort());
+    for (const value of Object.values(metadata))
+      assert.ok(typeof value === 'string' && value.length > 0 && value.length <= 16384);
+  }
   const versions = Object.fromEntries(
     Object.keys(documents).map((id) => [
       id,
@@ -68,7 +74,8 @@ function build(directory, descriptor) {
           ':' +
           engine +
           ':' +
-          source.sourceCommit
+          source.sourceCommit +
+          (metadata ? ':' + artifact.digest(metadata[id]) : '')
       ),
     ])
   );
@@ -87,7 +94,12 @@ function build(directory, descriptor) {
           html = html.replaceAll(base.engine, engine);
           for (const document of Object.keys(documents))
             html = html.replaceAll(documents[document].version, versions[document]);
-          return [kind, descriptor.render(html, id, source.sourceCommit)];
+          html = descriptor.render(html, id, source.sourceCommit);
+          if (metadata) {
+            assert.doesNotMatch(html, /property="og:(?:image|url)"|name="twitter:image"/);
+            html = html.replace('</head>', metadata[id] + '</head>');
+          }
+          return [kind, html];
         })
       ),
     ])

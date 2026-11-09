@@ -200,3 +200,23 @@ test('cold current source reproduces the composed Color and staging candidate ex
     /differs from cold current source generation/
   );
 });
+
+test('cold candidate reconstruction replays its declared PR social origin rather than ambient state', (t) => {
+  const f = fixture(t, ['color']);
+  const record = require('../tools/staging/edition.cjs').build(path.dirname(f.output), {
+    socialOrigin: 'https://pr-180.oborskyi-author-ci-staging.pages.dev',
+  });
+  assert.equal(verifyCandidateSource(f.output, record, { repoRoot: f.root }), true);
+  assert.throws(
+    () =>
+      verifyCandidateSource(
+        f.output,
+        {
+          ...record,
+          socialPreviewOrigin: 'https://pr-181.oborskyi-author-ci-staging.pages.dev',
+        },
+        { repoRoot: f.root }
+      ),
+    /differs from cold current source generation/
+  );
+});

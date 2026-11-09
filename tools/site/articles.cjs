@@ -46,11 +46,12 @@ function select(root, candidates = [], catalog = { records: {} }) {
   const selected = ids
     .filter((id) => accepted.includes(id) || candidates.includes(id))
     .map((id) => {
-      const article = require('./article-media.cjs').render(
+      const hosted = require('./article-media.cjs').render(
         root,
         publisher.loadArticle(root, id, { assetUrl: assetName }),
         assetName
       );
+      const article = require('./article-media.cjs').social(root, hosted, assetName);
       const materials = require('./article-materials.cjs').load(root, article);
       const resources = [
         ...article.assets,
@@ -248,7 +249,7 @@ function editionNotice(article) {
       (item) =>
         `<li>${escapeText(item.path)} · SHA256 ${item.sha256}<p>${escapeText(item.credit)}</p>` +
         (item.rendition
-          ? `<p>${item.rendition.kind === 'equivalent-jpeg' ? 'Pixel-equivalent source JPEG' : 'Lossless WebP copy'}: ${escapeText(item.rendition.file)} · SHA256 ${item.rendition.sha256}. ` +
+          ? `<p>${item.rendition.kind === 'social-jpeg' ? 'Padded social preview JPEG' : item.rendition.kind === 'equivalent-jpeg' ? 'Pixel-equivalent source JPEG' : 'Lossless WebP copy'}: ${escapeText(item.rendition.file)} · SHA256 ${item.rendition.sha256}. ` +
             `Decoded RGBA SHA256 ${item.rendition.pixelSha256}; color profile SHA256 ${item.rendition.iccSha256}.</p>`
           : '') +
         '</li>'

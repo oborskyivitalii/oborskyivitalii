@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 179,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/179",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Correct article cover selection",
+      "automated_scope": "SOCIAL exercises current producer/codec, metadata, alias, source/hash, delivery and archive negatives; BASIC verifies generated/package coherence. Neither proves visual approval, hosted publication or the LinkedIn cache result.",
+      "checks": ["SOCIAL"],
+      "gates": ["REVIEW"]
+    },
+    {
+      "id": "AC02",
+      "intent": "Usable cover rendition and exact metadata",
+      "automated_scope": "SOCIAL exercises current producer/codec, metadata, alias, source/hash, delivery and archive negatives; BASIC verifies generated/package coherence. Neither proves visual approval, hosted publication or the LinkedIn cache result.",
+      "checks": ["SOCIAL"],
+      "gates": ["VISUAL"]
+    },
+    {
+      "id": "AC03",
+      "intent": "Route and fallback consistency",
+      "automated_scope": "SOCIAL exercises current producer/codec, metadata, alias, source/hash, delivery and archive negatives; BASIC verifies generated/package coherence. Neither proves visual approval, hosted publication or the LinkedIn cache result.",
+      "checks": ["SOCIAL"],
+      "gates": ["REVIEW"]
+    },
+    {
+      "id": "AC04",
+      "intent": "Current and historical delivery integrity",
+      "automated_scope": "SOCIAL exercises current producer/codec, metadata, alias, source/hash, delivery and archive negatives; BASIC verifies generated/package coherence. Neither proves visual approval, hosted publication or the LinkedIn cache result.",
+      "checks": ["SOCIAL"],
+      "gates": ["RELEASE"]
+    },
+    {
+      "id": "AC05",
+      "intent": "Reviewed exact-source implementation and checks",
+      "automated_scope": "SOCIAL exercises current producer/codec, metadata, alias, source/hash, delivery and archive negatives; BASIC verifies generated/package coherence. Neither proves visual approval, hosted publication or the LinkedIn cache result.",
+      "checks": ["BASIC", "STYLE", "RI", "RI-CI"],
+      "gates": ["REVIEW", "PREVIEW", "RELEASE"]
+    },
+    {
+      "id": "AC06",
+      "intent": "Actual LinkedIn preview after publication",
+      "automated_scope": "SOCIAL exercises current producer/codec, metadata, alias, source/hash, delivery and archive negatives; BASIC verifies generated/package coherence. Neither proves visual approval, hosted publication or the LinkedIn cache result.",
+      "checks": ["SOCIAL"],
+      "gates": ["LINKEDIN", "RELEASE"]
+    }
+  ],
+  "checks": {
+    "SOCIAL": {
+      "kind": "unittest",
+      "test": "test_issue179_acceptance.Issue179AcceptanceTests.test_article_social_contracts"
+    },
+    "BASIC": {
+      "kind": "node-basic"
+    },
+    "STYLE": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    }
+  },
+  "gates": {
+    "REVIEW": {
+      "kind": "human",
+      "description": "Four distinct nonauthor requirements/code/white-box/exploratory results, test-impact and applicable CS01-CS10 review on the exact candidate."
+    },
+    "VISUAL": {
+      "kind": "human",
+      "description": "Inspect the actual generated cover JPEG for preserved full composition, padding and truthful readable alt; retained portrait fallback is an explicit exception to new-cover dimensions."
+    },
+    "PREVIEW": {
+      "kind": "human",
+      "description": "Exact Draft PR preview and image URL observed, noindex/isolation retained; maintainer reviews before further advancement."
+    },
+    "RELEASE": {
+      "kind": "human",
+      "description": "Separately owner-authorized stable staging, protected merge and production/live verification remain deferred at the PR-preview checkpoint."
+    },
+    "LINKEDIN": {
+      "kind": "human",
+      "description": "After verified production, observe the actual LinkedIn Post Inspector scrape after cache refresh. Blocked access remains pending; no post publication is authorized."
+    }
+  }
+}

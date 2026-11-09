@@ -167,6 +167,8 @@ test('historical edition verification survives changed or absent authored portra
     'tools/quality/artifact.cjs',
     'tools/quality/budgets.json',
     'tools/site/snapshot.cjs',
+    'tools/site/social-image.cjs',
+    'tools/site/html.cjs',
     'tools/site/fallback.cjs',
     'tools/site/public-artifact.cjs',
     'site/engine/article-tags.cjs',
@@ -255,7 +257,10 @@ test('historical edition verification survives changed or absent authored portra
       'property="og:image:width" content="959"'
     )
   );
-  const changed = { ...source.record, ...artifact.manifest(path.join(source.directory, 'public')) };
+  const changed = {
+    ...source.record,
+    ...artifact.manifest(path.join(source.directory, 'public')),
+  };
   assert.throws(() => historical.verify(source.directory, changed), /image dimensions differ/);
   fs.writeFileSync(
     index,
@@ -264,7 +269,10 @@ test('historical edition verification survives changed or absent authored portra
       'property="og:image" content="https://foreign.invalid/'
     )
   );
-  const foreign = { ...source.record, ...artifact.manifest(path.join(source.directory, 'public')) };
+  const foreign = {
+    ...source.record,
+    ...artifact.manifest(path.join(source.directory, 'public')),
+  };
   assert.throws(() => historical.verify(source.directory, foreign), /foreign origin/);
 });
 

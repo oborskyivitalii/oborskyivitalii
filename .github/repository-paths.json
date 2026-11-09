@@ -17221,78 +17221,6 @@
       "role": "test",
       "owner": ".github/ACCEPTANCE.md"
     },
-    "docs/article-snapshots/eb562d4358d09877a0c0e0e0382bf3d865814e8e914a6279a21f20454c190a29": {
-      "kind": "directory",
-      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/eb562d4358d09877a0c0e0e0382bf3d865814e8e914a6279a21f20454c190a29/the-sdlc-is-out-of-balance.html": {
-      "kind": "file",
-      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/633f64ce3bf0136a0e464731dcfd7992d9f46fbe98f853f2e48491d9f3609c2c": {
-      "kind": "directory",
-      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/633f64ce3bf0136a0e464731dcfd7992d9f46fbe98f853f2e48491d9f3609c2c/research.html": {
-      "kind": "file",
-      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/8f12003dd20b05edbc3c0056d4c1414e103505793cbac1f35df89f38023e456d": {
-      "kind": "directory",
-      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/8f12003dd20b05edbc3c0056d4c1414e103505793cbac1f35df89f38023e456d/credits.html": {
-      "kind": "file",
-      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/9f8e7ef3e7a92aa330e6543f026f703a0c705483eee8b0c39420620e005ec390": {
-      "kind": "directory",
-      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/9f8e7ef3e7a92aa330e6543f026f703a0c705483eee8b0c39420620e005ec390/talks.html": {
-      "kind": "file",
-      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/f5dfa9db166b4dc82ff203692150adb478d6688a6d590d56c21e09ffb0081e11": {
-      "kind": "directory",
-      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/f5dfa9db166b4dc82ff203692150adb478d6688a6d590d56c21e09ffb0081e11/writing.html": {
-      "kind": "file",
-      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/f6eb0ea25f11ae5e305694a02c4c05d36e2915864b8ef94342226ae2741bdfbc": {
-      "kind": "directory",
-      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/f6eb0ea25f11ae5e305694a02c4c05d36e2915864b8ef94342226ae2741bdfbc/index.html": {
-      "kind": "file",
-      "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "review/issue-177/2026-11-08-code-first.md": {
       "kind": "file",
       "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
@@ -17430,6 +17358,126 @@
       "purpose": "Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    ".github/acceptance/issue-179.json": {
+      "kind": "file",
+      "purpose": "Issue179 AC01-AC06 source-check mapping with explicit visual, preview, release and LinkedIn gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "docs/article-media/7144d8165842a07ac8194e88a7301b777f11dac41ca1dcf8d88f6ba4cbecb27f": {
+      "kind": "directory",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/7144d8165842a07ac8194e88a7301b777f11dac41ca1dcf8d88f6ba4cbecb27f/hero-web-social.jpg": {
+      "kind": "file",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "review/issue-179": {
+      "kind": "directory",
+      "purpose": "Issue179 source-bound social preview intent, requirements and implementation/test-impact evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "tests/test_issue179_acceptance.py": {
+      "kind": "file",
+      "purpose": "Issue179 bounded article-social source contracts and complete native test accounting.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "tools/site/social-image.cjs": {
+      "kind": "file",
+      "purpose": "Shared escaped social-image metadata and finite article-rendition descriptor validation.",
+      "role": "source",
+      "owner": "guides/SITE-SEO.md"
+    },
+    "review/issue-179/2026-11-09-review.json.gz": {
+      "kind": "file",
+      "purpose": "Issue179 verbatim independent first review receipts, exact source checks and correction treatments. Gzip preserves raw JSON byte content.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-179/seo-producers.json": {
+      "kind": "file",
+      "purpose": "Exact issue179 social-image producer successors preserving historical Writing and Research carrier proofs.",
+      "role": "configuration",
+      "owner": "guides/SITE-SEO.md"
+    },
+    "docs/article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995": {
+      "kind": "directory",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995/the-sdlc-is-out-of-balance.html": {
+      "kind": "file",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/2f7990f981ececb87582a10e1e4642b867f23f4e531e312bfa7ec4cf9a2bd408": {
+      "kind": "directory",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/2f7990f981ececb87582a10e1e4642b867f23f4e531e312bfa7ec4cf9a2bd408/talks.html": {
+      "kind": "file",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/080da808855bdc7cac66970509a9a371a5033cb5d721a007a92632c826b2d06a": {
+      "kind": "directory",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/080da808855bdc7cac66970509a9a371a5033cb5d721a007a92632c826b2d06a/writing.html": {
+      "kind": "file",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/a7e206bb92dcfae8b6ee42ded9a7722346a5262b72b10d8ff1125259d9412e49": {
+      "kind": "directory",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/a7e206bb92dcfae8b6ee42ded9a7722346a5262b72b10d8ff1125259d9412e49/research.html": {
+      "kind": "file",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/83df95879db4fb6eff6947bbbcb0df74f18aeff64e77f8f57a4d9677a955badb": {
+      "kind": "directory",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/83df95879db4fb6eff6947bbbcb0df74f18aeff64e77f8f57a4d9677a955badb/index.html": {
+      "kind": "file",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/46c259b15720af2cb02c7cb78e7b9b8d4031492452350c9d2cd74d9c3e4e801b": {
+      "kind": "directory",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/46c259b15720af2cb02c7cb78e7b9b8d4031492452350c9d2cd74d9c3e4e801b/credits.html": {
+      "kind": "file",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
     }
   }
 }

@@ -119,7 +119,7 @@ test('article delivery includes a finite separate inventory, immutable document 
   assert.equal(record.components.preview, true);
   assert.equal(snapshot.immutable(article.alias), false);
   assert.equal(snapshot.immutable(article.url), true);
-  assert.equal(article.assets.length, 2);
+  assert.equal(article.assets.length, 3);
   for (const file of article.assets) {
     assert.equal(snapshot.immutable(file), true);
     assert.equal(artifact.digest(fs.readFileSync(path.join(publicDir, file))), file.split('/')[1]);
@@ -215,6 +215,91 @@ test('staging derives labelled article snapshots and removes prior unlabelled HT
     assert.match(html, /class="site-environment"/);
   }
   pages.checkStaging(directory, stage);
+  assert.doesNotMatch(
+    fs.readFileSync(path.join(publicDir, current.alias), 'utf8'),
+    /property="og:image"/
+  );
+});
+
+test('PR social metadata binds each cover and alias before hashing while retaining isolation', (t) => {
+  const { directory, publicDir } = fixture(t);
+  const origin = 'https://pr-180.oborskyi-author-ci-staging.pages.dev';
+  require('../tools/staging/color.cjs').build(directory);
+  const stage = stageEdition.build(directory, { socialOrigin: origin });
+  require('../tools/quality/color-motion-contract.cjs').select(stage);
+  const images = new Set();
+  for (const article of Object.values(stage.components.articles)) {
+    images.add(article.socialImage.file);
+    for (const name of [article.alias, article.url]) {
+      const html = fs.readFileSync(path.join(publicDir, name), 'utf8');
+      assert.ok(
+        html.includes(
+          'property="og:image" content="' + origin + '/' + article.socialImage.file + '"'
+        )
+      );
+      assert.ok(html.includes('property="og:url" content="' + origin + '/' + article.alias + '"'));
+      assert.equal((html.match(/property="og:image"/g) || []).length, 1);
+      assert.match(html, /name="robots" content="noindex,nofollow"/);
+      assert.doesNotMatch(html, /data-site-analytics|google-site-verification|rel="canonical"/);
+    }
+  }
+  assert.equal(images.size, 2, 'distinct article covers use distinct images');
+  const home = fs.readFileSync(path.join(publicDir, 'index.html'), 'utf8');
+  assert.ok(
+    home.includes('property="og:image" content="' + origin + '/assets/vitalii-oborskyi.jpg"')
+  );
+  assert.ok(home.includes('property="og:url" content="' + origin + '/"'));
+  pages.checkStaging(directory, stage);
+  artifact.verify(publicDir, stage);
+});
+
+test('different PR metadata changes immutable document identities while retaining the reviewed runtime', (t) => {
+  const a = fixture(t),
+    b = fixture(t);
+  for (const item of [a, b]) require('../tools/staging/color.cjs').build(item.directory);
+  const first = stageEdition.build(a.directory, {
+    socialOrigin: 'https://pr-180.oborskyi-author-ci-staging.pages.dev',
+  });
+  const second = stageEdition.build(b.directory, {
+    socialOrigin: 'https://pr-181.oborskyi-author-ci-staging.pages.dev',
+  });
+  assert.equal(first.components.engine, second.components.engine);
+  assert.notEqual(first.components.routes.index.version, second.components.routes.index.version);
+  assert.notEqual(first.components.articles[key].version, second.components.articles[key].version);
+  assert.notEqual(first.artifactDigest, second.artifactDigest);
+});
+
+test('PR social metadata rejects non-PR or non-origin destinations', (t) => {
+  const { directory } = fixture(t);
+  for (const socialOrigin of [
+    'https://vitaliioborskyi.ai',
+    'https://staging.oborskyi-author-ci-staging.pages.dev',
+    'http://pr-180.oborskyi-author-ci-staging.pages.dev',
+    'https://pr-180.oborskyi-author-ci-staging.pages.dev/path',
+    'https://pr-180.oborskyi-author-ci-staging.pages.dev?x=1',
+    'https://user@pr-180.oborskyi-author-ci-staging.pages.dev',
+  ])
+    assert.throws(
+      () => stageEdition.build(directory, { socialOrigin }),
+      /explicit PR Pages origin/
+    );
+});
+
+test('PR social metadata retains the portrait for an article without a social descriptor', (t) => {
+  const { directory, publicDir, record } = fixture(t);
+  const revisionFile = path.join(publicDir, 'site-revision.json');
+  const revision = JSON.parse(fs.readFileSync(revisionFile));
+  delete revision.articles[key].socialImage;
+  fs.writeFileSync(revisionFile, JSON.stringify(revision));
+  record.components.articles = revision.articles;
+  Object.assign(record, artifact.manifest(publicDir));
+  fs.writeFileSync(path.join(directory, 'artifact.json'), JSON.stringify(record));
+  const origin = 'https://pr-180.oborskyi-author-ci-staging.pages.dev';
+  const stage = stageEdition.build(directory, { socialOrigin: origin });
+  const html = fs.readFileSync(path.join(publicDir, stage.components.articles[key].alias), 'utf8');
+  assert.ok(
+    html.includes('property="og:image" content="' + origin + '/assets/vitalii-oborskyi.jpg"')
+  );
 });
 
 test('Color replaces an unpublished base article while retaining declared historical bytes', (t) => {

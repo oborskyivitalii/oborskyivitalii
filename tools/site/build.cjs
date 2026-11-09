@@ -485,6 +485,10 @@ function prepareArticles(root, selectedArticles, components, versioned, preview)
   }
 }
 
+function optionalSocialImage(article) {
+  return article.socialImage ? { socialImage: article.socialImage } : {};
+}
+
 function optionalDownloads(article) {
   return article.downloads ? { downloads: article.downloads } : {};
 }
@@ -570,6 +574,7 @@ function emitArticles({
       sha256: result.files[article.snapshot],
       inputs: input.inputs,
       assets: [...article.assets.map(articles.assetName), fallbackResource.name],
+      ...optionalSocialImage(article),
       ...optionalDownloads(article),
       candidate: article.candidate,
       articleId: article.metadata.id,
@@ -631,6 +636,7 @@ function emitRevision({ root, components, selectedArticles, result, temporary, p
                 alias: article.url,
                 scene: 'writing',
                 assets: article.assets,
+                ...optionalSocialImage(article),
                 ...optionalDownloads(article),
                 candidate: article.candidate,
                 articleId: article.articleId,

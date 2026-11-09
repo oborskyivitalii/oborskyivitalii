@@ -85,6 +85,94 @@ test('media rejects corrupt bytes, wrong source, dimensions, oversized decoding 
     assert.throws(() => media.encode([changed]), /Lossless article media preparation failed/);
 });
 
+test('social covers retain the full admitted alt boundary and escape metadata', () => {
+  const article = require('../tools/publishing/article.cjs').loadArticle(
+    repo,
+    'sdlc-out-of-balance'
+  );
+  const social = require('../tools/site/social-image.cjs');
+  for (const length of [500, 501, 1000]) {
+    const alt = 'Cover ' + '"'.repeat(length - 6);
+    const rendered = media.social(
+      repo,
+      {
+        ...article,
+        furniture: { ...article.furniture, cover: { ...article.furniture.cover, alt } },
+      },
+      articles.assetName
+    );
+    assert.equal(rendered.socialImage.alt, alt);
+    social.validate(rendered.socialImage, rendered.assets.map(articles.assetName));
+    assert.ok(social.metadata(rendered.socialImage, 'https://example.test').includes('&quot;'));
+    assert.throws(() =>
+      social.validate(
+        { ...rendered.socialImage, alt: 'x'.repeat(1001) },
+        rendered.assets.map(articles.assetName)
+      )
+    );
+  }
+});
+
+test('declared covers get distinct deterministic padded social JPEGs without changing reader media', () => {
+  const publisher = require('../tools/publishing/article.cjs');
+  const results = ['sdlc-out-of-balance', 'pmday-two-shifts'].map((id) => {
+    const article = publisher.loadArticle(repo, id);
+    const before = article.assets.map((asset) => sha(asset.bytes));
+    const first = media.social(repo, article, articles.assetName);
+    const second = media.social(repo, article, articles.assetName);
+    assert.deepEqual(first.socialImage, second.socialImage);
+    assert.deepEqual(
+      article.assets.map((asset) => sha(asset.bytes)),
+      before
+    );
+    assert.equal(first.assets.length, article.assets.length + 1);
+    assert.equal(first.assets.at(-1).path, article.furniture.cover.path);
+    assert.equal(first.assets.at(-1).sourceDigest, article.furniture.cover.sha256);
+    assert.equal(first.assets.at(-1).rendition.kind, 'social-jpeg');
+    assert.notEqual(first.assets.at(-1).id, article.furniture.cover.id);
+    assert.equal(first.socialImage.width, 1200);
+    assert.equal(first.socialImage.height, 630);
+    assert.ok(first.assets.at(-1).bytes.length < 2000000);
+    require('../tools/site/social-image.cjs').validate(
+      first.socialImage,
+      first.assets.map(articles.assetName)
+    );
+    const decoded = cp.spawnSync(
+      path.join(repo, 'tools/quality/toolchain/venv/bin/python'),
+      [
+        '-c',
+        'import io,sys;from PIL import Image;im=Image.open(io.BytesIO(sys.stdin.buffer.read()));assert im.format=="JPEG" and im.size==(1200,630);assert im.getpixel((0,0))==(255,255,255);assert im.getpixel((1199,629))==(255,255,255)',
+      ],
+      { input: first.assets.at(-1).bytes }
+    );
+    assert.equal(decoded.status, 0, decoded.stderr.toString());
+    return first.socialImage.file;
+  });
+  assert.notEqual(results[0], results[1]);
+  assert.equal(
+    media.social(repo, original, articles.assetName),
+    original,
+    'omitted cover retains fallback'
+  );
+  assert.throws(
+    () =>
+      media.social(
+        repo,
+        {
+          ...original,
+          furniture: {
+            cover: {
+              ...original.assets[0],
+              sha256: '0'.repeat(64),
+            },
+          },
+        },
+        articles.assetName
+      ),
+    /source identity/
+  );
+});
+
 test('opt-in preparation preserves original print inputs and binds visible hosted rights to both copies', () => {
   const [article] = articles.select(repo, ['reader-reference']);
   assert.equal(original.assets[0].mime, 'image/png');
@@ -349,7 +437,8 @@ test('current article preview retains full edition and PDF closure inside unchan
   assert.ok(row.totalGzipBytes < 800000);
   assert.ok(row.downloadGzipBytes > 500000);
   assert.equal(descriptor.assets.filter((name) => name.endsWith('.webp')).length, 4);
-  assert.equal(descriptor.assets.filter((name) => name.endsWith('.jpg')).length, 1);
+  assert.equal(descriptor.assets.filter((name) => name.endsWith('.jpg')).length, 2);
+  assert.ok(descriptor.socialImage.file.endsWith('-social.jpg'));
   assert.equal(descriptor.sourceSha256, expectedSourceSha);
   assert.equal(descriptor.contentEdition, expectedEdition);
   assert.equal(descriptor.downloads.length, 1);

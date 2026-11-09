@@ -230,6 +230,7 @@ function hostedInventory(publicDirectory, sourceRoot, record, manifest) {
   const editions = [];
   for (const article of selected) {
     const descriptor = descriptors[article.key];
+    assert.deepEqual(descriptor.socialImage, article.socialImage, 'hosted cover selection differs');
     const notice = reader.editionNotice(article);
     for (const [key, value] of Object.entries({
       articleId: article.metadata.id,

@@ -16,6 +16,49 @@ function issue159CopyFixture(t, names) {
   return directory;
 }
 
+test('social carrier successor rejects wrong predecessor, source bytes and expanded scope', (t) => {
+  const { socialCarrierProducer } = require('../tools/check_site_seo.cjs');
+  const record = require('../review/issue-179/seo-producers.json');
+  for (const [file, change] of Object.entries(record.producerChanges)) {
+    assert.equal(socialCarrierProducer(file, change.beforeSHA256), change.afterSHA256);
+    const directory = issue159CopyFixture(t, [file]);
+    fs.appendFileSync(require('node:path').join(directory, file), '\n// unknown source\n');
+    assert.throws(
+      () => socialCarrierProducer(file, change.beforeSHA256, directory),
+      /Social carrier producer bytes/
+    );
+    const forged = structuredClone(record);
+    forged.producerChanges[file].afterSHA256 = require('node:crypto')
+      .createHash('sha256')
+      .update(fs.readFileSync(require('node:path').join(directory, file)))
+      .digest('hex');
+    assert.throws(
+      () => socialCarrierProducer(file, change.beforeSHA256, directory, forged),
+      /Social carrier approved record/
+    );
+    for (const mutate of [
+      (r) => delete r.producerChanges[file],
+      (r) => (r.schema = 2),
+      (r) => (r.issue = 0),
+      (r) => (r.predecessorSource = '0'.repeat(40)),
+      (r) => (r.producerChanges[file].beforeSHA256 = '0'.repeat(64)),
+      (r) => (r.producerChanges[file].afterSHA256 = '0'.repeat(64)),
+      (r) => (r.producerChanges['tools/site/fallback.cjs'] = { ...change }),
+    ]) {
+      const invalid = structuredClone(record);
+      mutate(invalid);
+      assert.throws(() =>
+        socialCarrierProducer(
+          file,
+          change.beforeSHA256,
+          require('node:path').resolve(__dirname, '..'),
+          invalid
+        )
+      );
+    }
+  }
+});
+
 test('Writing carrier proof rejects altered source, geometry and resource bindings', () => {
   const { verifyWritingCarrier } = require('../tools/check_site_seo.cjs');
   const original = require('../review/issue-169/writing-carrier.json');
@@ -82,7 +125,11 @@ test('Research carrier reconstructs the accepted scene and rejects unknown produ
     /Research predecessor producer bytes/
   );
   assert.throws(
-    () => seo.verifyResearchCarrier(root, { ...record, acceptedSvgSHA256: '0'.repeat(64) }),
+    () =>
+      seo.verifyResearchCarrier(root, {
+        ...record,
+        acceptedSvgSHA256: '0'.repeat(64),
+      }),
     /accepted Research geometry/
   );
   assert.throws(
@@ -287,7 +334,10 @@ test('HTML parser successor preserves exact predecessor pins, current bytes and 
   const digest = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
   assert.equal(digest(predecessor), record.beforeSHA256);
   assert.equal(digest(current), record.afterSHA256);
-  const prior = { [record.path]: record.beforeSHA256, unrelated: 'f'.repeat(64) };
+  const prior = {
+    [record.path]: record.beforeSHA256,
+    unrelated: 'f'.repeat(64),
+  };
   const next = seo.reviewedHTMLProducerBindings(prior);
   assert.deepEqual(next, { ...prior, [record.path]: record.afterSHA256 });
   assert.equal(prior[record.path], record.beforeSHA256, 'historical input is immutable');

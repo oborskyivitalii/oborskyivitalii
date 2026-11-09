@@ -7,12 +7,13 @@ const crypto = require('node:crypto');
 const { readSource } = require('../publishing/safety.cjs');
 const digest = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
-function encode(assets) {
+function encode(assets, { social = false } = {}) {
   const venv = path.resolve(__dirname, '../quality/toolchain/venv/bin/python');
   const python = process.env.SITE_MEDIA_PYTHON || (fs.existsSync(venv) ? venv : 'python3');
   const child = cp.spawnSync(python, [path.resolve(__dirname, '../publishing/web-media.py')], {
     input: JSON.stringify({
       schema: 1,
+      ...(social ? { social: true } : {}),
       images: assets.map((asset) => ({
         sha256: asset.digest,
         width: asset.width,
@@ -40,16 +41,19 @@ function encode(assets) {
   return result.images.map((item, index) => {
     const source = assets[index];
     const bytes = Buffer.from(item.base64, 'base64');
-    const jpeg = Boolean(source.equivalentJpeg);
+    const jpeg = social || Boolean(source.equivalentJpeg);
     if (
       item.sourceSha256 !== source.digest ||
       item.sha256 !== digest(bytes) ||
-      item.width !== source.width ||
-      item.height !== source.height ||
-      item.kind !== (jpeg ? 'equivalent-jpeg' : 'webp-lossless') ||
-      (jpeg
-        ? !bytes.equals(source.equivalentJpeg.bytes)
-        : bytes.toString('ascii', 0, 4) !== 'RIFF' || bytes.toString('ascii', 8, 12) !== 'WEBP') ||
+      item.width !== (social ? 1200 : source.width) ||
+      item.height !== (social ? 630 : source.height) ||
+      item.kind !== (social ? 'social-jpeg' : jpeg ? 'equivalent-jpeg' : 'webp-lossless') ||
+      (social
+        ? bytes.readUInt16BE(0) !== 0xffd8
+        : jpeg
+          ? !bytes.equals(source.equivalentJpeg.bytes)
+          : bytes.toString('ascii', 0, 4) !== 'RIFF' ||
+            bytes.toString('ascii', 8, 12) !== 'WEBP') ||
       !/^[a-f0-9]{64}$/.test(item.pixelSha256) ||
       !/^[a-f0-9]{64}$/.test(item.iccSha256)
     )
@@ -61,12 +65,16 @@ function encode(assets) {
       bytes,
       digest: item.sha256,
       sourceDigest: source.digest,
-      outputName: path.posix.basename(source.path).replace(/\.png$/, jpeg ? '.jpg' : '.webp'),
+      width: item.width,
+      height: item.height,
+      outputName: path.posix
+        .basename(source.path)
+        .replace(/\.png$/, social ? '-social.jpg' : jpeg ? '.jpg' : '.webp'),
       mime: jpeg ? 'image/jpeg' : 'image/webp',
       rendition: {
         schema: 1,
         kind: item.kind,
-        ...(jpeg
+        ...(jpeg && !social
           ? {
               equivalentSource: source.equivalentJpeg.path,
               equivalentSha256: source.equivalentJpeg.digest,
@@ -80,6 +88,31 @@ function encode(assets) {
       },
     };
   });
+}
+
+function social(root, article, assetName) {
+  const cover = article.furniture?.cover;
+  if (!cover) return article;
+  const source = readSource(root, cover.path, { maxBytes: 5000000 });
+  if (source.sha256 !== cover.sha256) throw Error('Social cover source identity differs');
+  const [image] = encode([{ ...cover, digest: source.sha256, bytes: source.bytes }], {
+    social: true,
+  });
+  image.id = cover.id + '-social-preview';
+  image.url = assetName(image);
+  if (article.assets.some((asset) => asset.id === image.id))
+    throw Error('Duplicate social rendition id');
+  return {
+    ...article,
+    socialImage: {
+      file: assetName(image),
+      type: image.mime,
+      width: image.width,
+      height: image.height,
+      alt: cover.alt,
+    },
+    assets: [...article.assets, image],
+  };
 }
 
 function render(root, article, assetName) {
@@ -123,4 +156,4 @@ function render(root, article, assetName) {
   };
 }
 
-module.exports = { encode, render };
+module.exports = { encode, render, social };

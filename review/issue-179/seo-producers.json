@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "issue": 179,
+  "predecessorSource": "fe7baab277a8b90de330a1cec738b7085faf7223",
+  "producerChanges": {
+    "tools/site/build.cjs": {
+      "beforeSHA256": "ee69b9950ed0982a69344c5b92f6988b293362112817d8a2fc504ebfe101adee",
+      "afterSHA256": "5e8f0dc13bd616db837fdb65c52c5fedf6ad27dff7efb661ed8c0bbdd283c258"
+    },
+    "tools/site/snapshot.cjs": {
+      "beforeSHA256": "eae15e6734b64ebc015d56e34ebc0a3118ae21f3e1fb340df89075cb1df206f4",
+      "afterSHA256": "834a7b7da511051d5f0e0bf6efb264120534ce7acc3e449c641a62169736f04f"
+    }
+  }
+}
