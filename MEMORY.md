@@ -11,7 +11,7 @@ Dated continuity, not live authority. Last verified: **2026-11-10**.
 ## Decisions
 
 - Original intake split into189→188→187. Archives remain in this repo; final RI hash-input headroom target is10,000,000bytes without raising caps.
-- User continued with “Далі?” after T03/T04; bounded T05 preparation/report now. No merge/release authorization is inferred.
+- On10November the maintainer explicitly accepted keeping the two RI whole-file formatting deltas in PR190 (“Залишай”); dated CS05 exception is in issue189 and PR190 comment6778023443. No merge/release approval is inferred.
 - Keep one producer/two outputs/full machine inventory and legacy unqualified lookup. Short map/scoped paging and capacity diagnostics use the same producer; full inventory/hashing and legacy unqualified results remain. No service/cache/shards.
 
 ## Open work
@@ -19,12 +19,12 @@ Dated continuity, not live authority. Last verified: **2026-11-10**.
 - Frozen19 /11,386,774bytes: review/issue-189/selected-files.json. Recovery commands/checksums: review/issue-189/archive-index.json and3capture ARCHIVE.md guides; gallery locators require full ZIP extraction for relative media.
 - T02 media/ZIP/gzip/manifests and earlier evidence remain exact. T03/T04 changes only declared RI owners/contract/tests/entry metadata; site/docs/drafts/agents remain unchanged. Accounting/reviews: review/issue-189/2026-11-10-analysis.md and PR190 checkpoint.
 - Preserve218-byte secrets-ledger margin and existing resource caps. Include all final metadata/evidence in net recovery; final>=10MB target is actual complete-source accounting, not the earlier remaining-allowance forecast.
-- All AC01–AC05 stay open. Issue189 policy now maps45 named checks and seven external gates; final-source checks are in PR190; trusted delivery remains pending. CS05 mixed-PR whole-file-formatting maintainer exception is unobserved/pending; AST parity/reviewer approval cannot supply it.
+- All AC01–AC05 stay open. Issue189 policy now maps45 named checks and seven external gates; final-source checks are in PR190; trusted delivery remains pending. CS05 exception is accepted for the two RI files; remaining semantic/full-route admission and merge decisions stay pending.
 
 ## Next session
 
 1. Revalidate refs, issue189/PR190, current-source checks and latest user instruction; use the dated report/recovery index, not memory alone.
-2. T05 checkpoint: policy/current-source checks, protected selection, four-role reviews and final bytes in PR190. Bootstrap/byte-guard findings resolved. CS05 requires actual owner exception or conforming source disposition before advancement.
+2. T05 checkpoint: policy/current-source checks, protected selection, four-role reviews and final bytes in PR190. Bootstrap/byte-guard findings resolved. CS05 blocker resolved by the explicit10November owner decision; do not ask for that decision again.
 3. Next T06: actual protected full/control route, exact reviewed_sha/owner decisions, current source/RI/owning/hosted/admission checks and trusted delivery. Hand off to188 afterward.
 
 ## Maintenance
