@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "d78a1caeb63fd6bd6d28a3bcb5c371cc1a713e953699732abc2e16f55d16b4e3",
+    "digest": "097385ad8af113287511f221bdc9d3457872498a1d493364b44170da437d6bdd",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -236,12 +236,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "0ec579c75807289b65145e33a10cabecfd5625671ac4f0198d624db8df580a73"
+        "sha256": "fae87b0d3a78294b3ff35dc63e6841b58a3d0d35f592dd17e03673645dc61406"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "45c7d581a2e4b0aab289e6ab8dec0b1c6ccaa35097cd598c431d247653170c5e"
+        "sha256": "cb6970e79f47d4158b95cd2d3ed5883aad660ed35d9c8e99e8258b0def18f185"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -2140,7 +2140,7 @@
       {
         "path": "review/issue-169/2026-11-10-r12-preview.md",
         "identity_mode": "content",
-        "sha256": "e9db4525b9ff15d22c612ae71f6fec843fc31cc1432132ffdc61320e3da154fd"
+        "sha256": "b5d2dd30d3c83876a6b0419d6996d36bb4a3a5fd421731e712dde42954500449"
       },
       {
         "path": "review/issue-169/browser-media-reviews-and-checks.tar.xz",
@@ -3386,6 +3386,11 @@
         "path": "review/issue-169/r12-evidence.tar.xz",
         "identity_mode": "content",
         "sha256": "b8f78f60c4fc216b65c74145e0ca5f84fa963be32cf8c1a492f93a52572a02b0"
+      },
+      {
+        "path": "review/issue-169/r12-stable-correction-evidence.tar.xz",
+        "identity_mode": "content",
+        "sha256": "774e1686401225c9ca63e18e67abcabe7c19711c6e2a08c0cf5570834538433e"
       },
       {
         "path": "review/issue-169/r12-stable-evidence.tar.xz",
@@ -21216,6 +21221,17 @@
       "title": "r12-evidence.tar.xz"
     },
     {
+      "path": "review/issue-169/r12-stable-correction-evidence.tar.xz",
+      "kind": "file",
+      "purpose": "Actual native failure logs, bounded catalogue correction reviews and clean affected verification.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "r12-stable-correction-evidence.tar.xz"
+    },
+    {
       "path": "review/issue-169/r12-stable-evidence.tar.xz",
       "kind": "file",
       "purpose": "Literal same-role stable delta reviews, source selection and exact-source check receipts.",
@@ -36543,7 +36559,7 @@
       "kind": "file",
       "purpose": "Issue169 R12 source, matching PDF or source-bound review evidence.",
       "role": "source",
-      "owner": "site/README.md",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -37764,7 +37780,7 @@
       "kind": "file",
       "purpose": "Issue169 R12 source, matching PDF or source-bound review evidence.",
       "role": "source",
-      "owner": "site/README.md",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -37863,7 +37879,7 @@
       "kind": "file",
       "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
       "role": "source",
-      "owner": "site/README.md",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -38071,7 +38087,7 @@
       "path": "site/retained/article-snapshots/58c70d6edea51b0dd47fefe3c80cb1c78c59e24a8956093616fee4229786dc98/the-sdlc-is-out-of-balance.html",
       "kind": "file",
       "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
-      "role": "source",
+      "role": "history",
       "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
@@ -38489,7 +38505,7 @@
       "path": "site/retained/snapshots/412f5b5cd2d1991265f5b6dd9d899516e79e8f4f78bd3d8c59f63975bd72b52e/writing.html",
       "kind": "file",
       "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
-      "role": "source",
+      "role": "history",
       "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
@@ -45540,7 +45556,7 @@
       "path": "site/retained/article-snapshots/58c70d6edea51b0dd47fefe3c80cb1c78c59e24a8956093616fee4229786dc98",
       "kind": "directory",
       "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
-      "role": "source",
+      "role": "history",
       "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
@@ -45710,7 +45726,7 @@
       "path": "site/retained/snapshots/412f5b5cd2d1991265f5b6dd9d899516e79e8f4f78bd3d8c59f63975bd72b52e",
       "kind": "directory",
       "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
-      "role": "source",
+      "role": "history",
       "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"

@@ -17555,13 +17555,13 @@
       "kind": "file",
       "purpose": "Issue169 R12 source, matching PDF or source-bound review evidence.",
       "role": "source",
-      "owner": "site/README.md"
+      "owner": "guides/ARTICLE-WORKFLOW.md"
     },
     "site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r12-20261110.json": {
       "kind": "file",
       "purpose": "Issue169 R12 source, matching PDF or source-bound review evidence.",
       "role": "source",
-      "owner": "site/README.md"
+      "owner": "guides/ARTICLE-WORKFLOW.md"
     },
     "site/retained/article-media/568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58/reading-r11.pdf": {
       "kind": "file",
@@ -17729,35 +17729,41 @@
       "kind": "file",
       "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
       "role": "source",
-      "owner": "site/README.md"
+      "owner": "guides/ARTICLE-WORKFLOW.md"
     },
     "site/retained/article-snapshots/58c70d6edea51b0dd47fefe3c80cb1c78c59e24a8956093616fee4229786dc98/the-sdlc-is-out-of-balance.html": {
       "kind": "file",
       "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
-      "role": "source",
+      "role": "history",
       "owner": "site/README.md"
     },
     "site/retained/article-snapshots/58c70d6edea51b0dd47fefe3c80cb1c78c59e24a8956093616fee4229786dc98": {
       "kind": "directory",
       "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
-      "role": "source",
+      "role": "history",
       "owner": "site/README.md"
     },
     "site/retained/snapshots/412f5b5cd2d1991265f5b6dd9d899516e79e8f4f78bd3d8c59f63975bd72b52e/writing.html": {
       "kind": "file",
       "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
-      "role": "source",
+      "role": "history",
       "owner": "site/README.md"
     },
     "site/retained/snapshots/412f5b5cd2d1991265f5b6dd9d899516e79e8f4f78bd3d8c59f63975bd72b52e": {
       "kind": "directory",
       "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
-      "role": "source",
+      "role": "history",
       "owner": "site/README.md"
     },
     "review/issue-169/r12-stable-evidence.tar.xz": {
       "kind": "file",
       "purpose": "Literal same-role stable delta reviews, source selection and exact-source check receipts.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/r12-stable-correction-evidence.tar.xz": {
+      "kind": "file",
+      "purpose": "Actual native failure logs, bounded catalogue correction reviews and clean affected verification.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     }
