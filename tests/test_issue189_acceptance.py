@@ -8,8 +8,10 @@ acceptance, hosted delivery or media playback. Those remain explicit policy gate
 import gzip
 import hashlib
 import importlib.util
+import io
 import json
 import posixpath
+import re
 import stat
 import subprocess
 import unittest
@@ -21,6 +23,7 @@ from urllib.parse import unquote, urlsplit
 REPO = Path(__file__).resolve().parents[1]
 BASE = "ca756417590b9176f9fc33428321ffe1f64158cc"
 SELECTION_SHA256 = "cee9263e5928946e6acd595ac3a0853ed2aad324837766fd89443d70de96e8bb"
+SECURITY_PROOF_SHA256 = "10feb73c27d8123d87da8f2387519257d46151fdbdae697944e219cde2cd7bdb"
 # Reviewed scope exceptions are authored independently of observed HEAD drift.
 MUTABLE = {
     "AGENTS.md",
@@ -37,6 +40,7 @@ MUTABLE = {
     "tests/test_repository_intelligence.py",
     "tools/quality/bandit-policy.json",
     "tools/quality/test-profiles.json",
+    "tools/quality/secrets-reviewed-checksums.json",
     ".github/workflows/issue-acceptance.yml",
     *{f"review/site-v1-20261002-v{v}-index.html" for v in (5, 6, 7)},
 }
@@ -51,6 +55,7 @@ ADDITIONS = {
     "review/issue-189/archive-review-evidence.tar.xz",
     "review/issue-189/navigation-review-evidence.tar.xz",
     "review/issue-189/delivery-review-evidence.tar.xz",
+    "review/issue-189/security-proof.json.gz",
     *{f"review/site-v1-20261002-v{v}-captures/ARCHIVE.md" for v in (5, 6, 7)},
 }
 
@@ -66,6 +71,64 @@ def selection():
     if hashlib.sha256(payload).hexdigest() != SELECTION_SHA256:
         raise AssertionError("Frozen selection changed; original oracle must not follow HEAD")
     return json.loads(payload)
+
+
+def checked_secret_tail():
+    """Read the fixed, bounded per-ID proof, independently of candidate ledger rows."""
+    payload = (REPO / "review/issue-189/security-proof.json.gz").read_bytes()
+    if len(payload) > 32768 or hashlib.sha256(payload).hexdigest() != SECURITY_PROOF_SHA256:
+        raise AssertionError("Exact reviewed security proof changed")
+    with gzip.GzipFile(fileobj=io.BytesIO(payload)) as compressed:
+        plain = compressed.read(200001)
+    if len(plain) > 200000:
+        raise AssertionError("Security proof decompression bound exceeded")
+    proof = json.loads(plain)
+    if proof["schema"] != 1 or proof["issue"] != 189 or len(proof["findings"]) != 108:
+        raise AssertionError("Unexpected security proof contract")
+    tail = []
+    sources = {}
+    for row in proof["findings"]:
+        file, value = row["file"], row["public_value"]
+        if not re.fullmatch(r"(?:[a-f0-9]{40}|[a-f0-9]{64})", value):
+            raise AssertionError("Proof value is not its reviewed public identity")
+        if file not in sources:
+            sources[file] = subprocess.check_output(
+                ["git", "show", proof["source"] + ":" + file], cwd=REPO, timeout=30
+            )
+        source = sources[file]
+        detector_hash = hashlib.sha1(value.encode(), usedforsecurity=False).hexdigest()
+        rule = "Hex High Entropy String"
+        if (
+            blob_digest(source) != row["source_blob"]
+            or value not in source.decode().splitlines()[row["line"] - 1]
+            or detector_hash != row["hash"]
+            or row["type"] != rule
+            or row["id"] != file + ":" + rule + ":" + detector_hash
+            or row["classification"] != "public-checksum-or-Git-identity"
+        ):
+            raise AssertionError("Finding identity or immutable source binding differs")
+        tail.append(
+            {
+                "id": row["id"],
+                "path": file,
+                "rule": rule,
+                "disposition": "false positive",
+                "reason": row["ledger_reason"],
+            }
+        )
+    proof_hash_id = hashlib.sha1(SECURITY_PROOF_SHA256.encode(), usedforsecurity=False).hexdigest()
+    tail.append(
+        {
+            "id": "tests/test_issue189_acceptance.py:Hex High Entropy String:" + proof_hash_id,
+            "path": "tests/test_issue189_acceptance.py",
+            "rule": "Hex High Entropy String",
+            "disposition": "false positive",
+            "reason": "Public SHA256 of the exact pinned issue189 per-ID proof; recomputed from compressed bytes. This entry does not admit other values or confer historical validation.",
+        }
+    )
+    if len({row["id"] for row in tail}) != 109:
+        raise AssertionError("Duplicate security disposition")
+    return tail
 
 
 class Links(HTMLParser):
@@ -107,7 +170,14 @@ class Issue189AcceptanceTests(unittest.TestCase):
                 for original in (x for x in frozen["files"] if x["archive"] == archive):
                     with self.subTest(original=original["path"]):
                         row = items[original["path"]]
-                        for field in ("path", "bytes", "sha256", "git_blob", "archive", "member"):
+                        for field in (
+                            "path",
+                            "bytes",
+                            "sha256",
+                            "git_blob",
+                            "archive",
+                            "member",
+                        ):
                             self.assertEqual(row[field], original[field])
                         self.assertEqual(row["archiveSha256"], expected["sha256"])
                         self.assertEqual(zipped.getinfo(row["member"]).file_size, row["bytes"])
@@ -125,7 +195,8 @@ class Issue189AcceptanceTests(unittest.TestCase):
                         self.assertFalse((REPO / row["path"]).exists())
                 gallery = archive.removesuffix(".zip") + "-index.html"
                 self.assertEqual(
-                    zipped.read(gallery), gzip.decompress((REPO / (gallery + ".gz")).read_bytes())
+                    zipped.read(gallery),
+                    gzip.decompress((REPO / (gallery + ".gz")).read_bytes()),
                 )
                 targets = set(names) | {
                     p.as_posix() for name in names for p in PurePosixPath(name).parents
@@ -146,7 +217,11 @@ class Issue189AcceptanceTests(unittest.TestCase):
                 stem = PurePosixPath(archive).stem
                 self.assertEqual(
                     set(locator.links),
-                    {stem + ".zip", stem + "-index.html.gz", stem + "-captures/ARCHIVE.md"},
+                    {
+                        stem + ".zip",
+                        stem + "-index.html.gz",
+                        stem + "-captures/ARCHIVE.md",
+                    },
                 )
                 for target in locator.links:
                     self.assertTrue((REPO / "review" / target).is_file())
@@ -162,7 +237,8 @@ class Issue189AcceptanceTests(unittest.TestCase):
             base[path] = (mode, kind, digest)
         current = set(
             subprocess.check_output(
-                ["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"], cwd=REPO
+                ["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"],
+                cwd=REPO,
             )
             .decode()
             .rstrip("\0")
@@ -256,21 +332,36 @@ class Issue189AcceptanceTests(unittest.TestCase):
                 '.github/acceptance/issue-189.json',
                 'review/issue-189/selected-files.json',
                 'review/issue-189/archive-index.json',
+                'review/issue-189/security-proof.json.gz',
                 'tools/repository_intelligence.py',
                 'tools/quality/test-profiles.json',
+                'tools/quality/secrets-reviewed-checksums.json',
             ],
         }
         self.assertEqual(set(new_registry), set(old_registry))
         for key in old_registry.keys() - {"tests"}:
             self.assertEqual(new_registry[key], old_registry[key])
         self.assertEqual(new_registry["tests"], old_registry["tests"] + [expected_row])
+        # One exact append-only companion correction; the other ledgers stay protected.
+        ledger_path = "tools/quality/secrets-reviewed-checksums.json"
+        old_ledger = json.loads(
+            subprocess.check_output(["git", "show", BASE + ":" + ledger_path], cwd=REPO)
+        )
+        ledger_bytes = (REPO / ledger_path).read_bytes()
+        self.assertLessEqual(len(ledger_bytes), 2000000)
+        new_ledger = json.loads(ledger_bytes)
+        self.assertEqual(set(old_ledger), set(new_ledger))
+        for key in old_ledger.keys() - {"findings"}:
+            self.assertEqual(old_ledger[key], new_ledger[key])
+        self.assertEqual(new_ledger["findings"], old_ledger["findings"] + checked_secret_tail())
         # Python owning selection alone cannot establish the shared Node inventory.
         inventory = subprocess.run(
             [
                 "node",
                 "-e",
                 "const s=require('./tools/quality/source-tests.cjs');"
-                "s.validateRegistry(process.cwd(),s.loadRegistry(process.cwd()));",
+                "s.validateRegistry(process.cwd(),s.loadRegistry(process.cwd()));"
+                "require('./tools/quality/scanners.cjs').loadSecretReviews(process.cwd());",
             ],
             cwd=REPO,
             capture_output=True,
@@ -284,7 +375,9 @@ class Issue189AcceptanceTests(unittest.TestCase):
         ri = importlib.util.module_from_spec(spec)
         exec(
             compile(
-                (REPO / "tools/repository_intelligence.py").read_bytes(), str(spec.origin), "exec"
+                (REPO / "tools/repository_intelligence.py").read_bytes(),
+                str(spec.origin),
+                "exec",
             ),
             ri.__dict__,
         )
@@ -299,7 +392,10 @@ class Issue189AcceptanceTests(unittest.TestCase):
             (5000, 250000000, 32000000, 50000000, 2000000),
         )
         surface = ri.verify(REPO, ".github/repository-intelligence-config.json")
-        outputs = ["REPOSITORY-MAP.md", ".github/repository-intelligence/agent-context.json"]
+        outputs = [
+            "REPOSITORY-MAP.md",
+            ".github/repository-intelligence/agent-context.json",
+        ]
         diagnostic = ri.capacity(REPO, outputs)
         self.assertTrue(diagnostic["within_hard_limits"])
         self.assertGreaterEqual(diagnostic["metrics"]["hash_total_bytes"]["margin"], 10000000)

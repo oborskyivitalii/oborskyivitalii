@@ -5,7 +5,7 @@ Dated continuity, not live authority. Last verified: **2026-11-10**.
 ## Snapshot
 
 - Main/production ca756417590b9176f9fc33428321ffe1f64158cc; prod-2026-11-10.1 delivered R12 and issue184 archival dependency.
-- Issue189 / Draft PR190 is active on work/issue189-ri-plan-20261110. T01–T05 technical work is implemented/reviewed. T06 actual CI on13cdbd0c found missing Node task-registry companion for test_issue189_acceptance.py, missed by earlier review/localchecks. PR returnedDraft; registry/protection/policy correction independently reviewed; exact clean/native status and firstlogs retained in PR190 and versioned analysis.
+- Issue189 / Draft PR190 remains active. T06 sourceCI on4a14c0f5 passed8shards/checks/navigation/owning; owner stage42899614004 failed security before upload (25/26preflight passed). Native/local failures retained; local pinned engines isolate108public identity candidates. Exact109-row companion/proof correction accepted by four affectedroles; current exact clean fullsecurity/native delivery remain pending. See PR190/latest versioned analysis. Main/production unchanged.
 - Separate owners: issue188 MEMORY lifecycle; issue187 reusable article pulse. PR171/117/110/107/79 remain separate.
 
 ## Decisions
@@ -24,8 +24,8 @@ Dated continuity, not live authority. Last verified: **2026-11-10**.
 ## Next session
 
 1. Revalidate refs, issue189/PR190, current-source checks and latest user instruction; use the dated report/recovery index, not memory alone.
-2. T06 firstCI registryfailure supersedes earlier no-blocker readiness inference. Verify corrected registry/profile planning, exact clean four-module navigation and45policy, affectedreviews before Ready/newCI. Preserve firstfailure; CS05 remainsaccepted.
-3. Next T06: actual protected full/control route, exact reviewed_sha/owner decisions, current source/RI/owning/hosted/admission checks and trusted delivery. Hand off to188 afterward.
+2. T06 security correction: verify pinned original108per-ID proof plus separate proofchecksum row, immutable3,681-row ledgerprefix/metadata and otherledgers/caps; obtain four affectedreviews. Preserve originalregistry/native/security failures; CS05accepted.
+3. Before Ready/newCI: exact clean local fullsecurity and121navigation/45policy. Then actual protected full/control source/hosted/admission/normalmerge route with reviewed_sha; hand off188 afterward.
 
 ## Maintenance
 

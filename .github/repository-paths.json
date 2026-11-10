@@ -17712,6 +17712,12 @@
       "purpose": "Lossless T05 acceptance/test-allocation/protected-route preparation, first/correction reviews and actual source-bound launch/result receipts; no delivery permission.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-189/security-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Exact per-ID public Git/checksum recomputation proof for issue189 security dispositions; compressed original108 findings, separately pinned proof-checksum disposition and qualified historical-source limits.",
+      "role": "history",
+      "owner": "review/issue-189/2026-11-10-analysis.md"
     }
   }
 }

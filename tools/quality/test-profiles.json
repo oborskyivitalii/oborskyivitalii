@@ -2980,8 +2980,10 @@
         ".github/acceptance/issue-189.json",
         "review/issue-189/selected-files.json",
         "review/issue-189/archive-index.json",
+        "review/issue-189/security-proof.json.gz",
         "tools/repository_intelligence.py",
-        "tools/quality/test-profiles.json"
+        "tools/quality/test-profiles.json",
+        "tools/quality/secrets-reviewed-checksums.json"
       ]
     }
   ]
