@@ -44,10 +44,14 @@ jobs:
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-126.json' ||
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-177.json' ||
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-179.json' ||
+          env.ACCEPTANCE_POLICY == '.github/acceptance/issue-189.json' ||
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-5.json'
         run: npm ci --prefix tools/quality/toolchain --ignore-scripts
       - name: Set up pinned Python for article analytics acceptance
-        if: env.ACCEPTANCE_POLICY == '.github/acceptance/issue-177.json' || env.ACCEPTANCE_POLICY == '.github/acceptance/issue-179.json'
+        if: >-
+          env.ACCEPTANCE_POLICY == '.github/acceptance/issue-177.json' ||
+          env.ACCEPTANCE_POLICY == '.github/acceptance/issue-179.json' ||
+          env.ACCEPTANCE_POLICY == '.github/acceptance/issue-189.json'
         uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
         with:
           python-version: 3.12.14
@@ -60,6 +64,7 @@ jobs:
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-126.json' ||
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-177.json' ||
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-179.json' ||
+          env.ACCEPTANCE_POLICY == '.github/acceptance/issue-189.json' ||
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-5.json'
         run: |
           python3 -m venv tools/quality/toolchain/venv
@@ -68,7 +73,8 @@ jobs:
         if: >-
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-5.json' ||
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-177.json' ||
-          env.ACCEPTANCE_POLICY == '.github/acceptance/issue-179.json'
+          env.ACCEPTANCE_POLICY == '.github/acceptance/issue-179.json' ||
+          env.ACCEPTANCE_POLICY == '.github/acceptance/issue-189.json'
         run: |
           npm ci --prefix tools/publishing/toolchain --ignore-scripts
           tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps "$(python3 tools/publishing/web-media.py --requirement)"

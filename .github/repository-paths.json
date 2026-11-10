@@ -17694,6 +17694,24 @@
       "purpose": "Lossless T03/T04 source-bound first/correction reviews, CLI/check observations and actual launch/result receipts; no full delivery acceptance.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    ".github/acceptance/issue-189.json": {
+      "kind": "file",
+      "purpose": "Owning issue189 stableAC01–05 named check mapping and explicit semantic/review/owner/trusted-delivery gates; no claimed approvals.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "tests/test_issue189_acceptance.py": {
+      "kind": "file",
+      "purpose": "Owning-policy-only exact nineteen-original archive/recovery and complete protected-base/capacity assertions; not an enduring frozen public suite.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-189/delivery-review-evidence.tar.xz": {
+      "kind": "file",
+      "purpose": "Lossless T05 acceptance/test-allocation/protected-route preparation, first/correction reviews and actual source-bound launch/result receipts; no delivery permission.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

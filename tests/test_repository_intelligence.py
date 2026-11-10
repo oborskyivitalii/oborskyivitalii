@@ -107,8 +107,11 @@ class NavigationSafetyTests(unittest.TestCase):
 
     def test_serialized_freshness_and_actual_cli_round_trip(self):
         data = self.materialize()
-        for body in [json.dumps(data), ri.serialize_json(data) + "\n",
-                     ri.serialize_json(data).replace("\n", "\r\n")]:
+        for body in [
+            json.dumps(data),
+            ri.serialize_json(data) + "\n",
+            ri.serialize_json(data).replace("\n", "\r\n"),
+        ]:
             with self.subTest(serialization=body[:20]):
                 self.write(self.config["output"], body)
                 with self.assertRaisesRegex(ValueError, "Stale or altered"):
@@ -117,15 +120,21 @@ class NavigationSafetyTests(unittest.TestCase):
         for action in ("build", "verify"):
             result = subprocess.run(command + [action], capture_output=True, text=True)
             self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertEqual((self.root / self.config["output"]).read_bytes(),
-                         ri.serialize_json(ri.build(self.root, self.cfg)).encode("utf-8"))
+        self.assertEqual(
+            (self.root / self.config["output"]).read_bytes(),
+            ri.serialize_json(ri.build(self.root, self.cfg)).encode("utf-8"),
+        )
         inventory = subprocess.check_output(command + ["inventory"], text=True)
         surface = ri.verify(self.root, self.cfg)
-        self.assertEqual(json.loads(inventory),
-                         {"files": surface["artifacts"], "directories": surface["directories"]})
+        self.assertEqual(
+            json.loads(inventory),
+            {"files": surface["artifacts"], "directories": surface["directories"]},
+        )
         query = subprocess.check_output(command + ["query", "джерела"], text=True)
         self.assertEqual(json.loads(query), ri.lookup(surface, "джерела"))
-        scoped = subprocess.check_output(command + ["inventory", "--scope", "current", "--limit", "1"])
+        scoped = subprocess.check_output(
+            command + ["inventory", "--scope", "current", "--limit", "1"]
+        )
         self.assertEqual(len(scoped), json.loads(scoped)["response_bytes"])
         readable = self.root / self.config["map_output"]
         readable.write_bytes(readable.read_bytes().replace(b"\n", b"\r\n"))
@@ -133,28 +142,58 @@ class NavigationSafetyTests(unittest.TestCase):
             ri.verify(self.root, self.cfg)
 
     def test_scopes_prefixes_and_legacy_lookup_remain_complete(self):
-        for path in ["active/needle.md", "active-old/needle.md", "archive/needle.md",
-                     "draft/needle.md", "generated/needle.html"]:
+        for path in [
+            "active/needle.md",
+            "active-old/needle.md",
+            "archive/needle.md",
+            "draft/needle.md",
+            "generated/needle.html",
+        ]:
             self.write(path, "# Needle\n")
-        data = self.roles_surface({"archive": "history", "archive/needle.md": "history",
-                                   "draft": "draft", "draft/needle.md": "draft",
-                                   "generated": "generated", "generated/needle.html": "generated"})
-        self.assertEqual({x["path"] for x in ri.lookup(data, "needle")["artifacts"]},
-                         {"active/needle.md", "active-old/needle.md", "archive/needle.md",
-                          "draft/needle.md", "generated/needle.html"})
-        expected = {"current": {"active/needle.md", "active-old/needle.md"},
-                    "history": {"archive/needle.md", "draft/needle.md"},
-                    "all": {"active/needle.md", "active-old/needle.md", "archive/needle.md",
-                            "draft/needle.md", "generated/needle.html"}}
+        data = self.roles_surface(
+            {
+                "archive": "history",
+                "archive/needle.md": "history",
+                "draft": "draft",
+                "draft/needle.md": "draft",
+                "generated": "generated",
+                "generated/needle.html": "generated",
+            }
+        )
+        self.assertEqual(
+            {x["path"] for x in ri.lookup(data, "needle")["artifacts"]},
+            {
+                "active/needle.md",
+                "active-old/needle.md",
+                "archive/needle.md",
+                "draft/needle.md",
+                "generated/needle.html",
+            },
+        )
+        expected = {
+            "current": {"active/needle.md", "active-old/needle.md"},
+            "history": {"archive/needle.md", "draft/needle.md"},
+            "all": {
+                "active/needle.md",
+                "active-old/needle.md",
+                "archive/needle.md",
+                "draft/needle.md",
+                "generated/needle.html",
+            },
+        }
         for scope, paths in expected.items():
             result = ri.scoped_lookup(data, "needle", scope=scope)
             self.assertEqual({x["path"] for x in result["artifacts"]}, paths)
         for prefix in ("active", "active/", "active/needle.md"):
             result = ri.scoped_lookup(data, command="inventory", scope="all", prefix=prefix)
             self.assertEqual([x["path"] for x in result["files"]], ["active/needle.md"])
-        self.assertEqual(ri.scoped_lookup(data, "джерела", scope="current")["owner_candidates"][0]["path"],
-                         "evidence/SOURCES.md")
-        self.assertEqual(ri.scoped_lookup(data, "no-such-lexeme")["status"], "unresolved-use-direct-search")
+        self.assertEqual(
+            ri.scoped_lookup(data, "джерела", scope="current")["owner_candidates"][0]["path"],
+            "evidence/SOURCES.md",
+        )
+        self.assertEqual(
+            ri.scoped_lookup(data, "no-such-lexeme")["status"], "unresolved-use-direct-search"
+        )
         empty = ri.scoped_lookup(data, command="inventory", prefix="not-present")
         self.assertEqual(empty["pagination"]["total"], 0)
         self.assertIsNone(empty["pagination"]["next_cursor"])
@@ -174,13 +213,19 @@ class NavigationSafetyTests(unittest.TestCase):
             actual.extend(page)
             self.assertEqual(result["pagination"]["returned"], len(page))
             self.assertEqual(result["pagination"]["remaining"], len(expected) - len(actual))
-            self.assertEqual(result["response_bytes"], len(ri.serialize_json(result).encode("utf-8")))
+            self.assertEqual(
+                result["response_bytes"], len(ri.serialize_json(result).encode("utf-8"))
+            )
             cursor = result["pagination"]["next_cursor"]
             if cursor is None:
                 break
         self.assertEqual(actual, expected)
-        for options in ({"scope": "current"}, {"prefix": "evidence"}, {"limit": 3},
-                        {"command": "query", "query": "source registry"}):
+        for options in (
+            {"scope": "current"},
+            {"prefix": "evidence"},
+            {"limit": 3},
+            {"command": "query", "query": "source registry"},
+        ):
             arguments = {"command": "inventory", "limit": 2, "cursor": first_cursor, **options}
             with self.subTest(options=options), self.assertRaisesRegex(ValueError, "Cursor"):
                 ri.scoped_lookup(data, **arguments)
@@ -188,42 +233,76 @@ class NavigationSafetyTests(unittest.TestCase):
         changed["source_identity"]["digest"] = "0" * 64
         with self.assertRaisesRegex(ValueError, "Cursor"):
             ri.scoped_lookup(changed, command="inventory", limit=2, cursor=first_cursor)
-        for cursor in ("bad", "-1:" + first_cursor.split(":")[1], "000:" + first_cursor.split(":")[1],
-                       "99999:" + first_cursor.split(":")[1]):
+        for cursor in (
+            "bad",
+            "-1:" + first_cursor.split(":")[1],
+            "000:" + first_cursor.split(":")[1],
+            "99999:" + first_cursor.split(":")[1],
+        ):
             with self.subTest(cursor=cursor), self.assertRaises(ValueError):
                 ri.scoped_lookup(data, command="inventory", limit=2, cursor=cursor)
         end = str(len(expected)) + ":" + first_cursor.split(":")[1]
-        self.assertEqual(ri.scoped_lookup(data, command="inventory", limit=2, cursor=end)["pagination"]["returned"], 0)
+        self.assertEqual(
+            ri.scoped_lookup(data, command="inventory", limit=2, cursor=end)["pagination"][
+                "returned"
+            ],
+            0,
+        )
         for limit in (0, -1, 101, True, 1.5):
             with self.subTest(limit=limit), self.assertRaises(ValueError):
                 ri.scoped_lookup(data, limit=limit, command="inventory")
         for limit in (1, 100):
-            self.assertLessEqual(ri.scoped_lookup(data, limit=limit, command="inventory")["pagination"]["returned"], limit)
+            self.assertLessEqual(
+                ri.scoped_lookup(data, limit=limit, command="inventory")["pagination"]["returned"],
+                limit,
+            )
         query_page = ri.scoped_lookup(data, "Fixture", limit=1)
         with self.assertRaisesRegex(ValueError, "Cursor"):
-            ri.scoped_lookup(data, "different", limit=1, cursor=query_page["pagination"]["next_cursor"])
+            ri.scoped_lookup(
+                data, "different", limit=1, cursor=query_page["pagination"]["next_cursor"]
+            )
 
     def test_directory_context_is_complete_before_paging_and_routes_keep_families(self):
-        for path in ("area/AGENTS.md", "area/deep/AGENTS.md", "area/deep/file-a.md",
-                     "area-other/AGENTS.md", "area-other/file-b.md"):
+        for path in (
+            "area/AGENTS.md",
+            "area/deep/AGENTS.md",
+            "area/deep/file-a.md",
+            "area-other/AGENTS.md",
+            "area-other/file-b.md",
+        ):
             self.write(path, "# Area input\n")
         self.config["validation_routes"] = [
-            {"concern": "file family", "paths": ["area/deep/file-"],
-             "commands": ["python3 check-family.py"], "workflow": "family.yml"},
-            {"concern": "other area", "paths": ["area-other/"],
-             "commands": ["python3 check-other.py"], "workflow": "other.yml"},
+            {
+                "concern": "file family",
+                "paths": ["area/deep/file-"],
+                "commands": ["python3 check-family.py"],
+                "workflow": "family.yml",
+            },
+            {
+                "concern": "other area",
+                "paths": ["area-other/"],
+                "commands": ["python3 check-other.py"],
+                "workflow": "other.yml",
+            },
         ]
         self.save_config()
         data = self.materialize()
         for command, query in (("inventory", None), ("context-for-task", "area")):
             result = ri.scoped_lookup(data, query, command=command, prefix="area", limit=1)
-            self.assertEqual(result["instructions"], ["AGENTS.md", "area/AGENTS.md", "area/deep/AGENTS.md"])
+            self.assertEqual(
+                result["instructions"], ["AGENTS.md", "area/AGENTS.md", "area/deep/AGENTS.md"]
+            )
             self.assertEqual([x["concern"] for x in result["validation_routes"]], ["file family"])
             self.assertEqual(result["editing_owners"], ["AGENTS.md"])
             self.assertEqual(result["pagination"]["returned"], 1)
         # A directory-only hit still includes live nested instructions and routes.
-        result = {"artifacts": [], "directories": [next(x for x in data["directories"] if x["path"] == "area")],
-                  "owner_candidates": [], "terms": [], "sources": []}
+        result = {
+            "artifacts": [],
+            "directories": [next(x for x in data["directories"] if x["path"] == "area")],
+            "owner_candidates": [],
+            "terms": [],
+            "sources": [],
+        }
         metadata = ri.context_metadata(data, result)
         self.assertIn("area/deep/AGENTS.md", metadata["instructions"])
         self.assertEqual([x["concern"] for x in metadata["validation_routes"]], ["file family"])
@@ -232,10 +311,16 @@ class NavigationSafetyTests(unittest.TestCase):
         for path in ("area/deep/item.md", "owners/canonical.md", "owners/AGENTS.md"):
             self.write(path, "# Fixture input\n")
         self.config["validation_routes"] = [
-            {"concern": "owner-only check", "paths": ["owners/canonical.md"],
-             "commands": ["owner-check"]},
-            {"concern": "descendant family", "paths": ["area/deep/item"],
-             "commands": ["family-check"]},
+            {
+                "concern": "owner-only check",
+                "paths": ["owners/canonical.md"],
+                "commands": ["owner-check"],
+            },
+            {
+                "concern": "descendant family",
+                "paths": ["area/deep/item"],
+                "commands": ["family-check"],
+            },
         ]
         self.save_config()
         catalog = json.loads((self.root / self.config["catalog"]).read_text())
@@ -249,8 +334,9 @@ class NavigationSafetyTests(unittest.TestCase):
         self.assertEqual(result["pagination"]["total"], 1)
         self.assertEqual(result["editing_owners"], ["AGENTS.md", "owners/canonical.md"])
         self.assertEqual(result["instructions"], ["AGENTS.md", "owners/AGENTS.md"])
-        self.assertEqual({x["commands"][0] for x in result["validation_routes"]},
-                         {"owner-check", "family-check"})
+        self.assertEqual(
+            {x["commands"][0] for x in result["validation_routes"]}, {"owner-check", "family-check"}
+        )
         # The same complete context also backs unqualified context-for-task.
         metadata = ri.context_metadata(data, ri.lookup(data, "directory-only-owner-oracle"))
         self.assertEqual(metadata["instructions"], result["instructions"])
@@ -259,8 +345,15 @@ class NavigationSafetyTests(unittest.TestCase):
     def test_response_measurement_and_large_metadata_are_not_silently_truncated(self):
         data = self.materialize()
         note = "Повний опис " * 7000
-        data["validation_routes"] = [{"concern": "broad metadata", "paths": ["evidence/"],
-                                      "commands": ["check"], "workflow": "test.yml", "note": note}]
+        data["validation_routes"] = [
+            {
+                "concern": "broad metadata",
+                "paths": ["evidence/"],
+                "commands": ["check"],
+                "workflow": "test.yml",
+                "note": note,
+            }
+        ]
         result = ri.scoped_lookup(data, "source registry", limit=1)
         self.assertEqual(result["validation_routes"][0]["note"], note)
         self.assertGreater(result["response_bytes"], 65536)
@@ -270,9 +363,16 @@ class NavigationSafetyTests(unittest.TestCase):
 
     def test_map_is_short_current_entry_and_enforces_exact_byte_bound(self):
         self.write("archive/unique-historical-dump.md", "# Historical text\n")
-        data = self.roles_surface({"archive": "history", "archive/unique-historical-dump.md": "history"})
-        data["validation_routes"] = [{"concern": "source-only route", "paths": ["evidence/"],
-                                      "commands": ["source-only-check"]}]
+        data = self.roles_surface(
+            {"archive": "history", "archive/unique-historical-dump.md": "history"}
+        )
+        data["validation_routes"] = [
+            {
+                "concern": "source-only route",
+                "paths": ["evidence/"],
+                "commands": ["source-only-check"],
+            }
+        ]
         text = ri.render_map(data)
         self.assertIn("source-only-check", text)
         self.assertLessEqual(len(text.encode("utf-8")), 32768)
@@ -288,7 +388,10 @@ class NavigationSafetyTests(unittest.TestCase):
         for role in ("history", "draft", "generated"):
             with self.subTest(role=role), self.assertRaisesRegex(ValueError, "inert archive name"):
                 self.roles_surface({"archive/AGENTS.md": role})
-            with self.subTest(ancestor_role=role), self.assertRaisesRegex(ValueError, "inert archive name"):
+            with (
+                self.subTest(ancestor_role=role),
+                self.assertRaisesRegex(ValueError, "inert archive name"),
+            ):
                 self.roles_surface({"archive": role})
         (self.root / "archive/AGENTS.md").rename(self.root / "archive/AGENTS.before.md")
         data = self.roles_surface({"archive": "history", "archive/AGENTS.before.md": "history"})
@@ -297,6 +400,7 @@ class NavigationSafetyTests(unittest.TestCase):
 
     def test_capacity_independent_totals_and_all_hard_limit_boundaries(self):
         from unittest.mock import patch
+
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             (root / "a.bin").write_bytes(b"1234")
@@ -306,14 +410,23 @@ class NavigationSafetyTests(unittest.TestCase):
                 (root / path).write_bytes(b"x" * 1000)
             result = ri.capacity(root, outputs)
             self.assertEqual(result["hash_input_files"], 2)
-            expected = {"files": 4, "hash_total_bytes": 6, "hash_file_bytes": 4,
-                        "text_total_bytes": 2, "text_file_bytes": 2}
+            expected = {
+                "files": 4,
+                "hash_total_bytes": 6,
+                "hash_file_bytes": 4,
+                "text_total_bytes": 2,
+                "text_file_bytes": 2,
+            }
             self.assertEqual({k: v["used"] for k, v in result["metrics"].items()}, expected)
             self.assertEqual(sum(x["bytes"] for x in result["derived_outputs"]), 2000)
             self.assertFalse(result["content_integrity_verified"])
-            constants = {"files": "MAX_FILES", "hash_total_bytes": "MAX_HASH_TOTAL_BYTES",
-                         "hash_file_bytes": "MAX_HASH_FILE_BYTES", "text_total_bytes": "MAX_TOTAL_BYTES",
-                         "text_file_bytes": "MAX_FILE_BYTES"}
+            constants = {
+                "files": "MAX_FILES",
+                "hash_total_bytes": "MAX_HASH_TOTAL_BYTES",
+                "hash_file_bytes": "MAX_HASH_FILE_BYTES",
+                "text_total_bytes": "MAX_TOTAL_BYTES",
+                "text_file_bytes": "MAX_FILE_BYTES",
+            }
             for metric, attribute in constants.items():
                 with self.subTest(metric=metric), patch.object(ri, attribute, expected[metric]):
                     self.assertEqual(ri.capacity(root, outputs)["metrics"][metric]["margin"], 0)
@@ -334,6 +447,7 @@ class NavigationSafetyTests(unittest.TestCase):
 
     def test_capacity_refuses_unsafe_missing_and_unreadable_inputs(self):
         from unittest.mock import patch
+
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             file = root / "input.bin"
@@ -346,10 +460,12 @@ class NavigationSafetyTests(unittest.TestCase):
                 with self.assertRaises(PermissionError):
                     ri.capacity(root, [])
             original_open = Path.open
+
             def deny_input(path, *args, **kwargs):
                 if path == file:
                     raise PermissionError("fixture unreadable input")
                 return original_open(path, *args, **kwargs)
+
             with patch.object(Path, "open", deny_input), self.assertRaises(PermissionError):
                 ri.capacity(root, [])
             subprocess.run(["git", "init", "-q", str(root)], check=True)
@@ -693,13 +809,20 @@ class NavigationSafetyTests(unittest.TestCase):
             self.assertTrue((REPO / item["path"]).is_file())
         self.assertLessEqual(len(ri.render_map(surface).encode("utf-8")), 32768)
         complete_paths = {x["path"] for x in surface["artifacts"] + surface["directories"]}
-        self.assertEqual(set(json.loads((REPO / ".github/repository-paths.json").read_text())["entries"]), complete_paths)
+        self.assertEqual(
+            set(json.loads((REPO / ".github/repository-paths.json").read_text())["entries"]),
+            complete_paths,
+        )
         for query in ("requirements quality", "якість вимог"):
             result = ri.scoped_lookup(surface, query, scope="current", command="context-for-task")
-            self.assertIn("agents/reviewers/requirements-acceptance.md",
-                          {x["path"] for x in result["owner_candidates"]})
+            self.assertIn(
+                "agents/reviewers/requirements-acceptance.md",
+                {x["path"] for x in result["owner_candidates"]},
+            )
             self.assertIn("AGENTS.md", result["instructions"])
-            self.assertEqual(result["response_bytes"], len(ri.serialize_json(result).encode("utf-8")))
+            self.assertEqual(
+                result["response_bytes"], len(ri.serialize_json(result).encode("utf-8"))
+            )
         if surface["repository"].endswith("The-Subprime-Code-Crisis"):
             s = next(s for s in surface["sources"] if s["id"] == "P-2026-01")
             self.assertEqual(s["integration_audit"], "Verified")

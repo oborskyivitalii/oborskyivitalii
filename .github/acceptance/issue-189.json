@@ -1,0 +1,296 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 189,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/189",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Short current entry and scoped retrieval, with full inventory and legacy interface compatibility.",
+      "automated_scope": "Named RI map/scope/prefix/paging/directory/external-owner/whole-response and actual EN-UA/current-repository tests check concrete outputs and refusal behavior. Connector-only usability and owner presentation/budget acceptance remain separate source-bound evidence; passing fixtures does not establish those decisions.",
+      "checks": ["RI-07", "RI-02", "RI-03", "RI-04", "RI-05", "RI-06", "RI-01", "RI-39", "RI-40"],
+      "gates": ["NAVIGATION"]
+    },
+    {
+      "id": "AC02",
+      "intent": "Full deterministic byte integrity and live/historical instruction safety under unchanged input limits.",
+      "automated_scope": "All existing permanent RI behavioral regressions, actual complete native inventory/CLI freshness, and current coupling validate bytes, path/mode admission, missing/unsafe/tampered inputs, serialization, request binding, limits and instruction scope. This is ordinary candidate-code test execution, not a hostile-code security guarantee or semantic integrity review.",
+      "checks": [
+        "RI-01",
+        "RI-02",
+        "RI-03",
+        "RI-04",
+        "RI-05",
+        "RI-06",
+        "RI-07",
+        "RI-08",
+        "RI-09",
+        "RI-10",
+        "RI-11",
+        "RI-12",
+        "RI-13",
+        "RI-14",
+        "RI-15",
+        "RI-16",
+        "RI-17",
+        "RI-18",
+        "RI-19",
+        "RI-20",
+        "RI-21",
+        "RI-22",
+        "RI-23",
+        "RI-24",
+        "RI-25",
+        "RI-26",
+        "RI-27",
+        "RI-28",
+        "RI-29",
+        "RI-30",
+        "RI-31",
+        "RI-32",
+        "RI-33",
+        "RI-34",
+        "RI-35",
+        "RI-36",
+        "RI-37",
+        "RI-38",
+        "RI-39",
+        "RI-40",
+        "COUPLING"
+      ],
+      "gates": ["INTEGRITY"]
+    },
+    {
+      "id": "AC03",
+      "intent": "Eligible frozen nineteen-file archive batch with exact recovery, useful locators and protected resource closure.",
+      "automated_scope": "Owning task checks pin the frozen selection digest, all nineteen identities, unchanged three ZIPs, actual unzip bytes, original gzip/gallery local closure, exact deletion/addition sets and every nonexception base mode/blob. They cannot prove eligibility, completeness of historical consumer discovery, rights or browser playback.",
+      "checks": ["ARCHIVE", "PROTECTION-CAPACITY"],
+      "gates": ["ARCHIVE-ELIGIBILITY"]
+    },
+    {
+      "id": "AC04",
+      "intent": "Complete actual resource accounting and sustainable lossless maintenance with at least10000000bytes final hash headroom.",
+      "automated_scope": "Current complete native source check asserts fixed five hard caps, exact protected scope, separately summed input/derived/tracked totals and final>=10MB headroom. Existing capacity boundary/unsafe/over-limit/advisory tests preserve diagnostics versus integrity and refusal semantics. Interpretation of all final evidence costs, largest margins and maintenance remains an independent review, without a perpetual-growth claim.",
+      "checks": ["PROTECTION-CAPACITY", "RI-09", "RI-10", "RI-11"],
+      "gates": ["CAPACITY"]
+    },
+    {
+      "id": "AC05",
+      "intent": "Proportionate style/test allocation, actual independent review and trusted exact-source delivery.",
+      "automated_scope": "Current bounded style/coupling and fixed local Basic check verify their declared subset. This policy routes the new numeric task module only through its owner; it neither launches reviewers nor certifies architectural readability, hosted obligations, maintainer attestation, delivery or merge. Full-diff lane comes from protected-base selection, not this JSON.",
+      "checks": ["STYLE", "COUPLING", "BASIC"],
+      "gates": ["REVIEW", "DELIVERY", "MERGE"]
+    }
+  ],
+  "checks": {
+    "RI-01": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_serialized_freshness_and_actual_cli_round_trip"
+    },
+    "RI-02": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_scopes_prefixes_and_legacy_lookup_remain_complete"
+    },
+    "RI-03": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_paging_parity_and_request_source_bound_continuation"
+    },
+    "RI-04": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_directory_context_is_complete_before_paging_and_routes_keep_families"
+    },
+    "RI-05": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_directory_only_context_keeps_external_descendant_owner_instructions_and_checks"
+    },
+    "RI-06": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_response_measurement_and_large_metadata_are_not_silently_truncated"
+    },
+    "RI-07": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_map_is_short_current_entry_and_enforces_exact_byte_bound"
+    },
+    "RI-08": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_exact_historical_agents_name_cannot_activate_or_be_suppressed"
+    },
+    "RI-09": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_capacity_independent_totals_and_all_hard_limit_boundaries"
+    },
+    "RI-10": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_capacity_refuses_unsafe_missing_and_unreadable_inputs"
+    },
+    "RI-11": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_capacity_cli_reports_over_limit_without_freshness_claim"
+    },
+    "RI-12": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_deterministic_complete_inventory_and_scopes"
+    },
+    "RI-13": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_add_modify_and_remove_each_invalidate_context"
+    },
+    "RI-14": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_context_is_portable_between_checkout_and_worktree"
+    },
+    "RI-15": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_config_and_producer_edits_invalidate"
+    },
+    "RI-16": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_missing_and_tampered_context_fail_visibly"
+    },
+    "RI-17": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_source_identity_and_status_are_not_promoted"
+    },
+    "RI-18": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_miss_and_generic_matches_do_not_invent_owners"
+    },
+    "RI-19": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_symlink_input_and_directory_escape_rejected"
+    },
+    "RI-20": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_output_path_cannot_overwrite_owner_or_escape"
+    },
+    "RI-21": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_unrepresented_owner_and_oversize_text_fail"
+    },
+    "RI-22": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_inactive_terms_and_sources_are_not_indexed"
+    },
+    "RI-23": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_code_comment_markers_cannot_hide_active_terms"
+    },
+    "RI-24": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_invalid_closer_keeps_fenced_heading_inactive"
+    },
+    "RI-25": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_fence_info_and_inline_span_comment_literals_are_inert"
+    },
+    "RI-26": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_comment_bearing_multiline_span_is_visibly_unavailable"
+    },
+    "RI-27": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_unknown_registry_schema_and_source_identity_fail"
+    },
+    "RI-28": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_binary_byte_changes_invalidate_freshness"
+    },
+    "RI-29": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_code_css_html_and_assets_are_all_indexed_and_hashed"
+    },
+    "RI-30": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_new_root_and_nested_files_fail_without_purpose_entries"
+    },
+    "RI-31": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_removed_file_and_dangling_directory_entries_fail"
+    },
+    "RI-32": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_blank_purpose_wrong_kind_and_dangling_owner_fail"
+    },
+    "RI-33": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_map_missing_or_tampered_fails_and_is_not_recursive"
+    },
+    "RI-34": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_history_is_searchable_but_not_scoped_agent_instructions"
+    },
+    "RI-35": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_memory_and_agent_bounds_and_required_sections_fail"
+    },
+    "RI-36": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_tracked_files_cannot_hide_in_excluded_directories"
+    },
+    "RI-37": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_hash_bounds_fail_without_silently_omitting_binary"
+    },
+    "RI-38": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_catalog_cannot_override_a_projected_path"
+    },
+    "RI-39": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_real_adapter_owners_and_cross_repo_isolation"
+    },
+    "RI-40": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_quality_agent_queries_and_context_route_to_existing_checks"
+    },
+    "ARCHIVE": {
+      "kind": "unittest",
+      "test": "test_issue189_acceptance.Issue189AcceptanceTests.test_every_selected_original_and_complete_gallery_is_recoverable"
+    },
+    "PROTECTION-CAPACITY": {
+      "kind": "unittest",
+      "test": "test_issue189_acceptance.Issue189AcceptanceTests.test_complete_protected_closure_and_final_capacity"
+    },
+    "COUPLING": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    },
+    "STYLE": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "BASIC": {
+      "kind": "node-basic"
+    }
+  },
+  "gates": {
+    "NAVIGATION": {
+      "kind": "human",
+      "description": "Reconcile actual accepted entry budget/presentation and independent lookup/compatibility usability, including exact published-ref short-map/direct-owner connector journey without fullJSON/local-verification claims. Reuse recorded maintainer decisions only for their actual scope; unresolved owner judgment remains pending."
+    },
+    "INTEGRITY": {
+      "kind": "human",
+      "description": "Independent source/integrity review and current complete-checkout/consumer verification on exact final source, including all applicable corrections. Fixture-only or stale-source evidence is insufficient."
+    },
+    "ARCHIVE-ELIGIBILITY": {
+      "kind": "human",
+      "description": "Revalidate frozen original owner/delivery/supersession, actual current and pinned open-PR consumers/exclusions, every-member practical recovery/guidance and protected resources. Historical manifests/failures/reviews remain exact. Checksums alone are not eligibility or media-playback acceptance."
+    },
+    "CAPACITY": {
+      "kind": "human",
+      "description": "Review final actual hash-input/tracked/derived accounting including all policy/tests/metadata/receipts/evidence, all five margins and218-byte ledger risk. Preserve in-repo archives/existing process; final>=10MB is accepted target, under10MB advice is not another hard CI gate. No infinite-growth guarantee."
+    },
+    "REVIEW": {
+      "kind": "human",
+      "description": "Four actual distinct source-bound role first executions and affected corrections, required none-fork launch receipts/provider unknowns, exact-source test-impact allocation and CS01/04/05/07/08/09/10 review. A passing structural/keyword test or policy cannot supply semantic quality or reviewer execution."
+    },
+    "DELIVERY": {
+      "kind": "human",
+      "description": "Use actual protected-main complete-diff selection and current exact-head reviewed_sha/maintainer control decision. Run every selected source/RI/owning/full-hosted/admission obligation on authentic sources; Draft preview/local Basic does not authorize Ready/staging/production or repository-only exemption. Record tested versus effective source distinctly."
+    },
+    "MERGE": {
+      "kind": "merge",
+      "description": "Normal trusted protected merge after required current checks and applicable maintainer decisions; verify accepted merged result and record exact merged/effective identities. Do not infer merge/production authority from this policy."
+    }
+  }
+}
