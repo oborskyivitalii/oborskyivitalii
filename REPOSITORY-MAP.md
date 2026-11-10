@@ -138,6 +138,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-177](review/issue-177) | Issue177 dated article analytics diagnosis, source-bound checks and independent review evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-179](review/issue-179) | Issue179 source-bound social preview intent, requirements and implementation/test-impact evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-184](review/issue-184) | Issue184 source-bound archival inventory, lossless recovery and post-production process evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-189](review/issue-189) | Issue189 current RI navigation/capacity architecture, planning review and later source-bound execution evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-2](review/issue-2) | Dated editorial, source and publication review evidence for the PMDay article owner. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-2/pmday-candidate-20261015](review/issue-2/pmday-candidate-20261015) | PR79 PMDay review candidate, independent findings and source-qualified export evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-2/r26-20261023](review/issue-2/r26-20261023) | Public-safe R26 native review deliverables with exact manuscript, PDF, kit and source/producer inventory. | history | [review/issue-2/2026-10-23-r26-integration.md](review/issue-2/2026-10-23-r26-integration.md) |
@@ -1945,6 +1946,15 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-184/archive-index.json](review/issue-184/archive-index.json) | Exact existing archive/member/original and locator identities for completed legacy site previews. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-184/inventory.json](review/issue-184/inventory.json) | Bounded original file-size/duplicate/consumer inventory and explicit active/public exclusions. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-184/review-evidence.tar.xz](review/issue-184/review-evidence.tar.xz) | Literal reviewer launch/packet/first-result/correction and bounded verification evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+
+## review/issue-189/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-189/2026-11-10-analysis.md](review/issue-189/2026-11-10-analysis.md) | Issue189 inspected-source architecture, proposed execution steps, refined AC01-AC05, author archive/headroom decisions and planning evidence limits. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-189/audit-review-evidence.tar.xz](review/issue-189/audit-review-evidence.tar.xz) | Lossless T01 source/member/native recovery proofs, pinned current/open-PR consumer inventories, first/correction reviews and preserved coupling failure diagnosis. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-189/planning-review-evidence.tar.xz](review/issue-189/planning-review-evidence.tar.xz) | Lossless first/correction planning reviews, source/packet identities and actual role launch/result receipts; no implementation acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-189/selected-files.json](review/issue-189/selected-files.json) | Frozen issue189 T01 nineteen-file archive selection, native identities, protected archive-only boundary and conservative capacity forecast; originals not yet removed. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/issue-2/
 

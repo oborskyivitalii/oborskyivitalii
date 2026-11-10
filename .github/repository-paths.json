@@ -17760,6 +17760,18 @@
       "purpose": "Lossless first/correction planning reviews, source/packet identities and actual role launch/result receipts; no implementation acceptance.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-189/selected-files.json": {
+      "kind": "file",
+      "purpose": "Frozen issue189 T01 nineteen-file archive selection, native identities, protected archive-only boundary and conservative capacity forecast; originals not yet removed.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-189/audit-review-evidence.tar.xz": {
+      "kind": "file",
+      "purpose": "Lossless T01 source/member/native recovery proofs, pinned current/open-PR consumer inventories, first/correction reviews and preserved coupling failure diagnosis.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

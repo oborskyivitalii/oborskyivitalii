@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "313a0bacaf9d61745833fc24b8ac1e30983a29d2ce62925531cab930609c4ed8",
+    "digest": "35a8c97c4de8667cd6de7731380416dbc36e9d91eb952df90d825068912be81a",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -236,12 +236,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "d94a0f269a9e9c457e3ab3c17e502fae4d85990ab27aada0ca604e8156a23035"
+        "sha256": "07252ac44766ecbe89e0ae564993349028ae47c98d77fc29871b1cacc39b4d61"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "35f3e17ea4ee6e486e52e427e8979a1415c6b82e1a945bdacae951c232898408"
+        "sha256": "7015e9376c834909abbea62a4ce6da8413441f41fa000029bbe459fbb935a945"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -391,7 +391,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "a0a9eb75cc37c132856ecb62e03b123ebd95adff8e3115846a43bf5a8d642bd1"
+        "sha256": "86915fa3f1fb39f750bde0d118d6df74a9b1cd078fc39669d157d46e683a8ae2"
       },
       {
         "path": "NOTICE.md",
@@ -4821,6 +4821,26 @@
         "path": "review/issue-184/review-evidence.tar.xz",
         "identity_mode": "content",
         "sha256": "ab6b476aa1ca5cb89e8ea00573ef2309fd208d35b2ed53fc791b4ec166135722"
+      },
+      {
+        "path": "review/issue-189/2026-11-10-analysis.md",
+        "identity_mode": "content",
+        "sha256": "518bf614e0e2fc8565028333e2837a7a2d06b409327b820a50b91e3d3cda35a2"
+      },
+      {
+        "path": "review/issue-189/audit-review-evidence.tar.xz",
+        "identity_mode": "content",
+        "sha256": "e268922945b29925188c0758985cff929bb694c9bbfb7500a920a2c604616d5b"
+      },
+      {
+        "path": "review/issue-189/planning-review-evidence.tar.xz",
+        "identity_mode": "content",
+        "sha256": "3234ceca8f56b0015336f38581c216a64938e8dd756858ba06317175f4c99b1e"
+      },
+      {
+        "path": "review/issue-189/selected-files.json",
+        "identity_mode": "content",
+        "sha256": "cee9263e5928946e6acd595ac3a0853ed2aad324837766fd89443d70de96e8bb"
       },
       {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -24376,6 +24396,50 @@
         "AGENTS.md"
       ],
       "title": "review-evidence.tar.xz"
+    },
+    {
+      "path": "review/issue-189/2026-11-10-analysis.md",
+      "kind": "file",
+      "purpose": "Issue189 inspected-source architecture, proposed execution steps, refined AC01-AC05, author archive/headroom decisions and planning evidence limits.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue189 — 2026-11-10 architecture and execution plan"
+    },
+    {
+      "path": "review/issue-189/audit-review-evidence.tar.xz",
+      "kind": "file",
+      "purpose": "Lossless T01 source/member/native recovery proofs, pinned current/open-PR consumer inventories, first/correction reviews and preserved coupling failure diagnosis.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "audit-review-evidence.tar.xz"
+    },
+    {
+      "path": "review/issue-189/planning-review-evidence.tar.xz",
+      "kind": "file",
+      "purpose": "Lossless first/correction planning reviews, source/packet identities and actual role launch/result receipts; no implementation acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "planning-review-evidence.tar.xz"
+    },
+    {
+      "path": "review/issue-189/selected-files.json",
+      "kind": "file",
+      "purpose": "Frozen issue189 T01 nineteen-file archive selection, native identities, protected archive-only boundary and conservative capacity forecast; originals not yet removed.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "selected-files.json"
     },
     {
       "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -44286,6 +44350,16 @@
       "path": "review/issue-184",
       "kind": "directory",
       "purpose": "Issue184 source-bound archival inventory, lossless recovery and post-production process evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-189",
+      "kind": "directory",
+      "purpose": "Issue189 current RI navigation/capacity architecture, planning review and later source-bound execution evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
