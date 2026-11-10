@@ -77,7 +77,7 @@
     {
       "id": "AC05",
       "intent": "Proportionate style/test allocation, actual independent review and trusted exact-source delivery.",
-      "automated_scope": "Current bounded style/coupling and fixed local Basic check verify their declared subset. This policy routes the new numeric task module only through its owner; it neither launches reviewers nor certifies architectural readability, hosted obligations, maintainer attestation, delivery or merge. Full-diff lane comes from protected-base selection, not this JSON. The shared protected-closure check also invokes the existing Node complete test-registry validator and confines this task registration to its owning policy. Its exact ledger exception preserves every predecessor row and metadata field, compares only109 individually proven appended dispositions to a pinned bounded proof, and runs the real closed-ledger loader; semantic public-identity review remains external.",
+      "automated_scope": "Current bounded style/coupling and source-only routing Basic verify their declared subset. The maintainer's10November amendment replaces website-building Basic here with existing real-Git observer/admission suites: supported service unions omit hosted work; public/unknown/unsafe/control-bootstrap unions refuse; source/security/Python/owning and exact reviewed_sha remain required. The numeric task module stays owning-only. This policy cannot launch reviewers, activate its classifier, certify actual hosted delivery or grant merge. Full-diff lane comes from protected-base selection. The shared closure check preserves exact exceptions, the complete old registry and109 individually proven ledger dispositions; semantic review remains external.",
       "checks": ["STYLE", "COUPLING", "BASIC", "PROTECTION-CAPACITY"],
       "gates": ["REVIEW", "DELIVERY", "MERGE"]
     }
@@ -260,7 +260,8 @@
       "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
     },
     "BASIC": {
-      "kind": "node-basic"
+      "kind": "unittest",
+      "test": "test_issue189_acceptance.Issue189AcceptanceTests.test_source_only_maintenance_routing"
     }
   },
   "gates": {

@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "8b52fbc20e494f98fc563216e5696a849250a39a4dd08bf0ece64a3a31ac227f",
+    "digest": "76d2a15903901010a978997db242ae1803281d6c19be5a203f99255667686816",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -112,7 +112,7 @@
       {
         "path": ".github/acceptance/issue-189.json",
         "identity_mode": "content",
-        "sha256": "28ea0e3c4169c2ac38f174ba3a16ef63a5b0ccf9ea519edbe307b56b586806aa"
+        "sha256": "7c01e1b38a20b507c239f83cb62f39ff234ddad736f27202059b864f5eea8b1f"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -241,12 +241,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "23245ded2f40b0bbb0c9956c402187f4bc73a70bb8170747ee67e2a955854255"
+        "sha256": "574db8328ce3e87a64476af5f0c9ea6c2228997f7a4899d8f9119566c1aad42f"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "c8aaef8bd7154cce477103276d8a9a1956ef6d76984698ca5e97ea79fac63e80"
+        "sha256": "7f20b5c564e10cc075f81f67ad07494514febe2951c6ad3e79d64ce08d3bcf0f"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -396,7 +396,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "eabe6ccf2ad6f75cf6b55ea562c70b8dc96cc92e56529b1bcf4e3e44250978e0"
+        "sha256": "14d8684b0b3b1f21b689a003233fb67f8541f00db03a9eeea904197f3d9c79c6"
       },
       {
         "path": "NOTICE.md",
@@ -940,7 +940,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "aea03f28069a9bc114800bd7d7e60af7bfc1411a4abc83e7b5d6b86b6bb57b57"
+        "sha256": "bc5add73cff90149dd6a6914b05c5e968b7909e2830487f97ee436324bae91f5"
       },
       {
         "path": "guides/SITE-CONTENT-RELEASE.md",
@@ -990,7 +990,7 @@
       {
         "path": "guides/SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "2537cc62310d19b7cf2d314a7808575e1aef371de2d37bc5afb3b089f10b66ed"
+        "sha256": "67b2b775076ba72aadd1ca80af6a36ca5b8f68ef4cad6cc984c853f18503c7d4"
       },
       {
         "path": "guides/WEB-ORCHESTRATION.md",
@@ -4830,7 +4830,7 @@
       {
         "path": "review/issue-189/2026-11-10-analysis.md",
         "identity_mode": "content",
-        "sha256": "6a04aa2735ca61d500333e660762ea9bfe6795009dfdf90e790093437e528e4e"
+        "sha256": "643e0266b28fe465ec74c6b17aff060f8876b8acdec646f9a3ad209f5306dabc"
       },
       {
         "path": "review/issue-189/archive-index.json",
@@ -4861,6 +4861,11 @@
         "path": "review/issue-189/planning-review-evidence.tar.xz",
         "identity_mode": "content",
         "sha256": "3234ceca8f56b0015336f38581c216a64938e8dd756858ba06317175f4c99b1e"
+      },
+      {
+        "path": "review/issue-189/routing-review-evidence.tar.xz",
+        "identity_mode": "content",
+        "sha256": "3a742aebe322cfaa7c8320fbc96de20b94b077297be0f6d025f894979349d0ab"
       },
       {
         "path": "review/issue-189/security-proof.json.gz",
@@ -11725,12 +11730,12 @@
       {
         "path": "tests/delivery-admission.test.cjs",
         "identity_mode": "content",
-        "sha256": "9cf8d520ad1127ee625a040d3c37fd3a2875f99e641a66a0df97fbbec6d5468e"
+        "sha256": "c81420be0fa6d804fa08245cc18a148aa44d4d7426d1ad07757e423966bbd1ab"
       },
       {
         "path": "tests/delivery-observation.test.cjs",
         "identity_mode": "content",
-        "sha256": "727fae8b51c2ed14882db4f1b79e1bac49aa97e23c9cb12913a9669aaae08789"
+        "sha256": "9bdf0283ad6bfc1520b595553f6bf89b2752c820197268fe1d41d691f3a32d9e"
       },
       {
         "path": "tests/edition-retention.test.cjs",
@@ -12115,7 +12120,7 @@
       {
         "path": "tests/test_issue189_acceptance.py",
         "identity_mode": "content",
-        "sha256": "03155f0762bb6f12268f324fab71e16d33558ab1c8ca1ee1b79c0af6654addbc"
+        "sha256": "b37a91681b35b463ba398887fa6ae46bf052c17c763c8427a47ad202e8904376"
       },
       {
         "path": "tests/test_issue31_acceptance.py",
@@ -12705,12 +12710,12 @@
       {
         "path": "tools/quality/delivery-observation.cjs",
         "identity_mode": "content",
-        "sha256": "9bb43a511a87f3ce3b14388b76c11d0e1d2b27265720732a92a21c7200d3f6ba"
+        "sha256": "14d98914c4a890051de6cc133f602c22a5d6622f719a952c2566defa7ba36665"
       },
       {
         "path": "tools/quality/delivery-routing.cjs",
         "identity_mode": "content",
-        "sha256": "8fa772ba0837d7f8acf4a7df5b54615778e0107da01de43a389c3344269bcaa9"
+        "sha256": "d66b3c27ae634ede5e757fdde13c75b5522d683c9c843e0ecd7eb97e643c5eb8"
       },
       {
         "path": "tools/quality/deploy-pages.example.yml",
@@ -12985,7 +12990,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "1903cfbb801e5cc82bc71679bb8bea544162c58bd9a7387aa567af82cf4ee036"
+        "sha256": "6a1398a6d641a6df1dbebde740b1ba1372b4e178c59213d3bccace5312c6476c"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -24443,6 +24448,17 @@
         "AGENTS.md"
       ],
       "title": "planning-review-evidence.tar.xz"
+    },
+    {
+      "path": "review/issue-189/routing-review-evidence.tar.xz",
+      "kind": "file",
+      "purpose": "Lossless issue189 source-only maintenance routing amendment, original failures, independent review and exact-source test/selection receipts; no self-activation or merge authority.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "routing-review-evidence.tar.xz"
     },
     {
       "path": "review/issue-189/security-proof.json.gz",

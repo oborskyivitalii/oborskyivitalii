@@ -189,11 +189,11 @@ registry rows and exactly `tools/repository_intelligence.py`,
 parsed; every existing row and every other field must remain equal. Added rows
 must describe newly added regular tests; full source inventory validation still
 runs. Numeric task snapshots stay owning-policy-only. Test deletions/renames,
-mode/type changes, site/publication/rights/unknown/mixed input, source runner/
-worker/selector or registry policy edits, locks/scanner policy, workflows/actions
+mode/type changes, site/publication/public-rights/unknown/mixed input, source runner/
+worker/selector or registry policy edits, locks, publication workflows/actions
 and admission/issuer/classifier remain full. This enabling PR is not exempt.
 
-Technical work retains control=true and exact reviewed_sha. Existing source CI
+Executable controls retain control=true and exact reviewed_sha. Existing source CI
 runs affected Node plus enduring Python, format/architecture/lint and source-bound
 security/advisories with the full locked toolchain; navigation/RI/coupling and
 owning acceptance remain required. Website work is explicitly inapplicable,
@@ -202,9 +202,17 @@ The broader observation report retains its conservative full/control proposal;
 the protected selection's explicit technical disposition alone narrows hosted work.
 Actual native activation is separately recorded under issue169 TR03/08.
 
-RI/CI checksum-only refreshes may accompany eligible technical work only through
-the existing riIdentityCompatible check: all map semantics and identity input paths
-remain equal. Mapping/selection changes remain full; navigation verifies new hashes.
+Issue189 extends this technical route to the exact source-only maintenance classes
+in [R2 execution selection](SITE-CHECK-PROFILES.md#r2-execution-selection): RI contracts
+and coupling metadata, owning policies/task rows, reviewed scanner ledgers, supported
+historical evidence and repository-only notices with no public provenance dependency.
+The owning workflow can gain only positive predicates for newly added policies;
+existing conditions/commands/jobs/pins/permissions remain. Both diff endpoints and
+all required source/security/Python/RI/owning checks are preserved. Hosted work is
+inapplicable, never recorded as passing. No archive/delete/rights approval follows.
+The classifier change is prepared under189 and needs protected bootstrap before
+future effective selection; a candidate cannot activate its own delivery exemption.
+Content reuse independently retains the identity-only `riIdentityCompatible` proof.
 
 
 The protected-base classifier, not a candidate wrapper/catalog label, chooses

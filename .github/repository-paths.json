@@ -17707,6 +17707,12 @@
       "role": "test",
       "owner": ".github/ACCEPTANCE.md"
     },
+    "review/issue-189/routing-review-evidence.tar.xz": {
+      "kind": "file",
+      "purpose": "Lossless issue189 source-only maintenance routing amendment, original failures, independent review and exact-source test/selection receipts; no self-activation or merge authority.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-189/delivery-review-evidence.tar.xz": {
       "kind": "file",
       "purpose": "Lossless T05 acceptance/test-allocation/protected-route preparation, first/correction reviews and actual source-bound launch/result receipts; no delivery permission.",

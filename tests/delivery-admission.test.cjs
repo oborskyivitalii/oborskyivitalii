@@ -752,6 +752,7 @@ test('real Git collection keeps candidate bytes as data and rejects an otherwise
     const ownerRoot = path.resolve(__dirname, '..');
     const inputFiles = [
       'tools/quality/test-profiles.json',
+      '.github/workflows/issue-acceptance.yml',
       'site/rights.json',
       'site/routes.json',
       ...['index', 'research', 'writing', 'talks', 'credits'].map(
@@ -895,6 +896,36 @@ test('real Git collection keeps candidate bytes as data and rejects an otherwise
     assert.equal(technical.selection.technicalRepository, true);
     assert.equal(technical.lane, 'repository');
     assert.equal(technical.evidence.length, 3, 'no hosted workflow or staging API is required');
+    git('checkout', '-q', technicalHead);
+    fs.mkdirSync(path.join(root, 'review/issue-999'), { recursive: true });
+    fs.writeFileSync(path.join(root, 'review/issue-999/archive-index.json'), '{}\n');
+    fs.mkdirSync(path.join(root, '.github/acceptance'), { recursive: true });
+    fs.writeFileSync(path.join(root, '.github/acceptance/issue-999.json'), '{"issue":999}\n');
+    const workflowFile = path.join(root, '.github/workflows/issue-acceptance.yml');
+    fs.writeFileSync(
+      workflowFile,
+      fs
+        .readFileSync(workflowFile, 'utf8')
+        .replaceAll(
+          "env.ACCEPTANCE_POLICY == '.github/acceptance/issue-189.json'",
+          "env.ACCEPTANCE_POLICY == '.github/acceptance/issue-189.json' ||\n" +
+            "          env.ACCEPTANCE_POLICY == '.github/acceptance/issue-999.json'"
+        )
+    );
+    git('add', '.');
+    git('commit', '-qm', 'owning policy and archival maintenance');
+    const maintenanceHead = git('rev-parse', 'HEAD');
+    pr.head.sha = maintenanceHead;
+    git('checkout', '-q', main);
+    assert.deepEqual((await admission.collect(github, context, 122, root)).blockers, [
+      'review-exact-control-head',
+    ]);
+    context.payload.inputs.reviewed_sha = maintenanceHead;
+    const maintenance = await admission.collect(github, context, 122, root);
+    assert.equal(maintenance.state, 'eligible-snapshot');
+    assert.equal(maintenance.lane, 'repository');
+    assert.equal(maintenance.selection.technicalRepository, true);
+    assert.equal(maintenance.evidence.length, 3, 'maintenance never requests hosted evidence');
     failedSource = true;
     await assert.rejects(admission.collect(github, context, 122, root), /required workflow failed/);
     failedSource = false;

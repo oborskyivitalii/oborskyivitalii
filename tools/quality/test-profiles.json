@@ -2969,7 +2969,7 @@
     {
       "path": "tests/test_issue189_acceptance.py",
       "language": "python",
-      "purpose": "Issue189 exact frozen archive recovery, protected-base closure and current capacity; semantic eligibility, review and hosted delivery remain external.",
+      "purpose": "Issue189 archive recovery, protected closure/capacity and source-only maintenance routing; semantic eligibility, review and actual delivery remain external.",
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
       "profiles": ["issue-policy"],
@@ -2983,7 +2983,11 @@
         "review/issue-189/security-proof.json.gz",
         "tools/repository_intelligence.py",
         "tools/quality/test-profiles.json",
-        "tools/quality/secrets-reviewed-checksums.json"
+        "tools/quality/secrets-reviewed-checksums.json",
+        "tools/quality/delivery-routing.cjs",
+        "tools/quality/delivery-observation.cjs",
+        "tests/delivery-observation.test.cjs",
+        "tests/delivery-admission.test.cjs"
       ]
     }
   ]

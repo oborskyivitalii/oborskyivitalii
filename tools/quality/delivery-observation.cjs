@@ -140,12 +140,15 @@ function inputs(root, revision) {
   const entries = git.tree(root, revision);
   const registry = json.parse(git.read(root, revision, routing.registryPath, entries));
   routing.validateRegistry(registry);
-  const rights = routing.provenance(
-    json.parse(git.read(root, revision, 'site/rights.json', entries))
-  );
+  const rightsManifest = json.parse(git.read(root, revision, 'site/rights.json', entries));
+  const rights = routing.provenance(rightsManifest);
   return {
     registry,
     rights,
+    repositoryNotices: routing.repositoryNotices(rightsManifest),
+    owningWorkflow: entries.has('.github/workflows/issue-acceptance.yml')
+      ? git.read(root, revision, '.github/workflows/issue-acceptance.yml', entries).toString()
+      : null,
     contentPaths: contentInputs(root, revision, entries),
     ciIdentity: entries.has('.github/ri-ci-map.json')
       ? json.parse(git.read(root, revision, '.github/ri-ci-map.json', entries))
@@ -184,11 +187,23 @@ function selection(root, base, head) {
   );
   const baseline = inputs(root, base);
   const sources = { base: baseline, candidate: inputs(root, head), policy: baseline };
-  const result = routing.analyze(records, sources, base, head, true);
+  const result = routing.analyze(records, sources, base, head);
   const content = routing.contentSelection(records, sources);
   const technical = routing.technicalSelection(records, sources);
-  if (technical.eligible)
-    routing.repositoryObligations(result.obligations, result.analysis.reasons, base, head, true);
+  const repositoryOnly =
+    result.analysis.status === 'complete' &&
+    (technical.eligible ||
+      (!technical.rejected.length &&
+        result.analysis.control === false &&
+        result.analysis.proposedLane === 'repository'));
+  if (repositoryOnly)
+    routing.repositoryObligations(
+      result.obligations,
+      result.analysis.reasons,
+      base,
+      head,
+      technical.eligible
+    );
   return {
     base: before,
     candidate,
@@ -198,10 +213,7 @@ function selection(root, base, head) {
     contentOnly: content.eligible,
     technical,
     technicalRepository: technical.eligible,
-    repositoryOnly:
-      result.analysis.status === 'complete' &&
-      (technical.eligible ||
-        (result.analysis.control === false && result.analysis.proposedLane === 'repository')),
+    repositoryOnly,
   };
 }
 function initialReport() {

@@ -20,6 +20,46 @@ function provenance(manifest) {
   paths.push(...manifest.notices.map((notice) => notice.path));
   return new Set(paths.map(safePath));
 }
+function repositoryNotices(manifest) {
+  const publicRecords = [
+    ...manifest.sourceGroups,
+    ...Object.values(manifest.assets),
+    ...Object.values(manifest.retained),
+    ...manifest.notices.filter((notice) => notice.scope !== 'repository-component-only'),
+  ];
+  const publicBases = new Set(publicRecords.flatMap((record) => record.bases));
+  return new Set(
+    manifest.notices
+      .filter(
+        (notice) =>
+          notice.scope === 'repository-component-only' &&
+          !publicRecords.some(
+            (record) =>
+              record.path === notice.path ||
+              record.paths?.some(
+                (scope) => notice.path === scope || notice.path.startsWith(scope + '/')
+              )
+          ) &&
+          Object.entries(manifest.bases)
+            .filter(([, basis]) => basis.provenance.includes(notice.path))
+            .every(([id]) => !publicBases.has(id))
+      )
+      .map((notice) => safePath(notice.path))
+  );
+}
+function repositoryEvidence(file) {
+  return (
+    /^review\/issue-\d+\/(?:[^/]+\/)*(?:[^/]+\.(?:md|png|jpe?g|webp|webm)|(?:[^/]+-(?:index|manifest|evidence|proof)|selected-files)\.json(?:\.gz)?|(?:[^/]+-)?review-evidence\.tar\.xz)$/.test(
+      file
+    ) ||
+    /^review\/site-v1-\d{8}-v\d+(?:-index\.html(?:\.gz)?|-captures\.zip|-captures\/(?:[^/]+\/)*[^/]+\.(?:md|png|jpe?g|webp|webm))$/.test(
+      file
+    )
+  );
+}
+function technicalEvidence(file) {
+  return repositoryEvidence(file) && !/^review\/issue-\d+\/.*\.md$/.test(file);
+}
 function rule(id, impact, control, owner, dependencies, detail) {
   return { id, impact, control, owner, dependencies, detail };
 }
@@ -71,7 +111,7 @@ function classify(file, rights, contentPaths = new Set()) {
       'PROJECT-BOOTSTRAP.md',
       'review/REVIEW-TEMPLATE.md',
     ].includes(file) ||
-    /^review\/issue-\d+\/.*\.md$/.test(file)
+    repositoryEvidence(file)
   )
     add(
       'D01',
@@ -85,6 +125,7 @@ function classify(file, rights, contentPaths = new Set()) {
     [
       '.github/repository-paths.json',
       '.github/repository-intelligence-config.json',
+      '.github/REPOSITORY-INTELLIGENCE.md',
       '.github/repository-layout.json',
       'REPOSITORY-MAP.md',
     ].includes(file) ||
@@ -553,8 +594,94 @@ function repositoryObligations(obligations, reasons, base, candidate, technical 
       obligations.push(row);
     }
 }
-// A technical exemption is a dependency disposition, never executable trust.
-// Selection/admission/publisher code and their workflow definitions stay full-route.
+function owningPredicates(source) {
+  const lines = source.split('\n'),
+    predicates = [];
+  const normalized = [];
+  for (let index = 0; index < lines.length; index++) {
+    const match = lines[index].match(/^(\s*)if: (.*)$/);
+    if (!match) {
+      normalized.push(lines[index]);
+      continue;
+    }
+    let expression = match[2];
+    if (expression === '>-' || expression === '>') {
+      const parts = [];
+      while (index + 1 < lines.length && lines[index + 1].startsWith(match[1] + ' '))
+        parts.push(lines[++index].trim());
+      expression = parts.join(' ');
+    }
+    const parts = expression.split(/\s*\|\|\s*/);
+    const paths = parts.map(
+      (part) =>
+        part.match(/^env\.ACCEPTANCE_POLICY == '(\.github\/acceptance\/issue-\d+\.json)'$/)?.[1]
+    );
+    if (paths.every(Boolean) && new Set(paths).size === paths.length) {
+      predicates.push(paths);
+      normalized.push(match[1] + 'if: <owning-policy-set>');
+    } else normalized.push(match[1] + 'if: ' + expression);
+  }
+  return { normalized: normalized.join('\n'), predicates };
+}
+function owningWorkflowCompatible(records, sources) {
+  if (
+    typeof sources.base.owningWorkflow !== 'string' ||
+    typeof sources.candidate.owningWorkflow !== 'string'
+  )
+    return false;
+  const addedPolicies = new Set(
+    records
+      .filter(
+        (record) =>
+          record.status === 'A' &&
+          record.newMode === '100644' &&
+          /^\.github\/acceptance\/issue-\d+\.json$/.test(record.newPath)
+      )
+      .map((record) => record.newPath)
+  );
+  const before = owningPredicates(sources.base.owningWorkflow),
+    after = owningPredicates(sources.candidate.owningWorkflow);
+  return (
+    before.normalized === after.normalized &&
+    before.predicates.length === after.predicates.length &&
+    before.predicates.every(
+      (paths, index) =>
+        paths.every((file) => after.predicates[index].includes(file)) &&
+        after.predicates[index].every((file) => paths.includes(file) || addedPolicies.has(file))
+    )
+  );
+}
+function repositoryMaintenance(file) {
+  return (
+    repositoryEvidence(file) ||
+    /^\.github\/acceptance\/issue-\d+\.json$/.test(file) ||
+    [
+      '.github/ri-ci-map.json',
+      'tools/RI-NOTICE.md',
+      'tools/RI-LICENSE.md',
+      'tools/quality/bandit-policy.json',
+      'tools/quality/secrets-reviewed-checksums.json',
+    ].includes(file)
+  );
+}
+function hostedDependency(file, source) {
+  return (
+    source.contentPaths.has(file) ||
+    (source.rights.has(file) && !source.repositoryNotices?.has(file))
+  );
+}
+function taskRegistryAddition(row, records) {
+  if (row.lifecycle !== 'task-snapshot') return true;
+  const issue = row.path.match(/^tests\/test_issue(\d+)_acceptance\.py$/)?.[1];
+  return (
+    Boolean(issue) &&
+    isDeepStrictEqual(row.profiles, ['issue-policy']) &&
+    row.surviving_route === '.github/acceptance/issue-' + issue + '.json' &&
+    records.some((record) => record.status === 'A' && record.newPath === row.surviving_route)
+  );
+}
+// Hosted dependency and executable trust are separate. Selection/admission/
+// publisher code and their workflows still require the protected bootstrap.
 function technicalSelection(records, sources) {
   const repositoryTools = new Set([
     'tools/repository_intelligence.py',
@@ -573,7 +700,7 @@ function technicalSelection(records, sources) {
     previousTests.every((row) => isDeepStrictEqual(row, currentRows.get(row.path))) &&
     additions.every(
       (row) =>
-        row.lifecycle !== 'task-snapshot' &&
+        taskRegistryAddition(row, records) &&
         records.some(
           (record) =>
             record.status === 'A' && record.newPath === row.path && record.newMode === '100644'
@@ -590,6 +717,19 @@ function technicalSelection(records, sources) {
       rejected.push(file || record.oldPath);
       continue;
     }
+    if (
+      ['base', 'candidate'].some((side) => {
+        const name = record[side === 'base' ? 'oldPath' : 'newPath'];
+        return name && hostedDependency(name, sources[side]);
+      })
+    ) {
+      rejected.push(file || record.oldPath);
+      continue;
+    }
+    if (technicalEvidence(file || record.oldPath)) {
+      technical.push(file || record.oldPath);
+      continue;
+    }
     const ordinary = ['base', 'candidate'].every((side) => {
       const name = record[side === 'base' ? 'oldPath' : 'newPath'];
       if (!name) return true;
@@ -601,19 +741,12 @@ function technicalSelection(records, sources) {
       ['A', 'M'].includes(record.status) &&
       record.newMode === '100644' &&
       (record.status === 'A' || record.oldMode === record.newMode) &&
-      !sources.base.rights.has(file) &&
-      !sources.candidate.rights.has(file) &&
       (repositoryTools.has(file) ||
-        (file === '.github/ri-ci-map.json' &&
-          sources.base.ciIdentity &&
-          sources.candidate.ciIdentity &&
-          riIdentityCompatible(sources.base.ciIdentity, sources.candidate.ciIdentity)) ||
+        repositoryMaintenance(file) ||
+        (file === '.github/workflows/issue-acceptance.yml' &&
+          owningWorkflowCompatible(records, sources)) ||
         (file?.startsWith('tests/') &&
-          (!/(?:\.test\.cjs|\/test_[^/]+\.py)$/.test(file) || currentRows.has(file)) &&
-          ![previousRows.get(file), currentRows.get(file)].some(
-            (row) => row?.lifecycle === 'task-snapshot'
-          ) &&
-          !/^tests\/(?:.*\/)?test_issue\d+_acceptance\.py$/.test(file)) ||
+          (!/(?:\.test\.cjs|\/test_[^/]+\.py)$/.test(file) || currentRows.has(file))) ||
         (file === registryPath && additiveRegistry));
     (supported ? technical : rejected).push(file || record.oldPath);
   }
@@ -622,7 +755,7 @@ function technicalSelection(records, sources) {
     technical,
     rejected,
     additiveRegistry,
-    controlReviewRequired: true,
+    controlReviewRequired: technical.some(control),
   };
 }
 function riIdentityCompatible(before, after) {
@@ -737,6 +870,7 @@ module.exports = {
   policyPath,
   matches,
   provenance,
+  repositoryNotices,
   classify,
   control,
   selected,

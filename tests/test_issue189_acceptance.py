@@ -42,6 +42,13 @@ MUTABLE = {
     "tools/quality/test-profiles.json",
     "tools/quality/secrets-reviewed-checksums.json",
     ".github/workflows/issue-acceptance.yml",
+    # Maintainer's10November routing amendment; public/other controls stay frozen.
+    "tools/quality/delivery-routing.cjs",
+    "tools/quality/delivery-observation.cjs",
+    "tests/delivery-observation.test.cjs",
+    "tests/delivery-admission.test.cjs",
+    "guides/SITE-CHECK-PROFILES.md",
+    "guides/SITE-STAGING.md",
     *{f"review/site-v1-20261002-v{v}-index.html" for v in (5, 6, 7)},
 }
 ADDITIONS = {
@@ -56,6 +63,7 @@ ADDITIONS = {
     "review/issue-189/navigation-review-evidence.tar.xz",
     "review/issue-189/delivery-review-evidence.tar.xz",
     "review/issue-189/security-proof.json.gz",
+    "review/issue-189/routing-review-evidence.tar.xz",
     *{f"review/site-v1-20261002-v{v}-captures/ARCHIVE.md" for v in (5, 6, 7)},
 }
 
@@ -143,6 +151,25 @@ class Links(HTMLParser):
 
 
 class Issue189AcceptanceTests(unittest.TestCase):
+    def test_source_only_maintenance_routing(self):
+        result = subprocess.run(
+            [
+                "node",
+                "--test",
+                "--test-reporter=tap",
+                "tests/delivery-observation.test.cjs",
+                "tests/delivery-admission.test.cjs",
+            ],
+            cwd=REPO,
+            text=True,
+            capture_output=True,
+            timeout=300,
+            check=False,
+        )
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertRegex(result.stdout, r"# fail 0\b")
+        self.assertRegex(result.stdout, r"# skipped 0\b")
+
     def test_every_selected_original_and_complete_gallery_is_recoverable(self):
         frozen = selection()
         index = json.loads((REPO / "review/issue-189/archive-index.json").read_text())
@@ -321,7 +348,7 @@ class Issue189AcceptanceTests(unittest.TestCase):
         expected_row = {
             'path': 'tests/test_issue189_acceptance.py',
             'language': 'python',
-            'purpose': 'Issue189 exact frozen archive recovery, protected-base closure and current capacity; semantic eligibility, review and hosted delivery remain external.',
+            'purpose': 'Issue189 archive recovery, protected closure/capacity and source-only maintenance routing; semantic eligibility, review and actual delivery remain external.',
             'owner': '.github/ACCEPTANCE.md',
             'lifecycle': 'task-snapshot',
             'profiles': ['issue-policy'],
@@ -336,6 +363,10 @@ class Issue189AcceptanceTests(unittest.TestCase):
                 'tools/repository_intelligence.py',
                 'tools/quality/test-profiles.json',
                 'tools/quality/secrets-reviewed-checksums.json',
+                'tools/quality/delivery-routing.cjs',
+                'tools/quality/delivery-observation.cjs',
+                'tests/delivery-observation.test.cjs',
+                'tests/delivery-admission.test.cjs',
             ],
         }
         self.assertEqual(set(new_registry), set(old_registry))

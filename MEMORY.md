@@ -5,7 +5,7 @@ Dated continuity, not live authority. Last verified: **2026-11-10**.
 ## Snapshot
 
 - Main/production ca756417590b9176f9fc33428321ffe1f64158cc; prod-2026-11-10.1 delivered R12 and issue184 archival dependency.
-- Issue189 / Draft PR190 remains active. T06 sourceCI on4a14c0f5 passed8shards/checks/navigation/owning; owner stage42899614004 failed security before upload (25/26preflight passed). Native/local failures retained; local pinned engines isolate108public identity candidates. Exact109-row companion/proof correction accepted by four affectedroles; current exact clean fullsecurity/native delivery remain pending. See PR190/latest versioned analysis. Main/production unchanged.
+- Issue189 / Draft PR190 active. Source1746 passed actual sourceCI/navigation/owning and all26stage preflight guards/security. Stage42905616039 failed cold Home→Writing3277.1>3200ms; no stable promotion/merge. Site/runtime unchanged. New user amendment: extend source-only service routing first, then transition diagnosis. Routing correction dba309b4 has72/72Node,45/45owning, full source lint/security/advisories and four affected reviews; not activated; see issue189/PR190 latest amendment and versioned analysis. Main/production unchanged.
 - Separate owners: issue188 MEMORY lifecycle; issue187 reusable article pulse. PR171/117/110/107/79 remain separate.
 
 ## Decisions
@@ -13,6 +13,7 @@ Dated continuity, not live authority. Last verified: **2026-11-10**.
 - Original intake split into189→188→187. Archives remain in this repo; final RI hash-input headroom target is10,000,000bytes without raising caps.
 - On10November the maintainer explicitly accepted keeping the two RI whole-file formatting deltas in PR190 (“Залишай”); dated CS05 exception is in issue189 and PR190 comment6778023443. No merge/release approval is inferred.
 - Keep one producer/two outputs/full machine inventory and legacy unqualified lookup. Short map/scoped paging and capacity diagnostics use the same producer; full inventory/hashing and legacy unqualified results remain. No service/cache/shards.
+- 10November: maintainer explicitly extends source-only routing to RI/archive/owning maintenance with no hosted dependency. Preserve source/security/RI/owning/review/App controls, both endpoints and public/unknown refusals. No blind full staging; transition diagnosis follows routing correction.
 
 ## Open work
 
@@ -24,8 +25,8 @@ Dated continuity, not live authority. Last verified: **2026-11-10**.
 ## Next session
 
 1. Revalidate refs, issue189/PR190, current-source checks and latest user instruction; use the dated report/recovery index, not memory alone.
-2. T06 security correction: verify pinned original108per-ID proof plus separate proofchecksum row, immutable3,681-row ledgerprefix/metadata and otherledgers/caps; obtain four affectedreviews. Preserve originalregistry/native/security failures; CS05accepted.
-3. Before Ready/newCI: exact clean local fullsecurity and121navigation/45policy. Then actual protected full/control source/hosted/admission/normalmerge route with reviewed_sha; hand off188 afterward.
+2. Complete amended maintenance routing: exact current-source positive/refusal observer/App tests and45owning checks, RI/coupling/style/security and four affected independent reviews. Preserve prior findings and original failures; CS05accepted.
+3. Distinguish prospective amended selection from active protected-main bootstrap. Do not claim self-activation or waive failed delivery. Only after routing correction, perform one bounded transition diagnostic pair; no full retry-until-green. Verified pinned browser archive is available outside repo. Hand off188 only after189 delivery.
 
 ## Maintenance
 
