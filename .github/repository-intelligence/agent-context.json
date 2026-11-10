@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "5536a72f98aab2cd7e8ebc0de11f5cc8ef7a672e6f9e60b30140fd0628f1e21e",
+    "digest": "51da2bcd64145ff3bebc6cb6087000221ceb6abba89cefc9776072f44f1f71be",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -103,6 +103,11 @@
         "path": ".github/acceptance/issue-179.json",
         "identity_mode": "content",
         "sha256": "a4c384c323b844245e02cdad42dbd63d2d6cd139c0c5e93b7b1f91afa520f304"
+      },
+      {
+        "path": ".github/acceptance/issue-184.json",
+        "identity_mode": "content",
+        "sha256": "6176042326ceed9b683a8c3f76ea2608f13ea688e260ae7787ccce7e8018cc8a"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -231,12 +236,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "d6b5abc5a688e0e2d19b58d07354f61a2ff1fbb85af05eedb1379db7412fcfed"
+        "sha256": "44556cf0aea5868b2eee7c6cf8f6e102053b879dcb86a27265add2395c59418a"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "a34a52dafe64851a059f048c1b76919cc7bc8ac13627520274a0d3bf932416fc"
+        "sha256": "800947995bcccfdbd2bad78b6908cd51198f0980e9b0b75d213e632a06e38bdc"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -366,7 +371,7 @@
       {
         "path": "CONTRIBUTING.md",
         "identity_mode": "content",
-        "sha256": "a175f65e207b653b323f81a7543bea5a80f1f49b8ab6c9666c63656727667f65"
+        "sha256": "0dc5be319f0269b4ba56751348dc1758ca874cb0f067b440b2b0d60a6d8b577a"
       },
       {
         "path": "LICENSE-CODE.md",
@@ -386,7 +391,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "424756098fbb11a45542edcef2daee4d0d928b2a974405213d8984357a1be66a"
+        "sha256": "a56762f5adf45533a2505820929737e9420e791ae9907f9abb3d5d1dde36c6df"
       },
       {
         "path": "NOTICE.md",
@@ -4743,6 +4748,26 @@
         "sha256": "c4bc978ce7df48f3715843a3fe14d9b60f3429465e269d5b77b913ab4272f315"
       },
       {
+        "path": "review/issue-184/2026-11-10-archive.md",
+        "identity_mode": "content",
+        "sha256": "5ddf09f1cbb653c72fc533453bab4206b9581a5d1f1af30d5ed00ec79abb7186"
+      },
+      {
+        "path": "review/issue-184/archive-index.json",
+        "identity_mode": "content",
+        "sha256": "e2bc1e61017a050dcb714c066a35398df726bfeac2b39ec83b18790dc74c2114"
+      },
+      {
+        "path": "review/issue-184/inventory.json",
+        "identity_mode": "content",
+        "sha256": "c78dace0cde6f15008c4289b8dec65a9eed15100418179898446a322496010d9"
+      },
+      {
+        "path": "review/issue-184/review-evidence.tar.xz",
+        "identity_mode": "content",
+        "sha256": "ab6b476aa1ca5cb89e8ea00573ef2309fd208d35b2ed53fc791b4ec166135722"
+      },
+      {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",
         "identity_mode": "content",
         "sha256": "cfba82fce991fb63d7b8ffbdc71e236874f98730fde62e5ca54e3fb6958f63f5"
@@ -8050,22 +8075,22 @@
       {
         "path": "review/site-v1-20261002-v5-credits-day.html",
         "identity_mode": "content",
-        "sha256": "b8831fea5a9f6b3fa5e536d102aabba2c2c4b98eab8877e1f2583a0d0ea35ad2"
+        "sha256": "c6aec3f0d93b148265efe79a7a12cb03edb0885a93bfe85b604bb72bbb66e988"
       },
       {
         "path": "review/site-v1-20261002-v5-credits-interactive.html",
         "identity_mode": "content",
-        "sha256": "30b40e155e4f43a2fb65ad55f6d050069b5e8d1323da61ee8af7d7fbe7499e0d"
+        "sha256": "b5a192c5fbd4981593d1aa3a6e070ae6a7bc9c19982563cc1810c20c1086074e"
       },
       {
         "path": "review/site-v1-20261002-v5-credits-night.html",
         "identity_mode": "content",
-        "sha256": "30aeaa9298241eb970b6cce299355e55b8a884c06194c23d0490b005dae64d4a"
+        "sha256": "ee08b9234cbc5d6beea34b95f1c6810473944ffb905e7d2cec60983f4b30e51f"
       },
       {
         "path": "review/site-v1-20261002-v5-day.html",
         "identity_mode": "content",
-        "sha256": "40b313ba3a99fdd7209dd2c6d5e448f6b91a944d731c2577ed72c120b2fdc503"
+        "sha256": "c2759ccfcc3ad6da0eb57181e063c9d455802ec59476fc5045736ebe5819beb3"
       },
       {
         "path": "review/site-v1-20261002-v5-index.html",
@@ -8080,57 +8105,57 @@
       {
         "path": "review/site-v1-20261002-v5-interactive.html",
         "identity_mode": "content",
-        "sha256": "644488795222c68409ae80a981ae9b83b9406f7aee172892849ab3d7c0a836ae"
+        "sha256": "ec06acde4889eec4faa30156bd62b77a20a48bb530f9f71128f85f25b5f9b260"
       },
       {
         "path": "review/site-v1-20261002-v5-night.html",
         "identity_mode": "content",
-        "sha256": "84bc697b6df05724287433759c48d2676f088739ffefb54d41d4cca73ea51cec"
+        "sha256": "2ccba68733fd2bb0395d1abd6a1665946b92f680c93e92f84ef2d0bee3866ea8"
       },
       {
         "path": "review/site-v1-20261002-v5-research-day.html",
         "identity_mode": "content",
-        "sha256": "05694615c1d79649060c39eb80788ea12006ceae2d250f9642c466010898c44d"
+        "sha256": "dae908b772713a9872d6d3cf833d91bfa5377426f99b6d8d2bed207110bf5ec7"
       },
       {
         "path": "review/site-v1-20261002-v5-research-interactive.html",
         "identity_mode": "content",
-        "sha256": "ac44dea04c84f1b6e491586ed8c2416b79e5c1e0e0804d0caece4c411d9b798f"
+        "sha256": "5eaac0268aa3515ffa171a0f8230720677c22ca5ab47902a1bf99c6f1f84f1a6"
       },
       {
         "path": "review/site-v1-20261002-v5-research-night.html",
         "identity_mode": "content",
-        "sha256": "c364b20f42ac885cefef427df0fffc5f535974240817e89ef8e5f46ddbf3e7e6"
+        "sha256": "ac3f03ad40854bbe4359f619af28edb829543f867e49c9cd9079cd149b1a8739"
       },
       {
         "path": "review/site-v1-20261002-v5-talks-day.html",
         "identity_mode": "content",
-        "sha256": "70f5bb2aeb59ef1a34484809563e00f204b0ef1d0a83c9743be788c01ee5830f"
+        "sha256": "067800d2b5628420b40b9c8e76d4c655c85bf71ad87b7a8dd006632242d63afe"
       },
       {
         "path": "review/site-v1-20261002-v5-talks-interactive.html",
         "identity_mode": "content",
-        "sha256": "2277fff8dcafdac9bda6d8c4b4b40979ebc7ab2c061a2faf8d477584980feeb5"
+        "sha256": "9868fbf55446334b7170ee180e27ddf137b9b6f53603981a801b651164c02408"
       },
       {
         "path": "review/site-v1-20261002-v5-talks-night.html",
         "identity_mode": "content",
-        "sha256": "faf6dce0ecbaa41a48c4b13ce2587447dd79f356f37d5a5af3565c4e37e99dbb"
+        "sha256": "495fbb56ed4253ea6111e0f2bfe67f45856d93cbfaf11dc315813fc9cd5477fc"
       },
       {
         "path": "review/site-v1-20261002-v5-writing-day.html",
         "identity_mode": "content",
-        "sha256": "ebba1dccc1382101be45d41e93175b12ea2fc5dc718a4a3de14690d4b3a41fad"
+        "sha256": "9d2e84661fa9437073fdfac97c848d9f2f56ea50b8867b6a05275959afdcaeb7"
       },
       {
         "path": "review/site-v1-20261002-v5-writing-interactive.html",
         "identity_mode": "content",
-        "sha256": "0081931a8afb9a099bce8f47cfa08e41c2b5fbc0ce6754fc71b0ac1da6ad7ed8"
+        "sha256": "e22f7f0bf86ec3732ef594e44666e5f5cc70237a7fa92692ffddb86aafd5c764"
       },
       {
         "path": "review/site-v1-20261002-v5-writing-night.html",
         "identity_mode": "content",
-        "sha256": "de677a1f423be4faf3d287a8638a610b090dd4040d314630bc1b1003e9c2a0b7"
+        "sha256": "9a3c10075625361db8ea847d2f6f32e18bb9e6adb596ded4d9ce55b329d75340"
       },
       {
         "path": "review/site-v1-20261002-v5.zip",
@@ -8415,22 +8440,22 @@
       {
         "path": "review/site-v1-20261002-v6-credits-day.html",
         "identity_mode": "content",
-        "sha256": "06fd3b7da604814c1b041ed02aaf70ad4bf14c416c87ca233ea0ab46f0ea8924"
+        "sha256": "751372024e7c137271d903059ab390b7632e4df426e95c9f0cd4fd9900e0ab60"
       },
       {
         "path": "review/site-v1-20261002-v6-credits-interactive.html",
         "identity_mode": "content",
-        "sha256": "33fcaef3d4a987816c10bd0aaf3b98524e0ef545f3a1be2c7f345aafb0d5efb6"
+        "sha256": "b710cf3d44094a950867e283277b1008913c445681f1dc182cc8c37841a017d1"
       },
       {
         "path": "review/site-v1-20261002-v6-credits-night.html",
         "identity_mode": "content",
-        "sha256": "a1d13eb26fdb6f9e7e4f58ce8f10178a943c46bf799507a75a111c175ce69415"
+        "sha256": "d3d7dfd01e5fe7762939e7198db26cd0513bcf91693b2483653ed9800d1824c7"
       },
       {
         "path": "review/site-v1-20261002-v6-day.html",
         "identity_mode": "content",
-        "sha256": "fc9feac3278c6028e5209c695e37e36bbe0393a2b2bec4c21b4d6bdcd1d4b49a"
+        "sha256": "d67fc7b430b4494701d97f72ceed105342e1dc09f8e00b1f2bff23a4233131e1"
       },
       {
         "path": "review/site-v1-20261002-v6-index.html",
@@ -8445,17 +8470,17 @@
       {
         "path": "review/site-v1-20261002-v6-interactive.html",
         "identity_mode": "content",
-        "sha256": "f5c243f9bbaed9b197ed926f3f5ae1dbe672e5bfde23d317d285612b338a5a8b"
+        "sha256": "ce2543d93d3626c4b190c266f151afee6247d953f0f735c87c5bf71ae31d1267"
       },
       {
         "path": "review/site-v1-20261002-v6-night.html",
         "identity_mode": "content",
-        "sha256": "cc9391abc5ad09214d66e369fae330c6b811cae81a34c5e7f17607b42a849e30"
+        "sha256": "815c276a329441bf4d59db133f1a752375e70d3ce801b3fb6c84fd4e4edfb9bb"
       },
       {
         "path": "review/site-v1-20261002-v6-research-day.html",
         "identity_mode": "content",
-        "sha256": "13305118117ea0ed692fe6256175e3c3a4af8db01cb3a24789aeb3f226628e22"
+        "sha256": "f403a34be68997bd72455684bd91a6c71dd6a86298d6ffd0a830d0973cc40bd8"
       },
       {
         "path": "review/site-v1-20261002-v6-research-interactive.html",
@@ -8480,17 +8505,17 @@
       {
         "path": "review/site-v1-20261002-v6-talks-day.html",
         "identity_mode": "content",
-        "sha256": "1a5db990800e7ead7bb13f747311cb47101c5f450501d807f75550ae360260dd"
+        "sha256": "4b535ce24f5e26722aa18214e8a64bd3990b85e87f0c279515b5d98ade73b77b"
       },
       {
         "path": "review/site-v1-20261002-v6-talks-interactive.html",
         "identity_mode": "content",
-        "sha256": "a666d8f80a4b306a710367aa494ec39c42a181c54a105aa5aea22b43ec26b324"
+        "sha256": "12922fe9564d5e59f630c168a603ae5075f69a2b0c90d1004aa23cad54322ce3"
       },
       {
         "path": "review/site-v1-20261002-v6-talks-night.html",
         "identity_mode": "content",
-        "sha256": "b74b355a67d7a59e49d7e7ea8e6f550fcd12569a1e3572fcb7c8ddca9cc56a01"
+        "sha256": "8eb5fe8b110c5261a3e4d9b1f7847df6c9889c68dba30f2637d4fba271638be0"
       },
       {
         "path": "review/site-v1-20261002-v6-writing-day.html",
@@ -8805,22 +8830,22 @@
       {
         "path": "review/site-v1-20261002-v7-credits-day.html",
         "identity_mode": "content",
-        "sha256": "1412cc313881a2b7a247eccb479316ef443532a954fca2446a4877922a4f9796"
+        "sha256": "92c80ff12f1a404b43d7cf66a669e4c3c459e2a6804fcc6405d80b84133e5e12"
       },
       {
         "path": "review/site-v1-20261002-v7-credits-interactive.html",
         "identity_mode": "content",
-        "sha256": "71009855dd6d8ec2d54652679df5553e7b63f43e49c3cc11304a580b56f9c1d7"
+        "sha256": "6d1dc448dc5c7b476d83e496ac6c76d5bce2efb72d9ff01cf320d5053eb7ec61"
       },
       {
         "path": "review/site-v1-20261002-v7-credits-night.html",
         "identity_mode": "content",
-        "sha256": "b1df73e6349e4c44e63f89f4ddbfb6d491ec1eee2a5e3200027e2fe08156c5f0"
+        "sha256": "869eca4fbaaf5741c2c116736d8ef377ae51cbe29c9f1bea5efb0f9a59afa5dd"
       },
       {
         "path": "review/site-v1-20261002-v7-day.html",
         "identity_mode": "content",
-        "sha256": "5983591ca267b2881ef847e07e642a664d812ecdf9b6eb00538fe756a456fb9c"
+        "sha256": "5d62dcf7896fadd1af4fc55a180631fa355e8ab2729c5491c7ebab7a97898168"
       },
       {
         "path": "review/site-v1-20261002-v7-index.html",
@@ -8845,7 +8870,7 @@
       {
         "path": "review/site-v1-20261002-v7-night.html",
         "identity_mode": "content",
-        "sha256": "a4e5b089542d1f8f0671b7cc7c2488de8e453d5745eb73d50e0644f5fcc790c0"
+        "sha256": "952590ffd1d431ed01601a7acc8051dc05068da5010e32a123056c362d95ed27"
       },
       {
         "path": "review/site-v1-20261002-v7-research-day.html",
@@ -8910,17 +8935,17 @@
       {
         "path": "review/site-v1-20261002-v7-writing-day.html",
         "identity_mode": "content",
-        "sha256": "e8b9fc2ca7e7aa95c30474cdef84b427e2b42f946f5e200bd52df8dd23a44130"
+        "sha256": "48dc597ea9174412baaa716a10f82fc2cac5cd3dc00c26f784592f0082575ce2"
       },
       {
         "path": "review/site-v1-20261002-v7-writing-interactive.html",
         "identity_mode": "content",
-        "sha256": "28190d2f9d8e12a6967e21e007ae9507bb1940107e9f14014463207bf5e66ba6"
+        "sha256": "60715ecd555031d687f0e9a639e972a3d858bc2edb267680af949a2fbdd9ae9b"
       },
       {
         "path": "review/site-v1-20261002-v7-writing-night.html",
         "identity_mode": "content",
-        "sha256": "8c89925942366ee47f692859d57d5055485a5f7fef7b214502e3285167f86f59"
+        "sha256": "9fac2ff5f5727dd4850002ab61e77248738f523b3f603e533b7e218fd149b90e"
       },
       {
         "path": "review/site-v1-20261002-v7.zip",
@@ -13832,6 +13857,17 @@
         "AGENTS.md"
       ],
       "title": "issue-179.json"
+    },
+    {
+      "path": ".github/acceptance/issue-184.json",
+      "kind": "file",
+      "purpose": "Issue184 archive/recovery/process acceptance mapping and explicit manual gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-184.json"
     },
     {
       "path": ".github/acceptance/issue-31.json",
@@ -24042,6 +24078,50 @@
       "title": "seo-producers.json"
     },
     {
+      "path": "review/issue-184/2026-11-10-archive.md",
+      "kind": "file",
+      "purpose": "Issue184 execution, test impact, source-bound role/check receipts and remaining delivery gates.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue184 — completed-production archive maintenance"
+    },
+    {
+      "path": "review/issue-184/archive-index.json",
+      "kind": "file",
+      "purpose": "Exact existing archive/member/original and locator identities for completed legacy site previews.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "archive-index.json"
+    },
+    {
+      "path": "review/issue-184/inventory.json",
+      "kind": "file",
+      "purpose": "Bounded original file-size/duplicate/consumer inventory and explicit active/public exclusions.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "inventory.json"
+    },
+    {
+      "path": "review/issue-184/review-evidence.tar.xz",
+      "kind": "file",
+      "purpose": "Literal reviewer launch/packet/first-result/correction and bounded verification evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "review-evidence.tar.xz"
+    },
+    {
       "path": "review/issue-2/2026-10-15-editorial-draft.md",
       "kind": "file",
       "purpose": "Author-authorized PMDay first-draft scope, exact sources/access, independent editorial review and remaining acceptance.",
@@ -31315,7 +31395,7 @@
     {
       "path": "review/site-v1-20261002-v5-credits-day.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v5-credits-day.html. Dated site v1 20261002 v5 credits day.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v5.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -31326,7 +31406,7 @@
     {
       "path": "review/site-v1-20261002-v5-credits-interactive.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v5-credits-interactive.html. Dated site v1 20261002 v5 credits interactive.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v5.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -31337,7 +31417,7 @@
     {
       "path": "review/site-v1-20261002-v5-credits-night.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v5-credits-night.html. Dated site v1 20261002 v5 credits night.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v5.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -31348,7 +31428,7 @@
     {
       "path": "review/site-v1-20261002-v5-day.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v5-day.html. Dated site v1 20261002 v5 day.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v5.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -31381,7 +31461,7 @@
     {
       "path": "review/site-v1-20261002-v5-interactive.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v5-interactive.html. Dated site v1 20261002 v5 interactive.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v5.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -31392,7 +31472,7 @@
     {
       "path": "review/site-v1-20261002-v5-night.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v5-night.html. Dated site v1 20261002 v5 night.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v5.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -31403,7 +31483,7 @@
     {
       "path": "review/site-v1-20261002-v5-research-day.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v5-research-day.html. Dated site v1 20261002 v5 research day.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v5.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -31414,7 +31494,7 @@
     {
       "path": "review/site-v1-20261002-v5-research-interactive.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v5-research-interactive.html. Dated site v1 20261002 v5 research interactive.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v5.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -31425,7 +31505,7 @@
     {
       "path": "review/site-v1-20261002-v5-research-night.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v5-research-night.html. Dated site v1 20261002 v5 research night.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v5.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -31436,7 +31516,7 @@
     {
       "path": "review/site-v1-20261002-v5-talks-day.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v5-talks-day.html. Dated site v1 20261002 v5 talks day.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v5.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -31447,7 +31527,7 @@
     {
       "path": "review/site-v1-20261002-v5-talks-interactive.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v5-talks-interactive.html. Dated site v1 20261002 v5 talks interactive.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v5.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -31458,7 +31538,7 @@
     {
       "path": "review/site-v1-20261002-v5-talks-night.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v5-talks-night.html. Dated site v1 20261002 v5 talks night.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v5.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -31469,7 +31549,7 @@
     {
       "path": "review/site-v1-20261002-v5-writing-day.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v5-writing-day.html. Dated site v1 20261002 v5 writing day.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v5.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -31480,7 +31560,7 @@
     {
       "path": "review/site-v1-20261002-v5-writing-interactive.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v5-writing-interactive.html. Dated site v1 20261002 v5 writing interactive.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v5.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -31491,7 +31571,7 @@
     {
       "path": "review/site-v1-20261002-v5-writing-night.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v5-writing-night.html. Dated site v1 20261002 v5 writing night.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v5.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -32118,7 +32198,7 @@
     {
       "path": "review/site-v1-20261002-v6-credits-day.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v6-credits-day.html. Dated site v1 20261002 v6 credits day.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v6.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -32129,7 +32209,7 @@
     {
       "path": "review/site-v1-20261002-v6-credits-interactive.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v6-credits-interactive.html. Dated site v1 20261002 v6 credits interactive.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v6.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -32140,7 +32220,7 @@
     {
       "path": "review/site-v1-20261002-v6-credits-night.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v6-credits-night.html. Dated site v1 20261002 v6 credits night.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v6.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -32151,7 +32231,7 @@
     {
       "path": "review/site-v1-20261002-v6-day.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v6-day.html. Dated site v1 20261002 v6 day.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v6.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -32184,7 +32264,7 @@
     {
       "path": "review/site-v1-20261002-v6-interactive.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v6-interactive.html. Dated site v1 20261002 v6 interactive.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v6.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -32195,7 +32275,7 @@
     {
       "path": "review/site-v1-20261002-v6-night.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v6-night.html. Dated site v1 20261002 v6 night.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v6.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -32206,7 +32286,7 @@
     {
       "path": "review/site-v1-20261002-v6-research-day.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v6-research-day.html. Dated site v1 20261002 v6 research day.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v6.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -32261,7 +32341,7 @@
     {
       "path": "review/site-v1-20261002-v6-talks-day.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v6-talks-day.html. Dated site v1 20261002 v6 talks day.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v6.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -32272,7 +32352,7 @@
     {
       "path": "review/site-v1-20261002-v6-talks-interactive.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v6-talks-interactive.html. Dated site v1 20261002 v6 talks interactive.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v6.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -32283,7 +32363,7 @@
     {
       "path": "review/site-v1-20261002-v6-talks-night.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v6-talks-night.html. Dated site v1 20261002 v6 talks night.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v6.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -32976,7 +33056,7 @@
     {
       "path": "review/site-v1-20261002-v7-credits-day.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v7-credits-day.html. Dated site v1 20261002 v7 credits day.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v7.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -32987,7 +33067,7 @@
     {
       "path": "review/site-v1-20261002-v7-credits-interactive.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v7-credits-interactive.html. Dated site v1 20261002 v7 credits interactive.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v7.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -32998,7 +33078,7 @@
     {
       "path": "review/site-v1-20261002-v7-credits-night.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v7-credits-night.html. Dated site v1 20261002 v7 credits night.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v7.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -33009,7 +33089,7 @@
     {
       "path": "review/site-v1-20261002-v7-day.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v7-day.html. Dated site v1 20261002 v7 day.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v7.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -33064,7 +33144,7 @@
     {
       "path": "review/site-v1-20261002-v7-night.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v7-night.html. Dated site v1 20261002 v7 night.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v7.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -33207,7 +33287,7 @@
     {
       "path": "review/site-v1-20261002-v7-writing-day.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v7-writing-day.html. Dated site v1 20261002 v7 writing day.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v7.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -33218,7 +33298,7 @@
     {
       "path": "review/site-v1-20261002-v7-writing-interactive.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v7-writing-interactive.html. Dated site v1 20261002 v7 writing interactive.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v7.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -33229,7 +33309,7 @@
     {
       "path": "review/site-v1-20261002-v7-writing-night.html",
       "kind": "file",
-      "purpose": "Historical reference/preview HTML: site-v1-20261002-v7-writing-night.html. Dated site v1 20261002 v7 writing night.html iteration material.",
+      "purpose": "Historical preview recovery locator; exact original is retained in review/site-v1-20261002-v7.zip under its original member path. See review/issue-184/archive-index.json.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -43734,6 +43814,16 @@
       "path": "review/issue-179",
       "kind": "directory",
       "purpose": "Issue179 source-bound social preview intent, requirements and implementation/test-impact evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-184",
+      "kind": "directory",
+      "purpose": "Issue184 source-bound archival inventory, lossless recovery and post-production process evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [

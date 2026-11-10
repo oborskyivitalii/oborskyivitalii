@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/167",
-    "date": "2026-10-31",
-    "summary": "Authored offline component paths/acceptance/test selection mapping. Prior reviewed_source_identity remains stale and MUST be refreshed/verified on complete native source before readiness; no RI-CI pass claimed on partial workspace."
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/184",
+    "date": "2026-11-10",
+    "summary": "Archive-maintenance policy184 added to the existing acceptance layer; existing selector/workflow/producer/check definitions and budgets retained. Complete current source identity refreshed after applicable review."
   },
   "layers": [
     {
@@ -172,7 +172,8 @@
         ".github/acceptance/issue-177.json",
         "tests/test_issue177_acceptance.py",
         ".github/acceptance/issue-179.json",
-        "tests/test_issue179_acceptance.py"
+        "tests/test_issue179_acceptance.py",
+        ".github/acceptance/issue-184.json"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -723,7 +724,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "b7083647777d4c412e6e12336caec889f299dad81f8853345fa5f93f6ff1270d",
+    "digest": "4b0c9b56f3bb23392e3853facdc76246504ee6ce9c6905312e66d7387f21b58d",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -788,6 +789,10 @@
       {
         "path": ".github/acceptance/issue-179.json",
         "sha256": "a4c384c323b844245e02cdad42dbd63d2d6cd139c0c5e93b7b1f91afa520f304"
+      },
+      {
+        "path": ".github/acceptance/issue-184.json",
+        "sha256": "6176042326ceed9b683a8c3f76ea2608f13ea688e260ae7787ccce7e8018cc8a"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -879,7 +884,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "d6b5abc5a688e0e2d19b58d07354f61a2ff1fbb85af05eedb1379db7412fcfed"
+        "sha256": "44556cf0aea5868b2eee7c6cf8f6e102053b879dcb86a27265add2395c59418a"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -979,7 +984,7 @@
       },
       {
         "path": "CONTRIBUTING.md",
-        "sha256": "a175f65e207b653b323f81a7543bea5a80f1f49b8ab6c9666c63656727667f65"
+        "sha256": "0dc5be319f0269b4ba56751348dc1758ca874cb0f067b440b2b0d60a6d8b577a"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
