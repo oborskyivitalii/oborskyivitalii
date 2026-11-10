@@ -17515,30 +17515,6 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
-    "docs/article-snapshots/58c70d6edea51b0dd47fefe3c80cb1c78c59e24a8956093616fee4229786dc98/the-sdlc-is-out-of-balance.html": {
-      "kind": "file",
-      "purpose": "R12 generated native reader/retained public dependency.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/58c70d6edea51b0dd47fefe3c80cb1c78c59e24a8956093616fee4229786dc98": {
-      "kind": "directory",
-      "purpose": "R12 generated native reader/retained public dependency.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/412f5b5cd2d1991265f5b6dd9d899516e79e8f4f78bd3d8c59f63975bd72b52e/writing.html": {
-      "kind": "file",
-      "purpose": "R12 generated native reader/retained public dependency.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/412f5b5cd2d1991265f5b6dd9d899516e79e8f4f78bd3d8c59f63975bd72b52e": {
-      "kind": "directory",
-      "purpose": "R12 generated native reader/retained public dependency.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "review/issue-169/2026-11-10-r12-preview.md": {
       "kind": "file",
       "purpose": "Issue169 R12 source, matching PDF or source-bound review evidence.",
@@ -17731,30 +17707,6 @@
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
-    "site/retained/article-snapshots/58c70d6edea51b0dd47fefe3c80cb1c78c59e24a8956093616fee4229786dc98/the-sdlc-is-out-of-balance.html": {
-      "kind": "file",
-      "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
-      "role": "history",
-      "owner": "site/README.md"
-    },
-    "site/retained/article-snapshots/58c70d6edea51b0dd47fefe3c80cb1c78c59e24a8956093616fee4229786dc98": {
-      "kind": "directory",
-      "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
-      "role": "history",
-      "owner": "site/README.md"
-    },
-    "site/retained/snapshots/412f5b5cd2d1991265f5b6dd9d899516e79e8f4f78bd3d8c59f63975bd72b52e/writing.html": {
-      "kind": "file",
-      "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
-      "role": "history",
-      "owner": "site/README.md"
-    },
-    "site/retained/snapshots/412f5b5cd2d1991265f5b6dd9d899516e79e8f4f78bd3d8c59f63975bd72b52e": {
-      "kind": "directory",
-      "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
-      "role": "history",
-      "owner": "site/README.md"
-    },
     "review/issue-169/r12-stable-evidence.tar.xz": {
       "kind": "file",
       "purpose": "Literal same-role stable delta reviews, source selection and exact-source check receipts.",
@@ -17770,6 +17722,24 @@
     "review/issue-169/r12-stable-format-evidence.tar.xz": {
       "kind": "file",
       "purpose": "Literal maintained-format failure, pinned correction and independent semantic equality review.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/r12-stable-offline-evidence.tar.xz": {
+      "kind": "file",
+      "purpose": "Original refused staging guard outputs, common-cause offline generation diagnosis and independent correction evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/security/r12-secret-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Exact path/type/hashed-value R12 and archive checksum provenance, with individually recomputed primary byte/Git/semantic/material proof.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/r12-stable-security-evidence.tar.xz": {
+      "kind": "file",
+      "purpose": "Literal failed local security scans, exact-tuple proof review and latest platform-preparation scope receipts.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     }

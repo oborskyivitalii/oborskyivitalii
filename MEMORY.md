@@ -12,10 +12,10 @@ Dated continuity, not live authority. Last verified: **2026-11-10**.
 ## Decisions
 
 - Author accepted exact displayed R12 reader/PDF: PR186 comment6762654946, “Ок. Веди в стейбл стейджинг”.
-- Ready/current checks/full stable staging, then STOP/show. No merge/production/platform revisions.
+- Ready/current checks/full stable staging, then STOP/show. No merge/production/platform posting. Updated LinkedIn/Medium copies are now authorized for preparation.
 - Canonical source frozen47b9a946; SHA4ed3380c73f46e7e9bf086fa2f1c99f5183fc0ccb16b7b1f270276173e5f1f8d.
 - Accepted PDF516886bytes/5pages, SHAc3686dce007b399d3fb175d5b235a51b1000500a3e4bc6f024be9767bfb33996.
-- Existing material binding exposes unchanged accepted PDF. Platform revisions follow actual website publication.
+- Existing material binding exposes unchanged accepted PDF. Latest author instruction authorizes platform-copy preparation now; posting follows actual website publication.
 
 ## Open work
 

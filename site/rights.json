@@ -623,14 +623,6 @@
     "article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry-r9.webp": {
       "sha256": "8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f",
       "bases": ["retained-edition"]
-    },
-    "article-snapshots/58c70d6edea51b0dd47fefe3c80cb1c78c59e24a8956093616fee4229786dc98/the-sdlc-is-out-of-balance.html": {
-      "sha256": "9284bf767e4b646b69e126804da0d4e28be80da930082c4a5e374e3f1459860a",
-      "bases": ["retained-edition"]
-    },
-    "snapshots/412f5b5cd2d1991265f5b6dd9d899516e79e8f4f78bd3d8c59f63975bd72b52e/writing.html": {
-      "sha256": "f46e3ff092101f8469ab1a7120cad5b56fc97f4faec94991e496c92d33cfb5a0",
-      "bases": ["retained-edition"]
     }
   },
   "notices": [
