@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "35a8c97c4de8667cd6de7731380416dbc36e9d91eb952df90d825068912be81a",
+    "digest": "7178294bc5305e60a481bfd52e794135d51f2933a8247e6c9dfef56917e15f3f",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -236,12 +236,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "07252ac44766ecbe89e0ae564993349028ae47c98d77fc29871b1cacc39b4d61"
+        "sha256": "1a6b349f40c3a05bb700cf15dabde062d1294a9b999675d167189d96e8e991e6"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "7015e9376c834909abbea62a4ce6da8413441f41fa000029bbe459fbb935a945"
+        "sha256": "b0d751a77be0abe82f3d2071038dcca7530bf38437b111adb74559f8d3c5f2da"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -391,7 +391,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "86915fa3f1fb39f750bde0d118d6df74a9b1cd078fc39669d157d46e683a8ae2"
+        "sha256": "fe5768bb070eb6a5f860b82334cf3ae60c634987b80eb9de95ad2843be671a6e"
       },
       {
         "path": "NOTICE.md",
@@ -4825,7 +4825,17 @@
       {
         "path": "review/issue-189/2026-11-10-analysis.md",
         "identity_mode": "content",
-        "sha256": "518bf614e0e2fc8565028333e2837a7a2d06b409327b820a50b91e3d3cda35a2"
+        "sha256": "860b2d6529270ec86390770d8a9929c1a36361306848ccb1e85182246f8abf51"
+      },
+      {
+        "path": "review/issue-189/archive-index.json",
+        "identity_mode": "content",
+        "sha256": "3258c63b0112937bc364f8cf5f4bc4c801b919d832340310ff47587c8db9b050"
+      },
+      {
+        "path": "review/issue-189/archive-review-evidence.tar.xz",
+        "identity_mode": "content",
+        "sha256": "434a4a940bb835e8ca5339d349a62e6f76a19ebea2fdd36060189d6d627c2a94"
       },
       {
         "path": "review/issue-189/audit-review-evidence.tar.xz",
@@ -7873,6 +7883,11 @@
         "sha256": "c699fa8a3f3008ebb1d92875558edd8ac8878dd00b0448980c60dcab2c72a1f7"
       },
       {
+        "path": "review/site-v1-20261002-v5-captures/ARCHIVE.md",
+        "identity_mode": "content",
+        "sha256": "f35b3b9d26542d1db0fd0c4434ca2d8f5458956f7102fcf16bc3e9606729f002"
+      },
+      {
         "path": "review/site-v1-20261002-v5-captures/captures.json",
         "identity_mode": "content",
         "sha256": "1566b6adcd3504e1e13c40231f8ba5b1008dd167c52016ce583be8df107ae872"
@@ -7903,11 +7918,6 @@
         "sha256": "36a5bcd75dc431a4d68e8df6d9fcd4aa768e7fb19330a817bf3422a602ce10b1"
       },
       {
-        "path": "review/site-v1-20261002-v5-captures/credits-motion.webm",
-        "identity_mode": "content",
-        "sha256": "ee3808d10d658bdfcebe48f0dd4669c2f43b52ba34928b552ad1209339cf9aa0"
-      },
-      {
         "path": "review/site-v1-20261002-v5-captures/credits-night-desktop-gallery.jpg",
         "identity_mode": "content",
         "sha256": "6862a960468a206090f0d32ceeff064ec21257ac30dd78dd36f6df2f520af868"
@@ -7926,11 +7936,6 @@
         "path": "review/site-v1-20261002-v5-captures/credits-night-mobile.png",
         "identity_mode": "content",
         "sha256": "0ab6a62a0a18c4f3b506dd32fd820ecdd5109d78a12a3a635a2b85a13137eedd"
-      },
-      {
-        "path": "review/site-v1-20261002-v5-captures/desktop-contact-sheet.png",
-        "identity_mode": "content",
-        "sha256": "cde4a620b0eaa77ecd88d9c89a37e442a399ad4dcbbc41506a6a7fa47754fbc2"
       },
       {
         "path": "review/site-v1-20261002-v5-captures/index-day-desktop-gallery.jpg",
@@ -7958,11 +7963,6 @@
         "sha256": "389a8a820e38ecdc24c3582ab3adf91b8c46fbfeab142f3e743e98ae579f0bae"
       },
       {
-        "path": "review/site-v1-20261002-v5-captures/index-motion.webm",
-        "identity_mode": "content",
-        "sha256": "eb1fdba70a41ca06b0f9b25eb1ed489be1cc7565715d60a588ef5ab2ed682ed7"
-      },
-      {
         "path": "review/site-v1-20261002-v5-captures/index-night-desktop-gallery.jpg",
         "identity_mode": "content",
         "sha256": "8de6ed8b9a025560de150b358d7cb3a5787f52fdffb00093fe5c36b7bbfc648a"
@@ -7988,11 +7988,6 @@
         "sha256": "535e6d935cf471fa161c47d3f2919d0c4948eded52935d79f5edd18caf6b3bec"
       },
       {
-        "path": "review/site-v1-20261002-v5-captures/mobile-contact-sheet.png",
-        "identity_mode": "content",
-        "sha256": "8616d6edf20ec2c1de4f6dce8acdffa8796ca3e99223dd73ec1c1392f929ef48"
-      },
-      {
         "path": "review/site-v1-20261002-v5-captures/research-day-desktop-gallery.jpg",
         "identity_mode": "content",
         "sha256": "9fe75920670b7318641a35491466881218f1a61a713bbcbd04813ac5cb95cadf"
@@ -8016,11 +8011,6 @@
         "path": "review/site-v1-20261002-v5-captures/research-day-mobile.png",
         "identity_mode": "content",
         "sha256": "8872cd1b81d52bd03b2be5f333eded471e4baa6a955a1695c2805d6bf373b168"
-      },
-      {
-        "path": "review/site-v1-20261002-v5-captures/research-motion.webm",
-        "identity_mode": "content",
-        "sha256": "0d8139f7abda392af23bcb0dcc28c137002e3c4c4fb5429d6a0c985f47c05f29"
       },
       {
         "path": "review/site-v1-20261002-v5-captures/research-night-desktop-gallery.jpg",
@@ -8068,11 +8058,6 @@
         "sha256": "36c224b8942416adcf5169244a1649dd4a403cd6358153d6b47e133913e4f07d"
       },
       {
-        "path": "review/site-v1-20261002-v5-captures/talks-motion.webm",
-        "identity_mode": "content",
-        "sha256": "31ae6c1a73caaf5f0c0758851ec2e82e69d6dad8a0d378d4839acb9c24944387"
-      },
-      {
         "path": "review/site-v1-20261002-v5-captures/talks-night-desktop-gallery.jpg",
         "identity_mode": "content",
         "sha256": "8002d5ee486b59077472655c739d2429d98af1da60d039861cea2579d8731ca2"
@@ -8116,11 +8101,6 @@
         "path": "review/site-v1-20261002-v5-captures/writing-day-mobile.png",
         "identity_mode": "content",
         "sha256": "34f1bcd01eab9b9daeea450459731b79a971b04efe2eccf5727be62832de3cba"
-      },
-      {
-        "path": "review/site-v1-20261002-v5-captures/writing-motion.webm",
-        "identity_mode": "content",
-        "sha256": "40993d1c7981d720a07731ed72bf58cf5b28ceeb9770d42429a2b36c699f6e01"
       },
       {
         "path": "review/site-v1-20261002-v5-captures/writing-night-desktop-gallery.jpg",
@@ -8170,7 +8150,7 @@
       {
         "path": "review/site-v1-20261002-v5-index.html",
         "identity_mode": "content",
-        "sha256": "8ba39f2733fa25c6165878fe3035beb814dd322a867b8c661dd87340a424fa12"
+        "sha256": "f990d235972d43defc5a9706877aede863821f95dbe794cf9e70caaf145956b5"
       },
       {
         "path": "review/site-v1-20261002-v5-index.html.gz",
@@ -8238,6 +8218,11 @@
         "sha256": "721900d71fc91b9db33aa2758fab8d73f092bdfd811d4e5933ac6e2be3273ef1"
       },
       {
+        "path": "review/site-v1-20261002-v6-captures/ARCHIVE.md",
+        "identity_mode": "content",
+        "sha256": "48e74472d3392db84b18ac34ece897a954cb8e4e7a9e04a796ee2a6843a4b231"
+      },
+      {
         "path": "review/site-v1-20261002-v6-captures/captures.json",
         "identity_mode": "content",
         "sha256": "0493f8a3405e400f76918926822a392498e78d0e914fdb7e030e6eeeaec8ab96"
@@ -8293,11 +8278,6 @@
         "sha256": "a28946d82a58d1999c550488c5b5cd13f28bbe37ccbacec57b48610873467b0b"
       },
       {
-        "path": "review/site-v1-20261002-v6-captures/desktop-contact-sheet.png",
-        "identity_mode": "content",
-        "sha256": "4e6970584ca1ee28863daefbe293e15a689ec32b574d252f79d78474c115db76"
-      },
-      {
         "path": "review/site-v1-20261002-v6-captures/index-day-desktop-gallery.jpg",
         "identity_mode": "content",
         "sha256": "741c0f3813175a8bf88c06ea55959831708c1676cc921c260bc08814c8cfb227"
@@ -8321,11 +8301,6 @@
         "path": "review/site-v1-20261002-v6-captures/index-day-mobile.png",
         "identity_mode": "content",
         "sha256": "19362f885d64c9d36b65339b1642912a909840d04faa350e4da8105b938252c5"
-      },
-      {
-        "path": "review/site-v1-20261002-v6-captures/index-motion.webm",
-        "identity_mode": "content",
-        "sha256": "cfc466bd97723bbf76dc0d7971523ad0d633c13ea59210c50c5c0590bafb9b37"
       },
       {
         "path": "review/site-v1-20261002-v6-captures/index-night-desktop-gallery.jpg",
@@ -8353,11 +8328,6 @@
         "sha256": "59bfbc3aedb8413ee567484acfede9eb3bf514e1ec577a0c7a6f973f68ff5a22"
       },
       {
-        "path": "review/site-v1-20261002-v6-captures/mobile-contact-sheet.png",
-        "identity_mode": "content",
-        "sha256": "478a9d0491786ef819b6936290e9da4242ba5c0eb34b1d7a8dc2e41fe0842c97"
-      },
-      {
         "path": "review/site-v1-20261002-v6-captures/research-day-desktop-gallery.jpg",
         "identity_mode": "content",
         "sha256": "0d23a14e4f9e545c2d951d4dafe35e5bc8d834fcf3f711fee5eb65a8c59ecfb9"
@@ -8381,11 +8351,6 @@
         "path": "review/site-v1-20261002-v6-captures/research-day-mobile.png",
         "identity_mode": "content",
         "sha256": "d7e3bd277a15b8ff0cbc999a0d892cb380f77fde2ca1eac71fd68dfed17e0ebd"
-      },
-      {
-        "path": "review/site-v1-20261002-v6-captures/research-motion.webm",
-        "identity_mode": "content",
-        "sha256": "50e8cbc3984a81731715b381edb68d8c45a8bd8b411fad6b7b75472107fdc9a1"
       },
       {
         "path": "review/site-v1-20261002-v6-captures/research-night-desktop-gallery.jpg",
@@ -8483,11 +8448,6 @@
         "sha256": "5eba5d8604637c26b252286a440689f3829ab56e5e3f6514f85b0f5ce77e6a0e"
       },
       {
-        "path": "review/site-v1-20261002-v6-captures/writing-motion.webm",
-        "identity_mode": "content",
-        "sha256": "e2b07aa1dbcad372b10e1edb1d5d46d72f606ae9d86773742282b3a5f8c786f4"
-      },
-      {
         "path": "review/site-v1-20261002-v6-captures/writing-night-desktop-gallery.jpg",
         "identity_mode": "content",
         "sha256": "46015c7d66caa496d902faefb90c4750a8a7dbdafdb6e2e20cc07edc65650963"
@@ -8535,7 +8495,7 @@
       {
         "path": "review/site-v1-20261002-v6-index.html",
         "identity_mode": "content",
-        "sha256": "07dd2c6293900807e51373fc4001c827a71cfab3a1eb35a75f498e62ac93b986"
+        "sha256": "c1cfb8655b721d9e2c1d04c97dfec1f94c5e4a269d6c879f3d5131c597feb69d"
       },
       {
         "path": "review/site-v1-20261002-v6-index.html.gz",
@@ -8628,6 +8588,11 @@
         "sha256": "afe6784c18da5d5be6f4311d153e870bccd3ab7e8cb10275a883476b45a8cb42"
       },
       {
+        "path": "review/site-v1-20261002-v7-captures/ARCHIVE.md",
+        "identity_mode": "content",
+        "sha256": "f18e38f021539ed505f0ceec71072fd579976535a71505452e72298ed73dbf9e"
+      },
+      {
         "path": "review/site-v1-20261002-v7-captures/captures.json",
         "identity_mode": "content",
         "sha256": "ee0236410c36616d401295fcd7ebfee0b5872c73b2d7a9cc5676fc7dbb2f282c"
@@ -8658,11 +8623,6 @@
         "sha256": "e853e9af4fed320a210c882b08a24e136e597cc59e1356ee6b1ec86f1cb8873a"
       },
       {
-        "path": "review/site-v1-20261002-v7-captures/credits-motion.webm",
-        "identity_mode": "content",
-        "sha256": "d8956d2ff1676cd01f3b8dcbb874536ffc02e58e3d224204ade185b16b0c4f80"
-      },
-      {
         "path": "review/site-v1-20261002-v7-captures/credits-night-desktop-gallery.jpg",
         "identity_mode": "content",
         "sha256": "173c1e8af0ca44a672d1db8e2de2a70adc2168a6d6ecb7b63f809b02821323c8"
@@ -8681,11 +8641,6 @@
         "path": "review/site-v1-20261002-v7-captures/credits-night-mobile.png",
         "identity_mode": "content",
         "sha256": "6429e62a423495bacfe90ae63e1056807cbc4b30d62fd43151a5157b025acaea"
-      },
-      {
-        "path": "review/site-v1-20261002-v7-captures/desktop-contact-sheet.png",
-        "identity_mode": "content",
-        "sha256": "bcf8416f6b348224f0586a3c1412e1a2e28321c3ba627b6cc71ab1ac59b9eb30"
       },
       {
         "path": "review/site-v1-20261002-v7-captures/index-day-desktop-gallery.jpg",
@@ -8713,11 +8668,6 @@
         "sha256": "6c64ea6069db63ee05d8d0440f1c45cb425284bf54cfdd80a3ee94c91e862fff"
       },
       {
-        "path": "review/site-v1-20261002-v7-captures/index-motion.webm",
-        "identity_mode": "content",
-        "sha256": "27393e9f396f4d3ab785068202ce006ff7b9178322114b9b43d87e37e9348823"
-      },
-      {
         "path": "review/site-v1-20261002-v7-captures/index-night-desktop-gallery.jpg",
         "identity_mode": "content",
         "sha256": "141adc71d142430acb566c087e9d20d83026e1aab84e7829427938b85956e95b"
@@ -8743,11 +8693,6 @@
         "sha256": "889a23ec5a777176166c63ca8201d07fd2892c050445d39935fd14a185d41ada"
       },
       {
-        "path": "review/site-v1-20261002-v7-captures/mobile-contact-sheet.png",
-        "identity_mode": "content",
-        "sha256": "bb965d0d311b65ce94784fb5bf82735f02da93d0f7ecc4138a289850d4250e2e"
-      },
-      {
         "path": "review/site-v1-20261002-v7-captures/research-day-desktop-gallery.jpg",
         "identity_mode": "content",
         "sha256": "f0770dda24bdd0623ec18c457f9931190cc75aad90f389b16a69e6a6fccc0f24"
@@ -8771,11 +8716,6 @@
         "path": "review/site-v1-20261002-v7-captures/research-day-mobile.png",
         "identity_mode": "content",
         "sha256": "ee317e12cef44061aad6f19bdd690a8a461079b44471768eb896acc468e4f7ef"
-      },
-      {
-        "path": "review/site-v1-20261002-v7-captures/research-motion.webm",
-        "identity_mode": "content",
-        "sha256": "0b08ed27776ba58d34d9ec09fbfd34ccf8841ad237d7375b1d2f2d5cffe4c8b1"
       },
       {
         "path": "review/site-v1-20261002-v7-captures/research-night-desktop-gallery.jpg",
@@ -8823,11 +8763,6 @@
         "sha256": "6d80e9e2fbc5dab75213ccb799d3c5a1773d1f056b545e6d3e8de1c8bf562dc9"
       },
       {
-        "path": "review/site-v1-20261002-v7-captures/talks-motion.webm",
-        "identity_mode": "content",
-        "sha256": "578cbc66673e471004a08e4cfc001c5c6252b7d486ec20ad4dd9d4c0602a11f8"
-      },
-      {
         "path": "review/site-v1-20261002-v7-captures/talks-night-desktop-gallery.jpg",
         "identity_mode": "content",
         "sha256": "81afc0edc431128bc58b2ba39aa87cde985699a22e33dab220f5aff26874d443"
@@ -8871,11 +8806,6 @@
         "path": "review/site-v1-20261002-v7-captures/writing-day-mobile.png",
         "identity_mode": "content",
         "sha256": "aae6ad1561098920d7344cb8486f2538bdd19c5560710bef5911d50e6e2f6e68"
-      },
-      {
-        "path": "review/site-v1-20261002-v7-captures/writing-motion.webm",
-        "identity_mode": "content",
-        "sha256": "a3bfd239334323a15fb80e41aca24c8f0e4902e1d178203712f85ed74d1c3831"
       },
       {
         "path": "review/site-v1-20261002-v7-captures/writing-night-desktop-gallery.jpg",
@@ -8925,7 +8855,7 @@
       {
         "path": "review/site-v1-20261002-v7-index.html",
         "identity_mode": "content",
-        "sha256": "e911aca08dabe448aed0891c95c91ae4361fee91cc8111c14f789612e7214ecd"
+        "sha256": "3b65e36e03867afe35912070e3c974c798b7ea02712e18cdacaf1c5a474ec4fc"
       },
       {
         "path": "review/site-v1-20261002-v7-index.html.gz",
@@ -24409,6 +24339,28 @@
       "title": "Issue189 — 2026-11-10 architecture and execution plan"
     },
     {
+      "path": "review/issue-189/archive-index.json",
+      "kind": "file",
+      "purpose": "Exact T02 nineteen-file recovery index: base original identities, unchanged ZIP/member checksums and practical extraction commands.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "archive-index.json"
+    },
+    {
+      "path": "review/issue-189/archive-review-evidence.tar.xz",
+      "kind": "file",
+      "purpose": "Lossless T02 recovery/protection/source identities, independent role reports and actual launch/result receipts; bounded archival checkpoint, not whole-issue delivery acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "archive-review-evidence.tar.xz"
+    },
+    {
       "path": "review/issue-189/audit-review-evidence.tar.xz",
       "kind": "file",
       "purpose": "Lossless T01 source/member/native recovery proofs, pinned current/open-PR consumer inventories, first/correction reviews and preserved coupling failure diagnosis.",
@@ -31108,6 +31060,17 @@
       "title": "site-v1-20261002-v4.zip"
     },
     {
+      "path": "review/site-v1-20261002-v5-captures/ARCHIVE.md",
+      "kind": "file",
+      "purpose": "Historical capture archive locator: exact removed originals, unchanged full ZIP, relative-gallery recovery and checksums.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Historical v5 capture archive"
+    },
+    {
       "path": "review/site-v1-20261002-v5-captures/captures.json",
       "kind": "file",
       "purpose": "Historical manifest/observation data: captures.json. Dated site v1 20261002 v5 captures iteration material.",
@@ -31174,17 +31137,6 @@
       "title": "credits-day-mobile.png"
     },
     {
-      "path": "review/site-v1-20261002-v5-captures/credits-motion.webm",
-      "kind": "file",
-      "purpose": "Historical motion capture: credits-motion.webm. Dated site v1 20261002 v5 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "credits-motion.webm"
-    },
-    {
       "path": "review/site-v1-20261002-v5-captures/credits-night-desktop-gallery.jpg",
       "kind": "file",
       "purpose": "Historical visual capture/reference: credits-night-desktop-gallery.jpg. Dated site v1 20261002 v5 captures iteration material.",
@@ -31227,17 +31179,6 @@
         "AGENTS.md"
       ],
       "title": "credits-night-mobile.png"
-    },
-    {
-      "path": "review/site-v1-20261002-v5-captures/desktop-contact-sheet.png",
-      "kind": "file",
-      "purpose": "Historical visual capture/reference: desktop-contact-sheet.png. Dated site v1 20261002 v5 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "desktop-contact-sheet.png"
     },
     {
       "path": "review/site-v1-20261002-v5-captures/index-day-desktop-gallery.jpg",
@@ -31295,17 +31236,6 @@
       "title": "index-day-mobile.png"
     },
     {
-      "path": "review/site-v1-20261002-v5-captures/index-motion.webm",
-      "kind": "file",
-      "purpose": "Historical motion capture: index-motion.webm. Dated site v1 20261002 v5 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "index-motion.webm"
-    },
-    {
       "path": "review/site-v1-20261002-v5-captures/index-night-desktop-gallery.jpg",
       "kind": "file",
       "purpose": "Historical visual capture/reference: index-night-desktop-gallery.jpg. Dated site v1 20261002 v5 captures iteration material.",
@@ -31361,17 +31291,6 @@
       "title": "index-night-mobile.png"
     },
     {
-      "path": "review/site-v1-20261002-v5-captures/mobile-contact-sheet.png",
-      "kind": "file",
-      "purpose": "Historical visual capture/reference: mobile-contact-sheet.png. Dated site v1 20261002 v5 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "mobile-contact-sheet.png"
-    },
-    {
       "path": "review/site-v1-20261002-v5-captures/research-day-desktop-gallery.jpg",
       "kind": "file",
       "purpose": "Historical visual capture/reference: research-day-desktop-gallery.jpg. Dated site v1 20261002 v5 captures iteration material.",
@@ -31425,17 +31344,6 @@
         "AGENTS.md"
       ],
       "title": "research-day-mobile.png"
-    },
-    {
-      "path": "review/site-v1-20261002-v5-captures/research-motion.webm",
-      "kind": "file",
-      "purpose": "Historical motion capture: research-motion.webm. Dated site v1 20261002 v5 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "research-motion.webm"
     },
     {
       "path": "review/site-v1-20261002-v5-captures/research-night-desktop-gallery.jpg",
@@ -31537,17 +31445,6 @@
       "title": "talks-day-mobile.png"
     },
     {
-      "path": "review/site-v1-20261002-v5-captures/talks-motion.webm",
-      "kind": "file",
-      "purpose": "Historical motion capture: talks-motion.webm. Dated site v1 20261002 v5 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "talks-motion.webm"
-    },
-    {
       "path": "review/site-v1-20261002-v5-captures/talks-night-desktop-gallery.jpg",
       "kind": "file",
       "purpose": "Historical visual capture/reference: talks-night-desktop-gallery.jpg. Dated site v1 20261002 v5 captures iteration material.",
@@ -31645,17 +31542,6 @@
         "AGENTS.md"
       ],
       "title": "writing-day-mobile.png"
-    },
-    {
-      "path": "review/site-v1-20261002-v5-captures/writing-motion.webm",
-      "kind": "file",
-      "purpose": "Historical motion capture: writing-motion.webm. Dated site v1 20261002 v5 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "writing-motion.webm"
     },
     {
       "path": "review/site-v1-20261002-v5-captures/writing-night-desktop-gallery.jpg",
@@ -31911,6 +31797,17 @@
       "title": "site-v1-20261002-v5.zip"
     },
     {
+      "path": "review/site-v1-20261002-v6-captures/ARCHIVE.md",
+      "kind": "file",
+      "purpose": "Historical capture archive locator: exact removed originals, unchanged full ZIP, relative-gallery recovery and checksums.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Historical v6 capture archive"
+    },
+    {
       "path": "review/site-v1-20261002-v6-captures/captures.json",
       "kind": "file",
       "purpose": "Historical manifest/observation data: captures.json. Dated site v1 20261002 v6 captures iteration material.",
@@ -32032,17 +31929,6 @@
       "title": "credits-night-mobile.png"
     },
     {
-      "path": "review/site-v1-20261002-v6-captures/desktop-contact-sheet.png",
-      "kind": "file",
-      "purpose": "Historical visual capture/reference: desktop-contact-sheet.png. Dated site v1 20261002 v6 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "desktop-contact-sheet.png"
-    },
-    {
       "path": "review/site-v1-20261002-v6-captures/index-day-desktop-gallery.jpg",
       "kind": "file",
       "purpose": "Historical visual capture/reference: index-day-desktop-gallery.jpg. Dated site v1 20261002 v6 captures iteration material.",
@@ -32096,17 +31982,6 @@
         "AGENTS.md"
       ],
       "title": "index-day-mobile.png"
-    },
-    {
-      "path": "review/site-v1-20261002-v6-captures/index-motion.webm",
-      "kind": "file",
-      "purpose": "Historical motion capture: index-motion.webm. Dated site v1 20261002 v6 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "index-motion.webm"
     },
     {
       "path": "review/site-v1-20261002-v6-captures/index-night-desktop-gallery.jpg",
@@ -32164,17 +32039,6 @@
       "title": "index-night-mobile.png"
     },
     {
-      "path": "review/site-v1-20261002-v6-captures/mobile-contact-sheet.png",
-      "kind": "file",
-      "purpose": "Historical visual capture/reference: mobile-contact-sheet.png. Dated site v1 20261002 v6 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "mobile-contact-sheet.png"
-    },
-    {
       "path": "review/site-v1-20261002-v6-captures/research-day-desktop-gallery.jpg",
       "kind": "file",
       "purpose": "Historical visual capture/reference: research-day-desktop-gallery.jpg. Dated site v1 20261002 v6 captures iteration material.",
@@ -32228,17 +32092,6 @@
         "AGENTS.md"
       ],
       "title": "research-day-mobile.png"
-    },
-    {
-      "path": "review/site-v1-20261002-v6-captures/research-motion.webm",
-      "kind": "file",
-      "purpose": "Historical motion capture: research-motion.webm. Dated site v1 20261002 v6 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "research-motion.webm"
     },
     {
       "path": "review/site-v1-20261002-v6-captures/research-night-desktop-gallery.jpg",
@@ -32448,17 +32301,6 @@
         "AGENTS.md"
       ],
       "title": "writing-day-mobile.png"
-    },
-    {
-      "path": "review/site-v1-20261002-v6-captures/writing-motion.webm",
-      "kind": "file",
-      "purpose": "Historical motion capture: writing-motion.webm. Dated site v1 20261002 v6 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "writing-motion.webm"
     },
     {
       "path": "review/site-v1-20261002-v6-captures/writing-night-desktop-gallery.jpg",
@@ -32769,6 +32611,17 @@
       "title": "site-v1-20261002-v6.zip"
     },
     {
+      "path": "review/site-v1-20261002-v7-captures/ARCHIVE.md",
+      "kind": "file",
+      "purpose": "Historical capture archive locator: exact removed originals, unchanged full ZIP, relative-gallery recovery and checksums.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Historical v7 capture archive"
+    },
+    {
       "path": "review/site-v1-20261002-v7-captures/captures.json",
       "kind": "file",
       "purpose": "Historical manifest/observation data: captures.json. Dated site v1 20261002 v7 captures iteration material.",
@@ -32835,17 +32688,6 @@
       "title": "credits-day-mobile.png"
     },
     {
-      "path": "review/site-v1-20261002-v7-captures/credits-motion.webm",
-      "kind": "file",
-      "purpose": "Historical motion capture: credits-motion.webm. Dated site v1 20261002 v7 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "credits-motion.webm"
-    },
-    {
       "path": "review/site-v1-20261002-v7-captures/credits-night-desktop-gallery.jpg",
       "kind": "file",
       "purpose": "Historical visual capture/reference: credits-night-desktop-gallery.jpg. Dated site v1 20261002 v7 captures iteration material.",
@@ -32888,17 +32730,6 @@
         "AGENTS.md"
       ],
       "title": "credits-night-mobile.png"
-    },
-    {
-      "path": "review/site-v1-20261002-v7-captures/desktop-contact-sheet.png",
-      "kind": "file",
-      "purpose": "Historical visual capture/reference: desktop-contact-sheet.png. Dated site v1 20261002 v7 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "desktop-contact-sheet.png"
     },
     {
       "path": "review/site-v1-20261002-v7-captures/index-day-desktop-gallery.jpg",
@@ -32956,17 +32787,6 @@
       "title": "index-day-mobile.png"
     },
     {
-      "path": "review/site-v1-20261002-v7-captures/index-motion.webm",
-      "kind": "file",
-      "purpose": "Historical motion capture: index-motion.webm. Dated site v1 20261002 v7 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "index-motion.webm"
-    },
-    {
       "path": "review/site-v1-20261002-v7-captures/index-night-desktop-gallery.jpg",
       "kind": "file",
       "purpose": "Historical visual capture/reference: index-night-desktop-gallery.jpg. Dated site v1 20261002 v7 captures iteration material.",
@@ -33022,17 +32842,6 @@
       "title": "index-night-mobile.png"
     },
     {
-      "path": "review/site-v1-20261002-v7-captures/mobile-contact-sheet.png",
-      "kind": "file",
-      "purpose": "Historical visual capture/reference: mobile-contact-sheet.png. Dated site v1 20261002 v7 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "mobile-contact-sheet.png"
-    },
-    {
       "path": "review/site-v1-20261002-v7-captures/research-day-desktop-gallery.jpg",
       "kind": "file",
       "purpose": "Historical visual capture/reference: research-day-desktop-gallery.jpg. Dated site v1 20261002 v7 captures iteration material.",
@@ -33086,17 +32895,6 @@
         "AGENTS.md"
       ],
       "title": "research-day-mobile.png"
-    },
-    {
-      "path": "review/site-v1-20261002-v7-captures/research-motion.webm",
-      "kind": "file",
-      "purpose": "Historical motion capture: research-motion.webm. Dated site v1 20261002 v7 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "research-motion.webm"
     },
     {
       "path": "review/site-v1-20261002-v7-captures/research-night-desktop-gallery.jpg",
@@ -33198,17 +32996,6 @@
       "title": "talks-day-mobile.png"
     },
     {
-      "path": "review/site-v1-20261002-v7-captures/talks-motion.webm",
-      "kind": "file",
-      "purpose": "Historical motion capture: talks-motion.webm. Dated site v1 20261002 v7 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "talks-motion.webm"
-    },
-    {
       "path": "review/site-v1-20261002-v7-captures/talks-night-desktop-gallery.jpg",
       "kind": "file",
       "purpose": "Historical visual capture/reference: talks-night-desktop-gallery.jpg. Dated site v1 20261002 v7 captures iteration material.",
@@ -33306,17 +33093,6 @@
         "AGENTS.md"
       ],
       "title": "writing-day-mobile.png"
-    },
-    {
-      "path": "review/site-v1-20261002-v7-captures/writing-motion.webm",
-      "kind": "file",
-      "purpose": "Historical motion capture: writing-motion.webm. Dated site v1 20261002 v7 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "writing-motion.webm"
     },
     {
       "path": "review/site-v1-20261002-v7-captures/writing-night-desktop-gallery.jpg",

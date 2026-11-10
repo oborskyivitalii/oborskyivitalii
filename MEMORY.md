@@ -5,31 +5,30 @@ Dated continuity, not live authority. Last verified: **2026-11-10**.
 ## Snapshot
 
 - Main/production ca756417590b9176f9fc33428321ffe1f64158cc; prod-2026-11-10.1 delivered R12 and issue184 archival dependency.
-- Issue189 / PR190 is the current owner. T01 preflight completed;19 capture files selected, none removed. Draft route: work/issue189-ri-plan-20261110, review/issue-189/2026-11-10-analysis.md. No producer change or historical-file deletion.
-- Separate owners: issue188 MEMORY maintenance; issue187 reusable article pulse. Open PR171/117/110/107/79 remain separate work.
+- Issue189 / Draft PR190 is active on work/issue189-ri-plan-20261110. T01 preflight done; T02 removes19 redundant capture copies recoverable from3 unchanged in-repo ZIPs. Exact final source/results belong in issue/PR checkpoint.
+- Separate owners: issue188 MEMORY lifecycle; issue187 reusable article pulse. PR171/117/110/107/79 remain separate.
 
 ## Decisions
 
-- Author split the original187 intake into three owners. Recommended order189→188→187.
-- Author selected archives kept inside this repo and at least10,000,000bytes final RI hash-input headroom.
-- Plan retains one producer/two outputs, full machine inventory and existing unqualified lookup compatibility; short map/scoped reads are proposals. No new service/cache/shards.
-- User authorized iteration1 and a stop/report before moving originals. T01 is complete; T02 needs the next continuation instruction. No merge or release authorization is inferred.
+- Original intake split into189→188→187. Archives remain in this repo; final RI hash-input headroom target is10,000,000bytes without raising caps.
+- User authorized T02 after the T01 report. Stop/report after archival checks before T03. No merge/release authorization is inferred.
+- Keep one producer/two outputs/full machine inventory and legacy unqualified lookup. Short map/scoped paging and capacity visibility remain T03/T04, with no service/cache/shards.
 
 ## Open work
 
-- T01 verified647 current text sources and5 open PR source overlays. Actual3 ZIPs/21 originals recovered; final19 are11,386,774bytes. Selection/protected bounds: review/issue-189/selected-files.json.
-- Clean starting PR190 native inputs249,814,458bytes;185,542spare before T01 evidence. Final checkpoint accounting is in the issue/PR. Preserve the secrets ledger218-byte margin and all caps.
-- Baseline stale RI/CI identity traced to planning catalog entries; preserve first failure. Refresh reviewed identity and both RI views for T01; actual results/commit belong in issue/PR checkpoint.
-- All189 AC01–AC05 remain unchecked. T01 four-role corrections complete; no deletion, new RI feature or delivery acceptance.
+- Frozen19 /11,386,774bytes: review/issue-189/selected-files.json. Recovery commands/checksums: review/issue-189/archive-index.json and3capture ARCHIVE.md guides; gallery locators require full ZIP extraction for relative media.
+- T02 protects all2650 nonexception base paths; ZIPs/gzip/manifests, prior evidence, unselected media and site/docs/tools/tests/drafts/agents remain exact. Final measured accounting/reviews: review/issue-189/2026-11-10-analysis.md and PR190 checkpoint.
+- Preserve218-byte secrets-ledger margin and existing resource caps. Include all new metadata/evidence in net recovery; reserve1,000,000bytes for remaining189 input changes.
+- All AC01–AC05 stay open. Issue189 executable acceptance policy and selected real delivery remain pending; Draft/local recovery success is not Ready/merged/production acceptance.
 
 ## Next session
 
-1. Read issue189/current Draft plan and revalidate actual refs, issue/PR state and user authorization.
-2. If directed to continue, start T02: revalidate frozen19 originals/3 ZIPs/protected2657; apply only reviewed archive metadata/deletions, including mandatory full-ZIP guidance.
-3. Verify actual recovery, protected bytes and headroom, then report. T03–T06 short map/CLI/capacity/review/delivery remain.
+1. Revalidate refs, issue189/PR190, current-source checks and latest user instruction; use the dated report/recovery index, not memory alone.
+2. T02 checkpoint stops after source-bound four-role review, exact recovery/protection/RI/CI/style checks and actual accounting. Resolve any reported blocker first.
+3. On the next continuation, T03/T04 implement compact current map/scoped compatible CLI and capacity visibility; then T05/T06 policy, integration review and trusted delivery. Hand off to188 afterward.
 
 ## Maintenance
 
-- Retain five sections/120lines; replace stale handoff entries. Issue188 owns further maintenance/byte-cap changes.
-- Issues/PRs and exact source/run evidence own status. Rebuild/verify RI after indexed input changes; preserve existing bounds and raw failures.
-- Keep active/unfinished/public/rights/rollback resources intact; do not infer archive eligibility from issue closure.
+- Keep five sections/120lines; replace stale handoff entries. Issue188 owns further lifecycle/byte-cap changes.
+- Issues/PRs and exact source/run evidence own status. Rebuild/verify RI after indexed input changes; retain raw first failures.
+- Preserve active/unfinished/public/fixture/rights/rollback resources; issue closure alone is not archival eligibility.
