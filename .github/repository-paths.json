@@ -17688,6 +17688,78 @@
       "purpose": "Exact transitive resource closure of the preserved R11 public documents.",
       "role": "history",
       "owner": "site/README.md"
+    },
+    "docs/article-media/c3686dce007b399d3fb175d5b235a51b1000500a3e4bc6f024be9767bfb33996/reading-r12.pdf": {
+      "kind": "file",
+      "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/c3686dce007b399d3fb175d5b235a51b1000500a3e4bc6f024be9767bfb33996": {
+      "kind": "directory",
+      "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/940cec9dab62c69afbc0774e0101310e42197ccadc39c933c0d7d032575dbeab/the-sdlc-is-out-of-balance.html": {
+      "kind": "file",
+      "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/940cec9dab62c69afbc0774e0101310e42197ccadc39c933c0d7d032575dbeab": {
+      "kind": "directory",
+      "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/914c315bf3438424ddb64433cb82c3ba1946e19fcb4706d3791e9799f51f1095/writing.html": {
+      "kind": "file",
+      "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/914c315bf3438424ddb64433cb82c3ba1946e19fcb4706d3791e9799f51f1095": {
+      "kind": "directory",
+      "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "site/publications/sdlc-out-of-balance/materials/reviews/reading-pdf-r12.md": {
+      "kind": "file",
+      "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-snapshots/58c70d6edea51b0dd47fefe3c80cb1c78c59e24a8956093616fee4229786dc98/the-sdlc-is-out-of-balance.html": {
+      "kind": "file",
+      "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-snapshots/58c70d6edea51b0dd47fefe3c80cb1c78c59e24a8956093616fee4229786dc98": {
+      "kind": "directory",
+      "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/412f5b5cd2d1991265f5b6dd9d899516e79e8f4f78bd3d8c59f63975bd72b52e/writing.html": {
+      "kind": "file",
+      "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/412f5b5cd2d1991265f5b6dd9d899516e79e8f4f78bd3d8c59f63975bd72b52e": {
+      "kind": "directory",
+      "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "review/issue-169/r12-stable-evidence.tar.xz": {
+      "kind": "file",
+      "purpose": "Literal same-role stable delta reviews, source selection and exact-source check receipts.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

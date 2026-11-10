@@ -19,7 +19,7 @@
     "vitalii-oborskyi-cutout.webp",
     "writing-paradigm.svg"
   ],
-  "content": "dde714754fd14e5ac520f1be520a86be4e3b2b3b17b16b000f1d0033b24e6036",
+  "content": "cd8d8774725a15b2036856e10ee7d451b3e233f707775c3a98000ef6b5120e50",
   "routes": {
     "index": {
       "version": "83df95879db4fb6eff6947bbbcb0df74f18aeff64e77f8f57a4d9677a955badb",
@@ -35,9 +35,9 @@
       ]
     },
     "writing": {
-      "version": "412f5b5cd2d1991265f5b6dd9d899516e79e8f4f78bd3d8c59f63975bd72b52e",
-      "url": "snapshots/412f5b5cd2d1991265f5b6dd9d899516e79e8f4f78bd3d8c59f63975bd72b52e/writing.html",
-      "sha256": "f46e3ff092101f8469ab1a7120cad5b56fc97f4faec94991e496c92d33cfb5a0",
+      "version": "914c315bf3438424ddb64433cb82c3ba1946e19fcb4706d3791e9799f51f1095",
+      "url": "snapshots/914c315bf3438424ddb64433cb82c3ba1946e19fcb4706d3791e9799f51f1095/writing.html",
+      "sha256": "dd4a60b10ebd0ebd4c532cbee1ffe91d42cb09bb3b857e160d3734c1ee7dc7a8",
       "assets": [
         "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
       ]
@@ -55,9 +55,9 @@
   },
   "articles": {
     "sdlc-out-of-balance:en": {
-      "version": "58c70d6edea51b0dd47fefe3c80cb1c78c59e24a8956093616fee4229786dc98",
-      "url": "article-snapshots/58c70d6edea51b0dd47fefe3c80cb1c78c59e24a8956093616fee4229786dc98/the-sdlc-is-out-of-balance.html",
-      "sha256": "9284bf767e4b646b69e126804da0d4e28be80da930082c4a5e374e3f1459860a",
+      "version": "940cec9dab62c69afbc0774e0101310e42197ccadc39c933c0d7d032575dbeab",
+      "url": "article-snapshots/940cec9dab62c69afbc0774e0101310e42197ccadc39c933c0d7d032575dbeab/the-sdlc-is-out-of-balance.html",
+      "sha256": "178fa4ffcf3faf7dd42454b5ef4b913fe969761ef47bcf0e3d697253eb027696",
       "alias": "articles/the-sdlc-is-out-of-balance.html",
       "scene": "writing",
       "assets": [
@@ -67,6 +67,7 @@
         "article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551/comprehension-gap-r7.webp",
         "article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry-r9.webp",
         "article-media/7144d8165842a07ac8194e88a7301b777f11dac41ca1dcf8d88f6ba4cbecb27f/hero-web-social.jpg",
+        "article-media/c3686dce007b399d3fb175d5b235a51b1000500a3e4bc6f024be9767bfb33996/reading-r12.pdf",
         "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
       ],
       "socialImage": {
@@ -76,6 +77,9 @@
         "height": 630,
         "alt": "An accelerated coding stage tilts the delivery chain while people support the downstream work."
       },
+      "downloads": [
+        "article-media/c3686dce007b399d3fb175d5b235a51b1000500a3e4bc6f024be9767bfb33996/reading-r12.pdf"
+      ],
       "candidate": false,
       "articleId": "sdlc-out-of-balance",
       "contentEdition": "sdlc-out-of-balance-en-r12-20261110",

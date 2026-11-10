@@ -99,7 +99,7 @@
   "gates": {
     "EDITORIAL": {
       "kind": "human",
-      "description": "R12 exact three organisational/upstream/authority paragraphs and organisation-wide closing question were accepted for implementation by the author on10November2026. New five-page PDF/layout remains author-review pending. Deliver R12 source/native reader/PDF through Draft PR preview and STOP. Historical R11 acceptance applies only to R11; no R12 stable/merge/production or platform authority is inherited."
+      "description": "The author accepted the exact displayed R12 article and five-page PDF at source754c22a5 on10November2026, then instructed “Ок. Веди в стейбл стейджинг” (PR186 comment6762654946). Record the unchanged PDF through the existing materials contract, complete current-source checks and Ready/full stable staging, then STOP/show. No merge, production or platform authority is supplied. Historical R11 acceptance remains edition-specific."
     },
     "EVIDENCE": {
       "kind": "human",
@@ -123,7 +123,7 @@
     },
     "HISTORY": {
       "kind": "human",
-      "description": "Retain initial Draft PR milestone and source/plan history; current author publication instruction supersedes historical no-publish boundaries without erasing history. Current R12 instruction stops at Draft PR preview; no current stable/merge/production instruction follows from old decisions."
+      "description": "Retain initial Draft milestone/source/plan history. The10November2026 author acceptance of displayed R12 article/PDF and stable-staging instruction supersedes the R12 Draft-preview STOP only for Ready/current checks/full stable staging, then STOP. Preserve older phase decisions; no merge/production/platform authority follows from history."
     },
     "TECHNICAL": {
       "kind": "human",

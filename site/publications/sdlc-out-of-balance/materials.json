@@ -19,7 +19,14 @@
         "sha256": "c3686dce007b399d3fb175d5b235a51b1000500a3e4bc6f024be9767bfb33996",
         "mime": "application/pdf"
       },
-      "approval": null
+      "approval": {
+        "bindingSha256": "1ce2cc79f0c0f50b90bac9c8574ec6f95a70ffe0431f62ddfb953d629a64240a",
+        "reviewedAt": "2026-11-10T08:30:22Z",
+        "evidence": {
+          "path": "materials/reviews/reading-pdf-r12.md",
+          "sha256": "6e01e9e5603b20c079272b8453ef8d10e81bbc4543911aedba73d7bfd96611b5"
+        }
+      }
     }
   ]
 }

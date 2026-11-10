@@ -850,7 +850,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "846d059f094e81c4d17ab130f1ca379f86694b4d2c29158637bee6af951f6009",
+    "digest": "160118610bb225804b9cef2a1ca4786df7c56fbe33f93d4c911016c37bdbe4d8",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -906,7 +906,7 @@
       },
       {
         "path": ".github/acceptance/issue-169.json",
-        "sha256": "cea5610ca1bf40bc3b068f6f61139d720a83ebe8136a8aebba5ea961eb667776"
+        "sha256": "d2a3e282a0695c877720db333bedaafc0415e805ec5296aad65fe0fbdcde613a"
       },
       {
         "path": ".github/acceptance/issue-177.json",
@@ -1010,7 +1010,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "a1f9f0b82af1c76e2c5f1ae85a4514271e0bc317f5a96ea4a4d4fbde99a06ea8"
+        "sha256": "0ec579c75807289b65145e33a10cabecfd5625671ac4f0198d624db8df580a73"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
