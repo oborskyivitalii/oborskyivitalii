@@ -77,8 +77,8 @@
     {
       "id": "AC05",
       "intent": "Proportionate style/test allocation, actual independent review and trusted exact-source delivery.",
-      "automated_scope": "Current bounded style/coupling and fixed local Basic check verify their declared subset. This policy routes the new numeric task module only through its owner; it neither launches reviewers nor certifies architectural readability, hosted obligations, maintainer attestation, delivery or merge. Full-diff lane comes from protected-base selection, not this JSON.",
-      "checks": ["STYLE", "COUPLING", "BASIC"],
+      "automated_scope": "Current bounded style/coupling and fixed local Basic check verify their declared subset. This policy routes the new numeric task module only through its owner; it neither launches reviewers nor certifies architectural readability, hosted obligations, maintainer attestation, delivery or merge. Full-diff lane comes from protected-base selection, not this JSON. The shared protected-closure check also invokes the existing Node complete test-registry validator and confines this task registration to its owning policy.",
+      "checks": ["STYLE", "COUPLING", "BASIC", "PROTECTION-CAPACITY"],
       "gates": ["REVIEW", "DELIVERY", "MERGE"]
     }
   ],

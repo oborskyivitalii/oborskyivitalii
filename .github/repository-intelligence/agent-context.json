@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "c4a14132cadb617857a9cbcbd2b4c992a83bb56ebef23ce7b3cea6c001483edc",
+    "digest": "7174b105097b75e904e2b4fc48f70a5d59e8e1909a7b0fdc1146fcd79a2e54de",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -112,7 +112,7 @@
       {
         "path": ".github/acceptance/issue-189.json",
         "identity_mode": "content",
-        "sha256": "0dd78d35fea8e0ac4cc3b47b795822136cfb14ae4aead23c00c5987f3d95a691"
+        "sha256": "aa00d1782d3cfabef62b92be76351feabeb650d83b0ae4a3eb386b3a137c108a"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -246,7 +246,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "49ad809e8cd2236fbfedff2037202e2cef0041627ff9ea0e8499939dcb8c6bc4"
+        "sha256": "517a81d7c3ddd3b8f038f95e97fd6aa48a0618c9b0e916c39693d3227c06e6ca"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -396,7 +396,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "e8d726182454e67cd3dbd9c1739e75dd3b393253bf9357c78fb302f5d36ab990"
+        "sha256": "cf06288dbab7a7b7f7573602272c595888756902350cb4a137fb277ba502b8cb"
       },
       {
         "path": "NOTICE.md",
@@ -4830,7 +4830,7 @@
       {
         "path": "review/issue-189/2026-11-10-analysis.md",
         "identity_mode": "content",
-        "sha256": "fa02e4ee988a4b18149a0b9d2d04488bf436438466e1143bcd2bb30841f2cb86"
+        "sha256": "90015d29e08b8b2e8688b877cbdd1a99f4f1bfeae8f6f34caacd614ef11acba3"
       },
       {
         "path": "review/issue-189/archive-index.json",
@@ -12110,7 +12110,7 @@
       {
         "path": "tests/test_issue189_acceptance.py",
         "identity_mode": "content",
-        "sha256": "a98a3a19074cbb0d89cb1fb8b2ee3b2396a01e0a88a5b4b7bc112cd113568fd6"
+        "sha256": "8d9bbe9f81a9224ef1b876e74fe8912dc660dd85a317ec1ea6bf4f94e5a4bf4a"
       },
       {
         "path": "tests/test_issue31_acceptance.py",
@@ -12980,7 +12980,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "0e9100b90003dc304cd4fb51f726bf8dcbf795249f5733f1c7cae2dbd5078888"
+        "sha256": "bbb8a3f9b7825239fab54dab16dbe9de140e62e45f61343db62f58dfed81398d"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",

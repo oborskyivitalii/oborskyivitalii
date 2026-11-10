@@ -5,7 +5,7 @@ Dated continuity, not live authority. Last verified: **2026-11-10**.
 ## Snapshot
 
 - Main/production ca756417590b9176f9fc33428321ffe1f64158cc; prod-2026-11-10.1 delivered R12 and issue184 archival dependency.
-- Issue189 / Draft PR190 is active on work/issue189-ri-plan-20261110. T01–T05 technical work is implemented/reviewed. Fresh full49-path PR review on c9ad37c7 found no new reproducible technical defect; actual four-role reports/raw checks and final-source identity are linked from PR190 and the full-review section of review/issue-189/2026-11-10-analysis.md.
+- Issue189 / Draft PR190 is active on work/issue189-ri-plan-20261110. T01–T05 technical work is implemented/reviewed. T06 actual CI on13cdbd0c found missing Node task-registry companion for test_issue189_acceptance.py, missed by earlier review/localchecks. PR returnedDraft; registry/protection/policy correction independently reviewed; exact clean/native status and firstlogs retained in PR190 and versioned analysis.
 - Separate owners: issue188 MEMORY lifecycle; issue187 reusable article pulse. PR171/117/110/107/79 remain separate.
 
 ## Decisions
@@ -24,7 +24,7 @@ Dated continuity, not live authority. Last verified: **2026-11-10**.
 ## Next session
 
 1. Revalidate refs, issue189/PR190, current-source checks and latest user instruction; use the dated report/recovery index, not memory alone.
-2. Full-PR review checkpoint: four fresh none-fork roles,45/45 policy and additional current checks; no code fix proposed. See versioned full-review section and PR190 raw evidence. CS05 remains accepted; do not ask again.
+2. T06 firstCI registryfailure supersedes earlier no-blocker readiness inference. Verify corrected registry/profile planning, exact clean four-module navigation and45policy, affectedreviews before Ready/newCI. Preserve firstfailure; CS05 remainsaccepted.
 3. Next T06: actual protected full/control route, exact reviewed_sha/owner decisions, current source/RI/owning/hosted/admission checks and trusted delivery. Hand off to188 afterward.
 
 ## Maintenance

@@ -2965,6 +2965,24 @@
         "tools/release/edition.cjs",
         "tools/release/edition-archive.cjs"
       ]
+    },
+    {
+      "path": "tests/test_issue189_acceptance.py",
+      "language": "python",
+      "purpose": "Issue189 exact frozen archive recovery, protected-base closure and current capacity; semantic eligibility, review and hosted delivery remain external.",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": ["issue-policy"],
+      "disposition": "Owning issue189 policy only; permanent RI and source-profile suites retain their existing routes without recurring historical task execution.",
+      "surviving_route": ".github/acceptance/issue-189.json",
+      "inputs": [
+        "tests/test_issue189_acceptance.py",
+        ".github/acceptance/issue-189.json",
+        "review/issue-189/selected-files.json",
+        "review/issue-189/archive-index.json",
+        "tools/repository_intelligence.py",
+        "tools/quality/test-profiles.json"
+      ]
     }
   ]
 }

@@ -36,6 +36,7 @@ MUTABLE = {
     "tools/RI-NOTICE.md",
     "tests/test_repository_intelligence.py",
     "tools/quality/bandit-policy.json",
+    "tools/quality/test-profiles.json",
     ".github/workflows/issue-acceptance.yml",
     *{f"review/site-v1-20261002-v{v}-index.html" for v in (5, 6, 7)},
 }
@@ -235,6 +236,48 @@ class Issue189AcceptanceTests(unittest.TestCase):
         )
         self.assertEqual(expected_workflow.count(policy_189), 4)
         self.assertEqual((REPO / workflow_path).read_bytes().decode("utf-8"), expected_workflow)
+        # Preserve the complete old registry; only this owning-only row is added.
+        registry_path = "tools/quality/test-profiles.json"
+        old_registry = json.loads(
+            subprocess.check_output(["git", "show", BASE + ":" + registry_path], cwd=REPO)
+        )
+        new_registry = json.loads((REPO / registry_path).read_bytes())
+        expected_row = {
+            'path': 'tests/test_issue189_acceptance.py',
+            'language': 'python',
+            'purpose': 'Issue189 exact frozen archive recovery, protected-base closure and current capacity; semantic eligibility, review and hosted delivery remain external.',
+            'owner': '.github/ACCEPTANCE.md',
+            'lifecycle': 'task-snapshot',
+            'profiles': ['issue-policy'],
+            'disposition': 'Owning issue189 policy only; permanent RI and source-profile suites retain their existing routes without recurring historical task execution.',
+            'surviving_route': '.github/acceptance/issue-189.json',
+            'inputs': [
+                'tests/test_issue189_acceptance.py',
+                '.github/acceptance/issue-189.json',
+                'review/issue-189/selected-files.json',
+                'review/issue-189/archive-index.json',
+                'tools/repository_intelligence.py',
+                'tools/quality/test-profiles.json',
+            ],
+        }
+        self.assertEqual(set(new_registry), set(old_registry))
+        for key in old_registry.keys() - {"tests"}:
+            self.assertEqual(new_registry[key], old_registry[key])
+        self.assertEqual(new_registry["tests"], old_registry["tests"] + [expected_row])
+        # Python owning selection alone cannot establish the shared Node inventory.
+        inventory = subprocess.run(
+            [
+                "node",
+                "-e",
+                "const s=require('./tools/quality/source-tests.cjs');"
+                "s.validateRegistry(process.cwd(),s.loadRegistry(process.cwd()));",
+            ],
+            cwd=REPO,
+            capture_output=True,
+            text=True,
+            timeout=30,
+        )
+        self.assertEqual(inventory.returncode, 0, inventory.stderr)
         spec = importlib.util.spec_from_file_location(
             "issue189_ri", REPO / "tools/repository_intelligence.py"
         )
