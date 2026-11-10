@@ -99,7 +99,7 @@
   "gates": {
     "EDITORIAL": {
       "kind": "human",
-      "description": "Exact displayed R11 reader/PDF at56f4bf90 accepted by the author on7November2026, recorded in issue169 comment6705211415; accepted native catalog/material restoration and normal full stable staging are authorized. Preserve source/PDF/figures and historical R10. Platform-native transfer/posting remains author-manual after verified website production; acceptance is not a waiver of source/hosted/stable gates or PR170 merge/production permission."
+      "description": "The author accepted the exact displayed R12 article and five-page PDF at source754c22a5 on10November2026, then instructed “Ок. Веди в стейбл стейджинг” (PR186 comment6762654946). Record the unchanged PDF through the existing materials contract, complete current-source checks and Ready/full stable staging, then STOP/show. No merge, production or platform authority is supplied. Historical R11 acceptance remains edition-specific."
     },
     "EVIDENCE": {
       "kind": "human",
@@ -119,11 +119,11 @@
     },
     "COPY": {
       "kind": "human",
-      "description": "Prepare complete matching LinkedIn/Medium copies now with a visible planned stable website backlink and resolved launch URLs. Planned links never establish publication/canonical/date. Verify the actual served website edition before author-manual platform posting; then verify both actual platform URLs and website backlinks and add the reciprocal pair together via one materials-only content update. Exact current platform editors/live URLs and posting remain manual external gates; the later pair does not block initial website release."
+      "description": "Latest10November2026 author instruction explicitly authorizes preparing updated LinkedIn and Medium copies now from accepted R12, superseding the earlier preparation deferral. Preserve exact source/edition/figures/references and planned canonical/materials links through the existing equivalent-rendition profile and verified kit. Actual native-editor publication/update follows verified corrected website publication; posting, observed platform URLs/dates/publication events and reciprocal parity remain pending. Whole external-edition criterion remains open. Current delivery continues through Ready/current checks/full stable staging, then STOP/show; no merge/production authority."
     },
     "HISTORY": {
       "kind": "human",
-      "description": "Retain initial Draft PR milestone and source/plan history; current author publication instruction supersedes historical no-publish boundaries without erasing history."
+      "description": "Retain initial Draft milestone/source/plan history. The10November2026 author acceptance of displayed R12 article/PDF and stable-staging instruction supersedes the R12 Draft-preview STOP only for Ready/current checks/full stable staging, then STOP. Preserve older phase decisions; no merge/production/platform authority follows from history."
     },
     "TECHNICAL": {
       "kind": "human",

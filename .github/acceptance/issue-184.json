@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 184,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/184",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Inventory and eligibility",
+      "automated_scope": "RI/style/coupling establish complete inventory/freshness and bounded source hygiene only; actual recovery/eligibility, useful process/capacity, unchanged-public comparison and review/delivery remain explicit external evidence. No generic green test accepts archived content or authorizes publication.",
+      "checks": ["RI", "RI-CI", "STYLE"],
+      "gates": ["ARCHIVE"]
+    },
+    {
+      "id": "AC02",
+      "intent": "Lossless recovery",
+      "automated_scope": "RI/style/coupling establish complete inventory/freshness and bounded source hygiene only; actual recovery/eligibility, useful process/capacity, unchanged-public comparison and review/delivery remain explicit external evidence. No generic green test accepts archived content or authorizes publication.",
+      "checks": ["RI", "RI-CI", "STYLE"],
+      "gates": ["ARCHIVE"]
+    },
+    {
+      "id": "AC03",
+      "intent": "Measured capacity recovery",
+      "automated_scope": "RI/style/coupling establish complete inventory/freshness and bounded source hygiene only; actual recovery/eligibility, useful process/capacity, unchanged-public comparison and review/delivery remain explicit external evidence. No generic green test accepts archived content or authorizes publication.",
+      "checks": ["RI", "RI-CI", "STYLE"],
+      "gates": ["CAPACITY"]
+    },
+    {
+      "id": "AC04",
+      "intent": "Public and historical integrity",
+      "automated_scope": "RI/style/coupling establish complete inventory/freshness and bounded source hygiene only; actual recovery/eligibility, useful process/capacity, unchanged-public comparison and review/delivery remain explicit external evidence. No generic green test accepts archived content or authorizes publication.",
+      "checks": ["RI", "RI-CI", "STYLE"],
+      "gates": ["PUBLIC"]
+    },
+    {
+      "id": "AC05",
+      "intent": "Standing post-production process",
+      "automated_scope": "RI/style/coupling establish complete inventory/freshness and bounded source hygiene only; actual recovery/eligibility, useful process/capacity, unchanged-public comparison and review/delivery remain explicit external evidence. No generic green test accepts archived content or authorizes publication.",
+      "checks": ["RI", "RI-CI", "STYLE"],
+      "gates": ["PROCESS"]
+    },
+    {
+      "id": "AC06",
+      "intent": "Reviewed exact-source delivery",
+      "automated_scope": "RI/style/coupling establish complete inventory/freshness and bounded source hygiene only; actual recovery/eligibility, useful process/capacity, unchanged-public comparison and review/delivery remain explicit external evidence. No generic green test accepts archived content or authorizes publication.",
+      "checks": ["RI", "RI-CI", "STYLE"],
+      "gates": ["REVIEW"]
+    }
+  ],
+  "checks": {
+    "RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    },
+    "STYLE": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    }
+  },
+  "gates": {
+    "ARCHIVE": {
+      "kind": "human",
+      "description": "Inspect actual eligibility/consumer inventory and recover every selected original from unchanged archives; compare decoded bytes/size/SHA256, locator links/commands and preserved historical manifests. No filename-only or closed-issue inference."
+    },
+    "CAPACITY": {
+      "kind": "human",
+      "description": "Measure final complete RI hash inventory and tracked bytes separately; report actual savings/headroom under unchanged250MB cap and bounded pending R12 costs. Unknown later outputs remain pending."
+    },
+    "PUBLIC": {
+      "kind": "human",
+      "description": "Verify exact unchanged site/docs/runtime/rights/retained/test inputs against accepted base; PR110 and ongoing R12 excluded. No public or rollback closure loss."
+    },
+    "PROCESS": {
+      "kind": "human",
+      "description": "Independently review canonical mandatory post-production archival workflow, ownership, exact-source trigger, active/unfinished exceptions, recovery and normal reviewed maintenance route; no host deletion or new pipeline."
+    },
+    "REVIEW": {
+      "kind": "human",
+      "description": "Four actual distinct source-bound roles, final/correction reviews, test impact and applicable CS01/04/05/08/09/10. Trusted complete-diff lane/Basic/RI/owning checks and native Draft PR observation are separate; no merge/production authority inferred."
+    }
+  }
+}

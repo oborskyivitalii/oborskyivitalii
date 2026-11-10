@@ -94,6 +94,27 @@ Draft, implemented, merged, reviewed, staged, published and deployed remain sepa
 Green CI/issue closure cannot change scientific/source-verification state. Merge,
 production activation, domain/DNS and public release retain their maintainer decisions.
 
+### Archive completed production work
+
+After verified production delivery, record the exact source, release/run and
+served verification in the owning issue/PR. Then inventory completed transient
+review exports and remove redundant loose copies through a normal reviewed
+maintenance PR. Reuse an existing archive when it contains the exact originals;
+otherwise create a lossless archive with a path/size/SHA256 manifest. Extract and
+compare every original before removing its loose copy. Keep useful original-path
+locators with archive/member, original digest/size and an extraction command.
+
+Preserve raw failures, first reviewer results and their actual status. Historical
+manifests continue describing original bytes; locators must identify themselves.
+Do not archive active authoring inputs, unfinished work, executable fixtures or
+required public/rights/rollback resources merely because an issue is closed or a
+PR merged. Production eligibility needs actual delivery or documented supersession.
+Keep unresolved exceptions with their owner. Update path ownership and RI/CI,
+verify recovery and the complete RI inventory, and record before/after bytes and
+remaining headroom under the existing limits. Use the trusted route selected for
+the complete maintenance diff; archive cleanup never authorizes host deletion,
+Git-history rewriting or a release-gate exemption.
+
 ### Review test impact before advancing
 
 Before marking Ready, requesting a new workflow stage, promoting or handing off

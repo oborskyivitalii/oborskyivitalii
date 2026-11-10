@@ -365,6 +365,10 @@
     "publications/sdlc-out-of-balance/materials/reading-r11.pdf": {
       "sha256": "568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58",
       "bases": ["original-text", "original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/materials/reading-r12.pdf": {
+      "sha256": "c3686dce007b399d3fb175d5b235a51b1000500a3e4bc6f024be9767bfb33996",
+      "bases": ["original-text", "original-diagram"]
     }
   },
   "retained": {
@@ -567,6 +571,58 @@
     "article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/the-sdlc-is-out-of-balance.html": {
       "sha256": "4aa1ae74ff48155957e9f897b7697e1cee35e3b38d8319d0906c15da2d44fd7b",
       "bases": ["original-code", "original-text", "article-review-input"]
+    },
+    "article-media/568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58/reading-r11.pdf": {
+      "sha256": "568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58",
+      "bases": ["retained-edition", "original-text", "original-diagram"]
+    },
+    "article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995/the-sdlc-is-out-of-balance.html": {
+      "sha256": "c190559a8abad1589892257f44b16ee9d2188e3f98e6d2e0561dab71131824e4",
+      "bases": ["retained-edition", "original-text", "original-diagram"]
+    },
+    "snapshots/080da808855bdc7cac66970509a9a371a5033cb5d721a007a92632c826b2d06a/writing.html": {
+      "sha256": "71be930a87d17502fa4ad81d73b786325bf4d4bda09db770033c6dd2388b4044",
+      "bases": ["retained-edition", "original-text", "linked-metadata", "advisor-consent"]
+    },
+    "runtime/1c34e64047482a214a50a115582adb08988fe8721f5ee651bd8a231a300e2cf7/analytics.js": {
+      "sha256": "1c34e64047482a214a50a115582adb08988fe8721f5ee651bd8a231a300e2cf7",
+      "bases": ["retained-edition", "original-code"]
+    },
+    "runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/theme.js": {
+      "sha256": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a",
+      "bases": ["retained-edition"]
+    },
+    "runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/styles.css": {
+      "sha256": "677304b835527266f87d9f5c039fa7b321e8d296e07a133077e1f7094d9a0cc0",
+      "bases": ["retained-edition"]
+    },
+    "runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/space.js": {
+      "sha256": "7812c824ce3dac0d5d36f40788c65ca66cc553e5a0287850a24a499a02d4eab4",
+      "bases": ["retained-edition"]
+    },
+    "runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/archive.js": {
+      "sha256": "bf1b9e42356b282f3c08f7763a7a59263241c752df5dd9ee776a6b0bf86b0caa",
+      "bases": ["retained-edition"]
+    },
+    "runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/navigation.js": {
+      "sha256": "9d074333c9731e08a801e8f7ba418c645ef8c9e54d912a666912640e36e1a292",
+      "bases": ["retained-edition"]
+    },
+    "article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7/delivery-capacity-r6.webp": {
+      "sha256": "e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7",
+      "bases": ["retained-edition"]
+    },
+    "article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a/review-learning-r7.webp": {
+      "sha256": "a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a",
+      "bases": ["retained-edition"]
+    },
+    "article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551/comprehension-gap-r7.webp": {
+      "sha256": "ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551",
+      "bases": ["retained-edition"]
+    },
+    "article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry-r9.webp": {
+      "sha256": "8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f",
+      "bases": ["retained-edition"]
     }
   },
   "notices": [
