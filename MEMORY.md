@@ -4,34 +4,34 @@ Dated continuity, not live authority. Last verified: **2026-11-10**.
 
 ## Snapshot
 
-- Main and production a9f576918defbed3950c8ab95b4161be26e56ade; release prod-2026-11-09.1.
-- Production42650891346/1 succeeded. Owner verified actual LinkedIn result; issue179 closed/completed.
-- Owner confirms DevCon talk delivered; issue109 closed/completed with explicit remaining evidence dispositions.
-- PR110 remains Draft/unmerged at f96425b; closure is not a production observation for its post-event R10.
+- Owning issue169: R12 organisational-scope conclusion, native reader and five-page PDF to Draft PR preview.
+- Main/production a9f5769; accepted release prod-2026-11-09.1 unchanged.
+- Archive dependency PR185/issue184 at79a275d is Draft/unmerged; its prototype42776484786 succeeded.
+- Owner confirmed179 LinkedIn result and109 delivered talk; both closed/completed. PR110 remains unmerged.
 
 ## Decisions
 
-- Issue184 owns lossless completed-production archival and the mandatory post-production process.
-- Preserve RI250MB cap, exact old ZIPs/manifests, failed evidence, current site/rights/rollback and unfinished work.
-- Canonical CONTRIBUTING owns the standing rule. No new archive service, selector exemption or pipeline.
-- Existing trusted route treats this HTML/policy delta as full-route work; Draft is not source/stable admission.
+- Author requires actual R12 article preview and revised PDF now; archive preview is not the article deliverable.
+- R12 source frozen at47b9a946; exact accepted prose; source SHA4ed3380c73f46e7e9bf086fa2f1c99f5183fc0ccb16b7b1f270276173e5f1f8d.
+- Five-page PDF516886bytes, SHAc3686dce007b399d3fb175d5b235a51b1000500a3e4bc6f024be9767bfb33996.
+- PDF approval null pending author review; deliver exact PDF separately. Source/site figures and old R11 remain exact.
+- Platform revisions follow website publication. No current stable/merge/production authorization inferred.
 
 ## Open work
 
-- Issue184 first batch replaces33 redundant v5-v7 HTML copies with recovery locators; originals stay in existing ZIPs.
-- Source-bound review/recovery/RI/Basic and exact Draft PR/preview evidence remain to be completed.
-- Issue169 R12 source is separately prepared on work/issue169-r12-organisation-scope-20261110 at7ad369f.
-- R12 native site/PDF layout and PR remain pending; initial PDF trial is6pages and is not accepted/delivered.
+- Finish current four-role/current-source checks and publish the R12 Draft PR/immutable article preview.
+- Parent79a275d carries PR185 headroom; identify dependency openly until its normal delivery.
+- Retain old R11 immutable article/Writing/PDF closure through existing source/rights manifests.
+- Further archive inventory groups remain unresolved/untouched under184.
 
 ## Next session
 
-1. Resolve live issue184 PR/ref/checks and review/issue-184/2026-11-10-archive.md before advancement.
-2. Finish archive review/current-source delivery; preserve all unperformed source/stable/merge gates.
-3. Return to issue169: complete matching readable <=5pagePDF/site/PR. Platform revisions follow website publication.
+1. Read issue169/actual PR/current refs and review/issue-169/2026-11-10-r12-preview.md.
+2. Deliver article URL and exact five-page PDF; report real source/native outcomes and pending gates.
+3. After author review use normal delivery for archive dependency/article, then prepare platform revisions.
 
 ## Maintenance
 
-- Five sections/120lines. Issues and exact source/check evidence own actual status.
-- Archive index owns original/member/locator recovery identities; inventory is dated supporting evidence.
-- No archive cleanup is production-active or merged until observed and recorded.
-- Rebuild/verify RI and coupling after indexed/control edits; do not inherit stale memory as live authority.
+- Five sections/120lines; issues and exact source/run evidence own live status.
+- Rebuild/verify RI/coupling after indexed/control changes. Keep all budgets/scanners/fixtures.
+- No final PDF author acceptance or native browser pass is inferred from generation/parity alone.

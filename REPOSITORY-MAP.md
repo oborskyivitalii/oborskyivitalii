@@ -60,6 +60,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f](docs/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f) | Generated native article, immutable media or snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-snapshots](docs/article-snapshots) | Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot. | generated | [site/README.md](site/README.md) |
 | [docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684](docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684) | Current immutable generated room/article snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
+| [docs/article-snapshots/58c70d6edea51b0dd47fefe3c80cb1c78c59e24a8956093616fee4229786dc98](docs/article-snapshots/58c70d6edea51b0dd47fefe3c80cb1c78c59e24a8956093616fee4229786dc98) | R12 generated native reader/retained public dependency. | generated | [site/README.md](site/README.md) |
 | [docs/article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995](docs/article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995) | Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners. | generated | [site/README.md](site/README.md) |
 | [docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003](docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003) | Exact current native raw article rendition and existing immutable closure; no prior-publication claim. | generated | [site/README.md](site/README.md) |
 | [docs/articles](docs/articles) | Generated current article/material/route closure; regenerate from canonical site owners. | generated | [site/README.md](site/README.md) |
@@ -79,6 +80,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2](docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2) | Generated public rendition; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e](docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e) | Verified prior production immutable snapshot retained with its exact published bytes. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/2f7990f981ececb87582a10e1e4642b867f23f4e531e312bfa7ec4cf9a2bd408](docs/snapshots/2f7990f981ececb87582a10e1e4642b867f23f4e531e312bfa7ec4cf9a2bd408) | Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/412f5b5cd2d1991265f5b6dd9d899516e79e8f4f78bd3d8c59f63975bd72b52e](docs/snapshots/412f5b5cd2d1991265f5b6dd9d899516e79e8f4f78bd3d8c59f63975bd72b52e) | R12 generated native reader/retained public dependency. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/46c259b15720af2cb02c7cb78e7b9b8d4031492452350c9d2cd74d9c3e4e801b](docs/snapshots/46c259b15720af2cb02c7cb78e7b9b8d4031492452350c9d2cd74d9c3e4e801b) | Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347](docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/632f4f29ebdbc51215b02592fd45a1f10a99fb8596d2dec8b3f18bc8be847f06](docs/snapshots/632f4f29ebdbc51215b02592fd45a1f10a99fb8596d2dec8b3f18bc8be847f06) | Verified prior production immutable snapshot retained with its exact published bytes. | generated | [site/README.md](site/README.md) |
@@ -248,23 +250,31 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [site/retained/article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292](site/retained/article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
 | [site/retained/article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16](site/retained/article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
 | [site/retained/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3](site/retained/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
+| [site/retained/article-media/568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58](site/retained/article-media/568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58) | R12 exact retained historical resource and recovery closure. | history | [site/README.md](site/README.md) |
 | [site/retained/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c](site/retained/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
 | [site/retained/article-media/79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6](site/retained/article-media/79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
 | [site/retained/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f](site/retained/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
 | [site/retained/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1](site/retained/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
+| [site/retained/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a](site/retained/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a) | Exact transitive resource closure of the preserved R11 public documents. | history | [site/README.md](site/README.md) |
+| [site/retained/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551](site/retained/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551) | Exact transitive resource closure of the preserved R11 public documents. | history | [site/README.md](site/README.md) |
+| [site/retained/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7](site/retained/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7) | Exact transitive resource closure of the preserved R11 public documents. | history | [site/README.md](site/README.md) |
 | [site/retained/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f](site/retained/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
 | [site/retained/article-snapshots](site/retained/article-snapshots) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
 | [site/retained/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684](site/retained/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
+| [site/retained/article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995](site/retained/article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995) | R12 exact retained historical resource and recovery closure. | history | [site/README.md](site/README.md) |
 | [site/retained/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003](site/retained/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003) | Exact current native raw article rendition and existing immutable closure; no prior-publication claim. | history | [site/README.md](site/README.md) |
 | [site/retained/media](site/retained/media) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
 | [site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc](site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
 | [site/retained/runtime](site/retained/runtime) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/runtime/1c34e64047482a214a50a115582adb08988fe8721f5ee651bd8a231a300e2cf7](site/retained/runtime/1c34e64047482a214a50a115582adb08988fe8721f5ee651bd8a231a300e2cf7) | Exact prior R11 analytics dependency retained with its historical document, including fixtures with current analytics disabled. | history | [site/README.md](site/README.md) |
 | [site/retained/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17](site/retained/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17) | Verified previous production immutable rendition retained byte-for-byte. | history | [site/README.md](site/README.md) |
+| [site/retained/runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c](site/retained/runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c) | Exact transitive resource closure of the preserved R11 public documents. | history | [site/README.md](site/README.md) |
 | [site/retained/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff](site/retained/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff) | Verified previous production immutable rendition retained byte-for-byte. | history | [site/README.md](site/README.md) |
 | [site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee](site/retained/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
 | [site/retained/runtime/c36b28140796f556d7f6019efa223c5164e7ca55e880e1e6a64bb596283430da](site/retained/runtime/c36b28140796f556d7f6019efa223c5164e7ca55e880e1e6a64bb596283430da) | Exact current native article and immutable dependency closure; source-bound preparation, no prior-publication claim. | history | [site/README.md](site/README.md) |
 | [site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62](site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
 | [site/retained/snapshots](site/retained/snapshots) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/snapshots/080da808855bdc7cac66970509a9a371a5033cb5d721a007a92632c826b2d06a](site/retained/snapshots/080da808855bdc7cac66970509a9a371a5033cb5d721a007a92632c826b2d06a) | R12 exact retained historical resource and recovery closure. | history | [site/README.md](site/README.md) |
 | [site/retained/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2](site/retained/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2) | Verified previous production immutable rendition retained byte-for-byte. | history | [site/README.md](site/README.md) |
 | [site/retained/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e](site/retained/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e) | Verified prior production immutable snapshot retained with its exact published bytes. | history | [site/README.md](site/README.md) |
 | [site/retained/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347](site/retained/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
@@ -525,6 +535,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684/the-sdlc-is-out-of-balance.html](docs/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684/the-sdlc-is-out-of-balance.html) | Current immutable generated room/article snapshot and complete runtime/resource closure. | generated | [site/README.md](site/README.md) |
 
+## docs/article-snapshots/58c70d6edea51b0dd47fefe3c80cb1c78c59e24a8956093616fee4229786dc98/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/article-snapshots/58c70d6edea51b0dd47fefe3c80cb1c78c59e24a8956093616fee4229786dc98/the-sdlc-is-out-of-balance.html](docs/article-snapshots/58c70d6edea51b0dd47fefe3c80cb1c78c59e24a8956093616fee4229786dc98/the-sdlc-is-out-of-balance.html) | R12 generated native reader/retained public dependency. | generated | [site/README.md](site/README.md) |
+
 ## docs/article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995/
 
 | Path | Purpose | Role | Owner / editing route |
@@ -646,6 +662,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [docs/snapshots/2f7990f981ececb87582a10e1e4642b867f23f4e531e312bfa7ec4cf9a2bd408/talks.html](docs/snapshots/2f7990f981ececb87582a10e1e4642b867f23f4e531e312bfa7ec4cf9a2bd408/talks.html) | Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/412f5b5cd2d1991265f5b6dd9d899516e79e8f4f78bd3d8c59f63975bd72b52e/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/412f5b5cd2d1991265f5b6dd9d899516e79e8f4f78bd3d8c59f63975bd72b52e/writing.html](docs/snapshots/412f5b5cd2d1991265f5b6dd9d899516e79e8f4f78bd3d8c59f63975bd72b52e/writing.html) | R12 generated native reader/retained public dependency. | generated | [site/README.md](site/README.md) |
 
 ## docs/snapshots/46c259b15720af2cb02c7cb78e7b9b8d4031492452350c9d2cd74d9c3e4e801b/
 
@@ -1277,6 +1299,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-169/2026-11-07-source-timeouts.md](review/issue-169/2026-11-07-source-timeouts.md) | Author-approved source and enclosing CI timeout amendment, preserved failure diagnosis, review and exact-source acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/2026-11-07-technical-route.md](review/issue-169/2026-11-07-technical-route.md) | Technical repository route scope, stable TR01–TR08 checks, independent review and source-bound delivery evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/2026-11-08-medium-link.md](review/issue-169/2026-11-08-medium-link.md) | Dated issue169 Medium link intent, neutral catalog link contract, test-impact allocation, independent review and delivery observations. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/2026-11-10-r12-preview.md](review/issue-169/2026-11-10-r12-preview.md) | Issue169 R12 source, matching PDF or source-bound review evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/browser-media-reviews-and-checks.tar.xz](review/issue-169/browser-media-reviews-and-checks.tar.xz) | Literal source-bound issue169 browser-media preflight and four-role first/correction reviews, original failures and corrected local checks. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/controller-fixture-seed-proof.json.gz](review/issue-169/controller-fixture-seed-proof.json.gz) | Exact fixed fixture source, packets, raw native/timing evidence identity and independent review receipts. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/correction-affected.log.gz](review/issue-169/correction-affected.log.gz) | Issue169 source-bound correction, carrier geometry/provenance and retained failed/current check evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -1293,6 +1316,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-169/r11-review-kit-and-evidence.tar.xz](review/issue-169/r11-review-kit-and-evidence.tar.xz) | Exact R11 native distribution kit/PDF, original failed layout/oracle observations and literal prior independent reviews/launch receipts. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/r11-stable-oracle-evidence.tar.xz](review/issue-169/r11-stable-oracle-evidence.tar.xz) | Preserved Draft preview oracle failure, independent correction and current pre-advancement test-impact audit/review/check evidence; native and hosted gates remain separate. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/r11-stable-staging-evidence.tar.xz](review/issue-169/r11-stable-staging-evidence.tar.xz) | Literal R11 accepted-state preflight, source/history byte proof, independent reviews and current checks; final native observations remain separately source-bound. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-169/r12-evidence.tar.xz](review/issue-169/r12-evidence.tar.xz) | Issue169 R12 source, matching PDF or source-bound review evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/source-timeout-reviews-and-checks.tar.xz](review/issue-169/source-timeout-reviews-and-checks.tar.xz) | Literal independent timeout reviews, source manifests and actual check streams; original failures retained separately. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/stage-security-proof.json.gz](review/issue-169/stage-security-proof.json.gz) | Exact per-finding source and native producer proof for the retained nine staging secret-scanner candidates. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-169/staging-production-test-audit-proof.tar.xz](review/issue-169/staging-production-test-audit-proof.tar.xz) | Source-bound staging/production test audit evidence and exact lossless human-review retention; no deployment authority. | history | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
@@ -3250,6 +3274,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [site/assets/publications/sdlc-out-of-balance/materials/reading-r10.pdf](site/assets/publications/sdlc-out-of-balance/materials/reading-r10.pdf) | R10 five-page illustrated reading PDF, generated from canonical article AST and existing declared images. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/assets/publications/sdlc-out-of-balance/materials/reading-r11.pdf](site/assets/publications/sdlc-out-of-balance/materials/reading-r11.pdf) | Pending five-page R11 reading PDF; exact author approval remains separate. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
+| [site/assets/publications/sdlc-out-of-balance/materials/reading-r12.pdf](site/assets/publications/sdlc-out-of-balance/materials/reading-r12.pdf) | Issue169 R12 source, matching PDF or source-bound review evidence. | source | [site/README.md](site/README.md) |
 | [site/assets/publications/sdlc-out-of-balance/materials/reading-r9.pdf](site/assets/publications/sdlc-out-of-balance/materials/reading-r9.pdf) | Accepted R9 source, edition, five-visual asset or exact PDF review evidence through existing publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/assets/publications/sdlc-out-of-balance/materials/reading.pdf](site/assets/publications/sdlc-out-of-balance/materials/reading.pdf) | Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 
@@ -3462,6 +3487,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r10-20261106.json](site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r10-20261106.json) | R10 source-bound content edition or matching material-review provenance. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r11-20261107.json](site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r11-20261107.json) | Immutable committed R11 source/semantic edition identity; no publication observation. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
+| [site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r12-20261110.json](site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r12-20261110.json) | Issue169 R12 source, matching PDF or source-bound review evidence. | source | [site/README.md](site/README.md) |
 | [site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r3-20261031.json](site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r3-20261031.json) | Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r4-20261101.json](site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r4-20261101.json) | Historical frozen R4 native article edition, retained with original R3 history. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r9-20261105.json](site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r9-20261105.json) | Accepted R9 source, edition, five-visual asset or exact PDF review evidence through existing publisher/materials. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
@@ -3499,6 +3525,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [site/retained/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3/imbalance-loop.webp](site/retained/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3/imbalance-loop.webp) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
 
+## site/retained/article-media/568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/article-media/568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58/reading-r11.pdf](site/retained/article-media/568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58/reading-r11.pdf) | R12 exact retained historical resource and recovery closure. | history | [site/README.md](site/README.md) |
+
 ## site/retained/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c/
 
 | Path | Purpose | Role | Owner / editing route |
@@ -3515,6 +3547,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
+| [site/retained/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry-r9.webp](site/retained/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry-r9.webp) | Exact transitive resource closure of the preserved R11 public documents. | history | [site/README.md](site/README.md) |
 | [site/retained/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry.webp](site/retained/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry.webp) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
 
 ## site/retained/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1/
@@ -3522,6 +3555,24 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [site/retained/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1/workstream-system.webp](site/retained/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1/workstream-system.webp) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
+
+## site/retained/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a/review-learning-r7.webp](site/retained/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a/review-learning-r7.webp) | Exact transitive resource closure of the preserved R11 public documents. | history | [site/README.md](site/README.md) |
+
+## site/retained/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551/comprehension-gap-r7.webp](site/retained/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551/comprehension-gap-r7.webp) | Exact transitive resource closure of the preserved R11 public documents. | history | [site/README.md](site/README.md) |
+
+## site/retained/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7/delivery-capacity-r6.webp](site/retained/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7/delivery-capacity-r6.webp) | Exact transitive resource closure of the preserved R11 public documents. | history | [site/README.md](site/README.md) |
 
 ## site/retained/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f/
 
@@ -3534,6 +3585,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [site/retained/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684/the-sdlc-is-out-of-balance.html](site/retained/article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684/the-sdlc-is-out-of-balance.html) | Exact accepted raw article rendition and complete immutable dependency closure retained through Color/production derivation; no prior-publication claim. | history | [site/README.md](site/README.md) |
+
+## site/retained/article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995/the-sdlc-is-out-of-balance.html](site/retained/article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995/the-sdlc-is-out-of-balance.html) | R12 exact retained historical resource and recovery closure. | history | [site/README.md](site/README.md) |
 
 ## site/retained/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/
 
@@ -3550,6 +3607,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi.jpg](site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi.jpg) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
 | [site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/writing-paradigm.svg](site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/writing-paradigm.svg) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
 
+## site/retained/runtime/1c34e64047482a214a50a115582adb08988fe8721f5ee651bd8a231a300e2cf7/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/runtime/1c34e64047482a214a50a115582adb08988fe8721f5ee651bd8a231a300e2cf7/analytics.js](site/retained/runtime/1c34e64047482a214a50a115582adb08988fe8721f5ee651bd8a231a300e2cf7/analytics.js) | Exact prior R11 analytics dependency retained with its historical document, including fixtures with current analytics disabled. | history | [site/README.md](site/README.md) |
+
 ## site/retained/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/
 
 | Path | Purpose | Role | Owner / editing route |
@@ -3559,6 +3622,16 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [site/retained/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/space.js](site/retained/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/space.js) | Verified previous production immutable rendition retained byte-for-byte. | history | [site/README.md](site/README.md) |
 | [site/retained/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/styles.css](site/retained/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/styles.css) | Verified previous production immutable rendition retained byte-for-byte. | history | [site/README.md](site/README.md) |
 | [site/retained/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/theme.js](site/retained/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/theme.js) | Verified previous production immutable rendition retained byte-for-byte. | history | [site/README.md](site/README.md) |
+
+## site/retained/runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/archive.js](site/retained/runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/archive.js) | Exact transitive resource closure of the preserved R11 public documents. | history | [site/README.md](site/README.md) |
+| [site/retained/runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/navigation.js](site/retained/runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/navigation.js) | Exact transitive resource closure of the preserved R11 public documents. | history | [site/README.md](site/README.md) |
+| [site/retained/runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/space.js](site/retained/runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/space.js) | Exact transitive resource closure of the preserved R11 public documents. | history | [site/README.md](site/README.md) |
+| [site/retained/runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/styles.css](site/retained/runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/styles.css) | Exact transitive resource closure of the preserved R11 public documents. | history | [site/README.md](site/README.md) |
+| [site/retained/runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/theme.js](site/retained/runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/theme.js) | Exact transitive resource closure of the preserved R11 public documents. | history | [site/README.md](site/README.md) |
 
 ## site/retained/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff/
 
@@ -3595,6 +3668,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/space.js](site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/space.js) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
 | [site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css](site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
 | [site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js](site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+
+## site/retained/snapshots/080da808855bdc7cac66970509a9a371a5033cb5d721a007a92632c826b2d06a/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/snapshots/080da808855bdc7cac66970509a9a371a5033cb5d721a007a92632c826b2d06a/writing.html](site/retained/snapshots/080da808855bdc7cac66970509a9a371a5033cb5d721a007a92632c826b2d06a/writing.html) | R12 exact retained historical resource and recovery closure. | history | [site/README.md](site/README.md) |
 
 ## site/retained/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2/
 

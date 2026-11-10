@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "id": "sdlc-out-of-balance-r11",
+  "id": "sdlc-out-of-balance-r12",
   "platforms": {
     "linkedin": {
       "formats": ["html", "md", "txt", "copy-ready"],
@@ -48,7 +48,7 @@
   "print": {
     "titleBlock": {
       "subtitle": "816836a6e529705c65b7ae6a6d01df933af1bb73a72864a475c3a31de83610cf",
-      "byline": "a29075608383b251ea819ab8fd1071f96db731b80e0508e309592d09c7048298"
+      "byline": "026c78dd401aa84405316165393cb21c324c3d086b7f0d14814d73775461617a"
     }
   },
   "distribution": {

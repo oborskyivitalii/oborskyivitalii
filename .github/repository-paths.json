@@ -17514,6 +17514,180 @@
       "purpose": "Literal reviewer launch/packet/first-result/correction and bounded verification evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "docs/article-snapshots/58c70d6edea51b0dd47fefe3c80cb1c78c59e24a8956093616fee4229786dc98/the-sdlc-is-out-of-balance.html": {
+      "kind": "file",
+      "purpose": "R12 generated native reader/retained public dependency.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/58c70d6edea51b0dd47fefe3c80cb1c78c59e24a8956093616fee4229786dc98": {
+      "kind": "directory",
+      "purpose": "R12 generated native reader/retained public dependency.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/412f5b5cd2d1991265f5b6dd9d899516e79e8f4f78bd3d8c59f63975bd72b52e/writing.html": {
+      "kind": "file",
+      "purpose": "R12 generated native reader/retained public dependency.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/412f5b5cd2d1991265f5b6dd9d899516e79e8f4f78bd3d8c59f63975bd72b52e": {
+      "kind": "directory",
+      "purpose": "R12 generated native reader/retained public dependency.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "review/issue-169/2026-11-10-r12-preview.md": {
+      "kind": "file",
+      "purpose": "Issue169 R12 source, matching PDF or source-bound review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/r12-evidence.tar.xz": {
+      "kind": "file",
+      "purpose": "Issue169 R12 source, matching PDF or source-bound review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "site/assets/publications/sdlc-out-of-balance/materials/reading-r12.pdf": {
+      "kind": "file",
+      "purpose": "Issue169 R12 source, matching PDF or source-bound review evidence.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/publications/sdlc-out-of-balance/editions/sdlc-out-of-balance-en-r12-20261110.json": {
+      "kind": "file",
+      "purpose": "Issue169 R12 source, matching PDF or source-bound review evidence.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-media/568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58/reading-r11.pdf": {
+      "kind": "file",
+      "purpose": "R12 exact retained historical resource and recovery closure.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-media/568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58": {
+      "kind": "directory",
+      "purpose": "R12 exact retained historical resource and recovery closure.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995/the-sdlc-is-out-of-balance.html": {
+      "kind": "file",
+      "purpose": "R12 exact retained historical resource and recovery closure.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995": {
+      "kind": "directory",
+      "purpose": "R12 exact retained historical resource and recovery closure.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/080da808855bdc7cac66970509a9a371a5033cb5d721a007a92632c826b2d06a/writing.html": {
+      "kind": "file",
+      "purpose": "R12 exact retained historical resource and recovery closure.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/080da808855bdc7cac66970509a9a371a5033cb5d721a007a92632c826b2d06a": {
+      "kind": "directory",
+      "purpose": "R12 exact retained historical resource and recovery closure.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/1c34e64047482a214a50a115582adb08988fe8721f5ee651bd8a231a300e2cf7": {
+      "kind": "directory",
+      "purpose": "Exact prior R11 analytics dependency retained with its historical document, including fixtures with current analytics disabled.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/1c34e64047482a214a50a115582adb08988fe8721f5ee651bd8a231a300e2cf7/analytics.js": {
+      "kind": "file",
+      "purpose": "Exact prior R11 analytics dependency retained with its historical document, including fixtures with current analytics disabled.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry-r9.webp": {
+      "kind": "file",
+      "purpose": "Exact transitive resource closure of the preserved R11 public documents.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a/review-learning-r7.webp": {
+      "kind": "file",
+      "purpose": "Exact transitive resource closure of the preserved R11 public documents.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a": {
+      "kind": "directory",
+      "purpose": "Exact transitive resource closure of the preserved R11 public documents.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551/comprehension-gap-r7.webp": {
+      "kind": "file",
+      "purpose": "Exact transitive resource closure of the preserved R11 public documents.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551": {
+      "kind": "directory",
+      "purpose": "Exact transitive resource closure of the preserved R11 public documents.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7/delivery-capacity-r6.webp": {
+      "kind": "file",
+      "purpose": "Exact transitive resource closure of the preserved R11 public documents.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7": {
+      "kind": "directory",
+      "purpose": "Exact transitive resource closure of the preserved R11 public documents.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/archive.js": {
+      "kind": "file",
+      "purpose": "Exact transitive resource closure of the preserved R11 public documents.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c": {
+      "kind": "directory",
+      "purpose": "Exact transitive resource closure of the preserved R11 public documents.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/navigation.js": {
+      "kind": "file",
+      "purpose": "Exact transitive resource closure of the preserved R11 public documents.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/space.js": {
+      "kind": "file",
+      "purpose": "Exact transitive resource closure of the preserved R11 public documents.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/styles.css": {
+      "kind": "file",
+      "purpose": "Exact transitive resource closure of the preserved R11 public documents.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/theme.js": {
+      "kind": "file",
+      "purpose": "Exact transitive resource closure of the preserved R11 public documents.",
+      "role": "history",
+      "owner": "site/README.md"
     }
   }
 }

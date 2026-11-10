@@ -4,7 +4,11 @@
   "policy": {
     "status": "confirmed-by-maintainer",
     "observedPublicNotice": "scoped-apache-2.0-and-cc-by-4.0-with-exceptions",
-    "scope": ["original-code", "original-text", "original-nonbrand-diagrams"],
+    "scope": [
+      "original-code",
+      "original-text",
+      "original-nonbrand-diagrams"
+    ],
     "decision": {
       "selection": "explicit-licenses",
       "reviewer": "oborskyivitalii",
@@ -30,13 +34,20 @@
     },
     "advisor-consent": {
       "kind": "maintainer-attested-written-consent",
-      "provenance": ["guides/SITE-SOURCE-AUDIT.md"],
-      "people": ["Markus Kopko", "Otman Basir"],
+      "provenance": [
+        "guides/SITE-SOURCE-AUDIT.md"
+      ],
+      "people": [
+        "Markus Kopko",
+        "Otman Basir"
+      ],
       "scope": "UA advisory-role display recorded on 2026-10-07. Private correspondence is neither inspected nor published; no institutional endorsement."
     },
     "portrait-source": {
       "kind": "maintainer-supplied-photograph",
-      "provenance": ["guides/SITE-SOURCE-AUDIT.md"],
+      "provenance": [
+        "guides/SITE-SOURCE-AUDIT.md"
+      ],
       "scope": "Supplied IMG_0431.jpeg, unchanged 960x887 JPEG. Existing site-use instruction preserved. Photographer ownership/general visitor reuse is not independently established."
     },
     "portrait-derivative": {
@@ -49,19 +60,29 @@
     },
     "retained-edition": {
       "kind": "pinned-prior-public-bytes",
-      "provenance": ["site/retained/manifest.json", "guides/SITE-SOURCE-AUDIT.md"],
+      "provenance": [
+        "site/retained/manifest.json",
+        "guides/SITE-SOURCE-AUDIT.md"
+      ],
       "scope": "Previous immutable public snapshots/runtime/media preserve their exact recorded bytes and historical notice boundaries. The current licensing decision does not silently rewrite or relicense these retained editions."
     },
     "ri-component": {
       "kind": "component-license",
-      "provenance": ["tools/RI-NOTICE.md", "tools/RI-LICENSE.md"],
+      "provenance": [
+        "tools/RI-NOTICE.md",
+        "tools/RI-LICENSE.md"
+      ],
       "license": "Apache-2.0",
       "scope": "Repository Intelligence tooling retains its original Apache-2.0 notice and provenance. This component notice does not independently license portraits, editorial text, branding, or UA/Subprime research."
     },
     "original-code": {
       "kind": "authored-software",
       "license": "Apache-2.0",
-      "provenance": ["LICENSING.md", "LICENSE-CODE.md", "NOTICE.md"],
+      "provenance": [
+        "LICENSING.md",
+        "LICENSE-CODE.md",
+        "NOTICE.md"
+      ],
       "scope": "Original implementation, including JavaScript, CSS, templates, rendering, delivery, tests and technical configuration. Embedded editorial text and excluded material retain their own scopes."
     },
     "original-text": {
@@ -90,12 +111,21 @@
     },
     "identity-branding": {
       "kind": "excluded-personal-identity",
-      "provenance": ["LICENSING.md", "site/assets/favicon.svg", "guides/SITE-SOURCE-AUDIT.md"],
+      "provenance": [
+        "LICENSING.md",
+        "site/assets/favicon.svg",
+        "guides/SITE-SOURCE-AUDIT.md"
+      ],
       "scope": "Personal identity and identifying favicon are excluded from the general code/content grants. Contact the author about reuse; no trademark or endorsement permission is supplied."
     },
     "legal-notice": {
       "kind": "published-license-and-scope-notice",
-      "provenance": ["LICENSING.md", "LICENSE-CODE.md", "LICENSE-CONTENT.md", "NOTICE.md"],
+      "provenance": [
+        "LICENSING.md",
+        "LICENSE-CODE.md",
+        "LICENSE-CONTENT.md",
+        "NOTICE.md"
+      ],
       "scope": "Exact copies of the authored licensing map, complete Apache-2.0 and CC BY 4.0 texts, and applicable notices accompany this edition. Scope and exclusions remain in the licensing map."
     },
     "article-review-input": {
@@ -110,12 +140,24 @@
   },
   "sourceGroups": [
     {
-      "paths": ["site/content"],
-      "bases": ["original-text", "linked-metadata", "advisor-consent"]
+      "paths": [
+        "site/content"
+      ],
+      "bases": [
+        "original-text",
+        "linked-metadata",
+        "advisor-consent"
+      ]
     },
     {
-      "paths": ["site/templates"],
-      "bases": ["original-code", "original-text", "linked-metadata"]
+      "paths": [
+        "site/templates"
+      ],
+      "bases": [
+        "original-code",
+        "original-text",
+        "linked-metadata"
+      ]
     },
     {
       "paths": [
@@ -126,447 +168,805 @@
         "tools/site",
         "tools/release/edition.cjs"
       ],
-      "bases": ["original-code"]
+      "bases": [
+        "original-code"
+      ]
     },
     {
-      "paths": ["site/routes.json", "site/analytics.json"],
-      "bases": ["original-code"]
+      "paths": [
+        "site/routes.json",
+        "site/analytics.json"
+      ],
+      "bases": [
+        "original-code"
+      ]
     }
   ],
   "assets": {
     "favicon.svg": {
       "sha256": "a27a6f79b42bfa41fa8a8d3fe39e3c9570bcd992410c91a17d021de4dc28636e",
-      "bases": ["identity-branding"]
+      "bases": [
+        "identity-branding"
+      ]
     },
     "nojekyll": {
       "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
-      "bases": ["original-code"]
+      "bases": [
+        "original-code"
+      ]
     },
     "publications/pmday-ai-both-sides/PROVENANCE.md": {
       "sha256": "d8843f4fe026725ca11a6d69476a97bf003fa94f25d16223aecf06c2f51b7f90",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/cover-detail-r8.png": {
       "sha256": "e8bd4eacd048babcd0cf765e85f7b1a550a3f409b2b57b9dff58323ad081d8d0",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/cover.png": {
       "sha256": "2d688e19b820cd96ae32bd7fdab8a71418774231da340b6897709329a580fb25",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/cover02/README.md": {
       "sha256": "1e3eb48f3850d7b9ba2c4b098d29806988fdcf49a0bc50ad863417f75b74669f",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/cover02/assets/article-cover-detail-1280x398.jpg": {
       "sha256": "a5e462dbd51cdf6bd99febb27b4701753e18cfea8304e8dd97dda67bee9160b5",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/cover02/assets/article-cover-detail-1280x398.png": {
       "sha256": "843c22a1e6e16d16e824e8be74d593dea3c2f2e6e30b36504e1fff9617f82096",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/cover02/assets/linkedin-cover-1200x630.jpg": {
       "sha256": "8fcee82455949af959a6e9885cfa00a3c911aadbf0d81347c0210a107bc97122",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/cover02/assets/medium-cover-1400x788.jpg": {
       "sha256": "f821e5631237ad63fe5b94d3b570c5ba84e5238deed8f8a6334649cf8cd7cb1d",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/cover02/assets/pdf-cover-portrait.jpg": {
       "sha256": "b80047b35a470c50491f911cb8fb20c03f7efe535e49a3a011b4350ff2bb682f",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/cover02/assets/site-cover-1600x840.jpg": {
       "sha256": "424eab9a653c08f3f3a8d4388287dad4aeb30b9322bc899706ed580a42b0ac42",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/cover02/assets/social-square-1080.jpg": {
       "sha256": "7c00a7d37e6dc282b8fa83a72cb5166712fd2e04b482b7f7df8c75f17cb1336b",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/cover02/manifest.json": {
       "sha256": "bb2ccd7c48ffee6a321a76697fd9b893bffae92e811eca7785a53879746e2a89",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/cover02/originals/cover-02-landscape.png": {
       "sha256": "2a16a6a58262939975691c6b111b1a15d99275e53d43ba7a6e59ba967342567c",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/cover02/originals/cover-02-portrait.png": {
       "sha256": "aafcad065f1700c4f5c61d2d34497e4c7b909c50f244e16279e93cf0d9796a58",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/cover02/originals/cover-02-square.png": {
       "sha256": "3f85468fadc09bdae5fa41b34ff348251c13f7a61fb73494508447d304cd4aae",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/cover02/originals/cover-02-widescreen.png": {
       "sha256": "8020813c4c6db01d4cf4d2c265b1be195473d9149c034bdc73e8aa6e6826540f",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/delivery-queue.png": {
       "sha256": "018056e8a80bedc1933db972b904773a2410439eb258f9716aa136800a91ce1f",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/delivery-queue.svg": {
       "sha256": "0d1ca9a06822e4ef06a0cb7ea31cd89a2b015eb67ff1d9444c65d368d6284092",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/pmday-slide-03.png": {
       "sha256": "1ae890f9c23827a42e7e068327c6a6ff8738c0194cab97584fd535a6b473ef42",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/pmday-slide-05.png": {
       "sha256": "cba5ac410a432ea89ba7e44936e730a314c6d2e2495d5a8ecaeed976bc6675e3",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/pmday-slide-07.png": {
       "sha256": "7f77b967c8222feefbe6af7a5423cb1833839f6f80b0615a4cbede2005fd864d",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/pmday-slide-09.png": {
       "sha256": "ad1479a5366464b0f5f71f863700bb1071867d6ef5f90111d0f64a46e3b807ab",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/pmday-slide-10.png": {
       "sha256": "75e49a1521426c85be099bdd2bb7be7e939c03f02304da2472c8c9a5fae5978b",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/pmday-slide-12.png": {
       "sha256": "2f13e3eabd00a27460a83169d296cfc2a8cf4b33e068d1ee22079479028c0d18",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/pmday-slide-14.png": {
       "sha256": "25e2fdbd8d0fa2660db10191564d1a5628a04addbcf606bb16c6bbcfb9ace8bd",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/presentation-cover.png": {
       "sha256": "199d6d64849905eb047c23f7ce43eaab3ef98d949c5009878c8f15a5df7d1180",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/presentation-v35.pdf": {
       "sha256": "b3fa9fb0220a6620db0b28ac3d560b987791be0dfb6cdd02c53c04975d881782",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/runtime-control.png": {
       "sha256": "412524c6e38d6843b5a9e4f55d3d4293e0413e70883d4883eafb2e0bf303a568",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/runtime-control.svg": {
       "sha256": "410f157f8e9c604cfb62b81e4e319e7da09029198c2124d469274bf84c92430e",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/source/cover-landscape.png": {
       "sha256": "551fc99b35bf505548c5c7703b7dd8128677e6468d7cf86fb9b446d865b4f69a",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/source/cover-square.png": {
       "sha256": "1223db47d00f06b9f8ecdcfc1b8dbc6075dde9ae75ea3c4be1a13948606a02a4",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/two-shifts.png": {
       "sha256": "7aa08bc4e6d1a4f8ca2b51a3a4f0522d7afc3be1c9a625e0506a239096c5751d",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-ai-both-sides/two-shifts.svg": {
       "sha256": "ee53e2edb32a448dedcbb8cd24659d632a6bf2e64c2363957db73ff761d9b80a",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-two-shifts/control-path.png": {
       "sha256": "cf4271af8cf98041afd51471696eebf2c0e315b5feb9440792e2d99f5372d8d9",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-two-shifts/control-path.svg": {
       "sha256": "8e8d0590ed7caed67a6849f2e3da93f61c7421e195910564554938328185d442",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/pmday-two-shifts/pmday-v35-deck-review.pdf": {
       "sha256": "b3fa9fb0220a6620db0b28ac3d560b987791be0dfb6cdd02c53c04975d881782",
-      "bases": ["article-review-input"]
+      "bases": [
+        "article-review-input"
+      ]
     },
     "publications/reader-reference/diagram.png": {
       "sha256": "6a9867902510d7aea88f650b068c9592b598dc6dbcfdc4044bc99e1f176f82f7",
-      "bases": ["original-diagram"]
+      "bases": [
+        "original-diagram"
+      ]
     },
     "vitalii-oborskyi-cutout.webp": {
       "sha256": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
-      "bases": ["portrait-derivative"]
+      "bases": [
+        "portrait-derivative"
+      ]
     },
     "vitalii-oborskyi.jpg": {
       "sha256": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
-      "bases": ["portrait-source"]
+      "bases": [
+        "portrait-source"
+      ]
     },
     "writing-paradigm.svg": {
       "sha256": "02def4e19d34b76462f5e74bbe916323ff56a50d3e97a02834b3adf92723b31f",
-      "bases": ["original-diagram"]
+      "bases": [
+        "original-diagram"
+      ]
     },
     "publications/sdlc-out-of-balance/hero.png": {
       "sha256": "a43b9c72ed8f3560ae7c6e967730548be2f977fb0d1973b083dead16c633adf5",
-      "bases": ["original-diagram"]
+      "bases": [
+        "original-diagram"
+      ]
     },
     "publications/sdlc-out-of-balance/asymmetry.png": {
       "sha256": "638a68bb36912fdd7dbff45235d79994912ff38cd5fda902db51db4695bbe06d",
-      "bases": ["original-diagram"]
+      "bases": [
+        "original-diagram"
+      ]
     },
     "publications/sdlc-out-of-balance/imbalance-loop.png": {
       "sha256": "da05a299cc23463c0c8e607b1d11d80708b5a8d825fd9ed24e8207d8fef49857",
-      "bases": ["original-diagram"]
+      "bases": [
+        "original-diagram"
+      ]
     },
     "publications/sdlc-out-of-balance/review-functions.png": {
       "sha256": "a87289a6cf6067c10fbe0663f732842a08335c6901c99917524e2c3d5ef963c6",
-      "bases": ["original-diagram"]
+      "bases": [
+        "original-diagram"
+      ]
     },
     "publications/sdlc-out-of-balance/systemic-response.png": {
       "sha256": "5184c829d2e47cfd8deb933c3774b70787861ad1e107919c6fbb616ab182a0f2",
-      "bases": ["original-diagram"]
+      "bases": [
+        "original-diagram"
+      ]
     },
     "publications/sdlc-out-of-balance/workstream-system.png": {
       "sha256": "ed2182751692a92b262ef7c806227583761d7b23099e1cd910a73e9509a85abf",
-      "bases": ["original-diagram"]
+      "bases": [
+        "original-diagram"
+      ]
     },
     "publications/sdlc-out-of-balance/materials/reading.pdf": {
       "sha256": "be35778ef93948ca7e809b7917faf1771d11e670e327a0dfc49d95ab4cfc2d98",
-      "bases": ["original-text", "original-diagram"]
+      "bases": [
+        "original-text",
+        "original-diagram"
+      ]
     },
     "publications/sdlc-out-of-balance/hero-web.png": {
       "sha256": "3fb21ca8f7aae0ebe85f9da0cc5aaf5e124deb916d9fc625d3a46e4dfd33293f",
-      "bases": ["original-diagram"]
+      "bases": [
+        "original-diagram"
+      ]
     },
     "publications/sdlc-out-of-balance/hero-web.jpg": {
       "sha256": "fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f",
-      "bases": ["original-diagram"]
+      "bases": [
+        "original-diagram"
+      ]
     },
     "publications/sdlc-out-of-balance/delivery-capacity-r6.png": {
       "sha256": "327adbaf3721383619fd5b67de49a5792cf0470d298c4d43080570f9a79ad5d5",
-      "bases": ["original-diagram"]
+      "bases": [
+        "original-diagram"
+      ]
     },
     "publications/sdlc-out-of-balance/review-learning-r7.png": {
       "sha256": "372ca25f635dbcc8440381a4e35027806f6b61168e9a27c1723f688741bf1c43",
-      "bases": ["original-diagram"]
+      "bases": [
+        "original-diagram"
+      ]
     },
     "publications/sdlc-out-of-balance/comprehension-gap-r7.png": {
       "sha256": "338acabde7cd23ce93534c23a0bce2e71978a69c246feade8d779850af8c61b1",
-      "bases": ["original-diagram"]
+      "bases": [
+        "original-diagram"
+      ]
     },
     "publications/sdlc-out-of-balance/asymmetry-r9.png": {
       "sha256": "65741f7bf96495d834a4163e4122b2c03d0b5e0e966048679bf144d4925a7249",
-      "bases": ["original-diagram"]
+      "bases": [
+        "original-diagram"
+      ]
     },
     "publications/sdlc-out-of-balance/materials/reading-r9.pdf": {
       "sha256": "75e052d6a5c386ae79cb1a51d59cdf42e53d3a7279bf0db31c227ee145bb18b4",
-      "bases": ["original-text", "original-diagram"]
+      "bases": [
+        "original-text",
+        "original-diagram"
+      ]
     },
     "publications/sdlc-out-of-balance/materials/reading-r10.pdf": {
       "sha256": "36269db33a71781084053ae40cc41e411a0106bea5e593ef0b08414014c4ca40",
-      "bases": ["original-text", "original-diagram"]
+      "bases": [
+        "original-text",
+        "original-diagram"
+      ]
     },
     "publications/sdlc-out-of-balance/materials/reading-r11.pdf": {
       "sha256": "568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58",
-      "bases": ["original-text", "original-diagram"]
+      "bases": [
+        "original-text",
+        "original-diagram"
+      ]
+    },
+    "publications/sdlc-out-of-balance/materials/reading-r12.pdf": {
+      "sha256": "c3686dce007b399d3fb175d5b235a51b1000500a3e4bc6f024be9767bfb33996",
+      "bases": [
+        "original-text",
+        "original-diagram"
+      ]
     }
   },
   "retained": {
     "media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg": {
       "sha256": "a27a6f79b42bfa41fa8a8d3fe39e3c9570bcd992410c91a17d021de4dc28636e",
-      "bases": ["retained-edition"]
+      "bases": [
+        "retained-edition"
+      ]
     },
     "media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi-cutout.webp": {
       "sha256": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
-      "bases": ["retained-edition", "portrait-derivative"]
+      "bases": [
+        "retained-edition",
+        "portrait-derivative"
+      ]
     },
     "media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi.jpg": {
       "sha256": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
-      "bases": ["retained-edition", "portrait-source"]
+      "bases": [
+        "retained-edition",
+        "portrait-source"
+      ]
     },
     "media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/writing-paradigm.svg": {
       "sha256": "02def4e19d34b76462f5e74bbe916323ff56a50d3e97a02834b3adf92723b31f",
-      "bases": ["retained-edition"]
+      "bases": [
+        "retained-edition"
+      ]
     },
     "runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/archive.js": {
       "sha256": "fd1d7dbbf378073d673f9d498da8a1b93153472cf045ac632e3384b2c3ca3a0b",
-      "bases": ["retained-edition"]
+      "bases": [
+        "retained-edition"
+      ]
     },
     "runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/navigation.js": {
       "sha256": "d464143b30f2600cfa64a98e131f9def79ef010ff5312762dd002625cf765b98",
-      "bases": ["retained-edition"]
+      "bases": [
+        "retained-edition"
+      ]
     },
     "runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/space.js": {
       "sha256": "bdbbc653e53bb0896e83c1e6eb129b80989f367d8ef206f0233598d789d818d6",
-      "bases": ["retained-edition"]
+      "bases": [
+        "retained-edition"
+      ]
     },
     "runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css": {
       "sha256": "499975bea085f64d2b96efea41c0e06a9399e65f06a9a47d4f948bd1dcfd8ba8",
-      "bases": ["retained-edition"]
+      "bases": [
+        "retained-edition"
+      ]
     },
     "runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js": {
       "sha256": "d11f679af05442e8b01024e9a5fe3ba9aff73554f11bd8f3ff692d14f830f8fb",
-      "bases": ["retained-edition"]
+      "bases": [
+        "retained-edition"
+      ]
     },
     "snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html": {
       "sha256": "3dd82a25eee6f3915f0748192a6dc34bfbd214879b0ed933f116b3d47a363df7",
-      "bases": ["retained-edition", "linked-metadata", "advisor-consent"]
+      "bases": [
+        "retained-edition",
+        "linked-metadata",
+        "advisor-consent"
+      ]
     },
     "snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html": {
       "sha256": "e19095652eec29ccea5cb8ba5397356e998d2b15235b06486675b0fefd151c5d",
-      "bases": ["retained-edition", "linked-metadata", "advisor-consent"]
+      "bases": [
+        "retained-edition",
+        "linked-metadata",
+        "advisor-consent"
+      ]
     },
     "snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html": {
       "sha256": "4284e646405e3c2dc1288fd3e222e15b8564e44cbaeca8be0b0b01927a248736",
-      "bases": ["retained-edition", "linked-metadata", "advisor-consent"]
+      "bases": [
+        "retained-edition",
+        "linked-metadata",
+        "advisor-consent"
+      ]
     },
     "snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html": {
       "sha256": "b5f2a67bafcaa7275bdf27c5a4b174168c6e9442614ed592a19b1ea748eec942",
-      "bases": ["retained-edition", "linked-metadata", "advisor-consent"]
+      "bases": [
+        "retained-edition",
+        "linked-metadata",
+        "advisor-consent"
+      ]
     },
     "snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html": {
       "sha256": "1d7a5aeb831c51e49667095bb29f51108ff47e32cf89853b54002ffad693e312",
-      "bases": ["retained-edition", "linked-metadata", "advisor-consent"]
+      "bases": [
+        "retained-edition",
+        "linked-metadata",
+        "advisor-consent"
+      ]
     },
     "runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/archive.js": {
       "sha256": "1307b2405daa50937e5746f4d8a71230842718377d853b4d0cf4704e7f2de9ad",
-      "bases": ["retained-edition"]
+      "bases": [
+        "retained-edition"
+      ]
     },
     "runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/navigation.js": {
       "sha256": "f01ebd2fecef1164f68f40b032e0857ba232ba89b9af4bb85c208a3e10e3203e",
-      "bases": ["retained-edition"]
+      "bases": [
+        "retained-edition"
+      ]
     },
     "runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/space.js": {
       "sha256": "d5d1593e9c0c76910e68d5c965714f68af73bf2b26480f8835f784b02f953c41",
-      "bases": ["retained-edition"]
+      "bases": [
+        "retained-edition"
+      ]
     },
     "runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/styles.css": {
       "sha256": "ecb7d4f77389e55b23c4fe63ed91258428fb8b28a895068c210cfba99ca1ba8c",
-      "bases": ["retained-edition"]
+      "bases": [
+        "retained-edition"
+      ]
     },
     "runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/theme.js": {
       "sha256": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a",
-      "bases": ["retained-edition"]
+      "bases": [
+        "retained-edition"
+      ]
     },
     "runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff/analytics.js": {
       "sha256": "7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff",
-      "bases": ["retained-edition"]
+      "bases": [
+        "retained-edition"
+      ]
     },
     "snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2/talks.html": {
       "sha256": "05054fd2a4ca2aca6cd0d05717fe332cb95390720e1089331271ca62f3c53f4c",
-      "bases": ["retained-edition", "linked-metadata", "advisor-consent"]
+      "bases": [
+        "retained-edition",
+        "linked-metadata",
+        "advisor-consent"
+      ]
     },
     "snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed/research.html": {
       "sha256": "395fd7fcc670e0b7984ed05e7395958dd9432a701f3bfc43151fb956e6d289a1",
-      "bases": ["retained-edition", "linked-metadata", "advisor-consent"]
+      "bases": [
+        "retained-edition",
+        "linked-metadata",
+        "advisor-consent"
+      ]
     },
     "snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700/credits.html": {
       "sha256": "dfb1cb40184b9d8cd972cf1907354a05add4d40ee2ab2010b197120935499428",
-      "bases": ["retained-edition", "linked-metadata", "advisor-consent"]
+      "bases": [
+        "retained-edition",
+        "linked-metadata",
+        "advisor-consent"
+      ]
     },
     "snapshots/b57f1dcb99f70ff2df6f748de084f2793f992f438a03c798a30b891c8f9e6461/writing.html": {
       "sha256": "55cf819e07ca22d5a0b84efe46eb5cbff97e318605e9fd8d2d89c32c28ef2e11",
-      "bases": ["retained-edition", "linked-metadata", "advisor-consent"]
+      "bases": [
+        "retained-edition",
+        "linked-metadata",
+        "advisor-consent"
+      ]
     },
     "snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920/index.html": {
       "sha256": "e4bbf6e735ef6b9d3c89d7412e12a1288f2b73b9d47e3097c71419f518b29fd2",
-      "bases": ["retained-edition", "linked-metadata", "advisor-consent"]
+      "bases": [
+        "retained-edition",
+        "linked-metadata",
+        "advisor-consent"
+      ]
     },
     "snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e/talks.html": {
       "sha256": "93c88b5f9c73e559b067866cb38eb604e93013c2225a06a36f96e8f215d397b3",
-      "bases": ["retained-edition", "linked-metadata", "advisor-consent"]
+      "bases": [
+        "retained-edition",
+        "linked-metadata",
+        "advisor-consent"
+      ]
     },
     "snapshots/632f4f29ebdbc51215b02592fd45a1f10a99fb8596d2dec8b3f18bc8be847f06/credits.html": {
       "sha256": "f6b20241842beb0bcc0b649bfb4443d8f446fc4d3dcfd65684b3b6facafca4e2",
-      "bases": ["retained-edition", "linked-metadata", "advisor-consent"]
+      "bases": [
+        "retained-edition",
+        "linked-metadata",
+        "advisor-consent"
+      ]
     },
     "snapshots/7b62f25175a003a9fcc24f430e26ff321f267a8e77a28699984f86bf1dfdd3b6/research.html": {
       "sha256": "9571a5ab146a9b4059e5601795c5e39b852c1adf6dfe598cd3306a77a761e60a",
-      "bases": ["retained-edition", "linked-metadata", "advisor-consent"]
+      "bases": [
+        "retained-edition",
+        "linked-metadata",
+        "advisor-consent"
+      ]
     },
     "snapshots/95b57d8257b5ffb3f4b9924d90694110e982f7bdc9aecb6f09969d46b3a8b2e0/index.html": {
       "sha256": "288f85a3b0bf82d69aceda049007063a6ebcde469eb345b8ddcec53cf96bd498",
-      "bases": ["retained-edition", "linked-metadata", "advisor-consent"]
+      "bases": [
+        "retained-edition",
+        "linked-metadata",
+        "advisor-consent"
+      ]
     },
     "snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html": {
       "sha256": "eef3b91329720bf60b4aaf9e08208bd9ce75790be77b21c2757638c7af7a6fb4",
-      "bases": ["retained-edition", "linked-metadata", "advisor-consent"]
+      "bases": [
+        "retained-edition",
+        "linked-metadata",
+        "advisor-consent"
+      ]
     },
     "article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292/systemic-response.webp": {
       "sha256": "1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292",
-      "bases": ["original-diagram"]
+      "bases": [
+        "original-diagram"
+      ]
     },
     "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg": {
       "sha256": "2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16",
-      "bases": ["original-code", "original-diagram"]
+      "bases": [
+        "original-code",
+        "original-diagram"
+      ]
     },
     "article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3/imbalance-loop.webp": {
       "sha256": "45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3",
-      "bases": ["original-diagram"]
+      "bases": [
+        "original-diagram"
+      ]
     },
     "article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c/reading.pdf": {
       "sha256": "70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c",
-      "bases": ["original-text", "original-diagram"]
+      "bases": [
+        "original-text",
+        "original-diagram"
+      ]
     },
     "article-media/79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6/review-functions.webp": {
       "sha256": "79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6",
-      "bases": ["original-diagram"]
+      "bases": [
+        "original-diagram"
+      ]
     },
     "article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry.webp": {
       "sha256": "8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f",
-      "bases": ["original-diagram"]
+      "bases": [
+        "original-diagram"
+      ]
     },
     "article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1/workstream-system.webp": {
       "sha256": "8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1",
-      "bases": ["original-diagram"]
+      "bases": [
+        "original-diagram"
+      ]
     },
     "article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f/hero-web.jpg": {
       "sha256": "fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f",
-      "bases": ["original-diagram"]
+      "bases": [
+        "original-diagram"
+      ]
     },
     "runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/archive.js": {
       "sha256": "24691f49c8c0b458958de6422396af4a6ea73f2d6bffa610e4f0ca788b04f383",
-      "bases": ["original-code"]
+      "bases": [
+        "original-code"
+      ]
     },
     "runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/navigation.js": {
       "sha256": "078b790a9b374b44bb4c26f09f0161cfcbe0c0edf5c369d9e4606aa6487d08bb",
-      "bases": ["original-code"]
+      "bases": [
+        "original-code"
+      ]
     },
     "runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/space.js": {
       "sha256": "7812c824ce3dac0d5d36f40788c65ca66cc553e5a0287850a24a499a02d4eab4",
-      "bases": ["original-code"]
+      "bases": [
+        "original-code"
+      ]
     },
     "runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/styles.css": {
       "sha256": "677304b835527266f87d9f5c039fa7b321e8d296e07a133077e1f7094d9a0cc0",
-      "bases": ["original-code"]
+      "bases": [
+        "original-code"
+      ]
     },
     "runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/theme.js": {
       "sha256": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a",
-      "bases": ["original-code"]
+      "bases": [
+        "original-code"
+      ]
     },
     "article-snapshots/02a5f0e4d2d1f33915b052aab04d0373ab615372340b2d08b4817e47799a6684/the-sdlc-is-out-of-balance.html": {
       "sha256": "f1d53fa07e9c2d947922eb82b5cc12b7b7bbefd62cf728e80b9cfcbde8a5ffa9",
-      "bases": ["original-code", "original-text", "article-review-input"]
+      "bases": [
+        "original-code",
+        "original-text",
+        "article-review-input"
+      ]
     },
     "runtime/c36b28140796f556d7f6019efa223c5164e7ca55e880e1e6a64bb596283430da/styles.css": {
       "sha256": "677304b835527266f87d9f5c039fa7b321e8d296e07a133077e1f7094d9a0cc0",
-      "bases": ["original-code"]
+      "bases": [
+        "original-code"
+      ]
     },
     "runtime/c36b28140796f556d7f6019efa223c5164e7ca55e880e1e6a64bb596283430da/theme.js": {
       "sha256": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a",
-      "bases": ["original-code"]
+      "bases": [
+        "original-code"
+      ]
     },
     "runtime/c36b28140796f556d7f6019efa223c5164e7ca55e880e1e6a64bb596283430da/space.js": {
       "sha256": "7812c824ce3dac0d5d36f40788c65ca66cc553e5a0287850a24a499a02d4eab4",
-      "bases": ["original-code"]
+      "bases": [
+        "original-code"
+      ]
     },
     "runtime/c36b28140796f556d7f6019efa223c5164e7ca55e880e1e6a64bb596283430da/archive.js": {
       "sha256": "f7da9f6646746ec1415a5fbfc9ac7505913b0bc8a7e6551f213997bc6d381146",
-      "bases": ["original-code"]
+      "bases": [
+        "original-code"
+      ]
     },
     "runtime/c36b28140796f556d7f6019efa223c5164e7ca55e880e1e6a64bb596283430da/navigation.js": {
       "sha256": "eac2248fde312e2ccb85b46c0b0b2586be1b417031d2045b04a3f972c157baa1",
-      "bases": ["original-code"]
+      "bases": [
+        "original-code"
+      ]
     },
     "article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/the-sdlc-is-out-of-balance.html": {
       "sha256": "4aa1ae74ff48155957e9f897b7697e1cee35e3b38d8319d0906c15da2d44fd7b",
-      "bases": ["original-code", "original-text", "article-review-input"]
+      "bases": [
+        "original-code",
+        "original-text",
+        "article-review-input"
+      ]
+    },
+    "article-media/568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58/reading-r11.pdf": {
+      "sha256": "568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58",
+      "bases": [
+        "retained-edition",
+        "original-text",
+        "original-diagram"
+      ]
+    },
+    "article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995/the-sdlc-is-out-of-balance.html": {
+      "sha256": "c190559a8abad1589892257f44b16ee9d2188e3f98e6d2e0561dab71131824e4",
+      "bases": [
+        "retained-edition",
+        "original-text",
+        "original-diagram"
+      ]
+    },
+    "snapshots/080da808855bdc7cac66970509a9a371a5033cb5d721a007a92632c826b2d06a/writing.html": {
+      "sha256": "71be930a87d17502fa4ad81d73b786325bf4d4bda09db770033c6dd2388b4044",
+      "bases": [
+        "retained-edition",
+        "original-text",
+        "linked-metadata",
+        "advisor-consent"
+      ]
+    },
+    "runtime/1c34e64047482a214a50a115582adb08988fe8721f5ee651bd8a231a300e2cf7/analytics.js": {
+      "sha256": "1c34e64047482a214a50a115582adb08988fe8721f5ee651bd8a231a300e2cf7",
+      "bases": [
+        "retained-edition",
+        "original-code"
+      ]
+    },
+    "runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/theme.js": {
+      "sha256": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a",
+      "bases": [
+        "retained-edition"
+      ]
+    },
+    "runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/styles.css": {
+      "sha256": "677304b835527266f87d9f5c039fa7b321e8d296e07a133077e1f7094d9a0cc0",
+      "bases": [
+        "retained-edition"
+      ]
+    },
+    "runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/space.js": {
+      "sha256": "7812c824ce3dac0d5d36f40788c65ca66cc553e5a0287850a24a499a02d4eab4",
+      "bases": [
+        "retained-edition"
+      ]
+    },
+    "runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/archive.js": {
+      "sha256": "bf1b9e42356b282f3c08f7763a7a59263241c752df5dd9ee776a6b0bf86b0caa",
+      "bases": [
+        "retained-edition"
+      ]
+    },
+    "runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/navigation.js": {
+      "sha256": "9d074333c9731e08a801e8f7ba418c645ef8c9e54d912a666912640e36e1a292",
+      "bases": [
+        "retained-edition"
+      ]
+    },
+    "article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7/delivery-capacity-r6.webp": {
+      "sha256": "e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7",
+      "bases": [
+        "retained-edition"
+      ]
+    },
+    "article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a/review-learning-r7.webp": {
+      "sha256": "a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a",
+      "bases": [
+        "retained-edition"
+      ]
+    },
+    "article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551/comprehension-gap-r7.webp": {
+      "sha256": "ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551",
+      "bases": [
+        "retained-edition"
+      ]
+    },
+    "article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry-r9.webp": {
+      "sha256": "8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f",
+      "bases": [
+        "retained-edition"
+      ]
     }
   },
   "notices": [
@@ -584,32 +984,44 @@
     {
       "path": "tools/RI-NOTICE.md",
       "scope": "repository-component-only",
-      "bases": ["ri-component"]
+      "bases": [
+        "ri-component"
+      ]
     },
     {
       "path": "tools/RI-LICENSE.md",
       "scope": "repository-component-only",
-      "bases": ["ri-component"]
+      "bases": [
+        "ri-component"
+      ]
     },
     {
       "path": "LICENSING.md",
       "scope": "public-inline-legal-copy",
-      "bases": ["legal-notice"]
+      "bases": [
+        "legal-notice"
+      ]
     },
     {
       "path": "LICENSE-CODE.md",
       "scope": "public-inline-legal-copy",
-      "bases": ["legal-notice"]
+      "bases": [
+        "legal-notice"
+      ]
     },
     {
       "path": "LICENSE-CONTENT.md",
       "scope": "public-inline-legal-copy",
-      "bases": ["legal-notice"]
+      "bases": [
+        "legal-notice"
+      ]
     },
     {
       "path": "NOTICE.md",
       "scope": "public-inline-legal-copy",
-      "bases": ["legal-notice"]
+      "bases": [
+        "legal-notice"
+      ]
     }
   ],
   "upstreamBoundaries": [
