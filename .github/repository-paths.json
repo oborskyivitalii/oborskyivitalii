@@ -17766,6 +17766,12 @@
       "purpose": "Actual native failure logs, bounded catalogue correction reviews and clean affected verification.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-169/r12-stable-format-evidence.tar.xz": {
+      "kind": "file",
+      "purpose": "Literal maintained-format failure, pinned correction and independent semantic equality review.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

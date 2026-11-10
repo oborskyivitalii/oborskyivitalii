@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "097385ad8af113287511f221bdc9d3457872498a1d493364b44170da437d6bdd",
+    "digest": "4f0dfceee13cae9859611a13c43cb650f886c22a1cb8a8ce4444a71765b2d22e",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -236,12 +236,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "fae87b0d3a78294b3ff35dc63e6841b58a3d0d35f592dd17e03673645dc61406"
+        "sha256": "2fe1af85b17343f570444b7c8364733cb6545281d893b6bfd0ec1550dd0fe577"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "cb6970e79f47d4158b95cd2d3ed5883aad660ed35d9c8e99e8258b0def18f185"
+        "sha256": "d88b9079d2b59b3eb33860051a1701c7c80671c7e5a5259343af71d8f2de4298"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -2140,7 +2140,7 @@
       {
         "path": "review/issue-169/2026-11-10-r12-preview.md",
         "identity_mode": "content",
-        "sha256": "b5d2dd30d3c83876a6b0419d6996d36bb4a3a5fd421731e712dde42954500449"
+        "sha256": "0344601dcdd8f5dd8bceafc33b7de9c0c7603a585a7a2bd0cef96aabafa362f0"
       },
       {
         "path": "review/issue-169/browser-media-reviews-and-checks.tar.xz",
@@ -3396,6 +3396,11 @@
         "path": "review/issue-169/r12-stable-evidence.tar.xz",
         "identity_mode": "content",
         "sha256": "9c8075d19e069ebbc32fcf2ad5717b1416fd6683509d9872bb11da59a392a301"
+      },
+      {
+        "path": "review/issue-169/r12-stable-format-evidence.tar.xz",
+        "identity_mode": "content",
+        "sha256": "d799e6643544720f05548d9c9dbd7fc12640b9ef5ee1f12788fd762c425487e9"
       },
       {
         "path": "review/issue-169/r2/README.md",
@@ -11315,7 +11320,7 @@
       {
         "path": "site/rights.json",
         "identity_mode": "content",
-        "sha256": "f06c93e7183a1d2bbf20848e27a80354b91311c4dc6829f6c36f24c498131c4b"
+        "sha256": "d3b67d4747f9a46848958eaa91f6ef263962840594b14eb678a71e0a0d6dba15"
       },
       {
         "path": "site/routes.json",
@@ -21241,6 +21246,17 @@
         "AGENTS.md"
       ],
       "title": "r12-stable-evidence.tar.xz"
+    },
+    {
+      "path": "review/issue-169/r12-stable-format-evidence.tar.xz",
+      "kind": "file",
+      "purpose": "Literal maintained-format failure, pinned correction and independent semantic equality review.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "r12-stable-format-evidence.tar.xz"
     },
     {
       "path": "review/issue-169/r2/README.md",
