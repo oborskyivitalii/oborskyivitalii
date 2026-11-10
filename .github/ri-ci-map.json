@@ -724,7 +724,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "54fe30f8dda6baa25ccb75b1ea8b83c92f4989da7a1db2a698966da58e2ad9d2",
+    "digest": "1466a2ca7e08596d192d829eddca43b00cedbf3d8bf28019aa398f61571b26e8",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -740,7 +740,7 @@
       },
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
-        "sha256": "03bd620c57da46f8c8152975d34145587c2cacd71ac544242c00540eece00bcc"
+        "sha256": "68fe41fc703853b40395aab944cb1d18f1303e8dc231f9bed1f6d11b2a3934c3"
       },
       {
         "path": ".github/acceptance/issue-102.json",
@@ -876,7 +876,7 @@
       },
       {
         "path": ".github/repository-intelligence-config.json",
-        "sha256": "67494fc85d415b0033bc1d4346dce968ea56fdd772b63a36838544b05433edac"
+        "sha256": "77a26b1e9e8a0a45f48972149ad4aab103df5875e14ef66622aef36dec8a895b"
       },
       {
         "path": ".github/repository-layout.json",
@@ -884,7 +884,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "1a6b349f40c3a05bb700cf15dabde062d1294a9b999675d167189d96e8e991e6"
+        "sha256": "f3c31b6fabece560fc20a91014467155a739cb2e3dd2ad0f711c5d1846d9abc9"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -980,7 +980,7 @@
       },
       {
         "path": "AGENTS.md",
-        "sha256": "31ef44be1936809de5690da0b505fba5cf600f62e9a33d34b9d90e806387ae4a"
+        "sha256": "5785791859fd0aca18e2fb77e4803171fec75be8d708167972ce3f90be02eb05"
       },
       {
         "path": "CONTRIBUTING.md",
@@ -1136,7 +1136,7 @@
       },
       {
         "path": "tests/test_repository_intelligence.py",
-        "sha256": "44d726dbf263dba2fbfed4a863a38f26c7f7cd3df751afcf592c429cc0bf2a08"
+        "sha256": "67f64303e5bfdab6c11154ed01bbac865a4f579e497f49f335f5e23554754da5"
       },
       {
         "path": "tests/test_repository_test_selection.py",
@@ -1188,7 +1188,7 @@
       },
       {
         "path": "tools/repository_intelligence.py",
-        "sha256": "dad68d88d241c2cd223081d6a28961c1aa7abc19c0f4c223c9c3382c562aa792"
+        "sha256": "bd40042bac259cc896e2c8715d754ee1ccabd9f0cac7794ec8f0c2adeaefde1b"
       },
       {
         "path": "tools/run_repository_tests.py",

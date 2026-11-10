@@ -495,7 +495,7 @@
     },
     "REPOSITORY-MAP.md": {
       "kind": "file",
-      "purpose": "Generated readable description/index of every repository file and directory.",
+      "purpose": "Generated compact current-repository entry, canonical owner/check routes and scoped retrieval recipes; full inventory remains in the catalog and machine projection.",
       "role": "generated",
       "owner": ".github/REPOSITORY-INTELLIGENCE.md"
     },
@@ -17686,6 +17686,12 @@
     "review/issue-189/archive-review-evidence.tar.xz": {
       "kind": "file",
       "purpose": "Lossless T02 recovery/protection/source identities, independent role reports and actual launch/result receipts; bounded archival checkpoint, not whole-issue delivery acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-189/navigation-review-evidence.tar.xz": {
+      "kind": "file",
+      "purpose": "Lossless T03/T04 source-bound first/correction reviews, CLI/check observations and actual launch/result receipts; no full delivery acceptance.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     }

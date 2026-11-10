@@ -24,3 +24,9 @@ site-wide file/directory purpose catalog. Added full byte identity for code,
 assets and historical files, a readable map, and bounded agent/session memory.
 UA's normative metadata, semantic graph, impact traversal, trusted accepted/
 proposed Git comparison and checkpoint/benchmark machinery remain upstream.
+
+Modification notice, 2026-11-10 (site issue #189): compact current map from the
+same complete projection, opt-in scoped/paged retrieval, directory context, exact
+output-byte freshness, inert historical instruction-name checks and metadata-only
+capacity diagnostics. Existing upstream pin, two output paths and all input bounds
+remain; no new upstream version, semantic graph, remote cache or speed claim.

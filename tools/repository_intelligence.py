@@ -43,6 +43,11 @@ MAX_FILE_BYTES = 2_000_000
 MAX_TOTAL_BYTES = 50_000_000
 MAX_HASH_FILE_BYTES = 32_000_000
 MAX_HASH_TOTAL_BYTES = 250_000_000
+MAX_MAP_BYTES = 32_768
+DEFAULT_PAGE_LIMIT = 20
+MAX_PAGE_LIMIT = 100
+RESPONSE_ADVISORY_BYTES = 65_536
+HASH_HEADROOM_ADVISORY = 10_000_000
 SCRIPT = "tools/repository_intelligence.py"
 ROLES = {
     "guide",
@@ -65,6 +70,11 @@ def canonical(value):
 
 def digest(data):
     return hashlib.sha256(data).hexdigest()
+
+
+def serialize_json(value):
+    """One byte serialization for generated JSON and printed JSON responses."""
+    return json.dumps(value, ensure_ascii=False, indent=2) + "\n"
 
 
 def safe_path(root, relative):
@@ -140,14 +150,12 @@ def active_markdown(text):
     return "\n".join(lines)
 
 
-def scan(root, outputs):
-    """Hash every repository file; decode only bounded navigation inputs.
+def repository_files(root, outputs):
+    """Common input admission; diagnostics cannot hide files excluded by hashing."""
+    def walk_error(error):
+        raise error
 
-    Generated RI views are indexed without hashing themselves. Verification
-    compares their complete derived bytes, avoiding recursive source identity.
-    """
-    records, texts, size_total, hash_total = [], {}, 0, 0
-    for parent, dirs, files in os.walk(root, followlinks=False):
+    for parent, dirs, files in os.walk(root, followlinks=False, onerror=walk_error):
         dirs[:] = sorted(d for d in dirs if d not in IGNORED and not d.startswith(".site-build-"))
         for d in dirs:
             safe_path(root, (Path(parent) / d).relative_to(root).as_posix())
@@ -160,33 +168,46 @@ def scan(root, outputs):
             path = safe_path(root, relative)
             if not path.is_file():
                 raise ValueError(f"Unsupported input: {relative}")
-            if len(records) >= MAX_FILES - len(outputs):
-                raise ValueError("RI file bound exceeded; use direct repository reading")
-            size = path.stat().st_size
-            hash_total += size
-            if size > MAX_HASH_FILE_BYTES or hash_total > MAX_HASH_TOTAL_BYTES:
-                raise ValueError(f"RI content hash bound exceeded at {relative}")
-            sha = hashlib.sha256()
-            hashed = 0
-            with path.open("rb") as stream:
-                for chunk in iter(lambda: stream.read(1_000_000), b""):
-                    hashed += len(chunk)
-                    if hashed > MAX_HASH_FILE_BYTES:
-                        raise ValueError(f"RI content hash bound exceeded at {relative}")
-                    sha.update(chunk)
-            if hashed != size:
-                raise ValueError(f"Input changed while hashing: {relative}")
-            records.append(
-                {"path": relative, "identity_mode": "content", "sha256": sha.hexdigest()}
-            )
-            if path.suffix.lower() in TEXT_SUFFIXES:
-                size_total += size
-                if size > MAX_FILE_BYTES or size_total > MAX_TOTAL_BYTES:
-                    raise ValueError(f"RI text bound exceeded at {relative}")
-                data = path.read_bytes()
-                if digest(data) != sha.hexdigest():
-                    raise ValueError(f"Input changed while decoding: {relative}")
-                texts[relative] = data.decode("utf-8")
+            yield relative, path
+
+
+def scan(root, outputs):
+    """Hash every input, decode bounded navigation text, then admit tracked paths."""
+    records, texts, size_total, hash_total = [], {}, 0, 0
+    for relative, path in repository_files(root, outputs):
+        if len(records) >= MAX_FILES - len(outputs):
+            raise ValueError("RI file bound exceeded; use direct repository reading")
+        size = path.stat().st_size
+        hash_total += size
+        if size > MAX_HASH_FILE_BYTES or hash_total > MAX_HASH_TOTAL_BYTES:
+            raise ValueError(f"RI content hash bound exceeded at {relative}")
+        sha = hashlib.sha256()
+        hashed = 0
+        with path.open("rb") as stream:
+            for chunk in iter(lambda: stream.read(1_000_000), b""):
+                hashed += len(chunk)
+                if hashed > MAX_HASH_FILE_BYTES:
+                    raise ValueError(f"RI content hash bound exceeded at {relative}")
+                sha.update(chunk)
+        if hashed != size:
+            raise ValueError(f"Input changed while hashing: {relative}")
+        records.append(
+            {"path": relative, "identity_mode": "content", "sha256": sha.hexdigest()}
+        )
+        if path.suffix.lower() in TEXT_SUFFIXES:
+            size_total += size
+            if size > MAX_FILE_BYTES or size_total > MAX_TOTAL_BYTES:
+                raise ValueError(f"RI text bound exceeded at {relative}")
+            data = path.read_bytes()
+            if digest(data) != sha.hexdigest():
+                raise ValueError(f"Input changed while decoding: {relative}")
+            texts[relative] = data.decode("utf-8")
+    check_tracked_inputs(root, {x["path"] for x in records} | set(outputs))
+    records += [{"path": p, "identity_mode": "derived"} for p in outputs]
+    return sorted(records, key=lambda x: x["path"]), texts
+
+
+def check_tracked_inputs(root, scanned):
     # A tracked file must never disappear behind an excluded cache name, a
     # missing checkout path, a temporary suffix, or an unsupported Git mode.
     try:
@@ -199,7 +220,6 @@ def scan(root, outputs):
     except subprocess.TimeoutExpired as exc:
         raise ValueError("Tracked-file inventory timeout; use direct repository reading") from exc
     if tracked.returncode == 0:
-        scanned = {x["path"] for x in records} | set(outputs)
         for item in tracked.stdout.decode("utf-8").split("\0"):
             if not item:
                 continue
@@ -210,8 +230,6 @@ def scan(root, outputs):
                 raise ValueError(f"Unsupported tracked file mode: {relative}")
             if relative not in scanned:
                 raise ValueError(f"Tracked file missing or excluded: {relative}")
-    records += [{"path": p, "identity_mode": "derived"} for p in outputs]
-    return sorted(records, key=lambda x: x["path"]), texts
 
 
 def load_config(root, config_path):
@@ -305,47 +323,88 @@ def check_continuity(config, texts):
                 raise ValueError(f"Missing continuity section {heading}: {path}")
 
 
+def in_scope(row, scope):
+    if scope == "all":
+        return True
+    if scope == "history":
+        return row["role"] in {"history", "draft"}
+    if scope == "current":
+        return row["role"] not in {"history", "draft", "generated"}
+    raise ValueError("Unknown navigation scope")
+
+
 def render_map(surface):
+    """Compact current entry; the full catalog/projection remains complete."""
+    context = next(
+        x["path"] for x in surface["source_identity"]["inputs"]
+        if x["path"].endswith("/repository-intelligence/agent-context.json")
+    )
     lines = [
-        "# Repository map",
-        "",
-        "Generated by `tools/repository_intelligence.py`; edit purposes/roles in",
-        "[the path catalog](.github/repository-paths.json), then run `build` and `verify`.",
-        "Every repository file and directory is listed, including these generated views.",
-        "Local ignored caches/build packages are excluded; tracked exclusions fail verification.",
-        "",
-        "Start with [AGENTS.md](AGENTS.md), the owning issue and [MEMORY.md](MEMORY.md).",
-        "`source` is authored input; `generated` must be regenerated from its owner;",
-        "`history`/`draft` preserve evidence and proposals; `memory` is a dated continuity hint.",
-        "A role or index entry does not grant research, merge, publication or deployment approval.",
-        "",
+        "# Repository map", "",
+        "Generated current-repository entry, not an exhaustive history listing.",
+        "Read [README.md](README.md), [AGENTS.md](AGENTS.md), the owning issue and",
+        "[MEMORY.md](MEMORY.md); revalidate live GitHub refs, checks and delivery.",
+        f"The [complete JSON inventory]({context}) retains every file/directory and source identity.",
+        f"Edit the catalog/aliases routed by [the config]({surface['producer']['config_path']});",
+        "regenerate both views with build/verify. Do not paste the full JSON into routine context.",
+        "Roles describe navigation, not scientific, rights, merge or publication acceptance.", "",
     ]
     groups = [
-        ("Root files", [a for a in surface["artifacts"] if "/" not in a["path"]]),
-        ("Directories", surface["directories"]),
+        ("Root entry points", [a for a in surface["artifacts"] if "/" not in a["path"]]),
+        ("Current areas", [d for d in surface["directories"]
+                           if d["path"] != "." and "/" not in d["path"] and in_scope(d, "current")]),
     ]
-    for directory in surface["directories"]:
-        if directory["path"] != ".":
-            rows = [
-                a
-                for a in surface["artifacts"]
-                if str(PurePosixPath(a["path"]).parent) == directory["path"]
-            ]
-            if rows:
-                groups.append((directory["path"] + "/", rows))
     for title, rows in groups:
-        lines += [
-            f"## {title}",
-            "",
-            "| Path | Purpose | Role | Owner / editing route |",
-            "| --- | --- | --- | --- |",
-        ]
+        lines += [f"## {title}", "", "| Path | Purpose | Role | Editing owner |",
+                  "| --- | --- | --- | --- |"]
         for row in rows:
             path, owner = row["path"], row["owner"]
             purpose = row["purpose"].replace("|", "\\|").replace("\n", " ")
             lines.append(f"| [{path}]({path}) | {purpose} | {row['role']} | [{owner}]({owner}) |")
         lines.append("")
-    return "\n".join(lines).rstrip() + "\n"
+    lines += ["## Concern owners", "", "| Concern | Read owner |", "| --- | --- |"]
+    for owner in surface["owners"]:
+        concern = owner["concern"].replace("|", "\\|").replace("\n", " ")
+        path = owner["path"]
+        lines.append(f"| {concern} | [{path}]({path}) |")
+    lines += ["", "## Applicable instruction surfaces", ""]
+    for item in surface["instructions"]:
+        lines.append(f"- [{item['path']}]({item['path']}) — scope `{item['scope_root']}`.")
+    lines += ["", "## Validation entry points", "",
+              "Commands are suggestions, not executed checks; read the owner's contract first.", ""]
+    for route in surface["validation_routes"]:
+        workflow = route.get("workflow")
+        link = f": [{workflow}]({workflow})." if workflow else " (read configured route)."
+        lines.append(f"- {route['concern']}{link}")
+        lines.extend(f"  - `{command}`" for command in route["commands"])
+    lines += [
+        "", "## Scoped navigation and direct-source fallback", "",
+        "Use explicit current scope for routine work. Current excludes history/draft/generated hits;",
+        "history includes history/draft. All includes generated artifacts. No input is excluded from integrity.",
+        "Unqualified query/inventory keep their complete legacy behavior. Scoped lists default to20 hits;",
+        "pagination never removes applicable owner/instruction/check metadata. Inspect returned byte counts",
+        "and narrow a broad request if advised. Every CLI lookup still verifies all inputs; no speed claim.", "",
+        "```sh",
+        "python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify",
+        "python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json context-for-task 'якість вимог' --scope current",
+        "python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json inventory --scope current --prefix site/engine --limit 20",
+        "python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json inventory --scope history --prefix review/issue-189",
+        "python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json query 'docs/writing.html' --scope all",
+        "python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json capacity",
+        "```", "",
+        "Continue with the same command/filters and `--cursor` equal to pagination.next_cursor.",
+        "Cursor offsets are bound to request/page size/source digest; changed inputs require a new first page.",
+        "For exact file/directory retrieval use inventory --prefix PATH (component boundary, not a lexical prefix).",
+        "A miss is not evidence of absence: inspect the catalog/config and direct sources.", "",
+        "Connector-only: read this small map at the chosen ref, follow the concern/area owner links above,",
+        "then read the relevant source and scoped AGENTS directly. Search exact paths in the catalog when needed.",
+        "Keep archived editions/manifests in their owning review index/ZIP; they do not define the active task.",
+        "Without a local runtime do not claim CLI verification; bind any CI evidence to its actual checkout/ref.",
+    ]
+    rendered = "\n".join(lines).rstrip() + "\n"
+    if len(rendered.encode("utf-8")) > MAX_MAP_BYTES:
+        raise ValueError("Readable map byte bound exceeded; narrow the entry in its owners")
+    return rendered
 
 
 def build(root, config_path):
@@ -425,6 +484,12 @@ def build(root, config_path):
     if len({x["id"] for x in sources}) != len(sources):
         raise ValueError("Duplicate source ID in represented registries")
     artifacts, directories = path_inventory(root, config, records, texts, instructions)
+    entries = {row["path"]: row for row in artifacts + directories}
+    for instruction in instructions:
+        path = instruction["path"]
+        ancestors = [path] + [p.as_posix() for p in PurePosixPath(path).parents]
+        if any(not in_scope(entries[p], "current") for p in ancestors):
+            raise ValueError(f"Historical/generated AGENTS.md must use an inert archive name: {path}")
     return {
         "schema_version": VERSION,
         "repository": config["repository"],
@@ -471,11 +536,10 @@ def verify(root, config_path):
     path = safe_path(root, config["output"])
     if not path.is_file():
         raise ValueError("Missing RI context; build it or use direct repository reading")
-    actual = json.loads(path.read_text(encoding="utf-8"))
-    if actual != expected:
+    if path.read_bytes() != serialize_json(expected).encode("utf-8"):
         raise ValueError("Stale or altered RI context; rebuild or use direct repository reading")
     readable = safe_path(root, config["map_output"])
-    if not readable.is_file() or readable.read_text(encoding="utf-8") != render_map(expected):
+    if not readable.is_file() or readable.read_bytes() != render_map(expected).encode("utf-8"):
         raise ValueError("Missing, stale or altered repository map; rebuild")
     return expected
 
@@ -520,70 +584,225 @@ def lookup(surface, query):
     }
 
 
+def path_under(path, prefix):
+    return prefix in {None, "."} or path == prefix or path.startswith(prefix + "/")
+
+
+def normalize_prefix(prefix):
+    if prefix is None or prefix == ".":
+        return prefix
+    prefix = prefix.rstrip("/")
+    if not prefix or PurePosixPath(prefix).is_absolute() or any(
+        part in {"", ".", ".."} for part in prefix.split("/")
+    ):
+        raise ValueError("Unsafe navigation prefix")
+    return prefix
+
+
+def context_metadata(surface, result):
+    """Full request context before paging, including directory descendants/owners."""
+    rows = result.get("artifacts", result.get("files", [])) + result["directories"]
+    directories = [x["path"] for x in result["directories"]]
+    context_rows = {x["path"]: x for x in rows}
+    context_rows.update({
+        x["path"]: x for x in surface["artifacts"] + surface["directories"]
+        if any(path_under(x["path"], directory) for directory in directories)
+    })
+    owners = {x["owner"] for x in context_rows.values()}
+    paths = set(context_rows) | owners
+    paths.update(x["path"] for x in result.get("owner_candidates", []))
+    paths.update(x["path"] for x in result.get("terms", []) + result.get("sources", []))
+    return {
+        "editing_owners": sorted(owners),
+        "instructions": sorted({p for path in paths for p in instruction_paths(path, surface["instructions"])}),
+        # Configured route prefixes can name file families (e.g. issue-). Keep
+        # those lexical semantics distinct from user component-boundary filters.
+        "validation_routes": [route for route in surface["validation_routes"]
+                              if any(p.startswith(tuple(route["paths"])) for p in paths)],
+        "note": "Read owners; commands are suggestions, not executed checks. Revalidate live issue/PR state.",
+    }
+
+
+def response_size(result):
+    result["response_bytes"] = 0
+    result["response_advisory_threshold_bytes"] = RESPONSE_ADVISORY_BYTES
+    result["response_advisory"] = "none"
+    for _ in range(10):
+        size = len(serialize_json(result).encode("utf-8"))
+        if size > RESPONSE_ADVISORY_BYTES:
+            result["response_advisory"] = "narrow-request-or-read-direct-owners; metadata-is-complete"
+        if size == result["response_bytes"]:
+            return result
+        result["response_bytes"] = size
+    raise ValueError("Response byte accounting did not converge")
+
+
+def scoped_lookup(surface, query=None, *, command="query", scope="all", prefix=None,
+                  limit=DEFAULT_PAGE_LIMIT, cursor=None):
+    """Opt-in retrieval only; legacy lookup and stored projection stay complete."""
+    if command not in {"query", "context-for-task", "inventory"}:
+        raise ValueError("Invalid scoped command")
+    if type(limit) is not int or not 1 <= limit <= MAX_PAGE_LIMIT:
+        raise ValueError("Page limit must be an integer from1 to100")
+    prefix = normalize_prefix(prefix)
+    # Validate scope even when no row matches.
+    in_scope({"role": "source"}, scope)
+    if command == "inventory":
+        result = {"repository": surface["repository"], "files": surface["artifacts"],
+                  "directories": surface["directories"]}
+        hit_key = "files"
+    else:
+        result = lookup(surface, query)
+        hit_key = "artifacts"
+    indexed = {x["path"]: x for x in surface["artifacts"] + surface["directories"]}
+
+    def selected(row):
+        return in_scope(row, scope) and path_under(row["path"], prefix)
+
+    for key in (hit_key, "directories"):
+        result[key] = [x for x in result[key] if selected(x)]
+    for key in ("owner_candidates", "terms", "sources"):
+        if key in result:
+            result[key] = [x for x in result[key] if selected(indexed[x["path"]])]
+    if command != "inventory":
+        result["status"] = "candidates-read-sources" if any(
+            result[k] for k in ("owner_candidates", "terms", "sources", hit_key, "directories")
+        ) else "unresolved-use-direct-search"
+    result.update(context_metadata(surface, result))
+    fingerprint = digest(canonical({
+        "command": command, "query": " ".join((query or "").casefold().split()),
+        "scope": scope, "prefix": prefix, "limit": limit,
+        "source_digest": surface["source_identity"]["digest"],
+    }).encode("utf-8"))
+    hits = sorted(result[hit_key] + result["directories"], key=lambda x: (x["kind"], x["path"]))
+    offset = 0
+    if cursor is not None:
+        match = re.fullmatch(r"(0|[1-9][0-9]*):([0-9a-f]{64})", cursor)
+        if not match or match[2] != fingerprint:
+            raise ValueError("Cursor does not match request/source; start a new first page")
+        offset = int(match[1])
+        if offset > len(hits):
+            raise ValueError("Cursor offset exceeds complete hit count")
+    page = hits[offset:offset + limit]
+    result[hit_key] = [x for x in page if x["kind"] == "file"]
+    result["directories"] = [x for x in page if x["kind"] == "directory"]
+    remaining = len(hits) - offset - len(page)
+    result["scope"], result["prefix"] = scope, prefix
+    result["source_digest"] = surface["source_identity"]["digest"]
+    result["pagination"] = {
+        "order": "kind,path", "limit": limit, "offset": offset, "total": len(hits),
+        "returned": len(page), "remaining": remaining, "request_fingerprint": fingerprint,
+        "next_cursor": f"{offset + len(page)}:{fingerprint}" if remaining else None,
+    }
+    return response_size(result)
+
+
+def capacity(root, outputs):
+    """Complete metadata inventory, not content hashing, catalog or freshness proof.
+
+    Traverse admitted inputs even when over a content bound to explain it. Reads
+    are one byte/file for accessibility, not unbounded over-limit content loads.
+    Unsafe/missing/unreadable inputs fail visibly rather than receiving a report.
+    """
+    sizes = []
+    for relative, path in repository_files(root, outputs):
+        with path.open("rb") as stream:
+            stream.read(1)
+        sizes.append({"path": relative, "bytes": path.stat().st_size})
+    check_tracked_inputs(root, {x["path"] for x in sizes} | set(outputs))
+    parsed = [x for x in sizes if PurePosixPath(x["path"]).suffix.lower() in TEXT_SUFFIXES]
+    def largest(rows):
+        return max(rows, key=lambda x: (x["bytes"], x["path"]),
+                   default={"path": None, "bytes": 0})
+    hash_max, text_max = largest(sizes), largest(parsed)
+    values = {
+        "files": (len(sizes) + len(outputs), MAX_FILES),
+        "hash_total_bytes": (sum(x["bytes"] for x in sizes), MAX_HASH_TOTAL_BYTES),
+        "hash_file_bytes": (hash_max["bytes"], MAX_HASH_FILE_BYTES),
+        "text_total_bytes": (sum(x["bytes"] for x in parsed), MAX_TOTAL_BYTES),
+        "text_file_bytes": (text_max["bytes"], MAX_FILE_BYTES),
+    }
+    metrics = {key: {"used": used, "limit": bound, "margin": bound - used}
+               for key, (used, bound) in values.items()}
+    derived = []
+    for relative in sorted(outputs):
+        path = safe_path(root, relative)
+        if path.exists() and not path.is_file():
+            raise ValueError(f"Unsupported derived output: {relative}")
+        derived.append({"path": relative, "bytes": path.stat().st_size if path.is_file() else None})
+    violations = [key for key, metric in metrics.items() if metric["margin"] < 0]
+    return {
+        "kind": "capacity-metadata-diagnostic", "inventory_complete": True,
+        "content_integrity_verified": False, "catalog_and_freshness_verified": False,
+        "within_hard_limits": not violations, "hard_limit_violations": violations,
+        "hash_input_files": len(sizes), "metrics": metrics,
+        "largest_hash_input": hash_max, "largest_parsed_text": text_max,
+        "derived_outputs": derived,
+        "top_hash_inputs": sorted(sizes, key=lambda x: (-x["bytes"], x["path"]))[:10],
+        "advisories": ["hash headroom below10000000bytes; use reviewed lossless archival maintenance"]
+        if metrics["hash_total_bytes"]["margin"] < HASH_HEADROOM_ADVISORY else [],
+        "note": "Metadata/readability only; build/verify still enforce every original hard limit and input hash.",
+    }
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path.cwd())
     parser.add_argument("--config", required=True, help="Repository-relative config path")
-    parser.add_argument(
-        "command", choices=("build", "verify", "query", "inventory", "context-for-task")
-    )
+    parser.add_argument("command", choices=("build", "verify", "query", "inventory", "context-for-task", "capacity"))
     parser.add_argument("query_text", nargs="?")
+    parser.add_argument("--scope", choices=("current", "history", "all"))
+    parser.add_argument("--prefix", help="Exact file/directory or component-boundary subtree")
+    parser.add_argument("--limit", type=int, help="Scoped hit count,1..100 (default20)")
+    parser.add_argument("--cursor", help="Continuation offset:request fingerprint from prior response")
     args = parser.parse_args(argv)
     try:
         root = args.root.resolve()
+        scoped = any(x is not None for x in (args.scope, args.prefix, args.limit, args.cursor))
+        if scoped and args.command not in {"query", "context-for-task", "inventory"}:
+            raise ValueError("Scope/page options require a retrieval command")
+        if args.query_text is not None and args.command not in {"query", "context-for-task"}:
+            raise ValueError("Query text requires query/context-for-task")
+        if args.command == "capacity":
+            config = load_config(root, args.config)
+            result = capacity(root, [config["output"], config["map_output"]])
+            print(serialize_json(result), end="")
+            return 0 if result["within_hard_limits"] else 1
         if args.command == "build":
             surface = build(root, args.config)
-            target = safe_path(root, load_config(root, args.config)["output"])
-            target.parent.mkdir(parents=True, exist_ok=True)
-            temporary = target.with_suffix(".tmp")
-            safe_path(root, temporary.relative_to(root).as_posix())
-            temporary.write_text(
-                json.dumps(surface, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-            )
-            os.replace(temporary, target)
-            readable = safe_path(root, load_config(root, args.config)["map_output"])
-            map_temporary = readable.with_suffix(".tmp")
-            safe_path(root, map_temporary.relative_to(root).as_posix())
-            map_temporary.write_text(render_map(surface), encoding="utf-8")
-            os.replace(map_temporary, readable)
-            print(
-                f"Built RI views: {len(surface['artifacts'])} files, {len(surface['directories'])} directories"
-            )
+            config = load_config(root, args.config)
+            # Render/validate both complete payloads before writing either view.
+            views = [(config["output"], serialize_json(surface)),
+                     (config["map_output"], render_map(surface))]
+            for relative, body in views:
+                target = safe_path(root, relative)
+                target.parent.mkdir(parents=True, exist_ok=True)
+                temporary = target.with_suffix(".tmp")
+                safe_path(root, temporary.relative_to(root).as_posix())
+                temporary.write_bytes(body.encode("utf-8"))
+                os.replace(temporary, target)
+            print(f"Built RI views: {len(surface['artifacts'])} files, {len(surface['directories'])} directories")
         else:
             surface = verify(root, args.config)
-            if args.command in {"query", "context-for-task"}:
-                if not args.query_text:
-                    raise ValueError("query requires text")
+            if args.command == "verify":
+                print("Repository Intelligence context is fresh.")
+                return 0
+            if args.command != "inventory" and not args.query_text:
+                raise ValueError("query requires text")
+            if scoped:
+                result = scoped_lookup(surface, args.query_text, command=args.command,
+                                       scope=args.scope or "all", prefix=args.prefix,
+                                       limit=args.limit if args.limit is not None else DEFAULT_PAGE_LIMIT,
+                                       cursor=args.cursor)
+            elif args.command == "inventory":
+                result = {"files": surface["artifacts"], "directories": surface["directories"]}
+            else:
                 result = lookup(surface, args.query_text)
                 if args.command == "context-for-task":
-                    paths = {x["path"] for x in result["owner_candidates"] + result["artifacts"]}
-                    result["instructions"] = sorted(
-                        {
-                            p
-                            for a in surface["artifacts"]
-                            if a["path"] in paths
-                            for p in a["instructions"]
-                        }
-                    )
-                    result["validation_routes"] = [
-                        r
-                        for r in surface["validation_routes"]
-                        if any(p.startswith(tuple(r["paths"])) for p in paths)
-                    ]
-                    result["note"] = (
-                        "Read owners; commands are suggestions, not executed checks. Revalidate live issue/PR state."
-                    )
-                print(json.dumps(result, ensure_ascii=False, indent=2))
-            elif args.command == "inventory":
-                print(
-                    json.dumps(
-                        {"files": surface["artifacts"], "directories": surface["directories"]},
-                        ensure_ascii=False,
-                        indent=2,
-                    )
-                )
-            else:
-                print("Repository Intelligence context is fresh.")
+                    metadata = context_metadata(surface, result)
+                    metadata.pop("editing_owners")
+                    result.update(metadata)
+            print(serialize_json(result), end="")
     except (ValueError, OSError, UnicodeError, KeyError, TypeError) as exc:
         print(f"RI unavailable: {exc}. Read authoritative sources directly.", file=sys.stderr)
         return 1

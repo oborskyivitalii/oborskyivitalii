@@ -26,7 +26,7 @@ Edit authored content, templates, engine and assets in [site/](site/README.md).
 runbooks are in [guides/](guides/README.md); dated evidence is in [review/](review/).
 
 Start with [AGENTS.md](AGENTS.md) and [CONTRIBUTING.md](CONTRIBUTING.md).
-The generated [repository map](REPOSITORY-MAP.md) describes every area/file and
-its editing owner. [MEMORY.md](MEMORY.md) is a dated handoff requiring live
+The generated [repository map](REPOSITORY-MAP.md) is the short current entry;
+its linked catalog and scoped CLI retain every area/file and editing owner. [MEMORY.md](MEMORY.md) is a dated handoff requiring live
 revalidation; current work and acceptance are in [GitHub Issues](https://github.com/oborskyivitalii/oborskyivitalii/issues).
 [PROJECT-BOOTSTRAP.md](PROJECT-BOOTSTRAP.md) is the short ChatGPT entry point.

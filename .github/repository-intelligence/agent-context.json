@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "7178294bc5305e60a481bfd52e794135d51f2933a8247e6c9dfef56917e15f3f",
+    "digest": "9ba3fe7e590a9dff665dbffb3cd44bc49c416f10ad971326a133aa628b618407",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -42,7 +42,7 @@
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
         "identity_mode": "content",
-        "sha256": "03bd620c57da46f8c8152975d34145587c2cacd71ac544242c00540eece00bcc"
+        "sha256": "68fe41fc703853b40395aab944cb1d18f1303e8dc231f9bed1f6d11b2a3934c3"
       },
       {
         "path": ".github/acceptance/issue-102.json",
@@ -222,7 +222,7 @@
       {
         "path": ".github/repository-intelligence-config.json",
         "identity_mode": "content",
-        "sha256": "67494fc85d415b0033bc1d4346dce968ea56fdd772b63a36838544b05433edac"
+        "sha256": "77a26b1e9e8a0a45f48972149ad4aab103df5875e14ef66622aef36dec8a895b"
       },
       {
         "path": ".github/repository-intelligence/agent-context.json",
@@ -236,12 +236,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "1a6b349f40c3a05bb700cf15dabde062d1294a9b999675d167189d96e8e991e6"
+        "sha256": "f3c31b6fabece560fc20a91014467155a739cb2e3dd2ad0f711c5d1846d9abc9"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "b0d751a77be0abe82f3d2071038dcca7530bf38437b111adb74559f8d3c5f2da"
+        "sha256": "90763bd64313a157f0eccf75f2c4e3e449f1ccbb8f448c7b9d9dfa5b916814d7"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -366,7 +366,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "31ef44be1936809de5690da0b505fba5cf600f62e9a33d34b9d90e806387ae4a"
+        "sha256": "5785791859fd0aca18e2fb77e4803171fec75be8d708167972ce3f90be02eb05"
       },
       {
         "path": "CONTRIBUTING.md",
@@ -391,7 +391,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "fe5768bb070eb6a5f860b82334cf3ae60c634987b80eb9de95ad2843be671a6e"
+        "sha256": "0fce76438e753f8603f529424dcd203bc5c70308213ce0272ca9acf889e72e69"
       },
       {
         "path": "NOTICE.md",
@@ -406,7 +406,7 @@
       {
         "path": "README.md",
         "identity_mode": "content",
-        "sha256": "6cfbf71fad0822cbd4d756afb76b2fd29cdd7b203541b098bfba040e2c24231e"
+        "sha256": "579d50a35f2d38d7e9c1b162690b461260e4cbe6fdec361c255b4077c0e6871b"
       },
       {
         "path": "REPOSITORY-MAP.md",
@@ -4825,7 +4825,7 @@
       {
         "path": "review/issue-189/2026-11-10-analysis.md",
         "identity_mode": "content",
-        "sha256": "860b2d6529270ec86390770d8a9929c1a36361306848ccb1e85182246f8abf51"
+        "sha256": "12233be52983bd6e5c6f329a7464b98dfad9645c7e40321114871da32cbad142"
       },
       {
         "path": "review/issue-189/archive-index.json",
@@ -4841,6 +4841,11 @@
         "path": "review/issue-189/audit-review-evidence.tar.xz",
         "identity_mode": "content",
         "sha256": "e268922945b29925188c0758985cff929bb694c9bbfb7500a920a2c604616d5b"
+      },
+      {
+        "path": "review/issue-189/navigation-review-evidence.tar.xz",
+        "identity_mode": "content",
+        "sha256": "acae8e0bccedbd7f1e347b164a5017f3d51598d8fb6b0e798f904d2ad0d7cb19"
       },
       {
         "path": "review/issue-189/planning-review-evidence.tar.xz",
@@ -12185,7 +12190,7 @@
       {
         "path": "tests/test_repository_intelligence.py",
         "identity_mode": "content",
-        "sha256": "44d726dbf263dba2fbfed4a863a38f26c7f7cd3df751afcf592c429cc0bf2a08"
+        "sha256": "67f64303e5bfdab6c11154ed01bbac865a4f579e497f49f335f5e23554754da5"
       },
       {
         "path": "tests/test_repository_test_selection.py",
@@ -12265,7 +12270,7 @@
       {
         "path": "tools/RI-NOTICE.md",
         "identity_mode": "content",
-        "sha256": "9bc49acb049834d78fe5206f529d42f1123ae3e54169a2b9111e3d791fece665"
+        "sha256": "c16b8b1f0cc2ecae209faf2ed797b175c376062cb3f6986d951d65f66dd0565e"
       },
       {
         "path": "tools/build_scene_fallbacks.cjs",
@@ -13120,7 +13125,7 @@
       {
         "path": "tools/repository_intelligence.py",
         "identity_mode": "content",
-        "sha256": "dad68d88d241c2cd223081d6a28961c1aa7abc19c0f4c223c9c3382c562aa792"
+        "sha256": "bd40042bac259cc896e2c8715d754ee1ccabd9f0cac7794ec8f0c2adeaefde1b"
       },
       {
         "path": "tools/run_repository_tests.py",
@@ -13341,9 +13346,9 @@
   },
   "producer": {
     "path": "tools/repository_intelligence.py",
-    "sha256": "dad68d88d241c2cd223081d6a28961c1aa7abc19c0f4c223c9c3382c562aa792",
+    "sha256": "bd40042bac259cc896e2c8715d754ee1ccabd9f0cac7794ec8f0c2adeaefde1b",
     "config_path": ".github/repository-intelligence-config.json",
-    "config_sha256": "67494fc85d415b0033bc1d4346dce968ea56fdd772b63a36838544b05433edac"
+    "config_sha256": "77a26b1e9e8a0a45f48972149ad4aab103df5875e14ef66622aef36dec8a895b"
   },
   "owners": [
     {
@@ -13501,7 +13506,11 @@
         "структура репо",
         "індекс репо",
         "каталоги",
-        "файли в корені"
+        "файли в корені",
+        "scoped navigation",
+        "capacity report",
+        "вибіркове читання",
+        "місткість репозиторію"
       ]
     },
     {
@@ -14617,7 +14626,7 @@
     {
       "path": "REPOSITORY-MAP.md",
       "kind": "file",
-      "purpose": "Generated readable description/index of every repository file and directory.",
+      "purpose": "Generated compact current-repository entry, canonical owner/check routes and scoped retrieval recipes; full inventory remains in the catalog and machine projection.",
       "role": "generated",
       "owner": ".github/REPOSITORY-INTELLIGENCE.md",
       "instructions": [
@@ -24370,6 +24379,17 @@
         "AGENTS.md"
       ],
       "title": "audit-review-evidence.tar.xz"
+    },
+    {
+      "path": "review/issue-189/navigation-review-evidence.tar.xz",
+      "kind": "file",
+      "purpose": "Lossless T03/T04 source-bound first/correction reviews, CLI/check observations and actual launch/result receipts; no full delivery acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "navigation-review-evidence.tar.xz"
     },
     {
       "path": "review/issue-189/planning-review-evidence.tar.xz",
