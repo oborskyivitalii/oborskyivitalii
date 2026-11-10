@@ -2,7 +2,7 @@
 
 *Why automating the next bottleneck is an incomplete strategy for business return.*
 
-Vitalii Oborskyi · 7 November 2026 · R11 author-review edition · [vitaliioborskyi.ai](https://vitaliioborskyi.ai/)
+Vitalii Oborskyi · 10 November 2026 · R12 author-review edition · [vitaliioborskyi.ai](https://vitaliioborskyi.ai/)
 
 ![An accelerated coding stage tilts the delivery chain while people support the downstream work.](asset:hero)
 
@@ -100,7 +100,11 @@ But cheaper coding or a smaller engineering team is not, by itself, proof of a c
 
 The aim is an economically and operationally justified configuration of the whole delivery system, rather than maximum AI use or maximum delivery speed.
 
-Someone must own that rebalancing. Give an accountable owner the authority, budget and cross-functional support to change the system, then define a bounded pilot with a baseline, comparable work, success criteria and stop conditions.
+Turning AI adoption into useful business results may therefore require rebalancing the delivery system across organisational boundaries. That includes upstream work: how problems are selected, investments prioritised and demand admitted, as well as how changes are built, verified, operated and adopted.
+
+When these constraints span several business functions, rebalancing becomes a question of organisational design: who makes decisions, how budgets and capacity are allocated, and which outcomes people are accountable for. A delivery team can expose the mismatch and test local improvements. It may be unable to resolve it within its own authority.
+
+An accountable owner therefore needs a mandate that matches the scope of the required change, with the budget and cross-functional support to act. Bounded pilots can establish what needs to change and whether the proposed operating model improves the agreed business outcome.
 
 For example, trial AI-assisted review on a bounded service against the current process, using comparable changes. Agree in advance what improvement in useful delivery would justify the investment, and what limits must hold for escaped defects, total delivery and operating cost, and workload.
 
@@ -110,7 +114,7 @@ If extensive pilots are unaffordable, narrow the scope. Listen to the team, espe
 
 Success may mean the same useful outcomes at lower total cost, more value from the same resources, or a newly viable capability. In each case, the operating model must meet its agreed quality, workload and recovery constraints, with people still able to explain, maintain and recover what they own. Keep interventions that achieve the chosen result. Change or stop those that merely move the cost.
 
-**Who owns that end-to-end result, and has the means to rebalance it?**
+**Who in your organisation is accountable for the business outcome of AI adoption—and has the authority to rebalance the delivery system across the functions it depends on?**
 
 This article develops the delivery-system argument from my DevCon Romania talk, *AI Changes the Delivery System and the Product Itself*, presented on 4 November 2026. Its separate product-side argument concerns control around model judgment at runtime.
 
@@ -138,5 +142,5 @@ This article develops the delivery-system argument from my DevCon Romania talk, 
 
 [Website and research](https://vitaliioborskyi.ai/) · [LinkedIn](https://www.linkedin.com/in/vitaliioborskyi/)
 
-© 2026 Vitalii Oborskyi. R11 author-review edition. Original text and diagrams: CC BY 4.0. AI-assisted hero illustration; third-party sources retain their rights.
+© 2026 Vitalii Oborskyi. R12 author-review edition. Original text and diagrams: CC BY 4.0. AI-assisted hero illustration; third-party sources retain their rights.
 
