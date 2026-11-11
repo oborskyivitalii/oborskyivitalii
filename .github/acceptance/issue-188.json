@@ -6,8 +6,8 @@
   "criteria": [
     {
       "id": "AC01",
-      "intent": "Retain the five active MEMORY sections and enforce inclusive 120-line and 8,192-byte UTF-8 limits.",
-      "automated_scope": "The maintained RI guard and navigation test cover the actual configuration, exact limits, a multibyte overage and missing or inactive required headings.",
+      "intent": "Retain each of the five active canonical MEMORY headings once and enforce inclusive 120-line and 8,192-byte UTF-8 limits.",
+      "automated_scope": "The maintained guard and navigation test cover exact limits, a multibyte overage, missing, inactive or duplicate canonical headings and supported inline Markdown.",
       "checks": ["CONTINUITY", "INVENTORY"],
       "gates": ["REQUIREMENTS"]
     },

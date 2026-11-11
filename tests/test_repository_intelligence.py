@@ -785,8 +785,24 @@ class NavigationSafetyTests(unittest.TestCase):
             memory
             + "\n<em>Owner decision</em> is recorded.\n\n<strong>`<owner>`</strong>\n"
             + "\n<em>Progress < 100%</em>\n"
+            + "\n<em>Owner decision</em> <https://example.com/decision>\n"
+            + "\n<em>See <https://example.com/decision></em>\n"
+            + "\n<em>Record ``git `status` output``</em>\n"
+            + "\n<strong>``<details>` inside code``</strong>\n"
+            + r"<em>Record \``<details>`</em>"
+            + "\n"
+            + r"<em>Record \```<details>``</em>"
+            + "\n"
         )
-        for body in (line_boundary, byte_boundary, markdown_examples, inline_code, inline_emphasis):
+        literal_headings_in_examples = memory + "\n```md\n## Snapshot\n```\n"
+        for body in (
+            line_boundary,
+            byte_boundary,
+            markdown_examples,
+            inline_code,
+            inline_emphasis,
+            literal_headings_in_examples,
+        ):
             self.write("MEMORY.md", body)
             ri.build(self.root, self.cfg)
 
@@ -804,6 +820,26 @@ class NavigationSafetyTests(unittest.TestCase):
             ("line overage", line_boundary + "a\n", r"Continuity line bound exceeded: MEMORY\.md"),
             ("byte overage", byte_overage, r"Continuity UTF-8 byte bound exceeded: MEMORY\.md"),
             ("missing section", missing, r"Missing continuity section ## Snapshot: MEMORY\.md"),
+            (
+                "duplicate active heading",
+                memory + "\n## Snapshot\n",
+                r"Duplicate continuity section ## Snapshot: MEMORY\.md",
+            ),
+            (
+                "duplicate active heading with Markdown heading delimiters",
+                memory + "\n  ## Snapshot ##\n",
+                r"Duplicate continuity section ## Snapshot: MEMORY\.md",
+            ),
+            (
+                "duplicate active heading with extra internal spaces",
+                memory + "\n## Open   work ##\n",
+                r"Duplicate continuity section ## Open work: MEMORY\.md",
+            ),
+            (
+                "duplicate active heading with an internal tab",
+                memory + "\n## Next\tsession\n",
+                r"Duplicate continuity section ## Next session: MEMORY\.md",
+            ),
             (
                 "fenced heading",
                 missing + "```md\n## Snapshot\n```\n",
@@ -832,6 +868,16 @@ class NavigationSafetyTests(unittest.TestCase):
             (
                 "raw tag nested in otherwise paired inline emphasis",
                 "<em><details></em>\n\n" + memory,
+                r"Raw HTML blocks are unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "raw tag after a code span with a different delimiter length",
+                "<em>``literal`<details></em>\n\n" + memory,
+                r"Raw HTML blocks are unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "raw tag after a real span adjacent to an escaped backtick",
+                r"<em>Record \``literal`<details>`</em>" + "\n\n" + memory,
                 r"Raw HTML blocks are unsupported in continuity sections: MEMORY\.md",
             ),
             (
@@ -867,6 +913,17 @@ class NavigationSafetyTests(unittest.TestCase):
             (
                 "nested fence before a top-level fenced example",
                 "- ```\n  example\n  ```\n\n```\n" + memory + "```\n",
+                r"Code fences must start at column one in continuity sections: MEMORY\.md",
+            ),
+            (
+                "indented fence nested in an ordered list",
+                memory + "\n100. Example\n\n     ```md\n     ## Snapshot\n     ```\n",
+                r"Code fences must start at column one in continuity sections: MEMORY\.md",
+            ),
+            (
+                "indented fence after a list continuation",
+                memory
+                + "\n- Example\n  Continued paragraph\n\n    ```md\n    ## Snapshot\n    ```\n",
                 r"Code fences must start at column one in continuity sections: MEMORY\.md",
             ),
             (

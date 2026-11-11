@@ -91,6 +91,25 @@ def safe_path(root, relative):
     return current
 
 
+def simple_inline_emphasis(line):
+    # Inspect HTML markers after masking Markdown literals on the same line.
+    visible = re.sub(
+        r"\\[\\`<]|<[A-Za-z][A-Za-z0-9+.-]{1,31}:[^<>\x00-\x20\x7f]*>"
+        r"|(?P<ticks>`+)(?!`).*?(?<!`)(?P=ticks)(?!`)|`+",
+        " ",
+        line,
+    )
+    return (
+        re.fullmatch(
+            r" {0,3}<(em|strong)>(?:[^<]|<(?![A-Za-z/!?]))*</\1>"
+            r"(?:[^<]|<(?![A-Za-z/!?]))*",
+            visible,
+            re.IGNORECASE,
+        )
+        is not None
+    )
+
+
 def active_markdown(text, *, plain=False):
     """Extract a bounded active Markdown view without treating code as comments.
 
@@ -125,19 +144,12 @@ def active_markdown(text, *, plain=False):
                 if marker[0] != chr(96) or chr(96) not in info:
                     fence = (marker[0], len(marker))
                     continue
-            if plain and re.match(
-                r"^ {0,3}<(?:\?|!(?!--)|/?[A-Za-z][A-Za-z0-9-]*(?=[ \t/>]|$))", line
+            if (
+                plain
+                and re.match(r"^ {0,3}<(?:\?|!(?!--)|/?[A-Za-z][A-Za-z0-9-]*(?=[ \t/>]|$))", line)
+                and not simple_inline_emphasis(line)
             ):
-                # Permit simple paired emphasis without admitting nested raw tags.
-                inline_emphasis = re.fullmatch(
-                    r" {0,3}<(em|strong)>"
-                    r"(?:[^<\x60]|<(?![A-Za-z/!?])|(?<![\\\x60])\x60[^\x60]+\x60(?!\x60))*"
-                    r"</\1>[^<]*",
-                    line,
-                    re.IGNORECASE,
-                )
-                if not inline_emphasis:
-                    raise ValueError("Raw HTML blocks are unsupported in continuity sections")
+                raise ValueError("Raw HTML blocks are unsupported in continuity sections")
         if plain:
             if "<!--" in line:
                 raise ValueError("HTML comment markers are unsupported in continuity sections")
@@ -358,10 +370,16 @@ def check_continuity(config, texts):
             active_body = active_markdown(body, plain=True)
         except ValueError as error:
             raise ValueError(f"{error}: {path}") from error
-        active_lines = set(active_body.split("\n"))
+        active_lines = active_body.split("\n")
         for heading in headings:
             if heading not in active_lines:
                 raise ValueError(f"Missing continuity section {heading}: {path}")
+            title = r"[ \t]+".join(map(re.escape, heading.removeprefix("## ").split(" ")))
+            occurrences = re.findall(
+                rf"^ {{0,3}}##[ \t]+{title}(?:[ \t]+#+)?[ \t]*$", active_body, re.M
+            )
+            if len(occurrences) > 1:
+                raise ValueError(f"Duplicate continuity section {heading}: {path}")
 
 
 def in_scope(row, scope):

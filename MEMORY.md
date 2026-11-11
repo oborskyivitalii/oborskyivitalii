@@ -15,12 +15,12 @@ Dated handoff. Last verified: **2026-11-11**. Revalidate live sources when resum
 
 ## Open work
 
-- The prior head `4184449` passed Source, Navigation and Owning acceptance. Its [conditional admission](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43001662077/job/130459015677) reported `missing staging admission`. See [#188 status](https://github.com/oborskyivitalii/oborskyivitalii/issues/188#status--11-november-2026) for results and remaining gates on the live head.
+- Reviewed predecessor `5c870fc` passed Source, Navigation and Owning acceptance. Its [conditional admission](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43005531237/job/130471958714) reported `missing staging admission`. The [owning issue](https://github.com/oborskyivitalii/oborskyivitalii/issues/188) records the additional Markdown and link findings and the current gates.
 - [#187 animation](https://github.com/oborskyivitalii/oborskyivitalii/issues/187), [PR #171 reviewer admission](https://github.com/oborskyivitalii/oborskyivitalii/pull/171) and [PR #79 essay](https://github.com/oborskyivitalii/oborskyivitalii/pull/79) remain separately owned.
 
 ## Next session
 
-1. Verify the live PR head and [#188 acceptance](review/issue-188/2026-11-11-analysis.md#acceptance-evidence). If the PR is Draft, complete affected local checks and independent review, then mark it Ready. Reuse successful Source, Navigation and Owning acceptance runs for that exact head. If matching results are missing, collect the applicable Ready checks before admission.
+1. Verify the live PR head and [#188 acceptance](review/issue-188/2026-11-11-analysis.md#acceptance-evidence). In Draft, complete affected local checks and independent review, publish the correction and verify the PR head matches the published commit before marking it Ready. Reuse successful Source, Navigation and Owning acceptance runs for that head or collect the missing Ready checks before admission.
 2. After same-head checks and the owner's review, follow the [repository delivery procedure](guides/SITE-STAGING.md#trusted-change-admission-and-repository-delivery). The owner dispatches Change admission on `main` with PR #192 and its full reviewed SHA. After admission succeeds, refresh the conditional check with a PR description edit.
 3. After authorized protected merge, verify the repository post-merge result and refresh this checkpoint with the observed outcome.
 

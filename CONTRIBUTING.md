@@ -317,11 +317,11 @@ silently change maintainer intent.
 
 AGENTS is an enduring router (maximum 100 lines). MEMORY is a dated handoff with a
 maximum of 120 lines and 8,192 UTF-8 bytes, including whitespace and line endings.
-Retain `Snapshot`, `Decisions`, `Open work`, `Next session` and `Maintenance`.
-Use literal Markdown headings and start fenced examples at column one. Inline
-code spans and simple paired `<em>` or `<strong>` at the start of a paragraph
-are supported. Keep raw HTML blocks, comment markers and front matter outside
-the handoff prose.
+The canonical level-two ATX headings are `Snapshot`, `Decisions`, `Open work`,
+`Next session` and `Maintenance`. Use each once. Start fenced examples at column one. A
+simple paired `<em>` or `<strong>` at the start of a paragraph can include
+inline code and URI autolinks. Keep raw HTML blocks, comment markers and front
+matter outside the handoff prose.
 
 Refresh MEMORY after a completed step that changes where work can resume, at
 interruption or handoff, and after observing staging, merge, production or issue
