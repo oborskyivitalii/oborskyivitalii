@@ -14,15 +14,15 @@
     {
       "id": "AC02",
       "intent": "Provide a current worked handoff that another session can resume using verified source and work pointers.",
-      "automated_scope": "The current inventory check verifies the handoff is indexed and its bytes match the generated views. Truth and resumption require the external handoff gate.",
+      "automated_scope": "The enduring repository integration test rebuilds the current inventory and checks catalog coverage and owner resolution. Navigation separately verifies freshness of the generated views. Truth and resumption require the external handoff gate.",
       "checks": ["INVENTORY"],
       "gates": ["HANDOFF"]
     },
     {
       "id": "AC03",
       "intent": "Require concise replacement after meaningful progress, interruption, handoff and observed delivery or closure using the existing protocol.",
-      "automated_scope": "Existing compact agent routing and RI/CI checks cover the maintained paths and check invocations. The lifecycle and treatment of decisions require independent inspection.",
-      "checks": ["AGENT-ROUTE", "COUPLING"],
+      "automated_scope": "The enduring RI/CI check validates current paths and check invocations. The AGENTS route, lifecycle and treatment of decisions require independent inspection.",
+      "checks": ["COUPLING"],
       "gates": ["REQUIREMENTS", "LIFECYCLE"]
     },
     {
@@ -40,11 +40,7 @@
     },
     "INVENTORY": {
       "kind": "unittest",
-      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
-    },
-    "AGENT-ROUTE": {
-      "kind": "unittest",
-      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_compact_agent_route"
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_real_adapter_owners_and_cross_repo_isolation"
     },
     "COUPLING": {
       "kind": "unittest",
@@ -66,7 +62,7 @@
     },
     "LIFECYCLE": {
       "kind": "human",
-      "description": "Independent Code and Exploratory review the actual trigger and replacement protocol and the worked transition from a stale to a current handoff, with prior decisions and future actions distinguished."
+      "description": "Independent Code and Exploratory follow the AGENTS route and review the actual trigger and replacement protocol and the worked transition from a stale to a current handoff, with prior decisions and future actions distinguished."
     },
     "CODE": {
       "kind": "human",

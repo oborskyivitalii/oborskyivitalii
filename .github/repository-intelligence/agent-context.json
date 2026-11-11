@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "f0ce8f6b1b4b782523cabfd4bef3b1b7f2ccf3fc5082382ae64e9e35b73c4ffb",
+    "digest": "fa4e5bcfb02ae0ae1d2e11065181254cd90641f23a26c8081b932471b4b73521",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -112,7 +112,7 @@
       {
         "path": ".github/acceptance/issue-188.json",
         "identity_mode": "content",
-        "sha256": "ce3dd939b70e5a074fc0fa90244c7482b1d6fc39b063a47bd64534d4119692d9"
+        "sha256": "bf93c216791d1acae6110db7844cbddd6a0370f12a4d78e6cc5145f0c3470064"
       },
       {
         "path": ".github/acceptance/issue-189.json",
@@ -251,7 +251,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "037e2caa4975a193a4f1676be2d27b7f359971f9cdfc960824cbcc5931b2d6b4"
+        "sha256": "8b8495823f3c4967d756e7517c68b3c8f218c130502e6c14a6e5bc8fc1409d20"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -4835,7 +4835,7 @@
       {
         "path": "review/issue-188/2026-11-11-analysis.md",
         "identity_mode": "content",
-        "sha256": "616980b22da6327e0649af9d08f3a021da097a8383c088f751a03e0b2a22866b"
+        "sha256": "2277278c69101ce1e3a8f9212251bf52e08e1acd41f613ed8288297004880f63"
       },
       {
         "path": "review/issue-188/review-evidence.tar.xz",

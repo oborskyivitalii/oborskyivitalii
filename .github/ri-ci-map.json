@@ -727,7 +727,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "9ccd8328a284fb9a307802005d2cef328180373ac612a356dab9a7a48a18b61d",
+    "digest": "305c67160f4bfba85d666a2a9684e32232f3bcc6332c4d50291554329bc9c55c",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -799,7 +799,7 @@
       },
       {
         "path": ".github/acceptance/issue-188.json",
-        "sha256": "ce3dd939b70e5a074fc0fa90244c7482b1d6fc39b063a47bd64534d4119692d9"
+        "sha256": "bf93c216791d1acae6110db7844cbddd6a0370f12a4d78e6cc5145f0c3470064"
       },
       {
         "path": ".github/acceptance/issue-189.json",
