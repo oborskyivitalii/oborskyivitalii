@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "47dd57cd5585611431ee867dc6870e187caa42670d51b61b592dbb83657716f4",
+    "digest": "4788b4958e6c45cc9e51587b998886c014ae45528fae283465fa1ff5bea932c8",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -4835,12 +4835,12 @@
       {
         "path": "review/issue-188/2026-11-11-analysis.md",
         "identity_mode": "content",
-        "sha256": "ba42958de831d2d5f9bb717c3c3d733d4832eeb8e26725cd73af0dd8076b88f8"
+        "sha256": "715b16b9e5d2b674ac2aceea1e144366521e277f82aa0310b1e67add36de9de6"
       },
       {
         "path": "review/issue-188/review-evidence.tar.xz",
         "identity_mode": "content",
-        "sha256": "6f280c087d27160d5eaf1e87b8027bc949fbf10a2ad61db0f287c1757fe89026"
+        "sha256": "189b5d50b9dd8e57f6bb157a7efc1035c0e753dff75e7f1cd7a5e935b3ad0c3d"
       },
       {
         "path": "review/issue-189/2026-11-10-analysis.md",
