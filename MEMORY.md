@@ -6,7 +6,7 @@ Dated handoff. Last verified: **2026-11-11**. Revalidate live sources when resum
 
 - Verified `main` at `0394f52` after [PR #190](https://github.com/oborskyivitalii/oborskyivitalii/pull/190). [#189](https://github.com/oborskyivitalii/oborskyivitalii/issues/189) is closed. Its [post-merge check](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/42993357348) verified the reviewed tree and unchanged public bytes.
 - Latest production tag is `prod-2026-11-10.1` at `ca756417`. [#184 records delivery](https://github.com/oborskyivitalii/oborskyivitalii/issues/184). PR #190 had no production release.
-- Active owner [#188](https://github.com/oborskyivitalii/oborskyivitalii/issues/188) and [Draft PR #192](https://github.com/oborskyivitalii/oborskyivitalii/pull/192). Requirements review resolved the cap and implementation is in candidate verification. The [versioned review](review/issue-188/2026-11-11-analysis.md) records checks and the current stopping point.
+- Active owner [#188](https://github.com/oborskyivitalii/oborskyivitalii/issues/188) and [PR #192](https://github.com/oborskyivitalii/oborskyivitalii/pull/192). The guard, handoff and protocol passed four independent reviews at `91f68b6`. The [versioned review](review/issue-188/2026-11-11-analysis.md) records the checked source and outstanding delivery steps.
 
 ## Decisions
 
