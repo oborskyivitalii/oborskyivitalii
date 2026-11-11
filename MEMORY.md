@@ -15,15 +15,16 @@ Dated handoff. Last verified: **2026-11-11**. Revalidate live sources when resum
 
 ## Open work
 
-- PR #192 reached Ready at `7a0552e`. Its [Source](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43033467463), [Navigation](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43033467440) and [Owning acceptance](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43033467121) checks passed. [Admission](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43033467595/job/130566145375) reported `missing staging admission`.
-- The next independent review reopened AC01 and AC02 on that head. The correction prepared in Draft reserves raw HTML tags outside fenced examples, uses Markdown emphasis and refreshes the worked handoff. Use [#188](https://github.com/oborskyivitalii/oborskyivitalii/issues/188) for the correction evidence and current ACs. AC04 requires exact-head owner admission and protected merge.
+- At the last verified Ready checkpoint, PR #192 was at `4e6c128` with the Markdown correction reviewed and [Source](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43040441968), [Navigation](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43040438809) and [Owning acceptance](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43040438855) passing. [Admission for that SHA](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43040441950/job/130590483703) reported `missing staging admission`.
+- This revision addresses the review finding on handoff freshness. Use [#188](https://github.com/oborskyivitalii/oborskyivitalii/issues/188) to resolve the intended correction, current ACs and check evidence. AC04 requires owner admission and protected merge.
 - [#187 animation](https://github.com/oborskyivitalii/oborskyivitalii/issues/187), [PR #171 reviewer admission](https://github.com/oborskyivitalii/oborskyivitalii/pull/171) and [PR #79 essay](https://github.com/oborskyivitalii/oborskyivitalii/pull/79) remain separately owned.
 
 ## Next session
 
-1. Verify the live PR head and [#188 acceptance](review/issue-188/2026-11-11-analysis.md#acceptance-evidence). If the correction is still in Draft, complete review and local checks, publish any unpublished work and verify the published head before marking Ready. Use Source, Navigation and Owning acceptance results for the live corrected head before admission.
-2. After same-head checks and the owner's review, follow the [repository delivery procedure](guides/SITE-STAGING.md#trusted-change-admission-and-repository-delivery). The owner dispatches Change admission on `main` with PR #192 and its full reviewed SHA. After admission succeeds, refresh the conditional check with a PR description edit.
-3. After authorized protected merge, verify the repository post-merge result and refresh this checkpoint with the observed outcome.
+1. Compare the live PR head with the intended correction from [#188](https://github.com/oborskyivitalii/oborskyivitalii/issues/188) and any unpublished work. If the correction is missing from the head, return the PR to Draft if needed, finish independent review and affected local checks, then publish the reviewed correction.
+2. Verify the published head contains the intended correction and is covered by completed independent review, whether the PR is Draft or Ready. Finish missing review and affected local checks before advancing. Mark a verified Draft Ready to collect any missing native checks.
+3. Require successful Source, Navigation and Owning acceptance runs for that exact live SHA and the owner's review before admission. Follow the [repository delivery procedure](guides/SITE-STAGING.md#trusted-change-admission-and-repository-delivery). The owner runs **Change admission preparation** on `main` for PR #192 with `reviewed_sha` set to the full live SHA. After admission succeeds, refresh the conditional check with a PR description edit.
+4. After authorized protected merge, verify the repository post-merge result and refresh this checkpoint with the observed outcome.
 
 ## Maintenance
 
