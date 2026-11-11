@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "76d2a15903901010a978997db242ae1803281d6c19be5a203f99255667686816",
+    "digest": "0e0d84f43a761d6ca54b57d145ff149a5882d2c74c651629a7d4cba3739eb1d8",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -241,12 +241,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "574db8328ce3e87a64476af5f0c9ea6c2228997f7a4899d8f9119566c1aad42f"
+        "sha256": "5f8d4b4eb22ab122336074e23d8acb6a20870cd3b800b3c59e648c172d4723a2"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "7f20b5c564e10cc075f81f67ad07494514febe2951c6ad3e79d64ce08d3bcf0f"
+        "sha256": "86d7cbc558b310711c521c629d5bad4efbe3b737a1f2b3aceda35b7c4347e9cb"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -321,7 +321,7 @@
       {
         "path": ".github/workflows/site-navigation-probe.yml",
         "identity_mode": "content",
-        "sha256": "1e2aaeef31c626e70e10cacca304e10171cc6e4bde5a71a4cdbd9f115bfaa19d"
+        "sha256": "38e402dc232b5b140f607756db40b3b5fab6943baa52394614b8568d4c9494b4"
       },
       {
         "path": ".github/workflows/site-pages-migration.yml",
@@ -4830,7 +4830,7 @@
       {
         "path": "review/issue-189/2026-11-10-analysis.md",
         "identity_mode": "content",
-        "sha256": "643e0266b28fe465ec74c6b17aff060f8876b8acdec646f9a3ad209f5306dabc"
+        "sha256": "f84c49f144f056931829efdf0290943a3b84986178bbd37443242cfcba9b34dc"
       },
       {
         "path": "review/issue-189/archive-index.json",
@@ -12080,7 +12080,7 @@
       {
         "path": "tests/test_browser_archives.py",
         "identity_mode": "content",
-        "sha256": "977e30a4f7d268a64d0e28cbdabe3a435af24db2e3458f7d39cd71757b4016f5"
+        "sha256": "8a51a835b7a946ff2974086ed4b0558a03359747a6869005497125d583cff0f9"
       },
       {
         "path": "tests/test_code_style.py",
@@ -12816,6 +12816,11 @@
         "path": "tools/quality/hosted.cjs",
         "identity_mode": "content",
         "sha256": "1b813bf2de5f2ff3d2505cb1760a936c3237108cb2f3a95a4cce0cb4c4ffece0"
+      },
+      {
+        "path": "tools/quality/issue189-writing-pair.cjs",
+        "identity_mode": "content",
+        "sha256": "1e0b0547bec861a9e030bdefbf88a05b43c139cb070f2f06afe11205fb15f48d"
       },
       {
         "path": "tools/quality/lighthouse.cjs",
@@ -41949,6 +41954,17 @@
         "AGENTS.md"
       ],
       "title": "hosted.cjs"
+    },
+    {
+      "path": "tools/quality/issue189-writing-pair.cjs",
+      "kind": "file",
+      "purpose": "One-shot native Home to Writing cold and warm observations of the original issue189 staging deployment.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue189-writing-pair.cjs"
     },
     {
       "path": "tools/quality/lighthouse.cjs",

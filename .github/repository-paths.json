@@ -11503,6 +11503,12 @@
       "role": "validator",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    "tools/quality/issue189-writing-pair.cjs": {
+      "kind": "file",
+      "purpose": "One-shot native Home to Writing cold and warm observations of the original issue189 staging deployment.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
     "tools/quality/staging-gate.cjs": {
       "kind": "file",
       "purpose": "Exact-source/artifact/origin/scanner/job/matrix staging aggregate; light evidence cannot authorize full production.",

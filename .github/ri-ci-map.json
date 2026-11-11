@@ -726,7 +726,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "3646ef07aba5cdd87a98f30756914bad2c98913c10cd2c565ecc316facfb4df5",
+    "digest": "5f8d949f0d2c6a8309b2ffbedead4f59e514c78c5bde8bad3babd0d111a1bf54",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -890,7 +890,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "574db8328ce3e87a64476af5f0c9ea6c2228997f7a4899d8f9119566c1aad42f"
+        "sha256": "5f8d4b4eb22ab122336074e23d8acb6a20870cd3b800b3c59e648c172d4723a2"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -950,7 +950,7 @@
       },
       {
         "path": ".github/workflows/site-navigation-probe.yml",
-        "sha256": "1e2aaeef31c626e70e10cacca304e10171cc6e4bde5a71a4cdbd9f115bfaa19d"
+        "sha256": "38e402dc232b5b140f607756db40b3b5fab6943baa52394614b8568d4c9494b4"
       },
       {
         "path": ".github/workflows/site-pages-migration.yml",

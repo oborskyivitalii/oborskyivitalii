@@ -149,7 +149,7 @@ class BrowserConsumerWiringTests(unittest.TestCase):
             ),
             (
                 "site-navigation-probe.yml",
-                "run: node review/issue-169/r9/reader-runtime-probe.cjs",
+                "run: node tools/quality/issue189-writing-pair.cjs",
                 "run: node tools/quality/toolchain/node_modules/playwright/cli.js install chromium",
             ),
         ]:

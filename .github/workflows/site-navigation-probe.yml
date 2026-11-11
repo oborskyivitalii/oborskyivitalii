@@ -1,5 +1,6 @@
 name: Site navigation diagnostic
-# Explicit issue169 R9 diagnostic only; not runtime admission or a hosted gate.
+run-name: Issue 189 native Home to Writing pair
+# One-shot diagnostic branch. The workflow on main retains its own behavior.
 on:
   workflow_dispatch:
     inputs:
@@ -10,53 +11,53 @@ on:
 permissions:
   contents: read
   actions: read
+concurrency:
+  group: issue189-writing-pair
+  cancel-in-progress: false
 jobs:
   chromium:
+    if: >-
+      github.repository == 'oborskyivitalii/oborskyivitalii' &&
+      github.actor == github.repository_owner &&
+      github.triggering_actor == github.repository_owner &&
+      github.run_attempt == '1' &&
+      github.ref == 'refs/heads/work/issue189-writing-pair-20261111'
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     env:
-      SITE_CANDIDATE_SHA: ${{ inputs.candidate_sha }}
-      SITE_PUBLIC_DIR: ${{ github.workspace }}/color-artifact/public
-      SITE_ARTIFACT_MANIFEST: ${{ github.workspace }}/color-artifact/artifact.json
-      SITE_REPORT_DIR: ${{ github.workspace }}/quality-reports
+      DIAGNOSTIC_SHA: ${{ inputs.candidate_sha }}
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
-          ref: ${{ inputs.candidate_sha }}
+          ref: ${{ github.sha }}
           fetch-depth: 0
           persist-credentials: false
+      - name: Verify diagnostic source
+        run: |
+          test "$DIAGNOSTIC_SHA" = "$GITHUB_SHA"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test -z "$(git status --porcelain --untracked-files=all)"
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: 24.19.0
-      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
-        with:
-          python-version: 3.12.14
-      - name: Install locked diagnostic dependencies
+      - name: Prepare bounded Ubuntu downloads
+        run: sudo python3 tools/quality/ubuntu_downloads.py
+      - name: Install locked Chromium tooling
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
-          npm ci --prefix tools/publishing/toolchain --ignore-scripts
-          python3 -m venv tools/quality/toolchain/venv
-          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps "$(python3 tools/publishing/web-media.py --requirement)"
-      - name: Build exact unadmitted Color diagnostic input
-        run: |
-          node -e "require('node:assert/strict').match(process.env.SITE_CANDIDATE_SHA,/^[0-9a-f]{40}$/)"
-          test "$GITHUB_SHA" = "$SITE_CANDIDATE_SHA"
-          test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
-          test -z "$(git status --porcelain --untracked-files=all)"
-          node tools/quality/artifact.cjs build color-artifact
-          node tools/staging/color.cjs color-artifact
-      - name: Install native Chromium dependencies
-        run: tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium
-      - name: Restore verified pinned browsers without prior launch
+          tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium
+      - name: Restore verified pinned Chromium
         uses: ./.github/actions/browser-archive
         with:
           browsers: chromium
-      - name: Observe bounded R9 reader and repeated footer animation
-        run: node review/issue-169/r9/reader-runtime-probe.cjs
+      - name: Measure one cold and warm Home to Writing pair
+        env:
+          SITE_REPORT_DIR: ${{ runner.temp }}/writing-pair
+        run: node tools/quality/issue189-writing-pair.cjs
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always()
         with:
-          name: navigation-diagnostic-${{ github.run_id }}-${{ github.run_attempt }}
-          path: quality-reports/
+          name: issue189-writing-pair-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/writing-pair/
           if-no-files-found: error
-          retention-days: 14
+          retention-days: 90
