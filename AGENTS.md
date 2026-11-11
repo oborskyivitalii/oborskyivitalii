@@ -84,8 +84,7 @@ Enduring rules and task routing. Issues own intent; PRs own execution;
 
 ## Checkpoint between sessions
 
-15. Update MEMORY at meaningful handoff/interruption: verified date/ref, evidence
-    pointers, relevant decisions, active issue/PR, remaining acceptance and next action.
-    Replace stale entries; retain its five sections and 120-line cap. Keep this guide
-    within 100 lines; route to owners rather than repeat history. Rebuild RI after
-    either file changes. Never store secrets or private correspondence in memory.
+15. Follow [session memory maintenance](CONTRIBUTING.md#repository-navigation-and-session-memory)
+    at meaningful progress, interruption/handoff and observed delivery or closure.
+    Replace stale entries, preserve the five sections and rebuild/verify RI after
+    changing either file. Keep this guide within 100 lines; route to existing owners.

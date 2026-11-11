@@ -17629,6 +17629,30 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    ".github/acceptance/issue-188.json": {
+      "kind": "file",
+      "purpose": "Issue #188 continuity checks and independent handoff, review and delivery gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-188": {
+      "kind": "directory",
+      "purpose": "Versioned issue #188 continuity implementation and independent review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-188/2026-11-11-analysis.md": {
+      "kind": "file",
+      "purpose": "Issue #188 analysis, style and test allocations, independent review and acceptance evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-188/review-evidence.tar.xz": {
+      "kind": "file",
+      "purpose": "First reviewer results and source-bound execution records for issue #188.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-189": {
       "kind": "directory",
       "purpose": "Issue189 current RI navigation/capacity architecture, planning review and later source-bound execution evidence.",

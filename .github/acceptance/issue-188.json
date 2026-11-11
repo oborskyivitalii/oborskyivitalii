@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 188,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/188",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Retain the five active MEMORY sections and enforce inclusive 120-line and 8,192-byte UTF-8 limits.",
+      "automated_scope": "The maintained RI guard and navigation test cover the actual configuration, exact limits, a multibyte overage and missing or inactive required headings.",
+      "checks": ["CONTINUITY", "INVENTORY"],
+      "gates": ["REQUIREMENTS"]
+    },
+    {
+      "id": "AC02",
+      "intent": "Provide a current worked handoff that another session can resume using verified source and work pointers.",
+      "automated_scope": "The current inventory check verifies the handoff is indexed and its bytes match the generated views. Truth and resumption require the external handoff gate.",
+      "checks": ["INVENTORY"],
+      "gates": ["HANDOFF"]
+    },
+    {
+      "id": "AC03",
+      "intent": "Require concise replacement after meaningful progress, interruption, handoff and observed delivery or closure using the existing protocol.",
+      "automated_scope": "Existing compact agent routing and RI/CI checks cover the maintained paths and check invocations. The lifecycle and treatment of decisions require independent inspection.",
+      "checks": ["AGENT-ROUTE", "COUPLING"],
+      "gates": ["REQUIREMENTS", "LIFECYCLE"]
+    },
+    {
+      "id": "AC04",
+      "intent": "Review and deliver the exact source through the trusted route for the complete repository-only candidate.",
+      "automated_scope": "Existing style, RI inventory, coupling and continuity checks cover the bounded mechanical subset. Code-style judgment, all role results, trusted lane and merge are externally verified.",
+      "checks": ["STYLE", "COUPLING", "INVENTORY", "CONTINUITY"],
+      "gates": ["REQUIREMENTS", "CODE", "WHITEBOX", "HANDOFF", "LIFECYCLE", "DELIVERY", "MERGE"]
+    }
+  ],
+  "checks": {
+    "CONTINUITY": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_memory_and_agent_bounds_and_required_sections_fail"
+    },
+    "INVENTORY": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "AGENT-ROUTE": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_compact_agent_route"
+    },
+    "COUPLING": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    },
+    "STYLE": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    }
+  },
+  "gates": {
+    "REQUIREMENTS": {
+      "kind": "human",
+      "description": "Independent Requirements & Acceptance review resolves the proposed byte cap before implementation, verifies the finished source against the stable criteria, and rechecks affected corrections."
+    },
+    "HANDOFF": {
+      "kind": "human",
+      "description": "Independent Exploratory QA follows the worked MEMORY pointers, compares current facts to exact GitHub evidence, and reconstructs the stopping point, open acceptance and next action."
+    },
+    "LIFECYCLE": {
+      "kind": "human",
+      "description": "Independent Code and Exploratory review the actual trigger and replacement protocol and the worked transition from a stale to a current handoff, with prior decisions and future actions distinguished."
+    },
+    "CODE": {
+      "kind": "human",
+      "description": "Independent Code review covers the exact candidate, CS01/04/05/07/08/09/10, unautomated style rules, ownership and integration, and rechecks affected corrections."
+    },
+    "WHITEBOX": {
+      "kind": "human",
+      "description": "Independent White-box QA verifies the boundary and false-positive cases with independent oracles and current-source evidence, and rechecks affected corrections."
+    },
+    "DELIVERY": {
+      "kind": "human",
+      "description": "Verify exact-source affected checks, candidate capacity, the protected complete-diff route, native CI and the applicable admission evidence. Record merged protocol and dated handoff facts independently."
+    },
+    "MERGE": {
+      "kind": "merge",
+      "description": "Record the applicable maintainer decision and actual protected merge with exact source and merge identities before closure."
+    }
+  }
+}

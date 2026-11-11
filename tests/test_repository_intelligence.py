@@ -755,23 +755,63 @@ class NavigationSafetyTests(unittest.TestCase):
         self.assertNotIn("archive/AGENTS.before.md", {i["path"] for i in data["instructions"]})
 
     def test_memory_and_agent_bounds_and_required_sections_fail(self):
+        headings = [
+            "## Snapshot",
+            "## Decisions",
+            "## Open work",
+            "## Next session",
+            "## Maintenance",
+        ]
+        memory_contract = {"max_lines": 120, "max_bytes": 8192, "headings": headings}
+        current_config = ri.load_config(REPO, ".github/repository-intelligence-config.json")
+        self.assertEqual(current_config["continuity"]["MEMORY.md"], memory_contract)
         self.config["continuity"] = {
             "AGENTS.md": {"max_lines": 2},
-            "MEMORY.md": {"max_lines": 4, "headings": ["## Snapshot"]},
+            "MEMORY.md": memory_contract,
         }
-        self.write("MEMORY.md", "# Memory\n## Snapshot\n")
+        memory = "# Memory\n" + "\n".join(headings) + "\n"
+        self.write("MEMORY.md", memory)
         self.save_config()
         self.materialize()
-        for path, body in [
-            ("AGENTS.md", "a\nb\nc\n"),
-            ("MEMORY.md", "# Memory\n## Snapshot\na\nb\nc\n"),
-            ("MEMORY.md", "# Memory\n"),
-        ]:
-            with self.subTest(path=path), self.assertRaises(ValueError):
-                self.write(path, body)
+
+        line_boundary = memory + "a\n" * (120 - len(memory.splitlines()))
+        available_bytes = 8192 - len(memory.encode("utf-8")) - 1
+        byte_boundary = memory + "ї" * (available_bytes // 2) + "a" * (available_bytes % 2) + "\n"
+        self.assertEqual(len(line_boundary.splitlines()), 120)
+        self.assertEqual(len(byte_boundary.encode("utf-8")), 8192)
+        for body in (line_boundary, byte_boundary):
+            self.write("MEMORY.md", body)
+            ri.build(self.root, self.cfg)
+
+        byte_overage = byte_boundary[:-1] + "a\n"
+        self.assertEqual(len(byte_overage.encode("utf-8")), 8193)
+        self.assertLess(len(byte_overage), 8192)
+        self.write("MEMORY.md", memory)
+        with self.assertRaisesRegex(ValueError, r"Continuity line bound exceeded: AGENTS\.md"):
+            self.write("AGENTS.md", "a\nb\nc\n")
+            ri.build(self.root, self.cfg)
+        self.write("AGENTS.md", "# Root instructions\n")
+
+        missing = memory.replace("## Snapshot\n", "")
+        cases = [
+            ("line overage", line_boundary + "a\n", r"Continuity line bound exceeded: MEMORY\.md"),
+            ("byte overage", byte_overage, r"Continuity UTF-8 byte bound exceeded: MEMORY\.md"),
+            ("missing section", missing, r"Missing continuity section ## Snapshot: MEMORY\.md"),
+            (
+                "fenced heading",
+                missing + "```md\n## Snapshot\n```\n",
+                r"Missing continuity section ## Snapshot: MEMORY\.md",
+            ),
+            (
+                "commented heading",
+                missing + "<!--\n## Snapshot\n-->\n",
+                r"Missing continuity section ## Snapshot: MEMORY\.md",
+            ),
+        ]
+        for case, body, error in cases:
+            with self.subTest(case=case), self.assertRaisesRegex(ValueError, error):
+                self.write("MEMORY.md", body)
                 ri.build(self.root, self.cfg)
-            self.write("AGENTS.md", "# Root instructions\n")
-            self.write("MEMORY.md", "# Memory\n## Snapshot\n")
 
     def test_tracked_files_cannot_hide_in_excluded_directories(self):
         subprocess.run(["git", "init", "-q", str(self.root)], check=True)

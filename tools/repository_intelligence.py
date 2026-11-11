@@ -317,8 +317,17 @@ def check_continuity(config, texts):
         body = texts[path]
         if len(body.splitlines()) > contract["max_lines"]:
             raise ValueError(f"Continuity line bound exceeded: {path}; move detail to its owner")
-        for heading in contract.get("headings", []):
-            if heading not in body.splitlines():
+        max_bytes = contract.get("max_bytes")
+        if max_bytes is not None and len(body.encode("utf-8")) > max_bytes:
+            raise ValueError(
+                f"Continuity UTF-8 byte bound exceeded: {path}; move detail to its owner"
+            )
+        headings = contract.get("headings", [])
+        if not headings:
+            continue
+        active_lines = set(active_markdown(body).splitlines())
+        for heading in headings:
+            if heading not in active_lines:
                 raise ValueError(f"Missing continuity section {heading}: {path}")
 
 
