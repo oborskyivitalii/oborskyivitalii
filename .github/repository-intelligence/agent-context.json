@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "904f4d12fa2a0ad9303f01c5e4a7d6076677a2823b25d5697bb9c88710219c29",
+    "digest": "211085e95f5c80c0cf34890de1e6b5aeff6b879f6af4fdf97a1195dc5fbe1d1b",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -251,7 +251,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "a4582c031cbd7aa63163d754cd98b36179862b276a30bc87513236c9c708d4ca"
+        "sha256": "566fed8d5808caf6b6ab60b3248850b9b18e3886b9c3f4911b17ca514ce30f3e"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -381,7 +381,7 @@
       {
         "path": "CONTRIBUTING.md",
         "identity_mode": "content",
-        "sha256": "da96a6e18edfa9842e1467182a499e41d4b41e2ae88118223379043b90afa7a7"
+        "sha256": "dfebae52906cf676b2eaeb311976ab486b03a3141e0348498392e66e07b35b3b"
       },
       {
         "path": "LICENSE-CODE.md",
@@ -401,7 +401,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "039270c4f10dcdc8479d62186632daa8be09bae10c18ea716718e12416bad0b5"
+        "sha256": "cd953962ec95ed6f1c2ed35e2400af522b931d3c236fe03f9bd9e8f497336d98"
       },
       {
         "path": "NOTICE.md",
@@ -4835,7 +4835,7 @@
       {
         "path": "review/issue-188/2026-11-11-analysis.md",
         "identity_mode": "content",
-        "sha256": "a0643a8c4af58b2dfdc2229b3678c0c7a9e34bd516dbf500c74a987dd9280d67"
+        "sha256": "4f2c3a163a4e5ebbbac9ac69b5ec8fbac61e0e10c35f9e27556256075f5468f4"
       },
       {
         "path": "review/issue-188/review-evidence.tar.xz",
@@ -12230,7 +12230,7 @@
       {
         "path": "tests/test_repository_intelligence.py",
         "identity_mode": "content",
-        "sha256": "60189b171f695d448472d15e05d482f72d0c7d2701ce47c2b90d6085ea0f808c"
+        "sha256": "d5836ad20c3d140be3b8a19bfd7c55e53ad3468a875900351b207e123a52d2b3"
       },
       {
         "path": "tests/test_repository_test_selection.py",
@@ -12575,7 +12575,7 @@
       {
         "path": "tools/quality/bandit-policy.json",
         "identity_mode": "content",
-        "sha256": "b1ba28d3022d2ebc0bb95ce703b479e255e543d87e6fd1d05a523dbcffa5e21d"
+        "sha256": "2257b3b53daa09b43a926afe564adeaea240fad17c5d74a2a40f43c8b41c1394"
       },
       {
         "path": "tools/quality/bandit-triage.cjs",
@@ -12945,7 +12945,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "4b529ae3e4a60f89c047917dc2c02832a5ceb1750b57e8081afff568f08d5ac4"
+        "sha256": "d682d2abfd3b2604d4731a1233e511cffbb00593d90b66577f82005c80fa3dec"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
@@ -13165,7 +13165,7 @@
       {
         "path": "tools/repository_intelligence.py",
         "identity_mode": "content",
-        "sha256": "e8557ab073b391e6d0ef3d72af6e139c0517ea3c36466c6cb121d7a0feadae94"
+        "sha256": "0f1a623e04c8dc310394ca250fdcd8256cd3966b56979a9da959f93c6e56b422"
       },
       {
         "path": "tools/run_repository_tests.py",
@@ -13386,7 +13386,7 @@
   },
   "producer": {
     "path": "tools/repository_intelligence.py",
-    "sha256": "e8557ab073b391e6d0ef3d72af6e139c0517ea3c36466c6cb121d7a0feadae94",
+    "sha256": "0f1a623e04c8dc310394ca250fdcd8256cd3966b56979a9da959f93c6e56b422",
     "config_path": ".github/repository-intelligence-config.json",
     "config_sha256": "60f109bc95b291d37de093aa1aaeaf8b2da56168e51a9b88ba721248906e0079"
   },

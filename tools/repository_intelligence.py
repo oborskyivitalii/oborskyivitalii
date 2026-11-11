@@ -114,7 +114,7 @@ def active_markdown(text, *, plain=False):
             continue
         if not comment:
             if plain and re.match(
-                r"^(?:[ \t]|>|[-+*][ \t]|\d{1,9}[.)][ \t])+(?:`{3,}|~{3,})", line
+                r"^(?:[ \t]|>|[-+*][ \t]|\d{1,9}[.)][ \t])+(?:`{3,}[^`]*|~{3,}.*)$", line
             ):
                 raise ValueError("Code fences must start at column one in continuity sections")
             if line.startswith(("    ", "\t")):
@@ -128,7 +128,16 @@ def active_markdown(text, *, plain=False):
             if plain and re.match(
                 r"^ {0,3}<(?:\?|!(?!--)|/?[A-Za-z][A-Za-z0-9-]*(?=[ \t/>]|$))", line
             ):
-                raise ValueError("Raw HTML blocks are unsupported in continuity sections")
+                # Permit simple paired emphasis without admitting nested raw tags.
+                inline_emphasis = re.fullmatch(
+                    r" {0,3}<(em|strong)>"
+                    r"(?:[^<\x60]|<(?![A-Za-z/!?])|(?<![\\\x60])\x60[^\x60]+\x60(?!\x60))*"
+                    r"</\1>[^<]*",
+                    line,
+                    re.IGNORECASE,
+                )
+                if not inline_emphasis:
+                    raise ValueError("Raw HTML blocks are unsupported in continuity sections")
         if plain:
             if "<!--" in line:
                 raise ValueError("HTML comment markers are unsupported in continuity sections")

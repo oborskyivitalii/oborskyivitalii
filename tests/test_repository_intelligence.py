@@ -780,7 +780,13 @@ class NavigationSafetyTests(unittest.TestCase):
         self.assertEqual(len(line_boundary.splitlines()), 120)
         self.assertEqual(len(byte_boundary.encode("utf-8")), 8192)
         markdown_examples = memory + "<https://example.com>\n\n```html\n<pre>\n<!-- Note -->\n```\n"
-        for body in (line_boundary, byte_boundary, markdown_examples):
+        inline_code = memory + "\n- ```one `code` span```\n"
+        inline_emphasis = (
+            memory
+            + "\n<em>Owner decision</em> is recorded.\n\n<strong>`<owner>`</strong>\n"
+            + "\n<em>Progress < 100%</em>\n"
+        )
+        for body in (line_boundary, byte_boundary, markdown_examples, inline_code, inline_emphasis):
             self.write("MEMORY.md", body)
             ri.build(self.root, self.cfg)
 
@@ -817,6 +823,21 @@ class NavigationSafetyTests(unittest.TestCase):
                 "raw HTML block",
                 missing + "<pre>\n## Snapshot\n</pre>\n",
                 r"Raw HTML blocks are unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "standalone emphasis opener",
+                missing + "<em>\n## Snapshot\n</em>\n",
+                r"Raw HTML blocks are unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "raw tag nested in otherwise paired inline emphasis",
+                "<em><details></em>\n\n" + memory,
+                r"Raw HTML blocks are unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "inline example followed by a real fence",
+                missing + "- ```one `code` span```\n\n```\n## Snapshot\n```\n",
+                r"Missing continuity section ## Snapshot: MEMORY\.md",
             ),
             (
                 "raw HTML opener with a comment",
