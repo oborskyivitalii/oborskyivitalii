@@ -14,7 +14,8 @@ Enduring rules and task routing. Issues own intent; PRs own execution;
    Reuse an existing owner. A user-provided issue stays bound across phases and
    model handoffs; another owner requires the user's explicit request.
 4. Locate source, instructions and checks through [REPOSITORY-MAP.md](REPOSITORY-MAP.md)
-   or verified [RI](.github/REPOSITORY-INTELLIGENCE.md); read known owners directly.
+   or verified [RI](.github/REPOSITORY-INTELLIGENCE.md); prefer explicit `--scope current`
+   for routine CLI reads. Read known owners directly; the full catalog retains history.
    Search sources for stale, missing, ambiguous or untranslated lookups. A miss
    does not establish absence; inspect relevant inventories before creating an owner.
 5. Add the applicable routes below to the common reading above. For mixed work,

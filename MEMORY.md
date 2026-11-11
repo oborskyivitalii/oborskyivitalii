@@ -4,34 +4,32 @@ Dated continuity, not live authority. Last verified: **2026-11-10**.
 
 ## Snapshot
 
-- Issue169 / PR186: accepted R12 organisational-scope article and five-page PDF, stable-staging continuation.
-- Main/production a9f5769; accepted release prod-2026-11-09.1 unchanged.
-- PR186 source754c22a5 already includes Draft/unmerged PR185 head79a275d (issue184 archive dependency).
-- Owner confirmed179 LinkedIn result and109 delivered talk; both closed/completed. PR110 remains unmerged.
+- Main/production ca756417590b9176f9fc33428321ffe1f64158cc; prod-2026-11-10.1 delivered R12 and issue184 archival dependency.
+- Issue189 / Draft PR190 active. Source1746 passed actual sourceCI/navigation/owning and all26stage preflight guards/security. Stage42905616039 failed cold Home→Writing3277.1>3200ms; no stable promotion/merge. Site/runtime unchanged. New user amendment: extend source-only service routing first, then transition diagnosis. Routing correction dba309b4 has72/72Node,45/45owning, full source lint/security/advisories and four affected reviews; not activated; see issue189/PR190 latest amendment and versioned analysis. Main/production unchanged.
+- Separate owners: issue188 MEMORY lifecycle; issue187 reusable article pulse. PR171/117/110/107/79 remain separate.
 
 ## Decisions
 
-- Author accepted exact displayed R12 reader/PDF: PR186 comment6762654946, “Ок. Веди в стейбл стейджинг”.
-- Ready/current checks/full stable staging, then STOP/show. No merge/production/platform posting. Updated LinkedIn/Medium copies are now authorized for preparation.
-- Canonical source frozen47b9a946; SHA4ed3380c73f46e7e9bf086fa2f1c99f5183fc0ccb16b7b1f270276173e5f1f8d.
-- Accepted PDF516886bytes/5pages, SHAc3686dce007b399d3fb175d5b235a51b1000500a3e4bc6f024be9767bfb33996.
-- Existing material binding exposes unchanged accepted PDF. Latest author instruction authorizes platform-copy preparation now; posting follows actual website publication.
+- Original intake split into189→188→187. Archives remain in this repo; final RI hash-input headroom target is10,000,000bytes without raising caps.
+- On10November the maintainer explicitly accepted keeping the two RI whole-file formatting deltas in PR190 (“Залишай”); dated CS05 exception is in issue189 and PR190 comment6778023443. No merge/release approval is inferred.
+- Keep one producer/two outputs/full machine inventory and legacy unqualified lookup. Short map/scoped paging and capacity diagnostics use the same producer; full inventory/hashing and legacy unqualified results remain. No service/cache/shards.
+- 10November: maintainer explicitly extends source-only routing to RI/archive/owning maintenance with no hosted dependency. Preserve source/security/RI/owning/review/App controls, both endpoints and public/unknown refusals. No blind full staging; transition diagnosis follows routing correction.
 
 ## Open work
 
-- Current approval/reader/policy delta: four affected roles, Basic/RI/coupling/owning before Ready/native source checks.
-- Full main→PR186 route includes185 archive/control delta; no separate185 stage/merge required for this stage.
-- Preserve source/site figures, old R11 edition/PDF and16-node immutable retained graph byte-exact.
-- Further archive inventory groups remain unresolved under184; issue169 external editions/production remain open.
+- Frozen19 /11,386,774bytes: review/issue-189/selected-files.json. Recovery commands/checksums: review/issue-189/archive-index.json and3capture ARCHIVE.md guides; gallery locators require full ZIP extraction for relative media.
+- T02 media/ZIP/gzip/manifests and earlier evidence remain exact. T03/T04 changes only declared RI owners/contract/tests/entry metadata; site/docs/drafts/agents remain unchanged. Accounting/reviews: review/issue-189/2026-11-10-analysis.md and PR190 checkpoint.
+- Preserve218-byte secrets-ledger margin and existing resource caps. Include all final metadata/evidence in net recovery; final>=10MB target is actual complete-source accounting, not the earlier remaining-allowance forecast.
+- All AC01–AC05 stay open. Issue189 policy now maps45 named checks and seven external gates; final-source checks are in PR190; trusted delivery remains pending. CS05 exception is accepted for the two RI files; remaining semantic/full-route admission and merge decisions stay pending.
 
 ## Next session
 
-1. Verify actual PR186 refs/checks and review/issue-169/2026-11-10-r12-preview.md.
-2. Once current Ready checks pass, use trusted owner full staging; verify actual stable reader/PDF identities.
-3. Report stable URL/results and STOP before merge/production/platform work.
+1. Revalidate refs, issue189/PR190, current-source checks and latest user instruction; use the dated report/recovery index, not memory alone.
+2. Complete amended maintenance routing: exact current-source positive/refusal observer/App tests and45owning checks, RI/coupling/style/security and four affected independent reviews. Preserve prior findings and original failures; CS05accepted.
+3. Distinguish prospective amended selection from active protected-main bootstrap. Do not claim self-activation or waive failed delivery. Only after routing correction, perform one bounded transition diagnostic pair; no full retry-until-green. Verified pinned browser archive is available outside repo. Hand off188 only after189 delivery.
 
 ## Maintenance
 
-- Five sections/120lines; issue/PR exact source/run evidence owns live status.
-- Rebuild/verify RI/coupling after indexed/control changes. Preserve budgets/scanners/fixtures and raw failures.
-- Generation/review approval does not imply actual hosted/stable/production observation.
+- Keep five sections/120lines; replace stale handoff entries. Issue188 owns further lifecycle/byte-cap changes.
+- Issues/PRs and exact source/run evidence own status. Rebuild/verify RI after indexed input changes; retain raw first failures.
+- Preserve active/unfinished/public/fixture/rights/rollback resources; issue closure alone is not archival eligibility.

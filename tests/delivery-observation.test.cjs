@@ -9,6 +9,7 @@ const cp = require('node:child_process');
 const observer = require('../tools/quality/delivery-observation.cjs');
 const collector = require('../tools/quality/delivery-git.cjs');
 const json = require('../tools/quality/delivery-json.cjs');
+const routing = require('../tools/quality/delivery-routing.cjs');
 const root = path.resolve(__dirname, '..');
 const executable = path.join(root, 'tools/quality/delivery-observation.cjs');
 function git(directory, ...args) {
@@ -243,6 +244,209 @@ test('deleted, renamed, mode-changed and provenance test inputs cannot select te
     );
     assert.equal(selectedFixture(f).repositoryOnly, false, kind);
   }
+});
+function addOwningSnapshot(directory) {
+  const policy = '.github/acceptance/issue-999.json',
+    added = 'tests/test_issue999_acceptance.py',
+    registryFile = path.join(directory, 'tools/quality/test-profiles.json'),
+    registry = JSON.parse(fs.readFileSync(registryFile));
+  write(directory, policy, JSON.stringify({ issue: 999 }));
+  write(directory, added, '# owning snapshot fixture\n');
+  registry.tests.push({
+    path: added,
+    language: 'python',
+    purpose: 'Owning snapshot fixture',
+    owner: '.github/ACCEPTANCE.md',
+    lifecycle: 'task-snapshot',
+    profiles: ['issue-policy'],
+    disposition: 'Owning only',
+    surviving_route: policy,
+    inputs: [added, policy],
+  });
+  fs.writeFileSync(registryFile, JSON.stringify(registry));
+  const workflow = path.join(directory, '.github/workflows/issue-acceptance.yml');
+  fs.writeFileSync(
+    workflow,
+    fs
+      .readFileSync(workflow, 'utf8')
+      .replaceAll(
+        "env.ACCEPTANCE_POLICY == '.github/acceptance/issue-189.json'",
+        "env.ACCEPTANCE_POLICY == '.github/acceptance/issue-189.json' ||\n" +
+          "          env.ACCEPTANCE_POLICY == '.github/acceptance/issue-999.json'"
+      )
+  );
+}
+test('RI, owning controls and archive maintenance keep source gates without hosted staging', (t) => {
+  const evidence = 'review/site-v1-20261002-v7-captures/index-motion.webm';
+  const f = technicalFixture(
+    t,
+    (directory) => {
+      addOwningSnapshot(directory);
+      fs.unlinkSync(path.join(directory, evidence));
+      for (const file of [
+        '.github/REPOSITORY-INTELLIGENCE.md',
+        'tools/repository_intelligence.py',
+        'tools/RI-NOTICE.md',
+        'tools/quality/bandit-policy.json',
+        'tools/quality/secrets-reviewed-checksums.json',
+        'review/issue-999/archive-index.json',
+        'review/issue-999/security-proof.json.gz',
+        'review/issue-999/review-evidence.tar.xz',
+        'review/site-v1-20261002-v7-captures/ARCHIVE.md',
+        'review/site-v1-20261002-v7-index.html',
+      ])
+        write(directory, file, 'source selection fixture; not archive acceptance\n');
+      const map = JSON.parse(fs.readFileSync(path.join(root, '.github/ri-ci-map.json')));
+      map.review.summary = 'Updated source-only map semantics';
+      write(directory, '.github/ri-ci-map.json', JSON.stringify(map));
+    },
+    (directory) => write(directory, evidence, 'original archive fixture\n')
+  );
+  const plan = selectedFixture(f);
+  assert.equal(plan.technical.additiveRegistry, true);
+  assert.deepEqual(plan.technical.rejected, []);
+  assert.equal(plan.repositoryOnly, true);
+  assert.equal(plan.technicalRepository, true);
+  assert.equal(plan.technical.controlReviewRequired, true);
+  assert.equal(plan.analysis.control, true);
+  for (const id of ['B', 'R', 'R-PYTHON', 'O', 'B-SECURITY', 'B-ADVISORIES', 'ADMISSION'])
+    assert.equal(plan.obligations.find((row) => row.id === id).required, true, id);
+  assert.ok(
+    plan.obligations.filter((row) => row.category === 'hosted').every((row) => !row.required)
+  );
+  assert.ok(
+    plan.obligations
+      .find((row) => row.id === 'B')
+      .execution.command.argv.includes('--repository-only')
+  );
+  const baselineWorkflow = git(
+    f.directory,
+    'show',
+    f.base + ':.github/workflows/issue-acceptance.yml'
+  );
+  const extendedWorkflow = fs.readFileSync(
+    path.join(f.directory, '.github/workflows/issue-acceptance.yml'),
+    'utf8'
+  );
+  for (const mutation of [
+    extendedWorkflow.replace('npm ci --prefix', 'echo removed --prefix'),
+    extendedWorkflow.replace(
+      "'.github/acceptance/issue-999.json'",
+      "'.github/acceptance/issue-998.json'"
+    ),
+    baselineWorkflow.replace(
+      "env.ACCEPTANCE_POLICY == '.github/acceptance/issue-189.json'",
+      'true'
+    ),
+    extendedWorkflow.replace('permissions:', 'permissions: write-all #'),
+  ]) {
+    write(f.directory, '.github/workflows/issue-acceptance.yml', mutation);
+    const head = commit(f.directory);
+    assert.equal(observer.selection(f.directory, f.base, head).repositoryOnly, false);
+  }
+});
+test('archive-only maintenance retains Python and security without requiring website work', (t) => {
+  const file = 'review/site-v1-20261002-v7-captures/index-motion.webm';
+  const f = fixture(
+    t,
+    (directory) => write(directory, file, 'original historical capture\n'),
+    (directory) => fs.unlinkSync(path.join(directory, file))
+  );
+  const plan = selectedFixture(f);
+  assert.equal(plan.repositoryOnly, true);
+  assert.equal(plan.technicalRepository, true);
+  assert.equal(plan.analysis.control, false);
+  for (const id of ['R-PYTHON', 'B-SECURITY', 'B-ADVISORIES', 'O', 'ADMISSION'])
+    assert.equal(plan.obligations.find((row) => row.id === id).required, true, id);
+  assert.ok(
+    plan.obligations.filter((row) => row.category === 'hosted').every((row) => !row.required)
+  );
+  const plain = fixture(t, null, (directory) => write(directory, 'README.md', 'ordinary docs\n'));
+  assert.equal(
+    selectedFixture(plain).technicalRepository,
+    false,
+    'ordinary docs keep their existing route'
+  );
+});
+test('executable historical evidence cannot fall back to ordinary repository eligibility', (t) => {
+  for (const change of ['add', 'mode', 'delete']) {
+    const file = 'review/issue-999/archive-index.json';
+    const f = fixture(
+      t,
+      (directory) => {
+        if (change === 'add') return;
+        write(directory, file, '{}\n');
+        if (change === 'delete') fs.chmodSync(path.join(directory, file), 0o755);
+      },
+      (directory) => {
+        if (change === 'delete') fs.unlinkSync(path.join(directory, file));
+        else {
+          write(directory, file, '#!/usr/bin/env node\n');
+          fs.chmodSync(path.join(directory, file), 0o755);
+        }
+      }
+    );
+    const plan = selectedFixture(f);
+    assert.equal(plan.repositoryOnly, false, change);
+    assert.equal(plan.technicalRepository, false, change);
+    assert.ok(plan.technical.rejected.includes(file));
+    assert.equal(plan.obligations.find((row) => row.id === 'H').required, true);
+    assert.equal(plan.obligations.find((row) => row.id === 'H-PREVIEW').required, true);
+  }
+});
+test('maintenance unions cannot hide public, unknown or executable inputs', (t) => {
+  for (const file of [
+    'site/templates/pages/writing/main.html',
+    'docs/writing.html',
+    'site/rights.json',
+    'tools/quality/delivery-routing.cjs',
+    'tools/quality/source-tests.cjs',
+    '.github/workflows/site-color-review.yml',
+    'review/issue-999/runner.cjs',
+    'review/issue-999/unknown.bin',
+  ]) {
+    const f = technicalFixture(t, (directory) => {
+      write(directory, 'review/issue-999/archive-index.json', '{}\n');
+      if (file === 'site/rights.json') {
+        const value = JSON.parse(fs.readFileSync(path.join(directory, file)));
+        value.ownerIssue = 999;
+        write(directory, file, JSON.stringify(value));
+      } else write(directory, file, 'changed fixture\n');
+    });
+    assert.equal(selectedFixture(f).repositoryOnly, false, file);
+  }
+});
+test('repository-only notice provenance rejects every public basis and direct scope', (t) => {
+  const original = JSON.parse(fs.readFileSync(path.join(root, 'site/rights.json')));
+  assert.ok(routing.repositoryNotices(original).has('tools/RI-NOTICE.md'));
+  for (const expose of [
+    (value) => value.sourceGroups[0].bases.push('ri-component'),
+    (value) => Object.values(value.assets)[0].bases.push('ri-component'),
+    (value) => Object.values(value.retained)[0].bases.push('ri-component'),
+    (value) => value.notices[0].bases.push('ri-component'),
+    (value) => value.sourceGroups[0].paths.push('tools/RI-NOTICE.md'),
+    (value) => value.sourceGroups[0].paths.push('tools'),
+    (value) =>
+      value.notices.push({
+        path: 'tools/RI-NOTICE.md',
+        scope: 'public-inline-legal-copy',
+        bases: [],
+      }),
+  ]) {
+    const value = structuredClone(original);
+    expose(value);
+    assert.equal(routing.repositoryNotices(value).has('tools/RI-NOTICE.md'), false);
+  }
+  const f = technicalFixture(
+    t,
+    (directory) => write(directory, 'tools/RI-NOTICE.md', 'changed notice\n'),
+    (directory) => {
+      const value = structuredClone(original);
+      value.notices[0].bases.push('ri-component');
+      write(directory, 'site/rights.json', JSON.stringify(value));
+    }
+  );
+  assert.equal(selectedFixture(f).repositoryOnly, false, 'base public provenance is retained');
 });
 for (const [file, lane, control, rule] of cases)
   test('real Git owner: ' + file, (t) => {

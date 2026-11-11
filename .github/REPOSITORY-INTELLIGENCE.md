@@ -132,7 +132,9 @@ has a kind, purpose, role and editing owner. Root files have individual purposes
 no unknown-path fallback silently classifies new files. Add/remove entries with
 path changes. Missing, stale, blank-purpose and dangling-owner entries fail.
 
-The derived [REPOSITORY-MAP](../REPOSITORY-MAP.md) lists all of those entries.
+The derived [REPOSITORY-MAP](../REPOSITORY-MAP.md) is a current entry bounded to
+32,768 UTF-8 bytes: root routes, current areas, configured concern owners, live
+instructions, check entrypoints and retrieval recipes. It omits exhaustive history.
 [agent-context.json](repository-intelligence/agent-context.json) adds exact source
 identity, discovered instructions, configured owner aliases and validation routes.
 Both are generated from the same projection; do not edit either by hand.
@@ -168,15 +170,15 @@ acceptance checks or existing bounds. Structural assertions and permanent guard
 negatives cannot establish semantic preservation or live maintainer decisions.
 
 Start with root/scoped AGENTS and an owning issue; read MEMORY as a dated hint
-and revalidate live facts. Known exact owners can be read directly. With a local
-runtime, verify before querying. Reuse that verified surface while source state
+and revalidate live facts. Known exact owners can be read directly. Prefer explicit `--scope current` for
+routine CLI work. With a local runtime, verify before querying. Reuse that verified surface while source state
 is unchanged; inspect the full inventory before proposing a competing owner.
 
 ```sh
 python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json build
 python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify
-python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json query 'ішью'
-python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json context-for-task 'session memory'
+python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json query 'ішью' --scope current
+python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json context-for-task 'session memory' --scope current
 python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json inventory
 python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'
 ```
@@ -209,7 +211,8 @@ review bundles without loading/parsing them as policy or silently dropping them.
 Unsafe paths, symlinks, unsupported source tables or bounds fail visibly.
 
 The two RI outputs use `derived` identity records to avoid recursive hashing;
-`verify` regenerates and compares the complete JSON and map. Code/config/catalog
+`verify` compares exact regenerated UTF-8 bytes (including final LF) of JSON/map,
+rejecting whitespace-only edits and CRLF changes as well as semantic mutation. Code/config/catalog
 or source edits invalidate freshness. Root AGENTS is bounded to 100 lines and
 MEMORY to 120 with required sections. Ordinary reviewed local/CI execution is
 implementation evidence, not a target-owned candidate security comparison.
@@ -219,3 +222,85 @@ architecture; document selected/omitted capabilities and retain notices; update
 identities, meaningful negative tests, catalog and both outputs; run verification
 and review the full diff. Never blindly copy the UA graph/CI or change research
 meaning through a tooling upgrade.
+
+
+## Scoped retrieval contract
+
+Unqualified `query`, `inventory` and the `lookup(surface, query)` API preserve
+complete legacy results. `context-for-task` additionally fixes directory-only
+instruction/check routing, including descendant instruction scopes. No full
+stored inventory or source digest is filtered. Every retrieval CLI still calls
+full `verify`; this change makes context smaller, not verification faster.
+
+Any of `--scope`, `--prefix`, `--limit` or `--cursor` opts into paged retrieval.
+Omitted scope in that mode means `all`. `current` excludes artifact/directory
+roles history/draft/generated; `history` includes history/draft; `all` includes
+every role, including generated renditions. Classification is per row and never
+inferred from dates or used to prune the complete scan. Canonical editing owners
+and applicable instructions/check metadata remain available across role boundaries.
+
+`--prefix PATH` selects an exact file/directory or its component-boundary subtree;
+it does not select similarly named siblings. Trailing slashes normalize away,
+`.` means root, and empty/absolute/traversal/empty-component paths are refused.
+For exact retrieval without lexical matching use `inventory --prefix PATH`.
+A no-hit inventory is an explicitly empty page; a lexical query miss retains
+`unresolved-use-direct-search` and is never evidence of absence.
+
+Scoped lists order hits by `(kind,path)`, directories before files, and default
+to20 hits with an integer `--limit` from1 to100. `pagination` reports offset,
+returned/total/remaining, limit, request_fingerprint and next_cursor; top-level
+source_digest identifies the complete verified projection. Repeat the same
+command/filters with `--cursor OFFSET:FINGERPRINT` from next_cursor. Fingerprints
+bind command, normalized casefolded query, scope, normalized exact prefix, limit
+and source digest. Malformed/negative/past-end positions and changed requests or
+sources fail visibly. An exact end position returns an empty last page. Cursors
+are continuation positions, not signed capabilities or stored sessions.
+
+Pagination affects only the file/artifact/directory hit arrays. Editing owners,
+explicit owner candidates, source/term metadata and all applicable instructions
+and validation routes are computed for the complete matched set before paging.
+Directory context includes descendant rows and their canonical editing owners,
+including owner-side instructions/checks outside the matched directory.
+Configured validation-route prefixes retain their lexical file-family semantics;
+only the user path filter uses component boundaries.
+
+`response_bytes` measures the complete printed UTF-8 JSON including metadata and
+final LF. It is not a whole-payload byte cap. Above65,536 bytes, response_advisory
+recommends narrowing or reading direct owners; no mandatory metadata is dropped.
+Even a one-hit page may be large for broad directory/owner requests. Short-map
+connector journeys can read owner links directly without downloading full JSON;
+no local verification claim is permitted without actual execution/evidence.
+
+Examples (from repository root):
+
+```sh
+python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json inventory --scope current --prefix site/engine --limit 20
+python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json inventory --scope history --prefix review/issue-189
+python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json query 'docs/writing.html' --scope all
+python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json capacity
+```
+
+An exact loose AGENTS.md is a live-name instruction surface, not an archive
+marker. If its own catalog role or an ancestor directory is history/draft/generated,
+build/verify refuses it. Preserve old instructions under an inert name such as
+AGENTS.before.md or as an unchanged archive member; role labels cannot silently
+activate or suppress live instruction discovery.
+
+## Capacity diagnostics
+
+`capacity` performs the same admitted path walk and tracked-file/mode checks,
+with sizes and a one-byte accessibility read per input. It does not hash full
+contents, parse policy text, validate catalog coverage or verify generated views.
+The result labels these limits explicitly; it is never a freshness certificate.
+Traversal/read errors, unsafe/symlink/unsupported inputs and missing tracked files
+fail visibly, without an inventory-complete report. Missing derived outputs are
+listed with null bytes, not silently treated as present.
+
+The complete metadata walk also runs on over-limit inventories: metrics report
+used/limit/margin for all five original bounds, maxima, top10 contributors,
+separate derived-output sizes and explicit hard_limit_violations. Exit0 means
+metadata within those bounds only; exit1 plus JSON diagnoses a hard-limit breach.
+Ordinary build/verify still reject over-limit inputs. No cap is increased and
+neither derived output is counted as hash input. Hash headroom below10,000,000
+bytes adds an advisory, without creating another hard CI gate. Complete Git
+tracked-storage accounting remains distinct from these working-tree input totals.

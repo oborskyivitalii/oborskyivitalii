@@ -495,7 +495,7 @@
     },
     "REPOSITORY-MAP.md": {
       "kind": "file",
-      "purpose": "Generated readable description/index of every repository file and directory.",
+      "purpose": "Generated compact current-repository entry, canonical owner/check routes and scoped retrieval recipes; full inventory remains in the catalog and machine projection.",
       "role": "generated",
       "owner": ".github/REPOSITORY-INTELLIGENCE.md"
     },
@@ -5485,12 +5485,6 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
-    "review/site-v1-20261002-v5-captures/credits-motion.webm": {
-      "kind": "file",
-      "purpose": "Historical motion capture: credits-motion.webm. Dated site v1 20261002 v5 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
     "review/site-v1-20261002-v5-captures/credits-night-desktop-gallery.jpg": {
       "kind": "file",
       "purpose": "Historical visual capture/reference: credits-night-desktop-gallery.jpg. Dated site v1 20261002 v5 captures iteration material.",
@@ -5512,12 +5506,6 @@
     "review/site-v1-20261002-v5-captures/credits-night-mobile.png": {
       "kind": "file",
       "purpose": "Historical visual capture/reference: credits-night-mobile.png. Dated site v1 20261002 v5 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/site-v1-20261002-v5-captures/desktop-contact-sheet.png": {
-      "kind": "file",
-      "purpose": "Historical visual capture/reference: desktop-contact-sheet.png. Dated site v1 20261002 v5 captures iteration material.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -5551,12 +5539,6 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
-    "review/site-v1-20261002-v5-captures/index-motion.webm": {
-      "kind": "file",
-      "purpose": "Historical motion capture: index-motion.webm. Dated site v1 20261002 v5 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
     "review/site-v1-20261002-v5-captures/index-night-desktop-gallery.jpg": {
       "kind": "file",
       "purpose": "Historical visual capture/reference: index-night-desktop-gallery.jpg. Dated site v1 20261002 v5 captures iteration material.",
@@ -5587,12 +5569,6 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
-    "review/site-v1-20261002-v5-captures/mobile-contact-sheet.png": {
-      "kind": "file",
-      "purpose": "Historical visual capture/reference: mobile-contact-sheet.png. Dated site v1 20261002 v5 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
     "review/site-v1-20261002-v5-captures/research-day-desktop-gallery.jpg": {
       "kind": "file",
       "purpose": "Historical visual capture/reference: research-day-desktop-gallery.jpg. Dated site v1 20261002 v5 captures iteration material.",
@@ -5620,12 +5596,6 @@
     "review/site-v1-20261002-v5-captures/research-day-mobile.png": {
       "kind": "file",
       "purpose": "Historical visual capture/reference: research-day-mobile.png. Dated site v1 20261002 v5 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/site-v1-20261002-v5-captures/research-motion.webm": {
-      "kind": "file",
-      "purpose": "Historical motion capture: research-motion.webm. Dated site v1 20261002 v5 captures iteration material.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -5683,12 +5653,6 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
-    "review/site-v1-20261002-v5-captures/talks-motion.webm": {
-      "kind": "file",
-      "purpose": "Historical motion capture: talks-motion.webm. Dated site v1 20261002 v5 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
     "review/site-v1-20261002-v5-captures/talks-night-desktop-gallery.jpg": {
       "kind": "file",
       "purpose": "Historical visual capture/reference: talks-night-desktop-gallery.jpg. Dated site v1 20261002 v5 captures iteration material.",
@@ -5740,12 +5704,6 @@
     "review/site-v1-20261002-v5-captures/writing-day-mobile.png": {
       "kind": "file",
       "purpose": "Historical visual capture/reference: writing-day-mobile.png. Dated site v1 20261002 v5 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/site-v1-20261002-v5-captures/writing-motion.webm": {
-      "kind": "file",
-      "purpose": "Historical motion capture: writing-motion.webm. Dated site v1 20261002 v5 captures iteration material.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -5953,12 +5911,6 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
-    "review/site-v1-20261002-v6-captures/desktop-contact-sheet.png": {
-      "kind": "file",
-      "purpose": "Historical visual capture/reference: desktop-contact-sheet.png. Dated site v1 20261002 v6 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
     "review/site-v1-20261002-v6-captures/index-day-desktop-gallery.jpg": {
       "kind": "file",
       "purpose": "Historical visual capture/reference: index-day-desktop-gallery.jpg. Dated site v1 20261002 v6 captures iteration material.",
@@ -5986,12 +5938,6 @@
     "review/site-v1-20261002-v6-captures/index-day-mobile.png": {
       "kind": "file",
       "purpose": "Historical visual capture/reference: index-day-mobile.png. Dated site v1 20261002 v6 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/site-v1-20261002-v6-captures/index-motion.webm": {
-      "kind": "file",
-      "purpose": "Historical motion capture: index-motion.webm. Dated site v1 20261002 v6 captures iteration material.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -6025,12 +5971,6 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
-    "review/site-v1-20261002-v6-captures/mobile-contact-sheet.png": {
-      "kind": "file",
-      "purpose": "Historical visual capture/reference: mobile-contact-sheet.png. Dated site v1 20261002 v6 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
     "review/site-v1-20261002-v6-captures/research-day-desktop-gallery.jpg": {
       "kind": "file",
       "purpose": "Historical visual capture/reference: research-day-desktop-gallery.jpg. Dated site v1 20261002 v6 captures iteration material.",
@@ -6058,12 +5998,6 @@
     "review/site-v1-20261002-v6-captures/research-day-mobile.png": {
       "kind": "file",
       "purpose": "Historical visual capture/reference: research-day-mobile.png. Dated site v1 20261002 v6 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/site-v1-20261002-v6-captures/research-motion.webm": {
-      "kind": "file",
-      "purpose": "Historical motion capture: research-motion.webm. Dated site v1 20261002 v6 captures iteration material.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -6178,12 +6112,6 @@
     "review/site-v1-20261002-v6-captures/writing-day-mobile.png": {
       "kind": "file",
       "purpose": "Historical visual capture/reference: writing-day-mobile.png. Dated site v1 20261002 v6 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/site-v1-20261002-v6-captures/writing-motion.webm": {
-      "kind": "file",
-      "purpose": "Historical motion capture: writing-motion.webm. Dated site v1 20261002 v6 captures iteration material.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -6361,12 +6289,6 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
-    "review/site-v1-20261002-v7-captures/credits-motion.webm": {
-      "kind": "file",
-      "purpose": "Historical motion capture: credits-motion.webm. Dated site v1 20261002 v7 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
     "review/site-v1-20261002-v7-captures/credits-night-desktop-gallery.jpg": {
       "kind": "file",
       "purpose": "Historical visual capture/reference: credits-night-desktop-gallery.jpg. Dated site v1 20261002 v7 captures iteration material.",
@@ -6388,12 +6310,6 @@
     "review/site-v1-20261002-v7-captures/credits-night-mobile.png": {
       "kind": "file",
       "purpose": "Historical visual capture/reference: credits-night-mobile.png. Dated site v1 20261002 v7 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/site-v1-20261002-v7-captures/desktop-contact-sheet.png": {
-      "kind": "file",
-      "purpose": "Historical visual capture/reference: desktop-contact-sheet.png. Dated site v1 20261002 v7 captures iteration material.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -6427,12 +6343,6 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
-    "review/site-v1-20261002-v7-captures/index-motion.webm": {
-      "kind": "file",
-      "purpose": "Historical motion capture: index-motion.webm. Dated site v1 20261002 v7 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
     "review/site-v1-20261002-v7-captures/index-night-desktop-gallery.jpg": {
       "kind": "file",
       "purpose": "Historical visual capture/reference: index-night-desktop-gallery.jpg. Dated site v1 20261002 v7 captures iteration material.",
@@ -6463,12 +6373,6 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
-    "review/site-v1-20261002-v7-captures/mobile-contact-sheet.png": {
-      "kind": "file",
-      "purpose": "Historical visual capture/reference: mobile-contact-sheet.png. Dated site v1 20261002 v7 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
     "review/site-v1-20261002-v7-captures/research-day-desktop-gallery.jpg": {
       "kind": "file",
       "purpose": "Historical visual capture/reference: research-day-desktop-gallery.jpg. Dated site v1 20261002 v7 captures iteration material.",
@@ -6496,12 +6400,6 @@
     "review/site-v1-20261002-v7-captures/research-day-mobile.png": {
       "kind": "file",
       "purpose": "Historical visual capture/reference: research-day-mobile.png. Dated site v1 20261002 v7 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/site-v1-20261002-v7-captures/research-motion.webm": {
-      "kind": "file",
-      "purpose": "Historical motion capture: research-motion.webm. Dated site v1 20261002 v7 captures iteration material.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -6559,12 +6457,6 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
-    "review/site-v1-20261002-v7-captures/talks-motion.webm": {
-      "kind": "file",
-      "purpose": "Historical motion capture: talks-motion.webm. Dated site v1 20261002 v7 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
     "review/site-v1-20261002-v7-captures/talks-night-desktop-gallery.jpg": {
       "kind": "file",
       "purpose": "Historical visual capture/reference: talks-night-desktop-gallery.jpg. Dated site v1 20261002 v7 captures iteration material.",
@@ -6616,12 +6508,6 @@
     "review/site-v1-20261002-v7-captures/writing-day-mobile.png": {
       "kind": "file",
       "purpose": "Historical visual capture/reference: writing-day-mobile.png. Dated site v1 20261002 v7 captures iteration material.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/site-v1-20261002-v7-captures/writing-motion.webm": {
-      "kind": "file",
-      "purpose": "Historical motion capture: writing-motion.webm. Dated site v1 20261002 v7 captures iteration material.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -17742,6 +17628,102 @@
       "purpose": "Literal failed local security scans, exact-tuple proof review and latest platform-preparation scope receipts.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-189": {
+      "kind": "directory",
+      "purpose": "Issue189 current RI navigation/capacity architecture, planning review and later source-bound execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-189/2026-11-10-analysis.md": {
+      "kind": "file",
+      "purpose": "Issue189 inspected-source architecture, proposed execution steps, refined AC01-AC05, author archive/headroom decisions and planning evidence limits.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-189/planning-review-evidence.tar.xz": {
+      "kind": "file",
+      "purpose": "Lossless first/correction planning reviews, source/packet identities and actual role launch/result receipts; no implementation acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-189/selected-files.json": {
+      "kind": "file",
+      "purpose": "Frozen issue189 T01 nineteen-file archive selection, native identities, protected archive-only boundary and conservative capacity forecast; originals not yet removed.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-189/audit-review-evidence.tar.xz": {
+      "kind": "file",
+      "purpose": "Lossless T01 source/member/native recovery proofs, pinned current/open-PR consumer inventories, first/correction reviews and preserved coupling failure diagnosis.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/site-v1-20261002-v5-captures/ARCHIVE.md": {
+      "kind": "file",
+      "purpose": "Historical capture archive locator: exact removed originals, unchanged full ZIP, relative-gallery recovery and checksums.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/site-v1-20261002-v6-captures/ARCHIVE.md": {
+      "kind": "file",
+      "purpose": "Historical capture archive locator: exact removed originals, unchanged full ZIP, relative-gallery recovery and checksums.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/site-v1-20261002-v7-captures/ARCHIVE.md": {
+      "kind": "file",
+      "purpose": "Historical capture archive locator: exact removed originals, unchanged full ZIP, relative-gallery recovery and checksums.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-189/archive-index.json": {
+      "kind": "file",
+      "purpose": "Exact T02 nineteen-file recovery index: base original identities, unchanged ZIP/member checksums and practical extraction commands.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-189/archive-review-evidence.tar.xz": {
+      "kind": "file",
+      "purpose": "Lossless T02 recovery/protection/source identities, independent role reports and actual launch/result receipts; bounded archival checkpoint, not whole-issue delivery acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-189/navigation-review-evidence.tar.xz": {
+      "kind": "file",
+      "purpose": "Lossless T03/T04 source-bound first/correction reviews, CLI/check observations and actual launch/result receipts; no full delivery acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    ".github/acceptance/issue-189.json": {
+      "kind": "file",
+      "purpose": "Owning issue189 stableAC01–05 named check mapping and explicit semantic/review/owner/trusted-delivery gates; no claimed approvals.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "tests/test_issue189_acceptance.py": {
+      "kind": "file",
+      "purpose": "Owning-policy-only exact nineteen-original archive/recovery and complete protected-base/capacity assertions; not an enduring frozen public suite.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-189/routing-review-evidence.tar.xz": {
+      "kind": "file",
+      "purpose": "Lossless issue189 source-only maintenance routing amendment, original failures, independent review and exact-source test/selection receipts; no self-activation or merge authority.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-189/delivery-review-evidence.tar.xz": {
+      "kind": "file",
+      "purpose": "Lossless T05 acceptance/test-allocation/protected-route preparation, first/correction reviews and actual source-bound launch/result receipts; no delivery permission.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-189/security-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Exact per-ID public Git/checksum recomputation proof for issue189 security dispositions; compressed original108 findings, separately pinned proof-checksum disposition and qualified historical-source limits.",
+      "role": "history",
+      "owner": "review/issue-189/2026-11-10-analysis.md"
     }
   }
 }

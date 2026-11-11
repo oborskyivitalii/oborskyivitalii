@@ -734,18 +734,37 @@ Every existing registry row and every other policy field stays equal; added rows
 must identify newly added tests. Full source validation/affected Node and enduring
 Python run, plus source-bound locked security/advisories, lint/style/RI/owning.
 Tests remain executable controls requiring the exact reviewed_sha; source selection
-code is unchanged in an eligible future delta. Numeric task snapshots, test
-removal/rename/mode/type, selection/worker/runner/registry-policy edits,
-workflows/actions/admission/classifier/issuer, locks and scanner policy stay full.
+code is unchanged in an eligible future delta. Test removal/rename/mode/type,
+selection/worker/runner/registry-policy edits, publication workflows/actions,
+admission/classifier/issuer and locks stay full.
 This enabling PR uses the old-main full route before any operational activation.
 The advisory D09 proposal remains conservative; only protected selection's explicit
 complete technical disposition can omit hosted obligations.
 
-RI/CI checksum-only refreshes may accompany eligible technical work only through
-the existing riIdentityCompatible check: all map semantics and identity input paths
-remain equal. Mapping/selection changes remain full; navigation verifies new hashes.
- Mixed/unknown/rights/public inputs
-retain full obligations. See [activation, exact-SHA control review and protected
+The issue189 maintenance extension also admits source-only RI contracts/coupling
+maps, owning acceptance policies and regular task-snapshot tests, exact Bandit and
+public-checksum review ledgers, non-executable issue evidence and historical site-v1
+capture/archive/gallery resources. Task rows stay `task-snapshot`/`issue-policy`
+with the matching newly added owning policy; every old registry row and non-test
+policy remains equal. Archive routing is not eligibility to delete evidence or
+skip recovery/fixture/rights checks. Both endpoint content/provenance are inspected.
+Only repository-component notices whose bases/direct paths are absent from all
+public source groups, assets, retained resources and public notices can omit hosting.
+
+The only workflow extension is `.github/workflows/issue-acceptance.yml`: existing
+positive ACCEPTANCE_POLICY equality/OR predicates may gain newly added policy paths.
+Existing alternatives, all other workflow bytes, jobs, commands, permissions and
+pins remain equal after predicate folding normalization; unknown changed syntax
+refuses. Scanner ledgers remain reviewed controls, never scanner-rule exemptions.
+Full source allocation, enduring Python, locked security/advisories, RI/owning,
+independent review and exact control-head admission remain required. Repository
+Basic in issue189 now uses the real-Git routing/admission suites instead of building
+the unchanged site; global source/style checks still run through their normal owners.
+
+RI/CI metadata maintenance does not establish classification authority; navigation
+verifies semantics and actual hashes. Content reuse separately keeps its stricter
+`riIdentityCompatible` identity-only proof. Mixed/unknown/public inputs and public
+rights dependencies retain full obligations. See [activation, exact-SHA control review and protected
 recovery](SITE-STAGING.md#trusted-change-admission-and-repository-delivery).
 The delivered R3/#5 integration uses accepted-platform/history reuse and the
 existing content publisher.
