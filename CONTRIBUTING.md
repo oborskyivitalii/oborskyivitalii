@@ -318,6 +318,8 @@ silently change maintainer intent.
 AGENTS is an enduring router (maximum 100 lines). MEMORY is a dated handoff with a
 maximum of 120 lines and 8,192 UTF-8 bytes, including whitespace and line endings.
 Retain `Snapshot`, `Decisions`, `Open work`, `Next session` and `Maintenance`.
+Use literal Markdown headings and keep raw HTML blocks and front matter out of
+MEMORY so the sections render as headings in GitHub.
 
 Refresh MEMORY after a completed step that changes where work can resume, at
 interruption or handoff, and after observing staging, merge, production or issue

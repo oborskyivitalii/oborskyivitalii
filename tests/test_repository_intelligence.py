@@ -779,7 +779,10 @@ class NavigationSafetyTests(unittest.TestCase):
         byte_boundary = memory + "ї" * (available_bytes // 2) + "a" * (available_bytes % 2) + "\n"
         self.assertEqual(len(line_boundary.splitlines()), 120)
         self.assertEqual(len(byte_boundary.encode("utf-8")), 8192)
-        for body in (line_boundary, byte_boundary):
+        markdown_examples = (
+            memory + "<!-- Note -->\n\n<https://example.com>\n\n```html\n<pre>\n```\n"
+        )
+        for body in (line_boundary, byte_boundary, markdown_examples):
             self.write("MEMORY.md", body)
             ri.build(self.root, self.cfg)
 
@@ -806,6 +809,31 @@ class NavigationSafetyTests(unittest.TestCase):
                 "commented heading",
                 missing + "<!--\n## Snapshot\n-->\n",
                 r"Missing continuity section ## Snapshot: MEMORY\.md",
+            ),
+            (
+                "comment followed by heading text",
+                missing + "<!-- comment -->## Snapshot\n",
+                r"Missing continuity section ## Snapshot: MEMORY\.md",
+            ),
+            (
+                "raw HTML block",
+                missing + "<pre>\n## Snapshot\n</pre>\n",
+                r"Raw HTML blocks are unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "raw HTML opener with a comment",
+                missing + "<pre><!-- comment -->\n## Snapshot\n",
+                r"Raw HTML blocks are unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "Unicode separator within a Markdown line",
+                missing + "Example\u2028## Snapshot\n",
+                r"Missing continuity section ## Snapshot: MEMORY\.md",
+            ),
+            (
+                "front matter heading",
+                "---\n## Snapshot\nstatus: active\n---\n\n" + missing,
+                r"Front matter is unsupported in continuity sections: MEMORY\.md",
             ),
         ]
         for case, body, error in cases:

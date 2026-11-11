@@ -91,14 +91,19 @@ def safe_path(root, relative):
     return current
 
 
-def active_markdown(text):
+def active_markdown(text, *, plain=False):
     """Extract a bounded active Markdown view without treating code as comments.
 
     Balanced single-line code spans are supported. A comment-bearing unmatched
     span is visibly unsupported instead of silently losing following inventory.
+    Plain mode keeps literal Markdown lines and rejects raw HTML blocks and
+    front matter for section detection.
     """
     lines, fence, comment = [], None, False
-    for line in text.splitlines():
+    source_lines = re.split(r"\r\n?|\n", text) if plain else text.splitlines()
+    if plain and source_lines[0].removeprefix("\ufeff").rstrip(" \t") == "---":
+        raise ValueError("Front matter is unsupported in continuity sections")
+    for line in source_lines:
         if fence is not None:
             if re.fullmatch(
                 r" {0,3}" + re.escape(fence[0]) + "{" + str(fence[1]) + r",}[ \t]*", line
@@ -114,6 +119,10 @@ def active_markdown(text):
                 if marker[0] != chr(96) or chr(96) not in info:
                     fence = (marker[0], len(marker))
                     continue
+            if plain and re.match(
+                r"^ {0,3}<(?:\?|!(?!--)|/?[A-Za-z][A-Za-z0-9-]*(?=[ \t/>]|$))", line
+            ):
+                raise ValueError("Raw HTML blocks are unsupported in continuity sections")
         remainder, visible = line, ""
         while remainder:
             if comment:
@@ -146,7 +155,8 @@ def active_markdown(text):
                     visible += remainder[:start]
                     comment = True
                     remainder = remainder[start + 4 :]
-        lines.append(visible)
+        if not plain or visible == line:
+            lines.append(visible)
     return "\n".join(lines)
 
 
@@ -325,7 +335,11 @@ def check_continuity(config, texts):
         headings = contract.get("headings", [])
         if not headings:
             continue
-        active_lines = set(active_markdown(body).splitlines())
+        try:
+            active_body = active_markdown(body, plain=True)
+        except ValueError as error:
+            raise ValueError(f"{error}: {path}") from error
+        active_lines = set(active_body.split("\n"))
         for heading in headings:
             if heading not in active_lines:
                 raise ValueError(f"Missing continuity section {heading}: {path}")
