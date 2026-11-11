@@ -62,7 +62,7 @@
     },
     "HANDOFF": {
       "kind": "human",
-      "description": "Independent Exploratory QA follows the dated checkpoint, compares current facts to exact GitHub evidence, and reconstructs the stopping point, open acceptance and next action for open, merged and closed-unmerged PR states."
+      "description": "Independent Exploratory QA follows the dated checkpoint and compares current facts to exact GitHub evidence. Rewalk open, merged and closed-unmerged states, including interruption before, during and after owner admission or conditional refresh. Verify the first needed action, exact head/base and attempt, required owner, and reuse of passing evidence."
     },
     "LIFECYCLE": {
       "kind": "human",

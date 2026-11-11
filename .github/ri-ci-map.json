@@ -727,7 +727,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "49b4ee1537e5373d7f01fad52b1fd63187c63b3cc0a0587641a3f025bc14a048",
+    "digest": "9ccd8328a284fb9a307802005d2cef328180373ac612a356dab9a7a48a18b61d",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -799,7 +799,7 @@
       },
       {
         "path": ".github/acceptance/issue-188.json",
-        "sha256": "0f9339be3aaf5d135de3750523105f5a41984f5c2fd4750825da623d179adbb2"
+        "sha256": "ce3dd939b70e5a074fc0fa90244c7482b1d6fc39b063a47bd64534d4119692d9"
       },
       {
         "path": ".github/acceptance/issue-189.json",
@@ -995,7 +995,7 @@
       },
       {
         "path": "CONTRIBUTING.md",
-        "sha256": "f792241bd9ff67deba5696ea73cf7a9d8c7fc326b650c938c2440d1a0e3bb10c"
+        "sha256": "88fe5129451990df334876d572af9cc00b028bb7a5a5eb7c970b2e82256e8b5f"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",

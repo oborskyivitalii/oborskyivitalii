@@ -322,9 +322,11 @@ Use exactly the five literal top-level ATX section lines `## Snapshot`,
 The guard reserves level-two ATX heading syntax at zero to three leading spaces
 for these lines. It also rejects standalone runs of `-` or `=` at that
 indentation to exclude Setext headings. Use `***` for a horizontal rule.
-Start fenced examples at column one. Put literal `<!--` examples inside those
-fences, including examples that would otherwise use inline code. Keep HTML
-comments and front matter outside the handoff prose. Put literal HTML tag
+Use column-one fences for examples. The placement check covers indented openers
+and common list or blockquote prefixes. A fence opener after a GFM footnote
+definition marker can pass that placement check. Put literal `<!--` examples in
+column-one fences, including examples that would otherwise use inline code. Keep
+HTML comments and front matter outside the handoff prose. Put literal HTML tag
 examples in those fences or write each opening angle bracket as `&lt;` in prose.
 Use Markdown `*emphasis*` and `**strong emphasis**`. Markdown links, bare URLs
 and angle-delimited URI autolinks are supported. Write a short relative link

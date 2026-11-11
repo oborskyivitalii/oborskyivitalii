@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "09ccc5cf9ba94650b0711c6a86881e59b0fb156fa11e7746b6f4b974e4e830e1",
+    "digest": "f0ce8f6b1b4b782523cabfd4bef3b1b7f2ccf3fc5082382ae64e9e35b73c4ffb",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -112,7 +112,7 @@
       {
         "path": ".github/acceptance/issue-188.json",
         "identity_mode": "content",
-        "sha256": "0f9339be3aaf5d135de3750523105f5a41984f5c2fd4750825da623d179adbb2"
+        "sha256": "ce3dd939b70e5a074fc0fa90244c7482b1d6fc39b063a47bd64534d4119692d9"
       },
       {
         "path": ".github/acceptance/issue-189.json",
@@ -251,7 +251,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "1e47323023c71a5cec899a17330bba8cb4a5bc1ffe28eb475939c67b00eeb448"
+        "sha256": "037e2caa4975a193a4f1676be2d27b7f359971f9cdfc960824cbcc5931b2d6b4"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -381,7 +381,7 @@
       {
         "path": "CONTRIBUTING.md",
         "identity_mode": "content",
-        "sha256": "f792241bd9ff67deba5696ea73cf7a9d8c7fc326b650c938c2440d1a0e3bb10c"
+        "sha256": "88fe5129451990df334876d572af9cc00b028bb7a5a5eb7c970b2e82256e8b5f"
       },
       {
         "path": "LICENSE-CODE.md",
@@ -401,7 +401,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "d092e58d8c00b6380d7200bf2dad682c323145fef3b3fa8308d236ab134f7585"
+        "sha256": "a7eb1eb398fc94eddedb18d063af5442d627d7e170f1f57708e475d574cbe2c0"
       },
       {
         "path": "NOTICE.md",
@@ -4835,12 +4835,12 @@
       {
         "path": "review/issue-188/2026-11-11-analysis.md",
         "identity_mode": "content",
-        "sha256": "011a292e607f7b9e95b908d5542a3e062dd82ed91823f8c7997a3280bd5e05d6"
+        "sha256": "616980b22da6327e0649af9d08f3a021da097a8383c088f751a03e0b2a22866b"
       },
       {
         "path": "review/issue-188/review-evidence.tar.xz",
         "identity_mode": "content",
-        "sha256": "8de73f26a44a0bc2b2189d9317c371d396a0b849819dc4bfed72dc003ea11618"
+        "sha256": "166bbca483f38e1a04c3c62587417c74bee26297c17fc7f93303cc32b3442a66"
       },
       {
         "path": "review/issue-189/2026-11-10-analysis.md",
