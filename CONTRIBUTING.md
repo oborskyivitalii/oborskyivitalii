@@ -323,13 +323,12 @@ The guard reserves level-two ATX heading syntax at zero to three leading spaces
 for these lines. It also rejects standalone runs of `-` or `=` at that
 indentation to exclude Setext headings. Use `***` for a horizontal rule.
 Start fenced examples at column one. Put literal `<!--` examples inside those
-fences, including examples that would otherwise use inline code. Keep raw HTML
-blocks, HTML comments and front matter outside the handoff prose. The raw HTML
-check covers openers at the beginning of a line with up to three leading spaces.
-A simple paired `<em>` or `<strong>` at the start of a paragraph can include
-same-line code spans and URI autolinks. Use ordinary Markdown links in regular
-prose. In a line that starts with paired HTML emphasis, use `[` only inside a
-code span or URI autolink, or escape it.
+fences, including examples that would otherwise use inline code. Keep HTML
+comments and front matter outside the handoff prose. Put literal HTML tag
+examples in those fences or write each opening angle bracket as `&lt;` in prose.
+Use Markdown `*emphasis*` and `**strong emphasis**`. Markdown links, bare URLs
+and angle-delimited URI autolinks are supported. Write a short relative link
+destination such as `(notes)` without angle brackets if it resembles an HTML tag.
 
 Refresh MEMORY after a completed step that changes where work can resume, at
 interruption or handoff, and after observing staging, merge, production or issue

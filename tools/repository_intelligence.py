@@ -91,26 +91,6 @@ def safe_path(root, relative):
     return current
 
 
-def simple_inline_emphasis(line):
-    # Brackets outside literals may start links whose destination contains backticks.
-    visible = re.sub(
-        r"\\[\\`<\[]|<[A-Za-z][A-Za-z0-9+.-]{1,31}:[^<>\x00-\x20\x7f]*>"
-        r"|(?P<ticks>`+)(?!`).*?(?<!`)(?P=ticks)(?!`)|`+",
-        " ",
-        line,
-    )
-    return (
-        "[" not in visible
-        and re.fullmatch(
-            r" {0,3}<(em|strong)>(?:[^<]|<(?![A-Za-z/!?]))*</\1>"
-            r"(?:[^<]|<(?![A-Za-z/!?]))*",
-            visible,
-            re.IGNORECASE,
-        )
-        is not None
-    )
-
-
 def active_markdown(text, *, plain=False):
     """Extract a bounded active Markdown view without treating code as comments.
 
@@ -118,7 +98,7 @@ def active_markdown(text, *, plain=False):
     span is visibly unsupported instead of silently losing following inventory.
     Plain mode recognizes column-one fences for section detection. Literal
     HTML comment markers are allowed only in fenced example content. Plain
-    prose rejects leading raw HTML block openers and front matter.
+    prose reserves raw HTML tag syntax and rejects front matter.
     """
     lines, fence, comment = [], None, False
     source_lines = (
@@ -140,12 +120,11 @@ def active_markdown(text, *, plain=False):
                 raise ValueError("Code fences must start at column one in continuity sections")
             if not plain and line.startswith(("    ", "\t")):
                 continue
-            if (
-                plain
-                and re.match(r"^ {0,3}<(?:\?|!(?!--)|/?[A-Za-z][A-Za-z0-9-]*(?=[ \t/>]|$))", line)
-                and not simple_inline_emphasis(line)
+            if plain and re.search(
+                r"<(?:\?|!(?!--)|/?[A-Za-z][A-Za-z0-9-]*(?=[ \t\f\v]|/?>|$))",
+                line,
             ):
-                raise ValueError("Raw HTML blocks are unsupported in continuity sections")
+                raise ValueError("Raw HTML tag syntax is unsupported in continuity sections")
             if plain and "<!--" in line:
                 raise ValueError("HTML comment markers are unsupported in continuity sections")
             opening = re.match(r"^ {0,3}(\x60{3,}|~{3,})(.*)$", line)

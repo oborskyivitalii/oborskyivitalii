@@ -780,25 +780,22 @@ class NavigationSafetyTests(unittest.TestCase):
         self.assertEqual(len(line_boundary.splitlines()), 120)
         self.assertEqual(len(byte_boundary.encode("utf-8")), 8192)
         markdown_examples = memory + "<https://example.com>\n\n```html\n<pre>\n<!-- Note -->\n```\n"
-        inline_code = memory + "\n- ```one `code` span``` and [CI](https://example.com)\n"
+        inline_code = (
+            memory + "\n- ```one `code` span``` and [CI](https://example.com)\n"
+            "\nSee https://example.com/decision and www.example.com.\n"
+        )
         inline_emphasis = (
             memory
-            + "\n<em>Owner decision</em> is recorded.\n\n<strong>`<owner>`</strong>\n"
-            + "\n<em>Progress < 100%</em>\n"
-            + "\n<em>Owner decision</em> <https://example.com/decision>\n"
-            + "\n<em>See <https://example.com/decision></em>\n"
-            + "\n<em>Record ``git `status` output``</em>\n"
-            + "\n<strong>``<details>` inside code``</strong>\n"
-            + r"<em>Record \``<details>`</em>"
-            + "\n"
-            + r"<em>Record \```<details>``</em>"
-            + "\n"
-            + r"<em>See `[state]`, <https://example.com/[ci]> and \[owner]</em>"
-            + "\n"
+            + "\n*Owner decision* is recorded.\n\n**`owner`**\n"
+            + "\n*Progress < 100%*\n"
+            + "\n*See <https://example.com/decision> and [the notes](notes).*\n"
+            + "\n*Record ``git `status` output`` and `www.example.com`.*\n"
+            + "\n**See <https://example.com/`a> and `[state]`.**\n"
         )
         literal_headings_in_examples = (
             memory + "\n***\n\n```md\n## Snapshot\n## *Snapshot*\nSnapshot\n-\n"
-            "<em>Example `<!--` here</em>\n```\n"
+            "See <h2>Snapshot</h2>\n<em>Example `<!--` here</em>\n```\n"
+            "\nSee &lt;h2>Snapshot&lt;/h2> and [the notes](<notes/checkpoint.md>).\n"
         )
         for body in (
             line_boundary,
@@ -898,36 +895,86 @@ class NavigationSafetyTests(unittest.TestCase):
             (
                 "raw HTML block",
                 missing + "<pre>\n## Snapshot\n</pre>\n",
-                r"Raw HTML blocks are unsupported in continuity sections: MEMORY\.md",
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "raw HTML block with form feed after the tag name",
+                "<pre\f>\n" + memory,
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "raw HTML block with vertical tab after the tag name",
+                "<pre\v>\n" + memory,
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "raw duplicate heading in regular prose",
+                memory + "\nSee <h2>Snapshot</h2> in the checkpoint.\n",
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "raw collapsible container before the sections",
+                "Read <details>\n\n" + memory,
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "literal HTML tag in ordinary inline code",
+                memory + "\nSee `<h2>Snapshot</h2>` in the example.\n",
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
             ),
             (
                 "standalone emphasis opener",
                 missing + "<em>\n## Snapshot\n</em>\n",
-                r"Raw HTML blocks are unsupported in continuity sections: MEMORY\.md",
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "paired raw HTML emphasis",
+                memory + "\n<em>See <https://example.com> and `status`.</em>\n",
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "paired raw HTML after the start of a multiline code span",
+                memory + "\nBefore `open\n<em>`<h2>Snapshot</h2>`</em>\n",
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
             ),
             (
                 "raw tag nested in otherwise paired inline emphasis",
                 "<em><details></em>\n\n" + memory,
-                r"Raw HTML blocks are unsupported in continuity sections: MEMORY\.md",
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
             ),
             (
                 "raw tag after a code span with a different delimiter length",
                 "<em>``literal`<details></em>\n\n" + memory,
-                r"Raw HTML blocks are unsupported in continuity sections: MEMORY\.md",
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
             ),
             (
                 "raw tag after a real span adjacent to an escaped backtick",
                 r"<em>Record \``literal`<details>`</em>" + "\n\n" + memory,
-                r"Raw HTML blocks are unsupported in continuity sections: MEMORY\.md",
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
             ),
             (
                 "raw tag after a link destination containing a backtick",
                 memory + "\n<em>[CI](https://example.com/`a)<details>`</em>\n",
-                r"Raw HTML blocks are unsupported in continuity sections: MEMORY\.md",
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "raw heading after a bare GFM URL containing a backtick",
+                memory + "\n<em>https://example.com/`a <h2>Snapshot</h2>`</em>\n",
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "raw heading after a bare FTP URL containing a backtick",
+                memory + "\n<em>ftp://example.com/`a <h2>Snapshot</h2>`</em>\n",
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "bare WWW form after paired emphasis",
+                memory + "\n<em>Source</em> WWW.example.com\n",
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
             ),
             (
                 "comment marker in an inline code example",
-                memory + "\n<em>Example `<!--` here</em>\n",
+                memory + "\n*Example `<!--` here*\n",
                 r"HTML comment markers are unsupported in continuity sections: MEMORY\.md",
             ),
             (
@@ -948,7 +995,7 @@ class NavigationSafetyTests(unittest.TestCase):
             (
                 "raw HTML opener with a comment",
                 missing + "<pre><!-- comment -->\n## Snapshot\n",
-                r"Raw HTML blocks are unsupported in continuity sections: MEMORY\.md",
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
             ),
             (
                 "Unicode separator within a Markdown line",
@@ -968,7 +1015,7 @@ class NavigationSafetyTests(unittest.TestCase):
             (
                 "BOM before raw HTML",
                 "\ufeff<pre>\n" + memory,
-                r"Raw HTML blocks are unsupported in continuity sections: MEMORY\.md",
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
             ),
             (
                 "nested fence before a top-level fenced example",

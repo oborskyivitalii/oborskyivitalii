@@ -15,12 +15,13 @@ Dated handoff. Last verified: **2026-11-11**. Revalidate live sources when resum
 
 ## Open work
 
-- Reviewed predecessor `eb49a28` passed Source, Navigation and Owning acceptance. Its [conditional admission](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43026323767/job/130541880446) reported `missing staging admission`. The [owning issue](https://github.com/oborskyivitalii/oborskyivitalii/issues/188) records the subsequent Markdown findings and current gates.
+- PR #192 reached Ready at `7a0552e`. Its [Source](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43033467463), [Navigation](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43033467440) and [Owning acceptance](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43033467121) checks passed. [Admission](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43033467595/job/130566145375) reported `missing staging admission`.
+- The next independent review reopened AC01 and AC02 on that head. The correction prepared in Draft reserves raw HTML tags outside fenced examples, uses Markdown emphasis and refreshes the worked handoff. Use [#188](https://github.com/oborskyivitalii/oborskyivitalii/issues/188) for the correction evidence and current ACs. AC04 requires exact-head owner admission and protected merge.
 - [#187 animation](https://github.com/oborskyivitalii/oborskyivitalii/issues/187), [PR #171 reviewer admission](https://github.com/oborskyivitalii/oborskyivitalii/pull/171) and [PR #79 essay](https://github.com/oborskyivitalii/oborskyivitalii/pull/79) remain separately owned.
 
 ## Next session
 
-1. Verify the live PR head and [#188 acceptance](review/issue-188/2026-11-11-analysis.md#acceptance-evidence). For pending corrections, complete affected local checks and independent review in Draft, then publish any unpublished work. Before marking the PR Ready, verify the live head matches the reviewed source. Reuse successful Source, Navigation and Owning acceptance runs for that head or collect the missing Ready checks before admission.
+1. Verify the live PR head and [#188 acceptance](review/issue-188/2026-11-11-analysis.md#acceptance-evidence). If the correction is still in Draft, complete review and local checks, publish any unpublished work and verify the published head before marking Ready. Use Source, Navigation and Owning acceptance results for the live corrected head before admission.
 2. After same-head checks and the owner's review, follow the [repository delivery procedure](guides/SITE-STAGING.md#trusted-change-admission-and-repository-delivery). The owner dispatches Change admission on `main` with PR #192 and its full reviewed SHA. After admission succeeds, refresh the conditional check with a PR description edit.
 3. After authorized protected merge, verify the repository post-merge result and refresh this checkpoint with the observed outcome.
 
