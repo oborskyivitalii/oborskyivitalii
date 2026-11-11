@@ -292,7 +292,7 @@ def instruction_paths(path, instructions):
     )
 
 
-def path_inventory(root, config, records, texts, instructions):
+def path_inventory(root, config, records, texts, instructions, continuity_markdown):
     catalog = json.loads(texts[config["catalog"]])
     if catalog.get("schema_version") != 1:
         raise ValueError("Unsupported path catalog schema")
@@ -322,12 +322,12 @@ def path_inventory(root, config, records, texts, instructions):
             raise ValueError(f"Missing path owner: {path}")
         row = {"path": path, **entry, "instructions": instruction_paths(path, instructions)}
         if kind == "file":
-            body = texts.get(path, "")
-            title = (
-                re.search(r"^#\s+(.+)$", active_markdown(body), re.M)
-                if path.endswith(".md")
-                else None
-            )
+            title = None
+            if path.endswith(".md"):
+                body = continuity_markdown.get(path)
+                if body is None:
+                    body = active_markdown(texts.get(path, ""))
+                title = re.search(r"^#\s+(.+)$", body, re.MULTILINE)
             row["title"] = title.group(1) if title else PurePosixPath(path).name
             artifacts.append(row)
         else:
@@ -336,6 +336,8 @@ def path_inventory(root, config, records, texts, instructions):
 
 
 def check_continuity(config, texts):
+    """Validate continuity and return the active Markdown used for section checks."""
+    continuity_markdown = {}
     for path, contract in config.get("continuity", {}).items():
         body = texts[path]
         if len(body.splitlines()) > contract["max_lines"]:
@@ -366,6 +368,8 @@ def check_continuity(config, texts):
                 raise ValueError(f"Missing continuity section {heading}: {path}")
             if occurrences > 1:
                 raise ValueError(f"Duplicate continuity section {heading}: {path}")
+        continuity_markdown[path] = active_body
+    return continuity_markdown
 
 
 def in_scope(row, scope):
@@ -495,7 +499,7 @@ def build(root, config_path):
     ]
     if not any(x["path"] == "AGENTS.md" for x in instructions):
         raise ValueError("Root AGENTS.md is required")
-    check_continuity(config, texts)
+    continuity_markdown = check_continuity(config, texts)
     terms = []
     for p in config.get("glossaries", []):
         for title in re.findall(r"^#{2,3}\s+(.+?)\s*$", active_markdown(texts[p]), re.M):
@@ -551,7 +555,9 @@ def build(root, config_path):
             raise ValueError(f"Missing supported source-registry schema in {p}")
     if len({x["id"] for x in sources}) != len(sources):
         raise ValueError("Duplicate source ID in represented registries")
-    artifacts, directories = path_inventory(root, config, records, texts, instructions)
+    artifacts, directories = path_inventory(
+        root, config, records, texts, instructions, continuity_markdown
+    )
     entries = {row["path"]: row for row in artifacts + directories}
     for instruction in instructions:
         path = instruction["path"]

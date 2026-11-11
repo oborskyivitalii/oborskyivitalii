@@ -7,7 +7,7 @@
     {
       "id": "AC01",
       "intent": "Retain each of the five active canonical MEMORY headings once and enforce inclusive 120-line and 8,192-byte UTF-8 limits.",
-      "automated_scope": "The maintained guard and navigation test cover exact limits, a multibyte overage, five literal top-level ATX sections, Setext marker refusal, raw HTML tag refusal, Markdown emphasis and fenced comment-marker examples.",
+      "automated_scope": "The maintained guard and navigation test cover exact limits, a multibyte overage, five literal top-level ATX sections, Setext marker refusal, raw HTML tag refusal and Markdown emphasis. Full RI builds verify fenced comment examples with a BOM or U+2028, the inventory title and original byte identity.",
       "checks": ["CONTINUITY", "INVENTORY"],
       "gates": ["REQUIREMENTS"]
     },
@@ -62,7 +62,7 @@
     },
     "HANDOFF": {
       "kind": "human",
-      "description": "Independent Exploratory QA follows the worked MEMORY pointers, compares current facts to exact GitHub evidence, and reconstructs the stopping point, open acceptance and next action."
+      "description": "Independent Exploratory QA follows the dated checkpoint, compares current facts to exact GitHub evidence, and reconstructs the stopping point, open acceptance and next action for open, merged and closed-unmerged PR states."
     },
     "LIFECYCLE": {
       "kind": "human",

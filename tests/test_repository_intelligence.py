@@ -808,6 +808,24 @@ class NavigationSafetyTests(unittest.TestCase):
             self.write("MEMORY.md", body)
             ri.build(self.root, self.cfg)
 
+        fenced_comment = "```md\nLiteral `<!--\n```\n\n"
+        for label, body in (
+            ("BOM before opening fence", "\ufeff" + fenced_comment + memory),
+            ("BOM before title", "\ufeff" + memory + fenced_comment),
+            ("Unicode separator in fence", memory + "```md\n```\u2028Literal `<!--\n```\n"),
+        ):
+            with self.subTest(accepted=label):
+                self.write("MEMORY.md", body)
+                surface = ri.build(self.root, self.cfg)
+                artifact = next(row for row in surface["artifacts"] if row["path"] == "MEMORY.md")
+                record = next(
+                    row
+                    for row in surface["source_identity"]["inputs"]
+                    if row["path"] == "MEMORY.md"
+                )
+                self.assertEqual(artifact["title"], "Memory")
+                self.assertEqual(record["sha256"], ri.digest(body.encode("utf-8")))
+
         byte_overage = byte_boundary[:-1] + "a\n"
         self.assertEqual(len(byte_overage.encode("utf-8")), 8193)
         self.assertLess(len(byte_overage), 8192)
