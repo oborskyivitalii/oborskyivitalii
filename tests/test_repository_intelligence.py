@@ -779,9 +779,7 @@ class NavigationSafetyTests(unittest.TestCase):
         byte_boundary = memory + "ї" * (available_bytes // 2) + "a" * (available_bytes % 2) + "\n"
         self.assertEqual(len(line_boundary.splitlines()), 120)
         self.assertEqual(len(byte_boundary.encode("utf-8")), 8192)
-        markdown_examples = (
-            memory + "<!-- Note -->\n\n<https://example.com>\n\n```html\n<pre>\n```\n"
-        )
+        markdown_examples = memory + "<https://example.com>\n\n```html\n<pre>\n<!-- Note -->\n```\n"
         for body in (line_boundary, byte_boundary, markdown_examples):
             self.write("MEMORY.md", body)
             ri.build(self.root, self.cfg)
@@ -808,12 +806,12 @@ class NavigationSafetyTests(unittest.TestCase):
             (
                 "commented heading",
                 missing + "<!--\n## Snapshot\n-->\n",
-                r"Missing continuity section ## Snapshot: MEMORY\.md",
+                r"HTML comment markers are unsupported in continuity sections: MEMORY\.md",
             ),
             (
                 "comment followed by heading text",
                 missing + "<!-- comment -->## Snapshot\n",
-                r"Missing continuity section ## Snapshot: MEMORY\.md",
+                r"HTML comment markers are unsupported in continuity sections: MEMORY\.md",
             ),
             (
                 "raw HTML block",
@@ -834,6 +832,31 @@ class NavigationSafetyTests(unittest.TestCase):
                 "front matter heading",
                 "---\n## Snapshot\nstatus: active\n---\n\n" + missing,
                 r"Front matter is unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "BOM before a fenced example",
+                "\ufeff```\n" + memory + "```\n",
+                r"Missing continuity section ## Snapshot: MEMORY\.md",
+            ),
+            (
+                "BOM before raw HTML",
+                "\ufeff<pre>\n" + memory,
+                r"Raw HTML blocks are unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "nested fence before a top-level fenced example",
+                "- ```\n  example\n  ```\n\n```\n" + memory + "```\n",
+                r"Code fences must start at column one in continuity sections: MEMORY\.md",
+            ),
+            (
+                "escaped comment marker before a top-level fenced example",
+                "\\<!--\n\n```\n-->\n" + memory + "```\n",
+                r"HTML comment markers are unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "nested comment before a top-level fenced example",
+                "- <!--\n  note\n\n```\n-->\n" + memory + "```\n",
+                r"HTML comment markers are unsupported in continuity sections: MEMORY\.md",
             ),
         ]
         for case, body, error in cases:

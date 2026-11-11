@@ -96,12 +96,14 @@ def active_markdown(text, *, plain=False):
 
     Balanced single-line code spans are supported. A comment-bearing unmatched
     span is visibly unsupported instead of silently losing following inventory.
-    Plain mode keeps literal Markdown lines and rejects raw HTML blocks and
-    front matter for section detection.
+    Plain mode supports only top-level fences for section detection. It rejects
+    raw HTML blocks, HTML comment markers and front matter outside examples.
     """
     lines, fence, comment = [], None, False
-    source_lines = re.split(r"\r\n?|\n", text) if plain else text.splitlines()
-    if plain and source_lines[0].removeprefix("\ufeff").rstrip(" \t") == "---":
+    source_lines = (
+        re.split(r"\r\n?|\n", text.removeprefix("\ufeff")) if plain else text.splitlines()
+    )
+    if plain and source_lines[0].rstrip(" \t") == "---":
         raise ValueError("Front matter is unsupported in continuity sections")
     for line in source_lines:
         if fence is not None:
@@ -111,6 +113,10 @@ def active_markdown(text, *, plain=False):
                 fence = None
             continue
         if not comment:
+            if plain and re.match(
+                r"^(?:[ \t]|>|[-+*][ \t]|\d{1,9}[.)][ \t])+(?:`{3,}|~{3,})", line
+            ):
+                raise ValueError("Code fences must start at column one in continuity sections")
             if line.startswith(("    ", "\t")):
                 continue
             opening = re.match(r"^ {0,3}(\x60{3,}|~{3,})(.*)$", line)
@@ -123,6 +129,11 @@ def active_markdown(text, *, plain=False):
                 r"^ {0,3}<(?:\?|!(?!--)|/?[A-Za-z][A-Za-z0-9-]*(?=[ \t/>]|$))", line
             ):
                 raise ValueError("Raw HTML blocks are unsupported in continuity sections")
+        if plain:
+            if "<!--" in line:
+                raise ValueError("HTML comment markers are unsupported in continuity sections")
+            lines.append(line)
+            continue
         remainder, visible = line, ""
         while remainder:
             if comment:
@@ -155,8 +166,7 @@ def active_markdown(text, *, plain=False):
                     visible += remainder[:start]
                     comment = True
                     remainder = remainder[start + 4 :]
-        if not plain or visible == line:
-            lines.append(visible)
+        lines.append(visible)
     return "\n".join(lines)
 
 

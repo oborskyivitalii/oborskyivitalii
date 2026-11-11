@@ -10,7 +10,7 @@ Dated handoff. Last verified: **2026-11-11**. Revalidate live sources when resum
 
 ## Decisions
 
-- Keep the five MEMORY sections, at most 120 lines and 8,192 UTF-8 bytes. Refresh the same handoff as progress, interruptions and actual delivery change where work resumes. See the [#188 preimplementation checkpoint](https://github.com/oborskyivitalii/oborskyivitalii/issues/188#preimplementation-checkpoint--11-november-2026).
+- Keep the five MEMORY sections, at most 120 lines and 8,192 UTF-8 bytes. Refresh the same handoff as progress, interruptions and actual delivery change where work resumes. The preimplementation decision is in [#188](https://github.com/oborskyivitalii/oborskyivitalii/issues/188).
 - The maintainer split capacity, MEMORY and animation into [#189](https://github.com/oborskyivitalii/oborskyivitalii/issues/189), [#188](https://github.com/oborskyivitalii/oborskyivitalii/issues/188) and [#187](https://github.com/oborskyivitalii/oborskyivitalii/issues/187). #189 delivered 10,516,300 bytes of RI hash-input headroom with the existing caps.
 
 ## Open work
@@ -21,7 +21,7 @@ Dated handoff. Last verified: **2026-11-11**. Revalidate live sources when resum
 ## Next session
 
 1. Open [#188](https://github.com/oborskyivitalii/oborskyivitalii/issues/188), verify the linked PR head and inspect the [acceptance matrix](review/issue-188/2026-11-11-analysis.md#acceptance-evidence). Resolve any remaining independent review findings on that source.
-2. Run the selected trusted lane's checks and record the merge decision in the PR. After an observed merge or closure, replace this checkpoint with the new verified state.
+2. On the reviewed PR head, run GitHub's source, navigation and owning-policy checks. Record the maintainer's exact-head review and merge decision, then verify Change admission. After observing merge or closure, replace this checkpoint with the verified state.
 
 ## Maintenance
 
