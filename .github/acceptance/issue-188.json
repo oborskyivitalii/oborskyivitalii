@@ -7,7 +7,7 @@
     {
       "id": "AC01",
       "intent": "Retain each of the five active canonical MEMORY headings once and enforce inclusive 120-line and 8,192-byte UTF-8 limits.",
-      "automated_scope": "The maintained guard and navigation test cover exact limits, a multibyte overage, missing, inactive or duplicate canonical headings and supported inline Markdown.",
+      "automated_scope": "The maintained guard and navigation test cover exact limits, a multibyte overage, the five literal top-level ATX sections, Setext marker refusal, bounded inline emphasis and fenced comment-marker examples.",
       "checks": ["CONTINUITY", "INVENTORY"],
       "gates": ["REQUIREMENTS"]
     },

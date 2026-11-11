@@ -317,11 +317,19 @@ silently change maintainer intent.
 
 AGENTS is an enduring router (maximum 100 lines). MEMORY is a dated handoff with a
 maximum of 120 lines and 8,192 UTF-8 bytes, including whitespace and line endings.
-The canonical level-two ATX headings are `Snapshot`, `Decisions`, `Open work`,
-`Next session` and `Maintenance`. Use each once. Start fenced examples at column one. A
-simple paired `<em>` or `<strong>` at the start of a paragraph can include
-inline code and URI autolinks. Keep raw HTML blocks, comment markers and front
-matter outside the handoff prose.
+Use exactly the five literal top-level ATX section lines `## Snapshot`,
+`## Decisions`, `## Open work`, `## Next session` and `## Maintenance`, each once.
+The guard reserves level-two ATX heading syntax at zero to three leading spaces
+for these lines. It also rejects standalone runs of `-` or `=` at that
+indentation to exclude Setext headings. Use `***` for a horizontal rule.
+Start fenced examples at column one. Put literal `<!--` examples inside those
+fences, including examples that would otherwise use inline code. Keep raw HTML
+blocks, HTML comments and front matter outside the handoff prose. The raw HTML
+check covers openers at the beginning of a line with up to three leading spaces.
+A simple paired `<em>` or `<strong>` at the start of a paragraph can include
+same-line code spans and URI autolinks. Use ordinary Markdown links in regular
+prose. In a line that starts with paired HTML emphasis, use `[` only inside a
+code span or URI autolink, or escape it.
 
 Refresh MEMORY after a completed step that changes where work can resume, at
 interruption or handoff, and after observing staging, merge, production or issue

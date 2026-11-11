@@ -92,15 +92,16 @@ def safe_path(root, relative):
 
 
 def simple_inline_emphasis(line):
-    # Inspect HTML markers after masking Markdown literals on the same line.
+    # Brackets outside literals may start links whose destination contains backticks.
     visible = re.sub(
-        r"\\[\\`<]|<[A-Za-z][A-Za-z0-9+.-]{1,31}:[^<>\x00-\x20\x7f]*>"
+        r"\\[\\`<\[]|<[A-Za-z][A-Za-z0-9+.-]{1,31}:[^<>\x00-\x20\x7f]*>"
         r"|(?P<ticks>`+)(?!`).*?(?<!`)(?P=ticks)(?!`)|`+",
         " ",
         line,
     )
     return (
-        re.fullmatch(
+        "[" not in visible
+        and re.fullmatch(
             r" {0,3}<(em|strong)>(?:[^<]|<(?![A-Za-z/!?]))*</\1>"
             r"(?:[^<]|<(?![A-Za-z/!?]))*",
             visible,
@@ -115,8 +116,9 @@ def active_markdown(text, *, plain=False):
 
     Balanced single-line code spans are supported. A comment-bearing unmatched
     span is visibly unsupported instead of silently losing following inventory.
-    Plain mode supports only top-level fences for section detection. It rejects
-    raw HTML blocks, HTML comment markers and front matter outside examples.
+    Plain mode recognizes column-one fences for section detection. Literal
+    HTML comment markers are allowed only in fenced example content. Plain
+    prose rejects leading raw HTML block openers and front matter.
     """
     lines, fence, comment = [], None, False
     source_lines = (
@@ -136,24 +138,25 @@ def active_markdown(text, *, plain=False):
                 r"^(?:[ \t]|>|[-+*][ \t]|\d{1,9}[.)][ \t])+(?:`{3,}[^`]*|~{3,}.*)$", line
             ):
                 raise ValueError("Code fences must start at column one in continuity sections")
-            if line.startswith(("    ", "\t")):
+            if not plain and line.startswith(("    ", "\t")):
                 continue
-            opening = re.match(r"^ {0,3}(\x60{3,}|~{3,})(.*)$", line)
-            if opening:
-                marker, info = opening.groups()
-                if marker[0] != chr(96) or chr(96) not in info:
-                    fence = (marker[0], len(marker))
-                    continue
             if (
                 plain
                 and re.match(r"^ {0,3}<(?:\?|!(?!--)|/?[A-Za-z][A-Za-z0-9-]*(?=[ \t/>]|$))", line)
                 and not simple_inline_emphasis(line)
             ):
                 raise ValueError("Raw HTML blocks are unsupported in continuity sections")
-        if plain:
-            if "<!--" in line:
+            if plain and "<!--" in line:
                 raise ValueError("HTML comment markers are unsupported in continuity sections")
-            lines.append(line)
+            opening = re.match(r"^ {0,3}(\x60{3,}|~{3,})(.*)$", line)
+            if opening:
+                marker, info = opening.groups()
+                if marker[0] != chr(96) or chr(96) not in info:
+                    fence = (marker[0], len(marker))
+                    continue
+        if plain:
+            if not line.startswith(("    ", "\t")):
+                lines.append(line)
             continue
         remainder, visible = line, ""
         while remainder:
@@ -370,15 +373,19 @@ def check_continuity(config, texts):
             active_body = active_markdown(body, plain=True)
         except ValueError as error:
             raise ValueError(f"{error}: {path}") from error
-        active_lines = active_body.split("\n")
-        for heading in headings:
-            if heading not in active_lines:
-                raise ValueError(f"Missing continuity section {heading}: {path}")
-            title = r"[ \t]+".join(map(re.escape, heading.removeprefix("## ").split(" ")))
-            occurrences = re.findall(
-                rf"^ {{0,3}}##[ \t]+{title}(?:[ \t]+#+)?[ \t]*$", active_body, re.M
+        if re.search(r"^ {0,3}(?:-+|=+)[ \t]*$", active_body, re.M):
+            raise ValueError(
+                f"Setext underline markers are unsupported in continuity sections: {path}"
             )
-            if len(occurrences) > 1:
+        active_headings = re.findall(r"^ {0,3}##(?:[ \t][^\n]*)?$", active_body, re.M)
+        for heading in active_headings:
+            if heading not in headings:
+                raise ValueError(f"Noncanonical continuity section {heading!r}: {path}")
+        for heading in headings:
+            occurrences = active_headings.count(heading)
+            if occurrences == 0:
+                raise ValueError(f"Missing continuity section {heading}: {path}")
+            if occurrences > 1:
                 raise ValueError(f"Duplicate continuity section {heading}: {path}")
 
 

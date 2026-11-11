@@ -780,7 +780,7 @@ class NavigationSafetyTests(unittest.TestCase):
         self.assertEqual(len(line_boundary.splitlines()), 120)
         self.assertEqual(len(byte_boundary.encode("utf-8")), 8192)
         markdown_examples = memory + "<https://example.com>\n\n```html\n<pre>\n<!-- Note -->\n```\n"
-        inline_code = memory + "\n- ```one `code` span```\n"
+        inline_code = memory + "\n- ```one `code` span``` and [CI](https://example.com)\n"
         inline_emphasis = (
             memory
             + "\n<em>Owner decision</em> is recorded.\n\n<strong>`<owner>`</strong>\n"
@@ -793,8 +793,13 @@ class NavigationSafetyTests(unittest.TestCase):
             + "\n"
             + r"<em>Record \```<details>``</em>"
             + "\n"
+            + r"<em>See `[state]`, <https://example.com/[ci]> and \[owner]</em>"
+            + "\n"
         )
-        literal_headings_in_examples = memory + "\n```md\n## Snapshot\n```\n"
+        literal_headings_in_examples = (
+            memory + "\n***\n\n```md\n## Snapshot\n## *Snapshot*\nSnapshot\n-\n"
+            "<em>Example `<!--` here</em>\n```\n"
+        )
         for body in (
             line_boundary,
             byte_boundary,
@@ -826,19 +831,54 @@ class NavigationSafetyTests(unittest.TestCase):
                 r"Duplicate continuity section ## Snapshot: MEMORY\.md",
             ),
             (
-                "duplicate active heading with Markdown heading delimiters",
+                "noncanonical active heading with Markdown heading delimiters",
                 memory + "\n  ## Snapshot ##\n",
-                r"Duplicate continuity section ## Snapshot: MEMORY\.md",
+                r"Noncanonical continuity section.*: MEMORY\.md",
             ),
             (
-                "duplicate active heading with extra internal spaces",
+                "noncanonical active heading with extra internal spaces",
                 memory + "\n## Open   work ##\n",
-                r"Duplicate continuity section ## Open work: MEMORY\.md",
+                r"Noncanonical continuity section.*: MEMORY\.md",
             ),
             (
-                "duplicate active heading with an internal tab",
+                "noncanonical active heading with an internal tab",
                 memory + "\n## Next\tsession\n",
-                r"Duplicate continuity section ## Next session: MEMORY\.md",
+                r"Noncanonical continuity section.*: MEMORY\.md",
+            ),
+            (
+                "duplicate rendered heading with inline emphasis",
+                memory + "\n## *Snapshot*\n",
+                r"Noncanonical continuity section.*: MEMORY\.md",
+            ),
+            (
+                "duplicate rendered heading with an HTML entity",
+                memory + "\n## Snapsho&#116;\n",
+                r"Noncanonical continuity section.*: MEMORY\.md",
+            ),
+            (
+                "extra top-level heading",
+                memory + "\n## History\n",
+                r"Noncanonical continuity section.*: MEMORY\.md",
+            ),
+            (
+                "empty top-level heading",
+                memory + "\n##\n",
+                r"Noncanonical continuity section.*: MEMORY\.md",
+            ),
+            (
+                "heading syntax in a low-indentation list continuation",
+                memory + "\n- Note\n\n  ## Example\n",
+                r"Noncanonical continuity section.*: MEMORY\.md",
+            ),
+            (
+                "duplicate rendered Setext section",
+                memory + "\nSnapshot\n   - \t\n",
+                r"Setext underline markers are unsupported.*: MEMORY\.md",
+            ),
+            (
+                "Setext title underline",
+                memory + "\nSnapshot\n===\n",
+                r"Setext underline markers are unsupported.*: MEMORY\.md",
             ),
             (
                 "fenced heading",
@@ -879,6 +919,26 @@ class NavigationSafetyTests(unittest.TestCase):
                 "raw tag after a real span adjacent to an escaped backtick",
                 r"<em>Record \``literal`<details>`</em>" + "\n\n" + memory,
                 r"Raw HTML blocks are unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "raw tag after a link destination containing a backtick",
+                memory + "\n<em>[CI](https://example.com/`a)<details>`</em>\n",
+                r"Raw HTML blocks are unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "comment marker in an inline code example",
+                memory + "\n<em>Example `<!--` here</em>\n",
+                r"HTML comment markers are unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "comment marker in an indented code example",
+                memory + "\n    <!--\n",
+                r"HTML comment markers are unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "comment marker in a fence opener",
+                memory + "\n```md <!--\nexample\n```\n",
+                r"HTML comment markers are unsupported in continuity sections: MEMORY\.md",
             ),
             (
                 "inline example followed by a real fence",
