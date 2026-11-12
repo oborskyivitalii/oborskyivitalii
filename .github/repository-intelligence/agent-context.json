@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "4f67058dd23a674f430ac72c352ba4b4c20387759643f069a1aae9fbb59bb009",
+    "digest": "a6b0a473ed2c6f5b52591a49fb82149edc37cbe045a0f861bd103685040f762c",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -118,6 +118,11 @@
         "path": ".github/acceptance/issue-189.json",
         "identity_mode": "content",
         "sha256": "7c01e1b38a20b507c239f83cb62f39ff234ddad736f27202059b864f5eea8b1f"
+      },
+      {
+        "path": ".github/acceptance/issue-199.json",
+        "identity_mode": "content",
+        "sha256": "c12c5400d42f11ad928fe3cb5df7a23febcb0bdf49064440d7b396b91b108646"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -241,17 +246,17 @@
       {
         "path": ".github/repository-layout.json",
         "identity_mode": "content",
-        "sha256": "274834aa91b8d049d2c2767303dd50f5147db7b06f0f1602c8e507758d04d1a3"
+        "sha256": "592fe4b883c2feb2d4a5761396378999057ddbb3be66a58e35d140247c2ba57b"
       },
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "27070d1d3966797d1d7c77ff3fcf1d8af0bddd1ebafe12f440e05c4540a35586"
+        "sha256": "694b60b3b2dfbff37aedbfe2b6f267cd8158b70b9aa1bd70eea48631cb750182"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "e54ffac28fc2cb4c0a9a27e937ab8c89968e4725386b44edcd88e154dad67aed"
+        "sha256": "c36d10b4db200d69f45f2e162e2a76d5149320650a3dc30b65fd134294f8e0bb"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -401,7 +406,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "a7eb1eb398fc94eddedb18d063af5442d627d7e170f1f57708e475d574cbe2c0"
+        "sha256": "29e2597749a68012b66dc1853d06bcbb86fe6c1c197c6cbce4a7e03a1e985866"
       },
       {
         "path": "NOTICE.md",
@@ -930,12 +935,17 @@
       {
         "path": "guides/README.md",
         "identity_mode": "content",
-        "sha256": "cf157db6e15b370336cbc7b0829d03b63be2e74d5e8759a3cb18ada213d1b7a6"
+        "sha256": "ca8099cd2998806759ac04b83efcceaae2d3404f234da48ecc062debdd8eaa7e"
       },
       {
         "path": "guides/REPOSITORIES.md",
         "identity_mode": "content",
         "sha256": "b29cbb24291a699fce92e93a9066dc18566d8311a79a5368ae2ab063abe96c1f"
+      },
+      {
+        "path": "guides/REPOSITORY-WORKFLOW.md",
+        "identity_mode": "content",
+        "sha256": "9114c78909984b378f36352c306dacf4869d008765423668d5ca515e57ce397f"
       },
       {
         "path": "guides/SITE-ANALYTICS.md",
@@ -4891,6 +4901,11 @@
         "path": "review/issue-189/selected-files.json",
         "identity_mode": "content",
         "sha256": "cee9263e5928946e6acd595ac3a0853ed2aad324837766fd89443d70de96e8bb"
+      },
+      {
+        "path": "review/issue-199/2026-11-12-review.md",
+        "identity_mode": "content",
+        "sha256": "97d90818849f3cb688c5585c1aca80b79dfd136dc9242b65d84a61fdd1c80f9e"
       },
       {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -14026,6 +14041,17 @@
       "title": "issue-189.json"
     },
     {
+      "path": ".github/acceptance/issue-199.json",
+      "kind": "file",
+      "purpose": "Owning acceptance mapping for the repository engineering guide and its external review gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-199.json"
+    },
+    {
       "path": ".github/acceptance/issue-31.json",
       "kind": "file",
       "purpose": "Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates.",
@@ -15828,6 +15854,17 @@
         "AGENTS.md"
       ],
       "title": "Three-repository ownership and agent routing"
+    },
+    {
+      "path": "guides/REPOSITORY-WORKFLOW.md",
+      "kind": "file",
+      "purpose": "Engineering overview of the repository harness, agents, site architecture and delivery routes.",
+      "role": "guide",
+      "owner": "guides/REPOSITORY-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "How the author-site repository works"
     },
     {
       "path": "guides/SITE-ANALYTICS.md",
@@ -24529,6 +24566,17 @@
         "AGENTS.md"
       ],
       "title": "selected-files.json"
+    },
+    {
+      "path": "review/issue-199/2026-11-12-review.md",
+      "kind": "file",
+      "purpose": "Requirements preflight, independent review and verification evidence for issue 199.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 199 review and verification"
     },
     {
       "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -44294,6 +44342,16 @@
       "path": "review/issue-189",
       "kind": "directory",
       "purpose": "Issue189 current RI navigation/capacity architecture, planning review and later source-bound execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-199",
+      "kind": "directory",
+      "purpose": "Source-bound review and delivery evidence for the repository workflow guide.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [

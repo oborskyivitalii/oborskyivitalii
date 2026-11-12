@@ -1081,6 +1081,12 @@
       "role": "guide",
       "owner": "guides/REPOSITORIES.md"
     },
+    "guides/REPOSITORY-WORKFLOW.md": {
+      "kind": "file",
+      "purpose": "Engineering overview of the repository harness, agents, site architecture and delivery routes.",
+      "role": "guide",
+      "owner": "guides/REPOSITORY-WORKFLOW.md"
+    },
     "guides/SITE-ANALYTICS.md": {
       "kind": "file",
       "purpose": "Disabled-by-default production analytics adapter contract and measurement limitations.",
@@ -17748,6 +17754,24 @@
       "purpose": "Exact per-ID public Git/checksum recomputation proof for issue189 security dispositions; compressed original108 findings, separately pinned proof-checksum disposition and qualified historical-source limits.",
       "role": "history",
       "owner": "review/issue-189/2026-11-10-analysis.md"
+    },
+    ".github/acceptance/issue-199.json": {
+      "kind": "file",
+      "purpose": "Owning acceptance mapping for the repository engineering guide and its external review gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-199": {
+      "kind": "directory",
+      "purpose": "Source-bound review and delivery evidence for the repository workflow guide.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-199/2026-11-12-review.md": {
+      "kind": "file",
+      "purpose": "Requirements preflight, independent review and verification evidence for issue 199.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }
