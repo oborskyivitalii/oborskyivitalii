@@ -480,3 +480,117 @@ Verified the SHA-256 of each approved item against the assignment. Inspected bot
 | evidence:intent-ac.txt | 626dfc8158704618af9cbba650aa94632388da9879ca2174e04b02722777f199 |
 | evidence:candidate-34f0e39f.diff | 9366be6199832a49f9fe66fdb9969aa398e389674be6f9d904bfffaaf7a0aeed |
 | evidence:issue198_e_delta-intent.txt bytes [0,432) | 34a083abe774dbfb6d8b74026e3ac732559136fd408181a44682babc2c4bb720 |
+
+
+## Result destination correction
+
+The independent Requirements, Code and White-box reviews below examined GitHub head `42f28682` and tree `4c9c57ed`. Code and White-box independently demonstrated two ways to assign an unsafe result destination. Requirements preflight for the correction ran with `fork_turns=none` as `/root/issue198_output_requirements` against the same exact candidate. It mapped the fix to AC03/04/06 and the maintained-entry-point check to AC05.
+
+The correction rejects overlap with assigned evidence reads and previous output reservations before dispatch. The journal binds one evidence root. The CLI checks for an absent destination and a real parent. Tests cover blocking refusal before preparation, earlier pending, completed and excluded paths, original bytes, and a fresh replacement. The parent-mediated filesystem check and serialized journal do not establish provider or OS isolation.
+
+
+# Independent Requirements & Acceptance result — issue #198
+
+Verdict: **pass for the bounded candidate requirements/acceptance-linkage review**. No blocking requirements defect found. This is not whole-issue acceptance, evidence of other completed roles, or permission to merge.
+
+Reviewer: `/root/issue198_r_verified`; independent final source review. Candidate: `42f28682eefcf332e15b8337a02909ea29791a1d`; base: `f51d3f4f49b9fa456a8fa25fc419dc17dd2307aa`; tree: `4c9c57ed43736f7cf2b8e218526c308d203b9f63`. Packet: `cfdbd9257389746b3b6bf2e0a240ce50c61768e774191b2595c34ee9c59f5aba`. Commit/tree identities are supplied identities; this execution independently verified assigned file hashes, not repository refs.
+
+## Inspected inputs and boundary
+
+Read all eight assigned inputs. SHA-256 matches the supplied manifest for each:
+
+| Space/path | SHA-256 |
+| --- | --- |
+| candidate:agents/reviewers/README.md | 725c8432ec1f2fea9a61cdbaba01d32676778b3e83b7a73fe2faea422b4ea0a8 |
+| candidate:agents/reviewers/requirements-acceptance.md | 010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6 |
+| candidate:AGENTS.md | 120bba8320b0ed2c24fb6ce21cb317b9773490f5fafc19fc780f8b42781caba3 |
+| candidate:CONTRIBUTING.md | c3523000d1277d0dbd3159f25fe7dee9bd238e869cf6d26671025ca3c3c1e357 |
+| candidate:tools/orchestration/reviewer-admission.cjs | 91ae53ff3cb7840a8ee11e8daa7b1b7300d8f5a13cd9f51cfc97021dcfe86204 |
+| evidence:intent-ac.txt | 626dfc8158704618af9cbba650aa94632388da9879ca2174e04b02722777f199 |
+| evidence:candidate-42f28682.diff | 2d92d31d41242a59c61c70bb97a86854d2f99fae22f96eb77345a7d709b812b8 |
+| evidence:issue198_r_verified-intent.txt, bytes [0,432) | 34a083abe774dbfb6d8b74026e3ac732559136fd408181a44682babc2c4bb720 |
+
+The first combined read output was truncated; subsequent bounded reads recovered the omitted CONTRIBUTING text. The entire diff was read in successive line ranges, including changed guide, acceptance mapping, adapter contract/CLI and tests. No peer result, parent conversation, unrelated memory or nonmanifest source was inspected. No unexpected exposure observed. Automatic provider context internals and launch acceptance are not independently observable from this execution; the orchestrator must retain the actual launch receipt. Ambient platform/project instructions were present. The permitted focused test execution loads its normal dependencies; this is execution, not an expansion of the source-reading scope.
+
+## Acceptance trace
+
+| Requirement | Check / owner gate | Observed result and limit |
+| --- | --- | --- |
+| AC01 launch paths and shared ownership | Guide diff, common contract, API/CLI definitions | Guide distinguishes parent-mediated API and CLI, offline reducer, #198 component ownership, #167 pilot and historical #171 v1 receipts. Live owner state not supplied. |
+| AC02 fresh identities and isolation | prepare, recordLaunch, verifyLaunch; focused cases | Explicit none-fork emitted; prior lineage, duplicate task names/handles and author handle refused. Corrections use a newly prepared spawn. Component cases pass; real launch receipts remain LIVE. |
+| AC03 role-specific source packets | packet/readGrants, exact hashes, verifyResult; approved-slice and read/output tests | Common/role prompt and CONTRIBUTING required; pinned manifest/slices and actual assigned result path checked. Source contents and current oracle form reuse identity. All assigned reviewer inputs inspected here. |
+| AC04 refusal, contamination and newer attempts | latest, outstanding, exclusion/checkpoint and request occurrence paths | Pending/adverse latest attempts hold; exclusion retained; stale blockers survive replacement; explicit repeated same-SHA occurrences persist. Focused positive/refusal cases pass. Native chronology remains parent-observed. |
+| AC05 behavioral verification | Focused Node suite; COMPONENT and LIVE gates | 15/15 component tests pass, no skips or failures. Changed-source correction and negative cases are tested. Fixtures are not evidence of actual model execution; real first/correction evidence still required. |
+| AC06 complete results and receipts | Common receipt contract, immutable transitions, verifyResult | Required completed result and approved read evidence are checked; current execution supplies this role only. Other roles and real requested/accepted receipts were intentionally not read. REVIEW/LIVE remain separate. |
+| AC07 maintained contracts and delivery | Full supplied diff, acceptance/RI/profile additions | Routing and guide align with fresh correction policy; owning mapping names COMPONENT, LIVE, REVIEW and NATIVE without claiming deterministic checks establish those gates. RI checks, protected delivery and merge not observed here. |
+| AC08 applicability and reuse | CONTRIBUTING matrix, surfaceRoles/select, scopeDigest and explicit occurrence tests | Visible interaction, factual memory/checkpoint, recovery/routing/oracle, unchanged receipt/metadata and unknown scope have explicit behavior. Existing owning gates union with scope; #167/#198 preserve all roles. Same-SHA requests supersede old approvals. |
+
+Actual check: `node --test tests/reviewer-admission.test.cjs` in the candidate root; exit 0, 15 tests passed, 0 failed, 0 skipped, 570.249723 ms reported duration. Test implementation inspected through the approved full diff. This focused run establishes component behavior only.
+
+## Findings and dispositions
+
+No new defect findings. No inherited finding IDs or neutral correction facts were supplied, so none is represented as resolved. Prior reviewer coverage was not reused.
+
+Examined risks: correction/session reuse; role merging; omission/default fork; source/oracle drift; mixed-history slice leakage; incomplete declared reads; wrong result destination; dropped explicit review requests; older approval bypass; unavailable excluded artifacts; preservation of unresolved blockers and nonblocking facts; inappropriate role exemptions; confusion between fixture success and actual independent execution.
+
+The accepted scope has assessable ACs and separates deterministic source checks from actual execution and owner delivery gates. The trust boundary is explicit: the parent supplies accurate impact classification, observations, author identities and independently retained checkpoints. The adapter correlates those inputs; it cannot attest hidden provider state or discover an unreported out-of-band spawn.
+
+Next gate: retain this bounded result and actual launch/read evidence, complete other applicable independent roles, reconcile findings after their completion, and verify exact-source COMPONENT/LIVE/NATIVE evidence before marking whole criteria complete. No new owner decision is inferred by this result; merge and delivery authority remain separate.
+
+
+# Independent code review of #198
+
+**Verdict: changes required.** Candidate `42f28682eefcf332e15b8337a02909ea29791a1d`, base `f51d3f4f49b9fa456a8fa25fc419dc17dd2307aa`, tree `4c9c57ed43736f7cf2b8e218526c308d203b9f63`. Packet `4ad870b468e789430a3d8bd6005457d128684b92880591bda7c7d9e91021c297`.
+
+| Finding | Disposition | Evidence |
+| --- | --- | --- |
+| C198-01 | Resolved | `packet` at lines 363–367 builds slice-only grants for sliced evidence paths. `verifyResult` at lines 578–592 rejects out-of-grant read claims and requires every grant for an admissible pass. Focused tests reject both an empty pass read list and a whole-file claim for mixed evidence. Nonpassing results retain partial in-scope reads without satisfying the gate. |
+| C198-02 | Open, blocking | `verifyResult` at lines 593–599 now rejects a result reference at a different path and checks the bytes. `packet` at lines 355–367 still allows an approved evidence input to be assigned as the output. The in-memory API probe assigned the existing `oracle.txt` input as output and submitted its original bytes unchanged, relabeled as a result reference. The completion observation carried the matching digest, and `prepare`, `record-result`, and `assess` accepted it. An existing input thereby satisfies the completed independent output gate, and a real reviewer using this assignment could overwrite the read-only input. AC03, AC04 and AC06. Reject assignments that overlap evidence inputs or an earlier assignment and add a regression case for same-path input/result aliasing. |
+| C198-03 | Resolved | `explicitOccurrence` at lines 234–257 rejects out-of-order and duplicate occurrence identities and requires a new occurrence to enter through `select`. `checkControl` at lines 216–230 and `verifyRole` at lines 682–694 bind assessment to the newest recorded role occurrence, including when the current impact record omits it. The same-SHA test exercises distinct completed executions and rejection of the older result. |
+| C198-04 | Resolved | `prepare` at lines 474–476 and `correctionFacts` at lines 509–520 require one bounded fact with location, symptom and invariant for every outstanding ID. `packet` includes those facts in the launch message and digest. The stale-blocker replacement and open-nonblocking tests cover missing facts and correct handoff. |
+
+Ran `node --test tests/reviewer-admission.test.cjs` from the supplied candidate root. All 15 tests passed. Ran the targeted in-memory probe above using the test fixture definitions from the approved diff. The probe reached an `accepted` assessment and made no workspace changes.
+
+Inspected the approved candidate paths `agents/reviewers/README.md`, `agents/reviewers/code-review.md`, `AGENTS.md`, `CONTRIBUTING.md` and `tools/orchestration/reviewer-admission.cjs`. Inspected the approved evidence `intent-ac.txt`, the affected source/test/CLI and protocol changes in `candidate-42f28682.diff`, and only bytes [0, 432) of `issue198_c_verified-intent.txt`. All eight approved identities matched, including common prompt SHA-256 `725c8432ec1f2fea9a61cdbaba01d32676778b3e83b7a73fe2faea422b4ea0a8` and role prompt SHA-256 `26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697`. No unexpected exposure observed. Review was bounded to the assigned correction scope. Provider internals, live delivery and independent source surfaces outside the supplied packet were unobserved.
+
+
+# Issue #198 independent White-box QA correction review
+
+**Verdict: changes-required.** W198-01, W198-02 and W198-03 are resolved. W198-04 remains open and blocks AC04/AC06.
+
+- Execution handle `/root/issue198_w_verified`, independent correction verification. I received a role-specific assignment and neutral finding facts. Actual launch arguments and response are parent-owned observations. Provider-internal context, model and memory behavior were outside this review.
+- Supplied candidate `42f28682eefcf332e15b8337a02909ea29791a1d`, base `f51d3f4f49b9fa456a8fa25fc419dc17dd2307aa`, tree `4c9c57ed43736f7cf2b8e218526c308d203b9f63`.
+- Packet `32b5169f97a28e3e918fcaa0d227799065c0a32b94fd309bd41bbb0c77d440c5`.
+- Unexpected exposure: none observed. I used the supplied manifest, the supplied neutral facts, the exact authorized evidence slice and the permitted local component checks. Test and CLI changes were inspected through the approved diff. I did not inspect current peer output, parent scratch notes, unrelated memory or historical review files.
+
+## Inspected inputs
+
+| Space and path | SHA-256 |
+| --- | --- |
+| candidate `agents/reviewers/README.md` | `725c8432ec1f2fea9a61cdbaba01d32676778b3e83b7a73fe2faea422b4ea0a8` |
+| candidate `agents/reviewers/white-box-qa.md` | `832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f` |
+| candidate `AGENTS.md` | `120bba8320b0ed2c24fb6ce21cb317b9773490f5fafc19fc780f8b42781caba3` |
+| candidate `CONTRIBUTING.md` | `c3523000d1277d0dbd3159f25fe7dee9bd238e869cf6d26671025ca3c3c1e357` |
+| candidate `tools/orchestration/reviewer-admission.cjs` | `91ae53ff3cb7840a8ee11e8daa7b1b7300d8f5a13cd9f51cfc97021dcfe86204` |
+| evidence `intent-ac.txt` | `626dfc8158704618af9cbba650aa94632388da9879ca2174e04b02722777f199` |
+| evidence `candidate-42f28682.diff` | `2d92d31d41242a59c61c70bb97a86854d2f99fae22f96eb77345a7d709b812b8` |
+| evidence `issue198_w_verified-intent.txt` bytes [0,432) | `34a083abe774dbfb6d8b74026e3ac732559136fd408181a44682babc2c4bb720` |
+
+## Findings and test allocation
+
+| Finding | Risk, expected behavior and check | Disposition |
+| --- | --- | --- |
+| W198-01 | AC03/04/06. `verifyResult` at 578–599 accepts a pass only with every assigned read grant and the assigned evidence-relative result path. The suite rejects empty reads, full-file access to a sliced grant, and an unrelated artifact path, then admits the positive case. | Resolved |
+| W198-02 | AC04/05/06. `openFindings` at 657–670 reads checkpointed findings. `verifyRole` at 682–697 verifies the selected current launch and result. The suite replaces a stale result with unavailable original bytes and also verifies that an old blocker survives until disposition by a passing replacement. | Resolved |
+| W198-03 | AC03/05/06. `packet` at 368–391 puts neutral facts in the emitted message, and `prepare`/`correctionFacts` at 474–520 require matching outstanding IDs before returning the spawn arguments. The suite refuses omitted facts and asserts that the actual emitted message includes their contents, for both blocking and nonblocking cases. | Resolved |
+| W198-04 | AC04/06. `packet` validates path syntax at 355–362, and `prepare` at 469–489 checks uniqueness of task names while leaving output paths unreserved. The second launch can instruct a fresh reviewer to overwrite the first artifact. `recordResult` at 631 rejects the duplicate only after the assigned write. The common contract requires first outputs to remain intact. | Open, blocking. Reject reuse of previous assigned paths during preparation, including earlier pending or excluded attempts. Add a regression to the maintained reviewer-admission suite that asserts preparation refuses the collision before the new attempt or launch is recorded. |
+
+The permanent test selector is `tests/reviewer-admission.test.cjs` under the affected source test profiles. The candidate diff maps it to the source-check workflow via the maintained selector and leaves actual bridge execution to the LIVE gate.
+
+## Execution evidence
+
+- Ran `node --test tests/reviewer-admission.test.cjs` from the supplied candidate root. Exit 0. Tests 15, passes 15, failures 0, cancelled 0, skipped 0, todo 0. Node reported 586.667028 ms.
+- Ran an inline `node -` probe using the approved diff's in-memory fixture and current adapter. The first attempt completed. A correction prepared with a distinct task name and the unchanged packet output produced `same assigned output: true review_0.md`. Import returned `EVIDENCE`. Exit 0.
+- Ran a second bounded diagnostic using a different result body to distinguish path reuse from loss of evidence. The first artifact matched its checkpoint before the attempted correction write. The fixture's correction write replaced bytes at the same path, then the probe returned `first artifact still matches checkpoint: false` and `import: EVIDENCE`. Exit 0. This probe models the write in memory and did not touch a real first review artifact.
+
+No structural coverage percentage was measured. Live invocation correlation, live chronology and cross-role reconciliation remain owner evidence. I make no reuse claim from earlier judgments.

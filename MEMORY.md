@@ -14,7 +14,7 @@ Dated handoff. Last verified: **2026-11-12**. Revalidate live sources when resum
 
 ## Open work
 
-- #198 requires current independent roles and exact-head native source, owning and delivery evidence. The protected-base classifier selected the full control route. Draft skips remain pending.
+- #198 review of `42f2868` found two ways to overwrite independent review evidence. The next candidate reserves a new output path before dispatch. Current independent results and exact-head native checks remain required. The protected-base classifier selected the full control route.
 - [#187 animation](https://github.com/oborskyivitalii/oborskyivitalii/issues/187) and [PR #79 essay](https://github.com/oborskyivitalii/oborskyivitalii/pull/79) have separate owners.
 
 ## Next session

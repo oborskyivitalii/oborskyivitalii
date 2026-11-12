@@ -76,7 +76,7 @@ Guard success does not establish full architecture, formatting or performance co
    does not justify `Closes`/`Fixes`.
 2. Follow accepted scope and existing review, synchronization, validation and source/research
    procedures. Keep substantive PRs Draft during iteration; apply the mandatory
-   [four independent quality-agent roles](#independent-quality-agents) and
+   [independent quality-agent roles selected by scope and owning gates](#independent-quality-agents) and
    [independent subagent review after every iteration](#independent-review-after-every-iteration).
 3. Run the mapped checks and reconcile human/live gates through
    [ACCEPTANCE.md](.github/ACCEPTANCE.md), including session-end issue checkbox updates.

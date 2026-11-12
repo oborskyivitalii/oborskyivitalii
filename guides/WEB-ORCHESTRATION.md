@@ -178,7 +178,13 @@ and assess contract. The parent does the following for each owner/scope.
    instructions and oracle. Implementation-only source changes do not replace
    that comparison.
 3. Use one parent-maintained attempt journal per owner/scope. Write the prepared
-   entry and its digest before invoking the emitted exact spawn arguments.
+   entry and its digest before invoking the emitted exact spawn arguments. Keep
+   one evidence root for the journal. Reserve a fresh result path before dispatch,
+   separate from every assigned input and every prior attempt's output, including
+   pending and excluded attempts. CLI preparation checks that the destination is
+   absent and its parent is a real directory reached without symbolic links. A
+   direct parent performs the same filesystem check before invoking the tool.
+   Use separate roots for concurrent scopes and never overwrite an existing result.
    Record the actual tool invocation and accepted response. Import them against
    the checkpoint. On completion retain the first output, observed reads,
    verdict, finding IDs and any disclosure. Bind each observed read to its
