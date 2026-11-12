@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "32259e66a63058ead6b1b6d943b88e1faf71ed317dfcf2f44214966dd320920e",
+    "digest": "50060cf9dae7ebb5f1cdbabdaf8ca5d8da0c3c063bad20c25ecb2f080c626724",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -108,6 +108,11 @@
         "path": ".github/acceptance/issue-184.json",
         "identity_mode": "content",
         "sha256": "6176042326ceed9b683a8c3f76ea2608f13ea688e260ae7787ccce7e8018cc8a"
+      },
+      {
+        "path": ".github/acceptance/issue-187.json",
+        "identity_mode": "content",
+        "sha256": "f741d86ae8e09b010013acb46da920035f9bb75228e2470cd1736cbe3a24d86a"
       },
       {
         "path": ".github/acceptance/issue-188.json",
@@ -251,12 +256,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "2c45602bece8e8bf860475935a675ee41512dce82f5e8f79bc6d9b33cd8a5795"
+        "sha256": "f4dcd7eec19fa0af29a951113e299721a46444a50150f5d9e8132e68c73248b2"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "ab5f8b7b2e7c2c3f1215b33c53e674ee5780a20bc8ce76f88fa8cb861cb8c04a"
+        "sha256": "3fe02457c1008b417208d907981080c3e488a42eb53ecd32c06f6381799757ec"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -281,7 +286,7 @@
       {
         "path": ".github/workflows/issue-acceptance.yml",
         "identity_mode": "content",
-        "sha256": "626c1710fe641d7054fd8d10e81534693880e125ac8796656285fa2d5f18f287"
+        "sha256": "77f5174c8a7adb40103097f3dda14906ab4065815e596c24bb461711996347fa"
       },
       {
         "path": ".github/workflows/navigation.yml",
@@ -406,7 +411,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "6b1bab744912585399a211342341a23c86798183165a95cae68a3aa832cf7f10"
+        "sha256": "959262494935f48e0002f525bc0884d89c1ad2736f254d918c08d6587e25b493"
       },
       {
         "path": "NOTICE.md",
@@ -4836,6 +4841,11 @@
         "path": "review/issue-184/review-evidence.tar.xz",
         "identity_mode": "content",
         "sha256": "ab6b476aa1ca5cb89e8ea00573ef2309fd208d35b2ed53fc791b4ec166135722"
+      },
+      {
+        "path": "review/issue-187/2026-11-12-controller-preregistration.md",
+        "identity_mode": "content",
+        "sha256": "a7d89e466b5ed59ba6e8304ddce8596560ec7a078bb9f374b0c8202129c677e2"
       },
       {
         "path": "review/issue-188/2026-11-11-analysis.md",
@@ -11705,7 +11715,7 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "186f3dfdd8dc6d67b7e1f5c8299a9b8fe09765f939fda173d53165bcf414ad74"
+        "sha256": "5192dcff49f2bc3dec012a8b622ad9a3dfad98c585e109e69d96e25d2052b8e8"
       },
       {
         "path": "tests/content-baseline.test.cjs",
@@ -12680,7 +12690,7 @@
       {
         "path": "tools/quality/color-motion-contract.cjs",
         "identity_mode": "content",
-        "sha256": "a1b3c0d2cf346c2781bfd56703f1435257ea009171f85424b454f05478d0f3b0"
+        "sha256": "42e7d76db34e51c6f21178e84af6fcb19c384120298dbb54d7ae9941ccba851f"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -12975,7 +12985,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "db1432feeaf8d8905d9fba1abefbc6e949f553a29591c3006a683a6da243daec"
+        "sha256": "3ee8170b5925ffb9d1fdcb522437fa9b8ae4f149197661bbce62d6e7ca570d81"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
@@ -14032,6 +14042,17 @@
         "AGENTS.md"
       ],
       "title": "issue-184.json"
+    },
+    {
+      "path": ".github/acceptance/issue-187.json",
+      "kind": "file",
+      "purpose": "Issue #187 AC mapping for shared pulse, navigation lifecycle, preview and release.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-187.json"
     },
     {
       "path": ".github/acceptance/issue-188.json",
@@ -24438,6 +24459,17 @@
         "AGENTS.md"
       ],
       "title": "review-evidence.tar.xz"
+    },
+    {
+      "path": "review/issue-187/2026-11-12-controller-preregistration.md",
+      "kind": "file",
+      "purpose": "Issue #187 protected staging runtime preregistration and independent verification.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue #187 protected staging preregistration"
     },
     {
       "path": "review/issue-188/2026-11-11-analysis.md",
@@ -44370,6 +44402,16 @@
       "path": "review/issue-184",
       "kind": "directory",
       "purpose": "Issue184 source-bound archival inventory, lossless recovery and post-production process evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-187",
+      "kind": "directory",
+      "purpose": "Versioned requirements and verification for the #187 fractal pulse draft.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 187,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/187",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Shared Writing-scene document pulse with counter-rotating depth layers and a stationary camera.",
+      "automated_scope": "Basic verifies the compiled artifact, finite geometry, syntax and size. Focused Node checks exercise the actual router and scene. Hosted observation and author visual acceptance are external.",
+      "checks": ["BASIC"],
+      "gates": ["PREVIEW", "REVIEW"]
+    },
+    {
+      "id": "AC02",
+      "intent": "Concurrent read and outgoing wave, one visible pulse even on a warm load, neutral paint before admitted arrival, and preserved reader navigation.",
+      "automated_scope": "Basic verifies common generation and artifact integrity. Focused navigation and space suites separately exercise deadline, stale read, history and motion preference. Hosted timings and device behavior require observation.",
+      "checks": ["BASIC"],
+      "gates": ["INTERACTION", "REVIEW"]
+    },
+    {
+      "id": "AC06",
+      "intent": "Style, independent review, exact-source verification and actual delivery.",
+      "automated_scope": "Basic, STYLE and RI-CI check their declared source and coupling subsets. Author and release decisions remain external.",
+      "checks": ["BASIC", "STYLE", "RI-CI"],
+      "gates": ["PREVIEW", "INTERACTION", "REVIEW", "RELEASE"]
+    }
+  ],
+  "checks": {
+    "BASIC": { "kind": "node-basic" },
+    "STYLE": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    }
+  },
+  "gates": {
+    "PREVIEW": {
+      "kind": "human",
+      "description": "Exact PR preview and author approval of the motion on two native reader documents or a reusable fixture."
+    },
+    "INTERACTION": {
+      "kind": "human",
+      "description": "Focused navigation and space source results, actual browser slow/fast/cancel/failure, history, fallback and device observations, and applicable hosted journey/performance results."
+    },
+    "REVIEW": {
+      "kind": "human",
+      "description": "Four independent role results on the exact candidate, test impact review and CS01-CS10 judgments beyond the bounded guard."
+    },
+    "RELEASE": {
+      "kind": "human",
+      "description": "Separately authorized stable staging and production with exact source and deployment identities."
+    }
+  }
+}
