@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "6edf5f62ae5bd0f826ed4f7fa6f9b7c94ce49d7b73f84c75f0930256363e4d01",
+    "digest": "32259e66a63058ead6b1b6d943b88e1faf71ed317dfcf2f44214966dd320920e",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -256,7 +256,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "65857d2d00e8e4eb342f6914ef43d5e878893fd646a53200b3f597b72edf50ae"
+        "sha256": "ab5f8b7b2e7c2c3f1215b33c53e674ee5780a20bc8ce76f88fa8cb861cb8c04a"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -4900,7 +4900,7 @@
       {
         "path": "review/issue-198/2026-11-12-reviewer-admission.md",
         "identity_mode": "content",
-        "sha256": "8bf61d44810c7e8ad9722fa354c2c034da60a1567ce6df8eca58d992aac1aca7"
+        "sha256": "ac346e668530a8ee57aa3c48668a179fce7575dc87153f1b5303db6f513e1c7f"
       },
       {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",

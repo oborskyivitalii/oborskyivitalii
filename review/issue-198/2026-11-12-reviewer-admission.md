@@ -874,3 +874,145 @@ Hashes matched. CLI and test changes were inspected through the granted diff. Te
 In `packet` at `reviewer-admission.cjs:381` and its assignment at line 411, the relative path check collapses dot segments lexically but the reviewer is told to write the original absolute string. In the CLI prepare hunk, parent and existence checks use only the collapsed spelling. On a filesystem, a symlink before `..` is followed before resolving the parent. Thus the destination checked by CLI can be absent and safe while the assignment resolves to an existing first result or an input. The reviewer can overwrite that file before any result-import check detects the mismatch. This breaches AC04 admission, AC05 behavioral verification and AC06 first-output retention. It can also invalidate AC03 input byte identity.
 
 Require canonical absolute paths in the packet, or emit exclusively the canonical output validated by CLI. Add an exact CLI regression in the existing reviewer-admission focused suite and its existing profile allocation for a symlink followed by `..`. Expect pre-dispatch refusal or an assignment whose destination equals the checked path, and preserve the original file bytes. The new CLI regression is proposed; the independent API and filesystem probe above was executed.
+
+
+## Accepted independent correction on 25621c6
+
+The maintained prepare/invoke/import/assess route accepted all four completed roles on head `25621c61c1225b9286143d9f2eceb3a4448e8581`, tree `62249582d572de40705903bcf25a913f7d0f40bf`, and base `f51d3f4f`. Each native launch used explicit `fork_turns=none` and a distinct nonauthor handle. Changed-candidate correction requests linked to the earlier same-role attempt and retained neutral findings. The final assessment journal digest was `af63d51c2dfc71acfb5e598e67bc2f74632899af20875be6873aca6c600aa8a7`. This is parent-observed assurance. The provider's hidden context and concurrent external writes remain outside the contract.
+
+| Role | Native handle | Prepared request SHA-256 | Completion SHA-256 |
+| --- | --- | --- | --- |
+| requirements-acceptance | `/root/issue198_roots_r` | `a0e2b11425aefc04c1e0e4969683a45e26a697624f9e9b0c72c80767277e1b07` | `4b355182a14d93adae57e7ccafeefbfac0198fd20c662722b6c5adf074fdeb55` |
+| code-review | `/root/issue198_roots_c` | `d5ee4b415889e80f88d5cd6f15885f9fe2fee35beec48be38c3b325bd9e7b1c6` | `614519af327b0fc2e8e0dadfa0c2ec954d015cc7bb2bc90494ae8ee5d267645a` |
+| white-box-qa | `/root/issue198_roots_w` | `a5ef994fb53bd34d6b656ec49b89a36e3dbbcccb29d6712e151d7ebc3273191c` | `8a289af4c21fead57e919c645069a203e53140bb7717187bf680950c7edff9cc` |
+| exploratory-interaction-qa | `/root/issue198_roots_e` | `6d571f5c2195f6cfdc2ba4122f768252987162fb44143ed92cb821d14f29c8b5` | `913470c7ca2aa2a07ad5300a14e2358e90a3557cda41e0ccd18c450e40bcf68a` |
+
+This evidence commit also applies the pinned formatter to the RI/CI map. All parsed map values and the reviewer-scoped source bytes are unchanged. Regenerate RI against the final evidence and formatting bytes. Native checks and protected delivery remain bound to the actual published head.
+
+
+# Requirements and acceptance — correction delta
+
+Verdict: **pass for the assigned root-canonicalization correction**, not whole-issue acceptance.
+
+Candidate: 25621c61c1225b9286143d9f2eceb3a4448e8581; base f51d3f4f49b9fa456a8fa25fc419dc17dd2307aa; supplied tree 62249582d572de40705903bcf25a913f7d0f40bf. Packet f12f7b17a2b13bae602f04d6633691b665d5fcd436dfa4bd8178d323f7550a77. Role: requirements-acceptance; execution /root/issue198_roots_r.
+
+## Inputs actually inspected
+
+All seven granted inputs were read and their SHA-256 values matched the supplied manifest: candidate agents/reviewers/README.md, agents/reviewers/requirements-acceptance.md, CONTRIBUTING.md, tools/orchestration/reviewer-admission.cjs; evidence acceptance.txt, delta-roots.diff, and intent.txt bytes [0,511). No other source files or peer results were read. The initial combined source output was truncated; targeted reads recovered the missing material. Candidate source claims were evaluated as review subjects.
+
+## Traceability and observations
+
+| AC | Oracle and check | Observed result |
+| --- | --- | --- |
+| AC03 | Inputs and writable destination must remain separate; inspect packet() | Canonical absolute paths required for both roots and output; rootContains rejects equal and nested roots in either direction. Current evidence inputs and prior read grants are checked against destination. |
+| AC04 | Refuse unsafe dispatch; inspect packet(), prepare(), journal checks | Root overlap fails before journal insertion; pinned evidence root cannot change; every previous attempt reserves its output regardless of pending, excluded or completed disposition. No silent fallback found. |
+| AC05 | Meaningful negative and positive verification | Supplied delta adds direct root-overlap/noncanonical-path tests, zero-attempt invariant and fresh-path success, plus CLI traversal rejection. Independently executed 10 assertions against extracted current rootContains and canonical path condition; all passed. Full suite and CLI execution were not performed here. |
+| AC06 | Preserve first outputs and require fresh correction evidence | prepare() refuses overlap with every previous output and read grant; record-result verifies assigned artifact path and forbids replacement of a recorded/excluded entry. This report supplies this role's new bounded judgment only. Other role completion and actual native launch receipts remain orchestrator gates. |
+
+No blocking requirement defect found in this delta. The correction serves the original immutability and source-bound-input obligations without weakening them. Equal/nested roots, root slash, sibling-prefix paths and traversal normalization were examined. Canonical lexical paths are not filesystem identity proof: the supplied guide delta explicitly assigns filesystem root/output-parent validation and absent-destination checking to the direct parent. That boundary is assessable and does not claim a security sandbox.
+
+## Checks and limits
+
+Executed a read-only Node probe extracting rootContains from the granted candidate source: six containment assertions and four canonicalization assertions, all passed. Hash verification passed for all seven inputs. No test files were separately read, no suite was executed, and no filesystem alias/CLI end-to-end assurance is claimed. The CLI source is outside this packet; its new refusal case was inspected only in the supplied diff. No prior verdict/test evidence was reused. Git native identity and provider isolation internals were not independently observed; supplied identities are labeled accordingly.
+
+Unexpected exposure: none observed. No parent history, peer verdicts or unrelated MEMORY file was inspected. Platform/project instructions were visible, consistent with the documented shared-instruction boundary.
+
+Next gate: combine this bounded result with the separately completed Code/QA results, native launch/receipt evidence and focused suite evidence before accepting the correction or claiming whole AC completion. No new owner decision is needed for the narrow correction.
+
+
+# Independent code review of #198 root and output isolation
+
+**Verdict: pass for the assigned correction.** C-198-OUTPUT-READ is resolved within the supported parent-mediated preparation contract. No blocking or nonblocking findings in the assigned delta.
+
+Candidate `25621c61c1225b9286143d9f2eceb3a4448e8581`, base `f51d3f4f49b9fa456a8fa25fc419dc17dd2307aa`, tree `62249582d572de40705903bcf25a913f7d0f40bf`. Packet `1d8045dca216e53213044eb5b0097117cc63ec9863e3aa718b4ded056f0355ad`. Role Code / Changed Artifact, execution `issue198_roots_c`.
+
+| Criterion | Observation for this correction |
+| --- | --- |
+| AC03 | `packet()` rejects noncanonical absolute paths, then compares both ancestor directions with segment-aware `path.relative()` before constructing any read grants or launch message. A candidate grant cannot name the same lexical path as a reserved evidence output. Prior reserved outputs cannot be introduced as evidence grants, including via slices. |
+| AC04 | `packet()` requires the journal’s pinned evidence root. `prepare()` checks every prior output reservation regardless of attempt state and checks prior read grants before appending a prepared request. Same-path and ancestor collisions are refused. |
+| AC05 | The focused suite passed all 19 tests. Direct preparation exercises equal roots, both nesting directions, filesystem root and noncanonical output. The CLI test checks invalid destinations, preserves the first bytes and accepts a fresh destination. The suite separately covers existing input and earlier output reservations and evidence-root pinning. |
+| AC06 | Output recording binds the artifact to the exact prepared relative output and its observed hash. Preparation and destination checks protect the first output on subsequent attempts. This receipt covers one review role. |
+
+The CLI behavior was executed through the focused suite. The changed guide excerpt assigns filesystem validation and exact path use to direct callers. The reducer checks lexical paths and relies on that caller contract for filesystem aliases. Provider context internals, the live dispatch sequence and completion of other role receipts were outside this review.
+
+All supplied grants were inspected and matched their assigned SHA-256 hashes. Candidate grants were `agents/reviewers/README.md`, `agents/reviewers/code-review.md`, `CONTRIBUTING.md`, and `tools/orchestration/reviewer-admission.cjs`. Evidence grants were `acceptance.txt`, `delta-roots.diff`, and bytes `[0,511)` of `intent.txt`. The additional authorized action was `node --test tests/reviewer-admission.test.cjs`, which exited zero. CLI source review was limited to the supplied delta and observed suite behavior.
+
+The supplied workspace/project instructions were visible. No author reasoning, peer verdicts, unrelated memory, or unexpected file exposure was observed.
+
+
+# Issue #198 white-box QA correction review
+
+**Verdict: pass for the assigned root and output-reservation correction**, with the direct-parent filesystem requirement and operational limits below. This is the first judgment of execution `/root/issue198_roots_w`. The reviewed head was identified by the packet as `25621c61c1225b9286143d9f2eceb3a4448e8581`, base `f51d3f4f49b9fa456a8fa25fc419dc17dd2307aa`, tree `62249582d572de40705903bcf25a913f7d0f40bf`. Source binding in this review uses the supplied manifest and verified byte hashes.
+
+## Inputs actually read
+
+Packet `9c2fd7b73e74e4e1feb3f1ac55b1d0e3b85fb31e081fab7769a9d7eb906042c5`. Each hash matched the supplied identity.
+
+| Space | Path | SHA-256 |
+| --- | --- | --- |
+| candidate | agents/reviewers/README.md | `725c8432ec1f2fea9a61cdbaba01d32676778b3e83b7a73fe2faea422b4ea0a8` |
+| candidate | agents/reviewers/white-box-qa.md | `832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f` |
+| candidate | CONTRIBUTING.md | `ec10d92c6f861e9c6de32b79eaf428fb6d4ce3b5091d000bc680bfc5ca29d30f` |
+| candidate | tools/orchestration/reviewer-admission.cjs | `96e214848d3fefa1320b3e7147f385384030e89c253b8c83d6470d7b7d7f25a1` |
+| evidence | acceptance.txt | `626dfc8158704618af9cbba650aa94632388da9879ca2174e04b02722777f199` |
+| evidence | delta-roots.diff | `37db59b58f2950707a5801d68157d5f00268de4987060bf74b96f138313bfd99` |
+| evidence | intent.txt, bytes [0, 511) | `3241fb906038795d6670363f26e9b5c818f60f800e4137dcda44075104b943b6` |
+
+## Structural checks and independent oracles
+
+| AC | Fault or transition | Required observation | Check and disposition |
+| --- | --- | --- | --- |
+| AC03/04 | Equal roots, either nesting direction, filesystem root, or path components removed by normalization | Refusal before a dispatchable request or journal reservation; legitimate sibling roots and canonical fresh path still work | Source 300–327 and 389–419. The focused suite exercised both nesting directions, equal roots, filesystem root, normalization, unchanged initial journal and a succeeding output. |
+| AC03/04/06 | Current or previous evidence read path reused as an output, or reserved output reused as a later read grant | The read-only reference and earlier reservation survive; the new request receives a different destination | Source 296–307, 331–338 and 512–519. Lexical equality and parent/child overlap are symmetric, including sliced evidence whose underlying file is the protected object. The focused suite passed both reservation and later grant refusal cases. |
+| AC04/06 | Change pinned evidence root or reuse the result of a pending, excluded or completed attempt | Prior reservations remain effective across all attempt states; a journal with history and no root cannot acquire a new root | Source 260–284, 328, 513–519 and 543–550. The focused suite passed output reservation, historical rootless journal and replacement cases. |
+| AC04/05/06 | CLI destination exists, is a dangling symlink, has a symlinked ancestor, or uses a noncanonical alias | Refuse the unsafe destination, preserve the existing file bytes and accept a fresh output | Executed the CLI integration case. The assigned diff shows the assertions for the existing bytes and succeeding fresh path as well as the added noncanonical alias case. |
+| AC05/06 | Corrected candidate tries to carry forward a reviewer identity or stale evidence | Fresh identity and source-bound completion; prior or stale evidence cannot satisfy the required current pass | Focused suite passed changed-candidate correction, unsupported isolation, latest-pending hold and stale evidence cases. Native provider observations and the other roles' completed receipts are outside this packet. |
+
+## Execution
+
+Ran `node --test tests/reviewer-admission.test.cjs` from the assigned candidate root. Exit 0, no signal reported. TAP summary reported 19 tests, 19 passes, 0 failures, 0 cancelled, 0 skipped, 0 todo, 816.309245 ms. This is the existing focused suite. No changes, authored tests, or coverage instrumentation. The test and CLI implementation files were not opened separately. Test delta was read through the assigned evidence and the named suite was executed with its runtime dependencies. No earlier reviewer result or coverage was reused.
+
+## Findings and limits
+
+No blocking finding in the assigned correction. The reducer checks the current packet grants and journal reservations and prior grants. It does not compare output with control-only references such as the impact or explicit request, or prior observation receipts that are outside the reviewer grant list. An existing file at one of those paths is covered by the documented direct-parent absent-destination filesystem precondition, and the CLI test exercises refusal of an existing destination. A caller treating reducer success alone as filesystem clearance would omit that required step. The direct-parent sequence itself was inspected through the guide delta only, and the suite cannot establish its execution on a live dispatch. No concurrent external filesystem mutation, provider internals, or automated read monitoring was observed. Retain these as operational verification limits when reconciling AC04 and AC06. The focused suite is the executed check owner here; the external test allocation profile was outside the approved packet.
+
+Unexpected exposure: none observed. I saw the assignment, platform/project instructions, the listed inputs and the permitted focused suite's output. I did not inspect parent/peer deliberations or unrelated memory. Provider context internals were unobservable.
+
+
+# Issue #198 exploratory / interaction QA correction
+
+**Verdict: pass for the assigned root and output correction.** E-198-OUTPUT-ALIAS and E-198-ROOT are resolved within the examined adapter/CLI route. This result supplies bounded AC03/04/05/06 evidence. Issue-wide acceptance and provider internals remain outside this observation.
+
+Execution `/root/issue198_roots_e`, correction. Candidate `25621c61c1225b9286143d9f2eceb3a4448e8581`, base `f51d3f4f49b9fa456a8fa25fc419dc17dd2307aa`, tree `62249582d572de40705903bcf25a913f7d0f40bf`, as supplied in the assignment. Packet `3a42695f04927f0ea10ac80159bb9f0d93b31a3bb3f590b79390260ec1028751`.
+
+## Inputs inspected
+
+All assigned file or slice identities matched their SHA-256 grants.
+
+| Space and path | SHA-256 |
+| --- | --- |
+| candidate:agents/reviewers/README.md | `725c8432ec1f2fea9a61cdbaba01d32676778b3e83b7a73fe2faea422b4ea0a8` |
+| candidate:agents/reviewers/exploratory-interaction-qa.md | `280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a` |
+| candidate:CONTRIBUTING.md | `ec10d92c6f861e9c6de32b79eaf428fb6d4ce3b5091d000bc680bfc5ca29d30f` |
+| candidate:tools/orchestration/reviewer-admission.cjs | `96e214848d3fefa1320b3e7147f385384030e89c253b8c83d6470d7b7d7f25a1` |
+| evidence:acceptance.txt | `626dfc8158704618af9cbba650aa94632388da9879ca2174e04b02722777f199` |
+| evidence:delta-roots.diff | `37db59b58f2950707a5801d68157d5f00268de4987060bf74b96f138313bfd99` |
+| evidence:intent.txt bytes [0,511) | `3241fb906038795d6670363f26e9b5c818f60f800e4137dcda44075104b943b6` |
+
+## Charter and observation
+
+Walked the operator route from prepare to dispatch arguments, with one invocation of the 19-case focused suite and a source walkthrough. Node execution was local to the supplied candidate root. The CLI and its fixture ran via the authorized suite. I read their changed behavior through the approved delta and runtime output. No prior campaign results were reused.
+
+| Journey and oracle | Observed evidence |
+| --- | --- |
+| Direct prepare refuses an output with dot segments and overlapping roots before issuing any launch arguments, then allows a fresh output | Passed `direct prepare rejects overlapping roots and noncanonical assigned paths`. Its assigned delta shows the four root-overlap partitions, `PACKET` for the dot-segment path, zero prior journal attempts after refusals, and a fresh `Output:` path in the prepared message. `packet()` checks the exact spellings before constructing the packet and `prepare()` appends the reservation only after validation. |
+| Prior read grants and output reservations stay protected through pending, excluded and completed states | Passed `prepare keeps evidence inputs and earlier output reservations intact` and `prepare excludes prior reserved outputs from all evidence grants`. In source, reservation checks span every journal attempt, regardless of disposition, and evidence input overlap checks use each prior attempt's read grants. The inverse check refuses a prior output even if requested as an evidence slice. |
+| Journal continuity refuses a populated rootless journal and a packet changing an already pinned root | Passed `a rootless journal with prior attempts cannot pin a new evidence root`. Source `checkJournal()` rejects prior attempts without a root and rejects noncanonical persisted roots; `packet()` rejects a mismatch with the pinned root. |
+| CLI refuses an existing or symlinked destination and accepts a fresh file under a real parent | Passed `CLI verifies independently pinned checkpoint input and an actual clean Git target`. The supplied delta shows refusal of an existing request destination, dangling link, symlinked parent and a dot-segment alias. It verifies the existing file's original bytes and accepts `results/review.md`. |
+| Related lifecycle checks preserve first results and hold stale or unsafe executions | The same suite passed cases for approved slices, declared exposure, a changed-candidate correction rejecting the old handle, excluded replacement, latest pending and stale dependencies/results, and completion reads bound to the assigned output. These are local adapter observations. |
+
+Command `node --test tests/reviewer-admission.test.cjs` completed with **19 passed, 0 failed, 0 skipped**. Regression allocation is the existing reviewer-admission Node suite for canonical/disjoint roots, journal continuity, reservation conflict, and CLI filesystem destination. Hosted selection and profile mapping were outside the granted material.
+
+The direct API's filesystem validation remains a parent operation. The supplied guide delta instructs the parent to validate both roots and the output parent, check absence and use the exact validated paths. The suite exercises the adapter and CLI, while this review did not execute a second live dispatch or establish protection from unrelated concurrent filesystem changes.
+
+No open finding in this scope. No unexpected source, author history, or peer-result exposure observed. The platform's requested and accepted launch parameters belong to the orchestrator receipt. Provider-hidden context controls remain unobserved.
