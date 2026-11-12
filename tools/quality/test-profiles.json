@@ -2989,6 +2989,24 @@
         "tests/delivery-observation.test.cjs",
         "tests/delivery-admission.test.cjs"
       ]
+    },
+    {
+      "path": "tests/reviewer-admission.test.cjs",
+      "language": "javascript",
+      "purpose": "Permanent positive/negative reviewer selection, launch, exposure, chronology and recovery checks.",
+      "owner": "guides/WEB-ORCHESTRATION.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "Component behavior only. Live calls and native delivery have separate evidence.",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/reviewer-admission.test.cjs",
+        "tools/orchestration/reviewer-admission*",
+        "agents/reviewers/**",
+        "guides/WEB-ORCHESTRATION.md",
+        "CONTRIBUTING.md",
+        ".github/ACCEPTANCE.md"
+      ]
     }
   ]
 }

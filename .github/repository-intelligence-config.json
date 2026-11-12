@@ -745,6 +745,23 @@
       ],
       "workflow": ".github/workflows/navigation.yml",
       "note": "Read the common contract and this single role prompt for a role launch; navigation checks do not establish reviewer execution."
+    },
+    {
+      "concern": "parent-mediated independent reviewer admission and recovery",
+      "paths": [
+        "tools/orchestration/reviewer-admission.cjs",
+        "tools/orchestration/reviewer-admission-cli.cjs",
+        "tools/orchestration/reviewer-admission-contract.json",
+        "tests/reviewer-admission.test.cjs"
+      ],
+      "commands": ["node --test tests/reviewer-admission.test.cjs"],
+      "read": [
+        "agents/reviewers/README.md",
+        "guides/WEB-ORCHESTRATION.md",
+        ".github/ACCEPTANCE.md"
+      ],
+      "workflow": ".github/workflows/site-checks.yml",
+      "note": "Permanent source selector. The component correlates parent-observed tool evidence without dispatching itself. Live execution, external chronology and provider limits remain separate."
     }
   ]
 }

@@ -149,10 +149,81 @@ affected scope. Prompt file existence, hashes and self-reports prove neither
 execution nor provider-internal isolation. Shared platform/memory/filesystem
 boundaries must be reported honestly.
 
-This is a documentation contract. The current reducer has no reviewer command,
-launcher or adapter; it does not enforce this admission gate, validate these
-receipts or demonstrate fresh-context runtime behavior. Implementing and testing
-that gate belongs to subsequent source-bound B2/B5 work and B6 acceptance under
-WEB-AC03/11. Do not add a synthetic flag and call isolation verified. Retained
-historical findings and the current audit are in the same issue's
-[review](../review/issue-167/2026-10-31-reviewer-isolation.md).
+## Parent-mediated reviewer admission
+
+Issue #198 owns the [canonical adapter](../tools/orchestration/reviewer-admission.cjs)
+and the [CLI](../tools/orchestration/reviewer-admission-cli.cjs). The offline
+reducer has no launcher. The #167 pilot retains its explicit four-role gate,
+separate lifecycle and historical Draft #171 receipts. The #171 prototype's
+same-handle correction receipts describe v1 and cannot satisfy v2.
+
+The direct parent tool call and CLI-assisted path use the same prepare, import
+and assess contract. The parent does the following for each owner/scope.
+
+1. From accepted policy and the actual base/head/tree diff, prepare a trusted
+   impact record with affected surfaces, explicit role gates and any new pass
+   request. Bind the impact record to that exact target. Register each explicit
+   request with `select`, using its observed occurrence ID and sequence, and
+   retain the returned checkpoint before dispatch or assessment. Later control
+   packets cannot drop a registered request.
+   Select all roles for trust/routing/acceptance or cross-page runtime.
+   Hold an unknown scope. Record why narrow or absent roles are applicable.
+2. Prepare a role-specific read manifest with common/role prompts, candidate
+   sources, instructions and an independent oracle. Bound the initial message
+   to pinned UTF-8 evidence slices with offsets and SHA-256. Use an owning
+   requirements extract and neutral defect observations. Keep whole mixed
+   histories, peer outputs and unrelated memory outside the allowed read set.
+   A Requirements preflight can bootstrap before its own receipt exists. Reuse
+   it only against the current preflight packet’s relevant requirements, prompts,
+   instructions and oracle. Implementation-only source changes do not replace
+   that comparison.
+3. Use one parent-maintained attempt journal per owner/scope. Write the prepared
+   entry and its digest before invoking the emitted exact spawn arguments. Keep
+   one evidence root for the journal. Reserve a fresh result path before dispatch,
+   separate from current and prior assigned inputs and every prior attempt's
+   output, including pending and excluded attempts. A reserved output cannot
+   appear in another packet even as a sliced factual input. Preserve earlier
+   draft journals without a pinned root as historical evidence and start a
+   newly scoped journal with fresh executions. CLI preparation checks that the destination is
+   absent and its parent is a real directory reached without symbolic links.
+   Candidate and evidence roots are canonical and disjoint. A direct parent
+   validates both roots and the output parent on the filesystem, checks the
+   destination is absent, and uses the exact validated paths before invoking.
+   Use separate roots for concurrent scopes and never overwrite an existing result.
+   Record the actual tool invocation and accepted response. Import them against
+   the checkpoint. On completion retain the first output, observed reads,
+   verdict, finding IDs and any disclosure. Bind each observed read to its
+   whole-file grant or exact approved byte range. Pass requires all assigned
+   reads and the assigned result path. Run correction with a fresh handle and
+   a checked delta packet carrying each outstanding ID, location, observed
+   symptom and expected invariant as neutral facts. Open nonblocking facts
+   belong in the packet while the blocker disposition controls advancement.
+4. If a launch fails, is uncertain or a result is contaminated, reconcile the
+   transcript and record the exclusion with its observation before replacing.
+   A replacement links to the prior attempt even when no result was admitted.
+   The newest applicable attempt holds the gate from preparation onward. An
+   excluded stale artifact is retained by identity. The checkpointed finding
+   metadata can still carry its material blockers into a fresh packet.
+5. Check the current journal against a separately retained checkpoint and
+   reconciled observed attempt IDs. After interruption account for all native
+   observations, including pending/adverse attempts, before trusting an older
+   snapshot. Reread selected launch and result artifacts before advancement.
+   Carry forward coverage only for unchanged scoped inputs and requirements.
+   Keep reconciliation and chronology evidence in the owning review.
+
+CLI invocation is `node tools/orchestration/reviewer-admission-cli.cjs CANDIDATE
+EVIDENCE REQUEST.json CONTROL.json CONTROL_SHA256`. Use disjoint checked roots.
+`REQUEST.json` carries `operation`, `input` and `journal`. The parent pins the
+separate `CONTROL.json` digest out of band and retains each returned journal
+digest. Its checkpoint includes the latest independently retained journal
+digest and reconciled observed request IDs. Parent-managed transitions are
+serialized within the owning scope. Never derive the expected checkpoint
+from a caller-provided snapshot. Record missing chronology as held.
+
+The supported native bridge is parent-mediated and non-atomic. It verifies
+source, actual arguments and parent-observed receipts. Inventory conversation
+inheritance, repository instructions and automatic memory/personalization for
+the runner. Record observable controls and any unresolved exposure. Shared
+files and hidden provider internals are outside this assurance. A bypassed
+tool call or missing observation cannot satisfy reviewer admission. Existing
+native source, ownership, approval, staging and merge gates stay in force.

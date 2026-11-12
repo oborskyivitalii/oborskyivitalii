@@ -126,6 +126,8 @@ Commands are suggestions, not executed checks; read the owner's contract first.
 - detailed reviewer prompt exploratory-interaction-qa: [.github/workflows/navigation.yml](.github/workflows/navigation.yml).
   - `python3 tools/check_ri_ci.py verify`
   - `python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'`
+- parent-mediated independent reviewer admission and recovery: [.github/workflows/site-checks.yml](.github/workflows/site-checks.yml).
+  - `node --test tests/reviewer-admission.test.cjs`
 
 ## Scoped navigation and direct-source fallback
 

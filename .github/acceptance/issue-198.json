@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 198,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/198",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Complete launch and owner inventory",
+      "automated_scope": "Only the listed repository invariants are automated here. Consult the mapped external evidence and limits.",
+      "checks": ["RI", "RI-CI"],
+      "gates": ["REVIEW"]
+    },
+    {
+      "id": "AC02",
+      "intent": "Distinct nonauthor execution and explicit no-inheritance",
+      "automated_scope": "Only the listed repository invariants are automated here. Consult the mapped external evidence and limits.",
+      "checks": ["STYLE"],
+      "gates": ["COMPONENT", "LIVE"]
+    },
+    {
+      "id": "AC03",
+      "intent": "Role-specific pinned source packets",
+      "automated_scope": "Only the listed repository invariants are automated here. Consult the mapped external evidence and limits.",
+      "checks": ["RI-CI"],
+      "gates": ["COMPONENT", "LIVE"]
+    },
+    {
+      "id": "AC04",
+      "intent": "Hold contaminated/stale/incomplete attempts and replace safely",
+      "automated_scope": "Only the listed repository invariants are automated here. Consult the mapped external evidence and limits.",
+      "checks": ["STYLE"],
+      "gates": ["COMPONENT", "LIVE"]
+    },
+    {
+      "id": "AC05",
+      "intent": "Behavioral positives and refusals through the maintained entry point",
+      "automated_scope": "Only the listed repository invariants are automated here. Consult the mapped external evidence and limits.",
+      "checks": ["RI-CI"],
+      "gates": ["COMPONENT", "LIVE"]
+    },
+    {
+      "id": "AC06",
+      "intent": "Independent exact-source results and observed receipts",
+      "automated_scope": "Only the listed repository invariants are automated here. Consult the mapped external evidence and limits.",
+      "checks": [],
+      "gates": ["REVIEW", "LIVE"]
+    },
+    {
+      "id": "AC07",
+      "intent": "Canonical contract, source selection and protected delivery",
+      "automated_scope": "Only the listed repository invariants are automated here. Consult the mapped external evidence and limits.",
+      "checks": ["RI", "RI-CI", "STYLE"],
+      "gates": ["REVIEW", "NATIVE"]
+    },
+    {
+      "id": "AC08",
+      "intent": "Applicability, explicit owning gates and safe reuse",
+      "automated_scope": "Only the listed repository invariants are automated here. Consult the mapped external evidence and limits.",
+      "checks": ["RI-CI"],
+      "gates": ["COMPONENT", "REVIEW"]
+    }
+  ],
+  "checks": {
+    "RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    },
+    "STYLE": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    }
+  },
+  "gates": {
+    "REVIEW": {
+      "kind": "human",
+      "description": "Inspect four independent final roles, scoped correction findings, CS01/04/05/06/08/10 and exact sources and review records."
+    },
+    "LIVE": {
+      "kind": "human",
+      "description": "Review the actual supported bridge tool arguments and readback, fresh first and changed-candidate correction, packet/exposure/chronology and runtime limits."
+    },
+    "COMPONENT": {
+      "kind": "human",
+      "description": "Inspect permanent Node test selection and successful exact-head behavioral evidence from the maintained source workflow."
+    },
+    "NATIVE": {
+      "kind": "human",
+      "description": "Verify exact-head native checks, owner attestation, protected admission/merge and post-merge repository evidence."
+    }
+  }
+}

@@ -4,7 +4,7 @@ This directory owns the common reviewer contract and the four role prompts.
 [CONTRIBUTING](../../CONTRIBUTING.md#independent-quality-agents) owns mandatory
 roles, iteration/acceptance gates and correction review. [AGENTS](../../AGENTS.md)
 routes here; it must not duplicate the prompts. These are repository prompts,
-not installed skills or an executable dispatcher.
+used by the parent-mediated adapter and its CLI.
 
 | Role | Prompt |
 | --- | --- |
@@ -13,7 +13,7 @@ not installed skills or an executable dispatcher.
 | White-box QA | [white-box-qa.md](white-box-qa.md) |
 | Exploratory / Interaction QA | [exploratory-interaction-qa.md](exploratory-interaction-qa.md) |
 
-## Before each first judgment
+## Before every independent judgment
 
 The orchestrator launches a distinct nonauthor agent per role with explicit
 `fork_turns="none"` when using `collaboration.spawn_agent`. Omission is unsafe:
@@ -25,7 +25,7 @@ model, chat or turn is no substitute for the actual launch parameter.
 
 Supply this common contract, one role prompt and the source packet below.
 Never copy the author's conversation, persuasive verdict/diagnosis or current
-peer verdicts into that packet before the role's first independent result.
+peer verdicts into the initial packet for any pass.
 Provide relevant facts as primary source/evidence, not suggested conclusions.
 Candidate text under review may contain claims or rationale: those are review
 subjects, not trusted verdicts. Split mixed historical records into factual
@@ -39,7 +39,7 @@ reading to supplied sources and necessary authoritative owners; do not inspect
 current peer output files, parent scratch notes, private chat history or unrelated
 memory. This is an operational boundary, not an OS sandbox or provider attestation.
 Unexpected exposure must be disclosed; replace an exposed reviewer for the
-affected first judgment rather than silently labelling it clean.
+affected pass, retaining the excluded result and the observed cause.
 
 ## Source packet
 
@@ -87,22 +87,18 @@ general runtime, security, coverage or release guarantee.
 
 ## Corrections and evidence reuse
 
-After independent first judgments the orchestrator reconciles findings with
-evidence and may provide targeted correction questions. Keep later reconciliation
-distinct from initial independence. A role-specific continuation can reuse its
-own prior findings and relevant neutral facts, but is not a newly fresh context.
-If author/peer conversation contaminated it, launch a replacement with none.
-When the requirement is a fresh review of a changed candidate, use a fresh
-none-fork execution with a versioned delta packet. Do not hide known unresolved
-defects from that packet; include factual locations and expected invariants.
+Every new independent judgment uses a fresh distinct nonauthor reviewer,
+including correction, affected rebase, replacement and explicit same-SHA
+requests. For corrections give a fresh reviewer stable finding IDs, observed
+symptoms and expected invariants. Keep first outputs immutable and reconcile
+after completion. A same-handle followup may clarify a recorded fact. It
+supplies no new judgment or acceptance evidence.
 
-Recheck affected source and integration, reusing only demonstrably unchanged
-evidence. New requirement/oracle changes return to Requirements before dependent
-implementation. Reviewers do not author their own accepted fixes/tests; use a
-different nonauthor reviewer for authored changes. Preserve the protocol's
-deterministic metadata/verbatim-receipt exemptions without extending them to
-changed meaning. Four roles remain mandatory, including reasoned applicability
-assessment for genuinely absent dynamic/UI surfaces.
+Recheck affected source and integration. Preserve prior coverage only with
+verified unchanged scope, prompt, dependencies and oracle, and no newer
+required pass. An unknown or contaminated attempt holds acceptance until
+recorded and replaced. See the [orchestration guide](../../guides/WEB-ORCHESTRATION.md#parent-mediated-reviewer-admission)
+for the shared path, observed context controls and checkpoint recovery.
 
 ## Responsibility boundary
 
@@ -110,5 +106,5 @@ The session orchestrator enforces launch/packet/evidence gates. This repository
 owns role prompts, rubrics, required source inputs and review outcomes. Linear
 owns intent/plan/status and references the isolation admission requirement;
 it does not store duplicate prompt bodies. The offline B2 reducer has no agent
-dispatcher and does not implement this gate. Future runtime admission and
-source-bound end-to-end proof remain open under WEB-AC03/11.
+dispatcher. Parent-mediated reviewer admission is a component of the supported
+route. Wider pilot and provider assurance remain separate WEB-AC03/11 obligations.
