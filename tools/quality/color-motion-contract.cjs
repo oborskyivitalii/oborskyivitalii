@@ -904,6 +904,22 @@ families.issue169ReaderHistory = {
   staging: 'ace81eb56ccb8fca35099e960d684ca90aa855733c7a8e9dfe35eab66da84f78',
   production: 'c8c444e30127b60e1dac052ab6a2b53d3ff48f40efc68d526cc7c71f17151ebb',
 };
+// Preregister the exact PR #197 staging edition for the protected publisher.
+families.issue187VerticalHandoff = {
+  ...families.issue169ReaderHistory,
+  id: 'issue187-vertical-handoff',
+  baseEngine: 'e003d4fc73032deea1ac30be2fce683281b8fd30e5b1b238fddf1858c9397dee',
+  space: '9c91132c7e4e333de8d7718d0e6c72f7cba5fdd8c280c198cb5ae3e838a55404',
+  navigation: 'a2e08fedae91c88e63efa9b5304762a95622f8adeb72827fd8b2cc273fe12040',
+  archive: 'bf1b9e42356b282f3c08f7763a7a59263241c752df5dd9ee776a6b0bf86b0caa',
+  theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+  styles: {
+    staging: 'd89e5b4e3b1b43a1ce26114fcd76e443a195c061094f94bd1272f5d7cd2c64b2',
+  },
+  plain: null,
+  staging: '5c83ef51a944e7d3dc9768ee811786656b788de500049149adb59e92346427b9',
+  production: null,
+};
 // Expand only explicitly reviewed editions; an absent edition is never admitted.
 const runtimes = Object.entries(families).flatMap(([family, value]) =>
   ['plain', 'staging', 'production']

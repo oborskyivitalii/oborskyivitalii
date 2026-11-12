@@ -17826,6 +17826,24 @@
       "purpose": "Issue196 source-check route for native platform images, retained print and hosted media.",
       "role": "validator",
       "owner": ".github/ACCEPTANCE.md"
+    },
+    ".github/acceptance/issue-187.json": {
+      "kind": "file",
+      "purpose": "Issue #187 AC mapping for shared pulse, navigation lifecycle, preview and release.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-187": {
+      "kind": "directory",
+      "purpose": "Versioned requirements and verification for the #187 fractal pulse draft.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-187/2026-11-12-controller-preregistration.md": {
+      "kind": "file",
+      "purpose": "Issue #187 protected staging runtime preregistration and independent verification.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

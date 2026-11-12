@@ -233,7 +233,7 @@ function rasterPng({ width, height, depth, color, rows, key, palette, icc, inter
         'palette=chunk(b"PLTE",bytes(v["palette"])) if v.get("palette") else b""',
         'icc=chunk(b"iCCP",b"gray"+bytes(2)+zlib.compress(base64.b64decode(v["icc"]))) if v.get("icc") else b""',
         'data=zlib.compress(base64.b64decode(v["rows"]))',
-        'sys.stdout.buffer.write(bytes.fromhex("89504e470d0a1a0a")+chunk(b"IHDR",header)+icc+palette+key+chunk(b"IDAT",data[:3])+chunk(b"IDAT",data[3:])+chunk(b"IEND",b""))',
+        'sys.stdout.buffer.write(b"\\x89PNG\\r\\n\\x1a\\n"+chunk(b"IHDR",header)+icc+palette+key+chunk(b"IDAT",data[:3])+chunk(b"IDAT",data[3:])+chunk(b"IEND",b""))',
       ].join('\n'),
     ],
     {
