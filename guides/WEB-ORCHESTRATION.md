@@ -185,8 +185,10 @@ and assess contract. The parent does the following for each owner/scope.
    appear in another packet even as a sliced factual input. Preserve earlier
    draft journals without a pinned root as historical evidence and start a
    newly scoped journal with fresh executions. CLI preparation checks that the destination is
-   absent and its parent is a real directory reached without symbolic links. A
-   direct parent performs the same filesystem check before invoking the tool.
+   absent and its parent is a real directory reached without symbolic links.
+   Candidate and evidence roots are canonical and disjoint. A direct parent
+   validates both roots and the output parent on the filesystem, checks the
+   destination is absent, and uses the exact validated paths before invoking.
    Use separate roots for concurrent scopes and never overwrite an existing result.
    Record the actual tool invocation and accepted response. Import them against
    the checkpoint. On completion retain the first output, observed reads,

@@ -612,6 +612,30 @@ test('a rootless journal with prior attempts cannot pin a new evidence root', ()
   refused(() => api.execute('prepare', f.plan(whitebox), journal, f.read, control), 'JOURNAL');
 });
 
+test('direct prepare rejects overlapping roots and noncanonical assigned paths', () => {
+  const f = fixture();
+  const packet = f.control.packets[code];
+  const candidateRoot = packet.candidateRoot;
+  const evidenceRoot = packet.evidenceRoot;
+  for (const [candidate, evidence] of [
+    [candidateRoot, candidateRoot],
+    [candidateRoot, candidateRoot + '/evidence'],
+    [evidenceRoot + '/candidate', evidenceRoot],
+    ['/', evidenceRoot],
+  ]) {
+    packet.candidateRoot = candidate;
+    packet.evidenceRoot = evidence;
+    packet.output = evidence + '/candidate.txt';
+    refused(() => f.execute('prepare', f.plan()), 'ROOTS');
+  }
+  packet.candidateRoot = candidateRoot;
+  packet.evidenceRoot = evidenceRoot;
+  packet.output = evidenceRoot + '/linked/../result.md';
+  refused(() => f.execute('prepare', f.plan()), 'PACKET');
+  assert.equal(f.journal().attempts.length, 0);
+  assert.match(f.prepare().args.message, /Output: \/fixture\/evidence\/review_/);
+});
+
 test('CLI verifies independently pinned checkpoint input and an actual clean Git target', (t) => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'reviewer-admission-'));
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
@@ -683,7 +707,7 @@ test('CLI verifies independently pinned checkpoint input and an actual clean Git
     })
   );
   const prepareAt = (relative) => {
-    packet.output = path.join(evidence, relative);
+    packet.output = path.isAbsolute(relative) ? relative : path.join(evidence, relative);
     const bytes = JSON.stringify(control);
     fs.writeFileSync(path.join(evidence, 'control.json'), bytes);
     return call(api.hash(bytes));
@@ -696,6 +720,7 @@ test('CLI verifies independently pinned checkpoint input and an actual clean Git
   refused(() => prepareAt('request.json'), 'OUTPUT');
   refused(() => prepareAt('dangling.md'), 'OUTPUT');
   refused(() => prepareAt('linked/review.md'), 'PATH');
+  refused(() => prepareAt(evidence + '/linked/../alias.md'), 'ROOTS');
   assert.equal(fs.readFileSync(path.join(evidence, 'existing.md'), 'utf8'), 'keep original bytes');
   const prepared = prepareAt('results/review.md');
   assert.equal(prepared.prepared.outputPath, 'results/review.md');

@@ -297,6 +297,11 @@ function pathsOverlap(left, right) {
   return left === right || left.startsWith(right + '/') || right.startsWith(left + '/');
 }
 
+function rootContains(root, other) {
+  const relative = path.relative(root, other);
+  return !path.isAbsolute(relative) && relative !== '..' && !relative.startsWith('..' + path.sep);
+}
+
 function checkOutputInputs(outputPath, refs) {
   if (refs.some((ref) => ref.space === 'evidence' && pathsOverlap(outputPath, ref.path)))
     fail('OUTPUT');
@@ -311,12 +316,15 @@ function packet(role, control, journal, read, stage = 'review') {
     if (
       typeof spec[field] !== 'string' ||
       !path.isAbsolute(spec[field]) ||
+      path.resolve(spec[field]) !== spec[field] ||
       spec[field].length > 512 ||
       /[\r\n\0]/.test(spec[field])
     )
       fail('PACKET');
   }
-  const evidenceRoot = path.resolve(spec.evidenceRoot);
+  const { candidateRoot, evidenceRoot } = spec;
+  if (rootContains(candidateRoot, evidenceRoot) || rootContains(evidenceRoot, candidateRoot))
+    fail('ROOTS');
   if (journal.evidenceRoot && journal.evidenceRoot !== evidenceRoot) fail('OUTPUT');
   if (!Array.isArray(spec.files) || !Array.isArray(spec.slices) || !spec.slices.length)
     fail('PACKET');
