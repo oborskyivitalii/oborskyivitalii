@@ -258,8 +258,18 @@ function verifyPlatform(directory, manifest, sources, platform) {
     }
     payloads.set(item.path, files[index].bytes);
   }
+  verifyPlatformHtml(
+    directory,
+    inventory,
+    manifest.profile.selection.platforms[platform].formats,
+    payloads
+  );
+}
+
+function verifyPlatformHtml(directory, inventory, formats, payloads) {
+  const { platform, images, cover } = inventory;
   for (const format of ['html', 'copy-ready']) {
-    if (!manifest.profile.selection.platforms[platform].formats.includes(format)) continue;
+    if (!formats.includes(format)) continue;
     const copy = format === 'copy-ready';
     const file = copy ? `${platform}-copy-ready.html` : `${platform}.html`;
     const html = decodeUtf8(readSource(directory, file, { maxBytes: 32_000_000 }).bytes, file);

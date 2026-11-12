@@ -635,9 +635,12 @@ test('native upload contracts fit both dimensions and bytes and keep print sourc
     fs.renameSync(renamedDigest, renamed);
 
     const previous = { ...wideKit.manifest, platformImages: 1 };
-    previous.transformations = previous.transformations.map(
-      ({ figures, uploadInventorySha256, ...item }) => item
-    );
+    previous.transformations = previous.transformations.map((transformation) => {
+      const item = { ...transformation };
+      delete item.figures;
+      delete item.uploadInventorySha256;
+      return item;
+    });
     delete previous.artifactId;
     previous.artifactId = hash(JSON.stringify(previous));
     json(renamed, 'manifest.json', previous);
