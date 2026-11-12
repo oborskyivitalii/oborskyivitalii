@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "3a08d04cfa57fa98c40b0497b2e3e6c76e33d6e4d1e7c2be289f8a3351f096dd",
+    "digest": "43f53c94d21fb991207ea0d9f9ce11190d74954a8930facd9ac9afbb04e5f338",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -4900,7 +4900,7 @@
       {
         "path": "review/issue-196/2026-11-12-destination-image-review.md",
         "identity_mode": "content",
-        "sha256": "327f179ac0df331c6e101094eb25cc88c590bc5797b688d396782f956a1a9aa5"
+        "sha256": "c9e930c73462e2ec9d0cbfc524db97c4e95ab4a426b0900ccf26d55815af1cc2"
       },
       {
         "path": "review/issue-198/2026-11-12-reviewer-admission.md",
