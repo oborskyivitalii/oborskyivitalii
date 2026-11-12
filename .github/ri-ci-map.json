@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/189",
-    "date": "2026-11-10",
-    "summary": "Issue189 owning policy and task acceptance module added to the existing intent-acceptance layer; all existing checks/workflows/selectors/budgets retained. Exact current source identity refreshed after applicable review."
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/188",
+    "date": "2026-11-11",
+    "summary": "Map the MEMORY lifecycle and UTF-8 byte guard to existing navigation and owning-policy checks, with independent review of the worked handoff."
   },
   "layers": [
     {
@@ -174,6 +174,7 @@
         ".github/acceptance/issue-179.json",
         "tests/test_issue179_acceptance.py",
         ".github/acceptance/issue-184.json",
+        ".github/acceptance/issue-188.json",
         ".github/acceptance/issue-189.json",
         "tests/test_issue189_acceptance.py"
       ],
@@ -296,8 +297,8 @@
     },
     {
       "id": "continuity",
-      "purpose": "Bounded dated handoff, update rules and required sections; current facts need live revalidation.",
-      "paths": ["MEMORY.md"],
+      "purpose": "Dated handoff with active sections, line and UTF-8 byte limits, and replacement after progress, handoff and observed delivery or closure. Current facts require live revalidation.",
+      "paths": ["MEMORY.md", "review/issue-188/2026-11-11-analysis.md"],
       "checks": ["acceptance-policy", "ri-freshness", "ri-regressions"]
     },
     {
@@ -726,7 +727,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "3646ef07aba5cdd87a98f30756914bad2c98913c10cd2c565ecc316facfb4df5",
+    "digest": "e45951e850f4e2f5fc9521853203f45303d303c2a87008a062660bc0d23d70b9",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -742,7 +743,7 @@
       },
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
-        "sha256": "68fe41fc703853b40395aab944cb1d18f1303e8dc231f9bed1f6d11b2a3934c3"
+        "sha256": "3c86a44263cafd9af3b8808fdfd6b7659f910dd08e194cf8f6dd5a19eac9428f"
       },
       {
         "path": ".github/acceptance/issue-102.json",
@@ -795,6 +796,10 @@
       {
         "path": ".github/acceptance/issue-184.json",
         "sha256": "6176042326ceed9b683a8c3f76ea2608f13ea688e260ae7787ccce7e8018cc8a"
+      },
+      {
+        "path": ".github/acceptance/issue-188.json",
+        "sha256": "bf93c216791d1acae6110db7844cbddd6a0370f12a4d78e6cc5145f0c3470064"
       },
       {
         "path": ".github/acceptance/issue-189.json",
@@ -882,7 +887,7 @@
       },
       {
         "path": ".github/repository-intelligence-config.json",
-        "sha256": "77a26b1e9e8a0a45f48972149ad4aab103df5875e14ef66622aef36dec8a895b"
+        "sha256": "60f109bc95b291d37de093aa1aaeaf8b2da56168e51a9b88ba721248906e0079"
       },
       {
         "path": ".github/repository-layout.json",
@@ -890,7 +895,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "574db8328ce3e87a64476af5f0c9ea6c2228997f7a4899d8f9119566c1aad42f"
+        "sha256": "27070d1d3966797d1d7c77ff3fcf1d8af0bddd1ebafe12f440e05c4540a35586"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -986,11 +991,11 @@
       },
       {
         "path": "AGENTS.md",
-        "sha256": "5785791859fd0aca18e2fb77e4803171fec75be8d708167972ce3f90be02eb05"
+        "sha256": "7b3372a0b6254e567e6c12d59d7229cdc969b6b0cb512c2102b68470cf87f787"
       },
       {
         "path": "CONTRIBUTING.md",
-        "sha256": "0dc5be319f0269b4ba56751348dc1758ca874cb0f067b440b2b0d60a6d8b577a"
+        "sha256": "9255b86b00ec877fb1de478f86c3e530600aed3ea1fd893f6170bbe68911754b"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -1146,7 +1151,7 @@
       },
       {
         "path": "tests/test_repository_intelligence.py",
-        "sha256": "69dc9cf2a28d96a5027630dc3a68d5e4231727ba2ef0703cd76869a7489165da"
+        "sha256": "f35fc4dee4e370d9dbcdb6609a6999017ea06380027c147742803943bdf09856"
       },
       {
         "path": "tests/test_repository_test_selection.py",
@@ -1198,7 +1203,7 @@
       },
       {
         "path": "tools/repository_intelligence.py",
-        "sha256": "d44cd68e3acca7d56f2723da84eeaddf911ce609fb0cdde4f77f7c5d50760294"
+        "sha256": "a62c65c55ed683c95d0776555cade549f3f56a230b12ded6071bb7e8ab8b9f9e"
       },
       {
         "path": "tools/run_repository_tests.py",

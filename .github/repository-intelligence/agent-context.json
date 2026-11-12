@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "76d2a15903901010a978997db242ae1803281d6c19be5a203f99255667686816",
+    "digest": "4f67058dd23a674f430ac72c352ba4b4c20387759643f069a1aae9fbb59bb009",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -42,7 +42,7 @@
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
         "identity_mode": "content",
-        "sha256": "68fe41fc703853b40395aab944cb1d18f1303e8dc231f9bed1f6d11b2a3934c3"
+        "sha256": "3c86a44263cafd9af3b8808fdfd6b7659f910dd08e194cf8f6dd5a19eac9428f"
       },
       {
         "path": ".github/acceptance/issue-102.json",
@@ -108,6 +108,11 @@
         "path": ".github/acceptance/issue-184.json",
         "identity_mode": "content",
         "sha256": "6176042326ceed9b683a8c3f76ea2608f13ea688e260ae7787ccce7e8018cc8a"
+      },
+      {
+        "path": ".github/acceptance/issue-188.json",
+        "identity_mode": "content",
+        "sha256": "bf93c216791d1acae6110db7844cbddd6a0370f12a4d78e6cc5145f0c3470064"
       },
       {
         "path": ".github/acceptance/issue-189.json",
@@ -227,7 +232,7 @@
       {
         "path": ".github/repository-intelligence-config.json",
         "identity_mode": "content",
-        "sha256": "77a26b1e9e8a0a45f48972149ad4aab103df5875e14ef66622aef36dec8a895b"
+        "sha256": "60f109bc95b291d37de093aa1aaeaf8b2da56168e51a9b88ba721248906e0079"
       },
       {
         "path": ".github/repository-intelligence/agent-context.json",
@@ -241,12 +246,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "574db8328ce3e87a64476af5f0c9ea6c2228997f7a4899d8f9119566c1aad42f"
+        "sha256": "27070d1d3966797d1d7c77ff3fcf1d8af0bddd1ebafe12f440e05c4540a35586"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "7f20b5c564e10cc075f81f67ad07494514febe2951c6ad3e79d64ce08d3bcf0f"
+        "sha256": "e54ffac28fc2cb4c0a9a27e937ab8c89968e4725386b44edcd88e154dad67aed"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -371,12 +376,12 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "5785791859fd0aca18e2fb77e4803171fec75be8d708167972ce3f90be02eb05"
+        "sha256": "7b3372a0b6254e567e6c12d59d7229cdc969b6b0cb512c2102b68470cf87f787"
       },
       {
         "path": "CONTRIBUTING.md",
         "identity_mode": "content",
-        "sha256": "0dc5be319f0269b4ba56751348dc1758ca874cb0f067b440b2b0d60a6d8b577a"
+        "sha256": "9255b86b00ec877fb1de478f86c3e530600aed3ea1fd893f6170bbe68911754b"
       },
       {
         "path": "LICENSE-CODE.md",
@@ -396,7 +401,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "14d8684b0b3b1f21b689a003233fb67f8541f00db03a9eeea904197f3d9c79c6"
+        "sha256": "a7eb1eb398fc94eddedb18d063af5442d627d7e170f1f57708e475d574cbe2c0"
       },
       {
         "path": "NOTICE.md",
@@ -4826,6 +4831,16 @@
         "path": "review/issue-184/review-evidence.tar.xz",
         "identity_mode": "content",
         "sha256": "ab6b476aa1ca5cb89e8ea00573ef2309fd208d35b2ed53fc791b4ec166135722"
+      },
+      {
+        "path": "review/issue-188/2026-11-11-analysis.md",
+        "identity_mode": "content",
+        "sha256": "a1cadc53e5de29e56e2b7fe32703aa2e8ee3a0b7c73e50e1d8288f71222e649e"
+      },
+      {
+        "path": "review/issue-188/review-evidence.tar.xz",
+        "identity_mode": "content",
+        "sha256": "c6b76159991f9e1977a7417662113820d9ad509979a76abbb01cb066b1298b2a"
       },
       {
         "path": "review/issue-189/2026-11-10-analysis.md",
@@ -12215,7 +12230,7 @@
       {
         "path": "tests/test_repository_intelligence.py",
         "identity_mode": "content",
-        "sha256": "69dc9cf2a28d96a5027630dc3a68d5e4231727ba2ef0703cd76869a7489165da"
+        "sha256": "f35fc4dee4e370d9dbcdb6609a6999017ea06380027c147742803943bdf09856"
       },
       {
         "path": "tests/test_repository_test_selection.py",
@@ -12560,7 +12575,7 @@
       {
         "path": "tools/quality/bandit-policy.json",
         "identity_mode": "content",
-        "sha256": "c33889efa39b3e603e7bfcc5f12765760d3a5cd31fad40fbe6709e35bf7add3b"
+        "sha256": "a5ddcc81cf48f96e2a3920f7d484512e4668939ad3c34a0488036a2ae07d29f7"
       },
       {
         "path": "tools/quality/bandit-triage.cjs",
@@ -12930,7 +12945,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "8675b7421b0fd5f5eac95c603e9005dd11dd9164cc016c192b33355fd132ab19"
+        "sha256": "db1432feeaf8d8905d9fba1abefbc6e949f553a29591c3006a683a6da243daec"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
@@ -13150,7 +13165,7 @@
       {
         "path": "tools/repository_intelligence.py",
         "identity_mode": "content",
-        "sha256": "d44cd68e3acca7d56f2723da84eeaddf911ce609fb0cdde4f77f7c5d50760294"
+        "sha256": "a62c65c55ed683c95d0776555cade549f3f56a230b12ded6071bb7e8ab8b9f9e"
       },
       {
         "path": "tools/run_repository_tests.py",
@@ -13371,9 +13386,9 @@
   },
   "producer": {
     "path": "tools/repository_intelligence.py",
-    "sha256": "d44cd68e3acca7d56f2723da84eeaddf911ce609fb0cdde4f77f7c5d50760294",
+    "sha256": "a62c65c55ed683c95d0776555cade549f3f56a230b12ded6071bb7e8ab8b9f9e",
     "config_path": ".github/repository-intelligence-config.json",
-    "config_sha256": "77a26b1e9e8a0a45f48972149ad4aab103df5875e14ef66622aef36dec8a895b"
+    "config_sha256": "60f109bc95b291d37de093aa1aaeaf8b2da56168e51a9b88ba721248906e0079"
   },
   "owners": [
     {
@@ -13987,6 +14002,17 @@
         "AGENTS.md"
       ],
       "title": "issue-184.json"
+    },
+    {
+      "path": ".github/acceptance/issue-188.json",
+      "kind": "file",
+      "purpose": "Issue #188 continuity checks and independent handoff, review and delivery gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-188.json"
     },
     {
       "path": ".github/acceptance/issue-189.json",
@@ -24365,6 +24391,28 @@
       "path": "review/issue-184/review-evidence.tar.xz",
       "kind": "file",
       "purpose": "Literal reviewer launch/packet/first-result/correction and bounded verification evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "review-evidence.tar.xz"
+    },
+    {
+      "path": "review/issue-188/2026-11-11-analysis.md",
+      "kind": "file",
+      "purpose": "Issue #188 analysis, style and test allocations, independent review and acceptance evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue #188 — 2026-11-11 continuity review"
+    },
+    {
+      "path": "review/issue-188/review-evidence.tar.xz",
+      "kind": "file",
+      "purpose": "First reviewer results and source-bound execution records for issue #188.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -44226,6 +44274,16 @@
       "path": "review/issue-184",
       "kind": "directory",
       "purpose": "Issue184 source-bound archival inventory, lossless recovery and post-production process evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-188",
+      "kind": "directory",
+      "purpose": "Versioned issue #188 continuity implementation and independent review evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [

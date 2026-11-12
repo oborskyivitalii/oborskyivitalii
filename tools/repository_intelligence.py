@@ -91,14 +91,22 @@ def safe_path(root, relative):
     return current
 
 
-def active_markdown(text):
+def active_markdown(text, *, plain=False):
     """Extract a bounded active Markdown view without treating code as comments.
 
     Balanced single-line code spans are supported. A comment-bearing unmatched
     span is visibly unsupported instead of silently losing following inventory.
+    Plain mode recognizes column-one fences for section detection. Literal
+    HTML comment markers are allowed only in fenced example content. Plain
+    prose reserves raw HTML tag syntax and rejects front matter.
     """
     lines, fence, comment = [], None, False
-    for line in text.splitlines():
+    source_lines = (
+        re.split(r"\r\n?|\n", text.removeprefix("\ufeff")) if plain else text.splitlines()
+    )
+    if plain and source_lines[0].rstrip(" \t") == "---":
+        raise ValueError("Front matter is unsupported in continuity sections")
+    for line in source_lines:
         if fence is not None:
             if re.fullmatch(
                 r" {0,3}" + re.escape(fence[0]) + "{" + str(fence[1]) + r",}[ \t]*", line
@@ -106,14 +114,29 @@ def active_markdown(text):
                 fence = None
             continue
         if not comment:
-            if line.startswith(("    ", "\t")):
+            if plain and re.match(
+                r"^(?:[ \t]|>|[-+*][ \t]|\d{1,9}[.)][ \t])+(?:`{3,}[^`]*|~{3,}.*)$", line
+            ):
+                raise ValueError("Code fences must start at column one in continuity sections")
+            if not plain and line.startswith(("    ", "\t")):
                 continue
+            if plain and re.search(
+                r"<(?:\?|!(?!--)|/?[A-Za-z][A-Za-z0-9-]*(?=[ \t\f\v]|/?>|$))",
+                line,
+            ):
+                raise ValueError("Raw HTML tag syntax is unsupported in continuity sections")
+            if plain and "<!--" in line:
+                raise ValueError("HTML comment markers are unsupported in continuity sections")
             opening = re.match(r"^ {0,3}(\x60{3,}|~{3,})(.*)$", line)
             if opening:
                 marker, info = opening.groups()
                 if marker[0] != chr(96) or chr(96) not in info:
                     fence = (marker[0], len(marker))
                     continue
+        if plain:
+            if not line.startswith(("    ", "\t")):
+                lines.append(line)
+            continue
         remainder, visible = line, ""
         while remainder:
             if comment:
@@ -269,7 +292,7 @@ def instruction_paths(path, instructions):
     )
 
 
-def path_inventory(root, config, records, texts, instructions):
+def path_inventory(root, config, records, texts, instructions, continuity_markdown):
     catalog = json.loads(texts[config["catalog"]])
     if catalog.get("schema_version") != 1:
         raise ValueError("Unsupported path catalog schema")
@@ -299,12 +322,12 @@ def path_inventory(root, config, records, texts, instructions):
             raise ValueError(f"Missing path owner: {path}")
         row = {"path": path, **entry, "instructions": instruction_paths(path, instructions)}
         if kind == "file":
-            body = texts.get(path, "")
-            title = (
-                re.search(r"^#\s+(.+)$", active_markdown(body), re.M)
-                if path.endswith(".md")
-                else None
-            )
+            title = None
+            if path.endswith(".md"):
+                body = continuity_markdown.get(path)
+                if body is None:
+                    body = active_markdown(texts.get(path, ""))
+                title = re.search(r"^#\s+(.+)$", body, re.MULTILINE)
             row["title"] = title.group(1) if title else PurePosixPath(path).name
             artifacts.append(row)
         else:
@@ -313,13 +336,40 @@ def path_inventory(root, config, records, texts, instructions):
 
 
 def check_continuity(config, texts):
+    """Validate continuity and return the active Markdown used for section checks."""
+    continuity_markdown = {}
     for path, contract in config.get("continuity", {}).items():
         body = texts[path]
         if len(body.splitlines()) > contract["max_lines"]:
             raise ValueError(f"Continuity line bound exceeded: {path}; move detail to its owner")
-        for heading in contract.get("headings", []):
-            if heading not in body.splitlines():
+        max_bytes = contract.get("max_bytes")
+        if max_bytes is not None and len(body.encode("utf-8")) > max_bytes:
+            raise ValueError(
+                f"Continuity UTF-8 byte bound exceeded: {path}; move detail to its owner"
+            )
+        headings = contract.get("headings", [])
+        if not headings:
+            continue
+        try:
+            active_body = active_markdown(body, plain=True)
+        except ValueError as error:
+            raise ValueError(f"{error}: {path}") from error
+        if re.search(r"^ {0,3}(?:-+|=+)[ \t]*$", active_body, re.M):
+            raise ValueError(
+                f"Setext underline markers are unsupported in continuity sections: {path}"
+            )
+        active_headings = re.findall(r"^ {0,3}##(?:[ \t][^\n]*)?$", active_body, re.M)
+        for heading in active_headings:
+            if heading not in headings:
+                raise ValueError(f"Noncanonical continuity section {heading!r}: {path}")
+        for heading in headings:
+            occurrences = active_headings.count(heading)
+            if occurrences == 0:
                 raise ValueError(f"Missing continuity section {heading}: {path}")
+            if occurrences > 1:
+                raise ValueError(f"Duplicate continuity section {heading}: {path}")
+        continuity_markdown[path] = active_body
+    return continuity_markdown
 
 
 def in_scope(row, scope):
@@ -449,7 +499,7 @@ def build(root, config_path):
     ]
     if not any(x["path"] == "AGENTS.md" for x in instructions):
         raise ValueError("Root AGENTS.md is required")
-    check_continuity(config, texts)
+    continuity_markdown = check_continuity(config, texts)
     terms = []
     for p in config.get("glossaries", []):
         for title in re.findall(r"^#{2,3}\s+(.+?)\s*$", active_markdown(texts[p]), re.M):
@@ -505,7 +555,9 @@ def build(root, config_path):
             raise ValueError(f"Missing supported source-registry schema in {p}")
     if len({x["id"] for x in sources}) != len(sources):
         raise ValueError("Duplicate source ID in represented registries")
-    artifacts, directories = path_inventory(root, config, records, texts, instructions)
+    artifacts, directories = path_inventory(
+        root, config, records, texts, instructions, continuity_markdown
+    )
     entries = {row["path"]: row for row in artifacts + directories}
     for instruction in instructions:
         path = instruction["path"]

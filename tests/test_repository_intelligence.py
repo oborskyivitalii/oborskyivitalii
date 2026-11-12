@@ -755,23 +755,317 @@ class NavigationSafetyTests(unittest.TestCase):
         self.assertNotIn("archive/AGENTS.before.md", {i["path"] for i in data["instructions"]})
 
     def test_memory_and_agent_bounds_and_required_sections_fail(self):
+        headings = [
+            "## Snapshot",
+            "## Decisions",
+            "## Open work",
+            "## Next session",
+            "## Maintenance",
+        ]
+        memory_contract = {"max_lines": 120, "max_bytes": 8192, "headings": headings}
+        current_config = ri.load_config(REPO, ".github/repository-intelligence-config.json")
+        self.assertEqual(current_config["continuity"]["MEMORY.md"], memory_contract)
         self.config["continuity"] = {
             "AGENTS.md": {"max_lines": 2},
-            "MEMORY.md": {"max_lines": 4, "headings": ["## Snapshot"]},
+            "MEMORY.md": memory_contract,
         }
-        self.write("MEMORY.md", "# Memory\n## Snapshot\n")
+        memory = "# Memory\n" + "\n".join(headings) + "\n"
+        self.write("MEMORY.md", memory)
         self.save_config()
         self.materialize()
-        for path, body in [
-            ("AGENTS.md", "a\nb\nc\n"),
-            ("MEMORY.md", "# Memory\n## Snapshot\na\nb\nc\n"),
-            ("MEMORY.md", "# Memory\n"),
-        ]:
-            with self.subTest(path=path), self.assertRaises(ValueError):
-                self.write(path, body)
+
+        line_boundary = memory + "a\n" * (120 - len(memory.splitlines()))
+        available_bytes = 8192 - len(memory.encode("utf-8")) - 1
+        byte_boundary = memory + "ї" * (available_bytes // 2) + "a" * (available_bytes % 2) + "\n"
+        self.assertEqual(len(line_boundary.splitlines()), 120)
+        self.assertEqual(len(byte_boundary.encode("utf-8")), 8192)
+        markdown_examples = memory + "<https://example.com>\n\n```html\n<pre>\n<!-- Note -->\n```\n"
+        inline_code = (
+            memory + "\n- ```one `code` span``` and [CI](https://example.com)\n"
+            "\nSee https://example.com/decision and www.example.com.\n"
+        )
+        inline_emphasis = (
+            memory
+            + "\n*Owner decision* is recorded.\n\n**`owner`**\n"
+            + "\n*Progress < 100%*\n"
+            + "\n*See <https://example.com/decision> and [the notes](notes).*\n"
+            + "\n*Record ``git `status` output`` and `www.example.com`.*\n"
+            + "\n**See <https://example.com/`a> and `[state]`.**\n"
+        )
+        literal_headings_in_examples = (
+            memory + "\n***\n\n```md\n## Snapshot\n## *Snapshot*\nSnapshot\n-\n"
+            "See <h2>Snapshot</h2>\n<em>Example `<!--` here</em>\n```\n"
+            "\nSee &lt;h2>Snapshot&lt;/h2> and [the notes](<notes/checkpoint.md>).\n"
+        )
+        for body in (
+            line_boundary,
+            byte_boundary,
+            markdown_examples,
+            inline_code,
+            inline_emphasis,
+            literal_headings_in_examples,
+        ):
+            self.write("MEMORY.md", body)
+            ri.build(self.root, self.cfg)
+
+        fenced_comment = "```md\nLiteral `<!--\n```\n\n"
+        for label, body in (
+            ("BOM before opening fence", "\ufeff" + fenced_comment + memory),
+            ("BOM before title", "\ufeff" + memory + fenced_comment),
+            ("Unicode separator in fence", memory + "```md\n```\u2028Literal `<!--\n```\n"),
+        ):
+            with self.subTest(accepted=label):
+                self.write("MEMORY.md", body)
+                surface = ri.build(self.root, self.cfg)
+                artifact = next(row for row in surface["artifacts"] if row["path"] == "MEMORY.md")
+                record = next(
+                    row
+                    for row in surface["source_identity"]["inputs"]
+                    if row["path"] == "MEMORY.md"
+                )
+                self.assertEqual(artifact["title"], "Memory")
+                self.assertEqual(record["sha256"], ri.digest(body.encode("utf-8")))
+
+        byte_overage = byte_boundary[:-1] + "a\n"
+        self.assertEqual(len(byte_overage.encode("utf-8")), 8193)
+        self.assertLess(len(byte_overage), 8192)
+        self.write("MEMORY.md", memory)
+        with self.assertRaisesRegex(ValueError, r"Continuity line bound exceeded: AGENTS\.md"):
+            self.write("AGENTS.md", "a\nb\nc\n")
+            ri.build(self.root, self.cfg)
+        self.write("AGENTS.md", "# Root instructions\n")
+
+        missing = memory.replace("## Snapshot\n", "")
+        cases = [
+            ("line overage", line_boundary + "a\n", r"Continuity line bound exceeded: MEMORY\.md"),
+            ("byte overage", byte_overage, r"Continuity UTF-8 byte bound exceeded: MEMORY\.md"),
+            ("missing section", missing, r"Missing continuity section ## Snapshot: MEMORY\.md"),
+            (
+                "duplicate active heading",
+                memory + "\n## Snapshot\n",
+                r"Duplicate continuity section ## Snapshot: MEMORY\.md",
+            ),
+            (
+                "noncanonical active heading with Markdown heading delimiters",
+                memory + "\n  ## Snapshot ##\n",
+                r"Noncanonical continuity section.*: MEMORY\.md",
+            ),
+            (
+                "noncanonical active heading with extra internal spaces",
+                memory + "\n## Open   work ##\n",
+                r"Noncanonical continuity section.*: MEMORY\.md",
+            ),
+            (
+                "noncanonical active heading with an internal tab",
+                memory + "\n## Next\tsession\n",
+                r"Noncanonical continuity section.*: MEMORY\.md",
+            ),
+            (
+                "duplicate rendered heading with inline emphasis",
+                memory + "\n## *Snapshot*\n",
+                r"Noncanonical continuity section.*: MEMORY\.md",
+            ),
+            (
+                "duplicate rendered heading with an HTML entity",
+                memory + "\n## Snapsho&#116;\n",
+                r"Noncanonical continuity section.*: MEMORY\.md",
+            ),
+            (
+                "extra top-level heading",
+                memory + "\n## History\n",
+                r"Noncanonical continuity section.*: MEMORY\.md",
+            ),
+            (
+                "empty top-level heading",
+                memory + "\n##\n",
+                r"Noncanonical continuity section.*: MEMORY\.md",
+            ),
+            (
+                "heading syntax in a low-indentation list continuation",
+                memory + "\n- Note\n\n  ## Example\n",
+                r"Noncanonical continuity section.*: MEMORY\.md",
+            ),
+            (
+                "duplicate rendered Setext section",
+                memory + "\nSnapshot\n   - \t\n",
+                r"Setext underline markers are unsupported.*: MEMORY\.md",
+            ),
+            (
+                "Setext title underline",
+                memory + "\nSnapshot\n===\n",
+                r"Setext underline markers are unsupported.*: MEMORY\.md",
+            ),
+            (
+                "fenced heading",
+                missing + "```md\n## Snapshot\n```\n",
+                r"Missing continuity section ## Snapshot: MEMORY\.md",
+            ),
+            (
+                "commented heading",
+                missing + "<!--\n## Snapshot\n-->\n",
+                r"HTML comment markers are unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "comment followed by heading text",
+                missing + "<!-- comment -->## Snapshot\n",
+                r"HTML comment markers are unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "raw HTML block",
+                missing + "<pre>\n## Snapshot\n</pre>\n",
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "raw HTML block with form feed after the tag name",
+                "<pre\f>\n" + memory,
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "raw HTML block with vertical tab after the tag name",
+                "<pre\v>\n" + memory,
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "raw duplicate heading in regular prose",
+                memory + "\nSee <h2>Snapshot</h2> in the checkpoint.\n",
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "raw collapsible container before the sections",
+                "Read <details>\n\n" + memory,
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "literal HTML tag in ordinary inline code",
+                memory + "\nSee `<h2>Snapshot</h2>` in the example.\n",
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "standalone emphasis opener",
+                missing + "<em>\n## Snapshot\n</em>\n",
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "paired raw HTML emphasis",
+                memory + "\n<em>See <https://example.com> and `status`.</em>\n",
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "paired raw HTML after the start of a multiline code span",
+                memory + "\nBefore `open\n<em>`<h2>Snapshot</h2>`</em>\n",
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "raw tag nested in otherwise paired inline emphasis",
+                "<em><details></em>\n\n" + memory,
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "raw tag after a code span with a different delimiter length",
+                "<em>``literal`<details></em>\n\n" + memory,
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "raw tag after a real span adjacent to an escaped backtick",
+                r"<em>Record \``literal`<details>`</em>" + "\n\n" + memory,
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "raw tag after a link destination containing a backtick",
+                memory + "\n<em>[CI](https://example.com/`a)<details>`</em>\n",
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "raw heading after a bare GFM URL containing a backtick",
+                memory + "\n<em>https://example.com/`a <h2>Snapshot</h2>`</em>\n",
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "raw heading after a bare FTP URL containing a backtick",
+                memory + "\n<em>ftp://example.com/`a <h2>Snapshot</h2>`</em>\n",
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "bare WWW form after paired emphasis",
+                memory + "\n<em>Source</em> WWW.example.com\n",
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "comment marker in an inline code example",
+                memory + "\n*Example `<!--` here*\n",
+                r"HTML comment markers are unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "comment marker in an indented code example",
+                memory + "\n    <!--\n",
+                r"HTML comment markers are unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "comment marker in a fence opener",
+                memory + "\n```md <!--\nexample\n```\n",
+                r"HTML comment markers are unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "inline example followed by a real fence",
+                missing + "- ```one `code` span```\n\n```\n## Snapshot\n```\n",
+                r"Missing continuity section ## Snapshot: MEMORY\.md",
+            ),
+            (
+                "raw HTML opener with a comment",
+                missing + "<pre><!-- comment -->\n## Snapshot\n",
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "Unicode separator within a Markdown line",
+                missing + "Example\u2028## Snapshot\n",
+                r"Missing continuity section ## Snapshot: MEMORY\.md",
+            ),
+            (
+                "front matter heading",
+                "---\n## Snapshot\nstatus: active\n---\n\n" + missing,
+                r"Front matter is unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "BOM before a fenced example",
+                "\ufeff```\n" + memory + "```\n",
+                r"Missing continuity section ## Snapshot: MEMORY\.md",
+            ),
+            (
+                "BOM before raw HTML",
+                "\ufeff<pre>\n" + memory,
+                r"Raw HTML tag syntax is unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "nested fence before a top-level fenced example",
+                "- ```\n  example\n  ```\n\n```\n" + memory + "```\n",
+                r"Code fences must start at column one in continuity sections: MEMORY\.md",
+            ),
+            (
+                "indented fence nested in an ordered list",
+                memory + "\n100. Example\n\n     ```md\n     ## Snapshot\n     ```\n",
+                r"Code fences must start at column one in continuity sections: MEMORY\.md",
+            ),
+            (
+                "indented fence after a list continuation",
+                memory
+                + "\n- Example\n  Continued paragraph\n\n    ```md\n    ## Snapshot\n    ```\n",
+                r"Code fences must start at column one in continuity sections: MEMORY\.md",
+            ),
+            (
+                "escaped comment marker before a top-level fenced example",
+                "\\<!--\n\n```\n-->\n" + memory + "```\n",
+                r"HTML comment markers are unsupported in continuity sections: MEMORY\.md",
+            ),
+            (
+                "nested comment before a top-level fenced example",
+                "- <!--\n  note\n\n```\n-->\n" + memory + "```\n",
+                r"HTML comment markers are unsupported in continuity sections: MEMORY\.md",
+            ),
+        ]
+        for case, body, error in cases:
+            with self.subTest(case=case), self.assertRaisesRegex(ValueError, error):
+                self.write("MEMORY.md", body)
                 ri.build(self.root, self.cfg)
-            self.write("AGENTS.md", "# Root instructions\n")
-            self.write("MEMORY.md", "# Memory\n## Snapshot\n")
 
     def test_tracked_files_cannot_hide_in_excluded_directories(self):
         subprocess.run(["git", "init", "-q", str(self.root)], check=True)

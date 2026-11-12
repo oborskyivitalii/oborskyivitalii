@@ -315,12 +315,43 @@ silently change maintainer intent.
 
 ## Repository navigation and session memory
 
-AGENTS is an enduring router (maximum 100 lines); MEMORY is a dated handoff (maximum 120),
-never authoritative. At meaningful handoff/interruption/completion replace stale entries
-with date/ref/evidence pointers, relevant decisions, active issue/PR, remaining acceptance
-and next action. Retain `Snapshot`, `Decisions`, `Open work`, `Next session`, `Maintenance`.
-Revalidate live state next session. Logs/experiments/checkpoints belong in their issue/PR or
-review artifact; never put secrets/private correspondence/speculative completion in memory.
+AGENTS is an enduring router (maximum 100 lines). MEMORY is a dated handoff with a
+maximum of 120 lines and 8,192 UTF-8 bytes, including whitespace and line endings.
+Use exactly the five literal top-level ATX section lines `## Snapshot`,
+`## Decisions`, `## Open work`, `## Next session` and `## Maintenance`, each once.
+The guard reserves level-two ATX heading syntax at zero to three leading spaces
+for these lines. It also rejects standalone runs of `-` or `=` at that
+indentation to exclude Setext headings. Use `***` for a horizontal rule.
+Use column-one fences for examples. The placement check covers indented openers
+and common list or blockquote prefixes. A fence opener after a GFM footnote
+definition marker can pass that placement check. Put literal `<!--` examples in
+column-one fences, including examples that would otherwise use inline code. Keep
+HTML comments and front matter outside the handoff prose. Put literal HTML tag
+examples in those fences or write each opening angle bracket as `&lt;` in prose.
+Use Markdown `*emphasis*` and `**strong emphasis**`. Markdown links, bare URLs
+and angle-delimited URI autolinks are supported. Write a short relative link
+destination such as `(notes)` without angle brackets if it resembles an HTML tag.
+
+Refresh MEMORY after a completed step that changes where work can resume, at
+interruption or handoff, and after observing staging, merge, production or issue
+closure. Replace obsolete entries with the verified date and source ref, owning
+issue and active PR, completed step, stopping point, blockers or remaining
+acceptance, and the next concrete action. Link the exact issue, PR, review or
+check evidence. Keep brief pointers to relevant concurrent work. Record settled
+decisions in `Decisions` and planned actions in `Next session`. Revalidate the
+facts against live sources when resuming.
+
+During exact-head admission and conditional refresh, record each verified step
+and any interruption in the dated issue or PR checkpoint linked from MEMORY.
+Keep the tracked handoff unchanged for those checkpoint updates while exact-head
+evidence is needed. If the pointer needs correction or another source change is
+required, refresh the tracked handoff and revalidate the evidence on the new
+head. Revalidate also if protected main moves. Record verified delivery in the
+checkpoint promptly, then reconcile the tracked handoff with the observed
+outcome.
+
+Keep logs, experiments and superseded checkpoints in the owning issue, PR or
+versioned review artifact. Keep secrets and private correspondence out of MEMORY.
 
 Every file/directory needs purpose, role and owner in [the path catalog](.github/repository-paths.json);
 add/remove entries with path changes. Missing/unclassified/stale entries fail. Follow the
