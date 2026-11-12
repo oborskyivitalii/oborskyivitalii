@@ -162,7 +162,8 @@ and assess contract. The parent does the following for each owner/scope.
 
 1. From accepted policy and the actual base/head/tree diff, prepare a trusted
    impact record with affected surfaces, explicit role gates and any new pass
-   request. Select all roles for trust/routing/acceptance or cross-page runtime.
+   request. Bind an explicit request to its observed occurrence ID and sequence.
+   Select all roles for trust/routing/acceptance or cross-page runtime.
    Hold an unknown scope. Record why narrow or absent roles are applicable.
 2. Prepare a role-specific read manifest with common/role prompts, candidate
    sources, instructions and an independent oracle. Bound the initial message
@@ -177,12 +178,17 @@ and assess contract. The parent does the following for each owner/scope.
    entry and its digest before invoking the emitted exact spawn arguments.
    Record the actual tool invocation and accepted response. Import them against
    the checkpoint. On completion retain the first output, observed reads,
-   verdict, finding IDs and any disclosure. Run role-specific correction with
-   a fresh handle and checked delta packet.
+   verdict, finding IDs and any disclosure. Bind each observed read to its
+   whole-file grant or exact approved byte range. Pass requires all assigned
+   reads and the assigned result path. Run correction with a fresh handle and
+   a checked delta packet carrying each outstanding ID, location, observed
+   symptom and expected invariant as neutral facts.
 4. If a launch fails, is uncertain or a result is contaminated, reconcile the
    transcript and record the exclusion with its observation before replacing.
    A replacement links to the prior attempt even when no result was admitted.
-   The newest applicable attempt holds the gate from preparation onward.
+   The newest applicable attempt holds the gate from preparation onward. An
+   excluded stale artifact is retained by identity. The checkpointed finding
+   metadata can still carry its material blockers into a fresh packet.
 5. Check the current journal against a separately retained checkpoint and
    reconciled observed attempt IDs. After interruption account for all native
    observations, including pending/adverse attempts, before trusting an older

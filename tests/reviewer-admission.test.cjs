@@ -81,6 +81,7 @@ function fixture({ owner = 31, surface = 'artifact' } = {}) {
           ],
           candidateRoot: '/fixture/candidate',
           evidenceRoot: '/fixture/evidence',
+          corrections: [],
           output: '/fixture/evidence/' + role + '.md',
         },
       ])
@@ -115,7 +116,13 @@ function fixture({ owner = 31, surface = 'artifact' } = {}) {
     stage = 'review',
     taskName = 'review_' + next++
   ) => ({ role, phase, prior, stage, taskName, forkTurns: 'none' });
-  const prepare = (...args) => execute('prepare', plan(...args)).prepared;
+  const prepare = (...args) => {
+    const input = plan(...args);
+    const spec =
+      input.stage === 'preflight' ? control.preflightPacket : control.packets[input.role];
+    spec.output = spec.evidenceRoot + '/' + input.taskName + '.md';
+    return execute('prepare', input).prepared;
+  };
   const launchInput = (
     prepared,
     handle = '/root/' + prepared.args.task_name,
@@ -135,7 +142,11 @@ function fixture({ owner = 31, surface = 'artifact' } = {}) {
   };
   const result = (prepared, verdict = 'pass', findings = [], completion = {}) => {
     const handle = '/root/' + prepared.args.task_name;
-    const artifact = note('Independent ' + prepared.role + ' result, ' + verdict, 'result');
+    const artifact = ref(
+      prepared.outputPath,
+      'result',
+      'Independent ' + prepared.role + ' result, ' + verdict
+    );
     return {
       requestDigest: prepared.digest,
       handle,
@@ -146,7 +157,7 @@ function fixture({ owner = 31, surface = 'artifact' } = {}) {
         packetDigest: prepared.packetDigest,
         artifactSha256: artifact.sha256,
         exposure: 'within-scope',
-        reads: prepared.allowedReads,
+        reads: prepared.readGrants,
         verdict,
         findings,
         ...completion,
@@ -317,7 +328,17 @@ test('changed-candidate correction rejects the old handle and must resolve earli
   f.finish(first, 'changes-required', [issue]);
   f.control.target = { ...f.control.target, head: sha('d'), tree: sha('e') };
   f.control.packets[code].files[2] = f.ref('source.txt', 'source', 'Corrected source', 'candidate');
+  refused(() => f.prepare(code, 'correction', first.digest), 'CORRECTION_SCOPE');
+  f.control.packets[code].corrections = [
+    {
+      id: 'C1',
+      location: 'source.txt',
+      symptom: 'Incorrect output',
+      invariant: 'Only corrected output is admitted',
+    },
+  ];
   const fix = f.prepare(code, 'correction', first.digest);
+  assert.match(fix.args.message, /C1.*Incorrect output.*Only corrected output/);
   assert.equal(fix.tool, 'collaboration.spawn_agent');
   assert.equal(fix.args.fork_turns, 'none');
   f.observe(fix);
@@ -359,7 +380,14 @@ test('explicit same-SHA review and latest pending attempt cannot reuse an older 
   f.finish(p);
   const oldJournal = f.journal();
   f.control.impact = f.impact(['artifact'], { explicitRoles: [code] });
-  f.control.request = 'maintainer-new-judgment';
+  f.control.request = f.ref('event-1.json', 'observation', {
+    eventId: 'maintainer-message-1',
+    sequence: 1,
+    owner: 31,
+    scope: 'unit',
+    head: f.control.target.head,
+    roles: [code],
+  });
   refused(() => f.assess([f.outcome(p)]), 'STALE_RESULT');
   const next = f.prepare(code, 'correction', p.digest);
   refused(() => f.assess([f.outcome(p)]), 'REVIEW_HELD');
@@ -388,6 +416,83 @@ test('unchanged verified scope survives a changed head but stale dependencies an
     'candidate'
   );
   refused(() => f.finish(next), 'STALE');
+});
+
+test('result evidence binds every observed read grant and the exact assigned output', () => {
+  const f = fixture();
+  const p = f.prepare();
+  f.launch(p);
+  refused(() => f.finish(p, 'pass', [], { reads: [] }), 'READ_EVIDENCE');
+  const mixed = p.readGrants.find((read) => read.slice);
+  refused(() => f.finish(p, 'pass', [], { reads: [{ ref: mixed.ref, slice: null }] }), 'EXPOSURE');
+  const result = f.result(p);
+  const other = f.ref('unrelated.md', 'result', f.read(result.artifact).toString());
+  refused(() => f.execute('record-result', { ...result, artifact: other }), 'EVIDENCE');
+  f.finish(p);
+  assert.equal(f.assess([f.outcome(p)]).status, 'accepted');
+});
+
+test('excluded completed result cannot block its clean replacement when old bytes are unavailable', () => {
+  const f = fixture();
+  const p = f.prepare();
+  f.launch(p);
+  f.finish(p);
+  f.exclude(p, 'stale');
+  f.ref(p.outputPath, 'result', 'Old result bytes lost');
+  const replacement = f.prepare(code, 'replacement', p.digest);
+  f.launch(replacement);
+  f.finish(replacement);
+  assert.equal(f.assess([f.outcome(replacement)]).status, 'accepted');
+});
+
+test('excluded stale blocker survives replacement without relying on its artifact bytes', () => {
+  const f = fixture();
+  const p = f.prepare();
+  const blocker = { id: 'B1', impact: 'blocking', status: 'open', evidence: 'old observation' };
+  f.launch(p);
+  f.finish(p, 'changes-required', [blocker]);
+  f.exclude(p, 'stale');
+  f.ref(p.outputPath, 'result', 'Old result bytes lost');
+  refused(() => f.prepare(code, 'replacement', p.digest), 'CORRECTION_SCOPE');
+  f.control.packets[code].corrections = [
+    {
+      id: 'B1',
+      location: 'source.txt',
+      symptom: 'Previously wrong output',
+      invariant: 'Only current output passes',
+    },
+  ];
+  const replacement = f.prepare(code, 'replacement', p.digest);
+  f.launch(replacement);
+  f.finish(replacement, 'pass', [{ ...blocker, status: 'resolved' }]);
+  assert.equal(f.assess([f.outcome(replacement)]).status, 'accepted');
+});
+
+test('two same-SHA explicit review occurrences require two independent executions', () => {
+  const f = fixture();
+  f.control.impact = f.impact(['artifact'], { explicitRoles: [code] });
+  const request = (sequence) =>
+    f.ref('request-' + sequence + '.json', 'observation', {
+      eventId: 'message-' + sequence,
+      sequence,
+      owner: 31,
+      scope: 'unit',
+      head: f.control.target.head,
+      roles: [code],
+    });
+  f.control.request = request(1);
+  const first = f.prepare();
+  f.launch(first);
+  f.finish(first);
+  assert.equal(f.assess([f.outcome(first)]).status, 'accepted');
+  f.control.request = request(2);
+  refused(() => f.assess([f.outcome(first)]), 'STALE_RESULT');
+  const second = f.prepare(code, 'correction', first.digest);
+  f.launch(second);
+  f.finish(second);
+  assert.equal(f.assess([f.outcome(second)]).status, 'accepted');
+  f.control.request = request(1);
+  refused(() => f.assess([f.outcome(first)]), 'PASS_REQUEST');
 });
 
 test('CLI verifies independently pinned checkpoint input and an actual clean Git target', (t) => {

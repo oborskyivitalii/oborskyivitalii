@@ -116,7 +116,7 @@ function roleList(value) {
     fail('ROLE_SET');
 }
 
-function select(impact, owner, request) {
+function select(impact, owner) {
   object(impact, ['surfaces', 'owningRoles', 'explicitRoles', 'preflight']);
   roleList(impact.owningRoles);
   roleList(impact.explicitRoles);
@@ -129,8 +129,6 @@ function select(impact, owner, request) {
     fail('IMPACT');
   if (impact.surfaces.some((surface) => !Object.hasOwn(surfaceRoles, surface)))
     fail('UNKNOWN_SCOPE');
-  if (impact.explicitRoles.length) text(request);
-  else if (request !== null) fail('IMPACT');
   const roles = new Set([
     ...impact.surfaces.flatMap((surface) => surfaceRoles[surface]),
     ...impact.owningRoles,
@@ -213,12 +211,41 @@ function checkControl(control, journal, read) {
   if (names.size !== 3) fail('ISOLATION');
   if (control.impact.space !== 'evidence' || control.impact.kind !== 'impact') fail('IMPACT');
   const impact = JSON.parse(files([control.impact], read)[0]);
-  const selection = select(impact, control.owner, control.request);
+  const selection = select(impact, control.owner);
+  selection.request = explicitOccurrence(control, selection.explicit, journal, read);
   selection.roles = allRoles.filter(
-    (role) => selection.roles.includes(role) || outstanding(journal, role, 'review', read)
+    (role) => selection.roles.includes(role) || outstanding(journal, role, 'review')
   );
-  selection.preflight ||= outstanding(journal, requirements, 'preflight', read);
+  selection.preflight ||= outstanding(journal, requirements, 'preflight');
   return selection;
+}
+
+function explicitOccurrence(control, roles, journal, read) {
+  if (!roles.length) {
+    if (control.request !== null) fail('PASS_REQUEST');
+    return null;
+  }
+  const [event] = observation([control.request], read);
+  object(event, ['eventId', 'sequence', 'owner', 'scope', 'head', 'roles']);
+  text(event.eventId);
+  if (
+    !Number.isSafeInteger(event.sequence) ||
+    event.sequence < 1 ||
+    event.owner !== control.owner ||
+    event.scope !== control.scope ||
+    event.head !== control.target.head ||
+    !equal(event.roles, roles)
+  )
+    fail('PASS_REQUEST');
+  const latestRequest = journal.attempts.findLast((entry) => entry.prepared.request)?.prepared
+    .request;
+  if (
+    latestRequest &&
+    (event.sequence < latestRequest.sequence ||
+      (event.sequence === latestRequest.sequence && event.eventId !== latestRequest.eventId))
+  )
+    fail('PASS_REQUEST');
+  return { eventId: event.eventId, sequence: event.sequence };
 }
 
 function checkJournal(journal) {
@@ -244,7 +271,9 @@ function checkedText(bytes) {
 
 function packet(role, control, read, stage = 'review') {
   const spec = stage === 'preflight' ? control.preflightPacket : control.packets[role];
-  object(spec, ['files', 'slices', 'candidateRoot', 'evidenceRoot', 'output']);
+  object(spec, ['files', 'slices', 'candidateRoot', 'evidenceRoot', 'output', 'corrections']);
+  const { corrections } = spec;
+  if (!Array.isArray(corrections)) fail('CORRECTION_SCOPE');
   for (const field of ['candidateRoot', 'evidenceRoot', 'output']) {
     if (
       typeof spec[field] !== 'string' ||
@@ -305,7 +334,20 @@ function packet(role, control, read, stage = 'review') {
     return checkedText(bytes);
   });
   if (!seen.has('intent')) fail('PACKET');
-  const manifest = { role, ...spec, target: control.target };
+  const outputPath = path.relative(spec.evidenceRoot, spec.output);
+  if (
+    !outputPath ||
+    !outputPath
+      .split('/')
+      .every((part) => /^[A-Za-z0-9_.-]+$/.test(part) && !['.', '..'].includes(part))
+  )
+    fail('PACKET');
+  const readGrants = spec.files.flatMap((ref) => {
+    const slices =
+      ref.space === 'evidence' ? spec.slices.filter((slice) => slice.path === ref.path) : [];
+    return slices.length ? slices.map((slice) => ({ ref, slice })) : [{ ref, slice: null }];
+  });
+  const manifest = { role, ...spec, target: control.target, corrections };
   const packetDigest = digest('packet', manifest);
   const inputs = spec.files.map((ref) => ref.space + ':' + ref.path + ' ' + ref.sha256).join('\n');
   const message = [
@@ -325,10 +367,16 @@ function packet(role, control, read, stage = 'review') {
     'Approved inputs:\n' + inputs,
     'Approved byte slices: ' + JSON.stringify(spec.slices),
     'Intent and neutral evidence:\n' + brief.join('\n'),
+    ...(corrections.length
+      ? ['Outstanding findings for verification: ' + JSON.stringify(corrections)]
+      : []),
   ].join('\n');
   return {
     message,
     packetDigest,
+    outputPath,
+    readGrants,
+    corrections,
     scopeDigest: digest('scope', {
       requirement: control.requirementDigest,
       files: stage === 'preflight' ? spec.files.filter((ref) => ref.kind !== 'source') : spec.files,
@@ -353,6 +401,7 @@ function entryFor(journal, requestDigest) {
 function passing(entry) {
   return Boolean(
     entry &&
+      Array.isArray(entry.prepared.readGrants) &&
       !entry.excluded &&
       entry.result?.verdict === 'pass' &&
       !entry.result.findings.some(
@@ -372,7 +421,7 @@ function requirePreflight(journal, control, selection, read) {
     fail('PREFLIGHT');
   verifyLaunch(preflight.launch, preflight, read);
   verifyResult(preflight.result, preflight, read);
-  if (openFindings(journal.attempts, requirements, 'preflight', read).size) fail('PREFLIGHT');
+  if (openFindings(journal.attempts, requirements, 'preflight').size) fail('PREFLIGHT');
 }
 
 function prepare(input, journal, control, selection, read) {
@@ -404,22 +453,22 @@ function prepare(input, journal, control, selection, read) {
     journal.attempts.some((entry) => entry.prepared.args.task_name === input.taskName)
   )
     fail('JOURNAL');
+  const ids = openFindings(journal.attempts, input.role, input.stage);
   const built = packet(input.role, control, read, input.stage);
+  correctionFacts(built.corrections, ids);
   const payload = {
     role: input.role,
     stage: input.stage,
     phase: input.phase,
     prior: input.prior,
     target: control.target,
-    request: control.request,
+    request: selection.request,
     requirementDigest: control.requirementDigest,
     packetDigest: built.packetDigest,
     scopeDigest: built.scopeDigest,
     context: control.context,
-    allowedReads: (input.stage === 'preflight'
-      ? control.preflightPacket
-      : control.packets[input.role]
-    ).files,
+    readGrants: built.readGrants,
+    outputPath: built.outputPath,
     tool: 'collaboration.spawn_agent',
     args: {
       task_name: input.taskName,
@@ -437,6 +486,20 @@ function prepare(input, journal, control, selection, read) {
     excluded: null,
   });
   return { prepared };
+}
+
+function correctionFacts(facts, outstanding) {
+  if (!Array.isArray(facts) || facts.length !== outstanding.size) fail('CORRECTION_SCOPE');
+  const ids = new Set();
+  for (const fact of facts) {
+    object(fact, ['id', 'location', 'symptom', 'invariant']);
+    for (const value of Object.values(fact)) {
+      text(value);
+      if (Buffer.byteLength(value) > 512) fail('CORRECTION_SCOPE');
+    }
+    if (!outstanding.has(fact.id) || ids.has(fact.id)) fail('CORRECTION_SCOPE');
+    ids.add(fact.id);
+  }
 }
 
 function observation(refs, read) {
@@ -498,11 +561,23 @@ function verifyResult(input, entry, read) {
     completion.exposure !== 'within-scope' ||
     !Array.isArray(completion.reads) ||
     completion.reads.some(
-      (ref) => !entry.prepared.allowedReads.some((allowed) => equal(ref, allowed))
+      (observed) => !entry.prepared.readGrants.some((allowed) => equal(observed, allowed))
     )
   )
     fail('EXPOSURE');
-  if (input.artifact.kind !== 'result' || input.artifact.space !== 'evidence') fail('EVIDENCE');
+  if (
+    input.verdict === 'pass' &&
+    entry.prepared.readGrants.some(
+      (required) => !completion.reads.some((observed) => equal(observed, required))
+    )
+  )
+    fail('READ_EVIDENCE');
+  if (
+    input.artifact.kind !== 'result' ||
+    input.artifact.space !== 'evidence' ||
+    input.artifact.path !== entry.prepared.outputPath
+  )
+    fail('EVIDENCE');
   if (!checkedText(files([input.artifact], read)[0]).trim()) fail('RESULT');
   if (
     !['pass', 'changes-required', 'blocked', 'not-applicable'].includes(input.verdict) ||
@@ -561,11 +636,11 @@ function exclude(input, journal, control, read) {
   return { excluded: entry.excluded };
 }
 
-function openFindings(attempts, role, stage, read) {
+function openFindings(attempts, role, stage) {
   const blockers = new Set();
   for (const entry of attempts) {
     if (entry.prepared.role !== role || entry.prepared.stage !== stage || !entry.result) continue;
-    verifyResult(entry.result, entry, read);
+    // These facts were imported before the checkpoint. Excluded raw artifacts may be stale or unavailable.
     for (const finding of entry.result.findings) {
       if (finding.impact !== 'blocking') continue;
       if (finding.status === 'open') blockers.add(finding.id);
@@ -575,11 +650,9 @@ function openFindings(attempts, role, stage, read) {
   return blockers;
 }
 
-function outstanding(journal, role, stage, read) {
+function outstanding(journal, role, stage) {
   const entry = latest(journal, role, stage);
-  return (
-    Boolean(entry && !passing(entry)) || openFindings(journal.attempts, role, stage, read).size > 0
-  );
+  return Boolean(entry && !passing(entry)) || openFindings(journal.attempts, role, stage).size > 0;
 }
 
 function verifyRole(role, journal, control, selection, read) {
@@ -590,13 +663,14 @@ function verifyRole(role, journal, control, selection, read) {
   if (
     current.scopeDigest !== entry.prepared.scopeDigest ||
     (exact && current.packetDigest !== entry.prepared.packetDigest) ||
-    (selection.explicit.includes(role) && (!exact || entry.prepared.request !== control.request)) ||
+    (selection.explicit.includes(role) &&
+      (!exact || !equal(entry.prepared.request, selection.request))) ||
     (!exact && entry.prepared.target.base !== control.target.base)
   )
     fail('STALE_RESULT');
   verifyLaunch(entry.launch, entry, read);
   verifyResult(entry.result, entry, read);
-  if (openFindings(journal.attempts, role, 'review', read).size) fail('UNRESOLVED_HISTORY');
+  if (openFindings(journal.attempts, role, 'review').size) fail('UNRESOLVED_HISTORY');
   return {
     role,
     requestDigest: entry.prepared.digest,

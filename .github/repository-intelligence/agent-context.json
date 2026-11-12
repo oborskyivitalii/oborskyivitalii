@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "8ec4887b79aaa71b1451c8fe7b0da9770637a522c72bc45471b8f0ac595c3f73",
+    "digest": "b21c4d9e80c2e51100e826e611788a31b5330355978b0347b1450c9e204e1fd5",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -1005,7 +1005,7 @@
       {
         "path": "guides/WEB-ORCHESTRATION.md",
         "identity_mode": "content",
-        "sha256": "0022664fe5331c451f96a4611312e9e19597d791e91f20be5371a2b213196706"
+        "sha256": "4be030cf34e8f0627be69113df1eee41d0c74dea0fe313bd5a35e66e7daa7c28"
       },
       {
         "path": "guides/github-pages-domains.json",
@@ -4900,7 +4900,7 @@
       {
         "path": "review/issue-198/2026-11-12-reviewer-admission.md",
         "identity_mode": "content",
-        "sha256": "bb7e9d88f43e99e7180bdeab584a668dda11528f3819249b547f8cc9c445649e"
+        "sha256": "a3c19c97692cae5beb359e5f478391ebb58cacf51282d8887355cee06bff0a13"
       },
       {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -12035,7 +12035,7 @@
       {
         "path": "tests/reviewer-admission.test.cjs",
         "identity_mode": "content",
-        "sha256": "405064f2284c34cff82bb2a9399377f7e5193f5fa3b7e6f2faa632e4399c4c07"
+        "sha256": "2658695bd191d70b53ab8e352b578412f924a2bd1e6f369595d51eb8c7f79e63"
       },
       {
         "path": "tests/ribbons.test.cjs",
@@ -12410,7 +12410,7 @@
       {
         "path": "tools/orchestration/reviewer-admission.cjs",
         "identity_mode": "content",
-        "sha256": "5172ba2f9ffb2fe21c9667ccd756f28641e2acae55078104ec0f896fb7775749"
+        "sha256": "5b5f9763a4d631614b0b20b3158c3c0b72bfbb0026e509828df60cb8512f9e4b"
       },
       {
         "path": "tools/pages/controller.cjs",
