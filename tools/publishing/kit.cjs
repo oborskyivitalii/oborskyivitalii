@@ -238,7 +238,28 @@ async function writePlatform(root, staging, article, platform, assets, printTemp
   const adaptation = article.adaptations[platform];
   const selectedSource = adaptation ? adaptation.source : article.source;
   const selectedBytes = readSource(root, selectedSource.path);
-  const rendition = compile(decodeUtf8(selectedBytes.bytes, selectedSource.path), assets);
+  if (selectedBytes.sha256 !== selectedSource.sha256) {
+    throw new Error(`Platform source changed during generation: ${selectedSource.path}`);
+  }
+  const orderedAssets = (adaptation || article).model.figures.map((id) =>
+    assets.find((asset) => asset.id === id)
+  );
+  const cover = assets.find((asset) => asset.id === article.furniture.cover?.id);
+  const { outputs, images, cover: coverUpload } = makeImages(platform, orderedAssets, cover);
+  const uploads = new Map(images.map((item) => [item.id, item]));
+  const platformAssets = assets.map((asset) => {
+    const upload = uploads.get(asset.id);
+    return upload
+      ? {
+          ...asset,
+          url: upload.path,
+          uploadPath: upload.path,
+          width: upload.width,
+          height: upload.height,
+        }
+      : asset;
+  });
+  const rendition = compile(decodeUtf8(selectedBytes.bytes, selectedSource.path), platformAssets);
   const selectedEdition = adaptation ? adaptation.edition : article.edition;
   const selectedArticle = {
     ...article,
@@ -253,7 +274,7 @@ async function writePlatform(root, staging, article, platform, assets, printTemp
       ? { ...article.profile, print: undefined, reader: undefined }
       : article.profile,
   };
-  const layout = printLayout(selectedArticle, rendition, assets, true);
+  const layout = printLayout(selectedArticle, rendition, platformAssets, true);
   const distribution = article.furniture.distribution;
   const links = distribution
     ? [
@@ -269,11 +290,6 @@ async function writePlatform(root, staging, article, platform, assets, printTemp
         .join(' · ') +
       '</p>\n';
   }
-  const orderedAssets = rendition.model.figures.map((id) =>
-    assets.find((asset) => asset.id === id)
-  );
-  const cover = assets.find((asset) => asset.id === article.furniture.cover?.id);
-  const { outputs, images, cover: coverUpload } = makeImages(platform, orderedAssets, cover);
   const inventory = {
     schema: 2,
     articleId: article.metadata.id,
@@ -295,7 +311,7 @@ async function writePlatform(root, staging, article, platform, assets, printTemp
       path.join(staging, `${platform}.html`),
       documentHtml(
         selectedArticle,
-        { ...layout, body: placeImages(layout.body, inventory, assets, outputs, false) },
+        { ...layout, body: placeImages(layout.body, inventory, platformAssets, outputs, false) },
         'article-print.css',
         printTemplate
       )
@@ -320,7 +336,7 @@ async function writePlatform(root, staging, article, platform, assets, printTemp
   if (formats.includes('copy-ready')) {
     const copyHtml = documentHtml(
       selectedArticle,
-      { ...layout, body: placeImages(layout.body, inventory, assets, outputs, true) },
+      { ...layout, body: placeImages(layout.body, inventory, platformAssets, outputs, true) },
       'article-print.css',
       printTemplate,
       true
@@ -358,9 +374,19 @@ async function writePlatform(root, staging, article, platform, assets, printTemp
   return { transformation: transformations[0], omissions, inventory };
 }
 
-function platformInstructions(inventory) {
+function platformInstructions(inventory, formats) {
   const { platform, images, cover } = inventory;
   const title = platform === 'linkedin' ? 'LinkedIn' : 'Medium';
+  const copyReady = formats.includes('copy-ready');
+  const selected = ['html', 'md', 'txt'].find((format) => formats.includes(format));
+  const transfer = copyReady
+    ? 'Open `' +
+      platform +
+      '-copy-ready.html`, select all document content (Ctrl/Cmd+A), copy and paste into the native editor. Confirm that embedded images transferred.'
+    : 'Open `' + platform + '.' + selected + '` and transfer its content to the native editor.';
+  const uploadCondition = copyReady
+    ? 'if the paste does not transfer it'
+    : 'if it is missing from the story';
   const inlineFallbacks = images.filter((image) => image.path !== cover?.path);
   const coverInstructions = !cover
     ? [`${title}: this edition declares no cover upload.`]
@@ -370,13 +396,14 @@ function platformInstructions(inventory) {
           'The generic cover.png is source artwork. Check the native crop and readability before publishing.',
         ]
       : [
-          `Medium: set ${cover.path} as featured (Shift+F). If the image is missing after paste, upload it once ${leadingFeatured(inventory) ? 'as the leading story image' : 'at its matching figure position'}. Check the preview crop and focal point.`,
+          `Medium: set ${cover.path} as featured (Shift+F). If the image is missing from the story, upload it once ${leadingFeatured(inventory) ? 'as the leading story image' : 'at its matching figure position'}. Check the preview crop and focal point.`,
         ];
   return [
+    transfer,
     ...coverInstructions,
     ...(inlineFallbacks.length
       ? [
-          `${title}: upload each ordered image below manually if the paste does not transfer it.`,
+          `${title}: upload each ordered image below manually ${uploadCondition}.`,
           ...inlineFallbacks.map((asset) => `${asset.path} — ${asset.caption} (${asset.credit})`),
         ]
       : []),
@@ -574,13 +601,13 @@ async function renderKit(
       'article.md is the byte-exact authoring source; platform files retain their declared fallbacks.',
       '',
       'Review wording, heading sources, table row labels, captions and credits against the manuscript.',
-      'Open <platform>-copy-ready.html, select all document content (Ctrl/Cmd+A), copy and paste into the native editor.',
-      'The copy view includes the title, subtitle and byline; navigation and the generated summary are hidden.',
-      'Copy-ready images embed their platform upload files. Verify the transfer in the native editor.',
       '',
       'Check captions, alt text, credits and source links in each editor.',
       'Use the canonical only after accepted live-site verification; otherwise leave publication pending.',
-      ...inventories.flatMap((inventory) => [...platformInstructions(inventory), '']),
+      ...inventories.flatMap((inventory) => [
+        ...platformInstructions(inventory, article.profile.platforms[inventory.platform].formats),
+        '',
+      ]),
       'Record actual native-editor changes and observed publication as a separate event.',
       '',
       `Rights: ${article.metadata.rights.notice}`,

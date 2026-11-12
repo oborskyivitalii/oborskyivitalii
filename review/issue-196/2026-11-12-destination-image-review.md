@@ -1042,3 +1042,404 @@ SHA-256: `491d40467530df756bfd52c04b9880b2b4ec76dcc7825ef374f11b9b5dbbf6d7`
 **EQA-196-01 (medium).** `tools/publishing/kit.cjs:577–579` directs operators to open `<platform>-copy-ready.html` regardless of selected formats. R12's actual instructions parsed `<platform>` as raw HTML in the pinned CommonMark parser, so rendered Markdown can hide the platform placeholder. In a disposable reader-reference fixture with permitted LinkedIn `[txt]` and Medium `[html]`, the CLI verified `c1c1889b…` and emitted only `linkedin.txt` and `medium.html` as platform documents. Its instructions still direct both operators to the missing copy-ready files and describe embedded images. The unconditional wording existed at base. AC02's handoff now owns an actionable route to the generated copy and upload inventory. Generate platform-specific instructions naming the actual selected files, with the manual upload fallback for formats without embeds. Add a format-aware case to permanent `tests/publishing.test.cjs` via the existing PR-targeted/staging/production routes and owning MEDIA check.
 
 **Limits.** Chromium startup failed at process-singleton Unix socket creation with EPERM. Browser clipboard, native editor crop/focal point, fresh PDF rendering, and hosted behavior were not observed. No native writes or publishing occurred.
+
+
+## 2026-11-12 — PNG fidelity corrections and independent re-review
+
+Owning #196 / Draft PR #195. The correction starts at `15acfd302fe24319c39cdf5b7371fa3f868c2976`, based on main `8385e14d8077590175373fed9dd75da3fcc4e340`. Final reviewed checkout `e4bb95ac65544b0e428e6154908c5385f49a2d01`, tree `bbf95a9ce321809f152c30d87aaf54788c6d4616`. The delivery tree adds this report and its RI index to the exact reviewed files.
+
+| Finding | Corrected behavior and evidence |
+| --- | --- |
+| F196-01 and F196-03 | Native JPEG conversion handles supported gamma and ICC information, and evaluates contrast after compositing. The exporter preserves pale and mixed-tone marks and thin semi-transparent strokes. Isolated negligible fringe pixels cannot veto a usable matte. An asset requiring a stronger authored background gets a role-and-asset diagnostic. |
+| F196-02 and F196-06 | Grayscale keys are normalized to their actual bit depth and expanded to alpha before resizing. Fitted grayscale images retain a compatible GRAY ICC; bilevel patterns are resampled in a filterable mode. A 16-bit RGB keyed image passes unchanged when it needs no derivative. JPEG or resized PNG derivation requires explicit alpha in the source because Pillow reduces RGB samples before it can apply the full-width key. PNGs with cICP color need explicit conversion before derivation. |
+| F196-04 | Native validation is restricted to actually selected platform sources. Unrelated original media retain their identity checks and can still serve as generic hero, print or review images. A coverless edition with an animated generic hero rendered and verified. |
+| F196-05 | Native PNG validation checks critical ordering, palettes, complete IEND and CRC, and the bounded zlib scanline stream, including Adler-32. Missing CRC, bad CRC, appended data, missing Adler and invalid indexed samples are rejected. A valid Adam7 PNG split across multiple IDAT chunks is accepted. |
+| F196-07 | Handoff names the selected format and existing files, with Ctrl/Cmd+A preserved for copy-ready HTML. TXT and Markdown use the measured platform derivative paths. Upload instructions apply if the figure is missing from the story. |
+| Test selector | The publisher suite now runs for Pillow requirements-only changes. Tests exercise malformed source and forged stored derivative verification, color, opacity, file references, and generic media isolation. |
+
+### Acceptance disposition
+
+| AC | Observed result | Remaining |
+| --- | --- | --- |
+| AC01 | Guide describes per-platform exports, dimensions, sizes, manual placement and the authoring boundary for unsupported PNG color/key encodings. | The native editor step belongs to AC02/AC04. |
+| AC02 | Automated checks and independent probes verified image construction, placement, upload paths, data integrity, visible sampled artwork and preserved metadata. Unsupported derivative inputs receive the documented source-conversion diagnostic. | LinkedIn native cover crop/readability and Medium featured selection/preview remain unobserved. |
+| AC03 | Generated site build and lock are current. Frozen site media, retained PDFs, original publication inputs and assets match main byte for byte. Real R12, PMDay and coverless Reader Reference packages passed. A diagnostic fresh R12 PDF uses the same pinned review producer as the pre-change diagnostic baseline. | Default Playwright installation remained outside this pass due the previously observed corrupt browser ZIP. |
+| AC04 | Focused publisher, history, profile, safety, print and site tests, owning policy and CS01/02/07/10 style routes exercise corrected behavior and retained outputs. | Native editor observations remain open. |
+
+CS01/02 preserve generic source and print ownership while binding the platform export to the selected edition. CS07 retains asset and pixel budgets and counts decompressed scanlines without keeping a second full decoded raster. CS10 records the exact source and test outcomes. PNG validation focuses on critical stream integrity, image decode and platform suitability.
+
+### Independent execution record
+
+All launches requested `fork_turns="none"`, omitted model/effort and returned separate task handles. Provider internals are unobserved. The role prompt and packet digests are in the first reports. Earlier reports are preserved before reconciliation. A prior exploratory run briefly created untracked fixtures in its shared checkout and disclosed the incident. It removed those fixtures. The concluding scoped judgments used clean, separately pinned checkouts and excluded earlier reports.
+
+| Review pass | Source | Roles and execution handles |
+| --- | --- | --- |
+| Requirements preflight | `15acfd3` | `/root/r196_preflight` |
+| First correction | `12dfffb` | `/root/r196_post_req`, `/root/r196_post_code`, `/root/r196_post_white`, `/root/r196_post_exp` |
+| PNG stream and visual correction | `f6bc4a1` | `/root/r196_final_req`, `/root/r196_final_code`, `/root/r196_final_qa`, `/root/r196_final_exp` |
+| Palette, compositing and handoff correction | `9507eab` | `/root/r196_done_req`, `/root/r196_done_code`, `/root/r196_done_qa`, `/root/r196_done_exp` |
+| ICC and thin artwork correction | `35df5f1` | `/root/r196_last_code`, `/root/r196_last_qa` |
+| Connected matte correction | `2f6b36a` | `/root/r196_ship_code`, `/root/r196_ship_qa` |
+| Unified contrast-mask correction | `e4bb95a` | `/root/r196_ship2_code` |
+
+Common contract Git blob `68796daaf4313f64da381b1628866267fd9e263b`. Final scoped packet SHA-256 (issue, diff, source manifest) `bc4e673bd78c04e27b9b3fe651c1be6e0b885287c9a91dd9fe132790c66bc55b`, `7191b35b0d5627cd5a885525be15e28fdae46a761bb8d3175fac7868ef8bc624`, `8c8717bb26502076c1b2e30cea7b60acfcf00ab4bcf85dd5d81df89e3b1e02b7`.
+
+
+
+### Original correction report — Requirements preflight
+
+SHA-256: `207f3f28773afbc0fd37280bed870267abe015ae6b658dd18361ad33c73ddecb`
+
+# Issue #196 Requirements & Acceptance correction preflight
+
+## Verdict and scope
+
+The correction has bounded, testable requirements for AC02 and AC04. Define the supported native source rendering policy in the publication guide and cover its documented branches. AC02 and AC04 remain open pending completed-candidate review and the owning NATIVE gate. Keep AC01 and AC03 tied to the existing export targets, print and site ownership, and representative artifact evidence.
+
+I inspected local detached head `15acfd302fe24319c39cdf5b7371fa3f868c2976`, tree `ae7929d0822c7c79bd661a814326855f18fa7025`, and local origin/main `8385e14d8077590175373fed9dd75da3fcc4e340`. The acceptance authority supplied was the saved issue Intent and Acceptance, lines 1–11, SHA-256 `dd409f7b7a34817432e591aadd917a0a149b25afe8ba57de39fbfc08e90f8955`. The common contract and role prompt Git blobs were respectively `68796daaf4313f64da381b1628866267fd9e263b` and `3e6330fc4a1a01d33e2dcae6e0f35d3f3471c1e4`. I inspected relevant source and existing tests, and ran a small in-memory baseline check with Pillow 13.0.0. I did not inspect prior reviewer results, run the full publisher suite, observe the native editors or revalidate live remote state independently. The parent owns verification of the actual isolation launch receipt.
+
+## Findings and correction oracles
+
+| ID / severity | Baseline evidence and AC impact | Required outcome and bounded oracle |
+| --- | --- | --- |
+| R196-P01 / Blocking | `tools/publishing/platform-images.py:19–28,111–117`. Pillow accepted a PNG with a changed IEND CRC and one with trailing bytes; it rejected the control with its entire IEND missing. AC02 requires valid files and AC04 requires invalid/compatibility coverage. | Define the native input and output as a complete standalone PNG where applicable. Check signature, legal required chunk sequence and termination, CRCs including IEND, and a complete decodable raster before copying or fitting. Use a valid control and isolated, validly hashed variants with invalid IEND CRC, truncation and trailing bytes. A tampered kit check must satisfy earlier hash/inventory bindings so it observes the structural verifier, not just an integrity error. Also retain at least one positive legal case such as consecutive split IDAT. An invalid participating source yields a role-and-asset diagnostic and no committed kit. |
+| R196-P02 / Blocking | `platform-images.py:61–90,93–108,118–127`. The cover/featured conversion applies ICC but does not interpret gAMA/cHRM. A linear-gamma RGB patch (64,128,192) yielded JPEG (64,128,192), versus expected sRGB approximately (137,188,225). A one-bit alternating checkerboard reduced from 64×64 to 16×16 yielded 256 black pixels. Current tests at `tests/publishing.test.cjs:247–257,377–393` exercise red/blue placement and one 16-bit gray cover, leaving these mechanisms uncovered. AC02 requires preserving content identity and AC04 requires positive/oversize coverage. | For supported sources, check decoded output appearance with expected numeric patches independent of the production conversion. Use separate untagged or sRGB controls, a known gAMA/chromaticity or ICC conversion case for each supported branch, and patches far from edges with an explicit small JPEG tolerance, e.g. ±5 code values for solid interior samples. For valid gAMA=1.0 and standard primaries, the sRGB transfer gives the values above. If supporting non-sRGB primaries, use a known fixture with an independent profile/matrix reference. Test a 16-bit tonal ramp with distinct ordered levels including near black, a transparent and semitransparent patch using the documented white-composition rule, and inline downsampling with mixed coverage and no hidden-color halo. Compare a one-bit area-pattern reduction against its known coverage and ensure dark/light features survive. A byte-identical, validated in-budget inline PNG satisfies unchanged-image fidelity. Test transformed inline PNG separately from the flattened LinkedIn cover and Medium featured output. |
+| R196-P03 / Blocking | `platform-images.cjs:121–141` applies native decoder assumptions to all manifest assets, although `kit.cjs:272–276` selects platform figures plus cover. Authored media admission already limits article assets to local PNG by header, declaration and digest (`article.cjs:219–253)). AC03 preserves existing print/site behavior and AC04 requires compatibility. | Restrict native-only source rules to the union of actually selected cover and platform inline/featured sources. Apply verification from trusted source-bound roles and keep generic source and output integrity checks. A participating source with unsupported rendering semantics should fail explicitly rather than be flattened, clipped, recolored or reduced to one frame silently. A generic-only legal PNG outside the native subset must continue to package and verify with unchanged generic bytes, no extra native upload, and unchanged print/review placement where applicable. A variant in which the same asset participates must exercise the documented native outcome. Retain current older-kit verification paths and acceptance for existing valid artifacts. Broadening article source admission or changing PDF/site formats is outside this correction. |
+| R196-P04 / Required handoff | `kit.cjs:361–384` labels the LinkedIn native file with hard-coded JPEG and names generic artwork separately. AC01 permits a dedicated 1920×1080 JPEG or PNG. AC02 requires an unambiguous, verified handoff. | Generated instructions, inventory and output agree on actual native role, path, dimensions and format. The exporter can retain JPEG as its fixed repository choice if documented and internally consistent; AC01 does not require two encoders or a user-selectable option. State that the verified native file is required when the edition uses a cover and the generic cover is source artwork. The coverless case produces neither native cover file nor upload instruction. Continue to require crop/composition and legibility checks in the native LinkedIn editor, and featured selection/crop in Medium per the owning NATIVE gate. |
+
+## Traceability and next gate
+
+| AC | Check or owner gate | Status at preflight |
+| --- | --- | --- |
+| AC01 | Guide review against official/local separation and actual export metadata. Recheck handoff wording and retain 1920×1080 native cover, existing margins, budgets and placement. | Existing baseline guide identified. Any corrected source/format policy or handoff wording needs candidate review. |
+| AC02 | Render and verify controls and failures, measure decoded format/dimensions/bytes, compare native artwork and inventory/HTML/metadata, then record the native-editor observations. | Baseline reproduced P01 and P02; P03/P04 observed from source. NATIVE remains unobserved. |
+| AC03 | Representative PDF/site bytes and pixels or effective PPI, generic/frozen checks and Basic as mapped. | Preserve existing semantics; scope any reuse by actual unchanged source/dependencies, and compare affected output on the candidate. |
+| AC04 | Existing MEDIA modules, focused regression oracles, style guard and evidence for CS01/02/07/10, RI/RI-CI as mapped, fresh independent reviews and remaining NATIVE evidence. | Small direct baseline probe only. No exact-source pass asserted. |
+
+The local source policy should state what untagged input means, which color declarations and combinations can be faithfully converted, how alpha is interpreted for white-background JPEG, and which participating inputs fail explicitly. Test only behavior the policy actually claims. Valid ordinary authored PNG sources must retain the expected rendering, generic-only assets retain their established handling, and an unsupported native case must identify which asset and role prevented handoff. Native editor observations remain a separate acceptance prerequisite. This preflight does not authorize changes to the original ACs or publication.
+
+
+### Original correction report — repair requirements
+
+SHA-256: `bff0b451725cc0d9d47577079b2b6977c658d12108a87a4cb0eb3b11a8ee24b7`
+
+# #196 / PR #195 Requirements & Acceptance correction review
+
+**Verdict: correction required.** Reviewed clean detached head `12dfffb77b61bc7ce61821b186467bd562fba4fd`, tree `1a4dc92ef992ff3371de2828d56f28c7b5db8173`, base `15acfd302fe24319c39cdf5b7371fa3f868c2976`, dated issue packet, role prompts and owning policy. The six-file correction diff matched packet SHA-256 `3130de91e5e67d1336eba7a0cc554fc39958686e6787ca544b937cd67703dd73`. Inspected the full base-to-head file list and relevant generated metadata. Provider launch internals were outside this review.
+
+| Criterion | Exact-head observations |
+| --- | --- |
+| AC01 | `guides/ARTICLE-WORKFLOW.md` separates vendor guidance from local geometry, formats, byte bounds and placement. It specifies a distinct 1920 × 1080 JPEG, 5% margins, measured file verification and native review. The backdrop issue below defeats the meaningful-artwork promise for some admitted sources. |
+| AC02 | `tests/publishing.test.cjs:221–543` passed the targeted cases for missing/bad IEND CRC and trailing bytes, rejection of an internally rehashed invalid upload, color, grayscale alpha and bilevel fitting, oversized images, absent cover, upload/HTML agreement, source attribution and generic-only APNG preservation. Generated handoff identifies the emitted LinkedIn TXT and Medium HTML fallback files, specifies native cover upload separately from generic `cover.png`, and calls for native crop/readability checks. The failures below and both native editor observations remain open. |
+| AC03 | Frozen R11 PDF and site social JPEG have identical base/head blobs. PDF measured 869,961 bytes, five A4 pages and a 1672 × 545 image at 463 ppi. Social JPEG measured 1200 × 630 and 125,603 bytes. Actual reader transfer measured 665,055 bytes against 800,000. Generic/print inputs and authored site assets retain their bytes. The owning MEDIA run passed print, article-media and article-budgets wrappers. Fresh managed PDF and complete BASIC evidence were outside this execution. |
+| AC04 | `python3 tools/check_code_style.py` and `git diff --check` passed. Focused publisher checks passed 96/97. Owning `test_issue196_acceptance.py` failed MEDIA at the same publisher assertion. Exact-head remaining gates include REVIEW, applicable hosted checks, LinkedIn crop/readability and Medium featured selection/crop, without publishing. |
+
+**Blocking findings**
+
+1. **AC01/02 visual fidelity.** `platform-images.py:132–140` selects `#767676` from any visible near-white pixel. In a decoded 96 × 48 RGBA source with separate opaque gray (`#767676`) and white rectangles on transparency, both generated JPEGs measured `(118,118,118)` at the gray rectangle and backdrop, erasing the gray artwork. Choose a backdrop against both meaningful tones or require an explicit authored matte when contrast cannot be preserved. Add a mixed-tone regression for both outputs.
+2. **AC02/04 handoff compatibility.** `kit.cjs:369` drops the explicit copy-ready keyboard shortcut. The existing assertion at `tests/publishing.test.cjs:811` fails. Restore `select all document content (Ctrl/Cmd+A)` for the selected copy-ready file while retaining the format-aware fallback instructions, then rerun both exact-source checks.
+
+No prior reviewer result was reused. The PDF/social preservation observation comes from direct measurements and base/head blob comparison. Native preview, publication and the separate R12 asset repair remain outside this execution.
+
+
+### Original correction report — repair code
+
+SHA-256: `dea7e39497cdbff695d00dc41f80f824fd05e368569a55d09a99562cf0472c74`
+
+# Code reviewer — first correction result
+
+**Changes required.** PR #195 / issue #196. Detached clean candidate `12dfffb77b61bc7ce61821b186467bd562fba4fd`, tree `1a4dc92ef992ff3371de2828d56f28c7b5db8173`, compared with `15acfd302fe24319c39cdf5b7371fa3f868c2976`. The six-file correction diff matched packet SHA-256 `3130de91e5e67d1336eba7a0cc554fc39958686e6787ca544b937cd67703dd73`. Issue SHA-256 `bc4e673bd78c04e27b9b3fe651c1be6e0b885287c9a91dd9fe132790c66bc55b`, source listing `8657efe2d06f7e310284224a8790bcf11b7db7229fd7abd09851dff9916e61b3`. Prompt blobs `68796daaf4313f64da381b1628866267fd9e263b` (common) and `2363340a1eaae62fdbd3ab070fda5c6436ec8124` (code).
+
+1. **Blocking — incomplete PNG payload accepted (AC02/AC04).** `tools/publishing/platform-images.py:22–49,171–177` checks terminal IEND and calls Pillow verify/load. Under pinned Pillow 13.0.0, a 1×1 RGB PNG whose sole IDAT lacked its four Adler-32 bytes decoded `(250,8,17)` when the chunk CRC and IEND were valid. A duplicate IHDR after IDAT was accepted too. The in-budget inline path returns the original bytes, and upload verification uses that same decoder. Require bounded validation of critical chunk structure and complete IDAT termination. Extend the negative render and verification tests beyond IEND mutations.
+2. **Blocking — keyed 16-bit RGB loses alpha (AC02/AC04).** `tools/publishing/platform-images.py:127,180–186`. A 2000×2 type-2 PNG alternated 16-bit `(255,255,255)` and `(0,0,0)` with tRNS set to the first sample. Pillow reduces both to 8-bit black before the conversion used by the adapter. The 1000×1 fitted inline output had alpha extrema `(255,255)` and the alternating content disappeared. The same conversion serves both JPEG roles. Preserve the exact transparency key before reducing precision, or explicitly reject the derivative with remediation. Add a truecolor transparency regression alongside keyed grayscale.
+3. **Material — matte can erase visible artwork (AC02).** `tools/publishing/platform-images.py:132–140`. In a transparent source with white and `#767676` opaque strokes the white triggered a `#767676` matte and the gray stroke disappeared. A single alpha-80 `#f4f4f4` stroke remained on white with output values 252 vs. 255. Validate contrasting visible content in mixed-tone artwork and require an alternate source or matte when flattening erases it.
+
+**Checks and limits.** Focused publisher tests for color/alpha, malformed PNG/role isolation/format-specific handoff, and destination/print/compatibility passed 3/3. Code-style guard, RI/CI map verification and `git diff --check` passed. PR selector includes publisher tests. A pin-only selection included that suite directly without conservative fallback. The initial CLI probe used the registry label `pr-targeted` and was rejected. The documented CLI profile `pr` succeeded. Inspected source/inventory/HTML agreement, APNG generic hero isolation, synthetic v1 compatibility and generated site identity changes. Historical immutable artifact verification, hosted checks and native editor preview were outside observed evidence.
+
+**Exposure.** Read supplied issue, diff, source list, checkout and owning instructions. No earlier or peer report, author conversation or external writes observed. Provider context internals are unknown.
+
+
+### Original correction report — repair whitebox
+
+SHA-256: `31ab78290f97f5aa423dd58d167c632b18597dd316f43e5f535ebf2477e212da`
+
+# White-box QA — PR #195 correction, issue #196
+
+**Verdict: changes required.** AC02/AC04 remain open.
+
+Reviewed clean detached head `12dfffb77b61bc7ce61821b186467bd562fba4fd`, tree `1a4dc92ef992ff3371de2828d56f28c7b5db8173`, base `15acfd302fe24319c39cdf5b7371fa3f868c2976`. Common/role blobs `68796daaf4313f64da381b1628866267fd9e263b`/`f3d5e777711d05fa844052a0c49339eb577a06d1`. Packet issue/diff/source-manifest SHA-256 prefixes `bc4e673bd78c`/`3130de91e5e6`/`8657efe2d06f`. Inspected publishing worker, kit integration, PNG decoder, tests, article workflow and test routing.
+
+| Risk / AC | Scenario and oracle | Observed |
+| --- | --- | --- |
+| Incomplete/corrupt PNG, AC02/04 | No IEND, wrong IEND CRC, trailing bytes, corrupt IDAT CRC and inventory-consistent broken upload. Reject before install or on verify. | Rejected. No partial install in render cases. IDAT diagnostic below. |
+| Color and alpha, AC02/04 | Pinned tests check linear gAMA color against sRGB samples, contrast for white translucent ink, 16-bit gray keyed alpha and bilevel antialiasing. Supplemental legal depth/key combinations and mixed-color marks below. | Pinned cases pass. Supplemental cases expose two material failures. |
+| Compatibility and fit, AC02–04 | Generic-only animated hero retained byte-for-byte, actual formats named, oversize/coverless assets fit, original print source stays intact. | Passed in focused suite. |
+
+**WB1 — Material, AC02/04.** `platform-images.py:180–186` promotes keyed decoded pixels to alpha after Pillow has changed the sample scale. Valid 3840×16 PNGs with first quarter keyed and remainder unkeyed yielded LinkedIn inline samples `(85,255)` for 2-bit gray key 1, `(68,255)` for 4-bit gray key 4, and `(39,78,117,255)` for 16-bit RGB key (10000,20000,30000). Alpha should be 0 in the keyed region and 255 elsewhere. All passed `verifyKit`. The 1-bit white-key control preserved alpha correctly. Derive the mask at original sample precision before fitting or reject unsupported keyed encodings with actionable guidance. Add depth/key cases to the permanent publisher suite.
+
+**WB2 — Material, AC02/04.** `platform-images.py:132–140` selects RGB118 matte when any visible near-white pixel exists. A transparent 120×60 source with a primary RGB118 rectangle and small white accent yielded primary/matte/accent samples 118/118/255 in both native JPEGs, hiding the primary mark. Both kits verified. A separate RGB244/alpha80 rectangle yielded 252 against matte 255. Choose a matte based on visible artwork contrast or surface a named preparation failure. Exercise mixed-color transparent artwork on both destination roles.
+
+**WB3 — Minor, AC04.** `platform-images.py:19,40,232` lets Pillow's IDAT checksum `SyntaxError` escape with a traceback and no asset label. Rejects atomically. Normalize that exception at the decode boundary and assert a source-labelled error.
+
+**Execution.** `node --test --test-name-pattern='platform derivatives|platform verification|native upload contracts' tests/publishing.test.cjs` exited 0, 3/3 passed. Supplemental Node stdin probes used temporary fixture directories and normal `renderKit`/`verifyKit` entry points with Pillow 13.0.0. Keyed probe and corrected light probe exited 0. The mixed-mark/corruption probe recorded its observations before a fixture-generator syntax error on the additional light case. `git diff --check <base> HEAD` passed. Permanent route: publisher profile. Native editors, frozen output and the website/PDF pipelines remain outside this bounded execution.
+
+
+### Original correction report — repair exploratory
+
+SHA-256: `257a6a080791833e593abbd416a4c8173c200e981fcece299443d3d2a3bbf5f0`
+
+# #196 exploratory correction review — Draft PR #195
+
+**Verdict: changes required.** EX-01 blocks AC02 and the affected AC04 regression evidence.
+
+Candidate `12dfffb77b61bc7ce61821b186467bd562fba4fd`, tree `1a4dc92ef992ff3371de2828d56f28c7b5db8173`, base `15acfd302fe24319c39cdf5b7371fa3f868c2976`. Checkout clean before and after. Common/role Git blobs `68796daaf4313f64da381b1628866267fd9e263b` / `8b07e0a4c59c81b4efc8806c1043c631775eed32`. Packet SHA-256 (`issue.md`, `correction.diff`, `sources`) respectively `bc4e673bd78c04e27b9b3fe651c1be6e0b885287c9a91dd9fe132790c66bc55b`, `3130de91e5e67d1336eba7a0cc554fc39958686e6787ca544b937cd67703dd73`, `8657efe2d06f7e310284224a8790bcf11b7db7229fd7abd09851dff9916e61b3`.
+
+**Charter.** Six cases, ten-minute bound: two normal kits, three mixed-format/image partitions and one authentic archived kit. Walk instructions to existing files, validate transfer payload/order/alt, and probe fitted art pixels. Node 24.22.1, Pillow 13.0.0, ImageMagick and Poppler. Real CLI rendered in a temporary source copy using the candidate Git history.
+
+- **Passed.** SDLC R12 and PMDay CLI render/verify. Both LinkedIn JPEGs decode to 1920 × 1080 (257,014/290,147 bytes). Medium featured files decode to 1600 × 522 / 1600 × 1000. Parsed HTML and copy-ready assets match ordered inventories, alt text and decoded file identities. LinkedIn instructs a separate cover upload and a native crop/readability check.
+- **Passed.** LinkedIn Markdown+TXT / Medium copy-ready opens existing files, includes ordered fallback paths and names the featured image once at its story position. White RGBA art retains white against the gray (118,118,118) matte in both JPEGs. Coverless LinkedIn TXT / Medium HTML transfer paths exist, with inline fallback and no cover upload.
+- **Passed, bounded AC03.** Authentic archived PMDay pre-platform kit `572ca4abc9e609f4819797407e3e47569c9b2048aa2d6fb888b003eb91ad0ba6` verifies under its original ID. Generated kits retain original image hashes. Checked existing R12 reader JPEG (1672 × 545, 242,215 bytes) and five-image PDF (516,886 bytes), both unchanged by correction. Fresh PDF generation was outside this charter.
+
+**EX-01 · Major · AC02/AC04.** A complete 2200 × 20 16-bit truecolor PNG with a `tRNS` key (291,17767,35243) rendered and verified. ImageMagick reads its left half as transparent. LinkedIn resized PNG instead reads (1,69,137,alpha 1); LinkedIn cover and Medium featured read (0,69,136), replacing transparency with a blue slab. Pillow exposes 8-bit RGB samples and the full 16-bit key. The conversions in `platform-images.py:127,185–190` lose the key. Preserve alpha before reducing precision or refuse the encoding with conversion guidance. Add a mixed-key pixel regression to permanent `tests/publishing.test.cjs` through the registered PR-targeted/staging/production source profiles.
+
+**Evidence and limits.** Raw files and logs in `/tmp/r196-explore.JzZ4iO/` (`rgb16-key.png`, `raster.log`, `interaction.log`, `html-pixels.log`, `render.log`, `legacy.log`). Chromium launch hit a sandbox socket restriction. Browser clipboard transfer and native editor preview remain unobserved. The native crop/readability check stays with the manual publishing owner.
+
+
+### Original correction report — repair-final requirements
+
+SHA-256: `485ee65e894c05ce309a78863eda8cb7aaeac56f1464e5a3e02fe8af8998198a`
+
+# Requirements & Acceptance correction review — #196 / PR #195
+
+**Changes required.** Inspected clean head `f6bc4a1e7a95eee47cfb1508b14f53ff413b767d`, tree `1cf1566b8b843e109aa7ab5a3d55474a437ec678`, base `15acfd302fe24319c39cdf5b7371fa3f868c2976`. Verified supplied blob inventory against HEAD and correction diff with reverse-apply check. Owner snapshot SHA-256 begins `bc4e673bd78c`, delta `87719e2ee3ed`, source manifest `e7b213a7d0917`. Rechecked affected behavior independently. No prior verdicts or execution results reused.
+
+## Findings
+
+- **High · REQ-196-01 · AC02/AC04.** `platform-images.py:104–121,139,298–304` never checks decoded palette indices against PLTE entry count. A 2 × 1 indexed PNG with one red palette entry and pixel indices `[0,1]` passes `renderKit` and `verifyKit`; both inline packages contain the identical invalid bytes. PNG §11.2.2 calls the undefined index an error. Reject out-of-range decoded palette indices before passthrough or fitting and add generation/verification regression evidence. [PNG specification](https://www.w3.org/TR/png-3/#11PLTE)
+- **High · REQ-196-02 · AC01/AC02.** `platform-images.py:234–249` uses the largest individual RGB-channel difference to choose a matte. Opaque pale-yellow `#ffffdc` artwork on transparent canvas passed on white. Both JPEGs measured `#ffffdb` on white, approximately 1.02:1 luminance contrast. This defeats the guide’s contrast rule despite darker available mattes. Evaluate composited luminance contrast and exercise pale artwork against actual encoded output.
+- **Medium · REQ-196-03 · AC02.** `kit.cjs:365–390` instructs every HTML-only operator to manually upload each ordered inline image, though the selected HTML contains the derivative. Confirmed on a generated LinkedIn HTML-only kit with an existing inline figure. An operator whose transfer carries images is directed to duplicate them. For HTML use conditional upload after checking transfer. Preserve explicit placement instructions for text-only renditions.
+
+## Acceptance trace
+
+| AC | Check or owner gate | Observed |
+| --- | --- | --- |
+| AC01 | Guide and authoritative sources | LinkedIn current 1920 × 1080 and 16:9 guidance, older FAQ 10 MB, Medium 25 MB / 1192 px and featured-selection constraint, Adobe 300 ppi guidance all agree with the guide’s separation of repository targets. The documented matte behavior needs correction per REQ-196-02. |
+| AC02 | MEDIA, REVIEW, NATIVE | MEDIA passed. Existing cover distinction, ordered inventory, copy-ready files, metadata and manual crop instruction traced. Reproduced findings above. Native editor uploads, Medium selection and preview crops remain unobserved. |
+| AC03 | MEDIA, BASIC, PRINT | MEDIA and Basic passed. Base/head blobs match for R12 PDF (516,886 B, 252–338 effective ppi), reader JPEG (1672 × 545, 242,215 B) and separate social JPEG (1200 × 630, 125,603 B). Measured existing artifacts. Fresh PDF render and full PRINT/REVIEW disposition remain unobserved. |
+| AC04 | MEDIA, STYLE, RI, RI-CI, REVIEW, NATIVE | Owning MEDIA unittest passed in 58.801 s. Bounded style guard, RI catalog, 23 RI-CI tests and whitespace checks passed. CS01/02 use existing exporter/metadata owners. CS07 retains worker bounds. CS10 still requires reconciled findings, exact-source evidence and native observations. |
+
+Correct the findings and obtain fresh affected reviews. Record both native preview checks without publishing and keep R12 repair in its separate campaign owner.
+
+
+### Original correction report — repair-final code
+
+SHA-256: `81994b2f9561264007a556ce90e65694cec17a77ee390b34a60dffe0aac55a6b`
+
+# Independent code correction review — #196 / PR #195
+
+**Verdict: changes required.** Code reviewer `/root/r196_final_code`. Inspected head `f6bc4a1e7a95eee47cfb1508b14f53ff413b767d`, tree `1cf1566b8b843e109aa7ab5a3d55474a437ec678`, against owning base `15acfd302fe24319c39cdf5b7371fa3f868c2976`. Common and role blobs were `68796daaf4313f64da381b1628866267fd9e263b` and `2363340a1eaae62fdbd3ab070fda5c6436ec8124`. Supplied correction diff SHA-256 was `87719e2ee3ed84dd1455346bd2ec94686131c0fe37c222da1054f68b730b020c`.
+
+- **Blocking · AC02/04 · Cover contrast.** `tools/publishing/platform-images.py:234–262` chooses a matte by maximum RGB-channel distance before alpha blending. Both JPEG roles rendered an opaque pale-yellow `#ffff80` mark on a transparent 80 × 40 PNG with a white matte, yielding about 1.057:1 relative-luminance contrast despite available dark mattes. The metric also ignores attenuation from opacity. Measure visible composited contrast against candidate mattes and verify the exported JPEG with a light-color and partial-opacity oracle.
+- **Blocking · AC02/04 · Invalid fitted ICC profile.** `platform-images.py:147–164,306–319` retains the source ICC regardless of the output color type. A valid 3840 × 2 16-bit grayscale+alpha PNG with a GRAY ICC decoded to Pillow RGBA and re-exported as PNG color type 6 with that GRAY ICC. LittleCMS rejected the transform. Preserve grayscale+alpha with its profile or convert to a matching RGB profile. [PNG §11.3.2.3](https://www.w3.org/TR/png-3/#11iCCP)
+- **Blocking · AC02/04 · Invalid palette index passes through.** `platform-images.py:110–121,139,298–304` checks palette shape but misses out-of-range indices. A complete 1 × 1 indexed PNG with correct CRCs, one palette entry and pixel index 1 passed decoding and was returned unchanged as an inline upload. Validate decoded indices against the original palette length before publishing or verifying. [PNG §11.2.2](https://www.w3.org/TR/png-3/#11PLTE)
+- **Blocking · AC02/04 · Conflicting fallback paths.** `tools/publishing/kit.cjs:304–318,361–391` directs TXT/Markdown profiles to platform files generated from generic assets. `tools/publishing/ast.mjs:236–239,285–288` instructs TXT operators to upload the generic PNG and embeds the same source path in Markdown. Render platform fallback references from the upload inventory, preserving the generic print/review paths. Exercise an oversize figure in a profile that selects only TXT or Markdown.
+
+The three focused publisher tests, bounded style guard and owning-base diff whitespace check passed. Ran targeted in-memory probes with pinned Pillow 13.0.0. Reviewed scanline bounds, compressed-stream completeness, selected-source decode isolation and generated instructions. Native editor, hosted checks and PDF/site output were outside this correction review. The checkout was initially clean. Other untracked paths appeared during the pass and were not inspected.
+
+
+### Original correction report — repair-final whitebox
+
+SHA-256: `2a1380eae82c1a767790736c3ff26797624d225663633ae717007ad42b8a7b5e`
+
+# #196 / PR #195 correction — independent White-box QA
+
+**Verdict:** Changes required for AC02 and AC04. Inspected base `15acfd302fe24319c39cdf5b7371fa3f868c2976`, head `f6bc4a1e7a95eee47cfb1508b14f53ff413b767d`, tree `1cf1566b8b843e109aa7ab5a3d55474a437ec678`. Common/role blobs `68796daaf4313f64da381b1628866267fd9e263b` / `f3d5e777711d05fa844052a0c49339eb577a06d1`. Issue/diff/source-inventory SHA-256 respectively `bc4e673bd78c04e27b9b3fe651c1be6e0b885287c9a91dd9fe132790c66bc55b`, `87719e2ee3ed84dd1455346bd2ec94686131c0fe37c222da1054f68b730b020c`, `e7b213a7d09173e5eec62dd0fac54aff08026d7fab65af331d03a26ec60016c5`.
+
+## Findings
+
+- **P2, cover contrast (AC02/04)** — `tools/publishing/platform-images.py:234–263` tests uncomposited channel distances. A valid transparent 80×40 PNG with an interior rectangle RGBA `(254,254,254,12)` yielded a 1920×1080 JPEG with matte `(118,118,118)` and center `(124,124,124)`. The measured six-level difference falls well below the function's 32-level screen. Fully opaque green on transparent artwork also selected white, yielding about 1.37:1 luminance contrast although darker neutral options exist. Evaluate visible composited pixels and reject artwork when no candidate preserves contrast. Retain the white-ink success test and add a low-alpha failure case.
+- **P2, grayscale transparency (AC02/04)** — `platform-images.py:222–228` scales the packed grayscale key before masking its unused high bits. Width-80 depth-2/4 sources with keys `0x0101`/`0x0107` resized to 40×10 and returned left/right interior alpha `[255,255]` versus expected `[0,255]`. Ordinary keys `1`/`7` passed. Mask before scaling and add both regression cases. [W3C PNG 3 §11.3.1.1](https://www.w3.org/TR/png-3/#11tRNS)
+- **P3, PNG acceptance scope (AC02/04)** — `platform-images.py:63–76,104–109` accepted CRC-correct, nonempty trailing bytes in a non-final IDAT after zlib EOF. It also passed through duplicate or post-IDAT tRNS, with observable transparency changes. Preserve final-IDAT padding compatibility, and enforce or explicitly define the verifier's treatment of malformed chunk ordering. [W3C PNG 3 §§5.6, 11.2.3](https://www.w3.org/TR/png-3/#11IDAT)
+
+## Executed checks
+
+| Risk | Independent oracle and observed result |
+| --- | --- |
+| Stream integrity | In-memory `python3 -` probes invoked `tools/publishing/platform-images.py` using Pillow 13.0.0. Ordinary, bytewise-split and empty-IDAT cases exited 0. Bad/missing Adler, wrong row lengths, illegal filter, bad CRC, unknown critical chunk and nonconsecutive IDAT exited 1. |
+| RGB16 compatibility | Keyed inline pass-through preserved the byte sequence; fitting/cover exited 1 with explicit-alpha guidance. Opaque and explicit-alpha covers exited 0. |
+| Kit integration | `node --test --test-name-pattern='platform derivatives|platform verification|native upload contracts|kit installs|distinct plain profile' tests/publishing.test.cjs` exited 0, 5 passed. Includes Adam7, unused APNG hero byte preservation, selected-upload verification, absent-cover/fallback and print-source checks. Registered in `tools/quality/test-profiles.json`. |
+
+Base-to-head `git diff --check` passed. No native editors, browser/PDF output, full suite, or measured branch coverage in this pass. Native composition remains a manual publishing check.
+
+
+### Original correction report — repair-final exploratory
+
+SHA-256: `e05c39e5881e709addf399e1ff920041cee5d2e66a7e3f7e4b88c74c4d317179`
+
+# Exploratory / Interaction QA correction — PR #195 / #196
+
+**Verdict: changes required for AC02 and its AC04 regression coverage.** Reviewed head `f6bc4a1e7a95eee47cfb1508b14f53ff413b767d`, tree `1cf1566b8b843e109aa7ab5a3d55474a437ec678`, base `15acfd302fe24319c39cdf5b7371fa3f868c2976`. Common/role blobs `68796daaf4313f64da381b1628866267fd9e263b` and `8b07e0a4c59c81b4efc8806c1043c631775eed32`. Packet SHA-256 (issue, diff, sources respectively) `bc4e673bd78c04e27b9b3fe651c1be6e0b885287c9a91dd9fe132790c66bc55b`, `87719e2ee3ed84dd1455346bd2ec94686131c0fe37c222da1054f68b730b020c`, `e7b213a7d09173e5eec62dd0fac54aff08026d7fab65af331d03a26ec60016c5`.
+
+**High — meaningful transparent artwork disappears while verification succeeds.** With an 80 × 40 RGBA image, draw a solid black rectangle at (5,5)–(20,35) and a broad white rectangle at (25,5)–(75,35), alpha 48, on a transparent background. CLI render and verify both succeed. The white rectangle interior and matte each decode to RGB (255,255,255) in both `linkedin/cover.jpg` and `medium/featured.jpg`. In `tools/publishing/platform-images.py:234–262`, the alpha threshold of 63 removes that entire authored region from matte selection, then the white matte erases it. A gray matte at RGB (118,118,118) makes the same interior RGB (144,144,144) before JPEG encoding and also retains black detail. Evaluate visible regions after compositing and choose a matte that preserves both or reject the source with actionable guidance. Add a mixed-opacity JPEG pixel regression to the existing `tests/publishing.test.cjs` route in SITE-CHECK-PROFILES (PR targeted, staging and production). This regression is proposed.
+
+**Executed charter.** Seven candidate profiles and one baseline profile through the real CLI on Linux, Node 24.22.1, Python 3.12.14 and pinned Pillow 13.0.0. Normal wide artwork produced verified 1920 × 1080 LinkedIn cover, 1920 × 75 inline and 1600 × 62 Medium featured. Generic cover and print image matched byte-for-byte. Copy-ready, TXT, Markdown and HTML paths resolved to existing files. Shared Medium art used one featured file and a matching-figure instruction. Coverless generic animated hero rendered and verified without platform uploads. Renamed kit required the original expected ID. Candidate verified the actual baseline-generated platform kit. Unsupported cICP cover and missing PNG IEND CRC produced asset/role-specific render errors with empty output directories. In-bounds cICP inline was byte-identical on both platforms.
+
+**Limits and evidence.** Native editor, PDF generation and website runtime were not observed. The pinned worktree briefly held untracked fixture inputs/outputs from my missing shell argument. I removed those paths and confirmed clean Git status. All reported outcomes come from the independent rerun on source snapshots archived from the pinned candidate/base, with raw `cli.log`, `pixels.log` and reproducer under `/tmp/issue196-exploratory-final.9WS6vQ/`. No prior or peer verdict content was consulted.
+
+
+### Original correction report — repair-done requirements
+
+SHA-256: `c4627bb0d54ff0edde52c3d670ca21b2bf99d4c1f90cf9922149637cb8c239bc`
+
+# Requirements & Acceptance — #196 / PR #195
+
+**Correction re-review. Acceptance remains open.** Verified detached clean HEAD `9507eab7671b2b686295855a41cc01566e614510`, tree `639b7ca84c20874720f525af205db3b9f1d852ec`, base `15acfd302fe24319c39cdf5b7371fa3f868c2976`. Packet blobs matched HEAD. `git diff --check` passed. No prior verdicts or coverage reused. Exact-source automated run results were outside the supplied packet.
+
+| AC | Check and gate | Observation |
+| --- | --- | --- |
+| AC01 | MEDIA, REVIEW | `ARTICLE-WORKFLOW.md:178–205` distinguishes destination targets from official LinkedIn/Medium guidance and PDF/site limits. The guide prescribes the verified 1920 × 1080 JPEG, 5% margins and native crop/legibility check. Adobe's 300 ppi is presented as guidance. |
+| AC02 | MEDIA, REVIEW, NATIVE | `kit.cjs:235–347,377–410` and `platform-images.cjs:44–118,142–275` link the selected cover, ordered inline assets and content edition to measured upload bytes, metadata and copy-ready HTML. The policy requires actual LinkedIn crop/legibility and Medium featured selection/crop observations without publishing. Neither was observed here. |
+| AC03 | MEDIA, BASIC, REVIEW, PRINT | Retained publication asset and hosted media bytes match base. Read-only measurements found the retained R12 PDF at 516,886 bytes with embedded raster placements at 252–338 ppi, the hosted hero at 1672 × 545 and 242,215 bytes, and the separate site social JPEG at 1200 × 630 and 125,603 bytes. Fresh rendering, reader transfer and external serving were unobserved. |
+| AC04 | MEDIA, STYLE, RI, RI-CI, REVIEW, NATIVE | `tests/publishing.test.cjs:374–691` covers malformed inputs, oversize, absent cover and simulated version-1 compatibility. The owning policy requires exact run accounting, CS01/02/07/10 evidence, test-impact review and four independent role results. This report supplies one role. |
+
+**AC02 input-boundary decision — medium.** `article.cjs:223–250` admits PNGs that `platform-images.py:329–338` now refuses to derive when tagged cICP or using keyed 16-bit RGB transparency. `ARTICLE-WORKFLOW.md:210–219` documents explicit conversion. Confirm this precondition with the maintainer or support faithful conversion before treating the broad fit criterion as met.
+
+Reconcile AC01's existing tick against MEDIA and REVIEW evidence. Keep native preview and individual R12 repair in their explicit gates/owner. This review supplies no publishing, merge or release decision.
+
+
+### Original correction report — repair-done code
+
+SHA-256: `a4c1893d5fdfb065789d69e438cf0a8cfd1a04f8bc5cca391ea4c270d89427ac`
+
+# #196 / PR #195 — independent code correction review
+
+**Verdict: changes required for AC02/AC04.** Base `15acfd302fe24319c39cdf5b7371fa3f868c2976`, candidate `9507eab7671b2b686295855a41cc01566e614510`, tree `639b7ca84c20874720f525af205db3b9f1d852ec`. Packet SHA-256 (issue, correction, sources concatenated) `f9a1ccbc813d9f027d9585e831b97ea65ab81406e4709f96b55215306dfefbdb`; reviewer contract/prompt blobs `68796daaf4313f64da381b1628866267fd9e263b` / `2363340a1eaae62fdbd3ab070fda5c6436ec8124`. Scoped Git diff and source inventory matched packet.
+
+- **Blocking — keyed grayscale derivatives carry incompatible ICC.** `tools/publishing/platform-images.py:248–251,361–372,191–193` expands keyed grayscale to RGBA and retains its GRAY ICC. An in-memory independent probe with pinned Pillow 13.0.0, a LittleCMS-created GRAY profile, valid tRNS, and 4→2 pixel fitting produced color type 6 with GRAY ICC for depths 1, 2, 4 and 8. Candidate decode accepted all four, while LittleCMS failed to build the embedded transform. Explicit 8/16-bit grayscale-alpha and keyed 16-bit grayscale stayed LA and transformed successfully. Emit LA for keyed grayscale or correctly transform the colors and profile, and test tagged derivative compatibility. [PNG 3 §11.3.2.3](https://www.w3.org/TR/png-3/#11iCCP)
+- **Blocking — PNG chunk order.** `tools/publishing/platform-images.py:116–143,352–358` accepts a truecolor PNG with valid checksums and optional PLTE after tRNS, so an in-budget inline upload can retain the invalid stream verbatim. The independent decode probe accepted that ordering. Reject this order and add a negative passthrough fixture. [PNG 3 §7.3](https://www.w3.org/TR/png-3/#7ChunkOrdering)
+
+Both focused publisher tests passed, exercising missing palette index, incomplete streams, Adam7, packed alpha, pale/faint composited contrast, and generated TXT/MD upload paths. `kit.cjs:244–262,320–334` uses inventory paths and dimensions in the compilation consumed by `ast.mjs:235–239,279–289`; leading Medium featured placement is described in instructions. `git diff --check` and bounded style guard passed. Scope covered the supplied correction and publisher entry points. Native platform preview, deployment, complete publisher suite and broader AC03 output parity were outside this pass.
+
+
+### Original correction report — repair-done whitebox
+
+SHA-256: `ee3f006551fee33e25673eeed5836da8f657f5952f723cbd4281ed8deb2f76de`
+
+# White-box QA correction — #196 / PR #195
+
+**Changes requested for AC02/AC04.** Exact clean head `9507eab7671b2b686295855a41cc01566e614510`, tree `639b7ca84c20874720f525af205db3b9f1d852ec`, base `15acfd302fe24319c39cdf5b7371fa3f868c2976`. Common/role blobs `68796daaf4313f64da381b1628866267fd9e263b` / `f3d5e777711d05fa844052a0c49339eb577a06d1`. Supplied issue/diff/source manifest SHA-256 prefixes `bc4e673bd78c`, `498e5c1c7faf`, `f47922a2748f`.
+
+**Medium — a connected low-opacity stroke disappears in both exports.** `tools/publishing/platform-images.py:265–290` excludes thin alpha<16 artwork from matte selection whenever stronger marks exist. A 240×120 transparent PNG with a 121×1 white stroke at alpha 15 and an opaque black bar produced accepted LinkedIn and Medium JPEGs. The stroke and local matte were identical (255) at 101 sampled positions in each. An independent composite over the existing level-118 matte, then passed through the same JPEG export, yielded +6 and +8 luminance deltas, respectively, and kept the black bar at 0. The mask omits connected artwork as if it were an isolated edge. Include meaningful thin features in matte selection and regress final JPEG pixels, or report when no matte preserves the artwork.
+
+| Risk / AC | Check and independent oracle | Observation |
+|---|---|---|
+| Corrupt PNG / AC02, AC04 | Generated valid control, wrong/missing Adler, short/excess scanlines, invalid filter, trailing IEND bytes and bad IEND CRC | Control accepted; all seven corrupt variants rejected |
+| Keyed alpha / AC02, AC04 | Oversize grayscale at 1/2/4/8-bit and RGB8, with high bits in tRNS | Resized key region alpha 0; non-key region alpha 255 |
+| Contrast / AC02 | Broad pale opaque, white alpha-39 and black artwork; compare decoded output pixels | Both JPEGs retained all three against level-118 matte; thin-stroke failure above |
+
+`node --test --test-name-pattern='platform derivatives preserve|platform verification rejects' tests/publishing.test.cjs` passed 2/2. Independent Pillow 13.0.0 CLI probes and logs are in `../issue196-done-whitebox-scratch/` (`probe.py`, `stroke-oracle.py`). Existing permanent publisher coverage routes through pr-targeted/staging/production. No measured branch coverage or reused prior execution; PDF/site and manual native editor preview were outside this pass.
+
+
+### Original correction report — repair-done exploratory
+
+SHA-256: `15d9d26fb52fa63134e7d0270db9eb02f3dace30dc9a8594d2876244566a5053`
+
+# Exploratory correction re-review — #196 / PR #195
+
+**Verdict:** Pass for the bounded AC02/AC04 local handoff; no finding. Native LinkedIn crop and readability remain unobserved and required before publication.
+
+**Source:** Base `15acfd302fe24319c39cdf5b7371fa3f868c2976`, head `9507eab7671b2b686295855a41cc01566e614510`, tree `639b7ca84c20874720f525af205db3b9f1d852ec`. Common/role blobs `68796daaf4313f64da381b1628866267fd9e263b` / `8b07e0a4c59c81b4efc8806c1043c631775eed32`. Packet `issue.md` / `correction.diff` / `sources` SHA-256 prefixes `bc4e673bd78c` / `498e5c1c7fafc` / `f47922a2748f`; diff and blob inventory matched Git. Inspected `kit.cjs:235–412`, `platform-images.cjs`, `ast.mjs`, workflow guide and publisher coverage. Candidate checkout remained clean.
+
+**Charter:** Three local CLI render/verify journeys plus independent package readback in under five minutes, using Node 24.22.1 and Pillow 13.0.0. Stock SDLC R12, then scratch-only mixed and coverless profile variations on the same manuscript and artwork. No prior evidence reused.
+
+- **Stock, pass** (`a1c2eb3c4f3f`). Exactly one copy-ready transfer direction per platform. HTML linked the ordered uploads, and copy-ready embedded byte-identical files. LinkedIn native JPEG measured 1920 × 1080 / 257,014 bytes; the generic cover matched source artwork. Medium featured JPEG measured 1600 × 522 / 199,045 bytes and appeared once in the story and once in directions.
+- **Mixed, pass** (`ae9b29b05224`). LinkedIn chose Markdown with TXT also packaged; Medium chose HTML with Markdown and TXT also packaged. Each selected format used inventory paths in order, with matching dimensions in HTML and preserved TXT/Markdown alt, captions and credits. Oversize diagram measured 1920 × 792 LinkedIn and 2000 × 825 Medium. Each upload had one instruction.
+- **Coverless, pass** (`82b97d2c4234`). LinkedIn chose TXT and Medium chose Markdown. Both inventories omitted cover files and retained ordered inline uploads. Print HTML and review Markdown used source-artwork paths across all three cases.
+
+**Raw evidence:** `../issue196-exp-own.FcgdNO/probe.log`, `r12-*.path`, `r12-*.verify` in that scratch directory. Handoff regression belongs to `tests/publishing.test.cjs` (pr-targeted/staging/production). Native editor transfer, composition/crop, thumbnail legibility and Medium focal-point checks remain manual publishing checks.
+
+
+### Original correction report — repair-last code
+
+SHA-256: `30d16fed8b49689e7eb224f06cc98b5e470f9dcf563db54d41f2f4e8c38be172`
+
+# Code correction review — #196 / PR #195
+
+**Block advancement on AC02 and AC04.** Reviewed clean head `35df5f11a0b7afa75e3d1fb8876214379a9c5f1d`, tree `7042c4d5009256d2b2bc2ffd553785c3af4251e3`, against `9507eab7671b2b686295855a41cc01566e614510`. Packet SHA-256 (issue/diff/sources concatenated) `6fa2c2ba9422ef3f8da6ad4ea45cc1eb4047ed0949861ae3b0750eff198e50e9`. Common/role prompt blobs `68796daaf4313f64da381b1628866267fd9e263b` / `2363340a1eaae62fdbd3ab070fda5c6436ec8124`.
+
+**Blocking — matte selection rejects usable artwork.** At `tools/publishing/platform-images.py:277–308`, every alpha-positive pixel can zero the contrast score using uncomposited luminance. A valid 160 × 60 RGBA PNG with an opaque black rectangle and four isolated alpha=1 pixels in the candidate matte shades (255, 118, 32, 0) zeros every score. With Pillow 13.0.0, the immediate base exports both destination JPEGs with a white background and a black center. The reviewed head raises “Compose the cover on an explicit background that preserves contrast” for both. Distinguish meaningful thin strokes from isolated negligible pixels before allowing them to veto a matte. Cover both cases in the contrast regression test.
+
+Independent worker probes retained the GRAY profile and correct transparent/opaque samples after inline fitting at 1, 2, 4, 8 and 16 bits. A truecolor PNG with PLTE before tRNS decoded with correct alpha; swapping those chunks was rejected. Both focused publisher tests passed, including the existing faint-stroke oracle. The bounded code-style guard and Git whitespace check passed. Scope covered the final PNG delta; native editor NATIVE, site/PDF evidence and remote checks were outside this review.
+
+
+### Original correction report — repair-last whitebox
+
+SHA-256: `31b19f5e90ecf14c4b64382d26bc54f72a92a8196b9db6ccdd0202a5c9c345b9`
+
+# White-box correction review · #196 / PR #195
+
+**Verdict: changes required (P2, AC02/AC04).** Clean head `35df5f11a0b7afa75e3d1fb8876214379a9c5f1d`, tree `7042c4d5009256d2b2bc2ffd553785c3af4251e3`, immediate base `9507eab7671b2b686295855a41cc01566e614510`. Reviewed `issue.md`, `correction.diff`, and `sources` in the final correction packet. Common/role blobs `68796daaf4313f64da381b1628866267fd9e263b` and `f3d5e777711d05fa844052a0c49339eb577a06d1`.
+
+`tools/publishing/platform-images.py:278,297–308` gives every nonzero-alpha pixel a hard foreground-contrast veto. A 240×100 transparent PNG containing a 170×30 opaque black block and four isolated alpha-1 edge pixels with RGB levels 255/118/32/0 rejects both covers (exit 1, “Compose the cover on an explicit background”). Each edge sample eliminates one matte; white makes all meaningful artwork legible. The immediate-base worker produces both covers for identical bytes with white corners >245 and black center <5. Exclude negligible isolated samples while retaining meaningful thin strokes, and preserve both cases in permanent publisher coverage.
+
+| AC | Branch and independent oracle | Result |
+|---|---|---|
+| AC02/04 | Thin near-transparent line remains distinguishable in both JPEGs | +16 luma levels each |
+| AC02/04 | 1-/8-bit grayscale ICC + tRNS resize preserves profile bytes, LA mode, keyed and opaque samples; reject RGB ICC on gray | Passed |
+| AC02/04 | Valid PLTE/tRNS remains byte-identical; reversed order rejects | Passed |
+
+`node --test --test-name-pattern='platform derivatives preserve|platform verification rejects|native upload contracts' tests/publishing.test.cjs` passed 3/3 (exit 0). `python3 /tmp/issue196-last-whitebox.py` reproduced the regression and passed the controls with Pillow 13.0.0. Route: permanent publisher suite (pr-targeted/staging/production). No prior evidence reused. Native preview, full suites and measured coverage remain unobserved.
+
+
+### Original correction report — repair-ship code
+
+SHA-256: `dcc7e315492c045355579ac435176b447616cce0211339cb51b4a48be4df44ba`
+
+# #196 / PR #195 — scoped code correction review
+
+**Verdict: changes required.** Blocking finding MATTE-01 (AC02, AC04).
+
+`tools/publishing/platform-images.py:272–285` falls back to all nonzero alpha before creating the padded stroke mask. A transparent 160×60 PNG with a one-pixel black alpha-15 line at x=20–139, y=20 exports on white. Adding one isolated white alpha-1 pixel at (0,0) makes the Python exporter reject both LinkedIn cover and Medium featured with “Compose the cover on an explicit background that preserves contrast.” The isolated pixel enters the composited contrast minimum through `ignored`, bypassing the new foreground selection. Use connected support in the empty-visible fallback when available and add this paired input to the cover/featured regression test. Preserve the deliberate handling of art without connected support.
+
+Verified padded-corner noise leaves opaque artwork on white and an alpha-15 white line changes its matte to gray. The focused publisher test passed (1/1), as did `git diff --check`. The current tests pair each case with an opaque shape, so they miss the fallback. Native editor and release checks were outside scope.
+
+Clean head `2f6b36a6a1788a0a871dc96d80b4898d3db3c58f`, tree `3d44002d673cbdfc01438504baf057ad610c1ad9`, base `35df5f11a0b7afa75e3d1fb8876214379a9c5f1d`. Read packet issue and manifest. Scoped diff matched SHA-256 `86d59798440ea7251b968c8982631da354165b229a91d10bbfaa2265c59c097b`. Reviewer prompt blobs `68796daaf4313f64da381b1628866267fd9e263b` and `2363340a1eaae62fdbd3ab070fda5c6436ec8124`.
+
+
+### Original correction report — repair-ship whitebox
+
+SHA-256: `bb4e195a31f8a12dfc0216971803c4e3b7c00b4c73a467d16ed654c56456b652`
+
+# White-box QA correction review — #196 / PR #195
+
+**Pass for scoped AC02/AC04 correction.** Clean head `2f6b36a6a1788a0a871dc96d80b4898d3db3c58f`, tree `3d44002d673cbdfc01438504baf057ad610c1ad9`, base `35df5f11a0b7afa75e3d1fb8876214379a9c5f1d`. Common/role blobs `68796daaf4313f64da381b1628866267fd9e263b`/`f3d5e777711d05fa844052a0c49339eb577a06d1`. Concatenated issue/diff/sources SHA-256 `8aa5b0295464e403df96f778be7f5df9c3f44924962a73759099fb215e2c8372`.
+
+Risk → oracle → execution, both native roles:
+
+- Isolated alpha-1 corner and edge samples can veto the matte. Four separate gray samples plus opaque black yielded white matte 255 and art 0 in both decoded JPEGs.
+- Foreground masking can erase a one-pixel alpha-14 white stroke. Alone and with the fringe it remained 8/9 gray levels above matte 118 (LinkedIn/Medium), with black art 0.
+
+Independent `python3` harness invoked `tools/publishing/platform-images.py` via JSON with 240×100 inputs. Exit 0, 6/6; JPEGs 1920×1080 and 240×100, all below 2 MB. Parent worker loaded in memory rejected fringe and mixed cases in both roles (exit 1, contrast error), and passed both stroke-only controls (raw chunks `9473bf`, `492005`).
+
+`node --test --test-name-pattern 'platform derivatives preserve color, contrast and transparency through fitting' tests/publishing.test.cjs` exited 0, 1/1 (raw chunk `009c54`). Existing publisher suite verifies kit integration. `git diff --check HEAD^ HEAD` passed. Native editor preview remains manual; this pass supplies bounded correction evidence only.
+
+
+### Original correction report — Final unified contrast mask
+
+SHA-256: `2fc13de8a98af49e49b3f281b51f9ec6e7b9a05592ef28ed56545db82dd2f8ab`
+
+# Code correction re-review · #196 / PR #195
+
+**Verdict — pass for the scoped AC02/AC04 correction.** Clean HEAD `e4bb95ac65544b0e428e6154908c5385f49a2d01`, tree `bbf95a9ce321809f152c30d87aaf54788c6d4616`, base `2f6b36a6a1788a0a871dc96d80b4898d3db3c58f`. Verified the packet’s source blobs, including reviewer contract `68796daaf4313f64da381b1628866267fd9e263b` and role `2363340a1eaae62fdbd3ab070fda5c6436ec8124`. Correction diff SHA-256 `7191b35b0d5627cd5a885525be15e28fdae46a761bb8d3175fac7868ef8bc624`.
+
+`tools/publishing/platform-images.py:274–305` now includes connected stroke pixels before the empty-mask fallback. Both contrast scores use that mask, so one isolated alpha-1 pixel cannot veto the background when stroke evidence exists. Compositing still uses original alpha. The correction stays in the existing export owner and adds no dependencies or resource budgets.
+
+The focused publisher test passed and asserts decoded stroke contrast in both kit JPEGs (`tests/publishing.test.cjs:285–293`). An independent Pillow 13.0.0 worker probe used a 176×73 PNG with a one-pixel-wide horizontal black alpha-14 stroke. The decoded stroke measured 241 against 255 in both roles, with and without opposing corner noise. A white alpha-15 stroke with black alpha-1 corner noise measured 45 against 32 in both roles. Outputs decoded as JPEG, met the 2 MB limit and measured 1920×1080 and 176×73 respectively.
+
+No blocking or nonblocking findings within the correction. Native editors, wider source coverage and release approval are outside this review.
+
+### Final local verification
+
+The final scoped code re-review reported no finding. Its independent JPEG probes confirmed connected faint strokes with opposing isolated alpha-1 noise. The 131 focused tests passed with no failures or skips. All five owning checks passed on the clean reviewed checkout. Owning policy JSON SHA-256 `3aad31f548a83c4b8ce8d453b6209132545979f14e01a2592aa92aad9d725379`. The generated site output and lock, style, RI and RI/CI were verified.
+
+R12 kit `5c01be12e438ab4b3b20b6012197d91f3c6fece707808cc1f4bd799005b2d556` passed, with LinkedIn JPEG 1920 × 1080 / 257,014 B and Medium JPEG 1600 × 522 / 199,045 B. PMDay, coverless Reader Reference and the pre-platform R12 kit also verified. The fresh PDF diagnostic kit `3c0e8de2c3bd3ecef1c77feaae69d549ca501d896dd88d931ca06811e8aeb8f9` and the pre-change diagnostic baseline used the same review Chromium producer. Both PDFs measured 1,509,140 B and had identical extracted text, raster inventories and print HTML. The preserved public PDF and hosted media were unchanged. Native editor crop/readability remains manual.

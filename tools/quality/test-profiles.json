@@ -1937,6 +1937,7 @@
       "inputs": [
         "tests/publishing.test.cjs",
         "tools/publishing/**",
+        "tools/quality/toolchain/requirements.txt",
         "site/publications/**",
         "site/assets/publications/**",
         "site/templates/articles/**",

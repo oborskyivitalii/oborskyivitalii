@@ -52,6 +52,7 @@ function makeImages(platform, inline, cover) {
     inputs.map(({ source, role }) => {
       const [width, height] = policies[platform][role];
       return {
+        label: `${platform} ${role} ${source.id}`,
         base64: source.bytes.toString('base64'),
         policy: { role, width, height, bytes: maxBytes },
       };
@@ -126,15 +127,12 @@ function verifyImages(directory, manifest) {
   if (originalFiles.reduce((total, file) => total + file.bytes.length, 0) > 16_000_000) {
     throw new Error('Platform source images exceed the aggregate byte budget');
   }
-  const decodedSources = worker(
-    originalFiles.map((file) => ({ base64: file.bytes.toString('base64') }))
-  );
   for (const [index, file] of originalFiles.entries()) {
-    if (file.sha256 !== manifest.assets[index].sha256 || decodedSources[index].format !== 'PNG') {
+    const item = manifest.assets[index];
+    if (file.sha256 !== item.sha256) {
       throw new Error('Platform source image bytes differ from their identity');
     }
-    const item = manifest.assets[index];
-    sources.set(item.id, { ...item, ...decodedSources[index] });
+    sources.set(item.id, file);
   }
   for (const platform of platforms) {
     verifyPlatform(directory, manifest, sources, platform);
@@ -214,10 +212,28 @@ function verifyPlatform(directory, manifest, sources, platform) {
   if (files.reduce((total, file) => total + file.bytes.length, 0) > 20_000_000) {
     throw new Error('Platform upload files exceed their aggregate byte budget');
   }
-  const measured = worker(files.map((file) => ({ base64: file.bytes.toString('base64') })));
+  const selectedSources = [...new Set([...records.values()].map((item) => item.id))];
+  const unread = selectedSources.filter((id) => !sources.get(id).image);
+  const decodedSources = worker(
+    unread.map((id) => ({
+      label: `${platform} source ${id}`,
+      base64: sources.get(id).bytes.toString('base64'),
+    }))
+  );
+  for (const [index, id] of unread.entries()) {
+    const image = decodedSources[index];
+    if (image.format !== 'PNG') throw new Error('Platform source image must be a PNG: ' + id);
+    sources.get(id).image = image;
+  }
+  const measured = worker(
+    [...records.values()].map((item, index) => ({
+      label: item.path,
+      base64: files[index].bytes.toString('base64'),
+    }))
+  );
   const payloads = new Map();
   const fitsSource = (item) => {
-    const source = sources.get(item.id);
+    const source = sources.get(item.id).image;
     return (
       item.width <= source.width &&
       item.height <= source.height &&

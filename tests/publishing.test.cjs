@@ -42,6 +42,7 @@ function fixture(
   {
     adaptation = false,
     figure = true,
+    heroOnly = false,
     image = png,
     width = 1,
     height = 1,
@@ -57,22 +58,23 @@ function fixture(
     '| Parameter | Value |\n| --- | --- |\n| A | `a` and b \\| c |\n\n' +
     '[ref]: https://example.com/research\n';
   write(root, `${directory}/manuscript.en.md`, manuscript);
-  const assets = figure
-    ? [
-        {
-          id: 'example',
-          path: `site/assets/publications/${id}/example.png`,
-          sha256: hash(image),
-          width,
-          height,
-          alt: 'One pixel',
-          caption,
-          credit,
-          reviewNote: 'Administrative test note; rights decision pending.',
-        },
-      ]
-    : [];
-  if (figure) {
+  const assets =
+    figure || heroOnly
+      ? [
+          {
+            id: 'example',
+            path: `site/assets/publications/${id}/example.png`,
+            sha256: hash(image),
+            width,
+            height,
+            alt: 'One pixel',
+            caption,
+            credit,
+            reviewNote: 'Administrative test note; rights decision pending.',
+          },
+        ]
+      : [];
+  if (assets.length) {
     write(root, assets[0].path, image);
   }
   const metadata = {
@@ -130,7 +132,7 @@ function fixture(
   const launch = 'An authored launch post for the selected profile.\n';
   write(root, `${directory}/launch-post.en.md`, launch);
   const formats = figure ? ['html', 'md', 'txt', 'copy-ready'] : ['txt'];
-  const role = figure
+  const role = assets.length
     ? { id: 'example' }
     : { omitReason: 'This authored plain text profile needs no image.' };
   json(root, `${directory}/profile.json`, {
@@ -215,6 +217,334 @@ async function withFixture(callback) {
     await fsp.rm(root, { recursive: true, force: true });
   }
 }
+
+function rasterPng({ width, height, depth, color, rows, key, palette, icc, interlace = 0 }) {
+  return execFileSync(
+    python,
+    [
+      '-c',
+      [
+        'import base64,json,struct,sys,zlib',
+        'v=json.load(sys.stdin)',
+        'def chunk(kind, data):',
+        ' return struct.pack(">I",len(data))+kind+data+struct.pack(">I",zlib.crc32(kind+data))',
+        'header=struct.pack(">IIBBBBB",v["width"],v["height"],v["depth"],v["color"],0,0,v["interlace"])',
+        'key=chunk(b"tRNS",struct.pack(">"+"H"*len(v["key"]),*v["key"])) if v.get("key") else b""',
+        'palette=chunk(b"PLTE",bytes(v["palette"])) if v.get("palette") else b""',
+        'icc=chunk(b"iCCP",b"gray"+bytes(2)+zlib.compress(base64.b64decode(v["icc"]))) if v.get("icc") else b""',
+        'data=zlib.compress(base64.b64decode(v["rows"]))',
+        'sys.stdout.buffer.write(bytes.fromhex("89504e470d0a1a0a")+chunk(b"IHDR",header)+icc+palette+key+chunk(b"IDAT",data[:3])+chunk(b"IDAT",data[3:])+chunk(b"IEND",b""))',
+      ].join('\n'),
+    ],
+    {
+      input: JSON.stringify({
+        width,
+        height,
+        depth,
+        color,
+        key,
+        palette,
+        icc,
+        interlace,
+        rows: rows.toString('base64'),
+      }),
+    }
+  );
+}
+
+test('platform derivatives preserve color, contrast and transparency through fitting', async () => {
+  await withFixture(async (root) => {
+    const generate = (program) =>
+      execFileSync(python, [
+        '-c',
+        'import struct,sys; from PIL import Image,PngImagePlugin; ' + program,
+      ]);
+    const cases = [
+      {
+        id: 'linear-art',
+        width: 80,
+        height: 40,
+        source: generate(
+          'meta=PngImagePlugin.PngInfo(); meta.add(b"gAMA",struct.pack(">I",100000)); meta.add(b"cHRM",struct.pack(">8I",31270,32900,64000,33000,30000,60000,15000,6000)); Image.new("RGB",(80,40),(64,128,192)).save(sys.stdout.buffer,"PNG",pnginfo=meta)'
+        ),
+        outputs: ['linkedin/cover.jpg', 'medium/featured.jpg'],
+        oracle:
+          'assert all(abs(a-b)<=3 for a,b in zip(im.getpixel((im.width//2,im.height//2)),(137,188,225)))',
+      },
+      {
+        id: 'white-ink',
+        width: 80,
+        height: 40,
+        source: generate(
+          'im=Image.new("RGBA",(80,40),(255,255,255,0)); im.paste((255,255,255,80),(25,10,55,30)); im.save(sys.stdout.buffer,"PNG")'
+        ),
+        outputs: ['linkedin/cover.jpg', 'medium/featured.jpg'],
+        oracle: 'assert im.getpixel((im.width//2,im.height//2))[0]-im.getpixel((0,0))[0]>35',
+      },
+      {
+        id: 'faint-ink-with-fringe',
+        width: 160,
+        height: 60,
+        source: generate(
+          'im=Image.new("RGBA",(160,60)); im.paste((0,0,0,15),(20,20,140,21)); im.putpixel((0,0),(255,255,255,1)); im.save(sys.stdout.buffer,"PNG")'
+        ),
+        outputs: ['linkedin/cover.jpg', 'medium/featured.jpg'],
+        oracle:
+          'y=437 if im.width==1920 else 20; assert im.getpixel((im.width//2,y))[0]<=im.getpixel((0,0))[0]-5',
+      },
+      {
+        id: 'isolated-fringe',
+        width: 160,
+        height: 60,
+        source: generate(
+          'im=Image.new("RGBA",(160,60)); im.paste((0,0,0,255),(20,25,140,40)); [im.putpixel((i*15,0),(v,v,v,1)) for i,v in enumerate((255,118,32,0))]; im.save(sys.stdout.buffer,"PNG")'
+        ),
+        outputs: ['linkedin/cover.jpg', 'medium/featured.jpg'],
+        oracle:
+          'assert im.getpixel((im.width//2,0))[0]>245; assert im.getpixel((im.width//2,im.height//2))[0]<10',
+      },
+      {
+        id: 'faint-stroke',
+        width: 160,
+        height: 60,
+        source: generate(
+          'im=Image.new("RGBA",(160,60)); im.paste((255,255,255,15),(20,20,140,21)); im.paste((0,0,0,255),(20,35,140,43)); im.save(sys.stdout.buffer,"PNG")'
+        ),
+        outputs: ['linkedin/cover.jpg', 'medium/featured.jpg'],
+        oracle:
+          'y=437 if im.width==1920 else 20; assert im.getpixel((im.width//2,y))[0]-im.getpixel((0,0))[0]>=5',
+      },
+      {
+        id: 'pale-and-faint',
+        width: 120,
+        height: 60,
+        source: generate(
+          'im=Image.new("RGBA",(120,60)); im.paste((255,255,220,255),(25,10,95,29)); im.paste((255,255,255,48),(25,32,95,50)); im.paste((0,0,0,255),(15,18,22,46)); im.save(sys.stdout.buffer,"PNG")'
+        ),
+        outputs: ['linkedin/cover.jpg', 'medium/featured.jpg'],
+        oracle:
+          'background=im.getpixel((0,0))[0]; assert background<210; assert im.getpixel((im.width//2,im.height*7//10))[0]-background>=14',
+      },
+      {
+        id: 'mixed-light-ink',
+        width: 120,
+        height: 60,
+        source: generate(
+          'im=Image.new("RGBA",(120,60)); im.paste((118,118,118,255),(20,20,100,40)); im.paste((255,255,255,255),(10,8,19,16)); im.save(sys.stdout.buffer,"PNG")'
+        ),
+        outputs: ['linkedin/cover.jpg', 'medium/featured.jpg'],
+        oracle: 'assert im.getpixel((im.width//2,im.height//2))[0]-im.getpixel((0,0))[0]>45',
+      },
+      {
+        id: 'keyed-gray',
+        width: 3840,
+        height: 20,
+        cover: false,
+        source: generate(
+          'row=struct.pack("<HH",0,65535)*1920; Image.frombytes("I;16",(3840,20),row*20).save(sys.stdout.buffer,"PNG",transparency=0)'
+        ),
+        outputs: ['linkedin/inline/example.png', 'medium/inline/example.png'],
+        oracle:
+          'gray,alpha=im.split(); assert 0<alpha.getextrema()[0]<=alpha.getextrema()[1]<255; assert gray.getextrema()[0]>=250',
+      },
+      {
+        id: 'bilevel-ink',
+        width: 3840,
+        height: 20,
+        cover: false,
+        source: generate(
+          'Image.frombytes("1",(3840,20),bytes([85])*(3840*20//8)).save(sys.stdout.buffer,"PNG")'
+        ),
+        outputs: ['linkedin/inline/example.png', 'medium/inline/example.png'],
+        oracle: 'assert im.mode=="L"; assert 90<=im.getpixel((im.width//2,im.height//2))<=165',
+      },
+    ];
+    // Valid grayscale ICC fixture generated with LittleCMS's grayscale profile API.
+    const grayIcc =
+      'AAABXGxjbXMEQAAAbW50ckdSQVlYWVogB+oACwAMABMAFwALYWNzcEFQUEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPbWAAEAAAAA0y1sY21zAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEZGVzYwAAALQAAAA2Y3BydAAAAOwAAABMd3RwdAAAATgAAAAUa1RSQwAAAUwAAAAQbWx1YwAAAAAAAAABAAAADGVuVVMAAAAaAAAAHABnAHIAYQB5ACAAYgB1AGkAbAB0AC0AaQBuAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAADAAAAAcAE4AbwAgAGMAbwBwAHkAcgBpAGcAaAB0ACwAIAB1AHMAZQAgAGYAcgBlAGUAbAB5WFlaIAAAAAAAAPbWAAEAAAAA0y1wYXJhAAAAAAAAAAAAAjMz';
+    for (const depth of [2, 4]) {
+      const row = Buffer.concat([
+        Buffer.from([0]),
+        Buffer.alloc(240 * depth, depth === 2 ? 0x55 : 0x44),
+        Buffer.alloc(240 * depth, 255),
+      ]);
+      cases.push({
+        id: `packed-gray-${depth}`,
+        width: 3840,
+        height: 20,
+        cover: false,
+        source: rasterPng({
+          width: 3840,
+          height: 20,
+          depth,
+          color: 0,
+          key: [depth === 2 ? 0x101 : 0x104],
+          icc: grayIcc,
+          rows: Buffer.concat(Array(20).fill(row)),
+        }),
+        outputs: ['linkedin/inline/example.png', 'medium/inline/example.png'],
+        oracle:
+          'import io; from PIL import ImageCms; assert im.mode=="LA"; assert ImageCms.ImageCmsProfile(io.BytesIO(im.info["icc_profile"])).profile.xcolor_space.strip()=="GRAY"; assert im.getpixel((im.width//4,im.height//2))[1]==0; assert im.getpixel((im.width*3//4,im.height//2))[1]==255',
+      });
+    }
+    for (const { id, width, height, cover, source, outputs, oracle } of cases) {
+      fixture(root, id, { image: source, width, height, ...(cover === false ? { cover } : {}) });
+      const kit = await renderKit(root, id);
+      await verifyKit(kit.directory);
+      assert.match(
+        fs.readFileSync(path.join(kit.directory, 'linkedin.txt'), 'utf8'),
+        /upload linkedin\/inline\/example\.png/
+      );
+      assert.match(
+        fs.readFileSync(path.join(kit.directory, 'medium.md'), 'utf8'),
+        /medium\/(featured\.jpg|inline\/example\.png)/
+      );
+      for (const file of outputs) {
+        execFileSync(python, [
+          '-c',
+          'import sys; from PIL import Image; im=Image.open(sys.argv[1]); im.load(); ' + oracle,
+          path.join(kit.directory, file),
+        ]);
+      }
+    }
+  });
+});
+
+test('platform verification rejects incomplete PNG while generic hero and selected handoff stay usable', async () => {
+  await withFixture(async (root) => {
+    const corruptIdat = execFileSync(python, [
+      '-c',
+      [
+        'import io,struct,sys,zlib',
+        'from PIL import Image',
+        'png=io.BytesIO(); Image.new("RGB",(1,1),(250,8,17)).save(png,"PNG")',
+        'raw=png.getvalue(); out=io.BytesIO(); out.write(raw[:8]); offset=8',
+        'while offset<len(raw):',
+        ' length,kind=struct.unpack_from(">I4s",raw,offset)',
+        ' payload=raw[offset+8:offset+8+length]',
+        ' if kind==b"IDAT": payload=payload[:-4]',
+        ' out.write(struct.pack(">I",len(payload))+kind+payload+struct.pack(">I",zlib.crc32(kind+payload)))',
+        ' offset+=length+12',
+        'sys.stdout.buffer.write(out.getvalue())',
+      ].join('\n'),
+    ]);
+    for (const [id, image] of [
+      ['missing-iend-crc', png.subarray(0, -4)],
+      ['missing-adler', corruptIdat],
+      ['bad-iend-crc', Buffer.concat([png.subarray(0, -1), Buffer.from([0])])],
+      ['trailing-png-data', Buffer.concat([png, Buffer.from([0])])],
+    ]) {
+      fixture(root, id, { image });
+      await assert.rejects(
+        renderKit(root, id),
+        /linkedin cover example: PNG (must end with a complete IEND|IDAT must contain a complete scanline stream)/
+      );
+      assert.deepEqual(fs.readdirSync(path.join(root, 'dist/publications', id)), []);
+    }
+
+    const invalidIndex = rasterPng({
+      width: 1,
+      height: 1,
+      depth: 8,
+      color: 3,
+      palette: [255, 0, 0],
+      rows: Buffer.from([0, 1]),
+    });
+    fixture(root, 'invalid-palette-index', { image: invalidIndex, cover: false });
+    await assert.rejects(
+      renderKit(root, 'invalid-palette-index'),
+      /linkedin inline example: PNG references a missing palette entry/
+    );
+
+    const keyedRgb = rasterPng({
+      width: 2,
+      height: 1,
+      depth: 16,
+      color: 2,
+      key: [0x123, 0x4567, 0x89ab],
+      rows: Buffer.from('000123456789ab000000000000', 'hex'),
+    });
+    fixture(root, 'rgb16-key-cover', { image: keyedRgb, width: 2, height: 1 });
+    await assert.rejects(
+      renderKit(root, 'rgb16-key-cover'),
+      /linkedin cover example: Convert 16-bit RGB keyed transparency to explicit alpha/
+    );
+    fixture(root, 'rgb16-key-inline', { image: keyedRgb, width: 2, height: 1, cover: false });
+    const untouched = await renderKit(root, 'rgb16-key-inline');
+    assert.deepEqual(
+      fs.readFileSync(path.join(untouched.directory, 'linkedin/inline/example.png')),
+      keyedRgb
+    );
+
+    const adam7 = rasterPng({
+      width: 5,
+      height: 3,
+      depth: 8,
+      color: 0,
+      interlace: 1,
+      rows: Buffer.concat(
+        [2, 2, 2, 4, 3, 3, 6].map((length) => Buffer.from([0, ...Array(length - 1).fill(9)]))
+      ),
+    });
+    fixture(root, 'adam7-inline', { image: adam7, width: 5, height: 3, cover: false });
+    await renderKit(root, 'adam7-inline');
+
+    fixture(root, 'valid-inline', { cover: false });
+    const valid = await renderKit(root, 'valid-inline');
+    const changed = path.join(root, 'damaged-upload');
+    fs.cpSync(valid.directory, changed, { recursive: true });
+    const manifest = JSON.parse(fs.readFileSync(path.join(changed, 'manifest.json')));
+    const inventoryPath = 'linkedin-upload-kit.json';
+    const inventory = JSON.parse(fs.readFileSync(path.join(changed, inventoryPath)));
+    const upload = inventory.images[0];
+    const broken = corruptIdat;
+    upload.sha256 = hash(broken);
+    upload.bytes = broken.length;
+    write(changed, upload.path, broken);
+    const inventoryBytes = JSON.stringify(inventory, null, 2) + '\n';
+    write(changed, inventoryPath, inventoryBytes);
+    Object.assign(
+      manifest.outputs.find((entry) => entry.path === upload.path),
+      { sha256: upload.sha256, bytes: upload.bytes }
+    );
+    Object.assign(
+      manifest.outputs.find((entry) => entry.path === inventoryPath),
+      { sha256: hash(inventoryBytes), bytes: Buffer.byteLength(inventoryBytes) }
+    );
+    manifest.transformations.find((item) => item.platform === 'linkedin').uploadInventorySha256 =
+      hash(inventoryBytes);
+    delete manifest.artifactId;
+    manifest.artifactId = hash(JSON.stringify(manifest));
+    json(changed, 'manifest.json', manifest);
+    await assert.rejects(
+      verifyKit(changed),
+      /linkedin\/inline\/example.png: PNG IDAT must contain a complete scanline stream/
+    );
+
+    const animated = execFileSync(python, [
+      '-c',
+      'import sys; from PIL import Image; Image.new("RGBA",(16,16),"red").save(sys.stdout.buffer,"PNG",save_all=True,append_images=[Image.new("RGBA",(16,16),"blue")],duration=100,loop=0)',
+    ]);
+    const { directory } = fixture(root, 'generic-hero', {
+      figure: false,
+      heroOnly: true,
+      image: animated,
+      width: 16,
+      height: 16,
+    });
+    const profilePath = directory + '/profile.json';
+    const profile = JSON.parse(fs.readFileSync(path.join(root, profilePath)));
+    profile.platforms.medium.formats = ['html'];
+    json(root, profilePath, profile);
+    const generic = await renderKit(root, 'generic-hero');
+    assert.deepEqual(fs.readFileSync(path.join(generic.directory, 'hero.png')), animated);
+    const handoff = fs.readFileSync(path.join(generic.directory, 'INSTRUCTIONS.md'), 'utf8');
+    assert.match(handoff, /Open `linkedin\.txt`/);
+    assert.match(handoff, /Open `medium\.html`/);
+    assert.doesNotMatch(handoff, /copy-ready|<platform>/);
+    await verifyKit(generic.directory);
+  });
+});
 
 test('native upload contracts fit both dimensions and bytes and keep print source intact', async () => {
   await withFixture(async (root) => {
