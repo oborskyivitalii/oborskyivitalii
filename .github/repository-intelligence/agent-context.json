@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "fa4e5bcfb02ae0ae1d2e11065181254cd90641f23a26c8081b932471b4b73521",
+    "digest": "4f67058dd23a674f430ac72c352ba4b4c20387759643f069a1aae9fbb59bb009",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -251,7 +251,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "8b8495823f3c4967d756e7517c68b3c8f218c130502e6c14a6e5bc8fc1409d20"
+        "sha256": "e54ffac28fc2cb4c0a9a27e937ab8c89968e4725386b44edcd88e154dad67aed"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -381,7 +381,7 @@
       {
         "path": "CONTRIBUTING.md",
         "identity_mode": "content",
-        "sha256": "88fe5129451990df334876d572af9cc00b028bb7a5a5eb7c970b2e82256e8b5f"
+        "sha256": "9255b86b00ec877fb1de478f86c3e530600aed3ea1fd893f6170bbe68911754b"
       },
       {
         "path": "LICENSE-CODE.md",
@@ -4835,12 +4835,12 @@
       {
         "path": "review/issue-188/2026-11-11-analysis.md",
         "identity_mode": "content",
-        "sha256": "2277278c69101ce1e3a8f9212251bf52e08e1acd41f613ed8288297004880f63"
+        "sha256": "a1cadc53e5de29e56e2b7fe32703aa2e8ee3a0b7c73e50e1d8288f71222e649e"
       },
       {
         "path": "review/issue-188/review-evidence.tar.xz",
         "identity_mode": "content",
-        "sha256": "166bbca483f38e1a04c3c62587417c74bee26297c17fc7f93303cc32b3442a66"
+        "sha256": "c6b76159991f9e1977a7417662113820d9ad509979a76abbb01cb066b1298b2a"
       },
       {
         "path": "review/issue-189/2026-11-10-analysis.md",

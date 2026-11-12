@@ -341,6 +341,15 @@ check evidence. Keep brief pointers to relevant concurrent work. Record settled
 decisions in `Decisions` and planned actions in `Next session`. Revalidate the
 facts against live sources when resuming.
 
+During exact-head admission and conditional refresh, record each verified step
+and any interruption in the dated issue or PR checkpoint linked from MEMORY.
+Keep the tracked handoff unchanged for those checkpoint updates while exact-head
+evidence is needed. If the pointer needs correction or another source change is
+required, refresh the tracked handoff and revalidate the evidence on the new
+head. Revalidate also if protected main moves. Record verified delivery in the
+checkpoint promptly, then reconcile the tracked handoff with the observed
+outcome.
+
 Keep logs, experiments and superseded checkpoints in the owning issue, PR or
 versioned review artifact. Keep secrets and private correspondence out of MEMORY.
 
