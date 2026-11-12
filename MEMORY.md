@@ -4,26 +4,26 @@ Dated handoff. Last verified: **2026-11-12**. Revalidate live sources when resum
 
 ## Snapshot
 
-- Verified `main` at `f51d3f4` after [PR #192](https://github.com/oborskyivitalii/oborskyivitalii/pull/192). [#188](https://github.com/oborskyivitalii/oborskyivitalii/issues/188) and [#189](https://github.com/oborskyivitalii/oborskyivitalii/issues/189) are closed.
-- Active owner [#198](https://github.com/oborskyivitalii/oborskyivitalii/issues/198), [Draft PR #201](https://github.com/oborskyivitalii/oborskyivitalii/pull/201). The [versioned review](review/issue-198/2026-11-12-reviewer-admission.md) retains the independent findings and exact-source history.
+- Protected main `8385e14` includes PR #201. Production ref `ca75641` remains the last observed deployment source.
+- [#187](https://github.com/oborskyivitalii/oborskyivitalii/issues/187) owns the Writing and article transition in [Draft PR #197](https://github.com/oborskyivitalii/oborskyivitalii/pull/197). The verified feature head `02f59fc` has its exact [Draft preview](https://411abc1c.oborskyi-author-ci-staging.pages.dev/writing.html).
+- The [protected staging prerequisite](review/issue-187/2026-11-12-controller-preregistration.md) records the local controller refusal, exact staging registration and remaining checks.
 
 ## Decisions
 
-- #198 has its own PR and acceptance policy. Reuse relevant adapter source from [historical #171](https://github.com/oborskyivitalii/oborskyivitalii/pull/171). The older Draft and [WEB pilot #167](https://github.com/oborskyivitalii/oborskyivitalii/issues/167) retain separate ownership.
-- Keep the five MEMORY sections, at most 120 lines and 8,192 UTF-8 bytes. Put detailed history and checkpoints in their issue or review.
+- The maintainer requested stable staging after reviewing the corrected animation. Keep the last neutral Canvas paint continuous across article mount.
+- Register only the reviewed staging runtime on protected main using the existing delivery route. The feature and production have their own checks.
 
 ## Open work
 
-- #198 review of `42f2868` found two ways to overwrite independent review evidence. The next candidate reserves a new output path before dispatch. Current independent results and exact-head native checks remain required. The protected-base classifier selected the full control route.
-- [#187 animation](https://github.com/oborskyivitalii/oborskyivitalii/issues/187) and [PR #79 essay](https://github.com/oborskyivitalii/oborskyivitalii/pull/79) have separate owners.
+- AC01, AC02 and AC06 remain open. The preregistration is a separate change owned by #187. Current native source checks, owner staging, exact-head admission and protected merge are required for this prerequisite.
+- #197 still requires the rebased exact-head native and hosted route after the prerequisite.
 
 ## Next session
 
-1. Check live #201 head, protected base, role receipts and outstanding findings against the versioned review. Correct remaining findings and recheck affected scope with fresh reviewers.
-2. After the required local and independent checks, move the verified Draft to Ready and collect exact-head Source, Navigation and Owning acceptance results.
-3. Apply the [protected delivery procedure](guides/SITE-STAGING.md#trusted-change-admission-and-repository-delivery) from the first unfinished action. Reuse successful current evidence. For full control work preserve owner staging, full reviewed SHA, App admission and the matching PR-event admission receipt.
-4. Verify protected merge and post-merge tree/public-byte observations before updating #198 acceptance and the handoff.
+1. Check the live #187 checkpoint, both PR heads, main and deployment state. Resume the preregistration at the first unfinished verification or admission step.
+2. After the accepted prerequisite is integrated, rebase #197 on current main and reconcile the shared registry, tests and RI. Preserve the exact staging runtime and feature motion checks.
+3. Verify #197 through the existing stable staging controller and report the tested source and served identity.
 
 ## Maintenance
 
-- Use the [continuity protocol](CONTRIBUTING.md#repository-navigation-and-session-memory). Replace obsolete entries and rebuild/verify RI after changes. Keep detailed history with the owning issue, PR or versioned review.
+- Keep the five bounded sections and follow the [continuity protocol](CONTRIBUTING.md#repository-navigation-and-session-memory). Record dynamic admission receipts in the owning issue without changing a frozen head.
