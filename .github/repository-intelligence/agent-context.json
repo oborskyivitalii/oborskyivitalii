@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "e1a205c0cbdd771c03c3713f9f6e2746ab321e668d4eee5cdf58397510c927a4",
+    "digest": "b23330a4fa2b8d51e49dd08e6e34e208a440568a07246b62adb4a394e05b5c44",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -1005,7 +1005,7 @@
       {
         "path": "guides/WEB-ORCHESTRATION.md",
         "identity_mode": "content",
-        "sha256": "1cb323dd0748d8b53695dfbc2f3695356a7bef7ad76815862bd591b341b75e68"
+        "sha256": "c90bce5de467e8c3711f59c309ddb60ad4452df87a2258bdba4c5ec06b24cd15"
       },
       {
         "path": "guides/github-pages-domains.json",
@@ -4900,7 +4900,7 @@
       {
         "path": "review/issue-198/2026-11-12-reviewer-admission.md",
         "identity_mode": "content",
-        "sha256": "3fc393556a1e42345a36bc33ab9083d3004899b9258424553b723fd9b91e38fd"
+        "sha256": "a471e245d7bb79c5bfa72a63f2a3e9d72187035d3eb66c68409f008954784a30"
       },
       {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -12035,7 +12035,7 @@
       {
         "path": "tests/reviewer-admission.test.cjs",
         "identity_mode": "content",
-        "sha256": "753583a58dab9139f9203bccc3b4905a72f9977418da2c1fc6b71de80a7fb4af"
+        "sha256": "4bb0bfec958520476c1781b293ddb757b7ef3c5d294fb7db4d06472ba7b1a268"
       },
       {
         "path": "tests/ribbons.test.cjs",
@@ -12400,7 +12400,7 @@
       {
         "path": "tools/orchestration/reviewer-admission-cli.cjs",
         "identity_mode": "content",
-        "sha256": "e828cc4370c37c3c9f73f5439848165f3105d31b2ed84d99e747e9f100b57633"
+        "sha256": "885208ea6f7382b2ea9372cd58681b6b85522fb153dc0e07ad607404c34c58af"
       },
       {
         "path": "tools/orchestration/reviewer-admission-contract.json",
@@ -12410,7 +12410,7 @@
       {
         "path": "tools/orchestration/reviewer-admission.cjs",
         "identity_mode": "content",
-        "sha256": "d7da2c65f80d463fbe2831406221b2a6ebea132b2fe3263919cb7d6917900f44"
+        "sha256": "5f5efc0d5f8677864a34533a0e9854a8e0abe547b09fbcea4bc58bdeb829c2ee"
       },
       {
         "path": "tools/pages/controller.cjs",

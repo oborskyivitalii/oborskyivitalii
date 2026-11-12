@@ -180,8 +180,11 @@ and assess contract. The parent does the following for each owner/scope.
 3. Use one parent-maintained attempt journal per owner/scope. Write the prepared
    entry and its digest before invoking the emitted exact spawn arguments. Keep
    one evidence root for the journal. Reserve a fresh result path before dispatch,
-   separate from every assigned input and every prior attempt's output, including
-   pending and excluded attempts. CLI preparation checks that the destination is
+   separate from current and prior assigned inputs and every prior attempt's
+   output, including pending and excluded attempts. A reserved output cannot
+   appear in another packet even as a sliced factual input. Preserve earlier
+   draft journals without a pinned root as historical evidence and start a
+   newly scoped journal with fresh executions. CLI preparation checks that the destination is
    absent and its parent is a real directory reached without symbolic links. A
    direct parent performs the same filesystem check before invoking the tool.
    Use separate roots for concurrent scopes and never overwrite an existing result.

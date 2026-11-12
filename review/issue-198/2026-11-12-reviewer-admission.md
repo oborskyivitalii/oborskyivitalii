@@ -594,3 +594,154 @@ The permanent test selector is `tests/reviewer-admission.test.cjs` under the aff
 - Ran a second bounded diagnostic using a different result body to distinguish path reuse from loss of evidence. The first artifact matched its checkpoint before the attempted correction write. The fixture's correction write replaced bytes at the same path, then the probe returned `first artifact still matches checkpoint: false` and `import: EVIDENCE`. Exit 0. This probe models the write in memory and did not touch a real first review artifact.
 
 No structural coverage percentage was measured. Live invocation correlation, live chronology and cross-role reconciliation remain owner evidence. I make no reuse claim from earlier judgments.
+
+
+## Evidence read isolation and journal continuity
+
+The four roles below independently reviewed `b0df68bd` using the maintained prepare/invoke/import route, with explicit no-inheritance and distinct native handles. Code found that an already reserved output could become a subsequent evidence read. White-box and Exploratory found that a populated rootless journal could switch roots. The imported receipt IDs W-198-ROOT and E-198-ROOT identify W198-1 and EQ198-ROOT-01 respectively. The next candidate rejects both cases before launch and keeps rootless Draft journals as historical evidence.
+
+
+# Requirements & Acceptance — correction review
+
+Verdict: **pass for the assigned correction delta**. No blocking requirements or acceptance-linkage findings. This is not whole-issue acceptance or a substitute for the other required roles and real execution receipts.
+
+Reviewer: `/root/issue198_fix_r`; independent nonauthor requirements role. Candidate `b0df68bd34c7b426e5818d70f23a76b43be7115d`, base `f51d3f4f49b9fa456a8fa25fc419dc17dd2307aa`, tree `9b19ab10e797a86992555cbf76e387df9a476d09`. Packet `56ec6e139bdb5920c553da9aa1dd870f3d378695c78844de718e5a6eaf0ba69f`.
+
+## Inputs actually inspected
+
+All seven supplied manifest grants were read and their SHA-256 values matched the assignment: candidate `agents/reviewers/README.md`, `agents/reviewers/requirements-acceptance.md`, `CONTRIBUTING.md`, `tools/orchestration/reviewer-admission.cjs`; evidence `acceptance.txt`, `delta.diff`, and `intent.txt` bytes [0,511), which comprise the entire supplied intent file. The CLI, test and guide changes were inspected through the approved delta, not by opening additional source files. Initial combined output was truncated; subsequent bounded reads covered current source, changed CLI/tests/guide and removed diff lines.
+
+No peer results, parent scratch notes, unrelated memory, or issue/PR verdict histories were inspected. No unexpected author/peer-history exposure was observed. Platform/project instructions were present; hidden provider context and launch internals are not independently observable here.
+
+## Acceptance trace
+
+| Intent / AC | Independent oracle and check | Observed result |
+| --- | --- | --- |
+| AC03: separate source-bound inputs | Assigned output must not overlap an evidence input, including sliced intent; inspect `checkOutputInputs`, packet grants and focused refusal cases | Packet rejects overlapping input/output paths before preparing dispatch. Slices retain their explicit read boundary. Source and prompt identities remain packet-bound. |
+| AC04: refuse unsafe admission | Prior pending, completed and excluded output reservations must remain unavailable; fresh replacement must succeed | `prepare` compares against every prior attempt, without filtering out excluded or pending attempts. Evidence root is pinned in the journal. Focused suite passed collision, root-change and fresh replacement cases. |
+| AC05: meaningful behavioral checks | Exercise reducer and actual CLI filesystem checks, with refused collisions leaving original bytes intact | `node --test tests/reviewer-admission.test.cjs` exited 0: 16 tests passed, zero failed/skipped/cancelled. New cases cover input collisions, pending cross-role reuse, completed/excluded reuse, preserved original bytes, changed evidence root, existing CLI file, request file, dangling link, linked parent and fresh destination. Existing changed-candidate, contamination, stale source and latest-pending cases also passed. |
+| AC06: preserve first independent outputs and complete fresh results | Reserve before dispatch, reject existing filesystem destination, preserve original result bytes, retain independent per-role completion requirements | Source and tests substantiate the correction's preservation behavior. CLI checks destination absence and real non-symlink parent before returning preparation. Direct parent filesystem precheck is explicitly required by the changed guide. Whole-issue four-role receipts remain an orchestrator gate beyond this individual report. |
+
+## Findings and limits
+
+No findings. Examined risks include output aliasing with an input, overwriting a first result after completion or exclusion, colliding with pending work in another role, switching evidence roots to evade reservations, CLI symlink/existing-file destinations, and losing stale-result or contamination refusal behavior.
+
+The requirement is assessable: refuse before dispatch, keep original bytes, and admit a fresh path. The implementation and behavioral checks support these observables without claiming OS isolation. The pure API has no filesystem writer and relies on the documented direct-parent filesystem precheck; the CLI performs that check. Shared filesystem races, malicious external writes and hidden provider memory are not proved absent by these checks. The guide requires one journal per owner/scope and separate roots for concurrent scopes; that operational assumption is material.
+
+No prior judgment or test outcome was reused. Affected source, delta and focused suite were inspected/executed afresh. No new owner decision is needed for this bounded correction. Next gate: complete and reconcile the other required fresh role results, correlate requested/accepted/observed launch evidence, and retain the applicable exact-source delivery gates before claiming whole-issue acceptance.
+
+
+# Issue #198 code review
+
+**Verdict: changes required.** The correction protects output destinations in the tested forward cases, but a subsequent packet can still turn a known earlier output into an approved read input and forward its contents before dispatch.
+
+Candidate `b0df68bd34c7b426e5818d70f23a76b43be7115d`, base `f51d3f4f49b9fa456a8fa25fc419dc17dd2307aa`, tree `9b19ab10e797a86992555cbf76e387df9a476d09`, as identified in the assignment. Packet `16098c6287526d4c71e9450e97daa2c0ec9457678c78c2c7dd0d5c0ed232548f`.
+
+## Blocking finding
+
+**C-198-OUTPUT-READ, high.** In `tools/orchestration/reviewer-admission.cjs:403–445, 578–584`, packet admission prohibits references labeled `result` and compares the new output against its own evidence inputs. Journal admission compares the new output against earlier outputs. Neither compares the **new read grants against earlier output reservations**. A prior output at an otherwise allowed path can be listed as `fact` and sliced into the new execution's message. The CLI check shown in the delta verifies the new destination and does not inspect this overlap.
+
+I prepared a synthetic code review with output `code.md`, then supplied a buffer for that same path while the attempt remained pending in the journal. I submitted a first white-box packet with a fresh destination and the earlier path declared as a sliced `fact`. `execute("prepare", …)` emitted the white-box spawn arguments containing the synthetic result marker. This models a result written before its parent imports completion. The missing comparison is independent of the attempt's result or exclusion state. The result verifier treats a read matching the prepared grant as in scope, so read accounting would not catch this admission error.
+
+Reject evidence grants overlapping a known journal output, regardless of reference kind, slice, role, stage, or attempt state. Do the comparison before reading or embedding those bytes, and exercise pending, completed, and excluded reservations with a fresh new output. This affects AC03 and AC04 directly, leaves a regression case untested for AC05, and means AC06 cannot rely on the current read receipt to establish independence for this case.
+
+## Checks and limits
+
+- Ran `node --test tests/reviewer-admission.test.cjs` on Node v24.22.1. All 16 tests passed. The new adapter test covers same-packet input collisions, reuse of prior pending/completed/excluded output paths, pinned root rejection, and a fresh replacement. The CLI fixture covers an existing file, the request path, dangling symlink, symlinked parent, and fresh destination. The independent in-memory probe above reproduced the converse collision without a provider call or scratch write.
+- The candidate comparison of each prepared root with the journal's established root, the CLI's comparison of the journal root and CLI root, and the CLI destination checks were inspected through the assigned source and delta. Real provider dispatch, operator race behavior, and the other roles' live completion receipts were outside this review.
+
+## Inputs and exposure
+
+Inspected the approved `agents/reviewers/README.md` common contract (`725c8432ec1f2fea9a61cdbaba01d32676778b3e83b7a73fe2faea422b4ea0a8`), `agents/reviewers/code-review.md` (`26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697`), `CONTRIBUTING.md`, and `tools/orchestration/reviewer-admission.cjs`; the evidence `acceptance.txt`, `delta.diff`, and `intent.txt` bytes [0, 511). CLI, guide, and test changes were examined through the approved delta, with the focused suite executed as authorized. No unexpected exposure observed. The probe used a fabricated marker, with no real peer result, parent history, or unrelated memory read.
+
+
+# Issue #198 correction · White-box QA
+
+**Verdict — changes required.** Blocking finding W198-1 affects AC04, AC05 and AC06. The selected packet input collision checks satisfy the bounded AC03 scenarios examined.
+
+Candidate `b0df68bd34c7b426e5818d70f23a76b43be7115d`, base `f51d3f4f49b9fa456a8fa25fc419dc17dd2307aa`, tree `9b19ab10e797a86992555cbf76e387df9a476d09`. These are the supplied target identities. Packet `5341c87aa443ccba057ce19da0bc4c80c2f65e622e067db086515d2a1f39513f`. Reviewer `/root/issue198_fix_w`. Source verification was by approved-byte SHA-256; the CLI suite used its own actual Git fixture. Provider context internals and the parent invocation receipt were outside the observed scope.
+
+## W198-1 · An existing v2 journal can reserve the same pending output twice
+
+The pre-change journal schema in the assigned delta has no `evidenceRoot`. The corrected adapter permits its omission for populated journals (`tools/orchestration/reviewer-admission.cjs:305–329`), compares relative output reservations across attempts, and enforces a root match only when the field is present (lines 578–584). It pins the new root after preparing the additional attempt (line 609).
+
+A pending attempt prepared under `/fixture/evidence` reserves `nested/review.md`. Reopen the same legacy-shaped journal under `/fixture/evidence/nested` and prepare a second required role with `review.md`. Both emitted spawn messages identify `/fixture/evidence/nested/review.md` as the output. The earlier attempt can still be pending, so no result file need exist. The CLI skips its journal-root comparison for the missing field (assigned delta around line 1192). Its destination check then sees a real parent and an absent destination (delta around lines 1241–1252). The duplicate reservation was reproduced in the actual adapter in memory. CLI reachability was traced from the assigned delta.
+
+Treat a populated unpinned journal as held until the original root has been recovered from trusted historical launch/checkpoint evidence and every existing reservation has been checked against it. Keep that root bound when accepting a fresh path. Add a legacy pending-journal regression to the focused Node suite, including the CLI when the destination is still absent. The expected oracle is that the second prepare emits no dispatch for the identical absolute output and that the same anchored root can prepare a genuinely fresh output. Two independent receipts need distinct destinations before either reviewer writes.
+
+## Risk and verification
+
+| AC | Structural risk and scenario | Independent oracle | Check and result |
+|---|---|---|---|
+| AC03 | Output equals a full evidence input or the backing file of an approved slice | Refuse before creating a prepared attempt | Focused suite exercised oracle and mixed-input collisions. Pass |
+| AC04, AC06 | Output is reserved by another pending role, a completed role or an excluded attempt | Refuse each collision, preserve prior output and allow a fresh path | Focused suite exercised all three with a pinned journal, plus accepted a replacement at a fresh path with first bytes unchanged. Pass |
+| AC04, AC05, AC06 | Root changes between preparations and alters the meaning of an existing relative output path | A changed root cannot produce another launch to an already reserved absolute path | Focused suite exercised an already pinned journal. Independent adapter probe reproduced W198-1 for an existing unpinned journal |
+| AC05 | Existing file, request file, dangling symlink or symlinked parent in CLI | Existing evidence stays intact and only a fresh path under a real parent prepares | CLI fixture exercised all listed negatives and a fresh nested path. Pass |
+| AC03, AC06 | Completion attests unrelated reads, omits a granted read, or substitutes a different result path | Completion binds observed reads and exact result path to the prepared entry | Focused suite exercised these checks. Pass |
+
+Actual focused command from the supplied candidate root was `node --test tests/reviewer-admission.test.cjs`. Exit 0, no signal. TAP reporter totals were 16 tests, 16 passed, 0 failed, 0 cancelled, 0 skipped, 0 todo, 583.543088 ms. The suite indirectly loaded its normal test and adapter dependencies.
+
+The targeted `node` stdin probe called the exported `execute('prepare', …)` with in-memory, synthetic packets, independently computed checkpoint digests and no filesystem writes. The initial probe stopped in fixture setup with `SCHEMA` from `select` because the toy impact included the wrong field. The next probe used the documented impact schema and a generic fixture owner to avoid an unrelated preflight dependency. It exited 0 and reported the observations below.
+
+```text
+Pinned journal: OUTPUT
+nested/review.md Output: /fixture/evidence/nested/review.md
+review.md Output: /fixture/evidence/nested/review.md
+Legacy-shaped journal returned a second launch for the same destination: 2
+```
+
+Path ancestry rejection was checked in source. No branch coverage was measured. The CLI's legacy-root case, actual parent dispatch and concurrent filesystem behavior remain outside executed coverage. No earlier role verdict or check result was reused.
+
+## Inputs inspected
+
+SHA-256 matched all supplied grants. I inspected the common and role prompts, applicable CONTRIBUTING rules, adapter implementation, owning intent and ACs, the permitted intent slice, and relevant guide, adapter, CLI and test sections of the assigned delta. I did not open candidate files omitted from the manifest for separate reading.
+
+| Grant | Verified SHA-256 |
+|---|---|
+| candidate:agents/reviewers/README.md | `725c8432ec1f2fea9a61cdbaba01d32676778b3e83b7a73fe2faea422b4ea0a8` |
+| candidate:agents/reviewers/white-box-qa.md | `832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f` |
+| candidate:CONTRIBUTING.md | `ec10d92c6f861e9c6de32b79eaf428fb6d4ce3b5091d000bc680bfc5ca29d30f` |
+| candidate:tools/orchestration/reviewer-admission.cjs | `d7da2c65f80d463fbe2831406221b2a6ebea132b2fe3263919cb7d6917900f44` |
+| evidence:acceptance.txt | `626dfc8158704618af9cbba650aa94632388da9879ca2174e04b02722777f199` |
+| evidence:delta.diff | `d4e91f55094cfe2688530f15123980967ad51333974b1c3f9cd803902c38f5e9` |
+| evidence:intent.txt, bytes [0, 511) | `3241fb906038795d6670363f26e9b5c818f60f800e4137dcda44075104b943b6` |
+
+No unexpected author-history, peer-review or unrelated-memory exposure observed.
+
+
+# Issue #198 correction — Exploratory / Interaction QA
+
+**Verdict: changes-required.** One blocking finding in the evidence-root continuity journey. The normal newly pinned journal and CLI destination journeys passed the focused suite.
+
+- Execution: `/root/issue198_fix_e`, Exploratory / Interaction QA, correction pass.
+- Candidate: `b0df68bd34c7b426e5818d70f23a76b43be7115d`, base `f51d3f4f49b9fa456a8fa25fc419dc17dd2307aa`, tree `9b19ab10e797a86992555cbf76e387df9a476d09`. These are the packet's identities. The granted source bytes were checked by SHA-256.
+- Packet: `6def17e89036f8fa52f1521e8bf47c0ed1017f9add37cb3d02e10b574bd4d6e3`.
+- Charter: one bounded Node suite and one in-memory direct API comparison. Follow the operator from failed destination selection through a fresh destination, and check continuity when an existing journal resumes. Node ran on the workspace Linux filesystem. Native provider launch internals and live CLI/operator concurrency were outside this run.
+
+## Read grants actually inspected
+
+| Space and path | SHA-256 and scope |
+| --- | --- |
+| candidate `agents/reviewers/README.md` | `725c8432ec1f2fea9a61cdbaba01d32676778b3e83b7a73fe2faea422b4ea0a8` |
+| candidate `agents/reviewers/exploratory-interaction-qa.md` | `280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a` |
+| candidate `CONTRIBUTING.md` | `ec10d92c6f861e9c6de32b79eaf428fb6d4ce3b5091d000bc680bfc5ca29d30f` |
+| candidate `tools/orchestration/reviewer-admission.cjs` | `d7da2c65f80d463fbe2831406221b2a6ebea132b2fe3263919cb7d6917900f44` |
+| evidence `acceptance.txt` | `626dfc8158704618af9cbba650aa94632388da9879ca2174e04b02722777f199` |
+| evidence `delta.diff` | `d4e91f55094cfe2688530f15123980967ad51333974b1c3f9cd803902c38f5e9`. Inspected behavior-bearing test, guide, CLI and adapter hunks. |
+| evidence `intent.txt` | `3241fb906038795d6670363f26e9b5c818f60f800e4137dcda44075104b943b6`, bytes [0,511) only |
+
+The authorized suite loaded its own test fixtures and local runtime dependencies. CLI and test source were inspected through the assigned diff. Unexpected exposure: none observed. Provider-side model and injection details were unobserved. No earlier review conclusions or test results were reused.
+
+## Executed journeys
+
+| Expected result | Observation |
+| --- | --- |
+| Assigned oracle or sliced intent cannot become output. Pending, completed and excluded prior reservations survive a repeat path. Refusal leaves the journal and first result intact, and a fresh path lets a replacement complete. | Pass. `node --test tests/reviewer-admission.test.cjs` reported 16 tests, 16 passed, 0 failed, 0 skipped. The new reservation case checks these dispositions and byte preservation. |
+| Existing file, request path, dangling symlink and symlinked ancestor are refused by CLI. A fresh destination in a real subdirectory succeeds. | Pass in the same suite, using a temporary real Git repository and filesystem. Existing bytes survived and successful prepare returned the expected pinned root. |
+| A journal that already reserved a result under one evidence root rejects preparation at a different root, including when the input journal has the pre-correction v2 shape. | New shape passed. A direct `execute("prepare", …)` probe with a pending first attempt under `/fixture/one` returned `OUTPUT` on a fresh role targeting `/fixture/two`. With only the journal-level root field absent and the checkpoint digest recalculated over that v2 shape, the same second prepare succeeded. The returned journal pinned `/fixture/two` with two attempts while the first prepared message still named `/fixture/one`. This was a synthetic migration-state fixture using the actual adapter. |
+
+## Findings
+
+**EQ198-ROOT-01 — Blocking, AC04/AC05/AC06.** A nonempty journal with the prior v2 shape can acquire a different evidence root at the next prepare. The updated guide requires one root for the journal. `reviewer-admission.cjs:305–329` permits omission with any attempt count, `:578–584` compares only when the field is present, and `:609` pins the later root. The CLI check shown in the delta also compares only when the journal field is present. A valid digest over a pre-field journal establishes byte identity while leaving the first attempt's root in its existing launch message. Later readback uses root-relative references and can look in the new directory for the first attempt's evidence. The probe demonstrates a mixed-root journal and did not modify first-result bytes or exercise a live reviewer. Hold nonempty rootless journals explicitly, or add a verified migration that pins the prior root and rejects mixed-root history. Preserve the original journal and result bytes in either case.
+
+Regression allocation: extend the existing reviewer-admission Node suite with nonempty prior-schema state and two evidence roots. The oracle is refusal or verified migration to the original root, intact first evidence and successful new-path preparation at that root. The direct negative probe ran, and the analogous CLI migration case is proposed. The packet did not grant the profile/workflow mapping owner, so its hosted job allocation remains unverified.
