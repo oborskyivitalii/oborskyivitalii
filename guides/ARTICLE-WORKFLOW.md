@@ -170,19 +170,44 @@ explicit dependency direction, readable bounded adapters and exact-source checks
 
 ### LinkedIn Article cover
 
-Prepare a dedicated native cover file when the article uses a cover. Export it
-as JPEG or PNG at **1920 × 1080 px (16:9)**, the size recommended in
-[LinkedIn's article media guidance](https://www.linkedin.com/help/linkedin/answer/a521719/).
-Fit or recompose the approved artwork on that canvas and leave margins around
-text and important details. Keep the inline hero, website/social preview and
-other platforms' artwork in their existing roles.
+The distribution renderer needs the pinned Pillow interpreter used by
+[publication media](../tools/quality/README.md). Use `SITE_MEDIA_PYTHON` to select
+it explicitly, or install the repository toolchain in its standard venv.
 
-Decode the exported upload file and verify its actual dimensions, then inspect
-the full composition at article and thumbnail size. Include the verified file
-in the LinkedIn handoff with an explicit name. The generic kit cover and inline
-hero are source artwork for this step. Before publishing, the author uploads
-the dedicated file and checks its crop and readability in the native editor
-preview.
+| Destination and role   | Repository export and placement                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| LinkedIn Article cover | Separate `linkedin/cover.jpg`, 1920 × 1080 JPEG, at most 2,000,000 bytes. Fit approved artwork without cropping on a white canvas with at least 5% margins on each edge. Upload it in the native cover slot, then check crop and legibility in the editor and thumbnail before publication. An explicitly coverless edition has no native cover file.                                                                                                                                                                                |
+| LinkedIn inline        | PNG, up to 1920 × 1920 and 2,000,000 bytes per image. Fit to those bounds without cropping or enlarging. Upload in figure order at the corresponding story positions.                                                                                                                                                                                                                                                                                                                                                                |
+| Medium featured        | Separate `medium/featured.jpg`, fitted JPEG up to 1600 × 1600 and 2,000,000 bytes. If the same artwork occurs in the manuscript, the featured JPEG serves at that figure position. Otherwise it appears as the leading image. Select that image as featured in the editor, check the preview and set the focal point where needed.                                                                                                                                                                                                   |
+| Medium inline          | PNG, up to 2000 × 2000 and 2,000,000 bytes per image. Fit without cropping or enlarging. Upload in figure order and retain alt text, caption and credit.                                                                                                                                                                                                                                                                                                                                                                             |
+| PDF                    | Preserve the print layout and source artwork. The [print resource contract](../tools/publishing/print-resource.cjs) admits PNG, JPEG, WebP and SVG plus declared styles/fonts, with at most 5,000,000 bytes per image, 16,000,000 aggregate bytes and 64 declared resources. Check effective pixels per inch at the rendered placement. [Adobe's 300 ppi guidance](https://helpx.adobe.com/photoshop/desktop/crop-resize-transform/resize-adjust-resolution/resolution-specs-for-printing-images.html) is a print-quality reference. |
+| Author site            | Preserve authored reader geometry. Use [reader media and transfer budgets](../site/README.md#versioned-public-files-and-navigation) (2,000,000 bytes per hosted asset and 800,000 bytes of required-reading transfer). The [social preview](SITE-SEO.md#current-canonical-content-reconciliation) is a separate fitted 1200 × 630 JPEG.                                                                                                                                                                                              |
+
+[LinkedIn's article guide](https://www.linkedin.com/help/linkedin/answer/a521719/)
+recommends 1920 × 1080 and crops covers to 16:9. It supports JPEG/JPG, PNG and WebP
+covers, plus GIF (fewer than 400 frames) inline. The
+[older FAQ](https://www.linkedin.com/help/linkedin/answer/a522463/) gives a 10 MB
+article-image limit and conflicting older cover geometry. The export follows the
+current article guide and the repository bounds above.
+
+[Medium's editor](https://help.medium.com/hc/en-us/articles/215679797-Using-images)
+accepts JPG/JPEG, GIF and PNG up to 25 MB. Width of at least 1192 px enables every
+placement option. [Featured selection](https://help.medium.com/hc/en-us/articles/215680047-Setting-a-featured-image-on-your-post)
+requires an image already in the story. The featured canvas is fitted to the
+artwork, with no imposed aspect ratio. Check placement in the editor when an
+image is narrower than 1192 px.
+
+Run `node tools/publishing/cli.cjs verify <artifact-directory>` before handoff.
+Keep the original digest-named directory or pass `--expected-id <sha256>` from
+the original render when the directory was renamed. Retain that ID separately
+from the files being verified.
+New kits decode their files and check format, dimensions, bytes and hashes,
+including agreement with the platform HTML and the ordered upload inventories.
+Each platform's unique upload files have a combined 20,000,000-byte bound. Use
+the platform inventory to recover images dropped by copy/paste, then confirm
+captions, credits and alt text in the editor. The generic kit cover, hero and
+review images retain the source artwork. Older kits retain their original
+integrity verification contract.
 
 ### Site-first distribution
 

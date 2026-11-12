@@ -16,9 +16,14 @@ const { appendPublicationEvent, validateEvent } = require('../tools/publishing/e
 const { execFileSync } = require('node:child_process');
 
 const repo = path.resolve(__dirname, '..');
+const python =
+  process.env.SITE_MEDIA_PYTHON ||
+  (fs.existsSync(path.join(repo, 'tools/quality/toolchain/venv/bin/python'))
+    ? path.join(repo, 'tools/quality/toolchain/venv/bin/python')
+    : 'python3');
 const hash = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 const png = Buffer.from(
-  'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aJ1sAAAAASUVORK5CYII=',
+  'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGP4////fwAJ+wP9KobjigAAAABJRU5ErkJggg==',
   'base64'
 );
 
@@ -31,7 +36,20 @@ function json(root, relative, value) {
   write(root, relative, JSON.stringify(value, null, 2) + '\n');
 }
 
-function fixture(root, id = 'first-profile', { adaptation = false, figure = true } = {}) {
+function fixture(
+  root,
+  id = 'first-profile',
+  {
+    adaptation = false,
+    figure = true,
+    image = png,
+    width = 1,
+    height = 1,
+    cover = figure,
+    caption = 'Original test figure.',
+    credit = 'Test author.',
+  } = {}
+) {
   const directory = `site/publications/${id}`;
   const manuscript =
     '# Test article\n\n## Source [link][ref]\n\nWhole article.\n\n' +
@@ -44,18 +62,18 @@ function fixture(root, id = 'first-profile', { adaptation = false, figure = true
         {
           id: 'example',
           path: `site/assets/publications/${id}/example.png`,
-          sha256: hash(png),
-          width: 1,
-          height: 1,
+          sha256: hash(image),
+          width,
+          height,
           alt: 'One pixel',
-          caption: 'Original test figure.',
-          credit: 'Test author.',
+          caption,
+          credit,
           reviewNote: 'Administrative test note; rights decision pending.',
         },
       ]
     : [];
   if (figure) {
-    write(root, assets[0].path, png);
+    write(root, assets[0].path, image);
   }
   const metadata = {
     schema: 1,
@@ -127,7 +145,10 @@ function fixture(root, id = 'first-profile', { adaptation = false, figure = true
       title: 'Authored distribution title',
       summary: 'Authored distribution summary.',
     },
-    assets: { cover: role, hero: role },
+    assets: {
+      cover: cover ? role : { omitReason: 'No dedicated cover selected for this edition.' },
+      hero: role,
+    },
     limits: {},
   });
   if (adaptation) {
@@ -169,6 +190,10 @@ async function withFixture(callback) {
       'tools/publishing/article.cjs',
       'tools/publishing/ast.mjs',
       'tools/publishing/kit.cjs',
+      'tools/publishing/platform-images.cjs',
+      'tools/publishing/platform-images.py',
+      'tools/publishing/web-media.py',
+      'tools/quality/toolchain/requirements.txt',
       'tools/publishing/render.cjs',
       'tools/publishing/safety.cjs',
       'tools/publishing/provenance.cjs',
@@ -190,6 +215,189 @@ async function withFixture(callback) {
     await fsp.rm(root, { recursive: true, force: true });
   }
 }
+
+test('native upload contracts fit both dimensions and bytes and keep print source intact', async () => {
+  await withFixture(async (root) => {
+    const generate = (program) =>
+      execFileSync(python, ['-c', 'import random,sys; from PIL import Image; ' + program], {
+        maxBuffer: 5_000_000,
+      });
+    const wide = generate(
+      'im=Image.new("RGB",(4000,160),"red"); im.paste((0,0,255),(2000,0,4000,160)); im.save(sys.stdout.buffer,format="PNG")'
+    );
+    fixture(root, 'wide-image', {
+      image: wide,
+      width: 4000,
+      height: 160,
+      caption: 'Original $& test figure.',
+      credit: 'Test author $$',
+    });
+    const wideKit = await renderKit(root, 'wide-image');
+    const read = (kit, file) => fs.readFileSync(path.join(kit.directory, file));
+    const inventory = (kit, platform) => JSON.parse(read(kit, platform + '-upload-kit.json'));
+    const linked = inventory(wideKit, 'linkedin');
+    const medium = inventory(wideKit, 'medium');
+    assert.deepEqual([linked.cover.width, linked.cover.height], [1920, 1080]);
+    assert.deepEqual([linked.images[0].width, linked.images[0].height], [1920, 77]);
+    assert.deepEqual([medium.cover.width, medium.cover.height], [1600, 64]);
+    assert.deepEqual(medium.images, [medium.cover]);
+    assert.deepEqual(read(wideKit, 'images/01-example.png'), wide);
+    assert.deepEqual(read(wideKit, 'cover.png'), wide);
+    assert.match(read(wideKit, 'print.html').toString(), /width="4000" height="160"/);
+    execFileSync(python, [
+      '-c',
+      [
+        'import sys; from PIL import Image',
+        'im=Image.open(sys.argv[1]); im.load()',
+        'assert im.size==(1920,1080) and im.format=="JPEG"',
+        'assert im.getpixel((0,0))==(255,255,255)',
+        'assert im.getpixel((105,540))[0]>220',
+        'assert im.getpixel((1815,540))[2]>220',
+      ].join('\n'),
+      path.join(wideKit.directory, linked.cover.path),
+    ]);
+    assert.equal(linked.images[0].sourceSha256, hash(wide));
+    assert.equal(linked.images[0].sha256, hash(read(wideKit, linked.images[0].path)));
+    const mediumHtml = read(wideKit, 'medium-copy-ready.html').toString();
+    assert.match(mediumHtml, /alt="One pixel"/);
+    assert.ok(mediumHtml.includes('Original $&amp; test figure.'));
+    assert.ok(mediumHtml.includes('Test author $$'));
+    assert.equal(
+      (
+        read(wideKit, 'INSTRUCTIONS.md')
+          .toString()
+          .match(/medium\/featured\.jpg/g) || []
+      ).length,
+      1
+    );
+    assert.equal(
+      (read(wideKit, 'medium-copy-ready.html').toString().match(/<img /g) || []).length,
+      1
+    );
+    assert.deepEqual(await verifyKit(wideKit.directory), wideKit.manifest);
+    const verify = (directory, ...flags) =>
+      execFileSync(
+        process.execPath,
+        [path.join(repo, 'tools/publishing/cli.cjs'), 'verify', directory, ...flags],
+        {
+          stdio: 'pipe',
+          encoding: 'utf8',
+        }
+      );
+    const renamed = path.join(root, 'renamed-kit');
+    fs.cpSync(wideKit.directory, renamed, { recursive: true });
+    assert.throws(() => verify(renamed), /Renamed kits require --expected-id/);
+    assert.throws(
+      () => verify(renamed, '--expected-id', 'a'.repeat(64)),
+      /differs from the expected identity/
+    );
+    assert.match(
+      verify(renamed, '--expected-id', wideKit.manifest.artifactId),
+      /Verified artifact/
+    );
+    const renamedDigest = path.join(root, 'b'.repeat(64));
+    fs.renameSync(renamed, renamedDigest);
+    assert.throws(() => verify(renamedDigest), /artifact path and identity differ/);
+    assert.match(
+      verify(renamedDigest, '--expected-id', wideKit.manifest.artifactId),
+      /Verified artifact/
+    );
+    fs.renameSync(renamedDigest, renamed);
+
+    const previous = { ...wideKit.manifest, platformImages: 1 };
+    previous.transformations = previous.transformations.map(
+      ({ figures, uploadInventorySha256, ...item }) => item
+    );
+    delete previous.artifactId;
+    previous.artifactId = hash(JSON.stringify(previous));
+    json(renamed, 'manifest.json', previous);
+    assert.match(verify(renamed, '--expected-id', previous.artifactId), /Verified artifact/);
+    const corruptDirectory = path.join(root, 'tampered-kit');
+    fs.cpSync(wideKit.directory, corruptDirectory, { recursive: true });
+    const tampered = JSON.parse(JSON.stringify(wideKit.manifest));
+    const alteredHtml = read(wideKit, 'linkedin-copy-ready.html')
+      .toString()
+      .replace('alt="One pixel"', 'alt="Altered"');
+    write(corruptDirectory, 'linkedin-copy-ready.html', alteredHtml);
+    const htmlRecord = tampered.outputs.find((file) => file.path === 'linkedin-copy-ready.html');
+    htmlRecord.sha256 = hash(alteredHtml);
+    htmlRecord.bytes = Buffer.byteLength(alteredHtml);
+    delete tampered.artifactId;
+    tampered.artifactId = hash(JSON.stringify(tampered));
+    json(corruptDirectory, 'manifest.json', tampered);
+    await assert.rejects(
+      verifyKit(corruptDirectory),
+      /HTML images differ from the upload inventory/
+    );
+
+    const alteredInventory = { ...linked, images: [{ ...linked.images[0], alt: 'Altered' }] };
+    const alteredBytes = JSON.stringify(alteredInventory, null, 2) + '\n';
+    write(corruptDirectory, 'linkedin-upload-kit.json', alteredBytes);
+    const inventoryRecord = tampered.outputs.find(
+      (file) => file.path === 'linkedin-upload-kit.json'
+    );
+    inventoryRecord.sha256 = hash(alteredBytes);
+    inventoryRecord.bytes = Buffer.byteLength(alteredBytes);
+    delete tampered.artifactId;
+    tampered.artifactId = hash(JSON.stringify(tampered));
+    json(corruptDirectory, 'manifest.json', tampered);
+    await assert.rejects(
+      verifyKit(corruptDirectory),
+      /upload inventory does not match its edition and roles/
+    );
+
+    const noisy = generate(
+      'Image.frombytes("RGB",(960,960),random.Random(196).randbytes(960*960*3)).save(sys.stdout.buffer,format="PNG")'
+    );
+    assert.ok(noisy.length > 2_000_000 && noisy.length < 5_000_000);
+    fixture(root, 'coverless-image', { image: noisy, width: 960, height: 960, cover: false });
+    const coverless = await renderKit(root, 'coverless-image');
+    for (const platform of ['linkedin', 'medium']) {
+      const { cover, images } = inventory(coverless, platform);
+      assert.equal(cover, null);
+      assert.equal(images.length, 1);
+      assert.ok(images[0].bytes <= 2_000_000);
+      assert.ok(images[0].width < 960);
+      assert.equal(images[0].width, images[0].height);
+    }
+    const handoff = read(coverless, 'INSTRUCTIONS.md').toString();
+    assert.match(handoff, /declares no cover upload/);
+    assert.match(handoff, /Medium: upload each ordered image below manually/);
+    assert.doesNotMatch(handoff, /cover\.png|cover\.jpg|featured\.jpg/);
+
+    const noisyCover = generate(
+      'Image.frombytes("RGB",(1700,970),random.Random(196).randbytes(1700*970*3)).save(sys.stdout.buffer,format="PNG")'
+    );
+    fixture(root, 'high-entropy-cover', { image: noisyCover, width: 1700, height: 970 });
+    const dense = await renderKit(root, 'high-entropy-cover');
+    for (const platform of ['linkedin', 'medium']) {
+      assert.ok(inventory(dense, platform).cover.bytes <= 2_000_000);
+    }
+
+    const grayscale = generate(
+      'im=Image.new("I;16",(128,16)); im.putdata([[0,1000,32768,65535][x//32] for y in range(16) for x in range(128)]); im.save(sys.stdout.buffer,format="PNG")'
+    );
+    fixture(root, 'high-depth-cover', { image: grayscale, width: 128, height: 16 });
+    const tones = await renderKit(root, 'high-depth-cover');
+    for (const platform of ['linkedin', 'medium']) {
+      execFileSync(python, [
+        '-c',
+        [
+          'import sys; from PIL import Image',
+          'im=Image.open(sys.argv[1]); im.load()',
+          'values=[im.getpixel((im.width*i//8,im.height//2))[0] for i in [1,3,5,7]]',
+          'assert all(abs(a-b)<5 for a,b in zip(values,[0,4,128,255])), values',
+        ].join('\n'),
+        path.join(tones.directory, inventory(tones, platform).cover.path),
+      ]);
+    }
+
+    fixture(root, 'header-only-image', { image: png.subarray(0, 33) });
+    await assert.rejects(renderKit(root, 'header-only-image'), /image decoding\/export failed/);
+    const parent = path.join(root, 'dist/publications/header-only-image');
+    assert.deepEqual(fs.readdirSync(parent), []);
+  });
+});
 
 test('planned site links reach all eight platform formats and launch without claiming publication', async () => {
   await withFixture(async (root) => {
@@ -594,17 +802,20 @@ test('kit installs coherent source-bound HTML/MD/TXT/copy candidates and rejects
     assert.equal(hash(fs.readFileSync(path.join(first.directory, 'cover.png'))), hash(png));
     assert.match(
       await fsp.readFile(path.join(first.directory, 'INSTRUCTIONS.md'), 'utf8'),
-      /upload each ordered image.*manually/
+      /set medium\/featured\.jpg as featured.*upload it once at its matching figure position/
     );
     assert.match(
       await fsp.readFile(path.join(first.directory, 'INSTRUCTIONS.md'), 'utf8'),
       /Administrative test note; rights decision pending/
     );
     const copy = await fsp.readFile(path.join(first.directory, 'medium-copy-ready.html'), 'utf8');
-    assert.match(copy, /data:image\/png;base64,/);
     assert.match(copy, /<style>/);
-    const encoded = copy.match(/data:image\/png;base64,([A-Za-z0-9+/=]+)/)[1];
-    assert.equal(hash(Buffer.from(encoded, 'base64')), hash(png));
+    const encoded = copy.match(/data:image\/jpeg;base64,([A-Za-z0-9+/=]+)/g);
+    assert.equal(encoded.length, 1);
+    assert.deepEqual(
+      Buffer.from(encoded[0].split(',')[1], 'base64'),
+      fs.readFileSync(path.join(first.directory, 'medium/featured.jpg'))
+    );
     const rerender = await renderKit(root, 'second-profile', {
       generatedAt: '2026-10-12T00:00:01Z',
     });

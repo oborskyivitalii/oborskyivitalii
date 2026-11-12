@@ -6,6 +6,13 @@ const { readSource, assertOutput, installDirectory } = require('./safety.cjs');
 const { decodeUtf8 } = require('./text.cjs');
 const { blockDigest } = require('./semantic.cjs');
 const { render } = require('./render.cjs');
+const {
+  platforms,
+  makeImages,
+  placeImages,
+  verifyImages,
+  leadingFeatured,
+} = require('./platform-images.cjs');
 
 function digest(bytes) {
   return crypto.createHash('sha256').update(bytes).digest('hex');
@@ -179,7 +186,7 @@ async function walk(directory, prefix = '', budget = { files: 0, bytes: 0 }) {
   return result.sort((left, right) => left.path.localeCompare(right.path));
 }
 
-async function verifyKit(directory) {
+async function verifyKit(directory, { expectedId } = {}) {
   const manifest = JSON.parse(
     decodeUtf8(
       readSource(path.resolve(directory), 'manifest.json', { maxBytes: 2_000_000 }).bytes,
@@ -189,8 +196,15 @@ async function verifyKit(directory) {
   if (manifest.schema !== 1 || manifest.kind !== 'article-render-artifact') {
     throw new Error('Unknown article render artifact schema');
   }
+  if (expectedId !== undefined && expectedId !== manifest.artifactId) {
+    throw new Error('Article render artifact differs from the expected identity');
+  }
   const namedIdentity = path.basename(path.resolve(directory));
-  if (/^[a-f0-9]{64}$/.test(namedIdentity) && namedIdentity !== manifest.artifactId) {
+  if (
+    expectedId === undefined &&
+    /^[a-f0-9]{64}$/.test(namedIdentity) &&
+    namedIdentity !== manifest.artifactId
+  ) {
     throw new Error('Immutable article artifact path and identity differ');
   }
   const actual = await walk(directory);
@@ -203,6 +217,17 @@ async function verifyKit(directory) {
   delete identity.artifactId;
   if (digest(Buffer.from(JSON.stringify(identity))) !== manifest.artifactId) {
     throw new Error('Article render artifact identity is forged');
+  }
+  if (
+    manifest.platformImages !== undefined ||
+    selected.some(
+      (file) => file.path === 'linkedin-upload-kit.json' || /^(linkedin|medium)\//.test(file.path)
+    )
+  ) {
+    if (![1, 2].includes(manifest.platformImages)) {
+      throw new Error('Unknown platform image contract');
+    }
+    verifyImages(path.resolve(directory), manifest);
   }
   return manifest;
 }
@@ -244,11 +269,36 @@ async function writePlatform(root, staging, article, platform, assets, printTemp
         .join(' · ') +
       '</p>\n';
   }
+  const orderedAssets = rendition.model.figures.map((id) =>
+    assets.find((asset) => asset.id === id)
+  );
+  const cover = assets.find((asset) => asset.id === article.furniture.cover?.id);
+  const { outputs, images, cover: coverUpload } = makeImages(platform, orderedAssets, cover);
+  const inventory = {
+    schema: 2,
+    articleId: article.metadata.id,
+    platform,
+    contentEdition: selectedEdition.id,
+    cover: coverUpload,
+    images,
+  };
+  for (const { record, bytes } of outputs) {
+    const destination = path.join(staging, record.path);
+    await fs.mkdir(path.dirname(destination), { recursive: true });
+    await fs.writeFile(destination, bytes, { flag: 'wx' });
+  }
+  const inventoryBytes = JSON.stringify(inventory, null, 2) + '\n';
+  await fs.writeFile(path.join(staging, `${platform}-upload-kit.json`), inventoryBytes);
   const formats = article.profile.platforms[platform].formats;
   if (formats.includes('html')) {
     await fs.writeFile(
       path.join(staging, `${platform}.html`),
-      documentHtml(selectedArticle, layout, 'article-print.css', printTemplate)
+      documentHtml(
+        selectedArticle,
+        { ...layout, body: placeImages(layout.body, inventory, assets, outputs, false) },
+        'article-print.css',
+        printTemplate
+      )
     );
   }
   if (formats.includes('md')) {
@@ -267,24 +317,17 @@ async function writePlatform(root, staging, article, platform, assets, printTemp
       rendition.text + (footer ? '\n\n' + footer : '')
     );
   }
-  let embeddedBody = layout.body;
-  for (const asset of assets) {
-    embeddedBody = embeddedBody.replaceAll(
-      `src="${escapeHtml(asset.url)}"`,
-      `src="data:image/png;base64,${asset.bytes.toString('base64')}"`
-    );
-  }
-  const copyHtml = documentHtml(
-    selectedArticle,
-    { ...layout, body: embeddedBody },
-    'article-print.css',
-    printTemplate,
-    true
-  ).replace(
-    /<link rel="stylesheet" href="article-print.css"\s*\/?>/,
-    `<style>${decodeUtf8(css.bytes, 'Print stylesheet')}</style>`
-  );
   if (formats.includes('copy-ready')) {
+    const copyHtml = documentHtml(
+      selectedArticle,
+      { ...layout, body: placeImages(layout.body, inventory, assets, outputs, true) },
+      'article-print.css',
+      printTemplate,
+      true
+    ).replace(
+      /<link rel="stylesheet" href="article-print.css"\s*\/?>/,
+      `<style>${decodeUtf8(css.bytes, 'Print stylesheet')}</style>`
+    );
     await fs.writeFile(path.join(staging, `${platform}-copy-ready.html`), copyHtml);
   }
   for (const format of ['html', 'md', 'txt', 'copy-ready'].filter(
@@ -301,24 +344,44 @@ async function writePlatform(root, staging, article, platform, assets, printTemp
     relationship: article.metadata.platforms[platform].mode,
     source: selectedSource,
     contentEdition: selectedEdition.id,
+    uploadInventorySha256: digest(inventoryBytes),
+    figures: orderedAssets.map(({ id, alt, caption, credit }) => ({ id, alt, caption, credit })),
     transforms: [
       'GFM tables to labeled row sections',
       'heading link fallback',
       'declared figure captions and credits',
+      'destination image uploads',
       ...(distribution ? ['authored distribution labels with a planned production backlink'] : []),
     ],
     omissions: [],
   });
-  return { transformation: transformations[0], omissions };
+  return { transformation: transformations[0], omissions, inventory };
 }
 
-function mediumUploadAssets(article, assets) {
-  if (article.profile.reader?.presentation !== 'links') {
-    return assets;
-  }
-  const figures = article.adaptations.medium?.model.figures || article.model.figures;
-  const posterId = article.presentation.poster.id;
-  return figures.includes(posterId) ? assets : assets.filter((asset) => asset.id !== posterId);
+function platformInstructions(inventory) {
+  const { platform, images, cover } = inventory;
+  const title = platform === 'linkedin' ? 'LinkedIn' : 'Medium';
+  const inlineFallbacks = images.filter((image) => image.path !== cover?.path);
+  const coverInstructions = !cover
+    ? [`${title}: this edition declares no cover upload.`]
+    : platform === 'linkedin'
+      ? [
+          `LinkedIn Article: upload the verified ${cover.path} (${cover.width} × ${cover.height} JPEG) separately as the native cover.`,
+          'The generic cover.png is source artwork. Check the native crop and readability before publishing.',
+        ]
+      : [
+          `Medium: set ${cover.path} as featured (Shift+F). If the image is missing after paste, upload it once ${leadingFeatured(inventory) ? 'as the leading story image' : 'at its matching figure position'}. Check the preview crop and focal point.`,
+        ];
+  return [
+    ...coverInstructions,
+    ...(inlineFallbacks.length
+      ? [
+          `${title}: upload each ordered image below manually if the paste does not transfer it.`,
+          ...inlineFallbacks.map((asset) => `${asset.path} — ${asset.caption} (${asset.credit})`),
+        ]
+      : []),
+    `See ${platform}-upload-kit.json for file dimensions, bytes, alt text and credits.`,
+  ];
 }
 
 function launchCopies(article, assets) {
@@ -450,7 +513,8 @@ async function renderKit(
         reason: 'Poster and source PDF link retained; original PDF included separately in the kit.',
       });
     }
-    for (const platform of ['linkedin', 'medium']) {
+    const inventories = [];
+    for (const platform of platforms) {
       const result = await writePlatform(
         root,
         staging,
@@ -460,6 +524,7 @@ async function renderKit(
         printTemplate,
         css
       );
+      inventories.push(result.inventory);
       transformations.push(result.transformation);
       omissions.push(...result.omissions);
     }
@@ -496,7 +561,6 @@ async function renderKit(
     const canonical = observedCanonical
       ? article.metadata.canonical
       : 'pending: verify the accepted live site page first';
-    const uploadAssets = mediumUploadAssets(article, assets);
     const instructions = [
       `# ${article.metadata.title} — distribution review candidate`,
       '',
@@ -512,18 +576,12 @@ async function renderKit(
       'Review wording, heading sources, table row labels, captions and credits against the manuscript.',
       'Open <platform>-copy-ready.html, select all document content (Ctrl/Cmd+A), copy and paste into the native editor.',
       'The copy view includes the title, subtitle and byline; navigation and the generated summary are hidden.',
-      'Copy-ready images preserve reviewer bytes; native-editor image transfer must be checked.',
+      'Copy-ready images embed their platform upload files. Verify the transfer in the native editor.',
       '',
-      'Medium: upload each ordered image below manually at its matching figure position.',
-      'Do not assume pasted embedded images survive. Recheck caption, alt text, credit and source link.',
+      'Check captions, alt text, credits and source links in each editor.',
       'Use the canonical only after accepted live-site verification; otherwise leave publication pending.',
-      'LinkedIn: inspect the selected adaptation or equivalent rendition, including every heading source.',
-      'For a native article cover, prepare a dedicated JPEG or PNG at 1920 × 1080 px (16:9).',
-      'Check the exported pixels and composition before handoff. The generic cover.png and inline hero are source artwork.',
-      'Upload the verified cover separately and check its framing and readability in the native preview before publishing.',
+      ...inventories.flatMap((inventory) => [...platformInstructions(inventory), '']),
       'Record actual native-editor changes and observed publication as a separate event.',
-      '',
-      ...uploadAssets.map((asset) => `${asset.uploadPath} — ${asset.caption} (${asset.credit})`),
       '',
       `Rights: ${article.metadata.rights.notice}`,
       '',
@@ -533,26 +591,6 @@ async function renderKit(
       '',
     ].join('\n');
     await fs.writeFile(path.join(staging, 'INSTRUCTIONS.md'), instructions);
-    await fs.writeFile(
-      path.join(staging, 'medium-upload-kit.json'),
-      JSON.stringify(
-        {
-          schema: 1,
-          articleId,
-          contentEdition: article.edition.id,
-          images: uploadAssets.map((asset) => ({
-            id: asset.id,
-            path: asset.uploadPath,
-            sha256: asset.sha256,
-            alt: asset.alt,
-            caption: asset.caption,
-            credit: asset.credit,
-          })),
-        },
-        null,
-        2
-      ) + '\n'
-    );
     if (pdf) {
       const { printArticle } = await import('./print.mjs');
       await printArticle({
@@ -573,6 +611,10 @@ async function renderKit(
       'tools/publishing/article.cjs',
       'tools/publishing/ast.mjs',
       'tools/publishing/kit.cjs',
+      'tools/publishing/platform-images.cjs',
+      'tools/publishing/platform-images.py',
+      'tools/publishing/web-media.py',
+      'tools/quality/toolchain/requirements.txt',
       'tools/publishing/render.cjs',
       'tools/publishing/safety.cjs',
       'tools/publishing/provenance.cjs',
@@ -593,6 +635,7 @@ async function renderKit(
     const manifest = {
       schema: 1,
       kind: 'article-render-artifact',
+      platformImages: 2,
       articleId,
       contentEdition: article.edition.id,
       semanticSha256: article.edition.semanticSha256,

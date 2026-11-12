@@ -2991,6 +2991,25 @@
       ]
     },
     {
+      "path": "tests/test_issue196_acceptance.py",
+      "language": "python",
+      "purpose": "Issue196 bounded destination image export and retained print and site media checks.",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": ["issue-policy"],
+      "disposition": "Owning issue policy only. The permanent publisher and article-media suites retain their existing routes.",
+      "surviving_route": ".github/acceptance/issue-196.json",
+      "inputs": [
+        "tests/test_issue196_acceptance.py",
+        ".github/acceptance/issue-196.json",
+        "tests/publishing.test.cjs",
+        "tests/publishing-print.test.cjs",
+        "tests/article-media.test.cjs",
+        "tests/article-budgets.test.cjs",
+        "tools/publishing/**"
+      ]
+    },
+    {
       "path": "tests/reviewer-admission.test.cjs",
       "language": "javascript",
       "purpose": "Permanent positive/negative reviewer selection, launch, exposure, chronology and recovery checks.",

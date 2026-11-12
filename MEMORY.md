@@ -7,6 +7,8 @@ Dated handoff. Last verified: **2026-11-12**. Revalidate live sources when resum
 - Verified `main` at `f51d3f4` after [PR #192](https://github.com/oborskyivitalii/oborskyivitalii/pull/192). [#188](https://github.com/oborskyivitalii/oborskyivitalii/issues/188) and [#189](https://github.com/oborskyivitalii/oborskyivitalii/issues/189) are closed.
 - Active owner [#198](https://github.com/oborskyivitalii/oborskyivitalii/issues/198), [Draft PR #201](https://github.com/oborskyivitalii/oborskyivitalii/pull/201). The [versioned review](review/issue-198/2026-11-12-reviewer-admission.md) retains the independent findings and exact-source history.
 
+- [#196](https://github.com/oborskyivitalii/oborskyivitalii/issues/196) / [Draft PR #195](https://github.com/oborskyivitalii/oborskyivitalii/pull/195) owns platform image export. See the [versioned review](review/issue-196/2026-11-12-destination-image-review.md) for current implementation and remaining editor evidence.
+
 ## Decisions
 
 - #198 has its own PR and acceptance policy. Reuse relevant adapter source from [historical #171](https://github.com/oborskyivitalii/oborskyivitalii/pull/171). The older Draft and [WEB pilot #167](https://github.com/oborskyivitalii/oborskyivitalii/issues/167) retain separate ownership.

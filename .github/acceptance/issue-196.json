@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 196,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/196",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Document destination formats, dimensions, budgets and placements",
+      "automated_scope": "MEDIA exercises the export bounds. REVIEW verifies the guide and official versus local targets.",
+      "checks": ["MEDIA"],
+      "gates": ["REVIEW"]
+    },
+    {
+      "id": "AC02",
+      "intent": "Produce and validate native and inline uploads with handoff metadata",
+      "automated_scope": "MEDIA checks actual export size, integrity, inline order, embedded images, padding, cover omission and metadata.",
+      "checks": ["MEDIA"],
+      "gates": ["REVIEW", "NATIVE"]
+    },
+    {
+      "id": "AC03",
+      "intent": "Preserve PDF and hosted image behavior",
+      "automated_scope": "MEDIA checks representative source, print and hosted media contracts and BASIC checks generated site coherence.",
+      "checks": ["MEDIA", "BASIC"],
+      "gates": ["REVIEW", "PRINT"]
+    },
+    {
+      "id": "AC04",
+      "intent": "Record exact-source tests, style review and native editor evidence",
+      "automated_scope": "MEDIA exercises success, oversize, coverless and invalid files. STYLE, RI and RI-CI validate the bounded source guard and navigation.",
+      "checks": ["MEDIA", "STYLE", "RI", "RI-CI"],
+      "gates": ["REVIEW", "NATIVE"]
+    }
+  ],
+  "checks": {
+    "MEDIA": {
+      "kind": "unittest",
+      "test": "test_issue196_acceptance.Issue196AcceptanceTests.test_destination_media"
+    },
+    "BASIC": { "kind": "node-basic" },
+    "STYLE": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    }
+  },
+  "gates": {
+    "REVIEW": {
+      "kind": "human",
+      "description": "Independent requirements, code, white-box and exploratory results, source-specific test impact and CS01/02/07/10 evidence."
+    },
+    "NATIVE": {
+      "kind": "human",
+      "description": "In the native LinkedIn editor verify the uploaded cover crop and legibility. In Medium verify featured selection and crop. Record observations without publishing."
+    },
+    "PRINT": {
+      "kind": "human",
+      "description": "Measure representative PDF and site artifact bytes, pixels or effective PPI and record frozen artifact comparison and any fresh-render limits."
+    }
+  }
+}
