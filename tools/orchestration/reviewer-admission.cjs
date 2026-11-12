@@ -117,7 +117,7 @@ function roleList(value) {
 }
 
 function select(impact, owner) {
-  object(impact, ['surfaces', 'owningRoles', 'explicitRoles', 'preflight']);
+  object(impact, ['target', 'surfaces', 'owningRoles', 'explicitRoles', 'preflight']);
   roleList(impact.owningRoles);
   roleList(impact.explicitRoles);
   if (
@@ -155,7 +155,7 @@ function sourceIdentity(target) {
     fail('SOURCE');
 }
 
-function checkControl(control, journal, read) {
+function checkControl(control, journal, read, operation) {
   object(control, [
     'owner',
     'scope',
@@ -211,16 +211,27 @@ function checkControl(control, journal, read) {
   if (names.size !== 3) fail('ISOLATION');
   if (control.impact.space !== 'evidence' || control.impact.kind !== 'impact') fail('IMPACT');
   const impact = JSON.parse(files([control.impact], read)[0]);
+  if (!equal(impact.target, control.target)) fail('STALE_SCOPE');
   const selection = select(impact, control.owner);
-  selection.request = explicitOccurrence(control, selection.explicit, journal, read);
-  selection.roles = allRoles.filter(
-    (role) => selection.roles.includes(role) || outstanding(journal, role, 'review')
+  const request = explicitOccurrence(control, selection.explicit, journal, read, operation);
+  const requests = request ? [...(journal.requests || []), request] : journal.requests || [];
+  const requested = Object.fromEntries(
+    requests.flatMap(({ roles, eventId, sequence }) =>
+      roles.map((role) => [role, { eventId, sequence }])
+    )
   );
+  selection.roles = allRoles.filter(
+    (role) =>
+      selection.roles.includes(role) ||
+      Object.hasOwn(requested, role) ||
+      outstanding(journal, role, 'review')
+  );
+  selection.explicit = Object.keys(requested);
   selection.preflight ||= outstanding(journal, requirements, 'preflight');
-  return selection;
+  return { selection, request, requested };
 }
 
-function explicitOccurrence(control, roles, journal, read) {
+function explicitOccurrence(control, roles, journal, read, operation) {
   if (!roles.length) {
     if (control.request !== null) fail('PASS_REQUEST');
     return null;
@@ -237,25 +248,32 @@ function explicitOccurrence(control, roles, journal, read) {
     !equal(event.roles, roles)
   )
     fail('PASS_REQUEST');
-  const latestRequest = journal.attempts.findLast((entry) => entry.prepared.request)?.prepared
-    .request;
-  if (
-    latestRequest &&
-    (event.sequence < latestRequest.sequence ||
-      (event.sequence === latestRequest.sequence && event.eventId !== latestRequest.eventId))
-  )
-    fail('PASS_REQUEST');
-  return { eventId: event.eventId, sequence: event.sequence };
+  const latestRequest = journal.requests?.at(-1);
+  if (latestRequest && equal(event, latestRequest)) return null;
+  if (latestRequest && event.sequence <= latestRequest.sequence) fail('PASS_REQUEST');
+  if (journal.requests?.some((entry) => entry.eventId === event.eventId)) fail('PASS_REQUEST');
+  if (operation !== 'select' || (journal.requests?.length || 0) >= contract.limits.executions)
+    fail('PASS_REQUEST_UNRECORDED');
+  return event;
 }
 
 function checkJournal(journal) {
-  object(journal, ['version', 'owner', 'scope', 'excludedHandles', 'attempts']);
+  object(journal, [
+    'version',
+    'owner',
+    'scope',
+    'excludedHandles',
+    'attempts',
+    ...(Object.hasOwn(journal, 'requests') ? ['requests'] : []),
+  ]);
   if (
     journal.version !== contract.version ||
     !Array.isArray(journal.excludedHandles) ||
     !journal.excludedHandles.length ||
     !Array.isArray(journal.attempts) ||
-    journal.attempts.length > contract.limits.executions
+    journal.attempts.length > contract.limits.executions ||
+    (Object.hasOwn(journal, 'requests') &&
+      (!Array.isArray(journal.requests) || journal.requests.length > contract.limits.executions))
   )
     fail('JOURNAL');
   journal.excludedHandles.forEach(text);
@@ -421,10 +439,10 @@ function requirePreflight(journal, control, selection, read) {
     fail('PREFLIGHT');
   verifyLaunch(preflight.launch, preflight, read);
   verifyResult(preflight.result, preflight, read);
-  if (openFindings(journal.attempts, requirements, 'preflight').size) fail('PREFLIGHT');
+  if (unresolvedBlockers(journal, requirements, 'preflight')) fail('PREFLIGHT');
 }
 
-function prepare(input, journal, control, selection, read) {
+function prepare(input, journal, control, selection, requested, read) {
   object(input, ['role', 'stage', 'phase', 'taskName', 'forkTurns', 'prior']);
   if (
     !Object.hasOwn(contract.roles, input.role) ||
@@ -462,7 +480,7 @@ function prepare(input, journal, control, selection, read) {
     phase: input.phase,
     prior: input.prior,
     target: control.target,
-    request: selection.request,
+    request: requested[input.role] || null,
     requirementDigest: control.requirementDigest,
     packetDigest: built.packetDigest,
     scopeDigest: built.scopeDigest,
@@ -637,25 +655,31 @@ function exclude(input, journal, control, read) {
 }
 
 function openFindings(attempts, role, stage) {
-  const blockers = new Set();
+  const findings = new Map();
   for (const entry of attempts) {
     if (entry.prepared.role !== role || entry.prepared.stage !== stage || !entry.result) continue;
     // These facts were imported before the checkpoint. Excluded raw artifacts may be stale or unavailable.
     for (const finding of entry.result.findings) {
-      if (finding.impact !== 'blocking') continue;
-      if (finding.status === 'open') blockers.add(finding.id);
-      else if (passing(entry)) blockers.delete(finding.id);
+      if (finding.status === 'open') {
+        if (findings.get(finding.id) !== 'blocking') findings.set(finding.id, finding.impact);
+      } else if (passing(entry)) {
+        findings.delete(finding.id);
+      }
     }
   }
-  return blockers;
+  return findings;
+}
+
+function unresolvedBlockers(journal, role, stage) {
+  return [...openFindings(journal.attempts, role, stage).values()].includes('blocking');
 }
 
 function outstanding(journal, role, stage) {
   const entry = latest(journal, role, stage);
-  return Boolean(entry && !passing(entry)) || openFindings(journal.attempts, role, stage).size > 0;
+  return Boolean(entry && !passing(entry)) || unresolvedBlockers(journal, role, stage);
 }
 
-function verifyRole(role, journal, control, selection, read) {
+function verifyRole(role, journal, control, requested, read) {
   const entry = latest(journal, role, 'review');
   if (!passing(entry)) fail('REVIEW_HELD');
   const current = packet(role, control, read);
@@ -663,14 +687,14 @@ function verifyRole(role, journal, control, selection, read) {
   if (
     current.scopeDigest !== entry.prepared.scopeDigest ||
     (exact && current.packetDigest !== entry.prepared.packetDigest) ||
-    (selection.explicit.includes(role) &&
-      (!exact || !equal(entry.prepared.request, selection.request))) ||
+    (Object.hasOwn(requested, role) &&
+      (!exact || !equal(entry.prepared.request, requested[role]))) ||
     (!exact && entry.prepared.target.base !== control.target.base)
   )
     fail('STALE_RESULT');
   verifyLaunch(entry.launch, entry, read);
   verifyResult(entry.result, entry, read);
-  if (openFindings(journal.attempts, role, 'review').size) fail('UNRESOLVED_HISTORY');
+  if (unresolvedBlockers(journal, role, 'review')) fail('UNRESOLVED_HISTORY');
   return {
     role,
     requestDigest: entry.prepared.digest,
@@ -678,11 +702,11 @@ function verifyRole(role, journal, control, selection, read) {
   };
 }
 
-function assess(input, journal, control, selection, read) {
+function assess(input, journal, control, selection, requested, read) {
   object(input, ['reconciliation']);
   requirePreflight(journal, control, selection, read);
   const results = selection.roles.map((role) =>
-    verifyRole(role, journal, control, selection, read)
+    verifyRole(role, journal, control, requested, read)
   );
   const [reconciliation] = observation([input.reconciliation], read);
   object(reconciliation, ['target', 'results', 'conflicts']);
@@ -704,18 +728,19 @@ function execute(operation, input, original, read, control) {
   bounded({ input, original, control });
   checkJournal(original);
   if (original.owner !== control.owner || original.scope !== control.scope) fail('OWNER');
-  const selection = checkControl(control, original, read);
+  const { selection, request, requested } = checkControl(control, original, read, operation);
   const journal = structuredClone(original);
+  if (request) (journal.requests ||= []).push(request);
   const operations = {
     select: () => {
       object(input, []);
       return { selection };
     },
-    prepare: () => prepare(input, journal, control, selection, read),
+    prepare: () => prepare(input, journal, control, selection, requested, read),
     'record-launch': () => recordLaunch(input, journal, control, read),
     'record-result': () => recordResult(input, journal, control, read),
     exclude: () => exclude(input, journal, control, read),
-    assess: () => assess(input, journal, control, selection, read),
+    assess: () => assess(input, journal, control, selection, requested, read),
   };
   if (!Object.hasOwn(operations, operation)) fail('OPERATION');
   return {

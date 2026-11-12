@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "b21c4d9e80c2e51100e826e611788a31b5330355978b0347b1450c9e204e1fd5",
+    "digest": "845cee71ce54da1311db47257ecd4b20e903221b025d41aa2144f06211f15815",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -406,7 +406,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "a7eb1eb398fc94eddedb18d063af5442d627d7e170f1f57708e475d574cbe2c0"
+        "sha256": "a61dd2f9f194c33209adcb9cac8d867d81ea98c8e7cbe92cda8af8c68cbe9484"
       },
       {
         "path": "NOTICE.md",
@@ -1005,7 +1005,7 @@
       {
         "path": "guides/WEB-ORCHESTRATION.md",
         "identity_mode": "content",
-        "sha256": "4be030cf34e8f0627be69113df1eee41d0c74dea0fe313bd5a35e66e7daa7c28"
+        "sha256": "f4e0b5e1c8d722cbfc2ce9b26f026d95580b33485fb93eb41c0480c5062a8885"
       },
       {
         "path": "guides/github-pages-domains.json",
@@ -4900,7 +4900,7 @@
       {
         "path": "review/issue-198/2026-11-12-reviewer-admission.md",
         "identity_mode": "content",
-        "sha256": "a3c19c97692cae5beb359e5f478391ebb58cacf51282d8887355cee06bff0a13"
+        "sha256": "b5de53d3df6043b59af1eeaf90aad9981390b1244ddf193ef39765044386184d"
       },
       {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -12035,7 +12035,7 @@
       {
         "path": "tests/reviewer-admission.test.cjs",
         "identity_mode": "content",
-        "sha256": "2658695bd191d70b53ab8e352b578412f924a2bd1e6f369595d51eb8c7f79e63"
+        "sha256": "dc78d301eac82b8c55798432d751b16b282e8f5545f3702fc33fcafa83fbb2b6"
       },
       {
         "path": "tests/ribbons.test.cjs",
@@ -12410,7 +12410,7 @@
       {
         "path": "tools/orchestration/reviewer-admission.cjs",
         "identity_mode": "content",
-        "sha256": "5b5f9763a4d631614b0b20b3158c3c0b72bfbb0026e509828df60cb8512f9e4b"
+        "sha256": "91ae53ff3cb7840a8ee11e8daa7b1b7300d8f5a13cd9f51cfc97021dcfe86204"
       },
       {
         "path": "tools/pages/controller.cjs",

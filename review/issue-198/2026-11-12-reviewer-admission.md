@@ -302,3 +302,181 @@ The profile diff maps `tests/reviewer-admission.test.cjs` to `pr-targeted`, `sta
 ## Context and limits
 
 The runner surfaced a user-level project instruction and incidental personalization in the environment context independently of the bounded packet. I saw no parent implementation conversation or peer verdicts, and did not use the extra material in the review. The parent should record that exposure and determine eligibility under the common contract. Provider internals, automatic memory mechanics, cross-role results and the full native correction lifecycle remain unobserved.
+
+## First correction round and remaining edge cases
+
+On GitHub head 34f0e39f2fe6282f172c1c885a80b6ea559c77f6 and tree
+90be8d69e18712242d18ac5c88c2a02c6edfb6d9, the exact-source owning automation
+and 72 focused Node tests passed. The fresh Requirements preflight and
+final Requirements and Exploratory roles completed. Code and White-box
+verified assigned reads/output and stale-evidence recovery. They reproduced
+a dropped observed same-SHA request and omission of open nonblocking facts.
+The following candidate checkpoints explicit request occurrences before
+preparation and retains all outstanding correction facts. Its applicability
+record also binds the actual target. Independent judgments follow below.
+
+
+# Requirements & Acceptance correction verdict
+
+Verdict: **pass for this bounded correction/preflight scope**. This is not whole-issue closure, native delivery acceptance, or a substitute for the other required roles.
+
+Reviewer execution: `/root/issue198_r_delta_boot`; issue #198; target `34f0e39f2fe6282f172c1c885a80b6ea559c77f6`, base `f51d3f4f49b9fa456a8fa25fc419dc17dd2307aa`, tree `90be8d69e18712242d18ac5c88c2a02c6edfb6d9`. Packet `9ae200eff5b8449f3755feac4e0e42e45f4ed369ca256d7786664915f13ff9e3` as supplied. All eight approved input hashes matched the supplied manifest.
+
+## Independent findings and dispositions
+
+- **R198-01 — resolved.** `tools/orchestration/reviewer-admission.cjs`, `packet()` scopeDigest construction and `requirePreflight()`: the current preflight packet is now rebuilt and its scope digest compared with the accepted preflight. Requirements digest, common/role prompts, instructions, oracle and evidence slices participate; implementation-only `source` references are excluded from that requirements-scope digest. All manifest bytes are still validated by `files()`. A changed oracle or prompt with an unchanged requirement digest cannot reuse the accepted preflight. Both prepare of a dependent review and assess invoke this guard. The permanent oracle-change test passed; an independent in-memory prompt-change probe returned the expected `PREFLIGHT` refusal.
+- **R198-02 — resolved.** `packet()` requires a candidate-space, instruction-kind `CONTRIBUTING.md` entry alongside common and role prompts, candidate source and oracle. Omission returns `PROMPT`. I independently exercised omission using the inspected fixture and observed the expected refusal. The actual assigned packet includes the governing protocol and I read it.
+
+No new blocking requirement defects found in the correction scope. Examined risks included stale prompt/oracle reuse, dropping the governing dependency, confusing implementation-only changes with changed requirements, acceptance without all assigned reads, and treating a bounded correction review as issue completion.
+
+## Acceptance linkage
+
+| Intent / AC | Check or gate | Observed result |
+| --- | --- | --- |
+| AC03, AC04, AC06, AC08: current relevant inputs for reused requirements coverage | Current `packet()` and `requirePreflight()`; oracle-change test; independent prompt-change probe | Scope comparison enforced; oracle and prompt changes refused until a new preflight |
+| AC03, AC07: governing protocol is part of the inspectable packet | Required instruction reference plus independent omission probe | Missing CONTRIBUTING refused; supplied current protocol inspected |
+| AC02, AC04, AC05: fresh identity, explicit isolation, contamination/staleness refusal and changed-candidate correction | `node --test tests/reviewer-admission.test.cjs` | 14 passed, 0 failed, 0 skipped; component evidence only |
+| AC01, AC06, AC07: launch inventory, all actual independent results, protected delivery | Separate owner/native evidence gates | Not established by this bounded verdict; remain the orchestrator’s next gates |
+
+## Inspected inputs and checks
+
+Read the complete approved common contract, requirements role prompt, AGENTS.md, CONTRIBUTING.md, reviewer-admission.cjs, intent-ac.txt, and candidate-34f0e39f.diff. The diff’s added module was also reconstructed in memory and byte-compared equal to the separately inspected module. Read only bytes [0,432) of issue198_r_delta_boot-intent.txt (the complete allowed slice). Recovered truncated tool output with bounded reads rather than treating truncation as inspection. SHA-256 checks matched every manifest entry.
+
+Executed the expressly permitted focused Node suite (14/14 passing). Independently executed two in-memory API probes using the fixture text extracted from the approved diff: changed preflight role prompt with stable requirement digest; missing CONTRIBUTING instruction reference. Both produced the required refusal. These probes wrote no files. The focused suite's own temporary Git fixture was created and removed by that suite. Runtime dependencies used by these permitted checks were not separately claimed as approved-source inspection.
+
+Unexpected exposure: none observed. No peer verdict, author scratch note, unrelated memory or parent-history file was inspected. Candidate diff rationale and synthetic contamination-canary text were treated as review subjects/test data, not trusted verdicts. Platform-provided repository instructions were visible; hidden provider context/internals and actual launch parameter acceptance are not independently observable from this reviewer execution and remain the parent's receipt obligations.
+
+## Scope and next gate
+
+No prior reviewer conclusion was reused. The stable finding IDs and neutral symptoms/invariants supplied in the packet guided fresh examination of current code and protocol. This confirms the two corrections and requirements linkage within the supplied scope. It does not prove complete live execution or hidden-context isolation. Preserve this first verdict, reconcile only after completion, and continue the separate current-source role/native gates required by issue #198.
+
+# Independent Requirements & Acceptance delta review — issue #198
+
+Verdict: **pass for the bounded candidate requirements/acceptance review**. This is not whole-issue acceptance, delivery approval, or evidence that the other required executions occurred.
+
+Reviewer execution: `/root/issue198_r_delta`.
+Candidate: `34f0e39f2fe6282f172c1c885a80b6ea559c77f6`; base: `f51d3f4f49b9fa456a8fa25fc419dc17dd2307aa`; tree: `90be8d69e18712242d18ac5c88c2a02c6edfb6d9` (assignment identities).
+Packet: `750ff59fa78eb3acdde8d3f6942b3c3e36aa95aa5e77c8201186a98de1ded6b4`.
+
+## Inspected inputs and exposure
+
+I inspected all eight approved inputs. Their SHA-256 values were recomputed and matched the supplied manifest:
+
+| Input | SHA-256 |
+| --- | --- |
+| candidate:agents/reviewers/README.md | 725c8432ec1f2fea9a61cdbaba01d32676778b3e83b7a73fe2faea422b4ea0a8 |
+| candidate:agents/reviewers/requirements-acceptance.md | 010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6 |
+| candidate:AGENTS.md | 120bba8320b0ed2c24fb6ce21cb317b9773490f5fafc19fc780f8b42781caba3 |
+| candidate:CONTRIBUTING.md | c3523000d1277d0dbd3159f25fe7dee9bd238e869cf6d26671025ca3c3c1e357 |
+| candidate:tools/orchestration/reviewer-admission.cjs | 5b5f9763a4d631614b0b20b3158c3c0b72bfbb0026e509828df60cb8512f9e4b |
+| evidence:intent-ac.txt | 626dfc8158704618af9cbba650aa94632388da9879ca2174e04b02722777f199 |
+| evidence:candidate-34f0e39f.diff | 9366be6199832a49f9fe66fdb9969aa398e389674be6f9d904bfffaaf7a0aeed |
+| evidence:issue198_r_delta-intent.txt, bytes [0,432) only | 34a083abe774dbfb6d8b74026e3ac732559136fd408181a44682babc2c4bb720 |
+
+The full adapter addition in the diff was byte-compared with the independently inspected adapter source and matched. Other changed files were inspected through the approved diff. Initial oversized output was truncated; bounded subsequent reads supplied the substantive text rather than treating truncation as comprehension. No parent history, peer review artifacts, unrelated memory, or other unapproved source text was inspected. No unexpected exposure was observed. Platform/project instructions were visible; hidden provider memory/context behavior and actual launch acceptance are not independently observable from this assignment. The explicitly permitted focused test executed its normal fixture/dependency accesses; these are execution, not additional independently inspected source grants.
+
+## Findings and correction dispositions
+
+No blocking or nonblocking requirement defect found in this bounded review. No prior finding IDs or neutral correction facts were supplied, so there are no prior IDs to mark resolved. I did not infer clearance of undisclosed findings or reuse another review verdict.
+
+Examined risks include accidental default conversation inheritance; correction reuse of an old identity; source/read-grant and output-path mismatch; preflight reuse after oracle changes; latest pending/adverse attempts being bypassed; stale excluded artifacts losing known blockers; explicit successive same-SHA requests reusing an earlier pass; and applicability reductions overriding existing owning gates.
+
+The source supplies explicit `fork_turns: none`, unique task/launch identity checks, current packet comparisons, read-grant admission, latest-attempt selection and retained blocker metadata. These correspond to the accepted invariants. Applicability is selected from a trusted parent impact record: classification correctness remains an external gate, not a claim that this reducer infers actual impact from a Git diff. The maintained documentation states that boundary and retains existing owning/profile gates.
+
+## Intent and AC traceability
+
+| AC | Check or owner gate | Observed result and limit |
+| --- | --- | --- |
+| AC01 | Guide inventory and REVIEW gate | Approved diff identifies the parent-mediated adapter, shared CLI, offline reducer boundary, #167 pilot and #171 v1 receipts. No independent live repository-wide inventory was authorized here. |
+| AC02 | prepare/record-launch, component tests, LIVE | Explicit no-inheritance arguments, task uniqueness, excluded-author and duplicate-handle checks inspected. Focused tests passed. Real tool invocation/readback remains a separate gate. |
+| AC03 | packet/verifyResult, component tests, LIVE | Canonical common/role prompts, source/instruction/oracle inputs, byte slices, current hashes and complete approved reads are required. This review read the assigned sources. Arbitrary content classification still needs parent inspection. |
+| AC04 | latest/requirePreflight/openFindings/exclude/assess | Latest pending or excluded execution holds its role; exclusion permits a fresh replacement while retaining blocker metadata. Focused refusal/replacement cases passed. |
+| AC05 | permanent focused suite plus actual bridge LIVE evidence | 14/14 tests passed, including changed-candidate correction and negative admission cases. Synthetic fixtures do not establish actual clean runtime context; LIVE remains required. |
+| AC06 | separate completed reviews and actual receipts | Common contract preserves first results and fresh corrections. This output supplies only the Requirements result; other results and live chronology were neither supplied nor inferred. |
+| AC07 | canonical routing plus RI, RI-CI, STYLE and NATIVE | Diff aligns routing, common contract, guide, acceptance mapping and permanent test profile. Native/protected delivery and full RI/style execution were not checked here. |
+| AC08 | CONTRIBUTING applicability matrix, select, owner gates | Matrix and surface union match the stated scopes; unknown scope holds; #167/#198 retain all roles; explicit same-SHA occurrences are bound to request identity. Focused selection/chronology cases passed. Parent's factual impact classification and unchanged-scope dependency completeness require evidence. |
+
+Executed `node --test tests/reviewer-admission.test.cjs` in the supplied candidate root: **14 tests, 14 passed, 0 failed, 0 skipped, 0 cancelled**. The test source was inspected through the approved diff. This supports component behavior only.
+
+## Remaining gates
+
+No new owner decision is required by this bounded review. Reconcile completed role outputs only after preserving them. Before whole-issue closure, verify actual first/correction launch receipts, context/memory controls, complete independent results, exact-source native checks and applicable delivery decisions. Those observations were outside this packet; they remain unverified here and must not be represented as passed by this verdict.
+
+# Issue #198 — Independent code correction review
+
+Verdict **changes required** for candidate `34f0e39f2fe6282f172c1c885a80b6ea559c77f6`, base `f51d3f4f49b9fa456a8fa25fc419dc17dd2307aa`, tree `90be8d69e18712242d18ac5c88c2a02c6edfb6d9`. Packet `b3d328b05bf2088d00aaa7a06eeec97d6e09d9c0dcfe944a5b6779b1234b89c9`.
+
+| Finding | Disposition | Evidence and treatment |
+| --- | --- | --- |
+| C198-01 | Resolved for passing admission | `reviewer-admission.cjs:345–349,560–574` converts each sliced file to range-only grants. Every reported read must match a grant, and a pass must report every grant. The focused negative tests cover empty reads and whole mixed files. The documented contract permits a nonpassing result to report partial reads. |
+| C198-02 | Resolved | `reviewer-admission.cjs:337–344,471,555,575–581` requires the prepared evidence-relative path, completion-bound SHA-256 and verified nonempty UTF-8 artifact bytes. The focused test rejects a differently named artifact with identical bytes. |
+| C198-03 | Open, blocking, AC02/04/05/08 | `reviewer-admission.cjs:223–249,665–670,709–713`. A newer explicit occurrence correctly holds the older pass while supplied. The observation is lost if the parent observes it through `select` and then omits it from a later control before preparing an attempt. The successful probe prepared and passed occurrence 1, selected occurrence 2 at the same SHA, set `explicitRoles=[]` and `request=null`, then assessed occurrence 1. The API returned `accepted`. Latest occurrence state derives solely from prepared attempts, and assessment only enforces the occurrence for currently explicit roles. Persist observed occurrence, affected roles and ordering with the independently anchored checkpoint before accepting another assessment. Add an omission-after-observation refusal case. |
+| C198-04 | Partially corrected, open, AC03/06 | `reviewer-admission.cjs:456–458,491–502,639–650`. The correction packet checks exact IDs and bounded neutral location, symptom and invariant for blocking findings. The history reducer drops every open nonblocking finding, allowing the correction to omit a known open ID. The API probe recorded open nonblocking N1 and prepared a correction with an empty corrections list. It succeeded and the launch message omitted N1. Carry all outstanding IDs into the correction packet. Track whether an ID blocks advancement independently of packet inclusion. |
+
+Additional contract inconsistency, nonblocking (AC07/08). `CONTRIBUTING.md:77–79` still describes mandatory four independent roles while the canonical role section at lines 189–241 uses applicability and explicit owning gates. Update the earlier routing text so operators encounter a consistent rule.
+
+## Inspected and checked
+
+- Candidate `agents/reviewers/README.md` (`725c8432ec1f2fea9a61cdbaba01d32676778b3e83b7a73fe2faea422b4ea0a8`), `agents/reviewers/code-review.md` (`26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697`), `AGENTS.md`, `CONTRIBUTING.md` and `tools/orchestration/reviewer-admission.cjs`. Verified assigned SHA-256 for each.
+- Evidence `intent-ac.txt`, `candidate-34f0e39f.diff` (`9366be6199832a49f9fe66fdb9969aa398e389674be6f9d904bfffaaf7a0aeed`) and `issue198_c_delta-intent.txt` bytes `[0,432)` only. Verified assigned full-file or slice identities. Inspected the admission, tests, CLI, launch-contract and review-policy changes in the approved diff.
+- Focused `node --test tests/reviewer-admission.test.cjs` passed 14/14. Two targeted in-memory API scenarios reproduced the open findings. The first probe wrapper stopped before executing a scenario because its VM lacked Buffer. Both scenarios ran successfully in the corrected wrapper.
+- No unexpected author, peer or memory exposure observed. This review used the provided candidate and evidence roots. Live provider isolation, CI/profile execution, protected delivery and independent Git identity verification were outside the assigned checks.
+
+# Issue #198 · White-box QA correction
+
+**Verdict: changes-required.** W198-01 and W198-02 resolved. W198-03 remains open because a fresh correction can omit known, unresolved nonblocking defects. This holds AC03 and AC06 for the correction workflow.
+
+Candidate `34f0e39f2fe6282f172c1c885a80b6ea559c77f6`, base `f51d3f4f49b9fa456a8fa25fc419dc17dd2307aa`, tree `90be8d69e18712242d18ac5c88c2a02c6edfb6d9`. Packet `e3c3f2f08fe6cdbcbcc3475da3d26a5870387b4319eb18d975e9d97004243a8d`.
+
+| Finding | Risk, oracle and check | Disposition |
+| --- | --- | --- |
+| W198-01 | `verifyResult`, lines 560–581. A pass must report all approved read grants, retain exact range boundaries and use the assigned result path. The focused suite rejects an empty read set, a whole-file claim for a mixed input, and a same-content artifact at another path. | Resolved. |
+| W198-02 | `openFindings`, lines 639–650, and `verifyRole`, lines 658–674. A clean replacement can proceed even when an excluded artifact is unavailable. A previously observed blocker must still be carried forward. The focused suite overwrites the excluded artifact with mismatched bytes and tests both an old clean result and an old blocking result. The ledger does not reread older raw artifacts. | Resolved. |
+| W198-03 | `prepare`, lines 456–458, and `openFindings`, lines 639–648. Known unresolved defect facts belong in the actual correction message, regardless of whether they hold advancement. The guide requires each outstanding ID. The focused suite exercises blocking IDs and validates the actual emitted message for a blocking correction. An in-memory component probe instead records an initial pass with open nonblocking finding `NB1`, prepares the correction with an empty corrections list, launches and records a fixture pass, then assesses it. Observed `{"mentionsPriorFinding":false,"disposition":"accepted"}`. The unconditional impact filter removes `NB1` before correction facts are checked. | Open. Use separate selection for outstanding correction facts and advancement blockers. Cover a correction carrying an unresolved nonblocking ID through actual emitted args, with a negative omission case. Route through the permanent `tests/reviewer-admission.test.cjs` profile entry. |
+
+Executed `node --test tests/reviewer-admission.test.cjs` in the candidate root. Exit 0, 14 pass, 0 fail/cancelled/skipped/todo. An initial stdin probe exited 1 before loading the candidate because a fixed diff line range truncated the fixture. The diagnostic re-extraction selected the fixture up to the first test declaration and the probe exited 0 with the output above. Native platform launch/result observation and measured coverage are outside these checks. The fixture launch/response and completion observations are synthetic. No prior reviewer verdict or check outcome was reused.
+
+Inspected approved inputs, with hashes matching the assignment:
+
+- Candidate `agents/reviewers/README.md` · `725c8432ec1f2fea9a61cdbaba01d32676778b3e83b7a73fe2faea422b4ea0a8`
+- Candidate `agents/reviewers/white-box-qa.md` · `832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f`
+- Candidate `AGENTS.md` · `120bba8320b0ed2c24fb6ce21cb317b9773490f5fafc19fc780f8b42781caba3`
+- Candidate `CONTRIBUTING.md` · `c3523000d1277d0dbd3159f25fe7dee9bd238e869cf6d26671025ca3c3c1e357`
+- Candidate `tools/orchestration/reviewer-admission.cjs` · `5b5f9763a4d631614b0b20b3158c3c0b72bfbb0026e509828df60cb8512f9e4b`
+- Evidence `intent-ac.txt` · `626dfc8158704618af9cbba650aa94632388da9879ca2174e04b02722777f199`
+- Evidence `candidate-34f0e39f.diff`, inventory and substantive admission, tests, contract, guide and policy hunks · `9366be6199832a49f9fe66fdb9969aa398e389674be6f9d904bfffaaf7a0aeed`
+- Evidence `issue198_w_delta-intent.txt`, approved bytes [0, 432) · `34a083abe774dbfb6d8b74026e3ac732559136fd408181a44682babc2c4bb720`
+
+No unexpected exposure observed. Hidden provider context and memory behavior remain unobserved.
+
+# Issue #198 exploratory interaction QA correction review
+
+**Verdict: pass for the two assigned corrections.** E198-01 and E198-02 are resolved on candidate `34f0e39f2fe6282f172c1c885a80b6ea559c77f6`, base `f51d3f4f49b9fa456a8fa25fc419dc17dd2307aa`, tree `90be8d69e18712242d18ac5c88c2a02c6edfb6d9`, as identified by the assignment. No new blocking finding in the exercised scope.
+
+Role/execution: exploratory-interaction-qa, `/root/issue198_e_delta`, correction. Assigned packet `c9e58527e1749735a20f63433948c983526733f556d55ab6163929336534e348`. I received the role-specific assignment and neutral correction facts. Native invocation and acceptance receipts are parent observations. No unexpected exposure observed during this review. No peer results, parent scratch notes, unrelated memory or author deliberations inspected.
+
+## Charter and observations
+
+Bounded to two operator journeys on the admission adapter: replace an excluded completed review after its artifact becomes stale and admit a completed review against the read grants and output assigned at preparation. Executed the candidate's focused suite once under Node v24.22.1 and an additional in-memory probe using the candidate functions with a small contract stub. Reviewed the operator handoff in the supplied orchestration diff.
+
+| Finding | Expected and observed | Disposition and affected criteria |
+| --- | --- | --- |
+| E198-01 | A stale excluded artifact must allow a fresh replacement while preserving prior open blockers. The suite accepted a clean replacement after overwriting the old artifact. With an open blocker it held preparation at `CORRECTION_SCOPE` when the finding was missing, then admitted a fresh explicit resolution. My probe observed that an excluded resolution could not erase the blocker and a fresh passing resolution could. `openFindings` uses checkpointed metadata and requires `passing(entry)` to clear an ID. | Resolved. AC04, AC05 and AC06. |
+| E198-02 | A passing result must record each exact read grant and bind the assigned result artifact. The suite and probe rejected omitted reads (`READ_EVIDENCE`), a whole-file read in place of a granted slice (`EXPOSURE`), and a different output path with matching artifact bytes (`EVIDENCE`). Both accepted the exact grant and assigned path. `verifyResult` binds the completion to the launch handle, packet digest, artifact hash, verdict and findings. Nonpassing records can retain partial in-scope read evidence and hold acceptance. | Resolved. AC03, AC04, AC05 and AC06. |
+
+Focused command `node --test tests/reviewer-admission.test.cjs` returned 14 pass, zero fail or skipped. The focused suite owns the existing regression cases under the issue's test-selection route. The extra probe covered the excluded-resolution variant as a manual check. The operator walkthrough found distinct preparation, observation import, exclusion/replacement and assessment steps in the supplied guide diff. No provider-internal checks or independent native launch campaign executed for this review. Runtime receipts and hidden context remain outside these observations.
+
+## Inspected inputs
+
+Verified the SHA-256 of each approved item against the assignment. Inspected both reviewer prompts, repository routing, applicable independent-review passages, issue intent and ACs, full adapter source, and the diff sections for the operator guide, CLI/contract, and targeted tests and adapter changes. The focused test ran through the expressly permitted entry point.
+
+| Approved input | SHA-256 |
+| --- | --- |
+| candidate:agents/reviewers/README.md | 725c8432ec1f2fea9a61cdbaba01d32676778b3e83b7a73fe2faea422b4ea0a8 |
+| candidate:agents/reviewers/exploratory-interaction-qa.md | 280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a |
+| candidate:AGENTS.md | 120bba8320b0ed2c24fb6ce21cb317b9773490f5fafc19fc780f8b42781caba3 |
+| candidate:CONTRIBUTING.md | c3523000d1277d0dbd3159f25fe7dee9bd238e869cf6d26671025ca3c3c1e357 |
+| candidate:tools/orchestration/reviewer-admission.cjs | 5b5f9763a4d631614b0b20b3158c3c0b72bfbb0026e509828df60cb8512f9e4b |
+| evidence:intent-ac.txt | 626dfc8158704618af9cbba650aa94632388da9879ca2174e04b02722777f199 |
+| evidence:candidate-34f0e39f.diff | 9366be6199832a49f9fe66fdb9969aa398e389674be6f9d904bfffaaf7a0aeed |
+| evidence:issue198_e_delta-intent.txt bytes [0,432) | 34a083abe774dbfb6d8b74026e3ac732559136fd408181a44682babc2c4bb720 |

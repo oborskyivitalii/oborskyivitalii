@@ -44,8 +44,9 @@ function fixture({ owner = 31, surface = 'artifact' } = {}) {
   const candidate = ref('source.txt', 'source', 'Existing source', 'candidate');
   const oracle = ref('oracle.txt', 'oracle', 'Stable test oracle');
   const protocol = ref('CONTRIBUTING.md', 'instruction', 'Applicable review protocol', 'candidate');
-  const impact = (surfaces = [surface], extra = {}) =>
+  const impact = (surfaces = [surface], extra = {}, scopedTarget = target) =>
     ref('impact.json', 'impact', {
+      target: scopedTarget,
       surfaces,
       owningRoles: [],
       explicitRoles: [],
@@ -327,6 +328,7 @@ test('changed-candidate correction rejects the old handle and must resolve earli
   const old = f.launch(first);
   f.finish(first, 'changes-required', [issue]);
   f.control.target = { ...f.control.target, head: sha('d'), tree: sha('e') };
+  f.control.impact = f.impact(['artifact'], {}, f.control.target);
   f.control.packets[code].files[2] = f.ref('source.txt', 'source', 'Corrected source', 'candidate');
   refused(() => f.prepare(code, 'correction', first.digest), 'CORRECTION_SCOPE');
   f.control.packets[code].corrections = [
@@ -388,6 +390,7 @@ test('explicit same-SHA review and latest pending attempt cannot reuse an older 
     head: f.control.target.head,
     roles: [code],
   });
+  f.execute('select', {});
   refused(() => f.assess([f.outcome(p)]), 'STALE_RESULT');
   const next = f.prepare(code, 'correction', p.digest);
   refused(() => f.assess([f.outcome(p)]), 'REVIEW_HELD');
@@ -403,12 +406,16 @@ test('unchanged verified scope survives a changed head but stale dependencies an
   f.launch(p);
   f.finish(p);
   f.control.target = { ...f.control.target, head: sha('d'), tree: sha('e') };
+  f.control.impact = f.impact(['artifact'], {}, f.control.target);
   assert.equal(f.assess([f.outcome(p, 'unchanged-scope')]).status, 'accepted');
   const next = f.prepare(code, 'correction', p.digest);
   f.launch(next);
   f.control.target.head = sha('f');
+  refused(() => f.finish(next), 'STALE_SCOPE');
+  f.control.impact = f.impact(['artifact'], {}, f.control.target);
   refused(() => f.finish(next), 'STALE');
   f.control.target.head = sha('d');
+  f.control.impact = f.impact(['artifact'], {}, f.control.target);
   f.control.packets[code].files[2] = f.ref(
     'source.txt',
     'source',
@@ -481,18 +488,47 @@ test('two same-SHA explicit review occurrences require two independent execution
       roles: [code],
     });
   f.control.request = request(1);
+  f.execute('select', {});
   const first = f.prepare();
   f.launch(first);
   f.finish(first);
   assert.equal(f.assess([f.outcome(first)]).status, 'accepted');
   f.control.request = request(2);
+  refused(() => f.assess([f.outcome(first)]), 'PASS_REQUEST_UNRECORDED');
+  f.execute('select', {});
+  f.control.request = null;
+  f.control.impact = f.impact(['readOnly']);
   refused(() => f.assess([f.outcome(first)]), 'STALE_RESULT');
   const second = f.prepare(code, 'correction', first.digest);
   f.launch(second);
   f.finish(second);
   assert.equal(f.assess([f.outcome(second)]).status, 'accepted');
+  f.control.impact = f.impact(['artifact'], { explicitRoles: [code] });
   f.control.request = request(1);
   refused(() => f.assess([f.outcome(first)]), 'PASS_REQUEST');
+});
+
+test('open nonblocking material facts reach a correction without holding completed acceptance', () => {
+  const f = fixture();
+  const first = f.prepare();
+  const open = { id: 'NB1', impact: 'nonblocking', status: 'open', evidence: 'Observed symptom' };
+  f.launch(first);
+  f.finish(first, 'pass', [open]);
+  assert.equal(f.assess([f.outcome(first)]).status, 'accepted');
+  refused(() => f.prepare(code, 'correction', first.digest), 'CORRECTION_SCOPE');
+  f.control.packets[code].corrections = [
+    {
+      id: 'NB1',
+      location: 'source.txt',
+      symptom: 'Observed symptom',
+      invariant: 'Keep the invariant',
+    },
+  ];
+  const correction = f.prepare(code, 'correction', first.digest);
+  assert.match(correction.args.message, /NB1.*Observed symptom.*Keep the invariant/);
+  f.launch(correction);
+  f.finish(correction, 'pass');
+  assert.equal(f.assess([f.outcome(correction)]).status, 'accepted');
 });
 
 test('CLI verifies independently pinned checkpoint input and an actual clean Git target', (t) => {
@@ -525,6 +561,7 @@ test('CLI verifies independently pinned checkpoint input and an actual clean Git
   const f = fixture({ surface: 'readOnly' });
   const control = f.anchored();
   control.target = { base: head, head, tree };
+  control.impact = f.impact(['readOnly'], {}, control.target);
   control.packets = {};
   control.preflightPacket = null;
   fs.writeFileSync(path.join(evidence, control.impact.path), f.read(control.impact));

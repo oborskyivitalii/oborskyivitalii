@@ -162,7 +162,10 @@ and assess contract. The parent does the following for each owner/scope.
 
 1. From accepted policy and the actual base/head/tree diff, prepare a trusted
    impact record with affected surfaces, explicit role gates and any new pass
-   request. Bind an explicit request to its observed occurrence ID and sequence.
+   request. Bind the impact record to that exact target. Register each explicit
+   request with `select`, using its observed occurrence ID and sequence, and
+   retain the returned checkpoint before dispatch or assessment. Later control
+   packets cannot drop a registered request.
    Select all roles for trust/routing/acceptance or cross-page runtime.
    Hold an unknown scope. Record why narrow or absent roles are applicable.
 2. Prepare a role-specific read manifest with common/role prompts, candidate
@@ -182,7 +185,8 @@ and assess contract. The parent does the following for each owner/scope.
    whole-file grant or exact approved byte range. Pass requires all assigned
    reads and the assigned result path. Run correction with a fresh handle and
    a checked delta packet carrying each outstanding ID, location, observed
-   symptom and expected invariant as neutral facts.
+   symptom and expected invariant as neutral facts. Open nonblocking facts
+   belong in the packet while the blocker disposition controls advancement.
 4. If a launch fails, is uncertain or a result is contaminated, reconcile the
    transcript and record the exclusion with its observation before replacing.
    A replacement links to the prior attempt even when no result was admitted.
