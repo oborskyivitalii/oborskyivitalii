@@ -17790,6 +17790,18 @@
       "purpose": "Issue #198 independent preflight, review and delivery evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-196": {
+      "kind": "directory",
+      "purpose": "Owning issue #196 review and artifact verification evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-196/2026-11-12-destination-image-review.md": {
+      "kind": "file",
+      "purpose": "Independent image export review, source-bound test results and destination requirements.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

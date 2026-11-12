@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "32259e66a63058ead6b1b6d943b88e1faf71ed317dfcf2f44214966dd320920e",
+    "digest": "3a08d04cfa57fa98c40b0497b2e3e6c76e33d6e4d1e7c2be289f8a3351f096dd",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -251,12 +251,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "2c45602bece8e8bf860475935a675ee41512dce82f5e8f79bc6d9b33cd8a5795"
+        "sha256": "e933d7e3c34a7b7ed78dcd1ce90ce5a6bec39b11d9b5dc1771add9aa03aa0da4"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "ab5f8b7b2e7c2c3f1215b33c53e674ee5780a20bc8ce76f88fa8cb861cb8c04a"
+        "sha256": "f32566d4f0332e26e5b292142f3dcbddfa998a6c94186c1b9437077859707694"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -920,7 +920,7 @@
       {
         "path": "guides/ARTICLE-WORKFLOW.md",
         "identity_mode": "content",
-        "sha256": "b1b8c1bf8e2320ce74ce24d9837cce2bb0b2cb0e32b28b23f9658ef79cee3579"
+        "sha256": "d04c0df6a021265b29b4ad63f2a0c229ff14c8560a28fb5620fbba82b38cf06b"
       },
       {
         "path": "guides/BROWSER-ARCHIVES.md",
@@ -4896,6 +4896,11 @@
         "path": "review/issue-189/selected-files.json",
         "identity_mode": "content",
         "sha256": "cee9263e5928946e6acd595ac3a0853ed2aad324837766fd89443d70de96e8bb"
+      },
+      {
+        "path": "review/issue-196/2026-11-12-destination-image-review.md",
+        "identity_mode": "content",
+        "sha256": "327f179ac0df331c6e101094eb25cc88c590bc5797b688d396782f956a1a9aa5"
       },
       {
         "path": "review/issue-198/2026-11-12-reviewer-admission.md",
@@ -12470,7 +12475,7 @@
       {
         "path": "tools/publishing/kit.cjs",
         "identity_mode": "content",
-        "sha256": "9fe2b69fadda0790932c0087ac0c28bb50dbe1074f8588af707402dc50370962"
+        "sha256": "316c9e1e6a3f38450f7a0bc82e3ea4783485b921694c5bea4ccea2ac9c34fac9"
       },
       {
         "path": "tools/publishing/origin.json",
@@ -24570,6 +24575,17 @@
         "AGENTS.md"
       ],
       "title": "selected-files.json"
+    },
+    {
+      "path": "review/issue-196/2026-11-12-destination-image-review.md",
+      "kind": "file",
+      "purpose": "Independent image export review, source-bound test results and destination requirements.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue #196 · 2026-11-12 · Destination image review"
     },
     {
       "path": "review/issue-198/2026-11-12-reviewer-admission.md",
@@ -44390,6 +44406,16 @@
       "path": "review/issue-189",
       "kind": "directory",
       "purpose": "Issue189 current RI navigation/capacity architecture, planning review and later source-bound execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-196",
+      "kind": "directory",
+      "purpose": "Owning issue #196 review and artifact verification evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [

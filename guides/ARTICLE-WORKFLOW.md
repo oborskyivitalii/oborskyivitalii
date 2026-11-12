@@ -155,7 +155,9 @@ explicit dependency direction, readable bounded adapters and exact-source checks
 5. Follow [site-first distribution](#site-first-distribution): prepare the stable
    destination and complete platform/launch exports now, preserving pending
    publication state. Authored adaptations retain their own source/edition.
-6. Review HTML, PDF and platform candidates against source/rights. Record actual
+6. Review HTML, PDF and platform candidates against source/rights. Verify the
+   [LinkedIn Article cover](#linkedin-article-cover) before handing off its kit.
+   Record actual
    editorial/visual acceptance separately; checksums identify bytes only.
    Before release, verify the article's intended Writing year/topic placement and
    filters in ordinary HTML and the browser, even while publication is pending.
@@ -165,6 +167,22 @@ explicit dependency direction, readable bounded adapters and exact-source checks
    in either order. Observe both actual article URLs/content and website backlinks,
    then add both reciprocal materials together in one content-only website update.
    Preserve prior editions/artifacts; substantive changes need new editions.
+
+### LinkedIn Article cover
+
+Prepare a dedicated native cover file when the article uses a cover. Export it
+as JPEG or PNG at **1920 × 1080 px (16:9)**, the size recommended in
+[LinkedIn's article media guidance](https://www.linkedin.com/help/linkedin/answer/a521719/).
+Fit or recompose the approved artwork on that canvas and leave margins around
+text and important details. Keep the inline hero, website/social preview and
+other platforms' artwork in their existing roles.
+
+Decode the exported upload file and verify its actual dimensions, then inspect
+the full composition at article and thumbnail size. Include the verified file
+in the LinkedIn handoff with an explicit name. The generic kit cover and inline
+hero are source artwork for this step. Before publishing, the author uploads
+the dedicated file and checks its crop and readability in the native editor
+preview.
 
 ### Site-first distribution
 
