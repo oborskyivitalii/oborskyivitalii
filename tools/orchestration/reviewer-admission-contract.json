@@ -1,0 +1,32 @@
+{
+  "version": 2,
+  "limits": {
+    "requestBytes": 1048576,
+    "depth": 15,
+    "values": 65536,
+    "files": 256,
+    "fileBytes": 4194304,
+    "aggregateBytes": 33554432,
+    "executions": 64,
+    "briefBytes": 4096
+  },
+  "roles": {
+    "requirements-acceptance": "gpt-6-astra",
+    "code-review": "gpt-6.1-sol",
+    "white-box-qa": "gpt-6.1-sol",
+    "exploratory-interaction-qa": "gpt-6.1-sol"
+  },
+  "effort": "medium",
+  "kinds": [
+    "source",
+    "instruction",
+    "common",
+    "role",
+    "intent",
+    "oracle",
+    "fact",
+    "impact",
+    "observation",
+    "result"
+  ]
+}

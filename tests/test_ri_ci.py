@@ -102,6 +102,7 @@ class RICICouplingTests(unittest.TestCase):
                 "authority-instructions",
                 "reviewer-prompts",
                 "offline-web-orchestration",
+                "reviewer-admission",
                 "intent-acceptance",
                 "path-catalog",
                 "producer-identity",

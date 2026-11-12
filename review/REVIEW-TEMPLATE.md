@@ -23,10 +23,10 @@ its dated decision link. Recommendations do not silently redefine acceptance.
 
 ### Independent role executions and requirements quality
 
-Apply [the four-role protocol](../CONTRIBUTING.md#independent-quality-agents).
+Apply [the independent role protocol](../CONTRIBUTING.md#independent-quality-agents).
 Keep each role's independent conclusion and actual source/limits; the orchestrator
-reconciles them without replacing them with its own approval. One agent per role;
-reuse a role-specific agent only through an actual correction/delta execution.
+reconciles them after completion. Record role applicability separately from
+execution status. Use a fresh agent per role and pass, including corrections.
 
 | Role | Separate agent/execution | Inspected source and scope | Completed result / own finding link | Limit or affected recheck |
 | --- | --- | --- | --- | --- |
@@ -59,7 +59,7 @@ Failure mechanism and invariant explained for maintainer understanding:
 | F01 | | | | | open |
 
 For no findings, record examined risks and limits. After corrections, record the
-reviewer's re-review of updated source and dispositions, including remaining blockers.
+fresh reviewer's re-review of updated source and dispositions, including remaining blockers.
 
 ## Decisions
 

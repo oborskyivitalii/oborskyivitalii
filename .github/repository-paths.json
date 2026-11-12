@@ -17748,6 +17748,48 @@
       "purpose": "Exact per-ID public Git/checksum recomputation proof for issue189 security dispositions; compressed original108 findings, separately pinned proof-checksum disposition and qualified historical-source limits.",
       "role": "history",
       "owner": "review/issue-189/2026-11-10-analysis.md"
+    },
+    "tools/orchestration/reviewer-admission.cjs": {
+      "kind": "file",
+      "purpose": "Canonical fresh role launch/admission and replacement state rules.",
+      "role": "source",
+      "owner": "guides/WEB-ORCHESTRATION.md"
+    },
+    "tools/orchestration/reviewer-admission-cli.cjs": {
+      "kind": "file",
+      "purpose": "Bounded parent adapter entry point with pinned control and source roots.",
+      "role": "source",
+      "owner": "guides/WEB-ORCHESTRATION.md"
+    },
+    "tools/orchestration/reviewer-admission-contract.json": {
+      "kind": "file",
+      "purpose": "Reviewer admission protocol version, roles and resource bounds.",
+      "role": "configuration",
+      "owner": "guides/WEB-ORCHESTRATION.md"
+    },
+    "tests/reviewer-admission.test.cjs": {
+      "kind": "file",
+      "purpose": "Permanent reviewer admission, applicability and actual CLI regressions.",
+      "role": "test",
+      "owner": "guides/WEB-ORCHESTRATION.md"
+    },
+    ".github/acceptance/issue-198.json": {
+      "kind": "file",
+      "purpose": "Owning acceptance mapping for independent reviewer launch and selection.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-198": {
+      "kind": "directory",
+      "purpose": "Owning review and source-bound reviewer execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-198/2026-11-12-reviewer-admission.md": {
+      "kind": "file",
+      "purpose": "Issue #198 independent preflight, review and delivery evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

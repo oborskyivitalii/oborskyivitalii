@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "4f67058dd23a674f430ac72c352ba4b4c20387759643f069a1aae9fbb59bb009",
+    "digest": "8ec4887b79aaa71b1451c8fe7b0da9770637a522c72bc45471b8f0ac595c3f73",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -27,7 +27,7 @@
       {
         "path": ".github/ACCEPTANCE.md",
         "identity_mode": "content",
-        "sha256": "6469a66a36171404ce8448d75c3c5d96dc43563c76af41d4d2367598836fcaa8"
+        "sha256": "6b67e083df18236a8bc347a8346ef03beda426ebd2a1608896ba82359cfa5e81"
       },
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -118,6 +118,11 @@
         "path": ".github/acceptance/issue-189.json",
         "identity_mode": "content",
         "sha256": "7c01e1b38a20b507c239f83cb62f39ff234ddad736f27202059b864f5eea8b1f"
+      },
+      {
+        "path": ".github/acceptance/issue-198.json",
+        "identity_mode": "content",
+        "sha256": "dd6e5508b2bb940c020f7a2e618ab4419be22cc1b6eab015ef3e1c2e79bab972"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -232,7 +237,7 @@
       {
         "path": ".github/repository-intelligence-config.json",
         "identity_mode": "content",
-        "sha256": "60f109bc95b291d37de093aa1aaeaf8b2da56168e51a9b88ba721248906e0079"
+        "sha256": "ed69b7dcefa7389136d9a380f57c994a0906517fe206f40d275ffcb50fe9686a"
       },
       {
         "path": ".github/repository-intelligence/agent-context.json",
@@ -246,12 +251,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "27070d1d3966797d1d7c77ff3fcf1d8af0bddd1ebafe12f440e05c4540a35586"
+        "sha256": "2c45602bece8e8bf860475935a675ee41512dce82f5e8f79bc6d9b33cd8a5795"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "e54ffac28fc2cb4c0a9a27e937ab8c89968e4725386b44edcd88e154dad67aed"
+        "sha256": "72090db4905b4deb2959064c353c247a56ccf2541bb0b69549b63893bda63592"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -376,12 +381,12 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "7b3372a0b6254e567e6c12d59d7229cdc969b6b0cb512c2102b68470cf87f787"
+        "sha256": "120bba8320b0ed2c24fb6ce21cb317b9773490f5fafc19fc780f8b42781caba3"
       },
       {
         "path": "CONTRIBUTING.md",
         "identity_mode": "content",
-        "sha256": "9255b86b00ec877fb1de478f86c3e530600aed3ea1fd893f6170bbe68911754b"
+        "sha256": "c3523000d1277d0dbd3159f25fe7dee9bd238e869cf6d26671025ca3c3c1e357"
       },
       {
         "path": "LICENSE-CODE.md",
@@ -425,7 +430,7 @@
       {
         "path": "agents/reviewers/README.md",
         "identity_mode": "content",
-        "sha256": "2bcb3978b499d35bb0850aead987e5b7e07fc75cf9095552c0fcab07ff24faeb"
+        "sha256": "725c8432ec1f2fea9a61cdbaba01d32676778b3e83b7a73fe2faea422b4ea0a8"
       },
       {
         "path": "agents/reviewers/code-review.md",
@@ -1000,7 +1005,7 @@
       {
         "path": "guides/WEB-ORCHESTRATION.md",
         "identity_mode": "content",
-        "sha256": "fcc75b9f6a123bf3f8130c30f1246767dda0fbd546e8bcc750e797acddad5e4e"
+        "sha256": "0022664fe5331c451f96a4611312e9e19597d791e91f20be5371a2b213196706"
       },
       {
         "path": "guides/github-pages-domains.json",
@@ -1010,7 +1015,7 @@
       {
         "path": "review/REVIEW-TEMPLATE.md",
         "identity_mode": "content",
-        "sha256": "1298a0af2adf9b1720a8d539106ecf0aca47cf0e2b4bea673c240a4c4020c5ab"
+        "sha256": "4629677a48375fc25ef316b33e07f6265a8fb8da8e5b703965d6dbd0bb108e66"
       },
       {
         "path": "review/assets/site-day-night-concept-20261002.png",
@@ -4891,6 +4896,11 @@
         "path": "review/issue-189/selected-files.json",
         "identity_mode": "content",
         "sha256": "cee9263e5928946e6acd595ac3a0853ed2aad324837766fd89443d70de96e8bb"
+      },
+      {
+        "path": "review/issue-198/2026-11-12-reviewer-admission.md",
+        "identity_mode": "content",
+        "sha256": "bb7e9d88f43e99e7180bdeab584a668dda11528f3819249b547f8cc9c445649e"
       },
       {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -12023,6 +12033,11 @@
         "sha256": "f9298acad79cd89b03576afcdf5c175ca179914e7f57f2051e4fdd9121a7dab1"
       },
       {
+        "path": "tests/reviewer-admission.test.cjs",
+        "identity_mode": "content",
+        "sha256": "405064f2284c34cff82bb2a9399377f7e5193f5fa3b7e6f2faa632e4399c4c07"
+      },
+      {
         "path": "tests/ribbons.test.cjs",
         "identity_mode": "content",
         "sha256": "83b56ea3409a6dccd7aad4eb3908a4eca2f787c0edf3610700683c4ddab31851"
@@ -12240,7 +12255,7 @@
       {
         "path": "tests/test_ri_ci.py",
         "identity_mode": "content",
-        "sha256": "6ba9e7ad6740d035f8715287fdbc0706c4260121ed46733b734a4461e6b288b3"
+        "sha256": "2350ffa32e6fa04459c6dd1fb109194f8abf14f3e0670777a12ffb84cb74f88c"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -12381,6 +12396,21 @@
         "path": "tools/orchestration/reducer.cjs",
         "identity_mode": "content",
         "sha256": "fbdfcfa670b259079d9bc9d1809ba4082d2b035d2dd361bed1ae0cf36034fdc5"
+      },
+      {
+        "path": "tools/orchestration/reviewer-admission-cli.cjs",
+        "identity_mode": "content",
+        "sha256": "e970191f0929513b4b7716cd5e512fddd29930083a6bc661056ca5ed3a81b923"
+      },
+      {
+        "path": "tools/orchestration/reviewer-admission-contract.json",
+        "identity_mode": "content",
+        "sha256": "4f79dece026dec8e3e6c3dbd3c6a910aadf862ec6d77fc16631318ddc0302424"
+      },
+      {
+        "path": "tools/orchestration/reviewer-admission.cjs",
+        "identity_mode": "content",
+        "sha256": "5172ba2f9ffb2fe21c9667ccd756f28641e2acae55078104ec0f896fb7775749"
       },
       {
         "path": "tools/pages/controller.cjs",
@@ -13005,7 +13035,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "6a1398a6d641a6df1dbebde740b1ba1372b4e178c59213d3bccace5312c6476c"
+        "sha256": "a3028738ed333ba3721de52788e02a4ca023a6379a8fb80c12ac5c49b7fc2895"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -13388,7 +13418,7 @@
     "path": "tools/repository_intelligence.py",
     "sha256": "a62c65c55ed683c95d0776555cade549f3f56a230b12ded6071bb7e8ab8b9f9e",
     "config_path": ".github/repository-intelligence-config.json",
-    "config_sha256": "60f109bc95b291d37de093aa1aaeaf8b2da56168e51a9b88ba721248906e0079"
+    "config_sha256": "ed69b7dcefa7389136d9a380f57c994a0906517fe206f40d275ffcb50fe9686a"
   },
   "owners": [
     {
@@ -14024,6 +14054,17 @@
         "AGENTS.md"
       ],
       "title": "issue-189.json"
+    },
+    {
+      "path": ".github/acceptance/issue-198.json",
+      "kind": "file",
+      "purpose": "Owning acceptance mapping for independent reviewer launch and selection.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-198.json"
     },
     {
       "path": ".github/acceptance/issue-31.json",
@@ -24529,6 +24570,17 @@
         "AGENTS.md"
       ],
       "title": "selected-files.json"
+    },
+    {
+      "path": "review/issue-198/2026-11-12-reviewer-admission.md",
+      "kind": "file",
+      "purpose": "Issue #198 independent preflight, review and delivery evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 198 — 2026-11-12 independent reviewer admission"
     },
     {
       "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -40217,6 +40269,17 @@
       "title": "review-flow.test.cjs"
     },
     {
+      "path": "tests/reviewer-admission.test.cjs",
+      "kind": "file",
+      "purpose": "Permanent reviewer admission, applicability and actual CLI regressions.",
+      "role": "test",
+      "owner": "guides/WEB-ORCHESTRATION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reviewer-admission.test.cjs"
+    },
+    {
       "path": "tests/ribbons.test.cjs",
       "kind": "file",
       "purpose": "Explicit historical optional ribbon geometry/material/clock diagnostic; active Color excludes ribbons.",
@@ -41007,6 +41070,39 @@
         "AGENTS.md"
       ],
       "title": "reducer.cjs"
+    },
+    {
+      "path": "tools/orchestration/reviewer-admission-cli.cjs",
+      "kind": "file",
+      "purpose": "Bounded parent adapter entry point with pinned control and source roots.",
+      "role": "source",
+      "owner": "guides/WEB-ORCHESTRATION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reviewer-admission-cli.cjs"
+    },
+    {
+      "path": "tools/orchestration/reviewer-admission-contract.json",
+      "kind": "file",
+      "purpose": "Reviewer admission protocol version, roles and resource bounds.",
+      "role": "configuration",
+      "owner": "guides/WEB-ORCHESTRATION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reviewer-admission-contract.json"
+    },
+    {
+      "path": "tools/orchestration/reviewer-admission.cjs",
+      "kind": "file",
+      "purpose": "Canonical fresh role launch/admission and replacement state rules.",
+      "role": "source",
+      "owner": "guides/WEB-ORCHESTRATION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reviewer-admission.cjs"
     },
     {
       "path": "tools/pages/controller.cjs",
@@ -44301,6 +44397,16 @@
       ]
     },
     {
+      "path": "review/issue-198",
+      "kind": "directory",
+      "purpose": "Owning review and source-bound reviewer execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/issue-2",
       "kind": "directory",
       "purpose": "Dated editorial, source and publication review evidence for the PMDay article owner.",
@@ -46426,6 +46532,25 @@
       ],
       "workflow": ".github/workflows/navigation.yml",
       "note": "Read the common contract and this single role prompt for a role launch; navigation checks do not establish reviewer execution."
+    },
+    {
+      "concern": "parent-mediated independent reviewer admission and recovery",
+      "paths": [
+        "tools/orchestration/reviewer-admission.cjs",
+        "tools/orchestration/reviewer-admission-cli.cjs",
+        "tools/orchestration/reviewer-admission-contract.json",
+        "tests/reviewer-admission.test.cjs"
+      ],
+      "commands": [
+        "node --test tests/reviewer-admission.test.cjs"
+      ],
+      "read": [
+        "agents/reviewers/README.md",
+        "guides/WEB-ORCHESTRATION.md",
+        ".github/ACCEPTANCE.md"
+      ],
+      "workflow": ".github/workflows/site-checks.yml",
+      "note": "Permanent source selector. The component correlates parent-observed tool evidence without dispatching itself. Live execution, external chronology and provider limits remain separate."
     }
   ],
   "upstream": {
