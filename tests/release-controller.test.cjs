@@ -580,7 +580,7 @@ test('explicit production Color preserves approved runtime and rejects a differe
   assert.equal(edition.verify(source.directory, source.record), true);
   assert.equal(
     require('../tools/quality/color-motion-contract.cjs').select(source.record).id,
-    'issue169-reader-history-production'
+    'issue187-pulse-return-easing-production'
   );
   assert.equal(
     require('../tools/quality/color-motion-contract.cjs').reviewedRuntime(

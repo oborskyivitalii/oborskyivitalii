@@ -904,47 +904,131 @@ families.issue169ReaderHistory = {
   staging: 'ace81eb56ccb8fca35099e960d684ca90aa855733c7a8e9dfe35eab66da84f78',
   production: 'c8c444e30127b60e1dac052ab6a2b53d3ff48f40efc68d526cc7c71f17151ebb',
 };
-// Preregister the exact PR #197 staging edition for the protected publisher.
-families.issue187VerticalHandoff = {
+// PR #197 Draft package identity observed in run 43104062755, artifact 13893322415.
+// Reader obligations carry forward; the article pulse needs hosted acceptance.
+families.issue187FractalPulse = {
   ...families.issue169ReaderHistory,
-  id: 'issue187-vertical-handoff',
-  baseEngine: 'e003d4fc73032deea1ac30be2fce683281b8fd30e5b1b238fddf1858c9397dee',
-  space: '9c91132c7e4e333de8d7718d0e6c72f7cba5fdd8c280c198cb5ae3e838a55404',
-  navigation: 'a2e08fedae91c88e63efa9b5304762a95622f8adeb72827fd8b2cc273fe12040',
+  id: 'issue187-fractal-pulse',
+  baseEngine: '4980de3b1dde44ff733ac7fd7d2c227445c15386f7408699f9428ea8de4410c3',
+  space: '43ef14f8ed6f6e3a03d46c0a19dc91c9b45a67a436e8428191dfa82b3ac97995',
+  navigation: '6d145710ca5926dc27327e594aeb1321bf883ca07f065fa7c41d53daa01fce2c',
+  plain: null,
+  staging: '8fbc26a7e08a9eb0b88d6d31e2889a2e1138737663e82d069e0fe9cd04234ce9',
+  production: null,
+};
+// The sequenced Draft keeps the same scene bytes and reader rights obligations.
+families.issue187FractalPulseOverlap = {
+  ...families.issue187FractalPulse,
+  id: 'issue187-fractal-pulse-overlap',
+  baseEngine: '7805ee5f90eb5be5f1c18a89f28c50212000369b9fcf9717c0b4ff42c6666e38',
+  navigation: 'f1592e81a34aa9e55b8cf8c162979a964480690787397a907158a45ee696f790',
+  staging: '2451d1a7f345f48bc1fbf800413bc68d59cb3d1c0c87b0c00dccfa6f5f81b820',
+};
+// The Draft stages the fractal showcase between the two block waves.
+families.issue187FractalSequence = {
+  ...families.issue187FractalPulseOverlap,
+  id: 'issue187-fractal-sequence',
+  baseEngine: 'df67e1c7abcc08d821d33e936f6a4804780678d0aa6ca43d6c677a334191ded2',
+  space: '172c46f059f3392bc92d36bcee6b02c58a630d7bcd5f64cf4e402c5033fd1b73',
+  navigation: 'e9e24c17905dcbd22d74a967dc3f6ac782d3b70f06afec6cb7b3736c953a8964',
+  staging: '721fbaa417824eb9d99d2a6bd26938d26b22710f59e90c841e39216d73a4d3d9',
+};
+families.issue187ReaderArrival = {
+  ...families.issue187FractalSequence,
+  id: 'issue187-reader-arrival',
+  baseEngine: 'dcbe104405fe9ae56401f5c98e7783cbc95d8e10d3ee6f58ecfd9dd5890bba3f',
+  navigation: '6588e1ee4da5d0231bde13c62de3177d34bf162dbd81411f534554b7f5ee335a',
+  staging: 'be040b346a4581316245402c4ac8303892c5cef505d52e902076fe5363c696f8',
+};
+families.issue187ReaderResize = {
+  ...families.issue187ReaderArrival,
+  id: 'issue187-reader-resize',
+  baseEngine: 'd8d8777a04626a236433bb5cea7b8192d246475337349104b6f5266d12199490',
+  navigation: '3a362ef58c6bf19d6b4a4f5e30a71c299aab43ee8cf1a9e931d1c19fb8f2483a',
+  staging: 'e5b2371e9c2c9aa55f40314c8595d16fd0d3229adb223ae376801b202d007a82',
+};
+families.issue187ReaderBorder = {
+  ...families.issue187ReaderResize,
+  id: 'issue187-reader-border',
+  baseEngine: '083bfed7088f0910219f1858360a82c8c7849c7a0e3f739e99456f951e287c41',
+  navigation: '4cb5760cefd1147dc47e4f46fe588ed3d6addbe90a45b52bed11d24c02471880',
+  staging: 'f5e72acfae360a47b5e337dc2f8f91edeb921a799f1b747f14ea01269d80c2cb',
+};
+families.issue187FractalReturn = {
+  ...families.issue187ReaderBorder,
+  id: 'issue187-fractal-return',
+  baseEngine: 'd4f8299794c54225504412d2a82d349b194aab6b2517a4cb1240cef5952fe142',
+  space: '9b571b8ffaeda78389cb47a3d01014163260886f89013953348a39814c4c9557',
+  navigation: 'd5cb5cb91ee1d7015e031bf11add1a0eb7acfea23f8523fc61cdcbd42e66db21',
+  staging: 'f3fdc8a8073f8256a84d2e0c88bd7d0cce74a08f4dcfa3eea1d910e8574d5e08',
+};
+// Current authored pulse, with actual canvas-paint evidence in the hosted reader journey.
+families.issue187PulseContinuity = {
+  ...families.issue187FractalReturn,
+  id: 'issue187-pulse-continuity',
+  articleTransition: 'pulse',
+  baseEngine: '76b051092c0b8be70c677f74b278fdb654e46812c1676c89170b1f57ce65a54d',
+  space: '3d3a5611b89e3593af91280103e4316aeec73e809ff9198035cb1f7e8ea25a06',
+  navigation: '2c8e50194566a28a4aef11fde7f4e8aacc553152a27df5a6f36ed22efabefa8e',
   archive: 'bf1b9e42356b282f3c08f7763a7a59263241c752df5dd9ee776a6b0bf86b0caa',
   theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
   styles: {
+    plain: 'f8ea3f524a0c9774947ff3b9c5277524372cff51b5b4b79d4d761ab28c03fcb4',
     staging: 'd89e5b4e3b1b43a1ce26114fcd76e443a195c061094f94bd1272f5d7cd2c64b2',
   },
-  plain: null,
+  plain: 'fe379589be51c1becf461a738b056d1f5a5aea9cd0863576f5763719ce8b1f3f',
+  staging: '80adced662107d2364e560628b4acb5d417e55c36a763e650cdd881f20ca0ea1',
+  production: 'f26d126f0759f8f8a754f692f8711cbc1c96632be75924fed2ab749a44134a41',
+};
+// Same document pulse with a subpixel settling target and continuous mount handoff.
+families.issue187VerticalHandoff = {
+  ...families.issue187PulseContinuity,
+  id: 'issue187-vertical-handoff',
+  articlePulseRestTolerance: 0.001,
+  articleMountHandoff: true,
+  baseEngine: 'e003d4fc73032deea1ac30be2fce683281b8fd30e5b1b238fddf1858c9397dee',
+  space: '9c91132c7e4e333de8d7718d0e6c72f7cba5fdd8c280c198cb5ae3e838a55404',
+  navigation: 'a2e08fedae91c88e63efa9b5304762a95622f8adeb72827fd8b2cc273fe12040',
+  plain: 'f06fdf5b8e46a6dcad84de2ae6d745b8cacbdcbe43cbbf09314caba58ad9aa6e',
   staging: '5c83ef51a944e7d3dc9768ee811786656b788de500049149adb59e92346427b9',
-  production: null,
+  production: '7a9ba3b201de2c2fa60169cc2265b7d73fd4b00f7e2edee92534c2243ff8c66a',
+};
+families.issue187NavigationSplit = {
+  ...families.issue187VerticalHandoff,
+  id: 'issue187-navigation-split',
+  baseEngine: '72bf5f4fea99f1c8ab1abd76e2e0e94c341e9a6e18d4490961d8d7b9b5623486',
+  navigation: '576fff2fecbcb6afdc573d176a1cc9bc1464a9f088a5e5e5cebf342063867312',
+  plain: '0d4f39d137dae90faad69c50e539a3f008f9af21e2107ebe74d860782540f648',
+  staging: '63af81674d7a8f7672b02d98099e7687fc9d7fbbfd1bcafae5692728844c1880',
+  production: 'e993257bb796ddb7c31debe8f03036b931edd3e634d45706b8b317531fe544f1',
 };
 families.issue187MotionLint = {
-  ...families.issue187VerticalHandoff,
+  ...families.issue187NavigationSplit,
   id: 'issue187-motion-lint',
   baseEngine: '624211640ea8421af7fdb90aab5e852fa577418e7400fd951aa07e726cc70d0a',
   space: '70f74963f52c5eb360620134117031fd5d6a468974a9841f0bf4c50de1669d97',
-  navigation: '576fff2fecbcb6afdc573d176a1cc9bc1464a9f088a5e5e5cebf342063867312',
-  plain: null,
+  plain: '4f6a701e6faabd09723affa5e9116cbdeac38f06127990a0262a3e33ac9daada',
   staging: '5be63767941c190a0a2da44ae6786e778ee20e2f2183fe4a4a0c8bfd4d7df1b5',
-  production: null,
+  production: '7f93275561fe86cc51032abfa1d51d1f8df1f27baba84294be303e4e6ec946eb',
 };
 families.issue187MountRaster = {
   ...families.issue187MotionLint,
   id: 'issue187-mount-raster',
+  articleMountRaster: true,
   baseEngine: 'c8c8f533665d75b1c94f13ef757e77cdf27f9c90d045c8f394dc9709a94243ee',
   space: '35efcad9b1ec4e82133be8e79946754bbc6c2d4f2b7d77603a13bef9c97a0c57',
+  plain: '0b634c2085a928d9cc4e506501e016f870faaeefd73d09e35a31916ff5c8f75a',
   staging: 'd627e08611f28255fae7daafedad4e978f660893bd2db132c7812b397cd5c7db',
+  production: '282eb7b2b7f0aaa0f9ece6b5c9ab27a72516c19690717ceb51c1320aab6709db',
 };
 families.issue187PulseReturnEasing = {
   ...families.issue187MountRaster,
   id: 'issue187-pulse-return-easing',
   baseEngine: '81d366ac11edfa6bad8198df1e479e36a743386952647ca6c498da3ce3bf9bee',
   space: '079b1436488fff7ba8b9d10c28d342ad30324ab7d52eca164ec03f062eb57328',
-  plain: null,
+  plain: '6e5f0870c3c8ea4d089993b38f74a467f39f3df89690ae025aa5381223f1a2c0',
   staging: 'baf228679ecae899416ae407e65d28a4327f04df3a61a3db05a1738ebf2f48a7',
-  production: null,
+  production: 'c31d347cbea3236ace2526fdfb3d5cbdfc0b9606e9b69cb87cbbded9349eea1d',
 };
 // Expand only explicitly reviewed editions; an absent edition is never admitted.
 const runtimes = Object.entries(families).flatMap(([family, value]) =>
@@ -1043,6 +1127,18 @@ function readerFamily(engine) {
     ? families[runtime.family]
     : Object.values(families).find((value) => value.baseEngine === engine);
 }
+function articlePulseRequired(engine) {
+  return readerFamily(engine)?.articleTransition === 'pulse';
+}
+function articlePulseRestTolerance(engine) {
+  return readerFamily(engine)?.articlePulseRestTolerance ?? 0.025;
+}
+function articleMountHandoffRequired(engine) {
+  return readerFamily(engine)?.articleMountHandoff === true;
+}
+function articleMountRasterRequired(engine) {
+  return readerFamily(engine)?.articleMountRaster === true;
+}
 function articleReadingMode(engine) {
   return readerFamily(engine)?.articleReading || 'entry';
 }
@@ -1119,6 +1215,10 @@ module.exports = {
   publicationRequired,
   flightCheck,
   articleReadingMode,
+  articlePulseRequired,
+  articlePulseRestTolerance,
+  articleMountHandoffRequired,
+  articleMountRasterRequired,
   readerInteractionsRequired,
   readerWholeBlocksRequired,
   readerPaperRequired,

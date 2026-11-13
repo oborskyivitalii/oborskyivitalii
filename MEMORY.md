@@ -1,31 +1,28 @@
 # Session memory
 
-Dated handoff. Last verified: **2026-11-12**. Revalidate live sources when resuming.
+Dated handoff. Last verified: **2026-11-13**. Revalidate live sources when resuming.
 
 ## Snapshot
 
-- Protected main `62e21c7` includes PR #202, the staging runtime registration for #187. Production ref `ca75641` remains the last observed deployment source.
-- [#187](https://github.com/oborskyivitalii/oborskyivitalii/issues/187) owns the Writing and article transition in [Draft PR #197](https://github.com/oborskyivitalii/oborskyivitalii/pull/197). The verified feature head `02f59fc` has its exact [Draft preview](https://411abc1c.oborskyi-author-ci-staging.pages.dev/writing.html).
-- The [protected staging prerequisite](review/issue-187/2026-11-12-controller-preregistration.md) records the local controller refusal, exact staging registration and remaining checks.
+- Protected main `fb0c6165` includes #203. Production ref `ca75641` remains the last observed deployment source.
+- [#187](https://github.com/oborskyivitalii/oborskyivitalii/issues/187) and [PR #197](https://github.com/oborskyivitalii/oborskyivitalii/pull/197) own the Writing and article transition. Stable staging previously served `7721dc93` in [run 43402189986](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43402189986).
+- The maintainer reported a late vertical recoil on that deployment. The [versioned correction](review/issue-187/2026-11-11-analysis.md#13-november-late-pulse-return) records the changed easing and projected-motion evidence.
 
 - [#196](https://github.com/oborskyivitalii/oborskyivitalii/issues/196) / [PR #195](https://github.com/oborskyivitalii/oborskyivitalii/pull/195) owns platform image export. The [versioned review](review/issue-196/2026-11-12-destination-image-review.md) records recovery from the first staging preflight failure and the platform package evidence.
 
 ## Decisions
 
-- The maintainer requested stable staging after reviewing the corrected animation. Keep the last neutral Canvas paint continuous across article mount.
-- Register only the reviewed staging runtime on protected main using the existing delivery route. The feature and production have their own checks.
+- The maintainer approved taking the smoother return through the existing stable staging route.
 
 ## Open work
 
-- #187 AC01, AC02 and AC06 remain open in the feature work. Its separate runtime preregistration merged in PR #202.
-- #197 still requires the rebased exact-head native and hosted route after the prerequisite.
-- #195 requires exact-head source checks, fresh owner staging and protected change admission on the updated base. Native editor observations remain with the author's publication check for #196.
+- #187 AC01, AC02 and AC06 remain open. The smoother return needs the rebased feature head and its own stable staging admission.
+- #195 publishing was merged before the #203 baseline. Native editor observations remain with the author's publication check for #196.
 
 ## Next session
 
-1. Check live #195 head, main and its hosted results. Resume the protected delivery route at the first unfinished check.
-2. For #187, rebase #197 on current main and reconcile the shared registry, tests and RI. Preserve the exact staging runtime and feature motion checks.
-3. Verify #197 through the existing stable staging controller and report the tested source and served identity.
+1. Revalidate [#204](https://github.com/oborskyivitalii/oborskyivitalii/pull/204) and protected main. The [owner staging run](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43420088798) is for the registration PR.
+2. Verify #197 on the actual integrated base, run its owner staging, and check Writing → article on the served candidate.
 
 ## Maintenance
 

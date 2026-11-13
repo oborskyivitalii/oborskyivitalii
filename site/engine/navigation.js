@@ -339,18 +339,28 @@
       .map((link) => routeFor(new URL(link.href, entry)))
       .filter((route, index, list) => route && list.indexOf(route) === index)
   );
-  function save(fallbackFocus = null) {
+  function save(fallbackFocus = null, retainDeparture = false) {
+    const unavailable = departureUnavailable();
     if (
-      departureUnavailable() ||
+      (unavailable && !retainDeparture) ||
       content.querySelector('main')?.getAttribute('data-route-blocks') === 'arriving' ||
       routeFor(new URL(window.location.href)) !== page
     )
       return;
     try {
+      const snapshot = readingSnapshot(fallbackFocus);
+      const prior = history.state?.site;
+      // A persistent header control can receive focus during the wave. Retain
+      // that focus without sampling the outgoing layout after it has moved.
+      if (
+        unavailable &&
+        (prior?.page !== page || !snapshot.focus || prior.focus === snapshot.focus)
+      )
+        return;
       history.replaceState(
         {
           ...history.state,
-          site: readingSnapshot(fallbackFocus),
+          site: unavailable ? { ...prior, focus: snapshot.focus } : snapshot,
         },
         '',
         window.location.href
@@ -399,10 +409,8 @@
       : state;
   }
   function departureUnavailable() {
-    return (
-      content.inert ||
-      content.querySelector('main')?.getAttribute('data-route-blocks') === 'departing'
-    );
+    const stage = content.querySelector('main')?.getAttribute('data-route-blocks');
+    return content.inert || stage === 'departing' || stage === 'holding';
   }
   function departureFocus() {
     // Retargeting an unmounted flight can leave its departure link blurred by
@@ -420,8 +428,9 @@
         : null;
     return [saved?.[0] ?? window.scrollX, saved?.[1] ?? window.scrollY];
   }
-  function saveDeparture(destination, pop, initial, fallbackFocus) {
-    if (!pop && !initial && destination.href !== window.location.href) save(fallbackFocus);
+  function saveDeparture(destination, pop, initial, fallbackFocus, retainDeparture = false) {
+    if (!pop && !initial && destination.href !== window.location.href)
+      save(fallbackFocus, retainDeparture);
   }
   function push(url) {
     save();
@@ -676,6 +685,7 @@
     const travelling = transition !== null;
     releaseEndpoint('interrupt');
     releaseTail();
+    window.SiteScene?.stopDocumentPulse?.();
     request?.abort();
     request = null;
     transition?.cancel?.();
@@ -950,7 +960,7 @@
         try {
           lastProgress = progress;
           if (progress >= mountAt && !mounted) {
-            if (animate && progress < 1) queueMount();
+            if (progress < 1) queueMount();
             else mountNow(mountTimer !== null);
           }
           if (settled || own !== serial) {
@@ -976,17 +986,24 @@
       else transition(1);
     });
   }
-  function mount(data, url, position, blockDirection = null, navigationId = serial) {
+  function mount(
+    data,
+    url,
+    position,
+    blockDirection = null,
+    navigationId = serial,
+    deferArrival = false
+  ) {
     // History captured the old reading position before this layout-affecting
     // write. Clearing the plane before history's scroll read would flush the
     // old page, then immediately flush the newly mounted archive again.
     presentation?.prepareMount?.();
     // Clear the presentation transform before DOM writes and landing. The
     // nested scene measurement then reuses that same native layout snapshot.
-    const run = () => mountNative(data, url, position, blockDirection, navigationId);
+    const run = () => mountNative(data, url, position, blockDirection, navigationId, deferArrival);
     return effects?.measure ? effects.measure(run) : run();
   }
-  function mountNative(data, url, position, blockDirection = null, navigationId = serial) {
+  function mountNative(data, url, position, blockDirection, navigationId, deferArrival) {
     let stage = window.SiteEngineStages ? performance.now() : 0;
     const span = (part) => {
       if (stage) {
@@ -1054,11 +1071,11 @@
     if (!position && target && target.getClientRects().length)
       target.scrollIntoView({ block: 'start', behavior: 'instant' });
     span('mount-anchor');
-    window.SiteScene?.refresh({ sync: true });
+    window.SiteScene?.refresh({ sync: true, preserveDocumentPaint: deferArrival });
     span('mount-layout');
     window.dispatchEvent(new CustomEvent('site:page-ready', { detail: { page } }));
     scrollEntry?.mount(data.main, { footer: data.footer });
-    if (blockDirection) scrollEntry?.prepareArrival?.(blockDirection, navigationId);
+    if (blockDirection) scrollEntry?.prepareArrival?.(blockDirection, navigationId, deferArrival);
     span('mount-ready');
   }
   function prepare(data) {
@@ -1088,13 +1105,6 @@
       return Math.sign(targetIndex - historyIndex);
     return next === 'writing' ? -1 : 1;
   }
-  function contentDirections(fromDocument, next, direction) {
-    // Hierarchy controls the block wave independently of camera/history travel.
-    return {
-      departureDirection: fromDocument.startsWith('article:') ? 1 : direction,
-      arrivalDirection: next.startsWith('article:') ? 1 : direction,
-    };
-  }
   function restoreReadingFocus(pop) {
     const savedFocus = pop ? readingState()?.focus : null;
     const focused = savedFocus
@@ -1107,18 +1117,58 @@
       preventScroll: true,
     });
   }
-  async function navigate(
-    url,
-    { pop = false, position = null, initial = false, input = null } = {}
-  ) {
-    let next = routeFor(url);
-    if (!navigableDestination(url, next)) return;
+  function blocksHeld() {
+    return content.querySelector('main')?.getAttribute('data-route-blocks') === 'holding';
+  }
+  function contentFlightAllowed() {
+    return presentation?.contentFlight?.() ?? true;
+  }
+  function navigationJourney(next, pop, initial) {
     const nextScene = routes.includes(next) ? next : 'writing';
     const currentScene = routes.includes(page) ? page : 'writing';
     const targetIndex =
       pop && Number.isSafeInteger(history.state?.site?.index) ? history.state.site.index : null;
     const direction = documentDirection(next, nextScene, currentScene, pop, targetIndex);
     const fromDocument = page;
+    // Hierarchy controls the block wave independently of camera/history travel.
+    const departureDirection = fromDocument.startsWith('article:') ? 1 : direction;
+    const sameSceneDocument =
+      !initial && next !== fromDocument && nextScene === 'writing' && currentScene === 'writing';
+    return {
+      nextScene,
+      targetIndex,
+      direction,
+      fromDocument,
+      departureDirection,
+      sameSceneDocument,
+    };
+  }
+  function overlapDocumentRead(url, next, pop, interruptedFocus, depart, sameSceneDocument) {
+    if (!sameSceneDocument || !scrollEntry || !motionAllowed() || !contentFlightAllowed())
+      return null;
+    // Save while outgoing controls are visible. The first article can still be an alias.
+    saveDeparture(next ? address(url, next) : url, pop, false, interruptedFocus);
+    return depart();
+  }
+  function canArriveWithBlocks(blocks, sameSceneDocument) {
+    return (
+      blocks && (!sameSceneDocument || blocksHeld()) && motionAllowed() && contentFlightAllowed()
+    );
+  }
+  async function navigate(
+    url,
+    { pop = false, position = null, initial = false, input = null } = {}
+  ) {
+    let next = routeFor(url);
+    if (!navigableDestination(url, next)) return;
+    const {
+      nextScene,
+      targetIndex,
+      direction,
+      fromDocument,
+      departureDirection,
+      sameSceneDocument,
+    } = navigationJourney(next, pop, initial);
     const interruptedFocus = departureFocus();
     const interruptedPosition = departurePosition();
     const own = ++serial;
@@ -1136,37 +1186,78 @@
     });
     const controller = new AbortController();
     request = controller;
+    const stopPulse = () => {
+      if (sameSceneDocument && own === serial) window.SiteScene?.stopDocumentPulse?.();
+    };
+    const depart = () => {
+      const wave = scrollEntry?.depart?.(departureDirection, own, sameSceneDocument);
+      if (!sameSceneDocument || !wave) return wave;
+      return wave.then(async (result) => {
+        if (result?.completedBy === 'empty') return null;
+        if (result?.completedBy === 'watchdog') {
+          if (own === serial) scrollEntry.cancelRoute();
+          return null;
+        }
+        if (
+          result?.completed &&
+          blocksHeld() &&
+          request === controller &&
+          own === serial &&
+          !controller.signal.aborted &&
+          motionAllowed() &&
+          contentFlightAllowed()
+        ) {
+          const painted = await window.SiteScene?.playDocumentPulse?.(own);
+          if (painted !== true) return null;
+        }
+        return result;
+      });
+    };
+    const abortDocument = () => {
+      if (own !== serial) return;
+      stopPulse();
+      scrollEntry?.cancelRoute?.('aborted');
+    };
+    if (sameSceneDocument)
+      controller.signal.addEventListener('abort', abortDocument, { once: true });
     const timeout = window.setTimeout(() => controller.abort(), 8000);
     content.setAttribute('aria-busy', 'true');
     try {
-      // Stop a native smooth focus/anchor scroll inherited from activation.
-      // Fresh reading input during the asynchronous read still reaches saveDeparture.
+      // Stop an inherited smooth focus/anchor scroll before reading the departure pose.
       restoreScroll(interruptedPosition[0], interruptedPosition[1]);
-      next = await admittedDestination(url, next, controller.signal);
-      // Admission resolves article aliases absent from a principal page's boot registry.
-      const { departureDirection, arrivalDirection } = contentDirections(
-        fromDocument,
+      let departure = overlapDocumentRead(
+        url,
         next,
-        direction
+        pop,
+        interruptedFocus,
+        depart,
+        sameSceneDocument
       );
+      next = await admittedDestination(url, next, controller.signal);
+      const arrivalDirection = next.startsWith('article:') ? 1 : direction;
       const data = await read(next, controller.signal);
       if (own !== serial) return;
+      if (controller.signal.aborted) throw Error('Navigation request cancelled');
+      // The request deadline belongs to the read. The block waves have their
+      // own bounded completion and must survive an already admitted response.
+      window.clearTimeout(timeout);
       const prepared = prepare(data);
       const destination = address(url, next);
-      // Departure visibility and inert can both blur native links. Capture
-      // reading state before either owner makes the outgoing content inaccessible.
-      saveDeparture(destination, pop, initial, interruptedFocus);
       let animate = !initial && next !== page && motionAllowed();
-      let blocks = animate && (presentation?.contentFlight?.() ?? true);
-      if (blocks) {
-        const result = await scrollEntry?.depart?.(departureDirection, own);
-        blocks = result?.completed === true;
+      const overlappedDeparture = Boolean(departure);
+      if (!departure) {
+        saveDeparture(destination, pop, initial, interruptedFocus);
+        if (animate && contentFlightAllowed()) departure = depart();
       }
+      // Reading overlaps departure and the single showcase on the uncovered scene.
+      const departed = departure && (await departure)?.completed === true;
+      let blocks = false;
       animate = animate && motionAllowed();
       if (own !== serial) return;
+      if (overlappedDeparture) saveDeparture(destination, pop, initial, interruptedFocus, true);
       await flight(
         nextScene,
-        animate,
+        animate && !sameSceneDocument,
         () => {
           const start = window.SiteEngineStages ? performance.now() : 0;
           if (!pop && !initial && destination.href !== window.location.href) {
@@ -1195,12 +1286,14 @@
               page: next,
             });
           }
+          blocks = departed && (!sameSceneDocument || blocksHeld());
           mount(
             prepared,
             new URL(window.location.href),
             position,
             blocks ? arrivalDirection : null,
-            own
+            own,
+            sameSceneDocument
           );
         },
         own,
@@ -1208,14 +1301,14 @@
         { position, hash: url.hash, search: url.search },
         {
           documentChange: next !== fromDocument,
-          sameSceneDocument: nextScene === currentScene && nextScene === 'writing',
+          sameSceneDocument,
           fromDocument,
           toDocument: next,
           direction,
         }
       );
       if (own !== serial) return;
-      if (blocks && motionAllowed() && (presentation?.contentFlight?.() ?? true))
+      if (canArriveWithBlocks(blocks, sameSceneDocument))
         await scrollEntry?.arrive?.(arrivalDirection, own);
       else scrollEntry?.cancelRoute?.();
       if (own === serial) {
@@ -1233,6 +1326,7 @@
       }
     } catch {
       if (own === serial) {
+        stopPulse();
         releaseEndpoint('failed');
         scrollEntry?.cancelRoute?.();
         scrollEntry?.settle();
@@ -1241,6 +1335,7 @@
       }
     } finally {
       window.clearTimeout(timeout);
+      controller.signal.removeEventListener('abort', abortDocument);
       if (own === serial) {
         content.removeAttribute('aria-busy');
         request = null;
@@ -1329,6 +1424,7 @@
   window.addEventListener('site:reader-state', () => save());
   function finishText() {
     scrollEntry?.cancelRoute?.();
+    window.SiteScene?.stopDocumentPulse?.();
     window.SiteScene?.detachTravel();
     transition?.(1);
     transition = null;
@@ -1346,6 +1442,7 @@
   window.addEventListener('pagehide', () => {
     closeSlides();
     save();
+    window.SiteScene?.stopDocumentPulse?.();
     releaseEndpoint('leave');
     releaseTail();
   });

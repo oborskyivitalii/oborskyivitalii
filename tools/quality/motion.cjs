@@ -17,6 +17,10 @@ function installProbe() {
   };
   window.__qualityMotion = probe;
   window.SiteEngineProbe = (event) => {
+    if (event.kind === 'route-block') {
+      const timelineTime = document.timeline?.currentTime;
+      event = { ...event, timelineTime: Number.isFinite(timelineTime) ? timelineTime : null };
+    }
     // Two bounded inline-only snapshots per flight independently tie the claimed
     // row count and planned wait to the actual native schedule. No layout read.
     if (event.kind === 'route-block' && ['departure', 'arrival'].includes(event.stage)) {

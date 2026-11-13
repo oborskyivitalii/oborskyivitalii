@@ -10,7 +10,7 @@
     "contract": 1,
     "fingerprint": "48153b94fbae4f314eaa11b156df8a20227dec429abfee9e45c14fda4a1f1b2a"
   },
-  "engine": "68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c",
+  "engine": "81d366ac11edfa6bad8198df1e479e36a743386952647ca6c498da3ce3bf9bee",
   "scenes": "0375c50289484250c0d44f693b1f9e3fb20ad4085701d09a1449c46403a0b1f7",
   "assets": "9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc",
   "mediaFiles": [
@@ -19,45 +19,45 @@
     "vitalii-oborskyi-cutout.webp",
     "writing-paradigm.svg"
   ],
-  "content": "59514b16654f84d339c908d8fe9153517631209638a89a370a4b51de11f7a752",
+  "content": "035acec39ca0fb31a8fd76c77c2c56830cb578c539efd3fa1f2fa6ec073223f0",
   "routes": {
     "index": {
-      "version": "e4fee7668d8c81d71f295be466e8e4f188c9e66b52df78fc8efe1aafe8fa2289",
-      "url": "snapshots/e4fee7668d8c81d71f295be466e8e4f188c9e66b52df78fc8efe1aafe8fa2289/index.html",
-      "sha256": "d0f473e084e270298e7b72dbebc2e02ef2b5d20bc4291f094a5f379b1431b840"
+      "version": "20bfbbdf709d8a3d4824a6402fb6727658e2d6366c13e72dde3ddcf7ad8f9d79",
+      "url": "snapshots/20bfbbdf709d8a3d4824a6402fb6727658e2d6366c13e72dde3ddcf7ad8f9d79/index.html",
+      "sha256": "4441b3919f20420a271e01b02119ba0196fa1627d0156d0e333fccbe86d16c2f"
     },
     "research": {
-      "version": "1dec565a995bce7df7b4686345783dbdcb318bce063415b76ccc189ee53ac48d",
-      "url": "snapshots/1dec565a995bce7df7b4686345783dbdcb318bce063415b76ccc189ee53ac48d/research.html",
-      "sha256": "75a9514186b0dd4964770142663a7d524ba6994971267e9c9dbfecedbab4cd9c",
+      "version": "346753cda3f296ecad29a06a8a9fbfe66b00d5561f8ee76c062c80f59087dfcd",
+      "url": "snapshots/346753cda3f296ecad29a06a8a9fbfe66b00d5561f8ee76c062c80f59087dfcd/research.html",
+      "sha256": "96df07bee3d286880a1a376217d300587fee87e9f140c488f4fa54593cdfd325",
       "assets": [
         "article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618/research-fallback.svg"
       ]
     },
     "writing": {
-      "version": "53f6d48944e9aa69eb142a141b71b8240678de858baf39dd671d37ab89c810ee",
-      "url": "snapshots/53f6d48944e9aa69eb142a141b71b8240678de858baf39dd671d37ab89c810ee/writing.html",
-      "sha256": "2d2b52390c90c4b8d07324dc9794a0d5bb07021334a27ead05041fec813e08a9",
+      "version": "ee6f539feb04435e17c5fc6fd2e18d0ad6d1699821bdc0f955658e4291af4aee",
+      "url": "snapshots/ee6f539feb04435e17c5fc6fd2e18d0ad6d1699821bdc0f955658e4291af4aee/writing.html",
+      "sha256": "ce14488dfeac0636c53d1df29b6f17de029c8a6a7507fd0baa576db066c7051f",
       "assets": [
         "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
       ]
     },
     "talks": {
-      "version": "d02fdf79996a4892b88ee648a8e511d6c6888de91fdbbc2bfffbddce2db61318",
-      "url": "snapshots/d02fdf79996a4892b88ee648a8e511d6c6888de91fdbbc2bfffbddce2db61318/talks.html",
-      "sha256": "6a9d9382caae6af5732b9f4c33fcf1c7900c62fa28de9165878bf2b800702446"
+      "version": "ae191d6b66d16ac12a3cb503136a32a4170fbdaf6f614df8a9f0c59c0b63db13",
+      "url": "snapshots/ae191d6b66d16ac12a3cb503136a32a4170fbdaf6f614df8a9f0c59c0b63db13/talks.html",
+      "sha256": "0ee8957af60b4e75407b943244224eeeb5ba3734355ed417ba0818984626217a"
     },
     "credits": {
-      "version": "88e77996e06b9690170c7ffbf6e0f67808db8efb1016df13daec9368fe49c12b",
-      "url": "snapshots/88e77996e06b9690170c7ffbf6e0f67808db8efb1016df13daec9368fe49c12b/credits.html",
-      "sha256": "282b9c70fad460380d66cec51ae51fe7cf27288c94d943aee3940c2aa14dbe79"
+      "version": "06557fd74feec43ba98b9acc1244317dc2ee4a722de8e07aa12c077d6aa7ac21",
+      "url": "snapshots/06557fd74feec43ba98b9acc1244317dc2ee4a722de8e07aa12c077d6aa7ac21/credits.html",
+      "sha256": "24fee39a7a3ea807a8bb75b986f3ed5d8d9edbde9df1a582035d249c7c1f15df"
     }
   },
   "articles": {
     "sdlc-out-of-balance:en": {
-      "version": "a1fdf0fa8fab1f04e4cb78381489a1380bff2508b38f9d37b9a8bde8a11b26e1",
-      "url": "article-snapshots/a1fdf0fa8fab1f04e4cb78381489a1380bff2508b38f9d37b9a8bde8a11b26e1/the-sdlc-is-out-of-balance.html",
-      "sha256": "db093bef436281c1ced791ee2b9cb3551ee10ea5c981ca60e0d18d5dba016621",
+      "version": "9fdacca6b2836f9abcedea739629dca5ced6145200afaf38976d89a88fbc6ad2",
+      "url": "article-snapshots/9fdacca6b2836f9abcedea739629dca5ced6145200afaf38976d89a88fbc6ad2/the-sdlc-is-out-of-balance.html",
+      "sha256": "d8d40f90a8bff51ae6d5c797b333a3cc1b1d88f8b310af405a89f010afa85937",
       "alias": "articles/the-sdlc-is-out-of-balance.html",
       "scene": "writing",
       "assets": [

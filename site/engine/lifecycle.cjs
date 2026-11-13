@@ -58,7 +58,9 @@ module.exports = function (api) {
   let domReady = document.readyState !== 'loading' && document.readyState !== 'interactive';
   let width = 1,
     height = 1,
-    ratio = 1;
+    ratio = 1,
+    displayedRatio = 1,
+    preserveMountRatio = false;
   const initial = initialPoses[page] || 'overview';
   const rooms = new Map();
   let compact = narrow.matches,
@@ -89,6 +91,8 @@ module.exports = function (api) {
     displayedElapsed = 0,
     journey = null;
   let travelUpdate = null;
+  let documentPulse = null;
+  const documentPulseDuration = 1200;
   let colors = { cyan: '#075d7b', amber: '#895710', paper: '#f8f7f3' };
   let paletteRevision = 0,
     colorFills = new Map();
@@ -249,6 +253,8 @@ module.exports = function (api) {
       pending = window.requestAnimationFrame(frame);
   }
   function cancel() {
+    finishDocumentPulse();
+    preserveMountRatio = false;
     if (pending !== null) window.cancelAnimationFrame(pending);
     pending = null;
     lastFrame = null;
@@ -298,7 +304,70 @@ module.exports = function (api) {
     const start = travel.fromOpacity[name] || 0;
     return start + (opacity - start) * smooth(elapsed / travel.centerDuration);
   }
-  function visibleRooms() {
+  function finishDocumentPulse(painted = false) {
+    if (!documentPulse) return;
+    const { resolve, watchdog } = documentPulse;
+    documentPulse = null;
+    window.clearTimeout(watchdog);
+    resolve(painted);
+  }
+  function stopDocumentPulse() {
+    if (!documentPulse) return;
+    finishDocumentPulse();
+    nextDraw = null;
+    schedule();
+  }
+  function pulseAt(time) {
+    if (!documentPulse) return null;
+    documentPulse.started ??= time;
+    const progress = clamp((time - documentPulse.started) / documentPulseDuration);
+    const previous = documentPulse.lastLayers;
+    if (progress === 1 && (!previous || !documentPulse.animated)) return null;
+    const settling = progress === 1;
+    // Large projected layers can turn a small residual angle into several CSS pixels.
+    const restTolerance = Math.min(0.001, 0.5 / height);
+    if (
+      settling &&
+      previous.every(({ turn, swell }) => Math.abs(turn) <= restTolerance && swell <= restTolerance)
+    )
+      return null;
+    let layers = [0, 1, 2, 3].map((layer) => {
+      const offset = layer * 0.045;
+      const local = clamp((progress - offset) / (1 - offset));
+      // Spread the return across the second half. The phase bias and its slope
+      // vanish at both ends, and the turn and swell settle on their own curves.
+      const returning = clamp((local - 0.4) / 0.6);
+      const phase = Math.PI * (local + (returning * (1 - returning)) ** 2);
+      const envelope = Math.sin(phase);
+      const turn = 0.84 * Math.sin(phase * 2) * envelope;
+      // The second turn has less travel, leaving room to ease into rest.
+      const returnTurn = turn * (1 - 0.35 * smooth(clamp((local - 0.5) / 0.18)));
+      return {
+        turn: layer % 2 ? -returnTurn : returnTurn,
+        swell: envelope ** 2 * (0.76 + 0.24 * Math.cos(phase * 4)),
+      };
+    });
+    if (previous) {
+      // Bound changes from the last submitted paint, even across a missed frame.
+      const steps = Math.max(
+        settling ? 1.125 : 1,
+        ...layers.map(({ turn, swell }, i) =>
+          Math.max(
+            Math.abs(turn - previous[i].turn) / 0.16,
+            Math.abs(swell - previous[i].swell) / 0.18
+          )
+        )
+      );
+      if (steps > 1) {
+        layers = layers.map(({ turn, swell }, i) => ({
+          turn: previous[i].turn + (turn - previous[i].turn) / steps,
+          swell: previous[i].swell + (swell - previous[i].swell) / steps,
+        }));
+      }
+    }
+    return { layers, progress, swell: Math.max(...layers.map((layer) => layer.swell)) };
+  }
+  function visibleRooms(pulse) {
     if (!journey || journey.localDocument || journeyStage() === 'restore') {
       const room = roomFor(page);
       const shapes = projectedWorld(
@@ -309,9 +378,14 @@ module.exports = function (api) {
         ambientTime,
         detailTier,
         true,
-        false
+        false,
+        pulse
       );
-      for (const shape of shapes) shape.room = room;
+      const glow = pulse ? 1 + 0.35 * pulse.swell : 1;
+      for (const shape of shapes) {
+        shape.room = room;
+        if (pulse && shape.kind !== 'formula') shape.alpha = Math.min(1, shape.alpha * glow);
+      }
       return shapes;
     }
     // Opening poses can cross the next cell just before restoration. Keep the
@@ -344,7 +418,7 @@ module.exports = function (api) {
     });
     return shapes;
   }
-  function draw() {
+  function draw(pulse) {
     let stage = window.SiteEngineStages ? clock() : 0;
     const span = (part) => {
       if (stage) {
@@ -354,17 +428,19 @@ module.exports = function (api) {
       }
     };
     // Resize only inside the protected paint, retaining the last valid bitmap.
-    const w = Math.round(width * ratio),
-      h = Math.round(height * ratio);
+    const paintRatio = preserveMountRatio ? displayedRatio : ratio;
+    preserveMountRatio = false;
+    const w = Math.round(width * paintRatio),
+      h = Math.round(height * paintRatio);
     if (canvas.width !== w || canvas.height !== h) {
       canvas.width = w;
       canvas.height = h;
     }
-    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+    ctx.setTransform(paintRatio, 0, 0, paintRatio, 0, 0);
     ctx.clearRect(0, 0, width, height);
     const state = { current, width, height, ambientTime, compact, scene, detailTier };
     if (window.SiteRibbonProbe) state.journey = journey;
-    const geometry = visibleRooms();
+    const geometry = visibleRooms(pulse);
     span('draw-project');
     const custom = sceneEffects?.collect(state) || [];
     span('draw-effects');
@@ -381,6 +457,7 @@ module.exports = function (api) {
     displayedTime = ambientTime;
     displayedCamera = current;
     displayedTier = detailTier;
+    displayedRatio = paintRatio;
     displayedElapsed = journey?.elapsed || 0;
     scene.dataset.phase = String(ambientTime);
     scene.dataset.camera = JSON.stringify(current);
@@ -404,6 +481,8 @@ module.exports = function (api) {
         compact,
         detailTier,
         journey,
+        documentPulse: pulse,
+        documentPulseNavigationId: documentPulse?.navigationId ?? null,
         paintedRooms: [...new Set(geometry.map((shape) => shape.room.name))],
         roomVisibility: (!journey || journeyStage() === 'restore'
           ? [page]
@@ -482,6 +561,7 @@ module.exports = function (api) {
       ratio = pixelRatio();
     } else if (slow >= 16 && tier === 2 && cost > 50) {
       const arrival = journey?.to;
+      const paintedPulse = Boolean(documentPulse?.lastLayers);
       cameraDiagnostic('camera-travel-cancelled', journey, 'device-hold');
       hold = true;
       cancel();
@@ -490,8 +570,8 @@ module.exports = function (api) {
       if (arrival) {
         current = arrival;
         journey = null;
-        schedule();
       }
+      if (arrival || paintedPulse) schedule();
       updateControl();
     } else if (fast >= 100 && tier > 0) {
       tier--;
@@ -557,6 +637,40 @@ module.exports = function (api) {
     startupModelCost += clock() - start;
     return true;
   }
+  function paintFrame(time, living, interval) {
+    const start = clock(),
+      arrived = journey && journey.elapsed === journey.duration ? journey : null;
+    try {
+      // Completion belongs to the actual arrival paint, never a skipped RAF.
+      if (journey && journey.elapsed === journey.duration) journey = null;
+      const pulse = pulseAt(time);
+      draw(pulse);
+      // A missed showcase falls back even if the neutral frame was painted.
+      if (documentPulse) {
+        if (!pulse) finishDocumentPulse(documentPulse.animated);
+        else {
+          documentPulse.lastLayers = pulse.layers;
+          if (pulse.swell >= 0.1) documentPulse.animated = true;
+        }
+      }
+    } catch {
+      cameraDiagnostic('camera-travel-cancelled', arrived, 'failed');
+      fail();
+      return false;
+    }
+    const renderCost = clock() - start + startupModelCost;
+    // The first quality vote still includes all preparation work, even though
+    // input/rendering can now run between its two startup callbacks.
+    startupModelCost = 0;
+    cameraDiagnostic('camera-travel-complete', arrived, 'arrived');
+    // Text follows the painted camera, including skipped frames and stalls.
+    if (travelUpdate) reportTravel(journeyProgress());
+    nextDraw = nextDeadline(nextDraw, time, interval);
+    // Decorative quality responds to rendering cost. The entire callback,
+    // including route mount, is still measured by the outer frame/ready gate.
+    if (living) quality(renderCost, time);
+    return true;
+  }
   function frame(time) {
     pending = null;
     if (document.hidden || printing || !initialized || failed) return;
@@ -588,31 +702,9 @@ module.exports = function (api) {
     // Camera response gets a temporary, cost-bounded higher cadence. Deadlines
     // retain fractional phase instead of rounding every frame down to 20/15Hz.
     const cameraRate = Math.min([30, 20, 15][tier], cadenceFor(costAverage, compact, true));
-    const interval = 1000 / (journey ? Math.max(idleRate, cameraRate) : idleRate);
-    if (nextDraw === null || time + 0.5 >= nextDraw || !living) {
-      const start = clock(),
-        arrived = journey && journey.elapsed === journey.duration ? journey : null;
-      try {
-        // Completion belongs to the actual arrival paint, never a skipped RAF.
-        if (journey && journey.elapsed === journey.duration) journey = null;
-        draw();
-      } catch {
-        cameraDiagnostic('camera-travel-cancelled', arrived, 'failed');
-        fail();
-        return;
-      }
-      const renderCost = clock() - start + startupModelCost;
-      // The first quality vote still includes all preparation work, even though
-      // input/rendering can now run between its two startup callbacks.
-      startupModelCost = 0;
-      cameraDiagnostic('camera-travel-complete', arrived, 'arrived');
-      // Text follows the painted camera, including skipped frames and stalls.
-      if (travelUpdate) reportTravel(journeyProgress());
-      nextDraw = nextDeadline(nextDraw, time, interval);
-      // Decorative quality responds to rendering cost. The entire callback,
-      // including route mount, is still measured by the outer frame/ready gate.
-      if (living) quality(renderCost, time);
-    }
+    const interval = 1000 / (journey || documentPulse ? Math.max(idleRate, cameraRate) : idleRate);
+    const drawDue = nextDraw === null || time + 0.5 >= nextDraw || !living;
+    if (drawDue && !paintFrame(time, living, interval)) return;
     if (living && !hold) schedule();
     else lastFrame = nextDraw = null;
   }
@@ -644,8 +736,10 @@ module.exports = function (api) {
     };
   }
   function notifyMotion() {
+    const state = motionState();
+    if (!state.enabled) stopDocumentPulse();
     if (window.dispatchEvent)
-      window.dispatchEvent(new CustomEvent('site:motion-state', { detail: motionState() }));
+      window.dispatchEvent(new CustomEvent('site:motion-state', { detail: state }));
   }
   function preferenceChanged() {
     const was = enabled;
@@ -834,6 +928,18 @@ module.exports = function (api) {
       !hold &&
       !printing &&
       !document.hidden,
+    playDocumentPulse(navigationId = null) {
+      if (page !== 'writing' || journey || !this.canTravel()) return;
+      stopDocumentPulse();
+      return new Promise((resolve) => {
+        // A suspended or starved paint loop must not strand the document.
+        const watchdog = window.setTimeout(stopDocumentPulse, documentPulseDuration + 600);
+        documentPulse = { started: null, animated: false, navigationId, resolve, watchdog };
+        nextDraw = null;
+        schedule();
+      });
+    },
+    stopDocumentPulse,
     navigate(next, animate = true, update = null, ...options) {
       if (!owns(initialPoses, next)) return;
       // Media-query state can change before its queued change event is delivered.
@@ -842,13 +948,28 @@ module.exports = function (api) {
         cancel();
         updateControl();
       }
+      const metadata = options[1];
+      const interruptedCorridor =
+        !animate &&
+        metadata?.sameSceneDocument &&
+        (journey ? !journey.localDocument : next !== page) &&
+        this.canTravel();
+      // The new document can take over the callback of an already visible
+      // corridor. Keep that camera's displayed pose and remaining time.
+      if (interruptedCorridor && journey && next === page) {
+        travelUpdate = update;
+        reportTravel(clamp(displayedElapsed / journey.duration));
+        return;
+      }
       const departure = cameraDeparture(),
         { from, sourcePage, fromRooms } = departure;
       page = next;
-      const metadata = options[1],
-        path = cameraPath(next, departure, metadata),
+      const path = cameraPath(next, departure, metadata),
         { documentChange, target, forward } = path,
-        travelling = animate && (next !== sourcePage || documentChange) && this.canTravel();
+        travelling =
+          (animate || interruptedCorridor) &&
+          (next !== sourcePage || documentChange) &&
+          this.canTravel();
       cameraDiagnostic('camera-travel-cancelled', journey, travelling ? 'retargeted' : 'instant');
       current = from;
       scene.dataset.direction = forward ? 'forward' : 'backward';
@@ -885,7 +1006,14 @@ module.exports = function (api) {
       nextDraw = null;
       schedule();
     },
-    refresh({ sync = false, reason = 'mount' } = {}) {
+    refresh({ sync = false, reason = 'mount', preserveDocumentPaint = false } = {}) {
+      if (preserveDocumentPaint && !journey) {
+        // Continue from the last visible pose after the native document mount.
+        ambientTime = displayedTime;
+        detailTier = displayedTier;
+        preserveMountRatio = true;
+        lastFrame = null;
+      }
       observeLayout();
       invalidateLayout(reason);
       if (sync) flushLayout();
