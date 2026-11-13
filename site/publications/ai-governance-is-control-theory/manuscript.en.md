@@ -242,7 +242,7 @@ When a human reviews a Drift Report (Sensor Data), decides the model is hallucin
 
 If you remove the Operating Model, if you fire the humans and stop the processes - you do not have an "autonomous system." You have an Open Loop system. You have muscles and nerves, but you have performed a lobotomy. The system will continue to move, but it will inevitably drift into failure.
 
-****Governance is not bureaucracy. Governance is the mechanism that injects Business Intent back into the system.**
+**Governance is not bureaucracy. Governance is the mechanism that injects Business Intent back into the system.**
 
 **Artifact Reveal: Operators of the Controller**
 
