@@ -10,6 +10,14 @@ on:
         description: Controls only — full head SHA explicitly reviewed by the owner; never skips full checks
         required: false
         type: string
+      guide_reviewed_sha:
+        description: Applicable workflow guide review — full head SHA after verifying the independent documentation review
+        required: false
+        type: string
+      guide_review_evidence:
+        description: GitHub link to the accepted independent review record for that exact source
+        required: false
+        type: string
 permissions:
   contents: read
   actions: read

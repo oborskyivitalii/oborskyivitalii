@@ -18,8 +18,16 @@ async function main(args) {
     );
     return;
   }
-  if (command === 'verify' && selected && !flags.length) {
-    const manifest = await verifyKit(path.resolve(selected));
+  const [verifyFlag, expectedId] = flags;
+  const verifyFlags =
+    !flags.length ||
+    (flags.length === 2 && verifyFlag === '--expected-id' && /^[a-f0-9]{64}$/.test(expectedId));
+  if (command === 'verify' && selected && verifyFlags) {
+    const directory = path.resolve(selected);
+    const manifest = await verifyKit(directory, { expectedId });
+    if (!expectedId && path.basename(directory) !== manifest.artifactId) {
+      throw new Error('Renamed kits require --expected-id from the original render');
+    }
     process.stdout.write(`Verified artifact ${manifest.artifactId}\n`);
     return;
   }
@@ -29,7 +37,7 @@ async function main(args) {
     return;
   }
   throw new Error(
-    'Usage: cli.cjs validate <id> | render <id> [--pdf] | verify <artifact-directory>'
+    'Usage: cli.cjs validate <id> | render <id> [--pdf] | verify <artifact-directory> [--expected-id <sha256>]'
   );
 }
 

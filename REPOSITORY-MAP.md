@@ -65,6 +65,7 @@ Roles describe navigation, not scientific, rights, merge or publication acceptan
 | GitHub Pages production custom domain and canonical redirect readiness | [guides/SITE-PRODUCTION.md](guides/SITE-PRODUCTION.md) |
 | release-bound rights inventory, provenance and site reuse-policy decision | [guides/SITE-RIGHTS.md](guides/SITE-RIGHTS.md) |
 | personal-site code and content licensing, exclusions and attribution notices | [LICENSING.md](LICENSING.md) |
+| repository workflow, harness and delivery overview | [guides/REPOSITORY-WORKFLOW.md](guides/REPOSITORY-WORKFLOW.md) |
 | offline WEB orchestration fixture component | [guides/WEB-ORCHESTRATION.md](guides/WEB-ORCHESTRATION.md) |
 | independent requirements and acceptance-quality review detailed prompt | [agents/reviewers/requirements-acceptance.md](agents/reviewers/requirements-acceptance.md) |
 | independent code review and correction acceptance detailed prompt | [agents/reviewers/code-review.md](agents/reviewers/code-review.md) |
@@ -126,6 +127,8 @@ Commands are suggestions, not executed checks; read the owner's contract first.
 - detailed reviewer prompt exploratory-interaction-qa: [.github/workflows/navigation.yml](.github/workflows/navigation.yml).
   - `python3 tools/check_ri_ci.py verify`
   - `python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'`
+- parent-mediated independent reviewer admission and recovery: [.github/workflows/site-checks.yml](.github/workflows/site-checks.yml).
+  - `node --test tests/reviewer-admission.test.cjs`
 
 ## Scoped navigation and direct-source fallback
 

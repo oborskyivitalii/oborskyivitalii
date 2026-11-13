@@ -1081,12 +1081,6 @@
       "role": "guide",
       "owner": "guides/REPOSITORIES.md"
     },
-    "guides/REPOSITORY-WORKFLOW.md": {
-      "kind": "file",
-      "purpose": "Engineering overview of the repository harness, agents, site architecture and delivery routes.",
-      "role": "guide",
-      "owner": "guides/REPOSITORY-WORKFLOW.md"
-    },
     "guides/SITE-ANALYTICS.md": {
       "kind": "file",
       "purpose": "Disabled-by-default production analytics adapter contract and measurement limitations.",
@@ -10855,6 +10849,18 @@
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
+    "tools/publishing/platform-images.cjs": {
+      "kind": "file",
+      "purpose": "Destination upload policies, assembly, inventory binding and verification.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "tools/publishing/platform-images.py": {
+      "kind": "file",
+      "purpose": "Pinned Pillow decoder and bounded no-crop platform image rendition worker.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
     "tools/publishing/origin.json": {
       "kind": "file",
       "purpose": "Exact UA helper Git/blob/content pins, retained treatment and local upgrade provenance.",
@@ -17311,13 +17317,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/2f7990f981ececb87582a10e1e4642b867f23f4e531e312bfa7ec4cf9a2bd408": {
+    "docs/snapshots/d02fdf79996a4892b88ee648a8e511d6c6888de91fdbbc2bfffbddce2db61318": {
       "kind": "directory",
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/2f7990f981ececb87582a10e1e4642b867f23f4e531e312bfa7ec4cf9a2bd408/talks.html": {
+    "docs/snapshots/d02fdf79996a4892b88ee648a8e511d6c6888de91fdbbc2bfffbddce2db61318/talks.html": {
       "kind": "file",
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
@@ -17335,37 +17341,37 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/a7e206bb92dcfae8b6ee42ded9a7722346a5262b72b10d8ff1125259d9412e49": {
+    "docs/snapshots/1dec565a995bce7df7b4686345783dbdcb318bce063415b76ccc189ee53ac48d": {
       "kind": "directory",
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/a7e206bb92dcfae8b6ee42ded9a7722346a5262b72b10d8ff1125259d9412e49/research.html": {
+    "docs/snapshots/1dec565a995bce7df7b4686345783dbdcb318bce063415b76ccc189ee53ac48d/research.html": {
       "kind": "file",
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/83df95879db4fb6eff6947bbbcb0df74f18aeff64e77f8f57a4d9677a955badb": {
+    "docs/snapshots/e4fee7668d8c81d71f295be466e8e4f188c9e66b52df78fc8efe1aafe8fa2289": {
       "kind": "directory",
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/83df95879db4fb6eff6947bbbcb0df74f18aeff64e77f8f57a4d9677a955badb/index.html": {
+    "docs/snapshots/e4fee7668d8c81d71f295be466e8e4f188c9e66b52df78fc8efe1aafe8fa2289/index.html": {
       "kind": "file",
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/46c259b15720af2cb02c7cb78e7b9b8d4031492452350c9d2cd74d9c3e4e801b": {
+    "docs/snapshots/88e77996e06b9690170c7ffbf6e0f67808db8efb1016df13daec9368fe49c12b": {
       "kind": "directory",
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/46c259b15720af2cb02c7cb78e7b9b8d4031492452350c9d2cd74d9c3e4e801b/credits.html": {
+    "docs/snapshots/88e77996e06b9690170c7ffbf6e0f67808db8efb1016df13daec9368fe49c12b/credits.html": {
       "kind": "file",
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
@@ -17569,25 +17575,25 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/940cec9dab62c69afbc0774e0101310e42197ccadc39c933c0d7d032575dbeab/the-sdlc-is-out-of-balance.html": {
+    "docs/article-snapshots/a1fdf0fa8fab1f04e4cb78381489a1380bff2508b38f9d37b9a8bde8a11b26e1/the-sdlc-is-out-of-balance.html": {
       "kind": "file",
       "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/940cec9dab62c69afbc0774e0101310e42197ccadc39c933c0d7d032575dbeab": {
+    "docs/article-snapshots/a1fdf0fa8fab1f04e4cb78381489a1380bff2508b38f9d37b9a8bde8a11b26e1": {
       "kind": "directory",
       "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/914c315bf3438424ddb64433cb82c3ba1946e19fcb4706d3791e9799f51f1095/writing.html": {
+    "docs/snapshots/53f6d48944e9aa69eb142a141b71b8240678de858baf39dd671d37ab89c810ee/writing.html": {
       "kind": "file",
       "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/914c315bf3438424ddb64433cb82c3ba1946e19fcb4706d3791e9799f51f1095": {
+    "docs/snapshots/53f6d48944e9aa69eb142a141b71b8240678de858baf39dd671d37ab89c810ee": {
       "kind": "directory",
       "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
       "role": "generated",
@@ -17754,6 +17760,96 @@
       "purpose": "Exact per-ID public Git/checksum recomputation proof for issue189 security dispositions; compressed original108 findings, separately pinned proof-checksum disposition and qualified historical-source limits.",
       "role": "history",
       "owner": "review/issue-189/2026-11-10-analysis.md"
+    },
+    "tools/orchestration/reviewer-admission.cjs": {
+      "kind": "file",
+      "purpose": "Canonical fresh role launch/admission and replacement state rules.",
+      "role": "source",
+      "owner": "guides/WEB-ORCHESTRATION.md"
+    },
+    "tools/orchestration/reviewer-admission-cli.cjs": {
+      "kind": "file",
+      "purpose": "Bounded parent adapter entry point with pinned control and source roots.",
+      "role": "source",
+      "owner": "guides/WEB-ORCHESTRATION.md"
+    },
+    "tools/orchestration/reviewer-admission-contract.json": {
+      "kind": "file",
+      "purpose": "Reviewer admission protocol version, roles and resource bounds.",
+      "role": "configuration",
+      "owner": "guides/WEB-ORCHESTRATION.md"
+    },
+    "tests/reviewer-admission.test.cjs": {
+      "kind": "file",
+      "purpose": "Permanent reviewer admission, applicability and actual CLI regressions.",
+      "role": "test",
+      "owner": "guides/WEB-ORCHESTRATION.md"
+    },
+    ".github/acceptance/issue-198.json": {
+      "kind": "file",
+      "purpose": "Owning acceptance mapping for independent reviewer launch and selection.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-198": {
+      "kind": "directory",
+      "purpose": "Owning review and source-bound reviewer execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-198/2026-11-12-reviewer-admission.md": {
+      "kind": "file",
+      "purpose": "Issue #198 independent preflight, review and delivery evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-196": {
+      "kind": "directory",
+      "purpose": "Owning issue #196 review and artifact verification evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-196/2026-11-12-destination-image-review.md": {
+      "kind": "file",
+      "purpose": "Independent image export review, source-bound test results and destination requirements.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    ".github/acceptance/issue-196.json": {
+      "kind": "file",
+      "purpose": "Exact-source acceptance and native editor evidence for destination image export.",
+      "role": "validator",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "tests/test_issue196_acceptance.py": {
+      "kind": "file",
+      "purpose": "Issue196 source-check route for native platform images, retained print and hosted media.",
+      "role": "validator",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    ".github/acceptance/issue-187.json": {
+      "kind": "file",
+      "purpose": "Issue #187 AC mapping for shared pulse, navigation lifecycle, preview and release.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-187": {
+      "kind": "directory",
+      "purpose": "Versioned requirements and verification for the #187 fractal pulse draft.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-187/2026-11-12-controller-preregistration.md": {
+      "kind": "file",
+      "purpose": "Issue #187 protected staging runtime preregistration and independent verification.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "guides/REPOSITORY-WORKFLOW.md": {
+      "kind": "file",
+      "purpose": "Engineering overview of the repository harness, agents, site architecture and delivery routes.",
+      "role": "guide",
+      "owner": "guides/REPOSITORY-WORKFLOW.md"
     },
     ".github/acceptance/issue-199.json": {
       "kind": "file",

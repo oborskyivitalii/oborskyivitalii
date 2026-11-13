@@ -38,6 +38,13 @@
       "automated_scope": "Relative evidence links are checked; architecture, interpretation and published evidence are reviewed separately.",
       "checks": ["LINKS"],
       "gates": ["GUIDE-REVIEW", "GITHUB-DIAGRAMS"]
+    },
+    {
+      "id": "AC06",
+      "intent": "Review and maintain the guide when workflow, harness, RI, agent, orchestration or delivery controls change.",
+      "automated_scope": "Fixed Git tree fixtures verify triggering changes, inapplicable changes, guide updates and missing or stale unchanged-guide records.",
+      "checks": ["GUIDE-GATE", "GUIDE-SCOPE", "GUIDE-RECEIPT", "GUIDE-PRESENCE", "STYLE"],
+      "gates": ["GUIDE-REVIEW", "DELIVERY"]
     }
   ],
   "checks": {
@@ -60,6 +67,22 @@
     "STYLE": {
       "kind": "unittest",
       "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "GUIDE-GATE": {
+      "kind": "unittest",
+      "test": "test_ri_ci.WorkflowGuideReviewTests.test_covered_changes_require_current_guide_or_review"
+    },
+    "GUIDE-SCOPE": {
+      "kind": "unittest",
+      "test": "test_ri_ci.WorkflowGuideReviewTests.test_derived_and_ordinary_content_are_inapplicable"
+    },
+    "GUIDE-RECEIPT": {
+      "kind": "unittest",
+      "test": "test_ri_ci.WorkflowGuideReviewTests.test_unchanged_guide_requires_current_scope_sections_and_receipt"
+    },
+    "GUIDE-PRESENCE": {
+      "kind": "unittest",
+      "test": "test_ri_ci.WorkflowGuideReviewTests.test_guide_cannot_be_removed"
     }
   },
   "gates": {

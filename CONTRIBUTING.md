@@ -76,7 +76,7 @@ Guard success does not establish full architecture, formatting or performance co
    does not justify `Closes`/`Fixes`.
 2. Follow accepted scope and existing review, synchronization, validation and source/research
    procedures. Keep substantive PRs Draft during iteration; apply the mandatory
-   [four independent quality-agent roles](#independent-quality-agents) and
+   [independent quality-agent roles selected by scope and owning gates](#independent-quality-agents) and
    [independent subagent review after every iteration](#independent-review-after-every-iteration).
 3. Run the mapped checks and reconcile human/live gates through
    [ACCEPTANCE.md](.github/ACCEPTANCE.md), including session-end issue checkbox updates.
@@ -188,18 +188,18 @@ Update actual issue checkboxes alongside evidence; tables alone are insufficient
 
 ### Independent quality agents
 
-For every coherent changed candidate/iteration, actually launch **four distinct
-nonauthor subagents** and obtain completed independent results before advancing
-or claiming readiness. Applies to T0–T4, material corrections and integration;
-use waves when capacity is limited. One agent cannot fill multiple roles or
-accept implementation/tests it authored. Findings/proposed treatments alone do
+Before advancing any coherent candidate or iteration, record the full diff and
+select the roles required by the accepted scope and explicit owning gates. Use
+distinct nonauthor executions and obtain completed independent results for
+each selected role. Use waves when capacity is limited. No role may accept
+implementation or tests it authored. Findings and proposed treatments alone do
 not make the reviewer the implementer.
 
 [agents/reviewers/README.md](agents/reviewers/README.md) owns the common launch,
 source-packet, isolation and execution-evidence contract. Every fresh reviewer
 uses explicit `fork_turns="none"` or a verified equivalent; unsupported/unknown
 isolation blocks dependent acceptance. No author conversation or current peer
-verdicts before the first independent judgment. Shared instructions, permitted
+verdicts in any independent review pass. Shared instructions, permitted
 sources, tools and filesystem are not an isolated security sandbox. Preserve
 requested/accepted/provider-observed evidence separately.
 
@@ -216,17 +216,35 @@ It inspects independently; author summaries or peer conclusions cannot be its
 sole basis. Reconcile contradictions with evidence, never majority vote.
 Different agents/models alone do not guarantee uncorrelated errors.
 
-All four roles launch even for small changes. The launched role may return
-reasoned not applicable for a genuinely absent surface after inspection; this
-avoids unnecessary dynamic tests, not the execution. Unavailable access/tools/
-devices is not observed/blocked. Missing/pending/failed required roles and
-unresolved blockers prevent advancement; read-only preparation may continue.
-Preserve existing human/editorial/rights/device and optional diagnostic decisions.
+Select against the accepted policy and full base-to-head scope. Union roles
+across known affected surfaces and retain all explicit owning/profile gates.
+Unknown scope holds advancement. A candidate cannot waive roles by editing its
+own policy, adding a label, or reporting a small diff. The protected-base
+classifier chooses native source and hosted checks separately.
+
+| Affected scope | Independent roles before explicit owning gates |
+| --- | --- |
+| Narrow visible page behavior | Code, White-box and Exploratory on the actual preview |
+| Material content on an existing template | Code. Add Requirements for intent, White-box for generator/test changes, Exploratory for reading behavior |
+| Research claims and evidence | Requirements and Code, plus any affected generator or user surface |
+| Factual tracked handoff | Code for the factual source and recovery point, with applicable RI/Navigation |
+| Bounded tests or generator | Code and White-box. Add Requirements for a changed test oracle |
+| Cross-page runtime, recovery guard, trust, routing, acceptance or unresolved mixed interaction | All four roles |
+| Read-only, external factual checkpoint, verified verbatim receipt or unchanged deterministic metadata | No new roles if the relevant semantics and gates are unchanged |
+
+For each role record the reason, needed scope, current disposition and source
+evidence. Affected roles require a fresh pass. Prior completed coverage may
+carry forward only after verifying unchanged scoped bytes, relevant dependencies,
+prompt contract and requirement/oracle. A new explicit review request supersedes
+prior results on the same SHA. Pending, failed, unavailable and contaminated
+attempts hold required roles. Preserve existing human, editorial, rights, device
+and explicit owning gates, including the four-role WEB pilot gate.
 
 #### Requirements and acceptance quality
 
-Run Requirements before dependent implementation, after material intent/AC/oracle
-changes, and on the completed candidate. The [role prompt](agents/reviewers/requirements-acceptance.md)
+Run Requirements before dependent implementation when setting or changing
+intent, requirements, ACs, oracles or acceptance rules, and again on the
+completed candidate for those changes or an explicit final gate. The [role prompt](agents/reviewers/requirements-acceptance.md)
 owns requirement quality, completeness and bidirectional acceptance traceability.
 It cannot invent intent, weaken criteria or replace an owner decision.
 
@@ -289,9 +307,9 @@ identity, materials/checks and limits in the existing versioned review artifact.
 finding needs severity, source evidence/location, implication, affected AC and an
 action/disposition. A no-findings result still names the risks examined and limits.
 The implementer resolves findings with evidenced fixes or reasoned dispositions;
-unresolved blocking findings prevent advancement. The reviewer rechecks corrections
-and materially disputed findings on the updated candidate, including affected
-integration. Reuse unaffected reviewed scope rather than repeat the whole audit.
+unresolved blocking findings prevent advancement. A fresh reviewer rechecks corrections and materially disputed findings on the
+updated candidate, including affected integration. Reuse only demonstrably
+unaffected coverage.
 
 Record the re-review outcome and final reviewed identity before advancing. Verbatim
 review receipts and deterministic RI/metadata refreshes do not recursively require

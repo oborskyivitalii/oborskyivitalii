@@ -2,6 +2,7 @@
 
 // Trusted-main admission; candidate code is inspected as immutable Git data.
 const assert = require('node:assert/strict');
+const { spawnSync } = require('node:child_process');
 const path = require('node:path');
 const git = require('./delivery-git.cjs');
 const json = require('./delivery-json.cjs');
@@ -354,6 +355,47 @@ function runtime(context) {
   );
   sha(context.sha);
 }
+function workflowGuideReview(root, context, head) {
+  // The rollout PR is checked by Navigation. A protected base owns subsequent evaluations.
+  const checker = 'tools/check_ri_ci.py';
+  const result = spawnSync(
+    'python3',
+    [path.join(root, checker), 'guide-review', '--base-sha', context.sha, '--head-sha', head],
+    { cwd: root, encoding: 'utf8', timeout: 30000, maxBuffer: 1024 * 1024 }
+  );
+  if (result.status !== 0)
+    return {
+      blocker: 'workflow-guide-review',
+      nextAction:
+        result.stderr?.trim() || 'Restore the protected workflow guide checker and dispatch again.',
+    };
+  const report = JSON.parse(result.stdout);
+  assert.equal(report.base_sha, context.sha);
+  assert.equal(report.head_sha, head);
+  assert.ok(['inapplicable', 'guide-updated', 'reviewed-unchanged'].includes(report.decision));
+  if (report.decision !== 'inapplicable') {
+    const evidence = context.payload?.inputs?.guide_review_evidence;
+    const attested =
+      context.eventName === 'workflow_dispatch' &&
+      context.actor === owner &&
+      context.payload?.inputs?.guide_reviewed_sha === head &&
+      typeof evidence === 'string' &&
+      evidence.length <= 500 &&
+      evidence.startsWith('https://github.com/' + repository + '/') &&
+      !/\s/.test(evidence);
+    if (!attested)
+      return {
+        report,
+        blocker: 'attest-exact-workflow-guide-review',
+        nextAction:
+          'Verify the independent guide review receipt, then dispatch with guide_reviewed_sha=' +
+          head +
+          ' and its GitHub link in guide_review_evidence.',
+      };
+    report.attestation = { reviewer: context.actor, reviewedHead: head, evidence };
+  }
+  return { report };
+}
 async function collect(github, context, number, root = path.resolve(__dirname, '../..')) {
   runtime(context);
   const repo = context.repo;
@@ -390,11 +432,8 @@ async function collect(github, context, number, root = path.resolve(__dirname, '
   const candidate = git.resolve(root, pr.head.sha),
     controller = git.resolve(root, context.sha);
   const selection = observation.selection(root, context.sha, pr.head.sha);
-  const policy = definitions(
-    git.tree(root, context.sha),
-    git.tree(root, pr.head.sha),
-    selection.contentOnly
-  );
+  const baseTree = git.tree(root, context.sha);
+  const policy = definitions(baseTree, git.tree(root, pr.head.sha), selection.contentOnly);
   const result = {
     kind: 'change-admission-snapshot',
     version: 1,
@@ -433,6 +472,15 @@ async function collect(github, context, number, root = path.resolve(__dirname, '
     result.blockers.push('update-from-current-main');
   }
   if (result.blockers.length) return result;
+  if (baseTree.has('guides/REPOSITORY-WORKFLOW.md')) {
+    const guide = workflowGuideReview(root, context, pr.head.sha);
+    if (guide.report) result.workflowGuideReview = guide.report;
+    if (guide.blocker) {
+      result.blockers.push(guide.blocker);
+      result.nextAction = guide.nextAction;
+      return result;
+    }
+  }
   const selectedRoutes = selection.repositoryOnly ? routes.slice(0, 3) : routes;
   for (const [file, name] of selectedRoutes)
     result.evidence.push(await selectedRun(github, repo, pr, file, [name]));
@@ -593,6 +641,7 @@ module.exports = {
   positive,
   executionPath,
   reviewedControl,
+  workflowGuideReview,
   issuedCheck,
   definitions,
   completeJobs,

@@ -102,6 +102,7 @@ class RICICouplingTests(unittest.TestCase):
                 "authority-instructions",
                 "reviewer-prompts",
                 "offline-web-orchestration",
+                "reviewer-admission",
                 "intent-acceptance",
                 "path-catalog",
                 "producer-identity",
@@ -629,6 +630,175 @@ process.stdout.write(JSON.stringify(observations));
         self.refresh()
         with self.assertRaisesRegex(ValueError, "clean control files"):
             ci.verify(self.root, base=base, head=head)
+
+
+class WorkflowGuideReviewTests(unittest.TestCase):
+    def setUp(self):
+        directory = tempfile.TemporaryDirectory()
+        self.addCleanup(directory.cleanup)
+        self.root = Path(directory.name)
+        self.git("init", "-q")
+        self.write(ci.GUIDE, "# Guide\n\n## Agents\n\nAgents review candidates.\n")
+        self.write(
+            ci.CATALOG,
+            json.dumps(
+                {
+                    "entries": {
+                        "custom/control": {
+                            "owner": "guides/WEB-ORCHESTRATION.md",
+                            "role": "source",
+                        }
+                    }
+                }
+            ),
+        )
+        catalog_path = self.root / ci.CATALOG
+        catalog = json.loads(catalog_path.read_text())
+        catalog["entries"].update(
+            {
+                "tools/quality/source-test-worker.cjs": {"owner": "guides/SITE-CHECK-PROFILES.md"},
+                "tools/quality/source-test-shards.cjs": {"owner": "guides/SITE-CHECK-PROFILES.md"},
+                "tools/quality/content-baseline.cjs": {"owner": "guides/SITE-CHECK-PROFILES.md"},
+                "tools/quality/content-gate.cjs": {"owner": "guides/SITE-CONTENT-RELEASE.md"},
+                "tools/quality/hosted.cjs": {"owner": "guides/SITE-RELEASE-GATES.md"},
+                "tools/quality/validate.cjs": {"owner": "guides/SITE-RELEASE-GATES.md"},
+                "tools/quality/functional.cjs": {"owner": "guides/SITE-RELEASE-GATES.md"},
+                "tools/quality/bandit-policy.json": {"owner": "guides/SITE-RELEASE-GATES.md"},
+            }
+        )
+        self.write(ci.CATALOG, json.dumps(catalog))
+        self.write(ci.MAP, '{"layers":[1],"reviewed_source_identity":{"digest":"old"}}')
+        self.write("custom/control", "original")
+        self.write(".github/workflows/retired.yml", "obsolete workflow")
+        self.base = self.commit()
+
+    def git(self, *args):
+        return subprocess.check_output(["git", "-C", str(self.root), *args], text=True).strip()
+
+    def write(self, path, value):
+        target = self.root / path
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(value)
+
+    def commit(self):
+        self.git("add", "-A")
+        self.git(
+            "-c",
+            "user.name=Fixture",
+            "-c",
+            "user.email=fixture@example.com",
+            "commit",
+            "-qm",
+            "candidate",
+        )
+        return self.git("rev-parse", "HEAD")
+
+    def test_covered_changes_require_current_guide_or_review(self):
+        paths = [
+            ".github/workflows/new.yml",
+            ".github/actions/new/action.yml",
+            "nested/AGENTS.md",
+            "agents/new.md",
+            "tools/orchestration/new.cjs",
+            ".github/repository-intelligence-config.json",
+            "tools/quality/delivery-routing.cjs",
+            "tools/quality/source-test-worker.cjs",
+            "tools/quality/source-test-shards.cjs",
+            "tools/quality/content-baseline.cjs",
+            "tools/quality/content-gate.cjs",
+            "tools/pages/controller.cjs",
+            "tools/release/staging-policy.cjs",
+            "tools/quality/scanners.cjs",
+            "tools/quality/budgets.json",
+            "tools/quality/security-rules.yml",
+            "tools/quality/artifact.cjs",
+            "tools/quality/hosted.cjs",
+            "tools/quality/validate.cjs",
+            "tools/quality/functional.cjs",
+            "tools/quality/bandit-policy.json",
+        ]
+        for path in paths:
+            self.write(path, "change")
+        self.git("rm", ".github/workflows/retired.yml")
+        self.git("mv", "custom/control", "custom/renamed")
+        paths.extend(
+            [".github/workflows/retired.yml", "custom/control", "custom/renamed", ci.CATALOG]
+        )
+        self.write(ci.CATALOG, '{"entries":{"custom/control":{"owner":"site/README.md"}}}')
+        head = self.commit()
+        self.assertEqual(ci.guide_review(self.root, self.base, head, True)["paths"], sorted(paths))
+        with self.assertRaisesRegex(ValueError, "Update"):
+            ci.guide_review(self.root, self.base, head)
+        self.write(
+            ci.GUIDE,
+            "# Guide\n\n## Agents\n\nAgents review  candidates.\n<!-- no-op -->\n",
+        )
+        with self.assertRaisesRegex(ValueError, "Update"):
+            ci.guide_review(self.root, self.base, self.commit())
+        for definition in (
+            "[unused]:\nhttps://example.com/\n",
+            "> [unused]: https://example.com/\n",
+            "[multiline\nlabel]: https://example.com/\n",
+            "[<!--hidden-->]: https://example.com/\n",
+            "[alpha" + chr(92) + "\nbeta]: https://example.com/\n",
+        ):
+            with self.subTest(definition=definition):
+                self.write(
+                    ci.GUIDE, "# Guide\n\n## Agents\n\nAgents review candidates.\n" + definition
+                )
+                with self.assertRaisesRegex(ValueError, "Write inline links"):
+                    ci.guide_review(self.root, self.base, self.commit())
+        self.write(ci.GUIDE, "# Guide\n\n## Agents\n\nAgents independently review candidates.\n")
+        self.assertEqual(
+            ci.guide_review(self.root, self.base, self.commit())["decision"], "guide-updated"
+        )
+
+    def test_derived_and_ordinary_content_are_inapplicable(self):
+        self.write(ci.MAP, '{"layers":[1],"reviewed_source_identity":{"digest":"new"}}')
+        self.write("REPOSITORY-MAP.md", "generated")
+        self.write("MEMORY.md", "handoff")
+        self.write("site/content/news.md", "ordinary content")
+        self.write(".github/acceptance/issue-999.json", "{}")
+        catalog = json.loads((self.root / ci.CATALOG).read_text())
+        catalog["entries"]["site/content/news.md"] = {"owner": "guides/ARTICLE-WORKFLOW.md"}
+        self.write(ci.CATALOG, json.dumps(catalog))
+        self.assertEqual(
+            ci.guide_review(self.root, self.base, self.commit())["decision"], "inapplicable"
+        )
+        self.write(ci.MAP, '{"layers":[2],"reviewed_source_identity":{"digest":"new"}}')
+        self.assertEqual(
+            ci.guide_review(self.root, self.base, self.commit(), True)["paths"], [ci.MAP]
+        )
+
+    def test_unchanged_guide_requires_current_scope_sections_and_receipt(self):
+        destination = "archive/navigation.yml"
+        (self.root / destination).parent.mkdir()
+        self.git("mv", ".github/workflows/retired.yml", destination)
+        scope = ci.guide_review(self.root, self.base, self.commit(), True)
+        self.assertIn(destination, scope["paths"])
+        record = {key: scope[key] for key in ("base_sha", "scope_sha256", "paths")}
+        receipt = "review/issue-999/workflow-guide-evidence.json"
+        record.update(
+            sections=["Agents"],
+            reviewer_execution="",
+            rationale="The updated invocation preserves the existing isolated reviewer launch semantics.",
+        )
+        self.write(receipt, json.dumps(record))
+        with self.assertRaisesRegex(ValueError, "reviewer execution"):
+            ci.guide_review(self.root, self.base, self.commit())
+        record["reviewer_execution"] = "recorded execution QA-999"
+        self.write(receipt, json.dumps(record))
+        self.assertEqual(
+            ci.guide_review(self.root, self.base, self.commit())["decision"], "reviewed-unchanged"
+        )
+        self.write(destination, "obsolete workflow\n# edit\n")
+        with self.assertRaisesRegex(ValueError, "current review"):
+            ci.guide_review(self.root, self.base, self.commit())
+
+    def test_guide_cannot_be_removed(self):
+        (self.root / ci.GUIDE).unlink()
+        with self.assertRaisesRegex(ValueError, "missing or empty"):
+            ci.guide_review(self.root, self.base, self.commit())
 
 
 if __name__ == "__main__":
