@@ -740,12 +740,97 @@ class WorkflowGuideReviewTests(unittest.TestCase):
             "> [unused]: https://example.com/\n",
             "[multiline\nlabel]: https://example.com/\n",
             "[<!--hidden-->]: https://example.com/\n",
+            "[^unused]:\n    [actual]: https://example.com/\n",
             "[alpha" + chr(92) + "\nbeta]: https://example.com/\n",
         ):
             with self.subTest(definition=definition):
                 self.write(
-                    ci.GUIDE, "# Guide\n\n## Agents\n\nAgents review candidates.\n" + definition
+                    ci.GUIDE, "# Guide\n\n## Agents\n\nAgents review candidates.\n\n" + definition
                 )
+                with self.assertRaisesRegex(ValueError, "Write inline links"):
+                    ci.guide_review(self.root, self.base, self.commit())
+        baseline = "# Guide\n\n## Agents\n\nAgents review candidates.\n"
+        self.write(ci.GUIDE, baseline + "\n<!-- [example]: https://example.com/ -->\n")
+        with self.assertRaisesRegex(ValueError, "Update"):
+            ci.guide_review(self.root, self.base, self.commit())
+        self.write(
+            ci.GUIDE,
+            baseline.replace(
+                "Agents review candidates.", "Agents <!-- [example]: hidden --> review candidates."
+            ),
+        )
+        with self.assertRaisesRegex(ValueError, "Update"):
+            ci.guide_review(self.root, self.base, self.commit())
+        self.write(
+            ci.GUIDE,
+            baseline.replace(
+                "Agents review candidates.",
+                "Agents <!-- [example]: hidden --> independently review candidates.",
+            ),
+        )
+        self.assertEqual(
+            ci.guide_review(self.root, self.base, self.commit())["decision"], "guide-updated"
+        )
+        for before, after in (
+            (
+                "See [guide](https://example.com/).",
+                "See [guide](https://example.com/). <!-- hidden -->",
+            ),
+            ("See **the guide**", "See **the guide** <!-- [example]: hidden -->"),
+            ("See **the guide**", "See <!-- hidden --> **the guide**"),
+            ("", "<!-- [example]: unclosed"),
+            ("", "[^unused]: Hidden note."),
+            ("", "[^one]: Unused [^two].\n\n[^two]: Also unused."),
+        ):
+            with self.subTest(comment=after):
+                base_guide = baseline + "\n" + before + "\n"
+                self.assertEqual(*ci.guide_contents(base_guide, baseline + "\n" + after + "\n"))
+        self.assertEqual(
+            *ci.guide_contents("```text old\nexample\n```", "```text new\nexample\n```")
+        )
+        for markup in (
+            "<div>foo <!-- hidden --> bar</div>",
+            "<div>\n<!-- hidden\n\n## Phantom heading\n-->\ntext\n</div>",
+            '<span title="<!-- one -->">text</span>',
+            "[^unused]: <span>raw</span>",
+            "<!--> <span>raw</span>",
+        ):
+            with self.subTest(markup=markup):
+                with self.assertRaisesRegex(ValueError, "Use Markdown for guide markup"):
+                    ci.guide_contents(markup)
+        self.assertEqual(
+            *ci.guide_contents(
+                "Text [^one].\n\n[^one]: Visible",
+                "Text [^one].\n\n[^one]: Visible\n\n[^one]: Hidden duplicate",
+            )
+        )
+        self.assertNotEqual(
+            *ci.guide_contents(
+                "| A | B | C |\n| - | - | - |\n| | value | |",
+                "| A | B | C |\n| - | - | - |\n| value | | |",
+            )
+        )
+        self.assertNotEqual(*ci.guide_contents("- a\n-", "- a"))
+        self.assertEqual(*ci.guide_contents("##", "## <!-- hidden -->"))
+        self.assertNotEqual(*ci.guide_contents("##", ""))
+        self.assertEqual(*ci.guide_contents("2 < 3", "<!-- note --> 2 < 3"))
+        self.assertEqual(*ci.guide_contents("> 2 < 3", "> <!-- note --> 2 < 3"))
+        self.assertEqual(*ci.guide_contents("- 2 < 3", "- <!-- note --> 2 < 3"))
+        self.assertEqual(*ci.guide_contents(">", "> <!-- hidden -->"))
+
+        for example in (
+            "Explain `[example]:` in the review.\n",
+            "```text\n<!-- [example]: literal -->\n```\n",
+            "> ~~~text\n> [example]: literal\n> ~~~\n",
+            "    [example]: literal\n",
+        ):
+            with self.subTest(example=example):
+                self.write(ci.GUIDE, baseline + "\n" + example)
+                self.assertEqual(
+                    ci.guide_review(self.root, self.base, self.commit())["decision"],
+                    "guide-updated",
+                )
+                self.write(ci.GUIDE, baseline + "\n" + example + "\n[real]: https://example.com/\n")
                 with self.assertRaisesRegex(ValueError, "Write inline links"):
                     ci.guide_review(self.root, self.base, self.commit())
         self.write(ci.GUIDE, "# Guide\n\n## Agents\n\nAgents independently review candidates.\n")
@@ -787,6 +872,14 @@ class WorkflowGuideReviewTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "reviewer execution"):
             ci.guide_review(self.root, self.base, self.commit())
         record["reviewer_execution"] = "recorded execution QA-999"
+        self.write(
+            ci.GUIDE,
+            (self.root / ci.GUIDE).read_text()
+            + "\n<!-- [example]: hidden\n## Phantom heading\n-->\n",
+        )
+        self.write(receipt, json.dumps({**record, "sections": ["Phantom heading"]}))
+        with self.assertRaisesRegex(ValueError, "actual guide section titles"):
+            ci.guide_review(self.root, self.base, self.commit())
         self.write(receipt, json.dumps(record))
         self.assertEqual(
             ci.guide_review(self.root, self.base, self.commit())["decision"], "reviewed-unchanged"

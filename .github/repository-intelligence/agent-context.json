@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "996e27a38dd9fdb249e4821add384f382b85e4d02998c8e47f39660a022d90e0",
+    "digest": "b2124e5718d4c070b0b6567305797e93d60185ba825337d77afe1c56578af773",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -266,12 +266,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "a07defd5a562cb7191ee63f87b23675e444bbba8cb65c4873f0b5e65416634ca"
+        "sha256": "c3d2131fc5016028ea4a372e279a7eb4f9ac2b1ae2e868a36df19b85486f7eaf"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "7bdb212daa2a022a872f25b347e7d8c8bc9fc6f6e56c02163c6138d4dfd5d7d6"
+        "sha256": "f5f3032a51f70568d01e37769a16c6a941ea4f74cae9873cec472d4e946e7e42"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -281,7 +281,7 @@
       {
         "path": ".github/workflows/change-admission.yml",
         "identity_mode": "content",
-        "sha256": "dba7d3c18b547e0ba8d66719ecdd337b07a288ecbcb852dc344642342c76ee62"
+        "sha256": "37062d94ed4ce3a4d23a580574c1ffa5ff77e0b7fe22c15a54416acfd8c3bb43"
       },
       {
         "path": ".github/workflows/control-runner-probe.yml",
@@ -296,7 +296,7 @@
       {
         "path": ".github/workflows/issue-acceptance.yml",
         "identity_mode": "content",
-        "sha256": "046a412dac232417cd8a7223b7c78eddfb03f1e7f23fd13391d7f98e583cc072"
+        "sha256": "5adc22d89feba6d9a42ff33c17439822faaf88f96ff04216551fe84fc455ed37"
       },
       {
         "path": ".github/workflows/navigation.yml",
@@ -421,7 +421,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "191ee6271d1f587cb4fe05ebe9f521f76831196d973e45bc087fde6e77cf5fe8"
+        "sha256": "5dd243062cd0170675e22c479643c899e5b98d4c0ef19977d79ab6717db3743b"
       },
       {
         "path": "NOTICE.md",
@@ -960,7 +960,7 @@
       {
         "path": "guides/REPOSITORY-WORKFLOW.md",
         "identity_mode": "content",
-        "sha256": "d7ef42be184c6752c86a3c96aa3f8c1a12ecab0d2afd3cecd3396e49a0f3aa1d"
+        "sha256": "fd1fb4f8991edbe4a0b7f8766125b77baf6ac3f490a1c375e2e3d3ae3a4f5ac0"
       },
       {
         "path": "guides/SITE-ANALYTICS.md",
@@ -4935,7 +4935,7 @@
       {
         "path": "review/issue-199/2026-11-12-review.md",
         "identity_mode": "content",
-        "sha256": "d4a5934eca54a6a83ff8dad1ff6b21d0183390c1227ce45b7ce1ebf1bda81e3b"
+        "sha256": "e9ea2e2dc12acf7fa6b99c49d98cdfe4868990136ddade2007450e3295667d4b"
       },
       {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -11790,7 +11790,7 @@
       {
         "path": "tests/delivery-admission.test.cjs",
         "identity_mode": "content",
-        "sha256": "becad167f24d77bf74acf9653b116e14bcf19a3e9264ecd65836327ecc1edf32"
+        "sha256": "dbe0ec2f1536e96e0d30fcc4984735b2c055e4b83c71520dcf100f8ba7039c42"
       },
       {
         "path": "tests/delivery-observation.test.cjs",
@@ -12295,7 +12295,7 @@
       {
         "path": "tests/test_ri_ci.py",
         "identity_mode": "content",
-        "sha256": "9079055be49587423adafdf411147adcb340b565f482be20f3e47bb49428d6be"
+        "sha256": "61af3253257858efaee0cf984f1a12ff990ec2f3144cee7ab30eca8f5491de00"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -12405,7 +12405,7 @@
       {
         "path": "tools/check_ri_ci.py",
         "identity_mode": "content",
-        "sha256": "dc242c3f6bd4b999ff33d2d460b55cbffc6b793fd5e0ac1706282291c431810a"
+        "sha256": "5fd5595f01f836369621aa1114a58682ac9f45c31242c5f0d33da5435734ad8e"
       },
       {
         "path": "tools/check_site_contrast.cjs",
@@ -13085,7 +13085,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "1af9fb1088106185a0f02fd0813e4e5e5065adf091beb153ce7ba560a0777efe"
+        "sha256": "2bed0f26e5d656a985f5d1434a2d42b39bddfecb778e7b89d8cd46f04e7f7ad2"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -13136,6 +13136,11 @@
         "path": "tools/quality/workflow-artifacts.cjs",
         "identity_mode": "content",
         "sha256": "aa09e11edbde7486f36f04c707f7db57c9bdb0c27adaf13a4d06972bc310d1ca"
+      },
+      {
+        "path": "tools/quality/workflow-guide-markdown.mjs",
+        "identity_mode": "content",
+        "sha256": "e0c6fc1199c38fdc577c3899a13c43dafe2fdd0b218e8c06db0fb0e8a1386c9f"
       },
       {
         "path": "tools/quality/writing-diagnosis.cjs",
@@ -42758,6 +42763,17 @@
         "AGENTS.md"
       ],
       "title": "workflow-artifacts.cjs"
+    },
+    {
+      "path": "tools/quality/workflow-guide-markdown.mjs",
+      "kind": "file",
+      "purpose": "Compare visible workflow-guide GFM and reject actual reference definitions while preserving code literals.",
+      "role": "validator",
+      "owner": ".github/REPOSITORY-INTELLIGENCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "workflow-guide-markdown.mjs"
     },
     {
       "path": "tools/quality/writing-diagnosis.cjs",

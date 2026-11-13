@@ -33,6 +33,7 @@ CONTROL_FILES = {
     ".github/pull_request_template.md",
     "tools/repository_intelligence.py",
     "tools/check_ri_ci.py",
+    "tools/quality/workflow-guide-markdown.mjs",
     "tools/issue_acceptance.py",
     "tests/test_repository_intelligence.py",
     "tests/test_ri_ci.py",
@@ -496,6 +497,7 @@ GUIDE_OWNERS = CONTROL_OWNERS | {
     "tools/quality/delivery-admission.cjs",
 }
 GUIDE_FILES = {
+    "tools/publishing/toolchain/package-lock.json",
     ".github/acceptance/issue-122.json",
     "tools/quality/artifact.cjs",
     "tools/quality/budgets.json",
@@ -620,14 +622,22 @@ def guide_scope(root, base, head):
     return paths, digest, changed, read
 
 
-def guide_content(markdown):
-    """Keep guide links inline so definitions cannot count as prose changes."""
-    reference_markers = re.sub(r"^[ \t>]*>[ \t>]*", "", markdown, flags=re.MULTILINE)
-    if re.search(r"\[(?:\\[\s\S]|[^\]\\])+\]:", reference_markers):
-        raise ValueError(
-            f"{GUIDE} uses Markdown link definitions. Write inline links in the guide."
-        )
-    return re.sub(r"<!--.*?-->", "", markdown, flags=re.DOTALL).split()
+def guide_contents(*documents):
+    """Use the parser beside the executing checker, never a candidate Git blob."""
+    parser = Path(__file__).resolve().parent / "quality/workflow-guide-markdown.mjs"
+    if any(len(document.encode()) > 1_000_000 for document in documents):
+        raise ValueError(f"{GUIDE} exceeds the 1 MB Markdown comparison limit")
+    parsed = subprocess.run(
+        ["node", str(parser)],
+        input=json.dumps(documents),
+        capture_output=True,
+        text=True,
+        timeout=15,
+        check=False,
+    )
+    if parsed.returncode:
+        raise ValueError(f"Cannot compare {GUIDE}: {parsed.stderr.strip()}")
+    return json.loads(parsed.stdout)
 
 
 def guide_review(root, base, head, describe=False):
@@ -646,8 +656,7 @@ def guide_review(root, base, head, describe=False):
     guide = read(head, GUIDE).decode()
     if not guide.strip():
         raise ValueError(f"Workflow guide is missing or empty: {GUIDE}")
-    current = guide_content(guide)
-    previous = guide_content(read(base, GUIDE).decode())
+    current, previous = guide_contents(guide, read(base, GUIDE).decode())
     if not current:
         raise ValueError(f"Workflow guide has no visible content: {GUIDE}")
     if not paths:
@@ -673,7 +682,11 @@ def guide_review(root, base, head, describe=False):
             f"Update {GUIDE}, or add a current review in review/issue-N/workflow-guide-evidence.json. "
             f"Reviewed scope: {json.dumps(expected, ensure_ascii=False)}"
         )
-    headings = set(re.findall(r"^#{2,6} ([^\n]+)$", guide, re.MULTILINE))
+
+    def label(node):
+        return node.get("value", "") + "".join(label(child) for child in node.get("children", []))
+
+    headings = {label(node) for node in current if node["type"] == "heading" and node["depth"] >= 2}
     sections, rationale, execution = (
         record[key] for key in ("sections", "rationale", "reviewer_execution")
     )
@@ -757,7 +770,7 @@ def main():
                 if review is not None:
                     result["workflow_guide_review"] = review
         print(json.dumps(result, sort_keys=True))
-    except (ValueError, KeyError, OSError, subprocess.CalledProcessError) as exc:
+    except (ValueError, KeyError, OSError, subprocess.SubprocessError) as exc:
         print(str(exc), file=sys.stderr)
         return 1
     return 0

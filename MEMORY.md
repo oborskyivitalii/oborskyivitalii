@@ -20,7 +20,7 @@ Dated handoff. Last verified: **2026-11-13**. Revalidate live sources when resum
 
 - #187 AC01, AC02 and AC06 remain open in the feature work. Its separate runtime preregistration merged in PR #202.
 - #197 still requires the rebased exact-head native and hosted route after the prerequisite.
-- #199 requires exact-source review, GitHub diagram observations and protected delivery evidence.
+- #199 / #200 is on the full website/control route. The guide review compares parsed GFM, preserves code literals and excludes HTML comments. Verify the exact candidate in GitHub before owner staging and protected admission.
 
 ## Next session
 

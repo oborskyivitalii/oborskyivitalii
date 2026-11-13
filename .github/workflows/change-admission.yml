@@ -79,6 +79,8 @@ jobs:
             const id = await require('./tools/staging/admission.cjs').beginChangeAdmission(github, context, pr);
             core.setOutput('check_id', id);
             core.setOutput('source', pr.head.sha);
+      - name: Install the locked Markdown parser from protected main
+        run: npm ci --prefix tools/publishing/toolchain --ignore-scripts
       - name: Evaluate immutable identities and issue with the isolated App
         id: evaluate
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd

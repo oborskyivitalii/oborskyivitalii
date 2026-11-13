@@ -121,9 +121,10 @@ For either decision, record the independent guide review against the exact
 candidate. The owner verifies the review and sets `guide_reviewed_sha` and
 `guide_review_evidence` (a link to the accepted review record in this GitHub repository) when dispatching
 Change admission. The protected report retains that exact-head attestation. Navigation detects missing or stale
-evidence and ignores whitespace and HTML comments. Use inline Markdown links
-in the guide. Reference definitions are rejected so they cannot be counted as
-documentation changes. Reviewers judge
+evidence and compares parsed GFM, ignoring HTML comments and normalizing prose
+whitespace. Code examples retain their literal text. Use Markdown for guide
+markup and inline links. Raw HTML elements and link reference definitions are
+rejected. Reviewers judge
 whether the affected text, diagrams and examples accurately describe the
 change. The protected enforcement becomes active when this guard reaches main. During
 the documented [App outage recovery](SITE-STAGING.md#ordered-protection-activation-and-recovery),

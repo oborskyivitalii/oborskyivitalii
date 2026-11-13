@@ -1071,6 +1071,19 @@ test('protected workflow guide admission checks the immutable candidate and requ
   git('init', '-q');
   const checker = 'tools/check_ri_ci.py';
   write(checker, fs.readFileSync(path.join(__dirname, '..', checker)));
+  const parser = 'tools/quality/workflow-guide-markdown.mjs';
+  write(parser, fs.readFileSync(path.join(__dirname, '..', parser)));
+  fs.appendFileSync(
+    path.join(root, '.git/info/exclude'),
+    '\n/tools/publishing/toolchain/node_modules\n'
+  );
+  const publishing = path.join(root, 'tools/publishing/toolchain');
+  fs.mkdirSync(publishing, { recursive: true });
+  fs.symlinkSync(
+    path.join(__dirname, '../tools/publishing/toolchain/node_modules'),
+    path.join(publishing, 'node_modules'),
+    'dir'
+  );
   write('guides/REPOSITORY-WORKFLOW.md', '# Guide\n\n## Workflows\n\nCheck current source.\n');
   const protectedHead = commit();
   const workflow = '.github/workflows/navigation.yml';

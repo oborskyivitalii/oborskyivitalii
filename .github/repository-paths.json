@@ -11611,6 +11611,12 @@
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
     },
+    "tools/quality/workflow-guide-markdown.mjs": {
+      "kind": "file",
+      "purpose": "Compare visible workflow-guide GFM and reject actual reference definitions while preserving code literals.",
+      "role": "validator",
+      "owner": ".github/REPOSITORY-INTELLIGENCE.md"
+    },
     "tools/quality/writing-diagnosis.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for writing diagnosis; applicable profiles are selected by SITE-CHECK-PROFILES.",

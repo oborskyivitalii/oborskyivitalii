@@ -296,7 +296,8 @@
         ".github/ri-ci-map.json",
         ".github/workflows/navigation.yml",
         "tests/test_ri_ci.py",
-        "tools/check_ri_ci.py"
+        "tools/check_ri_ci.py",
+        "tools/quality/workflow-guide-markdown.mjs"
       ],
       "checks": ["ri-ci-map", "ri-ci-regressions", "ri-regressions"]
     },
@@ -744,7 +745,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "6dba77028a97ba96f315268ab6512c0600783394c44ecfc9ec63e35df2959c62",
+    "digest": "b9fdf85a83f800582c32b259a0f589425cb5b817bd6383825e7fcd959864a854",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -928,7 +929,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "a07defd5a562cb7191ee63f87b23675e444bbba8cb65c4873f0b5e65416634ca"
+        "sha256": "c3d2131fc5016028ea4a372e279a7eb4f9ac2b1ae2e868a36df19b85486f7eaf"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -936,7 +937,7 @@
       },
       {
         "path": ".github/workflows/change-admission.yml",
-        "sha256": "dba7d3c18b547e0ba8d66719ecdd337b07a288ecbcb852dc344642342c76ee62"
+        "sha256": "37062d94ed4ce3a4d23a580574c1ffa5ff77e0b7fe22c15a54416acfd8c3bb43"
       },
       {
         "path": ".github/workflows/control-runner-probe.yml",
@@ -948,7 +949,7 @@
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
-        "sha256": "046a412dac232417cd8a7223b7c78eddfb03f1e7f23fd13391d7f98e583cc072"
+        "sha256": "5adc22d89feba6d9a42ff33c17439822faaf88f96ff04216551fe84fc455ed37"
       },
       {
         "path": ".github/workflows/navigation.yml",
@@ -1196,7 +1197,7 @@
       },
       {
         "path": "tests/test_ri_ci.py",
-        "sha256": "9079055be49587423adafdf411147adcb340b565f482be20f3e47bb49428d6be"
+        "sha256": "61af3253257858efaee0cf984f1a12ff990ec2f3144cee7ab30eca8f5491de00"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -1212,7 +1213,7 @@
       },
       {
         "path": "tools/check_ri_ci.py",
-        "sha256": "dc242c3f6bd4b999ff33d2d460b55cbffc6b793fd5e0ac1706282291c431810a"
+        "sha256": "5fd5595f01f836369621aa1114a58682ac9f45c31242c5f0d33da5435734ad8e"
       },
       {
         "path": "tools/issue_acceptance.py",
@@ -1236,7 +1237,11 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "1af9fb1088106185a0f02fd0813e4e5e5065adf091beb153ce7ba560a0777efe"
+        "sha256": "2bed0f26e5d656a985f5d1434a2d42b39bddfecb778e7b89d8cd46f04e7f7ad2"
+      },
+      {
+        "path": "tools/quality/workflow-guide-markdown.mjs",
+        "sha256": "e0c6fc1199c38fdc577c3899a13c43dafe2fdd0b218e8c06db0fb0e8a1386c9f"
       },
       {
         "path": "tools/repository_intelligence.py",
