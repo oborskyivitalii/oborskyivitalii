@@ -98,18 +98,35 @@
       }
     },
     "publication-05": {
+      "kind": "local-article",
+      "article": "thinking-systems",
       "edition": {
         "@type": "Article",
         "name": "Uncertainty Architecture: Thinking Systems, When the Controlled Object Changes",
-        "url": "https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db",
+        "url": "articles/thinking-systems.html",
         "inLanguage": "en",
         "author": {
           "@type": "Person",
-          "name": "Vitalii Oborskyi"
-        },
-        "datePublished": "2026-08-30"
+          "name": "Vitalii Oborskyi",
+          "url": "https://vitaliioborskyi.ai/"
+        }
       },
       "editions": [
+        {
+          "@type": "Article",
+          "name": "Uncertainty Architecture: Thinking Systems, When the Controlled Object Changes",
+          "url": "https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db",
+          "inLanguage": "en",
+          "author": {
+            "@type": "Person",
+            "name": "Vitalii Oborskyi",
+            "url": "https://vitaliioborskyi.ai/"
+          },
+          "datePublished": "2026-08-30",
+          "platform": "Medium",
+          "relationship": "same-topic-platform-edition",
+          "bodyEquivalenceVerified": false
+        },
         {
           "platform": "LinkedIn",
           "name": "Uncertainty Architecture: Thinking Systems - When the Controlled Object Changes",
@@ -117,7 +134,8 @@
           "inLanguage": "en",
           "author": {
             "@type": "Person",
-            "name": "Vitalii Oborskyi"
+            "name": "Vitalii Oborskyi",
+            "url": "https://vitaliioborskyi.ai/"
           },
           "datePublished": "2026-08-27",
           "relationship": "same-topic-platform-edition",
@@ -129,7 +147,8 @@
       "presentation": {
         "topic": "systems",
         "kind": "Article",
-        "publisher": "Generative AI",
+        "publisher": "Author site",
+        "archiveYear": "2026",
         "summary": "What changes when consequential runtime responsibility depends on model judgment."
       }
     },

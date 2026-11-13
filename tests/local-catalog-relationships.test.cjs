@@ -329,7 +329,7 @@ test('local source references reject missing pins, stale sources and alternate p
     change(input);
     assert.throws(
       () => verify(input),
-      /source pin|relationship|unknown local edition fields|edition type/
+      /source pin|relationship|unknown local .*edition fields|edition type/
     );
   }
 });
@@ -592,4 +592,42 @@ test('local authors match the complete declared source byline and preserve multi
     change(changed);
     assert.throws(() => verify(changed), /authors differ from their declared edition source/);
   }
+});
+
+test('historical platform editions preserve their dates without asserting publication events', () => {
+  const current = require('../site/content/catalog.json');
+  const record = current.records['publication-05'];
+  assert.equal(Object.keys(current.records).length, 30);
+  assert.equal(record.edition.url, 'articles/thinking-systems.html');
+  assert.deepEqual(
+    record.editions.map((edition) => [edition.platform, edition.datePublished]),
+    [
+      ['Medium', '2026-08-30'],
+      ['LinkedIn', '2026-08-27'],
+    ]
+  );
+  for (const update of [
+    { bodyEquivalenceVerified: true },
+    { publicationEvent: 'invented-event' },
+    { url: 'https://generativeai.pub.example/post' },
+    { url: 'https://generativeai.pub:444/post' },
+    { datePublished: '2026-02-30' },
+  ]) {
+    const candidate = structuredClone(current);
+    Object.assign(candidate.records['publication-05'].editions[0], update);
+    assert.throws(() => validateCatalog(candidate));
+  }
+  const dated = fixture();
+  dated.original.editions[0] = structuredClone(record.editions[0]);
+  dated.original.editions[0].url = 'https://generativeai.pub/historical-example';
+  delete dated.original.editions[0].author.url;
+  dated.original.presentation.archiveYear = '2025';
+  assert.equal(verify(dated), dated.catalog);
+  dated.original.edition.datePublished = '2026-10-01';
+  dated.original.edition.publicationEvent = 'site-first';
+  assert.equal(verify(dated), dated.catalog);
+  assert.equal(writingEntries(dated.catalog).find(({ id }) => id === 'publication-97').year, '2025');
+  const row = publication(loadComponents(root), dated.original, 'archive', dated.catalog, true);
+  assert.match(row, /data-year="2025"/);
+  assert.match(row, /<time datetime="2026-10-01">/);
 });

@@ -172,7 +172,9 @@ test('archive producer successors preserve exact predecessor pins and reject unr
   const before = Object.fromEntries(
     Object.entries(checker.archiveProducers).map(([file, change]) => [file, change.beforeSHA256])
   );
-  const after = checker.reviewedArchiveProducerBindings(before);
+  const after = checker.reviewedHistoricalEditionProducers(
+    checker.reviewedArchiveProducerBindings(before)
+  );
   for (const [file, digest] of Object.entries(after)) {
     assert.equal(
       digest,
@@ -577,13 +579,18 @@ test('language-labelled editions match article schema and retain the original pr
   assert.equal(featured.length, 5);
   assert.ok(featured.every((r) => r[1] === 'en'));
   const frozen = require('../review/sol-execution-20261002/BASELINE.json');
-  const actual = items.map(({ item }) => ({
-    title: item.name,
-    url: item.url,
-    language: item.inLanguage,
-    date: item.dateModified || item.datePublished,
-    date_kind: item.dateModified ? 'dateModified' : 'datePublished',
-  }));
+  const actual = items.map(({ item }) => {
+    const record = records.find(({ edition }) => edition.url === item.url);
+    const historical = record.editions.find((edition) => edition.platform === 'Medium');
+    const source = historical?.relationship === 'same-topic-platform-edition' ? historical : item;
+    return {
+      title: source.name,
+      url: source.url,
+      language: source.inLanguage,
+      date: source.dateModified || source.datePublished,
+      date_kind: source.dateModified ? 'dateModified' : 'datePublished',
+    };
+  });
   const frozenURLs = new Set(frozen.primary.map((r) => r.url));
   assert.deepEqual(
     actual.filter((r) => frozenURLs.has(r.url)),

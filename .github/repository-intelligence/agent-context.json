@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "25dede4a38a58ec31c761a121ef908ab92064b192c61c3ae4d5a47d3d1456335",
+    "digest": "9165397cbcdffdfd91efd568fce41b384e8f1787b474762c04487e84e44663f3",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -261,12 +261,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "8bc136ddf17fbe055ea9e3c292f005234b0f2698bc0f9b78a10b58cff1742345"
+        "sha256": "1e82223ac29f79236f9d6cd946219a5069447690b2eb12929c5cf4efdede09b8"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "429a20ad68c6cde02ed261765b64ac0d61a5b82b37229ad76315a27da23d07fa"
+        "sha256": "5f77dbf324067c967af2c47d17ee9f61f713f7803ef3d340db2bdf1cd4660271"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -416,7 +416,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "b5f233b9a4d1382f8b2f6e7027d1c2473e51fb94db09d52df3aa24e357792ed2"
+        "sha256": "2dce816985896d274a33e513d107dbe27c45344665d73b77b3d529c5d915ce3b"
       },
       {
         "path": "NOTICE.md",
@@ -478,6 +478,11 @@
         "sha256": "1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618"
       },
       {
+        "path": "docs/article-media/1589356c855ad721e706cff069e147afd60cac49b225445f8e1010737da0a6fc/diagram-6.webp",
+        "identity_mode": "content",
+        "sha256": "1589356c855ad721e706cff069e147afd60cac49b225445f8e1010737da0a6fc"
+      },
+      {
         "path": "docs/article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292/systemic-response.webp",
         "identity_mode": "content",
         "sha256": "1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292"
@@ -488,14 +493,34 @@
         "sha256": "2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16"
       },
       {
+        "path": "docs/article-media/300fdfa774d4e768f36fc3e3d1f4f146b46ed41feead5d33db2316c9f3a3c06a/diagram-5.webp",
+        "identity_mode": "content",
+        "sha256": "300fdfa774d4e768f36fc3e3d1f4f146b46ed41feead5d33db2316c9f3a3c06a"
+      },
+      {
         "path": "docs/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3/imbalance-loop.webp",
         "identity_mode": "content",
         "sha256": "45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3"
       },
       {
+        "path": "docs/article-media/542383922d50b39015ac2e3553481e7237a91efae41d19be80a3ee564d039d43/diagram-7.webp",
+        "identity_mode": "content",
+        "sha256": "542383922d50b39015ac2e3553481e7237a91efae41d19be80a3ee564d039d43"
+      },
+      {
+        "path": "docs/article-media/5552ab1fb02be8954586dccb7d92ffd5ab4a1df4fd0857de7133cfb98613af85/diagram-4.webp",
+        "identity_mode": "content",
+        "sha256": "5552ab1fb02be8954586dccb7d92ffd5ab4a1df4fd0857de7133cfb98613af85"
+      },
+      {
         "path": "docs/article-media/568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58/reading-r11.pdf",
         "identity_mode": "content",
         "sha256": "568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58"
+      },
+      {
+        "path": "docs/article-media/593e5212280ebabadb49ddc4c56e0bc4ba6908f659a9b466b462e7331680e27d/diagram-2.webp",
+        "identity_mode": "content",
+        "sha256": "593e5212280ebabadb49ddc4c56e0bc4ba6908f659a9b466b462e7331680e27d"
       },
       {
         "path": "docs/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c/reading.pdf",
@@ -528,9 +553,34 @@
         "sha256": "8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1"
       },
       {
+        "path": "docs/article-media/9cc5b62810712f9988b2d05004700978d8886e7c7954d92d2317c8f9cc4ff719/diagram-8b.webp",
+        "identity_mode": "content",
+        "sha256": "9cc5b62810712f9988b2d05004700978d8886e7c7954d92d2317c8f9cc4ff719"
+      },
+      {
+        "path": "docs/article-media/a187cf86739b2cc193cc9696e9884e2252c62b636ce262277c342371081eaa36/cover-social.jpg",
+        "identity_mode": "content",
+        "sha256": "a187cf86739b2cc193cc9696e9884e2252c62b636ce262277c342371081eaa36"
+      },
+      {
         "path": "docs/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a/review-learning-r7.webp",
         "identity_mode": "content",
         "sha256": "a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a"
+      },
+      {
+        "path": "docs/article-media/a3e8b467f27cbc673040aea8b17d32371621ab367eef63804063198a9bf739a0/diagram-3.webp",
+        "identity_mode": "content",
+        "sha256": "a3e8b467f27cbc673040aea8b17d32371621ab367eef63804063198a9bf739a0"
+      },
+      {
+        "path": "docs/article-media/b68b465d8f611f72c8f4d9e95eaad457c1e40761154d90112ed128d7ecd47dd2/cover.jpg",
+        "identity_mode": "content",
+        "sha256": "b68b465d8f611f72c8f4d9e95eaad457c1e40761154d90112ed128d7ecd47dd2"
+      },
+      {
+        "path": "docs/article-media/bb70b4d0907ed3672055b0aacd58ca6bb35ef9154aecfb151705de58127eb2ae/diagram-1.webp",
+        "identity_mode": "content",
+        "sha256": "bb70b4d0907ed3672055b0aacd58ca6bb35ef9154aecfb151705de58127eb2ae"
       },
       {
         "path": "docs/article-media/c3686dce007b399d3fb175d5b235a51b1000500a3e4bc6f024be9767bfb33996/reading-r12.pdf",
@@ -541,6 +591,11 @@
         "path": "docs/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551/comprehension-gap-r7.webp",
         "identity_mode": "content",
         "sha256": "ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551"
+      },
+      {
+        "path": "docs/article-media/dfc1c0903c9baf02dec4e96b1d87a46cccbad3ee015e9d47a3d86c73d8fb29c0/diagram-8a.webp",
+        "identity_mode": "content",
+        "sha256": "dfc1c0903c9baf02dec4e96b1d87a46cccbad3ee015e9d47a3d86c73d8fb29c0"
       },
       {
         "path": "docs/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7/delivery-capacity-r6.webp",
@@ -558,14 +613,19 @@
         "sha256": "f1d53fa07e9c2d947922eb82b5cc12b7b7bbefd62cf728e80b9cfcbde8a5ffa9"
       },
       {
-        "path": "docs/article-snapshots/a1fdf0fa8fab1f04e4cb78381489a1380bff2508b38f9d37b9a8bde8a11b26e1/the-sdlc-is-out-of-balance.html",
+        "path": "docs/article-snapshots/5dfe05ff47b5bf49db2832c5f418633d845428723ea4c3efcf0df41c63298ace/the-sdlc-is-out-of-balance.html",
         "identity_mode": "content",
-        "sha256": "db093bef436281c1ced791ee2b9cb3551ee10ea5c981ca60e0d18d5dba016621"
+        "sha256": "4c6d1df3404140a31cdc12657f2f5cd45ca066e62c0ec1c95aa9c34a2b55888c"
       },
       {
         "path": "docs/article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995/the-sdlc-is-out-of-balance.html",
         "identity_mode": "content",
         "sha256": "c190559a8abad1589892257f44b16ee9d2188e3f98e6d2e0561dab71131824e4"
+      },
+      {
+        "path": "docs/article-snapshots/b22659f6f84c6bf7723e7b747239c9b0245371f7b3ffeacbfeb893303b1434bc/thinking-systems.html",
+        "identity_mode": "content",
+        "sha256": "39c35615593d67f3d701ad99e8ba2cda96ac9cc048cd744a7ff74642913dbe20"
       },
       {
         "path": "docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/the-sdlc-is-out-of-balance.html",
@@ -575,7 +635,12 @@
       {
         "path": "docs/articles/the-sdlc-is-out-of-balance.html",
         "identity_mode": "content",
-        "sha256": "93ac10421e7046c65cee90310300178851bcc10cb76e0de4701fbf7325d1ce1f"
+        "sha256": "49688af7730254af189d7a5fb478bc1809354a75822787d71827b5bc9d680560"
+      },
+      {
+        "path": "docs/articles/thinking-systems.html",
+        "identity_mode": "content",
+        "sha256": "2ed1a940405fff21f0d31e0a519ede66513126f98ec7f315b71f70f1b2a962bd"
       },
       {
         "path": "docs/assets/favicon.svg",
@@ -600,12 +665,12 @@
       {
         "path": "docs/credits.html",
         "identity_mode": "content",
-        "sha256": "bba61ccfac818a4ad2dce9b23993344172d7d3fcf49bc83bf24c0aeb2bc7bb26"
+        "sha256": "17e51c5b14fa262e674cb0bc41df6fb97842f0d2ff115c80cf30e3446441c383"
       },
       {
         "path": "docs/index.html",
         "identity_mode": "content",
-        "sha256": "53e33703d2ffc778b671aea172070bf40590bdeaac109af8073144b3b67681fc"
+        "sha256": "3a9f00060ac026e2e334b49c95ec577a30c62461bc140db1d1e7d79c676830fb"
       },
       {
         "path": "docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg",
@@ -635,17 +700,22 @@
       {
         "path": "docs/publication-index.json",
         "identity_mode": "content",
-        "sha256": "6186dca6384e202a2d405e210ede3620c6baf40e8aafe9571516654f35e2b124"
+        "sha256": "4228bd32ceebdcb926069a003929a265de9d3e3fec389410298a613fbc706953"
       },
       {
         "path": "docs/research.html",
         "identity_mode": "content",
-        "sha256": "56c05cb8640c4a22835ece766d5a0af9df30dd82323d444349bd057e2c3f4f43"
+        "sha256": "3c5030df8a9059bac1c6c99c808aec6e7360046a695d5db3085cfcc6d574376a"
       },
       {
         "path": "docs/runtime/1c34e64047482a214a50a115582adb08988fe8721f5ee651bd8a231a300e2cf7/analytics.js",
         "identity_mode": "content",
         "sha256": "1c34e64047482a214a50a115582adb08988fe8721f5ee651bd8a231a300e2cf7"
+      },
+      {
+        "path": "docs/runtime/1efe81f83421b13bec943f0d9600437dfa88cc526ca58bbecdc5006701f9f73b/analytics.js",
+        "identity_mode": "content",
+        "sha256": "1efe81f83421b13bec943f0d9600437dfa88cc526ca58bbecdc5006701f9f73b"
       },
       {
         "path": "docs/runtime/1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17/archive.js",
@@ -780,7 +850,7 @@
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "9c0ac067ae391481025940e88ee6b9ee698d91531c513cfa3f3bf5c639a7edd9"
+        "sha256": "d306e7a490a247cebe171cacea772eab0e6ac825d47f2dc4bfb750c41f2f08db"
       },
       {
         "path": "docs/snapshots/080da808855bdc7cac66970509a9a371a5033cb5d721a007a92632c826b2d06a/writing.html",
@@ -793,9 +863,9 @@
         "sha256": "05054fd2a4ca2aca6cd0d05717fe332cb95390720e1089331271ca62f3c53f4c"
       },
       {
-        "path": "docs/snapshots/1dec565a995bce7df7b4686345783dbdcb318bce063415b76ccc189ee53ac48d/research.html",
+        "path": "docs/snapshots/11ff71be7630ef7b5b29715831dfb376d8a925a7e5193042ec19c7239be05f5f/talks.html",
         "identity_mode": "content",
-        "sha256": "75a9514186b0dd4964770142663a7d524ba6994971267e9c9dbfecedbab4cd9c"
+        "sha256": "16a334a52657120ac53744f88062e06b534cb0d8fe5a4859074a581cb0f9ac81"
       },
       {
         "path": "docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e/talks.html",
@@ -803,9 +873,9 @@
         "sha256": "93c88b5f9c73e559b067866cb38eb604e93013c2225a06a36f96e8f215d397b3"
       },
       {
-        "path": "docs/snapshots/53f6d48944e9aa69eb142a141b71b8240678de858baf39dd671d37ab89c810ee/writing.html",
+        "path": "docs/snapshots/394c5aa159ca0c6a490744b034174295e6c5d1e673a5d47003c4639f9bea27f0/research.html",
         "identity_mode": "content",
-        "sha256": "2d2b52390c90c4b8d07324dc9794a0d5bb07021334a27ead05041fec813e08a9"
+        "sha256": "e9c6fd9f5992f7dbb3e4a08e92f564847829929d133430a70235513e2973a6ef"
       },
       {
         "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
@@ -823,6 +893,11 @@
         "sha256": "395fd7fcc670e0b7984ed05e7395958dd9432a701f3bfc43151fb956e6d289a1"
       },
       {
+        "path": "docs/snapshots/6b104d3068c3a8556df14c34fdbb5095f002b936950610c8135d75fd69878557/index.html",
+        "identity_mode": "content",
+        "sha256": "c921b89f6fdd49200c9072dcd2b4942a6993760ae431ffa5f9606ed229db6a02"
+      },
+      {
         "path": "docs/snapshots/7b62f25175a003a9fcc24f430e26ff321f267a8e77a28699984f86bf1dfdd3b6/research.html",
         "identity_mode": "content",
         "sha256": "9571a5ab146a9b4059e5601795c5e39b852c1adf6dfe598cd3306a77a761e60a"
@@ -831,11 +906,6 @@
         "path": "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html",
         "identity_mode": "content",
         "sha256": "e19095652eec29ccea5cb8ba5397356e998d2b15235b06486675b0fefd151c5d"
-      },
-      {
-        "path": "docs/snapshots/88e77996e06b9690170c7ffbf6e0f67808db8efb1016df13daec9368fe49c12b/credits.html",
-        "identity_mode": "content",
-        "sha256": "282b9c70fad460380d66cec51ae51fe7cf27288c94d943aee3940c2aa14dbe79"
       },
       {
         "path": "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html",
@@ -851,6 +921,11 @@
         "path": "docs/snapshots/95b57d8257b5ffb3f4b9924d90694110e982f7bdc9aecb6f09969d46b3a8b2e0/index.html",
         "identity_mode": "content",
         "sha256": "288f85a3b0bf82d69aceda049007063a6ebcde469eb345b8ddcec53cf96bd498"
+      },
+      {
+        "path": "docs/snapshots/a2d14f40e9da7f2d5d9106360ed2e4a0f379df002160cd0198782642168ced77/writing.html",
+        "identity_mode": "content",
+        "sha256": "3c04fef3c686dfba8b89d07526287bd2a66db9be1553d3c920045075d964d586"
       },
       {
         "path": "docs/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700/credits.html",
@@ -873,19 +948,14 @@
         "sha256": "e4bbf6e735ef6b9d3c89d7412e12a1288f2b73b9d47e3097c71419f518b29fd2"
       },
       {
+        "path": "docs/snapshots/c7055a3c76caf056ddcdcd414c853f12ccaacdd7e1ffab81e02b935434c5fd00/credits.html",
+        "identity_mode": "content",
+        "sha256": "ddb3afd82eeac9e360cb828feb9a5216eaa3f539540eac248819dffc0619fbba"
+      },
+      {
         "path": "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html",
         "identity_mode": "content",
         "sha256": "eef3b91329720bf60b4aaf9e08208bd9ce75790be77b21c2757638c7af7a6fb4"
-      },
-      {
-        "path": "docs/snapshots/d02fdf79996a4892b88ee648a8e511d6c6888de91fdbbc2bfffbddce2db61318/talks.html",
-        "identity_mode": "content",
-        "sha256": "6a9d9382caae6af5732b9f4c33fcf1c7900c62fa28de9165878bf2b800702446"
-      },
-      {
-        "path": "docs/snapshots/e4fee7668d8c81d71f295be466e8e4f188c9e66b52df78fc8efe1aafe8fa2289/index.html",
-        "identity_mode": "content",
-        "sha256": "d0f473e084e270298e7b72dbebc2e02ef2b5d20bc4291f094a5f379b1431b840"
       },
       {
         "path": "docs/space.js",
@@ -900,7 +970,7 @@
       {
         "path": "docs/talks.html",
         "identity_mode": "content",
-        "sha256": "b6baf1b0767b111b89f8e02adbbc19fb5f453f5ba25447788022788fbf701116"
+        "sha256": "401ed173a25f1971e53d5421263aff653c56f14d6b622d0d841d152c0f01b54d"
       },
       {
         "path": "docs/theme.js",
@@ -910,7 +980,7 @@
       {
         "path": "docs/writing.html",
         "identity_mode": "content",
-        "sha256": "623e6a709492dcc19aad7fe4d9dcd6e940fac8323564d5bb037f7c7f17f52181"
+        "sha256": "3949584c48f7f372b408ee71e5bcb806709c1f7ad3546dd13970c079f8e57d7c"
       },
       {
         "path": "drafts/medium-profile-revision-20261001.html",
@@ -930,7 +1000,7 @@
       {
         "path": "guides/ARTICLE-WORKFLOW.md",
         "identity_mode": "content",
-        "sha256": "3886f72a66f1f3d302de18cec8c8468a336a8e6055e04b64a40edac54fd889ed"
+        "sha256": "0f350171dd019e042663b7b10c0f3431b6a82b7488415fabbaae983ffe70e1d5"
       },
       {
         "path": "guides/BROWSER-ARCHIVES.md",
@@ -4826,6 +4896,11 @@
         "path": "review/issue-179/seo-producers.json",
         "identity_mode": "content",
         "sha256": "c4bc978ce7df48f3715843a3fe14d9b60f3429465e269d5b77b913ab4272f315"
+      },
+      {
+        "path": "review/issue-183/2026-11-13-migration.md",
+        "identity_mode": "content",
+        "sha256": "d20f464100eaba0f9a4500e52db9fde98825ffb23a937e33a708e3bd439e5e93"
       },
       {
         "path": "review/issue-184/2026-11-10-archive.md",
@@ -10423,6 +10498,61 @@
         "sha256": "ed2182751692a92b262ef7c806227583761d7b23099e1cd910a73e9509a85abf"
       },
       {
+        "path": "site/assets/publications/thinking-systems/cover-web.jpg",
+        "identity_mode": "content",
+        "sha256": "b68b465d8f611f72c8f4d9e95eaad457c1e40761154d90112ed128d7ecd47dd2"
+      },
+      {
+        "path": "site/assets/publications/thinking-systems/cover.png",
+        "identity_mode": "content",
+        "sha256": "87f06bee8063ca9d005058bd47d3be59bc79e7481e1fe0d756956bd9412b981a"
+      },
+      {
+        "path": "site/assets/publications/thinking-systems/diagram-1.png",
+        "identity_mode": "content",
+        "sha256": "a5b88567ab9f88387bc3337d9275430e0985a9af24f77bf7966c62686cd5b928"
+      },
+      {
+        "path": "site/assets/publications/thinking-systems/diagram-2.png",
+        "identity_mode": "content",
+        "sha256": "69333ef4b29e2e144cd9ba7da543518b6afcc63767deb3f46dc9c2fccdf5626a"
+      },
+      {
+        "path": "site/assets/publications/thinking-systems/diagram-3.png",
+        "identity_mode": "content",
+        "sha256": "9796217bfa2cf64b60e5dd43731f6a51a90b1eea194bd08677be347e1ffda6b4"
+      },
+      {
+        "path": "site/assets/publications/thinking-systems/diagram-4.png",
+        "identity_mode": "content",
+        "sha256": "18301c1cc462ca98c71d1f78ef5f5338f64c790c15dab83c4bfbed1efbb72879"
+      },
+      {
+        "path": "site/assets/publications/thinking-systems/diagram-5.png",
+        "identity_mode": "content",
+        "sha256": "1dd03a3b4c197de2a4fb3c16efe84447c9af28a8beb95ae12e103a97c11cd673"
+      },
+      {
+        "path": "site/assets/publications/thinking-systems/diagram-6.png",
+        "identity_mode": "content",
+        "sha256": "3e8366b96299273f7b1c3bd3f2c607609c7ad8e80af7323fe11bf96dd9c03f31"
+      },
+      {
+        "path": "site/assets/publications/thinking-systems/diagram-7.png",
+        "identity_mode": "content",
+        "sha256": "483fde803c1166001b695df3bdad12cb1c7333198e008a40ed61718bd8acb8fb"
+      },
+      {
+        "path": "site/assets/publications/thinking-systems/diagram-8a.png",
+        "identity_mode": "content",
+        "sha256": "81f8061d7b983e905adf265232610ceae471ebb43f04eebbdf66410d638471de"
+      },
+      {
+        "path": "site/assets/publications/thinking-systems/diagram-8b.png",
+        "identity_mode": "content",
+        "sha256": "9d2bcf0c057ae672cf4ef8c555a55b9df3c8a01663c5dfbcc94c16a6a74ae4eb"
+      },
+      {
         "path": "site/assets/vitalii-oborskyi-cutout.webp",
         "identity_mode": "content",
         "sha256": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae"
@@ -10440,12 +10570,12 @@
       {
         "path": "site/content/article-tags.json",
         "identity_mode": "content",
-        "sha256": "dc314dcdd2871ecc368dd014739dffc9767bc6767347133411f2d47e51c20a73"
+        "sha256": "4a51e5e66aff162ebb23d11eff46766868b9912a7dabf1baecec6a1ca5987d2c"
       },
       {
         "path": "site/content/catalog.json",
         "identity_mode": "content",
-        "sha256": "b864cb7ebf14a4b6627ba5025e90b9b0cbc5dd1e64e64e7786de5f0296769bea"
+        "sha256": "62a71d4fb402af51c9a04886c3b1d9c8d0a9b8c9b66287c8c1c1e15b8b84bfc7"
       },
       {
         "path": "site/content/events.json",
@@ -10500,7 +10630,7 @@
       {
         "path": "site/content/pages/index/research.json",
         "identity_mode": "content",
-        "sha256": "1001814d9961c0914cde787aa2c1e8f30b9bcd056d15cb0c5a882e5cef9aa01c"
+        "sha256": "663530affcf59c033a6b74308b9d34be3575d0d4b3fbdccb6332e8e6c2dad6f6"
       },
       {
         "path": "site/content/pages/index/writing.json",
@@ -10705,7 +10835,7 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "cbf8ceff6e01f29e0129be4ba6a1569bb660bc7f9fa968789d156283e9435f16"
+        "sha256": "94f9c79ddbd09ddf021204318d723bae468bd8be8d1612831fc042ce4cb2c393"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/blueprint.md",
@@ -11011,6 +11141,36 @@
         "path": "site/publications/sdlc-out-of-balance/publication.json",
         "identity_mode": "content",
         "sha256": "c407f6af816950460f32e4aeba1b7ef8bc41f2d0b40b13c299be8c33375b8ae6"
+      },
+      {
+        "path": "site/publications/thinking-systems/PROVENANCE.md",
+        "identity_mode": "content",
+        "sha256": "b3137963e89755700d1f24a4fa274b01480a6a7652737b39d1d3380757235785"
+      },
+      {
+        "path": "site/publications/thinking-systems/editions/thinking-systems-en-20260830.json",
+        "identity_mode": "content",
+        "sha256": "4da09040343831cb6e9f25ab357181404f08df10f4fe7f0dbde9750a717f7be7"
+      },
+      {
+        "path": "site/publications/thinking-systems/launch-post.en.md",
+        "identity_mode": "content",
+        "sha256": "d45748a7eddce0c434cb3ded67ceb81f349cd121fd1e5d7e775561c0c05113ce"
+      },
+      {
+        "path": "site/publications/thinking-systems/manuscript.en.md",
+        "identity_mode": "content",
+        "sha256": "80ba7d64b0cc53938d8fc377c3611d90152dc6f57e019fe78633801a412dc0cf"
+      },
+      {
+        "path": "site/publications/thinking-systems/profile.json",
+        "identity_mode": "content",
+        "sha256": "ffc24597b51b477b825e0d3cd679c70f8691a8e3848e24c9e7c569127a844ef2"
+      },
+      {
+        "path": "site/publications/thinking-systems/publication.json",
+        "identity_mode": "content",
+        "sha256": "844a20a98bc0f3a7e7fea6ff73bcd59bee133c9a2c77a045d9917765e9558a45"
       },
       {
         "path": "site/retained/article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292/systemic-response.webp",
@@ -11335,7 +11495,7 @@
       {
         "path": "site/rights.json",
         "identity_mode": "content",
-        "sha256": "a35057e5c074c2a3092db3627af58715b471283d227e1678e1ab0380f8fa7dcd"
+        "sha256": "ffe44be1542dc6f0a7001deb0819abe4164f649c1c21b4682e9bd9dcac76395e"
       },
       {
         "path": "site/routes.json",
@@ -11760,7 +11920,7 @@
       {
         "path": "tests/content.test.cjs",
         "identity_mode": "content",
-        "sha256": "0f9fbed2efdabbd3546865f4444c29245245c8ca6ce38e06c9ed772bb935c2cf"
+        "sha256": "ca33a6b88a13911a7c11094160655850844f56245d0dba0dd4318d2bca56b77b"
       },
       {
         "path": "tests/control-lock.test.cjs",
@@ -11820,7 +11980,7 @@
       {
         "path": "tests/fixtures/catalog.cjs",
         "identity_mode": "content",
-        "sha256": "dd59ed1c44c4d92838a6ae718af249820ae9c4c034163df8f61bbafc457037c0"
+        "sha256": "0b9199f02d59732cd0fd3e4427fca42c5b41e1e8dad393c7662dc4f4a6db04a0"
       },
       {
         "path": "tests/fixtures/delivery.cjs",
@@ -11905,7 +12065,7 @@
       {
         "path": "tests/local-catalog-relationships.test.cjs",
         "identity_mode": "content",
-        "sha256": "92ea9789ed73567e84c38e7d53cccaff18430e0f1bfbba2c1b9e22b69820c554"
+        "sha256": "6442a9554b3eda7d85f74a74e5a1bf2273175ee4d783c798daca490da1451947"
       },
       {
         "path": "tests/native-display.test.cjs",
@@ -12400,7 +12560,7 @@
       {
         "path": "tools/check_site_seo.cjs",
         "identity_mode": "content",
-        "sha256": "714a96826cc5008a64f1a55e87de473d8f7d2cd69adb5112424af5dfa69188d4"
+        "sha256": "47d1f48efadeb5983d3a7d8d54c4d6961f4a55f9cfaa16742b17eeb570474f97"
       },
       {
         "path": "tools/compact_site_recordings.cjs",
@@ -13355,7 +13515,7 @@
       {
         "path": "tools/site/render-records.cjs",
         "identity_mode": "content",
-        "sha256": "49528a2a5fe8d22eac7612e746cc4c20e99a7ebc4d9eb82bb84f9293543f2857"
+        "sha256": "66292bc2d0f4c012644064ead7857a5ea6cc1916d79ab064caca83f52c0e1dc1"
       },
       {
         "path": "tools/site/retain.cjs",
@@ -13395,7 +13555,7 @@
       {
         "path": "tools/site/validate-catalog.cjs",
         "identity_mode": "content",
-        "sha256": "79554634afc34ac491249624ffd8a5dc7b4db54a8f38703e2737655d180baa22"
+        "sha256": "4821be8aa58821b320fe673d7a3557645e4cb0b3df7b899a1a12fad6f7f4beb1"
       },
       {
         "path": "tools/site/variants.cjs",
@@ -14883,6 +15043,17 @@
       "title": "research-fallback.svg"
     },
     {
+      "path": "docs/article-media/1589356c855ad721e706cff069e147afd60cac49b225445f8e1010737da0a6fc/diagram-6.webp",
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-6.webp"
+    },
+    {
       "path": "docs/article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292/systemic-response.webp",
       "kind": "file",
       "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
@@ -14905,6 +15076,17 @@
       "title": "writing-fallback.svg"
     },
     {
+      "path": "docs/article-media/300fdfa774d4e768f36fc3e3d1f4f146b46ed41feead5d33db2316c9f3a3c06a/diagram-5.webp",
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-5.webp"
+    },
+    {
       "path": "docs/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3/imbalance-loop.webp",
       "kind": "file",
       "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
@@ -14916,6 +15098,28 @@
       "title": "imbalance-loop.webp"
     },
     {
+      "path": "docs/article-media/542383922d50b39015ac2e3553481e7237a91efae41d19be80a3ee564d039d43/diagram-7.webp",
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-7.webp"
+    },
+    {
+      "path": "docs/article-media/5552ab1fb02be8954586dccb7d92ffd5ab4a1df4fd0857de7133cfb98613af85/diagram-4.webp",
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-4.webp"
+    },
+    {
       "path": "docs/article-media/568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58/reading-r11.pdf",
       "kind": "file",
       "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
@@ -14925,6 +15129,17 @@
         "AGENTS.md"
       ],
       "title": "reading-r11.pdf"
+    },
+    {
+      "path": "docs/article-media/593e5212280ebabadb49ddc4c56e0bc4ba6908f659a9b466b462e7331680e27d/diagram-2.webp",
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-2.webp"
     },
     {
       "path": "docs/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c/reading.pdf",
@@ -14993,6 +15208,28 @@
       "title": "workstream-system.webp"
     },
     {
+      "path": "docs/article-media/9cc5b62810712f9988b2d05004700978d8886e7c7954d92d2317c8f9cc4ff719/diagram-8b.webp",
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-8b.webp"
+    },
+    {
+      "path": "docs/article-media/a187cf86739b2cc193cc9696e9884e2252c62b636ce262277c342371081eaa36/cover-social.jpg",
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover-social.jpg"
+    },
+    {
       "path": "docs/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a/review-learning-r7.webp",
       "kind": "file",
       "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
@@ -15002,6 +15239,39 @@
         "AGENTS.md"
       ],
       "title": "review-learning-r7.webp"
+    },
+    {
+      "path": "docs/article-media/a3e8b467f27cbc673040aea8b17d32371621ab367eef63804063198a9bf739a0/diagram-3.webp",
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-3.webp"
+    },
+    {
+      "path": "docs/article-media/b68b465d8f611f72c8f4d9e95eaad457c1e40761154d90112ed128d7ecd47dd2/cover.jpg",
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover.jpg"
+    },
+    {
+      "path": "docs/article-media/bb70b4d0907ed3672055b0aacd58ca6bb35ef9154aecfb151705de58127eb2ae/diagram-1.webp",
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-1.webp"
     },
     {
       "path": "docs/article-media/c3686dce007b399d3fb175d5b235a51b1000500a3e4bc6f024be9767bfb33996/reading-r12.pdf",
@@ -15024,6 +15294,17 @@
         "AGENTS.md"
       ],
       "title": "comprehension-gap-r7.webp"
+    },
+    {
+      "path": "docs/article-media/dfc1c0903c9baf02dec4e96b1d87a46cccbad3ee015e9d47a3d86c73d8fb29c0/diagram-8a.webp",
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-8a.webp"
     },
     {
       "path": "docs/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7/delivery-capacity-r6.webp",
@@ -15059,9 +15340,9 @@
       "title": "the-sdlc-is-out-of-balance.html"
     },
     {
-      "path": "docs/article-snapshots/a1fdf0fa8fab1f04e4cb78381489a1380bff2508b38f9d37b9a8bde8a11b26e1/the-sdlc-is-out-of-balance.html",
+      "path": "docs/article-snapshots/5dfe05ff47b5bf49db2832c5f418633d845428723ea4c3efcf0df41c63298ace/the-sdlc-is-out-of-balance.html",
       "kind": "file",
-      "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -15079,6 +15360,17 @@
         "AGENTS.md"
       ],
       "title": "the-sdlc-is-out-of-balance.html"
+    },
+    {
+      "path": "docs/article-snapshots/b22659f6f84c6bf7723e7b747239c9b0245371f7b3ffeacbfeb893303b1434bc/thinking-systems.html",
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "thinking-systems.html"
     },
     {
       "path": "docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/the-sdlc-is-out-of-balance.html",
@@ -15101,6 +15393,17 @@
         "AGENTS.md"
       ],
       "title": "the-sdlc-is-out-of-balance.html"
+    },
+    {
+      "path": "docs/articles/thinking-systems.html",
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "thinking-systems.html"
     },
     {
       "path": "docs/assets/favicon.svg",
@@ -15249,6 +15552,17 @@
       "path": "docs/runtime/1c34e64047482a214a50a115582adb08988fe8721f5ee651bd8a231a300e2cf7/analytics.js",
       "kind": "file",
       "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "analytics.js"
+    },
+    {
+      "path": "docs/runtime/1efe81f83421b13bec943f0d9600437dfa88cc526ca58bbecdc5006701f9f73b/analytics.js",
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -15576,15 +15890,15 @@
       "title": "talks.html"
     },
     {
-      "path": "docs/snapshots/1dec565a995bce7df7b4686345783dbdcb318bce063415b76ccc189ee53ac48d/research.html",
+      "path": "docs/snapshots/11ff71be7630ef7b5b29715831dfb376d8a925a7e5193042ec19c7239be05f5f/talks.html",
       "kind": "file",
-      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "research.html"
+      "title": "talks.html"
     },
     {
       "path": "docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e/talks.html",
@@ -15598,15 +15912,15 @@
       "title": "talks.html"
     },
     {
-      "path": "docs/snapshots/53f6d48944e9aa69eb142a141b71b8240678de858baf39dd671d37ab89c810ee/writing.html",
+      "path": "docs/snapshots/394c5aa159ca0c6a490744b034174295e6c5d1e673a5d47003c4639f9bea27f0/research.html",
       "kind": "file",
-      "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "writing.html"
+      "title": "research.html"
     },
     {
       "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
@@ -15642,6 +15956,17 @@
       "title": "research.html"
     },
     {
+      "path": "docs/snapshots/6b104d3068c3a8556df14c34fdbb5095f002b936950610c8135d75fd69878557/index.html",
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index.html"
+    },
+    {
       "path": "docs/snapshots/7b62f25175a003a9fcc24f430e26ff321f267a8e77a28699984f86bf1dfdd3b6/research.html",
       "kind": "file",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
@@ -15662,17 +15987,6 @@
         "AGENTS.md"
       ],
       "title": "talks.html"
-    },
-    {
-      "path": "docs/snapshots/88e77996e06b9690170c7ffbf6e0f67808db8efb1016df13daec9368fe49c12b/credits.html",
-      "kind": "file",
-      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "credits.html"
     },
     {
       "path": "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html",
@@ -15706,6 +16020,17 @@
         "AGENTS.md"
       ],
       "title": "index.html"
+    },
+    {
+      "path": "docs/snapshots/a2d14f40e9da7f2d5d9106360ed2e4a0f379df002160cd0198782642168ced77/writing.html",
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "writing.html"
     },
     {
       "path": "docs/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700/credits.html",
@@ -15752,6 +16077,17 @@
       "title": "index.html"
     },
     {
+      "path": "docs/snapshots/c7055a3c76caf056ddcdcd414c853f12ccaacdd7e1ffab81e02b935434c5fd00/credits.html",
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "credits.html"
+    },
+    {
       "path": "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html",
       "kind": "file",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
@@ -15761,28 +16097,6 @@
         "AGENTS.md"
       ],
       "title": "writing.html"
-    },
-    {
-      "path": "docs/snapshots/d02fdf79996a4892b88ee648a8e511d6c6888de91fdbbc2bfffbddce2db61318/talks.html",
-      "kind": "file",
-      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "talks.html"
-    },
-    {
-      "path": "docs/snapshots/e4fee7668d8c81d71f295be466e8e4f188c9e66b52df78fc8efe1aafe8fa2289/index.html",
-      "kind": "file",
-      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "index.html"
     },
     {
       "path": "docs/space.js",
@@ -24451,6 +24765,17 @@
         "AGENTS.md"
       ],
       "title": "seo-producers.json"
+    },
+    {
+      "path": "review/issue-183/2026-11-13-migration.md",
+      "kind": "file",
+      "purpose": "Source reconciliation and exact-preview evidence for issue 183.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 183 — Thinking Systems migration checkpoint"
     },
     {
       "path": "review/issue-184/2026-11-10-archive.md",
@@ -36762,6 +37087,127 @@
       "title": "workstream-system.png"
     },
     {
+      "path": "site/assets/publications/thinking-systems/cover-web.jpg",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover-web.jpg"
+    },
+    {
+      "path": "site/assets/publications/thinking-systems/cover.png",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover.png"
+    },
+    {
+      "path": "site/assets/publications/thinking-systems/diagram-1.png",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-1.png"
+    },
+    {
+      "path": "site/assets/publications/thinking-systems/diagram-2.png",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-2.png"
+    },
+    {
+      "path": "site/assets/publications/thinking-systems/diagram-3.png",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-3.png"
+    },
+    {
+      "path": "site/assets/publications/thinking-systems/diagram-4.png",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-4.png"
+    },
+    {
+      "path": "site/assets/publications/thinking-systems/diagram-5.png",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-5.png"
+    },
+    {
+      "path": "site/assets/publications/thinking-systems/diagram-6.png",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-6.png"
+    },
+    {
+      "path": "site/assets/publications/thinking-systems/diagram-7.png",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-7.png"
+    },
+    {
+      "path": "site/assets/publications/thinking-systems/diagram-8a.png",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-8a.png"
+    },
+    {
+      "path": "site/assets/publications/thinking-systems/diagram-8b.png",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-8b.png"
+    },
+    {
       "path": "site/assets/vitalii-oborskyi-cutout.webp",
       "kind": "file",
       "purpose": "Authored cutout author portrait used by the site.",
@@ -38052,6 +38498,72 @@
       "path": "site/publications/sdlc-out-of-balance/publication.json",
       "kind": "file",
       "purpose": "Current accepted R9 native source, semantic/profile/material inputs and hero plus four figures.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "publication.json"
+    },
+    {
+      "path": "site/publications/thinking-systems/PROVENANCE.md",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Thinking Systems source and rights"
+    },
+    {
+      "path": "site/publications/thinking-systems/editions/thinking-systems-en-20260830.json",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "thinking-systems-en-20260830.json"
+    },
+    {
+      "path": "site/publications/thinking-systems/launch-post.en.md",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Thinking Systems"
+    },
+    {
+      "path": "site/publications/thinking-systems/manuscript.en.md",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Uncertainty Architecture: Thinking Systems, When the Controlled Object Changes"
+    },
+    {
+      "path": "site/publications/thinking-systems/profile.json",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "profile.json"
+    },
+    {
+      "path": "site/publications/thinking-systems/publication.json",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md",
       "instructions": [
@@ -43559,6 +44071,16 @@
       ]
     },
     {
+      "path": "docs/article-media/1589356c855ad721e706cff069e147afd60cac49b225445f8e1010737da0a6fc",
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292",
       "kind": "directory",
       "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
@@ -43579,6 +44101,16 @@
       ]
     },
     {
+      "path": "docs/article-media/300fdfa774d4e768f36fc3e3d1f4f146b46ed41feead5d33db2316c9f3a3c06a",
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3",
       "kind": "directory",
       "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
@@ -43589,9 +44121,39 @@
       ]
     },
     {
+      "path": "docs/article-media/542383922d50b39015ac2e3553481e7237a91efae41d19be80a3ee564d039d43",
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/5552ab1fb02be8954586dccb7d92ffd5ab4a1df4fd0857de7133cfb98613af85",
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/article-media/568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58",
       "kind": "directory",
       "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/593e5212280ebabadb49ddc4c56e0bc4ba6908f659a9b466b462e7331680e27d",
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -43649,9 +44211,59 @@
       ]
     },
     {
+      "path": "docs/article-media/9cc5b62810712f9988b2d05004700978d8886e7c7954d92d2317c8f9cc4ff719",
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/a187cf86739b2cc193cc9696e9884e2252c62b636ce262277c342371081eaa36",
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a",
       "kind": "directory",
       "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/a3e8b467f27cbc673040aea8b17d32371621ab367eef63804063198a9bf739a0",
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/b68b465d8f611f72c8f4d9e95eaad457c1e40761154d90112ed128d7ecd47dd2",
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/bb70b4d0907ed3672055b0aacd58ca6bb35ef9154aecfb151705de58127eb2ae",
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -43672,6 +44284,16 @@
       "path": "docs/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551",
       "kind": "directory",
       "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/dfc1c0903c9baf02dec4e96b1d87a46cccbad3ee015e9d47a3d86c73d8fb29c0",
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -43719,9 +44341,9 @@
       ]
     },
     {
-      "path": "docs/article-snapshots/a1fdf0fa8fab1f04e4cb78381489a1380bff2508b38f9d37b9a8bde8a11b26e1",
+      "path": "docs/article-snapshots/5dfe05ff47b5bf49db2832c5f418633d845428723ea4c3efcf0df41c63298ace",
       "kind": "directory",
-      "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -43732,6 +44354,16 @@
       "path": "docs/article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995",
       "kind": "directory",
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-snapshots/b22659f6f84c6bf7723e7b747239c9b0245371f7b3ffeacbfeb893303b1434bc",
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -43802,6 +44434,16 @@
       "path": "docs/runtime/1c34e64047482a214a50a115582adb08988fe8721f5ee651bd8a231a300e2cf7",
       "kind": "directory",
       "purpose": "Generated article analytics route/runtime output; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/runtime/1efe81f83421b13bec943f0d9600437dfa88cc526ca58bbecdc5006701f9f73b",
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -43899,9 +44541,9 @@
       ]
     },
     {
-      "path": "docs/snapshots/1dec565a995bce7df7b4686345783dbdcb318bce063415b76ccc189ee53ac48d",
+      "path": "docs/snapshots/11ff71be7630ef7b5b29715831dfb376d8a925a7e5193042ec19c7239be05f5f",
       "kind": "directory",
-      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -43919,9 +44561,9 @@
       ]
     },
     {
-      "path": "docs/snapshots/53f6d48944e9aa69eb142a141b71b8240678de858baf39dd671d37ab89c810ee",
+      "path": "docs/snapshots/394c5aa159ca0c6a490744b034174295e6c5d1e673a5d47003c4639f9bea27f0",
       "kind": "directory",
-      "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -43959,6 +44601,16 @@
       ]
     },
     {
+      "path": "docs/snapshots/6b104d3068c3a8556df14c34fdbb5095f002b936950610c8135d75fd69878557",
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/snapshots/7b62f25175a003a9fcc24f430e26ff321f267a8e77a28699984f86bf1dfdd3b6",
       "kind": "directory",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
@@ -43972,16 +44624,6 @@
       "path": "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa",
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/88e77996e06b9690170c7ffbf6e0f67808db8efb1016df13daec9368fe49c12b",
-      "kind": "directory",
-      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -44012,6 +44654,16 @@
       "path": "docs/snapshots/95b57d8257b5ffb3f4b9924d90694110e982f7bdc9aecb6f09969d46b3a8b2e0",
       "kind": "directory",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/a2d14f40e9da7f2d5d9106360ed2e4a0f379df002160cd0198782642168ced77",
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -44059,29 +44711,19 @@
       ]
     },
     {
+      "path": "docs/snapshots/c7055a3c76caf056ddcdcd414c853f12ccaacdd7e1ffab81e02b935434c5fd00",
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647",
       "kind": "directory",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/d02fdf79996a4892b88ee648a8e511d6c6888de91fdbbc2bfffbddce2db61318",
-      "kind": "directory",
-      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/e4fee7668d8c81d71f295be466e8e4f188c9e66b52df78fc8efe1aafe8fa2289",
-      "kind": "directory",
-      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -44472,6 +45114,16 @@
       "path": "review/issue-179",
       "kind": "directory",
       "purpose": "Issue179 source-bound social preview intent, requirements and implementation/test-impact evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-183",
+      "kind": "directory",
+      "purpose": "Source reconciliation and exact-preview evidence for issue 183.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -45369,6 +46021,16 @@
       ]
     },
     {
+      "path": "site/assets/publications/thinking-systems",
+      "kind": "directory",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "site/content",
       "kind": "directory",
       "purpose": "Canonical publication/catalog and bounded context-typed prose, labels, URLs and page composition inputs.",
@@ -45612,6 +46274,26 @@
       "path": "site/publications/sdlc-out-of-balance/materials/reviews",
       "kind": "directory",
       "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/thinking-systems",
+      "kind": "directory",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/thinking-systems/editions",
+      "kind": "directory",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md",
       "instructions": [

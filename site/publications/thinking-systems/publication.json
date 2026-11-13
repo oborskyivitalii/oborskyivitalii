@@ -1,0 +1,231 @@
+{
+  "schema": 1,
+  "id": "thinking-systems",
+  "slug": "thinking-systems",
+  "title": "Uncertainty Architecture: Thinking Systems, When the Controlled Object Changes",
+  "summary": "Why probabilistic Model Judgment changes the engineering object, and why control becomes socio-technical.",
+  "authors": [
+    {
+      "name": "Vitalii Oborskyi",
+      "url": "https://vitaliioborskyi.ai/"
+    }
+  ],
+  "language": "en",
+  "topic": "AI systems architecture",
+  "owner": {
+    "repository": "oborskyivitalii/oborskyivitalii",
+    "path": "site/publications/thinking-systems"
+  },
+  "status": "accepted",
+  "source": "manuscript.en.md",
+  "edition": "thinking-systems-en-20260830",
+  "rights": {
+    "status": "accepted",
+    "notice": "Vitalii Oborskyi, Uncertainty Architecture. The original article text and publication artwork are licensed under CC BY 4.0. The author-site edition preserves the 30 August 2026 Generative AI text as a dated research snapshot, with native reader formatting, image credits and a source-edition note. Linked external material retains its own terms.",
+    "references": [
+      "https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db",
+      "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/7f0a40c88b9ccd798a8ef6259e19ebd99572f2ca/LICENSING.md",
+      "https://creativecommons.org/licenses/by/4.0/",
+      "https://github.com/oborskyivitalii/oborskyivitalii/issues/183"
+    ]
+  },
+  "references": [
+    {
+      "id": "source-1",
+      "url": "https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db"
+    },
+    {
+      "id": "source-2",
+      "url": "https://www.linkedin.com/pulse/thinking-systems-when-controlled-object-changes-vitalii-oborskyi-6k4we"
+    },
+    {
+      "id": "source-3",
+      "url": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/00-doctrine/glossary.md"
+    },
+    {
+      "id": "source-4",
+      "url": "https://www.iso.org/standard/79016.html"
+    },
+    {
+      "id": "source-5",
+      "url": "https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10"
+    },
+    {
+      "id": "source-6",
+      "url": "https://mitpress.mit.edu/9780262533690/engineering-a-safer-world/"
+    },
+    {
+      "id": "source-7",
+      "url": "https://psas.scripts.mit.edu/home/get_file.php?name=STPA_handbook.pdf"
+    },
+    {
+      "id": "source-8",
+      "url": "https://www.sei.cmu.edu/library/an-architectural-description-of-the-simplex-architecture/"
+    },
+    {
+      "id": "source-9",
+      "url": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/7f0a40c88b9ccd798a8ef6259e19ebd99572f2ca/content/research/notes/open-engineering-specification-article-draft.md"
+    },
+    {
+      "id": "source-10",
+      "url": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/7f0a40c88b9ccd798a8ef6259e19ebd99572f2ca/content/research/notes/open-engineering-specification-article-blueprint.md"
+    },
+    {
+      "id": "source-11",
+      "url": "https://www.linkedin.com/posts/arkadiydobkin_from-fall-to-rise-activity-7477593508879724544-8-ZL"
+    },
+    {
+      "id": "source-12",
+      "url": "https://www.linkedin.com/in/vitaliioborskyi/"
+    },
+    {
+      "id": "source-13",
+      "url": "https://www.linkedin.com/pulse/architecting-uncertainty-modern-guide-llm-based-vitalii-oborskyi-0qecf/"
+    },
+    {
+      "id": "source-14",
+      "url": "https://www.linkedin.com/pulse/uncertainty-architecture-modern-approach-designing-llm-oborskyi-keqbf/"
+    },
+    {
+      "id": "source-15",
+      "url": "https://www.linkedin.com/pulse/uncertainty-architecture-why-ai-governance-actually-control-oborskyi-oqhpf/"
+    },
+    {
+      "id": "source-16",
+      "url": "https://www.linkedin.com/pulse/ai-externalization-reasoning-verification-crisis-vitalii-oborskyi-ihzwe"
+    },
+    {
+      "id": "source-17",
+      "url": "https://www.linkedin.com/pulse/reinventing-control-theory-one-feature-time-fallacy-agentic-oborskyi-vkwve"
+    },
+    {
+      "id": "source-18",
+      "url": "https://www.linkedin.com/pulse/uncertainty-architecture-beyond-embeddings-semantic-oborskyi-1seuf"
+    },
+    {
+      "id": "source-19",
+      "url": "https://www.linkedin.com/in/vitaliioborskyi/recent-activity/articles/"
+    },
+    {
+      "id": "source-20",
+      "url": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture"
+    },
+    {
+      "id": "source-21",
+      "url": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/7f0a40c88b9ccd798a8ef6259e19ebd99572f2ca/content/research/notes/thinking-systems-publication-draft.md"
+    }
+  ],
+  "assets": [
+    {
+      "id": "cover",
+      "path": "site/assets/publications/thinking-systems/cover.png",
+      "sha256": "87f06bee8063ca9d005058bd47d3be59bc79e7481e1fe0d756956bd9412b981a",
+      "width": 1600,
+      "height": 840,
+      "alt": "Thinking Systems publication cover.",
+      "caption": "Uncertainty Architecture: Thinking Systems, When the Controlled Object Changes",
+      "credit": "Original Uncertainty Architecture publication artwork by Vitalii Oborskyi, CC BY 4.0.",
+      "reviewNote": "Web PNG is the exact decoded RGB copy of the bounded JPEG derived from the original Medium publication cover."
+    },
+    {
+      "id": "diagram-1",
+      "path": "site/assets/publications/thinking-systems/diagram-1.png",
+      "sha256": "a5b88567ab9f88387bc3337d9275430e0985a9af24f77bf7966c62686cd5b928",
+      "width": 1600,
+      "height": 316,
+      "alt": "Four connected boxes show plan-driven engineering, iterative delivery, modern operations, and Thinking-System engineering as responses to uncertainty moving closer to runtime and into the controlled object.",
+      "caption": "Figure 1 — Engineering expands its feedback model as consequential uncertainty moves closer to runtime and eventually enters the controlled object. The current definition is written without an LLM-only condition, but whether fixed learned probabilistic systems and runtime judgment processes belong to one engineering category remains under validation. This transition therefore does not establish which earlier systems satisfy the category or how prevalent they were. LLMs and other general-purpose models make runtime model-mediated judgment substantially easier to instantiate across ordinary software. Waterfall, Agile, and DevOps are shown as familiar examples of broader engineering responses. The progression is conceptual, not a replacement history.",
+      "credit": "Original Uncertainty Architecture publication artwork by Vitalii Oborskyi, CC BY 4.0."
+    },
+    {
+      "id": "diagram-2",
+      "path": "site/assets/publications/thinking-systems/diagram-2.png",
+      "sha256": "69333ef4b29e2e144cd9ba7da543518b6afcc63767deb3f46dc9c2fccdf5626a",
+      "width": 2400,
+      "height": 3040,
+      "alt": "A decision tree asks whether any Consequential Runtime Responsibility depends partly on probabilistic Model Judgment; orchestration topology, autonomy, and delegated authority are shown as independent dimensions.",
+      "caption": "Figure 2 — Thinking-System classification turns on whether a Consequential Runtime Responsibility depends partly on probabilistic Model Judgment, not workflow topology or autonomy. Fixed and dynamic workflows can fall on either side of the category boundary.",
+      "credit": "Original Uncertainty Architecture publication artwork by Vitalii Oborskyi, CC BY 4.0."
+    },
+    {
+      "id": "diagram-3",
+      "path": "site/assets/publications/thinking-systems/diagram-3.png",
+      "sha256": "9796217bfa2cf64b60e5dd43731f6a51a90b1eea194bd08677be347e1ffda6b4",
+      "width": 2400,
+      "height": 1183,
+      "alt": "Side-by-side top-down responsibility structures compare Explicitly Authored Software with the motivating runtime-judgment class, where explicitly authored responsibilities remain while one or more Judgment Nodes leave part of a consequential responsibility unresolved until operation.",
+      "caption": "Figure 3 — The controlled-object shift for the motivating class. Explicitly authored responsibilities remain part of the system while Model Judgment leaves part of a Consequential Runtime Responsibility unresolved until operation, so part of the consequential mapping is completed at runtime. The figure does not resolve whether fixed learned probabilistic functions with a release-time-determined mapping belong to the broader Thinking-System category. The vertical paths are schematic responsibility relationships, not a prescribed execution topology. Red marks only the Judgment Node where the responsibility structure changes; it does not imply that the whole system is probabilistic, unsafe, or erroneous.",
+      "credit": "Original Uncertainty Architecture publication artwork by Vitalii Oborskyi, CC BY 4.0."
+    },
+    {
+      "id": "diagram-4",
+      "path": "site/assets/publications/thinking-systems/diagram-4.png",
+      "sha256": "18301c1cc462ca98c71d1f78ef5f5338f64c790c15dab83c4bfbed1efbb72879",
+      "width": 1600,
+      "height": 400,
+      "alt": "Model Judgment branches into three non-sequential functional placements: Input Interpretation, Decision Logic, and Output Mediation.",
+      "caption": "Figure 4 — Functional placement of Model Judgment. Model Judgment is the parent concept; Input Interpretation, Decision Logic, and Output Mediation are functional placements beneath it. They are not mandatory stages or a prescribed execution order.",
+      "credit": "Original Uncertainty Architecture publication artwork by Vitalii Oborskyi, CC BY 4.0."
+    },
+    {
+      "id": "diagram-5",
+      "path": "site/assets/publications/thinking-systems/diagram-5.png",
+      "sha256": "1dd03a3b4c197de2a4fb3c16efe84447c9af28a8beb95ae12e103a97c11cd673",
+      "width": 1600,
+      "height": 1218,
+      "alt": "Product and requirement uncertainty, environment and operational uncertainty, and runtime-judgment uncertainty converge on one controlled system.",
+      "caption": "Figure 5 — Three connected uncertainty locations. Product and requirement uncertainty, environment and operational uncertainty, and runtime-judgment uncertainty coexist. Product methods, deterministic software engineering, DevOps, resilience, security, and incident response remain necessary; Thinking-System engineering adds explicit treatment of uncertainty produced through runtime judgment inside the controlled object.",
+      "credit": "Original Uncertainty Architecture publication artwork by Vitalii Oborskyi, CC BY 4.0."
+    },
+    {
+      "id": "diagram-6",
+      "path": "site/assets/publications/thinking-systems/diagram-6.png",
+      "sha256": "3e8366b96299273f7b1c3bd3f2c607609c7ad8e80af7323fe11bf96dd9c03f31",
+      "width": 1600,
+      "height": 150,
+      "alt": "A closed feedback loop connects the controlled process to Sensors, a Controller or decision function, an authorized Actuator, and changed operation.",
+      "caption": "Figure 6 — A closed feedback loop. Evidence reaches a Controller / decision function and an authorized action changes the controlled process. Decision authority comes from the applicable authorized decision boundary; the Controller operates within that boundary rather than constituting its source. The figure deliberately does not yet claim that the loop operates inside a legitimate or adequately realized boundary.",
+      "credit": "Original Uncertainty Architecture publication artwork by Vitalii Oborskyi, CC BY 4.0."
+    },
+    {
+      "id": "diagram-7",
+      "path": "site/assets/publications/thinking-systems/diagram-7.png",
+      "sha256": "483fde803c1166001b695df3bdad12cb1c7333198e008a40ed61718bd8acb8fb",
+      "width": 2400,
+      "height": 332,
+      "alt": "A complete bounded control architecture adds authoritative Constraints and realizations to Sensors, Controllers, Actuators, and the controlled process.",
+      "caption": "Figure 7 — Complete bounded control architecture. The four capability families are logical functions, not mandatory services, products, teams, layers, or one execution order. Realizations may act before, during, or after Model Judgment; Controllers and Actuators may be synchronous or asynchronous; one component may perform several functions.",
+      "credit": "Original Uncertainty Architecture publication artwork by Vitalii Oborskyi, CC BY 4.0."
+    },
+    {
+      "id": "diagram-8a",
+      "path": "site/assets/publications/thinking-systems/diagram-8a.png",
+      "sha256": "81f8061d7b983e905adf265232610ceae471ebb43f04eebbdf66410d638471de",
+      "width": 3200,
+      "height": 2103,
+      "alt": "The decision-ownership model separates the normal authorization path, reserved or changed Organizational basis decisions, and reassessment evidence across Organization, Project or Architecture, Delivery, and Runtime.",
+      "caption": "Figure 8A — Decision ownership and reassessment.",
+      "credit": "Original Uncertainty Architecture publication artwork by Vitalii Oborskyi, CC BY 4.0."
+    },
+    {
+      "id": "diagram-8b",
+      "path": "site/assets/publications/thinking-systems/diagram-8b.png",
+      "sha256": "9d2bcf0c057ae672cf4ef8c555a55b9df3c8a01663c5dfbcc94c16a6a74ae4eb",
+      "width": 2400,
+      "height": 2088,
+      "alt": "The capability-family model lists Actuators, Constraints and realizations, Sensors and evidence, and Controllers or decision functions as orthogonal to every decision horizon.",
+      "caption": "Figure 8 — Two orthogonal models. The left side preserves the decision semantics of the living manuscript: initial assessment eligibility is distinct from a later specific Bounded Research Authorization; Project / Architecture owns technical/design selection and category confirmation inside the standing Organizational basis; Organization is reactivated only when its business, authority, investment basis, or an initiative-level reserved-boundary research or continuation decision is implicated; research-only and production-capable Project Authorization remain distinct scoped forms and may coexist only under explicit scope, precedence, and interaction semantics; Delivery and Runtime reassessment evidence returns to Delivery or Project according to the decision basis it challenges; and exogenous Organizational change activates Organization independently. The green side is the capability anatomy. Controllers, Sensors, Constraints, and Actuators are stacked vertically and connected with non-directional lines to show that they belong to one control architecture; the vertical order is a reading aid, not an execution sequence. There is no one-to-one mapping between horizons and capability families.",
+      "credit": "Original Uncertainty Architecture publication artwork by Vitalii Oborskyi, CC BY 4.0."
+    }
+  ],
+  "platforms": {
+    "linkedin": {
+      "mode": "equivalent-rendition"
+    },
+    "medium": {
+      "mode": "equivalent-rendition"
+    }
+  },
+  "canonical": null,
+  "profile": "profile.json"
+}

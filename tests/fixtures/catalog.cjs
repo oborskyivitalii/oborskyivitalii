@@ -67,9 +67,31 @@ function isolatePublicationCatalog(root, sourceRoot) {
     fs.mkdirSync(path.dirname(destination), { recursive: true });
     fs.copyFileSync(path.join(sourceRoot, relative), destination);
   }
+  const legacy = legacyCatalog(sourceRoot);
+  const current = require('../../tools/site/content.cjs').catalog(sourceRoot);
+  const homeResearch = path.join(root, 'site/content/pages/index/research.json');
+  if (fs.existsSync(homeResearch)) {
+    const data = JSON.parse(fs.readFileSync(homeResearch));
+    for (const key of Object.keys(data.urls)) {
+      const match = Object.keys(legacy.records).find(
+        (id) => current.records[id]?.article && current.records[id].edition.url === data.urls[key]
+      );
+      if (match) data.urls[key] = legacy.records[match].edition.url;
+    }
+    fs.writeFileSync(homeResearch, JSON.stringify(data, null, 2) + '\n');
+  }
+  const tagFile = path.join(root, 'site/content/article-tags.json');
+  if (fs.existsSync(tagFile)) {
+    const tags = JSON.parse(fs.readFileSync(tagFile));
+    for (const id of Object.keys(legacy.records)) {
+      const article = current.records[id]?.article;
+      if (article) tags.records[id] = tags.articles[article];
+    }
+    fs.writeFileSync(tagFile, JSON.stringify(tags, null, 2) + '\n');
+  }
   fs.writeFileSync(
     path.join(root, 'site/content/catalog.json'),
-    JSON.stringify(legacyCatalog(sourceRoot), null, 2) + '\n'
+    JSON.stringify(legacy, null, 2) + '\n'
   );
 }
 

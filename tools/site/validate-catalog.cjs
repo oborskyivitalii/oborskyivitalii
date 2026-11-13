@@ -39,6 +39,47 @@ function validateEdition(edition, id, localURL = false, localRecord = false) {
 const localId = /^[a-z][a-z0-9-]{0,79}$/;
 const sourceDigest = /^[a-f0-9]{64}$/;
 const localRelationships = ['equivalent-rendition', 'authored-adaptation', 'translation'];
+const historicalRelationship = 'same-topic-platform-edition';
+const platformHosts = {
+  Medium: ['medium.com', 'aiadvances.org', 'generativeai.pub'],
+  LinkedIn: ['linkedin.com'],
+};
+
+function platformURL(url, platform) {
+  const { hostname, port } = new URL(url);
+  return (
+    !port &&
+    Object.hasOwn(platformHosts, platform) &&
+    platformHosts[platform].some((domain) => hostname === domain || hostname.endsWith('.' + domain))
+  );
+}
+
+function validateHistoricalEdition(edition, record) {
+  localFields(
+    edition,
+    [
+      '@type',
+      'name',
+      'url',
+      'inLanguage',
+      'author',
+      'datePublished',
+      'platform',
+      'relationship',
+      'bodyEquivalenceVerified',
+    ],
+    'historical platform edition'
+  );
+  if (
+    (edition['@type'] !== undefined && edition['@type'] !== 'Article') ||
+    edition.inLanguage !== record.edition.inLanguage ||
+    edition.bodyEquivalenceVerified !== false ||
+    !platformURL(edition.url, edition.platform)
+  )
+    throw Error('Invalid historical platform edition');
+  validateDate(edition.datePublished);
+  localAuthors(edition.author);
+}
 
 function localFields(value, fields, context) {
   if (
@@ -121,6 +162,10 @@ function validateBodyEquivalence(edition) {
 }
 
 function validateLocalEdition(edition, record, primary) {
+  if (!primary && edition.relationship === historicalRelationship) {
+    validateHistoricalEdition(edition, record);
+    return;
+  }
   localFields(
     edition,
     [
@@ -175,7 +220,10 @@ function validateLocalEdition(edition, record, primary) {
 }
 function archiveYear(record) {
   const date = record.edition.datePublished || record.edition.dateModified;
-  return date ? date.slice(0, 4) : record.presentation.archiveYear || 'undated';
+  const year = record.presentation.archiveYear;
+  if (year && record.editions.some((edition) => edition.relationship === historicalRelationship))
+    return year;
+  return date ? date.slice(0, 4) : year || 'undated';
 }
 
 function writingEntries(c) {
@@ -414,7 +462,7 @@ function validateEditionRelationship(c, record, edition, local) {
     return;
   }
   validateLocalEdition(edition, record, primary);
-  if (primary) return;
+  if (primary || edition.relationship === historicalRelationship) return;
   if (
     !Object.hasOwn(c.labels, 'edition.relationship.' + edition.relationship) ||
     ((edition.datePublished || edition.dateModified) &&
@@ -454,21 +502,13 @@ function validatePlatformLinks(record, urls) {
   )
     throw Error('Invalid local platform link inventory');
   const platforms = new Set();
-  const hosts = {
-    Medium: ['medium.com', 'aiadvances.org'],
-    LinkedIn: ['linkedin.com'],
-  };
   for (const link of record.platformLinks) {
     localFields(link, ['platform', 'url'], 'platform link');
     if (typeof link.platform !== 'string' || typeof link.url !== 'string' || link.url.length > 2500)
       throw Error('Invalid local platform link URL');
     const url = editionURL(link.url);
-    const parsed = new URL(url);
-    const host = parsed.hostname;
     if (
-      !Object.hasOwn(hosts, link.platform) ||
-      !hosts[link.platform]?.some((domain) => host === domain || host.endsWith('.' + domain)) ||
-      parsed.port ||
+      !platformURL(url, link.platform) ||
       [...link.url].some((char) => char.charCodeAt(0) < 32 || char.charCodeAt(0) === 127) ||
       platforms.has(link.platform) ||
       urls.has(url)
@@ -645,7 +685,13 @@ function validateLocalCatalog(c, resolveArticle) {
   for (const record of records) {
     const article = selectedArticle(resolveArticle, record.article);
     validateLocalPrimary(record, article);
-    for (const edition of record.editions) validateLocalAlternate(edition, article, resolveArticle);
+    for (const edition of record.editions) {
+      if (edition.relationship === historicalRelationship) {
+        validateSourceAuthors(edition, article);
+      } else {
+        validateLocalAlternate(edition, article, resolveArticle);
+      }
+    }
   }
   return c;
 }
