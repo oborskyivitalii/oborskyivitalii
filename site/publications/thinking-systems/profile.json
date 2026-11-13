@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "id": "thinking-systems",
+  "platforms": {
+    "linkedin": {
+      "formats": [
+        "html",
+        "md",
+        "txt",
+        "copy-ready"
+      ],
+      "relationship": "equivalent-rendition"
+    },
+    "medium": {
+      "formats": [
+        "html",
+        "md",
+        "txt",
+        "copy-ready"
+      ],
+      "relationship": "equivalent-rendition"
+    }
+  },
+  "launch": {
+    "source": "launch-post.en.md",
+    "sha256": "d45748a7eddce0c434cb3ded67ceb81f349cd121fd1e5d7e775561c0c05113ce"
+  },
+  "seo": {
+    "title": "Uncertainty Architecture: Thinking Systems, When the Controlled Object Changes",
+    "summary": "Why probabilistic Model Judgment changes the engineering object, and why control becomes socio-technical."
+  },
+  "assets": {
+    "cover": {
+      "id": "cover"
+    },
+    "hero": {
+      "id": "cover"
+    }
+  },
+  "limits": {},
+  "reader": {
+    "references": "inline",
+    "images": "webp-lossless",
+    "equivalentImages": {
+      "cover": {
+        "path": "site/assets/publications/thinking-systems/cover-web.jpg",
+        "sha256": "b68b465d8f611f72c8f4d9e95eaad457c1e40761154d90112ed128d7ecd47dd2"
+      }
+    }
+  }
+}

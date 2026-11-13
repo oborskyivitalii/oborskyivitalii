@@ -72,7 +72,8 @@
         "LICENSE-CONTENT.md",
         "NOTICE.md",
         "guides/SITE-SOURCE-AUDIT.md",
-        "site/publications/sdlc-out-of-balance/PROVENANCE.md"
+        "site/publications/sdlc-out-of-balance/PROVENANCE.md",
+        "review/issue-183/2026-11-13-migration.md"
       ],
       "scope": "Original website editorial text and new original author-owned hosted article text unless an edition states otherwise. No retrospective blanket grant for externally linked publications or third-party quotations."
     },
@@ -134,6 +135,50 @@
     }
   ],
   "assets": {
+    "publications/thinking-systems/cover-web.jpg": {
+      "sha256": "b68b465d8f611f72c8f4d9e95eaad457c1e40761154d90112ed128d7ecd47dd2",
+      "bases": ["original-diagram"]
+    },
+    "publications/thinking-systems/cover.png": {
+      "sha256": "87f06bee8063ca9d005058bd47d3be59bc79e7481e1fe0d756956bd9412b981a",
+      "bases": ["original-diagram"]
+    },
+    "publications/thinking-systems/diagram-1.png": {
+      "sha256": "a5b88567ab9f88387bc3337d9275430e0985a9af24f77bf7966c62686cd5b928",
+      "bases": ["original-diagram"]
+    },
+    "publications/thinking-systems/diagram-2.png": {
+      "sha256": "69333ef4b29e2e144cd9ba7da543518b6afcc63767deb3f46dc9c2fccdf5626a",
+      "bases": ["original-diagram"]
+    },
+    "publications/thinking-systems/diagram-3.png": {
+      "sha256": "9796217bfa2cf64b60e5dd43731f6a51a90b1eea194bd08677be347e1ffda6b4",
+      "bases": ["original-diagram"]
+    },
+    "publications/thinking-systems/diagram-4.png": {
+      "sha256": "18301c1cc462ca98c71d1f78ef5f5338f64c790c15dab83c4bfbed1efbb72879",
+      "bases": ["original-diagram"]
+    },
+    "publications/thinking-systems/diagram-5.png": {
+      "sha256": "1dd03a3b4c197de2a4fb3c16efe84447c9af28a8beb95ae12e103a97c11cd673",
+      "bases": ["original-diagram"]
+    },
+    "publications/thinking-systems/diagram-6.png": {
+      "sha256": "3e8366b96299273f7b1c3bd3f2c607609c7ad8e80af7323fe11bf96dd9c03f31",
+      "bases": ["original-diagram"]
+    },
+    "publications/thinking-systems/diagram-7.png": {
+      "sha256": "483fde803c1166001b695df3bdad12cb1c7333198e008a40ed61718bd8acb8fb",
+      "bases": ["original-diagram"]
+    },
+    "publications/thinking-systems/diagram-8a.png": {
+      "sha256": "81f8061d7b983e905adf265232610ceae471ebb43f04eebbdf66410d638471de",
+      "bases": ["original-diagram"]
+    },
+    "publications/thinking-systems/diagram-8b.png": {
+      "sha256": "9d2bcf0c057ae672cf4ef8c555a55b9df3c8a01663c5dfbcc94c16a6a74ae4eb",
+      "bases": ["original-diagram"]
+    },
     "favicon.svg": {
       "sha256": "a27a6f79b42bfa41fa8a8d3fe39e3c9570bcd992410c91a17d021de4dc28636e",
       "bases": ["identity-branding"]

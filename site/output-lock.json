@@ -3,19 +3,19 @@
   "components": {
     "contract": 1,
     "variant": "48153b94fbae4f314eaa11b156df8a20227dec429abfee9e45c14fda4a1f1b2a",
-    "producer": "cdaf764f299e698544784b27be4ba2a0f5d972e056061de0185c69fd26978d0d",
+    "producer": "5e07b57cd0df4b0985dd986539ac214f83626731ce627639a97865ef087a05cc",
     "engine": "2b45fca5096fe3daa9f509366c78f98ece98ac4bc768cf8cc5c9399f7e59e72a",
     "scenes": "0375c50289484250c0d44f693b1f9e3fb20ad4085701d09a1449c46403a0b1f7",
     "assets": "9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc",
     "templates": "2d48c3988e02ce43c64da961d5cca4630661ee1fd6ebfb42b1fd4470e1b99d4f",
     "pageTemplates": "d998ab61e5ee71a45aa6f6e06e803a76682531d8c3a6ff5d920ffb5f0ac69085",
-    "analytics": "9eea2d36ab34e4df207ee5b2e555f16cf7a4c9e08f7b75f1798a3e11ce2597cc",
+    "analytics": "02d59468ff9ac89539e1ce7f4ed66c057b83fd69d310ea5b467d781b5a5ace71",
     "routes": "d6caa59aa69462f83115642a602aea669f48316765b487c09b01f721c933c7fe",
     "client": "68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c"
   },
   "routes": {
     "index": {
-      "version": "e4fee7668d8c81d71f295be466e8e4f188c9e66b52df78fc8efe1aafe8fa2289",
+      "version": "6b104d3068c3a8556df14c34fdbb5095f002b936950610c8135d75fd69878557",
       "url": "index.html",
       "inputs": [
         "site/content/pages/index/about.json",
@@ -44,10 +44,10 @@
         "publication-07",
         "publication-08"
       ],
-      "snapshotSHA": "d0f473e084e270298e7b72dbebc2e02ef2b5d20bc4291f094a5f379b1431b840"
+      "snapshotSHA": "c921b89f6fdd49200c9072dcd2b4942a6993760ae431ffa5f9606ed229db6a02"
     },
     "research": {
-      "version": "1dec565a995bce7df7b4686345783dbdcb318bce063415b76ccc189ee53ac48d",
+      "version": "394c5aa159ca0c6a490744b034174295e6c5d1e673a5d47003c4639f9bea27f0",
       "url": "research.html",
       "inputs": [
         "site/content/pages/research/acknowledgements.json",
@@ -68,10 +68,10 @@
       "assets": [
         "article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618/research-fallback.svg"
       ],
-      "snapshotSHA": "75a9514186b0dd4964770142663a7d524ba6994971267e9c9dbfecedbab4cd9c"
+      "snapshotSHA": "e9c6fd9f5992f7dbb3e4a08e92f564847829929d133430a70235513e2973a6ef"
     },
     "writing": {
-      "version": "53f6d48944e9aa69eb142a141b71b8240678de858baf39dd671d37ab89c810ee",
+      "version": "a2d14f40e9da7f2d5d9106360ed2e4a0f379df002160cd0198782642168ced77",
       "url": "writing.html",
       "inputs": [
         "site/content/pages/writing/main.json",
@@ -115,10 +115,10 @@
       "assets": [
         "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
       ],
-      "snapshotSHA": "2d2b52390c90c4b8d07324dc9794a0d5bb07021334a27ead05041fec813e08a9"
+      "snapshotSHA": "3c04fef3c686dfba8b89d07526287bd2a66db9be1553d3c920045075d964d586"
     },
     "talks": {
-      "version": "d02fdf79996a4892b88ee648a8e511d6c6888de91fdbbc2bfffbddce2db61318",
+      "version": "11ff71be7630ef7b5b29715831dfb376d8a925a7e5193042ec19c7239be05f5f",
       "url": "talks.html",
       "inputs": [
         "site/content/events.json",
@@ -131,10 +131,10 @@
         "site/templates/pages/talks/talks.html"
       ],
       "records": [],
-      "snapshotSHA": "6a9d9382caae6af5732b9f4c33fcf1c7900c62fa28de9165878bf2b800702446"
+      "snapshotSHA": "16a334a52657120ac53744f88062e06b534cb0d8fe5a4859074a581cb0f9ac81"
     },
     "credits": {
-      "version": "88e77996e06b9690170c7ffbf6e0f67808db8efb1016df13daec9368fe49c12b",
+      "version": "c7055a3c76caf056ddcdcd414c853f12ccaacdd7e1ffab81e02b935434c5fd00",
       "url": "credits.html",
       "inputs": [
         "LICENSE-CODE.md",
@@ -147,15 +147,15 @@
         "site/templates/pages/credits/main.html"
       ],
       "records": [],
-      "snapshotSHA": "282b9c70fad460380d66cec51ae51fe7cf27288c94d943aee3940c2aa14dbe79"
+      "snapshotSHA": "ddb3afd82eeac9e360cb828feb9a5216eaa3f539540eac248819dffc0619fbba"
     }
   },
   "articles": {
     "sdlc-out-of-balance:en": {
-      "version": "a1fdf0fa8fab1f04e4cb78381489a1380bff2508b38f9d37b9a8bde8a11b26e1",
+      "version": "5dfe05ff47b5bf49db2832c5f418633d845428723ea4c3efcf0df41c63298ace",
       "url": "articles/the-sdlc-is-out-of-balance.html",
-      "snapshot": "article-snapshots/a1fdf0fa8fab1f04e4cb78381489a1380bff2508b38f9d37b9a8bde8a11b26e1/the-sdlc-is-out-of-balance.html",
-      "sha256": "db093bef436281c1ced791ee2b9cb3551ee10ea5c981ca60e0d18d5dba016621",
+      "snapshot": "article-snapshots/5dfe05ff47b5bf49db2832c5f418633d845428723ea4c3efcf0df41c63298ace/the-sdlc-is-out-of-balance.html",
+      "sha256": "4c6d1df3404140a31cdc12657f2f5cd45ca066e62c0ec1c95aa9c34a2b55888c",
       "inputs": [
         "site/assets/publications/sdlc-out-of-balance/asymmetry-r9.png",
         "site/assets/publications/sdlc-out-of-balance/comprehension-gap-r7.png",
@@ -202,23 +202,76 @@
       "contentEdition": "sdlc-out-of-balance-en-r12-20261110",
       "sourceSha256": "4ed3380c73f46e7e9bf086fa2f1c99f5183fc0ccb16b7b1f270276173e5f1f8d",
       "semanticSha256": "10fdb9231098eb50c93e90ff1b073986a4c6756ea0f307feadf255012a820511"
+    },
+    "thinking-systems:en": {
+      "version": "b22659f6f84c6bf7723e7b747239c9b0245371f7b3ffeacbfeb893303b1434bc",
+      "url": "articles/thinking-systems.html",
+      "snapshot": "article-snapshots/b22659f6f84c6bf7723e7b747239c9b0245371f7b3ffeacbfeb893303b1434bc/thinking-systems.html",
+      "sha256": "39c35615593d67f3d701ad99e8ba2cda96ac9cc048cd744a7ff74642913dbe20",
+      "inputs": [
+        "site/assets/publications/thinking-systems/cover-web.jpg",
+        "site/assets/publications/thinking-systems/cover.png",
+        "site/assets/publications/thinking-systems/diagram-1.png",
+        "site/assets/publications/thinking-systems/diagram-2.png",
+        "site/assets/publications/thinking-systems/diagram-3.png",
+        "site/assets/publications/thinking-systems/diagram-4.png",
+        "site/assets/publications/thinking-systems/diagram-5.png",
+        "site/assets/publications/thinking-systems/diagram-6.png",
+        "site/assets/publications/thinking-systems/diagram-7.png",
+        "site/assets/publications/thinking-systems/diagram-8a.png",
+        "site/assets/publications/thinking-systems/diagram-8b.png",
+        "site/publications/thinking-systems/editions/thinking-systems-en-20260830.json",
+        "site/publications/thinking-systems/launch-post.en.md",
+        "site/publications/thinking-systems/manuscript.en.md",
+        "site/publications/thinking-systems/profile.json",
+        "site/publications/thinking-systems/publication.json",
+        "site/templates/components/reader-contents.html",
+        "site/templates/components/reader-tools.html",
+        "site/templates/pages/article.html"
+      ],
+      "assets": [
+        "article-media/b68b465d8f611f72c8f4d9e95eaad457c1e40761154d90112ed128d7ecd47dd2/cover.jpg",
+        "article-media/bb70b4d0907ed3672055b0aacd58ca6bb35ef9154aecfb151705de58127eb2ae/diagram-1.webp",
+        "article-media/593e5212280ebabadb49ddc4c56e0bc4ba6908f659a9b466b462e7331680e27d/diagram-2.webp",
+        "article-media/a3e8b467f27cbc673040aea8b17d32371621ab367eef63804063198a9bf739a0/diagram-3.webp",
+        "article-media/5552ab1fb02be8954586dccb7d92ffd5ab4a1df4fd0857de7133cfb98613af85/diagram-4.webp",
+        "article-media/300fdfa774d4e768f36fc3e3d1f4f146b46ed41feead5d33db2316c9f3a3c06a/diagram-5.webp",
+        "article-media/1589356c855ad721e706cff069e147afd60cac49b225445f8e1010737da0a6fc/diagram-6.webp",
+        "article-media/542383922d50b39015ac2e3553481e7237a91efae41d19be80a3ee564d039d43/diagram-7.webp",
+        "article-media/dfc1c0903c9baf02dec4e96b1d87a46cccbad3ee015e9d47a3d86c73d8fb29c0/diagram-8a.webp",
+        "article-media/9cc5b62810712f9988b2d05004700978d8886e7c7954d92d2317c8f9cc4ff719/diagram-8b.webp",
+        "article-media/a187cf86739b2cc193cc9696e9884e2252c62b636ce262277c342371081eaa36/cover-social.jpg",
+        "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
+      ],
+      "socialImage": {
+        "file": "article-media/a187cf86739b2cc193cc9696e9884e2252c62b636ce262277c342371081eaa36/cover-social.jpg",
+        "type": "image/jpeg",
+        "width": 1200,
+        "height": 630,
+        "alt": "Thinking Systems publication cover."
+      },
+      "candidate": false,
+      "articleId": "thinking-systems",
+      "contentEdition": "thinking-systems-en-20260830",
+      "sourceSha256": "80ba7d64b0cc53938d8fc377c3611d90152dc6f57e019fe78633801a412dc0cf",
+      "semanticSha256": "4aa2c1cdbb63d9da89c0da231d9d4ef72c897b3b604d3954a767820a7ef0044f"
     }
   },
   "files": {
-    "index.html": "53e33703d2ffc778b671aea172070bf40590bdeaac109af8073144b3b67681fc",
-    "snapshots/e4fee7668d8c81d71f295be466e8e4f188c9e66b52df78fc8efe1aafe8fa2289/index.html": "d0f473e084e270298e7b72dbebc2e02ef2b5d20bc4291f094a5f379b1431b840",
+    "index.html": "3a9f00060ac026e2e334b49c95ec577a30c62461bc140db1d1e7d79c676830fb",
+    "snapshots/6b104d3068c3a8556df14c34fdbb5095f002b936950610c8135d75fd69878557/index.html": "c921b89f6fdd49200c9072dcd2b4942a6993760ae431ffa5f9606ed229db6a02",
     "article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618/research-fallback.svg": "1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618",
-    "research.html": "56c05cb8640c4a22835ece766d5a0af9df30dd82323d444349bd057e2c3f4f43",
-    "snapshots/1dec565a995bce7df7b4686345783dbdcb318bce063415b76ccc189ee53ac48d/research.html": "75a9514186b0dd4964770142663a7d524ba6994971267e9c9dbfecedbab4cd9c",
+    "research.html": "3c5030df8a9059bac1c6c99c808aec6e7360046a695d5db3085cfcc6d574376a",
+    "snapshots/394c5aa159ca0c6a490744b034174295e6c5d1e673a5d47003c4639f9bea27f0/research.html": "e9c6fd9f5992f7dbb3e4a08e92f564847829929d133430a70235513e2973a6ef",
     "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg": "2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16",
-    "writing.html": "623e6a709492dcc19aad7fe4d9dcd6e940fac8323564d5bb037f7c7f17f52181",
-    "snapshots/53f6d48944e9aa69eb142a141b71b8240678de858baf39dd671d37ab89c810ee/writing.html": "2d2b52390c90c4b8d07324dc9794a0d5bb07021334a27ead05041fec813e08a9",
-    "talks.html": "b6baf1b0767b111b89f8e02adbbc19fb5f453f5ba25447788022788fbf701116",
-    "snapshots/d02fdf79996a4892b88ee648a8e511d6c6888de91fdbbc2bfffbddce2db61318/talks.html": "6a9d9382caae6af5732b9f4c33fcf1c7900c62fa28de9165878bf2b800702446",
-    "credits.html": "bba61ccfac818a4ad2dce9b23993344172d7d3fcf49bc83bf24c0aeb2bc7bb26",
-    "snapshots/88e77996e06b9690170c7ffbf6e0f67808db8efb1016df13daec9368fe49c12b/credits.html": "282b9c70fad460380d66cec51ae51fe7cf27288c94d943aee3940c2aa14dbe79",
-    "articles/the-sdlc-is-out-of-balance.html": "93ac10421e7046c65cee90310300178851bcc10cb76e0de4701fbf7325d1ce1f",
-    "article-snapshots/a1fdf0fa8fab1f04e4cb78381489a1380bff2508b38f9d37b9a8bde8a11b26e1/the-sdlc-is-out-of-balance.html": "db093bef436281c1ced791ee2b9cb3551ee10ea5c981ca60e0d18d5dba016621",
+    "writing.html": "3949584c48f7f372b408ee71e5bcb806709c1f7ad3546dd13970c079f8e57d7c",
+    "snapshots/a2d14f40e9da7f2d5d9106360ed2e4a0f379df002160cd0198782642168ced77/writing.html": "3c04fef3c686dfba8b89d07526287bd2a66db9be1553d3c920045075d964d586",
+    "talks.html": "401ed173a25f1971e53d5421263aff653c56f14d6b622d0d841d152c0f01b54d",
+    "snapshots/11ff71be7630ef7b5b29715831dfb376d8a925a7e5193042ec19c7239be05f5f/talks.html": "16a334a52657120ac53744f88062e06b534cb0d8fe5a4859074a581cb0f9ac81",
+    "credits.html": "17e51c5b14fa262e674cb0bc41df6fb97842f0d2ff115c80cf30e3446441c383",
+    "snapshots/c7055a3c76caf056ddcdcd414c853f12ccaacdd7e1ffab81e02b935434c5fd00/credits.html": "ddb3afd82eeac9e360cb828feb9a5216eaa3f539540eac248819dffc0619fbba",
+    "articles/the-sdlc-is-out-of-balance.html": "49688af7730254af189d7a5fb478bc1809354a75822787d71827b5bc9d680560",
+    "article-snapshots/5dfe05ff47b5bf49db2832c5f418633d845428723ea4c3efcf0df41c63298ace/the-sdlc-is-out-of-balance.html": "4c6d1df3404140a31cdc12657f2f5cd45ca066e62c0ec1c95aa9c34a2b55888c",
     "article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f/hero-web.jpg": "fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f",
     "article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7/delivery-capacity-r6.webp": "e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7",
     "article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a/review-learning-r7.webp": "a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a",
@@ -226,6 +279,19 @@
     "article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry-r9.webp": "8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f",
     "article-media/7144d8165842a07ac8194e88a7301b777f11dac41ca1dcf8d88f6ba4cbecb27f/hero-web-social.jpg": "7144d8165842a07ac8194e88a7301b777f11dac41ca1dcf8d88f6ba4cbecb27f",
     "article-media/c3686dce007b399d3fb175d5b235a51b1000500a3e4bc6f024be9767bfb33996/reading-r12.pdf": "c3686dce007b399d3fb175d5b235a51b1000500a3e4bc6f024be9767bfb33996",
+    "articles/thinking-systems.html": "2ed1a940405fff21f0d31e0a519ede66513126f98ec7f315b71f70f1b2a962bd",
+    "article-snapshots/b22659f6f84c6bf7723e7b747239c9b0245371f7b3ffeacbfeb893303b1434bc/thinking-systems.html": "39c35615593d67f3d701ad99e8ba2cda96ac9cc048cd744a7ff74642913dbe20",
+    "article-media/b68b465d8f611f72c8f4d9e95eaad457c1e40761154d90112ed128d7ecd47dd2/cover.jpg": "b68b465d8f611f72c8f4d9e95eaad457c1e40761154d90112ed128d7ecd47dd2",
+    "article-media/bb70b4d0907ed3672055b0aacd58ca6bb35ef9154aecfb151705de58127eb2ae/diagram-1.webp": "bb70b4d0907ed3672055b0aacd58ca6bb35ef9154aecfb151705de58127eb2ae",
+    "article-media/593e5212280ebabadb49ddc4c56e0bc4ba6908f659a9b466b462e7331680e27d/diagram-2.webp": "593e5212280ebabadb49ddc4c56e0bc4ba6908f659a9b466b462e7331680e27d",
+    "article-media/a3e8b467f27cbc673040aea8b17d32371621ab367eef63804063198a9bf739a0/diagram-3.webp": "a3e8b467f27cbc673040aea8b17d32371621ab367eef63804063198a9bf739a0",
+    "article-media/5552ab1fb02be8954586dccb7d92ffd5ab4a1df4fd0857de7133cfb98613af85/diagram-4.webp": "5552ab1fb02be8954586dccb7d92ffd5ab4a1df4fd0857de7133cfb98613af85",
+    "article-media/300fdfa774d4e768f36fc3e3d1f4f146b46ed41feead5d33db2316c9f3a3c06a/diagram-5.webp": "300fdfa774d4e768f36fc3e3d1f4f146b46ed41feead5d33db2316c9f3a3c06a",
+    "article-media/1589356c855ad721e706cff069e147afd60cac49b225445f8e1010737da0a6fc/diagram-6.webp": "1589356c855ad721e706cff069e147afd60cac49b225445f8e1010737da0a6fc",
+    "article-media/542383922d50b39015ac2e3553481e7237a91efae41d19be80a3ee564d039d43/diagram-7.webp": "542383922d50b39015ac2e3553481e7237a91efae41d19be80a3ee564d039d43",
+    "article-media/dfc1c0903c9baf02dec4e96b1d87a46cccbad3ee015e9d47a3d86c73d8fb29c0/diagram-8a.webp": "dfc1c0903c9baf02dec4e96b1d87a46cccbad3ee015e9d47a3d86c73d8fb29c0",
+    "article-media/9cc5b62810712f9988b2d05004700978d8886e7c7954d92d2317c8f9cc4ff719/diagram-8b.webp": "9cc5b62810712f9988b2d05004700978d8886e7c7954d92d2317c8f9cc4ff719",
+    "article-media/a187cf86739b2cc193cc9696e9884e2252c62b636ce262277c342371081eaa36/cover-social.jpg": "a187cf86739b2cc193cc9696e9884e2252c62b636ce262277c342371081eaa36",
     "theme.js": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a",
     "archive.js": "bf1b9e42356b282f3c08f7763a7a59263241c752df5dd9ee776a6b0bf86b0caa",
     "navigation.js": "9d074333c9731e08a801e8f7ba418c645ef8c9e54d912a666912640e36e1a292",
@@ -236,8 +302,8 @@
     "assets/vitalii-oborskyi-cutout.webp": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
     "assets/vitalii-oborskyi.jpg": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
     "assets/writing-paradigm.svg": "02def4e19d34b76462f5e74bbe916323ff56a50d3e97a02834b3adf92723b31f",
-    "runtime/1c34e64047482a214a50a115582adb08988fe8721f5ee651bd8a231a300e2cf7/analytics.js": "1c34e64047482a214a50a115582adb08988fe8721f5ee651bd8a231a300e2cf7",
-    "publication-index.json": "6186dca6384e202a2d405e210ede3620c6baf40e8aafe9571516654f35e2b124",
+    "runtime/1efe81f83421b13bec943f0d9600437dfa88cc526ca58bbecdc5006701f9f73b/analytics.js": "1efe81f83421b13bec943f0d9600437dfa88cc526ca58bbecdc5006701f9f73b",
+    "publication-index.json": "4228bd32ceebdcb926069a003929a265de9d3e3fec389410298a613fbc706953",
     "runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/theme.js": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a",
     "runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/space.js": "7812c824ce3dac0d5d36f40788c65ca66cc553e5a0287850a24a499a02d4eab4",
     "runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/archive.js": "bf1b9e42356b282f3c08f7763a7a59263241c752df5dd9ee776a6b0bf86b0caa",
@@ -294,6 +360,7 @@
     "article-media/568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58/reading-r11.pdf": "568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58",
     "article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995/the-sdlc-is-out-of-balance.html": "c190559a8abad1589892257f44b16ee9d2188e3f98e6d2e0561dab71131824e4",
     "snapshots/080da808855bdc7cac66970509a9a371a5033cb5d721a007a92632c826b2d06a/writing.html": "71be930a87d17502fa4ad81d73b786325bf4d4bda09db770033c6dd2388b4044",
-    "site-revision.json": "9c0ac067ae391481025940e88ee6b9ee698d91531c513cfa3f3bf5c639a7edd9"
+    "runtime/1c34e64047482a214a50a115582adb08988fe8721f5ee651bd8a231a300e2cf7/analytics.js": "1c34e64047482a214a50a115582adb08988fe8721f5ee651bd8a231a300e2cf7",
+    "site-revision.json": "d306e7a490a247cebe171cacea772eab0e6ac825d47f2dc4bfb750c41f2f08db"
   }
 }

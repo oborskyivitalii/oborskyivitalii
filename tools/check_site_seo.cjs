@@ -537,6 +537,37 @@ function reviewedArchiveProducerBindings(bindings, successors = archiveProducers
   return reviewed;
 }
 
+const historicalEditionProducers = {
+  'tools/site/render-records.cjs': {
+    before: '49528a2a5fe8d22eac7612e746cc4c20e99a7ebc4d9eb82bb84f9293543f2857',
+    after: '66292bc2d0f4c012644064ead7857a5ea6cc1916d79ab064caca83f52c0e1dc1',
+  },
+  'tools/site/validate-catalog.cjs': {
+    before: '79554634afc34ac491249624ffd8a5dc7b4db54a8f38703e2737655d180baa22',
+    after: '4821be8aa58821b320fe673d7a3557645e4cb0b3df7b899a1a12fad6f7f4beb1',
+  },
+};
+
+function reviewedHistoricalEditionProducers(bindings) {
+  const reviewed = { ...bindings };
+  for (const [file, change] of Object.entries(historicalEditionProducers)) {
+    if (!Object.hasOwn(bindings, file)) continue;
+    assert.equal(bindings[file], change.before, 'Historical edition producer predecessor');
+    const source = cp.execFileSync(
+      'git',
+      ['show', 'fb0c61650ce3bd03acfbd1708830f2606e9faffd:' + file],
+      { cwd: root }
+    );
+    assert.equal(
+      crypto.createHash('sha256').update(source).digest('hex'),
+      change.before,
+      'Immutable historical edition producer predecessor'
+    );
+    reviewed[file] = change.after;
+  }
+  return reviewed;
+}
+
 function reviewedProducerBindings(bindings, additions = []) {
   assert.deepEqual(Object.keys(issue159.producerChanges).sort(), issue159ProducerPaths);
   const reviewed = { ...bindings };
@@ -546,7 +577,9 @@ function reviewedProducerBindings(bindings, additions = []) {
     assert.match(change.afterSHA256, /^[a-f0-9]{64}$/, 'Reviewed successor producer SHA256');
     reviewed[file] = change.afterSHA256;
   }
-  return reviewedHTMLProducerBindings(reviewedArchiveProducerBindings(reviewed));
+  return reviewedHistoricalEditionProducers(
+    reviewedHTMLProducerBindings(reviewedArchiveProducerBindings(reviewed))
+  );
 }
 const positioning = JSON.parse(
   fs.readFileSync(path.join(root, 'review/issue-41/2026-10-09-positioning-amendment.json'), 'utf8')
@@ -1485,6 +1518,7 @@ module.exports = {
   socialCarrierProducer,
   archiveProducers,
   reviewedArchiveProducerBindings,
+  reviewedHistoricalEditionProducers,
   htmlParserProducer,
   reviewedHTMLProducerBindings,
   verifyResearchCarrier,

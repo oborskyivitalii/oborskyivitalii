@@ -1,6 +1,6 @@
 # Session memory
 
-Dated handoff. Last verified: **2026-11-12**. Revalidate live sources when resuming.
+Dated handoff. Last verified: **2026-11-13**. Revalidate live sources when resuming.
 
 ## Snapshot
 
@@ -16,6 +16,8 @@ Dated handoff. Last verified: **2026-11-12**. Revalidate live sources when resum
 - Register only the reviewed staging runtime on protected main using the existing delivery route. The feature and production have their own checks.
 
 ## Open work
+
+- [#183](https://github.com/oborskyivitalii/oborskyivitalii/issues/183) migrates one article per Draft PR Preview checkpoint. The [Thinking Systems migration](review/issue-183/2026-11-13-migration.md) records source reconciliation and phase acceptance.
 
 - #187 AC01, AC02 and AC06 remain open in the feature work. Its separate runtime preregistration merged in PR #202.
 - #197 still requires the rebased exact-head native and hosted route after the prerequisite.

@@ -43,7 +43,6 @@
     "publication-02": ["ai-delivery", "verification", "human-ai"],
     "publication-03": ["ai-delivery", "software-economics", "verification"],
     "publication-04": ["ai-delivery", "software-economics", "human-ai"],
-    "publication-05": ["uncertainty", "architecture", "control-theory"],
     "publication-06": ["uncertainty", "verification", "semantic-drift", "neuro-symbolic"],
     "publication-07": ["agents", "control-theory", "architecture"],
     "publication-08": ["product-strategy", "operating-models", "automation"],
@@ -73,6 +72,7 @@
     "reader-reference": ["architecture", "verification"],
     "pmday-two-shifts": ["ai-delivery", "verification"],
     "pmday-ai-both-sides": ["ai-delivery", "software-economics", "human-ai", "verification"],
+    "thinking-systems": ["uncertainty", "architecture", "control-theory"],
     "sdlc-out-of-balance": ["ai-delivery", "software-economics", "verification", "operating-models"]
   }
 }

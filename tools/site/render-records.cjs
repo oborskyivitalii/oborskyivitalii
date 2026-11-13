@@ -30,7 +30,8 @@ function editionLinks(templates, record, catalog) {
   return record.editions
     .map((edition) => {
       const date = edition.datePublished || edition.dateModified;
-      const local = record.kind === 'local-article';
+      const local =
+        record.kind === 'local-article' && edition.relationship !== 'same-topic-platform-edition';
       const label = local
         ? contentLabel(catalog, 'edition.relationship.' + edition.relationship) +
           (date ? contentLabel(catalog, 'edition.date-separator') : '')

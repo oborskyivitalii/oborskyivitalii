@@ -329,7 +329,7 @@ test('local source references reject missing pins, stale sources and alternate p
     change(input);
     assert.throws(
       () => verify(input),
-      /source pin|relationship|unknown local edition fields|edition type/
+      /source pin|relationship|unknown local .*edition fields|edition type/
     );
   }
 });
@@ -592,4 +592,35 @@ test('local authors match the complete declared source byline and preserve multi
     change(changed);
     assert.throws(() => verify(changed), /authors differ from their declared edition source/);
   }
+});
+
+test('historical platform editions preserve their dates without asserting publication events', () => {
+  const current = require('../site/content/catalog.json');
+  const record = current.records['publication-05'];
+  assert.equal(Object.keys(current.records).length, 30);
+  assert.equal(record.edition.url, 'articles/thinking-systems.html');
+  assert.deepEqual(
+    record.editions.map((edition) => [edition.platform, edition.datePublished]),
+    [
+      ['Medium', '2026-08-30'],
+      ['LinkedIn', '2026-08-27'],
+    ]
+  );
+  for (const update of [
+    { bodyEquivalenceVerified: true },
+    { publicationEvent: 'invented-event' },
+    { url: 'https://generativeai.pub.example/post' },
+    { url: 'https://generativeai.pub:444/post' },
+    { datePublished: '2026-02-30' },
+  ]) {
+    const candidate = structuredClone(current);
+    Object.assign(candidate.records['publication-05'].editions[0], update);
+    assert.throws(() => validateCatalog(candidate));
+  }
+  const dated = structuredClone(current);
+  const migrated = dated.records['publication-05'];
+  migrated.presentation.archiveYear = '2025';
+  migrated.edition.datePublished = '2026-11-13';
+  migrated.edition.publicationEvent = 'site-observed';
+  assert.equal(writingEntries(dated).find(({ id }) => id === 'publication-05').year, '2025');
 });
