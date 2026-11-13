@@ -153,9 +153,12 @@ body[data-page] [data-entry-border-source] {
 }
 @keyframes route-block-arrive {
   from {
+    /* A larger viewport can expose the old offscreen position during the delay. */
+    visibility: hidden;
     translate: 0 var(--route-block-distance);
   }
   to {
+    visibility: visible;
     translate: 0 0;
   }
 }

@@ -7,7 +7,7 @@
     {
       "id": "AC01",
       "intent": "Shared Writing-scene document pulse with counter-rotating depth layers and a stationary camera.",
-      "automated_scope": "Basic verifies the compiled artifact, finite geometry, syntax and size. Focused Node checks exercise the actual router and scene. Hosted observation and author visual acceptance are external.",
+      "automated_scope": "Basic verifies the compiled artifact, finite geometry, syntax and size. Focused Node checks exercise the actual router and scene, including consecutive visible-face displacement during the late return at desktop, resized and slower cadences. Hosted observation and author visual acceptance are external.",
       "checks": ["BASIC"],
       "gates": ["PREVIEW", "REVIEW"]
     },

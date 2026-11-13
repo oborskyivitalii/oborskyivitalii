@@ -604,6 +604,22 @@ test('the bounded overlapping wave credits only verified presentation while pres
           event.completedBy === 'animationend'
       ),
     phaseStart = (row) => row.rawChoreography.find((event) => event.stage === 'departure');
+  const skewed = structuredClone(valid);
+  const arrival = skewed.rawChoreography.find((event) => event.stage === 'arrival');
+  const arrived = completion(skewed, 'arrival');
+  arrival.timelineTime = arrival.time;
+  arrived.timelineTime = arrived.time;
+  arrival.time += 34;
+  assert.equal(transition(skewed), true, 'a late wall-clock probe does not shorten CSS time');
+  const earlyAnimation = structuredClone(skewed);
+  completion(earlyAnimation, 'arrival').timelineTime -= 34;
+  assert.throws(() => transition(earlyAnimation), /before actual presentation/);
+  const incompleteClock = structuredClone(skewed);
+  delete completion(incompleteClock, 'arrival').timelineTime;
+  assert.throws(() => transition(incompleteClock), /inconsistent document animation clock/);
+  const futureClock = structuredClone(skewed);
+  completion(futureClock, 'arrival').timelineTime += 20;
+  assert.throws(() => transition(futureClock), /outside its wall-clock sample/);
   const release = {
     ...completion(valid, 'departure'),
     stage: 'cancelled',

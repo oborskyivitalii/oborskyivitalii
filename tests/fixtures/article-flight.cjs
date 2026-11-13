@@ -56,6 +56,66 @@ function flight(from, to, direction) {
   };
 }
 
+function pulsePaints(navigationId) {
+  const pose = { position: [5, 3, -232], target: [0, 0, -261] };
+  return [
+    [1000, 0, 0],
+    [1100, 0.13, 0.15],
+    [1200, 0.26, 0.3],
+    [1300, 0.39, 0.45],
+    [1400, 0.26, 0.4],
+    [1500, 0.13, 0.45],
+    [1600, 0, 0.5],
+    [1700, -0.13, 0.45],
+    [1800, -0.26, 0.34],
+    [1900, -0.39, 0.4],
+    [2000, -0.26, 0.34],
+    [2080, -0.13, 0.17],
+    [2150, -0.0005, 0.0005],
+    [2200, null, null],
+  ].map(([time, turn, swell]) => ({
+    kind: 'document-pulse-paint',
+    time,
+    navigationId,
+    current: pose,
+    journey: false,
+    height: 900,
+    paintedRooms: ['writing'],
+    pulse:
+      turn === null
+        ? null
+        : {
+            progress: (time - 1000) / 1200,
+            layers: [turn, -turn, turn, -turn].map((angle, index) => ({
+              turn: angle,
+              swell: swell * (1 - index * 0.08),
+            })),
+            swell,
+          },
+  }));
+}
+
+function mountHandoff(neutral, destination) {
+  const before = {
+    time: neutral.time + 20,
+    ambientTime: 1800,
+    detailTier: 0.5,
+    paintedRooms: ['writing'],
+    ordinaryShapes: 4,
+    width: 1440,
+    height: neutral.height,
+    current: neutral.current,
+    pulse: null,
+  };
+  return {
+    document: destination,
+    time: neutral.time + 25,
+    samePixels: true,
+    before,
+    after: { ...before, time: neutral.time + 30 },
+  };
+}
+
 function journey(descriptors, engine, baseURL) {
   const keys = Object.keys(descriptors);
   if (!keys.length) return undefined;
@@ -314,7 +374,9 @@ function currentJourney(descriptors, selectedEngine, baseURL) {
       );
     row.reading.entered = [];
     row.reading.maxEntering = 0;
-    for (const item of [...row.flights, ...row.nativeHistory])
+    for (const item of [...row.flights, ...row.nativeHistory]) {
+      if (item.events[0].localDocument && motion.articlePulseRequired(selectedEngine))
+        item.events = pulsePaints(item.events[0].navigationId);
       item.blocks = ['departure', 'arrival'].map((stage) => {
         const departure = stage === 'departure';
         const source = departure ? item.from : item.to;
@@ -323,6 +385,14 @@ function currentJourney(descriptors, selectedEngine, baseURL) {
           source.startsWith('article:') && !other.startsWith('article:') ? 1 : item.direction;
         return {
           stage,
+          time: departure ? 0 : 2300,
+          completedAt: departure ? 1000 : 3300,
+          ...(departure ? { cameraBefore: item.events[0].current } : {}),
+          ...(departure &&
+          item.events[0].kind === 'document-pulse-paint' &&
+          motion.articleMountHandoffRequired(selectedEngine)
+            ? { mountHandoff: mountHandoff(item.events.at(-1), item.to) }
+            : {}),
           direction: sign > 0 ? 'forward' : 'backward',
           navigationId: item.events[0].navigationId,
           rows: 1,
@@ -361,8 +431,9 @@ function currentJourney(descriptors, selectedEngine, baseURL) {
           ],
         };
       });
+    }
   }
   return detail;
 }
 
-module.exports = { flight, journey, currentJourney, readerObserved };
+module.exports = { flight, journey, currentJourney, readerObserved, pulsePaints, mountHandoff };

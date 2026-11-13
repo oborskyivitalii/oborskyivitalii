@@ -31,6 +31,7 @@ function harness({
   heroDisplay = null,
 } = {}) {
   const tasks = new Map();
+  const frames = new Map();
   const observers = [];
   let id = 0;
   let now = 100;
@@ -144,6 +145,11 @@ function harness({
       return id;
     },
     clearTimeout: (id) => tasks.delete(id),
+    requestAnimationFrame(fn) {
+      frames.set(++id, fn);
+      return id;
+    },
+    cancelAnimationFrame: (id) => frames.delete(id),
     IntersectionObserver: class {
       constructor(callback, options) {
         this.callback = callback;
@@ -214,6 +220,12 @@ function harness({
     probes,
     observers,
     tasks,
+    frames,
+    paint() {
+      const pending = [...frames.values()];
+      frames.clear();
+      for (const callback of pending) callback();
+    },
     state,
     scroll,
     intersect,
@@ -912,6 +924,149 @@ test('route arrival starts outside the correct edge and releases only after ever
   }
 });
 
+test('deferred reader arrival measures the rows from the final landing viewport', async () => {
+  const h = harness();
+  assert.equal(h.controller.prepareArrival(1, 12, true), true);
+  assert.equal(h.root.attributes.get('data-route-blocks'), 'holding');
+  assert.equal(h.controller.diagnostics().routeActive, 0);
+  const pending = h.controller.arrive(1, 12);
+  assert.equal(h.frames.size, 1);
+  h.paint();
+  assert.equal(h.controller.diagnostics().routeActive, 0);
+  h.elements[1].top = 500;
+  h.task(0);
+  const moving = h.elements[1];
+  assert.equal(moving.attributes.get('data-route-block'), 'arriving');
+  const distance = Number.parseFloat(moving.styles.get('--route-block-distance'));
+  assert.ok(moving.getBoundingClientRect().top + distance > 900);
+  h.routeWatchdog();
+  assert.equal((await pending).completed, true);
+});
+
+test('deferred arrival releases its frame and tasks when motion stops or rendering stalls', async () => {
+  for (const release of [
+    (h) => h.controller.cancelRoute(),
+    (h) => h.window.emit('beforeprint'),
+    (h) => h.preference(false),
+    (h) => h.task(1200),
+  ]) {
+    const h = harness();
+    h.controller.prepareArrival(1, 12, true);
+    const pending = h.controller.arrive(1, 12);
+    h.paint();
+    release(h);
+    assert.equal((await pending).completed, false);
+    assert.equal(h.root.attributes.get('data-route-blocks'), undefined);
+    assert.equal(h.frames.size + h.tasks.size, 0);
+  }
+});
+
+test('reader arrival carries the native contents border throughout its wave', async () => {
+  const h = harness({ count: 1 });
+  const [contents] = h.elements;
+  h.root.matches = (selector) => selector === '.article-reader';
+  contents.borders = {
+    'border-top-width': '1px',
+    'border-top-style': 'solid',
+    'border-top-color': 'rgb(10, 40, 70)',
+  };
+  h.controller.mount(h.root);
+  h.controller.prepareArrival(1, 12, true);
+  const pending = h.controller.arrive(1, 12);
+  h.paint();
+  h.task(0);
+  assert.equal(contents.attributes.get('data-route-layer'), 'self');
+  assert.equal(contents.attributes.has('data-entry-border-source'), false);
+  assert.equal(contents.children.length, 0);
+  h.tick(1000);
+  h.root.emit('animationend', { animationName: 'route-block-arrive', target: contents });
+  assert.equal((await pending).completedBy, 'animationend');
+  assert.equal(contents.attributes.has('data-entry-border-source'), false);
+});
+
+test('resizing during the deferred reader wave keeps its motion and original deadline', async () => {
+  const h = harness();
+  const paper = h.document.createElement('article');
+  paper.getBoundingClientRect = () => ({
+    left: h.window.innerWidth > 700 ? 150 : 10,
+    top: 100,
+    bottom: 2000,
+    width: h.window.innerWidth - (h.window.innerWidth > 700 ? 300 : 20),
+  });
+  h.root.matches = (selector) => selector === '.article-reader';
+  h.root.querySelector = (selector) => (selector === '.reader-mode' ? paper : null);
+  h.controller.mount(h.root);
+  const outgoing = h.controller.depart(1, 11, true);
+  const originalHeight = h.window.innerHeight;
+  const departingPaper = paper.styles.get('--route-paper-height');
+  const exit = paper.styles.get('--route-paper-distance');
+  h.window.innerHeight += 400;
+  h.window.emit('resize');
+  assert.equal(paper.styles.get('--route-paper-height'), departingPaper);
+  assert.equal(paper.styles.get('--route-paper-distance'), exit);
+  h.controller.cancelRoute();
+  assert.equal((await outgoing).cancelled, true);
+  h.window.innerHeight = originalHeight;
+  h.controller.prepareArrival(1, 12, true);
+  const pending = h.controller.arrive(1, 12);
+  h.paint();
+  h.task(0);
+  const [heading] = h.elements;
+  const distance = heading.styles.get('--route-block-distance');
+  const paperDistance = paper.styles.get('--route-paper-distance');
+  assert.equal(paper.styles.get('--route-paper-left'), '150px');
+  const deadline = [...h.tasks].find(([, value]) => value.delay === 2000)?.[0];
+  assert.ok(deadline);
+  h.window.emit('resize');
+  h.window.innerWidth = 560;
+  h.window.innerHeight = 680;
+  h.window.emit('resize');
+  h.task(0);
+  assert.equal(h.root.attributes.get('data-route-blocks'), 'arriving');
+  assert.equal(heading.styles.get('--route-block-distance'), distance);
+  assert.equal(paper.styles.get('--route-paper-left'), '10px');
+  assert.equal(paper.styles.get('--route-paper-width'), '540px');
+  assert.equal(paper.styles.get('--route-paper-distance'), paperDistance);
+  assert.ok(h.tasks.has(deadline));
+  h.tick(1000);
+  h.root.emit('animationend', { animationName: 'route-block-arrive', target: heading });
+  h.root.emit('animationend', {
+    animationName: 'route-block-arrive',
+    target: paper,
+    pseudoElement: '::before',
+  });
+  assert.equal((await pending).completedBy, 'animationend');
+  assert.equal(h.root.attributes.get('data-route-blocks'), undefined);
+  assert.equal(h.tasks.size, 0);
+});
+
+test('Writing-scene resize preserves the active departure and deferred non-reader arrival', async () => {
+  const h = harness({ count: 1 });
+  const outgoing = h.controller.depart(-1, 31, true);
+  h.window.innerHeight += 320;
+  h.window.emit('resize');
+  assert.equal(h.root.attributes.get('data-route-blocks'), 'departing');
+  h.tick(1000);
+  h.root.emit('animationend', { animationName: 'route-block-depart', target: h.elements[0] });
+  assert.equal((await outgoing).completedBy, 'animationend');
+  assert.equal(h.root.attributes.get('data-route-blocks'), 'holding');
+
+  h.controller.prepareArrival(-1, 31, true);
+  const incoming = h.controller.arrive(-1, 31);
+  h.window.emit('resize');
+  assert.equal(h.root.attributes.get('data-route-blocks'), 'holding');
+  h.paint();
+  h.task(0);
+  h.window.innerHeight += 320;
+  h.window.emit('resize');
+  assert.equal(h.root.attributes.get('data-route-blocks'), 'arriving');
+  h.tick(1000);
+  h.root.emit('animationend', { animationName: 'route-block-arrive', target: h.elements[0] });
+  assert.equal((await incoming).completedBy, 'animationend');
+  assert.equal(h.root.attributes.get('data-route-blocks'), undefined);
+  assert.ok(![...h.tasks.values()].some(({ delay }) => delay >= 1000));
+});
+
 test('route cancellation and cached-node remount settle old promises without completing a new phase', async () => {
   const h = harness();
   const old = h.controller.depart(1);
@@ -926,6 +1081,18 @@ test('route cancellation and cached-node remount settle old promises without com
   assert.equal(h.root.attributes.get('data-route-blocks'), undefined);
   assert.equal(h.tasks.size, 0);
   assert.ok(h.elements.every((element) => !element.attributes.has('data-route-block')));
+});
+
+test('clearing the block hold stops the showcase before revealing the outgoing content', async () => {
+  const h = harness();
+  const departure = h.controller.depart(1);
+  h.routeWatchdog();
+  assert.equal((await departure).completed, true);
+  const stages = [];
+  h.window.SiteScene.stopDocumentPulse = () => stages.push(h.controller.diagnostics().routeStage);
+  h.controller.refreshPreference();
+  assert.deepEqual(stages, ['holding']);
+  assert.equal(h.root.attributes.get('data-route-blocks'), undefined);
 });
 
 test('route phase and flight hold have finite timer bounds and stagger stays bounded', async () => {

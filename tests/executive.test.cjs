@@ -1331,6 +1331,32 @@ test('legal wrapping admits exactly three declarations and preserves every other
     }
   }
 });
+test('generated arrival visibility accepts only the exact successor at the reviewed position', (t) => {
+  const path = require('node:path');
+  const { verifyApprovedLicensingCSS } = require('../tools/check_site_seo.cjs');
+  const file = 'docs/styles.css';
+  const directory = issue159CopyFixture(t, [file, 'site/engine/styles.css']);
+  const target = path.join(directory, file);
+  const original = fs.readFileSync(target, 'utf8');
+  const block = original.match(/@keyframes route-block-arrive \{\n[\s\S]*?\n\}/)[0];
+  const predecessor = block
+    .replace(/^ {4}\/\*.*\*\/\n/m, '')
+    .replace('    visibility: hidden;\n', '')
+    .replace('    visibility: visible;\n', '');
+  assert.notEqual(predecessor, block);
+  assert.doesNotThrow(() => verifyApprovedLicensingCSS(directory));
+  fs.writeFileSync(target, original.replace(block, predecessor));
+  assert.doesNotThrow(() => verifyApprovedLicensingCSS(directory));
+  for (const changed of [
+    original.replace(block, block.replace('visibility: visible;', 'visibility: inherit;')),
+    block + '\n' + original.replace(block, ''),
+    original + '\n' + block,
+    original + '\n' + predecessor,
+  ]) {
+    fs.writeFileSync(target, changed);
+    assert.throws(() => verifyApprovedLicensingCSS(directory), /exact reviewed successor/);
+  }
+});
 test('Day/Night semantic text and CTA pairs exceed normal-text contrast with no independent atmosphere clock', () => {
   const css = fs.readFileSync(require('node:path').join(__dirname, '../docs/styles.css'), 'utf8');
   const lum = (hex) =>

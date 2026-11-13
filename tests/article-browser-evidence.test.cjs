@@ -4,6 +4,7 @@ const assert = require('node:assert/strict');
 const {
   validateArticleJourney,
   validateArticleFlight,
+  validateArticleTransition,
   validateArticleBlocks,
   installArticleFlightDiagnostics,
   installArticleHistoryDiagnostics,
@@ -540,7 +541,12 @@ test('block diagnostics omit empty shells, collect later child animations and re
   };
   const listeners = {};
   const scope = {
-    window: { requestAnimationFrame: (callback) => scheduled.push(callback) },
+    window: {
+      requestAnimationFrame: (callback) => scheduled.push(callback),
+      addEventListener: (kind, callback) => {
+        listeners[kind] = callback;
+      },
+    },
     document: {
       querySelectorAll: () => units,
       querySelector: () => null,
@@ -1142,6 +1148,103 @@ test('article flight admission rejects axial excursions, reversed orbits, scene 
     assert.throws(() => validateArticleFlight(bad.events, bad.from, bad.to, bad.direction));
   }
   assert.throws(() => validateArticleFlight([good.events[0]], good.from, good.to, good.direction));
+});
+
+test('current Writing-scene evidence requires a held wave, actual opposed paints and a neutral handoff', () => {
+  const { variant } = require('../tools/quality/color-motion-contract.cjs').reviewedRuntime(
+    'issue187-mount-raster-staging'
+  );
+  const { pulsePaints, mountHandoff } = require('./fixtures/article-flight.cjs');
+  const events = pulsePaints(7);
+  const trip = {
+    from: 'writing',
+    to: 'article:sample:en',
+    direction: 1,
+    blocks: [
+      {
+        time: 0,
+        completedAt: 1000,
+        navigationId: 7,
+        cameraBefore: events[0].current,
+        mountHandoff: mountHandoff(events.at(-1), 'article:sample:en'),
+      },
+      { time: 2300, navigationId: 7 },
+    ],
+    events,
+  };
+  validateArticleTransition(trip, variant.fingerprint);
+  const visibleStep = structuredClone(trip);
+  visibleStep.events.at(-2).pulse.layers[0].turn = 0.02;
+  const historical = require('../tools/quality/color-motion-contract.cjs').reviewedRuntime(
+    'issue187-pulse-continuity-staging'
+  );
+  const legacyStep = structuredClone(visibleStep);
+  delete legacyStep.blocks[0].mountHandoff;
+  validateArticleTransition(legacyStep, historical.variant.fingerprint);
+  assert.throws(() => validateArticleTransition(visibleStep, variant.fingerprint), /neutral frame/);
+  for (const [damage, reason] of [
+    [(block) => delete block.mountHandoff, /bracket the mount event/],
+    [
+      (block) => (block.mountHandoff.after.time = block.mountHandoff.time - 1),
+      /bracket the mount event/,
+    ],
+    [(block) => (block.mountHandoff.document = 'writing'), /expected destination/],
+    [(block) => (block.mountHandoff.after.ambientTime += 16), /ambient phase/],
+    [(block) => (block.mountHandoff.after.detailTier = 0), /detail tier/],
+    [(block) => (block.mountHandoff.after.paintedRooms = []), /Writing room/],
+    [(block) => (block.mountHandoff.after.ordinaryShapes = 0), /Writing geometry/],
+    [(block) => (block.mountHandoff.after.ordinaryShapes -= 1), /shape count/],
+    [(block) => (block.mountHandoff.samePixels = false), /exact Canvas pixels/],
+    [(block) => delete block.mountHandoff.samePixels, /exact Canvas pixels/],
+    [(block) => (block.mountHandoff.after.height -= 1), /fixed viewport projection/],
+    [(block) => (block.mountHandoff.after.current = { position: [5, 4, -232] }), /reading pose/],
+  ]) {
+    const invalid = structuredClone(trip);
+    damage(invalid.blocks[0]);
+    assert.throws(() => validateArticleTransition(invalid, variant.fingerprint), reason);
+  }
+  for (const damage of [
+    (value) => {
+      value.blocks[0].completedAt = 1050;
+    },
+    (value) => {
+      value.events[1].current = { ...value.events[1].current, position: [6, 3, -232] };
+    },
+    (value) => {
+      value.events[2].navigationId = 8;
+    },
+    (value) => {
+      value.events[2].pulse.layers[1].turn = -0.4;
+    },
+    (value) => {
+      value.events.at(-3).pulse.layers[0].turn = 0.4;
+    },
+    (value) => {
+      for (const event of value.events.filter(({ pulse }) => pulse))
+        event.pulse.layers[3] = { turn: 0, swell: 0 };
+    },
+    (value) => {
+      value.events.at(-2).pulse.layers[0].turn = 0.0009;
+    },
+    (value) => {
+      for (const event of value.events.filter(({ pulse }) => pulse)) event.pulse.progress = 0;
+    },
+    (value) => {
+      for (const event of value.events.filter(({ pulse }) => pulse))
+        for (const layer of event.pulse.layers) layer.swell = event.pulse.swell;
+    },
+    (value) => {
+      value.events.pop();
+    },
+    (value) => {
+      value.blocks[1].time = 2160;
+    },
+  ]) {
+    const invalid = structuredClone(trip);
+    damage(invalid);
+    assert.throws(() => validateArticleTransition(invalid, variant.fingerprint));
+  }
+  assert.throws(() => validateArticleTransition(trip, 'unknown'));
 });
 
 test('resource deferral rejects detached-clone downloads while retaining near or reused images', () => {

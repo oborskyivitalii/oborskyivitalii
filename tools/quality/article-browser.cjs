@@ -1022,6 +1022,45 @@ function installArticleFlightDiagnostics() {
   window.__articleBlockEvents = [];
   let active = null;
   let currentBlock = null;
+  let lastPaint = null;
+  let pulseDeparture = null;
+  let pendingMount = null;
+  let beforeMountPixels = null;
+  function canvasPixels() {
+    const canvas = document.querySelector('#space-canvas');
+    const image = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height);
+    const pixels = new Uint32Array(
+      image.data.buffer,
+      image.data.byteOffset,
+      image.data.byteLength / 4
+    );
+    return { width: image.width, height: image.height, pixels };
+  }
+  function paintState(event) {
+    const { time, current, ambientTime, detailTier, paintedRooms, ordinaryShapes, width, height } =
+      event;
+    return structuredClone({
+      time,
+      current,
+      ambientTime,
+      detailTier,
+      paintedRooms,
+      ordinaryShapes,
+      width,
+      height,
+      pulse: event.documentPulse,
+    });
+  }
+  window.addEventListener('site:page-mount', ({ detail }) => {
+    if (!pulseDeparture) return;
+    pendingMount = pulseDeparture.mountHandoff = {
+      document: detail.page,
+      time: performance.now(),
+      before: paintState(lastPaint),
+    };
+    beforeMountPixels = canvasPixels();
+    pulseDeparture = null;
+  });
   let witnessed = new WeakMap();
   // Capture real native animationstart keyframes even when a busy browser
   // misses the brief CSSAnimation in its frame-by-frame snapshot.
@@ -1110,60 +1149,109 @@ function installArticleFlightDiagnostics() {
         .flatMap((animation) => animation.effect?.getKeyframes() || []),
     };
   }
+  function observePaint(event) {
+    lastPaint = event;
+    if (pendingMount) {
+      pendingMount.after = paintState(event);
+      const afterMountPixels = canvasPixels();
+      pendingMount.samePixels =
+        beforeMountPixels.width === afterMountPixels.width &&
+        beforeMountPixels.height === afterMountPixels.height &&
+        beforeMountPixels.pixels.every((pixel, index) => pixel === afterMountPixels.pixels[index]);
+      beforeMountPixels = null;
+      pendingMount = null;
+    }
+    if (
+      currentBlock?.stage === 'departure' &&
+      event.documentPulseNavigationId === currentBlock.navigationId &&
+      event.documentPulse === null
+    )
+      pulseDeparture = currentBlock;
+  }
+  function observeBlockStart(event) {
+    if (window.__articleBlockEvents.length >= 40) throw Error('article block evidence overflow');
+    const departure = event.stage === 'departure';
+    if (departure) {
+      pulseDeparture = null;
+      pendingMount = null;
+      beforeMountPixels = null;
+    }
+    const record = {
+      ...structuredClone(event),
+      ...(departure ? { cameraBefore: structuredClone(lastPaint?.current ?? null) } : {}),
+      units: [],
+      paper: null,
+    };
+    witnessed = new WeakMap();
+    currentBlock = record;
+    window.__articleBlockEvents.push(record);
+    // A CSS animation can be queued after the first painted frame under
+    // contention. Preserve actual animation keyframes observed on the same
+    // DOM element across at most five frames, within the unchanged 1s wave.
+    // Never fabricate frames or treat an absent animation as a pass.
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        const seen = new Map();
+        function capture(remainingFrames) {
+          for (const element of document.querySelectorAll('[data-route-block]')) {
+            const next = blockUnit(element);
+            const previous = seen.get(element);
+            if (!seen.has(element) || (!previous && next)) seen.set(element, next);
+            else if (previous && next && next.frames.length > previous.frames.length)
+              previous.frames = next.frames;
+          }
+          record.units = [...seen.values()].filter(Boolean);
+          const paper = paperUnit();
+          if (!record.paper || (paper && paper.frames.length > record.paper.frames.length))
+            record.paper = paper;
+          if (
+            !remainingFrames ||
+            (record.units.every((unit) => unit.frames.length >= 2) &&
+              (!record.paper || record.paper.frames.length >= 2))
+          )
+            return;
+          window.requestAnimationFrame(() => capture(remainingFrames - 1));
+        }
+        capture(3);
+      });
+    });
+  }
+  function observeBlockCompletion(event) {
+    const stage = event.stage === 'holding' ? 'departure' : 'arrival';
+    const block = window.__articleBlockEvents.findLast(
+      (item) => item.stage === stage && item.navigationId === event.navigationId
+    );
+    if (block) {
+      block.completedBy = event.completedBy;
+      block.completedAt = event.time;
+    }
+  }
   window.SiteEngineProbe = (event) => {
     if (window.__articleFlightEvents.length >= 4000)
       throw Error('article flight evidence overflow');
-    if (event.kind === 'route-block' && ['departure', 'arrival'].includes(event.stage)) {
-      if (window.__articleBlockEvents.length >= 40) throw Error('article block evidence overflow');
-      const record = { ...structuredClone(event), units: [], paper: null };
-      witnessed = new WeakMap();
-      currentBlock = record;
-      window.__articleBlockEvents.push(record);
-      // A CSS animation can be queued after the first painted frame under
-      // contention. Preserve actual animation keyframes observed on the same
-      // DOM element across at most five frames, within the unchanged 1s wave.
-      // Never fabricate frames or treat an absent animation as a pass.
-      window.requestAnimationFrame(() => {
-        window.requestAnimationFrame(() => {
-          const seen = new Map();
-          function capture(remainingFrames) {
-            for (const element of document.querySelectorAll('[data-route-block]')) {
-              const next = blockUnit(element);
-              const previous = seen.get(element);
-              if (!seen.has(element) || (!previous && next)) seen.set(element, next);
-              else if (previous && next && next.frames.length > previous.frames.length)
-                previous.frames = next.frames;
-            }
-            record.units = [...seen.values()].filter(Boolean);
-            const paper = paperUnit();
-            if (!record.paper || (paper && paper.frames.length > record.paper.frames.length))
-              record.paper = paper;
-            if (
-              !remainingFrames ||
-              (record.units.every((unit) => unit.frames.length >= 2) &&
-                (!record.paper || record.paper.frames.length >= 2))
-            )
-              return;
-            window.requestAnimationFrame(() => capture(remainingFrames - 1));
-          }
-          capture(3);
-        });
-      });
-    }
+    if (event.kind === 'paint') observePaint(event);
+    if (event.kind === 'route-block' && ['departure', 'arrival'].includes(event.stage))
+      observeBlockStart(event);
     if (
       event.kind === 'route-block' &&
       event.completedBy &&
       ['holding', 'settled'].includes(event.stage)
-    ) {
-      const stage = event.stage === 'holding' ? 'departure' : 'arrival';
-      const block = window.__articleBlockEvents.findLast(
-        (item) => item.stage === stage && item.navigationId === event.navigationId
-      );
-      if (block) block.completedBy = event.completedBy;
-    }
+    )
+      observeBlockCompletion(event);
     if (event.kind === 'camera-travel' || event.kind === 'camera-travel-complete')
       window.__articleFlightEvents.push(structuredClone(event));
     if (event.kind === 'camera-travel') active = event.navigationId;
+    if (event.kind === 'paint' && Number.isSafeInteger(event.documentPulseNavigationId))
+      window.__articleFlightEvents.push({
+        kind: 'document-pulse-paint',
+        time: event.time,
+        navigationId: event.documentPulseNavigationId,
+        current: structuredClone(event.current),
+        journey: event.journey !== null,
+        height: event.height,
+        paintedRooms: [...event.paintedRooms],
+        pulse: structuredClone(event.documentPulse),
+      });
     if (event.kind === 'paint' && active)
       window.__articleFlightEvents.push({
         kind: 'paint',
@@ -1408,10 +1496,158 @@ function articleBlocksRequired(engine) {
   );
 }
 
+function validateArticleMountHandoff(departure, arrival, neutral, to, requireRaster) {
+  const { before, after, document, time, samePixels } = departure.mountHandoff ?? {};
+  assert.ok(
+    [before?.time, time, after?.time].every(Number.isFinite) &&
+      neutral.time <= before.time &&
+      before.time <= time &&
+      time <= after.time &&
+      after.time <= arrival.time,
+    'neutral paint and first native mount paint bracket the mount event before arrival'
+  );
+  assert.equal(document, to, 'native mount belongs to the expected destination');
+  for (const sample of [before, after]) {
+    assert.equal(sample.pulse, null, 'document mount keeps the pulse neutral');
+    assert.deepEqual(sample.current, neutral.current, 'document mount keeps the reading pose');
+    assert.deepEqual(sample.paintedRooms, ['writing'], 'document mount paints the Writing room');
+    assert.ok(
+      Number.isSafeInteger(sample.ordinaryShapes) && sample.ordinaryShapes > 0,
+      'document mount paints Writing geometry'
+    );
+  }
+  assert.ok(
+    Number.isFinite(before.width) && before.width > 0 && before.height === neutral.height,
+    'observed pre-mount canvas dimensions'
+  );
+  assert.deepEqual(
+    [after.width, after.height],
+    [before.width, before.height],
+    'document mount keeps the fixed viewport projection'
+  );
+  assert.ok(Number.isFinite(before.ambientTime), 'observed pre-mount ambient phase');
+  assert.equal(after.ambientTime, before.ambientTime, 'document mount keeps the ambient phase');
+  assert.ok(Number.isFinite(before.detailTier), 'observed pre-mount detail tier');
+  assert.equal(after.detailTier, before.detailTier, 'document mount keeps the detail tier');
+  if (requireRaster) {
+    assert.equal(
+      after.ordinaryShapes,
+      before.ordinaryShapes,
+      'document mount keeps the shape count'
+    );
+    assert.equal(samePixels, true, 'document mount keeps the exact Canvas pixels');
+  }
+}
+function validateArticlePulse({ events, blocks, to }, { restTolerance, handoff, raster }) {
+  const [departure, arrival] = blocks ?? [];
+  assert.ok(departure && arrival, 'pulse requires both observed block phases');
+  assert.ok(Array.isArray(events) && events.length >= 3, 'actual document pulse paints');
+  const first = events[0],
+    neutral = events.at(-1);
+  assert.ok(
+    Number.isFinite(departure.completedAt) &&
+      departure.time < departure.completedAt &&
+      departure.completedAt <= first.time &&
+      neutral.time <= arrival.time,
+    'departure held before pulse paints and neutral before arrival'
+  );
+  assert.ok(
+    neutral.time - first.time >= 1100 && neutral.time - first.time <= 1800,
+    'one finite showcase within the existing pulse watchdog'
+  );
+  assert.equal(neutral.pulse, null, 'actual neutral canvas paint before arrival');
+  if (restTolerance < 0.025) {
+    assert.ok(Number.isFinite(neutral.height) && neutral.height > 0, 'observed canvas height');
+    restTolerance = Math.min(restTolerance, 0.5 / neutral.height);
+  }
+  if (handoff) validateArticleMountHandoff(departure, arrival, neutral, to, raster);
+  for (const vector of [first.current?.position, first.current?.target]) {
+    assert.ok(vector?.length === 3 && vector.every(Number.isFinite), 'observed reading pose');
+  }
+  assert.deepEqual(first.current, departure.cameraBefore, 'pulse keeps the prior reading pose');
+  const opposingDirections = new Set();
+  let distinctSwell = false;
+  let previous = null;
+  for (const [index, paint] of events.entries()) {
+    assert.equal(paint.kind, 'document-pulse-paint', 'same-scene pulse emits no camera travel');
+    assert.equal(paint.navigationId, departure.navigationId, 'paint belongs to the trip');
+    assert.equal(paint.journey, false, 'no camera journey during document pulse');
+    assert.deepEqual(paint.current, first.current, 'stationary camera throughout pulse');
+    assert.deepEqual(paint.paintedRooms, ['writing']);
+    if (index > 0) assert.ok(events[index - 1].time < paint.time, 'ordered paint samples');
+    if (paint === neutral) continue;
+    const layers = paint.pulse?.layers;
+    assert.ok(layers?.length === 4, 'all four layers painted');
+    assert.ok(
+      layers.every(
+        ({ turn, swell }) =>
+          Number.isFinite(turn) &&
+          Math.abs(turn) <= 0.85 &&
+          Number.isFinite(swell) &&
+          swell >= 0 &&
+          swell <= 1
+      ),
+      'finite bounded layer poses'
+    );
+    const { progress } = paint.pulse;
+    assert.ok(
+      Number.isFinite(progress) &&
+        progress <= 1 &&
+        (previous ? progress > previous.progress || progress === 1 : progress === 0),
+      'pulse phase advances on actual paints'
+    );
+    if (previous)
+      assert.ok(
+        layers.every(
+          ({ turn, swell }, i) =>
+            Math.abs(turn - previous.layers[i].turn) <= 0.16001 &&
+            Math.abs(swell - previous.layers[i].swell) <= 0.18001
+        ),
+        'consecutive paints stay within the layer motion bounds'
+      );
+    if (
+      paint.pulse.swell >= 0.1 &&
+      layers.slice(1).every(({ turn }, i) => turn * layers[i].turn < -0.01)
+    )
+      opposingDirections.add(Math.sign(layers[0].turn));
+    const swells = layers.map(({ swell }) => swell);
+    assert.equal(paint.pulse.swell, Math.max(...swells), 'observed peak layer swell');
+    if (paint.pulse.swell - Math.min(...swells) >= 0.01) distinctSwell = true;
+    previous = paint.pulse;
+  }
+  assert.ok(previous?.progress >= 0.9, 'pulse approaches the end of its phase');
+  assert.ok(distinctSwell, 'depth layers swell independently');
+  assert.equal(opposingDirections.size, 2, 'visible adjacent layers oppose and reverse');
+  assert.ok(
+    events
+      .at(-2)
+      .pulse.layers.every(
+        ({ turn, swell }) => Math.abs(turn) <= restTolerance && swell <= restTolerance
+      ),
+    'last active paint eases into the neutral frame'
+  );
+}
+
+function validateArticleTransition(flight, engine) {
+  const writingDocument = (key) => key === 'writing' || key.startsWith('article:');
+  const motion = require('./color-motion-contract.cjs');
+  if (
+    motion.articlePulseRequired(engine) &&
+    writingDocument(flight.from) &&
+    writingDocument(flight.to)
+  )
+    validateArticlePulse(flight, {
+      restTolerance: motion.articlePulseRestTolerance(engine),
+      handoff: motion.articleMountHandoffRequired(engine),
+      raster: motion.articleMountRasterRequired(engine),
+    });
+  else validateArticleFlight(flight.events, flight.from, flight.to, flight.direction);
+}
+
 function validateRecordedArticleFlights(flights, engine) {
   const blockEvidenceRequired = articleBlocksRequired(engine);
   for (const flight of flights) {
-    validateArticleFlight(flight.events, flight.from, flight.to, flight.direction);
+    validateArticleTransition(flight, engine);
     if (blockEvidenceRequired) validateArticleBlocks(flight, engine);
   }
 }
@@ -1423,7 +1659,7 @@ async function takeArticleFlight(page, from, to, direction) {
     engine: document.querySelector('meta[name="site-engine"]')?.content,
   }));
   const flight = { from, to, direction, events, blocks };
-  validateArticleFlight(events, from, to, direction);
+  validateArticleTransition(flight, engine);
   validateArticleBlocks(flight, engine);
   return flight;
 }
@@ -2192,6 +2428,7 @@ module.exports = {
   articleAnchorCount,
   installArticleFlightDiagnostics,
   validateArticleFlight,
+  validateArticleTransition,
   validateArticleBlocks,
   validateReaderInteractions,
   waitForReaderAnchor,

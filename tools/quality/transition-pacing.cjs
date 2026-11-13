@@ -113,8 +113,24 @@ function phasePlan(events, phase, width) {
     start.rows ? 'animationend' : 'empty',
     'watchdog/cancel/fallback cannot earn motion allowance'
   );
+  const startTimeline = start.timelineTime;
+  const endTimeline = end.timelineTime;
+  const bothFinite = Number.isFinite(startTimeline) && Number.isFinite(endTimeline);
   assert.ok(
-    end.time - start.time >= start.plannedDurationMs - contract.exposureToleranceMs,
+    bothFinite || (startTimeline == null && endTimeline == null),
+    'inconsistent document animation clock evidence'
+  );
+  if (bothFinite)
+    assert.ok(
+      startTimeline >= 0 &&
+        endTimeline >= startTimeline &&
+        startTimeline <= start.time &&
+        endTimeline <= end.time,
+      'document animation clock is outside its wall-clock sample'
+    );
+  const exposure = bothFinite ? endTimeline - startTimeline : end.time - start.time;
+  assert.ok(
+    exposure >= start.plannedDurationMs - contract.exposureToleranceMs,
     'phase completed before actual presentation'
   );
   return { start, end, duration: start.plannedDurationMs };
