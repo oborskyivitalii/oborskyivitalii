@@ -937,6 +937,15 @@ families.issue187MountRaster = {
   space: '35efcad9b1ec4e82133be8e79946754bbc6c2d4f2b7d77603a13bef9c97a0c57',
   staging: 'd627e08611f28255fae7daafedad4e978f660893bd2db132c7812b397cd5c7db',
 };
+families.issue187PulseReturnEasing = {
+  ...families.issue187MountRaster,
+  id: 'issue187-pulse-return-easing',
+  baseEngine: '81d366ac11edfa6bad8198df1e479e36a743386952647ca6c498da3ce3bf9bee',
+  space: '079b1436488fff7ba8b9d10c28d342ad30324ab7d52eca164ec03f062eb57328',
+  plain: null,
+  staging: 'baf228679ecae899416ae407e65d28a4327f04df3a61a3db05a1738ebf2f48a7',
+  production: null,
+};
 // Expand only explicitly reviewed editions; an absent edition is never admitted.
 const runtimes = Object.entries(families).flatMap(([family, value]) =>
   ['plain', 'staging', 'production']
