@@ -920,6 +920,16 @@ families.issue187VerticalHandoff = {
   staging: '5c83ef51a944e7d3dc9768ee811786656b788de500049149adb59e92346427b9',
   production: null,
 };
+families.issue187MotionLint = {
+  ...families.issue187VerticalHandoff,
+  id: 'issue187-motion-lint',
+  baseEngine: '624211640ea8421af7fdb90aab5e852fa577418e7400fd951aa07e726cc70d0a',
+  space: '70f74963f52c5eb360620134117031fd5d6a468974a9841f0bf4c50de1669d97',
+  navigation: '576fff2fecbcb6afdc573d176a1cc9bc1464a9f088a5e5e5cebf342063867312',
+  plain: null,
+  staging: '5be63767941c190a0a2da44ae6786e778ee20e2f2183fe4a4a0c8bfd4d7df1b5',
+  production: null,
+};
 // Expand only explicitly reviewed editions; an absent edition is never admitted.
 const runtimes = Object.entries(families).flatMap(([family, value]) =>
   ['plain', 'staging', 'production']
