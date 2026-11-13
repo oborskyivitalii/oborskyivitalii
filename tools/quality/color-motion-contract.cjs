@@ -920,6 +920,23 @@ families.issue187VerticalHandoff = {
   staging: '5c83ef51a944e7d3dc9768ee811786656b788de500049149adb59e92346427b9',
   production: null,
 };
+families.issue187MotionLint = {
+  ...families.issue187VerticalHandoff,
+  id: 'issue187-motion-lint',
+  baseEngine: '624211640ea8421af7fdb90aab5e852fa577418e7400fd951aa07e726cc70d0a',
+  space: '70f74963f52c5eb360620134117031fd5d6a468974a9841f0bf4c50de1669d97',
+  navigation: '576fff2fecbcb6afdc573d176a1cc9bc1464a9f088a5e5e5cebf342063867312',
+  plain: null,
+  staging: '5be63767941c190a0a2da44ae6786e778ee20e2f2183fe4a4a0c8bfd4d7df1b5',
+  production: null,
+};
+families.issue187MountRaster = {
+  ...families.issue187MotionLint,
+  id: 'issue187-mount-raster',
+  baseEngine: 'c8c8f533665d75b1c94f13ef757e77cdf27f9c90d045c8f394dc9709a94243ee',
+  space: '35efcad9b1ec4e82133be8e79946754bbc6c2d4f2b7d77603a13bef9c97a0c57',
+  staging: 'd627e08611f28255fae7daafedad4e978f660893bd2db132c7812b397cd5c7db',
+};
 // Expand only explicitly reviewed editions; an absent edition is never admitted.
 const runtimes = Object.entries(families).flatMap(([family, value]) =>
   ['plain', 'staging', 'production']

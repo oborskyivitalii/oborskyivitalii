@@ -19,3 +19,19 @@ The Color contract test exercises the exact staging edition, rejects a mismatche
 Fresh Requirements, Code, White-box and Exploratory reviewers inspected the initial staged tree `447289fa`. The independent results identified the untriaged registry literals and distinguished the old package source from the current feature head. The correction drops unused plain CSS from the staging tuple and appends five exact checksum dispositions after comparing the raw findings with the generated runtime and manifest. The prior ledger rows, scanner rules and limits are preserved.
 
 The prerequisite needs a reviewed exact head, its own native and owner staging checks, App and PR-event admission, and the applicable maintainer merge decision. After integration, reconcile overlapping registry and test edits while rebasing #197. Verify the shared staging tuple and run exact-head admission and owner staging for the feature. Production needs its own decision and evidence.
+
+## Revised tuple after navigation lint correction
+
+The feature's first post-CSS-correction native run passed all eight source shards. Final lint rejected cognitive complexity 37 in both the authored and generated navigator. The corrected feature extracts synchronous journey metadata and wave eligibility. The existing limit and visible behavior contract remain. The new exact Color staging tuple is distinct from the previously reviewed one.
+
+This protected prerequisite adds only the revised staging tuple and an exact registry regression. The current authored site and generated public files remain byte-identical to main. The new tuple inherits exact canonical and immutable file checks, edition binding and mandatory publication rights. The other prospective editions remain unavailable in the protected registry. The old tuple stays available for prior evidence.
+
+Applicable CS04, CS05 and CS08 checks use the existing Color registry, exact license and byte negatives, Basic, maintained style and generated RI. The current publisher still uses the same workflow and guards. Its protected route and live merge authorization are separate from local tuple verification.
+
+The complete source lint inventory also identified complexity in the frame scheduler and article evidence helper. The final refactor separates those responsibilities under the existing limit. This candidate registers the final staging tuple only, replacing the unmerged intermediate proposal. The previous protected runtime remains registered. Edition and rights guards, current site, public output and workflow stay under the same contracts.
+
+## Mounted Canvas backing ratio correction
+
+The feature's independent interaction probe found a coincident adaptive-quality vote between the last neutral Writing paint and the first mounted article paint. At a fixed 1440 × 900 CSS viewport, the Canvas backing bitmap went from 2160 × 1350 to 1800 × 1125 while the camera, phase and detail remained equal. The original hosted validator would accept that sample. The feature now holds the displayed backing ratio for the first mounted paint and compares the Canvas bitmap at the handoff. Adaptive quality resumes on subsequent paints. The permanent scene check fails at the first paint on the predecessor runtime and passes on the correction.
+
+Register the newly derived exact staging rendition and keep both previous staging identities. The current authored site and generated public files stay identical to the protected base. Existing publication rights, edition, canonical and immutable file checks still apply. The existing Color source suite covers the scoped registration, including altered immutable space bytes and unavailable edition aliases. Use the complete protected admission route on this exact candidate before staging the feature.
