@@ -10,22 +10,33 @@ function withoutComments(value) {
   return value.replace(/<!--(?:-?>|[\s\S]*?(?:--!?>|$))/g, '');
 }
 
+const blockContainers = ['root', 'blockquote', 'listItem', 'footnoteDefinition'];
+
+function afterLeadingComments(value) {
+  return value.replace(/^(?:[ \t]*<!--(?:-?>|[\s\S]*?(?:--!?>|$)))+/, '');
+}
+
 function visibleNode(source, footnotes, parentType) {
   const { position, children, ...node } = source;
   if (node.type === 'footnoteDefinition' && !footnotes.has(source)) return null;
   if (node.type === 'code') delete node.meta;
   if (node.type === 'html') {
     // Remark distinguishes actual HTML from comment-shaped text inside code.
+    if (blockContainers.includes(parentType)) {
+      // Reparse only the visible suffix of a leading comment, in its original container.
+      const suffix = afterLeadingComments(node.value);
+      if (!suffix.trim()) return null;
+      const block = parser.parse(suffix.trimStart());
+      validateMarkup(block);
+      if (block.children.length === 1 && block.children[0].type === 'paragraph') {
+        return visibleNode(block.children[0], footnotes, parentType);
+      }
+      return { type: 'paragraph', children: [{ type: 'text', value: suffix.trim() }] };
+    }
     const remaining = withoutComments(node.value);
     if (!remaining.trim()) return null;
     node.type = 'text';
     node.value = remaining;
-    if (['root', 'blockquote', 'listItem', 'footnoteDefinition'].includes(parentType)) {
-      return {
-        type: 'paragraph',
-        children: [{ type: 'text', value: remaining.trim().replace(/\s+/g, ' ') }],
-      };
-    }
   }
   if (children) {
     node.children = [];
@@ -58,6 +69,25 @@ function visibleNode(source, footnotes, parentType) {
   return node;
 }
 
+function validateMarkup(node, parentType) {
+  if (node.type === 'definition') {
+    throw new Error('Markdown link definitions are unsupported. Write inline links in the guide.');
+  }
+  if (node.type === 'html') {
+    const suffix = afterLeadingComments(node.value);
+    if (blockContainers.includes(parentType) && suffix !== node.value) {
+      validateMarkup(parser.parse(suffix.trimStart()));
+      return;
+    }
+    if (/<(?:[A-Za-z!?]|\/[A-Za-z])/.test(withoutComments(node.value))) {
+      throw new Error(
+        'Use Markdown for guide markup. HTML comments and code examples are supported.'
+      );
+    }
+  }
+  for (const child of node.children ?? []) validateMarkup(child, node.type);
+}
+
 function visibleFootnotes(tree) {
   const definitions = new Map();
   const references = new Set();
@@ -70,21 +100,6 @@ function visibleFootnotes(tree) {
     for (const child of node.children ?? []) collect(child);
   }
 
-  function validate(node) {
-    if (node.type === 'definition') {
-      throw new Error(
-        'Markdown link definitions are unsupported. Write inline links in the guide.'
-      );
-    }
-    if (node.type === 'html' && /<(?:[A-Za-z!?]|\/[A-Za-z])/.test(withoutComments(node.value))) {
-      throw new Error(
-        'Use Markdown for guide markup. HTML comments and code examples are supported.'
-      );
-    }
-    for (const child of node.children ?? []) validate(child);
-  }
-
-  validate(tree);
   collect(tree);
   // Set iteration visits references discovered inside already-visible notes.
   for (const id of references) {
@@ -97,6 +112,7 @@ try {
   const input = JSON.parse(readFileSync(0, 'utf8'));
   const visible = input.map((markdown) => {
     const tree = parser.parse(markdown);
+    validateMarkup(tree);
     return visibleNode(tree, visibleFootnotes(tree)).children;
   });
   process.stdout.write(JSON.stringify(visible));

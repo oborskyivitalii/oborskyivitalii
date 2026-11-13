@@ -815,6 +815,23 @@ class WorkflowGuideReviewTests(unittest.TestCase):
         self.assertNotEqual(*ci.guide_contents("##", ""))
         self.assertEqual(*ci.guide_contents("2 < 3", "<!-- note --> 2 < 3"))
         self.assertEqual(*ci.guide_contents("> 2 < 3", "> <!-- note --> 2 < 3"))
+        self.assertEqual(*ci.guide_contents("> 2 &amp; 3", "> <!-- note --> 2 &amp; 3"))
+        self.assertEqual(*ci.guide_contents("- 2 &#38; 3", "- <!-- note --> 2 &#38; 3"))
+        self.assertNotEqual(*ci.guide_contents("> 2 &amp; 3", "> <!-- note --> 4 &amp; 5"))
+        self.assertEqual(
+            *ci.guide_contents(r"> Keep \&amp; literal.", r"> <!-- note --> Keep \&amp; literal.")
+        )
+        self.assertEqual(
+            *ci.guide_contents("> Keep `&amp;` literal.", "> <!-- note --> Keep `&amp;` literal.")
+        )
+        self.assertNotEqual(
+            *ci.guide_contents("> <!-- note --> Keep `&amp;`.", "> <!-- note --> Keep `&`.")
+        )
+        self.assertEqual(*ci.guide_contents("> &nbsp;", "> <!-- note --> &nbsp;"))
+        self.assertEqual(*ci.guide_contents("> Keep `<em>`.", "> <!-- note --> Keep `<em>`."))
+        self.assertNotEqual(
+            *ci.guide_contents("> <!-- note --> Keep `<em>`.", "> <!-- note --> Keep `<b>`.")
+        )
         self.assertEqual(*ci.guide_contents("- 2 < 3", "- <!-- note --> 2 < 3"))
         self.assertEqual(*ci.guide_contents(">", "> <!-- hidden -->"))
 
