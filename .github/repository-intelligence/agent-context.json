@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "25dede4a38a58ec31c761a121ef908ab92064b192c61c3ae4d5a47d3d1456335",
+    "digest": "e705256887659de6dd26e49fa03cbcd269cdccb21250fd551ece20965a153e83",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -4850,7 +4850,7 @@
       {
         "path": "review/issue-187/2026-11-12-controller-preregistration.md",
         "identity_mode": "content",
-        "sha256": "375e37bc0afd7a946fd3071a324c67bd85d6471ed71b028b0ff7b4ee8feaed0d"
+        "sha256": "0a17ef7e15530159ad6816088b1b91bcc6abb15711e1f67d4739251ca64b37be"
       },
       {
         "path": "review/issue-188/2026-11-11-analysis.md",
@@ -11725,7 +11725,7 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "18ade2147f8f7fbd3bbafd02f421640d9b5550a76824db4e919aef83e3dcaf5a"
+        "sha256": "0a88b9783408190af31f4e0c8a7096bd678fba7d359ddf6f238fecb1e22f08e1"
       },
       {
         "path": "tests/content-baseline.test.cjs",
@@ -12715,7 +12715,7 @@
       {
         "path": "tools/quality/color-motion-contract.cjs",
         "identity_mode": "content",
-        "sha256": "cda56ddce11a5cf6c4cc6abc78dfcab54352746e0240b93f5e870b0a2d9081b8"
+        "sha256": "510d2a52d24c6e761a763133f091d1c270f95d431cbcb82eb4aee5251d2f96ed"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -13010,7 +13010,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "9d3cb67c260bb062136fa46e92ef7ebe7dc33b38f499c4468b451f742d071f2c"
+        "sha256": "48939faa44177404607954d9b60ccc008b72a9c9458726dcb867dc9748f9e9e0"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
