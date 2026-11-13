@@ -24,6 +24,21 @@ function plain(node) {
   return (node.children || []).map(plain).join('');
 }
 
+function figureHtml(asset, platform) {
+  return (
+    `<figure id="figure-${asset.id}"><img src="${escapeHtml(asset.url)}" ` +
+    `alt="${escapeHtml(asset.alt)}" width="${asset.width}" height="${asset.height}">` +
+    `<figcaption>${escapeHtml(asset.caption)} <span>${escapeHtml(asset.credit)}</span>` +
+    `</figcaption>${
+      platform
+        ? ''
+        : '<a class="article-figure-original" href="' +
+          escapeHtml(asset.url) +
+          '">View full-size diagram</a>'
+    }</figure>\n`
+  );
+}
+
 function render(model, assets, platform = false, components = {}) {
   const assetMap = new Map(assets.map((asset) => [asset.id, asset]));
   const renderChildren = (node) =>
@@ -92,21 +107,8 @@ function render(model, assets, platform = false, components = {}) {
         return '';
       case 'link':
         return `<a href="${escapeHtml(node.url)}">${renderChildren(node)}</a>`;
-      case 'image': {
-        const asset = assetMap.get(node.assetId);
-        return (
-          `<figure id="figure-${asset.id}"><img src="${escapeHtml(asset.url)}" ` +
-          `alt="${escapeHtml(asset.alt)}" width="${asset.width}" height="${asset.height}">` +
-          `<figcaption>${escapeHtml(asset.caption)} <span>${escapeHtml(asset.credit)}</span>` +
-          `</figcaption>${
-            platform
-              ? ''
-              : '<a class="article-figure-original" href="' +
-                escapeHtml(asset.url) +
-                '">View full-size diagram</a>'
-          }</figure>\n`
-        );
-      }
+      case 'image':
+        return figureHtml(assetMap.get(node.assetId), platform);
       case 'table': {
         const [head, ...rows] = node.children;
         if (platform) {
@@ -140,4 +142,4 @@ function render(model, assets, platform = false, components = {}) {
   return renderNode(model.tree);
 }
 
-module.exports = { render, plain, escapeHtml };
+module.exports = { figureHtml, render, plain, escapeHtml };

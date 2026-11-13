@@ -10849,6 +10849,18 @@
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
+    "tools/publishing/platform-images.cjs": {
+      "kind": "file",
+      "purpose": "Destination upload policies, assembly, inventory binding and verification.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "tools/publishing/platform-images.py": {
+      "kind": "file",
+      "purpose": "Pinned Pillow decoder and bounded no-crop platform image rendition worker.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
     "tools/publishing/origin.json": {
       "kind": "file",
       "purpose": "Exact UA helper Git/blob/content pins, retained treatment and local upgrade provenance.",
@@ -17305,13 +17317,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/2f7990f981ececb87582a10e1e4642b867f23f4e531e312bfa7ec4cf9a2bd408": {
+    "docs/snapshots/d02fdf79996a4892b88ee648a8e511d6c6888de91fdbbc2bfffbddce2db61318": {
       "kind": "directory",
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/2f7990f981ececb87582a10e1e4642b867f23f4e531e312bfa7ec4cf9a2bd408/talks.html": {
+    "docs/snapshots/d02fdf79996a4892b88ee648a8e511d6c6888de91fdbbc2bfffbddce2db61318/talks.html": {
       "kind": "file",
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
@@ -17329,37 +17341,37 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/a7e206bb92dcfae8b6ee42ded9a7722346a5262b72b10d8ff1125259d9412e49": {
+    "docs/snapshots/1dec565a995bce7df7b4686345783dbdcb318bce063415b76ccc189ee53ac48d": {
       "kind": "directory",
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/a7e206bb92dcfae8b6ee42ded9a7722346a5262b72b10d8ff1125259d9412e49/research.html": {
+    "docs/snapshots/1dec565a995bce7df7b4686345783dbdcb318bce063415b76ccc189ee53ac48d/research.html": {
       "kind": "file",
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/83df95879db4fb6eff6947bbbcb0df74f18aeff64e77f8f57a4d9677a955badb": {
+    "docs/snapshots/e4fee7668d8c81d71f295be466e8e4f188c9e66b52df78fc8efe1aafe8fa2289": {
       "kind": "directory",
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/83df95879db4fb6eff6947bbbcb0df74f18aeff64e77f8f57a4d9677a955badb/index.html": {
+    "docs/snapshots/e4fee7668d8c81d71f295be466e8e4f188c9e66b52df78fc8efe1aafe8fa2289/index.html": {
       "kind": "file",
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/46c259b15720af2cb02c7cb78e7b9b8d4031492452350c9d2cd74d9c3e4e801b": {
+    "docs/snapshots/88e77996e06b9690170c7ffbf6e0f67808db8efb1016df13daec9368fe49c12b": {
       "kind": "directory",
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/46c259b15720af2cb02c7cb78e7b9b8d4031492452350c9d2cd74d9c3e4e801b/credits.html": {
+    "docs/snapshots/88e77996e06b9690170c7ffbf6e0f67808db8efb1016df13daec9368fe49c12b/credits.html": {
       "kind": "file",
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
@@ -17563,25 +17575,25 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/940cec9dab62c69afbc0774e0101310e42197ccadc39c933c0d7d032575dbeab/the-sdlc-is-out-of-balance.html": {
+    "docs/article-snapshots/a1fdf0fa8fab1f04e4cb78381489a1380bff2508b38f9d37b9a8bde8a11b26e1/the-sdlc-is-out-of-balance.html": {
       "kind": "file",
       "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/940cec9dab62c69afbc0774e0101310e42197ccadc39c933c0d7d032575dbeab": {
+    "docs/article-snapshots/a1fdf0fa8fab1f04e4cb78381489a1380bff2508b38f9d37b9a8bde8a11b26e1": {
       "kind": "directory",
       "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/914c315bf3438424ddb64433cb82c3ba1946e19fcb4706d3791e9799f51f1095/writing.html": {
+    "docs/snapshots/53f6d48944e9aa69eb142a141b71b8240678de858baf39dd671d37ab89c810ee/writing.html": {
       "kind": "file",
       "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/914c315bf3438424ddb64433cb82c3ba1946e19fcb4706d3791e9799f51f1095": {
+    "docs/snapshots/53f6d48944e9aa69eb142a141b71b8240678de858baf39dd671d37ab89c810ee": {
       "kind": "directory",
       "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
       "role": "generated",
@@ -17790,6 +17802,30 @@
       "purpose": "Issue #198 independent preflight, review and delivery evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-196": {
+      "kind": "directory",
+      "purpose": "Owning issue #196 review and artifact verification evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-196/2026-11-12-destination-image-review.md": {
+      "kind": "file",
+      "purpose": "Independent image export review, source-bound test results and destination requirements.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    ".github/acceptance/issue-196.json": {
+      "kind": "file",
+      "purpose": "Exact-source acceptance and native editor evidence for destination image export.",
+      "role": "validator",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "tests/test_issue196_acceptance.py": {
+      "kind": "file",
+      "purpose": "Issue196 source-check route for native platform images, retained print and hosted media.",
+      "role": "validator",
+      "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-187.json": {
       "kind": "file",
