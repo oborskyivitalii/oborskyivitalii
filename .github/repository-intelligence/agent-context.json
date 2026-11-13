@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "74159b98a3784cac97a57859ba8ecb9c2bd825a9c9b77a9650d3528dfe537c78",
+    "digest": "9165397cbcdffdfd91efd568fce41b384e8f1787b474762c04487e84e44663f3",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -11980,7 +11980,7 @@
       {
         "path": "tests/fixtures/catalog.cjs",
         "identity_mode": "content",
-        "sha256": "dd59ed1c44c4d92838a6ae718af249820ae9c4c034163df8f61bbafc457037c0"
+        "sha256": "0b9199f02d59732cd0fd3e4427fca42c5b41e1e8dad393c7662dc4f4a6db04a0"
       },
       {
         "path": "tests/fixtures/delivery.cjs",
