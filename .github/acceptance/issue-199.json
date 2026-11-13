@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 199,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/199",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "One discoverable guide with an authority map and canonical links.",
+      "automated_scope": "The maintained layout and RI checks resolve active relative links and validate indexed ownership. The reader journey is reviewed separately.",
+      "checks": ["LINKS", "OWNERS", "RI"],
+      "gates": ["GUIDE-REVIEW"]
+    },
+    {
+      "id": "AC02",
+      "intent": "Explain agent roles, launch isolation, orchestration, correction and handoff.",
+      "automated_scope": "Requires source-bound semantic review and observed diagram rendering.",
+      "checks": [],
+      "gates": ["GUIDE-REVIEW", "GITHUB-DIAGRAMS"]
+    },
+    {
+      "id": "AC03",
+      "intent": "Explain the protected delivery routes and gates through representative cases.",
+      "automated_scope": "Requires a source-bound walkthrough against the protected selector and release contracts.",
+      "checks": [],
+      "gates": ["ROUTES", "GITHUB-DIAGRAMS"]
+    },
+    {
+      "id": "AC04",
+      "intent": "Verify the exact documentation candidate and its selected delivery route.",
+      "automated_scope": "Existing link, RI freshness/coupling and bounded style checks verify their declared scope.",
+      "checks": ["LINKS", "RI", "RI-CI", "STYLE"],
+      "gates": ["GUIDE-REVIEW", "GITHUB-DIAGRAMS", "DELIVERY"]
+    },
+    {
+      "id": "AC05",
+      "intent": "Explain the site architecture, trade-offs and traceable released examples.",
+      "automated_scope": "Relative evidence links are checked; architecture, interpretation and published evidence are reviewed separately.",
+      "checks": ["LINKS"],
+      "gates": ["GUIDE-REVIEW", "GITHUB-DIAGRAMS"]
+    },
+    {
+      "id": "AC06",
+      "intent": "Review and maintain the guide when workflow, harness, RI, agent, orchestration or delivery controls change.",
+      "automated_scope": "Fixed Git tree fixtures verify triggering changes, inapplicable changes, guide updates and missing or stale unchanged-guide records.",
+      "checks": ["GUIDE-GATE", "GUIDE-SCOPE", "GUIDE-RECEIPT", "GUIDE-PRESENCE", "STYLE"],
+      "gates": ["GUIDE-REVIEW", "DELIVERY"]
+    }
+  ],
+  "checks": {
+    "LINKS": {
+      "kind": "unittest",
+      "test": "test_root_layout.RootLayoutTests.test_current_active_relative_links_resolve"
+    },
+    "OWNERS": {
+      "kind": "unittest",
+      "test": "test_root_layout.RootLayoutTests.test_current_guide_owners_and_configured_routes_are_live"
+    },
+    "RI": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_real_adapter_owners_and_cross_repo_isolation"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    },
+    "STYLE": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "GUIDE-GATE": {
+      "kind": "unittest",
+      "test": "test_ri_ci.WorkflowGuideReviewTests.test_covered_changes_require_current_guide_or_review"
+    },
+    "GUIDE-SCOPE": {
+      "kind": "unittest",
+      "test": "test_ri_ci.WorkflowGuideReviewTests.test_derived_and_ordinary_content_are_inapplicable"
+    },
+    "GUIDE-RECEIPT": {
+      "kind": "unittest",
+      "test": "test_ri_ci.WorkflowGuideReviewTests.test_unchanged_guide_requires_current_scope_sections_and_receipt"
+    },
+    "GUIDE-PRESENCE": {
+      "kind": "unittest",
+      "test": "test_ri_ci.WorkflowGuideReviewTests.test_guide_cannot_be_removed"
+    }
+  },
+  "gates": {
+    "GUIDE-REVIEW": {
+      "kind": "human",
+      "description": "Record the four independent reviewer results and affected corrections against the guide, exact source and applicable contracts."
+    },
+    "GITHUB-DIAGRAMS": {
+      "kind": "human",
+      "description": "Observe all four Mermaid diagrams rendering on GitHub at the candidate revision."
+    },
+    "ROUTES": {
+      "kind": "human",
+      "description": "Verify the guide examples against the protected route selection and canonical contracts, including the missing or incompatible baseline case."
+    },
+    "DELIVERY": {
+      "kind": "merge",
+      "description": "Verify the exact complete diff, required current-source checks and admission on the selected route before the authorized protected merge."
+    }
+  }
+}

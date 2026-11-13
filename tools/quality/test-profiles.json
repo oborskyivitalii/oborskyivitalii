@@ -2812,6 +2812,9 @@
       "profiles": ["pr-targeted", "staging", "production"],
       "inputs": [
         "tests/delivery-admission.test.cjs",
+        "tools/check_ri_ci.py",
+        "tools/quality/workflow-guide-markdown.mjs",
+        "tools/publishing/toolchain/package-lock.json",
         "tools/quality/delivery-*.cjs",
         ".github/workflows/change-admission.yml",
         ".github/workflows/site-color-review.yml",

@@ -316,6 +316,11 @@
       ]
     },
     {
+      "concern": "repository workflow, harness and delivery overview",
+      "path": "guides/REPOSITORY-WORKFLOW.md",
+      "queries": ["repository workflow", "harness overview", "guide review", "delivery routes"]
+    },
+    {
       "concern": "offline WEB orchestration fixture component",
       "path": "guides/WEB-ORCHESTRATION.md",
       "queries": ["orchestration", "WEB-18", "VIT-22", "reducer", "receipt recovery"]

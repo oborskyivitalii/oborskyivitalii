@@ -11611,6 +11611,12 @@
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
     },
+    "tools/quality/workflow-guide-markdown.mjs": {
+      "kind": "file",
+      "purpose": "Compare visible workflow-guide GFM and reject actual reference definitions while preserving code literals.",
+      "role": "validator",
+      "owner": ".github/REPOSITORY-INTELLIGENCE.md"
+    },
     "tools/quality/writing-diagnosis.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for writing diagnosis; applicable profiles are selected by SITE-CHECK-PROFILES.",
@@ -17842,6 +17848,30 @@
     "review/issue-187/2026-11-12-controller-preregistration.md": {
       "kind": "file",
       "purpose": "Issue #187 protected staging runtime preregistration and independent verification.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "guides/REPOSITORY-WORKFLOW.md": {
+      "kind": "file",
+      "purpose": "Engineering overview of the repository harness, agents, site architecture and delivery routes.",
+      "role": "guide",
+      "owner": "guides/REPOSITORY-WORKFLOW.md"
+    },
+    ".github/acceptance/issue-199.json": {
+      "kind": "file",
+      "purpose": "Owning acceptance mapping for the repository engineering guide and its external review gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-199": {
+      "kind": "directory",
+      "purpose": "Source-bound review and delivery evidence for the repository workflow guide.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-199/2026-11-12-review.md": {
+      "kind": "file",
+      "purpose": "Requirements preflight, independent review and verification evidence for issue 199.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     }

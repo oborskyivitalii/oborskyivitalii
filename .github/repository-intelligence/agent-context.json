@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "25dede4a38a58ec31c761a121ef908ab92064b192c61c3ae4d5a47d3d1456335",
+    "digest": "25f1e7421e440e089ca4873b31c3c403cfe88b61775ad65ef46dc61f55500ed1",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -135,6 +135,11 @@
         "sha256": "dd6e5508b2bb940c020f7a2e618ab4419be22cc1b6eab015ef3e1c2e79bab972"
       },
       {
+        "path": ".github/acceptance/issue-199.json",
+        "identity_mode": "content",
+        "sha256": "95ce0f516544800432a157cfbc9e287eac1e235bcf3408780edab2bc1660c076"
+      },
+      {
         "path": ".github/acceptance/issue-31.json",
         "identity_mode": "content",
         "sha256": "fab7c6d73ef4814c40b26f63025b9e9dbc5e6f2435b733bd09480a34076ccef0"
@@ -247,7 +252,7 @@
       {
         "path": ".github/repository-intelligence-config.json",
         "identity_mode": "content",
-        "sha256": "ed69b7dcefa7389136d9a380f57c994a0906517fe206f40d275ffcb50fe9686a"
+        "sha256": "66adb348ba24a7f5fa4851ddba10f102e6f81cbff8824679e800204068db9468"
       },
       {
         "path": ".github/repository-intelligence/agent-context.json",
@@ -256,17 +261,17 @@
       {
         "path": ".github/repository-layout.json",
         "identity_mode": "content",
-        "sha256": "274834aa91b8d049d2c2767303dd50f5147db7b06f0f1602c8e507758d04d1a3"
+        "sha256": "592fe4b883c2feb2d4a5761396378999057ddbb3be66a58e35d140247c2ba57b"
       },
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "8bc136ddf17fbe055ea9e3c292f005234b0f2698bc0f9b78a10b58cff1742345"
+        "sha256": "c3d2131fc5016028ea4a372e279a7eb4f9ac2b1ae2e868a36df19b85486f7eaf"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "429a20ad68c6cde02ed261765b64ac0d61a5b82b37229ad76315a27da23d07fa"
+        "sha256": "c24b650874c5781c1ff1535faa406b2fa76b9b7b44f97ce52238ff3184252ac1"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -276,7 +281,7 @@
       {
         "path": ".github/workflows/change-admission.yml",
         "identity_mode": "content",
-        "sha256": "c958ac22a755c55a2b173aa211384692b9d10fae927ed908eeb75f3fffe510b6"
+        "sha256": "37062d94ed4ce3a4d23a580574c1ffa5ff77e0b7fe22c15a54416acfd8c3bb43"
       },
       {
         "path": ".github/workflows/control-runner-probe.yml",
@@ -291,7 +296,7 @@
       {
         "path": ".github/workflows/issue-acceptance.yml",
         "identity_mode": "content",
-        "sha256": "046a412dac232417cd8a7223b7c78eddfb03f1e7f23fd13391d7f98e583cc072"
+        "sha256": "5adc22d89feba6d9a42ff33c17439822faaf88f96ff04216551fe84fc455ed37"
       },
       {
         "path": ".github/workflows/navigation.yml",
@@ -416,7 +421,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "b5f233b9a4d1382f8b2f6e7027d1c2473e51fb94db09d52df3aa24e357792ed2"
+        "sha256": "5dd243062cd0170675e22c479643c899e5b98d4c0ef19977d79ab6717db3743b"
       },
       {
         "path": "NOTICE.md",
@@ -945,12 +950,17 @@
       {
         "path": "guides/README.md",
         "identity_mode": "content",
-        "sha256": "cf157db6e15b370336cbc7b0829d03b63be2e74d5e8759a3cb18ada213d1b7a6"
+        "sha256": "ca8099cd2998806759ac04b83efcceaae2d3404f234da48ecc062debdd8eaa7e"
       },
       {
         "path": "guides/REPOSITORIES.md",
         "identity_mode": "content",
         "sha256": "b29cbb24291a699fce92e93a9066dc18566d8311a79a5368ae2ab063abe96c1f"
+      },
+      {
+        "path": "guides/REPOSITORY-WORKFLOW.md",
+        "identity_mode": "content",
+        "sha256": "fd1fb4f8991edbe4a0b7f8766125b77baf6ac3f490a1c375e2e3d3ae3a4f5ac0"
       },
       {
         "path": "guides/SITE-ANALYTICS.md",
@@ -4921,6 +4931,11 @@
         "path": "review/issue-198/2026-11-12-reviewer-admission.md",
         "identity_mode": "content",
         "sha256": "ac346e668530a8ee57aa3c48668a179fce7575dc87153f1b5303db6f513e1c7f"
+      },
+      {
+        "path": "review/issue-199/2026-11-12-review.md",
+        "identity_mode": "content",
+        "sha256": "e9ea2e2dc12acf7fa6b99c49d98cdfe4868990136ddade2007450e3295667d4b"
       },
       {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -11775,7 +11790,7 @@
       {
         "path": "tests/delivery-admission.test.cjs",
         "identity_mode": "content",
-        "sha256": "c81420be0fa6d804fa08245cc18a148aa44d4d7426d1ad07757e423966bbd1ab"
+        "sha256": "dbe0ec2f1536e96e0d30fcc4984735b2c055e4b83c71520dcf100f8ba7039c42"
       },
       {
         "path": "tests/delivery-observation.test.cjs",
@@ -12280,7 +12295,7 @@
       {
         "path": "tests/test_ri_ci.py",
         "identity_mode": "content",
-        "sha256": "2350ffa32e6fa04459c6dd1fb109194f8abf14f3e0670777a12ffb84cb74f88c"
+        "sha256": "a2544dc2adb99ca13ffa2a53115694979c812db6b9ef841312a5932bd837e17d"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -12390,7 +12405,7 @@
       {
         "path": "tools/check_ri_ci.py",
         "identity_mode": "content",
-        "sha256": "8458c71b45d513eb6e0b7216dad4f27da9b99cc985e047b4539ba8ca49adf3c3"
+        "sha256": "5fd5595f01f836369621aa1114a58682ac9f45c31242c5f0d33da5435734ad8e"
       },
       {
         "path": "tools/check_site_contrast.cjs",
@@ -12775,7 +12790,7 @@
       {
         "path": "tools/quality/delivery-admission.cjs",
         "identity_mode": "content",
-        "sha256": "2394bf4830590602ca53f8c32adaa206f40a5e267943664e5afd843c0459e316"
+        "sha256": "38cc1a293e3630dedf1db216381fa06b4e94d30dfea4023949b73928b35d989e"
       },
       {
         "path": "tools/quality/delivery-git.cjs",
@@ -13070,7 +13085,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "1af9fb1088106185a0f02fd0813e4e5e5065adf091beb153ce7ba560a0777efe"
+        "sha256": "2bed0f26e5d656a985f5d1434a2d42b39bddfecb778e7b89d8cd46f04e7f7ad2"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -13121,6 +13136,11 @@
         "path": "tools/quality/workflow-artifacts.cjs",
         "identity_mode": "content",
         "sha256": "aa09e11edbde7486f36f04c707f7db57c9bdb0c27adaf13a4d06972bc310d1ca"
+      },
+      {
+        "path": "tools/quality/workflow-guide-markdown.mjs",
+        "identity_mode": "content",
+        "sha256": "a2e2bc11ef894fe8102dcc4d565538c6d11ce4bbfbd5341f3b1f29bb28728e68"
       },
       {
         "path": "tools/quality/writing-diagnosis.cjs",
@@ -13453,7 +13473,7 @@
     "path": "tools/repository_intelligence.py",
     "sha256": "a62c65c55ed683c95d0776555cade549f3f56a230b12ded6071bb7e8ab8b9f9e",
     "config_path": ".github/repository-intelligence-config.json",
-    "config_sha256": "ed69b7dcefa7389136d9a380f57c994a0906517fe206f40d275ffcb50fe9686a"
+    "config_sha256": "66adb348ba24a7f5fa4851ddba10f102e6f81cbff8824679e800204068db9468"
   },
   "owners": [
     {
@@ -13780,6 +13800,16 @@
         "ліцензування сайту",
         "ліцензія коду",
         "ліцензія контенту"
+      ]
+    },
+    {
+      "concern": "repository workflow, harness and delivery overview",
+      "path": "guides/REPOSITORY-WORKFLOW.md",
+      "queries": [
+        "repository workflow",
+        "harness overview",
+        "guide review",
+        "delivery routes"
       ]
     },
     {
@@ -14122,6 +14152,17 @@
         "AGENTS.md"
       ],
       "title": "issue-198.json"
+    },
+    {
+      "path": ".github/acceptance/issue-199.json",
+      "kind": "file",
+      "purpose": "Owning acceptance mapping for the repository engineering guide and its external review gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-199.json"
     },
     {
       "path": ".github/acceptance/issue-31.json",
@@ -15926,6 +15967,17 @@
         "AGENTS.md"
       ],
       "title": "Three-repository ownership and agent routing"
+    },
+    {
+      "path": "guides/REPOSITORY-WORKFLOW.md",
+      "kind": "file",
+      "purpose": "Engineering overview of the repository harness, agents, site architecture and delivery routes.",
+      "role": "guide",
+      "owner": "guides/REPOSITORY-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "How the author-site repository works"
     },
     {
       "path": "guides/SITE-ANALYTICS.md",
@@ -24660,6 +24712,17 @@
         "AGENTS.md"
       ],
       "title": "Issue 198 — 2026-11-12 independent reviewer admission"
+    },
+    {
+      "path": "review/issue-199/2026-11-12-review.md",
+      "kind": "file",
+      "purpose": "Requirements preflight, independent review and verification evidence for issue 199.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 199 review and verification"
     },
     {
       "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -42702,6 +42765,17 @@
       "title": "workflow-artifacts.cjs"
     },
     {
+      "path": "tools/quality/workflow-guide-markdown.mjs",
+      "kind": "file",
+      "purpose": "Compare visible workflow-guide GFM and reject actual reference definitions while preserving code literals.",
+      "role": "validator",
+      "owner": ".github/REPOSITORY-INTELLIGENCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "workflow-guide-markdown.mjs"
+    },
+    {
       "path": "tools/quality/writing-diagnosis.cjs",
       "kind": "file",
       "purpose": "Maintained quality/check helper for writing diagnosis; applicable profiles are selected by SITE-CHECK-PROFILES.",
@@ -44532,6 +44606,16 @@
       "path": "review/issue-198",
       "kind": "directory",
       "purpose": "Owning review and source-bound reviewer execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-199",
+      "kind": "directory",
+      "purpose": "Source-bound review and delivery evidence for the repository workflow guide.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [

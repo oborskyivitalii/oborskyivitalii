@@ -632,5 +632,300 @@ process.stdout.write(JSON.stringify(observations));
             ci.verify(self.root, base=base, head=head)
 
 
+class WorkflowGuideReviewTests(unittest.TestCase):
+    def setUp(self):
+        directory = tempfile.TemporaryDirectory()
+        self.addCleanup(directory.cleanup)
+        self.root = Path(directory.name)
+        self.git("init", "-q")
+        self.write(ci.GUIDE, "# Guide\n\n## Agents\n\nAgents review candidates.\n")
+        self.write(
+            ci.CATALOG,
+            json.dumps(
+                {
+                    "entries": {
+                        "custom/control": {
+                            "owner": "guides/WEB-ORCHESTRATION.md",
+                            "role": "source",
+                        }
+                    }
+                }
+            ),
+        )
+        catalog_path = self.root / ci.CATALOG
+        catalog = json.loads(catalog_path.read_text())
+        catalog["entries"].update(
+            {
+                "tools/quality/source-test-worker.cjs": {"owner": "guides/SITE-CHECK-PROFILES.md"},
+                "tools/quality/source-test-shards.cjs": {"owner": "guides/SITE-CHECK-PROFILES.md"},
+                "tools/quality/content-baseline.cjs": {"owner": "guides/SITE-CHECK-PROFILES.md"},
+                "tools/quality/content-gate.cjs": {"owner": "guides/SITE-CONTENT-RELEASE.md"},
+                "tools/quality/hosted.cjs": {"owner": "guides/SITE-RELEASE-GATES.md"},
+                "tools/quality/validate.cjs": {"owner": "guides/SITE-RELEASE-GATES.md"},
+                "tools/quality/functional.cjs": {"owner": "guides/SITE-RELEASE-GATES.md"},
+                "tools/quality/bandit-policy.json": {"owner": "guides/SITE-RELEASE-GATES.md"},
+            }
+        )
+        self.write(ci.CATALOG, json.dumps(catalog))
+        self.write(ci.MAP, '{"layers":[1],"reviewed_source_identity":{"digest":"old"}}')
+        self.write("custom/control", "original")
+        self.write(".github/workflows/retired.yml", "obsolete workflow")
+        self.base = self.commit()
+
+    def git(self, *args):
+        return subprocess.check_output(["git", "-C", str(self.root), *args], text=True).strip()
+
+    def write(self, path, value):
+        target = self.root / path
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(value)
+
+    def commit(self):
+        self.git("add", "-A")
+        self.git(
+            "-c",
+            "user.name=Fixture",
+            "-c",
+            "user.email=fixture@example.com",
+            "commit",
+            "-qm",
+            "candidate",
+        )
+        return self.git("rev-parse", "HEAD")
+
+    def test_covered_changes_require_current_guide_or_review(self):
+        paths = [
+            ".github/workflows/new.yml",
+            ".github/actions/new/action.yml",
+            "nested/AGENTS.md",
+            "agents/new.md",
+            "tools/orchestration/new.cjs",
+            ".github/repository-intelligence-config.json",
+            "tools/quality/delivery-routing.cjs",
+            "tools/quality/source-test-worker.cjs",
+            "tools/quality/source-test-shards.cjs",
+            "tools/quality/content-baseline.cjs",
+            "tools/quality/content-gate.cjs",
+            "tools/pages/controller.cjs",
+            "tools/release/staging-policy.cjs",
+            "tools/quality/scanners.cjs",
+            "tools/quality/budgets.json",
+            "tools/quality/security-rules.yml",
+            "tools/quality/artifact.cjs",
+            "tools/quality/hosted.cjs",
+            "tools/quality/validate.cjs",
+            "tools/quality/functional.cjs",
+            "tools/quality/bandit-policy.json",
+        ]
+        for path in paths:
+            self.write(path, "change")
+        self.git("rm", ".github/workflows/retired.yml")
+        self.git("mv", "custom/control", "custom/renamed")
+        paths.extend(
+            [".github/workflows/retired.yml", "custom/control", "custom/renamed", ci.CATALOG]
+        )
+        self.write(ci.CATALOG, '{"entries":{"custom/control":{"owner":"site/README.md"}}}')
+        head = self.commit()
+        self.assertEqual(ci.guide_review(self.root, self.base, head, True)["paths"], sorted(paths))
+        with self.assertRaisesRegex(ValueError, "Update"):
+            ci.guide_review(self.root, self.base, head)
+        self.write(
+            ci.GUIDE,
+            "# Guide\n\n## Agents\n\nAgents review  candidates.\n<!-- no-op -->\n",
+        )
+        with self.assertRaisesRegex(ValueError, "Update"):
+            ci.guide_review(self.root, self.base, self.commit())
+        for definition in (
+            "[unused]:\nhttps://example.com/\n",
+            "> [unused]: https://example.com/\n",
+            "[multiline\nlabel]: https://example.com/\n",
+            "[<!--hidden-->]: https://example.com/\n",
+            "[^unused]:\n    [actual]: https://example.com/\n",
+            "[alpha" + chr(92) + "\nbeta]: https://example.com/\n",
+        ):
+            with self.subTest(definition=definition):
+                self.write(
+                    ci.GUIDE, "# Guide\n\n## Agents\n\nAgents review candidates.\n\n" + definition
+                )
+                with self.assertRaisesRegex(ValueError, "Write inline links"):
+                    ci.guide_review(self.root, self.base, self.commit())
+        baseline = "# Guide\n\n## Agents\n\nAgents review candidates.\n"
+        self.write(ci.GUIDE, baseline + "\n<!-- [example]: https://example.com/ -->\n")
+        with self.assertRaisesRegex(ValueError, "Update"):
+            ci.guide_review(self.root, self.base, self.commit())
+        self.write(
+            ci.GUIDE,
+            baseline.replace(
+                "Agents review candidates.", "Agents <!-- [example]: hidden --> review candidates."
+            ),
+        )
+        with self.assertRaisesRegex(ValueError, "Update"):
+            ci.guide_review(self.root, self.base, self.commit())
+        self.write(
+            ci.GUIDE,
+            baseline.replace(
+                "Agents review candidates.",
+                "Agents <!-- [example]: hidden --> independently review candidates.",
+            ),
+        )
+        self.assertEqual(
+            ci.guide_review(self.root, self.base, self.commit())["decision"], "guide-updated"
+        )
+        for before, after in (
+            (
+                "See [guide](https://example.com/).",
+                "See [guide](https://example.com/). <!-- hidden -->",
+            ),
+            ("See **the guide**", "See **the guide** <!-- [example]: hidden -->"),
+            ("See **the guide**", "See <!-- hidden --> **the guide**"),
+            ("", "<!-- [example]: unclosed"),
+            ("", "[^unused]: Hidden note."),
+            ("", "[^one]: Unused [^two].\n\n[^two]: Also unused."),
+        ):
+            with self.subTest(comment=after):
+                base_guide = baseline + "\n" + before + "\n"
+                self.assertEqual(*ci.guide_contents(base_guide, baseline + "\n" + after + "\n"))
+        self.assertEqual(
+            *ci.guide_contents("```text old\nexample\n```", "```text new\nexample\n```")
+        )
+        for markup in (
+            "<div>foo <!-- hidden --> bar</div>",
+            "<div>\n<!-- hidden\n\n## Phantom heading\n-->\ntext\n</div>",
+            '<span title="<!-- one -->">text</span>',
+            "[^unused]: <span>raw</span>",
+            "<!--> <span>raw</span>",
+        ):
+            with self.subTest(markup=markup):
+                with self.assertRaisesRegex(ValueError, "Use Markdown for guide markup"):
+                    ci.guide_contents(markup)
+        self.assertEqual(
+            *ci.guide_contents(
+                "Text [^one].\n\n[^one]: Visible",
+                "Text [^one].\n\n[^one]: Visible\n\n[^one]: Hidden duplicate",
+            )
+        )
+        self.assertNotEqual(
+            *ci.guide_contents(
+                "| A | B | C |\n| - | - | - |\n| | value | |",
+                "| A | B | C |\n| - | - | - |\n| value | | |",
+            )
+        )
+        self.assertNotEqual(*ci.guide_contents("- a\n-", "- a"))
+        self.assertEqual(*ci.guide_contents("##", "## <!-- hidden -->"))
+        self.assertNotEqual(*ci.guide_contents("##", ""))
+        self.assertEqual(*ci.guide_contents("2 < 3", "<!-- note --> 2 < 3"))
+        self.assertEqual(*ci.guide_contents("> 2 < 3", "> <!-- note --> 2 < 3"))
+        self.assertEqual(*ci.guide_contents("> 2 &amp; 3", "> <!-- note --> 2 &amp; 3"))
+        self.assertEqual(*ci.guide_contents("- 2 &#38; 3", "- <!-- note --> 2 &#38; 3"))
+        self.assertNotEqual(*ci.guide_contents("> 2 &amp; 3", "> <!-- note --> 4 &amp; 5"))
+        self.assertEqual(
+            *ci.guide_contents(r"> Keep \&amp; literal.", r"> <!-- note --> Keep \&amp; literal.")
+        )
+        self.assertEqual(
+            *ci.guide_contents("> Keep `&amp;` literal.", "> <!-- note --> Keep `&amp;` literal.")
+        )
+        self.assertNotEqual(
+            *ci.guide_contents("> <!-- note --> Keep `&amp;`.", "> <!-- note --> Keep `&`.")
+        )
+        self.assertEqual(*ci.guide_contents("> &nbsp;", "> <!-- note --> &nbsp;"))
+        self.assertNotEqual(*ci.guide_contents("## Phantom", "<!-- note --> ## Phantom"))
+        for prefix in ("", "> ", "- "):
+            with self.subTest(container=prefix):
+                footnote = "\n\n[^ref]: Visible note."
+                self.assertEqual(
+                    *ci.guide_contents(
+                        prefix + "Text [^ref]." + footnote,
+                        prefix + "<!-- note --> Text [^ref]." + footnote,
+                    )
+                )
+                self.assertNotEqual(
+                    *ci.guide_contents(
+                        prefix + "Text [^ref]." + footnote,
+                        prefix + "<!-- note --> Text [^ref].\n\n[^ref]: Changed note.",
+                    )
+                )
+        self.assertEqual(*ci.guide_contents("> Keep `<em>`.", "> <!-- note --> Keep `<em>`."))
+        self.assertNotEqual(
+            *ci.guide_contents("> <!-- note --> Keep `<em>`.", "> <!-- note --> Keep `<b>`.")
+        )
+        self.assertEqual(*ci.guide_contents("- 2 < 3", "- <!-- note --> 2 < 3"))
+        self.assertEqual(*ci.guide_contents(">", "> <!-- hidden -->"))
+
+        for example in (
+            "Explain `[example]:` in the review.\n",
+            "```text\n<!-- [example]: literal -->\n```\n",
+            "> ~~~text\n> [example]: literal\n> ~~~\n",
+            "    [example]: literal\n",
+        ):
+            with self.subTest(example=example):
+                self.write(ci.GUIDE, baseline + "\n" + example)
+                self.assertEqual(
+                    ci.guide_review(self.root, self.base, self.commit())["decision"],
+                    "guide-updated",
+                )
+                self.write(ci.GUIDE, baseline + "\n" + example + "\n[real]: https://example.com/\n")
+                with self.assertRaisesRegex(ValueError, "Write inline links"):
+                    ci.guide_review(self.root, self.base, self.commit())
+        self.write(ci.GUIDE, "# Guide\n\n## Agents\n\nAgents independently review candidates.\n")
+        self.assertEqual(
+            ci.guide_review(self.root, self.base, self.commit())["decision"], "guide-updated"
+        )
+
+    def test_derived_and_ordinary_content_are_inapplicable(self):
+        self.write(ci.MAP, '{"layers":[1],"reviewed_source_identity":{"digest":"new"}}')
+        self.write("REPOSITORY-MAP.md", "generated")
+        self.write("MEMORY.md", "handoff")
+        self.write("site/content/news.md", "ordinary content")
+        self.write(".github/acceptance/issue-999.json", "{}")
+        catalog = json.loads((self.root / ci.CATALOG).read_text())
+        catalog["entries"]["site/content/news.md"] = {"owner": "guides/ARTICLE-WORKFLOW.md"}
+        self.write(ci.CATALOG, json.dumps(catalog))
+        self.assertEqual(
+            ci.guide_review(self.root, self.base, self.commit())["decision"], "inapplicable"
+        )
+        self.write(ci.MAP, '{"layers":[2],"reviewed_source_identity":{"digest":"new"}}')
+        self.assertEqual(
+            ci.guide_review(self.root, self.base, self.commit(), True)["paths"], [ci.MAP]
+        )
+
+    def test_unchanged_guide_requires_current_scope_sections_and_receipt(self):
+        destination = "archive/navigation.yml"
+        (self.root / destination).parent.mkdir()
+        self.git("mv", ".github/workflows/retired.yml", destination)
+        scope = ci.guide_review(self.root, self.base, self.commit(), True)
+        self.assertIn(destination, scope["paths"])
+        record = {key: scope[key] for key in ("base_sha", "scope_sha256", "paths")}
+        receipt = "review/issue-999/workflow-guide-evidence.json"
+        record.update(
+            sections=["Agents"],
+            reviewer_execution="",
+            rationale="The updated invocation preserves the existing isolated reviewer launch semantics.",
+        )
+        self.write(receipt, json.dumps(record))
+        with self.assertRaisesRegex(ValueError, "reviewer execution"):
+            ci.guide_review(self.root, self.base, self.commit())
+        record["reviewer_execution"] = "recorded execution QA-999"
+        self.write(
+            ci.GUIDE,
+            (self.root / ci.GUIDE).read_text()
+            + "\n<!-- [example]: hidden\n## Phantom heading\n-->\n",
+        )
+        self.write(receipt, json.dumps({**record, "sections": ["Phantom heading"]}))
+        with self.assertRaisesRegex(ValueError, "actual guide section titles"):
+            ci.guide_review(self.root, self.base, self.commit())
+        self.write(receipt, json.dumps(record))
+        self.assertEqual(
+            ci.guide_review(self.root, self.base, self.commit())["decision"], "reviewed-unchanged"
+        )
+        self.write(destination, "obsolete workflow\n# edit\n")
+        with self.assertRaisesRegex(ValueError, "current review"):
+            ci.guide_review(self.root, self.base, self.commit())
+
+    def test_guide_cannot_be_removed(self):
+        (self.root / ci.GUIDE).unlink()
+        with self.assertRaisesRegex(ValueError, "missing or empty"):
+            ci.guide_review(self.root, self.base, self.commit())
+
+
 if __name__ == "__main__":
     unittest.main()
