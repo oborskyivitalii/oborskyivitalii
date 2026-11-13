@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "065639ff230f5d278a63f2f45fff677e977a65a044a63566349e71e472789b11",
+    "digest": "74159b98a3784cac97a57859ba8ecb9c2bd825a9c9b77a9650d3528dfe537c78",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -261,12 +261,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "e85df5c1bc6291b2dad47428dca9eaeaacf7cdb06e3f843127a8b90561d03069"
+        "sha256": "1e82223ac29f79236f9d6cd946219a5069447690b2eb12929c5cf4efdede09b8"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "9749f7eb5ef7d9076f11b7914be83df185886aea877296c7383b5914e96e0b5c"
+        "sha256": "5f77dbf324067c967af2c47d17ee9f61f713f7803ef3d340db2bdf1cd4660271"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -416,7 +416,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "ade1bcbd4d45d4f8552d4a3b739ddc6804e56ac33c4f6283a00a19462af238c0"
+        "sha256": "2dce816985896d274a33e513d107dbe27c45344665d73b77b3d529c5d915ce3b"
       },
       {
         "path": "NOTICE.md",
@@ -1000,7 +1000,7 @@
       {
         "path": "guides/ARTICLE-WORKFLOW.md",
         "identity_mode": "content",
-        "sha256": "3886f72a66f1f3d302de18cec8c8468a336a8e6055e04b64a40edac54fd889ed"
+        "sha256": "0f350171dd019e042663b7b10c0f3431b6a82b7488415fabbaae983ffe70e1d5"
       },
       {
         "path": "guides/BROWSER-ARCHIVES.md",
@@ -4900,7 +4900,7 @@
       {
         "path": "review/issue-183/2026-11-13-migration.md",
         "identity_mode": "content",
-        "sha256": "381dd5d5ff25911e2d14047de3d6f5c7758b27f488cbb829091291f062509f17"
+        "sha256": "d20f464100eaba0f9a4500e52db9fde98825ffb23a937e33a708e3bd439e5e93"
       },
       {
         "path": "review/issue-184/2026-11-10-archive.md",
@@ -11143,6 +11143,11 @@
         "sha256": "c407f6af816950460f32e4aeba1b7ef8bc41f2d0b40b13c299be8c33375b8ae6"
       },
       {
+        "path": "site/publications/thinking-systems/PROVENANCE.md",
+        "identity_mode": "content",
+        "sha256": "b3137963e89755700d1f24a4fa274b01480a6a7652737b39d1d3380757235785"
+      },
+      {
         "path": "site/publications/thinking-systems/editions/thinking-systems-en-20260830.json",
         "identity_mode": "content",
         "sha256": "4da09040343831cb6e9f25ab357181404f08df10f4fe7f0dbde9750a717f7be7"
@@ -11490,7 +11495,7 @@
       {
         "path": "site/rights.json",
         "identity_mode": "content",
-        "sha256": "dbba662ce83dfa4acccd11bd43c398932304351577a996e015c313ef7a145b52"
+        "sha256": "ffe44be1542dc6f0a7001deb0819abe4164f649c1c21b4682e9bd9dcac76395e"
       },
       {
         "path": "site/routes.json",
@@ -12060,7 +12065,7 @@
       {
         "path": "tests/local-catalog-relationships.test.cjs",
         "identity_mode": "content",
-        "sha256": "d3cfd3fa56f347e1a0ad71bc090a1c3a2f65e3ee9d82fe22fb75980c6d9ccae2"
+        "sha256": "6442a9554b3eda7d85f74a74e5a1bf2273175ee4d783c798daca490da1451947"
       },
       {
         "path": "tests/native-display.test.cjs",
@@ -38499,6 +38504,17 @@
         "AGENTS.md"
       ],
       "title": "publication.json"
+    },
+    {
+      "path": "site/publications/thinking-systems/PROVENANCE.md",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Thinking Systems source and rights"
     },
     {
       "path": "site/publications/thinking-systems/editions/thinking-systems-en-20260830.json",

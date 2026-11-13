@@ -18132,6 +18132,12 @@
       "purpose": "Generated author-site output for the Thinking Systems migration.",
       "role": "generated",
       "owner": "site/README.md"
+    },
+    "site/publications/thinking-systems/PROVENANCE.md": {
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
     }
   }
 }

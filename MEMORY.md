@@ -4,7 +4,7 @@ Dated handoff. Last verified: **2026-11-13**. Revalidate live sources when resum
 
 ## Snapshot
 
-- Protected main `62e21c7` includes PR #202, the staging runtime registration for #187. Production ref `ca75641` remains the last observed deployment source.
+- Protected main `fb0c6165` includes PR #203, following the staging runtime registration for #187. Production ref `ca75641` remains the last observed deployment source.
 - [#187](https://github.com/oborskyivitalii/oborskyivitalii/issues/187) owns the Writing and article transition in [Draft PR #197](https://github.com/oborskyivitalii/oborskyivitalii/pull/197). The verified feature head `02f59fc` has its exact [Draft preview](https://411abc1c.oborskyi-author-ci-staging.pages.dev/writing.html).
 - The [protected staging prerequisite](review/issue-187/2026-11-12-controller-preregistration.md) records the local controller refusal, exact staging registration and remaining checks.
 
@@ -17,7 +17,7 @@ Dated handoff. Last verified: **2026-11-13**. Revalidate live sources when resum
 
 ## Open work
 
-- [#183](https://github.com/oborskyivitalii/oborskyivitalii/issues/183) migrates one article per Draft PR Preview checkpoint. The [Thinking Systems migration](review/issue-183/2026-11-13-migration.md) records source reconciliation and phase acceptance.
+- [#183](https://github.com/oborskyivitalii/oborskyivitalii/issues/183) migrates one article per [Draft PR #205](https://github.com/oborskyivitalii/oborskyivitalii/pull/205) preview checkpoint. The [Thinking Systems migration](review/issue-183/2026-11-13-migration.md) records source reconciliation and phase acceptance.
 
 - #187 AC01, AC02 and AC06 remain open in the feature work. Its separate runtime preregistration merged in PR #202.
 - #197 still requires the rebased exact-head native and hosted route after the prerequisite.

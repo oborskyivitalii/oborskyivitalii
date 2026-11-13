@@ -248,7 +248,9 @@ validation or authorize a deployment. Campaign `articleUrl` remains observed-onl
 An accepted local article's catalog `presentation.archiveYear` may place it in
 the intended Writing year before that observation. It controls archive grouping
 and filtering only; it supplies no publication date, time element or event.
-Observed edition dates take precedence. Without either, the row remains undated.
+Observed edition dates take precedence for site-first articles. A migrated record
+with a dated historical platform edition retains its declared archive year after
+the site date is observed. Without either, the row remains undated.
 After accepted website proof, publish both platforms manually, check actual text,
 images, credits and the website backlink, and record their actual URLs/dates using
 existing source-bound publication events. Opted-in platform events must name the

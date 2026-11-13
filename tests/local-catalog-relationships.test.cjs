@@ -617,10 +617,17 @@ test('historical platform editions preserve their dates without asserting public
     Object.assign(candidate.records['publication-05'].editions[0], update);
     assert.throws(() => validateCatalog(candidate));
   }
-  const dated = structuredClone(current);
-  const migrated = dated.records['publication-05'];
-  migrated.presentation.archiveYear = '2025';
-  migrated.edition.datePublished = '2026-11-13';
-  migrated.edition.publicationEvent = 'site-observed';
-  assert.equal(writingEntries(dated).find(({ id }) => id === 'publication-05').year, '2025');
+  const dated = fixture();
+  dated.original.editions[0] = structuredClone(record.editions[0]);
+  dated.original.editions[0].url = 'https://generativeai.pub/historical-example';
+  delete dated.original.editions[0].author.url;
+  dated.original.presentation.archiveYear = '2025';
+  assert.equal(verify(dated), dated.catalog);
+  dated.original.edition.datePublished = '2026-10-01';
+  dated.original.edition.publicationEvent = 'site-first';
+  assert.equal(verify(dated), dated.catalog);
+  assert.equal(writingEntries(dated.catalog).find(({ id }) => id === 'publication-97').year, '2025');
+  const row = publication(loadComponents(root), dated.original, 'archive', dated.catalog, true);
+  assert.match(row, /data-year="2025"/);
+  assert.match(row, /<time datetime="2026-10-01">/);
 });
