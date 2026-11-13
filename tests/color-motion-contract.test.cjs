@@ -91,6 +91,19 @@ test('refactored #187 navigator preregisters only the licensed staging edition',
     /unreviewed Color bytes/
   );
 });
+test('the mount-raster correction admits only its exact licensed staging bytes', () => {
+  const id = 'issue187-mount-raster';
+  const staging = manifest(id + '-staging');
+  assert.equal(motion.publicationRequired(staging, staging.components), true);
+  assert.throws(() => motion.reviewedRuntime(id + '-plain'), /unknown reviewed/);
+  assert.throws(() => motion.reviewedRuntime(id + '-production'), /unknown reviewed/);
+  const immutableSpace = 'runtime/' + staging.variant.fingerprint + '/space.js';
+  staging.files[immutableSpace].sha256 = '0'.repeat(64);
+  assert.throws(
+    () => motion.publicationRequired(staging, staging.components),
+    /immutable Color bytes/
+  );
+});
 test('producer refactoring preserves client compatibility while runtime bytes and document hooks stay bound', () => {
   const fs = require('node:fs'),
     os = require('node:os'),
