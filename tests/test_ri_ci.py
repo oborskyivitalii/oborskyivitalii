@@ -828,6 +828,22 @@ class WorkflowGuideReviewTests(unittest.TestCase):
             *ci.guide_contents("> <!-- note --> Keep `&amp;`.", "> <!-- note --> Keep `&`.")
         )
         self.assertEqual(*ci.guide_contents("> &nbsp;", "> <!-- note --> &nbsp;"))
+        self.assertNotEqual(*ci.guide_contents("## Phantom", "<!-- note --> ## Phantom"))
+        for prefix in ("", "> ", "- "):
+            with self.subTest(container=prefix):
+                footnote = "\n\n[^ref]: Visible note."
+                self.assertEqual(
+                    *ci.guide_contents(
+                        prefix + "Text [^ref]." + footnote,
+                        prefix + "<!-- note --> Text [^ref]." + footnote,
+                    )
+                )
+                self.assertNotEqual(
+                    *ci.guide_contents(
+                        prefix + "Text [^ref]." + footnote,
+                        prefix + "<!-- note --> Text [^ref].\n\n[^ref]: Changed note.",
+                    )
+                )
         self.assertEqual(*ci.guide_contents("> Keep `<em>`.", "> <!-- note --> Keep `<em>`."))
         self.assertNotEqual(
             *ci.guide_contents("> <!-- note --> Keep `<em>`.", "> <!-- note --> Keep `<b>`.")

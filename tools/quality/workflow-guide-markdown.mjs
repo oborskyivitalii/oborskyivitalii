@@ -12,27 +12,36 @@ function withoutComments(value) {
 
 const blockContainers = ['root', 'blockquote', 'listItem', 'footnoteDefinition'];
 
-function afterLeadingComments(value) {
-  return value.replace(/^(?:[ \t]*<!--(?:-?>|[\s\S]*?(?:--!?>|$)))+/, '');
+function parseGuide(markdown) {
+  const tree = parser.parse(markdown);
+  const removals = [];
+  function collect(node, parentType) {
+    if (node.type === 'html' && blockContainers.includes(parentType)) {
+      const { start, end } = node.position;
+      const raw = markdown.slice(start.offset, end.offset);
+      const leading = raw.match(/^(?:[ \t]*<!--(?:-?>|[\s\S]*?--!?>)[ \t]*)+/)?.[0];
+      const suffix = leading ? raw.slice(leading.length) : '';
+      if (suffix.trim() && parser.parse(suffix).children[0]?.type === 'paragraph') {
+        removals.push([start.offset, start.offset + leading.length]);
+      }
+    }
+    for (const child of node.children ?? []) collect(child, node.type);
+  }
+  collect(tree);
+  if (!removals.length) return tree;
+  // Reparse the document so suffixes resolve footnotes and Markdown in their container.
+  for (const [start, end] of removals.reverse()) {
+    markdown = markdown.slice(0, start) + markdown.slice(end);
+  }
+  return parser.parse(markdown);
 }
 
-function visibleNode(source, footnotes, parentType) {
+function visibleNode(source, footnotes) {
   const { position, children, ...node } = source;
   if (node.type === 'footnoteDefinition' && !footnotes.has(source)) return null;
   if (node.type === 'code') delete node.meta;
   if (node.type === 'html') {
     // Remark distinguishes actual HTML from comment-shaped text inside code.
-    if (blockContainers.includes(parentType)) {
-      // Reparse only the visible suffix of a leading comment, in its original container.
-      const suffix = afterLeadingComments(node.value);
-      if (!suffix.trim()) return null;
-      const block = parser.parse(suffix.trimStart());
-      validateMarkup(block);
-      if (block.children.length === 1 && block.children[0].type === 'paragraph') {
-        return visibleNode(block.children[0], footnotes, parentType);
-      }
-      return { type: 'paragraph', children: [{ type: 'text', value: suffix.trim() }] };
-    }
     const remaining = withoutComments(node.value);
     if (!remaining.trim()) return null;
     node.type = 'text';
@@ -41,7 +50,7 @@ function visibleNode(source, footnotes, parentType) {
   if (children) {
     node.children = [];
     for (const child of children) {
-      const visible = visibleNode(child, footnotes, node.type);
+      const visible = visibleNode(child, footnotes);
       if (!visible) continue;
       const previous = node.children.at(-1);
       if (previous?.type === 'text' && visible.type === 'text') {
@@ -69,23 +78,18 @@ function visibleNode(source, footnotes, parentType) {
   return node;
 }
 
-function validateMarkup(node, parentType) {
+function validateMarkup(node) {
   if (node.type === 'definition') {
     throw new Error('Markdown link definitions are unsupported. Write inline links in the guide.');
   }
   if (node.type === 'html') {
-    const suffix = afterLeadingComments(node.value);
-    if (blockContainers.includes(parentType) && suffix !== node.value) {
-      validateMarkup(parser.parse(suffix.trimStart()));
-      return;
-    }
     if (/<(?:[A-Za-z!?]|\/[A-Za-z])/.test(withoutComments(node.value))) {
       throw new Error(
         'Use Markdown for guide markup. HTML comments and code examples are supported.'
       );
     }
   }
-  for (const child of node.children ?? []) validateMarkup(child, node.type);
+  for (const child of node.children ?? []) validateMarkup(child);
 }
 
 function visibleFootnotes(tree) {
@@ -111,7 +115,7 @@ function visibleFootnotes(tree) {
 try {
   const input = JSON.parse(readFileSync(0, 'utf8'));
   const visible = input.map((markdown) => {
-    const tree = parser.parse(markdown);
+    const tree = parseGuide(markdown);
     validateMarkup(tree);
     return visibleNode(tree, visibleFootnotes(tree)).children;
   });

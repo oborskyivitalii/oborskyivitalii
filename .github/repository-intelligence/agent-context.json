@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "2698900cc687020026493662a14bc3e04c0cd99eac977afe1c27a581c3fab176",
+    "digest": "25f1e7421e440e089ca4873b31c3c403cfe88b61775ad65ef46dc61f55500ed1",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -271,7 +271,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "3b6a5e0819cb99bc8ba2a18d80d1e34e317af3f44fe6ca654d73f08fcaa3b4fd"
+        "sha256": "c24b650874c5781c1ff1535faa406b2fa76b9b7b44f97ce52238ff3184252ac1"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -12295,7 +12295,7 @@
       {
         "path": "tests/test_ri_ci.py",
         "identity_mode": "content",
-        "sha256": "4e178342ed248bd1adcc641fd6ea685c1e83640d1ff867d1599a8e44925146b7"
+        "sha256": "a2544dc2adb99ca13ffa2a53115694979c812db6b9ef841312a5932bd837e17d"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -13140,7 +13140,7 @@
       {
         "path": "tools/quality/workflow-guide-markdown.mjs",
         "identity_mode": "content",
-        "sha256": "542c3d96f12c1b948ae03da404dc8260e02c90c4bb3315f06871162f96a76a1d"
+        "sha256": "a2e2bc11ef894fe8102dcc4d565538c6d11ce4bbfbd5341f3b1f29bb28728e68"
       },
       {
         "path": "tools/quality/writing-diagnosis.cjs",
