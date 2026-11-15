@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "6aedec76cdcb7205460bf4eb235b46c51ad81de36ace34b13f30ac6608a6b95a",
+    "digest": "c418b1798ac92a14b30a31402aa4461209123adb9418b5a9b0d3477cf0f136f7",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -5045,7 +5045,7 @@
       {
         "path": "review/issue-183/2026-11-15-moat-problem.md",
         "identity_mode": "content",
-        "sha256": "fb2262088623962a751b922d44c36d2e0fdae485626190f45b957679679ed994"
+        "sha256": "a258f751e87dd57ca87bb3b491e752221faac9b7c686fd1db6f69bcd8e41049f"
       },
       {
         "path": "review/issue-183/2026-11-15-verification-crisis.md",
