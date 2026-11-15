@@ -1,10 +1,10 @@
 # Session memory
 
-Dated handoff. Last verified: **2026-11-13**. Revalidate live sources when resuming.
+Dated handoff. Last verified: **2026-11-15**. Revalidate live sources when resuming.
 
 ## Snapshot
 
-- Protected main `fb0c616` includes the #187 staging registration and the #196 platform image delivery. Production ref `ca75641` remains the last observed deployment source.
+- Protected main `0de10b6` includes the #187 staging registration refresh in PR #204 and previously delivered #196 changes. Production ref `ca75641` remains the last observed deployment source.
 - [#187](https://github.com/oborskyivitalii/oborskyivitalii/issues/187) owns the Writing and article transition in [Draft PR #197](https://github.com/oborskyivitalii/oborskyivitalii/pull/197). The verified feature head `02f59fc` has its exact [Draft preview](https://411abc1c.oborskyi-author-ci-staging.pages.dev/writing.html).
 - The [protected staging prerequisite](review/issue-187/2026-11-12-controller-preregistration.md) records the local controller refusal, exact staging registration and remaining checks.
 
@@ -20,7 +20,7 @@ Dated handoff. Last verified: **2026-11-13**. Revalidate live sources when resum
 
 - #187 AC01, AC02 and AC06 remain open in the feature work. Its separate runtime preregistration merged in PR #202.
 - #197 still requires the rebased exact-head native and hosted route after the prerequisite.
-- #199 / #200 is on the full website/control route. The guide review compares parsed GFM, preserves code literals and excludes HTML comments. Verify the exact candidate in GitHub before owner staging and protected admission.
+- #199 / #200 is on the full website/control route. The [integration review](review/issue-199/2026-11-12-review.md#2026-11-15-protected-main-integration-and-independent-findings) records the first findings and remaining exact-source review and delivery gates.
 
 ## Next session
 

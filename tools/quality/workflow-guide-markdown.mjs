@@ -61,7 +61,7 @@ function visibleNode(source, footnotes) {
     }
     for (const [index, child] of node.children.entries()) {
       if (child.type !== 'text') continue;
-      child.value = child.value.replace(/\s+/g, ' ');
+      child.value = child.value.replace(/\u200b/g, '').replace(/\s+/g, ' ');
       if (index === 0) child.value = child.value.trimStart();
       if (index === node.children.length - 1) child.value = child.value.trimEnd();
     }

@@ -640,6 +640,15 @@ def guide_contents(*documents):
     return json.loads(parsed.stdout)
 
 
+def guide_has_content(nodes):
+    return any(
+        (node.get("value") or "").replace("\u200b", "").strip()
+        or (node.get("alt") or "").replace("\u200b", "").strip()
+        or guide_has_content(node.get("children", []))
+        for node in nodes
+    )
+
+
 def guide_review(root, base, head, describe=False):
     paths, digest, changed, read = guide_scope(root, base, head)
     result = {
@@ -649,15 +658,16 @@ def guide_review(root, base, head, describe=False):
         "scope_sha256": digest,
         "decision": "inapplicable",
     }
+    parser_required = bool(paths or GUIDE in changed)
     if describe:
-        return result
-    if not paths and GUIDE not in changed:
+        return {**result, "parser_required": parser_required}
+    if not parser_required:
         return result
     guide = read(head, GUIDE).decode()
     if not guide.strip():
         raise ValueError(f"Workflow guide is missing or empty: {GUIDE}")
     current, previous = guide_contents(guide, read(base, GUIDE).decode())
-    if not current:
+    if not guide_has_content(current):
         raise ValueError(f"Workflow guide has no visible content: {GUIDE}")
     if not paths:
         return result

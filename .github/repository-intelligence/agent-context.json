@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "89f4dc11815caa7839d6b7c911d5096348bb15e153f0c6934e7c9d25f8e984a6",
+    "digest": "974d75860f758dcfb2b7e965ed8a9606feae6b290b27994a556626f6503af843",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -271,7 +271,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "c24b650874c5781c1ff1535faa406b2fa76b9b7b44f97ce52238ff3184252ac1"
+        "sha256": "6f19c342906458bed81092440cfbdf0fe20001afb511d65b64d80ff392b0370d"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -281,7 +281,7 @@
       {
         "path": ".github/workflows/change-admission.yml",
         "identity_mode": "content",
-        "sha256": "37062d94ed4ce3a4d23a580574c1ffa5ff77e0b7fe22c15a54416acfd8c3bb43"
+        "sha256": "40598b1476f3d6e03050be2e18f02fa2aabcf62c5cdb9554bfd7dfbc1612eff8"
       },
       {
         "path": ".github/workflows/control-runner-probe.yml",
@@ -421,7 +421,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "5dd243062cd0170675e22c479643c899e5b98d4c0ef19977d79ab6717db3743b"
+        "sha256": "203f7e2a6348672a0fa0c0fdbd0ac46f817034504e275388d666e701c4eea33e"
       },
       {
         "path": "NOTICE.md",
@@ -960,7 +960,7 @@
       {
         "path": "guides/REPOSITORY-WORKFLOW.md",
         "identity_mode": "content",
-        "sha256": "fd1fb4f8991edbe4a0b7f8766125b77baf6ac3f490a1c375e2e3d3ae3a4f5ac0"
+        "sha256": "6869584a033d05e200ea61ef6c5e652a76c57eb2461a2846f733752231fddf90"
       },
       {
         "path": "guides/SITE-ANALYTICS.md",
@@ -4935,7 +4935,7 @@
       {
         "path": "review/issue-199/2026-11-12-review.md",
         "identity_mode": "content",
-        "sha256": "e9ea2e2dc12acf7fa6b99c49d98cdfe4868990136ddade2007450e3295667d4b"
+        "sha256": "f810975b63b5ae193b703f72b95b8993e89215b2cf9e0b03a7efb2ac94c1a299"
       },
       {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -11790,7 +11790,7 @@
       {
         "path": "tests/delivery-admission.test.cjs",
         "identity_mode": "content",
-        "sha256": "dbe0ec2f1536e96e0d30fcc4984735b2c055e4b83c71520dcf100f8ba7039c42"
+        "sha256": "5ed0df854797ff4fa6aeda0837442213c85a678edb024b0e24cb93040f3846a7"
       },
       {
         "path": "tests/delivery-observation.test.cjs",
@@ -12295,7 +12295,7 @@
       {
         "path": "tests/test_ri_ci.py",
         "identity_mode": "content",
-        "sha256": "a2544dc2adb99ca13ffa2a53115694979c812db6b9ef841312a5932bd837e17d"
+        "sha256": "388e2265ceb386642dd81332647408edcf3c91d7b9bb1f792c3c7da6b0cf61c0"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -12405,7 +12405,7 @@
       {
         "path": "tools/check_ri_ci.py",
         "identity_mode": "content",
-        "sha256": "5fd5595f01f836369621aa1114a58682ac9f45c31242c5f0d33da5435734ad8e"
+        "sha256": "bbecbd68a01b4dfe783375444007e038c9134531f5db0895597c83b58c96c7bf"
       },
       {
         "path": "tools/check_site_contrast.cjs",
@@ -13140,7 +13140,7 @@
       {
         "path": "tools/quality/workflow-guide-markdown.mjs",
         "identity_mode": "content",
-        "sha256": "a2e2bc11ef894fe8102dcc4d565538c6d11ce4bbfbd5341f3b1f29bb28728e68"
+        "sha256": "bca86cd954f719d48b8dd2292d39d32ffed7d06adabd3e5f7814f4a2bb5dd76c"
       },
       {
         "path": "tools/quality/writing-diagnosis.cjs",

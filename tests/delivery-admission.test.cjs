@@ -1086,17 +1086,42 @@ test('protected workflow guide admission checks the immutable candidate and requ
   );
   write('guides/REPOSITORY-WORKFLOW.md', '# Guide\n\n## Workflows\n\nCheck current source.\n');
   const protectedHead = commit();
+  write('site/content/news.md', 'Ordinary content change.\n');
+  const content = commit();
+  git('checkout', '--detach', '-q', protectedHead);
   const workflow = '.github/workflows/navigation.yml';
   write(workflow, 'name: Changed\n');
   write(checker, '# Candidate attempts to replace the checker\n');
   const missing = commit();
   git('checkout', '--detach', '-q', protectedHead);
+  const workflowSource = fs.readFileSync(
+    path.join(__dirname, '../.github/workflows/change-admission.yml'),
+    'utf8'
+  );
+  const install = workflowSource.match(
+    /^      - name: Install the locked Markdown parser[^\n]*\n[\s\S]*?^        run: \|\n((?:^ {10}[^\n]*\n)+)/m
+  );
+  assert.ok(install, 'missing protected guide parser step');
+  const selectParser = (head) =>
+    cp
+      .execFileSync('bash', ['-ec', 'npm() { printf \'%s\\n\' "$*"; }\n' + install[1]], {
+        cwd: root,
+        encoding: 'utf8',
+        env: { ...process.env, ADMISSION_BASE: protectedHead, ADMISSION_SOURCE: head },
+      })
+      .trim();
+  assert.equal(selectParser(content), '');
+  assert.equal(selectParser(missing), 'ci --prefix tools/publishing/toolchain --ignore-scripts');
   const context = {
     sha: protectedHead,
     eventName: 'workflow_dispatch',
     actor: 'oborskyivitalii',
     payload: { inputs: { reviewed_sha: missing } },
   };
+  assert.equal(
+    admission.workflowGuideReview(root, context, content).report.decision,
+    'inapplicable'
+  );
   assert.equal(
     admission.workflowGuideReview(root, context, missing).blocker,
     'workflow-guide-review'

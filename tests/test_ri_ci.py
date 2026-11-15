@@ -697,6 +697,7 @@ class WorkflowGuideReviewTests(unittest.TestCase):
         paths = [
             ".github/workflows/new.yml",
             ".github/actions/new/action.yml",
+            ".github/acceptance/issue-122.json",
             "nested/AGENTS.md",
             "agents/new.md",
             "tools/orchestration/new.cjs",
@@ -753,6 +754,10 @@ class WorkflowGuideReviewTests(unittest.TestCase):
         self.write(ci.GUIDE, baseline + "\n<!-- [example]: https://example.com/ -->\n")
         with self.assertRaisesRegex(ValueError, "Update"):
             ci.guide_review(self.root, self.base, self.commit())
+        self.write(ci.GUIDE, baseline.replace("candidates.", "candidates.&#x200B;"))
+        with self.assertRaisesRegex(ValueError, "Update"):
+            ci.guide_review(self.root, self.base, self.commit())
+        self.assertNotEqual(*ci.guide_contents("Use `value`.", "Use `value\u200b`."))
         self.write(
             ci.GUIDE,
             baseline.replace(
@@ -880,9 +885,9 @@ class WorkflowGuideReviewTests(unittest.TestCase):
         catalog = json.loads((self.root / ci.CATALOG).read_text())
         catalog["entries"]["site/content/news.md"] = {"owner": "guides/ARTICLE-WORKFLOW.md"}
         self.write(ci.CATALOG, json.dumps(catalog))
-        self.assertEqual(
-            ci.guide_review(self.root, self.base, self.commit())["decision"], "inapplicable"
-        )
+        head = self.commit()
+        self.assertEqual(ci.guide_review(self.root, self.base, head)["decision"], "inapplicable")
+        self.assertFalse(ci.guide_review(self.root, self.base, head, True)["parser_required"])
         self.write(ci.MAP, '{"layers":[2],"reviewed_source_identity":{"digest":"new"}}')
         self.assertEqual(
             ci.guide_review(self.root, self.base, self.commit(), True)["paths"], [ci.MAP]
@@ -925,6 +930,12 @@ class WorkflowGuideReviewTests(unittest.TestCase):
         (self.root / ci.GUIDE).unlink()
         with self.assertRaisesRegex(ValueError, "missing or empty"):
             ci.guide_review(self.root, self.base, self.commit())
+        self.write(".github/workflows/new.yml", "name: New control\n")
+        for markup in ("##", ">", "---", "&#x200B;"):
+            with self.subTest(markup=markup):
+                self.write(ci.GUIDE, markup + "\n")
+                with self.assertRaisesRegex(ValueError, "no visible content"):
+                    ci.guide_review(self.root, self.base, self.commit())
 
 
 if __name__ == "__main__":

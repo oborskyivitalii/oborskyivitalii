@@ -745,7 +745,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "28b68c05f2f9268d9bb1ba3854626fcc21f45b9e5c456e195323853d1bb82f25",
+    "digest": "4ac01995653e1f66764a8d815c1f05cca93075f50e5bc7a7bec69a22f7cd1e28",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -937,7 +937,7 @@
       },
       {
         "path": ".github/workflows/change-admission.yml",
-        "sha256": "37062d94ed4ce3a4d23a580574c1ffa5ff77e0b7fe22c15a54416acfd8c3bb43"
+        "sha256": "40598b1476f3d6e03050be2e18f02fa2aabcf62c5cdb9554bfd7dfbc1612eff8"
       },
       {
         "path": ".github/workflows/control-runner-probe.yml",
@@ -1197,7 +1197,7 @@
       },
       {
         "path": "tests/test_ri_ci.py",
-        "sha256": "a2544dc2adb99ca13ffa2a53115694979c812db6b9ef841312a5932bd837e17d"
+        "sha256": "388e2265ceb386642dd81332647408edcf3c91d7b9bb1f792c3c7da6b0cf61c0"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -1213,7 +1213,7 @@
       },
       {
         "path": "tools/check_ri_ci.py",
-        "sha256": "5fd5595f01f836369621aa1114a58682ac9f45c31242c5f0d33da5435734ad8e"
+        "sha256": "bbecbd68a01b4dfe783375444007e038c9134531f5db0895597c83b58c96c7bf"
       },
       {
         "path": "tools/issue_acceptance.py",
@@ -1241,7 +1241,7 @@
       },
       {
         "path": "tools/quality/workflow-guide-markdown.mjs",
-        "sha256": "a2e2bc11ef894fe8102dcc4d565538c6d11ce4bbfbd5341f3b1f29bb28728e68"
+        "sha256": "bca86cd954f719d48b8dd2292d39d32ffed7d06adabd3e5f7814f4a2bb5dd76c"
       },
       {
         "path": "tools/repository_intelligence.py",

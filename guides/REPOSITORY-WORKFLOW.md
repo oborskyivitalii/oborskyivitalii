@@ -87,8 +87,9 @@ a fresh reviewer with no conversation inheritance, then imports the observed
 tool response and result for admission. The retained checkpoint records the
 latest attempt. A newer preparation or pending launch holds the gate. The receipt links role, handle,
 phase and reviewed source to the observed launch and first judgment. Pending,
-missing, stale or contaminated evidence holds the affected gate until reconciled
-or replaced. Parent observation covers arguments and receipts. Provider
+missing or stale evidence holds the affected gate. If a reviewer is exposed to
+excluded material, retain the excluded result and cause, then launch a fresh
+replacement. Parent observation covers arguments and receipts. Provider
 internals and shared-context exposure require separate evidence. The
 [offline WEB fixture](WEB-ORCHESTRATION.md) models dispatch proposals and
 recovery on synthetic inputs. Wider live adapter and pilot work are tracked
@@ -106,8 +107,10 @@ in the same PR. Navigation compares the immutable PR base and head. Protected
 [Change admission](../.github/workflows/change-admission.yml) repeats the check
 from current main, including its final evidence recheck. The scope covers
 additions, removals and both sides of renames. Generated RI refreshes, routine
-handoffs, issue-specific acceptance policies and ordinary site content use their
-existing checks.
+handoffs, ordinary issue-specific acceptance policies and site content use their
+existing checks. The shared [issue #122 acceptance policy](../.github/acceptance/issue-122.json)
+is a covered control. Protected admission installs the Markdown parser only for
+a covered diff or a guide change.
 
 When the guide already describes the changed behavior, run
 `python3 tools/check_ri_ci.py guide-scope --base-sha BASE --head-sha HEAD`
@@ -122,7 +125,8 @@ candidate. The owner verifies the review and sets `guide_reviewed_sha` and
 `guide_review_evidence` (a link to the accepted review record in this GitHub repository) when dispatching
 Change admission. The protected report retains that exact-head attestation. Navigation detects missing or stale
 evidence and compares parsed GFM, ignoring HTML comments and normalizing prose
-whitespace. Code examples retain their literal text. Use Markdown for guide
+whitespace, including zero-width spaces. An empty Markdown structure cannot
+stand in for the guide. Code examples retain their literal text. Use Markdown for guide
 markup and inline links. Raw HTML elements and link reference definitions are
 rejected. Reviewers judge
 whether the affected text, diagrams and examples accurately describe the
@@ -192,7 +196,7 @@ flowchart TD
 | Example | What the route checks and who advances it |
 | --- | --- |
 | Root agent instructions and eligible navigation metadata | The repository route runs applicable source, navigation/RI and owning checks. Maintainer-authorized change admission precedes protected merge. Website builds and staging are inapplicable to this route. A new path under `guides/` can take the full route when the protected classifier has no complete disposition for it. |
-| A bounded change to `tools/repository_intelligence.py` with compatible companions | The technical route retains affected source tests, security, RI and owning acceptance. Executable controls require review of the exact PR head. Review scope and hosted dependency are separate decisions. |
+| `tools/repository_intelligence.py` plus an existing regular RI test edit, with no other changes | The protected selector can use the [R2 technical repository route](SITE-CHECK-PROFILES.md#r2-execution-selection). It retains affected source tests, security, RI and owning acceptance, and requires review of the exact PR head. A changed test-selection policy, workflow or lock takes the full route. |
 | An article update with a compatible platform | The content/media route authenticates an accepted baseline and relevant history, then uses the same assembler to rebuild affected outputs and prove platform bytes stayed exact. The content gate runs current scanners, checks affected hosted bytes and desktop/mobile reading with JavaScript on and off, and records inherited platform evidence. |
 | The same article update with a missing or incompatible baseline | The selector falls back to full assembly and staging. A passing preview supplies neither baseline provenance nor platform acceptance. |
 | A shared template or engine change | The full route verifies shared behavior, with bounded browser, failure, navigation and performance cases in staging. Mixed or unknown effects also fall back to this route. |
