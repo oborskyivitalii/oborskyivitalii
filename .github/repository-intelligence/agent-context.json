@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "592b0e99f8986f829b6042270f1ff50340bd3d285184590734c1ac739db924b5",
+    "digest": "0268a95032cbc33c85492f4e954769c72aac62f9b37fa5dd32f17764b8ae5520",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -42,7 +42,7 @@
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
         "identity_mode": "content",
-        "sha256": "3c86a44263cafd9af3b8808fdfd6b7659f910dd08e194cf8f6dd5a19eac9428f"
+        "sha256": "9d71dfe6d1d0dbbc7b1e20d6d113a143730763bc80897d9065b3044a462b4658"
       },
       {
         "path": ".github/acceptance/issue-102.json",
@@ -271,7 +271,7 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "6753345e92fefee79c425a86cd78bfe8412a79a349023b289bf693d3ebf07cc4"
+        "sha256": "830543639beb71753fde6644d075b1e3c26083e334c51f02e7961ecbf5f04f56"
       },
       {
         "path": ".github/ri-ci-map.json",
@@ -426,7 +426,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "4828472e336ee3faaf1fd3ea9228d46b444f849ad530b37e765de2e6180e834f"
+        "sha256": "1f0b7777a2c29212cc69c030fd530bbf9344bd23ccb6a84a4cb793b29cb011df"
       },
       {
         "path": "NOTICE.md",
@@ -483,6 +483,11 @@
         "sha256": "bf1b9e42356b282f3c08f7763a7a59263241c752df5dd9ee776a6b0bf86b0caa"
       },
       {
+        "path": "docs/article-media/11b50b3b2a4dd035b4b975444d87a37ceed0e68d8c983f4acc3b57b9d7dc1833/cover.jpg",
+        "identity_mode": "content",
+        "sha256": "11b50b3b2a4dd035b4b975444d87a37ceed0e68d8c983f4acc3b57b9d7dc1833"
+      },
+      {
         "path": "docs/article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618/research-fallback.svg",
         "identity_mode": "content",
         "sha256": "1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618"
@@ -516,6 +521,11 @@
         "path": "docs/article-media/300fdfa774d4e768f36fc3e3d1f4f146b46ed41feead5d33db2316c9f3a3c06a/diagram-5.webp",
         "identity_mode": "content",
         "sha256": "300fdfa774d4e768f36fc3e3d1f4f146b46ed41feead5d33db2316c9f3a3c06a"
+      },
+      {
+        "path": "docs/article-media/3415712316948afcc30c00607f7f2fb475b2ca0939c108481bfdcd4fe3676a93/cover-social.jpg",
+        "identity_mode": "content",
+        "sha256": "3415712316948afcc30c00607f7f2fb475b2ca0939c108481bfdcd4fe3676a93"
       },
       {
         "path": "docs/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3/imbalance-loop.webp",
@@ -663,9 +673,24 @@
         "sha256": "f1d53fa07e9c2d947922eb82b5cc12b7b7bbefd62cf728e80b9cfcbde8a5ffa9"
       },
       {
-        "path": "docs/article-snapshots/56fb2f71f561ed0fe25ea8e4c7a558b4d45220183a4909c4ccb23ca663646d6d/thinking-systems.html",
+        "path": "docs/article-snapshots/09e970c12dbe043bee2dfcd7add3a4a998a7b73bf3474ca2ffb80e08c3ad0967/ai-native-workflows-have-a-moat-problem.html",
         "identity_mode": "content",
-        "sha256": "a748694cbcc83375c4ef2cffb30c846f76725fb2030ae9f0216c4ddd23c5a02b"
+        "sha256": "3fcf7b64795e1f3a369a6072e51bd0b39a4732b0824f9b54b0a789d611f8f40e"
+      },
+      {
+        "path": "docs/article-snapshots/716ebd541c3dfb7c9e9d9e9bbc72850595fcb6564b34f72524f9a1862515c464/the-sdlc-is-out-of-balance.html",
+        "identity_mode": "content",
+        "sha256": "5145b9926e0bb3b89ae2f4c33b0cfefd857dd72a42cc81fee15d06b6a3dbcc65"
+      },
+      {
+        "path": "docs/article-snapshots/7820afbd8014178c44dd5ee31697009adf15c585ea2053914f22ba72fe512120/thinking-systems.html",
+        "identity_mode": "content",
+        "sha256": "5f4af5c3af4dde7ac62964fd9336409c2e2b63b80f6d11d5182e102335fe3322"
+      },
+      {
+        "path": "docs/article-snapshots/8d7d0979f33822a9020ae190d1f802ad8ed0cc666be26cd8df12b11ab29dc459/ai-cost-cutting-fallacy.html",
+        "identity_mode": "content",
+        "sha256": "170814083fa8d451429e1327b9f99a6ddf2e19953d7b586dea0742e032662524"
       },
       {
         "path": "docs/article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995/the-sdlc-is-out-of-balance.html",
@@ -678,49 +703,44 @@
         "sha256": "4aa1ae74ff48155957e9f897b7697e1cee35e3b38d8319d0906c15da2d44fd7b"
       },
       {
-        "path": "docs/article-snapshots/cbd0c215ed4d446333f9e0b8e4a50ec33bf9868f7ffdc3f68576ea7eb17d8d38/the-sdlc-is-out-of-balance.html",
+        "path": "docs/article-snapshots/cd02b411796b10be063218cef9effa306cfd3df31cf1c2067c59503114edd040/ai-verification-crisis.html",
         "identity_mode": "content",
-        "sha256": "1bba407c4d467dd99d3915af6a1fa7ffad61abec303c28fe8012b71e29fcfe64"
+        "sha256": "fad0f4afae0a30afc3caf13c2db2cf6bb9cd9f0a1ddbd40f308fb22e71701b68"
       },
       {
-        "path": "docs/article-snapshots/cd2d763fbb601aea32f7fa5f5165d90bb5ad9ae42dd1d258f4e07d6073e24bce/ai-verification-crisis.html",
+        "path": "docs/article-snapshots/f93389f1691a648ba28866dc10f46cf7a345d858060488285418482aa276b9e6/ai-governance-is-control-theory.html",
         "identity_mode": "content",
-        "sha256": "80a4cba0e25374f39a4af29fb8dcf50fe8046b3b409439f190c828843e9b736e"
-      },
-      {
-        "path": "docs/article-snapshots/dc75263d68d38ca51c84c6c67172058a4f5653959b73ccfae7348145a25325f2/ai-governance-is-control-theory.html",
-        "identity_mode": "content",
-        "sha256": "36b36751097c520f395a796f43cc512b662b2afd75c772d9c1d83c2442706f8e"
-      },
-      {
-        "path": "docs/article-snapshots/de49c1f4c93d901320f9c9d4ec0c22eb8070a0ba30c37e0f3a8e8ac44d5e42f2/ai-cost-cutting-fallacy.html",
-        "identity_mode": "content",
-        "sha256": "16792de8fced90302b81a9ae8033bccbeb966a8eb83b3e7804385f5e8607287c"
+        "sha256": "84a0159356e29344ded552e2645c7a91f18a8141615eb82a495cb7d1fe54577b"
       },
       {
         "path": "docs/articles/ai-cost-cutting-fallacy.html",
         "identity_mode": "content",
-        "sha256": "9aa33ff6e92341f04028e5c8cf5f5d250f38af866ef978998d404c3ae2a3b007"
+        "sha256": "594eb765281ef39b54b4a015cff7573efdcd5638781fa8ec82c9b5b7f37fc4b4"
       },
       {
         "path": "docs/articles/ai-governance-is-control-theory.html",
         "identity_mode": "content",
-        "sha256": "977f9165e3b1cba8695b7744b03f77580b725389d28b4ba1ccfb89d07c4045bc"
+        "sha256": "66b88d3f07ca5659177811b19666fd7b815a2128a9010b4f22e48214c7bbfba0"
+      },
+      {
+        "path": "docs/articles/ai-native-workflows-have-a-moat-problem.html",
+        "identity_mode": "content",
+        "sha256": "f9916636e0b06b270fdb0b5fab2efe54fc3f3417d286d3397d6c172dccfbae36"
       },
       {
         "path": "docs/articles/ai-verification-crisis.html",
         "identity_mode": "content",
-        "sha256": "f0c346d73915579a59607b7ec3634fadc2175eadac31504858c92c736c6c0cd3"
+        "sha256": "c1fe58a67a15ac7249d032a94fdb6b947a787028352802604725c4d258c33364"
       },
       {
         "path": "docs/articles/the-sdlc-is-out-of-balance.html",
         "identity_mode": "content",
-        "sha256": "14b56fbe2bf003e1ee115ab76c86a6fda35a8e6b83a2829ceb34617d065e2e2f"
+        "sha256": "af14af54cd133533d0334107c156e63c58224527f4b9df06e2f53e7ae279fbb0"
       },
       {
         "path": "docs/articles/thinking-systems.html",
         "identity_mode": "content",
-        "sha256": "1197a57efee16ff4dcee5a4354cb24a1543d9d479f76dcb2ea3f35c88d66ddfa"
+        "sha256": "6931b9ed097029412573e70fedb6da7e944b8a87c0963f1eb2d7315500b0bbce"
       },
       {
         "path": "docs/assets/favicon.svg",
@@ -745,12 +765,12 @@
       {
         "path": "docs/credits.html",
         "identity_mode": "content",
-        "sha256": "338f75a6e0221e01a71d08c3b1ceff0ed80b5ae8de84713d828b404d8e942536"
+        "sha256": "5e61d3f03affc3d5a4d5cef72955d4b58b3e6c9574fb87f8a52c419676e4bdda"
       },
       {
         "path": "docs/index.html",
         "identity_mode": "content",
-        "sha256": "fa4f805a1604ecbe8f8e2ede2adfdbd040300913c2d892d3154de04c60355716"
+        "sha256": "e0649aa2474c41dbd1e5e0071f916dfc9b5c99ddd06cec7d2f7823e5bce662e1"
       },
       {
         "path": "docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg",
@@ -780,12 +800,12 @@
       {
         "path": "docs/publication-index.json",
         "identity_mode": "content",
-        "sha256": "ca1678b4164afa2bdd1dbe4db1947a19969ceaa730101290b4b0dc691365d612"
+        "sha256": "899b9b10bef8f13af74f60dfb46d78690fb65bd3f05ded99f74da64cb493fc01"
       },
       {
         "path": "docs/research.html",
         "identity_mode": "content",
-        "sha256": "864c2b6565f316267f9fbdfe71d1254da8a3ffc0be9f1211456f94315a1c726d"
+        "sha256": "54306d309a4c9dc45f59e8aa00470be9521160cbb1a509fda6125d28859991c1"
       },
       {
         "path": "docs/runtime/1c34e64047482a214a50a115582adb08988fe8721f5ee651bd8a231a300e2cf7/analytics.js",
@@ -923,6 +943,11 @@
         "sha256": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a"
       },
       {
+        "path": "docs/runtime/d16e490243e8a374ae826ba214b032df196f206176c6e6781aae8622769794e1/analytics.js",
+        "identity_mode": "content",
+        "sha256": "d16e490243e8a374ae826ba214b032df196f206176c6e6781aae8622769794e1"
+      },
+      {
         "path": "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/archive.js",
         "identity_mode": "content",
         "sha256": "fd1d7dbbf378073d673f9d498da8a1b93153472cf045ac632e3384b2c3ca3a0b"
@@ -948,14 +973,9 @@
         "sha256": "d11f679af05442e8b01024e9a5fe3ba9aff73554f11bd8f3ff692d14f830f8fb"
       },
       {
-        "path": "docs/runtime/e03f965266b71e2ec8634a50e2afaa75a5e2d9e094be74ebf092a721ee50cab6/analytics.js",
-        "identity_mode": "content",
-        "sha256": "e03f965266b71e2ec8634a50e2afaa75a5e2d9e094be74ebf092a721ee50cab6"
-      },
-      {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "4c6f957236cddef2eb3cdce5f298f31b7bf6f03148014da4eaea774dd7a49846"
+        "sha256": "4f135db399f2b3ab4adf5dedd3417cfae6e7c848223a141530c7469a386f73fe"
       },
       {
         "path": "docs/snapshots/080da808855bdc7cac66970509a9a371a5033cb5d721a007a92632c826b2d06a/writing.html",
@@ -973,21 +993,6 @@
         "sha256": "93c88b5f9c73e559b067866cb38eb604e93013c2225a06a36f96e8f215d397b3"
       },
       {
-        "path": "docs/snapshots/3fbd4997fa6a2231ca203abb9b151b9a893c093973c94868c0f2b737e4062829/credits.html",
-        "identity_mode": "content",
-        "sha256": "0643267ac06cb9bbba3b6bc600ddc32eb1d18d666b67ff400fc7d189cd2ed27f"
-      },
-      {
-        "path": "docs/snapshots/475223cc0309d48dc881d6e5caa090407ef615c9159e9abc5b302690a17b4ea1/writing.html",
-        "identity_mode": "content",
-        "sha256": "77d20ccb17c4f7012081ba0e8c370896a15d1277ec8aaaae9e408175845776c1"
-      },
-      {
-        "path": "docs/snapshots/5006a139824977db749c0c69a82807cb877d8b720d332b8280ffbddce6e27261/talks.html",
-        "identity_mode": "content",
-        "sha256": "3ea7d9cd9509fc9e791b4463293ee9e3fbdf1407c8018f5a7543cc125bdc4106"
-      },
-      {
         "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
         "identity_mode": "content",
         "sha256": "3dd82a25eee6f3915f0748192a6dc34bfbd214879b0ed933f116b3d47a363df7"
@@ -1001,6 +1006,16 @@
         "path": "docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed/research.html",
         "identity_mode": "content",
         "sha256": "395fd7fcc670e0b7984ed05e7395958dd9432a701f3bfc43151fb956e6d289a1"
+      },
+      {
+        "path": "docs/snapshots/7573d249cf739354cb5581727593589332d013a1595e3d7c3de7a564145c0aa9/research.html",
+        "identity_mode": "content",
+        "sha256": "b892b0a0bf040f11b5a909d727f2adb93918fa8dc886ec688946911c99efa089"
+      },
+      {
+        "path": "docs/snapshots/7697373ba6bc9d1013ac22c65ebff193cbb38873d2b1757134d06551db38b0e0/index.html",
+        "identity_mode": "content",
+        "sha256": "595a417af7b3f671341d8e90b7736c3c829eeb8b6434baf04b5a3c479c1e8526"
       },
       {
         "path": "docs/snapshots/7b62f25175a003a9fcc24f430e26ff321f267a8e77a28699984f86bf1dfdd3b6/research.html",
@@ -1028,11 +1043,6 @@
         "sha256": "288f85a3b0bf82d69aceda049007063a6ebcde469eb345b8ddcec53cf96bd498"
       },
       {
-        "path": "docs/snapshots/95e55877fec733a754a566a11daafadffb3447b52a1be0f42ddee2d16de7de26/index.html",
-        "identity_mode": "content",
-        "sha256": "8c9f9018bb1cc65c18f3de911d709da6293b8ce298793aac8518005241914e1c"
-      },
-      {
         "path": "docs/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700/credits.html",
         "identity_mode": "content",
         "sha256": "dfb1cb40184b9d8cd972cf1907354a05add4d40ee2ab2010b197120935499428"
@@ -1043,9 +1053,9 @@
         "sha256": "1d7a5aeb831c51e49667095bb29f51108ff47e32cf89853b54002ffad693e312"
       },
       {
-        "path": "docs/snapshots/b3d901500863c39c45c9ebb46796d1d8b38c58b0058784fb4935027a7c925534/research.html",
+        "path": "docs/snapshots/b3d059ff3cf3523d0aedf5dc01a7ff4ebe32ede02482025ee3e3f4e8a8122d31/writing.html",
         "identity_mode": "content",
-        "sha256": "f8624ae6dbf70785ed756ff6f183dadc710158dea118a89b6c990d5be48591a1"
+        "sha256": "8cede295878e774edb09c825187e34934a9f84d47e1e89334feaffa465dbf2ac"
       },
       {
         "path": "docs/snapshots/b57f1dcb99f70ff2df6f748de084f2793f992f438a03c798a30b891c8f9e6461/writing.html",
@@ -1053,9 +1063,19 @@
         "sha256": "55cf819e07ca22d5a0b84efe46eb5cbff97e318605e9fd8d2d89c32c28ef2e11"
       },
       {
+        "path": "docs/snapshots/bbb1f6b4aeb7404b971eb33f1c16a2b0ec44864cbcc1ef26a86a911586acabee/credits.html",
+        "identity_mode": "content",
+        "sha256": "a404d9f7236b5b69f2dd2bfddcebe6ed0215d0330489a39a6687496df93ba1ba"
+      },
+      {
         "path": "docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920/index.html",
         "identity_mode": "content",
         "sha256": "e4bbf6e735ef6b9d3c89d7412e12a1288f2b73b9d47e3097c71419f518b29fd2"
+      },
+      {
+        "path": "docs/snapshots/cc05d2f349e8dfad9b69f99ad2c23392abbb0163c7ba895cb09d3e7b5d2b4dfa/talks.html",
+        "identity_mode": "content",
+        "sha256": "da2656b1737fec92e20c72b0483de5835c5e09a63dbfc6f3489e4d6f1013d152"
       },
       {
         "path": "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html",
@@ -1075,7 +1095,7 @@
       {
         "path": "docs/talks.html",
         "identity_mode": "content",
-        "sha256": "f3a16f12dc745602e73afa97d1949ebb0bc47e00fffee5628dd381f802ceffe6"
+        "sha256": "32856984c735c21bb128c5047d802a4db57adc23a3b8f56f7ee2bf24dc88385c"
       },
       {
         "path": "docs/theme.js",
@@ -1085,7 +1105,7 @@
       {
         "path": "docs/writing.html",
         "identity_mode": "content",
-        "sha256": "3d086db834069807bdc308dd40d09c1cbca25f95a60afd04edc94551f89d5b37"
+        "sha256": "34333914f396ba095eea3d93a0a8f7fe25192ee1436c796788660e6dddf03795"
       },
       {
         "path": "drafts/medium-profile-revision-20261001.html",
@@ -5021,6 +5041,11 @@
         "path": "review/issue-183/2026-11-15-cost-cutting.md",
         "identity_mode": "content",
         "sha256": "cfedcd5845369583c74d5ab67ea388d49ada336bd9205f9224e99db17e9d7c25"
+      },
+      {
+        "path": "review/issue-183/2026-11-15-moat-problem.md",
+        "identity_mode": "content",
+        "sha256": "fb2262088623962a751b922d44c36d2e0fdae485626190f45b957679679ed994"
       },
       {
         "path": "review/issue-183/2026-11-15-verification-crisis.md",
@@ -10403,6 +10428,16 @@
         "sha256": "ab3c716b3b86f7814e1beef1077eb9434935c7d320142d5a84b67c100f3b38d3"
       },
       {
+        "path": "site/assets/publications/ai-native-workflows-have-a-moat-problem/cover-web.jpg",
+        "identity_mode": "content",
+        "sha256": "11b50b3b2a4dd035b4b975444d87a37ceed0e68d8c983f4acc3b57b9d7dc1833"
+      },
+      {
+        "path": "site/assets/publications/ai-native-workflows-have-a-moat-problem/cover.png",
+        "identity_mode": "content",
+        "sha256": "57cef69ffe083071acf0567733bb4d79089f888502aa60ff8f795011288f8ed9"
+      },
+      {
         "path": "site/assets/publications/ai-verification-crisis/cover-web.jpg",
         "identity_mode": "content",
         "sha256": "2d4e237d21021bcb6c62b5ce9ab10daffc4e93b521a20f3b6a707a3531781739"
@@ -10755,12 +10790,12 @@
       {
         "path": "site/content/article-tags.json",
         "identity_mode": "content",
-        "sha256": "4efc941fa0f470fe623cca86abd5fa7067797d34443a40536c2e330b28e2ebb2"
+        "sha256": "c9abcb52ac6d498201dbf3088af87e29918dcae1d104da152b6aee0dc3c600bb"
       },
       {
         "path": "site/content/catalog.json",
         "identity_mode": "content",
-        "sha256": "5ac5ae214a2efe820a4e9f612104fa3b249626432fdb296e1505cb2a75c36b14"
+        "sha256": "ff05d03ce9bcf7a747cf70c2f3b84d60e8a99bcf5c841058ac5f0e5224b8de46"
       },
       {
         "path": "site/content/events.json",
@@ -11020,7 +11055,7 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "89948409d9dbf857481bf7c2df246f321a71e1e94c0849adcacb7a3e8640875c"
+        "sha256": "f78a9b4754efa0e11dd747c880c6d842754bf582d54f14b87e124ea57509ec3c"
       },
       {
         "path": "site/publications/ai-cost-cutting-fallacy/PROVENANCE.md",
@@ -11091,6 +11126,36 @@
         "path": "site/publications/ai-governance-is-control-theory/publication.json",
         "identity_mode": "content",
         "sha256": "8b2d25eabcc0ec0e7a252237ef58481e9033ac3103ec1bb741f97a8f0f41fef3"
+      },
+      {
+        "path": "site/publications/ai-native-workflows-have-a-moat-problem/PROVENANCE.md",
+        "identity_mode": "content",
+        "sha256": "ed9ec1afc2ab6f4d85bc1a27b5fa808301725e8fa17523f0cac76a72606eb15e"
+      },
+      {
+        "path": "site/publications/ai-native-workflows-have-a-moat-problem/editions/ai-native-workflows-have-a-moat-problem-en-20260701.json",
+        "identity_mode": "content",
+        "sha256": "aed9fe58785264119e31ce955ed95fd8b3f500c8709e00cfdfc3b242e68367b8"
+      },
+      {
+        "path": "site/publications/ai-native-workflows-have-a-moat-problem/launch-post.en.md",
+        "identity_mode": "content",
+        "sha256": "5307e51ad9d5781375259a42fd716adfdd67dd290424a06877ef6af436235612"
+      },
+      {
+        "path": "site/publications/ai-native-workflows-have-a-moat-problem/manuscript.en.md",
+        "identity_mode": "content",
+        "sha256": "bc1032244fb1394dd4c25e0d75631d6d62210dd263c393e17877353413b291ef"
+      },
+      {
+        "path": "site/publications/ai-native-workflows-have-a-moat-problem/profile.json",
+        "identity_mode": "content",
+        "sha256": "5f1cc5ee1efc25ac389e6ac0c9c538f0be8e09269dd9b019716a09b86d7d789e"
+      },
+      {
+        "path": "site/publications/ai-native-workflows-have-a-moat-problem/publication.json",
+        "identity_mode": "content",
+        "sha256": "f96489b2837debd118ae5ff5727b42adb286ec4b9b90c7c64c9944dbbb8122b4"
       },
       {
         "path": "site/publications/ai-verification-crisis/PROVENANCE.md",
@@ -11785,7 +11850,7 @@
       {
         "path": "site/rights.json",
         "identity_mode": "content",
-        "sha256": "fae024f6e4710a6f46e4d0a75b6493f48d5abda6030c35fd8bf4786246fb2b65"
+        "sha256": "32f1813b00cb9098a3cce63a9fa02e7a3444ce1ff8670579e715c27f1810b08d"
       },
       {
         "path": "site/routes.json",
@@ -13685,7 +13750,7 @@
       {
         "path": "tools/repository_intelligence.py",
         "identity_mode": "content",
-        "sha256": "a62c65c55ed683c95d0776555cade549f3f56a230b12ded6071bb7e8ab8b9f9e"
+        "sha256": "91457fdba4b0965e290b304ef153aa938a46879de2b2796a0787b352632ea63e"
       },
       {
         "path": "tools/run_repository_tests.py",
@@ -13906,7 +13971,7 @@
   },
   "producer": {
     "path": "tools/repository_intelligence.py",
-    "sha256": "a62c65c55ed683c95d0776555cade549f3f56a230b12ded6071bb7e8ab8b9f9e",
+    "sha256": "91457fdba4b0965e290b304ef153aa938a46879de2b2796a0787b352632ea63e",
     "config_path": ".github/repository-intelligence-config.json",
     "config_sha256": "66adb348ba24a7f5fa4851ddba10f102e6f81cbff8824679e800204068db9468"
   },
@@ -15359,6 +15424,17 @@
       "title": "archive.js"
     },
     {
+      "path": "docs/article-media/11b50b3b2a4dd035b4b975444d87a37ceed0e68d8c983f4acc3b57b9d7dc1833/cover.jpg",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover.jpg"
+    },
+    {
       "path": "docs/article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618/research-fallback.svg",
       "kind": "file",
       "purpose": "Digest-addressed passive Research fallback vectors generated from the canonical authored scene; no article publication.",
@@ -15434,6 +15510,17 @@
         "AGENTS.md"
       ],
       "title": "diagram-5.webp"
+    },
+    {
+      "path": "docs/article-media/3415712316948afcc30c00607f7f2fb475b2ca0939c108481bfdcd4fe3676a93/cover-social.jpg",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover-social.jpg"
     },
     {
       "path": "docs/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3/imbalance-loop.webp",
@@ -15755,7 +15842,29 @@
       "title": "the-sdlc-is-out-of-balance.html"
     },
     {
-      "path": "docs/article-snapshots/56fb2f71f561ed0fe25ea8e4c7a558b4d45220183a4909c4ccb23ca663646d6d/thinking-systems.html",
+      "path": "docs/article-snapshots/09e970c12dbe043bee2dfcd7add3a4a998a7b73bf3474ca2ffb80e08c3ad0967/ai-native-workflows-have-a-moat-problem.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ai-native-workflows-have-a-moat-problem.html"
+    },
+    {
+      "path": "docs/article-snapshots/716ebd541c3dfb7c9e9d9e9bbc72850595fcb6564b34f72524f9a1862515c464/the-sdlc-is-out-of-balance.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "the-sdlc-is-out-of-balance.html"
+    },
+    {
+      "path": "docs/article-snapshots/7820afbd8014178c44dd5ee31697009adf15c585ea2053914f22ba72fe512120/thinking-systems.html",
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -15764,6 +15873,17 @@
         "AGENTS.md"
       ],
       "title": "thinking-systems.html"
+    },
+    {
+      "path": "docs/article-snapshots/8d7d0979f33822a9020ae190d1f802ad8ed0cc666be26cd8df12b11ab29dc459/ai-cost-cutting-fallacy.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ai-cost-cutting-fallacy.html"
     },
     {
       "path": "docs/article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995/the-sdlc-is-out-of-balance.html",
@@ -15788,18 +15908,7 @@
       "title": "the-sdlc-is-out-of-balance.html"
     },
     {
-      "path": "docs/article-snapshots/cbd0c215ed4d446333f9e0b8e4a50ec33bf9868f7ffdc3f68576ea7eb17d8d38/the-sdlc-is-out-of-balance.html",
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "the-sdlc-is-out-of-balance.html"
-    },
-    {
-      "path": "docs/article-snapshots/cd2d763fbb601aea32f7fa5f5165d90bb5ad9ae42dd1d258f4e07d6073e24bce/ai-verification-crisis.html",
+      "path": "docs/article-snapshots/cd02b411796b10be063218cef9effa306cfd3df31cf1c2067c59503114edd040/ai-verification-crisis.html",
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -15810,7 +15919,7 @@
       "title": "ai-verification-crisis.html"
     },
     {
-      "path": "docs/article-snapshots/dc75263d68d38ca51c84c6c67172058a4f5653959b73ccfae7348145a25325f2/ai-governance-is-control-theory.html",
+      "path": "docs/article-snapshots/f93389f1691a648ba28866dc10f46cf7a345d858060488285418482aa276b9e6/ai-governance-is-control-theory.html",
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -15819,17 +15928,6 @@
         "AGENTS.md"
       ],
       "title": "ai-governance-is-control-theory.html"
-    },
-    {
-      "path": "docs/article-snapshots/de49c1f4c93d901320f9c9d4ec0c22eb8070a0ba30c37e0f3a8e8ac44d5e42f2/ai-cost-cutting-fallacy.html",
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "ai-cost-cutting-fallacy.html"
     },
     {
       "path": "docs/articles/ai-cost-cutting-fallacy.html",
@@ -15852,6 +15950,17 @@
         "AGENTS.md"
       ],
       "title": "ai-governance-is-control-theory.html"
+    },
+    {
+      "path": "docs/articles/ai-native-workflows-have-a-moat-problem.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ai-native-workflows-have-a-moat-problem.html"
     },
     {
       "path": "docs/articles/ai-verification-crisis.html",
@@ -16327,6 +16436,17 @@
       "title": "theme.js"
     },
     {
+      "path": "docs/runtime/d16e490243e8a374ae826ba214b032df196f206176c6e6781aae8622769794e1/analytics.js",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "analytics.js"
+    },
+    {
       "path": "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/archive.js",
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
@@ -16382,17 +16502,6 @@
       "title": "theme.js"
     },
     {
-      "path": "docs/runtime/e03f965266b71e2ec8634a50e2afaa75a5e2d9e094be74ebf092a721ee50cab6/analytics.js",
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "analytics.js"
-    },
-    {
       "path": "docs/site-revision.json",
       "kind": "file",
       "purpose": "Generated public rendition: site-revision.json; regenerate from site sources with tools/site/build.cjs.",
@@ -16437,39 +16546,6 @@
       "title": "talks.html"
     },
     {
-      "path": "docs/snapshots/3fbd4997fa6a2231ca203abb9b151b9a893c093973c94868c0f2b737e4062829/credits.html",
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "credits.html"
-    },
-    {
-      "path": "docs/snapshots/475223cc0309d48dc881d6e5caa090407ef615c9159e9abc5b302690a17b4ea1/writing.html",
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "writing.html"
-    },
-    {
-      "path": "docs/snapshots/5006a139824977db749c0c69a82807cb877d8b720d332b8280ffbddce6e27261/talks.html",
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "talks.html"
-    },
-    {
       "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
@@ -16501,6 +16577,28 @@
         "AGENTS.md"
       ],
       "title": "research.html"
+    },
+    {
+      "path": "docs/snapshots/7573d249cf739354cb5581727593589332d013a1595e3d7c3de7a564145c0aa9/research.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "research.html"
+    },
+    {
+      "path": "docs/snapshots/7697373ba6bc9d1013ac22c65ebff193cbb38873d2b1757134d06551db38b0e0/index.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index.html"
     },
     {
       "path": "docs/snapshots/7b62f25175a003a9fcc24f430e26ff321f267a8e77a28699984f86bf1dfdd3b6/research.html",
@@ -16558,17 +16656,6 @@
       "title": "index.html"
     },
     {
-      "path": "docs/snapshots/95e55877fec733a754a566a11daafadffb3447b52a1be0f42ddee2d16de7de26/index.html",
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "index.html"
-    },
-    {
       "path": "docs/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700/credits.html",
       "kind": "file",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
@@ -16591,7 +16678,7 @@
       "title": "index.html"
     },
     {
-      "path": "docs/snapshots/b3d901500863c39c45c9ebb46796d1d8b38c58b0058784fb4935027a7c925534/research.html",
+      "path": "docs/snapshots/b3d059ff3cf3523d0aedf5dc01a7ff4ebe32ede02482025ee3e3f4e8a8122d31/writing.html",
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -16599,7 +16686,7 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "research.html"
+      "title": "writing.html"
     },
     {
       "path": "docs/snapshots/b57f1dcb99f70ff2df6f748de084f2793f992f438a03c798a30b891c8f9e6461/writing.html",
@@ -16613,6 +16700,17 @@
       "title": "writing.html"
     },
     {
+      "path": "docs/snapshots/bbb1f6b4aeb7404b971eb33f1c16a2b0ec44864cbcc1ef26a86a911586acabee/credits.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "credits.html"
+    },
+    {
       "path": "docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920/index.html",
       "kind": "file",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
@@ -16622,6 +16720,17 @@
         "AGENTS.md"
       ],
       "title": "index.html"
+    },
+    {
+      "path": "docs/snapshots/cc05d2f349e8dfad9b69f99ad2c23392abbb0163c7ba895cb09d3e7b5d2b4dfa/talks.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "talks.html"
     },
     {
       "path": "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html",
@@ -25345,6 +25454,17 @@
         "AGENTS.md"
       ],
       "title": "Cost-Cutting Fallacy migration review"
+    },
+    {
+      "path": "review/issue-183/2026-11-15-moat-problem.md",
+      "kind": "file",
+      "purpose": "Source-bound Moat Problem article migration and Preview evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Moat Problem Draft PR Preview"
     },
     {
       "path": "review/issue-183/2026-11-15-verification-crisis.md",
@@ -37183,6 +37303,28 @@
       "title": "normal-distribution.png"
     },
     {
+      "path": "site/assets/publications/ai-native-workflows-have-a-moat-problem/cover-web.jpg",
+      "kind": "file",
+      "purpose": "Original Moat Problem cover artwork resized for the author-site edition.",
+      "role": "source",
+      "owner": "site/publications/ai-native-workflows-have-a-moat-problem/PROVENANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover-web.jpg"
+    },
+    {
+      "path": "site/assets/publications/ai-native-workflows-have-a-moat-problem/cover.png",
+      "kind": "file",
+      "purpose": "Original Moat Problem cover artwork resized for the author-site edition.",
+      "role": "source",
+      "owner": "site/publications/ai-native-workflows-have-a-moat-problem/PROVENANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover.png"
+    },
+    {
       "path": "site/assets/publications/ai-verification-crisis/cover-web.jpg",
       "kind": "file",
       "purpose": "Resized historical Verification Crisis cover source or equivalent web JPEG.",
@@ -38693,6 +38835,72 @@
       "path": "site/publications/ai-governance-is-control-theory/publication.json",
       "kind": "file",
       "purpose": "Authored Control Theory source, provenance or edition and publication profile.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "publication.json"
+    },
+    {
+      "path": "site/publications/ai-native-workflows-have-a-moat-problem/PROVENANCE.md",
+      "kind": "file",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "AI-Native Workflows Have a Moat Problem — source and rights"
+    },
+    {
+      "path": "site/publications/ai-native-workflows-have-a-moat-problem/editions/ai-native-workflows-have-a-moat-problem-en-20260701.json",
+      "kind": "file",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ai-native-workflows-have-a-moat-problem-en-20260701.json"
+    },
+    {
+      "path": "site/publications/ai-native-workflows-have-a-moat-problem/launch-post.en.md",
+      "kind": "file",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "launch-post.en.md"
+    },
+    {
+      "path": "site/publications/ai-native-workflows-have-a-moat-problem/manuscript.en.md",
+      "kind": "file",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "AI-Native Workflows Have a Moat Problem"
+    },
+    {
+      "path": "site/publications/ai-native-workflows-have-a-moat-problem/profile.json",
+      "kind": "file",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "profile.json"
+    },
+    {
+      "path": "site/publications/ai-native-workflows-have-a-moat-problem/publication.json",
+      "kind": "file",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md",
       "instructions": [
@@ -45015,6 +45223,16 @@
       ]
     },
     {
+      "path": "docs/article-media/11b50b3b2a4dd035b4b975444d87a37ceed0e68d8c983f4acc3b57b9d7dc1833",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618",
       "kind": "directory",
       "purpose": "Digest-addressed passive Research fallback vectors generated from the canonical authored scene; no article publication.",
@@ -45078,6 +45296,16 @@
       "path": "docs/article-media/300fdfa774d4e768f36fc3e3d1f4f146b46ed41feead5d33db2316c9f3a3c06a",
       "kind": "directory",
       "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/3415712316948afcc30c00607f7f2fb475b2ca0939c108481bfdcd4fe3676a93",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -45375,7 +45603,37 @@
       ]
     },
     {
-      "path": "docs/article-snapshots/56fb2f71f561ed0fe25ea8e4c7a558b4d45220183a4909c4ccb23ca663646d6d",
+      "path": "docs/article-snapshots/09e970c12dbe043bee2dfcd7add3a4a998a7b73bf3474ca2ffb80e08c3ad0967",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-snapshots/716ebd541c3dfb7c9e9d9e9bbc72850595fcb6564b34f72524f9a1862515c464",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-snapshots/7820afbd8014178c44dd5ee31697009adf15c585ea2053914f22ba72fe512120",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-snapshots/8d7d0979f33822a9020ae190d1f802ad8ed0cc666be26cd8df12b11ab29dc459",
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -45405,7 +45663,7 @@
       ]
     },
     {
-      "path": "docs/article-snapshots/cbd0c215ed4d446333f9e0b8e4a50ec33bf9868f7ffdc3f68576ea7eb17d8d38",
+      "path": "docs/article-snapshots/cd02b411796b10be063218cef9effa306cfd3df31cf1c2067c59503114edd040",
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -45415,27 +45673,7 @@
       ]
     },
     {
-      "path": "docs/article-snapshots/cd2d763fbb601aea32f7fa5f5165d90bb5ad9ae42dd1d258f4e07d6073e24bce",
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/article-snapshots/dc75263d68d38ca51c84c6c67172058a4f5653959b73ccfae7348145a25325f2",
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/article-snapshots/de49c1f4c93d901320f9c9d4ec0c22eb8070a0ba30c37e0f3a8e8ac44d5e42f2",
+      "path": "docs/article-snapshots/f93389f1691a648ba28866dc10f46cf7a345d858060488285418482aa276b9e6",
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -45565,9 +45803,9 @@
       ]
     },
     {
-      "path": "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62",
+      "path": "docs/runtime/d16e490243e8a374ae826ba214b032df196f206176c6e6781aae8622769794e1",
       "kind": "directory",
-      "purpose": "Generated immutable runtime or route snapshot directory.",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -45575,9 +45813,9 @@
       ]
     },
     {
-      "path": "docs/runtime/e03f965266b71e2ec8634a50e2afaa75a5e2d9e094be74ebf092a721ee50cab6",
+      "path": "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62",
       "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Generated immutable runtime or route snapshot directory.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -45625,36 +45863,6 @@
       ]
     },
     {
-      "path": "docs/snapshots/3fbd4997fa6a2231ca203abb9b151b9a893c093973c94868c0f2b737e4062829",
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/475223cc0309d48dc881d6e5caa090407ef615c9159e9abc5b302690a17b4ea1",
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/5006a139824977db749c0c69a82807cb877d8b720d332b8280ffbddce6e27261",
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
       "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347",
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -45678,6 +45886,26 @@
       "path": "docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed",
       "kind": "directory",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/7573d249cf739354cb5581727593589332d013a1595e3d7c3de7a564145c0aa9",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/7697373ba6bc9d1013ac22c65ebff193cbb38873d2b1757134d06551db38b0e0",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -45735,16 +45963,6 @@
       ]
     },
     {
-      "path": "docs/snapshots/95e55877fec733a754a566a11daafadffb3447b52a1be0f42ddee2d16de7de26",
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
       "path": "docs/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700",
       "kind": "directory",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
@@ -45765,7 +45983,7 @@
       ]
     },
     {
-      "path": "docs/snapshots/b3d901500863c39c45c9ebb46796d1d8b38c58b0058784fb4935027a7c925534",
+      "path": "docs/snapshots/b3d059ff3cf3523d0aedf5dc01a7ff4ebe32ede02482025ee3e3f4e8a8122d31",
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -45785,9 +46003,29 @@
       ]
     },
     {
+      "path": "docs/snapshots/bbb1f6b4aeb7404b971eb33f1c16a2b0ec44864cbcc1ef26a86a911586acabee",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920",
       "kind": "directory",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/cc05d2f349e8dfad9b69f99ad2c23392abbb0163c7ba895cb09d3e7b5d2b4dfa",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -47035,6 +47273,16 @@
       ]
     },
     {
+      "path": "site/assets/publications/ai-native-workflows-have-a-moat-problem",
+      "kind": "directory",
+      "purpose": "Original Moat Problem cover artwork resized for the author-site edition.",
+      "role": "source",
+      "owner": "site/publications/ai-native-workflows-have-a-moat-problem/PROVENANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "site/assets/publications/ai-verification-crisis",
       "kind": "directory",
       "purpose": "Resized historical Verification Crisis cover source or equivalent web JPEG.",
@@ -47298,6 +47546,26 @@
       "path": "site/publications/ai-governance-is-control-theory/editions",
       "kind": "directory",
       "purpose": "Authored Control Theory source, provenance or edition and publication profile.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/ai-native-workflows-have-a-moat-problem",
+      "kind": "directory",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/ai-native-workflows-have-a-moat-problem/editions",
+      "kind": "directory",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md",
       "instructions": [

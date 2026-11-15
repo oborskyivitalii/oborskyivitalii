@@ -229,18 +229,35 @@
       }
     },
     "publication-08": {
+      "kind": "local-article",
+      "article": "ai-native-workflows-have-a-moat-problem",
       "edition": {
         "@type": "Article",
         "name": "AI-Native Workflows Have a Moat Problem",
-        "url": "https://aiadvances.org/ai-native-workflows-have-a-moat-problem-49992bcc3088",
+        "url": "articles/ai-native-workflows-have-a-moat-problem.html",
         "inLanguage": "en",
         "author": {
           "@type": "Person",
-          "name": "Vitalii Oborskyi"
-        },
-        "datePublished": "2026-07-01"
+          "name": "Vitalii Oborskyi",
+          "url": "https://vitaliioborskyi.ai/"
+        }
       },
       "editions": [
+        {
+          "@type": "Article",
+          "name": "AI-Native Workflows Have a Moat Problem",
+          "url": "https://aiadvances.org/ai-native-workflows-have-a-moat-problem-49992bcc3088",
+          "inLanguage": "en",
+          "author": {
+            "@type": "Person",
+            "name": "Vitalii Oborskyi",
+            "url": "https://vitaliioborskyi.ai/"
+          },
+          "datePublished": "2026-07-01",
+          "platform": "Medium",
+          "relationship": "same-topic-platform-edition",
+          "bodyEquivalenceVerified": false
+        },
         {
           "platform": "LinkedIn",
           "name": "AI-Native Workflows Have a Moat Problem",
@@ -248,7 +265,8 @@
           "inLanguage": "en",
           "author": {
             "@type": "Person",
-            "name": "Vitalii Oborskyi"
+            "name": "Vitalii Oborskyi",
+            "url": "https://vitaliioborskyi.ai/"
           },
           "datePublished": "2026-07-01",
           "relationship": "same-topic-platform-edition",
@@ -259,8 +277,9 @@
       "presentation": {
         "topic": "strategy",
         "kind": "Article",
-        "publisher": "AI Advances",
-        "summary": "Where durable differentiation can sit in AI-native workflows."
+        "publisher": "Author site",
+        "summary": "Where durable differentiation can sit in AI-native workflows.",
+        "archiveYear": "2026"
       }
     },
     "publication-09": {

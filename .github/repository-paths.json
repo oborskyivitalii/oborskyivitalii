@@ -637,6 +637,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/article-media/11b50b3b2a4dd035b4b975444d87a37ceed0e68d8c983f4acc3b57b9d7dc1833": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/11b50b3b2a4dd035b4b975444d87a37ceed0e68d8c983f4acc3b57b9d7dc1833/cover.jpg": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618": {
       "kind": "directory",
       "purpose": "Digest-addressed passive Research fallback vectors generated from the canonical authored scene; no article publication.",
@@ -718,6 +730,18 @@
     "docs/article-media/300fdfa774d4e768f36fc3e3d1f4f146b46ed41feead5d33db2316c9f3a3c06a/diagram-5.webp": {
       "kind": "file",
       "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/3415712316948afcc30c00607f7f2fb475b2ca0939c108481bfdcd4fe3676a93": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/3415712316948afcc30c00607f7f2fb475b2ca0939c108481bfdcd4fe3676a93/cover-social.jpg": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1069,13 +1093,49 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/56fb2f71f561ed0fe25ea8e4c7a558b4d45220183a4909c4ccb23ca663646d6d": {
+    "docs/article-snapshots/09e970c12dbe043bee2dfcd7add3a4a998a7b73bf3474ca2ffb80e08c3ad0967": {
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/56fb2f71f561ed0fe25ea8e4c7a558b4d45220183a4909c4ccb23ca663646d6d/thinking-systems.html": {
+    "docs/article-snapshots/09e970c12dbe043bee2dfcd7add3a4a998a7b73bf3474ca2ffb80e08c3ad0967/ai-native-workflows-have-a-moat-problem.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/716ebd541c3dfb7c9e9d9e9bbc72850595fcb6564b34f72524f9a1862515c464": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/716ebd541c3dfb7c9e9d9e9bbc72850595fcb6564b34f72524f9a1862515c464/the-sdlc-is-out-of-balance.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/7820afbd8014178c44dd5ee31697009adf15c585ea2053914f22ba72fe512120": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/7820afbd8014178c44dd5ee31697009adf15c585ea2053914f22ba72fe512120/thinking-systems.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/8d7d0979f33822a9020ae190d1f802ad8ed0cc666be26cd8df12b11ab29dc459": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/8d7d0979f33822a9020ae190d1f802ad8ed0cc666be26cd8df12b11ab29dc459/ai-cost-cutting-fallacy.html": {
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -1105,49 +1165,25 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/cbd0c215ed4d446333f9e0b8e4a50ec33bf9868f7ffdc3f68576ea7eb17d8d38": {
+    "docs/article-snapshots/cd02b411796b10be063218cef9effa306cfd3df31cf1c2067c59503114edd040": {
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/cbd0c215ed4d446333f9e0b8e4a50ec33bf9868f7ffdc3f68576ea7eb17d8d38/the-sdlc-is-out-of-balance.html": {
+    "docs/article-snapshots/cd02b411796b10be063218cef9effa306cfd3df31cf1c2067c59503114edd040/ai-verification-crisis.html": {
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/cd2d763fbb601aea32f7fa5f5165d90bb5ad9ae42dd1d258f4e07d6073e24bce": {
+    "docs/article-snapshots/f93389f1691a648ba28866dc10f46cf7a345d858060488285418482aa276b9e6": {
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/cd2d763fbb601aea32f7fa5f5165d90bb5ad9ae42dd1d258f4e07d6073e24bce/ai-verification-crisis.html": {
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/dc75263d68d38ca51c84c6c67172058a4f5653959b73ccfae7348145a25325f2": {
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/dc75263d68d38ca51c84c6c67172058a4f5653959b73ccfae7348145a25325f2/ai-governance-is-control-theory.html": {
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/de49c1f4c93d901320f9c9d4ec0c22eb8070a0ba30c37e0f3a8e8ac44d5e42f2": {
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/de49c1f4c93d901320f9c9d4ec0c22eb8070a0ba30c37e0f3a8e8ac44d5e42f2/ai-cost-cutting-fallacy.html": {
+    "docs/article-snapshots/f93389f1691a648ba28866dc10f46cf7a345d858060488285418482aa276b9e6/ai-governance-is-control-theory.html": {
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -1166,6 +1202,12 @@
       "owner": "site/README.md"
     },
     "docs/articles/ai-governance-is-control-theory.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/articles/ai-native-workflows-have-a-moat-problem.html": {
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -1495,6 +1537,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/runtime/d16e490243e8a374ae826ba214b032df196f206176c6e6781aae8622769794e1": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/d16e490243e8a374ae826ba214b032df196f206176c6e6781aae8622769794e1/analytics.js": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -1528,18 +1582,6 @@
     "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js": {
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/e03f965266b71e2ec8634a50e2afaa75a5e2d9e094be74ebf092a721ee50cab6": {
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/e03f965266b71e2ec8634a50e2afaa75a5e2d9e094be74ebf092a721ee50cab6/analytics.js": {
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1591,42 +1633,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/3fbd4997fa6a2231ca203abb9b151b9a893c093973c94868c0f2b737e4062829": {
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/3fbd4997fa6a2231ca203abb9b151b9a893c093973c94868c0f2b737e4062829/credits.html": {
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/475223cc0309d48dc881d6e5caa090407ef615c9159e9abc5b302690a17b4ea1": {
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/475223cc0309d48dc881d6e5caa090407ef615c9159e9abc5b302690a17b4ea1/writing.html": {
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/5006a139824977db749c0c69a82807cb877d8b720d332b8280ffbddce6e27261": {
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/5006a139824977db749c0c69a82807cb877d8b720d332b8280ffbddce6e27261/talks.html": {
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -1660,6 +1666,30 @@
     "docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed/research.html": {
       "kind": "file",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/7573d249cf739354cb5581727593589332d013a1595e3d7c3de7a564145c0aa9": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/7573d249cf739354cb5581727593589332d013a1595e3d7c3de7a564145c0aa9/research.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/7697373ba6bc9d1013ac22c65ebff193cbb38873d2b1757134d06551db38b0e0": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/7697373ba6bc9d1013ac22c65ebff193cbb38873d2b1757134d06551db38b0e0/index.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1723,18 +1753,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/95e55877fec733a754a566a11daafadffb3447b52a1be0f42ddee2d16de7de26": {
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/95e55877fec733a754a566a11daafadffb3447b52a1be0f42ddee2d16de7de26/index.html": {
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700": {
       "kind": "directory",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
@@ -1759,13 +1777,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/b3d901500863c39c45c9ebb46796d1d8b38c58b0058784fb4935027a7c925534": {
+    "docs/snapshots/b3d059ff3cf3523d0aedf5dc01a7ff4ebe32ede02482025ee3e3f4e8a8122d31": {
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/b3d901500863c39c45c9ebb46796d1d8b38c58b0058784fb4935027a7c925534/research.html": {
+    "docs/snapshots/b3d059ff3cf3523d0aedf5dc01a7ff4ebe32ede02482025ee3e3f4e8a8122d31/writing.html": {
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -1783,6 +1801,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/bbb1f6b4aeb7404b971eb33f1c16a2b0ec44864cbcc1ef26a86a911586acabee": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/bbb1f6b4aeb7404b971eb33f1c16a2b0ec44864cbcc1ef26a86a911586acabee/credits.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920": {
       "kind": "directory",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
@@ -1792,6 +1822,18 @@
     "docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920/index.html": {
       "kind": "file",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/cc05d2f349e8dfad9b69f99ad2c23392abbb0163c7ba895cb09d3e7b5d2b4dfa": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/cc05d2f349e8dfad9b69f99ad2c23392abbb0163c7ba895cb09d3e7b5d2b4dfa/talks.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -6796,6 +6838,12 @@
     "review/issue-183/2026-11-15-cost-cutting.md": {
       "kind": "file",
       "purpose": "Source-bound migration review and preview evidence for issue 183.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-183/2026-11-15-moat-problem.md": {
+      "kind": "file",
+      "purpose": "Source-bound Moat Problem article migration and Preview evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -13753,6 +13801,24 @@
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
+    "site/assets/publications/ai-native-workflows-have-a-moat-problem": {
+      "kind": "directory",
+      "purpose": "Original Moat Problem cover artwork resized for the author-site edition.",
+      "role": "source",
+      "owner": "site/publications/ai-native-workflows-have-a-moat-problem/PROVENANCE.md"
+    },
+    "site/assets/publications/ai-native-workflows-have-a-moat-problem/cover-web.jpg": {
+      "kind": "file",
+      "purpose": "Original Moat Problem cover artwork resized for the author-site edition.",
+      "role": "source",
+      "owner": "site/publications/ai-native-workflows-have-a-moat-problem/PROVENANCE.md"
+    },
+    "site/assets/publications/ai-native-workflows-have-a-moat-problem/cover.png": {
+      "kind": "file",
+      "purpose": "Original Moat Problem cover artwork resized for the author-site edition.",
+      "role": "source",
+      "owner": "site/publications/ai-native-workflows-have-a-moat-problem/PROVENANCE.md"
+    },
     "site/assets/publications/ai-verification-crisis": {
       "kind": "directory",
       "purpose": "Resized historical Verification Crisis cover source or equivalent web JPEG.",
@@ -14740,6 +14806,54 @@
     "site/publications/ai-governance-is-control-theory/publication.json": {
       "kind": "file",
       "purpose": "Authored Control Theory source, provenance or edition and publication profile.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-native-workflows-have-a-moat-problem": {
+      "kind": "directory",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-native-workflows-have-a-moat-problem/PROVENANCE.md": {
+      "kind": "file",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-native-workflows-have-a-moat-problem/editions": {
+      "kind": "directory",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-native-workflows-have-a-moat-problem/editions/ai-native-workflows-have-a-moat-problem-en-20260701.json": {
+      "kind": "file",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-native-workflows-have-a-moat-problem/launch-post.en.md": {
+      "kind": "file",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-native-workflows-have-a-moat-problem/manuscript.en.md": {
+      "kind": "file",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-native-workflows-have-a-moat-problem/profile.json": {
+      "kind": "file",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-native-workflows-have-a-moat-problem/publication.json": {
+      "kind": "file",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },

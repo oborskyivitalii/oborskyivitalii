@@ -122,6 +122,13 @@
       ],
       "scope": "The author authorized use of the original LinkedIn iceberg cover in the author-site reader and its share image. The site uses uncropped renditions of the original artwork."
     },
+    "moat-problem-original-cover": {
+      "kind": "maintainer-origin-ai-generated-cover",
+      "provenance": [
+        "site/publications/ai-native-workflows-have-a-moat-problem/PROVENANCE.md"
+      ],
+      "scope": "The publisher artwork matches the original AI-generated cover prepared by the article author. The author-site rendition uses resized versions of that composition."
+    },
     "article-review-input": {
       "kind": "pending-exact-edition-media-review",
       "provenance": [
@@ -158,6 +165,18 @@
     }
   ],
   "assets": {
+    "publications/ai-native-workflows-have-a-moat-problem/cover.png": {
+      "sha256": "57cef69ffe083071acf0567733bb4d79089f888502aa60ff8f795011288f8ed9",
+      "bases": [
+        "moat-problem-original-cover"
+      ]
+    },
+    "publications/ai-native-workflows-have-a-moat-problem/cover-web.jpg": {
+      "sha256": "11b50b3b2a4dd035b4b975444d87a37ceed0e68d8c983f4acc3b57b9d7dc1833",
+      "bases": [
+        "moat-problem-original-cover"
+      ]
+    },
     "publications/ai-cost-cutting-fallacy/cover.png": {
       "sha256": "6ab7c4fb30fda5cf2d6ac04e1253dc2224ad8b16fb8f053d85888b6b40fe5833",
       "bases": ["cost-cutting-original-cover"]
