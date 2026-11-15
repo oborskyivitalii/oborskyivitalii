@@ -38,8 +38,14 @@ function parseGuide(markdown) {
 }
 
 function normalizeProse(value) {
-  // Formatting-only proposals can use the reviewed-unchanged route.
-  return value.replace(defaultIgnorables, '').replace(/\s+/g, ' ');
+  const text = value.replace(/[\u200b\u2060\ufeff]/g, '');
+  const visibleSpelling = text.replace(defaultIgnorables, '');
+  // Isolated fillers do not change ASCII prose. Preserve shaping controls and
+  // non-ASCII spelling so joiners and variation selectors can change the comparison.
+  const comparison = /^[\x00-\x7f]*$/.test(visibleSpelling)
+    ? text.replace(/[\u034f\u115f\u1160\u3164\uffa0]/g, '')
+    : text;
+  return comparison.replace(/\s+/g, ' ');
 }
 
 function hasText(node) {

@@ -745,7 +745,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "17569f7c50cb0b385e0a5dc504b63fa7e8b25e88e7e8b82141400076878ef513",
+    "digest": "b0b702342d0372372427f4628bea7daad0510ed878019636ac4bab96c7ea19f0",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -1197,7 +1197,7 @@
       },
       {
         "path": "tests/test_ri_ci.py",
-        "sha256": "763cfd3d78a41a4d44573e1f3e0e9f32d795244ae48f814d85484a4d285b366f"
+        "sha256": "4d5cd2a979806a38bc67ac94e9666cc7d5d94b67891892d7bb839b59ce08c3f7"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -1241,7 +1241,7 @@
       },
       {
         "path": "tools/quality/workflow-guide-markdown.mjs",
-        "sha256": "99cba715894b1bba04901f57e3e7f0b7f9164b5c2f7772ab8fb18227c6c9fe4c"
+        "sha256": "c8a598bde67adbe68f8e5ea9895b4ab9967b9297ddb4e7e28c74c00810fb1208"
       },
       {
         "path": "tools/repository_intelligence.py",
