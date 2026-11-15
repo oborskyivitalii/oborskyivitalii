@@ -670,7 +670,14 @@ def guide_review(root, base, head, describe=False):
         raise ValueError(f"Workflow guide has no visible content: {GUIDE}")
     if not paths:
         return result
-    if current["withoutFormatting"] != previous["withoutFormatting"]:
+    same_formatting_free_source = (
+        current["formattingFreeSource"] == previous["formattingFreeSource"]
+        and current["literals"] == previous["literals"]
+    )
+    if (
+        current["withoutFormatting"] != previous["withoutFormatting"]
+        and not same_formatting_free_source
+    ):
         return {**result, "decision": "guide-updated"}
 
     receipts = [path for path in changed if re.fullmatch(GUIDE_REVIEW, path) and read(head, path)]

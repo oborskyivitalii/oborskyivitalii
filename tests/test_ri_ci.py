@@ -970,12 +970,15 @@ class WorkflowGuideReviewTests(unittest.TestCase):
         )
 
     def test_formatting_only_differences_require_same_source_review(self):
-        original = "# Guide\n\n## Agents\n\nДоставка. Далі. Use 👩💻.\n"
+        original = "# Guide\n\n## Agents\n\nДоставка. Далі.\n\nUse 👩💻. Run `check`.\n"
         self.write(ci.GUIDE, original)
         self.base = self.commit()
         self.write(".github/workflows/changed.yml", "name: New control\n")
         for revised in (
             original.replace("Доставка.", "Доставка.&#x034F;"),
+            original.replace("\n\nUse", "\n\u034f\nUse"),
+            original.replace("\n\nUse", "\n&#x034F;\nUse"),
+            original.replace("\n\nUse", "\n&ZeroWidthSpace;\nUse"),
             original.replace("👩💻", "👩\u200d💻"),
         ):
             with self.subTest(revised=revised):
@@ -1001,6 +1004,10 @@ class WorkflowGuideReviewTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "current review"):
             ci.guide_review(self.root, self.base, self.commit())
         self.write(ci.GUIDE, original.replace("Use", "Avoid"))
+        self.assertEqual(
+            ci.guide_review(self.root, self.base, self.commit())["decision"], "guide-updated"
+        )
+        self.write(ci.GUIDE, original.replace("`check`", "`check\u034f`"))
         self.assertEqual(
             ci.guide_review(self.root, self.base, self.commit())["decision"], "guide-updated"
         )

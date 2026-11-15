@@ -1,8 +1,10 @@
 // Parse guide bytes as data with the same locked GFM parser as article publishing.
 import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { unified } from '../publishing/toolchain/node_modules/unified/index.js';
 import remarkParse from '../publishing/toolchain/node_modules/remark-parse/index.js';
 import remarkGfm from '../publishing/toolchain/node_modules/remark-gfm/index.js';
+import { decodeString } from '../publishing/toolchain/node_modules/micromark-util-decode-string/index.js';
 
 const parser = unified().use(remarkParse).use(remarkGfm);
 const defaultIgnorables = /\p{Default_Ignorable_Code_Point}/gu;
@@ -135,6 +137,23 @@ function visibleFootnotes(tree) {
   return new Set([...references].map((id) => definitions.get(id)));
 }
 
+function literalValues(node, values = []) {
+  if (['code', 'inlineCode'].includes(node.type)) values.push([node.type, node.value, node.lang]);
+  if (node.url !== undefined) values.push([node.type, node.url, node.title]);
+  for (const child of node.children ?? []) literalValues(child, values);
+  return values;
+}
+
+function formattingFreeSource(markdown) {
+  const characterReference = /&(?:#(?:\d{1,7}|x[\da-f]{1,6})|[\da-z]{1,31});/gi;
+  // An otherwise blank line with a format control can change GFM block boundaries.
+  return markdown
+    .replace(characterReference, (reference) =>
+      decodeString(reference).replace(defaultIgnorables, '') ? reference : ''
+    )
+    .replace(defaultIgnorables, '');
+}
+
 try {
   const input = JSON.parse(readFileSync(0, 'utf8'));
   const visible = input.map((markdown) => {
@@ -148,6 +167,10 @@ try {
     return {
       nodes: projection.children,
       withoutFormatting: withoutFormatting.children,
+      formattingFreeSource: createHash('sha256')
+        .update(formattingFreeSource(markdown))
+        .digest('hex'),
+      literals: literalValues(projection),
       hasText: hasText(projection),
     };
   });

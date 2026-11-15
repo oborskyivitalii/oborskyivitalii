@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "27c1812b46fa3ca2542456426c53c8e3b2fd0516a2bf946edeb96942be399814",
+    "digest": "eaa190cf786f6e15f11cd2cf2e8c57c10e5f43a5f0d0fcf4bb7a21e65722ea85",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -271,7 +271,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "5ec67b55befa39d0c59ca30a4a172fffbddb98436705e54b255e48d018670f3c"
+        "sha256": "906b76251620ff54c46c2f75947a8502cb8a76b0f32c1d73576ae33e35a76286"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -4935,7 +4935,7 @@
       {
         "path": "review/issue-199/2026-11-12-review.md",
         "identity_mode": "content",
-        "sha256": "b3109cc06cf024f9e2bb8a0e8a6d59cb14a21cc4d6023bc89c8fbb24edb08220"
+        "sha256": "18d8816e124dcc04a7377e2b9ad8017cf85491500c6e6e17ab81aedccb5531a7"
       },
       {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -12295,7 +12295,7 @@
       {
         "path": "tests/test_ri_ci.py",
         "identity_mode": "content",
-        "sha256": "fdb1372db657c46a1b7ede208291a337282b97672a0569d17aee80e0ef37dfd4"
+        "sha256": "34063d7e46a757ed098038e629d51add1298aa3b3858f0c7b8f0bb104e106ebc"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -12405,7 +12405,7 @@
       {
         "path": "tools/check_ri_ci.py",
         "identity_mode": "content",
-        "sha256": "b1468b82be28262746f8903e9ffc3b9e07e2c55f382ad244a1d11bc8a6240969"
+        "sha256": "240deb52132d3b230b1c554414b54fa7b06b0ae43ad20d08c663ebf7b8bdd28e"
       },
       {
         "path": "tools/check_site_contrast.cjs",
@@ -13140,7 +13140,7 @@
       {
         "path": "tools/quality/workflow-guide-markdown.mjs",
         "identity_mode": "content",
-        "sha256": "18bbf31513d41b5f9e455d702710ed0bebdabd738a735ac0fe71507c2df8b16e"
+        "sha256": "e1d352967faf4db34495fa0463c6b7fb579be73d3aadfcf416f82acaac065e74"
       },
       {
         "path": "tools/quality/writing-diagnosis.cjs",
