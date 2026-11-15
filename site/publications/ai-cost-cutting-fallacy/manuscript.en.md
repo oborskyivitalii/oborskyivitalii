@@ -2,6 +2,8 @@
 
 *Source edition: [LinkedIn](https://www.linkedin.com/pulse/ai-cost-cutting-fallacy-why-doing-more-less-breaking-teams-oborskyi-cxuif/), 2 January 2026.*
 
+![An iceberg labeled AI speed above water and technical debt, security holes, burnout, and rework below.](asset:cover)
+
 ## The Efficiency Illusion
 
 In late 2024 and throughout 2025, a dangerous narrative took hold in boardrooms across the tech industry. The logic seemed seductive in its simplicity: if AI tools like GitHub Copilot, Cursor, or Windsurf can help a developer write code 20% to 50% faster, then surely a company can reduce its engineering headcount by a similar margin while maintaining the same output.
@@ -37,7 +39,7 @@ Implementing AI-native workflows is not merely a software update; it is a fundam
 
 This phenomenon is known as the **"J-Curve" of transformation**. When leadership cuts headcount at the beginning of this curve, they are effectively sabotaging the transformation before it begins. They are removing resources exactly when the organization is under the highest stress.
 
-*J-Curve. [View the original diagram in Steven M. Smith’s “The Satir Change Model”](https://stevenmsmith.com/ar-satir-change-model/).*
+![Team performance starts level, falls through resistance and chaos after AI is introduced, then rises during integration and can settle above the starting level.](asset:transformation-j-curve)
 
 To succeed, companies must operate as what Harvard Business Review calls an **"Ambidextrous Organization".** This requires executing two contradictory modes of operation simultaneously:
 
