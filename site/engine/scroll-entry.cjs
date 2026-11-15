@@ -501,6 +501,7 @@ module.exports = function () {
   function clearRoute() {
     window.clearTimeout(holdTask);
     holdTask = null;
+    routePrepared?.cancelPaint?.();
     for (const element of routeUnits.keys()) clearRouteUnit(element);
     routeActive.clear();
     clearRoutePaper();
@@ -515,6 +516,7 @@ module.exports = function () {
     const travelDirection = phase?.direction || routePrepared?.direction || 1;
     const changed = !!phase || !!routePrepared;
     const timing = phase?.timing || routePrepared?.timing;
+    if (routePrepared) window.SiteScene?.stopDocumentPulse?.();
     clearRoute();
     if (changed) routeProbe('cancelled', travelDirection, 0, { ...timing, completedBy });
     phase?.resolve({ completed: false, cancelled: true, completedBy });
@@ -538,7 +540,7 @@ module.exports = function () {
     );
     routeProbe('holding', travelDirection, routeActive.size, { ...timing, completedBy });
   }
-  function measureRoute() {
+  function measureRoute(keepUnitBorders = false) {
     // One native read batch per phase, including footer leaves. Header and
     // appearance controls belong to the persistent shell, never this inventory.
     clearRoutePaper();
@@ -571,7 +573,11 @@ module.exports = function () {
         Number.isFinite(unit.rect.top) &&
         Number.isFinite(unit.rect.bottom)
     );
-    measured.separators = measureSeparators(visible, true);
+    // A whole reader block carries its own native border. Replacing it with
+    // straight separator layers changes its rounded paint at the handoff.
+    measured.separators = measureSeparators(visible, true).filter(
+      ({ source, owner }) => !keepUnitBorders || source !== owner
+    );
     measured.paper = measureRoutePaper();
     materializeSeparators(measured.separators, measured);
     const style = window.getComputedStyle(document.documentElement);
@@ -621,11 +627,14 @@ module.exports = function () {
       'bottom-radius': bottom === rect.bottom ? radius : 0,
     };
   }
+  function sizeRoutePaper(model) {
+    for (const name of ['left', 'top', 'width', 'height', 'top-radius', 'bottom-radius'])
+      model.element.style.setProperty('--route-paper-' + name, model[name] + 'px');
+  }
   function prepareRoutePaper(model, timing, upward, state) {
     if (!model) return;
     routePaper = model.element;
-    for (const name of ['left', 'top', 'width', 'height', 'top-radius', 'bottom-radius'])
-      routePaper.style.setProperty('--route-paper-' + name, model[name] + 'px');
+    sizeRoutePaper(model);
     const distance = upward
       ? -(model.top + model.height + 32)
       : window.innerHeight - model.top + 32;
@@ -763,7 +772,7 @@ module.exports = function () {
     });
     return Promise.resolve({ completed: false, cancelled: true, completedBy: 'fallback' });
   }
-  function beginRoute(state, travelDirection, measured, navigationId) {
+  function beginRoute(state, travelDirection, measured, navigationId, preserveResize = false) {
     const own = ++routeGeneration;
     window.clearTimeout(holdTask);
     holdTask = null;
@@ -780,6 +789,7 @@ module.exports = function () {
     return new Promise((resolve) => {
       routePhase = {
         state,
+        preserveResize,
         direction: travelDirection,
         count: routeActive.size,
         pending: new Map(
@@ -809,15 +819,21 @@ module.exports = function () {
       if (!routePhase.pending.size) completeRoute(own, 'empty');
     });
   }
-  function depart(travelDirection = 1, navigationId = null) {
+  function depart(travelDirection = 1, navigationId = null, preserveResize = false) {
     cancelRoute();
     suspend();
     if (!root || !routeAllowed()) {
       return fallbackRoute(travelDirection, { phase: 'departure', navigationId });
     }
-    return beginRoute('departing', travelDirection < 0 ? -1 : 1, measureRoute(), navigationId);
+    return beginRoute(
+      'departing',
+      travelDirection < 0 ? -1 : 1,
+      measureRoute(),
+      navigationId,
+      preserveResize
+    );
   }
-  function prepareArrival(travelDirection = 1, navigationId = null) {
+  function prepareArrival(travelDirection = 1, navigationId = null, deferMeasure = false) {
     cancelRoute();
     suspend();
     if (!root || !routeAllowed()) {
@@ -825,6 +841,11 @@ module.exports = function () {
       return false;
     }
     const nextDirection = travelDirection < 0 ? -1 : 1;
+    if (deferMeasure) {
+      holdRoute(nextDirection, { phase: 'arrival', navigationId });
+      routePrepared.deferMeasure = true;
+      return true;
+    }
     const timing = prepareRoute(nextDirection, measureRoute(), 'holding', navigationId);
     if (!timing.bounded) {
       fallbackRoute(nextDirection, timing);
@@ -833,13 +854,44 @@ module.exports = function () {
     holdRoute(nextDirection, timing);
     return true;
   }
+  function arriveAfterPaint(prepared, run) {
+    return new Promise((resolve) => {
+      let task;
+      const finish = (result) => {
+        window.cancelAnimationFrame(frame);
+        window.clearTimeout(task);
+        window.clearTimeout(deadline);
+        prepared.cancelPaint = null;
+        resolve(result());
+      };
+      prepared.cancelPaint = () =>
+        finish(() => ({ completed: false, cancelled: true, completedBy: 'cancelled' }));
+      const deadline = window.setTimeout(
+        () => finish(() => fallbackRoute(prepared.direction, prepared.timing)),
+        1200
+      );
+      // Give the hidden reader its own rendering turn before measuring and starting CSS time.
+      const frame = window.requestAnimationFrame(() => {
+        task = window.setTimeout(() => finish(run), 0);
+      });
+    });
+  }
   function arrive(travelDirection = 1, navigationId = null) {
     if (!root || !routePrepared || !routeAllowed()) {
       return fallbackRoute(travelDirection, { phase: 'arrival', navigationId });
     }
     // Native landing/history restoration may have changed since mount. Re-read
     // once after the camera's rest paint, before any finite layer writes.
-    return beginRoute('arriving', travelDirection < 0 ? -1 : 1, measureRoute(), navigationId);
+    const deferredArrival = routePrepared.deferMeasure === true;
+    const run = () =>
+      beginRoute(
+        'arriving',
+        travelDirection < 0 ? -1 : 1,
+        measureRoute(deferredArrival && root.matches('.article-reader')),
+        navigationId,
+        deferredArrival
+      );
+    return deferredArrival ? arriveAfterPaint(routePrepared, guardedPhase(run)) : run();
   }
   function cancel() {
     cancelRoute();
@@ -1168,7 +1220,12 @@ module.exports = function () {
       window,
       'resize',
       guarded(() => {
-        if (routePhase) cancel();
+        // Keep the Writing document wave on its original clock across resize.
+        if (routePhase && !routePhase.preserveResize) cancel();
+        else if (routePhase?.state === 'arriving' && routePaper) {
+          const paper = measureRoutePaper();
+          if (paper) sizeRoutePaper(paper);
+        }
         deferReconcile();
       }),
       { passive: true }

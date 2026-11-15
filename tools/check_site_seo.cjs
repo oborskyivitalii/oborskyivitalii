@@ -682,6 +682,25 @@ function restoreApprovedLicensing(html, page, sourceRoot = root, required = fals
   replaceOnce(' ' + amendment.full + ' </main>', ' </main>');
   return html;
 }
+const previousRouteArrivalCSS = `@keyframes route-block-arrive {
+  from {
+    translate: 0 var(--route-block-distance);
+  }
+  to {
+    translate: 0 0;
+  }
+}`;
+const visibleRouteArrivalCSS = `@keyframes route-block-arrive {
+  from {
+    /* A larger viewport can expose the old offscreen position during the delay. */
+    visibility: hidden;
+    translate: 0 var(--route-block-distance);
+  }
+  to {
+    visibility: visible;
+    translate: 0 0;
+  }
+}`;
 function verifyApprovedLicensingCSS(sourceRoot = root) {
   // The author accepted this complete reader rendition before requesting staging.
   // Pin both full stylesheets; later unrelated changes still fail byte-for-byte.
@@ -689,6 +708,11 @@ function verifyApprovedLicensingCSS(sourceRoot = root) {
   for (const file of ['site/engine/styles.css', 'docs/styles.css']) {
     const current = fs.readFileSync(path.join(sourceRoot, file), 'utf8');
     assert.equal(current.split(licensingCSS).length, 2, 'one exact legal wrapping rule: ' + file);
+    // Reverse only the generated #187 arrival block. The predecessor hash still binds its location.
+    const predecessor =
+      file === 'docs/styles.css'
+        ? current.replace(visibleRouteArrivalCSS, previousRouteArrivalCSS)
+        : current;
     const expected = cp.execFileSync('git', ['show', approvedReader + ':' + file], {
       cwd: root,
       encoding: 'utf8',
@@ -701,17 +725,17 @@ function verifyApprovedLicensingCSS(sourceRoot = root) {
       'site/engine/styles.css',
     ]);
     assert.equal(
-      crypto.createHash('sha256').update(current).digest('hex'),
+      crypto.createHash('sha256').update(predecessor).digest('hex'),
       issue159.styles.afterSHA256[file],
       'unrelated stylesheet change outside exact reviewed successor: ' + file
     );
     assert.equal(
-      current.split(block).length,
+      predecessor.split(block).length,
       2,
       'unrelated stylesheet change: one exact reviewed reading-path block required: ' + file
     );
     assert.equal(
-      current.replace(block, ''),
+      predecessor.replace(block, ''),
       expected,
       'unrelated stylesheet change outside approved reader/licensing: ' + file
     );

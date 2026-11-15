@@ -17323,18 +17323,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/d02fdf79996a4892b88ee648a8e511d6c6888de91fdbbc2bfffbddce2db61318": {
-      "kind": "directory",
-      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/d02fdf79996a4892b88ee648a8e511d6c6888de91fdbbc2bfffbddce2db61318/talks.html": {
-      "kind": "file",
-      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/080da808855bdc7cac66970509a9a371a5033cb5d721a007a92632c826b2d06a": {
       "kind": "directory",
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
@@ -17342,42 +17330,6 @@
       "owner": "site/README.md"
     },
     "docs/snapshots/080da808855bdc7cac66970509a9a371a5033cb5d721a007a92632c826b2d06a/writing.html": {
-      "kind": "file",
-      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/1dec565a995bce7df7b4686345783dbdcb318bce063415b76ccc189ee53ac48d": {
-      "kind": "directory",
-      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/1dec565a995bce7df7b4686345783dbdcb318bce063415b76ccc189ee53ac48d/research.html": {
-      "kind": "file",
-      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/e4fee7668d8c81d71f295be466e8e4f188c9e66b52df78fc8efe1aafe8fa2289": {
-      "kind": "directory",
-      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/e4fee7668d8c81d71f295be466e8e4f188c9e66b52df78fc8efe1aafe8fa2289/index.html": {
-      "kind": "file",
-      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/88e77996e06b9690170c7ffbf6e0f67808db8efb1016df13daec9368fe49c12b": {
-      "kind": "directory",
-      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/88e77996e06b9690170c7ffbf6e0f67808db8efb1016df13daec9368fe49c12b/credits.html": {
       "kind": "file",
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
@@ -17576,30 +17528,6 @@
       "owner": "site/README.md"
     },
     "docs/article-media/c3686dce007b399d3fb175d5b235a51b1000500a3e4bc6f024be9767bfb33996": {
-      "kind": "directory",
-      "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/a1fdf0fa8fab1f04e4cb78381489a1380bff2508b38f9d37b9a8bde8a11b26e1/the-sdlc-is-out-of-balance.html": {
-      "kind": "file",
-      "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/a1fdf0fa8fab1f04e4cb78381489a1380bff2508b38f9d37b9a8bde8a11b26e1": {
-      "kind": "directory",
-      "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/53f6d48944e9aa69eb142a141b71b8240678de858baf39dd671d37ab89c810ee/writing.html": {
-      "kind": "file",
-      "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/53f6d48944e9aa69eb142a141b71b8240678de858baf39dd671d37ab89c810ee": {
       "kind": "directory",
       "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
       "role": "generated",
@@ -17886,6 +17814,120 @@
       "purpose": "Source-bound independent workflow guide review for the protected closed-pulse delivery.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "docs/article-snapshots/a1895519ba0af026a2ecbd73a23d0327af5aa576c7b03bf0c453bf3ebf1e892e/the-sdlc-is-out-of-balance.html": {
+      "kind": "file",
+      "purpose": "Generated #187 runtime or immutable route output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/a1895519ba0af026a2ecbd73a23d0327af5aa576c7b03bf0c453bf3ebf1e892e": {
+      "kind": "directory",
+      "purpose": "Generated #187 runtime or immutable route output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/2ce758fb4b371e7e2960737c5cee8bf0201e44ac0990ea8dcd026046b469799f": {
+      "kind": "directory",
+      "purpose": "Generated #187 runtime or immutable route output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/styles.css": {
+      "kind": "file",
+      "purpose": "Generated #187 runtime or immutable route output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/ce4e9e5a32aa29a51805d70173d5bee7ea1f75c09cc04e9fd7822f2497e75168/writing.html": {
+      "kind": "file",
+      "purpose": "Generated #187 runtime or immutable route output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/navigation.js": {
+      "kind": "file",
+      "purpose": "Generated #187 runtime or immutable route output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/archive.js": {
+      "kind": "file",
+      "purpose": "Generated #187 runtime or immutable route output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/space.js": {
+      "kind": "file",
+      "purpose": "Generated #187 runtime or immutable route output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/ce4e9e5a32aa29a51805d70173d5bee7ea1f75c09cc04e9fd7822f2497e75168": {
+      "kind": "directory",
+      "purpose": "Generated #187 runtime or immutable route output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c": {
+      "kind": "directory",
+      "purpose": "Generated #187 runtime or immutable route output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/1dbf2476d436bb08daa98672f0580aba130be4a136837024d5906ddee8dc2007/credits.html": {
+      "kind": "file",
+      "purpose": "Generated #187 runtime or immutable route output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/580bd287a6c95e9dc64e208dfde76ddda1085b4509c90bcc3d1584815e21de27/index.html": {
+      "kind": "file",
+      "purpose": "Generated #187 runtime or immutable route output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/580bd287a6c95e9dc64e208dfde76ddda1085b4509c90bcc3d1584815e21de27": {
+      "kind": "directory",
+      "purpose": "Generated #187 runtime or immutable route output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/1aa4c86e05b2d1ca194c7f02e2283ceb90d2618b332079f7dd0744aa8c1f73a3": {
+      "kind": "directory",
+      "purpose": "Generated #187 runtime or immutable route output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "review/issue-187/2026-11-11-analysis.md": {
+      "kind": "file",
+      "purpose": "Versioned requirements and verification for the #187 fractal pulse draft.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "docs/runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/theme.js": {
+      "kind": "file",
+      "purpose": "Generated #187 runtime or immutable route output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/1dbf2476d436bb08daa98672f0580aba130be4a136837024d5906ddee8dc2007": {
+      "kind": "directory",
+      "purpose": "Generated #187 runtime or immutable route output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/2ce758fb4b371e7e2960737c5cee8bf0201e44ac0990ea8dcd026046b469799f/research.html": {
+      "kind": "file",
+      "purpose": "Generated #187 runtime or immutable route output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/1aa4c86e05b2d1ca194c7f02e2283ceb90d2618b332079f7dd0744aa8c1f73a3/talks.html": {
+      "kind": "file",
+      "purpose": "Generated #187 runtime or immutable route output.",
+      "role": "generated",
+      "owner": "site/README.md"
     }
   }
 }

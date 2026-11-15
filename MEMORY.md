@@ -4,29 +4,28 @@ Dated handoff. Last verified: **2026-11-15**. Revalidate live sources when resum
 
 ## Snapshot
 
-- Protected main `0de10b6` includes the #187 staging registration refresh in PR #204 and previously delivered #196 changes. Production ref `ca75641` remains the last observed deployment source.
-- [#187](https://github.com/oborskyivitalii/oborskyivitalii/issues/187) owns the Writing and article transition in [Draft PR #197](https://github.com/oborskyivitalii/oborskyivitalii/pull/197). The verified feature head `02f59fc` has its exact [Draft preview](https://411abc1c.oborskyi-author-ci-staging.pages.dev/writing.html).
-- The [protected staging prerequisite](review/issue-187/2026-11-12-controller-preregistration.md) records the local controller refusal, exact staging registration and remaining checks.
+- Protected main `a860453` includes the exact closed-pulse staging registration from PR #206 and the #199 workflow guide and Python tooling from PR #200. Production ref `ca75641` remains the last observed deployment source.
+- [#187](https://github.com/oborskyivitalii/oborskyivitalii/issues/187) owns the Writing and article transition in [Draft PR #197](https://github.com/oborskyivitalii/oborskyivitalii/pull/197). The author approved [the exact closed-pulse Preview](https://1390339f.oborskyi-author-ci-staging.pages.dev/writing.html) at `4021407` and authorized rebasing and merging.
+- The [protected staging prerequisite](review/issue-187/2026-11-12-controller-preregistration.md) records the controller refusal and exact registration. [PR #206 staging](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43719809013) and [Change admission](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43723815943) passed before the protected merge.
 
 - [#196](https://github.com/oborskyivitalii/oborskyivitalii/issues/196) / [PR #195](https://github.com/oborskyivitalii/oborskyivitalii/pull/195) owns platform image export. The [versioned review](review/issue-196/2026-11-12-destination-image-review.md) records platform package evidence.
 - [#199](https://github.com/oborskyivitalii/oborskyivitalii/issues/199) and [PR #200](https://github.com/oborskyivitalii/oborskyivitalii/pull/200) own the [repository workflow guide](guides/REPOSITORY-WORKFLOW.md) and its review gate.
 
 ## Decisions
 
-- The maintainer requested stable staging after reviewing the corrected animation. Keep the last neutral Canvas paint continuous across article mount.
+- The maintainer approved the closed-pulse Preview and requested the established path to main. Preserve the exact pre-pulse pose and Canvas continuity across article mount.
 - Register only the reviewed staging runtime on protected main using the existing delivery route. The feature and production have their own checks.
 
 ## Open work
 
-- #187 AC01, AC02 and AC06 remain open in the feature work. Its separate runtime preregistration merged in PR #202.
-- #197 still requires the rebased exact-head native and hosted route after the prerequisite.
-- #199 / #200 is on the full website/control route. The [integration review](review/issue-199/2026-11-12-review.md#2026-11-15-protected-main-integration-and-independent-findings) records the first findings and remaining exact-source review and delivery gates.
+- #187 AC01, AC02 and AC06 remain open in the feature work. Prior runtime registration refresh #204 predates the exact closed-pulse runtime.
+- #197 is rebased onto the #206 merge and requires the exact-head native and hosted route.
+- #200 is merged on `1122929`. Preserve its independent guide admission and Python lock.
 
 ## Next session
 
-1. Check live #200 and its owning and protected delivery evidence.
-2. For #187, rebase #197 on current main and reconcile the shared registry, tests and RI. Preserve the exact staging runtime and feature motion checks.
-3. Verify #197 through the existing stable staging controller and report the tested source and served identity.
+1. Verify rebased #197 through exact-head source checks and stable staging.
+2. Bind the protected merge to the new staging and owner admission evidence.
 
 ## Maintenance
 
