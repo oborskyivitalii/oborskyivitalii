@@ -946,6 +946,15 @@ families.issue187PulseReturnEasing = {
   staging: 'baf228679ecae899416ae407e65d28a4327f04df3a61a3db05a1738ebf2f48a7',
   production: null,
 };
+families.issue187ClosedPulse = {
+  ...families.issue187PulseReturnEasing,
+  id: 'issue187-closed-pulse',
+  baseEngine: '27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c',
+  space: 'a949522695e9afbd4b39624d28f37cfac5d22fea37331d853b0f85675b6383bb',
+  plain: null,
+  staging: '844b749386d9a62d5901dab064d01875845e604e67ed6ac51e77739d600f6599',
+  production: null,
+};
 // Expand only explicitly reviewed editions; an absent edition is never admitted.
 const runtimes = Object.entries(families).flatMap(([family, value]) =>
   ['plain', 'staging', 'production']

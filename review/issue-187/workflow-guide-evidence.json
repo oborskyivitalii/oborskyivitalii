@@ -1,0 +1,15 @@
+{
+  "base_sha": "11229290ebe21ac21ed504ae19e290c8b8aaf3c8",
+  "scope_sha256": "f54434fdfadd9d61ea09981f32626cfac7bf1419d0a1b2ac0ee0c0ab6993b30f",
+  "paths": [
+    "tests/color-motion-contract.test.cjs",
+    "tools/quality/color-motion-contract.cjs"
+  ],
+  "disposition": "unchanged",
+  "sections": [
+    "Keeping this guide current",
+    "Delivery routes and controls"
+  ],
+  "rationale": "The current protected controller registers one exact staging identity using the existing registry and a staging-only regression. The current approval, publication-rights, and protected delivery routes remain documented in these sections.",
+  "reviewer_execution": "/root/registry_final_code and /root/registry_final_req on 9fd8dd4f; scoped execution recorded in 2026-11-12-controller-preregistration.md"
+}
