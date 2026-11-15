@@ -18,10 +18,10 @@
   },
   "status": "accepted",
   "source": "manuscript.en.md",
-  "edition": "ai-cost-cutting-fallacy-en-20260102",
+  "edition": "ai-cost-cutting-fallacy-en-20261115-illustrated",
   "rights": {
     "status": "accepted",
-    "notice": "Vitalii Oborskyi. The authored article text from the selected LinkedIn edition is included under CC BY 4.0. The linked Satir diagram, external source material and artwork retain their own terms.",
+    "notice": "Vitalii Oborskyi. The authored article text from the selected LinkedIn edition and the original site J-curve illustration are included under CC BY 4.0. The historical iceberg cover is used with permission for this site edition. Linked material retains its own terms.",
     "references": [
       "https://www.linkedin.com/pulse/ai-cost-cutting-fallacy-why-doing-more-less-breaking-teams-oborskyi-cxuif/",
       "https://github.com/oborskyivitalii/oborskyivitalii/issues/183",
@@ -35,7 +35,28 @@
       "url": "https://www.linkedin.com/pulse/ai-cost-cutting-fallacy-why-doing-more-less-breaking-teams-oborskyi-cxuif/"
     }
   ],
-  "assets": [],
+  "assets": [
+    {
+      "id": "cover",
+      "path": "site/assets/publications/ai-cost-cutting-fallacy/cover.png",
+      "sha256": "6ab7c4fb30fda5cf2d6ac04e1253dc2224ad8b16fb8f053d85888b6b40fe5833",
+      "width": 1080,
+      "height": 608,
+      "alt": "An iceberg labeled AI speed above water and technical debt, security holes, burnout, and rework below.",
+      "caption": "Original iceberg cover from the January 2026 LinkedIn edition.",
+      "credit": "Original LinkedIn cover. Used with the article author’s permission for this site edition."
+    },
+    {
+      "id": "transformation-j-curve",
+      "path": "site/assets/publications/ai-cost-cutting-fallacy/transformation-j-curve.png",
+      "sha256": "11352752759624202e3a284558455b884b87239ab57c3487ae6787e3ad4bab7f",
+      "width": 1440,
+      "height": 804,
+      "alt": "Team performance starts level, falls through resistance and chaos after AI is introduced, then rises during integration and can settle above the starting level.",
+      "caption": "The conceptual J-curve shows a transitional dip and a possible higher steady state as the team integrates new practices.",
+      "credit": "Original diagram for this site edition, based on the Satir Change Model as described by Steven M. Smith. CC BY 4.0."
+    }
+  ],
   "platforms": {
     "linkedin": {
       "mode": "equivalent-rendition"

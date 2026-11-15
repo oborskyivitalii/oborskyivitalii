@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "f72eec849831f77b9bf4663016c5f1bf7022be7f05a84cd0ebc6c519c79ad5fd",
+    "digest": "592b0e99f8986f829b6042270f1ff50340bd3d285184590734c1ac739db924b5",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -271,12 +271,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "d13c0cae01cae8e2058ac2683de25c8466b16ba5332171b3e15b94256444b663"
+        "sha256": "6753345e92fefee79c425a86cd78bfe8412a79a349023b289bf693d3ebf07cc4"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "360fdb5108f31e01798ffa3223ba6d07063f44427330ed78e36a2c2d1a8d8622"
+        "sha256": "3565cf0ec22905e7476baedb1ca11658dcd9b106b04d6b597efd224b4035c5e9"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -426,7 +426,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "418362cfed2e36985910d6ae2f1b086af402e0a20f7423ffca7335e06c8c0167"
+        "sha256": "4828472e336ee3faaf1fd3ea9228d46b444f849ad530b37e765de2e6180e834f"
       },
       {
         "path": "NOTICE.md",
@@ -553,6 +553,11 @@
         "sha256": "5ba399aa0ca2dc3e492e58292358870926fb5acd7fdd958c63e2e71541d6994d"
       },
       {
+        "path": "docs/article-media/6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168/cover.jpg",
+        "identity_mode": "content",
+        "sha256": "6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168"
+      },
+      {
         "path": "docs/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c/reading.pdf",
         "identity_mode": "content",
         "sha256": "70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c"
@@ -583,9 +588,19 @@
         "sha256": "8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1"
       },
       {
+        "path": "docs/article-media/9acaf96c7008839610c8b9d3efdcb45a8046cde2c792f6f0dfe1951ba8a92048/cover-social.jpg",
+        "identity_mode": "content",
+        "sha256": "9acaf96c7008839610c8b9d3efdcb45a8046cde2c792f6f0dfe1951ba8a92048"
+      },
+      {
         "path": "docs/article-media/9cc5b62810712f9988b2d05004700978d8886e7c7954d92d2317c8f9cc4ff719/diagram-8b.webp",
         "identity_mode": "content",
         "sha256": "9cc5b62810712f9988b2d05004700978d8886e7c7954d92d2317c8f9cc4ff719"
+      },
+      {
+        "path": "docs/article-media/9e48e39e141a2775794af0f17a94275705d475ae4d3a97b327d9fdaf6992e0fa/transformation-j-curve.webp",
+        "identity_mode": "content",
+        "sha256": "9e48e39e141a2775794af0f17a94275705d475ae4d3a97b327d9fdaf6992e0fa"
       },
       {
         "path": "docs/article-media/a187cf86739b2cc193cc9696e9884e2252c62b636ce262277c342371081eaa36/cover-social.jpg",
@@ -653,11 +668,6 @@
         "sha256": "a748694cbcc83375c4ef2cffb30c846f76725fb2030ae9f0216c4ddd23c5a02b"
       },
       {
-        "path": "docs/article-snapshots/825acc68d73ebb2ed0d6814d3a4f4a2a05802e87b56d656344fd6dbe60dff609/ai-cost-cutting-fallacy.html",
-        "identity_mode": "content",
-        "sha256": "c1a8953b313cc301aae627a3f4a9e644493b1a0dc969ef4164f2c3cd9d52300d"
-      },
-      {
         "path": "docs/article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995/the-sdlc-is-out-of-balance.html",
         "identity_mode": "content",
         "sha256": "c190559a8abad1589892257f44b16ee9d2188e3f98e6d2e0561dab71131824e4"
@@ -683,9 +693,14 @@
         "sha256": "36b36751097c520f395a796f43cc512b662b2afd75c772d9c1d83c2442706f8e"
       },
       {
+        "path": "docs/article-snapshots/de49c1f4c93d901320f9c9d4ec0c22eb8070a0ba30c37e0f3a8e8ac44d5e42f2/ai-cost-cutting-fallacy.html",
+        "identity_mode": "content",
+        "sha256": "16792de8fced90302b81a9ae8033bccbeb966a8eb83b3e7804385f5e8607287c"
+      },
+      {
         "path": "docs/articles/ai-cost-cutting-fallacy.html",
         "identity_mode": "content",
-        "sha256": "4d2c96322be577c3a58edd246580e4ffbdad951a569a77a6187e8cd7526a6383"
+        "sha256": "9aa33ff6e92341f04028e5c8cf5f5d250f38af866ef978998d404c3ae2a3b007"
       },
       {
         "path": "docs/articles/ai-governance-is-control-theory.html",
@@ -940,7 +955,7 @@
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "758ce2121dae6a039dab5b0a063c6fcb16a60c26f060d39f1aeb38dec4d17f25"
+        "sha256": "4c6f957236cddef2eb3cdce5f298f31b7bf6f03148014da4eaea774dd7a49846"
       },
       {
         "path": "docs/snapshots/080da808855bdc7cac66970509a9a371a5033cb5d721a007a92632c826b2d06a/writing.html",
@@ -958,14 +973,14 @@
         "sha256": "93c88b5f9c73e559b067866cb38eb604e93013c2225a06a36f96e8f215d397b3"
       },
       {
-        "path": "docs/snapshots/2c28eb3f6fb9262c119fc255a04b8e6a87a1752bb8aadceaa0c05c7142527d0e/writing.html",
-        "identity_mode": "content",
-        "sha256": "a02fe60e16f0412596cd4c33f56ac253e832c0cade93f10c388461de246c3a70"
-      },
-      {
         "path": "docs/snapshots/3fbd4997fa6a2231ca203abb9b151b9a893c093973c94868c0f2b737e4062829/credits.html",
         "identity_mode": "content",
         "sha256": "0643267ac06cb9bbba3b6bc600ddc32eb1d18d666b67ff400fc7d189cd2ed27f"
+      },
+      {
+        "path": "docs/snapshots/475223cc0309d48dc881d6e5caa090407ef615c9159e9abc5b302690a17b4ea1/writing.html",
+        "identity_mode": "content",
+        "sha256": "77d20ccb17c4f7012081ba0e8c370896a15d1277ec8aaaae9e408175845776c1"
       },
       {
         "path": "docs/snapshots/5006a139824977db749c0c69a82807cb877d8b720d332b8280ffbddce6e27261/talks.html",
@@ -1070,7 +1085,7 @@
       {
         "path": "docs/writing.html",
         "identity_mode": "content",
-        "sha256": "3286af1a10811f1f8de8e30943eb94bccbe1db5d7b46e5eb713e317ef495804c"
+        "sha256": "3d086db834069807bdc308dd40d09c1cbca25f95a60afd04edc94551f89d5b37"
       },
       {
         "path": "drafts/medium-profile-revision-20261001.html",
@@ -5005,7 +5020,7 @@
       {
         "path": "review/issue-183/2026-11-15-cost-cutting.md",
         "identity_mode": "content",
-        "sha256": "e929546b4288e8b4813bc2710dfd6438ca2d859a1407f7399d88a68140331a9d"
+        "sha256": "cfedcd5845369583c74d5ab67ea388d49ada336bd9205f9224e99db17e9d7c25"
       },
       {
         "path": "review/issue-183/2026-11-15-verification-crisis.md",
@@ -10358,6 +10373,21 @@
         "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
       },
       {
+        "path": "site/assets/publications/ai-cost-cutting-fallacy/cover-web.jpg",
+        "identity_mode": "content",
+        "sha256": "6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168"
+      },
+      {
+        "path": "site/assets/publications/ai-cost-cutting-fallacy/cover.png",
+        "identity_mode": "content",
+        "sha256": "6ab7c4fb30fda5cf2d6ac04e1253dc2224ad8b16fb8f053d85888b6b40fe5833"
+      },
+      {
+        "path": "site/assets/publications/ai-cost-cutting-fallacy/transformation-j-curve.png",
+        "identity_mode": "content",
+        "sha256": "11352752759624202e3a284558455b884b87239ab57c3487ae6787e3ad4bab7f"
+      },
+      {
         "path": "site/assets/publications/ai-governance-is-control-theory/cover-web.jpg",
         "identity_mode": "content",
         "sha256": "4fb99c0a32cfe808956a13bc2caaec71ed7adea83de79df4c5bfa08592d0b871"
@@ -10990,17 +11020,22 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "3923bcbf9f28ef12c51d88ddd75b0ed5ceb2654977b9719e684efb8003d22461"
+        "sha256": "89948409d9dbf857481bf7c2df246f321a71e1e94c0849adcacb7a3e8640875c"
       },
       {
         "path": "site/publications/ai-cost-cutting-fallacy/PROVENANCE.md",
         "identity_mode": "content",
-        "sha256": "6a608fa77fa5a07bfcfccec56b5388c30543af39371ce9f6272b4d4299fe7bf3"
+        "sha256": "8d7042a48bc499ff553b39dff45ddc665480442746bf3295c94adc4484967856"
       },
       {
         "path": "site/publications/ai-cost-cutting-fallacy/editions/ai-cost-cutting-fallacy-en-20260102.json",
         "identity_mode": "content",
         "sha256": "f5898473ad3ec721b082b547da78eb85b1b92ad87660080d11c744b5637c9525"
+      },
+      {
+        "path": "site/publications/ai-cost-cutting-fallacy/editions/ai-cost-cutting-fallacy-en-20261115-illustrated.json",
+        "identity_mode": "content",
+        "sha256": "2a6d5751eb0b754130021a0a19371f8bab4ab870d96a2c2de0304b9f30b310c3"
       },
       {
         "path": "site/publications/ai-cost-cutting-fallacy/launch-post.en.md",
@@ -11010,17 +11045,17 @@
       {
         "path": "site/publications/ai-cost-cutting-fallacy/manuscript.en.md",
         "identity_mode": "content",
-        "sha256": "1ba87fe8adaa3055df8a195cacfef86328aa7001ff18c0e406ca948b76efdd4e"
+        "sha256": "861f86c4cbd978a91ceee1c2c5a869a008a1f8af4a49f1e875136a2237c91064"
       },
       {
         "path": "site/publications/ai-cost-cutting-fallacy/profile.json",
         "identity_mode": "content",
-        "sha256": "432e12d1e113a5445eff2c500f8f100a9cd71521caa733922c4463a40ecbbed0"
+        "sha256": "b4860ea4be97b49c4875b130195ad740f9fe9b0e31d9093a69d847ef492b0a44"
       },
       {
         "path": "site/publications/ai-cost-cutting-fallacy/publication.json",
         "identity_mode": "content",
-        "sha256": "a495a5fdabe1f4d2da0b39a9541d8e0326ea08d73ec29746196dc57b46072c5b"
+        "sha256": "9d21bc7ae83070f7361c774bbcd28640504932411508f554977654c315ad11bc"
       },
       {
         "path": "site/publications/ai-governance-is-control-theory/PROVENANCE.md",
@@ -11750,7 +11785,7 @@
       {
         "path": "site/rights.json",
         "identity_mode": "content",
-        "sha256": "e08d45272dc6ebcdd35b5596cbe09b50de8ea9780ad732a818582b4064f19d52"
+        "sha256": "fae024f6e4710a6f46e4d0a75b6493f48d5abda6030c35fd8bf4786246fb2b65"
       },
       {
         "path": "site/routes.json",
@@ -15478,6 +15513,17 @@
       "title": "cover-social.jpg"
     },
     {
+      "path": "docs/article-media/6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168/cover.jpg",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover.jpg"
+    },
+    {
       "path": "docs/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c/reading.pdf",
       "kind": "file",
       "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
@@ -15544,6 +15590,17 @@
       "title": "workstream-system.webp"
     },
     {
+      "path": "docs/article-media/9acaf96c7008839610c8b9d3efdcb45a8046cde2c792f6f0dfe1951ba8a92048/cover-social.jpg",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover-social.jpg"
+    },
+    {
       "path": "docs/article-media/9cc5b62810712f9988b2d05004700978d8886e7c7954d92d2317c8f9cc4ff719/diagram-8b.webp",
       "kind": "file",
       "purpose": "Generated author-site output for the Thinking Systems migration.",
@@ -15553,6 +15610,17 @@
         "AGENTS.md"
       ],
       "title": "diagram-8b.webp"
+    },
+    {
+      "path": "docs/article-media/9e48e39e141a2775794af0f17a94275705d475ae4d3a97b327d9fdaf6992e0fa/transformation-j-curve.webp",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "transformation-j-curve.webp"
     },
     {
       "path": "docs/article-media/a187cf86739b2cc193cc9696e9884e2252c62b636ce262277c342371081eaa36/cover-social.jpg",
@@ -15698,17 +15766,6 @@
       "title": "thinking-systems.html"
     },
     {
-      "path": "docs/article-snapshots/825acc68d73ebb2ed0d6814d3a4f4a2a05802e87b56d656344fd6dbe60dff609/ai-cost-cutting-fallacy.html",
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "ai-cost-cutting-fallacy.html"
-    },
-    {
       "path": "docs/article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995/the-sdlc-is-out-of-balance.html",
       "kind": "file",
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
@@ -15762,6 +15819,17 @@
         "AGENTS.md"
       ],
       "title": "ai-governance-is-control-theory.html"
+    },
+    {
+      "path": "docs/article-snapshots/de49c1f4c93d901320f9c9d4ec0c22eb8070a0ba30c37e0f3a8e8ac44d5e42f2/ai-cost-cutting-fallacy.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ai-cost-cutting-fallacy.html"
     },
     {
       "path": "docs/articles/ai-cost-cutting-fallacy.html",
@@ -16369,17 +16437,6 @@
       "title": "talks.html"
     },
     {
-      "path": "docs/snapshots/2c28eb3f6fb9262c119fc255a04b8e6a87a1752bb8aadceaa0c05c7142527d0e/writing.html",
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "writing.html"
-    },
-    {
       "path": "docs/snapshots/3fbd4997fa6a2231ca203abb9b151b9a893c093973c94868c0f2b737e4062829/credits.html",
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
@@ -16389,6 +16446,17 @@
         "AGENTS.md"
       ],
       "title": "credits.html"
+    },
+    {
+      "path": "docs/snapshots/475223cc0309d48dc881d6e5caa090407ef615c9159e9abc5b302690a17b4ea1/writing.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "writing.html"
     },
     {
       "path": "docs/snapshots/5006a139824977db749c0c69a82807cb877d8b720d332b8280ffbddce6e27261/talks.html",
@@ -37049,6 +37117,39 @@
       "title": "nojekyll"
     },
     {
+      "path": "site/assets/publications/ai-cost-cutting-fallacy/cover-web.jpg",
+      "kind": "file",
+      "purpose": "Author-approved original iceberg cover or original replacement J-curve for the Cost-Cutting Fallacy.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover-web.jpg"
+    },
+    {
+      "path": "site/assets/publications/ai-cost-cutting-fallacy/cover.png",
+      "kind": "file",
+      "purpose": "Author-approved original iceberg cover or original replacement J-curve for the Cost-Cutting Fallacy.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover.png"
+    },
+    {
+      "path": "site/assets/publications/ai-cost-cutting-fallacy/transformation-j-curve.png",
+      "kind": "file",
+      "purpose": "Author-approved original iceberg cover or original replacement J-curve for the Cost-Cutting Fallacy.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "transformation-j-curve.png"
+    },
+    {
       "path": "site/assets/publications/ai-governance-is-control-theory/cover-web.jpg",
       "kind": "file",
       "purpose": "Historical author-owned cover or new normal-distribution chart for Control Theory.",
@@ -38466,6 +38567,17 @@
         "AGENTS.md"
       ],
       "title": "ai-cost-cutting-fallacy-en-20260102.json"
+    },
+    {
+      "path": "site/publications/ai-cost-cutting-fallacy/editions/ai-cost-cutting-fallacy-en-20261115-illustrated.json",
+      "kind": "file",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ai-cost-cutting-fallacy-en-20261115-illustrated.json"
     },
     {
       "path": "site/publications/ai-cost-cutting-fallacy/launch-post.en.md",
@@ -45043,6 +45155,16 @@
       ]
     },
     {
+      "path": "docs/article-media/6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c",
       "kind": "directory",
       "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
@@ -45093,9 +45215,29 @@
       ]
     },
     {
+      "path": "docs/article-media/9acaf96c7008839610c8b9d3efdcb45a8046cde2c792f6f0dfe1951ba8a92048",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/article-media/9cc5b62810712f9988b2d05004700978d8886e7c7954d92d2317c8f9cc4ff719",
       "kind": "directory",
       "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/9e48e39e141a2775794af0f17a94275705d475ae4d3a97b327d9fdaf6992e0fa",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -45243,16 +45385,6 @@
       ]
     },
     {
-      "path": "docs/article-snapshots/825acc68d73ebb2ed0d6814d3a4f4a2a05802e87b56d656344fd6dbe60dff609",
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
       "path": "docs/article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995",
       "kind": "directory",
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
@@ -45294,6 +45426,16 @@
     },
     {
       "path": "docs/article-snapshots/dc75263d68d38ca51c84c6c67172058a4f5653959b73ccfae7348145a25325f2",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-snapshots/de49c1f4c93d901320f9c9d4ec0c22eb8070a0ba30c37e0f3a8e8ac44d5e42f2",
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -45483,7 +45625,7 @@
       ]
     },
     {
-      "path": "docs/snapshots/2c28eb3f6fb9262c119fc255a04b8e6a87a1752bb8aadceaa0c05c7142527d0e",
+      "path": "docs/snapshots/3fbd4997fa6a2231ca203abb9b151b9a893c093973c94868c0f2b737e4062829",
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -45493,7 +45635,7 @@
       ]
     },
     {
-      "path": "docs/snapshots/3fbd4997fa6a2231ca203abb9b151b9a893c093973c94868c0f2b737e4062829",
+      "path": "docs/snapshots/475223cc0309d48dc881d6e5caa090407ef615c9159e9abc5b302690a17b4ea1",
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -46866,6 +47008,16 @@
       "path": "site/assets/publications",
       "kind": "directory",
       "purpose": "Article-local authored figure sources and bounded review renditions excluded from unselected default scene media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/assets/publications/ai-cost-cutting-fallacy",
+      "kind": "directory",
+      "purpose": "Author-approved original iceberg cover or original replacement J-curve for the Cost-Cutting Fallacy.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md",
       "instructions": [

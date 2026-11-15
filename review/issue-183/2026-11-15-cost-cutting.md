@@ -8,3 +8,9 @@ Fourth checkpoint of [issue #183](https://github.com/oborskyivitalii/oborskyivit
 - AC06–AC08. Draft Preview only. The fifth article, full browser admission, stable staging, publication dates, production and closeout remain open. Agentic Loops remains in the follow-up queue.
 
 The shared related-reading ranking includes the native Verification Crisis reader from Cost-Cutting and includes Verification Crisis from SDLC. The inverse direct route from Verification Crisis to Cost-Cutting is not in the top three. Writing links to both native readers. Complete the batch reading paths before admission.
+
+## Author-approved visuals
+
+The author approved the original LinkedIn iceberg cover and directed that the borrowed J-Curve be replaced by a new drawing conveying the same concept. Independent requirements preflight `/root/cost_images_requirements` used `fork_turns="none"` on the preceding Draft Preview `02fcc47071b3ac2219db9711bf6f02c8dbabcc3d`. Common and role prompt blobs are `68796daaf4313f64da381b1628866267fd9e263b` and `3e6330fc4a1a01d33e2dcae6e0f35d3f3471c1e4`.
+
+AC01–AC03 verify the author-permitted original composition, a newly drawn qualitative figure with the five Satir phases, both image credits, the original citation and date, the 122 text blocks and ten authored link destinations, and a new edition pin retaining the earlier edition. AC04 retains the existing catalog and archive row. AC05 verifies both images in the selected reader, the generated 1200 × 630 share JPEG, exact rights-inventory pins, text digest, budgets and hosted Preview. AC06–AC08 remain at the fourth Draft Preview. The fifth article and batch-level reading paths remain open.

@@ -19,7 +19,7 @@
     "vitalii-oborskyi-cutout.webp",
     "writing-paradigm.svg"
   ],
-  "content": "ce19d15175a9eac14b0628344c683c4b9f82b18e0632aceff653f65d399f018f",
+  "content": "639af04af6fd6ecebff4bf7470e4d7f7e13a031ecb3b16c1d267549f1b92e7ad",
   "routes": {
     "index": {
       "version": "95e55877fec733a754a566a11daafadffb3447b52a1be0f42ddee2d16de7de26",
@@ -35,9 +35,9 @@
       ]
     },
     "writing": {
-      "version": "2c28eb3f6fb9262c119fc255a04b8e6a87a1752bb8aadceaa0c05c7142527d0e",
-      "url": "snapshots/2c28eb3f6fb9262c119fc255a04b8e6a87a1752bb8aadceaa0c05c7142527d0e/writing.html",
-      "sha256": "a02fe60e16f0412596cd4c33f56ac253e832c0cade93f10c388461de246c3a70",
+      "version": "475223cc0309d48dc881d6e5caa090407ef615c9159e9abc5b302690a17b4ea1",
+      "url": "snapshots/475223cc0309d48dc881d6e5caa090407ef615c9159e9abc5b302690a17b4ea1/writing.html",
+      "sha256": "77d20ccb17c4f7012081ba0e8c370896a15d1277ec8aaaae9e408175845776c1",
       "assets": [
         "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
       ]
@@ -55,19 +55,29 @@
   },
   "articles": {
     "ai-cost-cutting-fallacy:en": {
-      "version": "825acc68d73ebb2ed0d6814d3a4f4a2a05802e87b56d656344fd6dbe60dff609",
-      "url": "article-snapshots/825acc68d73ebb2ed0d6814d3a4f4a2a05802e87b56d656344fd6dbe60dff609/ai-cost-cutting-fallacy.html",
-      "sha256": "c1a8953b313cc301aae627a3f4a9e644493b1a0dc969ef4164f2c3cd9d52300d",
+      "version": "de49c1f4c93d901320f9c9d4ec0c22eb8070a0ba30c37e0f3a8e8ac44d5e42f2",
+      "url": "article-snapshots/de49c1f4c93d901320f9c9d4ec0c22eb8070a0ba30c37e0f3a8e8ac44d5e42f2/ai-cost-cutting-fallacy.html",
+      "sha256": "16792de8fced90302b81a9ae8033bccbeb966a8eb83b3e7804385f5e8607287c",
       "alias": "articles/ai-cost-cutting-fallacy.html",
       "scene": "writing",
       "assets": [
+        "article-media/6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168/cover.jpg",
+        "article-media/9e48e39e141a2775794af0f17a94275705d475ae4d3a97b327d9fdaf6992e0fa/transformation-j-curve.webp",
+        "article-media/9acaf96c7008839610c8b9d3efdcb45a8046cde2c792f6f0dfe1951ba8a92048/cover-social.jpg",
         "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
       ],
+      "socialImage": {
+        "file": "article-media/9acaf96c7008839610c8b9d3efdcb45a8046cde2c792f6f0dfe1951ba8a92048/cover-social.jpg",
+        "type": "image/jpeg",
+        "width": 1200,
+        "height": 630,
+        "alt": "An iceberg labeled AI speed above water and technical debt, security holes, burnout, and rework below."
+      },
       "candidate": false,
       "articleId": "ai-cost-cutting-fallacy",
-      "contentEdition": "ai-cost-cutting-fallacy-en-20260102",
-      "sourceSha256": "1ba87fe8adaa3055df8a195cacfef86328aa7001ff18c0e406ca948b76efdd4e",
-      "semanticSha256": "c5bd33743bcc53ca71381305fb6559ab0112283048927360ee6ed6f16e1989b4"
+      "contentEdition": "ai-cost-cutting-fallacy-en-20261115-illustrated",
+      "sourceSha256": "861f86c4cbd978a91ceee1c2c5a869a008a1f8af4a49f1e875136a2237c91064",
+      "semanticSha256": "dd72e53cd138727d2d4a796a57115dd2f724f41406690b95972cf95c1c91306c"
     },
     "ai-governance-is-control-theory:en": {
       "version": "dc75263d68d38ca51c84c6c67172058a4f5653959b73ccfae7348145a25325f2",

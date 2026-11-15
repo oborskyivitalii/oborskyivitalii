@@ -31,14 +31,21 @@
   },
   "assets": {
     "cover": {
-      "omitReason": "The original LinkedIn cover has no visible reuse credit. This Draft Preview uses the site fallback pending confirmation."
+      "id": "cover"
     },
     "hero": {
-      "omitReason": "The original LinkedIn cover has no visible reuse credit. This Draft Preview uses the site fallback pending confirmation."
+      "id": "cover"
     }
   },
   "limits": {},
   "reader": {
-    "references": "inline"
+    "references": "inline",
+    "images": "webp-lossless",
+    "equivalentImages": {
+      "cover": {
+        "path": "site/assets/publications/ai-cost-cutting-fallacy/cover-web.jpg",
+        "sha256": "6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168"
+      }
+    }
   }
 }

@@ -86,7 +86,8 @@
         "site/assets/writing-paradigm.svg",
         "guides/SITE-SOURCE-AUDIT.md",
         "site/publications/sdlc-out-of-balance/PROVENANCE.md",
-        "site/publications/ai-governance-is-control-theory/PROVENANCE.md"
+        "site/publications/ai-governance-is-control-theory/PROVENANCE.md",
+        "site/publications/ai-cost-cutting-fallacy/PROVENANCE.md"
       ],
       "scope": "Original non-brand diagram artwork, including writing-paradigm.svg. Rendering implementation remains original code; identity artwork is excluded."
     },
@@ -113,6 +114,13 @@
         "site/publications/ai-verification-crisis/PROVENANCE.md"
       ],
       "scope": "The maintainer generated the historical cover and approved site use. The site carries resized encodings of the original artwork."
+    },
+    "cost-cutting-original-cover": {
+      "kind": "maintainer-approved-historical-cover",
+      "provenance": [
+        "site/publications/ai-cost-cutting-fallacy/PROVENANCE.md"
+      ],
+      "scope": "The author authorized use of the original LinkedIn iceberg cover in the author-site reader and its share image. The site uses uncropped renditions of the original artwork."
     },
     "article-review-input": {
       "kind": "pending-exact-edition-media-review",
@@ -150,6 +158,18 @@
     }
   ],
   "assets": {
+    "publications/ai-cost-cutting-fallacy/cover.png": {
+      "sha256": "6ab7c4fb30fda5cf2d6ac04e1253dc2224ad8b16fb8f053d85888b6b40fe5833",
+      "bases": ["cost-cutting-original-cover"]
+    },
+    "publications/ai-cost-cutting-fallacy/cover-web.jpg": {
+      "sha256": "6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168",
+      "bases": ["cost-cutting-original-cover"]
+    },
+    "publications/ai-cost-cutting-fallacy/transformation-j-curve.png": {
+      "sha256": "11352752759624202e3a284558455b884b87239ab57c3487ae6787e3ad4bab7f",
+      "bases": ["original-diagram"]
+    },
     "publications/ai-governance-is-control-theory/cover.png": {
       "sha256": "25bdc2d76a2c9589e99dd36f02db22c62d38bd954cbc3823e817f0304bc40a80",
       "bases": ["governance-original-cover"]
