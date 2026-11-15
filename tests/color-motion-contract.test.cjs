@@ -104,6 +104,33 @@ test('the mount-raster correction admits only its exact licensed staging bytes',
     /immutable Color bytes/
   );
 });
+test('the smoother Writing return preregisters only the exact licensed staging runtime', () => {
+  const id = 'issue187-pulse-return-easing';
+  const staging = manifest(id + '-staging');
+  assert.equal(motion.select(staging).id, id + '-staging');
+  assert.equal(motion.publicationRequired(staging, staging.components), true);
+  for (const edition of ['plain', 'production']) {
+    assert.throws(() => motion.reviewedRuntime(id + '-' + edition), /unknown reviewed/);
+  }
+  for (const edition of [
+    undefined,
+    { id: 'production', indexable: true, origin: 'https://vitaliioborskyi.ai' },
+  ]) {
+    const wrong = { ...staging, edition };
+    assert.throws(() => motion.publicationRequired(wrong, wrong.components), /edition differs/);
+  }
+  for (const name of Object.keys(motion.reviewedRuntime(id + '-staging').files)) {
+    const canonical = structuredClone(staging);
+    canonical.files[name].sha256 = '0'.repeat(64);
+    assert.throws(() => motion.publicationRequired(canonical, canonical.components), /Color bytes/);
+    const immutable = structuredClone(staging);
+    immutable.files['runtime/' + staging.variant.fingerprint + '/' + name].sha256 = '0'.repeat(64);
+    assert.throws(
+      () => motion.publicationRequired(immutable, immutable.components),
+      /immutable Color bytes/
+    );
+  }
+});
 test('producer refactoring preserves client compatibility while runtime bytes and document hooks stay bound', () => {
   const fs = require('node:fs'),
     os = require('node:os'),
