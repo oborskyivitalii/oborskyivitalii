@@ -58,11 +58,11 @@ function hasText(node) {
   return substantive(node.value) || substantive(node.alt) || (node.children ?? []).some(hasText);
 }
 
-function visibleNode(source, footnotes) {
+function visibleNode(source, footnotes, normalize) {
   const { position, children, ...node } = source;
   if (node.type === 'footnoteDefinition' && !footnotes.has(source)) return null;
   if (node.type === 'code') delete node.meta;
-  if (node.type === 'image') node.alt = normalizeProse(node.alt ?? '').trim();
+  if (node.type === 'image') node.alt = normalize(node.alt ?? '').trim();
   if (node.type === 'html') {
     // Remark distinguishes actual HTML from comment-shaped text inside code.
     const remaining = withoutComments(node.value);
@@ -73,7 +73,7 @@ function visibleNode(source, footnotes) {
   if (children) {
     node.children = [];
     for (const child of children) {
-      const visible = visibleNode(child, footnotes);
+      const visible = visibleNode(child, footnotes, normalize);
       if (!visible) continue;
       const previous = node.children.at(-1);
       if (previous?.type === 'text' && visible.type === 'text') {
@@ -84,7 +84,7 @@ function visibleNode(source, footnotes) {
     }
     for (const [index, child] of node.children.entries()) {
       if (child.type !== 'text') continue;
-      child.value = normalizeProse(child.value);
+      child.value = normalize(child.value);
       if (index === 0) child.value = child.value.trimStart();
       if (index === node.children.length - 1) child.value = child.value.trimEnd();
     }
@@ -140,8 +140,16 @@ try {
   const visible = input.map((markdown) => {
     const tree = parseGuide(markdown);
     validateMarkup(tree);
-    const projection = visibleNode(tree, visibleFootnotes(tree));
-    return { nodes: projection.children, hasText: hasText(projection) };
+    const footnotes = visibleFootnotes(tree);
+    const projection = visibleNode(tree, footnotes, normalizeProse);
+    const withoutFormatting = visibleNode(tree, footnotes, (value) =>
+      normalizeProse(value.replace(defaultIgnorables, ''))
+    );
+    return {
+      nodes: projection.children,
+      withoutFormatting: withoutFormatting.children,
+      hasText: hasText(projection),
+    };
   });
   process.stdout.write(JSON.stringify(visible));
 } catch (error) {

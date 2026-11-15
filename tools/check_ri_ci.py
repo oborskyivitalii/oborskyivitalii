@@ -618,11 +618,15 @@ def guide_scope(root, base, head):
         if old_path in covered or new_path in covered:
             covered.update((old_path, new_path))
     paths = sorted(covered)
-    digest = hashlib.sha256(json.dumps([(p, changed[p]) for p in paths]).encode()).hexdigest()
+    scope = {
+        "controls": [(path, changed[path]) for path in paths],
+        "guide_sha256": hashlib.sha256(read(head, GUIDE)).hexdigest(),
+    }
+    digest = hashlib.sha256(json.dumps(scope).encode()).hexdigest()
     return paths, digest, changed, read
 
 
-def guide_contents(*documents, require_text=False):
+def guide_projections(*documents):
     """Use the parser beside the executing checker, never a candidate Git blob."""
     parser = Path(__file__).resolve().parent / "quality/workflow-guide-markdown.mjs"
     if any(len(document.encode()) > 1_000_000 for document in documents):
@@ -637,10 +641,11 @@ def guide_contents(*documents, require_text=False):
     )
     if parsed.returncode:
         raise ValueError(f"Cannot compare {GUIDE}: {parsed.stderr.strip()}")
-    comparisons = json.loads(parsed.stdout)
-    if require_text and not comparisons[0]["hasText"]:
-        raise ValueError(f"Workflow guide has no visible content: {GUIDE}")
-    return [comparison["nodes"] for comparison in comparisons]
+    return json.loads(parsed.stdout)
+
+
+def guide_contents(*documents):
+    return [comparison["nodes"] for comparison in guide_projections(*documents)]
 
 
 def guide_review(root, base, head, describe=False):
@@ -660,10 +665,12 @@ def guide_review(root, base, head, describe=False):
     guide = read(head, GUIDE).decode()
     if not guide.strip():
         raise ValueError(f"Workflow guide is missing or empty: {GUIDE}")
-    current, previous = guide_contents(guide, read(base, GUIDE).decode(), require_text=True)
+    current, previous = guide_projections(guide, read(base, GUIDE).decode())
+    if not current["hasText"]:
+        raise ValueError(f"Workflow guide has no visible content: {GUIDE}")
     if not paths:
         return result
-    if current != previous:
+    if current["withoutFormatting"] != previous["withoutFormatting"]:
         return {**result, "decision": "guide-updated"}
 
     receipts = [path for path in changed if re.fullmatch(GUIDE_REVIEW, path) and read(head, path)]
@@ -688,7 +695,11 @@ def guide_review(root, base, head, describe=False):
     def label(node):
         return node.get("value", "") + "".join(label(child) for child in node.get("children", []))
 
-    headings = {label(node) for node in current if node["type"] == "heading" and node["depth"] >= 2}
+    headings = {
+        label(node)
+        for node in current["nodes"]
+        if node["type"] == "heading" and node["depth"] >= 2
+    }
     sections, rationale, execution = (
         record[key] for key in ("sections", "rationale", "reviewer_execution")
     )
@@ -706,7 +717,8 @@ def guide_review(root, base, head, describe=False):
             f"{receipt} requires actual guide section titles, a specific rationale, "
             "and a reference to the independent reviewer execution."
         )
-    return {**result, "decision": "reviewed-unchanged", "review_receipt": receipt}
+    decision = "reviewed-formatting" if current["nodes"] != previous["nodes"] else "reviewed-unchanged"
+    return {**result, "decision": decision, "review_receipt": receipt}
 
 
 def pull_request_guide_review(root):

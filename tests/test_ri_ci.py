@@ -939,6 +939,10 @@ class WorkflowGuideReviewTests(unittest.TestCase):
             (self.root / ci.GUIDE).read_text()
             + "\n<!-- [example]: hidden\n## Phantom heading\n-->\n",
         )
+        with self.assertRaisesRegex(ValueError, "current review"):
+            ci.guide_review(self.root, self.base, self.commit())
+        scope = ci.guide_review(self.root, self.base, self.git("rev-parse", "HEAD"), True)
+        record["scope_sha256"] = scope["scope_sha256"]
         self.write(receipt, json.dumps({**record, "sections": ["Phantom heading"]}))
         with self.assertRaisesRegex(ValueError, "actual guide section titles"):
             ci.guide_review(self.root, self.base, self.commit())
@@ -961,6 +965,42 @@ class WorkflowGuideReviewTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, "no visible content"):
                     ci.guide_review(self.root, self.base, self.commit())
         self.write(ci.GUIDE, "# Робочий процес\n\nПеревірити поточний стан.\n")
+        self.assertEqual(
+            ci.guide_review(self.root, self.base, self.commit())["decision"], "guide-updated"
+        )
+
+    def test_formatting_only_differences_require_same_source_review(self):
+        original = "# Guide\n\n## Agents\n\nДоставка. Далі. Use 👩💻.\n"
+        self.write(ci.GUIDE, original)
+        self.base = self.commit()
+        self.write(".github/workflows/changed.yml", "name: New control\n")
+        for revised in (
+            original.replace("Доставка.", "Доставка.&#x034F;"),
+            original.replace("👩💻", "👩\u200d💻"),
+        ):
+            with self.subTest(revised=revised):
+                self.write(ci.GUIDE, revised)
+                with self.assertRaisesRegex(ValueError, "current review"):
+                    ci.guide_review(self.root, self.base, self.commit())
+        scope = ci.guide_review(self.root, self.base, self.git("rev-parse", "HEAD"), True)
+        self.write(
+            "review/issue-999/workflow-guide-evidence.json",
+            json.dumps(
+                {
+                    **{key: scope[key] for key in ("base_sha", "scope_sha256", "paths")},
+                    "sections": ["Agents"],
+                    "rationale": "The agent example renders the combined emoji; workflow meaning is unchanged.",
+                    "reviewer_execution": "recorded execution QA-999",
+                }
+            ),
+        )
+        self.assertEqual(
+            ci.guide_review(self.root, self.base, self.commit())["decision"], "reviewed-formatting"
+        )
+        self.write(ci.GUIDE, original.replace("Доставка.", "Доставка.&#x034F;"))
+        with self.assertRaisesRegex(ValueError, "current review"):
+            ci.guide_review(self.root, self.base, self.commit())
+        self.write(ci.GUIDE, original.replace("Use", "Avoid"))
         self.assertEqual(
             ci.guide_review(self.root, self.base, self.commit())["decision"], "guide-updated"
         )
