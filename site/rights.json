@@ -107,6 +107,13 @@
       ],
       "scope": "Vitalii Oborskyi confirmed ownership and authorized retaining the exact historical artwork in this article. The site carries resized encodings of that artwork."
     },
+    "verification-crisis-original-cover": {
+      "kind": "maintainer-confirmed-ai-generated-cover",
+      "provenance": [
+        "site/publications/ai-verification-crisis/PROVENANCE.md"
+      ],
+      "scope": "The maintainer generated the historical cover and approved site use. The site carries resized encodings of the original artwork."
+    },
     "article-review-input": {
       "kind": "pending-exact-edition-media-review",
       "provenance": [
@@ -154,6 +161,14 @@
     "publications/ai-governance-is-control-theory/normal-distribution.png": {
       "sha256": "ab3c716b3b86f7814e1beef1077eb9434935c7d320142d5a84b67c100f3b38d3",
       "bases": ["original-diagram"]
+    },
+    "publications/ai-verification-crisis/cover.png": {
+      "sha256": "9361582b43aadf46a274cc862f72b748e4394fb303cb75c4b45d54a896d98d25",
+      "bases": ["verification-crisis-original-cover"]
+    },
+    "publications/ai-verification-crisis/cover-web.jpg": {
+      "sha256": "2d4e237d21021bcb6c62b5ce9ab10daffc4e93b521a20f3b6a707a3531781739",
+      "bases": ["verification-crisis-original-cover"]
     },
     "publications/thinking-systems/cover-web.jpg": {
       "sha256": "b68b465d8f611f72c8f4d9e95eaad457c1e40761154d90112ed128d7ecd47dd2",

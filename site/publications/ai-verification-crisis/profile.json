@@ -3,11 +3,21 @@
   "id": "ai-verification-crisis",
   "platforms": {
     "linkedin": {
-      "formats": ["html", "md", "txt", "copy-ready"],
+      "formats": [
+        "html",
+        "md",
+        "txt",
+        "copy-ready"
+      ],
       "relationship": "equivalent-rendition"
     },
     "medium": {
-      "formats": ["html", "md", "txt", "copy-ready"],
+      "formats": [
+        "html",
+        "md",
+        "txt",
+        "copy-ready"
+      ],
       "relationship": "equivalent-rendition"
     }
   },
@@ -21,14 +31,21 @@
   },
   "assets": {
     "cover": {
-      "omitReason": "The selected edition has an uncredited lead image. This Draft Preview uses the site fallback while reuse provenance is pending."
+      "id": "cover"
     },
     "hero": {
-      "omitReason": "The selected edition has an uncredited lead image. This Draft Preview uses the site fallback while reuse provenance is pending."
+      "id": "cover"
     }
   },
   "limits": {},
   "reader": {
-    "references": "inline"
+    "references": "inline",
+    "images": "webp-lossless",
+    "equivalentImages": {
+      "cover": {
+        "path": "site/assets/publications/ai-verification-crisis/cover-web.jpg",
+        "sha256": "2d4e237d21021bcb6c62b5ce9ab10daffc4e93b521a20f3b6a707a3531781739"
+      }
+    }
   }
 }

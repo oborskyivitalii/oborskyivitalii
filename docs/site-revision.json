@@ -19,12 +19,12 @@
     "vitalii-oborskyi-cutout.webp",
     "writing-paradigm.svg"
   ],
-  "content": "5677e7971590cf0e6142793e56dc0d74f0054139172cfa955eeb1c3dcd948d7b",
+  "content": "4f34fad891315131711370017b8e62a2f9ced2dd405d73fc454b6046c1f86177",
   "routes": {
     "index": {
-      "version": "86a6656ce71a53555e19a5c705ac5bad9e01bdb8ec0ad04e8a7ac649d4edff4b",
-      "url": "snapshots/86a6656ce71a53555e19a5c705ac5bad9e01bdb8ec0ad04e8a7ac649d4edff4b/index.html",
-      "sha256": "9a3eb7403c99fc436115581fd3b74a259dceb3ff7396a72ef252b29301e3f83f"
+      "version": "f194a408b26a802808aad58b02a510ce3125e18d8b5187858b5dbf89288d7480",
+      "url": "snapshots/f194a408b26a802808aad58b02a510ce3125e18d8b5187858b5dbf89288d7480/index.html",
+      "sha256": "1ce11b0083914cebee9e8c2ada1c979575942abfc767bc0b18b0a426ccaca9b2"
     },
     "research": {
       "version": "6839fd20b33d2b97d56a5117fc4e5210c9b98ba355c3b8e11e395448bc42742e",
@@ -35,9 +35,9 @@
       ]
     },
     "writing": {
-      "version": "b788a1b5841f6ae3b7a68e0744f83e8caec167ca0b6104ba0c135dbff259b69a",
-      "url": "snapshots/b788a1b5841f6ae3b7a68e0744f83e8caec167ca0b6104ba0c135dbff259b69a/writing.html",
-      "sha256": "924ee4248ee215bf3176a53779a3d98c0af4091e896a2bb0c08fcb169847d43f",
+      "version": "5888a9f863dcfed6e5f681050a5816d754697f149f67f38ed76ac70a1741f004",
+      "url": "snapshots/5888a9f863dcfed6e5f681050a5816d754697f149f67f38ed76ac70a1741f004/writing.html",
+      "sha256": "96359fd3d0aa0ed0570ef6a1fa93aa618a521ad13b98ae0870e354cadceaf9ea",
       "assets": [
         "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
       ]
@@ -80,19 +80,28 @@
       "semanticSha256": "b3127ee607eef4d1421f28d88bcd20aa5997755bfae3f8ae004d947420919bf4"
     },
     "ai-verification-crisis:en": {
-      "version": "d75976b40d4b0697595ea7a39e8587bbf25a758937626aafa73c83b95e1f4ab8",
-      "url": "article-snapshots/d75976b40d4b0697595ea7a39e8587bbf25a758937626aafa73c83b95e1f4ab8/ai-verification-crisis.html",
-      "sha256": "1db995e7fe029f376b78391cb91d938bf3bc2c9a32f98344d29cf03a79f258e2",
+      "version": "dfcab3ea8789d8e7fd6676b29c61fb724d06cf5b0fe1ff6dbd5fcfbd7e60a44e",
+      "url": "article-snapshots/dfcab3ea8789d8e7fd6676b29c61fb724d06cf5b0fe1ff6dbd5fcfbd7e60a44e/ai-verification-crisis.html",
+      "sha256": "9662c7640491d904b89b1fd03c9d0e93e9bdd9cad8a58cde2ba2b5703247b916",
       "alias": "articles/ai-verification-crisis.html",
       "scene": "writing",
       "assets": [
+        "article-media/2d4e237d21021bcb6c62b5ce9ab10daffc4e93b521a20f3b6a707a3531781739/cover.jpg",
+        "article-media/5ba399aa0ca2dc3e492e58292358870926fb5acd7fdd958c63e2e71541d6994d/cover-social.jpg",
         "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
       ],
+      "socialImage": {
+        "file": "article-media/5ba399aa0ca2dc3e492e58292358870926fb5acd7fdd958c63e2e71541d6994d/cover-social.jpg",
+        "type": "image/jpeg",
+        "width": 1200,
+        "height": 630,
+        "alt": "A person at a workstation faces a stream of text and code converging on a cube, with verification symbols on the right."
+      },
       "candidate": false,
       "articleId": "ai-verification-crisis",
-      "contentEdition": "ai-verification-crisis-en-20260612",
-      "sourceSha256": "20a8ee4f6db8a28e92dd106ba8ed45d1ac0a4c8bb03730d08296d5964653d640",
-      "semanticSha256": "14282a6e90a6aef0c09a9363373ecf259c3d52e0a82dca41dad0e3da9781de98"
+      "contentEdition": "ai-verification-crisis-en-20261115-cover",
+      "sourceSha256": "2aef15d075a66aa60047eebfe0e5ebd8d0dd6244fa883ae95d22db16717caf62",
+      "semanticSha256": "72060d86e1fbfe6b8124986e0df8db31ebc2f5c014c98edb79e777814615bfd8"
     },
     "sdlc-out-of-balance:en": {
       "version": "51b266810d00bdfd256ecbbb35242ec8f69f787fc82b39e430e58361b891c32a",

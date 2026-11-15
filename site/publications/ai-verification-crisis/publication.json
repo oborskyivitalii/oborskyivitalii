@@ -18,7 +18,7 @@
   },
   "status": "accepted",
   "source": "manuscript.en.md",
-  "edition": "ai-verification-crisis-en-20260612",
+  "edition": "ai-verification-crisis-en-20261115-cover",
   "rights": {
     "status": "accepted",
     "notice": "Vitalii Oborskyi. Original article text from the June 2026 Agile Insider edition is included on the author site under CC BY 4.0. Linked material retains its own terms.",
@@ -38,7 +38,18 @@
       "url": "https://www.linkedin.com/pulse/ai-externalization-reasoning-verification-crisis-vitalii-oborskyi-ihzwe/"
     }
   ],
-  "assets": [],
+  "assets": [
+    {
+      "id": "cover",
+      "path": "site/assets/publications/ai-verification-crisis/cover.png",
+      "sha256": "9361582b43aadf46a274cc862f72b748e4394fb303cb75c4b45d54a896d98d25",
+      "width": 1200,
+      "height": 675,
+      "alt": "A person at a workstation faces a stream of text and code converging on a cube, with verification symbols on the right.",
+      "caption": "Original cover from the June 2026 Agile Insider edition.",
+      "credit": "AI-generated cover by Vitalii Oborskyi, used by permission for this site edition."
+    }
+  ],
   "platforms": {
     "linkedin": {
       "mode": "equivalent-rendition"

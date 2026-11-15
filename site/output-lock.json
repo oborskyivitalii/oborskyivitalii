@@ -15,7 +15,7 @@
   },
   "routes": {
     "index": {
-      "version": "86a6656ce71a53555e19a5c705ac5bad9e01bdb8ec0ad04e8a7ac649d4edff4b",
+      "version": "f194a408b26a802808aad58b02a510ce3125e18d8b5187858b5dbf89288d7480",
       "url": "index.html",
       "inputs": [
         "site/content/pages/index/about.json",
@@ -44,7 +44,7 @@
         "publication-07",
         "publication-08"
       ],
-      "snapshotSHA": "9a3eb7403c99fc436115581fd3b74a259dceb3ff7396a72ef252b29301e3f83f"
+      "snapshotSHA": "1ce11b0083914cebee9e8c2ada1c979575942abfc767bc0b18b0a426ccaca9b2"
     },
     "research": {
       "version": "6839fd20b33d2b97d56a5117fc4e5210c9b98ba355c3b8e11e395448bc42742e",
@@ -71,7 +71,7 @@
       "snapshotSHA": "70c6a094dff6cc85d67257b51e33ebcd801d33348b4778427f4a95c333fbd8e6"
     },
     "writing": {
-      "version": "b788a1b5841f6ae3b7a68e0744f83e8caec167ca0b6104ba0c135dbff259b69a",
+      "version": "5888a9f863dcfed6e5f681050a5816d754697f149f67f38ed76ac70a1741f004",
       "url": "writing.html",
       "inputs": [
         "site/content/pages/writing/main.json",
@@ -115,7 +115,7 @@
       "assets": [
         "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
       ],
-      "snapshotSHA": "924ee4248ee215bf3176a53779a3d98c0af4091e896a2bb0c08fcb169847d43f"
+      "snapshotSHA": "96359fd3d0aa0ed0570ef6a1fa93aa618a521ad13b98ae0870e354cadceaf9ea"
     },
     "talks": {
       "version": "83df93d11e58d42133a8d9125f5537a62005f49b63e5799c6ef42a235999a174",
@@ -189,12 +189,14 @@
       "semanticSha256": "b3127ee607eef4d1421f28d88bcd20aa5997755bfae3f8ae004d947420919bf4"
     },
     "ai-verification-crisis:en": {
-      "version": "d75976b40d4b0697595ea7a39e8587bbf25a758937626aafa73c83b95e1f4ab8",
+      "version": "dfcab3ea8789d8e7fd6676b29c61fb724d06cf5b0fe1ff6dbd5fcfbd7e60a44e",
       "url": "articles/ai-verification-crisis.html",
-      "snapshot": "article-snapshots/d75976b40d4b0697595ea7a39e8587bbf25a758937626aafa73c83b95e1f4ab8/ai-verification-crisis.html",
-      "sha256": "1db995e7fe029f376b78391cb91d938bf3bc2c9a32f98344d29cf03a79f258e2",
+      "snapshot": "article-snapshots/dfcab3ea8789d8e7fd6676b29c61fb724d06cf5b0fe1ff6dbd5fcfbd7e60a44e/ai-verification-crisis.html",
+      "sha256": "9662c7640491d904b89b1fd03c9d0e93e9bdd9cad8a58cde2ba2b5703247b916",
       "inputs": [
-        "site/publications/ai-verification-crisis/editions/ai-verification-crisis-en-20260612.json",
+        "site/assets/publications/ai-verification-crisis/cover-web.jpg",
+        "site/assets/publications/ai-verification-crisis/cover.png",
+        "site/publications/ai-verification-crisis/editions/ai-verification-crisis-en-20261115-cover.json",
         "site/publications/ai-verification-crisis/launch-post.en.md",
         "site/publications/ai-verification-crisis/manuscript.en.md",
         "site/publications/ai-verification-crisis/profile.json",
@@ -204,13 +206,22 @@
         "site/templates/pages/article.html"
       ],
       "assets": [
+        "article-media/2d4e237d21021bcb6c62b5ce9ab10daffc4e93b521a20f3b6a707a3531781739/cover.jpg",
+        "article-media/5ba399aa0ca2dc3e492e58292358870926fb5acd7fdd958c63e2e71541d6994d/cover-social.jpg",
         "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
       ],
+      "socialImage": {
+        "file": "article-media/5ba399aa0ca2dc3e492e58292358870926fb5acd7fdd958c63e2e71541d6994d/cover-social.jpg",
+        "type": "image/jpeg",
+        "width": 1200,
+        "height": 630,
+        "alt": "A person at a workstation faces a stream of text and code converging on a cube, with verification symbols on the right."
+      },
       "candidate": false,
       "articleId": "ai-verification-crisis",
-      "contentEdition": "ai-verification-crisis-en-20260612",
-      "sourceSha256": "20a8ee4f6db8a28e92dd106ba8ed45d1ac0a4c8bb03730d08296d5964653d640",
-      "semanticSha256": "14282a6e90a6aef0c09a9363373ecf259c3d52e0a82dca41dad0e3da9781de98"
+      "contentEdition": "ai-verification-crisis-en-20261115-cover",
+      "sourceSha256": "2aef15d075a66aa60047eebfe0e5ebd8d0dd6244fa883ae95d22db16717caf62",
+      "semanticSha256": "72060d86e1fbfe6b8124986e0df8db31ebc2f5c014c98edb79e777814615bfd8"
     },
     "sdlc-out-of-balance:en": {
       "version": "51b266810d00bdfd256ecbbb35242ec8f69f787fc82b39e430e58361b891c32a",
@@ -319,14 +330,14 @@
     }
   },
   "files": {
-    "index.html": "21d2c95e7551f9ea86b360d1b68fe3bb83a64503dd17e7c1339dfd58918304b8",
-    "snapshots/86a6656ce71a53555e19a5c705ac5bad9e01bdb8ec0ad04e8a7ac649d4edff4b/index.html": "9a3eb7403c99fc436115581fd3b74a259dceb3ff7396a72ef252b29301e3f83f",
+    "index.html": "a6388cea663058327619e3a6bfba3f51a4c092f11e7aac1af29a73459237e6f3",
+    "snapshots/f194a408b26a802808aad58b02a510ce3125e18d8b5187858b5dbf89288d7480/index.html": "1ce11b0083914cebee9e8c2ada1c979575942abfc767bc0b18b0a426ccaca9b2",
     "article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618/research-fallback.svg": "1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618",
     "research.html": "715573c03eb08d4f45e181dd1dae86a4445ffb3c8fdff08bad894b9d82a6c973",
     "snapshots/6839fd20b33d2b97d56a5117fc4e5210c9b98ba355c3b8e11e395448bc42742e/research.html": "70c6a094dff6cc85d67257b51e33ebcd801d33348b4778427f4a95c333fbd8e6",
     "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg": "2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16",
-    "writing.html": "5923433e406e3e8de5b89b7245654822c50a008ff5ce29e2e6f88fb2d65b2255",
-    "snapshots/b788a1b5841f6ae3b7a68e0744f83e8caec167ca0b6104ba0c135dbff259b69a/writing.html": "924ee4248ee215bf3176a53779a3d98c0af4091e896a2bb0c08fcb169847d43f",
+    "writing.html": "9cbfa42b70bc6e15292665d8d0550e518629b9748eba9147d1af5ea10751a343",
+    "snapshots/5888a9f863dcfed6e5f681050a5816d754697f149f67f38ed76ac70a1741f004/writing.html": "96359fd3d0aa0ed0570ef6a1fa93aa618a521ad13b98ae0870e354cadceaf9ea",
     "talks.html": "ad8863ffc6f36795f79fe556bca824307553dbfef69b61f4f94df63cdee53897",
     "snapshots/83df93d11e58d42133a8d9125f5537a62005f49b63e5799c6ef42a235999a174/talks.html": "f36f48e0fed0648ff830b082589949dc1a1e7766057e61668aeb36179950a4b7",
     "credits.html": "f6b037ae15a0da2b080a373378ec3b7a732f95e4e9d8a67fe8cba3829ed408bb",
@@ -336,8 +347,10 @@
     "article-media/4fb99c0a32cfe808956a13bc2caaec71ed7adea83de79df4c5bfa08592d0b871/cover.jpg": "4fb99c0a32cfe808956a13bc2caaec71ed7adea83de79df4c5bfa08592d0b871",
     "article-media/29527faa8c99529dfa1a7beb3ea1068d4f93a9ba9a30d86b4a1f8eac30583c54/normal-distribution.webp": "29527faa8c99529dfa1a7beb3ea1068d4f93a9ba9a30d86b4a1f8eac30583c54",
     "article-media/d125ba3950bf0b8cd725d9197957a152ca404bff51c3cb87c9ee6460a8ddad88/cover-social.jpg": "d125ba3950bf0b8cd725d9197957a152ca404bff51c3cb87c9ee6460a8ddad88",
-    "articles/ai-verification-crisis.html": "9c6638a35d5ac7fc6c51de7a38ef23808ea4480b022f90bf85873ab826a7b3e0",
-    "article-snapshots/d75976b40d4b0697595ea7a39e8587bbf25a758937626aafa73c83b95e1f4ab8/ai-verification-crisis.html": "1db995e7fe029f376b78391cb91d938bf3bc2c9a32f98344d29cf03a79f258e2",
+    "articles/ai-verification-crisis.html": "b6f560683f36243d73dc4a4fea22aba95a6dc977a46c28a014d22b3811730471",
+    "article-snapshots/dfcab3ea8789d8e7fd6676b29c61fb724d06cf5b0fe1ff6dbd5fcfbd7e60a44e/ai-verification-crisis.html": "9662c7640491d904b89b1fd03c9d0e93e9bdd9cad8a58cde2ba2b5703247b916",
+    "article-media/2d4e237d21021bcb6c62b5ce9ab10daffc4e93b521a20f3b6a707a3531781739/cover.jpg": "2d4e237d21021bcb6c62b5ce9ab10daffc4e93b521a20f3b6a707a3531781739",
+    "article-media/5ba399aa0ca2dc3e492e58292358870926fb5acd7fdd958c63e2e71541d6994d/cover-social.jpg": "5ba399aa0ca2dc3e492e58292358870926fb5acd7fdd958c63e2e71541d6994d",
     "articles/the-sdlc-is-out-of-balance.html": "98f0134af4bf1e2e810275d079597ebaad63a426f5a55059062327e163f5a4fa",
     "article-snapshots/51b266810d00bdfd256ecbbb35242ec8f69f787fc82b39e430e58361b891c32a/the-sdlc-is-out-of-balance.html": "ad1c26e7424e29decbc580e0c6b65778aecd1da5c76839a3ceb346eee02276ce",
     "article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f/hero-web.jpg": "fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f",
@@ -434,6 +447,6 @@
     "runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/space.js": "7812c824ce3dac0d5d36f40788c65ca66cc553e5a0287850a24a499a02d4eab4",
     "runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/archive.js": "bf1b9e42356b282f3c08f7763a7a59263241c752df5dd9ee776a6b0bf86b0caa",
     "runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/navigation.js": "9d074333c9731e08a801e8f7ba418c645ef8c9e54d912a666912640e36e1a292",
-    "site-revision.json": "d685e9099d7bdda70c25c2d1880bfb3b434b3bcd81351af8577f06e5263bdf7f"
+    "site-revision.json": "53712d06b472ceaaf45593a8e8236ffc91405ddcc41fe179cc0e6fac2e0450f5"
   }
 }
