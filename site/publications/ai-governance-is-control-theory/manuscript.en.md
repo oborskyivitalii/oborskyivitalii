@@ -2,7 +2,7 @@
 
 *Source edition: [Towards AI](https://pub.towardsai.net/uncertainty-architecture-why-ai-governance-is-actually-control-theory-511f3e73ed6e), 13 December 2025. Also published on [LinkedIn](https://www.linkedin.com/pulse/uncertainty-architecture-why-ai-governance-actually-control-oborskyi-oqhpf/) on 11 December 2025.*
 
-> **Historical note.** The text preserves the author’s December 2025 framing. For current definitions of the control loop and decision authority, see the [living Uncertainty Architecture specification](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture). The evaluation sample sizes and thresholds below are historical examples.
+> **Author’s update, November 2026.** When I wrote this in December 2025, I used *Behavioral Software* for applications whose behavior depended on probabilistic models. Earlier UA work also used *Behavioral Applications*. In my later work, I use [Thinking Systems](https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db) for a more specific engineering category. A system qualifies when at least one consequential runtime responsibility depends partly on model judgment. That distinction changes what we need to govern. The object of control is the deployed system and its consequential behavior, including decisions made at runtime. [The living Uncertainty Architecture specification](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture) develops the current terminology and decision model.
 
 ![A turbulent field of particles passes through a luminous framework and emerges in parallel streams.](asset:cover)
 
@@ -41,6 +41,8 @@ We want the variance. That "noise" is what we call creativity, reasoning, and ad
 ## The Trap: Trying to Unit Test a Liquid
 
 The industry's current crisis comes from trying to manage Behavioral Software (P(y|x)) using tools designed for Linear Software (f(x)).
+
+> **November 2026 update.** I now apply `y ~ P(y | x)` to a [responsibility that depends on Model Judgment](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/345c8f50745e5fde1303d0d7952634f7899220c9/00-doctrine/glossary.md#model-judgment). A fixed workflow can qualify as a Thinking System when model judgment materially affects what the system decides or does. Access rules, limits, and transaction controls can remain explicitly encoded within the same system.
 
 I see engineering teams panic when they encounter this stochastic behavior. Their reflex is to "strangle" the uncertainty:
 
@@ -138,6 +140,8 @@ Now that we have Actuators (LangChain) and Constraints (Schemas), we have a robo
 
 For that, we need to close the loop.
 
+> **November 2026 update.** In the [current control-loop anatomy](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/345c8f50745e5fde1303d0d7952634f7899220c9/00-doctrine/control-loop-anatomy.md#8-capability-boundaries), a Constraint states an approved boundary, such as a refund limit. A Constraint Realization implements that boundary, for example by checking the amount and required approval before a refund goes through. A schema can enforce output shape. An Actuator carries out an authorized change, such as switching to a fallback or rolling back a release.
+
 ## Control Theory: Closing the Loop
 
 We have established that our system is stochastic (P(y|x)). We have established that we have Actuators (LangChain) and Constraints (Schemas).
@@ -208,6 +212,8 @@ But who reads the sensor? Who decides if an error of 4% is acceptable? The code 
 
 For that, we need the Controller.
 
+> **November 2026 update.** In the [current terminology](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/345c8f50745e5fde1303d0d7952634f7899220c9/00-doctrine/control-loop-anatomy.md#sensor-versus-gate), the evaluator produces evidence, the decision function chooses whether to block, limit, or release the change, and the deployment mechanism applies that decision. I now use Golden Scenarios to cover behaviors and failure modes that matter. The sample sizes and thresholds in this article, including the 30–50 examples above, are historical examples. The evidence needed for a release depends on the requirement and the decision it supports.
+
 ## The Operating Model IS the Controller
 
 In a classic control system (like a thermostat), the Controller is a simple piece of logic. It reads the Sensor (Current Temp), compares it to the Intent (Target Temp), and if there is a gap, it sends a signal to the Actuator (Turn on Heater).
@@ -243,6 +249,8 @@ When a human reviews a Drift Report (Sensor Data), decides the model is hallucin
 If you remove the Operating Model, if you fire the humans and stop the processes - you do not have an "autonomous system." You have an Open Loop system. You have muscles and nerves, but you have performed a lobotomy. The system will continue to move, but it will inevitably drift into failure.
 
 **Governance is not bureaucracy. Governance is the mechanism that injects Business Intent back into the system.**
+
+> **November 2026 update.** I now distinguish the operating model from the [Controller function](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/345c8f50745e5fde1303d0d7952634f7899220c9/00-doctrine/glossary.md#controller). The operating model assigns decision rights. A Controller uses evidence to choose or authorize a response. Software can make a decision within delegated authority, such as blocking a release that fails an approved criterion. Decisions reserved for [Human Authority](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/345c8f50745e5fde1303d0d7952634f7899220c9/00-doctrine/glossary.md#human-authority) go to the authorized person or role.
 
 **Artifact Reveal: Operators of the Controller**
 
@@ -373,6 +381,8 @@ Function: Measurement. They fight Blindness. They convert "feelings" into statis
 Tools: The UA Framework (Roles, Rituals, Registry).
 
 Function: Judgment. It fights Semantic Entropy. It injects business intent and closes the feedback loop.
+
+> **November 2026 update.** I now describe these four [control functions](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/345c8f50745e5fde1303d0d7952634f7899220c9/00-doctrine/control-loop-anatomy.md#2-complete-bounded-ua-control-architecture) as capabilities that can be distributed across application code, platform services, and people. Feedback closes the loop when evidence reaches a decision function and authorized action changes operation. Bounded control also depends on approved operating limits, evidence fit for the decision, and a way to intervene before the consequences become unacceptable.
 
 **Final Thought: Engineering Luck**
 
