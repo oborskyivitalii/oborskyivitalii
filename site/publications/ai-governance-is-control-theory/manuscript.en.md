@@ -396,7 +396,7 @@ Vitalii Oborskyi — Head of Delivery & Ops | Creator of “Uncertainty Architec
 
 Framework: [https://github.com/oborskyivitalii/uncertainty-architecture](https://github.com/oborskyivitalii/uncertainty-architecture)
 
-LinkedIn: [https://www.linkedin.com/in/vitaliioborskyi/](https://www.linkedin.com/in/vitaliioborskyi/)
+Connect: [https://www.linkedin.com/in/vitaliioborskyi/](https://www.linkedin.com/in/vitaliioborskyi/)
 
 ---
 
