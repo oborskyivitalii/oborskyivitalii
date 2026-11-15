@@ -18,10 +18,10 @@ def distribution(name, version, requires=()):
 
 class PythonToolchainTests(unittest.TestCase):
     lock = (
-        "semgrep==1.179.0\nmcp==1.30.0\npackaging==26.3\n"
-        "opentelemetry-api==1.45.1\nopentelemetry-sdk==1.45.1\n"
-        "opentelemetry-exporter-otlp-proto-http==1.45.1\n"
-        "opentelemetry-semantic-conventions==0.66b1\n"
+        "semgrep==1.185.0\nmcp==1.30.0\npackaging==26.3\n"
+        "opentelemetry-api==1.45.2\nopentelemetry-sdk==1.45.2\n"
+        "opentelemetry-exporter-otlp-proto-http==1.45.2\n"
+        "opentelemetry-semantic-conventions==0.66b2\n"
     )
     declarations = [
         "mcp==1.29.0",
@@ -32,22 +32,22 @@ class PythonToolchainTests(unittest.TestCase):
 
     def graph(self):
         return [
-            distribution("semgrep", "1.179.0", [*self.declarations, "packaging>=20"]),
+            distribution("semgrep", "1.185.0", [*self.declarations, "packaging>=20"]),
             distribution("mcp", "1.30.0", ["packaging>=20", "absent; extra == 'unused'"]),
             distribution("packaging", "26.3"),
-            distribution("opentelemetry-api", "1.45.1"),
+            distribution("opentelemetry-api", "1.45.2"),
             distribution(
                 "opentelemetry-sdk",
-                "1.45.1",
-                ["opentelemetry-api==1.45.1", "opentelemetry-semantic-conventions==0.66b1"],
+                "1.45.2",
+                ["opentelemetry-api==1.45.2", "opentelemetry-semantic-conventions==0.66b2"],
             ),
             distribution(
                 "opentelemetry-exporter-otlp-proto-http",
-                "1.45.1",
-                ["opentelemetry-api~=1.15", "opentelemetry-sdk~=1.45.1"],
+                "1.45.2",
+                ["opentelemetry-api~=1.15", "opentelemetry-sdk~=1.45.2"],
             ),
             distribution(
-                "opentelemetry-semantic-conventions", "0.66b1", ["opentelemetry-api==1.45.1"]
+                "opentelemetry-semantic-conventions", "0.66b2", ["opentelemetry-api==1.45.2"]
             ),
         ]
 
@@ -68,17 +68,17 @@ class PythonToolchainTests(unittest.TestCase):
                 {
                     "package": "semgrep",
                     "declared": "opentelemetry-api~=1.37.0",
-                    "installed": "opentelemetry-api==1.45.1",
+                    "installed": "opentelemetry-api==1.45.2",
                 },
                 {
                     "package": "semgrep",
                     "declared": "opentelemetry-sdk~=1.37.0",
-                    "installed": "opentelemetry-sdk==1.45.1",
+                    "installed": "opentelemetry-sdk==1.45.2",
                 },
                 {
                     "package": "semgrep",
                     "declared": "opentelemetry-exporter-otlp-proto-http~=1.37.0",
-                    "installed": "opentelemetry-exporter-otlp-proto-http==1.45.1",
+                    "installed": "opentelemetry-exporter-otlp-proto-http==1.45.2",
                 },
             ],
         )
@@ -125,17 +125,17 @@ class PythonToolchainTests(unittest.TestCase):
 
     def test_unreviewed_versions_fail_even_when_lock_matches_installation(self):
         cases = [
-            ("semgrep", "1.180.0"),
+            ("semgrep", "1.179.0"),
             ("mcp", "1.29.0"),
             ("mcp", "1.30.1"),
             ("mcp", "2.2.0"),
             ("opentelemetry-api", "1.37.0"),
             ("opentelemetry-api", "1.45.0"),
-            ("opentelemetry-api", "1.45.2"),
+            ("opentelemetry-api", "1.45.1"),
             ("opentelemetry-sdk", "1.37.0"),
-            ("opentelemetry-sdk", "1.45.2"),
+            ("opentelemetry-sdk", "1.45.1"),
             ("opentelemetry-exporter-otlp-proto-http", "1.37.0"),
-            ("opentelemetry-exporter-otlp-proto-http", "1.45.2"),
+            ("opentelemetry-exporter-otlp-proto-http", "1.45.1"),
             ("opentelemetry-semantic-conventions", "0.58b0"),
         ]
         for name, version in cases:

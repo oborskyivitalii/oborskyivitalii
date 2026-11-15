@@ -1,6 +1,6 @@
 {
   "base_sha": "0de10b68da18049946fb5eeedece66fc5ebf626c",
-  "scope_sha256": "687e6cf6133be074c45a3e293e270596229f41b7385214865ac32abfe44d434f",
+  "scope_sha256": "8f90a93595ebfb2f13a2b78344b5f1b62152f14188eff1bcfa215576694079a0",
   "paths": [
     ".github/repository-intelligence-config.json",
     ".github/repository-layout.json",
@@ -8,15 +8,19 @@
     ".github/ri-ci-map.json",
     ".github/workflows/change-admission.yml",
     ".github/workflows/issue-acceptance.yml",
+    "guides/SITE-RELEASE-GATES.md",
     "tests/delivery-admission.test.cjs",
+    "tests/test_python_toolchain.py",
     "tests/test_ri_ci.py",
     "tools/check_ri_ci.py",
+    "tools/quality/bandit-policy.json",
     "tools/quality/delivery-admission.cjs",
+    "tools/quality/python_toolchain.py",
     "tools/quality/test-profiles.json",
     "tools/quality/workflow-guide-markdown.mjs"
   ],
   "disposition": "updated",
-  "sections": ["Keeping this guide current"],
-  "rationale": "The guide now explains the required independent record for either disposition, when a parsed change is necessary, and how protected admission binds maintainer attestation.",
-  "reviewer_execution": "/root/ac06_final_req, /root/ac06_final_code, /root/ac06_final_wb, /root/ac06_final_qa recorded in 2026-11-12-review.md under Independent confirmation of both dispositions"
+  "sections": ["Keeping this guide current", "Delivery routes and controls"],
+  "rationale": "The complete candidate adds the workflow guide and documents guide review and full-route delivery. Its linked release gate records the refreshed scanner versions and that existing graph and admission controls continue to apply.",
+  "reviewer_execution": "/root/deps199_review_req, /root/deps199_review_code, /root/deps199_review_wb, /root/deps199_review_qa and /root/deps199_review_fingerprints recorded in the coherent audit toolchain refresh section of 2026-11-12-review.md"
 }

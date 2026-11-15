@@ -50,7 +50,7 @@ def verify(text, distributions):
             raise ValueError("Missing or changed installed audit dependency: " + name)
     if set(installed) - set(locked):
         raise ValueError("Unexpected installed audit dependency")
-    if "semgrep" in locked and (locked["semgrep"] != "1.179.0" or locked.get("mcp") != "1.30.0"):
+    if "semgrep" in locked and (locked["semgrep"] != "1.185.0" or locked.get("mcp") != "1.30.0"):
         raise ValueError("Unreviewed Semgrep/MCP compatibility pair")
 
     extras = {name: {""} for name in locked}
@@ -76,11 +76,11 @@ def verify(text, distributions):
     # They leave distribution metadata and advisory findings unchanged.
     reviewed_overrides = {
         ("mcp==1.29.0", "mcp==1.30.0"),
-        ("opentelemetry-api~=1.37.0", "opentelemetry-api==1.45.1"),
-        ("opentelemetry-sdk~=1.37.0", "opentelemetry-sdk==1.45.1"),
+        ("opentelemetry-api~=1.37.0", "opentelemetry-api==1.45.2"),
+        ("opentelemetry-sdk~=1.37.0", "opentelemetry-sdk==1.45.2"),
         (
             "opentelemetry-exporter-otlp-proto-http~=1.37.0",
-            "opentelemetry-exporter-otlp-proto-http==1.45.1",
+            "opentelemetry-exporter-otlp-proto-http==1.45.2",
         ),
     }
     observed_overrides = set()
@@ -103,7 +103,7 @@ def verify(text, distributions):
             override = (str(requirement), dependency + "==" + locked[dependency])
             if (
                 name == "semgrep"
-                and distribution.version == "1.179.0"
+                and distribution.version == "1.185.0"
                 and override in reviewed_overrides
             ):
                 if override in observed_overrides:

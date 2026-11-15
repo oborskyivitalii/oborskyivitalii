@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "991d5fffef637d4bbe2058e563bdad5d73c9c8cae73ff00dce10bcb546ef58b4",
+    "digest": "97df72e5c136aa139c1bbfbad534a57ddf0afeff4e857934050f271a2048ffd0",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -995,7 +995,7 @@
       {
         "path": "guides/SITE-RELEASE-GATES.md",
         "identity_mode": "content",
-        "sha256": "80e3893557584c46713a2055b6bd747f73d167352da013339ed64c538a5ce3ce"
+        "sha256": "a5fcef5de74e521cdcdb161c4114d862aa5e04b0a62a1148592eecdb22ec46df"
       },
       {
         "path": "guides/SITE-RIGHTS.md",
@@ -4935,12 +4935,12 @@
       {
         "path": "review/issue-199/2026-11-12-review.md",
         "identity_mode": "content",
-        "sha256": "8f3bd9b163d47cdd9e062ae8c6995db0720d9fd921fef01dddb91725f20ef9d3"
+        "sha256": "55c776bfcb9fae4ff08c146bacd015db4eddd62a965474199b64cd2e36239f59"
       },
       {
         "path": "review/issue-199/workflow-guide-evidence.json",
         "identity_mode": "content",
-        "sha256": "2ea6f22f9a4e087ab4e31ce9ef50d8c47a8cd44c4d31c394bdffcf8cdd32fea6"
+        "sha256": "35475ac8b909d05c331001603afd7dec0b7b02642a1e557fcf03822c00c11e60"
       },
       {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -12285,7 +12285,7 @@
       {
         "path": "tests/test_python_toolchain.py",
         "identity_mode": "content",
-        "sha256": "8d724059ffdcc9f94153899881458b40008db64b7cdd8de4d075da25b77cda3b"
+        "sha256": "143f029e08aac0300ee781d3464dfc316b41e497d91081a648860bdc6442c1c5"
       },
       {
         "path": "tests/test_repository_intelligence.py",
@@ -12660,7 +12660,7 @@
       {
         "path": "tools/quality/bandit-policy.json",
         "identity_mode": "content",
-        "sha256": "a5ddcc81cf48f96e2a3920f7d484512e4668939ad3c34a0488036a2ae07d29f7"
+        "sha256": "c2f30e04c0f18d963ada276484a1d3c9c90658ab4f50da7b77bce1fff469b776"
       },
       {
         "path": "tools/quality/bandit-triage.cjs",
@@ -12980,7 +12980,7 @@
       {
         "path": "tools/quality/python_toolchain.py",
         "identity_mode": "content",
-        "sha256": "0bc77dbfb3763758b06f0c46d62b9778a70b988593a3f0a3687fce2b3e508905"
+        "sha256": "885a94f536bf91c143450a8c2d88adcc6c9bdaf7ec605031b810c9aabf9539a8"
       },
       {
         "path": "tools/quality/reader-performance.cjs",
@@ -13030,7 +13030,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "48939faa44177404607954d9b60ccc008b72a9c9458726dcb867dc9748f9e9e0"
+        "sha256": "b50316b078eebef85b787a47baf221ac9c2daeb6e21e4aa3696a1544b32a55c8"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
@@ -13105,7 +13105,7 @@
       {
         "path": "tools/quality/toolchain/requirements.txt",
         "identity_mode": "content",
-        "sha256": "aca230d90b81c5e62440dba6d25348ac5954f324446bab54fd2a30b7cf0daa46"
+        "sha256": "36a1823a4bf2854a4e3b1032fec11cb874f51d0152b52620ffec1c9b2e67bce9"
       },
       {
         "path": "tools/quality/transition-pacing.cjs",
