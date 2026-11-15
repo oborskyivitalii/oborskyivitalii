@@ -47,7 +47,7 @@
       "snapshotSHA": "968561491371536d7c4586e7042d2578bbd821ba29012174d620793669cb8d44"
     },
     "research": {
-      "version": "124ee895d4c065467967610d3b6c0bfa787233a881ba48e3c7d57bd56980ccca",
+      "version": "ef3afbf2833383f3ccc8afb6e9eb80232ed0dedb96d49a4e928901eec6d3d69a",
       "url": "research.html",
       "inputs": [
         "site/content/pages/research/acknowledgements.json",
@@ -68,10 +68,10 @@
       "assets": [
         "article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618/research-fallback.svg"
       ],
-      "snapshotSHA": "a4e1fc6757ff72f44df07229b91db4cc3612410175cbe45f359a2030018dc2ac"
+      "snapshotSHA": "edd3991fe6e809b4d6ed96274984c9a9b663d019f2431a80f60d4dc978616b75"
     },
     "writing": {
-      "version": "fb699c9df00f23d38d4f6596bd7ed7bccb02939a13e1215567cc3f269371932a",
+      "version": "4aa79453f999885cf1271ab4f08d444ceac82dd9cea0d992f3f5dace63f805b4",
       "url": "writing.html",
       "inputs": [
         "site/content/pages/writing/main.json",
@@ -115,7 +115,7 @@
       "assets": [
         "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
       ],
-      "snapshotSHA": "1ef21665f930725dd639d35e1e237052ad8f3b5ac3173ab9ef111563df463b74"
+      "snapshotSHA": "f8fb342d0112414eb58a0ba664a1bc2c36f8fc4aef76418eaee5b0db8aa09ce2"
     },
     "talks": {
       "version": "247184e4b0fbf5fa6d0cadf30293641ab576f019c5e02a6319235308528bdee8",
@@ -152,15 +152,15 @@
   },
   "articles": {
     "ai-governance-is-control-theory:en": {
-      "version": "4fc0b22cb017888cddeb652e2097d4e46f9ae2f9919e8a044359b230f7baf3ce",
+      "version": "32586205823df86565d10a4cc60eef96eb185d1bec9b269b8ab9a2c1754b9ee0",
       "url": "articles/ai-governance-is-control-theory.html",
-      "snapshot": "article-snapshots/4fc0b22cb017888cddeb652e2097d4e46f9ae2f9919e8a044359b230f7baf3ce/ai-governance-is-control-theory.html",
-      "sha256": "b92f748891e357d9dd6da696758b08bcaa2e69c626167b8f00783ba8a12883c6",
+      "snapshot": "article-snapshots/32586205823df86565d10a4cc60eef96eb185d1bec9b269b8ab9a2c1754b9ee0/ai-governance-is-control-theory.html",
+      "sha256": "87bc172a9f845e1febd17f8f1351f9232896eec29d7b3e5e66e9940f60461363",
       "inputs": [
         "site/assets/publications/ai-governance-is-control-theory/cover-web.jpg",
         "site/assets/publications/ai-governance-is-control-theory/cover.png",
         "site/assets/publications/ai-governance-is-control-theory/normal-distribution.png",
-        "site/publications/ai-governance-is-control-theory/editions/ai-governance-is-control-theory-en-20251213.json",
+        "site/publications/ai-governance-is-control-theory/editions/ai-governance-is-control-theory-en-20261115-annotated.json",
         "site/publications/ai-governance-is-control-theory/launch-post.en.md",
         "site/publications/ai-governance-is-control-theory/manuscript.en.md",
         "site/publications/ai-governance-is-control-theory/profile.json",
@@ -184,9 +184,9 @@
       },
       "candidate": false,
       "articleId": "ai-governance-is-control-theory",
-      "contentEdition": "ai-governance-is-control-theory-en-20251213",
-      "sourceSha256": "cbc804ade71bd5bf226aac5c1d0b4a2974a3af0d8ee5da478ccd3c62b32bbf3a",
-      "semanticSha256": "c494f7c88acebff86042b3cfdbf3a860e257c41692809e4b2b5956ff6aafcd23"
+      "contentEdition": "ai-governance-is-control-theory-en-20261115-annotated",
+      "sourceSha256": "489c53189a7fe7985c8de22d815ff32a3973acb76b610aba3074f84c405246bc",
+      "semanticSha256": "b3127ee607eef4d1421f28d88bcd20aa5997755bfae3f8ae004d947420919bf4"
     },
     "sdlc-out-of-balance:en": {
       "version": "fd3bf0dc16030581e3b1aaa889e8a80c775b1edef86381bd570e6ff6c6aa95f3",
@@ -298,17 +298,17 @@
     "index.html": "258775c1bd866dad3f708e5083688d8ce4e5e69ccfe331c7baa62981467f304a",
     "snapshots/1d09ddaffa9360d5ebf385249c24b2af84ef98bb339349387706ef46620ea0c2/index.html": "968561491371536d7c4586e7042d2578bbd821ba29012174d620793669cb8d44",
     "article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618/research-fallback.svg": "1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618",
-    "research.html": "b6687e9ff56d9d47bfd0e38791c6860f588874100b5026c6d8e9096001aa8ab6",
-    "snapshots/124ee895d4c065467967610d3b6c0bfa787233a881ba48e3c7d57bd56980ccca/research.html": "a4e1fc6757ff72f44df07229b91db4cc3612410175cbe45f359a2030018dc2ac",
+    "research.html": "44e9399f694e8ad1292b0fbbd70c31e66e21047f23e71b08c34178bd782885e1",
+    "snapshots/ef3afbf2833383f3ccc8afb6e9eb80232ed0dedb96d49a4e928901eec6d3d69a/research.html": "edd3991fe6e809b4d6ed96274984c9a9b663d019f2431a80f60d4dc978616b75",
     "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg": "2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16",
-    "writing.html": "17007eccccb05f6d78abd82e8023f825c842738fe3daa6a04048dce26e28414f",
-    "snapshots/fb699c9df00f23d38d4f6596bd7ed7bccb02939a13e1215567cc3f269371932a/writing.html": "1ef21665f930725dd639d35e1e237052ad8f3b5ac3173ab9ef111563df463b74",
+    "writing.html": "fbe34333f065afac116f97708ed286c4a4f604e4842c2944ed5a44e3712cc856",
+    "snapshots/4aa79453f999885cf1271ab4f08d444ceac82dd9cea0d992f3f5dace63f805b4/writing.html": "f8fb342d0112414eb58a0ba664a1bc2c36f8fc4aef76418eaee5b0db8aa09ce2",
     "talks.html": "152d6ec9ac97d6b5acbf21e25fa464909ad62610b3d811854e35ce5d7ce2ad59",
     "snapshots/247184e4b0fbf5fa6d0cadf30293641ab576f019c5e02a6319235308528bdee8/talks.html": "172a9d37cfe2ef0d3d34abf6b4018c8028c1865769e646bf70408719b290afb3",
     "credits.html": "6433f5e1c5118e8f2833a5666150c8986e2bbf12b7f05228c48c6da37859328a",
     "snapshots/d72077246cfce8168fa89fb80f59bf50575d62f457391720904dc294bb9ca4dc/credits.html": "8b56bb4ebdaa97b267f2098eb7cbe7f8f7946042824c55aad9c14d83116ecb93",
-    "articles/ai-governance-is-control-theory.html": "bbde21497dbb5f3e6ac528af360d1ffac42b1ec6c54c8399debcb871f219208a",
-    "article-snapshots/4fc0b22cb017888cddeb652e2097d4e46f9ae2f9919e8a044359b230f7baf3ce/ai-governance-is-control-theory.html": "b92f748891e357d9dd6da696758b08bcaa2e69c626167b8f00783ba8a12883c6",
+    "articles/ai-governance-is-control-theory.html": "c240a4b56f2b9b630e8b93557a2874ab69c71f0f4a7fd47ff75f4b9a5f4d30b1",
+    "article-snapshots/32586205823df86565d10a4cc60eef96eb185d1bec9b269b8ab9a2c1754b9ee0/ai-governance-is-control-theory.html": "87bc172a9f845e1febd17f8f1351f9232896eec29d7b3e5e66e9940f60461363",
     "article-media/4fb99c0a32cfe808956a13bc2caaec71ed7adea83de79df4c5bfa08592d0b871/cover.jpg": "4fb99c0a32cfe808956a13bc2caaec71ed7adea83de79df4c5bfa08592d0b871",
     "article-media/29527faa8c99529dfa1a7beb3ea1068d4f93a9ba9a30d86b4a1f8eac30583c54/normal-distribution.webp": "29527faa8c99529dfa1a7beb3ea1068d4f93a9ba9a30d86b4a1f8eac30583c54",
     "article-media/d125ba3950bf0b8cd725d9197957a152ca404bff51c3cb87c9ee6460a8ddad88/cover-social.jpg": "d125ba3950bf0b8cd725d9197957a152ca404bff51c3cb87c9ee6460a8ddad88",
@@ -408,6 +408,6 @@
     "runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/space.js": "7812c824ce3dac0d5d36f40788c65ca66cc553e5a0287850a24a499a02d4eab4",
     "runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/archive.js": "bf1b9e42356b282f3c08f7763a7a59263241c752df5dd9ee776a6b0bf86b0caa",
     "runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/navigation.js": "9d074333c9731e08a801e8f7ba418c645ef8c9e54d912a666912640e36e1a292",
-    "site-revision.json": "459c48fdc9dc3cf62f39a9bc563fe18709782291139a15b903744fc62d8217dd"
+    "site-revision.json": "b713309549f8e883fe1d5da3512f5dbecb58a929f575bfdd1011ce0001880864"
   }
 }

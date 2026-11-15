@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "id": "ai-governance-is-control-theory-en-20261115-annotated",
+  "articleId": "ai-governance-is-control-theory",
+  "language": "en",
+  "kind": "full-article",
+  "source": {
+    "path": "manuscript.en.md",
+    "sha256": "489c53189a7fe7985c8de22d815ff32a3973acb76b610aba3074f84c405246bc",
+    "commit": "e72fed250eac3a67aae9ffa621494d144d7cc8f0",
+    "blob": "7d8499a4abfdb9f4016a4e12fe8ab839240968d0"
+  },
+  "owner": "site",
+  "derivation": null,
+  "rights": "accepted",
+  "semanticSha256": "b3127ee607eef4d1421f28d88bcd20aa5997755bfae3f8ae004d947420919bf4"
+}

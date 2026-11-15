@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "3d67a40ea74e567f5df723d53e14f3cb7fc5a3de4b261d1df964c4ae2c5aa2f8",
+    "digest": "88e0b1d2fd15234ce1d717c0f1b23f85d66d5c613158bbb08fa95d870c5e9097",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -271,12 +271,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "372ab42b073071e411c0b8fa4e9e537c398a77813eeedca847ee8d091b1d1a48"
+        "sha256": "73d1d6fc4ab04c17e3900be81dece164e08fee5743d7e5ff3875407eb424151a"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "61cd1fcc8cde2b6ceb44fd0b5ef05900374cab9e37c4a779bdaab3ff451efab4"
+        "sha256": "9234ea86dd16533b72267575b2c9955c8966f6b9391d26791631ce96448b68fa"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -426,7 +426,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "7ef1dd14b95214f9d27ca91817c84afdf36207dd488ad727b51ecdbd7700361a"
+        "sha256": "f3647566d3077ab1821a018549b5d61a4e20316c2ebb90895547ea65fa189448"
       },
       {
         "path": "NOTICE.md",
@@ -643,9 +643,9 @@
         "sha256": "c175952dec9c49105bd2be3d4edea0e619517d8d23bf8964ef134a480ee04b92"
       },
       {
-        "path": "docs/article-snapshots/4fc0b22cb017888cddeb652e2097d4e46f9ae2f9919e8a044359b230f7baf3ce/ai-governance-is-control-theory.html",
+        "path": "docs/article-snapshots/32586205823df86565d10a4cc60eef96eb185d1bec9b269b8ab9a2c1754b9ee0/ai-governance-is-control-theory.html",
         "identity_mode": "content",
-        "sha256": "b92f748891e357d9dd6da696758b08bcaa2e69c626167b8f00783ba8a12883c6"
+        "sha256": "87bc172a9f845e1febd17f8f1351f9232896eec29d7b3e5e66e9940f60461363"
       },
       {
         "path": "docs/article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995/the-sdlc-is-out-of-balance.html",
@@ -665,7 +665,7 @@
       {
         "path": "docs/articles/ai-governance-is-control-theory.html",
         "identity_mode": "content",
-        "sha256": "bbde21497dbb5f3e6ac528af360d1ffac42b1ec6c54c8399debcb871f219208a"
+        "sha256": "c240a4b56f2b9b630e8b93557a2874ab69c71f0f4a7fd47ff75f4b9a5f4d30b1"
       },
       {
         "path": "docs/articles/the-sdlc-is-out-of-balance.html",
@@ -740,7 +740,7 @@
       {
         "path": "docs/research.html",
         "identity_mode": "content",
-        "sha256": "b6687e9ff56d9d47bfd0e38791c6860f588874100b5026c6d8e9096001aa8ab6"
+        "sha256": "44e9399f694e8ad1292b0fbbd70c31e66e21047f23e71b08c34178bd782885e1"
       },
       {
         "path": "docs/runtime/1c34e64047482a214a50a115582adb08988fe8721f5ee651bd8a231a300e2cf7/analytics.js",
@@ -910,7 +910,7 @@
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "459c48fdc9dc3cf62f39a9bc563fe18709782291139a15b903744fc62d8217dd"
+        "sha256": "b713309549f8e883fe1d5da3512f5dbecb58a929f575bfdd1011ce0001880864"
       },
       {
         "path": "docs/snapshots/080da808855bdc7cac66970509a9a371a5033cb5d721a007a92632c826b2d06a/writing.html",
@@ -921,11 +921,6 @@
         "path": "docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2/talks.html",
         "identity_mode": "content",
         "sha256": "05054fd2a4ca2aca6cd0d05717fe332cb95390720e1089331271ca62f3c53f4c"
-      },
-      {
-        "path": "docs/snapshots/124ee895d4c065467967610d3b6c0bfa787233a881ba48e3c7d57bd56980ccca/research.html",
-        "identity_mode": "content",
-        "sha256": "a4e1fc6757ff72f44df07229b91db4cc3612410175cbe45f359a2030018dc2ac"
       },
       {
         "path": "docs/snapshots/1d09ddaffa9360d5ebf385249c24b2af84ef98bb339349387706ef46620ea0c2/index.html",
@@ -941,6 +936,11 @@
         "path": "docs/snapshots/247184e4b0fbf5fa6d0cadf30293641ab576f019c5e02a6319235308528bdee8/talks.html",
         "identity_mode": "content",
         "sha256": "172a9d37cfe2ef0d3d34abf6b4018c8028c1865769e646bf70408719b290afb3"
+      },
+      {
+        "path": "docs/snapshots/4aa79453f999885cf1271ab4f08d444ceac82dd9cea0d992f3f5dace63f805b4/writing.html",
+        "identity_mode": "content",
+        "sha256": "f8fb342d0112414eb58a0ba664a1bc2c36f8fc4aef76418eaee5b0db8aa09ce2"
       },
       {
         "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
@@ -1013,9 +1013,9 @@
         "sha256": "8b56bb4ebdaa97b267f2098eb7cbe7f8f7946042824c55aad9c14d83116ecb93"
       },
       {
-        "path": "docs/snapshots/fb699c9df00f23d38d4f6596bd7ed7bccb02939a13e1215567cc3f269371932a/writing.html",
+        "path": "docs/snapshots/ef3afbf2833383f3ccc8afb6e9eb80232ed0dedb96d49a4e928901eec6d3d69a/research.html",
         "identity_mode": "content",
-        "sha256": "1ef21665f930725dd639d35e1e237052ad8f3b5ac3173ab9ef111563df463b74"
+        "sha256": "edd3991fe6e809b4d6ed96274984c9a9b663d019f2431a80f60d4dc978616b75"
       },
       {
         "path": "docs/space.js",
@@ -1040,7 +1040,7 @@
       {
         "path": "docs/writing.html",
         "identity_mode": "content",
-        "sha256": "17007eccccb05f6d78abd82e8023f825c842738fe3daa6a04048dce26e28414f"
+        "sha256": "fbe34333f065afac116f97708ed286c4a4f604e4842c2944ed5a44e3712cc856"
       },
       {
         "path": "drafts/medium-profile-revision-20261001.html",
@@ -4970,7 +4970,7 @@
       {
         "path": "review/issue-183/2026-11-15-control-theory.md",
         "identity_mode": "content",
-        "sha256": "8957f98f6cfd52608c7bbc1aed59f0ed4b25354ae29cda9155640f67e04c8cc2"
+        "sha256": "8475c871aa7fdedd9e092e86796b6dc1a72498ea2fd9c3ecfd9c2fc38e7538a5"
       },
       {
         "path": "review/issue-184/2026-11-10-archive.md",
@@ -10940,17 +10940,22 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "6a8e555f671d2e02c31179e6b10590c9a21ecfacd10124814ac30c9ef388044e"
+        "sha256": "e5c92b2f4be4e35e462db4463dabce18b06f979e0bf400f15af82d4453386706"
       },
       {
         "path": "site/publications/ai-governance-is-control-theory/PROVENANCE.md",
         "identity_mode": "content",
-        "sha256": "343db6d5d137a6044aa6696e6caf7dfd3eaf6f3d1218094c4f4279e225a5528f"
+        "sha256": "b9f58e9a1b2f408349dd18f5ac516a4c8f9eab057fbef8f1f2dc462b3248af81"
       },
       {
         "path": "site/publications/ai-governance-is-control-theory/editions/ai-governance-is-control-theory-en-20251213.json",
         "identity_mode": "content",
         "sha256": "c83c4df4e3a4f3299936217ca9a5441378d83d1931731bd0e9e8eb2d6675a028"
+      },
+      {
+        "path": "site/publications/ai-governance-is-control-theory/editions/ai-governance-is-control-theory-en-20261115-annotated.json",
+        "identity_mode": "content",
+        "sha256": "50be25b5cb3098a21fa97e58bbfc5138d67633fa16343f1b2519f735dbe7e4eb"
       },
       {
         "path": "site/publications/ai-governance-is-control-theory/launch-post.en.md",
@@ -10960,7 +10965,7 @@
       {
         "path": "site/publications/ai-governance-is-control-theory/manuscript.en.md",
         "identity_mode": "content",
-        "sha256": "cbc804ade71bd5bf226aac5c1d0b4a2974a3af0d8ee5da478ccd3c62b32bbf3a"
+        "sha256": "489c53189a7fe7985c8de22d815ff32a3973acb76b610aba3074f84c405246bc"
       },
       {
         "path": "site/publications/ai-governance-is-control-theory/profile.json",
@@ -10970,7 +10975,7 @@
       {
         "path": "site/publications/ai-governance-is-control-theory/publication.json",
         "identity_mode": "content",
-        "sha256": "d75a0119f05178adfc0425bdfedc916b69b6ca2e620ffd0af3104badd9667dce"
+        "sha256": "8b2d25eabcc0ec0e7a252237ef58481e9033ac3103ec1bb741f97a8f0f41fef3"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/blueprint.md",
@@ -15556,7 +15561,7 @@
       "title": "thinking-systems.html"
     },
     {
-      "path": "docs/article-snapshots/4fc0b22cb017888cddeb652e2097d4e46f9ae2f9919e8a044359b230f7baf3ce/ai-governance-is-control-theory.html",
+      "path": "docs/article-snapshots/32586205823df86565d10a4cc60eef96eb185d1bec9b269b8ab9a2c1754b9ee0/ai-governance-is-control-theory.html",
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -16172,17 +16177,6 @@
       "title": "talks.html"
     },
     {
-      "path": "docs/snapshots/124ee895d4c065467967610d3b6c0bfa787233a881ba48e3c7d57bd56980ccca/research.html",
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "research.html"
-    },
-    {
       "path": "docs/snapshots/1d09ddaffa9360d5ebf385249c24b2af84ef98bb339349387706ef46620ea0c2/index.html",
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
@@ -16214,6 +16208,17 @@
         "AGENTS.md"
       ],
       "title": "talks.html"
+    },
+    {
+      "path": "docs/snapshots/4aa79453f999885cf1271ab4f08d444ceac82dd9cea0d992f3f5dace63f805b4/writing.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "writing.html"
     },
     {
       "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
@@ -16370,7 +16375,7 @@
       "title": "credits.html"
     },
     {
-      "path": "docs/snapshots/fb699c9df00f23d38d4f6596bd7ed7bccb02939a13e1215567cc3f269371932a/writing.html",
+      "path": "docs/snapshots/ef3afbf2833383f3ccc8afb6e9eb80232ed0dedb96d49a4e928901eec6d3d69a/research.html",
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -16378,7 +16383,7 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "writing.html"
+      "title": "research.html"
     },
     {
       "path": "docs/space.js",
@@ -38238,6 +38243,17 @@
       "title": "ai-governance-is-control-theory-en-20251213.json"
     },
     {
+      "path": "site/publications/ai-governance-is-control-theory/editions/ai-governance-is-control-theory-en-20261115-annotated.json",
+      "kind": "file",
+      "purpose": "Authored Control Theory source, provenance or edition and publication profile.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ai-governance-is-control-theory-en-20261115-annotated.json"
+    },
+    {
       "path": "site/publications/ai-governance-is-control-theory/launch-post.en.md",
       "kind": "file",
       "purpose": "Authored Control Theory source, provenance or edition and publication profile.",
@@ -44839,7 +44855,7 @@
       ]
     },
     {
-      "path": "docs/article-snapshots/4fc0b22cb017888cddeb652e2097d4e46f9ae2f9919e8a044359b230f7baf3ce",
+      "path": "docs/article-snapshots/32586205823df86565d10a4cc60eef96eb185d1bec9b269b8ab9a2c1754b9ee0",
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -45049,16 +45065,6 @@
       ]
     },
     {
-      "path": "docs/snapshots/124ee895d4c065467967610d3b6c0bfa787233a881ba48e3c7d57bd56980ccca",
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
       "path": "docs/snapshots/1d09ddaffa9360d5ebf385249c24b2af84ef98bb339349387706ef46620ea0c2",
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
@@ -45080,6 +45086,16 @@
     },
     {
       "path": "docs/snapshots/247184e4b0fbf5fa6d0cadf30293641ab576f019c5e02a6319235308528bdee8",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/4aa79453f999885cf1271ab4f08d444ceac82dd9cea0d992f3f5dace63f805b4",
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -45229,7 +45245,7 @@
       ]
     },
     {
-      "path": "docs/snapshots/fb699c9df00f23d38d4f6596bd7ed7bccb02939a13e1215567cc3f269371932a",
+      "path": "docs/snapshots/ef3afbf2833383f3ccc8afb6e9eb80232ed0dedb96d49a4e928901eec6d3d69a",
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",

@@ -1021,13 +1021,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/4fc0b22cb017888cddeb652e2097d4e46f9ae2f9919e8a044359b230f7baf3ce": {
+    "docs/article-snapshots/32586205823df86565d10a4cc60eef96eb185d1bec9b269b8ab9a2c1754b9ee0": {
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/4fc0b22cb017888cddeb652e2097d4e46f9ae2f9919e8a044359b230f7baf3ce/ai-governance-is-control-theory.html": {
+    "docs/article-snapshots/32586205823df86565d10a4cc60eef96eb185d1bec9b269b8ab9a2c1754b9ee0/ai-governance-is-control-theory.html": {
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -1483,18 +1483,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/124ee895d4c065467967610d3b6c0bfa787233a881ba48e3c7d57bd56980ccca": {
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/124ee895d4c065467967610d3b6c0bfa787233a881ba48e3c7d57bd56980ccca/research.html": {
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/1d09ddaffa9360d5ebf385249c24b2af84ef98bb339349387706ef46620ea0c2": {
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
@@ -1526,6 +1514,18 @@
       "owner": "site/README.md"
     },
     "docs/snapshots/247184e4b0fbf5fa6d0cadf30293641ab576f019c5e02a6319235308528bdee8/talks.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/4aa79453f999885cf1271ab4f08d444ceac82dd9cea0d992f3f5dace63f805b4": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/4aa79453f999885cf1271ab4f08d444ceac82dd9cea0d992f3f5dace63f805b4/writing.html": {
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -1699,13 +1699,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/fb699c9df00f23d38d4f6596bd7ed7bccb02939a13e1215567cc3f269371932a": {
+    "docs/snapshots/ef3afbf2833383f3ccc8afb6e9eb80232ed0dedb96d49a4e928901eec6d3d69a": {
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/fb699c9df00f23d38d4f6596bd7ed7bccb02939a13e1215567cc3f269371932a/writing.html": {
+    "docs/snapshots/ef3afbf2833383f3ccc8afb6e9eb80232ed0dedb96d49a4e928901eec6d3d69a/research.html": {
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -14504,6 +14504,12 @@
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
     "site/publications/ai-governance-is-control-theory/editions/ai-governance-is-control-theory-en-20251213.json": {
+      "kind": "file",
+      "purpose": "Authored Control Theory source, provenance or edition and publication profile.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-governance-is-control-theory/editions/ai-governance-is-control-theory-en-20261115-annotated.json": {
       "kind": "file",
       "purpose": "Authored Control Theory source, provenance or edition and publication profile.",
       "role": "source",
