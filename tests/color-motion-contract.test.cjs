@@ -57,7 +57,28 @@ test('observed runtime families retain exact editions and mixed-byte refusals', 
     }
   }
 });
-test('prospective #187 preregistration accepts only the exact staging edition and retains rights', () => {
+test('the fractal-pulse identity retains exact staging bytes and publication rights', () => {
+  for (const id of [
+    'issue187-fractal-pulse',
+    'issue187-fractal-pulse-overlap',
+    'issue187-fractal-sequence',
+    'issue187-reader-arrival',
+    'issue187-reader-resize',
+    'issue187-reader-border',
+    'issue187-fractal-return',
+  ]) {
+    const current = manifest(id + '-staging');
+    assert.equal(motion.select(current).edition, 'staging');
+    assert.equal(motion.publicationRequired(current, current.components), true);
+    assert.equal(motion.articleReadingMode(current.components.engine), 'stationary');
+    assert.throws(() => motion.reviewedRuntime(id + '-plain'), /unknown reviewed/);
+    assert.throws(() => motion.reviewedRuntime(id + '-production'), /unknown reviewed/);
+    const changed = structuredClone(current);
+    changed.files['navigation.js'].sha256 = '0'.repeat(64);
+    assert.throws(() => motion.select(changed), /unreviewed Color bytes/);
+  }
+});
+test('vertical handoff staging identity retains edition and rights checks', () => {
   const id = 'issue187-vertical-handoff';
   const staging = manifest(id + '-staging');
   assert.equal(motion.select(staging).id, id + '-staging');
@@ -78,12 +99,10 @@ test('prospective #187 preregistration accepts only the exact staging edition an
     );
   }
 });
-test('refactored #187 navigator preregisters only the licensed staging edition', () => {
+test('refactored #187 navigator binds the licensed staging tuple', () => {
   const id = 'issue187-motion-lint';
   const staging = manifest(id + '-staging');
   assert.equal(motion.publicationRequired(staging, staging.components), true);
-  assert.throws(() => motion.reviewedRuntime(id + '-plain'), /unknown reviewed/);
-  assert.throws(() => motion.reviewedRuntime(id + '-production'), /unknown reviewed/);
   const altered = structuredClone(staging);
   altered.files['navigation.js'].sha256 = '0'.repeat(64);
   assert.throws(
@@ -91,12 +110,10 @@ test('refactored #187 navigator preregisters only the licensed staging edition',
     /unreviewed Color bytes/
   );
 });
-test('the mount-raster correction admits only its exact licensed staging bytes', () => {
+test('the mount-raster correction binds its exact licensed staging bytes', () => {
   const id = 'issue187-mount-raster';
   const staging = manifest(id + '-staging');
   assert.equal(motion.publicationRequired(staging, staging.components), true);
-  assert.throws(() => motion.reviewedRuntime(id + '-plain'), /unknown reviewed/);
-  assert.throws(() => motion.reviewedRuntime(id + '-production'), /unknown reviewed/);
   const immutableSpace = 'runtime/' + staging.variant.fingerprint + '/space.js';
   staging.files[immutableSpace].sha256 = '0'.repeat(64);
   assert.throws(
@@ -104,6 +121,36 @@ test('the mount-raster correction admits only its exact licensed staging bytes',
     /immutable Color bytes/
   );
 });
+for (const id of ['issue187-pulse-return-easing', 'issue187-closed-pulse']) {
+  test(id + ' binds its exact licensed staging runtime', () => {
+    const staging = manifest(id + '-staging');
+    assert.equal(motion.select(staging).id, id + '-staging');
+    assert.equal(motion.publicationRequired(staging, staging.components), true);
+    for (const edition of [
+      undefined,
+      { id: 'production', indexable: true, origin: 'https://vitaliioborskyi.ai' },
+    ]) {
+      const wrong = { ...staging, edition };
+      assert.throws(() => motion.publicationRequired(wrong, wrong.components), /edition differs/);
+    }
+    for (const name of Object.keys(motion.reviewedRuntime(id + '-staging').files)) {
+      const canonical = structuredClone(staging);
+      canonical.files[name].sha256 = '0'.repeat(64);
+      assert.throws(
+        () => motion.publicationRequired(canonical, canonical.components),
+        /Color bytes/
+      );
+      const immutable = structuredClone(staging);
+      immutable.files['runtime/' + staging.variant.fingerprint + '/' + name].sha256 = '0'.repeat(
+        64
+      );
+      assert.throws(
+        () => motion.publicationRequired(immutable, immutable.components),
+        /immutable Color bytes/
+      );
+    }
+  });
+}
 test('producer refactoring preserves client compatibility while runtime bytes and document hooks stay bound', () => {
   const fs = require('node:fs'),
     os = require('node:os'),
@@ -142,7 +189,7 @@ test('producer refactoring preserves client compatibility while runtime bytes an
       before.client,
       'publisher internals do not change the client contract'
     );
-    const reviewed = motion.reviewedRuntime('issue169-reader-history-plain');
+    const reviewed = motion.reviewedRuntime('issue187-closed-pulse-plain');
     assert.equal(builder.runtimeVersion(after), reviewed.variant.baseEngine);
     const generation = JSON.parse(fs.readFileSync(path.join(root, 'site/output-lock.json'))),
       read = (name) => fs.readFileSync(path.join(root, 'docs', name), 'utf8'),
@@ -238,7 +285,7 @@ test('reading batch records bind actual generated edition bytes and reject tampe
       const root = path.join(directory, name),
         publicDir = path.join(root, 'public'),
         actual = JSON.parse(fs.readFileSync(path.join(root, 'artifact.json'))),
-        reviewed = motion.reviewedRuntime('issue169-reader-history-' + name);
+        reviewed = motion.reviewedRuntime('issue187-closed-pulse-' + name);
       assert.equal(artifact.verify(publicDir, actual), true);
       assert.deepEqual(actual.variant, reviewed.variant);
       for (const [file, expected] of Object.entries(reviewed.files)) {
@@ -1213,15 +1260,15 @@ test('current platform runtime tuples reproduce the complete plain, staging and 
     };
     fs.writeFileSync(path.join(plainDirectory, 'artifact.json'), JSON.stringify(source));
     const plain = colorBuild.build(plainDirectory);
-    assert.equal(motion.select(plain).id, 'issue169-reader-history-plain');
+    assert.equal(motion.select(plain).id, 'issue187-closed-pulse-plain');
     const stagingDirectory = path.join(directory, 'staging');
     fs.cpSync(plainDirectory, stagingDirectory, { recursive: true });
     const staged = stagingBuild.build(stagingDirectory);
-    assert.equal(motion.select(staged).id, 'issue169-reader-history-staging');
+    assert.equal(motion.select(staged).id, 'issue187-closed-pulse-staging');
     const productionDirectory = path.join(directory, 'production');
     fs.cpSync(plainDirectory, productionDirectory, { recursive: true });
     const production = require('../tools/release/edition.cjs').build(productionDirectory, 'color');
-    assert.equal(motion.select(production).id, 'issue169-reader-history-production');
+    assert.equal(motion.select(production).id, 'issue187-closed-pulse-production');
     assert.equal(
       new Set([plain, staged, production].map((record) => record.variant.fingerprint)).size,
       3
@@ -1230,7 +1277,7 @@ test('current platform runtime tuples reproduce the complete plain, staging and 
       assert.deepEqual(record.components.navigation, { contract: 1, articleRenderer: 1 });
       assert.equal(
         record.variant.baseEngine,
-        motion.reviewedRuntime('issue169-reader-history-plain').variant.baseEngine
+        motion.reviewedRuntime('issue187-closed-pulse-plain').variant.baseEngine
       );
     }
   } finally {

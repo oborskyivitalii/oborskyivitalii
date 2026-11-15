@@ -41,16 +41,20 @@ const sourceDigest = /^[a-f0-9]{64}$/;
 const localRelationships = ['equivalent-rendition', 'authored-adaptation', 'translation'];
 const historicalRelationship = 'same-topic-platform-edition';
 const platformHosts = {
-  Medium: ['medium.com', 'aiadvances.org', 'generativeai.pub'],
+  Medium: ['medium.com', 'aiadvances.org'],
   LinkedIn: ['linkedin.com'],
 };
+const exactMediumHosts = ['generativeai.pub', 'pub.towardsai.net'];
 
 function platformURL(url, platform) {
   const { hostname, port } = new URL(url);
   return (
     !port &&
     Object.hasOwn(platformHosts, platform) &&
-    platformHosts[platform].some((domain) => hostname === domain || hostname.endsWith('.' + domain))
+    ((platform === 'Medium' && exactMediumHosts.includes(hostname)) ||
+      platformHosts[platform].some(
+        (domain) => hostname === domain || hostname.endsWith('.' + domain)
+      ))
   );
 }
 

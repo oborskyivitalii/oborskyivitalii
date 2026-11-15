@@ -9,7 +9,7 @@ const content = require('../tools/site/content-release.cjs');
 const artifact = require('../tools/quality/artifact.cjs');
 const snapshot = require('../tools/site/snapshot.cjs');
 const { verifyCandidateSource } = require('../tools/quality/candidate-source.cjs');
-const { legacyCatalog } = require('./fixtures/catalog.cjs');
+const { isolateLegacyCatalog } = require('./fixtures/catalog.cjs');
 const repo = path.resolve(__dirname, '..');
 const candidates = ['first-profile', 'second-profile'];
 let prepared;
@@ -135,7 +135,7 @@ test.before(() => {
   }
   // This synthetic fixture owns its articles; live accepted catalog entries
   // would otherwise point at owners deliberately absent from this directory.
-  json(root, 'site/content/catalog.json', legacyCatalog(repo));
+  isolateLegacyCatalog(root, repo);
   fs.rmSync(path.join(root, 'site/publications'), { recursive: true, force: true });
   publication(root, candidates[0]);
   publication(root, candidates[1]);

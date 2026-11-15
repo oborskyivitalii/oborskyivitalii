@@ -544,7 +544,7 @@ const historicalEditionProducers = {
   },
   'tools/site/validate-catalog.cjs': {
     before: '79554634afc34ac491249624ffd8a5dc7b4db54a8f38703e2737655d180baa22',
-    after: '4821be8aa58821b320fe673d7a3557645e4cb0b3df7b899a1a12fad6f7f4beb1',
+    after: 'a88ed5f2181433587a92bff89703f4a2ab0873ff37877a9f4613e20a5f0aabbc',
   },
 };
 
@@ -715,6 +715,25 @@ function restoreApprovedLicensing(html, page, sourceRoot = root, required = fals
   replaceOnce(' ' + amendment.full + ' </main>', ' </main>');
   return html;
 }
+const previousRouteArrivalCSS = `@keyframes route-block-arrive {
+  from {
+    translate: 0 var(--route-block-distance);
+  }
+  to {
+    translate: 0 0;
+  }
+}`;
+const visibleRouteArrivalCSS = `@keyframes route-block-arrive {
+  from {
+    /* A larger viewport can expose the old offscreen position during the delay. */
+    visibility: hidden;
+    translate: 0 var(--route-block-distance);
+  }
+  to {
+    visibility: visible;
+    translate: 0 0;
+  }
+}`;
 function verifyApprovedLicensingCSS(sourceRoot = root) {
   // The author accepted this complete reader rendition before requesting staging.
   // Pin both full stylesheets; later unrelated changes still fail byte-for-byte.
@@ -722,6 +741,11 @@ function verifyApprovedLicensingCSS(sourceRoot = root) {
   for (const file of ['site/engine/styles.css', 'docs/styles.css']) {
     const current = fs.readFileSync(path.join(sourceRoot, file), 'utf8');
     assert.equal(current.split(licensingCSS).length, 2, 'one exact legal wrapping rule: ' + file);
+    // Reverse only the generated #187 arrival block. The predecessor hash still binds its location.
+    const predecessor =
+      file === 'docs/styles.css'
+        ? current.replace(visibleRouteArrivalCSS, previousRouteArrivalCSS)
+        : current;
     const expected = cp.execFileSync('git', ['show', approvedReader + ':' + file], {
       cwd: root,
       encoding: 'utf8',
@@ -734,17 +758,17 @@ function verifyApprovedLicensingCSS(sourceRoot = root) {
       'site/engine/styles.css',
     ]);
     assert.equal(
-      crypto.createHash('sha256').update(current).digest('hex'),
+      crypto.createHash('sha256').update(predecessor).digest('hex'),
       issue159.styles.afterSHA256[file],
       'unrelated stylesheet change outside exact reviewed successor: ' + file
     );
     assert.equal(
-      current.split(block).length,
+      predecessor.split(block).length,
       2,
       'unrelated stylesheet change: one exact reviewed reading-path block required: ' + file
     );
     assert.equal(
-      current.replace(block, ''),
+      predecessor.replace(block, ''),
       expected,
       'unrelated stylesheet change outside approved reader/licensing: ' + file
     );
@@ -1311,6 +1335,12 @@ function restoreResearchNavigation(html, page) {
 function restoreApprovedContent(html, page) {
   if (page === 'talks') html = restoreEventsCatalog(html);
   if (page === 'writing') html = restoreWritingCatalog(html);
+  if (page === 'research') {
+    html = html.replace(
+      '<a class="text-link" href="articles/ai-governance-is-control-theory.html">Read the control-theory article ↗</a>',
+      '<a class="text-link" href="https://pub.towardsai.net/uncertainty-architecture-why-ai-governance-is-actually-control-theory-511f3e73ed6e">Read the control-theory article ↗</a>'
+    );
+  }
   html = restoreContentAmendment(html, page, issue159);
   html = restoreContentAmendment(html, page, issue126);
   html = restoreContentAmendment(html, page, issue118);

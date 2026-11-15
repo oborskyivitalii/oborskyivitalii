@@ -10,7 +10,7 @@ const root = path.resolve(__dirname, '..'),
   b = require('../tools/site/build.cjs'),
   artifact = require('../tools/quality/artifact.cjs'),
   snapshot = require('../tools/site/snapshot.cjs');
-const { legacyCatalog } = require('./fixtures/catalog.cjs');
+const { isolateLegacyCatalog } = require('./fixtures/catalog.cjs');
 function fixture(t) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'site-engine-'));
   for (const name of [
@@ -23,10 +23,7 @@ function fixture(t) {
     fs.cpSync(path.join(root, name), path.join(dir, name), { recursive: true });
   }
   // These legacy route/cache cases do not carry the repository's accepted Git sources.
-  fs.writeFileSync(
-    path.join(dir, 'site/content/catalog.json'),
-    JSON.stringify(legacyCatalog(root), null, 2) + '\n'
-  );
+  isolateLegacyCatalog(dir, root);
   fs.rmSync(path.join(dir, 'site/publications'), { recursive: true, force: true });
   fs.rmSync(path.join(dir, 'site/assets/publications'), { recursive: true, force: true });
   t.after(() => fs.rmSync(dir, { recursive: true, force: true }));

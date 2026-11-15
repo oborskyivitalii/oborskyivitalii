@@ -41,10 +41,7 @@ function fixture(t) {
     fs.mkdirSync(path.dirname(path.join(dir, name)), { recursive: true });
     fs.cpSync(path.join(root, name), path.join(dir, name), { recursive: true });
   }
-  fs.writeFileSync(
-    path.join(dir, 'site/content/catalog.json'),
-    JSON.stringify(require('./fixtures/catalog.cjs').legacyCatalog(root), null, 2) + '\n'
-  );
+  require('./fixtures/catalog.cjs').isolateLegacyCatalog(dir, root);
   configure(dir, disabled());
   t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
   return dir;

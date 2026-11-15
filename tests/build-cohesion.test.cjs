@@ -4,7 +4,7 @@ const test = require('node:test'),
   fs = require('node:fs'),
   path = require('node:path');
 const root = path.resolve(__dirname, '..');
-const { legacyCatalog } = require('./fixtures/catalog.cjs');
+const { isolateLegacyCatalog } = require('./fixtures/catalog.cjs');
 const builder = require('../tools/site/build.cjs');
 const content = require('../tools/site/content.cjs');
 const { renderPage } = require('../tools/site/render-page.cjs');
@@ -304,10 +304,7 @@ test('shared catalog label edits invalidate every warm route and keep cold/check
     fs.cpSync(path.join(root, name), path.join(dir, name), { recursive: true });
   }
   // This source-only route fixture has no Git history for real accepted owners.
-  fs.writeFileSync(
-    path.join(dir, 'site/content/catalog.json'),
-    JSON.stringify(legacyCatalog(root), null, 2) + '\n'
-  );
+  isolateLegacyCatalog(dir, root);
   t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
   const before = builder.build({ root: dir, all: true });
   const catalogPath = path.join(dir, 'site/content/catalog.json'),

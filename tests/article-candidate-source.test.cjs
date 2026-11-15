@@ -8,7 +8,7 @@ const cp = require('node:child_process');
 const artifact = require('../tools/quality/artifact.cjs');
 const snapshot = require('../tools/site/snapshot.cjs');
 const { verifyCandidateSource } = require('../tools/quality/candidate-source.cjs');
-const { legacyCatalog, legacySource } = require('./fixtures/catalog.cjs');
+const { isolateLegacyCatalog, legacySource } = require('./fixtures/catalog.cjs');
 const repo = path.resolve(__dirname, '..');
 let prepared;
 
@@ -64,10 +64,7 @@ test.before(() => {
   }
   // Preserve all copied publication owners, but keep this external archive
   // fixture independent of future accepted owners requiring their Git history.
-  fs.writeFileSync(
-    path.join(root, 'site/content/catalog.json'),
-    JSON.stringify(legacyCatalog(repo), null, 2) + '\n'
-  );
+  isolateLegacyCatalog(root, repo);
   frozenTechnicalArticle(root);
   // Reconstruction is a reusable producer check. The unfinished editorial
   // selection keeps its own explicit preview and publication gates.

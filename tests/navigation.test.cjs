@@ -549,6 +549,8 @@ test('navigation flight forwards native endpoint, history and fragment landing i
 });
 function routeHarness({
   holdDeparture = false,
+  departureCompletion = 'animationend',
+  holdPulse = false,
   holdScene = false,
   holdRead = false,
   blurDeparture = false,
@@ -572,7 +574,9 @@ function routeHarness({
     historyWrites = [],
     blurredFocus = [],
     nativeScrollCalls = [],
-    rebaseTargets = [];
+    rebaseTargets = [],
+    pulses = [],
+    pulseNavigationIds = [];
   let timer = 0,
     clock = 10,
     historyIndex = 0,
@@ -581,17 +585,22 @@ function routeHarness({
     resolveScene,
     resolveRead,
     releaseRead,
+    resolvePrepared,
     resolveDeparture,
     releaseDeparture,
+    resolvePulseStarted,
+    finishPulse,
     resolveArrival,
     releaseArrival,
     nativeSmooth = null,
     articleRegistryReady = !lazyArticleAdmission;
   const departureStarted = new Promise((resolve) => (resolveDeparture = resolve)),
     departureGate = new Promise((resolve) => (releaseDeparture = resolve)),
+    pulseStarted = new Promise((resolve) => (resolvePulseStarted = resolve)),
     sceneStarted = new Promise((resolve) => (resolveScene = resolve)),
     readStarted = new Promise((resolve) => (resolveRead = resolve)),
     readGate = new Promise((resolve) => (releaseRead = resolve)),
+    prepared = new Promise((resolve) => (resolvePrepared = resolve)),
     arrivalStarted = new Promise((resolve) => (resolveArrival = resolve)),
     arrivalGate = new Promise((resolve) => (releaseArrival = resolve));
   const node = (id = 'main', href = null) => {
@@ -654,18 +663,24 @@ function routeHarness({
     cancelRoute() {
       content.main.removeAttribute('data-route-blocks');
     },
-    async depart(direction, navigationId) {
-      calls.push({ kind: 'departure', direction, navigationId });
+    refreshPreference() {
+      this.cancelRoute();
+    },
+    async depart(direction, navigationId, preserveResize) {
+      calls.push({ kind: 'departure', direction, navigationId, preserveResize });
       content.main.setAttribute('data-route-blocks', 'departing');
       if (blurDeparture) blurContentFocus();
       if (holdDeparture && navigationId === 1) {
         resolveDeparture();
         await departureGate;
       }
-      return { completed: true };
+      if (content.main.getAttribute('data-route-blocks') === 'departing')
+        content.main.setAttribute('data-route-blocks', 'holding');
+      return { completed: true, completedBy: departureCompletion };
     },
-    prepareArrival(direction, navigationId) {
-      calls.push({ kind: 'prepare-arrival', direction, navigationId });
+    prepareArrival(direction, navigationId, deferMeasure) {
+      calls.push({ kind: 'prepare-arrival', direction, navigationId, deferMeasure });
+      content.main.setAttribute('data-route-blocks', 'holding');
     },
     async arrive(direction, navigationId) {
       calls.push({ kind: 'arrival', direction, navigationId });
@@ -707,6 +722,19 @@ function routeHarness({
     SiteEngineProbe: (event) => probes.push(event),
     SiteScene: {
       canTravel: () => true,
+      playDocumentPulse(navigationId) {
+        pulses.push('start');
+        pulseNavigationIds.push(navigationId);
+        resolvePulseStarted();
+        if (holdPulse) return new Promise((resolve) => (finishPulse = resolve));
+        return Promise.resolve(true);
+      },
+      stopDocumentPulse() {
+        if (!finishPulse) return;
+        pulses.push('stop');
+        finishPulse(false);
+        finishPulse = null;
+      },
       refresh() {},
       detachTravel() {},
       navigate(next, animate, update, landing, metadata) {
@@ -745,7 +773,13 @@ function routeHarness({
     scrollEntry,
     content,
     effects: { measure: (run) => run() },
-    presentation: { contentFlight: () => contentFlight, canTravel: () => true },
+    presentation: {
+      contentFlight(value) {
+        if (typeof value === 'boolean') contentFlight = value;
+        return contentFlight;
+      },
+      canTravel: () => true,
+    },
     announcement: {},
     document: {
       hidden: false,
@@ -809,7 +843,10 @@ function routeHarness({
         metadata: [],
       };
     },
-    prepare: (data) => data,
+    prepare(data) {
+      resolvePrepared();
+      return data;
+    },
     clearText() {
       content.inert = false;
     },
@@ -848,15 +885,20 @@ function routeHarness({
     navigate: context.navigate,
     content,
     calls,
+    pulses,
+    pulseNavigationIds,
     probes,
     assigned,
     tasks,
     departureStarted,
     releaseDeparture,
+    pulseStarted,
+    finishPulse: (painted = true) => finishPulse(painted),
     sceneStarted,
     finishScene: () => finishScene(),
     readStarted,
     releaseRead,
+    prepared,
     arrivalStarted,
     releaseArrival,
     historyEntries,
@@ -867,6 +909,9 @@ function routeHarness({
     blurredFocus,
     document: context.document,
     window,
+    setContentFlight(value) {
+      contentFlight = value;
+    },
     beginSmooth(top) {
       nativeSmooth = top;
     },
@@ -916,9 +961,9 @@ test('an early native scroll failure uses ordinary HTML fallback and releases na
   assert.deepEqual(h.calls, [], 'failed boundary cannot begin departure or a camera flight');
   assert.equal(h.tasks.size, 0, 'the native failure releases its abort timer');
 });
-test('inherited native smooth scrolling stops at navigation while deliberate read-time input still wins', async () => {
+test('without block motion, navigation stops inherited smooth scrolling and accepts deliberate read-time input', async () => {
   for (const explicitInput of [false, true]) {
-    const h = routeHarness({ initialPage: 'writing', holdRead: true });
+    const h = routeHarness({ initialPage: 'writing', holdRead: true, contentFlight: false });
     h.focus('article-sample-en');
     h.window.scrollY = 2297;
     h.beginSmooth(2004);
@@ -1298,7 +1343,7 @@ test('a departing visibility scroll-save tick cannot erase offscreen control foc
   assert.deepEqual(h.assigned, []);
   assert.equal(h.tasks.size, 0);
 });
-test('hidden departure retarget preserves captured focus while explicit read-time controls and scroll still win', async () => {
+test('retargeting a hidden departure with blocks Off restores native read-time controls and scroll', async () => {
   for (const explicitFocus of [false, true]) {
     const h = routeHarness({
       initialPage: 'writing',
@@ -1311,6 +1356,7 @@ test('hidden departure retarget preserves captured focus while explicit read-tim
     const stale = h.navigate(new URL('https://fixture.test/talks.html'));
     await h.departureStarted;
     assert.equal(h.content.inert, false);
+    h.setContentFlight(false);
     const latest = h.navigate(new URL('https://fixture.test/articles/sample-en.html'));
     await h.readStarted;
     assert.equal(
@@ -2132,12 +2178,12 @@ test('native immutable history mounts against the browser base for frozen reader
   }
 });
 
-test('first hosted article activation admits its registry before selecting block directions', async () => {
+test('first hosted article activation begins departure while its registry is admitted', async () => {
   const h = routeHarness({ initialPage: 'writing', lazyArticleAdmission: true });
   await h.navigate(new URL('https://fixture.test/articles/sample-en.html'));
   assert.deepEqual(
     h.calls.map((call) => call.kind),
-    ['admission', 'departure', 'scene', 'prepare-arrival', 'arrival']
+    ['departure', 'admission', 'scene', 'prepare-arrival', 'arrival']
   );
   assert.equal(h.calls.find((call) => call.kind === 'scene').toDocument, 'article:sample:en');
   for (const kind of ['departure', 'prepare-arrival', 'arrival'])
@@ -2146,7 +2192,19 @@ test('first hosted article activation admits its registry before selecting block
   assert.deepEqual(h.assigned, []);
 });
 
-test('reader documents fly in both directions with history order and every principal destination', async () => {
+test('a watchdog departure releases native content without starting a document pulse', async () => {
+  const h = routeHarness({ initialPage: 'writing', departureCompletion: 'watchdog' });
+  await h.navigate(new URL('https://fixture.test/articles/sample-en.html'));
+  assert.deepEqual(h.pulses, []);
+  assert.equal(
+    h.calls.some(({ kind }) => kind === 'arrival'),
+    false
+  );
+  assert.equal(h.content.main.getAttribute('data-route-blocks'), null);
+  assert.deepEqual(h.assigned, []);
+});
+
+test('reader documents share the stationary Writing scene and preserve history and corridor direction', async () => {
   const h = routeHarness({ initialPage: 'writing' });
   await h.navigate(new URL('https://fixture.test/articles/sample-en.html'));
   await h.navigate(new URL('https://fixture.test/articles/second-en.html'));
@@ -2158,7 +2216,15 @@ test('reader documents fly in both directions with history order and every princ
     flights.map((call) => call.direction),
     [1, 1, -1, 1, -1]
   );
-  assert.ok(flights.every((call) => call.animate && call.documentChange));
+  assert.ok(flights.every((call) => !call.animate && call.documentChange));
+  assert.deepEqual(h.pulses, Array(5).fill('start'));
+  assert.deepEqual(h.pulseNavigationIds, [1, 2, 3, 4, 5]);
+  assert.ok(
+    h.calls.filter((call) => call.kind === 'departure').every((call) => call.preserveResize)
+  );
+  assert.ok(
+    h.calls.filter((call) => call.kind === 'prepare-arrival').every((call) => call.deferMeasure)
+  );
   assert.deepEqual(
     flights.map((call) => call.toDocument),
     ['article:sample:en', 'article:second:en', 'article:sample:en', 'article:second:en', 'writing']
@@ -2167,7 +2233,7 @@ test('reader documents fly in both directions with history order and every princ
   assert.deepEqual(
     h.calls.filter((call) => call.kind === 'departure').map((call) => call.direction),
     [1, 1, 1, 1, 1],
-    'every article exits upward while the camera retains its history direction'
+    'every article exits upward across both history directions'
   );
   assert.deepEqual(
     h.calls.filter((call) => call.kind === 'arrival').map((call) => call.direction),
@@ -2178,7 +2244,7 @@ test('reader documents fly in both directions with history order and every princ
     const reader = routeHarness({ initialPage: 'article:sample:en' });
     await reader.navigate(new URL('https://fixture.test/' + destination + '.html'));
     const flight = reader.calls.find((call) => call.kind === 'scene');
-    assert.equal(flight.animate, true, destination);
+    assert.equal(flight.animate, destination !== 'writing', destination);
     assert.equal(flight.toDocument, destination);
     assert.equal(reader.calls.find((call) => call.kind === 'departure').direction, 1);
     assert.deepEqual(reader.assigned, []);
@@ -2198,13 +2264,144 @@ test('reader documents fly in both directions with history order and every princ
   );
 });
 
-test('Block transitions Off leaves document camera travel enabled without route waves', async () => {
+test('Block transitions Off skips the entire document showcase', async () => {
   const h = routeHarness({ initialPage: 'writing', contentFlight: false });
   await h.navigate(new URL('https://fixture.test/articles/sample-en.html'));
-  assert.equal(h.calls.find((call) => call.kind === 'scene').animate, true);
+  assert.equal(h.calls.find((call) => call.kind === 'scene').animate, false);
+  assert.deepEqual(h.pulses, []);
   assert.equal(
     h.calls.some((call) => ['departure', 'arrival'].includes(call.kind)),
     false
   );
   assert.deepEqual(h.assigned, []);
+});
+
+test('a timed-out read releases a running showcase and cannot mount a late article', async () => {
+  const h = routeHarness({ initialPage: 'writing', holdRead: true, holdPulse: true });
+  const article = new URL('https://fixture.test/articles/sample-en.html');
+  const pending = h.navigate(article);
+  await h.readStarted;
+  await h.pulseStarted;
+  assert.deepEqual(h.pulses, ['start']);
+  assert.equal(h.calls[0].kind, 'departure');
+  assert.equal(
+    h.calls.some((call) => call.kind === 'scene'),
+    false
+  );
+  h.runTimer(8000);
+  assert.deepEqual(h.pulses, ['start', 'stop']);
+  assert.equal(h.content.main.getAttribute('data-route-blocks'), null);
+  h.releaseRead();
+  await pending;
+  assert.equal(
+    h.calls.some((call) => call.kind === 'scene'),
+    false
+  );
+  assert.deepEqual(h.assigned, [article.href]);
+  assert.equal(h.content.hasAttribute('aria-busy'), false);
+});
+
+test('a ready article waits for the outgoing wave and one finished showcase before entering', async () => {
+  const h = routeHarness({
+    initialPage: 'writing',
+    holdDeparture: true,
+    holdPulse: true,
+    holdArrival: 1,
+  });
+  const pending = h.navigate(new URL('https://fixture.test/articles/sample-en.html'));
+  await h.departureStarted;
+  assert.deepEqual(h.pulses, []);
+  assert.deepEqual(
+    h.calls.map((call) => call.kind),
+    ['departure']
+  );
+  h.content.main.setAttribute('data-route-blocks', 'holding');
+  h.window.scrollY = 400;
+  h.scheduleScrollSave();
+  h.runTimer(350);
+  assert.deepEqual(h.historyEntries[0].state.site.scroll, [0, 0]);
+  await h.prepared;
+  h.document.activeElement = { id: 'appearance', getAttribute: () => null };
+  h.releaseDeparture();
+  await h.pulseStarted;
+  assert.deepEqual(
+    h.calls.map((call) => call.kind),
+    ['departure']
+  );
+  assert.deepEqual(h.pulses, ['start']);
+  assert.equal(h.content.main.getAttribute('data-route-blocks'), 'holding');
+  h.finishPulse();
+  await h.arrivalStarted;
+  assert.deepEqual(h.historyEntries[0].state.site.scroll, [0, 0]);
+  assert.equal(h.historyEntries[0].state.site.focus, 'appearance');
+  assert.deepEqual(
+    h.calls.map((call) => call.kind),
+    ['departure', 'scene', 'prepare-arrival', 'arrival']
+  );
+  assert.deepEqual(h.pulses, ['start']);
+  assert.equal(h.calls.find((call) => call.kind === 'scene').animate, false);
+  assert.equal(h.calls.find((call) => call.kind === 'prepare-arrival').deferMeasure, true);
+  assert.equal(h.content.main.getAttribute('data-route-blocks'), 'arriving');
+  assert.equal(h.tasks.size, 0, 'the read deadline cannot clear a valid arrival wave');
+  h.releaseArrival();
+  await pending;
+  assert.equal(h.content.main.getAttribute('data-route-blocks'), null);
+});
+
+test('a read can outlast the showcase without replaying it or mounting early', async () => {
+  const h = routeHarness({ initialPage: 'writing', holdRead: true, holdPulse: true });
+  const pending = h.navigate(new URL('https://fixture.test/articles/sample-en.html'));
+  await h.readStarted;
+  await h.pulseStarted;
+  h.finishPulse();
+  assert.deepEqual(
+    h.calls.map((call) => call.kind),
+    ['departure']
+  );
+  h.releaseRead();
+  await pending;
+  assert.deepEqual(h.pulses, ['start']);
+  assert.equal(h.calls.at(-1).kind, 'arrival');
+});
+test('a cancelled showcase mounts without starting the incoming block animation', async () => {
+  const h = routeHarness({ initialPage: 'writing', holdPulse: true });
+  const pending = h.navigate(new URL('https://fixture.test/articles/sample-en.html'));
+  await h.pulseStarted;
+  h.finishPulse(false);
+  await pending;
+  assert.deepEqual(
+    h.calls.map((call) => call.kind),
+    ['departure', 'scene']
+  );
+  assert.equal(h.content.main.getAttribute('data-route-blocks'), null);
+});
+
+test('releasing the hold after a showcase prevents an arrival from rearming on a slow read', async () => {
+  const h = routeHarness({ initialPage: 'writing', holdRead: true, holdPulse: true });
+  const pending = h.navigate(new URL('https://fixture.test/articles/sample-en.html'));
+  await h.pulseStarted;
+  h.finishPulse();
+  h.content.main.removeAttribute('data-route-blocks');
+  h.releaseRead();
+  await pending;
+  assert.deepEqual(
+    h.calls.map((call) => call.kind),
+    ['departure', 'scene']
+  );
+});
+
+test('retargeting during a showcase releases it and commits only the new corridor', async () => {
+  const h = routeHarness({ initialPage: 'writing', holdPulse: true });
+  const stale = h.navigate(new URL('https://fixture.test/articles/sample-en.html'));
+  await h.pulseStarted;
+  const latest = h.navigate(new URL('https://fixture.test/research.html'));
+  await Promise.all([stale, latest]);
+  assert.deepEqual(h.pulses, ['start', 'stop']);
+  const flights = h.calls.filter((call) => call.kind === 'scene');
+  assert.deepEqual(
+    flights.map((call) => [call.next, call.animate]),
+    [['research', true]]
+  );
+  assert.equal(h.historyEntries.length, 2);
+  assert.equal(h.historyEntries[1].state.site.page, 'research');
 });

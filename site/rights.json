@@ -85,7 +85,8 @@
         "LICENSE-CONTENT.md",
         "site/assets/writing-paradigm.svg",
         "guides/SITE-SOURCE-AUDIT.md",
-        "site/publications/sdlc-out-of-balance/PROVENANCE.md"
+        "site/publications/sdlc-out-of-balance/PROVENANCE.md",
+        "site/publications/ai-governance-is-control-theory/PROVENANCE.md"
       ],
       "scope": "Original non-brand diagram artwork, including writing-paradigm.svg. Rendering implementation remains original code; identity artwork is excluded."
     },
@@ -98,6 +99,13 @@
       "kind": "published-license-and-scope-notice",
       "provenance": ["LICENSING.md", "LICENSE-CODE.md", "LICENSE-CONTENT.md", "NOTICE.md"],
       "scope": "Exact copies of the authored licensing map, complete Apache-2.0 and CC BY 4.0 texts, and applicable notices accompany this edition. Scope and exclusions remain in the licensing map."
+    },
+    "governance-original-cover": {
+      "kind": "maintainer-confirmed-original-cover",
+      "provenance": [
+        "site/publications/ai-governance-is-control-theory/PROVENANCE.md"
+      ],
+      "scope": "Vitalii Oborskyi confirmed ownership and authorized retaining the exact historical artwork in this article. The site carries resized encodings of that artwork."
     },
     "article-review-input": {
       "kind": "pending-exact-edition-media-review",
@@ -135,6 +143,18 @@
     }
   ],
   "assets": {
+    "publications/ai-governance-is-control-theory/cover.png": {
+      "sha256": "25bdc2d76a2c9589e99dd36f02db22c62d38bd954cbc3823e817f0304bc40a80",
+      "bases": ["governance-original-cover"]
+    },
+    "publications/ai-governance-is-control-theory/cover-web.jpg": {
+      "sha256": "4fb99c0a32cfe808956a13bc2caaec71ed7adea83de79df4c5bfa08592d0b871",
+      "bases": ["governance-original-cover"]
+    },
+    "publications/ai-governance-is-control-theory/normal-distribution.png": {
+      "sha256": "ab3c716b3b86f7814e1beef1077eb9434935c7d320142d5a84b67c100f3b38d3",
+      "bases": ["original-diagram"]
+    },
     "publications/thinking-systems/cover-web.jpg": {
       "sha256": "b68b465d8f611f72c8f4d9e95eaad457c1e40761154d90112ed128d7ecd47dd2",
       "bases": ["original-diagram"]

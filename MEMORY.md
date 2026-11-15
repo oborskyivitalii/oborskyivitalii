@@ -1,33 +1,33 @@
 # Session memory
 
-Dated handoff. Last verified: **2026-11-13**. Revalidate live sources when resuming.
+Dated handoff. Last verified: **2026-11-15**. Revalidate live sources when resuming.
 
 ## Snapshot
 
-- Protected main `fb0c6165` includes PR #203, following the staging runtime registration for #187. Production ref `ca75641` remains the last observed deployment source.
-- [#187](https://github.com/oborskyivitalii/oborskyivitalii/issues/187) owns the Writing and article transition in [Draft PR #197](https://github.com/oborskyivitalii/oborskyivitalii/pull/197). The verified feature head `02f59fc` has its exact [Draft preview](https://411abc1c.oborskyi-author-ci-staging.pages.dev/writing.html).
-- The [protected staging prerequisite](review/issue-187/2026-11-12-controller-preregistration.md) records the local controller refusal, exact staging registration and remaining checks.
+- Protected main `a860453` includes the exact closed-pulse staging registration from PR #206 and the #199 workflow guide and Python tooling from PR #200. Production ref `ca75641` remains the last observed deployment source.
+- [#187](https://github.com/oborskyivitalii/oborskyivitalii/issues/187) owns the Writing and article transition in [Draft PR #197](https://github.com/oborskyivitalii/oborskyivitalii/pull/197). The author approved [the exact closed-pulse Preview](https://1390339f.oborskyi-author-ci-staging.pages.dev/writing.html) at `4021407` and authorized rebasing and merging.
+- The [protected staging prerequisite](review/issue-187/2026-11-12-controller-preregistration.md) records the controller refusal and exact registration. [PR #206 staging](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43719809013) and [Change admission](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43723815943) passed before the protected merge.
 
-- [#196](https://github.com/oborskyivitalii/oborskyivitalii/issues/196) / [PR #195](https://github.com/oborskyivitalii/oborskyivitalii/pull/195) owns platform image export. The [versioned review](review/issue-196/2026-11-12-destination-image-review.md) records recovery from the first staging preflight failure and the platform package evidence.
+- [#196](https://github.com/oborskyivitalii/oborskyivitalii/issues/196) / [PR #195](https://github.com/oborskyivitalii/oborskyivitalii/pull/195) owns platform image export. The [versioned review](review/issue-196/2026-11-12-destination-image-review.md) records platform package evidence.
+- [#199](https://github.com/oborskyivitalii/oborskyivitalii/issues/199) and [PR #200](https://github.com/oborskyivitalii/oborskyivitalii/pull/200) own the [repository workflow guide](guides/REPOSITORY-WORKFLOW.md) and its review gate.
 
 ## Decisions
 
-- The maintainer requested stable staging after reviewing the corrected animation. Keep the last neutral Canvas paint continuous across article mount.
+- The maintainer approved the closed-pulse Preview and requested the established path to main. Preserve the exact pre-pulse pose and Canvas continuity across article mount.
 - Register only the reviewed staging runtime on protected main using the existing delivery route. The feature and production have their own checks.
 
 ## Open work
 
-- [#183](https://github.com/oborskyivitalii/oborskyivitalii/issues/183) migrates one article per [Draft PR #205](https://github.com/oborskyivitalii/oborskyivitalii/pull/205) preview checkpoint. The [Thinking Systems migration](review/issue-183/2026-11-13-migration.md) records source reconciliation and phase acceptance.
+- #187 AC01, AC02 and AC06 remain open in the feature work. Prior runtime registration refresh #204 predates the exact closed-pulse runtime.
+- #197 is rebased onto the #206 merge and requires the exact-head native and hosted route.
+- #200 is merged on `1122929`. Preserve its independent guide admission and Python lock.
 
-- #187 AC01, AC02 and AC06 remain open in the feature work. Its separate runtime preregistration merged in PR #202.
-- #197 still requires the rebased exact-head native and hosted route after the prerequisite.
-- #195 requires exact-head source checks, fresh owner staging and protected change admission on the updated base. Native editor observations remain with the author's publication check for #196.
+- [#183](https://github.com/oborskyivitalii/oborskyivitalii/issues/183) / [Draft PR #205](https://github.com/oborskyivitalii/oborskyivitalii/pull/205) adds the Control Theory reader as the second of five article migrations. [Checkpoint evidence](review/issue-183/2026-11-15-control-theory.md) records the visual review route and remaining batch gates.
 
 ## Next session
 
-1. Check live #195 head, main and its hosted results. Resume the protected delivery route at the first unfinished check.
-2. For #187, rebase #197 on current main and reconcile the shared registry, tests and RI. Preserve the exact staging runtime and feature motion checks.
-3. Verify #197 through the existing stable staging controller and report the tested source and served identity.
+1. Verify rebased #197 through exact-head source checks and stable staging.
+2. Bind the protected merge to the new staging and owner admission evidence.
 
 ## Maintenance
 

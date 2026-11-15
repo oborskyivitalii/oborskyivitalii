@@ -452,11 +452,15 @@ test('research theories retain project alignment and explicit association on nar
       .replace(/<p class="lens-context">[\s\S]*?<\/p>/, '')
       .replace(/>\s+</g, '><')
       .trim();
-    assert.equal(
-      withoutContext,
-      original[1 - index].trim(),
-      'theory description and external reading routes remain exact'
-    );
+    const originalBody = original[1 - index].trim();
+    const expectedBody =
+      owner === 'systems'
+        ? originalBody.replace(
+            'https://pub.towardsai.net/uncertainty-architecture-why-ai-governance-is-actually-control-theory-511f3e73ed6e',
+            'articles/ai-governance-is-control-theory.html'
+          )
+        : originalBody;
+    assert.equal(withoutContext, expectedBody, 'theory text and selected reading route stay exact');
   }
   const css = fs.readFileSync(path.join(root, 'styles.css'), 'utf8');
   for (const [owner, token] of [

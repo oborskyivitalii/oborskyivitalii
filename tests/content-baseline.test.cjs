@@ -166,10 +166,7 @@ function repositoryFixture(t, { realSources = false } = {}) {
       path.join(root, 'tools/build_scene_fallbacks.cjs'),
       path.join(directory, 'tools/build_scene_fallbacks.cjs')
     );
-    fs.writeFileSync(
-      path.join(directory, 'site/content/catalog.json'),
-      JSON.stringify(require('./fixtures/catalog.cjs').legacyCatalog(root), null, 2) + '\n'
-    );
+    require('./fixtures/catalog.cjs').isolateLegacyCatalog(directory, root);
   }
   const write = (file, bytes = '// controlled fixture\n') => {
     const target = path.join(directory, file);

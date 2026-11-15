@@ -244,18 +244,35 @@
       }
     },
     "publication-09": {
+      "kind": "local-article",
+      "article": "ai-governance-is-control-theory",
       "edition": {
         "@type": "Article",
         "name": "Uncertainty Architecture: Why AI Governance is Actually Control Theory",
-        "url": "https://pub.towardsai.net/uncertainty-architecture-why-ai-governance-is-actually-control-theory-511f3e73ed6e",
+        "url": "articles/ai-governance-is-control-theory.html",
         "inLanguage": "en",
         "author": {
           "@type": "Person",
-          "name": "Vitalii Oborskyi"
-        },
-        "datePublished": "2025-12-13"
+          "name": "Vitalii Oborskyi",
+          "url": "https://vitaliioborskyi.ai/"
+        }
       },
       "editions": [
+        {
+          "@type": "Article",
+          "name": "Uncertainty Architecture: Why AI Governance is Actually Control Theory",
+          "url": "https://pub.towardsai.net/uncertainty-architecture-why-ai-governance-is-actually-control-theory-511f3e73ed6e",
+          "inLanguage": "en",
+          "author": {
+            "@type": "Person",
+            "name": "Vitalii Oborskyi",
+            "url": "https://vitaliioborskyi.ai/"
+          },
+          "datePublished": "2025-12-13",
+          "platform": "Medium",
+          "relationship": "same-topic-platform-edition",
+          "bodyEquivalenceVerified": false
+        },
         {
           "platform": "LinkedIn",
           "name": "Uncertainty Architecture: Why AI Governance is actually Control Theory",
@@ -263,18 +280,22 @@
           "inLanguage": "en",
           "author": {
             "@type": "Person",
-            "name": "Vitalii Oborskyi"
+            "name": "Vitalii Oborskyi",
+            "url": "https://vitaliioborskyi.ai/"
           },
           "datePublished": "2025-12-11",
           "relationship": "same-topic-platform-edition",
           "bodyEquivalenceVerified": false
         }
       ],
-      "discussions": ["reddit-controller"],
+      "discussions": [
+        "reddit-controller"
+      ],
       "presentation": {
         "topic": "systems",
         "kind": "Article",
-        "publisher": "Towards AI"
+        "publisher": "Author site",
+        "archiveYear": "2025"
       }
     },
     "publication-10": {

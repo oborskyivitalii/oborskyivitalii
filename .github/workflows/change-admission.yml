@@ -10,6 +10,14 @@ on:
         description: Controls only — full head SHA explicitly reviewed by the owner; never skips full checks
         required: false
         type: string
+      guide_reviewed_sha:
+        description: Applicable workflow guide review — full head SHA after verifying the independent documentation review
+        required: false
+        type: string
+      guide_review_evidence:
+        description: GitHub link to the accepted independent review record for that exact source
+        required: false
+        type: string
 permissions:
   contents: read
   actions: read
@@ -71,6 +79,19 @@ jobs:
             const id = await require('./tools/staging/admission.cjs').beginChangeAdmission(github, context, pr);
             core.setOutput('check_id', id);
             core.setOutput('source', pr.head.sha);
+      - name: Install the locked Markdown parser when the guide check needs it
+        env:
+          ADMISSION_BASE: ${{ github.sha }}
+          ADMISSION_SOURCE: ${{ steps.begin.outputs.source }}
+        run: |
+          if ! git cat-file -e "${ADMISSION_SOURCE}^{commit}"; then
+            git fetch --no-tags origin "$ADMISSION_SOURCE"
+          fi
+          scope=$(python3 tools/check_ri_ci.py guide-scope --base-sha "$ADMISSION_BASE" --head-sha "$ADMISSION_SOURCE")
+          required=$(node -p 'JSON.parse(process.argv[1]).parser_required' "$scope")
+          if [[ "$required" == true ]]; then
+            npm ci --prefix tools/publishing/toolchain --ignore-scripts
+          fi
       - name: Evaluate immutable identities and issue with the isolated App
         id: evaluate
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd

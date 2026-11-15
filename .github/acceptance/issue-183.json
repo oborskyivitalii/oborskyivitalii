@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 183,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/183",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Batch and source manifest",
+      "automated_scope": "Current RI establishes inventory and freshness. Basic and Style cover bounded local source and structural rules where mapped. Focused catalog, edition, rights and hosted results and human gates remain explicit source-bound observations in the owning review.",
+      "checks": ["CURRENT-RI"],
+      "gates": ["SOURCE"]
+    },
+    {
+      "id": "AC02",
+      "intent": "Five native readers",
+      "automated_scope": "Current RI establishes inventory and freshness. Basic and Style cover bounded local source and structural rules where mapped. Focused catalog, edition, rights and hosted results and human gates remain explicit source-bound observations in the owning review.",
+      "checks": ["BASIC"],
+      "gates": ["SOURCE", "BROWSER"]
+    },
+    {
+      "id": "AC03",
+      "intent": "Dates and provenance",
+      "automated_scope": "Current RI establishes inventory and freshness. Basic and Style cover bounded local source and structural rules where mapped. Focused catalog, edition, rights and hosted results and human gates remain explicit source-bound observations in the owning review.",
+      "checks": ["BASIC"],
+      "gates": ["SOURCE", "CATALOG", "RELEASE"]
+    },
+    {
+      "id": "AC04",
+      "intent": "Catalog and reading paths",
+      "automated_scope": "Current RI establishes inventory and freshness. Basic and Style cover bounded local source and structural rules where mapped. Focused catalog, edition, rights and hosted results and human gates remain explicit source-bound observations in the owning review.",
+      "checks": ["BASIC"],
+      "gates": ["CATALOG", "BROWSER"]
+    },
+    {
+      "id": "AC05",
+      "intent": "Exact-candidate checks",
+      "automated_scope": "Current RI establishes inventory and freshness. Basic and Style cover bounded local source and structural rules where mapped. Focused catalog, edition, rights and hosted results and human gates remain explicit source-bound observations in the owning review.",
+      "checks": ["CURRENT-RI", "BASIC", "STYLE"],
+      "gates": ["SOURCE", "REVIEW", "BROWSER"]
+    },
+    {
+      "id": "AC06",
+      "intent": "Release evidence",
+      "automated_scope": "Current RI establishes inventory and freshness. Basic and Style cover bounded local source and structural rules where mapped. Focused catalog, edition, rights and hosted results and human gates remain explicit source-bound observations in the owning review.",
+      "checks": ["CURRENT-RI"],
+      "gates": ["RELEASE"]
+    },
+    {
+      "id": "AC07",
+      "intent": "Closeout",
+      "automated_scope": "Current RI establishes inventory and freshness. Basic and Style cover bounded local source and structural rules where mapped. Focused catalog, edition, rights and hosted results and human gates remain explicit source-bound observations in the owning review.",
+      "checks": ["CURRENT-RI"],
+      "gates": ["CLOSEOUT"]
+    },
+    {
+      "id": "AC08",
+      "intent": "Batch boundary",
+      "automated_scope": "Current RI establishes inventory and freshness. Basic and Style cover bounded local source and structural rules where mapped. Focused catalog, edition, rights and hosted results and human gates remain explicit source-bound observations in the owning review.",
+      "checks": ["CURRENT-RI"],
+      "gates": ["CLOSEOUT"]
+    }
+  ],
+  "checks": {
+    "CURRENT-RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "BASIC": {
+      "kind": "node-basic"
+    },
+    "STYLE": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    }
+  },
+  "gates": {
+    "SOURCE": {
+      "kind": "human",
+      "description": "Review the exact selected source, rendition parity, illustration rights, historical editions and author decisions for all five readers."
+    },
+    "CATALOG": {
+      "kind": "human",
+      "description": "Verify exact archive, filter and reading-path behavior before and after recording observed site publication dates."
+    },
+    "REVIEW": {
+      "kind": "human",
+      "description": "Record completed source-bound independent reviewer passes and any required corrections."
+    },
+    "BROWSER": {
+      "kind": "human",
+      "description": "Verify all exact hosted readers in desktop and mobile, including no-JavaScript reading, images, canonical, sitemap and social metadata."
+    },
+    "RELEASE": {
+      "kind": "human",
+      "description": "Verify source-bound preview, stable staging and production plus author decisions and recorded live publication events."
+    },
+    "CLOSEOUT": {
+      "kind": "human",
+      "description": "Report the approved five URLs, sources, effort, blockers and reusable steps, then stop for the author decision."
+    }
+  }
+}

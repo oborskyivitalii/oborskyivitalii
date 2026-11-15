@@ -1,0 +1,26 @@
+{
+  "base_sha": "0de10b68da18049946fb5eeedece66fc5ebf626c",
+  "scope_sha256": "8f90a93595ebfb2f13a2b78344b5f1b62152f14188eff1bcfa215576694079a0",
+  "paths": [
+    ".github/repository-intelligence-config.json",
+    ".github/repository-layout.json",
+    ".github/repository-paths.json",
+    ".github/ri-ci-map.json",
+    ".github/workflows/change-admission.yml",
+    ".github/workflows/issue-acceptance.yml",
+    "guides/SITE-RELEASE-GATES.md",
+    "tests/delivery-admission.test.cjs",
+    "tests/test_python_toolchain.py",
+    "tests/test_ri_ci.py",
+    "tools/check_ri_ci.py",
+    "tools/quality/bandit-policy.json",
+    "tools/quality/delivery-admission.cjs",
+    "tools/quality/python_toolchain.py",
+    "tools/quality/test-profiles.json",
+    "tools/quality/workflow-guide-markdown.mjs"
+  ],
+  "disposition": "updated",
+  "sections": ["Keeping this guide current", "Delivery routes and controls"],
+  "rationale": "The complete candidate adds the workflow guide and documents guide review and full-route delivery. Its linked release gate records the refreshed scanner versions and that existing graph and admission controls continue to apply.",
+  "reviewer_execution": "/root/deps199_review_req, /root/deps199_review_code, /root/deps199_review_wb, /root/deps199_review_qa and /root/deps199_review_fingerprints recorded in the coherent audit toolchain refresh section of 2026-11-12-review.md"
+}

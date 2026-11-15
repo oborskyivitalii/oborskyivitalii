@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "id": "ai-governance-is-control-theory",
+  "platforms": {
+    "linkedin": {
+      "formats": ["html", "md", "txt", "copy-ready"],
+      "relationship": "equivalent-rendition"
+    },
+    "medium": {
+      "formats": ["html", "md", "txt", "copy-ready"],
+      "relationship": "equivalent-rendition"
+    }
+  },
+  "launch": {
+    "source": "launch-post.en.md",
+    "sha256": "d8850af8ea3c481a8c2714de38e5de312c4c722bf79b9a540a7c2e8a151c85ea"
+  },
+  "seo": {
+    "title": "Uncertainty Architecture: Why AI Governance is Actually Control Theory",
+    "summary": "A December 2025 account of how actuators, constraints, evaluations, and operating roles close the control loop for AI systems."
+  },
+  "assets": {
+    "cover": {
+      "id": "cover"
+    },
+    "hero": {
+      "id": "cover"
+    }
+  },
+  "limits": {},
+  "reader": {
+    "references": "inline",
+    "images": "webp-lossless",
+    "equivalentImages": {
+      "cover": {
+        "path": "site/assets/publications/ai-governance-is-control-theory/cover-web.jpg",
+        "sha256": "4fb99c0a32cfe808956a13bc2caaec71ed7adea83de79df4c5bfa08592d0b871"
+      }
+    }
+  }
+}

@@ -10,7 +10,7 @@
     "contract": 1,
     "fingerprint": "48153b94fbae4f314eaa11b156df8a20227dec429abfee9e45c14fda4a1f1b2a"
   },
-  "engine": "68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c",
+  "engine": "27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c",
   "scenes": "0375c50289484250c0d44f693b1f9e3fb20ad4085701d09a1449c46403a0b1f7",
   "assets": "9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc",
   "mediaFiles": [
@@ -19,45 +19,70 @@
     "vitalii-oborskyi-cutout.webp",
     "writing-paradigm.svg"
   ],
-  "content": "06f54063ef5c7f873df950e4e6d24110ec68cd3c7aa622cca38c6012f4d81362",
+  "content": "e81e440530064702f3a65805d36a57de883c1bcae8cbfe67df530a0f88c0f25a",
   "routes": {
     "index": {
-      "version": "6b104d3068c3a8556df14c34fdbb5095f002b936950610c8135d75fd69878557",
-      "url": "snapshots/6b104d3068c3a8556df14c34fdbb5095f002b936950610c8135d75fd69878557/index.html",
-      "sha256": "c921b89f6fdd49200c9072dcd2b4942a6993760ae431ffa5f9606ed229db6a02"
+      "version": "1d09ddaffa9360d5ebf385249c24b2af84ef98bb339349387706ef46620ea0c2",
+      "url": "snapshots/1d09ddaffa9360d5ebf385249c24b2af84ef98bb339349387706ef46620ea0c2/index.html",
+      "sha256": "968561491371536d7c4586e7042d2578bbd821ba29012174d620793669cb8d44"
     },
     "research": {
-      "version": "394c5aa159ca0c6a490744b034174295e6c5d1e673a5d47003c4639f9bea27f0",
-      "url": "snapshots/394c5aa159ca0c6a490744b034174295e6c5d1e673a5d47003c4639f9bea27f0/research.html",
-      "sha256": "e9c6fd9f5992f7dbb3e4a08e92f564847829929d133430a70235513e2973a6ef",
+      "version": "124ee895d4c065467967610d3b6c0bfa787233a881ba48e3c7d57bd56980ccca",
+      "url": "snapshots/124ee895d4c065467967610d3b6c0bfa787233a881ba48e3c7d57bd56980ccca/research.html",
+      "sha256": "a4e1fc6757ff72f44df07229b91db4cc3612410175cbe45f359a2030018dc2ac",
       "assets": [
         "article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618/research-fallback.svg"
       ]
     },
     "writing": {
-      "version": "a2d14f40e9da7f2d5d9106360ed2e4a0f379df002160cd0198782642168ced77",
-      "url": "snapshots/a2d14f40e9da7f2d5d9106360ed2e4a0f379df002160cd0198782642168ced77/writing.html",
-      "sha256": "3c04fef3c686dfba8b89d07526287bd2a66db9be1553d3c920045075d964d586",
+      "version": "fb699c9df00f23d38d4f6596bd7ed7bccb02939a13e1215567cc3f269371932a",
+      "url": "snapshots/fb699c9df00f23d38d4f6596bd7ed7bccb02939a13e1215567cc3f269371932a/writing.html",
+      "sha256": "1ef21665f930725dd639d35e1e237052ad8f3b5ac3173ab9ef111563df463b74",
       "assets": [
         "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
       ]
     },
     "talks": {
-      "version": "11ff71be7630ef7b5b29715831dfb376d8a925a7e5193042ec19c7239be05f5f",
-      "url": "snapshots/11ff71be7630ef7b5b29715831dfb376d8a925a7e5193042ec19c7239be05f5f/talks.html",
-      "sha256": "16a334a52657120ac53744f88062e06b534cb0d8fe5a4859074a581cb0f9ac81"
+      "version": "247184e4b0fbf5fa6d0cadf30293641ab576f019c5e02a6319235308528bdee8",
+      "url": "snapshots/247184e4b0fbf5fa6d0cadf30293641ab576f019c5e02a6319235308528bdee8/talks.html",
+      "sha256": "172a9d37cfe2ef0d3d34abf6b4018c8028c1865769e646bf70408719b290afb3"
     },
     "credits": {
-      "version": "c7055a3c76caf056ddcdcd414c853f12ccaacdd7e1ffab81e02b935434c5fd00",
-      "url": "snapshots/c7055a3c76caf056ddcdcd414c853f12ccaacdd7e1ffab81e02b935434c5fd00/credits.html",
-      "sha256": "ddb3afd82eeac9e360cb828feb9a5216eaa3f539540eac248819dffc0619fbba"
+      "version": "d72077246cfce8168fa89fb80f59bf50575d62f457391720904dc294bb9ca4dc",
+      "url": "snapshots/d72077246cfce8168fa89fb80f59bf50575d62f457391720904dc294bb9ca4dc/credits.html",
+      "sha256": "8b56bb4ebdaa97b267f2098eb7cbe7f8f7946042824c55aad9c14d83116ecb93"
     }
   },
   "articles": {
+    "ai-governance-is-control-theory:en": {
+      "version": "4fc0b22cb017888cddeb652e2097d4e46f9ae2f9919e8a044359b230f7baf3ce",
+      "url": "article-snapshots/4fc0b22cb017888cddeb652e2097d4e46f9ae2f9919e8a044359b230f7baf3ce/ai-governance-is-control-theory.html",
+      "sha256": "b92f748891e357d9dd6da696758b08bcaa2e69c626167b8f00783ba8a12883c6",
+      "alias": "articles/ai-governance-is-control-theory.html",
+      "scene": "writing",
+      "assets": [
+        "article-media/4fb99c0a32cfe808956a13bc2caaec71ed7adea83de79df4c5bfa08592d0b871/cover.jpg",
+        "article-media/29527faa8c99529dfa1a7beb3ea1068d4f93a9ba9a30d86b4a1f8eac30583c54/normal-distribution.webp",
+        "article-media/d125ba3950bf0b8cd725d9197957a152ca404bff51c3cb87c9ee6460a8ddad88/cover-social.jpg",
+        "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
+      ],
+      "socialImage": {
+        "file": "article-media/d125ba3950bf0b8cd725d9197957a152ca404bff51c3cb87c9ee6460a8ddad88/cover-social.jpg",
+        "type": "image/jpeg",
+        "width": 1200,
+        "height": 630,
+        "alt": "A turbulent field of particles passes through a luminous framework and emerges in parallel streams."
+      },
+      "candidate": false,
+      "articleId": "ai-governance-is-control-theory",
+      "contentEdition": "ai-governance-is-control-theory-en-20251213",
+      "sourceSha256": "cbc804ade71bd5bf226aac5c1d0b4a2974a3af0d8ee5da478ccd3c62b32bbf3a",
+      "semanticSha256": "c494f7c88acebff86042b3cfdbf3a860e257c41692809e4b2b5956ff6aafcd23"
+    },
     "sdlc-out-of-balance:en": {
-      "version": "5dfe05ff47b5bf49db2832c5f418633d845428723ea4c3efcf0df41c63298ace",
-      "url": "article-snapshots/5dfe05ff47b5bf49db2832c5f418633d845428723ea4c3efcf0df41c63298ace/the-sdlc-is-out-of-balance.html",
-      "sha256": "4c6d1df3404140a31cdc12657f2f5cd45ca066e62c0ec1c95aa9c34a2b55888c",
+      "version": "fd3bf0dc16030581e3b1aaa889e8a80c775b1edef86381bd570e6ff6c6aa95f3",
+      "url": "article-snapshots/fd3bf0dc16030581e3b1aaa889e8a80c775b1edef86381bd570e6ff6c6aa95f3/the-sdlc-is-out-of-balance.html",
+      "sha256": "f8bfbd094492d4170e30f942e9ce8df7e094292d9fa29b2403e5182aa560c86e",
       "alias": "articles/the-sdlc-is-out-of-balance.html",
       "scene": "writing",
       "assets": [
@@ -87,9 +112,9 @@
       "semanticSha256": "10fdb9231098eb50c93e90ff1b073986a4c6756ea0f307feadf255012a820511"
     },
     "thinking-systems:en": {
-      "version": "b22659f6f84c6bf7723e7b747239c9b0245371f7b3ffeacbfeb893303b1434bc",
-      "url": "article-snapshots/b22659f6f84c6bf7723e7b747239c9b0245371f7b3ffeacbfeb893303b1434bc/thinking-systems.html",
-      "sha256": "39c35615593d67f3d701ad99e8ba2cda96ac9cc048cd744a7ff74642913dbe20",
+      "version": "209bba63a1a39434804a37d784af893221875873593494b2900c21bf4de1fa9b",
+      "url": "article-snapshots/209bba63a1a39434804a37d784af893221875873593494b2900c21bf4de1fa9b/thinking-systems.html",
+      "sha256": "c175952dec9c49105bd2be3d4edea0e619517d8d23bf8964ef134a480ee04b92",
       "alias": "articles/thinking-systems.html",
       "scene": "writing",
       "assets": [

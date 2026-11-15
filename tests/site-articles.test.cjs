@@ -11,7 +11,7 @@ const build = require('../tools/site/build.cjs');
 const snapshot = require('../tools/site/snapshot.cjs');
 const artifact = require('../tools/quality/artifact.cjs');
 const repo = path.resolve(__dirname, '..');
-const { legacyCatalog } = require('./fixtures/catalog.cjs');
+const { isolateLegacyCatalog } = require('./fixtures/catalog.cjs');
 const png = Buffer.from(
   'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aJ1sAAAAASUVORK5CYII=',
   'base64'
@@ -42,7 +42,7 @@ test.before(() => {
     });
   }
   // Synthetic article cases own their complete catalog/source inventory.
-  json(source, 'site/content/catalog.json', legacyCatalog(repo));
+  isolateLegacyCatalog(source, repo);
   fs.rmSync(path.join(source, 'site/publications'), {
     recursive: true,
     force: true,

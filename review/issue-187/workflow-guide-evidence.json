@@ -1,0 +1,28 @@
+{
+  "base_sha": "a86045300cccca97b58fc3ebead12cbabd5623de",
+  "scope_sha256": "703455f901920a426229021c1133e76cc91e320afc73b90ceb6d8792e52e2979",
+  "paths": [
+    "tests/article-browser-evidence.test.cjs",
+    "tests/color-motion-contract.test.cjs",
+    "tests/executive.test.cjs",
+    "tests/fixtures/article-flight.cjs",
+    "tests/fixtures/publication-records.cjs",
+    "tests/navigation.test.cjs",
+    "tests/quality.test.cjs",
+    "tests/release-controller.test.cjs",
+    "tests/space.test.cjs",
+    "tests/staging-regression.test.cjs",
+    "tools/quality/article-browser.cjs",
+    "tools/quality/color-motion-contract.cjs",
+    "tools/quality/motion.cjs",
+    "tools/quality/test-profiles.json"
+  ],
+  "disposition": "unchanged",
+  "sections": [
+    "Keeping this guide current",
+    "Site architecture",
+    "Delivery routes and controls"
+  ],
+  "rationale": "The existing guide describes the shared scene lifecycle, browser and source checks, and the full protected staging route for changes to the shared runtime. The exact review, admission and explicit production decision remain described.",
+  "reviewer_execution": "/root/actual_feature_rebase_review on 3eb3f13; current-base guide and staging review recorded in 2026-11-11-analysis.md under Integration on protected main after #206."
+}
