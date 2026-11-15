@@ -38,7 +38,11 @@ function parseGuide(markdown) {
 }
 
 function normalizeProse(value) {
-  const text = value.replace(/[\u200b\u2060\ufeff]/g, '');
+  const text = value
+    .replace(/[\u200b\u2060\ufeff]/g, '')
+    .replace(/(?<=[A-Za-z])\p{Variation_Selector}+/gu, '')
+    // Terminal controls after ordinary punctuation or space have no shaping target.
+    .replace(/(?<=[\s.!?:;,])(?:\u034f|\p{Join_Control}|\p{Variation_Selector})+(?=\s*$)/gu, '');
   const visibleSpelling = text.replace(defaultIgnorables, '');
   // Isolated fillers do not change ASCII prose. Preserve shaping controls and
   // non-ASCII spelling so joiners and variation selectors can change the comparison.

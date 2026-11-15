@@ -763,6 +763,14 @@ class WorkflowGuideReviewTests(unittest.TestCase):
         self.assertEqual(
             *ci.guide_contents(diagram, diagram.replace("diagram]", "diagram&#x034F;&#x115F;]"))
         )
+        for before, after in (
+            ("Доставка.", "Доставка.&#x034F;"),
+            ("Agents review candidates.", "Agents review candidates.&#x200D;"),
+            ("Workflow review.", "Workflow&#xFE0F; review."),
+            ("![Workflow diagram.](diagram.png)", "![Workflow diagram.&#xFE0F;](diagram.png)"),
+        ):
+            with self.subTest(before=before, after=after):
+                self.assertEqual(*ci.guide_contents(before, after))
         self.assertNotEqual(*ci.guide_contents(diagram, diagram.replace("Workflow", "Delivery")))
         for before, after in (
             ("Use 👩\u200d💻.", "Use 👩💻."),

@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "d941d20c7f85f45472efd71d47d0ad3bd2a02bfa4661567b1bf9f361a76ba7fb",
+    "digest": "f99909a0509474762a6d6f6daf70a2c404c01fb17596a27e6e1782f1e3ac0012",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -271,7 +271,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "08388cbdc016040bb18cc9175e89c092af3348b7cbd100e00633110b33520b5a"
+        "sha256": "9c8652d3453fcb58e0ff094acd2f8e42df25b23d795f8d8fc7451c3551fb37c2"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -4935,7 +4935,7 @@
       {
         "path": "review/issue-199/2026-11-12-review.md",
         "identity_mode": "content",
-        "sha256": "f3c24430ce1bbbeb3fa9565794c79174530abb7af26500af7e2a93f8dc364979"
+        "sha256": "2904e0986ed89d1fe9ddbaf094bad3f25b1dc82f23fc3669a0a4a1f758ff8459"
       },
       {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -12295,7 +12295,7 @@
       {
         "path": "tests/test_ri_ci.py",
         "identity_mode": "content",
-        "sha256": "4d5cd2a979806a38bc67ac94e9666cc7d5d94b67891892d7bb839b59ce08c3f7"
+        "sha256": "0602bbe8f9645657540ce48131e19beb9601e4f510a4f96ce71978f4a3a035e6"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -13140,7 +13140,7 @@
       {
         "path": "tools/quality/workflow-guide-markdown.mjs",
         "identity_mode": "content",
-        "sha256": "c8a598bde67adbe68f8e5ea9895b4ab9967b9297ddb4e7e28c74c00810fb1208"
+        "sha256": "b322ac7c735254d9c8ccf5483faac406368f1736471c1dc59c9f15d78f0b7681"
       },
       {
         "path": "tools/quality/writing-diagnosis.cjs",
