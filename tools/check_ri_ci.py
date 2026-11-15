@@ -11,6 +11,7 @@ import fnmatch
 import hashlib
 import importlib.util
 import json
+import os
 import re
 import shlex
 import subprocess
@@ -32,6 +33,7 @@ CONTROL_FILES = {
     ".github/pull_request_template.md",
     "tools/repository_intelligence.py",
     "tools/check_ri_ci.py",
+    "tools/quality/workflow-guide-markdown.mjs",
     "tools/issue_acceptance.py",
     "tests/test_repository_intelligence.py",
     "tests/test_ri_ci.py",
@@ -480,6 +482,263 @@ def fixed_diff(root, base, head):
     }
 
 
+GUIDE = "guides/REPOSITORY-WORKFLOW.md"
+GUIDE_REVIEW = r"review/issue-[1-9][0-9]*/workflow-guide-evidence\.json"
+GUIDE_OWNERS = CONTROL_OWNERS | {
+    GUIDE,
+    "guides/WEB-ORCHESTRATION.md",
+    "guides/SITE-CONTROL-CHANGES.md",
+    "guides/SITE-CONTENT-RELEASE.md",
+    "guides/SITE-CHECK-PROFILES.md",
+    "guides/SITE-STAGING.md",
+    "guides/SITE-PRODUCTION.md",
+    "guides/SITE-RELEASE-GATES.md",
+    "agents/reviewers/README.md",
+    "tools/quality/delivery-admission.cjs",
+}
+GUIDE_FILES = {
+    "tools/publishing/toolchain/package-lock.json",
+    ".github/acceptance/issue-122.json",
+    "tools/quality/artifact.cjs",
+    "tools/quality/budgets.json",
+    "tools/quality/scanners.cjs",
+    "tools/quality/security-rules.yml",
+    ".github/code-style.json",
+    ".github/repository-layout.json",
+    "guides/ARTICLE-WORKFLOW.md",
+    "guides/SITE-STAGING.md",
+    "guides/SITE-RELEASE-GATES.md",
+    "guides/SITE-PRODUCTION.md",
+}
+
+
+def guide_scope(root, base, head):
+    def git(*args):
+        return subprocess.check_output(["git", "--no-replace-objects", "-C", str(root), *args])
+
+    for ref in (base, head):
+        if (
+            not re.fullmatch(r"[0-9a-f]{40}", ref or "")
+            or git("cat-file", "-t", ref) != b"commit\n"
+        ):
+            raise ValueError("Guide review requires full immutable base and head commit SHAs")
+
+    def read(ref, path):
+        mode = git("ls-tree", ref, "--", path).split(b" ", 1)[0]
+        if not mode:
+            return b""
+        if mode not in {b"100644", b"100755"}:
+            raise ValueError("Guide review inputs must be regular files: " + path)
+        return git("show", ref + ":" + path)
+
+    def load(ref, path):
+        return json.loads(read(ref, path) or b"{}")
+
+    raw = git(
+        "diff",
+        "--raw",
+        "-z",
+        "--no-abbrev",
+        "--find-renames=50%",
+        "-l5000",
+        "--no-relative",
+        "--ignore-submodules=none",
+        "--no-ext-diff",
+        "--no-textconv",
+        base,
+        head,
+        "--",
+    )
+    fields = iter(raw.decode().split("\0")[:-1])
+    changed, renames = {}, []
+    for header in fields:
+        path = next(fields)
+        changed[path] = header
+        if header.rsplit(" ", 1)[-1].startswith("R"):
+            destination = next(fields)
+            changed[destination] = header
+            renames.append((path, destination))
+    old_catalog, new_catalog = (load(ref, CATALOG) for ref in (base, head))
+    old_entries, new_entries = (item.get("entries", {}) for item in (old_catalog, new_catalog))
+    catalogs = (old_entries, new_entries)
+
+    def control(path):
+        if (
+            path in DERIVED
+            or path in {GUIDE, CATALOG, "MEMORY.md"}
+            or re.fullmatch(GUIDE_REVIEW, path)
+        ):
+            return False
+        if path in GUIDE_FILES:
+            return True
+        if re.fullmatch(r"\.github/acceptance/issue-[0-9]+\.json", path):
+            # An issue's individual tests and criteria do not redefine the harness.
+            return False
+        if path in CONTROL_FILES | GUIDE_OWNERS or any(
+            fnmatch.fnmatchcase(path, pattern)
+            for pattern in (*CONTROL_PATTERNS, "tools/quality/delivery-*.cjs")
+        ):
+            return True
+        if path.endswith("/AGENTS.md") or path.startswith(
+            (
+                ".github/actions/",
+                ".github/workflows/",
+                "agents/",
+                "tools/orchestration/",
+                "tools/pages/",
+                "tools/release/",
+                "tools/staging/",
+            )
+        ):
+            return True
+        return any(
+            entry.get("owner") in GUIDE_OWNERS
+            and entry.get("role") not in {"generated", "history", "draft", "memory"}
+            for entry in (catalog.get(path, {}) for catalog in catalogs)
+        )
+
+    covered = {path for path in changed if control(path)}
+    if MAP in changed:
+        maps = [load(ref, MAP) for ref in (base, head)]
+        for mapping in maps:
+            mapping.pop("reviewed_source_identity", None)
+        if maps[0] != maps[1]:
+            covered.add(MAP)
+    if CATALOG in changed:
+        metadata = [
+            {key: value for key, value in item.items() if key != "entries"}
+            for item in (old_catalog, new_catalog)
+        ]
+        if metadata[0] != metadata[1] or any(
+            control(path) and old_entries.get(path) != new_entries.get(path)
+            for path in old_entries.keys() | new_entries.keys()
+        ):
+            covered.add(CATALOG)
+    for old_path, new_path in renames:
+        if old_path in covered or new_path in covered:
+            covered.update((old_path, new_path))
+    paths = sorted(covered)
+    scope = {
+        "controls": [(path, changed[path]) for path in paths],
+        "guide_sha256": hashlib.sha256(read(head, GUIDE)).hexdigest(),
+    }
+    digest = hashlib.sha256(json.dumps(scope).encode()).hexdigest()
+    return paths, digest, changed, read
+
+
+def guide_projections(*documents):
+    """Use the parser beside the executing checker, never a candidate Git blob."""
+    parser = Path(__file__).resolve().parent / "quality/workflow-guide-markdown.mjs"
+    if any(len(document.encode()) > 1_000_000 for document in documents):
+        raise ValueError(f"{GUIDE} exceeds the 1 MB Markdown comparison limit")
+    parsed = subprocess.run(
+        ["node", str(parser)],
+        input=json.dumps(documents),
+        capture_output=True,
+        text=True,
+        timeout=15,
+        check=False,
+    )
+    if parsed.returncode:
+        raise ValueError(f"Cannot compare {GUIDE}: {parsed.stderr.strip()}")
+    return json.loads(parsed.stdout)
+
+
+def guide_contents(*documents):
+    return [comparison["nodes"] for comparison in guide_projections(*documents)]
+
+
+def guide_review(root, base, head, describe=False):
+    paths, digest, changed, read = guide_scope(root, base, head)
+    result = {
+        "base_sha": base,
+        "head_sha": head,
+        "paths": paths,
+        "scope_sha256": digest,
+        "decision": "inapplicable",
+    }
+    parser_required = bool(paths or GUIDE in changed)
+    if describe:
+        return {
+            **result,
+            "decision": "review-required" if paths else "inapplicable",
+            "parser_required": parser_required,
+        }
+    if not parser_required:
+        return result
+    guide = read(head, GUIDE).decode()
+    if not guide.strip():
+        raise ValueError(f"Workflow guide is missing or empty: {GUIDE}")
+    (current,) = guide_projections(guide)
+    if not current["hasText"]:
+        raise ValueError(f"Workflow guide has no visible content: {GUIDE}")
+    if not paths:
+        return result
+    receipts = [path for path in changed if re.fullmatch(GUIDE_REVIEW, path) and read(head, path)]
+    receipt = receipts[0] if len(receipts) == 1 else None
+    try:
+        record = json.loads(read(head, receipt)) if receipt else None
+    except ValueError as exc:
+        raise ValueError(
+            f"Invalid JSON in workflow guide review evidence {receipt}: {exc}"
+        ) from exc
+    expected = {"base_sha": base, "scope_sha256": digest, "paths": paths}
+    if (
+        not isinstance(record, dict)
+        or set(record) != {*expected, "disposition", "sections", "rationale", "reviewer_execution"}
+        or any(record.get(key) != value for key, value in expected.items())
+    ):
+        raise ValueError(
+            "Add a current review in review/issue-N/workflow-guide-evidence.json. "
+            f"Reviewed scope: {json.dumps(expected, ensure_ascii=False)}"
+        )
+
+    def label(node):
+        return node.get("value", "") + "".join(label(child) for child in node.get("children", []))
+
+    headings = {
+        label(node) for node in current["nodes"] if node["type"] == "heading" and node["depth"] >= 2
+    }
+    disposition, sections, rationale, execution = (
+        record[key] for key in ("disposition", "sections", "rationale", "reviewer_execution")
+    )
+    if (
+        disposition not in ("updated", "unchanged")
+        or not isinstance(sections, list)
+        or not sections
+        or any(not isinstance(section, str) or section not in headings for section in sections)
+        or len(sections) != len(set(sections))
+        or not isinstance(rationale, str)
+        or len(rationale.strip().split()) < 8
+        or not isinstance(execution, str)
+        or not execution.strip()
+    ):
+        raise ValueError(
+            f"{receipt} requires an updated or unchanged disposition, actual guide section titles, "
+            "a specific rationale, "
+            "and a reference to the independent reviewer execution."
+        )
+    if disposition == "updated":
+        (previous,) = guide_projections(read(base, GUIDE).decode())
+        if current["nodes"] == previous["nodes"]:
+            raise ValueError(f"{receipt} declares an update but {GUIDE} has no visible change")
+    # An AST difference alone cannot establish that the affected behavior was documented.
+    return {**result, "decision": f"reviewed-{disposition}", "review_receipt": receipt}
+
+
+def pull_request_guide_review(root):
+    if os.environ.get("GITHUB_EVENT_NAME") != "pull_request":
+        return None
+    event = json.loads(Path(os.environ["GITHUB_EVENT_PATH"]).read_text())["pull_request"]
+    head = event["head"]["sha"]
+    checked_out = subprocess.check_output(
+        ["git", "-C", str(root), "rev-parse", "HEAD"], text=True
+    ).strip()
+    if checked_out != head:
+        raise ValueError("Guide review head does not match the PR checkout")
+    return guide_review(root, event["base"]["sha"], head)
+
+
 def verify(root, map_path=MAP, base=None, head=None):
     data = json.loads(safe_path(root, map_path).read_text())
     validate_definition(root, data)
@@ -503,7 +762,7 @@ def verify(root, map_path=MAP, base=None, head=None):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=["verify", "refresh"])
+    parser.add_argument("command", choices=["verify", "refresh", "guide-review", "guide-scope"])
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument("--map", default=MAP)
     parser.add_argument("--base-sha")
@@ -521,8 +780,16 @@ def main():
             validate_definition(root, data)
             data["reviewed_source_identity"] = source_identity(root, data)
             path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
-        print(json.dumps(verify(root, args.map, args.base_sha, args.head_sha), sort_keys=True))
-    except (ValueError, KeyError, OSError, subprocess.CalledProcessError) as exc:
+        if args.command in {"guide-review", "guide-scope"}:
+            result = guide_review(root, args.base_sha, args.head_sha, args.command == "guide-scope")
+        else:
+            result = verify(root, args.map, args.base_sha, args.head_sha)
+            if args.command == "verify":
+                review = pull_request_guide_review(root)
+                if review is not None:
+                    result["workflow_guide_review"] = review
+        print(json.dumps(result, sort_keys=True))
+    except (ValueError, KeyError, OSError, subprocess.SubprocessError) as exc:
         print(str(exc), file=sys.stderr)
         return 1
     return 0

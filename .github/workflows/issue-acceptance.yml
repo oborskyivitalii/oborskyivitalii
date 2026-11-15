@@ -85,8 +85,10 @@ jobs:
         run: |
           npm ci --prefix tools/publishing/toolchain --ignore-scripts
           tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps "$(python3 tools/publishing/web-media.py --requirement)"
-      - name: Install locked article AST tools for current catalog invariant checks
-        if: env.ACCEPTANCE_POLICY == '.github/acceptance/issue-159.json'
+      - name: Install locked Markdown tools for catalog and guide checks
+        if: >-
+          env.ACCEPTANCE_POLICY == '.github/acceptance/issue-159.json' ||
+          env.ACCEPTANCE_POLICY == '.github/acceptance/issue-199.json'
         run: npm ci --prefix tools/publishing/toolchain --ignore-scripts
       - name: Run criterion checks and preserve explicit pending human gates
         run: python3 tools/issue_acceptance.py run --policy "$ACCEPTANCE_POLICY" --report "$RUNNER_TEMP/issue-acceptance.json" --require-clean --expected-source "$ACCEPTANCE_SOURCE_SHA"

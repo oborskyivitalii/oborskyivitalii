@@ -206,17 +206,19 @@ this policy PR does not itself activate production.
 The Python lock includes its installer and every installed audit dependency. Full
 installers use `--no-deps` only with that complete lock, immediately followed by
 `python tools/quality/python_toolchain.py`. The verifier rejects missing, changed,
-duplicate, unfrozen or incompatible packages. For unmodified Semgrep CE1.179.0,
+duplicate, unfrozen or incompatible packages. For unmodified Semgrep CE1.185.0,
 the verifier requires each of these four reviewed compatibility records exactly once:
 
 | Exact upstream declaration | Exact installed dependency |
 | --- | --- |
 | `mcp==1.29.0` | `mcp==1.30.0` |
-| `opentelemetry-api~=1.37.0` | `opentelemetry-api==1.45.1` |
-| `opentelemetry-sdk~=1.37.0` | `opentelemetry-sdk==1.45.1` |
-| `opentelemetry-exporter-otlp-proto-http~=1.37.0` | `opentelemetry-exporter-otlp-proto-http==1.45.1` |
+| `opentelemetry-api~=1.37.0` | `opentelemetry-api==1.45.2` |
+| `opentelemetry-sdk~=1.37.0` | `opentelemetry-sdk==1.45.2` |
+| `opentelemetry-exporter-otlp-proto-http~=1.37.0` | `opentelemetry-exporter-otlp-proto-http==1.45.2` |
 
-The coherent OpenTelemetry family is pinned in the existing lock. These records
+The lock pins the OpenTelemetry stable packages to 1.45.2 and their matching
+instrumentation packages to 0.66b2. It also pins the Semgrep logging dependency
+structlog to 26.1.0. These records
 deliberately exceed Semgrep's declared version constraints; acceptance requires
 actual installation and the existing CE scanning route, including positive/negative
 controls and complete source coverage. They do not establish support for an MCP

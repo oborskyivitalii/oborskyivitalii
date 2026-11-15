@@ -65,6 +65,7 @@ Roles describe navigation, not scientific, rights, merge or publication acceptan
 | GitHub Pages production custom domain and canonical redirect readiness | [guides/SITE-PRODUCTION.md](guides/SITE-PRODUCTION.md) |
 | release-bound rights inventory, provenance and site reuse-policy decision | [guides/SITE-RIGHTS.md](guides/SITE-RIGHTS.md) |
 | personal-site code and content licensing, exclusions and attribution notices | [LICENSING.md](LICENSING.md) |
+| repository workflow, harness and delivery overview | [guides/REPOSITORY-WORKFLOW.md](guides/REPOSITORY-WORKFLOW.md) |
 | offline WEB orchestration fixture component | [guides/WEB-ORCHESTRATION.md](guides/WEB-ORCHESTRATION.md) |
 | independent requirements and acceptance-quality review detailed prompt | [agents/reviewers/requirements-acceptance.md](agents/reviewers/requirements-acceptance.md) |
 | independent code review and correction acceptance detailed prompt | [agents/reviewers/code-review.md](agents/reviewers/code-review.md) |

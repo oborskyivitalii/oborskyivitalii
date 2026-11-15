@@ -1046,3 +1046,189 @@ test('eligible App checks stay pending until durable upload and a fresh bound fi
     else process.env.GITHUB_RUN_ATTEMPT = previous;
   }
 });
+
+test('protected workflow guide admission checks the immutable candidate and requires separate owner attestation', (t) => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'workflow-guide-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const git = (...args) => cp.execFileSync('git', args, { cwd: root, encoding: 'utf8' }).trim();
+  const write = (file, contents) => {
+    fs.mkdirSync(path.dirname(path.join(root, file)), { recursive: true });
+    fs.writeFileSync(path.join(root, file), contents);
+  };
+  const commit = () => {
+    git('add', '-A');
+    git(
+      '-c',
+      'user.name=Fixture',
+      '-c',
+      'user.email=fixture@example.com',
+      'commit',
+      '-qm',
+      'fixture'
+    );
+    return git('rev-parse', 'HEAD');
+  };
+  git('init', '-q');
+  const checker = 'tools/check_ri_ci.py';
+  write(checker, fs.readFileSync(path.join(__dirname, '..', checker)));
+  const parser = 'tools/quality/workflow-guide-markdown.mjs';
+  write(parser, fs.readFileSync(path.join(__dirname, '..', parser)));
+  fs.appendFileSync(
+    path.join(root, '.git/info/exclude'),
+    '\n/tools/publishing/toolchain/node_modules\n'
+  );
+  const publishing = path.join(root, 'tools/publishing/toolchain');
+  fs.mkdirSync(publishing, { recursive: true });
+  fs.symlinkSync(
+    path.join(__dirname, '../tools/publishing/toolchain/node_modules'),
+    path.join(publishing, 'node_modules'),
+    'dir'
+  );
+  write('guides/REPOSITORY-WORKFLOW.md', '# Guide\n\n## Workflows\n\nCheck current source. 👩💻\n');
+  const protectedHead = commit();
+  write('site/content/news.md', 'Ordinary content change.\n');
+  const content = commit();
+  git('checkout', '--detach', '-q', protectedHead);
+  const workflow = '.github/workflows/navigation.yml';
+  write(workflow, 'name: Changed\n');
+  write(checker, '# Candidate attempts to replace the checker\n');
+  const missing = commit();
+  git('checkout', '--detach', '-q', protectedHead);
+  const workflowSource = fs.readFileSync(
+    path.join(__dirname, '../.github/workflows/change-admission.yml'),
+    'utf8'
+  );
+  const install = workflowSource.match(
+    /^ {6}- name: Install the locked Markdown parser[^\n]*\n[\s\S]*?^ {8}run: \|\n((?:^ {10}[^\n]*\n)+)/m
+  );
+  assert.ok(install, 'missing protected guide parser step');
+  const selectParser = (head) =>
+    cp
+      .execFileSync('bash', ['-ec', 'npm() { printf \'%s\\n\' "$*"; }\n' + install[1]], {
+        cwd: root,
+        encoding: 'utf8',
+        env: { ...process.env, ADMISSION_BASE: protectedHead, ADMISSION_SOURCE: head },
+      })
+      .trim();
+  assert.equal(selectParser(content), '');
+  assert.equal(selectParser(missing), 'ci --prefix tools/publishing/toolchain --ignore-scripts');
+  const context = {
+    sha: protectedHead,
+    eventName: 'workflow_dispatch',
+    actor: 'oborskyivitalii',
+    payload: { inputs: { reviewed_sha: missing } },
+  };
+  assert.equal(
+    admission.workflowGuideReview(root, context, content).report.decision,
+    'inapplicable'
+  );
+  assert.equal(
+    admission.workflowGuideReview(root, context, missing).blocker,
+    'workflow-guide-review'
+  );
+
+  const scopeFor = (head) =>
+    JSON.parse(
+      cp.execFileSync(
+        'python3',
+        [checker, 'guide-scope', '--base-sha', protectedHead, '--head-sha', head],
+        { cwd: root, encoding: 'utf8' }
+      )
+    );
+  const scope = scopeFor(missing);
+  git('checkout', '--detach', '-q', missing);
+  write(
+    'review/issue-199/workflow-guide-evidence.json',
+    JSON.stringify({
+      base_sha: protectedHead,
+      scope_sha256: scope.scope_sha256,
+      paths: scope.paths,
+      disposition: 'unchanged',
+      sections: ['Workflows'],
+      rationale: 'The underlying check still reads and validates the current source.',
+      reviewer_execution: 'independent reviewer execution QA-199',
+    })
+  );
+  const reviewed = commit();
+  git('checkout', '--detach', '-q', protectedHead);
+  context.payload.inputs.reviewed_sha = reviewed;
+  assert.equal(
+    admission.workflowGuideReview(root, context, reviewed).blocker,
+    'attest-exact-workflow-guide-review'
+  );
+  context.payload.inputs.guide_reviewed_sha = reviewed;
+  assert.equal(
+    admission.workflowGuideReview(root, context, reviewed).blocker,
+    'attest-exact-workflow-guide-review'
+  );
+  const evidence = 'https://github.com/oborskyivitalii/oborskyivitalii/issues/199#issuecomment-1';
+  context.payload.inputs.guide_review_evidence = evidence;
+  const accepted = admission.workflowGuideReview(root, context, reviewed).report;
+  assert.equal(accepted.decision, 'reviewed-unchanged');
+  assert.deepEqual(accepted.attestation, {
+    reviewer: 'oborskyivitalii',
+    reviewedHead: reviewed,
+    evidence,
+  });
+  git('checkout', '--detach', '-q', reviewed);
+  write('guides/REPOSITORY-WORKFLOW.md', '# Guide\n\n## Workflows\n\nCheck current source. 👩‍💻\n');
+  const formattingDraft = commit();
+  const receiptPath = 'review/issue-199/workflow-guide-evidence.json';
+  const receipt = JSON.parse(fs.readFileSync(path.join(root, receiptPath), 'utf8'));
+  git('checkout', '--detach', '-q', protectedHead);
+  assert.equal(
+    admission.workflowGuideReview(root, context, formattingDraft).blocker,
+    'workflow-guide-review'
+  );
+  receipt.scope_sha256 = scopeFor(formattingDraft).scope_sha256;
+  git('checkout', '--detach', '-q', formattingDraft);
+  write(receiptPath, JSON.stringify(receipt));
+  const formatting = commit();
+  git('checkout', '--detach', '-q', protectedHead);
+  assert.equal(
+    admission.workflowGuideReview(root, context, formatting).blocker,
+    'attest-exact-workflow-guide-review'
+  );
+  context.payload.inputs.guide_reviewed_sha = formatting;
+  assert.equal(
+    admission.workflowGuideReview(root, context, formatting).report.decision,
+    'reviewed-unchanged'
+  );
+  git('checkout', '--detach', '-q', missing);
+  write('guides/REPOSITORY-WORKFLOW.md', '# Guide\n\n## Workflows\n\nVerify current source.\n');
+  const updateDraft = commit();
+  git('checkout', '--detach', '-q', protectedHead);
+  context.payload.inputs.guide_reviewed_sha = updateDraft;
+  assert.equal(
+    admission.workflowGuideReview(root, context, updateDraft).blocker,
+    'workflow-guide-review'
+  );
+  const updateScope = scopeFor(updateDraft);
+  git('checkout', '--detach', '-q', updateDraft);
+  write(
+    receiptPath,
+    JSON.stringify({
+      ...receipt,
+      scope_sha256: updateScope.scope_sha256,
+      disposition: 'updated',
+      rationale: 'The updated guide explains how the workflow verifies the current source.',
+    })
+  );
+  const updated = commit();
+  git('checkout', '--detach', '-q', protectedHead);
+  assert.equal(
+    admission.workflowGuideReview(root, context, updated).blocker,
+    'attest-exact-workflow-guide-review'
+  );
+  context.payload.inputs.guide_reviewed_sha = updated;
+  assert.equal(
+    admission.workflowGuideReview(root, context, updated).report.decision,
+    'reviewed-updated'
+  );
+  context.payload.inputs.guide_reviewed_sha = reviewed;
+  context.actor = 'somebody-else';
+  assert.equal(
+    admission.workflowGuideReview(root, context, reviewed).blocker,
+    'attest-exact-workflow-guide-review'
+  );
+});
