@@ -5,6 +5,7 @@ import remarkParse from '../publishing/toolchain/node_modules/remark-parse/index
 import remarkGfm from '../publishing/toolchain/node_modules/remark-gfm/index.js';
 
 const parser = unified().use(remarkParse).use(remarkGfm);
+const defaultIgnorables = /\p{Default_Ignorable_Code_Point}/gu;
 
 function withoutComments(value) {
   return value.replace(/<!--(?:-?>|[\s\S]*?(?:--!?>|$))/g, '');
@@ -37,7 +38,14 @@ function parseGuide(markdown) {
 }
 
 function normalizeProse(value) {
-  return value.replace(/[\u200b\u2060\ufeff]/g, '').replace(/\s+/g, ' ');
+  // Formatting-only proposals can use the reviewed-unchanged route.
+  return value.replace(defaultIgnorables, '').replace(/\s+/g, ' ');
+}
+
+function hasText(node) {
+  const substantive = (value) =>
+    typeof value === 'string' && /[\p{L}\p{N}]/u.test(value.replace(defaultIgnorables, ''));
+  return substantive(node.value) || substantive(node.alt) || (node.children ?? []).some(hasText);
 }
 
 function visibleNode(source, footnotes) {
@@ -122,7 +130,8 @@ try {
   const visible = input.map((markdown) => {
     const tree = parseGuide(markdown);
     validateMarkup(tree);
-    return visibleNode(tree, visibleFootnotes(tree)).children;
+    const projection = visibleNode(tree, visibleFootnotes(tree));
+    return { nodes: projection.children, hasText: hasText(projection) };
   });
   process.stdout.write(JSON.stringify(visible));
 } catch (error) {

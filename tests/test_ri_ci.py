@@ -754,12 +754,14 @@ class WorkflowGuideReviewTests(unittest.TestCase):
         self.write(ci.GUIDE, baseline + "\n<!-- [example]: https://example.com/ -->\n")
         with self.assertRaisesRegex(ValueError, "Update"):
             ci.guide_review(self.root, self.base, self.commit())
-        self.write(ci.GUIDE, baseline.replace("candidates.", "candidates.&#x200B;"))
-        with self.assertRaisesRegex(ValueError, "Update"):
-            ci.guide_review(self.root, self.base, self.commit())
+        for markup in ("&#x200B;", "&#x034F;", "&#x3164;"):
+            with self.subTest(markup=markup):
+                self.write(ci.GUIDE, baseline.replace("candidates.", "candidates." + markup))
+                with self.assertRaisesRegex(ValueError, "Update"):
+                    ci.guide_review(self.root, self.base, self.commit())
         diagram = baseline + "\n![Workflow diagram](diagram.png)\n"
         self.assertEqual(
-            *ci.guide_contents(diagram, diagram.replace("diagram]", "diagram&#x200B;&#x2060;]"))
+            *ci.guide_contents(diagram, diagram.replace("diagram]", "diagram&#x034F;&#x115F;]"))
         )
         self.assertNotEqual(*ci.guide_contents(diagram, diagram.replace("Workflow", "Delivery")))
         self.assertNotEqual(*ci.guide_contents("Use `value`.", "Use `value\u200b`."))
@@ -936,11 +938,15 @@ class WorkflowGuideReviewTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "missing or empty"):
             ci.guide_review(self.root, self.base, self.commit())
         self.write(".github/workflows/new.yml", "name: New control\n")
-        for markup in ("##", ">", "---", "&#x200B;", "&#x2060;", "&#x034F;"):
+        for markup in ("##", ">", "---", "&#x200B;", "&#x2060;", "&#x034F;", "&#x3164;", "&#x115F;"):
             with self.subTest(markup=markup):
                 self.write(ci.GUIDE, markup + "\n")
                 with self.assertRaisesRegex(ValueError, "no visible content"):
                     ci.guide_review(self.root, self.base, self.commit())
+        self.write(ci.GUIDE, "# Робочий процес\n\nПеревірити поточний стан.\n")
+        self.assertEqual(
+            ci.guide_review(self.root, self.base, self.commit())["decision"], "guide-updated"
+        )
 
 
 if __name__ == "__main__":

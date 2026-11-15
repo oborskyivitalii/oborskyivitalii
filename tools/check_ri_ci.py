@@ -622,7 +622,7 @@ def guide_scope(root, base, head):
     return paths, digest, changed, read
 
 
-def guide_contents(*documents):
+def guide_contents(*documents, require_text=False):
     """Use the parser beside the executing checker, never a candidate Git blob."""
     parser = Path(__file__).resolve().parent / "quality/workflow-guide-markdown.mjs"
     if any(len(document.encode()) > 1_000_000 for document in documents):
@@ -637,20 +637,10 @@ def guide_contents(*documents):
     )
     if parsed.returncode:
         raise ValueError(f"Cannot compare {GUIDE}: {parsed.stderr.strip()}")
-    return json.loads(parsed.stdout)
-
-
-def guide_has_content(nodes):
-    # A guide needs text. Empty layout and isolated formatting marks are insufficient.
-    return any(
-        any(
-            character.isalnum()
-            for field in ("value", "alt")
-            for character in (node.get(field) or "")
-        )
-        or guide_has_content(node.get("children", []))
-        for node in nodes
-    )
+    comparisons = json.loads(parsed.stdout)
+    if require_text and not comparisons[0]["hasText"]:
+        raise ValueError(f"Workflow guide has no visible content: {GUIDE}")
+    return [comparison["nodes"] for comparison in comparisons]
 
 
 def guide_review(root, base, head, describe=False):
@@ -670,9 +660,7 @@ def guide_review(root, base, head, describe=False):
     guide = read(head, GUIDE).decode()
     if not guide.strip():
         raise ValueError(f"Workflow guide is missing or empty: {GUIDE}")
-    current, previous = guide_contents(guide, read(base, GUIDE).decode())
-    if not guide_has_content(current):
-        raise ValueError(f"Workflow guide has no visible content: {GUIDE}")
+    current, previous = guide_contents(guide, read(base, GUIDE).decode(), require_text=True)
     if not paths:
         return result
     if current != previous:
