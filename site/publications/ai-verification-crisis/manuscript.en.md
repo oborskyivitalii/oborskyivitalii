@@ -6,6 +6,8 @@ AI is not just another step in software automation. It represents a much deeper 
 
 To understand where we are heading, we need to look at the macro-historical context of engineering and technology. Computers delegated calculation. The internet changed access, distribution, and coordination. Software automated workflows and virtualized work that previously lived only in the physical world. But AI moves closer to a far more sensitive layer: the space where humans interpret, decide, explain, write, and reason.
 
+![A person at a workstation faces a stream of text and code converging on a cube, with verification symbols on the right.](asset:cover)
+
 ## The Historical Analogy: Externalizing Memory
 
 The closest historical analogy to artificial intelligence may not be the computer or the internet. It may be the invention of writing itself.
