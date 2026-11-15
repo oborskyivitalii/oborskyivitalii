@@ -19,45 +19,45 @@
     "vitalii-oborskyi-cutout.webp",
     "writing-paradigm.svg"
   ],
-  "content": "15e150072a66041b6c3d8c07693a6c6c334feda8f8b9d7f7062264e836182ee2",
+  "content": "5677e7971590cf0e6142793e56dc0d74f0054139172cfa955eeb1c3dcd948d7b",
   "routes": {
     "index": {
-      "version": "1d09ddaffa9360d5ebf385249c24b2af84ef98bb339349387706ef46620ea0c2",
-      "url": "snapshots/1d09ddaffa9360d5ebf385249c24b2af84ef98bb339349387706ef46620ea0c2/index.html",
-      "sha256": "968561491371536d7c4586e7042d2578bbd821ba29012174d620793669cb8d44"
+      "version": "86a6656ce71a53555e19a5c705ac5bad9e01bdb8ec0ad04e8a7ac649d4edff4b",
+      "url": "snapshots/86a6656ce71a53555e19a5c705ac5bad9e01bdb8ec0ad04e8a7ac649d4edff4b/index.html",
+      "sha256": "9a3eb7403c99fc436115581fd3b74a259dceb3ff7396a72ef252b29301e3f83f"
     },
     "research": {
-      "version": "ef3afbf2833383f3ccc8afb6e9eb80232ed0dedb96d49a4e928901eec6d3d69a",
-      "url": "snapshots/ef3afbf2833383f3ccc8afb6e9eb80232ed0dedb96d49a4e928901eec6d3d69a/research.html",
-      "sha256": "edd3991fe6e809b4d6ed96274984c9a9b663d019f2431a80f60d4dc978616b75",
+      "version": "6839fd20b33d2b97d56a5117fc4e5210c9b98ba355c3b8e11e395448bc42742e",
+      "url": "snapshots/6839fd20b33d2b97d56a5117fc4e5210c9b98ba355c3b8e11e395448bc42742e/research.html",
+      "sha256": "70c6a094dff6cc85d67257b51e33ebcd801d33348b4778427f4a95c333fbd8e6",
       "assets": [
         "article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618/research-fallback.svg"
       ]
     },
     "writing": {
-      "version": "4aa79453f999885cf1271ab4f08d444ceac82dd9cea0d992f3f5dace63f805b4",
-      "url": "snapshots/4aa79453f999885cf1271ab4f08d444ceac82dd9cea0d992f3f5dace63f805b4/writing.html",
-      "sha256": "f8fb342d0112414eb58a0ba664a1bc2c36f8fc4aef76418eaee5b0db8aa09ce2",
+      "version": "b788a1b5841f6ae3b7a68e0744f83e8caec167ca0b6104ba0c135dbff259b69a",
+      "url": "snapshots/b788a1b5841f6ae3b7a68e0744f83e8caec167ca0b6104ba0c135dbff259b69a/writing.html",
+      "sha256": "924ee4248ee215bf3176a53779a3d98c0af4091e896a2bb0c08fcb169847d43f",
       "assets": [
         "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
       ]
     },
     "talks": {
-      "version": "247184e4b0fbf5fa6d0cadf30293641ab576f019c5e02a6319235308528bdee8",
-      "url": "snapshots/247184e4b0fbf5fa6d0cadf30293641ab576f019c5e02a6319235308528bdee8/talks.html",
-      "sha256": "172a9d37cfe2ef0d3d34abf6b4018c8028c1865769e646bf70408719b290afb3"
+      "version": "83df93d11e58d42133a8d9125f5537a62005f49b63e5799c6ef42a235999a174",
+      "url": "snapshots/83df93d11e58d42133a8d9125f5537a62005f49b63e5799c6ef42a235999a174/talks.html",
+      "sha256": "f36f48e0fed0648ff830b082589949dc1a1e7766057e61668aeb36179950a4b7"
     },
     "credits": {
-      "version": "d72077246cfce8168fa89fb80f59bf50575d62f457391720904dc294bb9ca4dc",
-      "url": "snapshots/d72077246cfce8168fa89fb80f59bf50575d62f457391720904dc294bb9ca4dc/credits.html",
-      "sha256": "8b56bb4ebdaa97b267f2098eb7cbe7f8f7946042824c55aad9c14d83116ecb93"
+      "version": "25e3331a6568e8258dc2b0aa15834e2d0570ea14288cb946cb53b4f9cbb3ef96",
+      "url": "snapshots/25e3331a6568e8258dc2b0aa15834e2d0570ea14288cb946cb53b4f9cbb3ef96/credits.html",
+      "sha256": "08c82cb23701306512dec0b30caf02e29161d5542b6416d89a6629dd57e3810a"
     }
   },
   "articles": {
     "ai-governance-is-control-theory:en": {
-      "version": "32586205823df86565d10a4cc60eef96eb185d1bec9b269b8ab9a2c1754b9ee0",
-      "url": "article-snapshots/32586205823df86565d10a4cc60eef96eb185d1bec9b269b8ab9a2c1754b9ee0/ai-governance-is-control-theory.html",
-      "sha256": "87bc172a9f845e1febd17f8f1351f9232896eec29d7b3e5e66e9940f60461363",
+      "version": "46877f37a108ba313dd7ada2524212d55ae8590d624bfc7b83d51289a1e3507d",
+      "url": "article-snapshots/46877f37a108ba313dd7ada2524212d55ae8590d624bfc7b83d51289a1e3507d/ai-governance-is-control-theory.html",
+      "sha256": "800dabc3c554c0ed184e47207c7cae5413aa097d1438853587fae188adc49978",
       "alias": "articles/ai-governance-is-control-theory.html",
       "scene": "writing",
       "assets": [
@@ -79,10 +79,25 @@
       "sourceSha256": "489c53189a7fe7985c8de22d815ff32a3973acb76b610aba3074f84c405246bc",
       "semanticSha256": "b3127ee607eef4d1421f28d88bcd20aa5997755bfae3f8ae004d947420919bf4"
     },
+    "ai-verification-crisis:en": {
+      "version": "d75976b40d4b0697595ea7a39e8587bbf25a758937626aafa73c83b95e1f4ab8",
+      "url": "article-snapshots/d75976b40d4b0697595ea7a39e8587bbf25a758937626aafa73c83b95e1f4ab8/ai-verification-crisis.html",
+      "sha256": "1db995e7fe029f376b78391cb91d938bf3bc2c9a32f98344d29cf03a79f258e2",
+      "alias": "articles/ai-verification-crisis.html",
+      "scene": "writing",
+      "assets": [
+        "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
+      ],
+      "candidate": false,
+      "articleId": "ai-verification-crisis",
+      "contentEdition": "ai-verification-crisis-en-20260612",
+      "sourceSha256": "20a8ee4f6db8a28e92dd106ba8ed45d1ac0a4c8bb03730d08296d5964653d640",
+      "semanticSha256": "14282a6e90a6aef0c09a9363373ecf259c3d52e0a82dca41dad0e3da9781de98"
+    },
     "sdlc-out-of-balance:en": {
-      "version": "fd3bf0dc16030581e3b1aaa889e8a80c775b1edef86381bd570e6ff6c6aa95f3",
-      "url": "article-snapshots/fd3bf0dc16030581e3b1aaa889e8a80c775b1edef86381bd570e6ff6c6aa95f3/the-sdlc-is-out-of-balance.html",
-      "sha256": "f8bfbd094492d4170e30f942e9ce8df7e094292d9fa29b2403e5182aa560c86e",
+      "version": "51b266810d00bdfd256ecbbb35242ec8f69f787fc82b39e430e58361b891c32a",
+      "url": "article-snapshots/51b266810d00bdfd256ecbbb35242ec8f69f787fc82b39e430e58361b891c32a/the-sdlc-is-out-of-balance.html",
+      "sha256": "ad1c26e7424e29decbc580e0c6b65778aecd1da5c76839a3ceb346eee02276ce",
       "alias": "articles/the-sdlc-is-out-of-balance.html",
       "scene": "writing",
       "assets": [
@@ -112,9 +127,9 @@
       "semanticSha256": "10fdb9231098eb50c93e90ff1b073986a4c6756ea0f307feadf255012a820511"
     },
     "thinking-systems:en": {
-      "version": "209bba63a1a39434804a37d784af893221875873593494b2900c21bf4de1fa9b",
-      "url": "article-snapshots/209bba63a1a39434804a37d784af893221875873593494b2900c21bf4de1fa9b/thinking-systems.html",
-      "sha256": "c175952dec9c49105bd2be3d4edea0e619517d8d23bf8964ef134a480ee04b92",
+      "version": "11fdb5d2757e95e1e0fe563af0f00589f6fa0b64ad0936feac63302e59d1e48e",
+      "url": "article-snapshots/11fdb5d2757e95e1e0fe563af0f00589f6fa0b64ad0936feac63302e59d1e48e/thinking-systems.html",
+      "sha256": "2fa4d99a7c6f7f6ec3ba5c6557805a589329e76848fb8effd9cf55903e12638d",
       "alias": "articles/thinking-systems.html",
       "scene": "writing",
       "assets": [

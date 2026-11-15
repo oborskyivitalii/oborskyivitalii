@@ -270,12 +270,14 @@ function prepare(article) {
     render({ tree: { type: 'root', children } }, article.assets, false, hooks);
   // Cover placement is furniture, not a change to the manuscript's argument order.
   const coverId = article.furniture?.cover?.id;
-  const cover = layout.intro.find(
-    (node) =>
-      node.type === 'paragraph' &&
-      node.children.length === 1 &&
-      node.children[0].assetId === coverId
-  );
+  const cover = coverId
+    ? layout.intro.find(
+        (node) =>
+          node.type === 'paragraph' &&
+          node.children.length === 1 &&
+          node.children[0].assetId === coverId
+      )
+    : undefined;
   const introduction = layout.intro.filter((node) => node !== cover);
   const titleLinks = [];
   const collectLinks = (node) => {

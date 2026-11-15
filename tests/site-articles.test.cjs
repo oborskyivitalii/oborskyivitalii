@@ -92,7 +92,7 @@ function fixture(t, { cold = false } = {}) {
 function publication(root, id = 'reader-profile', language = 'en') {
   const directory = `site/publications/${id}`;
   const manuscript =
-    '# Reader profile\n\nA full article.\n\n## First section\n\n' +
+    '# Reader profile\n\nA full article.\n\nThe second opening paragraph.\n\n## First section\n\n' +
     '![A pixel](asset:pixel)\n\n## Second section\n\n[Research](https://example.com/source)\n';
   const metadata = {
     schema: 1,
@@ -602,6 +602,10 @@ test('nested article native HTML keeps Writing shell, TOC, figures, language, so
   );
   assert.match(document, /href="\.\.\/writing\.html" aria-current="page"/);
   assert.match(document, /href="#first-section"/);
+  assert.match(
+    main,
+    /class="reader-introduction"><p>A full article\.<\/p>\s*<p>The second opening paragraph\.<\/p>/
+  );
   assert.match(document, /src="\.\.\/article-media\/[a-f0-9]{64}\/pixel.png"/);
   assert.match(document, /width="1" height="1"/);
   assert.match(document, /A bounded figure/);

@@ -157,12 +157,11 @@ test('local platform links reject unsafe channels, duplicate destinations and un
   external.records['publication-01'].platformLinks = [valid];
   assert.throws(() => validateCatalog(external), /Invalid local platform link inventory/);
   const duplicate = structuredClone(original);
-  duplicate.records['publication-30'].platformLinks = [
-    {
-      platform: 'Medium',
-      url: duplicate.records['publication-02'].edition.url,
-    },
-  ];
+  const medium = duplicate.records['publication-02'].editions.find(
+    (link) => link.platform === 'Medium'
+  );
+  assert.ok(medium);
+  duplicate.records['publication-30'].platformLinks = [{ platform: 'Medium', url: medium.url }];
   assert.throws(() => validateCatalog(duplicate), /duplicate local platform link/);
 });
 
@@ -610,6 +609,7 @@ test('language-labelled editions match article schema and retain the original pr
     '49992bcc3088',
   ];
   assert.ok(featured.every((row, i) => row[2].includes(expected[i])));
+  assert.match(featured[1][2], /href="articles\/ai-verification-crisis\.html"/);
   assert.ok(pages.writing.includes(frozen.secondary[0].url));
   assert.ok(pages.writing.includes('LinkedIn edition · 27 Aug 2026'));
 });

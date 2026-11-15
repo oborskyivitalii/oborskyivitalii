@@ -23,18 +23,35 @@
       }
     },
     "publication-02": {
+      "kind": "local-article",
+      "article": "ai-verification-crisis",
       "edition": {
         "@type": "Article",
         "name": "AI, the Externalization of Reasoning, and the Verification Crisis",
-        "url": "https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0",
+        "url": "articles/ai-verification-crisis.html",
         "inLanguage": "en",
         "author": {
           "@type": "Person",
-          "name": "Vitalii Oborskyi"
-        },
-        "datePublished": "2026-06-12"
+          "name": "Vitalii Oborskyi",
+          "url": "https://vitaliioborskyi.ai/"
+        }
       },
       "editions": [
+        {
+          "@type": "Article",
+          "name": "AI, the Externalization of Reasoning, and the Verification Crisis",
+          "url": "https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0",
+          "inLanguage": "en",
+          "author": {
+            "@type": "Person",
+            "name": "Vitalii Oborskyi",
+            "url": "https://vitaliioborskyi.ai/"
+          },
+          "datePublished": "2026-06-12",
+          "platform": "Medium",
+          "relationship": "same-topic-platform-edition",
+          "bodyEquivalenceVerified": false
+        },
         {
           "platform": "LinkedIn",
           "name": "AI, the Externalization of Reasoning, and the Verification Crisis",
@@ -42,7 +59,8 @@
           "inLanguage": "en",
           "author": {
             "@type": "Person",
-            "name": "Vitalii Oborskyi"
+            "name": "Vitalii Oborskyi",
+            "url": "https://vitaliioborskyi.ai/"
           },
           "datePublished": "2026-06-10",
           "relationship": "same-topic-platform-edition",
@@ -53,9 +71,11 @@
       "presentation": {
         "topic": "delivery",
         "kind": "Article",
-        "publisher": "Agile Insider",
-        "summary": "Why faster generation raises questions of human understanding and verification."
-      }
+        "publisher": "Author site",
+        "summary": "Why faster generation raises questions of human understanding and verification.",
+        "archiveYear": "2026"
+      },
+      "homeEditionLink": true
     },
     "publication-03": {
       "edition": {

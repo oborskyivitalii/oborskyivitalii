@@ -40,7 +40,6 @@
   },
   "records": {
     "publication-01": ["ai-delivery", "software-economics", "verification"],
-    "publication-02": ["ai-delivery", "verification", "human-ai"],
     "publication-03": ["ai-delivery", "software-economics", "verification"],
     "publication-04": ["ai-delivery", "software-economics", "human-ai"],
     "publication-06": ["uncertainty", "verification", "semantic-drift", "neuro-symbolic"],
@@ -72,6 +71,7 @@
     "pmday-two-shifts": ["ai-delivery", "verification"],
     "pmday-ai-both-sides": ["ai-delivery", "software-economics", "human-ai", "verification"],
     "ai-governance-is-control-theory": ["uncertainty", "governance", "control-theory"],
+    "ai-verification-crisis": ["ai-delivery", "verification", "human-ai"],
     "thinking-systems": ["uncertainty", "architecture", "control-theory"],
     "sdlc-out-of-balance": ["ai-delivery", "software-economics", "verification", "operating-models"]
   }
