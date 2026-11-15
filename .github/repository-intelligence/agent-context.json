@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "97df72e5c136aa139c1bbfbad534a57ddf0afeff4e857934050f271a2048ffd0",
+    "digest": "476492d9d82f8dd78558663ef41b68d120eeca808976fd806c9b7e81973466d2",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -266,12 +266,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "8f189d5806764b70b4a49345cd7f76c9db7638b316ee3829dd33f76d3da99628"
+        "sha256": "902da95f19d6f9f1b30ec0e693efd48ad131aa69087b314dcda59eb4c3f6bb36"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "857bb9c5f066ec5ca07f906e1d8961d24e58756f7a2923b8fb6bebfb848759a0"
+        "sha256": "893ec0f6c3a12f39bb55e47ce622280e07a47f54436d88e1168e1fdfa16aebcb"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -4860,7 +4860,12 @@
       {
         "path": "review/issue-187/2026-11-12-controller-preregistration.md",
         "identity_mode": "content",
-        "sha256": "0a17ef7e15530159ad6816088b1b91bcc6abb15711e1f67d4739251ca64b37be"
+        "sha256": "971bec54f618ce71700f58bbd3f92d21835dcaff3d09272f6dde44b4834ff8b5"
+      },
+      {
+        "path": "review/issue-187/workflow-guide-evidence.json",
+        "identity_mode": "content",
+        "sha256": "4f0dc941f6ff919d604769bbba0e3f3a695dd6123746dee69ed351b8c1b7052e"
       },
       {
         "path": "review/issue-188/2026-11-11-analysis.md",
@@ -11745,7 +11750,7 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "0a88b9783408190af31f4e0c8a7096bd678fba7d359ddf6f238fecb1e22f08e1"
+        "sha256": "99e610e00b8906d9fb7f30eca191143bfd73460e1f7fea566b8a6599a5055993"
       },
       {
         "path": "tests/content-baseline.test.cjs",
@@ -12735,7 +12740,7 @@
       {
         "path": "tools/quality/color-motion-contract.cjs",
         "identity_mode": "content",
-        "sha256": "510d2a52d24c6e761a763133f091d1c270f95d431cbcb82eb4aee5251d2f96ed"
+        "sha256": "ca02b7ebb37691beada7ea421671e1df1d6a8016dbc3a0a70a954c303c250eaf"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -13030,7 +13035,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "b50316b078eebef85b787a47baf221ac9c2daeb6e21e4aa3696a1544b32a55c8"
+        "sha256": "a2fcd29cf2d343eeabc3a87ee9ee626d5dd86990ae208b9af1b8bf05d3f87252"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
@@ -24563,6 +24568,17 @@
         "AGENTS.md"
       ],
       "title": "Issue #187 protected staging preregistration"
+    },
+    {
+      "path": "review/issue-187/workflow-guide-evidence.json",
+      "kind": "file",
+      "purpose": "Source-bound independent workflow guide review for the protected closed-pulse delivery.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "workflow-guide-evidence.json"
     },
     {
       "path": "review/issue-188/2026-11-11-analysis.md",
