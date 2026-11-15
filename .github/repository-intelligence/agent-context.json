@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "0268a95032cbc33c85492f4e954769c72aac62f9b37fa5dd32f17764b8ae5520",
+    "digest": "6aedec76cdcb7205460bf4eb235b46c51ad81de36ace34b13f30ac6608a6b95a",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -276,7 +276,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "3565cf0ec22905e7476baedb1ca11658dcd9b106b04d6b597efd224b4035c5e9"
+        "sha256": "65779cb97ea4fc1740ee672451b1be15e3734190348f78d07074ebb7f9eabff2"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
