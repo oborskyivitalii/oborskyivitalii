@@ -372,11 +372,7 @@ function workflowGuideReview(root, context, head) {
   const report = JSON.parse(result.stdout);
   assert.equal(report.base_sha, context.sha);
   assert.equal(report.head_sha, head);
-  assert.ok(
-    ['inapplicable', 'guide-updated', 'reviewed-unchanged', 'reviewed-formatting'].includes(
-      report.decision
-    )
-  );
+  assert.ok(['inapplicable', 'reviewed-updated', 'reviewed-unchanged'].includes(report.decision));
   if (report.decision !== 'inapplicable') {
     const evidence = context.payload?.inputs?.guide_review_evidence;
     const attested =

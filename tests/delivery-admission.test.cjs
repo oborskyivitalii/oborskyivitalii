@@ -1099,7 +1099,7 @@ test('protected workflow guide admission checks the immutable candidate and requ
     'utf8'
   );
   const install = workflowSource.match(
-    /^      - name: Install the locked Markdown parser[^\n]*\n[\s\S]*?^        run: \|\n((?:^ {10}[^\n]*\n)+)/m
+    /^ {6}- name: Install the locked Markdown parser[^\n]*\n[\s\S]*?^ {8}run: \|\n((?:^ {10}[^\n]*\n)+)/m
   );
   assert.ok(install, 'missing protected guide parser step');
   const selectParser = (head) =>
@@ -1143,6 +1143,7 @@ test('protected workflow guide admission checks the immutable candidate and requ
       base_sha: protectedHead,
       scope_sha256: scope.scope_sha256,
       paths: scope.paths,
+      disposition: 'unchanged',
       sections: ['Workflows'],
       rationale: 'The underlying check still reads and validates the current source.',
       reviewer_execution: 'independent reviewer execution QA-199',
@@ -1191,10 +1192,28 @@ test('protected workflow guide admission checks the immutable candidate and requ
   context.payload.inputs.guide_reviewed_sha = formatting;
   assert.equal(
     admission.workflowGuideReview(root, context, formatting).report.decision,
-    'reviewed-formatting'
+    'reviewed-unchanged'
   );
   git('checkout', '--detach', '-q', missing);
   write('guides/REPOSITORY-WORKFLOW.md', '# Guide\n\n## Workflows\n\nVerify current source.\n');
+  const updateDraft = commit();
+  git('checkout', '--detach', '-q', protectedHead);
+  context.payload.inputs.guide_reviewed_sha = updateDraft;
+  assert.equal(
+    admission.workflowGuideReview(root, context, updateDraft).blocker,
+    'workflow-guide-review'
+  );
+  const updateScope = scopeFor(updateDraft);
+  git('checkout', '--detach', '-q', updateDraft);
+  write(
+    receiptPath,
+    JSON.stringify({
+      ...receipt,
+      scope_sha256: updateScope.scope_sha256,
+      disposition: 'updated',
+      rationale: 'The updated guide explains how the workflow verifies the current source.',
+    })
+  );
   const updated = commit();
   git('checkout', '--detach', '-q', protectedHead);
   assert.equal(
@@ -1204,7 +1223,7 @@ test('protected workflow guide admission checks the immutable candidate and requ
   context.payload.inputs.guide_reviewed_sha = updated;
   assert.equal(
     admission.workflowGuideReview(root, context, updated).report.decision,
-    'guide-updated'
+    'reviewed-updated'
   );
   context.payload.inputs.guide_reviewed_sha = reviewed;
   context.actor = 'somebody-else';

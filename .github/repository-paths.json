@@ -17874,6 +17874,12 @@
       "purpose": "Requirements preflight, independent review and verification evidence for issue 199.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-199/workflow-guide-evidence.json": {
+      "kind": "file",
+      "purpose": "Scoped independent review disposition for the workflow-guide control rollout.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

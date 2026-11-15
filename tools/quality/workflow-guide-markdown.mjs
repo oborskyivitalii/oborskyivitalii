@@ -1,10 +1,8 @@
 // Parse guide bytes as data with the same locked GFM parser as article publishing.
 import { readFileSync } from 'node:fs';
-import { createHash } from 'node:crypto';
 import { unified } from '../publishing/toolchain/node_modules/unified/index.js';
 import remarkParse from '../publishing/toolchain/node_modules/remark-parse/index.js';
 import remarkGfm from '../publishing/toolchain/node_modules/remark-gfm/index.js';
-import { decodeString } from '../publishing/toolchain/node_modules/micromark-util-decode-string/index.js';
 
 const parser = unified().use(remarkParse).use(remarkGfm);
 const defaultIgnorables = /\p{Default_Ignorable_Code_Point}/gu;
@@ -48,7 +46,7 @@ function normalizeProse(value) {
   const visibleSpelling = text.replace(defaultIgnorables, '');
   // Isolated fillers do not change ASCII prose. Preserve shaping controls and
   // non-ASCII spelling so joiners and variation selectors can change the comparison.
-  const comparison = /^[\x00-\x7f]*$/.test(visibleSpelling)
+  const comparison = /^\p{ASCII}*$/u.test(visibleSpelling)
     ? text.replace(/[\u034f\u115f\u1160\u3164\uffa0]/g, '')
     : text;
   return comparison.replace(/\s+/g, ' ');
@@ -60,11 +58,33 @@ function hasText(node) {
   return substantive(node.value) || substantive(node.alt) || (node.children ?? []).some(hasText);
 }
 
-function visibleNode(source, footnotes, normalize) {
-  const { position, children, ...node } = source;
+function visibleChildren(children, footnotes) {
+  const result = [];
+  for (const child of children) {
+    const visible = visibleNode(child, footnotes);
+    if (!visible) continue;
+    const previous = result.at(-1);
+    if (previous?.type === 'text' && visible.type === 'text') {
+      previous.value += visible.value;
+    } else {
+      result.push(visible);
+    }
+  }
+  for (const [index, child] of result.entries()) {
+    if (child.type !== 'text') continue;
+    child.value = normalizeProse(child.value);
+    if (index === 0) child.value = child.value.trimStart();
+    if (index === result.length - 1) child.value = child.value.trimEnd();
+  }
+  return result.filter((child) => child.type !== 'text' || child.value);
+}
+
+function visibleNode(source, footnotes) {
+  const { children, ...node } = source;
+  delete node.position;
   if (node.type === 'footnoteDefinition' && !footnotes.has(source)) return null;
   if (node.type === 'code') delete node.meta;
-  if (node.type === 'image') node.alt = normalize(node.alt ?? '').trim();
+  if (node.type === 'image') node.alt = normalizeProse(node.alt ?? '').trim();
   if (node.type === 'html') {
     // Remark distinguishes actual HTML from comment-shaped text inside code.
     const remaining = withoutComments(node.value);
@@ -73,24 +93,7 @@ function visibleNode(source, footnotes, normalize) {
     node.value = remaining;
   }
   if (children) {
-    node.children = [];
-    for (const child of children) {
-      const visible = visibleNode(child, footnotes, normalize);
-      if (!visible) continue;
-      const previous = node.children.at(-1);
-      if (previous?.type === 'text' && visible.type === 'text') {
-        previous.value += visible.value;
-      } else {
-        node.children.push(visible);
-      }
-    }
-    for (const [index, child] of node.children.entries()) {
-      if (child.type !== 'text') continue;
-      child.value = normalize(child.value);
-      if (index === 0) child.value = child.value.trimStart();
-      if (index === node.children.length - 1) child.value = child.value.trimEnd();
-    }
-    node.children = node.children.filter((child) => child.type !== 'text' || child.value);
+    node.children = visibleChildren(children, footnotes);
     // Empty cells and list items still occupy a visible position in their container.
     if (
       !node.children.length &&
@@ -137,42 +140,13 @@ function visibleFootnotes(tree) {
   return new Set([...references].map((id) => definitions.get(id)));
 }
 
-function literalValues(node, values = []) {
-  if (['code', 'inlineCode'].includes(node.type)) values.push([node.type, node.value, node.lang]);
-  if (node.url !== undefined) values.push([node.type, node.url, node.title]);
-  for (const child of node.children ?? []) literalValues(child, values);
-  return values;
-}
-
-function formattingFreeSource(markdown) {
-  const characterReference = /&(?:#(?:\d{1,7}|x[\da-f]{1,6})|[\da-z]{1,31});/gi;
-  // An otherwise blank line with a format control can change GFM block boundaries.
-  return markdown
-    .replace(characterReference, (reference) =>
-      decodeString(reference).replace(defaultIgnorables, '') ? reference : ''
-    )
-    .replace(defaultIgnorables, '');
-}
-
 try {
   const input = JSON.parse(readFileSync(0, 'utf8'));
   const visible = input.map((markdown) => {
     const tree = parseGuide(markdown);
     validateMarkup(tree);
-    const footnotes = visibleFootnotes(tree);
-    const projection = visibleNode(tree, footnotes, normalizeProse);
-    const withoutFormatting = visibleNode(tree, footnotes, (value) =>
-      normalizeProse(value.replace(defaultIgnorables, ''))
-    );
-    return {
-      nodes: projection.children,
-      withoutFormatting: withoutFormatting.children,
-      formattingFreeSource: createHash('sha256')
-        .update(formattingFreeSource(markdown))
-        .digest('hex'),
-      literals: literalValues(projection),
-      hasText: hasText(projection),
-    };
+    const projection = visibleNode(tree, visibleFootnotes(tree));
+    return { nodes: projection.children, hasText: hasText(projection) };
   });
   process.stdout.write(JSON.stringify(visible));
 } catch (error) {

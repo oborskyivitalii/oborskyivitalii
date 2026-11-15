@@ -1,0 +1,22 @@
+{
+  "base_sha": "0de10b68da18049946fb5eeedece66fc5ebf626c",
+  "scope_sha256": "687e6cf6133be074c45a3e293e270596229f41b7385214865ac32abfe44d434f",
+  "paths": [
+    ".github/repository-intelligence-config.json",
+    ".github/repository-layout.json",
+    ".github/repository-paths.json",
+    ".github/ri-ci-map.json",
+    ".github/workflows/change-admission.yml",
+    ".github/workflows/issue-acceptance.yml",
+    "tests/delivery-admission.test.cjs",
+    "tests/test_ri_ci.py",
+    "tools/check_ri_ci.py",
+    "tools/quality/delivery-admission.cjs",
+    "tools/quality/test-profiles.json",
+    "tools/quality/workflow-guide-markdown.mjs"
+  ],
+  "disposition": "updated",
+  "sections": ["Keeping this guide current"],
+  "rationale": "The guide now explains the required independent record for either disposition, when a parsed change is necessary, and how protected admission binds maintainer attestation.",
+  "reviewer_execution": "/root/ac06_final_req, /root/ac06_final_code, /root/ac06_final_wb, /root/ac06_final_qa recorded in 2026-11-12-review.md under Independent confirmation of both dispositions"
+}

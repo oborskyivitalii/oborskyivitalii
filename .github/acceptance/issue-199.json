@@ -42,7 +42,7 @@
     {
       "id": "AC06",
       "intent": "Review and maintain the guide when workflow, harness, RI, agent, orchestration or delivery controls change.",
-      "automated_scope": "Fixed Git tree fixtures verify triggering changes, inapplicable changes, guide updates and missing or stale unchanged-guide records.",
+      "automated_scope": "Fixed Git tree fixtures verify covered and inapplicable changes, updated and unchanged dispositions, and missing or stale records for either disposition.",
       "checks": ["GUIDE-GATE", "GUIDE-SCOPE", "GUIDE-RECEIPT", "GUIDE-PRESENCE", "STYLE"],
       "gates": ["GUIDE-REVIEW", "DELIVERY"]
     }

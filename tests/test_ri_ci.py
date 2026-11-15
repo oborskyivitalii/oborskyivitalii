@@ -693,6 +693,21 @@ class WorkflowGuideReviewTests(unittest.TestCase):
         )
         return self.git("rev-parse", "HEAD")
 
+    def write_review(self, disposition, *, head=None, sections=("Agents",)):
+        scope = ci.guide_review(self.root, self.base, head or self.commit(), True)
+        self.write(
+            "review/issue-999/workflow-guide-evidence.json",
+            json.dumps(
+                {
+                    **{key: scope[key] for key in ("base_sha", "scope_sha256", "paths")},
+                    "disposition": disposition,
+                    "sections": sections,
+                    "rationale": "The reviewed agent example documents the current independent review behavior.",
+                    "reviewer_execution": "recorded execution QA-999",
+                }
+            ),
+        )
+
     def test_covered_changes_require_current_guide_or_review(self):
         paths = [
             ".github/workflows/new.yml",
@@ -727,14 +742,16 @@ class WorkflowGuideReviewTests(unittest.TestCase):
         )
         self.write(ci.CATALOG, '{"entries":{"custom/control":{"owner":"site/README.md"}}}')
         head = self.commit()
-        self.assertEqual(ci.guide_review(self.root, self.base, head, True)["paths"], sorted(paths))
-        with self.assertRaisesRegex(ValueError, "Update"):
+        scope = ci.guide_review(self.root, self.base, head, True)
+        self.assertEqual(scope["paths"], sorted(paths))
+        self.assertEqual(scope["decision"], "review-required")
+        with self.assertRaisesRegex(ValueError, "current review"):
             ci.guide_review(self.root, self.base, head)
         self.write(
             ci.GUIDE,
             "# Guide\n\n## Agents\n\nAgents review  candidates.\n<!-- no-op -->\n",
         )
-        with self.assertRaisesRegex(ValueError, "Update"):
+        with self.assertRaisesRegex(ValueError, "current review"):
             ci.guide_review(self.root, self.base, self.commit())
         for definition in (
             "[unused]:\nhttps://example.com/\n",
@@ -752,12 +769,12 @@ class WorkflowGuideReviewTests(unittest.TestCase):
                     ci.guide_review(self.root, self.base, self.commit())
         baseline = "# Guide\n\n## Agents\n\nAgents review candidates.\n"
         self.write(ci.GUIDE, baseline + "\n<!-- [example]: https://example.com/ -->\n")
-        with self.assertRaisesRegex(ValueError, "Update"):
+        with self.assertRaisesRegex(ValueError, "current review"):
             ci.guide_review(self.root, self.base, self.commit())
         for markup in ("&#x200B;", "&#x034F;", "&#x3164;"):
             with self.subTest(markup=markup):
                 self.write(ci.GUIDE, baseline.replace("candidates.", "candidates." + markup))
-                with self.assertRaisesRegex(ValueError, "Update"):
+                with self.assertRaisesRegex(ValueError, "current review"):
                     ci.guide_review(self.root, self.base, self.commit())
         diagram = baseline + "\n![Workflow diagram](diagram.png)\n"
         self.assertEqual(
@@ -788,7 +805,7 @@ class WorkflowGuideReviewTests(unittest.TestCase):
                 "Agents review candidates.", "Agents <!-- [example]: hidden --> review candidates."
             ),
         )
-        with self.assertRaisesRegex(ValueError, "Update"):
+        with self.assertRaisesRegex(ValueError, "current review"):
             ci.guide_review(self.root, self.base, self.commit())
         self.write(
             ci.GUIDE,
@@ -797,8 +814,9 @@ class WorkflowGuideReviewTests(unittest.TestCase):
                 "Agents <!-- [example]: hidden --> independently review candidates.",
             ),
         )
+        self.write_review("updated")
         self.assertEqual(
-            ci.guide_review(self.root, self.base, self.commit())["decision"], "guide-updated"
+            ci.guide_review(self.root, self.base, self.commit())["decision"], "reviewed-updated"
         )
         for before, after in (
             (
@@ -888,16 +906,18 @@ class WorkflowGuideReviewTests(unittest.TestCase):
         ):
             with self.subTest(example=example):
                 self.write(ci.GUIDE, baseline + "\n" + example)
+                self.write_review("updated")
                 self.assertEqual(
                     ci.guide_review(self.root, self.base, self.commit())["decision"],
-                    "guide-updated",
+                    "reviewed-updated",
                 )
                 self.write(ci.GUIDE, baseline + "\n" + example + "\n[real]: https://example.com/\n")
                 with self.assertRaisesRegex(ValueError, "Write inline links"):
                     ci.guide_review(self.root, self.base, self.commit())
         self.write(ci.GUIDE, "# Guide\n\n## Agents\n\nAgents independently review candidates.\n")
+        self.write_review("updated")
         self.assertEqual(
-            ci.guide_review(self.root, self.base, self.commit())["decision"], "guide-updated"
+            ci.guide_review(self.root, self.base, self.commit())["decision"], "reviewed-updated"
         )
 
     def test_derived_and_ordinary_content_are_inapplicable(self):
@@ -926,6 +946,7 @@ class WorkflowGuideReviewTests(unittest.TestCase):
         record = {key: scope[key] for key in ("base_sha", "scope_sha256", "paths")}
         receipt = "review/issue-999/workflow-guide-evidence.json"
         record.update(
+            disposition="unchanged",
             sections=["Agents"],
             reviewer_execution="",
             rationale="The updated invocation preserves the existing isolated reviewer launch semantics.",
@@ -959,57 +980,61 @@ class WorkflowGuideReviewTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "missing or empty"):
             ci.guide_review(self.root, self.base, self.commit())
         self.write(".github/workflows/new.yml", "name: New control\n")
-        for markup in ("##", ">", "---", "&#x200B;", "&#x2060;", "&#x034F;", "&#x3164;", "&#x115F;"):
+        for markup in (
+            "##",
+            ">",
+            "---",
+            "&#x200B;",
+            "&#x2060;",
+            "&#x034F;",
+            "&#x3164;",
+            "&#x115F;",
+        ):
             with self.subTest(markup=markup):
                 self.write(ci.GUIDE, markup + "\n")
                 with self.assertRaisesRegex(ValueError, "no visible content"):
                     ci.guide_review(self.root, self.base, self.commit())
-        self.write(ci.GUIDE, "# Робочий процес\n\nПеревірити поточний стан.\n")
+        self.write(ci.GUIDE, "# Робочий процес\n\n## Поточний стан\n\nПеревірити джерело.\n")
+        self.write_review("updated", sections=("Поточний стан",))
         self.assertEqual(
-            ci.guide_review(self.root, self.base, self.commit())["decision"], "guide-updated"
+            ci.guide_review(self.root, self.base, self.commit())["decision"], "reviewed-updated"
         )
 
     def test_formatting_only_differences_require_same_source_review(self):
-        original = "# Guide\n\n## Agents\n\nДоставка. Далі.\n\nUse 👩💻. Run `check`.\n"
+        original = "# Guide\n\n## Agents\n\nДоставка. Далі.\n\n    check\n\nUse 👩💻.\n"
         self.write(ci.GUIDE, original)
         self.base = self.commit()
         self.write(".github/workflows/changed.yml", "name: New control\n")
         for revised in (
             original.replace("Доставка.", "Доставка.&#x034F;"),
-            original.replace("\n\nUse", "\n\u034f\nUse"),
-            original.replace("\n\nUse", "\n&#x034F;\nUse"),
-            original.replace("\n\nUse", "\n&ZeroWidthSpace;\nUse"),
+            original.replace("\n\n    check", "\n \u034f \n    check"),
+            original.replace("\n\n    check", "\n&#x034F;\n    check") + "\n",
             original.replace("👩💻", "👩\u200d💻"),
+            original.replace("Use", "Avoid"),
         ):
             with self.subTest(revised=revised):
                 self.write(ci.GUIDE, revised)
                 with self.assertRaisesRegex(ValueError, "current review"):
                     ci.guide_review(self.root, self.base, self.commit())
-        scope = ci.guide_review(self.root, self.base, self.git("rev-parse", "HEAD"), True)
-        self.write(
-            "review/issue-999/workflow-guide-evidence.json",
-            json.dumps(
-                {
-                    **{key: scope[key] for key in ("base_sha", "scope_sha256", "paths")},
-                    "sections": ["Agents"],
-                    "rationale": "The agent example renders the combined emoji; workflow meaning is unchanged.",
-                    "reviewer_execution": "recorded execution QA-999",
-                }
-            ),
-        )
-        self.assertEqual(
-            ci.guide_review(self.root, self.base, self.commit())["decision"], "reviewed-formatting"
-        )
-        self.write(ci.GUIDE, original.replace("Доставка.", "Доставка.&#x034F;"))
-        with self.assertRaisesRegex(ValueError, "current review"):
+        self.write(ci.GUIDE, original + "\n<!-- editorial note -->\n")
+        self.write_review("updated")
+        with self.assertRaisesRegex(ValueError, "no visible change"):
             ci.guide_review(self.root, self.base, self.commit())
-        self.write(ci.GUIDE, original.replace("Use", "Avoid"))
+        self.write(ci.GUIDE, original.replace("Use", r"Explain \&ZeroWidthSpace; before using"))
+        escaped_entity_head = self.commit()
+        with self.assertRaisesRegex(ValueError, "current review"):
+            ci.guide_review(self.root, self.base, escaped_entity_head)
+        self.write_review("updated", head=escaped_entity_head)
         self.assertEqual(
-            ci.guide_review(self.root, self.base, self.commit())["decision"], "guide-updated"
+            ci.guide_review(self.root, self.base, self.commit())["decision"], "reviewed-updated"
         )
-        self.write(ci.GUIDE, original.replace("`check`", "`check\u034f`"))
+        self.write(ci.GUIDE, original.replace("👩💻", "👩\u200d💻"))
+        shaping_head = self.commit()
+        with self.assertRaisesRegex(ValueError, "current review"):
+            ci.guide_review(self.root, self.base, shaping_head)
+        self.write_review("unchanged", head=shaping_head)
         self.assertEqual(
-            ci.guide_review(self.root, self.base, self.commit())["decision"], "guide-updated"
+            ci.guide_review(self.root, self.base, self.commit())["decision"], "reviewed-unchanged"
         )
 
 

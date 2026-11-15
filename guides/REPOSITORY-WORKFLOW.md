@@ -112,23 +112,25 @@ existing checks. The shared [issue #122 acceptance policy](../.github/acceptance
 is a covered control. Protected admission installs the Markdown parser only for
 a covered diff or a guide change.
 
-When the guide already describes the changed behavior, run
+For each covered diff, run
 `python3 tools/check_ri_ci.py guide-scope --base-sha BASE --head-sha HEAD`
 against the committed candidate. In
 `review/issue-N/workflow-guide-evidence.json`, enter the reported `base_sha`,
-`scope_sha256` and `paths`, plus the affected guide `sections`, a specific
-`rationale` and the recorded `reviewer_execution` reference. A change to the
-base, covered source or guide bytes requires a fresh record.
+`scope_sha256` and `paths`, the affected guide `sections` and the recorded
+`reviewer_execution` reference. Set `disposition` to `updated` or `unchanged`.
+Use `rationale` to explain what the changes document or why the existing guide
+already describes the behavior. A change to the base, covered source or guide
+bytes requires a fresh record.
 
 For either decision, record the independent guide review against the exact
 candidate. The owner verifies the review and sets `guide_reviewed_sha` and
 `guide_review_evidence` (a link to the accepted review record in this GitHub repository) when dispatching
-Change admission. The protected report retains that exact-head attestation. Navigation detects missing or stale
-evidence and compares parsed GFM. When the only differences are Unicode
-formatting controls in prose or image alternative text, use the scoped review
-record to explain the visible effect or why the guide already applies. The
-reviewer verifies that judgment. HTML comments and empty structure do not
-supply content. Code examples retain their literal text. Use Markdown for guide
+Change admission. The protected report retains that exact-head attestation.
+Navigation validates the record for either disposition and checks that an
+update changes the parsed guide. Reviewers verify that the affected sections
+describe the actual behavior, including when a formatting edit changes how
+Markdown is parsed. HTML comments and empty structure do not supply content.
+Code examples retain their literal text. Use Markdown for guide
 markup and inline links. Raw HTML elements and link reference definitions are
 rejected. Reviewers judge
 whether the affected text, diagrams and examples accurately describe the

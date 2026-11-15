@@ -659,27 +659,21 @@ def guide_review(root, base, head, describe=False):
     }
     parser_required = bool(paths or GUIDE in changed)
     if describe:
-        return {**result, "parser_required": parser_required}
+        return {
+            **result,
+            "decision": "review-required" if paths else "inapplicable",
+            "parser_required": parser_required,
+        }
     if not parser_required:
         return result
     guide = read(head, GUIDE).decode()
     if not guide.strip():
         raise ValueError(f"Workflow guide is missing or empty: {GUIDE}")
-    current, previous = guide_projections(guide, read(base, GUIDE).decode())
+    (current,) = guide_projections(guide)
     if not current["hasText"]:
         raise ValueError(f"Workflow guide has no visible content: {GUIDE}")
     if not paths:
         return result
-    same_formatting_free_source = (
-        current["formattingFreeSource"] == previous["formattingFreeSource"]
-        and current["literals"] == previous["literals"]
-    )
-    if (
-        current["withoutFormatting"] != previous["withoutFormatting"]
-        and not same_formatting_free_source
-    ):
-        return {**result, "decision": "guide-updated"}
-
     receipts = [path for path in changed if re.fullmatch(GUIDE_REVIEW, path) and read(head, path)]
     receipt = receipts[0] if len(receipts) == 1 else None
     try:
@@ -691,11 +685,11 @@ def guide_review(root, base, head, describe=False):
     expected = {"base_sha": base, "scope_sha256": digest, "paths": paths}
     if (
         not isinstance(record, dict)
-        or set(record) != {*expected, "sections", "rationale", "reviewer_execution"}
+        or set(record) != {*expected, "disposition", "sections", "rationale", "reviewer_execution"}
         or any(record.get(key) != value for key, value in expected.items())
     ):
         raise ValueError(
-            f"Update {GUIDE}, or add a current review in review/issue-N/workflow-guide-evidence.json. "
+            "Add a current review in review/issue-N/workflow-guide-evidence.json. "
             f"Reviewed scope: {json.dumps(expected, ensure_ascii=False)}"
         )
 
@@ -703,15 +697,14 @@ def guide_review(root, base, head, describe=False):
         return node.get("value", "") + "".join(label(child) for child in node.get("children", []))
 
     headings = {
-        label(node)
-        for node in current["nodes"]
-        if node["type"] == "heading" and node["depth"] >= 2
+        label(node) for node in current["nodes"] if node["type"] == "heading" and node["depth"] >= 2
     }
-    sections, rationale, execution = (
-        record[key] for key in ("sections", "rationale", "reviewer_execution")
+    disposition, sections, rationale, execution = (
+        record[key] for key in ("disposition", "sections", "rationale", "reviewer_execution")
     )
     if (
-        not isinstance(sections, list)
+        disposition not in ("updated", "unchanged")
+        or not isinstance(sections, list)
         or not sections
         or any(not isinstance(section, str) or section not in headings for section in sections)
         or len(sections) != len(set(sections))
@@ -721,11 +714,16 @@ def guide_review(root, base, head, describe=False):
         or not execution.strip()
     ):
         raise ValueError(
-            f"{receipt} requires actual guide section titles, a specific rationale, "
+            f"{receipt} requires an updated or unchanged disposition, actual guide section titles, "
+            "a specific rationale, "
             "and a reference to the independent reviewer execution."
         )
-    decision = "reviewed-formatting" if current["nodes"] != previous["nodes"] else "reviewed-unchanged"
-    return {**result, "decision": decision, "review_receipt": receipt}
+    if disposition == "updated":
+        (previous,) = guide_projections(read(base, GUIDE).decode())
+        if current["nodes"] == previous["nodes"]:
+            raise ValueError(f"{receipt} declares an update but {GUIDE} has no visible change")
+    # An AST difference alone cannot establish that the affected behavior was documented.
+    return {**result, "decision": f"reviewed-{disposition}", "review_receipt": receipt}
 
 
 def pull_request_guide_review(root):
