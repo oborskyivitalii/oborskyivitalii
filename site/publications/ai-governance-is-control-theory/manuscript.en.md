@@ -394,7 +394,7 @@ That is what Control Theory does for mechanics. That is what Uncertainty Archite
 
 Vitalii Oborskyi — Head of Delivery & Ops | Creator of “Uncertainty Architecture” (AI Control Theory)
 
-AI Governance Framework (AI Reliability = Actuators + Sensors + Controller): [https://github.com/oborskyivitalii/uncertainty-architecture](https://github.com/oborskyivitalii/uncertainty-architecture)
+Framework: [https://github.com/oborskyivitalii/uncertainty-architecture](https://github.com/oborskyivitalii/uncertainty-architecture)
 
 LinkedIn: [https://www.linkedin.com/in/vitaliioborskyi/](https://www.linkedin.com/in/vitaliioborskyi/)
 
