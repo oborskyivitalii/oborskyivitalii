@@ -757,6 +757,11 @@ class WorkflowGuideReviewTests(unittest.TestCase):
         self.write(ci.GUIDE, baseline.replace("candidates.", "candidates.&#x200B;"))
         with self.assertRaisesRegex(ValueError, "Update"):
             ci.guide_review(self.root, self.base, self.commit())
+        diagram = baseline + "\n![Workflow diagram](diagram.png)\n"
+        self.assertEqual(
+            *ci.guide_contents(diagram, diagram.replace("diagram]", "diagram&#x200B;&#x2060;]"))
+        )
+        self.assertNotEqual(*ci.guide_contents(diagram, diagram.replace("Workflow", "Delivery")))
         self.assertNotEqual(*ci.guide_contents("Use `value`.", "Use `value\u200b`."))
         self.write(
             ci.GUIDE,
@@ -931,7 +936,7 @@ class WorkflowGuideReviewTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "missing or empty"):
             ci.guide_review(self.root, self.base, self.commit())
         self.write(".github/workflows/new.yml", "name: New control\n")
-        for markup in ("##", ">", "---", "&#x200B;"):
+        for markup in ("##", ">", "---", "&#x200B;", "&#x2060;", "&#x034F;"):
             with self.subTest(markup=markup):
                 self.write(ci.GUIDE, markup + "\n")
                 with self.assertRaisesRegex(ValueError, "no visible content"):

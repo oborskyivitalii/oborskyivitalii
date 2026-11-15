@@ -36,10 +36,15 @@ function parseGuide(markdown) {
   return parser.parse(markdown);
 }
 
+function normalizeProse(value) {
+  return value.replace(/[\u200b\u2060\ufeff]/g, '').replace(/\s+/g, ' ');
+}
+
 function visibleNode(source, footnotes) {
   const { position, children, ...node } = source;
   if (node.type === 'footnoteDefinition' && !footnotes.has(source)) return null;
   if (node.type === 'code') delete node.meta;
+  if (node.type === 'image') node.alt = normalizeProse(node.alt ?? '').trim();
   if (node.type === 'html') {
     // Remark distinguishes actual HTML from comment-shaped text inside code.
     const remaining = withoutComments(node.value);
@@ -61,7 +66,7 @@ function visibleNode(source, footnotes) {
     }
     for (const [index, child] of node.children.entries()) {
       if (child.type !== 'text') continue;
-      child.value = child.value.replace(/\u200b/g, '').replace(/\s+/g, ' ');
+      child.value = normalizeProse(child.value);
       if (index === 0) child.value = child.value.trimStart();
       if (index === node.children.length - 1) child.value = child.value.trimEnd();
     }

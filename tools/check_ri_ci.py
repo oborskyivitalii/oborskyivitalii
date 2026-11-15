@@ -641,9 +641,13 @@ def guide_contents(*documents):
 
 
 def guide_has_content(nodes):
+    # A guide needs text. Empty layout and isolated formatting marks are insufficient.
     return any(
-        (node.get("value") or "").replace("\u200b", "").strip()
-        or (node.get("alt") or "").replace("\u200b", "").strip()
+        any(
+            character.isalnum()
+            for field in ("value", "alt")
+            for character in (node.get(field) or "")
+        )
         or guide_has_content(node.get("children", []))
         for node in nodes
     )

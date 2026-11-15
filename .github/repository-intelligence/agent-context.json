@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "974d75860f758dcfb2b7e965ed8a9606feae6b290b27994a556626f6503af843",
+    "digest": "d3bad2ed9005bb6cd13b179320f76cd95c65b8c000c860ca7a258b89315bd1bc",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -271,7 +271,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "6f19c342906458bed81092440cfbdf0fe20001afb511d65b64d80ff392b0370d"
+        "sha256": "f0d054823c93c9fb1775729b4bc0151f2c491ffd3f0eb8652a16f46e6dddca76"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -960,7 +960,7 @@
       {
         "path": "guides/REPOSITORY-WORKFLOW.md",
         "identity_mode": "content",
-        "sha256": "6869584a033d05e200ea61ef6c5e652a76c57eb2461a2846f733752231fddf90"
+        "sha256": "c4e8492703f9d55124f79a4ec3a322fa6c5bc19fe22ebe7919e9d975f3f5df64"
       },
       {
         "path": "guides/SITE-ANALYTICS.md",
@@ -4935,7 +4935,7 @@
       {
         "path": "review/issue-199/2026-11-12-review.md",
         "identity_mode": "content",
-        "sha256": "f810975b63b5ae193b703f72b95b8993e89215b2cf9e0b03a7efb2ac94c1a299"
+        "sha256": "bbb89b41d76f29def71611d4559f2cdbc29313c0833fb9d5be5690cb252240fd"
       },
       {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -12295,7 +12295,7 @@
       {
         "path": "tests/test_ri_ci.py",
         "identity_mode": "content",
-        "sha256": "388e2265ceb386642dd81332647408edcf3c91d7b9bb1f792c3c7da6b0cf61c0"
+        "sha256": "3cb0de37c294affaac29c36836877b479c58e8cee6c6353b80ea4dffe01f4ef5"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -12405,7 +12405,7 @@
       {
         "path": "tools/check_ri_ci.py",
         "identity_mode": "content",
-        "sha256": "bbecbd68a01b4dfe783375444007e038c9134531f5db0895597c83b58c96c7bf"
+        "sha256": "7ede57f4916b4c7678c07e791979a94b9ecc259cf6d55cb2150ea0ba05cec890"
       },
       {
         "path": "tools/check_site_contrast.cjs",
@@ -13140,7 +13140,7 @@
       {
         "path": "tools/quality/workflow-guide-markdown.mjs",
         "identity_mode": "content",
-        "sha256": "bca86cd954f719d48b8dd2292d39d32ffed7d06adabd3e5f7814f4a2bb5dd76c"
+        "sha256": "67f1e8d4fb0f1f55731b1a3fc8ec9b4be35b1a6cf8929cc6dee88c74902ad7d7"
       },
       {
         "path": "tools/quality/writing-diagnosis.cjs",
