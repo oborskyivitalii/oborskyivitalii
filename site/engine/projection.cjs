@@ -33,14 +33,17 @@ module.exports = function (math, definitions) {
       target: spline(...indices.map((j) => path[j].target), t),
     };
   }
-  function loopTransform(object, time = 0) {
+  function loopTransform(object, time = 0, documentPulse = null) {
     const phase = ((((time % LOOP_MS) + LOOP_MS) % LOOP_MS) / LOOP_MS) * Math.PI * 2;
     const root = object.rootCenter,
       center = object.center,
       p = object.phase;
-    const breathe = 1 + 0.065 * Math.sin(phase + object.root * 0.8);
-    const pulse = 1 + 0.04 * Math.sin(phase * 2 + object.root * 0.8);
-    const a = 0.045 * Math.sin(phase + object.root * 1.2),
+    const layer = documentPulse?.layers[object.root % documentPulse.layers.length];
+    const swell = layer?.swell ?? 0;
+    const turn = layer?.turn ?? 0;
+    const breathe = 1 + 0.065 * Math.sin(phase + object.root * 0.8) + 0.22 * swell;
+    const pulse = 1 + 0.04 * Math.sin(phase * 2 + object.root * 0.8) + 0.15 * swell;
+    const a = 0.045 * Math.sin(phase + object.root * 1.2) + turn,
       b = 0.065 * Math.sin(phase * 2 + p);
     const ca = Math.cos(a),
       sa = Math.sin(a),
@@ -118,7 +121,8 @@ module.exports = function (math, definitions) {
     time = 0,
     tier = 0,
     prune = false,
-    sort = true
+    sort = true,
+    documentPulse = null
   ) {
     const { forward, right, up, camera, project, visible, focal, origin } = cameraView(
       current,
@@ -136,7 +140,7 @@ module.exports = function (math, definitions) {
       [0, 1, (height + 8 - cy) / focal],
     ].map((p) => ({ normal: p, length: Math.hypot(...p) }));
     for (const o of world.objects) {
-      const transform = loopTransform(o, time),
+      const transform = loopTransform(o, time, documentPulse),
         center = camera(transform.center),
         radius = o.radius * transform.scale;
       const depth = center[2],

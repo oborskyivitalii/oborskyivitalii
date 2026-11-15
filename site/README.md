@@ -103,10 +103,11 @@ first painted flight frame. Each of at most three active/pending rooms caches
 at most two detail variants; theme changes
 repaint their color tables. No independent render loop or runtime dependency is added.
 During principal-route flight, the two projected adjacent rooms stay within that journey's
-source/destination interval. Distinct reader documents share Writing's canonical anchor:
-the router explicitly requests a signed horizontal orbit around the centered Writing
-fractal, using the existing camera clock and fixed400/1000/350ms legs. The camera returns
-to the same reading anchor; canonical neighboring room weights preserve retarget continuity.
+source/destination interval. Distinct reader documents share Writing's canonical
+reading anchor. The document route plays its showcase on the existing scene
+clock between the outgoing and incoming block waves. Adjacent depth layers turn
+in opposite directions as the geometry expands and brightens. The Writing camera
+stays at its reading anchor through the sequence.
 The router owns document/history direction, including Back/Forward; native anchors and
 filters do not start camera travel. Published reader aliases accept the host
 extensionless URL for native entry and Back; immutable snapshots still require exact filenames. Same-route scene cleanup without document intent stays instant. Complete room ink fades from zero at neighboring
@@ -301,12 +302,16 @@ Hosted routes do not embed the whole article registry. A local article embeds it
 own initial descriptor; first navigation selects compatible article descriptors
 from the bounded revision manifest. Article renderer compatibility is explicit.
 
-Writing and its native article documents use the same fractal composition.
-Document-to-document navigation centers that composition, orbits the camera once
-around it, then restores the reading pose. History reverses the orbit direction.
-Principal-section trips retain corridor travel. One lifecycle owns timing,
-interruption, the original orbit-return anchor and motion/native fallbacks.
-The supported axis/pivot and enclosing radius are validated with the scene inputs.
+Writing and its native article documents use the same fractal composition and
+camera pose. Writing/article and article/article navigation, including history,
+begins the outgoing block wave while the destination loads. Once the outgoing
+blocks are offscreen, the scene plays a single 1.2-second counter-rotating pulse.
+The depth layers swell and turn at staggered timings, easing back to neutral
+across the second half of the pulse. The neutral end paint and
+the ready document both precede the incoming block wave. A pending read can
+outlast the pulse without replaying it. Interruption, timeout or motion
+suppression clears transient presentation.
+Principal-section trips retain corridor travel and its existing camera timing.
 
 The Writing room and article documents reference the canonical Writing fallback through one generated,
 content-addressed `article-media/<sha256>/writing-fallback.svg` group. The scene
@@ -328,7 +333,7 @@ AST, with pure HTML rendering shared through `tools/publishing/render.cjs`.
 own the common shell and contents; `engine/reader.css` owns long-form layout,
 typography and table/code/figure/reference components. `engine/reading-surfaces.css`
 owns the reader's one opaque paper surface; the same Writing scene stays visible
-around it and retains document-orbit transitions. Ordinary paragraph-entry and
+around it during document loads. Ordinary paragraph-entry and
 page-edge scene gestures are disabled while reading an article.
 
 The optional `engine/reader.cjs` lifecycle adds hierarchical H2/H3 Contents,

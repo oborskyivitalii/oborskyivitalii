@@ -15,6 +15,7 @@ function visit(options = {}) {
     stylesheetEvents = {},
     canvasEvents = {},
     pending = new Map(),
+    timeouts = new Map(),
     calls = [];
   let formulaConstructions = 0;
   let failDraw = false,
@@ -117,6 +118,12 @@ function visit(options = {}) {
       return id;
     },
     cancelAnimationFrame: (id) => pending.delete(id),
+    setTimeout(fn, delay) {
+      const id = ++serial;
+      timeouts.set(id, { fn, delay });
+      return id;
+    },
+    clearTimeout: (id) => timeouts.delete(id),
     addEventListener: (name, fn) => {
       events[name] = fn;
     },
@@ -281,6 +288,7 @@ function visit(options = {}) {
     canvas,
     scene,
     pending,
+    timeouts,
     calls,
     media,
     narrow,
@@ -591,6 +599,456 @@ test('article navigation retains continuous ambient motion and the same-scene or
   const returned = p.phase();
   p.frame(80);
   assert.ok(p.phase() > returned);
+});
+test('a document showcase turns adjacent roots against each other and finishes on a neutral paint', async () => {
+  const paints = [];
+  const p = visit({
+    page: 'writing',
+    probe(event) {
+      if (event.kind === 'paint') paints.push(event);
+    },
+  });
+  p.frame(60);
+  p.frame(60);
+  const before = paints.at(-1);
+  const backing = [p.canvas.width, p.canvas.height];
+  const camera = p.trace();
+  const scene = p.window.SiteScene;
+  let complete = false;
+  const finished = scene.playDocumentPulse().then((painted) => (complete = painted));
+  p.frame(20);
+  for (let i = 0; i < 6; i++) p.frame(60);
+  const paint = paints.at(-1);
+  const pulse = paint.documentPulse;
+  assert.ok(pulse.layers[0].turn > 0.6 && pulse.layers[1].turn < -0.5);
+  assert.ok(pulse.swell > 0.3 && pulse.layers[0].swell !== pulse.layers[1].swell);
+  assert.equal(p.trace(), camera);
+  assert.equal(p.scene.dataset.travel, 'settled');
+  const objects = model.worldFor('writing', true).objects;
+  const angle = (transform) => Math.atan2(-transform.matrix[1], transform.matrix[4]);
+  for (const root of [0, 1]) {
+    const object = objects.find((item) => item.root === root);
+    const ambient = model.loopTransform(object, paint.ambientTime);
+    const loading = model.loopTransform(object, paint.ambientTime, pulse);
+    assert.ok(loading.scale > ambient.scale);
+    assert.equal(Math.sign(angle(loading) - angle(ambient)), root === 0 ? 1 : -1);
+  }
+  assert.equal(complete, false);
+  for (let i = 0; i < 24 && !complete; i++) {
+    p.frame(60);
+    await Promise.resolve();
+  }
+  assert.equal(complete, true);
+  assert.equal(await finished, true);
+  assert.equal(p.timeouts.size, 0);
+  assert.equal(paints.at(-1).documentPulse, null);
+  const neutral = paints.at(-1);
+  assert.equal(neutral.ambientTime, before.ambientTime);
+  assert.equal(neutral.detailTier, before.detailTier);
+  assert.deepEqual([p.canvas.width, p.canvas.height], backing);
+  assert.deepEqual(writingFaces(neutral), writingFaces(before));
+  const interrupted = scene.playDocumentPulse();
+  p.frame(60);
+  p.click();
+  assert.equal(await interrupted, false);
+  p.frame(60);
+  assert.equal(paints.at(-1).documentPulse, null, 'motion Off clears the last painted effect');
+  assert.equal(p.trace(), camera);
+});
+test('a starved showcase reports cancellation without claiming a neutral paint', async () => {
+  const p = visit({ page: 'writing' });
+  p.frame(60);
+  const pulse = p.window.SiteScene.playDocumentPulse();
+  const [watchdog] = p.timeouts.values();
+  assert.equal(watchdog.delay, 1800);
+  watchdog.fn();
+  assert.equal(await pulse, false);
+  assert.equal(p.timeouts.size, 0);
+});
+test('the late pulse can close on real paints up to the hard deadline', async () => {
+  for (const outcome of ['neutral', 'timeout', 'expired-frame', 'late-neutral-draw']) {
+    const paints = [];
+    const p = visit({
+      page: 'writing',
+      probe: (event) => event.kind === 'paint' && paints.push(event),
+    });
+    p.frame(60);
+    p.frame(60);
+    const before = paints.at(-1);
+    const finished = p.window.SiteScene.playDocumentPulse(13);
+    const [deadline] = p.timeouts.values();
+    advanceUntil(p, () => paints.at(-1).documentPulse?.progress >= 0.95, 'late pulse');
+    deadline.fn();
+    const [hardDeadline] = p.timeouts.values();
+    assert.equal(hardDeadline.delay, 200);
+    if (outcome === 'neutral') {
+      advanceUntil(p, () => !p.timeouts.size, 'neutral pulse paint');
+      const neutral = paints.at(-1);
+      assert.equal(neutral.documentPulseNavigationId, 13);
+      assert.equal(neutral.documentPulse, null);
+      assert.deepEqual(writingFaces(neutral), writingFaces(before));
+    } else if (outcome === 'timeout') {
+      const paintsBeforeDeadline = paints.length;
+      hardDeadline.fn();
+      assert.equal(paints.length, paintsBeforeDeadline);
+    } else if (outcome === 'expired-frame') {
+      // RAF can be serviced before a timer callback that is already due.
+      const now = p.window.performance.now;
+      p.window.performance.now = () => now() + 2000;
+      p.frame();
+      assert.equal(paints.at(-1).documentPulseNavigationId, null);
+    } else {
+      advanceUntil(
+        p,
+        () =>
+          paints
+            .at(-1)
+            .documentPulse.layers.every(
+              ({ turn, swell }) => Math.abs(turn) <= 0.5 / 900 && swell <= 0.5 / 900
+            ),
+        'the active pose is within neutral tolerance'
+      );
+      p.paintCost(2000);
+      advanceUntil(p, () => !p.timeouts.size, 'the neutral draw overruns the deadline');
+      assert.equal(paints.at(-1).documentPulse, null);
+    }
+    assert.equal(await finished, outcome === 'neutral');
+    assert.equal(p.timeouts.size, 0);
+  }
+});
+test('a cost-limited Writing showcase still reverses visibly and paints neutral before the deadline', async () => {
+  const cases = [
+    { paintCost: 36, narrow: true, width: 390, height: 844, expectReversal: true },
+    { paintCost: 45, narrow: true, width: 390, height: 844, expectReversal: false },
+    { paintCost: 45, narrow: false, width: 1365, height: 768, expectReversal: true },
+    { paintCost: 45, narrow: false, width: 1365, height: 768, expectReversal: true, gap: 117 },
+  ];
+  for (const { paintCost, narrow, width, height, expectReversal, gap } of cases) {
+    const paints = [];
+    let time = 0;
+    const p = visit({
+      page: 'writing',
+      narrow,
+      paintCost,
+      probe: (event) => {
+        if (event.kind === 'paint' && event.documentPulseNavigationId === 12)
+          paints.push({ ...event, time });
+      },
+    });
+    p.window.innerWidth = width;
+    p.window.innerHeight = height;
+    p.events.resize();
+    const frameMs = 1000 / 60;
+    let painted = false;
+    const frame = (delta) => {
+      const before = p.draws();
+      time += delta;
+      p.frame(delta);
+      painted = p.draws() !== before;
+    };
+    const nextInterval = () => (painted ? Math.ceil(paintCost / frameMs) * frameMs : frameMs);
+    while (time < 6000) frame(nextInterval());
+    assert.equal(p.scene.dataset.quality, '2');
+    const pulse = p.window.SiteScene.playDocumentPulse(12);
+    const [watchdog] = p.timeouts.values();
+    const started = time;
+    let pendingGap = gap;
+    while (p.timeouts.size) {
+      const elapsed = time - started;
+      const delta = (elapsed > 730 && pendingGap) || nextInterval();
+      if (elapsed > 730) pendingGap = 0;
+      if (elapsed + delta >= watchdog.delay) watchdog.fn();
+      frame(delta);
+    }
+    assert.equal(await pulse, true, `${width}×${height} at ${paintCost} ms paint cost`);
+    assert.equal(paints.at(-1).documentPulse, null);
+    assert.equal(paints.at(-1).documentPulseNavigationId, 12);
+    assertLateReturnMotion(paints, writingFaces, width, height);
+    if (expectReversal) {
+      // Apply the hosted article journey's observable-counterturn criterion.
+      const directions = new Set();
+      for (const { documentPulse: active, documentPulseNavigationId } of paints) {
+        if (
+          documentPulseNavigationId === 12 &&
+          active?.swell >= 0.1 &&
+          active.layers.slice(1).every(({ turn }, i) => turn * active.layers[i].turn < -0.01)
+        )
+          directions.add(Math.sign(active.layers[0].turn));
+      }
+      assert.deepEqual(directions, new Set([1, -1]));
+    }
+  }
+});
+test('a missed document-pulse return frame eases every painted layer into neutral', async () => {
+  const paints = [];
+  const p = visit({
+    page: 'writing',
+    probe: (event) => event.kind === 'paint' && paints.push(event),
+  });
+  p.frame(60);
+  const scene = p.window.SiteScene;
+  let result;
+  const finished = scene.playDocumentPulse(11).then((value) => (result = value));
+  const [watchdog] = p.timeouts.values();
+  let elapsed = 0;
+  const frame = (delta) => {
+    elapsed += delta;
+    if (elapsed >= watchdog.delay && p.timeouts.size) watchdog.fn();
+    p.frame(delta);
+  };
+  frame(20);
+  for (let i = 0; i < 55; i++) frame(1000 / 60);
+  const earlier = paints.at(-1).documentPulse.layers;
+  const earlierProgress = paints.at(-1).documentPulse.progress;
+  frame(104);
+  assert.ok(paints.at(-1).documentPulse.progress - earlierProgress < 0.04);
+  assert.ok(
+    paints
+      .at(-1)
+      .documentPulse.layers.every(({ turn }, i) => Math.abs(turn - earlier[i].turn) <= 0.16001),
+    'one missed interval keeps the return bounded'
+  );
+  let previous = paints.at(-1).documentPulse.layers;
+  assert.ok(Math.abs(previous[0].turn) > 0.05);
+  const camera = p.trace();
+  frame(390);
+  assert.ok(paints.at(-1).documentPulse, 'the missed interval does not jump to neutral');
+  await Promise.resolve();
+  assert.equal(result, undefined);
+  for (let i = 0; i < 18; i++) {
+    const next = paints.at(-1).documentPulse?.layers;
+    for (const [index, layer] of previous.entries()) {
+      const turn = next?.[index].turn ?? 0;
+      const swell = next?.[index].swell ?? 0;
+      assert.ok(Math.abs(turn) <= Math.abs(layer.turn));
+      assert.ok(Math.abs(turn - layer.turn) <= 0.16001);
+      assert.ok(swell <= layer.swell && layer.swell - swell <= 0.18001);
+    }
+    if (!next) break;
+    previous = next;
+    frame(1000 / 60);
+  }
+  assert.equal(paints.at(-1).documentPulse, null);
+  assert.equal(await finished, true);
+  assert.ok(elapsed < watchdog.delay, 'the cascade can start before the real deadline');
+  assert.equal(paints.at(-1).documentPulseNavigationId, 11);
+  assert.ok(
+    paints
+      .at(-2)
+      .documentPulse.layers.every(
+        ({ turn, swell }) => Math.abs(turn) <= 0.5 / 900 && swell <= 0.5 / 900
+      )
+  );
+  const last = paints.at(-2);
+  const view = model.cameraView(
+    model.translatePose(last.current, -model.roomOffset('writing')),
+    last.width,
+    last.height
+  );
+  const projectedY = model.worldFor('writing', last.compact).objects.flatMap((object) => {
+    const rest = view.camera(model.loopTransform(object, last.ambientTime).center);
+    if (rest[2] <= 0.5) return [];
+    const [x, y] = view.project(rest);
+    if (x < 0 || x > last.width || y < 0 || y > last.height) return [];
+    const painted = view.camera(
+      model.loopTransform(object, last.ambientTime, last.documentPulse).center
+    );
+    return [Math.abs(view.project(painted)[1] - y)];
+  });
+  assert.ok(projectedY.length > 0);
+  assert.ok(Math.max(...projectedY) < 0.5, 'dropping the last pulse is subpixel in projection');
+  assert.equal(p.trace(), camera);
+  assert.equal(p.timeouts.size, 0);
+});
+function assertLateReturnMotion(paints, faces, width, height, normalCadence) {
+  let previous = null;
+  let samples = 0;
+  const start = paints.at(-1).time - 500;
+  for (const paint of paints) {
+    if (paint.width !== width || paint.height !== height) {
+      previous = null;
+      continue;
+    }
+    const current = faces(paint);
+    if (previous && paint.time >= start) {
+      const deltas = [];
+      for (const [material, points] of current) {
+        const earlier = previous.faces.get(material);
+        if (earlier?.length !== points.length) continue;
+        points.forEach(([, y], i) => deltas.push(y - earlier[i][1]));
+      }
+      assert.ok(deltas.length > 100, 'matched visible face vertices throughout the return');
+      deltas.sort((a, b) => a - b);
+      const lower = deltas[Math.floor(deltas.length * 0.05)];
+      const upper = deltas[Math.floor(deltas.length * 0.95)];
+      const displacement = Math.max(-lower, upper);
+      const interval = paint.time - previous.time;
+      assert.ok(
+        displacement <= 0.02 * height,
+        `${width}×${height} after ${interval.toFixed(1)} ms: ${displacement.toFixed(2)} CSS px between paints`
+      );
+      if (normalCadence && (paint.documentPulse?.progress ?? 1) >= 0.75)
+        assert.ok((displacement * 1000) / interval <= 0.95 * height);
+      samples++;
+    }
+    previous = { faces: current, time: paint.time };
+  }
+  assert.ok(samples >= 4, 'multiple consecutive late-return paints were measured');
+}
+function writingFaces(paint) {
+  const world = model.worldFor('writing', paint.compact || paint.detailTier >= 0.5);
+  return new Map(
+    model
+      .projectedWorld(
+        world,
+        model.translatePose(paint.current, -model.roomOffset('writing')),
+        paint.width,
+        paint.height,
+        paint.ambientTime,
+        paint.detailTier,
+        true,
+        false,
+        paint.documentPulse
+      )
+      .filter(
+        (shape) =>
+          shape.kind === 'face' &&
+          shape.alpha >= 0.1 &&
+          shape.points.every(([x, y]) => x >= 0 && x < paint.width && y >= 0 && y < paint.height)
+      )
+      .map((shape) => [shape.material, shape.points])
+  );
+}
+test('the late Writing pulse eases visible faces back at normal and slower paint cadences', async () => {
+  const cases = [
+    { width: 1024, height: 668, frameMs: 1000 / 60 },
+    { width: 1440, height: 900, frameMs: 1000 / 60 },
+    { width: 1280, height: 790, frameMs: 50, resize: true },
+    { width: 1440, height: 900, frameMs: 1000 / 15 },
+    { width: 1440, height: 900, frameMs: 1000 / 12 },
+    { width: 1024, height: 668, frameMs: 1000 / 60, lateGap: 104 },
+  ];
+  for (const { width, height, frameMs, resize, lateGap } of cases) {
+    const paints = [];
+    let time = 0;
+    const p = visit({
+      page: 'writing',
+      probe: (event) => {
+        if (event.kind === 'paint' && event.documentPulseNavigationId === 23)
+          paints.push({ ...event, time });
+      },
+    });
+    const setSize = (w, h) => {
+      p.window.innerWidth = w;
+      p.window.innerHeight = h;
+      p.events.resize();
+    };
+    const frame = (delta = frameMs) => {
+      time += delta;
+      p.frame(delta);
+    };
+    setSize(resize ? 1440 : width, resize ? 900 : height);
+    for (let i = 0; i < Math.ceil(1900 / frameMs); i++) frame();
+    const scene = p.window.SiteScene;
+    const pulse = scene.playDocumentPulse(23);
+    const [watchdog] = p.timeouts.values();
+    const started = time;
+    let gapUsed = false;
+    while (p.timeouts.size) {
+      const elapsed = time - started;
+      if (resize && elapsed >= 780 && p.window.innerWidth !== width) setSize(width, height);
+      const insertGap = lateGap && !gapUsed && elapsed >= 730;
+      const delta = insertGap ? lateGap : frameMs;
+      gapUsed ||= Boolean(insertGap);
+      if (elapsed + delta >= watchdog.delay) watchdog.fn();
+      frame(delta);
+    }
+    if (lateGap) assert.ok(gapUsed);
+    assert.equal(p.timeouts.size, 0, 'pulse settled before the existing deadline');
+    assert.equal(await pulse, true);
+    assert.equal(paints.at(-1).documentPulse, null);
+    if (resize) {
+      const initial = paints[0];
+      const neutral = paints.at(-1);
+      assert.deepEqual(
+        writingFaces(neutral),
+        writingFaces({ ...initial, width, height, documentPulse: null }),
+        'the resized canvas projects the starting pose at the new viewport'
+      );
+    }
+    assertLateReturnMotion(paints, writingFaces, width, height, frameMs < 20 && !lateGap);
+  }
+});
+
+test('the first paint after an instant Writing document mount reuses its visible ambient phase', () => {
+  const p = visit({ page: 'writing' });
+  p.frame(60);
+  p.frame(60);
+  const camera = p.trace();
+  p.window.SiteScene.navigate('writing', false, null, null, {
+    documentChange: true,
+    sameSceneDocument: true,
+    fromDocument: 'writing',
+    toDocument: 'article:sample:en',
+  });
+  // The router can yield a paint before the queued native mount.
+  p.frame(80);
+  const phase = p.phase();
+  p.document.body.dataset.article = 'sample:en';
+  p.window.SiteScene.refresh({ sync: true, preserveDocumentPaint: true });
+  p.frame(210);
+  assert.equal(p.phase(), phase);
+  assert.equal(p.trace(), camera);
+  p.frame(80);
+  assert.ok(p.phase() > phase, 'ambient motion resumes on the following paint');
+});
+
+test('the first mounted Writing paint retains the displayed backing ratio through a quality vote', () => {
+  const p = visit({ page: 'writing' });
+  p.frame(60);
+  // Delay the eighth slow paint until a quality vote is eligible.
+  for (let i = 0; i < 45; i++) p.frame(60);
+  p.paintCost(27);
+  advanceUntil(p, () => p.scene.dataset.quality === '1', 'quality votes after the neutral paint');
+  const neutralSize = [p.canvas.width, p.canvas.height];
+  assert.deepEqual(neutralSize, [2160, 1350]);
+  p.document.body.dataset.article = 'sample:en';
+  p.window.SiteScene.refresh({ sync: true, preserveDocumentPaint: true });
+  p.frame(60);
+  assert.deepEqual([p.canvas.width, p.canvas.height], neutralSize);
+  advanceUntil(p, () => p.canvas.width === 1800, 'adaptation resumes after the mounted paint');
+  assert.deepEqual([p.canvas.width, p.canvas.height], [1800, 1125]);
+});
+
+test('a device hold clears an in-progress pulse with one still neutral paint', async () => {
+  const paints = [];
+  const p = visit({
+    page: 'writing',
+    paintCost: 60,
+    probe: (event) => event.kind === 'paint' && paints.push(event),
+  });
+  advanceUntil(p, () => p.scene.dataset.quality === '2', 'reach low tier');
+  for (let i = 0; i < 16; i++) p.frame(125);
+  const pulse = p.window.SiteScene.playDocumentPulse(17);
+  advanceUntil(p, () => p.scene.dataset.quality === 'still', 'device hold during pulse');
+  assert.ok(paints.at(-1).documentPulse.swell >= 0.1, 'device voted after a visible pulse');
+  assert.equal(await pulse, false);
+  const camera = p.trace();
+  assert.equal(p.pending.size, 1);
+  p.frame(125);
+  assert.equal(paints.at(-1).documentPulse, null, 'device hold clears the canvas deformation');
+  assert.equal(p.trace(), camera);
+  assert.equal(p.pending.size, 0);
+});
+
+test('a neutral end paint cannot complete a showcase whose motion frames were skipped', async () => {
+  const p = visit({ page: 'writing' });
+  p.frame(60);
+  const pulse = p.window.SiteScene.playDocumentPulse();
+  p.frame(20);
+  p.frame(1250);
+  assert.equal(await pulse, false);
+  assert.equal(p.timeouts.size, 0);
 });
 test('articles retain common Off and reduced-motion behavior across document changes', () => {
   for (const options of [{ saved: 'off' }, { saved: 'on', reduced: true }]) {
@@ -3019,7 +3477,15 @@ test('reader activation after a principal midpoint preserves the remaining princ
   const camera = p.trace(),
     weights = JSON.stringify(paints.at(-1).roomVisibility.filter((room) => room.opacity > 0));
   // The router has mounted Writing at midpoint; Scene is still arriving from Credits.
-  p.window.SiteScene.navigate('writing', true, null, null, {
+  p.document.body.dataset.page = 'writing';
+  const progress = [];
+  p.window.SiteScene.detachTravel();
+  assert.equal(
+    p.window.SiteScene.playDocumentPulse(),
+    undefined,
+    'the active corridor owns the scene'
+  );
+  p.window.SiteScene.navigate('writing', false, (value) => progress.push(value), null, {
     navigationId: 2,
     documentChange: true,
     sameSceneDocument: true,
@@ -3027,18 +3493,38 @@ test('reader activation after a principal midpoint preserves the remaining princ
     toDocument: 'article:sample:en',
     direction: 1,
   });
-  p.frame(20);
   assert.equal(p.trace(), camera);
+  assert.ok(progress[0] >= 0.5 && progress[0] < 1, 'new document inherits remaining travel');
+  assert.equal(paints.at(-1).documentPulse, null);
   assert.equal(paints.at(-1).journey.localDocument, false);
   assert.equal(
     JSON.stringify(paints.at(-1).roomVisibility.filter((room) => room.opacity > 0)),
     weights
   );
   finishFlight(p, 'reader activation finishes the existing corridor');
+  assert.equal(progress.at(-1), 1);
   assert.deepEqual(
     JSON.parse(p.trace()),
     model.routePose('writing', model.poses[model.initialPoses.writing])
   );
+});
+
+test('a document retarget after a detached corridor returns through the principal rooms', () => {
+  const p = visit({ page: 'writing' });
+  paintInitialRoute(p, 'writing');
+  const scene = p.window.SiteScene;
+  scene.navigate('research', true);
+  scene.detachTravel();
+  finishFlight(p, 'detached corridor reaches Research without mounting it');
+  const previous = p.trace();
+  assert.equal(scene.playDocumentPulse(), undefined);
+  scene.navigate('writing', false, null, null, { documentChange: true, sameSceneDocument: true });
+  p.frame(20);
+  assert.equal(p.trace(), previous, 'the return starts from the displayed Research pose');
+  assert.equal(p.scene.dataset.travel, 'flying');
+  p.document.body.dataset.page = 'writing';
+  finishFlight(p, 'retarget completes the corridor back to Writing');
+  assert.deepEqual(JSON.parse(p.trace()), model.routePose('writing', model.poses.library));
 });
 
 test('repeated principal retargets during orbit recovery keep its original scene anchor and sightline', () => {

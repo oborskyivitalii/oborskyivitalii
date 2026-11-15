@@ -1025,7 +1025,7 @@
     {
       "path": "tests/space.test.cjs",
       "language": "javascript",
-      "purpose": "Stationary cameras, bounded route travel, zero-to-full spatial room visibility in both directions, deterministic distinct shared compositions, retarget/freeze and cache bounds; exhaustive finite Canvas argument/type/position rejection before drawing side effects with reusable VM preparation; signed same-scene document excursions, canonical full-pose return and geometry-continuous repeated/retargeted routes",
+      "purpose": "Stationary cameras, bounded route travel, zero-to-full spatial room visibility in both directions, deterministic distinct shared compositions, retarget/freeze and cache bounds; exhaustive finite Canvas argument/type/position rejection before drawing side effects with reusable VM preparation; historical signed document excursions, shared pulse return and device-hold cleanup, canonical full-pose return and geometry-continuous repeated/retargeted routes",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -1891,7 +1891,7 @@
     {
       "path": "tests/scroll-entry.test.cjs",
       "language": "javascript",
-      "purpose": "Repeat native downward re-entry and route phases, bounded lifecycle/resources and focus/jump fallback; post-cleanup native viewport snapshots shared before per-unit writes preserve eligibility and final-shell safety",
+      "purpose": "Repeat native downward re-entry and route phases, bounded lifecycle/resources, resize continuity during shared Writing-scene waves and focus/jump fallback; post-cleanup native viewport snapshots shared before per-unit writes preserve eligibility and final-shell safety",
       "owner": "site/README.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -2175,7 +2175,7 @@
     {
       "path": "tests/article-browser-evidence.test.cjs",
       "language": "javascript",
-      "purpose": "Mandatory conditional native article identity/evidence, descriptor-bound PDF link/response negatives and bounded history diagnostics; primitive activation precedes layout reads; successful-paint identity/depth/direction/stage/full-pose and related-reading admission",
+      "purpose": "Mandatory conditional native article identity/evidence, descriptor-bound PDF link/response negatives and bounded history diagnostics; primitive activation precedes layout reads; successful-paint identity and full-pose evidence for historical orbit and cross-scene corridors; current Writing-scene departure, actual layered pulse, neutral paint and arrival ordering; related-reading admission",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],

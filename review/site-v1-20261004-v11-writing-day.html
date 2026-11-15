@@ -24,8 +24,8 @@
 
 
 
-  <meta name="site-engine" content="68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c">
-  <meta name="site-route" content="53f6d48944e9aa69eb142a141b71b8240678de858baf39dd671d37ab89c810ee">
+  <meta name="site-engine" content="27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c">
+  <meta name="site-route" content="ce4e9e5a32aa29a51805d70173d5bee7ea1f75c09cc04e9fd7822f2497e75168">
   <meta name="site-contract" content="1">
   <meta name="site-article-renderer" content="1">
   <meta name="site-variant" content="base">
@@ -2740,9 +2740,12 @@ body[data-page] [data-entry-border-source] {
 }
 @keyframes route-block-arrive {
   from {
+    /* A larger viewport can expose the old offscreen position during the delay. */
+    visibility: hidden;
     translate: 0 var(--route-block-distance);
   }
   to {
+    visibility: visible;
     translate: 0 0;
   }
 }
