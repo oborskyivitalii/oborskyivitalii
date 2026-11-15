@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "id": "ai-cost-cutting-fallacy",
+  "platforms": {
+    "linkedin": {
+      "formats": [
+        "html",
+        "md",
+        "txt",
+        "copy-ready"
+      ],
+      "relationship": "equivalent-rendition"
+    },
+    "medium": {
+      "formats": [
+        "html",
+        "md",
+        "txt",
+        "copy-ready"
+      ],
+      "relationship": "equivalent-rendition"
+    }
+  },
+  "launch": {
+    "source": "launch-post.en.md",
+    "sha256": "40ce5faf197fb88a2595edd1fc9ebb07311b149cfe012a1ce71eb0a29b520fe1"
+  },
+  "seo": {
+    "title": "The AI Cost-Cutting Fallacy: Why \"Doing More with Less\" is Breaking Engineering Teams",
+    "summary": "How AI-assisted coding shifts work into review, maintenance, and the transition to new delivery capabilities."
+  },
+  "assets": {
+    "cover": {
+      "omitReason": "The original LinkedIn cover has no visible reuse credit. This Draft Preview uses the site fallback pending confirmation."
+    },
+    "hero": {
+      "omitReason": "The original LinkedIn cover has no visible reuse credit. This Draft Preview uses the site fallback pending confirmation."
+    }
+  },
+  "limits": {},
+  "reader": {
+    "references": "inline"
+  }
+}

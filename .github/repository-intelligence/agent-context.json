@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "e0dbc0281f7d5398f0e6b77e95318b1aeadbf894101cf56601eda3cbc71bc931",
+    "digest": "f72eec849831f77b9bf4663016c5f1bf7022be7f05a84cd0ebc6c519c79ad5fd",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -271,12 +271,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "01295745f8555fab5ca9674f92a52c8eecfa2a8cbd4063c7511f634565ae47bf"
+        "sha256": "d13c0cae01cae8e2058ac2683de25c8466b16ba5332171b3e15b94256444b663"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "3cdfe2dfbf586ffc4052feba2cdd1e34582691732af2fcb12593f386d7fde05a"
+        "sha256": "360fdb5108f31e01798ffa3223ba6d07063f44427330ed78e36a2c2d1a8d8622"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -426,7 +426,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "e86b1911fe37b1719f2f0ba3b20b5028f6b5c59a56c6761de30f8db66a7fcb12"
+        "sha256": "418362cfed2e36985910d6ae2f1b086af402e0a20f7423ffca7335e06c8c0167"
       },
       {
         "path": "NOTICE.md",
@@ -648,19 +648,14 @@
         "sha256": "f1d53fa07e9c2d947922eb82b5cc12b7b7bbefd62cf728e80b9cfcbde8a5ffa9"
       },
       {
-        "path": "docs/article-snapshots/11fdb5d2757e95e1e0fe563af0f00589f6fa0b64ad0936feac63302e59d1e48e/thinking-systems.html",
+        "path": "docs/article-snapshots/56fb2f71f561ed0fe25ea8e4c7a558b4d45220183a4909c4ccb23ca663646d6d/thinking-systems.html",
         "identity_mode": "content",
-        "sha256": "2fa4d99a7c6f7f6ec3ba5c6557805a589329e76848fb8effd9cf55903e12638d"
+        "sha256": "a748694cbcc83375c4ef2cffb30c846f76725fb2030ae9f0216c4ddd23c5a02b"
       },
       {
-        "path": "docs/article-snapshots/46877f37a108ba313dd7ada2524212d55ae8590d624bfc7b83d51289a1e3507d/ai-governance-is-control-theory.html",
+        "path": "docs/article-snapshots/825acc68d73ebb2ed0d6814d3a4f4a2a05802e87b56d656344fd6dbe60dff609/ai-cost-cutting-fallacy.html",
         "identity_mode": "content",
-        "sha256": "800dabc3c554c0ed184e47207c7cae5413aa097d1438853587fae188adc49978"
-      },
-      {
-        "path": "docs/article-snapshots/51b266810d00bdfd256ecbbb35242ec8f69f787fc82b39e430e58361b891c32a/the-sdlc-is-out-of-balance.html",
-        "identity_mode": "content",
-        "sha256": "ad1c26e7424e29decbc580e0c6b65778aecd1da5c76839a3ceb346eee02276ce"
+        "sha256": "c1a8953b313cc301aae627a3f4a9e644493b1a0dc969ef4164f2c3cd9d52300d"
       },
       {
         "path": "docs/article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995/the-sdlc-is-out-of-balance.html",
@@ -673,29 +668,44 @@
         "sha256": "4aa1ae74ff48155957e9f897b7697e1cee35e3b38d8319d0906c15da2d44fd7b"
       },
       {
-        "path": "docs/article-snapshots/dfcab3ea8789d8e7fd6676b29c61fb724d06cf5b0fe1ff6dbd5fcfbd7e60a44e/ai-verification-crisis.html",
+        "path": "docs/article-snapshots/cbd0c215ed4d446333f9e0b8e4a50ec33bf9868f7ffdc3f68576ea7eb17d8d38/the-sdlc-is-out-of-balance.html",
         "identity_mode": "content",
-        "sha256": "9662c7640491d904b89b1fd03c9d0e93e9bdd9cad8a58cde2ba2b5703247b916"
+        "sha256": "1bba407c4d467dd99d3915af6a1fa7ffad61abec303c28fe8012b71e29fcfe64"
+      },
+      {
+        "path": "docs/article-snapshots/cd2d763fbb601aea32f7fa5f5165d90bb5ad9ae42dd1d258f4e07d6073e24bce/ai-verification-crisis.html",
+        "identity_mode": "content",
+        "sha256": "80a4cba0e25374f39a4af29fb8dcf50fe8046b3b409439f190c828843e9b736e"
+      },
+      {
+        "path": "docs/article-snapshots/dc75263d68d38ca51c84c6c67172058a4f5653959b73ccfae7348145a25325f2/ai-governance-is-control-theory.html",
+        "identity_mode": "content",
+        "sha256": "36b36751097c520f395a796f43cc512b662b2afd75c772d9c1d83c2442706f8e"
+      },
+      {
+        "path": "docs/articles/ai-cost-cutting-fallacy.html",
+        "identity_mode": "content",
+        "sha256": "4d2c96322be577c3a58edd246580e4ffbdad951a569a77a6187e8cd7526a6383"
       },
       {
         "path": "docs/articles/ai-governance-is-control-theory.html",
         "identity_mode": "content",
-        "sha256": "75982768ffa1efd49e45f3f7b1179358f7cc3f804daa8c72236837bf58a786c8"
+        "sha256": "977f9165e3b1cba8695b7744b03f77580b725389d28b4ba1ccfb89d07c4045bc"
       },
       {
         "path": "docs/articles/ai-verification-crisis.html",
         "identity_mode": "content",
-        "sha256": "b6f560683f36243d73dc4a4fea22aba95a6dc977a46c28a014d22b3811730471"
+        "sha256": "f0c346d73915579a59607b7ec3634fadc2175eadac31504858c92c736c6c0cd3"
       },
       {
         "path": "docs/articles/the-sdlc-is-out-of-balance.html",
         "identity_mode": "content",
-        "sha256": "98f0134af4bf1e2e810275d079597ebaad63a426f5a55059062327e163f5a4fa"
+        "sha256": "14b56fbe2bf003e1ee115ab76c86a6fda35a8e6b83a2829ceb34617d065e2e2f"
       },
       {
         "path": "docs/articles/thinking-systems.html",
         "identity_mode": "content",
-        "sha256": "c1f8cfe9d22cac87dda6b39f9f5fa061936224431fb36e3a14e3e401e8b44821"
+        "sha256": "1197a57efee16ff4dcee5a4354cb24a1543d9d479f76dcb2ea3f35c88d66ddfa"
       },
       {
         "path": "docs/assets/favicon.svg",
@@ -720,12 +730,12 @@
       {
         "path": "docs/credits.html",
         "identity_mode": "content",
-        "sha256": "f6b037ae15a0da2b080a373378ec3b7a732f95e4e9d8a67fe8cba3829ed408bb"
+        "sha256": "338f75a6e0221e01a71d08c3b1ceff0ed80b5ae8de84713d828b404d8e942536"
       },
       {
         "path": "docs/index.html",
         "identity_mode": "content",
-        "sha256": "a6388cea663058327619e3a6bfba3f51a4c092f11e7aac1af29a73459237e6f3"
+        "sha256": "fa4f805a1604ecbe8f8e2ede2adfdbd040300913c2d892d3154de04c60355716"
       },
       {
         "path": "docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg",
@@ -755,12 +765,12 @@
       {
         "path": "docs/publication-index.json",
         "identity_mode": "content",
-        "sha256": "a9e3d31ed943e11cb6b4e1c077f2cfa2e1bb0462f50ad32073ea8f33143799f5"
+        "sha256": "ca1678b4164afa2bdd1dbe4db1947a19969ceaa730101290b4b0dc691365d612"
       },
       {
         "path": "docs/research.html",
         "identity_mode": "content",
-        "sha256": "715573c03eb08d4f45e181dd1dae86a4445ffb3c8fdff08bad894b9d82a6c973"
+        "sha256": "864c2b6565f316267f9fbdfe71d1254da8a3ffc0be9f1211456f94315a1c726d"
       },
       {
         "path": "docs/runtime/1c34e64047482a214a50a115582adb08988fe8721f5ee651bd8a231a300e2cf7/analytics.js",
@@ -816,11 +826,6 @@
         "path": "docs/runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/theme.js",
         "identity_mode": "content",
         "sha256": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a"
-      },
-      {
-        "path": "docs/runtime/33b203045b170b47e9efc76fbc419d8e4528e858aad9f19a043d4f4717ec9820/analytics.js",
-        "identity_mode": "content",
-        "sha256": "33b203045b170b47e9efc76fbc419d8e4528e858aad9f19a043d4f4717ec9820"
       },
       {
         "path": "docs/runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/archive.js",
@@ -928,9 +933,14 @@
         "sha256": "d11f679af05442e8b01024e9a5fe3ba9aff73554f11bd8f3ff692d14f830f8fb"
       },
       {
+        "path": "docs/runtime/e03f965266b71e2ec8634a50e2afaa75a5e2d9e094be74ebf092a721ee50cab6/analytics.js",
+        "identity_mode": "content",
+        "sha256": "e03f965266b71e2ec8634a50e2afaa75a5e2d9e094be74ebf092a721ee50cab6"
+      },
+      {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "53712d06b472ceaaf45593a8e8236ffc91405ddcc41fe179cc0e6fac2e0450f5"
+        "sha256": "758ce2121dae6a039dab5b0a063c6fcb16a60c26f060d39f1aeb38dec4d17f25"
       },
       {
         "path": "docs/snapshots/080da808855bdc7cac66970509a9a371a5033cb5d721a007a92632c826b2d06a/writing.html",
@@ -948,9 +958,19 @@
         "sha256": "93c88b5f9c73e559b067866cb38eb604e93013c2225a06a36f96e8f215d397b3"
       },
       {
-        "path": "docs/snapshots/25e3331a6568e8258dc2b0aa15834e2d0570ea14288cb946cb53b4f9cbb3ef96/credits.html",
+        "path": "docs/snapshots/2c28eb3f6fb9262c119fc255a04b8e6a87a1752bb8aadceaa0c05c7142527d0e/writing.html",
         "identity_mode": "content",
-        "sha256": "08c82cb23701306512dec0b30caf02e29161d5542b6416d89a6629dd57e3810a"
+        "sha256": "a02fe60e16f0412596cd4c33f56ac253e832c0cade93f10c388461de246c3a70"
+      },
+      {
+        "path": "docs/snapshots/3fbd4997fa6a2231ca203abb9b151b9a893c093973c94868c0f2b737e4062829/credits.html",
+        "identity_mode": "content",
+        "sha256": "0643267ac06cb9bbba3b6bc600ddc32eb1d18d666b67ff400fc7d189cd2ed27f"
+      },
+      {
+        "path": "docs/snapshots/5006a139824977db749c0c69a82807cb877d8b720d332b8280ffbddce6e27261/talks.html",
+        "identity_mode": "content",
+        "sha256": "3ea7d9cd9509fc9e791b4463293ee9e3fbdf1407c8018f5a7543cc125bdc4106"
       },
       {
         "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
@@ -958,19 +978,9 @@
         "sha256": "3dd82a25eee6f3915f0748192a6dc34bfbd214879b0ed933f116b3d47a363df7"
       },
       {
-        "path": "docs/snapshots/5888a9f863dcfed6e5f681050a5816d754697f149f67f38ed76ac70a1741f004/writing.html",
-        "identity_mode": "content",
-        "sha256": "96359fd3d0aa0ed0570ef6a1fa93aa618a521ad13b98ae0870e354cadceaf9ea"
-      },
-      {
         "path": "docs/snapshots/632f4f29ebdbc51215b02592fd45a1f10a99fb8596d2dec8b3f18bc8be847f06/credits.html",
         "identity_mode": "content",
         "sha256": "f6b20241842beb0bcc0b649bfb4443d8f446fc4d3dcfd65684b3b6facafca4e2"
-      },
-      {
-        "path": "docs/snapshots/6839fd20b33d2b97d56a5117fc4e5210c9b98ba355c3b8e11e395448bc42742e/research.html",
-        "identity_mode": "content",
-        "sha256": "70c6a094dff6cc85d67257b51e33ebcd801d33348b4778427f4a95c333fbd8e6"
       },
       {
         "path": "docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed/research.html",
@@ -988,11 +998,6 @@
         "sha256": "e19095652eec29ccea5cb8ba5397356e998d2b15235b06486675b0fefd151c5d"
       },
       {
-        "path": "docs/snapshots/83df93d11e58d42133a8d9125f5537a62005f49b63e5799c6ef42a235999a174/talks.html",
-        "identity_mode": "content",
-        "sha256": "f36f48e0fed0648ff830b082589949dc1a1e7766057e61668aeb36179950a4b7"
-      },
-      {
         "path": "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html",
         "identity_mode": "content",
         "sha256": "4284e646405e3c2dc1288fd3e222e15b8564e44cbaeca8be0b0b01927a248736"
@@ -1008,6 +1013,11 @@
         "sha256": "288f85a3b0bf82d69aceda049007063a6ebcde469eb345b8ddcec53cf96bd498"
       },
       {
+        "path": "docs/snapshots/95e55877fec733a754a566a11daafadffb3447b52a1be0f42ddee2d16de7de26/index.html",
+        "identity_mode": "content",
+        "sha256": "8c9f9018bb1cc65c18f3de911d709da6293b8ce298793aac8518005241914e1c"
+      },
+      {
         "path": "docs/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700/credits.html",
         "identity_mode": "content",
         "sha256": "dfb1cb40184b9d8cd972cf1907354a05add4d40ee2ab2010b197120935499428"
@@ -1016,6 +1026,11 @@
         "path": "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html",
         "identity_mode": "content",
         "sha256": "1d7a5aeb831c51e49667095bb29f51108ff47e32cf89853b54002ffad693e312"
+      },
+      {
+        "path": "docs/snapshots/b3d901500863c39c45c9ebb46796d1d8b38c58b0058784fb4935027a7c925534/research.html",
+        "identity_mode": "content",
+        "sha256": "f8624ae6dbf70785ed756ff6f183dadc710158dea118a89b6c990d5be48591a1"
       },
       {
         "path": "docs/snapshots/b57f1dcb99f70ff2df6f748de084f2793f992f438a03c798a30b891c8f9e6461/writing.html",
@@ -1033,11 +1048,6 @@
         "sha256": "eef3b91329720bf60b4aaf9e08208bd9ce75790be77b21c2757638c7af7a6fb4"
       },
       {
-        "path": "docs/snapshots/f194a408b26a802808aad58b02a510ce3125e18d8b5187858b5dbf89288d7480/index.html",
-        "identity_mode": "content",
-        "sha256": "1ce11b0083914cebee9e8c2ada1c979575942abfc767bc0b18b0a426ccaca9b2"
-      },
-      {
         "path": "docs/space.js",
         "identity_mode": "content",
         "sha256": "c8b91326e9a1206e8fbd219ebadc7160fa2a639ffc58fa0f6063ed86e53f2d23"
@@ -1050,7 +1060,7 @@
       {
         "path": "docs/talks.html",
         "identity_mode": "content",
-        "sha256": "ad8863ffc6f36795f79fe556bca824307553dbfef69b61f4f94df63cdee53897"
+        "sha256": "f3a16f12dc745602e73afa97d1949ebb0bc47e00fffee5628dd381f802ceffe6"
       },
       {
         "path": "docs/theme.js",
@@ -1060,7 +1070,7 @@
       {
         "path": "docs/writing.html",
         "identity_mode": "content",
-        "sha256": "9cbfa42b70bc6e15292665d8d0550e518629b9748eba9147d1af5ea10751a343"
+        "sha256": "3286af1a10811f1f8de8e30943eb94bccbe1db5d7b46e5eb713e317ef495804c"
       },
       {
         "path": "drafts/medium-profile-revision-20261001.html",
@@ -4991,6 +5001,11 @@
         "path": "review/issue-183/2026-11-15-control-theory.md",
         "identity_mode": "content",
         "sha256": "8475c871aa7fdedd9e092e86796b6dc1a72498ea2fd9c3ecfd9c2fc38e7538a5"
+      },
+      {
+        "path": "review/issue-183/2026-11-15-cost-cutting.md",
+        "identity_mode": "content",
+        "sha256": "e929546b4288e8b4813bc2710dfd6438ca2d859a1407f7399d88a68140331a9d"
       },
       {
         "path": "review/issue-183/2026-11-15-verification-crisis.md",
@@ -10710,12 +10725,12 @@
       {
         "path": "site/content/article-tags.json",
         "identity_mode": "content",
-        "sha256": "ecee9a9783dcb114e69879121c01e11632229d88541ca5d8bb80150697baca96"
+        "sha256": "4efc941fa0f470fe623cca86abd5fa7067797d34443a40536c2e330b28e2ebb2"
       },
       {
         "path": "site/content/catalog.json",
         "identity_mode": "content",
-        "sha256": "fff9e787eddebbb9a9f5644357e46a17bf420df309559e1369aecf694d5e1d58"
+        "sha256": "5ac5ae214a2efe820a4e9f612104fa3b249626432fdb296e1505cb2a75c36b14"
       },
       {
         "path": "site/content/events.json",
@@ -10975,7 +10990,37 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "825bb9e914882f9dfddb6b69561d87ba748c2938581e7d4e19fb7e8fca2b5731"
+        "sha256": "3923bcbf9f28ef12c51d88ddd75b0ed5ceb2654977b9719e684efb8003d22461"
+      },
+      {
+        "path": "site/publications/ai-cost-cutting-fallacy/PROVENANCE.md",
+        "identity_mode": "content",
+        "sha256": "6a608fa77fa5a07bfcfccec56b5388c30543af39371ce9f6272b4d4299fe7bf3"
+      },
+      {
+        "path": "site/publications/ai-cost-cutting-fallacy/editions/ai-cost-cutting-fallacy-en-20260102.json",
+        "identity_mode": "content",
+        "sha256": "f5898473ad3ec721b082b547da78eb85b1b92ad87660080d11c744b5637c9525"
+      },
+      {
+        "path": "site/publications/ai-cost-cutting-fallacy/launch-post.en.md",
+        "identity_mode": "content",
+        "sha256": "40ce5faf197fb88a2595edd1fc9ebb07311b149cfe012a1ce71eb0a29b520fe1"
+      },
+      {
+        "path": "site/publications/ai-cost-cutting-fallacy/manuscript.en.md",
+        "identity_mode": "content",
+        "sha256": "1ba87fe8adaa3055df8a195cacfef86328aa7001ff18c0e406ca948b76efdd4e"
+      },
+      {
+        "path": "site/publications/ai-cost-cutting-fallacy/profile.json",
+        "identity_mode": "content",
+        "sha256": "432e12d1e113a5445eff2c500f8f100a9cd71521caa733922c4463a40ecbbed0"
+      },
+      {
+        "path": "site/publications/ai-cost-cutting-fallacy/publication.json",
+        "identity_mode": "content",
+        "sha256": "a495a5fdabe1f4d2da0b39a9541d8e0326ea08d73ec29746196dc57b46072c5b"
       },
       {
         "path": "site/publications/ai-governance-is-control-theory/PROVENANCE.md",
@@ -12025,7 +12070,7 @@
       {
         "path": "tests/article-delivery.test.cjs",
         "identity_mode": "content",
-        "sha256": "9d072b8f64faf303ab4ba1ab9f5ef5c1189176bf618f8ff7b01b24fe0402642c"
+        "sha256": "9798c3b00a95d9e13b2135b39d6593fe7e925ce2ab92f8eab3b3dcabe5f33801"
       },
       {
         "path": "tests/article-materials.test.cjs",
@@ -15642,7 +15687,7 @@
       "title": "the-sdlc-is-out-of-balance.html"
     },
     {
-      "path": "docs/article-snapshots/11fdb5d2757e95e1e0fe563af0f00589f6fa0b64ad0936feac63302e59d1e48e/thinking-systems.html",
+      "path": "docs/article-snapshots/56fb2f71f561ed0fe25ea8e4c7a558b4d45220183a4909c4ccb23ca663646d6d/thinking-systems.html",
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -15653,7 +15698,7 @@
       "title": "thinking-systems.html"
     },
     {
-      "path": "docs/article-snapshots/46877f37a108ba313dd7ada2524212d55ae8590d624bfc7b83d51289a1e3507d/ai-governance-is-control-theory.html",
+      "path": "docs/article-snapshots/825acc68d73ebb2ed0d6814d3a4f4a2a05802e87b56d656344fd6dbe60dff609/ai-cost-cutting-fallacy.html",
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -15661,18 +15706,7 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "ai-governance-is-control-theory.html"
-    },
-    {
-      "path": "docs/article-snapshots/51b266810d00bdfd256ecbbb35242ec8f69f787fc82b39e430e58361b891c32a/the-sdlc-is-out-of-balance.html",
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "the-sdlc-is-out-of-balance.html"
+      "title": "ai-cost-cutting-fallacy.html"
     },
     {
       "path": "docs/article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995/the-sdlc-is-out-of-balance.html",
@@ -15697,7 +15731,18 @@
       "title": "the-sdlc-is-out-of-balance.html"
     },
     {
-      "path": "docs/article-snapshots/dfcab3ea8789d8e7fd6676b29c61fb724d06cf5b0fe1ff6dbd5fcfbd7e60a44e/ai-verification-crisis.html",
+      "path": "docs/article-snapshots/cbd0c215ed4d446333f9e0b8e4a50ec33bf9868f7ffdc3f68576ea7eb17d8d38/the-sdlc-is-out-of-balance.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "the-sdlc-is-out-of-balance.html"
+    },
+    {
+      "path": "docs/article-snapshots/cd2d763fbb601aea32f7fa5f5165d90bb5ad9ae42dd1d258f4e07d6073e24bce/ai-verification-crisis.html",
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -15706,6 +15751,28 @@
         "AGENTS.md"
       ],
       "title": "ai-verification-crisis.html"
+    },
+    {
+      "path": "docs/article-snapshots/dc75263d68d38ca51c84c6c67172058a4f5653959b73ccfae7348145a25325f2/ai-governance-is-control-theory.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ai-governance-is-control-theory.html"
+    },
+    {
+      "path": "docs/articles/ai-cost-cutting-fallacy.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ai-cost-cutting-fallacy.html"
     },
     {
       "path": "docs/articles/ai-governance-is-control-theory.html",
@@ -16016,17 +16083,6 @@
       "title": "theme.js"
     },
     {
-      "path": "docs/runtime/33b203045b170b47e9efc76fbc419d8e4528e858aad9f19a043d4f4717ec9820/analytics.js",
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "analytics.js"
-    },
-    {
       "path": "docs/runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/archive.js",
       "kind": "file",
       "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
@@ -16258,6 +16314,17 @@
       "title": "theme.js"
     },
     {
+      "path": "docs/runtime/e03f965266b71e2ec8634a50e2afaa75a5e2d9e094be74ebf092a721ee50cab6/analytics.js",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "analytics.js"
+    },
+    {
       "path": "docs/site-revision.json",
       "kind": "file",
       "purpose": "Generated public rendition: site-revision.json; regenerate from site sources with tools/site/build.cjs.",
@@ -16302,7 +16369,18 @@
       "title": "talks.html"
     },
     {
-      "path": "docs/snapshots/25e3331a6568e8258dc2b0aa15834e2d0570ea14288cb946cb53b4f9cbb3ef96/credits.html",
+      "path": "docs/snapshots/2c28eb3f6fb9262c119fc255a04b8e6a87a1752bb8aadceaa0c05c7142527d0e/writing.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "writing.html"
+    },
+    {
+      "path": "docs/snapshots/3fbd4997fa6a2231ca203abb9b151b9a893c093973c94868c0f2b737e4062829/credits.html",
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -16313,20 +16391,20 @@
       "title": "credits.html"
     },
     {
-      "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
+      "path": "docs/snapshots/5006a139824977db749c0c69a82807cb877d8b720d332b8280ffbddce6e27261/talks.html",
       "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "writing.html"
+      "title": "talks.html"
     },
     {
-      "path": "docs/snapshots/5888a9f863dcfed6e5f681050a5816d754697f149f67f38ed76ac70a1741f004/writing.html",
+      "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
       "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -16344,17 +16422,6 @@
         "AGENTS.md"
       ],
       "title": "credits.html"
-    },
-    {
-      "path": "docs/snapshots/6839fd20b33d2b97d56a5117fc4e5210c9b98ba355c3b8e11e395448bc42742e/research.html",
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "research.html"
     },
     {
       "path": "docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed/research.html",
@@ -16382,17 +16449,6 @@
       "path": "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html",
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "talks.html"
-    },
-    {
-      "path": "docs/snapshots/83df93d11e58d42133a8d9125f5537a62005f49b63e5799c6ef42a235999a174/talks.html",
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -16434,6 +16490,17 @@
       "title": "index.html"
     },
     {
+      "path": "docs/snapshots/95e55877fec733a754a566a11daafadffb3447b52a1be0f42ddee2d16de7de26/index.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index.html"
+    },
+    {
       "path": "docs/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700/credits.html",
       "kind": "file",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
@@ -16454,6 +16521,17 @@
         "AGENTS.md"
       ],
       "title": "index.html"
+    },
+    {
+      "path": "docs/snapshots/b3d901500863c39c45c9ebb46796d1d8b38c58b0058784fb4935027a7c925534/research.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "research.html"
     },
     {
       "path": "docs/snapshots/b57f1dcb99f70ff2df6f748de084f2793f992f438a03c798a30b891c8f9e6461/writing.html",
@@ -16487,17 +16565,6 @@
         "AGENTS.md"
       ],
       "title": "writing.html"
-    },
-    {
-      "path": "docs/snapshots/f194a408b26a802808aad58b02a510ce3125e18d8b5187858b5dbf89288d7480/index.html",
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "index.html"
     },
     {
       "path": "docs/space.js",
@@ -25199,6 +25266,17 @@
         "AGENTS.md"
       ],
       "title": "Issue 183 — Control Theory migration checkpoint"
+    },
+    {
+      "path": "review/issue-183/2026-11-15-cost-cutting.md",
+      "kind": "file",
+      "purpose": "Source-bound migration review and preview evidence for issue 183.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Cost-Cutting Fallacy migration review"
     },
     {
       "path": "review/issue-183/2026-11-15-verification-crisis.md",
@@ -38368,6 +38446,72 @@
       "title": "output-lock.json"
     },
     {
+      "path": "site/publications/ai-cost-cutting-fallacy/PROVENANCE.md",
+      "kind": "file",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Cost-Cutting Fallacy publication provenance"
+    },
+    {
+      "path": "site/publications/ai-cost-cutting-fallacy/editions/ai-cost-cutting-fallacy-en-20260102.json",
+      "kind": "file",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ai-cost-cutting-fallacy-en-20260102.json"
+    },
+    {
+      "path": "site/publications/ai-cost-cutting-fallacy/launch-post.en.md",
+      "kind": "file",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "The AI Cost-Cutting Fallacy: Why \"Doing More with Less\" is Breaking Engineering Teams"
+    },
+    {
+      "path": "site/publications/ai-cost-cutting-fallacy/manuscript.en.md",
+      "kind": "file",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "The AI Cost-Cutting Fallacy: Why \"Doing More with Less\" is Breaking Engineering Teams"
+    },
+    {
+      "path": "site/publications/ai-cost-cutting-fallacy/profile.json",
+      "kind": "file",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "profile.json"
+    },
+    {
+      "path": "site/publications/ai-cost-cutting-fallacy/publication.json",
+      "kind": "file",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "publication.json"
+    },
+    {
       "path": "site/publications/ai-governance-is-control-theory/PROVENANCE.md",
       "kind": "file",
       "purpose": "Authored Control Theory source, provenance or edition and publication profile.",
@@ -45089,7 +45233,7 @@
       ]
     },
     {
-      "path": "docs/article-snapshots/11fdb5d2757e95e1e0fe563af0f00589f6fa0b64ad0936feac63302e59d1e48e",
+      "path": "docs/article-snapshots/56fb2f71f561ed0fe25ea8e4c7a558b4d45220183a4909c4ccb23ca663646d6d",
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -45099,17 +45243,7 @@
       ]
     },
     {
-      "path": "docs/article-snapshots/46877f37a108ba313dd7ada2524212d55ae8590d624bfc7b83d51289a1e3507d",
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/article-snapshots/51b266810d00bdfd256ecbbb35242ec8f69f787fc82b39e430e58361b891c32a",
+      "path": "docs/article-snapshots/825acc68d73ebb2ed0d6814d3a4f4a2a05802e87b56d656344fd6dbe60dff609",
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -45139,7 +45273,27 @@
       ]
     },
     {
-      "path": "docs/article-snapshots/dfcab3ea8789d8e7fd6676b29c61fb724d06cf5b0fe1ff6dbd5fcfbd7e60a44e",
+      "path": "docs/article-snapshots/cbd0c215ed4d446333f9e0b8e4a50ec33bf9868f7ffdc3f68576ea7eb17d8d38",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-snapshots/cd2d763fbb601aea32f7fa5f5165d90bb5ad9ae42dd1d258f4e07d6073e24bce",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-snapshots/dc75263d68d38ca51c84c6c67172058a4f5653959b73ccfae7348145a25325f2",
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -45229,16 +45383,6 @@
       ]
     },
     {
-      "path": "docs/runtime/33b203045b170b47e9efc76fbc419d8e4528e858aad9f19a043d4f4717ec9820",
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
       "path": "docs/runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c",
       "kind": "directory",
       "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
@@ -45289,6 +45433,16 @@
       ]
     },
     {
+      "path": "docs/runtime/e03f965266b71e2ec8634a50e2afaa75a5e2d9e094be74ebf092a721ee50cab6",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/snapshots",
       "kind": "directory",
       "purpose": "Generated exact-route HTML snapshots.",
@@ -45329,7 +45483,27 @@
       ]
     },
     {
-      "path": "docs/snapshots/25e3331a6568e8258dc2b0aa15834e2d0570ea14288cb946cb53b4f9cbb3ef96",
+      "path": "docs/snapshots/2c28eb3f6fb9262c119fc255a04b8e6a87a1752bb8aadceaa0c05c7142527d0e",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/3fbd4997fa6a2231ca203abb9b151b9a893c093973c94868c0f2b737e4062829",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/5006a139824977db749c0c69a82807cb877d8b720d332b8280ffbddce6e27261",
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -45349,29 +45523,9 @@
       ]
     },
     {
-      "path": "docs/snapshots/5888a9f863dcfed6e5f681050a5816d754697f149f67f38ed76ac70a1741f004",
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
       "path": "docs/snapshots/632f4f29ebdbc51215b02592fd45a1f10a99fb8596d2dec8b3f18bc8be847f06",
       "kind": "directory",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/6839fd20b33d2b97d56a5117fc4e5210c9b98ba355c3b8e11e395448bc42742e",
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -45409,16 +45563,6 @@
       ]
     },
     {
-      "path": "docs/snapshots/83df93d11e58d42133a8d9125f5537a62005f49b63e5799c6ef42a235999a174",
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
       "path": "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68",
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -45449,6 +45593,16 @@
       ]
     },
     {
+      "path": "docs/snapshots/95e55877fec733a754a566a11daafadffb3447b52a1be0f42ddee2d16de7de26",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700",
       "kind": "directory",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
@@ -45462,6 +45616,16 @@
       "path": "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7",
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/b3d901500863c39c45c9ebb46796d1d8b38c58b0058784fb4935027a7c925534",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -45492,16 +45656,6 @@
       "path": "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647",
       "kind": "directory",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/f194a408b26a802808aad58b02a510ce3125e18d8b5187858b5dbf89288d7480",
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -46952,6 +47106,26 @@
       "path": "site/publications",
       "kind": "directory",
       "purpose": "Authored article blueprints, manuscripts, declared profiles, adaptations and semantic edition records.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/ai-cost-cutting-fallacy",
+      "kind": "directory",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/ai-cost-cutting-fallacy/editions",
+      "kind": "directory",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md",
       "instructions": [

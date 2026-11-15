@@ -1033,37 +1033,25 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/11fdb5d2757e95e1e0fe563af0f00589f6fa0b64ad0936feac63302e59d1e48e": {
+    "docs/article-snapshots/56fb2f71f561ed0fe25ea8e4c7a558b4d45220183a4909c4ccb23ca663646d6d": {
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/11fdb5d2757e95e1e0fe563af0f00589f6fa0b64ad0936feac63302e59d1e48e/thinking-systems.html": {
+    "docs/article-snapshots/56fb2f71f561ed0fe25ea8e4c7a558b4d45220183a4909c4ccb23ca663646d6d/thinking-systems.html": {
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/46877f37a108ba313dd7ada2524212d55ae8590d624bfc7b83d51289a1e3507d": {
+    "docs/article-snapshots/825acc68d73ebb2ed0d6814d3a4f4a2a05802e87b56d656344fd6dbe60dff609": {
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/46877f37a108ba313dd7ada2524212d55ae8590d624bfc7b83d51289a1e3507d/ai-governance-is-control-theory.html": {
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/51b266810d00bdfd256ecbbb35242ec8f69f787fc82b39e430e58361b891c32a": {
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/51b266810d00bdfd256ecbbb35242ec8f69f787fc82b39e430e58361b891c32a/the-sdlc-is-out-of-balance.html": {
+    "docs/article-snapshots/825acc68d73ebb2ed0d6814d3a4f4a2a05802e87b56d656344fd6dbe60dff609/ai-cost-cutting-fallacy.html": {
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -1093,13 +1081,37 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/dfcab3ea8789d8e7fd6676b29c61fb724d06cf5b0fe1ff6dbd5fcfbd7e60a44e": {
+    "docs/article-snapshots/cbd0c215ed4d446333f9e0b8e4a50ec33bf9868f7ffdc3f68576ea7eb17d8d38": {
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/dfcab3ea8789d8e7fd6676b29c61fb724d06cf5b0fe1ff6dbd5fcfbd7e60a44e/ai-verification-crisis.html": {
+    "docs/article-snapshots/cbd0c215ed4d446333f9e0b8e4a50ec33bf9868f7ffdc3f68576ea7eb17d8d38/the-sdlc-is-out-of-balance.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/cd2d763fbb601aea32f7fa5f5165d90bb5ad9ae42dd1d258f4e07d6073e24bce": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/cd2d763fbb601aea32f7fa5f5165d90bb5ad9ae42dd1d258f4e07d6073e24bce/ai-verification-crisis.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/dc75263d68d38ca51c84c6c67172058a4f5653959b73ccfae7348145a25325f2": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/dc75263d68d38ca51c84c6c67172058a4f5653959b73ccfae7348145a25325f2/ai-governance-is-control-theory.html": {
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -1108,6 +1120,12 @@
     "docs/articles": {
       "kind": "directory",
       "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/articles/ai-cost-cutting-fallacy.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1321,18 +1339,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/33b203045b170b47e9efc76fbc419d8e4528e858aad9f19a043d4f4717ec9820": {
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/33b203045b170b47e9efc76fbc419d8e4528e858aad9f19a043d4f4717ec9820/analytics.js": {
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c": {
       "kind": "directory",
       "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
@@ -1489,6 +1495,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/runtime/e03f965266b71e2ec8634a50e2afaa75a5e2d9e094be74ebf092a721ee50cab6": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/e03f965266b71e2ec8634a50e2afaa75a5e2d9e094be74ebf092a721ee50cab6/analytics.js": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/site-revision.json": {
       "kind": "file",
       "purpose": "Generated public rendition: site-revision.json; regenerate from site sources with tools/site/build.cjs.",
@@ -1537,13 +1555,37 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/25e3331a6568e8258dc2b0aa15834e2d0570ea14288cb946cb53b4f9cbb3ef96": {
+    "docs/snapshots/2c28eb3f6fb9262c119fc255a04b8e6a87a1752bb8aadceaa0c05c7142527d0e": {
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/25e3331a6568e8258dc2b0aa15834e2d0570ea14288cb946cb53b4f9cbb3ef96/credits.html": {
+    "docs/snapshots/2c28eb3f6fb9262c119fc255a04b8e6a87a1752bb8aadceaa0c05c7142527d0e/writing.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/3fbd4997fa6a2231ca203abb9b151b9a893c093973c94868c0f2b737e4062829": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/3fbd4997fa6a2231ca203abb9b151b9a893c093973c94868c0f2b737e4062829/credits.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/5006a139824977db749c0c69a82807cb877d8b720d332b8280ffbddce6e27261": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/5006a139824977db749c0c69a82807cb877d8b720d332b8280ffbddce6e27261/talks.html": {
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -1561,18 +1603,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/5888a9f863dcfed6e5f681050a5816d754697f149f67f38ed76ac70a1741f004": {
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/5888a9f863dcfed6e5f681050a5816d754697f149f67f38ed76ac70a1741f004/writing.html": {
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/632f4f29ebdbc51215b02592fd45a1f10a99fb8596d2dec8b3f18bc8be847f06": {
       "kind": "directory",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
@@ -1582,18 +1612,6 @@
     "docs/snapshots/632f4f29ebdbc51215b02592fd45a1f10a99fb8596d2dec8b3f18bc8be847f06/credits.html": {
       "kind": "file",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/6839fd20b33d2b97d56a5117fc4e5210c9b98ba355c3b8e11e395448bc42742e": {
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/6839fd20b33d2b97d56a5117fc4e5210c9b98ba355c3b8e11e395448bc42742e/research.html": {
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1633,18 +1651,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/83df93d11e58d42133a8d9125f5537a62005f49b63e5799c6ef42a235999a174": {
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/83df93d11e58d42133a8d9125f5537a62005f49b63e5799c6ef42a235999a174/talks.html": {
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -1681,6 +1687,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/95e55877fec733a754a566a11daafadffb3447b52a1be0f42ddee2d16de7de26": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/95e55877fec733a754a566a11daafadffb3447b52a1be0f42ddee2d16de7de26/index.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700": {
       "kind": "directory",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
@@ -1702,6 +1720,18 @@
     "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/b3d901500863c39c45c9ebb46796d1d8b38c58b0058784fb4935027a7c925534": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/b3d901500863c39c45c9ebb46796d1d8b38c58b0058784fb4935027a7c925534/research.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1738,18 +1768,6 @@
     "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html": {
       "kind": "file",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/f194a408b26a802808aad58b02a510ce3125e18d8b5187858b5dbf89288d7480": {
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/f194a408b26a802808aad58b02a510ce3125e18d8b5187858b5dbf89288d7480/index.html": {
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -6734,6 +6752,12 @@
       "owner": "CONTRIBUTING.md"
     },
     "review/issue-183/2026-11-15-control-theory.md": {
+      "kind": "file",
+      "purpose": "Source-bound migration review and preview evidence for issue 183.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-183/2026-11-15-cost-cutting.md": {
       "kind": "file",
       "purpose": "Source-bound migration review and preview evidence for issue 183.",
       "role": "history",
@@ -14548,6 +14572,54 @@
     "site/publications": {
       "kind": "directory",
       "purpose": "Authored article blueprints, manuscripts, declared profiles, adaptations and semantic edition records.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-cost-cutting-fallacy": {
+      "kind": "directory",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-cost-cutting-fallacy/PROVENANCE.md": {
+      "kind": "file",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-cost-cutting-fallacy/editions": {
+      "kind": "directory",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-cost-cutting-fallacy/editions/ai-cost-cutting-fallacy-en-20260102.json": {
+      "kind": "file",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-cost-cutting-fallacy/launch-post.en.md": {
+      "kind": "file",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-cost-cutting-fallacy/manuscript.en.md": {
+      "kind": "file",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-cost-cutting-fallacy/profile.json": {
+      "kind": "file",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-cost-cutting-fallacy/publication.json": {
+      "kind": "file",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },

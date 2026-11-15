@@ -848,23 +848,43 @@
       }
     },
     "publication-28": {
+      "kind": "local-article",
+      "article": "ai-cost-cutting-fallacy",
       "edition": {
         "@type": "Article",
         "name": "The AI Cost-Cutting Fallacy: Why \"Doing More with Less\" is Breaking Engineering Teams",
-        "url": "https://www.linkedin.com/pulse/ai-cost-cutting-fallacy-why-doing-more-less-breaking-teams-oborskyi-cxuif/",
+        "url": "articles/ai-cost-cutting-fallacy.html",
         "inLanguage": "en",
         "author": {
           "@type": "Person",
-          "name": "Vitalii Oborskyi"
-        },
-        "datePublished": "2026-01-02"
+          "name": "Vitalii Oborskyi",
+          "url": "https://vitaliioborskyi.ai/"
+        }
       },
-      "editions": [],
+      "editions": [
+        {
+          "@type": "Article",
+          "name": "The AI Cost-Cutting Fallacy: Why \"Doing More with Less\" is Breaking Engineering Teams",
+          "url": "https://www.linkedin.com/pulse/ai-cost-cutting-fallacy-why-doing-more-less-breaking-teams-oborskyi-cxuif/",
+          "inLanguage": "en",
+          "author": {
+            "@type": "Person",
+            "name": "Vitalii Oborskyi",
+            "url": "https://vitaliioborskyi.ai/"
+          },
+          "datePublished": "2026-01-02",
+          "platform": "LinkedIn",
+          "relationship": "same-topic-platform-edition",
+          "bodyEquivalenceVerified": false
+        }
+      ],
       "discussions": [],
       "presentation": {
         "topic": "delivery",
         "kind": "Article",
-        "publisher": "LinkedIn"
+        "publisher": "Author site",
+        "summary": "How AI-assisted coding shifts work into review, maintenance, and the transition to new delivery capabilities.",
+        "archiveYear": "2026"
       }
     },
     "publication-29": {

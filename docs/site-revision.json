@@ -19,45 +19,60 @@
     "vitalii-oborskyi-cutout.webp",
     "writing-paradigm.svg"
   ],
-  "content": "4f34fad891315131711370017b8e62a2f9ced2dd405d73fc454b6046c1f86177",
+  "content": "ce19d15175a9eac14b0628344c683c4b9f82b18e0632aceff653f65d399f018f",
   "routes": {
     "index": {
-      "version": "f194a408b26a802808aad58b02a510ce3125e18d8b5187858b5dbf89288d7480",
-      "url": "snapshots/f194a408b26a802808aad58b02a510ce3125e18d8b5187858b5dbf89288d7480/index.html",
-      "sha256": "1ce11b0083914cebee9e8c2ada1c979575942abfc767bc0b18b0a426ccaca9b2"
+      "version": "95e55877fec733a754a566a11daafadffb3447b52a1be0f42ddee2d16de7de26",
+      "url": "snapshots/95e55877fec733a754a566a11daafadffb3447b52a1be0f42ddee2d16de7de26/index.html",
+      "sha256": "8c9f9018bb1cc65c18f3de911d709da6293b8ce298793aac8518005241914e1c"
     },
     "research": {
-      "version": "6839fd20b33d2b97d56a5117fc4e5210c9b98ba355c3b8e11e395448bc42742e",
-      "url": "snapshots/6839fd20b33d2b97d56a5117fc4e5210c9b98ba355c3b8e11e395448bc42742e/research.html",
-      "sha256": "70c6a094dff6cc85d67257b51e33ebcd801d33348b4778427f4a95c333fbd8e6",
+      "version": "b3d901500863c39c45c9ebb46796d1d8b38c58b0058784fb4935027a7c925534",
+      "url": "snapshots/b3d901500863c39c45c9ebb46796d1d8b38c58b0058784fb4935027a7c925534/research.html",
+      "sha256": "f8624ae6dbf70785ed756ff6f183dadc710158dea118a89b6c990d5be48591a1",
       "assets": [
         "article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618/research-fallback.svg"
       ]
     },
     "writing": {
-      "version": "5888a9f863dcfed6e5f681050a5816d754697f149f67f38ed76ac70a1741f004",
-      "url": "snapshots/5888a9f863dcfed6e5f681050a5816d754697f149f67f38ed76ac70a1741f004/writing.html",
-      "sha256": "96359fd3d0aa0ed0570ef6a1fa93aa618a521ad13b98ae0870e354cadceaf9ea",
+      "version": "2c28eb3f6fb9262c119fc255a04b8e6a87a1752bb8aadceaa0c05c7142527d0e",
+      "url": "snapshots/2c28eb3f6fb9262c119fc255a04b8e6a87a1752bb8aadceaa0c05c7142527d0e/writing.html",
+      "sha256": "a02fe60e16f0412596cd4c33f56ac253e832c0cade93f10c388461de246c3a70",
       "assets": [
         "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
       ]
     },
     "talks": {
-      "version": "83df93d11e58d42133a8d9125f5537a62005f49b63e5799c6ef42a235999a174",
-      "url": "snapshots/83df93d11e58d42133a8d9125f5537a62005f49b63e5799c6ef42a235999a174/talks.html",
-      "sha256": "f36f48e0fed0648ff830b082589949dc1a1e7766057e61668aeb36179950a4b7"
+      "version": "5006a139824977db749c0c69a82807cb877d8b720d332b8280ffbddce6e27261",
+      "url": "snapshots/5006a139824977db749c0c69a82807cb877d8b720d332b8280ffbddce6e27261/talks.html",
+      "sha256": "3ea7d9cd9509fc9e791b4463293ee9e3fbdf1407c8018f5a7543cc125bdc4106"
     },
     "credits": {
-      "version": "25e3331a6568e8258dc2b0aa15834e2d0570ea14288cb946cb53b4f9cbb3ef96",
-      "url": "snapshots/25e3331a6568e8258dc2b0aa15834e2d0570ea14288cb946cb53b4f9cbb3ef96/credits.html",
-      "sha256": "08c82cb23701306512dec0b30caf02e29161d5542b6416d89a6629dd57e3810a"
+      "version": "3fbd4997fa6a2231ca203abb9b151b9a893c093973c94868c0f2b737e4062829",
+      "url": "snapshots/3fbd4997fa6a2231ca203abb9b151b9a893c093973c94868c0f2b737e4062829/credits.html",
+      "sha256": "0643267ac06cb9bbba3b6bc600ddc32eb1d18d666b67ff400fc7d189cd2ed27f"
     }
   },
   "articles": {
+    "ai-cost-cutting-fallacy:en": {
+      "version": "825acc68d73ebb2ed0d6814d3a4f4a2a05802e87b56d656344fd6dbe60dff609",
+      "url": "article-snapshots/825acc68d73ebb2ed0d6814d3a4f4a2a05802e87b56d656344fd6dbe60dff609/ai-cost-cutting-fallacy.html",
+      "sha256": "c1a8953b313cc301aae627a3f4a9e644493b1a0dc969ef4164f2c3cd9d52300d",
+      "alias": "articles/ai-cost-cutting-fallacy.html",
+      "scene": "writing",
+      "assets": [
+        "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
+      ],
+      "candidate": false,
+      "articleId": "ai-cost-cutting-fallacy",
+      "contentEdition": "ai-cost-cutting-fallacy-en-20260102",
+      "sourceSha256": "1ba87fe8adaa3055df8a195cacfef86328aa7001ff18c0e406ca948b76efdd4e",
+      "semanticSha256": "c5bd33743bcc53ca71381305fb6559ab0112283048927360ee6ed6f16e1989b4"
+    },
     "ai-governance-is-control-theory:en": {
-      "version": "46877f37a108ba313dd7ada2524212d55ae8590d624bfc7b83d51289a1e3507d",
-      "url": "article-snapshots/46877f37a108ba313dd7ada2524212d55ae8590d624bfc7b83d51289a1e3507d/ai-governance-is-control-theory.html",
-      "sha256": "800dabc3c554c0ed184e47207c7cae5413aa097d1438853587fae188adc49978",
+      "version": "dc75263d68d38ca51c84c6c67172058a4f5653959b73ccfae7348145a25325f2",
+      "url": "article-snapshots/dc75263d68d38ca51c84c6c67172058a4f5653959b73ccfae7348145a25325f2/ai-governance-is-control-theory.html",
+      "sha256": "36b36751097c520f395a796f43cc512b662b2afd75c772d9c1d83c2442706f8e",
       "alias": "articles/ai-governance-is-control-theory.html",
       "scene": "writing",
       "assets": [
@@ -80,9 +95,9 @@
       "semanticSha256": "b3127ee607eef4d1421f28d88bcd20aa5997755bfae3f8ae004d947420919bf4"
     },
     "ai-verification-crisis:en": {
-      "version": "dfcab3ea8789d8e7fd6676b29c61fb724d06cf5b0fe1ff6dbd5fcfbd7e60a44e",
-      "url": "article-snapshots/dfcab3ea8789d8e7fd6676b29c61fb724d06cf5b0fe1ff6dbd5fcfbd7e60a44e/ai-verification-crisis.html",
-      "sha256": "9662c7640491d904b89b1fd03c9d0e93e9bdd9cad8a58cde2ba2b5703247b916",
+      "version": "cd2d763fbb601aea32f7fa5f5165d90bb5ad9ae42dd1d258f4e07d6073e24bce",
+      "url": "article-snapshots/cd2d763fbb601aea32f7fa5f5165d90bb5ad9ae42dd1d258f4e07d6073e24bce/ai-verification-crisis.html",
+      "sha256": "80a4cba0e25374f39a4af29fb8dcf50fe8046b3b409439f190c828843e9b736e",
       "alias": "articles/ai-verification-crisis.html",
       "scene": "writing",
       "assets": [
@@ -104,9 +119,9 @@
       "semanticSha256": "72060d86e1fbfe6b8124986e0df8db31ebc2f5c014c98edb79e777814615bfd8"
     },
     "sdlc-out-of-balance:en": {
-      "version": "51b266810d00bdfd256ecbbb35242ec8f69f787fc82b39e430e58361b891c32a",
-      "url": "article-snapshots/51b266810d00bdfd256ecbbb35242ec8f69f787fc82b39e430e58361b891c32a/the-sdlc-is-out-of-balance.html",
-      "sha256": "ad1c26e7424e29decbc580e0c6b65778aecd1da5c76839a3ceb346eee02276ce",
+      "version": "cbd0c215ed4d446333f9e0b8e4a50ec33bf9868f7ffdc3f68576ea7eb17d8d38",
+      "url": "article-snapshots/cbd0c215ed4d446333f9e0b8e4a50ec33bf9868f7ffdc3f68576ea7eb17d8d38/the-sdlc-is-out-of-balance.html",
+      "sha256": "1bba407c4d467dd99d3915af6a1fa7ffad61abec303c28fe8012b71e29fcfe64",
       "alias": "articles/the-sdlc-is-out-of-balance.html",
       "scene": "writing",
       "assets": [
@@ -136,9 +151,9 @@
       "semanticSha256": "10fdb9231098eb50c93e90ff1b073986a4c6756ea0f307feadf255012a820511"
     },
     "thinking-systems:en": {
-      "version": "11fdb5d2757e95e1e0fe563af0f00589f6fa0b64ad0936feac63302e59d1e48e",
-      "url": "article-snapshots/11fdb5d2757e95e1e0fe563af0f00589f6fa0b64ad0936feac63302e59d1e48e/thinking-systems.html",
-      "sha256": "2fa4d99a7c6f7f6ec3ba5c6557805a589329e76848fb8effd9cf55903e12638d",
+      "version": "56fb2f71f561ed0fe25ea8e4c7a558b4d45220183a4909c4ccb23ca663646d6d",
+      "url": "article-snapshots/56fb2f71f561ed0fe25ea8e4c7a558b4d45220183a4909c4ccb23ca663646d6d/thinking-systems.html",
+      "sha256": "a748694cbcc83375c4ef2cffb30c846f76725fb2030ae9f0216c4ddd23c5a02b",
       "alias": "articles/thinking-systems.html",
       "scene": "writing",
       "assets": [

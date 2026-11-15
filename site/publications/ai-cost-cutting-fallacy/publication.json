@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "id": "ai-cost-cutting-fallacy",
+  "slug": "ai-cost-cutting-fallacy",
+  "title": "The AI Cost-Cutting Fallacy: Why \"Doing More with Less\" is Breaking Engineering Teams",
+  "summary": "How AI-assisted coding shifts work into review, maintenance, and the transition to new delivery capabilities.",
+  "authors": [
+    {
+      "name": "Vitalii Oborskyi",
+      "url": "https://vitaliioborskyi.ai/"
+    }
+  ],
+  "language": "en",
+  "topic": "AI software delivery",
+  "owner": {
+    "repository": "oborskyivitalii/oborskyivitalii",
+    "path": "site/publications/ai-cost-cutting-fallacy"
+  },
+  "status": "accepted",
+  "source": "manuscript.en.md",
+  "edition": "ai-cost-cutting-fallacy-en-20260102",
+  "rights": {
+    "status": "accepted",
+    "notice": "Vitalii Oborskyi. The authored article text from the selected LinkedIn edition is included under CC BY 4.0. The linked Satir diagram, external source material and artwork retain their own terms.",
+    "references": [
+      "https://www.linkedin.com/pulse/ai-cost-cutting-fallacy-why-doing-more-less-breaking-teams-oborskyi-cxuif/",
+      "https://github.com/oborskyivitalii/oborskyivitalii/issues/183",
+      "https://stevenmsmith.com/ar-satir-change-model/",
+      "https://creativecommons.org/licenses/by/4.0/"
+    ]
+  },
+  "references": [
+    {
+      "id": "linkedin-original",
+      "url": "https://www.linkedin.com/pulse/ai-cost-cutting-fallacy-why-doing-more-less-breaking-teams-oborskyi-cxuif/"
+    }
+  ],
+  "assets": [],
+  "platforms": {
+    "linkedin": {
+      "mode": "equivalent-rendition"
+    },
+    "medium": {
+      "mode": "equivalent-rendition"
+    }
+  },
+  "canonical": null,
+  "profile": "profile.json"
+}
