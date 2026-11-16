@@ -172,11 +172,11 @@
   "assets": {
     "publications/agentic-loops/cover.png": {
       "sha256": "dc50371b8287d45ee9b32404da989faa8f041986ffda413f71e0412d3bdcef5b",
-      "bases": ["agentic-loops-preview-cover"]
+      "bases": ["agentic-loops-preview-cover", "article-review-input"]
     },
     "publications/agentic-loops/cover-web.jpg": {
       "sha256": "5f8490fc28edf22e1a224c2adc10f6aa814d091ce620c059e86e4a64c7843360",
-      "bases": ["agentic-loops-preview-cover"]
+      "bases": ["agentic-loops-preview-cover", "article-review-input"]
     },
     "publications/ai-native-workflows-have-a-moat-problem/cover.png": {
       "sha256": "57cef69ffe083071acf0567733bb4d79089f888502aa60ff8f795011288f8ed9",

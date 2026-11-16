@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "0623a515fe4ed86f5f114a8f97b0796d3b0b3f8d2fdf4d2b501db58949c97402",
+    "digest": "b7f646c9b432002ad99d63849cdd94f505e69f101df532461bca017c1fb7bc55",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -5075,7 +5075,7 @@
       {
         "path": "review/issue-183/2026-11-16-agentic-loops.md",
         "identity_mode": "content",
-        "sha256": "c4b4edd3c1cc019e0399596ca43621f582a44e0c25e7b8f34591e1029aed9534"
+        "sha256": "118b8ac066860c2d295d50f1d822a258a573fe1888aa8de9fc8e21e5ad788fa0"
       },
       {
         "path": "review/issue-184/2026-11-10-archive.md",
@@ -11920,7 +11920,7 @@
       {
         "path": "site/rights.json",
         "identity_mode": "content",
-        "sha256": "a9c5ec92a88e18f9a7ad26fccd7fc6abe8a7fdc4c6bd674e1293e133d431ca14"
+        "sha256": "0c2b505cba6aa54036418fe0d1d69908bb54a514083c34b98a5078cd6a85164e"
       },
       {
         "path": "site/routes.json",
