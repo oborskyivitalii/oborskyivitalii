@@ -2,6 +2,8 @@
 
 *Source edition: [LinkedIn](https://www.linkedin.com/pulse/reinventing-control-theory-one-feature-time-fallacy-agentic-oborskyi-vkwve/), 10 June 2026.*
 
+![A network of recursive AI agents sits beside a control panel for policies, guardrails, oversight, and circuit breakers.](asset:cover)
+
 We are currently observing a new wave of optimism in the AI coding assistant market. The trend of the season is "agentic loops." The industry narrative has rapidly shifted: it is no longer enough to give a model tools; now, you need to "close the loop" and create agents that monitor, review, fix, and iterate over each other’s work in a continuous cycle.
 
 From a hype-lifecycle perspective, this is an incredibly elegant operational move. As the market begins to hit the "Subprime Code Crisis" pattern—where rapid, unmanaged code generation creates a massive downstream bottleneck in review, testing, architectural ownership, and long-term maintainability—the default response is rarely to slow down and redesign the delivery system.
