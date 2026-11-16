@@ -273,7 +273,12 @@ Events name a content edition and typed immutable artifact reference with manife
 and document hashes. A site event binds the coherent production site artifact and
 actual reader alias under `site/publications/policy.json`, not print-review HTML.
 Commit/tree, content/semantic edition, complete public inventory and observed
-HTTP/URL/digest inspection must match. A platform event binds its distribution
+HTTP/URL/digest inspection must match. Retain a shared production artifact at
+`site/publication-evidence/<release-tag>/artifact.json.gz`. Store members under
+`files/` by their zero-based, three-digit index in the sorted manifest filenames,
+with a `.gz` suffix for gzip-compressed members. The decoded bytes and complete
+inventory must match the original manifest. Readers share one archive outside
+generated public output, available in a clean checkout. A platform event binds its distribution
 candidate's declared HTML, Markdown, TXT or copy-ready document and actual inspection; native-copy equivalence remains a
 separate explicit editorial observation. Canonical and actual dates stay pending
 until matching observed events. Appending uses exclusive creation. The history

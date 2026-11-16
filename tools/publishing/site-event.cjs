@@ -1,8 +1,9 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
+const { gunzipSync } = require('node:zlib');
 const { spawnSync } = require('node:child_process');
-const { readSource } = require('./safety.cjs');
+const { assertSourceRelative, readSource } = require('./safety.cjs');
 const { decodeUtf8 } = require('./text.cjs');
 const { verifyCommittedPins } = require('./provenance.cjs');
 const { htmlRawLimit } = require('../quality/html-budget.cjs');
@@ -26,7 +27,12 @@ function git(root, arguments_) {
 }
 
 function inventory(directory, prefix = '', files = []) {
-  for (const entry of fs.readdirSync(path.join(directory, prefix), { withFileTypes: true })) {
+  if (!prefix && !fs.lstatSync(directory).isDirectory()) {
+    throw new Error('Site publication artifact requires an ordinary inventory directory');
+  }
+  for (const entry of fs.readdirSync(path.join(directory, prefix), {
+    withFileTypes: true,
+  })) {
     const name = prefix ? `${prefix}/${entry.name}` : entry.name;
     if (entry.isSymbolicLink() || files.length >= 1000) {
       throw new Error('Site publication artifact contains unsafe or excessive entries');
@@ -42,20 +48,51 @@ function inventory(directory, prefix = '', files = []) {
   return files.sort();
 }
 
+function archivedSource(root, relative, maximum, compressed = false) {
+  const source = readSource(root, relative, {
+    maxBytes: maximum + (compressed ? 65_536 : 0),
+  });
+  return compressed ? gunzipSync(source.bytes, { maxOutputLength: maximum }) : source.bytes;
+}
+
+function archivedFiles(root, owner, shared, files) {
+  const directory = `${owner}/${shared ? 'files' : 'public'}`;
+  if (!shared) {
+    return inventory(path.join(root, directory)).map((file) => ({
+      file,
+      relative: `${directory}/${file}`,
+      compressed: false,
+    }));
+  }
+  return inventory(path.join(root, directory)).map((stored) => {
+    const match = /^(\d{3})(\.gz)?$/.exec(stored);
+    const file = files[Number(match?.[1])];
+    if (!file) throw new Error('Invalid site evidence member index');
+    return { file, relative: `${directory}/${stored}`, compressed: Boolean(match[2]) };
+  });
+}
+
 function validateSiteArtifact(root, directory, event) {
   const artifact = event.artifact;
-  const roots = [
+  const shared =
+    /^site\/publication-evidence\/(prod-\d{4}-\d{2}-\d{2}\.[1-9]\d*)\/artifact\.json\.gz$/.exec(
+      artifact.manifestPath
+    );
+  const legacyRoots = [
     `${directory}/site-artifacts/${artifact.id}`,
     `dist/site-artifacts/${artifact.id}`,
   ];
-  const owner = roots.find((candidate) => artifact.manifestPath === `${candidate}/artifact.json`);
+  const owner = shared
+    ? `site/publication-evidence/${shared[1]}`
+    : legacyRoots.find((candidate) => artifact.manifestPath === `${candidate}/artifact.json`);
   if (!owner) {
     throw new Error('Site event must bind its coherent archived site artifact');
   }
-  const declared = readSource(root, artifact.manifestPath, { maxBytes: 1_000_000 });
-  const manifest = JSON.parse(decodeUtf8(declared.bytes, artifact.manifestPath));
+  const sharedArchive = Boolean(shared);
+  const manifestBytes = archivedSource(root, artifact.manifestPath, 1_000_000, sharedArchive);
+  const manifest = JSON.parse(decodeUtf8(manifestBytes, artifact.manifestPath));
   if (
-    declared.sha256 !== artifact.manifestSha256 ||
+    digest(manifestBytes) !== artifact.manifestSha256 ||
     manifest.schema !== 1 ||
     manifest.artifactDigest !== artifact.id ||
     !manifest.files ||
@@ -101,38 +138,40 @@ function validateSiteArtifact(root, directory, event) {
   ) {
     throw new Error('Observed site URL must match the production policy and exact reader alias');
   }
-  const publicRoot = `${owner}/public`;
   const files = Object.keys(manifest.files).sort();
+  const stored = archivedFiles(root, owner, sharedArchive, files);
   if (
     files.length > 1000 ||
-    JSON.stringify(inventory(path.join(root, publicRoot))) !== JSON.stringify(files)
+    JSON.stringify(stored.map((item) => item.file).sort()) !== JSON.stringify(files)
   ) {
     throw new Error('Site publication artifact inventory differs from its manifest');
   }
   let total = 0;
+  let revision;
   const inputs = [artifact.manifestPath, editionPath, policyPath];
-  for (const file of files) {
+  for (const { file, relative, compressed } of stored) {
+    assertSourceRelative(file);
     const maximum = file.endsWith('.html') ? htmlRawLimit(file) : assetRawBytes;
-    const input = readSource(root, `${publicRoot}/${file}`, { maxBytes: maximum });
-    total += input.bytes.length;
+    const bytes = archivedSource(root, relative, maximum, compressed);
+    total += bytes.length;
     if (
       total > 250_000_000 ||
-      input.sha256 !== manifest.files[file].sha256 ||
-      input.bytes.length !== manifest.files[file].raw
+      digest(bytes) !== manifest.files[file].sha256 ||
+      bytes.length !== manifest.files[file].raw
     ) {
       throw new Error('Site publication artifact has corrupt or excessive public bytes');
     }
-    inputs.push(`${publicRoot}/${file}`);
+    if (file === 'site-revision.json') {
+      revision = JSON.parse(decodeUtf8(bytes, 'Site revision'));
+    }
+    inputs.push(relative);
   }
-  const revision = JSON.parse(
-    decodeUtf8(readSource(root, `${publicRoot}/site-revision.json`).bytes, 'Site revision')
-  );
-  const revisionArticle = Object.values(revision.articles || {}).find(
+  const revisionArticle = Object.values(revision?.articles || {}).find(
     (article) => article.articleId === event.articleId
   );
   if (
-    revision.preview === true ||
-    revision.edition?.id !== 'production' ||
+    revision?.preview === true ||
+    revision?.edition?.id !== 'production' ||
     JSON.stringify(revisionArticle) !== JSON.stringify(descriptor) ||
     descriptor.sha256 !== manifest.files[descriptor.url]?.sha256
   ) {

@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "id": "site-publication-20261116",
+  "articleId": "ai-native-workflows-have-a-moat-problem",
+  "kind": "publication",
+  "platform": "site",
+  "url": "https://vitaliioborskyi.ai/articles/ai-native-workflows-have-a-moat-problem.html",
+  "occurredAt": "2026-11-16T15:44:29Z",
+  "editionId": "ai-native-workflows-have-a-moat-problem-en-20261116-editorial",
+  "artifact": {
+    "kind": "site-artifact",
+    "id": "4f38b9f6b6060f07394f44ef5977bad2abd221a7b43546a6736c19c488886212",
+    "manifestPath": "site/publication-evidence/prod-2026-11-16.1/artifact.json.gz",
+    "manifestSha256": "aa4cea5648f3f9bb706a9a5b39d29b9c7f5a6bacf64b276d89df85195a0ece58",
+    "documentPath": "articles/ai-native-workflows-have-a-moat-problem.html"
+  },
+  "inspection": {
+    "kind": "production-served",
+    "url": "https://vitaliioborskyi.ai/articles/ai-native-workflows-have-a-moat-problem.html",
+    "observedAt": "2026-11-16T15:44:29Z",
+    "httpStatus": 200,
+    "documentSha256": "de27024175669da6ce54f783a908f1bee1a65be8cea61df90399e6b292f3a786",
+    "evidence": [
+      "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43898780311/artifacts/14242310497",
+      "https://github.com/oborskyivitalii/oborskyivitalii/releases/tag/prod-2026-11-16.1"
+    ]
+  }
+}

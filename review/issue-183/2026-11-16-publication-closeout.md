@@ -1,0 +1,58 @@
+# Issue #183 — publication and batch closeout
+
+[Owning issue](https://github.com/oborskyivitalii/oborskyivitalii/issues/183) · [Reader integration PR #205](https://github.com/oborskyivitalii/oborskyivitalii/pull/205) · [Cover clearance PR #208](https://github.com/oborskyivitalii/oborskyivitalii/pull/208)
+
+## Original migration batch
+
+| Writing record | Reader | Selected source edition | Source and rights record |
+| --- | --- | --- | --- |
+| `publication-05` | [Thinking Systems](https://vitaliioborskyi.ai/articles/thinking-systems.html) | Generative AI, 30 August 2026 | [Migration](2026-11-13-migration.md) |
+| `publication-09` | [AI Governance Is Control Theory](https://vitaliioborskyi.ai/articles/ai-governance-is-control-theory.html) | Towards AI, 13 December 2025 | [Control Theory](2026-11-15-control-theory.md) |
+| `publication-02` | [AI Verification Crisis](https://vitaliioborskyi.ai/articles/ai-verification-crisis.html) | Agile Insider, 12 June 2026 | [Verification Crisis](2026-11-15-verification-crisis.md) |
+| `publication-28` | [AI Cost-Cutting Fallacy](https://vitaliioborskyi.ai/articles/ai-cost-cutting-fallacy.html) | LinkedIn, 2 January 2026 | [Cost-Cutting Fallacy](2026-11-15-cost-cutting.md) |
+| `publication-08` | [AI-Native Workflows Have a Moat Problem](https://vitaliioborskyi.ai/articles/ai-native-workflows-have-a-moat-problem.html) | AI Advances, 1 July 2026 | [Moat Problem](2026-11-15-moat-problem.md) |
+
+The five checkpoints ran from 13 to 16 November. No active-time measurements were kept. Editorial work included reconciling platform copies and dates, obtaining author decisions for original artwork, replacing the Control Theory figure, placing covers, preserving provenance and updating the shared byline and reading links. Technical work reused the native reader, Writing IDs, Home and Research entry points, social and sitemap generation, and the protected release route. The long reader exposed the staging controller's older snapshot limit. The two later covers required exact site-use permission and review of the resulting security findings. The review records document those decisions and their tests.
+
+Repeatable migration steps are source and rights reconciliation, a frozen native edition, one Draft Preview per reader, whole-batch archive and browser checks, protected staging and publication, then observed date recording. The source date belongs to the selected external edition. The site date comes from the production HTTP observation. Further migration needs the author's decision. No traffic figures were collected for this closeout.
+
+## Two author-requested adaptations
+
+[Agentic Loops](https://vitaliioborskyi.ai/articles/agentic-loops.html) uses the 10 June 2026 LinkedIn edition. [Beyond Embeddings](https://vitaliioborskyi.ai/articles/beyond-embeddings.html) uses the 22 May 2026 LinkedIn edition. Both share the same 16 November production release as the five-reader batch. Their source and media records are [Agentic Loops](2026-11-16-agentic-loops.md), [Beyond Embeddings](2026-11-16-beyond-embeddings.md) and [cover clearance](2026-11-16-cover-clearance.md). [Editorial refresh](2026-11-16-editorial-refresh.md) covers the author byline and related-reading changes across the seven.
+
+## Production date evidence
+
+[Owner Stable Staging 43886846983](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43886846983) exercised source `d060ee3bd8acbbcdcde34f158adea7cf2f77bcfa`. Its tree `854f61b91473d8d5167f6f23a863c12f7a6c414e` matches `main` and `production` at `d37d099b519536e042cdbb261dbbbc5e2cbce7c5` for [release `prod-2026-11-16.1`](https://github.com/oborskyivitalii/oborskyivitalii/releases/tag/prod-2026-11-16.1).
+
+[Candidate artifact 14239950868](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43897013527/artifacts/14239950868) and [production Pages package 14241231239](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43898780311/artifacts/14241231239) matched byte for byte for all 148 declared public files. [Production observations 14242310497](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43898780311/artifacts/14242310497) record the matching HTTP 200 alias digest for each reader. The first successful readiness check started at 15:44:22.614 UTC and took 5.473 s. The seven event records use 15:44:29 UTC, the next whole second after that check completed. It documents verified availability on 16 November and does not assert when the first visitor could have loaded a page. GitHub recorded the release at 16:49 Warsaw time.
+
+Each event references the same complete archived manifest and exact bytes, its own frozen edition and returned alias. Archive members use the frozen manifest’s filename order. Textual members are gzip-compressed and verified upon decoding. The archive is a build input for validating events and is outside the generated public tree. The validator retains raw legacy archive support, safe paths, complete inventory and per-file and aggregate limits. RI retains every input. Its total hash cap grows from 255 to 265 MB to admit one observed archive alongside the existing 254.63 MB of inputs. Other RI limits stay unchanged.
+
+## Review and acceptance evidence
+
+Independent requirements preflight `/root/requirements`, launched with `fork_turns="none"`, inspected base `d37d099b519536e042cdbb261dbbbc5e2cbce7c5`, live issue snapshot updated at `2026-11-16T15:50:41Z`, the protected workflow runs, and a 23-file source packet with SHA-256 `1d7c71f56a5d7cdb7aefc5dd2ba991279204b9237d6715c7956dccbcf379b4e7`. Common contract blob `68796daaf4313f64da381b1628866267fd9e263b`, role prompt blob `3e6330fc4a1a01d33e2dcae6e0f35d3f3471c1e4`, acceptance policy blob `06bbb101bbf9bc621b1628ebe6fb07053593f31c`. The reviewer independently verified the seven live canonical and share links and identified the clean-checkout blocker. Existing archive locations require a `public/` subtree or `dist/`, both excluded by mandatory tracked-file RI checks. The preflight endorsed a single bounded shared archive with the existing source, inventory and digest checks. This pass did not perform browser/device tests or review the implementation diff.
+
+Style scope for this work uses CS01, CS04, CS05, CS07 and CS08 for the publisher evidence adapter and RI bounds. The archive storage change selects the ordinary full site verification route. The browser, release and existing independent requirements remain mapped by [the owning acceptance policy](../../.github/acceptance/issue-183.json).
+
+| AC | Evidence | Gate at preparation |
+| --- | --- | --- |
+| AC01 | Five source/rights records and the exact release edition identities | Reconcile final SOURCE review |
+| AC02 | Seven live HTTP 200 files match candidate and published package | Verify desktop/mobile and native HTML for the five-reader batch |
+| AC03 | Seven source-bound events record 16 November and preserve external dates | Verify exact merged/generated and hosted date rendering |
+| AC04 | Catalog edits set only native date/event fields on existing records | Verify 30 entries, archive year and filters after dating; check the Home/Research/SDLC paths |
+| AC05 | Existing production workflow and same-source media evidence | Exact browser and independent source/quality review for this follow-up |
+| AC06 | Staging, frozen production candidate and initial publication observed | Merge verified event records and observe date metadata on the site |
+| AC07 | Original migration report above, including effort, blockers and follow-up | Final acceptance reconciliation |
+| AC08 | Five original entries listed above; two adaptations already authorized | Final acceptance reconciliation |
+
+## First implementation review
+
+The first local candidate was `580d1bab4d11eef1ef21e8693f3137939f1cd371`, tree `ccefeae6507fac74202ac3032233e589200e72b9`. Basic passed, and the owning acceptance runner reported `automated-pass` for all eight checks and kept the external gates pending. This candidate remained local. It is superseded by the corrected archive layout and date display.
+
+- `/root/closeout_code`, fresh `fork_turns="none"` Code Review, used common prompt blob `68796daaf4313f64da381b1628866267fd9e263b`, role prompt blob `2363340a1eaae62fdbd3ab070fda5c6436ec8124` and binary diff SHA-256 `1ef668f9c7532bf767ac4875afd1e901a5aa07c0dd5c2d77a3614c98a1664135`. The reviewer independently matched all 148 archive members against both CI packages and all seven alias digests against the HTTP evidence. It passed 34 focused JS cases, 40 RI tests, Basic build, bounded style and architecture. Blocking `RI-CODE-01` identified a stale coupling hash after path regeneration. The correction refreshes the coupling after the last catalog edit. Existing shallow manual diagnostic incompatibility predates this change. No new hosted run or browser operation was claimed.
+- `/root/closeout_whitebox`, fresh `fork_turns="none"` White-box QA, used common prompt blob `68796daaf4313f64da381b1628866267fd9e263b`, role blob `f3d5e777711d05fa844052a0c49339eb577a06d1` and acceptance policy blob `06bbb101bbf9bc621b1628ebe6fb07053593f31c`. It passed 47 publisher/history/catalog tests and 14 independent scratch checks for the complete artifact, mismatch, corruption, excessive decompression and inventory guards. Two timezone cold builds passed. Static before/after checks preserved all 30 Writing rows, their order and year, topic, language and links, including the Control Theory 2025 placement. No fresh browser or hosted publication was claimed.
+- `/root/closeout_explore`, fresh `fork_turns="none"` Exploratory QA, used common prompt blob `68796daaf4313f64da381b1628866267fd9e263b` and role blob `8b07e0a4c59c81b4efc8806c1043c631775eed32`. It exercised the production-before-dates Writing filters and all five original readers on desktop Chrome, including image decode and exact canonical/share metadata. It found that the proposed candidate displayed an unlabelled raw UTC timestamp in all seven readers. The correction renders a site-specific label and a human-readable date while retaining the original machine-readable timestamp. Exact candidate browser testing awaits a hosted Preview.
+
+The first archive layout used the original hashed asset paths inside the local evidence archive. The candidate secret scan reported additional path tokens in the RI inventory, plus exact release and generated checksum findings. Archive members now use the frozen manifest's ordered inventory, which keeps the bytes and all verification bounds intact and avoids duplicating the logical resource paths in each physical copy. Detection rules and input selection stay unchanged. Each residual admitted checksum must match an independently recomputed digest and its exact scanner location.
+
+The corrected scan isolated 32 exact findings. Twenty-one are the seven event artifact/manifest/document digest triples, nine match source-bound rights or materials attributes in regenerated reader snapshots, and two report the same new Beyond Embeddings snapshot directory in the RI views. The exact path/type/value tuples and their dispositions are added to the existing publication ledger. The two RI entries use the existing named-directory proof path. No scanner input, detector or byte limit was changed.

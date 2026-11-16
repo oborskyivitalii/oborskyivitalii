@@ -133,6 +133,14 @@ function applyNativeReadingLinks(html) {
 
 function input(root, article, links = new Map()) {
   const metadata = article.metadata;
+  const language = metadata.language === 'uk' ? 'uk-UA' : 'en-GB';
+  const publicationLabel =
+    metadata.language === 'uk' ? 'Опубліковано на цьому сайті' : 'Published on this site';
+  const publishedDate = metadata.published
+    ? new Intl.DateTimeFormat(language, { dateStyle: 'long', timeZone: 'UTC' }).format(
+        new Date(metadata.published)
+      )
+    : null;
   const reader = require('./reader.cjs').prepare(article, (url) => {
     const target = links.get(url.replace(/\/$/, ''));
     return target === article.url ? null : target;
@@ -152,7 +160,7 @@ function input(root, article, links = new Map()) {
       FURTHER_READING: furtherReading,
       AUTHORS: metadata.authors.map((author) => escapeText(author.name)).join(', '),
       PUBLISHED: metadata.published
-        ? `<time datetime="${escapeAttribute(metadata.published)}">${escapeText(metadata.published)}</time> · `
+        ? `<span>${publicationLabel} <time datetime="${escapeAttribute(metadata.published)}">${escapeText(publishedDate)}</time></span> · `
         : '',
       READING_MINUTES: reader.readingMinutes,
       READER_TOOLS: fs.readFileSync(

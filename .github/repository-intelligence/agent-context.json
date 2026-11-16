@@ -17,12 +17,12 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "0c6fdb8455e03001d1061da261b14e063eb4fc30abe2f67ef498168aea2045ca",
+    "digest": "3e7be96b1f2789b4dc72c3c786f7612db5b37de487e0c58cc040bd43cdf8f2b9",
     "inputs": [
       {
         "path": ".gitattributes",
         "identity_mode": "content",
-        "sha256": "6030a33a1cd826768f3c0ed65bde55a3a210e7131cca0a6d60d9b378e5268461"
+        "sha256": "e4e094b9db565d0110039bc245b0e46251a3218f6fe65dc13f4609c8682d3acb"
       },
       {
         "path": ".github/ACCEPTANCE.md",
@@ -42,7 +42,7 @@
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
         "identity_mode": "content",
-        "sha256": "9d71dfe6d1d0dbbc7b1e20d6d113a143730763bc80897d9065b3044a462b4658"
+        "sha256": "d8e8f47345b345c66e84a6521c8838028bc19cc57b0337aa9644a4d65d73b4f8"
       },
       {
         "path": ".github/acceptance/issue-102.json",
@@ -271,12 +271,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "85f4ba342ca670a637ea5d899f6897f809a383893a21af69e54be6714eff2c45"
+        "sha256": "f351289882979f6a4793768802f401de9ebaa4bd6ed86903376fd8630ef9e34d"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "ea3eaa8ed1a4b59a23b1b169c2574f63148c3f03173b5039d6e76a494596f2bc"
+        "sha256": "580e91ea435d4fda1b8bea7c4c643057227e4b80afa2fc44a9b966ac5c491955"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -426,7 +426,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "de3415871506efcfa776d589d5cbd51045c4841e2bf3c7492162f570ba9b003b"
+        "sha256": "8366732c1e2a218248703628fa9230e366639934af805d621c4a5a1f8253e7b0"
       },
       {
         "path": "NOTICE.md",
@@ -743,34 +743,24 @@
         "sha256": "f1d53fa07e9c2d947922eb82b5cc12b7b7bbefd62cf728e80b9cfcbde8a5ffa9"
       },
       {
-        "path": "docs/article-snapshots/1ad993812e199251299e1545ae901b32b3612699717b5555329e0f1185fb2afc/the-sdlc-is-out-of-balance.html",
+        "path": "docs/article-snapshots/3a8b773e1446bc2e3228eb4b256974e53f64382d47c967373186b7aca695620a/agentic-loops.html",
         "identity_mode": "content",
-        "sha256": "9f9b6faa8774719a0dd09103c9c8825fb5a9818bc842de18ae91ca0fc53f0ecc"
+        "sha256": "5babb8487946746f884fa8de654e8f455d56703bb82d5d3478867de7d557e517"
       },
       {
-        "path": "docs/article-snapshots/1b6eaa02835c73d162f618ec6ce2c895e6c8c4a6c262c46324b2fddb38b3fcb0/ai-governance-is-control-theory.html",
+        "path": "docs/article-snapshots/4cd574e812aff11e9d494ff69f6d6144a5515505b12a76aabb9cc103021eab2b/ai-verification-crisis.html",
         "identity_mode": "content",
-        "sha256": "27584ddf7cb77bfe87d4326f3c2daee84ad8f77d1c88ed500af443f4cea16961"
+        "sha256": "e7fabcd47442ebe2e1b9cea68d8f8f8741b7c95fd1abdabd01aa3c60e7e89364"
       },
       {
-        "path": "docs/article-snapshots/76d33d8e21ab50f78ec8c7102e7999c8c45b7cd56ed30c1ad22c0d6fb2699bff/thinking-systems.html",
+        "path": "docs/article-snapshots/8899e2695fb91d361864323b0b6611ecf5ca027f4d9ef43bb0e491d00460a797/beyond-embeddings.html",
         "identity_mode": "content",
-        "sha256": "bccabb394f2a56959ee623f48c6c1128ac95de052cb0b9d82465c648099a0e5d"
+        "sha256": "e23820b9048ac45b4754ae6fbfbe4cc32dbb0fe2187458b42ab1a435c32c32d8"
       },
       {
-        "path": "docs/article-snapshots/8d15626df060496a3f1d991a624aa883a3a37cce99907c2886e250a6e49d872a/beyond-embeddings.html",
+        "path": "docs/article-snapshots/933f79405bfc8f81c734b179836d6ba023921c1eccb8b7b6aa322a6ae5823d43/ai-governance-is-control-theory.html",
         "identity_mode": "content",
-        "sha256": "13873a4872156cd8613745b0301b7619d7a15f11649f892ffd4c6324fe90aca5"
-      },
-      {
-        "path": "docs/article-snapshots/9479a537c62f131448ff3cc90f3ba0612689b4404f3e960313bff4da01aab690/agentic-loops.html",
-        "identity_mode": "content",
-        "sha256": "e841032266f684d050c1f6006f91d418740e153b80aea3cdb83a6bd5f803077b"
-      },
-      {
-        "path": "docs/article-snapshots/a0b4e14883af5ba1418a23420074d42cb6d10b386eb0a46b370b78c5bd5c8b97/ai-native-workflows-have-a-moat-problem.html",
-        "identity_mode": "content",
-        "sha256": "7d0d0b465e96f0e6e69ff22d6e7ab740500d0c836837eaa6a7b1d46b517028c0"
+        "sha256": "6a872bad433ae1b257275dab853f35cbd1c04c51d2bdecd0bba59d27f533c76a"
       },
       {
         "path": "docs/article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995/the-sdlc-is-out-of-balance.html",
@@ -783,54 +773,64 @@
         "sha256": "4aa1ae74ff48155957e9f897b7697e1cee35e3b38d8319d0906c15da2d44fd7b"
       },
       {
-        "path": "docs/article-snapshots/c03ae1d5925a33b1e3ece61210a4c593bb608cd86dcfeae24c0909d23ad34975/ai-verification-crisis.html",
+        "path": "docs/article-snapshots/c99a55b54db0594a4455e1b40a52435e030e8cd80476ee8c0cafc8d95da05774/thinking-systems.html",
         "identity_mode": "content",
-        "sha256": "df5ccebd74475c8ec127a26396901703e3b5f73f3238d26840ce5c3ce8a6b9b9"
+        "sha256": "45e86853360c98e79fab4c286cb3c62941075acb517fa97cadb2e43a92900d9b"
       },
       {
-        "path": "docs/article-snapshots/ffd72466b6d3cfb099d196286610e17fab8dd1304452b5b852a2049e8a9ea6d4/ai-cost-cutting-fallacy.html",
+        "path": "docs/article-snapshots/d7eb9d61249b83dd4922b094901bd364051f18f9d294e7c36bd7b3d0b5dd7d13/ai-native-workflows-have-a-moat-problem.html",
         "identity_mode": "content",
-        "sha256": "4da425536f1d7bc3a4d31448ae11a841df72866cdcc4a17daa9a3ab7f2735a51"
+        "sha256": "dd4774f4c64b6db9f4126e11fc0485e750a55a05f4155cf98a83045778bcf7ed"
+      },
+      {
+        "path": "docs/article-snapshots/e5133329d52dae5052e9b980e57fca719d0e8463faeeac5ece89260d81393bd8/the-sdlc-is-out-of-balance.html",
+        "identity_mode": "content",
+        "sha256": "532c7f97f26593d78e810e1f1fa75c99024c3932fa0f442ca9a3953a7dc14bd3"
+      },
+      {
+        "path": "docs/article-snapshots/f028700871eb1e09f85cdcf99129b1234da24db1921c51042e1767b57bb66748/ai-cost-cutting-fallacy.html",
+        "identity_mode": "content",
+        "sha256": "867906baefaf138e5172e7cad2d95c5100efe263cccb36dced7bceac07fe305a"
       },
       {
         "path": "docs/articles/agentic-loops.html",
         "identity_mode": "content",
-        "sha256": "a6f48e222f8c73f8b8c13b12529cb3a9f0e4bfffafcd1d7b53def88e5149725a"
+        "sha256": "197fd8602f2834aac118dc83ad37371b8c6e22c697922f087deaf576c84d5f3d"
       },
       {
         "path": "docs/articles/ai-cost-cutting-fallacy.html",
         "identity_mode": "content",
-        "sha256": "3a0c4fe7d0a5a2b69911df625debd621dd720f5a545cd2b34cfc0b4a2681e5ac"
+        "sha256": "83a191702c8e522fde1ef13ac3e234131f757d97b3704e45144b8c84f6c74159"
       },
       {
         "path": "docs/articles/ai-governance-is-control-theory.html",
         "identity_mode": "content",
-        "sha256": "23488bd8acbe9e85031f45c5be10308127e332350ae8a8bc741591a3223db224"
+        "sha256": "e58844ddb35a53591959edccabf595a5e08ea0c7b83ccd632df51b8c4becb91e"
       },
       {
         "path": "docs/articles/ai-native-workflows-have-a-moat-problem.html",
         "identity_mode": "content",
-        "sha256": "4e426d2d5b9473e16331b3eb8b1b64493c6d8c9d108b982149776ad1b1d54241"
+        "sha256": "8cdedc7b08eb06b1feb200a4a5e1061a80f939e4c4798e13b400bcfde3d693e6"
       },
       {
         "path": "docs/articles/ai-verification-crisis.html",
         "identity_mode": "content",
-        "sha256": "e0c9f0162f4a7ce4ef3f1432dc705448ffb94e55e1a28f264a8d8992d61a3689"
+        "sha256": "3c01fcf1eb04c53c59b351da51013f495bc264a4f6f2b680401a491f88d1c18c"
       },
       {
         "path": "docs/articles/beyond-embeddings.html",
         "identity_mode": "content",
-        "sha256": "14942d5add8d723608680bcba50e641ad168c499f99a54bf0bc3dc1671848683"
+        "sha256": "36124d1a39c6b91e4f5dc09300cef7fc9d7cd05d431316edc6a47cf8a007b6b7"
       },
       {
         "path": "docs/articles/the-sdlc-is-out-of-balance.html",
         "identity_mode": "content",
-        "sha256": "59c55ebc40ca2c62ae81e24f07d2fc5e1d570c83cb41478cd8abdd36b1103f04"
+        "sha256": "46fd863533b2ab4195c4700a36d5ae119cdff527719163f8fc111744760c83c1"
       },
       {
         "path": "docs/articles/thinking-systems.html",
         "identity_mode": "content",
-        "sha256": "916575ab995827cfedc64b689dc00d96f5110e50a2c62f192a047766a0f9c3d1"
+        "sha256": "8731a23632d4ad4f86eea47fa0df239d2760e4c9938817d5349d74aab95f5d38"
       },
       {
         "path": "docs/assets/favicon.svg",
@@ -855,12 +855,12 @@
       {
         "path": "docs/credits.html",
         "identity_mode": "content",
-        "sha256": "8b990e5d78d4d4471cbabc1f3b811c166f39260227a8cbb84d7988980722c707"
+        "sha256": "6ec399b7fe26d492452019805250cf8862c079b35ba39d03558cfada06cabf8e"
       },
       {
         "path": "docs/index.html",
         "identity_mode": "content",
-        "sha256": "f6adc54b090969ce451e6e1f302144f3e119c5feb9069160628df460b6830366"
+        "sha256": "142af6efd68fa64958d75a2761d72682071890fe26b9a72e9e6f6e4f2a0f9956"
       },
       {
         "path": "docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg",
@@ -895,7 +895,7 @@
       {
         "path": "docs/research.html",
         "identity_mode": "content",
-        "sha256": "9b6c5f0de7420578318ac7c159795d13c0d070b5718ea4a819f634cea1e504aa"
+        "sha256": "a2fb80f7b3a0730c793141a9835e4741f007dc0d6f619cbf1258de7827ff25e8"
       },
       {
         "path": "docs/runtime/1c34e64047482a214a50a115582adb08988fe8721f5ee651bd8a231a300e2cf7/analytics.js",
@@ -1065,7 +1065,7 @@
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "497135d9d7b39fcd5caf4b919263f82770bb766e1252d1e369bed66e4f53ef4b"
+        "sha256": "b6d8fd158f994c3a80937549ccfb16e1a8964160ad6e84377a7387f52e9646ce"
       },
       {
         "path": "docs/snapshots/080da808855bdc7cac66970509a9a371a5033cb5d721a007a92632c826b2d06a/writing.html",
@@ -1083,14 +1083,9 @@
         "sha256": "93c88b5f9c73e559b067866cb38eb604e93013c2225a06a36f96e8f215d397b3"
       },
       {
-        "path": "docs/snapshots/464f356f00b70c8e63d3ba19b756e7ccb0b23ee2e9926d3ea138b7d0c33c917f/research.html",
+        "path": "docs/snapshots/55bd2de579d3809039cf608530b1e025dd392e822cde585e30ef2574086229f1/index.html",
         "identity_mode": "content",
-        "sha256": "594c8b2ccdf240bb51aed37a05b49c4e1e84623b9c64af3d704cea172f0427e2"
-      },
-      {
-        "path": "docs/snapshots/481dc8bacc3c2e39ac84bdcf4f02765554b9cc717d92f3df6094042dcd9aba71/talks.html",
-        "identity_mode": "content",
-        "sha256": "2c455683478722d608202eb06d2721274013ae1f9bd4b0ea88349d6da5c83d83"
+        "sha256": "73e3911341e9a14321f3ebd1755a99ab97f71fec627e451d457eb39d7a9d3448"
       },
       {
         "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
@@ -1116,11 +1111,6 @@
         "path": "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html",
         "identity_mode": "content",
         "sha256": "e19095652eec29ccea5cb8ba5397356e998d2b15235b06486675b0fefd151c5d"
-      },
-      {
-        "path": "docs/snapshots/8778a66844d2e4f070de4fb9be832afc055c2e20c73a30182e661bc47e749ae4/writing.html",
-        "identity_mode": "content",
-        "sha256": "696ff1de0162755d7a5bc345a919cee674c03910b3ba63cb170a0e7ae18e5de8"
       },
       {
         "path": "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html",
@@ -1158,19 +1148,29 @@
         "sha256": "e4bbf6e735ef6b9d3c89d7412e12a1288f2b73b9d47e3097c71419f518b29fd2"
       },
       {
+        "path": "docs/snapshots/ccf4c8762192a34fddd8a875cd605aa3924bad358b235f48e2ff74d86399e622/credits.html",
+        "identity_mode": "content",
+        "sha256": "9a01b3c8b9d923f9fa8461959f10597c92f24203536cb8677bdbd4d780c4362d"
+      },
+      {
         "path": "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html",
         "identity_mode": "content",
         "sha256": "eef3b91329720bf60b4aaf9e08208bd9ce75790be77b21c2757638c7af7a6fb4"
       },
       {
-        "path": "docs/snapshots/e2cc42173f1ae664abb1dcdd6ddeb0503845d9b7ae99361d2330b68fb8b50e13/index.html",
+        "path": "docs/snapshots/daa0d1b0b5b8e7cb2b582c43387d5fbc2b2ab9b81d3b0ea88e6d59dedee9fb31/research.html",
         "identity_mode": "content",
-        "sha256": "0130cc8d6d82586123719272e239f9c5ea865b5e07072162e66d5e61aac397d8"
+        "sha256": "e86741fe7b321eb9fe106a686cd586a63bd728c810a770cc39c9386331d8583b"
       },
       {
-        "path": "docs/snapshots/eb9003485aff808b249f624f706e793516bcf3a1c84c4734fa00d53e901a0130/credits.html",
+        "path": "docs/snapshots/f35a4e326094a493c33c3292be2ece2a4b754c63449ed993f1c6010f473db35a/writing.html",
         "identity_mode": "content",
-        "sha256": "2e25f92560c2706cb3efd7c71c82854ee5db38959887f6dd153980bd83f3812e"
+        "sha256": "96621ae8f9749f920acedcdaa1a5ef4f6a5b4226e58134095cc339e6fc44e622"
+      },
+      {
+        "path": "docs/snapshots/f59716949caaff4c14fe8b16981a2e7d0b639e44f659a042fcfeb6dbb57bf125/talks.html",
+        "identity_mode": "content",
+        "sha256": "10eb158df657a945a391040ae8ccf0f38cd4cc8afb36a01c1bbfe609d4b6c0b1"
       },
       {
         "path": "docs/space.js",
@@ -1185,7 +1185,7 @@
       {
         "path": "docs/talks.html",
         "identity_mode": "content",
-        "sha256": "e36cafd98b8905f07ba011a222d9495cf35f5613dc377a0039df178a6a5c9fb3"
+        "sha256": "ebbf99374ae49ca69aec2361d77ff5200815ecd68fc9aca6f05b670178b08260"
       },
       {
         "path": "docs/theme.js",
@@ -1195,7 +1195,7 @@
       {
         "path": "docs/writing.html",
         "identity_mode": "content",
-        "sha256": "9bada6826e6169de738b75fbcec30310be0236a6b34ff3d98035a0ea6e1301df"
+        "sha256": "96fbef781795268ba77210411c2ca77573bed15a6e31208ea2ce84dcf46bc03a"
       },
       {
         "path": "drafts/medium-profile-revision-20261001.html",
@@ -1215,7 +1215,7 @@
       {
         "path": "guides/ARTICLE-WORKFLOW.md",
         "identity_mode": "content",
-        "sha256": "0f350171dd019e042663b7b10c0f3431b6a82b7488415fabbaae983ffe70e1d5"
+        "sha256": "253efab7f399a5623ec5e50016fd451b83c9b3eb0dab9c566e63e000bd728c43"
       },
       {
         "path": "guides/BROWSER-ARCHIVES.md",
@@ -1255,7 +1255,7 @@
       {
         "path": "guides/SITE-CONTENT-RELEASE.md",
         "identity_mode": "content",
-        "sha256": "a92182090e180afa2e9c59b30630ec8c18d2df1a2d6066c0b076361f308a01a8"
+        "sha256": "90c4e92a5aa1aa60b90b38143bc98768bc897990f538042a7606505407b90a4d"
       },
       {
         "path": "guides/SITE-CONTENT-REVIEW.md",
@@ -5161,6 +5161,11 @@
         "path": "review/issue-183/2026-11-16-editorial-refresh.md",
         "identity_mode": "content",
         "sha256": "f7dc0a13c1cbe0a0a576b3b10f7489fbbf2aab5da9772caf09bd04bbeb17d5f9"
+      },
+      {
+        "path": "review/issue-183/2026-11-16-publication-closeout.md",
+        "identity_mode": "content",
+        "sha256": "27a394b56e20f5b6d763e7a394eb9592a09358de8cf44ef20895769e1f59aa3f"
       },
       {
         "path": "review/issue-183/2026-11-16-staging-controller.md",
@@ -9840,22 +9845,22 @@
       {
         "path": "review/site-v1-20261004-v11-credits-day.html",
         "identity_mode": "content",
-        "sha256": "038d031ee3a1b129d0118a074059213277e9185e54507b494b06dae655f2e1c4"
+        "sha256": "dd4fde75d8b4a73aa4e5521b419b3def93cd21dc1476afe162b6aba08a92b73e"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-interactive.html",
         "identity_mode": "content",
-        "sha256": "6b5176eb5fe9b43ff8188ceae91e9a338549274b76c63b0afd00139e7e4c11ba"
+        "sha256": "6fb4c51a4825300296235c3c6b2303edc37f33487ba014db2cb213dc625bfe3c"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-night.html",
         "identity_mode": "content",
-        "sha256": "abc37b5f4ed5284c2e8f8a9e1bbbf7e1783708a30be48301a7896a227edcca47"
+        "sha256": "1a00eff050c7a27f112f90bd2c48e34ddc940ab74b6435f29d69405f9fdbd032"
       },
       {
         "path": "review/site-v1-20261004-v11-day.html",
         "identity_mode": "content",
-        "sha256": "273c1a3ee14f63349ea057244f933200eaa2880deed7fb27901722906fc4bae1"
+        "sha256": "77f658aa709b46a2a3e5db612123b5c5b0f15b094405ab3967cdf8a225a3393f"
       },
       {
         "path": "review/site-v1-20261004-v11-index.html",
@@ -9865,57 +9870,57 @@
       {
         "path": "review/site-v1-20261004-v11-interactive.html",
         "identity_mode": "content",
-        "sha256": "ae21da9019f14b77c48f48744fa6d5659af3b6941c37c6ca56b1107df9ac5e79"
+        "sha256": "b2267688b54cd8c1a84bcdb6af89ec5bf8e8df949be1ddc583db49c156ebf6b1"
       },
       {
         "path": "review/site-v1-20261004-v11-night.html",
         "identity_mode": "content",
-        "sha256": "63097103d33d4121aaff18799d8b9226aaaa4828a8a19b530bfcdad45f78a956"
+        "sha256": "d8262d2b2f1e160f33305873fa2890906680a761ef12fe5ad46ed11ca22e69a4"
       },
       {
         "path": "review/site-v1-20261004-v11-research-day.html",
         "identity_mode": "content",
-        "sha256": "e77a9a25a800c046d33c2c74cf358f3f6792900fd83cc40d7d3ee9b14182066f"
+        "sha256": "9052742bd5fa4626922ff2a1e1eb7d8870bdbef48a07e4d54193a1816066a5e5"
       },
       {
         "path": "review/site-v1-20261004-v11-research-interactive.html",
         "identity_mode": "content",
-        "sha256": "cfb4bfeda743618ade2ff4ed05ee33c45c39b059352c93f11b9c80295fccba75"
+        "sha256": "54b1116f16f5cb593bc22ca5685ae6248e6b7ae8dd119b81e9e327abceb55a79"
       },
       {
         "path": "review/site-v1-20261004-v11-research-night.html",
         "identity_mode": "content",
-        "sha256": "ab189c67b501effb73eae43e0d1405b2c91643a08e31a0ba9177329b373c5d44"
+        "sha256": "f8440c8e51451b369b29e4b8f5f47300bad00c3113ec7a5d55fb63b637a30364"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-day.html",
         "identity_mode": "content",
-        "sha256": "7f798aeadf1184bd091a36559fbe5403c5cea759bb054b89220b2ef47f6ffc53"
+        "sha256": "d15e290d8d8ac3137105d508e2cf31fde06a9b07991542111f0ef26bfd956fa7"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-interactive.html",
         "identity_mode": "content",
-        "sha256": "7f78ace844cf06d46d6bf546b65ea2cdaded3d61fe0efa4b7d1968c4b5570fb5"
+        "sha256": "750d97c8d25a018cf02dad1f73e3f39118053b291bcc428ba400d36b9718866f"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-night.html",
         "identity_mode": "content",
-        "sha256": "59bf43c6648511ceab5b9a2257e2b0118e4e2e8cdd3c885902d4d10a912f7bc6"
+        "sha256": "64b4a31360991e66534c425b385bf2c101b3d07fbfbdcb631b3b727abe272bda"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-day.html",
         "identity_mode": "content",
-        "sha256": "f825381c193aee0435575a7128fe2599ad502079f8fc69fab8d46605d5ba0357"
+        "sha256": "9c16f1623d91a3ac1b6bbfc897e814f8ea00fda7a09b85fd4838fe3c37a730c4"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-interactive.html",
         "identity_mode": "content",
-        "sha256": "7138f8c8d68e40f318a6b1b09bf896483563e233e4760528a75c6c361b46fa47"
+        "sha256": "bde437629e1bc2ede5e7c9ec14589917dacf898419b3dab703a1dd0c51263b13"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-night.html",
         "identity_mode": "content",
-        "sha256": "5a215b984d082ac2e4c6e055dbc53d8423f1c448268694c17b7ca932d6b42d7e"
+        "sha256": "e18016fe0d4bc03ab690e6b96d3c76528a808a643d4394a2e3b07f8555a87cee"
       },
       {
         "path": "review/site-v1-offline-bundle-v10.json",
@@ -9925,7 +9930,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "7a051efb7cca1f60b5e3eb33ac070990983ace54854b591e139408d52918613e"
+        "sha256": "687a5629cf4ecc7aeebb3673fc1d5bbbc3401502b26d47e7cdcb2efddb788f72"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -9980,7 +9985,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "6a83f1d9dabcafa9ac73dea4c6646f506cc3f9457046e0f8847c514fe5bac309"
+        "sha256": "337711115b67b89c8c453af99b0b015a1a86d8d99908c96650f4bf65d25adece"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -10985,7 +10990,7 @@
       {
         "path": "site/content/catalog.json",
         "identity_mode": "content",
-        "sha256": "69d7ca12933d00fc8aec1785795d5e5f44b41790b105d04ab392874fed2a513f"
+        "sha256": "cedbca8c9498ab7b55923dd6ddcab0c101c2f54900576a8b0de077232625e600"
       },
       {
         "path": "site/content/events.json",
@@ -11245,7 +11250,752 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "e8c436cdb215230b46976456dc868091592a825cbc246a6fff3be6eae7ecf5fa"
+        "sha256": "5f7b96bc62425078a5e15dfa2b6df0d03c8e387f7e69351981b3e9261db6377e"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/artifact.json.gz",
+        "identity_mode": "content",
+        "sha256": "197c9e811b1f85ae1b0670ef4cfd4a77a512607a72e01b85c5a01b9db3790c71"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/000.gz",
+        "identity_mode": "content",
+        "sha256": "34d5848c995803cfd00c2f7f02d807e2069b51ffca60a40f05d2d7229ef13b69"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/001.gz",
+        "identity_mode": "content",
+        "sha256": "8ff0a4fb6451ef17e01f5ed78ba74b65a64519eab576c0d5cbb3e5ab1ae0b3a5"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/002.gz",
+        "identity_mode": "content",
+        "sha256": "f743fe661e9fb7572c09a2236ac039d5bfb5110d46b22fcf2659b0f17a66e446"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/003",
+        "identity_mode": "content",
+        "sha256": "11b50b3b2a4dd035b4b975444d87a37ceed0e68d8c983f4acc3b57b9d7dc1833"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/004.gz",
+        "identity_mode": "content",
+        "sha256": "0bf67b2430fc3bb0bab4291daac97e8e33467cf66ae750222b787c9e2e03e5ba"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/005",
+        "identity_mode": "content",
+        "sha256": "1589356c855ad721e706cff069e147afd60cac49b225445f8e1010737da0a6fc"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/006",
+        "identity_mode": "content",
+        "sha256": "1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/007",
+        "identity_mode": "content",
+        "sha256": "29527faa8c99529dfa1a7beb3ea1068d4f93a9ba9a30d86b4a1f8eac30583c54"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/008.gz",
+        "identity_mode": "content",
+        "sha256": "7fea7948c88c40fe86b94b222f109812b023c8a24b4e79303649f83b8dc8f0d0"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/009",
+        "identity_mode": "content",
+        "sha256": "2d0985de7aad4d29069f3adcff22f0ccbab01d23fd18a5a0053ce53209856725"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/010",
+        "identity_mode": "content",
+        "sha256": "2d4e237d21021bcb6c62b5ce9ab10daffc4e93b521a20f3b6a707a3531781739"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/011",
+        "identity_mode": "content",
+        "sha256": "300fdfa774d4e768f36fc3e3d1f4f146b46ed41feead5d33db2316c9f3a3c06a"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/012",
+        "identity_mode": "content",
+        "sha256": "3415712316948afcc30c00607f7f2fb475b2ca0939c108481bfdcd4fe3676a93"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/013",
+        "identity_mode": "content",
+        "sha256": "38e49d4bb130df44098c0b70e3e6ac952b51d1b8822822a429ae15ed930402ea"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/014",
+        "identity_mode": "content",
+        "sha256": "393e1a2b17f2c895be46fcb64bb3963d7c5abf56984099e8008857589b32b6ff"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/015",
+        "identity_mode": "content",
+        "sha256": "41f0f839015031d489aeb6ddfded11099be8247d030d636e4044c6820071c70b"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/016",
+        "identity_mode": "content",
+        "sha256": "45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/017",
+        "identity_mode": "content",
+        "sha256": "4fb99c0a32cfe808956a13bc2caaec71ed7adea83de79df4c5bfa08592d0b871"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/018",
+        "identity_mode": "content",
+        "sha256": "542383922d50b39015ac2e3553481e7237a91efae41d19be80a3ee564d039d43"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/019",
+        "identity_mode": "content",
+        "sha256": "5552ab1fb02be8954586dccb7d92ffd5ab4a1df4fd0857de7133cfb98613af85"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/020",
+        "identity_mode": "content",
+        "sha256": "568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/021",
+        "identity_mode": "content",
+        "sha256": "593e5212280ebabadb49ddc4c56e0bc4ba6908f659a9b466b462e7331680e27d"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/022",
+        "identity_mode": "content",
+        "sha256": "5ba399aa0ca2dc3e492e58292358870926fb5acd7fdd958c63e2e71541d6994d"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/023",
+        "identity_mode": "content",
+        "sha256": "5f8490fc28edf22e1a224c2adc10f6aa814d091ce620c059e86e4a64c7843360"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/024",
+        "identity_mode": "content",
+        "sha256": "6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/025",
+        "identity_mode": "content",
+        "sha256": "70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/026",
+        "identity_mode": "content",
+        "sha256": "7144d8165842a07ac8194e88a7301b777f11dac41ca1dcf8d88f6ba4cbecb27f"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/027",
+        "identity_mode": "content",
+        "sha256": "79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/028",
+        "identity_mode": "content",
+        "sha256": "7d220ce3249c461ada25c5b12dd825283362eef960822a58ad95b1f38a4db62b"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/029",
+        "identity_mode": "content",
+        "sha256": "8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/030",
+        "identity_mode": "content",
+        "sha256": "8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/031",
+        "identity_mode": "content",
+        "sha256": "8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/032",
+        "identity_mode": "content",
+        "sha256": "919957eafd1c9cef20c4d3d99251dee97f9a397ffd505952a9a441e03c80d34c"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/033",
+        "identity_mode": "content",
+        "sha256": "943cc2b0ba6d097701efdd5c358e26e007a66b5d1077d71f672dcc040baf4936"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/034",
+        "identity_mode": "content",
+        "sha256": "9acaf96c7008839610c8b9d3efdcb45a8046cde2c792f6f0dfe1951ba8a92048"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/035",
+        "identity_mode": "content",
+        "sha256": "9cc5b62810712f9988b2d05004700978d8886e7c7954d92d2317c8f9cc4ff719"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/036",
+        "identity_mode": "content",
+        "sha256": "9e48e39e141a2775794af0f17a94275705d475ae4d3a97b327d9fdaf6992e0fa"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/037",
+        "identity_mode": "content",
+        "sha256": "a187cf86739b2cc193cc9696e9884e2252c62b636ce262277c342371081eaa36"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/038",
+        "identity_mode": "content",
+        "sha256": "a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/039",
+        "identity_mode": "content",
+        "sha256": "a3e8b467f27cbc673040aea8b17d32371621ab367eef63804063198a9bf739a0"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/040",
+        "identity_mode": "content",
+        "sha256": "b68b465d8f611f72c8f4d9e95eaad457c1e40761154d90112ed128d7ecd47dd2"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/041",
+        "identity_mode": "content",
+        "sha256": "bb70b4d0907ed3672055b0aacd58ca6bb35ef9154aecfb151705de58127eb2ae"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/042",
+        "identity_mode": "content",
+        "sha256": "c1f333b5145b75b144562e218b73946ba77083fba5c1d30a8a8b43ef2659fc5a"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/043",
+        "identity_mode": "content",
+        "sha256": "c3686dce007b399d3fb175d5b235a51b1000500a3e4bc6f024be9767bfb33996"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/044",
+        "identity_mode": "content",
+        "sha256": "c3b69024bc558f1b246c0135e7fceb55cbf77e4a8984e286285b57c13aaeaa37"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/045",
+        "identity_mode": "content",
+        "sha256": "c7800f9370b6be57d53135a923689b70c4d6f99ac3acf17b118436a08bfe953a"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/046",
+        "identity_mode": "content",
+        "sha256": "ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/047",
+        "identity_mode": "content",
+        "sha256": "d125ba3950bf0b8cd725d9197957a152ca404bff51c3cb87c9ee6460a8ddad88"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/048",
+        "identity_mode": "content",
+        "sha256": "d1bed993498c86dbebc2706ca22878adfcf4e56ea2ed054bdc23e3ab471c1c73"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/049",
+        "identity_mode": "content",
+        "sha256": "dfc1c0903c9baf02dec4e96b1d87a46cccbad3ee015e9d47a3d86c73d8fb29c0"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/050",
+        "identity_mode": "content",
+        "sha256": "e09b0fc781b0930aa9671ef0ca728d286828e0e9c8d47e6696d1976b0b1381ee"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/051",
+        "identity_mode": "content",
+        "sha256": "e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/052",
+        "identity_mode": "content",
+        "sha256": "fe4ca5dc397894e9c267484abb9606022abfdb6ab31560ce988efddf21c4438d"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/053",
+        "identity_mode": "content",
+        "sha256": "fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/054.gz",
+        "identity_mode": "content",
+        "sha256": "6aecad28817b637f8e07c717d039a2087773ddbba881dc1df16e6b37296382c3"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/055.gz",
+        "identity_mode": "content",
+        "sha256": "4e471d058b363802aae49095cbcc5d796affdab851e70c2d4c591d7272bfb172"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/056.gz",
+        "identity_mode": "content",
+        "sha256": "ee47967597029b810e0ef0c97f9c1e8dbd5a541c1f4c413ac082af5be5a3da89"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/057.gz",
+        "identity_mode": "content",
+        "sha256": "eb0dab42c007c3db1157078268b974bee9532146d80225848f184c49acad1043"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/058.gz",
+        "identity_mode": "content",
+        "sha256": "d58a9ae2306c560911e4618f2e2854400fd1cdb08fc9b36978f850b5d3c748e5"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/059.gz",
+        "identity_mode": "content",
+        "sha256": "8acd3816b5a10c0584141daee66e5421f27728207bfcd051aca1546a8aaa67cb"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/060.gz",
+        "identity_mode": "content",
+        "sha256": "3285cc8714e3966dfc5daf0a916d2460b589277cb5983fe39501e79157836102"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/061.gz",
+        "identity_mode": "content",
+        "sha256": "cca7c499efe01fd3110fa78ea40097d68d24d902cbe2a572f429d7bfba739a16"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/062.gz",
+        "identity_mode": "content",
+        "sha256": "51f1f9b02df098197be593084f196f9fba5189b73453e60f47eb5886db1e7e15"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/063.gz",
+        "identity_mode": "content",
+        "sha256": "3b91c836f777d7430c14ba4460e3921b7bc439d0c029359c6b042535896b110a"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/064.gz",
+        "identity_mode": "content",
+        "sha256": "50d58e4298315668b2929afa3bafad20f95960206f4f669e571dc62ce6d2737f"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/065.gz",
+        "identity_mode": "content",
+        "sha256": "fa943b2718b9af14819e5913763c87c7d708c0f526d8b2f1ece7e6c37edf49f1"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/066.gz",
+        "identity_mode": "content",
+        "sha256": "0291263282947d8068b253052c2b8a361401bf2daf28b4e61ee778d99b55f088"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/067.gz",
+        "identity_mode": "content",
+        "sha256": "ad90902a00598ff3abee22c3cbe7f690f4c87ec30ed91c79442eae3a80df8189"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/068.gz",
+        "identity_mode": "content",
+        "sha256": "c9720dc46d83bcd7e842247b3373a08923be565af9e3906bf81f82428342e58e"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/069.gz",
+        "identity_mode": "content",
+        "sha256": "4264106d82db6b047436b59bfe74099a89be051a26ee328ea0dafb48d260e27c"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/070.gz",
+        "identity_mode": "content",
+        "sha256": "168d9e52c84c7649a7fa94da11c529ce0a041c3efb665e674220757253d8b5ed"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/071.gz",
+        "identity_mode": "content",
+        "sha256": "95486d0ce6bb85bbe9a74d52ff023fcf94be7a98dc17864b8f025f567eaf0364"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/072.gz",
+        "identity_mode": "content",
+        "sha256": "4775dea8802a98d2def79ede0a87d864e06bf94297e8f9709ccdb8c7a63cb164"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/073.gz",
+        "identity_mode": "content",
+        "sha256": "0975657c0255f337eb1d2530bc4d81af71770c0c8047817b105b4328a7929f20"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/074",
+        "identity_mode": "content",
+        "sha256": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/075",
+        "identity_mode": "content",
+        "sha256": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/076.gz",
+        "identity_mode": "content",
+        "sha256": "3b3e8a8260d7119902fb07ea2dbb04fe63b84583b1f658ff7d74c45c4b03e07c"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/077.gz",
+        "identity_mode": "content",
+        "sha256": "ae205cda2cb10408305b07dae15fb4599980ba3c5c35571487d0e464c40e4b38"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/078.gz",
+        "identity_mode": "content",
+        "sha256": "44d43cfecdbc1da70a30c0cd32f602ec2fac6df09eadc2c03d7f871cd333b3fa"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/079.gz",
+        "identity_mode": "content",
+        "sha256": "0975657c0255f337eb1d2530bc4d81af71770c0c8047817b105b4328a7929f20"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/080",
+        "identity_mode": "content",
+        "sha256": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/081",
+        "identity_mode": "content",
+        "sha256": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/082.gz",
+        "identity_mode": "content",
+        "sha256": "3b3e8a8260d7119902fb07ea2dbb04fe63b84583b1f658ff7d74c45c4b03e07c"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/083.gz",
+        "identity_mode": "content",
+        "sha256": "559c7f9d4014cd89a90949e4f7aab7c71666638d02f1a077bd66e003cf912595"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/084.gz",
+        "identity_mode": "content",
+        "sha256": "60d0147875f18f50d3ee5abe4cad37bffb162f347e9350a1d653bc4f65bf2446"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/085.gz",
+        "identity_mode": "content",
+        "sha256": "30e5581ace6fbff15812ebbce00943dadf0b563e01610b0ebb2fabff51a60e71"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/086.gz",
+        "identity_mode": "content",
+        "sha256": "ea714ebc707062a9db351dfe649a1c27f77fc22c035b633db777a6a633545cba"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/087.gz",
+        "identity_mode": "content",
+        "sha256": "53fab1b05f8871267ea5d7128c40ea2ff8d354e9301efaaa6f2812dce2c5d9a1"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/088.gz",
+        "identity_mode": "content",
+        "sha256": "58b10150fc5a871f83808b62457c59b3fa2854854ee70e3c19b0d3f81b521ea7"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/089.gz",
+        "identity_mode": "content",
+        "sha256": "d16c8c4b0a792ba0f6ca4d53bc48a417a9794c139c00378b6571bd1e96c0d655"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/090.gz",
+        "identity_mode": "content",
+        "sha256": "f63f68305c99f300e2853e09a620f90cdf2156e51ce0406fb39a1fdcac11f2c4"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/091.gz",
+        "identity_mode": "content",
+        "sha256": "a83733ab90ef37243e3455ced2f3e70cd9069e7f2a1cdea44a27d35a8ed71b29"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/092.gz",
+        "identity_mode": "content",
+        "sha256": "f84cb09241ec240d6f394d2fec03c321330b2ed554eca7a87cc6eb7c4c78bdaa"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/093.gz",
+        "identity_mode": "content",
+        "sha256": "f743fe661e9fb7572c09a2236ac039d5bfb5110d46b22fcf2659b0f17a66e446"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/094.gz",
+        "identity_mode": "content",
+        "sha256": "c28b28e9020deeac52e99b18e2c384af6b65e430a7142bac8af9fffd11de2e15"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/095.gz",
+        "identity_mode": "content",
+        "sha256": "4cbbb45b43b097b4055d63d812bdfed31947353ab0a0dfd692e8081427202d1a"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/096.gz",
+        "identity_mode": "content",
+        "sha256": "617dc5b745b36b5cf6b250682c7e8e7ba9ce01d87356f7d4d3fc61e1b4e1562f"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/097.gz",
+        "identity_mode": "content",
+        "sha256": "f84cb09241ec240d6f394d2fec03c321330b2ed554eca7a87cc6eb7c4c78bdaa"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/098.gz",
+        "identity_mode": "content",
+        "sha256": "2ee14d18f2f4e20ba7b62cc8f84d687fa82be4dde696d878734eb5fb691d5a87"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/099.gz",
+        "identity_mode": "content",
+        "sha256": "a8a3a9a9bbbdd95de697b2166d88ff30982f65c949e83e7bb70e93560f821bd9"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/100.gz",
+        "identity_mode": "content",
+        "sha256": "f743fe661e9fb7572c09a2236ac039d5bfb5110d46b22fcf2659b0f17a66e446"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/101.gz",
+        "identity_mode": "content",
+        "sha256": "559c7f9d4014cd89a90949e4f7aab7c71666638d02f1a077bd66e003cf912595"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/102.gz",
+        "identity_mode": "content",
+        "sha256": "4e710647a82e4e6715255dffc1eb60b468cdba4725e1dc355ec625a393f92555"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/103.gz",
+        "identity_mode": "content",
+        "sha256": "067fbb072c347b8a1e98d19da1055c46d9e9e38ccff08c20c9031039080e707b"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/104.gz",
+        "identity_mode": "content",
+        "sha256": "f84cb09241ec240d6f394d2fec03c321330b2ed554eca7a87cc6eb7c4c78bdaa"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/105.gz",
+        "identity_mode": "content",
+        "sha256": "dc27519cb97f8fc2997411590e2d62b06ec8fa5009ef1e2d72cf8ed3f6281541"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/106.gz",
+        "identity_mode": "content",
+        "sha256": "856f3e398684ad45c869365e92754bd71c4e98d3bdee42699db327e4722a763b"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/107.gz",
+        "identity_mode": "content",
+        "sha256": "4cbbb45b43b097b4055d63d812bdfed31947353ab0a0dfd692e8081427202d1a"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/108.gz",
+        "identity_mode": "content",
+        "sha256": "617dc5b745b36b5cf6b250682c7e8e7ba9ce01d87356f7d4d3fc61e1b4e1562f"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/109.gz",
+        "identity_mode": "content",
+        "sha256": "f84cb09241ec240d6f394d2fec03c321330b2ed554eca7a87cc6eb7c4c78bdaa"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/110.gz",
+        "identity_mode": "content",
+        "sha256": "50f0d3a2932bde8500d6f35f8813b1b79bd0525dff217b66444ec1ac635b3249"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/111.gz",
+        "identity_mode": "content",
+        "sha256": "26a4697efe0ba73c373cacaacac391023f5da9a23351b11762254caa953ddf5b"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/112.gz",
+        "identity_mode": "content",
+        "sha256": "4cbbb45b43b097b4055d63d812bdfed31947353ab0a0dfd692e8081427202d1a"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/113.gz",
+        "identity_mode": "content",
+        "sha256": "617dc5b745b36b5cf6b250682c7e8e7ba9ce01d87356f7d4d3fc61e1b4e1562f"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/114.gz",
+        "identity_mode": "content",
+        "sha256": "f84cb09241ec240d6f394d2fec03c321330b2ed554eca7a87cc6eb7c4c78bdaa"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/115.gz",
+        "identity_mode": "content",
+        "sha256": "2bc7234fc2a68fdcf9a0b82ab2743b4bc4ec4ad3ddd21d8c97f147e4642e88d6"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/116.gz",
+        "identity_mode": "content",
+        "sha256": "cdbda3953fc3180c889b2acd80410c80df2d0381a3f1dc4f182d0cf678e306f7"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/117.gz",
+        "identity_mode": "content",
+        "sha256": "c7defe8cdf01c35a3977d6686d760d6c2dbad7201b3c81b766b6e7a0b4627a13"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/118.gz",
+        "identity_mode": "content",
+        "sha256": "a815b5e57a2ef401aa84412c88d96c04e2fb0884637b56ba76bbdec00c2a7071"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/119.gz",
+        "identity_mode": "content",
+        "sha256": "5d9c32b93f7083ac111a132f5b998a4f6d61d439fc2bd2ae3b96ace2b41700ce"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/120.gz",
+        "identity_mode": "content",
+        "sha256": "39e00de5230883c4b820290842a9d392ae93d12c3537dad062d49c9af4032f8c"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/121.gz",
+        "identity_mode": "content",
+        "sha256": "fa259929b2d52c37edbbf3ce5f5164aac587943f31862b4117e22f5229b1ab4e"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/122.gz",
+        "identity_mode": "content",
+        "sha256": "de3d819ea04bb71410e8c8fc060f159c782f641e44b0aef59c64d6e4b30a157a"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/123.gz",
+        "identity_mode": "content",
+        "sha256": "7d3c65bd97666ba7cf611b94e452a25e16735b7e89cc864e64b9fc9585d2abd9"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/124.gz",
+        "identity_mode": "content",
+        "sha256": "27006f378256b212df7ef5efbdb80d788eac515e3111abf7970c95fac1384505"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/125.gz",
+        "identity_mode": "content",
+        "sha256": "89a1db6ade3fe5b64578f6086ffe44b44e4c09b62e116fd8fc2beecdb76538c0"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/126.gz",
+        "identity_mode": "content",
+        "sha256": "c62bfbee6bafe8470267f00a6aeac958997a895329d6e9e63a2c5970a3d98c06"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/127.gz",
+        "identity_mode": "content",
+        "sha256": "b3cd181b2c661cb8a7e0f7bf9f2bcafb4237d0ed1e79073a3fea2a84478cadb1"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/128.gz",
+        "identity_mode": "content",
+        "sha256": "f36571c94cee021a51e94e4c068f78a66840456261bb728efe0849eee61d55a2"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/129.gz",
+        "identity_mode": "content",
+        "sha256": "8c475430e89412bb5993be98efeb7cbbd5f7c48c1d0a597da9c65274e3360ae2"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/130.gz",
+        "identity_mode": "content",
+        "sha256": "2575da2298a62b555b74c5f4ddbeeb3554543cc81bce056f6341ac0ff0b3ee3b"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/131.gz",
+        "identity_mode": "content",
+        "sha256": "419c96be5d10ef8f7ae13ac0769ce247cae1a7231c1ab2161f836bf80163b02e"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/132.gz",
+        "identity_mode": "content",
+        "sha256": "1dd3b2829093111505c31b15ba598eb020a0145caf52dac55f4931daf1cdc37a"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/133.gz",
+        "identity_mode": "content",
+        "sha256": "fc3ff7721ec6f63ff1e377e92bbea64e4a1e41506c9b522f35e235230a235368"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/134.gz",
+        "identity_mode": "content",
+        "sha256": "716b14c630094d4fddc318bfd4bbb5e35082bfb5af0d3dc216c931a01b68b898"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/135.gz",
+        "identity_mode": "content",
+        "sha256": "12d95e639b72a5236ee7b8ccc45b1e6757663037c8742b233f2358ecce16c5a1"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/136.gz",
+        "identity_mode": "content",
+        "sha256": "9fd308709e98ce82453bdf3a5a531c3f7288216d689b3aba7cb0b89f7fc61347"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/137.gz",
+        "identity_mode": "content",
+        "sha256": "1c909d740a673c7521d4238e35cfb6b31c60f437e3ce7d59ec0452d2417803e7"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/138.gz",
+        "identity_mode": "content",
+        "sha256": "72cfd6a7c6ac1d89e390081101e88114213364b4e43f2b0330f4ec0c19fbadbe"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/139.gz",
+        "identity_mode": "content",
+        "sha256": "1bced718306b4589fa69256c22947ebf5e3f5bc46f53032caf442ad0d9c0a48b"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/140.gz",
+        "identity_mode": "content",
+        "sha256": "c90f8afb20a4dbe86f4b1af321decf2f31727cde351844a1aeb6447d18f9161c"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/141.gz",
+        "identity_mode": "content",
+        "sha256": "27f741534d62b2d7e244f0b9ce79c6add26f1dc6351762262dbf520173fdef55"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/142.gz",
+        "identity_mode": "content",
+        "sha256": "814a67cf90c12464794faa7bd679f9e83e7c3d9c880d512990a3727497babe4e"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/143.gz",
+        "identity_mode": "content",
+        "sha256": "4e710647a82e4e6715255dffc1eb60b468cdba4725e1dc355ec625a393f92555"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/144.gz",
+        "identity_mode": "content",
+        "sha256": "067fbb072c347b8a1e98d19da1055c46d9e9e38ccff08c20c9031039080e707b"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/145.gz",
+        "identity_mode": "content",
+        "sha256": "e0238118ad77e8935e4d79e97ea83e2b7bb627c85ad1ac2cad69423673c138e6"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/146.gz",
+        "identity_mode": "content",
+        "sha256": "f84cb09241ec240d6f394d2fec03c321330b2ed554eca7a87cc6eb7c4c78bdaa"
+      },
+      {
+        "path": "site/publication-evidence/prod-2026-11-16.1/files/147.gz",
+        "identity_mode": "content",
+        "sha256": "999d44093b79fbfa41ea3a4365176365c7f4feacdf172432d526c988ad6694b2"
       },
       {
         "path": "site/publications/agentic-loops/PROVENANCE.md",
@@ -11283,9 +12033,14 @@
         "sha256": "2122f6ee4ac56e6de9afad1e83644cbd3eddc588a290ee49e529bbfa66626053"
       },
       {
+        "path": "site/publications/agentic-loops/publication-events/site-publication-20261116.json",
+        "identity_mode": "content",
+        "sha256": "d52be87914e5d0be35645d137baf1258b137a9f2763258beca8e6fe384e1e3aa"
+      },
+      {
         "path": "site/publications/agentic-loops/publication.json",
         "identity_mode": "content",
-        "sha256": "a2ed7a53edb5ca2783cccb98282e53279f41c2061df0da9f55bc316ca3503120"
+        "sha256": "43ba67678dc1ae123f3a363fc69299abc27a76f72eb962bd72bc26e51dea402a"
       },
       {
         "path": "site/publications/ai-cost-cutting-fallacy/PROVENANCE.md",
@@ -11323,9 +12078,14 @@
         "sha256": "48739ad4ae165e2d3cd2fe35c8b5c17ad53b41344918cd5c1eff66dff41f1ec7"
       },
       {
+        "path": "site/publications/ai-cost-cutting-fallacy/publication-events/site-publication-20261116.json",
+        "identity_mode": "content",
+        "sha256": "948d5e53d2bbc5704f61df0f9c578988cb02cb68627ce9f328a0280388c36c2c"
+      },
+      {
         "path": "site/publications/ai-cost-cutting-fallacy/publication.json",
         "identity_mode": "content",
-        "sha256": "b59ea8a10596340ca6dab91669fa28efaf456cb942f75036b6c45ad212a9c739"
+        "sha256": "217ef42890d9d6786033b2a9dca00c25109db74ccb5ef14fadca188318120021"
       },
       {
         "path": "site/publications/ai-governance-is-control-theory/PROVENANCE.md",
@@ -11363,9 +12123,14 @@
         "sha256": "ec7624c2e61d7387f6399f55e73c5aed393a9846d87f7c336019f32da1ee2851"
       },
       {
+        "path": "site/publications/ai-governance-is-control-theory/publication-events/site-publication-20261116.json",
+        "identity_mode": "content",
+        "sha256": "c42cf58ef8711ebd094850c9a9feb9856f3a73d0e82fccc56c71734e926e663f"
+      },
+      {
         "path": "site/publications/ai-governance-is-control-theory/publication.json",
         "identity_mode": "content",
-        "sha256": "315b67ab87fccc5477d1d3c33fb9122be754b66f815dc1ff5ba33fafa9862711"
+        "sha256": "adaf1fed515ccfc4e07e80bddd6d74db112f4f14a29029cc3da2d33a5ba5c9e9"
       },
       {
         "path": "site/publications/ai-native-workflows-have-a-moat-problem/PROVENANCE.md",
@@ -11398,9 +12163,14 @@
         "sha256": "14a7f826b1fa72b165162d86da7a388a7fa70d0ae4387fa6b82bd9a805bc1642"
       },
       {
+        "path": "site/publications/ai-native-workflows-have-a-moat-problem/publication-events/site-publication-20261116.json",
+        "identity_mode": "content",
+        "sha256": "d5fde112a6eb8e0d17d70b08c10a00a708c59521cf8514eef486983cc2e83f43"
+      },
+      {
         "path": "site/publications/ai-native-workflows-have-a-moat-problem/publication.json",
         "identity_mode": "content",
-        "sha256": "6e0fb0f7cf6819784b1eab81294ff9adf95c7946f216b6bf61c1105a0c0bf021"
+        "sha256": "1613d6df976ad27129af83cd3e0eb7f5dfb9958ef8e2f6412ddd1c2e6e3fd66e"
       },
       {
         "path": "site/publications/ai-verification-crisis/PROVENANCE.md",
@@ -11438,9 +12208,14 @@
         "sha256": "db9eaca73cbf9b4ee4cd56ce606997d67b3134a2c72277c70ceb2739c26906c2"
       },
       {
+        "path": "site/publications/ai-verification-crisis/publication-events/site-publication-20261116.json",
+        "identity_mode": "content",
+        "sha256": "76ed9838bdce33fe01dd3a3c470192d3100654fe8410d33691fd448ded3ef2ad"
+      },
+      {
         "path": "site/publications/ai-verification-crisis/publication.json",
         "identity_mode": "content",
-        "sha256": "5933b1431b959b994a53c2e65c01c3e207873a01fc28ff4df3c4111d0af08e50"
+        "sha256": "cf3542662800d49dc76187af23905e29d9e0cdd4d39322dfee4bf578491d31ae"
       },
       {
         "path": "site/publications/beyond-embeddings/PROVENANCE.md",
@@ -11478,9 +12253,14 @@
         "sha256": "ca9c337d032ef86241aee95becccabd4761aaaf970cf85475f308d94dbd768e6"
       },
       {
+        "path": "site/publications/beyond-embeddings/publication-events/site-publication-20261116.json",
+        "identity_mode": "content",
+        "sha256": "8dcfa836afe03925cd5c525a1d23945076e176896c3cd5f6db3e63166e41d46b"
+      },
+      {
         "path": "site/publications/beyond-embeddings/publication.json",
         "identity_mode": "content",
-        "sha256": "90e866f92957b0fcfa788b4af3e5a84fe9b877cd5648b04804d07b9f2135f461"
+        "sha256": "27cf20b55803a4540bb03759de5ee663e3b602ba82a0c63cc8e1f46a3d1f5f8c"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/blueprint.md",
@@ -11818,9 +12598,14 @@
         "sha256": "3e38b0261c1226f8886ae490a1c925f362c86def4133940be3bf2a4ae5e849c7"
       },
       {
+        "path": "site/publications/thinking-systems/publication-events/site-publication-20261116.json",
+        "identity_mode": "content",
+        "sha256": "5acc1e9ed55a1d16bd90c74f556de50f80bb7be89fadb0985d232d9f642ef920"
+      },
+      {
         "path": "site/publications/thinking-systems/publication.json",
         "identity_mode": "content",
-        "sha256": "c47ac9b5787a72db5cb43e34da9a6ae873be7270ca7be0a80f99e65ecb98329e"
+        "sha256": "d01bb43aa0d5c858651c181d83ad43845662076ce4b104d9e0b9a55da525657e"
       },
       {
         "path": "site/retained/article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292/systemic-response.webp",
@@ -12715,7 +13500,7 @@
       {
         "path": "tests/local-catalog-relationships.test.cjs",
         "identity_mode": "content",
-        "sha256": "4434fac71b2b6e9bc13db593e3c1ee7f125009cf53e70195d44ff737e1f895ad"
+        "sha256": "8d851229ae2b25b4468597e2f82776753943813cffac9f888d1781f3a37706ec"
       },
       {
         "path": "tests/native-display.test.cjs",
@@ -12810,7 +13595,7 @@
       {
         "path": "tests/publishing.test.cjs",
         "identity_mode": "content",
-        "sha256": "2938d9e6dddeff8fcd2a00b64720e2899e4746324039dbe8e6e5a34d2e9c4fab"
+        "sha256": "962d51f45c84e1470921f4bb0ca135f9447c112b2039552ab56c8adc2cc389c8"
       },
       {
         "path": "tests/quality-sources.test.cjs",
@@ -13365,7 +14150,7 @@
       {
         "path": "tools/publishing/site-event.cjs",
         "identity_mode": "content",
-        "sha256": "eb78030c639893a9084dc0ae23564ddfa55789cb87aaf28b12757338706ee1b0"
+        "sha256": "f2aaf9a74db5b27be79788395388ed3a881a8126d89991a4834fb692cd06a135"
       },
       {
         "path": "tools/publishing/text.cjs",
@@ -13805,7 +14590,7 @@
       {
         "path": "tools/quality/scanners.cjs",
         "identity_mode": "content",
-        "sha256": "28cd6d80fa0a8ead817b71dfc3e008a710d344c5341fd2488d97c2795538e921"
+        "sha256": "0d403db4e617403ae36bfd6a0efc6d120292da2742200083af25ad7fc10ff467"
       },
       {
         "path": "tools/quality/scroll-browser.cjs",
@@ -13820,7 +14605,7 @@
       {
         "path": "tools/quality/secrets-publication.json",
         "identity_mode": "content",
-        "sha256": "a90f55ea04fc9dab13f25f0447898f59f20887c8ac7c9ca1849ca269e8594727"
+        "sha256": "5469344def7b5e4d7e2df2c945c4977661a256a4e77c182362e7170d95f2623a"
       },
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
@@ -14050,7 +14835,7 @@
       {
         "path": "tools/repository_intelligence.py",
         "identity_mode": "content",
-        "sha256": "91457fdba4b0965e290b304ef153aa938a46879de2b2796a0787b352632ea63e"
+        "sha256": "eee7cbec7a7130f7bfa63ae1e1d5b7c33395c627ecdae6a1542b7e2b756daa78"
       },
       {
         "path": "tools/run_repository_tests.py",
@@ -14085,7 +14870,7 @@
       {
         "path": "tools/site/articles.cjs",
         "identity_mode": "content",
-        "sha256": "ae35cca2335b6784e08d424609b2cadeb371605945dc434ea5609bc7abb3d53f"
+        "sha256": "6aadeba052c9877427671132228da46af61fa6830891761ea6c184a854944462"
       },
       {
         "path": "tools/site/build.cjs",
@@ -14271,7 +15056,7 @@
   },
   "producer": {
     "path": "tools/repository_intelligence.py",
-    "sha256": "91457fdba4b0965e290b304ef153aa938a46879de2b2796a0787b352632ea63e",
+    "sha256": "eee7cbec7a7130f7bfa63ae1e1d5b7c33395c627ecdae6a1542b7e2b756daa78",
     "config_path": ".github/repository-intelligence-config.json",
     "config_sha256": "66adb348ba24a7f5fa4851ddba10f102e6f81cbff8824679e800204068db9468"
   },
@@ -16296,53 +17081,9 @@
       "title": "the-sdlc-is-out-of-balance.html"
     },
     {
-      "path": "docs/article-snapshots/1ad993812e199251299e1545ae901b32b3612699717b5555329e0f1185fb2afc/the-sdlc-is-out-of-balance.html",
+      "path": "docs/article-snapshots/3a8b773e1446bc2e3228eb4b256974e53f64382d47c967373186b7aca695620a/agentic-loops.html",
       "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "the-sdlc-is-out-of-balance.html"
-    },
-    {
-      "path": "docs/article-snapshots/1b6eaa02835c73d162f618ec6ce2c895e6c8c4a6c262c46324b2fddb38b3fcb0/ai-governance-is-control-theory.html",
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "ai-governance-is-control-theory.html"
-    },
-    {
-      "path": "docs/article-snapshots/76d33d8e21ab50f78ec8c7102e7999c8c45b7cd56ed30c1ad22c0d6fb2699bff/thinking-systems.html",
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "thinking-systems.html"
-    },
-    {
-      "path": "docs/article-snapshots/8d15626df060496a3f1d991a624aa883a3a37cce99907c2886e250a6e49d872a/beyond-embeddings.html",
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "beyond-embeddings.html"
-    },
-    {
-      "path": "docs/article-snapshots/9479a537c62f131448ff3cc90f3ba0612689b4404f3e960313bff4da01aab690/agentic-loops.html",
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -16351,15 +17092,37 @@
       "title": "agentic-loops.html"
     },
     {
-      "path": "docs/article-snapshots/a0b4e14883af5ba1418a23420074d42cb6d10b386eb0a46b370b78c5bd5c8b97/ai-native-workflows-have-a-moat-problem.html",
+      "path": "docs/article-snapshots/4cd574e812aff11e9d494ff69f6d6144a5515505b12a76aabb9cc103021eab2b/ai-verification-crisis.html",
       "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "ai-native-workflows-have-a-moat-problem.html"
+      "title": "ai-verification-crisis.html"
+    },
+    {
+      "path": "docs/article-snapshots/8899e2695fb91d361864323b0b6611ecf5ca027f4d9ef43bb0e491d00460a797/beyond-embeddings.html",
+      "kind": "file",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "beyond-embeddings.html"
+    },
+    {
+      "path": "docs/article-snapshots/933f79405bfc8f81c734b179836d6ba023921c1eccb8b7b6aa322a6ae5823d43/ai-governance-is-control-theory.html",
+      "kind": "file",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ai-governance-is-control-theory.html"
     },
     {
       "path": "docs/article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995/the-sdlc-is-out-of-balance.html",
@@ -16384,20 +17147,42 @@
       "title": "the-sdlc-is-out-of-balance.html"
     },
     {
-      "path": "docs/article-snapshots/c03ae1d5925a33b1e3ece61210a4c593bb608cd86dcfeae24c0909d23ad34975/ai-verification-crisis.html",
+      "path": "docs/article-snapshots/c99a55b54db0594a4455e1b40a52435e030e8cd80476ee8c0cafc8d95da05774/thinking-systems.html",
       "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "ai-verification-crisis.html"
+      "title": "thinking-systems.html"
     },
     {
-      "path": "docs/article-snapshots/ffd72466b6d3cfb099d196286610e17fab8dd1304452b5b852a2049e8a9ea6d4/ai-cost-cutting-fallacy.html",
+      "path": "docs/article-snapshots/d7eb9d61249b83dd4922b094901bd364051f18f9d294e7c36bd7b3d0b5dd7d13/ai-native-workflows-have-a-moat-problem.html",
       "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ai-native-workflows-have-a-moat-problem.html"
+    },
+    {
+      "path": "docs/article-snapshots/e5133329d52dae5052e9b980e57fca719d0e8463faeeac5ece89260d81393bd8/the-sdlc-is-out-of-balance.html",
+      "kind": "file",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "the-sdlc-is-out-of-balance.html"
+    },
+    {
+      "path": "docs/article-snapshots/f028700871eb1e09f85cdcf99129b1234da24db1921c51042e1767b57bb66748/ai-cost-cutting-fallacy.html",
+      "kind": "file",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -17044,26 +17829,15 @@
       "title": "talks.html"
     },
     {
-      "path": "docs/snapshots/464f356f00b70c8e63d3ba19b756e7ccb0b23ee2e9926d3ea138b7d0c33c917f/research.html",
+      "path": "docs/snapshots/55bd2de579d3809039cf608530b1e025dd392e822cde585e30ef2574086229f1/index.html",
       "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "research.html"
-    },
-    {
-      "path": "docs/snapshots/481dc8bacc3c2e39ac84bdcf4f02765554b9cc717d92f3df6094042dcd9aba71/talks.html",
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "talks.html"
+      "title": "index.html"
     },
     {
       "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
@@ -17119,17 +17893,6 @@
         "AGENTS.md"
       ],
       "title": "talks.html"
-    },
-    {
-      "path": "docs/snapshots/8778a66844d2e4f070de4fb9be832afc055c2e20c73a30182e661bc47e749ae4/writing.html",
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "writing.html"
     },
     {
       "path": "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html",
@@ -17209,6 +17972,17 @@
       "title": "index.html"
     },
     {
+      "path": "docs/snapshots/ccf4c8762192a34fddd8a875cd605aa3924bad358b235f48e2ff74d86399e622/credits.html",
+      "kind": "file",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "credits.html"
+    },
+    {
       "path": "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html",
       "kind": "file",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
@@ -17220,26 +17994,37 @@
       "title": "writing.html"
     },
     {
-      "path": "docs/snapshots/e2cc42173f1ae664abb1dcdd6ddeb0503845d9b7ae99361d2330b68fb8b50e13/index.html",
+      "path": "docs/snapshots/daa0d1b0b5b8e7cb2b582c43387d5fbc2b2ab9b81d3b0ea88e6d59dedee9fb31/research.html",
       "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "index.html"
+      "title": "research.html"
     },
     {
-      "path": "docs/snapshots/eb9003485aff808b249f624f706e793516bcf3a1c84c4734fa00d53e901a0130/credits.html",
+      "path": "docs/snapshots/f35a4e326094a493c33c3292be2ece2a4b754c63449ed993f1c6010f473db35a/writing.html",
       "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "credits.html"
+      "title": "writing.html"
+    },
+    {
+      "path": "docs/snapshots/f59716949caaff4c14fe8b16981a2e7d0b639e44f659a042fcfeb6dbb57bf125/talks.html",
+      "kind": "file",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "talks.html"
     },
     {
       "path": "docs/space.js",
@@ -26018,6 +26803,17 @@
         "AGENTS.md"
       ],
       "title": "Article editorial refresh — 16 November 2026"
+    },
+    {
+      "path": "review/issue-183/2026-11-16-publication-closeout.md",
+      "kind": "file",
+      "purpose": "Issue 183 batch closeout, release and publication-event evidence.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue #183 — publication and batch closeout"
     },
     {
       "path": "review/issue-183/2026-11-16-staging-controller.md",
@@ -39407,6 +40203,1645 @@
       "title": "output-lock.json"
     },
     {
+      "path": "site/publication-evidence/prod-2026-11-16.1/artifact.json.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "artifact.json.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/000.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "000.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/001.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "001.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/002.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "002.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/003",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "003"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/004.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "004.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/005",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "005"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/006",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "006"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/007",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "007"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/008.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "008.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/009",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "009"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/010",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "010"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/011",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "011"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/012",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "012"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/013",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "013"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/014",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "014"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/015",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "015"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/016",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "016"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/017",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "017"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/018",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "018"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/019",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "019"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/020",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "020"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/021",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "021"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/022",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "022"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/023",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "023"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/024",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "024"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/025",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "025"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/026",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "026"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/027",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "027"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/028",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "028"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/029",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "029"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/030",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "030"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/031",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "031"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/032",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "032"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/033",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "033"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/034",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "034"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/035",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "035"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/036",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "036"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/037",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "037"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/038",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "038"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/039",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "039"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/040",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "040"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/041",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "041"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/042",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "042"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/043",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "043"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/044",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "044"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/045",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "045"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/046",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "046"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/047",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "047"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/048",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "048"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/049",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "049"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/050",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "050"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/051",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "051"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/052",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "052"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/053",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "053"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/054.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "054.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/055.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "055.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/056.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "056.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/057.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "057.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/058.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "058.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/059.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "059.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/060.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "060.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/061.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "061.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/062.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "062.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/063.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "063.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/064.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "064.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/065.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "065.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/066.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "066.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/067.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "067.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/068.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "068.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/069.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "069.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/070.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "070.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/071.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "071.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/072.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "072.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/073.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "073.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/074",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "074"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/075",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "075"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/076.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "076.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/077.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "077.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/078.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "078.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/079.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "079.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/080",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "080"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/081",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "081"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/082.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "082.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/083.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "083.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/084.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "084.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/085.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "085.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/086.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "086.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/087.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "087.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/088.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "088.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/089.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "089.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/090.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "090.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/091.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "091.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/092.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "092.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/093.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "093.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/094.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "094.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/095.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "095.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/096.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "096.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/097.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "097.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/098.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "098.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/099.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "099.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/100.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "100.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/101.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "101.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/102.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "102.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/103.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "103.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/104.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "104.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/105.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "105.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/106.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "106.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/107.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "107.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/108.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "108.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/109.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "109.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/110.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "110.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/111.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "111.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/112.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "112.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/113.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "113.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/114.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "114.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/115.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "115.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/116.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "116.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/117.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "117.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/118.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "118.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/119.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "119.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/120.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "120.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/121.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "121.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/122.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "122.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/123.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "123.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/124.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "124.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/125.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "125.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/126.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "126.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/127.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "127.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/128.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "128.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/129.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "129.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/130.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "130.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/131.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "131.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/132.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "132.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/133.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "133.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/134.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "134.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/135.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "135.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/136.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "136.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/137.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "137.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/138.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "138.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/139.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "139.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/140.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "140.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/141.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "141.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/142.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "142.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/143.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "143.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/144.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "144.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/145.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "145.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/146.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "146.gz"
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files/147.gz",
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "147.gz"
+    },
+    {
       "path": "site/publications/agentic-loops/PROVENANCE.md",
       "kind": "file",
       "purpose": "Authored Agentic Loops manuscript, provenance or publication edition.",
@@ -39482,6 +41917,17 @@
         "AGENTS.md"
       ],
       "title": "profile.json"
+    },
+    {
+      "path": "site/publications/agentic-loops/publication-events/site-publication-20261116.json",
+      "kind": "file",
+      "purpose": "Source-bound observed publication events for the selected native article edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "site-publication-20261116.json"
     },
     {
       "path": "site/publications/agentic-loops/publication.json",
@@ -39572,6 +42018,17 @@
       "title": "profile.json"
     },
     {
+      "path": "site/publications/ai-cost-cutting-fallacy/publication-events/site-publication-20261116.json",
+      "kind": "file",
+      "purpose": "Source-bound observed publication events for the selected native article edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "site-publication-20261116.json"
+    },
+    {
       "path": "site/publications/ai-cost-cutting-fallacy/publication.json",
       "kind": "file",
       "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
@@ -39660,6 +42117,17 @@
       "title": "profile.json"
     },
     {
+      "path": "site/publications/ai-governance-is-control-theory/publication-events/site-publication-20261116.json",
+      "kind": "file",
+      "purpose": "Source-bound observed publication events for the selected native article edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "site-publication-20261116.json"
+    },
+    {
       "path": "site/publications/ai-governance-is-control-theory/publication.json",
       "kind": "file",
       "purpose": "Authored Control Theory source, provenance or edition and publication profile.",
@@ -39735,6 +42203,17 @@
         "AGENTS.md"
       ],
       "title": "profile.json"
+    },
+    {
+      "path": "site/publications/ai-native-workflows-have-a-moat-problem/publication-events/site-publication-20261116.json",
+      "kind": "file",
+      "purpose": "Source-bound observed publication events for the selected native article edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "site-publication-20261116.json"
     },
     {
       "path": "site/publications/ai-native-workflows-have-a-moat-problem/publication.json",
@@ -39825,6 +42304,17 @@
       "title": "profile.json"
     },
     {
+      "path": "site/publications/ai-verification-crisis/publication-events/site-publication-20261116.json",
+      "kind": "file",
+      "purpose": "Source-bound observed publication events for the selected native article edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "site-publication-20261116.json"
+    },
+    {
       "path": "site/publications/ai-verification-crisis/publication.json",
       "kind": "file",
       "purpose": "Authored Verification Crisis manuscript, provenance or publication edition.",
@@ -39911,6 +42401,17 @@
         "AGENTS.md"
       ],
       "title": "profile.json"
+    },
+    {
+      "path": "site/publications/beyond-embeddings/publication-events/site-publication-20261116.json",
+      "kind": "file",
+      "purpose": "Source-bound observed publication events for the selected native article edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "site-publication-20261116.json"
     },
     {
       "path": "site/publications/beyond-embeddings/publication.json",
@@ -40659,6 +43160,17 @@
         "AGENTS.md"
       ],
       "title": "profile.json"
+    },
+    {
+      "path": "site/publications/thinking-systems/publication-events/site-publication-20261116.json",
+      "kind": "file",
+      "purpose": "Source-bound observed publication events for the selected native article edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "site-publication-20261116.json"
     },
     {
       "path": "site/publications/thinking-systems/publication.json",
@@ -46703,9 +49215,9 @@
       ]
     },
     {
-      "path": "docs/article-snapshots/1ad993812e199251299e1545ae901b32b3612699717b5555329e0f1185fb2afc",
+      "path": "docs/article-snapshots/3a8b773e1446bc2e3228eb4b256974e53f64382d47c967373186b7aca695620a",
       "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -46713,9 +49225,9 @@
       ]
     },
     {
-      "path": "docs/article-snapshots/1b6eaa02835c73d162f618ec6ce2c895e6c8c4a6c262c46324b2fddb38b3fcb0",
+      "path": "docs/article-snapshots/4cd574e812aff11e9d494ff69f6d6144a5515505b12a76aabb9cc103021eab2b",
       "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -46723,9 +49235,9 @@
       ]
     },
     {
-      "path": "docs/article-snapshots/76d33d8e21ab50f78ec8c7102e7999c8c45b7cd56ed30c1ad22c0d6fb2699bff",
+      "path": "docs/article-snapshots/8899e2695fb91d361864323b0b6611ecf5ca027f4d9ef43bb0e491d00460a797",
       "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -46733,29 +49245,9 @@
       ]
     },
     {
-      "path": "docs/article-snapshots/8d15626df060496a3f1d991a624aa883a3a37cce99907c2886e250a6e49d872a",
+      "path": "docs/article-snapshots/933f79405bfc8f81c734b179836d6ba023921c1eccb8b7b6aa322a6ae5823d43",
       "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/article-snapshots/9479a537c62f131448ff3cc90f3ba0612689b4404f3e960313bff4da01aab690",
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/article-snapshots/a0b4e14883af5ba1418a23420074d42cb6d10b386eb0a46b370b78c5bd5c8b97",
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -46783,9 +49275,9 @@
       ]
     },
     {
-      "path": "docs/article-snapshots/c03ae1d5925a33b1e3ece61210a4c593bb608cd86dcfeae24c0909d23ad34975",
+      "path": "docs/article-snapshots/c99a55b54db0594a4455e1b40a52435e030e8cd80476ee8c0cafc8d95da05774",
       "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -46793,9 +49285,29 @@
       ]
     },
     {
-      "path": "docs/article-snapshots/ffd72466b6d3cfb099d196286610e17fab8dd1304452b5b852a2049e8a9ea6d4",
+      "path": "docs/article-snapshots/d7eb9d61249b83dd4922b094901bd364051f18f9d294e7c36bd7b3d0b5dd7d13",
       "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-snapshots/e5133329d52dae5052e9b980e57fca719d0e8463faeeac5ece89260d81393bd8",
+      "kind": "directory",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-snapshots/f028700871eb1e09f85cdcf99129b1234da24db1921c51042e1767b57bb66748",
+      "kind": "directory",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -46983,19 +49495,9 @@
       ]
     },
     {
-      "path": "docs/snapshots/464f356f00b70c8e63d3ba19b756e7ccb0b23ee2e9926d3ea138b7d0c33c917f",
+      "path": "docs/snapshots/55bd2de579d3809039cf608530b1e025dd392e822cde585e30ef2574086229f1",
       "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/481dc8bacc3c2e39ac84bdcf4f02765554b9cc717d92f3df6094042dcd9aba71",
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -47046,16 +49548,6 @@
       "path": "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa",
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/8778a66844d2e4f070de4fb9be832afc055c2e20c73a30182e661bc47e749ae4",
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -47133,6 +49625,16 @@
       ]
     },
     {
+      "path": "docs/snapshots/ccf4c8762192a34fddd8a875cd605aa3924bad358b235f48e2ff74d86399e622",
+      "kind": "directory",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647",
       "kind": "directory",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
@@ -47143,9 +49645,9 @@
       ]
     },
     {
-      "path": "docs/snapshots/e2cc42173f1ae664abb1dcdd6ddeb0503845d9b7ae99361d2330b68fb8b50e13",
+      "path": "docs/snapshots/daa0d1b0b5b8e7cb2b582c43387d5fbc2b2ab9b81d3b0ea88e6d59dedee9fb31",
       "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -47153,9 +49655,19 @@
       ]
     },
     {
-      "path": "docs/snapshots/eb9003485aff808b249f624f706e793516bcf3a1c84c4734fa00d53e901a0130",
+      "path": "docs/snapshots/f35a4e326094a493c33c3292be2ece2a4b754c63449ed993f1c6010f473db35a",
       "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/f59716949caaff4c14fe8b16981a2e7d0b639e44f659a042fcfeb6dbb57bf125",
+      "kind": "directory",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -48643,6 +51155,36 @@
       ]
     },
     {
+      "path": "site/publication-evidence",
+      "kind": "directory",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1",
+      "kind": "directory",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publication-evidence/prod-2026-11-16.1/files",
+      "kind": "directory",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "site/publications",
       "kind": "directory",
       "purpose": "Authored article blueprints, manuscripts, declared profiles, adaptations and semantic edition records.",
@@ -48673,6 +51215,16 @@
       ]
     },
     {
+      "path": "site/publications/agentic-loops/publication-events",
+      "kind": "directory",
+      "purpose": "Source-bound observed publication events for the selected native article edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "site/publications/ai-cost-cutting-fallacy",
       "kind": "directory",
       "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
@@ -48686,6 +51238,16 @@
       "path": "site/publications/ai-cost-cutting-fallacy/editions",
       "kind": "directory",
       "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/ai-cost-cutting-fallacy/publication-events",
+      "kind": "directory",
+      "purpose": "Source-bound observed publication events for the selected native article edition.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md",
       "instructions": [
@@ -48713,6 +51275,16 @@
       ]
     },
     {
+      "path": "site/publications/ai-governance-is-control-theory/publication-events",
+      "kind": "directory",
+      "purpose": "Source-bound observed publication events for the selected native article edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "site/publications/ai-native-workflows-have-a-moat-problem",
       "kind": "directory",
       "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
@@ -48726,6 +51298,16 @@
       "path": "site/publications/ai-native-workflows-have-a-moat-problem/editions",
       "kind": "directory",
       "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/ai-native-workflows-have-a-moat-problem/publication-events",
+      "kind": "directory",
+      "purpose": "Source-bound observed publication events for the selected native article edition.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md",
       "instructions": [
@@ -48753,6 +51335,16 @@
       ]
     },
     {
+      "path": "site/publications/ai-verification-crisis/publication-events",
+      "kind": "directory",
+      "purpose": "Source-bound observed publication events for the selected native article edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "site/publications/beyond-embeddings",
       "kind": "directory",
       "purpose": "Authored Beyond Embeddings manuscript, provenance or publication edition.",
@@ -48766,6 +51358,16 @@
       "path": "site/publications/beyond-embeddings/editions",
       "kind": "directory",
       "purpose": "Authored Beyond Embeddings manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/beyond-embeddings/publication-events",
+      "kind": "directory",
+      "purpose": "Source-bound observed publication events for the selected native article edition.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md",
       "instructions": [
@@ -48916,6 +51518,16 @@
       "path": "site/publications/thinking-systems/editions",
       "kind": "directory",
       "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/thinking-systems/publication-events",
+      "kind": "directory",
+      "purpose": "Source-bound observed publication events for the selected native article edition.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md",
       "instructions": [
