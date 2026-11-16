@@ -1,6 +1,6 @@
 {
   "base_sha": "d37d099b519536e042cdbb261dbbbc5e2cbce7c5",
-  "scope_sha256": "0fcd24268d3aee68b40a2f9c0c0b55f4439ce7f0fcb7ad5f0389960220b82376",
+  "scope_sha256": "60787065aa5b1b87ca2aea631c9c43337499f4c388051b752839a195c0659cf9",
   "paths": [
     ".github/REPOSITORY-INTELLIGENCE.md",
     "guides/ARTICLE-WORKFLOW.md",
@@ -8,6 +8,7 @@
     "tests/local-catalog-relationships.test.cjs",
     "tests/publishing.test.cjs",
     "tests/reader-mode.test.cjs",
+    "tools/quality/bandit-policy.json",
     "tools/quality/secrets-publication.json",
     "tools/repository_intelligence.py"
   ],
@@ -18,6 +19,6 @@
     "Delivery routes and controls",
     "Keeping this guide current"
   ],
-  "rationale": "The guide already covers full RI indexing, build-time ownership, release artifact trust and the full route for mixed website and control effects. The one shared publication archive, its RI capacity, and exact security finding dispositions belong in the guide's linked lower-level owners. The owner staging and exact-head change admission route remain applicable.",
-  "reviewer_execution": "/root/reader_assertion_review; explicit fork_turns=none; reviewed 1c8ad86d35ce5c327dd3e920b9d5f0476196a081, tree 74e7c2d00d27f27921da8089859d7db0ce9bb07a, against d37d099b519536e042cdbb261dbbbc5e2cbce7c5. Common prompt blob 68796daaf4313f64da381b1628866267fd9e263b; Code Reviewer prompt blob 2363340a1eaae62fdbd3ab070fda5c6436ec8124."
+  "rationale": "The guide already describes full build-time validation, source-bound generation inputs, RI indexing, the full route for mixed site and control changes, and exact-head owner admission. The shared archive reader, exact scanner findings and independent checks use those routes.",
+  "reviewer_execution": "/root/staging_integrity_final with clean context. Reviewed 918437e62d87c1114a9a3b0eb28eeb876ca63514 and tree 4acaf28db9ecc2dbb3a6d36e15dcf8f1fb4a9690. Common prompt 68796daaf4313f64da381b1628866267fd9e263b. Code prompt 2363340a1eaae62fdbd3ab070fda5c6436ec8124."
 }

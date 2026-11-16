@@ -52,7 +52,10 @@ function archivedSource(root, relative, maximum, compressed = false) {
   const source = readSource(root, relative, {
     maxBytes: maximum + (compressed ? 65_536 : 0),
   });
-  return compressed ? gunzipSync(source.bytes, { maxOutputLength: maximum }) : source.bytes;
+  return {
+    sha256: source.sha256,
+    bytes: compressed ? gunzipSync(source.bytes, { maxOutputLength: maximum }) : source.bytes,
+  };
 }
 
 function archivedFiles(root, owner, shared, files) {
@@ -65,19 +68,81 @@ function archivedFiles(root, owner, shared, files) {
     }));
   }
   return inventory(path.join(root, directory)).map((stored) => {
-    const match = /^(\d{3})(\.gz)?$/.exec(stored);
+    const match = stored.match(/^(\d{3})(\.gz)?$/);
     const file = files[Number(match?.[1])];
     if (!file) throw new Error('Invalid site evidence member index');
-    return { file, relative: `${directory}/${stored}`, compressed: Boolean(match[2]) };
+    return {
+      file,
+      relative: `${directory}/${stored}`,
+      compressed: Boolean(match[2]),
+    };
   });
 }
 
-function validateSiteArtifact(root, directory, event) {
+function validateArchive(root, owner, shared, manifest) {
+  const files = Object.keys(manifest.files).sort();
+  const stored = archivedFiles(root, owner, shared, files);
+  if (
+    files.length > 1000 ||
+    JSON.stringify(stored.map((item) => item.file).sort()) !== JSON.stringify(files)
+  ) {
+    throw new Error('Site publication artifact inventory differs from its manifest');
+  }
+  let total = 0;
+  let revision;
+  const digests = new Map();
+  for (const { file, relative, compressed } of stored) {
+    assertSourceRelative(file);
+    const maximum = file.endsWith('.html') ? htmlRawLimit(file) : assetRawBytes;
+    const { bytes, sha256 } = archivedSource(root, relative, maximum, compressed);
+    total += bytes.length;
+    if (
+      total > 250_000_000 ||
+      digest(bytes) !== manifest.files[file].sha256 ||
+      bytes.length !== manifest.files[file].raw
+    ) {
+      throw new Error('Site publication artifact has corrupt or excessive public bytes');
+    }
+    if (file === 'site-revision.json') {
+      revision = JSON.parse(decodeUtf8(bytes, 'Site revision'));
+    }
+    digests.set(relative, sha256);
+  }
+  return { revision, digests };
+}
+
+function verifySiteArchives(root, archives) {
+  const digests = new Map();
+  for (const {
+    owner,
+    shared,
+    manifest,
+    manifestPath,
+    manifestSha256,
+    digests: validated,
+  } of archives.values()) {
+    const { bytes, sha256 } = archivedSource(root, manifestPath, 1_000_000, shared);
+    if (digest(bytes) !== manifestSha256) {
+      throw new Error('Site publication artifact manifest changed during article selection');
+    }
+    const current = validateArchive(root, owner, shared, manifest);
+    if (
+      current.digests.size !== validated.size ||
+      [...current.digests].some(([file, hash]) => validated.get(file) !== hash)
+    ) {
+      throw new Error('Site publication archive changed during article selection');
+    }
+    digests.set(manifestPath, sha256);
+    for (const [file, hash] of current.digests) digests.set(file, hash);
+  }
+  return digests;
+}
+
+function validateSiteArtifact(root, directory, event, archives) {
   const artifact = event.artifact;
-  const shared =
-    /^site\/publication-evidence\/(prod-\d{4}-\d{2}-\d{2}\.[1-9]\d*)\/artifact\.json\.gz$/.exec(
-      artifact.manifestPath
-    );
+  const shared = artifact.manifestPath.match(
+    /^site\/publication-evidence\/(prod-\d{4}-\d{2}-\d{2}\.[1-9]\d*)\/artifact\.json\.gz$/
+  );
   const legacyRoots = [
     `${directory}/site-artifacts/${artifact.id}`,
     `dist/site-artifacts/${artifact.id}`,
@@ -89,7 +154,12 @@ function validateSiteArtifact(root, directory, event) {
     throw new Error('Site event must bind its coherent archived site artifact');
   }
   const sharedArchive = Boolean(shared);
-  const manifestBytes = archivedSource(root, artifact.manifestPath, 1_000_000, sharedArchive);
+  const { bytes: manifestBytes } = archivedSource(
+    root,
+    artifact.manifestPath,
+    1_000_000,
+    sharedArchive
+  );
   const manifest = JSON.parse(decodeUtf8(manifestBytes, artifact.manifestPath));
   if (
     digest(manifestBytes) !== artifact.manifestSha256 ||
@@ -138,34 +208,20 @@ function validateSiteArtifact(root, directory, event) {
   ) {
     throw new Error('Observed site URL must match the production policy and exact reader alias');
   }
-  const files = Object.keys(manifest.files).sort();
-  const stored = archivedFiles(root, owner, sharedArchive, files);
-  if (
-    files.length > 1000 ||
-    JSON.stringify(stored.map((item) => item.file).sort()) !== JSON.stringify(files)
-  ) {
-    throw new Error('Site publication artifact inventory differs from its manifest');
+  const archiveKey = `${artifact.manifestPath}:${artifact.manifestSha256}`;
+  let archive = archives?.get(archiveKey);
+  if (!archive) {
+    archive = validateArchive(root, owner, sharedArchive, manifest);
+    archives?.set(archiveKey, {
+      ...archive,
+      owner,
+      shared: sharedArchive,
+      manifest,
+      manifestPath: artifact.manifestPath,
+      manifestSha256: artifact.manifestSha256,
+    });
   }
-  let total = 0;
-  let revision;
-  const inputs = [artifact.manifestPath, editionPath, policyPath];
-  for (const { file, relative, compressed } of stored) {
-    assertSourceRelative(file);
-    const maximum = file.endsWith('.html') ? htmlRawLimit(file) : assetRawBytes;
-    const bytes = archivedSource(root, relative, maximum, compressed);
-    total += bytes.length;
-    if (
-      total > 250_000_000 ||
-      digest(bytes) !== manifest.files[file].sha256 ||
-      bytes.length !== manifest.files[file].raw
-    ) {
-      throw new Error('Site publication artifact has corrupt or excessive public bytes');
-    }
-    if (file === 'site-revision.json') {
-      revision = JSON.parse(decodeUtf8(bytes, 'Site revision'));
-    }
-    inputs.push(relative);
-  }
+  const { revision } = archive;
   const revisionArticle = Object.values(revision?.articles || {}).find(
     (article) => article.articleId === event.articleId
   );
@@ -185,7 +241,10 @@ function validateSiteArtifact(root, directory, event) {
   ) {
     throw new Error('Site publication event names an undeclared reader document');
   }
-  return { documentSha256: document.sha256, inputs };
+  return {
+    documentSha256: document.sha256,
+    inputs: [artifact.manifestPath, editionPath, policyPath, ...archive.digests.keys()],
+  };
 }
 
-module.exports = { validateSiteArtifact };
+module.exports = { validateSiteArtifact, verifySiteArchives };

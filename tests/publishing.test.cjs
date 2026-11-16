@@ -1657,6 +1657,26 @@ test('canonical and actual dates require an exact committed artifact and product
       artifact: { ...event.artifact, manifestPath: sharedManifestPath },
     };
     assert.ok(validateEvent(root, directory, sharedEvent).includes(sharedManifestPath));
+    const archives = new Map();
+    const sharedInputs = validateEvent(root, directory, sharedEvent, archives);
+    assert.deepEqual(validateEvent(root, directory, sharedEvent, archives), sharedInputs);
+    assert.equal(archives.size, 1);
+    assert.throws(
+      () =>
+        validateEvent(
+          root,
+          directory,
+          {
+            ...sharedEvent,
+            inspection: {
+              ...sharedEvent.inspection,
+              documentSha256: 'f'.repeat(64),
+            },
+          },
+          archives
+        ),
+      /Observed document digest/
+    );
     write(root, `${sharedRoot}/files/999`, html);
     assert.throws(
       () => validateEvent(root, directory, sharedEvent),
@@ -1672,7 +1692,11 @@ test('canonical and actual dates require an exact committed artifact and product
     fs.rmSync(path.join(root, `${sharedRoot}/files/${snapshot}`));
     write(root, `${sharedRoot}/files/${snapshot}.gz`, compress('corrupt'));
     assert.throws(
-      () => validateEvent(root, directory, sharedEvent),
+      () => require('../tools/publishing/site-event.cjs').verifySiteArchives(root, archives),
+      /corrupt or excessive public bytes/
+    );
+    assert.throws(
+      () => validateEvent(root, directory, sharedEvent, new Map()),
       /corrupt or excessive public bytes/
     );
     const kit = await renderKit(root, 'event-profile');

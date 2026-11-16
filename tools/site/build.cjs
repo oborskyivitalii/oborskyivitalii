@@ -193,9 +193,12 @@ function sceneMedia(root) {
   return files(path.join(root, 'site/assets')).filter((name) => !name.startsWith('publications/'));
 }
 
-function fileDigests(root, names) {
+function fileDigests(root, names, seen = new Map()) {
   return Object.fromEntries(
-    names.sort().map((name) => [name, sha(fs.readFileSync(path.join(root, name)))])
+    names.sort().map((name) => {
+      if (!seen.has(name)) seen.set(name, sha(fs.readFileSync(path.join(root, name))));
+      return [name, seen.get(name)];
+    })
   );
 }
 function runtimeVersion(components) {
@@ -425,11 +428,20 @@ function documentComponents(components) {
   return shared;
 }
 
-function prepareArticles(root, catalog, selectedArticles, components, versioned, preview) {
+function prepareArticles(
+  root,
+  catalog,
+  selectedArticles,
+  components,
+  versioned,
+  preview,
+  archiveDigests
+) {
   const nativeEditions = articles.nativeEditionLinks(catalog);
+  const seen = new Map();
   for (const article of selectedArticles) {
     article.input = articles.input(root, article, nativeEditions);
-    article.inputDigests = fileDigests(root, article.input.inputs);
+    article.inputDigests = fileDigests(root, article.input.inputs, seen);
     const publicInputs = { ...article.inputDigests };
     // The native block binds only selected reviewed declarations. Keep the raw
     // allowlist in audit/concurrency inputs without restamping private edits.
@@ -484,6 +496,9 @@ function prepareArticles(root, catalog, selectedArticles, components, versioned,
       );
       article.snapshot = `article-snapshots/${article.version}/${path.posix.basename(article.url)}`;
     }
+  }
+  for (const [file, sha256] of archiveDigests) {
+    if (seen.get(file) !== sha256) throw Error('Publication evidence changed before generation');
   }
 }
 
@@ -659,9 +674,11 @@ function emitRevision({ root, components, selectedArticles, result, temporary, p
 }
 
 function verifyArticleInputs(root, selectedArticles) {
+  // Re-read each shared input once after generation, independently of preparation.
+  const seen = new Map();
   for (const article of selectedArticles) {
     if (
-      json(fileDigests(root, article.input.inputs)) !== json(article.inputDigests) ||
+      json(fileDigests(root, article.input.inputs, seen)) !== json(article.inputDigests) ||
       require('./article-materials.cjs').load(root, article).html !== article.publicMaterials.html
     )
       throw Error('Article source changed during generation');
@@ -840,11 +857,20 @@ function build({
       payloads,
       baseline: trusted?.components,
     });
-  const selectedArticles = articles.select(root, candidateArticles, c);
+  const archiveDigests = new Map();
+  const selectedArticles = articles.select(root, candidateArticles, c, archiveDigests);
   require('./validate-catalog.cjs').validateLocalCatalog(c, (id) =>
     selectedArticles.find((article) => article.metadata.id === id && !article.candidate)
   );
-  prepareArticles(root, c, selectedArticles, components, versioned, candidateArticles.length > 0);
+  prepareArticles(
+    root,
+    c,
+    selectedArticles,
+    components,
+    versioned,
+    candidateArticles.length > 0,
+    archiveDigests
+  );
   const measurement = require('./analytics.cjs').compile(root, analyticsURLs(config, c));
   if (contentOnly) verifyContentBaseline(output, previous, trusted, components, versioned);
   const parent = path.dirname(output);
