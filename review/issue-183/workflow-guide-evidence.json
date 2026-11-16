@@ -1,9 +1,9 @@
 {
   "base_sha": "959c1b105c9caff087b197e185f47e70cea7426c",
-  "scope_sha256": "0c061bad90b5de0927c83a9d234d1eda2a08ddbebcfc6e5e6de4a4ce65432080",
-  "paths": ["tests/release-controller.test.cjs"],
+  "scope_sha256": "c3d80860b30d80157d364ba5e56660b4754538dd0409e3291ea7d27109770243",
+  "paths": ["tests/release-controller.test.cjs", "tools/quality/secrets-publication.json"],
   "disposition": "unchanged",
   "sections": ["Keeping this guide current", "Delivery routes and controls"],
-  "rationale": "The rights fixture exercises approved production media and retains independent pending PNG and JPEG refusals. The guide already covers test impact, current-source staging, authentication of the identical merged source tree and the frozen production rights inventory. The delivery routes and admission criteria are unchanged.",
-  "reviewer_execution": "/root/rights_guide_delta; explicit fork_turns=none; reviewed e76d6a6479f380fab944c8267d1ea1ae39d0c49a against 959c1b105c9caff087b197e185f47e70cea7426c. Common prompt blob 68796daaf4313f64da381b1628866267fd9e263b, role blob 2363340a1eaae62fdbd3ab070fda5c6436ec8124."
+  "rationale": "The production rights fixture exercises approved media and retains pending PNG and JPEG refusals. The security ledgers record exact reviewed public findings while the scanner, its bounds, current-source staging checks and frozen production rights requirements remain in force.",
+  "reviewer_execution": "/root/security_guide; explicit fork_turns=none; reviewed e6ce690938c90f080cff2119121e32048d1cefb2 against 959c1b105c9caff087b197e185f47e70cea7426c. Common prompt blob 68796daaf4313f64da381b1628866267fd9e263b; role blob 2363340a1eaae62fdbd3ab070fda5c6436ec8124."
 }

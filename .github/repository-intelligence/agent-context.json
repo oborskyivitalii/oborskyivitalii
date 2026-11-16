@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "f7081d27baf2861daf2e9c74e0230a8416b9c9904e0f8b5a89139734e59d3079",
+    "digest": "0c6fdb8455e03001d1061da261b14e063eb4fc30abe2f67ef498168aea2045ca",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -5155,7 +5155,7 @@
       {
         "path": "review/issue-183/2026-11-16-cover-clearance.md",
         "identity_mode": "content",
-        "sha256": "57a20f32349157d248b659ff014e8b6a1cf5ed9ef9c388375a873d4481a6edcb"
+        "sha256": "529e891d57dbd58228586a4b3bed3c9aa315e1a6cb56582c59b3f907c828ccc8"
       },
       {
         "path": "review/issue-183/2026-11-16-editorial-refresh.md",
@@ -5170,7 +5170,7 @@
       {
         "path": "review/issue-183/workflow-guide-evidence.json",
         "identity_mode": "content",
-        "sha256": "98e998c99a9eb7ac7ff5b077c754a48b9ad6d23e5ce47e4e929b2055cb5d0300"
+        "sha256": "ca02b12e4333c24798e7e4e9e699a4b64a709134ff6c19ce2d7fb7648e72f4a2"
       },
       {
         "path": "review/issue-184/2026-11-10-archive.md",
@@ -13820,12 +13820,12 @@
       {
         "path": "tools/quality/secrets-publication.json",
         "identity_mode": "content",
-        "sha256": "3fc061376b05f9e8aafa6eaabd802e25525465fe01acac809cc82b4de3279f05"
+        "sha256": "a90f55ea04fc9dab13f25f0447898f59f20887c8ac7c9ca1849ca269e8594727"
       },
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "0f79a310ce91cd10268c0a8965dbcba32d9b4a0e551b03eabcfe7149ecdb371a"
+        "sha256": "06987671038347c534b6a8e7e82e80eab9f7cbd3ae6c0292a23dc74e29121b43"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
