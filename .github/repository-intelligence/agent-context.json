@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "9a460fd320b6b0d3e59f6309b4d4ee1ef737e3d5436d713537b00acf0d9622ad",
+    "digest": "9b1b838fcdd52f61a2c7f680818a24c666d442316ff32140b3882ef7b7f37cea",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -276,7 +276,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "8c9ca15fee35a19f513386ff31a4f8809a35162711a2f4e651bc9052f5c5141b"
+        "sha256": "225c399d905755017421930020bd2dd8f451318bf80cd8ce5081544f107043cb"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -426,7 +426,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "f0edb7b899433843d2c03c80b2fbabd1084482da08d921f8e3f38f3e53057bfb"
+        "sha256": "fda0cdc2234270c417de6332590f462e5e126b58c2453e5ade35070b5b537a94"
       },
       {
         "path": "NOTICE.md",
@@ -4870,12 +4870,12 @@
       {
         "path": "review/issue-183/2026-11-16-staging-controller.md",
         "identity_mode": "content",
-        "sha256": "442a4fba0e11af4fbeceae1fb40f25cc1e8b08080bc55b920c436da71742c7f6"
+        "sha256": "8af450ec30e80ae559ca1fef383e9ad3ce84df358b63bf172617536c17519a72"
       },
       {
         "path": "review/issue-183/workflow-guide-evidence.json",
         "identity_mode": "content",
-        "sha256": "77dbe493b2609f17f64dadb5e8132571c8db718cfb8456b9ec28a41bd45094f8"
+        "sha256": "8198edc945902962176a6a1e668da0bbbecf3d5ea5549424fd3631fd1e9bfb8e"
       },
       {
         "path": "review/issue-184/2026-11-10-archive.md",
@@ -12470,7 +12470,7 @@
       {
         "path": "tools/check_site_seo.cjs",
         "identity_mode": "content",
-        "sha256": "e62a6f8dfb6413907a586c9f3ed79480e8bf5bfc591d2d08aeb501dbe7ead988"
+        "sha256": "9e7db3573630349560e92e198976b1a0a72a1a2bc3572e49294b0fa9bcd0f145"
       },
       {
         "path": "tools/compact_site_recordings.cjs",
@@ -12705,7 +12705,7 @@
       {
         "path": "tools/quality/artifact.cjs",
         "identity_mode": "content",
-        "sha256": "9fa3072883ba1d6186ab580821ddefd5013f6c40c2bd4b548bb68b4fd251e989"
+        "sha256": "b620fad38a8e89d1dce0f72f16c322dd38bac5faf6e21558ac9b64eef9a548be"
       },
       {
         "path": "tools/quality/bandit-policy.json",
@@ -13080,7 +13080,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "48a3649d462db02f641289e914ce26681a979319a71eae8c4540ea2cd666a9fa"
+        "sha256": "449102e889508142835a3ecc6f0991baf28824c764e9877da14e69c166fd7a48"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",

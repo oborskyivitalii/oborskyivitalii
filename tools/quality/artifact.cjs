@@ -6,8 +6,9 @@ const budgets = require('./budgets.json'),
   root = path.resolve(__dirname, '../..');
 const { digest, entries, manifest } = require('../site/public-artifact.cjs');
 function htmlRawLimit(file) {
-  const article =
-    /^(?:articles|article-snapshots\/[a-f0-9]{64})\/[a-z][a-z0-9-]{0,79}\.html$/.test(file);
+  const article = /^(?:articles|article-snapshots\/[a-f0-9]{64})\/[a-z][a-z0-9-]{0,79}\.html$/.test(
+    file
+  );
   return article ? budgets.articleHtmlRawBytes : budgets.htmlRawBytes;
 }
 function routeSizeAssets(files, route, resources = []) {

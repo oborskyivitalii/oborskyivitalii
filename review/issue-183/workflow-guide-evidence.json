@@ -1,6 +1,6 @@
 {
   "base_sha": "b7b95a1cfb75a5dc9cd55ca85f3ea375ab2c500a",
-  "scope_sha256": "e371cc56ec1f0d0c4d0727a2b82fff04f73aa7775707e7376140e6c1c99d8638",
+  "scope_sha256": "6af5ee73ee38cb8bf1d42d2d26c45cfd0826c3c4b6ed7733fa64549975da7139",
   "paths": [
     ".github/ri-ci-map.json",
     ".github/workflows/issue-acceptance.yml",
@@ -17,5 +17,5 @@
     "Delivery routes and controls"
   ],
   "rationale": "The prerequisite updates the bounded article package verifier and exact staging registry under the existing protected controller. Raw-head source checks, owner staging, and protected admission follow the same documented route.",
-  "reviewer_execution": "/root/stage183_control_review on f85c5e2 and /root/stage183_control_correction on 894c670; see 2026-11-16-staging-controller.md"
+  "reviewer_execution": "/root/stage207_format_review on 17d82a5; prior control review recorded in 2026-11-16-staging-controller.md"
 }
