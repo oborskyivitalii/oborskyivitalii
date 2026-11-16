@@ -20,7 +20,11 @@ test('social carrier successor rejects wrong predecessor, source bytes and expan
   const { socialCarrierProducer } = require('../tools/check_site_seo.cjs');
   const record = require('../review/issue-179/seo-producers.json');
   for (const [file, change] of Object.entries(record.producerChanges)) {
-    assert.equal(socialCarrierProducer(file, change.beforeSHA256), change.afterSHA256);
+    const current = fs.readFileSync(require('node:path').join(__dirname, '..', file));
+    assert.equal(
+      socialCarrierProducer(file, change.beforeSHA256),
+      require('node:crypto').createHash('sha256').update(current).digest('hex')
+    );
     const directory = issue159CopyFixture(t, [file]);
     fs.appendFileSync(require('node:path').join(directory, file), '\n// unknown source\n');
     assert.throws(

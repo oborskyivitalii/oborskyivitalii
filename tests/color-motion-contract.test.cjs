@@ -57,6 +57,22 @@ test('observed runtime families retain exact editions and mixed-byte refusals', 
     }
   }
 });
+test('the trusted #183 runtime is admitted only in its exact staging edition', () => {
+  const family = 'issue183-long-article';
+  const current = manifest(family + '-staging');
+  const previous = motion.reviewedRuntime('issue187-closed-pulse-staging');
+  assert.equal(motion.select(current).id, family + '-staging');
+  assert.equal(motion.articlePulseClosureRequired(current.components.engine), true);
+  assert.equal(motion.publicationRequired(current, current.components), true);
+  assert.throws(() => motion.reviewedRuntime(family + '-plain'), /unknown reviewed/);
+  assert.throws(() => motion.reviewedRuntime(family + '-production'), /unknown reviewed/);
+  for (const name of ['navigation.js', 'space.js']) {
+    const mixed = structuredClone(current);
+    mixed.files['runtime/' + current.components.engine + '/' + name].sha256 =
+      name === 'navigation.js' ? previous.files[name] : '0'.repeat(64);
+    assert.throws(() => motion.select(mixed), /Color bytes/);
+  }
+});
 test('the fractal-pulse identity retains exact staging bytes and publication rights', () => {
   for (const id of [
     'issue187-fractal-pulse',

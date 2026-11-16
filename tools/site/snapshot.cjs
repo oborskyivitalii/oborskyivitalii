@@ -3,6 +3,7 @@ const assert = require('node:assert/strict'),
   fs = require('node:fs'),
   path = require('node:path'),
   crypto = require('node:crypto');
+const { articleHtmlRawBytes } = require('../quality/budgets.json');
 const routes = ['index', 'research', 'writing', 'talks', 'credits'];
 const runtimeFiles = ['styles.css', 'theme.js', 'space.js', 'archive.js', 'navigation.js'];
 const legacyMediaFiles = ['favicon.svg', 'vitalii-oborskyi.jpg', 'vitalii-oborskyi-cutout.webp'];
@@ -231,7 +232,7 @@ function verify(dir, record) {
     for (const name of [article.alias, article.url]) {
       const html = read(name).toString();
       downloads(article, html, read);
-      assert.ok(Buffer.byteLength(html, 'utf8') <= 100000, 'article HTML byte budget');
+      assert.ok(Buffer.byteLength(html, 'utf8') <= articleHtmlRawBytes, 'article HTML byte budget');
       assert.ok(
         html.includes(`data-page="writing" data-article="${key}"`),
         'article document identity'

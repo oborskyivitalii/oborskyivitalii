@@ -2,6 +2,7 @@
   "schema": 1,
   "routes": ["index", "research", "writing", "talks", "credits"],
   "htmlRawBytes": 100000,
+  "articleHtmlRawBytes": 125000,
   "svgElements": 250,
   "assetRawBytes": 2000000,
   "routeGzipBytes": 800000,

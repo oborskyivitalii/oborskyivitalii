@@ -34,7 +34,7 @@ function fixture(t) {
   return { directory, alias, record };
 }
 
-test('article aliases share the original HTML, fallback and full transfer budgets', (t) => {
+test('article routes retain the fallback and full transfer budgets', (t) => {
   const f = fixture(t);
   const sizes = artifact.checkSize(f.directory);
   assert.equal(sizes.rows.length, 5);
@@ -58,14 +58,25 @@ test('article aliases share the original HTML, fallback and full transfer budget
 
 test('UTF8 byte oversize rejects article aliases and retained HTML before size evidence passes', (t) => {
   const f = fixture(t);
-  const oversized = '€'.repeat(40000);
-  assert.ok(oversized.length < 100000);
-  assert.ok(Buffer.byteLength(oversized) > 100000);
-  fs.writeFileSync(path.join(f.directory, f.alias), oversized);
+  const budgets = require('../tools/quality/budgets.json');
+  const markup = '<svg class="space-fallback"><path/></svg>';
+  function longReader(limit) {
+    const padding = limit - markup.length;
+    return markup + '€'.repeat(Math.floor(padding / 3)) + 'x'.repeat(padding % 3);
+  }
+  const atArticleLimit = longReader(budgets.articleHtmlRawBytes);
+  assert.equal(Buffer.byteLength(atArticleLimit), budgets.articleHtmlRawBytes);
+  assert.ok(atArticleLimit.length < budgets.htmlRawBytes);
+  const alias = path.join(f.directory, f.alias);
+  fs.writeFileSync(alias, atArticleLimit);
+  const sizes = artifact.checkSize(f.directory);
+  f.record = { ...f.record, ...artifact.manifest(f.directory) };
+  assert.equal(artifact.validateArticleSizes(sizes, f.record), true);
+  fs.appendFileSync(alias, 'x');
   assert.throws(() => artifact.checkSize(f.directory), /HTML size/);
-  fs.writeFileSync(path.join(f.directory, f.alias), '<svg class="space-fallback"><path/></svg>');
+  fs.writeFileSync(alias, markup);
   const retained = path.join(f.directory, 'retained-page.html');
-  fs.writeFileSync(retained, oversized);
+  fs.writeFileSync(retained, longReader(budgets.htmlRawBytes + 1));
   assert.throws(() => artifact.checkSize(f.directory), /HTML size/);
 });
 

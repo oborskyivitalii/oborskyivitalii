@@ -1049,6 +1049,16 @@ families.issue187ClosedPulse = {
   staging: '844b749386d9a62d5901dab064d01875845e604e67ed6ac51e77739d600f6599',
   production: '5fc39dca9630e06778721a236da345ab254a9e9f9bdbcfd31e1aa06f0a66271a',
 };
+// The protected controller admits the exact #183 review package.
+families.issue183LongArticle = {
+  ...families.issue187ClosedPulse,
+  id: 'issue183-long-article',
+  baseEngine: '97208ee3d165d8585186561ca50d2fdebe8ca0831c3fc6b7a7414a43e5f18aab',
+  navigation: '50d82eafe6489ea3a0bdda9670d91fdc582609870f6a410181cdc9e924d0ef84',
+  plain: null,
+  staging: '107306d5accbbda050e94145e8132c872115ad3473bdb8de3166a8710066fde3',
+  production: null,
+};
 // Expand only explicitly reviewed editions; an absent edition is never admitted.
 const runtimes = Object.entries(families).flatMap(([family, value]) =>
   ['plain', 'staging', 'production']
