@@ -1,12 +1,13 @@
 {
   "base_sha": "d37d099b519536e042cdbb261dbbbc5e2cbce7c5",
-  "scope_sha256": "bb46585d98feed9784fad28f1397779e7074963c5aed7d3f1004c756a17d9e6a",
+  "scope_sha256": "0fcd24268d3aee68b40a2f9c0c0b55f4439ce7f0fcb7ad5f0389960220b82376",
   "paths": [
     ".github/REPOSITORY-INTELLIGENCE.md",
     "guides/ARTICLE-WORKFLOW.md",
     "guides/SITE-CONTENT-RELEASE.md",
     "tests/local-catalog-relationships.test.cjs",
     "tests/publishing.test.cjs",
+    "tests/reader-mode.test.cjs",
     "tools/quality/secrets-publication.json",
     "tools/repository_intelligence.py"
   ],
@@ -18,5 +19,5 @@
     "Keeping this guide current"
   ],
   "rationale": "The guide already covers full RI indexing, build-time ownership, release artifact trust and the full route for mixed website and control effects. The one shared publication archive, its RI capacity, and exact security finding dispositions belong in the guide's linked lower-level owners. The owner staging and exact-head change admission route remain applicable.",
-  "reviewer_execution": "/root/format_receipt_review; explicit fork_turns=none; reviewed 2f06ae992af53fb1b701296b9befc23ca67b9e27, tree 96a1dddc3cb9c97c7e7bbaefb0d9fc18b73de07d, against d37d099b519536e042cdbb261dbbbc5e2cbce7c5. Common prompt blob 68796daaf4313f64da381b1628866267fd9e263b; Code Reviewer prompt blob 2363340a1eaae62fdbd3ab070fda5c6436ec8124."
+  "reviewer_execution": "/root/reader_assertion_review; explicit fork_turns=none; reviewed 1c8ad86d35ce5c327dd3e920b9d5f0476196a081, tree 74e7c2d00d27f27921da8089859d7db0ce9bb07a, against d37d099b519536e042cdbb261dbbbc5e2cbce7c5. Common prompt blob 68796daaf4313f64da381b1628866267fd9e263b; Code Reviewer prompt blob 2363340a1eaae62fdbd3ab070fda5c6436ec8124."
 }

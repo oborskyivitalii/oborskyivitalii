@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "255c41d5f4a1a24d50fdea6d69e6470d795094381b5fa96ed8ab7f2d7a5ca3d3",
+    "digest": "8bf3a3e8a8b5d37e896e2bd283171d7ca3dc7005607226a70c50ba07c9eba837",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -5165,7 +5165,7 @@
       {
         "path": "review/issue-183/2026-11-16-publication-closeout.md",
         "identity_mode": "content",
-        "sha256": "70030cb15d0a0a88ceba321521b2dd1788ebb69a0d739b16fb4403ca8e602677"
+        "sha256": "8671519cb8c6c20b6b2c2e23042471576833282d2d366e01501e4c8dc538cb6f"
       },
       {
         "path": "review/issue-183/2026-11-16-staging-controller.md",
@@ -5175,7 +5175,7 @@
       {
         "path": "review/issue-183/workflow-guide-evidence.json",
         "identity_mode": "content",
-        "sha256": "83db3522ce3578ae4fb872d58e7012a5d46c7ca205c344411b476b926bcb48ec"
+        "sha256": "e4f5b50e17451a85f87aff10ab9748a652996fc38c82bc41d736baff208e8612"
       },
       {
         "path": "review/issue-184/2026-11-10-archive.md",
@@ -13615,7 +13615,7 @@
       {
         "path": "tests/reader-mode.test.cjs",
         "identity_mode": "content",
-        "sha256": "c212e446e214a8d05d9187caa514f916a7a1a08a5f25039f05bb1479928354fd"
+        "sha256": "43cb2f6cac4cabad3b66fd7921be441b55c2374cd48d3335c8793cc122a9c6e8"
       },
       {
         "path": "tests/refactor-metrics.test.cjs",
@@ -14610,7 +14610,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "5fecbc9ad9d2f3c6ddd542efabeac7d196e8ea460587b1910f13f0d3ab223349"
+        "sha256": "4f319f627b0e357f5462468bdc8c754c2be7b4026b86d38d0ca0f2fbb6168a5a"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
