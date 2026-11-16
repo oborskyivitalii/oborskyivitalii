@@ -565,6 +565,7 @@ test('preflight edition guard accepts production bytes on either host profile an
     for (const profile of ['staging', 'production']) {
       const result = cp.spawnSync(process.execPath, editionArguments, {
         encoding: 'utf8',
+        cwd: source.authoredRoot,
         env: { ...fixtureEnvironment(source), SITE_TEST_PROFILE: profile },
       });
       assert.equal(result.status, 0, result.stderr);
@@ -573,6 +574,7 @@ test('preflight edition guard accepts production bytes on either host profile an
     mismatched[mismatched.length - 1] = level === 'production' ? 'staging' : 'production';
     const rejected = cp.spawnSync(process.execPath, mismatched, {
       encoding: 'utf8',
+      cwd: source.authoredRoot,
       env: fixtureEnvironment(source),
     });
     assert.notEqual(rejected.status, 0, 'coverage cannot silently change the frozen edition');

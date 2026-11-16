@@ -205,12 +205,14 @@ test('article budgets reject missing evidence, false download exclusions and exc
     size = artifact.checkSize(f.publicDir);
   for (const mutate of [
     (s) => (s.articleRows = []),
-    (s) => (s.articleRows[0].totalGzipBytes = 800001),
-    (s) => (s.articleRows[0].downloads = []),
-    (s) => (s.articleRows[0].assets = []),
+    (_s, row) => (row.totalGzipBytes = 800001),
+    (_s, row) => (row.downloads = []),
+    (_s, row) => (row.assets = []),
   ]) {
     const invalid = structuredClone(size);
-    mutate(invalid);
+    const probe = invalid.articleRows.find((row) => row.alias === f.article.alias);
+    assert.deepEqual(probe.downloads, [f.download]);
+    mutate(invalid, probe);
     assert.throws(() => artifact.validateArticleSizes(invalid, f.source));
   }
   f.put(
@@ -377,7 +379,12 @@ test('current generated editions cross the selected controller consumers', async
   const delivery = require('./fixtures/delivery.cjs');
   const directory = delivery.temporary(t);
   const staged = delivery.staging(directory, true);
-  const production = delivery.source(directory, 'production');
+  const production = delivery.source(
+    directory,
+    'production',
+    undefined,
+    delivery.releasedSourceRoot()
+  );
   require('../tools/staging/color.cjs').build(production.directory);
   production.record = require('../tools/release/edition.cjs').build(production.directory, 'color');
   delivery.rightsInventory(production, true);
@@ -401,7 +408,21 @@ test('current generated editions cross the selected controller consumers', async
       })
     );
     const packaged = path.join(directory, edition + '-package');
-    const record = pkg.build(source.directory, packaged);
+    const record =
+      edition === 'staging'
+        ? pkg.build(source.directory, packaged)
+        : JSON.parse(
+            cp.execFileSync(
+              process.execPath,
+              [
+                '-e',
+                'console.log(JSON.stringify(require("./tools/staging/package.cjs").build(process.argv[1],process.argv[2])));',
+                source.directory,
+                packaged,
+              ],
+              { cwd: source.authoredRoot, encoding: 'utf8' }
+            )
+          );
     const before = artifact.manifest(publicDirectory);
     const checks = {
       snapshot: () => consumer('tools/site/snapshot.cjs').verify(publicDirectory, source.record),

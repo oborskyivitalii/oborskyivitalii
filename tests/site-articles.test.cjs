@@ -282,14 +282,21 @@ test('author reading links follow a native alias while publisher links retain th
   json(root, `${article.directory}/publication.json`, article.metadata);
   article.edition.source.sha256 = build.sha(manuscript);
   article.edition.semanticSha256 = require('../tools/publishing/article.cjs').semanticDigest(
-    article.metadata, article.edition.source
+    article.metadata,
+    article.edition.source
   );
   write(root, `${article.directory}/${article.metadata.source}`, manuscript);
   json(root, `${article.directory}/editions/reader-first.json`, article.edition);
 
   const before = preview(root, ['reading-path']).articles['reading-path:en'];
-  assert.ok(html(root, 'articles/reading-path.html').includes('href="../articles/reader-profile.html">Related work'));
-  assert.ok(html(root, before.snapshot).includes('href="../../articles/reader-profile.html">Related work'));
+  assert.ok(
+    html(root, 'articles/reading-path.html').includes(
+      'href="../articles/reader-profile.html">Related work'
+    )
+  );
+  assert.ok(
+    html(root, before.snapshot).includes('href="../../articles/reader-profile.html">Related work')
+  );
   const snapshotHTML = html(root, before.snapshot);
   assert.ok(snapshotHTML.includes('href="https://example.com/source">Research'));
   assert.ok(snapshotHTML.includes(`href="${editionURL}">publisher-original`));
@@ -301,7 +308,9 @@ test('author reading links follow a native alias while publisher links retain th
   json(root, catalogPath, catalog);
   const after = preview(root, ['reading-path']).articles['reading-path:en'];
   assert.notEqual(after.version, before.version);
-  assert.ok(html(root, after.snapshot).includes('href="' + publisherURL.slice(0, -1) + '">Related work'));
+  assert.ok(
+    html(root, after.snapshot).includes('href="' + publisherURL.slice(0, -1) + '">Related work')
+  );
 });
 
 test('compiled analytics admits only catalog-published articles and their declared aliases', (t) => {

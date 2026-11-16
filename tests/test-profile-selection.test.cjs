@@ -499,8 +499,27 @@ test('publication inventory admits content bookkeeping while pinning existing un
     role: 'generated',
     purpose: 'New Writing snapshot',
   };
+  const ownedProvenance = 'site/publications/new-article/PROVENANCE.md';
+  const cover = 'site/assets/publications/new-article/cover.webp';
+  after.entries[ownedProvenance] = {
+    ...after.entries['site/publications/new-article/manuscript.md'],
+    purpose: 'New article provenance',
+  };
+  after.entries[cover] = {
+    ...after.entries[ownedProvenance],
+    owner: ownedProvenance,
+    purpose: 'Cover owned by its article provenance',
+  };
   assert.equal(runner.publicationInventoryCompatible(registry, before, after), true);
   for (const mutate of [
+    (value) => {
+      delete value.entries[ownedProvenance];
+    },
+    (value) => {
+      value.entries['site/publications/different-article/PROVENANCE.md'] =
+        value.entries[ownedProvenance];
+      value.entries[cover].owner = 'site/publications/different-article/PROVENANCE.md';
+    },
     (value) => {
       value.entries['site/engine/navigation.js'].owner = 'guides/ARTICLE-WORKFLOW.md';
     },

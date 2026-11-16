@@ -582,10 +582,14 @@ test('language-labelled editions match article schema and retain the original pr
   assert.equal(featured.length, 5);
   assert.ok(featured.every((r) => r[1] === 'en'));
   const frozen = require('../review/sol-execution-20261002/BASELINE.json');
+  const frozenURLs = new Set(frozen.primary.map((r) => r.url));
   const actual = items.map(({ item }) => {
     const record = records.find(({ edition }) => edition.url === item.url);
-    const historical = record.editions.find((edition) => edition.platform === 'Medium');
-    const source = historical?.relationship === 'same-topic-platform-edition' ? historical : item;
+    const historical = record.editions.find(
+      (edition) =>
+        edition.relationship === 'same-topic-platform-edition' && frozenURLs.has(edition.url)
+    );
+    const source = historical || item;
     return {
       title: source.name,
       url: source.url,
@@ -594,7 +598,6 @@ test('language-labelled editions match article schema and retain the original pr
       date_kind: source.dateModified ? 'dateModified' : 'datePublished',
     };
   });
-  const frozenURLs = new Set(frozen.primary.map((r) => r.url));
   assert.deepEqual(
     actual.filter((r) => frozenURLs.has(r.url)),
     frozen.primary,
@@ -602,14 +605,16 @@ test('language-labelled editions match article schema and retain the original pr
   );
   assert.equal(items.length, schema(pages.writing).mainEntity.numberOfItems);
   const expected = [
-    '21275fe2f3db',
-    '4f5046f9f0d0',
-    'agentic-oborskyi-vkwve',
-    '69822872825b',
-    '49992bcc3088',
+    'thinking-systems',
+    'ai-verification-crisis',
+    'agentic-loops',
+    'beyond-embeddings',
+    'ai-native-workflows-have-a-moat-problem',
   ];
-  assert.ok(featured.every((row, i) => row[2].includes(expected[i])));
-  assert.match(featured[1][2], /href="articles\/ai-verification-crisis\.html"/);
+  assert.deepEqual(
+    featured.map((row) => row[2].match(/href="articles\/([a-z0-9-]+)\.html"/)?.[1]),
+    expected
+  );
   assert.ok(pages.writing.includes(frozen.secondary[0].url));
   assert.ok(pages.writing.includes('LinkedIn edition · 27 Aug 2026'));
 });

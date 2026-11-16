@@ -551,10 +551,7 @@ function emitArticles({
       // Hosted documents carry only their own boot identity. The first user
       // navigation pins the complete verified registry from site-revision.json.
       html = articles.documentIndex(html, [article]);
-      const alias = articles.rebase(
-        articles.applyNativeReadingLinks(html),
-        article.url
-      );
+      const alias = articles.rebase(articles.applyNativeReadingLinks(html), article.url);
       if (Buffer.byteLength(alias, 'utf8') > articleHtmlRawBytes)
         throw Error('Article HTML byte budget ' + article.key);
       put(article.url, alias);

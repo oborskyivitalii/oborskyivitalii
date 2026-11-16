@@ -273,9 +273,7 @@
           "bodyEquivalenceVerified": false
         }
       ],
-      "discussions": [
-        "reddit-agentic-loops"
-      ],
+      "discussions": ["reddit-agentic-loops"],
       "presentation": {
         "topic": "systems",
         "kind": "Article",
@@ -383,9 +381,7 @@
           "bodyEquivalenceVerified": false
         }
       ],
-      "discussions": [
-        "reddit-controller"
-      ],
+      "discussions": ["reddit-controller"],
       "presentation": {
         "topic": "systems",
         "kind": "Article",

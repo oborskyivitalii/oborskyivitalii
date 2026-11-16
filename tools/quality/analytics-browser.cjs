@@ -566,6 +566,7 @@ function buildFixture(dir, sourceRoot = root) {
     inputs.push(
       'tools/publishing',
       'tools/quality/artifact.cjs',
+      'tools/quality/html-budget.cjs',
       'tools/quality/budgets.json',
       'tools/quality/toolchain/requirements.txt'
     );

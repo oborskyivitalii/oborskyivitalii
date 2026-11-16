@@ -276,7 +276,9 @@ function prepare(article, resolveReadingLink = () => null) {
     render({ tree: { type: 'root', children } }, article.assets, false, hooks);
   // Cover placement is furniture, not a change to the manuscript's argument order.
   const coverId =
-    article.profile.reader?.coverPlacement === 'authored' ? undefined : article.furniture?.cover?.id;
+    article.profile.reader?.coverPlacement === 'authored'
+      ? undefined
+      : article.furniture?.cover?.id;
   const cover = coverId
     ? layout.intro.find(
         (node) =>

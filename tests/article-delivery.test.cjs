@@ -244,9 +244,7 @@ test('PR social metadata binds each cover and alias before hashing while retaini
     for (const name of [article.alias, article.url]) {
       const html = fs.readFileSync(path.join(publicDir, name), 'utf8');
       assert.ok(
-        html.includes(
-          'property="og:image" content="' + origin + '/' + expectedImage.file + '"'
-        )
+        html.includes('property="og:image" content="' + origin + '/' + expectedImage.file + '"')
       );
       assert.ok(html.includes('property="og:url" content="' + origin + '/' + article.alias + '"'));
       assert.equal((html.match(/property="og:image"/g) || []).length, 1);

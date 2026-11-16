@@ -480,6 +480,8 @@ function secretReviewPath(file) {
 // Reviewed public immutable-directory literals in their two exact source inventories.
 // Each tuple still requires its own reviewed ledger entry; no path/type wildcard.
 const reviewedInventoryPaths = new Set([
+  '.github/repository-intelligence/agent-context.json:Base64 High Entropy String:b8d6213610f36dcd3674f324fc4f068115114156',
+  '.github/repository-paths.json:Base64 High Entropy String:b8d6213610f36dcd3674f324fc4f068115114156',
   '.github/repository-paths.json:Base64 High Entropy String:41ceb5699f64d5bfeaccc5850d0cf398a19b10c9',
   '.github/repository-intelligence/agent-context.json:Base64 High Entropy String:41ceb5699f64d5bfeaccc5850d0cf398a19b10c9',
   '.github/repository-paths.json:Base64 High Entropy String:eb3400c0b18476eb7e38e5a430d52a263f917b89',

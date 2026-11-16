@@ -6,11 +6,56 @@ const assert = require('node:assert/strict'),
 const artifact = require('../../tools/quality/artifact.cjs');
 const snapshot = require('../../tools/site/snapshot.cjs');
 const motion = require('../../tools/quality/color-motion-contract.cjs');
-const docs = path.resolve(__dirname, '../../docs');
-let publicSeed;
+const root = path.resolve(__dirname, '../..');
+const releasedRevision = 'b7b95a1cfb75a5dc9cd55ca85f3ea375ab2c500a';
+const publicSeeds = new Map();
+let historicalRoot;
+
+function releasedSourceRoot() {
+  if (historicalRoot) return historicalRoot;
+  const { execFileSync } = require('node:child_process');
+  const temporary = fs.mkdtempSync(path.join(os.tmpdir(), 'released-delivery-seed-'));
+  process.once('exit', () => fs.rmSync(temporary, { recursive: true, force: true }));
+  execFileSync('git', ['clone', '--shared', '--no-checkout', '--quiet', root, temporary]);
+  const archive = path.join(temporary, 'source.tar');
+  execFileSync(
+    'git',
+    [
+      'archive',
+      '--output=' + archive,
+      releasedRevision,
+      'docs',
+      'site',
+      'tools/site',
+      'tools/quality',
+      'tools/release',
+      'tools/publishing',
+      'tools/staging',
+      'tools/pages',
+      'tools/RI-LICENSE.md',
+      'tools/RI-NOTICE.md',
+      'README.md',
+      'CONTRIBUTING.md',
+      'guides/SITE-SOURCE-AUDIT.md',
+      'guides/SITE-CONTENT-REVIEW.md',
+      'review/assets/vitalii-oborskyi-cutout-20261002.png',
+      ...Object.values(require('../../tools/site/legal.cjs').sources),
+    ],
+    { cwd: root }
+  );
+  execFileSync('tar', ['-xf', archive, '-C', temporary]);
+  fs.rmSync(archive);
+  const modules = 'tools/publishing/toolchain/node_modules';
+  if (fs.existsSync(path.join(root, modules)))
+    fs.symlinkSync(path.join(root, modules), path.join(temporary, modules), 'junction');
+  historicalRoot = temporary;
+  return historicalRoot;
+}
 const stagingSeeds = new Map();
 
-function sourceSeed() {
+function sourceSeed(authoredRoot) {
+  const docs = path.join(authoredRoot, 'docs');
+  let publicSeed = publicSeeds.get(authoredRoot);
   // Read actual paths and bytes every call; only identical inputs reuse gzip work.
   const files = artifact.entries(docs);
   const hashes = Object.fromEntries(files.map(({ path, bytes }) => [path, artifact.digest(bytes)]));
@@ -27,7 +72,9 @@ function sourceSeed() {
       files,
       manifest: JSON.stringify(manifest),
       producer: artifact.manifest,
+      authoredRoot,
     };
+    publicSeeds.set(authoredRoot, publicSeed);
   }
   return publicSeed;
 }
@@ -54,18 +101,18 @@ function copySource(parent, name, commit, seed) {
   };
   record.components = snapshot.verify(path.join(directory, 'public'), record);
   fs.writeFileSync(path.join(directory, 'artifact.json'), JSON.stringify(record, null, 2) + '\n');
-  return { directory, record };
+  return { directory, record, authoredRoot: seed.authoredRoot };
 }
-function source(parent, name, commit = 'a'.repeat(40)) {
-  return copySource(parent, name, commit, sourceSeed());
+function source(parent, name, commit = 'a'.repeat(40), authoredRoot = root) {
+  return copySource(parent, name, commit, sourceSeed(authoredRoot));
 }
 function temporary(t) {
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'author-delivery-'));
   t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
   return directory;
 }
-function staging(parent, color = false) {
-  const seed = sourceSeed();
+function staging(parent, color = false, authoredRoot = root) {
+  const seed = sourceSeed(authoredRoot);
   const colorBuild = require('../../tools/staging/color.cjs').build;
   const editionBuild = require('../../tools/staging/edition.cjs').build;
   const inputs = [
@@ -89,7 +136,11 @@ function staging(parent, color = false) {
     prepared.colorBuild === colorBuild &&
     prepared.editionBuild === editionBuild
   ) {
-    result = { directory: path.join(parent, 'staging'), record: JSON.parse(prepared.record) };
+    result = {
+      directory: path.join(parent, 'staging'),
+      record: JSON.parse(prepared.record),
+      authoredRoot,
+    };
     copyFiles(result.directory, prepared.files);
   } else {
     result = copySource(parent, 'staging', 'a'.repeat(40), seed);
@@ -120,7 +171,7 @@ function staging(parent, color = false) {
 }
 
 function production(parent, name = 'production', commit) {
-  const result = source(parent, name, commit);
+  const result = source(parent, name, commit, releasedSourceRoot());
   result.record = require('../../tools/release/edition.cjs').build(result.directory);
   rightsInventory(result, true);
   return result;
@@ -164,7 +215,7 @@ function rightsInventory(source, confirmed = false) {
   ]) {
     const target = path.join(sourceRoot, name);
     fs.mkdirSync(path.dirname(target), { recursive: true });
-    fs.cpSync(path.join(__dirname, '../..', name), target, { recursive: true });
+    fs.cpSync(path.join(source.authoredRoot || root, name), target, { recursive: true });
   }
   if (!confirmed) {
     const file = path.join(sourceRoot, 'site/rights.json');
@@ -229,4 +280,13 @@ function fullProof(record, rightsReport = null) {
     external,
   };
 }
-module.exports = { source, staging, production, temporary, response, rightsInventory, fullProof };
+module.exports = {
+  source,
+  staging,
+  production,
+  temporary,
+  response,
+  rightsInventory,
+  fullProof,
+  releasedSourceRoot,
+};

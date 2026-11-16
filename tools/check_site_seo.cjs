@@ -251,12 +251,20 @@ function socialCarrierProducer(name, expected, projectRoot = root, record = soci
     cwd: root,
   });
   assert.equal(crypto.createHash('sha256').update(before).digest('hex'), change.beforeSHA256);
-  assert.equal(
-    crypto.createHash('sha256').update(homeSourceFile(projectRoot, name)).digest('hex'),
-    change.afterSHA256,
+  const current = crypto
+    .createHash('sha256')
+    .update(homeSourceFile(projectRoot, name))
+    .digest('hex');
+  // Reconstruct the historical carrier with the exact hosted-article budget update too.
+  const articleBudgetSuccessor = {
+    'tools/site/build.cjs': '6c146f73fa02ee2d7a35d868b53305469d30e9fee31b8ca99b7e2bfe8cb69920',
+    'tools/site/snapshot.cjs': '8d280c374a52229bd0b9d88f695e0d692714cba995c5f685b480a5b508b5b7d1',
+  };
+  assert.ok(
+    current === change.afterSHA256 || current === articleBudgetSuccessor[name],
     'Social carrier producer bytes'
   );
-  return change.afterSHA256;
+  return current;
 }
 
 function verifyCarrierRecord(successor) {

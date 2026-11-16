@@ -32,7 +32,7 @@ test.after(() => {
 });
 
 function prepareReleaseFixture(temp) {
-  const source = fixture.source(temp, 'production');
+  const source = fixture.source(temp, 'production', undefined, fixture.releasedSourceRoot());
   source.record = edition.build(source.directory);
   const rights = fixture.rightsInventory(source, true);
   const proof = fixture.fullProof(source.record, rights.report);
@@ -546,7 +546,7 @@ test('production metadata is a separately hashed edition and Pages preserves its
 
 test('production admission requires the exact rights inventory and an actual recorded owner policy', (t) => {
   const temp = fixture.temporary(t);
-  const source = fixture.source(temp, 'pending-rights');
+  const source = fixture.source(temp, 'pending-rights', undefined, fixture.releasedSourceRoot());
   source.record = edition.build(source.directory);
   const pending = fixture.rightsInventory(source);
   let proof = fixture.fullProof(source.record, pending.report);
@@ -607,7 +607,12 @@ test('explicit production Color preserves approved runtime and rejects a differe
   assert.throws(() => edition.build(base.directory, 'color'), /wrong production rendition/);
   const staged = fixture.staging(temp, true);
   assert.throws(() => edition.build(staged.directory, 'color'), /already applied/);
-  const report = fixture.rightsInventory(source, true).report,
+  assert.throws(
+    () => fixture.rightsInventory(source, true),
+    /hosted production media clearance remains pending/
+  );
+  const released = fixture.production(temp, 'summary-production');
+  const report = fixture.rightsInventory(released, true).report,
     summaryFile = path.join(temp, 'candidate-summary.md'),
     workflow = fs.readFileSync(
       path.join(__dirname, '../.github/workflows/site-release-candidate.yml'),
@@ -633,12 +638,12 @@ test('explicit production Color preserves approved runtime and rejects a differe
   });
   const summaryScript = summaryStep.match(/node - <<'JS'\n([\s\S]*?)\n {10}JS/)[1],
     expectedInputs = {
-      candidate_sha: source.record.sourceCommit,
+      candidate_sha: released.record.sourceCommit,
       public_variant: 'color',
       base_url: 'https://candidate.invalid/frozen-edition/',
       public_artifact_id: '123',
       public_run_id: '456',
-      public_digest: source.record.artifactDigest,
+      public_digest: released.record.artifactDigest,
       public_upload_digest: 'sha256:' + 'c'.repeat(64),
       rights_inventory_digest: report.inventoryDigest,
       rights_policy_status: report.policy.status,
@@ -1566,8 +1571,9 @@ async function stagedProductionFixture(t, { content = false } = {}) {
   const f = stagingAuthenticationFixture();
   const authentication = await policy.authenticate(f.api, context, 88, 'c'.repeat(40));
   const temp = fixture.temporary(t),
-    tested = fixture.staging(temp, true);
-  const source = fixture.source(temp, 'staged-production', 'c'.repeat(40));
+    authoredRoot = fixture.releasedSourceRoot(),
+    tested = fixture.staging(temp, true, authoredRoot);
+  const source = fixture.source(temp, 'staged-production', 'c'.repeat(40), authoredRoot);
   require('../tools/staging/color.cjs').build(source.directory);
   source.record = edition.build(source.directory, 'color');
   const rights = fixture.rightsInventory(source, true);
@@ -1615,7 +1621,11 @@ async function stagedProductionFixture(t, { content = false } = {}) {
     : undefined;
   if (content) {
     const media = require('../tools/site/articles.cjs')
-      .select(path.resolve(__dirname, '..'), [], require('../site/content/catalog.json'))
+      .select(
+        authoredRoot,
+        [],
+        JSON.parse(fs.readFileSync(path.join(authoredRoot, 'site/content/catalog.json')))
+      )
       .flatMap((article) => article.assets)
       .filter((asset) => /^image\//.test(asset.mime))
       .map((asset) => ({

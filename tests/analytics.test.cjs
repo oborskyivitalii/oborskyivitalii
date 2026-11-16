@@ -35,6 +35,7 @@ function fixture(t) {
     'tools/build_scene_fallbacks.cjs',
     'tools/build_site_previews.cjs',
     'tools/quality/artifact.cjs',
+    'tools/quality/html-budget.cjs',
     'tools/quality/budgets.json',
     ...Object.values(require('../tools/site/legal.cjs').sources),
   ]) {
