@@ -18,9 +18,13 @@ const html = build.stableTagEndings(
   ).main
 );
 const total = Object.keys(catalog.records).length,
-  year2025 = Object.values(catalog.records).filter((r) =>
-    (r.edition.datePublished || r.edition.dateModified || '').startsWith('2025')
-  ).length;
+  year2025 = Object.values(catalog.records).filter(({ edition, editions, presentation }) => {
+    const date = edition.datePublished || edition.dateModified;
+    const historical = editions.some(
+      ({ relationship }) => relationship === 'same-topic-platform-edition'
+    );
+    return (historical || !date ? presentation.archiveYear || date : date)?.startsWith('2025');
+  }).length;
 function visit(query = '', historyBlocked = false, candidate = catalog) {
   const html = build.stableTagEndings(
     content.routeInput(

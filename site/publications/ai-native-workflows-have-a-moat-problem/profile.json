@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "id": "ai-native-workflows-have-a-moat-problem",
+  "platforms": {
+    "linkedin": {
+      "formats": ["html", "md", "txt", "copy-ready"],
+      "relationship": "equivalent-rendition"
+    },
+    "medium": {
+      "formats": ["html", "md", "txt", "copy-ready"],
+      "relationship": "equivalent-rendition"
+    }
+  },
+  "launch": {
+    "source": "launch-post.en.md",
+    "sha256": "5307e51ad9d5781375259a42fd716adfdd67dd290424a06877ef6af436235612"
+  },
+  "seo": {
+    "title": "AI-Native Workflows Have a Moat Problem",
+    "summary": "Where durable differentiation can sit in AI-native workflows."
+  },
+  "assets": {
+    "cover": {
+      "id": "cover"
+    },
+    "hero": {
+      "id": "cover"
+    }
+  },
+  "limits": {},
+  "reader": {
+    "coverPlacement": "authored",
+    "references": "inline",
+    "images": "webp-lossless",
+    "equivalentImages": {
+      "cover": {
+        "path": "site/assets/publications/ai-native-workflows-have-a-moat-problem/cover-web.jpg",
+        "sha256": "11b50b3b2a4dd035b4b975444d87a37ceed0e68d8c983f4acc3b57b9d7dc1833"
+      }
+    }
+  }
+}

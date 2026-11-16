@@ -59,7 +59,7 @@ function linksWithin(node) {
   return node.type === 'link' ? [node] : (node.children || []).flatMap(linksWithin);
 }
 
-function components(article, layout) {
+function components(article, layout, resolveReadingLink) {
   const reserved = new Set([
     'main',
     'article-title',
@@ -170,7 +170,10 @@ function components(article, layout) {
           citation &&
           noteUrls.get(Number(citation[1]))?.has(node.url);
         const label = children(node);
-        return duplicate ? label : `<a href="${escapeHtml(node.url)}">${label}</a>`;
+        if (duplicate) return label;
+        const target = resolveReadingLink(node);
+        const native = target ? ` data-reading-article="${escapeHtml(target)}"` : '';
+        return `<a href="${escapeHtml(node.url)}"${native}>${label}</a>`;
       } finally {
         linkDepth--;
       }
@@ -263,19 +266,27 @@ function readingMinutes(layout) {
   return Math.max(1, Math.ceil((text ? text.split(/\s+/u).length : 0) / 220));
 }
 
-function prepare(article) {
+function prepare(article, resolveReadingLink = () => null) {
   const layout = partition(article);
-  const { hooks, finish } = components(article, layout);
+  const credits = new Set([layout.title, layout.subtitle].filter(Boolean).flatMap(linksWithin));
+  const { hooks, finish } = components(article, layout, (link) =>
+    credits.has(link) ? null : resolveReadingLink(link.url)
+  );
   const nodes = (children) =>
     render({ tree: { type: 'root', children } }, article.assets, false, hooks);
   // Cover placement is furniture, not a change to the manuscript's argument order.
-  const coverId = article.furniture?.cover?.id;
-  const cover = layout.intro.find(
-    (node) =>
-      node.type === 'paragraph' &&
-      node.children.length === 1 &&
-      node.children[0].assetId === coverId
-  );
+  const coverId =
+    article.profile.reader?.coverPlacement === 'authored'
+      ? undefined
+      : article.furniture?.cover?.id;
+  const cover = coverId
+    ? layout.intro.find(
+        (node) =>
+          node.type === 'paragraph' &&
+          node.children.length === 1 &&
+          node.children[0].assetId === coverId
+      )
+    : undefined;
   const introduction = layout.intro.filter((node) => node !== cover);
   const titleLinks = [];
   const collectLinks = (node) => {

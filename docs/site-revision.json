@@ -10,7 +10,7 @@
     "contract": 1,
     "fingerprint": "48153b94fbae4f314eaa11b156df8a20227dec429abfee9e45c14fda4a1f1b2a"
   },
-  "engine": "27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c",
+  "engine": "97208ee3d165d8585186561ca50d2fdebe8ca0831c3fc6b7a7414a43e5f18aab",
   "scenes": "0375c50289484250c0d44f693b1f9e3fb20ad4085701d09a1449c46403a0b1f7",
   "assets": "9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc",
   "mediaFiles": [
@@ -19,45 +19,201 @@
     "vitalii-oborskyi-cutout.webp",
     "writing-paradigm.svg"
   ],
-  "content": "00d7f78c5248ff698e388004fbac066c4af3fd6e1576d95f1bfc7c6d2f89e637",
+  "content": "af3b0ecc1efffd366ee7c4a2554a9d715f6de63ec551c4a03e9f49dcbd830108",
   "routes": {
     "index": {
-      "version": "49ebb5609deed1057e3cd1f4aa0d0a35ed21c35c6ffc703f7481995e691ad73e",
-      "url": "snapshots/49ebb5609deed1057e3cd1f4aa0d0a35ed21c35c6ffc703f7481995e691ad73e/index.html",
-      "sha256": "34c0b55899185c03c52aaaea5f6925c2dd3a63971064a1ccb575dad736dd1ad1"
+      "version": "767e85fb0cf37e35d8be617e4454fe18302367be01dac4bb0bdb0e9de0bfebbb",
+      "url": "snapshots/767e85fb0cf37e35d8be617e4454fe18302367be01dac4bb0bdb0e9de0bfebbb/index.html",
+      "sha256": "976b732828115e86a9c07d75c76ec0af2ec727548c224828730edeeba3aedc1e"
     },
     "research": {
-      "version": "c700fa57e1844e776665e570750dfee2a98b4788de110b62ced9787b1a90068b",
-      "url": "snapshots/c700fa57e1844e776665e570750dfee2a98b4788de110b62ced9787b1a90068b/research.html",
-      "sha256": "01956514e8d6c60017b77f5dc24c5dbd3be172b3b4f9f3677e83fce4d7cb87c9",
+      "version": "464f356f00b70c8e63d3ba19b756e7ccb0b23ee2e9926d3ea138b7d0c33c917f",
+      "url": "snapshots/464f356f00b70c8e63d3ba19b756e7ccb0b23ee2e9926d3ea138b7d0c33c917f/research.html",
+      "sha256": "594c8b2ccdf240bb51aed37a05b49c4e1e84623b9c64af3d704cea172f0427e2",
       "assets": [
         "article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618/research-fallback.svg"
       ]
     },
     "writing": {
-      "version": "debeac096a30cbcd37665f48be4c31418b5911b033cb6f7421913b586d94ffde",
-      "url": "snapshots/debeac096a30cbcd37665f48be4c31418b5911b033cb6f7421913b586d94ffde/writing.html",
-      "sha256": "4dbfd14a4cd74bbf5e2c29d116ae996f654ee923827f3f9eee26ab772e01aae3",
+      "version": "02fbae00edcb723580662d54b4453fa65c3535c77fc49ef95ee593fd08a14361",
+      "url": "snapshots/02fbae00edcb723580662d54b4453fa65c3535c77fc49ef95ee593fd08a14361/writing.html",
+      "sha256": "e313d4b6e85a982dc2ee8448e5ad1ce307f178ac792ae32e3c7eecf7384f58a7",
       "assets": [
         "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
       ]
     },
     "talks": {
-      "version": "f84b293d460c2c8d22c3f82afe83cd2b796af43d5b154e4e093eb1a42caf2ee5",
-      "url": "snapshots/f84b293d460c2c8d22c3f82afe83cd2b796af43d5b154e4e093eb1a42caf2ee5/talks.html",
-      "sha256": "bd4d619452ba01b77891484e8bcc6d6f28c17a8de773640d7803f73b3a622428"
+      "version": "481dc8bacc3c2e39ac84bdcf4f02765554b9cc717d92f3df6094042dcd9aba71",
+      "url": "snapshots/481dc8bacc3c2e39ac84bdcf4f02765554b9cc717d92f3df6094042dcd9aba71/talks.html",
+      "sha256": "2c455683478722d608202eb06d2721274013ae1f9bd4b0ea88349d6da5c83d83"
     },
     "credits": {
-      "version": "b9304a0650e725ae878b80083b3e5f117f022a28f7b1ef8e853d907760597869",
-      "url": "snapshots/b9304a0650e725ae878b80083b3e5f117f022a28f7b1ef8e853d907760597869/credits.html",
-      "sha256": "02cfbda71f6d2e4e2c1786760318624610fbf48e0e638aa530ae2448c345ef01"
+      "version": "eb9003485aff808b249f624f706e793516bcf3a1c84c4734fa00d53e901a0130",
+      "url": "snapshots/eb9003485aff808b249f624f706e793516bcf3a1c84c4734fa00d53e901a0130/credits.html",
+      "sha256": "2e25f92560c2706cb3efd7c71c82854ee5db38959887f6dd153980bd83f3812e"
     }
   },
   "articles": {
+    "agentic-loops:en": {
+      "version": "9479a537c62f131448ff3cc90f3ba0612689b4404f3e960313bff4da01aab690",
+      "url": "article-snapshots/9479a537c62f131448ff3cc90f3ba0612689b4404f3e960313bff4da01aab690/agentic-loops.html",
+      "sha256": "e841032266f684d050c1f6006f91d418740e153b80aea3cdb83a6bd5f803077b",
+      "alias": "articles/agentic-loops.html",
+      "scene": "writing",
+      "assets": [
+        "article-media/5f8490fc28edf22e1a224c2adc10f6aa814d091ce620c059e86e4a64c7843360/cover.jpg",
+        "article-media/fe4ca5dc397894e9c267484abb9606022abfdb6ab31560ce988efddf21c4438d/cover-social.jpg",
+        "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
+      ],
+      "socialImage": {
+        "file": "article-media/fe4ca5dc397894e9c267484abb9606022abfdb6ab31560ce988efddf21c4438d/cover-social.jpg",
+        "type": "image/jpeg",
+        "width": 1200,
+        "height": 630,
+        "alt": "A network of recursive AI agents sits beside a control panel for policies, guardrails, oversight, and circuit breakers."
+      },
+      "candidate": false,
+      "articleId": "agentic-loops",
+      "contentEdition": "agentic-loops-en-20261116-editorial",
+      "sourceSha256": "460805854efb69634d99ce89941af3900d8434432c7e1a8c5f2424a228ea16b8",
+      "semanticSha256": "0ca679688b4af36115aeede5ffcc9dff8e54e9789badef48b58e582464b2fd25"
+    },
+    "ai-cost-cutting-fallacy:en": {
+      "version": "ffd72466b6d3cfb099d196286610e17fab8dd1304452b5b852a2049e8a9ea6d4",
+      "url": "article-snapshots/ffd72466b6d3cfb099d196286610e17fab8dd1304452b5b852a2049e8a9ea6d4/ai-cost-cutting-fallacy.html",
+      "sha256": "4da425536f1d7bc3a4d31448ae11a841df72866cdcc4a17daa9a3ab7f2735a51",
+      "alias": "articles/ai-cost-cutting-fallacy.html",
+      "scene": "writing",
+      "assets": [
+        "article-media/6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168/cover.jpg",
+        "article-media/9e48e39e141a2775794af0f17a94275705d475ae4d3a97b327d9fdaf6992e0fa/transformation-j-curve.webp",
+        "article-media/9acaf96c7008839610c8b9d3efdcb45a8046cde2c792f6f0dfe1951ba8a92048/cover-social.jpg",
+        "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
+      ],
+      "socialImage": {
+        "file": "article-media/9acaf96c7008839610c8b9d3efdcb45a8046cde2c792f6f0dfe1951ba8a92048/cover-social.jpg",
+        "type": "image/jpeg",
+        "width": 1200,
+        "height": 630,
+        "alt": "An iceberg labeled AI speed above water and technical debt, security holes, burnout, and rework below."
+      },
+      "candidate": false,
+      "articleId": "ai-cost-cutting-fallacy",
+      "contentEdition": "ai-cost-cutting-fallacy-en-20261116-editorial",
+      "sourceSha256": "e08ad938b490f976f543c4c96bc67adc396d3590c11d24e982957618315fbb1d",
+      "semanticSha256": "4ed71f26ff7b7eed3b58abd910f89af3e3cab69a75853e486491b384e9279dd2"
+    },
+    "ai-governance-is-control-theory:en": {
+      "version": "1b6eaa02835c73d162f618ec6ce2c895e6c8c4a6c262c46324b2fddb38b3fcb0",
+      "url": "article-snapshots/1b6eaa02835c73d162f618ec6ce2c895e6c8c4a6c262c46324b2fddb38b3fcb0/ai-governance-is-control-theory.html",
+      "sha256": "27584ddf7cb77bfe87d4326f3c2daee84ad8f77d1c88ed500af443f4cea16961",
+      "alias": "articles/ai-governance-is-control-theory.html",
+      "scene": "writing",
+      "assets": [
+        "article-media/4fb99c0a32cfe808956a13bc2caaec71ed7adea83de79df4c5bfa08592d0b871/cover.jpg",
+        "article-media/29527faa8c99529dfa1a7beb3ea1068d4f93a9ba9a30d86b4a1f8eac30583c54/normal-distribution.webp",
+        "article-media/d125ba3950bf0b8cd725d9197957a152ca404bff51c3cb87c9ee6460a8ddad88/cover-social.jpg",
+        "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
+      ],
+      "socialImage": {
+        "file": "article-media/d125ba3950bf0b8cd725d9197957a152ca404bff51c3cb87c9ee6460a8ddad88/cover-social.jpg",
+        "type": "image/jpeg",
+        "width": 1200,
+        "height": 630,
+        "alt": "A turbulent field of particles passes through a luminous framework and emerges in parallel streams."
+      },
+      "candidate": false,
+      "articleId": "ai-governance-is-control-theory",
+      "contentEdition": "ai-governance-is-control-theory-en-20261116-editorial",
+      "sourceSha256": "2cbecdaae4ca0e7d3727968c4d72455fde5d733cb0363642959ceb7e5083ff46",
+      "semanticSha256": "dc71ab3e09a044a3b2a06f0b787c244c182440540ad236b6fd881a28560b08b7"
+    },
+    "ai-native-workflows-have-a-moat-problem:en": {
+      "version": "a0b4e14883af5ba1418a23420074d42cb6d10b386eb0a46b370b78c5bd5c8b97",
+      "url": "article-snapshots/a0b4e14883af5ba1418a23420074d42cb6d10b386eb0a46b370b78c5bd5c8b97/ai-native-workflows-have-a-moat-problem.html",
+      "sha256": "7d0d0b465e96f0e6e69ff22d6e7ab740500d0c836837eaa6a7b1d46b517028c0",
+      "alias": "articles/ai-native-workflows-have-a-moat-problem.html",
+      "scene": "writing",
+      "assets": [
+        "article-media/11b50b3b2a4dd035b4b975444d87a37ceed0e68d8c983f4acc3b57b9d7dc1833/cover.jpg",
+        "article-media/3415712316948afcc30c00607f7f2fb475b2ca0939c108481bfdcd4fe3676a93/cover-social.jpg",
+        "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
+      ],
+      "socialImage": {
+        "file": "article-media/3415712316948afcc30c00607f7f2fb475b2ca0939c108481bfdcd4fe3676a93/cover-social.jpg",
+        "type": "image/jpeg",
+        "width": 1200,
+        "height": 630,
+        "alt": "Delivery, product, legal, support, and marketing workflows converge on an AI platform. The cover asks who learns from your AI transformation."
+      },
+      "candidate": false,
+      "articleId": "ai-native-workflows-have-a-moat-problem",
+      "contentEdition": "ai-native-workflows-have-a-moat-problem-en-20261116-editorial",
+      "sourceSha256": "ddf2ec36fc5682a2c3a3675631d915ecf45ddb7951e9b6db3d0394d250def43d",
+      "semanticSha256": "826eefa5066c237e7880d4d4e7faa2058e3f2b4676f13e1a108e18964082d3ba"
+    },
+    "ai-verification-crisis:en": {
+      "version": "c03ae1d5925a33b1e3ece61210a4c593bb608cd86dcfeae24c0909d23ad34975",
+      "url": "article-snapshots/c03ae1d5925a33b1e3ece61210a4c593bb608cd86dcfeae24c0909d23ad34975/ai-verification-crisis.html",
+      "sha256": "df5ccebd74475c8ec127a26396901703e3b5f73f3238d26840ce5c3ce8a6b9b9",
+      "alias": "articles/ai-verification-crisis.html",
+      "scene": "writing",
+      "assets": [
+        "article-media/2d4e237d21021bcb6c62b5ce9ab10daffc4e93b521a20f3b6a707a3531781739/cover.jpg",
+        "article-media/5ba399aa0ca2dc3e492e58292358870926fb5acd7fdd958c63e2e71541d6994d/cover-social.jpg",
+        "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
+      ],
+      "socialImage": {
+        "file": "article-media/5ba399aa0ca2dc3e492e58292358870926fb5acd7fdd958c63e2e71541d6994d/cover-social.jpg",
+        "type": "image/jpeg",
+        "width": 1200,
+        "height": 630,
+        "alt": "A person at a workstation faces a stream of text and code converging on a cube, with verification symbols on the right."
+      },
+      "candidate": false,
+      "articleId": "ai-verification-crisis",
+      "contentEdition": "ai-verification-crisis-en-20261116-editorial",
+      "sourceSha256": "3eef4b728645f89196432ea6b425be41b7372fed601e710577d18e016eee3dc7",
+      "semanticSha256": "c6e24cf57bd271f2ab7bc2692219502da15af65bdc293f057702361fca8fee84"
+    },
+    "beyond-embeddings:en": {
+      "version": "51c29e57f6c1efda2e32251593d829a94d3ae2aa5a1a71be267bf5112d9aac09",
+      "url": "article-snapshots/51c29e57f6c1efda2e32251593d829a94d3ae2aa5a1a71be267bf5112d9aac09/beyond-embeddings.html",
+      "sha256": "35705e2b29a5bfad258155f7b3ae0b19798bcea8963a0e44b83acddcfd4f4cfa",
+      "alias": "articles/beyond-embeddings.html",
+      "scene": "writing",
+      "assets": [
+        "article-media/c1f333b5145b75b144562e218b73946ba77083fba5c1d30a8a8b43ef2659fc5a/cover.jpg",
+        "article-media/7d220ce3249c461ada25c5b12dd825283362eef960822a58ad95b1f38a4db62b/traditional-and-behavioral.webp",
+        "article-media/38e49d4bb130df44098c0b70e3e6ac952b51d1b8822822a429ae15ed930402ea/llm-as-judge.webp",
+        "article-media/393e1a2b17f2c895be46fcb64bb3963d7c5abf56984099e8008857589b32b6ff/neuro-symbolic-sensor.webp",
+        "article-media/919957eafd1c9cef20c4d3d99251dee97f9a397ffd505952a9a441e03c80d34c/verification-trilemma.webp",
+        "article-media/d1bed993498c86dbebc2706ca22878adfcf4e56ea2ed054bdc23e3ab471c1c73/verification-layers.webp",
+        "article-media/c7800f9370b6be57d53135a923689b70c4d6f99ac3acf17b118436a08bfe953a/control-boundary.webp",
+        "article-media/41f0f839015031d489aeb6ddfded11099be8247d030d636e4044c6820071c70b/control-design-process.webp",
+        "article-media/2d0985de7aad4d29069f3adcff22f0ccbab01d23fd18a5a0053ce53209856725/circuit-breaker.webp",
+        "article-media/c3b69024bc558f1b246c0135e7fceb55cbf77e4a8984e286285b57c13aaeaa37/drift-response-tiers.webp",
+        "article-media/e09b0fc781b0930aa9671ef0ca728d286828e0e9c8d47e6696d1976b0b1381ee/end-to-end-control.webp",
+        "article-media/943cc2b0ba6d097701efdd5c358e26e007a66b5d1077d71f672dcc040baf4936/cover-social.jpg",
+        "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
+      ],
+      "socialImage": {
+        "file": "article-media/943cc2b0ba6d097701efdd5c358e26e007a66b5d1077d71f672dcc040baf4936/cover-social.jpg",
+        "type": "image/jpeg",
+        "width": 1200,
+        "height": 630,
+        "alt": "Cover for Beyond Embeddings showing a probabilistic model core inside a control boundary."
+      },
+      "candidate": false,
+      "articleId": "beyond-embeddings",
+      "contentEdition": "beyond-embeddings-en-20261116-editorial",
+      "sourceSha256": "7602a59b3a3e4cb018dedfb36ed8379e34e05fed2364177a7126df7f49db9117",
+      "semanticSha256": "524b7e63dd2df3a1732a2ae14300a73c179d4302443699437e79355c5604d666"
+    },
     "sdlc-out-of-balance:en": {
-      "version": "d32979c9bb19b2ef02dbd5716d4135d923cc900dd197ddbddc30ccc791b78508",
-      "url": "article-snapshots/d32979c9bb19b2ef02dbd5716d4135d923cc900dd197ddbddc30ccc791b78508/the-sdlc-is-out-of-balance.html",
-      "sha256": "9225390e12e8004d59db6b2ee19d2407a7b5e5d53f23956c364a5a2e90a84629",
+      "version": "1ad993812e199251299e1545ae901b32b3612699717b5555329e0f1185fb2afc",
+      "url": "article-snapshots/1ad993812e199251299e1545ae901b32b3612699717b5555329e0f1185fb2afc/the-sdlc-is-out-of-balance.html",
+      "sha256": "9f9b6faa8774719a0dd09103c9c8825fb5a9818bc842de18ae91ca0fc53f0ecc",
       "alias": "articles/the-sdlc-is-out-of-balance.html",
       "scene": "writing",
       "assets": [
@@ -85,6 +241,39 @@
       "contentEdition": "sdlc-out-of-balance-en-r12-20261110",
       "sourceSha256": "4ed3380c73f46e7e9bf086fa2f1c99f5183fc0ccb16b7b1f270276173e5f1f8d",
       "semanticSha256": "10fdb9231098eb50c93e90ff1b073986a4c6756ea0f307feadf255012a820511"
+    },
+    "thinking-systems:en": {
+      "version": "76d33d8e21ab50f78ec8c7102e7999c8c45b7cd56ed30c1ad22c0d6fb2699bff",
+      "url": "article-snapshots/76d33d8e21ab50f78ec8c7102e7999c8c45b7cd56ed30c1ad22c0d6fb2699bff/thinking-systems.html",
+      "sha256": "bccabb394f2a56959ee623f48c6c1128ac95de052cb0b9d82465c648099a0e5d",
+      "alias": "articles/thinking-systems.html",
+      "scene": "writing",
+      "assets": [
+        "article-media/b68b465d8f611f72c8f4d9e95eaad457c1e40761154d90112ed128d7ecd47dd2/cover.jpg",
+        "article-media/bb70b4d0907ed3672055b0aacd58ca6bb35ef9154aecfb151705de58127eb2ae/diagram-1.webp",
+        "article-media/593e5212280ebabadb49ddc4c56e0bc4ba6908f659a9b466b462e7331680e27d/diagram-2.webp",
+        "article-media/a3e8b467f27cbc673040aea8b17d32371621ab367eef63804063198a9bf739a0/diagram-3.webp",
+        "article-media/5552ab1fb02be8954586dccb7d92ffd5ab4a1df4fd0857de7133cfb98613af85/diagram-4.webp",
+        "article-media/300fdfa774d4e768f36fc3e3d1f4f146b46ed41feead5d33db2316c9f3a3c06a/diagram-5.webp",
+        "article-media/1589356c855ad721e706cff069e147afd60cac49b225445f8e1010737da0a6fc/diagram-6.webp",
+        "article-media/542383922d50b39015ac2e3553481e7237a91efae41d19be80a3ee564d039d43/diagram-7.webp",
+        "article-media/dfc1c0903c9baf02dec4e96b1d87a46cccbad3ee015e9d47a3d86c73d8fb29c0/diagram-8a.webp",
+        "article-media/9cc5b62810712f9988b2d05004700978d8886e7c7954d92d2317c8f9cc4ff719/diagram-8b.webp",
+        "article-media/a187cf86739b2cc193cc9696e9884e2252c62b636ce262277c342371081eaa36/cover-social.jpg",
+        "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
+      ],
+      "socialImage": {
+        "file": "article-media/a187cf86739b2cc193cc9696e9884e2252c62b636ce262277c342371081eaa36/cover-social.jpg",
+        "type": "image/jpeg",
+        "width": 1200,
+        "height": 630,
+        "alt": "Thinking Systems publication cover."
+      },
+      "candidate": false,
+      "articleId": "thinking-systems",
+      "contentEdition": "thinking-systems-en-20261116-editorial",
+      "sourceSha256": "f82e41483f83fb55adc0dd2eab33000cad57bbbd1597c06afc3927b44c017780",
+      "semanticSha256": "048fbea04c6d08a633b488141d5209c53da491a1257071e92161c8f4d709ea69"
     }
   }
 }

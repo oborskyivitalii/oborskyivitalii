@@ -255,13 +255,15 @@ function socialCarrierProducer(name, expected, projectRoot = root, record = soci
     .createHash('sha256')
     .update(homeSourceFile(projectRoot, name))
     .digest('hex');
-  // #183's bounded size verifier changes no source of social metadata.
-  if (
-    name === 'tools/site/snapshot.cjs' &&
-    current === '8d280c374a52229bd0b9d88f695e0d692714cba995c5f685b480a5b508b5b7d1'
-  )
-    return current;
-  assert.equal(current, change.afterSHA256, 'Social carrier producer bytes');
+  // Reconstruct the historical carrier with the exact hosted-article budget update too.
+  const articleBudgetSuccessor = {
+    'tools/site/build.cjs': '6c146f73fa02ee2d7a35d868b53305469d30e9fee31b8ca99b7e2bfe8cb69920',
+    'tools/site/snapshot.cjs': '8d280c374a52229bd0b9d88f695e0d692714cba995c5f685b480a5b508b5b7d1',
+  };
+  assert.ok(
+    current === change.afterSHA256 || current === articleBudgetSuccessor[name],
+    'Social carrier producer bytes'
+  );
   return current;
 }
 
@@ -543,6 +545,37 @@ function reviewedArchiveProducerBindings(bindings, successors = archiveProducers
   return reviewed;
 }
 
+const historicalEditionProducers = {
+  'tools/site/render-records.cjs': {
+    before: '49528a2a5fe8d22eac7612e746cc4c20e99a7ebc4d9eb82bb84f9293543f2857',
+    after: '66292bc2d0f4c012644064ead7857a5ea6cc1916d79ab064caca83f52c0e1dc1',
+  },
+  'tools/site/validate-catalog.cjs': {
+    before: '79554634afc34ac491249624ffd8a5dc7b4db54a8f38703e2737655d180baa22',
+    after: 'a88ed5f2181433587a92bff89703f4a2ab0873ff37877a9f4613e20a5f0aabbc',
+  },
+};
+
+function reviewedHistoricalEditionProducers(bindings) {
+  const reviewed = { ...bindings };
+  for (const [file, change] of Object.entries(historicalEditionProducers)) {
+    if (!Object.hasOwn(bindings, file)) continue;
+    assert.equal(bindings[file], change.before, 'Historical edition producer predecessor');
+    const source = cp.execFileSync(
+      'git',
+      ['show', 'fb0c61650ce3bd03acfbd1708830f2606e9faffd:' + file],
+      { cwd: root }
+    );
+    assert.equal(
+      crypto.createHash('sha256').update(source).digest('hex'),
+      change.before,
+      'Immutable historical edition producer predecessor'
+    );
+    reviewed[file] = change.after;
+  }
+  return reviewed;
+}
+
 function reviewedProducerBindings(bindings, additions = []) {
   assert.deepEqual(Object.keys(issue159.producerChanges).sort(), issue159ProducerPaths);
   const reviewed = { ...bindings };
@@ -552,7 +585,9 @@ function reviewedProducerBindings(bindings, additions = []) {
     assert.match(change.afterSHA256, /^[a-f0-9]{64}$/, 'Reviewed successor producer SHA256');
     reviewed[file] = change.afterSHA256;
   }
-  return reviewedHTMLProducerBindings(reviewedArchiveProducerBindings(reviewed));
+  return reviewedHistoricalEditionProducers(
+    reviewedHTMLProducerBindings(reviewedArchiveProducerBindings(reviewed))
+  );
 }
 const positioning = JSON.parse(
   fs.readFileSync(path.join(root, 'review/issue-41/2026-10-09-positioning-amendment.json'), 'utf8')
@@ -1308,6 +1343,12 @@ function restoreResearchNavigation(html, page) {
 function restoreApprovedContent(html, page) {
   if (page === 'talks') html = restoreEventsCatalog(html);
   if (page === 'writing') html = restoreWritingCatalog(html);
+  if (page === 'research') {
+    html = html.replace(
+      '<a class="text-link" href="articles/ai-governance-is-control-theory.html">Read the control-theory article ↗</a>',
+      '<a class="text-link" href="https://pub.towardsai.net/uncertainty-architecture-why-ai-governance-is-actually-control-theory-511f3e73ed6e">Read the control-theory article ↗</a>'
+    );
+  }
   html = restoreContentAmendment(html, page, issue159);
   html = restoreContentAmendment(html, page, issue126);
   html = restoreContentAmendment(html, page, issue118);
@@ -1515,6 +1556,7 @@ module.exports = {
   socialCarrierProducer,
   archiveProducers,
   reviewedArchiveProducerBindings,
+  reviewedHistoricalEditionProducers,
   htmlParserProducer,
   reviewedHTMLProducerBindings,
   verifyResearchCarrier,

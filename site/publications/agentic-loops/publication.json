@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "id": "agentic-loops",
+  "slug": "agentic-loops",
+  "title": "Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops",
+  "summary": "A control-theory perspective on agentic loops and engineering control.",
+  "authors": [
+    {
+      "name": "Vitalii Oborskyi",
+      "url": "https://vitaliioborskyi.ai/"
+    }
+  ],
+  "language": "en",
+  "topic": "AI governance",
+  "owner": {
+    "repository": "oborskyivitalii/oborskyivitalii",
+    "path": "site/publications/agentic-loops"
+  },
+  "status": "accepted",
+  "source": "manuscript.en.md",
+  "edition": "agentic-loops-en-20261116-editorial",
+  "rights": {
+    "status": "accepted",
+    "notice": "Vitalii Oborskyi. The original article text from the June 2026 LinkedIn edition is included on the author site under CC BY 4.0. Linked material retains its own terms.",
+    "references": [
+      "https://www.linkedin.com/pulse/reinventing-control-theory-one-feature-time-fallacy-agentic-oborskyi-vkwve/",
+      "https://github.com/oborskyivitalii/oborskyivitalii/issues/183",
+      "https://creativecommons.org/licenses/by/4.0/"
+    ]
+  },
+  "references": [
+    {
+      "id": "linkedin-original",
+      "url": "https://www.linkedin.com/pulse/reinventing-control-theory-one-feature-time-fallacy-agentic-oborskyi-vkwve/"
+    }
+  ],
+  "assets": [
+    {
+      "id": "cover",
+      "path": "site/assets/publications/agentic-loops/cover.png",
+      "sha256": "dc50371b8287d45ee9b32404da989faa8f041986ffda413f71e0412d3bdcef5b",
+      "width": 1200,
+      "height": 674,
+      "alt": "A network of recursive AI agents sits beside a control panel for policies, guardrails, oversight, and circuit breakers.",
+      "caption": "The original cover from the June 2026 LinkedIn edition.",
+      "credit": "Cover image from the LinkedIn edition of Vitalii Oborskyi’s article."
+    }
+  ],
+  "platforms": {
+    "linkedin": {
+      "mode": "equivalent-rendition"
+    },
+    "medium": {
+      "mode": "equivalent-rendition"
+    }
+  },
+  "canonical": null,
+  "profile": "profile.json"
+}

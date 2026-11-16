@@ -624,9 +624,8 @@
     if (embedded && next.startsWith('article:')) await verifyEmbeddedAssets();
     if (cache.has(next)) return cache.get(next);
     let html;
-    const descriptor = next.startsWith('article:')
-      ? pinned.articles[next.slice(8)]
-      : pinned.routes[next];
+    const article = next.startsWith('article:');
+    const descriptor = article ? pinned.articles[next.slice(8)] : pinned.routes[next];
     const sourceURL = new URL(descriptor.url, directory);
     if (embedded) {
       html = embedded.pages[next];
@@ -649,8 +648,10 @@
       )
         throw Error('Route unavailable');
       html = await response.text();
+      // Keep the hosted article limit aligned with the build and package checks.
+      const htmlLimit = article ? 125000 : 100000;
       if (
-        new TextEncoder().encode(html).byteLength > 100000 ||
+        new TextEncoder().encode(html).byteLength > htmlLimit ||
         !(await matchesBytes(html, descriptor.sha256))
       )
         throw Error('Snapshot bytes changed');

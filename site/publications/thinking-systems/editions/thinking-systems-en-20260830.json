@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "id": "thinking-systems-en-20260830",
+  "articleId": "thinking-systems",
+  "language": "en",
+  "kind": "full-article",
+  "source": {
+    "path": "manuscript.en.md",
+    "sha256": "80ba7d64b0cc53938d8fc377c3611d90152dc6f57e019fe78633801a412dc0cf",
+    "commit": "afca4a6e81cae92a2457819b8fa3b4a15151d6ad",
+    "blob": "fed9929b5f7e5bf969551f54961b9a6fbbdcc091"
+  },
+  "owner": "site",
+  "derivation": null,
+  "rights": "accepted",
+  "semanticSha256": "4aa2c1cdbb63d9da89c0da231d9d4ef72c897b3b604d3954a767820a7ef0044f"
+}

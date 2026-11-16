@@ -72,7 +72,8 @@
         "LICENSE-CONTENT.md",
         "NOTICE.md",
         "guides/SITE-SOURCE-AUDIT.md",
-        "site/publications/sdlc-out-of-balance/PROVENANCE.md"
+        "site/publications/sdlc-out-of-balance/PROVENANCE.md",
+        "site/publications/thinking-systems/PROVENANCE.md"
       ],
       "scope": "Original website editorial text and new original author-owned hosted article text unless an edition states otherwise. No retrospective blanket grant for externally linked publications or third-party quotations."
     },
@@ -84,7 +85,9 @@
         "LICENSE-CONTENT.md",
         "site/assets/writing-paradigm.svg",
         "guides/SITE-SOURCE-AUDIT.md",
-        "site/publications/sdlc-out-of-balance/PROVENANCE.md"
+        "site/publications/sdlc-out-of-balance/PROVENANCE.md",
+        "site/publications/ai-governance-is-control-theory/PROVENANCE.md",
+        "site/publications/ai-cost-cutting-fallacy/PROVENANCE.md"
       ],
       "scope": "Original non-brand diagram artwork, including writing-paradigm.svg. Rendering implementation remains original code; identity artwork is excluded."
     },
@@ -97,6 +100,36 @@
       "kind": "published-license-and-scope-notice",
       "provenance": ["LICENSING.md", "LICENSE-CODE.md", "LICENSE-CONTENT.md", "NOTICE.md"],
       "scope": "Exact copies of the authored licensing map, complete Apache-2.0 and CC BY 4.0 texts, and applicable notices accompany this edition. Scope and exclusions remain in the licensing map."
+    },
+    "governance-original-cover": {
+      "kind": "maintainer-confirmed-original-cover",
+      "provenance": ["site/publications/ai-governance-is-control-theory/PROVENANCE.md"],
+      "scope": "Vitalii Oborskyi confirmed ownership and authorized retaining the exact historical artwork in this article. The site carries resized encodings of that artwork."
+    },
+    "verification-crisis-original-cover": {
+      "kind": "maintainer-confirmed-ai-generated-cover",
+      "provenance": ["site/publications/ai-verification-crisis/PROVENANCE.md"],
+      "scope": "The maintainer generated the historical cover and approved site use. The site carries resized encodings of the original artwork."
+    },
+    "cost-cutting-original-cover": {
+      "kind": "maintainer-approved-historical-cover",
+      "provenance": ["site/publications/ai-cost-cutting-fallacy/PROVENANCE.md"],
+      "scope": "The author authorized use of the original LinkedIn iceberg cover in the author-site reader and its share image. The site uses uncropped renditions of the original artwork."
+    },
+    "moat-problem-original-cover": {
+      "kind": "maintainer-origin-ai-generated-cover",
+      "provenance": ["site/publications/ai-native-workflows-have-a-moat-problem/PROVENANCE.md"],
+      "scope": "The publisher artwork matches the original AI-generated cover prepared by the article author. The author-site rendition uses resized versions of that composition."
+    },
+    "agentic-loops-preview-cover": {
+      "kind": "maintainer-requested-historical-preview-cover",
+      "provenance": ["site/publications/agentic-loops/PROVENANCE.md"],
+      "scope": "The maintainer requested restoration of the historical LinkedIn cover for Draft PR Preview. The image is credited to its source edition. Artwork authorship and broader reuse rights remain unverified."
+    },
+    "beyond-embeddings-original-visuals": {
+      "kind": "source-linked-beyond-embeddings-visuals",
+      "provenance": ["site/publications/beyond-embeddings/PROVENANCE.md"],
+      "scope": "The published LinkedIn rendition and author archive establish the diagram sources. The exact cover is included for the author’s Draft PR review. The cover’s broader reuse clearance remains pending."
     },
     "article-review-input": {
       "kind": "pending-exact-edition-media-review",
@@ -134,6 +167,146 @@
     }
   ],
   "assets": {
+    "publications/beyond-embeddings/cover-web.jpg": {
+      "sha256": "c1f333b5145b75b144562e218b73946ba77083fba5c1d30a8a8b43ef2659fc5a",
+      "bases": ["beyond-embeddings-original-visuals", "article-review-input"]
+    },
+    "publications/beyond-embeddings/cover.png": {
+      "sha256": "082f3953fccbf7d52df66e90849de8a04864788fe465611756c89bcef514de9a",
+      "bases": ["beyond-embeddings-original-visuals", "article-review-input"]
+    },
+    "publications/beyond-embeddings/traditional-and-behavioral.png": {
+      "sha256": "5315a5c5b5e1942859632284869aa2922e0108a6a3b76159b59974bf88999580",
+      "bases": ["beyond-embeddings-original-visuals"]
+    },
+    "publications/beyond-embeddings/llm-as-judge.png": {
+      "sha256": "71d2b2bcd10d6dc493ae2462e76104651fd0cce2c80d2e1e158285cb71413353",
+      "bases": ["beyond-embeddings-original-visuals"]
+    },
+    "publications/beyond-embeddings/neuro-symbolic-sensor.png": {
+      "sha256": "5e71a3ff84909985bc541234c90bf5eda5156ed201adc880bc87e60eb75e4ee7",
+      "bases": ["beyond-embeddings-original-visuals"]
+    },
+    "publications/beyond-embeddings/verification-trilemma.png": {
+      "sha256": "c0d51edeb8f6a32c3c536c8505ed07b60b66d57da0b6e13f091697657e740566",
+      "bases": ["beyond-embeddings-original-visuals"]
+    },
+    "publications/beyond-embeddings/verification-layers.png": {
+      "sha256": "a9ea9c981264ba488aaf2faa2e86b9c6c2cef1871a8579f421d7bd40144d1d96",
+      "bases": ["beyond-embeddings-original-visuals"]
+    },
+    "publications/beyond-embeddings/control-boundary.png": {
+      "sha256": "78eec4b41c64962ea7d09b5b41e058d353e12b58096e484d2e9c09b070b4f025",
+      "bases": ["beyond-embeddings-original-visuals"]
+    },
+    "publications/beyond-embeddings/control-design-process.png": {
+      "sha256": "783b2a6123739f03d9aca7aae89f418472220867360e891a53394cfd82fa6f33",
+      "bases": ["beyond-embeddings-original-visuals"]
+    },
+    "publications/beyond-embeddings/circuit-breaker.png": {
+      "sha256": "038c66da1625255a59bd566eb30c3d5ca50a89821718e498de14cba87ce1f923",
+      "bases": ["beyond-embeddings-original-visuals"]
+    },
+    "publications/beyond-embeddings/drift-response-tiers.png": {
+      "sha256": "3f4c96d473bed74e9eb2f0d6dbb96bed2c56d5f151820609b478311e26243767",
+      "bases": ["beyond-embeddings-original-visuals"]
+    },
+    "publications/beyond-embeddings/end-to-end-control.png": {
+      "sha256": "4816e4c318e30a3e4057877e4283883098ec54c4c30d97be5ca1ba9c745aa0f3",
+      "bases": ["beyond-embeddings-original-visuals"]
+    },
+    "publications/agentic-loops/cover.png": {
+      "sha256": "dc50371b8287d45ee9b32404da989faa8f041986ffda413f71e0412d3bdcef5b",
+      "bases": ["agentic-loops-preview-cover", "article-review-input"]
+    },
+    "publications/agentic-loops/cover-web.jpg": {
+      "sha256": "5f8490fc28edf22e1a224c2adc10f6aa814d091ce620c059e86e4a64c7843360",
+      "bases": ["agentic-loops-preview-cover", "article-review-input"]
+    },
+    "publications/ai-native-workflows-have-a-moat-problem/cover.png": {
+      "sha256": "57cef69ffe083071acf0567733bb4d79089f888502aa60ff8f795011288f8ed9",
+      "bases": ["moat-problem-original-cover"]
+    },
+    "publications/ai-native-workflows-have-a-moat-problem/cover-web.jpg": {
+      "sha256": "11b50b3b2a4dd035b4b975444d87a37ceed0e68d8c983f4acc3b57b9d7dc1833",
+      "bases": ["moat-problem-original-cover"]
+    },
+    "publications/ai-cost-cutting-fallacy/cover.png": {
+      "sha256": "6ab7c4fb30fda5cf2d6ac04e1253dc2224ad8b16fb8f053d85888b6b40fe5833",
+      "bases": ["cost-cutting-original-cover"]
+    },
+    "publications/ai-cost-cutting-fallacy/cover-web.jpg": {
+      "sha256": "6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168",
+      "bases": ["cost-cutting-original-cover"]
+    },
+    "publications/ai-cost-cutting-fallacy/transformation-j-curve.png": {
+      "sha256": "11352752759624202e3a284558455b884b87239ab57c3487ae6787e3ad4bab7f",
+      "bases": ["original-diagram"]
+    },
+    "publications/ai-governance-is-control-theory/cover.png": {
+      "sha256": "25bdc2d76a2c9589e99dd36f02db22c62d38bd954cbc3823e817f0304bc40a80",
+      "bases": ["governance-original-cover"]
+    },
+    "publications/ai-governance-is-control-theory/cover-web.jpg": {
+      "sha256": "4fb99c0a32cfe808956a13bc2caaec71ed7adea83de79df4c5bfa08592d0b871",
+      "bases": ["governance-original-cover"]
+    },
+    "publications/ai-governance-is-control-theory/normal-distribution.png": {
+      "sha256": "ab3c716b3b86f7814e1beef1077eb9434935c7d320142d5a84b67c100f3b38d3",
+      "bases": ["original-diagram"]
+    },
+    "publications/ai-verification-crisis/cover.png": {
+      "sha256": "9361582b43aadf46a274cc862f72b748e4394fb303cb75c4b45d54a896d98d25",
+      "bases": ["verification-crisis-original-cover"]
+    },
+    "publications/ai-verification-crisis/cover-web.jpg": {
+      "sha256": "2d4e237d21021bcb6c62b5ce9ab10daffc4e93b521a20f3b6a707a3531781739",
+      "bases": ["verification-crisis-original-cover"]
+    },
+    "publications/thinking-systems/cover-web.jpg": {
+      "sha256": "b68b465d8f611f72c8f4d9e95eaad457c1e40761154d90112ed128d7ecd47dd2",
+      "bases": ["original-diagram"]
+    },
+    "publications/thinking-systems/cover.png": {
+      "sha256": "87f06bee8063ca9d005058bd47d3be59bc79e7481e1fe0d756956bd9412b981a",
+      "bases": ["original-diagram"]
+    },
+    "publications/thinking-systems/diagram-1.png": {
+      "sha256": "a5b88567ab9f88387bc3337d9275430e0985a9af24f77bf7966c62686cd5b928",
+      "bases": ["original-diagram"]
+    },
+    "publications/thinking-systems/diagram-2.png": {
+      "sha256": "69333ef4b29e2e144cd9ba7da543518b6afcc63767deb3f46dc9c2fccdf5626a",
+      "bases": ["original-diagram"]
+    },
+    "publications/thinking-systems/diagram-3.png": {
+      "sha256": "9796217bfa2cf64b60e5dd43731f6a51a90b1eea194bd08677be347e1ffda6b4",
+      "bases": ["original-diagram"]
+    },
+    "publications/thinking-systems/diagram-4.png": {
+      "sha256": "18301c1cc462ca98c71d1f78ef5f5338f64c790c15dab83c4bfbed1efbb72879",
+      "bases": ["original-diagram"]
+    },
+    "publications/thinking-systems/diagram-5.png": {
+      "sha256": "1dd03a3b4c197de2a4fb3c16efe84447c9af28a8beb95ae12e103a97c11cd673",
+      "bases": ["original-diagram"]
+    },
+    "publications/thinking-systems/diagram-6.png": {
+      "sha256": "3e8366b96299273f7b1c3bd3f2c607609c7ad8e80af7323fe11bf96dd9c03f31",
+      "bases": ["original-diagram"]
+    },
+    "publications/thinking-systems/diagram-7.png": {
+      "sha256": "483fde803c1166001b695df3bdad12cb1c7333198e008a40ed61718bd8acb8fb",
+      "bases": ["original-diagram"]
+    },
+    "publications/thinking-systems/diagram-8a.png": {
+      "sha256": "81f8061d7b983e905adf265232610ceae471ebb43f04eebbdf66410d638471de",
+      "bases": ["original-diagram"]
+    },
+    "publications/thinking-systems/diagram-8b.png": {
+      "sha256": "9d2bcf0c057ae672cf4ef8c555a55b9df3c8a01663c5dfbcc94c16a6a74ae4eb",
+      "bases": ["original-diagram"]
+    },
     "favicon.svg": {
       "sha256": "a27a6f79b42bfa41fa8a8d3fe39e3c9570bcd992410c91a17d021de4dc28636e",
       "bases": ["identity-branding"]

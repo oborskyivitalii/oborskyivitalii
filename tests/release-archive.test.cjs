@@ -165,6 +165,7 @@ test('historical edition verification survives changed or absent authored portra
   for (const name of [
     'tools/release/edition-archive.cjs',
     'tools/quality/artifact.cjs',
+    'tools/quality/html-budget.cjs',
     'tools/quality/budgets.json',
     'tools/site/snapshot.cjs',
     'tools/site/social-image.cjs',
@@ -341,7 +342,7 @@ test('optional passive diagnostics reject incomplete coverage without blocking p
   const live = require('../tools/release/live.cjs');
   const pages = require('../tools/pages/package.cjs');
   const temp = fixture.temporary(t);
-  const source = fixture.source(temp, 'production');
+  const source = fixture.source(temp, 'production', undefined, fixture.releasedSourceRoot());
   source.record = edition.build(source.directory);
   const rights = fixture.rightsInventory(source, true);
   const combined = pages.build(

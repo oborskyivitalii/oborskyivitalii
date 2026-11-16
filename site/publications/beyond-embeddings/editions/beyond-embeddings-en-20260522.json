@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "id": "beyond-embeddings-en-20260522",
+  "articleId": "beyond-embeddings",
+  "language": "en",
+  "kind": "full-article",
+  "source": {
+    "path": "manuscript.en.md",
+    "sha256": "f86de79b01411eab8150c90ee5c920d7890fb002258a8c38d45e866cdc5814c3",
+    "commit": "bc39b1386fed2599e90b489b81cf01868539ecac",
+    "blob": "04df888243b947acce79b6783f0ac6fd674dbfda"
+  },
+  "owner": "site",
+  "derivation": null,
+  "rights": "accepted",
+  "semanticSha256": "46a3e1985e0e664dba49e2005a064c3e926eede53f9671f72f2991b301c5606c"
+}

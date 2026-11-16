@@ -11,7 +11,7 @@ const snapshot = require('../tools/site/snapshot.cjs');
 const preview = require('../tools/build_site_previews.cjs');
 const publisher = require('../tools/publishing/article.cjs');
 const repo = path.resolve(__dirname, '..');
-const { legacyCatalog } = require('./fixtures/catalog.cjs');
+const { isolateLegacyCatalog } = require('./fixtures/catalog.cjs');
 const pixel = Buffer.from(
   'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aJ1sAAAAASUVORK5CYII=',
   'base64'
@@ -280,7 +280,7 @@ test.before(() => {
     });
   }
   // Do not inherit real accepted records after replacing their source tree.
-  json(root, 'site/content/catalog.json', legacyCatalog(repo));
+  isolateLegacyCatalog(root, repo);
   fs.rmSync(path.join(root, 'site/publications'), {
     recursive: true,
     force: true,

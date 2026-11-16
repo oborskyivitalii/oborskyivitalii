@@ -311,14 +311,23 @@ function readerSelection(profile, article) {
   }
   const reader = object(
     profile.reader,
-    ['references', 'presentation', 'images', 'equivalentImages', 'sections', 'elements'],
+    [
+      'references',
+      'presentation',
+      'images',
+      'equivalentImages',
+      'sections',
+      'elements',
+      'coverPlacement',
+    ],
     'reader'
   );
   if (
     Object.keys(reader).length === 0 ||
     (reader.references !== undefined && reader.references !== 'inline') ||
     (reader.presentation !== undefined && !['links', 'download'].includes(reader.presentation)) ||
-    (reader.images !== undefined && reader.images !== 'webp-lossless')
+    (reader.images !== undefined && reader.images !== 'webp-lossless') ||
+    (reader.coverPlacement !== undefined && reader.coverPlacement !== 'authored')
   ) {
     throw new Error('Invalid profile reader selection');
   }

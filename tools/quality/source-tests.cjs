@@ -303,6 +303,15 @@ function selectPRTargets(root, registry, options, permanent, include) {
 }
 function publicationInventoryCompatible(registry, before, after) {
   const derivedEntry = (file) => file === 'docs' || file.startsWith('docs/');
+  const workflowOwner = 'guides/ARTICLE-WORKFLOW.md';
+  const publicationOwner = (file, owner) => {
+    if (owner === workflowOwner) return true;
+    const slug = file.match(/^site\/assets\/publications\/([a-z][a-z0-9-]{0,79})(?:\/|$)/)?.[1];
+    if (!slug) return false;
+    const provenance = `site/publications/${slug}/PROVENANCE.md`;
+    const source = after.entries?.[provenance];
+    return owner === provenance && source?.kind === 'file' && source.owner === workflowOwner;
+  };
   const withoutPublications = (value) => ({
     ...value,
     entries: Object.fromEntries(
@@ -344,7 +353,7 @@ function publicationInventoryCompatible(registry, before, after) {
     safePath(file);
     if (
       !isDeepStrictEqual(Object.keys(entry).sort(), ['kind', 'owner', 'purpose', 'role']) ||
-      entry.owner !== 'guides/ARTICLE-WORKFLOW.md' ||
+      !publicationOwner(file, entry.owner) ||
       !['source', 'generated', 'draft', 'configuration'].includes(entry.role) ||
       typeof entry.purpose !== 'string' ||
       !entry.purpose.trim() ||

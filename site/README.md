@@ -353,8 +353,10 @@ publication registry is introduced.
 
 A leading stand-alone emphasized paragraph after the title is the article subtitle.
 Cover furniture can move after the authored introduction without changing prose
-or media. An optional profile `reader.sections` object declares `appendices` as a
-distinct ordered list of trailing H2 anchors and, optionally, `references` as one
+or media. Set `reader.coverPlacement` to `"authored"` to keep the cover in its
+manuscript position in the native reader. An optional profile `reader.sections`
+object declares `appendices` as a distinct ordered list of trailing H2 anchors
+and, optionally, `references` as one
 of those anchors. The reference section must contain exactly one positive numbered
 source list with at most100 notes. Only matching `[n]` text citations are linked;
 unknown numbers and code remain literal, and existing links are never nested.
@@ -403,6 +405,15 @@ collection remains separate. All displayed images,
 including every below-fold slide, still count toward the unchanged 800000-byte
 required reading transfer. Source reconstruction verifies this classification;
 neither mode establishes editorial, rights or release acceptance.
+Hosted article HTML and snapshots are limited to 125,000 UTF-8 bytes. Ordinary
+rooms, other HTML and standalone export payloads retain the 100,000-byte limit.
+Enhanced navigation uses the same hosted article limit and opens a larger
+article as an ordinary page. Embedded articles also retain the 100,000-byte limit.
+
+An article reading link to a platform edition of another cataloged native
+article follows that article's stable local alias. The effective link targets
+participate in the reader identity. The same article's own platform credits,
+unmatched links, and distribution renditions retain their source URLs.
 
 Reader route-cache snapshots and prepared clones use one inert HTMLDocument until
 native mount adoption. URL rebasing uses the explicit source URL. This prevents

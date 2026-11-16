@@ -4,7 +4,7 @@ Dated handoff. Last verified: **2026-11-16**. Revalidate live sources when resum
 
 ## Snapshot
 
-- Protected main `b7b95a1` includes the accepted closed-pulse reader transition from PR #197. Production ref `ca75641` remains the last observed deployment source.
+- Protected main `cc69d2b` contains the exact staging controller from PR #207, including the 125,000-byte article limit and the staging registration for #183. Production ref `ca75641` remains the last observed deployment source.
 - [#187](https://github.com/oborskyivitalii/oborskyivitalii/issues/187) owns the Writing and article transition in [Draft PR #197](https://github.com/oborskyivitalii/oborskyivitalii/pull/197). The author approved [the exact closed-pulse Preview](https://1390339f.oborskyi-author-ci-staging.pages.dev/writing.html) at `4021407` and authorized rebasing and merging.
 - The [protected staging prerequisite](review/issue-187/2026-11-12-controller-preregistration.md) records the controller refusal and exact registration. [PR #206 staging](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43719809013) and [Change admission](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43723815943) passed before the protected merge.
 
@@ -22,10 +22,12 @@ Dated handoff. Last verified: **2026-11-16**. Revalidate live sources when resum
 - #197 is rebased onto the #206 merge and requires the exact-head native and hosted route.
 - #200 is merged on `1122929`. Preserve its independent guide admission and Python lock.
 
+- [#183](https://github.com/oborskyivitalii/oborskyivitalii/issues/183) / [Draft PR #205](https://github.com/oborskyivitalii/oborskyivitalii/pull/205) adds the Control Theory reader as the second of five article migrations, with a November 2026 author-approved annotated edition under Draft Preview review. [Checkpoint evidence](review/issue-183/2026-11-15-control-theory.md) records the first two preview checkpoints. [Verification Crisis](review/issue-183/2026-11-15-verification-crisis.md) is the third Draft Preview checkpoint. The author approved restoring its original cover and queued the Agentic Loops migration after the five selected checkpoints. The [Cost-Cutting Fallacy checkpoint](review/issue-183/2026-11-15-cost-cutting.md) adds the selected LinkedIn edition as the fourth native reader, with the original iceberg cover and a replacement conceptual J-curve. The [Moat Problem checkpoint](review/issue-183/2026-11-15-moat-problem.md) migrates the fifth selected AI Advances edition with its original cover. The author requested the cover before the opening prose. The [Agentic Loops checkpoint](review/issue-183/2026-11-16-agentic-loops.md) is the first follow-up adaptation. Its original LinkedIn cover is restored before the introduction in the Draft Preview and drives the article-specific share image. Its LinkedIn and Agile Insider editions and the Reddit discussion are preserved. The [Beyond Embeddings checkpoint](review/issue-183/2026-11-16-beyond-embeddings.md) adds the 22 May 2026 LinkedIn edition with the original cover before the prose, ten diagrams and five native tables. The [editorial refresh](review/issue-183/2026-11-16-editorial-refresh.md) updates seven bylines and connects native reading paths and Thinking Systems terminology. The [long reader navigation follow-up](review/issue-183/2026-11-16-beyond-embeddings.md#restore-the-animated-transition-from-writing) aligns the hosted client size limit with the build and retains closed-pulse rendering. Check the owning PR for exact Preview verification and release status.
+
 ## Next session
 
-1. Finish exact-head checks, owner staging and protected integration of [PR #207](https://github.com/oborskyivitalii/oborskyivitalii/pull/207), authorized for #183.
-2. Update [PR #205](https://github.com/oborskyivitalii/oborskyivitalii/pull/205) from the integrated controller, repair its Ready failures and verify Stable Staging.
+1. Verify rebased #197 through exact-head source checks and stable staging.
+2. Bind the protected merge to the new staging and owner admission evidence.
 
 ## Maintenance
 

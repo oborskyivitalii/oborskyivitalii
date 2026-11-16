@@ -1,0 +1,163 @@
+{
+  "schema": 1,
+  "id": "beyond-embeddings",
+  "slug": "beyond-embeddings",
+  "title": "Uncertainty Architecture: Beyond Embeddings — Neuro-Symbolic Verification of Semantic Drift in LLMs",
+  "summary": "A bounded technical example of semantic verification within a wider control architecture.",
+  "authors": [
+    {
+      "name": "Vitalii Oborskyi",
+      "url": "https://vitaliioborskyi.ai/"
+    }
+  ],
+  "language": "en",
+  "topic": "AI governance",
+  "owner": {
+    "repository": "oborskyivitalii/oborskyivitalii",
+    "path": "site/publications/beyond-embeddings"
+  },
+  "status": "accepted",
+  "source": "manuscript.en.md",
+  "edition": "beyond-embeddings-en-20261116-editorial",
+  "rights": {
+    "status": "accepted",
+    "notice": "Vitalii Oborskyi. The article text from the May 2026 LinkedIn edition is included under CC BY 4.0. The source edition supplies the cover and diagram artwork for Draft PR Preview. The cover’s wider reuse clearance remains pending. Linked material retains its own terms.",
+    "references": [
+      "https://www.linkedin.com/pulse/uncertainty-architecture-beyond-embeddings-semantic-oborskyi-1seuf/",
+      "https://github.com/oborskyivitalii/oborskyivitalii/issues/183",
+      "https://creativecommons.org/licenses/by/4.0/"
+    ]
+  },
+  "references": [
+    {
+      "id": "linkedin-original",
+      "url": "https://www.linkedin.com/pulse/uncertainty-architecture-beyond-embeddings-semantic-oborskyi-1seuf/"
+    },
+    {
+      "id": "generative-ai-edition",
+      "url": "https://generativeai.pub/uncertainty-architecture-beyond-embeddings-neuro-symbolic-verification-of-semantic-drift-in-llms-69822872825b"
+    }
+  ],
+  "assets": [
+    {
+      "id": "cover",
+      "path": "site/assets/publications/beyond-embeddings/cover.png",
+      "sha256": "082f3953fccbf7d52df66e90849de8a04864788fe465611756c89bcef514de9a",
+      "width": 1200,
+      "height": 674,
+      "alt": "Cover for Beyond Embeddings showing a probabilistic model core inside a control boundary.",
+      "caption": "Original cover from the May 2026 LinkedIn edition.",
+      "credit": "Cover image from the LinkedIn edition of Vitalii Oborskyi’s article."
+    },
+    {
+      "id": "traditional-and-behavioral",
+      "path": "site/assets/publications/beyond-embeddings/traditional-and-behavioral.png",
+      "sha256": "5315a5c5b5e1942859632284869aa2922e0108a6a3b76159b59974bf88999580",
+      "width": 676,
+      "height": 400,
+      "alt": "Traditional code follows hardcoded rules to predictable output. Behavioral software routes input through a stochastic core to model judgment.",
+      "caption": "Traditional code and behavioral software compared.",
+      "credit": "Diagram from the LinkedIn edition of Vitalii Oborskyi’s article, corresponding to the author’s archived Mermaid source."
+    },
+    {
+      "id": "llm-as-judge",
+      "path": "site/assets/publications/beyond-embeddings/llm-as-judge.png",
+      "sha256": "71d2b2bcd10d6dc493ae2462e76104651fd0cce2c80d2e1e158285cb71413353",
+      "width": 744,
+      "height": 232,
+      "alt": "A primary model produces output and a second model gives it a subjective score, introducing its own possible drift.",
+      "caption": "The LLM-as-a-judge pattern.",
+      "credit": "Diagram from the LinkedIn edition of Vitalii Oborskyi’s article, corresponding to the author’s archived Mermaid source."
+    },
+    {
+      "id": "neuro-symbolic-sensor",
+      "path": "site/assets/publications/beyond-embeddings/neuro-symbolic-sensor.png",
+      "sha256": "5e71a3ff84909985bc541234c90bf5eda5156ed201adc880bc87e60eb75e4ee7",
+      "width": 1176,
+      "height": 1000,
+      "alt": "A language model parses output into a formal representation, and a deterministic solver compares it with a reference formula.",
+      "caption": "The bounded neuro-symbolic sensor pattern.",
+      "credit": "Diagram from the LinkedIn edition of Vitalii Oborskyi’s article, corresponding to the author’s archived Mermaid source."
+    },
+    {
+      "id": "verification-trilemma",
+      "path": "site/assets/publications/beyond-embeddings/verification-trilemma.png",
+      "sha256": "c0d51edeb8f6a32c3c536c8505ed07b60b66d57da0b6e13f091697657e740566",
+      "width": 744,
+      "height": 307,
+      "alt": "The diagram shows the trade-offs among high assurance, low latency, and low compute cost.",
+      "caption": "The verification trilemma.",
+      "credit": "Diagram from the LinkedIn edition of Vitalii Oborskyi’s article, corresponding to the author’s archived Mermaid source."
+    },
+    {
+      "id": "verification-layers",
+      "path": "site/assets/publications/beyond-embeddings/verification-layers.png",
+      "sha256": "a9ea9c981264ba488aaf2faa2e86b9c6c2cef1871a8579f421d7bd40144d1d96",
+      "width": 482,
+      "height": 1215,
+      "alt": "Model output passes through four layers, from shallow checks and statistical filters to symbolic sensors and deep review.",
+      "caption": "The layered verification portfolio.",
+      "credit": "Diagram from the LinkedIn edition of Vitalii Oborskyi’s article, corresponding to the author’s archived Mermaid source."
+    },
+    {
+      "id": "control-boundary",
+      "path": "site/assets/publications/beyond-embeddings/control-boundary.png",
+      "sha256": "78eec4b41c64962ea7d09b5b41e058d353e12b58096e484d2e9c09b070b4f025",
+      "width": 905,
+      "height": 1198,
+      "alt": "A request passes an input boundary and model-judgment core. Validation sensors inform the controller, which routes the response and records the outcome.",
+      "caption": "Uncertainty Architecture boundary, sensors, controller, and outputs.",
+      "credit": "Diagram from the LinkedIn edition of Vitalii Oborskyi’s article, corresponding to the author’s archived Mermaid source."
+    },
+    {
+      "id": "control-design-process",
+      "path": "site/assets/publications/beyond-embeddings/control-design-process.png",
+      "sha256": "783b2a6123739f03d9aca7aae89f418472220867360e891a53394cfd82fa6f33",
+      "width": 478,
+      "height": 1186,
+      "alt": "The workflow starts from boundaries, chooses sensors, models failure modes, and evaluates the no-go threshold.",
+      "caption": "The control design process.",
+      "credit": "Diagram from the LinkedIn edition of Vitalii Oborskyi’s article, corresponding to the author’s archived Mermaid source."
+    },
+    {
+      "id": "circuit-breaker",
+      "path": "site/assets/publications/beyond-embeddings/circuit-breaker.png",
+      "sha256": "038c66da1625255a59bd566eb30c3d5ca50a89821718e498de14cba87ce1f923",
+      "width": 915,
+      "height": 1000,
+      "alt": "A controller evaluates validation signals and routes model outputs to release, review, or a deterministic fallback.",
+      "caption": "The semantic circuit breaker.",
+      "credit": "Diagram from the LinkedIn edition of Vitalii Oborskyi’s article, corresponding to the author’s archived Mermaid source."
+    },
+    {
+      "id": "drift-response-tiers",
+      "path": "site/assets/publications/beyond-embeddings/drift-response-tiers.png",
+      "sha256": "3f4c96d473bed74e9eb2f0d6dbb96bed2c56d5f151820609b478311e26243767",
+      "width": 744,
+      "height": 380,
+      "alt": "High drift blocks output and triggers fallback or escalation. Medium drift holds output for review. Low drift permits output with telemetry.",
+      "caption": "Three responses to semantic drift.",
+      "credit": "Diagram from the LinkedIn edition of Vitalii Oborskyi’s article, corresponding to the author’s archived Mermaid source."
+    },
+    {
+      "id": "end-to-end-control",
+      "path": "site/assets/publications/beyond-embeddings/end-to-end-control.png",
+      "sha256": "4816e4c318e30a3e4057877e4283883098ec54c4c30d97be5ca1ba9c745aa0f3",
+      "width": 1031,
+      "height": 1202,
+      "alt": "An end-to-end flow connects the input boundary, model core, multiple verification sensors, and a controller that selects release, review, or fallback.",
+      "caption": "The end-to-end control architecture.",
+      "credit": "Diagram from the LinkedIn edition of Vitalii Oborskyi’s article, corresponding to the author’s archived Mermaid source."
+    }
+  ],
+  "platforms": {
+    "linkedin": {
+      "mode": "equivalent-rendition"
+    },
+    "medium": {
+      "mode": "equivalent-rendition"
+    }
+  },
+  "canonical": null,
+  "profile": "profile.json"
+}

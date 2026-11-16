@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "id": "ai-verification-crisis",
+  "slug": "ai-verification-crisis",
+  "title": "AI, the Externalization of Reasoning, and the Verification Crisis",
+  "summary": "Why faster generation raises questions of human understanding and verification.",
+  "authors": [
+    {
+      "name": "Vitalii Oborskyi",
+      "url": "https://vitaliioborskyi.ai/"
+    }
+  ],
+  "language": "en",
+  "topic": "AI software delivery",
+  "owner": {
+    "repository": "oborskyivitalii/oborskyivitalii",
+    "path": "site/publications/ai-verification-crisis"
+  },
+  "status": "accepted",
+  "source": "manuscript.en.md",
+  "edition": "ai-verification-crisis-en-20261116-editorial",
+  "rights": {
+    "status": "accepted",
+    "notice": "Vitalii Oborskyi. Original article text from the June 2026 Agile Insider edition is included on the author site under CC BY 4.0. Linked material retains its own terms.",
+    "references": [
+      "https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0",
+      "https://github.com/oborskyivitalii/oborskyivitalii/issues/183",
+      "https://creativecommons.org/licenses/by/4.0/"
+    ]
+  },
+  "references": [
+    {
+      "id": "agile-insider-original",
+      "url": "https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0"
+    },
+    {
+      "id": "linkedin-edition",
+      "url": "https://www.linkedin.com/pulse/ai-externalization-reasoning-verification-crisis-vitalii-oborskyi-ihzwe/"
+    }
+  ],
+  "assets": [
+    {
+      "id": "cover",
+      "path": "site/assets/publications/ai-verification-crisis/cover.png",
+      "sha256": "9361582b43aadf46a274cc862f72b748e4394fb303cb75c4b45d54a896d98d25",
+      "width": 1200,
+      "height": 675,
+      "alt": "A person at a workstation faces a stream of text and code converging on a cube, with verification symbols on the right.",
+      "caption": "Original cover from the June 2026 Agile Insider edition.",
+      "credit": "AI-generated cover by Vitalii Oborskyi, used by permission for this site edition."
+    }
+  ],
+  "platforms": {
+    "linkedin": {
+      "mode": "equivalent-rendition"
+    },
+    "medium": {
+      "mode": "equivalent-rendition"
+    }
+  },
+  "canonical": null,
+  "profile": "profile.json"
+}

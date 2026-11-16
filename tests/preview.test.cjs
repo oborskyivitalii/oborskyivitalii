@@ -96,7 +96,7 @@ test('ten fixed-theme copies preserve actual main content, CSS and external sour
       const external = (text) =>
         [...text.matchAll(/href="(https:\/\/[^"]+)"/g)].map((match) => match[1]);
       assert.deepEqual(external(html), external(source));
-      const count = [...html.matchAll(/class="(?:publication-title|hosted-edition)"/g)].length;
+      const count = [...main(html).matchAll(/<li class="publication(?: |")/g)].length;
       assert.equal(count, page === 'index' ? 5 : page === 'writing' ? primaryCount : 0);
     }
   }

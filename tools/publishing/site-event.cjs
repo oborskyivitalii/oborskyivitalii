@@ -5,6 +5,8 @@ const { spawnSync } = require('node:child_process');
 const { readSource } = require('./safety.cjs');
 const { decodeUtf8 } = require('./text.cjs');
 const { verifyCommittedPins } = require('./provenance.cjs');
+const { htmlRawLimit } = require('../quality/html-budget.cjs');
+const { assetRawBytes } = require('../quality/budgets.json');
 
 function digest(bytes) {
   return crypto.createHash('sha256').update(bytes).digest('hex');
@@ -110,7 +112,7 @@ function validateSiteArtifact(root, directory, event) {
   let total = 0;
   const inputs = [artifact.manifestPath, editionPath, policyPath];
   for (const file of files) {
-    const maximum = file.endsWith('.html') ? 100_000 : 2_000_000;
+    const maximum = file.endsWith('.html') ? htmlRawLimit(file) : assetRawBytes;
     const input = readSource(root, `${publicRoot}/${file}`, { maxBytes: maximum });
     total += input.bytes.length;
     if (

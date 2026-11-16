@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "id": "ai-verification-crisis",
+  "platforms": {
+    "linkedin": {
+      "formats": ["html", "md", "txt", "copy-ready"],
+      "relationship": "equivalent-rendition"
+    },
+    "medium": {
+      "formats": ["html", "md", "txt", "copy-ready"],
+      "relationship": "equivalent-rendition"
+    }
+  },
+  "launch": {
+    "source": "launch-post.en.md",
+    "sha256": "0a1b52b15b0ef21be111e65050789dae2ce1290567e4aa395c172de9533020f1"
+  },
+  "seo": {
+    "title": "AI, the Externalization of Reasoning, and the Verification Crisis",
+    "summary": "Why faster generation raises questions of human understanding and verification."
+  },
+  "assets": {
+    "cover": {
+      "id": "cover"
+    },
+    "hero": {
+      "id": "cover"
+    }
+  },
+  "limits": {},
+  "reader": {
+    "references": "inline",
+    "images": "webp-lossless",
+    "equivalentImages": {
+      "cover": {
+        "path": "site/assets/publications/ai-verification-crisis/cover-web.jpg",
+        "sha256": "2d4e237d21021bcb6c62b5ce9ab10daffc4e93b521a20f3b6a707a3531781739"
+      }
+    }
+  }
+}

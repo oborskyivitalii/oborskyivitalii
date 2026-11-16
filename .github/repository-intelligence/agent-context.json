@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "54c8edcffac53653e94b65f8d2c88426e6ff091a842c9295ebb16791bd0622dc",
+    "digest": "b79213fccc86e860e589427831fff6b3071a96b08091c7f7798b50c10f40d7be",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -42,7 +42,7 @@
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
         "identity_mode": "content",
-        "sha256": "3c86a44263cafd9af3b8808fdfd6b7659f910dd08e194cf8f6dd5a19eac9428f"
+        "sha256": "9d71dfe6d1d0dbbc7b1e20d6d113a143730763bc80897d9065b3044a462b4658"
       },
       {
         "path": ".github/acceptance/issue-102.json",
@@ -271,12 +271,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "800637a2a88599d1667abe34c8e6f4d95bf616173f0c2e7f59468a448f900fc3"
+        "sha256": "8ce93b48ee486057b422682c1a25b8f9c406a14b0fb6b3e447219d1511c25cdf"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "225c399d905755017421930020bd2dd8f451318bf80cd8ce5081544f107043cb"
+        "sha256": "e4adb5e6cac1847bce00045ca6eda8c40a57bebe5bd846ca86d5bc624f830b46"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -426,7 +426,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "fda0cdc2234270c417de6332590f462e5e126b58c2453e5ade35070b5b537a94"
+        "sha256": "de3415871506efcfa776d589d5cbd51045c4841e2bf3c7492162f570ba9b003b"
       },
       {
         "path": "NOTICE.md",
@@ -483,9 +483,19 @@
         "sha256": "bf1b9e42356b282f3c08f7763a7a59263241c752df5dd9ee776a6b0bf86b0caa"
       },
       {
+        "path": "docs/article-media/11b50b3b2a4dd035b4b975444d87a37ceed0e68d8c983f4acc3b57b9d7dc1833/cover.jpg",
+        "identity_mode": "content",
+        "sha256": "11b50b3b2a4dd035b4b975444d87a37ceed0e68d8c983f4acc3b57b9d7dc1833"
+      },
+      {
         "path": "docs/article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618/research-fallback.svg",
         "identity_mode": "content",
         "sha256": "1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618"
+      },
+      {
+        "path": "docs/article-media/1589356c855ad721e706cff069e147afd60cac49b225445f8e1010737da0a6fc/diagram-6.webp",
+        "identity_mode": "content",
+        "sha256": "1589356c855ad721e706cff069e147afd60cac49b225445f8e1010737da0a6fc"
       },
       {
         "path": "docs/article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292/systemic-response.webp",
@@ -493,9 +503,49 @@
         "sha256": "1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292"
       },
       {
+        "path": "docs/article-media/29527faa8c99529dfa1a7beb3ea1068d4f93a9ba9a30d86b4a1f8eac30583c54/normal-distribution.webp",
+        "identity_mode": "content",
+        "sha256": "29527faa8c99529dfa1a7beb3ea1068d4f93a9ba9a30d86b4a1f8eac30583c54"
+      },
+      {
         "path": "docs/article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg",
         "identity_mode": "content",
         "sha256": "2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16"
+      },
+      {
+        "path": "docs/article-media/2d0985de7aad4d29069f3adcff22f0ccbab01d23fd18a5a0053ce53209856725/circuit-breaker.webp",
+        "identity_mode": "content",
+        "sha256": "2d0985de7aad4d29069f3adcff22f0ccbab01d23fd18a5a0053ce53209856725"
+      },
+      {
+        "path": "docs/article-media/2d4e237d21021bcb6c62b5ce9ab10daffc4e93b521a20f3b6a707a3531781739/cover.jpg",
+        "identity_mode": "content",
+        "sha256": "2d4e237d21021bcb6c62b5ce9ab10daffc4e93b521a20f3b6a707a3531781739"
+      },
+      {
+        "path": "docs/article-media/300fdfa774d4e768f36fc3e3d1f4f146b46ed41feead5d33db2316c9f3a3c06a/diagram-5.webp",
+        "identity_mode": "content",
+        "sha256": "300fdfa774d4e768f36fc3e3d1f4f146b46ed41feead5d33db2316c9f3a3c06a"
+      },
+      {
+        "path": "docs/article-media/3415712316948afcc30c00607f7f2fb475b2ca0939c108481bfdcd4fe3676a93/cover-social.jpg",
+        "identity_mode": "content",
+        "sha256": "3415712316948afcc30c00607f7f2fb475b2ca0939c108481bfdcd4fe3676a93"
+      },
+      {
+        "path": "docs/article-media/38e49d4bb130df44098c0b70e3e6ac952b51d1b8822822a429ae15ed930402ea/llm-as-judge.webp",
+        "identity_mode": "content",
+        "sha256": "38e49d4bb130df44098c0b70e3e6ac952b51d1b8822822a429ae15ed930402ea"
+      },
+      {
+        "path": "docs/article-media/393e1a2b17f2c895be46fcb64bb3963d7c5abf56984099e8008857589b32b6ff/neuro-symbolic-sensor.webp",
+        "identity_mode": "content",
+        "sha256": "393e1a2b17f2c895be46fcb64bb3963d7c5abf56984099e8008857589b32b6ff"
+      },
+      {
+        "path": "docs/article-media/41f0f839015031d489aeb6ddfded11099be8247d030d636e4044c6820071c70b/control-design-process.webp",
+        "identity_mode": "content",
+        "sha256": "41f0f839015031d489aeb6ddfded11099be8247d030d636e4044c6820071c70b"
       },
       {
         "path": "docs/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3/imbalance-loop.webp",
@@ -503,9 +553,44 @@
         "sha256": "45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3"
       },
       {
+        "path": "docs/article-media/4fb99c0a32cfe808956a13bc2caaec71ed7adea83de79df4c5bfa08592d0b871/cover.jpg",
+        "identity_mode": "content",
+        "sha256": "4fb99c0a32cfe808956a13bc2caaec71ed7adea83de79df4c5bfa08592d0b871"
+      },
+      {
+        "path": "docs/article-media/542383922d50b39015ac2e3553481e7237a91efae41d19be80a3ee564d039d43/diagram-7.webp",
+        "identity_mode": "content",
+        "sha256": "542383922d50b39015ac2e3553481e7237a91efae41d19be80a3ee564d039d43"
+      },
+      {
+        "path": "docs/article-media/5552ab1fb02be8954586dccb7d92ffd5ab4a1df4fd0857de7133cfb98613af85/diagram-4.webp",
+        "identity_mode": "content",
+        "sha256": "5552ab1fb02be8954586dccb7d92ffd5ab4a1df4fd0857de7133cfb98613af85"
+      },
+      {
         "path": "docs/article-media/568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58/reading-r11.pdf",
         "identity_mode": "content",
         "sha256": "568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58"
+      },
+      {
+        "path": "docs/article-media/593e5212280ebabadb49ddc4c56e0bc4ba6908f659a9b466b462e7331680e27d/diagram-2.webp",
+        "identity_mode": "content",
+        "sha256": "593e5212280ebabadb49ddc4c56e0bc4ba6908f659a9b466b462e7331680e27d"
+      },
+      {
+        "path": "docs/article-media/5ba399aa0ca2dc3e492e58292358870926fb5acd7fdd958c63e2e71541d6994d/cover-social.jpg",
+        "identity_mode": "content",
+        "sha256": "5ba399aa0ca2dc3e492e58292358870926fb5acd7fdd958c63e2e71541d6994d"
+      },
+      {
+        "path": "docs/article-media/5f8490fc28edf22e1a224c2adc10f6aa814d091ce620c059e86e4a64c7843360/cover.jpg",
+        "identity_mode": "content",
+        "sha256": "5f8490fc28edf22e1a224c2adc10f6aa814d091ce620c059e86e4a64c7843360"
+      },
+      {
+        "path": "docs/article-media/6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168/cover.jpg",
+        "identity_mode": "content",
+        "sha256": "6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168"
       },
       {
         "path": "docs/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c/reading.pdf",
@@ -523,6 +608,11 @@
         "sha256": "79aeec31258f8a80cb2c3562adcff71210ec9e4194a5ee5527d460cffc58bbe6"
       },
       {
+        "path": "docs/article-media/7d220ce3249c461ada25c5b12dd825283362eef960822a58ad95b1f38a4db62b/traditional-and-behavioral.webp",
+        "identity_mode": "content",
+        "sha256": "7d220ce3249c461ada25c5b12dd825283362eef960822a58ad95b1f38a4db62b"
+      },
+      {
         "path": "docs/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry-r9.webp",
         "identity_mode": "content",
         "sha256": "8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f"
@@ -538,9 +628,59 @@
         "sha256": "8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1"
       },
       {
+        "path": "docs/article-media/919957eafd1c9cef20c4d3d99251dee97f9a397ffd505952a9a441e03c80d34c/verification-trilemma.webp",
+        "identity_mode": "content",
+        "sha256": "919957eafd1c9cef20c4d3d99251dee97f9a397ffd505952a9a441e03c80d34c"
+      },
+      {
+        "path": "docs/article-media/943cc2b0ba6d097701efdd5c358e26e007a66b5d1077d71f672dcc040baf4936/cover-social.jpg",
+        "identity_mode": "content",
+        "sha256": "943cc2b0ba6d097701efdd5c358e26e007a66b5d1077d71f672dcc040baf4936"
+      },
+      {
+        "path": "docs/article-media/9acaf96c7008839610c8b9d3efdcb45a8046cde2c792f6f0dfe1951ba8a92048/cover-social.jpg",
+        "identity_mode": "content",
+        "sha256": "9acaf96c7008839610c8b9d3efdcb45a8046cde2c792f6f0dfe1951ba8a92048"
+      },
+      {
+        "path": "docs/article-media/9cc5b62810712f9988b2d05004700978d8886e7c7954d92d2317c8f9cc4ff719/diagram-8b.webp",
+        "identity_mode": "content",
+        "sha256": "9cc5b62810712f9988b2d05004700978d8886e7c7954d92d2317c8f9cc4ff719"
+      },
+      {
+        "path": "docs/article-media/9e48e39e141a2775794af0f17a94275705d475ae4d3a97b327d9fdaf6992e0fa/transformation-j-curve.webp",
+        "identity_mode": "content",
+        "sha256": "9e48e39e141a2775794af0f17a94275705d475ae4d3a97b327d9fdaf6992e0fa"
+      },
+      {
+        "path": "docs/article-media/a187cf86739b2cc193cc9696e9884e2252c62b636ce262277c342371081eaa36/cover-social.jpg",
+        "identity_mode": "content",
+        "sha256": "a187cf86739b2cc193cc9696e9884e2252c62b636ce262277c342371081eaa36"
+      },
+      {
         "path": "docs/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a/review-learning-r7.webp",
         "identity_mode": "content",
         "sha256": "a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a"
+      },
+      {
+        "path": "docs/article-media/a3e8b467f27cbc673040aea8b17d32371621ab367eef63804063198a9bf739a0/diagram-3.webp",
+        "identity_mode": "content",
+        "sha256": "a3e8b467f27cbc673040aea8b17d32371621ab367eef63804063198a9bf739a0"
+      },
+      {
+        "path": "docs/article-media/b68b465d8f611f72c8f4d9e95eaad457c1e40761154d90112ed128d7ecd47dd2/cover.jpg",
+        "identity_mode": "content",
+        "sha256": "b68b465d8f611f72c8f4d9e95eaad457c1e40761154d90112ed128d7ecd47dd2"
+      },
+      {
+        "path": "docs/article-media/bb70b4d0907ed3672055b0aacd58ca6bb35ef9154aecfb151705de58127eb2ae/diagram-1.webp",
+        "identity_mode": "content",
+        "sha256": "bb70b4d0907ed3672055b0aacd58ca6bb35ef9154aecfb151705de58127eb2ae"
+      },
+      {
+        "path": "docs/article-media/c1f333b5145b75b144562e218b73946ba77083fba5c1d30a8a8b43ef2659fc5a/cover.jpg",
+        "identity_mode": "content",
+        "sha256": "c1f333b5145b75b144562e218b73946ba77083fba5c1d30a8a8b43ef2659fc5a"
       },
       {
         "path": "docs/article-media/c3686dce007b399d3fb175d5b235a51b1000500a3e4bc6f024be9767bfb33996/reading-r12.pdf",
@@ -548,14 +688,49 @@
         "sha256": "c3686dce007b399d3fb175d5b235a51b1000500a3e4bc6f024be9767bfb33996"
       },
       {
+        "path": "docs/article-media/c3b69024bc558f1b246c0135e7fceb55cbf77e4a8984e286285b57c13aaeaa37/drift-response-tiers.webp",
+        "identity_mode": "content",
+        "sha256": "c3b69024bc558f1b246c0135e7fceb55cbf77e4a8984e286285b57c13aaeaa37"
+      },
+      {
+        "path": "docs/article-media/c7800f9370b6be57d53135a923689b70c4d6f99ac3acf17b118436a08bfe953a/control-boundary.webp",
+        "identity_mode": "content",
+        "sha256": "c7800f9370b6be57d53135a923689b70c4d6f99ac3acf17b118436a08bfe953a"
+      },
+      {
         "path": "docs/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551/comprehension-gap-r7.webp",
         "identity_mode": "content",
         "sha256": "ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551"
       },
       {
+        "path": "docs/article-media/d125ba3950bf0b8cd725d9197957a152ca404bff51c3cb87c9ee6460a8ddad88/cover-social.jpg",
+        "identity_mode": "content",
+        "sha256": "d125ba3950bf0b8cd725d9197957a152ca404bff51c3cb87c9ee6460a8ddad88"
+      },
+      {
+        "path": "docs/article-media/d1bed993498c86dbebc2706ca22878adfcf4e56ea2ed054bdc23e3ab471c1c73/verification-layers.webp",
+        "identity_mode": "content",
+        "sha256": "d1bed993498c86dbebc2706ca22878adfcf4e56ea2ed054bdc23e3ab471c1c73"
+      },
+      {
+        "path": "docs/article-media/dfc1c0903c9baf02dec4e96b1d87a46cccbad3ee015e9d47a3d86c73d8fb29c0/diagram-8a.webp",
+        "identity_mode": "content",
+        "sha256": "dfc1c0903c9baf02dec4e96b1d87a46cccbad3ee015e9d47a3d86c73d8fb29c0"
+      },
+      {
+        "path": "docs/article-media/e09b0fc781b0930aa9671ef0ca728d286828e0e9c8d47e6696d1976b0b1381ee/end-to-end-control.webp",
+        "identity_mode": "content",
+        "sha256": "e09b0fc781b0930aa9671ef0ca728d286828e0e9c8d47e6696d1976b0b1381ee"
+      },
+      {
         "path": "docs/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7/delivery-capacity-r6.webp",
         "identity_mode": "content",
         "sha256": "e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7"
+      },
+      {
+        "path": "docs/article-media/fe4ca5dc397894e9c267484abb9606022abfdb6ab31560ce988efddf21c4438d/cover-social.jpg",
+        "identity_mode": "content",
+        "sha256": "fe4ca5dc397894e9c267484abb9606022abfdb6ab31560ce988efddf21c4438d"
       },
       {
         "path": "docs/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f/hero-web.jpg",
@@ -568,6 +743,36 @@
         "sha256": "f1d53fa07e9c2d947922eb82b5cc12b7b7bbefd62cf728e80b9cfcbde8a5ffa9"
       },
       {
+        "path": "docs/article-snapshots/1ad993812e199251299e1545ae901b32b3612699717b5555329e0f1185fb2afc/the-sdlc-is-out-of-balance.html",
+        "identity_mode": "content",
+        "sha256": "9f9b6faa8774719a0dd09103c9c8825fb5a9818bc842de18ae91ca0fc53f0ecc"
+      },
+      {
+        "path": "docs/article-snapshots/1b6eaa02835c73d162f618ec6ce2c895e6c8c4a6c262c46324b2fddb38b3fcb0/ai-governance-is-control-theory.html",
+        "identity_mode": "content",
+        "sha256": "27584ddf7cb77bfe87d4326f3c2daee84ad8f77d1c88ed500af443f4cea16961"
+      },
+      {
+        "path": "docs/article-snapshots/51c29e57f6c1efda2e32251593d829a94d3ae2aa5a1a71be267bf5112d9aac09/beyond-embeddings.html",
+        "identity_mode": "content",
+        "sha256": "35705e2b29a5bfad258155f7b3ae0b19798bcea8963a0e44b83acddcfd4f4cfa"
+      },
+      {
+        "path": "docs/article-snapshots/76d33d8e21ab50f78ec8c7102e7999c8c45b7cd56ed30c1ad22c0d6fb2699bff/thinking-systems.html",
+        "identity_mode": "content",
+        "sha256": "bccabb394f2a56959ee623f48c6c1128ac95de052cb0b9d82465c648099a0e5d"
+      },
+      {
+        "path": "docs/article-snapshots/9479a537c62f131448ff3cc90f3ba0612689b4404f3e960313bff4da01aab690/agentic-loops.html",
+        "identity_mode": "content",
+        "sha256": "e841032266f684d050c1f6006f91d418740e153b80aea3cdb83a6bd5f803077b"
+      },
+      {
+        "path": "docs/article-snapshots/a0b4e14883af5ba1418a23420074d42cb6d10b386eb0a46b370b78c5bd5c8b97/ai-native-workflows-have-a-moat-problem.html",
+        "identity_mode": "content",
+        "sha256": "7d0d0b465e96f0e6e69ff22d6e7ab740500d0c836837eaa6a7b1d46b517028c0"
+      },
+      {
         "path": "docs/article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995/the-sdlc-is-out-of-balance.html",
         "identity_mode": "content",
         "sha256": "c190559a8abad1589892257f44b16ee9d2188e3f98e6d2e0561dab71131824e4"
@@ -578,14 +783,54 @@
         "sha256": "4aa1ae74ff48155957e9f897b7697e1cee35e3b38d8319d0906c15da2d44fd7b"
       },
       {
-        "path": "docs/article-snapshots/d32979c9bb19b2ef02dbd5716d4135d923cc900dd197ddbddc30ccc791b78508/the-sdlc-is-out-of-balance.html",
+        "path": "docs/article-snapshots/c03ae1d5925a33b1e3ece61210a4c593bb608cd86dcfeae24c0909d23ad34975/ai-verification-crisis.html",
         "identity_mode": "content",
-        "sha256": "9225390e12e8004d59db6b2ee19d2407a7b5e5d53f23956c364a5a2e90a84629"
+        "sha256": "df5ccebd74475c8ec127a26396901703e3b5f73f3238d26840ce5c3ce8a6b9b9"
+      },
+      {
+        "path": "docs/article-snapshots/ffd72466b6d3cfb099d196286610e17fab8dd1304452b5b852a2049e8a9ea6d4/ai-cost-cutting-fallacy.html",
+        "identity_mode": "content",
+        "sha256": "4da425536f1d7bc3a4d31448ae11a841df72866cdcc4a17daa9a3ab7f2735a51"
+      },
+      {
+        "path": "docs/articles/agentic-loops.html",
+        "identity_mode": "content",
+        "sha256": "a6f48e222f8c73f8b8c13b12529cb3a9f0e4bfffafcd1d7b53def88e5149725a"
+      },
+      {
+        "path": "docs/articles/ai-cost-cutting-fallacy.html",
+        "identity_mode": "content",
+        "sha256": "3a0c4fe7d0a5a2b69911df625debd621dd720f5a545cd2b34cfc0b4a2681e5ac"
+      },
+      {
+        "path": "docs/articles/ai-governance-is-control-theory.html",
+        "identity_mode": "content",
+        "sha256": "23488bd8acbe9e85031f45c5be10308127e332350ae8a8bc741591a3223db224"
+      },
+      {
+        "path": "docs/articles/ai-native-workflows-have-a-moat-problem.html",
+        "identity_mode": "content",
+        "sha256": "4e426d2d5b9473e16331b3eb8b1b64493c6d8c9d108b982149776ad1b1d54241"
+      },
+      {
+        "path": "docs/articles/ai-verification-crisis.html",
+        "identity_mode": "content",
+        "sha256": "e0c9f0162f4a7ce4ef3f1432dc705448ffb94e55e1a28f264a8d8992d61a3689"
+      },
+      {
+        "path": "docs/articles/beyond-embeddings.html",
+        "identity_mode": "content",
+        "sha256": "b2d92742f154597eeda79e0ec7b77618f5a4763ee519411b41c3e2d961f6eb6e"
       },
       {
         "path": "docs/articles/the-sdlc-is-out-of-balance.html",
         "identity_mode": "content",
-        "sha256": "ef1429ee4c201d199dad2b351b5d35817dfd3be5eef7bb1290f94398316f0057"
+        "sha256": "59c55ebc40ca2c62ae81e24f07d2fc5e1d570c83cb41478cd8abdd36b1103f04"
+      },
+      {
+        "path": "docs/articles/thinking-systems.html",
+        "identity_mode": "content",
+        "sha256": "916575ab995827cfedc64b689dc00d96f5110e50a2c62f192a047766a0f9c3d1"
       },
       {
         "path": "docs/assets/favicon.svg",
@@ -610,12 +855,12 @@
       {
         "path": "docs/credits.html",
         "identity_mode": "content",
-        "sha256": "0931cff9d132975ae5dac891fccde8f7c4a27ab78ac769fe630bd2ffde1feca6"
+        "sha256": "8b990e5d78d4d4471cbabc1f3b811c166f39260227a8cbb84d7988980722c707"
       },
       {
         "path": "docs/index.html",
         "identity_mode": "content",
-        "sha256": "5374813b30cc621d48a9ab762ae04171a571378d4bf8950d5cdb28609ab35a71"
+        "sha256": "181b526eb0ad999fdc3f87dc29b52799eaa101080e8d2f1f60fceea7f1f624b4"
       },
       {
         "path": "docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg",
@@ -640,17 +885,17 @@
       {
         "path": "docs/navigation.js",
         "identity_mode": "content",
-        "sha256": "3088c8dd85d0b57d84cc457429e91bce10145fdb6830faf5d373fe33a19d7b22"
+        "sha256": "f2220ac1e699cd32ce6501b829cda27f976160a56efa2d73d578cededc04dd8f"
       },
       {
         "path": "docs/publication-index.json",
         "identity_mode": "content",
-        "sha256": "6186dca6384e202a2d405e210ede3620c6baf40e8aafe9571516654f35e2b124"
+        "sha256": "c2c34828dbd300ba3f2ab679dbee003aa3295b8c58058aed6b7f0bea589ef0fe"
       },
       {
         "path": "docs/research.html",
         "identity_mode": "content",
-        "sha256": "96f6286497f8a672195d0829d95dfe430e1910e4278d2a813b2d795ac9a252f6"
+        "sha256": "9b6c5f0de7420578318ac7c159795d13c0d070b5718ea4a819f634cea1e504aa"
       },
       {
         "path": "docs/runtime/1c34e64047482a214a50a115582adb08988fe8721f5ee651bd8a231a300e2cf7/analytics.js",
@@ -683,31 +928,6 @@
         "sha256": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a"
       },
       {
-        "path": "docs/runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/archive.js",
-        "identity_mode": "content",
-        "sha256": "bf1b9e42356b282f3c08f7763a7a59263241c752df5dd9ee776a6b0bf86b0caa"
-      },
-      {
-        "path": "docs/runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/navigation.js",
-        "identity_mode": "content",
-        "sha256": "3088c8dd85d0b57d84cc457429e91bce10145fdb6830faf5d373fe33a19d7b22"
-      },
-      {
-        "path": "docs/runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/space.js",
-        "identity_mode": "content",
-        "sha256": "c8b91326e9a1206e8fbd219ebadc7160fa2a639ffc58fa0f6063ed86e53f2d23"
-      },
-      {
-        "path": "docs/runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/styles.css",
-        "identity_mode": "content",
-        "sha256": "c78a92fc66a6dc59b0449e1fc0501d85cc07b79d9380a868d853a5301d7240da"
-      },
-      {
-        "path": "docs/runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/theme.js",
-        "identity_mode": "content",
-        "sha256": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a"
-      },
-      {
         "path": "docs/runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/archive.js",
         "identity_mode": "content",
         "sha256": "bf1b9e42356b282f3c08f7763a7a59263241c752df5dd9ee776a6b0bf86b0caa"
@@ -733,9 +953,39 @@
         "sha256": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a"
       },
       {
+        "path": "docs/runtime/6cb335e76a1aa0004d11ae06d9825991f5ea513a9564457383c8d13c7c54bbb1/analytics.js",
+        "identity_mode": "content",
+        "sha256": "6cb335e76a1aa0004d11ae06d9825991f5ea513a9564457383c8d13c7c54bbb1"
+      },
+      {
         "path": "docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff/analytics.js",
         "identity_mode": "content",
         "sha256": "7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff"
+      },
+      {
+        "path": "docs/runtime/97208ee3d165d8585186561ca50d2fdebe8ca0831c3fc6b7a7414a43e5f18aab/archive.js",
+        "identity_mode": "content",
+        "sha256": "bf1b9e42356b282f3c08f7763a7a59263241c752df5dd9ee776a6b0bf86b0caa"
+      },
+      {
+        "path": "docs/runtime/97208ee3d165d8585186561ca50d2fdebe8ca0831c3fc6b7a7414a43e5f18aab/navigation.js",
+        "identity_mode": "content",
+        "sha256": "f2220ac1e699cd32ce6501b829cda27f976160a56efa2d73d578cededc04dd8f"
+      },
+      {
+        "path": "docs/runtime/97208ee3d165d8585186561ca50d2fdebe8ca0831c3fc6b7a7414a43e5f18aab/space.js",
+        "identity_mode": "content",
+        "sha256": "c8b91326e9a1206e8fbd219ebadc7160fa2a639ffc58fa0f6063ed86e53f2d23"
+      },
+      {
+        "path": "docs/runtime/97208ee3d165d8585186561ca50d2fdebe8ca0831c3fc6b7a7414a43e5f18aab/styles.css",
+        "identity_mode": "content",
+        "sha256": "c78a92fc66a6dc59b0449e1fc0501d85cc07b79d9380a868d853a5301d7240da"
+      },
+      {
+        "path": "docs/runtime/97208ee3d165d8585186561ca50d2fdebe8ca0831c3fc6b7a7414a43e5f18aab/theme.js",
+        "identity_mode": "content",
+        "sha256": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a"
       },
       {
         "path": "docs/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/archive.js",
@@ -815,7 +1065,12 @@
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "358b95040586798aa916cb65555cdacefbd7804edc69bd34abd7a6dd33f2d35c"
+        "sha256": "57f62900d7c8453d343de7102a57624dec793f7e7640d412750bd08b41363cf1"
+      },
+      {
+        "path": "docs/snapshots/02fbae00edcb723580662d54b4453fa65c3535c77fc49ef95ee593fd08a14361/writing.html",
+        "identity_mode": "content",
+        "sha256": "e313d4b6e85a982dc2ee8448e5ad1ce307f178ac792ae32e3c7eecf7384f58a7"
       },
       {
         "path": "docs/snapshots/080da808855bdc7cac66970509a9a371a5033cb5d721a007a92632c826b2d06a/writing.html",
@@ -833,9 +1088,14 @@
         "sha256": "93c88b5f9c73e559b067866cb38eb604e93013c2225a06a36f96e8f215d397b3"
       },
       {
-        "path": "docs/snapshots/49ebb5609deed1057e3cd1f4aa0d0a35ed21c35c6ffc703f7481995e691ad73e/index.html",
+        "path": "docs/snapshots/464f356f00b70c8e63d3ba19b756e7ccb0b23ee2e9926d3ea138b7d0c33c917f/research.html",
         "identity_mode": "content",
-        "sha256": "34c0b55899185c03c52aaaea5f6925c2dd3a63971064a1ccb575dad736dd1ad1"
+        "sha256": "594c8b2ccdf240bb51aed37a05b49c4e1e84623b9c64af3d704cea172f0427e2"
+      },
+      {
+        "path": "docs/snapshots/481dc8bacc3c2e39ac84bdcf4f02765554b9cc717d92f3df6094042dcd9aba71/talks.html",
+        "identity_mode": "content",
+        "sha256": "2c455683478722d608202eb06d2721274013ae1f9bd4b0ea88349d6da5c83d83"
       },
       {
         "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
@@ -851,6 +1111,11 @@
         "path": "docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed/research.html",
         "identity_mode": "content",
         "sha256": "395fd7fcc670e0b7984ed05e7395958dd9432a701f3bfc43151fb956e6d289a1"
+      },
+      {
+        "path": "docs/snapshots/767e85fb0cf37e35d8be617e4454fe18302367be01dac4bb0bdb0e9de0bfebbb/index.html",
+        "identity_mode": "content",
+        "sha256": "976b732828115e86a9c07d75c76ec0af2ec727548c224828730edeeba3aedc1e"
       },
       {
         "path": "docs/snapshots/7b62f25175a003a9fcc24f430e26ff321f267a8e77a28699984f86bf1dfdd3b6/research.html",
@@ -893,19 +1158,9 @@
         "sha256": "55cf819e07ca22d5a0b84efe46eb5cbff97e318605e9fd8d2d89c32c28ef2e11"
       },
       {
-        "path": "docs/snapshots/b9304a0650e725ae878b80083b3e5f117f022a28f7b1ef8e853d907760597869/credits.html",
-        "identity_mode": "content",
-        "sha256": "02cfbda71f6d2e4e2c1786760318624610fbf48e0e638aa530ae2448c345ef01"
-      },
-      {
         "path": "docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920/index.html",
         "identity_mode": "content",
         "sha256": "e4bbf6e735ef6b9d3c89d7412e12a1288f2b73b9d47e3097c71419f518b29fd2"
-      },
-      {
-        "path": "docs/snapshots/c700fa57e1844e776665e570750dfee2a98b4788de110b62ced9787b1a90068b/research.html",
-        "identity_mode": "content",
-        "sha256": "01956514e8d6c60017b77f5dc24c5dbd3be172b3b4f9f3677e83fce4d7cb87c9"
       },
       {
         "path": "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html",
@@ -913,14 +1168,9 @@
         "sha256": "eef3b91329720bf60b4aaf9e08208bd9ce75790be77b21c2757638c7af7a6fb4"
       },
       {
-        "path": "docs/snapshots/debeac096a30cbcd37665f48be4c31418b5911b033cb6f7421913b586d94ffde/writing.html",
+        "path": "docs/snapshots/eb9003485aff808b249f624f706e793516bcf3a1c84c4734fa00d53e901a0130/credits.html",
         "identity_mode": "content",
-        "sha256": "4dbfd14a4cd74bbf5e2c29d116ae996f654ee923827f3f9eee26ab772e01aae3"
-      },
-      {
-        "path": "docs/snapshots/f84b293d460c2c8d22c3f82afe83cd2b796af43d5b154e4e093eb1a42caf2ee5/talks.html",
-        "identity_mode": "content",
-        "sha256": "bd4d619452ba01b77891484e8bcc6d6f28c17a8de773640d7803f73b3a622428"
+        "sha256": "2e25f92560c2706cb3efd7c71c82854ee5db38959887f6dd153980bd83f3812e"
       },
       {
         "path": "docs/space.js",
@@ -935,7 +1185,7 @@
       {
         "path": "docs/talks.html",
         "identity_mode": "content",
-        "sha256": "ff50b4cd42d98b5e48bd4df2f64c9ac2826d43c837aa2d09940d9ac6a0ad8d18"
+        "sha256": "e36cafd98b8905f07ba011a222d9495cf35f5613dc377a0039df178a6a5c9fb3"
       },
       {
         "path": "docs/theme.js",
@@ -945,7 +1195,7 @@
       {
         "path": "docs/writing.html",
         "identity_mode": "content",
-        "sha256": "533895f35dfb5f181b1e9e7707248c5db1a6189a430e746df1adf33bfb75ab76"
+        "sha256": "765f2a69c94c0c7fe35b44ba0a7b73e2bcc9f3f8c4aec4e0e7fa400913c9ad41"
       },
       {
         "path": "drafts/medium-profile-revision-20261001.html",
@@ -965,7 +1215,7 @@
       {
         "path": "guides/ARTICLE-WORKFLOW.md",
         "identity_mode": "content",
-        "sha256": "3886f72a66f1f3d302de18cec8c8468a336a8e6055e04b64a40edac54fd889ed"
+        "sha256": "0f350171dd019e042663b7b10c0f3431b6a82b7488415fabbaae983ffe70e1d5"
       },
       {
         "path": "guides/BROWSER-ARCHIVES.md",
@@ -1025,7 +1275,7 @@
       {
         "path": "guides/SITE-RELEASE-GATES.md",
         "identity_mode": "content",
-        "sha256": "a5fcef5de74e521cdcdb161c4114d862aa5e04b0a62a1148592eecdb22ec46df"
+        "sha256": "d545bdf57e956492c189e8f9dd74754ec018ad8824725d48cea9649a2de50da3"
       },
       {
         "path": "guides/SITE-RIGHTS.md",
@@ -4868,6 +5118,46 @@
         "sha256": "c4bc978ce7df48f3715843a3fe14d9b60f3429465e269d5b77b913ab4272f315"
       },
       {
+        "path": "review/issue-183/2026-11-13-migration.md",
+        "identity_mode": "content",
+        "sha256": "d20f464100eaba0f9a4500e52db9fde98825ffb23a937e33a708e3bd439e5e93"
+      },
+      {
+        "path": "review/issue-183/2026-11-15-control-theory.md",
+        "identity_mode": "content",
+        "sha256": "8475c871aa7fdedd9e092e86796b6dc1a72498ea2fd9c3ecfd9c2fc38e7538a5"
+      },
+      {
+        "path": "review/issue-183/2026-11-15-cost-cutting.md",
+        "identity_mode": "content",
+        "sha256": "cfedcd5845369583c74d5ab67ea388d49ada336bd9205f9224e99db17e9d7c25"
+      },
+      {
+        "path": "review/issue-183/2026-11-15-moat-problem.md",
+        "identity_mode": "content",
+        "sha256": "1a242213413efc104c188f32ebed96866f27d20eae70c5d8b9552f3cce2edd1a"
+      },
+      {
+        "path": "review/issue-183/2026-11-15-verification-crisis.md",
+        "identity_mode": "content",
+        "sha256": "499bf21b6cb6fcc6665ed6f482b534f5e0112ef636f17559eb83d62cc25c5eff"
+      },
+      {
+        "path": "review/issue-183/2026-11-16-agentic-loops.md",
+        "identity_mode": "content",
+        "sha256": "118b8ac066860c2d295d50f1d822a258a573fe1888aa8de9fc8e21e5ad788fa0"
+      },
+      {
+        "path": "review/issue-183/2026-11-16-beyond-embeddings.md",
+        "identity_mode": "content",
+        "sha256": "46f19766a6faee0bf4193f935c858a705b67980ad44578e44c44b9fd976314e6"
+      },
+      {
+        "path": "review/issue-183/2026-11-16-editorial-refresh.md",
+        "identity_mode": "content",
+        "sha256": "f7dc0a13c1cbe0a0a576b3b10f7489fbbf2aab5da9772caf09bd04bbeb17d5f9"
+      },
+      {
         "path": "review/issue-183/2026-11-16-staging-controller.md",
         "identity_mode": "content",
         "sha256": "ea52b64e107180dd198a6b21aee0dcf61cfb43329116e4f8bcd80259d91655db"
@@ -4875,7 +5165,7 @@
       {
         "path": "review/issue-183/workflow-guide-evidence.json",
         "identity_mode": "content",
-        "sha256": "8198edc945902962176a6a1e668da0bbbecf3d5ea5549424fd3631fd1e9bfb8e"
+        "sha256": "9e0d9543830a30aeae725e0e8d1b76d7a0cf665ca822618a32f69d0c4d22b826"
       },
       {
         "path": "review/issue-184/2026-11-10-archive.md",
@@ -9545,22 +9835,22 @@
       {
         "path": "review/site-v1-20261004-v11-credits-day.html",
         "identity_mode": "content",
-        "sha256": "a2e7aef4158ac5f78bd0d3d03772ad904bd3b3e962df25a7d06e3768533e7b8a"
+        "sha256": "038d031ee3a1b129d0118a074059213277e9185e54507b494b06dae655f2e1c4"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-interactive.html",
         "identity_mode": "content",
-        "sha256": "6262cf7246ffaa4a8ceb77a48bbca2396c627eceb4179585999fc9bce7b75d32"
+        "sha256": "56a559f409793990c9030bb3cbb9ac4e6c1fff6b9bca50c5327e26c02d7c305d"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-night.html",
         "identity_mode": "content",
-        "sha256": "c9659d4f3bbd13c3527b2d0f5d3067ef265d4cfcf1672373c7771c4278e9d451"
+        "sha256": "abc37b5f4ed5284c2e8f8a9e1bbbf7e1783708a30be48301a7896a227edcca47"
       },
       {
         "path": "review/site-v1-20261004-v11-day.html",
         "identity_mode": "content",
-        "sha256": "8c801140b58e6310aef266abb990364fc48033c8b7f41869af56af957a0aa781"
+        "sha256": "5d1207b757061d6abedf841cf315151c24c868e0be0cef3ee07b15ce74a5c326"
       },
       {
         "path": "review/site-v1-20261004-v11-index.html",
@@ -9570,57 +9860,57 @@
       {
         "path": "review/site-v1-20261004-v11-interactive.html",
         "identity_mode": "content",
-        "sha256": "b59b111959b3c428a300d27845a3148b921e3d5cee04e2f4870f934db968b3f7"
+        "sha256": "feede0a95eebbb00e67b4ee142f1d27d8c2feac85fedf9618c5496bb7ad7e2ce"
       },
       {
         "path": "review/site-v1-20261004-v11-night.html",
         "identity_mode": "content",
-        "sha256": "e92f0cc800ecd1c5093237bd54d1371a39a36dce7242a2dc0e689e11d933016e"
+        "sha256": "1317d6fb3d4cd54ba4f400034429431e976819eba1fa58d06533723bf08b07e6"
       },
       {
         "path": "review/site-v1-20261004-v11-research-day.html",
         "identity_mode": "content",
-        "sha256": "ad3b753fae9fe55c2fe36c1ba306accc84a0928e3a783fa3eefa9af06c72746f"
+        "sha256": "e77a9a25a800c046d33c2c74cf358f3f6792900fd83cc40d7d3ee9b14182066f"
       },
       {
         "path": "review/site-v1-20261004-v11-research-interactive.html",
         "identity_mode": "content",
-        "sha256": "1adbfe8fbc10942c0e95a45dd154f6a3ba20e3901ff984fe759b98512a192b6c"
+        "sha256": "499c6c4351c69327a92aa2b1c6ac31e7e004f20cf644a2821761b5a38b0f0916"
       },
       {
         "path": "review/site-v1-20261004-v11-research-night.html",
         "identity_mode": "content",
-        "sha256": "012be232c3d7bdd68ad91c0a2087e57ed9a8f50b6d26e55696ffd6fdd6d93e4f"
+        "sha256": "ab189c67b501effb73eae43e0d1405b2c91643a08e31a0ba9177329b373c5d44"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-day.html",
         "identity_mode": "content",
-        "sha256": "589c62dd7b74ec7d0abb5df7520ada79a53d4c3e356a9b4458128e005406538b"
+        "sha256": "7f798aeadf1184bd091a36559fbe5403c5cea759bb054b89220b2ef47f6ffc53"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-interactive.html",
         "identity_mode": "content",
-        "sha256": "736cb717b201cc079caee0e5f32e96d54ce22de7f4ea0bed59f28f341e2e4b4a"
+        "sha256": "b0dd6af4ccfbd919767504d73c2e0acd136598243a7d11daeb0e1426b633d0e9"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-night.html",
         "identity_mode": "content",
-        "sha256": "961278a97ae23752dbf3562629b274a6bd5772db214cd799be4544e0586a6020"
+        "sha256": "59bf43c6648511ceab5b9a2257e2b0118e4e2e8cdd3c885902d4d10a912f7bc6"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-day.html",
         "identity_mode": "content",
-        "sha256": "21cadfcef742ba1b9f9c99bed6913fa737a1b0b9f8552f48f4c788e34a0ce4bc"
+        "sha256": "75cdb404e263bf4a96d829e06fc34fd91251d8eef2cab9a40241e960419f6cc7"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-interactive.html",
         "identity_mode": "content",
-        "sha256": "a85abd4401f3410147f681105a8e212f97fef1c78a87b7bf6aade62a9bad4096"
+        "sha256": "0aa8d5eb51e5969b2d1321f389f9a4c1e6bd45e13a82309bf46c514912b7d289"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-night.html",
         "identity_mode": "content",
-        "sha256": "3bac0417604f85fab50837fd00154cfc50a1546ac14970bd8de17d5fc745f3bb"
+        "sha256": "2ba0274ec8fd31281900bbf90e593021e0f7cc21e3fd1841bf007cdd83b66a5b"
       },
       {
         "path": "review/site-v1-offline-bundle-v10.json",
@@ -9630,7 +9920,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "0257912b94f1b8b15e9fd837d3fdd90ec91323ad093bd017951b2c11755b47e6"
+        "sha256": "f50c64fd2700616078475b86956c2f4d98d5bd442201ee968f88014f3221dfb4"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -9685,7 +9975,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "fc22d87d62f52dbac61d6b2f76969857db555b38c4c2c8ae93d46b12ac89e066"
+        "sha256": "ab3a0e45c780e1c65a634fc721d5b80cb82f211aefeabbc93b017d584805aec4"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -10195,7 +10485,7 @@
       {
         "path": "site/README.md",
         "identity_mode": "content",
-        "sha256": "9cb2009968a8ed54f146f99e4bd5573e7efd694b2d7da2da5c388817125fed75"
+        "sha256": "b88cd8e1597563430d68b1baea0c14ef768ff70e62a2ffb0276f59110971ab0f"
       },
       {
         "path": "site/analytics.json",
@@ -10221,6 +10511,126 @@
         "path": "site/assets/nojekyll",
         "identity_mode": "content",
         "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+      },
+      {
+        "path": "site/assets/publications/agentic-loops/cover-web.jpg",
+        "identity_mode": "content",
+        "sha256": "5f8490fc28edf22e1a224c2adc10f6aa814d091ce620c059e86e4a64c7843360"
+      },
+      {
+        "path": "site/assets/publications/agentic-loops/cover.png",
+        "identity_mode": "content",
+        "sha256": "dc50371b8287d45ee9b32404da989faa8f041986ffda413f71e0412d3bdcef5b"
+      },
+      {
+        "path": "site/assets/publications/ai-cost-cutting-fallacy/cover-web.jpg",
+        "identity_mode": "content",
+        "sha256": "6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168"
+      },
+      {
+        "path": "site/assets/publications/ai-cost-cutting-fallacy/cover.png",
+        "identity_mode": "content",
+        "sha256": "6ab7c4fb30fda5cf2d6ac04e1253dc2224ad8b16fb8f053d85888b6b40fe5833"
+      },
+      {
+        "path": "site/assets/publications/ai-cost-cutting-fallacy/transformation-j-curve.png",
+        "identity_mode": "content",
+        "sha256": "11352752759624202e3a284558455b884b87239ab57c3487ae6787e3ad4bab7f"
+      },
+      {
+        "path": "site/assets/publications/ai-governance-is-control-theory/cover-web.jpg",
+        "identity_mode": "content",
+        "sha256": "4fb99c0a32cfe808956a13bc2caaec71ed7adea83de79df4c5bfa08592d0b871"
+      },
+      {
+        "path": "site/assets/publications/ai-governance-is-control-theory/cover.png",
+        "identity_mode": "content",
+        "sha256": "25bdc2d76a2c9589e99dd36f02db22c62d38bd954cbc3823e817f0304bc40a80"
+      },
+      {
+        "path": "site/assets/publications/ai-governance-is-control-theory/normal-distribution.png",
+        "identity_mode": "content",
+        "sha256": "ab3c716b3b86f7814e1beef1077eb9434935c7d320142d5a84b67c100f3b38d3"
+      },
+      {
+        "path": "site/assets/publications/ai-native-workflows-have-a-moat-problem/cover-web.jpg",
+        "identity_mode": "content",
+        "sha256": "11b50b3b2a4dd035b4b975444d87a37ceed0e68d8c983f4acc3b57b9d7dc1833"
+      },
+      {
+        "path": "site/assets/publications/ai-native-workflows-have-a-moat-problem/cover.png",
+        "identity_mode": "content",
+        "sha256": "57cef69ffe083071acf0567733bb4d79089f888502aa60ff8f795011288f8ed9"
+      },
+      {
+        "path": "site/assets/publications/ai-verification-crisis/cover-web.jpg",
+        "identity_mode": "content",
+        "sha256": "2d4e237d21021bcb6c62b5ce9ab10daffc4e93b521a20f3b6a707a3531781739"
+      },
+      {
+        "path": "site/assets/publications/ai-verification-crisis/cover.png",
+        "identity_mode": "content",
+        "sha256": "9361582b43aadf46a274cc862f72b748e4394fb303cb75c4b45d54a896d98d25"
+      },
+      {
+        "path": "site/assets/publications/beyond-embeddings/circuit-breaker.png",
+        "identity_mode": "content",
+        "sha256": "038c66da1625255a59bd566eb30c3d5ca50a89821718e498de14cba87ce1f923"
+      },
+      {
+        "path": "site/assets/publications/beyond-embeddings/control-boundary.png",
+        "identity_mode": "content",
+        "sha256": "78eec4b41c64962ea7d09b5b41e058d353e12b58096e484d2e9c09b070b4f025"
+      },
+      {
+        "path": "site/assets/publications/beyond-embeddings/control-design-process.png",
+        "identity_mode": "content",
+        "sha256": "783b2a6123739f03d9aca7aae89f418472220867360e891a53394cfd82fa6f33"
+      },
+      {
+        "path": "site/assets/publications/beyond-embeddings/cover-web.jpg",
+        "identity_mode": "content",
+        "sha256": "c1f333b5145b75b144562e218b73946ba77083fba5c1d30a8a8b43ef2659fc5a"
+      },
+      {
+        "path": "site/assets/publications/beyond-embeddings/cover.png",
+        "identity_mode": "content",
+        "sha256": "082f3953fccbf7d52df66e90849de8a04864788fe465611756c89bcef514de9a"
+      },
+      {
+        "path": "site/assets/publications/beyond-embeddings/drift-response-tiers.png",
+        "identity_mode": "content",
+        "sha256": "3f4c96d473bed74e9eb2f0d6dbb96bed2c56d5f151820609b478311e26243767"
+      },
+      {
+        "path": "site/assets/publications/beyond-embeddings/end-to-end-control.png",
+        "identity_mode": "content",
+        "sha256": "4816e4c318e30a3e4057877e4283883098ec54c4c30d97be5ca1ba9c745aa0f3"
+      },
+      {
+        "path": "site/assets/publications/beyond-embeddings/llm-as-judge.png",
+        "identity_mode": "content",
+        "sha256": "71d2b2bcd10d6dc493ae2462e76104651fd0cce2c80d2e1e158285cb71413353"
+      },
+      {
+        "path": "site/assets/publications/beyond-embeddings/neuro-symbolic-sensor.png",
+        "identity_mode": "content",
+        "sha256": "5e71a3ff84909985bc541234c90bf5eda5156ed201adc880bc87e60eb75e4ee7"
+      },
+      {
+        "path": "site/assets/publications/beyond-embeddings/traditional-and-behavioral.png",
+        "identity_mode": "content",
+        "sha256": "5315a5c5b5e1942859632284869aa2922e0108a6a3b76159b59974bf88999580"
+      },
+      {
+        "path": "site/assets/publications/beyond-embeddings/verification-layers.png",
+        "identity_mode": "content",
+        "sha256": "a9ea9c981264ba488aaf2faa2e86b9c6c2cef1871a8579f421d7bd40144d1d96"
+      },
+      {
+        "path": "site/assets/publications/beyond-embeddings/verification-trilemma.png",
+        "identity_mode": "content",
+        "sha256": "c0d51edeb8f6a32c3c536c8505ed07b60b66d57da0b6e13f091697657e740566"
       },
       {
         "path": "site/assets/publications/pmday-ai-both-sides/PROVENANCE.md",
@@ -10493,6 +10903,61 @@
         "sha256": "ed2182751692a92b262ef7c806227583761d7b23099e1cd910a73e9509a85abf"
       },
       {
+        "path": "site/assets/publications/thinking-systems/cover-web.jpg",
+        "identity_mode": "content",
+        "sha256": "b68b465d8f611f72c8f4d9e95eaad457c1e40761154d90112ed128d7ecd47dd2"
+      },
+      {
+        "path": "site/assets/publications/thinking-systems/cover.png",
+        "identity_mode": "content",
+        "sha256": "87f06bee8063ca9d005058bd47d3be59bc79e7481e1fe0d756956bd9412b981a"
+      },
+      {
+        "path": "site/assets/publications/thinking-systems/diagram-1.png",
+        "identity_mode": "content",
+        "sha256": "a5b88567ab9f88387bc3337d9275430e0985a9af24f77bf7966c62686cd5b928"
+      },
+      {
+        "path": "site/assets/publications/thinking-systems/diagram-2.png",
+        "identity_mode": "content",
+        "sha256": "69333ef4b29e2e144cd9ba7da543518b6afcc63767deb3f46dc9c2fccdf5626a"
+      },
+      {
+        "path": "site/assets/publications/thinking-systems/diagram-3.png",
+        "identity_mode": "content",
+        "sha256": "9796217bfa2cf64b60e5dd43731f6a51a90b1eea194bd08677be347e1ffda6b4"
+      },
+      {
+        "path": "site/assets/publications/thinking-systems/diagram-4.png",
+        "identity_mode": "content",
+        "sha256": "18301c1cc462ca98c71d1f78ef5f5338f64c790c15dab83c4bfbed1efbb72879"
+      },
+      {
+        "path": "site/assets/publications/thinking-systems/diagram-5.png",
+        "identity_mode": "content",
+        "sha256": "1dd03a3b4c197de2a4fb3c16efe84447c9af28a8beb95ae12e103a97c11cd673"
+      },
+      {
+        "path": "site/assets/publications/thinking-systems/diagram-6.png",
+        "identity_mode": "content",
+        "sha256": "3e8366b96299273f7b1c3bd3f2c607609c7ad8e80af7323fe11bf96dd9c03f31"
+      },
+      {
+        "path": "site/assets/publications/thinking-systems/diagram-7.png",
+        "identity_mode": "content",
+        "sha256": "483fde803c1166001b695df3bdad12cb1c7333198e008a40ed61718bd8acb8fb"
+      },
+      {
+        "path": "site/assets/publications/thinking-systems/diagram-8a.png",
+        "identity_mode": "content",
+        "sha256": "81f8061d7b983e905adf265232610ceae471ebb43f04eebbdf66410d638471de"
+      },
+      {
+        "path": "site/assets/publications/thinking-systems/diagram-8b.png",
+        "identity_mode": "content",
+        "sha256": "9d2bcf0c057ae672cf4ef8c555a55b9df3c8a01663c5dfbcc94c16a6a74ae4eb"
+      },
+      {
         "path": "site/assets/vitalii-oborskyi-cutout.webp",
         "identity_mode": "content",
         "sha256": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae"
@@ -10510,12 +10975,12 @@
       {
         "path": "site/content/article-tags.json",
         "identity_mode": "content",
-        "sha256": "dc314dcdd2871ecc368dd014739dffc9767bc6767347133411f2d47e51c20a73"
+        "sha256": "198be28dc5b30d25ccc106ea8cda4de8eb244c74dbef483d900250d528a1ac98"
       },
       {
         "path": "site/content/catalog.json",
         "identity_mode": "content",
-        "sha256": "b864cb7ebf14a4b6627ba5025e90b9b0cbc5dd1e64e64e7786de5f0296769bea"
+        "sha256": "69d7ca12933d00fc8aec1785795d5e5f44b41790b105d04ab392874fed2a513f"
       },
       {
         "path": "site/content/events.json",
@@ -10570,7 +11035,7 @@
       {
         "path": "site/content/pages/index/research.json",
         "identity_mode": "content",
-        "sha256": "1001814d9961c0914cde787aa2c1e8f30b9bcd056d15cb0c5a882e5cef9aa01c"
+        "sha256": "df321cf042c8676378cd4d34548756352d367e1fa60d0db9c3b14f97a98f5c1e"
       },
       {
         "path": "site/content/pages/index/writing.json",
@@ -10590,7 +11055,7 @@
       {
         "path": "site/content/pages/research/lenses.json",
         "identity_mode": "content",
-        "sha256": "72c170b11c3571dd677c8cc150a82610e5869402656efc3197fa155478ea7d76"
+        "sha256": "61b544618948a655f4aa9450ec34f423ddb2162fe3077096fd3a5700ee8b9bc9"
       },
       {
         "path": "site/content/pages/research/main.json",
@@ -10720,7 +11185,7 @@
       {
         "path": "site/engine/navigation.js",
         "identity_mode": "content",
-        "sha256": "d2b19c5ad6b65b8b118f7eafb831c39c3b0b0d71cc77160f35f5e0df3b31f7c1"
+        "sha256": "19250ce8d0c18b04fb9a1a6ffdeadb405f80663624286930dbe847663bf48ba0"
       },
       {
         "path": "site/engine/projection.cjs",
@@ -10775,7 +11240,237 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "5b911d91de313d34e740ed1fd3fac4ff6b6c6c0bb6dd2c56d4d19d028f0df02b"
+        "sha256": "9632a79194de2128f5196a1b894984aae484756faddb4cd238e68a9012c9f632"
+      },
+      {
+        "path": "site/publications/agentic-loops/PROVENANCE.md",
+        "identity_mode": "content",
+        "sha256": "17a801af2207549ac5fe4df60bfcee48356d38fdec64e7b6182a129dd3fbbf3d"
+      },
+      {
+        "path": "site/publications/agentic-loops/editions/agentic-loops-en-20260610.json",
+        "identity_mode": "content",
+        "sha256": "33a0e4b3fb109a0ff5af08131c479559d2bda5463c2de179a260ec1893de7a05"
+      },
+      {
+        "path": "site/publications/agentic-loops/editions/agentic-loops-en-20261116-cover.json",
+        "identity_mode": "content",
+        "sha256": "4a663fd883446a286950750a606220dfdfb01f185a38907d5b8143e969419d2d"
+      },
+      {
+        "path": "site/publications/agentic-loops/editions/agentic-loops-en-20261116-editorial.json",
+        "identity_mode": "content",
+        "sha256": "2059afb9aa0da3e360aa108eab57bef3b141a1382603d47c6ec05f276b614fd5"
+      },
+      {
+        "path": "site/publications/agentic-loops/launch-post.en.md",
+        "identity_mode": "content",
+        "sha256": "19476c8b7e6e90715bf2c41315424b14a7d3a4bf005034be89630e02719210c1"
+      },
+      {
+        "path": "site/publications/agentic-loops/manuscript.en.md",
+        "identity_mode": "content",
+        "sha256": "460805854efb69634d99ce89941af3900d8434432c7e1a8c5f2424a228ea16b8"
+      },
+      {
+        "path": "site/publications/agentic-loops/profile.json",
+        "identity_mode": "content",
+        "sha256": "2122f6ee4ac56e6de9afad1e83644cbd3eddc588a290ee49e529bbfa66626053"
+      },
+      {
+        "path": "site/publications/agentic-loops/publication.json",
+        "identity_mode": "content",
+        "sha256": "a2ed7a53edb5ca2783cccb98282e53279f41c2061df0da9f55bc316ca3503120"
+      },
+      {
+        "path": "site/publications/ai-cost-cutting-fallacy/PROVENANCE.md",
+        "identity_mode": "content",
+        "sha256": "cf70c3c6a0b06768caab6d8adb1b2dc41a24c2234c34725ea4e846ed9325759d"
+      },
+      {
+        "path": "site/publications/ai-cost-cutting-fallacy/editions/ai-cost-cutting-fallacy-en-20260102.json",
+        "identity_mode": "content",
+        "sha256": "f5898473ad3ec721b082b547da78eb85b1b92ad87660080d11c744b5637c9525"
+      },
+      {
+        "path": "site/publications/ai-cost-cutting-fallacy/editions/ai-cost-cutting-fallacy-en-20261115-illustrated.json",
+        "identity_mode": "content",
+        "sha256": "2a6d5751eb0b754130021a0a19371f8bab4ab870d96a2c2de0304b9f30b310c3"
+      },
+      {
+        "path": "site/publications/ai-cost-cutting-fallacy/editions/ai-cost-cutting-fallacy-en-20261116-editorial.json",
+        "identity_mode": "content",
+        "sha256": "8ca85f53e458f4ccaf58e70a701c787c8942a2a30da7ca8cf5b5f05a07ca1bde"
+      },
+      {
+        "path": "site/publications/ai-cost-cutting-fallacy/launch-post.en.md",
+        "identity_mode": "content",
+        "sha256": "40ce5faf197fb88a2595edd1fc9ebb07311b149cfe012a1ce71eb0a29b520fe1"
+      },
+      {
+        "path": "site/publications/ai-cost-cutting-fallacy/manuscript.en.md",
+        "identity_mode": "content",
+        "sha256": "e08ad938b490f976f543c4c96bc67adc396d3590c11d24e982957618315fbb1d"
+      },
+      {
+        "path": "site/publications/ai-cost-cutting-fallacy/profile.json",
+        "identity_mode": "content",
+        "sha256": "48739ad4ae165e2d3cd2fe35c8b5c17ad53b41344918cd5c1eff66dff41f1ec7"
+      },
+      {
+        "path": "site/publications/ai-cost-cutting-fallacy/publication.json",
+        "identity_mode": "content",
+        "sha256": "b59ea8a10596340ca6dab91669fa28efaf456cb942f75036b6c45ad212a9c739"
+      },
+      {
+        "path": "site/publications/ai-governance-is-control-theory/PROVENANCE.md",
+        "identity_mode": "content",
+        "sha256": "0ac492f42335fbb35cb58a89a8888dae8eb5e50ac649a6a4ae6b34a02e238879"
+      },
+      {
+        "path": "site/publications/ai-governance-is-control-theory/editions/ai-governance-is-control-theory-en-20251213.json",
+        "identity_mode": "content",
+        "sha256": "c83c4df4e3a4f3299936217ca9a5441378d83d1931731bd0e9e8eb2d6675a028"
+      },
+      {
+        "path": "site/publications/ai-governance-is-control-theory/editions/ai-governance-is-control-theory-en-20261115-annotated.json",
+        "identity_mode": "content",
+        "sha256": "50be25b5cb3098a21fa97e58bbfc5138d67633fa16343f1b2519f735dbe7e4eb"
+      },
+      {
+        "path": "site/publications/ai-governance-is-control-theory/editions/ai-governance-is-control-theory-en-20261116-editorial.json",
+        "identity_mode": "content",
+        "sha256": "7c461ed345a98b4cdad9c7d6c875512800067daf5fd7833c4ac44389263a3610"
+      },
+      {
+        "path": "site/publications/ai-governance-is-control-theory/launch-post.en.md",
+        "identity_mode": "content",
+        "sha256": "d8850af8ea3c481a8c2714de38e5de312c4c722bf79b9a540a7c2e8a151c85ea"
+      },
+      {
+        "path": "site/publications/ai-governance-is-control-theory/manuscript.en.md",
+        "identity_mode": "content",
+        "sha256": "2cbecdaae4ca0e7d3727968c4d72455fde5d733cb0363642959ceb7e5083ff46"
+      },
+      {
+        "path": "site/publications/ai-governance-is-control-theory/profile.json",
+        "identity_mode": "content",
+        "sha256": "ec7624c2e61d7387f6399f55e73c5aed393a9846d87f7c336019f32da1ee2851"
+      },
+      {
+        "path": "site/publications/ai-governance-is-control-theory/publication.json",
+        "identity_mode": "content",
+        "sha256": "315b67ab87fccc5477d1d3c33fb9122be754b66f815dc1ff5ba33fafa9862711"
+      },
+      {
+        "path": "site/publications/ai-native-workflows-have-a-moat-problem/PROVENANCE.md",
+        "identity_mode": "content",
+        "sha256": "2084e8241edb67966daa78fc2b297bc4fcd794fce28de5b4be4cf79760ad3897"
+      },
+      {
+        "path": "site/publications/ai-native-workflows-have-a-moat-problem/editions/ai-native-workflows-have-a-moat-problem-en-20260701.json",
+        "identity_mode": "content",
+        "sha256": "aed9fe58785264119e31ce955ed95fd8b3f500c8709e00cfdfc3b242e68367b8"
+      },
+      {
+        "path": "site/publications/ai-native-workflows-have-a-moat-problem/editions/ai-native-workflows-have-a-moat-problem-en-20261116-editorial.json",
+        "identity_mode": "content",
+        "sha256": "a81bdd5d69746e019b587ae527a7ea371a43a5b3cf7b4b0d7f2eea8a77c6dde8"
+      },
+      {
+        "path": "site/publications/ai-native-workflows-have-a-moat-problem/launch-post.en.md",
+        "identity_mode": "content",
+        "sha256": "5307e51ad9d5781375259a42fd716adfdd67dd290424a06877ef6af436235612"
+      },
+      {
+        "path": "site/publications/ai-native-workflows-have-a-moat-problem/manuscript.en.md",
+        "identity_mode": "content",
+        "sha256": "ddf2ec36fc5682a2c3a3675631d915ecf45ddb7951e9b6db3d0394d250def43d"
+      },
+      {
+        "path": "site/publications/ai-native-workflows-have-a-moat-problem/profile.json",
+        "identity_mode": "content",
+        "sha256": "14a7f826b1fa72b165162d86da7a388a7fa70d0ae4387fa6b82bd9a805bc1642"
+      },
+      {
+        "path": "site/publications/ai-native-workflows-have-a-moat-problem/publication.json",
+        "identity_mode": "content",
+        "sha256": "6e0fb0f7cf6819784b1eab81294ff9adf95c7946f216b6bf61c1105a0c0bf021"
+      },
+      {
+        "path": "site/publications/ai-verification-crisis/PROVENANCE.md",
+        "identity_mode": "content",
+        "sha256": "264e22257c644b5ab150ec47bbe0c7be81b5c3f0b6bd9c4492c0f4e928d308ed"
+      },
+      {
+        "path": "site/publications/ai-verification-crisis/editions/ai-verification-crisis-en-20260612.json",
+        "identity_mode": "content",
+        "sha256": "0fb629f59eda3e990d579b8d9fb894c3dafb0ace9d49beb745872e46e0233a79"
+      },
+      {
+        "path": "site/publications/ai-verification-crisis/editions/ai-verification-crisis-en-20261115-cover.json",
+        "identity_mode": "content",
+        "sha256": "16367b58277503d599d8ce0462dcdb45ceb71887baa67f7a130446a093dda076"
+      },
+      {
+        "path": "site/publications/ai-verification-crisis/editions/ai-verification-crisis-en-20261116-editorial.json",
+        "identity_mode": "content",
+        "sha256": "ce978143a032cd9c46467aaaabb4329ded5a83cb123ce8c3028e222d106e77f4"
+      },
+      {
+        "path": "site/publications/ai-verification-crisis/launch-post.en.md",
+        "identity_mode": "content",
+        "sha256": "0a1b52b15b0ef21be111e65050789dae2ce1290567e4aa395c172de9533020f1"
+      },
+      {
+        "path": "site/publications/ai-verification-crisis/manuscript.en.md",
+        "identity_mode": "content",
+        "sha256": "3eef4b728645f89196432ea6b425be41b7372fed601e710577d18e016eee3dc7"
+      },
+      {
+        "path": "site/publications/ai-verification-crisis/profile.json",
+        "identity_mode": "content",
+        "sha256": "db9eaca73cbf9b4ee4cd56ce606997d67b3134a2c72277c70ceb2739c26906c2"
+      },
+      {
+        "path": "site/publications/ai-verification-crisis/publication.json",
+        "identity_mode": "content",
+        "sha256": "5933b1431b959b994a53c2e65c01c3e207873a01fc28ff4df3c4111d0af08e50"
+      },
+      {
+        "path": "site/publications/beyond-embeddings/PROVENANCE.md",
+        "identity_mode": "content",
+        "sha256": "447635506aa8ae90a4a78b6903e830d0143d6ace124091098d2b2fcacaeada0f"
+      },
+      {
+        "path": "site/publications/beyond-embeddings/editions/beyond-embeddings-en-20260522.json",
+        "identity_mode": "content",
+        "sha256": "1ca8bbb6245e322ea6acc324a6994ee795008fe49a41d5ab5a5639694d7ee5bd"
+      },
+      {
+        "path": "site/publications/beyond-embeddings/editions/beyond-embeddings-en-20261116-editorial.json",
+        "identity_mode": "content",
+        "sha256": "520b5bd55922c99e148a71c348d724f4daacf8d54144482b3a6c4fa544e602eb"
+      },
+      {
+        "path": "site/publications/beyond-embeddings/launch-post.en.md",
+        "identity_mode": "content",
+        "sha256": "bc95f9b34cd626aee5d71a8e5e8572c4826f3acf98adc26fa59b11a8c8c81d3a"
+      },
+      {
+        "path": "site/publications/beyond-embeddings/manuscript.en.md",
+        "identity_mode": "content",
+        "sha256": "7602a59b3a3e4cb018dedfb36ed8379e34e05fed2364177a7126df7f49db9117"
+      },
+      {
+        "path": "site/publications/beyond-embeddings/profile.json",
+        "identity_mode": "content",
+        "sha256": "ca9c337d032ef86241aee95becccabd4761aaaf970cf85475f308d94dbd768e6"
+      },
+      {
+        "path": "site/publications/beyond-embeddings/publication.json",
+        "identity_mode": "content",
+        "sha256": "0f3ce022c0c283773e1dc8b9076f5a749066783f1d825f1b2be20e60b27e8090"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/blueprint.md",
@@ -11081,6 +11776,41 @@
         "path": "site/publications/sdlc-out-of-balance/publication.json",
         "identity_mode": "content",
         "sha256": "c407f6af816950460f32e4aeba1b7ef8bc41f2d0b40b13c299be8c33375b8ae6"
+      },
+      {
+        "path": "site/publications/thinking-systems/PROVENANCE.md",
+        "identity_mode": "content",
+        "sha256": "43d1f204b57c6b003f286e9e93760646ea257dfdbd13dc03c9d62a3036ae76b7"
+      },
+      {
+        "path": "site/publications/thinking-systems/editions/thinking-systems-en-20260830.json",
+        "identity_mode": "content",
+        "sha256": "4da09040343831cb6e9f25ab357181404f08df10f4fe7f0dbde9750a717f7be7"
+      },
+      {
+        "path": "site/publications/thinking-systems/editions/thinking-systems-en-20261116-editorial.json",
+        "identity_mode": "content",
+        "sha256": "b76adfb5565f37e5993a9ce1249bec63600801c9069c5b148e6c25fece55dfb1"
+      },
+      {
+        "path": "site/publications/thinking-systems/launch-post.en.md",
+        "identity_mode": "content",
+        "sha256": "d45748a7eddce0c434cb3ded67ceb81f349cd121fd1e5d7e775561c0c05113ce"
+      },
+      {
+        "path": "site/publications/thinking-systems/manuscript.en.md",
+        "identity_mode": "content",
+        "sha256": "f82e41483f83fb55adc0dd2eab33000cad57bbbd1597c06afc3927b44c017780"
+      },
+      {
+        "path": "site/publications/thinking-systems/profile.json",
+        "identity_mode": "content",
+        "sha256": "3e38b0261c1226f8886ae490a1c925f362c86def4133940be3bf2a4ae5e849c7"
+      },
+      {
+        "path": "site/publications/thinking-systems/publication.json",
+        "identity_mode": "content",
+        "sha256": "c47ac9b5787a72db5cb43e34da9a6ae873be7270ca7be0a80f99e65ecb98329e"
       },
       {
         "path": "site/retained/article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292/systemic-response.webp",
@@ -11405,7 +12135,7 @@
       {
         "path": "site/rights.json",
         "identity_mode": "content",
-        "sha256": "a35057e5c074c2a3092db3627af58715b471283d227e1678e1ab0380f8fa7dcd"
+        "sha256": "2f23e5dc25202246c957a4f089379dcc8f6defd0ca03e10e7cdcb431b8f86cb6"
       },
       {
         "path": "site/routes.json",
@@ -11695,7 +12425,7 @@
       {
         "path": "tests/analytics.test.cjs",
         "identity_mode": "content",
-        "sha256": "a0566da02c26ef39f44eaaa0b36939c3eb0beaf1498e464ab5283df357420ab7"
+        "sha256": "de18712cfb8e4f1e316f322e1cd79fe633b47b75a6347aa16bdb3a81dcb66e2a"
       },
       {
         "path": "tests/architecture.test.cjs",
@@ -11705,12 +12435,12 @@
       {
         "path": "tests/archive.test.cjs",
         "identity_mode": "content",
-        "sha256": "79fb38ad2745e6c55e177561a386e3ef78804eec9858a60195d9293a61f142b4"
+        "sha256": "2744404a02879c86f4fd08d00f396c8a1cfe1b283bec45a03767b6dc8e482da1"
       },
       {
         "path": "tests/article-browser-evidence.test.cjs",
         "identity_mode": "content",
-        "sha256": "efa85f9bcae1b039be31ff16abe00a71e6a2e002725ddde6c1c123b56bd89186"
+        "sha256": "b5399934cdca6019a3ed9d8c960ce84d8b80d93a7ba27df0b2f165d4350411c5"
       },
       {
         "path": "tests/article-budgets.test.cjs",
@@ -11720,12 +12450,12 @@
       {
         "path": "tests/article-candidate-source.test.cjs",
         "identity_mode": "content",
-        "sha256": "1e62a5596a631bde239172caa1c5327bb05f36765a11dd176684d529e8a38694"
+        "sha256": "d9ab9fa975ef5627727e4a18ae5175c3b150293b7da87e1cc0c3f60fd8f1e8b8"
       },
       {
         "path": "tests/article-delivery.test.cjs",
         "identity_mode": "content",
-        "sha256": "9d072b8f64faf303ab4ba1ab9f5ef5c1189176bf618f8ff7b01b24fe0402642c"
+        "sha256": "1b60122c6fb63238dcffab7e4b0725e36be0d2ccbd1343f7eb82ec38cf88f97e"
       },
       {
         "path": "tests/article-materials.test.cjs",
@@ -11740,7 +12470,7 @@
       {
         "path": "tests/article-offline.test.cjs",
         "identity_mode": "content",
-        "sha256": "a6d0906148d06c64ae5fae6ee00f924575f07fcad48e031e798b5fb625fcc2d8"
+        "sha256": "708743be5c06450cc8e1b45116f86ad75a6a9f7e31307bb3f4e40084661f0a24"
       },
       {
         "path": "tests/article-tags.test.cjs",
@@ -11770,7 +12500,7 @@
       {
         "path": "tests/build-cohesion.test.cjs",
         "identity_mode": "content",
-        "sha256": "341134612f3006afe912d1ac7007a9baa47c234632612632f4b4e5f68dcdd5d6"
+        "sha256": "5cd04006637daf60af371e01b5cd6a2012bc7465b71a63b923bc1df9937f7bb7"
       },
       {
         "path": "tests/camera-view.test.cjs",
@@ -11795,12 +12525,12 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "a8c921ebe5a399ba5e49e85a893250014daf9685819a23a34d9159756a2a3aa8"
+        "sha256": "a3e5597a185d466032861e39bae83f60f666c8c15b5a49485c4316b10b4b3272"
       },
       {
         "path": "tests/content-baseline.test.cjs",
         "identity_mode": "content",
-        "sha256": "3f20383b37f5571af756d9614d3ec0d0bbd79ed31002001a446d1d3f6e4f96ae"
+        "sha256": "4015e6678b89015c1d0921dbcbcfc3c547603236ad64c5c8a9fb708e8fab7216"
       },
       {
         "path": "tests/content-delivery.test.cjs",
@@ -11820,7 +12550,7 @@
       {
         "path": "tests/content-release.test.cjs",
         "identity_mode": "content",
-        "sha256": "36376d7a2640a9522b2f1a1f7b09d8cf23157678ccaa0c6ebca33653dbd6a623"
+        "sha256": "c84e6961f316fb43e6e2df56473229c5b50137192b0a0677b031b299234cc7b1"
       },
       {
         "path": "tests/content-rendering.test.cjs",
@@ -11830,7 +12560,7 @@
       {
         "path": "tests/content.test.cjs",
         "identity_mode": "content",
-        "sha256": "0f9fbed2efdabbd3546865f4444c29245245c8ca6ce38e06c9ed772bb935c2cf"
+        "sha256": "53a0e13a93739a745f9d20455168d4e9803a2a5e5585a4d882aa8cede35af0b2"
       },
       {
         "path": "tests/control-lock.test.cjs",
@@ -11880,7 +12610,7 @@
       {
         "path": "tests/executive.test.cjs",
         "identity_mode": "content",
-        "sha256": "5b604e7ac2a8fd2f76c678a3562fe42405b11364570dea41ab0e6d7755478cbd"
+        "sha256": "0e2586bccc35f0c52b962cae75ad9702e2fdff04a9293e672ecc5d9d9db5d937"
       },
       {
         "path": "tests/fixtures/article-flight.cjs",
@@ -11890,12 +12620,12 @@
       {
         "path": "tests/fixtures/catalog.cjs",
         "identity_mode": "content",
-        "sha256": "dd59ed1c44c4d92838a6ae718af249820ae9c4c034163df8f61bbafc457037c0"
+        "sha256": "0def588ab70fe48e065f9650fdb964812e312618e172e10e184bfc90650b5d99"
       },
       {
         "path": "tests/fixtures/delivery.cjs",
         "identity_mode": "content",
-        "sha256": "4bf3c43e42c63d5006d209d7c85acaceb86ad62b457e36c29882d71056b66adf"
+        "sha256": "848921abdc086458878d38d56ba9265db5ad5237116a4332660a59fcfad0711e"
       },
       {
         "path": "tests/fixtures/orchestration-accept-only.json",
@@ -11910,7 +12640,7 @@
       {
         "path": "tests/fixtures/publication-records.cjs",
         "identity_mode": "content",
-        "sha256": "2d5b9028023ef07f5a8a6e7a0aa423f0e2710abc771d935bbf3dd2ecfe03a9a2"
+        "sha256": "69fa28b08dae3eeac5affb5904be137dffa7bcee63255ad44ad2832abb64d0cc"
       },
       {
         "path": "tests/fixtures/r9-footer-runtime.json",
@@ -11975,7 +12705,7 @@
       {
         "path": "tests/local-catalog-relationships.test.cjs",
         "identity_mode": "content",
-        "sha256": "92ea9789ed73567e84c38e7d53cccaff18430e0f1bfbba2c1b9e22b69820c554"
+        "sha256": "4434fac71b2b6e9bc13db593e3c1ee7f125009cf53e70195d44ff737e1f895ad"
       },
       {
         "path": "tests/native-display.test.cjs",
@@ -11995,7 +12725,7 @@
       {
         "path": "tests/navigation.test.cjs",
         "identity_mode": "content",
-        "sha256": "2e74a2c4f6fe4f410c2b4a30d45a7449374682e4f65e91c0b3aa7098f31d5579"
+        "sha256": "582f14a9222bf63f869ff02c4ba80c83d2ac27649e288aa3833d2974232ed8aa"
       },
       {
         "path": "tests/orchestration.test.cjs",
@@ -12035,7 +12765,7 @@
       {
         "path": "tests/preview.test.cjs",
         "identity_mode": "content",
-        "sha256": "aaf17489d6f448ea694227a3fac22237002f15f857ef1024543b6878ddf109ff"
+        "sha256": "b1754c6bb7c8e5755f5e56eeb30756ec9e4a283dd846a8a8cd718f2ed3b64436"
       },
       {
         "path": "tests/prototype-admission.test.cjs",
@@ -12045,7 +12775,7 @@
       {
         "path": "tests/publication-records.test.cjs",
         "identity_mode": "content",
-        "sha256": "72c4342760d458e7c78eb8897ea7b034142d48ced91b5b6f2743ac8560254ffe"
+        "sha256": "99c63cabb139579a841afa72f81e59204c8f7873f3e52ab1dee3f535a6800367"
       },
       {
         "path": "tests/publishing-history.test.cjs",
@@ -12060,7 +12790,7 @@
       {
         "path": "tests/publishing-profile.test.cjs",
         "identity_mode": "content",
-        "sha256": "60918f26bdb83b3a0cb9c31f3d8a72e6ee4acddab3f1d571889c3a4d2b2efb1c"
+        "sha256": "f70ad5b0c9b9d0b2c4c6f472e544acfc5ef05420c2f1396683d2f8991508be61"
       },
       {
         "path": "tests/publishing-safety.test.cjs",
@@ -12085,12 +12815,12 @@
       {
         "path": "tests/reader-controller.test.cjs",
         "identity_mode": "content",
-        "sha256": "fa40a37cc2ac00659490b4b5c9f95c958077ea790c4629ec536ec2c9c2892c17"
+        "sha256": "e87eaa0c9b48b05a3caf98452dc3badf38c92dbeff64ebdf87456802fee6f01b"
       },
       {
         "path": "tests/reader-mode.test.cjs",
         "identity_mode": "content",
-        "sha256": "98806b854f08347b4716724162453b214708e418d961d80b50364d50d9fb2876"
+        "sha256": "c212e446e214a8d05d9187caa514f916a7a1a08a5f25039f05bb1479928354fd"
       },
       {
         "path": "tests/refactor-metrics.test.cjs",
@@ -12100,17 +12830,17 @@
       {
         "path": "tests/release-archive.test.cjs",
         "identity_mode": "content",
-        "sha256": "9fda41dd2b4fa89817ea11bc33e13fd206b5ccd526881142ac520e444abcbfdc"
+        "sha256": "30208ecb710e5f408fda631f595ba6b72771eff7f3576563a3a1ee619e3f9f31"
       },
       {
         "path": "tests/release-controller.test.cjs",
         "identity_mode": "content",
-        "sha256": "e38fee09ed9fe109de91de86a2d5b0005cda0b9aedd0baee5d8ae9cd1fc4ad93"
+        "sha256": "dec67f300f593a8025c7ad93057a6553b45c04c8f573a59484d2f6bbf3c5e4c1"
       },
       {
         "path": "tests/release-rights.test.cjs",
         "identity_mode": "content",
-        "sha256": "1dd519a2cb41c55e720e5c13dcf72c5c8afee96ab486a6bec5e635f145d86517"
+        "sha256": "6e5f8c53b0383a95bfbf12d2ab64d0b2f2a68f7b43e29c6a6cea926cc6001f52"
       },
       {
         "path": "tests/renderer.test.cjs",
@@ -12145,12 +12875,12 @@
       {
         "path": "tests/site-articles.test.cjs",
         "identity_mode": "content",
-        "sha256": "7b885d9f24a25fe350272caff32fd4942421fa4f7a3fa69db4c84f9b172608d4"
+        "sha256": "166ab000995fda5a9f4d186a2a416c236650f183bb60d4bb1e642238d6a35c38"
       },
       {
         "path": "tests/site-engine.test.cjs",
         "identity_mode": "content",
-        "sha256": "276b8cbd10a43209b8fd7b9d9c136b9d5f85493a680417755af85b6640d6abef"
+        "sha256": "dd3f5fe2a499c8cfd58e8d0a0abc7b1225455b13b6f7a503eb8516081bf38e20"
       },
       {
         "path": "tests/site-face-preparation.test.cjs",
@@ -12175,7 +12905,7 @@
       {
         "path": "tests/staging-regression.test.cjs",
         "identity_mode": "content",
-        "sha256": "8c8f1c1e9153ca5089effc909b07dce92b13f702d7d72101014430a1c7b9a8cc"
+        "sha256": "d8a8626fc615c4bd0e5933dc6212b91cb12c7298c40a274b3fd35358decc5d4d"
       },
       {
         "path": "tests/staging-reporting.test.cjs",
@@ -12195,7 +12925,7 @@
       {
         "path": "tests/test-profile-selection.test.cjs",
         "identity_mode": "content",
-        "sha256": "a22681f41c4c701c610a2897e3fc9ac24da222ad48f908b5d762fd08028f03c9"
+        "sha256": "2a209370f64a46b4684d683421f88402e5a8aaa0ee09523c315ac24b18800ed5"
       },
       {
         "path": "tests/test_browser_archives.py",
@@ -12470,7 +13200,7 @@
       {
         "path": "tools/check_site_seo.cjs",
         "identity_mode": "content",
-        "sha256": "9e7db3573630349560e92e198976b1a0a72a1a2bc3572e49294b0fa9bcd0f145"
+        "sha256": "afc9bb897c3e7f6aaaf42836b763d0134ff1a04c53d815130597ede22ede3f20"
       },
       {
         "path": "tools/compact_site_recordings.cjs",
@@ -12600,7 +13330,7 @@
       {
         "path": "tools/publishing/profile.cjs",
         "identity_mode": "content",
-        "sha256": "4a0d27b65bcafbc89e7f894587055fba9bbc529ba19ecaef94e5bc4a9d97a471"
+        "sha256": "91d3a7a10011db423d5010e761ab0e5fc54d58bbbc0b70ee80104f2f2da730e3"
       },
       {
         "path": "tools/publishing/provenance.cjs",
@@ -12625,7 +13355,7 @@
       {
         "path": "tools/publishing/site-event.cjs",
         "identity_mode": "content",
-        "sha256": "da9981654fe438be47f1ca2bd29cd911bdb0e68d9a8da4161ce94ee2ae9bc2ff"
+        "sha256": "eb78030c639893a9084dc0ae23564ddfa55789cb87aaf28b12757338706ee1b0"
       },
       {
         "path": "tools/publishing/text.cjs",
@@ -12665,7 +13395,7 @@
       {
         "path": "tools/quality/analytics-browser.cjs",
         "identity_mode": "content",
-        "sha256": "9616632ec74ceabe805cf0d9214cd33bc9774c2db6e6fff1721c1a7652ea8907"
+        "sha256": "485123ec4461502097c3dcace511c6c55430496c5eef7bc1e48d1537822cb88c"
       },
       {
         "path": "tools/quality/analytics-isolation.cjs",
@@ -12705,12 +13435,12 @@
       {
         "path": "tools/quality/artifact.cjs",
         "identity_mode": "content",
-        "sha256": "b620fad38a8e89d1dce0f72f16c322dd38bac5faf6e21558ac9b64eef9a548be"
+        "sha256": "f019aebae68dcdbd8d04bc12bd4accbe7cfd6555604f7dbb004a303cff0e8ed5"
       },
       {
         "path": "tools/quality/bandit-policy.json",
         "identity_mode": "content",
-        "sha256": "c2f30e04c0f18d963ada276484a1d3c9c90658ab4f50da7b77bce1fff469b776"
+        "sha256": "eb0d6f9c286844404cb171ea6b0c963af54ed199895ef1472fd1a043671620fc"
       },
       {
         "path": "tools/quality/bandit-triage.cjs",
@@ -12785,7 +13515,7 @@
       {
         "path": "tools/quality/color-motion-contract.cjs",
         "identity_mode": "content",
-        "sha256": "a8ba260890e3fc10b933360bddaf334e0acecae57d33a156f4204a3ffd493d4d"
+        "sha256": "50d147f4399de204f29e4ac07d4ed07dc2de18fdb4dfa6d057859d4792dd303b"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -12968,6 +13698,11 @@
         "sha256": "1b813bf2de5f2ff3d2505cb1760a936c3237108cb2f3a95a4cce0cb4c4ffece0"
       },
       {
+        "path": "tools/quality/html-budget.cjs",
+        "identity_mode": "content",
+        "sha256": "5dc2b4e29b24123d62d79345bd8374aafd438bc1140e9b50f827359ff73e64be"
+      },
+      {
         "path": "tools/quality/lighthouse.cjs",
         "identity_mode": "content",
         "sha256": "e3a6b3f51bd65766216b5925ce98d48db8ee745d3c17921b8ac5fbce15a86591"
@@ -13060,7 +13795,7 @@
       {
         "path": "tools/quality/scanners.cjs",
         "identity_mode": "content",
-        "sha256": "54919dd5235ed20cbe193bbe844758a4e3badc9391f6da8c6a5b7641194921f5"
+        "sha256": "28cd6d80fa0a8ead817b71dfc3e008a710d344c5341fd2488d97c2795538e921"
       },
       {
         "path": "tools/quality/scroll-browser.cjs",
@@ -13075,12 +13810,12 @@
       {
         "path": "tools/quality/secrets-publication.json",
         "identity_mode": "content",
-        "sha256": "441091c2519efb555069cf74bde167bd6517080ae54d1d8d671201511e430007"
+        "sha256": "3fc061376b05f9e8aafa6eaabd802e25525465fe01acac809cc82b4de3279f05"
       },
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "0858d7ecf643df52ad258f81190b83f7fbcf71c198c16a22fbd53db99efc2c29"
+        "sha256": "0f79a310ce91cd10268c0a8965dbcba32d9b4a0e551b03eabcfe7149ecdb371a"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
@@ -13115,7 +13850,7 @@
       {
         "path": "tools/quality/source-tests.cjs",
         "identity_mode": "content",
-        "sha256": "d9a870982b7ec3698696ce2192c0cfc25ae156785f9ab7cfaa3507c0fd2338cf"
+        "sha256": "9c5ba854149a56fdb9156805a76792190c609a54b2fab9df0f58f27917493f5e"
       },
       {
         "path": "tools/quality/staging-gate.cjs",
@@ -13305,7 +14040,7 @@
       {
         "path": "tools/repository_intelligence.py",
         "identity_mode": "content",
-        "sha256": "a62c65c55ed683c95d0776555cade549f3f56a230b12ded6071bb7e8ab8b9f9e"
+        "sha256": "91457fdba4b0965e290b304ef153aa938a46879de2b2796a0787b352632ea63e"
       },
       {
         "path": "tools/run_repository_tests.py",
@@ -13340,12 +14075,12 @@
       {
         "path": "tools/site/articles.cjs",
         "identity_mode": "content",
-        "sha256": "64aa6bfe5ed67011cac30401a9a1e84a4b8e481ee552609fe6aad717d943ddd4"
+        "sha256": "ae35cca2335b6784e08d424609b2cadeb371605945dc434ea5609bc7abb3d53f"
       },
       {
         "path": "tools/site/build.cjs",
         "identity_mode": "content",
-        "sha256": "5e8f0dc13bd616db837fdb65c52c5fedf6ad27dff7efb661ed8c0bbdd283c258"
+        "sha256": "6c146f73fa02ee2d7a35d868b53305469d30e9fee31b8ca99b7e2bfe8cb69920"
       },
       {
         "path": "tools/site/content-release.cjs",
@@ -13415,7 +14150,7 @@
       {
         "path": "tools/site/reader.cjs",
         "identity_mode": "content",
-        "sha256": "6ae95e796e6bd8b9b4bd03a30f92c44cfead057c525d88b2e1a85fe5d6d7072f"
+        "sha256": "4c4d2c00633b8b7046b20f306afb244204082480028f6e6311285e097759fc37"
       },
       {
         "path": "tools/site/render-content.cjs",
@@ -13430,7 +14165,7 @@
       {
         "path": "tools/site/render-records.cjs",
         "identity_mode": "content",
-        "sha256": "49528a2a5fe8d22eac7612e746cc4c20e99a7ebc4d9eb82bb84f9293543f2857"
+        "sha256": "66292bc2d0f4c012644064ead7857a5ea6cc1916d79ab064caca83f52c0e1dc1"
       },
       {
         "path": "tools/site/retain.cjs",
@@ -13440,7 +14175,7 @@
       {
         "path": "tools/site/runtime-compatibility.cjs",
         "identity_mode": "content",
-        "sha256": "7bb89a30156b79e11d94a5cc8f5b95fd57160ce0d4ab33fd8711c20be652f91b"
+        "sha256": "86ae82d4cc0424be12d81d1559044b0e44501a9d38eafc72ee9e5d4fce7e94a4"
       },
       {
         "path": "tools/site/scene-assets.cjs",
@@ -13470,7 +14205,7 @@
       {
         "path": "tools/site/validate-catalog.cjs",
         "identity_mode": "content",
-        "sha256": "79554634afc34ac491249624ffd8a5dc7b4db54a8f38703e2737655d180baa22"
+        "sha256": "a88ed5f2181433587a92bff89703f4a2ab0873ff37877a9f4613e20a5f0aabbc"
       },
       {
         "path": "tools/site/variants.cjs",
@@ -13526,7 +14261,7 @@
   },
   "producer": {
     "path": "tools/repository_intelligence.py",
-    "sha256": "a62c65c55ed683c95d0776555cade549f3f56a230b12ded6071bb7e8ab8b9f9e",
+    "sha256": "91457fdba4b0965e290b304ef153aa938a46879de2b2796a0787b352632ea63e",
     "config_path": ".github/repository-intelligence-config.json",
     "config_sha256": "66adb348ba24a7f5fa4851ddba10f102e6f81cbff8824679e800204068db9468"
   },
@@ -14145,7 +14880,7 @@
     {
       "path": ".github/acceptance/issue-183.json",
       "kind": "file",
-      "purpose": "Deterministic automation and open human gates for issue 183.",
+      "purpose": "Issue 183 acceptance checks and external gates for the five-article batch.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md",
       "instructions": [
@@ -14979,6 +15714,17 @@
       "title": "archive.js"
     },
     {
+      "path": "docs/article-media/11b50b3b2a4dd035b4b975444d87a37ceed0e68d8c983f4acc3b57b9d7dc1833/cover.jpg",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover.jpg"
+    },
+    {
       "path": "docs/article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618/research-fallback.svg",
       "kind": "file",
       "purpose": "Digest-addressed passive Research fallback vectors generated from the canonical authored scene; no article publication.",
@@ -14988,6 +15734,17 @@
         "AGENTS.md"
       ],
       "title": "research-fallback.svg"
+    },
+    {
+      "path": "docs/article-media/1589356c855ad721e706cff069e147afd60cac49b225445f8e1010737da0a6fc/diagram-6.webp",
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-6.webp"
     },
     {
       "path": "docs/article-media/1d984826a2b8b2c9b5543da407eb67726ded0a5a517d0ea7e55e1e7187333292/systemic-response.webp",
@@ -15001,6 +15758,17 @@
       "title": "systemic-response.webp"
     },
     {
+      "path": "docs/article-media/29527faa8c99529dfa1a7beb3ea1068d4f93a9ba9a30d86b4a1f8eac30583c54/normal-distribution.webp",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "normal-distribution.webp"
+    },
+    {
       "path": "docs/article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg",
       "kind": "file",
       "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
@@ -15010,6 +15778,83 @@
         "AGENTS.md"
       ],
       "title": "writing-fallback.svg"
+    },
+    {
+      "path": "docs/article-media/2d0985de7aad4d29069f3adcff22f0ccbab01d23fd18a5a0053ce53209856725/circuit-breaker.webp",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "circuit-breaker.webp"
+    },
+    {
+      "path": "docs/article-media/2d4e237d21021bcb6c62b5ce9ab10daffc4e93b521a20f3b6a707a3531781739/cover.jpg",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover.jpg"
+    },
+    {
+      "path": "docs/article-media/300fdfa774d4e768f36fc3e3d1f4f146b46ed41feead5d33db2316c9f3a3c06a/diagram-5.webp",
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-5.webp"
+    },
+    {
+      "path": "docs/article-media/3415712316948afcc30c00607f7f2fb475b2ca0939c108481bfdcd4fe3676a93/cover-social.jpg",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover-social.jpg"
+    },
+    {
+      "path": "docs/article-media/38e49d4bb130df44098c0b70e3e6ac952b51d1b8822822a429ae15ed930402ea/llm-as-judge.webp",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "llm-as-judge.webp"
+    },
+    {
+      "path": "docs/article-media/393e1a2b17f2c895be46fcb64bb3963d7c5abf56984099e8008857589b32b6ff/neuro-symbolic-sensor.webp",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "neuro-symbolic-sensor.webp"
+    },
+    {
+      "path": "docs/article-media/41f0f839015031d489aeb6ddfded11099be8247d030d636e4044c6820071c70b/control-design-process.webp",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "control-design-process.webp"
     },
     {
       "path": "docs/article-media/45ca9e3e1eae873773f0a2287bd16cfd6e46f25bbde2f17dda5846b23da1c6a3/imbalance-loop.webp",
@@ -15023,6 +15868,39 @@
       "title": "imbalance-loop.webp"
     },
     {
+      "path": "docs/article-media/4fb99c0a32cfe808956a13bc2caaec71ed7adea83de79df4c5bfa08592d0b871/cover.jpg",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover.jpg"
+    },
+    {
+      "path": "docs/article-media/542383922d50b39015ac2e3553481e7237a91efae41d19be80a3ee564d039d43/diagram-7.webp",
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-7.webp"
+    },
+    {
+      "path": "docs/article-media/5552ab1fb02be8954586dccb7d92ffd5ab4a1df4fd0857de7133cfb98613af85/diagram-4.webp",
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-4.webp"
+    },
+    {
       "path": "docs/article-media/568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58/reading-r11.pdf",
       "kind": "file",
       "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
@@ -15032,6 +15910,50 @@
         "AGENTS.md"
       ],
       "title": "reading-r11.pdf"
+    },
+    {
+      "path": "docs/article-media/593e5212280ebabadb49ddc4c56e0bc4ba6908f659a9b466b462e7331680e27d/diagram-2.webp",
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-2.webp"
+    },
+    {
+      "path": "docs/article-media/5ba399aa0ca2dc3e492e58292358870926fb5acd7fdd958c63e2e71541d6994d/cover-social.jpg",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover-social.jpg"
+    },
+    {
+      "path": "docs/article-media/5f8490fc28edf22e1a224c2adc10f6aa814d091ce620c059e86e4a64c7843360/cover.jpg",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover.jpg"
+    },
+    {
+      "path": "docs/article-media/6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168/cover.jpg",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover.jpg"
     },
     {
       "path": "docs/article-media/70052f9b0129c9e7bd3e70720a540869795d09eacf1ca780c55df64f4576b49c/reading.pdf",
@@ -15067,6 +15989,17 @@
       "title": "review-functions.webp"
     },
     {
+      "path": "docs/article-media/7d220ce3249c461ada25c5b12dd825283362eef960822a58ad95b1f38a4db62b/traditional-and-behavioral.webp",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "traditional-and-behavioral.webp"
+    },
+    {
       "path": "docs/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry-r9.webp",
       "kind": "file",
       "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
@@ -15100,6 +16033,72 @@
       "title": "workstream-system.webp"
     },
     {
+      "path": "docs/article-media/919957eafd1c9cef20c4d3d99251dee97f9a397ffd505952a9a441e03c80d34c/verification-trilemma.webp",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "verification-trilemma.webp"
+    },
+    {
+      "path": "docs/article-media/943cc2b0ba6d097701efdd5c358e26e007a66b5d1077d71f672dcc040baf4936/cover-social.jpg",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover-social.jpg"
+    },
+    {
+      "path": "docs/article-media/9acaf96c7008839610c8b9d3efdcb45a8046cde2c792f6f0dfe1951ba8a92048/cover-social.jpg",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover-social.jpg"
+    },
+    {
+      "path": "docs/article-media/9cc5b62810712f9988b2d05004700978d8886e7c7954d92d2317c8f9cc4ff719/diagram-8b.webp",
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-8b.webp"
+    },
+    {
+      "path": "docs/article-media/9e48e39e141a2775794af0f17a94275705d475ae4d3a97b327d9fdaf6992e0fa/transformation-j-curve.webp",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "transformation-j-curve.webp"
+    },
+    {
+      "path": "docs/article-media/a187cf86739b2cc193cc9696e9884e2252c62b636ce262277c342371081eaa36/cover-social.jpg",
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover-social.jpg"
+    },
+    {
       "path": "docs/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a/review-learning-r7.webp",
       "kind": "file",
       "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
@@ -15109,6 +16108,50 @@
         "AGENTS.md"
       ],
       "title": "review-learning-r7.webp"
+    },
+    {
+      "path": "docs/article-media/a3e8b467f27cbc673040aea8b17d32371621ab367eef63804063198a9bf739a0/diagram-3.webp",
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-3.webp"
+    },
+    {
+      "path": "docs/article-media/b68b465d8f611f72c8f4d9e95eaad457c1e40761154d90112ed128d7ecd47dd2/cover.jpg",
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover.jpg"
+    },
+    {
+      "path": "docs/article-media/bb70b4d0907ed3672055b0aacd58ca6bb35ef9154aecfb151705de58127eb2ae/diagram-1.webp",
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-1.webp"
+    },
+    {
+      "path": "docs/article-media/c1f333b5145b75b144562e218b73946ba77083fba5c1d30a8a8b43ef2659fc5a/cover.jpg",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover.jpg"
     },
     {
       "path": "docs/article-media/c3686dce007b399d3fb175d5b235a51b1000500a3e4bc6f024be9767bfb33996/reading-r12.pdf",
@@ -15122,6 +16165,28 @@
       "title": "reading-r12.pdf"
     },
     {
+      "path": "docs/article-media/c3b69024bc558f1b246c0135e7fceb55cbf77e4a8984e286285b57c13aaeaa37/drift-response-tiers.webp",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "drift-response-tiers.webp"
+    },
+    {
+      "path": "docs/article-media/c7800f9370b6be57d53135a923689b70c4d6f99ac3acf17b118436a08bfe953a/control-boundary.webp",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "control-boundary.webp"
+    },
+    {
       "path": "docs/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551/comprehension-gap-r7.webp",
       "kind": "file",
       "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
@@ -15133,6 +16198,50 @@
       "title": "comprehension-gap-r7.webp"
     },
     {
+      "path": "docs/article-media/d125ba3950bf0b8cd725d9197957a152ca404bff51c3cb87c9ee6460a8ddad88/cover-social.jpg",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover-social.jpg"
+    },
+    {
+      "path": "docs/article-media/d1bed993498c86dbebc2706ca22878adfcf4e56ea2ed054bdc23e3ab471c1c73/verification-layers.webp",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "verification-layers.webp"
+    },
+    {
+      "path": "docs/article-media/dfc1c0903c9baf02dec4e96b1d87a46cccbad3ee015e9d47a3d86c73d8fb29c0/diagram-8a.webp",
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-8a.webp"
+    },
+    {
+      "path": "docs/article-media/e09b0fc781b0930aa9671ef0ca728d286828e0e9c8d47e6696d1976b0b1381ee/end-to-end-control.webp",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "end-to-end-control.webp"
+    },
+    {
       "path": "docs/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7/delivery-capacity-r6.webp",
       "kind": "file",
       "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
@@ -15142,6 +16251,17 @@
         "AGENTS.md"
       ],
       "title": "delivery-capacity-r6.webp"
+    },
+    {
+      "path": "docs/article-media/fe4ca5dc397894e9c267484abb9606022abfdb6ab31560ce988efddf21c4438d/cover-social.jpg",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover-social.jpg"
     },
     {
       "path": "docs/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f/hero-web.jpg",
@@ -15166,6 +16286,72 @@
       "title": "the-sdlc-is-out-of-balance.html"
     },
     {
+      "path": "docs/article-snapshots/1ad993812e199251299e1545ae901b32b3612699717b5555329e0f1185fb2afc/the-sdlc-is-out-of-balance.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "the-sdlc-is-out-of-balance.html"
+    },
+    {
+      "path": "docs/article-snapshots/1b6eaa02835c73d162f618ec6ce2c895e6c8c4a6c262c46324b2fddb38b3fcb0/ai-governance-is-control-theory.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ai-governance-is-control-theory.html"
+    },
+    {
+      "path": "docs/article-snapshots/51c29e57f6c1efda2e32251593d829a94d3ae2aa5a1a71be267bf5112d9aac09/beyond-embeddings.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "beyond-embeddings.html"
+    },
+    {
+      "path": "docs/article-snapshots/76d33d8e21ab50f78ec8c7102e7999c8c45b7cd56ed30c1ad22c0d6fb2699bff/thinking-systems.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "thinking-systems.html"
+    },
+    {
+      "path": "docs/article-snapshots/9479a537c62f131448ff3cc90f3ba0612689b4404f3e960313bff4da01aab690/agentic-loops.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "agentic-loops.html"
+    },
+    {
+      "path": "docs/article-snapshots/a0b4e14883af5ba1418a23420074d42cb6d10b386eb0a46b370b78c5bd5c8b97/ai-native-workflows-have-a-moat-problem.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ai-native-workflows-have-a-moat-problem.html"
+    },
+    {
       "path": "docs/article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995/the-sdlc-is-out-of-balance.html",
       "kind": "file",
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
@@ -15188,7 +16374,7 @@
       "title": "the-sdlc-is-out-of-balance.html"
     },
     {
-      "path": "docs/article-snapshots/d32979c9bb19b2ef02dbd5716d4135d923cc900dd197ddbddc30ccc791b78508/the-sdlc-is-out-of-balance.html",
+      "path": "docs/article-snapshots/c03ae1d5925a33b1e3ece61210a4c593bb608cd86dcfeae24c0909d23ad34975/ai-verification-crisis.html",
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -15196,7 +16382,84 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "the-sdlc-is-out-of-balance.html"
+      "title": "ai-verification-crisis.html"
+    },
+    {
+      "path": "docs/article-snapshots/ffd72466b6d3cfb099d196286610e17fab8dd1304452b5b852a2049e8a9ea6d4/ai-cost-cutting-fallacy.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ai-cost-cutting-fallacy.html"
+    },
+    {
+      "path": "docs/articles/agentic-loops.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "agentic-loops.html"
+    },
+    {
+      "path": "docs/articles/ai-cost-cutting-fallacy.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ai-cost-cutting-fallacy.html"
+    },
+    {
+      "path": "docs/articles/ai-governance-is-control-theory.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ai-governance-is-control-theory.html"
+    },
+    {
+      "path": "docs/articles/ai-native-workflows-have-a-moat-problem.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ai-native-workflows-have-a-moat-problem.html"
+    },
+    {
+      "path": "docs/articles/ai-verification-crisis.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ai-verification-crisis.html"
+    },
+    {
+      "path": "docs/articles/beyond-embeddings.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "beyond-embeddings.html"
     },
     {
       "path": "docs/articles/the-sdlc-is-out-of-balance.html",
@@ -15208,6 +16471,17 @@
         "AGENTS.md"
       ],
       "title": "the-sdlc-is-out-of-balance.html"
+    },
+    {
+      "path": "docs/articles/thinking-systems.html",
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "thinking-systems.html"
     },
     {
       "path": "docs/assets/favicon.svg",
@@ -15419,61 +16693,6 @@
       "title": "theme.js"
     },
     {
-      "path": "docs/runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/archive.js",
-      "kind": "file",
-      "purpose": "Generated #187 runtime or immutable route output.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "archive.js"
-    },
-    {
-      "path": "docs/runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/navigation.js",
-      "kind": "file",
-      "purpose": "Generated #187 runtime or immutable route output.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "navigation.js"
-    },
-    {
-      "path": "docs/runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/space.js",
-      "kind": "file",
-      "purpose": "Generated #187 runtime or immutable route output.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "space.js"
-    },
-    {
-      "path": "docs/runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/styles.css",
-      "kind": "file",
-      "purpose": "Generated #187 runtime or immutable route output.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "styles.css"
-    },
-    {
-      "path": "docs/runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/theme.js",
-      "kind": "file",
-      "purpose": "Generated #187 runtime or immutable route output.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "theme.js"
-    },
-    {
       "path": "docs/runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/archive.js",
       "kind": "file",
       "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
@@ -15529,6 +16748,17 @@
       "title": "theme.js"
     },
     {
+      "path": "docs/runtime/6cb335e76a1aa0004d11ae06d9825991f5ea513a9564457383c8d13c7c54bbb1/analytics.js",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "analytics.js"
+    },
+    {
       "path": "docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff/analytics.js",
       "kind": "file",
       "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
@@ -15538,6 +16768,61 @@
         "AGENTS.md"
       ],
       "title": "analytics.js"
+    },
+    {
+      "path": "docs/runtime/97208ee3d165d8585186561ca50d2fdebe8ca0831c3fc6b7a7414a43e5f18aab/archive.js",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "archive.js"
+    },
+    {
+      "path": "docs/runtime/97208ee3d165d8585186561ca50d2fdebe8ca0831c3fc6b7a7414a43e5f18aab/navigation.js",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "navigation.js"
+    },
+    {
+      "path": "docs/runtime/97208ee3d165d8585186561ca50d2fdebe8ca0831c3fc6b7a7414a43e5f18aab/space.js",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "space.js"
+    },
+    {
+      "path": "docs/runtime/97208ee3d165d8585186561ca50d2fdebe8ca0831c3fc6b7a7414a43e5f18aab/styles.css",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "styles.css"
+    },
+    {
+      "path": "docs/runtime/97208ee3d165d8585186561ca50d2fdebe8ca0831c3fc6b7a7414a43e5f18aab/theme.js",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "theme.js"
     },
     {
       "path": "docs/runtime/a404b4b436e6686261dc634814303fd592eca7d1f6c39bb042a515fe5b4bc4ee/archive.js",
@@ -15716,6 +17001,17 @@
       "title": "site-revision.json"
     },
     {
+      "path": "docs/snapshots/02fbae00edcb723580662d54b4453fa65c3535c77fc49ef95ee593fd08a14361/writing.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "writing.html"
+    },
+    {
       "path": "docs/snapshots/080da808855bdc7cac66970509a9a371a5033cb5d721a007a92632c826b2d06a/writing.html",
       "kind": "file",
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
@@ -15749,7 +17045,7 @@
       "title": "talks.html"
     },
     {
-      "path": "docs/snapshots/49ebb5609deed1057e3cd1f4aa0d0a35ed21c35c6ffc703f7481995e691ad73e/index.html",
+      "path": "docs/snapshots/464f356f00b70c8e63d3ba19b756e7ccb0b23ee2e9926d3ea138b7d0c33c917f/research.html",
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -15757,7 +17053,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "index.html"
+      "title": "research.html"
+    },
+    {
+      "path": "docs/snapshots/481dc8bacc3c2e39ac84bdcf4f02765554b9cc717d92f3df6094042dcd9aba71/talks.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "talks.html"
     },
     {
       "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
@@ -15791,6 +17098,17 @@
         "AGENTS.md"
       ],
       "title": "research.html"
+    },
+    {
+      "path": "docs/snapshots/767e85fb0cf37e35d8be617e4454fe18302367be01dac4bb0bdb0e9de0bfebbb/index.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index.html"
     },
     {
       "path": "docs/snapshots/7b62f25175a003a9fcc24f430e26ff321f267a8e77a28699984f86bf1dfdd3b6/research.html",
@@ -15881,17 +17199,6 @@
       "title": "writing.html"
     },
     {
-      "path": "docs/snapshots/b9304a0650e725ae878b80083b3e5f117f022a28f7b1ef8e853d907760597869/credits.html",
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "credits.html"
-    },
-    {
       "path": "docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920/index.html",
       "kind": "file",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
@@ -15901,17 +17208,6 @@
         "AGENTS.md"
       ],
       "title": "index.html"
-    },
-    {
-      "path": "docs/snapshots/c700fa57e1844e776665e570750dfee2a98b4788de110b62ced9787b1a90068b/research.html",
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "research.html"
     },
     {
       "path": "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html",
@@ -15925,7 +17221,7 @@
       "title": "writing.html"
     },
     {
-      "path": "docs/snapshots/debeac096a30cbcd37665f48be4c31418b5911b033cb6f7421913b586d94ffde/writing.html",
+      "path": "docs/snapshots/eb9003485aff808b249f624f706e793516bcf3a1c84c4734fa00d53e901a0130/credits.html",
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -15933,18 +17229,7 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "writing.html"
-    },
-    {
-      "path": "docs/snapshots/f84b293d460c2c8d22c3f82afe83cd2b796af43d5b154e4e093eb1a42caf2ee5/talks.html",
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "talks.html"
+      "title": "credits.html"
     },
     {
       "path": "docs/space.js",
@@ -24624,6 +25909,94 @@
         "AGENTS.md"
       ],
       "title": "seo-producers.json"
+    },
+    {
+      "path": "review/issue-183/2026-11-13-migration.md",
+      "kind": "file",
+      "purpose": "Source reconciliation and exact-preview evidence for issue 183.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 183 — Thinking Systems migration checkpoint"
+    },
+    {
+      "path": "review/issue-183/2026-11-15-control-theory.md",
+      "kind": "file",
+      "purpose": "Source-bound migration review and preview evidence for issue 183.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 183 — Control Theory migration checkpoint"
+    },
+    {
+      "path": "review/issue-183/2026-11-15-cost-cutting.md",
+      "kind": "file",
+      "purpose": "Source-bound migration review and preview evidence for issue 183.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Cost-Cutting Fallacy migration review"
+    },
+    {
+      "path": "review/issue-183/2026-11-15-moat-problem.md",
+      "kind": "file",
+      "purpose": "Source-bound Moat Problem article migration and Preview evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Moat Problem Draft PR Preview"
+    },
+    {
+      "path": "review/issue-183/2026-11-15-verification-crisis.md",
+      "kind": "file",
+      "purpose": "Source-bound migration review and preview evidence for issue 183.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Verification Crisis migration review"
+    },
+    {
+      "path": "review/issue-183/2026-11-16-agentic-loops.md",
+      "kind": "file",
+      "purpose": "Source-bound Agentic Loops migration and Preview evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Agentic Loops follow-up Preview — 2026-11-16"
+    },
+    {
+      "path": "review/issue-183/2026-11-16-beyond-embeddings.md",
+      "kind": "file",
+      "purpose": "Source-bound Beyond Embeddings migration, size diagnosis and Preview evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Beyond Embeddings follow-up checkpoint — 2026-11-16"
+    },
+    {
+      "path": "review/issue-183/2026-11-16-editorial-refresh.md",
+      "kind": "file",
+      "purpose": "Source-bound author biography, native reading links and terminology review.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Article editorial refresh — 16 November 2026"
     },
     {
       "path": "review/issue-183/2026-11-16-staging-controller.md",
@@ -36407,6 +37780,270 @@
       "title": "nojekyll"
     },
     {
+      "path": "site/assets/publications/agentic-loops/cover-web.jpg",
+      "kind": "file",
+      "purpose": "Original LinkedIn Agentic Loops cover renditions for the Draft Preview.",
+      "role": "source",
+      "owner": "site/publications/agentic-loops/PROVENANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover-web.jpg"
+    },
+    {
+      "path": "site/assets/publications/agentic-loops/cover.png",
+      "kind": "file",
+      "purpose": "Original LinkedIn Agentic Loops cover renditions for the Draft Preview.",
+      "role": "source",
+      "owner": "site/publications/agentic-loops/PROVENANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover.png"
+    },
+    {
+      "path": "site/assets/publications/ai-cost-cutting-fallacy/cover-web.jpg",
+      "kind": "file",
+      "purpose": "Author-approved original iceberg cover or original replacement J-curve for the Cost-Cutting Fallacy.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover-web.jpg"
+    },
+    {
+      "path": "site/assets/publications/ai-cost-cutting-fallacy/cover.png",
+      "kind": "file",
+      "purpose": "Author-approved original iceberg cover or original replacement J-curve for the Cost-Cutting Fallacy.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover.png"
+    },
+    {
+      "path": "site/assets/publications/ai-cost-cutting-fallacy/transformation-j-curve.png",
+      "kind": "file",
+      "purpose": "Author-approved original iceberg cover or original replacement J-curve for the Cost-Cutting Fallacy.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "transformation-j-curve.png"
+    },
+    {
+      "path": "site/assets/publications/ai-governance-is-control-theory/cover-web.jpg",
+      "kind": "file",
+      "purpose": "Historical author-owned cover or new normal-distribution chart for Control Theory.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover-web.jpg"
+    },
+    {
+      "path": "site/assets/publications/ai-governance-is-control-theory/cover.png",
+      "kind": "file",
+      "purpose": "Historical author-owned cover or new normal-distribution chart for Control Theory.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover.png"
+    },
+    {
+      "path": "site/assets/publications/ai-governance-is-control-theory/normal-distribution.png",
+      "kind": "file",
+      "purpose": "Historical author-owned cover or new normal-distribution chart for Control Theory.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "normal-distribution.png"
+    },
+    {
+      "path": "site/assets/publications/ai-native-workflows-have-a-moat-problem/cover-web.jpg",
+      "kind": "file",
+      "purpose": "Original Moat Problem cover artwork resized for the author-site edition.",
+      "role": "source",
+      "owner": "site/publications/ai-native-workflows-have-a-moat-problem/PROVENANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover-web.jpg"
+    },
+    {
+      "path": "site/assets/publications/ai-native-workflows-have-a-moat-problem/cover.png",
+      "kind": "file",
+      "purpose": "Original Moat Problem cover artwork resized for the author-site edition.",
+      "role": "source",
+      "owner": "site/publications/ai-native-workflows-have-a-moat-problem/PROVENANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover.png"
+    },
+    {
+      "path": "site/assets/publications/ai-verification-crisis/cover-web.jpg",
+      "kind": "file",
+      "purpose": "Resized historical Verification Crisis cover source or equivalent web JPEG.",
+      "role": "source",
+      "owner": "site/publications/ai-verification-crisis/PROVENANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover-web.jpg"
+    },
+    {
+      "path": "site/assets/publications/ai-verification-crisis/cover.png",
+      "kind": "file",
+      "purpose": "Resized historical Verification Crisis cover source or equivalent web JPEG.",
+      "role": "source",
+      "owner": "site/publications/ai-verification-crisis/PROVENANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover.png"
+    },
+    {
+      "path": "site/assets/publications/beyond-embeddings/circuit-breaker.png",
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "circuit-breaker.png"
+    },
+    {
+      "path": "site/assets/publications/beyond-embeddings/control-boundary.png",
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "control-boundary.png"
+    },
+    {
+      "path": "site/assets/publications/beyond-embeddings/control-design-process.png",
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "control-design-process.png"
+    },
+    {
+      "path": "site/assets/publications/beyond-embeddings/cover-web.jpg",
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover-web.jpg"
+    },
+    {
+      "path": "site/assets/publications/beyond-embeddings/cover.png",
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover.png"
+    },
+    {
+      "path": "site/assets/publications/beyond-embeddings/drift-response-tiers.png",
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "drift-response-tiers.png"
+    },
+    {
+      "path": "site/assets/publications/beyond-embeddings/end-to-end-control.png",
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "end-to-end-control.png"
+    },
+    {
+      "path": "site/assets/publications/beyond-embeddings/llm-as-judge.png",
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "llm-as-judge.png"
+    },
+    {
+      "path": "site/assets/publications/beyond-embeddings/neuro-symbolic-sensor.png",
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "neuro-symbolic-sensor.png"
+    },
+    {
+      "path": "site/assets/publications/beyond-embeddings/traditional-and-behavioral.png",
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "traditional-and-behavioral.png"
+    },
+    {
+      "path": "site/assets/publications/beyond-embeddings/verification-layers.png",
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "verification-layers.png"
+    },
+    {
+      "path": "site/assets/publications/beyond-embeddings/verification-trilemma.png",
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "verification-trilemma.png"
+    },
+    {
       "path": "site/assets/publications/pmday-ai-both-sides/PROVENANCE.md",
       "kind": "file",
       "purpose": "PMDay article source, presentation viewer or original publication media: PROVENANCE.md.",
@@ -36999,6 +38636,127 @@
         "AGENTS.md"
       ],
       "title": "workstream-system.png"
+    },
+    {
+      "path": "site/assets/publications/thinking-systems/cover-web.jpg",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover-web.jpg"
+    },
+    {
+      "path": "site/assets/publications/thinking-systems/cover.png",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover.png"
+    },
+    {
+      "path": "site/assets/publications/thinking-systems/diagram-1.png",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-1.png"
+    },
+    {
+      "path": "site/assets/publications/thinking-systems/diagram-2.png",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-2.png"
+    },
+    {
+      "path": "site/assets/publications/thinking-systems/diagram-3.png",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-3.png"
+    },
+    {
+      "path": "site/assets/publications/thinking-systems/diagram-4.png",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-4.png"
+    },
+    {
+      "path": "site/assets/publications/thinking-systems/diagram-5.png",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-5.png"
+    },
+    {
+      "path": "site/assets/publications/thinking-systems/diagram-6.png",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-6.png"
+    },
+    {
+      "path": "site/assets/publications/thinking-systems/diagram-7.png",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-7.png"
+    },
+    {
+      "path": "site/assets/publications/thinking-systems/diagram-8a.png",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-8a.png"
+    },
+    {
+      "path": "site/assets/publications/thinking-systems/diagram-8b.png",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "diagram-8b.png"
     },
     {
       "path": "site/assets/vitalii-oborskyi-cutout.webp",
@@ -37626,6 +39384,512 @@
         "AGENTS.md"
       ],
       "title": "output-lock.json"
+    },
+    {
+      "path": "site/publications/agentic-loops/PROVENANCE.md",
+      "kind": "file",
+      "purpose": "Authored Agentic Loops manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Agentic Loops — source and rights"
+    },
+    {
+      "path": "site/publications/agentic-loops/editions/agentic-loops-en-20260610.json",
+      "kind": "file",
+      "purpose": "Authored Agentic Loops manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "agentic-loops-en-20260610.json"
+    },
+    {
+      "path": "site/publications/agentic-loops/editions/agentic-loops-en-20261116-cover.json",
+      "kind": "file",
+      "purpose": "Authored Agentic Loops manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "agentic-loops-en-20261116-cover.json"
+    },
+    {
+      "path": "site/publications/agentic-loops/editions/agentic-loops-en-20261116-editorial.json",
+      "kind": "file",
+      "purpose": "Frozen author-site publication edition with the current biography and editorial updates.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "agentic-loops-en-20261116-editorial.json"
+    },
+    {
+      "path": "site/publications/agentic-loops/launch-post.en.md",
+      "kind": "file",
+      "purpose": "Authored Agentic Loops manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops"
+    },
+    {
+      "path": "site/publications/agentic-loops/manuscript.en.md",
+      "kind": "file",
+      "purpose": "Authored Agentic Loops manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops"
+    },
+    {
+      "path": "site/publications/agentic-loops/profile.json",
+      "kind": "file",
+      "purpose": "Authored Agentic Loops manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "profile.json"
+    },
+    {
+      "path": "site/publications/agentic-loops/publication.json",
+      "kind": "file",
+      "purpose": "Authored Agentic Loops manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "publication.json"
+    },
+    {
+      "path": "site/publications/ai-cost-cutting-fallacy/PROVENANCE.md",
+      "kind": "file",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Cost-Cutting Fallacy publication provenance"
+    },
+    {
+      "path": "site/publications/ai-cost-cutting-fallacy/editions/ai-cost-cutting-fallacy-en-20260102.json",
+      "kind": "file",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ai-cost-cutting-fallacy-en-20260102.json"
+    },
+    {
+      "path": "site/publications/ai-cost-cutting-fallacy/editions/ai-cost-cutting-fallacy-en-20261115-illustrated.json",
+      "kind": "file",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ai-cost-cutting-fallacy-en-20261115-illustrated.json"
+    },
+    {
+      "path": "site/publications/ai-cost-cutting-fallacy/editions/ai-cost-cutting-fallacy-en-20261116-editorial.json",
+      "kind": "file",
+      "purpose": "Frozen author-site publication edition with the current biography and editorial updates.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ai-cost-cutting-fallacy-en-20261116-editorial.json"
+    },
+    {
+      "path": "site/publications/ai-cost-cutting-fallacy/launch-post.en.md",
+      "kind": "file",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "The AI Cost-Cutting Fallacy: Why \"Doing More with Less\" is Breaking Engineering Teams"
+    },
+    {
+      "path": "site/publications/ai-cost-cutting-fallacy/manuscript.en.md",
+      "kind": "file",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "The AI Cost-Cutting Fallacy: Why \"Doing More with Less\" is Breaking Engineering Teams"
+    },
+    {
+      "path": "site/publications/ai-cost-cutting-fallacy/profile.json",
+      "kind": "file",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "profile.json"
+    },
+    {
+      "path": "site/publications/ai-cost-cutting-fallacy/publication.json",
+      "kind": "file",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "publication.json"
+    },
+    {
+      "path": "site/publications/ai-governance-is-control-theory/PROVENANCE.md",
+      "kind": "file",
+      "purpose": "Authored Control Theory source, provenance or edition and publication profile.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Control Theory source, cover and replacement figure"
+    },
+    {
+      "path": "site/publications/ai-governance-is-control-theory/editions/ai-governance-is-control-theory-en-20251213.json",
+      "kind": "file",
+      "purpose": "Authored Control Theory source, provenance or edition and publication profile.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ai-governance-is-control-theory-en-20251213.json"
+    },
+    {
+      "path": "site/publications/ai-governance-is-control-theory/editions/ai-governance-is-control-theory-en-20261115-annotated.json",
+      "kind": "file",
+      "purpose": "Authored Control Theory source, provenance or edition and publication profile.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ai-governance-is-control-theory-en-20261115-annotated.json"
+    },
+    {
+      "path": "site/publications/ai-governance-is-control-theory/editions/ai-governance-is-control-theory-en-20261116-editorial.json",
+      "kind": "file",
+      "purpose": "Frozen author-site publication edition with the current biography and editorial updates.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ai-governance-is-control-theory-en-20261116-editorial.json"
+    },
+    {
+      "path": "site/publications/ai-governance-is-control-theory/launch-post.en.md",
+      "kind": "file",
+      "purpose": "Authored Control Theory source, provenance or edition and publication profile.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Why AI Governance is Actually Control Theory"
+    },
+    {
+      "path": "site/publications/ai-governance-is-control-theory/manuscript.en.md",
+      "kind": "file",
+      "purpose": "Authored Control Theory source, provenance or edition and publication profile.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Uncertainty Architecture: Why AI Governance is Actually Control Theory"
+    },
+    {
+      "path": "site/publications/ai-governance-is-control-theory/profile.json",
+      "kind": "file",
+      "purpose": "Authored Control Theory source, provenance or edition and publication profile.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "profile.json"
+    },
+    {
+      "path": "site/publications/ai-governance-is-control-theory/publication.json",
+      "kind": "file",
+      "purpose": "Authored Control Theory source, provenance or edition and publication profile.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "publication.json"
+    },
+    {
+      "path": "site/publications/ai-native-workflows-have-a-moat-problem/PROVENANCE.md",
+      "kind": "file",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "AI-Native Workflows Have a Moat Problem — source and rights"
+    },
+    {
+      "path": "site/publications/ai-native-workflows-have-a-moat-problem/editions/ai-native-workflows-have-a-moat-problem-en-20260701.json",
+      "kind": "file",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ai-native-workflows-have-a-moat-problem-en-20260701.json"
+    },
+    {
+      "path": "site/publications/ai-native-workflows-have-a-moat-problem/editions/ai-native-workflows-have-a-moat-problem-en-20261116-editorial.json",
+      "kind": "file",
+      "purpose": "Frozen author-site publication edition with the current biography and editorial updates.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ai-native-workflows-have-a-moat-problem-en-20261116-editorial.json"
+    },
+    {
+      "path": "site/publications/ai-native-workflows-have-a-moat-problem/launch-post.en.md",
+      "kind": "file",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "launch-post.en.md"
+    },
+    {
+      "path": "site/publications/ai-native-workflows-have-a-moat-problem/manuscript.en.md",
+      "kind": "file",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "AI-Native Workflows Have a Moat Problem"
+    },
+    {
+      "path": "site/publications/ai-native-workflows-have-a-moat-problem/profile.json",
+      "kind": "file",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "profile.json"
+    },
+    {
+      "path": "site/publications/ai-native-workflows-have-a-moat-problem/publication.json",
+      "kind": "file",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "publication.json"
+    },
+    {
+      "path": "site/publications/ai-verification-crisis/PROVENANCE.md",
+      "kind": "file",
+      "purpose": "Authored Verification Crisis manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Verification Crisis publication provenance"
+    },
+    {
+      "path": "site/publications/ai-verification-crisis/editions/ai-verification-crisis-en-20260612.json",
+      "kind": "file",
+      "purpose": "Authored Verification Crisis manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ai-verification-crisis-en-20260612.json"
+    },
+    {
+      "path": "site/publications/ai-verification-crisis/editions/ai-verification-crisis-en-20261115-cover.json",
+      "kind": "file",
+      "purpose": "Authored Verification Crisis manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ai-verification-crisis-en-20261115-cover.json"
+    },
+    {
+      "path": "site/publications/ai-verification-crisis/editions/ai-verification-crisis-en-20261116-editorial.json",
+      "kind": "file",
+      "purpose": "Frozen author-site publication edition with the current biography and editorial updates.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ai-verification-crisis-en-20261116-editorial.json"
+    },
+    {
+      "path": "site/publications/ai-verification-crisis/launch-post.en.md",
+      "kind": "file",
+      "purpose": "Authored Verification Crisis manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "AI, the Externalization of Reasoning, and the Verification Crisis"
+    },
+    {
+      "path": "site/publications/ai-verification-crisis/manuscript.en.md",
+      "kind": "file",
+      "purpose": "Authored Verification Crisis manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "AI, the Externalization of Reasoning, and the Verification Crisis"
+    },
+    {
+      "path": "site/publications/ai-verification-crisis/profile.json",
+      "kind": "file",
+      "purpose": "Authored Verification Crisis manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "profile.json"
+    },
+    {
+      "path": "site/publications/ai-verification-crisis/publication.json",
+      "kind": "file",
+      "purpose": "Authored Verification Crisis manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "publication.json"
+    },
+    {
+      "path": "site/publications/beyond-embeddings/PROVENANCE.md",
+      "kind": "file",
+      "purpose": "Authored Beyond Embeddings manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Beyond Embeddings source and rights"
+    },
+    {
+      "path": "site/publications/beyond-embeddings/editions/beyond-embeddings-en-20260522.json",
+      "kind": "file",
+      "purpose": "Authored Beyond Embeddings manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "beyond-embeddings-en-20260522.json"
+    },
+    {
+      "path": "site/publications/beyond-embeddings/editions/beyond-embeddings-en-20261116-editorial.json",
+      "kind": "file",
+      "purpose": "Frozen author-site publication edition with the current biography and editorial updates.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "beyond-embeddings-en-20261116-editorial.json"
+    },
+    {
+      "path": "site/publications/beyond-embeddings/launch-post.en.md",
+      "kind": "file",
+      "purpose": "Authored Beyond Embeddings manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "launch-post.en.md"
+    },
+    {
+      "path": "site/publications/beyond-embeddings/manuscript.en.md",
+      "kind": "file",
+      "purpose": "Authored Beyond Embeddings manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Uncertainty Architecture: Beyond Embeddings — Neuro-Symbolic Verification of Semantic Drift in LLMs"
+    },
+    {
+      "path": "site/publications/beyond-embeddings/profile.json",
+      "kind": "file",
+      "purpose": "Authored Beyond Embeddings manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "profile.json"
+    },
+    {
+      "path": "site/publications/beyond-embeddings/publication.json",
+      "kind": "file",
+      "purpose": "Authored Beyond Embeddings manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "publication.json"
     },
     {
       "path": "site/publications/pmday-ai-both-sides/blueprint.md",
@@ -38291,6 +40555,83 @@
       "path": "site/publications/sdlc-out-of-balance/publication.json",
       "kind": "file",
       "purpose": "Current accepted R9 native source, semantic/profile/material inputs and hero plus four figures.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "publication.json"
+    },
+    {
+      "path": "site/publications/thinking-systems/PROVENANCE.md",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Thinking Systems source and rights"
+    },
+    {
+      "path": "site/publications/thinking-systems/editions/thinking-systems-en-20260830.json",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "thinking-systems-en-20260830.json"
+    },
+    {
+      "path": "site/publications/thinking-systems/editions/thinking-systems-en-20261116-editorial.json",
+      "kind": "file",
+      "purpose": "Frozen author-site publication edition with the current biography and editorial updates.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "thinking-systems-en-20261116-editorial.json"
+    },
+    {
+      "path": "site/publications/thinking-systems/launch-post.en.md",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Thinking Systems"
+    },
+    {
+      "path": "site/publications/thinking-systems/manuscript.en.md",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Uncertainty Architecture: Thinking Systems, When the Controlled Object Changes"
+    },
+    {
+      "path": "site/publications/thinking-systems/profile.json",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "profile.json"
+    },
+    {
+      "path": "site/publications/thinking-systems/publication.json",
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md",
       "instructions": [
@@ -42446,6 +44787,17 @@
       "title": "hosted.cjs"
     },
     {
+      "path": "tools/quality/html-budget.cjs",
+      "kind": "file",
+      "purpose": "Shared HTML size limit for route kinds in artifact and publication verification.",
+      "role": "source",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "html-budget.cjs"
+    },
+    {
       "path": "tools/quality/lighthouse.cjs",
       "kind": "file",
       "purpose": "Maintained quality/check helper for lighthouse; applicable profiles are selected by SITE-CHECK-PROFILES.",
@@ -43799,9 +46151,29 @@
       ]
     },
     {
+      "path": "docs/article-media/11b50b3b2a4dd035b4b975444d87a37ceed0e68d8c983f4acc3b57b9d7dc1833",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618",
       "kind": "directory",
       "purpose": "Digest-addressed passive Research fallback vectors generated from the canonical authored scene; no article publication.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/1589356c855ad721e706cff069e147afd60cac49b225445f8e1010737da0a6fc",
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -43819,9 +46191,89 @@
       ]
     },
     {
+      "path": "docs/article-media/29527faa8c99529dfa1a7beb3ea1068d4f93a9ba9a30d86b4a1f8eac30583c54",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16",
       "kind": "directory",
       "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/2d0985de7aad4d29069f3adcff22f0ccbab01d23fd18a5a0053ce53209856725",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/2d4e237d21021bcb6c62b5ce9ab10daffc4e93b521a20f3b6a707a3531781739",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/300fdfa774d4e768f36fc3e3d1f4f146b46ed41feead5d33db2316c9f3a3c06a",
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/3415712316948afcc30c00607f7f2fb475b2ca0939c108481bfdcd4fe3676a93",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/38e49d4bb130df44098c0b70e3e6ac952b51d1b8822822a429ae15ed930402ea",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/393e1a2b17f2c895be46fcb64bb3963d7c5abf56984099e8008857589b32b6ff",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/41f0f839015031d489aeb6ddfded11099be8247d030d636e4044c6820071c70b",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -43839,9 +46291,79 @@
       ]
     },
     {
+      "path": "docs/article-media/4fb99c0a32cfe808956a13bc2caaec71ed7adea83de79df4c5bfa08592d0b871",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/542383922d50b39015ac2e3553481e7237a91efae41d19be80a3ee564d039d43",
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/5552ab1fb02be8954586dccb7d92ffd5ab4a1df4fd0857de7133cfb98613af85",
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/article-media/568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58",
       "kind": "directory",
       "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/593e5212280ebabadb49ddc4c56e0bc4ba6908f659a9b466b462e7331680e27d",
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/5ba399aa0ca2dc3e492e58292358870926fb5acd7fdd958c63e2e71541d6994d",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/5f8490fc28edf22e1a224c2adc10f6aa814d091ce620c059e86e4a64c7843360",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -43879,6 +46401,16 @@
       ]
     },
     {
+      "path": "docs/article-media/7d220ce3249c461ada25c5b12dd825283362eef960822a58ad95b1f38a4db62b",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f",
       "kind": "directory",
       "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
@@ -43899,9 +46431,109 @@
       ]
     },
     {
+      "path": "docs/article-media/919957eafd1c9cef20c4d3d99251dee97f9a397ffd505952a9a441e03c80d34c",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/943cc2b0ba6d097701efdd5c358e26e007a66b5d1077d71f672dcc040baf4936",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/9acaf96c7008839610c8b9d3efdcb45a8046cde2c792f6f0dfe1951ba8a92048",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/9cc5b62810712f9988b2d05004700978d8886e7c7954d92d2317c8f9cc4ff719",
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/9e48e39e141a2775794af0f17a94275705d475ae4d3a97b327d9fdaf6992e0fa",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/a187cf86739b2cc193cc9696e9884e2252c62b636ce262277c342371081eaa36",
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a",
       "kind": "directory",
       "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/a3e8b467f27cbc673040aea8b17d32371621ab367eef63804063198a9bf739a0",
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/b68b465d8f611f72c8f4d9e95eaad457c1e40761154d90112ed128d7ecd47dd2",
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/bb70b4d0907ed3672055b0aacd58ca6bb35ef9154aecfb151705de58127eb2ae",
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/c1f333b5145b75b144562e218b73946ba77083fba5c1d30a8a8b43ef2659fc5a",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -43919,6 +46551,26 @@
       ]
     },
     {
+      "path": "docs/article-media/c3b69024bc558f1b246c0135e7fceb55cbf77e4a8984e286285b57c13aaeaa37",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/c7800f9370b6be57d53135a923689b70c4d6f99ac3acf17b118436a08bfe953a",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551",
       "kind": "directory",
       "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
@@ -43929,9 +46581,59 @@
       ]
     },
     {
+      "path": "docs/article-media/d125ba3950bf0b8cd725d9197957a152ca404bff51c3cb87c9ee6460a8ddad88",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/d1bed993498c86dbebc2706ca22878adfcf4e56ea2ed054bdc23e3ab471c1c73",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/dfc1c0903c9baf02dec4e96b1d87a46cccbad3ee015e9d47a3d86c73d8fb29c0",
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/e09b0fc781b0930aa9671ef0ca728d286828e0e9c8d47e6696d1976b0b1381ee",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7",
       "kind": "directory",
       "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-media/fe4ca5dc397894e9c267484abb9606022abfdb6ab31560ce988efddf21c4438d",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -43969,6 +46671,66 @@
       ]
     },
     {
+      "path": "docs/article-snapshots/1ad993812e199251299e1545ae901b32b3612699717b5555329e0f1185fb2afc",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-snapshots/1b6eaa02835c73d162f618ec6ce2c895e6c8c4a6c262c46324b2fddb38b3fcb0",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-snapshots/51c29e57f6c1efda2e32251593d829a94d3ae2aa5a1a71be267bf5112d9aac09",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-snapshots/76d33d8e21ab50f78ec8c7102e7999c8c45b7cd56ed30c1ad22c0d6fb2699bff",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-snapshots/9479a537c62f131448ff3cc90f3ba0612689b4404f3e960313bff4da01aab690",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-snapshots/a0b4e14883af5ba1418a23420074d42cb6d10b386eb0a46b370b78c5bd5c8b97",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995",
       "kind": "directory",
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
@@ -43989,7 +46751,17 @@
       ]
     },
     {
-      "path": "docs/article-snapshots/d32979c9bb19b2ef02dbd5716d4135d923cc900dd197ddbddc30ccc791b78508",
+      "path": "docs/article-snapshots/c03ae1d5925a33b1e3ece61210a4c593bb608cd86dcfeae24c0909d23ad34975",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-snapshots/ffd72466b6d3cfb099d196286610e17fab8dd1304452b5b852a2049e8a9ea6d4",
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -44069,16 +46841,6 @@
       ]
     },
     {
-      "path": "docs/runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c",
-      "kind": "directory",
-      "purpose": "Generated #187 runtime or immutable route output.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
       "path": "docs/runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c",
       "kind": "directory",
       "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
@@ -44089,9 +46851,29 @@
       ]
     },
     {
+      "path": "docs/runtime/6cb335e76a1aa0004d11ae06d9825991f5ea513a9564457383c8d13c7c54bbb1",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff",
       "kind": "directory",
       "purpose": "Generated public output identity directory; owned by the site producer.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/runtime/97208ee3d165d8585186561ca50d2fdebe8ca0831c3fc6b7a7414a43e5f18aab",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -44139,6 +46921,16 @@
       ]
     },
     {
+      "path": "docs/snapshots/02fbae00edcb723580662d54b4453fa65c3535c77fc49ef95ee593fd08a14361",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/snapshots/080da808855bdc7cac66970509a9a371a5033cb5d721a007a92632c826b2d06a",
       "kind": "directory",
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
@@ -44169,7 +46961,17 @@
       ]
     },
     {
-      "path": "docs/snapshots/49ebb5609deed1057e3cd1f4aa0d0a35ed21c35c6ffc703f7481995e691ad73e",
+      "path": "docs/snapshots/464f356f00b70c8e63d3ba19b756e7ccb0b23ee2e9926d3ea138b7d0c33c917f",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/481dc8bacc3c2e39ac84bdcf4f02765554b9cc717d92f3df6094042dcd9aba71",
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -44202,6 +47004,16 @@
       "path": "docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed",
       "kind": "directory",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/767e85fb0cf37e35d8be617e4454fe18302367be01dac4bb0bdb0e9de0bfebbb",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -44289,29 +47101,9 @@
       ]
     },
     {
-      "path": "docs/snapshots/b9304a0650e725ae878b80083b3e5f117f022a28f7b1ef8e853d907760597869",
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
       "path": "docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920",
       "kind": "directory",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/c700fa57e1844e776665e570750dfee2a98b4788de110b62ced9787b1a90068b",
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -44329,17 +47121,7 @@
       ]
     },
     {
-      "path": "docs/snapshots/debeac096a30cbcd37665f48be4c31418b5911b033cb6f7421913b586d94ffde",
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/f84b293d460c2c8d22c3f82afe83cd2b796af43d5b154e4e093eb1a42caf2ee5",
+      "path": "docs/snapshots/eb9003485aff808b249f624f706e793516bcf3a1c84c4734fa00d53e901a0130",
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -44741,9 +47523,9 @@
     {
       "path": "review/issue-183",
       "kind": "directory",
-      "purpose": "Exact review evidence for the article library and its staging prerequisite.",
+      "purpose": "Source reconciliation and exact-preview evidence for issue 183.",
       "role": "history",
-      "owner": "review/REVIEW-TEMPLATE.md",
+      "owner": "CONTRIBUTING.md",
       "instructions": [
         "AGENTS.md"
       ]
@@ -45559,6 +48341,66 @@
       ]
     },
     {
+      "path": "site/assets/publications/agentic-loops",
+      "kind": "directory",
+      "purpose": "Original LinkedIn Agentic Loops cover renditions for the Draft Preview.",
+      "role": "source",
+      "owner": "site/publications/agentic-loops/PROVENANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/assets/publications/ai-cost-cutting-fallacy",
+      "kind": "directory",
+      "purpose": "Author-approved original iceberg cover or original replacement J-curve for the Cost-Cutting Fallacy.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/assets/publications/ai-governance-is-control-theory",
+      "kind": "directory",
+      "purpose": "Historical author-owned cover or new normal-distribution chart for Control Theory.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/assets/publications/ai-native-workflows-have-a-moat-problem",
+      "kind": "directory",
+      "purpose": "Original Moat Problem cover artwork resized for the author-site edition.",
+      "role": "source",
+      "owner": "site/publications/ai-native-workflows-have-a-moat-problem/PROVENANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/assets/publications/ai-verification-crisis",
+      "kind": "directory",
+      "purpose": "Resized historical Verification Crisis cover source or equivalent web JPEG.",
+      "role": "source",
+      "owner": "site/publications/ai-verification-crisis/PROVENANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/assets/publications/beyond-embeddings",
+      "kind": "directory",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "site/assets/publications/pmday-ai-both-sides",
       "kind": "directory",
       "purpose": "PMDay article source, presentation viewer or original publication media: pmday-ai-both-sides.",
@@ -45642,6 +48484,16 @@
       "path": "site/assets/publications/sdlc-out-of-balance/materials",
       "kind": "directory",
       "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/assets/publications/thinking-systems",
+      "kind": "directory",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md",
       "instructions": [
@@ -45762,6 +48614,126 @@
       "path": "site/publications",
       "kind": "directory",
       "purpose": "Authored article blueprints, manuscripts, declared profiles, adaptations and semantic edition records.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/agentic-loops",
+      "kind": "directory",
+      "purpose": "Authored Agentic Loops manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/agentic-loops/editions",
+      "kind": "directory",
+      "purpose": "Authored Agentic Loops manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/ai-cost-cutting-fallacy",
+      "kind": "directory",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/ai-cost-cutting-fallacy/editions",
+      "kind": "directory",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/ai-governance-is-control-theory",
+      "kind": "directory",
+      "purpose": "Authored Control Theory source, provenance or edition and publication profile.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/ai-governance-is-control-theory/editions",
+      "kind": "directory",
+      "purpose": "Authored Control Theory source, provenance or edition and publication profile.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/ai-native-workflows-have-a-moat-problem",
+      "kind": "directory",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/ai-native-workflows-have-a-moat-problem/editions",
+      "kind": "directory",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/ai-verification-crisis",
+      "kind": "directory",
+      "purpose": "Authored Verification Crisis manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/ai-verification-crisis/editions",
+      "kind": "directory",
+      "purpose": "Authored Verification Crisis manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/beyond-embeddings",
+      "kind": "directory",
+      "purpose": "Authored Beyond Embeddings manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/beyond-embeddings/editions",
+      "kind": "directory",
+      "purpose": "Authored Beyond Embeddings manuscript, provenance or publication edition.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md",
       "instructions": [
@@ -45892,6 +48864,26 @@
       "path": "site/publications/sdlc-out-of-balance/materials/reviews",
       "kind": "directory",
       "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/thinking-systems",
+      "kind": "directory",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/thinking-systems/editions",
+      "kind": "directory",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md",
       "instructions": [

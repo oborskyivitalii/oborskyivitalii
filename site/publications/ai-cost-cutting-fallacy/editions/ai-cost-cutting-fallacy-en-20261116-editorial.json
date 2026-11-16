@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "id": "ai-cost-cutting-fallacy-en-20261116-editorial",
+  "articleId": "ai-cost-cutting-fallacy",
+  "language": "en",
+  "kind": "full-article",
+  "source": {
+    "path": "manuscript.en.md",
+    "sha256": "e08ad938b490f976f543c4c96bc67adc396d3590c11d24e982957618315fbb1d",
+    "commit": "9ee40f0df40530fec343eb6d3d2b4414a4757ee4",
+    "blob": "def2a024e3dba02f4c9304e7ac8eed7a14324e7f"
+  },
+  "owner": "site",
+  "derivation": null,
+  "rights": "accepted",
+  "semanticSha256": "4ed71f26ff7b7eed3b58abd910f89af3e3cab69a75853e486491b384e9279dd2"
+}

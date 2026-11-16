@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "id": "agentic-loops",
+  "platforms": {
+    "linkedin": {
+      "formats": ["html", "md", "txt", "copy-ready"],
+      "relationship": "equivalent-rendition"
+    },
+    "medium": {
+      "formats": ["html", "md", "txt", "copy-ready"],
+      "relationship": "equivalent-rendition"
+    }
+  },
+  "launch": {
+    "source": "launch-post.en.md",
+    "sha256": "19476c8b7e6e90715bf2c41315424b14a7d3a4bf005034be89630e02719210c1"
+  },
+  "seo": {
+    "title": "Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops",
+    "summary": "A control-theory perspective on agentic loops and engineering control."
+  },
+  "assets": {
+    "cover": {
+      "id": "cover"
+    },
+    "hero": {
+      "id": "cover"
+    }
+  },
+  "limits": {},
+  "reader": {
+    "coverPlacement": "authored",
+    "references": "inline",
+    "images": "webp-lossless",
+    "equivalentImages": {
+      "cover": {
+        "path": "site/assets/publications/agentic-loops/cover-web.jpg",
+        "sha256": "5f8490fc28edf22e1a224c2adc10f6aa814d091ce620c059e86e4a64c7843360"
+      }
+    }
+  }
+}

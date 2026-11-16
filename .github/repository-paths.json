@@ -129,7 +129,7 @@
     },
     ".github/acceptance/issue-183.json": {
       "kind": "file",
-      "purpose": "Deterministic automation and open human gates for issue 183.",
+      "purpose": "Issue 183 acceptance checks and external gates for the five-article batch.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -637,6 +637,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/article-media/11b50b3b2a4dd035b4b975444d87a37ceed0e68d8c983f4acc3b57b9d7dc1833": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/11b50b3b2a4dd035b4b975444d87a37ceed0e68d8c983f4acc3b57b9d7dc1833/cover.jpg": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618": {
       "kind": "directory",
       "purpose": "Digest-addressed passive Research fallback vectors generated from the canonical authored scene; no article publication.",
@@ -646,6 +658,18 @@
     "docs/article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618/research-fallback.svg": {
       "kind": "file",
       "purpose": "Digest-addressed passive Research fallback vectors generated from the canonical authored scene; no article publication.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/1589356c855ad721e706cff069e147afd60cac49b225445f8e1010737da0a6fc": {
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/1589356c855ad721e706cff069e147afd60cac49b225445f8e1010737da0a6fc/diagram-6.webp": {
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -661,6 +685,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/article-media/29527faa8c99529dfa1a7beb3ea1068d4f93a9ba9a30d86b4a1f8eac30583c54": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/29527faa8c99529dfa1a7beb3ea1068d4f93a9ba9a30d86b4a1f8eac30583c54/normal-distribution.webp": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16": {
       "kind": "directory",
       "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
@@ -670,6 +706,90 @@
     "docs/article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg": {
       "kind": "file",
       "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/2d0985de7aad4d29069f3adcff22f0ccbab01d23fd18a5a0053ce53209856725": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/2d0985de7aad4d29069f3adcff22f0ccbab01d23fd18a5a0053ce53209856725/circuit-breaker.webp": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/2d4e237d21021bcb6c62b5ce9ab10daffc4e93b521a20f3b6a707a3531781739": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/2d4e237d21021bcb6c62b5ce9ab10daffc4e93b521a20f3b6a707a3531781739/cover.jpg": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/300fdfa774d4e768f36fc3e3d1f4f146b46ed41feead5d33db2316c9f3a3c06a": {
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/300fdfa774d4e768f36fc3e3d1f4f146b46ed41feead5d33db2316c9f3a3c06a/diagram-5.webp": {
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/3415712316948afcc30c00607f7f2fb475b2ca0939c108481bfdcd4fe3676a93": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/3415712316948afcc30c00607f7f2fb475b2ca0939c108481bfdcd4fe3676a93/cover-social.jpg": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/38e49d4bb130df44098c0b70e3e6ac952b51d1b8822822a429ae15ed930402ea": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/38e49d4bb130df44098c0b70e3e6ac952b51d1b8822822a429ae15ed930402ea/llm-as-judge.webp": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/393e1a2b17f2c895be46fcb64bb3963d7c5abf56984099e8008857589b32b6ff": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/393e1a2b17f2c895be46fcb64bb3963d7c5abf56984099e8008857589b32b6ff/neuro-symbolic-sensor.webp": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/41f0f839015031d489aeb6ddfded11099be8247d030d636e4044c6820071c70b": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/41f0f839015031d489aeb6ddfded11099be8247d030d636e4044c6820071c70b/control-design-process.webp": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -685,6 +805,42 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/article-media/4fb99c0a32cfe808956a13bc2caaec71ed7adea83de79df4c5bfa08592d0b871": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/4fb99c0a32cfe808956a13bc2caaec71ed7adea83de79df4c5bfa08592d0b871/cover.jpg": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/542383922d50b39015ac2e3553481e7237a91efae41d19be80a3ee564d039d43": {
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/542383922d50b39015ac2e3553481e7237a91efae41d19be80a3ee564d039d43/diagram-7.webp": {
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/5552ab1fb02be8954586dccb7d92ffd5ab4a1df4fd0857de7133cfb98613af85": {
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/5552ab1fb02be8954586dccb7d92ffd5ab4a1df4fd0857de7133cfb98613af85/diagram-4.webp": {
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/article-media/568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58": {
       "kind": "directory",
       "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
@@ -694,6 +850,54 @@
     "docs/article-media/568c87ea56d054d6d5cdbcd647e878bcd122d688da5cb2370fb2b0cb3a914d58/reading-r11.pdf": {
       "kind": "file",
       "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/593e5212280ebabadb49ddc4c56e0bc4ba6908f659a9b466b462e7331680e27d": {
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/593e5212280ebabadb49ddc4c56e0bc4ba6908f659a9b466b462e7331680e27d/diagram-2.webp": {
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/5ba399aa0ca2dc3e492e58292358870926fb5acd7fdd958c63e2e71541d6994d": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/5ba399aa0ca2dc3e492e58292358870926fb5acd7fdd958c63e2e71541d6994d/cover-social.jpg": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/5f8490fc28edf22e1a224c2adc10f6aa814d091ce620c059e86e4a64c7843360": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/5f8490fc28edf22e1a224c2adc10f6aa814d091ce620c059e86e4a64c7843360/cover.jpg": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168/cover.jpg": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -733,6 +937,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/article-media/7d220ce3249c461ada25c5b12dd825283362eef960822a58ad95b1f38a4db62b": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/7d220ce3249c461ada25c5b12dd825283362eef960822a58ad95b1f38a4db62b/traditional-and-behavioral.webp": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f": {
       "kind": "directory",
       "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
@@ -763,6 +979,78 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/article-media/919957eafd1c9cef20c4d3d99251dee97f9a397ffd505952a9a441e03c80d34c": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/919957eafd1c9cef20c4d3d99251dee97f9a397ffd505952a9a441e03c80d34c/verification-trilemma.webp": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/943cc2b0ba6d097701efdd5c358e26e007a66b5d1077d71f672dcc040baf4936": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/943cc2b0ba6d097701efdd5c358e26e007a66b5d1077d71f672dcc040baf4936/cover-social.jpg": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/9acaf96c7008839610c8b9d3efdcb45a8046cde2c792f6f0dfe1951ba8a92048": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/9acaf96c7008839610c8b9d3efdcb45a8046cde2c792f6f0dfe1951ba8a92048/cover-social.jpg": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/9cc5b62810712f9988b2d05004700978d8886e7c7954d92d2317c8f9cc4ff719": {
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/9cc5b62810712f9988b2d05004700978d8886e7c7954d92d2317c8f9cc4ff719/diagram-8b.webp": {
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/9e48e39e141a2775794af0f17a94275705d475ae4d3a97b327d9fdaf6992e0fa": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/9e48e39e141a2775794af0f17a94275705d475ae4d3a97b327d9fdaf6992e0fa/transformation-j-curve.webp": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/a187cf86739b2cc193cc9696e9884e2252c62b636ce262277c342371081eaa36": {
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/a187cf86739b2cc193cc9696e9884e2252c62b636ce262277c342371081eaa36/cover-social.jpg": {
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a": {
       "kind": "directory",
       "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
@@ -772,6 +1060,54 @@
     "docs/article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a/review-learning-r7.webp": {
       "kind": "file",
       "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/a3e8b467f27cbc673040aea8b17d32371621ab367eef63804063198a9bf739a0": {
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/a3e8b467f27cbc673040aea8b17d32371621ab367eef63804063198a9bf739a0/diagram-3.webp": {
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/b68b465d8f611f72c8f4d9e95eaad457c1e40761154d90112ed128d7ecd47dd2": {
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/b68b465d8f611f72c8f4d9e95eaad457c1e40761154d90112ed128d7ecd47dd2/cover.jpg": {
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/bb70b4d0907ed3672055b0aacd58ca6bb35ef9154aecfb151705de58127eb2ae": {
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/bb70b4d0907ed3672055b0aacd58ca6bb35ef9154aecfb151705de58127eb2ae/diagram-1.webp": {
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/c1f333b5145b75b144562e218b73946ba77083fba5c1d30a8a8b43ef2659fc5a": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/c1f333b5145b75b144562e218b73946ba77083fba5c1d30a8a8b43ef2659fc5a/cover.jpg": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -787,6 +1123,30 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/article-media/c3b69024bc558f1b246c0135e7fceb55cbf77e4a8984e286285b57c13aaeaa37": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/c3b69024bc558f1b246c0135e7fceb55cbf77e4a8984e286285b57c13aaeaa37/drift-response-tiers.webp": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/c7800f9370b6be57d53135a923689b70c4d6f99ac3acf17b118436a08bfe953a": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/c7800f9370b6be57d53135a923689b70c4d6f99ac3acf17b118436a08bfe953a/control-boundary.webp": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/article-media/ca7ba278e0efe6e7fc12301ff5c0a4155a4efdcd5ce8c3e0aa1c757a0108a551": {
       "kind": "directory",
       "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
@@ -799,6 +1159,54 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/article-media/d125ba3950bf0b8cd725d9197957a152ca404bff51c3cb87c9ee6460a8ddad88": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/d125ba3950bf0b8cd725d9197957a152ca404bff51c3cb87c9ee6460a8ddad88/cover-social.jpg": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/d1bed993498c86dbebc2706ca22878adfcf4e56ea2ed054bdc23e3ab471c1c73": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/d1bed993498c86dbebc2706ca22878adfcf4e56ea2ed054bdc23e3ab471c1c73/verification-layers.webp": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/dfc1c0903c9baf02dec4e96b1d87a46cccbad3ee015e9d47a3d86c73d8fb29c0": {
+      "kind": "directory",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/dfc1c0903c9baf02dec4e96b1d87a46cccbad3ee015e9d47a3d86c73d8fb29c0/diagram-8a.webp": {
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/e09b0fc781b0930aa9671ef0ca728d286828e0e9c8d47e6696d1976b0b1381ee": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/e09b0fc781b0930aa9671ef0ca728d286828e0e9c8d47e6696d1976b0b1381ee/end-to-end-control.webp": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7": {
       "kind": "directory",
       "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
@@ -808,6 +1216,18 @@
     "docs/article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7/delivery-capacity-r6.webp": {
       "kind": "file",
       "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/fe4ca5dc397894e9c267484abb9606022abfdb6ab31560ce988efddf21c4438d": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/fe4ca5dc397894e9c267484abb9606022abfdb6ab31560ce988efddf21c4438d/cover-social.jpg": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -841,6 +1261,78 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/article-snapshots/1ad993812e199251299e1545ae901b32b3612699717b5555329e0f1185fb2afc": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/1ad993812e199251299e1545ae901b32b3612699717b5555329e0f1185fb2afc/the-sdlc-is-out-of-balance.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/1b6eaa02835c73d162f618ec6ce2c895e6c8c4a6c262c46324b2fddb38b3fcb0": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/1b6eaa02835c73d162f618ec6ce2c895e6c8c4a6c262c46324b2fddb38b3fcb0/ai-governance-is-control-theory.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/51c29e57f6c1efda2e32251593d829a94d3ae2aa5a1a71be267bf5112d9aac09": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/51c29e57f6c1efda2e32251593d829a94d3ae2aa5a1a71be267bf5112d9aac09/beyond-embeddings.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/76d33d8e21ab50f78ec8c7102e7999c8c45b7cd56ed30c1ad22c0d6fb2699bff": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/76d33d8e21ab50f78ec8c7102e7999c8c45b7cd56ed30c1ad22c0d6fb2699bff/thinking-systems.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/9479a537c62f131448ff3cc90f3ba0612689b4404f3e960313bff4da01aab690": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/9479a537c62f131448ff3cc90f3ba0612689b4404f3e960313bff4da01aab690/agentic-loops.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/a0b4e14883af5ba1418a23420074d42cb6d10b386eb0a46b370b78c5bd5c8b97": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/a0b4e14883af5ba1418a23420074d42cb6d10b386eb0a46b370b78c5bd5c8b97/ai-native-workflows-have-a-moat-problem.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995": {
       "kind": "directory",
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
@@ -865,13 +1357,25 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/d32979c9bb19b2ef02dbd5716d4135d923cc900dd197ddbddc30ccc791b78508": {
+    "docs/article-snapshots/c03ae1d5925a33b1e3ece61210a4c593bb608cd86dcfeae24c0909d23ad34975": {
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/d32979c9bb19b2ef02dbd5716d4135d923cc900dd197ddbddc30ccc791b78508/the-sdlc-is-out-of-balance.html": {
+    "docs/article-snapshots/c03ae1d5925a33b1e3ece61210a4c593bb608cd86dcfeae24c0909d23ad34975/ai-verification-crisis.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/ffd72466b6d3cfb099d196286610e17fab8dd1304452b5b852a2049e8a9ea6d4": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/ffd72466b6d3cfb099d196286610e17fab8dd1304452b5b852a2049e8a9ea6d4/ai-cost-cutting-fallacy.html": {
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -883,9 +1387,51 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/articles/agentic-loops.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/articles/ai-cost-cutting-fallacy.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/articles/ai-governance-is-control-theory.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/articles/ai-native-workflows-have-a-moat-problem.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/articles/ai-verification-crisis.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/articles/beyond-embeddings.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/articles/the-sdlc-is-out-of-balance.html": {
       "kind": "file",
       "purpose": "Generated current article/material/route closure; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/articles/thinking-systems.html": {
+      "kind": "file",
+      "purpose": "Generated author-site output for the Thinking Systems migration.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1039,42 +1585,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c": {
-      "kind": "directory",
-      "purpose": "Generated #187 runtime or immutable route output.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/archive.js": {
-      "kind": "file",
-      "purpose": "Generated #187 runtime or immutable route output.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/navigation.js": {
-      "kind": "file",
-      "purpose": "Generated #187 runtime or immutable route output.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/space.js": {
-      "kind": "file",
-      "purpose": "Generated #187 runtime or immutable route output.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/styles.css": {
-      "kind": "file",
-      "purpose": "Generated #187 runtime or immutable route output.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/theme.js": {
-      "kind": "file",
-      "purpose": "Generated #187 runtime or immutable route output.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c": {
       "kind": "directory",
       "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
@@ -1111,6 +1621,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/runtime/6cb335e76a1aa0004d11ae06d9825991f5ea513a9564457383c8d13c7c54bbb1": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/6cb335e76a1aa0004d11ae06d9825991f5ea513a9564457383c8d13c7c54bbb1/analytics.js": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff": {
       "kind": "directory",
       "purpose": "Generated public output identity directory; owned by the site producer.",
@@ -1120,6 +1642,42 @@
     "docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff/analytics.js": {
       "kind": "file",
       "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/97208ee3d165d8585186561ca50d2fdebe8ca0831c3fc6b7a7414a43e5f18aab": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/97208ee3d165d8585186561ca50d2fdebe8ca0831c3fc6b7a7414a43e5f18aab/archive.js": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/97208ee3d165d8585186561ca50d2fdebe8ca0831c3fc6b7a7414a43e5f18aab/navigation.js": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/97208ee3d165d8585186561ca50d2fdebe8ca0831c3fc6b7a7414a43e5f18aab/space.js": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/97208ee3d165d8585186561ca50d2fdebe8ca0831c3fc6b7a7414a43e5f18aab/styles.css": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/97208ee3d165d8585186561ca50d2fdebe8ca0831c3fc6b7a7414a43e5f18aab/theme.js": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1243,6 +1801,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/02fbae00edcb723580662d54b4453fa65c3535c77fc49ef95ee593fd08a14361": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/02fbae00edcb723580662d54b4453fa65c3535c77fc49ef95ee593fd08a14361/writing.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/080da808855bdc7cac66970509a9a371a5033cb5d721a007a92632c826b2d06a": {
       "kind": "directory",
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
@@ -1279,13 +1849,25 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/49ebb5609deed1057e3cd1f4aa0d0a35ed21c35c6ffc703f7481995e691ad73e": {
+    "docs/snapshots/464f356f00b70c8e63d3ba19b756e7ccb0b23ee2e9926d3ea138b7d0c33c917f": {
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/49ebb5609deed1057e3cd1f4aa0d0a35ed21c35c6ffc703f7481995e691ad73e/index.html": {
+    "docs/snapshots/464f356f00b70c8e63d3ba19b756e7ccb0b23ee2e9926d3ea138b7d0c33c917f/research.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/481dc8bacc3c2e39ac84bdcf4f02765554b9cc717d92f3df6094042dcd9aba71": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/481dc8bacc3c2e39ac84bdcf4f02765554b9cc717d92f3df6094042dcd9aba71/talks.html": {
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -1324,6 +1906,18 @@
     "docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed/research.html": {
       "kind": "file",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/767e85fb0cf37e35d8be617e4454fe18302367be01dac4bb0bdb0e9de0bfebbb": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/767e85fb0cf37e35d8be617e4454fe18302367be01dac4bb0bdb0e9de0bfebbb/index.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1423,18 +2017,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/b9304a0650e725ae878b80083b3e5f117f022a28f7b1ef8e853d907760597869": {
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/b9304a0650e725ae878b80083b3e5f117f022a28f7b1ef8e853d907760597869/credits.html": {
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920": {
       "kind": "directory",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
@@ -1444,18 +2026,6 @@
     "docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920/index.html": {
       "kind": "file",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/c700fa57e1844e776665e570750dfee2a98b4788de110b62ced9787b1a90068b": {
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/c700fa57e1844e776665e570750dfee2a98b4788de110b62ced9787b1a90068b/research.html": {
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1471,25 +2041,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/debeac096a30cbcd37665f48be4c31418b5911b033cb6f7421913b586d94ffde": {
+    "docs/snapshots/eb9003485aff808b249f624f706e793516bcf3a1c84c4734fa00d53e901a0130": {
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/debeac096a30cbcd37665f48be4c31418b5911b033cb6f7421913b586d94ffde/writing.html": {
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/f84b293d460c2c8d22c3f82afe83cd2b796af43d5b154e4e093eb1a42caf2ee5": {
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/f84b293d460c2c8d22c3f82afe83cd2b796af43d5b154e4e093eb1a42caf2ee5/talks.html": {
+    "docs/snapshots/eb9003485aff808b249f624f706e793516bcf3a1c84c4734fa00d53e901a0130/credits.html": {
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -6465,9 +7023,57 @@
     },
     "review/issue-183": {
       "kind": "directory",
-      "purpose": "Exact review evidence for the article library and its staging prerequisite.",
+      "purpose": "Source reconciliation and exact-preview evidence for issue 183.",
       "role": "history",
-      "owner": "review/REVIEW-TEMPLATE.md"
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-183/2026-11-13-migration.md": {
+      "kind": "file",
+      "purpose": "Source reconciliation and exact-preview evidence for issue 183.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-183/2026-11-15-control-theory.md": {
+      "kind": "file",
+      "purpose": "Source-bound migration review and preview evidence for issue 183.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-183/2026-11-15-cost-cutting.md": {
+      "kind": "file",
+      "purpose": "Source-bound migration review and preview evidence for issue 183.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-183/2026-11-15-moat-problem.md": {
+      "kind": "file",
+      "purpose": "Source-bound Moat Problem article migration and Preview evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-183/2026-11-15-verification-crisis.md": {
+      "kind": "file",
+      "purpose": "Source-bound migration review and preview evidence for issue 183.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-183/2026-11-16-agentic-loops.md": {
+      "kind": "file",
+      "purpose": "Source-bound Agentic Loops migration and Preview evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-183/2026-11-16-beyond-embeddings.md": {
+      "kind": "file",
+      "purpose": "Source-bound Beyond Embeddings migration, size diagnosis and Preview evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-183/2026-11-16-editorial-refresh.md": {
+      "kind": "file",
+      "purpose": "Source-bound author biography, native reading links and terminology review.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     },
     "review/issue-183/2026-11-16-staging-controller.md": {
       "kind": "file",
@@ -13381,6 +13987,186 @@
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
+    "site/assets/publications/agentic-loops": {
+      "kind": "directory",
+      "purpose": "Original LinkedIn Agentic Loops cover renditions for the Draft Preview.",
+      "role": "source",
+      "owner": "site/publications/agentic-loops/PROVENANCE.md"
+    },
+    "site/assets/publications/agentic-loops/cover-web.jpg": {
+      "kind": "file",
+      "purpose": "Original LinkedIn Agentic Loops cover renditions for the Draft Preview.",
+      "role": "source",
+      "owner": "site/publications/agentic-loops/PROVENANCE.md"
+    },
+    "site/assets/publications/agentic-loops/cover.png": {
+      "kind": "file",
+      "purpose": "Original LinkedIn Agentic Loops cover renditions for the Draft Preview.",
+      "role": "source",
+      "owner": "site/publications/agentic-loops/PROVENANCE.md"
+    },
+    "site/assets/publications/ai-cost-cutting-fallacy": {
+      "kind": "directory",
+      "purpose": "Author-approved original iceberg cover or original replacement J-curve for the Cost-Cutting Fallacy.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/ai-cost-cutting-fallacy/cover-web.jpg": {
+      "kind": "file",
+      "purpose": "Author-approved original iceberg cover or original replacement J-curve for the Cost-Cutting Fallacy.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/ai-cost-cutting-fallacy/cover.png": {
+      "kind": "file",
+      "purpose": "Author-approved original iceberg cover or original replacement J-curve for the Cost-Cutting Fallacy.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/ai-cost-cutting-fallacy/transformation-j-curve.png": {
+      "kind": "file",
+      "purpose": "Author-approved original iceberg cover or original replacement J-curve for the Cost-Cutting Fallacy.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/ai-governance-is-control-theory": {
+      "kind": "directory",
+      "purpose": "Historical author-owned cover or new normal-distribution chart for Control Theory.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/ai-governance-is-control-theory/cover-web.jpg": {
+      "kind": "file",
+      "purpose": "Historical author-owned cover or new normal-distribution chart for Control Theory.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/ai-governance-is-control-theory/cover.png": {
+      "kind": "file",
+      "purpose": "Historical author-owned cover or new normal-distribution chart for Control Theory.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/ai-governance-is-control-theory/normal-distribution.png": {
+      "kind": "file",
+      "purpose": "Historical author-owned cover or new normal-distribution chart for Control Theory.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/ai-native-workflows-have-a-moat-problem": {
+      "kind": "directory",
+      "purpose": "Original Moat Problem cover artwork resized for the author-site edition.",
+      "role": "source",
+      "owner": "site/publications/ai-native-workflows-have-a-moat-problem/PROVENANCE.md"
+    },
+    "site/assets/publications/ai-native-workflows-have-a-moat-problem/cover-web.jpg": {
+      "kind": "file",
+      "purpose": "Original Moat Problem cover artwork resized for the author-site edition.",
+      "role": "source",
+      "owner": "site/publications/ai-native-workflows-have-a-moat-problem/PROVENANCE.md"
+    },
+    "site/assets/publications/ai-native-workflows-have-a-moat-problem/cover.png": {
+      "kind": "file",
+      "purpose": "Original Moat Problem cover artwork resized for the author-site edition.",
+      "role": "source",
+      "owner": "site/publications/ai-native-workflows-have-a-moat-problem/PROVENANCE.md"
+    },
+    "site/assets/publications/ai-verification-crisis": {
+      "kind": "directory",
+      "purpose": "Resized historical Verification Crisis cover source or equivalent web JPEG.",
+      "role": "source",
+      "owner": "site/publications/ai-verification-crisis/PROVENANCE.md"
+    },
+    "site/assets/publications/ai-verification-crisis/cover-web.jpg": {
+      "kind": "file",
+      "purpose": "Resized historical Verification Crisis cover source or equivalent web JPEG.",
+      "role": "source",
+      "owner": "site/publications/ai-verification-crisis/PROVENANCE.md"
+    },
+    "site/assets/publications/ai-verification-crisis/cover.png": {
+      "kind": "file",
+      "purpose": "Resized historical Verification Crisis cover source or equivalent web JPEG.",
+      "role": "source",
+      "owner": "site/publications/ai-verification-crisis/PROVENANCE.md"
+    },
+    "site/assets/publications/beyond-embeddings": {
+      "kind": "directory",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md"
+    },
+    "site/assets/publications/beyond-embeddings/circuit-breaker.png": {
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md"
+    },
+    "site/assets/publications/beyond-embeddings/control-boundary.png": {
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md"
+    },
+    "site/assets/publications/beyond-embeddings/control-design-process.png": {
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md"
+    },
+    "site/assets/publications/beyond-embeddings/cover-web.jpg": {
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md"
+    },
+    "site/assets/publications/beyond-embeddings/cover.png": {
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md"
+    },
+    "site/assets/publications/beyond-embeddings/drift-response-tiers.png": {
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md"
+    },
+    "site/assets/publications/beyond-embeddings/end-to-end-control.png": {
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md"
+    },
+    "site/assets/publications/beyond-embeddings/llm-as-judge.png": {
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md"
+    },
+    "site/assets/publications/beyond-embeddings/neuro-symbolic-sensor.png": {
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md"
+    },
+    "site/assets/publications/beyond-embeddings/traditional-and-behavioral.png": {
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md"
+    },
+    "site/assets/publications/beyond-embeddings/verification-layers.png": {
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md"
+    },
+    "site/assets/publications/beyond-embeddings/verification-trilemma.png": {
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md"
+    },
     "site/assets/publications/pmday-ai-both-sides": {
       "kind": "directory",
       "purpose": "PMDay article source, presentation viewer or original publication media: pmday-ai-both-sides.",
@@ -13756,6 +14542,78 @@
     "site/assets/publications/sdlc-out-of-balance/workstream-system.png": {
       "kind": "file",
       "purpose": "Author-accepted R3 article, exact semantic/profile/rights inputs and six figures plus compact PDF through existing native publisher/materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/thinking-systems": {
+      "kind": "directory",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/thinking-systems/cover-web.jpg": {
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/thinking-systems/cover.png": {
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/thinking-systems/diagram-1.png": {
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/thinking-systems/diagram-2.png": {
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/thinking-systems/diagram-3.png": {
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/thinking-systems/diagram-4.png": {
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/thinking-systems/diagram-5.png": {
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/thinking-systems/diagram-6.png": {
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/thinking-systems/diagram-7.png": {
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/thinking-systems/diagram-8a.png": {
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/thinking-systems/diagram-8b.png": {
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
@@ -14170,6 +15028,354 @@
     "site/publications": {
       "kind": "directory",
       "purpose": "Authored article blueprints, manuscripts, declared profiles, adaptations and semantic edition records.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/agentic-loops": {
+      "kind": "directory",
+      "purpose": "Authored Agentic Loops manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/agentic-loops/PROVENANCE.md": {
+      "kind": "file",
+      "purpose": "Authored Agentic Loops manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/agentic-loops/editions": {
+      "kind": "directory",
+      "purpose": "Authored Agentic Loops manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/agentic-loops/editions/agentic-loops-en-20260610.json": {
+      "kind": "file",
+      "purpose": "Authored Agentic Loops manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/agentic-loops/editions/agentic-loops-en-20261116-cover.json": {
+      "kind": "file",
+      "purpose": "Authored Agentic Loops manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/agentic-loops/editions/agentic-loops-en-20261116-editorial.json": {
+      "kind": "file",
+      "purpose": "Frozen author-site publication edition with the current biography and editorial updates.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/agentic-loops/launch-post.en.md": {
+      "kind": "file",
+      "purpose": "Authored Agentic Loops manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/agentic-loops/manuscript.en.md": {
+      "kind": "file",
+      "purpose": "Authored Agentic Loops manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/agentic-loops/profile.json": {
+      "kind": "file",
+      "purpose": "Authored Agentic Loops manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/agentic-loops/publication.json": {
+      "kind": "file",
+      "purpose": "Authored Agentic Loops manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-cost-cutting-fallacy": {
+      "kind": "directory",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-cost-cutting-fallacy/PROVENANCE.md": {
+      "kind": "file",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-cost-cutting-fallacy/editions": {
+      "kind": "directory",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-cost-cutting-fallacy/editions/ai-cost-cutting-fallacy-en-20260102.json": {
+      "kind": "file",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-cost-cutting-fallacy/editions/ai-cost-cutting-fallacy-en-20261115-illustrated.json": {
+      "kind": "file",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-cost-cutting-fallacy/editions/ai-cost-cutting-fallacy-en-20261116-editorial.json": {
+      "kind": "file",
+      "purpose": "Frozen author-site publication edition with the current biography and editorial updates.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-cost-cutting-fallacy/launch-post.en.md": {
+      "kind": "file",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-cost-cutting-fallacy/manuscript.en.md": {
+      "kind": "file",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-cost-cutting-fallacy/profile.json": {
+      "kind": "file",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-cost-cutting-fallacy/publication.json": {
+      "kind": "file",
+      "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-governance-is-control-theory": {
+      "kind": "directory",
+      "purpose": "Authored Control Theory source, provenance or edition and publication profile.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-governance-is-control-theory/PROVENANCE.md": {
+      "kind": "file",
+      "purpose": "Authored Control Theory source, provenance or edition and publication profile.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-governance-is-control-theory/editions": {
+      "kind": "directory",
+      "purpose": "Authored Control Theory source, provenance or edition and publication profile.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-governance-is-control-theory/editions/ai-governance-is-control-theory-en-20251213.json": {
+      "kind": "file",
+      "purpose": "Authored Control Theory source, provenance or edition and publication profile.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-governance-is-control-theory/editions/ai-governance-is-control-theory-en-20261115-annotated.json": {
+      "kind": "file",
+      "purpose": "Authored Control Theory source, provenance or edition and publication profile.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-governance-is-control-theory/editions/ai-governance-is-control-theory-en-20261116-editorial.json": {
+      "kind": "file",
+      "purpose": "Frozen author-site publication edition with the current biography and editorial updates.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-governance-is-control-theory/launch-post.en.md": {
+      "kind": "file",
+      "purpose": "Authored Control Theory source, provenance or edition and publication profile.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-governance-is-control-theory/manuscript.en.md": {
+      "kind": "file",
+      "purpose": "Authored Control Theory source, provenance or edition and publication profile.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-governance-is-control-theory/profile.json": {
+      "kind": "file",
+      "purpose": "Authored Control Theory source, provenance or edition and publication profile.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-governance-is-control-theory/publication.json": {
+      "kind": "file",
+      "purpose": "Authored Control Theory source, provenance or edition and publication profile.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-native-workflows-have-a-moat-problem": {
+      "kind": "directory",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-native-workflows-have-a-moat-problem/PROVENANCE.md": {
+      "kind": "file",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-native-workflows-have-a-moat-problem/editions": {
+      "kind": "directory",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-native-workflows-have-a-moat-problem/editions/ai-native-workflows-have-a-moat-problem-en-20260701.json": {
+      "kind": "file",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-native-workflows-have-a-moat-problem/editions/ai-native-workflows-have-a-moat-problem-en-20261116-editorial.json": {
+      "kind": "file",
+      "purpose": "Frozen author-site publication edition with the current biography and editorial updates.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-native-workflows-have-a-moat-problem/launch-post.en.md": {
+      "kind": "file",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-native-workflows-have-a-moat-problem/manuscript.en.md": {
+      "kind": "file",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-native-workflows-have-a-moat-problem/profile.json": {
+      "kind": "file",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-native-workflows-have-a-moat-problem/publication.json": {
+      "kind": "file",
+      "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-verification-crisis": {
+      "kind": "directory",
+      "purpose": "Authored Verification Crisis manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-verification-crisis/PROVENANCE.md": {
+      "kind": "file",
+      "purpose": "Authored Verification Crisis manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-verification-crisis/editions": {
+      "kind": "directory",
+      "purpose": "Authored Verification Crisis manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-verification-crisis/editions/ai-verification-crisis-en-20260612.json": {
+      "kind": "file",
+      "purpose": "Authored Verification Crisis manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-verification-crisis/editions/ai-verification-crisis-en-20261115-cover.json": {
+      "kind": "file",
+      "purpose": "Authored Verification Crisis manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-verification-crisis/editions/ai-verification-crisis-en-20261116-editorial.json": {
+      "kind": "file",
+      "purpose": "Frozen author-site publication edition with the current biography and editorial updates.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-verification-crisis/launch-post.en.md": {
+      "kind": "file",
+      "purpose": "Authored Verification Crisis manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-verification-crisis/manuscript.en.md": {
+      "kind": "file",
+      "purpose": "Authored Verification Crisis manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-verification-crisis/profile.json": {
+      "kind": "file",
+      "purpose": "Authored Verification Crisis manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-verification-crisis/publication.json": {
+      "kind": "file",
+      "purpose": "Authored Verification Crisis manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/beyond-embeddings": {
+      "kind": "directory",
+      "purpose": "Authored Beyond Embeddings manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/beyond-embeddings/PROVENANCE.md": {
+      "kind": "file",
+      "purpose": "Authored Beyond Embeddings manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/beyond-embeddings/editions": {
+      "kind": "directory",
+      "purpose": "Authored Beyond Embeddings manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/beyond-embeddings/editions/beyond-embeddings-en-20260522.json": {
+      "kind": "file",
+      "purpose": "Authored Beyond Embeddings manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/beyond-embeddings/editions/beyond-embeddings-en-20261116-editorial.json": {
+      "kind": "file",
+      "purpose": "Frozen author-site publication edition with the current biography and editorial updates.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/beyond-embeddings/launch-post.en.md": {
+      "kind": "file",
+      "purpose": "Authored Beyond Embeddings manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/beyond-embeddings/manuscript.en.md": {
+      "kind": "file",
+      "purpose": "Authored Beyond Embeddings manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/beyond-embeddings/profile.json": {
+      "kind": "file",
+      "purpose": "Authored Beyond Embeddings manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/beyond-embeddings/publication.json": {
+      "kind": "file",
+      "purpose": "Authored Beyond Embeddings manuscript, provenance or publication edition.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
@@ -14614,6 +15820,60 @@
     "site/publications/sdlc-out-of-balance/publication.json": {
       "kind": "file",
       "purpose": "Current accepted R9 native source, semantic/profile/material inputs and hero plus four figures.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/thinking-systems": {
+      "kind": "directory",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/thinking-systems/PROVENANCE.md": {
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/thinking-systems/editions": {
+      "kind": "directory",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/thinking-systems/editions/thinking-systems-en-20260830.json": {
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/thinking-systems/editions/thinking-systems-en-20261116-editorial.json": {
+      "kind": "file",
+      "purpose": "Frozen author-site publication edition with the current biography and editorial updates.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/thinking-systems/launch-post.en.md": {
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/thinking-systems/manuscript.en.md": {
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/thinking-systems/profile.json": {
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/thinking-systems/publication.json": {
+      "kind": "file",
+      "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
@@ -17261,6 +18521,12 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for hosted; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
+      "owner": "guides/SITE-RELEASE-GATES.md"
+    },
+    "tools/quality/html-budget.cjs": {
+      "kind": "file",
+      "purpose": "Shared HTML size limit for route kinds in artifact and publication verification.",
+      "role": "source",
       "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/lighthouse.cjs": {

@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "id": "ai-governance-is-control-theory",
+  "slug": "ai-governance-is-control-theory",
+  "title": "Uncertainty Architecture: Why AI Governance is Actually Control Theory",
+  "summary": "A December 2025 account of how actuators, constraints, evaluations, and operating roles close the control loop for AI systems.",
+  "authors": [
+    {
+      "name": "Vitalii Oborskyi",
+      "url": "https://vitaliioborskyi.ai/"
+    }
+  ],
+  "language": "en",
+  "topic": "AI systems architecture",
+  "owner": {
+    "repository": "oborskyivitalii/oborskyivitalii",
+    "path": "site/publications/ai-governance-is-control-theory"
+  },
+  "status": "accepted",
+  "source": "manuscript.en.md",
+  "edition": "ai-governance-is-control-theory-en-20261116-editorial",
+  "rights": {
+    "status": "accepted",
+    "notice": "Vitalii Oborskyi, Uncertainty Architecture. The historical Towards AI article text and the new non-brand normal distribution chart are CC BY 4.0. The cover is original artwork by Vitalii Oborskyi, included by permission for this site edition. Linked material retains its own terms.",
+    "references": [
+      "https://pub.towardsai.net/uncertainty-architecture-why-ai-governance-is-actually-control-theory-511f3e73ed6e",
+      "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/345c8f50745e5fde1303d0d7952634f7899220c9/LICENSING.md",
+      "https://github.com/oborskyivitalii/oborskyivitalii/issues/183",
+      "https://creativecommons.org/licenses/by/4.0/"
+    ]
+  },
+  "references": [
+    {
+      "id": "towards-ai-original",
+      "url": "https://pub.towardsai.net/uncertainty-architecture-why-ai-governance-is-actually-control-theory-511f3e73ed6e"
+    },
+    {
+      "id": "linkedin-edition",
+      "url": "https://www.linkedin.com/pulse/uncertainty-architecture-why-ai-governance-actually-control-oborskyi-oqhpf/"
+    },
+    {
+      "id": "living-uncertainty-architecture",
+      "url": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture"
+    }
+  ],
+  "assets": [
+    {
+      "id": "cover",
+      "path": "site/assets/publications/ai-governance-is-control-theory/cover.png",
+      "sha256": "25bdc2d76a2c9589e99dd36f02db22c62d38bd954cbc3823e817f0304bc40a80",
+      "width": 1200,
+      "height": 670,
+      "alt": "A turbulent field of particles passes through a luminous framework and emerges in parallel streams.",
+      "caption": "Original cover from the December 2025 Towards AI edition.",
+      "credit": "Cover by Vitalii Oborskyi. Used by permission for this site edition."
+    },
+    {
+      "id": "normal-distribution",
+      "path": "site/assets/publications/ai-governance-is-control-theory/normal-distribution.png",
+      "sha256": "ab3c716b3b86f7814e1beef1077eb9434935c7d320142d5a84b67c100f3b38d3",
+      "width": 1312,
+      "height": 750,
+      "alt": "A standard normal density curve with shaded ranges for one, two and three standard deviations around the mean.",
+      "caption": "For a standard normal distribution, 68.27%, 95.45% and 99.73% of probability mass lie within one, two and three standard deviations of the mean, respectively. This is an illustration of probability distributions.",
+      "credit": "New diagram for the author-site edition, based on the standard normal density. CC BY 4.0."
+    }
+  ],
+  "platforms": {
+    "linkedin": {
+      "mode": "equivalent-rendition"
+    },
+    "medium": {
+      "mode": "equivalent-rendition"
+    }
+  },
+  "canonical": null,
+  "profile": "profile.json"
+}

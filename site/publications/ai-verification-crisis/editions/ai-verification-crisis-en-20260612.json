@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "id": "ai-verification-crisis-en-20260612",
+  "articleId": "ai-verification-crisis",
+  "language": "en",
+  "kind": "full-article",
+  "source": {
+    "path": "manuscript.en.md",
+    "sha256": "20a8ee4f6db8a28e92dd106ba8ed45d1ac0a4c8bb03730d08296d5964653d640",
+    "commit": "bd7facda0f1eee6ade3f3d1de1ed4445f5c4a2bb",
+    "blob": "5a52286b7ec2a302dc8c01a8967091f41f46fa03"
+  },
+  "owner": "site",
+  "derivation": null,
+  "rights": "accepted",
+  "semanticSha256": "14282a6e90a6aef0c09a9363373ecf259c3d52e0a82dca41dad0e3da9781de98"
+}

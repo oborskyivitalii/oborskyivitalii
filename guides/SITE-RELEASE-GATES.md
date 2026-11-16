@@ -294,7 +294,7 @@ desktop. A failed/missing run makes the sample incomplete, not optimistically gr
 | --- | --- |
 | Mobile LCP ≤2.5 s, TBT ≤200 ms, CLS ≤0.1, each route's three-run median | Required assertions within the optional full diagnostic. Staging retains its original individual budgets. Desktop metrics retain reviewed per-route budgets. |
 | Lighthouse performance ≥90 | Secondary target/report; never substitutes for the individual metric gates. |
-| Raw HTML ≤100 KB per public route | Deterministic PR/release gate. |
+| Raw HTML ≤100,000 bytes for rooms and other pages, ≤125,000 bytes for article readers and their snapshots | Deterministic PR/release gate. Full article transfer remains capped at 800,000 gzip bytes. |
 | ≤250 decorative inline SVG nodes, or an external static fallback | Count actual elements; give external assets explicit raw/compressed byte budgets and record total route transfer size. Moving the same cost out of HTML is not sufficient. |
 | Mobile ×4 painted-callback p95 ≤33 ms; idle animation callback time ≤20% of sampled elapsed time | Initial sustained-motion release budgets, separately for every route; any lower quality tier has explicit reviewed budgets and visual evidence. |
 | Settled Motion off/reduced | Zero ongoing animation paints/callbacks; explicit settling interval and observation window. |

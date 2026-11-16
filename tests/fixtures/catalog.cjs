@@ -67,9 +67,38 @@ function isolatePublicationCatalog(root, sourceRoot) {
     fs.mkdirSync(path.dirname(destination), { recursive: true });
     fs.copyFileSync(path.join(sourceRoot, relative), destination);
   }
+  isolateLegacyCatalog(root, sourceRoot);
+}
+
+function isolateLegacyCatalog(root, sourceRoot) {
+  const fs = require('node:fs'),
+    path = require('node:path');
+  const legacy = legacyCatalog(sourceRoot);
+  const current = require('../../tools/site/content.cjs').catalog(sourceRoot);
+  for (const relative of ['index/research.json', 'research/lenses.json']) {
+    const fragment = path.join(root, 'site/content/pages', relative);
+    if (!fs.existsSync(fragment)) continue;
+    const data = JSON.parse(fs.readFileSync(fragment));
+    for (const key of Object.keys(data.urls)) {
+      const match = Object.keys(legacy.records).find(
+        (id) => current.records[id]?.article && current.records[id].edition.url === data.urls[key]
+      );
+      if (match) data.urls[key] = legacy.records[match].edition.url;
+    }
+    fs.writeFileSync(fragment, JSON.stringify(data, null, 2) + '\n');
+  }
+  const tagFile = path.join(root, 'site/content/article-tags.json');
+  if (fs.existsSync(tagFile)) {
+    const tags = JSON.parse(fs.readFileSync(tagFile));
+    for (const id of Object.keys(legacy.records)) {
+      const article = current.records[id]?.article;
+      if (article) tags.records[id] = tags.articles[article];
+    }
+    fs.writeFileSync(tagFile, JSON.stringify(tags, null, 2) + '\n');
+  }
   fs.writeFileSync(
     path.join(root, 'site/content/catalog.json'),
-    JSON.stringify(legacyCatalog(sourceRoot), null, 2) + '\n'
+    JSON.stringify(legacy, null, 2) + '\n'
   );
 }
 
@@ -80,4 +109,5 @@ module.exports = {
   nextYear,
   assignTags,
   isolatePublicationCatalog,
+  isolateLegacyCatalog,
 };

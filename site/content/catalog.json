@@ -23,18 +23,35 @@
       }
     },
     "publication-02": {
+      "kind": "local-article",
+      "article": "ai-verification-crisis",
       "edition": {
         "@type": "Article",
         "name": "AI, the Externalization of Reasoning, and the Verification Crisis",
-        "url": "https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0",
+        "url": "articles/ai-verification-crisis.html",
         "inLanguage": "en",
         "author": {
           "@type": "Person",
-          "name": "Vitalii Oborskyi"
-        },
-        "datePublished": "2026-06-12"
+          "name": "Vitalii Oborskyi",
+          "url": "https://vitaliioborskyi.ai/"
+        }
       },
       "editions": [
+        {
+          "@type": "Article",
+          "name": "AI, the Externalization of Reasoning, and the Verification Crisis",
+          "url": "https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0",
+          "inLanguage": "en",
+          "author": {
+            "@type": "Person",
+            "name": "Vitalii Oborskyi",
+            "url": "https://vitaliioborskyi.ai/"
+          },
+          "datePublished": "2026-06-12",
+          "platform": "Medium",
+          "relationship": "same-topic-platform-edition",
+          "bodyEquivalenceVerified": false
+        },
         {
           "platform": "LinkedIn",
           "name": "AI, the Externalization of Reasoning, and the Verification Crisis",
@@ -42,7 +59,8 @@
           "inLanguage": "en",
           "author": {
             "@type": "Person",
-            "name": "Vitalii Oborskyi"
+            "name": "Vitalii Oborskyi",
+            "url": "https://vitaliioborskyi.ai/"
           },
           "datePublished": "2026-06-10",
           "relationship": "same-topic-platform-edition",
@@ -53,9 +71,11 @@
       "presentation": {
         "topic": "delivery",
         "kind": "Article",
-        "publisher": "Agile Insider",
-        "summary": "Why faster generation raises questions of human understanding and verification."
-      }
+        "publisher": "Author site",
+        "summary": "Why faster generation raises questions of human understanding and verification.",
+        "archiveYear": "2026"
+      },
+      "homeEditionLink": true
     },
     "publication-03": {
       "edition": {
@@ -98,18 +118,35 @@
       }
     },
     "publication-05": {
+      "kind": "local-article",
+      "article": "thinking-systems",
       "edition": {
         "@type": "Article",
         "name": "Uncertainty Architecture: Thinking Systems, When the Controlled Object Changes",
-        "url": "https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db",
+        "url": "articles/thinking-systems.html",
         "inLanguage": "en",
         "author": {
           "@type": "Person",
-          "name": "Vitalii Oborskyi"
-        },
-        "datePublished": "2026-08-30"
+          "name": "Vitalii Oborskyi",
+          "url": "https://vitaliioborskyi.ai/"
+        }
       },
       "editions": [
+        {
+          "@type": "Article",
+          "name": "Uncertainty Architecture: Thinking Systems, When the Controlled Object Changes",
+          "url": "https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db",
+          "inLanguage": "en",
+          "author": {
+            "@type": "Person",
+            "name": "Vitalii Oborskyi",
+            "url": "https://vitaliioborskyi.ai/"
+          },
+          "datePublished": "2026-08-30",
+          "platform": "Medium",
+          "relationship": "same-topic-platform-edition",
+          "bodyEquivalenceVerified": false
+        },
         {
           "platform": "LinkedIn",
           "name": "Uncertainty Architecture: Thinking Systems - When the Controlled Object Changes",
@@ -117,7 +154,8 @@
           "inLanguage": "en",
           "author": {
             "@type": "Person",
-            "name": "Vitalii Oborskyi"
+            "name": "Vitalii Oborskyi",
+            "url": "https://vitaliioborskyi.ai/"
           },
           "datePublished": "2026-08-27",
           "relationship": "same-topic-platform-edition",
@@ -129,31 +167,51 @@
       "presentation": {
         "topic": "systems",
         "kind": "Article",
-        "publisher": "Generative AI",
+        "publisher": "Author site",
+        "archiveYear": "2026",
         "summary": "What changes when consequential runtime responsibility depends on model judgment."
       }
     },
     "publication-06": {
+      "kind": "local-article",
+      "article": "beyond-embeddings",
       "edition": {
         "@type": "Article",
         "name": "Uncertainty Architecture: Beyond Embeddings — Neuro-Symbolic Verification of Semantic Drift in LLMs",
-        "url": "https://generativeai.pub/uncertainty-architecture-beyond-embeddings-neuro-symbolic-verification-of-semantic-drift-in-llms-69822872825b",
+        "url": "articles/beyond-embeddings.html",
         "inLanguage": "en",
         "author": {
           "@type": "Person",
-          "name": "Vitalii Oborskyi"
-        },
-        "datePublished": "2026-06-10"
+          "name": "Vitalii Oborskyi",
+          "url": "https://vitaliioborskyi.ai/"
+        }
       },
       "editions": [
         {
+          "@type": "Article",
+          "name": "Uncertainty Architecture: Beyond Embeddings — Neuro-Symbolic Verification of Semantic Drift in LLMs",
+          "url": "https://generativeai.pub/uncertainty-architecture-beyond-embeddings-neuro-symbolic-verification-of-semantic-drift-in-llms-69822872825b",
+          "inLanguage": "en",
+          "author": {
+            "@type": "Person",
+            "name": "Vitalii Oborskyi",
+            "url": "https://vitaliioborskyi.ai/"
+          },
+          "datePublished": "2026-06-10",
+          "platform": "Medium",
+          "relationship": "same-topic-platform-edition",
+          "bodyEquivalenceVerified": false
+        },
+        {
+          "@type": "Article",
           "platform": "LinkedIn",
           "name": "Uncertainty Architecture: Beyond Embeddings - Neuro-Symbolic Verification of Semantic Drift in LLMs",
           "url": "https://www.linkedin.com/pulse/uncertainty-architecture-beyond-embeddings-semantic-oborskyi-1seuf/",
           "inLanguage": "en",
           "author": {
             "@type": "Person",
-            "name": "Vitalii Oborskyi"
+            "name": "Vitalii Oborskyi",
+            "url": "https://vitaliioborskyi.ai/"
           },
           "datePublished": "2026-05-22",
           "relationship": "same-topic-platform-edition",
@@ -164,44 +222,96 @@
       "presentation": {
         "topic": "systems",
         "kind": "Article",
-        "publisher": "Generative AI",
-        "summary": "A bounded technical example of semantic verification within a wider control architecture."
+        "publisher": "Author site",
+        "summary": "A bounded technical example of semantic verification within a wider control architecture.",
+        "archiveYear": "2026"
       }
     },
     "publication-07": {
+      "kind": "local-article",
+      "article": "agentic-loops",
       "edition": {
         "@type": "Article",
         "name": "Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops",
-        "url": "https://www.linkedin.com/pulse/reinventing-control-theory-one-feature-time-fallacy-agentic-oborskyi-vkwve/",
+        "url": "articles/agentic-loops.html",
         "inLanguage": "en",
         "author": {
           "@type": "Person",
-          "name": "Vitalii Oborskyi"
-        },
-        "datePublished": "2026-06-10"
+          "name": "Vitalii Oborskyi",
+          "url": "https://vitaliioborskyi.ai/"
+        }
       },
-      "editions": [],
+      "editions": [
+        {
+          "@type": "Article",
+          "name": "Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops",
+          "url": "https://www.linkedin.com/pulse/reinventing-control-theory-one-feature-time-fallacy-agentic-oborskyi-vkwve/",
+          "inLanguage": "en",
+          "author": {
+            "@type": "Person",
+            "name": "Vitalii Oborskyi",
+            "url": "https://vitaliioborskyi.ai/"
+          },
+          "datePublished": "2026-06-10",
+          "platform": "LinkedIn",
+          "relationship": "same-topic-platform-edition",
+          "bodyEquivalenceVerified": false
+        },
+        {
+          "@type": "Article",
+          "name": "Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops",
+          "url": "https://medium.com/agileinsider/reinventing-control-theory-one-feature-at-a-time-the-fallacy-of-agentic-loops-01dd533615de",
+          "inLanguage": "en",
+          "author": {
+            "@type": "Person",
+            "name": "Vitalii Oborskyi",
+            "url": "https://vitaliioborskyi.ai/"
+          },
+          "datePublished": "2026-06-12",
+          "platform": "Medium",
+          "relationship": "same-topic-platform-edition",
+          "bodyEquivalenceVerified": false
+        }
+      ],
       "discussions": ["reddit-agentic-loops"],
       "presentation": {
         "topic": "systems",
         "kind": "Article",
-        "publisher": "LinkedIn",
-        "summary": "A control-theory perspective on agentic loops and engineering control."
+        "publisher": "Author site",
+        "summary": "A control-theory perspective on agentic loops and engineering control.",
+        "archiveYear": "2026"
       }
     },
     "publication-08": {
+      "kind": "local-article",
+      "article": "ai-native-workflows-have-a-moat-problem",
       "edition": {
         "@type": "Article",
         "name": "AI-Native Workflows Have a Moat Problem",
-        "url": "https://aiadvances.org/ai-native-workflows-have-a-moat-problem-49992bcc3088",
+        "url": "articles/ai-native-workflows-have-a-moat-problem.html",
         "inLanguage": "en",
         "author": {
           "@type": "Person",
-          "name": "Vitalii Oborskyi"
-        },
-        "datePublished": "2026-07-01"
+          "name": "Vitalii Oborskyi",
+          "url": "https://vitaliioborskyi.ai/"
+        }
       },
       "editions": [
+        {
+          "@type": "Article",
+          "name": "AI-Native Workflows Have a Moat Problem",
+          "url": "https://aiadvances.org/ai-native-workflows-have-a-moat-problem-49992bcc3088",
+          "inLanguage": "en",
+          "author": {
+            "@type": "Person",
+            "name": "Vitalii Oborskyi",
+            "url": "https://vitaliioborskyi.ai/"
+          },
+          "datePublished": "2026-07-01",
+          "platform": "Medium",
+          "relationship": "same-topic-platform-edition",
+          "bodyEquivalenceVerified": false
+        },
         {
           "platform": "LinkedIn",
           "name": "AI-Native Workflows Have a Moat Problem",
@@ -209,7 +319,8 @@
           "inLanguage": "en",
           "author": {
             "@type": "Person",
-            "name": "Vitalii Oborskyi"
+            "name": "Vitalii Oborskyi",
+            "url": "https://vitaliioborskyi.ai/"
           },
           "datePublished": "2026-07-01",
           "relationship": "same-topic-platform-edition",
@@ -220,23 +331,41 @@
       "presentation": {
         "topic": "strategy",
         "kind": "Article",
-        "publisher": "AI Advances",
-        "summary": "Where durable differentiation can sit in AI-native workflows."
+        "publisher": "Author site",
+        "summary": "Where durable differentiation can sit in AI-native workflows.",
+        "archiveYear": "2026"
       }
     },
     "publication-09": {
+      "kind": "local-article",
+      "article": "ai-governance-is-control-theory",
       "edition": {
         "@type": "Article",
         "name": "Uncertainty Architecture: Why AI Governance is Actually Control Theory",
-        "url": "https://pub.towardsai.net/uncertainty-architecture-why-ai-governance-is-actually-control-theory-511f3e73ed6e",
+        "url": "articles/ai-governance-is-control-theory.html",
         "inLanguage": "en",
         "author": {
           "@type": "Person",
-          "name": "Vitalii Oborskyi"
-        },
-        "datePublished": "2025-12-13"
+          "name": "Vitalii Oborskyi",
+          "url": "https://vitaliioborskyi.ai/"
+        }
       },
       "editions": [
+        {
+          "@type": "Article",
+          "name": "Uncertainty Architecture: Why AI Governance is Actually Control Theory",
+          "url": "https://pub.towardsai.net/uncertainty-architecture-why-ai-governance-is-actually-control-theory-511f3e73ed6e",
+          "inLanguage": "en",
+          "author": {
+            "@type": "Person",
+            "name": "Vitalii Oborskyi",
+            "url": "https://vitaliioborskyi.ai/"
+          },
+          "datePublished": "2025-12-13",
+          "platform": "Medium",
+          "relationship": "same-topic-platform-edition",
+          "bodyEquivalenceVerified": false
+        },
         {
           "platform": "LinkedIn",
           "name": "Uncertainty Architecture: Why AI Governance is actually Control Theory",
@@ -244,7 +373,8 @@
           "inLanguage": "en",
           "author": {
             "@type": "Person",
-            "name": "Vitalii Oborskyi"
+            "name": "Vitalii Oborskyi",
+            "url": "https://vitaliioborskyi.ai/"
           },
           "datePublished": "2025-12-11",
           "relationship": "same-topic-platform-edition",
@@ -255,7 +385,8 @@
       "presentation": {
         "topic": "systems",
         "kind": "Article",
-        "publisher": "Towards AI"
+        "publisher": "Author site",
+        "archiveYear": "2025"
       }
     },
     "publication-10": {
@@ -788,23 +919,43 @@
       }
     },
     "publication-28": {
+      "kind": "local-article",
+      "article": "ai-cost-cutting-fallacy",
       "edition": {
         "@type": "Article",
         "name": "The AI Cost-Cutting Fallacy: Why \"Doing More with Less\" is Breaking Engineering Teams",
-        "url": "https://www.linkedin.com/pulse/ai-cost-cutting-fallacy-why-doing-more-less-breaking-teams-oborskyi-cxuif/",
+        "url": "articles/ai-cost-cutting-fallacy.html",
         "inLanguage": "en",
         "author": {
           "@type": "Person",
-          "name": "Vitalii Oborskyi"
-        },
-        "datePublished": "2026-01-02"
+          "name": "Vitalii Oborskyi",
+          "url": "https://vitaliioborskyi.ai/"
+        }
       },
-      "editions": [],
+      "editions": [
+        {
+          "@type": "Article",
+          "name": "The AI Cost-Cutting Fallacy: Why \"Doing More with Less\" is Breaking Engineering Teams",
+          "url": "https://www.linkedin.com/pulse/ai-cost-cutting-fallacy-why-doing-more-less-breaking-teams-oborskyi-cxuif/",
+          "inLanguage": "en",
+          "author": {
+            "@type": "Person",
+            "name": "Vitalii Oborskyi",
+            "url": "https://vitaliioborskyi.ai/"
+          },
+          "datePublished": "2026-01-02",
+          "platform": "LinkedIn",
+          "relationship": "same-topic-platform-edition",
+          "bodyEquivalenceVerified": false
+        }
+      ],
       "discussions": [],
       "presentation": {
         "topic": "delivery",
         "kind": "Article",
-        "publisher": "LinkedIn"
+        "publisher": "Author site",
+        "summary": "How AI-assisted coding shifts work into review, maintenance, and the transition to new delivery capabilities.",
+        "archiveYear": "2026"
       }
     },
     "publication-29": {

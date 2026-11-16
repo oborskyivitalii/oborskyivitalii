@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "id": "beyond-embeddings",
+  "platforms": {
+    "linkedin": {
+      "formats": ["html", "md", "txt", "copy-ready"],
+      "relationship": "equivalent-rendition"
+    },
+    "medium": {
+      "formats": ["html", "md", "txt", "copy-ready"],
+      "relationship": "equivalent-rendition"
+    }
+  },
+  "launch": {
+    "source": "launch-post.en.md",
+    "sha256": "bc95f9b34cd626aee5d71a8e5e8572c4826f3acf98adc26fa59b11a8c8c81d3a"
+  },
+  "seo": {
+    "title": "Uncertainty Architecture: Beyond Embeddings — Neuro-Symbolic Verification of Semantic Drift in LLMs",
+    "summary": "A bounded technical example of semantic verification within a wider control architecture."
+  },
+  "assets": {
+    "cover": {
+      "id": "cover"
+    },
+    "hero": {
+      "id": "cover"
+    }
+  },
+  "limits": {},
+  "reader": {
+    "coverPlacement": "authored",
+    "references": "inline",
+    "images": "webp-lossless",
+    "equivalentImages": {
+      "cover": {
+        "path": "site/assets/publications/beyond-embeddings/cover-web.jpg",
+        "sha256": "c1f333b5145b75b144562e218b73946ba77083fba5c1d30a8a8b43ef2659fc5a"
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "id": "ai-native-workflows-have-a-moat-problem",
+  "slug": "ai-native-workflows-have-a-moat-problem",
+  "title": "AI-Native Workflows Have a Moat Problem",
+  "summary": "Where durable differentiation can sit in AI-native workflows.",
+  "authors": [
+    {
+      "name": "Vitalii Oborskyi",
+      "url": "https://vitaliioborskyi.ai/"
+    }
+  ],
+  "language": "en",
+  "topic": "AI strategy",
+  "owner": {
+    "repository": "oborskyivitalii/oborskyivitalii",
+    "path": "site/publications/ai-native-workflows-have-a-moat-problem"
+  },
+  "status": "accepted",
+  "source": "manuscript.en.md",
+  "edition": "ai-native-workflows-have-a-moat-problem-en-20261116-editorial",
+  "rights": {
+    "status": "accepted",
+    "notice": "Vitalii Oborskyi. The original article text from the July 2026 AI Advances edition is included on the author site under CC BY 4.0. The original AI-generated cover is used for this site edition. Linked material retains its own terms.",
+    "references": [
+      "https://aiadvances.org/ai-native-workflows-have-a-moat-problem-49992bcc3088",
+      "https://github.com/oborskyivitalii/oborskyivitalii/issues/183",
+      "https://creativecommons.org/licenses/by/4.0/"
+    ]
+  },
+  "references": [
+    {
+      "id": "ai-advances-original",
+      "url": "https://aiadvances.org/ai-native-workflows-have-a-moat-problem-49992bcc3088"
+    },
+    {
+      "id": "linkedin-edition",
+      "url": "https://www.linkedin.com/pulse/ai-native-delivery-has-moat-problem-vitalii-oborskyi-nlnzf/"
+    }
+  ],
+  "assets": [
+    {
+      "id": "cover",
+      "path": "site/assets/publications/ai-native-workflows-have-a-moat-problem/cover.png",
+      "sha256": "57cef69ffe083071acf0567733bb4d79089f888502aa60ff8f795011288f8ed9",
+      "width": 1200,
+      "height": 675,
+      "alt": "Delivery, product, legal, support, and marketing workflows converge on an AI platform. The cover asks who learns from your AI transformation.",
+      "caption": "Original cover from the July 2026 AI Advances edition.",
+      "credit": "Original AI-generated artwork prepared for this publication by Vitalii Oborskyi."
+    }
+  ],
+  "platforms": {
+    "linkedin": {
+      "mode": "equivalent-rendition"
+    },
+    "medium": {
+      "mode": "equivalent-rendition"
+    }
+  },
+  "canonical": null,
+  "profile": "profile.json"
+}

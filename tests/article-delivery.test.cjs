@@ -222,20 +222,29 @@ test('staging derives labelled article snapshots and removes prior unlabelled HT
 });
 
 test('PR social metadata binds each cover and alias before hashing while retaining isolation', (t) => {
-  const { directory, publicDir } = fixture(t);
+  const { directory, publicDir, record } = fixture(t);
   const origin = 'https://pr-180.oborskyi-author-ci-staging.pages.dev';
+  const fallback = require('../site/content/production-social.json');
+  const expectedArticles = record.components.articles;
+  const covers = Object.values(expectedArticles).flatMap((article) =>
+    article.socialImage ? [article.socialImage.file] : []
+  );
+  assert.ok(expectedArticles[key].socialImage, 'fixture supplies the PMDay cover');
+  assert.ok(
+    expectedArticles['sdlc-out-of-balance:en'].socialImage,
+    'fixture supplies the SDLC cover'
+  );
+  assert.equal(new Set(covers).size, covers.length, 'declared covers are distinct');
   require('../tools/staging/color.cjs').build(directory);
   const stage = stageEdition.build(directory, { socialOrigin: origin });
   require('../tools/quality/color-motion-contract.cjs').select(stage);
-  const images = new Set();
-  for (const article of Object.values(stage.components.articles)) {
-    images.add(article.socialImage.file);
+  assert.deepEqual(Object.keys(stage.components.articles), Object.keys(expectedArticles));
+  for (const [articleKey, article] of Object.entries(stage.components.articles)) {
+    const expectedImage = expectedArticles[articleKey].socialImage || fallback;
     for (const name of [article.alias, article.url]) {
       const html = fs.readFileSync(path.join(publicDir, name), 'utf8');
       assert.ok(
-        html.includes(
-          'property="og:image" content="' + origin + '/' + article.socialImage.file + '"'
-        )
+        html.includes('property="og:image" content="' + origin + '/' + expectedImage.file + '"')
       );
       assert.ok(html.includes('property="og:url" content="' + origin + '/' + article.alias + '"'));
       assert.equal((html.match(/property="og:image"/g) || []).length, 1);
@@ -243,7 +252,6 @@ test('PR social metadata binds each cover and alias before hashing while retaini
       assert.doesNotMatch(html, /data-site-analytics|google-site-verification|rel="canonical"/);
     }
   }
-  assert.equal(images.size, 2, 'distinct article covers use distinct images');
   const home = fs.readFileSync(path.join(publicDir, 'index.html'), 'utf8');
   assert.ok(
     home.includes('property="og:image" content="' + origin + '/assets/vitalii-oborskyi.jpg"')

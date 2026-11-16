@@ -35,16 +35,14 @@ function fixture(t) {
     'tools/build_scene_fallbacks.cjs',
     'tools/build_site_previews.cjs',
     'tools/quality/artifact.cjs',
+    'tools/quality/html-budget.cjs',
     'tools/quality/budgets.json',
     ...Object.values(require('../tools/site/legal.cjs').sources),
   ]) {
     fs.mkdirSync(path.dirname(path.join(dir, name)), { recursive: true });
     fs.cpSync(path.join(root, name), path.join(dir, name), { recursive: true });
   }
-  fs.writeFileSync(
-    path.join(dir, 'site/content/catalog.json'),
-    JSON.stringify(require('./fixtures/catalog.cjs').legacyCatalog(root), null, 2) + '\n'
-  );
+  require('./fixtures/catalog.cjs').isolateLegacyCatalog(dir, root);
   configure(dir, disabled());
   t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
   return dir;

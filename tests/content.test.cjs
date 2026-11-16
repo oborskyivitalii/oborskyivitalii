@@ -157,12 +157,11 @@ test('local platform links reject unsafe channels, duplicate destinations and un
   external.records['publication-01'].platformLinks = [valid];
   assert.throws(() => validateCatalog(external), /Invalid local platform link inventory/);
   const duplicate = structuredClone(original);
-  duplicate.records['publication-30'].platformLinks = [
-    {
-      platform: 'Medium',
-      url: duplicate.records['publication-02'].edition.url,
-    },
-  ];
+  const medium = duplicate.records['publication-02'].editions.find(
+    (link) => link.platform === 'Medium'
+  );
+  assert.ok(medium);
+  duplicate.records['publication-30'].platformLinks = [{ platform: 'Medium', url: medium.url }];
   assert.throws(() => validateCatalog(duplicate), /duplicate local platform link/);
 });
 
@@ -172,7 +171,9 @@ test('archive producer successors preserve exact predecessor pins and reject unr
   const before = Object.fromEntries(
     Object.entries(checker.archiveProducers).map(([file, change]) => [file, change.beforeSHA256])
   );
-  const after = checker.reviewedArchiveProducerBindings(before);
+  const after = checker.reviewedHistoricalEditionProducers(
+    checker.reviewedArchiveProducerBindings(before)
+  );
   for (const [file, digest] of Object.entries(after)) {
     assert.equal(
       digest,
@@ -450,11 +451,15 @@ test('research theories retain project alignment and explicit association on nar
       .replace(/<p class="lens-context">[\s\S]*?<\/p>/, '')
       .replace(/>\s+</g, '><')
       .trim();
-    assert.equal(
-      withoutContext,
-      original[1 - index].trim(),
-      'theory description and external reading routes remain exact'
-    );
+    const originalBody = original[1 - index].trim();
+    const expectedBody =
+      owner === 'systems'
+        ? originalBody.replace(
+            'https://pub.towardsai.net/uncertainty-architecture-why-ai-governance-is-actually-control-theory-511f3e73ed6e',
+            'articles/ai-governance-is-control-theory.html'
+          )
+        : originalBody;
+    assert.equal(withoutContext, expectedBody, 'theory text and selected reading route stay exact');
   }
   const css = fs.readFileSync(path.join(root, 'styles.css'), 'utf8');
   for (const [owner, token] of [
@@ -577,14 +582,22 @@ test('language-labelled editions match article schema and retain the original pr
   assert.equal(featured.length, 5);
   assert.ok(featured.every((r) => r[1] === 'en'));
   const frozen = require('../review/sol-execution-20261002/BASELINE.json');
-  const actual = items.map(({ item }) => ({
-    title: item.name,
-    url: item.url,
-    language: item.inLanguage,
-    date: item.dateModified || item.datePublished,
-    date_kind: item.dateModified ? 'dateModified' : 'datePublished',
-  }));
   const frozenURLs = new Set(frozen.primary.map((r) => r.url));
+  const actual = items.map(({ item }) => {
+    const record = records.find(({ edition }) => edition.url === item.url);
+    const historical = record.editions.find(
+      (edition) =>
+        edition.relationship === 'same-topic-platform-edition' && frozenURLs.has(edition.url)
+    );
+    const source = historical || item;
+    return {
+      title: source.name,
+      url: source.url,
+      language: source.inLanguage,
+      date: source.dateModified || source.datePublished,
+      date_kind: source.dateModified ? 'dateModified' : 'datePublished',
+    };
+  });
   assert.deepEqual(
     actual.filter((r) => frozenURLs.has(r.url)),
     frozen.primary,
@@ -592,13 +605,16 @@ test('language-labelled editions match article schema and retain the original pr
   );
   assert.equal(items.length, schema(pages.writing).mainEntity.numberOfItems);
   const expected = [
-    '21275fe2f3db',
-    '4f5046f9f0d0',
-    'agentic-oborskyi-vkwve',
-    '69822872825b',
-    '49992bcc3088',
+    'thinking-systems',
+    'ai-verification-crisis',
+    'agentic-loops',
+    'beyond-embeddings',
+    'ai-native-workflows-have-a-moat-problem',
   ];
-  assert.ok(featured.every((row, i) => row[2].includes(expected[i])));
+  assert.deepEqual(
+    featured.map((row) => row[2].match(/href="articles\/([a-z0-9-]+)\.html"/)?.[1]),
+    expected
+  );
   assert.ok(pages.writing.includes(frozen.secondary[0].url));
   assert.ok(pages.writing.includes('LinkedIn edition · 27 Aug 2026'));
 });

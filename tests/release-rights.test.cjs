@@ -20,7 +20,7 @@ function rehash(report) {
   report.inventoryDigest = artifact.digest(JSON.stringify(body));
 }
 
-function fixture(t, { nativeCurrentArticle = false } = {}) {
+function fixture(t, { nativeReleasedArticle = false } = {}) {
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'release-rights-'));
   t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
   const publicDirectory = path.join(directory, 'public');
@@ -44,11 +44,18 @@ function fixture(t, { nativeCurrentArticle = false } = {}) {
       recursive: true,
       filter: (file) => !file.split(path.sep).includes('node_modules'),
     });
-    fs.cpSync(path.join(root, name), path.join(sourceRoot, name), {
-      recursive: true,
-    });
+    fs.cpSync(
+      path.join(
+        nativeReleasedArticle && name === 'site' ? delivery.releasedSourceRoot() : root,
+        name
+      ),
+      path.join(sourceRoot, name),
+      {
+        recursive: true,
+      }
+    );
   }
-  if (nativeCurrentArticle) {
+  if (nativeReleasedArticle) {
     // The current R4 lossless renderer reads these two immutable toolchain
     // declarations from its explicit source root, not the installed interpreter.
     // Copy only the source inputs: never install a new dependency or weaken checks.
@@ -64,7 +71,12 @@ function fixture(t, { nativeCurrentArticle = false } = {}) {
     cp.execFileSync('git', ['init', '-q'], { cwd: sourceRoot });
     const alternates = path.join(sourceRoot, '.git/objects/info/alternates');
     fs.mkdirSync(path.dirname(alternates), { recursive: true });
-    fs.writeFileSync(alternates, path.join(root, '.git/objects') + '\n');
+    fs.writeFileSync(
+      alternates,
+      cp.execFileSync('git', ['rev-parse', '--path-format=absolute', '--git-path', 'objects'], {
+        cwd: root,
+      })
+    );
   } else require('./fixtures/catalog.cjs').isolatePublicationCatalog(sourceRoot, root);
   builder.build({ root: sourceRoot, output: publicDirectory, all: true });
   const record = () => ({
@@ -465,7 +477,9 @@ test('publication records bind staging and production editions without granting 
     const report = rights.readPublication(source.directory, source.record);
     assert.equal(rights.publication(source.record, report), true);
     assert.equal(report.approvalPass, false);
-    const catalog = require('../site/content/catalog.json');
+    const catalog = JSON.parse(
+      fs.readFileSync(path.join(source.authoredRoot, 'site/content/catalog.json'))
+    );
     assert.equal(
       report.materials.hostedEditions.length,
       Object.values(catalog.records).filter((record) => record.kind === 'local-article').length
@@ -888,7 +902,7 @@ test('publication notice markup rejects incomplete ambiguous and unbounded conte
 
 test('publication actual edition and package CLIs freeze exact sidecars before any upload', (t) => {
   const pkg = require('../tools/staging/package.cjs');
-  const source = fixture(t, { nativeCurrentArticle: true });
+  const source = fixture(t, { nativeReleasedArticle: true });
   const checkout = source.sourceRoot;
   for (const name of [
     'tools/staging/edition.cjs',
@@ -897,6 +911,7 @@ test('publication actual edition and package CLIs freeze exact sidecars before a
     'tools/release/rights.cjs',
     'tools/release/rights-record.cjs',
     'tools/quality/artifact.cjs',
+    'tools/quality/html-budget.cjs',
     'tools/quality/budgets.json',
     'tools/quality/common.cjs',
     'tools/quality/color-motion-contract.cjs',
@@ -911,11 +926,8 @@ test('publication actual edition and package CLIs freeze exact sidecars before a
   // This CLI fixture exercises principal-page rights in both editions.
   // Hosted article rights are exercised separately above.
   const environment = {
-    ...process.env,
+    ...delivery.mediaEnvironment(),
     SITE_ARTICLE_PREVIEW: 'false',
-    // The synthetic checkout has no installed media venv of its own. Its real
-    // R4 article must use the exact Pillow toolchain installed by source CI.
-    SITE_MEDIA_PYTHON: path.join(root, 'tools/quality/toolchain/venv/bin/python'),
   };
   for (const key of [
     'SITE_CANDIDATE_SHA',
