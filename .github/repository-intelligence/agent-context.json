@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "f9b42db0beaba9c3775780524c1c861fab4fce39473769c0484265b317354ec3",
+    "digest": "0623a515fe4ed86f5f114a8f97b0796d3b0b3f8d2fdf4d2b501db58949c97402",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -271,12 +271,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "2e2150cb730bb223e77b5280b98b2d1b15350096ad713d464fc0fd614345c05a"
+        "sha256": "dc2579e096cf1dc545b9b9002ceb9b50a2552ef2dd856bb68ca60aef48d2c754"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "0b63c4d76a9237ad858b8367e853614a6e8752b5a668a1dafaf947021c32fc41"
+        "sha256": "369db2697ee9591e809505df71749dad915680c859dd78dbd92f0c20b8e0bfa3"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -426,7 +426,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "06f753dc5537486427764f6c48a0a813594af38c8d5b97bb8fee86315ad4cb53"
+        "sha256": "06ca1e447874036960035dd0f7faea5b6b8adfcb89311cb31074a00911870544"
       },
       {
         "path": "NOTICE.md",
@@ -563,6 +563,11 @@
         "sha256": "5ba399aa0ca2dc3e492e58292358870926fb5acd7fdd958c63e2e71541d6994d"
       },
       {
+        "path": "docs/article-media/5f8490fc28edf22e1a224c2adc10f6aa814d091ce620c059e86e4a64c7843360/cover.jpg",
+        "identity_mode": "content",
+        "sha256": "5f8490fc28edf22e1a224c2adc10f6aa814d091ce620c059e86e4a64c7843360"
+      },
+      {
         "path": "docs/article-media/6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168/cover.jpg",
         "identity_mode": "content",
         "sha256": "6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168"
@@ -663,6 +668,11 @@
         "sha256": "e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7"
       },
       {
+        "path": "docs/article-media/fe4ca5dc397894e9c267484abb9606022abfdb6ab31560ce988efddf21c4438d/cover-social.jpg",
+        "identity_mode": "content",
+        "sha256": "fe4ca5dc397894e9c267484abb9606022abfdb6ab31560ce988efddf21c4438d"
+      },
+      {
         "path": "docs/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f/hero-web.jpg",
         "identity_mode": "content",
         "sha256": "fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f"
@@ -673,9 +683,9 @@
         "sha256": "f1d53fa07e9c2d947922eb82b5cc12b7b7bbefd62cf728e80b9cfcbde8a5ffa9"
       },
       {
-        "path": "docs/article-snapshots/2b91db0c8746fe58c212514b97485d2c672d78b4a8948cedf098d0bc6366583e/agentic-loops.html",
+        "path": "docs/article-snapshots/20701000bf4079c84abf95edcd7ed09b0ff1246698c26177ad857b8cdd83ca02/agentic-loops.html",
         "identity_mode": "content",
-        "sha256": "138a89d605ba9521b95fea2ddd60250fbd7865bd86d0c5f17be6280b1a09a984"
+        "sha256": "34e73bcf427c400b09a64757994a96653a806cca607ec1a560e49fccbe14cf3d"
       },
       {
         "path": "docs/article-snapshots/6f8c35d79df05b3b8708b159e06655297190250433cc03dc278dbcc8facecd8b/ai-governance-is-control-theory.html",
@@ -720,7 +730,7 @@
       {
         "path": "docs/articles/agentic-loops.html",
         "identity_mode": "content",
-        "sha256": "b1029d675a9e80d426bae9d86e4c7778ea8f6d78ea623faa1a747089e8a43034"
+        "sha256": "29c3c2b3f73fafa19d387ce8402691f407ae25ae54b01c97dcf60c0982aa6737"
       },
       {
         "path": "docs/articles/ai-cost-cutting-fallacy.html",
@@ -780,7 +790,7 @@
       {
         "path": "docs/index.html",
         "identity_mode": "content",
-        "sha256": "8cfee8c583613e2edaaf01ada1b933a8dd1a678ab837c83eaa43346a7a0147ec"
+        "sha256": "f5ceb811424221b921da545af34194ea6b5479c563c6d03113c40653928b7eae"
       },
       {
         "path": "docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg",
@@ -985,7 +995,7 @@
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "858db5638773117cf99dc9503fc9e0b5586ee4a31a4a2adc3c0fdf3717221a8c"
+        "sha256": "ca89b70b7cb5d886c9d31e67df32783f780348c901cc8c309332060c36314217"
       },
       {
         "path": "docs/snapshots/063c41bb7740e67639a82e1007e6e815d02ef06af5498d341253d27d6a266bcc/research.html",
@@ -1001,11 +1011,6 @@
         "path": "docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2/talks.html",
         "identity_mode": "content",
         "sha256": "05054fd2a4ca2aca6cd0d05717fe332cb95390720e1089331271ca62f3c53f4c"
-      },
-      {
-        "path": "docs/snapshots/1994cb63a2304644dfc60d822d0b417ed454d2e6b616f3740693dc2cd8db40e8/index.html",
-        "identity_mode": "content",
-        "sha256": "3bbfc28cc214954146a94511e03e03c54f52c7790f19aac4294b43dbb86c892a"
       },
       {
         "path": "docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e/talks.html",
@@ -1028,14 +1033,14 @@
         "sha256": "395fd7fcc670e0b7984ed05e7395958dd9432a701f3bfc43151fb956e6d289a1"
       },
       {
-        "path": "docs/snapshots/69ec497074dcb24e72e4b65388ade06b0e41b423de7d04275d31d56db1b7955f/writing.html",
-        "identity_mode": "content",
-        "sha256": "1ee3343a8cbda044cd742a7ad984be1aed5f89d67842b2796a1b9a562be665c5"
-      },
-      {
         "path": "docs/snapshots/7350d35a971a5dde5f0347c6de21431cfb6a3d033f5b24edb1dc9fba91009ab8/credits.html",
         "identity_mode": "content",
         "sha256": "6de01e8fb2b06c88fbb9b5cf25a2fb51ecb381b268d799fe8a8034cf139e64b0"
+      },
+      {
+        "path": "docs/snapshots/7393e0cae18dbd2d603c3a7a2d4895ed8716d37ce14d0f34721c13799b40ce77/index.html",
+        "identity_mode": "content",
+        "sha256": "39f0b2d034a74b774970bd724f37f3497b41d57b5ae00049422ef1103530c723"
       },
       {
         "path": "docs/snapshots/7b62f25175a003a9fcc24f430e26ff321f267a8e77a28699984f86bf1dfdd3b6/research.html",
@@ -1093,6 +1098,11 @@
         "sha256": "eef3b91329720bf60b4aaf9e08208bd9ce75790be77b21c2757638c7af7a6fb4"
       },
       {
+        "path": "docs/snapshots/f91a65823dadb76905ea76d44963a6e00d6975d78595691089e87b7d06daba1d/writing.html",
+        "identity_mode": "content",
+        "sha256": "1afd3c46fff139a8a3a2a9f38e4b2486bd7b32dff3693ccdb5522affc2bbfe83"
+      },
+      {
         "path": "docs/space.js",
         "identity_mode": "content",
         "sha256": "c8b91326e9a1206e8fbd219ebadc7160fa2a639ffc58fa0f6063ed86e53f2d23"
@@ -1115,7 +1125,7 @@
       {
         "path": "docs/writing.html",
         "identity_mode": "content",
-        "sha256": "faf74bc72791ea4268e2651c3b3af70538f4d2fd5f7b83d1f435d2b5cd795d83"
+        "sha256": "fc5ba055ce5c6400b8d489d6b23ed0daec4ecb5abd3d83578ed82a5f0b30ba61"
       },
       {
         "path": "drafts/medium-profile-revision-20261001.html",
@@ -5065,7 +5075,7 @@
       {
         "path": "review/issue-183/2026-11-16-agentic-loops.md",
         "identity_mode": "content",
-        "sha256": "9c16bbc918e186ee065f9589f4a5a15ada1d229d822537df2ad1fe10037704dd"
+        "sha256": "c4b4edd3c1cc019e0399596ca43621f582a44e0c25e7b8f34591e1029aed9534"
       },
       {
         "path": "review/issue-184/2026-11-10-archive.md",
@@ -10413,6 +10423,16 @@
         "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
       },
       {
+        "path": "site/assets/publications/agentic-loops/cover-web.jpg",
+        "identity_mode": "content",
+        "sha256": "5f8490fc28edf22e1a224c2adc10f6aa814d091ce620c059e86e4a64c7843360"
+      },
+      {
+        "path": "site/assets/publications/agentic-loops/cover.png",
+        "identity_mode": "content",
+        "sha256": "dc50371b8287d45ee9b32404da989faa8f041986ffda413f71e0412d3bdcef5b"
+      },
+      {
         "path": "site/assets/publications/ai-cost-cutting-fallacy/cover-web.jpg",
         "identity_mode": "content",
         "sha256": "6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168"
@@ -11070,17 +11090,22 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "eee1b811883e829ee2daef7044b22c9467eb4264856eaff0ea65ee74dd5c59ed"
+        "sha256": "099194a79e92122ca9737d4d33e44791735432236699e780caa25fec307f33b4"
       },
       {
         "path": "site/publications/agentic-loops/PROVENANCE.md",
         "identity_mode": "content",
-        "sha256": "f0660d3956619d38e434dde4fd9b285c0e7916ee9a23a8560107e45855b74bed"
+        "sha256": "7d924f6622629de1c373584c27b6aba5b5a1ca3874bc0f042f5c896c26c552ec"
       },
       {
         "path": "site/publications/agentic-loops/editions/agentic-loops-en-20260610.json",
         "identity_mode": "content",
         "sha256": "33a0e4b3fb109a0ff5af08131c479559d2bda5463c2de179a260ec1893de7a05"
+      },
+      {
+        "path": "site/publications/agentic-loops/editions/agentic-loops-en-20261116-cover.json",
+        "identity_mode": "content",
+        "sha256": "4a663fd883446a286950750a606220dfdfb01f185a38907d5b8143e969419d2d"
       },
       {
         "path": "site/publications/agentic-loops/launch-post.en.md",
@@ -11090,17 +11115,17 @@
       {
         "path": "site/publications/agentic-loops/manuscript.en.md",
         "identity_mode": "content",
-        "sha256": "a96002dff52da4742b06440a5fb365050588483f042097b104dcc3eb05b59224"
+        "sha256": "b2d57d1a321189a861e270cd8007ac9c38ca9638bae4b496ae143f0425829461"
       },
       {
         "path": "site/publications/agentic-loops/profile.json",
         "identity_mode": "content",
-        "sha256": "84adcffe447667051452d442ee9657083ddb827dae3188a554c618652a683d9c"
+        "sha256": "5e1d9da8cbe6f057d16428fcf5fc447bb986f22d796bbbe17b92189595f4c10d"
       },
       {
         "path": "site/publications/agentic-loops/publication.json",
         "identity_mode": "content",
-        "sha256": "be47790ae820db5b44d5f117ee205cd3281dbeea67d278239af89216551f3724"
+        "sha256": "b054ae0465e0e81634038595cd544bd91b8554a1dd8f77b6aebd17a1ab2e1f09"
       },
       {
         "path": "site/publications/ai-cost-cutting-fallacy/PROVENANCE.md",
@@ -11895,7 +11920,7 @@
       {
         "path": "site/rights.json",
         "identity_mode": "content",
-        "sha256": "32f1813b00cb9098a3cce63a9fa02e7a3444ce1ff8670579e715c27f1810b08d"
+        "sha256": "a9c5ec92a88e18f9a7ad26fccd7fc6abe8a7fdc4c6bd674e1293e133d431ca14"
       },
       {
         "path": "site/routes.json",
@@ -15645,6 +15670,17 @@
       "title": "cover-social.jpg"
     },
     {
+      "path": "docs/article-media/5f8490fc28edf22e1a224c2adc10f6aa814d091ce620c059e86e4a64c7843360/cover.jpg",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover.jpg"
+    },
+    {
       "path": "docs/article-media/6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168/cover.jpg",
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
@@ -15865,6 +15901,17 @@
       "title": "delivery-capacity-r6.webp"
     },
     {
+      "path": "docs/article-media/fe4ca5dc397894e9c267484abb9606022abfdb6ab31560ce988efddf21c4438d/cover-social.jpg",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover-social.jpg"
+    },
+    {
       "path": "docs/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f/hero-web.jpg",
       "kind": "file",
       "purpose": "Generated native article, immutable media or snapshot.",
@@ -15887,7 +15934,7 @@
       "title": "the-sdlc-is-out-of-balance.html"
     },
     {
-      "path": "docs/article-snapshots/2b91db0c8746fe58c212514b97485d2c672d78b4a8948cedf098d0bc6366583e/agentic-loops.html",
+      "path": "docs/article-snapshots/20701000bf4079c84abf95edcd7ed09b0ff1246698c26177ad857b8cdd83ca02/agentic-loops.html",
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -16613,17 +16660,6 @@
       "title": "talks.html"
     },
     {
-      "path": "docs/snapshots/1994cb63a2304644dfc60d822d0b417ed454d2e6b616f3740693dc2cd8db40e8/index.html",
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "index.html"
-    },
-    {
       "path": "docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e/talks.html",
       "kind": "file",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
@@ -16668,17 +16704,6 @@
       "title": "research.html"
     },
     {
-      "path": "docs/snapshots/69ec497074dcb24e72e4b65388ade06b0e41b423de7d04275d31d56db1b7955f/writing.html",
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "writing.html"
-    },
-    {
       "path": "docs/snapshots/7350d35a971a5dde5f0347c6de21431cfb6a3d033f5b24edb1dc9fba91009ab8/credits.html",
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
@@ -16688,6 +16713,17 @@
         "AGENTS.md"
       ],
       "title": "credits.html"
+    },
+    {
+      "path": "docs/snapshots/7393e0cae18dbd2d603c3a7a2d4895ed8716d37ce14d0f34721c13799b40ce77/index.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index.html"
     },
     {
       "path": "docs/snapshots/7b62f25175a003a9fcc24f430e26ff321f267a8e77a28699984f86bf1dfdd3b6/research.html",
@@ -16803,6 +16839,17 @@
       "path": "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html",
       "kind": "file",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "writing.html"
+    },
+    {
+      "path": "docs/snapshots/f91a65823dadb76905ea76d44963a6e00d6975d78595691089e87b7d06daba1d/writing.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -37315,6 +37362,28 @@
       "title": "nojekyll"
     },
     {
+      "path": "site/assets/publications/agentic-loops/cover-web.jpg",
+      "kind": "file",
+      "purpose": "Original LinkedIn Agentic Loops cover renditions for the Draft Preview.",
+      "role": "source",
+      "owner": "site/publications/agentic-loops/PROVENANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover-web.jpg"
+    },
+    {
+      "path": "site/assets/publications/agentic-loops/cover.png",
+      "kind": "file",
+      "purpose": "Original LinkedIn Agentic Loops cover renditions for the Draft Preview.",
+      "role": "source",
+      "owner": "site/publications/agentic-loops/PROVENANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover.png"
+    },
+    {
       "path": "site/assets/publications/ai-cost-cutting-fallacy/cover-web.jpg",
       "kind": "file",
       "purpose": "Author-approved original iceberg cover or original replacement J-curve for the Cost-Cutting Fallacy.",
@@ -38787,6 +38856,17 @@
         "AGENTS.md"
       ],
       "title": "agentic-loops-en-20260610.json"
+    },
+    {
+      "path": "site/publications/agentic-loops/editions/agentic-loops-en-20261116-cover.json",
+      "kind": "file",
+      "purpose": "Authored Agentic Loops manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "agentic-loops-en-20261116-cover.json"
     },
     {
       "path": "site/publications/agentic-loops/launch-post.en.md",
@@ -45527,6 +45607,16 @@
       ]
     },
     {
+      "path": "docs/article-media/5f8490fc28edf22e1a224c2adc10f6aa814d091ce620c059e86e4a64c7843360",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/article-media/6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168",
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
@@ -45717,6 +45807,16 @@
       ]
     },
     {
+      "path": "docs/article-media/fe4ca5dc397894e9c267484abb9606022abfdb6ab31560ce988efddf21c4438d",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f",
       "kind": "directory",
       "purpose": "Generated native article, immutable media or snapshot.",
@@ -45747,7 +45847,7 @@
       ]
     },
     {
-      "path": "docs/article-snapshots/2b91db0c8746fe58c212514b97485d2c672d78b4a8948cedf098d0bc6366583e",
+      "path": "docs/article-snapshots/20701000bf4079c84abf95edcd7ed09b0ff1246698c26177ad857b8cdd83ca02",
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -46017,16 +46117,6 @@
       ]
     },
     {
-      "path": "docs/snapshots/1994cb63a2304644dfc60d822d0b417ed454d2e6b616f3740693dc2cd8db40e8",
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
       "path": "docs/snapshots/216b4b4f401ba7970ebf758c2070fe85306fe0259d7f691c2394009cb8be8e5e",
       "kind": "directory",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
@@ -46067,7 +46157,7 @@
       ]
     },
     {
-      "path": "docs/snapshots/69ec497074dcb24e72e4b65388ade06b0e41b423de7d04275d31d56db1b7955f",
+      "path": "docs/snapshots/7350d35a971a5dde5f0347c6de21431cfb6a3d033f5b24edb1dc9fba91009ab8",
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -46077,7 +46167,7 @@
       ]
     },
     {
-      "path": "docs/snapshots/7350d35a971a5dde5f0347c6de21431cfb6a3d033f5b24edb1dc9fba91009ab8",
+      "path": "docs/snapshots/7393e0cae18dbd2d603c3a7a2d4895ed8716d37ce14d0f34721c13799b40ce77",
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -46190,6 +46280,16 @@
       "path": "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647",
       "kind": "directory",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/f91a65823dadb76905ea76d44963a6e00d6975d78595691089e87b7d06daba1d",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -47402,6 +47502,16 @@
       "purpose": "Article-local authored figure sources and bounded review renditions excluded from unselected default scene media.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/assets/publications/agentic-loops",
+      "kind": "directory",
+      "purpose": "Original LinkedIn Agentic Loops cover renditions for the Draft Preview.",
+      "role": "source",
+      "owner": "site/publications/agentic-loops/PROVENANCE.md",
       "instructions": [
         "AGENTS.md"
       ]

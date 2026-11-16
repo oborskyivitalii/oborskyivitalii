@@ -15,7 +15,7 @@
   },
   "routes": {
     "index": {
-      "version": "1994cb63a2304644dfc60d822d0b417ed454d2e6b616f3740693dc2cd8db40e8",
+      "version": "7393e0cae18dbd2d603c3a7a2d4895ed8716d37ce14d0f34721c13799b40ce77",
       "url": "index.html",
       "inputs": [
         "site/content/pages/index/about.json",
@@ -44,7 +44,7 @@
         "publication-07",
         "publication-08"
       ],
-      "snapshotSHA": "3bbfc28cc214954146a94511e03e03c54f52c7790f19aac4294b43dbb86c892a"
+      "snapshotSHA": "39f0b2d034a74b774970bd724f37f3497b41d57b5ae00049422ef1103530c723"
     },
     "research": {
       "version": "063c41bb7740e67639a82e1007e6e815d02ef06af5498d341253d27d6a266bcc",
@@ -71,7 +71,7 @@
       "snapshotSHA": "85e3297ca1dc06e7e440bad329a949c15b6cf86ec6f6055dabcff6e4962e4879"
     },
     "writing": {
-      "version": "69ec497074dcb24e72e4b65388ade06b0e41b423de7d04275d31d56db1b7955f",
+      "version": "f91a65823dadb76905ea76d44963a6e00d6975d78595691089e87b7d06daba1d",
       "url": "writing.html",
       "inputs": [
         "site/content/pages/writing/main.json",
@@ -115,7 +115,7 @@
       "assets": [
         "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
       ],
-      "snapshotSHA": "1ee3343a8cbda044cd742a7ad984be1aed5f89d67842b2796a1b9a562be665c5"
+      "snapshotSHA": "1afd3c46fff139a8a3a2a9f38e4b2486bd7b32dff3693ccdb5522affc2bbfe83"
     },
     "talks": {
       "version": "7f618e0305ac02eb6cfa41abdc860ca324be7fff41a8a412f4865957768b0f96",
@@ -152,12 +152,14 @@
   },
   "articles": {
     "agentic-loops:en": {
-      "version": "2b91db0c8746fe58c212514b97485d2c672d78b4a8948cedf098d0bc6366583e",
+      "version": "20701000bf4079c84abf95edcd7ed09b0ff1246698c26177ad857b8cdd83ca02",
       "url": "articles/agentic-loops.html",
-      "snapshot": "article-snapshots/2b91db0c8746fe58c212514b97485d2c672d78b4a8948cedf098d0bc6366583e/agentic-loops.html",
-      "sha256": "138a89d605ba9521b95fea2ddd60250fbd7865bd86d0c5f17be6280b1a09a984",
+      "snapshot": "article-snapshots/20701000bf4079c84abf95edcd7ed09b0ff1246698c26177ad857b8cdd83ca02/agentic-loops.html",
+      "sha256": "34e73bcf427c400b09a64757994a96653a806cca607ec1a560e49fccbe14cf3d",
       "inputs": [
-        "site/publications/agentic-loops/editions/agentic-loops-en-20260610.json",
+        "site/assets/publications/agentic-loops/cover-web.jpg",
+        "site/assets/publications/agentic-loops/cover.png",
+        "site/publications/agentic-loops/editions/agentic-loops-en-20261116-cover.json",
         "site/publications/agentic-loops/launch-post.en.md",
         "site/publications/agentic-loops/manuscript.en.md",
         "site/publications/agentic-loops/profile.json",
@@ -167,13 +169,22 @@
         "site/templates/pages/article.html"
       ],
       "assets": [
+        "article-media/5f8490fc28edf22e1a224c2adc10f6aa814d091ce620c059e86e4a64c7843360/cover.jpg",
+        "article-media/fe4ca5dc397894e9c267484abb9606022abfdb6ab31560ce988efddf21c4438d/cover-social.jpg",
         "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
       ],
+      "socialImage": {
+        "file": "article-media/fe4ca5dc397894e9c267484abb9606022abfdb6ab31560ce988efddf21c4438d/cover-social.jpg",
+        "type": "image/jpeg",
+        "width": 1200,
+        "height": 630,
+        "alt": "A network of recursive AI agents sits beside a control panel for policies, guardrails, oversight, and circuit breakers."
+      },
       "candidate": false,
       "articleId": "agentic-loops",
-      "contentEdition": "agentic-loops-en-20260610",
-      "sourceSha256": "a96002dff52da4742b06440a5fb365050588483f042097b104dcc3eb05b59224",
-      "semanticSha256": "e531919afdf8f3870c56f4dc16429bf57255bb29f19c791433d466908ece9ad1"
+      "contentEdition": "agentic-loops-en-20261116-cover",
+      "sourceSha256": "b2d57d1a321189a861e270cd8007ac9c38ca9638bae4b496ae143f0425829461",
+      "semanticSha256": "8a2dab5636e1884993642a1b9ea30b0351cd9d3f9347cf30137daea660afc379"
     },
     "ai-cost-cutting-fallacy:en": {
       "version": "80a86ace7ee9e25063784908ef684c8638fcb18177075a3f0b9bdf159c223511",
@@ -426,20 +437,22 @@
     }
   },
   "files": {
-    "index.html": "8cfee8c583613e2edaaf01ada1b933a8dd1a678ab837c83eaa43346a7a0147ec",
-    "snapshots/1994cb63a2304644dfc60d822d0b417ed454d2e6b616f3740693dc2cd8db40e8/index.html": "3bbfc28cc214954146a94511e03e03c54f52c7790f19aac4294b43dbb86c892a",
+    "index.html": "f5ceb811424221b921da545af34194ea6b5479c563c6d03113c40653928b7eae",
+    "snapshots/7393e0cae18dbd2d603c3a7a2d4895ed8716d37ce14d0f34721c13799b40ce77/index.html": "39f0b2d034a74b774970bd724f37f3497b41d57b5ae00049422ef1103530c723",
     "article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618/research-fallback.svg": "1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618",
     "research.html": "1468a86a11ae26c957b3812bf845f1d893cc539034e261b35e35d2dc1ec3216d",
     "snapshots/063c41bb7740e67639a82e1007e6e815d02ef06af5498d341253d27d6a266bcc/research.html": "85e3297ca1dc06e7e440bad329a949c15b6cf86ec6f6055dabcff6e4962e4879",
     "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg": "2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16",
-    "writing.html": "faf74bc72791ea4268e2651c3b3af70538f4d2fd5f7b83d1f435d2b5cd795d83",
-    "snapshots/69ec497074dcb24e72e4b65388ade06b0e41b423de7d04275d31d56db1b7955f/writing.html": "1ee3343a8cbda044cd742a7ad984be1aed5f89d67842b2796a1b9a562be665c5",
+    "writing.html": "fc5ba055ce5c6400b8d489d6b23ed0daec4ecb5abd3d83578ed82a5f0b30ba61",
+    "snapshots/f91a65823dadb76905ea76d44963a6e00d6975d78595691089e87b7d06daba1d/writing.html": "1afd3c46fff139a8a3a2a9f38e4b2486bd7b32dff3693ccdb5522affc2bbfe83",
     "talks.html": "19ddda791805f86f0d9285e6c8fbf663dbe58c2f88650acb8abbdf4f1630db39",
     "snapshots/7f618e0305ac02eb6cfa41abdc860ca324be7fff41a8a412f4865957768b0f96/talks.html": "4ee8298227665f124f4e099414c9e0ac98d9e4effcf53a0a90a0a247fb83efdc",
     "credits.html": "2de013c73a9a4ea89db73d1a9e21f94acf19bc91b3e5ded9465d9134d5079eae",
     "snapshots/7350d35a971a5dde5f0347c6de21431cfb6a3d033f5b24edb1dc9fba91009ab8/credits.html": "6de01e8fb2b06c88fbb9b5cf25a2fb51ecb381b268d799fe8a8034cf139e64b0",
-    "articles/agentic-loops.html": "b1029d675a9e80d426bae9d86e4c7778ea8f6d78ea623faa1a747089e8a43034",
-    "article-snapshots/2b91db0c8746fe58c212514b97485d2c672d78b4a8948cedf098d0bc6366583e/agentic-loops.html": "138a89d605ba9521b95fea2ddd60250fbd7865bd86d0c5f17be6280b1a09a984",
+    "articles/agentic-loops.html": "29c3c2b3f73fafa19d387ce8402691f407ae25ae54b01c97dcf60c0982aa6737",
+    "article-snapshots/20701000bf4079c84abf95edcd7ed09b0ff1246698c26177ad857b8cdd83ca02/agentic-loops.html": "34e73bcf427c400b09a64757994a96653a806cca607ec1a560e49fccbe14cf3d",
+    "article-media/5f8490fc28edf22e1a224c2adc10f6aa814d091ce620c059e86e4a64c7843360/cover.jpg": "5f8490fc28edf22e1a224c2adc10f6aa814d091ce620c059e86e4a64c7843360",
+    "article-media/fe4ca5dc397894e9c267484abb9606022abfdb6ab31560ce988efddf21c4438d/cover-social.jpg": "fe4ca5dc397894e9c267484abb9606022abfdb6ab31560ce988efddf21c4438d",
     "articles/ai-cost-cutting-fallacy.html": "12c9f42762c2f0741eb75390e542dd77a0c55e26843e803d315faa7ad28f5d37",
     "article-snapshots/80a86ace7ee9e25063784908ef684c8638fcb18177075a3f0b9bdf159c223511/ai-cost-cutting-fallacy.html": "46150ba802ac7e9608539ebe09d0fd1ea81cee62add8ba8f6e349414385e10da",
     "article-media/6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168/cover.jpg": "6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168",
@@ -554,6 +567,6 @@
     "runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/space.js": "7812c824ce3dac0d5d36f40788c65ca66cc553e5a0287850a24a499a02d4eab4",
     "runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/archive.js": "bf1b9e42356b282f3c08f7763a7a59263241c752df5dd9ee776a6b0bf86b0caa",
     "runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/navigation.js": "9d074333c9731e08a801e8f7ba418c645ef8c9e54d912a666912640e36e1a292",
-    "site-revision.json": "858db5638773117cf99dc9503fc9e0b5586ee4a31a4a2adc3c0fdf3717221a8c"
+    "site-revision.json": "ca89b70b7cb5d886c9d31e67df32783f780348c901cc8c309332060c36314217"
   }
 }

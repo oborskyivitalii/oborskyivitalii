@@ -19,12 +19,12 @@
     "vitalii-oborskyi-cutout.webp",
     "writing-paradigm.svg"
   ],
-  "content": "2ab237555a67e80900454bb2311c656bff298785256f1fe1363ae1e9753ca36b",
+  "content": "d47f3abb1eb4ce6decbaffc653dd4962e655b55430c11e93ca220ad885b5c717",
   "routes": {
     "index": {
-      "version": "1994cb63a2304644dfc60d822d0b417ed454d2e6b616f3740693dc2cd8db40e8",
-      "url": "snapshots/1994cb63a2304644dfc60d822d0b417ed454d2e6b616f3740693dc2cd8db40e8/index.html",
-      "sha256": "3bbfc28cc214954146a94511e03e03c54f52c7790f19aac4294b43dbb86c892a"
+      "version": "7393e0cae18dbd2d603c3a7a2d4895ed8716d37ce14d0f34721c13799b40ce77",
+      "url": "snapshots/7393e0cae18dbd2d603c3a7a2d4895ed8716d37ce14d0f34721c13799b40ce77/index.html",
+      "sha256": "39f0b2d034a74b774970bd724f37f3497b41d57b5ae00049422ef1103530c723"
     },
     "research": {
       "version": "063c41bb7740e67639a82e1007e6e815d02ef06af5498d341253d27d6a266bcc",
@@ -35,9 +35,9 @@
       ]
     },
     "writing": {
-      "version": "69ec497074dcb24e72e4b65388ade06b0e41b423de7d04275d31d56db1b7955f",
-      "url": "snapshots/69ec497074dcb24e72e4b65388ade06b0e41b423de7d04275d31d56db1b7955f/writing.html",
-      "sha256": "1ee3343a8cbda044cd742a7ad984be1aed5f89d67842b2796a1b9a562be665c5",
+      "version": "f91a65823dadb76905ea76d44963a6e00d6975d78595691089e87b7d06daba1d",
+      "url": "snapshots/f91a65823dadb76905ea76d44963a6e00d6975d78595691089e87b7d06daba1d/writing.html",
+      "sha256": "1afd3c46fff139a8a3a2a9f38e4b2486bd7b32dff3693ccdb5522affc2bbfe83",
       "assets": [
         "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
       ]
@@ -55,19 +55,28 @@
   },
   "articles": {
     "agentic-loops:en": {
-      "version": "2b91db0c8746fe58c212514b97485d2c672d78b4a8948cedf098d0bc6366583e",
-      "url": "article-snapshots/2b91db0c8746fe58c212514b97485d2c672d78b4a8948cedf098d0bc6366583e/agentic-loops.html",
-      "sha256": "138a89d605ba9521b95fea2ddd60250fbd7865bd86d0c5f17be6280b1a09a984",
+      "version": "20701000bf4079c84abf95edcd7ed09b0ff1246698c26177ad857b8cdd83ca02",
+      "url": "article-snapshots/20701000bf4079c84abf95edcd7ed09b0ff1246698c26177ad857b8cdd83ca02/agentic-loops.html",
+      "sha256": "34e73bcf427c400b09a64757994a96653a806cca607ec1a560e49fccbe14cf3d",
       "alias": "articles/agentic-loops.html",
       "scene": "writing",
       "assets": [
+        "article-media/5f8490fc28edf22e1a224c2adc10f6aa814d091ce620c059e86e4a64c7843360/cover.jpg",
+        "article-media/fe4ca5dc397894e9c267484abb9606022abfdb6ab31560ce988efddf21c4438d/cover-social.jpg",
         "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
       ],
+      "socialImage": {
+        "file": "article-media/fe4ca5dc397894e9c267484abb9606022abfdb6ab31560ce988efddf21c4438d/cover-social.jpg",
+        "type": "image/jpeg",
+        "width": 1200,
+        "height": 630,
+        "alt": "A network of recursive AI agents sits beside a control panel for policies, guardrails, oversight, and circuit breakers."
+      },
       "candidate": false,
       "articleId": "agentic-loops",
-      "contentEdition": "agentic-loops-en-20260610",
-      "sourceSha256": "a96002dff52da4742b06440a5fb365050588483f042097b104dcc3eb05b59224",
-      "semanticSha256": "e531919afdf8f3870c56f4dc16429bf57255bb29f19c791433d466908ece9ad1"
+      "contentEdition": "agentic-loops-en-20261116-cover",
+      "sourceSha256": "b2d57d1a321189a861e270cd8007ac9c38ca9638bae4b496ae143f0425829461",
+      "semanticSha256": "8a2dab5636e1884993642a1b9ea30b0351cd9d3f9347cf30137daea660afc379"
     },
     "ai-cost-cutting-fallacy:en": {
       "version": "80a86ace7ee9e25063784908ef684c8638fcb18177075a3f0b9bdf159c223511",

@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "id": "agentic-loops-en-20261116-cover",
+  "articleId": "agentic-loops",
+  "language": "en",
+  "kind": "full-article",
+  "source": {
+    "path": "manuscript.en.md",
+    "sha256": "b2d57d1a321189a861e270cd8007ac9c38ca9638bae4b496ae143f0425829461",
+    "commit": "74acaa00df8a57fb476ce7850c692c3349251f56",
+    "blob": "859dbd98421c2989e5732df27c3a374b9b8b48c8"
+  },
+  "owner": "site",
+  "derivation": null,
+  "rights": "accepted",
+  "semanticSha256": "8a2dab5636e1884993642a1b9ea30b0351cd9d3f9347cf30137daea660afc379"
+}

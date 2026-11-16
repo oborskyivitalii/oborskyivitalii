@@ -18,7 +18,7 @@
   },
   "status": "accepted",
   "source": "manuscript.en.md",
-  "edition": "agentic-loops-en-20260610",
+  "edition": "agentic-loops-en-20261116-cover",
   "rights": {
     "status": "accepted",
     "notice": "Vitalii Oborskyi. The original article text from the June 2026 LinkedIn edition is included on the author site under CC BY 4.0. Linked material retains its own terms.",
@@ -34,7 +34,18 @@
       "url": "https://www.linkedin.com/pulse/reinventing-control-theory-one-feature-time-fallacy-agentic-oborskyi-vkwve/"
     }
   ],
-  "assets": [],
+  "assets": [
+    {
+      "id": "cover",
+      "path": "site/assets/publications/agentic-loops/cover.png",
+      "sha256": "dc50371b8287d45ee9b32404da989faa8f041986ffda413f71e0412d3bdcef5b",
+      "width": 1200,
+      "height": 674,
+      "alt": "A network of recursive AI agents sits beside a control panel for policies, guardrails, oversight, and circuit breakers.",
+      "caption": "The original cover from the June 2026 LinkedIn edition.",
+      "credit": "Cover image from the LinkedIn edition of Vitalii Oborskyi’s article."
+    }
+  ],
   "platforms": {
     "linkedin": {
       "mode": "equivalent-rendition"

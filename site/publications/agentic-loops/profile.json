@@ -31,14 +31,22 @@
   },
   "assets": {
     "cover": {
-      "omitReason": "The historical LinkedIn cover has no visible reuse credit. The Draft Preview uses the site share fallback while provenance is pending."
+      "id": "cover"
     },
     "hero": {
-      "omitReason": "The historical LinkedIn cover has no visible reuse credit. The Draft Preview uses the site share fallback while provenance is pending."
+      "id": "cover"
     }
   },
   "limits": {},
   "reader": {
-    "references": "inline"
+    "coverPlacement": "authored",
+    "references": "inline",
+    "images": "webp-lossless",
+    "equivalentImages": {
+      "cover": {
+        "path": "site/assets/publications/agentic-loops/cover-web.jpg",
+        "sha256": "5f8490fc28edf22e1a224c2adc10f6aa814d091ce620c059e86e4a64c7843360"
+      }
+    }
   }
 }
