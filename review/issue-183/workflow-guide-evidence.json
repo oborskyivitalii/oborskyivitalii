@@ -1,6 +1,6 @@
 {
   "base_sha": "d37d099b519536e042cdbb261dbbbc5e2cbce7c5",
-  "scope_sha256": "67153a81c4a349912453036f08d6a97ddfa04124a73595c88ac5202820885a39",
+  "scope_sha256": "bb46585d98feed9784fad28f1397779e7074963c5aed7d3f1004c756a17d9e6a",
   "paths": [
     ".github/REPOSITORY-INTELLIGENCE.md",
     "guides/ARTICLE-WORKFLOW.md",
@@ -18,5 +18,5 @@
     "Keeping this guide current"
   ],
   "rationale": "The guide already covers full RI indexing, build-time ownership, release artifact trust and the full route for mixed website and control effects. The one shared publication archive, its RI capacity, and exact security finding dispositions belong in the guide's linked lower-level owners. The owner staging and exact-head change admission route remain applicable.",
-  "reviewer_execution": "/root/preview_fix_review; explicit fork_turns=none; reviewed 67cc7185fc91ccffab90fe3e2f034a1a7f014ea2, tree 157c99f085972fd07bd7e86565a5f249575ca342, against d37d099b519536e042cdbb261dbbbc5e2cbce7c5. Common prompt blob 68796daaf4313f64da381b1628866267fd9e263b; Code Reviewer prompt blob 2363340a1eaae62fdbd3ab070fda5c6436ec8124."
+  "reviewer_execution": "/root/format_receipt_review; explicit fork_turns=none; reviewed 2f06ae992af53fb1b701296b9befc23ca67b9e27, tree 96a1dddc3cb9c97c7e7bbaefb0d9fc18b73de07d, against d37d099b519536e042cdbb261dbbbc5e2cbce7c5. Common prompt blob 68796daaf4313f64da381b1628866267fd9e263b; Code Reviewer prompt blob 2363340a1eaae62fdbd3ab070fda5c6436ec8124."
 }

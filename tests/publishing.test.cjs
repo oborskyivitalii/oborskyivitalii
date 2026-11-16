@@ -1658,7 +1658,10 @@ test('canonical and actual dates require an exact committed artifact and product
     };
     assert.ok(validateEvent(root, directory, sharedEvent).includes(sharedManifestPath));
     write(root, `${sharedRoot}/files/999`, html);
-    assert.throws(() => validateEvent(root, directory, sharedEvent), /Invalid site evidence member/);
+    assert.throws(
+      () => validateEvent(root, directory, sharedEvent),
+      /Invalid site evidence member/
+    );
     fs.rmSync(path.join(root, sharedRoot, 'files/999'));
     const snapshot = String(memberFiles.indexOf(descriptor.url)).padStart(3, '0');
     write(root, `${sharedRoot}/files/${snapshot}`, html);

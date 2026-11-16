@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "bcd2fb49e06f03a667e8a7b2722a5ac0d9cff1286ff0d01e89faabe03dba2c2a",
+    "digest": "255c41d5f4a1a24d50fdea6d69e6470d795094381b5fa96ed8ab7f2d7a5ca3d3",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -276,7 +276,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "0ea8b7114eb6a3c877c24cdbe5328ba7846e6a4b66daa1dac9537b560a0e9796"
+        "sha256": "388032a83e4586ccd0454e5110432c689e3b530feba835052e611f19546bf736"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -5165,7 +5165,7 @@
       {
         "path": "review/issue-183/2026-11-16-publication-closeout.md",
         "identity_mode": "content",
-        "sha256": "13587c1d6eb1d83c9c5cc3d544fd11d7f4c6e6e5e1caa12f1005d4ca6bc70a6f"
+        "sha256": "70030cb15d0a0a88ceba321521b2dd1788ebb69a0d739b16fb4403ca8e602677"
       },
       {
         "path": "review/issue-183/2026-11-16-staging-controller.md",
@@ -5175,7 +5175,7 @@
       {
         "path": "review/issue-183/workflow-guide-evidence.json",
         "identity_mode": "content",
-        "sha256": "f436b11e1316de77473036ef6a128cbd26cd03a5e33d634a83a89465aa604492"
+        "sha256": "83db3522ce3578ae4fb872d58e7012a5d46c7ca205c344411b476b926bcb48ec"
       },
       {
         "path": "review/issue-184/2026-11-10-archive.md",
@@ -13595,7 +13595,7 @@
       {
         "path": "tests/publishing.test.cjs",
         "identity_mode": "content",
-        "sha256": "962d51f45c84e1470921f4bb0ca135f9447c112b2039552ab56c8adc2cc389c8"
+        "sha256": "014d170a9b4719426dfaaf005834c8c52f660c349c79fa18b9d6209f31369396"
       },
       {
         "path": "tests/quality-sources.test.cjs",
@@ -14610,7 +14610,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "0f359cbf890e755418eab233b5651e10cc38a85b0196bb76ae5b52dbeabcc5a8"
+        "sha256": "5fecbc9ad9d2f3c6ddd542efabeac7d196e8ea460587b1910f13f0d3ab223349"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
