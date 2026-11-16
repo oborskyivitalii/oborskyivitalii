@@ -407,8 +407,8 @@ required reading transfer. Source reconstruction verifies this classification;
 neither mode establishes editorial, rights or release acceptance.
 Hosted article HTML and snapshots are limited to 125,000 UTF-8 bytes. Ordinary
 rooms, other HTML and standalone export payloads retain the 100,000-byte limit.
-The browser’s enhanced navigation uses its existing 100,000-byte limit and
-opens a larger article as an ordinary page.
+Enhanced navigation uses the same hosted article limit and opens a larger
+article as an ordinary page. Embedded articles also retain the 100,000-byte limit.
 
 An article reading link to a platform edition of another cataloged native
 article follows that article's stable local alias. The effective link targets

@@ -20,6 +20,64 @@ const extractSource = source.slice(
 const cacheDocumentSource = source.match(/^ {2}const cacheDocument = .+$/m)[0];
 const finishSource = source.match(/^ {2}function finishText\s*\(\s*\)\s*\{[\s\S]*?^ {2}\}/m)[0];
 
+test('snapshot admission applies the matching byte limit to each reader and room', async () => {
+  const { articleHtmlRawBytes, htmlRawBytes } = require('../tools/quality/budgets.json');
+  const { createHash } = require('node:crypto');
+  const sha = (value) => createHash('sha256').update(value).digest('hex');
+  const article = 'article:sample:en';
+  const directory = new URL('https://author.invalid/');
+  const start = source.indexOf('  async function read(next, signal)');
+  const end = source.indexOf('  function clearText()', start);
+  const readSource = source.slice(start, end);
+  for (const { next, limit, embedded } of [
+    { next: article, limit: articleHtmlRawBytes, embedded: false },
+    { next: 'writing', limit: htmlRawBytes, embedded: false },
+    { next: article, limit: htmlRawBytes, embedded: true },
+  ]) {
+    for (const [size, validDigest, accepted] of [
+      [limit, true, true],
+      [limit + 1, true, false],
+      [limit, false, false],
+    ]) {
+      const html = 'x' + 'ї'.repeat(Math.floor((size - 1) / 2)) + (size % 2 ? '' : 'x');
+      assert.equal(Buffer.byteLength(html), size);
+      const descriptor = {
+        url: 'snapshot.html',
+        sha256: sha(validDigest ? html : ''),
+        version: 'fixture',
+      };
+      const read = vm.runInNewContext(`${readSource}; read`, {
+        pin: async () => {},
+        verifyEmbeddedAssets: async () => {},
+        hydrateEmbeddedImages: () => {},
+        embedded: embedded ? { pages: { [next]: html } } : null,
+        cache: new Map(),
+        pinned: { articles: { 'sample:en': descriptor }, routes: { writing: descriptor } },
+        fetch: async (url) => ({
+          ok: true,
+          url: url.href,
+          headers: { get: () => 'text/html' },
+          text: async () => html,
+        }),
+        matchesBytes: async (value, digest) => sha(value) === digest,
+        DOMParser: class {
+          parseFromString(value) {
+            return value;
+          }
+        },
+        extract: (value) => ({ page: next, engine: 'fixture', version: 'fixture', value }),
+        shellEngine: 'fixture',
+        directory,
+        entry: directory,
+        URL,
+        TextEncoder,
+      });
+      if (accepted) assert.equal((await read(next)).value, html);
+      else await assert.rejects(read(next), /document bytes changed|Snapshot bytes changed/);
+    }
+  }
+});
+
 test('footer links share native and embedded destination rules with the router', () => {
   const { installEndScroll } = require('../site/effects/flight.cjs');
   const effect = installEndScroll.toString();

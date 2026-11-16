@@ -878,7 +878,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "a87912ed47755c5802402cfa5dc4ad98f130fe8b4d9c1bfc95c067a61216b618",
+    "digest": "3f4375e351760035d0a5c0d2cad7d0eb3ef46690a349b9ec746fad721d79596b",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -1066,7 +1066,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "35f44d935f0221da011d7a213e32d809b55ed1b41e79c355fb9b9bae52933021"
+        "sha256": "5f292cceab6b75bac0d4fcc9489a31dd80f6bed98febf082c2757f7fe315e4e4"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -1218,7 +1218,7 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "8c8f1c1e9153ca5089effc909b07dce92b13f702d7d72101014430a1c7b9a8cc"
+        "sha256": "d8a8626fc615c4bd0e5933dc6212b91cb12c7298c40a274b3fd35358decc5d4d"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",

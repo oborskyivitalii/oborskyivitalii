@@ -3,19 +3,19 @@
   "components": {
     "contract": 1,
     "variant": "48153b94fbae4f314eaa11b156df8a20227dec429abfee9e45c14fda4a1f1b2a",
-    "producer": "5fa8d32289993bf5ed06ba8a225850e31669784a178533c01c46e32796b8b2f9",
-    "engine": "a4b63eb370089b5fdce4576ba9984d05400c9f2bbbd305392d68c299f351a562",
+    "producer": "2878843c90d89695759fb2380511181fe69eddbb10445136f70daeb698b6c90f",
+    "engine": "0e137493b3d979a27f9722dbd21ef973b7c3ef9d0fac0ccbd6d02d1741f1f2ee",
     "scenes": "0375c50289484250c0d44f693b1f9e3fb20ad4085701d09a1449c46403a0b1f7",
     "assets": "9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc",
     "templates": "2d48c3988e02ce43c64da961d5cca4630661ee1fd6ebfb42b1fd4470e1b99d4f",
     "pageTemplates": "d998ab61e5ee71a45aa6f6e06e803a76682531d8c3a6ff5d920ffb5f0ac69085",
     "analytics": "8f02994eb920830068beb0b634fba588dbad885cd8d2b5971d611b839c2ff418",
     "routes": "d6caa59aa69462f83115642a602aea669f48316765b487c09b01f721c933c7fe",
-    "client": "27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c"
+    "client": "97208ee3d165d8585186561ca50d2fdebe8ca0831c3fc6b7a7414a43e5f18aab"
   },
   "routes": {
     "index": {
-      "version": "a83bda31d0798c6c42d10ce18c7ff45c1e18ef4fa9db969352ce14c02d3e2d04",
+      "version": "1faa32fce7ea04a58c347ad1a54ed18a61e717b29034fefda3a0dea4433a69c7",
       "url": "index.html",
       "inputs": [
         "site/content/pages/index/about.json",
@@ -44,10 +44,10 @@
         "publication-07",
         "publication-08"
       ],
-      "snapshotSHA": "1a69b616a5ba647d6249f1e9340211255340c21a0a874638335a3ba8b0e04755"
+      "snapshotSHA": "69da177acdac9f3125a723cfc99fa3801fb0e97d21c0c08da57bc0602090cf28"
     },
     "research": {
-      "version": "bb1535cffcb0af3da3d967f32852f8b5dce6f50da53f145e404a3e99bcb6cea4",
+      "version": "bf548e1ed84e7c1495ae1edae4e44d42d9fabbe79d511537ddef45484c2ec90f",
       "url": "research.html",
       "inputs": [
         "site/content/pages/research/acknowledgements.json",
@@ -68,10 +68,10 @@
       "assets": [
         "article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618/research-fallback.svg"
       ],
-      "snapshotSHA": "1ca3ab47b0de61def122a271c91ffe0b9bee1b8e0b2dac8d45d5f34fc2767509"
+      "snapshotSHA": "cd74fba3458f546866ded2ecf48c048e4b67cace1914d562fab6f694c41c38f2"
     },
     "writing": {
-      "version": "ee8289a5e4271e238a15cda73cead81334d4d4e67f077c1caecca90b790b70cb",
+      "version": "d2820a46c05eddccde6340f8056cbb26f25192df2a62adaa1fff913bb49cc208",
       "url": "writing.html",
       "inputs": [
         "site/content/pages/writing/main.json",
@@ -115,10 +115,10 @@
       "assets": [
         "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
       ],
-      "snapshotSHA": "a67ec7246f393ae4f1c8aabbd20bca87bf50854fd3035c09bb3d89c8e7ee364e"
+      "snapshotSHA": "e0ad6b4faba2426753e2c1ea14cd2ea848b8968bdc0c9c7609f10fb4f780e3a5"
     },
     "talks": {
-      "version": "1b4faf0ee30df2e6da28ab50b620e96bd5aada52bc77a2d232ad9711f8e97494",
+      "version": "02221bbd946018826d9961d63f76eb69b6e1845461aa1fa6b70b865a5b53cf9d",
       "url": "talks.html",
       "inputs": [
         "site/content/events.json",
@@ -131,10 +131,10 @@
         "site/templates/pages/talks/talks.html"
       ],
       "records": [],
-      "snapshotSHA": "6308d171c16fdd8325e4019e4f1245f659cb8c665e10905e53a7a2c681c2dfb6"
+      "snapshotSHA": "6ddd1f7f94f5f9258ba5060ac52f4c5797de6922f18ba3011e94331c20364612"
     },
     "credits": {
-      "version": "556552e892b4887bf4e1180165a3b5aed74f231c37ee541b4d2ce54df8524d74",
+      "version": "1bcfd8cfc09f88247b5e56831a40efcbdc1fb337262bc2f43230aac511bb2fbc",
       "url": "credits.html",
       "inputs": [
         "LICENSE-CODE.md",
@@ -147,15 +147,15 @@
         "site/templates/pages/credits/main.html"
       ],
       "records": [],
-      "snapshotSHA": "9ac1e7513a3b395952d9b35d3e7a05bba616d706b3e29ccc7a7f2562ca4781e3"
+      "snapshotSHA": "4d7ee1c5b1c443ebd9951c47fe66b4634fde19d14d8c16e186afa171490bc6bc"
     }
   },
   "articles": {
     "agentic-loops:en": {
-      "version": "87851ddda10a8ec44885547c0ab6aea436b30400a88067dfb08a61b4112d2180",
+      "version": "30b76293ffe605ea3ac5247e5557ff45b55a1e3a54833eb62e59bb7891be2e13",
       "url": "articles/agentic-loops.html",
-      "snapshot": "article-snapshots/87851ddda10a8ec44885547c0ab6aea436b30400a88067dfb08a61b4112d2180/agentic-loops.html",
-      "sha256": "ed614746b9cf17234283a5ae3299ec6cdeab0a5e2ce0be71e5bcada63578181e",
+      "snapshot": "article-snapshots/30b76293ffe605ea3ac5247e5557ff45b55a1e3a54833eb62e59bb7891be2e13/agentic-loops.html",
+      "sha256": "f91733e2f4225a92d2b9c4af2d64d9343fa574acf4f22b3bf76410ba5f09c38a",
       "inputs": [
         "site/assets/publications/agentic-loops/cover-web.jpg",
         "site/assets/publications/agentic-loops/cover.png",
@@ -187,10 +187,10 @@
       "semanticSha256": "0ca679688b4af36115aeede5ffcc9dff8e54e9789badef48b58e582464b2fd25"
     },
     "ai-cost-cutting-fallacy:en": {
-      "version": "9d9a333441c7d4b7c80f963c4d9be667c1861bfad05ae2005ca5f94540e11f15",
+      "version": "e6f678a69e609e924eeab09c77c6bfbf0b432f94b23456a9614da092357c3496",
       "url": "articles/ai-cost-cutting-fallacy.html",
-      "snapshot": "article-snapshots/9d9a333441c7d4b7c80f963c4d9be667c1861bfad05ae2005ca5f94540e11f15/ai-cost-cutting-fallacy.html",
-      "sha256": "2a1fc4e7fc758f7310bdd93c78f583e351a0037ab75aa4a783e9e4d45641b059",
+      "snapshot": "article-snapshots/e6f678a69e609e924eeab09c77c6bfbf0b432f94b23456a9614da092357c3496/ai-cost-cutting-fallacy.html",
+      "sha256": "9b9c5533fbba4b4c8f9e88b6684b53fd49d9ebfa42c3e4cfc62dbda5c25eaf9e",
       "inputs": [
         "site/assets/publications/ai-cost-cutting-fallacy/cover-web.jpg",
         "site/assets/publications/ai-cost-cutting-fallacy/cover.png",
@@ -224,10 +224,10 @@
       "semanticSha256": "4ed71f26ff7b7eed3b58abd910f89af3e3cab69a75853e486491b384e9279dd2"
     },
     "ai-governance-is-control-theory:en": {
-      "version": "234f298c644fcb2cfb8685a62b692127afeccfb6b31788b2bd2c7756288a8477",
+      "version": "b393dd130a855c84ac828433b96c75b964c35199391753299754496c387ef934",
       "url": "articles/ai-governance-is-control-theory.html",
-      "snapshot": "article-snapshots/234f298c644fcb2cfb8685a62b692127afeccfb6b31788b2bd2c7756288a8477/ai-governance-is-control-theory.html",
-      "sha256": "beae0836386f2c53dc7d4b21efcdf31391ee1e532bb5a1873a8818fc73f31c05",
+      "snapshot": "article-snapshots/b393dd130a855c84ac828433b96c75b964c35199391753299754496c387ef934/ai-governance-is-control-theory.html",
+      "sha256": "08009e19beeb6d21045f7727e3846a1afc087f56c6577d39dc0616291464ce45",
       "inputs": [
         "site/assets/publications/ai-governance-is-control-theory/cover-web.jpg",
         "site/assets/publications/ai-governance-is-control-theory/cover.png",
@@ -261,10 +261,10 @@
       "semanticSha256": "dc71ab3e09a044a3b2a06f0b787c244c182440540ad236b6fd881a28560b08b7"
     },
     "ai-native-workflows-have-a-moat-problem:en": {
-      "version": "616ec1ab591058038fbd630acd02950529574760968900c250f9402f41922be4",
+      "version": "4af6ee7c346bf356616e480690235e3d28483557ce1c11031da7ea83342bc951",
       "url": "articles/ai-native-workflows-have-a-moat-problem.html",
-      "snapshot": "article-snapshots/616ec1ab591058038fbd630acd02950529574760968900c250f9402f41922be4/ai-native-workflows-have-a-moat-problem.html",
-      "sha256": "9c7dfac168dd472e50d3a060bd53bd88924c80184b6facca207a10cafc609605",
+      "snapshot": "article-snapshots/4af6ee7c346bf356616e480690235e3d28483557ce1c11031da7ea83342bc951/ai-native-workflows-have-a-moat-problem.html",
+      "sha256": "fa4520167ebfe8e8fa314da71b762c196688475a50dd585f6b209991bd5f41a5",
       "inputs": [
         "site/assets/publications/ai-native-workflows-have-a-moat-problem/cover-web.jpg",
         "site/assets/publications/ai-native-workflows-have-a-moat-problem/cover.png",
@@ -296,10 +296,10 @@
       "semanticSha256": "826eefa5066c237e7880d4d4e7faa2058e3f2b4676f13e1a108e18964082d3ba"
     },
     "ai-verification-crisis:en": {
-      "version": "50d68b2fb818bf40da611839b8035a78073c5f8263f83e903c4eaf636484eb48",
+      "version": "5837075e0dbb1d958e3499ecf99ee451668d2749047ba31f38c425b2656939c9",
       "url": "articles/ai-verification-crisis.html",
-      "snapshot": "article-snapshots/50d68b2fb818bf40da611839b8035a78073c5f8263f83e903c4eaf636484eb48/ai-verification-crisis.html",
-      "sha256": "974014b3892c86e098caf8986a2b40dd13950cf8f4e5ee043525a84624eac62f",
+      "snapshot": "article-snapshots/5837075e0dbb1d958e3499ecf99ee451668d2749047ba31f38c425b2656939c9/ai-verification-crisis.html",
+      "sha256": "c9c47494000b068fa91aed0c3bceaf34348835f332b97e2fcf1da4ad9bbebc2f",
       "inputs": [
         "site/assets/publications/ai-verification-crisis/cover-web.jpg",
         "site/assets/publications/ai-verification-crisis/cover.png",
@@ -331,10 +331,10 @@
       "semanticSha256": "c6e24cf57bd271f2ab7bc2692219502da15af65bdc293f057702361fca8fee84"
     },
     "beyond-embeddings:en": {
-      "version": "59e532f2ab552eae81c06fcf97392352ffc26f7d6a02d170fac297c267a23116",
+      "version": "eb3c5be11f181898437aef94434047bf9342dec9a6864cac9af01c59dd9ce213",
       "url": "articles/beyond-embeddings.html",
-      "snapshot": "article-snapshots/59e532f2ab552eae81c06fcf97392352ffc26f7d6a02d170fac297c267a23116/beyond-embeddings.html",
-      "sha256": "bba3bb1bd6f98851aa5351031854ee4b714d44b3ed6f2241645e7efddbc34ffc",
+      "snapshot": "article-snapshots/eb3c5be11f181898437aef94434047bf9342dec9a6864cac9af01c59dd9ce213/beyond-embeddings.html",
+      "sha256": "21950b360f81b9e624c04ec67dfd4fcd5a262f8e6f26665470656d711be86f78",
       "inputs": [
         "site/assets/publications/beyond-embeddings/circuit-breaker.png",
         "site/assets/publications/beyond-embeddings/control-boundary.png",
@@ -386,10 +386,10 @@
       "semanticSha256": "524b7e63dd2df3a1732a2ae14300a73c179d4302443699437e79355c5604d666"
     },
     "sdlc-out-of-balance:en": {
-      "version": "18935ad04ba7ff2a477b3e707e079e0c90eced299cdbc7ac2e08619e9d279265",
+      "version": "3ecf4cfe0eb857fc7940abc0280a1035f76a5a8ea47ac67e8c2f7d7fa2888065",
       "url": "articles/the-sdlc-is-out-of-balance.html",
-      "snapshot": "article-snapshots/18935ad04ba7ff2a477b3e707e079e0c90eced299cdbc7ac2e08619e9d279265/the-sdlc-is-out-of-balance.html",
-      "sha256": "1392a5d044f8f3f29b81a3768008814b747802642d25864939092fb468598427",
+      "snapshot": "article-snapshots/3ecf4cfe0eb857fc7940abc0280a1035f76a5a8ea47ac67e8c2f7d7fa2888065/the-sdlc-is-out-of-balance.html",
+      "sha256": "2a975704c469be457498a426fac9751801bf104024457481ba9253283f9b87a2",
       "inputs": [
         "site/assets/publications/sdlc-out-of-balance/asymmetry-r9.png",
         "site/assets/publications/sdlc-out-of-balance/comprehension-gap-r7.png",
@@ -438,10 +438,10 @@
       "semanticSha256": "10fdb9231098eb50c93e90ff1b073986a4c6756ea0f307feadf255012a820511"
     },
     "thinking-systems:en": {
-      "version": "9a94b54633b8a5851a7486634b0b8ba38efcc150af64ab56f85444c0e3b72c88",
+      "version": "5305e054243a52fa51cd4be5196338c58d30e3c7e9b3773a832b56fca238b19b",
       "url": "articles/thinking-systems.html",
-      "snapshot": "article-snapshots/9a94b54633b8a5851a7486634b0b8ba38efcc150af64ab56f85444c0e3b72c88/thinking-systems.html",
-      "sha256": "d812b247484f4c8c0ce9945403608b71897079cd40173e577c0f15e198759454",
+      "snapshot": "article-snapshots/5305e054243a52fa51cd4be5196338c58d30e3c7e9b3773a832b56fca238b19b/thinking-systems.html",
+      "sha256": "b296b29bf3120098a582995635995452c569b37814fe6fbbefc5504336bacdd2",
       "inputs": [
         "site/assets/publications/thinking-systems/cover-web.jpg",
         "site/assets/publications/thinking-systems/cover.png",
@@ -492,42 +492,42 @@
     }
   },
   "files": {
-    "index.html": "d03890fdaff5c94191b1f11b4576d3bae9f647c5a0cd161a699abb79a2c52397",
-    "snapshots/a83bda31d0798c6c42d10ce18c7ff45c1e18ef4fa9db969352ce14c02d3e2d04/index.html": "1a69b616a5ba647d6249f1e9340211255340c21a0a874638335a3ba8b0e04755",
+    "index.html": "d7b93d206012f01c53fd0e8899e9c5e5a55543062c70255178e2a1ce314129c6",
+    "snapshots/1faa32fce7ea04a58c347ad1a54ed18a61e717b29034fefda3a0dea4433a69c7/index.html": "69da177acdac9f3125a723cfc99fa3801fb0e97d21c0c08da57bc0602090cf28",
     "article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618/research-fallback.svg": "1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618",
-    "research.html": "16a648b8785760d7f7e3522edeb2af69f12c33077a66ac33573d49b04ec86b82",
-    "snapshots/bb1535cffcb0af3da3d967f32852f8b5dce6f50da53f145e404a3e99bcb6cea4/research.html": "1ca3ab47b0de61def122a271c91ffe0b9bee1b8e0b2dac8d45d5f34fc2767509",
+    "research.html": "d97d97f9bb829cd89958b99613c9ee3fcb6624627236b329e1735e252dbd7b16",
+    "snapshots/bf548e1ed84e7c1495ae1edae4e44d42d9fabbe79d511537ddef45484c2ec90f/research.html": "cd74fba3458f546866ded2ecf48c048e4b67cace1914d562fab6f694c41c38f2",
     "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg": "2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16",
-    "writing.html": "a3b88a318c6904c7567c279e8b5eb22400c75ab482032af5ba61aa428404ff47",
-    "snapshots/ee8289a5e4271e238a15cda73cead81334d4d4e67f077c1caecca90b790b70cb/writing.html": "a67ec7246f393ae4f1c8aabbd20bca87bf50854fd3035c09bb3d89c8e7ee364e",
-    "talks.html": "80d54c6848028e3d01b0a4beb761291c5dbb35403d0fd992648d8f8cbf9c3897",
-    "snapshots/1b4faf0ee30df2e6da28ab50b620e96bd5aada52bc77a2d232ad9711f8e97494/talks.html": "6308d171c16fdd8325e4019e4f1245f659cb8c665e10905e53a7a2c681c2dfb6",
-    "credits.html": "a16bb83b186d1c0088946f47835727e2c3486285428c465f2497dd0d022b6a65",
-    "snapshots/556552e892b4887bf4e1180165a3b5aed74f231c37ee541b4d2ce54df8524d74/credits.html": "9ac1e7513a3b395952d9b35d3e7a05bba616d706b3e29ccc7a7f2562ca4781e3",
-    "articles/agentic-loops.html": "12b0ae329da697761947393f4662dc49289ee109f4211345cb449ac104eb2ac1",
-    "article-snapshots/87851ddda10a8ec44885547c0ab6aea436b30400a88067dfb08a61b4112d2180/agentic-loops.html": "ed614746b9cf17234283a5ae3299ec6cdeab0a5e2ce0be71e5bcada63578181e",
+    "writing.html": "e13bedac0fd2499f266801171fad839b5118b37e5aebfa51bf70dbfac0712dc1",
+    "snapshots/d2820a46c05eddccde6340f8056cbb26f25192df2a62adaa1fff913bb49cc208/writing.html": "e0ad6b4faba2426753e2c1ea14cd2ea848b8968bdc0c9c7609f10fb4f780e3a5",
+    "talks.html": "e9046c8fb390c6eb094fa05baaa17564454ca1f37aad5c6f9c248f487b96b831",
+    "snapshots/02221bbd946018826d9961d63f76eb69b6e1845461aa1fa6b70b865a5b53cf9d/talks.html": "6ddd1f7f94f5f9258ba5060ac52f4c5797de6922f18ba3011e94331c20364612",
+    "credits.html": "9d57f828792d72489902050a410fd43e6ba35b4dd9aa98feeb0d929edcbe52c2",
+    "snapshots/1bcfd8cfc09f88247b5e56831a40efcbdc1fb337262bc2f43230aac511bb2fbc/credits.html": "4d7ee1c5b1c443ebd9951c47fe66b4634fde19d14d8c16e186afa171490bc6bc",
+    "articles/agentic-loops.html": "1b7a209ab4dbd3cd93d95805e1ae532dfa6334894df807e4b3ef41d163b17cff",
+    "article-snapshots/30b76293ffe605ea3ac5247e5557ff45b55a1e3a54833eb62e59bb7891be2e13/agentic-loops.html": "f91733e2f4225a92d2b9c4af2d64d9343fa574acf4f22b3bf76410ba5f09c38a",
     "article-media/5f8490fc28edf22e1a224c2adc10f6aa814d091ce620c059e86e4a64c7843360/cover.jpg": "5f8490fc28edf22e1a224c2adc10f6aa814d091ce620c059e86e4a64c7843360",
     "article-media/fe4ca5dc397894e9c267484abb9606022abfdb6ab31560ce988efddf21c4438d/cover-social.jpg": "fe4ca5dc397894e9c267484abb9606022abfdb6ab31560ce988efddf21c4438d",
-    "articles/ai-cost-cutting-fallacy.html": "db3f1a24d90b6b4975eaabcf4e80935cfcbe50c3a608f30e7626e786428a5e2f",
-    "article-snapshots/9d9a333441c7d4b7c80f963c4d9be667c1861bfad05ae2005ca5f94540e11f15/ai-cost-cutting-fallacy.html": "2a1fc4e7fc758f7310bdd93c78f583e351a0037ab75aa4a783e9e4d45641b059",
+    "articles/ai-cost-cutting-fallacy.html": "53cde5e6a7343825887a33856cc4106d4aeb456362e9e4e27210477508d98085",
+    "article-snapshots/e6f678a69e609e924eeab09c77c6bfbf0b432f94b23456a9614da092357c3496/ai-cost-cutting-fallacy.html": "9b9c5533fbba4b4c8f9e88b6684b53fd49d9ebfa42c3e4cfc62dbda5c25eaf9e",
     "article-media/6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168/cover.jpg": "6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168",
     "article-media/9e48e39e141a2775794af0f17a94275705d475ae4d3a97b327d9fdaf6992e0fa/transformation-j-curve.webp": "9e48e39e141a2775794af0f17a94275705d475ae4d3a97b327d9fdaf6992e0fa",
     "article-media/9acaf96c7008839610c8b9d3efdcb45a8046cde2c792f6f0dfe1951ba8a92048/cover-social.jpg": "9acaf96c7008839610c8b9d3efdcb45a8046cde2c792f6f0dfe1951ba8a92048",
-    "articles/ai-governance-is-control-theory.html": "3cfb57b581629c79991f2116dc5f1a56306b40930297e5bab4cbb498e60fa2cc",
-    "article-snapshots/234f298c644fcb2cfb8685a62b692127afeccfb6b31788b2bd2c7756288a8477/ai-governance-is-control-theory.html": "beae0836386f2c53dc7d4b21efcdf31391ee1e532bb5a1873a8818fc73f31c05",
+    "articles/ai-governance-is-control-theory.html": "425723caf698900d52eed961a2ebd3ea8a8e0120c55a647d6d1fb47991d33476",
+    "article-snapshots/b393dd130a855c84ac828433b96c75b964c35199391753299754496c387ef934/ai-governance-is-control-theory.html": "08009e19beeb6d21045f7727e3846a1afc087f56c6577d39dc0616291464ce45",
     "article-media/4fb99c0a32cfe808956a13bc2caaec71ed7adea83de79df4c5bfa08592d0b871/cover.jpg": "4fb99c0a32cfe808956a13bc2caaec71ed7adea83de79df4c5bfa08592d0b871",
     "article-media/29527faa8c99529dfa1a7beb3ea1068d4f93a9ba9a30d86b4a1f8eac30583c54/normal-distribution.webp": "29527faa8c99529dfa1a7beb3ea1068d4f93a9ba9a30d86b4a1f8eac30583c54",
     "article-media/d125ba3950bf0b8cd725d9197957a152ca404bff51c3cb87c9ee6460a8ddad88/cover-social.jpg": "d125ba3950bf0b8cd725d9197957a152ca404bff51c3cb87c9ee6460a8ddad88",
-    "articles/ai-native-workflows-have-a-moat-problem.html": "21899883b6727ef95ab099b0a354e4522e5a57aade2f9c044206159ad83c9b9b",
-    "article-snapshots/616ec1ab591058038fbd630acd02950529574760968900c250f9402f41922be4/ai-native-workflows-have-a-moat-problem.html": "9c7dfac168dd472e50d3a060bd53bd88924c80184b6facca207a10cafc609605",
+    "articles/ai-native-workflows-have-a-moat-problem.html": "c110cd803455807efafe87e6d0d262ec93e0af93197a5e68589887439a0e6dfb",
+    "article-snapshots/4af6ee7c346bf356616e480690235e3d28483557ce1c11031da7ea83342bc951/ai-native-workflows-have-a-moat-problem.html": "fa4520167ebfe8e8fa314da71b762c196688475a50dd585f6b209991bd5f41a5",
     "article-media/11b50b3b2a4dd035b4b975444d87a37ceed0e68d8c983f4acc3b57b9d7dc1833/cover.jpg": "11b50b3b2a4dd035b4b975444d87a37ceed0e68d8c983f4acc3b57b9d7dc1833",
     "article-media/3415712316948afcc30c00607f7f2fb475b2ca0939c108481bfdcd4fe3676a93/cover-social.jpg": "3415712316948afcc30c00607f7f2fb475b2ca0939c108481bfdcd4fe3676a93",
-    "articles/ai-verification-crisis.html": "d5d8600afc52c7be518ecd44d89e9d82544abd136a78b1babf5031f56712e96c",
-    "article-snapshots/50d68b2fb818bf40da611839b8035a78073c5f8263f83e903c4eaf636484eb48/ai-verification-crisis.html": "974014b3892c86e098caf8986a2b40dd13950cf8f4e5ee043525a84624eac62f",
+    "articles/ai-verification-crisis.html": "0de8403f89593a39b3d0500bc391cf25c196d022f0c0cc730e7fe09078edafde",
+    "article-snapshots/5837075e0dbb1d958e3499ecf99ee451668d2749047ba31f38c425b2656939c9/ai-verification-crisis.html": "c9c47494000b068fa91aed0c3bceaf34348835f332b97e2fcf1da4ad9bbebc2f",
     "article-media/2d4e237d21021bcb6c62b5ce9ab10daffc4e93b521a20f3b6a707a3531781739/cover.jpg": "2d4e237d21021bcb6c62b5ce9ab10daffc4e93b521a20f3b6a707a3531781739",
     "article-media/5ba399aa0ca2dc3e492e58292358870926fb5acd7fdd958c63e2e71541d6994d/cover-social.jpg": "5ba399aa0ca2dc3e492e58292358870926fb5acd7fdd958c63e2e71541d6994d",
-    "articles/beyond-embeddings.html": "e9edf227851ec87c2cac29f8dd0a35905894c3797b62264be9d2bb98602ce6a5",
-    "article-snapshots/59e532f2ab552eae81c06fcf97392352ffc26f7d6a02d170fac297c267a23116/beyond-embeddings.html": "bba3bb1bd6f98851aa5351031854ee4b714d44b3ed6f2241645e7efddbc34ffc",
+    "articles/beyond-embeddings.html": "b984dd67f2d92eeaaf6c48043bd02b5ac40d6ac7786eb50b7a1342e74b423801",
+    "article-snapshots/eb3c5be11f181898437aef94434047bf9342dec9a6864cac9af01c59dd9ce213/beyond-embeddings.html": "21950b360f81b9e624c04ec67dfd4fcd5a262f8e6f26665470656d711be86f78",
     "article-media/c1f333b5145b75b144562e218b73946ba77083fba5c1d30a8a8b43ef2659fc5a/cover.jpg": "c1f333b5145b75b144562e218b73946ba77083fba5c1d30a8a8b43ef2659fc5a",
     "article-media/7d220ce3249c461ada25c5b12dd825283362eef960822a58ad95b1f38a4db62b/traditional-and-behavioral.webp": "7d220ce3249c461ada25c5b12dd825283362eef960822a58ad95b1f38a4db62b",
     "article-media/38e49d4bb130df44098c0b70e3e6ac952b51d1b8822822a429ae15ed930402ea/llm-as-judge.webp": "38e49d4bb130df44098c0b70e3e6ac952b51d1b8822822a429ae15ed930402ea",
@@ -540,8 +540,8 @@
     "article-media/c3b69024bc558f1b246c0135e7fceb55cbf77e4a8984e286285b57c13aaeaa37/drift-response-tiers.webp": "c3b69024bc558f1b246c0135e7fceb55cbf77e4a8984e286285b57c13aaeaa37",
     "article-media/e09b0fc781b0930aa9671ef0ca728d286828e0e9c8d47e6696d1976b0b1381ee/end-to-end-control.webp": "e09b0fc781b0930aa9671ef0ca728d286828e0e9c8d47e6696d1976b0b1381ee",
     "article-media/943cc2b0ba6d097701efdd5c358e26e007a66b5d1077d71f672dcc040baf4936/cover-social.jpg": "943cc2b0ba6d097701efdd5c358e26e007a66b5d1077d71f672dcc040baf4936",
-    "articles/the-sdlc-is-out-of-balance.html": "c8cbfb9ad743af93a50ed40f39edc8ab142ad3e03ce935bca8479688a0b083ce",
-    "article-snapshots/18935ad04ba7ff2a477b3e707e079e0c90eced299cdbc7ac2e08619e9d279265/the-sdlc-is-out-of-balance.html": "1392a5d044f8f3f29b81a3768008814b747802642d25864939092fb468598427",
+    "articles/the-sdlc-is-out-of-balance.html": "fcab6ecc7313faf99c9be892e70645a0e5bf260728e51f090007fe85ee8644d1",
+    "article-snapshots/3ecf4cfe0eb857fc7940abc0280a1035f76a5a8ea47ac67e8c2f7d7fa2888065/the-sdlc-is-out-of-balance.html": "2a975704c469be457498a426fac9751801bf104024457481ba9253283f9b87a2",
     "article-media/fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f/hero-web.jpg": "fe76db95cbedba54934895fa21139654399b41b7c820c1974ad3fef410223e5f",
     "article-media/e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7/delivery-capacity-r6.webp": "e9c3a80d51e554bc46719133faa73fec2d11fae3e80bee5eba2969b9472deac7",
     "article-media/a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a/review-learning-r7.webp": "a2e3bbf68aff502306ba2ada61e75690eb81a3fffdf200a1034223983827097a",
@@ -549,8 +549,8 @@
     "article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry-r9.webp": "8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f",
     "article-media/7144d8165842a07ac8194e88a7301b777f11dac41ca1dcf8d88f6ba4cbecb27f/hero-web-social.jpg": "7144d8165842a07ac8194e88a7301b777f11dac41ca1dcf8d88f6ba4cbecb27f",
     "article-media/c3686dce007b399d3fb175d5b235a51b1000500a3e4bc6f024be9767bfb33996/reading-r12.pdf": "c3686dce007b399d3fb175d5b235a51b1000500a3e4bc6f024be9767bfb33996",
-    "articles/thinking-systems.html": "aa4b24483dedac027751a60a357e23fd1366b20df6137605dde23276b58da051",
-    "article-snapshots/9a94b54633b8a5851a7486634b0b8ba38efcc150af64ab56f85444c0e3b72c88/thinking-systems.html": "d812b247484f4c8c0ce9945403608b71897079cd40173e577c0f15e198759454",
+    "articles/thinking-systems.html": "9e45fd2547b65fd1f65c63fdd529655025be80470457d80484f6b48897ea3eb7",
+    "article-snapshots/5305e054243a52fa51cd4be5196338c58d30e3c7e9b3773a832b56fca238b19b/thinking-systems.html": "b296b29bf3120098a582995635995452c569b37814fe6fbbefc5504336bacdd2",
     "article-media/b68b465d8f611f72c8f4d9e95eaad457c1e40761154d90112ed128d7ecd47dd2/cover.jpg": "b68b465d8f611f72c8f4d9e95eaad457c1e40761154d90112ed128d7ecd47dd2",
     "article-media/bb70b4d0907ed3672055b0aacd58ca6bb35ef9154aecfb151705de58127eb2ae/diagram-1.webp": "bb70b4d0907ed3672055b0aacd58ca6bb35ef9154aecfb151705de58127eb2ae",
     "article-media/593e5212280ebabadb49ddc4c56e0bc4ba6908f659a9b466b462e7331680e27d/diagram-2.webp": "593e5212280ebabadb49ddc4c56e0bc4ba6908f659a9b466b462e7331680e27d",
@@ -564,7 +564,7 @@
     "article-media/a187cf86739b2cc193cc9696e9884e2252c62b636ce262277c342371081eaa36/cover-social.jpg": "a187cf86739b2cc193cc9696e9884e2252c62b636ce262277c342371081eaa36",
     "theme.js": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a",
     "archive.js": "bf1b9e42356b282f3c08f7763a7a59263241c752df5dd9ee776a6b0bf86b0caa",
-    "navigation.js": "3088c8dd85d0b57d84cc457429e91bce10145fdb6830faf5d373fe33a19d7b22",
+    "navigation.js": "f2220ac1e699cd32ce6501b829cda27f976160a56efa2d73d578cededc04dd8f",
     "styles.css": "c78a92fc66a6dc59b0449e1fc0501d85cc07b79d9380a868d853a5301d7240da",
     "space.js": "c8b91326e9a1206e8fbd219ebadc7160fa2a639ffc58fa0f6063ed86e53f2d23",
     "assets/favicon.svg": "a27a6f79b42bfa41fa8a8d3fe39e3c9570bcd992410c91a17d021de4dc28636e",
@@ -574,11 +574,11 @@
     "assets/writing-paradigm.svg": "02def4e19d34b76462f5e74bbe916323ff56a50d3e97a02834b3adf92723b31f",
     "runtime/6cb335e76a1aa0004d11ae06d9825991f5ea513a9564457383c8d13c7c54bbb1/analytics.js": "6cb335e76a1aa0004d11ae06d9825991f5ea513a9564457383c8d13c7c54bbb1",
     "publication-index.json": "c2c34828dbd300ba3f2ab679dbee003aa3295b8c58058aed6b7f0bea589ef0fe",
-    "runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/theme.js": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a",
-    "runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/space.js": "c8b91326e9a1206e8fbd219ebadc7160fa2a639ffc58fa0f6063ed86e53f2d23",
-    "runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/archive.js": "bf1b9e42356b282f3c08f7763a7a59263241c752df5dd9ee776a6b0bf86b0caa",
-    "runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/navigation.js": "3088c8dd85d0b57d84cc457429e91bce10145fdb6830faf5d373fe33a19d7b22",
-    "runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/styles.css": "c78a92fc66a6dc59b0449e1fc0501d85cc07b79d9380a868d853a5301d7240da",
+    "runtime/97208ee3d165d8585186561ca50d2fdebe8ca0831c3fc6b7a7414a43e5f18aab/theme.js": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a",
+    "runtime/97208ee3d165d8585186561ca50d2fdebe8ca0831c3fc6b7a7414a43e5f18aab/space.js": "c8b91326e9a1206e8fbd219ebadc7160fa2a639ffc58fa0f6063ed86e53f2d23",
+    "runtime/97208ee3d165d8585186561ca50d2fdebe8ca0831c3fc6b7a7414a43e5f18aab/archive.js": "bf1b9e42356b282f3c08f7763a7a59263241c752df5dd9ee776a6b0bf86b0caa",
+    "runtime/97208ee3d165d8585186561ca50d2fdebe8ca0831c3fc6b7a7414a43e5f18aab/navigation.js": "f2220ac1e699cd32ce6501b829cda27f976160a56efa2d73d578cededc04dd8f",
+    "runtime/97208ee3d165d8585186561ca50d2fdebe8ca0831c3fc6b7a7414a43e5f18aab/styles.css": "c78a92fc66a6dc59b0449e1fc0501d85cc07b79d9380a868d853a5301d7240da",
     "media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg": "a27a6f79b42bfa41fa8a8d3fe39e3c9570bcd992410c91a17d021de4dc28636e",
     "media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi-cutout.webp": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
     "media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi.jpg": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
@@ -636,6 +636,6 @@
     "runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/space.js": "7812c824ce3dac0d5d36f40788c65ca66cc553e5a0287850a24a499a02d4eab4",
     "runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/archive.js": "bf1b9e42356b282f3c08f7763a7a59263241c752df5dd9ee776a6b0bf86b0caa",
     "runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/navigation.js": "9d074333c9731e08a801e8f7ba418c645ef8c9e54d912a666912640e36e1a292",
-    "site-revision.json": "19bda43290393d6dcb4661ef26ac875b82c325a56eea54beed854b6c38a11049"
+    "site-revision.json": "7d0d037549a3a6ca086672273d0191e99fef9a8d2832e9c625c9002fd2180b9a"
   }
 }

@@ -784,9 +784,9 @@ test('reader reference evidence requires served immutable material links in ever
 
 test('current article downloads require the declared served PDF in every capability observation', () => {
   const revision = require('../docs/site-revision.json');
-  const selected = revision.articles;
-  const [name, descriptor] = Object.entries(selected)[0];
-  assert.notEqual(name, 'reader-reference:en', 'exercise the real current article');
+  const name = 'sdlc-out-of-balance:en';
+  const descriptor = revision.articles[name];
+  const selected = { [name]: descriptor };
   assert.equal(descriptor.downloads.length, 1);
   const file = descriptor.downloads[0];
   const make = () => {
