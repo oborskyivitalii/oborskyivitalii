@@ -405,6 +405,10 @@ collection remains separate. All displayed images,
 including every below-fold slide, still count toward the unchanged 800000-byte
 required reading transfer. Source reconstruction verifies this classification;
 neither mode establishes editorial, rights or release acceptance.
+Hosted article HTML and snapshots are limited to 125,000 UTF-8 bytes. Ordinary
+rooms, other HTML and standalone export payloads retain the 100,000-byte limit.
+The browser’s enhanced navigation uses its existing 100,000-byte limit and
+opens a larger article as an ordinary page.
 
 Reader route-cache snapshots and prepared clones use one inert HTMLDocument until
 native mount adoption. URL rebasing uses the explicit source URL. This prevents

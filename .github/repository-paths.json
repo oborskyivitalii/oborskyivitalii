@@ -709,6 +709,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/article-media/2d0985de7aad4d29069f3adcff22f0ccbab01d23fd18a5a0053ce53209856725": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/2d0985de7aad4d29069f3adcff22f0ccbab01d23fd18a5a0053ce53209856725/circuit-breaker.webp": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/article-media/2d4e237d21021bcb6c62b5ce9ab10daffc4e93b521a20f3b6a707a3531781739": {
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
@@ -740,6 +752,42 @@
       "owner": "site/README.md"
     },
     "docs/article-media/3415712316948afcc30c00607f7f2fb475b2ca0939c108481bfdcd4fe3676a93/cover-social.jpg": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/38e49d4bb130df44098c0b70e3e6ac952b51d1b8822822a429ae15ed930402ea": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/38e49d4bb130df44098c0b70e3e6ac952b51d1b8822822a429ae15ed930402ea/llm-as-judge.webp": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/393e1a2b17f2c895be46fcb64bb3963d7c5abf56984099e8008857589b32b6ff": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/393e1a2b17f2c895be46fcb64bb3963d7c5abf56984099e8008857589b32b6ff/neuro-symbolic-sensor.webp": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/41f0f839015031d489aeb6ddfded11099be8247d030d636e4044c6820071c70b": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/41f0f839015031d489aeb6ddfded11099be8247d030d636e4044c6820071c70b/control-design-process.webp": {
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -889,6 +937,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/article-media/7d220ce3249c461ada25c5b12dd825283362eef960822a58ad95b1f38a4db62b": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/7d220ce3249c461ada25c5b12dd825283362eef960822a58ad95b1f38a4db62b/traditional-and-behavioral.webp": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f": {
       "kind": "directory",
       "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
@@ -916,6 +976,30 @@
     "docs/article-media/8c41199fa63d0c250d7a2da78473a57f4f6b1f3108d9f1c9a3ce06447e852eb1/workstream-system.webp": {
       "kind": "file",
       "purpose": "Generated accepted SDLC R3 reader, immutable media/materials or dependent route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/919957eafd1c9cef20c4d3d99251dee97f9a397ffd505952a9a441e03c80d34c": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/919957eafd1c9cef20c4d3d99251dee97f9a397ffd505952a9a441e03c80d34c/verification-trilemma.webp": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/943cc2b0ba6d097701efdd5c358e26e007a66b5d1077d71f672dcc040baf4936": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/943cc2b0ba6d097701efdd5c358e26e007a66b5d1077d71f672dcc040baf4936/cover-social.jpg": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1015,6 +1099,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/article-media/c1f333b5145b75b144562e218b73946ba77083fba5c1d30a8a8b43ef2659fc5a": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/c1f333b5145b75b144562e218b73946ba77083fba5c1d30a8a8b43ef2659fc5a/cover.jpg": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/article-media/c3686dce007b399d3fb175d5b235a51b1000500a3e4bc6f024be9767bfb33996": {
       "kind": "directory",
       "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
@@ -1024,6 +1120,30 @@
     "docs/article-media/c3686dce007b399d3fb175d5b235a51b1000500a3e4bc6f024be9767bfb33996/reading-r12.pdf": {
       "kind": "file",
       "purpose": "Accepted R12 material, immutable preview preservation or generated reader dependency.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/c3b69024bc558f1b246c0135e7fceb55cbf77e4a8984e286285b57c13aaeaa37": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/c3b69024bc558f1b246c0135e7fceb55cbf77e4a8984e286285b57c13aaeaa37/drift-response-tiers.webp": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/c7800f9370b6be57d53135a923689b70c4d6f99ac3acf17b118436a08bfe953a": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/c7800f9370b6be57d53135a923689b70c4d6f99ac3acf17b118436a08bfe953a/control-boundary.webp": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1051,6 +1171,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/article-media/d1bed993498c86dbebc2706ca22878adfcf4e56ea2ed054bdc23e3ab471c1c73": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/d1bed993498c86dbebc2706ca22878adfcf4e56ea2ed054bdc23e3ab471c1c73/verification-layers.webp": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/article-media/dfc1c0903c9baf02dec4e96b1d87a46cccbad3ee015e9d47a3d86c73d8fb29c0": {
       "kind": "directory",
       "purpose": "Generated author-site output for the Thinking Systems migration.",
@@ -1060,6 +1192,18 @@
     "docs/article-media/dfc1c0903c9baf02dec4e96b1d87a46cccbad3ee015e9d47a3d86c73d8fb29c0/diagram-8a.webp": {
       "kind": "file",
       "purpose": "Generated author-site output for the Thinking Systems migration.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/e09b0fc781b0930aa9671ef0ca728d286828e0e9c8d47e6696d1976b0b1381ee": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-media/e09b0fc781b0930aa9671ef0ca728d286828e0e9c8d47e6696d1976b0b1381ee/end-to-end-control.webp": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1117,61 +1261,85 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/20701000bf4079c84abf95edcd7ed09b0ff1246698c26177ad857b8cdd83ca02": {
+    "docs/article-snapshots/058ab01c5713ca78ad56f16af6fe61bac72b8d202f437d7bb68a5879c848f40d": {
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/20701000bf4079c84abf95edcd7ed09b0ff1246698c26177ad857b8cdd83ca02/agentic-loops.html": {
+    "docs/article-snapshots/058ab01c5713ca78ad56f16af6fe61bac72b8d202f437d7bb68a5879c848f40d/agentic-loops.html": {
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/6f8c35d79df05b3b8708b159e06655297190250433cc03dc278dbcc8facecd8b": {
+    "docs/article-snapshots/1075a1f1082f23ce1246b88dfeed3c1c14f7c0ebe1340b131cc1c62788ea0ce4": {
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/6f8c35d79df05b3b8708b159e06655297190250433cc03dc278dbcc8facecd8b/ai-governance-is-control-theory.html": {
+    "docs/article-snapshots/1075a1f1082f23ce1246b88dfeed3c1c14f7c0ebe1340b131cc1c62788ea0ce4/thinking-systems.html": {
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/80a86ace7ee9e25063784908ef684c8638fcb18177075a3f0b9bdf159c223511": {
+    "docs/article-snapshots/2e4e13c8923fa82b8f3e41fad8767d6d72762ad31bb23bf93265cebf4f997319": {
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/80a86ace7ee9e25063784908ef684c8638fcb18177075a3f0b9bdf159c223511/ai-cost-cutting-fallacy.html": {
+    "docs/article-snapshots/2e4e13c8923fa82b8f3e41fad8767d6d72762ad31bb23bf93265cebf4f997319/ai-native-workflows-have-a-moat-problem.html": {
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/875c050e450310874befb8a1aafc74dfeb3d6fd58c82fbf477d0f702a5b01f8f": {
+    "docs/article-snapshots/5710a07f868332d3463f1b5948f2d59622e3ebe5f789520d62e044cdf9620ed1": {
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/875c050e450310874befb8a1aafc74dfeb3d6fd58c82fbf477d0f702a5b01f8f/the-sdlc-is-out-of-balance.html": {
+    "docs/article-snapshots/5710a07f868332d3463f1b5948f2d59622e3ebe5f789520d62e044cdf9620ed1/ai-cost-cutting-fallacy.html": {
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/98d6382daf4213aeddb8bfaaad574cde8d77c5082ff5b06e755ed9a701442f39": {
+    "docs/article-snapshots/5844a951e55833e7223e3851e818b88aea118040c4bf1a49190368e30a7148cf": {
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/98d6382daf4213aeddb8bfaaad574cde8d77c5082ff5b06e755ed9a701442f39/thinking-systems.html": {
+    "docs/article-snapshots/5844a951e55833e7223e3851e818b88aea118040c4bf1a49190368e30a7148cf/the-sdlc-is-out-of-balance.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/6b23697980dcd92c9393c907330d40a2d8a24e519729c1510e9f7b5ef88a5107": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/6b23697980dcd92c9393c907330d40a2d8a24e519729c1510e9f7b5ef88a5107/ai-verification-crisis.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/988e70cdc613c1308f5c2908dc85d72fdc8e22f2148718b49331e21a7489d5c4": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/988e70cdc613c1308f5c2908dc85d72fdc8e22f2148718b49331e21a7489d5c4/ai-governance-is-control-theory.html": {
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -1189,6 +1357,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/article-snapshots/bc43ea135242a9b0d7744abb9ed29dec68df1d9ea507e36c442191544c3ef326": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/bc43ea135242a9b0d7744abb9ed29dec68df1d9ea507e36c442191544c3ef326/beyond-embeddings.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003": {
       "kind": "directory",
       "purpose": "Exact current native raw article rendition and existing immutable closure; no prior-publication claim.",
@@ -1198,30 +1378,6 @@
     "docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003/the-sdlc-is-out-of-balance.html": {
       "kind": "file",
       "purpose": "Exact current native raw article rendition and existing immutable closure; no prior-publication claim.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/dd7842a851621a6577dac43738cc114e5b93125a84c047b6d1cf59135861a4a7": {
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/dd7842a851621a6577dac43738cc114e5b93125a84c047b6d1cf59135861a4a7/ai-native-workflows-have-a-moat-problem.html": {
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/f5003cf4bc036299c2d05c20ce42b717bed3657fdfd7244b215282b915b2b4aa": {
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/f5003cf4bc036299c2d05c20ce42b717bed3657fdfd7244b215282b915b2b4aa/ai-verification-crisis.html": {
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1256,6 +1412,12 @@
       "owner": "site/README.md"
     },
     "docs/articles/ai-verification-crisis.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/articles/beyond-embeddings.html": {
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -1425,47 +1587,35 @@
     },
     "docs/runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c": {
       "kind": "directory",
-      "purpose": "Generated #187 runtime or immutable route output.",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
     "docs/runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/archive.js": {
       "kind": "file",
-      "purpose": "Generated #187 runtime or immutable route output.",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
     "docs/runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/navigation.js": {
       "kind": "file",
-      "purpose": "Generated #187 runtime or immutable route output.",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
     "docs/runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/space.js": {
       "kind": "file",
-      "purpose": "Generated #187 runtime or immutable route output.",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
     "docs/runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/styles.css": {
       "kind": "file",
-      "purpose": "Generated #187 runtime or immutable route output.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/theme.js": {
-      "kind": "file",
-      "purpose": "Generated #187 runtime or immutable route output.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/592a893101182071a0d5742f31e1878b71e07c65b0f4e7abd57f41747e733f71": {
-      "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/592a893101182071a0d5742f31e1878b71e07c65b0f4e7abd57f41747e733f71/analytics.js": {
+    "docs/runtime/27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c/theme.js": {
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -1504,6 +1654,18 @@
     "docs/runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/theme.js": {
       "kind": "file",
       "purpose": "Generated source-bound R9 site rendition or immutable snapshot from the canonical producer.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/6cb335e76a1aa0004d11ae06d9825991f5ea513a9564457383c8d13c7c54bbb1": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/6cb335e76a1aa0004d11ae06d9825991f5ea513a9564457383c8d13c7c54bbb1/analytics.js": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1639,13 +1801,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/063c41bb7740e67639a82e1007e6e815d02ef06af5498d341253d27d6a266bcc": {
+    "docs/snapshots/027158765cd119208748f0fa825ab0b9586547090930cad0e56d826c4b457d70": {
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/063c41bb7740e67639a82e1007e6e815d02ef06af5498d341253d27d6a266bcc/research.html": {
+    "docs/snapshots/027158765cd119208748f0fa825ab0b9586547090930cad0e56d826c4b457d70/credits.html": {
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -1723,25 +1885,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/7350d35a971a5dde5f0347c6de21431cfb6a3d033f5b24edb1dc9fba91009ab8": {
+    "docs/snapshots/78e96e2a4b6ed707a5ba92dc60b157ff5f70119ba259cd47e4b4f2475d339260": {
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/7350d35a971a5dde5f0347c6de21431cfb6a3d033f5b24edb1dc9fba91009ab8/credits.html": {
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/7393e0cae18dbd2d603c3a7a2d4895ed8716d37ce14d0f34721c13799b40ce77": {
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/7393e0cae18dbd2d603c3a7a2d4895ed8716d37ce14d0f34721c13799b40ce77/index.html": {
+    "docs/snapshots/78e96e2a4b6ed707a5ba92dc60b157ff5f70119ba259cd47e4b4f2475d339260/research.html": {
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -1771,13 +1921,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/7f618e0305ac02eb6cfa41abdc860ca324be7fff41a8a412f4865957768b0f96": {
+    "docs/snapshots/872103de830671b691d68b71273faaa0769b30154d1b12331a75bc6702ad9bcd": {
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/7f618e0305ac02eb6cfa41abdc860ca324be7fff41a8a412f4865957768b0f96/talks.html": {
+    "docs/snapshots/872103de830671b691d68b71273faaa0769b30154d1b12331a75bc6702ad9bcd/writing.html": {
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -1816,6 +1966,18 @@
     "docs/snapshots/95b57d8257b5ffb3f4b9924d90694110e982f7bdc9aecb6f09969d46b3a8b2e0/index.html": {
       "kind": "file",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/a38002251a36c051fede2f86b2edd14e01c8dd5668b330348e74f2cb40ddf1b3": {
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/a38002251a36c051fede2f86b2edd14e01c8dd5668b330348e74f2cb40ddf1b3/index.html": {
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1879,13 +2041,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/f91a65823dadb76905ea76d44963a6e00d6975d78595691089e87b7d06daba1d": {
+    "docs/snapshots/e5b60afc39f4381ce721c1fe45ab6cbacd964608cda614d60c68460cc3361e4c": {
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/f91a65823dadb76905ea76d44963a6e00d6975d78595691089e87b7d06daba1d/writing.html": {
+    "docs/snapshots/e5b60afc39f4381ce721c1fe45ab6cbacd964608cda614d60c68460cc3361e4c/talks.html": {
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -6898,6 +7060,12 @@
     "review/issue-183/2026-11-16-agentic-loops.md": {
       "kind": "file",
       "purpose": "Source-bound Agentic Loops migration and Preview evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-183/2026-11-16-beyond-embeddings.md": {
+      "kind": "file",
+      "purpose": "Source-bound Beyond Embeddings migration, size diagnosis and Preview evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -13903,6 +14071,84 @@
       "role": "source",
       "owner": "site/publications/ai-verification-crisis/PROVENANCE.md"
     },
+    "site/assets/publications/beyond-embeddings": {
+      "kind": "directory",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md"
+    },
+    "site/assets/publications/beyond-embeddings/circuit-breaker.png": {
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md"
+    },
+    "site/assets/publications/beyond-embeddings/control-boundary.png": {
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md"
+    },
+    "site/assets/publications/beyond-embeddings/control-design-process.png": {
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md"
+    },
+    "site/assets/publications/beyond-embeddings/cover-web.jpg": {
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md"
+    },
+    "site/assets/publications/beyond-embeddings/cover.png": {
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md"
+    },
+    "site/assets/publications/beyond-embeddings/drift-response-tiers.png": {
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md"
+    },
+    "site/assets/publications/beyond-embeddings/end-to-end-control.png": {
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md"
+    },
+    "site/assets/publications/beyond-embeddings/llm-as-judge.png": {
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md"
+    },
+    "site/assets/publications/beyond-embeddings/neuro-symbolic-sensor.png": {
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md"
+    },
+    "site/assets/publications/beyond-embeddings/traditional-and-behavioral.png": {
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md"
+    },
+    "site/assets/publications/beyond-embeddings/verification-layers.png": {
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md"
+    },
+    "site/assets/publications/beyond-embeddings/verification-trilemma.png": {
+      "kind": "file",
+      "purpose": "Original LinkedIn Beyond Embeddings artwork prepared for the site edition.",
+      "role": "source",
+      "owner": "site/publications/beyond-embeddings/PROVENANCE.md"
+    },
     "site/assets/publications/pmday-ai-both-sides": {
       "kind": "directory",
       "purpose": "PMDay article source, presentation viewer or original publication media: pmday-ai-both-sides.",
@@ -15028,6 +15274,54 @@
     "site/publications/ai-verification-crisis/publication.json": {
       "kind": "file",
       "purpose": "Authored Verification Crisis manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/beyond-embeddings": {
+      "kind": "directory",
+      "purpose": "Authored Beyond Embeddings manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/beyond-embeddings/PROVENANCE.md": {
+      "kind": "file",
+      "purpose": "Authored Beyond Embeddings manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/beyond-embeddings/editions": {
+      "kind": "directory",
+      "purpose": "Authored Beyond Embeddings manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/beyond-embeddings/editions/beyond-embeddings-en-20260522.json": {
+      "kind": "file",
+      "purpose": "Authored Beyond Embeddings manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/beyond-embeddings/launch-post.en.md": {
+      "kind": "file",
+      "purpose": "Authored Beyond Embeddings manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/beyond-embeddings/manuscript.en.md": {
+      "kind": "file",
+      "purpose": "Authored Beyond Embeddings manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/beyond-embeddings/profile.json": {
+      "kind": "file",
+      "purpose": "Authored Beyond Embeddings manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/beyond-embeddings/publication.json": {
+      "kind": "file",
+      "purpose": "Authored Beyond Embeddings manuscript, provenance or publication edition.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
@@ -18167,6 +18461,12 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for hosted; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
+      "owner": "guides/SITE-RELEASE-GATES.md"
+    },
+    "tools/quality/html-budget.cjs": {
+      "kind": "file",
+      "purpose": "Shared HTML size limit for route kinds in artifact and publication verification.",
+      "role": "source",
       "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/lighthouse.cjs": {

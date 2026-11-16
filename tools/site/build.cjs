@@ -9,6 +9,7 @@ const { contentLabel } = require('./render-content.cjs');
 const { scriptJSON, stableTagEndings } = require('./html.cjs');
 const { renderPage, validateCriticalMedia } = require('./render-page.cjs');
 const articles = require('./articles.cjs');
+const { articleHtmlRawBytes } = require('../quality/budgets.json');
 const compatibility = require('./runtime-compatibility.cjs');
 const defaultRoot = path.resolve(__dirname, '../..');
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
@@ -291,7 +292,7 @@ function fingerprints(root, config, c = catalog(root), { payloads, baseline } = 
   const components = {
     contract: config.contract,
     variant: sha(json({ id: 'base', contract: 1 })),
-    producer: sha(json(fileDigests(root, producers))),
+    producer: sha(json({ ...fileDigests(root, producers), articleHtmlRawBytes })),
     engine: sha(
       json(
         fileDigests(
@@ -550,14 +551,14 @@ function emitArticles({
       // navigation pins the complete verified registry from site-revision.json.
       html = articles.documentIndex(html, [article]);
       const alias = articles.rebase(html, article.url);
-      if (Buffer.byteLength(alias, 'utf8') > 100000)
+      if (Buffer.byteLength(alias, 'utf8') > articleHtmlRawBytes)
         throw Error('Article HTML byte budget ' + article.key);
       put(article.url, alias);
       const snapshotBytes = articles.rebase(
         articles.immutableLinks(html, selectedArticles),
         article.snapshot
       );
-      if (Buffer.byteLength(snapshotBytes, 'utf8') > 100000)
+      if (Buffer.byteLength(snapshotBytes, 'utf8') > articleHtmlRawBytes)
         throw Error('Article snapshot byte budget ' + article.key);
       put(article.snapshot, snapshotBytes);
       result.builtArticles.push(article.key);

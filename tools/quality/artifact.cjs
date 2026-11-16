@@ -5,6 +5,7 @@ const fs = require('node:fs'),
 const budgets = require('./budgets.json'),
   root = path.resolve(__dirname, '../..');
 const { digest, entries, manifest } = require('../site/public-artifact.cjs');
+const { htmlRawLimit } = require('./html-budget.cjs');
 function routeSizeAssets(files, route, resources = []) {
   return [
     'styles.css',
@@ -49,7 +50,7 @@ function checkSize(dir) {
     });
   }
   for (const [file, info] of Object.entries(m.files)) {
-    if (file.endsWith('.html') && info.raw > budgets.htmlRawBytes) throw Error('HTML size ' + file);
+    if (file.endsWith('.html') && info.raw > htmlRawLimit(file)) throw Error('HTML size ' + file);
     if (!file.endsWith('.html') && info.raw > budgets.assetRawBytes)
       throw Error('Asset size ' + file);
   }
@@ -170,7 +171,7 @@ function validateArticleSizes(sizes, record) {
       !Number.isInteger(row.svgNodes) ||
       row.svgNodes < 1 ||
       row.svgNodes > budgets.svgElements ||
-      row.raw > budgets.htmlRawBytes
+      row.raw > budgets.articleHtmlRawBytes
     )
       throw Error('Wrong-source or oversized article evidence ' + row.key);
     const assets = [
@@ -209,7 +210,7 @@ function validateArticleSizes(sizes, record) {
       throw Error('Article transfer budget evidence ' + row.key);
   }
   for (const [name, file] of Object.entries(record.files)) {
-    const maximum = name.endsWith('.html') ? budgets.htmlRawBytes : budgets.assetRawBytes;
+    const maximum = name.endsWith('.html') ? htmlRawLimit(name) : budgets.assetRawBytes;
     if (
       !Number.isInteger(file.raw) ||
       file.raw < 0 ||

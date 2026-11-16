@@ -782,7 +782,8 @@ test('UTF-8 article limits reject oversized Unicode documents without replacing 
   const root = fixture(t);
   const record = publication(root);
   const before = preview(root);
-  record.manuscript += '\n\n' + 'Ж'.repeat(50000) + '\n';
+  const { articleHtmlRawBytes } = require('../tools/quality/budgets.json');
+  record.manuscript += '\n\n' + 'Ж'.repeat(Math.ceil(articleHtmlRawBytes / 2)) + '\n';
   record.edition.source.sha256 = build.sha(record.manuscript);
   record.edition.semanticSha256 = require('../tools/publishing/article.cjs').semanticDigest(
     record.metadata,

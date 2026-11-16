@@ -173,26 +173,45 @@
       }
     },
     "publication-06": {
+      "kind": "local-article",
+      "article": "beyond-embeddings",
       "edition": {
         "@type": "Article",
         "name": "Uncertainty Architecture: Beyond Embeddings — Neuro-Symbolic Verification of Semantic Drift in LLMs",
-        "url": "https://generativeai.pub/uncertainty-architecture-beyond-embeddings-neuro-symbolic-verification-of-semantic-drift-in-llms-69822872825b",
+        "url": "articles/beyond-embeddings.html",
         "inLanguage": "en",
         "author": {
           "@type": "Person",
-          "name": "Vitalii Oborskyi"
-        },
-        "datePublished": "2026-06-10"
+          "name": "Vitalii Oborskyi",
+          "url": "https://vitaliioborskyi.ai/"
+        }
       },
       "editions": [
         {
+          "@type": "Article",
+          "name": "Uncertainty Architecture: Beyond Embeddings — Neuro-Symbolic Verification of Semantic Drift in LLMs",
+          "url": "https://generativeai.pub/uncertainty-architecture-beyond-embeddings-neuro-symbolic-verification-of-semantic-drift-in-llms-69822872825b",
+          "inLanguage": "en",
+          "author": {
+            "@type": "Person",
+            "name": "Vitalii Oborskyi",
+            "url": "https://vitaliioborskyi.ai/"
+          },
+          "datePublished": "2026-06-10",
+          "platform": "Medium",
+          "relationship": "same-topic-platform-edition",
+          "bodyEquivalenceVerified": false
+        },
+        {
+          "@type": "Article",
           "platform": "LinkedIn",
           "name": "Uncertainty Architecture: Beyond Embeddings - Neuro-Symbolic Verification of Semantic Drift in LLMs",
           "url": "https://www.linkedin.com/pulse/uncertainty-architecture-beyond-embeddings-semantic-oborskyi-1seuf/",
           "inLanguage": "en",
           "author": {
             "@type": "Person",
-            "name": "Vitalii Oborskyi"
+            "name": "Vitalii Oborskyi",
+            "url": "https://vitaliioborskyi.ai/"
           },
           "datePublished": "2026-05-22",
           "relationship": "same-topic-platform-edition",
@@ -203,8 +222,9 @@
       "presentation": {
         "topic": "systems",
         "kind": "Article",
-        "publisher": "Generative AI",
-        "summary": "A bounded technical example of semantic verification within a wider control architecture."
+        "publisher": "Author site",
+        "summary": "A bounded technical example of semantic verification within a wider control architecture.",
+        "archiveYear": "2026"
       }
     },
     "publication-07": {

@@ -878,7 +878,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "ed3ee4d662536a9cdb37a2b98c23fe3d64b9ab18773ef2c7353d9920a672e35c",
+    "digest": "63962b64df899b848d8870ef448b216ddb418df3c247e67d7532407a5be5143c",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -1066,7 +1066,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "dc2579e096cf1dc545b9b9002ceb9b50a2552ef2dd856bb68ca60aef48d2c754"
+        "sha256": "994543b07907e061d00e61653c02d20d36b98d18371dbbe3378b6c4bbd102bd9"
       },
       {
         "path": ".github/workflows/browser-archives.yml",

@@ -42,7 +42,6 @@
     "publication-01": ["ai-delivery", "software-economics", "verification"],
     "publication-03": ["ai-delivery", "software-economics", "verification"],
     "publication-04": ["ai-delivery", "software-economics", "human-ai"],
-    "publication-06": ["uncertainty", "verification", "semantic-drift", "neuro-symbolic"],
     "publication-10": ["uncertainty", "llm-systems", "architecture"],
     "publication-11": ["uncertainty", "llm-systems", "architecture"],
     "publication-12": ["on-device", "cloud", "llm-systems", "product-strategy"],
@@ -64,6 +63,7 @@
     "publication-29": ["futures", "society", "human-ai"]
   },
   "articles": {
+    "beyond-embeddings": ["uncertainty", "verification", "semantic-drift", "neuro-symbolic"],
     "agentic-loops": ["agents", "control-theory", "architecture"],
     "ai-native-workflows-have-a-moat-problem": ["product-strategy", "operating-models", "automation"],
     "ai-cost-cutting-fallacy": ["software-economics", "ai-delivery", "human-ai"],
