@@ -18,10 +18,10 @@
   },
   "status": "accepted",
   "source": "manuscript.en.md",
-  "edition": "thinking-systems-en-20260830",
+  "edition": "thinking-systems-en-20261116-editorial",
   "rights": {
     "status": "accepted",
-    "notice": "Vitalii Oborskyi, Uncertainty Architecture. The original article text and publication artwork are licensed under CC BY 4.0. The author-site edition preserves the 30 August 2026 Generative AI text as a dated research snapshot, with native reader formatting, image credits and a source-edition note. Linked external material retains its own terms.",
+    "notice": "Vitalii Oborskyi, Uncertainty Architecture. The original article text and publication artwork are licensed under CC BY 4.0. The author-site edition preserves the 30 August 2026 Generative AI text as a dated research snapshot, with native reader formatting, image credits, an updated author biography and same-site reading links. Linked external material retains its own terms.",
     "references": [
       "https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db",
       "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/7f0a40c88b9ccd798a8ef6259e19ebd99572f2ca/LICENSING.md",

@@ -24,3 +24,7 @@
 | Circuit breaker | `B4DZ5PO6MXG4AI-` | 915 × 1000 | `17d07ec6e2c79880123d778df46f99291038c881654ee526e298a92b5f6234cb` | Original composition |
 | Drift response tiers | `B4DZ5PPjCwK0AM-` | 744 × 380 | `b8c221ed0711f6e93e753d95e72f9dd959f1a306ec859e2df32aff87c1546075` | Original composition |
 | End to end control | `B4DZ5PPuApJ4AQ-` | 1031 × 1202 | `61dfe409a8751a0d27afc33ebce3c196968ae9dbea3ea62b80c7ffe37a4f1a75` | Original composition |
+
+## Editorial update on 16 November 2026
+
+The earlier frozen site edition remains in the edition history. This author-requested site edition uses the compact author-site biography. The selected publisher edition, its date and credits remain distinct. See [issue #183](https://github.com/oborskyivitalii/oborskyivitalii/issues/183) for editorial changes and related-reading evidence.

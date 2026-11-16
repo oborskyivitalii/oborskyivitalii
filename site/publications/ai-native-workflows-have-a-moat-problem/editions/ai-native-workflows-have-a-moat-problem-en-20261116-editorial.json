@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "id": "ai-native-workflows-have-a-moat-problem-en-20261116-editorial",
+  "articleId": "ai-native-workflows-have-a-moat-problem",
+  "language": "en",
+  "kind": "full-article",
+  "source": {
+    "path": "manuscript.en.md",
+    "sha256": "ddf2ec36fc5682a2c3a3675631d915ecf45ddb7951e9b6db3d0394d250def43d",
+    "commit": "9ee40f0df40530fec343eb6d3d2b4414a4757ee4",
+    "blob": "41290ff4aaaf7357b0ab7a174ea516f6c32b27da"
+  },
+  "owner": "site",
+  "derivation": null,
+  "rights": "accepted",
+  "semanticSha256": "826eefa5066c237e7880d4d4e7faa2058e3f2b4676f13e1a108e18964082d3ba"
+}

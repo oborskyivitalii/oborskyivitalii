@@ -4,3 +4,7 @@
 - Alternate edition: [LinkedIn](https://www.linkedin.com/pulse/ai-native-delivery-has-moat-problem-vitalii-oborskyi-nlnzf/), Vitalii Oborskyi, 1 July 2026. It is a separate platform edition.
 - Source cover: [AI Advances original PNG](https://miro.medium.com/1*Wh5b3Li7Dna1bHM7wlvybw.png), 1672 × 941, SHA-256 `064650b4aedcbddf49aef94eea70dd193c42b0c7b35089b1c8de348d3fd56958`. Its decoded RGB bytes exactly match the author’s original AI-generated cover file (“AI-native workflows powering a platform.png”, generated on 1 July 2026 in preparation for this publication). The site uses the same artwork, resized without cropping for the reader and fitted to 1200 × 630 for the article-specific social image. The publisher edition has no inline illustrations.
 - The signed-off batch scope is [issue #183](https://github.com/oborskyivitalii/oborskyivitalii/issues/183). The website publication event remains pending during Draft Preview.
+
+## Editorial update on 16 November 2026
+
+The earlier frozen site edition remains in the edition history. This author-requested site edition uses the compact author-site biography. The selected publisher edition, its date and credits remain distinct. See [issue #183](https://github.com/oborskyivitalii/oborskyivitalii/issues/183) for editorial changes and related-reading evidence.

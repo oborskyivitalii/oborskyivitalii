@@ -9,3 +9,7 @@ The site rendition preserves ten headings under the title, 65 paragraphs, 25 lis
 - A separate [Towards AI edition](https://pub.towardsai.net/the-ai-cost-cutting-fallacy-why-doing-more-with-less-is-breaking-engineering-teams-d4d9a3431fa0) is dated 3 January 2026. [DZone](https://dzone.com/articles/ai-cost-cutting-fallacy-why-doing-more-with-less) published a rendition on 10 March 2026 and cites Towards AI. The issue selects LinkedIn for this checkpoint. Each of those editions has its own history. Body equivalence has not been established.
 
 The illustrated rendition is pinned as a separate site edition. The preceding text-only edition remains pinned in its original record.
+
+## Editorial update on 16 November 2026
+
+The earlier frozen site edition remains in the edition history. This author-requested site edition uses the compact author-site biography. The selected publisher edition, its date and credits remain distinct. See [issue #183](https://github.com/oborskyivitalii/oborskyivitalii/issues/183) for editorial changes and related-reading evidence.

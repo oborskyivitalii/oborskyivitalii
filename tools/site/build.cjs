@@ -425,9 +425,10 @@ function documentComponents(components) {
   return shared;
 }
 
-function prepareArticles(root, selectedArticles, components, versioned, preview) {
+function prepareArticles(root, catalog, selectedArticles, components, versioned, preview) {
+  const nativeEditions = articles.nativeEditionLinks(catalog);
   for (const article of selectedArticles) {
-    article.input = articles.input(root, article);
+    article.input = articles.input(root, article, nativeEditions);
     article.inputDigests = fileDigests(root, article.input.inputs);
     const publicInputs = { ...article.inputDigests };
     // The native block binds only selected reviewed declarations. Keep the raw
@@ -550,12 +551,16 @@ function emitArticles({
       // Hosted documents carry only their own boot identity. The first user
       // navigation pins the complete verified registry from site-revision.json.
       html = articles.documentIndex(html, [article]);
-      const alias = articles.rebase(html, article.url);
+      const alias = articles.rebase(
+        articles.applyNativeReadingLinks(html),
+        article.url
+      );
       if (Buffer.byteLength(alias, 'utf8') > articleHtmlRawBytes)
         throw Error('Article HTML byte budget ' + article.key);
       put(article.url, alias);
       const snapshotBytes = articles.rebase(
-        articles.immutableLinks(html, selectedArticles),
+        // Editorial links follow stable article aliases, independently of the target snapshot.
+        articles.applyNativeReadingLinks(articles.immutableLinks(html, selectedArticles)),
         article.snapshot
       );
       if (Buffer.byteLength(snapshotBytes, 'utf8') > articleHtmlRawBytes)
@@ -842,7 +847,7 @@ function build({
   require('./validate-catalog.cjs').validateLocalCatalog(c, (id) =>
     selectedArticles.find((article) => article.metadata.id === id && !article.candidate)
   );
-  prepareArticles(root, selectedArticles, components, versioned, candidateArticles.length > 0);
+  prepareArticles(root, c, selectedArticles, components, versioned, candidateArticles.length > 0);
   const measurement = require('./analytics.cjs').compile(root, analyticsURLs(config, c));
   if (contentOnly) verifyContentBaseline(output, previous, trusted, components, versioned);
   const parent = path.dirname(output);

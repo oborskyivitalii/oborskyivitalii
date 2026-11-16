@@ -6,3 +6,7 @@
 - Vitalii Oborskyi confirmed on 15 November 2026 that the [historical cover](https://miro.medium.com/1*Hjlgsc2nbl0Egklk1NlskA.jpeg) is his and authorized keeping it in this site edition. The retrieved original JPEG has SHA-256 `f3dd92672953f5d797ee09d057ce4ebd25d7bda4308f15ee6a67eda220d3771a`. The hosted JPEG is a resized re-encoding without cropping. Its paired PNG carries the same decoded RGB pixels.
 - The author authorized replacing the original bell-curve diagram. The replacement uses the standard normal density and computes the symmetric area for each whole-standard-deviation interval from `erf(k / sqrt(2))`. Rounded results are 68.27%, 95.45% and 99.73%. The new diagram uses distinct artwork and carries no reproduced pixels from the external figure. The figure explains the Gaussian example without estimating any model's output distribution.
 - [UA's documentation license](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/345c8f50745e5fde1303d0d7952634f7899220c9/LICENSING.md) and the [author site's rights inventory](../../rights.json) record the article and new illustration scope. The cover is credited separately.
+
+## Editorial update on 16 November 2026
+
+The earlier frozen site edition remains in the edition history. This author-requested site edition uses the compact author-site biography. The selected publisher edition, its date and credits remain distinct. See [issue #183](https://github.com/oborskyivitalii/oborskyivitalii/issues/183) for editorial changes and related-reading evidence.

@@ -255,6 +255,55 @@ function sdkCount(bytes, pathname, origin = 'https://analytics.example.com') {
   return elements.length;
 }
 
+test('author reading links follow a native alias while publisher links retain their meaning', (t) => {
+  const root = fixture(t, { cold: true });
+  const target = publication(root);
+  accept(root, target);
+  const catalogPath = 'site/content/catalog.json';
+  const catalog = JSON.parse(fs.readFileSync(path.join(root, catalogPath)));
+  const native = catalog.records['publication-99'];
+  const publisherURL = 'https://www.linkedin.com/pulse/reader-edition-example/';
+  native.editions.push({
+    ...native.edition,
+    url: publisherURL,
+    platform: 'LinkedIn',
+    datePublished: '2026-05-22',
+    relationship: 'same-topic-platform-edition',
+    bodyEquivalenceVerified: false,
+  });
+  json(root, catalogPath, catalog);
+
+  const article = publication(root, 'reading-path');
+  const editionURL = publisherURL.slice(0, -1);
+  const manuscript =
+    article.manuscript.replace('# Reader profile', `# [Reader profile](${editionURL})`) +
+    `\n[Related work](${editionURL})\n`;
+  article.metadata.references.push({ id: 'publisher-original', url: editionURL });
+  json(root, `${article.directory}/publication.json`, article.metadata);
+  article.edition.source.sha256 = build.sha(manuscript);
+  article.edition.semanticSha256 = require('../tools/publishing/article.cjs').semanticDigest(
+    article.metadata, article.edition.source
+  );
+  write(root, `${article.directory}/${article.metadata.source}`, manuscript);
+  json(root, `${article.directory}/editions/reader-first.json`, article.edition);
+
+  const before = preview(root, ['reading-path']).articles['reading-path:en'];
+  assert.ok(html(root, 'articles/reading-path.html').includes('href="../articles/reader-profile.html">Related work'));
+  assert.ok(html(root, before.snapshot).includes('href="../../articles/reader-profile.html">Related work'));
+  const snapshotHTML = html(root, before.snapshot);
+  assert.ok(snapshotHTML.includes('href="https://example.com/source">Research'));
+  assert.ok(snapshotHTML.includes(`href="${editionURL}">publisher-original`));
+  assert.ok(snapshotHTML.includes(`Title sources: <a href="${editionURL}">Reader profile`));
+  assert.doesNotMatch(snapshotHTML, /data-reading-article=/);
+
+  delete catalog.records['publication-99'];
+  catalog.structuredOrder.pop();
+  json(root, catalogPath, catalog);
+  const after = preview(root, ['reading-path']).articles['reading-path:en'];
+  assert.notEqual(after.version, before.version);
+  assert.ok(html(root, after.snapshot).includes('href="' + publisherURL.slice(0, -1) + '">Related work'));
+});
+
 test('compiled analytics admits only catalog-published articles and their declared aliases', (t) => {
   const root = fixture(t, { cold: true });
   json(root, 'site/analytics.json', {

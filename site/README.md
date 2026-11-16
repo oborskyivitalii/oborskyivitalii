@@ -410,6 +410,11 @@ rooms, other HTML and standalone export payloads retain the 100,000-byte limit.
 The browser’s enhanced navigation uses its existing 100,000-byte limit and
 opens a larger article as an ordinary page.
 
+An article reading link to a platform edition of another cataloged native
+article follows that article's stable local alias. The effective link targets
+participate in the reader identity. The same article's own platform credits,
+unmatched links, and distribution renditions retain their source URLs.
+
 Reader route-cache snapshots and prepared clones use one inert HTMLDocument until
 native mount adoption. URL rebasing uses the explicit source URL. This prevents
 snapshot cloning from requesting distant lazy figures. Current reader browser

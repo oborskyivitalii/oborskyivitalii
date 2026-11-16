@@ -110,9 +110,33 @@ function summary(article) {
   };
 }
 
-function input(root, article) {
+function nativeEditionLinks(catalog) {
+  const links = new Map();
+  for (const record of Object.values(catalog.records)) {
+    if (record.kind !== 'local-article') continue;
+    const target = record.edition.url;
+    for (const edition of record.editions) {
+      const source = edition.url.replace(/\/$/, '');
+      const matched = links.get(source);
+      links.set(source, matched === undefined || matched === target ? target : null);
+    }
+  }
+  return links;
+}
+
+function applyNativeReadingLinks(html) {
+  return html.replace(
+    /\bhref="https:[^"]+" data-reading-article="([^"]+)"/g,
+    (attribute, target) => (articleURL.test(target) ? `href="${target}"` : attribute)
+  );
+}
+
+function input(root, article, links = new Map()) {
   const metadata = article.metadata;
-  const reader = require('./reader.cjs').prepare(article);
+  const reader = require('./reader.cjs').prepare(article, (url) => {
+    const target = links.get(url.replace(/\/$/, ''));
+    return target === article.url ? null : target;
+  });
   const boundary = '<!--reader-apparatus-->';
   const [body, furtherReading, appendices] = presentationBody(
     root,
@@ -400,6 +424,8 @@ function immutableLinks(html, articles) {
 
 module.exports = {
   editionNotice,
+  nativeEditionLinks,
+  applyNativeReadingLinks,
   maximumArticles,
   articleId,
   articleURL,
