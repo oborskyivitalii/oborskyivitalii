@@ -178,7 +178,7 @@ Once both formulas are represented in the symbolic domain, determining whether t
     F_base XOR F_prod is true whenever:
     KYC_Complete = TRUE
 
-    When KYC_Complete = FALSE, both formulas evaluate to FALSE, so there is no observable disagreement. 
+    When KYC_Complete = FALSE, both formulas evaluate to FALSE, so there is no observable disagreement.
     When KYC_Complete = TRUE, the disagreement is exposed.
     The changed condition is then localized through AST diff: Verified -> NOT Verified        
 
