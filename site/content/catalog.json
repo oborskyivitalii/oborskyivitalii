@@ -208,24 +208,60 @@
       }
     },
     "publication-07": {
+      "kind": "local-article",
+      "article": "agentic-loops",
       "edition": {
         "@type": "Article",
         "name": "Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops",
-        "url": "https://www.linkedin.com/pulse/reinventing-control-theory-one-feature-time-fallacy-agentic-oborskyi-vkwve/",
+        "url": "articles/agentic-loops.html",
         "inLanguage": "en",
         "author": {
           "@type": "Person",
-          "name": "Vitalii Oborskyi"
-        },
-        "datePublished": "2026-06-10"
+          "name": "Vitalii Oborskyi",
+          "url": "https://vitaliioborskyi.ai/"
+        }
       },
-      "editions": [],
-      "discussions": ["reddit-agentic-loops"],
+      "editions": [
+        {
+          "@type": "Article",
+          "name": "Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops",
+          "url": "https://www.linkedin.com/pulse/reinventing-control-theory-one-feature-time-fallacy-agentic-oborskyi-vkwve/",
+          "inLanguage": "en",
+          "author": {
+            "@type": "Person",
+            "name": "Vitalii Oborskyi",
+            "url": "https://vitaliioborskyi.ai/"
+          },
+          "datePublished": "2026-06-10",
+          "platform": "LinkedIn",
+          "relationship": "same-topic-platform-edition",
+          "bodyEquivalenceVerified": false
+        },
+        {
+          "@type": "Article",
+          "name": "Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops",
+          "url": "https://medium.com/agileinsider/reinventing-control-theory-one-feature-at-a-time-the-fallacy-of-agentic-loops-01dd533615de",
+          "inLanguage": "en",
+          "author": {
+            "@type": "Person",
+            "name": "Vitalii Oborskyi",
+            "url": "https://vitaliioborskyi.ai/"
+          },
+          "datePublished": "2026-06-12",
+          "platform": "Medium",
+          "relationship": "same-topic-platform-edition",
+          "bodyEquivalenceVerified": false
+        }
+      ],
+      "discussions": [
+        "reddit-agentic-loops"
+      ],
       "presentation": {
         "topic": "systems",
         "kind": "Article",
-        "publisher": "LinkedIn",
-        "summary": "A control-theory perspective on agentic loops and engineering control."
+        "publisher": "Author site",
+        "summary": "A control-theory perspective on agentic loops and engineering control.",
+        "archiveYear": "2026"
       }
     },
     "publication-08": {

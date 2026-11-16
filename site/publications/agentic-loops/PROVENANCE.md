@@ -1,0 +1,6 @@
+# Agentic Loops — source and rights
+
+- Selected source: [LinkedIn](https://www.linkedin.com/pulse/reinventing-control-theory-one-feature-time-fallacy-agentic-oborskyi-vkwve/), Vitalii Oborskyi, 10 June 2026. Publisher metadata reports publication at 11:42:14 UTC and revision at 11:42:39 UTC that day. The native manuscript retains the 25 paragraphs and two headings (including the author's nine dash-prefixed questions) in order. Normalized ordered body digest: `61850d72494985c0f3e2d365a39dde5c0a206fe5f50052f1bbee5af6045c6286`. The three authored link destinations are retained with LinkedIn tracking removed.
+- Separate [Agile Insider edition](https://medium.com/agileinsider/reinventing-control-theory-one-feature-at-a-time-the-fallacy-of-agentic-loops-01dd533615de), 12 June 2026. The published text shows punctuation differences. It remains a separate catalog link with body equivalence unverified.
+- LinkedIn shows one lead image (media ID `B4EZ6xVlIFHwAU-`) and no inline illustration. The Draft Preview uses the standard site share image while reuse provenance is pending.
+- [Issue #183](https://github.com/oborskyivitalii/oborskyivitalii/issues/183) tracks this author-requested follow-up. The site publication event and canonical date remain pending.

@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "id": "agentic-loops-en-20260610",
+  "articleId": "agentic-loops",
+  "language": "en",
+  "kind": "full-article",
+  "source": {
+    "path": "manuscript.en.md",
+    "sha256": "a96002dff52da4742b06440a5fb365050588483f042097b104dcc3eb05b59224",
+    "commit": "d329dbfe6a394ac187baec7d20d5b8d2d84a3de4",
+    "blob": "f81038fae29f8b58227e2ab59c538fa568ad7321"
+  },
+  "owner": "site",
+  "derivation": null,
+  "rights": "accepted",
+  "semanticSha256": "e531919afdf8f3870c56f4dc16429bf57255bb29f19c791433d466908ece9ad1"
+}

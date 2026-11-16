@@ -35,4 +35,4 @@
   } catch {
     // Analytics is optional: a blocked script must not interrupt the site.
   }
-})({"origin":"https://vitaliioborskyi.ai","pathnames":["/","/index.html","/research.html","/writing.html","/talks.html","/credits.html","/articles/ai-verification-crisis.html","/articles/thinking-systems.html","/articles/ai-native-workflows-have-a-moat-problem.html","/articles/ai-governance-is-control-theory.html","/articles/ai-cost-cutting-fallacy.html","/articles/the-sdlc-is-out-of-balance.html"],"token":"b01c620f5f154a24b782fe2f970e5af8"});
+})({"origin":"https://vitaliioborskyi.ai","pathnames":["/","/index.html","/research.html","/writing.html","/talks.html","/credits.html","/articles/ai-verification-crisis.html","/articles/thinking-systems.html","/articles/agentic-loops.html","/articles/ai-native-workflows-have-a-moat-problem.html","/articles/ai-governance-is-control-theory.html","/articles/ai-cost-cutting-fallacy.html","/articles/the-sdlc-is-out-of-balance.html"],"token":"b01c620f5f154a24b782fe2f970e5af8"});
