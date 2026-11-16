@@ -355,11 +355,9 @@ If an existing approach already solves part of the problem better, the right res
 
 ## About the author
 
-Vitalii Oborskyi is the creator and principal author of Uncertainty Architecture, an open engineering specification and research program for systems in which probabilistic model judgment can materially influence runtime behavior. He is Head of Delivery & Operations at Developex and has more than two decades of experience across software engineering, delivery, and engineering governance.
+**Vitalii Oborskyi** is an enterprise delivery leader and independent research author. His work focuses on AI-assisted software delivery and the governance of systems that depend on model judgment. He is the author of [Uncertainty Architecture](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture) and [The Subprime Code Crisis](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis).
 
-His current work focuses on non-deterministic systems, AI governance, socio-technical control architectures, and the changing mechanics of software delivery.
-
-[Vitalii Oborskyi — LinkedIn profile](https://www.linkedin.com/in/vitaliioborskyi/)
+[Author website](https://vitaliioborskyi.ai/) · [LinkedIn](https://www.linkedin.com/in/vitaliioborskyi/)
 
 ## Continue exploring Uncertainty Architecture
 

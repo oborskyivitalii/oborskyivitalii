@@ -402,11 +402,9 @@ That is what Control Theory does for mechanics. That is what Uncertainty Archite
 
 ### Author
 
-Vitalii Oborskyi — Head of Delivery & Ops | Creator of “Uncertainty Architecture” (AI Control Theory)
+**Vitalii Oborskyi** is an enterprise delivery leader and independent research author. His work focuses on AI-assisted software delivery and the governance of systems that depend on model judgment. He is the author of [Uncertainty Architecture](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture) and [The Subprime Code Crisis](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis).
 
-Framework: [https://github.com/oborskyivitalii/uncertainty-architecture](https://github.com/oborskyivitalii/uncertainty-architecture)
-
-Connect: [https://www.linkedin.com/in/vitaliioborskyi/](https://www.linkedin.com/in/vitaliioborskyi/)
+[Author website](https://vitaliioborskyi.ai/) · [LinkedIn](https://www.linkedin.com/in/vitaliioborskyi/)
 
 ---
 
@@ -426,4 +424,4 @@ Medium - [https://medium.com/towards-artificial-intelligence/the-future-the-mirr
 
 - GitHub for Open Source Operational Model - Uncertainty Architecture(UA)
 
-[https://github.com/oborskyivitalii/uncertainty-architecture](https://github.com/oborskyivitalii/uncertainty-architecture)
+[Uncertainty Architecture repository](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture)

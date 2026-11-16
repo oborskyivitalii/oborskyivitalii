@@ -6,6 +6,8 @@
 
 > NOTE: This article argues that LLM-powered applications are not just classical software with an AI API attached. They are behavioral systems where part of the business logic is delegated to probabilistic model judgment. That shift breaks many assumptions behind traditional QA, monitoring, and LLMOps dashboards. Embedding similarity can detect topical proximity, but it cannot guarantee logical equivalence. LLM-as-a-judge can help qualitative review, but it is weak as final authority for high-risk logical invariants. The article examines one bounded neuro-symbolic pattern for logic-level drift detection, then places it inside a broader Uncertainty Architecture approach: sensors, controllers, actuators, audit trails, economic risk thresholds, and no-go decisions. The thesis is simple: enterprise AI will not be made reliable by trusting models harder. It will be made governable by designing control systems around model judgment.
 
+> **Author’s note, November 2026.** This article uses “Behavioral Software” and “behavioral applications.” The later [Thinking Systems](https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db) formulation focuses on a specific condition: at least one consequential runtime responsibility depends partly on model judgment.
+
 ## Chapter 1: From Linear Software to Behavioral Software
 
 ### The Probability Paradox and the Cynefin Shift
@@ -482,8 +484,6 @@ Microsoft Azure OpenAI — “Structured Outputs.” Useful reference for struct
 
 
 
-**Author:** Vitalii Oborskyi - Head of Delivery & Ops \| Creator of “Uncertainty Architecture” (AI Control Theory)
+**Vitalii Oborskyi** is an enterprise delivery leader and independent research author. His work focuses on AI-assisted software delivery and the governance of systems that depend on model judgment. He is the author of [Uncertainty Architecture](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture) and [The Subprime Code Crisis](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis).
 
-AI Governance Framework(AI Reliability = Actuators + Sensors + Controller)**:** <https://github.com/oborskyivitalii/uncertainty-architecture>
-
-LinkedIn: [https://www.linkedin.com/in/vitaliiobor](https://www.linkedin.com/in/vitaliioborskyi/)
+[Author website](https://vitaliioborskyi.ai/) · [LinkedIn](https://www.linkedin.com/in/vitaliioborskyi/)

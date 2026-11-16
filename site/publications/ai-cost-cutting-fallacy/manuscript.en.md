@@ -180,6 +180,8 @@ Mastering Horizon 1 is the prerequisite for Horizon 2: building things that neve
 
 This represents the creation of **"Behavioral Applications".** These are not just static interfaces; they are intelligent systems capable of reasoning, planning, and error correction.
 
+> **Author’s note, November 2026.** “Behavioral Applications” was the term I used in this edition. I now use [Thinking Systems](https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db) for systems that rely partly on model judgment for at least one consequential runtime responsibility. The same test applies to fixed workflows and autonomous agents.
+
 ### The Cultural Bridge: Why Investment is Non-Negotiable
 
 Crucially, neither Horizon 1 nor Horizon 2 can be achieved by simply buying licenses and firing staff. Both require a radical change in **engineering culture**.
@@ -228,8 +230,6 @@ AI is not a way to do the same work with fewer people. It is a way for your exis
 
 ---
 
-**Author:** Vitalii Oborskyi - Head of Delivery & Ops | Creator of “Uncertainty Architecture” (AI Control Theory)
+**Vitalii Oborskyi** is an enterprise delivery leader and independent research author. His work focuses on AI-assisted software delivery and the governance of systems that depend on model judgment. He is the author of [Uncertainty Architecture](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture) and [The Subprime Code Crisis](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis).
 
-AI Governance Framework(AI Reliability = Actuators + Sensors + Controller)**:** [https://github.com/oborskyivitalii/uncertainty-architecture](https://github.com/oborskyivitalii/uncertainty-architecture)
-
-LinkedIn: [https://www.linkedin.com/in/vitaliioborskyi/](https://www.linkedin.com/in/vitaliioborskyi/)
+[Author website](https://vitaliioborskyi.ai/) · [LinkedIn](https://www.linkedin.com/in/vitaliioborskyi/)

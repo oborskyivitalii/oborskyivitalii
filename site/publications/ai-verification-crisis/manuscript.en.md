@@ -34,10 +34,8 @@ This is one of the core ideas behind my Uncertainty Architecture work. Reliabili
 
 The model can propose. The system must verify. The team must still own the loop.
 
-**Author**: Vitalii Oborskyi — Head of Delivery & Ops | Creator of “Uncertainty Architecture” (AI Control Theory)
+**Related reading:** [The AI Cost-Cutting Fallacy](https://www.linkedin.com/pulse/ai-cost-cutting-fallacy-why-doing-more-less-breaking-teams-oborskyi-cxuif/) examines the costs that verification, expertise and parallel operation put back into the delivery system.
 
-AI Governance Framework(AI Reliability = Actuators + Sensors + Controller): [https://github.com/oborskyivitalii/uncertainty-architecture](https://github.com/oborskyivitalii/uncertainty-architecture)
+**Vitalii Oborskyi** is an enterprise delivery leader and independent research author. His work focuses on AI-assisted software delivery and the governance of systems that depend on model judgment. He is the author of [Uncertainty Architecture](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture) and [The Subprime Code Crisis](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis).
 
-The Subprime Code Crisis report — [https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis)
-
-LinkedIn: [https://www.linkedin.com/in/vitaliioborskyi/](https://www.linkedin.com/in/vitaliioborskyi/)
+[Author website](https://vitaliioborskyi.ai/) · [LinkedIn](https://www.linkedin.com/in/vitaliioborskyi/)

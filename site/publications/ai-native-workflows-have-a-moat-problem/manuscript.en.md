@@ -220,8 +220,6 @@ And in the next phase of the industry, that may decide who captures the value.
 
 ## Author
 
-Vitalii Oborskyi Head of Delivery & Ops | Creator of Uncertainty Architecture AI Governance as Control Theory: Actuators + Sensors + Controller
+**Vitalii Oborskyi** is an enterprise delivery leader and independent research author. His work focuses on AI-assisted software delivery and the governance of systems that depend on model judgment. He is the author of [Uncertainty Architecture](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture) and [The Subprime Code Crisis](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis).
 
-Framework: [https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture)
-
-LinkedIn: [https://www.linkedin.com/in/vitaliioborskyi/](https://www.linkedin.com/in/vitaliioborskyi/)
+[Author website](https://vitaliioborskyi.ai/) · [LinkedIn](https://www.linkedin.com/in/vitaliioborskyi/)
