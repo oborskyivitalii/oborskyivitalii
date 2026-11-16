@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "fe6d9ca7be13cd25253073a2674d03345face0a911b1986223329a399847fe73",
+    "digest": "54c8edcffac53653e94b65f8d2c88426e6ff091a842c9295ebb16791bd0622dc",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -4870,7 +4870,7 @@
       {
         "path": "review/issue-183/2026-11-16-staging-controller.md",
         "identity_mode": "content",
-        "sha256": "8af450ec30e80ae559ca1fef383e9ad3ce84df358b63bf172617536c17519a72"
+        "sha256": "ea52b64e107180dd198a6b21aee0dcf61cfb43329116e4f8bcd80259d91655db"
       },
       {
         "path": "review/issue-183/workflow-guide-evidence.json",
@@ -13080,7 +13080,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "449102e889508142835a3ecc6f0991baf28824c764e9877da14e69c166fd7a48"
+        "sha256": "0858d7ecf643df52ad258f81190b83f7fbcf71c198c16a22fbd53db99efc2c29"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
