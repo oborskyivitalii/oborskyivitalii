@@ -1,10 +1,10 @@
 # Session memory
 
-Dated handoff. Last verified: **2026-11-15**. Revalidate live sources when resuming.
+Dated handoff. Last verified: **2026-11-16**. Revalidate live sources when resuming.
 
 ## Snapshot
 
-- Protected main `a860453` includes the exact closed-pulse staging registration from PR #206 and the #199 workflow guide and Python tooling from PR #200. Production ref `ca75641` remains the last observed deployment source.
+- Protected main `b7b95a1` includes the accepted closed-pulse reader transition from PR #197. Production ref `ca75641` remains the last observed deployment source.
 - [#187](https://github.com/oborskyivitalii/oborskyivitalii/issues/187) owns the Writing and article transition in [Draft PR #197](https://github.com/oborskyivitalii/oborskyivitalii/pull/197). The author approved [the exact closed-pulse Preview](https://1390339f.oborskyi-author-ci-staging.pages.dev/writing.html) at `4021407` and authorized rebasing and merging.
 - The [protected staging prerequisite](review/issue-187/2026-11-12-controller-preregistration.md) records the controller refusal and exact registration. [PR #206 staging](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43719809013) and [Change admission](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43723815943) passed before the protected merge.
 
@@ -24,8 +24,8 @@ Dated handoff. Last verified: **2026-11-15**. Revalidate live sources when resum
 
 ## Next session
 
-1. Verify rebased #197 through exact-head source checks and stable staging.
-2. Bind the protected merge to the new staging and owner admission evidence.
+1. Finish exact-head checks, owner staging and protected integration of [PR #207](https://github.com/oborskyivitalii/oborskyivitalii/pull/207), authorized for #183.
+2. Update [PR #205](https://github.com/oborskyivitalii/oborskyivitalii/pull/205) from the integrated controller, repair its Ready failures and verify Stable Staging.
 
 ## Maintenance
 
