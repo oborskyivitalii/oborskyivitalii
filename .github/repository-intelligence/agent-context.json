@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "c418b1798ac92a14b30a31402aa4461209123adb9418b5a9b0d3477cf0f136f7",
+    "digest": "959fe26ca86c6f81f001ebf0dadc6496b358b14e5cdcf4ff805437b4dcacb1a0",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -271,12 +271,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "830543639beb71753fde6644d075b1e3c26083e334c51f02e7961ecbf5f04f56"
+        "sha256": "e3eb94d452d331a0c6649d5b79008d586c211d6e34c854dbb72990861b3aba3a"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "65779cb97ea4fc1740ee672451b1be15e3734190348f78d07074ebb7f9eabff2"
+        "sha256": "ff89b677e0daeba845702ca203bd5bad19ac5db56554f1ed2b0e2c7c87476099"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -426,7 +426,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "1f0b7777a2c29212cc69c030fd530bbf9344bd23ccb6a84a4cb793b29cb011df"
+        "sha256": "23faf916fa4a348bc6718283948890eeab66c631a11f51621311a26f10c8a60e"
       },
       {
         "path": "NOTICE.md",
@@ -673,24 +673,19 @@
         "sha256": "f1d53fa07e9c2d947922eb82b5cc12b7b7bbefd62cf728e80b9cfcbde8a5ffa9"
       },
       {
-        "path": "docs/article-snapshots/09e970c12dbe043bee2dfcd7add3a4a998a7b73bf3474ca2ffb80e08c3ad0967/ai-native-workflows-have-a-moat-problem.html",
+        "path": "docs/article-snapshots/2589eb060a4810787cd62faa042e75a5cd5ae03ee2bf3832805cc90a2c3889d1/ai-verification-crisis.html",
         "identity_mode": "content",
-        "sha256": "3fcf7b64795e1f3a369a6072e51bd0b39a4732b0824f9b54b0a789d611f8f40e"
+        "sha256": "34a09184b1437b715dcddd6cbb397d73faaaeea6208c963436c2af313b24bf77"
       },
       {
-        "path": "docs/article-snapshots/716ebd541c3dfb7c9e9d9e9bbc72850595fcb6564b34f72524f9a1862515c464/the-sdlc-is-out-of-balance.html",
+        "path": "docs/article-snapshots/6a1826f6493b4469d482ba674f9ef011ee2c9f146e626b6f8b7a834eff5e1304/the-sdlc-is-out-of-balance.html",
         "identity_mode": "content",
-        "sha256": "5145b9926e0bb3b89ae2f4c33b0cfefd857dd72a42cc81fee15d06b6a3dbcc65"
+        "sha256": "4e91b42582a84dbe396921766d72bae00b5e9ded826aa97b89a9bb016394a869"
       },
       {
-        "path": "docs/article-snapshots/7820afbd8014178c44dd5ee31697009adf15c585ea2053914f22ba72fe512120/thinking-systems.html",
+        "path": "docs/article-snapshots/7dac11cea719f9b0d8514e49b2337dbefbb581936b704e1b3c1c689b11913e32/ai-governance-is-control-theory.html",
         "identity_mode": "content",
-        "sha256": "5f4af5c3af4dde7ac62964fd9336409c2e2b63b80f6d11d5182e102335fe3322"
-      },
-      {
-        "path": "docs/article-snapshots/8d7d0979f33822a9020ae190d1f802ad8ed0cc666be26cd8df12b11ab29dc459/ai-cost-cutting-fallacy.html",
-        "identity_mode": "content",
-        "sha256": "170814083fa8d451429e1327b9f99a6ddf2e19953d7b586dea0742e032662524"
+        "sha256": "d57bb36f49dbf6102840d21e96b1270839413459d459c08d268896efa3831f1c"
       },
       {
         "path": "docs/article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995/the-sdlc-is-out-of-balance.html",
@@ -703,44 +698,49 @@
         "sha256": "4aa1ae74ff48155957e9f897b7697e1cee35e3b38d8319d0906c15da2d44fd7b"
       },
       {
-        "path": "docs/article-snapshots/cd02b411796b10be063218cef9effa306cfd3df31cf1c2067c59503114edd040/ai-verification-crisis.html",
+        "path": "docs/article-snapshots/c4d834f962c13f4b00c6d007ffa31e5cf094bbebfabbd8b9b58a236c8b42b494/ai-cost-cutting-fallacy.html",
         "identity_mode": "content",
-        "sha256": "fad0f4afae0a30afc3caf13c2db2cf6bb9cd9f0a1ddbd40f308fb22e71701b68"
+        "sha256": "479f16821d925770b1a6ce5b162f744e0cae822334d35c44d2a878b686912722"
       },
       {
-        "path": "docs/article-snapshots/f93389f1691a648ba28866dc10f46cf7a345d858060488285418482aa276b9e6/ai-governance-is-control-theory.html",
+        "path": "docs/article-snapshots/e25857038a9d5a923f3c27efb3cd955bbd29e0b8688a2760b4026e92e8a56c0b/ai-native-workflows-have-a-moat-problem.html",
         "identity_mode": "content",
-        "sha256": "84a0159356e29344ded552e2645c7a91f18a8141615eb82a495cb7d1fe54577b"
+        "sha256": "9b113536a3a7825422108901e986c4367c324c393fc4b1868debbae93e86556b"
+      },
+      {
+        "path": "docs/article-snapshots/ec9f191eb275222ed9c02a5f9860b9d2174fdefbdc72392740cb45a9f360fb01/thinking-systems.html",
+        "identity_mode": "content",
+        "sha256": "b2473e9bca88857b69e3680d75f4a6315470f5558cd1d0507187639c3e779728"
       },
       {
         "path": "docs/articles/ai-cost-cutting-fallacy.html",
         "identity_mode": "content",
-        "sha256": "594eb765281ef39b54b4a015cff7573efdcd5638781fa8ec82c9b5b7f37fc4b4"
+        "sha256": "5ab3873569f575ee61cd2dee888f96e6d81bff4e5c392fe98810e22c07b71b11"
       },
       {
         "path": "docs/articles/ai-governance-is-control-theory.html",
         "identity_mode": "content",
-        "sha256": "66b88d3f07ca5659177811b19666fd7b815a2128a9010b4f22e48214c7bbfba0"
+        "sha256": "7b4e84ee9a5de4cc2f67a02ee00f0e32bc198f2afbf90892647fa1d31b6c9c97"
       },
       {
         "path": "docs/articles/ai-native-workflows-have-a-moat-problem.html",
         "identity_mode": "content",
-        "sha256": "f9916636e0b06b270fdb0b5fab2efe54fc3f3417d286d3397d6c172dccfbae36"
+        "sha256": "061d11ccb38b50aa8a62fc6e7e36a51e144ff64d8461a63f39d420abbe04b164"
       },
       {
         "path": "docs/articles/ai-verification-crisis.html",
         "identity_mode": "content",
-        "sha256": "c1fe58a67a15ac7249d032a94fdb6b947a787028352802604725c4d258c33364"
+        "sha256": "272b451c5952c74b3c1edd14b7ed85154c7768ef72179e8634e0e714ab79d55e"
       },
       {
         "path": "docs/articles/the-sdlc-is-out-of-balance.html",
         "identity_mode": "content",
-        "sha256": "af14af54cd133533d0334107c156e63c58224527f4b9df06e2f53e7ae279fbb0"
+        "sha256": "1404ae8f65ac64c82dbf58d02a34bfff3aa0378f4b34279cda8e68f72bec7d1b"
       },
       {
         "path": "docs/articles/thinking-systems.html",
         "identity_mode": "content",
-        "sha256": "6931b9ed097029412573e70fedb6da7e944b8a87c0963f1eb2d7315500b0bbce"
+        "sha256": "3dbf7a79f4a01dd4fda496d32a6a7a4187922156a14dd526b8dfe0be90f6d825"
       },
       {
         "path": "docs/assets/favicon.svg",
@@ -765,12 +765,12 @@
       {
         "path": "docs/credits.html",
         "identity_mode": "content",
-        "sha256": "5e61d3f03affc3d5a4d5cef72955d4b58b3e6c9574fb87f8a52c419676e4bdda"
+        "sha256": "977ec465346797c136e2d535ed8ce79bf146c4d9dd8eee4e3d47af05847e6a47"
       },
       {
         "path": "docs/index.html",
         "identity_mode": "content",
-        "sha256": "e0649aa2474c41dbd1e5e0071f916dfc9b5c99ddd06cec7d2f7823e5bce662e1"
+        "sha256": "bba90531c3c68236f722ff69c7a456734e2e3e5f94afed1d12615c8e02c985ac"
       },
       {
         "path": "docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg",
@@ -805,7 +805,7 @@
       {
         "path": "docs/research.html",
         "identity_mode": "content",
-        "sha256": "54306d309a4c9dc45f59e8aa00470be9521160cbb1a509fda6125d28859991c1"
+        "sha256": "50a01965145cb616a71c0dc5db3227e6db67385a3a2884ae2b39193c43bd19e1"
       },
       {
         "path": "docs/runtime/1c34e64047482a214a50a115582adb08988fe8721f5ee651bd8a231a300e2cf7/analytics.js",
@@ -975,7 +975,7 @@
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "4f135db399f2b3ab4adf5dedd3417cfae6e7c848223a141530c7469a386f73fe"
+        "sha256": "804670b5846f299f8038ebe615616d4b13594b11543d029202a78d07e0abfbbd"
       },
       {
         "path": "docs/snapshots/080da808855bdc7cac66970509a9a371a5033cb5d721a007a92632c826b2d06a/writing.html",
@@ -998,6 +998,11 @@
         "sha256": "3dd82a25eee6f3915f0748192a6dc34bfbd214879b0ed933f116b3d47a363df7"
       },
       {
+        "path": "docs/snapshots/5e30e80f3137443e8c35c0f7d5e8c2e74f930db32265b4cd4d5a7cf3b379fbd9/talks.html",
+        "identity_mode": "content",
+        "sha256": "a1c42ff6b4bf34888c55118bed4b081675fdc18aade09dcf664e7c38ab7b3188"
+      },
+      {
         "path": "docs/snapshots/632f4f29ebdbc51215b02592fd45a1f10a99fb8596d2dec8b3f18bc8be847f06/credits.html",
         "identity_mode": "content",
         "sha256": "f6b20241842beb0bcc0b649bfb4443d8f446fc4d3dcfd65684b3b6facafca4e2"
@@ -1006,16 +1011,6 @@
         "path": "docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed/research.html",
         "identity_mode": "content",
         "sha256": "395fd7fcc670e0b7984ed05e7395958dd9432a701f3bfc43151fb956e6d289a1"
-      },
-      {
-        "path": "docs/snapshots/7573d249cf739354cb5581727593589332d013a1595e3d7c3de7a564145c0aa9/research.html",
-        "identity_mode": "content",
-        "sha256": "b892b0a0bf040f11b5a909d727f2adb93918fa8dc886ec688946911c99efa089"
-      },
-      {
-        "path": "docs/snapshots/7697373ba6bc9d1013ac22c65ebff193cbb38873d2b1757134d06551db38b0e0/index.html",
-        "identity_mode": "content",
-        "sha256": "595a417af7b3f671341d8e90b7736c3c829eeb8b6434baf04b5a3c479c1e8526"
       },
       {
         "path": "docs/snapshots/7b62f25175a003a9fcc24f430e26ff321f267a8e77a28699984f86bf1dfdd3b6/research.html",
@@ -1033,6 +1028,11 @@
         "sha256": "4284e646405e3c2dc1288fd3e222e15b8564e44cbaeca8be0b0b01927a248736"
       },
       {
+        "path": "docs/snapshots/904478b79f4e17b33c0df0e810cbe9af6d3421b8ca3be70e082b97ac6c439275/credits.html",
+        "identity_mode": "content",
+        "sha256": "240594f2ffbc7ddbe8366b11b01482f36d585da35579058338b056ca79313299"
+      },
+      {
         "path": "docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html",
         "identity_mode": "content",
         "sha256": "b5f2a67bafcaa7275bdf27c5a4b174168c6e9442614ed592a19b1ea748eec942"
@@ -1041,6 +1041,11 @@
         "path": "docs/snapshots/95b57d8257b5ffb3f4b9924d90694110e982f7bdc9aecb6f09969d46b3a8b2e0/index.html",
         "identity_mode": "content",
         "sha256": "288f85a3b0bf82d69aceda049007063a6ebcde469eb345b8ddcec53cf96bd498"
+      },
+      {
+        "path": "docs/snapshots/9d8c311745b3b6d2c1e45e5c428697972e56a5a6bec865148d71fb662b3d8e36/writing.html",
+        "identity_mode": "content",
+        "sha256": "f6fdbd0785306ba52a4466397ac04b436ebfe37dfcc3c0dc04fe6b298440b6c8"
       },
       {
         "path": "docs/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700/credits.html",
@@ -1053,19 +1058,9 @@
         "sha256": "1d7a5aeb831c51e49667095bb29f51108ff47e32cf89853b54002ffad693e312"
       },
       {
-        "path": "docs/snapshots/b3d059ff3cf3523d0aedf5dc01a7ff4ebe32ede02482025ee3e3f4e8a8122d31/writing.html",
-        "identity_mode": "content",
-        "sha256": "8cede295878e774edb09c825187e34934a9f84d47e1e89334feaffa465dbf2ac"
-      },
-      {
         "path": "docs/snapshots/b57f1dcb99f70ff2df6f748de084f2793f992f438a03c798a30b891c8f9e6461/writing.html",
         "identity_mode": "content",
         "sha256": "55cf819e07ca22d5a0b84efe46eb5cbff97e318605e9fd8d2d89c32c28ef2e11"
-      },
-      {
-        "path": "docs/snapshots/bbb1f6b4aeb7404b971eb33f1c16a2b0ec44864cbcc1ef26a86a911586acabee/credits.html",
-        "identity_mode": "content",
-        "sha256": "a404d9f7236b5b69f2dd2bfddcebe6ed0215d0330489a39a6687496df93ba1ba"
       },
       {
         "path": "docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920/index.html",
@@ -1073,9 +1068,14 @@
         "sha256": "e4bbf6e735ef6b9d3c89d7412e12a1288f2b73b9d47e3097c71419f518b29fd2"
       },
       {
-        "path": "docs/snapshots/cc05d2f349e8dfad9b69f99ad2c23392abbb0163c7ba895cb09d3e7b5d2b4dfa/talks.html",
+        "path": "docs/snapshots/c47326083892e6e7a25f97daf85ae6703efab251ab8e690d5acb2c179b167e32/index.html",
         "identity_mode": "content",
-        "sha256": "da2656b1737fec92e20c72b0483de5835c5e09a63dbfc6f3489e4d6f1013d152"
+        "sha256": "a2a87ccae2a8f53577f1d78ef7b938acce025b93c8cd359a9a81dc225e3f94e4"
+      },
+      {
+        "path": "docs/snapshots/caa5820c4eaada5e7be12d2fbef94ef95b93c7dbed63a36eed7b31fa21a1dd90/research.html",
+        "identity_mode": "content",
+        "sha256": "eb0a33b78520f7684f678cb866aca228e5c7a2eb861fee09566ce9cf5f27b0f5"
       },
       {
         "path": "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html",
@@ -1095,7 +1095,7 @@
       {
         "path": "docs/talks.html",
         "identity_mode": "content",
-        "sha256": "32856984c735c21bb128c5047d802a4db57adc23a3b8f56f7ee2bf24dc88385c"
+        "sha256": "5d262beb9d7f714bf93c043a1cbf6d47a8d9f6f942b2386c8f7278aa435fc21c"
       },
       {
         "path": "docs/theme.js",
@@ -1105,7 +1105,7 @@
       {
         "path": "docs/writing.html",
         "identity_mode": "content",
-        "sha256": "34333914f396ba095eea3d93a0a8f7fe25192ee1436c796788660e6dddf03795"
+        "sha256": "641fbb3ed3fd4e5e6bf5536055f39ca34b05b83d1ad951035f38b8f244258909"
       },
       {
         "path": "drafts/medium-profile-revision-20261001.html",
@@ -5045,7 +5045,7 @@
       {
         "path": "review/issue-183/2026-11-15-moat-problem.md",
         "identity_mode": "content",
-        "sha256": "a258f751e87dd57ca87bb3b491e752221faac9b7c686fd1db6f69bcd8e41049f"
+        "sha256": "1a242213413efc104c188f32ebed96866f27d20eae70c5d8b9552f3cce2edd1a"
       },
       {
         "path": "review/issue-183/2026-11-15-verification-crisis.md",
@@ -10370,7 +10370,7 @@
       {
         "path": "site/README.md",
         "identity_mode": "content",
-        "sha256": "9cb2009968a8ed54f146f99e4bd5573e7efd694b2d7da2da5c388817125fed75"
+        "sha256": "aa9cbaa8729ff4e967e7042da726b20f99953fa030c49acdf5adc22828e37510"
       },
       {
         "path": "site/analytics.json",
@@ -11055,7 +11055,7 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "f78a9b4754efa0e11dd747c880c6d842754bf582d54f14b87e124ea57509ec3c"
+        "sha256": "7dc9c74ddd4a48a17f5ed33782cf4097477f4124f5da0b3d0fe7412deb3c81d1"
       },
       {
         "path": "site/publications/ai-cost-cutting-fallacy/PROVENANCE.md",
@@ -11150,7 +11150,7 @@
       {
         "path": "site/publications/ai-native-workflows-have-a-moat-problem/profile.json",
         "identity_mode": "content",
-        "sha256": "5f1cc5ee1efc25ac389e6ac0c9c538f0be8e09269dd9b019716a09b86d7d789e"
+        "sha256": "03bf1015714c940bf0198d6bb3b17f069d948f9db68f61259106fd49cfaddb10"
       },
       {
         "path": "site/publications/ai-native-workflows-have-a-moat-problem/publication.json",
@@ -12505,7 +12505,7 @@
       {
         "path": "tests/publishing-profile.test.cjs",
         "identity_mode": "content",
-        "sha256": "60918f26bdb83b3a0cb9c31f3d8a72e6ee4acddab3f1d571889c3a4d2b2efb1c"
+        "sha256": "f70ad5b0c9b9d0b2c4c6f472e544acfc5ef05420c2f1396683d2f8991508be61"
       },
       {
         "path": "tests/publishing-safety.test.cjs",
@@ -12535,7 +12535,7 @@
       {
         "path": "tests/reader-mode.test.cjs",
         "identity_mode": "content",
-        "sha256": "98806b854f08347b4716724162453b214708e418d961d80b50364d50d9fb2876"
+        "sha256": "c212e446e214a8d05d9187caa514f916a7a1a08a5f25039f05bb1479928354fd"
       },
       {
         "path": "tests/refactor-metrics.test.cjs",
@@ -13045,7 +13045,7 @@
       {
         "path": "tools/publishing/profile.cjs",
         "identity_mode": "content",
-        "sha256": "4a0d27b65bcafbc89e7f894587055fba9bbc529ba19ecaef94e5bc4a9d97a471"
+        "sha256": "91d3a7a10011db423d5010e761ab0e5fc54d58bbbc0b70ee80104f2f2da730e3"
       },
       {
         "path": "tools/publishing/provenance.cjs",
@@ -13860,7 +13860,7 @@
       {
         "path": "tools/site/reader.cjs",
         "identity_mode": "content",
-        "sha256": "356757d24ef95311591b4d5094bace565e699bbfd04f68cc2f99d10b63d2e8f6"
+        "sha256": "66049f848ef1f841be3dee197df9ac70ae191d04aee53a478954db63601fdcb3"
       },
       {
         "path": "tools/site/render-content.cjs",
@@ -15842,7 +15842,7 @@
       "title": "the-sdlc-is-out-of-balance.html"
     },
     {
-      "path": "docs/article-snapshots/09e970c12dbe043bee2dfcd7add3a4a998a7b73bf3474ca2ffb80e08c3ad0967/ai-native-workflows-have-a-moat-problem.html",
+      "path": "docs/article-snapshots/2589eb060a4810787cd62faa042e75a5cd5ae03ee2bf3832805cc90a2c3889d1/ai-verification-crisis.html",
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -15850,10 +15850,10 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "ai-native-workflows-have-a-moat-problem.html"
+      "title": "ai-verification-crisis.html"
     },
     {
-      "path": "docs/article-snapshots/716ebd541c3dfb7c9e9d9e9bbc72850595fcb6564b34f72524f9a1862515c464/the-sdlc-is-out-of-balance.html",
+      "path": "docs/article-snapshots/6a1826f6493b4469d482ba674f9ef011ee2c9f146e626b6f8b7a834eff5e1304/the-sdlc-is-out-of-balance.html",
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -15864,7 +15864,7 @@
       "title": "the-sdlc-is-out-of-balance.html"
     },
     {
-      "path": "docs/article-snapshots/7820afbd8014178c44dd5ee31697009adf15c585ea2053914f22ba72fe512120/thinking-systems.html",
+      "path": "docs/article-snapshots/7dac11cea719f9b0d8514e49b2337dbefbb581936b704e1b3c1c689b11913e32/ai-governance-is-control-theory.html",
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -15872,18 +15872,7 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "thinking-systems.html"
-    },
-    {
-      "path": "docs/article-snapshots/8d7d0979f33822a9020ae190d1f802ad8ed0cc666be26cd8df12b11ab29dc459/ai-cost-cutting-fallacy.html",
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "ai-cost-cutting-fallacy.html"
+      "title": "ai-governance-is-control-theory.html"
     },
     {
       "path": "docs/article-snapshots/a67b6e9f54e17606a934aeab6b7ea1e747b1020213215e50c8613248f8cc6995/the-sdlc-is-out-of-balance.html",
@@ -15908,7 +15897,7 @@
       "title": "the-sdlc-is-out-of-balance.html"
     },
     {
-      "path": "docs/article-snapshots/cd02b411796b10be063218cef9effa306cfd3df31cf1c2067c59503114edd040/ai-verification-crisis.html",
+      "path": "docs/article-snapshots/c4d834f962c13f4b00c6d007ffa31e5cf094bbebfabbd8b9b58a236c8b42b494/ai-cost-cutting-fallacy.html",
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -15916,10 +15905,10 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "ai-verification-crisis.html"
+      "title": "ai-cost-cutting-fallacy.html"
     },
     {
-      "path": "docs/article-snapshots/f93389f1691a648ba28866dc10f46cf7a345d858060488285418482aa276b9e6/ai-governance-is-control-theory.html",
+      "path": "docs/article-snapshots/e25857038a9d5a923f3c27efb3cd955bbd29e0b8688a2760b4026e92e8a56c0b/ai-native-workflows-have-a-moat-problem.html",
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -15927,7 +15916,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "ai-governance-is-control-theory.html"
+      "title": "ai-native-workflows-have-a-moat-problem.html"
+    },
+    {
+      "path": "docs/article-snapshots/ec9f191eb275222ed9c02a5f9860b9d2174fdefbdc72392740cb45a9f360fb01/thinking-systems.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "thinking-systems.html"
     },
     {
       "path": "docs/articles/ai-cost-cutting-fallacy.html",
@@ -16557,6 +16557,17 @@
       "title": "writing.html"
     },
     {
+      "path": "docs/snapshots/5e30e80f3137443e8c35c0f7d5e8c2e74f930db32265b4cd4d5a7cf3b379fbd9/talks.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "talks.html"
+    },
+    {
       "path": "docs/snapshots/632f4f29ebdbc51215b02592fd45a1f10a99fb8596d2dec8b3f18bc8be847f06/credits.html",
       "kind": "file",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
@@ -16577,28 +16588,6 @@
         "AGENTS.md"
       ],
       "title": "research.html"
-    },
-    {
-      "path": "docs/snapshots/7573d249cf739354cb5581727593589332d013a1595e3d7c3de7a564145c0aa9/research.html",
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "research.html"
-    },
-    {
-      "path": "docs/snapshots/7697373ba6bc9d1013ac22c65ebff193cbb38873d2b1757134d06551db38b0e0/index.html",
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "index.html"
     },
     {
       "path": "docs/snapshots/7b62f25175a003a9fcc24f430e26ff321f267a8e77a28699984f86bf1dfdd3b6/research.html",
@@ -16634,6 +16623,17 @@
       "title": "credits.html"
     },
     {
+      "path": "docs/snapshots/904478b79f4e17b33c0df0e810cbe9af6d3421b8ca3be70e082b97ac6c439275/credits.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "credits.html"
+    },
+    {
       "path": "docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html",
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
@@ -16654,6 +16654,17 @@
         "AGENTS.md"
       ],
       "title": "index.html"
+    },
+    {
+      "path": "docs/snapshots/9d8c311745b3b6d2c1e45e5c428697972e56a5a6bec865148d71fb662b3d8e36/writing.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "writing.html"
     },
     {
       "path": "docs/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700/credits.html",
@@ -16678,17 +16689,6 @@
       "title": "index.html"
     },
     {
-      "path": "docs/snapshots/b3d059ff3cf3523d0aedf5dc01a7ff4ebe32ede02482025ee3e3f4e8a8122d31/writing.html",
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "writing.html"
-    },
-    {
       "path": "docs/snapshots/b57f1dcb99f70ff2df6f748de084f2793f992f438a03c798a30b891c8f9e6461/writing.html",
       "kind": "file",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
@@ -16698,17 +16698,6 @@
         "AGENTS.md"
       ],
       "title": "writing.html"
-    },
-    {
-      "path": "docs/snapshots/bbb1f6b4aeb7404b971eb33f1c16a2b0ec44864cbcc1ef26a86a911586acabee/credits.html",
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "credits.html"
     },
     {
       "path": "docs/snapshots/bd58d1e1ee4250149c2c193cbfcefa1f65ba663279fd9c1a983aea810bfd0920/index.html",
@@ -16722,7 +16711,7 @@
       "title": "index.html"
     },
     {
-      "path": "docs/snapshots/cc05d2f349e8dfad9b69f99ad2c23392abbb0163c7ba895cb09d3e7b5d2b4dfa/talks.html",
+      "path": "docs/snapshots/c47326083892e6e7a25f97daf85ae6703efab251ab8e690d5acb2c179b167e32/index.html",
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -16730,7 +16719,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "talks.html"
+      "title": "index.html"
+    },
+    {
+      "path": "docs/snapshots/caa5820c4eaada5e7be12d2fbef94ef95b93c7dbed63a36eed7b31fa21a1dd90/research.html",
+      "kind": "file",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "research.html"
     },
     {
       "path": "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html",
@@ -45603,7 +45603,7 @@
       ]
     },
     {
-      "path": "docs/article-snapshots/09e970c12dbe043bee2dfcd7add3a4a998a7b73bf3474ca2ffb80e08c3ad0967",
+      "path": "docs/article-snapshots/2589eb060a4810787cd62faa042e75a5cd5ae03ee2bf3832805cc90a2c3889d1",
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -45613,7 +45613,7 @@
       ]
     },
     {
-      "path": "docs/article-snapshots/716ebd541c3dfb7c9e9d9e9bbc72850595fcb6564b34f72524f9a1862515c464",
+      "path": "docs/article-snapshots/6a1826f6493b4469d482ba674f9ef011ee2c9f146e626b6f8b7a834eff5e1304",
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -45623,17 +45623,7 @@
       ]
     },
     {
-      "path": "docs/article-snapshots/7820afbd8014178c44dd5ee31697009adf15c585ea2053914f22ba72fe512120",
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/article-snapshots/8d7d0979f33822a9020ae190d1f802ad8ed0cc666be26cd8df12b11ab29dc459",
+      "path": "docs/article-snapshots/7dac11cea719f9b0d8514e49b2337dbefbb581936b704e1b3c1c689b11913e32",
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -45663,7 +45653,7 @@
       ]
     },
     {
-      "path": "docs/article-snapshots/cd02b411796b10be063218cef9effa306cfd3df31cf1c2067c59503114edd040",
+      "path": "docs/article-snapshots/c4d834f962c13f4b00c6d007ffa31e5cf094bbebfabbd8b9b58a236c8b42b494",
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -45673,7 +45663,17 @@
       ]
     },
     {
-      "path": "docs/article-snapshots/f93389f1691a648ba28866dc10f46cf7a345d858060488285418482aa276b9e6",
+      "path": "docs/article-snapshots/e25857038a9d5a923f3c27efb3cd955bbd29e0b8688a2760b4026e92e8a56c0b",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/article-snapshots/ec9f191eb275222ed9c02a5f9860b9d2174fdefbdc72392740cb45a9f360fb01",
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -45873,6 +45873,16 @@
       ]
     },
     {
+      "path": "docs/snapshots/5e30e80f3137443e8c35c0f7d5e8c2e74f930db32265b4cd4d5a7cf3b379fbd9",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/snapshots/632f4f29ebdbc51215b02592fd45a1f10a99fb8596d2dec8b3f18bc8be847f06",
       "kind": "directory",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
@@ -45886,26 +45896,6 @@
       "path": "docs/snapshots/686b383ce47c2b07eb6d45aab9e567353c5c9b7b9811100b8503ce7f2ff555ed",
       "kind": "directory",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/7573d249cf739354cb5581727593589332d013a1595e3d7c3de7a564145c0aa9",
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/7697373ba6bc9d1013ac22c65ebff193cbb38873d2b1757134d06551db38b0e0",
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -45943,6 +45933,16 @@
       ]
     },
     {
+      "path": "docs/snapshots/904478b79f4e17b33c0df0e810cbe9af6d3421b8ca3be70e082b97ac6c439275",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946",
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -45956,6 +45956,16 @@
       "path": "docs/snapshots/95b57d8257b5ffb3f4b9924d90694110e982f7bdc9aecb6f09969d46b3a8b2e0",
       "kind": "directory",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/9d8c311745b3b6d2c1e45e5c428697972e56a5a6bec865148d71fb662b3d8e36",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -45983,29 +45993,9 @@
       ]
     },
     {
-      "path": "docs/snapshots/b3d059ff3cf3523d0aedf5dc01a7ff4ebe32ede02482025ee3e3f4e8a8122d31",
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
       "path": "docs/snapshots/b57f1dcb99f70ff2df6f748de084f2793f992f438a03c798a30b891c8f9e6461",
       "kind": "directory",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/bbb1f6b4aeb7404b971eb33f1c16a2b0ec44864cbcc1ef26a86a911586acabee",
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -46023,7 +46013,17 @@
       ]
     },
     {
-      "path": "docs/snapshots/cc05d2f349e8dfad9b69f99ad2c23392abbb0163c7ba895cb09d3e7b5d2b4dfa",
+      "path": "docs/snapshots/c47326083892e6e7a25f97daf85ae6703efab251ab8e690d5acb2c179b167e32",
+      "kind": "directory",
+      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/caa5820c4eaada5e7be12d2fbef94ef95b93c7dbed63a36eed7b31fa21a1dd90",
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",

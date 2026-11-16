@@ -39,6 +39,7 @@
   },
   "limits": {},
   "reader": {
+    "coverPlacement": "authored",
     "references": "inline",
     "images": "webp-lossless",
     "equivalentImages": {

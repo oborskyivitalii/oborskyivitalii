@@ -375,6 +375,7 @@ test('inline reader sources require named manuscript coverage and reject unknown
     [],
     { references: 'hidden' },
     { presentation: 'iframe' },
+    { coverPlacement: 'arbitrary' },
     { omitRights: true },
   ]) {
     inputs.profile.reader = reader;

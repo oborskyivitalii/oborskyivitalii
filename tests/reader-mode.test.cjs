@@ -53,6 +53,15 @@ test('reader reuses the admitted AST without changing source or other renditions
   assert.match(output.body, /<div class="reader-divider"><hr><\/div>/);
   assert.ok(!input.platformBodyHtml.includes('reader-divider'));
   validateFragment(output.body + output.subtitle + output.toc, 'reader test');
+
+  input.profile.reader.coverPlacement = 'authored';
+  const authoredCover = prepare(input);
+  assert.match(authoredCover.body, /class="reader-introduction"><figure/);
+  assert.ok(
+    authoredCover.body.indexOf('</figure>') < authoredCover.body.indexOf('The hook stays first.')
+  );
+  assert.equal((authoredCover.body.match(/<figure/g) || []).length, 1);
+  assert.equal(authoredCover.subtitle, output.subtitle);
 });
 
 test('reader defers later figures in rendered order while preserving the first image and cover', () => {

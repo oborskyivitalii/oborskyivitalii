@@ -269,7 +269,8 @@ function prepare(article) {
   const nodes = (children) =>
     render({ tree: { type: 'root', children } }, article.assets, false, hooks);
   // Cover placement is furniture, not a change to the manuscript's argument order.
-  const coverId = article.furniture?.cover?.id;
+  const coverId =
+    article.profile.reader?.coverPlacement === 'authored' ? undefined : article.furniture?.cover?.id;
   const cover = coverId
     ? layout.intro.find(
         (node) =>
