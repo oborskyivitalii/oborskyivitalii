@@ -16,11 +16,11 @@ For most of the last 50 years, software engineering has been built around one do
 
 Traditional software behaves like a deterministic function:
 
-    y = f(x)        
+    y = f(x)
 
 In this world, if you feed Input A into the system, you must get Output B. Every single time. The expected variance is effectively zero. If the output changes without the code changing, it is a defect. Large Language Models do not follow these rules. They are not databases, and they are not deterministic processing modules; they are probabilistic engines. They do not yield a single hardcoded answer; they give you a sample from a distribution of plausible outputs conditioned on context:
 
-    y ~ P(y|x)        
+    y ~ P(y|x)
 
 When you query an LLM, you are not retrieving a stored record. You are drawing from a weighted distribution. Even when the model returns structured output, the semantic judgment that produced it remains probabilistic. Even when generation is configured to be as deterministic as possible, production behavior can still shift because of model updates, provider routing, context changes, prompt sensitivity, tool state, and infrastructure-level variation. This reality leads us directly to **The Probability Paradox**:
 
@@ -157,7 +157,7 @@ The neuro-symbolic sensor pattern splits the monitoring task into two distinct, 
 
 The approved policy baseline is formalized into a boolean expression. For a simplified banking eligibility example, the baseline formula might be structured as:
 
-    KYC_Complete AND (Credit_Score_High OR Asset_Backed) AND NOT Risk_Country        
+    KYC_Complete AND (Credit_Score_High OR Asset_Backed) AND NOT Risk_Country
 
 ### 2. The Neural Parsing Layer
 
@@ -180,7 +180,7 @@ Once both formulas are represented in the symbolic domain, determining whether t
 
     When KYC_Complete = FALSE, both formulas evaluate to FALSE, so there is no observable disagreement.
     When KYC_Complete = TRUE, the disagreement is exposed.
-    The changed condition is then localized through AST diff: Verified -> NOT Verified        
+    The changed condition is then localized through AST diff: Verified -> NOT Verified
 
 In production, localization should combine the XOR expression with solver counterexamples, AST diff, and variable-level attribution. XOR alone is not a complete debugging mechanism. This dual-engine approach provides a far more deterministic and inspectable method for monitoring logic-level drift in bounded behavioral software workflows. However, its formal elegance must not mask its operational vulnerability. The solver is deterministic; the fragile part is the semantic-to-symbolic bridge. This reality brings us to the real problem: not solving the formula, but trusting the extraction that created it.
 
@@ -279,11 +279,11 @@ This alignment creates four distinct operational quadrants:
 
 The fundamental failure of standard AI project accounting is the naive ROI calculation. Teams often calculate the financial viability of a behavioral software deployment using a deeply flawed equation:
 
-    Naive Savings = Human Operational Cost Avoided - Base LLM API Cost        
+    Naive Savings = Human Operational Cost Avoided - Base LLM API Cost
 
 This calculation assumes that the model operates in a pristine, static vacuum. It ignores the reality that a model-judgment core requires a continuous, active tax to prevent logical failure. To find the true economic breaking point, an architect must calculate the total cost of uncertainty governance:
 
-    True Operational Cost = Primary Model Cost + Sensor Infrastructure Tax + Maintenance and Governance Cost + Residual Risk Premium        
+    True Operational Cost = Primary Model Cost + Sensor Infrastructure Tax + Maintenance and Governance Cost + Residual Risk Premium
 
 Let us break down the components that can turn an innovative AI agent into an operational money pit:
 
@@ -480,7 +480,7 @@ OpenAI — “Structured Outputs.” Official documentation for constraining mod
 
 Microsoft Azure OpenAI — “Structured Outputs.” Useful reference for structured outputs in enterprise/cloud deployments, including schema-constrained generation for multi-step workflows. [Microsoft Learn](https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/structured-outputs)
 
-  
+
 
 **Author:** Vitalii Oborskyi - Head of Delivery & Ops \| Creator of “Uncertainty Architecture” (AI Control Theory)
 
