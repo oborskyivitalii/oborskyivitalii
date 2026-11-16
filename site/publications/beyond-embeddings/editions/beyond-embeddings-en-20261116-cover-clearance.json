@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "id": "beyond-embeddings-en-20261116-cover-clearance",
+  "articleId": "beyond-embeddings",
+  "language": "en",
+  "kind": "full-article",
+  "source": {
+    "path": "manuscript.en.md",
+    "sha256": "7602a59b3a3e4cb018dedfb36ed8379e34e05fed2364177a7126df7f49db9117",
+    "commit": "9ee40f0df40530fec343eb6d3d2b4414a4757ee4",
+    "blob": "c7b5ee5e15e3f6407d777b9ad748d64075037764"
+  },
+  "owner": "site",
+  "derivation": null,
+  "rights": "accepted",
+  "semanticSha256": "e3359d129e8939d15f90d508ae3acb2b4130b871f9367751b2d2d83b0f6088eb"
+}

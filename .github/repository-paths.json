@@ -1285,13 +1285,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/51c29e57f6c1efda2e32251593d829a94d3ae2aa5a1a71be267bf5112d9aac09": {
+    "docs/article-snapshots/8d15626df060496a3f1d991a624aa883a3a37cce99907c2886e250a6e49d872a": {
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/51c29e57f6c1efda2e32251593d829a94d3ae2aa5a1a71be267bf5112d9aac09/beyond-embeddings.html": {
+    "docs/article-snapshots/8d15626df060496a3f1d991a624aa883a3a37cce99907c2886e250a6e49d872a/beyond-embeddings.html": {
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -1801,13 +1801,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/02fbae00edcb723580662d54b4453fa65c3535c77fc49ef95ee593fd08a14361": {
+    "docs/snapshots/8778a66844d2e4f070de4fb9be832afc055c2e20c73a30182e661bc47e749ae4": {
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/02fbae00edcb723580662d54b4453fa65c3535c77fc49ef95ee593fd08a14361/writing.html": {
+    "docs/snapshots/8778a66844d2e4f070de4fb9be832afc055c2e20c73a30182e661bc47e749ae4/writing.html": {
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -1909,13 +1909,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/767e85fb0cf37e35d8be617e4454fe18302367be01dac4bb0bdb0e9de0bfebbb": {
+    "docs/snapshots/e2cc42173f1ae664abb1dcdd6ddeb0503845d9b7ae99361d2330b68fb8b50e13": {
       "kind": "directory",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/767e85fb0cf37e35d8be617e4454fe18302367be01dac4bb0bdb0e9de0bfebbb/index.html": {
+    "docs/snapshots/e2cc42173f1ae664abb1dcdd6ddeb0503845d9b7ae99361d2330b68fb8b50e13/index.html": {
       "kind": "file",
       "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
@@ -7066,6 +7066,12 @@
     "review/issue-183/2026-11-16-beyond-embeddings.md": {
       "kind": "file",
       "purpose": "Source-bound Beyond Embeddings migration, size diagnosis and Preview evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-183/2026-11-16-cover-clearance.md": {
+      "kind": "file",
+      "purpose": "Source decision and validation scope for production clearance of two historical covers.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -15346,6 +15352,12 @@
     "site/publications/beyond-embeddings/editions/beyond-embeddings-en-20260522.json": {
       "kind": "file",
       "purpose": "Authored Beyond Embeddings manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/beyond-embeddings/editions/beyond-embeddings-en-20261116-cover-clearance.json": {
+      "kind": "file",
+      "purpose": "Frozen Beyond Embeddings edition with the approved site-use rights notice.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },

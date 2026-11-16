@@ -15,7 +15,7 @@
   },
   "routes": {
     "index": {
-      "version": "767e85fb0cf37e35d8be617e4454fe18302367be01dac4bb0bdb0e9de0bfebbb",
+      "version": "e2cc42173f1ae664abb1dcdd6ddeb0503845d9b7ae99361d2330b68fb8b50e13",
       "url": "index.html",
       "inputs": [
         "site/content/pages/index/about.json",
@@ -44,7 +44,7 @@
         "publication-07",
         "publication-08"
       ],
-      "snapshotSHA": "976b732828115e86a9c07d75c76ec0af2ec727548c224828730edeeba3aedc1e"
+      "snapshotSHA": "0130cc8d6d82586123719272e239f9c5ea865b5e07072162e66d5e61aac397d8"
     },
     "research": {
       "version": "464f356f00b70c8e63d3ba19b756e7ccb0b23ee2e9926d3ea138b7d0c33c917f",
@@ -71,7 +71,7 @@
       "snapshotSHA": "594c8b2ccdf240bb51aed37a05b49c4e1e84623b9c64af3d704cea172f0427e2"
     },
     "writing": {
-      "version": "02fbae00edcb723580662d54b4453fa65c3535c77fc49ef95ee593fd08a14361",
+      "version": "8778a66844d2e4f070de4fb9be832afc055c2e20c73a30182e661bc47e749ae4",
       "url": "writing.html",
       "inputs": [
         "site/content/pages/writing/main.json",
@@ -115,7 +115,7 @@
       "assets": [
         "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
       ],
-      "snapshotSHA": "e313d4b6e85a982dc2ee8448e5ad1ce307f178ac792ae32e3c7eecf7384f58a7"
+      "snapshotSHA": "696ff1de0162755d7a5bc345a919cee674c03910b3ba63cb170a0e7ae18e5de8"
     },
     "talks": {
       "version": "481dc8bacc3c2e39ac84bdcf4f02765554b9cc717d92f3df6094042dcd9aba71",
@@ -331,10 +331,10 @@
       "semanticSha256": "c6e24cf57bd271f2ab7bc2692219502da15af65bdc293f057702361fca8fee84"
     },
     "beyond-embeddings:en": {
-      "version": "51c29e57f6c1efda2e32251593d829a94d3ae2aa5a1a71be267bf5112d9aac09",
+      "version": "8d15626df060496a3f1d991a624aa883a3a37cce99907c2886e250a6e49d872a",
       "url": "articles/beyond-embeddings.html",
-      "snapshot": "article-snapshots/51c29e57f6c1efda2e32251593d829a94d3ae2aa5a1a71be267bf5112d9aac09/beyond-embeddings.html",
-      "sha256": "35705e2b29a5bfad258155f7b3ae0b19798bcea8963a0e44b83acddcfd4f4cfa",
+      "snapshot": "article-snapshots/8d15626df060496a3f1d991a624aa883a3a37cce99907c2886e250a6e49d872a/beyond-embeddings.html",
+      "sha256": "13873a4872156cd8613745b0301b7619d7a15f11649f892ffd4c6324fe90aca5",
       "inputs": [
         "site/assets/publications/beyond-embeddings/circuit-breaker.png",
         "site/assets/publications/beyond-embeddings/control-boundary.png",
@@ -348,7 +348,7 @@
         "site/assets/publications/beyond-embeddings/traditional-and-behavioral.png",
         "site/assets/publications/beyond-embeddings/verification-layers.png",
         "site/assets/publications/beyond-embeddings/verification-trilemma.png",
-        "site/publications/beyond-embeddings/editions/beyond-embeddings-en-20261116-editorial.json",
+        "site/publications/beyond-embeddings/editions/beyond-embeddings-en-20261116-cover-clearance.json",
         "site/publications/beyond-embeddings/launch-post.en.md",
         "site/publications/beyond-embeddings/manuscript.en.md",
         "site/publications/beyond-embeddings/profile.json",
@@ -381,9 +381,9 @@
       },
       "candidate": false,
       "articleId": "beyond-embeddings",
-      "contentEdition": "beyond-embeddings-en-20261116-editorial",
+      "contentEdition": "beyond-embeddings-en-20261116-cover-clearance",
       "sourceSha256": "7602a59b3a3e4cb018dedfb36ed8379e34e05fed2364177a7126df7f49db9117",
-      "semanticSha256": "524b7e63dd2df3a1732a2ae14300a73c179d4302443699437e79355c5604d666"
+      "semanticSha256": "e3359d129e8939d15f90d508ae3acb2b4130b871f9367751b2d2d83b0f6088eb"
     },
     "sdlc-out-of-balance:en": {
       "version": "1ad993812e199251299e1545ae901b32b3612699717b5555329e0f1185fb2afc",
@@ -492,14 +492,14 @@
     }
   },
   "files": {
-    "index.html": "181b526eb0ad999fdc3f87dc29b52799eaa101080e8d2f1f60fceea7f1f624b4",
-    "snapshots/767e85fb0cf37e35d8be617e4454fe18302367be01dac4bb0bdb0e9de0bfebbb/index.html": "976b732828115e86a9c07d75c76ec0af2ec727548c224828730edeeba3aedc1e",
+    "index.html": "f6adc54b090969ce451e6e1f302144f3e119c5feb9069160628df460b6830366",
+    "snapshots/e2cc42173f1ae664abb1dcdd6ddeb0503845d9b7ae99361d2330b68fb8b50e13/index.html": "0130cc8d6d82586123719272e239f9c5ea865b5e07072162e66d5e61aac397d8",
     "article-media/1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618/research-fallback.svg": "1259bc8ed7fc67542d03370fdf9291ddb30cbdcffbdea93f20ef4ee43b41c618",
     "research.html": "9b6c5f0de7420578318ac7c159795d13c0d070b5718ea4a819f634cea1e504aa",
     "snapshots/464f356f00b70c8e63d3ba19b756e7ccb0b23ee2e9926d3ea138b7d0c33c917f/research.html": "594c8b2ccdf240bb51aed37a05b49c4e1e84623b9c64af3d704cea172f0427e2",
     "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg": "2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16",
-    "writing.html": "765f2a69c94c0c7fe35b44ba0a7b73e2bcc9f3f8c4aec4e0e7fa400913c9ad41",
-    "snapshots/02fbae00edcb723580662d54b4453fa65c3535c77fc49ef95ee593fd08a14361/writing.html": "e313d4b6e85a982dc2ee8448e5ad1ce307f178ac792ae32e3c7eecf7384f58a7",
+    "writing.html": "9bada6826e6169de738b75fbcec30310be0236a6b34ff3d98035a0ea6e1301df",
+    "snapshots/8778a66844d2e4f070de4fb9be832afc055c2e20c73a30182e661bc47e749ae4/writing.html": "696ff1de0162755d7a5bc345a919cee674c03910b3ba63cb170a0e7ae18e5de8",
     "talks.html": "e36cafd98b8905f07ba011a222d9495cf35f5613dc377a0039df178a6a5c9fb3",
     "snapshots/481dc8bacc3c2e39ac84bdcf4f02765554b9cc717d92f3df6094042dcd9aba71/talks.html": "2c455683478722d608202eb06d2721274013ae1f9bd4b0ea88349d6da5c83d83",
     "credits.html": "8b990e5d78d4d4471cbabc1f3b811c166f39260227a8cbb84d7988980722c707",
@@ -526,8 +526,8 @@
     "article-snapshots/c03ae1d5925a33b1e3ece61210a4c593bb608cd86dcfeae24c0909d23ad34975/ai-verification-crisis.html": "df5ccebd74475c8ec127a26396901703e3b5f73f3238d26840ce5c3ce8a6b9b9",
     "article-media/2d4e237d21021bcb6c62b5ce9ab10daffc4e93b521a20f3b6a707a3531781739/cover.jpg": "2d4e237d21021bcb6c62b5ce9ab10daffc4e93b521a20f3b6a707a3531781739",
     "article-media/5ba399aa0ca2dc3e492e58292358870926fb5acd7fdd958c63e2e71541d6994d/cover-social.jpg": "5ba399aa0ca2dc3e492e58292358870926fb5acd7fdd958c63e2e71541d6994d",
-    "articles/beyond-embeddings.html": "b2d92742f154597eeda79e0ec7b77618f5a4763ee519411b41c3e2d961f6eb6e",
-    "article-snapshots/51c29e57f6c1efda2e32251593d829a94d3ae2aa5a1a71be267bf5112d9aac09/beyond-embeddings.html": "35705e2b29a5bfad258155f7b3ae0b19798bcea8963a0e44b83acddcfd4f4cfa",
+    "articles/beyond-embeddings.html": "14942d5add8d723608680bcba50e641ad168c499f99a54bf0bc3dc1671848683",
+    "article-snapshots/8d15626df060496a3f1d991a624aa883a3a37cce99907c2886e250a6e49d872a/beyond-embeddings.html": "13873a4872156cd8613745b0301b7619d7a15f11649f892ffd4c6324fe90aca5",
     "article-media/c1f333b5145b75b144562e218b73946ba77083fba5c1d30a8a8b43ef2659fc5a/cover.jpg": "c1f333b5145b75b144562e218b73946ba77083fba5c1d30a8a8b43ef2659fc5a",
     "article-media/7d220ce3249c461ada25c5b12dd825283362eef960822a58ad95b1f38a4db62b/traditional-and-behavioral.webp": "7d220ce3249c461ada25c5b12dd825283362eef960822a58ad95b1f38a4db62b",
     "article-media/38e49d4bb130df44098c0b70e3e6ac952b51d1b8822822a429ae15ed930402ea/llm-as-judge.webp": "38e49d4bb130df44098c0b70e3e6ac952b51d1b8822822a429ae15ed930402ea",
@@ -636,6 +636,6 @@
     "runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/space.js": "7812c824ce3dac0d5d36f40788c65ca66cc553e5a0287850a24a499a02d4eab4",
     "runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/archive.js": "bf1b9e42356b282f3c08f7763a7a59263241c752df5dd9ee776a6b0bf86b0caa",
     "runtime/68fa384f47c646e4f2bc7d96c645f42efa6dabf9b84f5f514af4b959f561f72c/navigation.js": "9d074333c9731e08a801e8f7ba418c645ef8c9e54d912a666912640e36e1a292",
-    "site-revision.json": "57f62900d7c8453d343de7102a57624dec793f7e7640d412750bd08b41363cf1"
+    "site-revision.json": "497135d9d7b39fcd5caf4b919263f82770bb766e1252d1e369bed66e4f53ef4b"
   }
 }

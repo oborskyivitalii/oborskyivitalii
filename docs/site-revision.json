@@ -19,12 +19,12 @@
     "vitalii-oborskyi-cutout.webp",
     "writing-paradigm.svg"
   ],
-  "content": "af3b0ecc1efffd366ee7c4a2554a9d715f6de63ec551c4a03e9f49dcbd830108",
+  "content": "5a3baf97765cfdf6598ce00099bf29b18711ad34e88df861c61288f3e7ef18bc",
   "routes": {
     "index": {
-      "version": "767e85fb0cf37e35d8be617e4454fe18302367be01dac4bb0bdb0e9de0bfebbb",
-      "url": "snapshots/767e85fb0cf37e35d8be617e4454fe18302367be01dac4bb0bdb0e9de0bfebbb/index.html",
-      "sha256": "976b732828115e86a9c07d75c76ec0af2ec727548c224828730edeeba3aedc1e"
+      "version": "e2cc42173f1ae664abb1dcdd6ddeb0503845d9b7ae99361d2330b68fb8b50e13",
+      "url": "snapshots/e2cc42173f1ae664abb1dcdd6ddeb0503845d9b7ae99361d2330b68fb8b50e13/index.html",
+      "sha256": "0130cc8d6d82586123719272e239f9c5ea865b5e07072162e66d5e61aac397d8"
     },
     "research": {
       "version": "464f356f00b70c8e63d3ba19b756e7ccb0b23ee2e9926d3ea138b7d0c33c917f",
@@ -35,9 +35,9 @@
       ]
     },
     "writing": {
-      "version": "02fbae00edcb723580662d54b4453fa65c3535c77fc49ef95ee593fd08a14361",
-      "url": "snapshots/02fbae00edcb723580662d54b4453fa65c3535c77fc49ef95ee593fd08a14361/writing.html",
-      "sha256": "e313d4b6e85a982dc2ee8448e5ad1ce307f178ac792ae32e3c7eecf7384f58a7",
+      "version": "8778a66844d2e4f070de4fb9be832afc055c2e20c73a30182e661bc47e749ae4",
+      "url": "snapshots/8778a66844d2e4f070de4fb9be832afc055c2e20c73a30182e661bc47e749ae4/writing.html",
+      "sha256": "696ff1de0162755d7a5bc345a919cee674c03910b3ba63cb170a0e7ae18e5de8",
       "assets": [
         "article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg"
       ]
@@ -177,9 +177,9 @@
       "semanticSha256": "c6e24cf57bd271f2ab7bc2692219502da15af65bdc293f057702361fca8fee84"
     },
     "beyond-embeddings:en": {
-      "version": "51c29e57f6c1efda2e32251593d829a94d3ae2aa5a1a71be267bf5112d9aac09",
-      "url": "article-snapshots/51c29e57f6c1efda2e32251593d829a94d3ae2aa5a1a71be267bf5112d9aac09/beyond-embeddings.html",
-      "sha256": "35705e2b29a5bfad258155f7b3ae0b19798bcea8963a0e44b83acddcfd4f4cfa",
+      "version": "8d15626df060496a3f1d991a624aa883a3a37cce99907c2886e250a6e49d872a",
+      "url": "article-snapshots/8d15626df060496a3f1d991a624aa883a3a37cce99907c2886e250a6e49d872a/beyond-embeddings.html",
+      "sha256": "13873a4872156cd8613745b0301b7619d7a15f11649f892ffd4c6324fe90aca5",
       "alias": "articles/beyond-embeddings.html",
       "scene": "writing",
       "assets": [
@@ -206,9 +206,9 @@
       },
       "candidate": false,
       "articleId": "beyond-embeddings",
-      "contentEdition": "beyond-embeddings-en-20261116-editorial",
+      "contentEdition": "beyond-embeddings-en-20261116-cover-clearance",
       "sourceSha256": "7602a59b3a3e4cb018dedfb36ed8379e34e05fed2364177a7126df7f49db9117",
-      "semanticSha256": "524b7e63dd2df3a1732a2ae14300a73c179d4302443699437e79355c5604d666"
+      "semanticSha256": "e3359d129e8939d15f90d508ae3acb2b4130b871f9367751b2d2d83b0f6088eb"
     },
     "sdlc-out-of-balance:en": {
       "version": "1ad993812e199251299e1545ae901b32b3612699717b5555329e0f1185fb2afc",

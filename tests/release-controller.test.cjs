@@ -607,10 +607,26 @@ test('explicit production Color preserves approved runtime and rejects a differe
   assert.throws(() => edition.build(base.directory, 'color'), /wrong production rendition/);
   const staged = fixture.staging(temp, true);
   assert.throws(() => edition.build(staged.directory, 'color'), /already applied/);
-  assert.throws(
-    () => fixture.rightsInventory(source, true),
-    /hosted production media clearance remains pending/
-  );
+  const { sourceRoot, report: cleared } = fixture.rightsInventory(source, true);
+  assert.equal(cleared.inventoryPass, true);
+  const rightsFile = path.join(sourceRoot, 'site/rights.json');
+  const clearedRights = fs.readFileSync(rightsFile, 'utf8');
+  const rights = require('../tools/release/rights.cjs');
+  for (const [asset, expected] of [
+    ['publications/agentic-loops/cover.png', /hosted production media clearance remains pending/],
+    [
+      'publications/beyond-embeddings/cover-web.jpg',
+      /hosted production JPEG clearance remains pending/,
+    ],
+  ]) {
+    const pending = JSON.parse(clearedRights);
+    pending.assets[asset].bases.push('article-review-input');
+    fs.writeFileSync(rightsFile, JSON.stringify(pending, null, 2) + '\n');
+    assert.throws(
+      () => rights.compile(path.join(source.directory, 'public'), source.record, { sourceRoot }),
+      expected
+    );
+  }
   const released = fixture.source(
     temp,
     'summary-production',

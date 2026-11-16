@@ -121,15 +121,20 @@
       "provenance": ["site/publications/ai-native-workflows-have-a-moat-problem/PROVENANCE.md"],
       "scope": "The publisher artwork matches the original AI-generated cover prepared by the article author. The author-site rendition uses resized versions of that composition."
     },
-    "agentic-loops-preview-cover": {
-      "kind": "maintainer-requested-historical-preview-cover",
+    "agentic-loops-approved-cover": {
+      "kind": "maintainer-approved-historical-cover",
       "provenance": ["site/publications/agentic-loops/PROVENANCE.md"],
-      "scope": "The maintainer requested restoration of the historical LinkedIn cover for Draft PR Preview. The image is credited to its source edition. Artwork authorship and broader reuse rights remain unverified."
+      "scope": "The maintainer approved author-site publication of the original LinkedIn cover and its article share rendition on 16 November 2026. The source credit is preserved. The decision grants site use only."
+    },
+    "beyond-embeddings-approved-cover": {
+      "kind": "maintainer-approved-historical-cover",
+      "provenance": ["site/publications/beyond-embeddings/PROVENANCE.md"],
+      "scope": "The maintainer approved author-site publication of the original LinkedIn cover and its article share rendition on 16 November 2026. The source credit is preserved. The decision grants site use only."
     },
     "beyond-embeddings-original-visuals": {
       "kind": "source-linked-beyond-embeddings-visuals",
       "provenance": ["site/publications/beyond-embeddings/PROVENANCE.md"],
-      "scope": "The published LinkedIn rendition and author archive establish the diagram sources. The exact cover is included for the author’s Draft PR review. The cover’s broader reuse clearance remains pending."
+      "scope": "The published LinkedIn rendition and author archive establish the sources of the diagrams used in the author-site reader."
     },
     "article-review-input": {
       "kind": "pending-exact-edition-media-review",
@@ -169,11 +174,11 @@
   "assets": {
     "publications/beyond-embeddings/cover-web.jpg": {
       "sha256": "c1f333b5145b75b144562e218b73946ba77083fba5c1d30a8a8b43ef2659fc5a",
-      "bases": ["beyond-embeddings-original-visuals", "article-review-input"]
+      "bases": ["beyond-embeddings-approved-cover"]
     },
     "publications/beyond-embeddings/cover.png": {
       "sha256": "082f3953fccbf7d52df66e90849de8a04864788fe465611756c89bcef514de9a",
-      "bases": ["beyond-embeddings-original-visuals", "article-review-input"]
+      "bases": ["beyond-embeddings-approved-cover"]
     },
     "publications/beyond-embeddings/traditional-and-behavioral.png": {
       "sha256": "5315a5c5b5e1942859632284869aa2922e0108a6a3b76159b59974bf88999580",
@@ -217,11 +222,11 @@
     },
     "publications/agentic-loops/cover.png": {
       "sha256": "dc50371b8287d45ee9b32404da989faa8f041986ffda413f71e0412d3bdcef5b",
-      "bases": ["agentic-loops-preview-cover", "article-review-input"]
+      "bases": ["agentic-loops-approved-cover"]
     },
     "publications/agentic-loops/cover-web.jpg": {
       "sha256": "5f8490fc28edf22e1a224c2adc10f6aa814d091ce620c059e86e4a64c7843360",
-      "bases": ["agentic-loops-preview-cover", "article-review-input"]
+      "bases": ["agentic-loops-approved-cover"]
     },
     "publications/ai-native-workflows-have-a-moat-problem/cover.png": {
       "sha256": "57cef69ffe083071acf0567733bb4d79089f888502aa60ff8f795011288f8ed9",

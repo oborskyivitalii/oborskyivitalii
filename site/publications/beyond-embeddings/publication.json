@@ -18,10 +18,10 @@
   },
   "status": "accepted",
   "source": "manuscript.en.md",
-  "edition": "beyond-embeddings-en-20261116-editorial",
+  "edition": "beyond-embeddings-en-20261116-cover-clearance",
   "rights": {
     "status": "accepted",
-    "notice": "Vitalii Oborskyi. The article text from the May 2026 LinkedIn edition is included under CC BY 4.0. The source edition supplies the cover and diagram artwork for Draft PR Preview. The cover’s wider reuse clearance remains pending. Linked material retains its own terms.",
+    "notice": "Vitalii Oborskyi. The article text from the May 2026 LinkedIn edition is included under CC BY 4.0. The original cover and share rendition are authorized for use on this site. Artwork and linked material retain their own terms.",
     "references": [
       "https://www.linkedin.com/pulse/uncertainty-architecture-beyond-embeddings-semantic-oborskyi-1seuf/",
       "https://github.com/oborskyivitalii/oborskyivitalii/issues/183",
