@@ -4,31 +4,26 @@ Dated handoff. Last verified: **2026-11-16**. Revalidate live sources when resum
 
 ## Snapshot
 
-- Protected main `cc69d2b` contains the exact staging controller from PR #207, including the 125,000-byte article limit and the staging registration for #183. Production ref `ca75641` remains the last observed deployment source.
-- [#187](https://github.com/oborskyivitalii/oborskyivitalii/issues/187) owns the Writing and article transition in [Draft PR #197](https://github.com/oborskyivitalii/oborskyivitalii/pull/197). The author approved [the exact closed-pulse Preview](https://1390339f.oborskyi-author-ci-staging.pages.dev/writing.html) at `4021407` and authorized rebasing and merging.
-- The [protected staging prerequisite](review/issue-187/2026-11-12-controller-preregistration.md) records the controller refusal and exact registration. [PR #206 staging](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43719809013) and [Change admission](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43723815943) passed before the protected merge.
-
-- [#196](https://github.com/oborskyivitalii/oborskyivitalii/issues/196) / [PR #195](https://github.com/oborskyivitalii/oborskyivitalii/pull/195) owns platform image export. The [versioned review](review/issue-196/2026-11-12-destination-image-review.md) records platform package evidence.
-- [#199](https://github.com/oborskyivitalii/oborskyivitalii/issues/199) and [PR #200](https://github.com/oborskyivitalii/oborskyivitalii/pull/200) own the [repository workflow guide](guides/REPOSITORY-WORKFLOW.md) and its review gate.
+- Production source `d37d099` is live in [release prod-2026-11-16.1](https://github.com/oborskyivitalii/oborskyivitalii/releases/tag/prod-2026-11-16.1). [Protected Pages publication](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43898780311) passed live HTTP, policy and browser checks.
+- [#187](https://github.com/oborskyivitalii/oborskyivitalii/issues/187) owns the Writing-to-article pulse. [PR #197](https://github.com/oborskyivitalii/oborskyivitalii/pull/197) merged as `b7b95a1` after [exact staging](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43724987839) on `1fb240b`. Production retains the approved pulse and has [live transition evidence](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43898780311/artifacts/14242310497).
+- [#196](https://github.com/oborskyivitalii/oborskyivitalii/issues/196) / [PR #195](https://github.com/oborskyivitalii/oborskyivitalii/pull/195) owns platform image export. [#199](https://github.com/oborskyivitalii/oborskyivitalii/issues/199) / [PR #200](https://github.com/oborskyivitalii/oborskyivitalii/pull/200) owns the repository workflow guide and its review gate.
 
 ## Decisions
 
-- The maintainer approved the closed-pulse Preview and requested the established path to main. Preserve the exact pre-pulse pose and Canvas continuity across article mount.
-- Register only the reviewed staging runtime on protected main using the existing delivery route. The feature and production have their own checks.
+- The maintainer accepted the closed-pulse Preview. Preserve the exact pre-pulse pose and Canvas continuity through article mount.
+- The #183 release includes the five initial articles and two approved follow-ups. Original source dates and Writing archive years remain authoritative for the historical editions.
 
 ## Open work
 
-- #187 AC01, AC02 and AC06 remain open in the feature work. Prior runtime registration refresh #204 predates the exact closed-pulse runtime.
-- #197 is rebased onto the #206 merge and requires the exact-head native and hosted route.
-- #200 is merged on `1122929`. Preserve its independent guide admission and Python lock.
-
-- [#183](https://github.com/oborskyivitalii/oborskyivitalii/issues/183) / [Draft PR #205](https://github.com/oborskyivitalii/oborskyivitalii/pull/205) adds the Control Theory reader as the second of five article migrations, with a November 2026 author-approved annotated edition under Draft Preview review. [Checkpoint evidence](review/issue-183/2026-11-15-control-theory.md) records the first two preview checkpoints. [Verification Crisis](review/issue-183/2026-11-15-verification-crisis.md) is the third Draft Preview checkpoint. The author approved restoring its original cover and queued the Agentic Loops migration after the five selected checkpoints. The [Cost-Cutting Fallacy checkpoint](review/issue-183/2026-11-15-cost-cutting.md) adds the selected LinkedIn edition as the fourth native reader, with the original iceberg cover and a replacement conceptual J-curve. The [Moat Problem checkpoint](review/issue-183/2026-11-15-moat-problem.md) migrates the fifth selected AI Advances edition with its original cover. The author requested the cover before the opening prose. The [Agentic Loops checkpoint](review/issue-183/2026-11-16-agentic-loops.md) is the first follow-up adaptation. Its original LinkedIn cover is restored before the introduction in the Draft Preview and drives the article-specific share image. Its LinkedIn and Agile Insider editions and the Reddit discussion are preserved. The [Beyond Embeddings checkpoint](review/issue-183/2026-11-16-beyond-embeddings.md) adds the 22 May 2026 LinkedIn edition with the original cover before the prose, ten diagrams and five native tables. The [editorial refresh](review/issue-183/2026-11-16-editorial-refresh.md) updates seven bylines and connects native reading paths and Thinking Systems terminology. The [long reader navigation follow-up](review/issue-183/2026-11-16-beyond-embeddings.md#restore-the-animated-transition-from-writing) aligns the hosted client size limit with the build and retains closed-pulse rendering. Check the owning PR for exact Preview verification and release status.
+- [#187 production closeout](https://github.com/oborskyivitalii/oborskyivitalii/issues/187#production-delivery-and-acceptance--16-november-2026) records the verified runtime and browser evidence. AC06 awaits integration of this tracked handoff.
+- [#183](https://github.com/oborskyivitalii/oborskyivitalii/issues/183) records all seven production URLs and the observed author-site publication date of 16 November 2026. Committed site publication events and batch closeout remain open. The existing validator requires a complete archived production package under a path the current RI inventory excludes when tracked.
 
 ## Next session
 
-1. Verify rebased #197 through exact-head source checks and stable staging.
-2. Bind the protected merge to the new staging and owner admission evidence.
+1. Integrate this handoff and close #187 using the recorded release and browser evidence.
+2. Resolve the tracked publication-evidence path for #183, then validate events against the frozen release and preserve the historical Writing year filters.
+3. Keep exact current production and merge identities in the issue and PR closeout records.
 
 ## Maintenance
 
-- Keep the five bounded sections and follow the [continuity protocol](CONTRIBUTING.md#repository-navigation-and-session-memory). Record dynamic admission receipts in the owning issue without changing a frozen head.
+- Keep the five bounded sections and follow the [continuity protocol](CONTRIBUTING.md#repository-navigation-and-session-memory). Record dynamic admission receipts in the owning issue while a head is frozen.
