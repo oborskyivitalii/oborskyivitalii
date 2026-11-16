@@ -926,11 +926,8 @@ test('publication actual edition and package CLIs freeze exact sidecars before a
   // This CLI fixture exercises principal-page rights in both editions.
   // Hosted article rights are exercised separately above.
   const environment = {
-    ...process.env,
+    ...delivery.mediaEnvironment(),
     SITE_ARTICLE_PREVIEW: 'false',
-    // The synthetic checkout has no installed media venv of its own. Its real
-    // R4 article must use the exact Pillow toolchain installed by source CI.
-    SITE_MEDIA_PYTHON: path.join(root, 'tools/quality/toolchain/venv/bin/python'),
   };
   for (const key of [
     'SITE_CANDIDATE_SHA',

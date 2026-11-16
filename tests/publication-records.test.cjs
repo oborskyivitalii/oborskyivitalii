@@ -14,7 +14,7 @@ const controller = require('../tools/pages/controller.cjs');
 const local = require('../tools/quality/local.cjs');
 function fixtureEnvironment(source, outer = process.env) {
   return {
-    ...outer,
+    ...delivery.mediaEnvironment(outer),
     SITE_CANDIDATE_SHA: source.record.sourceCommit,
     SITE_EXPECTED_PUBLIC_DIGEST: source.record.artifactDigest,
     SITE_ARTIFACT_ID: source.expected?.artifactId || '123',

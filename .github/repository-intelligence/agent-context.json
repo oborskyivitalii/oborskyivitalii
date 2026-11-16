@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "7ab63390abb15a74c41bbce876871b23cecf76c8bb17f0c6a46c12ededffb9fc",
+    "digest": "b79213fccc86e860e589427831fff6b3071a96b08091c7f7798b50c10f40d7be",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -5150,7 +5150,7 @@
       {
         "path": "review/issue-183/2026-11-16-beyond-embeddings.md",
         "identity_mode": "content",
-        "sha256": "ce1aef6a76a0bf92fca437e746440577d7dd12b01b1a1ec8ab598bcb9dc1b8a9"
+        "sha256": "46f19766a6faee0bf4193f935c858a705b67980ad44578e44c44b9fd976314e6"
       },
       {
         "path": "review/issue-183/2026-11-16-editorial-refresh.md",
@@ -5165,7 +5165,7 @@
       {
         "path": "review/issue-183/workflow-guide-evidence.json",
         "identity_mode": "content",
-        "sha256": "26ac0b1c2e87c3d2d936bde98339d522c7229da42ecf1b16ebd1633a55a030cf"
+        "sha256": "9e0d9543830a30aeae725e0e8d1b76d7a0cf665ca822618a32f69d0c4d22b826"
       },
       {
         "path": "review/issue-184/2026-11-10-archive.md",
@@ -12625,7 +12625,7 @@
       {
         "path": "tests/fixtures/delivery.cjs",
         "identity_mode": "content",
-        "sha256": "73676cd004932823780835ab46d8f770cf3f7fce5189ddcf0b8dce43c169da5b"
+        "sha256": "848921abdc086458878d38d56ba9265db5ad5237116a4332660a59fcfad0711e"
       },
       {
         "path": "tests/fixtures/orchestration-accept-only.json",
@@ -12775,7 +12775,7 @@
       {
         "path": "tests/publication-records.test.cjs",
         "identity_mode": "content",
-        "sha256": "0aceca22ba196815ec1c979dbcc9a49b761570ce8db99763a62a4d0f1351571d"
+        "sha256": "99c63cabb139579a841afa72f81e59204c8f7873f3e52ab1dee3f535a6800367"
       },
       {
         "path": "tests/publishing-history.test.cjs",
@@ -12815,7 +12815,7 @@
       {
         "path": "tests/reader-controller.test.cjs",
         "identity_mode": "content",
-        "sha256": "4169386a01e17ac946b2458615dcd169bd6330271f0362e3a5586df411a0a33e"
+        "sha256": "e87eaa0c9b48b05a3caf98452dc3badf38c92dbeff64ebdf87456802fee6f01b"
       },
       {
         "path": "tests/reader-mode.test.cjs",
@@ -12835,12 +12835,12 @@
       {
         "path": "tests/release-controller.test.cjs",
         "identity_mode": "content",
-        "sha256": "5fa98c2bfe5ccaf2a0c096b164375666732e49b63f599254b2b3507147130252"
+        "sha256": "dec67f300f593a8025c7ad93057a6553b45c04c8f573a59484d2f6bbf3c5e4c1"
       },
       {
         "path": "tests/release-rights.test.cjs",
         "identity_mode": "content",
-        "sha256": "6182a5acea3e42a12673bbfeb21760182cffd082b408defc2c4cfd9411a99bc5"
+        "sha256": "6e5f8c53b0383a95bfbf12d2ab64d0b2f2a68f7b43e29c6a6cea926cc6001f52"
       },
       {
         "path": "tests/renderer.test.cjs",
@@ -13815,7 +13815,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "913dd198da4aa087eb79d32148c7e7d4b85f1f8d28083d86060a3b0c7d65ea66"
+        "sha256": "0f79a310ce91cd10268c0a8965dbcba32d9b4a0e551b03eabcfe7149ecdb371a"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",

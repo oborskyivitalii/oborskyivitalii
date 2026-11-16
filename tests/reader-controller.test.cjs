@@ -369,6 +369,8 @@ test('current generated editions cross the selected controller consumers', async
       controllerTree: git(controller, ['rev-parse', 'HEAD^{tree}']),
       producerCommit: git(producer, ['rev-parse', 'HEAD']),
       producerDirty: git(producer, ['status', '--porcelain']) !== '',
+      stagingFixture: 'candidate',
+      productionFixture: 'licensed historical source',
       syntheticSourceLabels: true,
       providerCalled: false,
       productionEligible: false,
@@ -392,7 +394,10 @@ test('current generated editions cross the selected controller consumers', async
     ['staging', staged],
     ['production', production],
   ]) {
-    assert.ok(Object.keys(source.record.components.articles).length > 0, 'current reader closure');
+    assert.ok(
+      Object.keys(source.record.components.articles).length > 0,
+      edition + ' reader closure'
+    );
     const publicDirectory = path.join(source.directory, 'public');
     const sizes = artifact.checkSize(publicDirectory);
     const report = JSON.parse(fs.readFileSync(path.join(source.directory, 'rights.json')));
@@ -420,7 +425,7 @@ test('current generated editions cross the selected controller consumers', async
                 source.directory,
                 packaged,
               ],
-              { cwd: source.authoredRoot, encoding: 'utf8' }
+              { cwd: source.authoredRoot, encoding: 'utf8', env: delivery.mediaEnvironment() }
             )
           );
     const before = artifact.manifest(publicDirectory);

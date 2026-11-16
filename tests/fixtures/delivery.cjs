@@ -53,6 +53,15 @@ function releasedSourceRoot() {
 }
 const stagingSeeds = new Map();
 
+function mediaEnvironment(outer = process.env) {
+  // Relocated fixtures have no venv. Use the source checkout's pinned encoder.
+  const python = path.join(root, 'tools/quality/toolchain/venv/bin/python');
+  return {
+    ...outer,
+    SITE_MEDIA_PYTHON: outer.SITE_MEDIA_PYTHON || (fs.existsSync(python) ? python : 'python3'),
+  };
+}
+
 function sourceSeed(authoredRoot) {
   const docs = path.join(authoredRoot, 'docs');
   let publicSeed = publicSeeds.get(authoredRoot);
@@ -289,4 +298,5 @@ module.exports = {
   rightsInventory,
   fullProof,
   releasedSourceRoot,
+  mediaEnvironment,
 };

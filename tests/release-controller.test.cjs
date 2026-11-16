@@ -611,7 +611,14 @@ test('explicit production Color preserves approved runtime and rejects a differe
     () => fixture.rightsInventory(source, true),
     /hosted production media clearance remains pending/
   );
-  const released = fixture.production(temp, 'summary-production');
+  const released = fixture.source(
+    temp,
+    'summary-production',
+    undefined,
+    fixture.releasedSourceRoot()
+  );
+  require('../tools/staging/color.cjs').build(released.directory);
+  released.record = edition.build(released.directory, 'color');
   const report = fixture.rightsInventory(released, true).report,
     summaryFile = path.join(temp, 'candidate-summary.md'),
     workflow = fs.readFileSync(
