@@ -1261,49 +1261,61 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/3a8b773e1446bc2e3228eb4b256974e53f64382d47c967373186b7aca695620a": {
+    "docs/article-snapshots/140fd594b0e19ebfc5e143c040a715e81760a88a865d7b6fcdc8603eec3d033c": {
       "kind": "directory",
       "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/3a8b773e1446bc2e3228eb4b256974e53f64382d47c967373186b7aca695620a/agentic-loops.html": {
+    "docs/article-snapshots/140fd594b0e19ebfc5e143c040a715e81760a88a865d7b6fcdc8603eec3d033c/ai-governance-is-control-theory.html": {
       "kind": "file",
       "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/4cd574e812aff11e9d494ff69f6d6144a5515505b12a76aabb9cc103021eab2b": {
+    "docs/article-snapshots/482ca4400e2c89da2efad52b44f505f9465be2fd0db9fabef3bb034e4e206131": {
       "kind": "directory",
       "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/4cd574e812aff11e9d494ff69f6d6144a5515505b12a76aabb9cc103021eab2b/ai-verification-crisis.html": {
+    "docs/article-snapshots/482ca4400e2c89da2efad52b44f505f9465be2fd0db9fabef3bb034e4e206131/ai-verification-crisis.html": {
       "kind": "file",
       "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/8899e2695fb91d361864323b0b6611ecf5ca027f4d9ef43bb0e491d00460a797": {
+    "docs/article-snapshots/5d4d820041dddd3cebd8ad9449107afbfe8280713f038cf0b566c95dc30b1207": {
       "kind": "directory",
       "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/8899e2695fb91d361864323b0b6611ecf5ca027f4d9ef43bb0e491d00460a797/beyond-embeddings.html": {
+    "docs/article-snapshots/5d4d820041dddd3cebd8ad9449107afbfe8280713f038cf0b566c95dc30b1207/thinking-systems.html": {
       "kind": "file",
       "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/933f79405bfc8f81c734b179836d6ba023921c1eccb8b7b6aa322a6ae5823d43": {
+    "docs/article-snapshots/6610ea5811d2244c1f2170d45a7c3fd0562ab08c5632f0761fa8f62f52cff34f": {
       "kind": "directory",
       "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/933f79405bfc8f81c734b179836d6ba023921c1eccb8b7b6aa322a6ae5823d43/ai-governance-is-control-theory.html": {
+    "docs/article-snapshots/6610ea5811d2244c1f2170d45a7c3fd0562ab08c5632f0761fa8f62f52cff34f/ai-native-workflows-have-a-moat-problem.html": {
+      "kind": "file",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/94b1a8d6d5510e3b3b9d174531ff8d1d2ab12f4af5a7de65bb44e5dbd1b0de74": {
+      "kind": "directory",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/94b1a8d6d5510e3b3b9d174531ff8d1d2ab12f4af5a7de65bb44e5dbd1b0de74/ai-cost-cutting-fallacy.html": {
       "kind": "file",
       "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
@@ -1333,25 +1345,25 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/c99a55b54db0594a4455e1b40a52435e030e8cd80476ee8c0cafc8d95da05774": {
+    "docs/article-snapshots/c0755275aef9c47c706b3ade52675b36ffb115d1ca20dc07e511332904fed3a3": {
       "kind": "directory",
       "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/c99a55b54db0594a4455e1b40a52435e030e8cd80476ee8c0cafc8d95da05774/thinking-systems.html": {
+    "docs/article-snapshots/c0755275aef9c47c706b3ade52675b36ffb115d1ca20dc07e511332904fed3a3/agentic-loops.html": {
       "kind": "file",
       "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/d7eb9d61249b83dd4922b094901bd364051f18f9d294e7c36bd7b3d0b5dd7d13": {
+    "docs/article-snapshots/d6f0997cf659656854b142e973f014fd6f0fdd84a3a71f280ae6ac4268f843cf": {
       "kind": "directory",
       "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/d7eb9d61249b83dd4922b094901bd364051f18f9d294e7c36bd7b3d0b5dd7d13/ai-native-workflows-have-a-moat-problem.html": {
+    "docs/article-snapshots/d6f0997cf659656854b142e973f014fd6f0fdd84a3a71f280ae6ac4268f843cf/beyond-embeddings.html": {
       "kind": "file",
       "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
@@ -1364,18 +1376,6 @@
       "owner": "site/README.md"
     },
     "docs/article-snapshots/e5133329d52dae5052e9b980e57fca719d0e8463faeeac5ece89260d81393bd8/the-sdlc-is-out-of-balance.html": {
-      "kind": "file",
-      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/f028700871eb1e09f85cdcf99129b1234da24db1921c51042e1767b57bb66748": {
-      "kind": "directory",
-      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/f028700871eb1e09f85cdcf99129b1234da24db1921c51042e1767b57bb66748/ai-cost-cutting-fallacy.html": {
       "kind": "file",
       "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
@@ -1813,6 +1813,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/081464b79f1e8d808264c3343ad5b7de2866f8e053ad35fa97869cc2de1be7af": {
+      "kind": "directory",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/081464b79f1e8d808264c3343ad5b7de2866f8e053ad35fa97869cc2de1be7af/research.html": {
+      "kind": "file",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/0c0e1478153852c4d37e9cb0ebfecc46c10da12e7582b5af2e1868d0a24affe2": {
       "kind": "directory",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
@@ -1837,13 +1849,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/55bd2de579d3809039cf608530b1e025dd392e822cde585e30ef2574086229f1": {
+    "docs/snapshots/249b739607758ab5e7fc5a2983144c72a55ab6bdb11e4650d0b6970cdeb42abb": {
       "kind": "directory",
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/55bd2de579d3809039cf608530b1e025dd392e822cde585e30ef2574086229f1/index.html": {
+    "docs/snapshots/249b739607758ab5e7fc5a2983144c72a55ab6bdb11e4650d0b6970cdeb42abb/index.html": {
       "kind": "file",
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
@@ -1945,6 +1957,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/a653c74143fa5b13452669887822a053dd852be3a300257e303cbbb424be2df0": {
+      "kind": "directory",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/a653c74143fa5b13452669887822a053dd852be3a300257e303cbbb424be2df0/writing.html": {
+      "kind": "file",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/a6599af74d4a6d0e6ee32fffba7efedf00b13cf260b37b086221aed6f12d6700": {
       "kind": "directory",
       "purpose": "Generated public rendition; regenerate from canonical site sources.",
@@ -2014,30 +2038,6 @@
     "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html": {
       "kind": "file",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/daa0d1b0b5b8e7cb2b582c43387d5fbc2b2ab9b81d3b0ea88e6d59dedee9fb31": {
-      "kind": "directory",
-      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/daa0d1b0b5b8e7cb2b582c43387d5fbc2b2ab9b81d3b0ea88e6d59dedee9fb31/research.html": {
-      "kind": "file",
-      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/f35a4e326094a493c33c3292be2ece2a4b754c63449ed993f1c6010f473db35a": {
-      "kind": "directory",
-      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/f35a4e326094a493c33c3292be2ece2a4b754c63449ed993f1c6010f473db35a/writing.html": {
-      "kind": "file",
-      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },

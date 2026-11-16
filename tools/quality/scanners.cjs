@@ -486,8 +486,6 @@ const reviewedInventoryPaths = new Set([
   '.github/repository-intelligence/agent-context.json:Base64 High Entropy String:41ceb5699f64d5bfeaccc5850d0cf398a19b10c9',
   '.github/repository-paths.json:Base64 High Entropy String:eb3400c0b18476eb7e38e5a430d52a263f917b89',
   '.github/repository-intelligence/agent-context.json:Base64 High Entropy String:eb3400c0b18476eb7e38e5a430d52a263f917b89',
-  '.github/repository-intelligence/agent-context.json:Base64 High Entropy String:27b2c3268498f35afd842fdd654b9db750815edd',
-  '.github/repository-paths.json:Base64 High Entropy String:27b2c3268498f35afd842fdd654b9db750815edd',
 ]);
 function secretReviewEntry(entry, file) {
   const checksumOnly = file === secretReviewInputs[2];
@@ -500,10 +498,7 @@ function secretReviewEntry(entry, file) {
     rules.push('Base64 High Entropy String');
   if (file === secretReviewInputs[2] && entry?.path === 'tools/quality/browser-archives.json')
     rules.push('Base64 High Entropy String');
-  if (
-    [secretReviewInputs[2], secretReviewInputs[3]].includes(file) &&
-    reviewedInventoryPaths.has(entry?.id)
-  )
+  if (file === secretReviewInputs[2] && reviewedInventoryPaths.has(entry?.id))
     rules.push('Base64 High Entropy String');
   if (
     !entry ||
