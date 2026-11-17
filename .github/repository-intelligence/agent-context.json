@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "0c6fdb8455e03001d1061da261b14e063eb4fc30abe2f67ef498168aea2045ca",
+    "digest": "4c2c507bd3e2e7f657081486c7382050c921e8ccc91dfcdaebb3041c43261f97",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -143,6 +143,11 @@
         "path": ".github/acceptance/issue-199.json",
         "identity_mode": "content",
         "sha256": "772c5092869db1fc825cfa8d77aaad5efe44cadc3c1ceb915a18a337c8b15026"
+      },
+      {
+        "path": ".github/acceptance/issue-211.json",
+        "identity_mode": "content",
+        "sha256": "f95c2c01052c1120dea6cdee30f73e6cae2a9899dbaa7e3ba64abcb06946fff2"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -271,12 +276,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "85f4ba342ca670a637ea5d899f6897f809a383893a21af69e54be6714eff2c45"
+        "sha256": "5ccaf9f515fb6048fe77cb4d501a99bd918a48fd7364db13e912b55e93c26950"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "ea3eaa8ed1a4b59a23b1b169c2574f63148c3f03173b5039d6e76a494596f2bc"
+        "sha256": "d30473b712fbd4a88fdb886eeef902010eb5cdcd345940dd8e842384371ae6a9"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -301,7 +306,7 @@
       {
         "path": ".github/workflows/issue-acceptance.yml",
         "identity_mode": "content",
-        "sha256": "ad53ebf0dedbe0ec88b456a1b8f02b6a91586da03aa665127dc88578d29eebf6"
+        "sha256": "4144fde82d01b74e312cfc0d8293f97d0731e4cd153dbad34d7cd743f05f39c8"
       },
       {
         "path": ".github/workflows/navigation.yml",
@@ -336,7 +341,7 @@
       {
         "path": ".github/workflows/site-color-review.yml",
         "identity_mode": "content",
-        "sha256": "cd88b936882b11787313b5c7c11a03a82259e689cf940810f8e2d64da62bb5cd"
+        "sha256": "6ff080a6ea6f2eaae6deab9af247446a0f44b37311caad282a503041b0ac560c"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -1240,7 +1245,7 @@
       {
         "path": "guides/REPOSITORY-WORKFLOW.md",
         "identity_mode": "content",
-        "sha256": "7a82e1d0682b3a2a0fa54e107753871f3afa96b9aab81b6c120e66c9166a28f3"
+        "sha256": "cec5fd9748792cfb7aa1b7bfa734fca4e0bfd695fb367c76f7b89b57ed1c21d0"
       },
       {
         "path": "guides/SITE-ANALYTICS.md",
@@ -1250,7 +1255,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "bc5add73cff90149dd6a6914b05c5e968b7909e2830487f97ee436324bae91f5"
+        "sha256": "8fd38f4ebef3c3c65f7b21ba5ebd8d0328fb83caef2e5acc6dd6834a0759beb8"
       },
       {
         "path": "guides/SITE-CONTENT-RELEASE.md",
@@ -5626,6 +5631,11 @@
         "path": "review/issue-2/r30-20261024/qa-original-evidence.zip",
         "identity_mode": "content",
         "sha256": "a66edab97ed2c91553269c2b692ca452715da93e5cbae1cc44b6b70f0092e8d5"
+      },
+      {
+        "path": "review/issue-211/2026-11-17-staging-source-shards.md",
+        "identity_mode": "content",
+        "sha256": "012d0dd17ba3b3537ba057f6d23d40d50336aea18ac614b0fa75b2751150045a"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -12545,7 +12555,7 @@
       {
         "path": "tests/content-delivery.test.cjs",
         "identity_mode": "content",
-        "sha256": "71e0fc15d30997c89bee853a87d186aa30b3755c89759d16f487cbb8ceb8a042"
+        "sha256": "e8e87caa5a7c98c0dac06c1de26c933326e328aeb9c02d24f549242705b180ff"
       },
       {
         "path": "tests/content-fixture.test.cjs",
@@ -12860,7 +12870,7 @@
       {
         "path": "tests/review-flow.test.cjs",
         "identity_mode": "content",
-        "sha256": "f9298acad79cd89b03576afcdf5c175ca179914e7f57f2051e4fdd9121a7dab1"
+        "sha256": "a6ac172ee923e67df55e5a3ba54b3a49cb86f73d9f674c6d839ad463785e8876"
       },
       {
         "path": "tests/reviewer-admission.test.cjs",
@@ -13725,7 +13735,7 @@
       {
         "path": "tools/quality/local.cjs",
         "identity_mode": "content",
-        "sha256": "ea8550ebac5b2f62147c60c8e0b70a54f6e60d20643cf190ec45c6a5d693f96d"
+        "sha256": "1edb26df2b65baf9e6b9f9e561ee33cfda14f24342b66b528fc2b3c1d55714db"
       },
       {
         "path": "tools/quality/motion.cjs",
@@ -14974,6 +14984,17 @@
         "AGENTS.md"
       ],
       "title": "issue-199.json"
+    },
+    {
+      "path": ".github/acceptance/issue-211.json",
+      "kind": "file",
+      "purpose": "Issue #211 stable criteria and gates for sharded platform staging source validation.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-211.json"
     },
     {
       "path": ".github/acceptance/issue-31.json",
@@ -27041,6 +27062,17 @@
         "AGENTS.md"
       ],
       "title": "qa-original-evidence.zip"
+    },
+    {
+      "path": "review/issue-211/2026-11-17-staging-source-shards.md",
+      "kind": "file",
+      "purpose": "Observed staging timeout and criterion evidence map for issue #211.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue #211 — Platform staging source runtime"
     },
     {
       "path": "review/issue-31/2026-10-07-analysis.md",
@@ -47698,6 +47730,16 @@
       "purpose": "R30 complete native artifact identities, durable delivery locators and original review evidence; binaries are delivered separately.",
       "role": "history",
       "owner": "review/issue-2/2026-10-24-r30-editorial-clarity.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-211",
+      "kind": "directory",
+      "purpose": "Requirements, diagnosis and verification for platform staging source sharding.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
       "instructions": [
         "AGENTS.md"
       ]

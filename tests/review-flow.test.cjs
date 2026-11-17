@@ -1252,8 +1252,11 @@ test('workflow publishes through the official action, excludes full tests from P
   assert.match(smoke, /local-browser.cjs --smoke/);
   assert.match(smoke, /SITE_PUBLIC_VARIANT: \$\{\{ needs.build.outputs.variant \}\}/);
   assert.doesNotMatch(smoke, /secrets\.|lighthouse|scanners.cjs|motion.cjs/);
+  const candidate = text.split('\n  candidate:\n')[1].split('\n  staging-source-shard:\n')[0];
+  assert.match(candidate, /artifact.cjs build color-artifact/);
+  assert.match(candidate, /review-flow.cjs rendition color-artifact/);
   const build = text.split('\n  build:\n')[1].split('\n  publish:\n')[0];
-  assert.match(build, /artifact.cjs build color-artifact/);
+  assert.match(build, /artifact-ids: \$\{\{ needs.candidate.outputs.artifact \}\}/);
   assert.match(build, /local.cjs --package-gate color-artifact/);
   assert.doesNotMatch(
     build,

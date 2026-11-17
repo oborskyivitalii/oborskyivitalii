@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 211,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/211",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Run the complete platform staging source profile in eight bounded jobs.",
+      "automated_scope": "The owning Basic command runs the standard package-independent checks. The registered workflow and source-runner suites separately exercise deterministic matrix allocation and failure propagation. Hosted Actions retains the native observations.",
+      "checks": ["BASIC"],
+      "gates": ["HOSTED"]
+    },
+    {
+      "id": "AC02",
+      "intent": "Require authentic complete source receipts before staging preflight can pass and before deployable package upload.",
+      "automated_scope": "The owning Basic command runs standard checks. Registered source and workflow suites separately exercise invalid evidence, failure propagation and source binding.",
+      "checks": ["BASIC"],
+      "gates": ["HOSTED", "REVIEW"]
+    },
+    {
+      "id": "AC03",
+      "intent": "Preserve the content gate, ordinary PR behavior, remaining staging guards and production validation.",
+      "automated_scope": "The owning Basic command runs standard checks. Registered workflow and content suites and the ordinary preview command separately exercise conditional routing and affected requirements.",
+      "checks": ["BASIC"],
+      "gates": ["HOSTED", "REVIEW"]
+    },
+    {
+      "id": "AC04",
+      "intent": "Verify the implementation and its protected adoption before retrying the date correction.",
+      "automated_scope": "Style and RI-CI validate the bounded source and coupling checks. Hosted evidence and owner adoption are external.",
+      "checks": ["BASIC", "STYLE", "RI-CI"],
+      "gates": ["HOSTED", "REVIEW", "ADOPTION"]
+    }
+  ],
+  "checks": {
+    "BASIC": {
+      "kind": "node-basic"
+    },
+    "STYLE": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    }
+  },
+  "gates": {
+    "HOSTED": {
+      "kind": "human",
+      "description": "Inspect eight current-attempt native shard receipts, their aggregate against the complete profile, and the remaining preflight and hosted gate for the exact head."
+    },
+    "REVIEW": {
+      "kind": "human",
+      "description": "Four independent roles review the exact candidate and applicable CS01-CS10 obligations."
+    },
+    "ADOPTION": {
+      "kind": "human",
+      "description": "Verify protected controller activation and run the normal owner staging route on the date-correction candidate."
+    }
+  }
+}

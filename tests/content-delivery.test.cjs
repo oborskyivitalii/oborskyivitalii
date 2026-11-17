@@ -103,8 +103,8 @@ test('workflow selection can read accepted checks and feeds economical admission
     yaml.parse(fs.readFileSync(path.join(root, '.github/workflows', name), 'utf8'));
   const review = workflow('site-color-review.yml');
   for (const permission of ['contents', 'actions', 'checks', 'pull-requests'])
-    assert.equal(review.jobs.build.permissions[permission], 'read');
-  const selector = review.jobs.build.steps.find((step) => step.id === 'content_baseline');
+    assert.equal(review.jobs.candidate.permissions[permission], 'read');
+  const selector = review.jobs.candidate.steps.find((step) => step.id === 'content_baseline');
   assert.match(selector.with.script, /selectAccepted/);
   assert.ok(
     !selector.if.includes("mode == 'preview'"),
@@ -121,6 +121,132 @@ test('workflow selection can read accepted checks and feeds economical admission
   assert.equal(workflow('site-production.yml').concurrency.group, 'author-pages-publication');
 });
 
+test('platform staging aggregates source failures before blocking deployable packaging', () => {
+  const fs = require('node:fs');
+  const path = require('node:path');
+  const yaml = require('../tools/quality/common.cjs').toolRequire('yaml');
+  const vm = require('node:vm');
+  const workflow = yaml.parse(
+    fs.readFileSync(path.join(__dirname, '../.github/workflows/site-color-review.yml'), 'utf8')
+  );
+  const { build, publish, candidate, 'staging-source-shard': shards } = workflow.jobs;
+  assert.deepEqual(shards.strategy.matrix.shard, [0, 1, 2, 3, 4, 5, 6, 7]);
+  assert.equal(shards.strategy['fail-fast'], false);
+  assert.equal(shards.if, "needs.candidate.outputs.preflight == 'staging'");
+  assert.ok(build.needs.includes('staging-source-shard'));
+  assert.ok(publish.needs.includes('build'));
+  const upload = candidate.steps.find((step) => step.id === 'candidate-upload');
+  assert.equal(upload.with.path, 'color-artifact/');
+  const download = build.steps.find((step) => step.with?.pattern?.startsWith('site-source-shard-'));
+  assert.match(download.with.pattern, /github\.run_id.*github\.run_attempt/);
+  assert.equal(download['continue-on-error'], true);
+  const guard = build.steps.findIndex((step) => step.env?.STAGING_SOURCE_RESULT);
+  const preflight = build.steps.findIndex((step) => step.env?.SITE_STAGING_SOURCE_SHARDS);
+  const uploadPublic = build.steps.findIndex((step) => step.id === 'public');
+  assert.ok(preflight >= 0 && preflight < guard && guard < uploadPublic);
+  assert.equal(build.steps[guard].if, "needs.candidate.outputs.preflight == 'staging'");
+  assert.match(build.steps[guard].env.STAGING_SOURCE_RESULT, /needs\.staging-source-shard\.result/);
+  assert.match(
+    build.steps[guard].env.STAGING_SOURCE_DOWNLOAD,
+    /steps\.staging-source-download\.outcome/
+  );
+  for (const [matrix, download, status] of [
+    ['success', 'success', 0],
+    ['success', 'failure', 1],
+    ['failure', 'success', 1],
+    ['skipped', 'skipped', 1],
+  ]) {
+    const result = require('node:child_process').spawnSync(
+      'bash',
+      ['-e', '-c', build.steps[guard].run],
+      { env: { ...process.env, STAGING_SOURCE_RESULT: matrix, STAGING_SOURCE_DOWNLOAD: download } }
+    );
+    assert.equal(result.status, status);
+  }
+  for (const [profile, candidateResult, cancelled, allowed] of [
+    ['staging', 'success', false, true],
+    ['staging', 'failure', false, false],
+    ['staging', 'success', true, false],
+    ['content', 'success', false, true],
+    ['none', 'success', false, true],
+    ['', 'success', false, false],
+  ]) {
+    const actual = vm.runInNewContext(
+      build.if,
+      {
+        always: () => true,
+        cancelled: () => cancelled,
+        needs: {
+          candidate: { result: candidateResult, outputs: { preflight: profile } },
+        },
+      },
+      { timeout: 100 }
+    );
+    assert.equal(actual, allowed, JSON.stringify({ profile, candidateResult, cancelled }));
+  }
+});
+
+test('platform staging preflight cannot package an older source without the native aggregate', (t) => {
+  const fs = require('node:fs');
+  const os = require('node:os');
+  const path = require('node:path');
+  const { createHash } = require('node:crypto');
+  const { spawnSync } = require('node:child_process');
+  const yaml = require('../tools/quality/common.cjs').toolRequire('yaml');
+  const workflow = yaml.parse(
+    fs.readFileSync(path.join(root, '.github/workflows/site-color-review.yml'), 'utf8')
+  );
+  const steps = workflow.jobs.build.steps;
+  const proof = steps.findIndex((step) =>
+    step.run?.includes('prepublication-source-tests-shards.json')
+  );
+  assert.ok(proof >= 0 && proof < steps.findIndex((step) => step.id === 'public'));
+  assert.equal(steps[proof].if, "needs.candidate.outputs.preflight == 'staging'");
+  const cwd = fs.mkdtempSync(path.join(os.tmpdir(), 'staging-aggregate-'));
+  t.after(() => fs.rmSync(cwd, { recursive: true, force: true }));
+  const reports = path.join(cwd, 'quality-reports');
+  fs.mkdirSync(reports);
+  const name = 'prepublication-source-tests-shards.json';
+  const commit = 'a'.repeat(40);
+  const tree = 'b'.repeat(40);
+  const execution = { runId: '31', attempt: '2' };
+  const bytes = JSON.stringify({
+    mode: 'eight-bounded-shards',
+    profile: 'staging',
+    pass: true,
+    source: { sourceCommit: commit, sourceTree: tree },
+  });
+  const files = { [name]: createHash('sha256').update(bytes).digest('hex') };
+  const record = {
+    execution,
+    files,
+    sourceTree: tree,
+    checks: [{ id: 'source-tests', pass: true }],
+  };
+  const write = (report) =>
+    fs.writeFileSync(path.join(reports, 'prepublication.json'), JSON.stringify(report));
+  const result = () =>
+    spawnSync('bash', ['-e', '-c', steps[proof].run], {
+      cwd,
+      env: {
+        ...process.env,
+        GITHUB_RUN_ID: '31',
+        GITHUB_RUN_ATTEMPT: '2',
+        SITE_CANDIDATE_SHA: commit,
+      },
+    });
+  write({ ...record, files: {} });
+  assert.equal(result().status, 1, 'legacy preflight report without a shard aggregate');
+  fs.writeFileSync(path.join(reports, name), bytes);
+  write(record);
+  assert.equal(result().status, 0);
+  write({ ...record, execution: { ...execution, attempt: '1' } });
+  assert.equal(result().status, 1, 'cross-attempt preflight');
+  write(record);
+  fs.appendFileSync(path.join(reports, name), '\n');
+  assert.equal(result().status, 1, 'aggregate changed after preflight');
+});
+
 const candidate = fixture.contentFixture;
 
 test('ordinary content preview installs locked source dependencies after selection and before execution', () => {
@@ -131,7 +257,7 @@ test('ordinary content preview installs locked source dependencies after selecti
   const review = yaml.parse(
     fs.readFileSync(path.join(root, '.github/workflows/site-color-review.yml'), 'utf8')
   );
-  const steps = review.jobs.build.steps;
+  const steps = review.jobs.candidate.steps;
   const selector = steps.findIndex((step) => step.id === 'content_baseline');
   const install = steps.findIndex(
     (step) => step.name === 'Install locked content-source tools for an ordinary preview'
