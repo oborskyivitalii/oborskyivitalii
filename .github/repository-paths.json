@@ -7087,6 +7087,12 @@
       "role": "history",
       "owner": "review/REVIEW-TEMPLATE.md"
     },
+    "review/issue-183/2026-11-17-staging-fixture-performance.md": {
+      "kind": "file",
+      "purpose": "Scoped fixture performance comparison and staging bootstrap evidence.",
+      "role": "history",
+      "owner": "review/REVIEW-TEMPLATE.md"
+    },
     "review/issue-183/workflow-guide-evidence.json": {
       "kind": "file",
       "purpose": "Repository workflow guide review against the protected staging prerequisite.",

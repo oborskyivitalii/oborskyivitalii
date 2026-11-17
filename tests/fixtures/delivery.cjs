@@ -52,6 +52,7 @@ function releasedSourceRoot() {
   return historicalRoot;
 }
 const stagingSeeds = new Map();
+const productionSeeds = new Map();
 
 function mediaEnvironment(outer = process.env) {
   // Relocated fixtures have no venv. Use the source checkout's pinned encoder.
@@ -179,9 +180,41 @@ function staging(parent, color = false, authoredRoot = root) {
   return result;
 }
 
-function production(parent, name = 'production', commit) {
-  const result = source(parent, name, commit, releasedSourceRoot());
-  result.record = require('../../tools/release/edition.cjs').build(result.directory);
+function production(parent, name = 'production', commit = 'a'.repeat(40)) {
+  const authoredRoot = releasedSourceRoot();
+  const seed = sourceSeed(authoredRoot);
+  const build = require('../../tools/release/edition.cjs').build;
+  const retention = artifact.digest(
+    fs.readFileSync(path.join(root, 'site/retained/manifest.json'))
+  );
+  const expectedPublicDigest = process.env.SITE_EXPECTED_PUBLIC_DIGEST;
+  const prepared = productionSeeds.get(commit);
+  let result;
+  if (
+    prepared?.seed === seed &&
+    prepared.build === build &&
+    prepared.retention === retention &&
+    prepared.expectedPublicDigest === expectedPublicDigest
+  ) {
+    const directory = path.join(parent, name);
+    copyFiles(path.join(directory, 'public'), prepared.files);
+    fs.writeFileSync(path.join(directory, 'artifact.json'), prepared.record);
+    fs.writeFileSync(path.join(directory, 'sizes.json'), prepared.sizes);
+    result = { directory, record: JSON.parse(prepared.record), authoredRoot };
+  } else {
+    result = copySource(parent, name, commit, seed);
+    result.record = build(result.directory);
+    productionSeeds.set(commit, {
+      seed,
+      build,
+      retention,
+      expectedPublicDigest,
+      record: fs.readFileSync(path.join(result.directory, 'artifact.json'), 'utf8'),
+      sizes: fs.readFileSync(path.join(result.directory, 'sizes.json')),
+      files: artifact.entries(path.join(result.directory, 'public')),
+    });
+  }
+  // Rights still compile against each caller's freshly materialized public and authored files.
   rightsInventory(result, true);
   return result;
 }

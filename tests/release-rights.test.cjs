@@ -20,11 +20,7 @@ function rehash(report) {
   report.inventoryDigest = artifact.digest(JSON.stringify(body));
 }
 
-function fixture(t, { nativeReleasedArticle = false } = {}) {
-  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'release-rights-'));
-  t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
-  const publicDirectory = path.join(directory, 'public');
-  const sourceRoot = path.join(directory, 'source');
+function prepareSource(sourceRoot, nativeReleasedArticle = false) {
   for (const name of [
     'site',
     'README.md',
@@ -40,19 +36,15 @@ function fixture(t, { nativeReleasedArticle = false } = {}) {
     'review/assets/vitalii-oborskyi-cutout-20261002.png',
     ...Object.values(legal.sources),
   ]) {
-    fs.mkdirSync(path.dirname(path.join(sourceRoot, name)), {
-      recursive: true,
-      filter: (file) => !file.split(path.sep).includes('node_modules'),
-    });
+    const target = path.join(sourceRoot, name);
+    fs.mkdirSync(path.dirname(target), { recursive: true });
     fs.cpSync(
       path.join(
         nativeReleasedArticle && name === 'site' ? delivery.releasedSourceRoot() : root,
         name
       ),
-      path.join(sourceRoot, name),
-      {
-        recursive: true,
-      }
+      target,
+      { recursive: true, filter: (file) => path.basename(file) !== 'node_modules' }
     );
   }
   if (nativeReleasedArticle) {
@@ -77,8 +69,33 @@ function fixture(t, { nativeReleasedArticle = false } = {}) {
         cwd: root,
       })
     );
+    const modules = 'tools/publishing/toolchain/node_modules';
+    fs.symlinkSync(path.join(root, modules), path.join(sourceRoot, modules), 'junction');
   } else require('./fixtures/catalog.cjs').isolatePublicationCatalog(sourceRoot, root);
-  builder.build({ root: sourceRoot, output: publicDirectory, all: true });
+}
+
+let rightsSeed;
+test.after(() => {
+  if (rightsSeed) fs.rmSync(rightsSeed, { recursive: true, force: true });
+});
+function fixture(t) {
+  if (!rightsSeed) {
+    const seed = fs.mkdtempSync(path.join(os.tmpdir(), 'release-rights-seed-'));
+    const sourceRoot = path.join(seed, 'source');
+    try {
+      prepareSource(sourceRoot);
+      builder.build({ root: sourceRoot, output: path.join(seed, 'public'), all: true });
+    } catch (error) {
+      fs.rmSync(seed, { recursive: true, force: true });
+      throw error;
+    }
+    rightsSeed = seed;
+  }
+  const directory = delivery.temporary(t);
+  // Every test gets writable copies. Only the pristine, never-mutated build is reused.
+  fs.cpSync(rightsSeed, directory, { recursive: true, mode: fs.constants.COPYFILE_FICLONE });
+  const publicDirectory = path.join(directory, 'public');
+  const sourceRoot = path.join(directory, 'source');
   const record = () => ({
     sourceCommit: 'a'.repeat(40),
     sourceTree: 'b'.repeat(40),
@@ -902,8 +919,8 @@ test('publication notice markup rejects incomplete ambiguous and unbounded conte
 
 test('publication actual edition and package CLIs freeze exact sidecars before any upload', (t) => {
   const pkg = require('../tools/staging/package.cjs');
-  const source = fixture(t, { nativeReleasedArticle: true });
-  const checkout = source.sourceRoot;
+  const checkout = path.join(delivery.temporary(t), 'source');
+  prepareSource(checkout, true);
   for (const name of [
     'tools/staging/edition.cjs',
     'tools/staging/color.cjs',
@@ -922,7 +939,10 @@ test('publication actual edition and package CLIs freeze exact sidecars before a
     fs.mkdirSync(path.dirname(target), { recursive: true });
     fs.copyFileSync(path.join(root, name), target);
   }
-  fs.writeFileSync(path.join(checkout, '.gitignore'), '.site-cache/\n.fixture-output/\n');
+  fs.writeFileSync(
+    path.join(checkout, '.gitignore'),
+    '.site-cache/\n.fixture-output/\n/tools/publishing/toolchain/node_modules\n'
+  );
   // This CLI fixture exercises principal-page rights in both editions.
   // Hosted article rights are exercised separately above.
   const environment = {
