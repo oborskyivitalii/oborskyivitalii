@@ -1,0 +1,17 @@
+{
+  "base_sha": "61253cdf0edf29425932d876f8148dfa6265c9f0",
+  "scope_sha256": "7973da0c0e308c5731d0b4148675a94912fbc8db745f88ea2afbed95a8d5b1f8",
+  "paths": [
+    ".github/ri-ci-map.json",
+    ".github/workflows/issue-acceptance.yml",
+    ".github/workflows/site-color-review.yml",
+    "guides/SITE-CHECK-PROFILES.md",
+    "tests/content-delivery.test.cjs",
+    "tests/review-flow.test.cjs",
+    "tools/quality/local.cjs"
+  ],
+  "disposition": "updated",
+  "sections": ["Delivery routes and controls"],
+  "rationale": "The delivery guide documents the eight platform staging jobs, current-attempt receipt binding, independent guards after shard failure, and the separate authenticated content route.",
+  "reviewer_execution": "/root/p212_rebase_code. Explicit fork_turns=none. Reviewed the integration tree at 4df8a3bc with current protected main and confirmed the workflow guide scope and disposition. Common prompt blob 68796daaf and Code prompt blob 2363340a."
+}

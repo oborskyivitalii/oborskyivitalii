@@ -438,14 +438,30 @@ function preparePrepublication(level, directory, options = {}) {
   const contentSourceArgs = contentAdmission
     ? ['--base', contentAdmission.mergedSource, '--head', identity.sourceCommit]
     : [];
-  node('source-tests', 'tools/quality/source-tests.cjs', [
-    '--profile',
-    contentAdmission ? 'content' : level,
-    ...contentSourceArgs,
-    '--require-clean',
-    '--report',
-    path.join(reportDirectory, reportStem + '-source-tests-runner.json'),
-  ]);
+  if (options.sourceShards) {
+    assert.equal(level, 'staging', 'sharded receipts are restricted to staging');
+    assert.ok(!contentAdmission, 'sharded receipts require platform staging');
+    node('source-tests', 'tools/quality/source-test-shards.cjs', [
+      'aggregate',
+      '--profile',
+      'staging',
+      '--head',
+      environment.SITE_CANDIDATE_SHA,
+      '--input',
+      path.resolve(options.sourceShards),
+      '--output',
+      path.join(reportDirectory, reportStem + '-source-tests-shards.json'),
+    ]);
+  } else {
+    node('source-tests', 'tools/quality/source-tests.cjs', [
+      '--profile',
+      contentAdmission ? 'content' : level,
+      ...contentSourceArgs,
+      '--require-clean',
+      '--report',
+      path.join(reportDirectory, reportStem + '-source-tests-runner.json'),
+    ]);
+  }
   // Audit-graph regressions import dependencies installed only in the locked venv.
   check(
     'python-tests',
@@ -539,7 +555,7 @@ function preparePrepublication(level, directory, options = {}) {
       reportDirectory,
       reportStem,
       timeout: (task) =>
-        task.id === 'source-tests'
+        task.id === 'source-tests' && !options.sourceShards
           ? sourceTests.wrapperTimeout(root, task.args[task.args.indexOf('--profile') + 1])
           : 180000,
     },
@@ -629,7 +645,10 @@ if (require.main === module) {
         level && directory && !extra.length && (!flag || (flag === '--report' && report)),
         'Usage: local.cjs --prepublication staging|production DIRECTORY [--report FILE]'
       );
-      prepublicationParallel(level, directory, { report }).then(
+      prepublicationParallel(level, directory, {
+        report,
+        sourceShards: process.env.SITE_STAGING_SOURCE_SHARDS,
+      }).then(
         (result) => {
           console.log(JSON.stringify(result));
           if (!result.pass) process.exitCode = 1;

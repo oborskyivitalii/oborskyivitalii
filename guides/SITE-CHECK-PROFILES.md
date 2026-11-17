@@ -235,9 +235,18 @@ Explicit stable-staging/evidence and optional full diagnostic preparation first
 run `local.cjs --prepublication` on the exact frozen artifact before deployable
 upload. It orchestrates the existing source, Python, style/RI, scanner and
 artifact/edition/rights/package owners, retains independent failures and checks
-source/public immutability again at the end. The staging source allocation is
-Basic plus the nonbaseline staging suites; production runs its complete source
-allocation once. Missing artifact prerequisites block their dependent checks.
+source/public immutability again at the end. Platform staging runs the complete
+staging source profile in eight parallel GitHub Actions jobs. Each job checks out
+the resolved PR head and retains its native TAP, stderr and source receipt.
+The preflight job recomputes the full profile allocation, validates all eight
+receipts for the same run attempt and source, and retains the aggregate before
+deployable upload. Failed source jobs still allow independent preflight guards
+and diagnostic retention. A platform candidate must produce the aggregate as
+part of preflight, including after a controller update. Use a fresh full
+staging attempt if work must be repeated.
+Authenticated content staging runs its existing content profile. Direct staging
+and production retain their existing local source runner. Missing artifact
+prerequisites block their dependent checks.
 For staging, the producer runs these guards once before upload and retains all
 raw reports. Build/static consumers authenticate the native preflight artifact
 from the same run/controller/attempt and verify complete successful guard rows,

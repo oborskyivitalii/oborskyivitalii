@@ -239,6 +239,12 @@ own these details. These are the main workflow entry points.
 | Repository admission and merge | [Change admission](../.github/workflows/change-admission.yml) runs from protected main for a specific PR and binds the selected obligations to its current source. [Post-merge verification](../.github/workflows/site-staging-merge.yml) records repository or website identity after merge. |
 | Production | [Release candidate](../.github/workflows/site-release-candidate.yml) freezes the authenticated edition. [Authorized production](../.github/workflows/site-production.yml) publishes or rolls back a complete admitted package. |
 
+For platform staging, the resolved source runs the complete registered source
+profile in eight parallel jobs. The controller binds those native receipts to
+the same preflight attempt before it uploads a deployable package. Independent
+preflight guards still run on shard failure. The authenticated content route
+uses its separate source profile. See [bounded staging regression](SITE-CHECK-PROFILES.md#bounded-staging-regression).
+
 ## Evidence from shipped changes
 
 - **Platform first.** [#122](https://github.com/oborskyivitalii/oborskyivitalii/issues/122#issuecomment-6453681483)

@@ -181,6 +181,7 @@
         ".github/acceptance/issue-187.json",
         ".github/acceptance/issue-188.json",
         ".github/acceptance/issue-189.json",
+        ".github/acceptance/issue-211.json",
         "tests/test_issue189_acceptance.py"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
@@ -746,7 +747,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "9bba9a65a3bebfb0c5dc2cc4ebacf5935fc48619042fca1f12720677d7d1da50",
+    "digest": "3a4361b6d55f13c30e960b19d670a74670a51f2f447ed96804dcfbb692a00d0f",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -845,6 +846,10 @@
         "sha256": "772c5092869db1fc825cfa8d77aaad5efe44cadc3c1ceb915a18a337c8b15026"
       },
       {
+        "path": ".github/acceptance/issue-211.json",
+        "sha256": "f95c2c01052c1120dea6cdee30f73e6cae2a9899dbaa7e3ba64abcb06946fff2"
+      },
+      {
         "path": ".github/acceptance/issue-31.json",
         "sha256": "fab7c6d73ef4814c40b26f63025b9e9dbc5e6f2435b733bd09480a34076ccef0"
       },
@@ -934,7 +939,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "daf57af10b893c3d2b65cf912f4d7676ceb055de8385173da5800132b1886327"
+        "sha256": "adc1470882cf09e683e5f13f5086a396b4c04ab1d8a891bba8601dd690fcb04d"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -954,7 +959,7 @@
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
-        "sha256": "ad53ebf0dedbe0ec88b456a1b8f02b6a91586da03aa665127dc88578d29eebf6"
+        "sha256": "4144fde82d01b74e312cfc0d8293f97d0731e4cd153dbad34d7cd743f05f39c8"
       },
       {
         "path": ".github/workflows/navigation.yml",
@@ -982,7 +987,7 @@
       },
       {
         "path": ".github/workflows/site-color-review.yml",
-        "sha256": "cd88b936882b11787313b5c7c11a03a82259e689cf940810f8e2d64da62bb5cd"
+        "sha256": "9996b69a03f164aec768d2e1d00e548e4605d9b726fca6eabc17a6d8a50b6090"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -1066,7 +1071,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "bc5add73cff90149dd6a6914b05c5e968b7909e2830487f97ee436324bae91f5"
+        "sha256": "8fd38f4ebef3c3c65f7b21ba5ebd8d0328fb83caef2e5acc6dd6834a0759beb8"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -1226,7 +1231,7 @@
       },
       {
         "path": "tools/quality/local.cjs",
-        "sha256": "ea8550ebac5b2f62147c60c8e0b70a54f6e60d20643cf190ec45c6a5d693f96d"
+        "sha256": "c13b8e4dbebe0d850201d9af2278cab16b3fd0dd0a4d627703985746a3eced7b"
       },
       {
         "path": "tools/quality/source-tests.cjs",
