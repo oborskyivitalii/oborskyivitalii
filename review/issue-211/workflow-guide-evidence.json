@@ -1,0 +1,19 @@
+{
+  "base_sha": "d37d099b519536e042cdbb261dbbbc5e2cbce7c5",
+  "scope_sha256": "04994baa7691b9db16797c89b3650af40ac319899b452796c5ece3250d38ab25",
+  "paths": [
+    ".github/ri-ci-map.json",
+    ".github/workflows/issue-acceptance.yml",
+    ".github/workflows/site-color-review.yml",
+    "guides/SITE-CHECK-PROFILES.md",
+    "tests/content-delivery.test.cjs",
+    "tests/review-flow.test.cjs",
+    "tools/quality/local.cjs"
+  ],
+  "disposition": "updated",
+  "sections": [
+    "Delivery routes and controls"
+  ],
+  "rationale": "The delivery guide documents the eight platform staging jobs, current-attempt receipt binding, independent guards after shard failure, and the separate authenticated content route.",
+  "reviewer_execution": "/root/stages_correction_code. Explicit fork_turns=none. Reviewed 6c79a24e22012d4ef8b1f41e8233c665cfc85068 against d37d099b519536e042cdbb261dbbbc5e2cbce7c5. Common prompt blob 68796daaf4313f64da381b1628866267fd9e263b. Code prompt blob 2363340a1eaae62fdbd3ab070fda5c6436ec8124."
+}

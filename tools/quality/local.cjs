@@ -440,7 +440,7 @@ function preparePrepublication(level, directory, options = {}) {
     : [];
   if (options.sourceShards) {
     assert.equal(level, 'staging', 'sharded receipts are restricted to staging');
-    assert.ok(artifactRecord && !contentAdmission, 'sharded receipts require platform staging');
+    assert.ok(!contentAdmission, 'sharded receipts require platform staging');
     node('source-tests', 'tools/quality/source-test-shards.cjs', [
       'aggregate',
       '--profile',

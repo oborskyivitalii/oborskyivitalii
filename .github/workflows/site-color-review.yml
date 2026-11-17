@@ -327,7 +327,11 @@ jobs:
           retention-days: 5
   staging-source-shard:
     needs: [target, candidate]
-    if: needs.candidate.outputs.preflight == 'staging'
+    if: >-
+      always() && !cancelled() &&
+      (needs.candidate.outputs.preflight == 'staging' ||
+       (needs.candidate.result == 'failure' &&
+        (needs.target.outputs.mode == 'staging' || needs.target.outputs.evidence == 'true')))
     name: staging-source-shard-${{ matrix.shard }}
     permissions:
       contents: read
@@ -373,9 +377,10 @@ jobs:
   build:
     needs: [target, candidate, staging-source-shard]
     if: >-
-      always() && !cancelled() && needs.candidate.result == 'success' &&
-      (needs.candidate.outputs.preflight == 'none' || needs.candidate.outputs.preflight == 'content' ||
-       needs.candidate.outputs.preflight == 'staging')
+      always() && !cancelled() &&
+      (needs.candidate.result == 'success' ||
+       (needs.candidate.result == 'failure' &&
+        (needs.target.outputs.mode == 'staging' || needs.target.outputs.evidence == 'true')))
     permissions:
       contents: read
       actions: read
@@ -394,6 +399,7 @@ jobs:
       variant: ${{ needs.candidate.outputs.variant }}
     env:
       SITE_CANDIDATE_SHA: ${{ needs.target.outputs.source }}
+      STAGING_SOURCE_REQUIRED: ${{ needs.candidate.outputs.preflight == 'staging' || needs.candidate.result == 'failure' }}
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
@@ -407,30 +413,31 @@ jobs:
         id: source_identity
         run: test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
       - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        if: needs.candidate.result == 'success'
         with:
           artifact-ids: ${{ needs.candidate.outputs.artifact }}
           path: color-artifact
       - name: Download the eight native staging source receipts
         id: staging-source-download
-        if: needs.candidate.outputs.preflight == 'staging'
+        if: ${{ !cancelled() && steps.source_identity.outcome == 'success' && env.STAGING_SOURCE_REQUIRED == 'true' }}
         continue-on-error: true
         uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
         with:
           pattern: site-source-shard-${{ github.run_id }}-${{ github.run_attempt }}-*
           path: ${{ runner.temp }}/staging-source-shards
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
-        if: hashFiles('tools/publishing/toolchain/package-lock.json') != '' || needs.candidate.outputs.preflight != 'none'
+        if: ${{ !cancelled() && (hashFiles('tools/publishing/toolchain/package-lock.json') != '' || needs.target.outputs.mode == 'staging' || needs.target.outputs.evidence == 'true') }}
         with:
           python-version: 3.12.14
       - name: Install locked prepublication tools for an explicit staging attempt
-        if: needs.target.outputs.mode == 'staging' || needs.target.outputs.evidence == 'true'
+        if: ${{ !cancelled() && (needs.target.outputs.mode == 'staging' || needs.target.outputs.evidence == 'true') }}
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
           python3 -m venv tools/quality/toolchain/venv
           tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps -r tools/quality/toolchain/requirements.txt
           tools/quality/toolchain/venv/bin/python tools/quality/python_toolchain.py
       - name: Install declared locked publication tools when available
-        if: hashFiles('tools/publishing/toolchain/package-lock.json') != ''
+        if: ${{ !cancelled() && hashFiles('tools/publishing/toolchain/package-lock.json') != '' }}
         run: |
           npm ci --prefix tools/publishing/toolchain --ignore-scripts
           if [ -f tools/publishing/web-media.py ]; then
@@ -440,6 +447,8 @@ jobs:
             tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps "$(python3 tools/publishing/web-media.py --requirement)"
           fi
       - name: Confirm the transferred manifest, source and prepublication profile
+        id: candidate-verified
+        if: needs.candidate.result == 'success'
         env:
           CANDIDATE_MANIFEST: ${{ needs.candidate.outputs.manifest }}
           CANDIDATE_PROFILE: ${{ needs.candidate.outputs.preflight }}
@@ -467,10 +476,11 @@ jobs:
           artifact.verify('color-artifact/public', manifest);
           JS
       - name: Complete host-independent staging guards before candidate upload
-        if: needs.candidate.outputs.preflight != 'none'
+        if: ${{ !cancelled() && steps.source_identity.outcome == 'success' && (needs.target.outputs.mode == 'staging' || needs.target.outputs.evidence == 'true') }}
         env:
-          SITE_STAGING_SOURCE_SHARDS: ${{ needs.candidate.outputs.preflight == 'staging' && format('{0}/staging-source-shards', runner.temp) || '' }}
-        run: node tools/quality/local.cjs --prepublication staging color-artifact --report quality-reports/prepublication.json
+          SITE_STAGING_SOURCE_SHARDS: ${{ env.STAGING_SOURCE_REQUIRED == 'true' && format('{0}/staging-source-shards', runner.temp) || '' }}
+          PREFLIGHT_CANDIDATE: ${{ steps.candidate-verified.outcome == 'success' && 'color-artifact' || 'unavailable-artifact' }}
+        run: node tools/quality/local.cjs --prepublication staging "$PREFLIGHT_CANDIDATE" --report quality-reports/prepublication.json
       - name: Retain all prepublication observations even when a guard fails
         id: prepublication
         if: ${{ always() && (needs.target.outputs.mode == 'staging' || needs.target.outputs.evidence == 'true') }}
@@ -480,6 +490,10 @@ jobs:
           path: quality-reports/
           if-no-files-found: error
           retention-days: 90
+      - name: Require an authenticated candidate for deployable upload
+        env:
+          CANDIDATE_VERIFIED: ${{ steps.candidate-verified.outcome }}
+        run: test "$CANDIDATE_VERIFIED" = success
       - name: Require successful staging source jobs and receipt transfer before deployable upload
         if: needs.candidate.outputs.preflight == 'staging'
         env:

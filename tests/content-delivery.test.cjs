@@ -132,7 +132,8 @@ test('platform staging aggregates source failures before blocking deployable pac
   const { build, publish, candidate, 'staging-source-shard': shards } = workflow.jobs;
   assert.deepEqual(shards.strategy.matrix.shard, [0, 1, 2, 3, 4, 5, 6, 7]);
   assert.equal(shards.strategy['fail-fast'], false);
-  assert.equal(shards.if, "needs.candidate.outputs.preflight == 'staging'");
+  assert.match(shards.if, /needs\.candidate\.outputs\.preflight == 'staging'/);
+  assert.match(shards.if, /needs\.candidate\.result == 'failure'/);
   assert.ok(build.needs.includes('staging-source-shard'));
   assert.ok(publish.needs.includes('build'));
   const upload = candidate.steps.find((step) => step.id === 'candidate-upload');
@@ -163,13 +164,17 @@ test('platform staging aggregates source failures before blocking deployable pac
     );
     assert.equal(result.status, status);
   }
-  for (const [profile, candidateResult, cancelled, allowed] of [
-    ['staging', 'success', false, true],
-    ['staging', 'failure', false, false],
-    ['staging', 'success', true, false],
-    ['content', 'success', false, true],
-    ['none', 'success', false, true],
-    ['', 'success', false, false],
+  const authenticate = build.steps.findIndex((step) => step.env?.CANDIDATE_VERIFIED);
+  assert.ok(preflight < authenticate && authenticate < uploadPublic);
+  assert.match(build.steps[preflight].env.PREFLIGHT_CANDIDATE, /unavailable-artifact/);
+  for (const [mode, evidence, candidateResult, cancelled, allowed] of [
+    ['staging', 'false', 'success', false, true],
+    ['staging', 'false', 'failure', false, true],
+    ['staging', 'false', 'skipped', false, false],
+    ['staging', 'false', 'success', true, false],
+    ['preview', 'false', 'success', false, true],
+    ['preview', 'false', 'failure', false, false],
+    ['preview', 'true', 'failure', false, true],
   ]) {
     const actual = vm.runInNewContext(
       build.if,
@@ -177,12 +182,13 @@ test('platform staging aggregates source failures before blocking deployable pac
         always: () => true,
         cancelled: () => cancelled,
         needs: {
-          candidate: { result: candidateResult, outputs: { preflight: profile } },
+          candidate: { result: candidateResult },
+          target: { outputs: { mode, evidence } },
         },
       },
       { timeout: 100 }
     );
-    assert.equal(actual, allowed, JSON.stringify({ profile, candidateResult, cancelled }));
+    assert.equal(actual, allowed, JSON.stringify({ mode, evidence, candidateResult, cancelled }));
   }
 });
 

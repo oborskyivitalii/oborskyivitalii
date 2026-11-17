@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "4c2c507bd3e2e7f657081486c7382050c921e8ccc91dfcdaebb3041c43261f97",
+    "digest": "4f1a06ce48542967c2a89fe3007adaf06ca1b960da1ac9fcecc1454f111d4f0e",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -276,12 +276,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "5ccaf9f515fb6048fe77cb4d501a99bd918a48fd7364db13e912b55e93c26950"
+        "sha256": "5d0ad235a2791b8768ca93abc95a2a89160e26576eadce4464cf3a4bcbfe50f6"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "d30473b712fbd4a88fdb886eeef902010eb5cdcd345940dd8e842384371ae6a9"
+        "sha256": "ece441a0c1d25ca3f9eeada1777e1436d5135ae29d31721ab9c94559271a570e"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -341,7 +341,7 @@
       {
         "path": ".github/workflows/site-color-review.yml",
         "identity_mode": "content",
-        "sha256": "6ff080a6ea6f2eaae6deab9af247446a0f44b37311caad282a503041b0ac560c"
+        "sha256": "9996b69a03f164aec768d2e1d00e548e4605d9b726fca6eabc17a6d8a50b6090"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -5636,6 +5636,11 @@
         "path": "review/issue-211/2026-11-17-staging-source-shards.md",
         "identity_mode": "content",
         "sha256": "012d0dd17ba3b3537ba057f6d23d40d50336aea18ac614b0fa75b2751150045a"
+      },
+      {
+        "path": "review/issue-211/workflow-guide-evidence.json",
+        "identity_mode": "content",
+        "sha256": "9438931e518a05020cf212539a3b2a771f4d4da20dcb214698024199cf873c31"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -12555,7 +12560,7 @@
       {
         "path": "tests/content-delivery.test.cjs",
         "identity_mode": "content",
-        "sha256": "e8e87caa5a7c98c0dac06c1de26c933326e328aeb9c02d24f549242705b180ff"
+        "sha256": "36eb39674070eac2302af85201d55499faabbb8086451fabdcba717b6f9681f5"
       },
       {
         "path": "tests/content-fixture.test.cjs",
@@ -13735,7 +13740,7 @@
       {
         "path": "tools/quality/local.cjs",
         "identity_mode": "content",
-        "sha256": "1edb26df2b65baf9e6b9f9e561ee33cfda14f24342b66b528fc2b3c1d55714db"
+        "sha256": "c13b8e4dbebe0d850201d9af2278cab16b3fd0dd0a4d627703985746a3eced7b"
       },
       {
         "path": "tools/quality/motion.cjs",
@@ -27073,6 +27078,17 @@
         "AGENTS.md"
       ],
       "title": "Issue #211 — Platform staging source runtime"
+    },
+    {
+      "path": "review/issue-211/workflow-guide-evidence.json",
+      "kind": "file",
+      "purpose": "Scoped independent workflow guide review for platform staging source sharding.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "workflow-guide-evidence.json"
     },
     {
       "path": "review/issue-31/2026-10-07-analysis.md",
