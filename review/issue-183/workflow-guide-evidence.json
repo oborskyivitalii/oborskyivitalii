@@ -1,6 +1,6 @@
 {
-  "base_sha": "d37d099b519536e042cdbb261dbbbc5e2cbce7c5",
-  "scope_sha256": "60787065aa5b1b87ca2aea631c9c43337499f4c388051b752839a195c0659cf9",
+  "base_sha": "779747cb16df70ce5cb2bdae8e889f52268de422",
+  "scope_sha256": "eeaff1db36f16cd73275c1725a5cf1efe66d6b1ef6098c236461528e1a3cc66b",
   "paths": [
     ".github/REPOSITORY-INTELLIGENCE.md",
     "guides/ARTICLE-WORKFLOW.md",
@@ -19,6 +19,6 @@
     "Delivery routes and controls",
     "Keeping this guide current"
   ],
-  "rationale": "The guide already describes full build-time validation, source-bound generation inputs, RI indexing, the full route for mixed site and control changes, and exact-head owner admission. The shared archive reader, exact scanner findings and independent checks use those routes.",
-  "reviewer_execution": "/root/staging_integrity_final with clean context. Reviewed 918437e62d87c1114a9a3b0eb28eeb876ca63514 and tree 4acaf28db9ecc2dbb3a6d36e15dcf8f1fb4a9690. Common prompt 68796daaf4313f64da381b1628866267fd9e263b. Code prompt 2363340a1eaae62fdbd3ab070fda5c6436ec8124."
+  "rationale": "The guide already describes source-bound generation and RI ownership, eight protected staging source jobs for this mixed archive and control change, and exact-head owner admission. The publication archive, date tests and scanner records use those existing routes.",
+  "reviewer_execution": "/root/p210_main_code with fork_turns=none reviewed integration a1f4632e and its exact protected-base guide scope. Common prompt blob 68796daa and Code prompt blob 2363340a."
 }

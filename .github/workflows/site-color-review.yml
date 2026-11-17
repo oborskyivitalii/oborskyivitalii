@@ -190,7 +190,7 @@ jobs:
               await admission.finishMergeAdmission(github,context,pr.head.sha,id,'failure',{title:'Staging admission failed',summary:error.message});
               throw error;
             }
-  build:
+  candidate:
     needs: [target, begin-admission]
     permissions:
       contents: read
@@ -204,15 +204,10 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     outputs:
-      prepublication_artifact: ${{ steps.prepublication.outputs.artifact-id }}
-      prepublication_upload_digest: ${{ steps.prepublication.outputs.artifact-digest }}
-      public_artifact: ${{ steps.public.outputs.artifact-id }}
-      public_upload_digest: ${{ steps.public.outputs.artifact-digest }}
-      public_digest: ${{ steps.identity.outputs.digest }}
-      package_artifact: ${{ steps.package.outputs.artifact-id }}
-      package_upload_digest: ${{ steps.package.outputs.artifact-digest }}
-      package_digest: ${{ steps.identity.outputs.package }}
-      package_attempt: ${{ steps.identity.outputs.package_attempt }}
+      artifact: ${{ steps.candidate-upload.outputs.artifact-id }}
+      manifest: ${{ steps.candidate-record.outputs.manifest }}
+      preflight: ${{ steps.candidate-record.outputs.preflight }}
+      attempt: ${{ steps.candidate-record.outputs.attempt }}
       variant: ${{ steps.rendition.outputs.variant }}
     env:
       SITE_CANDIDATE_SHA: ${{ needs.target.outputs.source }}
@@ -299,9 +294,193 @@ jobs:
         run: |
           node tools/staging/review-flow.cjs rendition color-artifact
           node tools/staging/edition.cjs color-artifact
+      - name: Bind candidate bytes and select their prepublication profile
+        id: candidate-record
+        env:
+          REVIEW_MODE: ${{ needs.target.outputs.mode }}
+          REVIEW_EVIDENCE: ${{ needs.target.outputs.evidence }}
+        run: |
+          node - <<'JS'
+          const fs = require('node:fs');
+          const crypto = require('node:crypto');
+          const bytes = fs.readFileSync('color-artifact/artifact.json');
+          const manifest = JSON.parse(bytes);
+          const required = process.env.REVIEW_MODE === 'staging' || process.env.REVIEW_EVIDENCE === 'true';
+          const stagingProfile = manifest.contentRelease?.admission ? 'content' : 'staging';
+          const profile = required ? stagingProfile : 'none';
+          const digest = crypto.createHash('sha256').update(bytes).digest('hex');
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, [
+            'manifest=' + digest,
+            'preflight=' + profile,
+            'attempt=' + process.env.GITHUB_RUN_ATTEMPT,
+            '',
+          ].join('\n'));
+          JS
+      - name: Retain the candidate for this workflow
+        id: candidate-upload
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: site-review-candidate-${{ github.run_id }}-${{ github.run_attempt }}
+          path: color-artifact/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 5
+  staging-source-shard:
+    needs: [target, candidate]
+    if: >-
+      always() && !cancelled() &&
+      (needs.candidate.outputs.preflight == 'staging' ||
+       (needs.candidate.result == 'failure' &&
+        (needs.target.outputs.mode == 'staging' || needs.target.outputs.evidence == 'true')))
+    name: staging-source-shard-${{ matrix.shard }}
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7]
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ needs.target.outputs.source }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: 3.12.14
+      - name: Install exact source test toolchain
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          npm ci --prefix tools/publishing/toolchain --ignore-scripts
+          python3 -m venv tools/quality/toolchain/venv
+          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps -r tools/quality/toolchain/requirements.txt
+          tools/quality/toolchain/venv/bin/python tools/quality/python_toolchain.py
+          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps "$(python3 tools/publishing/web-media.py --requirement)"
+      - name: Execute the exact staging source shard
+        env:
+          SITE_CANDIDATE_SHA: ${{ needs.target.outputs.source }}
+        run: |
+          node tools/quality/source-test-shards.cjs run --profile staging --head "$SITE_CANDIDATE_SHA" --index "${{ matrix.shard }}" --output "quality-reports/shard-${{ matrix.shard }}"
+      - name: Retain original native TAP, stderr, source and shard identity even if failed
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: site-source-shard-${{ github.run_id }}-${{ github.run_attempt }}-${{ matrix.shard }}
+          path: quality-reports/shard-${{ matrix.shard }}/
+          if-no-files-found: error
+          retention-days: 30
+  build:
+    needs: [target, candidate, staging-source-shard]
+    if: >-
+      always() && !cancelled() &&
+      (needs.candidate.result == 'success' ||
+       (needs.candidate.result == 'failure' &&
+        (needs.target.outputs.mode == 'staging' || needs.target.outputs.evidence == 'true')))
+    permissions:
+      contents: read
+      actions: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    outputs:
+      prepublication_artifact: ${{ steps.prepublication.outputs.artifact-id }}
+      prepublication_upload_digest: ${{ steps.prepublication.outputs.artifact-digest }}
+      public_artifact: ${{ steps.public.outputs.artifact-id }}
+      public_upload_digest: ${{ steps.public.outputs.artifact-digest }}
+      public_digest: ${{ steps.identity.outputs.digest }}
+      package_artifact: ${{ steps.package.outputs.artifact-id }}
+      package_upload_digest: ${{ steps.package.outputs.artifact-digest }}
+      package_digest: ${{ steps.identity.outputs.package }}
+      package_attempt: ${{ steps.identity.outputs.package_attempt }}
+      variant: ${{ needs.candidate.outputs.variant }}
+    env:
+      SITE_CANDIDATE_SHA: ${{ needs.target.outputs.source }}
+      STAGING_SOURCE_REQUIRED: ${{ needs.candidate.outputs.preflight == 'staging' || needs.candidate.result == 'failure' }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ needs.target.outputs.source }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - name: Authenticate the exact checked-out candidate
+        id: source_identity
+        run: test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        if: needs.candidate.result == 'success'
+        with:
+          artifact-ids: ${{ needs.candidate.outputs.artifact }}
+          path: color-artifact
+      - name: Download the eight native staging source receipts
+        id: staging-source-download
+        if: ${{ !cancelled() && steps.source_identity.outcome == 'success' && env.STAGING_SOURCE_REQUIRED == 'true' }}
+        continue-on-error: true
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          pattern: site-source-shard-${{ github.run_id }}-${{ github.run_attempt }}-*
+          path: ${{ runner.temp }}/staging-source-shards
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        if: ${{ !cancelled() && (hashFiles('tools/publishing/toolchain/package-lock.json') != '' || needs.target.outputs.mode == 'staging' || needs.target.outputs.evidence == 'true') }}
+        with:
+          python-version: 3.12.14
+      - name: Install locked prepublication tools for an explicit staging attempt
+        if: ${{ !cancelled() && (needs.target.outputs.mode == 'staging' || needs.target.outputs.evidence == 'true') }}
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          python3 -m venv tools/quality/toolchain/venv
+          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps -r tools/quality/toolchain/requirements.txt
+          tools/quality/toolchain/venv/bin/python tools/quality/python_toolchain.py
+      - name: Install declared locked publication tools when available
+        if: ${{ !cancelled() && hashFiles('tools/publishing/toolchain/package-lock.json') != '' }}
+        run: |
+          npm ci --prefix tools/publishing/toolchain --ignore-scripts
+          if [ -f tools/publishing/web-media.py ]; then
+            if [ ! -x tools/quality/toolchain/venv/bin/python ]; then
+              python3 -m venv tools/quality/toolchain/venv
+            fi
+            tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps "$(python3 tools/publishing/web-media.py --requirement)"
+          fi
+      - name: Confirm the transferred manifest, source and prepublication profile
+        id: candidate-verified
+        if: needs.candidate.result == 'success'
+        env:
+          CANDIDATE_MANIFEST: ${{ needs.candidate.outputs.manifest }}
+          CANDIDATE_PROFILE: ${{ needs.candidate.outputs.preflight }}
+          CANDIDATE_ATTEMPT: ${{ needs.candidate.outputs.attempt }}
+          REVIEW_MODE: ${{ needs.target.outputs.mode }}
+          REVIEW_EVIDENCE: ${{ needs.target.outputs.evidence }}
+        run: |
+          node - <<'JS'
+          const assert = require('node:assert/strict');
+          const fs = require('node:fs');
+          const { execFileSync } = require('node:child_process');
+          const artifact = require('./tools/quality/artifact.cjs');
+          const bytes = fs.readFileSync('color-artifact/artifact.json');
+          assert.equal(artifact.digest(bytes), process.env.CANDIDATE_MANIFEST);
+          const manifest = JSON.parse(bytes);
+          const tree = execFileSync('git', ['rev-parse', 'HEAD^{tree}'], { encoding: 'utf8' }).trim();
+          assert.equal(manifest.sourceCommit, process.env.SITE_CANDIDATE_SHA);
+          assert.equal(manifest.candidateCommit, manifest.sourceCommit);
+          assert.equal(manifest.sourceTree, tree);
+          assert.equal(manifest.sourceDirty, false);
+          const required = process.env.REVIEW_MODE === 'staging' || process.env.REVIEW_EVIDENCE === 'true';
+          const stagingProfile = manifest.contentRelease?.admission ? 'content' : 'staging';
+          assert.equal(required ? stagingProfile : 'none', process.env.CANDIDATE_PROFILE);
+          if (required) assert.equal(process.env.CANDIDATE_ATTEMPT, process.env.GITHUB_RUN_ATTEMPT);
+          artifact.verify('color-artifact/public', manifest);
+          JS
       - name: Complete host-independent staging guards before candidate upload
         if: ${{ !cancelled() && steps.source_identity.outcome == 'success' && (needs.target.outputs.mode == 'staging' || needs.target.outputs.evidence == 'true') }}
-        run: node tools/quality/local.cjs --prepublication staging color-artifact --report quality-reports/prepublication.json
+        env:
+          SITE_STAGING_SOURCE_SHARDS: ${{ env.STAGING_SOURCE_REQUIRED == 'true' && format('{0}/staging-source-shards', runner.temp) || '' }}
+          PREFLIGHT_CANDIDATE: ${{ steps.candidate-verified.outcome == 'success' && 'color-artifact' || 'unavailable-artifact' }}
+        run: node tools/quality/local.cjs --prepublication staging "$PREFLIGHT_CANDIDATE" --report quality-reports/prepublication.json
       - name: Retain all prepublication observations even when a guard fails
         id: prepublication
         if: ${{ always() && (needs.target.outputs.mode == 'staging' || needs.target.outputs.evidence == 'true') }}
@@ -311,6 +490,41 @@ jobs:
           path: quality-reports/
           if-no-files-found: error
           retention-days: 90
+      - name: Require an authenticated candidate for deployable upload
+        env:
+          CANDIDATE_VERIFIED: ${{ steps.candidate-verified.outcome }}
+        run: test "$CANDIDATE_VERIFIED" = success
+      - name: Require successful staging source jobs and receipt transfer before deployable upload
+        if: needs.candidate.outputs.preflight == 'staging'
+        env:
+          STAGING_SOURCE_RESULT: ${{ needs.staging-source-shard.result }}
+          STAGING_SOURCE_DOWNLOAD: ${{ steps.staging-source-download.outcome }}
+        run: |
+          test "$STAGING_SOURCE_RESULT" = success
+          test "$STAGING_SOURCE_DOWNLOAD" = success
+      - name: Require the source aggregate bound into current preflight
+        if: needs.candidate.outputs.preflight == 'staging'
+        run: |
+          node - <<'JS'
+          const assert = require('node:assert/strict');
+          const fs = require('node:fs');
+          const crypto = require('node:crypto');
+          const name = 'prepublication-source-tests-shards.json';
+          const report = JSON.parse(fs.readFileSync('quality-reports/prepublication.json'));
+          const bytes = fs.readFileSync('quality-reports/' + name);
+          const aggregate = JSON.parse(bytes);
+          assert.deepEqual(report.execution, {
+            runId: process.env.GITHUB_RUN_ID,
+            attempt: process.env.GITHUB_RUN_ATTEMPT,
+          });
+          assert.equal(report.files[name], crypto.createHash('sha256').update(bytes).digest('hex'));
+          assert.equal(report.checks.find((check) => check.id === 'source-tests')?.pass, true);
+          assert.equal(aggregate.mode, 'eight-bounded-shards');
+          assert.equal(aggregate.profile, 'staging');
+          assert.equal(aggregate.pass, true);
+          assert.equal(aggregate.source.sourceCommit, process.env.SITE_CANDIDATE_SHA);
+          assert.equal(aggregate.source.sourceTree, report.sourceTree);
+          JS
       - id: public
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         with:

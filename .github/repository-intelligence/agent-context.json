@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "70c6140645b16b0a93abd343107628e555598e258a5905992c797b45bfdef65e",
+    "digest": "471f0179186cb7c769ce5134905f392635a69a4acdbdcf3413f42872578c76eb",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -143,6 +143,11 @@
         "path": ".github/acceptance/issue-199.json",
         "identity_mode": "content",
         "sha256": "772c5092869db1fc825cfa8d77aaad5efe44cadc3c1ceb915a18a337c8b15026"
+      },
+      {
+        "path": ".github/acceptance/issue-211.json",
+        "identity_mode": "content",
+        "sha256": "f95c2c01052c1120dea6cdee30f73e6cae2a9899dbaa7e3ba64abcb06946fff2"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -271,12 +276,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "ed26ca0240b766ffcea768b728af3736c8f60a9e8f9dc33019d142b9f050c132"
+        "sha256": "6d15e9fcf1535d0f699ed13161e146b928082bc5349568038d3b441df94db9bf"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "f60c92a280ada0d525450bfc9291919a5dbca85e30cb97c81b7898b2cba4e76d"
+        "sha256": "eed621f510ff7644b55035ac368d01ef91c9069149c4ed5ef95e4a2590a7b0a3"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -301,7 +306,7 @@
       {
         "path": ".github/workflows/issue-acceptance.yml",
         "identity_mode": "content",
-        "sha256": "ad53ebf0dedbe0ec88b456a1b8f02b6a91586da03aa665127dc88578d29eebf6"
+        "sha256": "4144fde82d01b74e312cfc0d8293f97d0731e4cd153dbad34d7cd743f05f39c8"
       },
       {
         "path": ".github/workflows/navigation.yml",
@@ -336,7 +341,7 @@
       {
         "path": ".github/workflows/site-color-review.yml",
         "identity_mode": "content",
-        "sha256": "cd88b936882b11787313b5c7c11a03a82259e689cf940810f8e2d64da62bb5cd"
+        "sha256": "9996b69a03f164aec768d2e1d00e548e4605d9b726fca6eabc17a6d8a50b6090"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -1240,7 +1245,7 @@
       {
         "path": "guides/REPOSITORY-WORKFLOW.md",
         "identity_mode": "content",
-        "sha256": "7a82e1d0682b3a2a0fa54e107753871f3afa96b9aab81b6c120e66c9166a28f3"
+        "sha256": "cec5fd9748792cfb7aa1b7bfa734fca4e0bfd695fb367c76f7b89b57ed1c21d0"
       },
       {
         "path": "guides/SITE-ANALYTICS.md",
@@ -1250,7 +1255,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "bc5add73cff90149dd6a6914b05c5e968b7909e2830487f97ee436324bae91f5"
+        "sha256": "8fd38f4ebef3c3c65f7b21ba5ebd8d0328fb83caef2e5acc6dd6834a0759beb8"
       },
       {
         "path": "guides/SITE-CONTENT-RELEASE.md",
@@ -5173,9 +5178,14 @@
         "sha256": "ea52b64e107180dd198a6b21aee0dcf61cfb43329116e4f8bcd80259d91655db"
       },
       {
+        "path": "review/issue-183/2026-11-17-staging-fixture-performance.md",
+        "identity_mode": "content",
+        "sha256": "11e3a22b8ec7a25b189b0ac6c3fc132cd9566e0d5c107f21f181be6efca166de"
+      },
+      {
         "path": "review/issue-183/workflow-guide-evidence.json",
         "identity_mode": "content",
-        "sha256": "f984d678532005b45f600c9e8d96cc4aa9f99e0019af6e58dac52f207595d219"
+        "sha256": "00b3edae7fa694e43851f6dd2daa6557496a36ddf7a33cfba8b7819a9db15dc0"
       },
       {
         "path": "review/issue-184/2026-11-10-archive.md",
@@ -5631,6 +5641,16 @@
         "path": "review/issue-2/r30-20261024/qa-original-evidence.zip",
         "identity_mode": "content",
         "sha256": "a66edab97ed2c91553269c2b692ca452715da93e5cbae1cc44b6b70f0092e8d5"
+      },
+      {
+        "path": "review/issue-211/2026-11-17-staging-source-shards.md",
+        "identity_mode": "content",
+        "sha256": "2c00a570962c5d1fd947ce3008a466f0dccba9db90ab92a67386feb6004d2704"
+      },
+      {
+        "path": "review/issue-211/workflow-guide-evidence.json",
+        "identity_mode": "content",
+        "sha256": "d0f888942a671c500917ea4df9cf6349aad4dcf1ac26677785db9360c2e5dbe5"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -13330,7 +13350,7 @@
       {
         "path": "tests/content-delivery.test.cjs",
         "identity_mode": "content",
-        "sha256": "71e0fc15d30997c89bee853a87d186aa30b3755c89759d16f487cbb8ceb8a042"
+        "sha256": "36eb39674070eac2302af85201d55499faabbb8086451fabdcba717b6f9681f5"
       },
       {
         "path": "tests/content-fixture.test.cjs",
@@ -13420,7 +13440,7 @@
       {
         "path": "tests/fixtures/delivery.cjs",
         "identity_mode": "content",
-        "sha256": "848921abdc086458878d38d56ba9265db5ad5237116a4332660a59fcfad0711e"
+        "sha256": "0001f0c050a1a05377c6323b10185092218d7bb18c68a866a23c04c75aa3e583"
       },
       {
         "path": "tests/fixtures/orchestration-accept-only.json",
@@ -13635,7 +13655,7 @@
       {
         "path": "tests/release-rights.test.cjs",
         "identity_mode": "content",
-        "sha256": "6e5f8c53b0383a95bfbf12d2ab64d0b2f2a68f7b43e29c6a6cea926cc6001f52"
+        "sha256": "db2f97f829a3b73c607cc62e3248320e4f26c665522cbe94a41762f4a54cd760"
       },
       {
         "path": "tests/renderer.test.cjs",
@@ -13645,7 +13665,7 @@
       {
         "path": "tests/review-flow.test.cjs",
         "identity_mode": "content",
-        "sha256": "f9298acad79cd89b03576afcdf5c175ca179914e7f57f2051e4fdd9121a7dab1"
+        "sha256": "a6ac172ee923e67df55e5a3ba54b3a49cb86f73d9f674c6d839ad463785e8876"
       },
       {
         "path": "tests/reviewer-admission.test.cjs",
@@ -14510,7 +14530,7 @@
       {
         "path": "tools/quality/local.cjs",
         "identity_mode": "content",
-        "sha256": "ea8550ebac5b2f62147c60c8e0b70a54f6e60d20643cf190ec45c6a5d693f96d"
+        "sha256": "c13b8e4dbebe0d850201d9af2278cab16b3fd0dd0a4d627703985746a3eced7b"
       },
       {
         "path": "tools/quality/motion.cjs",
@@ -14605,12 +14625,12 @@
       {
         "path": "tools/quality/secrets-publication.json",
         "identity_mode": "content",
-        "sha256": "047c4ef2ffcc78f8ffe631c338927710e129afd0f803a29a58abe23f2b41acf8"
+        "sha256": "9435b8da06ee130d969a2d0e42f11f8daa97f54163dee840227d64c79991fbd8"
       },
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "055ab34723a846b67557a68ff835b2199dc4ff625e27ff8864c8c7a2224e599e"
+        "sha256": "6741449ccdf41abc677975114031083a1c2e6033aa026d3bdbf02ef66be09aed"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
@@ -15759,6 +15779,17 @@
         "AGENTS.md"
       ],
       "title": "issue-199.json"
+    },
+    {
+      "path": ".github/acceptance/issue-211.json",
+      "kind": "file",
+      "purpose": "Issue #211 stable criteria and gates for sharded platform staging source validation.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-211.json"
     },
     {
       "path": ".github/acceptance/issue-31.json",
@@ -26827,6 +26858,17 @@
       "title": "Protected staging prerequisite for the article library"
     },
     {
+      "path": "review/issue-183/2026-11-17-staging-fixture-performance.md",
+      "kind": "file",
+      "purpose": "Scoped fixture performance comparison and staging bootstrap evidence.",
+      "role": "history",
+      "owner": "review/REVIEW-TEMPLATE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue #183 — Technical staging fixture performance"
+    },
+    {
       "path": "review/issue-183/workflow-guide-evidence.json",
       "kind": "file",
       "purpose": "Repository workflow guide review against the protected staging prerequisite.",
@@ -27837,6 +27879,28 @@
         "AGENTS.md"
       ],
       "title": "qa-original-evidence.zip"
+    },
+    {
+      "path": "review/issue-211/2026-11-17-staging-source-shards.md",
+      "kind": "file",
+      "purpose": "Observed staging timeout and criterion evidence map for issue #211.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue #211 — Platform staging source runtime"
+    },
+    {
+      "path": "review/issue-211/workflow-guide-evidence.json",
+      "kind": "file",
+      "purpose": "Scoped independent workflow guide review for platform staging source sharding.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "workflow-guide-evidence.json"
     },
     {
       "path": "review/issue-31/2026-10-07-analysis.md",
@@ -50210,6 +50274,16 @@
       "purpose": "R30 complete native artifact identities, durable delivery locators and original review evidence; binaries are delivered separately.",
       "role": "history",
       "owner": "review/issue-2/2026-10-24-r30-editorial-clarity.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-211",
+      "kind": "directory",
+      "purpose": "Requirements, diagnosis and verification for platform staging source sharding.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
       "instructions": [
         "AGENTS.md"
       ]

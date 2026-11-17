@@ -175,6 +175,12 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
+    ".github/acceptance/issue-211.json": {
+      "kind": "file",
+      "purpose": "Issue #211 stable criteria and gates for sharded platform staging source validation.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     ".github/acceptance/issue-31.json": {
       "kind": "file",
       "purpose": "Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates.",
@@ -7093,6 +7099,12 @@
       "role": "history",
       "owner": "review/REVIEW-TEMPLATE.md"
     },
+    "review/issue-183/2026-11-17-staging-fixture-performance.md": {
+      "kind": "file",
+      "purpose": "Scoped fixture performance comparison and staging bootstrap evidence.",
+      "role": "history",
+      "owner": "review/REVIEW-TEMPLATE.md"
+    },
     "review/issue-183/workflow-guide-evidence.json": {
       "kind": "file",
       "purpose": "Repository workflow guide review against the protected staging prerequisite.",
@@ -7728,6 +7740,24 @@
       "purpose": "R30 source-bound native delivery, original independent QA and verified transport evidence.",
       "role": "history",
       "owner": "review/issue-2/2026-10-24-r30-editorial-clarity.md"
+    },
+    "review/issue-211": {
+      "kind": "directory",
+      "purpose": "Requirements, diagnosis and verification for platform staging source sharding.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-211/2026-11-17-staging-source-shards.md": {
+      "kind": "file",
+      "purpose": "Observed staging timeout and criterion evidence map for issue #211.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-211/workflow-guide-evidence.json": {
+      "kind": "file",
+      "purpose": "Scoped independent workflow guide review for platform staging source sharding.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     },
     "review/issue-31": {
       "kind": "directory",
