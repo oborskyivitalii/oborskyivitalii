@@ -1,14 +1,9 @@
 {
   "base_sha": "d37d099b519536e042cdbb261dbbbc5e2cbce7c5",
   "scope_sha256": "942054c699a6db2184647fbfdc717a5477f38b6ca418ee9ab3621c268eb1ef67",
-  "paths": [
-    "tests/fixtures/delivery.cjs",
-    "tests/release-rights.test.cjs"
-  ],
+  "paths": ["tests/fixtures/delivery.cjs", "tests/release-rights.test.cjs"],
   "disposition": "unchanged",
-  "sections": [
-    "Delivery routes and controls"
-  ],
+  "sections": ["Delivery routes and controls"],
   "rationale": "The technical fixture changes preserve complete test coverage and exact control admission. The existing technical repository route, production and staging controllers, test allocation, and advancement requirements remain accurately documented.",
   "reviewer_execution": "/root/testperf_code3 reviewed immutable candidate d9b5b59 against protected base d37d099b with fork_turns=none. The protected checker recomputed the same exact scope for that review."
 }
