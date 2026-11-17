@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "4f1a06ce48542967c2a89fe3007adaf06ca1b960da1ac9fcecc1454f111d4f0e",
+    "digest": "5ea883f4e865cd81bdc6f55ab3b72c5a32fb740622836b210b2b1731e81016bd",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -5635,7 +5635,7 @@
       {
         "path": "review/issue-211/2026-11-17-staging-source-shards.md",
         "identity_mode": "content",
-        "sha256": "012d0dd17ba3b3537ba057f6d23d40d50336aea18ac614b0fa75b2751150045a"
+        "sha256": "2c00a570962c5d1fd947ce3008a466f0dccba9db90ab92a67386feb6004d2704"
       },
       {
         "path": "review/issue-211/workflow-guide-evidence.json",
@@ -13840,7 +13840,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "06987671038347c534b6a8e7e82e80eab9f7cbd3ae6c0292a23dc74e29121b43"
+        "sha256": "ec0bfc511df1c66160f170efe388bd9d9aff0ee18daeb8a7df1b48b46ade5c1a"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",

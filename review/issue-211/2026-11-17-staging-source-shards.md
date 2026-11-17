@@ -25,3 +25,26 @@ source jobs. The runner difference is an observation from these runs.
 | CS08, CS09 | Review the ordinary preview command and source, flow and aggregate failure cases. Run the existing style and RI checks and observe the exact hosted routes. |
 | CS10 | The owning issue and acceptance policy identify the expected behaviors, verification routes, review and adoption gates. |
 | CS02, CS03, CS06 | Applicable site content, CSS and runtime state are outside this change. |
+
+## Hosted evidence and security correction
+
+[Isolated run 43986133564](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43986133564)
+ran all eight native source jobs on `edf14f26`. The verified aggregate
+covers all 76 source modules and 1,322 passing tests. The slowest source
+step took 262 seconds and that job took 342 seconds including setup.
+The aggregate took 72 milliseconds. The security guard alone stopped
+preflight before candidate upload or hosted checks.
+
+The [retained preflight](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43986133564/artifacts/14286575821)
+reports passing Semgrep and Bandit. Its two secret detection findings
+match the exact public protected-main Git commit and the guide scope
+checksum at lines 2–3 of the workflow-guide receipt. The exact Git object
+and the scope recomputed by the protected guide checker independently
+identify both values. The existing checksum ledger records only those
+two observed path, detector and hashed-value tuples. The security scanner
+and its inputs and limits are unchanged.
+
+The [pre-correction ledger](https://github.com/oborskyivitalii/oborskyivitalii/blob/edf14f26e795c160953f9e00fc0c8a4ea99e8433/tools/quality/secrets-reviewed-checksums.json)
+retains the full earlier scope text. Condensing a historical part of that
+summary keeps the ledger below its existing two-million-byte bound.
+All previous findings retain their original values and order.
