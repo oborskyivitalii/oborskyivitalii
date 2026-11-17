@@ -582,7 +582,18 @@ recovery still belong to the trusted controller. Remove this bridge after the
 updated workflow is integrated into main; a newer controller cannot select it.
 
 Before an explicit stable-staging or optional full diagnostic upload, prepare the
-selected frozen artifact once, then run the existing local check owner:
+selected frozen artifact once, then run the existing local check owner. The PR
+review controller runs the complete ordinary staging source profile in eight
+independent jobs. It retains the native receipts and passes their separate
+download directory to the staging CLI with `--source-shards`. The CLI
+reconstructs the staging inventory on the exact candidate and aggregates all
+eight receipts from the same workflow run and attempt. The candidate upload
+requires a successful matrix and a successful preflight. A failed source plan
+also blocks upload and the other preflight guards can still report. To retry a
+failed matrix, start a new full workflow run so all eight outputs share the
+same attempt. Authenticated content continues to use its content-specific
+profile. Manual invocations and the
+reusable full diagnostic fallback can still run the original local source suite:
 
 ```sh
 node tools/quality/local.cjs --prepublication staging color-artifact --report quality-reports/prepublication.json

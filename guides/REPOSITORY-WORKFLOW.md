@@ -221,6 +221,12 @@ remaining applicable evidence. On the repository-only route the owner edits
 the PR description after the App decision to refresh the conditional Staging
 admission and owning checks, without running website staging.
 
+Full staging in the PR review controller runs the complete staging source
+suite across eight independent jobs. Before candidate upload, preflight verifies
+the eight exact-source results from the current run and attempt and runs the
+other host-independent guards. Authenticated content uses its existing targeted
+source profile.
+
 Cloudflare Pages serves immutable PR preview versions and a stable staging alias.
 An isolated regression run can produce evidence without updating the alias.
 Production uses GitHub Pages at the canonical `.ai` origin. The production

@@ -7087,6 +7087,12 @@
       "role": "history",
       "owner": "review/REVIEW-TEMPLATE.md"
     },
+    "review/issue-183/2026-11-17-staging-source-shards.md": {
+      "kind": "file",
+      "purpose": "Exact source test partitioning and protected Stable Staging verification evidence.",
+      "role": "history",
+      "owner": "review/REVIEW-TEMPLATE.md"
+    },
     "review/issue-183/workflow-guide-evidence.json": {
       "kind": "file",
       "purpose": "Repository workflow guide review against the protected staging prerequisite.",

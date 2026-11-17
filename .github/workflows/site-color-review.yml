@@ -190,8 +190,98 @@ jobs:
               await admission.finishMergeAdmission(github,context,pr.head.sha,id,'failure',{title:'Staging admission failed',summary:error.message});
               throw error;
             }
-  build:
+  staging-source-plan:
     needs: [target, begin-admission]
+    if: >-
+      always() && !cancelled() && needs.target.result == 'success' &&
+      needs.target.outputs.repository_only != 'true' &&
+      (needs.target.outputs.mode == 'staging' && needs.begin-admission.result == 'success' ||
+       needs.target.outputs.evidence == 'true')
+    permissions:
+      contents: read
+      actions: read
+      checks: read
+      pull-requests: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      mode: ${{ steps.plan.outputs.mode }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ needs.target.outputs.source }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - id: plan
+        name: Resolve full or authenticated content preflight for the exact head
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        env:
+          SITE_CANDIDATE_SHA: ${{ needs.target.outputs.source }}
+          CONTENT_BASE_SHA: ${{ needs.target.outputs.base }}
+        with:
+          script: |
+            const assert = require('node:assert/strict');
+            const selection = await require('./tools/quality/content-baseline.cjs').selectAccepted({
+              github,
+              repo: context.repo,
+              candidate: process.env.SITE_CANDIDATE_SHA,
+              base: process.env.CONTENT_BASE_SHA,
+              root: process.cwd(),
+              temporaryRoot: process.env.RUNNER_TEMP,
+            });
+            assert.ok(['platform', 'content'].includes(selection.mode));
+            core.info(JSON.stringify({ mode: selection.mode, reason: selection.reason }));
+            core.setOutput('mode', selection.mode);
+  staging-source-shards:
+    needs: [target, staging-source-plan]
+    if: needs.staging-source-plan.outputs.mode == 'platform'
+    name: staging-source-shard-${{ matrix.shard }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7]
+    env:
+      SITE_CANDIDATE_SHA: ${{ needs.target.outputs.source }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ needs.target.outputs.source }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: 3.12.14
+      - name: Install the locked staging source toolchain
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          npm ci --prefix tools/publishing/toolchain --ignore-scripts
+          python3 -m venv tools/quality/toolchain/venv
+          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps -r tools/quality/toolchain/requirements.txt
+          tools/quality/toolchain/venv/bin/python tools/quality/python_toolchain.py
+      - name: Execute the exact staging source shard with its original deadline
+        env:
+          SOURCE_SHARD: ${{ matrix.shard }}
+        run: |
+          node tools/quality/source-test-shards.cjs run --profile staging \
+            --head "$SITE_CANDIDATE_SHA" --index "$SOURCE_SHARD" --output "quality-reports/shard-$SOURCE_SHARD"
+      - name: Retain original raw source results even if failed
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: site-source-shard-${{ github.run_id }}-${{ github.run_attempt }}-${{ matrix.shard }}
+          path: quality-reports/shard-${{ matrix.shard }}/
+          if-no-files-found: error
+          retention-days: 90
+  build:
+    needs: [target, begin-admission, staging-source-plan, staging-source-shards]
     permissions:
       contents: read
       actions: read
@@ -253,7 +343,10 @@ jobs:
           fi
       - id: content_baseline
         name: Select a trusted earlier generation for authored content updates
-        if: needs.target.outputs.prototype != 'true'
+        if: >-
+          needs.target.outputs.prototype != 'true' &&
+          (needs.target.outputs.mode == 'preview' && needs.target.outputs.evidence != 'true' ||
+           needs.staging-source-plan.outputs.mode == 'content')
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         env:
           CONTENT_BRANCH: ${{ github.event.pull_request.head.ref }}
@@ -277,11 +370,16 @@ jobs:
       - name: Targeted controller checks and one immutable public build
         env:
           CONTENT_MODE: ${{ steps.content_baseline.outputs.mode }}
+          PREFLIGHT_SOURCE_MODE: ${{ needs.staging-source-plan.outputs.mode }}
           CONTENT_BASELINE: ${{ steps.content_baseline.outputs.directory }}
           CONTENT_BASELINE_DIGEST: ${{ steps.content_baseline.outputs.artifactDigest }}
           CONTENT_GENERATION_SHA256: ${{ steps.content_baseline.outputs.generationSha256 }}
           CONTENT_BASE_SHA: ${{ steps.content_baseline.outputs.sourceCommit }}
         run: |
+          if [ "$PREFLIGHT_SOURCE_MODE" = content ] && [ "$CONTENT_MODE" != content ]; then
+            echo 'Authenticated staging content baseline no longer matches the source plan'
+            exit 1
+          fi
           if [ "${{ needs.target.outputs.prototype }}" != true ]; then
             node --test tests/review-flow.test.cjs tests/preview-smoke.test.cjs
             if [ "$(node tools/staging/review-flow.cjs variant)" = color ]; then
@@ -299,9 +397,31 @@ jobs:
         run: |
           node tools/staging/review-flow.cjs rendition color-artifact
           node tools/staging/edition.cjs color-artifact
+      - name: Fetch the current attempt's raw staging source shard receipts
+        id: staging_source_receipts
+        if: ${{ !cancelled() && steps.source_identity.outcome == 'success' && needs.staging-source-plan.outputs.mode == 'platform' }}
+        continue-on-error: true
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          pattern: site-source-shard-${{ github.run_id }}-${{ github.run_attempt }}-*
+          path: ${{ runner.temp }}/staging-source-shards
+          merge-multiple: false
       - name: Complete host-independent staging guards before candidate upload
         if: ${{ !cancelled() && steps.source_identity.outcome == 'success' && (needs.target.outputs.mode == 'staging' || needs.target.outputs.evidence == 'true') }}
-        run: node tools/quality/local.cjs --prepublication staging color-artifact --report quality-reports/prepublication.json
+        env:
+          PREFLIGHT_SOURCE_MODE: ${{ needs.staging-source-plan.outputs.mode }}
+          SOURCE_MATRIX_RESULT: ${{ needs.staging-source-shards.result }}
+          SOURCE_DOWNLOAD_RESULT: ${{ steps.staging_source_receipts.outcome }}
+        run: |
+          source_args=()
+          if [ "$PREFLIGHT_SOURCE_MODE" != content ] || [ ! -f color-artifact/artifact.json ]; then
+            source_args=(--source-shards "$RUNNER_TEMP/staging-source-shards")
+          fi
+          node tools/quality/local.cjs --prepublication staging color-artifact --report quality-reports/prepublication.json "${source_args[@]}"
+          if [ "${#source_args[@]}" -gt 0 ]; then
+            test "$SOURCE_MATRIX_RESULT" = success
+            test "$SOURCE_DOWNLOAD_RESULT" = success
+          fi
       - name: Retain all prepublication observations even when a guard fails
         id: prepublication
         if: ${{ always() && (needs.target.outputs.mode == 'staging' || needs.target.outputs.evidence == 'true') }}

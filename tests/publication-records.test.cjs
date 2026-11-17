@@ -361,6 +361,54 @@ test('prepublication collects independent guard failures and preserves their sou
     assert.equal(calls.filter((call) => call.includes(file)).length, 1, file + ' runs once');
 });
 
+test('staging preflight aggregates exact shard receipts and still records independent guards on failure', (t) => {
+  const directory = delivery.temporary(t);
+  const sourceShards = path.join(directory, 'downloaded-shards');
+  const report = path.join(directory, 'reports/preflight.json');
+  const sourceCommit = process.env.SITE_CANDIDATE_SHA || 'a'.repeat(40);
+  const result = local.prepublication('staging', path.join(directory, 'artifact'), {
+    report,
+    sourceShards,
+    identify: () => ({ sourceCommit, sourceTree: 'b'.repeat(40), sourceDirty: false }),
+    execute: (_command, args) => {
+      if (args[0] === 'tools/quality/source-tests.cjs') assert.fail('duplicate source runner');
+      const aggregation = args[0] === 'tools/quality/source-test-shards.cjs';
+      return {
+        status: aggregation ? 1 : 0,
+        stdout: '',
+        stderr: aggregation ? 'missing, cross-run or extra source shard' : '',
+      };
+    },
+  });
+  const sourceCheck = result.checks.find((row) => row.id === 'source-tests');
+  assert.equal(sourceCheck.pass, false);
+  assert.equal(result.pass, false);
+  assert.deepEqual(sourceCheck.command, [
+    process.execPath,
+    'tools/quality/source-test-shards.cjs',
+    'aggregate',
+    '--profile',
+    'staging',
+    '--head',
+    sourceCommit,
+    '--input',
+    sourceShards,
+    '--output',
+    path.join(path.dirname(report), 'preflight-source-tests-runner.json'),
+  ]);
+  assert.match(fs.readFileSync(sourceCheck.stderr, 'utf8'), /cross-run/);
+  for (const id of ['python-tests', 'security', 'package', 'unchanged-source'])
+    assert.equal(result.checks.find((row) => row.id === id).status, 'passed', id);
+  assert.throws(
+    () =>
+      local.prepublication('production', path.join(directory, 'artifact'), {
+        report,
+        sourceShards,
+      }),
+    /source shards require staging/
+  );
+});
+
 test('prepublication blocks artifact-dependent guards without hiding independent failures or granting clean authority', (t) => {
   const directory = delivery.temporary(t);
   const result = local.prepublication('production', path.join(directory, 'artifact'), {
@@ -950,7 +998,7 @@ test('staging and optional full diagnostics retain prepublication while producti
     fs.readFileSync(path.join(__dirname, '../.github/workflows/', name + '.yml'), 'utf8');
   for (const name of ['site-color-review', 'site-release-checks']) {
     const source = read(name);
-    const preflight = source.indexOf('run: node tools/quality/local.cjs --prepublication');
+    const preflight = source.indexOf('node tools/quality/local.cjs --prepublication');
     const publicUpload = source.indexOf(
       '      - id: ' + (name === 'site-release-checks' ? 'upload' : 'public')
     );
@@ -992,6 +1040,20 @@ test('staging and optional full diagnostics retain prepublication while producti
     preflightStep,
     /needs\.target\.outputs\.mode == 'staging' \|\| needs\.target\.outputs\.evidence == 'true'/
   );
+  const sourceMatrix = stagingSource.slice(
+    stagingSource.indexOf('  staging-source-shards:'),
+    stagingSource.indexOf('  build:')
+  );
+  assert.match(sourceMatrix, /shard: \[0, 1, 2, 3, 4, 5, 6, 7\]/);
+  assert.match(sourceMatrix, /source-test-shards\.cjs run --profile staging/);
+  assert.match(sourceMatrix, /if: always\(\)/);
+  assert.match(
+    stagingSource,
+    /pattern: site-source-shard-\$\{\{ github\.run_id \}\}-\$\{\{ github\.run_attempt \}\}-\*/
+  );
+  assert.match(preflightStep, /--source-shards "\$RUNNER_TEMP\/staging-source-shards"/);
+  assert.match(preflightStep, /test "\$SOURCE_MATRIX_RESULT" = success/);
+  assert.match(preflightStep, /test "\$SOURCE_DOWNLOAD_RESULT" = success/);
   const ready = read('site-checks');
   assert.match(
     ready,

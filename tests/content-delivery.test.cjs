@@ -102,14 +102,30 @@ test('workflow selection can read accepted checks and feeds economical admission
   const workflow = (name) =>
     yaml.parse(fs.readFileSync(path.join(root, '.github/workflows', name), 'utf8'));
   const review = workflow('site-color-review.yml');
-  for (const permission of ['contents', 'actions', 'checks', 'pull-requests'])
-    assert.equal(review.jobs.build.permissions[permission], 'read');
+  const planner = review.jobs['staging-source-plan'];
+  for (const job of [planner, review.jobs.build])
+    for (const permission of ['contents', 'actions', 'checks', 'pull-requests'])
+      assert.equal(job.permissions[permission], 'read');
+  assert.match(planner.steps.find((step) => step.id === 'plan').with.script, /selectAccepted/);
   const selector = review.jobs.build.steps.find((step) => step.id === 'content_baseline');
   assert.match(selector.with.script, /selectAccepted/);
-  assert.ok(
-    !selector.if.includes("mode == 'preview'"),
-    'accepted content is available to owner staging'
-  );
+  const evaluate = require('node:vm').runInNewContext;
+  const condition = selector.if.replaceAll('.staging-source-plan', "['staging-source-plan']");
+  for (const [mode, evidence, prototype, plan, expected] of [
+    ['staging', 'false', 'false', 'content', true],
+    ['staging', 'false', 'false', 'platform', false],
+    ['staging', 'false', 'false', '', false],
+    ['preview', 'true', 'false', 'content', true],
+    ['preview', 'true', 'false', 'platform', false],
+    ['preview', 'false', 'false', '', true],
+    ['preview', 'false', 'true', '', false],
+  ]) {
+    const needs = {
+      target: { outputs: { mode, evidence, prototype } },
+      'staging-source-plan': { outputs: { mode: plan } },
+    };
+    assert.equal(evaluate(condition, { needs }, { timeout: 100 }), expected);
+  }
   const checks = workflow('site-release-checks.yml');
   const stagingRun = checks.jobs.staging.steps.map((step) => step.run || '').join('\n');
   assert.match(stagingRun, /content-browser\.cjs/);

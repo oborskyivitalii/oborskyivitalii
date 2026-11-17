@@ -436,6 +436,13 @@ incomplete native TAP, empty selected suites, failures, cancellation,
 skips and TODOs. A shard with zero assigned modules may be explicitly
 inapplicable, never silently stand in for a required module.
 
+The PR review controller applies the same eight-way split to the staging
+profile for full Stable Staging and explicit preview regression. Its
+prepublication report retains the verified aggregate as the source-test
+guard. A failed or missing current-attempt shard blocks candidate upload.
+Ordinary PR preview, authenticated content, production and the standalone
+prepublication fallback retain their own source paths.
+
 The previous content-only source-admitted reuse route retains its
 own strict source/raw accounting and remains conditional on its exact
 trusted baseline. The unchanged Basic formatter, architecture, lint,

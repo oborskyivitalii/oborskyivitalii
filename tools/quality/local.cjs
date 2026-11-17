@@ -438,14 +438,31 @@ function preparePrepublication(level, directory, options = {}) {
   const contentSourceArgs = contentAdmission
     ? ['--base', contentAdmission.mergedSource, '--head', identity.sourceCommit]
     : [];
-  node('source-tests', 'tools/quality/source-tests.cjs', [
-    '--profile',
-    contentAdmission ? 'content' : level,
-    ...contentSourceArgs,
-    '--require-clean',
-    '--report',
-    path.join(reportDirectory, reportStem + '-source-tests-runner.json'),
-  ]);
+  const sourceReport = path.join(reportDirectory, reportStem + '-source-tests-runner.json');
+  if (options.sourceShards) {
+    assert.equal(level, 'staging', 'source shards require staging prepublication');
+    assert.ok(!contentAdmission, 'source shards cannot replace the content profile');
+    node('source-tests', 'tools/quality/source-test-shards.cjs', [
+      'aggregate',
+      '--profile',
+      'staging',
+      '--head',
+      environment.SITE_CANDIDATE_SHA,
+      '--input',
+      options.sourceShards,
+      '--output',
+      sourceReport,
+    ]);
+  } else {
+    node('source-tests', 'tools/quality/source-tests.cjs', [
+      '--profile',
+      contentAdmission ? 'content' : level,
+      ...contentSourceArgs,
+      '--require-clean',
+      '--report',
+      sourceReport,
+    ]);
+  }
   // Audit-graph regressions import dependencies installed only in the locked venv.
   check(
     'python-tests',
@@ -539,7 +556,7 @@ function preparePrepublication(level, directory, options = {}) {
       reportDirectory,
       reportStem,
       timeout: (task) =>
-        task.id === 'source-tests'
+        task.id === 'source-tests' && !options.sourceShards
           ? sourceTests.wrapperTimeout(root, task.args[task.args.indexOf('--profile') + 1])
           : 180000,
     },
@@ -624,12 +641,21 @@ function delivery(directory, repositoryOnly) {
 if (require.main === module) {
   try {
     if (process.argv[2] === '--prepublication') {
-      const [level, directory, flag, report, ...extra] = process.argv.slice(3);
-      assert.ok(
-        level && directory && !extra.length && (!flag || (flag === '--report' && report)),
-        'Usage: local.cjs --prepublication staging|production DIRECTORY [--report FILE]'
-      );
-      prepublicationParallel(level, directory, { report }).then(
+      const [level, directory, ...args] = process.argv.slice(3);
+      const options = {};
+      const flags = { '--report': 'report', '--source-shards': 'sourceShards' };
+      const usage =
+        'Usage: local.cjs --prepublication staging|production DIRECTORY ' +
+        '[--report FILE] [--source-shards STAGING_RECEIPTS]';
+      assert.ok(level && directory, usage);
+      for (let index = 0; index < args.length; index += 2) {
+        const flag = args[index];
+        const value = args[index + 1];
+        assert.ok(Object.hasOwn(flags, flag) && value && !value.startsWith('--'), usage);
+        assert.equal(options[flags[flag]], undefined, usage);
+        options[flags[flag]] = value;
+      }
+      prepublicationParallel(level, directory, options).then(
         (result) => {
           console.log(JSON.stringify(result));
           if (!result.pass) process.exitCode = 1;

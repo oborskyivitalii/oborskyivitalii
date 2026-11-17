@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "0c6fdb8455e03001d1061da261b14e063eb4fc30abe2f67ef498168aea2045ca",
+    "digest": "3598dd57b97dcb57276a4d206fa2a0c94eca93ce92a685642e590a005756bc8e",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -271,12 +271,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "85f4ba342ca670a637ea5d899f6897f809a383893a21af69e54be6714eff2c45"
+        "sha256": "9e433621fb758fa9dc92088a856b3cb290641a490cbb61572a1f6cc2c31d6388"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "ea3eaa8ed1a4b59a23b1b169c2574f63148c3f03173b5039d6e76a494596f2bc"
+        "sha256": "6881837f5670d0a1a05eefeff737d89c49f74283f83be1c39b16270eff7092d7"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -336,7 +336,7 @@
       {
         "path": ".github/workflows/site-color-review.yml",
         "identity_mode": "content",
-        "sha256": "cd88b936882b11787313b5c7c11a03a82259e689cf940810f8e2d64da62bb5cd"
+        "sha256": "334a5f6d518bb15c65005a90bb0a7503ffea348b173a80a558d4336ccbed59c3"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -1240,7 +1240,7 @@
       {
         "path": "guides/REPOSITORY-WORKFLOW.md",
         "identity_mode": "content",
-        "sha256": "7a82e1d0682b3a2a0fa54e107753871f3afa96b9aab81b6c120e66c9166a28f3"
+        "sha256": "a74d9d7943120ce77267228c99b347ffbaced4b6ac437c9e9f9b629dd765ca89"
       },
       {
         "path": "guides/SITE-ANALYTICS.md",
@@ -1250,7 +1250,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "bc5add73cff90149dd6a6914b05c5e968b7909e2830487f97ee436324bae91f5"
+        "sha256": "fa8b580dc28820fb233b9b887cb0c054db95bc53e8cd0ae17bdabb3320b267ee"
       },
       {
         "path": "guides/SITE-CONTENT-RELEASE.md",
@@ -1300,7 +1300,7 @@
       {
         "path": "guides/SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "67b2b775076ba72aadd1ca80af6a36ca5b8f68ef4cad6cc984c853f18503c7d4"
+        "sha256": "ce6fd624f0cdf2e957bced4d45a73a38a496bfc97afdfe9596f4d12975a40af5"
       },
       {
         "path": "guides/WEB-ORCHESTRATION.md",
@@ -5166,6 +5166,11 @@
         "path": "review/issue-183/2026-11-16-staging-controller.md",
         "identity_mode": "content",
         "sha256": "ea52b64e107180dd198a6b21aee0dcf61cfb43329116e4f8bcd80259d91655db"
+      },
+      {
+        "path": "review/issue-183/2026-11-17-staging-source-shards.md",
+        "identity_mode": "content",
+        "sha256": "d80926c41fb4ab46486d125a4ca0093b4ec3a9dba0642c50844470b83a78bf9f"
       },
       {
         "path": "review/issue-183/workflow-guide-evidence.json",
@@ -12545,7 +12550,7 @@
       {
         "path": "tests/content-delivery.test.cjs",
         "identity_mode": "content",
-        "sha256": "71e0fc15d30997c89bee853a87d186aa30b3755c89759d16f487cbb8ceb8a042"
+        "sha256": "d9d36101fd88eb386225f66cb8046152835a2ce9d6fbab182ec7f1b3b5fa5c63"
       },
       {
         "path": "tests/content-fixture.test.cjs",
@@ -12785,7 +12790,7 @@
       {
         "path": "tests/publication-records.test.cjs",
         "identity_mode": "content",
-        "sha256": "99c63cabb139579a841afa72f81e59204c8f7873f3e52ab1dee3f535a6800367"
+        "sha256": "a6e80db2510eeaa48b5eaded33c67c3552671d1aa674c822cfdd4c3cb2e3023d"
       },
       {
         "path": "tests/publishing-history.test.cjs",
@@ -13725,7 +13730,7 @@
       {
         "path": "tools/quality/local.cjs",
         "identity_mode": "content",
-        "sha256": "ea8550ebac5b2f62147c60c8e0b70a54f6e60d20643cf190ec45c6a5d693f96d"
+        "sha256": "d2b0ab282aa2118593ce642314fc010f866b8a9ddec2e3cf1825b3d780185a31"
       },
       {
         "path": "tools/quality/motion.cjs",
@@ -26029,6 +26034,17 @@
         "AGENTS.md"
       ],
       "title": "Protected staging prerequisite for the article library"
+    },
+    {
+      "path": "review/issue-183/2026-11-17-staging-source-shards.md",
+      "kind": "file",
+      "purpose": "Exact source test partitioning and protected Stable Staging verification evidence.",
+      "role": "history",
+      "owner": "review/REVIEW-TEMPLATE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue #183 — Stable Staging source-test shards"
     },
     {
       "path": "review/issue-183/workflow-guide-evidence.json",
