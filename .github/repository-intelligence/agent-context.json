@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "0c6fdb8455e03001d1061da261b14e063eb4fc30abe2f67ef498168aea2045ca",
+    "digest": "7ff8f0afbd10c67b1066e393d5887c9339f9d9a033bb1c5918f78a9978e97112",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -271,12 +271,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "85f4ba342ca670a637ea5d899f6897f809a383893a21af69e54be6714eff2c45"
+        "sha256": "daf57af10b893c3d2b65cf912f4d7676ceb055de8385173da5800132b1886327"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "ea3eaa8ed1a4b59a23b1b169c2574f63148c3f03173b5039d6e76a494596f2bc"
+        "sha256": "48a1602f6a2195d2ea538a2618a5399d8a6b44885f6db30be59afd789738d4ce"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -5168,9 +5168,14 @@
         "sha256": "ea52b64e107180dd198a6b21aee0dcf61cfb43329116e4f8bcd80259d91655db"
       },
       {
+        "path": "review/issue-183/2026-11-17-staging-fixture-performance.md",
+        "identity_mode": "content",
+        "sha256": "11e3a22b8ec7a25b189b0ac6c3fc132cd9566e0d5c107f21f181be6efca166de"
+      },
+      {
         "path": "review/issue-183/workflow-guide-evidence.json",
         "identity_mode": "content",
-        "sha256": "ca02b12e4333c24798e7e4e9e699a4b64a709134ff6c19ce2d7fb7648e72f4a2"
+        "sha256": "94b66dacff0b3d1b25b0b9b5e56cc0448a3989beb39058423afab9a42d87a6af"
       },
       {
         "path": "review/issue-184/2026-11-10-archive.md",
@@ -12635,7 +12640,7 @@
       {
         "path": "tests/fixtures/delivery.cjs",
         "identity_mode": "content",
-        "sha256": "848921abdc086458878d38d56ba9265db5ad5237116a4332660a59fcfad0711e"
+        "sha256": "0001f0c050a1a05377c6323b10185092218d7bb18c68a866a23c04c75aa3e583"
       },
       {
         "path": "tests/fixtures/orchestration-accept-only.json",
@@ -12850,7 +12855,7 @@
       {
         "path": "tests/release-rights.test.cjs",
         "identity_mode": "content",
-        "sha256": "6e5f8c53b0383a95bfbf12d2ab64d0b2f2a68f7b43e29c6a6cea926cc6001f52"
+        "sha256": "db2f97f829a3b73c607cc62e3248320e4f26c665522cbe94a41762f4a54cd760"
       },
       {
         "path": "tests/renderer.test.cjs",
@@ -13825,7 +13830,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "06987671038347c534b6a8e7e82e80eab9f7cbd3ae6c0292a23dc74e29121b43"
+        "sha256": "0e07ed5557c34844519428c080931c30c9e081d7f1647e059edadfd9cf7f6604"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
@@ -26029,6 +26034,17 @@
         "AGENTS.md"
       ],
       "title": "Protected staging prerequisite for the article library"
+    },
+    {
+      "path": "review/issue-183/2026-11-17-staging-fixture-performance.md",
+      "kind": "file",
+      "purpose": "Scoped fixture performance comparison and staging bootstrap evidence.",
+      "role": "history",
+      "owner": "review/REVIEW-TEMPLATE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue #183 — Technical staging fixture performance"
     },
     {
       "path": "review/issue-183/workflow-guide-evidence.json",

@@ -1,9 +1,14 @@
 {
-  "base_sha": "959c1b105c9caff087b197e185f47e70cea7426c",
-  "scope_sha256": "c3d80860b30d80157d364ba5e56660b4754538dd0409e3291ea7d27109770243",
-  "paths": ["tests/release-controller.test.cjs", "tools/quality/secrets-publication.json"],
+  "base_sha": "d37d099b519536e042cdbb261dbbbc5e2cbce7c5",
+  "scope_sha256": "942054c699a6db2184647fbfdc717a5477f38b6ca418ee9ab3621c268eb1ef67",
+  "paths": [
+    "tests/fixtures/delivery.cjs",
+    "tests/release-rights.test.cjs"
+  ],
   "disposition": "unchanged",
-  "sections": ["Keeping this guide current", "Delivery routes and controls"],
-  "rationale": "The production rights fixture exercises approved media and retains pending PNG and JPEG refusals. The security ledgers record exact reviewed public findings while the scanner, its bounds, current-source staging checks and frozen production rights requirements remain in force.",
-  "reviewer_execution": "/root/security_guide; explicit fork_turns=none; reviewed e6ce690938c90f080cff2119121e32048d1cefb2 against 959c1b105c9caff087b197e185f47e70cea7426c. Common prompt blob 68796daaf4313f64da381b1628866267fd9e263b; role blob 2363340a1eaae62fdbd3ab070fda5c6436ec8124."
+  "sections": [
+    "Delivery routes and controls"
+  ],
+  "rationale": "The technical fixture changes preserve complete test coverage and exact control admission. The existing technical repository route, production and staging controllers, test allocation, and advancement requirements remain accurately documented.",
+  "reviewer_execution": "/root/testperf_code3 reviewed immutable candidate d9b5b59 against protected base d37d099b with fork_turns=none. The protected checker recomputed the same exact scope for that review."
 }
