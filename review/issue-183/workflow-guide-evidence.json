@@ -1,6 +1,6 @@
 {
   "base_sha": "779747cb16df70ce5cb2bdae8e889f52268de422",
-  "scope_sha256": "eeaff1db36f16cd73275c1725a5cf1efe66d6b1ef6098c236461528e1a3cc66b",
+  "scope_sha256": "7ec6c4ade709408101b29a2682cf93acc94b5f8d131b66051468ba441917ff1d",
   "paths": [
     ".github/REPOSITORY-INTELLIGENCE.md",
     "guides/ARTICLE-WORKFLOW.md",
@@ -8,6 +8,8 @@
     "tests/local-catalog-relationships.test.cjs",
     "tests/publishing.test.cjs",
     "tests/reader-mode.test.cjs",
+    "tools/quality/README.md",
+    "tools/quality/advisory-exceptions.json",
     "tools/quality/bandit-policy.json",
     "tools/quality/secrets-publication.json",
     "tools/repository_intelligence.py"
@@ -15,10 +17,11 @@
   "disposition": "unchanged",
   "sections": [
     "Harness and ownership",
+    "Agents and orchestration",
+    "Keeping this guide current",
     "Site architecture",
-    "Delivery routes and controls",
-    "Keeping this guide current"
+    "Delivery routes and controls"
   ],
-  "rationale": "The guide already describes source-bound generation and RI ownership, eight protected staging source jobs for this mixed archive and control change, and exact-head owner admission. The publication archive, date tests and scanner records use those existing routes.",
-  "reviewer_execution": "/root/p210_main_code with fork_turns=none reviewed integration a1f4632e and its exact protected-base guide scope. Common prompt blob 68796daa and Code prompt blob 2363340a."
+  "rationale": "The existing guide describes source-bound review and validation, preserved scanner policy, full fallback for mixed publication and control changes, authenticated staging, and exact-head owner admission. The bounded advisory review uses those existing routes and changes no delivery authority.",
+  "reviewer_execution": "/root/p210_advisory_code. Explicit fork_turns=none. Independently reviewed advisory candidate 003a208e, unchanged workflow guide and exact protected-base scope. Common prompt blob 68796daa and Code prompt blob 2363340a."
 }

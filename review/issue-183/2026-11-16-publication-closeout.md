@@ -94,3 +94,55 @@ The correction uses `String.match` for the exact same path grammars. The three B
 Independent Code Reviewer `/root/staging_integrity_final` checked the final implementation at `918437e` and reproduced all nine generated-snapshot scanner tuples from the protected publication aliases. Independent White-box QA `/root/staging_integrity_final_qa` observed 149 verified stored-byte fingerprints, changed only a gzip header bit on the first preparation read and confirmed rejection before generation. The decoded article evidence stayed byte-identical in that check. The exact guide review is in the companion receipt. The full 76-module staging source suite and hosted promotion require their own successful run.
 
 The next [native Site Basic run](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43934579262) exposed one shared historical SEO pin failure in the [executive carrier tests](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43934579262/jobs/133535703300) and the [fresh SEO CLI case](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43934579262/jobs/133535703339). The archive input guard changes the build producer bytes. The verifier now accepts that exact reviewed producer SHA-256 beside the existing accepted successors. Previously frozen carrier geometry, historical source checks, negative cases and selectors remain intact.
+
+## 18 November 2026 — Picomatch advisory review
+
+[The owner-requested retry](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/44257575621)
+passed all 1,322 source tests and 25 of 26 prepublication guards. Its advisory
+guard retained five high npm findings with one leaf advisory for picomatch.
+The [raw native report](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/44257575621/artifacts/14407242275)
+binds that result to the existing closeout head. It stopped before browser
+performance collection, so the earlier cold-flight failure remains recorded.
+
+The [upstream advisory](https://github.com/advisories/GHSA-fc5q-39xc-vjpf)
+lists versions through 4.0.7 with no patched release. Registry inspection found
+that 4.0.7 is the latest release and Stylelint 18.0.0 also depends on that range.
+The installed graph uses Stylelint 17.16.0, micromatch 4.0.8 and picomatch 2.3.2.
+The correction records an expiring exact reachability decision through the
+existing advisory ledger, with source, configuration, manifest and lock pins.
+The original braces row retains its data and expiry.
+
+Stylelint receives CSS through its code API and an explicit rules-only config.
+Its standalone code path still calls micromatch with the constant
+`**/node_modules/**` pattern. The explicit config has no ignoreFiles, overrides,
+referenceFiles, extends, plugins or custom syntax. The path-ignored check has
+an empty pattern list. The optional stylelintignore file is handled by the
+separate ignore package. The affected repeated-extglob input has no caller in
+this flow. The new decision expires on 2 December 2026 and must be revisited
+when the pinned graph or invocation/configuration changes or a patched release
+becomes available. Raw findings stay visible and the scanner implementation
+continues to reject new, expired and changed-source decisions.
+
+Requirements preflight used a distinct subagent with `fork_turns="none"`,
+inspected the installed dependency source and accepted this bounded treatment.
+Applicable CS01, CS05, CS08, CS09 and CS10 concern the existing configuration
+owner, readable evidence, unchanged failure guards, complete audit observations
+and the issue-linked expiry. Existing Stylelint coverage and exact advisory
+negative tests are the regression owners. Full protected staging and actual
+hosted performance remain required on the corrected source.
+
+The candidate advisory row received independent Code, White-box, Requirements
+and Exploratory review with explicit `fork_turns="none"` for each launch.
+All inspected candidate `003a208e` and tree `e1ee79c8` using the pinned shared
+source packet. Code independently confirmed the unchanged workflow-guide
+meaning and updated scope. White-box exercised eleven actual-row refusal
+cases and the existing policy fixture. Exploratory observed only the constant
+node_modules matcher pattern through eighteen bounded interaction cases,
+including pattern-looking CSS and filenames, malformed CSS and clean recovery.
+It compared the complete site and generated-output Git inventories to the
+prior closeout source. Requirements accepted the bounded treatment while
+retaining the owning issue's native and release gates. The real CSS inventory
+and actual advisory admission passed. Raw npm reports retain five high findings.
+The existing guide receipt and exact public-checksum records are refreshed
+from those independent source observations. The prior failed native campaigns
+remain linked above. Current-source hosted staging is still required.

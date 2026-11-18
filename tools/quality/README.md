@@ -340,13 +340,16 @@ in `secrets-baseline.json`, never a blanket entropy allowlist. New candidates fa
 The triage helper is a manual review aid and is never invoked by CI.
 
 Npm/pip advisory feeds must succeed. Original findings remain in raw reports.
-The sole temporary npm exception is GHSA-vfj7-8cjw-p6xm in tooling-only braces
-3.0.3, for which no fixed release exists at the recorded date. Stylelint uses
-its literal code API, so the affected glob-pattern walkers receive no user input.
-The exception binds the helper, static configuration and committed lock SHA256s
-and expires 2026-11-03. A changed helper/configuration/lock/version, new advisory
-or expired review fails. The independent reviewer
-must assess this reachability decision; it is not a zero-vulnerability claim.
+The existing advisory ledger retains the historical braces review and an exact
+picomatch 2.3.2 review for GHSA-fc5q-39xc-vjpf under issue #183. The picomatch
+review expires on 2 December 2026. The installed Stylelint code API still calls
+picomatch for the constant node_modules exclusion. Its rules-only configuration
+supplies no attacker-controlled repeated-extglob patterns. The review pins the
+invocation helper, configuration, package manifest and lock. New advisories or
+changed pinned inputs, versions or expired reviews fail. Independent review
+must trace the affected input through the actual dependency code. Original
+findings stay in the npm report, including transitive effects. Each ledger row
+retains its own recorded source, expiry and reachability decision.
 
 `bandit-policy.json` owns exact expiring internal-tooling findings;
 `bandit-triage.cjs` verifies source/line/rule/coverage and retains raw counts.

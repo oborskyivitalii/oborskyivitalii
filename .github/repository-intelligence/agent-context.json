@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "471f0179186cb7c769ce5134905f392635a69a4acdbdcf3413f42872578c76eb",
+    "digest": "d72156569c64a33abe61e4d3e1796f5de01c160f5cbc389961e67673e135facf",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -5170,7 +5170,7 @@
       {
         "path": "review/issue-183/2026-11-16-publication-closeout.md",
         "identity_mode": "content",
-        "sha256": "330c67fdbfa4ece10e09fa2e96ec81d9f94fbaafb2a2e11b77551ff75a9378e7"
+        "sha256": "813ded06f1b2b80feb2805ef3ba147d11ad07a1da8617a68c98fbd8a00c9e011"
       },
       {
         "path": "review/issue-183/2026-11-16-staging-controller.md",
@@ -5185,7 +5185,7 @@
       {
         "path": "review/issue-183/workflow-guide-evidence.json",
         "identity_mode": "content",
-        "sha256": "00b3edae7fa694e43851f6dd2daa6557496a36ddf7a33cfba8b7819a9db15dc0"
+        "sha256": "299540d1187ece1a7c08315101271ce88553d7a4b520044176f3836434477f6e"
       },
       {
         "path": "review/issue-184/2026-11-10-archive.md",
@@ -14200,12 +14200,12 @@
       {
         "path": "tools/quality/README.md",
         "identity_mode": "content",
-        "sha256": "89e223cc5812316330ce93ce5b823d0bae984e2a64ec8639d73cb355c9bf988c"
+        "sha256": "11e7a7656bfca7836d6b662ff50f94c4c82ce2a8f0e14535b174793b3b4c8563"
       },
       {
         "path": "tools/quality/advisory-exceptions.json",
         "identity_mode": "content",
-        "sha256": "20b0777d3ea509c8359fa1580dd94a5543ea6566a7c644d9ccac47c6abde8fc6"
+        "sha256": "25a142a944bd0de51d51ff33a6da26858f1be934ee50dfefe8140761c18a1074"
       },
       {
         "path": "tools/quality/analytics-browser.cjs",
@@ -14630,7 +14630,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "6741449ccdf41abc677975114031083a1c2e6033aa026d3bdbf02ef66be09aed"
+        "sha256": "5324ecacbdca2e19b778d0d0d172f41cd1265d758c310c7feb8fd32f8d3f299c"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
