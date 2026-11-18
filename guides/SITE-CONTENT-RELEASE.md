@@ -140,9 +140,9 @@ artifact with successful source/RI/owning admission. Archive digest, repository,
 workflow, source/tree, complete generation lock and platform identity are checked.
 No eligible baseline means an explicit ordinary platform build, with the reason
 recorded. A Draft-only packaging success cannot replace source admission.
-Recording observed publication evidence as HTML under an article's `site-artifacts/`
-directory selects the ordinary full route; that evidence archive is outside the
-supported Markdown/catalog content optimization.
+Retaining an observed production artifact in `site/publication-evidence/` selects
+the ordinary full route. The archived files support publication-event checks in a
+clean checkout and are outside both the public output and content optimization.
 
 Content checks preserve current-source model/catalog/manifest/resource proof and
 mandatory hosted reader/navigation smoke. Runtime, template, policy or unknown

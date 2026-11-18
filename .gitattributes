@@ -7,3 +7,6 @@
 *.zip -text
 *.pdf -text
 *.pptx -text
+
+# Retain immutable production evidence as binary in Git.
+site/publication-evidence/** binary

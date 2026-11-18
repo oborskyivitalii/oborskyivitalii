@@ -652,7 +652,8 @@ test('Control Theory keeps its 2025 archive year and independent platform editio
     ]
   );
   assert.equal(writingEntries(current).find(({ id }) => id === 'publication-09').year, '2025');
-  assert.equal(record.edition.datePublished, undefined);
+  assert.equal(record.edition.datePublished, '2026-11-16');
+  assert.equal(record.edition.publicationEvent, 'site-publication-20261116');
 
   for (const url of [
     'https://pub.towardsai.net.example/article',

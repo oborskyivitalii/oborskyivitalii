@@ -1267,75 +1267,39 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/1ad993812e199251299e1545ae901b32b3612699717b5555329e0f1185fb2afc": {
+    "docs/article-snapshots/59ff20803833d9228a2cd1ef68058787e10f96bb41e3818e61889fcced95a052": {
       "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/1ad993812e199251299e1545ae901b32b3612699717b5555329e0f1185fb2afc/the-sdlc-is-out-of-balance.html": {
+    "docs/article-snapshots/59ff20803833d9228a2cd1ef68058787e10f96bb41e3818e61889fcced95a052/ai-governance-is-control-theory.html": {
       "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/1b6eaa02835c73d162f618ec6ce2c895e6c8c4a6c262c46324b2fddb38b3fcb0": {
+    "docs/article-snapshots/5c246b819b84aebed856278dc2ec0ae3bb0d7cbfdfb674b49dbef98b58a42aae": {
       "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/1b6eaa02835c73d162f618ec6ce2c895e6c8c4a6c262c46324b2fddb38b3fcb0/ai-governance-is-control-theory.html": {
+    "docs/article-snapshots/5c246b819b84aebed856278dc2ec0ae3bb0d7cbfdfb674b49dbef98b58a42aae/agentic-loops.html": {
       "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/8d15626df060496a3f1d991a624aa883a3a37cce99907c2886e250a6e49d872a": {
+    "docs/article-snapshots/7861361b33758acb3095e20d1deceee62b27c7f67b015c4875816a9e36f3b4aa": {
       "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/8d15626df060496a3f1d991a624aa883a3a37cce99907c2886e250a6e49d872a/beyond-embeddings.html": {
+    "docs/article-snapshots/7861361b33758acb3095e20d1deceee62b27c7f67b015c4875816a9e36f3b4aa/beyond-embeddings.html": {
       "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/76d33d8e21ab50f78ec8c7102e7999c8c45b7cd56ed30c1ad22c0d6fb2699bff": {
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/76d33d8e21ab50f78ec8c7102e7999c8c45b7cd56ed30c1ad22c0d6fb2699bff/thinking-systems.html": {
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/9479a537c62f131448ff3cc90f3ba0612689b4404f3e960313bff4da01aab690": {
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/9479a537c62f131448ff3cc90f3ba0612689b4404f3e960313bff4da01aab690/agentic-loops.html": {
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/a0b4e14883af5ba1418a23420074d42cb6d10b386eb0a46b370b78c5bd5c8b97": {
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/a0b4e14883af5ba1418a23420074d42cb6d10b386eb0a46b370b78c5bd5c8b97/ai-native-workflows-have-a-moat-problem.html": {
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1363,27 +1327,63 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/c03ae1d5925a33b1e3ece61210a4c593bb608cd86dcfeae24c0909d23ad34975": {
+    "docs/article-snapshots/cd9797d2b0e1afaf73e419adb3a06443cb988c6591068b79be4ed75749991904": {
       "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/c03ae1d5925a33b1e3ece61210a4c593bb608cd86dcfeae24c0909d23ad34975/ai-verification-crisis.html": {
+    "docs/article-snapshots/cd9797d2b0e1afaf73e419adb3a06443cb988c6591068b79be4ed75749991904/ai-cost-cutting-fallacy.html": {
       "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/ffd72466b6d3cfb099d196286610e17fab8dd1304452b5b852a2049e8a9ea6d4": {
+    "docs/article-snapshots/d2fa46ccc36402be42c228f7eb4c58efb3d89bf68d20fb645ebd886f143772fe": {
       "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/ffd72466b6d3cfb099d196286610e17fab8dd1304452b5b852a2049e8a9ea6d4/ai-cost-cutting-fallacy.html": {
+    "docs/article-snapshots/d2fa46ccc36402be42c228f7eb4c58efb3d89bf68d20fb645ebd886f143772fe/the-sdlc-is-out-of-balance.html": {
       "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/e6c18bd39d79a2be547cb69f15184331569c5a7a1feecb8249d79762d7b28a58": {
+      "kind": "directory",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/e6c18bd39d79a2be547cb69f15184331569c5a7a1feecb8249d79762d7b28a58/ai-native-workflows-have-a-moat-problem.html": {
+      "kind": "file",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/ebcc5f1b1565d262dbfd000aca2a4ecf6f871e883890d16e48cdbc00ec754b10": {
+      "kind": "directory",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/ebcc5f1b1565d262dbfd000aca2a4ecf6f871e883890d16e48cdbc00ec754b10/thinking-systems.html": {
+      "kind": "file",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/ff54b0c32f023499f82f7922fb6dd8024e7eb72055fae12e1dda42053021eb8a": {
+      "kind": "directory",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/ff54b0c32f023499f82f7922fb6dd8024e7eb72055fae12e1dda42053021eb8a/ai-verification-crisis.html": {
+      "kind": "file",
+      "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1807,18 +1807,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/8778a66844d2e4f070de4fb9be832afc055c2e20c73a30182e661bc47e749ae4": {
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/8778a66844d2e4f070de4fb9be832afc055c2e20c73a30182e661bc47e749ae4/writing.html": {
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/080da808855bdc7cac66970509a9a371a5033cb5d721a007a92632c826b2d06a": {
       "kind": "directory",
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
@@ -1855,27 +1843,27 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/464f356f00b70c8e63d3ba19b756e7ccb0b23ee2e9926d3ea138b7d0c33c917f": {
+    "docs/snapshots/240fcb7694cf131efbde1f4fbab8b9e995d885f2cd64b1bbb9caaf00943c1f71": {
       "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/464f356f00b70c8e63d3ba19b756e7ccb0b23ee2e9926d3ea138b7d0c33c917f/research.html": {
+    "docs/snapshots/240fcb7694cf131efbde1f4fbab8b9e995d885f2cd64b1bbb9caaf00943c1f71/index.html": {
       "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/481dc8bacc3c2e39ac84bdcf4f02765554b9cc717d92f3df6094042dcd9aba71": {
+    "docs/snapshots/55d86ad8e2b857fb2f5b638ab402120c7e21700f38332834809068fc3bfff66d": {
       "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/481dc8bacc3c2e39ac84bdcf4f02765554b9cc717d92f3df6094042dcd9aba71/talks.html": {
+    "docs/snapshots/55d86ad8e2b857fb2f5b638ab402120c7e21700f38332834809068fc3bfff66d/research.html": {
       "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1915,15 +1903,15 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/e2cc42173f1ae664abb1dcdd6ddeb0503845d9b7ae99361d2330b68fb8b50e13": {
+    "docs/snapshots/7ad903a55d2c4086b7ced07e6c984ac070df4d569332870c5fa7ce08c01ee4e1": {
       "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/e2cc42173f1ae664abb1dcdd6ddeb0503845d9b7ae99361d2330b68fb8b50e13/index.html": {
+    "docs/snapshots/7ad903a55d2c4086b7ced07e6c984ac070df4d569332870c5fa7ce08c01ee4e1/talks.html": {
       "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1948,6 +1936,30 @@
     "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/7e1a1084b500a36b8813233c04ea5463e0012ea2c114e8ccda564d5e277ea6ae": {
+      "kind": "directory",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/7e1a1084b500a36b8813233c04ea5463e0012ea2c114e8ccda564d5e277ea6ae/credits.html": {
+      "kind": "file",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/87a2f581d99654414c98fe66f1898d6d75b65cbcd1ff46e84c8ca3a8f72d5098": {
+      "kind": "directory",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/87a2f581d99654414c98fe66f1898d6d75b65cbcd1ff46e84c8ca3a8f72d5098/writing.html": {
+      "kind": "file",
+      "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -2044,18 +2056,6 @@
     "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html": {
       "kind": "file",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/eb9003485aff808b249f624f706e793516bcf3a1c84c4734fa00d53e901a0130": {
-      "kind": "directory",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/eb9003485aff808b249f624f706e793516bcf3a1c84c4734fa00d53e901a0130/credits.html": {
-      "kind": "file",
-      "purpose": "Generated reader, figure, runtime asset or snapshot for the article library.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -7086,6 +7086,12 @@
       "purpose": "Source-bound author biography, native reading links and terminology review.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-183/2026-11-16-publication-closeout.md": {
+      "kind": "file",
+      "purpose": "Issue 183 batch closeout, release and publication-event evidence.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
     },
     "review/issue-183/2026-11-16-staging-controller.md": {
       "kind": "file",
@@ -15061,6 +15067,918 @@
       "role": "generated",
       "owner": "tools/site/build.cjs"
     },
+    "site/publication-evidence": {
+      "kind": "directory",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1": {
+      "kind": "directory",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/artifact.json.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files": {
+      "kind": "directory",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/000.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/001.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/002.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/003": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/004.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/005": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/006": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/007": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/008.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/009": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/010": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/011": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/012": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/013": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/014": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/015": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/016": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/017": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/018": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/019": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/020": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/021": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/022": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/023": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/024": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/025": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/026": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/027": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/028": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/029": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/030": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/031": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/032": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/033": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/034": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/035": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/036": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/037": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/038": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/039": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/040": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/041": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/042": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/043": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/044": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/045": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/046": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/047": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/048": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/049": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/050": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/051": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/052": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/053": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/054.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/055.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/056.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/057.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/058.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/059.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/060.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/061.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/062.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/063.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/064.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/065.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/066.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/067.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/068.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/069.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/070.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/071.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/072.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/073.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/074": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/075": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/076.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/077.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/078.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/079.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/080": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/081": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/082.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/083.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/084.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/085.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/086.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/087.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/088.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/089.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/090.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/091.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/092.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/093.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/094.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/095.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/096.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/097.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/098.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/099.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/100.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/101.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/102.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/103.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/104.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/105.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/106.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/107.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/108.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/109.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/110.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/111.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/112.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/113.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/114.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/115.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/116.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/117.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/118.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/119.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/120.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/121.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/122.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/123.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/124.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/125.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/126.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/127.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/128.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/129.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/130.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/131.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/132.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/133.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/134.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/135.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/136.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/137.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/138.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/139.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/140.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/141.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/142.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/143.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/144.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/145.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/146.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publication-evidence/prod-2026-11-16.1/files/147.gz": {
+      "kind": "file",
+      "purpose": "Immutable observed production artifact evidence and its exact published resources.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
     "site/publications": {
       "kind": "directory",
       "purpose": "Authored article blueprints, manuscripts, declared profiles, adaptations and semantic edition records.",
@@ -15118,6 +16036,18 @@
     "site/publications/agentic-loops/profile.json": {
       "kind": "file",
       "purpose": "Authored Agentic Loops manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/agentic-loops/publication-events": {
+      "kind": "directory",
+      "purpose": "Source-bound observed publication events for the selected native article edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/agentic-loops/publication-events/site-publication-20261116.json": {
+      "kind": "file",
+      "purpose": "Source-bound observed publication events for the selected native article edition.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
@@ -15181,6 +16111,18 @@
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
+    "site/publications/ai-cost-cutting-fallacy/publication-events": {
+      "kind": "directory",
+      "purpose": "Source-bound observed publication events for the selected native article edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-cost-cutting-fallacy/publication-events/site-publication-20261116.json": {
+      "kind": "file",
+      "purpose": "Source-bound observed publication events for the selected native article edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
     "site/publications/ai-cost-cutting-fallacy/publication.json": {
       "kind": "file",
       "purpose": "Authored Cost-Cutting Fallacy manuscript, provenance or publication edition.",
@@ -15241,6 +16183,18 @@
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
+    "site/publications/ai-governance-is-control-theory/publication-events": {
+      "kind": "directory",
+      "purpose": "Source-bound observed publication events for the selected native article edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-governance-is-control-theory/publication-events/site-publication-20261116.json": {
+      "kind": "file",
+      "purpose": "Source-bound observed publication events for the selected native article edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
     "site/publications/ai-governance-is-control-theory/publication.json": {
       "kind": "file",
       "purpose": "Authored Control Theory source, provenance or edition and publication profile.",
@@ -15292,6 +16246,18 @@
     "site/publications/ai-native-workflows-have-a-moat-problem/profile.json": {
       "kind": "file",
       "purpose": "Authored Moat Problem manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-native-workflows-have-a-moat-problem/publication-events": {
+      "kind": "directory",
+      "purpose": "Source-bound observed publication events for the selected native article edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-native-workflows-have-a-moat-problem/publication-events/site-publication-20261116.json": {
+      "kind": "file",
+      "purpose": "Source-bound observed publication events for the selected native article edition.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
@@ -15355,6 +16321,18 @@
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
+    "site/publications/ai-verification-crisis/publication-events": {
+      "kind": "directory",
+      "purpose": "Source-bound observed publication events for the selected native article edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/ai-verification-crisis/publication-events/site-publication-20261116.json": {
+      "kind": "file",
+      "purpose": "Source-bound observed publication events for the selected native article edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
     "site/publications/ai-verification-crisis/publication.json": {
       "kind": "file",
       "purpose": "Authored Verification Crisis manuscript, provenance or publication edition.",
@@ -15412,6 +16390,18 @@
     "site/publications/beyond-embeddings/profile.json": {
       "kind": "file",
       "purpose": "Authored Beyond Embeddings manuscript, provenance or publication edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/beyond-embeddings/publication-events": {
+      "kind": "directory",
+      "purpose": "Source-bound observed publication events for the selected native article edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/beyond-embeddings/publication-events/site-publication-20261116.json": {
+      "kind": "file",
+      "purpose": "Source-bound observed publication events for the selected native article edition.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
@@ -15910,6 +16900,18 @@
     "site/publications/thinking-systems/profile.json": {
       "kind": "file",
       "purpose": "Thinking Systems manuscript, edition metadata or original publication media.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/thinking-systems/publication-events": {
+      "kind": "directory",
+      "purpose": "Source-bound observed publication events for the selected native article edition.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/thinking-systems/publication-events/site-publication-20261116.json": {
+      "kind": "file",
+      "purpose": "Source-bound observed publication events for the selected native article edition.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },

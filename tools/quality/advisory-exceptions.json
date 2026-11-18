@@ -15,5 +15,23 @@
       "tools/quality/stylelint.config.cjs": "62ce76e7e7074a20ed0394903e0bb6557a96075b38009f21cf934814b1ea64c0",
       "tools/quality/toolchain/package-lock.json": "f9495aa394d54cc5886d837d07ebd52bcbacd1ff893fd5baca92b2e5b48d8ba5"
     }
+  },
+  {
+    "package": "picomatch",
+    "version": "2.3.2",
+    "url": "https://github.com/advisories/GHSA-fc5q-39xc-vjpf",
+    "scope": "tools/quality/toolchain/package-lock.json",
+    "reviewedSource": "tools/quality/stylelint.cjs",
+    "reviewedSourceSha256": "e1cfaf46003f21f9e6e8558da0d15de25c4bb7d7b7b5012d509dce0a93c5486a",
+    "disposition": "tooling-only unreachable affected input",
+    "owner": "oborskyivitalii",
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/183",
+    "expires": "2026-12-02",
+    "reason": "Reviewed 18 November 2026. No patched picomatch release is published; the latest 4.0.7 and Stylelint 18.0.0 remain affected. The installed Stylelint 17.16.0 code API receives literal CSS bytes and a codeFilename from the authored inventory. It calls micromatch for the constant **/node_modules/** pattern. The supplied rules-only config has no ignoreFiles, overrides, referenceFiles, extends, plugins or custom syntax. No attacker-controlled repeated-extglob pattern enters picomatch. File discovery through globby is outside this code API path. Preserve all raw npm findings, including transitive effects. Re-review on a patched release, package, invocation, configuration, inventory or lock change. This exact expiring reachability decision does not assert the package is fixed.",
+    "reviewedMaterials": {
+      "tools/quality/stylelint.config.cjs": "62ce76e7e7074a20ed0394903e0bb6557a96075b38009f21cf934814b1ea64c0",
+      "tools/quality/toolchain/package-lock.json": "495a831561cda23d412d122c4f213d0d14194c8c57b64d53f0003705041b77da",
+      "tools/quality/toolchain/package.json": "a22a10b16c22c226e73169532ed8e66d3965a19e2d8d7a9bea45a17f6f4fab43"
+    }
   }
 ]

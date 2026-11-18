@@ -1,9 +1,27 @@
 {
-  "base_sha": "d37d099b519536e042cdbb261dbbbc5e2cbce7c5",
-  "scope_sha256": "942054c699a6db2184647fbfdc717a5477f38b6ca418ee9ab3621c268eb1ef67",
-  "paths": ["tests/fixtures/delivery.cjs", "tests/release-rights.test.cjs"],
+  "base_sha": "779747cb16df70ce5cb2bdae8e889f52268de422",
+  "scope_sha256": "7ec6c4ade709408101b29a2682cf93acc94b5f8d131b66051468ba441917ff1d",
+  "paths": [
+    ".github/REPOSITORY-INTELLIGENCE.md",
+    "guides/ARTICLE-WORKFLOW.md",
+    "guides/SITE-CONTENT-RELEASE.md",
+    "tests/local-catalog-relationships.test.cjs",
+    "tests/publishing.test.cjs",
+    "tests/reader-mode.test.cjs",
+    "tools/quality/README.md",
+    "tools/quality/advisory-exceptions.json",
+    "tools/quality/bandit-policy.json",
+    "tools/quality/secrets-publication.json",
+    "tools/repository_intelligence.py"
+  ],
   "disposition": "unchanged",
-  "sections": ["Delivery routes and controls"],
-  "rationale": "The technical fixture changes preserve complete test coverage and exact control admission. The existing technical repository route, production and staging controllers, test allocation, and advancement requirements remain accurately documented.",
-  "reviewer_execution": "/root/testperf_code3 reviewed immutable candidate d9b5b59 against protected base d37d099b with fork_turns=none. The protected checker recomputed the same exact scope for that review."
+  "sections": [
+    "Harness and ownership",
+    "Agents and orchestration",
+    "Keeping this guide current",
+    "Site architecture",
+    "Delivery routes and controls"
+  ],
+  "rationale": "The existing guide describes source-bound review and validation, preserved scanner policy, full fallback for mixed publication and control changes, authenticated staging, and exact-head owner admission. The bounded advisory review uses those existing routes and changes no delivery authority.",
+  "reviewer_execution": "/root/p210_advisory_code. Explicit fork_turns=none. Independently reviewed advisory candidate 003a208e, unchanged workflow guide and exact protected-base scope. Common prompt blob 68796daa and Code prompt blob 2363340a."
 }

@@ -288,7 +288,10 @@ test('article composition binds shared controls and contents as source inputs wi
   });
   input.profile.reader.references = 'inline';
   const output = require('../tools/site/articles.cjs').input(path.resolve(__dirname, '..'), input);
-  assert.match(output.main, /<time datetime="2026-10-20">2026-10-20<\/time>/);
+  assert.match(
+    output.main,
+    /Published on this site <time datetime="2026-10-20">20 October 2026<\/time>/
+  );
   assert.match(output.main, /About 1 min read/);
   assert.match(output.main, /href="#a-detail"/);
   assert.match(output.main, /reader-image-dialog"[^>]*hidden/);

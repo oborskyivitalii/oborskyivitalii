@@ -1,0 +1,148 @@
+# Issue #183 — publication and batch closeout
+
+[Owning issue](https://github.com/oborskyivitalii/oborskyivitalii/issues/183) · [Reader integration PR #205](https://github.com/oborskyivitalii/oborskyivitalii/pull/205) · [Cover clearance PR #208](https://github.com/oborskyivitalii/oborskyivitalii/pull/208)
+
+## Original migration batch
+
+| Writing record | Reader | Selected source edition | Source and rights record |
+| --- | --- | --- | --- |
+| `publication-05` | [Thinking Systems](https://vitaliioborskyi.ai/articles/thinking-systems.html) | Generative AI, 30 August 2026 | [Migration](2026-11-13-migration.md) |
+| `publication-09` | [AI Governance Is Control Theory](https://vitaliioborskyi.ai/articles/ai-governance-is-control-theory.html) | Towards AI, 13 December 2025 | [Control Theory](2026-11-15-control-theory.md) |
+| `publication-02` | [AI Verification Crisis](https://vitaliioborskyi.ai/articles/ai-verification-crisis.html) | Agile Insider, 12 June 2026 | [Verification Crisis](2026-11-15-verification-crisis.md) |
+| `publication-28` | [AI Cost-Cutting Fallacy](https://vitaliioborskyi.ai/articles/ai-cost-cutting-fallacy.html) | LinkedIn, 2 January 2026 | [Cost-Cutting Fallacy](2026-11-15-cost-cutting.md) |
+| `publication-08` | [AI-Native Workflows Have a Moat Problem](https://vitaliioborskyi.ai/articles/ai-native-workflows-have-a-moat-problem.html) | AI Advances, 1 July 2026 | [Moat Problem](2026-11-15-moat-problem.md) |
+
+The five checkpoints ran from 13 to 16 November. No active-time measurements were kept. Editorial work included reconciling platform copies and dates, obtaining author decisions for original artwork, replacing the Control Theory figure, placing covers, preserving provenance and updating the shared byline and reading links. Technical work reused the native reader, Writing IDs, Home and Research entry points, social and sitemap generation, and the protected release route. The long reader exposed the staging controller's older snapshot limit. The two later covers required exact site-use permission and review of the resulting security findings. The review records document those decisions and their tests.
+
+Repeatable migration steps are source and rights reconciliation, a frozen native edition, one Draft Preview per reader, whole-batch archive and browser checks, protected staging and publication, then observed date recording. The source date belongs to the selected external edition. The site date comes from the production HTTP observation. Further migration needs the author's decision. No traffic figures were collected for this closeout.
+
+## Two author-requested adaptations
+
+[Agentic Loops](https://vitaliioborskyi.ai/articles/agentic-loops.html) uses the 10 June 2026 LinkedIn edition. [Beyond Embeddings](https://vitaliioborskyi.ai/articles/beyond-embeddings.html) uses the 22 May 2026 LinkedIn edition. Both share the same 16 November production release as the five-reader batch. Their source and media records are [Agentic Loops](2026-11-16-agentic-loops.md), [Beyond Embeddings](2026-11-16-beyond-embeddings.md) and [cover clearance](2026-11-16-cover-clearance.md). [Editorial refresh](2026-11-16-editorial-refresh.md) covers the author byline and related-reading changes across the seven.
+
+## Production date evidence
+
+[Owner Stable Staging 43886846983](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43886846983) exercised source `d060ee3bd8acbbcdcde34f158adea7cf2f77bcfa`. Its tree `854f61b91473d8d5167f6f23a863c12f7a6c414e` matches `main` and `production` at `d37d099b519536e042cdbb261dbbbc5e2cbce7c5` for [release `prod-2026-11-16.1`](https://github.com/oborskyivitalii/oborskyivitalii/releases/tag/prod-2026-11-16.1).
+
+[Candidate artifact 14239950868](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43897013527/artifacts/14239950868) and [production Pages package 14241231239](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43898780311/artifacts/14241231239) matched byte for byte for all 148 declared public files. [Production observations 14242310497](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43898780311/artifacts/14242310497) record the matching HTTP 200 alias digest for each reader. The first successful readiness check started at 15:44:22.614 UTC and took 5.473 s. The seven event records use 15:44:29 UTC, the next whole second after that check completed. It documents verified availability on 16 November and does not assert when the first visitor could have loaded a page. GitHub recorded the release at 16:49 Warsaw time.
+
+Each event references the same complete archived manifest and exact bytes, its own frozen edition and returned alias. Archive members use the frozen manifest’s filename order. Textual members are gzip-compressed and verified upon decoding. The archive is a build input for validating events and is outside the generated public tree. The validator retains raw legacy archive support, safe paths, complete inventory and per-file and aggregate limits. RI retains every input. Its total hash cap grows from 255 to 265 MB to admit one observed archive alongside the existing 254.63 MB of inputs. Other RI limits stay unchanged.
+
+## Review and acceptance evidence
+
+Independent requirements preflight `/root/requirements`, launched with `fork_turns="none"`, inspected base `d37d099b519536e042cdbb261dbbbc5e2cbce7c5`, live issue snapshot updated at `2026-11-16T15:50:41Z`, the protected workflow runs, and a 23-file source packet with SHA-256 `1d7c71f56a5d7cdb7aefc5dd2ba991279204b9237d6715c7956dccbcf379b4e7`. Common contract blob `68796daaf4313f64da381b1628866267fd9e263b`, role prompt blob `3e6330fc4a1a01d33e2dcae6e0f35d3f3471c1e4`, acceptance policy blob `06bbb101bbf9bc621b1628ebe6fb07053593f31c`. The reviewer independently verified the seven live canonical and share links and identified the clean-checkout blocker. Existing archive locations require a `public/` subtree or `dist/`, both excluded by mandatory tracked-file RI checks. The preflight endorsed a single bounded shared archive with the existing source, inventory and digest checks. This pass did not perform browser/device tests or review the implementation diff.
+
+Style scope for this work uses CS01, CS04, CS05, CS07 and CS08 for the publisher evidence adapter and RI bounds. The archive storage change selects the ordinary full site verification route. The browser, release and existing independent requirements remain mapped by [the owning acceptance policy](../../.github/acceptance/issue-183.json).
+
+| AC | Evidence | Gate at preparation |
+| --- | --- | --- |
+| AC01 | Five source/rights records and the exact release edition identities | Reconcile final SOURCE review |
+| AC02 | Seven live HTTP 200 files match candidate and published package | Verify desktop/mobile and native HTML for the five-reader batch |
+| AC03 | Seven source-bound events record 16 November and preserve external dates | Verify exact merged/generated and hosted date rendering |
+| AC04 | Catalog edits set only native date/event fields on existing records | Verify 30 entries, archive year and filters after dating; check the Home/Research/SDLC paths |
+| AC05 | Existing production workflow and same-source media evidence | Exact browser and independent source/quality review for this follow-up |
+| AC06 | Staging, frozen production candidate and initial publication observed | Merge verified event records and observe date metadata on the site |
+| AC07 | Original migration report above, including effort, blockers and follow-up | Final acceptance reconciliation |
+| AC08 | Five original entries listed above; two adaptations already authorized | Final acceptance reconciliation |
+
+## First implementation review
+
+The first local candidate was `580d1bab4d11eef1ef21e8693f3137939f1cd371`, tree `ccefeae6507fac74202ac3032233e589200e72b9`. Basic passed, and the owning acceptance runner reported `automated-pass` for all eight checks and kept the external gates pending. This candidate remained local. It is superseded by the corrected archive layout and date display.
+
+- `/root/closeout_code`, fresh `fork_turns="none"` Code Review, used common prompt blob `68796daaf4313f64da381b1628866267fd9e263b`, role prompt blob `2363340a1eaae62fdbd3ab070fda5c6436ec8124` and binary diff SHA-256 `1ef668f9c7532bf767ac4875afd1e901a5aa07c0dd5c2d77a3614c98a1664135`. The reviewer independently matched all 148 archive members against both CI packages and all seven alias digests against the HTTP evidence. It passed 34 focused JS cases, 40 RI tests, Basic build, bounded style and architecture. Blocking `RI-CODE-01` identified a stale coupling hash after path regeneration. The correction refreshes the coupling after the last catalog edit. Existing shallow manual diagnostic incompatibility predates this change. No new hosted run or browser operation was claimed.
+- `/root/closeout_whitebox`, fresh `fork_turns="none"` White-box QA, used common prompt blob `68796daaf4313f64da381b1628866267fd9e263b`, role blob `f3d5e777711d05fa844052a0c49339eb577a06d1` and acceptance policy blob `06bbb101bbf9bc621b1628ebe6fb07053593f31c`. It passed 47 publisher/history/catalog tests and 14 independent scratch checks for the complete artifact, mismatch, corruption, excessive decompression and inventory guards. Two timezone cold builds passed. Static before/after checks preserved all 30 Writing rows, their order and year, topic, language and links, including the Control Theory 2025 placement. No fresh browser or hosted publication was claimed.
+- `/root/closeout_explore`, fresh `fork_turns="none"` Exploratory QA, used common prompt blob `68796daaf4313f64da381b1628866267fd9e263b` and role blob `8b07e0a4c59c81b4efc8806c1043c631775eed32`. It exercised the production-before-dates Writing filters and all five original readers on desktop Chrome, including image decode and exact canonical/share metadata. It found that the proposed candidate displayed an unlabelled raw UTC timestamp in all seven readers. The correction renders a site-specific label and a human-readable date while retaining the original machine-readable timestamp. Exact candidate browser testing awaits a hosted Preview.
+
+The first archive layout used the original hashed asset paths inside the local evidence archive. The candidate secret scan reported additional path tokens in the RI inventory, plus exact release and generated checksum findings. Archive members now use the frozen manifest's ordered inventory, which keeps the bytes and all verification bounds intact and avoids duplicating the logical resource paths in each physical copy. Detection rules and input selection stay unchanged. Each residual admitted checksum must match an independently recomputed digest and its exact scanner location.
+
+The corrected scan isolated 32 exact findings. Twenty-one are the seven event artifact/manifest/document digest triples, nine match source-bound rights or materials attributes in regenerated reader snapshots, and two report the same new Beyond Embeddings snapshot directory in the RI views. The exact path/type/value tuples and their dispositions are added to the existing publication ledger. The two RI entries use the existing named-directory proof path. No scanner input, detector or byte limit was changed.
+
+## Correction verification
+
+Independent reviewer `/root/closeout_correction` inspected `b0ce203ee44df23e8e6d605d3c9b47216a51ca77`, tree `ff1590a7f9b6c37f76031b198571daadda946121` against `d37d099b519536e042cdbb261dbbbc5e2cbce7c5` with `fork_turns="none"`. The reviewer reproduced all 148 released members against both CI packages, all seven event observations, Basic, RI freshness, 17 RI/CI coupling checks, 28 coupling tests and 40 RI tests. It independently reviewed the affected Repository Workflow guide sections and found the overview still accurate. [The guide receipt](workflow-guide-evidence.json) records that disposition against the unchanged covered-source scope. The receipt and generated RI refresh preserve the reviewed implementation bytes.
+
+In a fresh final acceptance review, `/root/closeout_final_requirements` independently confirmed that the seven readers display a labeled 16 November 2026 date, the rendered article content and artwork carry over, and 30 Writing records preserve catalog order, archive year, topic, language and links. Control Theory keeps its two platform dates in the 2025 archive. The Home, Research and SDLC reading paths were traced in generated output. The hosted browser and release gates remain open.
+
+To record a later site publication, compare the protected candidate manifest and complete public inventory to the activated package. Take the observed UTC timestamp, exact alias, HTTP status and document digest from the protected release observations. Archive the frozen manifest and files using the documented layout, then call `appendPublicationEvent(root, articleId, event)` from `tools/publishing/events.cjs` with the exact frozen edition ID, archive manifest path and hash, and protected evidence URLs. Add the event reference and observed date to the existing local Writing record. Perform the publisher, Writing and normal protected delivery checks for that output.
+
+The guide receipt adds two verified public fingerprints, its base commit and its recomputed scope. The checksum ledger preserves every earlier approval row in order. Earlier prose in its scope field is retained in the [pre-closeout ledger](https://github.com/oborskyivitalii/oborskyivitalii/blob/d37d099b519536e042cdbb261dbbbc5e2cbce7c5/tools/quality/secrets-reviewed-checksums.json).
+
+The library now offers on-site reading paths from SDLC imbalance into delivery economics, verification, governance and architecture. The shared workflow is repeatable, although reconciling original artwork rights, oversized readers and protection prerequisites still required substantial manual effort in this batch. The five published readers give the author a concrete basis to continue with another limited batch, simplify the workflow first, or retain external-only catalog entries. This assessment uses delivery and navigation evidence. Traffic evidence was unavailable.
+
+## Preview correction
+
+[Draft Preview run 43919728323](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43919728323) stopped before publish because the candidate embedded a production `og:url` before the Preview renderer added its own. Independent correction review identified the additional real-source requirement to omit canonical links from Preview. The correction leaves canonical source metadata pending as on the released editions and uses the existing hosted edition owner to emit canonicals and social URLs. Site publication dates are still validated by the event and rendered visibly and in JSON-LD. The exact local Preview command and all five focused social/edition/date regression cases passed. All seven dated Preview readers had one correct PR-origin `og:url` and no canonical. The corrected publication ledger contains only the 21 event checksum findings and seven exact snapshot rights values. Scanner code is unchanged from protected main.
+
+Independent reviewer `/root/preview_fix_review` used a fresh execution to assess source `67cc7185fc91ccffab90fe3e2f034a1a7f014ea2`, tree `157c99f085972fd07bd7e86565a5f249575ca342`. It confirmed the updated guide scope and unchanged disposition. The final receipt, retained checksum tuples and RI refresh do not alter the reviewed implementation, generated site or guide-scope bytes.
+
+Full-diff scan also identified two exact SDLC snapshot digests for its unchanged rights and reading-PDF binding. Both match the production source alias and are recorded in the checksum companion alongside the two workflow-guide fingerprints. All previous finding rows remain byte-identical.
+
+The final mechanical delta applies pinned formatting to one publisher test assertion and the RI/CI map. Independent `/root/format_receipt_review` rechecked the unchanged guide disposition on `2f06ae992af53fb1b701296b9befc23ca67b9e27`, tree `96a1dddc3cb9c97c7e7bbaefb0d9fc18b73de07d`. The correction review independently built both hosted renditions locally from the accepted implementation, preserving noindex and the PR share URL for Preview and one canonical, social image and the seven labeled dates in production. The retained browser evidence still distinguishes those local package checks from a hosted release and device checks.
+
+## Hosted preview and native assertion correction
+
+The exact [hosted Preview](https://dd87541a.oborskyi-author-ci-staging.pages.dev/writing.html) for source `f8a1b389438e77b1fd416176b828123664548725` passed [build, publish and HTTP smoke](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43922084983). Desktop Chrome read the labeled date on all seven readers. Writing returned 30 entries, and the combined 2025, English and systems filters retained Control Theory. The first staging dispatch ran while Site Basic was pending and stopped at admission, before build. GitHub returned 404 while recording that failed admission. A later query resolved the check ID.
+
+The required native [Site Basic shard 4](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43922935487/jobs/133494709609) found an outdated reader fixture that required the date to display as raw ISO text. The corrected assertion verifies the site label, civil date and unchanged machine-readable date. The independent `/root/reader_assertion_review` inspected the exact test and generated RI delta, read the failure and passed 26 reader cases locally. It confirmed the unchanged disposition on the expanded workflow-guide scope. Current-head hosted checks and owner admission still apply.
+
+## Stable Staging preflight correction
+
+[Stable Staging run 43925927499](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43925927499) accepted exact source `df70bb30672ff965134632c1b43e78c522b0728e` after all eight PR source partitions, Navigation and the owning issue check passed. Full staging preflight failed before candidate upload and promotion. The [raw preflight artifact](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43925927499/artifacts/14258095185) records the full source worker reaching its 600-second deadline, two Semgrep matches on regular-expression method calls and the three existing Bandit findings bound to the previous RI source hash. The prior successful staging comparison took 514 seconds for the same 76 selected modules. Completed tests in the failed run also took longer on average. This timing evidence does not isolate the archive's contribution to the full run.
+
+The correction uses `String.match` for the exact same path grammars. The three Bandit source hashes are rebound after checking the unchanged finding line bytes, rule IDs, severities, confidence and Git-call AST against the retained scan. No finding or expiry is added. Each article checks its own manifest, edition and observed document against a shared verified archive. The compiler rereads and verifies the archive before selection returns. Preparation must then match the stored-byte SHA-256 fingerprints from that verified read, and the compiler independently rereads source digests after generation. A local fault injection changed the first preparation read of a verified archive member. The build rejected the change before creating output, cache or lock. Standalone publication-event checks still validate the entire archive. The correction keeps the existing source selection, test cases and execution limits.
+
+Independent Code Reviewer `/root/staging_integrity_final` checked the final implementation at `918437e` and reproduced all nine generated-snapshot scanner tuples from the protected publication aliases. Independent White-box QA `/root/staging_integrity_final_qa` observed 149 verified stored-byte fingerprints, changed only a gzip header bit on the first preparation read and confirmed rejection before generation. The decoded article evidence stayed byte-identical in that check. The exact guide review is in the companion receipt. The full 76-module staging source suite and hosted promotion require their own successful run.
+
+The next [native Site Basic run](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43934579262) exposed one shared historical SEO pin failure in the [executive carrier tests](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43934579262/jobs/133535703300) and the [fresh SEO CLI case](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/43934579262/jobs/133535703339). The archive input guard changes the build producer bytes. The verifier now accepts that exact reviewed producer SHA-256 beside the existing accepted successors. Previously frozen carrier geometry, historical source checks, negative cases and selectors remain intact.
+
+## 18 November 2026 — Picomatch advisory review
+
+[The owner-requested retry](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/44257575621)
+passed all 1,322 source tests and 25 of 26 prepublication guards. Its advisory
+guard retained five high npm findings with one leaf advisory for picomatch.
+The [raw native report](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/44257575621/artifacts/14407242275)
+binds that result to the existing closeout head. It stopped before browser
+performance collection, so the earlier cold-flight failure remains recorded.
+
+The [upstream advisory](https://github.com/advisories/GHSA-fc5q-39xc-vjpf)
+lists versions through 4.0.7 with no patched release. Registry inspection found
+that 4.0.7 is the latest release and Stylelint 18.0.0 also depends on that range.
+The installed graph uses Stylelint 17.16.0, micromatch 4.0.8 and picomatch 2.3.2.
+The correction records an expiring exact reachability decision through the
+existing advisory ledger, with source, configuration, manifest and lock pins.
+The original braces row retains its data and expiry.
+
+Stylelint receives CSS through its code API and an explicit rules-only config.
+Its standalone code path still calls micromatch with the constant
+`**/node_modules/**` pattern. The explicit config has no ignoreFiles, overrides,
+referenceFiles, extends, plugins or custom syntax. The path-ignored check has
+an empty pattern list. The optional stylelintignore file is handled by the
+separate ignore package. The affected repeated-extglob input has no caller in
+this flow. The new decision expires on 2 December 2026 and must be revisited
+when the pinned graph or invocation/configuration changes or a patched release
+becomes available. Raw findings stay visible and the scanner implementation
+continues to reject new, expired and changed-source decisions.
+
+Requirements preflight used a distinct subagent with `fork_turns="none"`,
+inspected the installed dependency source and accepted this bounded treatment.
+Applicable CS01, CS05, CS08, CS09 and CS10 concern the existing configuration
+owner, readable evidence, unchanged failure guards, complete audit observations
+and the issue-linked expiry. Existing Stylelint coverage and exact advisory
+negative tests are the regression owners. Full protected staging and actual
+hosted performance remain required on the corrected source.
+
+The candidate advisory row received independent Code, White-box, Requirements
+and Exploratory review with explicit `fork_turns="none"` for each launch.
+All inspected candidate `003a208e` and tree `e1ee79c8` using the pinned shared
+source packet. Code independently confirmed the unchanged workflow-guide
+meaning and updated scope. White-box exercised eleven actual-row refusal
+cases and the existing policy fixture. Exploratory observed only the constant
+node_modules matcher pattern through eighteen bounded interaction cases,
+including pattern-looking CSS and filenames, malformed CSS and clean recovery.
+It compared the complete site and generated-output Git inventories to the
+prior closeout source. Requirements accepted the bounded treatment while
+retaining the owning issue's native and release gates. The real CSS inventory
+and actual advisory admission passed. Raw npm reports retain five high findings.
+The existing guide receipt and exact public-checksum records are refreshed
+from those independent source observations. The prior failed native campaigns
+remain linked above. Current-source hosted staging is still required.

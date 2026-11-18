@@ -432,7 +432,7 @@ function validateTranslation(root, metadata) {
   return [metadataPath, editionPath, sourcePath, ...assets.map((asset) => asset.path)];
 }
 
-function loadArticle(root, articleId, { assetUrl } = {}) {
+function loadArticle(root, articleId, { assetUrl, archives } = {}) {
   id(articleId, 'selected article');
   const directory = `site/publications/${articleId}`;
   const { value } = readJson(root, `${directory}/publication.json`);
@@ -495,7 +495,7 @@ function loadArticle(root, articleId, { assetUrl } = {}) {
       inputs.push(adaptation.input, adaptation.source.path);
     }
   }
-  const history = publicationEvents(root, directory, full.edition.id);
+  const history = publicationEvents(root, directory, full.edition.id, archives);
   const historyProof = verifyAppendOnlyHistory(root, articleId);
   if (
     metadata.canonical !== null &&

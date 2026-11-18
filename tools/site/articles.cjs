@@ -21,7 +21,7 @@ function assetName(asset) {
   return `article-media/${asset.digest}/${name}`;
 }
 
-function select(root, candidates = [], catalog = { records: {} }) {
+function select(root, candidates = [], catalog = { records: {} }, verifiedArchiveDigests) {
   if (
     !Array.isArray(candidates) ||
     new Set(candidates).size !== candidates.length ||
@@ -43,12 +43,15 @@ function select(root, candidates = [], catalog = { records: {} }) {
   const technical = new Set(require('./article-selection.cjs').technical(root));
   if (accepted.some((id) => technical.has(id)))
     throw Error('Template references cannot enter the publication catalog');
+  // Share the verified archive during selection. Every article still checks
+  // its own edition, and the archive is read again before selection returns.
+  const archives = new Map();
   const selected = ids
     .filter((id) => accepted.includes(id) || candidates.includes(id))
     .map((id) => {
       const hosted = require('./article-media.cjs').render(
         root,
-        publisher.loadArticle(root, id, { assetUrl: assetName }),
+        publisher.loadArticle(root, id, { assetUrl: assetName, archives }),
         assetName
       );
       const article = require('./article-media.cjs').social(root, hosted, assetName);
@@ -89,6 +92,8 @@ function select(root, candidates = [], catalog = { records: {} }) {
     });
   if (new Set(selected.map((article) => article.url)).size !== selected.length)
     throw Error('Duplicate article slug');
+  const evidence = require('../publishing/site-event.cjs').verifySiteArchives(root, archives);
+  for (const [file, sha256] of evidence) verifiedArchiveDigests?.set(file, sha256);
   return selected;
 }
 
@@ -133,6 +138,14 @@ function applyNativeReadingLinks(html) {
 
 function input(root, article, links = new Map()) {
   const metadata = article.metadata;
+  const language = metadata.language === 'uk' ? 'uk-UA' : 'en-GB';
+  const publicationLabel =
+    metadata.language === 'uk' ? 'Опубліковано на цьому сайті' : 'Published on this site';
+  const publishedDate = metadata.published
+    ? new Intl.DateTimeFormat(language, { dateStyle: 'long', timeZone: 'UTC' }).format(
+        new Date(metadata.published)
+      )
+    : null;
   const reader = require('./reader.cjs').prepare(article, (url) => {
     const target = links.get(url.replace(/\/$/, ''));
     return target === article.url ? null : target;
@@ -152,7 +165,7 @@ function input(root, article, links = new Map()) {
       FURTHER_READING: furtherReading,
       AUTHORS: metadata.authors.map((author) => escapeText(author.name)).join(', '),
       PUBLISHED: metadata.published
-        ? `<time datetime="${escapeAttribute(metadata.published)}">${escapeText(metadata.published)}</time> · `
+        ? `<span>${publicationLabel} <time datetime="${escapeAttribute(metadata.published)}">${escapeText(publishedDate)}</time></span> · `
         : '',
       READING_MINUTES: reader.readingMinutes,
       READER_TOOLS: fs.readFileSync(

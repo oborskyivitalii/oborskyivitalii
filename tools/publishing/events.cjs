@@ -41,7 +41,7 @@ function timestamp(value) {
   }
 }
 
-function artifactRecord(root, event, directory) {
+function artifactRecord(root, event, directory, archives) {
   exactObject(
     event.artifact,
     ['kind', 'id', 'manifestPath', 'manifestSha256', 'documentPath'],
@@ -55,7 +55,7 @@ function artifactRecord(root, event, directory) {
     if (artifact.kind !== 'site-artifact') {
       throw new Error('Site publication cannot bind a print/distribution review kit');
     }
-    return validateSiteArtifact(root, directory, event);
+    return validateSiteArtifact(root, directory, event, archives);
   }
   if (artifact.kind !== 'distribution-kit') {
     throw new Error('Platform publication requires a distribution kit artifact');
@@ -133,7 +133,7 @@ function artifactRecord(root, event, directory) {
   };
 }
 
-function validateEvent(root, directory, event) {
+function validateEvent(root, directory, event, archives) {
   exactObject(
     event,
     [
@@ -193,7 +193,7 @@ function validateEvent(root, directory, event) {
   ) {
     throw new Error('A preview URL cannot establish a production canonical');
   }
-  const artifact = artifactRecord(root, event, directory);
+  const artifact = artifactRecord(root, event, directory, archives);
   if (inspection.documentSha256 !== artifact.documentSha256) {
     throw new Error('Observed document digest does not match the bound artifact');
   }
@@ -225,7 +225,7 @@ function requireSiteFirst(root, directory, events) {
   }
 }
 
-function publicationEvents(root, directory, editionId) {
+function publicationEvents(root, directory, editionId, archives) {
   const eventDirectory = path.join(root, directory, 'publication-events');
   if (!fs.existsSync(eventDirectory)) {
     return { events: [], inputs: [], published: null, modified: null };
@@ -245,7 +245,7 @@ function publicationEvents(root, directory, editionId) {
     if (`${event.id}.json` !== name) {
       throw new Error('Publication event filename and identity differ');
     }
-    inputs.push(relative, ...validateEvent(root, directory, event));
+    inputs.push(relative, ...validateEvent(root, directory, event, archives));
     events.push(event);
   }
   requireSiteFirst(root, directory, events);

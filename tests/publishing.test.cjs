@@ -1638,6 +1638,67 @@ test('canonical and actual dates require an exact committed artifact and product
         }),
       /Observed document digest/
     );
+    const sharedRoot = 'site/publication-evidence/prod-2026-10-12.1';
+    const compress = require('node:zlib').gzipSync;
+    const sharedManifestPath = `${sharedRoot}/artifact.json.gz`;
+    write(
+      root,
+      sharedManifestPath,
+      compress(fs.readFileSync(path.join(root, event.artifact.manifestPath)))
+    );
+    const memberFiles = Object.keys(publicBytes).sort();
+    for (const [index, file] of memberFiles.entries()) {
+      const name = `${sharedRoot}/files/${String(index).padStart(3, '0')}`;
+      if (file === descriptor.url) write(root, `${name}.gz`, compress(publicBytes[file]));
+      else write(root, name, publicBytes[file]);
+    }
+    const sharedEvent = {
+      ...event,
+      artifact: { ...event.artifact, manifestPath: sharedManifestPath },
+    };
+    assert.ok(validateEvent(root, directory, sharedEvent).includes(sharedManifestPath));
+    const archives = new Map();
+    const sharedInputs = validateEvent(root, directory, sharedEvent, archives);
+    assert.deepEqual(validateEvent(root, directory, sharedEvent, archives), sharedInputs);
+    assert.equal(archives.size, 1);
+    assert.throws(
+      () =>
+        validateEvent(
+          root,
+          directory,
+          {
+            ...sharedEvent,
+            inspection: {
+              ...sharedEvent.inspection,
+              documentSha256: 'f'.repeat(64),
+            },
+          },
+          archives
+        ),
+      /Observed document digest/
+    );
+    write(root, `${sharedRoot}/files/999`, html);
+    assert.throws(
+      () => validateEvent(root, directory, sharedEvent),
+      /Invalid site evidence member/
+    );
+    fs.rmSync(path.join(root, sharedRoot, 'files/999'));
+    const snapshot = String(memberFiles.indexOf(descriptor.url)).padStart(3, '0');
+    write(root, `${sharedRoot}/files/${snapshot}`, html);
+    assert.throws(
+      () => validateEvent(root, directory, sharedEvent),
+      /inventory differs from its manifest/
+    );
+    fs.rmSync(path.join(root, `${sharedRoot}/files/${snapshot}`));
+    write(root, `${sharedRoot}/files/${snapshot}.gz`, compress('corrupt'));
+    assert.throws(
+      () => require('../tools/publishing/site-event.cjs').verifySiteArchives(root, archives),
+      /corrupt or excessive public bytes/
+    );
+    assert.throws(
+      () => validateEvent(root, directory, sharedEvent, new Map()),
+      /corrupt or excessive public bytes/
+    );
     const kit = await renderKit(root, 'event-profile');
     const platformEvent = (platform, occurredAt = '2026-10-12T00:02:00Z') => {
       const documentPath = platform + '.txt';
