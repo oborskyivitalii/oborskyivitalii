@@ -34,9 +34,7 @@
           "@type": "Person",
           "name": "Vitalii Oborskyi",
           "url": "https://vitaliioborskyi.ai/"
-        },
-        "datePublished": "2026-11-16",
-        "publicationEvent": "site-publication-20261116"
+        }
       },
       "editions": [
         {
@@ -942,9 +940,7 @@
           "@type": "Person",
           "name": "Vitalii Oborskyi",
           "url": "https://vitaliioborskyi.ai/"
-        },
-        "datePublished": "2026-11-16",
-        "publicationEvent": "site-publication-20261116"
+        }
       },
       "editions": [
         {
@@ -1019,7 +1015,7 @@
         "kind": "Article",
         "publisher": "Author site",
         "archiveYear": "2026",
-        "summary": "The AI code review bottleneck is a symptom of a wider SDLC imbalance. Faster reviews alone cannot prove better delivery, shared understanding, reliability or sustainable ownership."
+        "summary": "The AI code crisis is more than a code review bottleneck. Explore verification capacity, comprehension debt and changes needed for sustainable software delivery."
       }
     }
   },

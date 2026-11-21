@@ -162,7 +162,7 @@ test.before(() => {
   };
   record.components = snapshot.verify(output, record);
   json(directory, 'artifact.json', record);
-  require('../tools/staging/color.cjs').build(directory);
+  require('../tools/staging/color.cjs').build(directory, { sourceRoot: root });
   require('../tools/staging/edition.cjs').build(directory);
   prepared = { root, generation };
 });
@@ -418,7 +418,11 @@ function compose(f, layers = []) {
   };
   record.components = snapshot.verify(path.join(directory, 'public'), record);
   json(directory, 'artifact.json', record);
-  for (const layer of layers) require('../tools/staging/' + layer + '.cjs').build(directory);
+  for (const layer of layers)
+    require('../tools/staging/' + layer + '.cjs').build(
+      directory,
+      layer === 'color' ? { sourceRoot: f.root } : {}
+    );
   return { directory, record: readJSON(directory, 'artifact.json') };
 }
 

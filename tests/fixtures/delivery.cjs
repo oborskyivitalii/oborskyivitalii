@@ -17,6 +17,8 @@ function releasedSourceRoot() {
   const temporary = fs.mkdtempSync(path.join(os.tmpdir(), 'released-delivery-seed-'));
   process.once('exit', () => fs.rmSync(temporary, { recursive: true, force: true }));
   execFileSync('git', ['clone', '--shared', '--no-checkout', '--quiet', root, temporary]);
+  // The archived source must own its actual history tip, not the caller's newer editions.
+  execFileSync('git', ['update-ref', '--no-deref', 'HEAD', releasedRevision], { cwd: temporary });
   const archive = path.join(temporary, 'source.tar');
   execFileSync(
     'git',
@@ -154,7 +156,7 @@ function staging(parent, color = false, authoredRoot = root) {
     copyFiles(result.directory, prepared.files);
   } else {
     result = copySource(parent, 'staging', 'a'.repeat(40), seed);
-    if (color) colorBuild(result.directory);
+    if (color) colorBuild(result.directory, { sourceRoot: authoredRoot });
     result.record = editionBuild(result.directory);
   }
   result.record.components = snapshot.verify(path.join(result.directory, 'public'), result.record);
@@ -185,7 +187,7 @@ function production(parent, name = 'production', commit = 'a'.repeat(40)) {
   const seed = sourceSeed(authoredRoot);
   const build = require('../../tools/release/edition.cjs').build;
   const retention = artifact.digest(
-    fs.readFileSync(path.join(root, 'site/retained/manifest.json'))
+    fs.readFileSync(path.join(authoredRoot, 'site/retained/manifest.json'))
   );
   const expectedPublicDigest = process.env.SITE_EXPECTED_PUBLIC_DIGEST;
   const prepared = productionSeeds.get(commit);
@@ -203,7 +205,7 @@ function production(parent, name = 'production', commit = 'a'.repeat(40)) {
     result = { directory, record: JSON.parse(prepared.record), authoredRoot };
   } else {
     result = copySource(parent, name, commit, seed);
-    result.record = build(result.directory);
+    result.record = build(result.directory, 'base', { sourceRoot: authoredRoot });
     productionSeeds.set(commit, {
       seed,
       build,
@@ -238,7 +240,7 @@ function rightsInventory(source, confirmed = false) {
       '--shared',
       '--no-checkout',
       '--quiet',
-      path.resolve(__dirname, '../..'),
+      source.authoredRoot || root,
       sourceRoot,
     ]);
   }

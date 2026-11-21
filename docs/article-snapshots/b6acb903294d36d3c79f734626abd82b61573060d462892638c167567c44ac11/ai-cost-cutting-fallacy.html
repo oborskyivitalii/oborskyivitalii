@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="description" content="How AI-assisted coding shifts work into review, maintenance, and the transition to new delivery capabilities."/>
+<meta name="color-scheme" content="light dark"/>
+<meta name="site-effects-contract" content="1"/>
+<title>The AI Cost-Cutting Fallacy: Why "Doing More with Less" is Breaking Engineering Teams — Vitalii Oborskyi</title>
+<meta name="author" content="Vitalii Oborskyi"/>
+<meta property="og:site_name" content="Vitalii Oborskyi"/>
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="The AI Cost-Cutting Fallacy: Why &quot;Doing More with Less&quot; is Breaking Engineering Teams — Vitalii Oborskyi"/>
+<meta property="og:description" content="How AI-assisted coding shifts work into review, maintenance, and the transition to new delivery capabilities."/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="The AI Cost-Cutting Fallacy: Why &quot;Doing More with Less&quot; is Breaking Engineering Teams — Vitalii Oborskyi"/>
+<meta name="twitter:description" content="How AI-assisted coding shifts work into review, maintenance, and the transition to new delivery capabilities."/>
+<!-- prettier-ignore -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","name":"The AI Cost-Cutting Fallacy: Why \"Doing More with Less\" is Breaking Engineering Teams","headline":"The AI Cost-Cutting Fallacy: Why \"Doing More with Less\" is Breaking Engineering Teams","description":"How AI-assisted coding shifts work into review, maintenance, and the transition to new delivery capabilities.","inLanguage":"en","author":[{"@type":"Person","name":"Vitalii Oborskyi","url":"https://vitaliioborskyi.ai/"}]}
+  </script>
+<script src="../../runtime/87f9590292adefa27641b1315e6b4292a871a7acf12b033eab5f2521433899ab/theme.js"></script>
+<link rel="stylesheet" href="../../runtime/87f9590292adefa27641b1315e6b4292a871a7acf12b033eab5f2521433899ab/styles.css"/>
+<link rel="icon" href="../../media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg" type="image/svg+xml"/>
+<script src="../../runtime/87f9590292adefa27641b1315e6b4292a871a7acf12b033eab5f2521433899ab/space.js" defer></script>
+<script src="../../runtime/87f9590292adefa27641b1315e6b4292a871a7acf12b033eab5f2521433899ab/archive.js" defer></script>
+<script src="../../runtime/87f9590292adefa27641b1315e6b4292a871a7acf12b033eab5f2521433899ab/navigation.js" defer></script>
+  <script data-site-analytics="cloudflare" src="../../runtime/6cb335e76a1aa0004d11ae06d9825991f5ea513a9564457383c8d13c7c54bbb1/analytics.js" defer></script>
+
+  <meta name="site-engine" content="87f9590292adefa27641b1315e6b4292a871a7acf12b033eab5f2521433899ab">
+  <meta name="site-route" content="b6acb903294d36d3c79f734626abd82b61573060d462892638c167567c44ac11">
+  <meta name="site-contract" content="1">
+  <meta name="site-article-renderer" content="1">
+  <meta name="site-variant" content="base">
+<meta name="site-article" content="ai-cost-cutting-fallacy:en">
+<script type="application/json" id="site-documents">{"ai-cost-cutting-fallacy:en":{"url":"articles/ai-cost-cutting-fallacy.html","snapshot":"article-snapshots/b6acb903294d36d3c79f734626abd82b61573060d462892638c167567c44ac11/ai-cost-cutting-fallacy.html"}}</script>
+<meta name="site-base" content="../../">
+</head>
+  <body data-page="writing" data-article="ai-cost-cutting-fallacy:en">
+    <div class="space-scene" aria-hidden="true"><svg class="space-fallback" fill="none" stroke="var(--accent)" data-motif="writing" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice"><use href="../../article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg#writing-fallback"></use></svg><canvas id="space-canvas"></canvas></div>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header wrap"><a class="wordmark" href="../.././" aria-label="Vitalii Oborskyi, home"><span class="monogram" aria-hidden="true">vo<span class="monogram-dot">.</span></span><span>Vitalii Oborskyi</span></a><nav aria-label="Main navigation"><a href="../.././">Home</a><a href="../../research.html">Research</a><a href="../../writing.html" aria-current="page">Writing</a><a href="../../talks.html">Talks</a></nav><details class="appearance"><summary>Appearance</summary><noscript><p>Display follows your browser’s color preference. Animated motion needs JavaScript.</p></noscript
+    ><div class="display-controls"><label class="theme-control" hidden>Theme
+        <select id="theme-mode" aria-label="Color theme"><option value="auto">Auto · local time</option><option value="light">Day</option><option value="dark">Night</option></select></label><button id="space-motion" class="motion-control" type="button" aria-pressed="false" hidden>Motion: off</button></div></details></header>
+<main id="main" tabindex="-1" class="article-reader wrap" lang="en">
+  <article class="reader-mode" aria-labelledby="the-ai-cost-cutting-fallacy-why-doing-more-with-less-is-breaking-engineering-teams">
+    <header class="article-intro">
+      <a class="reader-back" href="../../writing.html">← Back to Writing</a>
+      <h1 id="the-ai-cost-cutting-fallacy-why-doing-more-with-less-is-breaking-engineering-teams">The AI Cost-Cutting Fallacy: Why "Doing More with Less" is Breaking Engineering Teams</h1>
+      <p class="article-subtitle"><em>Source edition: <a href="https://www.linkedin.com/pulse/ai-cost-cutting-fallacy-why-doing-more-less-breaking-teams-oborskyi-cxuif/">LinkedIn</a>, 2 January 2026.</em></p>
+      <p class="article-authors">Vitalii Oborskyi <span class="reader-status">· Article</span></p>
+      <p class="reader-metadata"><span>About 15 min read</span></p>
+    </header>
+    <div class="reader-layout">
+      <nav class="article-toc" aria-label="Article contents">
+  <details class="reader-contents">
+    <summary>Contents <span data-reader-current aria-hidden="true"></span></summary>
+    <ol><li><a href="#the-efficiency-illusion">The Efficiency Illusion</a></li>
+<li><a href="#the-theory-of-change-why-transformation-costs-more-initially">The Theory of Change: Why Transformation Costs More (Initially)</a></li>
+<li><a href="#the-hidden-cost-of-parallel-operations">The Hidden Cost of Parallel Operations</a></li>
+<li><a href="#the-cognitive-load-paradox-why-seniors-are-burning-out">The Cognitive Load Paradox: Why Seniors Are Burning Out</a></li>
+<li><a href="#the-quality-vs-quantity-trap">The Quality vs. Quantity Trap</a></li>
+<li><a href="#the-real-future-two-horizons-of-value-and-software-20">The Real Future: Two Horizons of Value and Software 2.0</a><details class="reader-subcontents"><summary aria-label="Topics in The Real Future: Two Horizons of Value and Software 2.0">Topics</summary><ol><li><a href="#horizon-1-high-velocity-delivery-perfecting-software-10">Horizon 1: High-Velocity Delivery (Perfecting Software 1.0)</a></li><li><a href="#horizon-2-the-leap-to-software-20-agentic-workflowsbehavioral-software">Horizon 2: The Leap to Software 2.0 (Agentic Workflows/Behavioral Software)</a></li><li><a href="#the-cultural-bridge-why-investment-is-non-negotiable">The Cultural Bridge: Why Investment is Non-Negotiable</a></li></ol></details></li>
+<li><a href="#conclusion-invest-to-evolve-dont-cut-to-survive">Conclusion: Invest to Evolve, Don&#39;t Cut to Survive</a></li></ol>
+  </details>
+</nav>
+
+      <div class="reader-content">
+        <div class="article-body"><div class="reader-introduction"><figure id="figure-cover"><a class="reader-image-open" href="../../article-media/6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168/cover.jpg" aria-label="Enlarge image: An iceberg labeled AI speed above water and technical debt, security holes, burnout, and rework below."><img src="../../article-media/6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168/cover.jpg" alt="An iceberg labeled AI speed above water and technical debt, security holes, burnout, and rework below." width="1080" height="608" loading="eager"></a><figcaption><p>Original iceberg cover from the January 2026 LinkedIn edition.</p><details class="reader-figure-credit"><summary>Source and image details</summary><p>Original LinkedIn cover. Used with the article author’s permission for this site edition.</p></details></figcaption><a class="article-figure-original" href="../../article-media/6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168/cover.jpg">Open full-size image</a></figure>
+</div><section class="reader-chapter"><h2 id="the-efficiency-illusion">The Efficiency Illusion</h2>
+<p>In late 2024 and throughout 2025, a dangerous narrative took hold in boardrooms across the tech industry. The logic seemed seductive in its simplicity: if AI tools like GitHub Copilot, Cursor, or Windsurf can help a developer write code 20% to 50% faster, then surely a company can reduce its engineering headcount by a similar margin while maintaining the same output.</p>
+<p>This &quot;spreadsheet logic&quot; has led to a wave of premature optimizations where leadership teams view AI licenses as a direct substitute for human talent. The expectation is straightforward: buy the tools, cut the bottom 5-20% of the workforce, and watch margins improve.</p>
+<p>However, this approach fundamentally misunderstands the nature of software engineering. It confuses <strong>typing speed</strong> with <strong>problem-solving</strong>.</p>
+<p>The reality is that AI has made the easiest part of software development—generating syntax—virtually free. But it has not solved the hard parts: understanding complex system architecture, managing dependencies, and ensuring business logic aligns with user needs. By equipping teams with powerful AI generators and simultaneously reducing headcount, companies are not increasing efficiency; they are simply increasing the velocity at which they produce technical debt.</p>
+<p>We are witnessing a shift from &quot;writer&#39;s block&quot; to &quot;writer&#39;s flood&quot;. Developers are generating vast amounts of code that looks plausible on the surface but often lacks depth or context. &quot;Lines of Code&quot; (LOC) has always been a vanity metric, but in the age of AI, it has become a liability. The industry is seeing a spike in &quot;code churn&quot;—code that is written, pushed, and then almost immediately deleted or rewritten because it didn&#39;t actually solve the problem.</p>
+<p>Instead of a leaner, faster organization, the &quot;efficiency illusion&quot; creates a bloated codebase managed by fewer people who are increasingly overwhelmed by the sheer volume of generated text they must maintain.</p>
+<div class="reader-divider"><hr></div>
+<p><strong>Key Reference &amp; Data Point:</strong></p>
+<p><strong>The Rise of Code Churn:</strong> A comprehensive study by <strong>GitClear</strong>, analyzing over 211 million lines of code, found a disturbing trend coinciding with the widespread adoption of AI assistants (2025).</p>
+<ul><li><p><strong>The Finding:</strong> &quot;Code Churn&quot; (the percentage of code that is updated or deleted less than two weeks after being authored) is on the rise.</p>
+</li><li><p><strong>The Implication:</strong> This suggests that while AI helps developers type faster, it often leads to &quot;copy-paste&quot; behavior and lower-quality code that requires immediate rework. We are moving faster, but often in the wrong direction.</p>
+</li></ul>
+<figure class="reader-quotation"><blockquote><p><em>Source:</em> <a href="https://www.gitclear.com/ai_assistant_code_quality_2025_research">GitClear: AI Assistant Code Quality Research</a></p>
+</blockquote></figure>
+<div class="reader-divider"><hr></div>
+</section><section class="reader-chapter"><h2 id="the-theory-of-change-why-transformation-costs-more-initially">The Theory of Change: Why Transformation Costs More (Initially)</h2>
+<p>If previous chapter addressed the technical misconception of AI adoption, this chapter addresses the managerial one. The belief that AI implementation is a cost-saving exercise from Day One ignores decades of research into how organizations actually change.</p>
+<p>Implementing AI-native workflows is not merely a software update; it is a fundamental restructuring of how value is created. According to classic Change Management theory, specifically the <strong>Satir Change Model</strong>, any introduction of a foreign element (in this case, AI) into a stable system precipitates a period of chaos. Before a team reaches a &quot;New Status Quo&quot; of higher performance, they must inevitably pass through a valley of resistance and reduced productivity.</p>
+<p>This phenomenon is known as the <strong>&quot;J-Curve&quot; of transformation</strong>. When leadership cuts headcount at the beginning of this curve, they are effectively sabotaging the transformation before it begins. They are removing resources exactly when the organization is under the highest stress.</p>
+<figure id="figure-transformation-j-curve"><a class="reader-image-open" href="../../article-media/9e48e39e141a2775794af0f17a94275705d475ae4d3a97b327d9fdaf6992e0fa/transformation-j-curve.webp" aria-label="Enlarge image: Team performance starts level, falls through resistance and chaos after AI is introduced, then rises during integration and can settle above the starting level."><img src="../../article-media/9e48e39e141a2775794af0f17a94275705d475ae4d3a97b327d9fdaf6992e0fa/transformation-j-curve.webp" alt="Team performance starts level, falls through resistance and chaos after AI is introduced, then rises during integration and can settle above the starting level." width="1440" height="804" loading="lazy"></a><figcaption><p>The conceptual J-curve shows a transitional dip and a possible higher steady state as the team integrates new practices.</p><details class="reader-figure-credit"><summary>Source and image details</summary><p>Original diagram for this site edition, based on the Satir Change Model as described by Steven M. Smith. CC BY 4.0.</p></details></figcaption><a class="article-figure-original" href="../../article-media/9e48e39e141a2775794af0f17a94275705d475ae4d3a97b327d9fdaf6992e0fa/transformation-j-curve.webp">Open full-size image</a></figure>
+<p>To succeed, companies must operate as what Harvard Business Review calls an <strong>&quot;Ambidextrous Organization&quot;.</strong> This requires executing two contradictory modes of operation simultaneously:</p>
+<ol><li><p><strong>Exploit (Run the Business):</strong> Maintaining legacy systems, fixing current bugs, and generating revenue using established, manual-heavy processes. This requires the existing workforce to keep the lights on.</p>
+</li><li><p><strong>Explore (Change the Business):</strong> Experimenting with AI agents, building new evaluation pipelines, and retraining staff on prompt engineering and architectural review. This requires <em>additional</em> time and mental energy.</p>
+</li></ol>
+<p>The fatal error of 2024-2025 is the assumption that you can siphon resources from Group 1 to fund Group 2. In reality, the &quot;Exploit&quot; engine cannot stop running while the &quot;Explore&quot; engine is being built.</p>
+<p>For a period of 6 to 18 months, an organization must bear the cost of <strong>parallel structures</strong>. You need your senior engineers to maintain the old standard of quality while simultaneously learning to govern the new AI-driven chaos. This is a period of <em>investment</em>, requiring more budget and more headcount (or at least stable headcount with higher training costs), not less.</p>
+<p>Cutting costs during this phase is akin to selling your car’s engine to buy fuel—you might have the energy source, but you no longer have the mechanism to move forward.</p>
+<div class="reader-divider"><hr></div>
+<p><strong>Key Reference &amp; Concept:</strong></p>
+<p><strong>The Ambidextrous Organization:</strong> Research by Charles A. O&#39;Reilly III and Michael L. Tushman highlights that successful companies separate their new, exploratory units from their traditional exploitative ones, acknowledging that they require different structures, cultures, and metrics.</p>
+<ul><li><p><strong>The Insight:</strong> Attempting to merge these functions under a shrinking budget leads to the failure of both. The &quot;old&quot; business suffers from neglect, and the &quot;new&quot; business is strangled by a lack of resources.</p>
+</li><li><p><strong>The Lesson:</strong> Transformation is an addition to the workload, not a subtraction.</p>
+</li></ul>
+<figure class="reader-quotation"><blockquote><p><em>Source:</em> <a href="https://hbr.org/2004/04/the-ambidextrous-organization">Harvard Business Review: The Ambidextrous Organization</a> <em>Concept:</em> <a href="https://stevenmsmith.com/ar-satir-change-model/">The Satir Change Model (The J-Curve)</a></p>
+</blockquote></figure>
+<div class="reader-divider"><hr></div>
+</section><section class="reader-chapter"><h2 id="the-hidden-cost-of-parallel-operations">The Hidden Cost of Parallel Operations</h2>
+<p>If the &quot;J-Curve&quot; describes the timeline of transformation, the &quot;Hidden Cost of Parallel Operations&quot; describes the bill that comes due during that timeline.</p>
+<p>Many organizations calculate the ROI of AI adoption by simply comparing the cost of a Copilot license ($19-$39/month) against the hourly rate of a developer. This calculation is dangerously incomplete. It ignores the operational reality of the transition phase described in previous chapter.</p>
+<p>During the transition to an AI-native workflow, companies face a <strong>&quot;Double Overhead&quot;.</strong> They are not swapping one cost for another; they are temporarily stacking them.</p>
+<ol><li><p><strong>The Legacy Cost:</strong> You must continue paying for the maintenance of existing systems, which requires deep institutional knowledge and traditional engineering skills.</p>
+</li><li><p><strong>The Transformation Cost:</strong> Simultaneously, you are paying for the &quot;New Way&quot;—not just software licenses, but the infrastructure for RAG (Retrieval-Augmented Generation), vector databases, and, most importantly, the <strong>&quot;Training Tax&quot;.</strong></p>
+</li></ol>
+<p>The &quot;Training Tax&quot; is the time and money required to upskill your workforce. Effective use of AI requires a shift from &quot;writing syntax&quot; to &quot;prompt engineering,&quot; &quot;context curation,&quot; and &quot;output verification&quot;. These are not innate skills; they must be taught.</p>
+<p>Furthermore, the cost-cutting mindset often leads to the dismissal of mid-level engineers to &quot;flatten&quot; the organization. This triggers a <strong>&quot;Brain Drain&quot;</strong> of domain knowledge. AI models are excellent at general reasoning but have zero knowledge of your company&#39;s specific business logic or legacy quirks unless provided with context. When you fire the people who hold that context in their heads, you lobotomize your organization. You are left with a powerful AI engine but no one who knows how to steer it through your specific business terrain.</p>
+<p>Trying to &quot;save&quot; money during this phase by cutting staff is a false economy. It is like firing the navigation crew on a ship because you bought a new GPS system—before anyone has learned how to program the destination.</p>
+<div class="reader-divider"><hr></div>
+<p><strong>Key Reference &amp; Insight:</strong></p>
+<p><strong>Why Digital Transformations Fail:</strong> Research by <strong>McKinsey Digital</strong> consistently shows that the primary reason for transformation failure is under-resourcing the &quot;change engine&quot;.</p>
+<ul><li><p><strong>The Insight:</strong> transformations require a reallocation of resources towards <em>capability building</em> (training and upskilling), not just technology acquisition. Companies that focus solely on tech adoption without investing in the human element (the &quot;Training Tax&quot;) are 2.5x more likely to fail.</p>
+</li><li><p><strong>The Lesson:</strong> You cannot buy efficiency; you have to build it. And building costs money before it saves money.</p>
+</li></ul>
+<figure class="reader-quotation"><blockquote><p><em>Source:</em> <a href="https://www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights/unlocking-success-in-digital-transformations">McKinsey: Unlocking success in digital transformations</a></p>
+</blockquote></figure>
+<div class="reader-divider"><hr></div>
+</section><section class="reader-chapter"><h2 id="the-cognitive-load-paradox-why-seniors-are-burning-out">The Cognitive Load Paradox: Why Seniors Are Burning Out</h2>
+<p>While executives look at spreadsheets, engineering teams are grappling with a fundamental shift in their daily reality. The introduction of AI coding assistants has created a dangerous asymmetry in the software development lifecycle: <strong>writing code has become instant, but reading code remains at human speed.</strong></p>
+<p>This asymmetry hits Senior Engineers the hardest.</p>
+<p>In a traditional workflow, a Senior Engineer spends a portion of their time coding and a portion reviewing the work of Junior and Mid-level developers. The volume of code produced was limited by the typing speed and thinking speed of the juniors.</p>
+<p>With AI, that limiter has been removed. Junior developers, empowered by tools like Copilot, can now generate vast amounts of code in minutes. They open Pull Requests (PRs) that are larger, more complex, and more frequent than ever before.</p>
+<p>The Senior Engineer, who acts as the gatekeeper of quality, is suddenly facing a firehose of code. This leads to <strong>&quot;Reviewer Fatigue&quot;.</strong></p>
+<p>The problem is exacerbated by the nature of AI-generated code. It is often &quot;plausible but wrong&quot;—it looks syntactically perfect and follows the style guide, but may contain subtle logical hallucinations or inefficient patterns that are difficult to spot.</p>
+<ul><li><p><strong>The Old Way:</strong> A senior reviews code where the logic is usually sound, but the syntax might be messy.</p>
+</li><li><p><strong>The AI Way:</strong> A senior reviews code where the syntax is perfect, but the logic might be fundamentally broken in a way that requires deep mental simulation to catch.</p>
+</li></ul>
+<p>This drastically increases <strong>Cognitive Load</strong>. Instead of focusing on high-level system architecture or solving critical business problems, the most expensive and experienced engineers are turned into &quot;AI Janitors,&quot; spending their days debugging code they didn&#39;t write and which the author often doesn&#39;t fully understand.</p>
+<p>The result is a paradox: individual productivity (lines of code generated) skyrockets, but team velocity (features shipped to production) stalls because the review process becomes a massive bottleneck.</p>
+<div class="reader-divider"><hr></div>
+<p><strong>Key Reference &amp; Insight:</strong></p>
+<p><strong>The Impact of Cognitive Load on Developer Experience (DevEx):Microsoft Research</strong> and GitHub have extensively studied what actually drives developer productivity. They found that &quot;Flow State&quot; is critical, and high cognitive load is the primary enemy of flow.</p>
+<ul><li><p><strong>The Insight:</strong> When developers are forced to spend excessive mental energy verifying untrusted code, their ability to solve complex problems degrades. High cognitive load correlates strongly with burnout and lower overall system quality.</p>
+</li><li><p><strong>The Lesson:</strong> AI tools reduce the cognitive load of <em>writing</em>, but they transfer that load (with interest) to the <em>reviewing</em> phase.</p>
+</li></ul>
+<figure class="reader-quotation"><blockquote><p><em>Source:</em> <a href="https://queue.acm.org/detail.cfm?id=3595878">Microsoft Research: DevEx: What Actually Drives Productivity</a></p>
+</blockquote></figure>
+<div class="reader-divider"><hr></div>
+</section><section class="reader-chapter"><h2 id="the-quality-vs-quantity-trap">The Quality vs. Quantity Trap</h2>
+<p>The direct consequence of the &quot;Efficiency Illusion&quot; (Chapter 1) and &quot;Reviewer Fatigue&quot; (Chapter 4) is a subtle but pervasive degradation of software quality. By prioritizing the speed of output, organizations are inadvertently incentivizing the creation of technical debt at an industrial scale.</p>
+<p>This phenomenon creates what can be called the <strong>&quot;Illusion of Competence&quot;.</strong></p>
+<p>In the past, a junior developer who didn&#39;t understand a problem would simply get stuck. They would have to ask for help or read documentation. This was a natural throttle on the codebase. Today, that same developer can ask an AI to &quot;write a function that does X,&quot; and the AI will provide a syntactically perfect solution in seconds.</p>
+<p>The code compiles. It runs. It might even pass the basic unit tests. But does it handle edge cases? Is it secure? Does it scale?</p>
+<p>Because the junior developer didn&#39;t write the logic, they often lack the depth of understanding required to answer these questions. They are not &quot;coding&quot;; they are &quot;accepting suggestions&quot;. As a result, we are seeing a rise in <strong>&quot;Happy Path&quot; programming</strong>—code that works perfectly under ideal conditions but fails catastrophically when faced with unexpected user behavior or malformed data.</p>
+<p>Furthermore, the cost of fixing these errors follows the classic software engineering curve: a bug caught during the design phase costs $1 to fix; a bug caught in production costs $100. AI accelerates the &quot;push to production&quot; cycle, meaning bugs are being shipped faster than ever before.</p>
+<p>Security is the most critical casualty. AI models are trained on public code repositories, which contain millions of examples of insecure coding patterns. Without rigorous oversight, AI assistants will happily suggest SQL injection vulnerabilities, hardcoded credentials, or outdated encryption methods.</p>
+<div class="reader-divider"><hr></div>
+<p><strong>Key Reference &amp; Insight:</strong></p>
+<p><strong>Do Users Write More Insecure Code with AI Assistants?</strong> A study by researchers at <strong>Stanford University</strong> investigated the impact of AI coding assistants on security.</p>
+<ul><li><p><strong>The Finding:</strong> Participants who had access to AI assistants wrote significantly <em>less</em>secure code than those who didn&#39;t.</p>
+</li><li><p><strong>The Twist:</strong> Crucially, those same participants were <em>more likely</em> to believe their code was secure. The AI gave them false confidence.</p>
+</li><li><p><strong>The Lesson:</strong> AI lowers the barrier to entry for writing code, but it raises the barrier to entry for writing <em>safe</em> code.</p>
+</li></ul>
+<figure class="reader-quotation"><blockquote><p><em>Source:</em> <a href="https://arxiv.org/abs/2211.03622">Stanford: Do Users Write More Insecure Code with AI Assistants?</a></p>
+</blockquote></figure>
+<div class="reader-divider"><hr></div>
+</section><section class="reader-chapter"><h2 id="the-real-future-two-horizons-of-value-and-software-20">The Real Future: Two Horizons of Value and Software 2.0</h2>
+<p>The pessimism of the previous chapters leads to a necessary question: If AI doesn&#39;t save money on headcount immediately and introduces risks to quality when mismanaged, why use it at all?</p>
+<p>The answer lies in a fundamental reframing. When organizations stop treating AI as a cost-cutting tool and start investing in the <strong>transformation of engineering culture</strong>, they unlock two distinct horizons of value that were previously inaccessible.</p>
+<h3 id="horizon-1-high-velocity-delivery-perfecting-software-10">Horizon 1: High-Velocity Delivery (Perfecting Software 1.0)</h3>
+<p>Before we reach the sci-fi future, proper AI adoption revolutionizes the <em>current</em> work. This is the first effect of proper investment: <strong>truly faster and higher-quality delivery.</strong></p>
+<p>When teams are trained not just to &quot;generate code,&quot; but to use AI for architectural review, automated testing generation, and legacy refactoring, the metrics change. We don&#39;t just get faster typing; we get faster cycle times and higher reliability. In this mode, AI acts as a force multiplier for best practices. It allows a team to maintain strict TDD (Test Driven Development) without the tedium, or to document complex systems instantly.</p>
+<h3 id="horizon-2-the-leap-to-software-20-agentic-workflowsbehavioral-software">Horizon 2: The Leap to Software 2.0 (Agentic Workflows/Behavioral Software)</h3>
+<p>Mastering Horizon 1 is the prerequisite for Horizon 2: building things that never existed before. We are witnessing a platform shift from &quot;Copilots&quot; (assistants) to <strong>&quot;Agents&quot;</strong> (actors).</p>
+<ul><li><p><strong>Software 1.0 (The Current Paradigm):</strong> Explicit logic written by humans. You use a travel app to manually search, filter, and book.</p>
+</li><li><p><strong>Software 2.0 (The Agentic Future):</strong> Goal-driven systems. You tell the app &quot;Plan a weekend in Paris,&quot; and the agent negotiates with APIs, books flights, and schedules rides autonomously.</p>
+</li></ul>
+<p>This represents the creation of <strong>&quot;Behavioral Applications&quot;.</strong> These are not just static interfaces; they are intelligent systems capable of reasoning, planning, and error correction.</p>
+<figure class="reader-quotation"><blockquote><p><strong>Author’s note, November 2026.</strong> “Behavioral Applications” was the term I used in this edition. I now use <a href="../../articles/thinking-systems.html">Thinking Systems</a> for systems that rely partly on model judgment for at least one consequential runtime responsibility. The same test applies to fixed workflows and autonomous agents.</p>
+</blockquote></figure>
+<h3 id="the-cultural-bridge-why-investment-is-non-negotiable">The Cultural Bridge: Why Investment is Non-Negotiable</h3>
+<p>Crucially, neither Horizon 1 nor Horizon 2 can be achieved by simply buying licenses and firing staff. Both require a radical change in <strong>engineering culture</strong>.</p>
+<p>Building probabilistic, agentic systems moves the center of gravity from &quot;syntax generation&quot; to <strong>&quot;System Orchestration&quot;</strong> and <strong>&quot;Evaluation&quot;.</strong> To succeed, you don&#39;t need fewer developers; you need <em>transformed</em> developers. You need engineers who understand how to build &quot;guardrails&quot; around AI models and how to debug logic that wasn&#39;t written, but <em>emerged</em>.</p>
+<p>This cultural shift requires <strong>additional investment</strong>, not cuts. It demands budget for training, experimentation time, and the creation of new &quot;AI Ops&quot; roles. To govern this transition from deterministic code to probabilistic systems, we need more than just tools—we need a new operational standard, what I call Uncertainty Architecture.</p>
+<p>Companies that invest in this transformation today will dominate the market with superior products tomorrow. Those that cut costs will be left with broken codebases and no one capable of fixing them.</p>
+<div class="reader-divider"><hr></div>
+<p><strong>Key Reference &amp; Vision:</strong></p>
+<p><strong>AI Agents and the Future of Software</strong>:Leading venture capital firms and tech visionaries, including <strong>Sequoia Capital</strong> and <strong>Bill Gates</strong>, have identified &quot;Agents&quot; as the next major platform shift. However, they emphasize that this is a shift in <em>capability</em>, not just efficiency.</p>
+<ul><li><p><strong>The Vision:</strong> &quot;Agents are not just going to change how everyone interacts with computers. They’re going to upend the software industry&quot;.</p>
+</li><li><p><strong>The Reality Check:</strong> Realizing this vision requires a shift from &quot;software as a tool&quot; to &quot;software as a service&quot; (performing tasks). This necessitates a new breed of engineering teams capable of managing non-deterministic outcomes—a skill set that must be cultivated through investment.</p>
+</li></ul>
+<figure class="reader-quotation"><blockquote><p><em>Source:</em> <a href="https://sequoiacap.com/article/ai-agents-perspective/">Sequoia Capital: AI Agents</a> | <a href="https://www.gatesnotes.com/AI-agents">Bill Gates: AI is about to completely change how you use computers</a></p>
+</blockquote></figure>
+<div class="reader-divider"><hr></div>
+</section><section class="reader-chapter"><h2 id="conclusion-invest-to-evolve-dont-cut-to-survive">Conclusion: Invest to Evolve, Don&#39;t Cut to Survive</h2>
+<p>The narrative that AI will allow companies to immediately slash engineering budgets by 20-30% is not just optimistic; it is structurally dangerous. As we have explored, this &quot;Cost-Cutting Fallacy&quot; ignores the realities of the J-Curve of transformation, the hidden costs of parallel operations, and the crushing cognitive load placed on senior staff.</p>
+<p>The companies that treat AI solely as a mechanism for headcount reduction are destined to fail. They will likely experience a short-term boost in margins, followed by a long-term collapse. They will fail to master <strong>Horizon 1</strong> (drowning in low-quality, AI-generated technical debt) and they will lack the talent to reach <strong>Horizon 2</strong> (unable to build the complex, agentic systems of the future).</p>
+<p>However, the future is bright for organizations that view AI correctly: not as a <strong>cost-saver</strong>, but as a <strong>capability multiplier</strong>.</p>
+<p>For leaders navigating 2026, the playbook is clear:</p>
+<ol><li><p><strong>Fund the J-Curve:</strong> Accept that productivity will dip before it soars. Budget for the &quot;Transformation Tax&quot; and resist the urge to cut resources during the transition.</p>
+</li><li><p><strong>Measure Value, Not Volume:</strong> Stop tracking &quot;lines of code&quot; or &quot;commit frequency&quot;. Start measuring &quot;cycle time,&quot; &quot;system reliability,&quot; and &quot;customer problems solved&quot;.</p>
+</li><li><p><strong>Upskill to Bridge the Gap:</strong> Your domain experts are more valuable than ever. The AI can write the syntax, but only your people understand the business logic. Invest in training them to master Horizon 1 tools so they are ready to build Horizon 2 agents.</p>
+</li><li><p><strong>Build for Software 2.0:</strong> Shift your focus from &quot;how do we build this app cheaper?&quot; to &quot;what kind of intelligent, agentic applications can we build now that were impossible before?&quot;</p>
+</li></ol>
+<p>AI is not a way to do the same work with fewer people. It is a way for your existing team to do things that were previously impossible. The winners of the next decade will be the ones who invest to evolve, rather than cut to survive.</p>
+<div class="reader-divider"><hr></div>
+<p><strong>Final Takeaway:</strong></p>
+<figure class="reader-quotation"><blockquote><p>&quot;You can&#39;t shrink your way to greatness. AI offers a path to exponential value creation, but the toll for that path is paid in investment, patience, and human capital.&quot;</p>
+</blockquote></figure>
+<div class="reader-divider"><hr></div>
+<p><strong>Related reading:</strong> <a href="https://vitaliioborskyi.ai/articles/the-sdlc-is-out-of-balance.html">The SDLC Is Out of Balance: Beyond the AI Code Review Bottleneck</a> examines how faster generation can move constraints and costs across review, integration, learning and ownership. It separates coding activity from useful delivery and suggests bounded ways to test a different operating model.</p>
+<p><strong>Vitalii Oborskyi</strong> is an enterprise delivery leader and independent research author. His work focuses on AI-assisted software delivery and the governance of systems that depend on model judgment. He is the author of <a href="https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture">Uncertainty Architecture</a> and <a href="https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis">The Subprime Code Crisis</a>.</p>
+<p><a href="https://vitaliioborskyi.ai/">Author website</a> · <a href="https://www.linkedin.com/in/vitaliioborskyi/">LinkedIn</a></p>
+</section></div>
+        <div class="reader-closing">
+          <div class="reader-tags-slot"></div>
+          <div class="reader-related-slot"></div>
+          <div class="reader-appendices"><section class="article-sources" data-article-rights="61e52c1c3f4dca44678e87536f71c2c0eb0bddd4769ea48276ab4658b53235a2"><details><summary>Edition rights and resources</summary><p>Vitalii Oborskyi. The authored article text from the selected LinkedIn edition and the original site J-curve illustration are included under CC BY 4.0. The historical iceberg cover is used with permission for this site edition. Linked material retains its own terms.</p><p>Content edition: ai-cost-cutting-fallacy-en-20261121-discovery. Rights: accepted. Source SHA256 113bb7c1a3eed5ad8a644d26287e2048bd5440d4bd9cbfa942906682d91369c5; semantic SHA256 9a2ccc619b6b0a773f7b0af7a9b91fa119e239f64338c752bdf3fd35a2899ae3.</p><ul><li>site/assets/publications/ai-cost-cutting-fallacy/cover.png · SHA256 6ab7c4fb30fda5cf2d6ac04e1253dc2224ad8b16fb8f053d85888b6b40fe5833<p>Original LinkedIn cover. Used with the article author’s permission for this site edition.</p><p>Pixel-equivalent source JPEG: article-media/6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168/cover.jpg · SHA256 6bdc82b434812230e6a7a21b2fd2ed52473deaa39b531933ffccafd46bc17168. Decoded RGBA SHA256 73ad4e24860ed3299f247eae638401d9e1edd14d5476d849e4b8824ece041b03; color profile SHA256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.</p></li><li>site/assets/publications/ai-cost-cutting-fallacy/transformation-j-curve.png · SHA256 11352752759624202e3a284558455b884b87239ab57c3487ae6787e3ad4bab7f<p>Original diagram for this site edition, based on the Satir Change Model as described by Steven M. Smith. CC BY 4.0.</p><p>Lossless WebP copy: article-media/9e48e39e141a2775794af0f17a94275705d475ae4d3a97b327d9fdaf6992e0fa/transformation-j-curve.webp · SHA256 9e48e39e141a2775794af0f17a94275705d475ae4d3a97b327d9fdaf6992e0fa. Decoded RGBA SHA256 3a4796d366d900d82670da88feff91592360db5f6096e895cd1c52e7ea62aab2; color profile SHA256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.</p></li><li>site/assets/publications/ai-cost-cutting-fallacy/cover.png · SHA256 6ab7c4fb30fda5cf2d6ac04e1253dc2224ad8b16fb8f053d85888b6b40fe5833<p>Original LinkedIn cover. Used with the article author’s permission for this site edition.</p><p>Padded social preview JPEG: article-media/9acaf96c7008839610c8b9d3efdcb45a8046cde2c792f6f0dfe1951ba8a92048/cover-social.jpg · SHA256 9acaf96c7008839610c8b9d3efdcb45a8046cde2c792f6f0dfe1951ba8a92048. Decoded RGBA SHA256 de151e7281b8428cb376647d12568470b6af6ff5c876e2e8a19299fe7fda40b8; color profile SHA256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.</p></li></ul><p><a href="../../credits.html#license-scope">Site licenses and exclusions</a>. Third-party material retains its own terms; pending clearance is not a reuse grant.</p></details></section></div>
+          <nav class="reader-end" aria-label="After the article">
+            <a href="../../writing.html">← More writing</a>
+            <a href="#the-ai-cost-cutting-fallacy-why-doing-more-with-less-is-breaking-engineering-teams">Back to top ↑</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <dialog class="reader-dialog reader-image-dialog" aria-label="Image viewer" hidden>
+  <div class="reader-dialog-header">
+    <h2>Image</h2>
+    <button type="button" data-reader-close aria-label="Close image viewer">Close</button>
+  </div>
+  <div class="reader-image-stage" data-reader-image tabindex="0" aria-label="Image detail"></div>
+  <p class="reader-image-caption" data-reader-image-caption></p>
+  <div class="reader-dialog-actions">
+    <button type="button" data-reader-zoom aria-pressed="false">Actual size</button>
+    <a href="#main" data-reader-image-original>Open original image</a>
+  </div>
+</dialog>
+<dialog class="reader-dialog reader-note-dialog" aria-label="Reference" hidden>
+  <div class="reader-dialog-header">
+    <h2 data-reader-note-title>Reference</h2>
+    <button type="button" data-reader-close aria-label="Close reference">Close</button>
+  </div>
+  <div class="reader-note-body" data-reader-note-body></div>
+  <div class="reader-dialog-actions">
+    <a href="#main" data-reader-note-full>View in sources and references</a>
+  </div>
+</dialog>
+
+  </article>
+</main>
+<footer class="site-footer wrap"><p>© 2026 Vitalii Oborskyi</p><a href="../.././#about">About</a><a href="../.././#contact">Contact</a><a href="../../credits.html">Reuse &amp; credits</a><a href="#main">Back to top ↑</a></footer>
+</body>
+</html>

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "id": "sdlc-out-of-balance-r12",
+  "id": "sdlc-out-of-balance-r13",
   "platforms": {
     "linkedin": {
       "formats": ["html", "md", "txt", "copy-ready"],
@@ -16,8 +16,8 @@
     "sha256": "d9ac5bab3e3dd827e5f01d10e66055c55200e5a57f61c7dfa092d8907e201ef4"
   },
   "seo": {
-    "title": "AI Code Review Bottleneck \u2014 The SDLC Is Out of Balance",
-    "summary": "AI code review is one part of a wider SDLC imbalance. Local automation can move costs, weaken shared understanding and delay business returns. Rebalance the whole delivery system."
+    "title": "AI Code Review Bottleneck — The SDLC Is Out of Balance",
+    "summary": "The AI code crisis is more than a code review bottleneck. Explore verification capacity, comprehension debt and changes needed for sustainable software delivery."
   },
   "assets": {
     "cover": {
@@ -48,7 +48,7 @@
   "print": {
     "titleBlock": {
       "subtitle": "816836a6e529705c65b7ae6a6d01df933af1bb73a72864a475c3a31de83610cf",
-      "byline": "026c78dd401aa84405316165393cb21c324c3d086b7f0d14814d73775461617a"
+      "byline": "6c9af9de8ce3b7d63cdc6fd380803eee9160899cc9f911fd9f7d2e86fe846366"
     }
   },
   "distribution": {

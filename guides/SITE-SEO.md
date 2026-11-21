@@ -6,6 +6,17 @@ belong to the owning issues and [MEMORY](../MEMORY.md), not an old session hando
 
 ## Current canonical content reconciliation
 
+Issue213's21November2026 author-review candidate uses the existing SDLC article
+for the delivery-system interpretation of “AI code crisis”. Research retains its
+two directions and upstream/Writing links, with one additional direct article link.
+Verification Crisis and Cost-Cutting Fallacy remain distinct companion works.
+The future Subprime report mount remains issue116; this does not create another hub
+or transfer research authority. The [source-bound review](../review/issue-213/2026-11-21-discovery-review.md)
+records attribution, successor editions, exact SEO-preservation scope and the
+partial Search Console baseline. Demand, controlled Google rank, selected canonical,
+AI citations and delayed outcomes remain unestablished. This candidate is not a
+production or indexing receipt.
+
 Issue179 prepares per-article link previews. The hosted producer derives a
 separate1200×630 padded JPEG from the validated profile's declared cover; reader,
 print and original artwork remain unchanged. The rendition is content-addressed

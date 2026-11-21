@@ -1293,3 +1293,9 @@ test('completed DevCon talk belongs with past events and preserves previous publ
     );
   }
 });
+
+test('synthetic catalog isolation refuses the actual source root before changing it', () => {
+  const { isolateLegacyCatalog } = require('./fixtures/catalog.cjs');
+  const source = path.resolve(__dirname, '..');
+  assert.throws(() => isolateLegacyCatalog(source, source), /requires a distinct fixture root/);
+});

@@ -902,7 +902,7 @@ test('reading entry shares immutable hosted and Color runtime without adding rou
   );
   assert.ok(Buffer.byteLength(fs.readFileSync(path.join(dir, 'docs/writing.html'))) <= 100000);
   const color = require('../tools/staging/color.cjs');
-  color.decoratePublic(path.join(dir, 'docs'));
+  color.decoratePublic(path.join(dir, 'docs'), { sourceRoot: dir });
   const colored = fs.readFileSync(path.join(dir, 'docs/navigation.js'), 'utf8');
   assert.ok(colored.includes(navigation), 'Color consumes the exact shared navigation bytes');
   edit(dir, 'site/engine/scroll-entry.cjs', (source) =>

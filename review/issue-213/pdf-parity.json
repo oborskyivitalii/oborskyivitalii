@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "sourceCommit": "0454b62d8c4f2698b783dcae19298f35af207890",
+  "sourceSha256": "0d60c9bf68e768c7d33dce9f70b7500b6ea89867ba6997e16c66a5e7f04ff633",
+  "pdfSha256": "a967d35ecd0b16674bbafb2dcf4f02e2bbc33aa51b6780fccf6fc5057fed93ec",
+  "pages": 5,
+  "orderedTextBlocks": 90,
+  "missingOrOutOfOrder": [],
+  "sourceUniqueLinks": 19,
+  "pdfUniqueLinks": 19,
+  "missingLinks": [],
+  "uniqueImageObjects": 5,
+  "implementerVisualInspection": "All five pages inspected; readable five-page layout; original hero caption omitted as in R12; all four explanatory figure captions retained.",
+  "extraction": "Page body clipped above footer; initial whole-page extraction interrupted two spanning paragraphs with footer text, not lost source text."
+}

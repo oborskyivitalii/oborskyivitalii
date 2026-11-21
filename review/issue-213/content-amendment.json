@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "issue": 213,
+  "baseline": "3877546d29a04f235f9ec0f3175f4e0d90bfd60d",
+  "changes": [
+    {
+      "page": "research",
+      "id": "delivery-article-link",
+      "intent": "AC02/AC04 add one direct delivery-article link while preserving upstream research, Writing collection and all unrelated semantics",
+      "before": "<p><a class=\"text-link\" href=\"writing.html#topic-delivery\">Start with verification and delivery-cost reading →</a></p>",
+      "after": "<p><a class=\"text-link\" href=\"writing.html#topic-delivery\">Start with verification and delivery-cost reading →</a></p>\n      <p><a class=\"text-link\" href=\"articles/the-sdlc-is-out-of-balance.html\">AI code crisis: why the SDLC is out of balance →</a></p>",
+      "beforeSHA256": "76cba2fe7e84ee32d843180f68dc8a2a7dd0001418cc4e49133e9bb50bef1e54",
+      "afterSHA256": "fd9818d6d26ade638c1f1e55c973cc89fa153fb41f115db713ab658769994629"
+    }
+  ]
+}

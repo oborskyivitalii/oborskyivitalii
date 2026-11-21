@@ -12,6 +12,46 @@ const staging = require('../tools/staging/edition.cjs');
 const production = require('../tools/release/edition.cjs');
 const declared = require('../site/retained/manifest.json').files;
 
+test('explicit retention source preserves defaults and refuses missing or tampered declarations', (t) => {
+  const temp = fixture.temporary(t);
+  const sourceRoot = path.join(temp, 'retention-source');
+  const declarationFile = path.join(sourceRoot, 'site/retained/manifest.json');
+  fs.mkdirSync(path.dirname(declarationFile), { recursive: true });
+  const declaration = { schema: 1, files: declared };
+  for (const variant of ['base', 'color']) {
+    const normal = fixture.source(temp, variant + '-default');
+    const explicit = fixture.source(temp, variant + '-explicit');
+    const apply = (directory, options) =>
+      variant === 'color'
+        ? color.build(directory, options)
+        : production.build(directory, 'base', options);
+    fs.rmSync(declarationFile, { force: true });
+    assert.throws(() => apply(explicit.directory, { sourceRoot }), /ENOENT/);
+    fs.writeFileSync(declarationFile, JSON.stringify({ schema: 1, files: null }));
+    assert.throws(() => apply(explicit.directory, { sourceRoot }), /retention declaration/);
+    const name = Object.keys(declared)[0];
+    fs.writeFileSync(
+      declarationFile,
+      JSON.stringify({ schema: 1, files: { ...declared, [name]: '0'.repeat(64) } })
+    );
+    assert.throws(
+      () => apply(explicit.directory, { sourceRoot }),
+      /declared retained bytes differ/
+    );
+    fs.writeFileSync(declarationFile, JSON.stringify(declaration));
+    const normalRecord = apply(normal.directory);
+    const explicitRecord = apply(explicit.directory, { sourceRoot });
+    assert.equal(explicitRecord.artifactDigest, normalRecord.artifactDigest);
+    assert.deepEqual(explicitRecord.files, normalRecord.files);
+    if (variant === 'color') {
+      const normalProduction = production.build(normal.directory, 'color');
+      const explicitProduction = production.build(explicit.directory, 'color', { sourceRoot });
+      assert.equal(explicitProduction.artifactDigest, normalProduction.artifactDigest);
+      assert.deepEqual(explicitProduction.files, normalProduction.files);
+    }
+  }
+});
+
 test('Color and production preserve prior editions while staging remains isolated', (t) => {
   const temp = fixture.temporary(t);
   for (const kind of ['staging', 'production']) {

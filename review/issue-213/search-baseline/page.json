@@ -1,0 +1,64 @@
+{
+  "fields": [
+    "page",
+    "impressions",
+    "clicks",
+    "ctr",
+    "position"
+  ],
+  "response": {
+    "status": "done",
+    "data": [
+      {
+        "page": "https://vitaliioborskyi.ai/",
+        "impressions": 29,
+        "clicks": 5,
+        "ctr": 0.1724,
+        "position": 3.8621
+      },
+      {
+        "page": "http://vitaliioborskyi.ai/",
+        "impressions": 1,
+        "clicks": 1,
+        "ctr": 1,
+        "position": 1
+      },
+      {
+        "page": "https://vitaliioborskyi.ai/articles/the-sdlc-is-out-of-balance.html",
+        "impressions": 1,
+        "clicks": 0,
+        "ctr": 0,
+        "position": 21
+      },
+      {
+        "page": "https://vitaliioborskyi.ai/credits.html",
+        "impressions": 1,
+        "clicks": 0,
+        "ctr": 0,
+        "position": 3
+      },
+      {
+        "page": "https://vitaliioborskyi.ai/research.html",
+        "impressions": 8,
+        "clicks": 0,
+        "ctr": 0,
+        "position": 19.75
+      },
+      {
+        "page": "https://vitaliioborskyi.ai/talks.html",
+        "impressions": 7,
+        "clicks": 0,
+        "ctr": 0,
+        "position": 20.2857
+      },
+      {
+        "page": "https://vitaliioborskyi.ai/writing.html",
+        "impressions": 17,
+        "clicks": 0,
+        "ctr": 0,
+        "position": 6.8235
+      }
+    ],
+    "total_rows": 7
+  }
+}

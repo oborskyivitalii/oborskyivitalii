@@ -1,0 +1,14 @@
+{
+  "base": "3877546d29a04f235f9ec0f3175f4e0d90bfd60d",
+  "historicalPrimaryProjection": {
+    "publication-02": {
+      "datePublished": "2026-11-16",
+      "publicationEvent": "site-publication-20261116"
+    },
+    "publication-28": {
+      "datePublished": "2026-11-16",
+      "publicationEvent": "site-publication-20261116"
+    }
+  },
+  "disposition": "Historical source/events remain immutable; successor current-primary date/event projection pending actual production-served observation."
+}

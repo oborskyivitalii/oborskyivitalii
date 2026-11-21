@@ -32,8 +32,9 @@ function contentBaselineFor(directory, record) {
   return contentBaseline;
 }
 
-function applyDeliveryLayers(directory, record, content, candidates) {
-  if (record.components.variant?.id === 'color') require('../staging/color.cjs').build(directory);
+function applyDeliveryLayers(directory, record, content, candidates, sourceRoot) {
+  if (record.components.variant?.id === 'color')
+    require('../staging/color.cjs').build(directory, { sourceRoot });
   const edition = record.edition?.id;
   if (edition === 'staging')
     require('../staging/edition.cjs').build(
@@ -41,7 +42,9 @@ function applyDeliveryLayers(directory, record, content, candidates) {
       record.socialPreviewOrigin === undefined ? {} : { socialOrigin: record.socialPreviewOrigin }
     );
   else if (edition === 'production' && content && !candidates.length)
-    require('../release/edition.cjs').build(directory, record.components.variant?.id || 'base');
+    require('../release/edition.cjs').build(directory, record.components.variant?.id || 'base', {
+      sourceRoot,
+    });
   else if (edition) throw Error('Article candidates cannot use a production edition');
 }
 
@@ -119,7 +122,7 @@ function verifyCandidateSource(directory, record, { repoRoot = root } = {}) {
     };
     raw.components = require('../site/snapshot.cjs').verify(output, raw);
     fs.writeFileSync(path.join(temporary, 'artifact.json'), JSON.stringify(raw, null, 2) + '\n');
-    applyDeliveryLayers(temporary, record, content, candidates);
+    applyDeliveryLayers(temporary, record, content, candidates, repoRoot);
     const generated = manifest(output);
     if (
       generated.artifactDigest !== record.artifactDigest ||

@@ -3,7 +3,7 @@
   "id": "sdlc-out-of-balance",
   "slug": "the-sdlc-is-out-of-balance",
   "title": "The SDLC Is Out of Balance: Beyond the AI Code Review Bottleneck",
-  "summary": "AI code review is one part of a wider SDLC imbalance. Local automation can move costs, weaken shared understanding and delay business returns. Rebalance the whole delivery system.",
+  "summary": "The AI code crisis is more than a code review bottleneck. Explore verification capacity, comprehension debt and changes needed for sustainable software delivery.",
   "authors": [
     {
       "name": "Vitalii Oborskyi",
@@ -18,7 +18,7 @@
   },
   "status": "accepted",
   "source": "manuscript.en.md",
-  "edition": "sdlc-out-of-balance-en-r12-20261110",
+  "edition": "sdlc-out-of-balance-en-r13-20261121",
   "rights": {
     "status": "accepted",
     "notice": "© 2026 Vitalii Oborskyi. Original article text and non-brand explanatory diagrams: CC BY 4.0. The hero is AI-assisted editorial artwork selected by the author. Third-party research is linked and retains its own terms; no third-party figures are reproduced.",
@@ -98,6 +98,14 @@
     {
       "id": "source-17",
       "url": "https://fion.ac/jellyfish.pdf"
+    },
+    {
+      "id": "comprehension-debt",
+      "url": "https://addyosmani.com/blog/comprehension-debt/"
+    },
+    {
+      "id": "cost-cutting-companion",
+      "url": "https://vitaliioborskyi.ai/articles/ai-cost-cutting-fallacy.html"
     }
   ],
   "assets": [

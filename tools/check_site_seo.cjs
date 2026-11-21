@@ -202,6 +202,9 @@ const issue108 = JSON.parse(
 const issue159 = JSON.parse(
   fs.readFileSync(path.join(root, 'review/issue-159/content-amendment.json'), 'utf8')
 );
+const issue213 = JSON.parse(
+  fs.readFileSync(path.join(root, 'review/issue-213/content-amendment.json'), 'utf8')
+);
 const issue159ProducerPaths = [
   'site/templates/components/archive-reading-link.html',
   'site/templates/components/archive-topic-landing.html',
@@ -1343,7 +1346,32 @@ function restoreResearchNavigation(html, page) {
   }
   return html.replace(researchNavigation.separated, () => researchNavigation.original);
 }
+function restoreDiscoveryLink(html, page, record = issue213) {
+  if (page !== 'research') return html;
+  assert.equal(record.schema, 1, 'Discovery amendment schema');
+  assert.equal(record.issue, 213, 'Discovery amendment owner');
+  assert.equal(record.baseline, '3877546d29a04f235f9ec0f3175f4e0d90bfd60d');
+  assert.deepEqual(
+    record.changes.map((change) => [change.page, change.id]),
+    [['research', 'delivery-article-link']],
+    'Only the bounded Research reading link may reverse'
+  );
+  const change = record.changes[0];
+  assert.equal(
+    change.beforeSHA256,
+    '76cba2fe7e84ee32d843180f68dc8a2a7dd0001418cc4e49133e9bb50bef1e54',
+    'Exact discovery predecessor'
+  );
+  assert.equal(
+    change.afterSHA256,
+    'fd9818d6d26ade638c1f1e55c973cc89fa153fb41f115db713ab658769994629',
+    'Exact discovery successor'
+  );
+  return restoreContentAmendment(html, page, record);
+}
+
 function restoreApprovedContent(html, page) {
+  html = restoreDiscoveryLink(html, page);
   if (page === 'talks') html = restoreEventsCatalog(html);
   if (page === 'writing') html = restoreWritingCatalog(html);
   if (page === 'research') {
@@ -1503,6 +1531,7 @@ function verify() {
           ...issue108.changes,
           ...issue118.changes,
           ...issue159.changes,
+          ...issue213.changes,
           ...positioning.changes,
           ...sitecase.changes,
           ...arkadiy.changes,
@@ -1568,6 +1597,7 @@ module.exports = {
   verify,
   restore,
   restoreApprovedContent,
+  restoreDiscoveryLink,
   restoreResearchNavigation,
   restoreContentAmendment,
   restoreRefactorPresentation,

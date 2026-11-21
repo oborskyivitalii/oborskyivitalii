@@ -621,7 +621,8 @@
         "docs/styles.css",
         "review/issue-126/content-amendment.json",
         "review/issue-159/content-amendment.json",
-        "review/issue-169/trusted-reader-producer.json"
+        "review/issue-169/trusted-reader-producer.json",
+        "review/issue-213/content-amendment.json"
       ]
     },
     {
@@ -1652,7 +1653,8 @@
         "tests/fixtures/catalog.cjs",
         "review/issue-169/trusted-reader-producer.json",
         "review/issue-179/seo-producers.json",
-        "tools/check_site_seo.cjs"
+        "tools/check_site_seo.cjs",
+        "review/issue-213/content-amendment.json"
       ],
       "content": true
     },
@@ -3029,6 +3031,34 @@
         "guides/WEB-ORCHESTRATION.md",
         "CONTRIBUTING.md",
         ".github/ACCEPTANCE.md"
+      ]
+    },
+    {
+      "path": "tests/test_issue213_acceptance.py",
+      "language": "python",
+      "purpose": "Issue213 selects maintained SEO/material/reader and explicit retention-source reconstruction and rights contracts; editorial and delayed search outcomes remain external.",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": ["issue-policy"],
+      "disposition": "Owning issue213 policy only; maintained suites retain normal PR/staging/production routes.",
+      "surviving_route": ".github/acceptance/issue-213.json",
+      "inputs": [
+        "tests/test_issue213_acceptance.py",
+        ".github/acceptance/issue-213.json",
+        "tests/executive.test.cjs",
+        "tests/article-materials.test.cjs",
+        "review/issue-213/content-amendment.json",
+        "tests/site-articles.test.cjs",
+        "tests/fixtures/catalog.cjs",
+        "tests/edition-retention.test.cjs",
+        "tests/article-candidate-source.test.cjs",
+        "tests/content-release.test.cjs",
+        "tests/release-rights.test.cjs",
+        "tools/staging/color.cjs",
+        "tools/release/edition.cjs",
+        "tools/quality/candidate-source.cjs",
+        "site/rights.json",
+        "tools/quality/source-tests.cjs"
       ]
     }
   ]

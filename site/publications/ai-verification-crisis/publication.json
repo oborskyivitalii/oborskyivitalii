@@ -18,7 +18,7 @@
   },
   "status": "accepted",
   "source": "manuscript.en.md",
-  "edition": "ai-verification-crisis-en-20261116-editorial",
+  "edition": "ai-verification-crisis-en-20261121-discovery",
   "rights": {
     "status": "accepted",
     "notice": "Vitalii Oborskyi. Original article text from the June 2026 Agile Insider edition is included on the author site under CC BY 4.0. Linked material retains its own terms.",
@@ -36,6 +36,10 @@
     {
       "id": "linkedin-edition",
       "url": "https://www.linkedin.com/pulse/ai-externalization-reasoning-verification-crisis-vitalii-oborskyi-ihzwe/"
+    },
+    {
+      "id": "sdlc-companion",
+      "url": "https://vitaliioborskyi.ai/articles/the-sdlc-is-out-of-balance.html"
     }
   ],
   "assets": [
